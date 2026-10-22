@@ -1,0 +1,252 @@
+DEMOTE-none    US-11804  Gulkana BLM Wild and Scenic River                       | now: Glennallen Field Office | new: -  
+DEMOTE-none    US-11828  Fortymile BLM Wild and Scenic River                     | now: Eastern Interior Field Office | new: -  
+DEMOTE-none    US-11852  Beaver Creek BLM Wild and Scenic River                  | now: Eastern Interior Field Office | new: -  
+DEMOTE-check   US-7253   Old Sitka State Park                                    | now: Old Sitka State Historic Park & Boat Ramp | new: Old Sitka State Historic Park & Boat Ramp 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-0171   White River National Wildlife Refuge                    | now: Dale Bumpers White River National Wildlife Refuge; Dale Bump | new: Dale Bumpers White River National Wildlife Refuge 3 same words/pin 0.15 km outside (at the edge)
+DEMOTE-check   US-0854   William Jefferson Clinton Birthplace National Historic  | now: President William Jefferson Clinton Birthplace Home National | new: President William Jefferson Clinton Birthplace Hom 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-1106   Historic Washington State Park                          | now: Old Washington Historic State Park | new: Old Washington Historic State Park 3 same words/pin 0.06 km outside (at the edge)
+DEMOTE-check   US-11294  Caney Creek Wilderness Area Wilderness Zone             | now: Caney Creek Wilderness | new: Caney Creek Wilderness 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-12331  Greers Ferry Lake Tailwater State Recreation Area       | now: Greers Ferry Recreation Area | new: Greers Ferry Recreation Area 3 same words/pin 0.07 km outside (at the edge)
+DEMOTE-check   US-7160   Cave Springs State Natural Area                         | now: Cave Springs Cave Natural Area | new: Cave Springs 3 (Brandon) 1 same words/pin 0.5 km outside
+DEMOTE-check   US-7178   Flanagan Prairie State Natural Area                     | now: H.E. Flanagan Prairie Natural Area; H. E. Flanagan Prairie N | new: H.E. Flanagan Prairie Natural Area 3 same words/pin 0.05 km outside (at the edge)
+ADD            US-1052   Alamo Lake State Park                                   | now:  | new: Alamo 7 same name/no other place nearby has that name/pin inside
+DEMOTE-check   US-1058   Homolovi State Park                                     | now: Homolovi Ruins State Park; Homolovi Ruins State Park | new: Homolovi Ruins State Park 3 same words/pin 0.15 km outside (at the edge)
+DEMOTE-none    US-13335  Saddleback Mountain BLM Special Recreation Management A | now: Saddleback Mountain Facility Area; Saddleback Mountain Facil | new: -  
+DEMOTE-check   US-13336  Box Canyon BLM Special Recreation Management Area       | now: Box Canyon Facility Area; Box Canyon Facility Area | new: Box Canyon Facility Area 3 pin inside
+DEMOTE-check   US-13339  Baldy Mountain BLM Special Recreation Management Area   | now: Baldy Mountain Facility Area; Baldy Mountain Facility Area | new: Lake Pleasant 3 pin inside
+DEMOTE-check   US-13578  Napa-Sonoma Marsh State Wildlife Area                   | now: Napa-Sonoma Marshes Wildlife Area; Napa-Sonoma Marshes Wildl | new: Napa-Sonoma Marshes Wildlife Area 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-3441   Hearst San Simeon State Historic Site                   | now: Hearst San Simeon State Historical Monument | new: Hearst San Simeon State Historical Monument 3 pin inside
+DEMOTE-check   US-4383   Rogue River-Siskiyou National Forest                    | now: Siskiyou National Forest | new: Six Rivers National Forest 3 pin inside
+DEMOTE-check   US-6861   Great Pond / Massacoe State Forest                      | now: Massacoe State Forest; Massacoe State Forest | new: Massacoe State Forest 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-1744   Wilmington State Park                                   | now: Wilmington and Western Railroad; Wilmington State Parks | new: Wilmington State Parks 1 same words/pin 0.7 km off
+DEMOTE-check   US-5726   Old Furnace State Wildlife Area                         | now: Old Furnace Wildlife Area; Old Furnace Wildlife Area | new: Old Furnace Wildlife Area 2 same name/pin 1.1 km off
+DEMOTE-check   US-10565  Stuart's Landing North State Conservation Area          | now: Stuarts Landing Conservation Area | new: Stuarts Landing Conservation Area 1 one name says Upper/Lower/North/South/East/West and the other does not
+DEMOTE-check   US-10566  Stuart's Landing South State Conservation Area          | now: Stuarts Landing Conservation Area | new: Stuarts Landing Conservation Area 1 one name says Upper/Lower/North/South/East/West and the other does not
+DEMOTE-check   US-10615  Cypress Creek South State Conservation Area             | now: Cypress Creek Conservation Area | new: Cypress Creek Conservation Area 1 one name says Upper/Lower/North/South/East/West and the other does not
+ADD            US-12126  Stormwater Treatment Area 5/6 State Conservation Area   | now:  | new: Stormwater Treatment Areas 4 same words/pin inside
+DEMOTE-check   US-3635   Madira Bickel Mound State Historic Site                 | now: Madira Bickel Mound State Archaeological Site | new: Madira Bickel Mound State Archaeological Site 3 pin inside
+DEMOTE-check   US-3656   Beker - South Fork State Park                           | now: South Fork State Park | new: South Fork State Park 1 same words/pin 1.3 km outside
+DEMOTE-check   US-3669   Yellow Bluff Fort State Park                            | now: Yellow Bluff Fort Historic State Park; Yellow Bluff Fort His | new: Yellow Bluff Fort Historic State Park 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-3671   Yulee Sugar Mill Ruins State Park                       | now: Yulee Sugar Mill Ruins Historic State Park; Yulee Sugar Mill | new: Yulee Sugar Mill Ruins Historic State Park 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-6744   Terra Ceia Preserve Frog Creek State Conservation Area  | now: Terra Ceia Preserve State Park | new: Tampa Bay Estuarine Ecosystem - Terra Ceia 3 pin inside
+DEMOTE-check   US-3729   Rocky Mountain State Recreation Area                    | now: Rocky Mountain Recreation & Public Fishing Area | new: Rocky Mountain Recreation & Public Fishing Area 3 pin inside
+DEMOTE-check   US-7456   Dahlonega Gold Museum State Historic Site               | now: Dahlonega Museum Historic Site | new: Dahlonega Museum Historic Site 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-7472   Griswoldville Battlefield State Historic Site           | now: Griswoldville Historic Site | new: Griswoldville Historic Site 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-9797   Chattahoochee Fall Line Hilliard Tract Wildlife Managem | now: Chattahoochee Fall Line Wildlife Management Area; Chattahooc | new: Chattahoochee Fall Line Wildlife Management Area 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-none    US-2213   Kaumahina Wayside State Park                            | now: Kaumahina State Wayside | new: -  
+DEMOTE-none    US-2218   Nu'uanu Pali Wayside State Park                         | now: Nuuanu Pali State Wayside | new: -  
+DEMOTE-check   US-2221   Puaa Kaa Wayside State Park                             | now: Pua'a Ka'a State Wayside | new: Ko'olau Forest Reserve 3 pin inside
+DEMOTE-check   US-2227   Wailua Valley Wayside State Park                        | now: Wailua Valley State Wayside | new: Wailua Valley State Wayside 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-6408   Ahukini State Recreation Area                           | now: Ahukini State Recreation Pier | new: Ahukini State Recreation Pier 3 pin inside
+DEMOTE-check   US-6409   Waimea State Recreation Area                            | now: Waimea Canyon State Park; Waimea State Recreation Pier | new: Waimea Canyon State Park 1 same words/pin 8.2 km outside
+DEMOTE-check   US-6411   Polipoli State Recreation Area                          | now: Polipoli Spring State Recreation Area | new: Kula Forest Reserve 3 pin inside
+ADD            US-7916   Pearl Harbor National Memorial                          | now:  | new: Pearl Harbor National Wildlife Refuge 4 same name/no other place nearby has that name/pin 16.9 km off
+DEMOTE-check   US-0279   Minidoka National Wildlife Refuge                       | now: Minidoka National Wildlife Refuge; Minidoka National Wildlif | new: Minidoka National Wildlife Refuge 2 same name/pin 2.8 km outside
+ADD            US-11249  Salmon Falls Creek Reservoir State Fishing Lake         | now:  | new: Salmon Falls Creek 4 same name/no other place nearby has that name/pin 22.3 km off
+DEMOTE-check   US-11330  Killarney Lake Recreation Site BLM Recreation Managemen | now: Killarney Lake | new: Killarney Lake 3 pin inside
+ADD            US-11530  Hells Canyon Reservoir State Fishing Lake               | now:  | new: Hells Canyon Wilderness 6 same name/no other place nearby has that name/pin 0.33 km outside (at 
+DEMOTE-none    US-12298  Gamlin Lake Recreation Site BLM Recreation Management A | now: Gamlin Lake; Gamlin Lake | new: -  
+DEMOTE-check   US-13296  Upper Salmon River Access BLM Recreation Management Are | now: Upper Salmon River | new: Upper Salmon River 1 same words/pin 29.8 km outside
+DEMOTE-check   US-2228   Bear Lake State Park                                    | now: Bear Lake State Park; Bear Lake State Park | new: Bear Lake National Wildlife Refuge 2 same name/pin 14.4 km off
+DEMOTE-check   US-4477   Idaho Panhandle National Forest                         | now: Kaniksu National Forest | new: Kaniksu National Forest 3 pin inside
+DEMOTE-check   US-4478   Nez Perce National Forest                               | now: Nezperce National Forest | new: Payette National Forest 3 pin inside
+DEMOTE-check   US-4505   Kootenai National Forest                                | now: Kootenai National Forest; Kaniksu National Forest | new: Kootenai National Forest 2 same name/pin 31.9 km outside
+DEMOTE-check   US-5614   Pend Oreille Wildlife Management Area                   | now: Pend Oreille Wildlife Management Area; Pend Oreille Wildlife | new: Pend Oreille Wildlife Management Area 2 same name/pin 3.4 km off
+DEMOTE-check   US-7816   Henrys Lake Airstrip State Recreation Area              | now: Henrys Lake State Park | new: Henrys Lake State Park 1 same words/pin 1.8 km outside
+ADD            US-7821   Magic Reservoir Airstrip State Recreation Area          | now:  | new: Magic Reservoir 4 same words/pin inside
+ADD            US-0986   Chain-O-Lakes State Park                                | now:  | new: Chain O'Lakes State Park 7 same name/no other place nearby has that name/pin inside
+DEMOTE-none    US-1021   Sangchris Lake State Park                               | now: Sangchris Lake State Resource Area | new: -  
+DEMOTE-check   US-11793  Revis Spring Hill Prairie State Nature Preserve         | now: Revis Hill Prairie State Natural Area | new: Revis Hill Prairie State Natural Area 3 same words/pin 0.03 km outside (at the edge)
+ADD            US-4104   Stephen A. Forbes State Recreation Area                 | now:  | new: Stephen A. Forbest State Recreation Area 7 same name/no other place nearby has that name/pin inside
+ADD            US-4236   Upper Mississippi River National Wildlife Refuge        | now:  | new: -  
+DEMOTE-check   US-7256   Midewin National Grassland                              | now: Midewin Other | new: Midewin Other 3 pin inside
+DEMOTE-check   US-10231  Limberlost Swamp State Nature Preserve                  | now: Limberlost Nature Preserve | new: Limberlost State Historic Site 1 same words/pin 1.9 km off
+DEMOTE-check   US-10237  Mongoquinong State Nature Preserve                      | now: Mongoquinong Nature Preserve Sawmill Fen; Mongoquinong Natur | new: Mongoquinong Nature Preserve Buckbean Fen 1 same words/pin 6.5 km off
+DEMOTE-check   US-4161   Quakertown on Brookville Lake State Recreation Area     | now: Brookville Lake Public Fishing Area | new: Brookville Recreation Area 3 pin inside
+DEMOTE-check   US-4162   Mounds on Brookville Lake State Recreation Area         | now: Brookville Lake Public Fishing Area | new: Brookville Recreation Area 3 pin inside
+DEMOTE-check   US-4182   Trine at Pokagon State Recreation Area                  | now: Pokagon State Park | new: Pokagon State Park 3 same words/pin 0.64 km outside (at the edge)
+DEMOTE-check   US-4220   Pipewort Pond Lieber Memorial State Nature Preserve     | now: Pipewort Pond Nature Preserve | new: Pipewort Pond Nature Preserve 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-7370   Ravinia Woods State Forest                              | now: Ravinia State Forest | new: Ravinia State Forest 3 same words/pin 0.01 km outside (at the edge)
+ADD            US-7399   Tuttle Creek Willow State Fishing Lake                  | now:  | new: Tuttle Creek Recreation Area 4 same words/pin inside
+DEMOTE-check   US-0843   Longfellow House National Historic Site                 | now: Longfellow House-Washington's Headquarters National Historic | new: Longfellow House-Washington's Headquarters Nationa 3 same words/pin 0.04 km outside (at the edge)
+DEMOTE-check   US-11586  Boxborough Wildlife Management Area                     | now: Boxborough Station Wildlife Management Area | new: Boxborough Station Wildlife Management Area 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-2423   Gardner State Park                                      | now: C.M. Gardner State Park; C.M. Gardner State Park | new: C.M. Gardner State Park 3 same words/pin 0.23 km outside (at the edge)
+DEMOTE-check   US-6876   Castle Island State Park                                | now: Strandway/Castle Island | new: Old Harbor Reservation 3 pin inside
+DEMOTE-check   US-8393   Stodder's Neck & Abigail Adams State Park               | now: Abigail Adams State Park; Abigail Adams State Park | new: Abigail Adams State Park 1 same words/pin 0.3 km outside
+DEMOTE-check   US-8394   Ashuwillticook Rail Trail State Trail                   | now: Ashuwillticook Rail Trail; Ashuwillticook Rail Trail | new: Ashuwillticook Rail Trail 1 same words/pin 5.3 km off
+DEMOTE-check   US-8395   Cape Cod Rail Trail State Trail                         | now: Cape Cod Rail Trail; Cape Cod Rail Trail | new: Cape Cod Rail Trail 3 same words/pin 0.03 km outside (at the edge)
+DEMOTE-check   US-8396   Nashua River Rail Trail State Trail                     | now: Nashua River Rail Trail; Nashua River Rail Trail | new: Nashua River Rail Trail 1 same words/pin 4.2 km off
+DEMOTE-check   US-8397   Norwottuck Rail Trail State Trail                       | now: Norwottuck Rail Trail; Norwottuck Rail Trail | new: Norwottuck Rail Trail 3 same words/pin 0.07 km outside (at the edge)
+DEMOTE-check   US-8398   Southern New England Trunkline Trail State Trail        | now: Southern New England Trunkline Trail; Southern New England T | new: Southern New England Trunkline Trail 1 same words/pin 17.4 km off
+DEMOTE-check   US-0334   Patuxent National Wildlife Refuge                       | now: Patuxent Research Refuge; Patuxent Research Refuge | new: Patuxent Research Refuge 3 pin inside
+DEMOTE-check   US-0736   Harriet Tubman Underground Railroad National Historical | now: Harriet Tubman Underground Railroad National Historical Park | new: Harriet Tubman Underground Railroad National Histo 4 same name/no other place nearby has that name/pin 9.3 km off
+DEMOTE-check   US-4365   North Point Battlefield State Park                      | now: North Point State Park; North Point Sp | new: North Point Sb 3 pin inside
+DEMOTE-check   US-7980   Fort Baldwin State Historic Site                        | now: Fort Baldwin -Popham Colony | new: Popham Colony 3 pin inside
+DEMOTE-check   US-8434   Big Spencer Mountain Ecological Reserve                 | now: Big Spencer Mountain | new: Big Spencer Ecological Reserve 3 pin inside
+DEMOTE-check   US-8457   Cambridge Mainstream Wildlife Management Area           | now: Mainstream Wildlife Management Area; Mainstream Wildlife Man | new: Mainstream Wildlife Management Area 3 same words/pin 0.03 km outside (at the edge)
+DEMOTE-check   US-1502   Hart-Montague Trail State Park                          | now: Hart-Montague Bicycle Trail Park | new: Hart-Montague Bicycle Trail Park 3 pin inside
+DEMOTE-check   US-1511   Kal-Haven Trail State Park                              | now: Kal-Haven Trail Sesq. State Park | new: Kal-Haven Trail Sesq. State Park 3 same words/pin 0.44 km outside (at the edge)
+DEMOTE-check   US-1525   Muskegon State Park                                     | now: Muskegon State Park | new: Muskegon State Park 2 same name/pin 0.3 km outside
+DEMOTE-check   US-6638   Cannon Creek Floodings Wildlife Management Area         | now: Cannon Creek Flooding No. 1 State Wildlife Management Area;  | new: Cannon Creek Flooding No. 1 State Wildlife Managem 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-6773   Sage Lakes Flooding Wildlife Management Area            | now: Sage Lakes State Wildlife Management Area | new: Sage Lakes State Wildlife Management Area 3 same words/pin 0.04 km outside (at the edge)
+ADD            US-6816   Lime Island State Harbor                                | now:  | new: Lime Island State Recreation Area 4 same words/pin inside
+DEMOTE-check   US-11699  Savage FEN SNA State Sanctuary                          | now: Savage Fen State Scientific and Natural Area | new: Savage Fen State Scientific and Natural Area 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-11700  Wolsfeld Woods SNA State Sanctuary                      | now: Wolsfeld Woods State Scientific and Natural Area | new: Wolsfeld Woods State Scientific and Natural Area 3 same words/pin 0.03 km outside (at the edge)
+DEMOTE-check   US-0374   Big Muddy National Wildlife Refuge                      | now: Big Muddy National Fish And Wildlife Refuge; Big Muddy Natio | new: Big Muddy National Fish And Wildlife Refuge 3 same words/pin 0.70 km outside (at the edge)
+ADD            US-10218  The Lewis Family, Dean, Anna Mae and David D. Lewis Sta | now:  | new: Lewis (The) Family, Dean, Anna Mae and David D. Le 4 same words/pin inside
+ADD            US-12671  Caldwell Memorial State Wildlife Area                   | now:  | new: Caldwell Mem WA 4 same words/pin inside
+DEMOTE-check   US-13253  Sappington African American Cemetery State Historic Sit | now: Sappington Cemetery State Historic Site | new: Sappington Cemetery State Historic Site 1 same words/pin 0.6 km outside
+DEMOTE-check   US-0390   Noxubee National Wildlife Refuge                        | now: Sam D. Hamilton Noxubee National Wildlife Refuge; Sam D. Ham | new: Sam D. Hamilton Noxubee National Wildlife Refuge 3 same words/pin 0.18 km outside (at the edge)
+DEMOTE-check   US-0722   Shiloh National Battlefield                             | now: Shiloh National Military Park | new: Shiloh National Military Park 1 same name/no other place nearby has that name/pin 22 km away
+DEMOTE-check   US-2534   Florewood State Park                                    | now: Florewood River Plantation State Park | new: Florewood River Plantation State Park 1 same words/pin 1.1 km outside
+ADD            US-2545   Legion State Park                                       | now:  | new: Legion Lake State Park 7 same name/no other place nearby has that name/pin inside
+DEMOTE-check   US-7108   Pascagoula River Wildlife Management Area               | now: Pascagoula Wma; Pascagoula Wma | new: Pascagoula River Marshes (Dec 2011) 4 same name/no other place nearby has that name/pin 16.9 km outside
+DEMOTE-check   US-0070   Yellowstone National Park                               | now: Yellowstone National Park | new: Yellowstone National Park 2 same name/pin 37.4 km outside
+DEMOTE-none    US-10525  Coal Banks Landing (BLM) Recreation Site                | now: Coal Banks Landing; Coal Banks Landing | new: -  
+ADD            US-11146  Somers Beach State Park                                 | now:  | new: Somers Fishing Access Site 4 same name/no other place nearby has that name/pin 1.3 km off
+DEMOTE-check   US-2561   Big Arm State Park                                      | now: Flathead Lake/Big Arm State Park | new: Montana State Trust Lands 3 pin inside
+DEMOTE-check   US-2569   Finley Point State Park                                 | now: Flathead Lake/Finley Point State Park | new: Flathead Lake/Finley Point State Park 3 same words/pin 0.21 km outside (at the edge)
+DEMOTE-check   US-2603   Wayfarers State Park                                    | now: Flathead Lake/Wayfarers State Park | new: Flathead Lake/Wayfarers State Park 3 same words/pin 0.07 km outside (at the edge)
+ADD            US-12717  Deep River State Trail                                  | now:  | new: Deep River State Trail 4 same name/no other place nearby has that name/pin 12.5 km off
+DEMOTE-check   US-4861   Tuttle Educational State Forest                         | now: Tuttle State Forest | new: Tuttle State Forest 1 same words/pin 0.5 km outside
+DEMOTE-check   US-6831   Battleship North Carolina State Historic Site           | now: USS North Carolina Battleship Memorial | new: USS North Carolina Battleship Memorial 3 pin inside
+DEMOTE-check   US-6836   Charlotte Hawkins Brown Museum State Historic Site      | now: Charlotte Hawkins Brown Memorial State Historic Site | new: Charlotte Hawkins Brown Memorial State Historic Si 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-6856   Zebulon B. Vance Birthplace State Historic Site         | now: Vance Birthplace State Historic Site | new: Vance Birthplace State Historic Site 3 same words/pin 0.04 km outside (at the edge)
+DEMOTE-check   US-6897   Croatan State Game Land                                 | now: Croatan Game Land | new: Croatan National Forest 1 same name/no other place nearby has that name/pin 35 km away
+DEMOTE-check   US-6924   Lower Roanoke River State Game Land                     | now: Lower Roanoke River Wetlands | new: Lower Roanoke River Wetlands 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-0437   White Horse Hill Game Preserve                          | now: White Horse Hill National Game Preserve | new: White Horse Hill National Game Preserve 3 same words/pin 0.67 km outside (at the edge)
+DEMOTE-check   US-12736  Gifford Point Wildlife Management Area                  | now: Gifford Wildlife Management Area; Gifford Wildlife Managemen | new: Gifford Wildlife Management Area 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-13329  Plum Creek Canyon Reservoir Wildlife Management Area    | now: Plum Creek Wildlife Management Area | new: Plum Creek Wildlife Management Area 3 same words/pin 0.17 km outside (at the edge)
+DEMOTE-check   US-13608  American Game Marsh Wildlife Management Area            | now: American Game Association Marsh Wildlife Management Area; Am | new: American Game Association Marsh Wildlife Managemen 3 same words/pin 0.01 km outside (at the edge)
+ADD            US-2611   Bowring Ranch State Historical Park                     | now:  | new: Bowring Ranch SHP 4 same words/pin inside
+DEMOTE-none    US-4015   Platte River Landing State Park                         | now: Platte River State Park; Platte River State Park | new: Platte River State Park -2 same words/pin 39 km away
+ADD            US-4017   Lincoln Saline Wetland State Park                       | now:  | new: Lincoln Saline Wetlands Nature Center 4 same words/pin inside
+DEMOTE-none    US-9356   Willow Lake Wildlife Management Area                    | now: Willow Lake B.C. Wildlife Management Area; Willow Lake B.C.  | new: Willow Lake B.C. Wildlife Management Area -2 same words/pin 52 km away
+DEMOTE-check   US-0329   Silvio O Conte National Wildlife Refuge                 | now: Silvio O. Conte National Fish And Wildlife Refuge; Silvio O. | new: Silvio O. Conte National Fish And Wildlife Refuge 1 same words/pin 22.3 km off
+DEMOTE-check   US-4882   Carroll State Forest                                    | now: Carroll State Forest | new: Carroll State Forest 2 same name/pin 0.4 km outside
+DEMOTE-check   US-4894   Davis-White State Forest                                | now: Davis-White State Forest | new: Davis-White State Forest 1 same name/no other place nearby has that name/pin 55 km away
+DEMOTE-check   US-4913   Hodgman State Forest                                    | now: Hodgman State Forest | new: Hodgman State Forest 2 same name/pin 1.1 km off
+DEMOTE-check   US-4933   Merrimack River State Forest                            | now: Merrimack River State Forest | new: Merrimack River State Forest 1 same name/no other place nearby has that name/pin 26 km away
+DEMOTE-check   US-4934   Merriman State Forest                                   | now: Merriman State Forest | new: Merriman State Forest 1 same name/no other place nearby has that name/pin 21 km away
+DEMOTE-check   US-4945   Piscataquog State Forest                                | now: Piscataquog State Forest | new: Piscataquog State Forest 2 same name/pin 0.5 km outside
+DEMOTE-check   US-4970   Taylor State Forest                                     | now: Taylor State Forest | new: Taylor State Forest 2 same name/pin 1.1 km off
+DEMOTE-check   US-8023   Robert Frost Farm State Historic Site                   | now: Frost Farm Historical Site; Frost Farm Historical Site | new: Frost Farm Historical Site 3 same words/pin 0.04 km outside (at the edge)
+DEMOTE-check   US-8025   Wentworth- Coolidge Mansion State Historic Site         | now: Wentworth Coolidge Historic Site | new: Wentworth Coolidge Historic Site 1 same words/pin 1.1 km off
+DEMOTE-check   US-8396   Nashua River Rail Trail State Trail                     | now: Nashua River Rail Trail | new: Nashua River Rail Trail 1 same words/pin 8.0 km off
+DEMOTE-check   US-12104  Pohatcong Creek Wildlife Management Area                | now: Pohatcong Wildlife Management Area | new: Pohatcong Wildlife Management Area 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-13150  Belvidere Access Wildlife Management Area               | now: Belvidere Fishing Access; Belvidere Fishing Access | new: Belvidere Fishing Access 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-8047   Paulinskill Wildlife Management Area                    | now: Paulinskill River Wildlife Management Area; Paulinskill Rive | new: Paulinskill River Wildlife Management Area 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-8319   Palisades Interstate Park                               | now: Palisades State Park | new: Palisades Park 3 pin inside
+DEMOTE-check   US-11806  Johnson (Gordy's) Hill BLM Recreation Management Area   | now: Johnson (Gordy's) Hill North; Johnson (Gordy's) Hill South | new: Quebradas Backcountry Byway 3 pin inside
+DEMOTE-check   US-11814  Salinas Pueblo Missions, Quarai unit, National Monument | now: Salinas Pueblo Missions National Monument | new: Salinas Pueblo Missions National Monument 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-13018  Black Rock Range East/West BLM Herd Management Area     | now: Black Rock Range | new: Black Rock Range 3 same words/pin 4.65 km outside (at the edge)
+DEMOTE-check   US-13030  Fox-Lake BLM Herd Management Area                       | now: Fox-Lake Range | new: Fox-Lake Range 3 pin inside
+DEMOTE-check   US-13039  Owyhee River Wilderness Area                            | now: Owyhee River Wilderness | new: Owyhee River Canyon 1 same words/pin 30.1 km outside
+DEMOTE-check   US-13152  Mill Creek-NV BLM Recreation Management Area            | now: Mill Creek Recreation Area; Mill Creek Recreation Area | new: Mill Creek Recreation Area 3 same words/pin 0.15 km outside (at the edge)
+DEMOTE-check   US-13181  Pine Forest BLM Recreation Management Area              | now: Pine Forest Creeks RMZ | new: Knott Creek Reservoir RMZ 3 pin inside
+DEMOTE-none    US-13191  Tabor Creek Campground BLM Recreation Management Area   | now: Tabor Creek | new: -  
+DEMOTE-check   US-13224  South Fork Owyhee River - Nevada BLM Recreation Managem | now: South Fork Owyhee River | new: South Fork Owyhee River 3 same words/pin 0.44 km outside (at the edge)
+DEMOTE-check   US-13225  Steven's Camp BLM Special Recreation Management Area    | now: Stevens Camp Camping Area; Stevens Camp Camping Area | new: Stevens Camp Camping Area 3 pin inside
+DEMOTE-check   US-8311   Humboldt State Wildlife Management Area                 | now: The Humboldt Wildlife Management Area (Humboldt Toulon Wildl | new: Humoldt Wildlife Management Area 3 pin inside
+DEMOTE-check   US-9247   Eldorado BLM Wilderness Area                            | now: Eldorado | new: Eldorado 2 same name/pin 15.6 km off
+DIFF           US-9254   High Rock Canyon BLM Special Recreation Management Area | now: High Rock Canyon Camping Areas; High Rock Canyon Camping Are | new: High Rock Canyon 7 same name/no other place nearby has that name/pin inside
+DEMOTE-check   US-9258   Ireteba Peaks BLM Wilderness Area                       | now: Ireteba Peaks | new: Ireteba Peaks 1 same name/no other place nearby has that name/pin 24 km away
+ADD            US-12060  Crystal Lake State Forest                               | now:  | new: Crystal Lake Wild Forest 4 same words/pin inside
+DEMOTE-check   US-2006   Artpark State Park                                      | now: Earl W. Brydges Artpark | new: Earl W. Brydges Artpark 3 pin inside
+DEMOTE-check   US-2077   Honeoye Lake State Park                                 | now: Honeoye Lake Marine Park | new: Honeoye Lake Marine Park 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-none    US-2098   Lodi Point State Park                                   | now: Lodi Point Marine Park | new: -  
+DEMOTE-check   US-5258   Pochuck State Forest                                    | now: Pochuck Mountain State Forest | new: Pochuck Mountain State Forest 3 same words/pin 0.03 km outside (at the edge)
+ADD            US-5308   Split Rock State Forest                                 | now:  | new: Split Rock Wild Forest 4 same words/pin inside
+ADD            US-5338   Tibbetts State Forest                                   | now:  | new: Tibbitts State Forest 7 same name/no other place nearby has that name/pin inside
+DEMOTE-check   US-9041   Chautauqua Lake Wildlife Management Area                | now: Chautauqua Lake Fish And Wildlife Management Area | new: Chautauqua Fish Hatchery 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-1936   Blue Rock State Park                                    | now: Blue Rock State Park | new: Blue Rock State Forest 2 same name/pin 1.3 km outside
+DEMOTE-check   US-1942   Cleveland Lakefront State Park                          | now: Cleveland Lakefront State Park - Gordon Park | new: Gordon Park - Lakefront Reservation 3 pin inside
+DEMOTE-check   US-1986   Pymatuning of Ohio State Park                           | now: Pymatuning State Park | new: Pymatuning State Park 1 same words/pin 1.3 km off
+DEMOTE-check   US-9393   Blackhand Gorge State Nature Preserve                   | now: Blackhand Gorge Dedicated Nature Preserve | new: Blackhand Gorge Dedicated Nature Preserve 3 same words/pin 0.33 km outside (at the edge)
+DEMOTE-check   US-9397   Christmas Rocks State Nature Preserve                   | now: Christmas Rocks Dedicated Nature Preserve | new: Christmas Rocks Dedicated Nature Preserve 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9400   Conkles Hollow State Nature Preserve                    | now: Conkles Hollow Dedicated Nature Preserve | new: Conkles Hollow Dedicated Nature Preserve 3 same words/pin 0.12 km outside (at the edge)
+DEMOTE-check   US-9402   Culberson Woods State Nature Preserve                   | now: Culberson Woods Dedicated Nature Preserve | new: Culberson Woods Dedicated Nature Preserve 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9403   Davey Woods State Nature Preserve                       | now: Davey Woods Dedicated Nature Preserve | new: Davey Woods Dedicated Nature Preserve 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-9406   Erie Sand Barrens State Nature Preserve                 | now: Erie Sand Barrens Dedicated Nature Preserve | new: Erie Sand Barrens Dedicated Nature Preserve 3 same words/pin 0.04 km outside (at the edge)
+DEMOTE-check   US-9417   Kessler Swamp State Nature Preserve                     | now: Kessler Swamp Dedicated Nature Preserve | new: Kessler Swamp Dedicated Nature Preserve 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9421   Marsh Wetlands State Nature Preserve                    | now: Marsh Wetlands Dedicated Nature Preserve | new: Marsh Wetlands Dedicated Nature Preserve 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9424   North Pond State Nature Preserve                        | now: North Pond Dedicated Nature Preserve | new: North Pond Dedicated Nature Preserve 3 same words/pin 0.04 km outside (at the edge)
+DEMOTE-check   US-9426   Owens Fen State Nature Preserve                         | now: Liberty/Owens Fen Dedicated Nature Preserve | new: Liberty/Owens Fen Dedicated Nature Preserve 3 same words/pin 0.06 km outside (at the edge)
+DEMOTE-check   US-9428   Rockbridge State Nature Preserve                        | now: Rockbridge Dedicated Nature Preserve | new: Rockbridge Dedicated Nature Preserve 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9431   Sheepskin Hollow State Nature Preserve                  | now: Sheepskin Hollow Dedicated Nature Preserve | new: Sheepskin Hollow Dedicated Nature Preserve 3 same words/pin 0.07 km outside (at the edge)
+DEMOTE-check   US-9433   Shoemaker State Nature Preserve                         | now: Shoemaker Dedicated Nature Preserve | new: Shoemaker Dedicated Nature Preserve 1 same words/pin 0.5 km outside
+DEMOTE-check   US-9434   Siegenthaler-Kaestner Esker State Nature Preserve       | now: Siegenthaler-Kaestner Esker Dedicated Nature Preserve | new: Siegenthaler-Kaestner Esker Dedicated Nature Prese 3 same words/pin 0.06 km outside (at the edge)
+DEMOTE-check   US-9440   Tummonds State Nature Preserve                          | now: Tummonds Dedicated Nature Preserve | new: Tummonds Dedicated Nature Preserve 1 same words/pin 0.5 km outside
+DEMOTE-check   US-9441   Whipple State Nature Preserve                           | now: Whipple Dedicated Nature Preserve | new: Whipple Dedicated Nature Preserve 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-9456   Delaware State Wildlife Area                            | now: Delaware Strine Wildlife Area | new: Delaware Recreation Area 1 same words/pin 3.9 km off
+DEMOTE-check   US-9462   Fallsville South State Wildlife Area                    | now: Fallsville Wildlife Area | new: Fallsville Wildlife Area 1 one name says Upper/Lower/North/South/East/West and the other does not
+ADD            US-9522   Zepernick State Wildlife Area                           | now:  | new: Zeppernick Lake Wildlife Area 7 same name/no other place nearby has that name/pin inside
+DEMOTE-check   US-11714  Ozark Plateau National Wildlife Management Area         | now: Ozark Plateau Wildlife Management Area | new: Ozark Plateau National Wildlife Refuge 3 same words/pin 1.23 km outside (at the edge)
+DEMOTE-check   US-12028  Barren Fork Wildlife Management Area                    | now: Barren Fork Wildlife Management Area | new: Barren Fork Wildlife Management Area 1 same name/no other place nearby has that name/pin 28 km away
+DEMOTE-check   US-2803   Sequoyah State Park                                     | now: Sequoyah Bay State Park | new: Western Hills Guest Ranch/sequoya Sp State Resort 3 pin inside
+DEMOTE-check   US-0499   Cold Springs National Wildlife Refuge                   | now: Cold Springs National Wildlife Refuge; Cold Springs National | new: Cold Springs National Wildlife Refuge 2 same name/pin 1.3 km outside
+DEMOTE-check   US-0500   Hart Mountain National Wildlife Refuge                  | now: Hart Mountain National Antelope Refuge; Hart Mountain Nation | new: Hart Mountain National Antelope Refuge 3 pin inside
+DEMOTE-check   US-10055  Cline Buttes OHV BLM Recreation Management Area         | now: Cline Buttes OHV Area - Play Area; Cline Buttes OHV Area - P | new: High Desert 3 pin inside
+DEMOTE-check   US-10473  Sandy Ridge BLM Recreation Management Area              | now: Sandy Ridge Trailhead; Sandy Ridge Trailhead | new: Sandy Ridge Trailhead 3 pin inside
+DEMOTE-check   US-10480  Chukar Park BLM Recreation Management Area              | now: Chukar Park Recreation Site; Chukar Park Recreation Site | new: Chukar Park Recreation Site 3 same words/pin 0.06 km outside (at the edge)
+DEMOTE-check   US-10490  Moon Reservoir BLM Recreation Management Area           | now: Moon Reservoir Recreation Site; Moon Reservoir Recreation Si | new: Moon Reservoir Recreation Site 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-10491  Radar Hill BLM Recreation Management Area               | now: Radar Hill OHV Area; Radar Hill OHV Area | new: Radar Hill OHV Area 3 pin inside
+DEMOTE-none    US-10753  Woodrat Mountain Paragliding BLM Recreation Management  | now: Woodrat; Woodrat Mountain | new: -  
+DEMOTE-check   US-10754  Eight Dollar Mountain Botanical Wayside BLM Recreation  | now: Eight Dollar Mountain; Eight Dollar Mountain | new: Eight Dollar Mountain Wayside 3 pin inside
+ADD            US-11243  Cape Sebastian Corridor State Recreation Area           | now:  | new: Cape Sebastian 4 same words/pin inside
+DEMOTE-check   US-12453  Rocky Creek Viewpoint State Park                        | now: Rocky Creek State Scenic Viewpoint | new: Rocky Creek State Scenic Viewpoint 3 pin inside
+DEMOTE-check   US-12835  Osprey Boat BLM Recreation Management Area              | now: Osprey Boat Ramp; Osprey Boat Ramp | new: Osprey Boat Ramp 3 same words/pin 0.09 km outside (at the edge)
+DEMOTE-check   US-12837  East Shore BLM Recreation Management Area               | now: East Shore Campground; East Shore Campground | new: East Shore Campground 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-12839  Vincent Creek BLM Recreation Management Area            | now: Vincent Creek Campground; Vincent Creek Campground | new: Vincent Creek Campground 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-12841  Fawn Creek BLM Recreation Management Area               | now: Fawn Creek Campground; Fawn Creek Campground | new: Fawn Creek Campground 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-12845  Hult Dam & Reservoir BLM Recreation Management Area     | now: Hult Reservoir Recreation Area | new: Hult Pond 3 pin inside
+DEMOTE-check   US-2810   Alderwood Wayside State Park                            | now: Alderwood State Wayside | new: Alderwood State Wayside 3 pin inside
+DEMOTE-check   US-2823   Chandler Wayside State Park                             | now: Chandler State Wayside | new: Chandler State Wayside 3 pin inside
+DEMOTE-check   US-4383   Rogue River-Siskiyou National Forest                    | now: Siskiyou National Forest | new: Siskiyou National Forest 3 same words/pin 1.60 km outside (at the edge)
+DEMOTE-check   US-4457   Klamath National Forest                                 | now: Klamath National Forest; Klamath National Forest | new: Klamath National Forest 2 same name/pin 44.5 km off
+ADD            US-5458   Gilchrist State Forest                                  | now:  | new: Gilchrist Forest (East, Match Tracts 2,3,4) 4 same name/no other place nearby has that name/pin 10.6 km outside
+DEMOTE-check   US-5461   Tillamook State Forest                                  | now: Tillamook State Forest | new: Forest Development Fund (Board Of Forestry) 3 pin inside
+DEMOTE-none    US-9546   Fort Yamhill State Historic Site                        | now: Fort Yamhill State Heritage Site | new: -  
+DEMOTE-check   US-9991   Redmond Caves BLM Recreation Management Area            | now: Redmond Caves Community Park; Redmond Caves Community Park | new: High Desert 3 pin inside
+DEMOTE-check   US-9993   Nestucca River OHV BLM Recreation Management Area       | now: Nestucca River; Nestucca River | new: Nestucca River 1 same words/pin 4.8 km off
+DEMOTE-check   US-6432   Washington Crossing State Historical Park               | now: Washington Crossing Historic Park; Washington Crossing Histo | new: Washington Crossing State Park 4 same name/no other place nearby has that name/pin 7.8 km off
+DEMOTE-check   US-7722   Scarborough North State Beach                           | now: Scarborough State Beach | new: Scarborough State Beach 1 one name says Upper/Lower/North/South/East/West and the other does not
+DEMOTE-check   US-7971   Blackstone River Valley National Historical Park        | now: Blackstone River Valley National Historical Park | new: Blackstone River Valley National Historical Park 1 same name/no other place nearby has that name/pin 21 km away
+DEMOTE-check   US-3881   Battle of Musgrove Mill State Historic Site             | now: Musgrove Mill State Historic Site; Musgrove Mill State Histo | new: Musgrove Mill State Historic Site 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-3891   Campbells Crossroads and Angelus Tracts Wildlife Manage | now: Campbells Crossroads Wildlife Management Area | new: Campbells Crossroads Wildlife Management Area 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9197   Victoria Bluff Wildlife Management Area                 | now: Victoria Bluff Heritage Preserve / Wildlife Management Area | new: Victoria Bluff Heritage Preserve / Wildlife Manage 3 same words/pin 0.01 km outside (at the edge)
+DEMOTE-check   US-9200   Dungannon Plantation Wildlife Management Area           | now: Dungannon Plantation Heritage Preserve / Wildlife Management | new: Dungannon Plantation Heritage Preserve / Wildlife  3 same words/pin 0.03 km outside (at the edge)
+DEMOTE-check   US-9224   Lake Wallace Wildlife Management Area                   | now: Lake Paul Wallace Wildlife Management Area | new: Lake Paul Wallace Wildlife Management Area 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-9225   Brasstown Creek Wildlife Management Area                | now: Brasstown Creek Heritage Preserve / Wildlife Management Area | new: Brasstown Creek Heritage Preserve / Wildlife Manag 3 same words/pin 0.05 km outside (at the edge)
+DEMOTE-none    US-5645   Spirit Mound Historic Prairie State Park                | now: Spirit Mound | new: -  
+ADD            US-0642   Natchez Trace Parkway National Parkway                  | now:  | new: -  
+DEMOTE-none    US-11879  North Chickamauga Creek Gorge State Park                | now: Cumberland Trail | new: -  
+DEMOTE-check   US-12663  Ocoee River State Park                                  | now: Hiwassee/Ocoee Scenic River State Park | new: Hiwassee/Ocoee Scenic River State Park 1 same words/pin 5.4 km off
+DEMOTE-check   US-2955   Wilson Cumberland Trail State Park                      | now: Justin P. Wilson Cumberland Trail State Park; Cumberland Tra | new: Justin P. Wilson Cumberland Trail State Park 3 same words/pin 0.06 km outside (at the edge)
+DEMOTE-check   US-3928   Bridgestone/firestone Centennial Wilderness Wildlife Ma | now: Bridgestone/Firestone Wildlife Management Area; Centennial W | new: Bridgestone/Firestone Wildlife Management Area 3 same words/pin 0.02 km outside (at the edge)
+DEMOTE-check   US-6244   Flat Rock Cedar Glade State Natural Area                | now: Flat Rock Cedar Glades and Barrens State Natural Area; Flat  | new: Flat Rock Cedar Barren And Glade Designated State  3 same words/pin 0.03 km outside (at the edge)
+ADD            US-6280   Windows Cliffs State Natural Area                       | now:  | new: Burgess Falls 6 same name/no other place nearby has that name/pin 0.19 km outside (at 
+DEMOTE-check   US-6535   Angelina-Neches/Dam B Wildlife Management Area          | now: Angelina Neches/Dam Wildlife Management Area | new: Angelina Neches/Dam Wildlife Management Area 3 same words/pin 1.03 km outside (at the edge)
+DEMOTE-check   US-6571   Las Palomas , Anacua Unit Wildlife Management Area      | now: Las Palomas Wildlife Management Area; Las Palomas Wildlife M | new: Las Palomas Wildlife Management Area 2 same name/pin 1.4 km outside
+DEMOTE-check   US-7480   Black Kettle National Grassland                         | now: Black Kettle National Grassland | new: Black Kettle National Grassland 1 same name/no other place nearby has that name/pin 31 km away
+ADD            US-10972  Beartrap Canyon BLM Wild and Scenic River               | now:  | new: Beartrap Canyon 4 same name/no other place nearby has that name/pin 1.8 km off
+DEMOTE-check   US-11000  Desert Experimental Range Biosphere Reserve             | now: Desert Experimental Range | new: Desert Experimental Range 3 same words/pin 0.89 km outside (at the edge)
+DEMOTE-check   US-11104  Brigham Face State Wildlife Habitat Management Area     | now: Brigham Face State Wildlife Area | new: Utah State Department of Wildlife Resources 476 3 pin inside
+ADD            US-11115  North Fork Virgin River BLM Wild and Scenic River       | now:  | new: North Fork Virgin River 4 same name/no other place nearby has that name/pin 2.0 km outside
+DEMOTE-check   US-11172  Dinosaur Trackway BLM Recreation Management Area        | now: Dinosaur Trackway Trailhead; Dinosaur Trackway Trailhead | new: Dinosaur Trackway Trailhead 3 same words/pin 0.00 km outside (at the edge)
+DEMOTE-check   US-11212  Furniture Draw BLM Recreation Management Area           | now: Furniture Draw Trailhead; Furniture Draw Trailhead | new: San Rafael Swell 3 pin inside
+DEMOTE-check   US-11645  Utah Lake Access - Swede's Lane Wildlife Management Are | now: Swedes Lane Utah Lake Access | new: Swedes Lane Utah Lake Access 3 same words/pin 0.04 km outside (at the edge)
+DEMOTE-check   US-11739  Three Peaks RC Track BLM Special Recreation Management  | now: Three Peaks | new: Three Peaks 3 pin inside
+DEMOTE-check   US-12145  Doc's Beach OHV Staging Area BLM Recreation Management  | now: Docs Beach Staging Area; Docs Beach Staging Area | new: Docs Beach Staging Area 3 pin inside
+DEMOTE-check   US-12147  Jensen Hills OHV Area BLM Recreation Management Area    | now: Jensen Hills; Jensen Hills | new: Jensen Hills 3 pin inside
+DEMOTE-none    US-12149  Rainbow Ghost Town Site BLM Special Recreation Manageme | now: Rainbow Town Site; Rainbow Town Site | new: -  
+DEMOTE-check   US-12151  Point of Pines BLM Special Recreation Management Area   | now: Point of Pines Campsite 1; Point of Pines Campsite 8 | new: Blue Mountain 3 pin inside
+DEMOTE-check   US-5758   Dolores River BLM Recreation Management Area            | now: Dolores River Canyons; Dolores River Canyon | new: Two Rivers 3 pin inside
+DEMOTE-check   US-5779   Willard Spur State Waterfowl Management Area            | now: Willard Spur WMA | new: Willard Spur WMA 3 same words/pin 0.44 km outside (at the edge)
+DEMOTE-check   US-5828   Dark Canyon BLM Special Recreation Management Area      | now: Dark Canyon | new: Dark Canyon Wilderness 2 same name/pin 9.2 km outside
+DEMOTE-none    US-5849   Robbers Roost / Dirty Devil BLM Recreation Management A | now: Dirty Devil / Robber's Roost | new: -  
+DEMOTE-check   US-5930   Bicknell Bottoms State Waterfowl Management Area        | now: Bicknell Bottoms WMA | new: Bicknell Bottoms WMA 3 same words/pin 0.70 km outside (at the edge)
+DEMOTE-check   US-5955   Farmington Bay State Waterfowl Management Area          | now: Farmington Bay State Wildlife Area | new: Farmington Bay State Wildlife Area 1 same words/pin 2.3 km outside
+DEMOTE-check   US-5971   Harold S. Crane State Waterfowl Management Area         | now: Harold Crane State Wildlife Area | new: Harold Crane State Wildlife Area 1 same words/pin 2.1 km outside
+DEMOTE-none    US-6027   Topaz Mountain Rockhound Area BLM Recreation Management | now: Topaz Mountain | new: -  
+DIFF           US-6045   Swasey Mountain BLM Herd Management Area                | now: Swasey | new: Swasey Mountain 7 same name/no other place nearby has that name/pin inside
