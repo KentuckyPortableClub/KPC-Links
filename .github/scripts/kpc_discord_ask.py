@@ -233,7 +233,10 @@ def rare_parks():
     d = load('kpc-top25.json', {})
     held = {str(h.get('ref')).upper() for h in (load('data/kpc-post-holds.json', {}).get('hold') or [])
             if h.get('ref')}
-    rows = [r for r in (d.get('acts') or []) if str(r.get('c', '')).upper() not in held]
+    live = {p['c'] for p in (load('kpc-ky-data.json', {}).get('parks') or [])}
+    # a reference POTA has retired is still in the figures file until it is refreshed - never suggest one
+    rows = [r for r in (d.get('acts') or [])
+            if str(r.get('c', '')).upper() not in held and r.get('c') in live]
     if not rows:
         return None
     L = ["**Kentucky parks hardly anybody has activated**"]
@@ -254,6 +257,7 @@ def busy_parks():
         return None
     ky = load('kpc-ky-data.json', {})
     byref = {p['c']: p for p in (ky.get('parks') or [])}
+    rows = [r for r in rows if r[0] in byref]          # drop anything POTA has retired
     rows.sort(key=lambda r: -(r[1] or 0))
     # A handful of references (the Trail of Tears, Lewis and Clark, the national forests) run through several
     # states, and POTA counts every activation of them anywhere. Quoting those as Kentucky's busiest would be
