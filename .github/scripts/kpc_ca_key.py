@@ -9,6 +9,48 @@ import json, os, re, time, unicodedata, urllib.parse, urllib.request, pathlib
 SVC = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer'
 OUT = pathlib.Path('data/ca-key'); OUT.mkdir(parents=True, exist_ok=True)
 UA = 'KPC (kentuckyportableclub.github.io)'
+import gzip
+# SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; same scheme as kpc_us_key.py). Every live run has fetched CPCAD and
+# the provincial layers at 0.02 degrees (~2.2 km) - coarser than many parks. GEO_CACHE_MODE: off (default, exactly as
+# before) | use | refresh | only (no network). All of Canada is read at once, so it is saved as ONE file.
+DETAIL = float(os.environ.get('GEO_DETAIL') or 0.02)
+PREC = 3 if DETAIL >= 0.01 else 5
+CCACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/ca')
+CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
+
+
+def ccache_file(): return CCACHE / 'CA-ALL.json.gz'
+
+
+def csave(recs):
+    CCACHE.mkdir(parents=True, exist_ok=True)
+    rows = []
+    for r in recs:
+        o = {k: v for k, v in r.items() if k not in ('_g', '_k')}
+        o['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in ((r.get('_g') or {}).get('rings') or [])]
+        o['_k'] = sorted(r.get('_k') or [])
+        rows.append(o)
+    with gzip.open(ccache_file(), 'wt', encoding='utf-8') as f:
+        json.dump({'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'recs': rows}, f, separators=(',', ':'),
+                  default=lambda o: sorted(o) if isinstance(o, (set, frozenset)) else str(o))
+
+
+def cload():
+    f = ccache_file()
+    if not f.exists(): return None
+    try:
+        with gzip.open(f, 'rt', encoding='utf-8') as fh: blob = json.load(fh)
+    except Exception as e:  # noqa: BLE001
+        print(f'saved outlines unreadable ({e}); fetching', flush=True); return None
+    out = []
+    for o in blob.get('recs') or []:
+        r = {k: v for k, v in o.items() if k not in ('_r', '_k')}
+        r['_g'] = {'rings': o.get('_r') or []}
+        r['_bb'] = bbox(r['_g'])
+        r['_k'] = set(o.get('_k') or [])
+        out.append(r)
+    notice('Canada saved outlines', f"loaded {len(out)} areas saved {blob.get('saved')} at detail {blob.get('detail')}")
+    return out
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
@@ -108,127 +150,133 @@ def inside(la, lo, g): return sum(1 for r in rings(g) if in_ring(lo, la, r)) % 2
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
-# ---------------- pull CPCAD ----------------
-root = get(SVC, {'f': 'json'})
-lid, info = None, None
-for l in root.get('layers') or []:
-    i = get(f"{SVC}/{l['id']}", {'f': 'json'})
-    if 'Polygon' in str(i.get('geometryType', '')): lid, info = l['id'], i; break
-if lid is None: raise SystemExit('No CPCAD polygon layer')
-names = [f['name'] for f in info.get('fields', [])]
-pick = lambda *ns: next((f for n in ns for f in names if f.lower() == n.lower()), None)
-F = {'oid': info.get('objectIdField') or pick('OBJECTID', 'FID'), 'name': pick('NAME_E', 'NAME_EN', 'NAME'), 'namef': pick('NAME_F', 'NAME_FR'),
-     'type': pick('TYPE_E', 'TYPE_EN', 'TYPE'), 'owner': pick('OWNER_E', 'OWNER_EN', 'OWNER'), 'mgr': pick('MGMT_E', 'MGMT_EN', 'MGMT'),
-     'area': pick('O_AREA_HA', 'O_AREA', 'AREA_HA', 'SHAPE_Area')}
-notice('CPCAD layer', f'layer {lid}, fields {F}')
-mx = int(info.get('maxRecordCount') or 1000)
-recs, off = [], 0
-while True:
-    j = get(f'{SVC}/{lid}/query', {'where': '1=1', 'outFields': ','.join(v for v in F.values() if v), 'returnGeometry': 'true', 'outSR': 4326,
-                                   'maxAllowableOffset': 0.02, 'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000),
-                                   'orderByFields': F['oid']})
-    fs = j.get('features', [])
-    for f in fs:
-        a = f.get('attributes') or {}; g = f.get('geometry') or {}
-        r = {'oid': a.get(F['oid']), 'n': a.get(F['name']) or '', 'nf': a.get(F['namef']) or '', 'ty': a.get(F['type']) or '', 'ow': a.get(F['owner']) or '',
-             'mg': a.get(F['mgr']) or '', 'ha': a.get(F['area']) or 0, '_g': g, '_bb': bbox(g)}
-        r['_k'] = kinds(r['n']) | kinds(r['nf']) | kinds(r['ty'])
-        recs.append(r)
-    if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
-    off += len(fs); time.sleep(.5)
-notice('CPCAD read', f'{len(recs)} areas')
-if len(recs) < 3000: raise SystemExit('Too few CPCAD areas read; keeping the old files.')
+recs = cload() if CMODE in ('use', 'only') else None
+if recs is None and CMODE == 'only':
+    notice('Canada key', 'no saved outlines yet; nothing done (saved-copy-only run)'); raise SystemExit(0)
+if recs is None:
+    # ---------------- pull CPCAD ----------------
+    root = get(SVC, {'f': 'json'})
+    lid, info = None, None
+    for l in root.get('layers') or []:
+        i = get(f"{SVC}/{l['id']}", {'f': 'json'})
+        if 'Polygon' in str(i.get('geometryType', '')): lid, info = l['id'], i; break
+    if lid is None: raise SystemExit('No CPCAD polygon layer')
+    names = [f['name'] for f in info.get('fields', [])]
+    pick = lambda *ns: next((f for n in ns for f in names if f.lower() == n.lower()), None)
+    F = {'oid': info.get('objectIdField') or pick('OBJECTID', 'FID'), 'name': pick('NAME_E', 'NAME_EN', 'NAME'), 'namef': pick('NAME_F', 'NAME_FR'),
+         'type': pick('TYPE_E', 'TYPE_EN', 'TYPE'), 'owner': pick('OWNER_E', 'OWNER_EN', 'OWNER'), 'mgr': pick('MGMT_E', 'MGMT_EN', 'MGMT'),
+         'area': pick('O_AREA_HA', 'O_AREA', 'AREA_HA', 'SHAPE_Area')}
+    notice('CPCAD layer', f'layer {lid}, fields {F}')
+    mx = int(info.get('maxRecordCount') or 1000)
+    mx = min(mx, 1000 if DETAIL >= 0.02 else 250)     # finer outlines = heavier pages: ask for fewer at a time
+    recs, off = [], 0
+    while True:
+        j = get(f'{SVC}/{lid}/query', {'where': '1=1', 'outFields': ','.join(v for v in F.values() if v), 'returnGeometry': 'true', 'outSR': 4326,
+                                       'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000),
+                                       'orderByFields': F['oid']})
+        fs = j.get('features', [])
+        for f in fs:
+            a = f.get('attributes') or {}; g = f.get('geometry') or {}
+            r = {'oid': a.get(F['oid']), 'n': a.get(F['name']) or '', 'nf': a.get(F['namef']) or '', 'ty': a.get(F['type']) or '', 'ow': a.get(F['owner']) or '',
+                 'mg': a.get(F['mgr']) or '', 'ha': a.get(F['area']) or 0, '_g': g, '_bb': bbox(g)}
+            r['_k'] = kinds(r['n']) | kinds(r['nf']) | kinds(r['ty'])
+            recs.append(r)
+        if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
+        off += len(fs); time.sleep(.5)
+    notice('CPCAD read', f'{len(recs)} areas')
+    if len(recs) < 3000: raise SystemExit('Too few CPCAD areas read; keeping the old files.')
 
 
-# ---------------- provincial + Parks Canada layers (the same official list kpc_canada_bounds.py uses), pulled whole ----------------
-_src = open('.github/scripts/kpc_canada_bounds.py', encoding='utf-8').read()
-_ns = {'re': re}; exec(_src[_src.index('CA = ('):_src.index('BCWFS =')], _ns)
-NAMEY = re.compile(r'(name|nom|toponym|title)', re.I)
-HINT = [('regional parks', {'rp'}), ('recreation sites', {'rec'}), ('nature reserves', {'eco'}), ('Ontario Parks', {'pp'}), ('conservation reserves', {'ca'}), ('ecological reserves', {'eco'}), ('wildlife', {'wma'})]
+    # ---------------- provincial + Parks Canada layers (the same official list kpc_canada_bounds.py uses), pulled whole ----------------
+    _src = open('.github/scripts/kpc_canada_bounds.py', encoding='utf-8').read()
+    _ns = {'re': re}; exec(_src[_src.index('CA = ('):_src.index('BCWFS =')], _ns)
+    NAMEY = re.compile(r'(name|nom|toponym|title)', re.I)
+    HINT = [('regional parks', {'rp'}), ('recreation sites', {'rec'}), ('nature reserves', {'eco'}), ('Ontario Parks', {'pp'}), ('conservation reserves', {'ca'}), ('ecological reserves', {'eco'}), ('wildlife', {'wma'})]
 
 
-_ERR = []
-def arc_pull(label, url, nf):
-    lays = []
-    if re.search(r'/(MapServer|FeatureServer)/\d+$', url): lays = [url]
-    else:
-        info = get(url, {'f': 'json'})
-        for l in info.get('layers') or []:
-            lays.append(f"{url}/{l['id']}")
-    got = []
-    for lu in lays:
-        try: li = get(lu, {'f': 'json'})
-        except Exception as e: print(f'{label} {lu}: {e}', flush=True); _ERR.append(f'{label[:30]} layer: {str(e)[:80]}'); continue  # noqa: BLE001
-        if 'Polygon' not in str(li.get('geometryType', '')): continue
-        fl = [f['name'] for f in li.get('fields', [])]
-        names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
-        oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
-        ids = None   # Oct 20: Québec's MRNF MapServer answers 400 to paged queries (no pagination): fall back to asking by object ids
-        while True:
-            try:
-                if ids is None:
-                    j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02,
-                                            'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
-                else:
-                    if off >= len(ids): break
-                    j = get(f'{lu}/query', {'objectIds': ','.join(str(x) for x in ids[off:off + 100]), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.02, 'f': 'json'}, tries=3)
-            except Exception as e:
-                if ids is None and off == 0:
-                    try: ids = sorted(get(f'{lu}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or []); print(f'{label}: paging by {len(ids)} ids', flush=True); continue
-                    except Exception as e2: e = e2  # noqa: BLE001
-                print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); break  # noqa: BLE001
-            fs = j.get('features', [])
-            if ids is not None and fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
-                at = fs[0].get('attributes') or {}; names = [k for k in at if NAMEY.search(k) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3] or names
-            for f in fs:
-                a = f.get('attributes') or {}; g = f.get('geometry') or {}
-                nm = next((str(a[n]) for n in names if a.get(n)), '')
-                if not nm: continue
-                r = {'oid': f'{label[:12]}:{a.get(oidf)}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
-                r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
-                got.append(r)
-            if ids is not None: off += 100; time.sleep(.4); continue
-            if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
-            off += len(fs); time.sleep(.4)
-    return got
+    _ERR = []
+    def arc_pull(label, url, nf):
+        lays = []
+        if re.search(r'/(MapServer|FeatureServer)/\d+$', url): lays = [url]
+        else:
+            info = get(url, {'f': 'json'})
+            for l in info.get('layers') or []:
+                lays.append(f"{url}/{l['id']}")
+        got = []
+        for lu in lays:
+            try: li = get(lu, {'f': 'json'})
+            except Exception as e: print(f'{label} {lu}: {e}', flush=True); _ERR.append(f'{label[:30]} layer: {str(e)[:80]}'); continue  # noqa: BLE001
+            if 'Polygon' not in str(li.get('geometryType', '')): continue
+            fl = [f['name'] for f in li.get('fields', [])]
+            names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
+            oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
+            ids = None   # Oct 20: Québec's MRNF MapServer answers 400 to paged queries (no pagination): fall back to asking by object ids
+            while True:
+                try:
+                    if ids is None:
+                        j = get(f'{lu}/query', {'where': '1=1', 'outFields': ','.join([oidf] + names), 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
+                                                'geometryPrecision': 3, 'f': 'json', 'resultOffset': off, 'resultRecordCount': min(mx, 1000), 'orderByFields': oidf}, tries=3)
+                    else:
+                        if off >= len(ids): break
+                        j = get(f'{lu}/query', {'objectIds': ','.join(str(x) for x in ids[off:off + 100]), 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC, 'f': 'json'}, tries=3)
+                except Exception as e:
+                    if ids is None and off == 0:
+                        try: ids = sorted(get(f'{lu}/query', {'where': '1=1', 'returnIdsOnly': 'true', 'f': 'json'}, tries=3).get('objectIds') or []); print(f'{label}: paging by {len(ids)} ids', flush=True); continue
+                        except Exception as e2: e = e2  # noqa: BLE001
+                    print(f'{label}: {e}', flush=True); _ERR.append(f'{label[:30]} query: {str(e)[:80]}'); break  # noqa: BLE001
+                fs = j.get('features', [])
+                if ids is not None and fs and not any((f.get('attributes') or {}).get(n) for f in fs[:5] for n in names):
+                    at = fs[0].get('attributes') or {}; names = [k for k in at if NAMEY.search(k) and not re.search(r'(file|url|link|code|id$)', k, re.I)][:3] or names
+                for f in fs:
+                    a = f.get('attributes') or {}; g = f.get('geometry') or {}
+                    nm = next((str(a[n]) for n in names if a.get(n)), '')
+                    if not nm: continue
+                    r = {'oid': f'{label[:12]}:{a.get(oidf)}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                    r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
+                    got.append(r)
+                if ids is not None: off += 100; time.sleep(.4); continue
+                if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
+                off += len(fs); time.sleep(.4)
+        return got
 
 
-extra = 0
-for e in _ns['EXTRA']:
-    if e[1] != 'arcgis': continue
-    try: g = arc_pull(e[0], e[2], e[3]); recs += g; extra += len(g); print(f'{e[0]}: {len(g)}', flush=True)
-    except Exception as ex: notice('Canada extra', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
-# Oct 18 review: more official layers found by a probe from GitHub (POTA Québec 'Nature Reserve' parks are the province's
-# recognized nature reserves, which CPCAD files as private stewardship; the government register has them by name)
-MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12', ['TOPONYME', 'DESIGNOM']),
-        ('Saskatchewan regional parks (Government of Saskatchewan)', 'https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6', None),
-        ('Yukon parks and protected areas (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3', None),
-        ('Yukon campgrounds and parks (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0', None),
-        ('Ontario federal protected areas (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10', None),
-        ('Ontario municipal parks (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3', None),
-        ('BC recreation sites (BC Ministry of Forests)', 'https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5', None)]
-# Oct 20 (probe 3): Nova Scotia Parks and Protected Areas System, layer 1 = parks + protected areas (layer 0 = only proposed)
-MORE.append(('Nova Scotia parks and protected areas', 'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1', None))
-MORE.append(('Manitoba wildlife lands (Government of Manitoba)', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0', None))
-# Oct 20 (probe 6): Québec MRNF recreation territories (TRQ): ZEC (POTA files many as 'Nature Reserve') + réserves fauniques; outfitters (pourvoiries) are leases, left out
-try:
-    # Oct 20: the old mern host closed the connection; the ministry moved it to servicescarto.mrnf.gouv.qc.ca (Données Québec record)
-    _ql0 = None
-    for _q in ['https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer',
-               'https://serviceswebcarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer']:
-        try: _ql0 = get(_q, {'f': 'json'}).get('layers') or []; break
-        except Exception as _e: notice('Canada more layers', f'Québec TRQ host {_q.split("/")[2]} failed: {_e}')  # noqa: BLE001
-    if _ql0 is None: raise RuntimeError('no Québec TRQ host answered')
-    _ql = [l for l in _ql0 if re.search(r'zec|zone d|faunique|parc', l.get('name', ''), re.I) and not re.search(r'pourvoir', l.get('name', ''), re.I) and not l.get('subLayerIds')]
-    notice('Canada more layers', 'Québec TRQ layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _ql))
-    MORE += [(f"Québec {l['name']} (MRNF)", f"{_q}/{l['id']}", None) for l in _ql]
-except Exception as ex: notice('Canada more layers', f'Québec TRQ list FAILED: {ex}')  # noqa: BLE001
-_mores = []   # Oct 20: GitHub shows only 10 notices per step, so all layer counts go in ONE notice
-for e in MORE:
-    try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
-    except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
-notice('Canada more layers (all)', ' | '.join(_mores))
-notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
+    extra = 0
+    for e in _ns['EXTRA']:
+        if e[1] != 'arcgis': continue
+        try: g = arc_pull(e[0], e[2], e[3]); recs += g; extra += len(g); print(f'{e[0]}: {len(g)}', flush=True)
+        except Exception as ex: notice('Canada extra', f'{e[0]} FAILED: {ex}')  # noqa: BLE001
+    # Oct 18 review: more official layers found by a probe from GitHub (POTA Québec 'Nature Reserve' parks are the province's
+    # recognized nature reserves, which CPCAD files as private stewardship; the government register has them by name)
+    MORE = [('Québec recognized nature reserves (MELCCFP)', 'https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12', ['TOPONYME', 'DESIGNOM']),
+            ('Saskatchewan regional parks (Government of Saskatchewan)', 'https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6', None),
+            ('Yukon parks and protected areas (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3', None),
+            ('Yukon campgrounds and parks (Government of Yukon)', 'https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0', None),
+            ('Ontario federal protected areas (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10', None),
+            ('Ontario municipal parks (Land Information Ontario)', 'https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3', None),
+            ('BC recreation sites (BC Ministry of Forests)', 'https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5', None)]
+    # Oct 20 (probe 3): Nova Scotia Parks and Protected Areas System, layer 1 = parks + protected areas (layer 0 = only proposed)
+    MORE.append(('Nova Scotia parks and protected areas', 'https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1', None))
+    MORE.append(('Manitoba wildlife lands (Government of Manitoba)', 'https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0', None))
+    # Oct 20 (probe 6): Québec MRNF recreation territories (TRQ): ZEC (POTA files many as 'Nature Reserve') + réserves fauniques; outfitters (pourvoiries) are leases, left out
+    try:
+        # Oct 20: the old mern host closed the connection; the ministry moved it to servicescarto.mrnf.gouv.qc.ca (Données Québec record)
+        _ql0 = None
+        for _q in ['https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer',
+                   'https://serviceswebcarto.mern.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer']:
+            try: _ql0 = get(_q, {'f': 'json'}).get('layers') or []; break
+            except Exception as _e: notice('Canada more layers', f'Québec TRQ host {_q.split("/")[2]} failed: {_e}')  # noqa: BLE001
+        if _ql0 is None: raise RuntimeError('no Québec TRQ host answered')
+        _ql = [l for l in _ql0 if re.search(r'zec|zone d|faunique|parc', l.get('name', ''), re.I) and not re.search(r'pourvoir', l.get('name', ''), re.I) and not l.get('subLayerIds')]
+        notice('Canada more layers', 'Québec TRQ layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _ql))
+        MORE += [(f"Québec {l['name']} (MRNF)", f"{_q}/{l['id']}", None) for l in _ql]
+    except Exception as ex: notice('Canada more layers', f'Québec TRQ list FAILED: {ex}')  # noqa: BLE001
+    _mores = []   # Oct 20: GitHub shows only 10 notices per step, so all layer counts go in ONE notice
+    for e in MORE:
+        try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
+        except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
+    notice('Canada more layers (all)', ' | '.join(_mores))
+    notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
+    if CMODE in ('use', 'refresh'): csave(recs)
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 
