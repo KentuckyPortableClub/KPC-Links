@@ -812,6 +812,39 @@ for cc in COUNTRIES:
            'shadow_demote': sum(1 for p in parks.values() if p['m'] and (p.get('shadow') or {}).get('v') in ('check', 'none')),
            'shadow_add': sum(1 for p in parks.values() if not p['m'] and (p.get('shadow') or {}).get('v') == 'join'),
            'shadow_other_place': sum(1 for p in parks.values() if p['m'] and (p.get('shadow') or {}).get('v') == 'join')}
+    # Oct 22 (Brandon: 'anything they can do to complete our map have them do it'): a web page can only fetch an outline
+    # by id from an ArcGIS map. Parks joined to anything else (France's ZNIEFF from IGN, Germany's BfN, NatureScot, Wales,
+    # Switzerland's BAFU, Japan's A10) could not be drawn at all: 12,500 of 41,000 joined parks on Oct 22. Their outlines
+    # are saved here, lightly thinned, 100 parks to a file, for KPCB.worldKey to draw: data/world-bounds/CC/<n>.json.
+    try:
+        BD = pathlib.Path('data/world-bounds') / cc
+        LAY = {x[0] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}
+        byn = {}
+        for r in recs: byn.setdefault((r.get('src'), r.get('n')), []).append(r)
+        shards = {}
+        for ref, pk in parks.items():
+            mm = pk.get('m') or []
+            if not mm or any(x[2] in LAY and x[0] is not None for x in mm): continue
+            la, lo = P[ref][5], P[ref][6]
+            polys = []
+            for x in mm:
+                for r in byn.get((x[2], x[1]), []):
+                    if la and lo and r.get('_bb') and not near(la, lo, r['_bb'], .6): continue
+                    for ring in (r.get('_r') or []):
+                        k = max(1, len(ring) // 150)
+                        pts = [[round(q[0], 4), round(q[1], 4)] for q in ring[::k]]
+                        if len(pts) >= 3: polys.append(pts + [pts[0]])
+            if polys:
+                num = int(re.sub(r'\D', '', ref.split('-', 1)[1]) or 0)
+                shards.setdefault(num // 100, {})[ref] = {'n': mm[0][1], 's': mm[0][2], 'r': polys[:60]}
+        if BD.exists():
+            for old_f in BD.glob('*.json'): old_f.unlink()
+        if shards:
+            BD.mkdir(parents=True, exist_ok=True)
+            for b, d in shards.items(): (BD / f'{b}.json').write_text(json.dumps(d, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
+        cnt['saved_outlines'] = sum(len(d) for d in shards.values())
+    except Exception as e:  # noqa: BLE001
+        notice(f'World key {cc}', f'saving outlines for the website stopped: {type(e).__name__}: {str(e)[:200]}')
     (OUT / f'{cc}.json').write_text(json.dumps({'updated': time.strftime('%Y-%m-%d'), 'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks},
                                                separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
     L = [f'# {cc}: POTA parks vs official land', '', f"Built {time.strftime('%Y-%m-%d')} by `.github/scripts/kpc_world_key.py` from: {', '.join(s[0] for s in SRC[cc])}. "

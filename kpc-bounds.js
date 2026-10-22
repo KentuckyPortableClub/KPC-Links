@@ -279,11 +279,17 @@
     const cc = String(ref || '').split('-')[0]; if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA') return null;
     if (!(cc in wkCache)) wkCache[cc] = fetch('data/world-key/' + cc + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
     const k = await wkCache[cc], p = k && k.parks && k.parks[ref]; if (!p) return null;
-    const m = (p.m || []).filter(x => x[0] !== null && x[0] !== undefined); if (!(p.m || []).length) return { state: 'none' };
+    const m = p.m || []; if (!m.length) return { state: 'none' };
     const L = await wlayers(), by = {};
-    m.forEach(x => { if (L[x[2]]) (by[x[2]] = by[x[2]] || []).push(x[0]); });
+    m.forEach(x => { if (L[x[2]] && x[0] !== null && x[0] !== undefined) (by[x[2]] = by[x[2]] || []).push(x[0]); });
     const fs = (await Promise.all(Object.entries(by).map(([src, ids]) => jget(L[src] + '/query?' + new URLSearchParams({ objectIds: ids.slice(0, 40).join(','), outFields: '*', returnGeometry: true, outSR: 4326, maxAllowableOffset: 0.0002, geometryPrecision: 5, f: 'geojson' }), null, 30000)
       .then(j => (j.features || []).map(f => (f._src = src, f))).catch(() => [])))).flat().filter(f => f.geometry);
+    /* Oct 22: an outline from a map a web page cannot ask by id (IGN, BfN, NatureScot, Wales, BAFU, Japan A10) is saved
+       by the world bot in data/world-bounds/CC/<n>.json, 100 parks to a file */
+    if (!fs.length) {
+      const num = parseInt(String(ref).split('-')[1], 10), sh = await jget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => null), b = sh && sh[ref];
+      if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + ' (saved by KPC)' });
+    }
     if (!fs.length) return { state: 'error' };
     const nm = (m.find(x => L[x[2]]) || m[0])[1], how = m.map(x => String(x[3] || ''));
     const approx = !how.some(h => /^(name|same name|exact name)/.test(h)), why = approx ? 'the official name is written differently, so this was matched by where the park\u2019s pin sits' : '';
