@@ -1,10 +1,10 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **208 of 237** parks joined to official land (same name + same kind of place). **14** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **208 of 237** parks joined to official land (same name + same kind of place). **15** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-12416** Little River (GA) Wildlife Management Area (Wildlife Management Area) → Cedar Creek Wildlife Management Area (~40,488 ac, the POTA pin is inside it (different name)); 117-001 (~1,534 ac, the POTA pin is inside it (different name))
+- **US-12416** Little River (GA) Wildlife Management Area (Wildlife Management Area) → Cedar Creek Wildlife Management Area (~40,488 ac, the POTA pin is inside it (different name))
 - **US-12418** Tallulah Gorge Wildlife Management Area (Wildlife Management Area) → Tallulah Gorge State Park (~2,296 ac, same name, different kind of place); Tallulah Gorge State Park (~486 ac, same name, different kind of place); Tallulah Gorge State Park (~50 ac, same name, different kind of place)
 - **US-2200** Okefenokee State Park (State Park) → Okefenokee National Wildlife Refuge (~404,154 ac, same name, different kind of place); Okefenokee National Wildlife Refuge (~403,528 ac, same name, different kind of place); Stephen C. Foster State Park (~135 ac, the POTA pin is inside it (different name))
 - **US-3724** Roosevelts Little White House State Historic Site (State Historic Site) → F. D. Roosevelt State Park (~9,995 ac, the POTA pin is inside it (different name))
@@ -18,6 +18,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **208 of 237** parks joined
 - **US-7902** Walton Wildlife Management Area (Wildlife Management Area) → Walton Public Dove Field & Hatchery (~248 ac, similar name)
 - **US-9758** Chattooga National Wild and Scenic River (National Wild and Scenic River) → Chattahoochee National Forest (~750,991 ac, the POTA pin is inside it (different name))
 - **US-9793** Ball's Ferry Property Wildlife Management Area (Wildlife Management Area) → Balls Ferry State Park (~525 ac, similar name)
+- **US-9795** Sandhills West Wildlife Management Area (Wildlife Management Area) → 133-001 (~735 ac, the POTA pin is inside it (different name)); Fall Line Sandhills Wildlife Management Area (~733 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -38,7 +39,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **208 of 237** parks joined
 - US-7893 Augusta Canal National Heritage Area (National Heritage Area)
 - US-7914 Sandhills East Wildlife Management Area (Wildlife Management Area)
 - US-9772 Ceylon Wildlife Management Area (Wildlife Management Area)
-- US-9795 Sandhills West Wildlife Management Area (Wildlife Management Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

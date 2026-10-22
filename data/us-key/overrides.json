@@ -2272,6 +2272,30 @@
     "State Capitol State Park"
    ],
    "why": "same park, the map drops 'Oregon' (hand review Oct 22)"
+  },
+  "US-0873": {
+   "join": [
+    "Weir Farm National Historical Park"
+   ],
+   "why": "NPS renamed it a National Historical Park (hand review Oct 22)"
+  },
+  "US-0837": {
+   "join": [
+    "Jimmy Carter National Historical Park"
+   ],
+   "why": "NPS renamed it a National Historical Park (hand review Oct 22)"
+  },
+  "US-0846": {
+   "join": [
+    "Martin Luther King, Jr., National Historical Park"
+   ],
+   "why": "NPS renamed it a National Historical Park (hand review Oct 22)"
+  },
+  "US-0932": {
+   "join": [
+    "Fort Sumter and Fort Moultrie National Historical Park"
+   ],
+   "why": "NPS renamed it a National Historical Park (hand review Oct 22)"
   }
  }
 }
