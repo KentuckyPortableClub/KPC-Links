@@ -351,6 +351,45 @@ def lbl_alerts():
     return out
 
 
+def kdfwr_alerts():
+    """Kentucky Fish and Wildlife (Brandon Oct 21 gave the link): the state's lakes, boat ramps and public
+    hunting areas. https://fw.ky.gov/Alerts/Pages/default.aspx is a SharePoint page listing each alert as a
+    bold heading linking to its own page. No feed, so it is read from the list.
+
+    Refs are NOT pinned: these name a lake or an area ('Buckhorn Lake', 'Laurel River Lake'), so the usual
+    name matching finds the right park, with the same guard that stops 'Green River' landing on the wrong one.
+    """
+    base = 'https://fw.ky.gov'
+    try:
+        page = fetch(base + '/Alerts/Pages/default.aspx', timeout=90)
+    except Exception as e:  # noqa: BLE001
+        notice('Park alerts', f'Fish and Wildlife did not answer: {str(e)[:160]}')
+        return None
+    out = {}
+    for m in re.finditer(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', page, re.S):
+        href, label = m.group(1), clean(re.sub(r'<[^>]+>', ' ', m.group(2)), 180)
+        if len(label) < 18 or not re.search(r'/Alerts?/|/Pages/', href, re.I):
+            continue
+        if re.search(r'(?i)^(home|contact|search|sign in|skip to|stay connected|default)', label):
+            continue
+        key = re.sub(r'[^a-z0-9]+', '-', label.lower()).strip('-')[:60]
+        if not key:
+            continue
+        out['kdfwr-' + key] = {
+            'who': 'Kentucky Fish and Wildlife',
+            'title': label,
+            'text': label,
+            'link': href if href.startswith('http') else base + ('' if href.startswith('/') else '/') + href,
+            # a regulation notice is not a closure
+            'routine': bool(re.search(r'regulat|amendment|comment|meeting|season dates', label, re.I)),
+        }
+    if os.environ.get('LBL_LOOK') == '1' and not out:
+        heads = [clean(re.sub(r'<[^>]+>', ' ', x), 70) for x in re.findall(r'<h\d[^>]*>(.*?)</h\d>', page, re.S)]
+        notice('Park alerts', f'KDFWR page {len(page)} chars; headings: ' + ' | '.join(h for h in heads if h)[:500])
+    notice('Park alerts', f'Kentucky Fish and Wildlife: {len(out)} alert(s) listed')
+    return out
+
+
 # ---------------------------------------------------------------- our parks
 def ky_parks():
     """[(ref, name, short)] for every Kentucky POTA park, so an alert can be pinned to the right park."""
@@ -462,7 +501,7 @@ def main():
 
     live = {}
     broke = False
-    for src in (ky_state_parks, nps_alerts, forest_alerts, lbl_alerts):
+    for src in (ky_state_parks, nps_alerts, forest_alerts, lbl_alerts, kdfwr_alerts):
         got = src()
         if got is None:          # the source itself failed: do not treat its alerts as 'gone'
             broke = True
