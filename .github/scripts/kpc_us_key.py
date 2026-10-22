@@ -54,7 +54,10 @@ def norm(s, drop1=False):
     s = re.sub(r'\b0+(\d)', r'\1', s)                     # 'Game Land 013' = 'Game Lands 13'
     s = re.sub(r'\b(unit|tract|parcel)\s+[0-9ivx]+\b', ' ', s)
     s = ' '.join(ABBR.get(w, w) for w in s.split())
+    _first = s.split()[0] if s.split() else ''
     s = re.sub(r'\b(' + GEN + r')\b', ' ', s)
+    if _first and not s.startswith(_first) and len(s.split()) <= 3:
+        s = _first + ' ' + s          # keep a leading type word: it is doing the naming here
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     s = ' '.join(ABBR.get(w, w) if w.isdigit() else w for w in s.split())   # '#4' = 'Pool 4' = 'Pool Four'
     if drop1: s = re.sub(r'(?<=[a-z0-9] )[a-z](?= [a-z0-9])', ' ', s)   # only a MIDDLE initial (World War I keeps its I)              # also try without a lone middle initial ('George H. Crosby')
@@ -100,7 +103,15 @@ SOFT = {'preserve', 'reserve', 'beach', 'complex', 'game', 'mua', 'fwma', 'ca', 
 def _soft(x): return ' '.join(w for w in x.split() if w not in SOFT and not re.fullmatch(r'(19|20)\d\d', w))
 
 
+SIDES = ('upper', 'lower', 'north', 'south', 'east', 'west', 'middle')
+
+
+def _side(x):
+    return {w for w in str(x or '').lower().replace('-', ' ').split() if w in SIDES}
+
+
 def exact_name(a, b):
+    if _side(a) != _side(b): return False        # Upper White Oak Lake is not White Oak Lake
     # no 'starts with' allowance: used when only one of the two names says what kind of place it is.
     # Only 'soft' words may differ (Torrey Pines Reserve = Torrey Pines State Reserve, Big Bend = Big Bend - 2015)
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True

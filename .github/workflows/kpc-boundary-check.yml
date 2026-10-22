@@ -47,7 +47,7 @@ jobs:
                       continue
                   if 'pin_outside' not in (d.get('counts') or {}):
                       todo.append((d.get('st') or f.stem).replace('US-', ''))
-              want = todo[:6]          # a few a night; PAD-US is slow and the job has a time limit
+              want = todo[:14]         # ~11 min a state, 300 min limit: all 50 states in four nights
           print('states=' + ' '.join(want))
           print('left=%d' % len(want))
           PY
