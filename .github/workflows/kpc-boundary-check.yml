@@ -1,0 +1,78 @@
+name: KPC boundary check
+# Works through the states a few at a time, rebuilding each answer key with the check that asks whether a
+# joined park's pin really falls inside the land it was joined to, then writes the findings into ONE issue
+# (edited, never commented, so nobody is emailed). Nightly, so the answers pile up without anyone sitting here.
+# Never fails. Run it by hand with a list of states to do those instead.
+on:
+  schedule:
+    - cron: '37 7 * * *'          # 2.37am Central
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States to rebuild, e.g. "MT OR CO". Blank = the next few that have not been checked.'
+        default: ''
+      report_only:
+        description: 'Just rewrite the report from the keys we already have'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: kpc-us-key          # shares the answer-key lock: the two must never build at once
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+      - name: Pick the states that have not been checked yet
+        id: pick
+        continue-on-error: true
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, pathlib, os
+          want = (os.environ.get('WANT') or '').split()
+          if not want:
+              todo = []
+              for f in sorted(pathlib.Path('data/us-key').glob('*.json')):
+                  if f.name == 'index.json':
+                      continue
+                  try:
+                      d = json.loads(f.read_text(encoding='utf-8'))
+                  except Exception:
+                      continue
+                  if 'pin_outside' not in (d.get('counts') or {}):
+                      todo.append((d.get('st') or f.stem).replace('US-', ''))
+              want = todo[:6]          # a few a night; PAD-US is slow and the job has a time limit
+          print('states=' + ' '.join(want))
+          print('left=%d' % len(want))
+          PY
+        env:
+          WANT: ${{ inputs.states }}
+      - name: Rebuild those keys with the check
+        if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
+        continue-on-error: true
+        env:
+          STATES: ${{ steps.pick.outputs.states }}
+        run: |
+          echo "::notice title=Boundary check::rebuilding $STATES"
+          python3 .github/scripts/kpc_us_key.py $STATES || true
+      - name: Write up what it found
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/kpc_boundary_report.py || true
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/us-key data/boundary-report.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Boundary check: are the joins in the right place?'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi

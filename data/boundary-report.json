@@ -1,0 +1,54 @@
+{
+ "totals": {
+  "matched": 0,
+  "far": 0,
+  "noshape": 0,
+  "edge": 0,
+  "out": 0,
+  "swap": 0
+ },
+ "states": [
+  {
+   "st": "ID",
+   "matched": 146,
+   "far": 69,
+   "noshape": 0,
+   "out": 10,
+   "swap": 0,
+   "stale": true,
+   "edge": 59
+  },
+  {
+   "st": "NV",
+   "matched": 204,
+   "far": 87,
+   "noshape": 0,
+   "out": 22,
+   "swap": 0,
+   "stale": true,
+   "edge": 65
+  },
+  {
+   "st": "UT",
+   "matched": 326,
+   "far": 98,
+   "noshape": 0,
+   "out": 19,
+   "swap": 0,
+   "stale": true,
+   "edge": 79
+  },
+  {
+   "st": "WY",
+   "matched": 165,
+   "far": 60,
+   "noshape": 0,
+   "out": 14,
+   "swap": 0,
+   "stale": true,
+   "edge": 46
+  }
+ ],
+ "swaps": [],
+ "well_outside": []
+}

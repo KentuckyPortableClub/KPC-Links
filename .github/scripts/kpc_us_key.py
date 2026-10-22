@@ -457,11 +457,26 @@ def run(st):
         # fall inside the land we joined it to? 'far' = it does not, and that join wants looking at.
         if m and la is not None:
             gs = {_oid(a): a for a in recs}
-            hit = any(inside(la, lo, gs[str(x[0])]['_g']) for x in m if str(x[0]) in gs)
+            mine = [gs[str(x[0])] for x in m if str(x[0]) in gs]
+            # Does the joined land have a shape at all? Some services hand back records with no rings, and
+            # then 'the pin is outside' means nothing - it is the CHECK that is blind, not the match.
+            shaped = [a for a in mine if rings(a.get('_g'))]
+            hit = any(inside(la, lo, a['_g']) for a in shaped)
             if not hit:
-                near_any = any(near(la, lo, gs[str(x[0])]['_bb'], .02) for x in m if str(x[0]) in gs)
-                parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c,
-                              'far': 'edge' if near_any else 'well outside'}
+                why = ('no shape to check against' if not shaped else
+                       'edge' if any(near(la, lo, a['_bb'], .02) for a in shaped) else 'well outside')
+                parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c, 'far': why}
+                # THE ONE THAT CAN BE FIXED AUTOMATICALLY: is there another area with the SAME NAME that
+                # does contain the pin? Then we joined the wrong one of two places sharing a name, and the
+                # right one is right here. Recorded, not acted on, until a person has looked at a few.
+                if shaped:
+                    jn = {_nf(x[1]) for x in m}
+                    swap = [a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') in jn
+                            and _oid(a) not in {str(x[0]) for x in m}
+                            and rings(a.get('_g')) and inside(la, lo, a['_g'])]
+                    if swap:
+                        parks[ref]['swap'] = [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '',
+                                               round(a.get('GIS_Acres') or 0)] for a in swap[:2]]
                 if site: parks[ref]['a'] = site
                 continue
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
@@ -471,7 +486,9 @@ def run(st):
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
               'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')), 'nonum': len(nonum), 'padus': len(recs), 'read': seen,
               'pin_outside': sum(1 for p in parks.values() if p.get('far')),
-              'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside')}
+              'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside'),
+              'pin_no_shape': sum(1 for p in parks.values() if p.get('far') == 'no shape to check against'),
+              'pin_swap': sum(1 for p in parks.values() if p.get('swap'))}
     out = {'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Built by .github/scripts/kpc_us_key.py from USGS PAD-US (fed + state fee land) and POTA. m = joined (same name + same kind), c = check by hand (NOT joined).',
            'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
     # plain-words review page for this state (GitHub shows .md files nicely)
