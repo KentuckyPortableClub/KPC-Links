@@ -1,6 +1,6 @@
 # Canada QC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-21 by `.github/scripts/kpc_ca_key.py`. **411 of 839** joined (same name + same kind). **58** to check, **365** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **411 of 839** joined (same name + same kind). **58** to check, **365** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -68,7 +68,7 @@ Built 2026-10-21 by `.github/scripts/kpc_ca_key.py`. **411 of 839** joined (same
 - CA-1954 Parc de la Maison-des-Gouverneurs National Historic Site (National Historic Site) → on Aire faunique communautaire du Lac Saint-Pierre (~0 ac)
 - CA-2250 Fort Richelieu National Historic Site (National Historic Site) → on Aire faunique communautaire du Lac Saint-Pierre (~0 ac)
 - CA-5884 De Salaberry House National Historic Site (National Historic Site) → on Milieu naturel de conservation volontaire du rivière Richelieu (partie Saint-Jean/Chambly) (~0 ac); Refuge faunique Pierre-Étienne-Fortin (~0 ac)
-- CA-5888 First Geodetic Survey Station National Historic Site (National Historic Site) → on Parc de la Gatineau (~0 ac); Parc de la Gatineau (~0 ac)
+- CA-5888 First Geodetic Survey Station National Historic Site (National Historic Site) → on Parc de la Gatineau (~0 ac); Gatineau Park (~89,593 ac)
 - CA-5892 Fort Crevier National Historical Site (National Historical Site) → on Aire faunique communautaire du Lac Saint-Pierre (~0 ac)
 
 ## Nothing found in CPCAD
