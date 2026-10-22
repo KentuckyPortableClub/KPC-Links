@@ -1,1 +1,1 @@
-{"ver":"0.6.0","when":"2026-10-22","where":"https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build","notes":"Radio profiles + Hamlib/flrig, uploads (QRZ, eQSL, Wavelog), offline park packs, alerts, backup."}
+{"ver":"0.6.1","when":"2026-10-22","where":"https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build","notes":"Windows FT8 decode fixed, remote link diagnostics + firewall button, Bluetooth TNC, fill-in digipeater, clock calibrate, GPS on Windows."}
