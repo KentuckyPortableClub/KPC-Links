@@ -255,8 +255,8 @@ def lbl_alerts():
             continue
         key = re.sub(r'[^a-z0-9]+', '-', (when + '-' + what[:40]).lower()).strip('-')[:60]
         # a notice asking for comment or announcing a plan is not a closure
-        routine = bool(re.search(r'(?i)public notice|seeking|comment period|readiness training|proposal')
-                       and re.search(r'(?i)public notice|seeking|comment|proposal|readiness training', what))
+        routine = bool(re.search(r'public notice|seeking|comment period|readiness training|proposal',
+                                 what, re.I))
         add(key, what[:150], f'{when} — {what}', 'https://www.landbetweenthelakes.us/alerts/')
         if routine:
             out['lbl-' + re.sub(r'[^a-z0-9\-]+', '', key)[:60]]['routine'] = True
