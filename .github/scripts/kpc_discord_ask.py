@@ -236,6 +236,43 @@ def rare_parks():
     return '\n'.join(L)
 
 
+def busy_parks():
+    """'which Kentucky park is the most activated?' - the other end of the same POTA figures."""
+    d = load('kpc-top25.json', {})
+    rows = [r for r in (d.get('all') or []) if isinstance(r, list) and len(r) >= 3]
+    if not rows:
+        return None
+    ky = load('kpc-ky-data.json', {})
+    byref = {p['c']: p for p in (ky.get('parks') or [])}
+    rows.sort(key=lambda r: -(r[1] or 0))
+    # A handful of references (the Trail of Tears, Lewis and Clark, the national forests) run through several
+    # states, and POTA counts every activation of them anywhere. Quoting those as Kentucky's busiest would be
+    # wrong, so they are kept out of the list and mentioned separately.
+    here = [r for r in rows if 'multiple' not in str((byref.get(r[0]) or {}).get('co', '')).lower()]
+    wide = [r for r in rows[:6] if 'multiple' in str((byref.get(r[0]) or {}).get('co', '')).lower()]
+    L = ["**The most activated parks in Kentucky**"]
+    for ref, acts, qs in here[:6]:
+        p = byref.get(ref) or {}
+        L.append(f"• **{ref}** {p.get('n', '')}"
+                 + (f" ({p.get('co')} Co.)" if p.get('co') else '')
+                 + f" — {acts:,} activations, {qs:,} contacts")
+    if wide:
+        names = ', '.join((byref.get(r[0]) or {}).get('n', r[0]) for r in wide[:3])
+        L.append(f"\n_Left out: {names} — those run through several states and POTA counts every activation "
+                 f"anywhere, so the numbers are not Kentucky's._")
+    L.append(f"\nFigures from POTA, updated {str(d.get('updated'))[:10]}. "
+             f"Busy is not always better — the quiet ones are at {SITE}kpc-park-control.html")
+    return '\n'.join(L)
+
+
+def how_many():
+    """'how many parks are there in Kentucky?'"""
+    ky = load('kpc-ky-data.json', {})
+    return (f"Kentucky has **{len(ky.get('parks') or [])} POTA park references**, "
+            f"**{len(ky.get('kff') or [])} KFF references** and **{len(ky.get('summits') or [])} SOTA summits**.\n"
+            f"Every one of them, with boundaries and parking: {SITE}kpc-park-control.html")
+
+
 def contests_soon():
     """'anything on this weekend?' -> contests inside the next week, from the calendar we already keep."""
     d = load('kpc-contests.json', {})
@@ -278,8 +315,15 @@ def answer_for(text):
         return None
     if re.search(r'(?i)\b(utc|zulu|z time|what time)\b', text or ''):
         return utc_now()
+    if re.search(r'(?i)\b(most activated|most popular|busiest|most active|top park|activated the most|'
+                 r'activated most)\b', text or ''):
+        b = busy_parks()
+        if b:
+            return b
+    if re.search(r'(?i)\bhow many\b.{0,20}\b(park|parks|summit|summits|reference)', text or ''):
+        return how_many()
     if re.search(r'(?i)\b(rare|rarest|lonely|never been|nobody|no ?one has|needs? activating|unactivated|'
-                 r'not been activated|first activation of)\b', text or ''):
+                 r'not been activated|first activation of|least activated)\b', text or ''):
         r = rare_parks()
         if r:
             return r
