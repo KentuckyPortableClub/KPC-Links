@@ -770,17 +770,21 @@ for cc in COUNTRIES:
             cands = []
             for r in nearby(la, lo):
                 if not r['n'] or (la is not None and not near(la, lo, r['_bb'], .6)): continue
-                if cc in EU and (('n2k' in kp) != ('n2k' in r['_k'])): continue      # Natura 2000 only with Natura 2000
+                n2k_off = cc in EU and (('n2k' in kp) != ('n2k' in r['_k']))      # Natura 2000 only with Natura 2000...
                 rparts = r.get('parts') or [r['n']]
                 jam = cc == 'JP' and r.get('nj') and bool({re.sub(r'\s', '', q) for q in r.get('jp') or [jclean(r['nj'])]} & (JA.get(ref) or set()))
                 ex = bool(jam) or any(same_name(cc, q, rn) and not (norm(cc, q) != norm(cc, rn) and (norm(cc, q).startswith(norm(cc, rn)) or norm(cc, rn).startswith(norm(cc, q))))
                                       for q in cn for rn in rparts)
                 wd = (not ex) and any(same_name(cc, q, rn) or (words(cc, q) and words(cc, rn) and (words(cc, q) <= words(cc, rn) or words(cc, rn) <= words(cc, q)))
                                       for q in cn for rn in rparts)
+                # ...unless the names are the SAME: POTA writes the kind onto the official name ('Kilcolman Bog Nature
+                # Reserve' = the Natura 2000 site 'Kilcolman Bog SPA'), the key's NAME_JOIN. Oct 22 review: Ireland's 28,
+                # Romania's 33 and Portugal's 16 'demotes' were all this. Counted as a kind clash, not thrown out.
+                if n2k_off and not ex: continue
                 holds = la is not None and near(la, lo, r['_bb'], 0) and KM.inside(la, lo, r['_r'])
                 if not (ex or wd or holds): continue
                 cands.append({'a': r, 'nn': norm(cc, r['n']), 'bb': r['_bb'], 'kind_ok': True, 'side_ok': True,
-                              'kind_clash': bool(kp and r['_k'] and not (kp & r['_k'])),
+                              'kind_clash': n2k_off or bool(kp and r['_k'] and not (kp & r['_k'])),
                               'name_exact': ex, 'name_words': wd, 'name_unique': WCL.get(norm(cc, r['n']), 1) == 1,
                               'pin': (la, lo) if la is not None else None, 'g': r['_r'], 'acres': 0, 'holds': holds})
             fit = [c for c in cands if c['holds'] and kp and (kp & c['a']['_k'])]
