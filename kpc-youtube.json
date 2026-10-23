@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T10:55:15Z",
+ "updated": "2026-10-23T13:07:38Z",
  "channels": [
   {
    "key": "kpc",
@@ -8,6 +8,22 @@
    "name": "Kentucky Portable Club",
    "ok": true,
    "videos": [
+    {
+     "id": "Dr0FgU8eCe0",
+     "title": "Kentucky Field Guide",
+     "published": "2026-10-23T13:00:23+00:00",
+     "views": 0,
+     "short": false,
+     "desc": "Here it is the resource of resources for KY parks! https://kentuckyportableclub.github.io/KPC-Links/kentucky-parks.html"
+    },
+    {
+     "id": "ZLUIFC9c4nA",
+     "title": "Ky Park Control (short)",
+     "published": "2026-10-23T12:00:32+00:00",
+     "views": 0,
+     "short": false,
+     "desc": "Here is a tool you will love if you active KY parks! https://kentuckyportableclub.github.io/KPC-Links/kpc-park-control.html"
+    },
     {
      "id": "SWHkJ6R12hA",
      "title": "KPC Website NOW OPEN",
