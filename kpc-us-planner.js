@@ -135,7 +135,18 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);if(s.p==='PIN'&&!inTrip(s.c))map.closePopup();else b.innerHTML=inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}   /* Oct 19: the card stays open */else if(a==='bound')showBoundary(s,b)});
-  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'))})}
+  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'));noBound(s,el)})}
+/* Oct 23 (Brandon: 'if we dont have the boundary … in BOLD sorry no boundary available at this time'; people could take
+   the other land lines on the map for this park's line): a US park the checked list marks 'no outline' says so on its card */
+const NBK={};
+async function noBound(s,el){if(s.p!=='POTA'||!/^US-/.test(s.c)||(window.KPCB&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)))return;
+ const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let known=false,has=false,site=null;
+ for(const st of sts){if(!(st in NBK))NBK[st]=fetch('data/us-key/US-'+st+'.json?v='+new Date().toISOString().slice(0,10)).then(r=>r.ok?r.json():null).catch(()=>null);
+  const k=await NBK[st],p=k&&k.parks&&k.parks[s.c];if(p){known=true;if(p.m&&p.m.length)has=true;if(p.a&&p.a.length)site=p.a}}
+ if(!known||has||el.querySelector('.nob'))return;
+ const d=document.createElement('div');d.className='nob';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
+ d.innerHTML='<b style="font-size:14px">Sorry, no boundary available at this time.</b><br>'+(site&&site.length?'Its map pin sits inside <b>'+esc(site[0][1])+'</b>, a different place. ':'')+'Lines on the map are other land, not this park. Check the park’s own map.';
+ const at=el.querySelector('.pinfo');at?at.before(d):el.querySelector('.us-pop').appendChild(d)}
 function setDrop(on){dropMode=on;if(on&&map)map.closePopup();$('us-drop').setAttribute('aria-pressed',on);$('usmap').classList.toggle('dropping',on);$('us-maphint').textContent=on?'Tap the map where you want your pin.':'Tap a dot to add it to your trip, see Street View or show its boundary. Zoom in to county level to see official federal and state boundaries, and tap the land to see what it is; the layers button switches maps (Satellite + Streets + Official Boundaries) or turns the boundaries off.'}
 function links(s){const sv=`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${s.la},${s.lo}`;
  const page=s.p==='POTA'?KPC.links.pota(s.c):s.p==='SOTA'?(s.url||KPC.links.sota(s.c)):s.p==='WWFF'?KPC.links.kff(s.c):'';
@@ -379,10 +390,10 @@ async function showBoundary(s,btn){
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
    if(approx){status(`<b>Approximate outline, not official:</b> ${esc(nm)}${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). We are not sure this is the park: ${esc(approxWhy)}. Check the park’s own map before you set up.`);return}
    status(`Official boundary shown: <b>${esc(nm)}</b>${fs.length>1?` (${fs.length} pieces)`:''} (${esc(src)}). POTA goes by the official boundary; check the park's own map too.`);return}
-  btn.textContent='NO OFFICIAL OUTLINE ON FILE';btn.disabled=false;boundRef='';
+  btn.textContent='SORRY, NO BOUNDARY AVAILABLE AT THIS TIME';btn.disabled=false;boundRef='';
   const pop=btn.closest('.us-pop')||btn.parentNode;if(pop&&!pop.querySelector('[data-a="osm"]')){const o=document.createElement('button');o.type='button';o.dataset.a='osm';o.textContent='SHOW UNOFFICIAL OUTLINE';o.title='Last resort: OpenStreetMap, a volunteer map';o.onclick=ev=>{ev.preventDefault();osmBoundary(s,o)};btn.after(o)}
-  if(site&&site.length){status(`This park is a site with no outline of its own. It sits on <b>${esc(site[0][1])}</b>${site[0][2]?' (about '+Number(site[0][2]).toLocaleString()+' acres)':''}. Check the park’s own page for where to set up.`);return}
-  status('No official boundary on file for this park yet. Check the park’s own map, or tap <b>SHOW UNOFFICIAL OUTLINE</b> (OpenStreetMap, a volunteer map: can be off).');return}
+  if(site&&site.length){status(`<b>Sorry, no boundary available at this time.</b> Its map pin sits inside <b>${esc(site[0][1])}</b>${site[0][2]?' (about '+Number(site[0][2]).toLocaleString()+' acres)':''}, a different place. Check the park’s own page for where to set up.`);return}
+  status('<b>Sorry, no boundary available at this time.</b> Check the park’s own map, or tap <b>SHOW UNOFFICIAL OUTLINE</b> (OpenStreetMap, a volunteer map: can be off).');return}
  return osmBoundary(s,btn)}
 async function osmBoundary(s,btn){
  if(bound&&boundRef===s.c){bound.remove();bound=null;boundRef='';btn.textContent='SHOW UNOFFICIAL OUTLINE';status('Outline hidden.');return}
