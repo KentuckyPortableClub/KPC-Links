@@ -59,8 +59,23 @@ fset = {d.split('-')[0] for d in failed}
 for ref, r in old.items():
     if ref not in rows and pre(ref) in fset:
         rows[ref] = r
+# Oct 23 (nightly now): a country that came back much shorter than last time is treated as a bad read, not as
+# retirements: it keeps its old pins tonight
+oc, nc = {}, {}
+for ref in old: oc[pre(ref)] = oc.get(pre(ref), 0) + 1
+for ref in rows: nc[pre(ref)] = nc.get(pre(ref), 0) + 1
+short = sorted(k for k, n in oc.items() if n >= 10 and nc.get(k, 0) < 0.5 * n and k not in fset)
+if short:
+    note('Short countries', 'kept last pins for ' + ', '.join(short))
+    for ref, r in old.items():
+        if ref not in rows and pre(ref) in short: rows[ref] = r
 if len(rows) < 0.8 * len(old):
     note('Refused', f'only {len(rows)} parks this time vs {len(old)} last time: kept the old files'); raise SystemExit(0)
+# parks POTA took off its list: the pin goes tonight, the card says 'Retired by POTA' (data/retired-refs.json)
+if old:
+    import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import kpc_retired_refs as RR
+    RR.record({ref: r[1] for ref, r in old.items() if ref not in rows}, set(rows), 'world')
 tiles = {}
 for r in rows.values():
     tiles.setdefault(f'{math.floor(r[2])}_{math.floor(r[3])}', []).append(r)
@@ -70,6 +85,11 @@ for f in glob.glob(OUT + '/*.json'):
     os.remove(f)
 for k, L in tiles.items():
     json.dump(sorted(L), open(f'{OUT}/{k}.json', 'w'), separators=(',', ':'), ensure_ascii=False)
-json.dump({'updated': datetime.date.today().isoformat(), 'parks': len(rows), 'tiles': len(tiles), 'programs': dict(sorted(byp.items()))},
-          open('data/pota/index.json', 'w'), separators=(',', ':'))
+IX = {'updated': datetime.date.today().isoformat(), 'parks': len(rows), 'tiles': len(tiles), 'programs': dict(sorted(byp.items()))}
+try:
+    was = json.load(open('data/pota/index.json'))
+except Exception:
+    was = {}
+if {k: v for k, v in was.items() if k != 'updated'} != {k: v for k, v in IX.items() if k != 'updated'}:   # nightly: no commit when nothing changed
+    json.dump(IX, open('data/pota/index.json', 'w'), separators=(',', ':'))
 note('World POTA pins', f'{len(rows):,} parks in {len(tiles):,} tiles, {len(byp)} programs; {len(failed)} locations failed')

@@ -207,6 +207,8 @@
     if (!T) { $('ipTgt').innerHTML = '<p class="ip-small">Could not find ' + esc(ref) + '. Check the number (and your signal).</p>'; return; }
     st.target = T; $('ipTgt').innerHTML = `<p class="ip-small">Checking against <b>${esc(T.ref)} ${esc(T.name)}</b> (${esc(T.prog)})${T.prog === 'SOTA' ? ' · summit ' + (T.ft ? T.ft.toLocaleString() + ' ft' : '') : T.feats.length ? (T.approx ? ` · <b>approximate outline, not official</b> (${esc(T.why)}): check the park's own map` : '') : ' (no boundary file found)'} · <a href="#" id="ipClr">check any reference instead</a></p>`;
     $('ipClr').onclick = e => { e.preventDefault(); $('ipRef').value = ''; setTarget(''); };
+    /* Oct 23: a park POTA retired says so (data/retired-refs.json, written nightly) */
+    if (T.prog === 'POTA' && B.retired) B.retired(T.ref).then(r => { if (r && st.target === T) $('ipTgt').insertAdjacentHTML('beforeend', '<p class="ip-small" style="border:2px solid #b5452b;border-radius:8px;padding:7px 9px;background:#fff4f0;color:#8a2b17">' + B.retiredHtml(r) + '</p>'); });
     initMap(T.la, T.lo, 13);
     if (T.feats.length) { const g = L.geoJSON({ type: 'FeatureCollection', features: T.feats.map(f => ({ type: 'Feature', properties: {}, geometry: f.geometry })) }); if (!st.here) { map.fitBounds(g.getBounds(), { padding: [20, 20], maxZoom: 15 }); g.setStyle({ color: '#ffb000', weight: 3, fillOpacity: .1 }).addTo(map); st.tgLay = g; } }
     if (st.here) judge();

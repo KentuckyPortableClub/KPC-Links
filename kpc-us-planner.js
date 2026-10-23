@@ -135,7 +135,11 @@ function initMap(){if(!window.L){$('usmap').innerHTML='<p style="padding:20px;co
  map.on('popupopen',e=>{const el=e.popup.getElement();if(!el)return;const s=e.popup._kpc;if(!s)return;
   {const bb=el.querySelector('[data-a="bound"]');if(bb)bb.textContent=bound&&boundRef===s.c?'HIDE OUTLINE':'SHOW THIS PARK\u2019S OUTLINE'}
   el.querySelectorAll('[data-a]').forEach(b=>b.onclick=ev=>{ev.preventDefault();const a=b.dataset.a;if(a==='add'){inTrip(s.c)?removeStop(s.c):addStop(s);if(s.p==='PIN'&&!inTrip(s.c))map.closePopup();else b.innerHTML=inTrip(s.c)?'&#10003; IN TRIP (REMOVE)':'+ ADD TO TRIP'}   /* Oct 19: the card stays open */else if(a==='bound')showBoundary(s,b)});
-  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'));noBound(s,el)})}
+  if(s.p==='POTA')livePota(s,el.querySelector('.live'));if(s.p!=='PIN')parkInfo(s,el.querySelector('.pinfo'));noBound(s,el);retNote(s,el)})}
+/* Oct 23: a park POTA retired (the nightly pin bots write data/retired-refs.json) says so on its card */
+async function retNote(s,el){if(s.p!=='POTA'||!window.KPCB||!KPCB.retired)return;const r=await KPCB.retired(s.c);if(!r||el.querySelector('.retn'))return;
+ const d=document.createElement('div');d.className='retn';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
+ d.innerHTML=KPCB.retiredHtml(r);const nb=el.querySelector('.nob');if(nb)nb.remove();const at=el.querySelector('.pinfo');at?at.before(d):el.querySelector('.us-pop').appendChild(d)}
 /* Oct 23 (Brandon: 'if we dont have the boundary … in BOLD sorry no boundary available at this time'; people could take
    the other land lines on the map for this park's line): a US park the checked list marks 'no outline' says so on its card */
 const NBK={};

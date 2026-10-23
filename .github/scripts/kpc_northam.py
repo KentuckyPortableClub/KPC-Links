@@ -95,5 +95,8 @@ for f in glob.glob('data/sota/t/*.json'):
                 seen.add(r[0]); nm = r[1] if r[1] and r[1] != r[0] else f'Unnamed summit, {r[3]:,} m ({r[2]:,} ft)'  # most Mexican summits have no name
                 rows.append(['SOTA', r[0], nm, r[4], r[5], 'https://sotl.as/summits/' + r[0], r[3], r[6]])
 
-json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/northam.json', 'w'), separators=(',', ':'), ensure_ascii=False)
+try: _was = json.load(open('data/northam.json')).get('rows')
+except Exception: _was = None
+if rows != _was:   # nightly (Oct 23): no commit when nothing changed
+    json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/northam.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 note('North America pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(byprog.items()))}), {nw} WWFF, {len(seen)} SOTA")

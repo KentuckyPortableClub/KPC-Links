@@ -210,6 +210,9 @@ if TODAYS and not DRY:
     try:
         import kpc_search_lists as SL
         notice('Search lists', json.dumps(SL.update(None if POTA_FAILED else TODAYS.get('pota'), TODAYS.get('kff'), TODAYS.get('sota'))))
+        if 'POTA' in SL.GONE:   # a US park POTA took off its list: the card says 'Retired by POTA' (data/retired-refs.json)
+            import kpc_retired_refs as RR
+            RR.record(SL.GONE['POTA'], set(TODAYS['pota']), 'us', TODAY)
     except Exception as e:  # noqa: BLE001
         notice('Search lists', f'not updated: {e}')
 
