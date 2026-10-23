@@ -1,20 +1,23 @@
 # HI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **78 of 102** parks joined to official land (same name + same kind of place). **0** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **75 of 102** parks joined to official land (same name + same kind of place). **10** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-10913** Diamond Head Summit State Trail (State Trail) → Diamond Head State Monument (~503 ac, similar name)
+- **US-10914** Ka‘ena Point State Trail (State Trail) → Kaena Point State Park (~1,138 ac, same name, different kind of place)
+- **US-10915** Nakoa State Trail (State Trail) → Ahupuaa O Kahana State Park (~5,195 ac, the POTA pin is inside it (different name))
+- **US-10916** Kapaʻeleʻele State Trail (State Trail) → Ahupuaa O Kahana State Park (~5,195 ac, the POTA pin is inside it (different name))
+- **US-10917** ʻAiea Loop State Trail (State Trail) → Keaiwa Heiau State Recreation Area (~385 ac, the POTA pin is inside it (different name))
+- **US-10918** Waʻahila Ridge State Trail (State Trail) → Waahila Ridge State Recreation Area (~72 ac, same name, different kind of place)
+- **US-10925** HI State Game Reserve (Game Reserve) → Mokuleia Forest Reserve (~2,960 ac, the POTA pin is inside it (different name)); Kaala Natural Area Reserve (~1,087 ac, the POTA pin is inside it (different name))
+- **US-6420** Kiholo  Reserve State Reserve (State Reserve) → Pu'u Wa'awa'a Cooperative Game Management Area (~50,795 ac, the POTA pin is inside it (different name))
+- **US-6424** Pāʻulaʻula State Historic Site (State Historic Site) → Russian Fort Elizabeth State Historical Park (~19 ac, the POTA pin is inside it (different name))
+- **US-6430** Queen Emma Summer Palace State Park (State Park) → State Department of Land State Resource Management Area (~249,706 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10915 Nakoa State Trail (State Trail) → on Ahupuaa O Kahana State Park (~5,195 ac)
-- US-10916 Kapaʻeleʻele State Trail (State Trail) → on Ahupuaa O Kahana State Park (~5,195 ac)
-- US-10917 ʻAiea Loop State Trail (State Trail) → on Keaiwa Heiau State Recreation Area (~385 ac)
-- US-10919 Na Ala Hele State Trail (State Trail) → on State Department of Land State Resource Management Area (~249,706 ac)
-- US-10925 HI State Game Reserve (Game Reserve) → on Kaala Natural Area Reserve (~1,087 ac)
 - US-4565 Ala Kahakai National Historic Trail (National Historic Trail) → on Kaloko-Honokohau National Historical Park (~631 ac)
-- US-6424 Pāʻulaʻula State Historic Site (State Historic Site) → on Russian Fort Elizabeth State Historical Park (~19 ac)
-- US-6430 Queen Emma Summer Palace State Park (State Park) → on State Department of Land State Resource Management Area (~249,706 ac)
 
 ## Nothing found in PAD-US
 
@@ -23,12 +26,12 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **78 of 102** parks joined 
 - US-0971 World War II Valor in the Pacific National Monument (National Monument)
 - US-10905 Honolulu Watershed Forest Reserve (Forest Reserve)
 - US-10912 'Ualaka'a State Trail (State Trail)
+- US-10919 Na Ala Hele State Trail (State Trail)
 - US-10920 Kawainui Marsh Wildlife Reserve (Wildlife Reserve)
 - US-10921 Hawaii Capital National Historic District (National Historic District)
 - US-10922 Marconi Wireless Telegraphy Station Kahuku National Historic Site (National Historic Site)
 - US-10923 Artillery District of Honolulu Historic Site (Historic Site)
 - US-6410 Iao Valley State Preserve (State Preserve)
-- US-6420 Kiholo  Reserve State Reserve (State Reserve)
 - US-6426 Iolani Palace State Preserve (State Preserve)
 - US-6429 Pu'u O Mahuka Heiau State Historic Site (State Historic Site)
 - US-6431 Royal Mausoleum State Preserve (State Preserve)

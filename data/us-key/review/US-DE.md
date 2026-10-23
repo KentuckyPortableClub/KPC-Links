@@ -1,33 +1,33 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **70 of 89** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **70 of 89** parks joined to official land (same name + same kind of place). **7** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0898** White Clay Creek National Wild and Scenic River (National Wild and Scenic River) → White Clay Creek State Park (~3,520 ac, same name, different kind of place); White Clay Creek Preserve (~4 ac, same name, different kind of place); White Clay Creek Preserve (~4 ac, same name, different kind of place); White Clay Creek Preserve (~4 ac, same name, different kind of place)
+- **US-10681** Masseys Millpond State Fishing Lake (State Fishing Lake) → Masseys Pond (~38 ac, the POTA pin is inside it (different name))
+- **US-4366** Auburn Valley State Park (State Park) → Auburn Heights (~189 ac, the POTA pin is inside it (different name)); Auburn Heights (~4 ac, the POTA pin is inside it (different name))
+- **US-9877** Junction and Breakwater National Recreation Trail (National Recreation Trail) → Cape Henlopen State Park (~964 ac, the POTA pin is inside it (different name))
+- **US-9879** Pinelands Nature National Recreation Trail (National Recreation Trail) → Cape Henlopen State Park (~3,641 ac, the POTA pin is inside it (different name)); Cape Henlopen State Park (~562 ac, the POTA pin is inside it (different name))
+- **US-9881** Pomeroy and Newark National Recreation Trail (National Recreation Trail) → White Clay Creek State Park (~3,520 ac, the POTA pin is inside it (different name))
+- **US-9886** Dupont Nature Center State Conservation Area (State Conservation Area) → Milford Neck Wildlife Area (~5,131 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10681 Masseys Millpond State Fishing Lake (State Fishing Lake) → on Masseys Pond (~38 ac)
-- US-10687 Trussum Pond State Fishing Lake (State Fishing Lake) → on Trap Pond State Park (~2,118 ac)
-- US-11811 Records Pond State Fishing Lake (State Fishing Lake) → on Broad Creek (~2 ac)
-- US-4366 Auburn Valley State Park (State Park) → on Auburn Heights (~4 ac); Auburn Heights (~189 ac)
-- US-9877 Junction and Breakwater National Recreation Trail (National Recreation Trail) → on Cape Henlopen State Park (~964 ac)
-- US-9878 Northern Delaware Greenway National Recreation Trail (National Recreation Trail) → on Alapocas Run State Park (~143 ac); Alapocas Run State Park (~233 ac)
-- US-9879 Pinelands Nature National Recreation Trail (National Recreation Trail) → on Cape Henlopen State Park (~562 ac); Cape Henlopen State Park (~3,641 ac)
-- US-9881 Pomeroy and Newark National Recreation Trail (National Recreation Trail) → on White Clay Creek State Park (~3,520 ac)
-- US-9886 Dupont Nature Center State Conservation Area (State Conservation Area) → on Mispillion Marine Reserve (~200 ac)
 
 ## Nothing found in PAD-US
 
-- US-0898 White Clay Creek National Wild and Scenic River (National Wild and Scenic River)
 - US-10683 Millsboro Pond State Fishing Lake (State Fishing Lake)
+- US-10687 Trussum Pond State Fishing Lake (State Fishing Lake)
 - US-10688 Tubmill Pond State Fishing Lake (State Fishing Lake)
+- US-11811 Records Pond State Fishing Lake (State Fishing Lake)
 - US-12938 Laurel Industrial Forest Land State Wildlife Area (State Wildlife Area)
 - US-12939 Barr Industrial Forest Land State Wildlife Area (State Wildlife Area)
 - US-1739 Holts Landing State Park (State Park)
 - US-4367 First State Heritage State Park (State Park)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
+- US-9878 Northern Delaware Greenway National Recreation Trail (National Recreation Trail)
 - US-9885 Indian River Life-Saving Station State Historic Site (State Historic Site)
 
 ## Biggest federal / state places with no POTA park joined (first 60)

@@ -1,19 +1,25 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined to official land (same name + same kind of place). **0** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **160 of 219** parks joined to official land (same name + same kind of place). **13** to check by hand, **46** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0526** Wildcat Hollow State Nature Preserve (State Nature Preserve) → Wildcat Hollow State Habitat Area (~748 ac, same name, different kind of place)
+- **US-0998** Horseshoe Lake State Park (State Park) → Horshoe Lake State Park (~3,339 ac, the POTA pin is inside it (different name))
+- **US-10391** Kishwaukee River State Fish and Wildlife Area (State Fish and Wildlife Area) → Kishwaukee River State Natural Area (~546 ac, same name, different kind of place)
+- **US-10661** Oakwood Bottoms USFS Recreation Area (USFS Recreation Area) → Shawnee National Forest (~273,706 ac, the POTA pin is inside it (different name))
+- **US-10787** Weinberg-King Scripps Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~1,529 ac, similar name)
+- **US-10788** Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → Miscellaneous Property (~104 ac, the POTA pin is inside it (different name))
+- **US-11351** Weinberg-King Spunky Bottoms Unit State Park (State Park) → Weinberg-King State Fish and Wildlife Area (~862 ac, similar name)
+- **US-11844** Lusk Creek Canyon State Nature Preserve (State Nature Preserve) → Lusk Creek Wilderness (~6,636 ac, similar name)
+- **US-12368** Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → Iroquois County State Fish and Wildlife Area (~2,842 ac, the POTA pin is inside it (different name))
+- **US-13298** North Point Marina State Recreation Area (State Recreation Area) → Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac, the POTA pin is inside it (different name))
+- **US-4094** Eagle Creek State Park (State Park) → Recreation Area (~2,294 ac, the POTA pin is inside it (different name))
+- **US-4105** Washington County State Recreation Area (State Recreation Area) → Washington County State Natural Area (~1,465 ac, same name, different kind of place)
+- **US-7871** Martin T Snyder Memorial State Nature Preserve (State Nature Preserve) → Hanging Rock Sandstone Cliff State Natural Area (~94 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0998 Horseshoe Lake State Park (State Park) → on Horshoe Lake State Park (~3,339 ac)
-- US-10661 Oakwood Bottoms USFS Recreation Area (USFS Recreation Area) → on Shawnee National Forest (~273,706 ac)
-- US-10788 Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → on Miscellaneous Property (~104 ac)
-- US-12368 Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → on Iroquois County State Fish and Wildlife Area (~2,842 ac)
-- US-13298 North Point Marina State Recreation Area (State Recreation Area) → on Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac)
-- US-4094 Eagle Creek State Park (State Park) → on Recreation Area (~2,294 ac)
-- US-7871 Martin T Snyder Memorial State Nature Preserve (State Nature Preserve) → on Hanging Rock Sandstone Cliff State Natural Area (~94 ac)
 
 ## Nothing found in PAD-US
 
@@ -29,12 +35,10 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined
 - US-10241 Kincaid Mounds State Historic Site (State Historic Site)
 - US-1028 Walnut Point State Park (State Park)
 - US-1029 Wayne Fitzgerrell State Park (State Park)
-- US-10391 Kishwaukee River State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-10623 Shawneetown Bank State Historic Site (State Historic Site)
 - US-11043 Burning Star State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11144 Jarrot Mansion State Historic Site (State Historic Site)
 - US-11236 Carl Sandburg State Historic Site (State Historic Site)
-- US-11844 Lusk Creek Canyon State Nature Preserve (State Nature Preserve)
 - US-11959 Metamora Courthouse Historic Site (Historic Site)
 - US-12080 Kaskaskia Bell Memonial State Historic Site (State Historic Site)
 - US-12617 Postville Courthouse State Historic Site (State Historic Site)
@@ -42,7 +46,6 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined
 - US-12641 David Davis Mansion State Historic Site (State Historic Site)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-4096 Golconda Marina State Recreation Area (State Recreation Area)
-- US-4105 Washington County State Recreation Area (State Recreation Area)
 - US-4107 William W. Powers State Recreation Area (State Recreation Area)
 - US-4109 Big Bend State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-4111 Bohm Woods State Nature Preserve (State Nature Preserve)
