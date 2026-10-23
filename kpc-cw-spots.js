@@ -32,7 +32,7 @@ function toMs(t){if(t==null||t==='')return null;if(typeof t==='number')return t<
 const MAXAGE=30*60e3; // only spots from the last 30 minutes
 function ago(t){if(!t)return'';const m=Math.max(0,Math.round((Date.now()-t)/6e4));return m<1?'now':m<60?m+' min':Math.round(m/60)+' h'}
 
-let MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR']; // replaced by the club roster in kpc-tools.js when it loads
+let MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR','N4KPC']; // replaced by the club roster in kpc-tools.js when it loads
 fetch('kpc-tools.js').then(r=>r.ok?r.text():'').then(t=>{const m=t.match(/MEMBERS\s*=\s*\[([^\]]*)\]/);if(m){const l=[...m[1].matchAll(/'([A-Za-z0-9/]+)'/g)].map(x=>x[1].toUpperCase());if(l.length)MEMBERS=l;draw()}}).catch(()=>{});
 const base=c=>String(c||'').toUpperCase().split('/').sort((a,b)=>b.length-a.length)[0]||'';
 
