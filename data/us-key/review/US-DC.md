@@ -1,23 +1,23 @@
 # DC: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **24 of 34** parks joined to official land (same name + same kind of place). **0** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **24 of 34** parks joined to official land (same name + same kind of place). **2** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0657** President's Park (White House) Park (Park) → National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
+- **US-13597** George Mason National Memorial (National Memorial) → National Capital Parks (~3,908 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0657 President's Park (White House) Park (Park) → on National Capital Parks (~3,908 ac)
-- US-13597 George Mason National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
-- US-7891 African American Civil War National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
+- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail) → on Chesapeake and Ohio Canal National Historical Park (~323 ac)
 
 ## Nothing found in PAD-US
 
 - US-0015 Chesapeake and Ohio Canal National Historical Park (National Historical Park)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
-- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
+- US-7891 African American Civil War National Memorial (National Memorial)
 - US-9898 Mount Vernon National Historic Trail (National Historic Trail)
 - US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
 

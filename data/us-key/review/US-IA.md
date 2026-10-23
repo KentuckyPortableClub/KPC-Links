@@ -1,17 +1,18 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **167 of 181** parks joined to official land (same name + same kind of place). **0** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **166 of 181** parks joined to official land (same name + same kind of place). **6** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0270** Iowa Wetland Management District (Wetland Management District) → Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name)); Union Slough National Wildlife Refuge (~2,834 ac, the POTA pin is inside it (different name))
+- **US-11305** Wapsipinicon River Water State Trail (State Trail) → Gambril Access (~5 ac, the POTA pin is inside it (different name))
+- **US-11877** La Soya Wildlife Area (Wildlife Area) → Lasoya Wildlife Management Area (~78 ac, the POTA pin is inside it (different name))
+- **US-2329** Wild Cat Den State Park (State Park) → Wildcat Den State Park (~432 ac, the POTA pin is inside it (different name))
+- **US-5730** Blood Run State Historic Site (State Historic Site) → Blood Run/Rock Island National Landmark (~167 ac, similar name); Blood Run National Historic Landmark Area Tcf Tract (~7 ac, similar name)
+- **US-9312** Rosenow Timber Wildlife Management Area (Wildlife Management Area) → Rosenow Timber County Park (~123 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0270 Iowa Wetland Management District (Wetland Management District) → on Union Slough National Wildlife Refuge (~2,834 ac); Union Slough National Wildlife Refuge (~2,834 ac)
-- US-11305 Wapsipinicon River Water State Trail (State Trail) → on Gambril Access (~5 ac)
-- US-11877 La Soya Wildlife Area (Wildlife Area) → on Lasoya Wildlife Management Area (~78 ac)
-- US-2329 Wild Cat Den State Park (State Park) → on Wildcat Den State Park (~432 ac)
-- US-9334 Teal Basins State Waterfowl Management Area (State Waterfowl Management Area) → on Cerro Gordo County Waterfowl Production Area (~2,719 ac); Cerro Gordo County Waterfowl Production Area (~2,719 ac)
 
 ## Nothing found in PAD-US
 
@@ -23,7 +24,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **167 of 181** parks joined
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
 - US-8283 Glenwood Archaeological State Historic Site (State Historic Site)
-- US-9312 Rosenow Timber Wildlife Management Area (Wildlife Management Area)
+- US-9334 Teal Basins State Waterfowl Management Area (State Waterfowl Management Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

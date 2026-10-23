@@ -1,31 +1,34 @@
 # AL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **109 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **27** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **106 of 155** parks joined to official land (same name + same kind of place). **19** to check by hand, **27** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-1039** De Soto State Park (State Park) → DeSoto State Park (~1,059 ac, the POTA pin is inside it (different name))
+- **US-10396** Black Warrior Wildlife Management Area (Wildlife Management Area) → William B. Bankhead National Forest (~182,015 ac, the POTA pin is inside it (different name))
+- **US-10428** Walls of Jericho State Natural Area (State Natural Area) → James D. Martin - Skyline Wildlife Management Area (~24,451 ac, the POTA pin is inside it (different name))
+- **US-11026** The Indian Mountain Conservation Area (Conservation Area) → Indian Mountain Complex (~515 ac, similar name); Indian Mountain Complex (~80 ac, similar name)
+- **US-12405** TVA Guntersville Dam 5(1)(g) Reserve (5(1)(g) Reserve) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
+- **US-12409** TVA Cave Mountain Small Wild Area National Park (National Park) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
+- **US-12410** TVA Flint Creek Access National Park (National Park) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
+- **US-12411** TVA Second Creek Access Area National Park (National Park) → Joe Wheeler State Park (~2,144 ac, the POTA pin is inside it (different name))
+- **US-13081** Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area) → Fort Toulouse National Historic Park (~256 ac, the POTA pin is inside it (different name))
+- **US-13083** TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area) → Wheeler Reservoir Retained Land (~16,536 ac, the POTA pin is inside it (different name))
+- **US-13311** TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → Upper Bear Creek Reservoir Retained Land (~3,216 ac, the POTA pin is inside it (different name))
+- **US-3683** Choccolocco Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
+- **US-3692** Heron Bay and Portersville Bay State Fish and Wildlife Area (State Fish and Wildlife Area) → The Heron Bay Wetlands Tract (~463 ac, similar name)
+- **US-3693** Hollins Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
+- **US-3703** Ruffner Mountain Preserve State Conservation Area (State Conservation Area) → Ruffner Mountain Nature Center (~226 ac, similar name)
+- **US-9880** Crow Creek Nature Refuge (Nature Refuge) → Jackson County Waterfowl Area And Refuge (~16,198 ac, the POTA pin is inside it (different name))
+- **US-9911** Boggy Hollow Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))
+- **US-9912** Blue Spring Wildlife Management Area (Wildlife Management Area) → Conecuh National Forest (~84,808 ac, the POTA pin is inside it (different name))
+- **US-9924** Oakmulgee Wildlife Management Area (Wildlife Management Area) → Talladega National Forest (~394,709 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-1039 De Soto State Park (State Park) → on DeSoto State Park (~1,059 ac)
-- US-10396 Black Warrior Wildlife Management Area (Wildlife Management Area) → on William B. Bankhead National Forest (~182,015 ac)
-- US-10428 Walls of Jericho State Natural Area (State Natural Area) → on James D. Martin - Skyline Wildlife Management Area (~24,451 ac)
-- US-12405 TVA Guntersville Dam 5(1)(g) Reserve (5(1)(g) Reserve) → on Wheeler Reservoir Retained Land (~16,536 ac)
-- US-12409 TVA Cave Mountain Small Wild Area National Park (National Park) → on Wheeler Reservoir Retained Land (~16,536 ac)
-- US-12410 TVA Flint Creek Access National Park (National Park) → on Wheeler Reservoir Retained Land (~16,536 ac)
-- US-12411 TVA Second Creek Access Area National Park (National Park) → on Joe Wheeler State Park (~2,144 ac)
 - US-13003 TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area) → on Little Bear Creek Reservoir Retained Land (~1,138 ac)
 - US-13004 TVA Cedar Creek Dam Multiple Use Area (Multiple Use Area) → on Cedar Creek Reservoir Retained Land (~2,716 ac)
 - US-13005 TVA Big Bear Creek Dam Multiple Use Area (Multiple Use Area) → on Bear Creek Reservoir Retained Land (~2,327 ac)
-- US-13081 Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area) → on Fort Toulouse National Historic Park (~256 ac)
-- US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area) → on Wheeler Reservoir Retained Land (~16,536 ac)
-- US-13311 TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → on Upper Bear Creek Reservoir Retained Land (~3,216 ac)
-- US-3683 Choccolocco Wildlife Management Area (Wildlife Management Area) → on Talladega National Forest (~394,709 ac)
-- US-3693 Hollins Wildlife Management Area (Wildlife Management Area) → on Talladega National Forest (~394,709 ac)
-- US-9880 Crow Creek Nature Refuge (Nature Refuge) → on Jackson County Waterfowl Area And Refuge (~16,198 ac)
-- US-9911 Boggy Hollow Wildlife Management Area (Wildlife Management Area) → on Conecuh National Forest (~84,808 ac)
-- US-9912 Blue Spring Wildlife Management Area (Wildlife Management Area) → on Conecuh National Forest (~84,808 ac)
-- US-9924 Oakmulgee Wildlife Management Area (Wildlife Management Area) → on Talladega National Forest (~394,709 ac)
 
 ## Nothing found in PAD-US
 
@@ -95,6 +98,8 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **109 of 155** parks joined
 - Pea River · MIT · Alabama Department of Transportation · ~595 ac
 - Town Creek · MIT · Alabama Department of Transportation · ~570 ac
 - Dozier · MIT · Alabama Department of Transportation · ~518 ac
+- Indian Mountain Complex · SREC · Alabama Department of Conservation and Natural Resources · ~515 ac
+- The Heron Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~463 ac
 - Cahaba River - Shelby County Park · LREC · Alabama Department of Conservation and Natural Resources · ~463 ac
 - Portersville Bay Wetlands Tract · SCA · Alabama Department of Conservation and Natural Resources · ~441 ac
 - W. L. Holland Wildlife Management Area · SCA · ADCNR, State Lands Division · ~424 ac
@@ -110,12 +115,10 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **109 of 155** parks joined
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~241 ac
 - Baldwin State Forest · SRMA · Alabama Forestry Commission · ~239 ac
 - Big Prairie Creek (prop) · MIT · Alabama Department of Transportation · ~235 ac
+- Ruffner Mountain Nature Center · REA · Alabama Department of Conservation and Natural Resources · ~226 ac
 - Stauffer Seed Orchard · SOTH · Alabama Forestry Commission · ~214 ac
 - Southeastern States District Office · PUB · BLM · ~202 ac
 - Macon State Forest · SRMA · Alabama Forestry Commission · ~200 ac
 - Miller Nursery · SOTH · Alabama Forestry Commission · ~197 ac
 - Alabama State Port Authority Exchange Tract · SCA · ADCNR, State Lands Division · ~190 ac
 - Wilson Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~186 ac
-- Eco Park at University Lake · SREC · Unknown · ~183 ac
-- Thorsby Seed Orchard · SOTH · Alabama Forestry Commission · ~180 ac
-- Live Oak Landing · SREC · ADCNR, State Lands Division · ~171 ac
