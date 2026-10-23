@@ -124,6 +124,8 @@
     if (errs.length) { alert('Please check: ' + errs.join('; ') + '.'); return; }
     if (c.some(d => d.how === 'post')) {
       const wait = rlCheck(); if (wait && !c.some(d => d.how !== 'post')) { alert(wait); return; }
+      /* Oct 23: someone else spotted right next to this frequency = possible QRM (kpc-qrm.js) */
+      if (!wait && window.KPCQrm) { const w = await KPCQrm.check(v.k, v.mode, v.call); if (w && !confirm(w)) return; }
       if (!wait && !confirm(`This posts a real, public spot on POTA:\n\n${txt(v, 'plain', ALL.find(d => d.id === 'pota'))}\n\nOnly send it when you're on the air. Send it?`)) return;
     }
     const fc = c.find(d => d.how === 'copy' && d.id !== 'apspot'); if (fc) copy(txt(v, kindOf(fc), fc));

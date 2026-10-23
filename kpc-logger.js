@@ -648,6 +648,23 @@
     if (Q.length && t - Q[Q.length - 1] < 3e5) return 'Please wait ' + Math.ceil((3e5 - (t - Q[Q.length - 1])) / 6e4) + ' more minute(s): one POTA spot every 5 minutes.';
     if (Q.length >= 4) return 'That\'s 4 POTA spots this hour. Try again in ' + Math.ceil((36e5 - (t - Q[0])) / 6e4) + ' minute(s).'; return ''; }
   function rlNote() { const Q = (get('kpcSpotMeSent', []) || []).filter(x => Date.now() - x < 36e5); Q.push(Date.now()); put('kpcSpotMeSent', Q); }
+  /* how close another station's spot may be before we warn (kHz each side): voice needs the room, CW less, FT8/FT4 share one
+     sub-band by design so they never warn. Spots up to 20 minutes old count (a spot that old is often still on). */
+  const QRM_KHZ = { SSB: 3, AM: 6, FM: 10, CW: 1, RTTY: 1, PSK31: 0.5, PSK: 0.5, JS8: 0, FT8: 0, FT4: 0, FT2: 0, DATA: 0 };
+  async function qrmNear(k, mode, me) {
+    const m = String(mode || '').toUpperCase(), g = QRM_KHZ[/^(USB|LSB|PHONE)$/.test(m) ? 'SSB' : m];
+    if (!g) return '';
+    if (Date.now() - spAt > 120000) { try { await spots(); } catch (e) {} }
+    const now = Date.now(), mine = base(me);
+    const near = SP.filter(x => x && base(x.activator) !== mine && isFinite(+x.frequency) && Math.abs(+x.frequency - k) <= g && Math.abs(+x.frequency - k) > 0.05 && now - (x._t || 0) < 20 * 60000)
+      .sort((a, b) => Math.abs(+a.frequency - k) - Math.abs(+b.frequency - k));
+    const same = SP.filter(x => x && base(x.activator) !== mine && Math.abs(+x.frequency - k) <= 0.05 && now - (x._t || 0) < 20 * 60000);
+    const L = same.concat(near).slice(0, 3);
+    if (!L.length) return '';
+    const ago = x => { const n = Math.max(0, Math.round((now - x._t) / 60000)); return n < 1 ? 'just now' : n === 1 ? '1 minute ago' : n + ' minutes ago'; };
+    const lines = L.map(x => `${x.activator} was spotted on ${mhz(+x.frequency)} ${ago(x)}` + (x.reference ? ` (${x.reference})` : ''));
+    return `⚠ Possible QRM\n\n${lines.join('\n')}.\n\nSpotting on ${mhz(k)} may put you on top of ${L.length > 1 ? 'them' : 'that station'}. Are you sure you want to spot here?`;
+  }
   function spotInit() {
     const msg = (t, c) => { $('sMsg').className = 'lg-msg ' + (c || ''); $('sMsg').textContent = t; toast(t); };
     $('sQrt').onclick = () => sendSpot('qrt'); $('sQsy').onclick = () => sendSpot('qsy');
@@ -686,6 +703,9 @@
       const wait = rlCheck(kind); if (wait) { msg(wait, 'bad'); return; }
       let cm = kind === 'qrt' ? 'QRT · thanks all, 73!' : kind === 'qsy' ? ('QSY · now on ' + mhz(k) + ' ' + $('sCm').value.trim()).trim() : $('sCm').value.trim();
       if (kind !== 'qrt' && P.length > 1 && !/fer|US-|\d{4}/i.test(cm)) cm = (P.length + '-fer: ' + P.slice(1).join(' ') + ' ' + cm).trim();
+      /* Oct 23 (Brandon: 'if someone was going to spot at 14.284 but someone was spotted 5 minutes ago at 14.286 give a warning
+         … same for cw … ft8 and 4 is perfectly fine'): someone else spotted right next to you = you may cause QRM */
+      if (kind !== 'qrt') { const w = await qrmNear(k, mode, call); if (w && !confirm(w)) { msg('Spot not sent. Pick a clear frequency and try again.', 'bad'); return; } }
       if (!confirm(`This posts a real, public spot on POTA:\n\n${call} at ${P[0]} on ${mhz(k)} MHz ${mode}${cm ? '\n' + cm : ''}\n\nOnly send it when you're on the air. Send it?`)) return;
       msg('Sending…');
       try {
