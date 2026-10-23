@@ -4241,6 +4241,18 @@
   "US-6221": {
    "none": true,
    "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+  },
+  "US-0803": {
+   "join": [
+    3188
+   ],
+   "why": "same place (hand review Oct 23)"
+  },
+  "US-8328": {
+   "join": [
+    190224
+   ],
+   "why": "same place (hand review Oct 23)"
   }
  }
 }
