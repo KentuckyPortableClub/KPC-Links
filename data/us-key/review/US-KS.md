@@ -1,29 +1,22 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined to official land (same name + same kind of place). **12** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined to official land (same name + same kind of place). **1** to check by hand, **42** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-2335** Eisenhower State Park (State Park) → Melvern Recreation Area (~23,490 ac, the POTA pin is inside it (different name))
-- **US-7393** Milford State Fish Hatchery (State Fish Hatchery) → Milford Recreation Area (~45,289 ac, same name, different kind of place)
-- **US-7399** Tuttle Creek Willow State Fishing Lake (State Fishing Lake) → Tuttle Creek State Parks (~1,082 ac, similar name); Tuttle Creek Recreation Area (~34,548 ac, same name, different kind of place)
-- **US-7405** Melvern River State Fishing Lake (State Fishing Lake) → Melvern Recreation Area (~23,490 ac, similar name)
-- **US-7925** El Dorado State Wildlife Area (State Wildlife Area) → El Dorado State Park (~4,133 ac, same name, different kind of place)
-- **US-7929** Hillsdale State Wildlife Area (State Wildlife Area) → Hillsdale Recreation Area (~13,176 ac, same name, different kind of place)
-- **US-7932** Kansas Veterans State Wildlife Area (State Wildlife Area) → Sherman State Fishing Lake And Wildlife Area (~1,542 ac, the POTA pin is inside it (different name))
-- **US-7938** Milford State Wildlife Area (State Wildlife Area) → Milford Recreation Area (~45,289 ac, same name, different kind of place)
-- **US-7941** Perry State Wildlife Area (State Wildlife Area) → Perry Recreation Area (~39,433 ac, same name, different kind of place)
-- **US-7946** Tuttle Creek State Wildlife Area (State Wildlife Area) → Tuttle Creek Recreation Area (~34,548 ac, same name, different kind of place); Tuttle Creek State Parks (~1,082 ac, same name, different kind of place)
-- **US-7947** Webster State Wildlife Area (State Wildlife Area) → Webster State Park (~1,248 ac, same name, different kind of place)
-- **US-7948** Wilson State Wildlife Area (State Wildlife Area) → Wilson Recreation Area (~21,808 ac, same name, different kind of place)
+- **US-0803** Brown vs. Board of Education National Historic Site (National Historic Site) → Brown v. Board of Education National Historical Park (~2 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-2334 Cross Timbers State Park (State Park) → on Toronto State Park (~1,292 ac)
+- US-2335 Eisenhower State Park (State Park) → on Melvern Recreation Area (~23,490 ac)
+- US-7932 Kansas Veterans State Wildlife Area (State Wildlife Area) → on Sherman State Fishing Lake And Wildlife Area (~1,542 ac)
+- US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area) → on Finney Game Refuge (~3,622 ac)
+- US-7944 Smoky Hill State Wildlife Area (State Wildlife Area) → on Kanopolis State Park (~1,643 ac); Kanopolis Recreation Area (~21,212 ac)
 
 ## Nothing found in PAD-US
 
 - US-13456 Pratt Fish Hatchery State Fish Hatchery (State Fish Hatchery)
-- US-2334 Cross Timbers State Park (State Park)
 - US-2350 Prairie Spirit Trail State Trail (State Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
@@ -33,17 +26,24 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined 
 - US-5717 Little Jerusalem Badlands State Park (State Park)
 - US-5718 Flint Hills Trail State Park (State Park)
 - US-7386 Browning Oxbow State Fishing Lake (State Fishing Lake)
+- US-7393 Milford State Fish Hatchery (State Fish Hatchery)
+- US-7405 Melvern River State Fishing Lake (State Fishing Lake)
 - US-7412 Black Kettle State Fishing Lake (State Fishing Lake)
 - US-7866 Mine Creek Civil War Battlefield State Historic Site (State Historic Site)
 - US-7867 Benedictine Bottoms State Wildlife Area (State Wildlife Area)
 - US-7923 Copan State Wildlife Area (State Wildlife Area)
 - US-7924 Council Grove State Wildlife Area (State Wildlife Area)
+- US-7925 El Dorado State Wildlife Area (State Wildlife Area)
 - US-7926 Elk City Reservoir State Wildlife Area (State Wildlife Area)
 - US-7927 Fall River State Wildlife Area (State Wildlife Area)
+- US-7929 Hillsdale State Wildlife Area (State Wildlife Area)
 - US-7936 Marion State Wildlife Area (State Wildlife Area)
-- US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area)
-- US-7944 Smoky Hill State Wildlife Area (State Wildlife Area)
+- US-7938 Milford State Wildlife Area (State Wildlife Area)
+- US-7941 Perry State Wildlife Area (State Wildlife Area)
 - US-7945 Toronto State Wildlife Area (State Wildlife Area)
+- US-7946 Tuttle Creek State Wildlife Area (State Wildlife Area)
+- US-7947 Webster State Wildlife Area (State Wildlife Area)
+- US-7948 Wilson State Wildlife Area (State Wildlife Area)
 - US-9177 Constitution Hall State Historic Site (State Historic Site)
 - US-9179 Grinter Place State Historic Site (State Historic Site)
 - US-9180 Hollenberg Pony Express Station State Historic Site (State Historic Site)

@@ -1,30 +1,25 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **117 of 157** parks joined to official land (same name + same kind of place). **14** to check by hand, **26** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **118 of 157** parks joined to official land (same name + same kind of place). **0** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0881** Eightmile National Wild and Scenic River (National Wild and Scenic River) → Devils Hopyard State Park (~260 ac, the POTA pin is inside it (different name))
-- **US-0882** Farmington National Wild and Scenic River (National Wild and Scenic River) → Farmington River Water Access (~138 ac, similar name); Farmington River Water Access (~8 ac, similar name); Farmington River Water Access (~2 ac, similar name); Farmington River Water Access (~1 ac, similar name); Farmington River Water Access (~0 ac, similar name)
-- **US-12460** Suffield Wildlife Management Area (Wildlife Management Area) → Unspecified (~195 ac, the POTA pin is inside it (different name)); Wildlife Area (~195 ac, the POTA pin is inside it (different name))
-- **US-1664** Eagle Landing State Park (State Park) → Connecticut Valley Railroad State Park Trail (~4 ac, the POTA pin is inside it (different name))
-- **US-1694** Mansfield Hollow State Park (State Park) → Mansfield Hollow Wildlife Management Area (~2,387 ac, same name, different kind of place)
-- **US-1699** Mohawk Mountain State Park (State Park) → Mohawk State Forest (~3,251 ac, similar name); Mohawk State Forest (~252 ac, similar name); State Forest (~3,742 ac, the POTA pin is inside it (different name))
-- **US-1723** Sunrise State Park (State Park) → Machimoodus State Park (~144 ac, the POTA pin is inside it (different name))
-- **US-1728** Wharton Brook State Park (State Park) → Wharton Brook Natural Area Preserve (~24 ac, same name, different kind of place)
-- **US-6860** Ferry Landing State Park (State Park) → Other (~16 ac, the POTA pin is inside it (different name)); Marine District Headquarters (~7 ac, the POTA pin is inside it (different name))
-- **US-6870** Quinebaug Lake State Park (State Park) → Quinebaug Wildlife Area (~22 ac, same name, different kind of place); Water Access (~15 ac, the POTA pin is inside it (different name))
-- **US-6872** Salt Rock State Forest (State Forest) → Salt Rock State Park (~65 ac, same name, different kind of place); Salt Rock State Park (~43 ac, same name, different kind of place); Salt Rock State Park (~30 ac, same name, different kind of place); Salt Rock State Park (~12 ac, same name, different kind of place)
-- **US-7529** Beckley Iron Furnace State Park (State Park) → Historic Preserve (~3 ac, the POTA pin is inside it (different name)); Industrial Monument Historic Preserve (~1 ac, the POTA pin is inside it (different name))
-- **US-7536** Nassahegon State Forest (State Forest) → State Forest (~1,150 ac, the POTA pin is inside it (different name))
-- **US-7542** Satan's Kingdom State Recreation Area (State Recreation Area) → Water Access (~12 ac, the POTA pin is inside it (different name)); Farmington River Water Access (~8 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~260 ac)
+- US-12460 Suffield Wildlife Management Area (Wildlife Management Area) → on Unspecified (~195 ac); Wildlife Area (~195 ac)
+- US-1664 Eagle Landing State Park (State Park) → on Connecticut Valley Railroad State Park Trail (~4 ac)
+- US-1723 Sunrise State Park (State Park) → on Machimoodus State Park (~144 ac)
+- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac); Other (~16 ac)
+- US-7529 Beckley Iron Furnace State Park (State Park) → on Industrial Monument Historic Preserve (~1 ac); Historic Preserve (~3 ac)
+- US-7536 Nassahegon State Forest (State Forest) → on State Forest (~1,150 ac)
+- US-7542 Satan's Kingdom State Recreation Area (State Recreation Area) → on Farmington River Water Access (~8 ac); Water Access (~12 ac)
 
 ## Nothing found in PAD-US
 
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
+- US-0882 Farmington National Wild and Scenic River (National Wild and Scenic River)
 - US-11712 Cromwell Meadows WMA Wildlife Management Area (Wildlife Management Area)
 - US-12459 Housatonic River Southern Fields Wildlife Management Area (Wildlife Management Area)
 - US-13487 Seth Low Pierrepont State Park (State Park)
@@ -37,15 +32,19 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **117 of 157** parks joined
 - US-1673 Haddam Island State Park (State Park)
 - US-1680 Hopemead State Park (State Park)
 - US-1690 Lamentation Mountain State Park (State Park)
+- US-1694 Mansfield Hollow State Park (State Park)
+- US-1699 Mohawk Mountain State Park (State Park)
 - US-1710 River Highlands State Park (State Park)
 - US-1711 Rocky Neck State Park (State Park)
 - US-1716 Silver Sands State Park (State Park)
 - US-1718 Southford Falls State Park (State Park)
 - US-1719 Squantz Pond State Park (State Park)
+- US-1728 Wharton Brook State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4561 New England Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6862 Horse Guard State Park (State Park)
+- US-6870 Quinebaug Lake State Park (State Park)
 - US-6873 Stoddard Hill State Park (State Park)
 - US-6875 The Preserve Essex Land Trust State Park Preserve (State Park Preserve)
 - US-7544 Windsor Locks Canal State Trail (State Trail)

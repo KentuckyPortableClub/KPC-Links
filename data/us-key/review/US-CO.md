@@ -1,29 +1,26 @@
 # CO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **252 of 276** parks joined to official land (same name + same kind of place). **11** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **255 of 276** parks joined to official land (same name + same kind of place). **0** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-11902** Camp Hale National Monument (National Monument) → White River National Forest (~2,289,410 ac, the POTA pin is inside it (different name))
-- **US-11911** Damaree BLM Wilderness Area (BLM Wilderness Area) → Grand Junction Field Office (~1,275,594 ac, the POTA pin is inside it (different name))
-- **US-1208** Arkansas River Headwaters Recreation Park (Recreation Park) → Arkansas River SRMA (~4,165 ac, similar name); Arkansas Headwaters RA - BLM Site (~1,529 ac, similar name); Arkansas Headwaters (~1,286 ac, similar name); Arkansas Headwaters RA (~1 ac, similar name)
-- **US-12106** Brainard Lake Recreation Area National Forest (National Forest) → Roosevelt National Forest (~814,009 ac, the POTA pin is inside it (different name))
-- **US-12176** Frank State Wildlife Area (State Wildlife Area) → Frank SWA (~122 ac, similar name)
-- **US-12189** Buena Vista State Wildlife Area (State Wildlife Area) → Buena Vista Hay Barn (~162 ac, similar name); Royal Gorge Field Office (~670,237 ac, the POTA pin is inside it (different name)); Fourmile SRMA (~7,340 ac, the POTA pin is inside it (different name)); Midland Hills RMZ (~6,033 ac, the POTA pin is inside it (different name))
-- **US-4413** Chimney Rock National Monument (National Monument) → San Juan National Forest (~1,865,751 ac, the POTA pin is inside it (different name))
-- **US-9597** Kremmling BLM National Recreation Area (National Recreation Area) → Kremmling Field Office (~377,575 ac, similar name)
-- **US-9598** Hardscrabble-East Eagle BLM National Recreation Area (National Recreation Area) → Colorado River Valley Field Office (~570,728 ac, the POTA pin is inside it (different name)); Hardscrabble Zone 2 Motorized SRMA (~11,388 ac, the POTA pin is inside it (different name))
-- **US-9603** Adobe Creek State Wildlife Area (State Wildlife Area) → Blue Lake STL (~53,408 ac, the POTA pin is inside it (different name))
-- **US-9678** Windy Gap Watchable State Wildlife Area (State Wildlife Area) → Windy Gap WWA (~10 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10540 Bellevue-Watson State Fish Hatchery (State Fish Hatchery) → on Watson Lake SFU (~142 ac); Watson Lake SWA (~149 ac)
+- US-10540 Bellevue-Watson State Fish Hatchery (State Fish Hatchery) → on Watson Lake SFU (~142 ac)
+- US-11902 Camp Hale National Monument (National Monument) → on White River National Forest (~2,289,410 ac)
 - US-11907 Calamity Camp BLM Historic Preservation Site (BLM Historic Preservation Site) → on Gateway (~42,959 ac); Grand Junction Field Office (~1,275,594 ac)
-- US-12173 Tabeguache BLM Historic Trail (BLM Historic Trail) → on Uncompahgre Field Office (~880,205 ac)
+- US-11911 Damaree BLM Wilderness Area (BLM Wilderness Area) → on Grand Junction Field Office (~1,275,594 ac)
+- US-12106 Brainard Lake Recreation Area National Forest (National Forest) → on Roosevelt National Forest (~814,009 ac)
+- US-12173 Tabeguache BLM Historic Trail (BLM Historic Trail) → on Dry Creek, Zone 3 (~30,858 ac); Uncompahgre Field Office (~880,205 ac)
+- US-4413 Chimney Rock National Monument (National Monument) → on San Juan National Forest (~1,865,751 ac)
+- US-5749 Kokopelli's Trail National Recreation Area (National Recreation Area) → on McInnis Canyons National Conservation Area (~0 ac); MCNCA - Mack Ridge (~5,444 ac)
+- US-9598 Hardscrabble-East Eagle BLM National Recreation Area (National Recreation Area) → on Hardscrabble Zone 2 Motorized SRMA (~11,388 ac); Colorado River Valley Field Office (~570,728 ac)
+- US-9603 Adobe Creek State Wildlife Area (State Wildlife Area) → on Blue Lake STL (~53,408 ac)
 
 ## Nothing found in PAD-US
 
+- US-12189 Buena Vista State Wildlife Area (State Wildlife Area)
 - US-12585 Elliot State Wildlife Area (State Wildlife Area)
 - US-4397 Manti-La Sal National Forest (National Forest)
 - US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
@@ -31,7 +28,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **252 of 276** parks joined
 - US-4575 Old Spanish National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
-- US-5749 Kokopelli's Trail National Recreation Area (National Recreation Area)
+- US-9597 Kremmling BLM National Recreation Area (National Recreation Area)
 - US-9652 Grenada State Wildlife Area (State Wildlife Area)
 - US-9683 Amache National Historic Site (National Historic Site)
 
