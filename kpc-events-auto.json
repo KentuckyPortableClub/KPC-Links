@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T11:43:02Z",
+ "updated": "2026-10-23T17:11:25Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -73,6 +73,412 @@
    "by": "Winter Field Day Association",
    "url": "https://winterfieldday.org/",
    "rule": "Last full weekend of January"
+  },
+  {
+   "name": "CQ World Wide DX Contest (SSB)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2026-10-24",
+   "end": "2026-10-25",
+   "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + CQ zone 4. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://cqww.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "ARRL November Sweepstakes (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2026-11-07",
+   "end": "2026-11-09",
+   "time": "Starts 2100 UTC Sat (Sat 3 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/sweepstakes",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "ARRL November Sweepstakes (Phone)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2026-11-21",
+   "end": "2026-11-23",
+   "time": "Starts 2100 UTC Sat (Sat 3 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/sweepstakes",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "CQ World Wide DX Contest (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2026-11-28",
+   "end": "2026-11-29",
+   "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + CQ zone 4. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://cqww.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "ARRL 160-Meter Contest",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2026-12-04",
+   "end": "2026-12-06",
+   "time": "Starts 2200 UTC Fri (Fri 4 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + ARRL section (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/160-meter",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "ARRL 10-Meter Contest",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2026-12-12",
+   "end": "2026-12-13",
+   "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
+   "where": "Contest (CW, SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/10-meter",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "ARRL RTTY Roundup",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-01-02",
+   "end": "2027-01-03",
+   "time": "Starts 1800 UTC Sat (Sat 12 PM Central)",
+   "where": "Contest (DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/rtty-roundup",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "North American QSO Party (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-01-09",
+   "end": "2027-01-10",
+   "time": "Starts 1800 UTC Sat (Sat 12 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: your name + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "NCJ",
+   "url": "https://ncjweb.com/naqp/",
+   "rule": "Usual dates (NCJ); check the rules"
+  },
+  {
+   "name": "North American QSO Party (SSB)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-01-16",
+   "end": "2027-01-17",
+   "time": "Starts 1800 UTC Sat (Sat 12 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: your name + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "NCJ",
+   "url": "https://ncjweb.com/naqp/",
+   "rule": "Usual dates (NCJ); check the rules"
+  },
+  {
+   "name": "CQ 160-Meter Contest (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-01-29",
+   "end": "2027-01-31",
+   "time": "Starts 2200 UTC Fri (Fri 4 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://www.cq160.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "ARRL International DX Contest (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-02-20",
+   "end": "2027-02-21",
+   "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY); work DX stations only. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/arrl-dx",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "CQ 160-Meter Contest (SSB)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-02-26",
+   "end": "2027-02-28",
+   "time": "Starts 2200 UTC Fri (Fri 4 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://www.cq160.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "North American QSO Party (RTTY)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-02-27",
+   "end": "2027-02-28",
+   "time": "Starts 1800 UTC Sat (Sat 12 PM Central)",
+   "where": "Contest (DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: your name + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "NCJ",
+   "url": "https://ncjweb.com/naqp/",
+   "rule": "Usual dates (NCJ); check the rules"
+  },
+  {
+   "name": "ARRL International DX Contest (Phone)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-03-06",
+   "end": "2027-03-07",
+   "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY); work DX stations only. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/arrl-dx",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "Virginia QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-03-20",
+   "end": "2027-03-21",
+   "time": "Starts 1400 UTC Sat (Sat 9 AM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Sterling Park ARC",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "rule": "Usual dates (Sterling Park ARC); check the rules"
+  },
+  {
+   "name": "CQ WPX Contest (SSB)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-03-27",
+   "end": "2027-03-28",
+   "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + serial number (001, 002...). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://www.cqwpx.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "Missouri QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-04-03",
+   "end": "2027-04-04",
+   "time": "Starts 1400 UTC Sat (Sat 9 AM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Missouri QSO Party",
+   "url": "https://www.moqp.org/",
+   "rule": "Usual dates (Missouri QSO Party); check the rules"
+  },
+  {
+   "name": "Indiana QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-05-01",
+   "end": "2027-05-02",
+   "time": "Starts 1600 UTC Sat (Sat 11 AM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Hoosier DX and Contest Club",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "rule": "Usual dates (Hoosier DX and Contest Club); check the rules"
+  },
+  {
+   "name": "CQ WPX Contest (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-05-29",
+   "end": "2027-05-30",
+   "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + serial number (001, 002...). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://www.cqwpx.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "Kentucky QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-06-05",
+   "end": "2027-06-06",
+   "time": "Starts 1300 UTC Sat (Sat 8 AM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + your Kentucky county (out of state: RS(T) + state). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Kentucky QSO Party",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "rule": "Usual dates (Kentucky QSO Party); check the rules"
+  },
+  {
+   "name": "ARRL International Digital Contest",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-06-05",
+   "end": "2027-06-06",
+   "time": "Starts 1800 UTC Sat (Sat 1 PM Central)",
+   "where": "Contest (DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: your 4-character grid square. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/arrl-digital-contest",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "IARU HF World Championship",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-07-10",
+   "end": "2027-07-11",
+   "time": "Starts 1200 UTC Sat (Sat 7 AM Central)",
+   "where": "Contest (CW, SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + ITU zone 8. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL / IARU",
+   "url": "https://www.arrl.org/iaru-hf-world-championship",
+   "rule": "Usual dates (ARRL / IARU); check the rules"
+  },
+  {
+   "name": "North American QSO Party (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-08-07",
+   "end": "2027-08-08",
+   "time": "Starts 1800 UTC Sat (Sat 1 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: your name + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "NCJ",
+   "url": "https://ncjweb.com/naqp/",
+   "rule": "Usual dates (NCJ); check the rules"
+  },
+  {
+   "name": "North American QSO Party (SSB)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-08-21",
+   "end": "2027-08-22",
+   "time": "Starts 1800 UTC Sat (Sat 1 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: your name + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "NCJ",
+   "url": "https://ncjweb.com/naqp/",
+   "rule": "Usual dates (NCJ); check the rules"
+  },
+  {
+   "name": "Illinois QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-10-17",
+   "end": "2027-10-18",
+   "time": "Starts 1700 UTC Sun (Sun 12 PM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Western Illinois ARC",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "rule": "Usual dates (Western Illinois ARC); check the rules"
+  },
+  {
+   "name": "CQ World Wide DX Contest (SSB)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-10-30",
+   "end": "2027-10-31",
+   "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + CQ zone 4. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://cqww.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
+  },
+  {
+   "name": "ARRL November Sweepstakes (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-11-06",
+   "end": "2027-11-08",
+   "time": "Starts 2100 UTC Sat (Sat 4 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/sweepstakes",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "ARRL November Sweepstakes (Phone)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-11-20",
+   "end": "2027-11-22",
+   "time": "Starts 2100 UTC Sat (Sat 3 PM Central)",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "ARRL",
+   "url": "https://www.arrl.org/sweepstakes",
+   "rule": "Usual dates (ARRL); check the rules"
+  },
+  {
+   "name": "CQ World Wide DX Contest (CW)",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-11-27",
+   "end": "2027-11-28",
+   "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + CQ zone 4. The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "CQ",
+   "url": "https://cqww.com/rules.htm",
+   "rule": "Usual dates (CQ); check the rules"
   }
  ],
  "found": [
