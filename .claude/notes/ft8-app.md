@@ -111,6 +111,25 @@ POTACAT = github Waffleslop/POTACAT, potacat.com. Desktop app is free + open sou
 - OTHER: propagation/solar panel; map with day/night line, home marker, great-circle line; grid square from GPS; opt-in anonymous usage stats (L).
 - **PLUS OURS (what they don't have):** real native phone + tablet app that works OFFLINE at the park (no home PC needed); 'Am I in the park' with real boundaries + the 'approximate' honesty labels; Park Control / trip planner data; KFF/club data and the club's Discord/spots; HELL, RTTY, CW decode; one settings place (Brandon Oct 21); kids/new-ham friendly help text.
 
+## BRANDON TESTED 0.6.2 (Oct 22 7:03 PM, 'notes for later') — split by who
+**OPUS (screens, log, spots, maps):**
+- P1. **RX LEVEL BAR on the FT8 screen** (green / yellow / red) so he can see if the incoming sound is too loud, not just the number.
+- P2. **QSO box:** a CLEAR button (the stations I called + who called me); show BOTH reports (theirs and mine) — he still sees only one.
+- P3. **Two boxes say the same thing now** (QSO box 'who called me' + the MY QSO list 'stations on my frequency'): fold them into one sensible layout. **Auto clear TX spot did not move** TX off a busy spot — check.
+- P4. **Log row does not show the BAND** (check the phone width / the column).
+- P5. **Delete a QSO = 'Are you sure?'** first.
+- P6. **Maps: no shading** inside outlines (lines only); **satellite + street names** (hybrid: Esri imagery + the reference/transport labels layer).
+- P7. **Spots beside the log: start higher / use more height.**
+- P8. **P2P = ONE box**: type the parks, the SPACE BAR adds a comma by itself, room for a 7-fer (he has had 7-fers).
+- P9. **Tap a spot: the radio ends a little off the spot's frequency** (check rounding, CW offset, and FT8 spots = go to the band's FT8 dial, not the signal's own frequency).
+- P10. **APRS still shows the compass map**: check he is on 0.6.2 (MAP → 🛰 SATELLITE is the 2nd tap).
+- P11. **Spot filters like the Hunters Lounge** (after this test).
+**FABLE (remote, radio link, Bluetooth, GPS):**
+- R1. **GPS on the PC: 'computer can not find my GPS'** — say plainly the PC has no GPS: use the grid square (MY STATION) or Windows location; don't make it look broken.
+- R2. **Bluetooth TNC settings are not simple** — one list of paired radios, one CONNECT, say what to pair first.
+- R3. **REMOTE: he hears the audio but there is no SSB control; no way to see the FT8 decodes on the phone; FT8 on the PC was still on PRETEND; tapping an SSB spot does not move the radio; FT8 bands CAN be changed.** Brandon: **'remote screen needs to be more like a real radio with filters, notch etc, ssb options, cw, and if we going to do all the digi stuff all that needs to work remote and click spots would be nice if you are remote.'** = a real-radio remote panel (VFO + tuning steps, mode SSB/CW/DATA/AM/FM, filter width, notch, NB/NR, RF power, mic gain where CAT allows; CW keying; all digi modes; spots tab working remote → tunes the PC's radio).
+- R4. Tailscale not tried yet.
+
 ## BRANDON TESTED 0.6.0 (Oct 22 6:06 PM, phone + tablet + Windows PC) — the to-do list, split by who
 Brandon: "lay out is not bad… pretty plain but I know we going make it look better towards the end".
 **FABLE (sound, radio link, Android/Windows itself):**
