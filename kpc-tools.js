@@ -3,7 +3,7 @@
    Every page (Live, On The Air, Tool Box, Members, Campout, Discord page) and the Discord spot bot read it.
    Use plain callsigns in single quotes, e.g. ['KZ4CP','N4BDW','NEW1CALL'] */
 const KPC=(()=>{
-const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR'];
+const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR','N4KPC'];   // N4KPC = the club call (Brandon Oct 23: 'add the club call to our spots')
 const API='https://api.pota.app';
 const CACHE_KEY='kpcHistory_v1', CACHE_HOURS=12;
 let _data,_counties;

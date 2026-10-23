@@ -31,7 +31,7 @@ jobs:
           from urllib.error import HTTPError
 
           # KPC operators to watch: read from the club roster in kpc-tools.js (the only list)
-          CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR'}   # fallback if the roster can't be read
+          CALLS = {'KZ4CP', 'N4BDW', 'KQ4HZK', 'K4ZSR', 'N4KPC'}   # fallback if the roster can't be read
           try:
               _m = re.search(r"const MEMBERS\s*=\s*\[([^\]]*)\]", pathlib.Path('kpc-tools.js').read_text(encoding='utf-8'))
               _calls = {c.strip().upper() for c in re.findall(r"['\"]([A-Za-z0-9/]+)['\"]", _m.group(1))} if _m else set()
