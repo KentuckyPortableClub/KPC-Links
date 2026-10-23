@@ -1,15 +1,13 @@
 # Canada NL: POTA parks vs official land (CPCAD)
 
-Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **66 of 134** joined (same name + same kind). **3** to check, **65** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **67 of 134** joined (same name + same kind). **0** to check, **66** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-4820** Kitjigattalik - Ramah Chert Quarries National Historic Site (National Historic Site) → Torngat Mountains National Park Of Canada (~2,396,918 ac, the POTA pin is inside it (different name))
-- **CA-6115** Bay du Nord Heritage River National Heritage Area (National Heritage Area) → Bay du Nord Wilderness Reserve (~719,184 ac, similar name)
-- **CA-6166** Cape St. Mary's Lighthouse National Heritage Site (National Heritage Site) → Cape St. Mary's Ecological Reserve (~13,344 ac, similar name); Cape St. Mary's Ecological Reserve (~2,471 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
+- CA-4820 Kitjigattalik - Ramah Chert Quarries National Historic Site (National Historic Site) → on Torngat Mountains National Park Of Canada (~2,396,918 ac)
 
 ## Nothing found in CPCAD
 
@@ -68,6 +66,7 @@ Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **66 of 134** joined (same 
 - CA-6163 Woody Point Lighthouse National Heritage Site (National Heritage Site)
 - CA-6164 Rocky Point Lighthouse National Heritage Site (National Heritage Site)
 - CA-6165 St. Jacques Island Lighthouse National Heritage Site (National Heritage Site)
+- CA-6166 Cape St. Mary's Lighthouse National Heritage Site (National Heritage Site)
 - CA-6167 Heart's Content Lighthouse National Heritage Site (National Heritage Site)
 - CA-6168 Green Point Lighthouse National Heritage Site (National Heritage Site)
 - CA-6169 Long Point (Twillingate) Lighthouse National Heritage Site (National Heritage Site)

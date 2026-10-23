@@ -1,19 +1,19 @@
 # Canada NU: POTA parks vs official land (CPCAD)
 
-Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **29 of 48** joined (same name + same kind). **1** to check, **18** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **29 of 48** joined (same name + same kind). **0** to check, **17** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-4590** Soper Heritage River National Heritage Area (National Heritage Area) → Katannilik Territorial Park (~361,253 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
+- CA-0840 Sylvia Grinnell Territorial Park (Territorial Park) → on Iqaluit Kuunga Territorial Park (~10,951 ac)
+- CA-4590 Soper Heritage River National Heritage Area (National Heritage Area) → on Katannilik Territorial Park (~361,253 ac)
 
 ## Nothing found in CPCAD
 
 - CA-0831 Inuujarvik Territorial Park (Territorial Park)
 - CA-0838 Pisuktinu Tunngavik Territorial Park (Territorial Park)
-- CA-0840 Sylvia Grinnell Territorial Park (Territorial Park)
 - CA-4575 Fossil Creek Trail Wilderness Preserve (Wilderness Preserve)
 - CA-4580 Kazan Heritage River National Heritage Area (National Heritage Area)
 - CA-4585 Northwest Passage Trail Territorial Park (Territorial Park)
