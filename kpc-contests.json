@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T11:10:14Z",
+ "updated": "2026-10-23T11:09:34Z",
  "week": [
   {
    "name": "ARRL School Club Roundup",
@@ -9,220 +9,6 @@
     [
      "2026-10-19T13:00Z",
      "2026-10-23T23:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "A1Club AWT",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fz3uj",
-   "when": "1145Z-1300Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T11:45Z",
-     "2026-10-21T13:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fo65u",
-   "when": "1300Z-1400Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T13:00Z",
-     "2026-10-21T14:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "VHF-UHF FT8 Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fflnm",
-   "when": "1700Z-2100Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T17:00Z",
-     "2026-10-21T21:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [
-    "VHF"
-   ],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 40",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fzypj",
-   "when": "1700Z-1759Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T17:00Z",
-     "2026-10-21T17:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Mini-Test 80",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g0tko",
-   "when": "1800Z-1859Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T18:00Z",
-     "2026-10-21T18:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "AGCW Semi-Automatic Key Evening",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fgvmn",
-   "when": "1900Z-2030Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T19:00Z",
-     "2026-10-21T20:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fp10y",
-   "when": "1900Z-2000Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T19:00Z",
-     "2026-10-21T20:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "IRTS 80m Counties Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fjglw",
-   "when": "2000Z-2100Z, Oct 21",
-   "segs": [
-    [
-     "2026-10-21T20:00Z",
-     "2026-10-21T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fq3lu",
-   "when": "0300Z-0400Z, Oct 22",
-   "segs": [
-    [
-     "2026-10-22T03:00Z",
-     "2026-10-22T04:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "CWops Test (CWT)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fr66q",
-   "when": "0700Z-0800Z, Oct 22",
-   "segs": [
-    [
-     "2026-10-22T07:00Z",
-     "2026-10-22T08:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "RSGB 80m Autumn Series, SSB",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fdvrf",
-   "when": "1900Z-2030Z, Oct 22",
-   "segs": [
-    [
-     "2026-10-22T19:00Z",
-     "2026-10-22T20:30Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC FT4 Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g2yr9",
-   "when": "0100Z-0130Z, Oct 23",
-   "segs": [
-    [
-     "2026-10-23T01:00Z",
-     "2026-10-23T01:30Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Weekly RTTY Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g41ch",
-   "when": "0145Z-0215Z, Oct 23",
-   "segs": [
-    [
-     "2026-10-23T01:45Z",
-     "2026-10-23T02:15Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "NCCC Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g1vn0",
-   "when": "0230Z-0300Z, Oct 23",
-   "segs": [
-    [
-     "2026-10-23T02:30Z",
-     "2026-10-23T03:00Z"
     ]
    ],
    "modes": [],
@@ -412,6 +198,158 @@
     ]
    ],
    "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "SKCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003feivt",
+   "when": "0000Z-0200Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T00:00Z",
+     "2026-10-28T02:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Phone Weekly Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fyglt",
+   "when": "0230Z-0300Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T02:30Z",
+     "2026-10-28T03:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "A1Club AWT",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fzbkb",
+   "when": "1145Z-1300Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T11:45Z",
+     "2026-10-28T13:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fodvm",
+   "when": "1300Z-1400Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T13:00Z",
+     "2026-10-28T14:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 40",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g06fb",
+   "when": "1700Z-1759Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T17:00Z",
+     "2026-10-28T17:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Mini-Test 80",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g11ag",
+   "when": "1800Z-1859Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T18:00Z",
+     "2026-10-28T18:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fp8qq",
+   "when": "1900Z-2000Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T19:00Z",
+     "2026-10-28T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "UKEICC 80m Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fa0yv",
+   "when": "2000Z-2100Z, Oct 28",
+   "segs": [
+    [
+     "2026-10-28T20:00Z",
+     "2026-10-28T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fqbbm",
+   "when": "0300Z-0400Z, Oct 29",
+   "segs": [
+    [
+     "2026-10-29T03:00Z",
+     "2026-10-29T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "CWops Test (CWT)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003frdwi",
+   "when": "0700Z-0800Z, Oct 29",
+   "segs": [
+    [
+     "2026-10-29T07:00Z",
+     "2026-10-29T08:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
    "kinds": [],
    "src": "WA7BNM"
   }
@@ -1042,10 +980,29 @@
    ],
    "src": "RULE",
    "by": "ARRL"
+  },
+  {
+   "name": "CQ World Wide DX Contest (CW)",
+   "url": "https://cqww.com/rules.htm",
+   "when": "Usual dates (CQ); check the rules",
+   "segs": [
+    [
+     "2027-11-27T00:00Z",
+     "2027-11-29T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "CQ"
   }
  ],
  "status": {
-  "WA7BNM": "ok (28)",
+  "WA7BNM": "ok (24)",
   "CORRAL": "ok (9)"
  }
 }
