@@ -1,5 +1,86 @@
 {
- "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'). kpc-bot-queue.yml starts the first job when no boundary bot is running, then removes it. Stops after 'until'.",
- "until": "2026-10-23T06:00:00Z",
- "jobs": []
+ "note": "Boundary bot queue (Brandon Oct 20: 'set the bots up on a schedule to finish and start another run'; Oct 23: 'keep the mapping etc bots working on kpc trip planner'). Every hour kpc-bot-queue.yml starts the first job whose 'next' has come, when no boundary bot is running; a job with 'every' (days) goes to the back with its next date, so the US / Canada / world outline lists keep refreshing on a rotation. Stops after 'until'.",
+ "until": "2027-06-30T00:00:00Z",
+ "jobs": [
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AK DC IL MI NE OK TX WY"
+   },
+   "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
+   "every": 14,
+   "next": "2026-10-24T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AL DE IN MN NH OR UT"
+   },
+   "why": "US outlines, live refresh: AL DE IN MN NH OR UT",
+   "every": 14,
+   "next": "2026-10-26T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AR FL KS MO NJ PA VA"
+   },
+   "why": "US outlines, live refresh: AR FL KS MO NJ PA VA",
+   "every": 14,
+   "next": "2026-10-28T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AZ GA LA MS NM RI VT"
+   },
+   "why": "US outlines, live refresh: AZ GA LA MS NM RI VT",
+   "every": 14,
+   "next": "2026-10-30T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "CA HI MA MT NV SC WA"
+   },
+   "why": "US outlines, live refresh: CA HI MA MT NV SC WA",
+   "every": 14,
+   "next": "2026-11-01T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "CO IA MD NC NY SD WI"
+   },
+   "why": "US outlines, live refresh: CO IA MD NC NY SD WI",
+   "every": 14,
+   "next": "2026-11-03T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "CT ID ME ND OH TN WV"
+   },
+   "why": "US outlines, live refresh: CT ID ME ND OH TN WV",
+   "every": 14,
+   "next": "2026-11-05T06:00+00:00"
+  },
+  {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Canada: another pass",
+   "every": 14,
+   "next": "2026-10-25T06:00+00:00"
+  },
+  {
+   "wf": "kpc-world-key.yml",
+   "inputs": {
+    "countries": "AU DE GB JP PL ES FR CH AT IT SE HU DK PT EE",
+    "pin_join": "JP,HU,DK,PT,IT,SE,AT,EE"
+   },
+   "why": "World: the top countries again",
+   "every": 14,
+   "next": "2026-11-01T06:00+00:00"
+  }
+ ]
 }

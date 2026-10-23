@@ -23,7 +23,7 @@ import subprocess
 import sys
 
 RET = 'data/ky-retired.json'
-SKIP = re.compile(r'^(\.git|\.claude|\.github|cache|node_modules|data/new-refs|data/ky-lands-seen|data/kpc-post-holds|data/leaders|data/us-key|data/ca-key|data/world-key|data/world-bounds|data/canada-bounds|data/ky-retired|data/ky-answer-key)(\.json)?(/|$)|\.pdf$')
+SKIP = re.compile(r'^(\.git|\.claude|\.github|cache|node_modules|data/new-refs|data/ky-lands-seen|data/kpc-post-holds|data/leaders|data/us-key|data/ca-key|data/world-key|data/world-bounds|data/canada-bounds|data/ky-retired|data/retired-refs|data/ky-answer-key|data/bot-health)(\.json)?(/|$)|\.pdf$')
 REF = re.compile(r'^[A-Z0-9]{1,4}-\d{4,5}$')
 LOOK = ('.html', '.js', '.json', '.geojson', '.kml', '.gpx', '.csv', '.txt')
 

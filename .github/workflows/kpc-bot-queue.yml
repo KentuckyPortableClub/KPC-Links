@@ -33,12 +33,17 @@ jobs:
                   out = subprocess.run(['gh', 'api', f"repos/{os.environ['REPO']}/actions/workflows/{w}/runs?status={st}&per_page=1", '-q', '.total_count'], capture_output=True, text=True).stdout.strip()
                   if out not in ('', '0'): busy.append(w)
           if busy: print('::notice title=Bot queue::waiting, running: ' + ', '.join(sorted(set(busy)))); raise SystemExit
-          j = q['jobs'][0]
+          due = [i for i, x in enumerate(q['jobs']) if x.get('next', '') <= now]
+          if not due: print('::notice title=Bot queue::nothing due yet'); raise SystemExit
+          j = q['jobs'][due[0]]
           cmd = ['gh', 'api', '-X', 'POST', f"repos/{os.environ['REPO']}/actions/workflows/{j['wf']}/dispatches", '-f', 'ref=main']
           for k, v in j['inputs'].items(): cmd += ['-f', f'inputs[{k}]={v}']
           r = subprocess.run(cmd, capture_output=True, text=True)
           if r.returncode: print('::notice title=Bot queue::start failed ' + r.stderr[:300]); raise SystemExit
-          q['jobs'].pop(0); json.dump(q, open('data/bot-queue.json', 'w'), indent=1)
+          q['jobs'].pop(due[0])
+          if j.get('every'):   # Oct 23: a repeating job goes to the back with its next date
+              j['next'] = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=j['every'])).isoformat(timespec='minutes'); q['jobs'].append(j)
+          json.dump(q, open('data/bot-queue.json', 'w'), indent=1)
           print(f"::notice title=Bot queue::started {j['wf']} {j['inputs']} ({j['why']}); {len(q['jobs'])} left")
           PY
       - name: Save
