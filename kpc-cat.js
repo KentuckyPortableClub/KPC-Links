@@ -256,7 +256,7 @@
     busy = busy.then(async () => {
       if (!await connect(false)) { say('Radio not connected: open the CAT & QRZ tab and press CONNECT MY RADIO.', false); return false; }
       const P = PROTOS[S.proto] || PROTOS.kenwood, k = sb(kind(mode, khz), khz);
-      try { for (const b of P.tune(khz, k)) await write(b); say(`📻 Radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k}.`, true); return true; }
+      try { const C = P.tune(khz, k); for (const b of C.slice(1)) await write(b); await write(C[0]);   /* Oct 22 (Brandon: SSB spots 'sometimes 14.283 → 14282.3'): MODE FIRST, then the frequency — a Yaesu moves the dial by the CW offset when it leaves CW, so a mode sent after the frequency knocked it 0.7 kHz off */ say(`📻 Radio set to ${(khz / 1000).toFixed(4).replace(/0+$/, '').replace(/\.$/, '')} MHz ${k}.`, true); return true; }
       catch (e) { say('Radio did not answer: ' + (e.message || e), false); await disconnect(); return false; }
     }).catch(() => false);
     return busy;
