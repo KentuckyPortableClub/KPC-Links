@@ -172,21 +172,33 @@ def build():
         win.append({'day': wd + 1, 'from': f'{best:02d}:00', 'to': f'{best + 3:02d}:00', 'perHour': round(tot / 3, 1),
                     'band': max(bb, key=bb.get) if bb else ''})
     order = sorted(win, key=lambda w: -w['perHour'])
+    # Oct 23 (Brandon: 'it is really not counting hunters more of when is pota activity busy?'): spots show when POTA
+    # is busy. The activator's question is different: when do I get the most spots for being on the air? = spots per
+    # activator (pooled over the 3 hours), only where at least 3 activators were on so a quiet hour can't win
+    sp = [[sum(x) for x in row] for row in grid]; ac = [[sum(x) for x in row] for row in acts]
+    odds = []
+    for wd in range(7):
+        ok = [h for h in range(6, 21) if sum(aact[wd][h:h + 3]) / 3 >= 3]
+        if not ok: continue
+        best = max(ok, key=lambda h: sum(sp[wd][h:h + 3]) / max(1, sum(ac[wd][h:h + 3])))
+        odds.append({'day': wd + 1, 'from': f'{best:02d}:00', 'to': f'{best + 3:02d}:00',
+                     'perAct': round(sum(sp[wd][best:best + 3]) / max(1, sum(ac[wd][best:best + 3])), 1)})
+    odds.sort(key=lambda w: -w['perAct'])
     allb = {}
     for wd in range(7):
         for h in range(24):
             for bn, n in bands[wd][h].items(): allb[bn] = allb.get(bn, 0) + n
     tb = sum(allb.values()) or 1
     out = {'updated': now.isoformat(timespec='minutes'), 'since': d.get('since'), 'days': ndays, 'ready': ndays >= READY_DAYS,
-           'tz': 'America/Chicago', 'what': 'Hunter spots per hour on US parks (a spot posted by someone other than the activator), averaged over the last 8 weeks.',
-           'grid': avg, 'activators': aact, 'windows': win, 'top': order[:3],
+           'tz': 'America/Chicago', 'what': 'Spots on US parks posted by someone other than the activator, per hour, averaged over the last 8 weeks. It shows when POTA is busiest, not a head count of hunters.',
+           'grid': avg, 'activators': aact, 'windows': win, 'top': order[:3], 'odds': odds[:3],
            'bands': [[bn, round(100 * n / tb)] for bn, n in sorted(allb.items(), key=lambda x: -x[1])][:6]}
     OUT.write_text(json.dumps(out, separators=(',', ':')) + '\n', encoding='utf-8')
     if out['ready']:
         APP.parent.mkdir(parents=True, exist_ok=True)
-        APP.write_text(json.dumps({'updated': out['updated'], 'note': 'Busiest hunter times, Central time, from KPC counts of POTA spots',
+        APP.write_text(json.dumps({'updated': out['updated'], 'note': 'Busiest POTA times, Central time, from KPC counts of POTA spots',
                                    'windows': [{'days': [w['day']], 'from': w['from'], 'to': w['to'],
-                                                'note': f"Hunters are busiest about now ({DAYS[w['day'] - 1]})" + (f", mostly on {w['band']}" if w['band'] else '')}
+                                                'note': f"POTA is at its busiest about now ({DAYS[w['day'] - 1]})" + (f", mostly on {w['band']}" if w['band'] else '')}
                                                for w in order[:4]]}, indent=1) + '\n', encoding='utf-8')
     notice('Hunters', f"{ndays} days counted; busiest: " + '; '.join(f"{DAYS[w['day'] - 1]} {w['from']}-{w['to']} ({w['perHour']}/h)" for w in order[:3]))
     return out
@@ -208,10 +220,12 @@ def post():
     pick = top + [wk[d] for d in (6, 7) if d in wk and wk[d] not in top]     # the weekend days always listed
     lines = [f"• {DAYS_LONG[w['day'] - 1]} {fmt(w['from'])}–{fmt(w['to'])}" + (f" (mostly {w['band']})" if w['band'] else '') for w in pick]
     bands = ', '.join(f'{b} {p}%' for b, p in out.get('bands', [])[:3])
-    title = '🏹 When are the hunters out?'
-    text = ('Heading to a park this weekend? These were the busiest hunter times for US parks over the last '
+    odds = [f"• {DAYS_LONG[w['day'] - 1]} {fmt(w['from'])}–{fmt(w['to'])}" for w in out.get('odds', [])[:3]]
+    title = '🏹 When is POTA busiest?'
+    text = ('Heading to a park this weekend? The busiest POTA times on US parks over the last '
             f"{min(out['days'], KEEP_DAYS)} days (Central time):\n" + '\n'.join(lines) +
-            (f"\n\nMost hunter spots by band: {bands}." if bands else '') +
+            ('\n\nBest odds for an activator (the most spots for each activator on the air):\n' + '\n'.join(odds) if odds else '') +
+            (f"\n\nMost spots by band: {bands}." if bands else '') +
             '\n\nCounted by the KPC bots from POTA spots. 73, KPC')
     link = SITE + 'kpc-live.html#hunters'
     hook = ((os.environ.get('KPC_PARKS_WEBHOOK') or os.environ.get('DISCORD_WEBHOOK_URL') or '').strip().split() or [''])[0]
