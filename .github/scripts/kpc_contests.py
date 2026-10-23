@@ -243,6 +243,9 @@ def big():
         ('Kentucky QSO Party', 6, 5, 1, 13, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Kentucky QSO Party', 'https://www.contestcalendar.com/contestcal.php'),
         ('North American QSO Party (CW)', 8, 5, 1, 18, 12, ['CW'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
         ('North American QSO Party (SSB)', 8, 5, 3, 18, 12, ['PHONE'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
+        ('West Virginia QSO Party', 6, 5, 3, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'West Virginia State ARC', 'https://contestcalendar.com/stateparties.php'),
+        ('Ohio QSO Party', 8, 5, 4, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Ohio Contest Club', 'https://contestcalendar.com/stateparties.php'),
+        ('Tennessee QSO Party', 9, 6, 1, 17, 10, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Tennessee Contest Group', 'https://contestcalendar.com/stateparties.php'),
         ('Illinois QSO Party', 10, 6, 3, 17, 8, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Western Illinois ARC', 'https://www.contestcalendar.com/contestcal.php'),
     ]
     out = []
