@@ -12,7 +12,7 @@ The list of retired parks is data/ky-retired.json (kpc_refcheck.py adds to it wh
 Leftovers it cannot fix by itself are printed as ::warning lines and returned in leftovers() for the ref-check issue.
 
 LEAVE ALONE (on purpose): bot memory (data/new-refs/seen.json, data/ky-lands-seen.json: removing a park there makes the
-bot announce it again), data/kpc-post-holds.json, data/leaders/ (who activated what: real history), notes and PDFs
+bot announce it again), data/kpc-post-holds.json, data/ky-answer-key.json (kpc-ky-key.yml rebuilds it every Monday), data/leaders/ (who activated what: real history), notes and PDFs
 (the PDFs are reprinted from the guide pages by kpc-guide-pdf.yml every Monday).
 To bring a park back: take it out of data/ky-retired.json first, then follow .claude/build/mapfiles/retired-parks.md."""
 import glob
@@ -23,7 +23,7 @@ import subprocess
 import sys
 
 RET = 'data/ky-retired.json'
-SKIP = re.compile(r'^(\.git|\.claude|\.github|cache|node_modules|data/new-refs|data/ky-lands-seen|data/kpc-post-holds|data/leaders|data/us-key|data/ca-key|data/world-key|data/world-bounds|data/canada-bounds|data/ky-retired)(\.json)?(/|$)|\.pdf$')
+SKIP = re.compile(r'^(\.git|\.claude|\.github|cache|node_modules|data/new-refs|data/ky-lands-seen|data/kpc-post-holds|data/leaders|data/us-key|data/ca-key|data/world-key|data/world-bounds|data/canada-bounds|data/ky-retired|data/ky-answer-key)(\.json)?(/|$)|\.pdf$')
 REF = re.compile(r'^[A-Z0-9]{1,4}-\d{4,5}$')
 LOOK = ('.html', '.js', '.json', '.geojson', '.kml', '.gpx', '.csv', '.txt')
 
@@ -86,6 +86,8 @@ def _strip(x, G):
             return None               # a link button to the retired park's page
         out = {}
         for k, v in x.items():
+            if k in G:
+                continue              # a lookup keyed by the park number (app pack outlines, guide parks)
             if k in ('ref', 'p', 'c') and isinstance(v, str) and v in G:
                 if k == 'p':
                     continue          # a KFF/SOTA row that pointed at the retired park: drop the link only

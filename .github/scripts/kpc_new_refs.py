@@ -48,12 +48,15 @@ def load(p, d):
 
 
 # ---------------------------------------------------------------- today's lists
+POTA_FAILED = set()   # states whose list could not be read today (Kentucky must be read for the retired check)
+
+
 def pota():
     locs = sorted({l['locationDesc'] for l in get('https://api.pota.app/locations') if str(l.get('locationDesc', '')).startswith('US-')})
     out, bad = {}, 0
     for d in locs:
         try: L = get(f'https://api.pota.app/location/parks/{d}')
-        except Exception: bad += 1; continue  # noqa: BLE001
+        except Exception: bad += 1; POTA_FAILED.add(d); continue  # noqa: BLE001
         for p in L:
             ref = p.get('reference')
             if not ref: continue
@@ -176,6 +179,7 @@ feed = load(OUT, {'items': []})
 items = [i for i in feed.get('items', []) if i.get('found', '') >= (NOW.date() - datetime.timedelta(days=KEEP_DAYS - 1)).isoformat()]
 have = {(i['prog'], i['ref']) for i in items}
 changed, summary = False, []
+TODAYS = {}   # today's official lists that passed the checks (search lists + retired check)
 for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota, 25000)):
     try: cur = fn()
     except Exception as e:  # noqa: BLE001
@@ -183,6 +187,7 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
     old = set(seen.get(prog, []))
     if len(cur) < floor or (old and len(cur) < 0.9 * len(old)):
         notice(f'New references: {prog.upper()}', f'Only {len(cur)} read (last time {len(old)}); skipped today.'); continue
+    TODAYS[prog] = cur
     new = sorted(set(cur) - old)
     if not old:
         summary.append(f'{prog.upper()}: first run, remembered {len(cur)}')
@@ -198,6 +203,57 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
     seen[prog] = sorted(old | set(cur))
     changed = True
 notice('New references', '\n'.join(summary) or 'Nothing read.')
+
+# Oct 23 (Brandon: 'Should we fix the search?'): the Finder's search lists follow the official lists every day
+sys.path.insert(0, str(pathlib.Path(__file__).parent))
+if TODAYS and not DRY:
+    try:
+        import kpc_search_lists as SL
+        notice('Search lists', json.dumps(SL.update(None if POTA_FAILED else TODAYS.get('pota'), TODAYS.get('kff'), TODAYS.get('sota'))))
+    except Exception as e:  # noqa: BLE001
+        notice('Search lists', f'not updated: {e}')
+
+# Oct 23 (Brandon: 'since we pulling daily can that send a message that a park was removed to go ahead and make the
+# changes?'): a Kentucky park that left POTA's list is taken off every site list (kpc_retired_sweep.py) and the club is
+# told on Discord; one that came back comes off the retired list and is flagged to add back. Only when Kentucky itself
+# was read and the Kentucky list looks whole, so a bad download can never remove parks.
+RETIRED_NOW, BACK_NOW = [], []
+if 'pota' in TODAYS and 'US-KY' not in POTA_FAILED:
+    try:
+        import kpc_retired_sweep as SW
+        kyd = json.loads(pathlib.Path('kpc-ky-data.json').read_text(encoding='utf-8'))
+        mine = {p['c']: p['n'] for p in kyd['parks']}
+        offky = {r: c for r, c in TODAYS['pota'].items() if 'KY' in c.get('st', [])}
+        if len(offky) >= max(150, 0.9 * len(mine)):
+            RETIRED_NOW = sorted(set(mine) - set(offky))
+            BACK_NOW = sorted(set(SW.retired()) & set(offky))
+            if BACK_NOW and not DRY: SW.drop_retired(BACK_NOW)
+            if RETIRED_NOW and not DRY:
+                SW.add_retired([(c, mine[c]) for c in RETIRED_NOW], TODAY)
+                fixed = SW.fix(set(SW.retired()))
+                notice('Retired parks', 'taken out of: ' + ', '.join(fixed))
+            for f, hits in SW.leftovers(set(SW.retired())):
+                print(f'::warning title=Retired park still listed::{f}: {", ".join(hits)}', flush=True)
+        else:
+            notice('Retired parks', f'Kentucky list looked short today ({len(offky)} vs {len(mine)}): nothing removed')
+    except Exception as e:  # noqa: BLE001
+        notice('Retired parks', f'check failed: {e}')
+if RETIRED_NOW or BACK_NOW:
+    rl = ['• %s %s' % (c, mine.get(c, '')) for c in RETIRED_NOW]
+    bl = ['• %s %s' % (c, TODAYS['pota'][c].get('name', '')) for c in BACK_NOW]
+    if RETIRED_NOW and not DRY:
+        post_discord('📍 Retired by POTA: ' + ', '.join(RETIRED_NOW),
+                     'Parks on the Air took ' + ('this Kentucky park' if len(RETIRED_NOW) == 1 else 'these Kentucky parks') + ' off its list:\n' + '\n'.join(rl) +
+                     '\n\nThey are off our maps, guides and lists now. Contacts you already made still count. 73, KPC', SITE + 'kentucky-parks.html')
+    if os.environ.get('GITHUB_ACTIONS') and not DRY:
+        num = json.loads(gh('issue', 'list', '--label', 'ky-new-lands', '--state', 'open', '--json', 'number', '--limit', '1') or '[]')
+        if num:
+            body = ''
+            if RETIRED_NOW: body += '📍 **Retired by POTA today, taken off every site list by the bot** (map files, outlines, guides, Top 25, search; the guide PDFs reprint on Monday):\n\n' + '\n'.join(rl) + '\n\n'
+            if BACK_NOW: body += '↩️ **Back on POTA\'s list today** (taken off data/ky-retired.json; add it back to kpc-ky-data.json and the guides, see .claude/build/mapfiles/retired-parks.md):\n\n' + '\n'.join(bl)
+            gh('issue', 'comment', str(num[0]['number']), '--body-file', '-', input_text=body)
+    if RETIRED_NOW and os.environ.get('GITHUB_ACTIONS') and not DRY:
+        pathlib.Path('/tmp/kpc-reprint').write_text('1')   # the workflow reprints the guide PDFs after it has saved
 
 items.sort(key=lambda i: (i['found'], i['prog'], i['ref']), reverse=True)
 feed = {'updated': NOW.isoformat(timespec='seconds'), 'start': START.isoformat(), 'days': KEEP_DAYS, 'items': items}
