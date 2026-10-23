@@ -105,13 +105,19 @@ body.field .page-jump-nav{display:none!important}
 <style id="kpc-hero-logo-fix">@media(min-width:901px) and (max-width:2039px){.hero .hero-logo,.hero .hero-mark{display:none!important}}</style>
 <script src="kpc-tools.js?v=20261019q"></script>
 <style id="kpc-hero-pic">.hero{position:relative;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 42%,rgba(7,7,7,.18) 72%,rgba(7,7,7,0) 100%),url("hero-ky-flag.jpg") center 45%/cover no-repeat #070707}@media(max-width:760px){.hero{min-height:460px;background:linear-gradient(180deg,rgba(7,7,7,.35) 0%,rgba(7,7,7,.55) 45%,rgba(7,7,7,.88) 100%),url("hero-ky-flag-mobile.jpg") center 40%/cover no-repeat #070707}}</style>
+<style id="kpc-n4-hero">/* N4KPC (grant Oct 23 2026): KPC logo + the gold call over the hero picture; on computers the logo sits left of the call */
+.hero-brand{display:flex;align-items:center;gap:28px;margin-bottom:18px}
+.hero-n4{display:block;width:min(560px,86vw);height:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.6))}
+@media(min-width:901px){.hero .hero-brand .hero-logo{display:block!important;position:static!important;transform:none!important;width:190px;margin:0!important;flex:0 0 auto}.hero-brand .hero-n4{width:min(520px,40vw)}}
+@media(max-width:900px){.hero-brand{display:block}.hero-brand .hero-logo{margin-bottom:12px!important}.hero-brand .hero-n4{margin:0 auto}}
+</style>
 </head>
 <body>
 <header class="site-nav">
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
       <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
-      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+      <span class="brand-text">Kentucky Portable Club<small class="n4w"><img src="n4kpc-call.webp" alt="N4KPC" width="80" height="26" style="width:auto;height:26px;max-width:none;border-radius:0;object-fit:contain;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.8))"></small></span>
     </a>
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
@@ -178,7 +184,7 @@ body.field .page-jump-nav{display:none!important}
 </header>
 
 <main>
-<section class="hero"><div class="hero-inner"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><p class="eyebrow">KENTUCKY PORTABLE CLUB • MEMBERS</p><h1>MEMBERS<br><span>ONLY</span></h1><p class="hero-copy">Club tools for KPC members — track your Kentucky parks, see where you rank, and look back at what the club put on the air each month.</p></div></section>
+<section class="hero"><div class="hero-inner"><div class="hero-brand"><img class="hero-logo" src="KPC-logo.png" alt="Kentucky Portable Club"><img class="hero-n4" src="n4kpc-arch.webp" alt="N4KPC" width="1200" height="395"></div><p class="eyebrow">KENTUCKY PORTABLE CLUB • MEMBERS</p><h1>MEMBERS<br><span>ONLY</span></h1><p class="hero-copy">Club tools for KPC members — track your Kentucky parks, see where you rank, and look back at what the club put on the air each month.</p></div></section>
 <nav class="page-jump-nav" aria-label="Quick page links"><a href="#welcome">WELCOME</a><a href="#tools">MEMBER TOOLS</a><a href="#multipark">2-FERS &amp; 3-FERS</a><a href="kpc-club.html">CLUB ROOM</a><a href="#roster">ROSTER</a><a href="#public">PUBLIC TOOLS</a></nav>
 <aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>We’re volunteers working from public maps, and we make mistakes.</b> Before you activate, check the official park map, make sure the land is public and open, and follow each program’s rules. Your activation is your responsibility. See something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a>.</div></aside>
 
@@ -212,7 +218,7 @@ body.field .page-jump-nav{display:none!important}
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 
-<script src="kpc-search.js?v=20261021a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261019n" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-search.js?v=20261023a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}

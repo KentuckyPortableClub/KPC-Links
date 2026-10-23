@@ -166,7 +166,7 @@ body.field .page-jump-nav{display:none!important}
   <div class="nav-inner">
     <a class="brand" href="index.html" aria-label="KPC Home">
       <img src="KPC-logo.png" alt="KPC — Kentucky Portable Club" width="58" height="58">
-      <span class="brand-text">Kentucky Portable Club<small>Est. 2026</small></span>
+      <span class="brand-text">Kentucky Portable Club<small class="n4w"><img src="n4kpc-call.webp" alt="N4KPC" width="80" height="26" style="width:auto;height:26px;max-width:none;border-radius:0;object-fit:contain;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.8))"></small></span>
     </a>
     <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="kpc-main-nav">&#9776;</button>
     <nav class="nav-links" id="kpc-main-nav" aria-label="Main navigation">
@@ -276,7 +276,7 @@ body.field .page-jump-nav{display:none!important}
 <script>
 </script>
 <script src="kpc-fold.js?v=20261011c" defer></script>
-<script src="kpc-search.js?v=20261021a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261019n" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+<script src="kpc-search.js?v=20261023a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
