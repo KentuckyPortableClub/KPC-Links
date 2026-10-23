@@ -134,6 +134,11 @@
       BB.querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); saveGeo(b.dataset.f, o, b); });
     };
     try {
+      /* Oct 23: a park POTA retired says so first (data/retired-refs.json, written nightly) */
+      if (o.prog === 'POTA' && window.KPCB && KPCB.retired) {
+        const rt = await KPCB.retired(o.ref);
+        if (rt) { B.className = 'pi-bnd none'; B.innerHTML = KPCB.retiredHtml(rt) + ' Its outline comes off at the next monthly update.'; return; }
+      }
       /* Oct 22: a POTA park outside Kentucky uses the checked US list; one we are not sure of says Approximate */
       if (o.us && o.prog === 'POTA' && !o.ky && window.KPCB && KPCB.usOutline) {
         const u = await KPCB.usOutline(o.ref, o.short || o.name, o.la, o.lo, [o.st].filter(Boolean));

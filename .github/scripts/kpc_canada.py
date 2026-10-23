@@ -15,7 +15,7 @@ def get(u):
     raise err
 try: old = json.load(open('data/canada.json'))
 except Exception: old = {'rows': []}
-pota, prov = {}, {}
+pota, prov, bad = {}, {}, []
 for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split():
     try:
         L = get(f'https://api.pota.app/location/parks/CA-{pv}')
@@ -26,9 +26,18 @@ for pv in 'AB BC MB NB NL NS NT NU ON PE QC SK YT'.split():
             if ref.startswith('CA-') and ref not in pota:
                 pota[ref] = ['POTA', ref, (p.get('name') or '').strip(), la, lo, 'https://pota.app/#/park/' + ref]; prov[pv] = prov.get(pv, 0) + 1
         time.sleep(.5)
-    except Exception as e: note(f'CA-{pv}', f'failed: {str(e)[:100]}')
+    except Exception as e: bad.append(pv); note(f'CA-{pv}', f'failed: {str(e)[:100]}')
+oldp = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}
 if not pota:
-    pota = {r[1]: r for r in old.get('rows', []) if r[0] == 'POTA'}; note('POTA', 'no answer: kept last copy')
+    pota = dict(oldp); note('POTA', 'no answer: kept last copy')
+elif bad or len(pota) < 0.9 * len(oldp):
+    # Oct 23 (nightly now): a province that failed, or a short answer, keeps last night's pins and retires nothing
+    for r, row in oldp.items(): pota.setdefault(r, row)
+    note('POTA', f'part of the list missing ({", ".join(bad) or "short answer"}): kept last pins, nothing retired tonight')
+elif oldp:
+    import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import kpc_retired_refs as RR
+    RR.record({r: row[2] for r, row in oldp.items() if r not in pota}, set(pota), 'canada')
 rows = sorted(pota.values(), key=lambda r: r[1])
 try:
     for x in json.load(open('data/wwff/VEFF.json')):
@@ -41,5 +50,6 @@ for f in glob.glob('data/sota/t/*.json'):
         a = r[0].split('/')[0]
         if a[:2] in ('VE', 'VA', 'VY', 'VO') and r[0] not in seen:
             seen.add(r[0]); rows.append(['SOTA', r[0], r[1], r[4], r[5], 'https://sotl.as/summits/' + r[0], r[3], r[6]])
-json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/canada.json', 'w'), separators=(',', ':'), ensure_ascii=False)
+if rows != old.get('rows'):   # nightly: no commit when nothing changed
+    json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/canada.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 note('Canada pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(prov.items()))}), {sum(1 for r in rows if r[0]=='WWFF')} WWFF, {len(seen)} SOTA")

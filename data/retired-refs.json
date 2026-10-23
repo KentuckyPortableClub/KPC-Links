@@ -1,0 +1,21 @@
+{
+ "refs": {
+  "US-13604": {
+   "n": "Lake Linville",
+   "d": "2026-10-22",
+   "src": "us"
+  },
+  "US-13605": {
+   "n": "Wood Creek",
+   "d": "2026-10-22",
+   "src": "us"
+  },
+  "US-7969": {
+   "n": "Martin's Fork",
+   "d": "2026-10-18",
+   "src": "us"
+  }
+ },
+ "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
+ "updated": "2026-10-22"
+}

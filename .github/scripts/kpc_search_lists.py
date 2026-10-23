@@ -16,6 +16,7 @@ import re
 
 LOC, LKY, KY = pathlib.Path('locations.json'), pathlib.Path('locations-ky.json'), pathlib.Path('kpc-ky-data.json')
 US_SOTA = re.compile(r'^(W\d|K[HLP]\d)')
+GONE = {}   # after update(): {prog: {ref: name}} that left the official list today
 
 
 def _ok(la, lo):
@@ -49,6 +50,7 @@ def update(pota=None, kff=None, sota=None, write=True):
         have = {r[1] for r in new_rows}
         oldrefs = {k[1] for k in old if k[0] == prog and mine(old[k])}
         summary[prog] = {'rows': len(new_rows), 'added': len(have - oldrefs), 'removed': len(oldrefs - have), 'before': n0}
+        GONE[prog] = {r: old[(prog, r)][2] for r in oldrefs - set(cur)}   # off the official list (not just missing a pin)
         return new_rows
 
     if pota is not None:

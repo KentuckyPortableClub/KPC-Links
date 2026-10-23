@@ -147,6 +147,17 @@
   let LAYP = null;
   const layers = () => LAYP || (LAYP = fetch('data/us-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}))
     .then(L => { Object.entries(L || {}).forEach(([k, v]) => { if (!XMAP[k] && Array.isArray(v) && v[0]) XMAP[k] = v; }); return XMAP; }));
+  /* Oct 23 (Brandon: 'add a note to the card that the park is retired until the monthly update'): parks POTA took off
+     its list, written every night by the pin bots (data/retired-refs.json). retired(ref) -> {n, d, src} or null */
+  let retP = null;
+  function retired(ref) {
+    if (!retP) retP = fetch('data/retired-refs.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).then(j => (j && j.refs) || {}).catch(() => ({}));
+    return retP.then(R => R[String(ref || '').toUpperCase()] || null);
+  }
+  function retiredHtml(r) {
+    const d = r && r.d ? new Date(r.d + 'T12:00:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+    return '<b style="font-size:14px">Retired by POTA.</b> This park is no longer on the official list' + (d ? ' (we noticed on ' + esc(d) + ')' : '') + ', so a new activation will not count. Contacts already made still count.';
+  }
   async function usKey(ref, states) {
     await layers();
     let hit = null, known = false, site = null;
@@ -380,5 +391,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, euro, canada, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();
