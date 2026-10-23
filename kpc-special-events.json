@@ -1,30 +1,6 @@
 {
- "updated": "2026-10-21T11:10:01Z",
+ "updated": "2026-10-23T11:09:25Z",
  "stations": [
-  {
-   "title": "3rd Annual National Sasquatch Awareness Day",
-   "start": "2026-10-12",
-   "end": "2026-10-21",
-   "times": "0001Z-2359Z",
-   "call": "W7DK",
-   "calls": [
-    "W7DK",
-    "W7B",
-    "W7I",
-    "W7G",
-    "W7F",
-    "W7O",
-    "W7T",
-    "W4S"
-   ],
-   "where": "Tacoma",
-   "st": "",
-   "by": "Radio Club Of Tacoma",
-   "freqs": "14.255",
-   "qsl": "Certificate & QSL",
-   "url": "http://w7dk.org",
-   "note": ", Tacoma. Radio Club Of Tacoma. 14.255. Certificate & QSL. Radio Club of Tacoma c/o Bigfoot, PO Box 1188, Tacoma, WA 98411. Callsigns W7B, W7I, W7G, W7F, W7O, W7T, W4S (Bonus Station) ALL Bands Modes: CW, SSB, FT-8/4, RTTY"
-  },
   {
    "title": "BEAM, Blind Equality Achievement Month",
    "start": "2026-10-15",
@@ -762,6 +738,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (41)"
+  "ARRL": "ok (40)"
  }
 }
