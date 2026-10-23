@@ -43,6 +43,9 @@
 #mrNote{width:100%;box-sizing:border-box;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px;font:13.5px/1.45 ui-monospace,Menlo,Consolas,monospace}
 .mr-hidden{margin:0 0 14px;padding:10px 14px;border-radius:10px;background:#eef3fb;border:1px solid #9db4d8;color:#22385c;font-size:14px}
 @media(max-width:760px){.mr-logo{width:96px;height:96px;margin-left:10px}.mr-form{grid-template-columns:1fr 1fr}.mr-form label:first-child{grid-column:1/-1}.mr-form button{grid-column:1/-1}#mrMap{height:340px}.mr-r{grid-template-columns:60px minmax(0,1fr)}}
+.mr-rl a.k-un,.mr-btns a.k-un{border-style:dashed}.mr-rl a:after,.mr-links a b:after{font:900 8.5px Arial,sans-serif;letter-spacing:.8px;margin-left:6px;padding:2px 5px;border-radius:4px;vertical-align:middle}.mr-rl a.k-off:after,.mr-links a.k-off b:after{content:"OFFICIAL";background:#1d5a3a;color:#fff}.mr-rl a.gold.k-off:after{background:#111;color:var(--gold-light)}.mr-rl a.k-un:after,.mr-links a.k-un b:after{content:"UNOFFICIAL";background:#e9e2d2;color:#5b5648}.mr-rl a.k-search:after,.mr-links a.k-search b:after{content:"WEB SEARCH";background:#e9e2d2;color:#5b5648}.mr-rl a.k-pota:after,.mr-links a.k-pota b:after{content:"POTA";background:#0b3d91;color:#fff}
+.mr-src h4{margin:16px 0 6px;font:900 12px Arial,sans-serif;letter-spacing:1.4px;color:#171717}.mr-src h4.k-off{color:#1d5a3a}.mr-src h4.k-un,.mr-src h4.k-search{color:#5b5648}.mr-src h4.k-pota{color:#0b3d91}.mr-links a.k-un,.mr-links a.k-search{border-style:dashed;background:#fbf8f1}.mr-links a.k-un b,.mr-links a.k-search b{color:#5b5648}.mr-links a.k-pota b{color:#0b3d91}
+.mr-agree a,.mr-src .mr-help a{color:#1d5a3a;text-decoration:underline;font-weight:700}.mr-agree ol,.mr-agree ul{margin:6px 0 0;padding-left:22px;font-size:14.5px;line-height:1.55}.mr-agree li{margin:4px 0}.mr-agree h3{margin:18px 0 4px;font:900 12px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a}.mr-agree summary{cursor:pointer;font:900 15px Arial,sans-serif;letter-spacing:.8px;color:#171717}.mr-agree .mr-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}.mr-agree .mr-two>div{padding:12px 14px;border-radius:10px;border:1.5px solid #d8cfbf;background:#fff}.mr-agree .mr-two b{display:block;font:900 11.5px Arial,sans-serif;letter-spacing:1.2px;margin-bottom:4px}.mr-agree .mr-two .k-off{border-color:#1d5a3a}.mr-agree .mr-two .k-off b{color:#1d5a3a}.mr-agree .mr-two .k-un{border-style:dashed}.mr-agree .mr-two .k-un b{color:#5b5648}@media(max-width:600px){.mr-agree .mr-two{grid-template-columns:1fr}}
 .mr-beta{margin:0 0 14px;padding:12px 14px;border-radius:10px;background:#fff6e0;border:2px solid #c98a00;color:#5a3d00;font-size:14px;line-height:1.5}.mr-beta b:first-child{display:block;font:900 12px Arial,sans-serif;letter-spacing:1.4px;margin-bottom:3px}
 </style>
 @@HEADER@@
@@ -53,20 +56,59 @@
 <p class="sub">Search by the park's address or GPS (best), or by its name. It finds the land in the national public land database, checks it against POTA's rules for adding a park, and gives a yes, no or check-it-yourself for each rule, with the official links and a boundary map.</p>
 </div></section>
 <div class="mr-wrap">
-<div class="mr-beta"><b>BETA · A HELPER, NOT THE FINAL WORD.</b> This tool is the <b>start</b> of your research. It reads public map databases (USGS, the agencies, OpenStreetMap) that can be out of date, incomplete or wrong. Always confirm with the agency's own page and map and with the program's rules. The program volunteers make the final decision.</div>
+<div class="mr-beta"><b>BETA · A HELPER, NOT THE FINAL WORD.</b> This tool is the <b>start</b> of your research. It reads public map databases (USGS, the agencies, OpenStreetMap) that can be out of date, incomplete or wrong. Always confirm with the agency's own page and map and with the program's rules: only <b>government sources</b> count as evidence (every link here is tagged OFFICIAL or UNOFFICIAL so you can see for yourself). The program volunteers make the final decision.</div>
 <section class="mr-card mr-lock" id="mrLock"><h2>Enter the password</h2><p class="mr-help">This tool is for invited Mapping helpers.</p><form id="mrLockForm" class="mr-lockf"><input id="mrPw" type="password" autocomplete="current-password" placeholder="Password" aria-label="Password"><button type="submit">UNLOCK</button></form><p class="mr-help" id="mrPwMsg"></p></section>
 <div id="mrApp" hidden>
 <section class="mr-card">
 <form class="mr-form" id="mrForm"><label>PARK NAME<input id="mrName" autocomplete="off" placeholder="Example Creek State Park"></label><label>TOWN (OPTIONAL)<input id="mrTown" autocomplete="off" placeholder="Anytown"></label><label>STATE<select id="mrState"></select></label><button type="submit">CHECK IT</button></form>
-<p class="mr-help">With a state picked (or found for you), the search looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from POTA's "Park Additions and Edits" page (docs.pota.app). The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. It's a helper that gathers the facts and links; the decision is yours.</p>
+<p class="mr-help">With a state picked (or found for you), the search looks through every federal and state agency's land in that state (the list appears below), the live National Park Service and Fish &amp; Wildlife maps, and OpenStreetMap as a backup. The rules come from the POTA Mapping Representative Agreement (Rev. Sept 1 2026) and POTA's Knowledge Bank ("Park Additions and Edits", docs.pota.app); <a href="#mrAgree">the Agreement in plain words is at the bottom of this page</a>. The database answers what it can (owner, manager, public access, size, other parks around it); the yellow items are ones only you can confirm, like the official web page and the way in. It's a helper that gathers the facts and links; the decision is yours.</p>
 <div id="mrAg"></div>
 <div id="mrList"></div>
 </section>
 <div id="mrOut"></div>
+<section class="mr-card mr-agree" id="mrAgree"><details open><summary>📜 THE RULES YOU AGREED TO · POTA MAPPING REPRESENTATIVE AGREEMENT (REV. SEPT 1 2026), IN PLAIN WORDS</summary>
+<p class="mr-help">Your job is to apply the published rules the same way everywhere, not to find a way to make a park qualify. Sometimes the right answer is no, even for a friend or your club: that is the standard talking, not you. Unclear or unusual? Ask your Mapping Representative Lead; you are not expected to solve it alone.</p>
+<h3>THE REFERENCES, IN ORDER</h3>
+<ol>
+<li><b>Qualification of Parks and Eligible Areas for Parks on the Air</b>: the controlling eligibility policy. It is sent to Mapping Reps by the program (not on the public docs site as of Oct 2026): keep your copy handy and ask your Lead for the current revision.</li>
+<li><b>Country Eligibility Schedule</b>: which governmental tiers qualify in each country (US: federal and state). Also sent by the program; ask your Lead for the current copy.</li>
+<li><b>Knowledge Bank</b> and operating guidance: the practical cases. <a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">Park Additions and Edits (docs.pota.app) ↗</a> · <a href="https://docs.pota.app/docs/rules.html" target="_blank" rel="noopener">POTA Rules ↗</a> · <a href="https://docs.pota.app/docs/glossary.html" target="_blank" rel="noopener">Glossary ↗</a></li>
+</ol>
+<h3>BEFORE YOU ADD A PARK, CONFIRM ALL FIVE (§4)</h3>
+<ul>
+<li>It is in a <b>qualifying governmental tier</b> for the country (never add from a tier that is not listed).</li>
+<li><b>Ownership and operation</b> meet the requirements. No exceptions, no local rulings.</li>
+<li>It is <b>open to the public</b> (normal agency rules, permits, hours and seasons are fine).</li>
+<li>It has <b>identifiable boundaries</b> backed by authoritative documentation.</li>
+<li>There is an <b>official government source</b>: an agency web page, or, where one is not routinely available, government GIS data, agency maps or other official documents.</li>
+</ul>
+<div class="mr-two"><div class="k-off"><b>✅ COUNTS AS EVIDENCE</b>The agency's own page · state or federal GIS data (USGS PAD-US, state GIS, NPS, FWS) · agency maps and brochures · official documents. On this page these links carry a green OFFICIAL tag.</div><div class="k-un"><b>ℹ️ BACKGROUND ONLY, NEVER EVIDENCE</b>Tourism pages · social media · commercial directories · Wikipedia · OpenStreetMap · web searches. Useful for leads, but a park is never added on them alone. Dashed UNOFFICIAL tag here.</div></div>
+<h3>NEVER (§3, §4, §7)</h3>
+<ul>
+<li>Never add from a governmental tier that is not listed for the country.</li>
+<li>Never make an exception to the ownership or operation rules.</li>
+<li>Never use an existing POTA park as precedent for adding another ("they have one, so…").</li>
+<li>A designation, classification, inventory or registry listing never qualifies an area by itself; the land must pass every rule on its own.</li>
+<li>Never deactivate an existing park because of an eligibility question: escalate it to your Lead. Temporary or seasonal closures are not deactivations; ordinary deactivation is for a park that no longer exists or was permanently closed by its agency.</li>
+</ul>
+<h3>ADDING THE PARK IN POTA.APP (§6)</h3>
+<ol>
+<li>Open <a href="https://pota.app/" target="_blank" rel="noopener">New Park in pota.app ↗</a> (sign out and back in after your rights are granted).</li>
+<li>Country/entity and the location for your jurisdiction.</li>
+<li>The <b>official park name</b> and the <b>closest existing park type</b> (never a new type). The tool suggests one in the facts box.</li>
+<li>GPS in <b>decimal</b> form (the COPY GPS buttons give that).</li>
+<li>The <b>authoritative official source</b> plus any access or activation notes that are needed.</li>
+<li>Comments only for what is really useful or unusual.</li>
+<li>Review, SAVE; the number is assigned by the database (the pin may take a while to show).</li>
+</ol>
+<h3>TALKING TO PEOPLE (§5)</h3>
+<p class="mr-help">Explain briefly, clearly and kindly why a park was or was not added. You do not have to debate the rules: rule and policy questions go to <a href="mailto:help@parksontheair.com">help@parksontheair.com</a>; questions needing interpretation go to your Mapping Representative Lead first.</p>
+<p class="mr-help">This is KPC's plain-words summary of the Agreement for our helpers; the signed Agreement and POTA's documents are the rules. KPC is an independent ham radio club, not part of Parks on the Air®.</p>
+</details></section>
 </div>
 </div>
 </main>
 @@FOOTER@@
 <script src="kpc-bounds.js?v=20261018y" defer></script>
 <script src="kpc-map-tools.js?v=20261018u" defer></script>
-<script src="kpc-maprep.js?v=20261018a" defer></script>
+<script src="kpc-maprep.js?v=20261023a" defer></script>
