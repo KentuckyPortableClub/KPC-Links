@@ -155,6 +155,11 @@ try:
             problems += len(left)
             sections.append('## Retired parks still listed\nThese files still mention a park POTA retired (data/ky-retired.json) and need a hand fix:\n' +
                             '\n'.join('- `%s`: %s' % (p, ', '.join(h)) for p, h in left[:40]) + '\n')
+    mm = SW.mismatches()
+    if mm:
+        problems += len(mm)
+        sections.append('## Park lists that do not match the site list\nEvery one of these should carry exactly the parks in kpc-ky-data.json, same names:\n' +
+                        '\n'.join('- `%s`: %s' % (f, w) for f, w in mm) + '\n')
 except Exception as e:  # noqa: BLE001
     notice('Retired parks', 'sweep failed: %s' % e)
 

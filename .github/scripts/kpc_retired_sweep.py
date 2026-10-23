@@ -181,6 +181,44 @@ def leftovers(G):
     return out
 
 
+def mismatches():
+    """Oct 23 (Brandon: 'make sure our parks note etc matches'): every list that should carry EVERY Kentucky park must
+    carry exactly the parks in kpc-ky-data.json, under the same name. Returns [(file, what is wrong)]."""
+    M = {p['c']: p['n'] for p in json.load(open('kpc-ky-data.json', encoding='utf-8'))['parks']}
+    nm = lambda x: re.sub(r'\W', '', str(x or '').lower())
+    pat = re.compile(r'\bUS-\d{4,5}\b')
+    out = []
+    def refs_of(f):
+        return set(pat.findall(open(f, encoding='utf-8', errors='ignore').read())) if os.path.exists(f) else None
+    for f in ('KPC_Kentucky_POTA_Parks.kml', 'KPC_Kentucky_POTA_Parks.gpx', 'locations.json', 'kpc-guide-pota-data.json', 'kpc-top25.json', 'app/packs/US-KY.json'):
+        r = refs_of(f)
+        if r is None:
+            continue
+        miss = sorted(set(M) - r)
+        if miss:
+            out.append((f, 'missing ' + ', '.join(miss[:12])))
+    try:
+        g = json.load(open('kpc-guide-pota-data.json', encoding='utf-8'))['parks']
+        extra = sorted(set(g) - set(M))
+        if extra:
+            out.append(('kpc-guide-pota-data.json', 'parks not on the site list: ' + ', '.join(extra[:12])))
+        bad = [c for c in M if c in g and nm(g[c].get('pdfName')) != nm(M[c])]
+        if bad:
+            out.append(('kpc-guide-pota-data.json', 'name differs: ' + '; '.join('%s "%s" (site "%s")' % (c, g[c].get('pdfName'), M[c]) for c in bad[:8])))
+    except (OSError, ValueError, KeyError):
+        pass
+    for f in ('locations.json', 'locations-ky.json'):
+        try:
+            d = json.load(open(f, encoding='utf-8'))
+        except (OSError, ValueError):
+            continue
+        rows = d['rows'] if isinstance(d, dict) else d
+        bad = [r for r in rows if len(r) > 2 and r[1] in M and nm(r[2]) != nm(M[r[1]])]
+        if bad:
+            out.append((f, 'name differs: ' + '; '.join('%s "%s" (site "%s")' % (r[1], r[2], M[r[1]]) for r in bad[:8])))
+    return out
+
+
 def main():
     R = retired()
     G = set(R)
@@ -194,6 +232,8 @@ def main():
         print(f'::warning title=Retired park still listed::{p}: {", ".join(hits)}', flush=True)
     if not left:
         notice('Retired parks', 'none of %d retired parks is listed anywhere on the site' % len(G))
+    for f, why in mismatches():
+        print(f'::warning title=Park list does not match::{f}: {why}', flush=True)
     return 0
 
 
