@@ -1,27 +1,27 @@
 # ME: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined to official land (same name + same kind of place). **4** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **136 of 148** parks joined to official land (same name + same kind of place). **0** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-2402** Penobscot River Corridor - Katahdin Woods and Waters National Monument (National Monument) → Katahdin Woods and Waters National Monument (~89,562 ac, similar name)
-- **US-8449** Little Ossippee Wildlife Management Area (Wildlife Management Area) → Killick Pond Wildlife Management Area (~2,060 ac, the POTA pin is inside it (different name)); Little Ossipee River Wildlife Management Area (~1,091 ac, the POTA pin is inside it (different name))
-- **US-8459** Erle R. Kelley (Dresden Bog) Wildlife Management Area (Wildlife Management Area) → Earle R. Kelly (Dresden Bog) Wildlife Management Area (~497 ac, the POTA pin is inside it (different name))
-- **US-9171** St. John Ponds Ecological Reserve (Ecological Reserve) → Upper St John River Watershed Ecological Reserve (~3,884 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10714 International Appalachian Trail--Sentier International des Appalaches National Historic Trail (National Historic Trail) → on Katahdin Woods and Waters National Monument (~89,562 ac)
+- US-8449 Little Ossippee Wildlife Management Area (Wildlife Management Area) → on Little Ossipee River Wildlife Management Area (~1,091 ac); Killick Pond Wildlife Management Area (~2,060 ac)
+- US-8459 Erle R. Kelley (Dresden Bog) Wildlife Management Area (Wildlife Management Area) → on Earle R. Kelly (Dresden Bog) Wildlife Management Area (~497 ac)
+- US-9174 Mahoosuc Ecological Reserve (Ecological Reserve) → on Mahoosucs (~3,367 ac)
 
 ## Nothing found in PAD-US
 
 - US-0337 Carlton Pond Wetland Management District (Wetland Management District)
+- US-2402 Penobscot River Corridor - Katahdin Woods and Waters National Monument (National Monument)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-7976 Maine Acadian Culture National Heritage Site (National Heritage Site)
 - US-7977 Roosevelt Campobello International Park (International Park)
 - US-8287 Capitol State Park (State Park)
 - US-8491 Bog Brook Wildlife Management Area (Wildlife Management Area)
-- US-9174 Mahoosuc Ecological Reserve (Ecological Reserve)
+- US-9171 St. John Ponds Ecological Reserve (Ecological Reserve)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
