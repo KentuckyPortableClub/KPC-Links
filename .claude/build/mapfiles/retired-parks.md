@@ -1,5 +1,7 @@
 # Retired Kentucky POTA parks (kept in case POTA brings them back)
 
+**Oct 23: the retired list is now data/ky-retired.json; kpc_retired_sweep.py keeps them off every list (take a park out of that file before bringing it back).**
+
 ## US-7969 Martin's Fork (retired by POTA; Brandon noted Oct 18 2026: "one day it might get brought back")
 - Harlan County. KFF-6871 Martin's Fork used to point to it (field "p":"US-7969" in kpc-ky-data.json, removed Oct 18 2026).
 - Outlines already in our map files (they show as KFF-only / "no park number" until it comes back):

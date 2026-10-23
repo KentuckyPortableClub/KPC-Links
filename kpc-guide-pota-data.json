@@ -10448,13 +10448,9 @@
    "acres": "698",
    "owner": "Private and state ownership",
    "manager": "Office of Kentucky Nature Preserves",
-   "xref": "POTA US-7969 • WWFF KFF-6871",
+   "xref": "WWFF KFF-6871",
    "official": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Martins-Fork-Wild-River.aspx",
    "xlinks": [
-    {
-     "label": "POTA US-7969",
-     "url": "https://next.pota.app/park/US-7969"
-    },
     {
      "label": "WWFF KFF-6871",
      "url": "https://logsearch.wwff.co/directory/KFF-6871"

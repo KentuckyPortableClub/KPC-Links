@@ -4053,11 +4053,9 @@
    "pdfName": "Martin's Fork",
    "counties": "Harlan",
    "type": "State Natural Area",
-   "potaName": "Martin's Fork (POTA)",
+   "potaName": "",
    "nameUrl": "https://logsearch.wwff.co/directory/KFF-6871",
-   "pota": [
-    "US-7969"
-   ],
+   "pota": [],
    "gps": [
     36.7366,
     -83.2584

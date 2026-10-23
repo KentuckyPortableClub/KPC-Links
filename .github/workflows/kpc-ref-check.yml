@@ -1,13 +1,15 @@
 name: KPC Reference Check
-# On the 1st of each month: compares the site's Kentucky POTA parks, W4K SOTA summits and KFF areas
-# (kpc-ky-data.json) with the official lists. Changes are listed in one GitHub issue labelled "ref-check".
-# Nothing on the site is changed automatically.
+# Every Monday (before the Top 25 run at 11:17 and the guide PDFs at 13:41): compares the site's Kentucky POTA parks,
+# W4K SOTA summits and KFF areas (kpc-ky-data.json) with the official lists, in one GitHub issue labelled "ref-check".
+# Oct 23 (Brandon: 'make sure it dont happen again'): a park POTA RETIRED is added to data/ky-retired.json and
+# kpc_retired_sweep.py takes it off every list (park data, search lists, map downloads, outlines, guides, Top 25);
+# this job commits that. New parks are still only listed for a person to add.
 on:
   schedule:
-    - cron: '23 12 1 * *'
+    - cron: '23 10 * * 1'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   issues: write
 concurrency:
   group: kpc-ref-check
@@ -17,7 +19,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Compare reference lists
+      - name: Compare reference lists (and take retired parks off the site)
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_refcheck.py
+      - name: Save what was taken off
+        continue-on-error: true
+        run: |
+          git config user.name "KPC bot"
+          git config user.email "kpc-bot@users.noreply.github.com"
+          git add -A kpc-ky-data.json locations-ky.json locations.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true
+          if git diff --cached --quiet; then echo "nothing to save"; exit 0; fi
+          git commit -q -m "Retired parks taken off every list (reference check)"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done || true

@@ -1,4 +1,4 @@
-"""Monthly check: are the site's Kentucky reference lists still current?
+"""Weekly check (Mondays): are the site's Kentucky reference lists still current?
 
 Compares kpc-ky-data.json (what the maps, planners and checkers use) with the official lists:
   - POTA parks in US-KY        (api.pota.app)
@@ -95,7 +95,7 @@ for label, key, fn in checks:
         official = fn()
     except Exception as e:  # noqa: BLE001
         status[label] = 'could not check: %s' % e
-        sections.append('## %s\nCould not reach the official list this time (%s). Will try again next month.\n' % (label, e))
+        sections.append('## %s\nCould not reach the official list this time (%s). Will try again next Monday.\n' % (label, e))
         continue
     if not official:
         status[label] = 'official list came back empty; skipped'
@@ -114,7 +114,14 @@ for label, key, fn in checks:
     lines = ['## %s' % label, 'Site: %d · Official: %d' % (len(mine), len(official)), '']
     if new:
         lines += ['**New on the official list, missing from the site (%d):**' % len(new)] + ['- %s %s %s' % (c, official[c], EXTRA.get(c, '')) for c in new[:80]] + ['']
-    if gone:
+    if gone and key == 'parks' and len(official) >= max(150, 0.9 * len(mine)):
+        # Oct 23 (Brandon: 'remove from anything that lists it and make sure it dont happen again'): a park POTA dropped
+        # goes on data/ky-retired.json and kpc_retired_sweep.py takes it off EVERY list (the workflow commits it).
+        # Only when the official list looks whole, so a short answer from POTA can never wipe parks.
+        import kpc_retired_sweep as SW
+        SW.add_retired([(c, mine[c]) for c in gone], dt.date.today().isoformat())
+        lines += ['**Retired by POTA, taken off the site automatically (%d):**' % len(gone)] + ['- %s %s' % (c, mine[c]) for c in gone[:80]] + ['']
+    elif gone:
         lines += ['**On the site but not on the official active list (%d):** retired, or not in Kentucky per the official list.' % len(gone)] + ['- %s %s' % (c, mine[c]) for c in gone[:80]] + ['']
     if renamed:
         lines += ['<details><summary>Name differences (%d), usually just wording</summary>' % len(renamed), ''] + \
@@ -125,11 +132,26 @@ for label, key, fn in checks:
         lines += ['✅ Matches.', '']
     sections.append('\n'.join(lines))
 
+# every retired park must be gone from every list (maps, downloads, guides, Top 25): take them out, then look again
+try:
+    import kpc_retired_sweep as SW
+    G = set(SW.retired())
+    if G:
+        fixed = SW.fix(G)
+        left = SW.leftovers(G)
+        notice('Retired parks', ('taken out of: ' + ', '.join(fixed)) if fixed else 'none listed anywhere')
+        if left:
+            problems += len(left)
+            sections.append('## Retired parks still listed\nThese files still mention a park POTA retired (data/ky-retired.json) and need a hand fix:\n' +
+                            '\n'.join('- `%s`: %s' % (p, ', '.join(h)) for p, h in left[:40]) + '\n')
+except Exception as e:  # noqa: BLE001
+    notice('Retired parks', 'sweep failed: %s' % e)
+
 when = dt.date.today().strftime('%b %d, %Y')
 body = '_Checked %s against the official POTA, SOTA and WWFF lists. Site data last updated: %s._\n\n' % (when, DATA.get('updated', '?')) + \
        '\n'.join(sections) + \
        '\nThe site data lives in `kpc-ky-data.json`. Ask Claude (or edit it) to add new references with their county, location and links.\n' + \
-       'This issue updates on the 1st of each month and closes itself when the lists match. Run it any time: Actions → KPC Reference Check → Run workflow.'
+       'This issue updates every Monday and closes itself when the lists match. Run it any time: Actions → KPC Reference Check → Run workflow.'
 print(body)
 notice('Reference check', json.dumps(status))
 if os.getenv('GITHUB_ACTIONS'):
