@@ -1,22 +1,21 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined to official land (same name + same kind of place). **6** to check by hand, **23** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-23 by `.github/scripts/kpc_us_key.py`. **393 of 421** parks joined to official land (same name + same kind of place). **0** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0802** Boston African American National Historic Site (National Historic Site) → Boston National Historical Park (~38 ac, similar name)
-- **US-13236** Rockdale Heights Wildlife Management Area (Wildlife Management Area) → Rockdale Highlands WMA (~0 ac, the POTA pin is inside it (different name))
-- **US-4723** Ashmere Lake State Forest (State Forest) → Ashmere Lake State Park (~198 ac, same name, different kind of place); Ashmere Lake State Park (~7 ac, same name, different kind of place)
-- **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River and Canal Heritage State Park (~61 ac, similar name); Blackstone River and Canal Heritage State Park (~25 ac, similar name); Blackstone River and Canal Heritage State Park (~8 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name); Blackstone River and Canal Heritage State Park (~0 ac, similar name)
-- **US-8387** Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → Neponset River Reservation (~68 ac, the POTA pin is inside it (different name))
-- **US-8424** Quincy Quarries State Reserve (State Reserve) → Blue Hills Reservation (~40 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-13236 Rockdale Heights Wildlife Management Area (Wildlife Management Area) → on Rockdale Highlands WMA (~0 ac)
+- US-4742 Warren F. Manning State Forest (State Forest) → on Billerica State Forest (~183 ac)
+- US-8387 Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → on Martini Playground (~6 ac)
+- US-8424 Quincy Quarries State Reserve (State Reserve) → on Blue Hills Reservation (~21 ac)
 
 ## Nothing found in PAD-US
 
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
+- US-0802 Boston African American National Historic Site (National Historic Site)
 - US-0891 Taunton National Wild and Scenic River (National Wild and Scenic River)
 - US-0897 Westfield National Wild and Scenic River (National Wild and Scenic River)
 - US-2426 Clarksburg State Park (State Park)
@@ -31,7 +30,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **392 of 421** parks joined
 - US-4561 New England Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-4735 Carlisle State Forest (State Forest)
-- US-4742 Warren F. Manning State Forest (State Forest)
+- US-7971 Blackstone River Valley National Historical Park (National Historical Park)
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
 - US-8385 Farnham-Connolly State Park (State Park)
 - US-8388 Great Falls Discovery Center State Recreation Area (State Recreation Area)
