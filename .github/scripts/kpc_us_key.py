@@ -687,6 +687,24 @@ def run(st):
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
         if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
+    # Oct 22 guard (a rebuild from the saved outlines dropped 315 joins: the land was simply not in the saved copy): a park
+    # that HAD an outline keeps it when NONE of its old land is in what this run read. A join the new rules turned down
+    # (its land is here, just not matched) is not kept; a person's 'no' always wins.
+    try:
+        old = json.load(open(OUT / f'US-{st}.json')).get('parks', {})
+        ids_here = {_oid(a) for a in recs}; kept = 0
+        for ref, op in old.items():
+            np_ = parks.get(ref)
+            if not np_ or np_.get('m') or not op.get('m'): continue
+            no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
+            om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
+            if om and not any(str(x[0]) in ids_here for x in om):
+                np_['m'] = om; np_['c'] = []; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
+                if op.get('far'): np_['far'] = op['far']
+                kept += 1
+        if kept: notice(f'US key {st}', f'{kept} park(s) kept their last good outline (their land was missing from this read)')
+    except FileNotFoundError: pass
+    except Exception as e: notice(f'US key {st}', f'keep-last-good check skipped: {e}')  # noqa: BLE001
     nonum = sorted(([a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '', a.get('d_Des_Tp') or a.get('Des_Tp') or '', a.get('Loc_Mang') or a.get('Mang_Name') or '',
                      round(a.get('GIS_Acres') or 0)] for a in recs if a['OBJECTID'] not in used), key=lambda x: -x[4])
     counts = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
