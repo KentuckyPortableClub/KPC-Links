@@ -1,0 +1,63 @@
+name: KPC Hunters
+# WHEN ARE THE HUNTERS OUT? (Oct 23 2026, Brandon: 'Yeah sounds good and it will go to discord park info and Facebook also?')
+# Every 15 min: count hunter spots on US parks from POTA's spot list (kpc_hunters.py collect). The open hour lives in the
+# Actions cache; finished hours go to data/hunters/buckets.json, kpc-hunters.json (Happening Now card) and
+# app/hunters.json (the app's 'Hunters are out' alert), so the repo gets at most one commit an hour.
+# Fridays 8:33 AM Central: one post to Discord (park news) + the Facebook Page, once 14 days are counted.
+# Never fails: a POTA hiccup or a busy repo is skipped quietly (no email).
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+    - cron: '33 13 * * 5'
+  workflow_dispatch:
+    inputs:
+      post:
+        description: 'Also send the weekly post now'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: kpc-hunters
+  cancel-in-progress: false
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: Bring back the open hour
+        continue-on-error: true
+        uses: actions/cache/restore@v4
+        with:
+          path: data/hunters/work.json
+          key: hunters-work-${{ github.run_id }}
+          restore-keys: hunters-work-
+      - name: Count
+        run: python3 .github/scripts/kpc_hunters.py collect build || true
+      - name: Keep the open hour
+        if: always()
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: data/hunters/work.json
+          key: hunters-work-${{ github.run_id }}
+      - name: Weekly post
+        if: github.event.schedule == '33 13 * * 5' || (github.event_name == 'workflow_dispatch' && inputs.post)
+        continue-on-error: true
+        env:
+          KPC_PARKS_WEBHOOK: ${{ secrets.KPC_PARKS_WEBHOOK }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+        run: python3 .github/scripts/kpc_hunters.py post || true
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/hunters/buckets.json kpc-hunters.json app/hunters.json 2>/dev/null || git add data/hunters/buckets.json kpc-hunters.json 2>/dev/null || true
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -q -m 'Hunter counts'
+          for i in 1 2 3 4 5; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done
+          echo "::notice title=Hunters save::repo busy, the next run will save it"; exit 0
