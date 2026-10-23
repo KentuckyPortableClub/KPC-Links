@@ -317,16 +317,17 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
   /* Brandon Oct 23 + the POTA Mapping Representative Agreement (Rev. Sept 1 2026): OFFICIAL = a government source (agency page, government GIS data, agency map, official document: the Agreement accepts these as evidence). POTA = pota.app itself. Everything else (OpenStreetMap, Wikipedia, tourism sites, web searches) = background only, never evidence of eligibility. */
   function kindOfU(u) {
     try {
-      const U = new URL(u); const h = U.hostname.replace(/^www\./, '').toLowerCase();
+      const U = new URL(u); const h = U.hostname.replace(/^www\./, '').toLowerCase(), base = h.split('.').slice(-2).join('.');
       if (/(^|\.)arcgis\.com$/.test(h)) { const l = U.searchParams.get('url') || ''; return l ? kindOfU(l) : 'un'; }
       if (/(^|\.)pota\.app$/.test(h)) return 'pota';
-      if (GOV_HOSTS.includes(h) || /\.(gov|mil)$/.test(h) || /\.gov\.[a-z]{2}$|\.gc\.ca$|\.fed\.us$|\.(state|ci|co)\.[a-z]{2}\.us$|^[a-z0-9-]+\.[a-z]{2}\.us$|(^|\.)(nps|fws|blm|usda|usgs|ky|kentucky)\.gov$/.test(h)) return 'off';
+      if (GOV_HOSTS.includes(h) || GOV_HOSTS.includes(base) || /\.(gov|mil)$/.test(h) || /\.gov\.[a-z]{2}$|\.gc\.ca$|\.fed\.us$|\.(state|ci|co)\.[a-z]{2}\.us$|^[a-z0-9-]+\.[a-z]{2}\.us$|(^|\.)(nps|fws|blm|usda|usgs|ky|kentucky)\.gov$/.test(h)) return 'off';
       if (/(^|\.)(google|bing|duckduckgo)\./.test(h)) return /\/maps|maps\./.test(U.host + U.pathname) ? 'un' : 'search';
       return 'un';
     } catch (e) { return 'un'; }
   }
   /* government sites that do not end in .gov: Kentucky's Tourism, Arts & Heritage Cabinet hosts the state parks' maps on kentuckytourism.com */
-  const GOV_HOSTS = ['kentuckytourism.com', 'stateparks.com', 'recreation.gov', 'kentuckystateparks.com'];
+  /* nationwide: state park and wildlife agencies whose own sites are .com/.org (checked Oct 23): still the government */
+  const GOV_HOSTS = ['kentuckytourism.com', 'outdooralabama.com', 'alapark.com', 'agfc.com', 'arkansasstateparks.com', 'myfwc.com', 'floridastateparks.org', 'georgiawildlife.com', 'gastateparks.org', 'ncwildlife.org', 'southcarolinaparks.com', 'tnstateparks.com', 'wvstateparks.com', 'mostateparks.com', 'mdwfp.com', 'lastateparks.com', 'travelok.com', 'wildlifedepartment.com', 'azgfd.com', 'azstateparks.com', 'myodfw.com', 'ndow.org', 'ndparks.com', 'njfishandwildlife.com', 'vtfishandwildlife.com', 'ctparks.com', 'nhstateparks.org', 'destateparks.com', 'ohiostateparks.org', 'michigandnr.com', 'iowadnr.com', 'wyoparks.org'];
   const KIND_WORD = { off: 'OFFICIAL', pota: 'POTA', search: 'WEB SEARCH', un: 'UNOFFICIAL' };
   const KIND_HELP = { off: 'Government source: counts as evidence.', pota: "POTA's own site.", search: 'A web search, not a source: read what it finds with care.', un: 'Not a government source: background only, never evidence of eligibility.' };
   const hostOfU = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
