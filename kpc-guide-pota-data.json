@@ -246,6 +246,70 @@
    "pdfPageAZ": 44,
    "short": "Reelfoot NWR"
   },
+  "US-0608": {
+   "pdfName": "Ohio River Islands National Wildlife Refuge",
+   "counties": "Lewis",
+   "type": "National Wildlife Refuge",
+   "nameUrl": "https://www.fws.gov/refuge/ohio-river-islands",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     "https://www.fws.gov/refuge/ohio-river-islands/visit-us"
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://www.fws.gov/refuge/ohio-river-islands"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NPS LEWIS & CLARK",
+     "https://www.nps.gov/lecl/planyourvisit/visitor-centers-in-kentucky.htm"
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    38.68733,
+    -83.58048
+   ],
+   "notes": [
+    {
+     "k": "2-FER"
+    },
+    {
+     "k": "ACCESS",
+     "t": "BOAT ACCESS ONLY. Kentucky part: Manchester 1 Island (20 acres) and Manchester 2 Island (94 acres), Ohio River mile 395. Nearest public ramp: Manchester, Ohio (Island Creek, SR 52). Watch for steep banks and rock dikes when landing."
+    },
+    {
+     "k": "ALSO",
+     "links": [
+      {
+       "label": "KFF-0608",
+       "url": "https://wwff.co/directory/?showRef=KFF-0608"
+      }
+     ]
+    },
+    {
+     "k": "NOTES",
+     "t": "Open 1 hour before sunrise to 1 hour after sunset. No camping, fires or overnight mooring. Kentucky hunting seasons apply. The refuge spans PA, WV, OH and KY, so it is not an ATNO for most hunters."
+    }
+   ],
+   "also": "WWFF: KFF-0608",
+   "source": ".claude/build/add_park_card.py"
+  },
   "US-0686": {
    "pdfName": "Big South Fork National Recreation Area",
    "counties": "McCreary / Scott",
@@ -10041,70 +10105,6 @@
    "pdfPageAZ": 19,
    "short": "Clear Creek WMA"
   },
-  "US-0608": {
-   "pdfName": "Ohio River Islands National Wildlife Refuge",
-   "counties": "Lewis",
-   "type": "National Wildlife Refuge",
-   "nameUrl": "https://www.fws.gov/refuge/ohio-river-islands",
-   "btns": [
-    [
-     "OFFICIAL MAP",
-     "https://www.fws.gov/refuge/ohio-river-islands/visit-us"
-    ],
-    [
-     "GPS",
-     null
-    ],
-    [
-     "OSM BOUNDARY",
-     null
-    ],
-    [
-     "WEBSITE",
-     "https://www.fws.gov/refuge/ohio-river-islands"
-    ],
-    [
-     "WEATHER",
-     null
-    ],
-    [
-     "NPS LEWIS & CLARK",
-     "https://www.nps.gov/lecl/planyourvisit/visitor-centers-in-kentucky.htm"
-    ],
-    [
-     "NEARBY ›",
-     null
-    ]
-   ],
-   "gps": [
-    38.68733,
-    -83.58048
-   ],
-   "notes": [
-    {
-     "k": "2-FER"
-    },
-    {
-     "k": "ACCESS",
-     "t": "BOAT ACCESS ONLY. Kentucky part: Manchester 1 Island (20 acres) and Manchester 2 Island (94 acres), Ohio River mile 395. Nearest public ramp: Manchester, Ohio (Island Creek, SR 52). Watch for steep banks and rock dikes when landing."
-    },
-    {
-     "k": "ALSO",
-     "links": [
-      {
-       "label": "KFF-0608",
-       "url": "https://wwff.co/directory/?showRef=KFF-0608"
-      }
-     ]
-    },
-    {
-     "k": "NOTES",
-     "t": "Open 1 hour before sunrise to 1 hour after sunset. No camping, fires or overnight mooring. Kentucky hunting seasons apply. The refuge spans PA, WV, OH and KY, so it is not an ATNO for most hunters."
-    }
-   ],
-   "also": "WWFF: KFF-0608",
-   "source": ".claude/build/add_park_card.py"
-  },
   "US-13598": {
    "pdfName": "Beaver Lake",
    "counties": "Anderson",
@@ -10372,6 +10372,58 @@
    ],
    "mapRegion": "Northern Kentucky",
    "short": "Bullock Pen"
+  },
+  "US-13607": {
+   "pdfName": "Boltz State Fishing Lake",
+   "counties": "Grant",
+   "type": "State Fishing Lake",
+   "nameUrl": "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=50",
+   "btns": [
+    [
+     "OFFICIAL MAP",
+     null
+    ],
+    [
+     "GPS",
+     null
+    ],
+    [
+     "OSM BOUNDARY",
+     null
+    ],
+    [
+     "WEBSITE",
+     "https://app.fw.ky.gov/fisheries/waterbodydetail.aspx?wid=50"
+    ],
+    [
+     "ENTRANCE",
+     "https://www.google.com/maps/search/?api=1&query=38.7064,-84.62043"
+    ],
+    [
+     "WEATHER",
+     null
+    ],
+    [
+     "NEARBY ›",
+     null
+    ]
+   ],
+   "gps": [
+    38.7061,
+    -84.6207
+   ],
+   "notes": [
+    {
+     "k": "ACCESS POINTS",
+     "t": "1 KDFWR access site — see KPC map file"
+    },
+    {
+     "k": "NOTES",
+     "t": "Named for Kentucky's first conservation officer. Ramp on Boltz Lake Rd off KY 467 (Dry Ridge exit 159). Some shoreline may be next to private lots: set up at the ramp or public parking."
+    }
+   ],
+   "mapRegion": "Northern Kentucky",
+   "short": "Boltz"
   }
  },
  "wildIntro": {

@@ -114,6 +114,17 @@ for label, key, fn in checks:
     lines = ['## %s' % label, 'Site: %d · Official: %d' % (len(mine), len(official)), '']
     if new:
         lines += ['**New on the official list, missing from the site (%d):**' % len(new)] + ['- %s %s %s' % (c, official[c], EXTRA.get(c, '')) for c in new[:80]] + ['']
+    if key == 'parks':
+        # Oct 23: Boltz (US-13607) left POTA's list on Oct 22 and came back on Oct 23. A retired park that is on the
+        # active list again comes off data/ky-retired.json, so the sweep stops removing it, and shows as NEW to add back.
+        try:
+            import kpc_retired_sweep as SW
+            back = sorted(set(SW.retired()) & set(official))
+            if back:
+                SW.drop_retired(back)
+                lines += ['**Back on the official list (%d):** taken off the retired list; add it back to the site (see .claude/build/mapfiles/retired-parks.md).' % len(back)] + ['- %s %s' % (c, official[c]) for c in back] + ['']
+        except Exception as e:  # noqa: BLE001
+            notice('Retired parks', 'back-check failed: %s' % e)
     if gone and key == 'parks' and len(official) >= max(150, 0.9 * len(mine)):
         # Oct 23 (Brandon: 'remove from anything that lists it and make sure it dont happen again'): a park POTA dropped
         # goes on data/ky-retired.json and kpc_retired_sweep.py takes it off EVERY list (the workflow commits it).
