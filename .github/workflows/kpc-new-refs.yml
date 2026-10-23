@@ -2,6 +2,8 @@ name: KPC new references
 # Every day: new POTA parks, KFF references and SOTA summits in the US (kpc_new_refs.py).
 # They show for 7 days on Park Notes (Kentucky) and Park Notes: Other States.
 # Kentucky ones are also posted to Discord, Facebook and Club News, starting Oct 21 2026, 5 PM Central.
+# Oct 23: it also keeps the Finder's search lists (locations.json / locations-ky.json) current, and a Kentucky park
+# POTA RETIRES is taken off every site list the same morning (kpc_retired_sweep.py) + a Discord note + issue comment.
 on:
   schedule:
     - cron: '41 12 * * *'
@@ -15,6 +17,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write   # Oct 23: reprint the guide PDFs the day a Kentucky park is retired
 concurrency:
   group: kpc-new-refs
   cancel-in-progress: false
@@ -36,8 +39,16 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/new-refs kpc-new-refs.json kpc-announcements.json
+          git add data/new-refs kpc-new-refs.json kpc-announcements.json locations.json locations-ky.json
+          git add -A kpc-ky-data.json kpc-guide-*-data.json wwff-unmapped.json ky-*.geojson app/packs KPC_Kentucky_*.kml KPC_Kentucky_*.gpx kpc-top25.json data/ky-retired.json || true
           if ! git diff --cached --quiet; then
             git commit -m 'New references'
             for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
           fi
+      - name: Reprint the guide PDFs when a Kentucky park was retired
+        if: always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f /tmp/kpc-reprint ]; then gh api -X POST repos/${{ github.repository }}/actions/workflows/kpc-guide-pdf.yml/dispatches -f ref=main || true; fi
