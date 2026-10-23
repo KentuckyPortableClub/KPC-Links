@@ -21,13 +21,14 @@ late or repeated run never posts twice.
 
 Secrets: KPC_PARKS_WEBHOOK / KPC_GENERAL_WEBHOOK / KPC_CAMPOUT_WEBHOOK / KPC_DISCORD_WEBHOOK, and
 FB_PAGE_ID + FB_PAGE_TOKEN for the Facebook side of Park of the Week. DRY_RUN=1 prints instead of posting.
-ONLY=park|lonely|weather forces one of them, for testing.
+ONLY=park|lonely|weather|contests forces one of them, for testing (contests = the busy-bands post for the coming weekend, sent now).
 """
 import datetime
 import json
 import os
 import pathlib
 import random
+import re
 import sys
 import urllib.error
 import urllib.parse
@@ -280,6 +281,72 @@ def event_weather(state, today):
     return None          # nothing close enough; not a failure
 
 
+# ------------------------------------------------------------------ busy bands this weekend
+def _ct(z):
+    from zoneinfo import ZoneInfo
+    t = datetime.datetime.strptime(z, '%Y-%m-%dT%H:%MZ').replace(tzinfo=datetime.timezone.utc)
+    return t, t.astimezone(ZoneInfo('America/Chicago'))
+
+
+def _when(c):
+    s, sc = _ct(c['segs'][0][0]); e, ec = _ct(c['segs'][-1][1])
+    f = lambda d: d.strftime('%a %-I:%M %p').replace(':00 ', ' ')
+    return f"{f(sc)} – {f(ec)} Central ({s.strftime('%H%MZ %a')} – {e.strftime('%H%MZ %a')})"
+
+
+def busy_bands(state, today, force=False):
+    """Oct 23 (Brandon: 'send out messages prepare for busy bands this weekend like couple days before and list what
+    contest it is'): on Thursday, the big contests + QSO parties of the coming weekend, in ONE post (Discord + the
+    Facebook Page). The Kentucky QSO Party also gets its own reminder a week ahead. Contests come from the same rules as
+    the Events calendar (kpc_contests.big()) plus this week's state QSO parties near Kentucky from the WA7BNM feed."""
+    sys.path.insert(0, str(pathlib.Path(__file__).parent))
+    import kpc_contests as KC
+    sat = today + datetime.timedelta(days=(5 - today.weekday()) % 7) if today.weekday() != 6 else today - datetime.timedelta(days=1)
+    lo = datetime.datetime(sat.year, sat.month, sat.day, tzinfo=datetime.timezone.utc) - datetime.timedelta(hours=12)
+    hi = lo + datetime.timedelta(days=2, hours=24)
+    inwin = lambda c: lo <= _ct(c['segs'][0][0])[0] < hi
+    L = [c for c in KC.big() if inwin(c) and 'vhf' not in c['name'].lower()]
+    try:
+        wk = load('kpc-contests.json', {}).get('week', [])
+        near = re.compile(r'(kentucky|tennessee|ohio|indiana|illinois|missouri|west virginia|virginia) qso party', re.I)
+        have = {c['name'].lower() for c in L}
+        L += [dict(c, exch=c.get('exch') or KC.exch_for(c['name'])) for c in wk if near.search(c['name']) and inwin(c) and c['name'].lower() not in have]
+    except Exception as e:  # noqa: BLE001
+        notice(f'busy bands: WA7BNM list not read ({e})')
+    out = []
+    key = 'busy_' + sat.isoformat()
+    if L and (force or not state.get(key)):
+        L.sort(key=lambda c: c['segs'][0][0])
+        lines = []
+        for c in L:
+            modes = ', '.join({'PHONE': 'SSB'}.get(m, m) for m in c.get('modes', [])) or ''
+            lines.append(f"**{c['name']}**" + (f' · {modes}' if modes else '') + f"\n{_when(c)}" +
+                         (f"\nIf you work them, give: {c['exch']}" if c.get('exch') else '') + f"\nRules: {c['url']}")
+        body = ('\n\n'.join(lines) + '\n\nHeading to a park? Contest weekends mean fast contacts: spot yourself early and find a clear '
+                'frequency before you call CQ. Want quiet? 30, 17 and 12 m never have contests. Full list on our Events page. 73, KPC')
+        title = '📻 Busy bands this weekend'
+        link = SITE + 'events.html#contests'
+        if DRY:
+            notice(f'(dry run) {title}\n{body}')
+        else:
+            d = to_discord(('KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK'), title, body, 0xD5A63A, link)
+            f = to_facebook(f'{title}\n\n{body}', link)
+            notice(f'busy bands: Discord {"sent" if d else "not sent"}, Facebook {"sent" if f else "not sent"}')
+        state[key] = today.isoformat(); out.append('busy bands')
+    # the Kentucky QSO Party, one week ahead
+    for c in KC.big():
+        if 'kentucky qso' not in c['name'].lower(): continue
+        s0 = _ct(c['segs'][0][0])[0].date(); k = 'kyqp_' + s0.isoformat()
+        if 6 <= (s0 - today).days <= 8 and not state.get(k):
+            title = '📻 Kentucky QSO Party is one week out'
+            body = (f"{_when(c)}\nKentucky stations give RS(T) + county, so a park in a rare county is gold that day. "
+                    f"Plan a park, check the county, and get on the air!\nRules: {c['url']}\n73, KPC")
+            if DRY: notice(f'(dry run) {title}\n{body}')
+            else: to_discord(('KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK'), title, body, 0xD5A63A, SITE + 'events.html#contests'); to_facebook(f'{title}\n\n{body}', SITE + 'events.html#contests')
+            state[k] = today.isoformat(); out.append('KY QSO Party reminder')
+    return out
+
+
 def main():
     today = datetime.date.today()
     state = load(STATE_F, {})
@@ -297,6 +364,8 @@ def main():
     if want_lonely and lonely_parks(state):
         state['lonely_on'] = today.isoformat()
         did.append('the quiet ones')
+    if ONLY in ('contests', 'busy') or (not ONLY and today.weekday() == POST_DAY):
+        did += busy_bands(state, today, force=ONLY in ('contests', 'busy'))
     if want_wx:
         r = event_weather(state, today)
         if r:
