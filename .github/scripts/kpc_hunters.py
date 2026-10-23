@@ -89,6 +89,7 @@ def collect():
         if not isinstance(spots, list): raise ValueError('not a list')
     except Exception as e:  # noqa: BLE001
         notice('Hunters', f'POTA spots not read this time ({e}); skipped'); return False
+    first = not W.exists()   # no memory of the last poll (first run, or the cache was lost): learn the list, count nothing
     d, w = load(), _j(W, {'open': {}, 'ids': [], 'cnt': {}})
     now = dt.datetime.now(dt.timezone.utc)
     hour = now.strftime('%Y-%m-%dT%H')
@@ -113,7 +114,7 @@ def collect():
             used_count += 1
             if ak in cnt and c > cnt[ak]: add = max(add, c - cnt[ak])
             cnt[ak] = c
-        if add:
+        if add and not first:
             new += add; o['h'] += add
             bn = band(s.get('frequency'))
             if bn: o['bd'][bn] = o['bd'].get(bn, 0) + add
