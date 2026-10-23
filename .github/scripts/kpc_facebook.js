@@ -34,7 +34,7 @@ async function events() {
   try { auto = JSON.parse(fs.readFileSync('kpc-events-auto.json', 'utf8')); } catch (e) { /* hand-made list only */ }
   const today = new Date();
   const until = new Date(today.getFullYear(), today.getMonth(), today.getDate() + Number(process.env.DAYS_AHEAD || 35));
-  const list = K.upcoming(K.merge(K.EVENTS, auto), today).filter(e => !e.tba && K.pd(e.start) <= until);
+  const list = K.upcoming(K.merge(K.EVENTS, auto), today).filter(e => !e.tba && K.pd(e.start) <= until && !(e.tags || []).includes('CONTEST'));   // contests get their own Thursday 'busy bands' post (kpc_club_posts.py)
   if (!list.length) { notice('Nothing coming up; no post.'); return; }
   const DN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], MN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const when = e => { const s = K.pd(e.start), en = e.end ? K.pd(e.end) : null; let t = `${DN[s.getDay()]} ${MN[s.getMonth()]} ${s.getDate()}`; if (en && +en !== +s) t += en.getMonth() === s.getMonth() ? `–${en.getDate()}` : ` – ${MN[en.getMonth()]} ${en.getDate()}`; return t; };

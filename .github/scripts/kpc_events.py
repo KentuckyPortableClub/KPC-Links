@@ -9,6 +9,10 @@
 Anything found automatically is labelled on the page so people confirm details with the organizer.
 If a source can't be reached, the last good results for that source are kept.
 """
+try:
+    from zoneinfo import ZoneInfo
+except Exception:  # noqa: BLE001
+    ZoneInfo = None
 import datetime as dt
 import html
 import json
@@ -86,6 +90,25 @@ def recurring():
         s = full_weekends(y, 1)[-1]
         ev.append({'name': 'Winter Field Day', 'tags': ['ONAIR'], 'start': iso(s), 'end': iso(s + dt.timedelta(days=1)),
                    'where': 'Portable and home stations. Cold-weather field operating.', 'by': 'Winter Field Day Association', 'url': 'https://winterfieldday.org/', 'rule': 'Last full weekend of January'})
+    # Oct 23 (Brandon: 'major contest on our main calendar'): the big contests + NAQP + the QSO parties around Kentucky,
+    # from the same rules as the Contest Calendar (kpc_contests.big()), tagged CONTEST. Field Day / Winter Field Day are above.
+    try:
+        import sys as _s, pathlib as _p
+        _s.path.insert(0, str(_p.Path(__file__).parent))
+        import kpc_contests as KC
+        CT = lambda z: dt.datetime.strptime(z, '%Y-%m-%dT%H:%MZ').replace(tzinfo=dt.timezone.utc)
+        for c in KC.big():
+            if 'field day' in c['name'].lower() or 'vhf' in c['name'].lower(): continue
+            s0, e0 = CT(c['segs'][0][0]), CT(c['segs'][-1][1]) - dt.timedelta(minutes=1)
+            ct = s0.astimezone(ZoneInfo('America/Chicago')) if ZoneInfo else s0
+            modes = ', '.join({'PHONE': 'SSB'}.get(m, m) for m in c.get('modes', []))
+            ev.append({'name': c['name'], 'tags': ['ONAIR', 'CONTEST'], 'start': iso(s0.date()), 'end': iso(e0.date()),
+                       'time': f"Starts {s0.strftime('%H%M')} UTC {s0.strftime('%a')} ({ct.strftime('%a %-I:%M %p').replace(':00', '')} Central)",
+                       'where': f"Contest ({modes}). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. "
+                                + (f"If you work them, give: {c['exch']}. " if c.get('exch') else '') + 'The WARC bands (30, 17, 12 m) never have contests.',
+                       'by': c.get('by', ''), 'url': c['url'], 'rule': c.get('when', '')})
+    except Exception as e:  # noqa: BLE001
+        print('::notice title=Events::contests not added: %s' % e)
     return [e for e in ev if TODAY <= dt.date.fromisoformat(e['end']) and dt.date.fromisoformat(e['start']) <= HORIZON]
 
 

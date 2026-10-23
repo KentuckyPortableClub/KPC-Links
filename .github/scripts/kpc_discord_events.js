@@ -13,7 +13,7 @@ try { auto = JSON.parse(fs.readFileSync('kpc-events-auto.json', 'utf8')); } catc
 
 const today = new Date();
 const until = new Date(today.getFullYear(), today.getMonth(), today.getDate() + DAYS_AHEAD);
-const list = K.upcoming(K.merge(K.EVENTS, auto), today).filter(e => !e.tba && K.pd(e.start) <= until);
+const list = K.upcoming(K.merge(K.EVENTS, auto), today).filter(e => !e.tba && K.pd(e.start) <= until && !(e.tags || []).includes('CONTEST'));   // contests get their own Thursday 'busy bands' post (kpc_club_posts.py)
 
 const DN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

@@ -186,6 +186,26 @@ def full_weekends(y, m):
     return out
 
 
+def exch_for(name):
+    """What a Kentucky station gives if it works them (Oct 23, for the calendar and the busy-bands post)."""
+    n = name.lower()
+    if 'sweepstakes' in n: return 'number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)'
+    if 'cq world wide' in n: return 'RS(T) + CQ zone 4'
+    if 'wpx' in n: return 'RS(T) + serial number (001, 002...)'
+    if 'international dx' in n: return 'RS(T) + state (KY); work DX stations only'
+    if 'north american qso' in n: return 'your name + state (KY)'
+    if 'kentucky qso' in n: return 'RS(T) + your Kentucky county (out of state: RS(T) + state)'
+    if 'qso party' in n: return 'RS(T) + state (KY)'
+    if 'rtty roundup' in n or '10-meter' in n: return 'RS(T) + state (KY)'
+    if 'cq 160' in n: return 'RS(T) + state (KY)'
+    if '160-meter' in n: return 'RS(T) + ARRL section (KY)'
+    if 'field day' in n: return 'your class + ARRL section (KY)'
+    if 'vhf' in n: return 'your 4-character grid square'
+    if 'iaru' in n: return 'RS(T) + ITU zone 8'
+    if 'digital contest' in n: return 'your 4-character grid square'
+    return ''
+
+
 def big():
     # (name, month, which full weekend (1..4 or -1 = last), start hour UTC Sat, length hours, modes, kinds, sponsor, rules url)
     R = [
@@ -210,8 +230,36 @@ def big():
         ('ARRL 160-Meter Contest', 12, 1, -2, 42, ['CW'], ['BIG'], 'ARRL', 'https://www.arrl.org/160-meter'),
         ('ARRL 10-Meter Contest', 12, 2, 0, 48, ['CW', 'PHONE'], ['BIG'], 'ARRL', 'https://www.arrl.org/10-meter'),
     ]
+    # Oct 23 (Brandon: 'major contest on our main calendar' + NAQP + the QSO parties around Kentucky): rules by the n-th
+    # Saturday (or Sunday) instead of the n-th full weekend. (name, month, weekday 5=Sat 6=Sun, n (-1 = last), start
+    # hour UTC, length hours, modes, kinds, sponsor, url). Checked against contestcalendar.com on Oct 23 2026.
+    R2 = [
+        ('North American QSO Party (CW)', 1, 5, 2, 18, 12, ['CW'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
+        ('North American QSO Party (SSB)', 1, 5, 3, 18, 12, ['PHONE'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
+        ('North American QSO Party (RTTY)', 2, 5, -1, 18, 12, ['DIGITAL'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
+        ('Virginia QSO Party', 3, 5, 3, 14, 34, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Sterling Park ARC', 'https://www.contestcalendar.com/contestcal.php'),
+        ('Missouri QSO Party', 4, 5, 1, 14, 30, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Missouri QSO Party', 'https://www.moqp.org/'),
+        ('Indiana QSO Party', 5, 5, 1, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Hoosier DX and Contest Club', 'https://www.contestcalendar.com/contestcal.php'),
+        ('Kentucky QSO Party', 6, 5, 1, 13, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Kentucky QSO Party', 'https://www.contestcalendar.com/contestcal.php'),
+        ('North American QSO Party (CW)', 8, 5, 1, 18, 12, ['CW'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
+        ('North American QSO Party (SSB)', 8, 5, 3, 18, 12, ['PHONE'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
+        ('Illinois QSO Party', 10, 6, 3, 17, 8, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Western Illinois ARC', 'https://www.contestcalendar.com/contestcal.php'),
+    ]
     out = []
     for y in (TODAY.year, TODAY.year + 1):
+        for name, m, wd, n, h, length, modes, kinds, by, url in R2:
+            d = dt.date(y, m, 1)
+            L = []
+            while d.month == m:
+                if d.weekday() == wd: L.append(d)
+                d += dt.timedelta(days=1)
+            day = L[n - 1] if n > 0 else L[n]
+            s = dt.datetime(day.year, day.month, day.day, tzinfo=dt.timezone.utc) + dt.timedelta(hours=h)
+            e = s + dt.timedelta(hours=length)
+            if e < NOW or s > NOW + dt.timedelta(days=400):
+                continue
+            out.append({'name': name, 'url': url, 'when': 'Usual dates (' + by + '); check the rules', 'segs': [[s.strftime('%Y-%m-%dT%H:%MZ'), e.strftime('%Y-%m-%dT%H:%MZ')]],
+                        'modes': modes, 'kinds': kinds, 'src': 'RULE', 'by': by, 'exch': exch_for(name)})
         for name, m, w, h, length, modes, kinds, by, url in R:
             fw = full_weekends(y, m)
             sat = fw[w - 1] if w > 0 else fw[w]
@@ -220,7 +268,7 @@ def big():
             if e < NOW or s > NOW + dt.timedelta(days=400):
                 continue
             out.append({'name': name, 'url': url, 'when': 'Usual dates (' + by + '); check the rules', 'segs': [[s.strftime('%Y-%m-%dT%H:%MZ'), e.strftime('%Y-%m-%dT%H:%MZ')]],
-                        'modes': modes, 'kinds': kinds, 'src': 'RULE', 'by': by})
+                        'modes': modes, 'kinds': kinds, 'src': 'RULE', 'by': by, 'exch': exch_for(name)})
     out.sort(key=lambda c: c['segs'][0][0])
     return out
 
