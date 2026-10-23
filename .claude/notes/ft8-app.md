@@ -122,6 +122,8 @@ POTACAT = github Waffleslop/POTACAT, potacat.com. Desktop app is free + open sou
 - P7. **Spots beside the log: start higher / use more height.**
 - P8. **P2P = ONE box**: type the parks, the SPACE BAR adds a comma by itself, room for a 7-fer (he has had 7-fers).
 - P9. **Tap an SSB spot: the radio ends a little off the spot's frequency** (Brandon 7:05 PM: 'off frequency was ssb spots'). Check: kHz rounding in KPCCat.tune, the radio left in CW/DATA (offset) when the mode does not change, LSB/USB by band (below 10 MHz = LSB), and the spot's own frequency format (POTA gives kHz with decimals). Brandon 7:06 PM: 'sometimes it go right on sometimes little off' → also suspect a RACE: the dial-follow read (every 2.5 s) landing during the tune and the radio then stepping/rounding, or the radio's own tuning step; and the spot list merging two spots of one station ±2 kHz apart (the line shows the newest frequency).
+- P9b (Brandon 7:22 PM): **'I never was in cw mode'** — so the 0.7 kHz SSB-spot offset is NOT the CW offset; mode-first (0.6.3) stays but the cause is still open. Next time: COPY A REPORT FOR THE BUILDERS right after a spot lands off.
+- P12 (done 0.6.5): log rows show band + frequency + mode; ADIF writes FT8 as MODE FT8 (QRZ has no MFSK/FT8), FT4 = MFSK/FT4.
 - P10. **APRS still shows the compass map**: check he is on 0.6.2 (MAP → 🛰 SATELLITE is the 2nd tap).
 - P11. **Spot filters like the Hunters Lounge** (after this test).
 **FABLE (remote, radio link, Bluetooth, GPS):**
