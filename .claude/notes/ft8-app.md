@@ -111,6 +111,10 @@ POTACAT = github Waffleslop/POTACAT, potacat.com. Desktop app is free + open sou
 - OTHER: propagation/solar panel; map with day/night line, home marker, great-circle line; grid square from GPS; opt-in anonymous usage stats (L).
 - **PLUS OURS (what they don't have):** real native phone + tablet app that works OFFLINE at the park (no home PC needed); 'Am I in the park' with real boundaries + the 'approximate' honesty labels; Park Control / trip planner data; KFF/club data and the club's Discord/spots; HELL, RTTY, CW decode; one settings place (Brandon Oct 21); kids/new-ham friendly help text.
 
+## NOTES FOR LATER (Brandon Oct 22 7:50 PM: 'just to do stuff')
+- **MY GRID per contact (QRZ keeps showing the home grid):** today every ADIF line carries MY_GRIDSQUARE = the one grid in MY STATION. Fix: save MY grid ON EACH CONTACT (`q.mg`) from the GPS at the park (or the park's own grid from the pack) when logging, write that as MY_GRIDSQUARE (+ MY_STATE / MY_CNTY when known), and send it in the QRZ upload. Also say in the help: QRZ's logbook can still fill its own 'my station' details from its logbook settings, so check QRZ → Logbook → Settings / the book's station location.
+- **APP ICON = the KPC logo** (now the default Capacitor/Electron icon): build the Android launcher icons (adaptive, all sizes) + Windows .ico + Linux png from kpc-links KPC-logo (NOT the N4KPC version) in build.yml (@capacitor/assets or a small script), plus the splash screen.
+
 ## BRANDON TESTED 0.6.2 (Oct 22 7:03 PM, 'notes for later') — split by who
 **OPUS (screens, log, spots, maps):**
 - P1. **RX LEVEL BAR on the FT8 screen** (green / yellow / red) so he can see if the incoming sound is too loud, not just the number.
