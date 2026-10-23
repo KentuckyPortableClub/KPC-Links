@@ -1024,6 +1024,787 @@
     "Cole Harbour - Lawrencetown Provincial Park"
    ],
    "why": "Oct 18 review: same place (renamed or spelled differently)"
+  },
+  "CA-2969": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4773": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4779": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4780": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6075": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6087": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-3297": {
+   "join": [
+    "21900",
+    "21901"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-3358": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-3508": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-3591": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-3596": {
+   "join": [
+    "21900",
+    "21901"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-4231": {
+   "join": [
+    "20384"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-4233": {
+   "join": [
+    "19606"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5546": {
+   "join": [
+    "21361"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6381": {
+   "join": [
+    "19458"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-0533": {
+   "join": [
+    "17767",
+    "Manitoba Par:89"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-0572": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-1048": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2373": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2375": {
+   "join": [
+    "17886",
+    "17887"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-2450": {
+   "join": [
+    "17890"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-2464": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2491": {
+   "join": [
+    "17886",
+    "17887"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-2527": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4803": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5464": {
+   "join": [
+    "Manitoba wil:28",
+    "Manitoba wil:28"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5967": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5976": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5978": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6037": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-1227": {
+   "join": [
+    "3139",
+    "3140",
+    "3137"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1250": {
+   "join": [
+    "3216",
+    "New Brunswic:96"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-4530": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5138": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5154": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5173": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5174": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5192": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5201": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5202": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5203": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5207": {
+   "join": [
+    "3267"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5244": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5259": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6161": {
+   "join": [
+    "New Brunswic:79",
+    "New Brunswic:80"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6377": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6444": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6482": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6522": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6115": {
+   "join": [
+    "44"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6166": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0043": {
+   "join": [
+    "22010",
+    "Nova Scotia :702",
+    "Nova Scotia :798"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-0485": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0881": {
+   "join": [
+    "Nova Scotia :26"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1736": {
+   "join": [
+    "1063",
+    "Nova Scotia :157",
+    "Nova Scotia :253"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-1876": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4834": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5810": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6176": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6177": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6178": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6196": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6325": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6437": {
+   "join": [
+    "Nova Scotia :69"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-6564": {
+   "join": [
+    "1510",
+    "1513",
+    "1514"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6600": {
+   "join": [
+    "Nova Scotia :55"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1280": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-1586": {
+   "join": [
+    "16334",
+    "Ontario Park:52481"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-1596": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-1627": {
+   "join": [
+    "16211",
+    "Ontario Park:56017"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-1667": {
+   "join": [
+    "16251",
+    "Ontario Park:39521"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-1705": {
+   "join": [
+    "16505",
+    "Ontario Park:52817"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-1708": {
+   "join": [
+    "16112",
+    "Ontario cons:11233"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-4856": {
+   "join": [
+    "22062"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-4867": {
+   "join": [
+    "Ontario fede:1"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-5555": {
+   "join": [
+    "17355"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5569": {
+   "join": [
+    "17283"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5606": {
+   "join": [
+    "17169"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6002": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6367": {
+   "join": [
+    "16582"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6371": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0852": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0855": {
+   "join": [
+    "400",
+    "403",
+    "402"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-0858": {
+   "join": [
+    "533"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-0874": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0877": {
+   "join": [
+    "470",
+    "466",
+    "460"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-0879": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4646": {
+   "join": [
+    "173"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-4657": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5753": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5791": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6172": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0049": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-0977": {
+   "join": [
+    "15813",
+    "12828"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-1010": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-1023": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1025": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1026": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1027": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1028": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1029": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-1031": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-1928": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-2039": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2042": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2096": {
+   "join": [
+    "12664",
+    "Québec prote:820",
+    "Québec recog:820"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-2208": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-2209": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-2218": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2220": {
+   "join": [
+    "11283",
+    "Québec prote:4828"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-2242": {
+   "join": [
+    "Québec Réser:None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-2335": {
+   "join": [
+    "Québec Zone :None"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-4918": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4968": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4970": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4972": {
+   "join": [
+    "Québec Parc :None"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-4981": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4984": {
+   "join": [
+    "11056"
+   ],
+   "why": "same place, another name (hand review Oct 22)"
+  },
+  "CA-4986": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4995": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4999": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5005": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5022": {
+   "join": [
+    "10424",
+    "Québec prote:1400",
+    "Québec recog:1400"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5023": {
+   "join": [
+    "15645"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5042": {
+   "join": [
+    "15330",
+    "Québec prote:2020",
+    "Québec recog:2020"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5048": {
+   "join": [
+    "10523"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-5052": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5054": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5059": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5062": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5868": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5869": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5872": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5897": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6205": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6206": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6405": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6408": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2720": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2727": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2779": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-2782": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-4928": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-5131": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6052": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6060": {
+   "none": true,
+   "why": "a different place, not this park (hand review Oct 22)"
+  },
+  "CA-6261": {
+   "join": [
+    "21762"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
+  },
+  "CA-6280": {
+   "join": [
+    "21764"
+   ],
+   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "approx": true
   }
  }
 }

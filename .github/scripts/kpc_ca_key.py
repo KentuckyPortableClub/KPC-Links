@@ -323,7 +323,7 @@ for pv, parks_in in sorted(by.items()):
             for want in ov.get('join', []):
                 for r in recs:
                     if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
-                        m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed'])
+                        m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: approx = closest official land, bigger / other shape
         site = []
         if not m and la is not None:
             for r in recs:
@@ -337,8 +337,10 @@ for pv, parks_in in sorted(by.items()):
                 else: continue
                 c.append([r['oid'], nm, acres(r), why])
             c.sort(key=lambda q: (q[3] != 'similar name', q[3] != 'same name, different kind of place', -q[2])); c = c[:6]
-            if c and (SITE.search(name + ' ' + typ) or ov.get('site')) and all(q[3].startswith('the POTA pin is inside') for q in c):
+            # Oct 22 review (as in the US key): the ONLY land found is a differently named place around the pin = no outline of its own: 'sits on', off the waiting list
+            if c and all(q[3].startswith('the POTA pin is inside') for q in c):
                 site = sorted((q for q in c if not re.search(r'buffer zone|closure|\bsfa\b|marine refuge|fishing area|fishery', q[1], re.I)), key=lambda q: q[2])[:2]; c = []
+        if ov.get('none'): c = []   # a person looked: no official outline for this park
         used.update(q[0] for q in m)
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda q: -q[2]), 'c': c}
         if site: parks[ref]['a'] = site

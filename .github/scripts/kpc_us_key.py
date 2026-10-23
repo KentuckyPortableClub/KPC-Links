@@ -619,7 +619,7 @@ def run(st):
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):
-                        m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed'])
+                        m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
         site = []
         if not m and la is not None:
             # unsure: not joined, only listed so a person can look
@@ -634,13 +634,17 @@ def run(st):
                 else: continue
                 c.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), why])
             c.sort(key=lambda x: (x[3] != 'similar name', x[3] != 'same name, different kind of place', -x[2])); c = c[:6]
-            if c and SITE.search(name + ' ' + typ) and all(x[3].startswith('the POTA pin is inside') for x in c):
+            # Oct 22 review: when the ONLY land found is a differently named place around the pin (a Wild and Scenic river inside a
+            # national preserve, a trail in a forest), the park has no outline of its own on file. That is an answer, not a
+            # question: it is kept as 'sits on' (shown in the tools) and leaves the waiting list. 550 of 918 were this.
+            if c and all(x[3].startswith('the POTA pin is inside') for x in c):
                 site = sorted(c, key=lambda x: x[2])[:2]; c = []
             if ov.get('site'): site, c = sorted(c, key=lambda x: x[2])[:2] or site, []
+            if ov.get('none'): c = []   # a person looked: no official outline for this park in any map we read
         for x in m: used.add(x[0])
         # SHADOW: what the shared scoring says, recorded only where it disagrees with the join above
         shadow = None
-        if not (ov.get('join') or any(x[3] == 'reviewed' for x in m)):        # a person's decision is never second-guessed
+        if not (ov.get('join') or any(str(x[3]).startswith('reviewed') for x in m)):        # a person's decision is never second-guessed
             try:
                 v, best, runner = score_park(name, typ, la, lo, recs, clusters)
                 ids_now = {str(x[0]) for x in m}
