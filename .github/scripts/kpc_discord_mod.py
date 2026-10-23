@@ -81,7 +81,7 @@ def say(title, text, colour=0xC0392B):
         notice(f'No staff webhook set; nothing posted. Would have said: {title}')
         print(title + '\n' + text)
         return 0
-    body = json.dumps({'username': 'KPC', 'allowed_mentions': {'parse': []},
+    body = json.dumps({'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                        'embeds': [{'title': title[:250], 'color': colour, 'description': text[:4000]}]}).encode()
     try:
         req = urllib.request.Request(HOOK, body, headers={**UA, 'Content-Type': 'application/json'}, method='POST')

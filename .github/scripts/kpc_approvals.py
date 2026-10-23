@@ -217,7 +217,7 @@ def to_discord():
         L.append('')
     L.append('Open the form\'s sheet in Google Drive, find the row and pick YES or NO in the Approved column. '
              'YES puts it on the website within a couple of hours.')
-    d = json.dumps({'username': 'KPC', 'allowed_mentions': {'parse': []},
+    d = json.dumps({'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                     'embeds': [{'title': 'Somebody is waiting on us', 'color': 0xd5a63a,
                                 'description': '\n'.join(L)[:4000]}]}).encode()
     try:

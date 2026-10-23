@@ -83,7 +83,7 @@ def to_discord(where, title, body, colour=0x2E7D32, url=None):
     embed = {'title': title[:250], 'color': colour, 'description': body[:4000]}
     if url:
         embed['url'] = url
-    c, r = http(h, json.dumps({'username': 'KPC', 'allowed_mentions': {'parse': []},
+    c, r = http(h, json.dumps({'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                                'embeds': [embed]}).encode(), {'Content-Type': 'application/json'})
     if c >= 300:
         notice(f'Discord said HTTP {c}: {r[:160]}')

@@ -231,7 +231,7 @@ def post():
     hook = ((os.environ.get('KPC_PARKS_WEBHOOK') or os.environ.get('DISCORD_WEBHOOK_URL') or '').strip().split() or [''])[0]
     sent = []
     if hook.startswith('https://'):
-        body = {'username': 'KPC', 'allowed_mentions': {'parse': []},
+        body = {'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                 'embeds': [{'title': title, 'url': link, 'color': 0xd5a63a, 'description': text[:4000]}]}
         sent.append('Discord ' + str(_http(hook, json.dumps(body).encode(), {'Content-Type': 'application/json'})))
     fid, tok = (os.environ.get('FB_PAGE_ID') or '').strip(), (os.environ.get('FB_PAGE_TOKEN') or '').strip()

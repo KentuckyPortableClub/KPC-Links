@@ -61,10 +61,10 @@ async function postDiscord({ title, text, link, image, color, file }) {
   if (file) { // a picture made by the job (no web address yet): send it with the post
     embed.image = { url: 'attachment://' + path.basename(file) };
     const fd = new FormData();
-    fd.append('payload_json', JSON.stringify({ username: 'KPC', embeds: [embed], allowed_mentions: { parse: [] } }));
+    fd.append('payload_json', JSON.stringify({ username: 'KPC-N4KPC-Bot', embeds: [embed], allowed_mentions: { parse: [] } }));
     fd.append('files[0]', new Blob([fs.readFileSync(file)], { type: 'image/png' }), path.basename(file));
     r = await fetch(DISCORD, { method: 'POST', body: fd });
-  } else r = await fetch(DISCORD, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'KPC', embeds: [embed], allowed_mentions: { parse: [] } }) });
+  } else r = await fetch(DISCORD, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: 'KPC-N4KPC-Bot', embeds: [embed], allowed_mentions: { parse: [] } }) });
   if (!r.ok) throw new Error('Discord HTTP ' + r.status);
 }
 async function postFacebook({ title, text, link, image, file }) {

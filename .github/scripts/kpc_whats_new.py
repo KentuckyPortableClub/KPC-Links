@@ -84,7 +84,7 @@ def main():
         print('WOULD POST:\n' + title + '\n' + body)
     else:
         if DISCORD.startswith('https://'):
-            d = json.dumps({'username': 'KPC', 'allowed_mentions': {'parse': []},
+            d = json.dumps({'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
                             'embeds': [{'title': title[:250], 'color': 0xd5a63a, 'description': body[:4000],
                                         'url': todo[0].get('link') or SITE}]}).encode()
             c, r = http(DISCORD, d, {'Content-Type': 'application/json'})
