@@ -172,8 +172,9 @@
        POTA's pins can be miles off (Kodiak Refuge, Vega State Park) while the name is exact. A person's review
        (overrides.json) always counts as sure. */
     const how = new Set(m.map(x => String(x[3] || ''))), reviewed = how.has('reviewed'), named = [...how].some(h => h.startsWith('name'));
-    const approx = !reviewed && !named && !!hit.far;
-    const why = approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
+    const handApprox = how.has('reviewed-approx') && !reviewed;   /* Oct 22: checked by hand, the closest official land is bigger / shaped differently */
+    const approx = handApprox || (!reviewed && !named && !!hit.far);
+    const why = handApprox ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
     return { state: 'ok', n: hit.n, m, fs, approx, why };
   }
   /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
@@ -268,7 +269,7 @@
     if (!/^CA-\d/.test(ref || '')) return [];
     const j = await jget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null); if (!j) return [];
     const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
-    return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); return f; });
+    return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently'; } return f; });
   }
   /* Oct 22 (Brandon's schedule: 'hook the world key into KPCB like usKey'): data/world-key/XX.json lists, per park, the
      official areas the checking bot joined (by name, or by the pin when names are written differently). The outline comes

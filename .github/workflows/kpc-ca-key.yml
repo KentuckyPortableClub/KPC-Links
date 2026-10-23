@@ -17,7 +17,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Build the Canada answer key
+        env:
+          GEO_CACHE_MODE: refresh      # Oct 22: keep the outlines it read, so the next step can save the missing park files
         run: python3 .github/scripts/kpc_ca_key.py
+      - name: Save outline files for joined parks that have none (never overwrites)
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
       - name: Review issue
         env:
           GH_TOKEN: ${{ github.token }}
@@ -28,6 +33,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/ca-key
+          git add data/canada-bounds 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Canada answer key'
             for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
