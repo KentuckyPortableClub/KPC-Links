@@ -26,7 +26,14 @@ function tipHtml(t){
  const gps=t.gps?(/^\s*-?\d+(\.\d+)?\s*,\s*-?\d+(\.\d+)?\s*$/.test(t.gps)?`<a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t.gps.replace(/\s/g,''))}" target="_blank" rel="noopener">📍 ${esc(t.gps)}</a>`:`📍 ${esc(t.gps)}`):'';
  return `<div class="pn-tip"><div class="t">${esc(String(t.type||'TIP').toUpperCase())}</div><p>${esc(t.text)}</p>
  <div class="m">${gps?gps+' · ':''}from <a href="https://www.qrz.com/db/${encodeURIComponent(t.call)}" target="_blank" rel="noopener">${esc(t.call)}</a>${t.date?' · '+esc(t.date):''}</div>
- ${(t.photos||[]).length?`<div class="pn-ph">${t.photos.map(p=>`<a href="${esc(p)}" target="_blank" rel="noopener"><img src="${esc(p)}" alt="Photo from ${esc(t.call)} at ${esc(t.ref)}" loading="lazy"></a>`).join('')}</div>`:''}</div>`;
+ ${(t.photos||[]).length?`<div class="pn-ph">${t.photos.map(p=>`<a href="${esc(p)}" target="_blank" rel="noopener"><img src="${esc(p)}" alt="Photo from ${esc(t.call)}${t.ref==='GENERAL'?'':' at '+esc(t.ref)}" loading="lazy"></a>`).join('')}</div>`:''}</div>`;
+}
+/* Oct 23 (Brandon: 'Check the general tips i changed the forms'): a tip that isn't about one park (park number left
+   blank or GENERAL, or tip type General) comes in as ref 'GENERAL' and shows in the box at the top */
+function drawGen(){
+ const box=$('pnGenB');if(!box)return;const t=N.filter(x=>x.ref==='GENERAL'),f=formUrl('GENERAL');
+ $('pnGenN').textContent=t.length?t.length+' TIP'+(t.length>1?'S':''):'NO TIPS YET';$('pnGenN').className='pn-n'+(t.length?' has':'');
+ box.innerHTML=`<div class="pn-acts">${f?`<a class="go" href="${esc(f)}" target="_blank" rel="noopener">✎ SUBMIT A GENERAL TIP</a>`:''}</div>`+(t.length?t.map(tipHtml).join(''):'<p class="pn-none">No general tips yet. Got a gear, setup or safety tip? Share it.</p>');
 }
 function draw(){
  document.querySelectorAll('.pn-tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.p===tab)));
@@ -52,7 +59,7 @@ async function init(){
  try{const f=await (await fetch('kpc-park-notes-form.json',{cache:'no-cache'})).json();if(f&&f.url&&/^entry\.\d+$/.test(f.parkEntry||'')){FORM.url=f.url;FORM.parkEntry=f.parkEntry}}catch(e){}
  const h=decodeURIComponent(location.hash.slice(1)).toUpperCase();
  if(h){const p=/^US-/.test(h)?'pota':/^KFF-/.test(h)?'kff':/\//.test(h)?'sota':null;if(p)tab=p}
- draw();
+ drawGen();draw();
  if(h){const el=[...document.querySelectorAll('.pn-item')].find(e=>e.dataset.ref===h);if(el){el.open=true;el.scrollIntoView({block:'center'})}}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();

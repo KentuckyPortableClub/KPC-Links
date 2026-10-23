@@ -86,8 +86,12 @@ except Exception: Image=None
 for r in rows[1:]:
   if not PA.auto(cell(r,'app'),cell(r,'call'),PRE,[cell(r,k) for k in C if k not in {'ts','call','photo','app','gps','ok','show','seen','edate','etime','rating'}],cell(r,'photo')): continue
   ref=norm(cell(r,'ref'))
+  # Oct 23 (Brandon changed the form for general tips): no park number, GENERAL/ALL/NONE, or a 'General' tip type = a
+  # general tip, shown in the General tips box at the top of Park Notes
+  if not ref or re.fullmatch(r'(GENERAL|ALL|ANY|NONE|N/?A|-+)(TIPS?)?',ref) or ('general' in cell(r,'type').lower() and not re.search(r'\d',ref)):
+    ref='GENERAL'
   info=None
-  if ref not in REFS:
+  if ref not in REFS and ref!='GENERAL':
     info=far(ref) if re.fullmatch(r'(US|KFF)-\d{4,5}|(W\d[A-Z]?|K[HL]\d)/[A-Z]{2}-\d{3}',ref) else None
     if not info: skipped.append(cell(r,'ref')); continue
   call=re.sub(r'[^A-Z0-9/]','',cell(r,'call').upper())
