@@ -146,9 +146,10 @@
           return;
         }
         if (u.label === 'none') {
+          const sit = u.site && u.site.length ? ` Its map pin sits inside <b>${esc(u.site[0][1])}</b>, a different place.` : '';
           const os = await osm(o.la, o.lo);
-          if (os) { show(os.fc, '#ff4fd8', '8 6', 0); dl(); B.className = 'pi-bnd osm'; B.innerHTML = `No official outline on file for this park. <b>${esc(os.name)}</b>: outline from OpenStreetMap, <b>not official</b>, just a guide. Use the park's own map to be sure.`; return; }
-          B.className = 'pi-bnd none'; B.innerHTML = 'No official outline on file for this park yet. Use the park\'s own map.'; return;
+          if (os) { show(os.fc, '#ff4fd8', '8 6', 0); dl(); B.className = 'pi-bnd osm'; B.innerHTML = `<b>Sorry, no boundary available at this time.</b>${sit} The pink line is <b>${esc(os.name)}</b> from OpenStreetMap, <b>not official</b>, just a guide. Use the park's own map to be sure.`; return; }
+          B.className = 'pi-bnd none'; B.innerHTML = `<b>Sorry, no boundary available at this time.</b>${sit} Use the park's own map.`; return;
         }
       }
       if (o.us) {
