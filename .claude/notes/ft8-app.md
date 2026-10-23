@@ -121,7 +121,7 @@ POTACAT = github Waffleslop/POTACAT, potacat.com. Desktop app is free + open sou
 - P6. **Maps: no shading** inside outlines (lines only); **satellite + street names** (hybrid: Esri imagery + the reference/transport labels layer).
 - P7. **Spots beside the log: start higher / use more height.**
 - P8. **P2P = ONE box**: type the parks, the SPACE BAR adds a comma by itself, room for a 7-fer (he has had 7-fers).
-- P9. **Tap a spot: the radio ends a little off the spot's frequency** (check rounding, CW offset, and FT8 spots = go to the band's FT8 dial, not the signal's own frequency).
+- P9. **Tap an SSB spot: the radio ends a little off the spot's frequency** (Brandon 7:05 PM: 'off frequency was ssb spots'). Check: kHz rounding in KPCCat.tune, the radio left in CW/DATA (offset) when the mode does not change, LSB/USB by band (below 10 MHz = LSB), and the spot's own frequency format (POTA gives kHz with decimals).
 - P10. **APRS still shows the compass map**: check he is on 0.6.2 (MAP → 🛰 SATELLITE is the 2nd tap).
 - P11. **Spot filters like the Hunters Lounge** (after this test).
 **FABLE (remote, radio link, Bluetooth, GPS):**
