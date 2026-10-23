@@ -1,3 +1,4 @@
 __pycache__/
 # saved government outlines live as release files (boundary-cache), never in the repo
 cache/
+data/hunters/work.json
