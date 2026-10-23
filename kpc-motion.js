@@ -25,11 +25,16 @@
  .kpm-waves i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;border:2px solid rgba(240,201,107,.0);border-left-color:transparent;border-bottom-color:transparent;transform:rotate(-45deg) scale(.4);animation:kpmWave 4s ease-out infinite}
  .kpm-waves i:nth-child(2){animation-delay:.35s}.kpm-waves i:nth-child(3){animation-delay:.7s}
  @keyframes kpmWave{0%{transform:rotate(-45deg) scale(.4);border-top-color:rgba(255,215,120,.95);border-right-color:rgba(255,215,120,.95);opacity:1}55%{opacity:0;transform:rotate(-45deg) scale(2.6);border-top-color:rgba(255,215,120,.2);border-right-color:rgba(255,215,120,.2)}100%{opacity:0;transform:rotate(-45deg) scale(2.6)}}
+ .kpm-glint{position:relative;display:inline-block;line-height:0;max-width:100%}
+ .kpm-glint::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 42%,rgba(255,250,225,.95) 50%,transparent 58%) no-repeat;background-size:300% 100%;background-position:150% 0;-webkit-mask:var(--m) center/100% 100% no-repeat;mask:var(--m) center/100% 100% no-repeat;mix-blend-mode:screen;animation:kpmGlint 8s ease-in-out infinite var(--gd,0s)}
+ @keyframes kpmGlint{0%,70%{background-position:150% 0}88%,100%{background-position:-50% 0}}
+ .kpm-glint>b{position:absolute;width:9px;height:9px;pointer-events:none;background:radial-gradient(circle,#fff 0 18%,rgba(255,236,170,.0) 60%),linear-gradient(0deg,transparent 44%,#fff 50%,transparent 56%),linear-gradient(90deg,transparent 44%,#fff 50%,transparent 56%);opacity:0;animation:kpmTwk 8s ease-in-out infinite var(--gd,0s)}
+ @keyframes kpmTwk{0%,80%{opacity:0;transform:scale(.3) rotate(0)}86%{opacity:.9;transform:scale(1) rotate(45deg)}93%,100%{opacity:0;transform:scale(.3) rotate(90deg)}}
  .kpm-sparks{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
  .kpm-sparks i{position:absolute;bottom:-8px;left:var(--x);width:4px;height:4px;border-radius:50%;background:#ffc15e;box-shadow:0 0 9px 3px rgba(255,140,40,.8);opacity:0;animation:kpmSpark var(--t) linear var(--d) infinite}
  @keyframes kpmSpark{0%{opacity:0;transform:translate(0,0)}10%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-70vh)}}
 }
-@media print{.kpm-drift,.kpm-waves,.kpm-sparks{display:none!important}.kpm-card{opacity:1!important;transform:none!important}}`;
+@media print{.kpm-drift,.kpm-waves,.kpm-sparks,.kpm-glint>b{display:none!important}.kpm-glint::after{content:none!important}.kpm-card{opacity:1!important;transform:none!important}}`;
   document.head.appendChild(css);
   function heroes() {
     if (reduce) return;
@@ -59,6 +64,19 @@
     const w = document.createElement('span'); w.className = 'kpm-waves'; w.setAttribute('aria-hidden', 'true'); w.innerHTML = '<i></i><i></i><i></i>';
     const wrap = document.createElement('span'); wrap.style.cssText = 'position:relative;display:inline-block;line-height:0';
     img.parentNode.insertBefore(wrap, img); wrap.appendChild(img); wrap.appendChild(w);
+  }
+  /* Oct 23 (N4KPC granted; Brandon Oct 18: 'make the gold call SPARKLE, as if sun is glinting off it', toned down): a slow light
+     sweep across the gold call every 8 s plus one small glint; off with reduced motion and when printing */
+  function glint() {
+    if (reduce) return;
+    document.querySelectorAll('.n4w img, img.hero-n4, img.n4').forEach((img, i) => {
+      if (img.parentNode.classList.contains('kpm-glint')) return;
+      const w = document.createElement('span'); w.className = 'kpm-glint'; w.setAttribute('aria-hidden', 'false');
+      w.style.setProperty('--m', 'url("' + img.getAttribute('src') + '")'); w.style.setProperty('--gd', (i ? 2.5 : 0) + 's');
+      if (getComputedStyle(img).display === 'block') { w.style.display = 'block'; w.style.width = 'fit-content'; w.style.margin = getComputedStyle(img).margin; img.style.margin = '0'; }
+      img.parentNode.insertBefore(w, img); w.appendChild(img);
+      const b = document.createElement('b'); b.setAttribute('aria-hidden', 'true'); b.style.left = '78%'; b.style.top = '12%'; w.appendChild(b);
+    });
   }
   function cards() {
     if (!CARDS || reduce || !('IntersectionObserver' in window)) return;
@@ -100,7 +118,7 @@ html.kpm-fix main{background:transparent!important}@media print{html.kpm-fix bod
     });
     see(); setTimeout(see, 900); new MutationObserver(() => setTimeout(see, 700)).observe(H, { attributes: true, attributeFilter: ['data-theme'] });
   }
-  const go = () => { [still, heroes, logo, cards, sounds].forEach(f => { try { f(); } catch (e) {} }); };
+  const go = () => { [still, heroes, logo, glint, cards, sounds].forEach(f => { try { f(); } catch (e) {} }); };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();
   addEventListener('load', () => { try { heroes(); } catch (e) {} });
 })();
