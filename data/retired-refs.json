@@ -1,5 +1,270 @@
 {
  "refs": {
+  "FR-13871": {
+   "n": "Square de l'hôtel de ville Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13883": {
+   "n": "Jardin des Cévennes Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13884": {
+   "n": "Jardin des meres et grand meres de la place de mai Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13887": {
+   "n": "Jardin de l'intendant Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13905": {
+   "n": "Square Edith Piaf Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13908": {
+   "n": "Square Robert Bajac Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13909": {
+   "n": "Square Helene Boucher Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13920": {
+   "n": "Jardin de la Porte de Saint Cloud Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13930": {
+   "n": "Parc municipal Lucie Aubrac Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13935": {
+   "n": "Jardin sauvage Saint Vincent Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13938": {
+   "n": "Square Dominique Bernard Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13943": {
+   "n": "La petite ceinture du 20e Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13945": {
+   "n": "Le petite ceinture du 14e Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13948": {
+   "n": "Square Boucicaut Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13956": {
+   "n": "Jardin d'Alleray-Procession Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13962": {
+   "n": "Square d'Alleray La Quintinie Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13963": {
+   "n": "Square Gerbert-Blomet Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13965": {
+   "n": "Square Violet Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-13966": {
+   "n": "Square Duranton Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14019": {
+   "n": "Jardin Alexandra David-Neel Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14030": {
+   "n": "Square de la Salamandre Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14031": {
+   "n": "Square des Gres Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14032": {
+   "n": "Square Antoine Blondin Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14035": {
+   "n": "Square Jules Ferry Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14040": {
+   "n": "Square Jules Coutant Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14047": {
+   "n": "Jardin de l'Impératrice Eugénie Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14231": {
+   "n": "Jardins de l'Hotel de Ville Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14237": {
+   "n": "Jardin Jean-Michel Rosenfeld Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14238": {
+   "n": "Jardin des Petites Rigoles Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14239": {
+   "n": "Jardin des rues Maronites-Pressoir Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14240": {
+   "n": "Square Jules Verne Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14241": {
+   "n": "Square Henri Christine Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14242": {
+   "n": "Square Madeleine Tribolati Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14243": {
+   "n": "Square Alban Satragne Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14244": {
+   "n": "Square Montholon Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14246": {
+   "n": "Square Alex Biscarre Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14249": {
+   "n": "Jardin Carre Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14251": {
+   "n": "Square Marius-Constant Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14253": {
+   "n": "Jardin Clara-Zetkin Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14267": {
+   "n": "Jardin du Moulin de la Vierge - Carole Roussopoulos Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14268": {
+   "n": "Jardin Françoise Heritier Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14272": {
+   "n": "Jardin des Trois Cornets Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14273": {
+   "n": "Jardin Lionel Assouad Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14276": {
+   "n": "Square des Combattants d'Afrique du Nord Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14470": {
+   "n": "Parc des Bordieres Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14503": {
+   "n": "Square des Missions Etrangeres Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14504": {
+   "n": "Square Roger-Stephane Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14505": {
+   "n": "Square Laurent Prache Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14506": {
+   "n": "Square Felix Desruelles Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14507": {
+   "n": "Square Louvois Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14508": {
+   "n": "Jardin Yılmaz-Guney Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-14516": {
+   "n": "Square du Colombier Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
+  "FR-15372": {
+   "n": "Square Sergent Aurelie Salel Recreation Park",
+   "d": "2026-10-23",
+   "src": "world"
+  },
   "US-13604": {
    "n": "Lake Linville",
    "d": "2026-10-22",
@@ -17,5 +282,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-10-22"
+ "updated": "2026-10-23"
 }
