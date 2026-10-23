@@ -130,7 +130,7 @@ def http(url, data=None, headers=None, method=None):
 
 def post_discord(title, text, link):
     if not DISCORD.startswith('https://'): notice('New references', 'No Discord webhook; skipped Discord.'); return True
-    body = {'username': 'KPC', 'allowed_mentions': {'parse': []},
+    body = {'username': 'KPC-N4KPC-Bot', 'allowed_mentions': {'parse': []},
             'embeds': [{'title': title[:250], 'url': link, 'color': 0xd5a63a, 'description': (text + f'\n\n[See them on our site →]({link})')[:4000]}]}
     c, r = http(DISCORD, json.dumps(body).encode(), {'Content-Type': 'application/json'})
     if c >= 300: notice('New references', f'Discord HTTP {c}: {r[:200]}'); return False
