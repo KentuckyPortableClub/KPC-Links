@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T17:11:25Z",
+ "updated": "2026-10-23T18:09:33Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -369,6 +369,20 @@
    "rule": "Usual dates (ARRL); check the rules"
   },
   {
+   "name": "West Virginia QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-06-19",
+   "end": "2027-06-20",
+   "time": "Starts 1600 UTC Sat (Sat 11 AM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "West Virginia State ARC",
+   "url": "https://contestcalendar.com/stateparties.php",
+   "rule": "Usual dates (West Virginia State ARC); check the rules"
+  },
+  {
    "name": "IARU HF World Championship",
    "tags": [
     "ONAIR",
@@ -409,6 +423,34 @@
    "by": "NCJ",
    "url": "https://ncjweb.com/naqp/",
    "rule": "Usual dates (NCJ); check the rules"
+  },
+  {
+   "name": "Ohio QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-08-28",
+   "end": "2027-08-29",
+   "time": "Starts 1600 UTC Sat (Sat 11 AM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Ohio Contest Club",
+   "url": "https://contestcalendar.com/stateparties.php",
+   "rule": "Usual dates (Ohio Contest Club); check the rules"
+  },
+  {
+   "name": "Tennessee QSO Party",
+   "tags": [
+    "ONAIR",
+    "CONTEST"
+   ],
+   "start": "2027-09-05",
+   "end": "2027-09-06",
+   "time": "Starts 1700 UTC Sun (Sun 12 PM Central)",
+   "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
+   "by": "Tennessee Contest Group",
+   "url": "https://contestcalendar.com/stateparties.php",
+   "rule": "Usual dates (Tennessee Contest Group); check the rules"
   },
   {
    "name": "Illinois QSO Party",
