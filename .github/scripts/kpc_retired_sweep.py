@@ -54,6 +54,17 @@ def add_retired(rows, when):
     return [c for c, _ in new]
 
 
+def drop_retired(refs):
+    """a park POTA brought back: off the retired list (kpc_refcheck.py)"""
+    try:
+        d = json.load(open(RET, encoding='utf-8'))
+    except FileNotFoundError:
+        return
+    d['parks'] = [r for r in d['parks'] if r['c'] not in set(refs)]
+    json.dump(d, open(RET, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    open(RET, 'a').write('\n')
+
+
 def _layout(orig):
     """keep a file's own JSON layout (one line, or indented by 1 or 2)"""
     s = orig.lstrip()

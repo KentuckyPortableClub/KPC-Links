@@ -1,9 +1,23 @@
 {
  "note": "Kentucky POTA parks POTA has retired. .github/scripts/kpc_retired_sweep.py keeps them off every site list; kpc_refcheck.py adds to it. To bring one back, take it out of here first.",
  "parks": [
-  {"c": "US-7969", "n": "Martin's Fork", "when": "2026-10-18"},
-  {"c": "US-13604", "n": "Lake Linville", "when": "2026-10-22"},
-  {"c": "US-13605", "n": "Wood Creek", "when": "2026-10-22"},
-  {"c": "US-13607", "n": "Boltz", "when": "2026-10-22"}
+  {
+   "c": "US-7969",
+   "n": "Martin's Fork",
+   "when": "2026-10-18"
+  },
+  {
+   "c": "US-13604",
+   "n": "Lake Linville",
+   "when": "2026-10-22"
+  },
+  {
+   "c": "US-13605",
+   "n": "Wood Creek",
+   "when": "2026-10-22"
+  }
+ ],
+ "history": [
+  "US-13607 Boltz: dropped from POTA's active list on 22 Oct 2026, back on it 23 Oct as \"Boltz State Fishing Lake\"; put back on the site."
  ]
 }
