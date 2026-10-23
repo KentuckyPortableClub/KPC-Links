@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T11:09:34Z",
+ "updated": "2026-10-23T17:09:46Z",
  "week": [
   {
    "name": "ARRL School Club Roundup",
@@ -544,7 +544,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + CQ zone 4"
   },
   {
    "name": "ARRL November Sweepstakes (CW)",
@@ -563,7 +564,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)"
   },
   {
    "name": "ARRL November Sweepstakes (Phone)",
@@ -582,7 +584,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)"
   },
   {
    "name": "CQ World Wide DX Contest (CW)",
@@ -601,7 +604,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + CQ zone 4"
   },
   {
    "name": "ARRL 160-Meter Contest",
@@ -620,7 +624,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "RS(T) + ARRL section (KY)"
   },
   {
    "name": "ARRL 10-Meter Contest",
@@ -640,7 +645,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "RS(T) + state (KY)"
   },
   {
    "name": "ARRL RTTY Roundup",
@@ -659,7 +665,48 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "RS(T) + state (KY)"
+  },
+  {
+   "name": "North American QSO Party (CW)",
+   "url": "https://ncjweb.com/naqp/",
+   "when": "Usual dates (NCJ); check the rules",
+   "segs": [
+    [
+     "2027-01-09T18:00Z",
+     "2027-01-10T06:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "NCJ",
+   "exch": "your name + state (KY)"
+  },
+  {
+   "name": "North American QSO Party (SSB)",
+   "url": "https://ncjweb.com/naqp/",
+   "when": "Usual dates (NCJ); check the rules",
+   "segs": [
+    [
+     "2027-01-16T18:00Z",
+     "2027-01-17T06:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "NCJ",
+   "exch": "your name + state (KY)"
   },
   {
    "name": "ARRL January VHF Contest",
@@ -681,7 +728,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "your 4-character grid square"
   },
   {
    "name": "Winter Field Day",
@@ -703,7 +751,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "Winter Field Day Association"
+   "by": "Winter Field Day Association",
+   "exch": "your class + ARRL section (KY)"
   },
   {
    "name": "CQ 160-Meter Contest (CW)",
@@ -722,7 +771,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + state (KY)"
   },
   {
    "name": "ARRL International DX Contest (CW)",
@@ -741,7 +791,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "RS(T) + state (KY); work DX stations only"
   },
   {
    "name": "CQ 160-Meter Contest (SSB)",
@@ -760,7 +811,28 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + state (KY)"
+  },
+  {
+   "name": "North American QSO Party (RTTY)",
+   "url": "https://ncjweb.com/naqp/",
+   "when": "Usual dates (NCJ); check the rules",
+   "segs": [
+    [
+     "2027-02-27T18:00Z",
+     "2027-02-28T06:00Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "NCJ",
+   "exch": "your name + state (KY)"
   },
   {
    "name": "ARRL International DX Contest (Phone)",
@@ -779,7 +851,30 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "RS(T) + state (KY); work DX stations only"
+  },
+  {
+   "name": "Virginia QSO Party",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "when": "Usual dates (Sterling Park ARC); check the rules",
+   "segs": [
+    [
+     "2027-03-20T14:00Z",
+     "2027-03-22T00:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Sterling Park ARC",
+   "exch": "RS(T) + state (KY)"
   },
   {
    "name": "CQ WPX Contest (SSB)",
@@ -798,7 +893,52 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + serial number (001, 002...)"
+  },
+  {
+   "name": "Missouri QSO Party",
+   "url": "https://www.moqp.org/",
+   "when": "Usual dates (Missouri QSO Party); check the rules",
+   "segs": [
+    [
+     "2027-04-03T14:00Z",
+     "2027-04-04T20:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Missouri QSO Party",
+   "exch": "RS(T) + state (KY)"
+  },
+  {
+   "name": "Indiana QSO Party",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "when": "Usual dates (Hoosier DX and Contest Club); check the rules",
+   "segs": [
+    [
+     "2027-05-01T16:00Z",
+     "2027-05-02T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Hoosier DX and Contest Club",
+   "exch": "RS(T) + state (KY)"
   },
   {
    "name": "CQ WPX Contest (CW)",
@@ -817,7 +957,30 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + serial number (001, 002...)"
+  },
+  {
+   "name": "Kentucky QSO Party",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "when": "Usual dates (Kentucky QSO Party); check the rules",
+   "segs": [
+    [
+     "2027-06-05T13:00Z",
+     "2027-06-06T01:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Kentucky QSO Party",
+   "exch": "RS(T) + your Kentucky county (out of state: RS(T) + state)"
   },
   {
    "name": "ARRL International Digital Contest",
@@ -836,7 +999,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "your 4-character grid square"
   },
   {
    "name": "ARRL June VHF Contest",
@@ -858,7 +1022,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "your 4-character grid square"
   },
   {
    "name": "ARRL Field Day",
@@ -880,7 +1045,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "your class + ARRL section (KY)"
   },
   {
    "name": "IARU HF World Championship",
@@ -900,7 +1066,48 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL / IARU"
+   "by": "ARRL / IARU",
+   "exch": "RS(T) + ITU zone 8"
+  },
+  {
+   "name": "North American QSO Party (CW)",
+   "url": "https://ncjweb.com/naqp/",
+   "when": "Usual dates (NCJ); check the rules",
+   "segs": [
+    [
+     "2027-08-07T18:00Z",
+     "2027-08-08T06:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "NCJ",
+   "exch": "your name + state (KY)"
+  },
+  {
+   "name": "North American QSO Party (SSB)",
+   "url": "https://ncjweb.com/naqp/",
+   "when": "Usual dates (NCJ); check the rules",
+   "segs": [
+    [
+     "2027-08-21T18:00Z",
+     "2027-08-22T06:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [
+    "BIG"
+   ],
+   "src": "RULE",
+   "by": "NCJ",
+   "exch": "your name + state (KY)"
   },
   {
    "name": "ARRL September VHF Contest",
@@ -922,7 +1129,30 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "your 4-character grid square"
+  },
+  {
+   "name": "Illinois QSO Party",
+   "url": "https://www.contestcalendar.com/contestcal.php",
+   "when": "Usual dates (Western Illinois ARC); check the rules",
+   "segs": [
+    [
+     "2027-10-17T17:00Z",
+     "2027-10-18T01:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Western Illinois ARC",
+   "exch": "RS(T) + state (KY)"
   },
   {
    "name": "CQ World Wide DX Contest (SSB)",
@@ -941,7 +1171,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + CQ zone 4"
   },
   {
    "name": "ARRL November Sweepstakes (CW)",
@@ -960,7 +1191,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)"
   },
   {
    "name": "ARRL November Sweepstakes (Phone)",
@@ -979,7 +1211,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "ARRL"
+   "by": "ARRL",
+   "exch": "number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)"
   },
   {
    "name": "CQ World Wide DX Contest (CW)",
@@ -998,7 +1231,8 @@
     "BIG"
    ],
    "src": "RULE",
-   "by": "CQ"
+   "by": "CQ",
+   "exch": "RS(T) + CQ zone 4"
   }
  ],
  "status": {
