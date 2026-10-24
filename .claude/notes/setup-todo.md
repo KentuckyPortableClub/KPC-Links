@@ -88,4 +88,4 @@ suggesting answers in the staff room and tells you once in Discord that it could
 WHAT TO DO: same steps as item 1 (Graph API Explorer, pick the permission from the 'Add a Permission' list,
 Page token from me/accounts for "Kentucky Portable Club" id 1342190728983628, extend it so it never expires),
 then update the `FB_PAGE_TOKEN` secret. The next hourly run prints 'Everything needed is there.' when it is right.
-STATUS: waiting.
+STATUS: ON HOLD (Brandon Oct 24 6 PM: 'Not ready for that'). auto is false; suggestions to Discord only. Do not nag.
