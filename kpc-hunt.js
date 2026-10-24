@@ -851,7 +851,12 @@
   }
   async function takeFiles(files) {
     let all = new Set(), names = [];
-    for (const f of files) { try { const t = await f.text(); scan(t).forEach(r => all.add(r)); names.push(f.name); } catch (e) {} }
+    let act = '';
+    for (const f of files) { try { const t = await f.text();
+      /* Oct 24: POTA's activator_parks.csv would count parks you ACTIVATED as hunted */
+      if (/"Attempts"\s*,\s*"Activations"/i.test(t.slice(0, 300))) { act = f.name; continue; }
+      scan(t).forEach(r => all.add(r)); names.push(f.name); } catch (e) {} }
+    if (act && !all.size) { const m0 = $('hMsg'); m0.className = 'hl-msg bad'; m0.textContent = act + ' is your ACTIVATOR file (parks you activated). Here you need the HUNTER one: hunter_parks.csv from My Stats → hunted parks → EXPORT CSV.'; return; }
     const m = $('hMsg');
     if (!all.size) { m.className = 'hl-msg bad'; m.textContent = `No POTA, WWFF or SOTA numbers found in ${names.join(', ') || 'that file'}. Is it the hunted parks / chaser log file?`; return; }
     if (!$('hAdd').checked) { WK = new Set(MAN); }
