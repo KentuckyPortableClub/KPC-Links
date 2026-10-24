@@ -28,6 +28,10 @@ import urllib.request
 REPO = os.environ.get('GITHUB_REPOSITORY') or 'KentuckyPortableClub/KPC-Links'
 TOKEN = (os.environ.get('GITHUB_TOKEN') or '').strip()
 KEYS = pathlib.Path('data/us-key')
+# Oct 24 (Brandon: 'the nightly boundary check only covers the US so far. Add Canada and the world'): the Canada
+# and world keys now run the same check whenever THEY are rebuilt (monthly, or by hand), so their files are read
+# here too. One table per place.
+PLACES = [('United States', pathlib.Path('data/us-key'), 'st'), ('Canada', pathlib.Path('data/ca-key'), 'prov'), ('World', pathlib.Path('data/world-key'), 'cc')]
 OUT = pathlib.Path('data/boundary-report.json')
 LABEL = 'boundary-check'
 TITLE = '🗺 Boundary check: are the joins in the right place?'
@@ -48,15 +52,11 @@ def api(path, method='GET', body=None):
         return json.loads(t) if t.strip() else {}
 
 
-def main():
-    if not KEYS.exists():
-        notice('No answer keys yet.')
-        return
+def gather(keys, field, tag):
     states, tot = [], {'matched': 0, 'far': 0, 'noshape': 0, 'edge': 0, 'out': 0, 'swap': 0}
-    fresh_mode = False
     swaps, outs = [], []
-    for f in sorted(KEYS.glob('*.json')):
-        if f.name == 'index.json':
+    for f in sorted(keys.glob('*.json')):
+        if f.name in ('index.json', 'overrides.json', 'layers.json') or not f.name[:2].isupper():
             continue
         try:
             d = json.loads(f.read_text(encoding='utf-8'))
@@ -65,40 +65,71 @@ def main():
         c = d.get('counts') or {}
         if 'pin_outside' not in c:
             continue                       # built before the check existed; it will fill in on its next run
-        st = d.get('st') or f.stem
+        st = d.get(field) or f.stem
+        if tag: st = f'{tag}-{st}' if not str(st).startswith(tag) else st
         # A key built before the 'no shape' and 'swap' parts existed has pin_outside but not those. Saying 0
         # there would be a lie of exactly the kind this report is meant to prevent, so it is marked stale and
         # left out of the totals until that state is rebuilt.
         stale = 'pin_no_shape' not in c
+        det = c.get('detail') or 1
         row = {'st': st, 'matched': c.get('matched', 0), 'far': c.get('pin_outside', 0),
                'noshape': c.get('pin_no_shape', 0), 'out': c.get('pin_well_outside', 0),
                'swap': c.get('pin_swap', 0), 'stale': stale,
-               'detail': '~110 m' if (c.get('detail') or 1) < 0.01 else '~1.1 km'}
+               'detail': '~110 m' if det < 0.01 else '~1.1 km' if det < 0.02 else '~2.2 km',
+               'thin': c.get('thin')}
         row['edge'] = row['far'] - row['noshape'] - row['out']
-        if stale:
-            states.append(row)
-            continue
         states.append(row)
+        if stale:
+            continue
         for k in tot:
             tot[k] += row.get(k, 0)
-        fresh_mode = True
         for ref, v in (d.get('parks') or {}).items():
             if v.get('swap'):
                 swaps.append((st, ref, v.get('n', ''), v['m'][0][1] if v.get('m') else '', v['swap'][0][1]))
             elif v.get('far') == 'well outside':
                 outs.append((st, ref, v.get('n', ''), v['m'][0][1] if v.get('m') else ''))
+    return states, tot, swaps, outs
 
-    if not states:
-        notice('No state has been rebuilt with the check yet; nothing to report.')
+
+def main():
+    L = [f"_Written by `.github/scripts/kpc_boundary_report.py`. Nothing here has been changed in the keys._", '',
+         'The US keys are rebuilt with this check 14 states a night; the Canada and world keys run it whenever they are '
+         'rebuilt (monthly, or by hand from Actions), so their rows change less often. World and Canada outlines are '
+         'coarser than the US ones, so their "just outside" column means less there.', '']
+    saved = {}
+    any_rows = False
+    for place, keys, field in PLACES:
+        if not keys.exists():
+            continue
+        got = gather(keys, field, '' if place == 'United States' else ('CA' if place == 'Canada' else ''))
+        states, tot, swaps, outs = got
+        if not states:
+            L.append(f'## {place}')
+            L.append('')
+            L.append('_Not rebuilt with the check yet._')
+            L.append('')
+            continue
+        any_rows = True
+        L += section(place, states, tot, swaps, outs)
+        saved[place] = {'totals': tot, 'states': states, 'swaps': [list(x) for x in swaps], 'well_outside': [list(x) for x in outs]}
+    if not any_rows:
+        notice('No key has been rebuilt with the check yet; nothing to report.')
         return
+    body = '\n'.join(L)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(saved, indent=1) + '\n', encoding='utf-8')
+    notice('; '.join(f"{p}: {v['totals']['noshape']} unmeasurable, {v['totals']['edge']} just outside, {v['totals']['out']} well outside, "
+                     f"{v['totals']['swap']} wrong-land-right-name" for p, v in saved.items()))
+    _publish(body)
 
+
+def section(place, states, tot, swaps, outs):
     judged = tot['matched'] - tot['noshape']
-    if not fresh_mode:
-        pass
-    L = [f"_Written by `.github/scripts/kpc_boundary_report.py`. Nothing here has been changed in the keys._", '']
+    L = [f'## {place}', '']
     fresh = [r for r in states if not r.get('stale')]
     stale = [r for r in states if r.get('stale')]
-    L.append(f"**{len(fresh)} states fully checked.**")
+    unit = 'states' if place == 'United States' else 'provinces' if place == 'Canada' else 'countries'
+    L.append(f"**{len(fresh)} {unit} fully checked.**")
     if stale:
         L.append('')
         L.append(f"⏳ {len(stale)} more ({', '.join(r['st'] for r in stale)}) were measured before the "
@@ -107,11 +138,9 @@ def main():
     if not fresh:
         L.append('')
         L.append('_Nothing fully checked yet, so there are no numbers worth quoting. Check back after the '
-                 'nightly run._')
-        body0 = '\n'.join(L)
-        notice('Nothing fully checked yet; wrote the holding note only.')
-        _publish(body0)
-        return
+                 'next run._')
+        L.append('')
+        return L
     L.append('')
     if tot['noshape']:
         L.append(f"⚠️ **{tot['noshape']} joins could not be checked at all** — the land came back with no "
@@ -130,13 +159,13 @@ def main():
         L.append(f"So the part that looks genuinely wrong is **{tot['swap']} certain + up to {tot['out'] - tot['swap']} "
                  f"to look at**, out of {judged} checkable joins ({100 * tot['out'] / judged:.1f}% at the very worst).")
         L.append('')
-    coarse = [r['st'] for r in fresh if r.get('detail') == '~1.1 km']
+    coarse = [r['st'] for r in fresh if r.get('detail') != '~110 m']
     if coarse:
         L.append(f"_Outline detail matters: {', '.join(coarse)} were checked against outlines smoothed to about "
-                 f"**1.1 km**, so many of their 'just outside' pins are the smoothing, not the join. They are being "
-                 f"redone from ~110 m outlines._")
+                 f"**1.1 km or more**, so many of their 'just outside' pins are the smoothing, not the join._"
+                 + (' _US states are being redone from ~110 m outlines._' if place == 'United States' else ''))
         L.append('')
-    L.append('| State | outline detail | joined | not checkable | just outside | well outside | same-name swap |')
+    L.append(f'| {("Country" if unit == "countries" else unit[:-1].title())} | outline detail | joined | not checkable | just outside | well outside | same-name swap |')
     L.append('|---|---|---|---|---|---|---|')
     for r in sorted(fresh, key=lambda r: -r['out']):
         L.append(f"| {r['st']} | {r.get('detail')} | {r['matched']} | {r['noshape']} | {r['edge']} | {r['out']} | {r['swap']} |")
@@ -158,16 +187,8 @@ def main():
             L.append(f"- {ref} {n} ({st}) → {joined}")
         L.append('')
         L.append('</details>')
-    body = '\n'.join(L)
-
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({'totals': tot, 'states': states,
-                               'swaps': [list(x) for x in swaps], 'well_outside': [list(x) for x in outs]},
-                              indent=1) + '\n', encoding='utf-8')
-    notice(f"{len(states)} states; {tot['noshape']} unmeasurable, {tot['edge']} just outside, "
-           f"{tot['out']} well outside, {tot['swap']} wrong-land-right-name")
-
-    _publish(body)
+    L.append('')
+    return L
 
 
 def _publish(body):

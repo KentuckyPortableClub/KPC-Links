@@ -26,7 +26,7 @@ def _load(script, stop):
     return m
 
 
-def failures(verbose=False, groups=('us_names', 'alerts', 'world_names')):
+def failures(verbose=False, groups=('us_names', 'alerts', 'world_names', 'ca_names')):
     out = []
     say = print if verbose else (lambda *a, **k: None)
 
@@ -65,6 +65,12 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names')):
         ok = got == c['same']
         say(('ok   ' if ok else 'FAIL ') + f"{c['cc']:4s} {c['a']!r} vs {c['b']!r}: {'same' if got else 'different'}")
         if not ok: out.append(f"{c['cc']} names: {c['a']!r} vs {c['b']!r} should be {'same' if c['same'] else 'different'} — {c['why']}")
+    ca = _load('kpc_ca_key.py', '\nrecs = cload()') if 'ca_names' in groups else None
+    for c in (CASES.get('ca_names', []) if ca else []):
+        got = bool(ca.same_name(c['a'], c['b']))
+        ok = got == c['same']
+        say(('ok   ' if ok else 'FAIL ') + f"CA   {c['a']!r} vs {c['b']!r}: {'same' if got else 'different'}")
+        if not ok: out.append(f"CA names: {c['a']!r} vs {c['b']!r} should be {'same' if c['same'] else 'different'} — {c['why']}")
     # the shared module must read BOTH ways an outline is kept: an ArcGIS geometry (US, Canada) and a bare list of
     # rings (world). Oct 22: reading only the first silently switched the world's shadow scoring off for every country
     if 'us_names' in groups:
@@ -80,7 +86,7 @@ def failures(verbose=False, groups=('us_names', 'alerts', 'world_names')):
 
 if __name__ == '__main__':
     bad = failures(verbose=True)
-    n = sum(len(CASES.get(k, [])) for k in ('us_names', 'shadow_names', 'alerts', 'world_names'))
+    n = sum(len(CASES.get(k, [])) for k in ('us_names', 'shadow_names', 'alerts', 'world_names', 'ca_names'))
     print(f"\n{n - len(bad)} of {n} golden cases right.")
     for b in bad:
         print('  ✗ ' + b)

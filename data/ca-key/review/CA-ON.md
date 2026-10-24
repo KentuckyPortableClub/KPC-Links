@@ -1,9 +1,10 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built 2026-10-22 by `.github/scripts/kpc_ca_key.py`. **795 of 1158** joined (same name + same kind). **0** to check, **332** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **794 of 1158** joined (same name + same kind). **1** to check, **332** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
+- **CA-5111** Oak Ridges Corridor Conservation Reserve (Conservation Reserve) → Oak Ridges Corridor Park East (~368 ac, similar name); Oak Ridges East (~66 ac, similar name); Oak Ridges Meadow (~10 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 

@@ -254,10 +254,30 @@ def kinds(cc, s): s = flat(s) + ' ' + str(s or ''); return {k for k, r in KINDS[
 def codes(s): return set(re.findall(r'\b[a-z]\d{1,4}\b', flat(s)))
 
 
+# Oct 24: Upper / Lower / North / South / East / West tell two halves of one place apart (the US key's Oct 22 rule,
+# where Upper AND Lower White Oak Lake had both joined the one White Oak Lake State Park). Ported with the words of
+# each language, grouped so that POTA's English 'North X' still meets the map's 'Nord X'. Words that mean something
+# else in a language are left out of it: French 'sur' is 'on' (Villeneuve-sur-Lot), not Spanish 'south'. Japanese is
+# skipped: kita / minami sit inside ordinary place names (Kitakyushu) and norm() removes the spaces there anyway.
+SIDEW = {'n': 'north northern nord nordre norra noord norte nordlich polnocny severni severny', 's': 'south southern sud sondre sodra zuid sul sur meridionale sudlich poludniowy jizni juzny',
+         'e': 'east eastern est ost ostre ostra oost este leste oriental ostlich wschodni vychodni', 'w': 'west western ouest vestre vastra oeste occidental westlich zachodni zapadni',
+         'u': 'upper ober obere oberer haut haute alto alta gorny horni ovre ylinen', 'l': 'lower unter untere unterer bas basse bajo baja basso bassa dolny dolni nedre alinen', 'm': 'middle mittel mittlere'}
+SIDE = {w: k for k, ws in SIDEW.items() for w in ws.split()}
+SIDE_NOT = {'FR': {'sur'}, 'CH': {'sur'}, 'BE': {'sur'}, 'LU': {'sur'},   # French-speaking countries: 'sur' is a preposition, not a side
+            'NO': {'alta', 'alto'}, 'SE': {'alta', 'alto'}, 'FI': {'alta', 'alto'}, 'DK': {'alta', 'alto'}}   # Alta is a Norwegian town
+
+
+def _side(cc, s):
+    if cc == 'JP': return set()
+    skip = SIDE_NOT.get(cc, set())
+    return {SIDE[w] for w in re.split(r'[\s/\-–,]+', re.sub(r'\(.*?\)', ' ', flat(s))) if w in SIDE and w not in skip}   # 'Dzawadi/Upper' splits; bracket text is not a side
+
+
 def same_name(cc, a, b):
     if cc == 'AU':
         ca, cb = codes(a), codes(b)
         if ca and cb and not (ca & cb): return False      # 'Nullan I106' is not 'Nullan I108' (Oct 18 review)
+    if _side(cc, a) != _side(cc, b): return False       # Oct 24: Upper White Oak Lake is not White Oak Lake
     a, b = norm(cc, a), norm(cc, b)
     if not a or not b: return False
     if a == b: return True
@@ -736,6 +756,35 @@ for cc in COUNTRIES:
                      for r in holds[:1]]
                 parks[ref] = {'n': name, 't': typ, 'm': m, 'c': []}
                 continue
+        # PIN + NAME WORDS, every country (Oct 24, step 3 of the Oct 22 plan: 'extend PIN_JOIN past Japan'). The pin
+        # alone is too blunt outside Japan (it finds the forest around a small park), but the pin inside an area
+        # whose name AGREES with the park's - the same name with a kind word in the way ('Aston Rowant SAC Conservation
+        # Reserve' / Aston Rowant SSSI), or one name's words inside the other's ('Pfälzerwald Nature Park' /
+        # 'Pfälzerwald-Nordvogesen', 'Roc de Chere Biological Reserve' / 'Roc De Chère') - is the shared scoring's
+        # commonest 'would add' verdict (FR 225, GB 210, DE 62, CH 14 on the Oct 22 keys) and reads right by hand.
+        # Only when every such holder is one and the same place. The website labels these Approximate (how text has
+        # no 'name' at the front), so a wrong one is never shown as official.
+        if not m and la is not None and NAME_JOIN:
+            w1 = words(cc, name)
+            def agrees(r):
+                for q in cand:
+                    if same_name(cc, q, r['n']): return 'same name'
+                w2 = words(cc, r['n'])
+                if w1 and w2 and len(w1 & w2) >= 1 and (w1 <= w2 or w2 <= w1) and max(len(w1), len(w2)) >= 2: return 'shared name words'
+                return None
+            holds = [(r, agrees(r)) for r in nearby(la, lo) if r['n'] and near(la, lo, r['_bb'], 0) and inside(la, lo, r['_r'])]
+            # shared WORDS must not hand a small park the whole region around it ('Cape Cornwall Historic Site' is
+            # not the Cornwall National Landscape; 'South Dartmoor Woods' is not Dartmoor National Park): a holder of a
+            # big-area kind, or wider than about 50 km, only joins on the full name or when the park is that kind too
+            BIGK = {'np', 'qnp', 'aonb', 'lsg', 'lp', 'nat', 'br'}
+            def big(r): b = r['_bb']; return bool(r['_k'] & BIGK) or (b and (b[2] - b[0] > .5 or b[3] - b[1] > .5))
+            holds = [(r, how) for r, how in holds if how and not (how == 'shared name words' and big(r) and not (kp & BIGK))]
+            if holds and len({norm(cc, r['n']) for r, _ in holds}) == 1:
+                if cc in EU:   # a Natura 2000 site and a national area of one name both hold the pin: the park's own kind decides
+                    fit = [(r, how) for r, how in holds if ('n2k' in kp) == ('n2k' in r['_k'])]; holds = fit or holds
+                m = [[r['id'], r['n'], r['src'], 'pin inside + ' + how] for r, how in holds]
+                parks[ref] = {'n': name, 't': typ, 'm': m, 'c': []}
+                continue
         if not m and la is not None:
             for r in nearby(la, lo):
                 if not near(la, lo, r['_bb'], .03) or not r['n']: continue
@@ -759,6 +808,35 @@ for cc in COUNTRIES:
                 m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name)'] for x in sn]
                 c = [x for x in c if x not in sn]
         parks[ref] = {'n': name, 't': typ, 'm': m, 'c': c}
+    # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) A name can match and still
+    # be the wrong place, so: does the park's own pin fall inside the land it was joined to? Sorted the same three
+    # ways as the US ('no shape to check against' = the check is blind, not the join; 'edge' = within about a mile;
+    # 'well outside'), plus 'swap' = ANOTHER area with the SAME NAME does contain the pin, the one case that is a
+    # wrong join with the right land already found. Recorded, never acted on; kpc_boundary_report.py reads it.
+    # Outlines here are thinned (THIN_N points a ring), so 'edge' is wider than in the US and means less.
+    try:
+        RID = {(r['src'], r['id']): r for r in recs}
+        for ref, pk in parks.items():
+            mm = pk.get('m') or []
+            la, lo = P[ref][5], P[ref][6]
+            if not mm or not la and not lo: continue
+            mine = [RID.get((x[2], x[0])) for x in mm]
+            mine = [r for r in mine if r]
+            shaped = [r for r in mine if r.get('_r')]
+            if any(inside(la, lo, r['_r']) for r in shaped): continue
+            pk['far'] = ('no shape to check against' if not shaped else
+                         'edge' if any(near(la, lo, r['_bb'], .02) for r in shaped) else 'well outside')
+            if shaped:
+                jn = {norm(cc, x[1]) for x in mm if x[1]}
+                mids = {(x[2], x[0]) for x in mm}
+                # a DIFFERENT place of the same name: its land must not overlap the joined land (the same site listed
+                # in two layers, SSSI and NNR say, is not a swap - the thinned NNR ring just missed the pin)
+                def apart(b): return all(b[2] < r['_bb'][0] or b[0] > r['_bb'][2] or b[3] < r['_bb'][1] or b[1] > r['_bb'][3] for r in shaped if r['_bb'])
+                swap = [r for r in nearby(la, lo) if norm(cc, r['n']) in jn and (r['src'], r['id']) not in mids
+                        and r.get('_r') and near(la, lo, r['_bb'], 0) and apart(r['_bb']) and inside(la, lo, r['_r'])]
+                if swap: pk['swap'] = [[r['id'], r['n'], r['src']] for r in swap[:2]]
+    except Exception as e:  # noqa: BLE001
+        notice(f'World key {cc}', f'boundary check stopped: {type(e).__name__}: {str(e)[:200]}')
     # SHADOW (Oct 22): the shared scoring's verdict for each park, written down ONLY where it disagrees with the join
     # above. Nothing it says changes a join. Names are read this script's way (each country's generic words, Baltic
     # endings, Japanese via romaji and the Wikidata bridge); kpc_match weighs the facts as it does for the US. PIN_JOIN
@@ -809,6 +887,10 @@ for cc in COUNTRIES:
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
            'none': sum(1 for p in parks.values() if not p['m'] and not p['c']), 'areas': len(recs),
            'detail': (WMETA.get(cc) or (DETAIL, THIN_N))[0], 'thin': (WMETA.get(cc) or (DETAIL, THIN_N))[1],
+           'pin_outside': sum(1 for p in parks.values() if p.get('far')),
+           'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside'),
+           'pin_no_shape': sum(1 for p in parks.values() if p.get('far') == 'no shape to check against'),
+           'pin_swap': sum(1 for p in parks.values() if p.get('swap')),
            'shadow_demote': sum(1 for p in parks.values() if p['m'] and (p.get('shadow') or {}).get('v') in ('check', 'none')),
            'shadow_add': sum(1 for p in parks.values() if not p['m'] and (p.get('shadow') or {}).get('v') == 'join'),
            'shadow_other_place': sum(1 for p in parks.values() if p['m'] and (p.get('shadow') or {}).get('v') == 'join')}
@@ -858,7 +940,8 @@ for cc in COUNTRIES:
     L += ['', '## Nothing found', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c']]
     (OUT / 'review' / f'{cc}.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
     idx[cc] = cnt
-    notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read)")
+    notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read); "
+                              f"pin outside the joined land: {cnt['pin_outside']} ({cnt['pin_no_shape']} unmeasurable, {cnt['pin_well_outside']} well outside, {cnt['pin_swap']} same-name swap)")
     json.dump({'updated': time.strftime('%Y-%m-%d'), 'countries': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")

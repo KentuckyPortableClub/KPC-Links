@@ -54,6 +54,18 @@
    "b": "Taylorsville Lake",
    "same": true,
    "why": "The club's campout park; the plainest case there is."
+  },
+  {
+   "a": "400 State Trail",
+   "b": "The 400 State Trail",
+   "same": true,
+   "why": "Oct 24: a leading 'The' is not a type word; the Oct 22 keep-the-first-word rule must not keep it."
+  },
+  {
+   "a": "Upper White Oak Lake State Park",
+   "b": "White Oak Lake State Park",
+   "same": false,
+   "why": "Oct 22: Upper / Lower halves are different places (kept as a case for the world + Canada ports too)."
   }
  ],
  "alerts": [
@@ -102,6 +114,41 @@
    "b": "Mecklenburgisches Elbetal",
    "same": true,
    "why": "Same, German."
+  },
+  {
+   "cc": "DE",
+   "a": "Nordvogesen Nature Park",
+   "b": "Pfalzerwald-Nordvogesen",
+   "same": false,
+   "why": "Oct 24: not the same name (only a shared word); the pin rule handles these."
+  },
+  {
+   "cc": "FR",
+   "a": "Foret du Nord Biological Reserve",
+   "b": "Foret du Sud",
+   "same": false,
+   "why": "Oct 24 side words: nord is not sud."
+  },
+  {
+   "cc": "GB",
+   "a": "Seaton Valley Country Park",
+   "b": "SEATON VALLEY NORTH",
+   "same": false,
+   "why": "Oct 24 side words: the north half is not the whole."
+  },
+  {
+   "cc": "FR",
+   "a": "Villeneuve-sur-Lot Biological Reserve",
+   "b": "Villeneuve sur Lot",
+   "same": true,
+   "why": "Oct 24: French 'sur' is 'on', not a side word."
+  },
+  {
+   "cc": "NO",
+   "a": "Alta Naturreservat",
+   "b": "Alta",
+   "same": true,
+   "why": "Oct 24: Alta is a Norwegian town, not 'upper'."
   }
  ],
  "shadow_names": [
@@ -167,6 +214,26 @@
    "same": false,
    "clash": true,
    "why": "Oct 22 review: NY state forest and Forest Preserve 'wild forest' are different land."
+  }
+ ],
+ "ca_names": [
+  {
+   "a": "Upper Canada Village National Historic Site",
+   "b": "Upper Canada",
+   "same": true,
+   "why": "Oct 24: both carry Upper."
+  },
+  {
+   "a": "North Beach Provincial Park",
+   "b": "South Beach Provincial Park",
+   "same": false,
+   "why": "Oct 24 side words."
+  },
+  {
+   "a": "Saint-Jean-sur-Richelieu Historic Site",
+   "b": "Saint-Jean-sur-Richelieu",
+   "same": true,
+   "why": "Oct 24: French 'sur' is not a side."
   }
  ]
 }

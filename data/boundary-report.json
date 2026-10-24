@@ -1,1612 +1,3196 @@
 {
- "totals": {
-  "matched": 8399,
-  "far": 2243,
-  "noshape": 0,
-  "edge": 2056,
-  "out": 187,
-  "swap": 5
+ "United States": {
+  "totals": {
+   "matched": 8399,
+   "far": 2243,
+   "noshape": 0,
+   "edge": 2056,
+   "out": 187,
+   "swap": 5
+  },
+  "states": [
+   {
+    "st": "AK",
+    "matched": 74,
+    "far": 25,
+    "noshape": 0,
+    "out": 5,
+    "swap": 1,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 20
+   },
+   {
+    "st": "AL",
+    "matched": 109,
+    "far": 42,
+    "noshape": 0,
+    "out": 8,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 34
+   },
+   {
+    "st": "AR",
+    "matched": 213,
+    "far": 79,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 77
+   },
+   {
+    "st": "AZ",
+    "matched": 90,
+    "far": 21,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 17
+   },
+   {
+    "st": "CA",
+    "matched": 371,
+    "far": 110,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 107
+   },
+   {
+    "st": "CO",
+    "matched": 255,
+    "far": 123,
+    "noshape": 0,
+    "out": 14,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 109
+   },
+   {
+    "st": "CT",
+    "matched": 118,
+    "far": 49,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 44
+   },
+   {
+    "st": "DC",
+    "matched": 24,
+    "far": 9,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 8
+   },
+   {
+    "st": "DE",
+    "matched": 70,
+    "far": 29,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 29
+   },
+   {
+    "st": "FL",
+    "matched": 387,
+    "far": 64,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 59
+   },
+   {
+    "st": "GA",
+    "matched": 210,
+    "far": 31,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 31
+   },
+   {
+    "st": "HI",
+    "matched": 78,
+    "far": 31,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 28
+   },
+   {
+    "st": "IA",
+    "matched": 167,
+    "far": 37,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 35
+   },
+   {
+    "st": "ID",
+    "matched": 148,
+    "far": 44,
+    "noshape": 0,
+    "out": 11,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 33
+   },
+   {
+    "st": "IL",
+    "matched": 163,
+    "far": 45,
+    "noshape": 0,
+    "out": 6,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 39
+   },
+   {
+    "st": "IN",
+    "matched": 205,
+    "far": 39,
+    "noshape": 0,
+    "out": 3,
+    "swap": 1,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 36
+   },
+   {
+    "st": "KS",
+    "matched": 97,
+    "far": 13,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 13
+   },
+   {
+    "st": "LA",
+    "matched": 108,
+    "far": 17,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 16
+   },
+   {
+    "st": "MA",
+    "matched": 393,
+    "far": 153,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 149
+   },
+   {
+    "st": "MD",
+    "matched": 152,
+    "far": 31,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 27
+   },
+   {
+    "st": "ME",
+    "matched": 136,
+    "far": 42,
+    "noshape": 0,
+    "out": 1,
+    "swap": 1,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 41
+   },
+   {
+    "st": "MI",
+    "matched": 286,
+    "far": 50,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 46
+   },
+   {
+    "st": "MN",
+    "matched": 223,
+    "far": 45,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 40
+   },
+   {
+    "st": "MO",
+    "matched": 535,
+    "far": 85,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 85
+   },
+   {
+    "st": "MS",
+    "matched": 88,
+    "far": 30,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 29
+   },
+   {
+    "st": "MT",
+    "matched": 222,
+    "far": 47,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 46
+   },
+   {
+    "st": "NC",
+    "matched": 212,
+    "far": 75,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 71
+   },
+   {
+    "st": "ND",
+    "matched": 98,
+    "far": 30,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 29
+   },
+   {
+    "st": "NE",
+    "matched": 159,
+    "far": 18,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 17
+   },
+   {
+    "st": "NH",
+    "matched": 187,
+    "far": 90,
+    "noshape": 0,
+    "out": 9,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 81
+   },
+   {
+    "st": "NJ",
+    "matched": 121,
+    "far": 33,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 31
+   },
+   {
+    "st": "NM",
+    "matched": 92,
+    "far": 24,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 24
+   },
+   {
+    "st": "NV",
+    "matched": 207,
+    "far": 80,
+    "noshape": 0,
+    "out": 21,
+    "swap": 1,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 59
+   },
+   {
+    "st": "NY",
+    "matched": 819,
+    "far": 148,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 143
+   },
+   {
+    "st": "OH",
+    "matched": 244,
+    "far": 65,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 60
+   },
+   {
+    "st": "OK",
+    "matched": 139,
+    "far": 45,
+    "noshape": 0,
+    "out": 9,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 36
+   },
+   {
+    "st": "OR",
+    "matched": 350,
+    "far": 74,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 71
+   },
+   {
+    "st": "SC",
+    "matched": 149,
+    "far": 51,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 51
+   },
+   {
+    "st": "TX",
+    "matched": 192,
+    "far": 67,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 66
+   },
+   {
+    "st": "UT",
+    "matched": 336,
+    "far": 82,
+    "noshape": 0,
+    "out": 19,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 63
+   },
+   {
+    "st": "WY",
+    "matched": 172,
+    "far": 70,
+    "noshape": 0,
+    "out": 14,
+    "swap": 1,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 56
+   }
+  ],
+  "swaps": [
+   [
+    "AK",
+    "US-10281",
+    "White Mountains National Recreation Area BLM Recreation Management Area",
+    "White Mountains SRMA",
+    "Eastern Interior Field Office"
+   ],
+   [
+    "IN",
+    "US-4178",
+    "Lost Bridge on Salamonie Lake State Recreation Area",
+    "Salamonie Lake",
+    "Salamonie Lake"
+   ],
+   [
+    "ME",
+    "US-2399",
+    "Owls Head State Park",
+    "Owls Head Light",
+    "Owls Head Light"
+   ],
+   [
+    "NV",
+    "US-13139",
+    "Muddy Mountains BLM Herd Management Area",
+    "Muddy Mountains",
+    "Muddy Mountains"
+   ],
+   [
+    "WY",
+    "US-6171",
+    "Adobe Town BLM Herd Management Area",
+    "Adobe Town",
+    "Adobe Town"
+   ]
+  ],
+  "well_outside": [
+   [
+    "AK",
+    "US-0150",
+    "Kodiak National Wildlife Refuge",
+    "Kodiak National Wildlife Refuge"
+   ],
+   [
+    "AK",
+    "US-0909",
+    "Cape Krusenstern National Monument",
+    "Cape Krusenstern National Monument"
+   ],
+   [
+    "AK",
+    "US-7193",
+    "Caines Head State Recreation Area",
+    "Caines Head State Recreation Area"
+   ],
+   [
+    "AK",
+    "US-9701",
+    "Palmer Hay Flats Wildlife Refuge",
+    "Palmer Hay Flats State Game Refuge"
+   ],
+   [
+    "AL",
+    "US-0384",
+    "Grand Bay National Wildlife Refuge",
+    "Grand Bay National Wildlife Refuge"
+   ],
+   [
+    "AL",
+    "US-0642",
+    "Natchez Trace Parkway National Parkway",
+    "Natchez Trace Parkway"
+   ],
+   [
+    "AL",
+    "US-12996",
+    "Fowl River Access Site BLM Recreation Management Area",
+    "Fowl River"
+   ],
+   [
+    "AL",
+    "US-3690",
+    "Geneva State Forest Wildlife Management Area",
+    "Geneva State Forest"
+   ],
+   [
+    "AL",
+    "US-3701",
+    "Pike County Pocosin Complex State Fish and Wildlife Area",
+    "Pike County Pocosin Complex"
+   ],
+   [
+    "AL",
+    "US-9874",
+    "Mud Creek Management Area",
+    "Mud Creek Management Area"
+   ],
+   [
+    "AL",
+    "US-9875",
+    "Raccoon Creek Management Area",
+    "Raccoon Creek Wildlife Management Area"
+   ],
+   [
+    "AL",
+    "US-9876",
+    "Crow Creek Management Area",
+    "Crow Creek"
+   ],
+   [
+    "AR",
+    "US-7271",
+    "Camp Robinson Wildlife Management Area",
+    "Camp Robinson WMA"
+   ],
+   [
+    "AR",
+    "US-7274",
+    "Cedar Creek Wildlife Management Area",
+    "Cedar Creek WMA"
+   ],
+   [
+    "AZ",
+    "US-0176",
+    "Imperial National Wildlife Refuge",
+    "Imperial National Wildlife Refuge"
+   ],
+   [
+    "AZ",
+    "US-0676",
+    "Lake Mead National Recreation Area",
+    "Lake Mead National Recreation Area"
+   ],
+   [
+    "AZ",
+    "US-11943",
+    "Sonoita Creek State Natural Area",
+    "Sonoita Creek Natural Area"
+   ],
+   [
+    "AZ",
+    "US-6090",
+    "Beaver Dam Mountain Wilderness Area",
+    "Beaver Dam Mountains"
+   ],
+   [
+    "CA",
+    "US-0203",
+    "North Central Valley Wildlife Management Area",
+    "North Central Valley Wildlife Management Area"
+   ],
+   [
+    "CA",
+    "US-0211",
+    "San Luis National Wildlife Refuge",
+    "San Luis National Wildlife Refuge"
+   ],
+   [
+    "CA",
+    "US-3523",
+    "Oceano Dunes State Recreation Area",
+    "Oceano Dunes State Vehicular Recreation Area"
+   ],
+   [
+    "CO",
+    "US-0185",
+    "Hugo State Wildlife Area",
+    "Hugo SWA"
+   ],
+   [
+    "CO",
+    "US-0191",
+    "Brush Hollow State Wildlife Area",
+    "Brush Hollow SWA"
+   ],
+   [
+    "CO",
+    "US-0652",
+    "Curecanti National Recreation Area",
+    "Curecanti National Recreation Area"
+   ],
+   [
+    "CO",
+    "US-0943",
+    "Hovenweep National Monument",
+    "Hovenweep National Monument"
+   ],
+   [
+    "CO",
+    "US-12185",
+    "Grand Junction: West Lake State Wildlife Area",
+    "West Lake State Wildlife Area"
+   ],
+   [
+    "CO",
+    "US-1249",
+    "Vega State Park",
+    "Vega State Park"
+   ],
+   [
+    "CO",
+    "US-9594",
+    "Gunnison Gorge BLM National Conservation Area",
+    "Gunnison Gorge National Conservation Area"
+   ],
+   [
+    "CO",
+    "US-9605",
+    "Alma State Wildlife Area",
+    "Alma State Wildlife Area"
+   ],
+   [
+    "CO",
+    "US-9620",
+    "Bodo State Wildlife Area",
+    "Bodo SWA"
+   ],
+   [
+    "CO",
+    "US-9622",
+    "Bosque Del Oso State Wildlife Area",
+    "Bosque del Oso SWA"
+   ],
+   [
+    "CO",
+    "US-9631",
+    "Coalbed Canyon State Wildlife Area",
+    "Coalbed Canyon SWA"
+   ],
+   [
+    "CO",
+    "US-9632",
+    "Cochetopa State Wildlife Area",
+    "Cochetopa SWA"
+   ],
+   [
+    "CO",
+    "US-9635",
+    "Colorow Mountain State Wildlife Area",
+    "Colorow Mountain SWA"
+   ],
+   [
+    "CO",
+    "US-9638",
+    "Dan Noble State Wildlife Area",
+    "Dan Noble SWA - Greager Tract"
+   ],
+   [
+    "CT",
+    "US-1658",
+    "Connecticut Valley Railroad State Park",
+    "Connecticut Valley Railroad State Park Trail"
+   ],
+   [
+    "CT",
+    "US-1696",
+    "Mianus River State Park",
+    "Mianus River State Park Scenic Reserve"
+   ],
+   [
+    "CT",
+    "US-1727",
+    "West Rock Ridge State Park",
+    "West Rock State Park"
+   ],
+   [
+    "CT",
+    "US-7528",
+    "Air Line State Trail",
+    "Air Line State Park Trail"
+   ],
+   [
+    "CT",
+    "US-7530",
+    "Centennial Watershed State Forest",
+    "Centennial Watershed State Forest"
+   ],
+   [
+    "DC",
+    "US-0670",
+    "George Washington Memorial Parkway",
+    "George Washington Memorial Parkway"
+   ],
+   [
+    "FL",
+    "US-0249",
+    "Merritt Island National Wildlife Refuge",
+    "Merritt Island National Wildlife Refuge"
+   ],
+   [
+    "FL",
+    "US-10551",
+    "Falling Creek State Conservation Area",
+    "Falling Creek Park"
+   ],
+   [
+    "FL",
+    "US-3660",
+    "Suwannee River Wilderness State Trail",
+    "Suwannee River Wilderness State Trail"
+   ],
+   [
+    "FL",
+    "US-6318",
+    "Okaloacoochee Slough Wildlife Management Area",
+    "Okaloacoochee Slough Wildlife Management Area"
+   ],
+   [
+    "FL",
+    "US-8679",
+    "Devil's Hammock State Conservation Area",
+    "Devil's Hammock"
+   ],
+   [
+    "HI",
+    "US-0043",
+    "Kalaupapa National Historical Park",
+    "Kalaupapa National Historical Park"
+   ],
+   [
+    "HI",
+    "US-10904",
+    "\u02bbEwa Forest Reserve",
+    "\u2018Ewa Forest Reserve (Helemano Section)"
+   ],
+   [
+    "HI",
+    "US-10910",
+    "Waimanalo Forest Reserve",
+    "Waimanalo Forest Reserve"
+   ],
+   [
+    "IA",
+    "US-4236",
+    "Upper Mississippi River National Wildlife Refuge",
+    "Upper Mississippi River National Wildlife And Fish Refuge"
+   ],
+   [
+    "IA",
+    "US-9317",
+    "Harrier Marsh Wildlife Management Area",
+    "Harrier Marsh Wildlife Management Area"
+   ],
+   [
+    "ID",
+    "US-0070",
+    "Yellowstone National Park",
+    "Yellowstone National Park"
+   ],
+   [
+    "ID",
+    "US-11258",
+    "Mormon Reservoir State Fishing Lake",
+    "Mormon Reservoir Access Site"
+   ],
+   [
+    "ID",
+    "US-11463",
+    "Murtaugh Lake Reservoir State Fishing Lake",
+    "Murtaugh Lake Access Site"
+   ],
+   [
+    "ID",
+    "US-13296",
+    "Upper Salmon River Access BLM Recreation Management Area",
+    "Upper Salmon River"
+   ],
+   [
+    "ID",
+    "US-2228",
+    "Bear Lake State Park",
+    "Bear Lake State Park"
+   ],
+   [
+    "ID",
+    "US-2242",
+    "Lucky Peak State Park",
+    "Lucky Peak State Park"
+   ],
+   [
+    "ID",
+    "US-4387",
+    "Wallowa-Whitman National Forest",
+    "Nezperce National Forest"
+   ],
+   [
+    "ID",
+    "US-4398",
+    "Uinta-Wasatch-Cache National Forest",
+    "Cache National Forest"
+   ],
+   [
+    "ID",
+    "US-4505",
+    "Kootenai National Forest",
+    "Kootenai National Forest"
+   ],
+   [
+    "ID",
+    "US-5599",
+    "CJ Strike Wildlife Management Area",
+    "C. J. Strike Wildlife Management Area"
+   ],
+   [
+    "ID",
+    "US-5616",
+    "Red River Wildlife Management Area",
+    "Red River Wildlife Management Area"
+   ],
+   [
+    "IL",
+    "US-0272",
+    "Port Louisa National Wildlife Refuge",
+    "Port Louisa National Wildlife Refuge"
+   ],
+   [
+    "IL",
+    "US-1015",
+    "Pere Marquette State Park",
+    "Pere Marquette State Park"
+   ],
+   [
+    "IL",
+    "US-12110",
+    "Rend Lake State Fish and Wildlife Area",
+    "Rend Lake"
+   ],
+   [
+    "IL",
+    "US-12184",
+    "Heidecke Lake State Fish and Wildlife Area",
+    "Heidecke Lake State Fish and Wildlife Area"
+   ],
+   [
+    "IL",
+    "US-4093",
+    "Clinton Lake State Recreation Area",
+    "Clinton State Recreation Area"
+   ],
+   [
+    "IL",
+    "US-4114",
+    "Carlyle Lake State Fish and Wildlife Area",
+    "Carlyle Lake State Fish and Wildlife Area"
+   ],
+   [
+    "IN",
+    "US-10231",
+    "Limberlost Swamp State Nature Preserve",
+    "Limberlost Nature Preserve"
+   ],
+   [
+    "IN",
+    "US-10237",
+    "Mongoquinong State Nature Preserve",
+    "Mongoquinong Nature Preserve Sawmill Fen"
+   ],
+   [
+    "IN",
+    "US-4162",
+    "Mounds on Brookville Lake State Recreation Area",
+    "Brookville Lake Public Fishing Area"
+   ],
+   [
+    "LA",
+    "US-0723",
+    "Vicksburg National Military Park",
+    "Vicksburg National Military Park"
+   ],
+   [
+    "MA",
+    "US-11401",
+    "Cummington Wildlife Management Area",
+    "Cummington Wildlife Management Area"
+   ],
+   [
+    "MA",
+    "US-11631",
+    "Hartley Reservoir Wildlife Management Area",
+    "Hartley Reservoir Wildlife Management Area"
+   ],
+   [
+    "MA",
+    "US-8394",
+    "Ashuwillticook Rail Trail State Trail",
+    "Ashuwillticook Rail Trail"
+   ],
+   [
+    "MA",
+    "US-8398",
+    "Southern New England Trunkline Trail State Trail",
+    "Southern New England Trunkline Trail"
+   ],
+   [
+    "MD",
+    "US-10784",
+    "Deep Creek Lake Natural Resource Management Area",
+    "Deep Creek Lake Natural Resource Management Area"
+   ],
+   [
+    "MD",
+    "US-4365",
+    "North Point Battlefield State Park",
+    "North Point State Park"
+   ],
+   [
+    "MD",
+    "US-7749",
+    "Pocomoke Sound Wildlife Management Area",
+    "Pocomoke Sound Wma"
+   ],
+   [
+    "MD",
+    "US-7760",
+    "Nanjemoy Creek Wildlife Management Area",
+    "Nanjemoy Wma"
+   ],
+   [
+    "ME",
+    "US-0450",
+    "Lake Umbagog National Wildlife Refuge",
+    "Umbagog National Wildlife Refuge"
+   ],
+   [
+    "MI",
+    "US-10717",
+    "Sylvania Wilderness Area",
+    "Sylvania Wilderness"
+   ],
+   [
+    "MI",
+    "US-1550",
+    "Van Buren Trail State Park",
+    "Van Buren Trail State Park"
+   ],
+   [
+    "MI",
+    "US-3313",
+    "Holly State Recreation Area",
+    "Holly State Recreation Area"
+   ],
+   [
+    "MI",
+    "US-6804",
+    "Waterloo Unit State Game Land",
+    "Waterloo State Wildlife Area"
+   ],
+   [
+    "MN",
+    "US-0361",
+    "Hamden Slough National Wildlife Refuge",
+    "Hamden Slough National Wildlife Refuge"
+   ],
+   [
+    "MN",
+    "US-11023",
+    "Egret Island SNA State Conservation Area",
+    "Egret Island State Scientific and Natural Area"
+   ],
+   [
+    "MN",
+    "US-12660",
+    "Severance Lake Wildlife Management Area",
+    "Severance Lake State Wildlife Management Area"
+   ],
+   [
+    "MN",
+    "US-13354",
+    "Pelican Lake Wildlife Management Area",
+    "Pelican Lake State Wildlife Management Area"
+   ],
+   [
+    "MN",
+    "US-9387",
+    "Luce Line State Trail",
+    "Luce Line Trail"
+   ],
+   [
+    "MS",
+    "US-0722",
+    "Shiloh National Battlefield",
+    "Shiloh National Military Park"
+   ],
+   [
+    "MT",
+    "US-0070",
+    "Yellowstone National Park",
+    "Yellowstone National Park"
+   ],
+   [
+    "NC",
+    "US-0566",
+    "Great Dismal Swamp National Wildlife Refuge",
+    "Great Dismal Swamp National Wildlife Refuge"
+   ],
+   [
+    "NC",
+    "US-12717",
+    "Deep River State Trail",
+    "Deep River State Trail"
+   ],
+   [
+    "NC",
+    "US-6897",
+    "Croatan State Game Land",
+    "Croatan Game Land"
+   ],
+   [
+    "NC",
+    "US-6916",
+    "Jordan State Game Land",
+    "Jordan Game Land"
+   ],
+   [
+    "ND",
+    "US-7707",
+    "Maclean Bottoms Wildlife Management Area",
+    "MacLean Bottoms"
+   ],
+   [
+    "NE",
+    "US-0675",
+    "Missouri National Recreational River National Wild & Scenic River",
+    "Missouri National Recreational River"
+   ],
+   [
+    "NH",
+    "US-2674",
+    "Pisgah State Park",
+    "Pisgah State Park"
+   ],
+   [
+    "NH",
+    "US-4868",
+    "Annett State Forest",
+    "Annett State Forest"
+   ],
+   [
+    "NH",
+    "US-4886",
+    "Connecticut Lakes State Forest",
+    "Connecticut Lakes State Forest"
+   ],
+   [
+    "NH",
+    "US-4894",
+    "Davis-White State Forest",
+    "Davis-White State Forest"
+   ],
+   [
+    "NH",
+    "US-4926",
+    "Lovewell Mountain State Forest",
+    "Lovewell Mountain State Forest"
+   ],
+   [
+    "NH",
+    "US-4933",
+    "Merrimack River State Forest",
+    "Merrimack River State Forest"
+   ],
+   [
+    "NH",
+    "US-4934",
+    "Merriman State Forest",
+    "Merriman State Forest"
+   ],
+   [
+    "NH",
+    "US-4935",
+    "Mount Major State Forest",
+    "Mount Major State Forest"
+   ],
+   [
+    "NH",
+    "US-8396",
+    "Nashua River Rail Trail State Trail",
+    "Nashua River Rail Trail"
+   ],
+   [
+    "NJ",
+    "US-0680",
+    "Gateway National Recreation Area",
+    "Gateway National Recreation Area"
+   ],
+   [
+    "NJ",
+    "US-8319",
+    "Palisades Interstate Park",
+    "Palisades State Park"
+   ],
+   [
+    "NV",
+    "US-10844",
+    "Diamond BLM Herd Management Area",
+    "Diamond"
+   ],
+   [
+    "NV",
+    "US-11913",
+    "Bad Lands BLM Wilderness Area",
+    "Bad Lands"
+   ],
+   [
+    "NV",
+    "US-13017",
+    "Agusta Mountains BLM Herd Management Area",
+    "Augusta Mountains"
+   ],
+   [
+    "NV",
+    "US-13018",
+    "Black Rock Range East/West BLM Herd Management Area",
+    "Black Rock Range"
+   ],
+   [
+    "NV",
+    "US-13024",
+    "Callaghan BLM Herd Management Area",
+    "Callaghan"
+   ],
+   [
+    "NV",
+    "US-13034",
+    "Goshute BLM Herd Management Area",
+    "Goshute"
+   ],
+   [
+    "NV",
+    "US-13039",
+    "Owyhee River Wilderness Area",
+    "Owyhee River Wilderness"
+   ],
+   [
+    "NV",
+    "US-13048",
+    "Rocky Hills BLM Herd Management Area",
+    "Rocky Hills"
+   ],
+   [
+    "NV",
+    "US-13128",
+    "Jackson Mountains BLM Herd Management Area",
+    "Jackson Mountains"
+   ],
+   [
+    "NV",
+    "US-13130",
+    "Lava Beds BLM Herd Management Area",
+    "Lava Beds"
+   ],
+   [
+    "NV",
+    "US-13132",
+    "Seven Mile BLM Herd Management Area",
+    "Seven Mile"
+   ],
+   [
+    "NV",
+    "US-13134",
+    "Rock Creek BLM Herd Management Area",
+    "Rock Creek"
+   ],
+   [
+    "NV",
+    "US-13138",
+    "Wassuk BLM Herd Management Area",
+    "Wassuk"
+   ],
+   [
+    "NV",
+    "US-13145",
+    "Warm Springs Canyon BLM Herd Management Area",
+    "Warm Springs Canyon"
+   ],
+   [
+    "NV",
+    "US-13194",
+    "Egan Crest Trailhead BLM Recreation Management Area",
+    "Egan Crest Trailhead Recreation Area"
+   ],
+   [
+    "NV",
+    "US-2633",
+    "Lake Tahoe State Park",
+    "Lake Tahoe State Park"
+   ],
+   [
+    "NV",
+    "US-9246",
+    "East Fork High Rock Canyon Wilderness Area",
+    "East Fork High Rock Canyon"
+   ],
+   [
+    "NV",
+    "US-9247",
+    "Eldorado BLM Wilderness Area",
+    "Eldorado"
+   ],
+   [
+    "NV",
+    "US-9258",
+    "Ireteba Peaks BLM Wilderness Area",
+    "Ireteba Peaks"
+   ],
+   [
+    "NV",
+    "US-9273",
+    "North Jackson Mountains Wilderness Area",
+    "North Jackson Mountains"
+   ],
+   [
+    "NY",
+    "US-0456",
+    "Wallkill River National Wildlife Refuge",
+    "Wallkill River National Wildlife Refuge"
+   ],
+   [
+    "NY",
+    "US-10292",
+    "Watson's East Triangle Complex State Preserve",
+    "Watsons East Triangle"
+   ],
+   [
+    "NY",
+    "US-10293",
+    "Raquette Boreal Complex State Preserve",
+    "Raquette Boreal"
+   ],
+   [
+    "NY",
+    "US-8319",
+    "Palisades Interstate Park",
+    "Palisades Interstate Park"
+   ],
+   [
+    "NY",
+    "US-9037",
+    "Allegheny Reservoir Wildlife Management Area",
+    "Allegheny Reservoir Wildlife Management Area"
+   ],
+   [
+    "OH",
+    "US-0732",
+    "Dayton Aviation Heritage National Historical Park",
+    "Dayton Aviation Heritage National Historical Park"
+   ],
+   [
+    "OH",
+    "US-1984",
+    "Portage Lakes State Park",
+    "Portage Lakes State Park"
+   ],
+   [
+    "OH",
+    "US-8114",
+    "East Fork State Wildlife Area",
+    "East Fork Wildlife Area"
+   ],
+   [
+    "OH",
+    "US-9456",
+    "Delaware State Wildlife Area",
+    "Delaware Strine Wildlife Area"
+   ],
+   [
+    "OH",
+    "US-9470",
+    "Jockey Hollow State Wildlife Area",
+    "Jockey Hollow Wildlife Area"
+   ],
+   [
+    "OK",
+    "US-12027",
+    "Altus-Lugert State Fishing Lake",
+    "Altus Lugert Wildlife Management Area"
+   ],
+   [
+    "OK",
+    "US-12028",
+    "Barren Fork Wildlife Management Area",
+    "Barren Fork Wildlife Management Area"
+   ],
+   [
+    "OK",
+    "US-6352",
+    "Honobia Creek Wildlife Management Area",
+    "Honobia Creek Wildlife Management Area"
+   ],
+   [
+    "OK",
+    "US-6353",
+    "Hugo Wildlife Management Area",
+    "Hugo Wildlife Management Area"
+   ],
+   [
+    "OK",
+    "US-6361",
+    "McGee Creek Wildlife Management Area",
+    "McGee Creek Wildlife Management Area"
+   ],
+   [
+    "OK",
+    "US-6365",
+    "Osage Wildlife Management Area",
+    "Osage Wildlife Management Area - Western Wall"
+   ],
+   [
+    "OK",
+    "US-7481",
+    "Rita Blanca National Grassland",
+    "Rita Blanca National Grassland"
+   ],
+   [
+    "OK",
+    "US-7682",
+    "Lake Vanderwork State Fishing Lake",
+    "Lake Vanderwork"
+   ],
+   [
+    "OK",
+    "US-8140",
+    "Gary Sherrer Wildlife Management Area",
+    "Gary Sherrer Wildlife Management Area"
+   ],
+   [
+    "OR",
+    "US-0199",
+    "Lower Klamath National Wildlife Refuge",
+    "Lower Klamath National Wildlife Refuge"
+   ],
+   [
+    "OR",
+    "US-4457",
+    "Klamath National Forest",
+    "Klamath National Forest"
+   ],
+   [
+    "OR",
+    "US-5461",
+    "Tillamook State Forest",
+    "Tillamook State Forest"
+   ],
+   [
+    "TX",
+    "US-7480",
+    "Black Kettle National Grassland",
+    "Black Kettle National Grassland"
+   ],
+   [
+    "UT",
+    "US-0921",
+    "Dinosaur National Monument",
+    "Dinosaur National Monument"
+   ],
+   [
+    "UT",
+    "US-11007",
+    "White River BLM Recreation Management Area",
+    "White River"
+   ],
+   [
+    "UT",
+    "US-11104",
+    "Brigham Face State Wildlife Habitat Management Area",
+    "Brigham Face State Wildlife Area"
+   ],
+   [
+    "UT",
+    "US-11115",
+    "North Fork Virgin River BLM Wild and Scenic River",
+    "North Fork Virgin River"
+   ],
+   [
+    "UT",
+    "US-11194",
+    "Lower Fish Creek Wildlife Management Area",
+    "Lower Fish Creek State Wildlife Area"
+   ],
+   [
+    "UT",
+    "US-11748",
+    "Cedar Mesa BLM Special Recreation Management Area",
+    "Cedar Mesa"
+   ],
+   [
+    "UT",
+    "US-12151",
+    "Point of Pines BLM Special Recreation Management Area",
+    "Point of Pines Campsite 1"
+   ],
+   [
+    "UT",
+    "US-3097",
+    "Yuba State Park",
+    "Yuba State Park"
+   ],
+   [
+    "UT",
+    "US-5758",
+    "Dolores River BLM Recreation Management Area",
+    "Dolores River Canyons"
+   ],
+   [
+    "UT",
+    "US-5782",
+    "Indian Creek BLM Special Recreation Management Area",
+    "Indian Creek"
+   ],
+   [
+    "UT",
+    "US-5789",
+    "Behind the Rocks Wilderness Area",
+    "Behind the Rocks"
+   ],
+   [
+    "UT",
+    "US-5793",
+    "Flaming Gorge National Recreation Area",
+    "Flaming Gorge Reservoir National Recreation Area"
+   ],
+   [
+    "UT",
+    "US-5828",
+    "Dark Canyon BLM Special Recreation Management Area",
+    "Dark Canyon"
+   ],
+   [
+    "UT",
+    "US-5833",
+    "Horseshoe Canyon (North) BLM Wilderness Area",
+    "Horseshoe Canyon (North)"
+   ],
+   [
+    "UT",
+    "US-5869",
+    "9 Mile Canyon BLM Recreation Management Area",
+    "Nine Mile Canyon"
+   ],
+   [
+    "UT",
+    "US-5897",
+    "Lower Last Chance BLM Wilderness Area",
+    "Lower Last Chance"
+   ],
+   [
+    "UT",
+    "US-6007",
+    "Cedar Mountain BLM Herd Management Area",
+    "Cedar Mountain"
+   ],
+   [
+    "UT",
+    "US-6090",
+    "Beaver Dam Mountain Wilderness Area",
+    "Beaver Dam Mountains"
+   ],
+   [
+    "UT",
+    "US-9291",
+    "White Rock Range BLM National Conservation Area",
+    "White Rock Range"
+   ],
+   [
+    "WY",
+    "US-10816",
+    "Saratoga National Fish Hatchery",
+    "Saratoga National Fish Hatchery"
+   ],
+   [
+    "WY",
+    "US-10846",
+    "Boulder Lake BLM Recreation Management Area",
+    "Boulder Lake SRMA"
+   ],
+   [
+    "WY",
+    "US-10890",
+    "Sinks Canyon BLM Recreation Management Area",
+    "Sinks Canyon"
+   ],
+   [
+    "WY",
+    "US-4394",
+    "Ashley National Forest",
+    "Ashley National Forest"
+   ],
+   [
+    "WY",
+    "US-4403",
+    "Medicine Bow - Routt National Forest",
+    "Medicine Bow National Forest"
+   ],
+   [
+    "WY",
+    "US-4475",
+    "Caribou-Targhee National Forest",
+    "Targhee National Forest"
+   ],
+   [
+    "WY",
+    "US-4524",
+    "Black Hills National Forest",
+    "Black Hills National Forest"
+   ],
+   [
+    "WY",
+    "US-5793",
+    "Flaming Gorge National Recreation Area",
+    "Flaming Gorge Reservoir National Recreation Area"
+   ],
+   [
+    "WY",
+    "US-6135",
+    "Pennock Mountain Wildlife Management Area",
+    "Pennock Mountain Wildlife Habitat Management Area"
+   ],
+   [
+    "WY",
+    "US-6196",
+    "Rock Springs BLM Herd Management Area",
+    "Rock Spring"
+   ],
+   [
+    "WY",
+    "US-6197",
+    "Popo Agie Wilderness Area",
+    "Popo Agie Wilderness"
+   ],
+   [
+    "WY",
+    "US-6202",
+    "North Absaroka Wilderness Area",
+    "North Absaroka Wilderness"
+   ],
+   [
+    "WY",
+    "US-6204",
+    "Little Colorado BLM Herd Management Area",
+    "Little Colorado"
+   ],
+   [
+    "WY",
+    "US-6218",
+    "Boulder Lake BLM Recreation Management Area",
+    "Boulder Lake SRMA"
+   ]
+  ]
  },
- "states": [
-  {
-   "st": "AK",
-   "matched": 74,
-   "far": 25,
+ "Canada": {
+  "totals": {
+   "matched": 3949,
+   "far": 982,
    "noshape": 0,
-   "out": 5,
-   "swap": 1,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 20
+   "edge": 810,
+   "out": 172,
+   "swap": 2
   },
-  {
-   "st": "AL",
-   "matched": 109,
-   "far": 42,
-   "noshape": 0,
-   "out": 8,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 34
-  },
-  {
-   "st": "AR",
-   "matched": 213,
-   "far": 79,
-   "noshape": 0,
-   "out": 2,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 77
-  },
-  {
-   "st": "AZ",
-   "matched": 90,
-   "far": 21,
-   "noshape": 0,
-   "out": 4,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 17
-  },
-  {
-   "st": "CA",
-   "matched": 371,
-   "far": 110,
-   "noshape": 0,
-   "out": 3,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 107
-  },
-  {
-   "st": "CO",
-   "matched": 255,
-   "far": 123,
-   "noshape": 0,
-   "out": 14,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 109
-  },
-  {
-   "st": "CT",
-   "matched": 118,
-   "far": 49,
-   "noshape": 0,
-   "out": 5,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 44
-  },
-  {
-   "st": "DC",
-   "matched": 24,
-   "far": 9,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 8
-  },
-  {
-   "st": "DE",
-   "matched": 70,
-   "far": 29,
-   "noshape": 0,
-   "out": 0,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 29
-  },
-  {
-   "st": "FL",
-   "matched": 387,
-   "far": 64,
-   "noshape": 0,
-   "out": 5,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 59
-  },
-  {
-   "st": "GA",
-   "matched": 210,
-   "far": 31,
-   "noshape": 0,
-   "out": 0,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 31
-  },
-  {
-   "st": "HI",
-   "matched": 78,
-   "far": 31,
-   "noshape": 0,
-   "out": 3,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 28
-  },
-  {
-   "st": "IA",
-   "matched": 167,
-   "far": 37,
-   "noshape": 0,
-   "out": 2,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 35
-  },
-  {
-   "st": "ID",
-   "matched": 148,
-   "far": 44,
-   "noshape": 0,
-   "out": 11,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 33
-  },
-  {
-   "st": "IL",
-   "matched": 163,
-   "far": 45,
-   "noshape": 0,
-   "out": 6,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 39
-  },
-  {
-   "st": "IN",
-   "matched": 205,
-   "far": 39,
-   "noshape": 0,
-   "out": 3,
-   "swap": 1,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 36
-  },
-  {
-   "st": "KS",
-   "matched": 97,
-   "far": 13,
-   "noshape": 0,
-   "out": 0,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 13
-  },
-  {
-   "st": "LA",
-   "matched": 108,
-   "far": 17,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 16
-  },
-  {
-   "st": "MA",
-   "matched": 393,
-   "far": 153,
-   "noshape": 0,
-   "out": 4,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 149
-  },
-  {
-   "st": "MD",
-   "matched": 152,
-   "far": 31,
-   "noshape": 0,
-   "out": 4,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 27
-  },
-  {
-   "st": "ME",
-   "matched": 136,
-   "far": 42,
-   "noshape": 0,
-   "out": 1,
-   "swap": 1,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 41
-  },
-  {
-   "st": "MI",
-   "matched": 286,
-   "far": 50,
-   "noshape": 0,
-   "out": 4,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 46
-  },
-  {
-   "st": "MN",
-   "matched": 223,
-   "far": 45,
-   "noshape": 0,
-   "out": 5,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 40
-  },
-  {
-   "st": "MO",
-   "matched": 535,
-   "far": 85,
-   "noshape": 0,
-   "out": 0,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 85
-  },
-  {
-   "st": "MS",
-   "matched": 88,
-   "far": 30,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 29
-  },
-  {
-   "st": "MT",
-   "matched": 222,
-   "far": 47,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 46
-  },
-  {
-   "st": "NC",
-   "matched": 212,
-   "far": 75,
-   "noshape": 0,
-   "out": 4,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 71
-  },
-  {
-   "st": "ND",
-   "matched": 98,
-   "far": 30,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 29
-  },
-  {
-   "st": "NE",
-   "matched": 159,
-   "far": 18,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 17
-  },
-  {
-   "st": "NH",
-   "matched": 187,
-   "far": 90,
-   "noshape": 0,
-   "out": 9,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 81
-  },
-  {
-   "st": "NJ",
-   "matched": 121,
-   "far": 33,
-   "noshape": 0,
-   "out": 2,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 31
-  },
-  {
-   "st": "NM",
-   "matched": 92,
-   "far": 24,
-   "noshape": 0,
-   "out": 0,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 24
-  },
-  {
-   "st": "NV",
-   "matched": 207,
-   "far": 80,
-   "noshape": 0,
-   "out": 21,
-   "swap": 1,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 59
-  },
-  {
-   "st": "NY",
-   "matched": 819,
-   "far": 148,
-   "noshape": 0,
-   "out": 5,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 143
-  },
-  {
-   "st": "OH",
-   "matched": 244,
-   "far": 65,
-   "noshape": 0,
-   "out": 5,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 60
-  },
-  {
-   "st": "OK",
-   "matched": 139,
-   "far": 45,
-   "noshape": 0,
-   "out": 9,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 36
-  },
-  {
-   "st": "OR",
-   "matched": 350,
-   "far": 74,
-   "noshape": 0,
-   "out": 3,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 71
-  },
-  {
-   "st": "SC",
-   "matched": 149,
-   "far": 51,
-   "noshape": 0,
-   "out": 0,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 51
-  },
-  {
-   "st": "TX",
-   "matched": 192,
-   "far": 67,
-   "noshape": 0,
-   "out": 1,
-   "swap": 0,
-   "stale": false,
-   "detail": "~1.1 km",
-   "edge": 66
-  },
-  {
-   "st": "UT",
-   "matched": 336,
-   "far": 82,
-   "noshape": 0,
-   "out": 19,
-   "swap": 0,
-   "stale": false,
-   "detail": "~110 m",
-   "edge": 63
-  },
-  {
-   "st": "WY",
-   "matched": 172,
-   "far": 70,
-   "noshape": 0,
-   "out": 14,
-   "swap": 1,
-   "stale": false,
-   "detail": "~1.1 km",
-   "edge": 56
-  }
- ],
- "swaps": [
-  [
-   "AK",
-   "US-10281",
-   "White Mountains National Recreation Area BLM Recreation Management Area",
-   "White Mountains SRMA",
-   "Eastern Interior Field Office"
+  "states": [
+   {
+    "st": "CA-AB",
+    "matched": 391,
+    "far": 92,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 88
+   },
+   {
+    "st": "CA-BC",
+    "matched": 1107,
+    "far": 181,
+    "noshape": 0,
+    "out": 9,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 172
+   },
+   {
+    "st": "CA-MB",
+    "matched": 216,
+    "far": 56,
+    "noshape": 0,
+    "out": 22,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 34
+   },
+   {
+    "st": "CA-NB",
+    "matched": 266,
+    "far": 125,
+    "noshape": 0,
+    "out": 27,
+    "swap": 2,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 98
+   },
+   {
+    "st": "CA-NL",
+    "matched": 67,
+    "far": 13,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 12
+   },
+   {
+    "st": "CA-NS",
+    "matched": 302,
+    "far": 58,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 57
+   },
+   {
+    "st": "CA-NT",
+    "matched": 15,
+    "far": 4,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 3
+   },
+   {
+    "st": "CA-NU",
+    "matched": 29,
+    "far": 2,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 2
+   },
+   {
+    "st": "CA-ON",
+    "matched": 794,
+    "far": 167,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 162
+   },
+   {
+    "st": "CA-PE",
+    "matched": 11,
+    "far": 4,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 3
+   },
+   {
+    "st": "CA-QC",
+    "matched": 431,
+    "far": 168,
+    "noshape": 0,
+    "out": 84,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 84
+   },
+   {
+    "st": "CA-SI",
+    "matched": 1,
+    "far": 0,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 0
+   },
+   {
+    "st": "CA-SK",
+    "matched": 291,
+    "far": 108,
+    "noshape": 0,
+    "out": 16,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 92
+   },
+   {
+    "st": "CA-SP",
+    "matched": 1,
+    "far": 0,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 0
+   },
+   {
+    "st": "CA-YT",
+    "matched": 27,
+    "far": 4,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 3
+   }
   ],
-  [
-   "IN",
-   "US-4178",
-   "Lost Bridge on Salamonie Lake State Recreation Area",
-   "Salamonie Lake",
-   "Salamonie Lake"
+  "swaps": [
+   [
+    "CA-NB",
+    "CA-4393",
+    "Estey Wetlands Wetland Reserve",
+    "Estey Wetlands",
+    "Estey Wetlands"
+   ],
+   [
+    "CA-NB",
+    "CA-4502",
+    "Round Meadow Cove Protected Area",
+    "Round Meadow Cove",
+    "Round Meadow Cove"
+   ]
   ],
-  [
-   "ME",
-   "US-2399",
-   "Owls Head State Park",
-   "Owls Head Light",
-   "Owls Head Light"
-  ],
-  [
-   "NV",
-   "US-13139",
-   "Muddy Mountains BLM Herd Management Area",
-   "Muddy Mountains",
-   "Muddy Mountains"
-  ],
-  [
-   "WY",
-   "US-6171",
-   "Adobe Town BLM Herd Management Area",
-   "Adobe Town",
-   "Adobe Town"
+  "well_outside": [
+   [
+    "CA-AB",
+    "CA-0109",
+    "Waterton Biosphere Reserve",
+    "Waterton Lakes"
+   ],
+   [
+    "CA-AB",
+    "CA-1164",
+    "Beaver Lake Provincial Recreation Area",
+    "Beaver Lake"
+   ],
+   [
+    "CA-AB",
+    "CA-1197",
+    "Victoria Settlement Provincial Park",
+    "Victoria Settlement"
+   ],
+   [
+    "CA-AB",
+    "CA-3085",
+    "Mystery Lake Natural Area",
+    "Mystery Lake Natural Area"
+   ],
+   [
+    "CA-BC",
+    "CA-3186",
+    "Nisga'a Memorial Lava Bed Provincial Park",
+    "NISGA'A MEMORIAL LAVA BED PROTECTED AREA"
+   ],
+   [
+    "CA-BC",
+    "CA-3408",
+    "Denetiah Corridor Protected Area",
+    "DENETIAH CORRIDOR PROTECTED AREA"
+   ],
+   [
+    "CA-BC",
+    "CA-3445",
+    "Glen Valley Regional Park",
+    "Glen Valley Regional Park"
+   ],
+   [
+    "CA-BC",
+    "CA-3900",
+    "Nisga'a Memorial Lava Bed Corridor Protected Area",
+    "NISGA'A MEMORIAL LAVA BED CORRIDOR PROTECTED AREA (No.2)"
+   ],
+   [
+    "CA-BC",
+    "CA-3905",
+    "Nooseseck Conservation Area",
+    "NOOSESECK CONSERVANCY"
+   ],
+   [
+    "CA-BC",
+    "CA-3937",
+    "Pa-aat Conservation Area",
+    "PA-AAT CONSERVANCY"
+   ],
+   [
+    "CA-BC",
+    "CA-4094",
+    "Skagit River Cottonwoods Ecological Reserve",
+    "SKAGIT RIVER COTTONWOODS ECOLOGICAL RESERVE"
+   ],
+   [
+    "CA-BC",
+    "CA-5345",
+    "Swalwell Recreation Park",
+    "Swalwell Lake"
+   ],
+   [
+    "CA-BC",
+    "CA-6131",
+    "Cowichan River National Heritage Area",
+    "COWICHAN RIVER PARK"
+   ],
+   [
+    "CA-MB",
+    "CA-2378",
+    "Basket Lake Wildlife Management Area",
+    "Basket Lake Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2380",
+    "Bernice Wildlife Management Area",
+    "Bernice Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2388",
+    "Broomhill Wildlife Management Area",
+    "Broomhill Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2391",
+    "Catfish Creek Wildlife Management Area",
+    "Catfish Creek Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2396",
+    "Clematis Wildlife Management Area",
+    "Clematis Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2419",
+    "Harperville Wildlife Management Area",
+    "Harperville Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2420",
+    "Harrison Wildlife Management Area",
+    "Harrison Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2425",
+    "Inwood Wildlife Management Area",
+    "Inwood Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2439",
+    "Langruth Wildlife Management Area",
+    "Langruth Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2440",
+    "Lauder Sandhills Wildlife Management Area",
+    "Lauder Sandhills Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2441",
+    "Lee Lake Wildlife Management Area",
+    "Lee Lake"
+   ],
+   [
+    "CA-MB",
+    "CA-2453",
+    "Lundar Wildlife Management Area",
+    "Lundar Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2460",
+    "Moose Creek Wildlife Management Area",
+    "Moose Creek Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2461",
+    "Moosehorn Wildlife Management Area",
+    "Moosehorn Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2485",
+    "Pierson Wildlife Management Area",
+    "Pierson Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2504",
+    "Sandridge Wildlife Management Area",
+    "Sandridge Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2506",
+    "Saskeram Wildlife Management Area",
+    "Saskeram Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2507",
+    "Sharpewood Wildlife Management Area",
+    "Sharpewood Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2516",
+    "Steeprock Wildlife Management Area",
+    "Steeprock Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2522",
+    "Tom Lamb Wildlife Management Area",
+    "Tom Lamb Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2523",
+    "Turtle Mountain Wildlife Management Area",
+    "Turtle Mountain Wildlife Management Area"
+   ],
+   [
+    "CA-MB",
+    "CA-2535",
+    "Weiden Wildlife Management Area",
+    "Weiden Wildlife Management Area"
+   ],
+   [
+    "CA-NB",
+    "CA-0770",
+    "Clark Point Natural Area",
+    "Clark's Point"
+   ],
+   [
+    "CA-NB",
+    "CA-4350",
+    "Allardville Protected Natural Area",
+    "Allardville"
+   ],
+   [
+    "CA-NB",
+    "CA-4356",
+    "Bass River Protected Area",
+    "Bass River"
+   ],
+   [
+    "CA-NB",
+    "CA-4357",
+    "Becaguimec Stream Protected Natural Area",
+    "Becaguimec Stream"
+   ],
+   [
+    "CA-NB",
+    "CA-4360",
+    "Belleville Protected Area",
+    "Belleville"
+   ],
+   [
+    "CA-NB",
+    "CA-4362",
+    "Belone Brook Protected Area",
+    "Belone Brook"
+   ],
+   [
+    "CA-NB",
+    "CA-4365",
+    "Big Falls Protected Area",
+    "Big Falls"
+   ],
+   [
+    "CA-NB",
+    "CA-4367",
+    "Big Rocky Brook Protected Area",
+    "Big Rocky Brook"
+   ],
+   [
+    "CA-NB",
+    "CA-4380",
+    "Cains River Protected Area",
+    "Cains River"
+   ],
+   [
+    "CA-NB",
+    "CA-4382",
+    "Carr Falls Brook Protected Area",
+    "Carr Falls Brook"
+   ],
+   [
+    "CA-NB",
+    "CA-4420",
+    "Kingston Family Nature Preserve Protected Area",
+    "Kingston Family"
+   ],
+   [
+    "CA-NB",
+    "CA-4434",
+    "Lower North Branch Little Southwest Miramichi River Protected Area",
+    "Lower North Branch Little Southwest Miramichi River"
+   ],
+   [
+    "CA-NB",
+    "CA-4435",
+    "MacFarlane Brook Protected Area",
+    "MacFarlane Brook"
+   ],
+   [
+    "CA-NB",
+    "CA-4443",
+    "McCluskey Brook Protected Area",
+    "McCluskey Brook"
+   ],
+   [
+    "CA-NB",
+    "CA-4453",
+    "Miscou Grande Plaine Protected Area",
+    "Miscou Grande Plaine"
+   ],
+   [
+    "CA-NB",
+    "CA-4457",
+    "Mount Denys Protected Area",
+    "Mount Denys"
+   ],
+   [
+    "CA-NB",
+    "CA-4459",
+    "Mount Tom Protected Area",
+    "Mount Tom"
+   ],
+   [
+    "CA-NB",
+    "CA-4470",
+    "North Branch Burnt Church River Protected Area",
+    "North Branch Burnt Church River"
+   ],
+   [
+    "CA-NB",
+    "CA-4472",
+    "North Pole Stream Protected Area",
+    "North Pole Stream"
+   ],
+   [
+    "CA-NB",
+    "CA-4486",
+    "Pocowogamis Stream Protected Area",
+    "Pocowogamis Stream"
+   ],
+   [
+    "CA-NB",
+    "CA-4496",
+    "Quisibis River Protected Area",
+    "Quisibis River"
+   ],
+   [
+    "CA-NB",
+    "CA-4508",
+    "Shikatehawk Stream Protected Area",
+    "Shikatehawk Stream"
+   ],
+   [
+    "CA-NB",
+    "CA-5153",
+    "Butternut Island Nature Reserve",
+    "Butternut Island"
+   ],
+   [
+    "CA-NB",
+    "CA-5204",
+    "Nashwaaksis Stream Nature Park",
+    "Nashwaaksis Stream"
+   ],
+   [
+    "CA-NB",
+    "CA-5235",
+    "Warren Kent Coleman Nature Reserve",
+    "Warren Kent Coleman"
+   ],
+   [
+    "CA-NL",
+    "CA-4547",
+    "Funk Island Ecological Reserve",
+    "Funk Island Ecological Reserve"
+   ],
+   [
+    "CA-NS",
+    "CA-1752",
+    "Dunraven Bog Nature Reserve",
+    "Dunraven Bog Nature Reserve"
+   ],
+   [
+    "CA-NT",
+    "CA-4344",
+    "Tarium Niryutait Marine Protected Area",
+    "Tarium Niryutait Marine Protected Area"
+   ],
+   [
+    "CA-ON",
+    "CA-0366",
+    "River Aux Sables Provincial Park",
+    "River Aux Sables Provincial Park (Waterway Class)"
+   ],
+   [
+    "CA-ON",
+    "CA-1336",
+    "Cache Bay Wetland Conservation Reserve",
+    "Cache Bay Wetland Conservation Reserve"
+   ],
+   [
+    "CA-ON",
+    "CA-1362",
+    "Crane Lakes Conservation Reserve",
+    "Crane Lake Reserve"
+   ],
+   [
+    "CA-ON",
+    "CA-5566",
+    "Saltfleet Conservation Area",
+    "Saltfleet"
+   ],
+   [
+    "CA-ON",
+    "CA-5633",
+    "Bowmanville Valley Conservation Area",
+    "Bowmanville/Westside Conservation Area"
+   ],
+   [
+    "CA-PE",
+    "CA-4663",
+    "Pituamkek National Park Reserve",
+    "Pituamkek National Park Reserve"
+   ],
+   [
+    "CA-QC",
+    "CA-0129",
+    "Ulittaniujalik National Park",
+    "Ulittaniujalik National Park (Qu\u00e9bec)"
+   ],
+   [
+    "CA-QC",
+    "CA-1005",
+    "Parc r\u00e9gional de la For\u00eat Ouareau Regional Park",
+    "Parc r\u00e9gional de la For\u00eat Ouareau"
+   ],
+   [
+    "CA-QC",
+    "CA-1006",
+    "Parc r\u00e9gional Montagne du Diable Regional Park",
+    "Parc r\u00e9gional de la Montagne du Diable"
+   ],
+   [
+    "CA-QC",
+    "CA-1008",
+    "Parc r\u00e9gional des Appalaches Regional Park",
+    "Parc r\u00e9gional des Appalaches"
+   ],
+   [
+    "CA-QC",
+    "CA-1011",
+    "Parc r\u00e9gional du Massif du Sud Regional Park",
+    "Parc r\u00e9gional du Massif du Sud"
+   ],
+   [
+    "CA-QC",
+    "CA-1012",
+    "Parc r\u00e9gional du Mont-Ham Regional Park",
+    "Parc r\u00e9gional du Mont-Ham"
+   ],
+   [
+    "CA-QC",
+    "CA-1013",
+    "Parc regional du Poisson Blanc Regional Park",
+    "Parc r\u00e9gional du Poisson Blanc"
+   ],
+   [
+    "CA-QC",
+    "CA-1023",
+    "R\u00e9serve faunique de Matane Wildlife Reserve",
+    "R\u00e9serve faunique de Matane"
+   ],
+   [
+    "CA-QC",
+    "CA-1024",
+    "R\u00e9serve faunique de Papineau-Labelle Wildlife Reserve",
+    "R\u00e9serve faunique de Papineau-Labelle"
+   ],
+   [
+    "CA-QC",
+    "CA-1026",
+    "R\u00e9serve faunique des Laurentides Wildlife Reserve",
+    "R\u00e9serve faunique des Laurentides"
+   ],
+   [
+    "CA-QC",
+    "CA-1027",
+    "R\u00e9serve faunique La V\u00e9rendrye Wildlife Reserve",
+    "R\u00e9serve faunique de Papineau-Labelle"
+   ],
+   [
+    "CA-QC",
+    "CA-1028",
+    "R\u00e9serve faunique Mastigouche Wildlife Reserve",
+    "R\u00e9serve faunique du Saint-Maurice"
+   ],
+   [
+    "CA-QC",
+    "CA-1029",
+    "R\u00e9serve faunique Rouge-Matawin Wildlife Reserve",
+    "R\u00e9serve faunique Rouge-Matawin"
+   ],
+   [
+    "CA-QC",
+    "CA-1928",
+    "Ashuapmushuan Nature Reserve",
+    "R\u00e9serve faunique Ashuapmushuan"
+   ],
+   [
+    "CA-QC",
+    "CA-2208",
+    "Port-Cartier-Sept-Iles Nature Reserve",
+    "R\u00e9serve faunique de Port-Cartier-Sept-\u00celes"
+   ],
+   [
+    "CA-QC",
+    "CA-2209",
+    "Port-Daniel  Reserve Nature Reserve",
+    "R\u00e9serve faunique de la Rivi\u00e8re-Saint-Jean"
+   ],
+   [
+    "CA-QC",
+    "CA-2211",
+    "Portneuf Reserve faunique Nature Reserve",
+    "R\u00e9serve faunique de Portneuf"
+   ],
+   [
+    "CA-QC",
+    "CA-2242",
+    "Saint-Maurice Reserve Nature Reserve",
+    "R\u00e9serve faunique du Saint-Maurice"
+   ],
+   [
+    "CA-QC",
+    "CA-2285",
+    "ZEC Anse-St-Jean Nature Reserve",
+    "Zec de  l'Anse-Saint-Jean"
+   ],
+   [
+    "CA-QC",
+    "CA-2286",
+    "ZEC des Anses Nature Reserve",
+    "Zec des Anses"
+   ],
+   [
+    "CA-QC",
+    "CA-2287",
+    "ZEC Baillargeon Nature Reserve",
+    "Zec Baillargeon"
+   ],
+   [
+    "CA-QC",
+    "CA-2288",
+    "ZEC du Bas-Saint-Laurent Nature Reserve",
+    "Zec du Bas-Saint-Laurent"
+   ],
+   [
+    "CA-QC",
+    "CA-2289",
+    "ZEC Batiscan-Neilson Nature Reserve",
+    "Zec Batiscan-Neilson"
+   ],
+   [
+    "CA-QC",
+    "CA-2290",
+    "ZEC de la Bessonne Nature Reserve",
+    "Zec Bessonne"
+   ],
+   [
+    "CA-QC",
+    "CA-2291",
+    "Zec Borgia Nature Reserve",
+    "Zec Borgia"
+   ],
+   [
+    "CA-QC",
+    "CA-2292",
+    "Zec Boull\u00e9 Nature Reserve",
+    "Zec Boull\u00e9"
+   ],
+   [
+    "CA-QC",
+    "CA-2293",
+    "Zec Bras-Coup\u00e9-D\u00e9sert Nature Reserve",
+    "Zec Bras-Coup\u00e9-D\u00e9sert"
+   ],
+   [
+    "CA-QC",
+    "CA-2294",
+    "Zec Buteux-Bas-Saguenay Nature Reserve",
+    "Zec Buteux-Bas-Saguenay"
+   ],
+   [
+    "CA-QC",
+    "CA-2295",
+    "Zec Cap-Chat Nature Reserve",
+    "Zec Cap-Chat"
+   ],
+   [
+    "CA-QC",
+    "CA-2296",
+    "Zec Capitachouane Nature Reserve",
+    "Zec Capitachouane"
+   ],
+   [
+    "CA-QC",
+    "CA-2297",
+    "Zec Casault Nature Reserve",
+    "Zec Casault"
+   ],
+   [
+    "CA-QC",
+    "CA-2298",
+    "Zec Chapais Nature Reserve",
+    "Zec Chapais"
+   ],
+   [
+    "CA-QC",
+    "CA-2300",
+    "Zec Chauvin Nature Reserve",
+    "Zec Chauvin"
+   ],
+   [
+    "CA-QC",
+    "CA-2301",
+    "Zec Collin Nature Reserve",
+    "Zec Collin"
+   ],
+   [
+    "CA-QC",
+    "CA-2302",
+    "Zec La Croche Nature Reserve",
+    "Zec de la Croche"
+   ],
+   [
+    "CA-QC",
+    "CA-2303",
+    "Zec d'Iberville Nature Reserve",
+    "Zec d'Iberville"
+   ],
+   [
+    "CA-QC",
+    "CA-2304",
+    "Zec Dumoine Nature Reserve",
+    "Zec Dumoine"
+   ],
+   [
+    "CA-QC",
+    "CA-2305",
+    "Zec Festubert Nature Reserve",
+    "Zec Festubert"
+   ],
+   [
+    "CA-QC",
+    "CA-2306",
+    "Zec Forestville Nature Reserve",
+    "Zec Forestville"
+   ],
+   [
+    "CA-QC",
+    "CA-2307",
+    "Zec Fremont Nature Reserve",
+    "Zec Fr\u00e9mont"
+   ],
+   [
+    "CA-QC",
+    "CA-2309",
+    "Zec Gros-Brochet Nature Reserve",
+    "Zec Gros-Brochet"
+   ],
+   [
+    "CA-QC",
+    "CA-2310",
+    "Zec Jaro Nature Reserve",
+    "Zec Jaro"
+   ],
+   [
+    "CA-QC",
+    "CA-2311",
+    "Zec Jeannotte Nature Reserve",
+    "Zec Jeannotte"
+   ],
+   [
+    "CA-QC",
+    "CA-2312",
+    "Zec Kipawa Nature Reserve",
+    "Zec Kipawa"
+   ],
+   [
+    "CA-QC",
+    "CA-2313",
+    "Zec Kiskissink Nature Reserve",
+    "Zec Kiskissink"
+   ],
+   [
+    "CA-QC",
+    "CA-2314",
+    "Zec Labrieville Nature Reserve",
+    "Zec Labrieville"
+   ],
+   [
+    "CA-QC",
+    "CA-2315",
+    "Zec Lac-au-Sable Nature Reserve",
+    "Zec Lac-au-Sable"
+   ],
+   [
+    "CA-QC",
+    "CA-2316",
+    "Zec Lac-Br\u00e9beuf Nature Reserve",
+    "Zec Lac-Br\u00e9beuf"
+   ],
+   [
+    "CA-QC",
+    "CA-2317",
+    "Zec Lac-de-la-Boiteuse Nature Reserve",
+    "Zec du Lac-de-la-Boiteuse"
+   ],
+   [
+    "CA-QC",
+    "CA-2318",
+    "Zec Lavigne Nature Reserve",
+    "Zec Lavigne"
+   ],
+   [
+    "CA-QC",
+    "CA-2319",
+    "Zec Lesueur Nature Reserve",
+    "Zec Lesueur"
+   ],
+   [
+    "CA-QC",
+    "CA-2320",
+    "Zec La Li\u00e8vre Nature Reserve",
+    "Zec de La Li\u00e8vre"
+   ],
+   [
+    "CA-QC",
+    "CA-2321",
+    "Zec Louise-Gosford Nature Reserve",
+    "Zec Louise-Gosford"
+   ],
+   [
+    "CA-QC",
+    "CA-2322",
+    "Zec Maganasipi Nature Reserve",
+    "Zec Maganasipi"
+   ],
+   [
+    "CA-QC",
+    "CA-2323",
+    "Zec Maison-de-Pierre Nature Reserve",
+    "Zec Maison-de-Pierre"
+   ],
+   [
+    "CA-QC",
+    "CA-2324",
+    "Zec Mars-Moulin Nature Reserve",
+    "Zec Mars-Moulin"
+   ],
+   [
+    "CA-QC",
+    "CA-2325",
+    "Zec Martin-Valin Nature Reserve",
+    "Zec Martin-Valin"
+   ],
+   [
+    "CA-QC",
+    "CA-2326",
+    "Zec Des Martres Nature Reserve",
+    "Zec des Martres"
+   ],
+   [
+    "CA-QC",
+    "CA-2327",
+    "Zec Matimek Nature Reserve",
+    "Zec Matimek"
+   ],
+   [
+    "CA-QC",
+    "CA-2328",
+    "Zec Mazana Nature Reserve",
+    "Zec Mazana"
+   ],
+   [
+    "CA-QC",
+    "CA-2329",
+    "Zec Menokeosawin Nature Reserve",
+    "Zec Menokeosawin"
+   ],
+   [
+    "CA-QC",
+    "CA-2330",
+    "Zec Mitchinamecus Nature Reserve",
+    "Zec Mitchinamecus"
+   ],
+   [
+    "CA-QC",
+    "CA-2333",
+    "Zec Des Nymphes Nature Reserve",
+    "Zec des Nymphes"
+   ],
+   [
+    "CA-QC",
+    "CA-2335",
+    "Zec Onatchiway Nature Reserve",
+    "Zec Mars-Moulin"
+   ],
+   [
+    "CA-QC",
+    "CA-2336",
+    "Zec Owen Nature Reserve",
+    "Zec Owen"
+   ],
+   [
+    "CA-QC",
+    "CA-2338",
+    "Zec Des Passes Nature Reserve",
+    "Zec des Passes"
+   ],
+   [
+    "CA-QC",
+    "CA-2339",
+    "Zec Petawaga Nature Reserve",
+    "Zec Petawaga"
+   ],
+   [
+    "CA-QC",
+    "CA-2341",
+    "ZEC Pontiac Nature Reserve",
+    "Zec Pontiac"
+   ],
+   [
+    "CA-QC",
+    "CA-2342",
+    "Zec Rapides-des-Joachims Nature Reserve",
+    "Zec Rapides-des-Joachims"
+   ],
+   [
+    "CA-QC",
+    "CA-2345",
+    "Zec Rivi\u00e8re-aux-Rats Nature Reserve",
+    "Zec de la Rivi\u00e8re-aux-Rats"
+   ],
+   [
+    "CA-QC",
+    "CA-2365",
+    "Zec Saint-Patrice Nature Reserve",
+    "Zec Saint-Patrice"
+   ],
+   [
+    "CA-QC",
+    "CA-2366",
+    "Zec Saint-Romain Nature Reserve",
+    "Zec Saint-Romain"
+   ],
+   [
+    "CA-QC",
+    "CA-2367",
+    "Zec Tawachiche Nature Reserve",
+    "Zec Tawachiche"
+   ],
+   [
+    "CA-QC",
+    "CA-2368",
+    "Zec Trinit\u00e9 Nature Reserve",
+    "Zec Trinit\u00e9"
+   ],
+   [
+    "CA-QC",
+    "CA-2369",
+    "Zec Varin Nature Reserve",
+    "Zec Varin"
+   ],
+   [
+    "CA-QC",
+    "CA-2370",
+    "Zec Wessonneau Nature Reserve",
+    "Zec Wessonneau"
+   ],
+   [
+    "CA-QC",
+    "CA-4963",
+    "Parc regional de la Chute-a-Bull Regional Park",
+    "Parc r\u00e9gional de la Chute-\u00e0-Bull"
+   ],
+   [
+    "CA-QC",
+    "CA-4966",
+    "Parc regional de la Seigneurie-du-Lac-Matapedia Regional Park",
+    "Parc r\u00e9gional de la Seigneurie du Lac Matap\u00e9dia"
+   ],
+   [
+    "CA-QC",
+    "CA-4967",
+    "Parc regional des Grandes-Coulees Regional Park",
+    "Parc r\u00e9gional des Grandes Coul\u00e9es"
+   ],
+   [
+    "CA-QC",
+    "CA-4969",
+    "Parc regional des Sept-Chutes Regional Park",
+    "Parc r\u00e9gional des Sept-Chutes"
+   ],
+   [
+    "CA-QC",
+    "CA-4971",
+    "Parc regional du Lac Taureau Regional Park",
+    "Parc r\u00e9gional du Lac Taureau"
+   ],
+   [
+    "CA-QC",
+    "CA-4972",
+    "Parc regional Kiamika Regional Park",
+    "Parc national du Mont-Tremblant"
+   ],
+   [
+    "CA-QC",
+    "CA-5042",
+    "Sentiers p\u00e9destres Neil-Tillotson Regional Park",
+    "Neil-et-Louise-Tillotson (Conservation de la nature Canada) Nature reserve"
+   ],
+   [
+    "CA-QC",
+    "CA-5051",
+    "Parc du Marecage-des-Scots Regional Park",
+    "Parc r\u00e9gional du Mar\u00e9cage des Scots"
+   ],
+   [
+    "CA-SK",
+    "CA-0625",
+    "St. Victor Petroglyphs Provincial Park",
+    "St. Victor Petroglyphs Provincial Park"
+   ],
+   [
+    "CA-SK",
+    "CA-2547",
+    "Amisk Lake Ecological Reserve",
+    "Amisk Lake"
+   ],
+   [
+    "CA-SK",
+    "CA-2550",
+    "Arena Recreation Site",
+    "Arena"
+   ],
+   [
+    "CA-SK",
+    "CA-2554",
+    "Backes Island Wildlife Refuge",
+    "Backes Island"
+   ],
+   [
+    "CA-SK",
+    "CA-2581",
+    "Bittern Lake Recreation Site",
+    "Bittern Lake Recreation Site"
+   ],
+   [
+    "CA-SK",
+    "CA-2582",
+    "Bluebell Recreation Site",
+    "Bluebell"
+   ],
+   [
+    "CA-SK",
+    "CA-2633",
+    "Dore Lake Recreation Site",
+    "Dore Lake Recreation Site"
+   ],
+   [
+    "CA-SK",
+    "CA-2658",
+    "Foam Lake Recreation Site",
+    "Foam Lake"
+   ],
+   [
+    "CA-SK",
+    "CA-2679",
+    "Gull Lake Recreation Site",
+    "Gull Lake"
+   ],
+   [
+    "CA-SK",
+    "CA-2687",
+    "Hazlet Regional Park Recreation Site",
+    "Hazlet Regional Park"
+   ],
+   [
+    "CA-SK",
+    "CA-2713",
+    "Laurier Recreation Site",
+    "Laurier"
+   ],
+   [
+    "CA-SK",
+    "CA-2778",
+    "Nokomis Recreation Site",
+    "Nokomis"
+   ],
+   [
+    "CA-SK",
+    "CA-2816",
+    "Raymore Recreation Site",
+    "Raymore Recreation Site"
+   ],
+   [
+    "CA-SK",
+    "CA-2826",
+    "Riverhurst Ferry Recreation Site",
+    "Riverhurst Ferry Recreation Site"
+   ],
+   [
+    "CA-SK",
+    "CA-2846",
+    "Shell Lake Recreation Site",
+    "Shell Lake Recreation Site"
+   ],
+   [
+    "CA-SK",
+    "CA-2919",
+    "Wreford Recreation Site",
+    "Wreford"
+   ],
+   [
+    "CA-YT",
+    "CA-4623",
+    "Old Crow Flats Special Management Area Habitat Protection Area",
+    "Old Crow Flats"
+   ]
   ]
- ],
- "well_outside": [
-  [
-   "AK",
-   "US-0150",
-   "Kodiak National Wildlife Refuge",
-   "Kodiak National Wildlife Refuge"
-  ],
-  [
-   "AK",
-   "US-0909",
-   "Cape Krusenstern National Monument",
-   "Cape Krusenstern National Monument"
-  ],
-  [
-   "AK",
-   "US-7193",
-   "Caines Head State Recreation Area",
-   "Caines Head State Recreation Area"
-  ],
-  [
-   "AK",
-   "US-9701",
-   "Palmer Hay Flats Wildlife Refuge",
-   "Palmer Hay Flats State Game Refuge"
-  ],
-  [
-   "AL",
-   "US-0384",
-   "Grand Bay National Wildlife Refuge",
-   "Grand Bay National Wildlife Refuge"
-  ],
-  [
-   "AL",
-   "US-0642",
-   "Natchez Trace Parkway National Parkway",
-   "Natchez Trace Parkway"
-  ],
-  [
-   "AL",
-   "US-12996",
-   "Fowl River Access Site BLM Recreation Management Area",
-   "Fowl River"
-  ],
-  [
-   "AL",
-   "US-3690",
-   "Geneva State Forest Wildlife Management Area",
-   "Geneva State Forest"
-  ],
-  [
-   "AL",
-   "US-3701",
-   "Pike County Pocosin Complex State Fish and Wildlife Area",
-   "Pike County Pocosin Complex"
-  ],
-  [
-   "AL",
-   "US-9874",
-   "Mud Creek Management Area",
-   "Mud Creek Management Area"
-  ],
-  [
-   "AL",
-   "US-9875",
-   "Raccoon Creek Management Area",
-   "Raccoon Creek Wildlife Management Area"
-  ],
-  [
-   "AL",
-   "US-9876",
-   "Crow Creek Management Area",
-   "Crow Creek"
-  ],
-  [
-   "AR",
-   "US-7271",
-   "Camp Robinson Wildlife Management Area",
-   "Camp Robinson WMA"
-  ],
-  [
-   "AR",
-   "US-7274",
-   "Cedar Creek Wildlife Management Area",
-   "Cedar Creek WMA"
-  ],
-  [
-   "AZ",
-   "US-0176",
-   "Imperial National Wildlife Refuge",
-   "Imperial National Wildlife Refuge"
-  ],
-  [
-   "AZ",
-   "US-0676",
-   "Lake Mead National Recreation Area",
-   "Lake Mead National Recreation Area"
-  ],
-  [
-   "AZ",
-   "US-11943",
-   "Sonoita Creek State Natural Area",
-   "Sonoita Creek Natural Area"
-  ],
-  [
-   "AZ",
-   "US-6090",
-   "Beaver Dam Mountain Wilderness Area",
-   "Beaver Dam Mountains"
-  ],
-  [
-   "CA",
-   "US-0203",
-   "North Central Valley Wildlife Management Area",
-   "North Central Valley Wildlife Management Area"
-  ],
-  [
-   "CA",
-   "US-0211",
-   "San Luis National Wildlife Refuge",
-   "San Luis National Wildlife Refuge"
-  ],
-  [
-   "CA",
-   "US-3523",
-   "Oceano Dunes State Recreation Area",
-   "Oceano Dunes State Vehicular Recreation Area"
-  ],
-  [
-   "CO",
-   "US-0185",
-   "Hugo State Wildlife Area",
-   "Hugo SWA"
-  ],
-  [
-   "CO",
-   "US-0191",
-   "Brush Hollow State Wildlife Area",
-   "Brush Hollow SWA"
-  ],
-  [
-   "CO",
-   "US-0652",
-   "Curecanti National Recreation Area",
-   "Curecanti National Recreation Area"
-  ],
-  [
-   "CO",
-   "US-0943",
-   "Hovenweep National Monument",
-   "Hovenweep National Monument"
-  ],
-  [
-   "CO",
-   "US-12185",
-   "Grand Junction: West Lake State Wildlife Area",
-   "West Lake State Wildlife Area"
-  ],
-  [
-   "CO",
-   "US-1249",
-   "Vega State Park",
-   "Vega State Park"
-  ],
-  [
-   "CO",
-   "US-9594",
-   "Gunnison Gorge BLM National Conservation Area",
-   "Gunnison Gorge National Conservation Area"
-  ],
-  [
-   "CO",
-   "US-9605",
-   "Alma State Wildlife Area",
-   "Alma State Wildlife Area"
-  ],
-  [
-   "CO",
-   "US-9620",
-   "Bodo State Wildlife Area",
-   "Bodo SWA"
-  ],
-  [
-   "CO",
-   "US-9622",
-   "Bosque Del Oso State Wildlife Area",
-   "Bosque del Oso SWA"
-  ],
-  [
-   "CO",
-   "US-9631",
-   "Coalbed Canyon State Wildlife Area",
-   "Coalbed Canyon SWA"
-  ],
-  [
-   "CO",
-   "US-9632",
-   "Cochetopa State Wildlife Area",
-   "Cochetopa SWA"
-  ],
-  [
-   "CO",
-   "US-9635",
-   "Colorow Mountain State Wildlife Area",
-   "Colorow Mountain SWA"
-  ],
-  [
-   "CO",
-   "US-9638",
-   "Dan Noble State Wildlife Area",
-   "Dan Noble SWA - Greager Tract"
-  ],
-  [
-   "CT",
-   "US-1658",
-   "Connecticut Valley Railroad State Park",
-   "Connecticut Valley Railroad State Park Trail"
-  ],
-  [
-   "CT",
-   "US-1696",
-   "Mianus River State Park",
-   "Mianus River State Park Scenic Reserve"
-  ],
-  [
-   "CT",
-   "US-1727",
-   "West Rock Ridge State Park",
-   "West Rock State Park"
-  ],
-  [
-   "CT",
-   "US-7528",
-   "Air Line State Trail",
-   "Air Line State Park Trail"
-  ],
-  [
-   "CT",
-   "US-7530",
-   "Centennial Watershed State Forest",
-   "Centennial Watershed State Forest"
-  ],
-  [
-   "DC",
-   "US-0670",
-   "George Washington Memorial Parkway",
-   "George Washington Memorial Parkway"
-  ],
-  [
-   "FL",
-   "US-0249",
-   "Merritt Island National Wildlife Refuge",
-   "Merritt Island National Wildlife Refuge"
-  ],
-  [
-   "FL",
-   "US-10551",
-   "Falling Creek State Conservation Area",
-   "Falling Creek Park"
-  ],
-  [
-   "FL",
-   "US-3660",
-   "Suwannee River Wilderness State Trail",
-   "Suwannee River Wilderness State Trail"
-  ],
-  [
-   "FL",
-   "US-6318",
-   "Okaloacoochee Slough Wildlife Management Area",
-   "Okaloacoochee Slough Wildlife Management Area"
-  ],
-  [
-   "FL",
-   "US-8679",
-   "Devil's Hammock State Conservation Area",
-   "Devil's Hammock"
-  ],
-  [
-   "HI",
-   "US-0043",
-   "Kalaupapa National Historical Park",
-   "Kalaupapa National Historical Park"
-  ],
-  [
-   "HI",
-   "US-10904",
-   "\u02bbEwa Forest Reserve",
-   "\u2018Ewa Forest Reserve (Helemano Section)"
-  ],
-  [
-   "HI",
-   "US-10910",
-   "Waimanalo Forest Reserve",
-   "Waimanalo Forest Reserve"
-  ],
-  [
-   "IA",
-   "US-4236",
-   "Upper Mississippi River National Wildlife Refuge",
-   "Upper Mississippi River National Wildlife And Fish Refuge"
-  ],
-  [
-   "IA",
-   "US-9317",
-   "Harrier Marsh Wildlife Management Area",
-   "Harrier Marsh Wildlife Management Area"
-  ],
-  [
-   "ID",
-   "US-0070",
-   "Yellowstone National Park",
-   "Yellowstone National Park"
-  ],
-  [
-   "ID",
-   "US-11258",
-   "Mormon Reservoir State Fishing Lake",
-   "Mormon Reservoir Access Site"
-  ],
-  [
-   "ID",
-   "US-11463",
-   "Murtaugh Lake Reservoir State Fishing Lake",
-   "Murtaugh Lake Access Site"
-  ],
-  [
-   "ID",
-   "US-13296",
-   "Upper Salmon River Access BLM Recreation Management Area",
-   "Upper Salmon River"
-  ],
-  [
-   "ID",
-   "US-2228",
-   "Bear Lake State Park",
-   "Bear Lake State Park"
-  ],
-  [
-   "ID",
-   "US-2242",
-   "Lucky Peak State Park",
-   "Lucky Peak State Park"
-  ],
-  [
-   "ID",
-   "US-4387",
-   "Wallowa-Whitman National Forest",
-   "Nezperce National Forest"
-  ],
-  [
-   "ID",
-   "US-4398",
-   "Uinta-Wasatch-Cache National Forest",
-   "Cache National Forest"
-  ],
-  [
-   "ID",
-   "US-4505",
-   "Kootenai National Forest",
-   "Kootenai National Forest"
-  ],
-  [
-   "ID",
-   "US-5599",
-   "CJ Strike Wildlife Management Area",
-   "C. J. Strike Wildlife Management Area"
-  ],
-  [
-   "ID",
-   "US-5616",
-   "Red River Wildlife Management Area",
-   "Red River Wildlife Management Area"
-  ],
-  [
-   "IL",
-   "US-0272",
-   "Port Louisa National Wildlife Refuge",
-   "Port Louisa National Wildlife Refuge"
-  ],
-  [
-   "IL",
-   "US-1015",
-   "Pere Marquette State Park",
-   "Pere Marquette State Park"
-  ],
-  [
-   "IL",
-   "US-12110",
-   "Rend Lake State Fish and Wildlife Area",
-   "Rend Lake"
-  ],
-  [
-   "IL",
-   "US-12184",
-   "Heidecke Lake State Fish and Wildlife Area",
-   "Heidecke Lake State Fish and Wildlife Area"
-  ],
-  [
-   "IL",
-   "US-4093",
-   "Clinton Lake State Recreation Area",
-   "Clinton State Recreation Area"
-  ],
-  [
-   "IL",
-   "US-4114",
-   "Carlyle Lake State Fish and Wildlife Area",
-   "Carlyle Lake State Fish and Wildlife Area"
-  ],
-  [
-   "IN",
-   "US-10231",
-   "Limberlost Swamp State Nature Preserve",
-   "Limberlost Nature Preserve"
-  ],
-  [
-   "IN",
-   "US-10237",
-   "Mongoquinong State Nature Preserve",
-   "Mongoquinong Nature Preserve Sawmill Fen"
-  ],
-  [
-   "IN",
-   "US-4162",
-   "Mounds on Brookville Lake State Recreation Area",
-   "Brookville Lake Public Fishing Area"
-  ],
-  [
-   "LA",
-   "US-0723",
-   "Vicksburg National Military Park",
-   "Vicksburg National Military Park"
-  ],
-  [
-   "MA",
-   "US-11401",
-   "Cummington Wildlife Management Area",
-   "Cummington Wildlife Management Area"
-  ],
-  [
-   "MA",
-   "US-11631",
-   "Hartley Reservoir Wildlife Management Area",
-   "Hartley Reservoir Wildlife Management Area"
-  ],
-  [
-   "MA",
-   "US-8394",
-   "Ashuwillticook Rail Trail State Trail",
-   "Ashuwillticook Rail Trail"
-  ],
-  [
-   "MA",
-   "US-8398",
-   "Southern New England Trunkline Trail State Trail",
-   "Southern New England Trunkline Trail"
-  ],
-  [
-   "MD",
-   "US-10784",
-   "Deep Creek Lake Natural Resource Management Area",
-   "Deep Creek Lake Natural Resource Management Area"
-  ],
-  [
-   "MD",
-   "US-4365",
-   "North Point Battlefield State Park",
-   "North Point State Park"
-  ],
-  [
-   "MD",
-   "US-7749",
-   "Pocomoke Sound Wildlife Management Area",
-   "Pocomoke Sound Wma"
-  ],
-  [
-   "MD",
-   "US-7760",
-   "Nanjemoy Creek Wildlife Management Area",
-   "Nanjemoy Wma"
-  ],
-  [
-   "ME",
-   "US-0450",
-   "Lake Umbagog National Wildlife Refuge",
-   "Umbagog National Wildlife Refuge"
-  ],
-  [
-   "MI",
-   "US-10717",
-   "Sylvania Wilderness Area",
-   "Sylvania Wilderness"
-  ],
-  [
-   "MI",
-   "US-1550",
-   "Van Buren Trail State Park",
-   "Van Buren Trail State Park"
-  ],
-  [
-   "MI",
-   "US-3313",
-   "Holly State Recreation Area",
-   "Holly State Recreation Area"
-  ],
-  [
-   "MI",
-   "US-6804",
-   "Waterloo Unit State Game Land",
-   "Waterloo State Wildlife Area"
-  ],
-  [
-   "MN",
-   "US-0361",
-   "Hamden Slough National Wildlife Refuge",
-   "Hamden Slough National Wildlife Refuge"
-  ],
-  [
-   "MN",
-   "US-11023",
-   "Egret Island SNA State Conservation Area",
-   "Egret Island State Scientific and Natural Area"
-  ],
-  [
-   "MN",
-   "US-12660",
-   "Severance Lake Wildlife Management Area",
-   "Severance Lake State Wildlife Management Area"
-  ],
-  [
-   "MN",
-   "US-13354",
-   "Pelican Lake Wildlife Management Area",
-   "Pelican Lake State Wildlife Management Area"
-  ],
-  [
-   "MN",
-   "US-9387",
-   "Luce Line State Trail",
-   "Luce Line Trail"
-  ],
-  [
-   "MS",
-   "US-0722",
-   "Shiloh National Battlefield",
-   "Shiloh National Military Park"
-  ],
-  [
-   "MT",
-   "US-0070",
-   "Yellowstone National Park",
-   "Yellowstone National Park"
-  ],
-  [
-   "NC",
-   "US-0566",
-   "Great Dismal Swamp National Wildlife Refuge",
-   "Great Dismal Swamp National Wildlife Refuge"
-  ],
-  [
-   "NC",
-   "US-12717",
-   "Deep River State Trail",
-   "Deep River State Trail"
-  ],
-  [
-   "NC",
-   "US-6897",
-   "Croatan State Game Land",
-   "Croatan Game Land"
-  ],
-  [
-   "NC",
-   "US-6916",
-   "Jordan State Game Land",
-   "Jordan Game Land"
-  ],
-  [
-   "ND",
-   "US-7707",
-   "Maclean Bottoms Wildlife Management Area",
-   "MacLean Bottoms"
-  ],
-  [
-   "NE",
-   "US-0675",
-   "Missouri National Recreational River National Wild & Scenic River",
-   "Missouri National Recreational River"
-  ],
-  [
-   "NH",
-   "US-2674",
-   "Pisgah State Park",
-   "Pisgah State Park"
-  ],
-  [
-   "NH",
-   "US-4868",
-   "Annett State Forest",
-   "Annett State Forest"
-  ],
-  [
-   "NH",
-   "US-4886",
-   "Connecticut Lakes State Forest",
-   "Connecticut Lakes State Forest"
-  ],
-  [
-   "NH",
-   "US-4894",
-   "Davis-White State Forest",
-   "Davis-White State Forest"
-  ],
-  [
-   "NH",
-   "US-4926",
-   "Lovewell Mountain State Forest",
-   "Lovewell Mountain State Forest"
-  ],
-  [
-   "NH",
-   "US-4933",
-   "Merrimack River State Forest",
-   "Merrimack River State Forest"
-  ],
-  [
-   "NH",
-   "US-4934",
-   "Merriman State Forest",
-   "Merriman State Forest"
-  ],
-  [
-   "NH",
-   "US-4935",
-   "Mount Major State Forest",
-   "Mount Major State Forest"
-  ],
-  [
-   "NH",
-   "US-8396",
-   "Nashua River Rail Trail State Trail",
-   "Nashua River Rail Trail"
-  ],
-  [
-   "NJ",
-   "US-0680",
-   "Gateway National Recreation Area",
-   "Gateway National Recreation Area"
-  ],
-  [
-   "NJ",
-   "US-8319",
-   "Palisades Interstate Park",
-   "Palisades State Park"
-  ],
-  [
-   "NV",
-   "US-10844",
-   "Diamond BLM Herd Management Area",
-   "Diamond"
-  ],
-  [
-   "NV",
-   "US-11913",
-   "Bad Lands BLM Wilderness Area",
-   "Bad Lands"
-  ],
-  [
-   "NV",
-   "US-13017",
-   "Agusta Mountains BLM Herd Management Area",
-   "Augusta Mountains"
-  ],
-  [
-   "NV",
-   "US-13018",
-   "Black Rock Range East/West BLM Herd Management Area",
-   "Black Rock Range"
-  ],
-  [
-   "NV",
-   "US-13024",
-   "Callaghan BLM Herd Management Area",
-   "Callaghan"
-  ],
-  [
-   "NV",
-   "US-13034",
-   "Goshute BLM Herd Management Area",
-   "Goshute"
-  ],
-  [
-   "NV",
-   "US-13039",
-   "Owyhee River Wilderness Area",
-   "Owyhee River Wilderness"
-  ],
-  [
-   "NV",
-   "US-13048",
-   "Rocky Hills BLM Herd Management Area",
-   "Rocky Hills"
-  ],
-  [
-   "NV",
-   "US-13128",
-   "Jackson Mountains BLM Herd Management Area",
-   "Jackson Mountains"
-  ],
-  [
-   "NV",
-   "US-13130",
-   "Lava Beds BLM Herd Management Area",
-   "Lava Beds"
-  ],
-  [
-   "NV",
-   "US-13132",
-   "Seven Mile BLM Herd Management Area",
-   "Seven Mile"
-  ],
-  [
-   "NV",
-   "US-13134",
-   "Rock Creek BLM Herd Management Area",
-   "Rock Creek"
-  ],
-  [
-   "NV",
-   "US-13138",
-   "Wassuk BLM Herd Management Area",
-   "Wassuk"
-  ],
-  [
-   "NV",
-   "US-13145",
-   "Warm Springs Canyon BLM Herd Management Area",
-   "Warm Springs Canyon"
-  ],
-  [
-   "NV",
-   "US-13194",
-   "Egan Crest Trailhead BLM Recreation Management Area",
-   "Egan Crest Trailhead Recreation Area"
-  ],
-  [
-   "NV",
-   "US-2633",
-   "Lake Tahoe State Park",
-   "Lake Tahoe State Park"
-  ],
-  [
-   "NV",
-   "US-9246",
-   "East Fork High Rock Canyon Wilderness Area",
-   "East Fork High Rock Canyon"
-  ],
-  [
-   "NV",
-   "US-9247",
-   "Eldorado BLM Wilderness Area",
-   "Eldorado"
-  ],
-  [
-   "NV",
-   "US-9258",
-   "Ireteba Peaks BLM Wilderness Area",
-   "Ireteba Peaks"
-  ],
-  [
-   "NV",
-   "US-9273",
-   "North Jackson Mountains Wilderness Area",
-   "North Jackson Mountains"
-  ],
-  [
-   "NY",
-   "US-0456",
-   "Wallkill River National Wildlife Refuge",
-   "Wallkill River National Wildlife Refuge"
-  ],
-  [
-   "NY",
-   "US-10292",
-   "Watson's East Triangle Complex State Preserve",
-   "Watsons East Triangle"
-  ],
-  [
-   "NY",
-   "US-10293",
-   "Raquette Boreal Complex State Preserve",
-   "Raquette Boreal"
-  ],
-  [
-   "NY",
-   "US-8319",
-   "Palisades Interstate Park",
-   "Palisades Interstate Park"
-  ],
-  [
-   "NY",
-   "US-9037",
-   "Allegheny Reservoir Wildlife Management Area",
-   "Allegheny Reservoir Wildlife Management Area"
-  ],
-  [
-   "OH",
-   "US-0732",
-   "Dayton Aviation Heritage National Historical Park",
-   "Dayton Aviation Heritage National Historical Park"
-  ],
-  [
-   "OH",
-   "US-1984",
-   "Portage Lakes State Park",
-   "Portage Lakes State Park"
-  ],
-  [
-   "OH",
-   "US-8114",
-   "East Fork State Wildlife Area",
-   "East Fork Wildlife Area"
-  ],
-  [
-   "OH",
-   "US-9456",
-   "Delaware State Wildlife Area",
-   "Delaware Strine Wildlife Area"
-  ],
-  [
-   "OH",
-   "US-9470",
-   "Jockey Hollow State Wildlife Area",
-   "Jockey Hollow Wildlife Area"
-  ],
-  [
-   "OK",
-   "US-12027",
-   "Altus-Lugert State Fishing Lake",
-   "Altus Lugert Wildlife Management Area"
-  ],
-  [
-   "OK",
-   "US-12028",
-   "Barren Fork Wildlife Management Area",
-   "Barren Fork Wildlife Management Area"
-  ],
-  [
-   "OK",
-   "US-6352",
-   "Honobia Creek Wildlife Management Area",
-   "Honobia Creek Wildlife Management Area"
-  ],
-  [
-   "OK",
-   "US-6353",
-   "Hugo Wildlife Management Area",
-   "Hugo Wildlife Management Area"
-  ],
-  [
-   "OK",
-   "US-6361",
-   "McGee Creek Wildlife Management Area",
-   "McGee Creek Wildlife Management Area"
-  ],
-  [
-   "OK",
-   "US-6365",
-   "Osage Wildlife Management Area",
-   "Osage Wildlife Management Area - Western Wall"
-  ],
-  [
-   "OK",
-   "US-7481",
-   "Rita Blanca National Grassland",
-   "Rita Blanca National Grassland"
-  ],
-  [
-   "OK",
-   "US-7682",
-   "Lake Vanderwork State Fishing Lake",
-   "Lake Vanderwork"
-  ],
-  [
-   "OK",
-   "US-8140",
-   "Gary Sherrer Wildlife Management Area",
-   "Gary Sherrer Wildlife Management Area"
-  ],
-  [
-   "OR",
-   "US-0199",
-   "Lower Klamath National Wildlife Refuge",
-   "Lower Klamath National Wildlife Refuge"
-  ],
-  [
-   "OR",
-   "US-4457",
-   "Klamath National Forest",
-   "Klamath National Forest"
-  ],
-  [
-   "OR",
-   "US-5461",
-   "Tillamook State Forest",
-   "Tillamook State Forest"
-  ],
-  [
-   "TX",
-   "US-7480",
-   "Black Kettle National Grassland",
-   "Black Kettle National Grassland"
-  ],
-  [
-   "UT",
-   "US-0921",
-   "Dinosaur National Monument",
-   "Dinosaur National Monument"
-  ],
-  [
-   "UT",
-   "US-11007",
-   "White River BLM Recreation Management Area",
-   "White River"
-  ],
-  [
-   "UT",
-   "US-11104",
-   "Brigham Face State Wildlife Habitat Management Area",
-   "Brigham Face State Wildlife Area"
-  ],
-  [
-   "UT",
-   "US-11115",
-   "North Fork Virgin River BLM Wild and Scenic River",
-   "North Fork Virgin River"
-  ],
-  [
-   "UT",
-   "US-11194",
-   "Lower Fish Creek Wildlife Management Area",
-   "Lower Fish Creek State Wildlife Area"
-  ],
-  [
-   "UT",
-   "US-11748",
-   "Cedar Mesa BLM Special Recreation Management Area",
-   "Cedar Mesa"
-  ],
-  [
-   "UT",
-   "US-12151",
-   "Point of Pines BLM Special Recreation Management Area",
-   "Point of Pines Campsite 1"
-  ],
-  [
-   "UT",
-   "US-3097",
-   "Yuba State Park",
-   "Yuba State Park"
-  ],
-  [
-   "UT",
-   "US-5758",
-   "Dolores River BLM Recreation Management Area",
-   "Dolores River Canyons"
-  ],
-  [
-   "UT",
-   "US-5782",
-   "Indian Creek BLM Special Recreation Management Area",
-   "Indian Creek"
-  ],
-  [
-   "UT",
-   "US-5789",
-   "Behind the Rocks Wilderness Area",
-   "Behind the Rocks"
-  ],
-  [
-   "UT",
-   "US-5793",
-   "Flaming Gorge National Recreation Area",
-   "Flaming Gorge Reservoir National Recreation Area"
-  ],
-  [
-   "UT",
-   "US-5828",
-   "Dark Canyon BLM Special Recreation Management Area",
-   "Dark Canyon"
-  ],
-  [
-   "UT",
-   "US-5833",
-   "Horseshoe Canyon (North) BLM Wilderness Area",
-   "Horseshoe Canyon (North)"
-  ],
-  [
-   "UT",
-   "US-5869",
-   "9 Mile Canyon BLM Recreation Management Area",
-   "Nine Mile Canyon"
-  ],
-  [
-   "UT",
-   "US-5897",
-   "Lower Last Chance BLM Wilderness Area",
-   "Lower Last Chance"
-  ],
-  [
-   "UT",
-   "US-6007",
-   "Cedar Mountain BLM Herd Management Area",
-   "Cedar Mountain"
-  ],
-  [
-   "UT",
-   "US-6090",
-   "Beaver Dam Mountain Wilderness Area",
-   "Beaver Dam Mountains"
-  ],
-  [
-   "UT",
-   "US-9291",
-   "White Rock Range BLM National Conservation Area",
-   "White Rock Range"
-  ],
-  [
-   "WY",
-   "US-10816",
-   "Saratoga National Fish Hatchery",
-   "Saratoga National Fish Hatchery"
-  ],
-  [
-   "WY",
-   "US-10846",
-   "Boulder Lake BLM Recreation Management Area",
-   "Boulder Lake SRMA"
-  ],
-  [
-   "WY",
-   "US-10890",
-   "Sinks Canyon BLM Recreation Management Area",
-   "Sinks Canyon"
-  ],
-  [
-   "WY",
-   "US-4394",
-   "Ashley National Forest",
-   "Ashley National Forest"
-  ],
-  [
-   "WY",
-   "US-4403",
-   "Medicine Bow - Routt National Forest",
-   "Medicine Bow National Forest"
-  ],
-  [
-   "WY",
-   "US-4475",
-   "Caribou-Targhee National Forest",
-   "Targhee National Forest"
-  ],
-  [
-   "WY",
-   "US-4524",
-   "Black Hills National Forest",
-   "Black Hills National Forest"
-  ],
-  [
-   "WY",
-   "US-5793",
-   "Flaming Gorge National Recreation Area",
-   "Flaming Gorge Reservoir National Recreation Area"
-  ],
-  [
-   "WY",
-   "US-6135",
-   "Pennock Mountain Wildlife Management Area",
-   "Pennock Mountain Wildlife Habitat Management Area"
-  ],
-  [
-   "WY",
-   "US-6196",
-   "Rock Springs BLM Herd Management Area",
-   "Rock Spring"
-  ],
-  [
-   "WY",
-   "US-6197",
-   "Popo Agie Wilderness Area",
-   "Popo Agie Wilderness"
-  ],
-  [
-   "WY",
-   "US-6202",
-   "North Absaroka Wilderness Area",
-   "North Absaroka Wilderness"
-  ],
-  [
-   "WY",
-   "US-6204",
-   "Little Colorado BLM Herd Management Area",
-   "Little Colorado"
-  ],
-  [
-   "WY",
-   "US-6218",
-   "Boulder Lake BLM Recreation Management Area",
-   "Boulder Lake SRMA"
+ },
+ "World": {
+  "totals": {
+   "matched": 3870,
+   "far": 857,
+   "noshape": 0,
+   "edge": 814,
+   "out": 43,
+   "swap": 1
+  },
+  "states": [
+   {
+    "st": "AT",
+    "matched": 278,
+    "far": 53,
+    "noshape": 0,
+    "out": 6,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 47
+   },
+   {
+    "st": "CH",
+    "matched": 263,
+    "far": 26,
+    "noshape": 0,
+    "out": 3,
+    "swap": 1,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 23
+   },
+   {
+    "st": "GB",
+    "matched": 3329,
+    "far": 778,
+    "noshape": 0,
+    "out": 34,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": 250,
+    "edge": 744
+   }
+  ],
+  "swaps": [
+   [
+    "CH",
+    "CH-0226",
+    "Gh\u00f6ggerh\u00fctte Wetland Reserve",
+    "Gh\u00f6ggerh\u00fctte",
+    "Gh\u00f6ggerh\u00fctte"
+   ]
+  ],
+  "well_outside": [
+   [
+    "AT",
+    "AT-0029",
+    "Kaunergrat Nature Reserve",
+    "Kaunergrat"
+   ],
+   [
+    "AT",
+    "AT-0196",
+    "Naturschutzgebiet Sandberge Oberweiden Nature Reserve",
+    "Sandberge Oberweiden"
+   ],
+   [
+    "AT",
+    "AT-0308",
+    "Tiefer-Wald Natura 2000",
+    "Tiefer-Wald"
+   ],
+   [
+    "AT",
+    "AT-0388",
+    "Soboth - Radlpass Landscape Reserve",
+    "Soboth - Radlpass"
+   ],
+   [
+    "AT",
+    "AT-0412",
+    "Niedere Tauern Bird Sanctuary",
+    "Niedere Tauern"
+   ],
+   [
+    "AT",
+    "AT-0414",
+    "Altausseer See Nature Reserve",
+    "Altausseer See"
+   ],
+   [
+    "CH",
+    "CH-0010",
+    "Gantrisch Nature Park",
+    "Waldreservat Gantrischberg"
+   ],
+   [
+    "CH",
+    "CH-0225",
+    "Unteres Gh\u00f6gg Wetland Reserve",
+    "Unteres Gh\u00f6gg"
+   ],
+   [
+    "GB",
+    "GB-0042",
+    "Dearne Valley - Wombwell Ings RSPB Reserve",
+    "DEARNE VALLEY PARK"
+   ],
+   [
+    "GB",
+    "GB-0056",
+    "Isle of Wight - Solent Maritime Conservation Reserve",
+    "Isle Of Wight"
+   ],
+   [
+    "GB",
+    "GB-0101",
+    "Dearne Valley - Old Moor RSPB Reserve",
+    "DEARNE VALLEY PARK"
+   ],
+   [
+    "GB",
+    "GB-0223",
+    "Dearne Valley - Gypsy Marsh RSPB Reserve",
+    "DEARNE VALLEY PARK"
+   ],
+   [
+    "GB",
+    "GB-0287",
+    "Rainham Marshes RSPB Reserve",
+    "RAINHAM MARSHES"
+   ],
+   [
+    "GB",
+    "GB-0331",
+    "Dearne Valley - Bolton Ings RSPB Reserve",
+    "DEARNE VALLEY PARK"
+   ],
+   [
+    "GB",
+    "GB-0836",
+    "Cairngorms National Nature Reserve",
+    "Cairngorms"
+   ],
+   [
+    "GB",
+    "GB-0849",
+    "Corrie Fee National Nature Reserve",
+    "Corrie Fee"
+   ],
+   [
+    "GB",
+    "GB-0858",
+    "Cromarty Firth (West) - Conan Islands Protected Area",
+    "Cromarty Firth"
+   ],
+   [
+    "GB",
+    "GB-0904",
+    "Hirsel Country Park",
+    "The Hirsel"
+   ],
+   [
+    "GB",
+    "GB-0955",
+    "Noss National Nature Reserve",
+    "Noss"
+   ],
+   [
+    "GB",
+    "GB-1060",
+    "Lady Park Wood National Nature Reserve",
+    "LADY PARK WOOD"
+   ],
+   [
+    "GB",
+    "GB-1236",
+    "Cleeve Hill Park",
+    "Cleeve Hill SSSI"
+   ],
+   [
+    "GB",
+    "GB-1279",
+    "Castle Hill (Newhaven) Local Nature Reserve",
+    "CASTLE HILL"
+   ],
+   [
+    "GB",
+    "GB-1290",
+    "Tyne Green Country Park",
+    "TYNE GREEN"
+   ],
+   [
+    "GB",
+    "GB-2592",
+    "Northcliffe Park",
+    "NORTHCLIFFE QUARRY"
+   ],
+   [
+    "GB",
+    "GB-3043",
+    "Northumberlandia Park",
+    "NORTHUMBERLAND"
+   ],
+   [
+    "GB",
+    "GB-3165",
+    "Haslam Park and Nature Reserve",
+    "HASLAM PARK"
+   ],
+   [
+    "GB",
+    "GB-3199",
+    "Walton Dam and Country Park",
+    "WALTON"
+   ],
+   [
+    "GB",
+    "GB-3862",
+    "Springfield Hall Park",
+    "SPRINGFIELD PARK"
+   ],
+   [
+    "GB",
+    "GB-3866",
+    "Riverside Park",
+    "RIVERSIDE"
+   ],
+   [
+    "GB",
+    "GB-4630",
+    "St Catherine's Hill Nature Reserve",
+    "St. Catherine's Hill SSSI"
+   ],
+   [
+    "GB",
+    "GB-4987",
+    "Shire Brook Valley Local Nature Reserve",
+    "SHIRE BROOK"
+   ],
+   [
+    "GB",
+    "GB-5162",
+    "Werneth Park",
+    "WERNETH LOW"
+   ],
+   [
+    "GB",
+    "GB-5213",
+    "Roding Valley Park",
+    "RODING VALLEY MEADOWS"
+   ],
+   [
+    "GB",
+    "GB-5468",
+    "Hill Rise Park",
+    "HILL RISE"
+   ],
+   [
+    "GB",
+    "GB-5476",
+    "Priory (St Neots) Park",
+    "PRIORY"
+   ],
+   [
+    "GB",
+    "GB-5531",
+    "Northlands Park",
+    "NORTHLANDS WOOD"
+   ],
+   [
+    "GB",
+    "GB-6118",
+    "Cowslip Meadow Nature Reserve",
+    "Cowslip Meadow SSSI"
+   ],
+   [
+    "GB",
+    "GB-6440",
+    "Ox Close Wood Nature Reserve",
+    "Ox Close SSSI"
+   ],
+   [
+    "GB",
+    "GB-6531",
+    "Philips Park",
+    "PHILIP'S PARK"
+   ],
+   [
+    "GB",
+    "GB-6775",
+    "Nightingale Valley Nature Reserve",
+    "Nightingale Valley SSSI"
+   ],
+   [
+    "GB",
+    "GB-6787",
+    "Green Lane Local Nature Reserve",
+    "GREEN LANE WOOD"
+   ],
+   [
+    "GB",
+    "GB-7057",
+    "Inverneil Burn Site of Significant Scientific Interest",
+    "Inverneil Burn"
+   ]
   ]
- ]
+ }
 }

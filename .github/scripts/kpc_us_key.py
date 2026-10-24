@@ -31,6 +31,7 @@ PAGE = int(os.environ.get('GEO_PAGE') or 500)
 CACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/us')
 CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
 CACHE_USED, CACHE_SAVED = [], []
+NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'   # Oct 24: the world key's kind-label rule, US version (needs the pin inside)
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', '%0A')), flush=True)
@@ -63,6 +64,9 @@ ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation
         'swa': 'state wildlife area', 'sra': 'state recreation area', 'nca': 'national conservation area',
         'nwr': 'national wildlife refuge', 'srma': 'special recreation management area', 'sna': 'state natural area',
         'sfu': 'state fish hatchery', 'historical': 'historic'}   # Colorado Parks & Wildlife 'Rifle Falls SFU' = Rifle Falls State Fish Hatchery
+# Oct 24: the Oct 22 'keep a leading type word' rule must not keep a leading article or filler - 'The 400 State Trail'
+# came out as 'the 400 trail' and no longer met '400 State Trail' (found measuring the WI key)
+NOTNAME = {'the', 'of', 'and', 'state', 'national', 'no', 'number', 'blm', 'designated', 'a', 'an'}
 def norm(s, drop1=False):
     s = str(s or '')
     # Oct 22: a named piece of one area is still that area - 'Cherokee SWA - Lone Pine Unit', 'Roaring Fork SWA -
@@ -81,7 +85,7 @@ def norm(s, drop1=False):
     s = ' '.join(ABBR.get(w, w) for w in s.split())
     _first = s.split()[0] if s.split() else ''
     s = re.sub(r'\b(' + GEN + r')\b', ' ', s)
-    if _first and not s.startswith(_first) and len(s.split()) <= 3:
+    if _first and _first not in NOTNAME and not s.startswith(_first) and len(s.split()) <= 3:
         s = _first + ' ' + s          # keep a leading type word: it is doing the naming here
     s = re.sub(r'[^a-z0-9 ]', ' ', s)
     s = ' '.join(ABBR.get(w, w) if w.isdigit() else w for w in s.split())   # '#4' = 'Pool 4' = 'Pool Four'
@@ -378,13 +382,37 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('mdd', 'svc:https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer|dnr owned', '?', '?', set(), 'Maryland DNR lands', 'STAT', {'MD'}),
     ('vta', 'svc:https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer|unit', '?', '?', set(), 'Vermont ANR lands', 'STAT', {'VT'}),
 ]
+# Oct 24 (Brandon: 'they a new state level gis fable set up you can use as needed'): the Map Rep Tool Box's table of
+# each state's OWN park / wildlife / forest / preserve layers (data/state-gis.json, 60 layers in 37 states, kept by
+# kpc-state-gis.yml) feeds the key too. Layers already in XS by address are skipped; a layer that does not answer is
+# skipped like any other. Entries marked 'auto:' were found by the bot and not yet checked by a person, and are used
+# all the same: the key's name + kind rules decide, and the website labels the result like any other join.
+SGK = {'park': {'sp'}, 'wild': {'wma'}, 'forest': {'sf'}, 'preserve': {'snp'}, 'land': set()}
+try:
+    _sg = json.load(open('data/state-gis.json')).get('states') or {}
+    _have = {x[1].split('/query')[0].rstrip('/') for x in XS}
+    for _st, _lays in sorted(_sg.items()):
+        for _i, _l in enumerate(_lays):
+            _u = str(_l.get('url') or '').rstrip('/')
+            if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
+            # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
+            XS.append((f'sg{_st.lower()}{chr(97 + _i)}', _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st}))
+except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
 def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
-    if not url.startswith('svc:'): return url, nf, af, ('objectid' if pre == 'wld' else 'OBJECTID')
+    rq = lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
+    if not url.startswith('svc:'):
+        if not pre.startswith('sg'): return url, nf, af, ('objectid' if pre == 'wld' else 'OBJECTID')
+        if pre in RESOLVED: return RESOLVED[pre]
+        L = rq(url.rsplit('/query', 1)[0] + '?f=json'); flds = L.get('fields') or []     # a state GIS layer: ask it for its own id + acres fields
+        if 'Polygon' not in str(L.get('geometryType', '')): raise RuntimeError('not a polygon layer')
+        oid = L.get('objectIdField') or next((f['name'] for f in flds if f.get('type') == 'esriFieldTypeOID'), 'OBJECTID')
+        acres = next((f['name'] for f in flds if re.search(r'acre', f['name'], re.I)), '')
+        RESOLVED[pre] = (url, nf, acres, oid)
+        return RESOLVED[pre]
     if pre in RESOLVED: return RESOLVED[pre]
     svc, rx = url[4:].split('|', 1)
-    rq = lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
     lays = rq(svc + '?f=json').get('layers') or []
     pick = [l for l in lays if re.search(rx, l.get('name', ''), re.I) and not l.get('subLayerIds')] or [l for l in lays if not l.get('subLayerIds')]
     lid = pick[0]['id']
@@ -641,6 +669,21 @@ def run(st):
                 site = sorted(c, key=lambda x: x[2])[:2]; c = []
             if ov.get('site'): site, c = sorted(c, key=lambda x: x[2])[:2] or site, []
             if ov.get('none'): c = []   # a person looked: no official outline for this park in any map we read
+            # NAME_JOIN, the US way (Oct 24, step 2 of the Oct 22 plan: 'cross-port the rules each script is missing').
+            # The world key joins a 'same name, different kind of place' candidate when every such candidate is one
+            # and the same official area. Here the kind words are English on both sides and usually mean it: a lake
+            # WMA and the state park on the same lake really are two places (Yatesville, Oct 17). So the US takes the
+            # join only when the one same-named area also HOLDS the park's pin (or the pin sits at its edge): an
+            # Oregon 'State Recreation Site' filed by PAD-US as a state park, a SC heritage preserve that is the WMA.
+            if not m and c and NAME_JOIN and not ov.get('none') and not ov.get('site'):
+                sn = [x for x in c if x[3] == 'same name, different kind of place']
+                if sn and len({_nf(x[1]) for x in sn}) == 1:
+                    gs = {_oid(a): a for a in recs}
+                    hold = [x for x in sn if str(x[0]) in gs and rings(gs[str(x[0])].get('_g'))
+                            and (inside(la, lo, gs[str(x[0])]['_g']) or near(la, lo, gs[str(x[0])]['_bb'], .005))]
+                    if hold and not any(_tags(name) and _tags(x[1]) and not (_tags(name) & _tags(x[1])) for x in hold):   # a memorial is never the refuge
+                        m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name) + pin inside'] for x in hold]
+                        c = [x for x in c if x not in hold]; site = []
         for x in m: used.add(x[0])
         # SHADOW: what the shared scoring says, recorded only where it disagrees with the join above
         shadow = None

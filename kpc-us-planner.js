@@ -369,12 +369,13 @@ async function showBoundary(s,btn){
  /* on/off switch (Brandon Oct 16): tap again to hide this park's outline */
  if(bound&&boundRef===s.c){bound.remove();bound=null;boundRef='';btn.textContent='SHOW THIS PARK\u2019S OUTLINE';status('Outline hidden.');return}
  if(bound){bound.remove();bound=null}boundRef=s.c;btn.textContent='LOOKING…';btn.disabled=true;
- /* Canada (Oct 17): the official CPCAD outline saved by kpc-canada-bounds.yml (data/canada-bounds/<REF>.json) */
- if(/^CA-/.test(s.c)){try{const r=await fetch('data/canada-bounds/'+encodeURIComponent(s.c)+'.json');if(r.ok){const f=await r.json();
-   bound=L.geoJSON(f,{interactive:false,style:{color:'#f0c96b',weight:3,fillColor:'#f0c96b',fillOpacity:.15}}).addTo(map);
-   const nm=(f.properties&&f.properties.cpcad)||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+')';btn.disabled=false;
+ /* Canada (Oct 17): the official CPCAD outline saved by kpc-canada-bounds.yml (data/canada-bounds/<REF>.json); Oct 24: with no
+    saved file, KPCB.canada falls back to the Canada answer key (data/ca-key) and fetches the joined land by id */
+ if(/^CA-/.test(s.c)&&window.KPCB&&KPCB.canada){try{const fs=await KPCB.canada(s.c);if(fs&&fs.length){const ap=fs.some(f=>f._approx);
+   bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:{color:'#f0c96b',weight:3,dashArray:ap?'8 6':null,fillColor:'#f0c96b',fillOpacity:ap?0:.15}}).addTo(map);
+   const nm=fs[0]._nm||s.n;btn.textContent='HIDE OUTLINE ('+String(nm).toUpperCase().slice(0,28)+(ap?', APPROXIMATE':'')+')';btn.disabled=false;
    try{map.fitBounds(bound.getBounds(),{maxZoom:14,padding:[20,20]})}catch(e){}
-   status(`Official boundary shown: <b>${esc(nm)}</b> (${esc((f.properties&&f.properties.srcShort)||'Canadian Protected and Conserved Areas Database, Government of Canada')}, open government data). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
+   status(ap?`Approximate outline, not official: <b>${esc(nm)}</b> (${esc(fs[0]._src||'')}) — ${esc(fs[0]._why||'')}. Check the park's own map.`:`Official boundary shown: <b>${esc(nm)}</b> (${esc(fs[0]._src||'Canadian Protected and Conserved Areas Database, Government of Canada')}, open government data). POTA goes by the official boundary; check the park's own map too.`);return}}catch(e){}}
  /* Oct 18 (Brandon: 'make sure we show the official maps'): a Kentucky park uses KPC's checked Kentucky outlines (the same ones as Park Control) */
  if(window.KPCB&&KPCB.kyFor&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)&&/^(US|KFF)-/.test(s.c)){try{const fs=await KPCB.kyFor(s.c);if(fs&&fs.length){
    bound=L.geoJSON({type:'FeatureCollection',features:fs},{interactive:false,style:f=>{const kpc=f._L&&f._L.kpc;return{color:kpc?'#ffd400':'#f0c96b',weight:3,dashArray:kpc?'12 5 2 5':null,fillColor:'#f0c96b',fillOpacity:kpc?0:.15}}}).addTo(map);
