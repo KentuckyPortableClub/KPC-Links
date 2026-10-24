@@ -1,7 +1,9 @@
 name: State GIS layer scan
-# One-time / occasional: finds each state's own park / wildlife / forest boundary layers for the Map Rep Tool Box
+# Quarterly + by hand: finds each state's own park / wildlife / forest boundary layers for the Map Rep Tool Box
 # and saves what it found to data/state-gis-found.json (Claude curates that into data/state-gis.json). Never fails.
 on:
+  schedule:
+    - cron: '23 9 1 1,4,7,10 *'   # four times a year (never fails, so it never emails)
   workflow_dispatch:
     inputs:
       states:
@@ -25,7 +27,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/state-gis-found.json data/state-gis-proposed.json || true
+          git add data/state-gis-found.json data/state-gis-proposed.json data/state-gis.json || true
           if ! git diff --cached --quiet; then
             git commit -m 'State GIS layer scan'
             for i in 1 2 3; do

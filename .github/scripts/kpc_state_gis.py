@@ -74,6 +74,23 @@ AGENCIES = {
  'WV': [('West Virginia Division of Natural Resources', 'wvdnr.gov'), ('West Virginia State Parks', 'wvstateparks.com')],
  'WI': [('Wisconsin Department of Natural Resources', 'dnr.wisconsin.gov')], 'WY': [('Wyoming State Parks', 'wyoparks.wyo.gov'), ('Wyoming Game and Fish Department', 'wgfd.wyo.gov')],
 }
+# statewide GIS clearinghouses: many agencies publish through these instead of their own server (name for the org hunt, roots to crawl)
+CLEARING = {
+ 'IL': [('Illinois Geospatial Data Clearinghouse', ['https://clearinghouse.isgs.illinois.edu/arcgis/rest/services', 'https://maps.isgs.illinois.edu/arcgis/rest/services']), ('Illinois Department of Natural Resources', ['https://gis.dnr.illinois.gov/server/rest/services', 'https://gis1.dnr.illinois.gov/arcgis/rest/services'])],
+ 'MO': [('Missouri Spatial Data Information Service', ['https://gis.msdis.missouri.edu/arcgis/rest/services', 'https://msdis.missouri.edu/arcgis/rest/services']), ('Missouri Department of Conservation', ['https://gis.mdc.mo.gov/server/rest/services', 'https://services1.arcgis.com/HlnbiNA7Hc9zHnbe/arcgis/rest/services']), ('Missouri State Parks', ['https://gis.mostateparks.com/server/rest/services'])],
+ 'NC': [('NC OneMap', ['https://services.nconemap.gov/secure/rest/services', 'https://services.nconemap.gov/arcgis/rest/services']), ('North Carolina Wildlife Resources Commission', ['https://gis.ncwildlife.org/arcgis/rest/services', 'https://services1.arcgis.com/BfvuK1CEtgNkDUnZ/arcgis/rest/services']), ('North Carolina Division of Parks and Recreation', ['https://gis.ncparks.gov/arcgis/rest/services'])],
+ 'AL': [('Alabama GIS', ['https://gis.alabama.gov/arcgis/rest/services', 'https://algis.alabama.gov/arcgis/rest/services']), ('Alabama Department of Conservation and Natural Resources', ['https://gis.outdooralabama.com/arcgis/rest/services', 'https://maps.outdooralabama.com/arcgis/rest/services'])],
+ 'MS': [('Mississippi Automated Resource Information System', ['https://gis.maris.state.ms.us/arcgis/rest/services', 'https://maris.mississippi.edu/arcgis/rest/services']), ('Mississippi Department of Wildlife, Fisheries, and Parks', ['https://gis.mdwfp.com/server/rest/services'])],
+ 'NE': [('NebraskaMAP', ['https://maps.nebraska.gov/arcgis/rest/services', 'https://gis.ne.gov/portal/rest/services']), ('Nebraska Game and Parks Commission', ['https://maps.outdoornebraska.gov/server/rest/services', 'https://gis.outdoornebraska.gov/arcgis/rest/services'])],
+ 'NH': [('NH GRANIT', ['https://nhgeodata.unh.edu/nhgeodata/rest/services', 'https://granit.unh.edu/arcgis/rest/services']), ('New Hampshire Fish and Game', ['https://gis.wildlife.nh.gov/arcgis/rest/services'])],
+ 'MA': [('MassGIS', ['https://arcgisserver.digital.mass.gov/arcgisserver/rest/services', 'https://gis-prod.digital.mass.gov/arcgis/rest/services', 'https://gisprpxy.itd.state.ma.us/arcgisserver/rest/services'])],
+ 'CT': [('CT ECO', ['https://cteco.uconn.edu/ctmaps/rest/services', 'https://cteco.uconn.edu/arcgis/rest/services']), ('Connecticut DEEP', ['https://gis.ct.gov/arcgis/rest/services', 'https://ctmaps.ct.gov/arcgis/rest/services'])],
+ 'MD': [('Maryland iMAP', ['https://mdgeodata.md.gov/imap/rest/services', 'https://geodata.md.gov/imap/rest/services']), ('Maryland Department of Natural Resources', ['https://gis.dnr.maryland.gov/arcgis/rest/services', 'https://geodata.md.gov/imap/rest/services/Biota'])],
+ 'SD': [('South Dakota GIS', ['https://arcgis.sd.gov/arcgis/rest/services', 'https://arcgis.sd.gov/server/rest/services']), ('South Dakota Game, Fish and Parks', ['https://gis.gfp.sd.gov/arcgis/rest/services', 'https://services.arcgis.com/jWPBXspaQsJStWX8/arcgis/rest/services'])],
+ 'AZ': [('AZGeo', ['https://azgeo.az.gov/arcgis/rest/services', 'https://services.azgeo.az.gov/arcgis/rest/services']), ('Arizona Game and Fish Department', ['https://gis.azgfd.gov/arcgis/rest/services', 'https://gis.azgfd.com/arcgis/rest/services']), ('Arizona State Parks and Trails', ['https://gis.azstateparks.com/arcgis/rest/services'])],
+ 'PA': [('Pennsylvania Game Commission', ['https://pgcgis.pa.gov/arcgis/rest/services', 'https://www.pgcapps.pa.gov/arcgis/rest/services'])],
+ 'MN': [('Minnesota Department of Natural Resources', ['https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr'])],
+}
 KIND = [('wild', re.compile(r'wildlife|\bwma\b|game land|game area|hunting|fish(ing)? (area|lake)|conservation area|waterfowl|public hunting|\bwmas?\b', re.I)),
         ('park', re.compile(r'state park|parks?\b|historic site|recreation area', re.I)),
         ('forest', re.compile(r'state forest|forest(ry)?\b', re.I)),
@@ -193,14 +210,14 @@ def org_hunt(st, seen, out):
     """ArcGIS Online: find the agency's own organization (by the agency's name in the org title), then every public
     polygon service that org publishes. The owner/org is what tells an official layer from a hobbyist copy."""
     orgs = {}
-    for name, site in AGENCIES.get(st, []):
+    for name, site in AGENCIES.get(st, []) + [(n, '') for n, _ in CLEARING.get(st, [])]:
         q = f'"{name}" type:("Feature Service" OR "Map Service") access:public'
         j = jget('https://www.arcgis.com/sharing/rest/search?f=json&num=50&q=' + urllib.parse.quote(q))
         for it in (j or {}).get('results', []) or []:
             oid = it.get('orgId')
             if oid and oid not in orgs:
                 orgs[oid] = None
-    words = {w.lower() for name, _ in AGENCIES.get(st, []) for w in re.findall(r'[A-Za-z]{4,}', name)} | {STATES[st].lower()}
+    words = {w.lower() for name, _ in AGENCIES.get(st, []) + [(n, '') for n, _ in CLEARING.get(st, [])] for w in re.findall(r'[A-Za-z]{4,}', name)} | {STATES[st].lower()}
     good = []
     for oid in list(orgs)[:25]:
         pj = jget(f'https://www.arcgis.com/sharing/rest/portals/{oid}?f=json')
@@ -209,7 +226,7 @@ def org_hunt(st, seen, out):
         oname = (pj.get('name') or '') + ' ' + (pj.get('urlKey') or '')
         ow = {w.lower() for w in re.findall(r'[A-Za-z]{4,}', oname)}
         hit = len(ow & words)
-        if STATES[st].lower() in oname.lower() and re.search(r'natural resources|wildlife|parks|conservation|fish|game|forest|environment|dnr|dcnr|state of', oname, re.I) or hit >= 3:
+        if STATES[st].lower() in oname.lower() and re.search(r'natural resources|wildlife|parks|conservation|fish|game|forest|environment|dnr|dcnr|state of|gis|geographic|onemap|geospatial|map', oname, re.I) or hit >= 3:
             good.append((oid, pj.get('name'), pj.get('urlKey')))
     for oid, oname, key in good[:4]:
         for start in range(1, 400, 100):
@@ -278,6 +295,8 @@ def host_hunt(st, seen, out):
                                 r.update({'agolTitle': it.get('title'), 'owner': it.get('owner'), 'orgId': pj['id'], 'orgName': pj.get('name'), 'via': 'site→org'})
                         if len(res) < 100:
                             break
+    for _, rs in CLEARING.get(st, []):
+        roots.extend(rs)
     done = set()
     for root in roots:
         if root in done:
@@ -336,6 +355,39 @@ def main():
             continue
         prop.append(r)
     json.dump({'when': time.strftime('%Y-%m-%d'), 'n': len(prop), 'layers': prop}, open('data/state-gis-proposed.json', 'w'), indent=0)
+    # AUTO-ADD (Brandon Oct 24: 'keep looking and add as found'): only the strong ones — a state .gov/.us server or the agency's own ArcGIS Online
+    # organization, a clear park/wildlife/forest/preserve layer name, a name field, 5-5000 records, and no such kind for that state yet.
+    # Marked auto:true so the Tool Box labels them 'found by the bot, not yet checked'. Everything else stays in the proposal file for a person.
+    try:
+        gis = json.load(open('data/state-gis.json'))
+    except Exception:
+        gis = {'states': {}, 'portals': {}}
+    states = gis.setdefault('states', {})
+    STRONG = re.compile(r'state park|parks? (boundar|unit|propert)|wildlife (management )?area|\bwma|game land|state forest|nature preserve|natural area|public (hunting|land)|managed land|conservation area|dnr (land|managed)', re.I)
+    added = []
+    for r in prop:
+        title = r['layer'] + ' ' + str(r.get('agolTitle') or '')
+        if not STRONG.search(title) or not (5 <= r['count'] <= 5000):
+            continue
+        u = r['url'].lower()
+        oname = str(r.get('orgName') or '')
+        agency_words = {w.lower() for name, _ in AGENCIES.get(r['st'], []) for w in re.findall(r'[A-Za-z]{5,}', name)}
+        org_ok = r.get('via') in ('org', 'site→org') and (STATES[r['st']].lower() in oname.lower() or len({w.lower() for w in re.findall(r'[A-Za-z]{5,}', oname)} & agency_words) >= 2)
+        gov_ok = bool(re.search(r'\.gov/|\.state\.\w\w\.us/', u))
+        if not (org_ok or gov_ok):
+            continue
+        have = states.get(r['st'], [])
+        if any(h.get('url') == r['url'] for h in have) or any(h.get('kind') == r['kind'] for h in have):
+            continue
+        e = {'kind': r['kind'], 'ag': (oname or (AGENCIES.get(r['st']) or [('State of ' + STATES[r['st']], '')])[0][0]), 'nm': r['nameFields'][0], 'url': r['url'], 'host': 'agency' if gov_ok else 'agol', 'auto': time.strftime('%Y-%m-%d'), 'layer': r['layer'], 'count': r['count']}
+        if r.get('webFields'):
+            e['web'] = r['webFields'][0]
+        states.setdefault(r['st'], []).append(e)
+        added.append(f"{r['st']} {r['kind']} {r['layer'][:40]}")
+    if added:
+        gis['when'] = time.strftime('%Y-%m-%d')
+        json.dump(gis, open('data/state-gis.json', 'w'), indent=1)
+        print('::notice title=State GIS layers auto-added::' + '; '.join(added)[:900])
     if only:
         try:
             old = json.load(open(OUT)).get('layers', [])
