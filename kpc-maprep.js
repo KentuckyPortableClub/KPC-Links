@@ -776,17 +776,38 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       const close = same.length ? [] : P.filter(p => B.sameName(p.name, g.name) || B.norm(p.name).split(' ').filter(w => w.length > 3 && B.norm(g.name).split(' ').includes(w)).length >= 2).slice(0, 3);
       return Object.assign(g, { pota: same, close, flags: flagsOf(g) });
     });
-    const fresh = all.filter(g => !g.pota.length), star = fresh.filter(g => !g.flags.length && !g.close.length).sort((a, b) => b.acres - a.acres), look = fresh.filter(g => g.flags.length || g.close.length).sort((a, b) => b.acres - a.acres), have = all.length - fresh.length;
+    /* names are not enough (Brandon Oct 24: POTA's names are not always the official ones): for the promising ones, fetch the outline and look for a POTA pin INSIDE it */
+    let fresh = all.filter(g => !g.pota.length);
+    const toCheck = fresh.filter(g => !g.flags.length).sort((a, b) => b.acres - a.acres).slice(0, 60);
+    if (P.length >= 20 && toCheck.length) {
+      let done = 0; msg(`Checking the ${toCheck.length} most promising by location (is a POTA pin inside the outline?)…`);
+      const one = async g => {
+        try {
+          const big = g.acres > 50000;
+          const fc = await B.jget(PADUS + '?' + new URLSearchParams({ where: `Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${st}'`, outFields: 'OBJECTID', returnGeometry: true, outSR: 4326, geometryPrecision: 4, maxAllowableOffset: big ? 0.002 : 0.0005, f: 'geojson' }), null, 20000);
+          const feats = (fc.features || []).filter(f => f.geometry);
+          if (!feats.length) return;
+          const bb = feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
+          const ins = P.filter(p => p.lo >= bb[0] && p.lo <= bb[2] && p.la >= bb[1] && p.la <= bb[3] && feats.some(f => B.inside(p.la, p.lo, f.geometry)));
+          if (ins.length) { g.pota = ins; g.byPin = true; }
+          g.feats = feats;
+        } catch (e) {}
+        done++; const e = document.querySelector('.mr-msg div'); if (e) e.firstChild.textContent = `Checking the ${toCheck.length} most promising by location (is a POTA pin inside the outline?)… ${done} done`;
+      };
+      const Q = toCheck.slice(); await Promise.all([0, 1, 2, 3].map(async () => { while (Q.length) await one(Q.shift()); }));
+      fresh = all.filter(g => !g.pota.length);
+    }
+    const star = fresh.filter(g => !g.flags.length && !g.close.length).sort((a, b) => b.acres - a.acres), look = fresh.filter(g => g.flags.length || g.close.length).sort((a, b) => b.acres - a.acres), have = all.length - fresh.length;
     if (P.length < 20) msg(`<b>Could not read POTA's full park list for ${esc(st)}</b> (${P.length} came back), so most areas below may already be parks: the full check still tells you. Try again in a minute.`); else $('mrOut').innerHTML = '';
     const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
     const IDX = star.concat(look);
     const more = (L, from, id) => L.length > from ? `<button type="button" class="mr-more" data-more="${id}">SHOW ${Math.min(60, L.length - from)} MORE (${L.length - from} left)</button>` : '';
     let nStar = 60, nLook = 30;
     const render = () => {
-      $('mrList').innerHTML = `<div class="mr-candhead"><b>🔎 PARKS TO ADD IN ${esc(st)}${town ? ' NEAR ' + esc(town.toUpperCase()) : ''}</b><p class="mr-help">${all.length.toLocaleString()} named federal/state areas open to the public in the national land database${P.length ? `; <b>${have}</b> already have a POTA park with the same name, <b>${fresh.length}</b> do not` : ''}. Tap one to run it through the full check. ⭐ = nothing odd found; the rest show why to look twice. Not every name here is a park: the database also lists easements, water designations and tiny access sites, and the full check and the agency's own page decide.</p></div>
+      $('mrList').innerHTML = `<div class="mr-candhead"><b>🔎 PARKS TO ADD IN ${esc(st)}${town ? ' NEAR ' + esc(town.toUpperCase()) : ''}</b><p class="mr-help">${all.length.toLocaleString()} named federal/state areas open to the public in the national land database${P.length ? `; <b>${have}</b> already have a POTA park (same name, or a POTA pin inside the outline), <b>${fresh.length}</b> do not` : ''}. Tap one to run it through the full check. ⭐ = nothing odd found; the rest show why to look twice. Not every name here is a park: the database also lists easements, water designations and tiny access sites, and the full check and the agency's own page decide.</p></div>
 <h4 class="mr-candh">⭐ LOOK PROMISING · ${star.length}</h4>${star.slice(0, nStar).map(g => row(g, IDX.indexOf(g))).join('') || '<p class="mr-help">None without a flag.</p>'}${more(star, nStar, 'star')}
 <h4 class="mr-candh">⚠ PROBABLY WILL NOT QUALIFY, OR CLOSE TO AN EXISTING PARK · ${look.length}</h4>${look.slice(0, nLook).map(g => row(g, IDX.indexOf(g))).join('') || '<p class="mr-help">None.</p>'}${more(look, nLook, 'look')}
-${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary><p class="mr-help">${all.filter(g => g.pota.length).sort((a, b) => b.acres - a.acres).map(g => esc(g.name) + ' = ' + g.pota.map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)}</a>`).join(', ')).join(' · ')}</p></details>` : ''}`;
+${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary><p class="mr-help">Matched by name, or (📍) by a POTA pin inside the outline when POTA calls it something else. Tap the number to compare.</p><p class="mr-help">${all.filter(g => g.pota.length).sort((a, b) => b.acres - a.acres).map(g => esc(g.name) + ' = ' + (g.byPin ? '📍 ' : '') + g.pota.map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)} ${esc(p.name)}</a>`).join(', ')).join(' · ')}</p></details>` : ''}`;
       $('mrList').querySelectorAll('[data-c]').forEach(b => b.onclick = () => { $('mrList').innerHTML = ''; open(IDX[+b.dataset.c]); });
       $('mrList').querySelectorAll('[data-more]').forEach(b => b.onclick = () => { if (b.dataset.more === 'star') nStar += 60; else nLook += 60; render(); });
       $('mrList').scrollIntoView({ behavior: 'smooth', block: 'start' });
