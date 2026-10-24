@@ -29,7 +29,7 @@ WHY: kpc-park-alerts.yml already watches Kentucky State Parks. The NPS part is w
 is a key, so Mammoth Cave, Cumberland Gap and Big South Fork are not covered yet.
 WHAT TO DO: get a free key at developer.nps.gov (name + email, arrives by email in a minute), save it as the
 secret `NPS_API_KEY`. No other change needed; the bot picks it up on its next run.
-STATUS: waiting.
+STATUS: **DONE (confirmed Oct 24: 'nps' is in park-alerts-state sources, so the key works).**
 
 ## 3. A room for the 'somebody is waiting on us' posts  (Oct 21 — NEEDED, not optional)
 WHY: KPC_DISCORD_WEBHOOK turns out to point at **#kpc-pota-spots**, the spots room. On Oct 21 the Facebook
