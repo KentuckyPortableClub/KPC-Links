@@ -58,7 +58,7 @@
   let F = Object.assign({ v: 3, view: 'cards', p: ['POTA'], hide: true, qrt: true, nw: false, rg: false, bands: [], modes: ['PHONE'], where: 'all', st: '', q: '', sort: 'new' }, get('kpcHuntF', {}));
   /* Brandon Oct 16: everyone starts on POTA, phone (SSB), hiding hunted parks and QRT (once, then their own picks stick) */
   if (!F.v || F.v < 3) { Object.assign(F, { p: ['POTA'], hide: true, qrt: true, modes: ['PHONE'], v: 3 }); }
-  F.rg = false; if (F.where === 'range') F.where = 'all'; if (F.sort === 'far') F.sort = 'new'; if (!Array.isArray(F.xc)) F.xc = [];
+  F.rg = false; if (F.where === 'range') F.where = 'all'; if (F.sort === 'far') F.sort = 'new'; if (!Array.isArray(F.xc)) F.xc = []; if (!Array.isArray(F.ct)) F.ct = [];
   const saveF = () => put('kpcHuntF', F);
   /* 'normal range' was removed Oct 16 (Brandon): no home, no far-away ticker */
   let HOME = null, RANGE = 1e9, FAR = false, BELL = get('kpcHuntBell', false), NOTE = get('kpcHuntNote', false);
@@ -127,7 +127,7 @@
     const khz = toKhz(x.freq != null ? x.freq : x.frequency); if (!khz) return null;
     const call = String(x.dx_call || x.activator || '').toUpperCase(), com = x.comment || '';
     const country = x.dx_country || '', usa = /united states/i.test(country), can = /canada/i.test(country);
-    const g = { qrt: !!x.qrt, call, khz, mode: String(x.mode || '').toUpperCase(), loc: country, st: usa ? String(x.dx_state || '').toUpperCase() : '', la: +(x.dx_latitude ?? NaN), lo: +(x.dx_longitude ?? NaN),
+    const g = { qrt: !!x.qrt, call, khz, mode: String(x.mode || '').toUpperCase(), loc: country, st: usa ? String(x.dx_state || '').toUpperCase() : '', la: +(x.dx_latitude ?? NaN), lo: +(x.dx_longitude ?? NaN), cont: String(x.dx_continent || '').toUpperCase(),
       t: toMs(x.time), by: x.de_call || '', com, us: usa, ca: can };
     if (/WWFF/i.test(sig)) {
       const rr = x.sig_refs || []; const refs = (Array.isArray(rr) ? rr : [rr]).map(v => typeof v === 'string' ? { id: v } : { id: v.id || v.ref || '', name: v.name || '' }).filter(v => v.id);
@@ -189,7 +189,10 @@
     return s;
   }
   const isQrt = s => s.qrt || /QRT|\bhunting\b/i.test(s.com || '');
-  const passPBM = s => F.p.includes(s.p) && !F.xc.includes(s.cty) && (!F.qrt || !isQrt(s)) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
+  /* Oct 24 (Brandon): continent filter; KPCCont lives in kpc-cont.js */
+  const contOf = s => (s.ct !== undefined ? s.ct : (s.ct = window.KPCCont ? KPCCont.of(s) : ''));
+  const ctPass = (a, s) => !a || !a.length || a.includes(contOf(s));
+  const passPBM = s => ctPass(F.ct, s) && F.p.includes(s.p) && !F.xc.includes(s.cty) && (!F.qrt || !isQrt(s)) && (!F.bands.length || F.bands.includes(bandOf(s.khz))) && (!F.modes.length || F.modes.includes(modeOf(s.mode)));
 
   /* ---------------- ticker + alerts ---------------- */
   let AC = null;
@@ -591,7 +594,7 @@
   const WSORT = { new: (a, b) => (b.t || 0) - (a.t || 0), old: (a, b) => (a.t || 0) - (b.t || 0), freq: (a, b) => a.khz - b.khz, freqd: (a, b) => b.khz - a.khz, mode: (a, b) => modeOf(a.mode).localeCompare(modeOf(b.mode)) || a.khz - b.khz, call: (a, b) => a.call.localeCompare(b.call), park: (a, b) => String(a.ref || '~').localeCompare(String(b.ref || '~')) };
   function winPass(w, s) {
     const q = String(w.q || '').toUpperCase().split(/[,;]+/).map(x => x.trim()).filter(Boolean);
-    return w.p.includes(s.p) && (!w.bands.length || w.bands.includes(bandOf(s.khz))) && (!w.modes.length || w.modes.includes(modeOf(s.mode)))
+    return ctPass(w.ct, s) && w.p.includes(s.p) && (!w.bands.length || w.bands.includes(bandOf(s.khz))) && (!w.modes.length || w.modes.includes(modeOf(s.mode)))
       && (!w.qrt || !isQrt(s)) && (!w.nw || isNew(s)) && (!w.hide || !WK.has(s.ref))
       && (w.where === 'all' || (w.where === 'us' && s.us) || (w.where === 'usca' && (s.us || s.ca))) && (!w.st || s.st === w.st)
       && (!q.length || q.some(x => [s.call, s.ref, s.name, s.st, ST[s.st] || '', s.loc, s.com].join(' ').toUpperCase().includes(x)));
@@ -707,6 +710,7 @@
     return `<div class="hw-g"><span>SHOW</span>${Object.keys(PL).map(p => c('p', p, w.p.includes(p), PL[p])).join('')}</div>
 <div class="hw-g"><span>BAND</span>${BANDS.map(b => b[0]).concat(['OTHER']).map(b => c('band', b, w.bands.includes(b), b.toUpperCase())).join('')}</div>
 <div class="hw-g"><span>MODE</span>${['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => c('mode', m, w.modes.includes(m))).join('')}</div>
+<div class="hw-g"><span>CONTINENT</span>${(window.KPCCont ? KPCCont.list : []).map(x => c('ct', x[0], (w.ct || []).includes(x[0]), x[1])).join('')}</div>
 <div class="hw-g"><span>WHERE</span>${WHERE.map(x => c('where', x[0], w.where === x[0], x[1])).join('')}<select data-wst><option value="">Any state</option>${stOpts(w.st)}</select></div>
 <div class="hw-g"><span>ONLY</span>${c('flag', 'nw', w.nw, '✨ NEW TO ME')}${c('flag', 'hide', w.hide, 'HIDE PARKS I’VE HUNTED')}${c('flag', 'qrt', w.qrt, 'HIDE QRT')}</div>
 <label class="hw-lab">WATCH FOR <input data-wq value="${esc(w.q)}" placeholder="calls, park numbers or words, with commas"></label>
@@ -743,7 +747,7 @@
     if (e.target.closest('[data-wf]')) { const f = el.querySelector('.hw-f'); f.hidden = !f.hidden; if (!f.hidden) f.innerHTML = winFilt(i); return; }
     const b = e.target.closest('.hw-f .hl-chip'); if (b) {
       const d = b.dataset, tog = (a, v) => { const k = a.indexOf(v); if (k < 0) a.push(v); else a.splice(k, 1); };
-      if (d.wkP) tog(w.p, d.wkP); else if (d.wkBand) tog(w.bands, d.wkBand); else if (d.wkMode) tog(w.modes, d.wkMode); else if (d.wkWhere) w.where = d.wkWhere; else if (d.wkFlag) w[d.wkFlag] = !w[d.wkFlag];
+      if (d.wkCt) { w.ct = w.ct || []; tog(w.ct, d.wkCt); } else if (d.wkP) tog(w.p, d.wkP); else if (d.wkBand) tog(w.bands, d.wkBand); else if (d.wkMode) tog(w.modes, d.wkMode); else if (d.wkWhere) w.where = d.wkWhere; else if (d.wkFlag) w[d.wkFlag] = !w[d.wkFlag];
       winSave(); el.querySelector('.hw-f').innerHTML = winFilt(i); winDraw(); return;
     }
     const ws = e.target.closest('[data-wsrt]'); if (ws) { w.sort = ws.dataset.wsrt; winSave(); winDraw(); return; }
@@ -773,6 +777,7 @@
     $('fHide').setAttribute('aria-pressed', F.hide); $('fQrt').setAttribute('aria-pressed', !!F.qrt); $('fCalls').setAttribute('aria-pressed', !!F.hc); $('fNew').setAttribute('aria-pressed', F.nw); $('fRange').setAttribute('aria-pressed', F.rg);
     $('fBands').innerHTML = BANDS.map(b => b[0]).concat(['OTHER']).map(b => `<button type="button" class="hl-chip" data-band="${b}" aria-pressed="${F.bands.includes(b)}">${b.toUpperCase()}</button>`).join('');
     $('fModes').innerHTML = ['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => `<button type="button" class="hl-chip" data-mode="${m}" aria-pressed="${F.modes.includes(m)}">${m === 'PHONE' ? 'PHONE (SSB/FM)' : m}</button>`).join('');
+    if ($('fCont')) $('fCont').innerHTML = (window.KPCCont ? KPCCont.list : []).map(x => `<button type="button" class="hl-chip" data-cont="${x[0]}" aria-pressed="${(F.ct || []).includes(x[0])}">${x[1]}</button>`).join('');
     $('fWhere').innerHTML = WHERE.map(w => `<button type="button" class="hl-chip" data-where="${w[0]}" aria-pressed="${F.where === w[0]}">${w[1]}</button>`).join('');
     $('fSt').value = F.st; $('fSort').value = F.sort; $('fQ').value = F.q;
     const cc = {}; SP.forEach(x => { if (x.cty) cc[x.cty] = (cc[x.cty] || 0) + 1; }); F.xc.forEach(c => { if (!(c in cc)) cc[c] = 0; });
@@ -780,11 +785,12 @@
     activeBox();
   }
   document.addEventListener('click', e => {
-    const t = e.target.closest('[data-g=p],[data-band],[data-mode],[data-where],#fHide,#fNew,#fRange,#fQrt'); if (!t) return;
+    const t = e.target.closest('[data-g=p],[data-band],[data-mode],[data-cont],[data-where],#fHide,#fNew,#fRange,#fQrt'); if (!t) return;
     const tog = (a, v) => a.includes(v) ? a.filter(x => x !== v) : a.concat(v);
     if (t.dataset.g === 'p') { F.p = tog(F.p, t.dataset.v); if (!F.p.length) F.p = [t.dataset.v]; }
     else if (t.dataset.band) F.bands = tog(F.bands, t.dataset.band);
     else if (t.dataset.mode) F.modes = tog(F.modes, t.dataset.mode);
+    else if (t.dataset.cont) F.ct = tog(F.ct || [], t.dataset.cont);
     else if (t.dataset.where) { F.where = t.dataset.where; if (F.where === 'range' && !HOME) { openModal('suModal', 'hHome'); $('hHome').textContent = 'Set where you are first.'; } }
     else if ((t.id === 'fHide' || t.id === 'fNew') && !hasLog()) { toast('Load your worked parks first (' + (PUB ? '📄 LOAD MY WORKED PARKS' : '⭐ GET MY PARKS FROM POTA') + '): until then the page can’t tell which parks you’ve worked.'); return; }
     else if (t.id === 'fQrt') F.qrt = !F.qrt;
@@ -793,7 +799,7 @@
     saveF(); chips(); ticker(false); draw();
   });
   /* the box that shows what you're filtering, each with an ✕, plus CLEAR ALL */
-  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], qrt: false, hc: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [] };
+  const F0 = { p: ['POTA', 'WWFF', 'SOTA', 'DXPED', 'EVENT', 'DX'], qrt: false, hc: false, hide: false, nw: false, bands: [], modes: [], where: 'all', st: '', q: '', xc: [], ct: [] };
   function activeBox() {
     const it = [];
     const PN = { POTA: 'POTA', WWFF: 'WWFF / KFF', SOTA: 'SOTA', DXPED: 'DXPEDITIONS', EVENT: 'SPECIAL EVENTS', DX: 'DX CLUSTER' };
@@ -805,6 +811,7 @@
     if (F.nw) it.push(['nw', '✨ New to me only']);
     F.bands.forEach(b => it.push(['band:' + b, 'Band ' + b]));
     F.modes.forEach(m => it.push(['mode:' + m, 'Mode ' + m]));
+    (F.ct || []).forEach(c => it.push(['ct:' + c, window.KPCCont ? KPCCont.name(c) : c]));
     if (F.where !== 'all') it.push(['where', (WHERE.find(w => w[0] === F.where) || [0, F.where])[1]]);
     if (F.st) it.push(['st', 'State ' + F.st]);
     if (F.q.trim()) it.push(['q', 'Search “' + F.q.trim() + '”']);
@@ -824,7 +831,7 @@
     if (k === '*') Object.assign(F, JSON.parse(JSON.stringify(F0)));
     else if (k === 'def') Object.assign(F, JSON.parse(JSON.stringify(F0)), { p: ['POTA'], hide: true, qrt: true, modes: ['PHONE'] });
     else if (k === 'p') F.p = F0.p.slice(); else if (k === 'hide') F.hide = false; else if (k === 'qrt') F.qrt = false; else if (k === 'hc') F.hc = false; else if (k === 'nw') F.nw = false; else if (k === 'where') F.where = 'all'; else if (k === 'st') F.st = ''; else if (k === 'q') F.q = '';
-    else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
+    else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3)); else if (k.startsWith('ct:')) F.ct = (F.ct || []).filter(x => x !== k.slice(3));
     saveF(); chips(); ticker(false); draw();
   });
   $('hlFtog').onclick = () => { const f = $('hlFilters'); f.classList.toggle('open'); $('hlFtog').setAttribute('aria-expanded', f.classList.contains('open')); activeBox(); };
@@ -868,6 +875,9 @@
     all.forEach(r => WK.add(r));
     LOG.t = Date.now(); LOG.file = names.join(', '); saveLog(); logInfo(); ticker(false); draw(); needDraw(); topDraw();
     m.innerHTML += ` <b>Found ${all.size}</b> in the file.`;
+    /* Oct 24 (Brandon): with a file loaded the page knows what is new to you, so the 🔥 new-park effect comes on by itself */
+    try { const was = FX; if (FX === 'off') { FX = 'flames'; put('kpcHuntFx', FX); flameBtn(); }
+      m.innerHTML += ` 🔥 <b>${was === 'off' ? 'Flames are ON now' : 'Flames are on'}</b>: they go off when a park new to you comes on the air (tap 🔥 on the bar to change).`; } catch (e) {}
   }
   $('hFile').onchange = e => { if (e.target.files.length) takeFiles([...e.target.files]); e.target.value = ''; };
   const dz = $('hDrop');
