@@ -1,5 +1,10 @@
 {
  "refs": {
+  "CA-2156": {
+   "n": "Réserve naturelle de la Montagne-de-Rigaud Nature Reserve",
+   "d": "2026-10-24",
+   "src": "canada"
+  },
   "FR-13871": {
    "n": "Square de l'hôtel de ville Recreation Park",
    "d": "2026-10-23",
@@ -282,5 +287,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-10-23"
+ "updated": "2026-10-24"
 }
