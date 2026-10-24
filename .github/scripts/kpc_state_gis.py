@@ -32,6 +32,48 @@ ROOTS = {
     'VT': ['https://maps.vcgi.vermont.gov/arcgis/rest/services'], 'NH': ['https://nhgeodata.unh.edu/nhgeodata/rest/services'], 'DE': ['https://enterprise.firstmap.delaware.gov/arcgis/rest/services'], 'RI': ['https://risegis.ri.gov/hosting/rest/services'],
     'AK': ['https://arcgis.dnr.alaska.gov/arcgis/rest/services'], 'HI': ['https://geodata.hawaii.gov/arcgis/rest/services'],
 }
+# the state agencies (same table as SA in kpc-maprep.js): name, website
+AGENCIES = {
+ 'AL': [('Alabama State Parks', 'alapark.com'), ('Alabama Wildlife and Freshwater Fisheries', 'outdooralabama.com'), ('Alabama Department of Conservation and Natural Resources', 'outdooralabama.com')],
+ 'AK': [('Alaska State Parks', 'dnr.alaska.gov'), ('Alaska Department of Fish and Game', 'adfg.alaska.gov')],
+ 'AZ': [('Arizona State Parks', 'azstateparks.com'), ('Arizona Game and Fish Department', 'azgfd.com'), ('Arizona State Land Department', 'land.az.gov')],
+ 'AR': [('Arkansas State Parks', 'arkansasstateparks.com'), ('Arkansas Game and Fish Commission', 'agfc.com'), ('Arkansas Natural Heritage Commission', 'naturalheritage.com')],
+ 'CA': [('California State Parks', 'parks.ca.gov'), ('California Department of Fish and Wildlife', 'wildlife.ca.gov')],
+ 'CO': [('Colorado Parks and Wildlife', 'cpw.state.co.us')], 'CT': [('Connecticut DEEP', 'portal.ct.gov'), ('Connecticut Department of Energy and Environmental Protection', 'portal.ct.gov')],
+ 'DE': [('Delaware State Parks', 'destateparks.com'), ('Delaware DNREC', 'dnrec.delaware.gov')],
+ 'FL': [('Florida State Parks', 'floridastateparks.org'), ('Florida Fish and Wildlife Conservation Commission', 'myfwc.com'), ('Florida Forest Service', 'fdacs.gov'), ('Florida Department of Environmental Protection', 'floridadep.gov')],
+ 'GA': [('Georgia State Parks', 'gastateparks.org'), ('Georgia Department of Natural Resources', 'georgiawildlife.com')],
+ 'HI': [('Hawaii DLNR', 'dlnr.hawaii.gov')], 'ID': [('Idaho Parks and Recreation', 'parksandrecreation.idaho.gov'), ('Idaho Fish and Game', 'idfg.idaho.gov'), ('Idaho Department of Lands', 'idl.idaho.gov')],
+ 'IL': [('Illinois Department of Natural Resources', 'dnr.illinois.gov'), ('Illinois Nature Preserves Commission', 'dnr.illinois.gov')], 'IN': [('Indiana Department of Natural Resources', 'in.gov')],
+ 'IA': [('Iowa Department of Natural Resources', 'iowadnr.gov')], 'KS': [('Kansas Department of Wildlife and Parks', 'ksoutdoors.gov')],
+ 'KY': [('Kentucky State Parks', 'parks.ky.gov'), ('Kentucky Department of Fish and Wildlife Resources', 'fw.ky.gov')],
+ 'LA': [('Louisiana State Parks', 'lastateparks.com'), ('Louisiana Department of Wildlife and Fisheries', 'wlf.louisiana.gov')],
+ 'ME': [('Maine Bureau of Parks and Lands', 'maine.gov'), ('Maine Department of Inland Fisheries and Wildlife', 'maine.gov')],
+ 'MD': [('Maryland Department of Natural Resources', 'dnr.maryland.gov'), ('Maryland Park Service', 'dnr.maryland.gov')],
+ 'MA': [('Massachusetts Department of Conservation and Recreation', 'mass.gov'), ('MassWildlife', 'mass.gov')],
+ 'MI': [('Michigan Department of Natural Resources', 'michigan.gov')], 'MN': [('Minnesota Department of Natural Resources', 'dnr.state.mn.us')],
+ 'MS': [('Mississippi Department of Wildlife, Fisheries, and Parks', 'mdwfp.com')], 'MO': [('Missouri State Parks', 'mostateparks.com'), ('Missouri Department of Conservation', 'mdc.mo.gov')],
+ 'MT': [('Montana Fish, Wildlife and Parks', 'fwp.mt.gov')], 'NE': [('Nebraska Game and Parks Commission', 'outdoornebraska.gov')],
+ 'NV': [('Nevada State Parks', 'parks.nv.gov'), ('Nevada Department of Wildlife', 'ndow.org')], 'NH': [('New Hampshire State Parks', 'nhstateparks.org'), ('New Hampshire Fish and Game', 'wildlife.nh.gov')],
+ 'NJ': [('New Jersey Department of Environmental Protection', 'dep.nj.gov'), ('New Jersey Fish and Wildlife', 'dep.nj.gov')],
+ 'NM': [('New Mexico State Parks', 'emnrd.nm.gov'), ('New Mexico Department of Game and Fish', 'wildlife.dgf.nm.gov')],
+ 'NY': [('New York State Parks', 'parks.ny.gov'), ('New York State Department of Environmental Conservation', 'dec.ny.gov')],
+ 'NC': [('North Carolina State Parks', 'ncparks.gov'), ('North Carolina Wildlife Resources Commission', 'ncwildlife.gov')],
+ 'ND': [('North Dakota Parks and Recreation', 'parks.nd.gov'), ('North Dakota Game and Fish', 'gf.nd.gov')],
+ 'OH': [('Ohio Department of Natural Resources', 'ohiodnr.gov'), ('Ohio State Parks', 'ohiodnr.gov'), ('Ohio Division of Wildlife', 'ohiodnr.gov')],
+ 'OK': [('Oklahoma Tourism and Recreation Department', 'travelok.com'), ('Oklahoma Department of Wildlife Conservation', 'wildlifedepartment.com')],
+ 'OR': [('Oregon Parks and Recreation Department', 'stateparks.oregon.gov'), ('Oregon Department of Fish and Wildlife', 'myodfw.com')],
+ 'PA': [('Pennsylvania DCNR', 'dcnr.pa.gov'), ('Pennsylvania Game Commission', 'pgc.pa.gov'), ('Pennsylvania Department of Conservation and Natural Resources', 'dcnr.pa.gov')],
+ 'RI': [('Rhode Island Department of Environmental Management', 'dem.ri.gov')],
+ 'SC': [('South Carolina State Parks', 'southcarolinaparks.com'), ('South Carolina Department of Natural Resources', 'dnr.sc.gov'), ('South Carolina Department of Parks, Recreation and Tourism', 'scprt.com')],
+ 'SD': [('South Dakota Game, Fish and Parks', 'gfp.sd.gov')], 'TN': [('Tennessee State Parks', 'tnstateparks.com'), ('Tennessee Wildlife Resources Agency', 'tn.gov'), ('Tennessee Department of Environment and Conservation', 'tn.gov')],
+ 'TX': [('Texas Parks and Wildlife Department', 'tpwd.texas.gov')], 'UT': [('Utah State Parks', 'stateparks.utah.gov'), ('Utah Division of Wildlife Resources', 'wildlife.utah.gov')],
+ 'VT': [('Vermont Department of Forests, Parks and Recreation', 'fpr.vermont.gov'), ('Vermont Fish and Wildlife', 'vtfishandwildlife.com'), ('Vermont Agency of Natural Resources', 'anr.vermont.gov')],
+ 'VA': [('Virginia Department of Conservation and Recreation', 'dcr.virginia.gov'), ('Virginia Department of Wildlife Resources', 'dwr.virginia.gov')],
+ 'WA': [('Washington State Parks', 'parks.wa.gov'), ('Washington Department of Fish and Wildlife', 'wdfw.wa.gov'), ('Washington Department of Natural Resources', 'dnr.wa.gov')],
+ 'WV': [('West Virginia Division of Natural Resources', 'wvdnr.gov'), ('West Virginia State Parks', 'wvstateparks.com')],
+ 'WI': [('Wisconsin Department of Natural Resources', 'dnr.wisconsin.gov')], 'WY': [('Wyoming State Parks', 'wyoparks.wyo.gov'), ('Wyoming Game and Fish Department', 'wgfd.wyo.gov')],
+}
 KIND = [('wild', re.compile(r'wildlife|\bwma\b|game land|game area|hunting|fish(ing)? (area|lake)|conservation area|waterfowl|public hunting|\bwmas?\b', re.I)),
         ('park', re.compile(r'state park|parks?\b|historic site|recreation area', re.I)),
         ('forest', re.compile(r'state forest|forest(ry)?\b', re.I)),
@@ -147,12 +189,122 @@ def agol_search(st, seen, out):
             for r in out[before:]:
                 r.update({'agolTitle': it.get('title'), 'owner': it.get('owner'), 'orgId': it.get('orgId'), 'agolId': it.get('id'), 'modified': it.get('modified')})
 
+def org_hunt(st, seen, out):
+    """ArcGIS Online: find the agency's own organization (by the agency's name in the org title), then every public
+    polygon service that org publishes. The owner/org is what tells an official layer from a hobbyist copy."""
+    orgs = {}
+    for name, site in AGENCIES.get(st, []):
+        q = f'"{name}" type:("Feature Service" OR "Map Service") access:public'
+        j = jget('https://www.arcgis.com/sharing/rest/search?f=json&num=50&q=' + urllib.parse.quote(q))
+        for it in (j or {}).get('results', []) or []:
+            oid = it.get('orgId')
+            if oid and oid not in orgs:
+                orgs[oid] = None
+    words = {w.lower() for name, _ in AGENCIES.get(st, []) for w in re.findall(r'[A-Za-z]{4,}', name)} | {STATES[st].lower()}
+    good = []
+    for oid in list(orgs)[:25]:
+        pj = jget(f'https://www.arcgis.com/sharing/rest/portals/{oid}?f=json')
+        if not pj or pj.get('error'):
+            continue
+        oname = (pj.get('name') or '') + ' ' + (pj.get('urlKey') or '')
+        ow = {w.lower() for w in re.findall(r'[A-Za-z]{4,}', oname)}
+        hit = len(ow & words)
+        if STATES[st].lower() in oname.lower() and re.search(r'natural resources|wildlife|parks|conservation|fish|game|forest|environment|dnr|dcnr|state of', oname, re.I) or hit >= 3:
+            good.append((oid, pj.get('name'), pj.get('urlKey')))
+    for oid, oname, key in good[:4]:
+        for start in range(1, 400, 100):
+            j = jget('https://www.arcgis.com/sharing/rest/search?f=json&num=100&start=%d&q=' % start + urllib.parse.quote(f'orgid:{oid} type:("Feature Service" OR "Map Service") access:public'))
+            res = (j or {}).get('results', []) or []
+            for it in res:
+                u = it.get('url') or ''
+                if not u or u in seen or not re.match(r'https?://', u):
+                    continue
+                if not re.search(r'park|wildlife|wma|game|hunt|forest|preserve|natural|land|conserv|recreat|manage|boundar|propert', (it.get('title') or '') + ' ' + u, re.I):
+                    continue
+                seen.add(u)
+                m = re.match(r'(.*/(?:Feature|Map)Server)(?:/(\d+))?$', u)
+                if not m:
+                    continue
+                before = len(out)
+                if m.group(2):
+                    r = layer_info(u, st)
+                    if r:
+                        r['service'] = m.group(1); out.append(r)
+                else:
+                    service_layers(m.group(1), st, seen, out)
+                for r in out[before:]:
+                    r.update({'agolTitle': it.get('title'), 'owner': it.get('owner'), 'orgId': oid, 'orgName': oname, 'agolId': it.get('id'), 'via': 'org'})
+            if len(res) < 100:
+                break
+
+def host_hunt(st, seen, out):
+    """Guess the agency's own ArcGIS server from its website (gis.<site>/arcgis/rest/services and friends) and read the
+    agency's GIS / maps / data pages for links to REST services or ArcGIS Online items."""
+    roots = []
+    for name, site in AGENCIES.get(st, []):
+        base = re.sub(r'^(www\.|portal\.|parks\.|fw\.|dnr\.|dec\.|dcr\.|dwr\.|dep\.)', '', site)
+        for h in {site, base, 'gis.' + base, 'maps.' + base, 'gis.' + site, 'maps.' + site, 'geo.' + base, 'data.' + base, 'arcgis.' + base}:
+            for path in ('/arcgis/rest/services', '/server/rest/services', '/gis/rest/services', '/hosting/rest/services', '/public/rest/services'):
+                roots.append('https://' + h + path)
+        for page in (f'https://{site}/', f'https://{site}/gis', f'https://{site}/maps', f'https://{site}/data', f'https://www.{base}/gis'):
+            try:
+                t = get(page, 15)
+            except Exception:
+                continue
+            for u in set(re.findall(r'https?://[^\s"\'<>]+?/(?:arcgis|server|hosting|gis)/rest/services[^\s"\'<>]*', t)):
+                roots.append(re.sub(r'(/rest/services).*', r'\1', u))
+            for oid in set(re.findall(r'https?://([a-z0-9-]+)\.maps\.arcgis\.com', t)):
+                pj = jget(f'https://{oid}.maps.arcgis.com/sharing/rest/portals/self?f=json')
+                if pj and pj.get('id') and not pj.get('error'):
+                    for start in range(1, 300, 100):
+                        j = jget('https://www.arcgis.com/sharing/rest/search?f=json&num=100&start=%d&q=' % start + urllib.parse.quote(f'orgid:{pj["id"]} type:("Feature Service" OR "Map Service") access:public'))
+                        res = (j or {}).get('results', []) or []
+                        for it in res:
+                            u = it.get('url') or ''
+                            if not u or u in seen or not re.match(r'https?://', u) or not re.search(r'park|wildlife|wma|game|hunt|forest|preserve|natural|land|conserv|recreat|manage|boundar|propert', (it.get('title') or '') + ' ' + u, re.I):
+                                continue
+                            seen.add(u)
+                            m = re.match(r'(.*/(?:Feature|Map)Server)(?:/(\d+))?$', u)
+                            if not m:
+                                continue
+                            before = len(out)
+                            if m.group(2):
+                                r = layer_info(u, st)
+                                if r:
+                                    r['service'] = m.group(1); out.append(r)
+                            else:
+                                service_layers(m.group(1), st, seen, out)
+                            for r in out[before:]:
+                                r.update({'agolTitle': it.get('title'), 'owner': it.get('owner'), 'orgId': pj['id'], 'orgName': pj.get('name'), 'via': 'site→org'})
+                        if len(res) < 100:
+                            break
+    done = set()
+    for root in roots:
+        if root in done:
+            continue
+        done.add(root)
+        try:
+            n0 = len(out)
+            crawl_root(root, st, seen, out)
+            for r in out[n0:]:
+                r.setdefault('via', 'host')
+        except Exception as e:
+            pass
+
 def do_state(st):
     out, seen = [], set()
     try:
         agol_search(st, seen, out)
     except Exception as e:
         print('agol', st, e)
+    try:
+        org_hunt(st, seen, out)
+    except Exception as e:
+        print('org', st, e)
+    try:
+        host_hunt(st, seen, out)
+    except Exception as e:
+        print('host', st, e)
     for root in ROOTS.get(st, []):
         try:
             crawl_root(root, st, seen, out)
@@ -169,11 +321,32 @@ def main():
         for res in ex.map(do_state, sts):
             found.extend(res)
     found.sort(key=lambda r: (r['st'], r['kind'], -r['count']))
+    # proposals: layers that look official (state server, or the agency's own ArcGIS Online org) for states the tool does not have yet
+    try:
+        have = json.load(open('data/state-gis.json')).get('states', {})
+    except Exception:
+        have = {}
+    prop = []
+    for r in found:
+        if r['st'] in have or not r['nameFields'] or not r['kind'] or r['count'] < 5:
+            continue
+        u = r['url'].lower()
+        official = bool(re.search(r'\.gov/|\.state\.\w\w\.us/|\.\w\w\.us/', u)) or r.get('via') in ('org', 'site→org') or bool(re.search(r'dnr|dcnr|parks|wildlife|fwc|tpwd|twra|odnr|mdc|agfc|dec_|dep|forest|_gis$|gis_', str(r.get('owner') or ''), re.I))
+        if not official or re.search(r'buffer|intersect|proposed|easement|habitat|wetland|karst|county|city|parcel|zoning|soil|flood', r['layer'] + ' ' + str(r.get('agolTitle') or ''), re.I):
+            continue
+        prop.append(r)
+    json.dump({'when': time.strftime('%Y-%m-%d'), 'n': len(prop), 'layers': prop}, open('data/state-gis-proposed.json', 'w'), indent=0)
+    if only:
+        try:
+            old = json.load(open(OUT)).get('layers', [])
+            found = [r for r in old if r['st'] not in sts] + found
+        except Exception:
+            pass
     json.dump({'when': time.strftime('%Y-%m-%d'), 'n': len(found), 'layers': found}, open(OUT, 'w'), indent=0)
     by = {}
     for r in found:
         by[r['st']] = by.get(r['st'], 0) + 1
-    print('::notice title=State GIS layers found::' + ', '.join(f'{k} {v}' for k, v in sorted(by.items())) + f' (total {len(found)})')
+    print('::notice title=State GIS layers found::' + ', '.join(f'{k} {v}' for k, v in sorted(by.items())) + f' (total {len(found)}; {len(prop)} proposed for states not covered yet)')
 
 if __name__ == '__main__':
     try:
