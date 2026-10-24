@@ -1,43 +1,38 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **219 of 254** parks joined to official land (same name + same kind of place). **16** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **222 of 254** parks joined to official land (same name + same kind of place). **1** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0054** Nez Perce National Historical Park (National Historical Park) → Clearwater River (~44,818 ac, the POTA pin is inside it (different name))
-- **US-0400** Halfbreed Lake National Wildlife Refuge (National Wildlife Refuge) → Grass Lake National Wildlife Refuge (~3,394 ac, the POTA pin is inside it (different name)); Grass Lake National Wildlife Refuge (~3,394 ac, the POTA pin is inside it (different name))
-- **US-0883** Flathead National Wild and Scenic River (National Wild and Scenic River) → Flathead National Forest (~2,414,171 ac, same name, different kind of place)
-- **US-10524** Acton (BLM) Recreation Site (Recreation Site) → Acton Recreation Area (~3,698 ac, similar name)
-- **US-10528** Shepherd Ah Nei BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Shepherd Recreation Area (~4,680 ac, similar name); Billings Field Office (~429,680 ac, the POTA pin is inside it (different name))
-- **US-10529** Sundance Lodge (BLM) Recreation Site (Recreation Site) → Sundance Recreation Area (~391 ac, similar name)
-- **US-11146** Somers Beach State Park (State Park) → Somers Fishing Access Site (~2 ac, similar name)
-- **US-11217** Bluewater Springs Trout State Fish Hatchery (State Fish Hatchery) → Bluewater Springs Fishing Access Site (~40 ac, same name, different kind of place)
-- **US-11218** Fort Peck State Fish Hatchery (State Fish Hatchery) → Fort Peck Recreation Area (~623,432 ac, same name, different kind of place)
-- **US-12630** Upper Missouri River BLM Wild and Scenic River (BLM Wild and Scenic River) → Upper Missouri River Breaks National Monument Field Office (~374,614 ac, similar name); Upper Missouri River Breaks National Monument (~0 ac, same name, different kind of place); Havre Field Office (~395,379 ac, the POTA pin is inside it (different name))
-- **US-12822** Big Horn State Fish and Wildlife Area (State Fish and Wildlife Area) → Bighorn Fishing Access Site (~72 ac, the POTA pin is inside it (different name))
-- **US-12827** Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → Lower Big Hole River (~3,329 ac, the POTA pin is inside it (different name)); Brownes Bridge Fishing Access Site (~10 ac, the POTA pin is inside it (different name))
-- **US-12925** Thoreau State Beach (State Beach) → Missoula Field Office (~175,579 ac, the POTA pin is inside it (different name))
-- **US-12941** Judith Landing State Park (State Park) → Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
-- **US-8002** Ninepipe National Wildlife Refuge (National Wildlife Refuge) → Ninepipe Wildlife Management Area (~4,152 ac, same name, different kind of place)
-- **US-8003** Pablo National Wildlife Refuge (National Wildlife Refuge) → Pablo Wildlife Management Area (~195 ac, same name, different kind of place)
+- **US-2604** West Shore State Park (State Park) → Flathead Lake/West Shore State Park (~140 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-0054 Nez Perce National Historical Park (National Historical Park) → on Clearwater River (~44,818 ac)
+- US-0400 Halfbreed Lake National Wildlife Refuge (National Wildlife Refuge) → on Grass Lake National Wildlife Refuge (~3,394 ac); Grass Lake National Wildlife Refuge (~3,394 ac)
 - US-10526 Devils Elbow (BLM) Recreation Site (Recreation Site) → on Hauser Lake (~16,467 ac); Butte Field Office (~323,091 ac)
 - US-10527 Judith Landing (BLM) Recreation Site (Recreation Site) → on Upper Missouri River Breaks National Monument (~0 ac)
-- US-11219 Jacko River Trout State Fish Hatchery (State Fish Hatchery) → on Montana Fish, Wildlife and Parks (~315 ac)
+- US-11215 Bear Paw Battlefield National Monument (National Monument) → on Nez Perce National Historical Park (~195 ac)
+- US-12696 Bighorn Viewing Wildlife Management Area (Wildlife Management Area) → on Big Horn Viewing Site Wildlife Management Area (~50 ac); Montana Fish, Wildlife and Parks (~1,481 ac)
+- US-12822 Big Horn State Fish and Wildlife Area (State Fish and Wildlife Area) → on Bighorn Fishing Access Site (~72 ac)
+- US-12827 Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → on Brownes Bridge Fishing Access Site (~10 ac)
+- US-12877 Grey Cliff State Fish and Wildlife Area (State Fish and Wildlife Area) → on Greycliff Fishing Access Site (~548 ac)
+- US-12925 Thoreau State Beach (State Beach) → on Missoula Field Office (~175,579 ac)
+- US-12941 Judith Landing State Park (State Park) → on Upper Missouri River Breaks National Monument (~0 ac)
+- US-2576 Grey Cliff Prairie Dog State Park (State Park) → on Greycliff Prairie Dog Town State Park (~98 ac)
 - US-4574 Nez Perce National Historic Trail (National Historic Trail) → on Lolo National Forest (~2,265,532 ac)
 
 ## Nothing found in PAD-US
 
 - US-0405 CSKT Bison Range Protected Area (Protected Area)
+- US-0883 Flathead National Wild and Scenic River (National Wild and Scenic River)
 - US-10521 Garnet Ghost Town BLM Historic Preservation Site (BLM Historic Preservation Site)
-- US-11215 Bear Paw Battlefield National Monument (National Monument)
+- US-11146 Somers Beach State Park (State Park)
 - US-11216 Big Springs Trout State Fish Hatchery (State Fish Hatchery)
+- US-11217 Bluewater Springs Trout State Fish Hatchery (State Fish Hatchery)
+- US-11218 Fort Peck State Fish Hatchery (State Fish Hatchery)
+- US-11219 Jacko River Trout State Fish Hatchery (State Fish Hatchery)
 - US-11221 Washoe Park Trout State Fish Hatchery (State Fish Hatchery)
-- US-12696 Bighorn Viewing Wildlife Management Area (Wildlife Management Area)
-- US-12877 Grey Cliff State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-2576 Grey Cliff Prairie Dog State Park (State Park)
 - US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
 - US-4475 Caribou-Targhee National Forest (National Forest)
 - US-4477 Idaho Panhandle National Forest (National Forest)
@@ -45,6 +40,8 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **219 of 254** parks joined
 - US-4563 Pacific Northwest National Scenic Trail (National Scenic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-8001 Lamesteer National Wildlife Refuge (National Wildlife Refuge)
+- US-8002 Ninepipe National Wildlife Refuge (National Wildlife Refuge)
+- US-8003 Pablo National Wildlife Refuge (National Wildlife Refuge)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

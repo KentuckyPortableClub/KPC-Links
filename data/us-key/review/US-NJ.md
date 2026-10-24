@@ -1,22 +1,21 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **120 of 134** parks joined to official land (same name + same kind of place). **5** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **121 of 134** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0677** Great Egg Harbor National Wild and Scenic River (National Wild and Scenic River) → Great Egg Harbor River Wildlife Management Area (~1,184 ac, same name, different kind of place); Great Egg Harbor River Wildlife Management Area (~1,096 ac, same name, different kind of place); Great Egg Harbor River Wildlife Management Area (~218 ac, same name, different kind of place); Great Egg Harbor River Wildlife Management Area (~122 ac, same name, different kind of place); Great Egg Harbor River Wildlife Management Area (~60 ac, same name, different kind of place); Great Egg Harbor River Wildlife Management Area (~4 ac, same name, different kind of place)
-- **US-0888** Musconetcong River National Wild and Scenic River (National Wild and Scenic River) → Musconetcong River Wildlife Management Area (~285 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~268 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~211 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~104 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~102 ac, same name, different kind of place); Musconetcong River Wildlife Management Area (~85 ac, same name, different kind of place)
-- **US-11992** Whiting State Conservation Area (State Conservation Area) → Whiting Wildlife Management Area (~1,188 ac, same name, different kind of place)
-- **US-6544** New Jersey Coastal State Trail (State Trail) → Gateway National Recreation Area (~1,810 ac, the POTA pin is inside it (different name))
-- **US-6609** Pinelands Preserve National Conservation Area (National Conservation Area) → Wharton State Forest (~72,322 ac, the POTA pin is inside it (different name)); Wharton State Forest (~2,845 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-0886 Maurice River National Wild and Scenic River (National Wild and Scenic River) → on Heislerville Wildlife Management Area (~317 ac); Heislerville Wildlife Management Area (~7,330 ac)
+- US-6544 New Jersey Coastal State Trail (State Trail) → on Gateway National Recreation Area (~1,810 ac)
+- US-6609 Pinelands Preserve National Conservation Area (National Conservation Area) → on Wharton State Forest (~72,322 ac)
 
 ## Nothing found in PAD-US
 
+- US-0677 Great Egg Harbor National Wild and Scenic River (National Wild and Scenic River)
 - US-0684 Lower Delaware National Wild and Scenic River (National Wild and Scenic River)
-- US-0886 Maurice River National Wild and Scenic River (National Wild and Scenic River)
+- US-0888 Musconetcong River National Wild and Scenic River (National Wild and Scenic River)
 - US-13061 Gum Tree Corner Wildlife Management Area (Wildlife Management Area)
 - US-13117 D.O.D. Ponds Wildlife Management Area (Wildlife Management Area)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
@@ -45,7 +44,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **120 of 134** parks joined
 - Sooy Place Preserve · SCA · New Jersey Natural Lands Trust · ~1,395 ac
 - Appalachian National Scenic Trail · NT · NPS · ~1,222 ac
 - Nantuxent Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,197 ac
-- Whiting Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,188 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,184 ac
 - Gumtree Corner Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,167 ac
 - Columbia Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,159 ac
@@ -87,3 +85,4 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **120 of 134** parks joined
 - Mahlon Dickerson Reservation · SOTH ·   · ~572 ac
 - Mahlon Dickerson Reservation · LCA · Morris County Park Commission · ~572 ac
 - Retreat Preserve · SCA · New Jersey Natural Lands Trust · ~551 ac
+- White Lake Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~548 ac
