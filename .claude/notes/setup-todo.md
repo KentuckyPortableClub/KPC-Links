@@ -62,7 +62,7 @@ own Gmail inbox (kpcwebhost), which Brandon does not read. Nothing has been wait
 out to prove it either way.
 WHAT TO DO: check the secret exists and holds Brandon's address; set it if not. Less urgent now the same list
 also goes to Discord (Oct 21).
-STATUS: unconfirmed.
+STATUS: **DONE Oct 24 (Brandon: 'Approve email is done').** APPROVAL_EMAIL is set.
 
 ## Already done (do not redo)
 - ANDROID_KEY_PASSWORD (app signing), FB_PAGE_ID + FB_PAGE_TOKEN (posting), KPC_DISCORD_WEBHOOK,
