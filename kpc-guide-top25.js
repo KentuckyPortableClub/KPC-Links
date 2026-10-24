@@ -52,7 +52,7 @@ function render(){
  $('b2').innerHTML=(rows(L2,'a')||'<tr><td colspan="6">No parks listed.</td></tr>')+note;
  const x=day(D.updated);
  if(x)$('snap').textContent=`${MONTHS[x.m]} ${x.y} reference snapshot.`;
- $('upd').textContent=(D.live?'LIVE FROM POTA • ':'UPDATED ')+longDate(D.updated).toUpperCase()+(D.parks?` • ${D.parks} KENTUCKY PARKS RANKED`:'');
+ $('upd').textContent=(D.live?'LIVE FROM POTA • ':'UPDATED ')+longDate(D.updated).toUpperCase()+(D.parks?` • ${(+D.parks).toLocaleString()} ${pName(WHERE).toUpperCase()} PARKS RANKED`:'');
  $('pfoot').textContent='Updated '+longDate(D.updated)+' • kentuckyportableclub.github.io/KPC-Links/kpc-guide-top25.html';
  if(KM){const seen=new Set(),sp=[];[...(D.qsos||[]),...(D.acts||[]),...cand].forEach(p=>{if(!seen.has(p.c)){seen.add(p.c);sp.push({ref:p.c,la:p.la,lo:p.lo})}});KM.ensure(sp)}
  document.documentElement.dataset.ready='1'}
@@ -65,9 +65,38 @@ function rank(stats,parks){
 async function jget(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);
  try{const r=await fetch(u,{signal:c.signal,cache:'no-cache'});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
 
+
+/* Oct 24 (Brandon: 'top 25 only does ky....can it expand'): a WHERE picker. Kentucky keeps the weekly list (and the PDF);
+   every other US state, Canadian province and 64 countries rank from the nightly park files (data/parkinfo: activations
+   field 7, QSOs field 9). GET LIVE POTA NUMBERS works for US states and provinces (api.pota.app/location/parks/<loc>). */
+const STN={AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'};
+const PRV={AB:'Alberta',BC:'British Columbia',MB:'Manitoba',NB:'New Brunswick',NL:'Newfoundland and Labrador',NS:'Nova Scotia',NT:'Northwest Territories',NU:'Nunavut',ON:'Ontario',PE:'Prince Edward Island',QC:'Quebec',SK:'Saskatchewan',YT:'Yukon'};
+const CTRY='AG AI AT AU AW BB BE BL BM BQ BS BZ CH CR CU CW CZ DE DK DM DO EE ES FI FR GB GD GL GP GT HN HR HT HU IE IT JM JP KN KY LC LT LU LV MF MQ MS MX NI NL NO PA PL PM PT RO SE SI SK SV SX TC TT VC VG'.split(' ');
+let DNm=null;try{DNm=new Intl.DisplayNames(['en'],{type:'region'})}catch(e){}
+const cName=p=>{try{const n=DNm&&DNm.of(p);if(n&&n!==p)return n}catch(e){}return p};
+const pName=k=>/^US-/.test(k)?STN[k.slice(3)]||k:/^CA-/.test(k)?PRV[k.slice(3)]||k:cName(k);
+let WHERE=(()=>{try{return new URLSearchParams(location.search).get('where')||localStorage.getItem('kpcT25Place')||'US-KY'}catch(e){return 'US-KY'}})();
+async function placeData(){
+ if(WHERE==='US-KY')return null;
+ const f=/^US-/.test(WHERE)?'data/parkinfo/'+WHERE+'.json':/^CA-/.test(WHERE)?'data/parkinfo/CA.json':'data/parkinfo/'+WHERE+'.json';
+ const J=await jget(f,30000);const st={},parks=[];
+ Object.entries(J.parks||{}).forEach(([r,v])=>{if(/^CA-/.test(WHERE)&&v[10]!==WHERE.slice(3))return;const a=+v[7],q=+v[9];if(!isFinite(a)||!isFinite(q))return;st[r]=[a,q];parks.push({c:r,n:v[0],co:'',la:v[5],lo:v[6]})});
+ const R=rank(st,parks);R.all=parks.map(p=>[p.c,st[p.c][0],st[p.c][1]]);parks.forEach(p=>{KY[p.c]=p});
+ return Object.assign(R,{updated:J.updated||''})}
+function labels(){const n=pName(WHERE);document.querySelectorAll('.t25P').forEach(e=>{e.textContent=e.closest('.t25-print-head')?n.toUpperCase():n});
+ const b=$('live');if(b)b.hidden=!/^(US|CA)-/.test(WHERE);const m=$('msg');if(m)m.textContent=WHERE==='US-KY'?'Updated every Monday from POTA. Tap for the latest numbers right now.':'From POTA\'s numbers, refreshed every night.'+(/^(US|CA)-/.test(WHERE)?' Tap for the latest right now.':'')}
+function fillWhere(){const o=L=>L.map(([k,n])=>`<option value="${k}"${k===WHERE?' selected':''}>${esc(n)}</option>`).join('');
+ $('t25W').innerHTML=`<optgroup label="United States">${o(Object.keys(STN).map(s=>['US-'+s,STN[s]]).sort((a,b)=>a[1].localeCompare(b[1])))}</optgroup><optgroup label="Canada">${o(Object.keys(PRV).map(s=>['CA-'+s,PRV[s]]).sort((a,b)=>a[1].localeCompare(b[1])))}</optgroup><optgroup label="Other countries">${o(CTRY.map(p=>[p,cName(p)]).sort((a,b)=>a[1].localeCompare(b[1])))}</optgroup>`;
+ $('t25W').onchange=async()=>{WHERE=$('t25W').value;try{localStorage.setItem('kpcT25Place',WHERE);const u=new URL(location.href);u.searchParams.set('where',WHERE);history.replaceState(null,'',u)}catch(e){}labels();await loadPlace()}}
+async function loadPlace(){
+ $('upd').textContent='LOADING…';
+ if(WHERE==='US-KY'){const [j,ky]=await Promise.all([jget('kpc-top25.json'),jget('kpc-ky-data.json').catch(()=>null)]);((ky&&ky.parks)||[]).forEach(p=>{KY[p.c]=p});D=j;render();return}
+ try{D=await placeData();render()}catch(e){$('upd').textContent='COULD NOT LOAD '+pName(WHERE).toUpperCase();$('b1').innerHTML=$('b2').innerHTML='<tr><td colspan="6">The park list did not load. Try again in a minute.</td></tr>'}}
 async function live(){
- const b=$('live'),m=$('msg');b.disabled=true;m.textContent='Asking POTA for every Kentucky park’s numbers…';
- try{const [j,ky]=await Promise.all([jget('https://api.pota.app/location/parks/US-KY',20000),jget('kpc-ky-data.json',20000)]);
+ const b=$('live'),m=$('msg');b.disabled=true;m.textContent='Asking POTA for every park’s numbers…';
+ try{if(WHERE!=='US-KY'){const j=await jget('https://api.pota.app/location/parks/'+WHERE,25000);const st={},parks=[];(Array.isArray(j)?j:[]).forEach(x=>{const r=String(x.reference||'').toUpperCase(),a=+x.activations,q=+(x.qsos??x.contacts);if(r&&isFinite(a)&&isFinite(q)){st[r]=[a,q];parks.push({c:r,n:x.name||r,co:'',la:+x.latitude,lo:+x.longitude})}});
+   if(parks.length<3)throw new Error('none');const R=rank(st,parks);R.all=parks.map(p=>[p.c,st[p.c][0],st[p.c][1]]);parks.forEach(p=>{KY[p.c]=p});const t=new Date();D=Object.assign(R,{updated:t.toISOString().slice(0,10),live:true});render();m.textContent='Showing live numbers from POTA, ranked just now.';b.textContent='REFRESH LIVE NUMBERS';return}
+  const [j,ky]=await Promise.all([jget('https://api.pota.app/location/parks/US-KY',20000),jget('kpc-ky-data.json',20000)]);
   const st={};(Array.isArray(j)?j:[]).forEach(x=>{const r=String(x.reference||'').toUpperCase(),a=+x.activations,q=+(x.qsos??x.contacts);if(/^US-\d+$/.test(r)&&isFinite(a)&&isFinite(q))st[r]=[a,q]});
   const R=rank(st,(ky&&ky.parks)||[]);
   if(R.parks<50)throw new Error('too few parks');
@@ -81,8 +110,8 @@ async function live(){
 
 if(KM){KM.bar($('km-bar'));window.addEventListener('kpcmine',render)}
 $('live').addEventListener('click',live);
-Promise.all([jget('kpc-top25.json'),jget('kpc-ky-data.json').catch(()=>null)]).then(([j,ky])=>{
- ((ky&&ky.parks)||[]).forEach(p=>{KY[p.c]=p});D=j;render()}).catch(()=>{
+fillWhere();labels();
+loadPlace().catch(()=>{
  $('upd').textContent='COULD NOT LOAD THE LIST';
  $('msg').textContent='The saved list did not load. Tap GET LIVE POTA NUMBERS.';
  document.documentElement.dataset.ready='1'});
