@@ -527,6 +527,369 @@
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
     "host": "agol"
    }
+  ],
+  "AL": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "AZ": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "CT": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "MA": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "MD": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "MO": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "MS": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "NC": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "NE": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "NH": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
+  ],
+  "SD": [
+   {
+    "kind": "forest",
+    "ag": "State of Minnesota",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest Other Lands",
+    "count": 4037,
+    "web": "web_link1"
+   },
+   {
+    "kind": "park",
+    "ag": "InDNRMaps",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLandsAll_Live_HUNT/FeatureServer/1",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "ManagedLandsAll_Live",
+    "count": 190
+   },
+   {
+    "kind": "wild",
+    "ag": "KyGovMaps",
+    "nm": "Name",
+    "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Public_Hunting_Areas_WGS84WM/MapServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Restricted Hunting Areas",
+    "count": 369
+   }
   ]
  },
  "portals": {
