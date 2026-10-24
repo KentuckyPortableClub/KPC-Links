@@ -10,14 +10,14 @@
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Park Tracker | KPC">
-<meta property="og:description" content="Track which Kentucky POTA parks a call sign has activated, park by park, on a map.">
+<meta property="og:description" content="Track the POTA parks you have activated in every state, Canadian province and country, park by park, on a map.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-tracker.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="Track which Kentucky POTA parks a call sign has activated, park by park, on a map.">
+<meta name="description" content="Track the POTA parks you have activated in every state, Canadian province and country, park by park, on a map.">
 <meta name="robots" content="noindex,nofollow">
 <script src="kpc-members.js?v=20261018a"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -99,74 +99,55 @@
 <main>
 <section class="tool-head th-op has-badge"><div class="wrap"><div class="th-text">
 <p class="eyebrow">KPC PARK TRACKER</p>
-<h1>KENTUCKY <span>PARK TRACKER</span></h1>
-<p class="sub">Enter your call sign to see which of Kentucky's POTA parks you have activated, on a map, park by park, and which are still to go.</p>
+<h1>PARK <span>TRACKER</span></h1>
+<p class="sub">Every POTA park you have activated, in any state, Canadian province or country, on a map, and the ones still to go. Load the file from POTA's My Stats page; in Kentucky your call sign is enough.</p>
 </div><img class="th-badge barrel" src="badge-barrel.jpg" alt="KPC logo burned into a barrel top" loading="lazy"></div></section>
-<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="members.html">Members Home</a><a href="kpc-club.html">Club Room</a><a href="kpc-tracker.html" aria-current=page>Park Tracker</a><a href="kpc-recap.html">Monthly Recap</a><a href="kpc-spots.html">On The Air</a><a href="parks.html">← Parks</a></div></nav>
+<nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-activators-lounge.html">Activators Lounge</a><a href="kpc-tracker.html" aria-current=page>Park Tracker</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-kit.html">Activation Kit</a><a href="kpc-in-park.html">Am I in the Park?</a></div></nav>
 <section class="section"><div class="wrap">
+<style>
+.tr-link{border:0;background:none;color:#1d5a3a;font:700 inherit;font-weight:700;text-decoration:underline;cursor:pointer;padding:0}
+#trMap{height:420px;border-radius:10px;border:1px solid #d8cfbf}
+.tr-drop{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border:2px dashed #c9a24a;border-radius:10px;background:#fffdf7;font-weight:900;letter-spacing:.8px;font-size:13px;color:#3b2a06;text-align:center;padding:8px}
+.tr-drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.tr-how{margin:10px 0 0;font-size:14px;line-height:1.6;color:#3d3a33}.tr-how ol{margin:4px 0 0 20px;padding:0}
+#trPlace{font:inherit;font-size:16px;font-weight:700;padding:10px 12px;border:1px solid #cbbf9f;border-radius:6px;background:#fff;min-height:46px;max-width:100%;color:#171717}
+html[data-theme="dark"] .tr-drop{background:#161b22;color:#e6edf3;border-color:#8a6d2a}html[data-theme="dark"] .tr-how{color:#c9d1d9}html[data-theme="dark"] .tr-link{color:#7fd1a3}
+html[data-theme="dark"] #trPlace{background:#0d1117;color:#e6edf3;border-color:#30363d}
+</style>
 <div class="panel">
-<form class="controls" id="f" autocomplete="off">
-<label class="field" style="flex:1 1 220px">CALLSIGN<input id="call" placeholder="Your call sign" autocapitalize="characters" spellcheck="false"></label>
-<button class="btn" type="submit" style="align-self:flex-end">SHOW MY PARKS</button>
+<b style="font-family:Georgia,serif;font-size:18px">1. Load your POTA file</b>
+<div class="tr-how"><ol><li>Sign in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> → <b>My Stats</b>, and download your activated parks as a CSV.</li><li>Pick that file here. An ADIF activator log from your logging program works too.</li></ol></div>
+<label class="tr-drop" style="margin-top:10px"><input type="file" id="trFile" accept=".csv,.txt,.adi,.adif,text/csv">📄 PICK MY POTA FILE</label>
+<p class="muted" id="trMsg" style="margin:8px 0 0;font-size:14px"></p>
+<p class="muted" id="trSrc" style="margin:6px 0 0;font-size:13px"></p>
+<div id="trKy" hidden style="margin-top:14px;border-top:1px solid #e0d5bd;padding-top:12px">
+<b style="font-size:14px">Kentucky only, no file needed:</b>
+<form class="controls" id="trKyF" autocomplete="off" style="margin-top:6px">
+<label class="field" style="flex:1 1 200px">CALL SIGN<input id="trCall" placeholder="Your call sign" autocapitalize="characters" spellcheck="false"></label>
+<button class="btn" type="submit" style="align-self:flex-end">READ POTA'S RECORDS</button>
 </form>
-<div class="progress" id="prog"><div class="bar"><i style="width:0"></i></div><small></small></div>
+<div class="progress" id="trProg"><div class="bar"><i style="width:0"></i></div><small></small></div>
 </div>
-
-<div id="result" style="display:none;margin-top:22px">
-<div class="stats" id="stats"></div>
-<div style="margin-top:14px"><div class="bar"><i id="pbar" style="width:0"></i></div><small class="muted" id="pbarLbl"></small></div>
-<div class="grid2" style="margin-top:20px">
-<div><div class="map" id="map"></div>
-<div class="legend"><span><i style="background:#1d5a3a"></i>Activated</span><span><i style="background:#2b5f8a"></i>Hunted (from your file)</span><span><i style="background:#fff"></i>Still needed</span></div></div>
-<div>
-<div class="chips" id="tabs" style="margin-bottom:10px"><button class="chip" aria-pressed="true" data-t="done">ACTIVATED</button><button class="chip" aria-pressed="false" data-t="need">STILL NEEDED</button></div>
-<div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>PARK</th><th>COUNTY</th><th id="col3">FIRST</th><th id="col4">#</th></tr></thead><tbody id="tbody"></tbody></table></div>
+</div>
+<div class="panel" style="margin-top:16px">
+<label class="field" style="display:block">2. PICK A PLACE<br><select id="trPlace"></select></label>
+</div>
+<div id="trAll" hidden style="margin-top:18px"></div>
+<div id="trOne" style="margin-top:18px">
+<div class="stats" id="trStats"></div>
+<div style="margin-top:12px"><div class="bar"><i id="trBar" style="width:0"></i></div></div>
+<div class="grid2" style="margin-top:18px">
+<div><div id="trMap"></div>
+<div class="legend"><span><i style="background:#1d5a3a"></i>Activated by you</span><span><i style="background:#fff"></i>Not yet by you</span><span><i style="background:#d5a63a"></i>Never activated by anyone</span></div></div>
+<div><div class="chips" id="trTabs" style="margin-bottom:10px"><button class="chip" aria-pressed="true" data-t="done" type="button">ACTIVATED</button><button class="chip" aria-pressed="false" data-t="need" type="button">STILL TO GO</button></div>
+<div id="trList"></div></div>
 </div></div>
-<div class="panel" style="margin-top:20px">
-<b style="font-family:Georgia,serif;font-size:18px">Add your hunted parks (optional)</b>
-<p class="muted" style="margin:6px 0 12px;font-size:14px">POTA doesn't publish hunter logs, so load your own. Export your hunted parks list from pota.app (or any CSV/ADIF/text file that contains park numbers like US-1271) and choose it here. It stays on your device — nothing is uploaded.</p>
-<input type="file" id="huntFile" accept=".csv,.txt,.adi,.adif">
-<span class="muted" id="huntMsg" style="margin-left:8px;font-size:13px"></span>
-</div>
-</div>
 </div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
-<div class="note">Counts come from POTA's public activation records for every Kentucky park. A park counts as activated with 10 or more QSOs in one activation. Data is saved in your browser for 12 hours. Hunted parks are only shown if you load your own file.</div>
+<div class="note">Your file stays on this phone or computer: nothing is uploaded. Park lists for every state, Canada and 64 other countries come from POTA and are refreshed every night. In Kentucky, a park counts as activated with 10 or more contacts in one activation (POTA's rule).</div>
 </div></section>
-<script>
-const $=id=>document.getElementById(id);
-let H=null,D=null,map=null,layer=null,hunted=new Set(),cur=null,tab='done';
-$('f').onsubmit=e=>{e.preventDefault();run($('call').value)};
-async function load(){if(H)return H;D=await KPC.data();try{H=(await KPC.history(KPC.progressUI($('prog')))).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';throw e}return H}
-function statsFor(call){const c=KPC.base(call),res={};
- for(const p of D.parks){const a=(H[p.c]||[]).filter(x=>KPC.base(x[0])===c);const good=a.filter(x=>KPC.ok(x[2]));
-  if(a.length)res[p.c]={n:good.length,tries:a.length,q:a.reduce((s,x)=>s+x[2],0),first:a.map(x=>x[1]).sort()[0],ok:good.length>0}}
- return res}
-async function run(call){call=KPC.base(call);if(!call)return;cur=call;history.replaceState(null,'','?call='+call);
- await load();const S=statsFor(call),P=D.parks,doneP=P.filter(p=>S[p.c]&&S[p.c].ok);
- const counties=new Set(doneP.map(p=>p.co)),acts=Object.values(S).reduce((s,x)=>s+x.n,0),q=Object.values(S).reduce((s,x)=>s+x.q,0);
- $('result').style.display='block';
- $('stats').innerHTML=`<div class="stat"><b>${doneP.length}</b><span>OF ${P.length} KY PARKS</span></div><div class="stat"><b>${acts}</b><span>KY ACTIVATIONS</span></div><div class="stat"><b>${q.toLocaleString()}</b><span>KY QSOS</span></div><div class="stat"><b>${hunted.size?[...hunted].filter(r=>P.some(p=>p.c===r)).length:'—'}</b><span>KY PARKS HUNTED</span></div>`;
- $('pbar').style.width=(100*doneP.length/P.length)+'%';$('pbarLbl').textContent=`${call}: ${Math.round(100*doneP.length/P.length)}% of Kentucky parks activated • ${counties.size} counties`;
- drawMap(S);drawTable(S)}
-async function drawMap(S){if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}
- if(layer)layer.remove();layer=L.layerGroup().addTo(map);
- D.parks.forEach(p=>{const s=S[p.c],done=s&&s.ok,h=hunted.has(p.c);
-  L.circleMarker([p.la,p.lo],{radius:done?7:5,weight:1.2,color:'#173a28',fillColor:done?'#1d5a3a':h?'#2b5f8a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${KPC.esc(p.n)}</b><br><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a> • ${KPC.esc(KPC.cty(p.co))}<br>${done?`Activated ${s.n}× • ${s.q} QSOs • first ${KPC.fmtDate(s.first)}`:s?`${s.tries} attempt(s), under 10 QSOs`:'Not activated yet'}${h?'<br>Hunted ✓':''}<br><a href="finder.html?q=${p.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer)})}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}}
-function drawTable(S){const P=D.parks;let rows;
- if(tab==='done'){$('col3').textContent='FIRST';$('col4').textContent='ACTS';
-  rows=P.filter(p=>S[p.c]&&S[p.c].ok).sort((a,b)=>S[a.c].first.localeCompare(S[b.c].first)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}</td><td>${KPC.esc(p.co)}</td><td>${KPC.fmtDate(S[p.c].first)}</td><td>${S[p.c].n}</td></tr>`)}
- else{$('col3').textContent='TYPE';$('col4').textContent='';
-  rows=P.filter(p=>!(S[p.c]&&S[p.c].ok)).sort((a,b)=>a.co.localeCompare(b.co)).map(p=>`<tr><td><a class="ref" href="${KPC.links.pota(p.c)}" target="_blank" rel="noopener">${p.c}</a><br>${KPC.esc(p.n)}${hunted.has(p.c)?' <span class="tag gr">HUNTED</span>':''}</td><td>${KPC.esc(p.co)}</td><td>${KPC.esc(p.t)}</td><td></td></tr>`)}
- $('tbody').innerHTML=rows.join('')||`<tr><td colspan="4" class="muted">${tab==='done'?'No Kentucky activations found for this callsign yet.':'Every Kentucky park activated — legend!'}</td></tr>`}
-$('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.t;[...$('tabs').children].forEach(x=>x.setAttribute('aria-pressed',x===b));if(cur)drawTable(statsFor(cur))};
-$('huntFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;const t=await f.text();hunted=new Set((t.toUpperCase().match(/US-\d{4,5}/g)||[]));
- try{localStorage.setItem('kpcHunted',JSON.stringify([...hunted]))}catch(_){} $('huntMsg').textContent=`${hunted.size} park references found`;if(cur)run(cur)};
-try{hunted=new Set(JSON.parse(localStorage.getItem('kpcHunted')||'[]'));if(hunted.size)$('huntMsg').textContent=`${hunted.size} hunted parks saved on this device`}catch(_){}
-const q=new URLSearchParams(location.search).get('call');if(q){$('call').value=q;run(q)}
-</script>
+<script src="kpc-tracker.js?v=20261024a" defer></script>
 
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
