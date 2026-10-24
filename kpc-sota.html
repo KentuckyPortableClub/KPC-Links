@@ -168,6 +168,13 @@ const pts=s=>+(String(s||'').match(/\d+/)||[0])[0];
 let MAN={act:{},chase:{}};try{MAN=Object.assign(MAN,JSON.parse(localStorage.getItem('kpcSotaMan')||'{}'))}catch(e){}
 const manSave=()=>{try{localStorage.setItem('kpcSotaMan',JSON.stringify(MAN))}catch(e){}};
 const today=()=>new Date().toISOString().slice(0,10).replace(/-/g,'');
+/* the last log file is remembered per mode (Brandon Oct 24: 'reminders to update files'): after 30 days a gold reminder shows */
+const SFK=m=>'kpcSotaFile_'+m;
+function fileLoad(){try{const x=JSON.parse(localStorage.getItem(SFK(MODE))||'null');if(x&&x.out){FD=x.out;FILE=true;return x}}catch(e){}FD={};FILE=false;return null}
+function fileSave(name){try{localStorage.setItem(SFK(MODE),JSON.stringify({out:FD,name,when:Date.now()}))}catch(e){}}
+function remind(){const el=$('sotaOld');if(!el)return;let x=null;try{x=JSON.parse(localStorage.getItem(SFK(MODE))||'null')}catch(e){}const a=x&&x.when?Math.floor((Date.now()-x.when)/86400000):null;
+ el.hidden=!(a!=null&&a>=30);if(!el.hidden)el.innerHTML=`⏰ Your SOTA ${MODE==='act'?'activator':'chaser'} log here is <b>${a} days old</b>. Download a fresh one from sotadata.org.uk (steps above) and pick it again.`;
+ const n=$('sotaSaved');if(n)n.textContent=x?`Using ${x.name} (loaded ${new Date(x.when).toLocaleDateString()}), saved on this device.`:''}
 function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
 function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
@@ -183,7 +190,7 @@ function fillPickers(){const s=$('assocSel');s.innerHTML=Object.keys(ALL.by).sor
  const l=ALL.by[AS]||[];$('assocNote').textContent=`${l.length.toLocaleString()} summits in ${AS}${ALL.lab[AS]?' ('+ALL.lab[AS]+')':''}. Highest: ${l.length?Math.max(...l.map(x=>x.m)).toLocaleString()+' m':'—'}.`}
 function how(){const act=MODE==='act';$('m-chase').classList.toggle('active',!act);$('m-act').classList.toggle('active',act);
  $('lgDone').textContent=act?'Activated':'Chased';$('tabDone').textContent=act?'ACTIVATED':'CHASED';
- $('sota-how').innerHTML=`<b>${act?'Activators':'Chasers'}: use your ${act?'activator':'chaser'} log CSV from the SOTA database.</b><ol><li>Log in at <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a>.</li><li>Download your <b>${act?'activator':'chaser'} log</b> as a CSV.</li><li>Tap <b>CHOOSE FILE</b> here and pick it.</li></ol>An ADIF export from your logging app also works. Your file stays on your device.`}
+ $('sota-how').innerHTML=`<b>${act?'Activators':'Chasers'}: use your ${act?'activator':'chaser'} log CSV from the SOTA database.</b><ol><li>Go to <a href="https://www.sotadata.org.uk" target="_blank" rel="noopener">sotadata.org.uk</a> and log in (the same sign-in as the SOTA website).</li><li>Open your <b>${act?'activator':'chaser'} log</b> and use its <b>download / export CSV</b> button. The file lands in your Downloads.</li><li>Tap <b>CHOOSE FILE</b> here and pick it.</li><li>Do it again every month or so; the page reminds you.</li></ol>An ADIF export from your logging app also works. Your file stays on your device.<div id="sotaOld" hidden style="margin-top:8px;padding:8px 10px;border-radius:6px;background:#fff3d6;border:1px solid #d5a63a"></div><div id="sotaSaved" class="muted" style="margin-top:6px;font-size:13px"></div>`;setTimeout(remind,0)}
 function normDate(s){s=String(s||'').trim();let m=s.match(/(\d{4})-?(\d{2})-?(\d{2})/);if(m&&+m[2]>=1&&+m[2]<=12)return m[1]+m[2]+m[3];
  m=s.match(/\b(\d{1,2})\/(\d{1,2})\/(\d{2,4})\b/);if(m){let y=m[3];if(y.length===2)y=(+y>80?'19':'20')+y;return y+m[2].padStart(2,'0')+m[1].padStart(2,'0')}return''}/* SOTA dates are day/month/year */
 function cells(line){const c=[];let cur='',q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(q){if(ch==='"'){if(line[i+1]==='"'){cur+='"';i++}else q=false}else cur+=ch}else if(ch==='"')q=true;else if(ch===','||ch===';'||ch==='\t'){c.push(cur.trim());cur=''}else cur+=ch}c.push(cur.trim());return c}
@@ -202,7 +209,7 @@ function parse(txt){const out={};let n=0;const act=MODE==='act';
 async function runFile(){const f=$('sfile').files[0];const pr=$('sprog'),bar=pr.querySelector('i'),tx=pr.querySelector('small');pr.classList.add('on');
  if(!f){tx.textContent='Choose your SOTA log CSV first.';return}
  call=KPC.base($('scall').value||'');bar.style.width='40%';tx.textContent='Reading '+f.name+'…';
- try{const txt=await f.text();await loadAll();const{out,n}=parse(txt);FD=out;FILE=true;DONE=merged();
+ try{const txt=await f.text();await loadAll();const{out,n}=parse(txt);FD=out;FILE=true;if(n)fileSave(f.name);DONE=merged();remind();
   const inArea=list().filter(s=>DONE[s.c]).length;
   bar.style.width='100%';tx.textContent=n?`Read ${n.toLocaleString()} ${MODE==='act'?'activator':'chaser'} lines from ${f.name} • ${Object.keys(out).length.toLocaleString()} summit${Object.keys(out).length===1?"":"s"} in all, ${inArea} in ${AS}${RG?'/'+RG:''}.`:`No SOTA summit references (like W4K/EC-001) found in that file. Make sure it’s your ${MODE==='act'?'activator':'chaser'} log CSV from the SOTA database.`;
   tab=inArea?'done':'need';draw()}catch(e){tx.textContent='Could not read that file. ('+e.message+')'}}
@@ -232,8 +239,8 @@ function csv(which){const l=list(),q=v=>`"${String(v??'').replace(/"/g,'""')}"`,
 function save(){try{localStorage.setItem('kpcSotaA',AS);localStorage.setItem('kpcSotaM',MODE);const u=new URL(location.href);if(AS==='W4K')u.searchParams.delete('a');else u.searchParams.set('a',AS);history.replaceState(null,'',u)}catch(e){}}
 $('assocSel').onchange=e=>{AS=e.target.value;RG='';map&&(map._k='');save();fillPickers();draw()};
 $('regionSel').onchange=e=>{RG=e.target.value;save();draw()};
-$('m-chase').onclick=()=>{MODE='chase';save();how();if($('sfile').files[0])runFile();else draw()};
-$('m-act').onclick=()=>{MODE='act';save();how();if($('sfile').files[0])runFile();else draw()};
+$('m-chase').onclick=()=>{MODE='chase';save();how();if($('sfile').files[0])runFile();else{fileLoad();remind();draw()}};
+$('m-act').onclick=()=>{MODE='act';save();how();if($('sfile').files[0])runFile();else{fileLoad();remind();draw()}};
 $('sf').onsubmit=e=>{e.preventDefault();runFile()};
 $('sfile').onchange=()=>{const f=$('sfile').files[0];$('sfname').textContent=f?f.name:'No file chosen';if(f)runFile()};
 $('stbody').onclick=e=>{const m=e.target.closest('[data-mark],[data-unmark]');if(!m)return;const M=MAN[MODE]||(MAN[MODE]={});if(m.dataset.mark)M[m.dataset.mark]=today();else delete M[m.dataset.unmark];manSave();draw()};
@@ -241,7 +248,7 @@ $('stabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dat
 $('scsvAll').onclick=()=>csv('all');$('scsvDone').onclick=()=>csv('done');$('scsvNeed').onclick=()=>csv('need');
 how();
 const pr=$('sprog');pr.classList.add('on');pr.querySelector('small').textContent='Loading summits…';
-loadAll().then(()=>{if(!ALL.by[AS])AS='W4K';fillPickers();pr.classList.remove('on');pr.querySelector('small').textContent='';draw()}).catch(e=>{pr.querySelector('small').textContent='Could not load the summit list. Try refreshing.'});
+loadAll().then(()=>{if(!ALL.by[AS])AS='W4K';fileLoad();remind();fillPickers();pr.classList.remove('on');pr.querySelector('small').textContent='';draw()}).catch(e=>{pr.querySelector('small').textContent='Could not load the summit list. Try refreshing.'});
 })();
 </script>
 </main>

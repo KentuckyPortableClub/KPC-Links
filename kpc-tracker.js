@@ -43,7 +43,8 @@
     const lines = txt.split(/\r?\n/).filter(l => l.trim());
     const head = lines.length ? cells(lines[0]).map(h => h.toLowerCase()) : [];
     const ci = re => head.findIndex(h => re.test(h));
-    const cA = ci(/^activations?$|^# ?activations?$/), cF = ci(/first/), cR = ci(/reference|^park$|^ref$/), cL = ci(/^location$|^hasc$/);
+    const cA = ci(/^activations?$|^# ?activations?$/), cF = ci(/first/), cR = ci(/reference|^park$|^ref$/), cL = ci(/^hasc$/) >= 0 ? ci(/^hasc$/) : ci(/^location$/);
+    if (cA < 0 && ci(/^qsos$/) >= 0 && ci(/attempts/) < 0 && cR >= 0) return { hunter: true };   /* hunter_parks.csv: no Activations column */
     for (const line of lines.slice(cA >= 0 || cR >= 0 ? 1 : 0)) {
       const c = cells(line), refs = cR >= 0 ? String(c[cR] || '').toUpperCase().match(REF) || [] : line.toUpperCase().match(REF) || [];
       if (!refs.length) continue;
@@ -56,7 +57,9 @@
   async function takeFile(f) {
     const msg = $('trMsg'); msg.textContent = 'Reading ' + f.name + '…';
     try {
-      const out = parse(await f.text()), n = Object.keys(out).length;
+      const out = parse(await f.text());
+      if (out.hunter) { msg.textContent = 'That is your HUNTER file (parks you worked). The tracker needs the ACTIVATOR one: activator_parks.csv.'; return; }
+      const n = Object.keys(out).length;
       if (!n) { msg.textContent = 'No park numbers (like US-1234) found in that file. Use the CSV from pota.app → My Stats, or an ADIF activator log.'; return; }
       Object.keys(ACTS).forEach(r => { if (ACTS[r].src === 'file') delete ACTS[r]; });
       Object.entries(out).forEach(([r, x]) => { ACTS[r] = Object.assign({}, x, { src: 'file' }); });
@@ -109,7 +112,10 @@
   let map = null, layer = null, tab = 'done', page = 1;
   const fmt = d => { d = String(d || '').replace(/-/g, ''); return /^\d{8}$/.test(d) ? new Date(d.slice(0, 4) + '-' + d.slice(4, 6) + '-' + d.slice(6, 8) + 'T12:00:00Z').toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }) : esc(d); };
   const potaUrl = r => 'https://pota.app/#/park/' + encodeURIComponent(r);
-  function src() { const n = Object.keys(ACTS).length; $('trSrc').innerHTML = n ? `<b>${n.toLocaleString()}</b> activated park${n > 1 ? 's' : ''} on this device${FILEINFO ? ' · file: ' + esc(FILEINFO.name) + ' (' + new Date(FILEINFO.when).toLocaleDateString() + ')' : ''} · <button type="button" class="tr-link" id="trClear">clear them</button>` : 'Nothing loaded yet: load your POTA file, or type a call sign for Kentucky.'; const c = $('trClear'); if (c) c.onclick = () => { if (!confirm('Take every activated park off this device?')) return; ACTS = {}; FILEINFO = null; saveActs(); store.set('kpcTrackFile', null); draw(); }; }
+  /* Brandon Oct 24: 'need reminders to update files' — after 30 days the file gets a gold 'time for a fresh one' line */
+  const ageDays = () => FILEINFO && FILEINFO.when ? Math.floor((Date.now() - FILEINFO.when) / 86400000) : null;
+  function remind() { const a = ageDays(), el = $('trOld'); if (!el) return; el.hidden = !(a != null && a >= 30); if (!el.hidden) el.innerHTML = '⏰ Your POTA file is <b>' + a + ' days old</b>. Parks you activated since then are missing: download a fresh <b>activator_parks.csv</b> (steps above) and pick it again.'; }
+  function src() { remind(); const n = Object.keys(ACTS).length; $('trSrc').innerHTML = n ? `<b>${n.toLocaleString()}</b> activated park${n > 1 ? 's' : ''} on this device${FILEINFO ? ' · file: ' + esc(FILEINFO.name) + ' (' + new Date(FILEINFO.when).toLocaleDateString() + ')' : ''} · <button type="button" class="tr-link" id="trClear">clear them</button>` : 'Nothing loaded yet: load your POTA file, or type a call sign for Kentucky.'; const c = $('trClear'); if (c) c.onclick = () => { if (!confirm('Take every activated park off this device?')) return; ACTS = {}; FILEINFO = null; saveActs(); store.set('kpcTrackFile', null); draw(); }; }
   async function draw() {
     src(); store.set('kpcTrackPlace', PLACE);
     const u = new URL(location.href); u.searchParams.set('where', PLACE); history.replaceState(null, '', u);
