@@ -1,6 +1,6 @@
 {
 "when": "2026-10-24",
-"n": 18,
+"n": 17,
 "layers": [
 {
 "st": "AZ",
@@ -45,6 +45,220 @@
 {
 "st": "MD",
 "kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_FederalLands/FeatureServer/0",
+"layer": "Federal Lands",
+"count": 825,
+"nameFields": [
+"NAME"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"NAME",
+"Agency",
+"County",
+"WebLink",
+"GISAcres",
+"CntyCode",
+"Notes",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 1000,
+"sample": [
+{
+"NAME": "Indian Head Naval Surface Warefare Ctr",
+"WebLink": "http://www.navsea.navy.mil/nswc/indianhead/default.aspx"
+},
+{
+"NAME": "Indian Head Naval Surface Warefare Ctr",
+"WebLink": "http://www.navsea.navy.mil/nswc/indianhead/default.aspx"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_FederalLands/FeatureServer",
+"agolTitle": "Maryland Federal Lands - Federal Lands",
+"owner": "mdimapdatacatalog",
+"orgId": "njFNhDsUCentVYJW",
+"orgName": "ArcGIS Online for Maryland",
+"agolId": "e8c94de89d6f4319bef28897c6a89581",
+"via": "org"
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/8",
+"layer": "Protected Federal Lands",
+"count": 614,
+"nameFields": [
+"NAME"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"NAME",
+"Acres",
+"Agency",
+"County",
+"WebLink",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 36000,
+"sample": [
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer",
+"agolTitle": "Maryland Protected Lands - Protected Federal Lands",
+"owner": "mdimapdatacatalog",
+"orgId": "njFNhDsUCentVYJW",
+"orgName": "ArcGIS Online for Maryland",
+"agolId": "47defd42c35e4edab5a7e2b836b7bdce",
+"via": "org"
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer/8",
+"layer": "Protected Federal Lands",
+"count": 614,
+"nameFields": [
+"NAME"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"NAME",
+"Acres",
+"Agency",
+"County",
+"WebLink",
+"Shape",
+"Shape.STArea()",
+"Shape.STLength()"
+],
+"maxRecords": 36000,
+"sample": [
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer",
+"via": "host"
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/7",
+"layer": "Private Conservation Lands",
+"count": 604,
+"nameFields": [
+"AREA_NAME"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"PRI_CON_GP",
+"OWNER",
+"AREA_NAME",
+"COUNTY",
+"WebLink",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 36000,
+"sample": [
+{
+"AREA_NAME": "Unknown",
+"WebLink": " "
+},
+{
+"AREA_NAME": "Savage River area",
+"WebLink": "http://www.mdbirds.org/"
+},
+{
+"AREA_NAME": "Seymor B. Cooper Wildlife area",
+"WebLink": "http://www.mdbirds.org/"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer",
+"via": "host"
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer/7",
+"layer": "Private Conservation Lands",
+"count": 604,
+"nameFields": [
+"AREA_NAME"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"PRI_CON_GP",
+"OWNER",
+"AREA_NAME",
+"COUNTY",
+"WebLink",
+"Shape",
+"Shape.STArea()",
+"Shape.STLength()"
+],
+"maxRecords": 36000,
+"sample": [
+{
+"AREA_NAME": "Unknown",
+"WebLink": " "
+},
+{
+"AREA_NAME": "Savage River area",
+"WebLink": "http://www.mdbirds.org/"
+},
+{
+"AREA_NAME": "Seymor B. Cooper Wildlife area",
+"WebLink": "http://www.mdbirds.org/"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer",
+"via": "host"
+},
+{
+"st": "MD",
+"kind": "land",
 "url": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer/21",
 "layer": "MD_Protected_Federal_Lands",
 "count": 55,
@@ -85,6 +299,94 @@
 "orgId": null,
 "agolId": "04f66ea0e1b14a54ac7993e70b91ab49",
 "modified": 1784221823000
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/6",
+"layer": "Coastal and Estuarine Land Conservation Program",
+"count": 13,
+"nameFields": [
+"PropName"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"PropName",
+"County",
+"ProjType",
+"Acreage",
+"CELCPyear",
+"WebLink",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 36000,
+"sample": [
+{
+"PropName": "Grove Farm",
+"WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+},
+{
+"PropName": "Downey",
+"WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+},
+{
+"PropName": "Petrie-Chaney (Wayson's Corner)",
+"WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer",
+"agolTitle": "Maryland Protected Lands - Coastal and Estuarine Land Conservation Program",
+"owner": "mdimapdatacatalog",
+"orgId": "njFNhDsUCentVYJW",
+"orgName": "ArcGIS Online for Maryland",
+"agolId": "7abfc7862f0c4d10ac7ca61951570eda",
+"via": "org"
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer/6",
+"layer": "Coastal and Estuarine Land Conservation Program",
+"count": 13,
+"nameFields": [
+"PropName"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"PropName",
+"County",
+"ProjType",
+"Acreage",
+"CELCPyear",
+"WebLink",
+"Shape",
+"Shape.STArea()",
+"Shape.STLength()"
+],
+"maxRecords": 36000,
+"sample": [
+{
+"PropName": "Grove Farm",
+"WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+},
+{
+"PropName": "Downey",
+"WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+},
+{
+"PropName": "Petrie-Chaney (Wayson's Corner)",
+"WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer",
+"via": "host"
 },
 {
 "st": "MD",
@@ -291,304 +593,40 @@
 "modified": 1747058719000
 },
 {
-"st": "ME",
-"kind": "land",
-"url": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Florida_Managed_Areas__FLMA_/FeatureServer/0",
-"layer": "Florida Managed Areas (FLMA)",
-"count": 3223,
-"nameFields": [
-"maname"
-],
-"webFields": [
-"ma_website"
-],
-"fields": [
-"objectid",
-"ma_id",
-"maname",
-"majorma",
-"matype",
-"managing_a",
-"matype2",
-"owner",
-"coowners",
-"ownertypes",
-"totacres",
-"ltf_acres",
-"esmt_hold",
-"county",
-"protstat",
-"descript",
-"comments",
-"manager",
-"mgrinst",
-"mgrcity",
-"mgrphone",
-"ma_website",
-"maname_ab",
-"digbnd_src",
-"citation",
-"fgdlaqdate",
-"autoid",
-"SHAPE__Length",
-"SHAPE__Area",
-"globalid"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"maname": "HAULOVER BEACH PARK",
-"ma_website": "https://www.miami.gov/My-Government/Departments/Parks-and-Recreation"
-},
-{
-"maname": "HOMESTEAD AIR RESERVE BASE",
-"ma_website": "https://www.afcec.af.mil/What-We-Do/Environment/Natural-Resources/"
-},
-{
-"maname": "VIZCAYA MUSEUM AND GARDENS",
-"ma_website": "https://www.miami.gov/My-Government/Departments/Parks-and-Recreation"
-}
-],
-"service": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Florida_Managed_Areas__FLMA_/FeatureServer",
-"agolTitle": "Florida Managed Areas _FLMA_",
-"owner": "CDRGIS_Team",
-"orgId": null,
-"agolId": "6c4e329f3a6b4e089b34cf7cbc22e231",
-"modified": 1761678107000
-},
-{
-"st": "ME",
-"kind": "land",
-"url": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Federally_Owned_or_Managed_Land/FeatureServer/0",
-"layer": "Federally Owned or Managed Land",
-"count": 415,
-"nameFields": [
-"maname"
-],
-"webFields": [
-"ma_website"
-],
-"fields": [
-"objectid",
-"ma_id",
-"maname",
-"majorma",
-"matype",
-"managing_a",
-"matype2",
-"owner",
-"coowners",
-"ownertypes",
-"totacres",
-"ltf_acres",
-"esmt_hold",
-"county",
-"protstat",
-"descript",
-"comments",
-"manager",
-"mgrinst",
-"mgrcity",
-"mgrphone",
-"ma_website",
-"maname_ab",
-"digbnd_src",
-"citation",
-"fgdlaqdate",
-"autoid",
-"SHAPE__Length",
-"SHAPE__Area",
-"globalid"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"maname": "HOMESTEAD AIR RESERVE BASE",
-"ma_website": "https://www.afcec.af.mil/What-We-Do/Environment/Natural-Resources/"
-},
-{
-"maname": "COWPENS SANCTUARY",
-"ma_website": "http://www.audubon.org"
-},
-{
-"maname": "JACKSONVILLE NAVAL AIR STATION",
-"ma_website": "https://www.navfac.navy.mil/Divisions/Environmental/Products-and-Services/Natural-Resources/"
-}
-],
-"service": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Federally_Owned_or_Managed_Land/FeatureServer",
-"agolTitle": "Federally Owned or Managed Land",
-"owner": "CDRGIS_Team",
-"orgId": null,
-"agolId": "5bf0b499728345e483e7f46a2e17e910",
-"modified": 1761677776000
-},
-{
-"st": "ME",
+"st": "MD",
 "kind": "preserve",
-"url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4",
-"layer": "Scientific And Natural Area Boundaries",
-"count": 239,
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLandsAcquisitions/MapServer/6",
+"layer": "Rural Legacy Areas",
+"count": 36,
 "nameFields": [
-"unit_name",
-"name"
+"Name"
 ],
 "webFields": [],
 "fields": [
-"objectid",
-"unit_name",
-"unit_type",
-"pgrm_project",
-"gis_acres",
-"name",
-"designated",
-"own_code",
-"own_desc",
-"point_of_contact",
-"date_designated",
-"Shape__Area",
-"Shape__Length"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"unit_name": "Wild Indigo",
-"name": "Wild Indigo SNA"
-},
-{
-"unit_name": "Ladies Tresses Swamp",
-"name": "Ladies Tresses Swamp SNA"
-},
-{
-"unit_name": "King's Bluff",
-"name": "King's and Queen's Bluffs SNA"
-}
-],
-"service": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer",
-"agolTitle": "Scientific and Natural Area Units",
-"owner": "commons_etl_user",
-"orgId": null,
-"agolId": "efb2f468b7dc440f8f60143456b978d2",
-"modified": 1792823257000
-},
-{
-"st": "ME",
-"kind": "wild",
-"url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
-"layer": "Public Areas",
-"count": 5439,
-"nameFields": [
-"NAME"
-],
-"webFields": [],
-"fields": [
-"OBJECTID",
-"NAME",
-"UNIT",
-"NameUnit",
-"OWNER",
-"MANAGER",
-"TYPE",
-"C_R",
-"ACCESS",
-"PUB_HUNT",
-"ease_hold",
-"ease_typ",
-"SOURCE",
-"DIGSOURC",
-"COUNTY",
-"ACRES",
-"GAP_OWNCOD",
-"GAP_MANCOD",
-"GAP_EASE1",
-"GAP_STATUS",
-"WLIFE_ID",
-"PRSRV_ID",
-"PARK_ID",
-"CRL_ID",
-"ResAm_ID",
-"Forest_ID",
-"Lake_ID",
-"StPark_ID",
-"IHAP_ID",
-"CCB_ID",
-"Hunt_ID",
-"idAdminB",
-"edit_by",
-"edit_date",
+"RL_AREA",
+"CO",
+"GISacres",
+"County",
+"Name",
 "Shape",
 "Shape.STArea()",
 "Shape.STLength()",
-"More_Info"
+"OBJECTID"
 ],
-"maxRecords": 2000,
+"maxRecords": 300,
 "sample": [
 {
-"NAME": "Auburn Hills Park"
+"Name": "Agricultural Security Corridor - Eastern Shore Heartland"
 },
 {
-"NAME": "Auburn Hills Park"
+"Name": "Agricultural Security Corridor - Harvest Crescent"
 },
 {
-"NAME": "Brown Deer Golf Course"
+"Name": "Agricultural Security Corridor - Tuckahoe"
 }
 ],
-"service": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer",
-"agolTitle": "Public Lands Used for Conservation and Recreation in Iowa",
-"owner": "Casey.Kohrt_iowadnr",
-"orgId": null,
-"agolId": "2e8be3c67288413f903276eea17cea43",
-"modified": 1724947495000
-},
-{
-"st": "ME",
-"kind": "wild",
-"url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/SNI/FeatureServer/0",
-"layer": "Maine Seabird Nesting Islands",
-"count": 256,
-"nameFields": [
-"NAME"
-],
-"webFields": [],
-"fields": [
-"OBJECTID_1",
-"OBJECTID",
-"GISVIEW_MEIFW_sni_AREA",
-"PERIMETER",
-"ISLANDS3_",
-"ISLANDS3_I",
-"ISLANDID",
-"NAME",
-"NAME2",
-"SOURCE",
-"CIR",
-"NRPA",
-"USGSQUAD",
-"OWNER",
-"Shape_Leng",
-"Acres",
-"Shape__Area",
-"Shape__Length",
-"GlobalID"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"NAME": "Spectacle Island"
-},
-{
-"NAME": "Goose Island"
-},
-{
-"NAME": "Red Island"
-}
-],
-"service": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/SNI/FeatureServer",
-"agolTitle": "Seabird Nesting Islands",
-"owner": "Jason.Czapiga@maine.gov_maine",
-"orgId": "RbMX0mRVOFNTdLzd",
-"orgName": "State of Maine",
-"agolId": "18042bb789b14f428a07a27ccd566319",
-"via": "org"
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLandsAcquisitions/MapServer",
+"via": "host"
 },
 {
 "st": "NC",
@@ -632,260 +670,6 @@
 "orgId": null,
 "agolId": "b303ac096e5c448390bc02e39b504188",
 "modified": 1652029271000
-},
-{
-"st": "OH",
-"kind": "wild",
-"url": "https://gis.ohiodnr.gov/arcgis/rest/services/DOW_Services/DoveHunting_Viewer/MapServer/2",
-"layer": "DoveHuntingAreas",
-"count": 133,
-"nameFields": [
-"Name"
-],
-"webFields": [],
-"fields": [
-"OBJECTID",
-"Name",
-"GlobalID",
-"Shape",
-"Lands_Name",
-"Alt_name",
-"Acres",
-"NOTES",
-"Shape_Length",
-"Shape_Area"
-],
-"maxRecords": 1000,
-"sample": [
-{
-"Name": "Dove Field 1"
-},
-{
-"Name": "Dove Field 5"
-},
-{
-"Name": "14 Side Field 2"
-}
-],
-"service": "https://gis.ohiodnr.gov/arcgis/rest/services/DOW_Services/DoveHunting_Viewer/MapServer",
-"agolTitle": "Dove Hunting Fields - Viewer Service",
-"owner": "10002711_odnr",
-"orgId": "ajRlmtxbNBjZggOT",
-"orgName": "Ohio Department of Natural Resources",
-"agolId": "38383feb3a3a4c6db7c3fb2f983275bc",
-"via": "org"
-},
-{
-"st": "SC",
-"kind": "land",
-"url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_3_view/FeatureServer/1",
-"layer": "SC_Conserved_Land",
-"count": 8006,
-"nameFields": [
-"SiteName"
-],
-"webFields": [],
-"fields": [
-"OBJECTID",
-"GAP_CAT",
-"Dual_Protection",
-"Pub_Access",
-"Category",
-"Manager",
-"Manager2",
-"Original_Manager",
-"SiteName",
-"SiteName2",
-"MapLabel",
-"Owner",
-"Year_Est",
-"FiscalYear",
-"Transfer_Year",
-"County",
-"LegalAcres",
-"GIS_Acres",
-"acreageCALC",
-"Focus_Area",
-"ProtectTyp",
-"ProtectTyp2",
-"OwnType",
-"HoldType",
-"Trans_Type",
-"Trans_Hist",
-"Notes",
-"Mitigation",
-"Funding",
-"SCCB",
-"NAWCA",
-"Greenbelt",
-"LWCF",
-"FundNotes",
-"PurposeCde",
-"Duration",
-"Cong_Distr",
-"HouseDistr",
-"SenateDist",
-"Source"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"SiteName": "Wiltown Crossing"
-},
-{
-"SiteName": "Clermont Plantation"
-},
-{
-"SiteName": "Hill River Tract"
-}
-],
-"service": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_3_view/FeatureServer",
-"agolTitle": "SC Conserved Lands (Public View)",
-"owner": "JamesM_scdnr",
-"orgId": "acgZYxoN5Oj8pDLa",
-"orgName": "South Carolina Department of Natural Resources",
-"agolId": "3948cef3be67486da9d299dfbf270a37",
-"via": "org"
-},
-{
-"st": "SC",
-"kind": "land",
-"url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_Public/FeatureServer/0",
-"layer": "SC_Conserved_Land",
-"count": 8006,
-"nameFields": [
-"SiteName"
-],
-"webFields": [],
-"fields": [
-"OBJECTID",
-"Dual_Protection",
-"Pub_Access",
-"Category",
-"Manager",
-"Manager2",
-"Original_Manager",
-"SiteName",
-"SiteName2",
-"MapLabel",
-"Owner",
-"Year_Est",
-"Transfer_Year",
-"County",
-"LegalAcres",
-"GIS_Acres",
-"acreageCALC",
-"Focus_Area",
-"ProtectTyp",
-"OwnType",
-"HoldType",
-"Trans_Type",
-"Trans_Hist",
-"Notes",
-"Mitigation",
-"Funding",
-"SCCB",
-"NAWCA",
-"Greenbelt",
-"FundNotes",
-"PurposeCde",
-"Duration",
-"Cong_Distr",
-"HouseDistr",
-"SenateDist",
-"Source",
-"ACJV_Focus",
-"SentinelLandscape",
-"LCLCP",
-"PortRoyalSound"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"SiteName": "Wiltown Crossing"
-},
-{
-"SiteName": "Clermont Plantation"
-},
-{
-"SiteName": "Hill River Tract"
-}
-],
-"service": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_Public/FeatureServer",
-"agolTitle": "SC_Conserved_Lands_Public",
-"owner": "clarkrl_scdnr",
-"orgId": "acgZYxoN5Oj8pDLa",
-"orgName": "South Carolina Department of Natural Resources",
-"agolId": "af1d843105dc4fecb857930212562322",
-"via": "org"
-},
-{
-"st": "SC",
-"kind": "preserve",
-"url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
-"layer": "Heritage_Preserve_Layer_CopyFeatures",
-"count": 118,
-"nameFields": [
-"PropertyName"
-],
-"webFields": [],
-"fields": [
-"OBJECTID",
-"PropertyID",
-"RelatedPropertyID",
-"PropertyName",
-"PropertyTract",
-"PropertyUse",
-"PropertyType",
-"PropertyOwner",
-"PropertyManager",
-"HeritagePreserve",
-"WMA_SpecialActivity",
-"Status",
-"PublicAccess",
-"PublicVisible",
-"Comments",
-"County",
-"SCDNR_GameZone",
-"SCDNR_LE_Subunit",
-"SCDNR_FocusArea",
-"BoundarySource",
-"BoundarySourceNote",
-"BoundarySourceDate",
-"ReportedAcres",
-"GIS_TractAcres",
-"GIS_PropertyAcres",
-"GlobalID",
-"created_user",
-"created_date",
-"last_edited_user",
-"last_edited_date",
-"WildlifeManagementArea",
-"SCDNR_Region",
-"ParentPropertyID",
-"ParentRecord",
-"Shape__Area",
-"Shape__Length"
-],
-"maxRecords": 2000,
-"sample": [
-{
-"PropertyName": "Glassy Mountain Heritage Preserve"
-},
-{
-"PropertyName": "Eva Russell Chandler Heritage Preserve and Wildlife Management Area"
-},
-{
-"PropertyName": "Eva Russell Chandler Heritage Preserve"
-}
-],
-"service": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer",
-"agolTitle": "HeritagePreserve_Map2_WFL1",
-"owner": "czakoc_scdnr",
-"orgId": "acgZYxoN5Oj8pDLa",
-"orgName": "South Carolina Department of Natural Resources",
-"agolId": "f4a4b94a9dba4740ad3fe9f3cf700e46",
-"via": "org"
 },
 {
 "st": "SD",
