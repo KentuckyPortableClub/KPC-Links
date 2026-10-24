@@ -1,33 +1,34 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **98 of 155** parks joined to official land (same name + same kind of place). **6** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **98 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0425** Devils Lake Wetland Management District (Wetland Management District) → Devils Lake (~97,667 ac, similar name); Ramsey County Waterfowl Production Area (~9,159 ac, the POTA pin is inside it (different name)); Ramsey County Waterfowl Production Area (~9,159 ac, the POTA pin is inside it (different name))
-- **US-0428** J. Clark Salyer Wetland Management District (Wetland Management District) → J. Clark Salyer National Wildlife Refuge (~55,029 ac, similar name); J. Clark Salyer National Wildlife Refuge (~55,027 ac, similar name)
-- **US-4239** North Country Trail National Scenic Trail (National Scenic Trail) → Sakakawea Recreation Area (~478,564 ac, the POTA pin is inside it (different name)); Lake Sakakawea State Park (~733 ac, the POTA pin is inside it (different name))
-- **US-5741** Turtle Mountain State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
-- **US-5742** Homen State Forest (State Forest) → North Dakota State Forest Service Land (~14,517 ac, the POTA pin is inside it (different name))
-- **US-7702** Lone Tree Wildlife Management Area (Wildlife Management Area) → Lonetree (~32,248 ac, the POTA pin is inside it (different name)); Lonetree (~19,798 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-2767 Rough Rider State Park (State Park) → on Sully Creek State Recreation Area (~76 ac)
+- US-4239 North Country Trail National Scenic Trail (National Scenic Trail) → on Lake Sakakawea State Park (~733 ac); Sakakawea Recreation Area (~478,564 ac)
+- US-5741 Turtle Mountain State Forest (State Forest) → on North Dakota State Forest Service Land (~14,517 ac)
+- US-5742 Homen State Forest (State Forest) → on North Dakota State Forest Service Land (~14,517 ac)
+- US-5744 Tetrault Woods State Forest (State Forest) → on North Dakota State Forest Service Land (~14,517 ac)
+- US-5745 Nowesta Memorial Grove State Forest (State Forest) → on North Dakota State Forest Service Land (~14,517 ac)
+- US-7702 Lone Tree Wildlife Management Area (Wildlife Management Area) → on Lonetree (~19,798 ac); Lonetree (~32,248 ac)
+- US-8544 Huff Indian Village State Historic Site (State Historic Site) → on Oaha Recreation Area (~90,626 ac)
 
 ## Nothing found in PAD-US
 
 - US-0421 Arrowwood Wetland Management District (Wetland Management District)
+- US-0425 Devils Lake Wetland Management District (Wetland Management District)
+- US-0428 J. Clark Salyer Wetland Management District (Wetland Management District)
 - US-0430 Kulm Wetland Management District (Wetland Management District)
 - US-0440 Valley City Wetland Management District (Wetland Management District)
 - US-12782 Camp Arnold State Historic Site (State Historic Site)
 - US-12783 Camp Corning State Historic Site (State Historic Site)
 - US-12784 Camp Grant State Historic Site (State Historic Site)
-- US-2767 Rough Rider State Park (State Park)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-5639 Writing Rock State Historic Site (State Historic Site)
 - US-5743 Mouse River State Forest (State Forest)
-- US-5744 Tetrault Woods State Forest (State Forest)
-- US-5745 Nowesta Memorial Grove State Forest (State Forest)
 - US-5746 Sheyenne River State Forest (State Forest)
 - US-5747 Crow Flies High State Recreation Area (State Recreation Area)
 - US-5748 Fort Abercrombie State Historic Site (State Historic Site)
@@ -51,7 +52,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **98 of 155** parks joined 
 - US-8541 Fort Totten State Historic Site (State Historic Site)
 - US-8542 Gingras Trading Post State Historic Site (State Historic Site)
 - US-8543 Hudson Townsite State Historic Site (State Historic Site)
-- US-8544 Huff Indian Village State Historic Site (State Historic Site)
 - US-8545 Killdeer Mountain Battlefield State Historic Site (State Historic Site)
 - US-8546 Lake Jessie State Historic Site (State Historic Site)
 - US-8547 Lake Johnson State Historic Site (State Historic Site)

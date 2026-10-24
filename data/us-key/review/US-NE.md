@@ -1,24 +1,26 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **159 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **159 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-0446 Funk WPA Wetland Management District (Wetland Management District) → on Phelps County Waterfowl Production Area (~4,677 ac); Phelps County Waterfowl Production Area (~4,677 ac)
+- US-12337 Cub Creek (northern) State Recreation Area (State Recreation Area) → on Middle Niobrara Natural Resources District Recreation Management Area (~333 ac)
+- US-3488 Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area) → on Clay County Waterfowl Production Area Of Ne (~6,943 ac); Clay County Waterfowl Production Area Of Ne (~7,011 ac)
 - US-4011 Chalco Hills State Recreation Area (State Recreation Area) → on Wehrspann Recreation Area (~1,196 ac)
 - US-4037 Willard L. Meyer State Recreation Area (State Recreation Area) → on Swan Lake (~289 ac)
+- US-4038 Wolf-Wildcat Wildlife Management Area (Wildlife Management Area) → on Wolf-Wild Cat #12 (~162 ac)
 - US-9356 Willow Lake Wildlife Management Area (Wildlife Management Area) → on Valentine National Wildlife Refuge (~72,350 ac); Valentine National Wildlife Refuge (~72,350 ac)
 
 ## Nothing found in PAD-US
 
-- US-0446 Funk WPA Wetland Management District (Wetland Management District)
 - US-12087 Scotia Canal Wildlife Management Area (Wildlife Management Area)
 - US-12088 Davis Creek Wildlife Management Area (Wildlife Management Area)
 - US-12089 Arcadia Diversion Dam Wildlife Management Area (Wildlife Management Area)
 - US-12090 Milburn Dam Wildlife Management Area (Wildlife Management Area)
-- US-12337 Cub Creek (northern) State Recreation Area (State Recreation Area)
 - US-12686 East Phillips Canyon Wildlife Management Area (Wildlife Management Area)
 - US-12946 Elwood Reservoir Wildlife Management Area (Wildlife Management Area)
 - US-13213 Guide Rock Diversion Dam Wildlife Management Area (Wildlife Management Area)
@@ -27,7 +29,6 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **159 of 196** parks joined
 - US-3373 Chimney Rock National Historic Site (National Historic Site)
 - US-3374 Neligh Mill State Historic Site (State Historic Site)
 - US-3375 Stolley National Historic Site (National Historic Site)
-- US-3488 Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area)
 - US-3491 Lake Wanahoo State Recreation Area (State Recreation Area)
 - US-3492 Willa Cather Memorial Prairie State Historic Site (State Historic Site)
 - US-3493 Nine Mile Prairie National Historical Park (National Historical Park)
@@ -40,7 +41,6 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **159 of 196** parks joined
 - US-4025 Buckley Creek State Recreation Area (State Recreation Area)
 - US-4027 Lone Star State Recreation Area (State Recreation Area)
 - US-4036 Walnut Creek State Recreation Area (State Recreation Area)
-- US-4038 Wolf-Wildcat Wildlife Management Area (Wildlife Management Area)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)

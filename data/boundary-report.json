@@ -1,23 +1,23 @@
 {
  "totals": {
-  "matched": 6729,
-  "far": 1714,
+  "matched": 8399,
+  "far": 2243,
   "noshape": 0,
-  "edge": 1571,
-  "out": 143,
-  "swap": 3
+  "edge": 2056,
+  "out": 187,
+  "swap": 5
  },
  "states": [
   {
    "st": "AK",
    "matched": 74,
-   "far": 24,
+   "far": 25,
    "noshape": 0,
    "out": 5,
    "swap": 1,
    "stale": false,
    "detail": "~110 m",
-   "edge": 19
+   "edge": 20
   },
   {
    "st": "AL",
@@ -165,13 +165,13 @@
   {
    "st": "IL",
    "matched": 163,
-   "far": 43,
+   "far": 45,
    "noshape": 0,
    "out": 6,
    "swap": 0,
    "stale": false,
    "detail": "~110 m",
-   "edge": 37
+   "edge": 39
   },
   {
    "st": "IN",
@@ -229,15 +229,37 @@
    "edge": 27
   },
   {
+   "st": "ME",
+   "matched": 136,
+   "far": 42,
+   "noshape": 0,
+   "out": 1,
+   "swap": 1,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 41
+  },
+  {
    "st": "MI",
    "matched": 286,
-   "far": 47,
+   "far": 50,
    "noshape": 0,
    "out": 4,
    "swap": 0,
    "stale": false,
    "detail": "~110 m",
-   "edge": 43
+   "edge": 46
+  },
+  {
+   "st": "MN",
+   "matched": 223,
+   "far": 45,
+   "noshape": 0,
+   "out": 5,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 40
   },
   {
    "st": "MO",
@@ -251,6 +273,28 @@
    "edge": 85
   },
   {
+   "st": "MS",
+   "matched": 88,
+   "far": 30,
+   "noshape": 0,
+   "out": 1,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 29
+  },
+  {
+   "st": "MT",
+   "matched": 222,
+   "far": 47,
+   "noshape": 0,
+   "out": 1,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 46
+  },
+  {
    "st": "NC",
    "matched": 212,
    "far": 75,
@@ -262,6 +306,17 @@
    "edge": 71
   },
   {
+   "st": "ND",
+   "matched": 98,
+   "far": 30,
+   "noshape": 0,
+   "out": 1,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 29
+  },
+  {
    "st": "NE",
    "matched": 159,
    "far": 18,
@@ -271,6 +326,39 @@
    "stale": false,
    "detail": "~110 m",
    "edge": 17
+  },
+  {
+   "st": "NH",
+   "matched": 187,
+   "far": 90,
+   "noshape": 0,
+   "out": 9,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 81
+  },
+  {
+   "st": "NJ",
+   "matched": 121,
+   "far": 33,
+   "noshape": 0,
+   "out": 2,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 31
+  },
+  {
+   "st": "NM",
+   "matched": 92,
+   "far": 24,
+   "noshape": 0,
+   "out": 0,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 24
   },
   {
    "st": "NV",
@@ -306,6 +394,17 @@
    "edge": 60
   },
   {
+   "st": "OK",
+   "matched": 139,
+   "far": 45,
+   "noshape": 0,
+   "out": 9,
+   "swap": 0,
+   "stale": false,
+   "detail": "~110 m",
+   "edge": 36
+  },
+  {
    "st": "OR",
    "matched": 350,
    "far": 74,
@@ -328,6 +427,17 @@
    "edge": 51
   },
   {
+   "st": "TX",
+   "matched": 192,
+   "far": 67,
+   "noshape": 0,
+   "out": 1,
+   "swap": 0,
+   "stale": false,
+   "detail": "~1.1 km",
+   "edge": 66
+  },
+  {
    "st": "UT",
    "matched": 336,
    "far": 82,
@@ -341,13 +451,13 @@
   {
    "st": "WY",
    "matched": 172,
-   "far": 60,
+   "far": 70,
    "noshape": 0,
    "out": 14,
-   "swap": 0,
-   "stale": true,
+   "swap": 1,
+   "stale": false,
    "detail": "~1.1 km",
-   "edge": 46
+   "edge": 56
   }
  ],
  "swaps": [
@@ -366,11 +476,25 @@
    "Salamonie Lake"
   ],
   [
+   "ME",
+   "US-2399",
+   "Owls Head State Park",
+   "Owls Head Light",
+   "Owls Head Light"
+  ],
+  [
    "NV",
    "US-13139",
    "Muddy Mountains BLM Herd Management Area",
    "Muddy Mountains",
    "Muddy Mountains"
+  ],
+  [
+   "WY",
+   "US-6171",
+   "Adobe Town BLM Herd Management Area",
+   "Adobe Town",
+   "Adobe Town"
   ]
  ],
  "well_outside": [
@@ -855,6 +979,12 @@
    "Nanjemoy Wma"
   ],
   [
+   "ME",
+   "US-0450",
+   "Lake Umbagog National Wildlife Refuge",
+   "Umbagog National Wildlife Refuge"
+  ],
+  [
    "MI",
    "US-10717",
    "Sylvania Wilderness Area",
@@ -877,6 +1007,48 @@
    "US-6804",
    "Waterloo Unit State Game Land",
    "Waterloo State Wildlife Area"
+  ],
+  [
+   "MN",
+   "US-0361",
+   "Hamden Slough National Wildlife Refuge",
+   "Hamden Slough National Wildlife Refuge"
+  ],
+  [
+   "MN",
+   "US-11023",
+   "Egret Island SNA State Conservation Area",
+   "Egret Island State Scientific and Natural Area"
+  ],
+  [
+   "MN",
+   "US-12660",
+   "Severance Lake Wildlife Management Area",
+   "Severance Lake State Wildlife Management Area"
+  ],
+  [
+   "MN",
+   "US-13354",
+   "Pelican Lake Wildlife Management Area",
+   "Pelican Lake State Wildlife Management Area"
+  ],
+  [
+   "MN",
+   "US-9387",
+   "Luce Line State Trail",
+   "Luce Line Trail"
+  ],
+  [
+   "MS",
+   "US-0722",
+   "Shiloh National Battlefield",
+   "Shiloh National Military Park"
+  ],
+  [
+   "MT",
+   "US-0070",
+   "Yellowstone National Park",
+   "Yellowstone National Park"
   ],
   [
    "NC",
@@ -903,10 +1075,82 @@
    "Jordan Game Land"
   ],
   [
+   "ND",
+   "US-7707",
+   "Maclean Bottoms Wildlife Management Area",
+   "MacLean Bottoms"
+  ],
+  [
    "NE",
    "US-0675",
    "Missouri National Recreational River National Wild & Scenic River",
    "Missouri National Recreational River"
+  ],
+  [
+   "NH",
+   "US-2674",
+   "Pisgah State Park",
+   "Pisgah State Park"
+  ],
+  [
+   "NH",
+   "US-4868",
+   "Annett State Forest",
+   "Annett State Forest"
+  ],
+  [
+   "NH",
+   "US-4886",
+   "Connecticut Lakes State Forest",
+   "Connecticut Lakes State Forest"
+  ],
+  [
+   "NH",
+   "US-4894",
+   "Davis-White State Forest",
+   "Davis-White State Forest"
+  ],
+  [
+   "NH",
+   "US-4926",
+   "Lovewell Mountain State Forest",
+   "Lovewell Mountain State Forest"
+  ],
+  [
+   "NH",
+   "US-4933",
+   "Merrimack River State Forest",
+   "Merrimack River State Forest"
+  ],
+  [
+   "NH",
+   "US-4934",
+   "Merriman State Forest",
+   "Merriman State Forest"
+  ],
+  [
+   "NH",
+   "US-4935",
+   "Mount Major State Forest",
+   "Mount Major State Forest"
+  ],
+  [
+   "NH",
+   "US-8396",
+   "Nashua River Rail Trail State Trail",
+   "Nashua River Rail Trail"
+  ],
+  [
+   "NJ",
+   "US-0680",
+   "Gateway National Recreation Area",
+   "Gateway National Recreation Area"
+  ],
+  [
+   "NJ",
+   "US-8319",
+   "Palisades Interstate Park",
+   "Palisades State Park"
   ],
   [
    "NV",
@@ -1089,6 +1333,60 @@
    "Jockey Hollow Wildlife Area"
   ],
   [
+   "OK",
+   "US-12027",
+   "Altus-Lugert State Fishing Lake",
+   "Altus Lugert Wildlife Management Area"
+  ],
+  [
+   "OK",
+   "US-12028",
+   "Barren Fork Wildlife Management Area",
+   "Barren Fork Wildlife Management Area"
+  ],
+  [
+   "OK",
+   "US-6352",
+   "Honobia Creek Wildlife Management Area",
+   "Honobia Creek Wildlife Management Area"
+  ],
+  [
+   "OK",
+   "US-6353",
+   "Hugo Wildlife Management Area",
+   "Hugo Wildlife Management Area"
+  ],
+  [
+   "OK",
+   "US-6361",
+   "McGee Creek Wildlife Management Area",
+   "McGee Creek Wildlife Management Area"
+  ],
+  [
+   "OK",
+   "US-6365",
+   "Osage Wildlife Management Area",
+   "Osage Wildlife Management Area - Western Wall"
+  ],
+  [
+   "OK",
+   "US-7481",
+   "Rita Blanca National Grassland",
+   "Rita Blanca National Grassland"
+  ],
+  [
+   "OK",
+   "US-7682",
+   "Lake Vanderwork State Fishing Lake",
+   "Lake Vanderwork"
+  ],
+  [
+   "OK",
+   "US-8140",
+   "Gary Sherrer Wildlife Management Area",
+   "Gary Sherrer Wildlife Management Area"
+  ],
+  [
    "OR",
    "US-0199",
    "Lower Klamath National Wildlife Refuge",
@@ -1105,6 +1403,12 @@
    "US-5461",
    "Tillamook State Forest",
    "Tillamook State Forest"
+  ],
+  [
+   "TX",
+   "US-7480",
+   "Black Kettle National Grassland",
+   "Black Kettle National Grassland"
   ],
   [
    "UT",
@@ -1219,6 +1523,90 @@
    "US-9291",
    "White Rock Range BLM National Conservation Area",
    "White Rock Range"
+  ],
+  [
+   "WY",
+   "US-10816",
+   "Saratoga National Fish Hatchery",
+   "Saratoga National Fish Hatchery"
+  ],
+  [
+   "WY",
+   "US-10846",
+   "Boulder Lake BLM Recreation Management Area",
+   "Boulder Lake SRMA"
+  ],
+  [
+   "WY",
+   "US-10890",
+   "Sinks Canyon BLM Recreation Management Area",
+   "Sinks Canyon"
+  ],
+  [
+   "WY",
+   "US-4394",
+   "Ashley National Forest",
+   "Ashley National Forest"
+  ],
+  [
+   "WY",
+   "US-4403",
+   "Medicine Bow - Routt National Forest",
+   "Medicine Bow National Forest"
+  ],
+  [
+   "WY",
+   "US-4475",
+   "Caribou-Targhee National Forest",
+   "Targhee National Forest"
+  ],
+  [
+   "WY",
+   "US-4524",
+   "Black Hills National Forest",
+   "Black Hills National Forest"
+  ],
+  [
+   "WY",
+   "US-5793",
+   "Flaming Gorge National Recreation Area",
+   "Flaming Gorge Reservoir National Recreation Area"
+  ],
+  [
+   "WY",
+   "US-6135",
+   "Pennock Mountain Wildlife Management Area",
+   "Pennock Mountain Wildlife Habitat Management Area"
+  ],
+  [
+   "WY",
+   "US-6196",
+   "Rock Springs BLM Herd Management Area",
+   "Rock Spring"
+  ],
+  [
+   "WY",
+   "US-6197",
+   "Popo Agie Wilderness Area",
+   "Popo Agie Wilderness"
+  ],
+  [
+   "WY",
+   "US-6202",
+   "North Absaroka Wilderness Area",
+   "North Absaroka Wilderness"
+  ],
+  [
+   "WY",
+   "US-6204",
+   "Little Colorado BLM Herd Management Area",
+   "Little Colorado"
+  ],
+  [
+   "WY",
+   "US-6218",
+   "Boulder Lake BLM Recreation Management Area",
+   "Boulder Lake SRMA"
   ]
  ]
 }
