@@ -270,7 +270,7 @@
       const web = L.web ? (P[L.web] || '') : '', accv = L.acc ? String(P[L.acc] || '') : '', ownv = L.own ? String(P[L.own] || '') : '';
       const acc = !L.acc ? 'UK' : /^(n|no|closed|none)/i.test(accv) ? 'XA' : /restrict|permit|limited|season/i.test(accv) ? 'RA' : /open|yes|y\b|public/i.test(accv) ? 'OA' : 'UK';
       const full = L.ds && !new RegExp(L.ds.replace(/[^A-Za-z ]/g, ''), 'i').test(nmv) && !/park|forest|area|preserve|refuge|site|lake|wma/i.test(nmv) ? nmv + ' ' + L.ds : nmv;
-      out.push({ src: sname + ' state GIS (live): ' + L.ag, f: fake(f, { Unit_Nm: full, Own_Type: ownv ? kyType(ownv) : 'STAT', Loc_Own: ownv || L.ag, Mang_Type: 'STAT', Loc_Mang: L.ag, Loc_Ds: L.ds || '', Pub_Access: acc, State_Nm: st, Web: /^https?:/i.test(web) ? web : '' }) });
+      out.push({ src: sname + ' state GIS (live): ' + L.ag + (L.auto ? ' (layer found by the KPC bot on ' + L.auto + ', not yet checked by a person)' : ''), f: fake(f, { Unit_Nm: full, Own_Type: ownv ? kyType(ownv) : 'STAT', Loc_Own: ownv || L.ag, Mang_Type: 'STAT', Loc_Mang: L.ag, Loc_Ds: L.ds || '', Pub_Access: acc, State_Nm: st, Web: /^https?:/i.test(web) ? web : '' }) });
     })).catch(() => {})));
     return out;
   }
