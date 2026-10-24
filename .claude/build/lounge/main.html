@@ -1,9 +1,21 @@
 <link rel="stylesheet" href="kpc-tools.css?v=20261017p">
 <style>
 /* ACTIVATORS LOUNGE look (Oct 24, Brandon: 'the page needs to be dressed up and look fancy') */
-.lg{--lg-ink:#14110b;--lg-card:#fff;--lg-line:#e3d8c1;--lg-sub:#5b5648;--lg-gold:#d5a63a;--lg-gold2:#f0c96b;--lg-pota:#1d5a3a;--lg-wwff:#1f6e78;--lg-sota:#7a4b1e;--lg-bg:#f6f1e4}
-html[data-theme="dark"] .lg{--lg-ink:#e6edf3;--lg-card:#161b22;--lg-line:#30363d;--lg-sub:#9aa6b5;--lg-bg:#0d1117}
-.lg{background:var(--lg-bg);padding-bottom:30px}
+.lg{--lg-ink:#f3ebd8;--lg-card:rgba(22,16,9,.74);--lg-line:rgba(240,201,107,.32);--lg-sub:#cdbf9f;--lg-gold:#d5a63a;--lg-gold2:#f0c96b;--lg-pota:#2f8a5a;--lg-wwff:#2a8a96;--lg-sota:#a0662b;--lg-bg:#0b0805}
+/* Oct 24 (Brandon: 'a more polished theme style like the hunters lounge … nice back ground image'): the photo, blurred,
+   behind everything; glass cards with gold edges; always this look (data-keep-light keeps the dark-mode script off it) */
+.lg{position:relative;padding-bottom:30px;color:var(--lg-ink);background:linear-gradient(180deg,rgba(8,6,4,.55),rgba(8,6,4,.88) 40%,rgba(8,6,4,.94)),#0b0805 url('bg-activators.webp') center top/cover fixed}
+.lg-hero{position:relative;background:#0b0805 url('hero-activators.webp') center/cover no-repeat;aspect-ratio:2154/730;max-height:560px;width:100%;border-bottom:2px solid var(--lg-gold)}
+.lg-hero h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lg-hero .lg-sub{position:absolute;left:0;right:0;bottom:0;margin:0;padding:40px 18px 14px;text-align:center;font:600 clamp(14px,1.6vw,17px)/1.45 Arial,sans-serif;color:#fff;background:linear-gradient(180deg,transparent,rgba(0,0,0,.75));text-shadow:0 1px 3px rgba(0,0,0,.8)}
+.lg-hero .lg-eye{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:max-content;max-width:92%;padding:5px 14px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid rgba(240,201,107,.4);text-align:center;font:900 11px Arial,sans-serif;letter-spacing:3px;color:#ffe2a6;text-shadow:0 1px 4px rgba(0,0,0,.9)}
+@media(max-width:700px){.lg-hero{background-image:url('hero-activators-mobile.webp');background-position:center 30%;aspect-ratio:940/1100;max-height:none}}
+.lg-tool,.lg-sun,.lg-mine{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.lg-tool:hover{background:rgba(36,26,14,.86)}
+.lg-tag.where{background:rgba(255,255,255,.12)!important;color:#f3ebd8!important}
+.lg a{color:var(--lg-gold2)}.lg-tool{color:var(--lg-ink)!important}.lg-tool .go,.lg-sun a,#lgMineSt a{color:var(--lg-gold2)!important}
+.lg-sh h3,.lg-mine h3{color:#fff}.lg-ic{box-shadow:0 0 0 3px rgba(240,201,107,.25),0 6px 16px rgba(0,0,0,.4)}
+
 .lg-wrap{max-width:1080px;margin:0 auto;padding:0 16px;box-sizing:border-box}
 /* stats band */
 .lg-band{background:linear-gradient(180deg,#0b0b0b,#15120b);border-top:1px solid rgba(240,201,107,.35);border-bottom:1px solid rgba(240,201,107,.35)}
@@ -61,15 +73,17 @@ html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data
 .lg-mfile{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:8px 18px;border-radius:12px;border:2px dashed var(--lg-gold);font:900 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer;color:var(--lg-ink)}
 #lgMineSt{margin-top:8px;font-size:14px;line-height:1.5}#lgMineSt a{color:var(--lg-pota);font-weight:700}html[data-theme="dark"] #lgMineSt a{color:#7fd1a3}
 .lg-you{display:inline-block;margin-top:8px;padding:5px 10px;border-radius:8px;background:rgba(61,220,132,.15);color:#a8f0c6;font:800 12px Arial,sans-serif;letter-spacing:.6px}
+main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{background:#1d5a3a}main.lg .lg-sb.ok{background:#d5a63a;color:#111}main.lg .lg-sb.bad{background:#a32d2d}
+@media(max-width:700px){.lg-hero .lg-eye{font-size:9.5px;letter-spacing:2px}}
 @media(max-width:620px){.lg-band .lg-wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 4px}.lg-find{margin-top:16px;padding:18px 14px}.lg-pk{flex-wrap:wrap}.lg-pk .lg-r{white-space:normal}.lg-btns{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 @@HEADER@@
-<main id="main" class="lg">
-<section class="tool-head th-pic" style="--thp:url('hero-summit.jpg');--thpm:url('hero-summit-mobile.jpg');--thy:50%;padding-bottom:34px"><div class="wrap">
-<p class="eyebrow">POTA · WWFF · SOTA · ANYWHERE IN THE WORLD</p>
-<h1>Activators <span>Lounge</span></h1>
-<p class="sub">Every tool an activator needs, in one room. Find any park, WWFF area or summit in the world, open the right tool in one tap, and see how the bands look today.</p>
-</div></section>
+<main id="main" class="lg" data-keep-light>
+<section class="lg-hero" role="img" aria-label="Activator's Lounge: a portable radio station on a rock ledge above a lake at sunrise">
+<p class="lg-eye">POTA · WWFF · SOTA · ANYWHERE IN THE WORLD</p>
+<h1>Activators Lounge</h1>
+<p class="lg-sub">Every tool an activator needs, in one room: find any park, WWFF area or summit in the world, open the right tool in one tap, and see how the bands look today.</p>
+</section>
 <div class="lg-band"><div class="lg-wrap">
 <div class="lg-st"><b>92,000+</b><span>POTA parks</span></div>
 <div class="lg-st"><b>67,000+</b><span>WWFF areas</span></div>
@@ -143,4 +157,4 @@ html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data
 @@FOOTER@@
 <script src="kpc-bounds.js?v=20261023b" defer></script>
 <script src="kpc-my-parks.js?v=20261024a" defer></script>
-<script src="kpc-lounge.js?v=20261024e" defer></script>
+<script src="kpc-lounge.js?v=20261024f" defer></script>
