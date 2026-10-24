@@ -99,7 +99,7 @@
 <section class="tool-head th-mast"><div class="wrap">
 <p class="eyebrow">KPC SOTA TOOL</p>
 <h1>SOTA <span>SUMMIT CHECKER</span></h1>
-<p class="sub">Every Summits on the Air summit in Kentucky, or any US SOTA area, on a map. Mark the summits you’ve chased or activated: tap <b>✓ MARK</b> in the list, or load the log you download from the SOTA database to fill them all in at once. Your marks stay on this device.</p>
+<p class="sub">Every Summits on the Air summit in Kentucky, or any US SOTA area, on a map, with whether it sits on public land. Mark the summits you’ve chased or activated: tap <b>✓ MARK</b> in the list, or load the log you download from the SOTA database to fill them all in at once. Your marks stay on this device.</p>
 <div class="th-chips"><span>⛰️ 216 Kentucky summits</span><span>📏 Points & elevation</span><span>🗺️ Activation zones</span></div></div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html" aria-current=page>SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>We’re volunteers working from public maps, and we make mistakes.</b> Before you activate, check the official park map, make sure the land is public and open, and follow each program’s rules. Your activation is your responsibility. See something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a>.</div></aside>
@@ -148,6 +148,7 @@
 <div class="legend"><span><i style="background:#1d5a3a"></i><span id="lgDone">Chased</span></span><span><i style="background:#fff"></i>Still needed</span><span>Bigger dot = more points</span></div></div>
 <div>
 <div class="chips" id="stabs" style="margin-bottom:10px"><button class="chip" aria-pressed="false" data-t="done" id="tabDone">CHASED</button><button class="chip" aria-pressed="true" data-t="need">STILL NEEDED</button></div>
+<label id="landW" hidden style="display:flex;gap:8px;align-items:center;font-weight:700;font-size:13.5px;margin:0 0 10px"><input type="checkbox" id="landOnly" style="width:20px;height:20px"> Public land only (open to the public)</label>
 <div class="tablewrap" style="max-height:420px"><table class="list"><thead><tr><th>SUMMIT</th><th>HEIGHT</th><th>PTS</th><th id="scol4">FIRST</th></tr></thead><tbody id="stbody"></tbody></table></div>
 </div></div>
 </div>
@@ -175,6 +176,17 @@ function fileSave(name){try{localStorage.setItem(SFK(MODE),JSON.stringify({out:F
 function remind(){const el=$('sotaOld');if(!el)return;let x=null;try{x=JSON.parse(localStorage.getItem(SFK(MODE))||'null')}catch(e){}const a=x&&x.when?Math.floor((Date.now()-x.when)/86400000):null;
  el.hidden=!(a!=null&&a>=30);if(!el.hidden)el.innerHTML=`⏰ Your SOTA ${MODE==='act'?'activator':'chaser'} log here is <b>${a} days old</b>. Download a fresh one from sotadata.org.uk (steps above) and pick it again.`;
  const n=$('sotaSaved');if(n)n.textContent=x?`Using ${x.name} (loaded ${new Date(x.when).toLocaleDateString()}), saved on this device.`:''}
+/* Oct 24 (Activators Lounge step 6): public land or not, from the national public-lands map (PAD-US), checked by
+   .github/scripts/kpc_sota_land.py into data/sota-land/<area>.json. Private owners are never stored: 'who owns this land?'
+   opens a search for the county's own property map. */
+let LAND={},LANDA='';
+const LANDT={P:['🟢','PUBLIC LAND','#1d5a3a'],R:['🟠','PUBLIC, RESTRICTED ACCESS','#b8742c'],U:['🟡','PUBLIC LAND, ACCESS NOT KNOWN','#9a7a1a'],X:['🔴','CLOSED TO THE PUBLIC','#a32d2d'],E:['⚪','PRIVATE (CONSERVATION EASEMENT)','#68635a'],N:['⚪','NOT ON THE PUBLIC-LANDS MAP: LIKELY PRIVATE','#68635a']};
+async function landLoad(){if(LANDA===AS)return;LANDA=AS;LAND={};try{const r=await fetch('data/sota-land/'+encodeURIComponent(AS)+'.json');if(r.ok)LAND=(await r.json()).s||{}}catch(e){}$('landW').hidden=!Object.keys(LAND).length}
+const landTag=(c,big)=>{const x=LAND[c];if(!x)return'';const t=LANDT[x[0]]||LANDT.N;return`<span style="display:inline-block;margin-top:3px;font-size:${big?12:11}px;font-weight:800;letter-spacing:.4px;color:${t[2]}">${t[0]} ${t[1]}${x[1]&&x[0]!=='N'&&x[0]!=='E'?' · '+esc(x[1]):''}</span>`};
+const ownLink=s=>{const x=LAND[s.c];return x&&x[0]!=='P'?`<br><a href="#" data-own="${s.la},${s.lo}" style="font-weight:700">Who owns this land? (county property map) ↗</a>`:''};
+document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]');if(!a)return;e.preventDefault();const w=window.open('about:blank','_blank');const [la,lo]=a.dataset.own.split(',');let q='property parcel map owner search';
+ try{const g=await fetch(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`).then(r=>r.json());const r=g.results&&g.results[0];if(r)q=r.state_code==='KY'?`${r.county_name} County Kentucky PVA property search map`:`${r.county_name} County ${r.state_name} property parcel map owner search`}catch(x){}
+ const u='https://www.google.com/search?q='+encodeURIComponent(q);if(w)w.location=u;else location.href=u});
 function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
 function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
@@ -183,7 +195,7 @@ async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([fetch('
  const lab={};Object.entries(by).forEach(([a,l])=>{const cnt={};const step=Math.max(1,Math.floor(l.length/60));for(let i=0;i<l.length;i+=step){const s=BORD.length?stateOf(l[i].lo,l[i].la):'';if(s)cnt[s]=(cnt[s]||0)+1}
   const tot=Object.values(cnt).reduce((x,y)=>x+y,0);lab[a]=Object.entries(cnt).sort((x,y)=>y[1]-x[1]).filter(e=>e[1]>=tot*0.12).map(e=>e[0]).slice(0,4).join(' / ')});
  ALL={by,lab};return ALL}
-function list(){const l=ALL.by[AS]||[];return RG?l.filter(s=>s.rg===RG):l}
+function list(){let l=ALL.by[AS]||[];if(RG)l=l.filter(s=>s.rg===RG);if($('landOnly')&&$('landOnly').checked&&Object.keys(LAND).length)l=l.filter(s=>LAND[s.c]&&LAND[s.c][0]==='P');return l}
 function fillPickers(){const s=$('assocSel');s.innerHTML=Object.keys(ALL.by).sort((a,b)=>(ALL.lab[a]||a).localeCompare(ALL.lab[b]||b)).map(a=>`<option value="${a}"${a===AS?' selected':''}>${esc((ALL.lab[a]||'Unknown')+' ('+a+')')}</option>`).join('');
  const regs={};(ALL.by[AS]||[]).forEach(x=>regs[x.rg]=(regs[x.rg]||0)+1);
  $('regionSel').innerHTML='<option value="">All regions</option>'+Object.keys(regs).sort().map(r=>`<option value="${r}"${r===RG?' selected':''}>${AS}/${r} (${regs[r]} summits)</option>`).join('');
@@ -213,7 +225,7 @@ async function runFile(){const f=$('sfile').files[0];const pr=$('sprog'),bar=pr.
   const inArea=list().filter(s=>DONE[s.c]).length;
   bar.style.width='100%';tx.textContent=n?`Read ${n.toLocaleString()} ${MODE==='act'?'activator':'chaser'} lines from ${f.name} • ${Object.keys(out).length.toLocaleString()} summit${Object.keys(out).length===1?"":"s"} in all, ${inArea} in ${AS}${RG?'/'+RG:''}.`:`No SOTA summit references (like W4K/EC-001) found in that file. Make sure it’s your ${MODE==='act'?'activator':'chaser'} log CSV from the SOTA database.`;
   tab=inArea?'done':'need';draw()}catch(e){tx.textContent='Could not read that file. ('+e.message+')'}}
-function draw(){DONE=merged();HAS=FILE||Object.keys(MAN[MODE]||{}).length>0;const l=list(),act=MODE==='act';const done=l.filter(s=>DONE[s.c]),need=l.filter(s=>!DONE[s.c]);
+function draw(){if(LANDA!==AS){landLoad().then(draw);return}DONE=merged();HAS=FILE||Object.keys(MAN[MODE]||{}).length>0;const l=list(),act=MODE==='act';const done=l.filter(s=>DONE[s.c]),need=l.filter(s=>!DONE[s.c]);
  const pd=done.reduce((a,s)=>a+s.p,0),pa=l.reduce((a,s)=>a+s.p,0);
  $('sstats').innerHTML=HAS?`<div class="stat"><b>${done.length}</b><span>OF ${l.length} SUMMITS</span></div><div class="stat"><b>${need.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${pd}</b><span>OF ${pa} POINTS (ONCE EACH)</span></div><div class="stat"><b>${done.reduce((a,s)=>a+DONE[s.c].q,0)}</b><span>${act?'QSO LINES':'CHASES'}</span></div>`
   :`<div class="stat"><b>${l.length}</b><span>SUMMITS</span></div><div class="stat"><b>${pa}</b><span>TOTAL POINTS</span></div><div class="stat"><b>${l.filter(s=>s.p>=6).length}</b><span>6+ POINT SUMMITS</span></div><div class="stat"><b>${l.length?Math.max(...l.map(s=>s.m)).toLocaleString():'—'} m</b><span>HIGHEST</span></div>`;
@@ -224,12 +236,12 @@ function draw(){DONE=merged();HAS=FILE||Object.keys(MAN[MODE]||{}).length>0;cons
 function drawMap(l){if(!window.L){$('smap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
  if(!map)map=KPC.leafletMap('smap');if(layer)layer.remove();layer=L.layerGroup().addTo(map);const act=MODE==='act';
  l.forEach(s=>{const d=DONE[s.c];L.circleMarker([s.la,s.lo],{radius:4+s.p*0.6,weight:1.2,color:'#173a28',fillColor:d?'#1d5a3a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${esc(s.n)}</b><br><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${s.m.toLocaleString()} m (${Math.round(s.m*3.28084).toLocaleString()} ft) • ${s.p} point${s.p===1?'':'s'}<br>${HAS?(d?`<b style="color:#1d5a3a">${act?'Activated':'Chased'}</b>${d.first?' • first '+KPC.fmtDate(d.first):''}`:'<b>Still needed</b>'):''}`).addTo(layer)});
+  .bindPopup(`<b>${esc(s.n)}</b><br><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${s.m.toLocaleString()} m (${Math.round(s.m*3.28084).toLocaleString()} ft) • ${s.p} point${s.p===1?'':'s'}${landTag(s.c)?'<br>'+landTag(s.c,1):''}${ownLink(s)}<br>${HAS?(d?`<b style="color:#1d5a3a">${act?'Activated':'Chased'}</b>${d.first?' • first '+KPC.fmtDate(d.first):''}`:'<b>Still needed</b>'):''}`).addTo(layer)});
  if(map._k!==AS+RG&&l.length){map.fitBounds(L.latLngBounds(l.map(s=>[s.la,s.lo])),{padding:[20,20],maxZoom:10});map._k=AS+RG}}
 function drawTable(l){const act=MODE==='act';let rows;
  if(tab==='done'){$('scol4').textContent='FIRST';rows=l.filter(s=>DONE[s.c]).sort((a,b)=>(DONE[a.c].first||'').localeCompare(DONE[b.c].first||''))}
  else{$('scol4').textContent='';rows=l.filter(s=>!DONE[s.c]).sort((a,b)=>b.p-a.p||b.m-a.m)}
- $('stbody').innerHTML=rows.map(s=>`<tr><td><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${esc(s.n)}</td><td>${s.m.toLocaleString()} m</td><td><span class="pts p${s.p}">${s.p}</span></td><td>${tab==='done'&&DONE[s.c]?(DONE[s.c].first?KPC.fmtDate(DONE[s.c].first)+' ':'')+(DONE[s.c].man?`<button type="button" class="btn" data-unmark="${s.c}" title="Take my mark off" style="padding:4px 8px;min-height:30px">✕</button>`:''):`<button type="button" class="btn" data-mark="${s.c}" style="padding:4px 8px;min-height:30px">✓ MARK</button>`}</td></tr>`).join('')
+ $('stbody').innerHTML=rows.map(s=>`<tr><td><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${esc(s.n)}${landTag(s.c)?'<br>'+landTag(s.c):''}</td><td>${s.m.toLocaleString()} m</td><td><span class="pts p${s.p}">${s.p}</span></td><td>${tab==='done'&&DONE[s.c]?(DONE[s.c].first?KPC.fmtDate(DONE[s.c].first)+' ':'')+(DONE[s.c].man?`<button type="button" class="btn" data-unmark="${s.c}" title="Take my mark off" style="padding:4px 8px;min-height:30px">✕</button>`:''):`<button type="button" class="btn" data-mark="${s.c}" style="padding:4px 8px;min-height:30px">✓ MARK</button>`}</td></tr>`).join('')
   ||`<tr><td colspan="4" class="muted">${tab==='done'?(HAS?`No ${AS} summits ${act?'activated':'chased'} yet.`:'Tap ✓ MARK on a summit you have done, or load your SOTA log.'):'Every summit done — well climbed!'}</td></tr>`}
 function csv(which){const l=list(),q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
  const rows=l.filter(s=>which==='all'||(which==='done'?DONE[s.c]:!DONE[s.c])).map(s=>{const x=DONE[s.c];return[s.c,s.n,s.m,Math.round(s.m*3.28084),s.p,x?(MODE==='act'?'Activated':'Chased'):'Not yet',x?d(x.first):'',x?d(x.last):'',s.la,s.lo,s.url].map(q).join(',')});
@@ -244,6 +256,7 @@ $('m-act').onclick=()=>{MODE='act';save();how();if($('sfile').files[0])runFile()
 $('sf').onsubmit=e=>{e.preventDefault();runFile()};
 $('sfile').onchange=()=>{const f=$('sfile').files[0];$('sfname').textContent=f?f.name:'No file chosen';if(f)runFile()};
 $('stbody').onclick=e=>{const m=e.target.closest('[data-mark],[data-unmark]');if(!m)return;const M=MAN[MODE]||(MAN[MODE]={});if(m.dataset.mark)M[m.dataset.mark]=today();else delete M[m.dataset.unmark];manSave();draw()};
+$('landOnly').onchange=()=>draw();
 $('stabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.t;draw()};
 $('scsvAll').onclick=()=>csv('all');$('scsvDone').onclick=()=>csv('done');$('scsvNeed').onclick=()=>csv('need');
 how();
