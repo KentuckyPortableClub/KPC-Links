@@ -1334,7 +1334,7 @@
     box.innerHTML = `<div class="aw-g">${tiles}</div><div class="aw-cols">${was}${earned}${Object.keys(AWL).map(k => awList(k, A[k])).join('')}</div>
       <p class="hl-src">From POTA for ${esc(A.call || CALL || 'you')}, brought over ${new Date(A.t).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })}. POTA updates achievements once a day, and hunters get credit only after the activator's log is in. Tap the ⭐ bookmark on pota.app again to refresh. <a href="https://pota.app/#/user/achievements/progress" target="_blank" rel="noopener">POTA ACHIEVEMENTS ↗</a></p>`;
   }
-  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); if (PAGE !== 'need' && !PUB) { location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-need.html') + '?st=' + encodeURIComponent(a.dataset.need); return; } $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
+  document.addEventListener('click', e => { const a = e.target.closest('[data-need]'); if (!a) return; e.preventDefault(); if (PAGE !== 'need') { location.href = (PUB ? 'kpc-hunters-need.html' : (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-need.html')) + '?st=' + encodeURIComponent(a.dataset.need); return; } $('nSt').value = a.dataset.need; $('nSt').dataset.set = 1; needLoad(); $('hlNeed').scrollIntoView({ behavior: 'smooth' }); });
 
   /* ---------------- the real map (Leaflet + Esri satellite + place names) ---------------- */
   let LM = null, LG = null, LMV = get('kpcHuntMz', 'na');

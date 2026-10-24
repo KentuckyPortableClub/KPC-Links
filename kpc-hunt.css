@@ -1007,3 +1007,8 @@ main#hl .hl-tkmore{display:none}
 
 /* Oct 19: default desk layout on wide screens: extra list | log/map | main spots | extra list */
 @media(min-width:1800px){main#hl[data-desk="1"][data-lay3="1"] .hl-split{width:100%;max-width:none;padding-left:330px;padding-right:12px;grid-template-columns:580px minmax(0,1fr)}}
+
+/* Oct 24: the PUBLIC Hunters Lounge gets its own PARK CHECKER page (kpc-hunters-need.html, data-public=1 + data-page=need) */
+main#hl[data-public="1"][data-page="need"] #hlNeed{display:block!important}
+main#hl[data-public="1"][data-page="need"] [data-need]{display:revert!important}
+main#hl[data-public="1"] .hl-ptabs.pub-tabs{display:flex!important}
