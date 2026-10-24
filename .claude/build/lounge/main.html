@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="kpc-tools.css?v=20261017p">
+<style>
+.lg-wrap{max-width:1000px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
+.lg-box{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
+.lg-box h2{margin:0 0 4px;font:700 22px/1.2 Georgia,serif;color:#171717}.lg-box>p{margin:0 0 12px;color:#5b5648}
+.lg-form{display:flex;gap:10px;flex-wrap:wrap}.lg-form input{flex:1 1 240px;min-height:50px;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px 14px;font:17px Arial,sans-serif;min-width:0;box-sizing:border-box}
+.lg-form button,#lgNear{min-height:50px;padding:10px 18px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
+#lgNear{background:#fff;color:#171717;border:2px solid #171717;margin-top:10px;width:100%}
+#lgLast{margin-top:8px;font-size:13.5px;color:#5b5648}.lg-link{border:0;background:none;color:#1d5a3a;font:700 13.5px Arial,sans-serif;text-decoration:underline;cursor:pointer;padding:0}
+#lgPick{display:grid;gap:8px;margin-top:12px}
+.lg-pk{display:flex;gap:10px;align-items:center;text-align:left;padding:11px 13px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717;width:100%;min-width:0}
+.lg-pk b{font-family:Georgia,serif;flex:1 1 auto;min-width:0;overflow-wrap:anywhere}.lg-pk .lg-r{color:#1d5a3a;font-weight:900;font-size:12px;letter-spacing:.6px;white-space:nowrap}
+.lg-msg,.lg-help{color:#5b5648;margin:4px 0 0}
+.lg-tag{display:inline-block;border-radius:5px;padding:2px 7px;font:900 10.5px Arial,sans-serif;letter-spacing:1px;color:#fff;background:#1d5a3a;white-space:nowrap;flex:0 0 auto}
+.lg-tag.wwff{background:#1f6e78}.lg-tag.sota{background:#7a4b1e}.lg-tag.where{background:#ece6d6;color:#3b372d}.lg-tag.all{background:#171717;color:#f0c96b}
+.lg-card{margin-top:16px;background:#0b0b0b;color:#fff;border-radius:12px;padding:18px}
+.lg-card h2{margin:6px 0 2px;font:700 26px/1.15 Georgia,serif;color:#fff;overflow-wrap:anywhere}.lg-ref{font:900 12px Arial,sans-serif;letter-spacing:1.6px;color:#f0c96b}
+.lg-where{margin:0;color:#cfcabf}.lg-small{margin:12px 0 0;font-size:13px;color:#cfcabf;line-height:1.45}
+.lg-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lg-btns a{display:inline-flex;align-items:center;min-height:42px;padding:8px 13px;border-radius:8px;background:#1e1e1e;color:#f0c96b;border:1.5px solid #444;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none}
+.lg-btns a.gold{background:var(--gold);color:#111;border-color:var(--gold)}
+.lg-sun{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;background:#fff;border:1px solid #d8cfbf;border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.45;color:#2b2820}
+.lg-sun a{color:#1d5a3a;font-weight:700}
+.lg-sb{display:inline-block;border-radius:8px;padding:6px 10px;font:900 12px Arial,sans-serif;letter-spacing:1px;background:#ece6d6;color:#3b372d;white-space:nowrap}
+.lg-sb.good{background:#1d5a3a;color:#fff}.lg-sb.ok{background:#d5a63a;color:#111}.lg-sb.bad{background:#a32d2d;color:#fff}
+.lg-sec{margin-top:26px}.lg-sec>h3{margin:0 0 4px;font:900 12px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}.lg-sec>p{margin:0 0 10px;color:#5b5648;font-size:14px}
+.lg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
+.lg-tool{display:block;background:#fff;border:1px solid #d8cfbf;border-radius:12px;padding:14px;text-decoration:none;color:#171717;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.lg-tool:hover{border-color:#d5a63a}.lg-tool b{display:block;font:700 17px/1.25 Georgia,serif;margin:0 0 4px}.lg-tool span.d{display:block;font-size:13.5px;color:#5b5648;line-height:1.4}
+.lg-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
+.lg-key{font-size:13px;color:#5b5648;margin:14px 0 0;line-height:1.7}
+html[data-theme="dark"] .lg-box,html[data-theme="dark"] .lg-tool,html[data-theme="dark"] .lg-sun{background:#161b22;border-color:#30363d;color:#e6edf3}
+html[data-theme="dark"] .lg-box h2,html[data-theme="dark"] .lg-tool{color:#e6edf3}html[data-theme="dark"] .lg-box>p,html[data-theme="dark"] .lg-tool span.d,html[data-theme="dark"] .lg-msg,html[data-theme="dark"] .lg-help,html[data-theme="dark"] .lg-sec>p,html[data-theme="dark"] .lg-key,html[data-theme="dark"] #lgLast{color:#9aa6b5}
+html[data-theme="dark"] .lg-pk{background:#0d1117;border-color:#30363d;color:#e6edf3}html[data-theme="dark"] .lg-form input{background:#0d1117;color:#e6edf3;border-color:#30363d}
+html[data-theme="dark"] .lg-sec>h3,html[data-theme="dark"] .lg-pk .lg-r,html[data-theme="dark"] .lg-sun a,html[data-theme="dark"] .lg-link{color:#7fd1a3}html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}
+html[data-theme="dark"] #lgNear{background:#0d1117;color:#e6edf3;border-color:#e6edf3}
+@media(max-width:520px){.lg-card h2{font-size:22px}.lg-pk{flex-wrap:wrap}.lg-pk .lg-r{white-space:normal}}
+</style>
+@@HEADER@@
+<main id="main">
+<section class="tool-head th-pic" style="--thp:url('hero-summit.jpg');--thpm:url('hero-summit-mobile.jpg');--thy:50%"><div class="wrap">
+<p class="eyebrow">POTA · WWFF · SOTA · ANYWHERE</p>
+<h1>Activators <span>Lounge</span></h1>
+<p class="sub">Every tool an activator needs, in one room. Find a park, WWFF area or summit anywhere, open the right tool for it in one tap, and check today's band conditions. Each tool is tagged with the programs it works for and where it works.</p>
+</div></section>
+<div class="lg-wrap">
+<section class="lg-box">
+<h2>Find a park or summit</h2>
+<p>A name, or a number like US-1277, GFF-0001 or W4K/EC-001. Any country.</p>
+<form class="lg-form" id="lgForm"><input id="lgQ" autocomplete="off" placeholder="Name or number" aria-label="Park, WWFF area or summit"><button type="submit">FIND IT</button></form>
+<button type="button" id="lgNear">📍 WHAT'S NEAR ME</button>
+<div id="lgLast"></div>
+<div id="lgPick"></div>
+</section>
+<div id="lgOut"></div>
+<div class="lg-sun" id="lgSun"><span class="lg-sb">HF …</span><span>Loading today's conditions…</span></div>
+
+<section class="lg-sec"><h3>FIND A PLACE TO ACTIVATE</h3><p>Pick somewhere hunters will be glad to hear.</p><div class="lg-grid">
+<a class="lg-tool" href="kpc-rare.html"><b>Rarely Activated Parks</b><span class="d">Parks that have hardly been on the air, and the ones never activated.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY FOR NOW</span></span></a>
+<a class="lg-tool" href="kpc-guide-top25.html"><b>Top 25 Low-Activity Parks</b><span class="d">The 25 parks that most need an activator.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY</span></span></a>
+<a class="lg-tool" href="kpc-tracker.html"><b>Park Tracker</b><span class="d">The parks you have activated and the ones still to go.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY FOR NOW</span></span></a>
+<a class="lg-tool" href="kpc-sota.html"><b>SOTA Summit Checker</b><span class="d">Summits in an association: activated, never activated, points.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span><span class="lg-tag where">ANY ASSOCIATION</span></span></a>
+<a class="lg-tool" href="kpc-park-info.html"><b>Official Info Finder</b><span class="d">The official website and boundary for any park, WWFF area or summit.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span></a>
+</div></section>
+
+<section class="lg-sec"><h3>PLAN THE TRIP</h3><p>Where to park, where to sleep, what others found there.</p><div class="lg-grid">
+<a class="lg-tool" href="kpc-planner-us.html"><b>Trip Planner</b><span class="d">Plan a route through several parks and summits with the boundaries on the map.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US</span></span></a>
+<a class="lg-tool" href="kpc-park-notes.html"><b>Park Notes</b><span class="d">Tips from operators who have been there.: Kentucky, and other states on their own page.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US</span></span></a>
+<a class="lg-tool" href="kpc-access-finder.html"><b>Parking &amp; Access Finder</b><span class="d">Parking lots, gates, trailheads and pull-offs for a park.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY</span></span></a>
+<a class="lg-tool" href="kpc-campgrounds.html"><b>Campgrounds &amp; Cabins</b><span class="d">Places to stay at or near the parks, with reviews.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY</span></span></a>
+<a class="lg-tool" href="kpc-park-sheet.html"><b>Printable Park Sheet</b><span class="d">One page to take along: QR codes, GPS, grid, weather radio, places to stay.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US</span></span></a>
+</div></section>
+
+<section class="lg-sec"><h3>AT THE PARK</h3><p>Open these before you lose signal.</p><div class="lg-grid">
+<a class="lg-tool" href="kpc-kit.html"><b>Activation Kit</b><span class="d">Weather, boundary map, other references at the spot and places to stay, on one screen. Saves for no signal.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE · MOST IN KY</span></span></a>
+<a class="lg-tool" href="kpc-in-park.html"><b>Am I in the Park?</b><span class="d">Your GPS against the park line, and which other parks you are in.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag wwff">WWFF</span><span class="lg-tag where">ANYWHERE · OFFICIAL LINES IN US</span></span></a>
+<a class="lg-tool" href="kpc-sota-az.html"><b>SOTA Activation Zone</b><span class="d">Are you within 82 ft (25 m) of the top? Saves the zone for no signal.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span><span class="lg-tag where">US</span></span></a>
+</div></section>
+
+<section class="lg-sec"><h3>WEATHER &amp; BANDS</h3><p>Is it a good day to go, and which band?</p><div class="lg-grid">
+<a class="lg-tool" href="kpc-weather.html"><b>Field Weather</b><span class="d">Forecast, radar and lightning, plus warnings and the weather radio station.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">FORECAST ANYWHERE · ALERTS US</span></span></a>
+<a class="lg-tool" href="kpc-space-weather.html"><b>Radio Conditions &amp; Propagation</b><span class="d">Solar flux, Kp, band maps and what is open right now.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span></a>
+<a class="lg-tool" href="kpc-band-plan.html"><b>Band Plan</b><span class="d">Where each licence class may operate, and where the modes live.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US LICENCES</span></span></a>
+</div></section>
+
+<section class="lg-sec"><h3>RULES &amp; GETTING STARTED</h3><p>What counts, for each program.</p><div class="lg-grid">
+<a class="lg-tool" href="kpc-rules-you-should-know.html"><b>Rules You Should Know</b><span class="d">The rules that trip people up, in plain words.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span></span></a>
+<a class="lg-tool" href="kpc-new-to-pota.html"><b>New to POTA? Start Here</b><span class="d">Your first activation, step by step.</span><span class="lg-tags"><span class="lg-tag">POTA</span></span></a>
+<a class="lg-tool" href="kpc-new-to-wwff.html"><b>New to WWFF / KFF? Start Here</b><span class="d">How WWFF differs from POTA.</span><span class="lg-tags"><span class="lg-tag wwff">WWFF</span></span></a>
+<a class="lg-tool" href="kpc-new-to-sota.html"><b>New to SOTA? Start Here</b><span class="d">Summits, points and the activation zone.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span></span></a>
+</div>
+<p class="lg-key">Tags: <span class="lg-tag">POTA</span> <span class="lg-tag wwff">WWFF</span> <span class="lg-tag sota">SOTA</span> = the programs a tool works for · <span class="lg-tag all">ALL PROGRAMS</span> = all three · <span class="lg-tag where">WHERE</span> = where it works today. More tools are coming to every state.</p>
+</section>
+</div>
+<div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
+</main>
+@@FOOTER@@
+<script src="kpc-bounds.js?v=20261023b" defer></script>
+<script src="kpc-lounge.js?v=20261024a" defer></script>
