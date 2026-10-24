@@ -475,5 +475,77 @@
     "host": "agol"
    }
   ]
+ },
+ "portals": {
+  "FL": [
+   [
+    "Florida DEP GIS open data (geodata.dep.state.fl.us)",
+    "https://geodata.dep.state.fl.us/"
+   ],
+   [
+    "Florida DEP Map Direct",
+    "https://ca.dep.state.fl.us/mapdirect/"
+   ]
+  ],
+  "KY": [
+   [
+    "Kentucky Geography Network (KyGovMaps)",
+    "https://kygeonet.ky.gov/"
+   ]
+  ],
+  "PA": [
+   [
+    "Pennsylvania DCNR maps",
+    "https://www.dcnr.pa.gov/Maps/"
+   ]
+  ],
+  "MN": [
+   [
+    "Minnesota Geospatial Commons",
+    "https://gisdata.mn.gov/"
+   ]
+  ],
+  "IA": [
+   [
+    "Iowa DNR GIS",
+    "https://geodata.iowa.gov/"
+   ]
+  ],
+  "IN": [
+   [
+    "IndianaMap (gisdata.in.gov)",
+    "https://www.indianamap.org/"
+   ]
+  ],
+  "WI": [
+   [
+    "Wisconsin DNR open data",
+    "https://data-wi-dnr.opendata.arcgis.com/"
+   ]
+  ],
+  "MT": [
+   [
+    "Montana FWP GIS data",
+    "https://fwp.mt.gov/conservation/gis"
+   ]
+  ],
+  "TX": [
+   [
+    "TPWD GIS data",
+    "https://tpwd.texas.gov/gis/"
+   ]
+  ],
+  "NY": [
+   [
+    "NYS DEC GIS data",
+    "https://gis.ny.gov/"
+   ]
+  ],
+  "CO": [
+   [
+    "Colorado Parks & Wildlife GIS",
+    "https://cpw.state.co.us/learn/Pages/GIS.aspx"
+   ]
+  ]
  }
 }
