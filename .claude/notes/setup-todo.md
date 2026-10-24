@@ -80,3 +80,12 @@ STATUS: **DONE Oct 24 (Brandon: 'Approve email is done').** APPROVAL_EMAIL is se
 - **Community server turned on**: rules channel #welcome-and-rules, updates + safety notices to a new #moderator-only, onboarding with a welcome sign and four to-dos, default channels set. The server is **public**.
 - **2FA on Brandon's account**; `APPROVAL_EMAIL` set; GitHub → Settings → Notifications → Actions → 'Only notify for failed workflows' **confirmed ticked**.
 - STILL OPEN: **KPC Founder carries Administrator and Zach, Aaron and Brent all hold it** on a public server. Brandon is deciding between (a) keeping them Founders and requiring 2FA for moderator actions, or (b) a smaller "KPC Mod" role with just Manage Messages + Timeout Members. Note that Administrator also makes them exempt from every AutoMod rule above.
+
+## 6. Facebook token, one more permission — lets the helper ANSWER comments itself  (Oct 24)
+WHY: step 2 of the Facebook question helper is built (data/fb-comments-auto.json auto: true), but replying as
+the Page needs **pages_manage_engagement**, which the Oct 21 token does not have. Until then it keeps
+suggesting answers in the staff room and tells you once in Discord that it could not reply.
+WHAT TO DO: same steps as item 1 (Graph API Explorer, pick the permission from the 'Add a Permission' list,
+Page token from me/accounts for "Kentucky Portable Club" id 1342190728983628, extend it so it never expires),
+then update the `FB_PAGE_TOKEN` secret. The next hourly run prints 'Everything needed is there.' when it is right.
+STATUS: waiting.
