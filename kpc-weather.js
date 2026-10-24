@@ -115,6 +115,7 @@
     try { j = await jget('https://api.weather.gov/alerts/active?point=' + p.la.toFixed(4) + ',' + p.lo.toFixed(4), NWSH); } catch (e) {}
     if (my !== req) return;
     const box = $('wxAlerts');
+    if (!j && (!inUS(p.la, p.lo) || inCA(p.la, p.lo))) return worldAlerts(p, my, box);
     if (!j) { box.innerHTML = '<div class="wx-al none">⚠ Could not reach the National Weather Service for alerts right now. Check <a href="https://www.weather.gov/" target="_blank" rel="noopener">weather.gov</a>.</div>'; return; }
     const f = (j.features || []).filter(x => x.properties && x.properties.status === 'Actual');
     drawWarn(f);
@@ -128,6 +129,45 @@
         `<p class="wx-al-h">${esc(a.headline || '')}</p><pre>${esc((a.description || '').trim())}</pre>${a.instruction ? `<p class="wx-al-i"><b>What to do:</b> ${esc(a.instruction)}</p>` : ''}<p class="small">Areas: ${esc(a.areaDesc || '')}</p></details>`;
     }).join('');
     const top = f[0].properties; if (top.severity === 'Extreme' || top.severity === 'Severe') box.querySelector('details').open = true;
+  }
+
+  /* ---------- outside the US (Oct 24, Activators Lounge step 5): Canada = Environment Canada's alerts service,
+     Europe = MeteoAlarm (copied every 3 hours by .github/scripts/kpc_eu_alerts.py into data/alerts/eu.json),
+     anywhere else = a plain line + the WMO world warnings map ---------- */
+  const inUS = (la, lo) => (la > 24 && la < 49.5 && lo > -125 && lo < -66.5) || (la > 51 && la < 72 && lo > -180 && lo < -129) || (la > 18.5 && la < 22.5 && lo > -161 && lo < -154) || (la > 17.5 && la < 18.6 && lo > -67.5 && lo < -64.5);
+  const inCA = (la, lo) => la > 41.6 && la < 84 && lo > -141.1 && lo < -52.5;
+  const EUC = 'AT BE BA BG HR CY CZ DK EE FI FR DE GR HU IS IE IL IT LV LT LU MT MD ME NL MK NO PL PT RO RS SK SI ES SE CH GB UA'.split(' ');
+  const WMO = '<a href="https://severe.worldweather.wmo.int/" target="_blank" rel="noopener">WMO world warnings map ↗</a>';
+  const when = t => { const d = new Date(t); return isNaN(d) ? '' : d.toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' }); };
+  async function worldAlerts(p, my, box) {
+    let cc = '';
+    try { const g = await jget('https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=' + p.la + '&longitude=' + p.lo + '&localityLanguage=en'); cc = String(g.countryCode || '').toUpperCase(); } catch (e) {}
+    if (my !== req) return;
+    if (cc === 'US') { box.innerHTML = '<div class="wx-al none">⚠ Could not reach the National Weather Service for alerts right now. Check <a href="https://www.weather.gov/" target="_blank" rel="noopener">weather.gov</a>.</div>'; return; }
+    if (cc === 'CA' || (!cc && inCA(p.la, p.lo) && !inUS(p.la, p.lo))) {
+      const d = 0.02, bb = [p.lo - d, p.la - d, p.lo + d, p.la + d].map(x => x.toFixed(4)).join(',');
+      let j = null; try { j = await jget('https://api.weather.gc.ca/collections/weather-alerts/items?f=json&lang=en&limit=50&bbox=' + bb); } catch (e) {}
+      if (my !== req) return;
+      if (!j) { box.innerHTML = '<div class="wx-al none">⚠ Could not reach Environment Canada for alerts right now. Check <a href="https://weather.gc.ca/warnings/index_e.html" target="_blank" rel="noopener">weather.gc.ca/warnings ↗</a>.</div>'; return; }
+      const f = (j.features || []).filter(x => x.properties && !/ended|cancel/i.test(x.properties.status_en || '') && (!x.properties.expiration_datetime || new Date(x.properties.expiration_datetime) > new Date()));
+      try { drawWarn(f); } catch (e) {}
+      if (!f.length) { box.innerHTML = '<div class="wx-al none ok">✅ No active Environment Canada warnings, watches or statements for this spot.</div>'; return; }
+      const seen = new Set(), cls = c => /red/i.test(c) ? 'ex' : /orange/i.test(c) ? 'sv' : /yellow/i.test(c) ? 'md' : 'mn';
+      box.innerHTML = f.filter(x => { const k = (x.properties.alert_name_en || '') + x.properties.feature_name_en; if (seen.has(k)) return false; seen.add(k); return true; }).map(x => { const a = x.properties;
+        return `<details class="wx-al ${cls(a.risk_colour_en)}"><summary><b>⚠ ${esc(a.alert_name_en || a.alert_short_name_en || 'Alert')}</b><span>${a.event_end_datetime || a.expiration_datetime ? 'until ' + esc(when(a.event_end_datetime || a.expiration_datetime)) : ''} · Environment Canada</span></summary><pre>${esc(String(a.alert_text_en || '').trim())}</pre><p class="small">Area: ${esc(a.feature_name_en || '')}</p></details>`; }).join('');
+      return;
+    }
+    if (cc && EUC.includes(cc)) {
+      let E = null; try { E = await jget('data/alerts/eu.json?v=' + Math.floor(Date.now() / 1.8e6)); } catch (e) {}
+      const c = E && E.countries && E.countries[cc];
+      if (!c) { box.innerHTML = '<div class="wx-al none">Weather warnings for this country are on <a href="https://meteoalarm.org/" target="_blank" rel="noopener">MeteoAlarm ↗</a> (our copy did not load).</div>'; return; }
+      const L = c.items || [], top = L.filter(x => x.level !== 'yellow');
+      const lv = { red: 'ex', orange: 'sv', yellow: 'md' };
+      box.innerHTML = (L.length ? `<div class="wx-al none">${L.length} weather warning${L.length > 1 ? 's' : ''} in ${esc(c.name)} right now (whole country${top.length ? ', ' + top.length + ' orange or red' : ''}). Find your area below, or on <a href="${esc(c.link)}" target="_blank" rel="noopener">MeteoAlarm's map ↗</a>.</div>` + L.slice(0, 60).map(x => `<details class="wx-al ${lv[x.level] || 'md'}"><summary><b>⚠ ${esc(x.area)}</b><span>${esc(x.event || '')}${x.expires ? ' · until ' + esc(when(x.expires)) : ''}</span></summary><p class="small">${esc(x.level.toUpperCase())} warning (${esc(x.sev)}) · from ${esc(when(x.onset))}</p></details>`).join('')
+        : `<div class="wx-al none ok">✅ No weather warnings anywhere in ${esc(c.name)} right now (MeteoAlarm).</div>`) + `<p class="small">From MeteoAlarm, copied every 3 hours${E.updated ? ' (last ' + esc(when(E.updated)) + ')' : ''}.</p>`;
+      return;
+    }
+    box.innerHTML = '<div class="wx-al none">We don\'t have a weather-alert service for this country yet: check the national weather service, or the ' + WMO + '. The forecast below works everywhere.</div>';
   }
 
   /* ---------- current conditions + field call ---------- */

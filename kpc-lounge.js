@@ -81,7 +81,7 @@
     else b.push(['📍 AM I IN THE PARK?', 'kpc-in-park.html?ref=' + R]);
     if (here) b.push(['🧭 DIRECTIONS', 'https://www.google.com/maps/dir/?api=1&destination=' + here, '', 1]);
     if (here) b.push(['🌦 WEATHER', 'kpc-weather.html?lat=' + o.la + '&lon=' + o.lo + '&name=' + encodeURIComponent(o.name)]);
-    if (P === 'POTA' && o.us) b.push(['🖨 PRINT A PARK SHEET', 'kpc-park-sheet.html?ref=' + R]);
+    b.push([P === 'SOTA' ? '🖨 PRINT A SUMMIT SHEET' : '🖨 PRINT A PARK SHEET', 'kpc-park-sheet.html?ref=' + R]);
     if (ky) b.push(['📝 PARK NOTES', 'kpc-park-notes.html#' + R]); else if (o.us) b.push(['📝 PARK NOTES', 'kpc-park-notes-us.html?ref=' + R]);
     if (o.us) b.push(['🚗 TRIP PLANNER', 'kpc-planner-us.html?q=' + R]);
     b.push(['🔎 OFFICIAL INFO', 'kpc-park-info.html?q=' + R]);
@@ -90,11 +90,15 @@
     $('lgOut').innerHTML = `<section class="lg-card">
       <div class="lg-ch"><span class="lg-tag ${P.toLowerCase()}">${P}</span> <span class="lg-ref">${esc(o.ref)}</span></div>
       <h2>${esc(o.name)}</h2>
-      <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p>
+      <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>
       <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}" href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div>
       <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, parking, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
     </section>`;
     $('lgOut').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    /* SOTA: public land or not (data/sota-land/<area>.json from the nightly check of the national public-lands map) */
+    if (P === 'SOTA') fetch('data/sota-land/' + encodeURIComponent(o.ref.split('/')[0]) + '.json').then(r => r.ok ? r.json() : null).then(L => { const x = L && L.s && L.s[o.ref], el = $('lgLand'); if (!x || !el) return;
+      const t = { P: '🟢 On public land', R: '🟠 Public land, restricted access', U: '🟡 Public land, access not known', X: '🔴 Closed to the public', E: '⚪ Private land (conservation easement): ask the owner', N: '⚪ Not on the public-lands map: likely private, ask the owner' }[x[0]];
+      el.innerHTML = esc(t + (x[1] && /[PRUX]/.test(x[0]) ? ' · ' + x[1] + (x[2] ? ', ' + x[2] : '') : '')) + (x[0] !== 'P' ? ' · <a href="kpc-sota.html?a=' + encodeURIComponent(o.ref.split('/')[0]) + '" style="color:#f0c96b">who owns it? ›</a>' : ''); }).catch(() => {});
   }
 
   /* ---------------- today's HF conditions (NOAA SWPC; same reading as the Activation Kit) ---------------- */
