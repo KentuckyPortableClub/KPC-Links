@@ -1,0 +1,4 @@
+{"note":"Free OFFICIAL sources for 'who owns this land?' (SOTA Summit Checker). map = a statewide parcel map that shows owners free (url may hold {lat} {lon}); list = the state's official directory of county assessor / PVA offices. Anything else: a .gov-only search for the county assessor. Never paid sites.","updated":"2026-10-24",
+"states":{
+"KY":{"list":"https://revenue.ky.gov/Property/Documents/PVA%20Directory%202022-2026.pdf","name":"Kentucky PVA directory (every county PVA office)","say":"find {county} County and call that PVA office (free)"}
+}}
