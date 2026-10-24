@@ -1,0 +1,4 @@
+{
+ "note": "Facebook question helper, step 2 (Brandon Oct 24). auto: true = the bot answers clear-cut questions on Facebook itself (fixed answers only, never licence/safety/rules/money/complaints, one reply per comment, within 48 h, max 4 a run, always ends with 'if that's not what you meant, one of us will come back to you'). Set auto to false and it goes back to suggesting answers in the staff room only. Needs pages_manage_engagement on the Page token.",
+ "auto": true
+}

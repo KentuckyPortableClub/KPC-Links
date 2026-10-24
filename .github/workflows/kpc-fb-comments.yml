@@ -1,6 +1,7 @@
 name: KPC Facebook comments
 # Sends new comments on the club's Facebook posts to Discord, with a link to reply and a suggested answer
-# for the questions we get asked a lot. It never replies on Facebook itself - a person does that.
+# for the questions we get asked a lot. Since Oct 24 it also answers the clear-cut ones on Facebook itself
+# (fixed answers, switch in data/fb-comments-auto.json); everything else waits for a person.
 # Hourly. Never fails, never emails. Nothing a visitor wrote is ever saved in this repo.
 on:
   schedule:
