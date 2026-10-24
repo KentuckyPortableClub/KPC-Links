@@ -21,6 +21,7 @@ Every new chat reads `.claude/CLAUDE.md` (house rules) by itself. Paste ONE star
 
 ## 3. Hunters Lounge + Activators Lounge (+ KPC Logger, spots pages)
 "Read .claude/notes/logger-lounge-digi.md and the Activators Lounge / Hunters Lounge bullets in .claude/notes/ideas.md. We're working on the Hunters Lounge (public kpc-hunters.html + Park Checker, members kpc-hunt.html), the Activators Lounge (kpc-activators-lounge.html, members-only until I show the club), Park Tracker, Rarely Activated, Top 25, SOTA checker, the KPC Logger."
+This chat OWNS the Activators Lounge (Brandon Oct 24 6:03 PM): its launch (menu on every page + the See More text fix, search, toolbox, PUBLIC list) and upkeep. Data it shows (closures, overlaps, outlines, state-gis) is built in chat 2; this chat only shows it.
 
 ## 4. KPC App (FT8 + logger + digital modes, Android + Windows)
 "Read kpc-app/CLAUDE.md and kpc-links/.claude/notes/ft8-app.md (the end: latest builds + what I tested). Private repo KentuckyPortableClub/kpc-app. Build = once a night 3:17 AM; batch changes. Fable = engine/remote/decoder, Opus = screens/features."
