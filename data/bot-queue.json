@@ -5,15 +5,6 @@
   {
    "wf": "kpc-us-key.yml",
    "inputs": {
-    "states": "AK DC IL MI NE OK TX WY"
-   },
-   "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
-   "every": 14,
-   "next": "2026-10-24T06:00+00:00"
-  },
-  {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
     "states": "AL DE IN MN NH OR UT"
    },
    "why": "US outlines, live refresh: AL DE IN MN NH OR UT",
@@ -81,6 +72,15 @@
    "why": "World: the top countries again",
    "every": 14,
    "next": "2026-11-01T06:00+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AK DC IL MI NE OK TX WY"
+   },
+   "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
+   "every": 14,
+   "next": "2026-11-07T07:05+00:00"
   }
  ]
 }
