@@ -534,6 +534,184 @@
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
     "host": "agol"
    }
+  ],
+  "AL": [
+   {
+    "kind": "park",
+    "ag": "Hawaii Statewide GIS Program",
+    "nm": "FullName",
+    "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/arcgis/rest/services/StatePark_Boundaries/FeatureServer/700",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "StateParkBoundaries",
+    "count": 70,
+    "web": "WebLink"
+   },
+   {
+    "kind": "wild",
+    "ag": "Iowa Department of Transportation",
+    "nm": "NAME",
+    "url": "https://services.arcgis.com/8lRhdTsQyJpO52F1/arcgis/rest/services/Wildlife_Management_Area_IA_View/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "WMAs and WPAs",
+    "count": 1163
+   }
+  ],
+  "AZ": [
+   {
+    "kind": "forest",
+    "ag": "State of North Dakota",
+    "nm": "DESCRIPTION",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Forest/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest",
+    "count": 27
+   },
+   {
+    "kind": "land",
+    "ag": "JMT Technology Group",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/arcgis/rest/services/Florida_Managed_Lands/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Florida Managed Lands",
+    "count": 2604,
+    "web": "MA_WEBSITE"
+   },
+   {
+    "kind": "park",
+    "ag": "Arizona State Parks",
+    "nm": "NAME",
+    "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/Arizona_State_Parks_and_Trails_Freedom_250/FeatureServer/65",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Arizona State Parks Freedom 250 Park Boundaries",
+    "count": 21,
+    "web": "WEB_LINK"
+   },
+   {
+    "kind": "wild",
+    "ag": "VCU Life Sciences",
+    "nm": "WMA_NAME",
+    "url": "https://services1.arcgis.com/acqg5b8xOcwTUl4z/arcgis/rest/services/Wildlife_Management_Area_WMA_Boundaries_ALT/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Wildlife_Management_Area_WMA_Boundaries_ALT",
+    "count": 118,
+    "web": "URL"
+   }
+  ],
+  "MO": [
+   {
+    "kind": "forest",
+    "ag": "State of North Dakota",
+    "nm": "DESCRIPTION",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Forest/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest",
+    "count": 27
+   },
+   {
+    "kind": "land",
+    "ag": "JMT Technology Group",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/arcgis/rest/services/Florida_Managed_Lands/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Florida Managed Lands",
+    "count": 2604,
+    "web": "MA_WEBSITE"
+   },
+   {
+    "kind": "park",
+    "ag": "Missouri State Parks",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Parks",
+    "count": 21
+   },
+   {
+    "kind": "wild",
+    "ag": "VCU Life Sciences",
+    "nm": "WMA_NAME",
+    "url": "https://services1.arcgis.com/acqg5b8xOcwTUl4z/arcgis/rest/services/Wildlife_Management_Area_WMA_Boundaries_ALT/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Wildlife_Management_Area_WMA_Boundaries_ALT",
+    "count": 118,
+    "web": "URL"
+   }
+  ],
+  "NC": [
+   {
+    "kind": "forest",
+    "ag": "State of North Dakota",
+    "nm": "DESCRIPTION",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Forest/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Forest",
+    "count": 27
+   },
+   {
+    "kind": "land",
+    "ag": "JMT Technology Group",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/arcgis/rest/services/Florida_Managed_Lands/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Florida Managed Lands",
+    "count": 2604,
+    "web": "MA_WEBSITE"
+   },
+   {
+    "kind": "park",
+    "ag": "North Carolina State Parks",
+    "nm": "NAME",
+    "url": "https://services1.arcgis.com/aT1T0pU1ZdpuDk1t/arcgis/rest/services/Huntable_lands_PP4_WFL1/FeatureServer/2",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "State Parks",
+    "count": 75,
+    "web": "PARKURL"
+   },
+   {
+    "kind": "wild",
+    "ag": "North Carolina State Parks",
+    "nm": "Name",
+    "url": "https://services1.arcgis.com/7CPYy0u5Z9IAJ2OG/arcgis/rest/services/NC_Game_Lands_Map/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Game Lands",
+    "count": 1668
+   }
+  ],
+  "SD": [
+   {
+    "kind": "park",
+    "ag": "South Dakota Game, Fish and Parks",
+    "nm": "ParkName",
+    "url": "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Parks___Brandt_Mobile1_WFL1/FeatureServer/11",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "Park Boundaries",
+    "count": 133
+   },
+   {
+    "kind": "wild",
+    "ag": "Iowa Department of Transportation",
+    "nm": "NAME",
+    "url": "https://services.arcgis.com/8lRhdTsQyJpO52F1/arcgis/rest/services/Wildlife_Management_Area_IA_View/FeatureServer/0",
+    "host": "agency",
+    "auto": "2026-10-24",
+    "layer": "WMAs and WPAs",
+    "count": 1163
+   }
   ]
  },
  "portals": {
