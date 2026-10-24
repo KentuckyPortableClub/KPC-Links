@@ -76,7 +76,7 @@ ANSWERS = [
      "Here's our Kentucky WWFF/KFF guide: " + SITE + "kpc-guide-wwff.html"),
     (r'\bpota\b|parks on the air|how do i (start|activate)|get started|new to',
      "Our Kentucky POTA guide walks through it from the beginning: " + SITE + "kpc-guide-pota.html"),
-    (r'event|hamfest|when is|calendar|meet ?up',
+    (r'event|hamfest|calendar|meet ?up|what.s (coming|going on|happening)',
      "Our events calendar has what's coming up: " + SITE + "events.html"),
     (r'who is on|on the air|spots?\b|activat(ing|or) now',
      "You can see who's on the air right now here: " + SITE + "kpc-spots.html"),
