@@ -99,7 +99,79 @@
     return out;
   }
   /* the agency's own web site, to search for the park's page */
-  const agSites = (s, st) => { const o = []; if (/nature preserve/i.test(s)) o.push(st === 'KY' ? 'eec.ky.gov' : ''); if (/fish (&|and) wildlife|kdfwr/i.test(s) && st === 'KY') o.push('fw.ky.gov'); if (/state parks|department of parks/i.test(s) && st === 'KY') o.push('parks.ky.gov'); if (/forestry/i.test(s) && st === 'KY') o.push('eec.ky.gov'); if (/national park service|\bNPS\b/.test(s)) o.push('nps.gov'); if (/fish (&|and) wildlife service|\bFWS\b/.test(s)) o.push('fws.gov'); if (/forest service|USFS/.test(s)) o.push('fs.usda.gov'); return [...new Set(o.filter(Boolean))]; };
+
+  /* Oct 24 (Brandon: 'focus on US'): every state's park agency and wildlife agency, name + their own website (kind: park / wild / land = forestry, preserves, trust land).
+     Used for the OFFICIAL agency buttons, the 'documents on their site' searches and the OFFICIAL tag (several of these sites are .com/.org but are still the government). */
+  const SA = {
+    AL: [['Alabama State Parks', 'alapark.com', 'park'], ['Alabama Wildlife & Freshwater Fisheries (DCNR)', 'outdooralabama.com', 'wild']],
+    AK: [['Alaska State Parks (DNR)', 'dnr.alaska.gov', 'park'], ['Alaska Department of Fish & Game', 'adfg.alaska.gov', 'wild']],
+    AZ: [['Arizona State Parks & Trails', 'azstateparks.com', 'park'], ['Arizona Game & Fish Department', 'azgfd.com', 'wild'], ['Arizona State Land Department', 'land.az.gov', 'land']],
+    AR: [['Arkansas State Parks', 'arkansasstateparks.com', 'park'], ['Arkansas Game & Fish Commission', 'agfc.com', 'wild'], ['Arkansas Natural Heritage Commission', 'naturalheritage.com', 'land']],
+    CA: [['California State Parks', 'parks.ca.gov', 'park'], ['California Department of Fish & Wildlife', 'wildlife.ca.gov', 'wild']],
+    CO: [['Colorado Parks & Wildlife', 'cpw.state.co.us', 'park wild'], ['Colorado State Land Board', 'slb.colorado.gov', 'land']],
+    CT: [['Connecticut DEEP (state parks, forests, wildlife areas)', 'portal.ct.gov', 'park wild land']],
+    DE: [['Delaware State Parks', 'destateparks.com', 'park'], ['Delaware Fish & Wildlife (DNREC)', 'dnrec.delaware.gov', 'wild']],
+    DC: [['National Park Service (most DC parkland)', 'nps.gov', 'park'], ['DC Department of Parks and Recreation (district land: not eligible)', 'dpr.dc.gov', 'park']],
+    FL: [['Florida State Parks', 'floridastateparks.org', 'park'], ['Florida Fish & Wildlife Conservation Commission', 'myfwc.com', 'wild'], ['Florida Forest Service', 'fdacs.gov', 'land']],
+    GA: [['Georgia State Parks & Historic Sites', 'gastateparks.org', 'park'], ['Georgia DNR Wildlife Resources Division', 'georgiawildlife.com', 'wild']],
+    HI: [['Hawaii Division of State Parks (DLNR)', 'dlnr.hawaii.gov', 'park'], ['Hawaii Division of Forestry & Wildlife (DLNR)', 'dlnr.hawaii.gov', 'wild land']],
+    ID: [['Idaho Parks & Recreation', 'parksandrecreation.idaho.gov', 'park'], ['Idaho Fish & Game', 'idfg.idaho.gov', 'wild'], ['Idaho Department of Lands', 'idl.idaho.gov', 'land']],
+    IL: [['Illinois DNR (state parks, fish & wildlife areas)', 'dnr.illinois.gov', 'park wild land']],
+    IN: [['Indiana DNR (state parks, fish & wildlife areas)', 'in.gov', 'park wild land']],
+    IA: [['Iowa DNR (state parks, wildlife areas)', 'iowadnr.gov', 'park wild land']],
+    KS: [['Kansas Department of Wildlife & Parks', 'ksoutdoors.gov', 'park wild']],
+    KY: [['Kentucky State Parks', 'parks.ky.gov', 'park'], ['Kentucky Department of Fish & Wildlife Resources', 'fw.ky.gov', 'wild'], ['Kentucky Energy & Environment Cabinet (nature preserves, forestry)', 'eec.ky.gov', 'land']],
+    LA: [['Louisiana State Parks', 'lastateparks.com', 'park'], ['Louisiana Department of Wildlife & Fisheries', 'wlf.louisiana.gov', 'wild']],
+    ME: [['Maine Bureau of Parks & Lands', 'maine.gov', 'park land'], ['Maine Inland Fisheries & Wildlife', 'maine.gov', 'wild']],
+    MD: [['Maryland DNR (state parks, wildlife management areas)', 'dnr.maryland.gov', 'park wild land']],
+    MA: [['Massachusetts DCR (state parks, forests)', 'mass.gov', 'park land'], ['MassWildlife', 'mass.gov', 'wild']],
+    MI: [['Michigan DNR (state parks, game areas, forests)', 'michigan.gov', 'park wild land']],
+    MN: [['Minnesota DNR (state parks, WMAs, forests, SNAs)', 'dnr.state.mn.us', 'park wild land']],
+    MS: [['Mississippi Wildlife, Fisheries & Parks', 'mdwfp.com', 'park wild']],
+    MO: [['Missouri State Parks', 'mostateparks.com', 'park'], ['Missouri Department of Conservation', 'mdc.mo.gov', 'wild land']],
+    MT: [['Montana Fish, Wildlife & Parks', 'fwp.mt.gov', 'park wild'], ['Montana DNRC (state trust land)', 'dnrc.mt.gov', 'land']],
+    NE: [['Nebraska Game & Parks Commission', 'outdoornebraska.gov', 'park wild']],
+    NV: [['Nevada State Parks', 'parks.nv.gov', 'park'], ['Nevada Department of Wildlife', 'ndow.org', 'wild']],
+    NH: [['New Hampshire State Parks', 'nhstateparks.org', 'park'], ['New Hampshire Fish & Game', 'wildlife.nh.gov', 'wild']],
+    NJ: [['New Jersey State Park Service (DEP)', 'nj.gov', 'park land'], ['New Jersey Fish & Wildlife (DEP)', 'dep.nj.gov', 'wild']],
+    NM: [['New Mexico State Parks (EMNRD)', 'emnrd.nm.gov', 'park'], ['New Mexico Department of Game & Fish', 'wildlife.dgf.nm.gov', 'wild'], ['New Mexico State Land Office', 'nmstatelands.org', 'land']],
+    NY: [['New York State Parks', 'parks.ny.gov', 'park'], ['New York State DEC (WMAs, state forests)', 'dec.ny.gov', 'wild land']],
+    NC: [['North Carolina State Parks', 'ncparks.gov', 'park'], ['North Carolina Wildlife Resources Commission', 'ncwildlife.gov', 'wild'], ['North Carolina Forest Service', 'ncforestservice.gov', 'land']],
+    ND: [['North Dakota Parks & Recreation', 'parks.nd.gov', 'park'], ['North Dakota Game & Fish', 'gf.nd.gov', 'wild'], ['North Dakota Trust Lands', 'land.nd.gov', 'land']],
+    OH: [['Ohio DNR (state parks, wildlife areas, forests, preserves)', 'ohiodnr.gov', 'park wild land']],
+    OK: [['Oklahoma State Parks (Tourism & Recreation Dept)', 'travelok.com', 'park'], ['Oklahoma Department of Wildlife Conservation', 'wildlifedepartment.com', 'wild']],
+    OR: [['Oregon State Parks', 'stateparks.oregon.gov', 'park'], ['Oregon Department of Fish & Wildlife', 'myodfw.com', 'wild'], ['Oregon Department of Forestry', 'oregon.gov', 'land']],
+    PA: [['Pennsylvania DCNR (state parks, forests)', 'dcnr.pa.gov', 'park land'], ['Pennsylvania Game Commission', 'pgc.pa.gov', 'wild'], ['Pennsylvania Fish & Boat Commission', 'fishandboat.com', 'wild']],
+    RI: [['Rhode Island DEM (state parks, management areas)', 'dem.ri.gov', 'park wild land'], ['Rhode Island State Parks', 'riparks.ri.gov', 'park']],
+    SC: [['South Carolina State Parks', 'southcarolinaparks.com', 'park'], ['South Carolina DNR', 'dnr.sc.gov', 'wild land']],
+    SD: [['South Dakota Game, Fish & Parks', 'gfp.sd.gov', 'park wild'], ['South Dakota School & Public Lands', 'sdpubliclands.sd.gov', 'land']],
+    TN: [['Tennessee State Parks', 'tnstateparks.com', 'park'], ['Tennessee Wildlife Resources Agency', 'tn.gov', 'wild'], ['Tennessee Division of Forestry / Natural Areas', 'tn.gov', 'land']],
+    TX: [['Texas Parks & Wildlife Department', 'tpwd.texas.gov', 'park wild'], ['Texas General Land Office', 'glo.texas.gov', 'land']],
+    UT: [['Utah State Parks', 'stateparks.utah.gov', 'park'], ['Utah Division of Wildlife Resources', 'wildlife.utah.gov', 'wild'], ['Utah Trust Lands Administration', 'trustlands.utah.gov', 'land']],
+    VT: [['Vermont State Parks', 'vtstateparks.com', 'park'], ['Vermont Fish & Wildlife', 'vtfishandwildlife.com', 'wild']],
+    VA: [['Virginia State Parks (DCR)', 'dcr.virginia.gov', 'park land'], ['Virginia Department of Wildlife Resources', 'dwr.virginia.gov', 'wild'], ['Virginia Department of Forestry', 'dof.virginia.gov', 'land']],
+    WA: [['Washington State Parks', 'parks.wa.gov', 'park'], ['Washington Department of Fish & Wildlife', 'wdfw.wa.gov', 'wild'], ['Washington DNR (state forests, trust land, NRCAs)', 'dnr.wa.gov', 'land']],
+    WV: [['West Virginia State Parks', 'wvstateparks.com', 'park'], ['West Virginia DNR Wildlife Resources', 'wvdnr.gov', 'wild']],
+    WI: [['Wisconsin DNR (state parks, wildlife areas, forests)', 'dnr.wisconsin.gov', 'park wild land']],
+    WY: [['Wyoming State Parks, Historic Sites & Trails', 'wyoparks.wyo.gov', 'park'], ['Wyoming Game & Fish Department', 'wgfd.wyo.gov', 'wild'], ['Wyoming Office of State Lands', 'lands.wyo.gov', 'land']],
+    PR: [['Departamento de Recursos Naturales y Ambientales', 'drna.pr.gov', 'wild land'], ['Compañía de Parques Nacionales de Puerto Rico', 'parquesnacionalespr.com', 'park']],
+    VI: [['USVI Department of Planning & Natural Resources', 'dpnr.vi.gov', 'park wild land']],
+    GU: [['Guam Department of Parks & Recreation', 'dpr.guam.gov', 'park'], ['Guam Division of Aquatic & Wildlife Resources', 'doag.guam.gov', 'wild']],
+    AS: [['National Park Service', 'nps.gov', 'park']], MP: [['CNMI Department of Lands & Natural Resources', 'dlnr.gov.mp', 'park wild land']]
+  };
+  const FEDA = [['National Park Service', 'nps.gov', /national park service|\bNPS\b/i], ['U.S. Fish & Wildlife Service', 'fws.gov', /fish (&|and) wildlife service|\bFWS\b|wildlife refuge/i], ['U.S. Forest Service', 'fs.usda.gov', /\bu\.?s\.? forest service|\bUSFS\b|national forest/i], ['Bureau of Land Management', 'blm.gov', /land management|\bBLM\b/i], ['Bureau of Reclamation', 'usbr.gov', /reclamation|\bBOR\b/i], ['U.S. Army Corps of Engineers', 'usace.army.mil', /corps of engineers|\bUSACE\b/i], ['Tennessee Valley Authority', 'tva.com', /tennessee valley|\bTVA\b/i]];
+  /* which of the state's agencies fit this manager / owner text */
+  const agFor = (txt, st) => {
+    const t = String(txt || ''), L = SA[st] || [], kinds = [];
+    if (/park|historic site|recreation/i.test(t)) kinds.push('park');
+    if (/wildlife|fish|game|hunting|\bwma\b|waterfowl|conservation/i.test(t)) kinds.push('wild');
+    if (/forest|preserve|natural area|trust|land (office|board)|heritage/i.test(t)) kinds.push('land');
+    const hit = kinds.length ? L.filter(a => kinds.some(k => a[2].split(' ').includes(k))) : [];
+    const own = L.filter(a => a[0].split(/[ (]/)[0] && new RegExp(a[0].split(' (')[0].replace(/[^A-Za-z& ]/g, '').split(' ').filter(w => w.length > 4).slice(0, 3).join('.*'), 'i').test(t));
+    return [...new Set((own.length ? own : hit.length ? hit : L))];
+  };
+  const agSites = (s, st) => { const o = agFor(s, st).map(a => a[1]); FEDA.forEach(f => { if (f[2].test(s)) o.push(f[1]); }); return [...new Set(o.filter(Boolean))]; };
+  const agName = d => { for (const st in SA) { const a = SA[st].find(x => x[1] === d); if (a) return a[0]; } const f = FEDA.find(x => x[1] === d); return f ? f[0] : d; };
   /* Kentucky WMAs: the state map's MANAGER field is the manager, NOT the owner. The real owner is the 'Owned by ...' /
      'privately owned' line on each WMA's Fish & Wildlife page, read weekly into data/ky-wma-owners.json (kpc-new-lands.yml). */
   let WMAO = null;
@@ -327,13 +399,25 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
   }
   /* government sites that do not end in .gov: Kentucky's Tourism, Arts & Heritage Cabinet hosts the state parks' maps on kentuckytourism.com */
   /* nationwide: state park and wildlife agencies whose own sites are .com/.org (checked Oct 23): still the government */
-  const GOV_HOSTS = ['kentuckytourism.com', 'outdooralabama.com', 'alapark.com', 'agfc.com', 'arkansasstateparks.com', 'myfwc.com', 'floridastateparks.org', 'georgiawildlife.com', 'gastateparks.org', 'ncwildlife.org', 'southcarolinaparks.com', 'tnstateparks.com', 'wvstateparks.com', 'mostateparks.com', 'mdwfp.com', 'lastateparks.com', 'travelok.com', 'wildlifedepartment.com', 'azgfd.com', 'azstateparks.com', 'myodfw.com', 'ndow.org', 'ndparks.com', 'njfishandwildlife.com', 'vtfishandwildlife.com', 'ctparks.com', 'nhstateparks.org', 'destateparks.com', 'ohiostateparks.org', 'michigandnr.com', 'iowadnr.com', 'wyoparks.org'];
+  const GOV_HOSTS = [].concat(...Object.values(SA).map(L => L.map(a => a[1]))).concat(FEDA.map(f => f[1])).concat(['kentuckytourism.com', 'outdooralabama.com', 'alapark.com', 'agfc.com', 'arkansasstateparks.com', 'myfwc.com', 'floridastateparks.org', 'georgiawildlife.com', 'gastateparks.org', 'ncwildlife.org', 'southcarolinaparks.com', 'tnstateparks.com', 'wvstateparks.com', 'mostateparks.com', 'mdwfp.com', 'lastateparks.com', 'travelok.com', 'wildlifedepartment.com', 'azgfd.com', 'azstateparks.com', 'myodfw.com', 'ndow.org', 'ndparks.com', 'njfishandwildlife.com', 'vtfishandwildlife.com', 'ctparks.com', 'nhstateparks.org', 'destateparks.com', 'recreation.gov']);
   const KIND_WORD = { off: 'OFFICIAL', pota: 'POTA', search: 'WEB SEARCH', un: 'UNOFFICIAL' };
   const KIND_HELP = { off: 'Government source: counts as evidence.', pota: "POTA's own site.", search: 'A web search, not a source: read what it finds with care.', un: 'Not a government source: background only, never evidence of eligibility.' };
   const hostOfU = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
   /* one line per link for the sources list: label, host and the full address so the rep can see where it goes */
   const srcLine = (x) => `<a class="k-${kindOfU(x[1])}" href="${esc(x[1])}" target="_blank" rel="noopener" title="${KIND_HELP[kindOfU(x[1])]}"><b>${esc(String(x[0]).replace(/\s*↗$/, ''))}</b><span>${esc(x[1])}</span></a>`;
   const srcList = (L, empty) => L.length ? `<div class="mr-links">${L.map(srcLine).join('')}</div>` : `<p class="mr-help">${empty}</p>`;
+  /* POTA's parks in a state (name, number, type, pin), from POTA's own list; cached per state. Used for the park-type hint and FIND PARKS TO ADD. */
+  const PPS = {};
+  async function potaState(st) {
+    if (PPS[st]) return PPS[st];
+    let L = [];
+    try { const j = await B.jget('https://api.pota.app/program/parks/US-' + st, null, 30000); if (Array.isArray(j)) L = j.map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
+    if (!L.length) { try { const b = await stBox(st); if (b) L = (await B.potaNear((b[1] + b[3]) / 2, (b[0] + b[2]) / 2, Math.max(b[2] - b[0], b[3] - b[1]) / 2 + .1)).map(p => ({ ref: p.ref, name: p.name, type: '', la: p.la, lo: p.lo, active: true })); } catch (e) {} }
+    L = L.filter(p => /^US-/.test(p.ref || ''));
+    if (L.length) PPS[st] = L;
+    return L;
+  }
+  const typesUsed = L => { const m = {}; L.forEach(p => { if (p.type) m[p.type] = (m[p.type] || 0) + 1; }); return Object.entries(m).sort((a, b) => b[1] - a[1]); };
   async function open(g) {
     msg('Loading the boundary and checking POTA…');
     let fc;
@@ -386,7 +470,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const recHtml = () => `<details class="mr-rec"><summary>SEE THE RECORD THIS CAME FROM</summary><p class="mr-help">Source: ${esc(g.src || 'USGS PAD-US')}${!g.src || /PAD-US/.test(g.src) ? ' (USGS Protected Areas Database, version 4)' : ''}</p>${base.slice(0, 6).map(r => `<table>${LBL.filter(([k]) => r[k] != null && r[k] !== '' && k !== 'WebOsm').map(([k, l]) => `<tr><th>${l}</th><td>${k === 'Web' ? `<a href="${esc(r[k])}" target="_blank" rel="noopener">${esc(r[k])}</a>` : esc(fmtV(k, r[k]))}</td></tr>`).join('')}</table>`).join('')}</details>`;
     const AGHOME = { 'fw.ky.gov': 'KENTUCKY FISH & WILDLIFE WEBSITE', 'parks.ky.gov': 'KENTUCKY STATE PARKS WEBSITE', 'eec.ky.gov': 'KENTUCKY ENERGY & ENVIRONMENT CABINET WEBSITE', 'nps.gov': 'NATIONAL PARK SERVICE WEBSITE', 'fws.gov': 'U.S. FISH & WILDLIFE SERVICE WEBSITE', 'fs.usda.gov': 'U.S. FOREST SERVICE WEBSITE' };
     /* Brandon Oct 16: the rules showed only web searches. Lead with the agency's OWN pages (direct links, not searches): the park's official page when the records have one, then the agency's website */
-    const recL = () => offWeb.slice(0, 2).map(u => ['OFFICIAL PAGE FOR THIS PARK: ' + (() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'AGENCY SITE'; } })().toUpperCase() + ' ↗', u, 'gold']).concat(agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [(AGHOME[d] || d.toUpperCase()) + ' ↗', 'https://' + (d === 'nps.gov' || d === 'fws.gov' ? 'www.' : '') + d + '/', 'gold']));   /* Brandon Oct 15: never link raw PAD-US query pages; the record shows in the page (SEE THE RECORD THIS CAME FROM) */
+    const recL = () => offWeb.slice(0, 2).map(u => ['OFFICIAL PAGE FOR THIS PARK: ' + (() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'AGENCY SITE'; } })().toUpperCase() + ' ↗', u, 'gold']).concat(agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [(AGHOME[d] || agName(d).toUpperCase() + ' WEBSITE') + ' ↗', 'https://' + (d === 'nps.gov' || d === 'fws.gov' ? 'www.' : '') + d + '/', 'gold']));   /* Brandon Oct 15: never link raw PAD-US query pages; the record shows in the page (SEE THE RECORD THIS CAME FROM) */
     const gq = s2 => 'https://www.google.com/search?q=' + encodeURIComponent(s2);
     const sat = `https://www.google.com/maps/@${la.toFixed(5)},${lo.toFixed(5)},15z/data=!3m1!1e3`;
     add(own.every(top) ? 'YES' : own.some(t => t === 'JNT' || t === 'UNK') && !own.some(t => ['LOC', 'PVT', 'NGO', 'TRIB', 'DIST'].includes(t)) ? 'CHECK' : 'NO', 'Owned by the national or state government',
@@ -407,6 +491,10 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const exDes = des.some(d => ['CONE', 'AGRE', 'RECE', 'HCAE', 'OTHE'].includes(d)) || R.every(r => r.Category === 'Easement');
     add(exName || exDes || own.includes('TRIB') || mng.includes('TRIB') || mng.includes('DIST') ? 'NO' : 'YES', 'Not a type POTA won\'t add',
       (exName ? 'The name looks like a type POTA excludes (National Recreation Trail, Heritage Area, Historic Place/Landmark, byway).' : exDes ? 'This is an easement (usually private land with a conservation agreement), not a park.' : own.includes('TRIB') || mng.includes('TRIB') ? 'Tribal land is treated as private unless the tribal council says otherwise.' : mng.includes('DIST') ? 'Run by a special district or commission.' : 'Not a Corps site, heritage area, National Recreation Trail, historic landmark, tribal land, commission/district site or commercial trail.') + ' A designation, registry or inventory listing never makes an area eligible by itself: the land must pass every rule on its own (Agreement §4).', recL('DESIGNATION IN THE OFFICIAL RECORD'));
+    const ownTxt = uniq('Loc_Own').join(' ') + ' ' + locM + ' ' + g.name, trustLand = /\b(school|trust|institutional) lands?\b|land (board|office|commission|department)|board of regents|state lands\b/i.test(ownTxt), uniLand = /universit|college/i.test(ownTxt);
+    add(trustLand ? 'NO' : uniLand ? 'CHECK' : 'YES', 'Not state school, trust or university land',
+      trustLand ? 'This looks like state trust / school land (run by a land board or land office to earn money for schools). POTA\'s Knowledge Bank: land held for state schools is generally not added; such land is often leased, grazed or closed, and it is not run as a park. Treat as not eligible unless the agency runs the tract as a public park or wildlife area.' : uniLand ? 'University or college land is rarely eligible (Knowledge Bank: properties owned by state schools). Only a tract the state runs as a public park or wildlife area could qualify.' : 'Not trust land, school land or a university property.',
+      trustLand || uniLand ? [['KNOWLEDGE BANK: STATE SCHOOL PROPERTIES ↗', 'https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html'], ['WHO RUNS IT? (GOOGLE) ↗', gq(`"${g.name}" ${g.st} managed by`)]] : []);
     add(sameAgency.length ? 'NO' : parentPota.length ? 'YES' : 'YES', 'Not a "sub-park" inside an existing POTA park of the same agency',
       sameAgency.length ? `It sits inside ${sameAgency.map(x => esc(x.p.Unit_Nm) + ' (' + esc(x.pota.ref) + ')').join(', ')}, run by the same agency. POTA does not make a separate park inside an existing park when both belong to the same agency; activators use the bigger park's number.` : parentPota.length ? `It's inside ${parentPota.map(x => esc(x.p.Unit_Nm) + ' (' + esc(x.pota.ref) + ')').join(', ')}, but that is run by a different agency, so it can be its own park (and a 2-fer).` : 'No bigger POTA park run by the same agency surrounds it.', sameAgency.concat(parentPota).map(x => [x.pota.ref + ' ON POTA ↗', 'https://pota.app/#/park/' + encodeURIComponent(x.pota.ref)]));
     add(already.length ? 'NO' : similar.some(p => inside.some(i => i.ref === p.ref)) ? 'CHECK' : 'YES', 'Not already in POTA',
@@ -420,11 +508,11 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const shortNm = g.name.replace(/\b(state nature preserve|snp|wma|state park)\b/ig, '').trim();
     add(offWeb.length ? 'YES' : 'CHECK', 'Has an official government web page',
       offWeb.length ? `The agency's own page for it (from the official records): <a href="${esc(offWeb[0])}" target="_blank" rel="noopener">${esc(offWeb[0])}</a>. POTA lists the park from this page.${docL.length ? ' The agency also posts ' + docL.length + ' document' + (docL.length > 1 ? 's' : '') + ' for it (below).' : ''}` : `POTA needs the agency's own page for the park's POTA listing. If there's no web page, a civil-agency or GIS map can be used. Tourist or commercial sites don't count. Agency: <b>${esc(locM || '')}</b>.`,
-      offWeb.map(u => ['OFFICIAL PAGE: ' + hostOf(u).toUpperCase() + ' ↗', u, 'gold']).concat(docL.map(m => ['OFFICIAL DOCUMENT: ' + m[0].toUpperCase() + ' ↗', m[1]])).concat(fwsL).concat([...new Set(offWeb.map(hostOf).filter(Boolean))].map(d => [`DOCUMENTS (PDF) ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}" filetype:pdf`)])).concat(osmWeb.map(u => ['WEBSITE (FROM OPENSTREETMAP) ↗', u])).concat(offWeb.length ? [] : agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [`FIND ITS PAGE ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}"`)])).concat(offWeb.length ? [] : [['SEARCH .GOV (GOOGLE) ↗', gq(`"${g.name}" ${g.st} site:.gov`)]]));
+      offWeb.map(u => ['OFFICIAL PAGE: ' + hostOf(u).toUpperCase() + ' ↗', u, 'gold']).concat(docL.map(m => ['OFFICIAL DOCUMENT: ' + m[0].toUpperCase() + ' ↗', m[1]])).concat(fwsL).concat([...new Set(offWeb.map(hostOf).filter(Boolean).concat(agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st)))].slice(0, 4).map(d => [`DOCUMENTS (PDF) ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}" filetype:pdf`)])).concat(osmWeb.map(u => ['WEBSITE (FROM OPENSTREETMAP) ↗', u])).concat(offWeb.length ? [] : agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [`FIND ITS PAGE ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}"`)])).concat(offWeb.length ? [] : [['SEARCH .GOV (GOOGLE) ↗', gq(`"${g.name}" ${g.st} site:.gov`)]]));
     const gisL = gisLinks(g, la, lo, bb);
     add(mapL.length ? 'YES' : g.osm ? 'CHECK' : 'YES', 'Has an official boundary map or government GIS data',
       mapL.length ? `The agency's page links its map: <a href="${esc(mapL[0][1])}" target="_blank" rel="noopener">${esc(mapL[0][0])}</a> (on ${esc(hostOf(mapL[0][2] || mapL[0][1]))}). Open it and check that its boundary matches the gold outline on this page.` : `<b>No official map was found.</b> <b>Here is a GIS map instead:</b> <a href="${esc(gisL[0][1])}" target="_blank" rel="noopener">${esc(gisL[0][0].replace(/^GIS MAP: /, ''))}</a>. It is the government GIS layer this outline comes from, opened on a map and zoomed to the park. ${g.osm ? '<b>The outline on this page came from OpenStreetMap, which is NOT an official source:</b> the Agreement wants identifiable boundaries backed by authoritative documentation, so find the agency map or government GIS data before adding anything.' : 'The Agreement accepts authoritative government GIS data when an agency map is not routinely available, so this counts; still look on the agency\'s own page first (the MAPS ON… buttons below) and check that the outline matches what you see.'} You can also save the boundary as a KML file in the facts box.`,
-      mapL.map(m => ['OFFICIAL MAP: ' + m[0].toUpperCase() + ' ↗', m[1], 'gold']).concat(gisL.map((m, i) => [m[0] + ' ↗', m[1], mapL.length || i ? '' : 'gold'])).concat([...new Set(offWeb.map(hostOf).filter(Boolean))].map(d => [`MAPS ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}" map`)])).concat(mapL.length ? [] : [['SEARCH FOR THE MAP (GOOGLE) ↗', gq(`"${g.name}" ${locM} boundary map`)]]));
+      mapL.map(m => ['OFFICIAL MAP: ' + m[0].toUpperCase() + ' ↗', m[1], 'gold']).concat(gisL.map((m, i) => [m[0] + ' ↗', m[1], mapL.length || i ? '' : 'gold'])).concat([...new Set(offWeb.map(hostOf).filter(Boolean).concat(agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st)))].slice(0, 4).map(d => [`MAPS ON ${d.toUpperCase()} (GOOGLE) ↗`, gq(`site:${d} "${shortNm}" map`)])).concat(mapL.length ? [] : [['SEARCH FOR THE MAP (GOOGLE) ↗', gq(`"${g.name}" ${locM} boundary map`)]]));
     add('INFO', 'Size', `About ${Math.round(g.acres).toLocaleString()} acres. POTA has no size rule, but very small parks may wait if activating would get in the way of the park's main use.`);
     if (feats.length > 1) add('INFO', 'Split into pieces', `The land comes in ${feats.length} pieces. POTA: all tracts of one unit share ONE reference number.`);
     if (/wildlife refuge|\bNWR\b/i.test(g.name) || uniq('Own_Name').includes('FWS') && /refuge/i.test(uniq('Loc_Ds').join(' '))) add('INFO', 'National Wildlife Refuge', 'POTA calls refuges its most sensitive US park type: what is fine in other parks may not be fine here. Check with the refuge office before activating.');
@@ -441,14 +529,14 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     osmWeb.forEach(u => srcAdd(['WEBSITE FROM OPENSTREETMAP: ' + hostOfU(u).toUpperCase(), u]));
     srcAdd(['OPENSTREETMAP AT THE PIN', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=15/${la.toFixed(5)}/${lo.toFixed(5)}`]);
     srcAdd(['GOOGLE MAPS SATELLITE AT THE PIN', sat]);
-    const nm = g.name, stn = g.st, PT = potaType(nm, base, locM);
+    const nm = g.name, stn = g.st, PT = potaType(nm, base, locM), TU = typesUsed(await potaState(stn).catch(() => []));
     const plainTxt = h => { const t = String(h).replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim(); return t.length > 230 ? t.slice(0, 230).replace(/\s+\S*$/, '') + '…' : t; };
     const note = [`Park: ${nm} (${stn})`, `Checked: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} with the KPC Mapping Rep Tool Box (a research helper, not official: confirm on the agency's own pages)`, `Tool result: ${verdict[1]} (${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself)`, '', `Owner: ${base.map(r => r.Loc_Own || AG[r.Own_Name] || r.Own_Name).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Managed by: ${locM}`, `Designation: ${base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter((x, i, a) => a.indexOf(x) === i).join('; ')}`, `Public access: ${acc.map(a => ACC[a] || a).join('; ')}`, `Size: about ${Math.round(g.acres).toLocaleString()} acres`, `Suggested POTA park type: ${PT[0] || '(pick the closest POTA label)'}`, `Suggested POTA pin (inside the boundary): ${la.toFixed(5)}, ${lo.toFixed(5)}`, `Grid square: ${grid(la, lo)}`, 'County: @@COUNTY@@', 'Official web page: ' + (offWeb.join(' ; ') || '(paste the agency link here)'), 'Official documents: ' + (docL.length ? docL.map(m => m[0] + ' ' + m[1]).join(' ; ') : 'none found'), 'Official boundary map: ' + (mapL.length ? mapL.map(m => m[0] + ' ' + m[1]).join(' ; ') : 'none found on the agency page. GIS map: ' + gisL[0][0].replace(/^GIS MAP: /, '') + ' ' + gisL[0][1]), `Boundary source: ${g.src || 'USGS PAD-US'} ("${nm}", ${stn})`, '', 'Web sources say (not official): none found yet', '', 'Rule check:'].concat(res.filter(r => r.v !== 'INFO').map(r => `- ${r.title}: ${r.v}${r.why ? ' (' + plainTxt(r.why) + ')' : ''}`), ['', 'Official sources (government, count as evidence):'].concat(SRC.off.map(x => `- ${x[0]}: ${x[1]}`)).concat(['@@OFF@@', '', 'Unofficial links (background only, not evidence):'].concat(SRC.un.map(x => `- ${x[0]}: ${x[1]}`)), ['@@LINKS@@'])).join('\n');
     $('mrOut').innerHTML = `<section class="mr-res">
 <div class="mr-head"><div class="mr-k">${esc(stn)} · ${esc(g.src || "USGS PAD-US")}</div><h2>${esc(nm)}</h2><p>${esc([locM, Math.round(g.acres).toLocaleString() + ' acres', base.map(r => r.Loc_Ds || DES[r.Des_Tp] || '').filter(Boolean).filter((x, i, a) => a.indexOf(x) === i).join(' / ')].filter(Boolean).join(' · '))}</p></div>
 ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b> ${esc(B.OSM_NOTE)} Owner and manager come from volunteer tags, so treat every answer below as CHECK until the agency's own page confirms it.</div>` : ""}<div class="mr-v ${verdict[0]}"><b>${verdict[1]}</b><span>${res.filter(r => r.v === 'YES').length} yes · ${nNo} no · ${nCk} to check yourself</span></div>
 <div class="mr-rules">${res.map(r => `<div class="mr-r ${r.v.toLowerCase()}"><i>${r.v === 'INFO' ? 'INFO' : r.v}</i><div><b>${esc(r.title)}</b><p>${r.why}</p>${/^Owned/.test(r.title) ? recHtml() : /^(Run|Open|Not a type)/.test(r.title) ? '<p class="mr-help">Record: see SEE THE RECORD THIS CAME FROM in the first rule.</p>' : ''}${r.links.length ? `<div class="mr-rl">${r.links.map(l => `<a class="${l[2] || ''} k-${kindOfU(l[1])}" title="${KIND_HELP[kindOfU(l[1])]}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])}${/↗$/.test(l[0]) ? '' : ' ↗'}</a>`).join('')}</div>` : ''}${/official government web page/.test(r.title) ? '<div class="mr-rl" id="mrWebRule"></div>' : ''}${/official boundary map/.test(r.title) ? '<div class="mr-rl" id="mrMapRule"></div>' : ''}${/^(Owned|Run \(|Open to)/.test(r.title) ? `<div class="mr-ev" data-ev="${/^Owned/.test(r.title) ? 'owner' : /^Run/.test(r.title) ? 'mgr' : 'acc'}"></div>` : ''}${/surrounded|public way in/.test(r.title) ? '<div id="mrAccess" class="mr-help">Looking for a public road, parking, trailhead or ramp into it…</div><div id="mrAround" class="mr-help">Checking the official land around it…</div>' : ''}${/sub-park/.test(r.title) ? `<details class="mr-rec"><summary>LAND RECORDS AT THE PIN</summary><table>${(around || []).slice(0, 12).map(x => `<tr><th>${esc(x.Unit_Nm || x.Loc_Nm || '?')}</th><td>${esc([x.Loc_Mang, TYPE[x.Own_Type] || x.Own_Type, x.GIS_Acres ? Math.round(+x.GIS_Acres).toLocaleString() + ' acres' : ''].filter(Boolean).join(' · '))}</td></tr>`).join('') || '<tr><td>none in the database</td></tr>'}</table></details>` : ''}</div></div>`).join('')}</div>
-<div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns">${offWeb.map(u => `<a class="gold" href="${esc(u)}" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a>`).join("")}<a href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">SEARCH .GOV (GOOGLE) ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">SEARCH FOR THE MAP (GOOGLE) ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
+<div class="mr-sec"><h3>OFFICIAL WEBSITE &amp; MAP</h3><div class="mr-btns">${offWeb.map(u => `<a class="gold k-off" href="${esc(u)}" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a>`).join("")}${agSites(locM + ' ' + uniq('Loc_Own').join(' '), stn).slice(0, 3).map(d => `<a class="k-off" href="https://${/^(nps|fws)\.gov$/.test(d) ? 'www.' : ''}${d}/" target="_blank" rel="noopener">${esc(agName(d).toUpperCase())} ↗</a>`).join('')}<a href="${gq(`"${nm}" ${stn} site:.gov`)}" target="_blank" rel="noopener">SEARCH .GOV (GOOGLE) ↗</a><a href="${gq(`"${nm}" ${locM} boundary map`)}" target="_blank" rel="noopener">SEARCH FOR THE MAP (GOOGLE) ↗</a></div><p class="mr-help">These search only for the park by name with its agency. Use the agency's own page, not tourist sites.</p></div>
 <div class="mr-sec mr-src"><h3>🔗 EVERY LINK, SORTED: OFFICIAL vs UNOFFICIAL</h3>
 <p class="mr-help">The Agreement (§4) counts only government sources as evidence: the agency's page, government GIS data, agency maps and official documents. Tourism pages, social media, directories, OpenStreetMap and Wikipedia are background only. Open them and see for yourself.</p>
 <h4 class="k-off">✅ OFFICIAL (GOVERNMENT) · ${SRC.off.length}</h4>${srcList(SRC.off, 'No government page or map found yet. Find the agency\'s own page before adding anything.')}<div id="mrOffMore"></div>
@@ -457,7 +545,7 @@ ${g.osm ? `<div class="mr-osm"><b>From OpenStreetMap, not an official source.</b
 <h4 class="k-search">🔍 WEB SEARCHES · ${SRC.search.length}</h4>${srcList(SRC.search, '')}</div>
 <div class="mr-sec"><h3>BOUNDARY MAP (${esc(g.src || 'USGS PAD-US')})</h3><div id="mrMap"></div><p class="mr-help">Gold = this park's land in the source above. Blue dots = POTA parks nearby (tap for the number). Blue P squares = parking (🥾 trailhead, ⛵ boat ramp); green dots = roads or trails into it. Tap the map to drop a pin; ⛶ FULL for full screen; layers for satellite, topo and terrain.</p><div class="mr-btns" id="mrFiles"></div></div>
 <div class="mr-sec mr-facts"><h3>📍 FACTS FOR ADDING THE PARK</h3>
-<div class="mr-fact"><span>SUGGESTED POTA PARK TYPE</span><b>${PT[0] ? esc(PT[0]) + ' <small>(' + esc(PT[1]) + '; a guess: pick the closest POTA label)</small>' : 'Not sure: pick the closest POTA label (Kentucky uses Wildlife Management Area, State Park, State Nature Preserve, State Historic Site, State Forest, State Natural Area…)'}</b></div>
+<div class="mr-fact"><span>SUGGESTED POTA PARK TYPE</span><b>${PT[0] ? esc(PT[0]) + ' <small>(' + esc(PT[1]) + '; a guess: pick the closest POTA label' + (TU.length ? '; in ' + esc(stn) + ' POTA uses ' + TU.slice(0, 5).map(t => esc(t[0]) + ' ' + t[1]).join(', ') : '') + ')</small>' : 'Not sure: pick the closest POTA label' + (TU.length ? ' (in ' + esc(stn) + ' POTA uses: ' + TU.slice(0, 6).map(t => esc(t[0]) + ' ' + t[1]).join(', ') + '…)' : '')}</b></div>
 <div id="mrPinMain"><div class="mr-fact"><span>MAIN ENTRANCE PIN</span><b>looking for the main parking lot or entrance…</b></div></div>
 <div class="mr-fact" id="mrPinMid"><span>BACKUP PIN (middle of the land, inside the boundary)</span><b>${la.toFixed(5)}, ${lo.toFixed(5)}</b><div class="mr-btns"><a href="#" data-copy="${la.toFixed(5)}, ${lo.toFixed(5)}">COPY GPS</a><a href="https://www.google.com/maps/search/?api=1&query=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">GOOGLE MAPS ↗</a><a href="https://maps.apple.com/?ll=${la.toFixed(5)},${lo.toFixed(5)}&q=${encodeURIComponent(nm)}" target="_blank" rel="noopener">APPLE MAPS ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}" target="_blank" rel="noopener">STREET VIEW ↗</a></div></div>
 ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.map(u => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join("<br>")}</b></div>` : ""}<div class="mr-fact"><span>GRID SQUARE</span><b>${grid(la, lo)}</b></div>
@@ -654,6 +742,66 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       navigator.geolocation.getCurrentPosition(p => { const v = p.coords.latitude.toFixed(5) + ', ' + p.coords.longitude.toFixed(5); $('mrLoc').value = v; locSearch(v); },
         err => msg('Could not get your GPS (' + esc(err.message) + '). Check that location is allowed for this site, or type the address.'), { enableHighAccuracy: true, timeout: 20000, maximumAge: 30000 });
     };
+  })();
+
+  /* ---------- FIND PARKS TO ADD (Brandon Oct 24: 'search for new parks then the user select which one he wants to run through the tool') ----------
+     PAD-US: every open, owned (fee) federal/state tract in the state (short WHERE only: the server's firewall refuses long ones; the rest is filtered here),
+     grouped by name, compared with POTA's own list of parks in the state. ⭐ = no POTA park with that name and nothing odd about it. Tap one → the full check. */
+  const FLAGS = [[/corps of engineers|\bUSACE\b|\bCOE\b/i, 'Army Corps of Engineers: only a few are exceptions'], [/tennessee valley|\bTVA\b/i, 'TVA land: case by case'], [/universit|college|school land|trust land|land board|land office|board of regents/i, 'school / university / trust land: rarely eligible'],
+    [/department of defense|\bDOD\b|\barmy\b(?! corps)|\bnavy\b|air force|national guard|military/i, 'military land'], [/outstanding resource water|division of water|water quality/i, 'water-quality designation, not a park'], [/hunting access|access area\b|boat (ramp|access)|fishing access/i, 'small access site'],
+    [/easement/i, 'easement'], [/national (historic|recreation(al)?) trail|heritage area|historic landmark|national register|scenic byway/i, 'a type POTA does not add'], [/\btrail\b/i, 'a trail: usually not added on its own']];
+  const flagsOf = g => { const t = [g.name, g.rows[0].Loc_Own, g.rows[0].Loc_Mang, g.rows[0].Own_Name, g.rows[0].Mang_Name, g.rows[0].Loc_Ds].join(' '); return FLAGS.filter(f => f[0].test(t)).map(f => f[1]).concat(g.acres < 5 ? ['under 5 acres'] : []); };
+  async function candidates(st, town) {
+    if (!st) { msg('Pick the state first.'); return; }
+    $('mrList').innerHTML = '';
+    msg(`Listing every open federal and state tract in ${esc(st)} from the national land database and comparing it with POTA's list of parks in ${esc(st)}…`);
+    let box = null;
+    if (town) { try { const gj = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(town)); const hit = (gj.results || []).find(r => stateOf(r.admin1) === st) || (gj.results || [])[0]; if (hit) box = [hit.longitude - 0.6, hit.latitude - 0.5, hit.longitude + 0.6, hit.latitude + 0.5]; } catch (e) {} if (!box) { msg(`Could not find the town "${esc(town)}". Check the spelling, or leave it blank for the whole state.`); return; } }
+    const rows = [];
+    try {
+      for (let off = 0; off < 12000; off += 1000) {
+        const o = { where: `State_Nm='${st}' AND Pub_Access='OA'`, resultOffset: off, resultRecordCount: 1000, orderByFields: 'OBJECTID', outFields: 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Own,Des_Tp,Loc_Ds,Pub_Access,GIS_Acres,State_Nm,Category' };
+        if (box) Object.assign(o, { geometry: box.join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects' });
+        const r = await q(o); rows.push(...r); if (r.length < 1000) break;
+        const e = document.querySelector('.mr-msg div'); if (e) e.firstChild.textContent = `Read ${rows.length.toLocaleString()} records so far…`;
+      }
+    } catch (e) { if (!rows.length) { msg('The national land database did not answer. Try again in a minute.'); return; } }
+    const keep = rows.filter(r => r.Category === 'Fee' && /^(FED|STAT)$/.test(r.Mang_Type) && /^(FED|STAT)$/.test(r.Own_Type) && (r.Unit_Nm || r.Loc_Nm));
+    const G = new Map(); keep.forEach(r => { const n = r.Unit_Nm || r.Loc_Nm, k = n + '|' + st; const g = G.get(k) || { name: n, st, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
+    const P = await potaState(st).catch(() => []);
+    const all = [...G.values()].map(g => {
+      const same = P.filter(p => B.norm(p.name) === B.norm(g.name) || (B.sameName(p.name, g.name) && B.sameKind(p.name, g.name)));
+      const close = same.length ? [] : P.filter(p => B.sameName(p.name, g.name) || B.norm(p.name).split(' ').filter(w => w.length > 3 && B.norm(g.name).split(' ').includes(w)).length >= 2).slice(0, 3);
+      return Object.assign(g, { pota: same, close, flags: flagsOf(g) });
+    });
+    const fresh = all.filter(g => !g.pota.length), star = fresh.filter(g => !g.flags.length && !g.close.length).sort((a, b) => b.acres - a.acres), look = fresh.filter(g => g.flags.length || g.close.length).sort((a, b) => b.acres - a.acres), have = all.length - fresh.length;
+    if (!P.length) msg(`<b>Could not read POTA's park list for ${esc(st)}</b>, so every tract is listed; the full check still tells you if one is already a park.`); else $('mrOut').innerHTML = '';
+    const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
+    const IDX = star.concat(look);
+    const more = (L, from, id) => L.length > from ? `<button type="button" class="mr-more" data-more="${id}">SHOW ${Math.min(60, L.length - from)} MORE (${L.length - from} left)</button>` : '';
+    let nStar = 60, nLook = 30;
+    const render = () => {
+      $('mrList').innerHTML = `<div class="mr-candhead"><b>🔎 PARKS TO ADD IN ${esc(st)}${town ? ' NEAR ' + esc(town.toUpperCase()) : ''}</b><p class="mr-help">${all.length.toLocaleString()} named federal/state areas open to the public in the national land database${P.length ? `; <b>${have}</b> already have a POTA park with the same name, <b>${fresh.length}</b> do not` : ''}. Tap one to run it through the full check. ⭐ = nothing odd found; the rest show why to look twice. Not every name here is a park: the database also lists easements, water designations and tiny access sites, and the full check and the agency's own page decide.</p></div>
+<h4 class="mr-candh">⭐ LOOK PROMISING · ${star.length}</h4>${star.slice(0, nStar).map(g => row(g, IDX.indexOf(g))).join('') || '<p class="mr-help">None without a flag.</p>'}${more(star, nStar, 'star')}
+<h4 class="mr-candh">⚠ PROBABLY WILL NOT QUALIFY, OR CLOSE TO AN EXISTING PARK · ${look.length}</h4>${look.slice(0, nLook).map(g => row(g, IDX.indexOf(g))).join('') || '<p class="mr-help">None.</p>'}${more(look, nLook, 'look')}
+${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary><p class="mr-help">${all.filter(g => g.pota.length).sort((a, b) => b.acres - a.acres).map(g => esc(g.name) + ' = ' + g.pota.map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)}</a>`).join(', ')).join(' · ')}</p></details>` : ''}`;
+      $('mrList').querySelectorAll('[data-c]').forEach(b => b.onclick = () => { $('mrList').innerHTML = ''; open(IDX[+b.dataset.c]); });
+      $('mrList').querySelectorAll('[data-more]').forEach(b => b.onclick = () => { if (b.dataset.more === 'star') nStar += 60; else nLook += 60; render(); });
+      $('mrList').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    render();
+  }
+  (function candBox() {
+    const f = $('mrForm'); if (!f || $('mrCandBox')) return;
+    const d = document.createElement('div'); d.id = 'mrCandBox'; d.className = 'mr-cand';
+    d.innerHTML = `<div class="mr-locnote mr-candnote"><b>🔎 FIND PARKS TO ADD</b><p>Don't have a park in mind? List every open federal and state area in a state (or around a town) that has <b>no POTA park with that name</b>, then tap one to run it through the full check.</p>
+<form class="mr-form mr-locf" id="mrCandForm"><label>STATE<select id="mrCandSt">${ST.map(s2 => `<option>${s2}</option>`).join('')}</select></label><label>TOWN (OPTIONAL, ABOUT 40 MILES AROUND)<input id="mrCandTown" autocomplete="off" placeholder="Anytown"></label><button type="submit">FIND PARKS TO ADD</button></form>
+<p class="mr-help">Reads the whole state from the national land database (a big state can take a minute). Flags: Army Corps, TVA, school/trust/university land, military, water-quality designations, access sites, easements, trails, under 5 acres.</p></div>`;
+    const ag = $('mrAg'); if (ag) ag.parentNode.insertBefore(d, ag); else f.parentNode.appendChild(d);
+    const st = document.createElement('style'); st.textContent = '.mr-cand{margin:14px 0 6px}.mr-candnote{background:#eef7f1;border-color:#1d5a3a;border-left-color:#1d5a3a}.mr-candnote>b:first-child{color:#1d5a3a}.mr-candhead{margin:10px 0 4px}.mr-candhead b{font:900 13px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a}.mr-candh{margin:14px 0 4px;font:900 12px Arial,sans-serif;letter-spacing:1.2px;color:#171717}.mr-pick.mr-cand{margin-top:6px}.mr-pick.flag{border-style:dashed}.mr-more{display:block;width:100%;margin-top:8px;min-height:42px;border-radius:8px;border:1.5px solid #1d5a3a;background:#fff;color:#1d5a3a;font:900 11.5px Arial,sans-serif;letter-spacing:1px;cursor:pointer}';
+    document.head.appendChild(st);
+    try { const v = localStorage.getItem('kpcMrState'); if (v) $('mrCandSt').value = v; } catch (e) {}
+    $('mrCandForm').addEventListener('submit', e => { e.preventDefault(); const s2 = $('mrCandSt').value; $('mrState').value = s2; try { localStorage.setItem('kpcMrState', s2); } catch (x) {} candidates(s2, $('mrCandTown').value.trim()); });
   })();
   /* GPS in almost any form people copy: '37.214088,-84.197804', '37.214088, -84.197804', '37.214088 -84.197804',
      'N 37.214088 W 84.197804', '37.214088° N, 84.197804° W', degrees-minutes-seconds 37°12'50.7"N 84°11'52.1"W,
