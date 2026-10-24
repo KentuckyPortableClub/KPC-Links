@@ -97,7 +97,7 @@
     $('lgOut').innerHTML = `<section class="lg-card">
       <div class="lg-ch"><span class="lg-tag ${P.toLowerCase()}">${P}</span> <span class="lg-ref">${esc(o.ref)}</span></div>
       <h2>${esc(o.name)}</h2>
-      <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>
+      <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>${P === 'POTA' && store.get('kpcTrackActs', {})[o.ref] ? `<span class="lg-you">✅ You activated this${store.get('kpcTrackActs', {})[o.ref].n > 1 ? ' ' + store.get('kpcTrackActs', {})[o.ref].n + ' times' : ''}</span>` : ''}
       <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div>
       <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, parking, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
     </section>`;
@@ -123,7 +123,16 @@
     el.innerHTML = `<span class="lg-sb ${lvl[0]}">HF ${lvl[1]}</span><span>Solar flux <b>${sfi != null ? Math.round(sfi) : '?'}</b> · Kp <b>${kp != null ? kp.toFixed(kp % 1 ? 1 : 0) : '?'}</b> · ${tip} <a href="kpc-space-weather.html">Radio Conditions ›</a></span>`;
   }
 
+  /* MY POTA FILE (Oct 24): one load for every tool, through KPCMine (kpc-my-parks.js) */
+  function mineSay() {
+    const el = $('lgMineSt'); if (!el) return; const F = store.get('kpcTrackFile', null);
+    if (!F || !F.when) { el.innerHTML = 'No file loaded yet.'; return; }
+    const d = Math.floor((Date.now() - F.when) / 864e5);
+    el.innerHTML = `✅ Using <b>${esc(F.name)}</b>: ${F.parks} activated parks, loaded ${d ? d + ' day' + (d > 1 ? 's' : '') + ' ago' : 'today'}.${d >= 30 ? ' <b style="color:#b45309">⏰ Time for a fresh one.</b>' : ''} <a href="kpc-tracker.html?where=ALL">See my totals ›</a>`;
+  }
   function init() {
+    const mf = $('lgMineF'); if (mf) mf.onchange = async e => { const f = e.target.files[0]; e.target.value = ''; if (!f || !window.KPCMine) return; const r = await KPCMine.loadFile(f); if (r.err) $('lgMineSt').textContent = r.err; else mineSay(); };
+    mineSay();
     $('lgForm').addEventListener('submit', e => { e.preventDefault(); search($('lgQ').value); });
     $('lgNear').addEventListener('click', near);
     $('lgPick').addEventListener('click', e => { const b = e.target.closest('[data-ref]'); if (b) { $('lgQ').value = b.dataset.ref; open(b.dataset.ref); } });
