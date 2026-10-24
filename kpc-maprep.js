@@ -411,8 +411,9 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
   async function potaState(st) {
     if (PPS[st]) return PPS[st];
     let L = [];
-    try { const j = await B.jget('https://api.pota.app/program/parks/US-' + st, null, 30000); if (Array.isArray(j)) L = j.map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
-    if (!L.length) { try { const b = await stBox(st); if (b) L = (await B.potaNear((b[1] + b[3]) / 2, (b[0] + b[2]) / 2, Math.max(b[2] - b[0], b[3] - b[1]) / 2 + .1)).map(p => ({ ref: p.ref, name: p.name, type: '', la: p.la, lo: p.lo, active: true })); } catch (e) {} }
+    /* api.pota.app/location/parks/US-XX = every park in the state (the same list the Hunters Lounge and finder use); 'program' was the wrong address (Oct 24, Brandon: 187 of 197 KY areas showed as new) */
+    try { const j = await B.jget('https://api.pota.app/location/parks/US-' + st, null, 45000); if (Array.isArray(j)) L = j.filter(p => p && p.reference).map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
+    if (!L.length) { try { const b = await stBox(st); if (b) { const j = await B.jget(`https://api.pota.app/park/grids/${b[1].toFixed(2)}/${b[0].toFixed(2)}/${b[3].toFixed(2)}/${b[2].toFixed(2)}/0`, null, 30000); L = (j.features || []).map(f => ({ ref: f.properties.reference, name: f.properties.name, type: f.properties.parktypeDesc || '', lo: f.geometry.coordinates[0], la: f.geometry.coordinates[1], active: true })); } } catch (e) {} }
     L = L.filter(p => /^US-/.test(p.ref || ''));
     if (L.length) PPS[st] = L;
     return L;
@@ -749,7 +750,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
      grouped by name, compared with POTA's own list of parks in the state. ⭐ = no POTA park with that name and nothing odd about it. Tap one → the full check. */
   const FLAGS = [[/corps of engineers|\bUSACE\b|\bCOE\b/i, 'Army Corps of Engineers: only a few are exceptions'], [/tennessee valley|\bTVA\b/i, 'TVA land: case by case'], [/universit|college|school land|trust land|land board|land office|board of regents/i, 'school / university / trust land: rarely eligible'],
     [/department of defense|\bDOD\b|\barmy\b(?! corps)|\bnavy\b|air force|national guard|military/i, 'military land'], [/outstanding resource water|division of water|water quality/i, 'water-quality designation, not a park'], [/hunting access|access area\b|boat (ramp|access)|fishing access/i, 'small access site'],
-    [/easement/i, 'easement'], [/national (historic|recreation(al)?) trail|heritage area|historic landmark|national register|scenic byway/i, 'a type POTA does not add'], [/\btrail\b/i, 'a trail: usually not added on its own']];
+    [/easement/i, 'easement'], [/national (historic|recreation(al)?) trail|heritage area|historic landmark|national register|scenic byway/i, 'a type POTA does not add'], [/\btrail\b/i, 'a trail: usually not added on its own'], [/purchase unit|\bother\b$|\bexperimental forest\b|proclamation/i, 'part of a bigger unit (a national forest purchase unit or an odd database piece): use the main unit\'s number']];
   const flagsOf = g => { const t = [g.name, g.rows[0].Loc_Own, g.rows[0].Loc_Mang, g.rows[0].Own_Name, g.rows[0].Mang_Name, g.rows[0].Loc_Ds].join(' '); return FLAGS.filter(f => f[0].test(t)).map(f => f[1]).concat(g.acres < 5 ? ['under 5 acres'] : []); };
   async function candidates(st, town) {
     if (!st) { msg('Pick the state first.'); return; }
@@ -770,12 +771,13 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     const G = new Map(); keep.forEach(r => { const n = r.Unit_Nm || r.Loc_Nm, k = n + '|' + st; const g = G.get(k) || { name: n, st, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
     const P = await potaState(st).catch(() => []);
     const all = [...G.values()].map(g => {
-      const same = P.filter(p => B.norm(p.name) === B.norm(g.name) || (B.sameName(p.name, g.name) && B.sameKind(p.name, g.name)));
+      const core = n => B.norm(n).replace(/\b(wildlife management area|wma|state (resort )?park|state park|national (park|forest|recreation area|river)|state forest|state nature preserve|nature preserve|state natural area|natural area|national wildlife refuge|nwr|state historic site|historic site|other|purchase unit)\b/g, '').replace(/\s+/g, ' ').trim();
+      const same = P.filter(p => B.norm(p.name) === B.norm(g.name) || (B.sameName(p.name, g.name) && B.sameKind(p.name, g.name)) || (core(p.name).length > 3 && core(p.name) === core(g.name) && B.sameKind(p.name, g.name)));
       const close = same.length ? [] : P.filter(p => B.sameName(p.name, g.name) || B.norm(p.name).split(' ').filter(w => w.length > 3 && B.norm(g.name).split(' ').includes(w)).length >= 2).slice(0, 3);
       return Object.assign(g, { pota: same, close, flags: flagsOf(g) });
     });
     const fresh = all.filter(g => !g.pota.length), star = fresh.filter(g => !g.flags.length && !g.close.length).sort((a, b) => b.acres - a.acres), look = fresh.filter(g => g.flags.length || g.close.length).sort((a, b) => b.acres - a.acres), have = all.length - fresh.length;
-    if (!P.length) msg(`<b>Could not read POTA's park list for ${esc(st)}</b>, so every tract is listed; the full check still tells you if one is already a park.`); else $('mrOut').innerHTML = '';
+    if (P.length < 20) msg(`<b>Could not read POTA's full park list for ${esc(st)}</b> (${P.length} came back), so most areas below may already be parks: the full check still tells you. Try again in a minute.`); else $('mrOut').innerHTML = '';
     const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
     const IDX = star.concat(look);
     const more = (L, from, id) => L.length > from ? `<button type="button" class="mr-more" data-more="${id}">SHOW ${Math.min(60, L.length - from)} MORE (${L.length - from} left)</button>` : '';
