@@ -991,12 +991,12 @@ main#hl:not([data-page=need]) > .hl-ptabs{position:absolute;top:12px;left:50%;tr
 @media(max-width:700px){main#hl > .hl-ptabs{position:static!important;transform:none!important;width:100%!important;max-width:none!important;margin:0!important;border-radius:0!important;border:0!important;border-bottom:1px solid rgba(213,166,58,.35)!important;background:#070707!important;box-shadow:none!important;justify-content:flex-start;padding:6px 8px!important}}
 
 /* Oct 18: phones fold the parks bar buttons behind ⚙ (#hlTkMore) so the scrolling new parks can be read */
-main#hl .hl-tkmore{display:none}
-@media (max-width:700px){
+/* Oct 24 (Brandon: 'do it like our vip lounge where we can hide the filters'): on every screen size now */
  main#hl .hl-tick .hl-tkmore{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;min-width:40px;align-self:stretch;margin:0;border:0;border-left:1px solid rgba(240,201,107,.45);background:rgba(20,13,6,.85);color:#f0c96b;font:900 18px Arial,sans-serif;cursor:pointer}
  main#hl .hl-tick:not(.tk-open) > .hl-bell{display:none!important}
  main#hl .hl-tick.tk-open > .hl-tick-run{display:none}
-}
+main#hl .hl-tick .hl-tkmore i{font:900 10px Arial,sans-serif;letter-spacing:1px;margin-left:6px;font-style:normal}
+@media (max-width:700px){main#hl .hl-tick .hl-tkmore i{display:none}}
 /* Oct 18 (Brandon: 'two different gear wrenches'): on phones the two filter gears get a short word under them */
 @media (max-width:700px){
  main#hl .hl-tick.tk-open > .hl-bell{padding:0 9px}
@@ -1033,3 +1033,4 @@ main#hl[data-public="1"] .hl-ptabs.pub-tabs{display:flex!important}
 #hlHow{scroll-margin-top:150px}
 
 .hw-g>span{min-width:52px;width:auto!important}
+.hl-ham{gap:8px;align-items:center;margin:6px 0 10px}.hl-ham .hl-src{flex:1 1 260px;margin:0}

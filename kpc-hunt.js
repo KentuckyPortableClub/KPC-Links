@@ -933,12 +933,22 @@
   }
   function nvChips() { document.querySelectorAll('[data-nv]').forEach(b => b.setAttribute('aria-pressed', NV === b.dataset.nv)); }
   document.addEventListener('click', e => { const b = e.target.closest('[data-nv]'); if (!b) return; NV = b.dataset.nv; put('kpcHuntNV', NV); nvChips(); needDraw(); });
+  /* Oct 24 (Brandon: 'add a feature so they can copy and paste for ham alerts … I think it is US-0001, US-0002'):
+     the parks still needed in the list shown (state, search, sort) as one line to paste into a HamAlert trigger */
+  let NEEDL = [];
+  function hamDraw(a) {
+    let el = $('nHam'); if (!el) { el = document.createElement('div'); el.id = 'nHam'; el.className = 'hl-row hl-ham'; $('nBar').after(el); }
+    el.innerHTML = NEEDL.length ? `<button type="button" class="hl-btn gold sm" data-ham=", ">📋 COPY ${NEEDL.length.toLocaleString()} PARKS FOR HAMALERT</button><button type="button" class="hl-btn line sm" data-ham="\n" title="One park number per line">ONE PER LINE</button><span class="hl-src">Copies the parks still needed in this list (${esc(ST[a] || a)}${$('nQ').value.trim() ? ', your search' : ''}) like <b>US-0001, US-0002</b>. HamAlert → Triggers → Add trigger → POTA reference: paste.${NEEDL.length > 500 ? ' That is a long list: search or tick ON THE AIR NOW to make it shorter if HamAlert will not take it all.' : ''}</span>` : '';
+  }
+  document.addEventListener('click', async e => { const b = e.target.closest('[data-ham]'); if (!b || !NEEDL.length) return; const txt = NEEDL.join(b.dataset.ham);
+    let ok = false; try { await navigator.clipboard.writeText(txt); ok = true; } catch (x) { const t = document.createElement('textarea'); t.value = txt; document.body.appendChild(t); t.select(); try { ok = document.execCommand('copy'); } catch (y) {} t.remove(); }
+    toast(ok ? `📋 ${NEEDL.length.toLocaleString()} park numbers copied. Paste them into HamAlert.` : 'Could not copy here: long-press and copy from the list instead.'); });
   function needDraw() {
     try {
       nvChips();
       const a = $('nSt').value, q = $('nQ').value.trim().toUpperCase(), air = new Map(SP.filter(s => s.p === 'POTA').map(s => [s.ref, s]));
       $('nMap').hidden = NV !== 'map';
-      if (NV === 'all') { allStates(); return; }
+      if (NV === 'all') { if ($('nHam')) $('nHam').innerHTML = ''; allStates(); return; }
       if (!NP.length) return;
       const done = NP.filter(p => WK.has(p.r)).length, pct = Math.round(done / NP.length * 100);
       $('nBar').innerHTML = `<div class="bar"><i style="width:${pct}%"></i></div><p><b>${done.toLocaleString()}</b> of <b>${NP.length.toLocaleString()}</b> ${esc(ST[a])} parks worked (${pct}%) · <b>${(NP.length - done).toLocaleString()}</b> still to go${hasLog() ? '' : (PUB ? ' · <a href="#hlHow">load your POTA file (CSV)</a> to see yours' : ' · tap ⭐ GET MY PARKS FROM POTA to see yours')}</p>`;
@@ -946,6 +956,7 @@
       const s = $('nSort').value;
       L.sort(s === 'name' ? (x, y) => String(x.n).localeCompare(String(y.n)) : s === 'ref' ? (x, y) => x.r.localeCompare(y.r, undefined, { numeric: true }) : s === 'busy' ? (x, y) => y.a - x.a : (x, y) => (x.a - y.a) || String(x.n).localeCompare(String(y.n)));
       L.sort((x, y) => air.has(y.r) - air.has(x.r));
+      NEEDL = L.map(p => p.r); hamDraw(a);
       if (NV === 'map') stateMap(a, air);
       $('nList').innerHTML = L.length ? L.slice(0, nShown).map(p => { const o = air.get(p.r); return `<div class="hn${o ? ' air' : ''}"><a class="r" href="https://pota.app/#/park/${encodeURIComponent(p.r)}" target="_blank" rel="noopener">${esc(p.r)}</a>${esc(p.n)}<div class="m">${p.a ? p.a + ' activation' + (p.a === 1 ? '' : 's') : 'never activated'}${p.a > 0 && p.a <= 5 ? ' · RARE' : ''} · <a href="kpc-planner-us.html?q=${encodeURIComponent(p.r)}">map</a></div>${o ? `<div class="air">📡 ON THE AIR: ${esc(o.call)} ${(o.khz / 1000).toFixed(3)} ${esc(o.mode)}</div>` : ''}</div>`; }).join('')
         + (L.length > nShown ? `<div class="hl-row" style="grid-column:1/-1"><button type="button" class="hl-btn line sm" id="nMore">SHOW MORE (${(L.length - nShown).toLocaleString()} left)</button></div>` : '')
@@ -1497,7 +1508,7 @@
   /* Oct 18 (Brandon: 'on mobile the scrolling new parks is hidden by the filters… need a hide feature'): on phones the bar's buttons fold
      behind one ☰ button at the right end, so the scrolling parks get the whole bar; ✕ folds them again. Remembered (kpcHuntTkOpen). */
   try { const tk = $('hlTick'); if (tk && !$('hlTkMore')) { const b = document.createElement('button'); b.type = 'button'; b.id = 'hlTkMore'; b.className = 'hl-tkmore';
-    const set = o => { tk.classList.toggle('tk-open', o); b.textContent = o ? '✕' : '☰'; b.title = o ? 'Hide the bar buttons' : 'Show the bar buttons (flames, alert, filters…)'; b.setAttribute('aria-expanded', o); };
+    const set = o => { tk.classList.toggle('tk-open', o); b.innerHTML = o ? '✕<i>HIDE</i>' : '☰<i>BUTTONS</i>'; b.title = o ? 'Hide the bar buttons' : 'Show the bar buttons (flames, alert, filters…)'; b.setAttribute('aria-expanded', o); };
     let open = false; try { open = localStorage.getItem('kpcHuntTkOpen') === '1'; } catch (e) {}
     b.onclick = () => { open = !open; set(open); try { localStorage.setItem('kpcHuntTkOpen', open ? '1' : '0'); } catch (e) {} };
     tk.appendChild(b); set(open); } } catch (e) {}
