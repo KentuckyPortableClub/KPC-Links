@@ -136,12 +136,13 @@ def state_host(st, url):
     if re.search(r'(^|\.)' + a + r'\.gov$|\.state\.' + a + r'\.us$|(^|\.)' + a + r'\.us$', h):
         return True
     sites = [site for _, site in AGENCIES.get(st, [])] + [urllib.parse.urlparse(r).hostname for _, rs in CLEARING.get(st, []) for r in rs] + [urllib.parse.urlparse(x).hostname for x in HUBS.get(st, [])] + [urllib.parse.urlparse(x).hostname for x in ROOTS.get(st, [])] + [urllib.parse.urlparse(x).hostname for x in EXTRA_ROOTS.get(st, [])]
+    if re.search(r'(^|\.)arcgis\.com$', h):
+        return False   # ArcGIS Online hosting belongs to no state: only the publishing org (state_match) can vouch for it
     for site in sites:
-        if not site:
+        if not site or re.search(r'arcgis\.com$', site):
             continue
         base = re.sub(r'^(www\.|data-|data\.|gis\.|maps\.|portal\.)', '', site.lower())
-        base = re.sub(r'\.(opendata|hub)\.arcgis\.com$', '', base)
-        if base and (h == base or h.endswith('.' + base) or base.endswith('.' + h)):
+        if base and (h == base or h.endswith('.' + base)):
             return True
     return False
 
@@ -465,7 +466,9 @@ def main():
         have = states.get(r['st'], [])
         if any(h.get('url') == r['url'] for h in have) or any(h.get('kind') == r['kind'] for h in have):
             continue
-        e = {'kind': r['kind'], 'ag': (oname or (AGENCIES.get(r['st']) or [('State of ' + STATES[r['st']], '')])[0][0]), 'nm': r['nameFields'][0], 'url': r['url'], 'host': 'agency' if gov_ok else 'agol', 'auto': time.strftime('%Y-%m-%d'), 'layer': r['layer'], 'count': r['count']}
+        if not oname and not gov_ok:
+            continue
+        e = {'kind': r['kind'], 'ag': (oname or 'State of ' + STATES[r['st']] + ' (' + (urllib.parse.urlparse(r['url']).hostname or '') + ')'), 'nm': r['nameFields'][0], 'url': r['url'], 'host': 'agency' if gov_ok else 'agol', 'auto': time.strftime('%Y-%m-%d'), 'layer': r['layer'], 'count': r['count']}
         if r.get('webFields'):
             e['web'] = r['webFields'][0]
         states.setdefault(r['st'], []).append(e)
