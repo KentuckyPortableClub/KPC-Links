@@ -41,7 +41,7 @@
   let tick = null;
   /* messages; a text ending in … gets a spinning compass and a seconds counter so people can see it's still working */
   const msg = h => {
-    clearInterval(tick);
+    clearInterval(tick); { const jb = $('mrJump'); if (jb) jb.classList.remove('on'); }
     const busy = /…$/.test(h.replace(/<[^>]+>/g, '').trim());
     $('mrOut').innerHTML = `<div class="mr-msg${busy ? ' busy' : ''}">${busy ? '<span class="mr-spin" aria-hidden="true">🧭</span>' : ''}<div>${h}${busy ? '<small class="mr-sec-n">Still searching… 0 s</small>' : ''}</div></div>`;
     if (busy) { const t0 = Date.now(); tick = setInterval(() => { const e = document.querySelector('.mr-sec-n'); if (!e) { clearInterval(tick); return; } e.textContent = 'Still searching… ' + Math.round((Date.now() - t0) / 1000) + ' s'; }, 1000); }
@@ -560,6 +560,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
 </section>`;
     $('mrCopy').onclick = e => { e.preventDefault(); const t = $('mrNote').value; (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => e.target.textContent = 'COPIED ✓').catch(() => { $('mrNote').select(); document.execCommand('copy'); e.target.textContent = 'COPIED ✓'; }); };
     try { draw(feats, near, la, lo); } catch (e) { console.warn('map', e); }
+    jumpBtn();
     if (window.KPCSuggest) try { KPCSuggest.park({ g, la, lo, feats, base, own, mng, acc, locM, des: base.map(r => r.Loc_Ds || DES[r.Des_Tp] || r.Des_Tp).filter(Boolean), offWeb, verdict: verdict[1], already, rules: res.map(r => ({ v: r.v, title: r.title })), grid: grid(la, lo) }); } catch (e) {}
     $('mrOut').querySelectorAll('[data-copy]').forEach(b => b.onclick = e => { e.preventDefault(); const v = b.dataset.copy; (navigator.clipboard ? navigator.clipboard.writeText(v) : Promise.reject()).then(() => b.textContent = 'COPIED ✓').catch(() => window.prompt('Copy:', v)); });
     $('mrOut').querySelectorAll('[data-dl]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo({ type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { Unit_Nm: f.properties.Unit_Nm }, geometry: f.geometry })) }, 'kml', { ref: nm.replace(/\s+/g, '_').slice(0, 40), name: nm, la, lo }, b); });
@@ -567,10 +568,23 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     $('mrWeb2').onclick = e => { e.preventDefault(); notFound(g.name, g.st, ''); };
     window.scrollTo({ top: $('mrOut').offsetTop - 70, behavior: 'smooth' });
   }
+  /* 🗺 MAP button (Brandon Oct 24): fixed at the bottom while a result is open and the map is off the screen; tap = scroll to the map */
+  let jumpIO = null;
+  function jumpBtn() {
+    let b = $('mrJump');
+    if (!b) { b = document.createElement('button'); b.id = 'mrJump'; b.type = 'button'; b.textContent = '🗺 MAP'; b.title = 'Jump to the boundary map'; document.body.appendChild(b);
+      const st = document.createElement('style'); st.textContent = '#mrJump{position:fixed;right:14px;bottom:18px;z-index:900;min-height:46px;padding:10px 16px;border-radius:999px;border:2px solid #171717;background:#d5a63a;color:#111;font:900 12px Arial,sans-serif;letter-spacing:1.2px;box-shadow:0 8px 24px rgba(0,0,0,.3);cursor:pointer;display:none}#mrJump.on{display:block}@media print{#mrJump{display:none!important}}'; document.head.appendChild(st);
+      b.onclick = () => { const M = $('mrMap'); if (M) M.scrollIntoView({ behavior: 'smooth', block: 'center' }); }; }
+    const M = $('mrMap'); if (!M) { b.classList.remove('on'); return; }
+    if (jumpIO) jumpIO.disconnect();
+    jumpIO = new IntersectionObserver(es => { b.classList.toggle('on', !es[0].isIntersecting && !!$('mrMap')); }, { threshold: 0.15 });
+    jumpIO.observe(M);
+    b.classList.add('on');
+  }
   function draw(feats, near, la, lo) {
     if (map) { map.remove(); map = null; }
     map = L.map('mrMap').setView([la, lo], 12);
-    if (window.KPCLayers) KPCLayers(map); else L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
+    if (window.KPCLayers) KPCLayers(map, 'Satellite + streets'); else   /* Brandon Oct 24: start on satellite */ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' }).addTo(map);
     if (window.KPCPin) KPCPin(map); if (window.KPCLocate) KPCLocate(map); if (window.KPCFull) KPCFull(map);
     const fc = { type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { Unit_Nm: f.properties.Unit_Nm }, geometry: f.geometry })) };
     lay = L.geoJSON(fc, { style: f => ({ color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: .15 }) }).addTo(map);
