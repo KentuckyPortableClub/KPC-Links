@@ -92,3 +92,14 @@
 - **WEBSITE CHAT TO-DO LIST (Brandon Oct 24 5:41 PM, his list for this area; status as checked that day):** (1) three club bots Lonely Parks / Park of the Week / Event Weather = ALREADY BUILT in kpc_club_posts.py (Mon lonely, Thu park of the week, event weather 3 days before a KPC event; contests Thu) — Brandon's list still said 'once the app stage is done'. (2) big contests on the main calendar = DONE Oct 23 (list OK'd by Brandon Oct 23 11:58 AM). (3) app look back onto the website = WAIT until Brandon likes the app. (4) Hunters Lounge as an installable app (manifest + Install button like the KPC Logger) = to do. (5) KPC NET voice net = pick AllStar / EchoLink / other first (see the KPC NET bullet). (6) DigiPi: troubleshoot with Brandon + a member guide page = when he says. (7) UV-K5 fox = first find out which firmware he and his friends run. (8) Talk through: trip planners public, 'boundaries still being worked on' note, Lounge plans.
 
 - **LOUNGES + LOGGER TO-DO LIST (Brandon Oct 24 5:43 PM, his order):** (1) LAUNCH the Activators Lounge: menu + search + toolbox, and fix the See More menu text that hangs off phones in the same pass (members-only until he shows the club). (2) Spot Me + the QRM warning on every spot button, after his beta. (3) CAT tuning in the public Hunters Lounge once the remote features settle (box already there Oct 24). (4) Website KPC Logger: mark spots NEW TO ME from the hunter file. (5) On The Air Now: mark spots new to you. (6) When Is POTA Busiest, once the counts are in (14 days). (7) JS8 in the DIGI tab.
+
+## MAPS TO-DO (Oct 24 5:43 PM, Brandon's 'To do list 2. Maps, boundaries & park data')
+- [DONE Oct 24 evening, Fable] The nightly boundary check only covers the US so far. Add Canada and the world. (Now in the world + Canada keys; see mapping.md.)
+- [DONE for Canada Oct 24; world was already hooked Oct 22] Hook the Canada and world answer keys into the planner, Info Finder and the Kit. They still use the older Canada file. (Canada: saved file first, then the key.)
+- The big job: closures plus 2-fers/3-fers for every state.
+- Closure watcher: add Forest Service, WMAs and the Corps. (See mapping.md Oct 22: KDFWR + Daniel Boone + LBL are watched for KY; the Corps has no alerts page, only news releases.)
+- [STARTED Oct 24: the US answer key reads it] Use Fable's state map file (data/state-gis.json) in more tools, once Fable finishes it. Still to do: Park Commander / planners / Info Finder / Am I in the Park / the app's park packs.
+- Map Rep Tool Box for the world, with a new-park search. It may move to its own repo.
+- [DONE by the Oct 22 override; the river line is a trails-bot job] Fix US-11852 Beaver Creek, which is matched to the wrong outline.
+- A table of Kentucky PVA offices, one per county.
+- The list of POTA trails around Kentucky.

@@ -275,10 +275,35 @@
     const fs = (g && g.features || []).filter(f => f.geometry);
     return fs.map(f => { f._nm = pick.nm; f._bb = bbox(f.geometry); f._src = pick.L === 'n2k' ? 'EEA Natura 2000' : 'EEA Nationally designated areas'; f._info = pick.info; f._ha = pick.ha; f.properties = Object.assign(f.properties || {}, { NAME: pick.nm, SOURCE: f._src, CODE: pick.code }); return f; });
   }
-  /* Canada: the official outline saved by kpc-canada-bounds.yml (CPCAD or the province's map) */
+  /* Canada: the official outline saved by kpc-canada-bounds.yml (CPCAD or the province's map); when there is no saved
+     file, the Canada ANSWER KEY (data/ca-key, Oct 24, Brandon: 'hook the Canada and world answer keys into the planner,
+     Info Finder and the Kit') says which official areas the checking bot joined, and they are fetched by id */
+  const caCache = {}; let CAREF = null, CALAY = null;
+  async function caKey(ref) {
+    CAREF = CAREF || fetch('data/ca-key/refs.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    CALAY = CALAY || fetch('data/ca-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    const pv = (await CAREF)[ref]; if (!pv) return null;
+    if (!(pv in caCache)) caCache[pv] = fetch('data/ca-key/CA-' + pv + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+    const k = await caCache[pv], p = k && k.parks && k.parks[ref]; if (!p) return null;
+    const m = p.m || []; if (!m.length) return { state: 'none', site: p.a || null };
+    const L = await CALAY, by = {};
+    m.forEach(x => { const s = String(x[0]), i = s.lastIndexOf(':'), pre = i < 0 ? 'cpcad' : s.slice(0, i), id = i < 0 ? s : s.slice(i + 1); (L[pre] || []).forEach(u => (by[u] = by[u] || []).push(id)); });
+    const want = new Set(m.map(x => String(x[1] || '').toLowerCase().replace(/\s+/g, ' ').trim()));
+    const fs = (await Promise.all(Object.entries(by).map(([u, ids]) => jget(u + '/query?' + new URLSearchParams({ objectIds: ids.slice(0, 40).join(','), outFields: '*', returnGeometry: true, outSR: 4326, maxAllowableOffset: 0.0002, geometryPrecision: 5, f: 'geojson' }), null, 30000)
+      .then(j => (j.features || []).filter(f => { const P = f.properties || {}; const names = Object.keys(P).filter(k => /name|nom|toponym|title/i.test(k) && !/file|url|link|code|id$/i.test(k)).map(k => String(P[k] || '').toLowerCase().replace(/\s+/g, ' ').trim()); return !names.length || names.some(n => want.has(n)); })   /* two layers can share an id prefix: keep the record whose NAME is the joined one */
+        .map(f => (f._src = u.indexOf('maps-cartes.ec.gc.ca') >= 0 ? 'CPCAD (Environment and Climate Change Canada)' : 'the province\u2019s own map', f))).catch(() => [])))).flat().filter(f => f.geometry);
+    if (!fs.length) return { state: 'error' };
+    const how = m.map(x => String(x[3] || '')), reviewed = how.some(h => h === 'reviewed'), named = how.some(h => /^(name|same name|exact name|reviewed)/.test(h));
+    const approx = how.some(h => h === 'reviewed-approx') || (!reviewed && (!named || p.far === 'well outside'));
+    const why = how.some(h => h === 'reviewed-approx') ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : approx ? 'the names only partly match or the park\u2019s map pin sits well outside this land' : '';
+    const nm = m[0][1];
+    fs.forEach(f => { f._nm = f._nm || nm; f._bb = bbox(f.geometry); f._approx = approx; f._why = why; f._info = ''; f.properties = Object.assign(f.properties || {}, { NAME: f._nm, SOURCE: f._src }); });
+    return { state: 'ok', fs, approx, why };
+  }
   async function canada(ref) {
     if (!/^CA-\d/.test(ref || '')) return [];
-    const j = await jget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null); if (!j) return [];
+    const j = await jget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null);
+    if (!j) { let k = null; try { k = await caKey(ref); } catch (e) {} return k && k.state === 'ok' ? k.fs : []; }
     const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
     return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently'; } return f; });
   }
@@ -391,5 +416,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();

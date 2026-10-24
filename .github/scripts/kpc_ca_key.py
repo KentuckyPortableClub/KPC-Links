@@ -17,6 +17,7 @@ DETAIL = float(os.environ.get('GEO_DETAIL') or 0.02)
 PREC = 3 if DETAIL >= 0.01 else 5
 CCACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/ca')
 CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
+USED_DETAIL = DETAIL
 
 
 def ccache_file(): return CCACHE / 'CA-ALL.json.gz'
@@ -50,6 +51,7 @@ def cload():
         r['_k'] = set(o.get('_k') or [])
         out.append(r)
     notice('Canada saved outlines', f"loaded {len(out)} areas saved {blob.get('saved')} at detail {blob.get('detail')}")
+    global USED_DETAIL; USED_DETAIL = blob.get('detail') or DETAIL
     return out
 
 
@@ -125,7 +127,18 @@ def _pre(a, b):
     return len(sh) > 5 and lo.startswith(sh) and lo[len(sh):len(sh) + 1] == ' ' and len(sh) / len(lo) >= 0.6
 
 
+# Oct 24: Upper / Lower / North / South / East / West tell two halves of one place apart (the US key's Oct 22 rule), in
+# English and French. 'sur' is left out: in a French name it is 'on' (Saint-Jean-sur-Richelieu), not a side.
+SIDEW = {'n': 'north northern nord', 's': 'south southern sud', 'e': 'east eastern est', 'w': 'west western ouest',
+         'u': 'upper haut haute', 'l': 'lower bas basse', 'm': 'middle'}
+SIDE = {w: k for k, ws in SIDEW.items() for w in ws.split()}
+
+
+def _side(s): return {SIDE[w] for w in re.split(r'[\s/\-–,]+', re.sub(r'\(.*?\)', ' ', flat(s))) if w in SIDE}   # 'Dzawadi/Upper' splits; bracket text ('secteur Haut Richelieu') is not a side
+
+
 def same_name(a, b, exact=False):
+    if _side(a) != _side(b): return False      # Upper White Oak Lake is not White Oak Lake
     va, vb = variants(a), variants(b)
     if not va or not vb: return False
     if va & vb: return True
@@ -195,6 +208,7 @@ if recs is None:
 
 
     _ERR = []
+    LAYERS = {'cpcad': [f'{SVC}/{lid}']}   # Oct 24: the website fetches a joined area by id from its own map (data/ca-key/layers.json)
     def arc_pull(label, url, nf):
         lays = []
         if re.search(r'/(MapServer|FeatureServer)/\d+$', url): lays = [url]
@@ -207,6 +221,7 @@ if recs is None:
             try: li = get(lu, {'f': 'json'})
             except Exception as e: print(f'{label} {lu}: {e}', flush=True); _ERR.append(f'{label[:30]} layer: {str(e)[:80]}'); continue  # noqa: BLE001
             if 'Polygon' not in str(li.get('geometryType', '')): continue
+            LAYERS.setdefault(label[:12], []).append(lu)
             fl = [f['name'] for f in li.get('fields', [])]
             names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
             oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
@@ -276,6 +291,8 @@ if recs is None:
         except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
     notice('Canada more layers (all)', ' | '.join(_mores))
     notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
+    try: json.dump(LAYERS, open(OUT / 'layers.json', 'w'), indent=1, ensure_ascii=False)
+    except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
     # Oct 22: a provincial map that did not answer must not cost Canada its parks: use the last saved copy instead,
     # and never save a half-read copy over a good one
     old = cload() if (_ERR or any('FAILED' in x for x in _mores)) else None
@@ -295,6 +312,7 @@ def _nf(t):   # hand decisions match names whatever way the accents are stored (
 try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
 P = json.load(open('data/parkinfo/CA.json'))['parks']
+RID = {str(r['oid']): r for r in recs}
 by = {}
 for ref, x in P.items(): by.setdefault((x[10] if len(x) > 10 else '') or 'XX', {})[ref] = x
 idx = {}
@@ -344,8 +362,28 @@ for pv, parks_in in sorted(by.items()):
         used.update(q[0] for q in m)
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda q: -q[2]), 'c': c}
         if site: parks[ref]['a'] = site
+        # IS THE BOUNDARY WHERE IT SHOULD BE? (Oct 24: the US key's Oct 21-22 check, ported.) Does the park's own pin
+        # fall inside the land it was joined to? 'no shape to check against' = the check is blind (not the join);
+        # 'edge' = within about a mile; 'well outside'; 'swap' = another area with the SAME NAME holds the pin (a wrong
+        # join with the right land already found). Recorded only; kpc_boundary_report.py reads it.
+        if m and la is not None:
+            mine = [RID[str(q[0])] for q in m if str(q[0]) in RID]
+            shaped = [r for r in mine if rings(r.get('_g'))]
+            if not any(inside(la, lo, r['_g']) for r in shaped):
+                parks[ref]['far'] = ('no shape to check against' if not shaped else
+                                     'edge' if any(near(la, lo, r['_bb'], .02) for r in shaped) else 'well outside')
+                if shaped:
+                    jn = {_nf(q[1]) for q in m}; mids = {str(q[0]) for q in m}
+                    def apart(b): return all(b[2] < q['_bb'][0] or b[0] > q['_bb'][2] or b[3] < q['_bb'][1] or b[1] > q['_bb'][3] for q in shaped if q['_bb'])   # a different place, not the same site in two layers
+                    swap = [r for r in recs if (_nf(r['n']) in jn or _nf(r['nf']) in jn) and str(r['oid']) not in mids
+                            and near(la, lo, r['_bb'], 0) and apart(r['_bb']) and rings(r.get('_g')) and inside(la, lo, r['_g'])]
+                    if swap: parks[ref]['swap'] = [[r['oid'], r['n'] or r['nf'], acres(r)] for r in swap[:2]]
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
-           'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a'))}
+           'none': sum(1 for p in parks.values() if not p['m'] and not p['c'] and not p.get('a')), 'site': sum(1 for p in parks.values() if p.get('a')),
+           'pin_outside': sum(1 for p in parks.values() if p.get('far')),
+           'pin_well_outside': sum(1 for p in parks.values() if p.get('far') == 'well outside'),
+           'pin_no_shape': sum(1 for p in parks.values() if p.get('far') == 'no shape to check against'),
+           'pin_swap': sum(1 for p in parks.values() if p.get('swap')), 'detail': USED_DETAIL}
     out = {'updated': time.strftime('%Y-%m-%d'), 'prov': pv, 'source': 'CPCAD (Environment and Climate Change Canada) + provincial and Parks Canada maps, Open Government Licence',
            'note': 'm = joined (same name + same kind), c = check by hand (NOT joined).', 'counts': cnt, 'parks': parks}
     (OUT / f'CA-{pv}.json').write_text(json.dumps(out, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
@@ -359,5 +397,8 @@ for pv, parks_in in sorted(by.items()):
     idx[pv] = cnt
     print(f"{pv}: {cnt['parks']} parks, {cnt['matched']} joined, {cnt['check']} check, {cnt['none']} none", flush=True)
 json.dump({'updated': time.strftime('%Y-%m-%d'), 'provinces': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+# Oct 24 (Brandon: 'hook the Canada answer key into the planner, Info Finder and the Kit'): the website needs to know which
+# province file holds a park (a CA- number says nothing about the province)
+json.dump({ref: pv for pv, pk in by.items() for ref in pk}, open(OUT / 'refs.json', 'w'), separators=(',', ':'))
 t = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('Canada answer key', f"{t['parks']} parks: {t['matched']} joined, {t['check']} to check, {t['site']} sites on bigger land, {t['none']} nothing found · " + ' '.join(f"{k} {v['matched']}/{v['parks']}" for k, v in sorted(idx.items())))
