@@ -24,7 +24,7 @@
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModals(); });
   const DOCKON = () => !!document.getElementById('hlDk');
-  const DESKON = () => !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
+  const DESKON = () => PAGE !== 'need' && !!document.getElementById('hlDk') && matchMedia('(min-width:1100px)').matches;   /* kpc-hunters.html = the public copy */
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
@@ -326,7 +326,7 @@
     if (!on && ph) { ph.before(sec); ph.remove(); }
     sec.classList.toggle('hl-popped', on); b.setAttribute('aria-pressed', on); b.textContent = on ? '⤓ PUT BACK' : '⧉ POP OUT';
     let h = $('hlPopH');
-    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-plock>📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
+    if (on && !h) { h = document.createElement('header'); h.id = 'hlPopH'; h.className = 'hw-h'; h.title = 'Drag me anywhere'; h.innerHTML = '<span class="hw-grip">⠿</span><b class="hw-n">📡 MAIN SPOTS</b><i class="hw-c" id="hlPopN"></i><button type="button" class="hw-b" data-fopen title="Filters: pick what this list shows">⚙</button><button type="button" class="hw-b" data-plock>📌</button><button type="button" class="hw-b" data-popback title="Put it back">⤓</button>'; sec.prepend(h);
       const rs = document.createElement('span'); rs.className = 'hw-rs'; rs.id = 'hlPopR'; rs.textContent = '◢'; sec.appendChild(rs); wmDrag(sec, h, rs, POP, () => put(PKEY, POP)); }
     if (!on && h) { h.remove(); const r = $('hlPopR'); if (r) r.remove(); sec.removeAttribute('style'); sec.classList.remove('fl'); }
     wmFree();
@@ -774,13 +774,9 @@
     $('fBands').innerHTML = BANDS.map(b => b[0]).concat(['OTHER']).map(b => `<button type="button" class="hl-chip" data-band="${b}" aria-pressed="${F.bands.includes(b)}">${b.toUpperCase()}</button>`).join('');
     $('fModes').innerHTML = ['PHONE', 'CW', 'DIGITAL', 'OTHER'].map(m => `<button type="button" class="hl-chip" data-mode="${m}" aria-pressed="${F.modes.includes(m)}">${m === 'PHONE' ? 'PHONE (SSB/FM)' : m}</button>`).join('');
     $('fWhere').innerHTML = WHERE.map(w => `<button type="button" class="hl-chip" data-where="${w[0]}" aria-pressed="${F.where === w[0]}">${w[1]}</button>`).join('');
-    $('sBand').textContent = F.bands.length ? F.bands.join(' ').toUpperCase() : 'ALL';
-    $('sMode').textContent = F.modes.length ? F.modes.join(' ') : 'ALL';
-    $('sWhere').textContent = (WHERE.find(w => w[0] === F.where) || WHERE[0])[1] + (F.st ? ' · ' + F.st : '');
     $('fSt').value = F.st; $('fSort').value = F.sort; $('fQ').value = F.q;
     const cc = {}; SP.forEach(x => { if (x.cty) cc[x.cty] = (cc[x.cty] || 0) + 1; }); F.xc.forEach(c => { if (!(c in cc)) cc[c] = 0; });
     $('fCty').innerHTML = Object.keys(cc).sort((a, b) => (cc[b] - cc[a]) || a.localeCompare(b)).map(c => `<button type="button" class="hl-chip${F.xc.includes(c) ? ' off' : ''}" data-cty="${esc(c)}" aria-pressed="${F.xc.includes(c)}">${F.xc.includes(c) ? '🚫 ' : ''}${esc(c)} <small>${cc[c]}</small></button>`).join('') || '<span class="hl-src">No spots yet.</span>';
-    $('sCty').textContent = F.xc.length ? F.xc.length + ' HIDDEN' : 'NONE';
     activeBox();
   }
   document.addEventListener('click', e => {
@@ -813,8 +809,10 @@
     if (F.st) it.push(['st', 'State ' + F.st]);
     if (F.q.trim()) it.push(['q', 'Search “' + F.q.trim() + '”']);
     F.xc.forEach(c => it.push(['xc:' + c, '🚫 ' + c]));
-    const fb = $('hlFbN'); if (fb) fb.textContent = it.length ? it.length + ' ON' : '';
-    const ft = $('hlFtogN'); if (ft) ft.textContent = ($('hlFilters').classList.contains('open') ? 'CLOSE ▴' : 'TAP TO OPEN ▾') + (it.length ? ` · ${it.length} ON` : '');
+    const fo = $('hlFilters').classList.contains('open');
+    document.querySelectorAll('[data-fn]').forEach(x => x.textContent = it.length ? it.length + ' ON' : '');
+    document.querySelectorAll('[data-fopen]').forEach(x => x.setAttribute('aria-expanded', fo));
+    const ft = $('hlFtogN'); if (ft) ft.textContent = 'CLOSE ▴' + (it.length ? ` · ${it.length} ON` : '');
     const b = $('hlActive'); b.hidden = !it.length;
     b.innerHTML = it.length ? `<b>⚙</b>${it.map(([k, t]) => `<button type="button" class="hl-pill" data-unf="${esc(k)}" title="Remove this filter">${esc(t)} ✕</button>`).join('')}<button type="button" class="hl-btn line sm" data-unf="def" title="Back to the usual filters: POTA, phone, hide hunted parks and QRT">↺ DEFAULT</button><button type="button" class="hl-btn line sm" data-unf="*" title="Clear all filters">✕ ALL</button>` : '';
   }
@@ -829,14 +827,21 @@
     else if (k.startsWith('band:')) F.bands = F.bands.filter(x => x !== k.slice(5)); else if (k.startsWith('mode:')) F.modes = F.modes.filter(x => x !== k.slice(5)); else if (k.startsWith('xc:')) F.xc = F.xc.filter(x => x !== k.slice(3));
     saveF(); chips(); ticker(false); draw();
   });
-  $('hlFtog').onclick = () => { const f = $('hlFilters'); f.classList.toggle('open'); if ($('hlFbtn')) $('hlFbtn').setAttribute('aria-expanded', f.classList.contains('open')); $('hlFtog').setAttribute('aria-expanded', f.classList.contains('open')); activeBox(); };
+  $('hlFtog').onclick = () => { const f = $('hlFilters'); f.classList.toggle('open'); $('hlFtog').setAttribute('aria-expanded', f.classList.contains('open')); activeBox(); };
+  /* Oct 24 (Brandon: 'put the gear in that spot page'): ⚙ FILTERS sits on the spot list itself, like LIST 2 / LIST 3 */
+  let fFrom = null;
+  window.kpcFPlace = () => {};
+  document.addEventListener('click', e => {
+    const g = e.target.closest('[data-fopen]'), d = e.target.closest('[data-fdone]'); if (!g && !d) return;
+    e.stopPropagation(); const f = $('hlFilters'), was = f.classList.contains('open');
+    if (d) { if (was) $('hlFtog').click(); return; }
+    const other = fFrom !== g; fFrom = g; if (!was || other) { if (!was) $('hlFtog').click(); kpcFPlace(g); if (!DESKON()) f.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } else $('hlFtog').click();
+  }, true);
   document.addEventListener('click', e => { const v = e.target.closest('[data-view]'); if (!v) return; F.view = v.dataset.view; saveF(); viewChips(); draw(); });
   function viewChips() { document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', (F.view || 'cards') === b.dataset.view)); }
   $('fSt').onchange = () => { F.st = $('fSt').value; saveF(); chips(); draw(); };
   $('fSort').onchange = () => { F.sort = $('fSort').value; saveF(); draw(); };
   $('fQ').oninput = () => { F.q = $('fQ').value; saveF(); activeBox(); draw(); };
-  document.addEventListener('click', e => { document.querySelectorAll('.hl-dd[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; }); });
-  document.querySelectorAll('.hl-dd').forEach(d => d.addEventListener('toggle', () => { if (d.open) document.querySelectorAll('.hl-dd[open]').forEach(o => { if (o !== d) o.open = false; }); }));
 
   /* ---------------- your log ---------------- */
   function logInfo() {
@@ -926,7 +931,7 @@
       if (NV === 'all') { allStates(); return; }
       if (!NP.length) return;
       const done = NP.filter(p => WK.has(p.r)).length, pct = Math.round(done / NP.length * 100);
-      $('nBar').innerHTML = `<div class="bar"><i style="width:${pct}%"></i></div><p><b>${done.toLocaleString()}</b> of <b>${NP.length.toLocaleString()}</b> ${esc(ST[a])} parks worked (${pct}%) · <b>${(NP.length - done).toLocaleString()}</b> still to go${hasLog() ? '' : ' · tap ⭐ GET MY PARKS FROM POTA to see yours'}</p>`;
+      $('nBar').innerHTML = `<div class="bar"><i style="width:${pct}%"></i></div><p><b>${done.toLocaleString()}</b> of <b>${NP.length.toLocaleString()}</b> ${esc(ST[a])} parks worked (${pct}%) · <b>${(NP.length - done).toLocaleString()}</b> still to go${hasLog() ? '' : (PUB ? ' · <a href="#hlHow">load your POTA file (CSV)</a> to see yours' : ' · tap ⭐ GET MY PARKS FROM POTA to see yours')}</p>`;
       let L = NP.filter(p => !WK.has(p.r) && (!q || (p.r + ' ' + p.n).toUpperCase().includes(q)) && (!$('nAir').checked || air.has(p.r)));
       const s = $('nSort').value;
       L.sort(s === 'name' ? (x, y) => String(x.n).localeCompare(String(y.n)) : s === 'ref' ? (x, y) => x.r.localeCompare(y.r, undefined, { numeric: true }) : s === 'busy' ? (x, y) => y.a - x.a : (x, y) => (x.a - y.a) || String(x.n).localeCompare(String(y.n)));
@@ -1528,12 +1533,12 @@
   if ($('hlRtabs')) {
     $('hlLtabs').addEventListener('click', e => { const b = e.target.closest('[data-rt]'); if (!b) return; rtab(b.dataset.rt);
       const y = $('hlLtabs').getBoundingClientRect().top + scrollY - 150; if (scrollY > y + 5) scrollTo({ top: y, behavior: 'smooth' }); });
-    $('hlFbtn').onclick = e => { e.stopPropagation(); $('hlFtog').click(); fPlace(); };
-    function fPlace() { const f = $('hlFilters'), r = $('hlFbtn').getBoundingClientRect(), t = $('hlTick') ? $('hlTick').getBoundingClientRect().bottom : 0; const top = Math.max(r.bottom, t) + 8; f.style.top = top + 'px'; f.style.maxHeight = (innerHeight - top - 16) + 'px'; }
+    let fBtn = null; window.kpcFPlace = b => { fBtn = b || fBtn; fPlace(); };
+    function fPlace() { const f = $('hlFilters'); if (!DESKON() || !fBtn) { f.style.top = f.style.maxHeight = f.style.left = ''; return; } const r = fBtn.getBoundingClientRect(), t = $('hlTick') ? $('hlTick').getBoundingClientRect().bottom : 0; const top = Math.max(r.bottom, t) + 8; f.style.top = top + 'px'; f.style.maxHeight = (innerHeight - top - 16) + 'px'; const w = Math.min(620, innerWidth - 24); f.style.left = Math.max(12, Math.min(r.left, innerWidth - w - 12)) + 'px'; f.style.right = 'auto'; }
     addEventListener('scroll', () => { if (DESKON() && $('hlFilters').classList.contains('open')) fPlace(); }, { passive: true });
     document.addEventListener('click', e => {   /* tap outside the pop-up closes it */
       const f = $('hlFilters'); if (!DESKON() || !f.classList.contains('open')) return;
-      if (e.target.closest('#hlFilters,#hlFbtn,#hlActive')) return; $('hlFtog').click();
+      if (!e.target.isConnected || e.target.closest('#hlFilters,[data-fopen],#hlActive')) return;   /* a chip that was just redrawn is not 'outside' */ $('hlFtog').click();
     });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && DESKON() && $('hlFilters').classList.contains('open')) $('hlFtog').click(); });
     matchMedia('(min-width:1100px)').addEventListener('change', deskSet);
