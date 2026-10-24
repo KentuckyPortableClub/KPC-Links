@@ -6,39 +6,52 @@
    The gray line is calculated here from the sun's position. */
 (function(){
 const root=document.getElementById('kpc-bands');if(!root)return;
-const KYSQ=['EM56','EM57','EM66','EM67','EM68','EM76','EM77','EM78','EM79','EM86','EM87','EM88','EM89'];
+let KYSQ=['EM56','EM57','EM66','EM67','EM68','EM76','EM77','EM78','EM79','EM86','EM87','EM88','EM89'];
+/* Oct 24 (Brandon: 'make that work elsewhere from the information the PC gives you'): a mount with data-where="me" (the Activators
+   Lounge) uses where this device is: the GPS fix the conditions bar saved (kpcHuntCx), else the grid in the KPC Logger / Hunters Lounge,
+   else asks with 📍 USE MY LOCATION. The 3x3 grid squares around it replace the Kentucky squares. Kentucky pages stay on Kentucky. */
+const ME=root.dataset.where==='me';
+const lsg=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}};
+const g2c=g=>{g=String(g||'').toUpperCase();if(!/^[A-R]{2}\d{2}/.test(g))return null;return{lat:(g.charCodeAt(1)-65)*10-90+(+g[3])+.5,lon:(g.charCodeAt(0)-65)*20-180+(+g[2])*2+1}};
+const c2g=(la,lo)=>{lo+=180;la+=90;const A='ABCDEFGHIJKLMNOPQR';return A[Math.floor(lo/20)]+A[Math.floor(la/10)]+Math.floor(lo%20/2)+Math.floor(la%10)};
+function whereAmI(){if(!ME)return null;const c=lsg('kpcHuntCx',null);if(c&&c.g&&isFinite(c.la))return{lat:c.la,lon:c.lo,g:String(c.g).slice(0,4).toUpperCase(),src:c.src==='gps'?'gps':'grid'};
+ const lg=lsg('kpcLgSet',{})||{},hq=lsg('kpcHuntQSO',{})||{},g=String(lg.grid||hq.grid||'').slice(0,4).toUpperCase();const p=g2c(g);return p?{lat:p.lat,lon:p.lon,g,src:'grid'}:null}
+const W=whereAmI();
+if(W){const o=new Set();for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++)o.add(c2g(W.lat+a,W.lon+b*2));KYSQ=[...o]}
+const PL=W?(W.src==='gps'?'your spot ('+W.g+')':W.g):'Kentucky',PLU=PL.toUpperCase(),PLS=W?W.g:'KY';
 const KYIN="('"+KYSQ.join("','")+"')";
 const BANDS=[[1,'160m'],[3,'80m'],[5,'60m'],[7,'40m'],[10,'30m'],[14,'20m'],[18,'17m'],[21,'15m'],[24,'12m'],[28,'10m'],[50,'6m']];
 const BCODES=BANDS.map(b=>b[0]).join(',');
 const BCOL={1:'#8e6bd6',3:'#5b8def',5:'#2fb5c9',7:'#2dae6e',10:'#7bc043',14:'#f2c230',18:'#f08a1c',21:'#e5533d',24:'#d63b8a',28:'#b04ae8',50:'#e0e0e0'};
-const KY={lat:37.8,lon:-85.7};
-const CK='kpcBandsCache_v1',MAXAGE=10*60*1000;
+const KY=W?{lat:W.lat,lon:W.lon}:{lat:37.8,lon:-85.7};
+const CK='kpcBandsCache_v1'+(W?'_'+W.g:''),MAXAGE=10*60*1000;
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const $=(s,r)=>(r||root).querySelector(s);
 let state={heat:null,heard:null,hearing:null,spots:null,noaa:null,t:0},map=null,layers=null,night=null,sunMk=null,scale='band',sel=new Set(),dir='both',started=false,timer=null;
 
 /* ---------- skeleton ---------- */
-root.innerHTML=`<details class="kb" id="kb-det"><summary><span><b>KPC BAND ACTIVITY &amp; GRAY LINE</b><small>Which bands are active around Kentucky, and where in the world • tap to open</small></span><i aria-hidden="true">▾</i></summary>
+root.innerHTML=`<details class="kb" id="kb-det"><summary><span><b>KPC BAND ACTIVITY &amp; GRAY LINE</b><small>Which bands are active around ${PL}, and where in the world • tap to open</small></span><i aria-hidden="true">▾</i></summary>
 <div class="kb-body" hidden>
-<div class="kb-top"><div class="kb-tile"><span>KENTUCKY RIGHT NOW</span><b id="kb-sun">…</b><small id="kb-sunsub"></small></div>${root.dataset.nosolar?'':'<div class="kb-tile"><span>SOLAR CONDITIONS</span><b id="kb-sol">…</b><small id="kb-solsub"></small></div>'}<div class="kb-tile"><span>DATA AGE</span><b id="kb-age">…</b><small><button type="button" class="kb-btn" id="kb-refresh">REFRESH</button></small></div></div>
-<h3>Band activity near Kentucky</h3>
-<p class="kb-sub">Weak-signal (WSPR) reports where a Kentucky-area station was heard or was hearing, last 6 hours, in 30-minute blocks. Brighter means more reports. These are <b>real receptions</b>, not predictions.</p>
+${ME?`<p class="kb-sub kb-where">${W?'📍 Showing the area around <b>'+PL+'</b>'+(W.src==='gps'?' (from this device\'s location)':' (from the grid square in your log)')+'.':'📍 Showing Kentucky until this device says where it is.'} <button type="button" class="kb-chip" id="kb-me">${W?'UPDATE MY LOCATION':'USE MY LOCATION'}</button></p>`:''}<div class="kb-top"><div class="kb-tile"><span>${PLU} RIGHT NOW</span><b id="kb-sun">…</b><small id="kb-sunsub"></small></div>${root.dataset.nosolar?'':'<div class="kb-tile"><span>SOLAR CONDITIONS</span><b id="kb-sol">…</b><small id="kb-solsub"></small></div>'}<div class="kb-tile"><span>DATA AGE</span><b id="kb-age">…</b><small><button type="button" class="kb-btn" id="kb-refresh">REFRESH</button></small></div></div>
+<h3>Band activity near ${PL}</h3>
+<p class="kb-sub">Weak-signal (WSPR) reports where a station around ${PL} was heard or was hearing, last 6 hours, in 30-minute blocks. Brighter means more reports. These are <b>real receptions</b>, not predictions.</p>
 <div class="kb-chips" id="kb-scale"><button type="button" class="kb-chip" data-s="band" aria-pressed="true">EACH BAND ON ITS OWN SCALE</button><button type="button" class="kb-chip" data-s="all" aria-pressed="false">ALL BANDS TOGETHER</button></div>
 <div id="kb-heat" class="kb-heat" aria-label="Band activity heat map"></div>
 <div class="kb-legend"><span>few</span><i></i><span>many reports</span></div>
-<h3>Gray line &amp; who hears Kentucky</h3>
+<h3>Gray line &amp; who hears ${PL}</h3>
 <p class="kb-sub">The shaded area is night. The soft band along its edge is the gray line, where signals often travel farthest. Lines show WSPR paths from the last 2 hours.</p>
-<div class="kb-chips" id="kb-dir"><button type="button" class="kb-chip" data-d="both" aria-pressed="true">BOTH WAYS</button><button type="button" class="kb-chip" data-d="heard" aria-pressed="false">KENTUCKY HEARD ABROAD</button><button type="button" class="kb-chip" data-d="hearing" aria-pressed="false">KENTUCKY HEARING</button></div>
+<div class="kb-chips" id="kb-dir"><button type="button" class="kb-chip" data-d="both" aria-pressed="true">BOTH WAYS</button><button type="button" class="kb-chip" data-d="heard" aria-pressed="false">${PLU} HEARD FAR AWAY</button><button type="button" class="kb-chip" data-d="hearing" aria-pressed="false">${PLU} HEARING</button></div>
 <div class="kb-chips" id="kb-bands"></div>
-<div id="kb-map" class="kb-map" role="img" aria-label="World map with day and night and WSPR paths to Kentucky"></div>
+<div id="kb-map" class="kb-map" role="img" aria-label="World map with day and night and WSPR paths to ${PL}"></div>
 <p class="kb-sub" id="kb-mapnote"></p>
 <h3>DX, skimmer and park spots</h3>
-<p class="kb-sub">Spots reported in the last hour by DX clusters, skimmers (RBN), POTA, SOTA and WWFF through Spothole. A spot means someone reported activity. It does not prove the band was open for you. Green is spots involving Kentucky grids.</p>
+<p class="kb-sub">Spots reported in the last hour by DX clusters, skimmers (RBN), POTA, SOTA and WWFF through Spothole. A spot means someone reported activity. It does not prove the band was open for you. Green is spots involving the grids around ${PL}.</p>
 <div id="kb-spots" class="kb-spots"></div>
 <p class="kb-note" id="kb-status"></p>
-<p class="kb-note">Sources: WSPR.live, Spothole, NOAA SWPC. Kentucky area means grid squares ${KYSQ.join(', ')} (includes a little of the neighboring states). Times shown in your local time.</p>
+<p class="kb-note">Sources: WSPR.live, Spothole, NOAA SWPC. ${W?'Around '+PL:'Kentucky area'} means grid squares ${KYSQ.join(', ')} (includes a little of the neighboring states). Times shown in your local time.</p>
 </div></details>`;
 const det=$('#kb-det');
+if(ME&&location.hash==='#kpc-bands')setTimeout(()=>{det.open=true;root.scrollIntoView({block:'start'})},300);
 det.addEventListener('toggle',()=>{if(det.open&&!started){started=true;$('.kb-body').hidden=false;start()}else if(det.open){$('.kb-body').hidden=false;if(map)setTimeout(()=>map.invalidateSize(),150)}});
 if(location.hash==='#band-activity'){det.open=true}
 
@@ -63,7 +76,7 @@ function nightPoly(s,h){/* night = everything where the sun is below h degrees: 
  if(Math.abs(span)>300){/* the night circle wraps around a pole: close it through that pole */
   const pole=s.dec<h*R?90:-90;ring.push([pole,ring[ring.length-1][1]],[pole,ring[0][1]])}
  return[-360,0,360].map(k=>ring.map(([a,b])=>[a,b+k]))}
-function sunStatus(){const s=sunPos(new Date()),a=sunAlt(KY.lat,KY.lon,s);let t,sub;if(a>6){t='DAYLIGHT';sub='Sun '+a.toFixed(0)+'° above the horizon. Higher bands (20m to 10m) usually do best.'}else if(a>=-6){t='GRAY LINE';sub='Sunrise or sunset around Kentucky. Often good for long-distance contacts.'}else{t='NIGHT';sub='Sun '+Math.abs(a).toFixed(0)+'° below the horizon. Lower bands (80m to 30m) usually do best.'}return{t,sub}}
+function sunStatus(){const s=sunPos(new Date()),a=sunAlt(KY.lat,KY.lon,s);let t,sub;if(a>6){t='DAYLIGHT';sub='Sun '+a.toFixed(0)+'° above the horizon. Higher bands (20m to 10m) usually do best.'}else if(a>=-6){t='GRAY LINE';sub='Sunrise or sunset around '+PL+'. Often good for long-distance contacts.'}else{t='NIGHT';sub='Sun '+Math.abs(a).toFixed(0)+'° below the horizon. Lower bands (80m to 30m) usually do best.'}return{t,sub}}
 
 /* ---------- data ---------- */
 async function load(force){
@@ -100,15 +113,15 @@ function paintHeat(){const box=$('#kb-heat');if(!state.heat){box.innerHTML='<p c
  box.innerHTML=h}
 function paintSpots(){const box=$('#kb-spots');if(!state.spots){box.innerHTML='<p class="kb-empty">Spot data is unavailable right now.</p>';return}
  const kys=new Set(KYSQ),by={};BANDS.forEach(b=>by[b[1]]={n:0,ky:0,src:{}});
- state.spots.forEach(s=>{const b=bandOfHz(s.hz);if(!b)return;const o=by[b];o.n++;o.src[s.src]=(o.src[s.src]||0)+1;const inKY=kys.has(s.g1.slice(0,4).toUpperCase())||kys.has(s.g2.slice(0,4).toUpperCase())||s.st.some(x=>x==='KY');if(inKY)o.ky++});
+ state.spots.forEach(s=>{const b=bandOfHz(s.hz);if(!b)return;const o=by[b];o.n++;o.src[s.src]=(o.src[s.src]||0)+1;const inKY=kys.has(s.g1.slice(0,4).toUpperCase())||kys.has(s.g2.slice(0,4).toUpperCase())||(!W&&s.st.some(x=>x==='KY'));if(inKY)o.ky++});
  const mx=Math.max(1,...Object.values(by).map(o=>o.n));
- box.innerHTML=BANDS.map(([c,b])=>{const o=by[b],top=Object.entries(o.src).sort((x,y)=>y[1]-x[1]).slice(0,3).map(x=>x[0]+' '+x[1]).join(' • ');return`<div class="kb-srow"><span class="kb-bl">${b}</span><div class="kb-bar"><i style="width:${(100*o.n/mx).toFixed(1)}%"><u style="width:${o.n?(100*o.ky/o.n).toFixed(1):0}%"></u></i></div><span class="kb-num">${o.n}<small>${o.ky?o.ky+' KY':''}</small></span><span class="kb-src">${esc(top)}</span></div>`}).join('')}
+ box.innerHTML=BANDS.map(([c,b])=>{const o=by[b],top=Object.entries(o.src).sort((x,y)=>y[1]-x[1]).slice(0,3).map(x=>x[0]+' '+x[1]).join(' • ');return`<div class="kb-srow"><span class="kb-bl">${b}</span><div class="kb-bar"><i style="width:${(100*o.n/mx).toFixed(1)}%"><u style="width:${o.n?(100*o.ky/o.n).toFixed(1):0}%"></u></i></div><span class="kb-num">${o.n}<small>${o.ky?o.ky+' '+PLS:''}</small></span><span class="kb-src">${esc(top)}</span></div>`}).join('')}
 function ensureLeaflet(){return new Promise((res,rej)=>{if(window.L)return res();const l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(l);const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
 function paintMap(){if(!window.L)return;const el=$('#kb-map');
  if(!map){map=L.map(el,{worldCopyJump:true,minZoom:1,maxZoom:6,zoomControl:true,attributionControl:true}).setView([30,-60],2);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:6,attribution:'© OpenStreetMap contributors'}).addTo(map);
   layers=L.layerGroup().addTo(map);night=L.layerGroup().addTo(map);
-  L.circleMarker([KY.lat,KY.lon],{radius:8,color:'#000',weight:2,fillColor:'#d5a63a',fillOpacity:1}).addTo(map).bindTooltip('Kentucky',{permanent:false});}
+  L.circleMarker([KY.lat,KY.lon],{radius:8,color:'#000',weight:2,fillColor:'#d5a63a',fillOpacity:1}).addTo(map).bindTooltip(PL,{permanent:false});}
  paintNight();paintPaths()}
 function paintNight(){if(!map)return;night.clearLayers();const s=sunPos(new Date());
  [[0,.22],[-6,.16],[-12,.16]].forEach(([h,o])=>{try{nightPoly(s,h).forEach(rg=>L.polygon(rg,{stroke:false,fillColor:'#0a0a2a',fillOpacity:o,interactive:false}).addTo(night))}catch(e){}});
@@ -117,7 +130,7 @@ function paintPaths(){if(!map)return;layers.clearLayers();let n=0,tot=0;
  const add=(rows,kind)=>{(rows||[]).forEach(r=>{const code=Number(r.band);if(sel.size&&!sel.has(code))return;const p=g4c(r.loc);if(!p)return;const c=Number(r.c);tot+=c;n++;
   const col=BCOL[code]||'#fff',nm=(BANDS.find(b=>b[0]===code)||[0,'?'])[1];
   L.polyline([[KY.lat,KY.lon],[p.lat,p.lon]],{color:col,weight:Math.min(4,1+Math.log10(c+1)),opacity:.55,interactive:false}).addTo(layers);
-  L.circleMarker([p.lat,p.lon],{radius:Math.min(9,3+Math.log2(c+1)),color:'#111',weight:1,fillColor:col,fillOpacity:.9}).addTo(layers).bindTooltip(`${nm} • ${r.loc.toUpperCase()} • ${c} report${c===1?'':'s'} • ${kind==='heard'?'heard Kentucky':'Kentucky heard them'}${r.d?' • up to '+Math.round(r.d*0.621371).toLocaleString()+' mi':''}`)})};
+  L.circleMarker([p.lat,p.lon],{radius:Math.min(9,3+Math.log2(c+1)),color:'#111',weight:1,fillColor:col,fillOpacity:.9}).addTo(layers).bindTooltip(`${nm} • ${r.loc.toUpperCase()} • ${c} report${c===1?'':'s'} • ${kind==='heard'?'heard '+PL:PL+' heard them'}${r.d?' • up to '+Math.round(r.d*0.621371).toLocaleString()+' mi':''}`)})};
  if(dir!=='hearing')add(state.heard,'heard');if(dir!=='heard')add(state.hearing,'hearing');
  $('#kb-mapnote').textContent=(state.heard||state.hearing)?`${n} paths shown • ${tot.toLocaleString()} reports in the last 2 hours. Tap a dot for details. Colors match the band buttons.`:'WSPR path data is unavailable right now.'}
 function paintChips(){const box=$('#kb-bands');box.innerHTML='<button type="button" class="kb-chip" data-b="all" aria-pressed="'+(sel.size===0)+'">ALL BANDS</button>'+BANDS.map(([c,n])=>`<button type="button" class="kb-chip" data-b="${c}" aria-pressed="${sel.has(c)}" style="--bc:${BCOL[c]}"><i></i>${n}</button>`).join('');
@@ -125,6 +138,9 @@ function paintChips(){const box=$('#kb-bands');box.innerHTML='<button type="butt
 function paintAll(){paintTop();paintHeat();paintSpots();paintMap();const e=state.errs&&state.errs.length?'Could not load: '+state.errs.join(', ')+'. Showing what is available.':'';$('#kb-status').textContent=e}
 async function start(){
  paintChips();
+ const meB=$('#kb-me');if(meB)meB.onclick=()=>{if(!navigator.geolocation){meB.textContent='THIS DEVICE CANNOT GIVE A LOCATION';return}meB.textContent='ASKING…';
+  navigator.geolocation.getCurrentPosition(p=>{const la=p.coords.latitude,lo=p.coords.longitude;try{localStorage.setItem('kpcHuntCx',JSON.stringify({la,lo,g:c2g(la,lo),src:'gps',t:Date.now()}))}catch(e){}location.hash='kpc-bands';location.reload()},
+   ()=>{meB.textContent='LOCATION NOT ALLOWED (type your grid in the KPC Logger instead)'},{timeout:15000,maximumAge:6e5})};
  root.querySelectorAll('#kb-scale .kb-chip').forEach(b=>b.onclick=()=>{scale=b.dataset.s;root.querySelectorAll('#kb-scale .kb-chip').forEach(x=>x.setAttribute('aria-pressed',x===b));paintHeat()});
  root.querySelectorAll('#kb-dir .kb-chip').forEach(b=>b.onclick=()=>{dir=b.dataset.d;root.querySelectorAll('#kb-dir .kb-chip').forEach(x=>x.setAttribute('aria-pressed',x===b));paintPaths()});
  $('#kb-refresh').onclick=async()=>{const b=$('#kb-refresh');b.disabled=true;await load(true);paintAll();setTimeout(()=>b.disabled=false,3000)};
