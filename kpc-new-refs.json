@@ -1,8 +1,30 @@
 {
- "updated": "2026-10-21T13:23:16+00:00",
+ "updated": "2026-10-24T13:16:57+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13617",
+   "prog": "pota",
+   "name": "Great Scott Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 47.4644,
+   "lo": -92.7614,
+   "found": "2026-10-24"
+  },
+  {
+   "ref": "US-13616",
+   "prog": "pota",
+   "name": "Duff Pond State Fishing Lake",
+   "st": [
+    "ID"
+   ],
+   "la": 43.6981,
+   "lo": -116.592,
+   "found": "2026-10-24"
+  },
   {
    "ref": "US-13615",
    "prog": "pota",

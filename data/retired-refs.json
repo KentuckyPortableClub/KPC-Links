@@ -270,6 +270,16 @@
    "d": "2026-10-23",
    "src": "world"
   },
+  "US-10846": {
+   "n": "Boulder Lake BLM Recreation Management Area",
+   "d": "2026-10-24",
+   "src": "us"
+  },
+  "US-12729": {
+   "n": "Spence & Moriarity State Wildlife Habitat Management Area",
+   "d": "2026-10-24",
+   "src": "us"
+  },
   "US-13604": {
    "n": "Lake Linville",
    "d": "2026-10-22",
@@ -278,6 +288,16 @@
   "US-13605": {
    "n": "Wood Creek",
    "d": "2026-10-22",
+   "src": "us"
+  },
+  "US-6128": {
+   "n": "Muddy Mountain BLM Special Recreation Management Area",
+   "d": "2026-10-24",
+   "src": "us"
+  },
+  "US-6153": {
+   "n": "Lone Tree Trail BLM Recreation Management Area",
+   "d": "2026-10-24",
    "src": "us"
   },
   "US-7969": {
