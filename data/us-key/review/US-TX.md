@@ -1,21 +1,22 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **193 of 222** parks joined to official land (same name + same kind of place). **9** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **192 of 222** parks joined to official land (same name + same kind of place). **2** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10276** Star of the Republic Museum State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
-- **US-2984** Atlanta State Park (State Park) → Wright Patman Recreation Area (~81,011 ac, the POTA pin is inside it (different name))
-- **US-3032** Lake Whitney State Park (State Park) → Whitney Point Recreation Area (~45,028 ac, the POTA pin is inside it (different name))
-- **US-3044** Old Tunnel State Park (State Park) → Old Tunnel Wildlife Management Area (~17 ac, same name, different kind of place)
-- **US-4419** I.D. Farichild State Forest (State Forest) → I.D. FairChild State Forest (~1,727 ac, the POTA pin is inside it (different name))
-- **US-4514** Cibola National Forest (National Forest) → Sandia Mountain Wilderness (~37,690 ac, the POTA pin is inside it (different name))
-- **US-6538** Barrington Plantation State Historic Site (State Historic Site) → Washington-on-the-Brazos State Historic Site (~295 ac, the POTA pin is inside it (different name))
-- **US-6580** Matagorda Island Wildlife Management Area (Wildlife Management Area) → Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name)); Aransas National Wildlife Refuge (~90,764 ac, the POTA pin is inside it (different name))
-- **US-6608** W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → Gene Howe Wildlife Management Area (~890 ac, the POTA pin is inside it (different name))
+- **US-0750** Palo Alto Battlefield National Historic Site (National Historic Site) → Palo Alto Battlefield National Historical Park (~1,815 ac, similar name)
+- **US-6588** Nature Center Wildlife Management Area (Wildlife Management Area) → The Nature Center (~86 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-10276 Star of the Republic Museum State Historic Site (State Historic Site) → on Washington-on-the-Brazos State Historic Site (~295 ac)
+- US-2984 Atlanta State Park (State Park) → on Wright Patman Recreation Area (~81,011 ac)
+- US-3032 Lake Whitney State Park (State Park) → on Whitney Point Recreation Area (~45,028 ac)
+- US-4419 I.D. Farichild State Forest (State Forest) → on I.D. FairChild State Forest (~1,727 ac)
+- US-4514 Cibola National Forest (National Forest) → on Sandia Mountain Wilderness (~37,690 ac)
+- US-6538 Barrington Plantation State Historic Site (State Historic Site) → on Washington-on-the-Brazos State Historic Site (~295 ac)
+- US-6580 Matagorda Island Wildlife Management Area (Wildlife Management Area) → on Aransas National Wildlife Refuge (~90,764 ac); Aransas National Wildlife Refuge (~90,764 ac)
+- US-6608 W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → on Gene Howe Wildlife Management Area (~890 ac)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail) → on Guadalupe Mountains National Park (~86,840 ac)
 
 ## Nothing found in PAD-US

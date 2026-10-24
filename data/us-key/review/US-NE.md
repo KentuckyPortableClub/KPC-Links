@@ -1,34 +1,24 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined to official land (same name + same kind of place). **15** to check by hand, **30** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **159 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0446** Funk WPA Wetland Management District (Wetland Management District) → Phelps County Waterfowl Production Area (~4,677 ac, the POTA pin is inside it (different name)); Phelps County Waterfowl Production Area (~4,677 ac, the POTA pin is inside it (different name))
-- **US-12337** Cub Creek (northern) State Recreation Area (State Recreation Area) → Middle Niobrara Natural Resources District Recreation Management Area (~333 ac, the POTA pin is inside it (different name))
-- **US-3483** Atlanta National Waterfowl Production Area (National Waterfowl Production Area) → Phelps County Waterfowl Production Area (~4,677 ac, similar name); Phelps County Waterfowl Production Area (~4,677 ac, similar name)
-- **US-3484** Peterson National Waterfowl Production Area (National Waterfowl Production Area) → Gosper County Waterfowl Production Area (~1,451 ac, similar name); Gosper County Waterfowl Production Area (~1,451 ac, similar name)
-- **US-3485** Jensen Lagoon National Waterfowl Production Area (National Waterfowl Production Area) → Kearney County Waterfowl Production Area (~2,891 ac, similar name); Kearney County Waterfowl Production Area (~2,891 ac, similar name)
-- **US-3486** Moger National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
-- **US-3488** Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, the POTA pin is inside it (different name)); Clay County Waterfowl Production Area Of Ne (~6,943 ac, the POTA pin is inside it (different name))
-- **US-3489** Massie National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
-- **US-3490** Smith Lagoon National Waterfowl Production Area (National Waterfowl Production Area) → Clay County Waterfowl Production Area Of Ne (~7,011 ac, similar name); Clay County Waterfowl Production Area Of Ne (~6,943 ac, similar name)
-- **US-4011** Chalco Hills State Recreation Area (State Recreation Area) → Wehrspann Recreation Area (~1,196 ac, the POTA pin is inside it (different name))
-- **US-4017** Lincoln Saline Wetland State Park (State Park) → Lincoln Saline Wetlands Nature Center (~93 ac, same name, different kind of place)
-- **US-4032** Clatonia State Recreation Area (State Recreation Area) → Clatonia Public Area (~155 ac, similar name)
-- **US-4037** Willard L. Meyer State Recreation Area (State Recreation Area) → Swan Lake (~289 ac, the POTA pin is inside it (different name))
-- **US-4038** Wolf-Wildcat Wildlife Management Area (Wildlife Management Area) → Wolf-Wild Cat #12 (~162 ac, the POTA pin is inside it (different name))
-- **US-9356** Willow Lake Wildlife Management Area (Wildlife Management Area) → Valentine National Wildlife Refuge (~72,350 ac, the POTA pin is inside it (different name)); Valentine National Wildlife Refuge (~72,350 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-4011 Chalco Hills State Recreation Area (State Recreation Area) → on Wehrspann Recreation Area (~1,196 ac)
+- US-4037 Willard L. Meyer State Recreation Area (State Recreation Area) → on Swan Lake (~289 ac)
+- US-9356 Willow Lake Wildlife Management Area (Wildlife Management Area) → on Valentine National Wildlife Refuge (~72,350 ac); Valentine National Wildlife Refuge (~72,350 ac)
 
 ## Nothing found in PAD-US
 
+- US-0446 Funk WPA Wetland Management District (Wetland Management District)
 - US-12087 Scotia Canal Wildlife Management Area (Wildlife Management Area)
 - US-12088 Davis Creek Wildlife Management Area (Wildlife Management Area)
 - US-12089 Arcadia Diversion Dam Wildlife Management Area (Wildlife Management Area)
 - US-12090 Milburn Dam Wildlife Management Area (Wildlife Management Area)
+- US-12337 Cub Creek (northern) State Recreation Area (State Recreation Area)
 - US-12686 East Phillips Canyon Wildlife Management Area (Wildlife Management Area)
 - US-12946 Elwood Reservoir Wildlife Management Area (Wildlife Management Area)
 - US-13213 Guide Rock Diversion Dam Wildlife Management Area (Wildlife Management Area)
@@ -37,6 +27,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined
 - US-3373 Chimney Rock National Historic Site (National Historic Site)
 - US-3374 Neligh Mill State Historic Site (State Historic Site)
 - US-3375 Stolley National Historic Site (National Historic Site)
+- US-3488 Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area)
 - US-3491 Lake Wanahoo State Recreation Area (State Recreation Area)
 - US-3492 Willa Cather Memorial Prairie State Historic Site (State Historic Site)
 - US-3493 Nine Mile Prairie National Historical Park (National Historical Park)
@@ -49,6 +40,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined
 - US-4025 Buckley Creek State Recreation Area (State Recreation Area)
 - US-4027 Lone Star State Recreation Area (State Recreation Area)
 - US-4036 Walnut Creek State Recreation Area (State Recreation Area)
+- US-4038 Wolf-Wildcat Wildlife Management Area (Wildlife Management Area)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
@@ -62,10 +54,8 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined
 - Roman L. Hruska U.s. Animal Meat Research Center · REA · Agricultural Research Service (ARS) · ~34,541 ac
 - Harlan County Recreation Area · REC · Kansas City · ~31,020 ac
 - Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
-- Clay County Waterfowl Production Area Of Ne · RMA · Clay County Waterfowl Production Area Of Ne · ~7,011 ac
 - Clay County Waterfowl Production Area Of Ne · RMA · CLAY COUNTY WATERFOWL PRODUCTION AREA OF NE · ~6,943 ac
 - Newcastle Field Office · PUB · BLM · ~5,144 ac
-- Phelps County Waterfowl Production Area · RMA · PHELPS COUNTY WATERFOWL PRODUCTION AREA · ~4,677 ac
 - Phelps County Waterfowl Production Area · RMA · Phelps County Waterfowl Production Area · ~4,677 ac
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,155 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,001 ac
@@ -74,7 +64,6 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~3,551 ac
 - Metcalf Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~3,360 ac
 - Cottonwood/Steverson Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,987 ac
-- Kearney County Waterfowl Production Area · RMA · KEARNEY COUNTY WATERFOWL PRODUCTION AREA · ~2,891 ac
 - Kearney County Waterfowl Production Area · RMA · Kearney County Waterfowl Production Area · ~2,891 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~2,877 ac
 - Peterson Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,664 ac
@@ -98,7 +87,6 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined
 - Hugh Butler Lake · RMA · Unknown · ~1,565 ac
 - Glenn Cunningham Recreation Area · REC · Omaha · ~1,543 ac
 - Gilbert-baker Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,507 ac
-- Gosper County Waterfowl Production Area · RMA · GOSPER COUNTY WATERFOWL PRODUCTION AREA · ~1,451 ac
 - Gosper County Waterfowl Production Area · RMA · Gosper County Waterfowl Production Area · ~1,451 ac
 - Sacramento-wilcox Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,413 ac
 - Plum Creek Valley Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,307 ac
@@ -118,3 +106,7 @@ Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **151 of 196** parks joined
 - Pine Glen Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~961 ac
 - York County Waterfowl Production Area · RMA · YORK COUNTY WATERFOWL PRODUCTION AREA · ~937 ac
 - York County Waterfowl Production Area · RMA · York County Waterfowl Production Area · ~937 ac
+- Oliver Reservoir State Recreation Area · SREC · Unknown · ~935 ac
+- Don Dworak Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~931 ac
+- George D. Syas Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~919 ac
+- Montz Point Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~901 ac

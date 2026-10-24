@@ -1,32 +1,29 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined to official land (same name + same kind of place). **18** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **139 of 205** parks joined to official land (same name + same kind of place). **0** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10658** Lake Carl Blackwell Wildlife Management Area (Wildlife Management Area) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
-- **US-10951** Cherokee Strip Regional Heritage Center Historic Site (Historic Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
-- **US-11321** Winding Stair Mountain National Recreation Area (National Recreation Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
-- **US-11322** Beech Creek National Scenic Reserve (Scenic Reserve) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
-- **US-11669** Cedar Lake National Recreation Area (National Recreation Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
-- **US-11671** Black Kettle Recreation Site (Recreation Site) → Black Kettle National Grassland (~30,688 ac, similar name); Black Kettle Wildlife Management Area (~30,288 ac, similar name)
-- **US-11715** Lower Illinois River Game Preserve (Game Preserve) → Lower Illinois Public Fishing and Hunting Area (~324 ac, the POTA pin is inside it (different name))
-- **US-12684** Indian Nations National Wildlife Area (National Wildlife Area) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
-- **US-13105** Field Station State Fishing Lake (State Fishing Lake) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
-- **US-2774** Boiling Springs State Park (State Park) → Boiling State Parkrings State Park (~775 ac, the POTA pin is inside it (different name))
-- **US-2781** Gloss Mountain State Park (State Park) → Glass Mountains State Park (~559 ac, the POTA pin is inside it (different name))
-- **US-2805** Spavinaw State Park (State Park) → Spavinaw Wildlife Management Area (~13,508 ac, same name, different kind of place)
-- **US-2806** Talimena State Park (State Park) → Ouachita National Forest (~353,440 ac, the POTA pin is inside it (different name)); Ouachita Wildlife Management Area - Leflore (~223,822 ac, the POTA pin is inside it (different name))
-- **US-6365** Osage Wildlife Management Area (Wildlife Management Area) → Osage Wildlife Management Area - Rock Creek (~3,729 ac, similar name)
-- **US-8119** Doc Hollis State Fishing Lake (State Fishing Lake) → Sandy Sanders Wildlife Management Area (~36,669 ac, the POTA pin is inside it (different name))
-- **US-8128** Lloyd Vincent State Fishing Lake (State Fishing Lake) → Ellis County Wildlife Management Area (~4,740 ac, the POTA pin is inside it (different name))
-- **US-8143** Boggy Depot National Historical Site (National Historical Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
-- **US-8646** Pioneer Woman Museum State Historic Site (State Historic Site) → CLO Lands (~3,238,968 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-10658 Lake Carl Blackwell Wildlife Management Area (Wildlife Management Area) → on CLO Lands (~3,238,968 ac)
+- US-10951 Cherokee Strip Regional Heritage Center Historic Site (Historic Site) → on CLO Lands (~3,238,968 ac)
+- US-11321 Winding Stair Mountain National Recreation Area (National Recreation Area) → on Ouachita Wildlife Management Area - Leflore (~223,822 ac); Ouachita National Forest (~353,440 ac)
+- US-11322 Beech Creek National Scenic Reserve (Scenic Reserve) → on Ouachita Wildlife Management Area - Leflore (~223,822 ac); Ouachita National Forest (~353,440 ac)
+- US-11669 Cedar Lake National Recreation Area (National Recreation Area) → on Ouachita Wildlife Management Area - Leflore (~223,822 ac); Ouachita National Forest (~353,440 ac)
 - US-11670 Spring Creek Recreation Site (Recreation Site) → on Black Kettle Wildlife Management Area (~30,288 ac)
+- US-11715 Lower Illinois River Game Preserve (Game Preserve) → on Lower Illinois Public Fishing and Hunting Area (~324 ac)
+- US-12684 Indian Nations National Wildlife Area (National Wildlife Area) → on Ouachita Wildlife Management Area - Leflore (~223,822 ac); Ouachita National Forest (~353,440 ac)
 - US-12739 Skipout Lake Recreation Site (Recreation Site) → on Black Kettle Wildlife Management Area (~30,288 ac); Black Kettle National Grassland (~30,688 ac)
+- US-13105 Field Station State Fishing Lake (State Fishing Lake) → on CLO Lands (~3,238,968 ac)
+- US-2774 Boiling Springs State Park (State Park) → on Boiling State Parkrings State Park (~775 ac)
+- US-2781 Gloss Mountain State Park (State Park) → on Glass Mountains State Park (~559 ac)
+- US-2806 Talimena State Park (State Park) → on Ouachita Wildlife Management Area - Leflore (~223,822 ac); Ouachita National Forest (~353,440 ac)
+- US-8119 Doc Hollis State Fishing Lake (State Fishing Lake) → on Sandy Sanders Wildlife Management Area (~36,669 ac)
+- US-8128 Lloyd Vincent State Fishing Lake (State Fishing Lake) → on Ellis County Wildlife Management Area (~4,740 ac)
+- US-8143 Boggy Depot National Historical Site (National Historical Site) → on CLO Lands (~3,238,968 ac)
+- US-8646 Pioneer Woman Museum State Historic Site (State Historic Site) → on CLO Lands (~3,238,968 ac)
 
 ## Nothing found in PAD-US
 
@@ -38,6 +35,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - US-11222 Stinchcomb Wildlife Refuge (Wildlife Refuge)
 - US-11245 Byron State Fish Hatchery (State Fish Hatchery)
 - US-11640 Scipio Trail and Recreation Site (Recreation Site)
+- US-11671 Black Kettle Recreation Site (Recreation Site)
 - US-11768 Arcadia Round Barn National Historic Site (National Historic Site)
 - US-11769 Ozark Trail Obelisk Historic Site (Historic Site)
 - US-11778 Fort Sill National Historic Site (National Historic Site)
@@ -51,6 +49,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - US-12738 Little Niagara Falls National Nature Reserve (National Nature Reserve)
 - US-13077 Southern Plaines Indian Historic Site (Historic Site)
 - US-2778 Little Blue area at Grand Lake State Park (State Park)
+- US-2805 Spavinaw State Park (State Park)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-4424 Ouachita National Forest (National Forest)
 - US-4514 Cibola National Forest (National Forest)
@@ -88,8 +87,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
 - Cross Bar Recreation Area ·  · BLM recreation sites · ~9,856 ac
 - Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
-- Honobia Creek Wildlife Management Area - Campbell ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,327 ac
-- Osage Wildlife Management Area - Western Wall ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,317 ac
+- Honobia Creek Wildlife Management Area - Campbell ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,276 ac
 - Southwestern Livestock And Forage Research Station · REA · Agricultural Research Service (ARS) · ~6,565 ac
 - Muleshoe National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,552 ac
 - Eufaula Wildlife Management Area - Gaines Creek ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~4,720 ac
@@ -123,14 +121,14 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - Spring Creek Park · PUB · Tulsa District Corps of Engineers · ~192 ac
 - Pawnee Cove Recreation Area · PUB · Unites States of America · ~190 ac
 - Griffin Memorial · SP · Dept of Mental Health and Substance & Abuse Serv · ~153 ac
-- Lake Vincent ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~132 ac
+- Lake Vincent ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~142 ac
 - Edmond Park · PUB · Tulsa District Corps of Engineers · ~131 ac
 - Union High School Freshman Academy · LP · INDEPENDENT SCHOOL DIST NO 9 · ~79 ac
 - Oliver's Woods · SCA · Unknown · ~78 ac
 - Jenks East Elementary/Intermediate Schools · LP · INDEPENDENT SCHOOL DIST NO 5 · ~76 ac
-- Lake Raymond Gary ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~62 ac
 - Unknown Park · PUB · United States of America · ~56 ac
 - Black Dog Park · PUB · US Army Corps of Engineers · ~56 ac
+- Lake Raymond Gary ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~52 ac
 - Rogers Landing Public Use Area · PUB · US Government · ~49 ac
 - Jenks Middle School · LP · INDEPENDENT SCHOOL DIST NO 5 · ~49 ac
 - Boswell State Park · SP · Unknown · ~49 ac
@@ -140,3 +138,4 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **138 of 205** parks joined
 - MacArthur Elementary School · LP · INDEPENDENT SCHOOL DIST NO 1 · ~38 ac
 - Murrel Home Park · SHCA · OKLAHOMA HISTORICAL SOCIETY & (MURRELL HOME) · ~37 ac
 - Community Center Park · LP · City of Mannford · ~34 ac
+- Ochoa Elementary School · LP · INDEPENDENT SCHOOL DIST · ~33 ac
