@@ -474,6 +474,59 @@
     "web": "Hyperlink",
     "host": "agol"
    }
+  ],
+  "OH": [
+   {
+    "kind": "park",
+    "ag": "Ohio DNR Division of Parks and Watercraft",
+    "nm": "LANDS_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
+    "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Ohio DNR Division of Wildlife",
+    "nm": "LANDS_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7",
+    "host": "agency"
+   },
+   {
+    "kind": "forest",
+    "ag": "Ohio DNR Division of Forestry",
+    "nm": "LANDS_NAME",
+    "ds": "State Forest",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/6",
+    "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Ohio DNR Division of Natural Areas and Preserves",
+    "nm": "LANDS_NAME",
+    "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8",
+    "host": "agency"
+   }
+  ],
+  "SC": [
+   {
+    "kind": "wild",
+    "ag": "South Carolina DNR (WMAs, heritage preserves)",
+    "nm": "PropertyName",
+    "web": "prop_page_url",
+    "acc": "PublicAccess",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4",
+    "host": "agol"
+   }
+  ],
+  "ME": [
+   {
+    "kind": "land",
+    "ag": "State of Maine conserved lands (Bureau of Parks and Lands / IFW)",
+    "nm": "PARCEL_NAME",
+    "own": "HOLD1_NAME",
+    "acc": "PUB_ACCESS",
+    "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
+    "host": "agol"
+   }
   ]
  },
  "portals": {
@@ -545,6 +598,24 @@
    [
     "Colorado Parks & Wildlife GIS",
     "https://cpw.state.co.us/learn/Pages/GIS.aspx"
+   ]
+  ],
+  "OH": [
+   [
+    "Ohio DNR GIS (gis.ohiodnr.gov)",
+    "https://gis.ohiodnr.gov/"
+   ]
+  ],
+  "SC": [
+   [
+    "SCDNR public lands hub",
+    "https://public-lands-scdnr.hub.arcgis.com/"
+   ]
+  ],
+  "ME": [
+   [
+    "Maine GeoLibrary",
+    "https://www.maine.gov/geolib/"
    ]
   ]
  }
