@@ -91,6 +91,14 @@ CLEARING = {
  'PA': [('Pennsylvania Game Commission', ['https://pgcgis.pa.gov/arcgis/rest/services', 'https://www.pgcapps.pa.gov/arcgis/rest/services'])],
  'MN': [('Minnesota Department of Natural Resources', ['https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr'])],
 }
+# ArcGIS Hub open-data sites per state (Brandon Oct 24, from his spreadsheet) + extra service roots he found
+HUBS = {
+ 'MO': ['https://data-msdis.opendata.arcgis.com'], 'AL': ['https://data-algeohub.opendata.arcgis.com'], 'MS': ['https://opendata.gis.ms.gov'], 'SC': ['https://gis.sc.gov', 'https://public-lands-scdnr.hub.arcgis.com'],
+ 'AZ': ['https://azgeo-open-data-agic.hub.arcgis.com'], 'MN': ['https://gis.data.mn.gov'], 'MD': ['https://imap.maryland.gov', 'https://data.imap.maryland.gov'], 'SD': ['https://gis.sd.gov', 'https://opendata-sdgis.hub.arcgis.com'],
+ 'NH': ['https://www.nhgeodata.unh.edu', 'https://nhgeodata.unh.edu'], 'NC': ['https://www.nconemap.gov'], 'NE': ['https://www.nebraskamap.gov'], 'CT': ['https://geodata.ct.gov'], 'MA': ['https://gis.data.mass.gov'],
+ 'IL': ['https://clearinghouse.isgs.illinois.edu'], 'PA': ['https://www.pasda.psu.edu'], 'ME': ['https://maine.hub.arcgis.com'], 'OH': ['https://gis-ohiodnr.opendata.arcgis.com', 'https://ohiodnr.hub.arcgis.com'],
+}
+EXTRA_ROOTS = {'OH': ['https://gis2.ohiodnr.gov/arcgis/rest/services', 'https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services']}
 KIND = [('wild', re.compile(r'wildlife|\bwma\b|game land|game area|hunting|fish(ing)? (area|lake)|conservation area|waterfowl|public hunting|\bwmas?\b', re.I)),
         ('park', re.compile(r'state park|parks?\b|historic site|recreation area', re.I)),
         ('forest', re.compile(r'state forest|forest(ry)?\b', re.I)),
@@ -310,6 +318,41 @@ def host_hunt(st, seen, out):
         except Exception as e:
             pass
 
+def hub_hunt(st, seen, out):
+    """ArcGIS Hub sites: /api/v3/datasets?q=… lists datasets with their service url + owner/org; /api/search/v1 on newer sites."""
+    for hub in HUBS.get(st, []):
+        hub = hub.rstrip('/')
+        items = []
+        for q in ('state park', 'wildlife management area', 'state forest', 'nature preserve', 'conservation lands', 'public hunting', 'protected lands', 'managed lands'):
+            j = jget(f'{hub}/api/v3/datasets?q={urllib.parse.quote(q)}&page[size]=50&fields[datasets]=name,url,owner,orgName,type,recordCount')
+            for it in (j or {}).get('data', []) or []:
+                a = it.get('attributes') or {}
+                if a.get('url'):
+                    items.append((a.get('name'), a['url'], a.get('owner'), a.get('orgName')))
+            j2 = jget(f'{hub}/api/search/v1?q={urllib.parse.quote(q)}&num=50')
+            for it in (j2 or {}).get('results', []) or []:
+                u = it.get('url') or (it.get('item') or {}).get('url')
+                if u:
+                    items.append((it.get('title') or it.get('name'), u, it.get('owner'), it.get('orgName') or it.get('source')))
+        for name, u, owner, org in items:
+            if not re.match(r'https?://', u or '') or u in seen:
+                continue
+            if not re.search(r'park|wildlife|wma|game|hunt|forest|preserve|natural|land|conserv|recreat|manage|boundar|propert', (name or '') + ' ' + u, re.I):
+                continue
+            seen.add(u)
+            m = re.match(r'(.*/(?:Feature|Map)Server)(?:/(\d+))?$', u)
+            if not m:
+                continue
+            before = len(out)
+            if m.group(2):
+                r = layer_info(u, st)
+                if r:
+                    r['service'] = m.group(1); out.append(r)
+            else:
+                service_layers(m.group(1), st, seen, out)
+            for r in out[before:]:
+                r.update({'agolTitle': name, 'owner': owner, 'orgName': org, 'via': 'hub', 'hub': hub})
+
 def do_state(st):
     out, seen = [], set()
     try:
@@ -324,6 +367,17 @@ def do_state(st):
         host_hunt(st, seen, out)
     except Exception as e:
         print('host', st, e)
+    try:
+        hub_hunt(st, seen, out)
+    except Exception as e:
+        print('hub', st, e)
+    for root in EXTRA_ROOTS.get(st, []):
+        try:
+            n0 = len(out); crawl_root(root, st, seen, out)
+            for r in out[n0:]:
+                r.setdefault('via', 'host')
+        except Exception as e:
+            print('extra', st, root, e)
     for root in ROOTS.get(st, []):
         try:
             crawl_root(root, st, seen, out)
@@ -350,7 +404,7 @@ def main():
         if r['st'] in have or not r['nameFields'] or not r['kind'] or r['count'] < 5:
             continue
         u = r['url'].lower()
-        official = bool(re.search(r'\.gov/|\.state\.\w\w\.us/|\.\w\w\.us/', u)) or r.get('via') in ('org', 'site→org') or bool(re.search(r'dnr|dcnr|parks|wildlife|fwc|tpwd|twra|odnr|mdc|agfc|dec_|dep|forest|_gis$|gis_', str(r.get('owner') or ''), re.I))
+        official = bool(re.search(r'\.gov/|\.state\.\w\w\.us/|\.\w\w\.us/', u)) or r.get('via') in ('org', 'site→org', 'hub') or bool(re.search(r'dnr|dcnr|parks|wildlife|fwc|tpwd|twra|odnr|mdc|agfc|dec_|dep|forest|_gis$|gis_', str(r.get('owner') or ''), re.I))
         if not official or re.search(r'buffer|intersect|proposed|easement|habitat|wetland|karst|county|city|parcel|zoning|soil|flood', r['layer'] + ' ' + str(r.get('agolTitle') or ''), re.I):
             continue
         prop.append(r)
@@ -372,7 +426,7 @@ def main():
         u = r['url'].lower()
         oname = str(r.get('orgName') or '')
         agency_words = {w.lower() for name, _ in AGENCIES.get(r['st'], []) for w in re.findall(r'[A-Za-z]{5,}', name)}
-        org_ok = r.get('via') in ('org', 'site→org') and (STATES[r['st']].lower() in oname.lower() or len({w.lower() for w in re.findall(r'[A-Za-z]{5,}', oname)} & agency_words) >= 2)
+        org_ok = (r.get('via') == 'hub' and bool(re.search(r'\.gov|\.edu|opendata\.arcgis\.com|hub\.arcgis\.com', str(r.get('hub') or ''))) and bool(re.search(STATES[r['st']].split()[0], oname + ' ' + str(r.get('owner') or ''), re.I))) or r.get('via') in ('org', 'site→org') and (STATES[r['st']].lower() in oname.lower() or len({w.lower() for w in re.findall(r'[A-Za-z]{5,}', oname)} & agency_words) >= 2)
         gov_ok = bool(re.search(r'\.gov/|\.state\.\w\w\.us/', u))
         if not (org_ok or gov_ok):
             continue
