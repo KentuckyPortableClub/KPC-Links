@@ -88,8 +88,8 @@ async function ensure(spots){
  try{
   /* emit only when something new arrived: pages redraw on 'kpcmine' and call ensure again */
   if(await loadCounts(spots))emit(true);
-  if(call){harvest();
-   const todo=spots.filter(s=>!fresh(mine.d[s.ref])&&!failed.has(s.ref));
+  if(call||fileActs()){if(call)harvest();
+   const todo=spots.filter(s=>!(s.k==='pota'&&fileActs())&&call&&!fresh(mine.d[s.ref])&&!failed.has(s.ref));
    todo.forEach(s=>{if(cnt.d[s.ref]===0)mine.d[s.ref]=[Date.now(),0,'']});   /* nobody has activated it: you haven't either */
    const q=todo.filter(s=>!fresh(mine.d[s.ref])).slice(0,MAX_LOOKUPS);
    if(!todo.length){paint();return}
@@ -103,8 +103,27 @@ async function ensure(spots){
  }finally{busy=false;if(again){const a=again;again=null;setTimeout(()=>ensure(a),0)}}}
 const failed=new Set();
 
+/* ---------- MY POTA FILE (Oct 24, Brandon: 'it offers new to me but dont say how to make it work for out of state people'):
+   pota.app → My Stats → activated parks → ⬇ EXPORT CSV (activator_parks.csv). Read once, kept on this device in the same
+   place the Park Tracker uses (localStorage kpcTrackActs / kpcTrackFile), and used for NEW TO ME on every POTA park in
+   every state and country with no slow lookups. SOTA still uses the call sign lookups. ---------- */
+let FILEC=null;
+function fileActs(){if(FILEC!==null)return FILEC;const a=get('kpcTrackActs',null);FILEC=a&&Object.keys(a).length?a:false;return FILEC}
+function cellsOf(line){const c=[];let cur='',q=false;for(let i=0;i<line.length;i++){const ch=line[i];if(q){if(ch==='"'){if(line[i+1]==='"'){cur+='"';i++}else q=false}else cur+=ch}else if(ch==='"')q=true;else if(ch===','){c.push(cur.trim());cur=''}else cur+=ch}c.push(cur.trim());return c}
+async function loadFile(f){const t=await f.text(),L=t.split(/\r?\n/).filter(x=>x.trim());if(!L.length)return{err:'That file is empty.'};
+ const h=cellsOf(L[0]).map(x=>x.toLowerCase()),cR=h.indexOf('reference'),cA=h.indexOf('activations'),cF=h.findIndex(x=>/first/.test(x)),cH=h.indexOf('hasc');
+ if(cR<0)return{err:'No Reference column: use activator_parks.csv from pota.app → My Stats → ⬇ EXPORT CSV.'};
+ if(cA<0)return{err:'That is your HUNTER file. NEW TO ME needs the ACTIVATOR one: activator_parks.csv.'};
+ const out={};L.slice(1).forEach(l=>{const c=cellsOf(l),r=String(c[cR]||'').toUpperCase(),n=parseInt(c[cA],10);if(!/^[A-Z0-9]{1,3}-\d{4,5}$/.test(r)||!(n>0))return;out[r]={n,first:cF>=0?String(c[cF]||'').slice(0,10):'',src:'file'};if(cH>=0&&/^(US|CA)-[A-Z]{2}$/.test(c[cH]))out[r].loc=c[cH]});
+ const n=Object.keys(out).length;if(!n)return{err:'No activated parks found in that file.'};
+ const old=get('kpcTrackActs',{})||{};Object.keys(old).forEach(r=>{if(old[r].src!=='ky')delete old[r]});put('kpcTrackActs',Object.assign(old,out));put('kpcTrackFile',{name:f.name,when:Date.now(),parks:n});FILEC=null;return{n}}
+function fileSay(){const F=get('kpcTrackFile',null);bars.forEach(b=>{const e=b.querySelector('.km-fst');if(!e)return;
+ if(!F||!F.when){e.innerHTML='Out of state or anywhere: on <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> open <b>My Stats</b> → activated parks → <b>⬇ EXPORT CSV</b>, then load that file here.';return}
+ const d=Math.floor((Date.now()-F.when)/864e5);e.innerHTML=`Using <b>${esc(F.name)}</b> (${F.parks} parks, loaded ${d?d+' day'+(d>1?'s':'')+' ago':'today'})${d>=30?' · <b style="color:#b45309">time for a fresh one</b>':''}. NEW TO ME works for every park, any state or country.`})}
+
 /* ---------- answers for pages ---------- */
-function status(ref){ref=String(ref||'').toUpperCase();const k=kind(ref);const e=mine.d[ref];
+function status(ref){ref=String(ref||'').toUpperCase();const k=kind(ref);const e=mine.d[ref];const F=k==='pota'?fileActs():null;
+ if(F)return{k,mine:F[ref]?2:0,last:F[ref]&&F[ref].first?String(F[ref].first).replace(/-/g,''):'',acts:cnt.d[ref]!=null?cnt.d[ref]:null};
  return{k,mine:call&&k&&e?e[1]:null,last:e?e[2]:'',acts:k&&cnt.d[ref]!=null?cnt.d[ref]:null}}
 function show(ref){if(!opt.nw&&!opt.atno&&!opt.rare)return true;const s=status(ref);
  if(!s.k)return false;                                /* WWFF and other programs aren't checked: hidden while a filter is on */
@@ -125,7 +144,8 @@ function badge(ref){const s=status(ref);if(!s.k)return '';const out=[];
 
 /* ---------- the control bar ---------- */
 const bars=[];
-function css(){if(document.getElementById('km-css'))return;const st=document.createElement('style');st.id='km-css';st.textContent=`
+function css(){if(document.getElementById('km-css'))return;const st=document.createElement('style');st.id='km-css';st.textContent=`.km-file{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 2px;font-size:13px;line-height:1.45}.km-fbtn{display:inline-flex;align-items:center;min-height:38px;padding:6px 12px;border-radius:999px;border:1.5px dashed #c9a24a;font:900 11.5px Arial,sans-serif;letter-spacing:.8px;cursor:pointer;color:inherit}.km-fst{flex:1 1 220px}.km-fst a{font-weight:700}
+
 .km-bar{background:#fffaf0;color:#171717;border:1px solid #cbbf9f;border-left:5px solid #1d5a3a;border-radius:9px;padding:12px 14px;margin:0 0 14px;font-family:inherit;max-width:100%;box-sizing:border-box}
 .km-bar *{box-sizing:border-box}
 .km-row{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-end}
@@ -154,15 +174,17 @@ function bar(el,o){if(!el)return;css();o=o||{};
 <button type="button" class="km-chip" data-o="nw" aria-pressed="${!!opt.nw}">NEW TO ME</button>
 <button type="button" class="km-chip" data-o="atno" aria-pressed="${!!opt.atno}">ATNO</button>
 <button type="button" class="km-chip" data-o="rare" aria-pressed="${!!opt.rare}" title="Never activated or 1-5 activations">RARE</button></div>
+<div class="km-file"><label class="km-fbtn">📄 LOAD MY POTA FILE<input type="file" accept=".csv,text/csv" hidden></label><span class="km-fst"></span></div>
 <div class="km-st" aria-live="polite"></div>
 <div class="km-key"><span><span class="km-dot" style="opacity:.35"></span>Faded dot = you activated it</span><span><span class="km-dot" style="border-color:#c2410c;box-shadow:0 0 0 2px #c2410c"></span>Orange ring = ATNO (nobody has yet)</span><span><span class="km-dot" style="border-color:#e08a2c;box-shadow:0 0 0 2px #e08a2c"></span>Amber ring = rare (1-5 activations)</span><span>POTA parks and SOTA summits only</span></div>`;
- const inp=el.querySelector('input');
+ const inp=el.querySelector('input[type=text]');
+ el.querySelector('.km-file input').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=await loadFile(f);fileSay();if(r.err)el.querySelector('.km-fst').textContent=r.err;else emit(true)};
  const go=()=>{setCall(inp.value)};
  el.querySelector('.km-go').onclick=go;inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();go()}});
  el.querySelectorAll('.km-chip').forEach(b=>b.onclick=()=>{const k=b.dataset.o;
-  if(k==='nw'&&!opt.nw&&!call){if(inp.value.trim()){setCall(inp.value)}else{inp.focus();say(el,'Type your callsign first, then tap NEW TO ME.');return}}
+  if(k==='nw'&&!opt.nw&&!call&&!fileActs()){if(inp.value.trim()){setCall(inp.value)}else{inp.focus();say(el,'Type your callsign first, then tap NEW TO ME.');return}}
   opt[k]=opt[k]?0:1;if(!NOSAVE)put(K_OPT,opt);bars.forEach(x=>x.querySelectorAll('.km-chip').forEach(c=>c.setAttribute('aria-pressed',String(!!opt[c.dataset.o]))));emit(true)});
- bars.push(el);paint()}
+ bars.push(el);fileSay();paint()}
 function say(el,t){const s=el.querySelector('.km-st');if(s)s.innerHTML=t}
 function setCall(c){c=base(c);if(c&&!/^[A-Z0-9]{3,10}$/.test(c)){bars.forEach(b=>say(b,'That doesn’t look like a callsign.'));return}
  if(c===call){if(last.length)ensure(last);return}
@@ -172,10 +194,10 @@ function paint(){if(!bars.length)return;const L=last;let msg='';
  const n={done:0,new:0,atno:0,rare:0,unk:0};L.forEach(s=>{const x=status(s.ref);if(x.acts===0)n.atno++;else if(x.acts!=null&&x.acts<=5)n.rare++;if(x.mine===2)n.done++;else if(x.mine===0||x.mine===1)n.new++;else n.unk++});
  if(prog)msg=`Checking ${esc(call)}’s activations… ${prog[0]} of ${prog[1]} spots<i style="width:${Math.round(100*prog[0]/Math.max(1,prog[1]))}%"></i>`;
  else if(!L.length)msg=call?`Saved callsign: <b>${esc(call)}</b>. Search a place to see what you’ve activated there.`:'Type your callsign to mark the parks and summits you’ve already activated.';
- else if(!call)msg=`<b>${n.atno}</b> ATNO spot${n.atno===1?'':'s'} and <b>${n.rare}</b> rare in these results. Add your callsign to see which ones are new to you.`;
- else msg=`<b>${esc(call)}</b> in these results: <b>${n.done}</b> activated • <b>${n.new}</b> new to you • <b>${n.atno}</b> ATNO • <b>${n.rare}</b> rare${n.unk?` • ${n.unk} not checked${L.length>MAX_LOOKUPS?' (only the first '+MAX_LOOKUPS+' are checked; narrow the search for the rest)':' (POTA or SOTA did not answer)'}`:''}.`;
+ else if(!call&&!fileActs())msg=`<b>${n.atno}</b> ATNO spot${n.atno===1?'':'s'} and <b>${n.rare}</b> rare in these results. Add your callsign to see which ones are new to you.`;
+ else msg=`<b>${esc(call||"Your file")}</b> in these results: <b>${n.done}</b> activated • <b>${n.new}</b> new to you • <b>${n.atno}</b> ATNO • <b>${n.rare}</b> rare${n.unk?` • ${n.unk} not checked${L.length>MAX_LOOKUPS?' (only the first '+MAX_LOOKUPS+' are checked; narrow the search for the rest)':' (POTA or SOTA did not answer)'}`:''}.`;
  if(opt.nw||opt.atno||opt.rare)msg+=` <b>Showing only ${[opt.atno&&'ATNO',!opt.atno&&opt.rare&&'rare',opt.nw&&'new-to-you'].filter(Boolean).join(' + ')} POTA/SOTA spots.</b>`;
  bars.forEach(b=>say(b,msg))}
 
-window.KPCMine={bar,ensure,show,mark,badge,status,takePotaList,call:()=>call,opts:()=>({...opt}),filtering:()=>!!(opt.nw||opt.atno||opt.rare)};
+window.KPCMine={loadFile,fileActs,bar,ensure,show,mark,badge,status,takePotaList,call:()=>call,opts:()=>({...opt}),filtering:()=>!!(opt.nw||opt.atno||opt.rare)};
 })();

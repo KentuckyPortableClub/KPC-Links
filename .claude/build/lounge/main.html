@@ -56,6 +56,11 @@ html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data
 .lg-tool .go{margin-top:12px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:var(--lg-pota);align-self:flex-end}html[data-theme="dark"] .lg-tool .go{color:#7fd1a3}
 .lg-s1{--acc:#1d5a3a}.lg-s2{--acc:#2b5f8a}.lg-s3{--acc:#b5452b}.lg-s4{--acc:#d5a63a}.lg-s5{--acc:#1f6e78}.lg-s6{--acc:#7a4b1e}
 .lg-key{font-size:13px;color:var(--lg-sub);margin:18px 0 0;line-height:1.9}
+.lg-mine{margin-top:18px;background:var(--lg-card);border:1px solid var(--lg-line);border-left:5px solid var(--lg-pota);border-radius:14px;padding:16px;color:var(--lg-ink);box-shadow:0 6px 18px rgba(0,0,0,.05)}
+.lg-mine h3{margin:0 0 4px;font:700 19px/1.2 Georgia,serif}.lg-mine p{margin:0 0 8px;color:var(--lg-sub);font-size:14px;line-height:1.5}.lg-mine ol{margin:0 0 10px 20px;padding:0;font-size:14px;line-height:1.6;color:var(--lg-ink)}
+.lg-mfile{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:8px 18px;border-radius:12px;border:2px dashed var(--lg-gold);font:900 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer;color:var(--lg-ink)}
+#lgMineSt{margin-top:8px;font-size:14px;line-height:1.5}#lgMineSt a{color:var(--lg-pota);font-weight:700}html[data-theme="dark"] #lgMineSt a{color:#7fd1a3}
+.lg-you{display:inline-block;margin-top:8px;padding:5px 10px;border-radius:8px;background:rgba(61,220,132,.15);color:#a8f0c6;font:800 12px Arial,sans-serif;letter-spacing:.6px}
 @media(max-width:620px){.lg-band .lg-wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 4px}.lg-find{margin-top:16px;padding:18px 14px}.lg-pk{flex-wrap:wrap}.lg-pk .lg-r{white-space:normal}.lg-btns{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 @@HEADER@@
@@ -82,6 +87,13 @@ html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data
 <div id="lgPick"></div>
 </section>
 <div id="lgOut"></div>
+<section class="lg-mine" id="lgMine">
+<h3>📄 My POTA file: load it once, every tool knows</h3>
+<p>Which parks have you already activated? Load your file from POTA here and the Park Tracker, Rarely Activated (hide mine), the Top 25 and the trip planners (NEW TO ME) all use it, for every state and country. It stays on this phone or computer.</p>
+<ol><li>Sign in at <a href="https://pota.app" target="_blank" rel="noopener">pota.app</a> and open <b>My Stats</b>.</li><li>In your <b>activated parks</b> list tap <b>⬇ EXPORT CSV</b> (you get activator_parks.csv).</li><li>Tap the button below and pick that file. Do it again every month or so.</li></ol>
+<label class="lg-mfile">📄 LOAD MY POTA FILE<input type="file" id="lgMineF" accept=".csv,text/csv" hidden></label>
+<div id="lgMineSt"></div>
+</section>
 <div class="lg-sun" id="lgSun"><span class="lg-sb">HF …</span><span>Loading today's conditions…</span></div>
 
 <section class="lg-sec"><div class="lg-sh"><span class="lg-ic">🎯</span><div><h3>Find a place to activate</h3><p>Somewhere hunters will be glad to hear.</p></div></div><div class="lg-grid">
@@ -130,4 +142,5 @@ html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data
 </main>
 @@FOOTER@@
 <script src="kpc-bounds.js?v=20261023b" defer></script>
-<script src="kpc-lounge.js?v=20261024d" defer></script>
+<script src="kpc-my-parks.js?v=20261024a" defer></script>
+<script src="kpc-lounge.js?v=20261024e" defer></script>
