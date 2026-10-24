@@ -29,7 +29,7 @@
 .lg-progs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
 .lg-form{display:flex;gap:10px;flex-wrap:wrap}.lg-form input{flex:1 1 240px;min-height:54px;border:1.5px solid rgba(240,201,107,.6);border-radius:12px;padding:10px 16px;font:17px Arial,sans-serif;min-width:0;box-sizing:border-box;background:#fffdf7;color:#111}
 .lg-form input:focus{outline:3px solid rgba(240,201,107,.45);outline-offset:1px}
-.lg-form button{min-height:54px;padding:10px 22px;border:0;border-radius:12px;background:linear-gradient(#f6d58a,#d5a63a);color:#1b1305;font:900 14px Arial,sans-serif;letter-spacing:1.4px;cursor:pointer;box-shadow:0 6px 16px rgba(213,166,58,.35)}
+.lg-form>button{min-height:54px;padding:10px 22px;border:0;border-radius:12px;background:linear-gradient(#f6d58a,#d5a63a);color:#1b1305;font:900 14px Arial,sans-serif;letter-spacing:1.4px;cursor:pointer;box-shadow:0 6px 16px rgba(213,166,58,.35)}
 #lgNear{margin-top:10px;width:100%;min-height:48px;border-radius:12px;background:transparent;color:var(--lg-gold2);border:1.5px solid rgba(240,201,107,.6);font:900 13px Arial,sans-serif;letter-spacing:1.3px;cursor:pointer}
 #lgLast{margin-top:10px;font-size:13.5px;color:#cfc6b0}.lg-link{border:0;background:none;color:var(--lg-gold2);font:700 13.5px Arial,sans-serif;text-decoration:underline;cursor:pointer;padding:0}
 #lgPick{display:grid;gap:8px;margin-top:12px}
@@ -74,6 +74,11 @@ html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data
 #lgMineSt{margin-top:8px;font-size:14px;line-height:1.5}#lgMineSt a{color:var(--lg-pota);font-weight:700}html[data-theme="dark"] #lgMineSt a{color:#7fd1a3}
 .lg-you{display:inline-block;margin-top:8px;padding:5px 10px;border-radius:8px;background:rgba(61,220,132,.15);color:#a8f0c6;font:800 12px Arial,sans-serif;letter-spacing:.6px}
 main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{background:#1d5a3a}main.lg .lg-sb.ok{background:#d5a63a;color:#111}main.lg .lg-sb.bad{background:#a32d2d}
+.lg-qw{position:relative;flex:1 1 240px;min-width:0;display:flex}.lg-qw input{flex:1 1 auto;width:100%}
+.lg-sug{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:30;background:#120d07;border:1px solid rgba(240,201,107,.6);border-radius:12px;box-shadow:0 16px 34px rgba(0,0,0,.55);max-height:min(60vh,430px);overflow:auto;padding:4px}
+.lg-form .lg-sg{min-height:0;box-shadow:none;letter-spacing:0;display:flex;gap:8px;align-items:center;width:100%;text-align:left;padding:10px 10px;border:0;border-radius:9px;background:transparent;color:#f3ebd8;font:15px Arial,sans-serif;cursor:pointer;min-width:0}
+.lg-sg b{flex:1 1 auto;min-width:0;font-family:Georgia,serif;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lg-sg i{font-style:normal;font:800 11.5px Arial,sans-serif;letter-spacing:.5px;color:#f0c96b;white-space:nowrap}
+.lg-form .lg-sg:hover,.lg-form .lg-sg.on{background:rgba(240,201,107,.16)}
 @media(max-width:700px){.lg-hero .lg-eye{font-size:9.5px;letter-spacing:2px}}
 @media(max-width:620px){.lg-band .lg-wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 4px}.lg-find{margin-top:16px;padding:18px 14px}.lg-pk{flex-wrap:wrap}.lg-pk .lg-r{white-space:normal}.lg-btns{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
@@ -95,7 +100,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <h2>Where are you <span>headed?</span></h2>
 <p>Type a name or a number: US-1277, FR-0098, GFF-0004, W4K/EC-001. Any country, any program.</p>
 <div class="lg-progs"><span class="lg-tag">POTA</span><span class="lg-tag wwff">WWFF</span><span class="lg-tag sota">SOTA</span></div>
-<form class="lg-form" id="lgForm"><input id="lgQ" autocomplete="off" placeholder="Park, area or summit: name or number" aria-label="Park, WWFF area or summit"><button type="submit" data-keep-light>FIND IT</button></form>
+<form class="lg-form" id="lgForm"><div class="lg-qw"><input id="lgQ" autocomplete="off" placeholder="Start typing a park, area or summit…" aria-label="Park, WWFF area or summit"><div class="lg-sug" id="lgSug" role="listbox" hidden></div></div><button type="submit" data-keep-light>FIND IT</button></form>
 <button type="button" id="lgNear">📍 WHAT'S NEAR ME</button>
 <div id="lgLast"></div>
 <div id="lgPick"></div>
@@ -157,4 +162,4 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 @@FOOTER@@
 <script src="kpc-bounds.js?v=20261023b" defer></script>
 <script src="kpc-my-parks.js?v=20261024a" defer></script>
-<script src="kpc-lounge.js?v=20261024f" defer></script>
+<script src="kpc-lounge.js?v=20261024g" defer></script>
