@@ -187,11 +187,15 @@ const ownLink=s=>{const x=LAND[s.c];return x&&x[0]!=='P'?`<br><a href="#" data-o
 /* Oct 24 (Brandon: the Google search led to sites that charge for owner info): Kentucky = the state's official PVA
    directory (every county PVA office's phone and website; they answer for free); other states = a search of official
    .gov sites only, for that county's assessor. */
-const KYPVA='https://revenue.ky.gov/Property/Documents/PVA%20Directory%202022-2026.pdf';
-document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]');if(!a)return;e.preventDefault();const w=window.open('about:blank','_blank');const [la,lo]=a.dataset.own.split(',');let u='',cty='';
- try{const g=await fetch(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`).then(r=>r.json());const r=g.results&&g.results[0];if(r){cty=r.county_name;u=r.state_code==='KY'?KYPVA:'https://www.google.com/search?q='+encodeURIComponent(`${r.county_name} County ${r.state_name} property assessor parcel map site:.gov`)}}catch(x){}
+let OWN=null;const ownSrc=()=>OWN||(OWN=fetch('data/land-owner.json').then(r=>r.ok?r.json():{states:{}}).catch(()=>({states:{}})));
+document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]');if(!a)return;e.preventDefault();const w=window.open('about:blank','_blank');const [la,lo]=a.dataset.own.split(',');let u='',say='';
+ try{const [g,O]=await Promise.all([fetch(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`).then(r=>r.json()),ownSrc()]);const r=g.results&&g.results[0];
+  if(r){const x=(O.states||{})[r.state_code],cty=r.county_name;
+   if(x&&x.map){u=x.map.replace('{lat}',la).replace('{lon}',lo);say=`${esc(r.state_name)}'s free official parcel map (${esc(x.name||'')}): ${x.say?esc(x.say.replace('{county}',cty)):'tap the parcel on the summit to see the owner'}.`}
+   else if(x&&x.list){u=x.list;say=`${esc(x.name||'The state\'s list of county offices')}: ${esc((x.say||'find {county} County and call that office (free)').replace('{county}',cty))}.`}
+   else{u='https://www.google.com/search?q='+encodeURIComponent(`${cty} County ${r.state_name} property assessor parcel map site:.gov`);say=`Look for <b>${esc(cty)} County</b>'s own assessor site (.gov) or call their office (free).`}}}catch(x){}
  if(!u)u='https://www.google.com/search?q='+encodeURIComponent('county property assessor parcel map site:.gov');
- if(cty){const n=a.parentNode.querySelector('small');if(n)n.innerHTML=`${/revenue\.ky\.gov/.test(u)?'Kentucky: find <b>'+cty+' County</b> in the state\'s PVA list and call that office (free).':'Look for <b>'+cty+' County</b>\'s own assessor site (.gov) or call their office (free).'} Skip websites that ask you to pay.`}
+ const n=a.parentNode.querySelector('small');if(n&&say)n.innerHTML=say+' Skip websites that ask you to pay.';
  if(w)w.location=u;else location.href=u});
 function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
