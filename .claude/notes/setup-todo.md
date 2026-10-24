@@ -51,7 +51,7 @@ WHAT TO DO: (a) Brandon says WHICH rooms to watch; (b) the relay bot account nee
 Read Message History in those rooms (it already has the Message Content intent for the posting channel).
 No new secret: it reuses DISCORD_BOT_TOKEN.
 THEN CLAUDE BUILDS: a job that flags a message that looks like a question with no reply after about an hour.
-STATUS: half done. BUILT Oct 21: kpc-discord-watch.yml + .github/scripts/kpc_discord_watch.py (hourly;
+STATUS: **DONE (confirmed Oct 24).** Rooms general, portable-ops, annual-kpc-campout are in data/discord-watch.json; nudges go to the staff room (KPC_ADMIN_WEBHOOK). Nothing left on this list. BUILT Oct 21: kpc-discord-watch.yml + .github/scripts/kpc_discord_watch.py (hourly;
 mode 'test' posts a hello, mode 'list' posts every room the bot can see, mode 'watch' is the job). Still needed:
 Brandon picks the rooms, then they go in data/discord-watch.json "rooms". A room missing from the list means the
 bot has no View Channel / Read Message History there.
