@@ -1,0 +1,982 @@
+{
+"when": "2026-10-24",
+"n": 18,
+"layers": [
+{
+"st": "AZ",
+"kind": "wild",
+"url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer/0",
+"layer": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
+"count": 57,
+"nameFields": [
+"Label"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"sma_code",
+"STATE_ADMN",
+"STATE_GEOG",
+"Label",
+"NCA_NAME",
+"NLCS_ID",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"Label": "Kasha-Katuwe Tent Rocks"
+},
+{
+"Label": "Prehistoric Trackways"
+},
+{
+"Label": "San Juan Islands"
+}
+],
+"service": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_NLCS_National_Monuments_National_Conservation_Areas_Polygons/FeatureServer",
+"agolTitle": "BLM Natl NLCS National Monuments National Conservation Areas Polygons",
+"owner": "blm_arcgis_hub_natl",
+"orgId": null,
+"agolId": "8defb341035545ed9560effea919484e",
+"modified": 1786032761000
+},
+{
+"st": "MD",
+"kind": "land",
+"url": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer/21",
+"layer": "MD_Protected_Federal_Lands",
+"count": 55,
+"nameFields": [
+"NAME"
+],
+"webFields": [
+"WebLink"
+],
+"fields": [
+"OBJECTID",
+"NAME",
+"Acres",
+"Agency",
+"County",
+"WebLink",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+},
+{
+"NAME": "C & O Canal National Historical Park",
+"WebLink": "http://www.nps.gov/choh/index.htm"
+}
+],
+"service": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer",
+"agolTitle": "FOREI_BASELINE Geodatabase",
+"owner": "SEGIS_SEGROUP",
+"orgId": null,
+"agolId": "04f66ea0e1b14a54ac7993e70b91ab49",
+"modified": 1784221823000
+},
+{
+"st": "MD",
+"kind": "park",
+"url": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer/31",
+"layer": "PA_Local_Parks",
+"count": 44,
+"nameFields": [
+"PARK_NAME"
+],
+"webFields": [
+"URL"
+],
+"fields": [
+"PARK_ID",
+"PARK_NAME",
+"PARK_TYPE",
+"STATUS",
+"PARK_FEE",
+"ALT_NAME",
+"PREMISE_AD",
+"PREMISE_CI",
+"PREMISE_ZI",
+"PREMISE_CO",
+"PREMISE_MU",
+"PREMISE_CR",
+"YEAR_OPEN",
+"URL",
+"CAPTURE_ME",
+"COMMENTS",
+"Lat_Cen",
+"Long_Cen",
+"Acres",
+"SHAPE_STAr",
+"SHAPE_STLe",
+"LWCF_Restr",
+"ATV",
+"Basketball",
+"Bicycling",
+"Camping",
+"Canoeing_K",
+"CrossCount",
+"Disc_Golf",
+"Dog_Park",
+"Equestrian",
+"Fishing",
+"Fitness_Eq",
+"Golf",
+"Hiking",
+"Horseback_",
+"Hunting",
+"Ice_Fishin",
+"Ice_Skatin",
+"Motor_Boat"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"PARK_NAME": "Winber Borough Park",
+"URL": "https://windberboro.com/services-info/recreation/"
+},
+{
+"PARK_NAME": "Benson Borough Park",
+"URL": " "
+},
+{
+"PARK_NAME": "Center Town Community Park",
+"URL": " "
+}
+],
+"service": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer",
+"agolTitle": "FOREI_BASELINE Geodatabase",
+"owner": "SEGIS_SEGROUP",
+"orgId": null,
+"agolId": "04f66ea0e1b14a54ac7993e70b91ab49",
+"modified": 1784221823000
+},
+{
+"st": "MD",
+"kind": "park",
+"url": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer/78",
+"layer": "PA_State_Park",
+"count": 9,
+"nameFields": [
+"PARK_NAME"
+],
+"webFields": [
+"WEBLINK"
+],
+"fields": [
+"OBJECTID_1",
+"PARK_NAME",
+"GIS_ACRE",
+"ICSORG",
+"NICKNAMES",
+"TYPE",
+"WEBLINK",
+"OBJECTID",
+"Shape_Leng",
+"FILE_NAME",
+"COUNTY",
+"study_acres",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"PARK_NAME": "Warriors Path",
+"WEBLINK": "http://www.dcnr.state.pa.us/stateparks/findapark/warriorspath/index.htm"
+},
+{
+"PARK_NAME": "Laurel Summit",
+"WEBLINK": "http://www.dcnr.state.pa.us/stateparks/findapark/laurelsummit/index.htm"
+},
+{
+"PARK_NAME": "Kooser",
+"WEBLINK": "http://www.dcnr.state.pa.us/stateparks/findapark/kooser/index.htm"
+}
+],
+"service": "https://services8.arcgis.com/YKIZLV97YLZN6bol/arcgis/rest/services/FOREI_BASELINE_Geodatabase/FeatureServer",
+"agolTitle": "FOREI_BASELINE Geodatabase",
+"owner": "SEGIS_SEGROUP",
+"orgId": null,
+"agolId": "04f66ea0e1b14a54ac7993e70b91ab49",
+"modified": 1784221823000
+},
+{
+"st": "MD",
+"kind": "preserve",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLandsAcquisitions/FeatureServer/6",
+"layer": "Rural Legacy Areas",
+"count": 36,
+"nameFields": [
+"Name"
+],
+"webFields": [],
+"fields": [
+"RL_AREA",
+"CO",
+"GISacres",
+"County",
+"Name",
+"Shape__Area",
+"Shape__Length",
+"OBJECTID"
+],
+"maxRecords": 300,
+"sample": [
+{
+"Name": "Agricultural Security Corridor - Eastern Shore Heartland"
+},
+{
+"Name": "Agricultural Security Corridor - Harvest Crescent"
+},
+{
+"Name": "Agricultural Security Corridor - Tuckahoe"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLandsAcquisitions/FeatureServer",
+"agolTitle": "Maryland Protected Lands Acquisitions - Program Open Space 2019 Land Acquisitions General",
+"owner": "mdimapdatacatalog",
+"orgId": "njFNhDsUCentVYJW",
+"agolId": "c620c9e1ec6f4dca968195a8ad604eba",
+"modified": 1747058789000
+},
+{
+"st": "MD",
+"kind": "preserve",
+"url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_FocalAreas/FeatureServer/0",
+"layer": "Rural Legacy Areas",
+"count": 36,
+"nameFields": [
+"Name"
+],
+"webFields": [],
+"fields": [
+"RL_AREA",
+"CO",
+"GISacres",
+"Name",
+"County",
+"Shape__Area",
+"Shape__Length",
+"OBJECTID"
+],
+"maxRecords": 35000,
+"sample": [
+{
+"Name": "Agricultural Security Corridor - Eastern Shore Heartland"
+},
+{
+"Name": "Agricultural Security Corridor - Harvest Crescent"
+},
+{
+"Name": "Agricultural Security Corridor - Tuckahoe"
+}
+],
+"service": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_FocalAreas/FeatureServer",
+"agolTitle": "Maryland Focal Areas - Rural Legacy Areas",
+"owner": "mdimapdatacatalog",
+"orgId": "njFNhDsUCentVYJW",
+"agolId": "b2ed4f8ebab14d95b4c68814d38a206c",
+"modified": 1747058719000
+},
+{
+"st": "ME",
+"kind": "land",
+"url": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Florida_Managed_Areas__FLMA_/FeatureServer/0",
+"layer": "Florida Managed Areas (FLMA)",
+"count": 3223,
+"nameFields": [
+"maname"
+],
+"webFields": [
+"ma_website"
+],
+"fields": [
+"objectid",
+"ma_id",
+"maname",
+"majorma",
+"matype",
+"managing_a",
+"matype2",
+"owner",
+"coowners",
+"ownertypes",
+"totacres",
+"ltf_acres",
+"esmt_hold",
+"county",
+"protstat",
+"descript",
+"comments",
+"manager",
+"mgrinst",
+"mgrcity",
+"mgrphone",
+"ma_website",
+"maname_ab",
+"digbnd_src",
+"citation",
+"fgdlaqdate",
+"autoid",
+"SHAPE__Length",
+"SHAPE__Area",
+"globalid"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"maname": "HAULOVER BEACH PARK",
+"ma_website": "https://www.miami.gov/My-Government/Departments/Parks-and-Recreation"
+},
+{
+"maname": "HOMESTEAD AIR RESERVE BASE",
+"ma_website": "https://www.afcec.af.mil/What-We-Do/Environment/Natural-Resources/"
+},
+{
+"maname": "VIZCAYA MUSEUM AND GARDENS",
+"ma_website": "https://www.miami.gov/My-Government/Departments/Parks-and-Recreation"
+}
+],
+"service": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Florida_Managed_Areas__FLMA_/FeatureServer",
+"agolTitle": "Florida Managed Areas _FLMA_",
+"owner": "CDRGIS_Team",
+"orgId": null,
+"agolId": "6c4e329f3a6b4e089b34cf7cbc22e231",
+"modified": 1761678107000
+},
+{
+"st": "ME",
+"kind": "land",
+"url": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Federally_Owned_or_Managed_Land/FeatureServer/0",
+"layer": "Federally Owned or Managed Land",
+"count": 415,
+"nameFields": [
+"maname"
+],
+"webFields": [
+"ma_website"
+],
+"fields": [
+"objectid",
+"ma_id",
+"maname",
+"majorma",
+"matype",
+"managing_a",
+"matype2",
+"owner",
+"coowners",
+"ownertypes",
+"totacres",
+"ltf_acres",
+"esmt_hold",
+"county",
+"protstat",
+"descript",
+"comments",
+"manager",
+"mgrinst",
+"mgrcity",
+"mgrphone",
+"ma_website",
+"maname_ab",
+"digbnd_src",
+"citation",
+"fgdlaqdate",
+"autoid",
+"SHAPE__Length",
+"SHAPE__Area",
+"globalid"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"maname": "HOMESTEAD AIR RESERVE BASE",
+"ma_website": "https://www.afcec.af.mil/What-We-Do/Environment/Natural-Resources/"
+},
+{
+"maname": "COWPENS SANCTUARY",
+"ma_website": "http://www.audubon.org"
+},
+{
+"maname": "JACKSONVILLE NAVAL AIR STATION",
+"ma_website": "https://www.navfac.navy.mil/Divisions/Environmental/Products-and-Services/Natural-Resources/"
+}
+],
+"service": "https://gis.cdrmaguire.com/arcgis/rest/services/Hosted/Federally_Owned_or_Managed_Land/FeatureServer",
+"agolTitle": "Federally Owned or Managed Land",
+"owner": "CDRGIS_Team",
+"orgId": null,
+"agolId": "5bf0b499728345e483e7f46a2e17e910",
+"modified": 1761677776000
+},
+{
+"st": "ME",
+"kind": "preserve",
+"url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4",
+"layer": "Scientific And Natural Area Boundaries",
+"count": 239,
+"nameFields": [
+"unit_name",
+"name"
+],
+"webFields": [],
+"fields": [
+"objectid",
+"unit_name",
+"unit_type",
+"pgrm_project",
+"gis_acres",
+"name",
+"designated",
+"own_code",
+"own_desc",
+"point_of_contact",
+"date_designated",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"unit_name": "Wild Indigo",
+"name": "Wild Indigo SNA"
+},
+{
+"unit_name": "Ladies Tresses Swamp",
+"name": "Ladies Tresses Swamp SNA"
+},
+{
+"unit_name": "King's Bluff",
+"name": "King's and Queen's Bluffs SNA"
+}
+],
+"service": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer",
+"agolTitle": "Scientific and Natural Area Units",
+"owner": "commons_etl_user",
+"orgId": null,
+"agolId": "efb2f468b7dc440f8f60143456b978d2",
+"modified": 1792823257000
+},
+{
+"st": "ME",
+"kind": "wild",
+"url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
+"layer": "Public Areas",
+"count": 5439,
+"nameFields": [
+"NAME"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"NAME",
+"UNIT",
+"NameUnit",
+"OWNER",
+"MANAGER",
+"TYPE",
+"C_R",
+"ACCESS",
+"PUB_HUNT",
+"ease_hold",
+"ease_typ",
+"SOURCE",
+"DIGSOURC",
+"COUNTY",
+"ACRES",
+"GAP_OWNCOD",
+"GAP_MANCOD",
+"GAP_EASE1",
+"GAP_STATUS",
+"WLIFE_ID",
+"PRSRV_ID",
+"PARK_ID",
+"CRL_ID",
+"ResAm_ID",
+"Forest_ID",
+"Lake_ID",
+"StPark_ID",
+"IHAP_ID",
+"CCB_ID",
+"Hunt_ID",
+"idAdminB",
+"edit_by",
+"edit_date",
+"Shape",
+"Shape.STArea()",
+"Shape.STLength()",
+"More_Info"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"NAME": "Auburn Hills Park"
+},
+{
+"NAME": "Auburn Hills Park"
+},
+{
+"NAME": "Brown Deer Golf Course"
+}
+],
+"service": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer",
+"agolTitle": "Public Lands Used for Conservation and Recreation in Iowa",
+"owner": "Casey.Kohrt_iowadnr",
+"orgId": null,
+"agolId": "2e8be3c67288413f903276eea17cea43",
+"modified": 1724947495000
+},
+{
+"st": "ME",
+"kind": "wild",
+"url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/SNI/FeatureServer/0",
+"layer": "Maine Seabird Nesting Islands",
+"count": 256,
+"nameFields": [
+"NAME"
+],
+"webFields": [],
+"fields": [
+"OBJECTID_1",
+"OBJECTID",
+"GISVIEW_MEIFW_sni_AREA",
+"PERIMETER",
+"ISLANDS3_",
+"ISLANDS3_I",
+"ISLANDID",
+"NAME",
+"NAME2",
+"SOURCE",
+"CIR",
+"NRPA",
+"USGSQUAD",
+"OWNER",
+"Shape_Leng",
+"Acres",
+"Shape__Area",
+"Shape__Length",
+"GlobalID"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"NAME": "Spectacle Island"
+},
+{
+"NAME": "Goose Island"
+},
+{
+"NAME": "Red Island"
+}
+],
+"service": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/SNI/FeatureServer",
+"agolTitle": "Seabird Nesting Islands",
+"owner": "Jason.Czapiga@maine.gov_maine",
+"orgId": "RbMX0mRVOFNTdLzd",
+"orgName": "State of Maine",
+"agolId": "18042bb789b14f428a07a27ccd566319",
+"via": "org"
+},
+{
+"st": "NC",
+"kind": "wild",
+"url": "https://services1.arcgis.com/7CPYy0u5Z9IAJ2OG/arcgis/rest/services/NC_Game_Lands_Map/FeatureServer/0",
+"layer": "Game Lands",
+"count": 1668,
+"nameFields": [
+"Name"
+],
+"webFields": [],
+"fields": [
+"OID",
+"Name",
+"FolderPath",
+"SymbolID",
+"AltMode",
+"Base",
+"Clamped",
+"Extruded",
+"Snippet",
+"PopupInfo",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"Name": "Tract"
+},
+{
+"Name": "Tract"
+},
+{
+"Name": "Tract"
+}
+],
+"service": "https://services1.arcgis.com/7CPYy0u5Z9IAJ2OG/arcgis/rest/services/NC_Game_Lands_Map/FeatureServer",
+"agolTitle": "NC_Game_Lands_Map",
+"owner": "meberckmueller@wm.edu_wm_gis",
+"orgId": null,
+"agolId": "b303ac096e5c448390bc02e39b504188",
+"modified": 1652029271000
+},
+{
+"st": "OH",
+"kind": "wild",
+"url": "https://gis.ohiodnr.gov/arcgis/rest/services/DOW_Services/DoveHunting_Viewer/MapServer/2",
+"layer": "DoveHuntingAreas",
+"count": 133,
+"nameFields": [
+"Name"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"Name",
+"GlobalID",
+"Shape",
+"Lands_Name",
+"Alt_name",
+"Acres",
+"NOTES",
+"Shape_Length",
+"Shape_Area"
+],
+"maxRecords": 1000,
+"sample": [
+{
+"Name": "Dove Field 1"
+},
+{
+"Name": "Dove Field 5"
+},
+{
+"Name": "14 Side Field 2"
+}
+],
+"service": "https://gis.ohiodnr.gov/arcgis/rest/services/DOW_Services/DoveHunting_Viewer/MapServer",
+"agolTitle": "Dove Hunting Fields - Viewer Service",
+"owner": "10002711_odnr",
+"orgId": "ajRlmtxbNBjZggOT",
+"orgName": "Ohio Department of Natural Resources",
+"agolId": "38383feb3a3a4c6db7c3fb2f983275bc",
+"via": "org"
+},
+{
+"st": "SC",
+"kind": "land",
+"url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_3_view/FeatureServer/1",
+"layer": "SC_Conserved_Land",
+"count": 8006,
+"nameFields": [
+"SiteName"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"GAP_CAT",
+"Dual_Protection",
+"Pub_Access",
+"Category",
+"Manager",
+"Manager2",
+"Original_Manager",
+"SiteName",
+"SiteName2",
+"MapLabel",
+"Owner",
+"Year_Est",
+"FiscalYear",
+"Transfer_Year",
+"County",
+"LegalAcres",
+"GIS_Acres",
+"acreageCALC",
+"Focus_Area",
+"ProtectTyp",
+"ProtectTyp2",
+"OwnType",
+"HoldType",
+"Trans_Type",
+"Trans_Hist",
+"Notes",
+"Mitigation",
+"Funding",
+"SCCB",
+"NAWCA",
+"Greenbelt",
+"LWCF",
+"FundNotes",
+"PurposeCde",
+"Duration",
+"Cong_Distr",
+"HouseDistr",
+"SenateDist",
+"Source"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"SiteName": "Wiltown Crossing"
+},
+{
+"SiteName": "Clermont Plantation"
+},
+{
+"SiteName": "Hill River Tract"
+}
+],
+"service": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_3_view/FeatureServer",
+"agolTitle": "SC Conserved Lands (Public View)",
+"owner": "JamesM_scdnr",
+"orgId": "acgZYxoN5Oj8pDLa",
+"orgName": "South Carolina Department of Natural Resources",
+"agolId": "3948cef3be67486da9d299dfbf270a37",
+"via": "org"
+},
+{
+"st": "SC",
+"kind": "land",
+"url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_Public/FeatureServer/0",
+"layer": "SC_Conserved_Land",
+"count": 8006,
+"nameFields": [
+"SiteName"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"Dual_Protection",
+"Pub_Access",
+"Category",
+"Manager",
+"Manager2",
+"Original_Manager",
+"SiteName",
+"SiteName2",
+"MapLabel",
+"Owner",
+"Year_Est",
+"Transfer_Year",
+"County",
+"LegalAcres",
+"GIS_Acres",
+"acreageCALC",
+"Focus_Area",
+"ProtectTyp",
+"OwnType",
+"HoldType",
+"Trans_Type",
+"Trans_Hist",
+"Notes",
+"Mitigation",
+"Funding",
+"SCCB",
+"NAWCA",
+"Greenbelt",
+"FundNotes",
+"PurposeCde",
+"Duration",
+"Cong_Distr",
+"HouseDistr",
+"SenateDist",
+"Source",
+"ACJV_Focus",
+"SentinelLandscape",
+"LCLCP",
+"PortRoyalSound"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"SiteName": "Wiltown Crossing"
+},
+{
+"SiteName": "Clermont Plantation"
+},
+{
+"SiteName": "Hill River Tract"
+}
+],
+"service": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/SC_Conserved_Lands_Public/FeatureServer",
+"agolTitle": "SC_Conserved_Lands_Public",
+"owner": "clarkrl_scdnr",
+"orgId": "acgZYxoN5Oj8pDLa",
+"orgName": "South Carolina Department of Natural Resources",
+"agolId": "af1d843105dc4fecb857930212562322",
+"via": "org"
+},
+{
+"st": "SC",
+"kind": "preserve",
+"url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
+"layer": "Heritage_Preserve_Layer_CopyFeatures",
+"count": 118,
+"nameFields": [
+"PropertyName"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"PropertyID",
+"RelatedPropertyID",
+"PropertyName",
+"PropertyTract",
+"PropertyUse",
+"PropertyType",
+"PropertyOwner",
+"PropertyManager",
+"HeritagePreserve",
+"WMA_SpecialActivity",
+"Status",
+"PublicAccess",
+"PublicVisible",
+"Comments",
+"County",
+"SCDNR_GameZone",
+"SCDNR_LE_Subunit",
+"SCDNR_FocusArea",
+"BoundarySource",
+"BoundarySourceNote",
+"BoundarySourceDate",
+"ReportedAcres",
+"GIS_TractAcres",
+"GIS_PropertyAcres",
+"GlobalID",
+"created_user",
+"created_date",
+"last_edited_user",
+"last_edited_date",
+"WildlifeManagementArea",
+"SCDNR_Region",
+"ParentPropertyID",
+"ParentRecord",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"PropertyName": "Glassy Mountain Heritage Preserve"
+},
+{
+"PropertyName": "Eva Russell Chandler Heritage Preserve and Wildlife Management Area"
+},
+{
+"PropertyName": "Eva Russell Chandler Heritage Preserve"
+}
+],
+"service": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer",
+"agolTitle": "HeritagePreserve_Map2_WFL1",
+"owner": "czakoc_scdnr",
+"orgId": "acgZYxoN5Oj8pDLa",
+"orgName": "South Carolina Department of Natural Resources",
+"agolId": "f4a4b94a9dba4740ad3fe9f3cf700e46",
+"via": "org"
+},
+{
+"st": "SD",
+"kind": "park",
+"url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SouthDakota_Parks_WFL1/FeatureServer/2",
+"layer": "State Parks and Forests",
+"count": 39,
+"nameFields": [
+"NAME"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"NAME",
+"FCC",
+"SQMI",
+"Shape__Area",
+"Shape__Length"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"NAME": "Custer NF"
+},
+{
+"NAME": "Fort Lincoln State Park"
+},
+{
+"NAME": "Big Stone Lake"
+}
+],
+"service": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SouthDakota_Parks_WFL1/FeatureServer",
+"agolTitle": "SouthDakota_Parks_WFL1",
+"owner": "FEMA_Region8_GIS",
+"orgId": null,
+"agolId": "ee1cf70cb00f4616ab77eaf23d2eabdf",
+"modified": 1571265740000
+},
+{
+"st": "SD",
+"kind": "park",
+"url": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SouthDakota_Parks_WFL1/FeatureServer/1",
+"layer": "NationalParks",
+"count": 6,
+"nameFields": [
+"UNIT_NAME",
+"PARKNAME"
+],
+"webFields": [],
+"fields": [
+"OBJECTID",
+"UNIT_CODE",
+"GIS_Notes",
+"UNIT_NAME",
+"DATE_EDIT",
+"STATE",
+"REGION",
+"GNIS_ID",
+"UNIT_TYPE",
+"CREATED_BY",
+"METADATA",
+"PARKNAME",
+"GlobalID",
+"Shape__Area",
+"Shape__Length",
+"Founded",
+"Area",
+"Shape__Area_2",
+"Shape__Length_2"
+],
+"maxRecords": 2000,
+"sample": [
+{
+"UNIT_NAME": "Jewel Cave National Monument",
+"PARKNAME": "Jewel Cave"
+},
+{
+"UNIT_NAME": "Mount Rushmore National Memorial",
+"PARKNAME": "Mount Rushmore"
+},
+{
+"UNIT_NAME": "Minuteman Missile National Historic Site",
+"PARKNAME": "Minuteman Missile"
+}
+],
+"service": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/SouthDakota_Parks_WFL1/FeatureServer",
+"agolTitle": "SouthDakota_Parks_WFL1",
+"owner": "FEMA_Region8_GIS",
+"orgId": null,
+"agolId": "ee1cf70cb00f4616ab77eaf23d2eabdf",
+"modified": 1571265740000
+}
+]
+}
