@@ -10,14 +10,14 @@
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Park Tracker | KPC">
-<meta property="og:description" content="Track which Kentucky POTA parks a callsign has activated, with the KPC club leaderboard.">
+<meta property="og:description" content="Track which Kentucky POTA parks a call sign has activated, park by park, on a map.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-tracker.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="Track which Kentucky POTA parks a callsign has activated, with the KPC club leaderboard.">
+<meta name="description" content="Track which Kentucky POTA parks a call sign has activated, park by park, on a map.">
 <meta name="robots" content="noindex,nofollow">
 <script src="kpc-members.js?v=20261018a"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -100,16 +100,15 @@
 <section class="tool-head th-op has-badge"><div class="wrap"><div class="th-text">
 <p class="eyebrow">KPC PARK TRACKER</p>
 <h1>KENTUCKY <span>PARK TRACKER</span></h1>
-<p class="sub">Enter a callsign to see which of Kentucky's POTA parks it has activated — on a map, park by park — plus the KPC club leaderboard.</p>
+<p class="sub">Enter your call sign to see which of Kentucky's POTA parks you have activated, on a map, park by park, and which are still to go.</p>
 </div><img class="th-badge barrel" src="badge-barrel.jpg" alt="KPC logo burned into a barrel top" loading="lazy"></div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="members.html">Members Home</a><a href="kpc-club.html">Club Room</a><a href="kpc-tracker.html" aria-current=page>Park Tracker</a><a href="kpc-recap.html">Monthly Recap</a><a href="kpc-spots.html">On The Air</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
 <div class="panel">
 <form class="controls" id="f" autocomplete="off">
-<label class="field" style="flex:1 1 220px">CALLSIGN<input id="call" placeholder="KZ4CP" autocapitalize="characters" spellcheck="false"></label>
+<label class="field" style="flex:1 1 220px">CALLSIGN<input id="call" placeholder="Your call sign" autocapitalize="characters" spellcheck="false"></label>
 <button class="btn" type="submit" style="align-self:flex-end">SHOW MY PARKS</button>
 </form>
-<div class="chips" id="memberChips" style="margin-top:12px"></div>
 <div class="progress" id="prog"><div class="bar"><i style="width:0"></i></div><small></small></div>
 </div>
 
@@ -133,15 +132,11 @@
 </div></section>
 
 <section class="section" style="padding-top:0"><div class="wrap">
-<div class="sec-head"><div><div class="kicker">KENTUCKY PORTABLE CLUB</div><h2>KPC Leaderboard — Kentucky Parks</h2></div><button class="btn sm alt" id="lbBtn">LOAD LEADERBOARD</button></div>
-<div id="lb"><div class="empty">Load the leaderboard to rank KPC members by unique Kentucky parks activated.</div></div>
-<div class="note">Counts come from POTA's public activation records for every Kentucky park in the KPC guide. A park counts as activated with 10 or more QSOs in one activation. Data is saved in your browser for 12 hours. Hunted parks are only shown if you load your own file.</div>
+<div class="note">Counts come from POTA's public activation records for every Kentucky park. A park counts as activated with 10 or more QSOs in one activation. Data is saved in your browser for 12 hours. Hunted parks are only shown if you load your own file.</div>
 </div></section>
 <script>
 const $=id=>document.getElementById(id);
 let H=null,D=null,map=null,layer=null,hunted=new Set(),cur=null,tab='done';
-$('memberChips').innerHTML=KPC.MEMBERS.map(m=>`<button class="chip" type="button" data-c="${m}">${m}</button>`).join('');
-$('memberChips').onclick=e=>{const b=e.target.closest('button');if(b){$('call').value=b.dataset.c;run(b.dataset.c)}};
 $('f').onsubmit=e=>{e.preventDefault();run($('call').value)};
 async function load(){if(H)return H;D=await KPC.data();try{H=(await KPC.history(KPC.progressUI($('prog')))).hist}catch(e){$('prog').querySelector('small').textContent='Could not reach POTA right now — try again in a minute.';throw e}return H}
 function statsFor(call){const c=KPC.base(call),res={};
@@ -170,9 +165,6 @@ $('tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.data
 $('huntFile').onchange=async e=>{const f=e.target.files[0];if(!f)return;const t=await f.text();hunted=new Set((t.toUpperCase().match(/US-\d{4,5}/g)||[]));
  try{localStorage.setItem('kpcHunted',JSON.stringify([...hunted]))}catch(_){} $('huntMsg').textContent=`${hunted.size} park references found`;if(cur)run(cur)};
 try{hunted=new Set(JSON.parse(localStorage.getItem('kpcHunted')||'[]'));if(hunted.size)$('huntMsg').textContent=`${hunted.size} hunted parks saved on this device`}catch(_){}
-$('lbBtn').onclick=async()=>{$('lbBtn').disabled=true;await load();
- const rows=KPC.MEMBERS.map(m=>{const S=statsFor(m),v=Object.values(S);return{m,parks:v.filter(x=>x.ok).length,acts:v.reduce((s,x)=>s+x.n,0),q:v.reduce((s,x)=>s+x.q,0)}}).sort((a,b)=>b.parks-a.parks||b.acts-a.acts);
- $('lb').innerHTML=`<div class="tablewrap"><table class="list"><thead><tr><th>#</th><th>MEMBER</th><th>KY PARKS</th><th>ACTIVATIONS</th><th class="hide-m">QSOS</th><th class="hide-m">PROGRESS</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td><b>${i+1}</b></td><td><a href="?call=${r.m}" class="ref" onclick="event.preventDefault();document.getElementById('call').value='${r.m}';run('${r.m}');scrollTo({top:0,behavior:'smooth'})">${r.m}</a></td><td><b>${r.parks}</b> / ${D.parks.length}</td><td>${r.acts}</td><td class="hide-m">${r.q.toLocaleString()}</td><td class="hide-m" style="min-width:140px"><div class="bar"><i style="width:${100*r.parks/D.parks.length}%"></i></div></td></tr>`).join('')}</tbody></table></div>`;$('lbBtn').disabled=false};
 const q=new URLSearchParams(location.search).get('call');if(q){$('call').value=q;run(q)}
 </script>
 

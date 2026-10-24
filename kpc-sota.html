@@ -11,14 +11,14 @@
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
 <meta property="og:title" content="SOTA Summit Checker | KPC">
-<meta property="og:description" content="Map every SOTA summit in Kentucky or any US SOTA area and load your SOTA log to see which summits you have chased or activated.">
+<meta property="og:description" content="Map every SOTA summit in Kentucky or any US SOTA area and mark the summits you have chased or activated, by hand or from your SOTA log.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-sota.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="Map every SOTA summit in Kentucky or any US SOTA area and load your SOTA log to see which summits you have chased or activated.">
+<meta name="description" content="Map every SOTA summit in Kentucky or any US SOTA area and mark the summits you have chased or activated, by hand or from your SOTA log.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
@@ -99,7 +99,7 @@
 <section class="tool-head th-mast"><div class="wrap">
 <p class="eyebrow">KPC SOTA TOOL</p>
 <h1>SOTA <span>SUMMIT CHECKER</span></h1>
-<p class="sub">Every Summits on the Air summit in Kentucky, or any US SOTA area, on a map. Load your SOTA log to see which summits you’ve chased or activated and which are still needed.</p>
+<p class="sub">Every Summits on the Air summit in Kentucky, or any US SOTA area, on a map. Mark the summits you’ve chased or activated: tap <b>✓ MARK</b> in the list, or load the log you download from the SOTA database to fill them all in at once. Your marks stay on this device.</p>
 <div class="th-chips"><span>⛰️ 216 Kentucky summits</span><span>📏 Points & elevation</span><span>🗺️ Activation zones</span></div></div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html" aria-current=page>SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>We’re volunteers working from public maps, and we make mistakes.</b> Before you activate, check the official park map, make sure the land is public and open, and follow each program’s rules. Your activation is your responsibility. See something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a>.</div></aside>
@@ -161,9 +161,14 @@
 (function(){
 const $=id=>document.getElementById(id),esc=KPC.esc;
 const REF=/\b[A-Z0-9]{1,4}\/[A-Z]{2}-\d{3}\b/g;
-let ALL=null,BORD=null,AS='W4K',RG='',MODE='chase',DONE={},FILE=false,map=null,layer=null,tab='need',call='';
+let ALL=null,BORD=null,AS='W4K',RG='',MODE='chase',DONE={},FD={},HAS=false,FILE=false,map=null,layer=null,tab='need',call='';
 try{const u=new URLSearchParams(location.search);AS=(u.get('a')||localStorage.getItem('kpcSotaA')||'W4K').toUpperCase();MODE=localStorage.getItem('kpcSotaM')==='act'?'act':'chase'}catch(e){}
 const pts=s=>+(String(s||'').match(/\d+/)||[0])[0];
+/* Oct 24 (Brandon: 'maybe make a way someone can mark they activated'): marks by hand, kept on this device, added to the log file's */
+let MAN={act:{},chase:{}};try{MAN=Object.assign(MAN,JSON.parse(localStorage.getItem('kpcSotaMan')||'{}'))}catch(e){}
+const manSave=()=>{try{localStorage.setItem('kpcSotaMan',JSON.stringify(MAN))}catch(e){}};
+const today=()=>new Date().toISOString().slice(0,10).replace(/-/g,'');
+function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
 function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
 async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
@@ -197,28 +202,28 @@ function parse(txt){const out={};let n=0;const act=MODE==='act';
 async function runFile(){const f=$('sfile').files[0];const pr=$('sprog'),bar=pr.querySelector('i'),tx=pr.querySelector('small');pr.classList.add('on');
  if(!f){tx.textContent='Choose your SOTA log CSV first.';return}
  call=KPC.base($('scall').value||'');bar.style.width='40%';tx.textContent='Reading '+f.name+'…';
- try{const txt=await f.text();await loadAll();const{out,n}=parse(txt);DONE=out;FILE=true;
+ try{const txt=await f.text();await loadAll();const{out,n}=parse(txt);FD=out;FILE=true;DONE=merged();
   const inArea=list().filter(s=>DONE[s.c]).length;
   bar.style.width='100%';tx.textContent=n?`Read ${n.toLocaleString()} ${MODE==='act'?'activator':'chaser'} lines from ${f.name} • ${Object.keys(out).length.toLocaleString()} summit${Object.keys(out).length===1?"":"s"} in all, ${inArea} in ${AS}${RG?'/'+RG:''}.`:`No SOTA summit references (like W4K/EC-001) found in that file. Make sure it’s your ${MODE==='act'?'activator':'chaser'} log CSV from the SOTA database.`;
   tab=inArea?'done':'need';draw()}catch(e){tx.textContent='Could not read that file. ('+e.message+')'}}
-function draw(){const l=list(),act=MODE==='act';const done=l.filter(s=>DONE[s.c]),need=l.filter(s=>!DONE[s.c]);
+function draw(){DONE=merged();HAS=FILE||Object.keys(MAN[MODE]||{}).length>0;const l=list(),act=MODE==='act';const done=l.filter(s=>DONE[s.c]),need=l.filter(s=>!DONE[s.c]);
  const pd=done.reduce((a,s)=>a+s.p,0),pa=l.reduce((a,s)=>a+s.p,0);
- $('sstats').innerHTML=FILE?`<div class="stat"><b>${done.length}</b><span>OF ${l.length} SUMMITS</span></div><div class="stat"><b>${need.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${pd}</b><span>OF ${pa} POINTS (ONCE EACH)</span></div><div class="stat"><b>${done.reduce((a,s)=>a+DONE[s.c].q,0)}</b><span>${act?'QSO LINES':'CHASES'}</span></div>`
+ $('sstats').innerHTML=HAS?`<div class="stat"><b>${done.length}</b><span>OF ${l.length} SUMMITS</span></div><div class="stat"><b>${need.length}</b><span>STILL NEEDED</span></div><div class="stat"><b>${pd}</b><span>OF ${pa} POINTS (ONCE EACH)</span></div><div class="stat"><b>${done.reduce((a,s)=>a+DONE[s.c].q,0)}</b><span>${act?'QSO LINES':'CHASES'}</span></div>`
   :`<div class="stat"><b>${l.length}</b><span>SUMMITS</span></div><div class="stat"><b>${pa}</b><span>TOTAL POINTS</span></div><div class="stat"><b>${l.filter(s=>s.p>=6).length}</b><span>6+ POINT SUMMITS</span></div><div class="stat"><b>${l.length?Math.max(...l.map(s=>s.m)).toLocaleString():'—'} m</b><span>HIGHEST</span></div>`;
- $('sbarWrap').style.display=FILE?'':'none';$('scsv').style.display='';
- if(FILE){$('spbar').style.width=(l.length?100*done.length/l.length:0)+'%';$('spbarLbl').textContent=`${call?call+': ':''}${l.length?Math.round(100*done.length/l.length):0}% of ${AS}${RG?'/'+RG:''} summits ${act?'activated':'chased'}`}
+ $('sbarWrap').style.display=HAS?'':'none';$('scsv').style.display='';
+ if(HAS){$('spbar').style.width=(l.length?100*done.length/l.length:0)+'%';$('spbarLbl').textContent=`${call?call+': ':''}${l.length?Math.round(100*done.length/l.length):0}% of ${AS}${RG?'/'+RG:''} summits ${act?'activated':'chased'}`}
  [...$('stabs').children].forEach(x=>x.setAttribute('aria-pressed',x.dataset.t===tab));
  drawMap(l);drawTable(l)}
 function drawMap(l){if(!window.L){$('smap').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>';return}
  if(!map)map=KPC.leafletMap('smap');if(layer)layer.remove();layer=L.layerGroup().addTo(map);const act=MODE==='act';
  l.forEach(s=>{const d=DONE[s.c];L.circleMarker([s.la,s.lo],{radius:4+s.p*0.6,weight:1.2,color:'#173a28',fillColor:d?'#1d5a3a':'#ffffff',fillOpacity:.95})
-  .bindPopup(`<b>${esc(s.n)}</b><br><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${s.m.toLocaleString()} m (${Math.round(s.m*3.28084).toLocaleString()} ft) • ${s.p} point${s.p===1?'':'s'}<br>${FILE?(d?`<b style="color:#1d5a3a">${act?'Activated':'Chased'}</b>${d.first?' • first '+KPC.fmtDate(d.first):''}`:'<b>Still needed</b>'):''}`).addTo(layer)});
+  .bindPopup(`<b>${esc(s.n)}</b><br><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${s.m.toLocaleString()} m (${Math.round(s.m*3.28084).toLocaleString()} ft) • ${s.p} point${s.p===1?'':'s'}<br>${HAS?(d?`<b style="color:#1d5a3a">${act?'Activated':'Chased'}</b>${d.first?' • first '+KPC.fmtDate(d.first):''}`:'<b>Still needed</b>'):''}`).addTo(layer)});
  if(map._k!==AS+RG&&l.length){map.fitBounds(L.latLngBounds(l.map(s=>[s.la,s.lo])),{padding:[20,20],maxZoom:10});map._k=AS+RG}}
 function drawTable(l){const act=MODE==='act';let rows;
  if(tab==='done'){$('scol4').textContent='FIRST';rows=l.filter(s=>DONE[s.c]).sort((a,b)=>(DONE[a.c].first||'').localeCompare(DONE[b.c].first||''))}
  else{$('scol4').textContent='';rows=l.filter(s=>!DONE[s.c]).sort((a,b)=>b.p-a.p||b.m-a.m)}
- $('stbody').innerHTML=rows.map(s=>`<tr><td><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${esc(s.n)}</td><td>${s.m.toLocaleString()} m</td><td><span class="pts p${s.p}">${s.p}</span></td><td>${tab==='done'&&DONE[s.c]?KPC.fmtDate(DONE[s.c].first):''}</td></tr>`).join('')
-  ||`<tr><td colspan="4" class="muted">${tab==='done'?(FILE?`No ${AS} summits ${act?'activated':'chased'} in that file yet.`:'Load your SOTA log to see the summits you’ve done.'):'Every summit done — well climbed!'}</td></tr>`}
+ $('stbody').innerHTML=rows.map(s=>`<tr><td><a class="ref" href="${esc(s.url||KPC.links.sota(s.c))}" target="_blank" rel="noopener">${s.c}</a><br>${esc(s.n)}</td><td>${s.m.toLocaleString()} m</td><td><span class="pts p${s.p}">${s.p}</span></td><td>${tab==='done'&&DONE[s.c]?(DONE[s.c].first?KPC.fmtDate(DONE[s.c].first)+' ':'')+(DONE[s.c].man?`<button type="button" class="btn" data-unmark="${s.c}" title="Take my mark off" style="padding:4px 8px;min-height:30px">✕</button>`:''):`<button type="button" class="btn" data-mark="${s.c}" style="padding:4px 8px;min-height:30px">✓ MARK</button>`}</td></tr>`).join('')
+  ||`<tr><td colspan="4" class="muted">${tab==='done'?(HAS?`No ${AS} summits ${act?'activated':'chased'} yet.`:'Tap ✓ MARK on a summit you have done, or load your SOTA log.'):'Every summit done — well climbed!'}</td></tr>`}
 function csv(which){const l=list(),q=v=>`"${String(v??'').replace(/"/g,'""')}"`,d=x=>x?`${x.slice(0,4)}-${x.slice(4,6)}-${x.slice(6,8)}`:'';
  const rows=l.filter(s=>which==='all'||(which==='done'?DONE[s.c]:!DONE[s.c])).map(s=>{const x=DONE[s.c];return[s.c,s.n,s.m,Math.round(s.m*3.28084),s.p,x?(MODE==='act'?'Activated':'Chased'):'Not yet',x?d(x.first):'',x?d(x.last):'',s.la,s.lo,s.url].map(q).join(',')});
  const head=['Summit','Name','Height (m)','Height (ft)','Points','Status','First','Last','Latitude','Longitude','Link'].map(q).join(',');
@@ -231,6 +236,7 @@ $('m-chase').onclick=()=>{MODE='chase';save();how();if($('sfile').files[0])runFi
 $('m-act').onclick=()=>{MODE='act';save();how();if($('sfile').files[0])runFile();else draw()};
 $('sf').onsubmit=e=>{e.preventDefault();runFile()};
 $('sfile').onchange=()=>{const f=$('sfile').files[0];$('sfname').textContent=f?f.name:'No file chosen';if(f)runFile()};
+$('stbody').onclick=e=>{const m=e.target.closest('[data-mark],[data-unmark]');if(!m)return;const M=MAN[MODE]||(MAN[MODE]={});if(m.dataset.mark)M[m.dataset.mark]=today();else delete M[m.dataset.unmark];manSave();draw()};
 $('stabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;tab=b.dataset.t;draw()};
 $('scsvAll').onclick=()=>csv('all');$('scsvDone').onclick=()=>csv('done');$('scsvNeed').onclick=()=>csv('need');
 how();
