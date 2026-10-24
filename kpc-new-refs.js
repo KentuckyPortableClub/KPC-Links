@@ -12,7 +12,7 @@
 #kpcNewRefs h3{margin:0 0 4px;font-size:1.15rem;letter-spacing:.04em}#kpcNewRefs .nr-sub{margin:0 0 10px;font-size:.88rem;opacity:.8}
 #kpcNewRefs .nr-ch{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}#kpcNewRefs .nr-ch button,#kpcNewRefs .nr-ch select{font:inherit;font-size:.8rem;font-weight:700;letter-spacing:.05em;border:1px solid #c9a24a;border-radius:999px;padding:5px 11px;background:#fff;color:#2a1a05;cursor:pointer}
 #kpcNewRefs .nr-ch button[aria-pressed=true]{background:linear-gradient(#f6d58a,#d5a63a);border-color:#b8892a}
-#kpcNewRefs ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}#kpcNewRefs li{background:#fff;border:1px solid #e4d3a6;border-radius:10px;padding:9px 11px}
+#kpcNewRefs ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}#kpcNewRefs li{min-width:0}#kpcNewRefs .nr-refs a{max-width:100%;white-space:normal!important;overflow-wrap:anywhere;box-sizing:border-box}#kpcNewRefs li{background:#fff;border:1px solid #e4d3a6;border-radius:10px;padding:9px 11px}
 #kpcNewRefs .nr-t{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}#kpcNewRefs .nr-ref{font-family:ui-monospace,Menlo,monospace;font-weight:800}
 #kpcNewRefs .nr-tag{font-size:.7rem;font-weight:800;letter-spacing:.06em;border-radius:6px;padding:1px 6px;background:#2c6e49;color:#fff}#kpcNewRefs .nr-tag.kff{background:#1d7a7a}#kpcNewRefs .nr-tag.sota{background:#b4561e}
 #kpcNewRefs .nr-m{font-size:.8rem;opacity:.75;margin-top:2px}#kpcNewRefs .nr-l{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}

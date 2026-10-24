@@ -41,7 +41,35 @@
   /* grid squares */
   let QZC = null, QZONE = null; const QZW = [];
   /* auto-send to QRZ ~4 s after logging (the call look-up has filled name / state by then); one at a time */
-  function qzLater(q) { setTimeout(() => { if (QZC) QZC(); if (!QZONE) return; QZW.push(q.id); if (QZW.length === 1) qzRun(); }, 4000); }
+  /* ---- counties (Opus Oct 24, same as the KPC app): FCC census-area lookup, US only, answers kept in kpcLgCnty ---- */
+  const CNC = get('kpcLgCnty', {});
+  async function cnty(la, lo) {
+    if (!isFinite(la) || !isFinite(lo) || la == null) return '';
+    const k = (+la).toFixed(2) + ',' + (+lo).toFixed(2); if (CNC[k] !== undefined) return CNC[k];
+    if (la < 17 || la > 72 || lo > -60) return '';
+    try { const j = await fetch(`https://geo.fcc.gov/api/census/area?format=json&lat=${(+la).toFixed(5)}&lon=${(+lo).toFixed(5)}`).then(x => x.ok ? x.json() : null);
+      const r = j && (j.results || [])[0], v = r && r.county_name ? r.state_code + ',' + String(r.county_name).replace(/\s+(County|Parish|Borough|Census Area|Municipality|City and Borough)$/i, '') : '';
+      CNC[k] = v; const ks = Object.keys(CNC); if (ks.length > 400) delete CNC[ks[0]]; put('kpcLgCnty', CNC); return v; } catch (e) { return ''; }
+  }
+  /* MY county from my park's pin (else my grid); THEIR county from their call-book address when they are not at a park */
+  async function cntyFill(q) {
+    if (SET.auto === false) return;
+    try {
+      if (!q.mc) { const pi = SET.pinfo[refsOf(q.pk)[0]]; const p = pi && isFinite(pi.la) ? [pi.la, pi.lo] : fromGrid(q.mg || ''); if (p) q.mc = await cnty(p[0], p[1]); }
+      if (!q.tc && !anyRefs(q.ref).length) { for (let i = 0; i < 12 && q.la == null; i++) await new Promise(r => setTimeout(r, 250)); if (q.la != null) q.tc = await cnty(q.la, q.lo); }
+      if (q.mc || q.tc) save();
+    } catch (e) {}
+  }
+  const ctyTxt = v => { const m = String(v || '').match(/^([A-Z]{2}),(.+)$/); return m ? m[2] + ' County, ' + m[1] : ''; };
+  function autoNote(q, mine) {
+    if (SET.auto === false) return '';
+    const out = [];
+    if (q.role !== 'hunt') { if (mine.length) out.push('POTA ' + (mine.length > 1 ? mine.length + '-fer ' : '') + 'activation at ' + mine.join(' + ')); if (q.wf) out.push('WWFF ' + q.wf); if (q.so) out.push('SOTA ' + q.so); }
+    if (q.mc) out.push(ctyTxt(q.mc));
+    if (q.op && q.my && base(q.op) !== base(q.my)) out.push('op ' + base(q.op));
+    return out.filter(Boolean).join(' · ');
+  }
+  function qzLater(q) { cntyFill(q); setTimeout(() => { if (QZC) QZC(); if (!QZONE) return; QZW.push(q.id); if (QZW.length === 1) qzRun(); }, 4000); }
   async function qzRun() { while (QZW.length) { const id = QZW[0], q = L.q.find(y => y.id === id); if (q && QZONE) await QZONE(q); QZW.shift(); await new Promise(z => setTimeout(z, 400)); } }
   function toGrid(la, lo) {
     lo += 180; la += 90; const A = 'ABCDEFGHIJKLMNOPQRSTUVWX';
@@ -56,7 +84,7 @@
   const miles = (a, b) => { const R = 3958.8, r = Math.PI / 180, dl = (b[0] - a[0]) * r, dn = (b[1] - a[1]) * r, x = Math.sin(dl / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dn / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); };
 
   /* ---------------- settings + log storage ---------------- */
-  const SET = Object.assign({ call: get('kpcMyCall', '') || '', park: '', grid: '', pwr: '', stamp: false, carry: false, notes: '', act: 0, pinfo: {}, me: null, ops: '', op: '', share: false, wf: '', so: '', role: 'act', prev: false }, get('kpcLgSet', {}));
+  const SET = Object.assign({ call: get('kpcMyCall', '') || '', park: '', grid: '', pwr: '', stamp: false, carry: false, notes: '', act: 0, pinfo: {}, me: null, ops: '', op: '', share: false, wf: '', so: '', role: 'act', prev: false, auto: true }, get('kpcLgSet', {}));
   const saveSet = () => put('kpcLgSet', SET);
   /* one box for every park number now (Brandon Oct 16): fold old separate WWFF / SOTA boxes into it once */
   if (SET.wf || SET.so) { const have = String(SET.park || ''); [SET.wf, SET.so].forEach(r => { if (r && !have.toUpperCase().includes(String(r).toUpperCase())) SET.park = [SET.park, r].filter(Boolean).join(', '); }); SET.wf = ''; SET.so = ''; saveSet(); }
@@ -405,8 +433,9 @@
       o += af('CALL', q.call) + af('QSO_DATE', q.d) + af('TIME_ON', q.tm) + af('BAND', q.band) + af('FREQ', q.f) + af('MODE', md) + af('SUBMODE', sm) + af('RST_SENT', q.rs) + af('RST_RCVD', q.rr)
         + af('STATION_CALLSIGN', q.my) + af('OPERATOR', base(q.op || q.my)) + af('MY_SIG', mySig[0]) + af('MY_SIG_INFO', mySig[1]) + af('MY_POTA_REF', prog === 'WWFF' ? '' : mine.join(',')) + af('MY_WWFF_REF', q.wf) + af('MY_SOTA_REF', q.so) + af('MY_GRIDSQUARE', q.mg) + af('MY_STATE', myst) + af('TX_PWR', q.pw)
         + af('SIG', thSig[0]) + af('SIG_INFO', thSig[1]) + af('POTA_REF', their.join(',')) + af('WWFF_REF', T.wwff[0] || '') + af('SOTA_REF', T.sota[0] || '')
+        + (SET.auto === false ? '' : af('MY_CNTY', q.mc) + af('CNTY', q.tc))
         + af('NAME', q.name) + af('QTH', q.qth) + af('STATE', /^[A-Z]{2}$/.test(q.st) ? q.st : '') + af('GRIDSQUARE', q.g)
-        + af('COMMENT', [anyRefs(q.ref).length ? 'P2P ' + anyRefs(q.ref).join(' ') : '', q.name].filter(Boolean).join(' ').slice(0, 120)) + af('NOTES', [q.note, q.cn].filter(Boolean).join(' · ')) + '<EOR>\n';
+        + af('COMMENT', [autoNote(q, onePark ? [onePark] : refsOf(q.pk)), anyRefs(q.ref).length ? 'P2P ' + anyRefs(q.ref).join(' ') : '', q.name].filter(Boolean).join(' · ').slice(0, 200)) + af('NOTES', [q.note, q.cn].filter(Boolean).join(' · ')) + '<EOR>\n';
     });
     return o;
   }
@@ -424,7 +453,7 @@
       const k = kHzOf(r.FREQ), g = r.GRIDSQUARE || '', ll = fromGrid(g);
       out.push({ id: 'i' + Math.random().toString(36).slice(2, 10), call: r.CALL.toUpperCase(), d: r.QSO_DATE, tm: String(r.TIME_ON).slice(0, 4), t: 0, f: k ? mhz(k) : '', band: (r.BAND || bandOf(k)).toLowerCase(), mode: r.SUBMODE || r.MODE || '',
         rs: r.RST_SENT || '', rr: r.RST_RCVD || '', ref: anyRefs([r.POTA_REF, r.WWFF_REF, r.SOTA_REF, /^(POTA|WWFF)$/.test(r.SIG || '') ? r.SIG_INFO : ''].filter(Boolean).join(',')).join(','), wf: wwffN(r.MY_WWFF_REF || (r.MY_SIG === 'WWFF' ? r.MY_SIG_INFO : '')), so: sotaN(r.MY_SOTA_REF || ''), name: r.NAME || '', st: r.STATE || '', qth: r.QTH || '', g, la: ll ? ll[0] : null, lo: ll ? ll[1] : null,
-        note: r.NOTES || '', my: (r.STATION_CALLSIGN || r.OPERATOR || myCall()).toUpperCase(), pk: refsOf(r.MY_POTA_REF || (r.MY_SIG === 'POTA' || !r.MY_SIG ? r.MY_SIG_INFO : '')).join(','), mg: r.MY_GRIDSQUARE || '', pw: r.TX_PWR || '', x: 1 });
+        note: r.NOTES || '', my: (r.STATION_CALLSIGN || r.OPERATOR || myCall()).toUpperCase(), pk: refsOf(r.MY_POTA_REF || (r.MY_SIG === 'POTA' || !r.MY_SIG ? r.MY_SIG_INFO : '')).join(','), mg: r.MY_GRIDSQUARE || '', pw: r.TX_PWR || '', mc: r.MY_CNTY || '', tc: r.CNTY || '', x: 1 });
     });
     out.forEach(q => q.t = tsOf(q));
     return out;
@@ -851,6 +880,7 @@
   function opsInit() {
     $('myOps').value = SET.ops || ''; $('myShare').checked = !!SET.share;
     $('myOps').oninput = e => { e.target.value = e.target.value.toUpperCase(); SET.ops = e.target.value; saveSet(); drawAll(); };
+    $('myAuto').checked = SET.auto !== false; $('myAuto').onchange = e => { SET.auto = e.target.checked; saveSet(); };
     $('myShare').onchange = e => { SET.share = e.target.checked; saveSet(); drawAll(); toast(SET.share ? 'Everyone logs under ' + (myCall() || 'my call') + ' (one POTA file per park).' : 'Each operator logs under their own call (their own POTA files).'); };
     $('eOps').onclick = e => { const b = e.target.closest('[data-op]'); if (!b) return; SET.op = b.dataset.op; saveSet(); drawOps(); who(); toast('🎙 ' + SET.op + ' is on the radio.'); $('eCall').focus(); };
   }
@@ -1067,7 +1097,7 @@
     add: quickLog, band: bandOf, toast,
     dupe: (call, band, mode) => dupeOf(call, band, mode, '').length > 0,
     worked: call => { const b = base(call); return L.q.some(q => base(q.call) === b); },
-    qs: () => L.q,
+    qs: () => L.q, adif: Q => adif(Q || L.q),
     newPark: ref => { const W = HLOG(); return !!(ref && W.size && !W.has(ref)); },
     freq: () => kHzOf($('eFreq').value),
     spots: () => SP, station: () => stationOpen(true),
