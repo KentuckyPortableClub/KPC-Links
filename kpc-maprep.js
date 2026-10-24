@@ -91,7 +91,7 @@
       B.jget(NPSQ + '?' + new URLSearchParams({ where: `STATE='${st}' AND ` + ws.map(x => `UPPER(UNIT_NAME) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: 'UNIT_NAME,UNIT_TYPE,UNIT_CODE', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' })).then(j => (j.features || []).forEach(f => out.push({ src: 'National Park Service boundary (live)', f: fake(f, { Unit_Nm: f.properties.UNIT_NAME, Own_Type: 'FED', Own_Name: 'NPS', Loc_Own: 'National Park Service', Mang_Type: 'FED', Mang_Name: 'NPS', Loc_Mang: 'National Park Service', Loc_Ds: f.properties.UNIT_TYPE, State_Nm: st, Web: f.properties.UNIT_CODE ? 'https://www.nps.gov/' + String(f.properties.UNIT_CODE).toLowerCase() + '/' : '' }) }))).catch(() => {}),
       box ? B.jget(FWSQ + '?' + new URLSearchParams({ where: ws.map(x => `ORGNAME LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), geometry: box.join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: 'ORGNAME,RSL_TYPE,INTTYPE1,SUM_GISACRES', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' })).then(j => (j.features || []).forEach(f => { const p = f.properties; out.push({ src: 'U.S. Fish & Wildlife Service land (live)', f: fake(f, { Unit_Nm: p.ORGNAME.replace(/\b\w+/g, t => t[0] + t.slice(1).toLowerCase()), Own_Type: 'FED', Own_Name: 'FWS', Loc_Own: 'U.S. Fish & Wildlife Service', Mang_Type: 'FED', Mang_Name: 'FWS', Loc_Mang: 'U.S. Fish & Wildlife Service', Loc_Ds: p.RSL_TYPE, GIS_Acres: p.SUM_GISACRES, Category: p.INTTYPE1 === 'E' ? 'Easement' : 'Fee', State_Nm: st }) }); })).catch(() => {}) : null,
       st === 'KY' ? B.ky().then(F => F.filter(f => B.sameName(f._nm, name) || ws.every(x => f._nm.toLowerCase().includes(x.toLowerCase()))).forEach(f => { const fed = /bnps|bdbnf|bwilder|bfws/.test(f._L.k), kpc = f._L.kpc; out.push({ src: kpc ? 'KPC-drawn outline (approximate)' : 'Kentucky state boundary file (' + f._L.agency + ')', f: fake({ geometry: f.geometry }, { Unit_Nm: f._nm, Own_Type: kpc ? 'UNK' : fed ? 'FED' : 'STAT', Loc_Own: f._L.agency, Mang_Type: kpc ? 'UNK' : fed ? 'FED' : 'STAT', Loc_Mang: f._L.agency, Loc_Ds: (f.properties || {}).TYPE || f._L.name, Pub_Access: /restricted/i.test((f.properties || {}).ACCESS || '') ? 'RA' : /open/i.test((f.properties || {}).ACCESS || '') || /^b(wma|state)$/.test(f._L.k) ? 'OA' : 'UK', State_Nm: 'KY', Web: (f.properties || {}).URL || '' }) }); })).catch(() => {}) : null,
-      st === 'KY' ? kyLive(ws).then(L => L.forEach(x => out.push(x))) : null,
+      st === 'KY' ? kyLive(ws).then(L => L.forEach(x => out.push(x))) : stLive(st, ws).then(L => L.forEach(x => out.push(x))).catch(() => {}),
       osmFind(ws, st).then(L => L.forEach(x => out.push(x))).catch(() => {})
     ].filter(Boolean);
     await Promise.all(jobs);
@@ -195,6 +195,24 @@
     { svc: 'Ky_State_Parks_Features_WGS84WM', id: 8, ag: 'Kentucky State Parks', nm: 'PUBLIC_NAM', full: p => p.PUBLIC_NAM + (/park|site/i.test(p.PUBLIC_NAM) ? '' : /\/historic\//.test(p.HYPERLINK || '') ? ' State Historic Site' : /\/resort\//.test(p.HYPERLINK || '') ? ' State Resort Park' : ' State Park'), web: p => p.HYPERLINK || '', acc: () => 'OA', ds: p => /\/historic\//.test(p.HYPERLINK || '') ? 'State Historic Site' : 'State Park' },
     { svc: 'Ky_KNP_State_Nature_Preserves_WGS84WM', id: 0, ag: 'Office of Kentucky Nature Preserves', nm: 'MANAME', web: p => p.Webpage || '', acc: p => /open/i.test(p.PUB_ACCESS || '') ? 'OA' : p.PUB_ACCESS ? 'RA' : 'UK', ds: p => p.UNIT_TYPE || 'State Nature Preserve', own: p => p.MA_OWNER, mng: p => p.MNG_INST },
     { svc: 'Ky_KNP_Natural_Areas_WGS84WM', id: 0, ag: 'Office of Kentucky Nature Preserves', nm: 'MANAME', web: p => p.Webpage || '', acc: p => /open/i.test(p.PUB_ACCESS || '') ? 'OA' : p.PUB_ACCESS ? 'RA' : 'UK', ds: p => p.UNIT_TYPE || 'State Natural Area', own: p => p.MA_OWNER, mng: p => p.MNG_INST }];
+  /* Other states' own GIS layers (Oct 24): data/state-gis.json = { ST: [ {url, ag, kind, nm, web, ds, acc, own} ] }, curated from the
+     'State GIS layer scan' workflow (data/state-gis-found.json). Same output shape as kyLive, so the name search, FIND PARKS TO ADD and
+     the GIS MAP buttons use them the same way. A layer that does not answer is skipped. */
+  let SGIS = null;
+  const stGis = async st => { if (!SGIS) SGIS = await B.jget('data/state-gis.json?v=' + Math.floor(Date.now() / 864e5)).then(j => j && j.states || {}).catch(() => ({})); return (SGIS[st] || []); };
+  async function stLive(st, ws) {
+    const Ls = await stGis(st); if (!Ls.length) return [];
+    const sq = x => x.replace(/'/g, "''"), out = [], all = !ws || !ws.length, SN2 = Object.entries(SN).find(([k, v]) => v === st);
+    const sname = SN2 ? SN2[0].replace(/\b\w/g, c => c.toUpperCase()) : st;
+    await Promise.all(Ls.map(L => B.jget(L.url.replace(/\/$/, '') + '/query?' + new URLSearchParams({ where: all ? '1=1' : ws.map(x => `UPPER(${L.nm}) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: all ? 4 : 5, maxAllowableOffset: all ? 0.0008 : 0.0001, resultRecordCount: 2000, f: 'geojson' }), null, all ? 60000 : 20000).then(j => (j.features || []).forEach(f => {
+      const P = f.properties || {}; const nmv = P[L.nm]; if (!f.geometry || !nmv) return;
+      const web = L.web ? (P[L.web] || '') : '', accv = L.acc ? String(P[L.acc] || '') : '', ownv = L.own ? String(P[L.own] || '') : '';
+      const acc = !L.acc ? 'UK' : /^(n|no|closed|none)/i.test(accv) ? 'XA' : /restrict|permit|limited|season/i.test(accv) ? 'RA' : /open|yes|y\b|public/i.test(accv) ? 'OA' : 'UK';
+      const full = L.ds && !new RegExp(L.ds.replace(/[^A-Za-z ]/g, ''), 'i').test(nmv) && !/park|forest|area|preserve|refuge|site|lake|wma/i.test(nmv) ? nmv + ' ' + L.ds : nmv;
+      out.push({ src: sname + ' state GIS (live): ' + L.ag, f: fake(f, { Unit_Nm: full, Own_Type: ownv ? kyType(ownv) : 'STAT', Loc_Own: ownv || L.ag, Mang_Type: 'STAT', Loc_Mang: L.ag, Loc_Ds: L.ds || '', Pub_Access: acc, State_Nm: st, Web: /^https?:/i.test(web) ? web : '' }) });
+    })).catch(() => {})));
+    return out;
+  }
   const kyType = s => /county|fiscal court|city of|town of/i.test(s || '') ? 'LOC' : /universit|college/i.test(s || '') ? 'STAT' : /private|trust|conservancy|foundation|society/i.test(s || '') ? 'NGO' : 'STAT';
   async function kyLive(ws) {
     const sq = x => x.replace(/'/g, "''"), out = [], all = !ws || !ws.length;   /* no words (Oct 24) = every area in Kentucky's live layers, for FIND PARKS TO ADD */
@@ -371,6 +389,10 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
       const k = /wildlife management|\bwma\b|hunting|fish & wildlife/.test(n) ? 'wma' : /nature preserve|\bsnp\b/.test(n) ? 'snp' : /natural area/.test(n) ? 'sna' : /state (resort )?park|historic site|state parks/.test(n) ? 'park' : '';
       if (k) out.push(['GIS MAP: KENTUCKY STATE GIS', mv('https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/' + KYGIS[k])]);
     }
+    if (g.st !== 'KY' && SGIS && SGIS[g.st]) {
+      const n = (g.name + ' ' + src).toLowerCase(), want = /wildlife management|\bwma\b|hunting|fish & wildlife|game/.test(n) ? 'wild' : /nature preserve|natural area|preserve/.test(n) ? 'preserve' : /state forest/.test(n) ? 'forest' : /state (resort )?park|historic site|state parks|recreation area/.test(n) ? 'park' : '';
+      SGIS[g.st].filter(L => !want || L.kind === want || L.kind === 'land').slice(0, 2).forEach(L => out.push(['GIS MAP: ' + L.ag.toUpperCase(), mv(L.url)]));
+    }
     out.push(['GIS MAP: USGS OFFICIAL PUBLIC LAND DATABASE (PAD-US)', mv(PADL)]);
     return out;
   }
@@ -421,6 +443,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
   const typesUsed = L => { const m = {}; L.forEach(p => { if (p.type) m[p.type] = (m[p.type] || 0) + 1; }); return Object.entries(m).sort((a, b) => b[1] - a[1]); };
   async function open(g) {
     msg('Loading the boundary and checking POTA…');
+    try { await stGis(g.st); } catch (e) {}
     let fc;
     if (g.feats) fc = { features: g.feats };
     else try {
@@ -784,15 +807,15 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     const keep = rows.filter(r => r.Category === 'Fee' && /^(FED|STAT)$/.test(r.Mang_Type) && /^(FED|STAT)$/.test(r.Own_Type) && (r.Unit_Nm || r.Loc_Nm));
     const G = new Map(); keep.forEach(r => { const n = r.Unit_Nm || r.Loc_Nm, k = n + '|' + st; const g = G.get(k) || { name: n, st, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
     /* Kentucky: the state's own live layers too; PAD-US is a yearly snapshot and misses new state land (Brandon Oct 24: Blackford Oaks WMA was not listed) */
-    if (st === 'KY') {
-      const e = document.querySelector('.mr-msg div'); if (e) e.firstChild.textContent = `Read ${rows.length.toLocaleString()} national records; now reading Kentucky's own state map layers (new land shows here first)…`;
-      let KL = []; try { KL = await kyLive([]); await wmaOwners(KL); } catch (e2) {}
+    if (st === 'KY' || (await stGis(st)).length) {
+      const e = document.querySelector('.mr-msg div'); if (e) e.firstChild.textContent = `Read ${rows.length.toLocaleString()} national records; now reading ${esc(st)}'s own state map layers (new land shows here first)…`;
+      let KL = []; try { KL = st === 'KY' ? await kyLive([]) : await stLive(st, []); if (st === 'KY') await wmaOwners(KL); } catch (e2) {}
       const names = [...G.values()].map(g => g.name);
       KL.forEach(x => {
         const P2 = x.f.properties, n = P2.Unit_Nm; if (!n || box && !(() => { const b = B.bbox(x.f.geometry); return b[2] >= box[0] && b[0] <= box[2] && b[3] >= box[1] && b[1] <= box[3]; })()) return;
         if (names.some(m => B.norm(m) === B.norm(n) || (B.sameName(m, n) && B.sameKind(m, n)))) return;
         if (!/^(FED|STAT)$/.test(P2.Own_Type) && P2.Own_Type !== 'UNK' || !/^(FED|STAT)$/.test(P2.Mang_Type) || P2.Pub_Access === 'XA') return;
-        const k = n + '|KY', g = G.get(k) || { name: n, st, rows: [], acres: 0, src: x.src, feats: [], kyNew: true }; g.rows.push(P2); g.acres += +P2.GIS_Acres || 0; g.feats.push(x.f); G.set(k, g);
+        const k = n + '|' + st, g = G.get(k) || { name: n, st, rows: [], acres: 0, src: x.src, feats: [], kyNew: true }; g.rows.push(P2); g.acres += +P2.GIS_Acres || 0; g.feats.push(x.f); G.set(k, g);
       });
     }
     const P = await potaState(st).catch(() => []);
@@ -826,7 +849,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     }
     const star = fresh.filter(g => !g.flags.length && !g.close.length).sort((a, b) => b.acres - a.acres), look = fresh.filter(g => g.flags.length || g.close.length).sort((a, b) => b.acres - a.acres), have = all.length - fresh.length;
     if (P.length < 20) msg(`<b>Could not read POTA's full park list for ${esc(st)}</b> (${P.length} came back), so most areas below may already be parks: the full check still tells you. Try again in a minute.`); else $('mrOut').innerHTML = '';
-    const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.kyNew ? ' · <em class="mr-ok">in Kentucky\'s state map, not yet in the national database</em>' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
+    const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.kyNew ? ' · <em class="mr-ok">in the state\'s own map, not yet in the national database</em>' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
     const IDX = star.concat(look);
     const more = (L, from, id) => L.length > from ? `<button type="button" class="mr-more" data-more="${id}">SHOW ${Math.min(60, L.length - from)} MORE (${L.length - from} left)</button>` : '';
     let nStar = 60, nLook = 30;

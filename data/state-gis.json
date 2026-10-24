@@ -1,0 +1,479 @@
+{
+ "when": "2026-10-24",
+ "note": "Curated from data/state-gis-found.json (State GIS layer scan). agency = on the state's own server; agol = the agency's account on ArcGIS Online. KY uses its own KYL list in kpc-maprep.js.",
+ "states": {
+  "AK": [
+   {
+    "kind": "park",
+    "ag": "Alaska State Parks (DNR)",
+    "nm": "PARKNAME",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2",
+    "host": "agency"
+   }
+  ],
+  "AR": [
+   {
+    "kind": "preserve",
+    "ag": "Arkansas Natural Heritage Commission",
+    "nm": "maname",
+    "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21",
+    "ds": "Natural Area",
+    "host": "agency"
+   }
+  ],
+  "CA": [
+   {
+    "kind": "wild",
+    "ag": "California Department of Fish & Wildlife",
+    "nm": "PROP_NAME",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
+    "web": "LINK",
+    "host": "agol"
+   }
+  ],
+  "CO": [
+   {
+    "kind": "wild",
+    "ag": "Colorado Parks & Wildlife",
+    "nm": "PropName",
+    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30",
+    "ds": "State Wildlife Area",
+    "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Colorado Parks & Wildlife",
+    "nm": "PropName",
+    "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41",
+    "ds": "State Park",
+    "host": "agency"
+   }
+  ],
+  "DE": [
+   {
+    "kind": "land",
+    "ag": "Delaware DNREC",
+    "nm": "NAME",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0",
+    "web": "WEBSITE",
+    "host": "agency"
+   },
+   {
+    "kind": "forest",
+    "ag": "Delaware Forest Service",
+    "nm": "LABEL",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0",
+    "ds": "State Forest",
+    "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Delaware Fish & Wildlife (DNREC)",
+    "nm": "AREA_NAME",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17",
+    "ds": "Wildlife Area",
+    "host": "agency"
+   }
+  ],
+  "FL": [
+   {
+    "kind": "park",
+    "ag": "Florida State Parks (DEP)",
+    "nm": "SITE_NAME",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0",
+    "web": "URL",
+    "host": "agency"
+   },
+   {
+    "kind": "forest",
+    "ag": "Florida Forest Service",
+    "nm": "LABEL",
+    "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0",
+    "web": "WEBSITE",
+    "ds": "State Forest",
+    "host": "agol"
+   }
+  ],
+  "GA": [
+   {
+    "kind": "wild",
+    "ag": "Georgia DNR Wildlife Resources Division",
+    "nm": "PropName",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/9",
+    "web": "Website",
+    "ds": "WMA",
+    "host": "agol"
+   }
+  ],
+  "HI": [
+   {
+    "kind": "park",
+    "ag": "Hawaii Division of State Parks (DLNR)",
+    "nm": "name",
+    "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16",
+    "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Hawaii DLNR reserves (DOFAW)",
+    "nm": "name",
+    "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1",
+    "web": "linktowebpage",
+    "host": "agency"
+   }
+  ],
+  "IA": [
+   {
+    "kind": "wild",
+    "ag": "Iowa DNR",
+    "nm": "AREA_NAME",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9",
+    "web": "Atlas_Link",
+    "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Iowa DNR",
+    "nm": "NAME",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2",
+    "host": "agency"
+   }
+  ],
+  "ID": [
+   {
+    "kind": "wild",
+    "ag": "Idaho Fish & Game",
+    "nm": "Name",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0",
+    "ds": "WMA",
+    "host": "agol"
+   }
+  ],
+  "IN": [
+   {
+    "kind": "land",
+    "ag": "Indiana DNR",
+    "nm": "unitname",
+    "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "KS": [
+   {
+    "kind": "park",
+    "ag": "Kansas Wildlife & Parks (state park areas, KDOT GIS)",
+    "nm": "Description",
+    "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Boundaries/State_Park_Area/MapServer/0",
+    "host": "agency"
+   }
+  ],
+  "LA": [
+   {
+    "kind": "wild",
+    "ag": "Louisiana Department of Wildlife & Fisheries",
+    "nm": "NAME",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0",
+    "web": "Link",
+    "ds": "WMA",
+    "host": "agol"
+   }
+  ],
+  "MI": [
+   {
+    "kind": "park",
+    "ag": "Michigan DNR Parks & Recreation",
+    "nm": "Facility",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+    "host": "agol"
+   }
+  ],
+  "MN": [
+   {
+    "kind": "wild",
+    "ag": "Minnesota DNR",
+    "nm": "name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0",
+    "ds": "WMA",
+    "host": "agency"
+   },
+   {
+    "kind": "forest",
+    "ag": "Minnesota DNR",
+    "nm": "name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4",
+    "ds": "State Forest",
+    "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Minnesota DNR",
+    "nm": "unit_name",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4",
+    "ds": "Scientific and Natural Area",
+    "host": "agency"
+   }
+  ],
+  "MT": [
+   {
+    "kind": "park",
+    "ag": "Montana Fish, Wildlife & Parks",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+    "web": "WEB_PAGE",
+    "ds": "State Park",
+    "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "Montana Fish, Wildlife & Parks",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_WMA/FeatureServer/0",
+    "web": "WEB_PAGE",
+    "ds": "Wildlife Management Area",
+    "host": "agol"
+   }
+  ],
+  "ND": [
+   {
+    "kind": "wild",
+    "ag": "North Dakota Game & Fish",
+    "nm": "Unit_Name",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0",
+    "ds": "WMA",
+    "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "North Dakota Parks & Recreation",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0",
+    "host": "agol"
+   }
+  ],
+  "NJ": [
+   {
+    "kind": "preserve",
+    "ag": "New Jersey DEP (Natural Lands Trust preserves)",
+    "nm": "FACILITY",
+    "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1",
+    "web": "AGENCY_URL",
+    "ds": "Preserve",
+    "host": "agency"
+   }
+  ],
+  "NM": [
+   {
+    "kind": "wild",
+    "ag": "New Mexico Department of Game & Fish",
+    "nm": "NAME",
+    "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6",
+    "host": "agol"
+   }
+  ],
+  "NV": [
+   {
+    "kind": "wild",
+    "ag": "Nevada Department of Wildlife",
+    "nm": "LandName",
+    "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
+    "ds": "WMA",
+    "host": "agol"
+   }
+  ],
+  "NY": [
+   {
+    "kind": "land",
+    "ag": "New York State DEC",
+    "nm": "FACILITY",
+    "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/NYS_DEC_Lands/FeatureServer/0",
+    "web": "URL",
+    "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "New York State Parks",
+    "nm": "Name",
+    "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
+    "host": "agol"
+   }
+  ],
+  "OK": [
+   {
+    "kind": "park",
+    "ag": "Oklahoma State Parks (ODOT GIS)",
+    "nm": "PARK_NAME",
+    "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3",
+    "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "Oklahoma Department of Wildlife Conservation (ODOT GIS)",
+    "nm": "NAME",
+    "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0",
+    "host": "agol"
+   }
+  ],
+  "OR": [
+   {
+    "kind": "park",
+    "ag": "Oregon Parks & Recreation Department",
+    "nm": "NAME",
+    "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "PA": [
+   {
+    "kind": "park",
+    "ag": "Pennsylvania DCNR Bureau of State Parks",
+    "nm": "PARK_NAME",
+    "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9",
+    "web": "WEBLINK",
+    "host": "agency"
+   }
+  ],
+  "RI": [
+   {
+    "kind": "land",
+    "ag": "Rhode Island DEM",
+    "nm": "NAME",
+    "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0",
+    "web": "SurvURL",
+    "host": "agency"
+   }
+  ],
+  "TN": [
+   {
+    "kind": "park",
+    "ag": "Tennessee State Parks (TDEC)",
+    "nm": "PARK_NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0",
+    "host": "agol"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Tennessee State Natural Areas (TDEC)",
+    "nm": "SITE_NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Natural_Area_Boundaries_(Public_View)/FeatureServer/0",
+    "ds": "State Natural Area",
+    "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "Tennessee Wildlife Resources Agency",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0",
+    "host": "agol"
+   }
+  ],
+  "TX": [
+   {
+    "kind": "park",
+    "ag": "Texas Parks & Wildlife Department (state parks)",
+    "nm": "ParkName",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+    "ds": "State Park",
+    "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "Texas Parks & Wildlife Department (public hunting lands)",
+    "nm": "Name",
+    "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9",
+    "host": "agency"
+   }
+  ],
+  "UT": [
+   {
+    "kind": "park",
+    "ag": "Utah State Parks",
+    "nm": "name",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0",
+    "web": "weblink1",
+    "ds": "State Park",
+    "host": "agol"
+   }
+  ],
+  "VA": [
+   {
+    "kind": "forest",
+    "ag": "Virginia Department of Forestry",
+    "nm": "Name",
+    "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0",
+    "host": "agol"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Virginia DCR Natural Heritage",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VSP_Natural_Area_Preserves/FeatureServer/1",
+    "ds": "Natural Area Preserve",
+    "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "Virginia State Parks (DCR)",
+    "nm": "LABEL",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
+    "web": "LANDLINK",
+    "host": "agol"
+   }
+  ],
+  "WA": [
+   {
+    "kind": "park",
+    "ag": "Washington State Parks",
+    "nm": "ParkName",
+    "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2",
+    "web": "WebPage",
+    "ds": "State Park",
+    "host": "agol"
+   }
+  ],
+  "WI": [
+   {
+    "kind": "land",
+    "ag": "Wisconsin DNR",
+    "nm": "PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Wisconsin State Parks (DNR)",
+    "nm": "PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
+    "web": "INFO_URL",
+    "host": "agency"
+   }
+  ],
+  "WV": [
+   {
+    "kind": "wild",
+    "ag": "West Virginia DNR",
+    "nm": "NAME",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1",
+    "web": "HighResMapURL",
+    "host": "agol"
+   },
+   {
+    "kind": "forest",
+    "ag": "West Virginia State Forests (DNR)",
+    "nm": "Name",
+    "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
+    "web": "MapURL",
+    "host": "agol"
+   }
+  ],
+  "WY": [
+   {
+    "kind": "park",
+    "ag": "Wyoming State Parks",
+    "nm": "Park_Name",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
+    "web": "Hyperlink",
+    "host": "agol"
+   }
+  ]
+ }
+}
