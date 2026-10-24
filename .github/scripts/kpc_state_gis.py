@@ -104,7 +104,7 @@ KIND = [('wild', re.compile(r'wildlife|\bwma\b|game land|game area|hunting|fish(
         ('forest', re.compile(r'state forest|forest(ry)?\b', re.I)),
         ('preserve', re.compile(r'nature preserve|natural area|preserve|scientific|natural heritage|nrca', re.I)),
         ('land', re.compile(r'trust land|state land|school land|public land|managed (land|area)|state owned|ownership|dnr land|dnr managed|conservation land|protected|open space', re.I))]
-NAMEF = re.compile(r'^(park_?name|parkname|area_?name|areaname|unit_?name|unitname|site_?name|sitename|prop(erty)?_?name|propname|wma_?name|wmaname|name|full_?name|label|land_?name|tract_?name|official_?name|facility|title|gl_?name|managed_?area|ma_?name|sp_?name|desc(ription)?)$', re.I)
+NAMEF = re.compile(r'^(dnr_?name|lands_?name|prop_?name|sitename|site_?name|park_?name|parkname|area_?name|areaname|unit_?name|unitname|site_?name|sitename|prop(erty)?_?name|propname|wma_?name|wmaname|name|full_?name|label|land_?name|tract_?name|official_?name|facility|title|gl_?name|managed_?area|ma_?name|sp_?name|desc(ription)?)$', re.I)
 WEBF = re.compile(r'url|link|web|hyperlink|website|homepage|page', re.I)
 OUT = 'data/state-gis-found.json'
 

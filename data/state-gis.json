@@ -534,6 +534,18 @@
     "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Fee/FeatureServer/0",
     "host": "agol"
    }
+  ],
+  "MD": [
+   {
+    "kind": "land",
+    "ag": "Maryland DNR (state parks, WMAs, forests, natural resource areas)",
+    "nm": "DNRName",
+    "web": "WebLink",
+    "own": "ManagedBy",
+    "ds": "",
+    "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0",
+    "host": "agency"
+   }
   ]
  },
  "portals": {
@@ -623,6 +635,12 @@
    [
     "Maine GeoLibrary",
     "https://www.maine.gov/geolib/"
+   ]
+  ],
+  "MD": [
+   [
+    "Maryland iMAP",
+    "https://imap.maryland.gov/"
    ]
   ]
  }
