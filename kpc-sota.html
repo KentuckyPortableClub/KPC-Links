@@ -183,10 +183,16 @@ let LAND={},LANDA='';
 const LANDT={P:['🟢','PUBLIC LAND','#1d5a3a'],R:['🟠','PUBLIC, RESTRICTED ACCESS','#b8742c'],U:['🟡','PUBLIC LAND, ACCESS NOT KNOWN','#9a7a1a'],X:['🔴','CLOSED TO THE PUBLIC','#a32d2d'],E:['⚪','PRIVATE (CONSERVATION EASEMENT)','#68635a'],N:['⚪','NOT ON THE PUBLIC-LANDS MAP: LIKELY PRIVATE','#68635a']};
 async function landLoad(){if(LANDA===AS)return;LANDA=AS;LAND={};try{const r=await fetch('data/sota-land/'+encodeURIComponent(AS)+'.json');if(r.ok)LAND=(await r.json()).s||{}}catch(e){}$('landW').hidden=!Object.keys(LAND).length}
 const landTag=(c,big)=>{const x=LAND[c];if(!x)return'';const t=LANDT[x[0]]||LANDT.N;return`<span style="display:inline-block;margin-top:3px;font-size:${big?12:11}px;font-weight:800;letter-spacing:.4px;color:${t[2]}">${t[0]} ${t[1]}${x[1]&&x[0]!=='N'&&x[0]!=='E'?' · '+esc(x[1]):''}</span>`};
-const ownLink=s=>{const x=LAND[s.c];return x&&x[0]!=='P'?`<br><a href="#" data-own="${s.la},${s.lo}" style="font-weight:700">Who owns this land? (county property map) ↗</a>`:''};
-document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]');if(!a)return;e.preventDefault();const w=window.open('about:blank','_blank');const [la,lo]=a.dataset.own.split(',');let q='property parcel map owner search';
- try{const g=await fetch(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`).then(r=>r.json());const r=g.results&&g.results[0];if(r)q=r.state_code==='KY'?`${r.county_name} County Kentucky PVA property search map`:`${r.county_name} County ${r.state_name} property parcel map owner search`}catch(x){}
- const u='https://www.google.com/search?q='+encodeURIComponent(q);if(w)w.location=u;else location.href=u});
+const ownLink=s=>{const x=LAND[s.c];return x&&x[0]!=='P'?`<br><a href="#" data-own="${s.la},${s.lo}" style="font-weight:700">Who owns this land? (the county office, free) ↗</a><br><small>The county PVA / assessor will tell you the owner at no charge; skip websites that ask you to pay.</small>`:''};
+/* Oct 24 (Brandon: the Google search led to sites that charge for owner info): Kentucky = the state's official PVA
+   directory (every county PVA office's phone and website; they answer for free); other states = a search of official
+   .gov sites only, for that county's assessor. */
+const KYPVA='https://revenue.ky.gov/Property/Documents/PVA%20Directory%202022-2026.pdf';
+document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]');if(!a)return;e.preventDefault();const w=window.open('about:blank','_blank');const [la,lo]=a.dataset.own.split(',');let u='',cty='';
+ try{const g=await fetch(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`).then(r=>r.json());const r=g.results&&g.results[0];if(r){cty=r.county_name;u=r.state_code==='KY'?KYPVA:'https://www.google.com/search?q='+encodeURIComponent(`${r.county_name} County ${r.state_name} property assessor parcel map site:.gov`)}}catch(x){}
+ if(!u)u='https://www.google.com/search?q='+encodeURIComponent('county property assessor parcel map site:.gov');
+ if(cty){const n=a.parentNode.querySelector('small');if(n)n.innerHTML=`${/revenue\.ky\.gov/.test(u)?'Kentucky: find <b>'+cty+' County</b> in the state\'s PVA list and call that office (free).':'Look for <b>'+cty+' County</b>\'s own assessor site (.gov) or call their office (free).'} Skip websites that ask you to pay.`}
+ if(w)w.location=u;else location.href=u});
 function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
 function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
