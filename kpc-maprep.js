@@ -7,6 +7,32 @@
   'use strict';
   const B = window.KPCB, $ = id => document.getElementById(id), esc = B.esc;
   const PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query';
+  /* CANADA (Oct 24, Brandon: 'US + Canada only'): CPCAD = the Canadian Protected and Conserved Areas Database (Environment and Climate Change Canada),
+     one national layer with owner type, governance type, managing authority and designation, like PAD-US. Every PAD-US request goes through q() /
+     geoQ(), which translate the WHERE (State_Nm → LOC code, Unit_Nm/Loc_Nm → NAME_E) and map each record back to PAD-US field names (caRow), so the
+     rest of the tool runs unchanged. Fields checked Oct 24 (maps-cartes.ec.gc.ca …/CWS_SCF/CPCAD/MapServer/0). */
+  const CPCADL = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer', CPCAD = CPCADL + '/0/query';
+  const PROV = { AB: 1, BC: 2, MB: 3, NB: 4, NL: 5, NT: 6, NS: 7, NU: 8, ON: 9, PE: 10, QC: 11, SK: 12, YT: 13 };
+  const PROVN = { AB: 'Alberta', BC: 'British Columbia', MB: 'Manitoba', NB: 'New Brunswick', NL: 'Newfoundland and Labrador', NT: 'Northwest Territories', NS: 'Nova Scotia', NU: 'Nunavut', ON: 'Ontario', PE: 'Prince Edward Island', QC: 'Quebec', SK: 'Saskatchewan', YT: 'Yukon' };
+  let CTRY = 'US'; try { CTRY = localStorage.getItem('kpcMrCountry') === 'CA' ? 'CA' : 'US'; } catch (e) {}
+  const isCA = () => CTRY === 'CA', refPre = () => isCA() ? 'CA' : 'US', codes = () => isCA() ? Object.keys(PROV) : ST, ctryName = () => isCA() ? 'Canada' : 'USA';
+  const NATSRC = () => isCA() ? 'CPCAD (Canadian Protected and Conserved Areas Database, Environment and Climate Change Canada)' : 'USGS PAD-US (national public land database)';
+  const OWN_T = { 1: 'FED', 2: 'STAT', 3: 'LOC', 4: 'TRIB', 5: 'PVT', 6: 'PVT', 7: 'PVT', 8: 'NGO', 9: 'JNT', 10: 'JNT', 11: 'UNK', 12: 'UNK' };
+  const OWN_N = { 1: 'Federal', 2: 'Provincial / territorial', 3: 'Municipal', 4: 'Indigenous', 5: 'Communal', 6: 'Individual landowners', 7: 'For-profit organization', 8: 'Non-profit organization', 9: 'Joint ownership', 10: 'Multiple ownership', 11: 'Contested', 12: 'Not reported' };
+  const GOV_T = { 1: 'FED', 2: 'STAT', 3: 'JNT', 4: 'JNT', 5: 'JNT', 6: 'JNT', 7: 'PVT', 8: 'NGO', 9: 'PVT', 10: 'TRIB', 11: 'LOC', 12: 'UNK' };
+  const GOV_N = { 1: 'National government', 2: 'Provincial / territorial government', 3: 'Government-delegated management', 4: 'Transboundary governance', 5: 'Collaborative governance', 6: 'Joint governance', 7: 'Individual landowners', 8: 'Non-profit organization', 9: 'For-profit organization', 10: 'Indigenous peoples', 11: 'Local communities', 12: 'Not reported' };
+  const IUCN_N = { 1: 'Ia', 2: 'Ib', 3: 'II', 4: 'III', 5: 'IV', 6: 'V', 7: 'VI' };
+  const caWhere = w => String(w || '1=1').replace(/State_Nm\s*=\s*'([A-Z]{2})'/g, (m, c) => 'LOC=' + (PROV[c] || 0)).replace(/\b(Unit_Nm|Loc_Nm)\b/g, 'NAME_E').replace(/\s*AND\s*Pub_Access\s*=\s*'OA'/g, '').replace(/Category\s*=\s*'Fee'/g, '1=1');
+  function caRow(a) {
+    const prov = Object.keys(PROV).find(k => PROV[k] === a.LOC) || '';
+    const notes = [a.IUCN_CAT && IUCN_N[a.IUCN_CAT] ? 'IUCN category ' + IUCN_N[a.IUCN_CAT] : '', a.PA_OECM_DF === 2 || a.PA_OECM_DF === 4 ? 'OECM: an "other effective area-based conservation measure", not a protected area' : '', a.STATUS === 3 ? 'interim status' : '', a.IPCA ? 'Indigenous Protected and Conserved Area' : ''].filter(Boolean).join('; ');
+    return { OBJECTID: a.OBJECTID, Unit_Nm: a.NAME_E || a.NAME_F || '', Loc_Nm: a.NAME_E || a.NAME_F || '', Own_Type: OWN_T[a.OWNER_TYPE] || 'UNK', Own_Name: a.OWNER_E || '', Loc_Own: a.OWNER_E || OWN_N[a.OWNER_TYPE] || '', Mang_Type: GOV_T[a.GOV_TYPE] || 'UNK', Mang_Name: a.MGMT_E || GOV_N[a.GOV_TYPE] || '', Loc_Mang: a.MGMT_E || GOV_N[a.GOV_TYPE] || '', Des_Tp: '', Loc_Ds: a.TYPE_E || '', Pub_Access: 'UK', GIS_Acres: (+a.O_AREA_HA || 0) * 2.47105, State_Nm: prov, Category: a.STATUS === 0 ? 'Delisted' : 'Fee', Date_Est: a.ESTYEAR || '', Comments: notes, Web: '', _ca: true };
+  }
+  /* a boundary request (geojson) for either country, PAD-US field names in the properties */
+  async function geoQ(where, big, coarse) {
+    if (isCA()) { const j = await B.jget(CPCAD + '?' + new URLSearchParams({ where: caWhere(where), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: coarse ? 4 : 5, maxAllowableOffset: coarse ? (big ? 0.002 : 0.0005) : (big ? 0.0004 : 0.00005), f: 'geojson' }), null, 25000); (j.features || []).forEach(f => { f.properties = caRow(f.properties || {}); }); return j; }
+    return B.jget(PADUS + '?' + new URLSearchParams({ where, outFields: F, returnGeometry: true, outSR: 4326, geometryPrecision: coarse ? 4 : 5, maxAllowableOffset: coarse ? (big ? 0.002 : 0.0005) : (big ? 0.0004 : 0.00005), f: 'geojson' }), null, coarse ? 20000 : undefined);
+  }
   const F = 'OBJECTID,Unit_Nm,Loc_Nm,Mang_Type,Mang_Name,Loc_Mang,Own_Type,Own_Name,Loc_Own,Des_Tp,Loc_Ds,Pub_Access,GIS_Acres,State_Nm,Category,Date_Est,Comments';
   const TYPE = { FED: 'Federal', STAT: 'State', LOC: 'Local (county / city)', PVT: 'Private', NGO: 'Non-profit', TRIB: 'Tribal', JNT: 'Joint', DIST: 'Special district', UNK: 'Unknown', TERR: 'Territorial' };
   const AG = { NPS: 'National Park Service', USFS: 'U.S. Forest Service', FWS: 'U.S. Fish & Wildlife Service', BLM: 'Bureau of Land Management', USACE: 'U.S. Army Corps of Engineers', TVA: 'Tennessee Valley Authority', BOR: 'Bureau of Reclamation', DOD: 'Department of Defense', SPR: 'State parks agency', SDNR: 'State natural resources agency', SFW: 'State fish & wildlife agency', SDOF: 'State forestry', SDC: 'State conservation department', SLB: 'State land board', OTHS: 'Other state agency', CITY: 'City', CNTY: 'County', REG: 'Regional agency', NGO: 'Non-profit', PVT: 'Private', UNK: 'Unknown' };
@@ -29,7 +55,10 @@
   }
   const ST = 'AL AK AZ AR CA CO CT DE DC FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY PR VI GU AS MP'.split(' ');
   let map = null, lay = null, cur = null, lastQ = '';
-  const q = (o) => B.jget(PADUS + '?' + new URLSearchParams(Object.assign({ outFields: F, returnGeometry: false, f: 'json' }, o))).then(j => { if (j.error) throw new Error(j.error.message); return (j.features || []).map(f => f.attributes); });
+  const q = (o) => {
+    if (isCA()) { const dv = o.returnDistinctValues, o2 = Object.assign({}, o, { where: caWhere(o.where), outFields: dv ? 'MGMT_E,GOV_TYPE' : '*' }); return B.jget(CPCAD + '?' + new URLSearchParams(Object.assign({ returnGeometry: false, f: 'json' }, o2))).then(j => { if (j.error) throw new Error(j.error.message); return (j.features || []).map(f => dv ? { Mang_Type: GOV_T[f.attributes.GOV_TYPE] || 'UNK', Mang_Name: f.attributes.MGMT_E || GOV_N[f.attributes.GOV_TYPE] || '', Loc_Mang: f.attributes.MGMT_E || GOV_N[f.attributes.GOV_TYPE] || '', Category: 'Fee' } : caRow(f.attributes)); }); }
+    return B.jget(PADUS + '?' + new URLSearchParams(Object.assign({ outFields: F, returnGeometry: false, f: 'json' }, o))).then(j => { if (j.error) throw new Error(j.error.message); return (j.features || []).map(f => f.attributes); });
+  };
   const words = n => String(n || '').replace(/\b(state|national|park|parks|the|of|and|area|wildlife|management|nature|preserve|natural|recreation|recreational|forest|refuge|site)\b/gi, ' ').replace(/[^A-Za-z0-9' ]/g, ' ').trim().split(/\s+/).filter(w => w.length > 2).map(w => w.length > 4 && /[^s]s$/i.test(w) ? w.slice(0, -1) : w);
   /* The PAD-US server's firewall refuses (403) any where with UPPER(), OR, IN (...), a second LIKE, or anything after a LIKE.
      Safe shape: State_Nm='XX' AND <field> LIKE '%word%word%'. LIKE is case-sensitive, so ask in Title Case (Unit_Nm),
@@ -47,8 +76,30 @@
     if (busy) { const t0 = Date.now(); tick = setInterval(() => { const e = document.querySelector('.mr-sec-n'); if (!e) { clearInterval(tick); return; } e.textContent = 'Still searching… ' + Math.round((Date.now() - t0) / 1000) + ' s'; }, 1000); }
   };
 
-  $('mrState').innerHTML = '<option value="">Pick a state (or let it find out)</option>' + ST.map(s => `<option>${s}</option>`).join('');
-  try { const v = localStorage.getItem('kpcMrState'); if (v) $('mrState').value = v; } catch (e) {}
+  /* COUNTRY: US or Canada (Brandon Oct 24). The pick fills the state/province list, is remembered, and the GPS / address / name searches switch it by themselves. */
+  function fillStates() {
+    const sel = $('mrState'), keep = sel.value;
+    sel.innerHTML = `<option value="">Pick a ${isCA() ? 'province' : 'state'} (or let it find out)</option>` + codes().map(c => `<option value="${c}">${c}${isCA() ? ' · ' + PROVN[c] : ''}</option>`).join('');
+    if (codes().includes(keep)) sel.value = keep;
+    const lab = sel.closest('label'); if (lab && lab.firstChild && lab.firstChild.nodeType === 3) lab.firstChild.textContent = isCA() ? 'PROVINCE' : 'STATE';
+    const cs = $('mrCandSt'); if (cs) { const k2 = cs.value; cs.innerHTML = codes().map(c => `<option value="${c}">${c}${isCA() ? ' · ' + PROVN[c] : ''}</option>`).join(''); if (codes().includes(k2)) cs.value = k2; const l2 = cs.closest('label'); if (l2 && l2.firstChild && l2.firstChild.nodeType === 3) l2.firstChild.textContent = isCA() ? 'PROVINCE / TERRITORY' : 'STATE'; }
+    const cb = $('mrCountry'); if (cb && cb.value !== CTRY) cb.value = CTRY;
+  }
+  function setCountry(c) {
+    CTRY = c === 'CA' ? 'CA' : 'US'; try { localStorage.setItem('kpcMrCountry', CTRY); } catch (e) {}
+    fillStates(); TYPE.STAT = isCA() ? 'Provincial / territorial' : 'State'; TYPE.LOC = isCA() ? 'Local (municipal)' : 'Local (county / city)'; $('mrAg').innerHTML = ''; AGL = []; agPick = new Set();
+    const v = $('mrState').value; if (v) agencies(v);
+  }
+  const sorry = where => msg(`<b>Sorry, this tool only serves the United States and Canada${where ? ' (that spot looks like it is in ' + esc(where) + ')' : ''}.</b> Those are the two countries whose national land databases it can read (USGS PAD-US and Canada's CPCAD).`);
+  (function countryPick() {
+    const stLab = $('mrState').closest('label'); if (!stLab || $('mrCountry')) return;
+    const lab = document.createElement('label'); lab.innerHTML = 'COUNTRY<select id="mrCountry"><option value="US">United States</option><option value="CA">Canada</option></select>';
+    stLab.parentNode.insertBefore(lab, stLab);
+    $('mrCountry').value = CTRY;
+    $('mrCountry').addEventListener('change', e => setCountry(e.target.value));
+  })();
+  fillStates(); TYPE.STAT = isCA() ? 'Provincial / territorial' : 'State'; TYPE.LOC = isCA() ? 'Local (municipal)' : 'Local (county / city)';
+  try { const v = localStorage.getItem('kpcMrState'); if (v && codes().includes(v)) $('mrState').value = v; } catch (e) {}
   const NPSQ = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query';
   const FWSQ = 'https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSInterest_Simplified_Authoritative/FeatureServer/0/query';
   const OVER = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
@@ -61,9 +112,9 @@
     const box = $('mrAg'); AGL = []; agPick = new Set();
     if (!st) { box.innerHTML = ''; return; }
     try { localStorage.setItem('kpcMrState', st); } catch (e) {}
-    box.innerHTML = '<p class="mr-help">Loading the federal and state agencies that own land in ' + esc(st) + '…</p>';
+    box.innerHTML = '<p class="mr-help">Loading the ' + (isCA() ? 'federal and provincial/territorial' : 'federal and state') + ' agencies that own land in ' + esc(st) + '…</p>';
     try {
-      const agq = () => B.jget(PADUS + '?' + new URLSearchParams({ where: `State_Nm='${st}'`, outFields: 'Mang_Type,Mang_Name,Loc_Mang,Category', returnDistinctValues: true, returnGeometry: false, f: 'json' }), null, 45000);
+      const agq = () => q({ where: `State_Nm='${st}'`, outFields: 'Mang_Type,Mang_Name,Loc_Mang,Category', returnDistinctValues: true }).then(rows => ({ features: rows.map(a => ({ attributes: a })) }));
       let j; try { j = await agq(); } catch (e) { box.innerHTML = '<p class="mr-help">The national database is slow, trying again…</p>'; j = await agq(); }
       const m = new Map();
       (j.features || []).filter(f => /^(FED|STAT)$/.test(f.attributes.Mang_Type) && f.attributes.Category !== 'Easement').forEach(f => { const a = f.attributes, loc = (a.Loc_Mang && !/^unknown$/i.test(a.Loc_Mang)) ? a.Loc_Mang : (AG[a.Mang_Name] || a.Mang_Name); const k = a.Mang_Type + '|' + a.Mang_Name + '|' + loc.toLowerCase(); const o = m.get(k) || { t: a.Mang_Type, code: a.Mang_Name, loc, n: 0 }; o.n += 1; m.set(k, o); });
@@ -74,7 +125,7 @@
   function drawAg(st) {
     const grp = t => AGL.filter(a => a.t === t);
     const chip = a => `<button type="button" class="mr-ag${agPick.has(agKey(a)) ? ' on' : ''}" data-k="${esc(agKey(a))}">${esc(a.loc)}${a.loc !== (AG[a.code] || a.code) && AG[a.code] ? ' <small>' + esc(AG[a.code]) + '</small>' : ''}</button>`;
-    $('mrAg').innerHTML = `<details class="mr-agd"${AGL.length && agPick.size ? ' open' : ''}><summary>AGENCIES SEARCHED IN ${esc(st)}: ${grp('FED').length} FEDERAL · ${grp('STAT').length} STATE ${agPick.size ? '· ONLY ' + agPick.size + ' PICKED' : '· ALL'} (TAP TO SEE)</summary>
+    $('mrAg').innerHTML = `<details class="mr-agd"${AGL.length && agPick.size ? ' open' : ''}><summary>AGENCIES SEARCHED IN ${esc(st)}: ${grp('FED').length} FEDERAL · ${grp('STAT').length} ${isCA() ? 'PROVINCIAL / TERRITORIAL' : 'STATE'} ${agPick.size ? '· ONLY ' + agPick.size + ' PICKED' : '· ALL'} (TAP TO SEE)</summary>
 <p class="mr-help">Every search looks through all of these (from the national public land database), plus the live National Park Service and U.S. Fish &amp; Wildlife Service maps${st === 'KY' ? ', Kentucky\'s own state boundary files' : ''} and, as a backup, OpenStreetMap. Tap agencies to search only those; tap again to undo.</p>
 <h4>FEDERAL</h4><div class="mr-ags">${grp('FED').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div><h4>STATE</h4><div class="mr-ags">${grp('STAT').map(chip).join('') || '<span class="mr-help">none listed</span>'}</div></details>`;
     $('mrAg').querySelectorAll('.mr-ag').forEach(b => b.onclick = () => { const k = b.dataset.k; if (agPick.has(k)) agPick.delete(k); else agPick.add(k); drawAg(st); });
@@ -87,7 +138,7 @@
   async function extra(name, st) {
     const w = words(name).slice(0, 3), ws = w.length ? w : [name], box = await stBox(st), out = [];
     const sq = x => x.replace(/'/g, "''");
-    const jobs = [
+    const jobs = isCA() ? [stLive(st, ws).then(L => L.forEach(x => out.push(x))).catch(() => {}), osmFind(ws, st).then(L => L.forEach(x => out.push(x))).catch(() => {})] : [
       B.jget(NPSQ + '?' + new URLSearchParams({ where: `STATE='${st}' AND ` + ws.map(x => `UPPER(UNIT_NAME) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: 'UNIT_NAME,UNIT_TYPE,UNIT_CODE', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' })).then(j => (j.features || []).forEach(f => out.push({ src: 'National Park Service boundary (live)', f: fake(f, { Unit_Nm: f.properties.UNIT_NAME, Own_Type: 'FED', Own_Name: 'NPS', Loc_Own: 'National Park Service', Mang_Type: 'FED', Mang_Name: 'NPS', Loc_Mang: 'National Park Service', Loc_Ds: f.properties.UNIT_TYPE, State_Nm: st, Web: f.properties.UNIT_CODE ? 'https://www.nps.gov/' + String(f.properties.UNIT_CODE).toLowerCase() + '/' : '' }) }))).catch(() => {}),
       box ? B.jget(FWSQ + '?' + new URLSearchParams({ where: ws.map(x => `ORGNAME LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), geometry: box.join(','), geometryType: 'esriGeometryEnvelope', inSR: 4326, spatialRel: 'esriSpatialRelIntersects', outFields: 'ORGNAME,RSL_TYPE,INTTYPE1,SUM_GISACRES', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' })).then(j => (j.features || []).forEach(f => { const p = f.properties; out.push({ src: 'U.S. Fish & Wildlife Service land (live)', f: fake(f, { Unit_Nm: p.ORGNAME.replace(/\b\w+/g, t => t[0] + t.slice(1).toLowerCase()), Own_Type: 'FED', Own_Name: 'FWS', Loc_Own: 'U.S. Fish & Wildlife Service', Mang_Type: 'FED', Mang_Name: 'FWS', Loc_Mang: 'U.S. Fish & Wildlife Service', Loc_Ds: p.RSL_TYPE, GIS_Acres: p.SUM_GISACRES, Category: p.INTTYPE1 === 'E' ? 'Easement' : 'Fee', State_Nm: st }) }); })).catch(() => {}) : null,
       st === 'KY' ? B.ky().then(F => F.filter(f => B.sameName(f._nm, name) || ws.every(x => f._nm.toLowerCase().includes(x.toLowerCase()))).forEach(f => { const fed = /bnps|bdbnf|bwilder|bfws/.test(f._L.k), kpc = f._L.kpc; out.push({ src: kpc ? 'KPC-drawn outline (approximate)' : 'Kentucky state boundary file (' + f._L.agency + ')', f: fake({ geometry: f.geometry }, { Unit_Nm: f._nm, Own_Type: kpc ? 'UNK' : fed ? 'FED' : 'STAT', Loc_Own: f._L.agency, Mang_Type: kpc ? 'UNK' : fed ? 'FED' : 'STAT', Loc_Mang: f._L.agency, Loc_Ds: (f.properties || {}).TYPE || f._L.name, Pub_Access: /restricted/i.test((f.properties || {}).ACCESS || '') ? 'RA' : /open/i.test((f.properties || {}).ACCESS || '') || /^b(wma|state)$/.test(f._L.k) ? 'OA' : 'UK', State_Nm: 'KY', Web: (f.properties || {}).URL || '' }) }); })).catch(() => {}) : null,
@@ -157,8 +208,16 @@
     PR: [['Departamento de Recursos Naturales y Ambientales', 'drna.pr.gov', 'wild land'], ['Compañía de Parques Nacionales de Puerto Rico', 'parquesnacionalespr.com', 'park']],
     VI: [['USVI Department of Planning & Natural Resources', 'dpnr.vi.gov', 'park wild land']],
     GU: [['Guam Department of Parks & Recreation', 'dpr.guam.gov', 'park'], ['Guam Division of Aquatic & Wildlife Resources', 'doag.guam.gov', 'wild']],
-    AS: [['National Park Service', 'nps.gov', 'park']], MP: [['CNMI Department of Lands & Natural Resources', 'dlnr.gov.mp', 'park wild land']]
+    AS: [['National Park Service', 'nps.gov', 'park']], MP: [['CNMI Department of Lands & Natural Resources', 'dlnr.gov.mp', 'park wild land']],
+    AB: [['Alberta Parks', 'albertaparks.ca', 'park'], ['Alberta Environment and Protected Areas', 'alberta.ca', 'wild land']], BC: [['BC Parks', 'bcparks.ca', 'park'], ['BC Ministry of Water, Land and Resource Stewardship', 'gov.bc.ca', 'wild land']],
+    MB: [['Manitoba Parks', 'gov.mb.ca', 'park'], ['Manitoba Natural Resources (wildlife management areas)', 'gov.mb.ca', 'wild land']], NB: [['New Brunswick Parks', 'parcsnbparks.ca', 'park'], ['New Brunswick Natural Resources (protected natural areas)', 'gnb.ca', 'wild land']],
+    NL: [['Newfoundland and Labrador Parks', 'gov.nl.ca', 'park'], ['NL Fisheries, Forestry and Agriculture (wildlife reserves)', 'gov.nl.ca', 'wild land']], NT: [['NWT Parks', 'nwtparks.ca', 'park'], ['NWT Environment and Climate Change', 'gov.nt.ca', 'wild land']],
+    NS: [['Nova Scotia Parks', 'parks.novascotia.ca', 'park'], ['Nova Scotia Natural Resources (wilderness areas, nature reserves)', 'novascotia.ca', 'wild land']], NU: [['Nunavut Parks', 'nunavutparks.com', 'park'], ['Government of Nunavut Environment', 'gov.nu.ca', 'wild land']],
+    ON: [['Ontario Parks', 'ontarioparks.ca', 'park'], ['Ontario Ministry of Natural Resources (conservation reserves, Crown land)', 'ontario.ca', 'wild land']], PE: [['PEI Provincial Parks', 'tourismpei.com', 'park'], ['PEI Environment, Energy and Climate Action', 'princeedwardisland.ca', 'wild land']],
+    QC: [['Sépaq (parcs nationaux du Québec)', 'sepaq.com', 'park'], ['Québec Environnement (réserves fauniques, aires protégées)', 'quebec.ca', 'wild land']], SK: [['Saskatchewan Parks', 'saskparks.com', 'park'], ['Saskatchewan Environment (wildlife lands)', 'saskatchewan.ca', 'wild land']],
+    YT: [['Yukon Parks', 'yukon.ca', 'park'], ['Yukon Environment (habitat protection areas)', 'yukon.ca', 'wild land']]
   };
+  const FEDA_CA = [['Parks Canada', 'pc.gc.ca', /parks canada|parcs canada|national park|lieu historique|national marine conservation/i], ['Environment and Climate Change Canada (national wildlife areas, migratory bird sanctuaries)', 'canada.ca', /environment and climate change|canadian wildlife service|national wildlife area|migratory bird/i], ['Fisheries and Oceans Canada', 'dfo-mpo.gc.ca', /fisheries and oceans|marine protected/i]];
   const FEDA = [['National Park Service', 'nps.gov', /national park service|\bNPS\b/i], ['U.S. Fish & Wildlife Service', 'fws.gov', /fish (&|and) wildlife service|\bFWS\b|wildlife refuge/i], ['U.S. Forest Service', 'fs.usda.gov', /\bu\.?s\.? forest service|\bUSFS\b|national forest/i], ['Bureau of Land Management', 'blm.gov', /land management|\bBLM\b/i], ['Bureau of Reclamation', 'usbr.gov', /reclamation|\bBOR\b/i], ['U.S. Army Corps of Engineers', 'usace.army.mil', /corps of engineers|\bUSACE\b/i], ['Tennessee Valley Authority', 'tva.com', /tennessee valley|\bTVA\b/i]];
   /* which of the state's agencies fit this manager / owner text */
   const agFor = (txt, st) => {
@@ -170,8 +229,8 @@
     const own = L.filter(a => a[0].split(/[ (]/)[0] && new RegExp(a[0].split(' (')[0].replace(/[^A-Za-z& ]/g, '').split(' ').filter(w => w.length > 4).slice(0, 3).join('.*'), 'i').test(t));
     return [...new Set((own.length ? own : hit.length ? hit : L))];
   };
-  const agSites = (s, st) => { const o = agFor(s, st).map(a => a[1]); FEDA.forEach(f => { if (f[2].test(s)) o.push(f[1]); }); return [...new Set(o.filter(Boolean))]; };
-  const agName = d => { for (const st in SA) { const a = SA[st].find(x => x[1] === d); if (a) return a[0]; } const f = FEDA.find(x => x[1] === d); return f ? f[0] : d; };
+  const agSites = (s, st) => { const o = agFor(s, st).map(a => a[1]); (isCA() ? FEDA_CA : FEDA).forEach(f => { if (f[2].test(s)) o.push(f[1]); }); return [...new Set(o.filter(Boolean))]; };
+  const agName = d => { for (const st in SA) { const a = SA[st].find(x => x[1] === d); if (a) return a[0]; } const f = FEDA.concat(FEDA_CA).find(x => x[1] === d); return f ? f[0] : d; };
   /* Kentucky WMAs: the state map's MANAGER field is the manager, NOT the owner. The real owner is the 'Owned by ...' /
      'privately owned' line on each WMA's Fish & Wildlife page, read weekly into data/ky-wma-owners.json (kpc-new-lands.yml). */
   let WMAO = null;
@@ -227,7 +286,7 @@
   }
   async function osmFind(ws, st) {
     const re = ws.map(x => x.replace(/[^\w ']/g, '')).join('.*');
-    const qy = `[out:json][timeout:40];area["ISO3166-2"="US-${st}"]->.s;(nwr["name"~"${re}",i]["leisure"~"^(park|nature_reserve)$"](area.s);nwr["name"~"${re}",i]["boundary"~"^(protected_area|national_park)$"](area.s);wr["name"~"${re}",i]["natural"="water"]["water"~"^(reservoir|lake|pond)$"](area.s););out geom 8;`;
+    const qy = `[out:json][timeout:40];area["ISO3166-2"="${refPre()}-${st}"]->.s;(nwr["name"~"${re}",i]["leisure"~"^(park|nature_reserve)$"](area.s);nwr["name"~"${re}",i]["boundary"~"^(protected_area|national_park)$"](area.s);wr["name"~"${re}",i]["natural"="water"]["water"~"^(reservoir|lake|pond)$"](area.s););out geom 8;`;
     let j = null; for (const u of OVER) { try { j = await B.jget(u, { method: 'POST', body: 'data=' + encodeURIComponent(qy), headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }, 45000); break; } catch (e) {} }
     return (j && j.elements || []).filter(e => e.tags && e.tags.name).map(e => {
       const lines = e.type === 'way' ? [e.geometry] : e.type === 'relation' ? (e.members || []).filter(m => m.type === 'way' && m.role !== 'inner' && m.geometry).map(m => m.geometry) : [];
@@ -266,12 +325,14 @@
     if (name.length < 3) { msg('Type at least part of the park name.'); return; }
     if (!st) {   /* no state picked: find out where that name (and town) is, and take the state from there */
       msg('Finding out which state that is in…');
-      const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : '') + ', USA', format: 'jsonv2', countrycodes: 'us', addressdetails: 1, limit: 3 })).catch(() => null);
-      const iso = ((j || []).map(x => (x.address || {})['ISO3166-2-lvl4'] || '').find(Boolean) || '').replace(/^US-/, '');
-      if (iso && ST.includes(iso)) { st = iso; $('mrState').value = st; agencies(st); }
-      else { msg('<b>Which state is it in?</b> Pick the state (or add the town) and search again. Each state has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
+      const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : ''), format: 'jsonv2', countrycodes: 'us,ca', addressdetails: 1, limit: 5 })).catch(() => null);
+      const hit = (j || []).find(x => (x.address || {})['ISO3166-2-lvl4']), isoFull = hit ? hit.address['ISO3166-2-lvl4'] : '', cc = isoFull.slice(0, 2), iso = isoFull.slice(3);
+      if (hit && (j || []).every(x => !/^(US|CA)-/.test((x.address || {})['ISO3166-2-lvl4'] || '')) ) { sorry(); return; }
+      if (cc && cc !== CTRY && (cc === 'US' || cc === 'CA')) setCountry(cc);
+      if (iso && codes().includes(iso)) { st = iso; $('mrState').value = st; agencies(st); }
+      else { msg('<b>Which ' + (isCA() ? 'province' : 'state') + ' is it in?</b> Pick it (or add the town) and search again. Each one has its own agencies, so the search needs to know where to look.'); $('mrState').focus(); return; }
     }
-    msg('Searching ' + esc(st) + ': the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps' + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
+    msg('Searching ' + esc(st) + ': ' + (isCA() ? 'Canada\'s protected and conserved areas database (CPCAD: every federal, provincial and territorial agency)' : 'the national public land database (every federal and state agency), the live National Park Service and Fish &amp; Wildlife maps') + (st === 'KY' ? ', Kentucky\'s state files' : '') + ' and OpenStreetMap…'); $('mrList').innerHTML = '';
     const w0 = words(name).slice(0, 3), w = w0.length ? w0 : [name.replace(/[^A-Za-z0-9' ]/g, ' ').trim()];
     let rows = [], box = null;
     const agOK = r => !agPick.size || [...agPick].some(k => { const [t, code] = k.split('|'); const a = AGL.find(x => agKey(x) === k); const loc = (r.Loc_Mang && !/^unknown$/i.test(r.Loc_Mang)) ? r.Loc_Mang : (AG[r.Mang_Name] || r.Mang_Name); return r.Mang_Type === t && r.Mang_Name === code && (!a || a.loc.toLowerCase() === String(loc).toLowerCase()); });
@@ -280,7 +341,7 @@
     const wP = agPick.size ? Promise.resolve(null) : webResearch(name, st, town).catch(() => null);
     try {
       if (town) {
-        const g = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(town)).catch(() => null);
+        const g = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=' + refPre() + '&name=' + encodeURIComponent(town)).catch(() => null);
         const hit = (g && g.results || []).find(r => stateOf(r.admin1) === st);
         if (hit) box = [hit.longitude - 0.7, hit.latitude - 0.6, hit.longitude + 0.7, hit.latitude + 0.6];
       }
@@ -292,7 +353,7 @@
       if (!rows.length && w.length > 1) for (const x of w.filter(x => x.length >= 5)) { rows = (await qName([x], st, o)).filter(agOK); if (rows.length) break; }
     } catch (e) { rows = []; }
     const X = await xP;
-    const G = new Map(); rows.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
+    const G = new Map(); rows.forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; const g = G.get(k) || { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: NATSRC() }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
     const WR = await wP;
     if (WR) WR.found.filter(agOK).forEach(r => { const k = (r.Unit_Nm || r.Loc_Nm) + '|' + r.State_Nm; if (G.has(k)) return; if (![r.Own_Type, r.Mang_Type].some(t => t === 'FED' || t === 'STAT')) return; const g = { name: r.Unit_Nm || r.Loc_Nm, st: r.State_Nm, rows: [], acres: 0, src: 'USGS PAD-US (found by where that name is on the map' + (r._near ? ', next to it' : '') + ')', byLoc: true }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
     const L = [...G.values()];
@@ -326,7 +387,7 @@
         hits.push({ src: 'Wikidata / Wikipedia', name: it.labels && it.labels.en ? it.labels.en.value : name, la: co.latitude, lo: co.longitude, what: it.descriptions && it.descriptions.en ? it.descriptions.en.value : '', type: lab(c, 'P31').join(', '), operator: lab(c, 'P137').join(', '), owner: lab(c, 'P127').join(', '), web: val(c, 'P856') || '', wiki: it.sitelinks && it.sitelinks.enwiki ? 'https://en.wikipedia.org/wiki/' + encodeURIComponent(it.sitelinks.enwiki.title.replace(/ /g, '_')) : '', item: 'https://www.wikidata.org/wiki/' + it.id }); });
     })().catch(() => {});
     const nm = (async () => {
-      const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : '') + ', ' + st + ', USA', format: 'jsonv2', countrycodes: 'us', extratags: 1, limit: 6 }));
+      const j = await B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: name + (town ? ', ' + town : '') + ', ' + st + ', ' + ctryName(), format: 'jsonv2', countrycodes: isCA() ? 'ca' : 'us', extratags: 1, limit: 6 }));
       (j || []).forEach(x => { const la = +x.lat, lo = +x.lon; if (!inSt(la, lo)) return; const t = x.extratags || {};
         hits.push({ src: 'OpenStreetMap search', url: 'https://www.openstreetmap.org/' + x.osm_type + '/' + x.osm_id, name: x.name || x.display_name.split(',')[0], la, lo, what: x.display_name, type: (x.category + ' / ' + x.type).replace(/_/g, ' '), operator: t.operator || '', owner: t.owner || t.ownership || '', web: t.website || t['contact:website'] || t.url || '', access: t.access || '' }); });
     })().catch(() => {});
@@ -368,6 +429,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
   }
 
   const SN = { alabama: 'AL', alaska: 'AK', arizona: 'AZ', arkansas: 'AR', california: 'CA', colorado: 'CO', connecticut: 'CT', delaware: 'DE', florida: 'FL', georgia: 'GA', hawaii: 'HI', idaho: 'ID', illinois: 'IL', indiana: 'IN', iowa: 'IA', kansas: 'KS', kentucky: 'KY', louisiana: 'LA', maine: 'ME', maryland: 'MD', massachusetts: 'MA', michigan: 'MI', minnesota: 'MN', mississippi: 'MS', missouri: 'MO', montana: 'MT', nebraska: 'NE', nevada: 'NV', 'new hampshire': 'NH', 'new jersey': 'NJ', 'new mexico': 'NM', 'new york': 'NY', 'north carolina': 'NC', 'north dakota': 'ND', ohio: 'OH', oklahoma: 'OK', oregon: 'OR', pennsylvania: 'PA', 'rhode island': 'RI', 'south carolina': 'SC', 'south dakota': 'SD', tennessee: 'TN', texas: 'TX', utah: 'UT', vermont: 'VT', virginia: 'VA', washington: 'WA', 'west virginia': 'WV', wisconsin: 'WI', wyoming: 'WY' };
+  Object.entries(PROVN).forEach(([c, n]) => { SN[n.toLowerCase()] = c; }); SN['québec'] = 'QC';
   const stateOf = n => SN[String(n || '').toLowerCase()] || '';
 
   /* ---------- one park ---------- */
@@ -395,7 +457,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
       const n = (g.name + ' ' + src).toLowerCase(), want = /wildlife management|\bwma\b|hunting|fish & wildlife|game/.test(n) ? 'wild' : /nature preserve|natural area|preserve/.test(n) ? 'preserve' : /state forest/.test(n) ? 'forest' : /state (resort )?park|historic site|state parks|recreation area/.test(n) ? 'park' : '';
       SGIS[g.st].filter(L => !want || L.kind === want || L.kind === 'land').slice(0, 2).forEach(L => out.push(['GIS MAP: ' + L.ag.toUpperCase(), mv(L.url)]));
     }
-    out.push(['GIS MAP: USGS OFFICIAL PUBLIC LAND DATABASE (PAD-US)', mv(PADL)]);
+    if (isCA()) out.push(['GIS MAP: CPCAD (ENVIRONMENT AND CLIMATE CHANGE CANADA)', mv(CPCADL)]); else out.push(['GIS MAP: USGS OFFICIAL PUBLIC LAND DATABASE (PAD-US)', mv(PADL)]);
     return out;
   }
   let KYM = null;
@@ -416,14 +478,14 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
       const U = new URL(u); const h = U.hostname.replace(/^www\./, '').toLowerCase(), base = h.split('.').slice(-2).join('.');
       if (/(^|\.)arcgis\.com$/.test(h)) { const l = U.searchParams.get('url') || ''; return l ? kindOfU(l) : 'un'; }
       if (/(^|\.)pota\.app$/.test(h)) return 'pota';
-      if (GOV_HOSTS.includes(h) || GOV_HOSTS.includes(base) || /\.(gov|mil)$/.test(h) || /\.gov\.[a-z]{2}$|\.gc\.ca$|\.fed\.us$|\.(state|ci|co)\.[a-z]{2}\.us$|^[a-z0-9-]+\.[a-z]{2}\.us$|(^|\.)(nps|fws|blm|usda|usgs|ky|kentucky)\.gov$/.test(h)) return 'off';
+      if (GOV_HOSTS.includes(h) || GOV_HOSTS.includes(base) || /\.(gov|mil)$/.test(h) || /\.gc\.ca$|(^|\.)gov\.(ab|bc|mb|nl|ns|nt|nu|pe|sk|yk)\.ca$|(^|\.)(ontario|quebec|alberta|saskatchewan|novascotia|yukon|gnb|princeedwardisland|canada)\.ca$/.test(h) || /\.gov\.[a-z]{2}$|\.gc\.ca$|\.fed\.us$|\.(state|ci|co)\.[a-z]{2}\.us$|^[a-z0-9-]+\.[a-z]{2}\.us$|(^|\.)(nps|fws|blm|usda|usgs|ky|kentucky)\.gov$/.test(h)) return 'off';
       if (/(^|\.)(google|bing|duckduckgo)\./.test(h)) return /\/maps|maps\./.test(U.host + U.pathname) ? 'un' : 'search';
       return 'un';
     } catch (e) { return 'un'; }
   }
   /* government sites that do not end in .gov: Kentucky's Tourism, Arts & Heritage Cabinet hosts the state parks' maps on kentuckytourism.com */
   /* nationwide: state park and wildlife agencies whose own sites are .com/.org (checked Oct 23): still the government */
-  const GOV_HOSTS = [].concat(...Object.values(SA).map(L => L.map(a => a[1]))).concat(FEDA.map(f => f[1])).concat(['kentuckytourism.com', 'outdooralabama.com', 'alapark.com', 'agfc.com', 'arkansasstateparks.com', 'myfwc.com', 'floridastateparks.org', 'georgiawildlife.com', 'gastateparks.org', 'ncwildlife.org', 'southcarolinaparks.com', 'tnstateparks.com', 'wvstateparks.com', 'mostateparks.com', 'mdwfp.com', 'lastateparks.com', 'travelok.com', 'wildlifedepartment.com', 'azgfd.com', 'azstateparks.com', 'myodfw.com', 'ndow.org', 'ndparks.com', 'njfishandwildlife.com', 'vtfishandwildlife.com', 'ctparks.com', 'nhstateparks.org', 'destateparks.com', 'recreation.gov']);
+  const GOV_HOSTS = [].concat(...Object.values(SA).map(L => L.map(a => a[1]))).concat(FEDA.map(f => f[1])).concat(FEDA_CA.map(f => f[1])).concat(['kentuckytourism.com', 'outdooralabama.com', 'alapark.com', 'agfc.com', 'arkansasstateparks.com', 'myfwc.com', 'floridastateparks.org', 'georgiawildlife.com', 'gastateparks.org', 'ncwildlife.org', 'southcarolinaparks.com', 'tnstateparks.com', 'wvstateparks.com', 'mostateparks.com', 'mdwfp.com', 'lastateparks.com', 'travelok.com', 'wildlifedepartment.com', 'azgfd.com', 'azstateparks.com', 'myodfw.com', 'ndow.org', 'ndparks.com', 'njfishandwildlife.com', 'vtfishandwildlife.com', 'ctparks.com', 'nhstateparks.org', 'destateparks.com', 'recreation.gov']);
   const KIND_WORD = { off: 'OFFICIAL', pota: 'POTA', search: 'WEB SEARCH', un: 'UNOFFICIAL' };
   const KIND_HELP = { off: 'Government source: counts as evidence.', pota: "POTA's own site.", search: 'A web search, not a source: read what it finds with care.', un: 'Not a government source: background only, never evidence of eligibility.' };
   const hostOfU = u => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return ''; } };
@@ -436,9 +498,9 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     if (PPS[st]) return PPS[st];
     let L = [];
     /* api.pota.app/location/parks/US-XX = every park in the state (the same list the Hunters Lounge and finder use); 'program' was the wrong address (Oct 24, Brandon: 187 of 197 KY areas showed as new) */
-    try { const j = await B.jget('https://api.pota.app/location/parks/US-' + st, null, 45000); if (Array.isArray(j)) L = j.filter(p => p && p.reference).map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
+    try { const j = await B.jget('https://api.pota.app/location/parks/' + refPre() + '-' + st, null, 45000); if (Array.isArray(j)) L = j.filter(p => p && p.reference).map(p => ({ ref: p.reference, name: p.name || '', type: p.parktypeDesc || '', la: +p.latitude, lo: +p.longitude, active: p.active !== 0 })); } catch (e) {}
     if (!L.length) { try { const b = await stBox(st); if (b) { const j = await B.jget(`https://api.pota.app/park/grids/${b[1].toFixed(2)}/${b[0].toFixed(2)}/${b[3].toFixed(2)}/${b[2].toFixed(2)}/0`, null, 30000); L = (j.features || []).map(f => ({ ref: f.properties.reference, name: f.properties.name, type: f.properties.parktypeDesc || '', lo: f.geometry.coordinates[0], la: f.geometry.coordinates[1], active: true })); } } catch (e) {} }
-    L = L.filter(p => /^US-/.test(p.ref || ''));
+    L = L.filter(p => String(p.ref || '').indexOf(refPre() + '-') === 0);
     if (L.length) PPS[st] = L;
     return L;
   }
@@ -451,7 +513,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     else try {
       const where = `Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${g.st}'`;
       const big = g.acres > 50000;
-      fc = await B.jget(PADUS + '?' + new URLSearchParams({ where, outFields: F, returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: big ? 0.0004 : 0.00005, f: 'geojson' }));
+      fc = await geoQ(where, big);
     } catch (e) { msg('Could not load the boundary. Try again.'); return; }
     const feats = (fc.features || []).filter(f => f.geometry);
     if (!feats.length) { msg('No boundary shape came back for that one.'); return; }
@@ -476,7 +538,7 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const kindOK = n => { const k = B.kindOf(n); return !k || !gKind || k === gKind; };
     const exact = n => B.norm(n) === B.norm(g.name) && kindOK(n);
     const close = n => B.sameName(n, g.name) || B.norm(n).split(' ').filter(w => w.length > 3 && B.norm(g.name).split(' ').includes(w)).length >= 2;
-    const cand = near.concat(((look || []).filter(x => x.type === 'park').map(x => ({ ref: x.value, name: x.display.replace(/^\S+\s+/, ''), far: true })))).filter(p => !p.far || /^US-/.test(p.ref));
+    const cand = near.concat(((look || []).filter(x => x.type === 'park').map(x => ({ ref: x.value, name: x.display.replace(/^\S+\s+/, ''), far: true })))).filter(p => !p.far || p.ref.indexOf(refPre() + '-') === 0);
     const uniqP = L => [...new Map(L.map(p => [p.ref, p])).values()];
     const already = uniqP(cand.filter(p => exact(p.name)));
     const similar = uniqP(cand.concat(inside).filter(p => !already.some(a => a.ref === p.ref) && close(p.name)));
@@ -499,13 +561,13 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const recL = () => offWeb.slice(0, 2).map(u => ['OFFICIAL PAGE FOR THIS PARK: ' + (() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'AGENCY SITE'; } })().toUpperCase() + ' ↗', u, 'gold']).concat(agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [(AGHOME[d] || agName(d).toUpperCase() + ' WEBSITE') + ' ↗', 'https://' + (d === 'nps.gov' || d === 'fws.gov' ? 'www.' : '') + d + '/', 'gold']));   /* Brandon Oct 15: never link raw PAD-US query pages; the record shows in the page (SEE THE RECORD THIS CAME FROM) */
     const gq = s2 => 'https://www.google.com/search?q=' + encodeURIComponent(s2);
     const sat = `https://www.google.com/maps/@${la.toFixed(5)},${lo.toFixed(5)},15z/data=!3m1!1e3`;
-    add(!own.length ? 'CHECK' : own.every(top) ? 'YES' : own.some(t => t === 'JNT' || t === 'UNK') && !own.some(t => ['LOC', 'PVT', 'NGO', 'TRIB', 'DIST'].includes(t)) ? 'CHECK' : 'NO', 'Owned by the national or state government',
-      `Owner: ${own.length ? base.map(r => (r.Loc_Own || AG[r.Own_Name] || r.Own_Name || 'not stated') + ' (' + (TYPE[r.Own_Type] || r.Own_Type || 'type not stated') + ')').filter((x, i, a) => a.indexOf(x) === i).join('; ') : '<b>not in the record</b>: read it on the agency\'s own page'}. POTA only adds parks owned and run by the qualifying governmental tiers in its Country Eligibility Schedule (in the US: federal and state). County, city, private and non-profit land is not added, and the Agreement allows no exceptions to the ownership rule.`, recL('OWNER IN THE OFFICIAL RECORD').concat([[`SEARCH ${(locM.replace(/ \(.*$/, '') || 'AGENCY').toUpperCase().slice(0, 40)} (GOOGLE) ↗`, gq(`"${g.name}" "${locM}"`)]]));
-    add(!mng.length ? 'CHECK' : mng.every(top) && !mngN.includes('USACE') && !mngN.includes('TVA') && !/universit|college/i.test(locM) ? 'YES' : mngN.includes('TVA') || /universit|college/i.test(locM) || mng.some(t => t === 'JNT' || t === 'UNK') ? 'CHECK' : 'NO', 'Run (operated) by the national or state government',
+    add(!own.length ? 'CHECK' : own.every(top) ? 'YES' : own.some(t => t === 'JNT' || t === 'UNK') && !own.some(t => ['LOC', 'PVT', 'NGO', 'TRIB', 'DIST'].includes(t)) ? 'CHECK' : 'NO', isCA() ? 'Owned by the federal or provincial/territorial government' : 'Owned by the national or state government',
+      `Owner: ${own.length ? base.map(r => (r.Loc_Own || AG[r.Own_Name] || r.Own_Name || 'not stated') + ' (' + (TYPE[r.Own_Type] || r.Own_Type || 'type not stated') + ')').filter((x, i, a) => a.indexOf(x) === i).join('; ') : '<b>not in the record</b>: read it on the agency\'s own page'}. POTA only adds parks owned and run by the qualifying governmental tiers in its Country Eligibility Schedule (${isCA() ? 'in Canada: federal and provincial/territorial' : 'in the US: federal and state'}). ${isCA() ? 'Municipal, Indigenous, private and non-profit land is not added' : 'County, city, private and non-profit land is not added'}, and the Agreement allows no exceptions to the ownership rule.`, recL('OWNER IN THE OFFICIAL RECORD').concat([[`SEARCH ${(locM.replace(/ \(.*$/, '') || 'AGENCY').toUpperCase().slice(0, 40)} (GOOGLE) ↗`, gq(`"${g.name}" "${locM}"`)]]));
+    add(!mng.length ? 'CHECK' : mng.every(top) && !mngN.includes('USACE') && !mngN.includes('TVA') && !/universit|college/i.test(locM) ? 'YES' : mngN.includes('TVA') || /universit|college/i.test(locM) || mng.some(t => t === 'JNT' || t === 'UNK') ? 'CHECK' : 'NO', isCA() ? 'Run (operated) by the federal or provincial/territorial government' : 'Run (operated) by the national or state government',
       `Manager: ${esc(locM || mngN.map(m => AG[m] || m).join('; '))} (${mng.map(t => TYPE[t] || t).join(', ')}). ${mngN.includes('USACE') ? 'Run by the Army Corps of Engineers: POTA does not add Corps sites except a very few already confirmed. ' : ''}${mngN.includes('TVA') ? 'TVA land is researched case by case. ' : ''}${/universit|college/i.test(locM) ? 'University land is rarely eligible. ' : ''}${own.includes('FED') && mng.includes('STAT') ? 'Federal land run by a state agency counts as both top tiers' + (corpsOwnEarly ? ', but this is Corps land: see the Corps rule below. ' : '. ') : ''}Parks run by commissions, districts, boards, societies or third parties don't qualify.`, recL('MANAGER IN THE OFFICIAL RECORD'));
     /* Army Corps of Engineers land (POTA: 'POTA has generally sidestepped USACE sites'; only a few confirmed exceptions) */
     const corpsOwn = uniq('Own_Name').includes('USACE') || /corps of engineers|\bUSACE\b|\bCOE\b/i.test(uniq('Loc_Own').join(' ')), corpsMng = mngN.includes('USACE') || /corps of engineers|\bUSACE\b/i.test(locM);
-    add(corpsMng ? 'NO' : corpsOwn ? 'CHECK' : 'YES', 'Not Army Corps of Engineers land',
+    if (!isCA()) add(corpsMng ? 'NO' : corpsOwn ? 'CHECK' : 'YES', 'Not Army Corps of Engineers land',
       corpsMng ? 'The Army Corps of Engineers runs it. POTA\'s rules say Corps sites are 100% Corps owned but mostly run through partnerships with local governments, so POTA has generally sidestepped them, with only a few confirmed exceptions. Treat this as not eligible.'
       : corpsOwn ? `The land belongs to the Army Corps of Engineers and ${esc(locM || 'another agency')} runs it. POTA has generally sidestepped Corps sites; only a few have been confirmed as exceptions. Some state wildlife areas on Corps lakes are POTA parks (in Kentucky, for example, Dewey Lake, Fishtrap Lake and Yatesville Lake WMAs) and many are not. <b>Don't count on it:</b> only the Mapping Representative can say whether this one is an exception.`
       : 'The owner is not the Army Corps of Engineers.', corpsOwn || corpsMng ? [['ARMY CORPS SITE (USACE.ARMY.MIL, GOOGLE) ↗', gq(`site:usace.army.mil "${g.name}"`)], ['WHO RUNS IT? (GOOGLE) ↗', gq(`"${g.name}" ${g.st} managed by operated by`)]] : []);
@@ -728,7 +790,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
         const seenU = new Set(), ls = lines.filter(l => !seenU.has(l.t) && seenU.add(l.t));
         const q1 = `"${nm}" ${st} ${KIND[k][2]}`, q2 = `"${nm}" ${st} site:.gov ${KIND[k][2]}`;
         box.innerHTML = (ls.length ? `<p class="mr-help"><b>WHAT ELSE THE WEB SAYS (not official; confirm on the agency's page):</b></p>${ls.slice(0, 4).map(l => `<p class="mr-help">${esc(l.t)} · <a href="${esc(l.u)}" target="_blank" rel="noopener">${esc(dom0(l.u))} ↗</a></p>`).join('')}` : (box.closest('.mr-r') && box.closest('.mr-r').classList.contains('check') ? '<p class="mr-help">The official records did not settle this. General web searches (not official sources):</p>' : ''))
-          + `<details class="mr-rec"${box.closest('.mr-r') && box.closest('.mr-r').classList.contains('check') ? ' open' : ''}><summary>GENERAL WEB SEARCHES (NOT OFFICIAL SOURCES)</summary><div class="mr-rl">${srch(KIND[k][0] + ' (.GOV)', q2).concat(srch(KIND[k][0], q1)).concat(k === 'acc' ? [['STREET VIEW AT THE PIN ↗', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}`]] : []).map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div></details>`;
+          + `<details class="mr-rec"${box.closest('.mr-r') && box.closest('.mr-r').classList.contains('check') ? ' open' : ''}><summary>GENERAL WEB SEARCHES (NOT OFFICIAL SOURCES)</summary><div class="mr-rl">${srch(KIND[k][0] + ' (.GOV)', q2).concat(srch(KIND[k][0], q1)).concat(k === 'acc' ? [['STREET VIEW AT THE PIN ↗', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(5)},${lo.toFixed(5)}`]] : []).map(l => `<a class="k-${kindOfU(l[1])}" title="${KIND_HELP[kindOfU(l[1])]}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div></details>`;
       });
       const noteWeb = () => { const t = $('mrNote'); if (!t) return; const L = ['owner', 'mgr', 'acc'].map(k => sayLines(k).concat(wikiSays[k] || []).map(l => `- ${l.t} (${l.u})`)).flat(); const seenW = new Set(), W = L.filter(x => !seenW.has(x) && seenW.add(x)).slice(0, 8); t.value = t.value.replace(/Web sources say \(not official\):[^\n]*(\n- [^\n]*)*/, 'Web sources say (not official): ' + (W.length ? '\n' + W.join('\n') : 'none found')); };
       paint(); noteWeb();
@@ -739,7 +801,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
         wikiSays.owner = pick(/\b(owned|ownership|owns)\b/i); wikiSays.mgr = pick(/\b(managed|operated|administered|maintained|run by)\b/i); wikiSays.acc = pick(/\b(open to the public|public access|admission|permit|hours|closed)\b/i);
         paint(); noteWeb();
       }).catch(() => {});
-      const MRb = $('mrMapRule'); if (MRb) MRb.innerHTML += srch('BOUNDARY MAP', `"${nm}" ${st} boundary map`).concat(srch('BOUNDARY MAP (.GOV, PDF)', `"${nm}" ${st} site:.gov map filetype:pdf`)).map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('');
+      const MRb = $('mrMapRule'); if (MRb) MRb.innerHTML += srch('BOUNDARY MAP', `"${nm}" ${st} boundary map`).concat(srch('BOUNDARY MAP (.GOV, PDF)', `"${nm}" ${st} site:.gov map filetype:pdf`)).map(l => `<a class="k-${kindOfU(l[1])}" title="${KIND_HELP[kindOfU(l[1])]}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('');
     }
     const W = $('mrWebRule'); if (W && !W.closest('.mr-r').classList.contains('yes')) {
       const sites = [...new Set(near.map(h => h.web).filter(Boolean))];
@@ -789,14 +851,14 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
      grouped by name, compared with POTA's own list of parks in the state. ⭐ = no POTA park with that name and nothing odd about it. Tap one → the full check. */
   const FLAGS = [[/corps of engineers|\bUSACE\b|\bCOE\b/i, 'Army Corps of Engineers: only a few are exceptions'], [/tennessee valley|\bTVA\b/i, 'TVA land: case by case'], [/universit|college|school land|trust land|land board|land office|board of regents/i, 'school / university / trust land: rarely eligible'],
     [/department of defense|\bDOD\b|\barmy\b(?! corps)|\bnavy\b|air force|national guard|military/i, 'military land'], [/outstanding resource water|division of water|water quality/i, 'water-quality designation, not a park'], [/hunting access|access area\b|boat (ramp|access)|fishing access/i, 'small access site'],
-    [/easement/i, 'easement'], [/national (historic|recreation(al)?) trail|heritage area|historic landmark|national register|scenic byway/i, 'a type POTA does not add'], [/\btrail\b/i, 'a trail: usually not added on its own'], [/purchase unit|\bother\b$|\bexperimental forest\b|proclamation/i, 'part of a bigger unit (a national forest purchase unit or an odd database piece): use the main unit\'s number']];
-  const flagsOf = g => { const t = [g.name, g.rows[0].Loc_Own, g.rows[0].Loc_Mang, g.rows[0].Own_Name, g.rows[0].Mang_Name, g.rows[0].Loc_Ds].join(' '); return FLAGS.filter(f => f[0].test(t)).map(f => f[1]).concat(g.acres && g.acres < 5 ? ['under 5 acres'] : []).concat(g.rows[0].Own_Type === 'UNK' ? ['owner not stated: check the agency page'] : []); };
+    [/easement/i, 'easement'], [/national (historic|recreation(al)?) trail|heritage area|historic landmark|national register|scenic byway/i, 'a type POTA does not add'], [/\btrail\b/i, 'a trail: usually not added on its own'], [/\bOECM\b/, 'OECM: a conservation measure on land that is often private or municipal, not a park'], [/interim status/i, 'interim status: not yet established'], [/purchase unit|\bother\b$|\bexperimental forest\b|proclamation/i, 'part of a bigger unit (a national forest purchase unit or an odd database piece): use the main unit\'s number']];
+  const flagsOf = g => { const t = [g.name, g.rows[0].Loc_Own, g.rows[0].Loc_Mang, g.rows[0].Own_Name, g.rows[0].Mang_Name, g.rows[0].Loc_Ds, g.rows[0].Comments].join(' '); return FLAGS.filter(f => f[0].test(t)).map(f => f[1]).concat(g.acres && g.acres < 5 ? ['under 5 acres'] : []).concat(g.rows[0].Own_Type === 'UNK' ? ['owner not stated: check the agency page'] : []); };
   async function candidates(st, town) {
-    if (!st) { msg('Pick the state first.'); return; }
+    if (!st) { msg('Pick the ' + (isCA() ? 'province' : 'state') + ' first.'); return; }
     $('mrList').innerHTML = '';
-    msg(`Listing every open federal and state tract in ${esc(st)} from the national land database and comparing it with POTA's list of parks in ${esc(st)}…`);
+    msg(`Listing every ${isCA() ? 'federal, provincial and territorial protected area' : 'open federal and state tract'} in ${esc(st)} from ${isCA() ? 'Canada\'s CPCAD' : 'the national land database'} and comparing it with POTA's list of parks in ${esc(st)}…`);
     let box = null;
-    if (town) { try { const gj = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=US&name=' + encodeURIComponent(town)); const hit = (gj.results || []).find(r => stateOf(r.admin1) === st) || (gj.results || [])[0]; if (hit) box = [hit.longitude - 0.6, hit.latitude - 0.5, hit.longitude + 0.6, hit.latitude + 0.5]; } catch (e) {} if (!box) { msg(`Could not find the town "${esc(town)}". Check the spelling, or leave it blank for the whole state.`); return; } }
+    if (town) { try { const gj = await B.jget('https://geocoding-api.open-meteo.com/v1/search?count=10&language=en&format=json&countryCode=' + refPre() + '&name=' + encodeURIComponent(town)); const hit = (gj.results || []).find(r => stateOf(r.admin1) === st) || (gj.results || [])[0]; if (hit) box = [hit.longitude - 0.6, hit.latitude - 0.5, hit.longitude + 0.6, hit.latitude + 0.5]; } catch (e) {} if (!box) { msg(`Could not find the town "${esc(town)}". Check the spelling, or leave it blank for the whole state.`); return; } }
     const rows = [];
     try {
       for (let off = 0; off < 12000; off += 1000) {
@@ -807,7 +869,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       }
     } catch (e) { if (!rows.length) { msg('The national land database did not answer. Try again in a minute.'); return; } }
     const keep = rows.filter(r => r.Category === 'Fee' && /^(FED|STAT)$/.test(r.Mang_Type) && /^(FED|STAT)$/.test(r.Own_Type) && (r.Unit_Nm || r.Loc_Nm));
-    const G = new Map(); keep.forEach(r => { const n = r.Unit_Nm || r.Loc_Nm, k = n + '|' + st; const g = G.get(k) || { name: n, st, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
+    const G = new Map(); keep.forEach(r => { const n = r.Unit_Nm || r.Loc_Nm, k = n + '|' + st; const g = G.get(k) || { name: n, st, rows: [], acres: 0, src: NATSRC() }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
     /* Kentucky: the state's own live layers too; PAD-US is a yearly snapshot and misses new state land (Brandon Oct 24: Blackford Oaks WMA was not listed) */
     if (st === 'KY' || (await stGis(st)).length) {
       const e = document.querySelector('.mr-msg div'); if (e) e.firstChild.textContent = `Read ${rows.length.toLocaleString()} national records; now reading ${esc(st)}'s own state map layers (new land shows here first)…`;
@@ -836,7 +898,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
         try {
           const big = g.acres > 50000;
           if (g.feats && g.feats.length) { const ins0 = P.filter(p => g.feats.some(f => B.inside(p.la, p.lo, f.geometry))); if (ins0.length) { g.pota = ins0; g.byPin = true; } done++; return; }
-          const fc = await B.jget(PADUS + '?' + new URLSearchParams({ where: `Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${st}'`, outFields: F, returnGeometry: true, outSR: 4326, geometryPrecision: 4, maxAllowableOffset: big ? 0.002 : 0.0005, f: 'geojson' }), null, 20000);
+          const fc = await geoQ(`Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${st}'`, big, true);
           const feats = (fc.features || []).filter(f => f.geometry);
           if (!feats.length) return;
           const bb = feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
@@ -856,7 +918,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     const more = (L, from, id) => L.length > from ? `<button type="button" class="mr-more" data-more="${id}">SHOW ${Math.min(60, L.length - from)} MORE (${L.length - from} left)</button>` : '';
     let nStar = 60, nLook = 30;
     const render = () => {
-      $('mrList').innerHTML = `<div class="mr-candhead"><b>🔎 PARKS TO ADD IN ${esc(st)}${town ? ' NEAR ' + esc(town.toUpperCase()) : ''}</b><p class="mr-help">${all.length.toLocaleString()} named federal/state areas open to the public in the national land database${P.length ? `; <b>${have}</b> already have a POTA park (same name, or a POTA pin inside the outline), <b>${fresh.length}</b> do not` : ''}. Tap one to run it through the full check. ⭐ = nothing odd found; the rest show why to look twice. Not every name here is a park: the database also lists easements, water designations and tiny access sites, and the full check and the agency's own page decide.</p><p class="mr-help"><b>A few parks that already exist can slip through.</b> The land database uses the agency's legal name, and POTA's name is whatever the volunteer typed when the park was added ("WMA" for "Wildlife Management Area", "State Park" for "State Resort Park", a lake named after a different town, an old name the agency has since changed). The tool matches names loosely and then checks the biggest candidates by location (a POTA pin inside the outline = already a park), but a pin dropped on the road outside the line, or a park past the first ${toCheck.length} checked, can still show up here as new. So before adding anything, open the POTA map at the spot and the agency's own page: if it is already a park, use that number.</p></div>
+      $('mrList').innerHTML = `<div class="mr-candhead"><b>🔎 PARKS TO ADD IN ${esc(st)}${town ? ' NEAR ' + esc(town.toUpperCase()) : ''}</b><p class="mr-help">${all.length.toLocaleString()} named ${isCA() ? 'federal, provincial and territorial protected areas in Canada\'s CPCAD' : 'federal/state areas open to the public in the national land database'}${P.length ? `; <b>${have}</b> already have a POTA park (same name, or a POTA pin inside the outline), <b>${fresh.length}</b> do not` : ''}. Tap one to run it through the full check. ⭐ = nothing odd found; the rest show why to look twice. Not every name here is a park: the database also lists easements, water designations and tiny access sites, and the full check and the agency's own page decide.</p><p class="mr-help"><b>A few parks that already exist can slip through.</b> The land database uses the agency's legal name, and POTA's name is whatever the volunteer typed when the park was added ("WMA" for "Wildlife Management Area", "State Park" for "State Resort Park", a lake named after a different town, an old name the agency has since changed). The tool matches names loosely and then checks the biggest candidates by location (a POTA pin inside the outline = already a park), but a pin dropped on the road outside the line, or a park past the first ${toCheck.length} checked, can still show up here as new. So before adding anything, open the POTA map at the spot and the agency's own page: if it is already a park, use that number.</p></div>
 <h4 class="mr-candh">⭐ LOOK PROMISING · ${star.length}</h4>${star.slice(0, nStar).map(g => row(g, IDX.indexOf(g))).join('') || '<p class="mr-help">None without a flag.</p>'}${more(star, nStar, 'star')}
 <h4 class="mr-candh">⚠ PROBABLY WILL NOT QUALIFY, OR CLOSE TO AN EXISTING PARK · ${look.length}</h4>${look.slice(0, nLook).map(g => row(g, IDX.indexOf(g))).join('') || '<p class="mr-help">None.</p>'}${more(look, nLook, 'look')}
 ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary><p class="mr-help">Matched by name, or (📍) by a POTA pin inside the outline when POTA calls it something else. Tap the number to compare.</p><p class="mr-help">${all.filter(g => g.pota.length).sort((a, b) => b.acres - a.acres).map(g => esc(g.name) + ' = ' + (g.byPin ? '📍 ' : '') + g.pota.map(p => `<a href="https://pota.app/#/park/${encodeURIComponent(p.ref)}" target="_blank" rel="noopener">${esc(p.ref)} ${esc(p.name)}</a>`).join(', ')).join(' · ')}</p></details>` : ''}`;
@@ -870,7 +932,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     const f = $('mrForm'); if (!f || $('mrCandBox')) return;
     const d = document.createElement('div'); d.id = 'mrCandBox'; d.className = 'mr-cand';
     d.innerHTML = `<div class="mr-locnote mr-candnote"><b>🔎 FIND PARKS TO ADD</b><p>Don't have a park in mind? List every open federal and state area in a state (or around a town) that has <b>no POTA park with that name</b>, then tap one to run it through the full check.</p>
-<form class="mr-form mr-locf" id="mrCandForm"><label>STATE<select id="mrCandSt">${ST.map(s2 => `<option>${s2}</option>`).join('')}</select></label><label>TOWN (OPTIONAL, ABOUT 40 MILES AROUND)<input id="mrCandTown" autocomplete="off" placeholder="Anytown"></label><button type="submit">FIND PARKS TO ADD</button></form>
+<form class="mr-form mr-locf" id="mrCandForm"><label>STATE<select id="mrCandSt">${codes().map(s2 => `<option value="${s2}">${s2}${isCA() ? ' · ' + PROVN[s2] : ''}</option>`).join('')}</select></label><label>TOWN (OPTIONAL, ABOUT 40 MILES AROUND)<input id="mrCandTown" autocomplete="off" placeholder="Anytown"></label><button type="submit">FIND PARKS TO ADD</button></form>
 <p class="mr-help">Reads the whole state from the national land database (a big state can take a minute). Flags: Army Corps, TVA, school/trust/university land, military, water-quality designations, access sites, easements, trails, under 5 acres.</p></div>`;
     const ag = $('mrAg'); if (ag) ag.parentNode.insertBefore(d, ag); else f.parentNode.appendChild(d);
     const st = document.createElement('style'); st.textContent = '.mr-cand{margin:14px 0 6px}.mr-candnote{background:#eef7f1;border-color:#1d5a3a;border-left-color:#1d5a3a}.mr-candnote>b:first-child{color:#1d5a3a}.mr-candhead{margin:10px 0 4px}.mr-candhead b{font:900 13px Arial,sans-serif;letter-spacing:1.4px;color:#1d5a3a}.mr-candh{margin:14px 0 4px;font:900 12px Arial,sans-serif;letter-spacing:1.2px;color:#171717}.mr-pick.mr-cand{margin-top:6px}.mr-pick.flag{border-style:dashed}.mr-more{display:block;width:100%;margin-top:8px;min-height:42px;border-radius:8px;border:1.5px solid #1d5a3a;background:#fff;color:#1d5a3a;font:900 11.5px Arial,sans-serif;letter-spacing:1px;cursor:pointer}';
@@ -931,7 +993,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
       label = 'GPS ' + la.toFixed(6) + ', ' + lo.toFixed(6);
     } else {
       msg('Finding that address…');
-      const st0 = $('mrState').value, nq = q2 => B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: q2, format: 'jsonv2', countrycodes: 'us', addressdetails: 1, limit: 1 })).then(j => (j || [])[0]).catch(() => null);
+      const st0 = $('mrState').value, nq = q2 => B.jget('https://nominatim.openstreetmap.org/search?' + new URLSearchParams({ q: q2, format: 'jsonv2', countrycodes: 'us,ca', addressdetails: 1, limit: 1 })).then(j => (j || [])[0]).catch(() => null);
       let h = await nq(t);
       if (!h && st0 && !new RegExp('\\b' + st0 + '\\b', 'i').test(t)) h = await nq(t + ', ' + st0);
       if (!h) { msg('<b>Could not find that address.</b> Add the town and state, try the road name only, or paste GPS numbers (in Google Maps, press and hold on the spot to see them).'); return; }
@@ -941,7 +1003,12 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     msg('Checking the official land database at ' + esc(label) + '…');
     let st = '';
     try { const c = await B.jget(`https://geo.fcc.gov/api/census/area?lat=${la}&lon=${lo}&format=json`); st = (((c.results || [])[0]) || {}).state_code || ''; } catch (e) {}
-    if (st && ST.includes(st) && $('mrState').value !== st) { $('mrState').value = st; agencies(st); }
+    if (st) { if (CTRY !== 'US') setCountry('US'); }
+    else { /* not in the US: Canada, or somewhere this tool does not serve */
+      try { const r = await B.jget('https://nominatim.openstreetmap.org/reverse?' + new URLSearchParams({ lat: la, lon: lo, format: 'jsonv2', addressdetails: 1, zoom: 5 })); const ad = (r && r.address) || {}; const cc = String(ad.country_code || '').toUpperCase(), iso = String(ad['ISO3166-2-lvl4'] || '').slice(3);
+        if (cc === 'CA') { if (CTRY !== 'CA') setCountry('CA'); if (PROV[iso]) st = iso; } else if (cc && cc !== 'US') { sorry(ad.country); return; } } catch (e) {}
+    }
+    if (st && codes().includes(st) && $('mrState').value !== st) { $('mrState').value = st; agencies(st); }
     const osmP = osmNamed(la, lo);
     const W = st ? `State_Nm='${st}'` : '1=1', d = .004;
     const [at, near] = await Promise.all([
@@ -976,7 +1043,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
       msg(`<b>No government records found</b> for this spot (${where}${st ? ', ' + esc(st) : ''}). We checked the official land database (USGS PAD-US) at the spot and out to about 3 miles: no federal or state land.<br>It is probably city, county or private land, which POTA doesn't add. <b>Here is what we found on the rest of the web</b> (not official; confirm on the owner's own page). Check the dot is in the right place, or search by the park's name below.`);
       const fbq = t => 'https://www.google.com/search?q=' + encodeURIComponent(t), fbll = la.toFixed(5) + ',' + lo.toFixed(5);
       const fb = [['WHO OWNS THIS SPOT? (GOOGLE)', fbq(`park at ${fbll} ${st} owned by`)], ['COUNTY PARCEL / PROPERTY MAP (GOOGLE)', fbq(`${st} county GIS parcel viewer property owner`)], ['CITY / COUNTY PARK PAGES (GOOGLE)', fbq(`${st} city county park near ${fbll}`)], ['.GOV PARK PAGES (GOOGLE)', fbq(`park near ${fbll} ${st} site:.gov`)], ['SATELLITE VIEW', `https://www.google.com/maps/@${fbll},16z/data=!3m1!1e3`], ['STREET VIEW', `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${fbll}`], ['OPENSTREETMAP AT THE SPOT', `https://www.openstreetmap.org/?mlat=${la.toFixed(5)}&mlon=${lo.toFixed(5)}#map=16/${la.toFixed(5)}/${lo.toFixed(5)}`], ['BING MAPS', `https://www.bing.com/maps?cp=${la.toFixed(5)}~${lo.toFixed(5)}&lvl=16`]];
-      $('mrList').innerHTML = `<div class="mr-sec"><h3>WHAT WE FOUND ON THE REST OF THE WEB (NOT OFFICIAL)</h3><div class="mr-rl">${fb.map(l => `<a href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div></div>` + await osmHtml(osmP, st); osmWire();
+      $('mrList').innerHTML = `<div class="mr-sec"><h3>WHAT WE FOUND ON THE REST OF THE WEB (NOT OFFICIAL)</h3><div class="mr-rl">${fb.map(l => `<a class="k-${kindOfU(l[1])}" title="${KIND_HELP[kindOfU(l[1])]}" href="${esc(l[1])}" target="_blank" rel="noopener">${esc(l[0])} ↗</a>`).join('')}</div></div>` + await osmHtml(osmP, st); osmWire();
       return;
     }
     $('mrOut').innerHTML = '';
