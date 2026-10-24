@@ -197,8 +197,8 @@
     { svc: 'Ky_KNP_Natural_Areas_WGS84WM', id: 0, ag: 'Office of Kentucky Nature Preserves', nm: 'MANAME', web: p => p.Webpage || '', acc: p => /open/i.test(p.PUB_ACCESS || '') ? 'OA' : p.PUB_ACCESS ? 'RA' : 'UK', ds: p => p.UNIT_TYPE || 'State Natural Area', own: p => p.MA_OWNER, mng: p => p.MNG_INST }];
   const kyType = s => /county|fiscal court|city of|town of/i.test(s || '') ? 'LOC' : /universit|college/i.test(s || '') ? 'STAT' : /private|trust|conservancy|foundation|society/i.test(s || '') ? 'NGO' : 'STAT';
   async function kyLive(ws) {
-    const sq = x => x.replace(/'/g, "''"), out = [];
-    await Promise.all(KYL.map(L => B.jget(`https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/${L.svc}/MapServer/${L.id}/query?` + new URLSearchParams({ where: ws.map(x => `UPPER(${L.nm}) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: 5, maxAllowableOffset: 0.0001, f: 'geojson' }), null, 20000).then(j => (j.features || []).forEach(f => {
+    const sq = x => x.replace(/'/g, "''"), out = [], all = !ws || !ws.length;   /* no words (Oct 24) = every area in Kentucky's live layers, for FIND PARKS TO ADD */
+    await Promise.all(KYL.map(L => B.jget(`https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/${L.svc}/MapServer/${L.id}/query?` + new URLSearchParams({ where: all ? '1=1' : ws.map(x => `UPPER(${L.nm}) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: all ? 4 : 5, maxAllowableOffset: all ? 0.0008 : 0.0001, resultRecordCount: 2000, f: 'geojson' }), null, all ? 60000 : 20000).then(j => (j.features || []).forEach(f => {
       const P = f.properties || {}; if (!f.geometry || !P[L.nm]) return;
       const own = (L.own && L.own(P)) || L.ag, mg = (L.mng && L.mng(P)) || L.ag;
       out.push({ src: 'Kentucky state GIS (live): ' + L.ag, f: fake(f, { Unit_Nm: L.full ? L.full(P) : P[L.nm], Own_Type: kyType(own), Loc_Own: own, Mang_Type: kyType(mg), Loc_Mang: mg, Loc_Ds: L.ds(P), Pub_Access: L.acc(P), State_Nm: 'KY', Web: L.web(P) }) });
@@ -474,9 +474,9 @@ ${LG.length ? `<div class="mr-sec mr-found"><h3>FOUND IT BY LOCATION IN THE OFFI
     const recL = () => offWeb.slice(0, 2).map(u => ['OFFICIAL PAGE FOR THIS PARK: ' + (() => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return 'AGENCY SITE'; } })().toUpperCase() + ' ↗', u, 'gold']).concat(agSites(locM + ' ' + uniq('Loc_Own').join(' '), g.st).map(d => [(AGHOME[d] || agName(d).toUpperCase() + ' WEBSITE') + ' ↗', 'https://' + (d === 'nps.gov' || d === 'fws.gov' ? 'www.' : '') + d + '/', 'gold']));   /* Brandon Oct 15: never link raw PAD-US query pages; the record shows in the page (SEE THE RECORD THIS CAME FROM) */
     const gq = s2 => 'https://www.google.com/search?q=' + encodeURIComponent(s2);
     const sat = `https://www.google.com/maps/@${la.toFixed(5)},${lo.toFixed(5)},15z/data=!3m1!1e3`;
-    add(own.every(top) ? 'YES' : own.some(t => t === 'JNT' || t === 'UNK') && !own.some(t => ['LOC', 'PVT', 'NGO', 'TRIB', 'DIST'].includes(t)) ? 'CHECK' : 'NO', 'Owned by the national or state government',
-      `Owner: ${base.map(r => (r.Loc_Own || AG[r.Own_Name] || r.Own_Name) + ' (' + (TYPE[r.Own_Type] || r.Own_Type) + ')').filter((x, i, a) => a.indexOf(x) === i).join('; ')}. POTA only adds parks owned and run by the qualifying governmental tiers in its Country Eligibility Schedule (in the US: federal and state). County, city, private and non-profit land is not added, and the Agreement allows no exceptions to the ownership rule.`, recL('OWNER IN THE OFFICIAL RECORD').concat([[`SEARCH ${(locM.replace(/ \(.*$/, '') || 'AGENCY').toUpperCase().slice(0, 40)} (GOOGLE) ↗`, gq(`"${g.name}" "${locM}"`)]]));
-    add(mng.every(top) && !mngN.includes('USACE') && !mngN.includes('TVA') && !/universit|college/i.test(locM) ? 'YES' : mngN.includes('TVA') || /universit|college/i.test(locM) || mng.some(t => t === 'JNT' || t === 'UNK') ? 'CHECK' : 'NO', 'Run (operated) by the national or state government',
+    add(!own.length ? 'CHECK' : own.every(top) ? 'YES' : own.some(t => t === 'JNT' || t === 'UNK') && !own.some(t => ['LOC', 'PVT', 'NGO', 'TRIB', 'DIST'].includes(t)) ? 'CHECK' : 'NO', 'Owned by the national or state government',
+      `Owner: ${own.length ? base.map(r => (r.Loc_Own || AG[r.Own_Name] || r.Own_Name || 'not stated') + ' (' + (TYPE[r.Own_Type] || r.Own_Type || 'type not stated') + ')').filter((x, i, a) => a.indexOf(x) === i).join('; ') : '<b>not in the record</b>: read it on the agency\'s own page'}. POTA only adds parks owned and run by the qualifying governmental tiers in its Country Eligibility Schedule (in the US: federal and state). County, city, private and non-profit land is not added, and the Agreement allows no exceptions to the ownership rule.`, recL('OWNER IN THE OFFICIAL RECORD').concat([[`SEARCH ${(locM.replace(/ \(.*$/, '') || 'AGENCY').toUpperCase().slice(0, 40)} (GOOGLE) ↗`, gq(`"${g.name}" "${locM}"`)]]));
+    add(!mng.length ? 'CHECK' : mng.every(top) && !mngN.includes('USACE') && !mngN.includes('TVA') && !/universit|college/i.test(locM) ? 'YES' : mngN.includes('TVA') || /universit|college/i.test(locM) || mng.some(t => t === 'JNT' || t === 'UNK') ? 'CHECK' : 'NO', 'Run (operated) by the national or state government',
       `Manager: ${esc(locM || mngN.map(m => AG[m] || m).join('; '))} (${mng.map(t => TYPE[t] || t).join(', ')}). ${mngN.includes('USACE') ? 'Run by the Army Corps of Engineers: POTA does not add Corps sites except a very few already confirmed. ' : ''}${mngN.includes('TVA') ? 'TVA land is researched case by case. ' : ''}${/universit|college/i.test(locM) ? 'University land is rarely eligible. ' : ''}${own.includes('FED') && mng.includes('STAT') ? 'Federal land run by a state agency counts as both top tiers' + (corpsOwnEarly ? ', but this is Corps land: see the Corps rule below. ' : '. ') : ''}Parks run by commissions, districts, boards, societies or third parties don't qualify.`, recL('MANAGER IN THE OFFICIAL RECORD'));
     /* Army Corps of Engineers land (POTA: 'POTA has generally sidestepped USACE sites'; only a few confirmed exceptions) */
     const corpsOwn = uniq('Own_Name').includes('USACE') || /corps of engineers|\bUSACE\b|\bCOE\b/i.test(uniq('Loc_Own').join(' ')), corpsMng = mngN.includes('USACE') || /corps of engineers|\bUSACE\b/i.test(locM);
@@ -765,7 +765,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
   const FLAGS = [[/corps of engineers|\bUSACE\b|\bCOE\b/i, 'Army Corps of Engineers: only a few are exceptions'], [/tennessee valley|\bTVA\b/i, 'TVA land: case by case'], [/universit|college|school land|trust land|land board|land office|board of regents/i, 'school / university / trust land: rarely eligible'],
     [/department of defense|\bDOD\b|\barmy\b(?! corps)|\bnavy\b|air force|national guard|military/i, 'military land'], [/outstanding resource water|division of water|water quality/i, 'water-quality designation, not a park'], [/hunting access|access area\b|boat (ramp|access)|fishing access/i, 'small access site'],
     [/easement/i, 'easement'], [/national (historic|recreation(al)?) trail|heritage area|historic landmark|national register|scenic byway/i, 'a type POTA does not add'], [/\btrail\b/i, 'a trail: usually not added on its own'], [/purchase unit|\bother\b$|\bexperimental forest\b|proclamation/i, 'part of a bigger unit (a national forest purchase unit or an odd database piece): use the main unit\'s number']];
-  const flagsOf = g => { const t = [g.name, g.rows[0].Loc_Own, g.rows[0].Loc_Mang, g.rows[0].Own_Name, g.rows[0].Mang_Name, g.rows[0].Loc_Ds].join(' '); return FLAGS.filter(f => f[0].test(t)).map(f => f[1]).concat(g.acres < 5 ? ['under 5 acres'] : []); };
+  const flagsOf = g => { const t = [g.name, g.rows[0].Loc_Own, g.rows[0].Loc_Mang, g.rows[0].Own_Name, g.rows[0].Mang_Name, g.rows[0].Loc_Ds].join(' '); return FLAGS.filter(f => f[0].test(t)).map(f => f[1]).concat(g.acres && g.acres < 5 ? ['under 5 acres'] : []).concat(g.rows[0].Own_Type === 'UNK' ? ['owner not stated: check the agency page'] : []); };
   async function candidates(st, town) {
     if (!st) { msg('Pick the state first.'); return; }
     $('mrList').innerHTML = '';
@@ -783,6 +783,18 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     } catch (e) { if (!rows.length) { msg('The national land database did not answer. Try again in a minute.'); return; } }
     const keep = rows.filter(r => r.Category === 'Fee' && /^(FED|STAT)$/.test(r.Mang_Type) && /^(FED|STAT)$/.test(r.Own_Type) && (r.Unit_Nm || r.Loc_Nm));
     const G = new Map(); keep.forEach(r => { const n = r.Unit_Nm || r.Loc_Nm, k = n + '|' + st; const g = G.get(k) || { name: n, st, rows: [], acres: 0, src: 'USGS PAD-US (national public land database)' }; g.rows.push(r); g.acres += +r.GIS_Acres || 0; G.set(k, g); });
+    /* Kentucky: the state's own live layers too; PAD-US is a yearly snapshot and misses new state land (Brandon Oct 24: Blackford Oaks WMA was not listed) */
+    if (st === 'KY') {
+      const e = document.querySelector('.mr-msg div'); if (e) e.firstChild.textContent = `Read ${rows.length.toLocaleString()} national records; now reading Kentucky's own state map layers (new land shows here first)…`;
+      let KL = []; try { KL = await kyLive([]); await wmaOwners(KL); } catch (e2) {}
+      const names = [...G.values()].map(g => g.name);
+      KL.forEach(x => {
+        const P2 = x.f.properties, n = P2.Unit_Nm; if (!n || box && !(() => { const b = B.bbox(x.f.geometry); return b[2] >= box[0] && b[0] <= box[2] && b[3] >= box[1] && b[1] <= box[3]; })()) return;
+        if (names.some(m => B.norm(m) === B.norm(n) || (B.sameName(m, n) && B.sameKind(m, n)))) return;
+        if (!/^(FED|STAT)$/.test(P2.Own_Type) && P2.Own_Type !== 'UNK' || !/^(FED|STAT)$/.test(P2.Mang_Type) || P2.Pub_Access === 'XA') return;
+        const k = n + '|KY', g = G.get(k) || { name: n, st, rows: [], acres: 0, src: x.src, feats: [], kyNew: true }; g.rows.push(P2); g.acres += +P2.GIS_Acres || 0; g.feats.push(x.f); G.set(k, g);
+      });
+    }
     const P = await potaState(st).catch(() => []);
     const all = [...G.values()].map(g => {
       const core = n => B.norm(n).replace(/\b(wildlife management area|wma|state (resort )?park|state park|national (park|forest|recreation area|river)|state forest|state nature preserve|nature preserve|state natural area|natural area|national wildlife refuge|nwr|state historic site|historic site|other|purchase unit)\b/g, '').replace(/\s+/g, ' ').trim();
@@ -798,7 +810,8 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
       const one = async g => {
         try {
           const big = g.acres > 50000;
-          const fc = await B.jget(PADUS + '?' + new URLSearchParams({ where: `Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${st}'`, outFields: 'OBJECTID', returnGeometry: true, outSR: 4326, geometryPrecision: 4, maxAllowableOffset: big ? 0.002 : 0.0005, f: 'geojson' }), null, 20000);
+          if (g.feats && g.feats.length) { const ins0 = P.filter(p => g.feats.some(f => B.inside(p.la, p.lo, f.geometry))); if (ins0.length) { g.pota = ins0; g.byPin = true; } done++; return; }
+          const fc = await B.jget(PADUS + '?' + new URLSearchParams({ where: `Unit_Nm='${g.name.replace(/'/g, "''")}' AND State_Nm='${st}'`, outFields: F, returnGeometry: true, outSR: 4326, geometryPrecision: 4, maxAllowableOffset: big ? 0.002 : 0.0005, f: 'geojson' }), null, 20000);
           const feats = (fc.features || []).filter(f => f.geometry);
           if (!feats.length) return;
           const bb = feats.reduce((a, f) => { const b = B.bbox(f.geometry); return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])]; }, [180, 90, -180, -90]);
@@ -813,7 +826,7 @@ ${offWeb.length ? `<div class="mr-fact"><span>OFFICIAL PAGE</span><b>${offWeb.ma
     }
     const star = fresh.filter(g => !g.flags.length && !g.close.length).sort((a, b) => b.acres - a.acres), look = fresh.filter(g => g.flags.length || g.close.length).sort((a, b) => b.acres - a.acres), have = all.length - fresh.length;
     if (P.length < 20) msg(`<b>Could not read POTA's full park list for ${esc(st)}</b> (${P.length} came back), so most areas below may already be parks: the full check still tells you. Try again in a minute.`); else $('mrOut').innerHTML = '';
-    const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
+    const row = (g, i) => `<button type="button" class="mr-pick mr-cand${g.flags.length ? ' flag' : ''}" data-c="${i}"><b>${esc(g.name)}</b><span>${Math.round(g.acres).toLocaleString()} acres · ${esc((g.rows[0].Loc_Mang && !/^unknown$/i.test(g.rows[0].Loc_Mang) ? g.rows[0].Loc_Mang : '') || AG[g.rows[0].Mang_Name] || g.rows[0].Mang_Name || '')}${g.rows.length > 1 ? ' · ' + g.rows.length + ' tracts' : ''}${g.kyNew ? ' · <em class="mr-ok">in Kentucky\'s state map, not yet in the national database</em>' : ''}${g.flags.length ? ' <em class="mr-w">' + esc(g.flags.join('; ')) + '</em>' : ''}${g.close.length ? ' <em class="mr-w">close POTA name: ' + g.close.map(p => esc(p.ref + ' ' + p.name)).join(', ') + '</em>' : ''}</span></button>`;
     const IDX = star.concat(look);
     const more = (L, from, id) => L.length > from ? `<button type="button" class="mr-more" data-more="${id}">SHOW ${Math.min(60, L.length - from)} MORE (${L.length - from} left)</button>` : '';
     let nStar = 60, nLook = 30;
