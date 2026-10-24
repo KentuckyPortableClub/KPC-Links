@@ -22,14 +22,10 @@
 
   /* ---------------- the search ---------------- */
   function msg(h) { $('lgPick').innerHTML = '<p class="lg-msg">' + h + '</p>'; }
-  async function search(q) {
-    q = (q || '').trim(); if (!q) return; $('lgOut').innerHTML = '';
-    history.replaceState(null, '', '?q=' + encodeURIComponent(q));
-    const ref = kind(q);
-    if (ref) { msg('Looking up ' + esc(ref) + '…'); return open(ref); }
-    msg('Searching…');
+  /* every match for a name: POTA's own lookup (any country) + the world WWFF / SOTA name files */
+  async function matches(q, potaN, nameN) {
     const out = [];
-    try { const L = await j('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=60'); (L || []).filter(x => x.type === 'park').forEach(x => out.push({ prog: 'POTA', ref: x.value, name: String(x.display || '').replace(/^\S+\s+/, '') })); } catch (e) {}
+    try { const L = await j('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=' + potaN); (L || []).filter(x => x.type === 'park').forEach(x => out.push({ prog: 'POTA', ref: x.value, name: String(x.display || '').replace(/^\S+\s+/, '') })); } catch (e) {}
     /* WWFF + SOTA names for the whole world: data/names/<first letter>.json (kpc_name_index.py, weekly) */
     try {
       const fold = t => String(t).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
@@ -39,9 +35,18 @@
         const f = /\d/.test(key[0]) ? '0' : key[0]; search.nm = search.nm || {};
         if (!search.nm[f]) search.nm[f] = j('data/names/' + f + '.json', 30000).catch(() => []);
         const L = await search.nm[f];
-        L.filter(r => { const n = fold(r[1]); return w.every(x => n.includes(x)); }).slice(0, 40).forEach(r => out.push({ prog: progOf(r[0]), ref: r[0], name: r[1], la: r[2], lo: r[3] }));
+        L.filter(r => { const n = fold(r[1]); return w.every(x => n.includes(x)); }).slice(0, nameN).forEach(r => out.push({ prog: progOf(r[0]), ref: r[0], name: r[1], la: r[2], lo: r[3] }));
       }
     } catch (e) {}
+    return out;
+  }
+  async function search(q) {
+    q = (q || '').trim(); if (!q) return; $('lgOut').innerHTML = '';
+    history.replaceState(null, '', '?q=' + encodeURIComponent(q));
+    const ref = kind(q);
+    if (ref) { msg('Looking up ' + esc(ref) + '…'); return open(ref); }
+    msg('Searching…');
+    const out = await matches(q, 60, 40);
     if (!out.length) return msg('Nothing matches <b>' + esc(q) + '</b>. Try fewer words, or type the number (US-1234, GFF-0001, W4K/EC-001).');
     if (out.length === 1) return open(out[0].ref);
     out.sort((a, b) => (/^US-/.test(b.ref) - /^US-/.test(a.ref)) || a.ref.localeCompare(b.ref, undefined, { numeric: true }));
@@ -130,10 +135,48 @@
     const d = Math.floor((Date.now() - F.when) / 864e5);
     el.innerHTML = `✅ Using <b>${esc(F.name)}</b>: ${F.parks} activated parks, loaded ${d ? d + ' day' + (d > 1 ? 's' : '') + ' ago' : 'today'}.${d >= 30 ? ' <b style="color:#b45309">⏰ Time for a fresh one.</b>' : ''} <a href="kpc-tracker.html?where=ALL">See my totals ›</a>`;
   }
+  /* PREDICTIVE TEXT (Brandon Oct 24): suggestions drop down as you type (3+ letters): POTA parks from any country,
+     WWFF areas and SOTA summits from the world name files; ↑ ↓ Enter, or tap one */
+  let sugT = null, sugN = 0, sugI = -1, SUG = [];
+  const sugBox = () => $('lgSug');
+  function sugHide() { const b = sugBox(); if (b) { b.hidden = true; b.innerHTML = ''; } SUG = []; sugI = -1; $('lgQ').setAttribute('aria-expanded', 'false'); }
+  function sugShow() {
+    const b = sugBox(); if (!b) return;
+    if (!SUG.length) return sugHide();
+    b.innerHTML = SUG.map((p, i) => `<button type="button" role="option" class="lg-sg${i === sugI ? ' on' : ''}" data-sg="${i}" aria-selected="${i === sugI}"><span class="lg-tag ${p.prog.toLowerCase()}">${p.prog}</span><b>${esc(p.name)}</b><i>${esc(p.ref)}</i></button>`).join('');
+    b.hidden = false; $('lgQ').setAttribute('aria-expanded', 'true');
+  }
+  function suggest() {
+    clearTimeout(sugT); const q = $('lgQ').value.trim();
+    if (q.length < 3 || kind(q)) return sugHide();
+    const my = ++sugN;
+    sugT = setTimeout(async () => {
+      const L = await matches(q, 15, 300).catch(() => []); if (my !== sugN) return;
+      const fq = q.toLowerCase(), starts = p => String(p.name).toLowerCase().startsWith(fq) ? 0 : 1;
+      const seen = new Set();
+      const home = p => /^W4K\//.test(p.ref) ? 0 : /^(US-|KFF-|[WKN][0-9][A-Z]?\/)/.test(p.ref) ? 1 : 2;   /* Kentucky first, then the US */
+      SUG = L.filter(p => !seen.has(p.ref) && seen.add(p.ref)).sort((a, b) => starts(a) - starts(b) || home(a) - home(b) || String(a.name).length - String(b.name).length).slice(0, 10);
+      sugI = -1; sugShow();
+    }, 280);
+  }
+  function sugPick(i) { const p = SUG[i]; if (!p) return; SEEN.set(p.ref, p); $('lgQ').value = p.ref + ' ' + p.name; sugHide(); open(p.ref); }
   function init() {
+    const qi = $('lgQ');
+    qi.setAttribute('role', 'combobox'); qi.setAttribute('aria-autocomplete', 'list'); qi.setAttribute('aria-controls', 'lgSug'); qi.setAttribute('aria-expanded', 'false');
+    qi.addEventListener('input', suggest);
+    qi.addEventListener('keydown', e => {
+      if (!SUG.length || sugBox().hidden) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); sugI = (sugI + 1) % SUG.length; sugShow(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); sugI = (sugI - 1 + SUG.length) % SUG.length; sugShow(); }
+      else if (e.key === 'Enter' && sugI >= 0) { e.preventDefault(); sugPick(sugI); }
+      else if (e.key === 'Escape') sugHide();
+    });
+    $('lgSug').addEventListener('mousedown', e => e.preventDefault());
+    $('lgSug').addEventListener('click', e => { const b = e.target.closest('[data-sg]'); if (b) sugPick(+b.dataset.sg); });
+    qi.addEventListener('blur', () => setTimeout(sugHide, 150));
     const mf = $('lgMineF'); if (mf) mf.onchange = async e => { const f = e.target.files[0]; e.target.value = ''; if (!f || !window.KPCMine) return; const r = await KPCMine.loadFile(f); if (r.err) $('lgMineSt').textContent = r.err; else mineSay(); };
     mineSay();
-    $('lgForm').addEventListener('submit', e => { e.preventDefault(); search($('lgQ').value); });
+    $('lgForm').addEventListener('submit', e => { e.preventDefault(); sugHide(); clearTimeout(sugT); sugN++; const v = $('lgQ').value.trim(), m = v.toUpperCase().match(/^([A-Z0-9]{1,4}\/[A-Z0-9]{2}-\d{1,3}|[A-Z0-9]{1,4}-\d{3,5})\s/); search(m ? m[1] : v); });
     $('lgNear').addEventListener('click', near);
     $('lgPick').addEventListener('click', e => { const b = e.target.closest('[data-ref]'); if (b) { $('lgQ').value = b.dataset.ref; open(b.dataset.ref); } });
     const last = store.get('kpcLgLast', null);
