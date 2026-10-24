@@ -158,12 +158,17 @@ def ky_post(items):
     groups = [(p, [i for i in items if i['prog'] == p]) for p in ('pota', 'kff', 'sota')]
     groups = [(p, g) for p, g in groups if g]
     n = len(items)
-    title = f"🆕 New in Kentucky: {n} new {PROG_NAME[groups[0][0]] + ('s' if n > 1 else '') if len(groups) == 1 else 'references'}!"
+    # Oct 24 (Brandon: 'new park ... ky post should be daily if a new park appears and yes'): 'be the first' wording
+    only_pota = len(groups) == 1 and groups[0][0] == 'pota'
+    title = (f"🆕 New park{'s' if n > 1 else ''} to activate in Kentucky: be the first!" if only_pota else
+             f"🆕 New in Kentucky: {n} new {PROG_NAME[groups[0][0]] + ('s' if n > 1 else '') if len(groups) == 1 else 'references'}: be the first!")
     parts = []
     for p, g in groups:
         head = {'pota': 'Parks on the Air just added', 'kff': 'WWFF (KFF) just added', 'sota': 'SOTA just added'}[p]
-        parts.append(head + ':\n' + '\n'.join(line(i) for i in g[:25]) + (f'\n…and {len(g) - 25} more' if len(g) > 25 else ''))
-    text = '\n\n'.join(parts) + "\n\nWho's going to be first to put it on the air? Park tips welcome on our Park Notes page. 73, KPC"
+        L = [line(i) + (f"\n   https://pota.app/#/park/{i['ref']}" if p == 'pota' and len(g) <= 6 else '') for i in g[:25]]
+        parts.append(head + ':\n' + '\n'.join(L) + (f'\n…and {len(g) - 25} more' if len(g) > 25 else ''))
+    text = '\n\n'.join(parts) + ("\n\nWho's going to be first to put it on the air? Find it on Kentucky Park Control: " + SITE + "kpc-park-control.html"
+                                  "\nBeen there? Share a tip on Park Notes. 73, KPC")
     return title, text
 
 
