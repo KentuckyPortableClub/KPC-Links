@@ -1,34 +1,6 @@
 {
- "updated": "2026-10-23T17:09:46Z",
+ "updated": "2026-10-24T11:03:28Z",
  "week": [
-  {
-   "name": "ARRL School Club Roundup",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhb26",
-   "when": "1300Z, Oct 19 to 2359Z, Oct 23",
-   "segs": [
-    [
-     "2026-10-19T13:00Z",
-     "2026-10-23T23:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ft3rt",
-   "when": "2000Z-2100Z, Oct 23",
-   "segs": [
-    [
-     "2026-10-23T20:00Z",
-     "2026-10-23T21:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "CQ Worldwide DX Contest, SSB",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fidks",
@@ -352,29 +324,69 @@
    ],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
+  },
   {
-   "name": "ARRL School Club Roundup",
-   "url": "https://www.arrl.org/school-club-roundup",
-   "when": "",
+   "name": "NCCC FT4 Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g36h1",
+   "when": "0100Z-0130Z, Oct 30",
    "segs": [
     [
-     "2026-10-19T13:00Z",
-     "2026-10-24T00:00Z"
+     "2026-10-30T01:00Z",
+     "2026-10-30T01:30Z"
     ]
    ],
    "modes": [
-    "CW",
-    "PHONE",
     "DIGITAL"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "No WARC",
-   "exch": "RS(T), class (I/C/S), SPC"
+   "src": "WA7BNM"
   },
+  {
+   "name": "Weekly RTTY Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g4929",
+   "when": "0145Z-0215Z, Oct 30",
+   "segs": [
+    [
+     "2026-10-30T01:45Z",
+     "2026-10-30T02:15Z"
+    ]
+   ],
+   "modes": [
+    "DIGITAL"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "NCCC Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g23cs",
+   "when": "0230Z-0300Z, Oct 30",
+   "segs": [
+    [
+     "2026-10-30T02:30Z",
+     "2026-10-30T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003ftbhl",
+   "when": "2000Z-2100Z, Oct 30",
+   "segs": [
+    [
+     "2026-10-30T20:00Z",
+     "2026-10-30T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  }
+ ],
+ "month": [
   {
    "name": "CQ Worldwide DX Contest, SSB",
    "url": "https://www.cqww.com",
@@ -1026,6 +1038,28 @@
    "exch": "your 4-character grid square"
   },
   {
+   "name": "West Virginia QSO Party",
+   "url": "https://contestcalendar.com/stateparties.php",
+   "when": "Usual dates (West Virginia State ARC); check the rules",
+   "segs": [
+    [
+     "2027-06-19T16:00Z",
+     "2027-06-20T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "West Virginia State ARC",
+   "exch": "RS(T) + state (KY)"
+  },
+  {
    "name": "ARRL Field Day",
    "url": "https://www.arrl.org/field-day",
    "when": "Usual dates (ARRL); check the rules",
@@ -1108,6 +1142,50 @@
    "src": "RULE",
    "by": "NCJ",
    "exch": "your name + state (KY)"
+  },
+  {
+   "name": "Ohio QSO Party",
+   "url": "https://contestcalendar.com/stateparties.php",
+   "when": "Usual dates (Ohio Contest Club); check the rules",
+   "segs": [
+    [
+     "2027-08-28T16:00Z",
+     "2027-08-29T04:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Ohio Contest Club",
+   "exch": "RS(T) + state (KY)"
+  },
+  {
+   "name": "Tennessee QSO Party",
+   "url": "https://contestcalendar.com/stateparties.php",
+   "when": "Usual dates (Tennessee Contest Group); check the rules",
+   "segs": [
+    [
+     "2027-09-05T17:00Z",
+     "2027-09-06T03:00Z"
+    ]
+   ],
+   "modes": [
+    "CW",
+    "PHONE",
+    "DIGITAL"
+   ],
+   "kinds": [
+    "QSOPARTY"
+   ],
+   "src": "RULE",
+   "by": "Tennessee Contest Group",
+   "exch": "RS(T) + state (KY)"
   },
   {
    "name": "ARRL September VHF Contest",
@@ -1236,7 +1314,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (24)",
-  "CORRAL": "ok (9)"
+  "WA7BNM": "ok (26)",
+  "CORRAL": "ok (8)"
  }
 }
