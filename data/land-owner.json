@@ -1,4 +1,146 @@
-{"note":"Free OFFICIAL sources for 'who owns this land?' (SOTA Summit Checker). map = a statewide parcel map that shows owners free (url may hold {lat} {lon}); list = the state's official directory of county assessor / PVA offices. Anything else: a .gov-only search for the county assessor. Never paid sites.","updated":"2026-10-24",
-"states":{
-"KY":{"list":"https://revenue.ky.gov/Property/Documents/PVA%20Directory%202022-2026.pdf","name":"Kentucky PVA directory (every county PVA office)","say":"find {county} County and call that PVA office (free)"}
-}}
+{
+"note": "Free OFFICIAL sources for 'who owns this land?' (SOTA Summit Checker). map = a statewide parcel map that shows owners free (url may hold {lat} {lon}); list = the state's official directory of county assessor / PVA offices. Anything else: a .gov-only search for the county assessor. Never paid sites. Sources checked Oct 24 2026 (official .gov / state university pages); not listed = no free official statewide source found (HI and NJ maps hide owner names by law).",
+"updated": "2026-10-24",
+"states": {
+"MT": {
+"map": "https://svc.mt.gov/msl/cadastral/",
+"name": "Montana Cadastral",
+"say": "find the summit on the map and tap its parcel to see the owner"
+},
+"TN": {
+"map": "https://assessment.cot.tn.gov/TPAD",
+"name": "Tennessee Property Assessment Data",
+"say": "pick {county} County and search the parcel (owner shown)"
+},
+"WV": {
+"map": "https://mapwv.gov/parcel/",
+"name": "West Virginia Property Viewer",
+"say": "find the summit on the map and tap its parcel to see the owner"
+},
+"VT": {
+"map": "https://maps.vcgi.vermont.gov/parcelviewer",
+"name": "Vermont Parcel Viewer",
+"say": "find the summit on the map and tap its parcel to see the owner"
+},
+"MA": {
+"map": "https://experience.arcgis.com/experience/d72761ca66c44a6bb51e030c569e4f72",
+"name": "Massachusetts Interactive Property Map",
+"say": "find the summit on the map and tap its parcel to see the owner"
+},
+"CT": {
+"map": "https://experience.arcgis.com/experience/068a00e313bf439a8753838234fd517f/",
+"name": "CT Geodata Portal Parcel Viewer",
+"say": "find the summit on the map and tap its parcel to see the owner"
+},
+"WI": {
+"map": "https://maps.sco.wisc.edu/Parcels/",
+"name": "Wisconsin Statewide Parcel Map",
+"say": "find the summit on the map and tap its parcel to see the owner"
+},
+"KY": {
+"list": "https://revenue.ky.gov/Property/Documents/PVA%20Directory%202022-2026.pdf",
+"name": "Kentucky PVA directory (every county PVA office)",
+"say": "find {county} County and call that PVA office (free)"
+},
+"CA": {
+"list": "https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
+"name": "California county assessors (State Board of Equalization)",
+"say": "find {county} County and call that office (free)"
+},
+"WA": {
+"list": "https://dor.wa.gov/countycontacts",
+"name": "Washington county assessors (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"OR": {
+"list": "https://www.oregon.gov/dor/programs/property/Pages/county-contact.aspx",
+"name": "Oregon county assessors (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"ID": {
+"list": "https://tax.idaho.gov/contact-us/contact-property-tax/",
+"name": "Idaho county assessors (State Tax Commission)",
+"say": "find {county} County and open its assessor site"
+},
+"CO": {
+"list": "https://dpt.colorado.gov/localities",
+"name": "Colorado county assessors (Division of Property Taxation)",
+"say": "find {county} County and call that office (free)"
+},
+"WY": {
+"list": "https://wyo-prop-div.wyo.gov/contacts/assessor-contacts",
+"name": "Wyoming county assessors (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"NV": {
+"list": "https://tax.nv.gov/wp-content/uploads/2024/04/County-Assessors-Contact-List-9-7-23.pdf",
+"name": "Nevada county assessors (Dept. of Taxation)",
+"say": "find {county} County and call that office (free)"
+},
+"AZ": {
+"list": "https://azdor.gov/sites/default/files/2023-03/PROPERTY_AssessorContacts.pdf",
+"name": "Arizona county assessors (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"NM": {
+"list": "https://www.tax.newmexico.gov/businesses/county-officials/",
+"name": "New Mexico county officials (Taxation & Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"AK": {
+"list": "https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions",
+"name": "Alaska borough / city assessors (State Assessor)",
+"say": "find the borough or city; most of Alaska has no local assessor"
+},
+"NC": {
+"list": "https://www.ncdor.gov/taxes-forms/property-tax/property-tax-counties/north-carolina-county-assessors-list",
+"name": "North Carolina county assessors (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"GA": {
+"list": "https://dor.georgia.gov/node/27121",
+"name": "Georgia county tax offices (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"AL": {
+"list": "https://www.revenue.alabama.gov/property-tax/county-offices/",
+"name": "Alabama county offices (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"FL": {
+"list": "https://floridarevenue.com/property/Pages/LocalOfficials.aspx",
+"name": "Florida county property appraisers (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"MS": {
+"list": "https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf",
+"name": "Mississippi county assessors (Dept. of Revenue, 2020 list)",
+"say": "find {county} County and call that office (free)"
+},
+"MO": {
+"list": "https://stc.mo.gov/wp-content/uploads/sites/5/2026/06/Assessors.pdf",
+"name": "Missouri county assessors (State Tax Commission)",
+"say": "find {county} County and call that office (free)"
+},
+"NE": {
+"list": "https://revenue.nebraska.gov/sites/default/files/doc/pad/assessor/1assessor_phone_list.pdf",
+"name": "Nebraska county assessors (Dept. of Revenue)",
+"say": "find {county} County and call that office (free)"
+},
+"OK": {
+"list": "https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
+"name": "Oklahoma county assessors (Oklahoma State University, 2025)",
+"say": "find {county} County and call that office (free)"
+},
+"TX": {
+"list": "https://comptroller.texas.gov/taxes/property-tax/county-directory/{slug}.php",
+"name": "Texas county appraisal district (Comptroller)",
+"say": "call the {county} County appraisal district (free)"
+},
+"ME": {
+"list": "https://www.maine.gov/revenue/taxes/property-tax",
+"name": "Maine property tax (towns do the assessing; the state handles the unorganized territory: 207-624-5600)",
+"say": "ask the town office, or the state for the unorganized territory"
+}
+}
+}
