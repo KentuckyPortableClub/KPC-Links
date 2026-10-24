@@ -105,7 +105,7 @@
 </div>
 <section class="section no-print" style="padding-bottom:0"><div class="wrap">
 <div class="panel"><form class="controls" id="f" autocomplete="off">
-<label class="field" style="flex:1 1 320px">PARK (ANY STATE: NAME OR US-####)<input id="q" list="parks" placeholder="Taylorsville Lake, US-1271 or Yosemite"><datalist id="parks"></datalist></label>
+<label class="field" style="flex:1 1 320px">PARK OR SUMMIT (ANY COUNTRY: NAME OR NUMBER)<input id="q" list="parks" autocomplete="off" placeholder="Yosemite, US-1271, FR-0098, GFF-0004 or W4K/EC-001"><datalist id="parks"></datalist></label>
 <label class="field" style="flex:0 1 160px">YOUR CALLSIGN (OPTIONAL)<input id="call" autocapitalize="characters" spellcheck="false"></label>
 <button class="btn" type="submit" style="align-self:flex-end">MAKE SHEET</button>
 <button class="btn alt" type="button" id="clearSheet" style="align-self:flex-end">✕ CLEAR</button>
@@ -170,7 +170,7 @@ async function init(){D=await KPC.data();try{T=await fetch('kpc-ky-towns.json').
  const q=new URLSearchParams(location.search);if(q.get('call'))$('call').value=q.get('call');if(q.get('ref')){$('q').value=q.get('ref');make()}}
 const pad=r=>{const m=String(r).toUpperCase().match(/^(US|K)-?(\d{1,5})$/);return m?'US-'+m[2].padStart(4,'0'):''};
 /* a Kentucky park from our files, else any US POTA park from POTA (by number or by name) */
-async function find(v){v=String(v||'').trim();const anyRef=v.toUpperCase().replace(/\s+/g,'').match(/^([A-Z0-9]{1,4}\/[A-Z0-9]{2}-\d{1,3}|[A-Z0-9]{1,4}-\d{3,5})$/);
+async function find(v){v=String(v||'').trim();const anyRef=v.toUpperCase().match(/^\s*([A-Z0-9]{1,4}\/[A-Z0-9]{2}-\d{1,3}|[A-Z0-9]{1,4}-\d{3,5})(?:\s|$)/);
  if(anyRef&&!/^(US|K)-/.test(anyRef[1])){const o=window.KPCB?await KPCB.lookup(anyRef[1]).catch(()=>null):null;if(!o)return null;return{ky:false,prog:o.prog,us:!!o.us,c:o.ref,n:o.name,la:o.la,lo:o.lo,t:o.type||'',web:o.web||'',off:'',co:'',st:o.st||'',where:o.where||'',ft:o.ft}}
  let ref=pad((v.match(/(US|K)-?\d{1,5}/i)||[''])[0]||(/^\d{1,5}$/.test(v)?v:''));
  if(ref){const k=D.parks.find(p=>p.c===ref);if(k)return Object.assign({ky:true,st:'KY'},k)}
@@ -256,6 +256,14 @@ const flash=(b,t)=>{const o=b.textContent;b.textContent=t;setTimeout(()=>b.textC
 $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(body());flash($('copyBtn'),'COPIED ✓')}catch(e){const a=document.createElement('textarea');a.value=body();document.body.append(a);a.select();try{document.execCommand('copy');flash($('copyBtn'),'COPIED ✓')}catch(_){}a.remove()}};
 $('mailBtn').onclick=()=>{location.href='mailto:?subject='+encodeURIComponent(txt.p.n+' ('+txt.p.c+') - KPC park sheet')+'&body='+encodeURIComponent(body())};
 $('shareBtn').onclick=async()=>{if(navigator.share){try{await navigator.share({title:txt.p.n+' ('+txt.p.c+')',text:body().split('\n').slice(0,4).join('\n'),url:txt.sheet})}catch(e){}}else{$('copyBtn').click()}};
+/* Oct 24 (Brandon: 'print a park search is only ky'): as you type a name, POTA's own lookup fills the list with parks
+   from every country (Kentucky ones stay at the top) */
+let sugT=null,sugQ='';
+$('q').addEventListener('input',()=>{clearTimeout(sugT);const v=$('q').value.trim();if(v.length<3||/^[A-Z0-9\/]+-\d/i.test(v)||v===sugQ)return;
+ sugT=setTimeout(async()=>{sugQ=v;const L=await jget('https://api.pota.app/lookup?search='+encodeURIComponent(v)+'&size=30');if(!L||$('q').value.trim()!==v)return;
+  const ky=D?D.parks.filter(p=>p.n.toLowerCase().includes(v.toLowerCase())).slice(0,8).map(p=>`<option value="${p.c} ${esc(p.n)}">`):[];
+  const w=L.filter(x=>x.type==='park').slice(0,25).map(x=>`<option value="${esc(x.value)} ${esc(String(x.display||'').replace(/^\S+\s+/,''))}">`);
+  $('parks').innerHTML=ky.concat(w).join('')},350)});
 init();
 </script>
 

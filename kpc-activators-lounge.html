@@ -10,14 +10,14 @@
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Activators Lounge | KPC">
-<meta property="og:description" content="Every tool an activator needs for POTA, WWFF and SOTA, in one room: find a park or summit anywhere, open the right tool, check band conditions.">
+<meta property="og:description" content="Every tool an activator needs for POTA, WWFF and SOTA, in one room: find any park, WWFF area or summit in the world, open the right tool, check band conditions.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-activators-lounge.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="Every tool an activator needs for POTA, WWFF and SOTA, in one room: find a park or summit anywhere, open the right tool, check band conditions.">
+<meta name="description" content="Every tool an activator needs for POTA, WWFF and SOTA, in one room: find any park, WWFF area or summit in the world, open the right tool, check band conditions.">
 <style>
 :root{--black:#070707;--black-2:#111;--gold:#d5a63a;--gold-light:#f0c96b;--cream:#f5f0e4;--cream-2:#ebe3d1;--ink:#171717;--muted:#68635a;--green:#1d5a3a;--max:1200px;--nav-height:78px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.55}a{text-decoration:none;color:inherit}
@@ -107,41 +107,63 @@ body.field .page-jump-nav{display:none!important}
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 <link rel="stylesheet" href="kpc-tools.css?v=20261017p">
 <style>
-.lg-wrap{max-width:1000px;margin:0 auto;padding:24px 16px 40px;box-sizing:border-box}
-.lg-box{background:#fff;border:1px solid #d8cfbf;border-top:4px solid var(--gold);border-radius:10px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.05)}
-.lg-box h2{margin:0 0 4px;font:700 22px/1.2 Georgia,serif;color:#171717}.lg-box>p{margin:0 0 12px;color:#5b5648}
-.lg-form{display:flex;gap:10px;flex-wrap:wrap}.lg-form input{flex:1 1 240px;min-height:50px;border:1.5px solid #cbbf9f;border-radius:10px;padding:10px 14px;font:17px Arial,sans-serif;min-width:0;box-sizing:border-box}
-.lg-form button,#lgNear{min-height:50px;padding:10px 18px;border:0;border-radius:10px;background:#171717;color:#f0c96b;font:900 13px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
-#lgNear{background:#fff;color:#171717;border:2px solid #171717;margin-top:10px;width:100%}
-#lgLast{margin-top:8px;font-size:13.5px;color:#5b5648}.lg-link{border:0;background:none;color:#1d5a3a;font:700 13.5px Arial,sans-serif;text-decoration:underline;cursor:pointer;padding:0}
+/* ACTIVATORS LOUNGE look (Oct 24, Brandon: 'the page needs to be dressed up and look fancy') */
+.lg{--lg-ink:#14110b;--lg-card:#fff;--lg-line:#e3d8c1;--lg-sub:#5b5648;--lg-gold:#d5a63a;--lg-gold2:#f0c96b;--lg-pota:#1d5a3a;--lg-wwff:#1f6e78;--lg-sota:#7a4b1e;--lg-bg:#f6f1e4}
+html[data-theme="dark"] .lg{--lg-ink:#e6edf3;--lg-card:#161b22;--lg-line:#30363d;--lg-sub:#9aa6b5;--lg-bg:#0d1117}
+.lg{background:var(--lg-bg);padding-bottom:30px}
+.lg-wrap{max-width:1080px;margin:0 auto;padding:0 16px;box-sizing:border-box}
+/* stats band */
+.lg-band{background:linear-gradient(180deg,#0b0b0b,#15120b);border-top:1px solid rgba(240,201,107,.35);border-bottom:1px solid rgba(240,201,107,.35)}
+.lg-band .lg-wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding-top:16px;padding-bottom:16px}
+.lg-st{text-align:center;padding:4px 6px;min-width:0}.lg-st b{display:block;font:700 clamp(20px,4.2vw,30px)/1.1 Georgia,serif;color:var(--lg-gold2);letter-spacing:.5px}
+.lg-st span{display:block;margin-top:4px;font:800 10px/1.3 Arial,sans-serif;letter-spacing:1.4px;color:#cfc6b0;text-transform:uppercase}
+/* search card */
+.lg-find{position:relative;margin-top:20px;z-index:2;background:radial-gradient(120% 140% at 0% 0%,#2a2112 0%,#0f0d09 60%);color:#fff;border:1px solid rgba(240,201,107,.55);border-radius:18px;padding:22px 20px;box-shadow:0 18px 40px rgba(0,0,0,.28),0 0 0 4px rgba(240,201,107,.08)}
+.lg-find h2{margin:0 0 4px;font:700 clamp(22px,4.5vw,30px)/1.15 Georgia,serif;color:#fff}.lg-find h2 span{color:var(--lg-gold2)}
+.lg-find>p{margin:0 0 14px;color:#d8cfbb;font-size:15px}
+.lg-progs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px}
+.lg-form{display:flex;gap:10px;flex-wrap:wrap}.lg-form input{flex:1 1 240px;min-height:54px;border:1.5px solid rgba(240,201,107,.6);border-radius:12px;padding:10px 16px;font:17px Arial,sans-serif;min-width:0;box-sizing:border-box;background:#fffdf7;color:#111}
+.lg-form input:focus{outline:3px solid rgba(240,201,107,.45);outline-offset:1px}
+.lg-form button{min-height:54px;padding:10px 22px;border:0;border-radius:12px;background:linear-gradient(#f6d58a,#d5a63a);color:#1b1305;font:900 14px Arial,sans-serif;letter-spacing:1.4px;cursor:pointer;box-shadow:0 6px 16px rgba(213,166,58,.35)}
+#lgNear{margin-top:10px;width:100%;min-height:48px;border-radius:12px;background:transparent;color:var(--lg-gold2);border:1.5px solid rgba(240,201,107,.6);font:900 13px Arial,sans-serif;letter-spacing:1.3px;cursor:pointer}
+#lgLast{margin-top:10px;font-size:13.5px;color:#cfc6b0}.lg-link{border:0;background:none;color:var(--lg-gold2);font:700 13.5px Arial,sans-serif;text-decoration:underline;cursor:pointer;padding:0}
 #lgPick{display:grid;gap:8px;margin-top:12px}
-.lg-pk{display:flex;gap:10px;align-items:center;text-align:left;padding:11px 13px;border:1px solid #e0d5bd;border-radius:10px;background:#fbf8ef;cursor:pointer;font:15px Arial,sans-serif;color:#171717;width:100%;min-width:0}
-.lg-pk b{font-family:Georgia,serif;flex:1 1 auto;min-width:0;overflow-wrap:anywhere}.lg-pk .lg-r{color:#1d5a3a;font-weight:900;font-size:12px;letter-spacing:.6px;white-space:nowrap}
-.lg-msg,.lg-help{color:#5b5648;margin:4px 0 0}
-.lg-tag{display:inline-block;border-radius:5px;padding:2px 7px;font:900 10.5px Arial,sans-serif;letter-spacing:1px;color:#fff;background:#1d5a3a;white-space:nowrap;flex:0 0 auto}
-.lg-tag.wwff{background:#1f6e78}.lg-tag.sota{background:#7a4b1e}.lg-tag.where{background:#ece6d6;color:#3b372d}.lg-tag.all{background:#171717;color:#f0c96b}
-.lg-card{margin-top:16px;background:#0b0b0b;color:#fff;border-radius:12px;padding:18px}
-.lg-card h2{margin:6px 0 2px;font:700 26px/1.15 Georgia,serif;color:#fff;overflow-wrap:anywhere}.lg-ref{font:900 12px Arial,sans-serif;letter-spacing:1.6px;color:#f0c96b}
-.lg-where{margin:0;color:#cfcabf}.lg-small{margin:12px 0 0;font-size:13px;color:#cfcabf;line-height:1.45}
-.lg-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.lg-btns a{display:inline-flex;align-items:center;min-height:42px;padding:8px 13px;border-radius:8px;background:#1e1e1e;color:#f0c96b;border:1.5px solid #444;font:900 11.5px Arial,sans-serif;letter-spacing:1px;text-decoration:none}
-.lg-btns a.gold{background:var(--gold);color:#111;border-color:var(--gold)}
-.lg-sun{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;background:#fff;border:1px solid #d8cfbf;border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.45;color:#2b2820}
-.lg-sun a{color:#1d5a3a;font-weight:700}
-.lg-sb{display:inline-block;border-radius:8px;padding:6px 10px;font:900 12px Arial,sans-serif;letter-spacing:1px;background:#ece6d6;color:#3b372d;white-space:nowrap}
-.lg-sb.good{background:#1d5a3a;color:#fff}.lg-sb.ok{background:#d5a63a;color:#111}.lg-sb.bad{background:#a32d2d;color:#fff}
-.lg-sec{margin-top:26px}.lg-sec>h3{margin:0 0 4px;font:900 12px Arial,sans-serif;letter-spacing:2px;color:#1d5a3a}.lg-sec>p{margin:0 0 10px;color:#5b5648;font-size:14px}
-.lg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:10px}
-.lg-tool{display:block;background:#fff;border:1px solid #d8cfbf;border-radius:12px;padding:14px;text-decoration:none;color:#171717;box-shadow:0 4px 12px rgba(0,0,0,.04)}
-.lg-tool:hover{border-color:#d5a63a}.lg-tool b{display:block;font:700 17px/1.25 Georgia,serif;margin:0 0 4px}.lg-tool span.d{display:block;font-size:13.5px;color:#5b5648;line-height:1.4}
-.lg-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:9px}
-.lg-key{font-size:13px;color:#5b5648;margin:14px 0 0;line-height:1.7}
-html[data-theme="dark"] .lg-box,html[data-theme="dark"] .lg-tool,html[data-theme="dark"] .lg-sun{background:#161b22;border-color:#30363d;color:#e6edf3}
-html[data-theme="dark"] .lg-box h2,html[data-theme="dark"] .lg-tool{color:#e6edf3}html[data-theme="dark"] .lg-box>p,html[data-theme="dark"] .lg-tool span.d,html[data-theme="dark"] .lg-msg,html[data-theme="dark"] .lg-help,html[data-theme="dark"] .lg-sec>p,html[data-theme="dark"] .lg-key,html[data-theme="dark"] #lgLast{color:#9aa6b5}
-html[data-theme="dark"] .lg-pk{background:#0d1117;border-color:#30363d;color:#e6edf3}html[data-theme="dark"] .lg-form input{background:#0d1117;color:#e6edf3;border-color:#30363d}
-html[data-theme="dark"] .lg-sec>h3,html[data-theme="dark"] .lg-pk .lg-r,html[data-theme="dark"] .lg-sun a,html[data-theme="dark"] .lg-link{color:#7fd1a3}html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}
-html[data-theme="dark"] #lgNear{background:#0d1117;color:#e6edf3;border-color:#e6edf3}
-@media(max-width:520px){.lg-card h2{font-size:22px}.lg-pk{flex-wrap:wrap}.lg-pk .lg-r{white-space:normal}}
+.lg-pk{display:flex;gap:10px;align-items:center;text-align:left;padding:11px 13px;border:1px solid rgba(240,201,107,.3);border-radius:12px;background:rgba(255,255,255,.05);cursor:pointer;font:15px Arial,sans-serif;color:#fff;width:100%;min-width:0}
+.lg-pk:hover{background:rgba(240,201,107,.12)}.lg-pk b{font-family:Georgia,serif;flex:1 1 auto;min-width:0;overflow-wrap:anywhere}.lg-pk .lg-r{color:var(--lg-gold2);font-weight:900;font-size:12px;letter-spacing:.6px;white-space:nowrap}
+.lg-msg,.lg-help{color:#d8cfbb;margin:4px 0 0}
+/* tags: they wrap, so nothing hangs off a card */
+.lg-tag{display:inline-block;border-radius:6px;padding:3px 8px;font:900 10.5px/1.35 Arial,sans-serif;letter-spacing:.9px;color:#fff;background:var(--lg-pota);flex:0 1 auto;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.lg-tag.wwff{background:var(--lg-wwff)}.lg-tag.sota{background:var(--lg-sota)}.lg-tag.all{background:#171717;color:var(--lg-gold2)}.lg-tag.where{background:#efe7d3;color:#3b372d;font-weight:800}
+html[data-theme="dark"] .lg-tag.where{background:#30363d;color:#e6edf3}html[data-theme="dark"] .lg-tag.all{background:#0b0b0b}
+/* the place card */
+.lg-card{margin-top:16px;background:linear-gradient(160deg,#101010,#1c160c);color:#fff;border:1px solid rgba(240,201,107,.45);border-radius:16px;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+.lg-card h2{margin:6px 0 2px;font:700 clamp(22px,4.6vw,30px)/1.15 Georgia,serif;color:#fff;overflow-wrap:anywhere}.lg-ref{font:900 12px Arial,sans-serif;letter-spacing:1.6px;color:var(--lg-gold2)}
+.lg-where{margin:2px 0 0;color:#cfcabf}.lg-small{margin:14px 0 0;font-size:13px;color:#cfcabf;line-height:1.45}
+.lg-btns{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px;margin-top:16px}
+.lg-btns a{display:flex;align-items:center;justify-content:center;text-align:center;min-height:46px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.06);color:var(--lg-gold2);border:1px solid rgba(240,201,107,.35);font:900 11.5px Arial,sans-serif;letter-spacing:.9px;text-decoration:none}
+.lg-btns a:hover{background:rgba(240,201,107,.14)}.lg-btns a.gold{background:linear-gradient(#f6d58a,#d5a63a);color:#1b1305;border-color:transparent}
+/* today on the bands */
+.lg-sun{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:18px;background:var(--lg-card);border:1px solid var(--lg-line);border-left:5px solid var(--lg-gold);border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.5;color:var(--lg-ink);box-shadow:0 6px 18px rgba(0,0,0,.05)}
+.lg-sun::before{content:'📡 TODAY ON THE BANDS';flex:1 0 100%;font:900 11px Arial,sans-serif;letter-spacing:1.8px;color:var(--lg-sub)}
+.lg-sun a{color:var(--lg-pota);font-weight:700}html[data-theme="dark"] .lg-sun a{color:#7fd1a3}
+.lg-sb{display:inline-block;border-radius:10px;padding:8px 14px;font:900 14px Arial,sans-serif;letter-spacing:1.2px;background:#ece6d6;color:#3b372d;white-space:nowrap}
+.lg-sb.good{background:var(--lg-pota);color:#fff}.lg-sb.ok{background:var(--lg-gold);color:#111}.lg-sb.bad{background:#a32d2d;color:#fff}
+/* sections + tool cards */
+.lg-sec{margin-top:34px}
+.lg-sh{display:flex;gap:12px;align-items:center;margin:0 0 12px}
+.lg-ic{flex:0 0 46px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:radial-gradient(circle at 30% 30%,#fbe3a6,#d5a63a);box-shadow:0 4px 12px rgba(213,166,58,.35)}
+.lg-sh h3{margin:0;font:700 22px/1.15 Georgia,serif;color:var(--lg-ink)}.lg-sh p{margin:2px 0 0;color:var(--lg-sub);font-size:14px}
+.lg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.lg-tool{position:relative;display:flex;flex-direction:column;background:var(--lg-card);border:1px solid var(--lg-line);border-radius:14px;padding:16px 16px 14px;text-decoration:none;color:var(--lg-ink);box-shadow:0 4px 14px rgba(0,0,0,.05);transition:transform .15s,box-shadow .15s,border-color .15s;min-width:0;overflow:hidden}
+.lg-tool::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--acc,var(--lg-gold))}
+.lg-tool:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(0,0,0,.12);border-color:var(--lg-gold)}
+.lg-tool i{font-style:normal;font-size:24px;line-height:1;margin-bottom:8px}
+.lg-tool b{display:block;font:700 18px/1.25 Georgia,serif;margin:0 0 5px}.lg-tool span.d{display:block;font-size:13.8px;color:var(--lg-sub);line-height:1.45;flex:1 1 auto}
+.lg-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.lg-tool .go{margin-top:12px;font:900 11px Arial,sans-serif;letter-spacing:1.4px;color:var(--lg-pota);align-self:flex-end}html[data-theme="dark"] .lg-tool .go{color:#7fd1a3}
+.lg-s1{--acc:#1d5a3a}.lg-s2{--acc:#2b5f8a}.lg-s3{--acc:#b5452b}.lg-s4{--acc:#d5a63a}.lg-s5{--acc:#1f6e78}.lg-s6{--acc:#7a4b1e}
+.lg-key{font-size:13px;color:var(--lg-sub);margin:18px 0 0;line-height:1.9}
+@media(max-width:620px){.lg-band .lg-wrap{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 4px}.lg-find{margin-top:16px;padding:18px 14px}.lg-pk{flex-wrap:wrap}.lg-pk .lg-r{white-space:normal}.lg-btns{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <header class="site-nav">
   <div class="nav-inner">
@@ -212,17 +234,24 @@ html[data-theme="dark"] #lgNear{background:#0d1117;color:#e6edf3;border-color:#e
     </nav>
   </div>
 </header>
-<main id="main">
-<section class="tool-head th-pic" style="--thp:url('hero-summit.jpg');--thpm:url('hero-summit-mobile.jpg');--thy:50%"><div class="wrap">
-<p class="eyebrow">POTA · WWFF · SOTA · ANYWHERE</p>
+<main id="main" class="lg">
+<section class="tool-head th-pic" style="--thp:url('hero-summit.jpg');--thpm:url('hero-summit-mobile.jpg');--thy:50%;padding-bottom:34px"><div class="wrap">
+<p class="eyebrow">POTA · WWFF · SOTA · ANYWHERE IN THE WORLD</p>
 <h1>Activators <span>Lounge</span></h1>
-<p class="sub">Every tool an activator needs, in one room. Find a park, WWFF area or summit anywhere, open the right tool for it in one tap, and check today's band conditions. Each tool is tagged with the programs it works for and where it works.</p>
+<p class="sub">Every tool an activator needs, in one room. Find any park, WWFF area or summit in the world, open the right tool in one tap, and see how the bands look today.</p>
 </div></section>
+<div class="lg-band"><div class="lg-wrap">
+<div class="lg-st"><b>92,000+</b><span>POTA parks</span></div>
+<div class="lg-st"><b>67,000+</b><span>WWFF areas</span></div>
+<div class="lg-st"><b>172,000+</b><span>SOTA summits</span></div>
+<div class="lg-st"><b>3 → 1</b><span>programs, one room</span></div>
+</div></div>
 <div class="lg-wrap">
-<section class="lg-box">
-<h2>Find a park or summit</h2>
-<p>A name, or a number like US-1277, GFF-0001 or W4K/EC-001. Any country.</p>
-<form class="lg-form" id="lgForm"><input id="lgQ" autocomplete="off" placeholder="Name or number" aria-label="Park, WWFF area or summit"><button type="submit">FIND IT</button></form>
+<section class="lg-find">
+<h2>Where are you <span>headed?</span></h2>
+<p>Type a name or a number: US-1277, FR-0098, GFF-0004, W4K/EC-001. Any country, any program.</p>
+<div class="lg-progs"><span class="lg-tag">POTA</span><span class="lg-tag wwff">WWFF</span><span class="lg-tag sota">SOTA</span></div>
+<form class="lg-form" id="lgForm"><input id="lgQ" autocomplete="off" placeholder="Park, area or summit: name or number" aria-label="Park, WWFF area or summit"><button type="submit" data-keep-light>FIND IT</button></form>
 <button type="button" id="lgNear">📍 WHAT'S NEAR ME</button>
 <div id="lgLast"></div>
 <div id="lgPick"></div>
@@ -230,53 +259,53 @@ html[data-theme="dark"] #lgNear{background:#0d1117;color:#e6edf3;border-color:#e
 <div id="lgOut"></div>
 <div class="lg-sun" id="lgSun"><span class="lg-sb">HF …</span><span>Loading today's conditions…</span></div>
 
-<section class="lg-sec"><h3>FIND A PLACE TO ACTIVATE</h3><p>Pick somewhere hunters will be glad to hear.</p><div class="lg-grid">
-<a class="lg-tool" href="kpc-rare.html"><b>Rarely Activated Parks</b><span class="d">Parks that have hardly been on the air, and the ones never activated, on a map. Near me, and hide the ones I did.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US · CANADA · 64 COUNTRIES</span></span></a>
-<a class="lg-tool" href="kpc-guide-top25.html"><b>Top 25 Low-Activity Parks</b><span class="d">The 25 parks with the fewest contacts and the 25 with the fewest activations, for any place.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US · CANADA · 64 COUNTRIES</span></span></a>
-<a class="lg-tool" href="kpc-tracker.html"><b>Park Tracker</b><span class="d">Load your POTA My Stats file: every park you have activated and the ones still to go, by state, province or country.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US · CANADA · 64 COUNTRIES</span></span></a>
-<a class="lg-tool" href="kpc-sota.html"><b>SOTA Summit Checker</b><span class="d">Every summit in a SOTA area on a map: public land or private, and who to ask. Tick the ones you have done, or load your SOTA log.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span><span class="lg-tag where">US</span></span></a>
-<a class="lg-tool" href="kpc-park-info.html"><b>Official Info Finder</b><span class="d">The official website and boundary for any park, WWFF area or summit.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span></a>
+<section class="lg-sec"><div class="lg-sh"><span class="lg-ic">🎯</span><div><h3>Find a place to activate</h3><p>Somewhere hunters will be glad to hear.</p></div></div><div class="lg-grid">
+<a class="lg-tool lg-s1" href="kpc-rare.html"><i>🔴</i><b>Rarely Activated Parks</b><span class="d">Parks that have hardly been on the air, and the ones never activated, on a map. Near me, and hide the ones I did.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US · CANADA · 64 COUNTRIES</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s1" href="kpc-guide-top25.html"><i>🏆</i><b>Top 25 Low-Activity Parks</b><span class="d">The 25 parks with the fewest contacts and the 25 with the fewest activations, for any place.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US · CANADA · 64 COUNTRIES</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s1" href="kpc-tracker.html"><i>🗺</i><b>Park Tracker</b><span class="d">Load your POTA My Stats file: every park you have activated and the ones still to go, by state, province or country.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">US · CANADA · 64 COUNTRIES</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s1" href="kpc-sota.html"><i>⛰</i><b>SOTA Summit Checker</b><span class="d">Every summit in a SOTA area on a map: public land or private, and who to ask. Tick the ones you have done, or load your SOTA log.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span><span class="lg-tag where">US</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s1" href="kpc-park-info.html"><i>🔎</i><b>Official Info Finder</b><span class="d">The official website and boundary for any park, WWFF area or summit.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span><span class="go">OPEN ›</span></a>
 </div></section>
 
-<section class="lg-sec"><h3>PLAN THE TRIP</h3><p>Where to park, where to sleep, what others found there.</p><div class="lg-grid">
-<a class="lg-tool" href="kpc-planner-us.html"><b>Trip Planner</b><span class="d">Plan a route through several parks and summits with the boundaries on the map.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US</span></span></a>
-<a class="lg-tool" href="kpc-park-notes.html"><b>Park Notes</b><span class="d">Tips from operators who have been there.: Kentucky, and other states on their own page.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US</span></span></a>
-<a class="lg-tool" href="kpc-campgrounds.html"><b>Campgrounds &amp; Cabins</b><span class="d">Places to stay at or near the parks, with reviews.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY</span></span></a>
-<a class="lg-tool" href="kpc-park-sheet.html"><b>Printable Park Sheet</b><span class="d">One page to take along: QR codes, GPS, grid, activations, and a log sheet. US parks add weather radio and places to stay.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span></a>
+<section class="lg-sec"><div class="lg-sh"><span class="lg-ic">🚗</span><div><h3>Plan the trip</h3><p>Where to go, where to sleep, what others found there.</p></div></div><div class="lg-grid">
+<a class="lg-tool lg-s2" href="kpc-planner-us.html"><i>🧭</i><b>Trip Planner</b><span class="d">Plan a route through several parks and summits with the boundaries on the map.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s2" href="kpc-park-notes-us.html"><i>📝</i><b>Park Notes</b><span class="d">Tips from operators who have been there: where to park, where to set up, cell signal. Look up any park or summit (Kentucky ones open the Kentucky page).</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s2" href="kpc-park-sheet.html"><i>🖨</i><b>Printable Park Sheet</b><span class="d">One page to take along: QR codes, GPS, grid, activations and a log sheet. US parks add weather radio and places to stay.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s2" href="kpc-campgrounds.html"><i>⛺</i><b>Campgrounds &amp; Cabins</b><span class="d">Places to stay at or near the parks, with reviews.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag where">KENTUCKY</span></span><span class="go">OPEN ›</span></a>
 </div></section>
 
-<section class="lg-sec"><h3>AT THE PARK</h3><p>Open these before you lose signal.</p><div class="lg-grid">
-<a class="lg-tool" href="kpc-kit.html"><b>Activation Kit</b><span class="d">Weather, boundary map, other references at the spot and places to stay, on one screen. Saves for no signal.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE · MOST IN KY</span></span></a>
-<a class="lg-tool" href="kpc-in-park.html"><b>Am I in the Park?</b><span class="d">Your GPS against the park line, and which other parks you are in.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag wwff">WWFF</span><span class="lg-tag where">ANYWHERE · OFFICIAL LINES IN US</span></span></a>
-<a class="lg-tool" href="kpc-sota-az.html"><b>SOTA Activation Zone</b><span class="d">Are you within 82 ft (25 m) of the top? Saves the zone for no signal.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span><span class="lg-tag where">US</span></span></a>
+<section class="lg-sec"><div class="lg-sh"><span class="lg-ic">📍</span><div><h3>At the park</h3><p>Open these before you lose signal.</p></div></div><div class="lg-grid">
+<a class="lg-tool lg-s3" href="kpc-kit.html"><i>🧰</i><b>Activation Kit</b><span class="d">Weather, boundary map, other references at the spot and places to stay, on one screen. Saves for no signal.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE · MOST IN KY</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s3" href="kpc-in-park.html"><i>✅</i><b>Am I in the Park?</b><span class="d">Your GPS against the park line, and which other parks you are in.</span><span class="lg-tags"><span class="lg-tag">POTA</span><span class="lg-tag wwff">WWFF</span><span class="lg-tag where">ANYWHERE · OFFICIAL LINES IN US</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s3" href="kpc-sota-az.html"><i>🏔</i><b>SOTA Activation Zone</b><span class="d">Are you within 82 ft (25 m) of the top? Saves the zone for no signal.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span><span class="lg-tag where">US</span></span><span class="go">OPEN ›</span></a>
 </div></section>
 
-<section class="lg-sec"><h3>WEATHER &amp; BANDS</h3><p>Is it a good day to go, and which band?</p><div class="lg-grid">
-<a class="lg-tool" href="kpc-weather.html"><b>Field Weather</b><span class="d">Forecast, radar and lightning, plus warnings and the weather radio station.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">FORECAST ANYWHERE · ALERTS US, CANADA, EUROPE</span></span></a>
-<a class="lg-tool" href="kpc-space-weather.html"><b>Radio Conditions &amp; Propagation</b><span class="d">Solar flux, Kp, band maps and what is open right now.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span></a>
-<a class="lg-tool" href="kpc-band-plan.html"><b>Band Plan</b><span class="d">Where each licence class may operate, and where the modes live.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US LICENCES</span></span></a>
+<section class="lg-sec"><div class="lg-sh"><span class="lg-ic">⛅</span><div><h3>Weather &amp; bands</h3><p>Is it a good day to go, and which band?</p></div></div><div class="lg-grid">
+<a class="lg-tool lg-s4" href="kpc-weather.html"><i>🌦</i><b>Field Weather</b><span class="d">Forecast, radar and lightning, plus warnings and the weather radio station.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">FORECAST ANYWHERE</span><span class="lg-tag where">ALERTS: US · CANADA · EUROPE</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s4" href="kpc-space-weather.html"><i>☀️</i><b>Radio Conditions &amp; Propagation</b><span class="d">Solar flux, Kp, band maps and what is open right now.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">ANYWHERE</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s4" href="kpc-band-plan.html"><i>📻</i><b>Band Plan</b><span class="d">Where each licence class may operate, and where the modes live.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span><span class="lg-tag where">US LICENCES</span></span><span class="go">OPEN ›</span></a>
 </div></section>
 
-<section class="lg-sec"><h3>THE PROGRAM ROOMS</h3><p>Everything about one program: how it works, news, links and our guides.</p><div class="lg-grid">
-<a class="lg-tool" href="kpc-pota-room.html"><b>POTA Room</b><span class="d">Parks on the Air: parks, rules, awards and our Kentucky guide.</span><span class="lg-tags"><span class="lg-tag">POTA</span></span></a>
-<a class="lg-tool" href="kpc-wwff-room.html"><b>WWFF / KFF Room</b><span class="d">World Wide Flora &amp; Fauna and its US program, KFF.</span><span class="lg-tags"><span class="lg-tag wwff">WWFF</span></span></a>
-<a class="lg-tool" href="kpc-sota-room.html"><b>SOTA Room</b><span class="d">Summits on the Air: summits, points and the activation zone.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span></span></a>
+<section class="lg-sec"><div class="lg-sh"><span class="lg-ic">🏛</span><div><h3>The program rooms</h3><p>Everything about one program: how it works, news, links and our guides.</p></div></div><div class="lg-grid">
+<a class="lg-tool" style="--acc:var(--lg-pota)" href="kpc-pota-room.html"><i>🌲</i><b>POTA Room</b><span class="d">Parks on the Air: parks, rules, awards and our Kentucky guide.</span><span class="lg-tags"><span class="lg-tag">POTA</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool" style="--acc:var(--lg-wwff)" href="kpc-wwff-room.html"><i>🦋</i><b>WWFF / KFF Room</b><span class="d">World Wide Flora &amp; Fauna and its US program, KFF.</span><span class="lg-tags"><span class="lg-tag wwff">WWFF</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool" style="--acc:var(--lg-sota)" href="kpc-sota-room.html"><i>⛰</i><b>SOTA Room</b><span class="d">Summits on the Air: summits, points and the activation zone.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span></span><span class="go">OPEN ›</span></a>
 </div></section>
 
-<section class="lg-sec"><h3>RULES &amp; GETTING STARTED</h3><p>What counts, for each program.</p><div class="lg-grid">
-<a class="lg-tool" href="kpc-rules-you-should-know.html"><b>Rules You Should Know</b><span class="d">The rules that trip people up, in plain words.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span></span></a>
-<a class="lg-tool" href="kpc-new-to-pota.html"><b>New to POTA? Start Here</b><span class="d">Your first activation, step by step.</span><span class="lg-tags"><span class="lg-tag">POTA</span></span></a>
-<a class="lg-tool" href="kpc-new-to-wwff.html"><b>New to WWFF / KFF? Start Here</b><span class="d">How WWFF differs from POTA.</span><span class="lg-tags"><span class="lg-tag wwff">WWFF</span></span></a>
-<a class="lg-tool" href="kpc-new-to-sota.html"><b>New to SOTA? Start Here</b><span class="d">Summits, points and the activation zone.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span></span></a>
+<section class="lg-sec"><div class="lg-sh"><span class="lg-ic">📋</span><div><h3>Rules &amp; getting started</h3><p>What counts, for each program.</p></div></div><div class="lg-grid">
+<a class="lg-tool lg-s6" href="kpc-rules-you-should-know.html"><i>⚖️</i><b>Rules You Should Know</b><span class="d">The rules that trip people up, in plain words.</span><span class="lg-tags"><span class="lg-tag all">ALL PROGRAMS</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s6" href="kpc-new-to-pota.html"><i>🌱</i><b>New to POTA? Start Here</b><span class="d">Your first activation, step by step.</span><span class="lg-tags"><span class="lg-tag">POTA</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s6" href="kpc-new-to-wwff.html"><i>🌱</i><b>New to WWFF / KFF? Start Here</b><span class="d">How WWFF differs from POTA.</span><span class="lg-tags"><span class="lg-tag wwff">WWFF</span></span><span class="go">OPEN ›</span></a>
+<a class="lg-tool lg-s6" href="kpc-new-to-sota.html"><i>🌱</i><b>New to SOTA? Start Here</b><span class="d">Summits, points and the activation zone.</span><span class="lg-tags"><span class="lg-tag sota">SOTA</span></span><span class="go">OPEN ›</span></a>
 </div>
-<p class="lg-key">Tags: <span class="lg-tag">POTA</span> <span class="lg-tag wwff">WWFF</span> <span class="lg-tag sota">SOTA</span> = the programs a tool works for · <span class="lg-tag all">ALL PROGRAMS</span> = all three · <span class="lg-tag where">WHERE</span> = where it works today. More tools are coming to every state.</p>
+<p class="lg-key">Tags: <span class="lg-tag">POTA</span> <span class="lg-tag wwff">WWFF</span> <span class="lg-tag sota">SOTA</span> = the programs a tool works for · <span class="lg-tag all">ALL PROGRAMS</span> = all three · <span class="lg-tag where">WHERE</span> = where it works today. More tools are coming to every state and country.</p>
 </section>
 </div>
 <div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
 </main>
 <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
 <script src="kpc-bounds.js?v=20261023b" defer></script>
-<script src="kpc-lounge.js?v=20261024c" defer></script>
+<script src="kpc-lounge.js?v=20261024d" defer></script>
 <script src="kpc-search.js?v=20261023a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261017c" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

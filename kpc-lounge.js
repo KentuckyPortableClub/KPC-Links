@@ -30,10 +30,17 @@
     msg('Searching…');
     const out = [];
     try { const L = await j('https://api.pota.app/lookup?search=' + encodeURIComponent(q) + '&size=60'); (L || []).filter(x => x.type === 'park').forEach(x => out.push({ prog: 'POTA', ref: x.value, name: String(x.display || '').replace(/^\S+\s+/, '') })); } catch (e) {}
+    /* WWFF + SOTA names for the whole world: data/names/<first letter>.json (kpc_name_index.py, weekly) */
     try {
-      if (!search.loc) search.loc = j('locations.json', 30000).catch(() => []);
-      const L = await search.loc, w = q.toLowerCase().split(/\s+/).filter(Boolean);
-      L.filter(r => r[0] !== 'POTA' && w.every(x => String(r[2]).toLowerCase().includes(x))).slice(0, 40).forEach(r => out.push({ prog: r[0], ref: r[1], name: r[2] }));
+      const fold = t => String(t).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+      const SK = new Set(['the', 'of', 'and', 'de', 'la', 'le', 'du', 'des', 'di', 'del', 'da', 'von', 'der', 'van', 'mount', 'mt']);
+      const w = fold(q).match(/[a-z0-9]+/g) || [], key = w.find(x => x.length >= 2 && !SK.has(x));
+      if (key) {
+        const f = /\d/.test(key[0]) ? '0' : key[0]; search.nm = search.nm || {};
+        if (!search.nm[f]) search.nm[f] = j('data/names/' + f + '.json', 30000).catch(() => []);
+        const L = await search.nm[f];
+        L.filter(r => { const n = fold(r[1]); return w.every(x => n.includes(x)); }).slice(0, 40).forEach(r => out.push({ prog: progOf(r[0]), ref: r[0], name: r[1], la: r[2], lo: r[3] }));
+      }
     } catch (e) {}
     if (!out.length) return msg('Nothing matches <b>' + esc(q) + '</b>. Try fewer words, or type the number (US-1234, GFF-0001, W4K/EC-001).');
     if (out.length === 1) return open(out[0].ref);
@@ -91,7 +98,7 @@
       <div class="lg-ch"><span class="lg-tag ${P.toLowerCase()}">${P}</span> <span class="lg-ref">${esc(o.ref)}</span></div>
       <h2>${esc(o.name)}</h2>
       <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>
-      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}" href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div>
+      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div>
       <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, parking, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
     </section>`;
     $('lgOut').scrollIntoView({ block: 'start', behavior: 'smooth' });
