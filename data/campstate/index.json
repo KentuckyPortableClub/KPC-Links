@@ -6,11 +6,6 @@
    "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84)",
    "updated": "2026-10-25"
   },
-  "AL": {
-   "n": 5,
-   "source": "conservationgis.alabama.gov \u00b7 Camping (5)",
-   "updated": "2026-10-25"
-  },
   "CA": {
    "n": 356,
    "source": "gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
@@ -93,6 +88,7 @@
   }
  },
  "none": [
+  "AL",
   "AR",
   "AZ",
   "CO",
@@ -158,6 +154,7 @@
   "VT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WA": "the only layer found lists camp-host sites, not campgrounds (held back)",
   "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
+  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "AL": "the only official layer (ADCNR Activities/Camping) is 5 delta camping platforms, not park campgrounds (held back)"
  }
 }
