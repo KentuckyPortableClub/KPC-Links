@@ -1,80 +1,68 @@
 {
  "United States": {
   "totals": {
-   "matched": 8399,
-   "far": 2243,
+   "matched": 10601,
+   "far": 4375,
    "noshape": 0,
-   "edge": 2056,
-   "out": 187,
-   "swap": 5
+   "edge": 4163,
+   "out": 212,
+   "swap": 9
   },
   "states": [
    {
     "st": "AK",
-    "matched": 74,
-    "far": 25,
+    "matched": 128,
+    "far": 59,
     "noshape": 0,
-    "out": 5,
+    "out": 7,
     "swap": 1,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 20
+    "edge": 52
    },
    {
     "st": "AL",
-    "matched": 109,
-    "far": 42,
+    "matched": 110,
+    "far": 44,
     "noshape": 0,
     "out": 8,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 34
+    "edge": 36
    },
    {
     "st": "AR",
-    "matched": 213,
-    "far": 79,
+    "matched": 234,
+    "far": 93,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 77
+    "edge": 91
    },
    {
     "st": "AZ",
-    "matched": 90,
-    "far": 21,
+    "matched": 96,
+    "far": 25,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 17
+    "edge": 21
    },
    {
     "st": "CA",
-    "matched": 371,
-    "far": 110,
+    "matched": 373,
+    "far": 112,
     "noshape": 0,
     "out": 3,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 107
-   },
-   {
-    "st": "CO",
-    "matched": 255,
-    "far": 123,
-    "noshape": 0,
-    "out": 14,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
@@ -82,16 +70,28 @@
     "edge": 109
    },
    {
+    "st": "CO",
+    "matched": 257,
+    "far": 125,
+    "noshape": 0,
+    "out": 14,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 111
+   },
+   {
     "st": "CT",
-    "matched": 118,
-    "far": 49,
+    "matched": 144,
+    "far": 65,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 44
+    "edge": 60
    },
    {
     "st": "DC",
@@ -107,34 +107,46 @@
    },
    {
     "st": "DE",
-    "matched": 70,
-    "far": 29,
+    "matched": 74,
+    "far": 30,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 29
+    "edge": 30
    },
    {
     "st": "FL",
-    "matched": 387,
-    "far": 64,
+    "matched": 389,
+    "far": 65,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 59
+    "edge": 60
    },
    {
     "st": "GA",
-    "matched": 210,
-    "far": 31,
+    "matched": 218,
+    "far": 34,
     "noshape": 0,
     "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 34
+   },
+   {
+    "st": "HI",
+    "matched": 84,
+    "far": 34,
+    "noshape": 0,
+    "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
@@ -142,28 +154,16 @@
     "edge": 31
    },
    {
-    "st": "HI",
-    "matched": 78,
-    "far": 31,
-    "noshape": 0,
-    "out": 3,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 28
-   },
-   {
     "st": "IA",
-    "matched": 167,
-    "far": 37,
+    "matched": 171,
+    "far": 40,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 35
+    "edge": 38
    },
    {
     "st": "ID",
@@ -180,294 +180,342 @@
    {
     "st": "IL",
     "matched": 163,
-    "far": 45,
+    "far": 74,
     "noshape": 0,
     "out": 6,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 39
+    "edge": 68
    },
    {
     "st": "IN",
     "matched": 205,
-    "far": 39,
+    "far": 75,
     "noshape": 0,
-    "out": 3,
+    "out": 4,
     "swap": 1,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 36
+    "edge": 71
    },
    {
     "st": "KS",
-    "matched": 97,
-    "far": 13,
+    "matched": 101,
+    "far": 46,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 13
+    "edge": 46
    },
    {
     "st": "LA",
     "matched": 108,
-    "far": 17,
+    "far": 32,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 16
-   },
-   {
-    "st": "MA",
-    "matched": 393,
-    "far": 153,
-    "noshape": 0,
-    "out": 4,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 149
-   },
-   {
-    "st": "MD",
-    "matched": 152,
-    "far": 31,
-    "noshape": 0,
-    "out": 4,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 27
-   },
-   {
-    "st": "ME",
-    "matched": 136,
-    "far": 42,
-    "noshape": 0,
-    "out": 1,
-    "swap": 1,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 41
-   },
-   {
-    "st": "MI",
-    "matched": 286,
-    "far": 50,
-    "noshape": 0,
-    "out": 4,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 46
-   },
-   {
-    "st": "MN",
-    "matched": 223,
-    "far": 45,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 40
-   },
-   {
-    "st": "MO",
-    "matched": 535,
-    "far": 85,
-    "noshape": 0,
-    "out": 0,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 85
-   },
-   {
-    "st": "MS",
-    "matched": 88,
-    "far": 30,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 29
-   },
-   {
-    "st": "MT",
-    "matched": 222,
-    "far": 47,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 46
-   },
-   {
-    "st": "NC",
-    "matched": 212,
-    "far": 75,
-    "noshape": 0,
-    "out": 4,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 71
-   },
-   {
-    "st": "ND",
-    "matched": 98,
-    "far": 30,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 29
-   },
-   {
-    "st": "NE",
-    "matched": 159,
-    "far": 18,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 17
-   },
-   {
-    "st": "NH",
-    "matched": 187,
-    "far": 90,
-    "noshape": 0,
-    "out": 9,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 81
-   },
-   {
-    "st": "NJ",
-    "matched": 121,
-    "far": 33,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
     "edge": 31
    },
    {
-    "st": "NM",
-    "matched": 92,
-    "far": 24,
+    "st": "MA",
+    "matched": 393,
+    "far": 250,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 246
+   },
+   {
+    "st": "MD",
+    "matched": 152,
+    "far": 61,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 57
+   },
+   {
+    "st": "ME",
+    "matched": 136,
+    "far": 81,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 80
+   },
+   {
+    "st": "MI",
+    "matched": 288,
+    "far": 127,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 123
+   },
+   {
+    "st": "MN",
+    "matched": 249,
+    "far": 92,
+    "noshape": 0,
+    "out": 6,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 86
+   },
+   {
+    "st": "MO",
+    "matched": 544,
+    "far": 229,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 24
+    "edge": 229
    },
    {
-    "st": "NV",
-    "matched": 207,
-    "far": 80,
+    "st": "MS",
+    "matched": 89,
+    "far": 49,
     "noshape": 0,
-    "out": 21,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 48
+   },
+   {
+    "st": "MT",
+    "matched": 226,
+    "far": 95,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 94
+   },
+   {
+    "st": "NC",
+    "matched": 212,
+    "far": 110,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 106
+   },
+   {
+    "st": "ND",
+    "matched": 102,
+    "far": 49,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 48
+   },
+   {
+    "st": "NE",
+    "matched": 159,
+    "far": 69,
+    "noshape": 0,
+    "out": 1,
     "swap": 1,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 59
+    "edge": 68
    },
    {
-    "st": "NY",
-    "matched": 819,
-    "far": 148,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 143
-   },
-   {
-    "st": "OH",
-    "matched": 244,
-    "far": 65,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 60
-   },
-   {
-    "st": "OK",
-    "matched": 139,
-    "far": 45,
+    "st": "NH",
+    "matched": 187,
+    "far": 120,
     "noshape": 0,
     "out": 9,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 36
+    "edge": 111
    },
    {
-    "st": "OR",
-    "matched": 350,
-    "far": 74,
+    "st": "NJ",
+    "matched": 122,
+    "far": 53,
     "noshape": 0,
-    "out": 3,
+    "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 71
-   },
-   {
-    "st": "SC",
-    "matched": 149,
-    "far": 51,
-    "noshape": 0,
-    "out": 0,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
     "edge": 51
    },
    {
+    "st": "NM",
+    "matched": 92,
+    "far": 30,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 30
+   },
+   {
+    "st": "NV",
+    "matched": 209,
+    "far": 93,
+    "noshape": 0,
+    "out": 21,
+    "swap": 1,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 72
+   },
+   {
+    "st": "NY",
+    "matched": 823,
+    "far": 315,
+    "noshape": 0,
+    "out": 5,
+    "swap": 1,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 310
+   },
+   {
+    "st": "OH",
+    "matched": 260,
+    "far": 97,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 95
+   },
+   {
+    "st": "OK",
+    "matched": 143,
+    "far": 64,
+    "noshape": 0,
+    "out": 7,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 57
+   },
+   {
+    "st": "OR",
+    "matched": 350,
+    "far": 129,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 126
+   },
+   {
+    "st": "PA",
+    "matched": 477,
+    "far": 197,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 195
+   },
+   {
+    "st": "RI",
+    "matched": 56,
+    "far": 36,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 34
+   },
+   {
+    "st": "SC",
+    "matched": 156,
+    "far": 94,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 93
+   },
+   {
+    "st": "SD",
+    "matched": 103,
+    "far": 47,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 47
+   },
+   {
+    "st": "TN",
+    "matched": 243,
+    "far": 121,
+    "noshape": 0,
+    "out": 4,
+    "swap": 1,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 117
+   },
+   {
     "st": "TX",
-    "matched": 192,
+    "matched": 196,
     "far": 67,
     "noshape": 0,
     "out": 1,
@@ -479,27 +527,87 @@
    },
    {
     "st": "UT",
-    "matched": 336,
-    "far": 82,
+    "matched": 345,
+    "far": 128,
     "noshape": 0,
-    "out": 19,
+    "out": 20,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 63
+    "edge": 108
+   },
+   {
+    "st": "VA",
+    "matched": 149,
+    "far": 55,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 52
+   },
+   {
+    "st": "VT",
+    "matched": 88,
+    "far": 42,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 39
+   },
+   {
+    "st": "WA",
+    "matched": 376,
+    "far": 198,
+    "noshape": 0,
+    "out": 4,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 194
+   },
+   {
+    "st": "WI",
+    "matched": 315,
+    "far": 146,
+    "noshape": 0,
+    "out": 3,
+    "swap": 2,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 143
+   },
+   {
+    "st": "WV",
+    "matched": 160,
+    "far": 53,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 50
    },
    {
     "st": "WY",
-    "matched": 172,
-    "far": 70,
+    "matched": 174,
+    "far": 72,
     "noshape": 0,
     "out": 14,
     "swap": 1,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 56
+    "edge": 58
    }
   ],
   "swaps": [
@@ -518,11 +626,11 @@
     "Salamonie Lake"
    ],
    [
-    "ME",
-    "US-2399",
-    "Owls Head State Park",
-    "Owls Head Light",
-    "Owls Head Light"
+    "NE",
+    "US-3489",
+    "Massie National Waterfowl Production Area",
+    "Clay County Waterfowl Production Area Of Ne",
+    "Clay County Waterfowl Production Area Of Ne"
    ],
    [
     "NV",
@@ -530,6 +638,34 @@
     "Muddy Mountains BLM Herd Management Area",
     "Muddy Mountains",
     "Muddy Mountains"
+   ],
+   [
+    "NY",
+    "US-8062",
+    "Kenneth L. Wilson State Recreation Area",
+    "Kenneth L. Wilson Campground",
+    "Kenneth L. Wilson Campground"
+   ],
+   [
+    "TN",
+    "US-3967",
+    "Whites Mill Wildlife Refuge",
+    "Whites Mill Refuge",
+    "Whites Mill Refuge"
+   ],
+   [
+    "WI",
+    "US-4342",
+    "Herb Behnke Unit of Wolf River Bottoms State Wildlife Area",
+    "Wolf River Bottoms Wildlife Area",
+    "Wolf River Bottoms Wildlife Area"
+   ],
+   [
+    "WI",
+    "US-8209",
+    "Dewey Marsh State Natural Area",
+    "Dewey Marsh Wildlife Area",
+    "Dewey Marsh Wildlife Area"
    ],
    [
     "WY",
@@ -554,9 +690,21 @@
    ],
    [
     "AK",
+    "US-7191",
+    "Anchor River State Recreation Area",
+    "Anchor River State Recreation Area"
+   ],
+   [
+    "AK",
     "US-7193",
     "Caines Head State Recreation Area",
     "Caines Head State Recreation Area"
+   ],
+   [
+    "AK",
+    "US-7242",
+    "Portage Cove State Recreation Site",
+    "Portage Cove State Recreation Site"
    ],
    [
     "AK",
@@ -962,6 +1110,12 @@
    ],
    [
     "IN",
+    "US-2268",
+    "Shakamak State Park",
+    "Shakamak State Park"
+   ],
+   [
+    "IN",
     "US-4162",
     "Mounds on Brookville Lake State Recreation Area",
     "Brookville Lake Public Fishing Area"
@@ -1034,15 +1188,15 @@
    ],
    [
     "MI",
-    "US-1550",
-    "Van Buren Trail State Park",
-    "Van Buren Trail State Park"
-   ],
-   [
-    "MI",
     "US-3313",
     "Holly State Recreation Area",
     "Holly State Recreation Area"
+   ],
+   [
+    "MI",
+    "US-6787",
+    "St. Clair Flats State Wildlife Area",
+    "St. Clair Flats State Wildlife Area"
    ],
    [
     "MI",
@@ -1064,9 +1218,15 @@
    ],
    [
     "MN",
+    "US-12152",
+    "Canosia Wildlife Management Area",
+    "Canosia WMA"
+   ],
+   [
+    "MN",
     "US-12660",
     "Severance Lake Wildlife Management Area",
-    "Severance Lake State Wildlife Management Area"
+    "Severance Lake WMA: Main Unit"
    ],
    [
     "MN",
@@ -1294,7 +1454,7 @@
     "NV",
     "US-9246",
     "East Fork High Rock Canyon Wilderness Area",
-    "East Fork High Rock Canyon"
+    "East Fork High Rock Canyon Wilderness"
    ],
    [
     "NV",
@@ -1352,27 +1512,9 @@
    ],
    [
     "OH",
-    "US-1984",
-    "Portage Lakes State Park",
-    "Portage Lakes State Park"
-   ],
-   [
-    "OH",
-    "US-8114",
-    "East Fork State Wildlife Area",
-    "East Fork Wildlife Area"
-   ],
-   [
-    "OH",
-    "US-9456",
-    "Delaware State Wildlife Area",
-    "Delaware Strine Wildlife Area"
-   ],
-   [
-    "OH",
     "US-9470",
     "Jockey Hollow State Wildlife Area",
-    "Jockey Hollow Wildlife Area"
+    "JOCKEY HOLLOW"
    ],
    [
     "OK",
@@ -1385,18 +1527,6 @@
     "US-12028",
     "Barren Fork Wildlife Management Area",
     "Barren Fork Wildlife Management Area"
-   ],
-   [
-    "OK",
-    "US-6352",
-    "Honobia Creek Wildlife Management Area",
-    "Honobia Creek Wildlife Management Area"
-   ],
-   [
-    "OK",
-    "US-6353",
-    "Hugo Wildlife Management Area",
-    "Hugo Wildlife Management Area"
    ],
    [
     "OK",
@@ -1447,6 +1577,60 @@
     "Tillamook State Forest"
    ],
    [
+    "PA",
+    "US-0681",
+    "Upper Delaware National Wild and Scenic River",
+    "Upper Delaware Scenic and Recreational River"
+   ],
+   [
+    "PA",
+    "US-0733",
+    "First State National Historical Park",
+    "First State National Historical Park"
+   ],
+   [
+    "RI",
+    "US-5484",
+    "George Washington Memorial State Forest",
+    "George Washington"
+   ],
+   [
+    "RI",
+    "US-7971",
+    "Blackstone River Valley National Historical Park",
+    "Blackstone River Valley National Historical Park"
+   ],
+   [
+    "SC",
+    "US-9224",
+    "Lake Wallace Wildlife Management Area",
+    "Lake Paul Wallace Wildlife Management Area"
+   ],
+   [
+    "TN",
+    "US-0716",
+    "Chickamauga and Chattanooga National Military Park",
+    "Chickamauga and Chattanooga National Military Park"
+   ],
+   [
+    "TN",
+    "US-3792",
+    "Land Between the Lakes National Recreation Area",
+    "Land Between the Lakes Other"
+   ],
+   [
+    "TN",
+    "US-6275",
+    "Walls of Jericho State Natural Area",
+    "Walls of Jericho Designated State Natural Area"
+   ],
+   [
+    "TN",
+    "US-7880",
+    "Luper Mountain Wildlife Management Area",
+    "Luper Mountain Wildlife Management Area"
+   ],
+   [
     "TX",
     "US-7480",
     "Black Kettle National Grassland",
@@ -1457,6 +1641,12 @@
     "US-0921",
     "Dinosaur National Monument",
     "Dinosaur National Monument"
+   ],
+   [
+    "UT",
+    "US-10972",
+    "Beartrap Canyon BLM Wild and Scenic River",
+    "Beartrap Canyon"
    ],
    [
     "UT",
@@ -1567,6 +1757,102 @@
     "White Rock Range"
    ],
    [
+    "VA",
+    "US-0573",
+    "Wallops Island National Wildlife Refuge",
+    "Wallops Island National Wildlife Refuge"
+   ],
+   [
+    "VA",
+    "US-0671",
+    "Assateague Island National Seashore",
+    "Assateague Island National Seashore"
+   ],
+   [
+    "VA",
+    "US-3378",
+    "Blue Ridge National Parkway",
+    "Blue Ridge Parkway"
+   ],
+   [
+    "VT",
+    "US-5532",
+    "Hapgood State Forest",
+    "Hapgood State Forest"
+   ],
+   [
+    "VT",
+    "US-5538",
+    "Lower Clarendon Gorge State Forest",
+    "Lower Clarendon Gorge State Forest"
+   ],
+   [
+    "VT",
+    "US-5553",
+    "Camels Hump State Forest",
+    "Camels Hump State Forest"
+   ],
+   [
+    "WA",
+    "US-0054",
+    "Nez Perce National Historical Park",
+    "Nez Perce National Historical Park"
+   ],
+   [
+    "WA",
+    "US-10625",
+    "Weatherly Wildlife Area",
+    "Weatherly"
+   ],
+   [
+    "WA",
+    "US-12481",
+    "Nisqually State Wildlife Area",
+    "Nisqually"
+   ],
+   [
+    "WA",
+    "US-5640",
+    "Lewis and Clark National Historical Park",
+    "Lewis and Clark National Historical Park"
+   ],
+   [
+    "WI",
+    "US-12601",
+    "Hackmatack National Wildlife Refuge",
+    "Hackmatack National Wildlife Refuge"
+   ],
+   [
+    "WI",
+    "US-4296",
+    "Kickapoo River State Wildlife Area",
+    "Kickapoo River Fishery Area"
+   ],
+   [
+    "WI",
+    "US-9800",
+    "Hank Aaron State Trail",
+    "Hank Aaron State Trail"
+   ],
+   [
+    "WV",
+    "US-0015",
+    "Chesapeake and Ohio Canal National Historical Park",
+    "Chesapeake and Ohio Canal National Historical Park"
+   ],
+   [
+    "WV",
+    "US-7027",
+    "Slatyfork Wildlife Management Area",
+    "Slatyfork Wildlife Management Area"
+   ],
+   [
+    "WV",
+    "US-7043",
+    "Tate Lohr Wildlife Management Area",
+    "Tate Lohr Wildlife Management Area"
+   ],
+   [
     "WY",
     "US-10816",
     "Saratoga National Fish Hatchery",
@@ -1655,84 +1941,84 @@
  "Canada": {
   "totals": {
    "matched": 3949,
-   "far": 982,
+   "far": 1540,
    "noshape": 0,
-   "edge": 810,
-   "out": 172,
-   "swap": 2
+   "edge": 1367,
+   "out": 173,
+   "swap": 1
   },
   "states": [
    {
     "st": "CA-AB",
     "matched": 391,
-    "far": 92,
+    "far": 168,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 88
+    "edge": 164
    },
    {
     "st": "CA-BC",
     "matched": 1107,
-    "far": 181,
+    "far": 391,
     "noshape": 0,
     "out": 9,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 172
+    "edge": 382
    },
    {
     "st": "CA-MB",
     "matched": 216,
-    "far": 56,
+    "far": 85,
     "noshape": 0,
     "out": 22,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 34
+    "edge": 63
    },
    {
     "st": "CA-NB",
     "matched": 266,
-    "far": 125,
+    "far": 146,
     "noshape": 0,
-    "out": 27,
-    "swap": 2,
+    "out": 28,
+    "swap": 1,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 98
+    "edge": 118
    },
    {
     "st": "CA-NL",
     "matched": 67,
-    "far": 13,
+    "far": 24,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 12
+    "edge": 23
    },
    {
     "st": "CA-NS",
     "matched": 302,
-    "far": 58,
+    "far": 78,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 57
+    "edge": 77
    },
    {
     "st": "CA-NT",
@@ -1742,57 +2028,57 @@
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
     "edge": 3
    },
    {
     "st": "CA-NU",
     "matched": 29,
-    "far": 2,
+    "far": 3,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 2
-   },
-   {
-    "st": "CA-ON",
-    "matched": 794,
-    "far": 167,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 162
-   },
-   {
-    "st": "CA-PE",
-    "matched": 11,
-    "far": 4,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
     "edge": 3
    },
    {
+    "st": "CA-ON",
+    "matched": 794,
+    "far": 273,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~2.2 km",
+    "thin": null,
+    "edge": 268
+   },
+   {
+    "st": "CA-PE",
+    "matched": 11,
+    "far": 6,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~2.2 km",
+    "thin": null,
+    "edge": 5
+   },
+   {
     "st": "CA-QC",
     "matched": 431,
-    "far": 168,
+    "far": 201,
     "noshape": 0,
     "out": 84,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 84
+    "edge": 117
    },
    {
     "st": "CA-SI",
@@ -1802,21 +2088,21 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
     "edge": 0
    },
    {
     "st": "CA-SK",
     "matched": 291,
-    "far": 108,
+    "far": 154,
     "noshape": 0,
     "out": 16,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 92
+    "edge": 138
    },
    {
     "st": "CA-SP",
@@ -1826,31 +2112,24 @@
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
     "edge": 0
    },
    {
     "st": "CA-YT",
     "matched": 27,
-    "far": 4,
+    "far": 7,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~2.2 km",
     "thin": null,
-    "edge": 3
+    "edge": 6
    }
   ],
   "swaps": [
-   [
-    "CA-NB",
-    "CA-4393",
-    "Estey Wetlands Wetland Reserve",
-    "Estey Wetlands",
-    "Estey Wetlands"
-   ],
    [
     "CA-NB",
     "CA-4502",
@@ -2132,6 +2411,12 @@
    ],
    [
     "CA-NB",
+    "CA-4393",
+    "Estey Wetlands Wetland Reserve",
+    "Estey Wetlands"
+   ],
+   [
+    "CA-NB",
     "CA-4420",
     "Kingston Family Nature Preserve Protected Area",
     "Kingston Family"
@@ -2219,6 +2504,12 @@
     "CA-5235",
     "Warren Kent Coleman Nature Reserve",
     "Warren Kent Coleman"
+   ],
+   [
+    "CA-NB",
+    "CA-6103",
+    "North Lake Provincial Park",
+    "North Lake"
    ],
    [
     "CA-NL",
