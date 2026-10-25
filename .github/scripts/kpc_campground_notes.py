@@ -5,7 +5,7 @@ marked NO. Photos are downloaded from Google Drive, shrunk to 1280 px and saved 
 photos/campgrounds/.
 
 Form questions (each must START with these words; order doesn't matter; see .claude/CLAUDE.md):
-  Call sign | What are you reviewing | Campground or cabin | Campground name | Town or county | GPS | Website |
+  Call sign | What are you reviewing | Park number (optional, any section) | Campground or cabin | Campground name | Town or county | GPS | Website |
   Type of campground | Rating | Site number | When did you stay | Restrooms | Showers | Hookups | Cell signal |
   RF noise | Room for antennas | Shade | Other amenities | Your review | Photos
 "Campground or cabin" is pre-filled by the site's REVIEW IT buttons as "US-1277 · Ridgeline & Clifty Campgrounds".
@@ -35,6 +35,14 @@ C = {'ts': col('timestamp'), 'call': col('call sign'), 'kind': col('what are you
      'ant': col('room for antennas', 'antenna'), 'shade': col('shade'), 'amen': col('other amenities', 'amenities'), 'photo': col('photo'), 'app': col('approved')}
 _miss = [k for k, v in C.items() if v is None and k not in ('app',)]
 if _miss: notice('Sheet columns not found (check the question names start with these words): ' + ', '.join(_miss) + '. Columns seen: ' + ' | '.join(h[:30] for h in H))
+PARKCOLS = [i for i, h in enumerate(H) if h.startswith('park number')]   # 'Park number' (one in each form section is fine)
+def parkno(r):
+    for i in PARKCOLS:
+        m = re.search(r'\b([A-Z]{1,3})-?0*(\d{1,5})\b', (r[i] if i < len(r) else '').upper())
+        if m: return ('US' if m.group(1) == 'K' else m.group(1)) + '-' + m.group(2).zfill(4)
+        m = re.fullmatch(r'\s*0*(\d{1,5})\s*', r[i] if i < len(r) else '')
+        if m: return 'US-' + m.group(1).zfill(4)
+    return ''
 FACTS = [('rest', 'Restrooms'), ('show', 'Showers'), ('hook', 'Hookups'), ('cell', 'Cell signal'), ('noise', 'RF noise'), ('ant', 'Room for antennas'), ('shade', 'Shade'), ('amen', 'Amenities')]
 def cell(r, k): i = C[k]; return r[i].strip() if i is not None and i < len(r) else ''
 if C['app'] is None: notice('No "Approved" column in the sheet yet: only pre-approved call signs are posted.')
@@ -111,6 +119,8 @@ for r in rows[1:]:
     if not (ptxt and (text or cell(r, 'rating'))): continue
     nid = hashlib.sha1((cell(r, 'ts') + call + ptxt).encode()).hexdigest()[:12]
     m = re.search(r'[1-5]', cell(r, 'rating')); rating = int(m.group(0)) if m else None
+    ref = parkno(r)
+    if ref and not re.search(r'\b[A-Z]{1,3}-?\d', ptxt.upper()): ptxt = ref + ' · ' + ptxt   # so the park number travels with the name
     place = None if outside else find_place(ptxt)
     photos = []
     for j, pid in enumerate(re.findall(r'id=([A-Za-z0-9_-]{20,})', cell(r, 'photo'))):
@@ -129,6 +139,7 @@ for r in rows[1:]:
     st = REF_ST.get(ref, '') or ('KY' if place else '') or st_of_gps(cell(r, 'gps')) or st_of_words(cell(r, 'where')) or st_of_words(ptxt)
     n = {'id': nid, 'st': st, 'ref': ref, 'place': place, 'call': call, 'rating': rating, 'text': text[:3000], 'site': cell(r, 'site')[:20], 'stayed': cell(r, 'when')[:40], 'date': date, 'photos': photos,
          'facts': [[lab, cell(r, k)[:160]] for k, lab in FACTS if cell(r, k)]}
+    if ref: n['ref'] = ref
     if not place:
         web = cell(r, 'web'); web = web if re.match(r'https?://', web) else ''
         n['other'] = {'name': re.sub(r'^\s*(outside a park:?)\s*', '', ptxt, flags=re.I)[:120] or 'Other', 'where': cell(r, 'where')[:120], 'gps': cell(r, 'gps')[:60],
