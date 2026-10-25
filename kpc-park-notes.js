@@ -51,8 +51,8 @@ let CG={};   // POTA parks with a card on Campgrounds & Cabins
 /* Oct 25 (HQ, research round 7): hours, overnight rules and extra fees from each park's official page (kpc-ky-hours.json;
    only rows with a source link). The 'no general entry fee' line is a statewide note, never shown as a fact about one park. */
 let HRS=null;
-function hrsHtml(ref){const h=HRS&&HRS.parks&&HRS.parks[ref];if(!h)return'';
- return `<div class="pn-hrs"><b>HOURS &amp; FEES</b>${h.hours?`<span>🕒 ${esc(h.hours)}</span>`:''}${h.night?`<span>🌙 ${esc(h.night)}</span>`:''}${h.extra?`<span>💵 ${esc(h.extra)}</span>`:''}<small>From the <a href="${esc(h.link)}" target="_blank" rel="noopener">official page ↗</a>, ${esc(h.checked||'')}. Confirm before you go.</small></div>`}
+function hrsHtml(ref){if(!HRS)return'';const h=(HRS.parks&&HRS.parks[ref])||{},def=!h.hours&&!h.fee;   // no hours or fee listed = 'free and open' (Brandon Oct 25)
+ return `<div class="pn-hrs"><b>HOURS &amp; FEES</b>${def?`<span>🆓 ${esc(HRS.default)}</span>`:''}${h.hours?`<span>🕒 ${esc(h.hours)}</span>`:''}${h.fee?`<span>💵 ${esc(h.fee)}</span>`:''}${h.night?`<span>🌙 ${esc(h.night)}</span>`:''}${h.extra?`<span>💵 ${esc(h.extra)}</span>`:''}<small>${h.link?`From the <a href="${esc(h.link)}" target="_blank" rel="noopener">official page ↗</a>. `:''}Confirm before you go.</small></div>`}
 async function init(){
  try{HRS=await (await fetch('kpc-ky-hours.json',{cache:'no-cache'})).json()}catch(e){HRS=null}
  try{const c=await (await fetch('kpc-campgrounds.json',{cache:'no-cache'})).json();(c.parks||[]).forEach(p=>{CG[p.pota]=1})}catch(e){}
