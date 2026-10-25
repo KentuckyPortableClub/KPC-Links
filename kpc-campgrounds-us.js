@@ -13,6 +13,7 @@
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function ext(href, text, cls) { return href ? '<a class="cg-b' + (cls ? ' ' + cls : '') + '" href="' + esc(href) + '" target="_blank" rel="noopener">' + text + '</a>' : ''; }
   function gps(la, lo) { return 'https://www.google.com/maps/search/?api=1&query=' + la + ',' + lo; }
+  function dirs(la, lo) { return 'https://www.google.com/maps/dir/?api=1&destination=' + la + ',' + lo; }
   function wx(la, lo) { return 'https://weather.com/weather/today/l/' + la + ',' + lo; }
   function getJSON(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   function miles(a, b, c, d) { var R = 3958.8, r = Math.PI / 180, x = Math.sin((c - a) * r / 2), y = Math.sin((d - b) * r / 2); return 2 * R * Math.asin(Math.sqrt(x * x + Math.cos(a * r) * Math.cos(c * r) * y * y)); }
@@ -80,6 +81,12 @@
        re-checked park by park: shown as park-level, never as a checked campground. Row [id, name, lat, lon, kind, parkRef, parksPage, reservePage, whatItHas] */
     var man = !(sta && sta.camps && sta.camps.length) && arguments[4];
     ((man && man.camps) || []).forEach(function (c) {
+      if (c[9] === 'point') {   // an official GPS point from the state's own map layer (Oct 25, chat 2): a real campground / cabin spot
+        var named = c[10] !== 'label only';
+        places.push({ id: 'q' + c[0], name: named ? c[1] : (c[4] === 'b' ? 'Cabin' : 'Campground') + ' (official GPS point, name not given)', la: c[2], lo: c[3], kind: c[4] || 'c',
+          src: 'statept', ref: c[5], web: c[6], book: c[7], detail: c[8], unnamed: !named });
+        return;
+      }
       places.push({ id: 'p' + c[0], name: c[1], la: c[2], lo: c[3], kind: c[4] || 'c', src: 'manual', ref: c[5], web: c[6], book: c[7], what: c[8] });
     });
     var extra = [];
@@ -134,6 +141,7 @@
   function srcTag(x) {
     if (x.src === 'fed') return '<span class="cgu-src fed">FEDERAL · ' + esc(AG[x.ag] || x.ag || 'RECREATION.GOV') + '</span>';
     if (x.src === 'state') return '<span class="cgu-src st">STATE PARKS · OFFICIAL</span>';
+    if (x.src === 'statept') return '<span class="cgu-src st">STATE PARKS · OFFICIAL GPS</span>';
     if (x.src === 'manual') return '<span class="cgu-src pk">PARK-LEVEL · FROM THE STATE’S OFFICIAL LISTING</span>';
     return '<span class="cgu-src mem">MEMBER ADDED</span>';
   }
@@ -141,10 +149,12 @@
     if (o.x.src === 'manual') return manHtml(o, p);
     var x = o.x, lab = (p ? p.ref + ' · ' : '') + x.name, fl = formLink(lab);
     var mi = isFinite(o.d) ? (o.d < 1 ? 'under 1 mi' : Math.round(o.d) + ' mi') + ' from the park pin' : '';
-    var dist = !p ? '' : o.near ? 'near this park' + (mi ? ' · ' + mi : '') : o.own ? 'at the park' : o.home ? 'in this ' + (/forest|grassland/i.test(p.type || '') ? 'forest' : 'park') + (mi ? ' · ' + mi : '') : mi;
-    return '<div class="cg-place"><h3>' + (x.kind !== 'c' ? '<span class="cg-kind">' + KIND[x.kind] + '</span>' : '') + esc(x.name) + '</h3>' +
+    var dist = !p ? '' : x.src === 'statept' ? 'in this park' + (mi ? ' · ' + mi : '') : o.near ? 'near this park' + (mi ? ' · ' + mi : '') : o.own ? 'at the park' : o.home ? 'in this ' + (/forest|grassland/i.test(p.type || '') ? 'forest' : 'park') + (mi ? ' · ' + mi : '') : mi;
+    var nm = x.unnamed ? (x.kind === 'b' ? 'Cabin' : 'Campground') + (o.no ? ' ' + o.no : '') + ' (official GPS point, name not given)' : x.name;
+    return '<div class="cg-place"><h3>' + (x.kind !== 'c' ? '<span class="cg-kind">' + KIND[x.kind] + '</span>' : '') + esc(nm) + '</h3>' +
       '<p class="cgu-meta">' + srcTag(x) + (dist ? ' <span>' + esc(dist) + '</span>' : '') + (x.where ? ' <span>' + esc(x.where) + '</span>' : '') + '</p>' +
-      '<div class="cg-btns">' + ext(x.web, 'OFFICIAL PAGE') + ext(x.book, x.src === 'fed' ? 'RECREATION.GOV ›' : 'RESERVE ›', 'dark') +
+      (x.src === 'statept' && x.unnamed ? '<p class="cg-note">The state’s map marks a ' + (x.kind === 'b' ? 'cabin' : 'campground') + ' here but gives no name: check the state’s page.</p>' : '') +
+      '<div class="cg-btns">' + (isFinite(x.la) && x.la !== null ? ext(dirs(x.la, x.lo), 'DIRECTIONS ›', 'gold') : '') + ext(x.web, x.src === 'statept' ? 'STATE PARKS PAGE' : 'OFFICIAL PAGE') + ext(x.book, x.src === 'fed' ? 'RECREATION.GOV ›' : 'RESERVE ›', 'dark') +
       (isFinite(x.la) && x.la !== null ? ext(gps(x.la, x.lo), 'GPS') : '') + (fl ? '<a class="cg-b rev" href="' + esc(fl) + '" target="_blank" rel="noopener">RATE IT ›</a>' : '') + '</div>' +
       revHtml(x.rv) + '</div>';
   }
@@ -160,6 +170,7 @@
     var add = formLink(p.ref + ' · '), near = formLink(p.ref, true);
     var ms = p.places.filter(function (o) { return o.x.src === 'manual'; }), rest = p.places.filter(function (o) { return o.x.src !== 'manual'; });
     var cs = rest.filter(function (o) { return o.x.kind === 'c'; }), ls = rest.filter(function (o) { return o.x.kind !== 'c'; });
+    [cs, ls].forEach(function (L) { var u = L.filter(function (o) { return o.x.unnamed; }); u.forEach(function (o, i) { o.no = u.length > 1 ? i + 1 : 0; }); });
     return '<article class="cg-card" id="park-' + esc(p.ref) + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(p.type || 'Park') + ' • ' + esc(ST[S.st]) + '</p>' +
       '<div class="cg-prog"><a class="p-pota" href="https://next.pota.app/park/' + esc(p.ref) + '" target="_blank" rel="noopener">POTA ' + esc(p.ref) + '</a></div>' +
       '<div class="cg-btns">' + ext(p.url, 'OFFICIAL PARK PAGE') + '<a class="cg-b" href="kpc-park-notes-us.html?ref=' + esc(p.ref) + '">PARK TIPS ›</a>' + ext(gps(p.la, p.lo), 'PARK GPS') + ext(wx(p.la, p.lo), 'WEATHER') + '</div>' +
@@ -201,7 +212,7 @@
     var links = ext(o.parks, 'STATE PARKS ↗', 'gold') + (o.reserve_ok !== false ? ext(o.reserve, 'STATE PARK RESERVATIONS ↗', 'gold') : '');
     $('cguHead').innerHTML = '<b>' + esc(ST[S.st].toUpperCase()) + '</b>' +
       (S.hasState ? 'State park campgrounds and cabins from ' + esc(ST[S.st]) + '’s official data (may not be complete), federal campgrounds from recreation.gov, ' :
-        S.hasManual ? 'State parks that have camping, park by park, from ' + esc(ST[S.st]) + '’s official listing (not checked site by site: confirm on the state’s page), federal campgrounds (recreation.gov) ' :
+        S.hasManual ? 'State park campgrounds from ' + esc(ST[S.st]) + '’s own map points where the state publishes them (tagged OFFICIAL GPS); other parks are listed park by park from the state’s official listing (not checked site by site: confirm on the state’s page). Also federal campgrounds (recreation.gov) ' :
         'State park campgrounds for ' + esc(ST[S.st]) + ' are not listed here yet: use the state’s own pages below. Listed now: federal campgrounds (Forest Service, National Park Service, Corps of Engineers and more, from recreation.gov) ') +
       'and places members have added. Forest Service and Park Service campgrounds sit under their own forest or park; the rest are matched by distance from each park’s map pin.' +
       (links ? '<div class="cg-btns">' + links + '</div>' : '') +
