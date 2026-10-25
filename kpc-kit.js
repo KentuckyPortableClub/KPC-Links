@@ -184,7 +184,11 @@
     if (window.KPCLocate) KPCLocate(map);
     if (window.KPCFull) KPCFull(map);
     L.marker([P.la, P.lo]).addTo(map).bindPopup(esc(P.c + ' ' + P.n) + '<br>' + esc(P.prog) + (P.prog === 'SOTA' ? ' summit' : ' pin'));
-    const ap = (P.park && P.park.ap) || [];
+    /* Oct 25: outside Kentucky, the state agencies' own parking / entrance / ramp points (data/access, kpc_us_access.py) */
+    if (!P.park && P.us && P.prog === 'POTA' && /^[A-Z]{2}$/.test(P.st || '') && !P.ap) {
+      try { const d = await fetch('data/access/US-' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
+    }
+    const ap = (P.park && P.park.ap) || P.ap || [];
     ap.forEach(a => L.circleMarker([a[0], a[1]], { radius: 7, color: '#fff', weight: 2, fillColor: '#1d5a3a', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(a[2])}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${a[0]},${a[1]}" target="_blank" rel="noopener">Directions ↗</a>`));
     const o = { ref: P.c, name: P.n, la: P.la, lo: P.lo, points: ap };
     const files = fc => { $('kitFiles').innerHTML = `<a class="alt" href="#" data-f="kml">KML · GOOGLE EARTH / MAP APPS</a><a class="alt" href="#" data-f="gpx">GPX · GARMIN / GPS UNITS</a>` + B.WHICH; $('kitFiles').querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo(fc, b.dataset.f, o, b); }); };
