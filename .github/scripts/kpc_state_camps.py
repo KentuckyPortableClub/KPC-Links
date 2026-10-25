@@ -21,6 +21,7 @@ Env: STATES (blank = every state but KY), DRY_RUN=1 (print, write nothing), SPEE
 import ast, datetime, hashlib, json, math, os, pathlib, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
 import concurrent.futures as cf
 
+ORG_SEARCH = os.environ.get('ORG_SEARCH', '1') != '0'      # pass 2 for states with no list
 DIAG = {}                                   # per state: what was crawled and what each layer held (data/campstate/layers.json)
 UA = 'KPC-state-camps/1.0 (Kentucky Portable Club; kentuckyportableclub.github.io)'
 OUT = pathlib.Path('data/campstate')
@@ -109,15 +110,20 @@ def cfg():
 
 def allowed(st):
     """Layers a person found by hand (data/campstate-layers.json "allow": {ST: [service or layer urls]}): read like the crawl's own."""
+    return expand(cfg().get('allow', {}).get(st, []))
+
+
+def expand(urls, per_service=12):
+    """Service / layer urls -> readable point or polygon layers."""
     out = []
-    for u in cfg().get('allow', {}).get(st, []):
-        m = re.match(r'(.*/(?:Feature|Map)Server)(?:/(\d+))?$', u.strip())
-        if not m: continue
+    for u in urls:
+        m = re.match(r'(.*/(?:Feature|Map)Server)(?:/(\d+))?$', (u or '').strip())
+        if not m or any(d in u for d in denied()): continue
         svc = m.group(1)
         ids = [int(m.group(2))] if m.group(2) is not None else []
         if not ids:
             sj = get_json(svc)
-            ids = [l['id'] for l in (sj.get('layers') or [])][:12] if ok(sj) else []
+            ids = [l['id'] for l in (sj.get('layers') or [])][:per_service] if ok(sj) else []
         for lid in ids:
             lu = f'{svc}/{lid}'; lj = get_json(lu)
             if not ok(lj) or (lj.get('geometryType') or '') not in ('esriGeometryPoint', 'esriGeometryPolygon'): continue
@@ -127,6 +133,51 @@ def allowed(st):
                         'strong': bool(STRONG.search(nm + ' ' + svc.rsplit('/', 2)[-2])), 'max': int(lj.get('maxRecordCount') or 1000), 'svc': svc,
                         'lodging': bool(re.search(r'lodg|resort|cabin', nm + ' ' + svc, re.I))})
     return out
+
+
+NOT_OFFICIAL = re.compile(r'county|city of|town of|village|township|borough|parish|district|universit|college|school|foundation|club|association|\bllc\b|\binc\b|'
+                          r'consult|engineering|esri|conservancy|\btrust\b|society|\bcorp\b|united states|u\.s\.|\busfs\b|\busda\b|\busgs\b|noaa|national park service|'
+                          r'army corps|bureau of land|\bblm\b|national forest|tribe|nation\b|hospital|church', re.I)
+OFFICIAL_ORG = re.compile(r'department|dept|division|\bdnr\b|\bdcr\b|\bdep\b|\bdec\b|state parks?|parks (?:and|&) (?:recreation|wildlife|tourism)|natural resources|'
+                          r'conservation|fish|wildlife|\bgame\b|forestry|forest service|environment|commission|office of|geospatial|\bgis\b|state of|commonwealth|'
+                          r'bureau|recreation|tourism|\bgeo\b', re.I)
+ORGNAME = {}
+STATE_NAMES = {'DC': 'District of Columbia'}
+try:
+    for _k, _v in json.load(open('data/campstate-sources.json'))['states'].items(): STATE_NAMES[_k] = _v['name']
+except Exception: pass  # noqa: E722
+
+
+def official_org(name, st):
+    """An ArcGIS Online account whose NAME says it is that state's own agency (state name or abbreviation + a government word, no county/city/university)."""
+    n = name or ''
+    if not n or NOT_OFFICIAL.search(n): return False
+    sn = STATE_NAMES.get(st, st)
+    return bool((re.search(re.escape(sn), n, re.I) or re.search(r'\b%s\b' % st, n)) and OFFICIAL_ORG.search(n))
+
+
+def org_search(st):
+    """For a state with no list yet: search ArcGIS Online for camp layers, keep only items owned by an account that looks like the
+    state's own agency. The accepted account names are written to layers.json so a person can check them."""
+    sn = STATE_NAMES.get(st, st)
+    acc, seen_org = [], 0
+    q = f'(campground OR campgrounds OR "camping areas" OR campsites OR cabins OR "recreation sites") AND "{sn}" AND (type:"Feature Service" OR type:"Map Service")'
+    for start in (1, 101):
+        j = get_json('https://www.arcgis.com/sharing/rest/search', {'q': q, 'num': 100, 'start': start, 'sortField': 'numviews', 'sortOrder': 'desc'})
+        if not ok(j): break
+        for it in j.get('results') or []:
+            oid, url = it.get('orgId'), it.get('url') or ''
+            if not oid or not re.search(r'/(?:Feature|Map)Server', url): continue
+            if oid not in ORGNAME:
+                if seen_org >= 25: continue
+                seen_org += 1
+                pj = get_json(f'https://www.arcgis.com/sharing/rest/portals/{oid}')
+                ORGNAME[oid] = (pj.get('name') or '') if ok(pj) else ''
+            if official_org(ORGNAME.get(oid), st):
+                acc.append({'org': ORGNAME[oid][:70], 'title': (it.get('title') or '')[:60], 'url': url})
+        if len(j.get('results') or []) < 100: break
+    DIAG.setdefault(st, {})['orgsearch'] = acc[:40]
+    return [a['url'] for a in acc][:15]
 
 
 def file_layers(st):
@@ -453,28 +504,40 @@ def dedupe(cands, fed):
 
 
 # ---------------------------------------------------------------- one state
+def read_layers(st, lays):
+    cands, used = [], []
+    for lay in lays:
+        if time.time() > DEADLINE: break
+        feats = fetch_rows(lay)
+        got = rows_to_camps(lay, feats)
+        DIAG.setdefault(st, {}).setdefault('layers', []).append(
+            {'url': lay['url'], 'name': lay['name'], 'fields': [n for n, _ in lay['fields']][:14], 'read': len(feats), 'kept': len(got),
+             'sample': [c['name'] for c in got[:3]], **({'raw': lay['raw']} if lay.get('raw') else {})})
+        if got:
+            cands += got; used.append(f"{urllib.parse.urlparse(lay['url']).netloc} · {lay['name']} ({len(got)})")
+    return cands, used
+
+
 def do_state(st):
     t0 = time.time()
     res = {'st': st, 'layers': 0, 'raw': 0, 'camps': [], 'source': '', 'why': ''}
     try:
         lays = discover(st)
         res['layers'] = len(lays)
+        cands, used = read_layers(st, lays) if lays else ([], [])
+        if not cands and ORG_SEARCH:          # pass 2: the state's own accounts on ArcGIS Online, found by search
+            more = expand(org_search(st), per_service=6)
+            res['layers'] += len(more)
+            c2, u2 = read_layers(st, more)
+            cands, used = cands + c2, used + u2
+            lays = lays + more
         if not lays:
             rts = DIAG.get(st, {}).get('roots', [])
             res['why'] = ('no official state GIS server known yet' if not rts else
                           'the state GIS server did not answer from GitHub (' + '; '.join(r.get('err', '?') for r in rts if not r['ok'])[:90] + ')' if not any(r['ok'] for r in rts) else
                           'the state GIS servers answered but publish no campground / cabin layer we can read')
+            if ORG_SEARCH: res['why'] += '; ArcGIS Online had no camp layer from an account named like the state\'s agencies'
             return res
-        cands, used = [], []
-        for lay in lays:
-            if time.time() > DEADLINE: break
-            feats = fetch_rows(lay)
-            got = rows_to_camps(lay, feats)
-            DIAG.setdefault(st, {}).setdefault('layers', []).append(
-                {'url': lay['url'], 'name': lay['name'], 'fields': [n for n, _ in lay['fields']][:14], 'read': len(feats), 'kept': len(got),
-                 'sample': [c['name'] for c in got[:3]], **({'raw': lay['raw']} if lay.get('raw') else {})})
-            if got:
-                cands += got; used.append(f"{urllib.parse.urlparse(lay['url']).netloc} · {lay['name']} ({len(got)})")
         n0 = len(cands)
         cands = [c for c in cands if in_state(st, c['lat'], c['lon'])]
         if n0 - len(cands): res['why'] = f'{n0 - len(cands)} outside the state dropped'
