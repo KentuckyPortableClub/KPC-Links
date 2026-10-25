@@ -1,0 +1,197 @@
+{
+ "updated": "2026-10-25",
+ "states": {
+  "AK": {
+   "n": 386,
+   "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); services1.arcgis.com \u00b7 Campgrounds_MSO_Project (2) (+34 more)",
+   "updated": "2026-10-25"
+  },
+  "AL": {
+   "n": 504,
+   "source": "services9.arcgis.com \u00b7 POI (4); services2.arcgis.com \u00b7 NIHHIS_CAPA_UHI_Campaign_Reporting_live_feed_to_Heatgov (100); services2.arcgis.com \u00b7 Alabama Boat Ramps (2) (+24 more)",
+   "updated": "2026-10-25"
+  },
+  "AR": {
+   "n": 1199,
+   "source": "services1.arcgis.com \u00b7 Backcountry_Campsites_for_2017 (206); services1.arcgis.com \u00b7 BLM_Colorado_Recreation (178); services1.arcgis.com \u00b7 campgrounds (57) (+31 more)",
+   "updated": "2026-10-25"
+  },
+  "AZ": {
+   "n": 985,
+   "source": "services1.arcgis.com \u00b7 Medical Facility (121); services1.arcgis.com \u00b7 ADHS Licensed Child Care Facilities 2022 (9); services1.arcgis.com \u00b7 Underground Storage Facility Point (107) (+15 more)",
+   "updated": "2026-10-25"
+  },
+  "CO": {
+   "n": 348,
+   "source": "services5.arcgis.com \u00b7 Camps (32); services5.arcgis.com \u00b7 Camps (32); services.arcgis.com \u00b7 CO_Recreational_Sites (627) (+7 more)",
+   "updated": "2026-10-25"
+  },
+  "CT": {
+   "n": 1026,
+   "source": "services1.arcgis.com \u00b7 Bridges (5); services1.arcgis.com \u00b7 Campsites (232); services1.arcgis.com \u00b7 Parking (10) (+36 more)",
+   "updated": "2026-10-25"
+  },
+  "DE": {
+   "n": 207,
+   "source": "enterprise.firstmap.delaware.gov \u00b7 DE Environmental Navigator (DEN) Locations (82); enterprise.firstmap.delaware.gov \u00b7 Air Permitted Facilities (1); enterprise.firstmap.delaware.gov \u00b7 DE Environmental Navigator (DEN) Locations (82) (+14 more)",
+   "updated": "2026-10-25"
+  },
+  "FL": {
+   "n": 1718,
+   "source": "ca.dep.state.fl.us \u00b7 Green Lodgings (Active) (256); ca.dep.state.fl.us \u00b7 Green Lodgings (Active) (256); ca.dep.state.fl.us \u00b7 Florida State Park Camping Sites (3621) (+66 more)",
+   "updated": "2026-10-25"
+  },
+  "GA": {
+   "n": 1342,
+   "source": "services1.arcgis.com \u00b7 Civic Centers (3); services1.arcgis.com \u00b7 Government Buildings (3); services1.arcgis.com \u00b7 Parks and Recreational Facilities (35) (+88 more)",
+   "updated": "2026-10-25"
+  },
+  "HI": {
+   "n": 343,
+   "source": "services.arcgis.com \u00b7 Designated_Campsites (30); services.arcgis.com \u00b7 DOFAWCampsite_UTMHARN (39); services.arcgis.com \u00b7 Skilled Nursing Facilities (1) (+39 more)",
+   "updated": "2026-10-25"
+  },
+  "IA": {
+   "n": 299,
+   "source": "programs.iowadnr.gov \u00b7 Paddling Access Sites (314); programs.iowadnr.gov \u00b7 Paddling Hazards (Dams) (1); programs.iowadnr.gov \u00b7 Recreation Amenities (314) (+40 more)",
+   "updated": "2026-10-25"
+  },
+  "ID": {
+   "n": 1974,
+   "source": "services5.arcgis.com \u00b7 Camps (32); services5.arcgis.com \u00b7 Camps (32); services1.arcgis.com \u00b7 Cabin List (37) (+30 more)",
+   "updated": "2026-10-25"
+  },
+  "IL": {
+   "n": 485,
+   "source": "services.arcgis.com \u00b7 Alaska Public Cabins (87); services.arcgis.com \u00b7 Alaska Public Cabins 2 (87); services.arcgis.com \u00b7 IHS_BC_Logan_facilities_fieldmap (3) (+19 more)",
+   "updated": "2026-10-25"
+  },
+  "KS": {
+   "n": 178,
+   "source": "kanplan.ksdot.gov \u00b7 All Permits (12); kanplan.ksdot.gov \u00b7 Approved (1); kanplan.ksdot.gov \u00b7 Accepted (11) (+10 more)",
+   "updated": "2026-10-25"
+  },
+  "LA": {
+   "n": 2890,
+   "source": "services1.arcgis.com \u00b7 Recreational_Vendors (2); services1.arcgis.com \u00b7 ACA Camps (3165); services1.arcgis.com \u00b7 ACA_Camps_Regional (2456) (+3 more)",
+   "updated": "2026-10-25"
+  },
+  "MA": {
+   "n": 560,
+   "source": "services1.arcgis.com \u00b7 DFG_PARKING_V3 (1); services1.arcgis.com \u00b7 MA DEP BWP Major Faciilities (2); services1.arcgis.com \u00b7 MassDEP Air Facilities (6) (+44 more)",
+   "updated": "2026-10-25"
+  },
+  "MD": {
+   "n": 5342,
+   "source": "mdgeodata.md.gov \u00b7 UMD Buildings (296); mdgeodata.md.gov \u00b7 TU Building Footprints (52); mdgeodata.md.gov \u00b7 TU Parking Lots (1) (+72 more)",
+   "updated": "2026-10-25"
+  },
+  "ME": {
+   "n": 17,
+   "source": "services1.arcgis.com \u00b7 Maine_Boat_Launches_E911 (1); services1.arcgis.com \u00b7 Maine_Law_Enforcement_E911 (1); services1.arcgis.com \u00b7 PeaksIslandAreaofInterest (1) (+4 more)",
+   "updated": "2026-10-25"
+  },
+  "MI": {
+   "n": 1054,
+   "source": "services3.arcgis.com \u00b7 DNRFacilitiesOPENDATA (487); services3.arcgis.com \u00b7 Michigan State Park Campgrounds (260); services3.arcgis.com \u00b7 Campgrounds on Michigan State Forest Land (144) (+62 more)",
+   "updated": "2026-10-25"
+  },
+  "MN": {
+   "n": 1207,
+   "source": "enterprise.gisdata.mn.gov \u00b7 Struc Parks And Trails Campsites (5011); enterprise.gisdata.mn.gov \u00b7 Struc Parks And Trails Campsites (5011); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54) (+16 more)",
+   "updated": "2026-10-25"
+  },
+  "MO": {
+   "n": 14729,
+   "source": "services2.arcgis.com \u00b7 Sheet1 (2); services2.arcgis.com \u00b7 Un-Housed Encampments - Polygons (6); services2.arcgis.com \u00b7 compute_atlas_facilities_lab5 (6) (+51 more)",
+   "updated": "2026-10-25"
+  },
+  "MS": {
+   "n": 229,
+   "source": "services2.arcgis.com \u00b7 NIHHIS_CAPA_UHI_Campaign_Reporting_live_feed_to_Heatgov (100); services2.arcgis.com \u00b7 Alabama Boat Ramps (2); services2.arcgis.com \u00b7 Florida Boat Ramps (19) (+12 more)",
+   "updated": "2026-10-25"
+  },
+  "MT": {
+   "n": 422,
+   "source": "services3.arcgis.com \u00b7 Montana State Parks Facilities (Point Features) (732); services1.arcgis.com \u00b7 Campgrounds_MSO_Project (2); services1.arcgis.com \u00b7 CampingISAllowedErase_Erase (1) (+36 more)",
+   "updated": "2026-10-25"
+  },
+  "NC": {
+   "n": 25,
+   "source": "services2.arcgis.com \u00b7 AssistedLivingFacilities (6); services2.arcgis.com \u00b7 CSV_File_of_Spring_Summer_2023_Assets_for_ArcGIS_Online (6); services.arcgis.com \u00b7 Air Quality Facility (15) (+2 more)",
+   "updated": "2026-10-25"
+  },
+  "ND": {
+   "n": 123,
+   "source": "services.arcgis.com \u00b7 DW Administration Campus POI (18); services.arcgis.com \u00b7 Alaska Public Cabins (87); services.arcgis.com \u00b7 Alaska Public Cabins 2 (87) (+57 more)",
+   "updated": "2026-10-25"
+  },
+  "NE": {
+   "n": 13326,
+   "source": "services8.arcgis.com \u00b7 Emergency Management (5); services8.arcgis.com \u00b7 DHHS_Long_Term_Care_Facilities (2); services8.arcgis.com \u00b7 Facilitator (3) (+32 more)",
+   "updated": "2026-10-25"
+  },
+  "NH": {
+   "n": 871,
+   "source": "nhgeodata.unh.edu \u00b7 HSIP_ems (4); nhgeodata.unh.edu \u00b7 HSIP_hospitals (1); nhgeodata.unh.edu \u00b7 HSIP_law_enforcemt (1) (+29 more)",
+   "updated": "2026-10-25"
+  },
+  "NJ": {
+   "n": 184,
+   "source": "services1.arcgis.com \u00b7 2022 Primary Recreation Station Assessment (42); services1.arcgis.com \u00b7 2022 Secondary Recreation Station Assessment (42); services1.arcgis.com \u00b7 2024 Primary Recreation Station Assessment (6) (+7 more)",
+   "updated": "2026-10-25"
+  },
+  "NM": {
+   "n": 1720,
+   "source": "services1.arcgis.com \u00b7 NMSU Main Campus and DACC (319); services1.arcgis.com \u00b7 DACC Campuses (6); services1.arcgis.com \u00b7 Las Cruces Campus (597) (+26 more)",
+   "updated": "2026-10-25"
+  },
+  "NV": {
+   "n": 573,
+   "source": "services1.arcgis.com \u00b7 Buffer_of_Grand_Teton_National_Park_Campgrounds (7); services1.arcgis.com \u00b7 campground_buffer_v2 (7); services1.arcgis.com \u00b7 campground_buffers (7) (+34 more)",
+   "updated": "2026-10-25"
+  },
+  "NY": {
+   "n": 1945,
+   "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (56); services6.arcgis.com \u00b7 Potential_Priority_SPDES_Facility_Discharges_v25_12 (1); services6.arcgis.com \u00b7 Vehicle Dismantling Facilities (3) (+15 more)",
+   "updated": "2026-10-25"
+  },
+  "OH": {
+   "n": 117,
+   "source": "gis.ohiodnr.gov \u00b7 Boat launch ramp (11); gis.ohiodnr.gov \u00b7 Spillways (1); gis.ohiodnr.gov \u00b7 Dams (1) (+12 more)",
+   "updated": "2026-10-25"
+  },
+  "OK": {
+   "n": 48,
+   "source": "services6.arcgis.com \u00b7 Guardrail End Treatments and Delineators (23); services6.arcgis.com \u00b7 Pavement Markings (2); services6.arcgis.com \u00b7 Rumble Strips (In-Lane) (1) (+3 more)",
+   "updated": "2026-10-25"
+  },
+  "OR": {
+   "n": 1307,
+   "source": "services.arcgis.com \u00b7 Lodging_and_Accommodations (10); services.arcgis.com \u00b7 master_list_facilities (1); services.arcgis.com \u00b7 master_list_facilities_jittered (1) (+2 more)",
+   "updated": "2026-10-25"
+  },
+  "RI": {
+   "n": 32,
+   "source": "risegis.ri.gov \u00b7 SCORP Inventory (8); risegis.ri.gov \u00b7 SCORP Inventory (8); risegis.ri.gov \u00b7 CERCLIS (2) (+4 more)",
+   "updated": "2026-10-25"
+  }
+ },
+ "none": [
+  "CA",
+  "DC",
+  "IN",
+  "PA",
+  "SC",
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VA",
+  "VT",
+  "WA",
+  "WI",
+  "WV",
+  "WY"
+ ]
+}
