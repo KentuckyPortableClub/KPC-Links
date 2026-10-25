@@ -1,6 +1,1526 @@
 {
- "updated": "2026-10-22",
+ "updated": "2026-10-25",
  "items": [
+  {
+   "id": "uc-wi-dnr-wyalusing-sp-treasure-cave-closed-weather-conditions-US-1482",
+   "ref": "US-1482",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Wyalusing SP Treasure Cave Closed — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-wolf-river-st-langlade-county-notice-weather-conditions-US-9821",
+   "ref": "US-9821",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Wolf River ST Langlade County Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-willow-river-sp-water-systems-closed-beginning-oct-13-202-US-1481",
+   "ref": "US-1481",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Willow River SP Water Systems Closed (Beginning Oct. 13, 2026) — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-willow-flowage-water-level-notice-weather-conditions-US-9827",
+   "ref": "US-9827",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Willow Flowage Water Level Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-willow-flowage-campsites-closed-maintenance-US-9827",
+   "ref": "US-9827",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Willow Flowage Campsites Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-willow-flowage-boat-docks-and-fishing-piers-notice-weather-c-US-9827",
+   "ref": "US-9827",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Willow Flowage Boat Docks and Fishing Piers Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-willow-flowage-2026-campsite-reservation-notice-weather-cond-US-9827",
+   "ref": "US-9827",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Willow Flowage 2026 Campsite Reservation Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-whitefish-dunes-sp-black-trail-closed-maintenance-US-1479",
+   "ref": "US-1479",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Whitefish Dunes SP Black Trail Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-rock-island-sp-ferry-notice-weather-conditions-US-1475",
+   "ref": "US-1475",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Rock Island SP Ferry Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-roche-a-cri-sp-main-gate-closed-weather-conditions-US-1474",
+   "ref": "US-1474",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Roche-A-Cri SP Main Gate Closed — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-richard-bong-sra-blue-green-trail-boardwalk-closed-maintenan-US-4265",
+   "ref": "US-4265",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Richard Bong SRA Blue/Green Trail Boardwalk Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-red-cedar-st-mile-marker-1-5-to-3-closed-november-2026-m-US-8222",
+   "ref": "US-8222",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Red Cedar ST Mile Marker #1.5 to #3 Closed (November 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-red-cedar-st-junction-with-chippewa-river-state-trail-notice-US-8222",
+   "ref": "US-8222",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Red Cedar ST Junction with Chippewa River State Trail Notice (Fall 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-red-cedar-st-depot-visitor-center-parking-lot-notice-fall-2-US-8222",
+   "ref": "US-8222",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Red Cedar ST Depot Visitor Center Parking Lot Notice (Fall 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-perrot-sp-tank-creek-bridge-on-the-great-river-state-trail-c-US-1471",
+   "ref": "US-1471",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Perrot SP Tank Creek Bridge on the Great River State Trail Closed — safety concerns",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-peninsula-sp-trail-projects-notice-maintenance-US-1470",
+   "ref": "US-1470",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Peninsula SP Trail Projects Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-peninsula-sp-tennison-bay-2026-shower-buildings-notice-maint-US-1470",
+   "ref": "US-1470",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Peninsula SP Tennison Bay 2026 Shower Buildings Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-peninsula-sp-park-roads-and-parking-lots-closed-safety-conce-US-1470",
+   "ref": "US-1470",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Peninsula SP Park Roads and Parking Lots closed — safety concerns",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-pattison-sp-construction-projects-2026-2027-maintenance-US-1469",
+   "ref": "US-1469",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Pattison SP Construction Projects (2026-2027) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-old-abe-st-hwy-64-bridge-closed-maintenance-US-8223",
+   "ref": "US-8223",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Old Abe ST Hwy 64 Bridge Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-northern-highland-am-legion-sf-boat-docks-and-fishing-piers-US-7260",
+   "ref": "US-7260",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Northern Highland-Am Legion SF Boat Docks and Fishing Piers Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-newton-blackmour-st-hwy-76-to-puls-rd-closed-storm-damage-US-9807",
+   "ref": "US-9807",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Newton Blackmour ST Hwy. 76 to Puls Rd. Closed — storm damage",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-newport-sp-dark-sky-viewing-area-notice-maintenance-US-1468",
+   "ref": "US-1468",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Newport SP Dark Sky Viewing Area Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-newport-sp-campsites-6-13-conditions-notice-storm-damage-US-1468",
+   "ref": "US-1468",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Newport SP Campsites 6-13 Conditions Notice — storm damage",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-military-ridge-st-verona-bridge-closed-sept-nov-2026-mai-US-9804",
+   "ref": "US-9804",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Military Ridge ST Verona Bridge Closed (Sept.-Nov. 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-military-ridge-st-hwy-j-to-hwy-pd-closed-oct-19-23-2026-US-9804",
+   "ref": "US-9804",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Military Ridge ST Hwy. J to Hwy PD Closed (Oct. 19-23. 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-military-ridge-st-0-75-mile-verona-section-closed-2026-2027-US-9804",
+   "ref": "US-9804",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Military Ridge ST 0.75-mile Verona Section Closed (2026-2027) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-lakeshore-sp-prairie-notice-maintenance-US-1461",
+   "ref": "US-1461",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Lakeshore SP Prairie Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-lake-kegonsa-sp-water-systems-closed-beginning-oct-28-202-US-1459",
+   "ref": "US-1459",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Lake Kegonsa SP Water Systems Closed (Beginning Oct. 28, 2026) — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-kohler-andrae-sp-crowd-notice-weather-conditions-US-1458",
+   "ref": "US-1458",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Kohler-Andrae SP Crowd Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-high-cliff-sp-office-and-entrance-road-notice-2026-2027-ma-US-1456",
+   "ref": "US-1456",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: High Cliff SP Office and Entrance Road Notice (2026-2027) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-high-cliff-sp-lime-kiln-indian-mound-and-red-bird-trails-cl-US-1456",
+   "ref": "US-1456",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: High Cliff SP Lime Kiln, Indian Mound and Red Bird Trails Closed — maintenance (until Nov 15)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-15",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-hank-aaron-st-river-loop-section-closed-jan-oct-2026-mai-US-9800",
+   "ref": "US-9800",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Hank Aaron ST River Loop Section Closed (Jan.-Oct. 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-hank-aaron-st-64th-st-to-valley-passage-bridge-notice-maint-US-9800",
+   "ref": "US-9800",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Hank Aaron ST 64th St. to Valley Passage Bridge Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-great-sauk-st-bridge-notice-maintenance-US-9794",
+   "ref": "US-9794",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Great Sauk ST Bridge Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-great-river-st-tank-creek-bridge-closed-safety-concerns-US-8672",
+   "ref": "US-8672",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Great River ST Tank Creek Bridge Closed — safety concerns",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-governor-thompson-sp-boat-docks-and-fishing-piers-notice-wea-US-1453",
+   "ref": "US-1453",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Governor Thompson SP Boat Docks and Fishing Piers Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-governor-nelson-sp-construction-notice-2026-maintenance-US-1452",
+   "ref": "US-1452",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Governor Nelson SP Construction Notice 2026 — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-governor-knowles-sf-water-systems-closed-weather-conditions-US-4350",
+   "ref": "US-4350",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Governor Knowles SF Water Systems Closed — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-governor-knowles-sf-cedar-hiking-trail-section-from-mile-25-US-4350",
+   "ref": "US-4350",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Governor Knowles SF Cedar Hiking Trail Section From Mile 25 to 26 Closed — storm damage",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-governor-dodge-sp-construction-notice-2026-maintenance-US-1451",
+   "ref": "US-1451",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Governor Dodge SP Construction Notice 2026 — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-glacial-drumlin-st-hwy-67-to-opengate-court-closed-sept-n-US-9792",
+   "ref": "US-9792",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Glacial Drumlin ST Hwy. 67 to Opengate Court Closed (Sept.-Nov. 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-glacial-drumlin-st-cottage-grove-restrooms-closed-maintenanc-US-9792",
+   "ref": "US-9792",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Glacial Drumlin ST Cottage Grove Restrooms Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-glacial-drumlin-st-cottage-grove-parking-lot-closed-maintena-US-9792",
+   "ref": "US-9792",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Glacial Drumlin ST Cottage Grove Parking Lot Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-elroy-sparta-st-tunnels-closed-nov-2026-to-april-2027-wea-US-9783",
+   "ref": "US-9783",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Elroy-Sparta ST Tunnels Closed (Nov. 2026 to April 2027) — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-elroy-sparta-st-norwalk-to-wilton-closed-oct-26-dec-31-US-9783",
+   "ref": "US-9783",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Elroy-Sparta ST Norwalk to Wilton Closed (Oct. 26 - Dec. 31, 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-devil-s-lake-sp-property-signage-and-maps-notice-maintenance-US-1449",
+   "ref": "US-1449",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Devil's Lake SP Property Signage and Maps Notice — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-devil-s-lake-sp-crowds-notice-weather-conditions-US-1449",
+   "ref": "US-1449",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Devil's Lake SP Crowds Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-devil-s-lake-sp-construction-notice-2026-2027-maintenance-US-1449",
+   "ref": "US-1449",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Devil's Lake SP Construction Notice (2026-2027) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-council-grounds-sp-log-shelter-closed-maintenance-US-1447",
+   "ref": "US-1447",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Council Grounds SP Log Shelter Closed — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-coulee-experimental-sf-trails-notice-oct-20-22-2026-main-US-5578",
+   "ref": "US-5578",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Coulee Experimental SF Trails Notice (Oct. 20-22, 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-copper-falls-sp-water-systems-notice-weather-conditions-US-1446",
+   "ref": "US-1446",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Copper Falls SP Water Systems Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-chippewa-river-st-junction-with-red-cedar-trail-to-fuller-rd-US-8221",
+   "ref": "US-8221",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Chippewa River ST Junction with Red Cedar Trail to Fuller Rd. Closed (Fall 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-chippewa-flowage-lco-campsites-closed-2026-maintenance-US-9828",
+   "ref": "US-9828",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Chippewa Flowage LCO Campsites Closed 2026 — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-chippewa-flowage-campsite-notice-weather-conditions-US-9828",
+   "ref": "US-9828",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Chippewa Flowage Campsite Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-capital-springs-sra-boat-launch-closed-july-october-2026-m-US-4250",
+   "ref": "US-4250",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Capital Springs SRA Boat Launch Closed (July-October 2026) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-blue-mound-sp-swimming-pool-and-splash-pad-notice-weather-co-US-1441",
+   "ref": "US-1441",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Blue Mound SP Swimming Pool and Splash Pad Notice — weather conditions",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-big-bay-sp-campground-closed-sept-8-2026-through-june-202-US-1439",
+   "ref": "US-1439",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Big Bay SP Campground Closed (Sept. 8, 2026 through June 2027) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-badger-st-north-of-basco-notice-storm-damage-US-9766",
+   "ref": "US-9766",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Badger ST North of Basco Notice — storm damage",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-wi-dnr-amnicon-falls-sp-campground-closed-2026-2027-maintenance-US-1436",
+   "ref": "US-1436",
+   "kind": "Park alert",
+   "details": "Wisconsin DNR: Amnicon Falls SP Campground Closed (2026-2027) — maintenance",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
+  },
+  {
+   "id": "uc-mt-fwp-stage-i-fire-restriction-US-2588",
+   "ref": "US-2588",
+   "kind": "Park alert",
+   "details": "Montana FWP: Stage I Fire Restriction",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://fwp.mt.gov/stateparks/medicine-rocks"
+  },
+  {
+   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12919",
+   "ref": "US-12919",
+   "kind": "Park alert",
+   "details": "Montana FWP: Stage I Fire Restriction",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://myfwp.mt.gov/fishMT/fas/39754621"
+  },
+  {
+   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12918",
+   "ref": "US-12918",
+   "kind": "Park alert",
+   "details": "Montana FWP: Stage I Fire Restriction",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://myfwp.mt.gov/fishMT/fas/39754581"
+  },
+  {
+   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12647",
+   "ref": "US-12647",
+   "kind": "Park alert",
+   "details": "Montana FWP: Stage I Fire Restriction",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://myfwp.mt.gov/fishMT/fas/39754638"
+  },
+  {
+   "id": "uc-mt-fwp-stage-i-fire-restriction-US-12646",
+   "ref": "US-12646",
+   "kind": "Park alert",
+   "details": "Montana FWP: Stage I Fire Restriction",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://myfwp.mt.gov/fishMT/fas/39754581"
+  },
+  {
+   "id": "uc-mt-fwp-site-closure-partial-gillian-hall-in-elkhorn-state-park-wi-US-2568",
+   "ref": "US-2568",
+   "kind": "Park alert",
+   "details": "Montana FWP: Site Closure - Partial — Gillian Hall in Elkhorn State Park will be closed to the public for foundation repairs for approximately three weeks beginning October 7, 2025. Fraternity Hall will remain open.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://fwp.mt.gov/stateparks/elkhorn"
+  },
+  {
+   "id": "uc-mt-fwp-site-closure-partial-due-to-flooding-in-april-camping-is-US-12919",
+   "ref": "US-12919",
+   "kind": "Park alert",
+   "details": "Montana FWP: Site Closure - Partial — Due to flooding in April, camping is limited. At this time there is no boat ramp at the site, but bank fishing is available.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://myfwp.mt.gov/fishMT/fas/39754621"
+  },
+  {
+   "id": "uc-mt-fwp-site-closure-partial-due-to-damaged-decking-and-substructu-US-12934",
+   "ref": "US-12934",
+   "kind": "Park alert",
+   "details": "Montana FWP: Site Closure - Partial — Due to damaged decking and substructure, the bridge spanning Whitebird creek leading to Whitebird FAS is unsafe for vehicular travel. This is the only public access to Whitebird FAS for motor vehicles. The site...see website for more details",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://myfwp.mt.gov/fishMT/fas/39753880"
+  },
+  {
+   "id": "uc-mt-fwp-site-closure-partial-construction-activities-will-temporar-US-10175",
+   "ref": "US-10175",
+   "kind": "Park alert",
+   "details": "Montana FWP: Site Closure - Partial — Construction activities will temporarily interrupt the Gateway Trail, which provides the connection between the Milltown Confluence Area and the Milltown Gateway Area. The contractor has installed temporary fen...see website for more details",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://fwp.mt.gov/stateparks/milltown"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-union-hotel-is-temporarily-closed-for-more-US-3359",
+   "ref": "US-3359",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — Union Hotel is temporarily closed. For more information, visit https://content.govdelivery.com/accounts/MODNR/bulletins/263f5c7 · Jefferson Landing State Historic Site is closed for construction. It will reopen March 2027. · The State Museum is open 8-5 M-F and 8-4 Sat/Sun, and is offering group tours of the State Capitol of limited size, available by reserv",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/missouri-state-museum-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-visitor-center-museum-and-historic-sit-US-3368",
+   "ref": "US-3368",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The Visitor Center & Museum and Historic Site grounds are open to the public 7 days a week - Monday through Saturday 9:30 a.m. to 5:00 p.m. and Sunday 10:30 a.m. to 5:00 p.m. Please call the park offi · Due to a campground expansion project and the installation of new campground gates, the main campground will be closed November 1 - December 31, 2026. The ca",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/watkins-woolen-mill-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-road-into-current-river-state-park-will-US-1754",
+   "ref": "US-1754",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The road into Current River State Park will be closed, just past the vault toilet, until further notice due to construction. · The Centennial Bluff Trail, Ninebark Trail, and the White Connector 1 that connects Jones Hollow Trail are closed. Also where the Jones Hollow Trail meets the Current River Trail leading into Current ",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/current-river-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-park-office-is-closed-on-tuesdays-and-we-US-3343",
+   "ref": "US-3343",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The park office is closed on Tuesdays and Wednesdays. From September 15th through March, Lodge tours are normally offered on Fridays, Saturdays and Sundays to groups of no more than 8 per tour. Tour t · The Bothwell Lodge State Historic Site office phone line is down. A repair ticket has been submitted",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/bothwell-lodge-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-following-areas-will-be-closed-oct-25-f-US-1753",
+   "ref": "US-1753",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The following areas will be closed Oct. 25 for the Quivering Quads trail race. Cheatham Road, Cuivre River Trail South Loop and North Loop, Frenchman's Bluff Trail, Connectors 1-5, Blackhawk POint Tra · For Future Notice: The park will be CLOSED October 30, 2026 at 3:00 P.M. to November 2, 2026 at 7:30 A.M. for a Managed Deer Hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/cuivre-river-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-entire-park-will-be-closed-november-7-10-US-1771",
+   "ref": "US-1771",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The entire park will be closed November 7-10 for a managed deer hunt. · The Campground is completely closed this season for construction. The remainder of the park is open.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/long-branch-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-campground-vault-toilet-closest-to-sites-US-3336",
+   "ref": "US-3336",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The campground vault toilet closest to sites 1-5 is currently closed for repairs. Two campground vault toilets are available for use near sites 17 and 23.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/battle-athens-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-boyhood-home-is-temporarily-closed-the-US-3350",
+   "ref": "US-3350",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The Boyhood Home is temporarily closed. The home is under construction receiving a new foundation. Signage is posted with staff contact information for questions while visiting the site. Pershing Muse",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/gen-john-j-pershing-boyhood-home-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-boat-ramp-bramwell-fishing-access-bssp-US-1747",
+   "ref": "US-1747",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The boat ramp, Bramwell fishing access (BSSP 1) and the Wooden Bridge are closed to vehicle and pedestrian traffic due to construction. · The Whistle Trail is closed at the Bramwell Fishing access end, due to construction. · Campground 4 showers and restrooms are closed due to construction. Restrooms and showers are available in adjacent campground 5. · Ther",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/bennett-spring-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-basic-campsites-are-closed-for-construct-US-1786",
+   "ref": "US-1786",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — The basic campsites are closed for construction, including sites F1, F3, 5, 6, 7, 8, 9, 10, 11, 12, 13, and 14. The trail connecting the campground to Lakeview Trail is also closed. · Burn ban is in effect until further notice. No open flame fires are allowed in the park. Charcoal and gas grills with lids are allowed. · The entire park will be closed for a M",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/stockton-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-on-season-hours-for-the-mastodon-state-histo-US-3357",
+   "ref": "US-3357",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — On-season Hours for the Mastodon State Historic Site Museum begin March 16, 2026 and run through November 15, 2026. The museum will be open Wednesdays through Saturdays, 9 am to 4:30 pm, Sundays Noon  · The lower steps of the Wildflower Trail are closed due to broken steps. The estimated date of repair is Oct 6th, 2026.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/mastodon-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-november-2-2026-through-march-31-2027-the-US-1790",
+   "ref": "US-1790",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — November 2, 2026 through March 31, 2027 the shower houses will be closed and the full hook up sites will not have water. Drinking water is available via the frost free spigot near the dump station. RV · Lake Boutin Campground is scheduled for renovation starting in November 2026. It is unknown at this time exactly when the renovation will be complete. Campsi",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/trail-tears-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-during-wet-conditions-trails-are-closed-to-US-1782",
+   "ref": "US-1782",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — During WET conditions: Trails are closed to bicycles and equestrians. \"Leaving Tracks, Turn Back\" \"Wet Ground, Turn Around\" Use common sense, help preserve the park for future generations to enjoy. · Spring Brook Trail spur is CLOSED to the Devil's Icebox Parking Lot due to bridge damage. Observe all signage and do not cross the barriers. · The Devil's Icebo",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/rock-bridge-memorial-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-due-to-the-historic-capitol-not-having-air-c-US-3349",
+   "ref": "US-3349",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — Due to the Historic Capitol not having air conditioning, when temperatures exceed our safety threshold of 95 degrees or the heat index climbs above 90 inside the building, we will often suspend tours ",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/first-missouri-state-capitol-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-due-to-harmful-algae-blooms-in-the-lake-at-w-US-1793",
+   "ref": "US-1793",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — Due to harmful algae blooms in the lake at Wallace State Park, visitors and pets are being warned to avoid contact with the water. Contact with algae may cause people and animals to get sick. · The connector trail around Lake Allaman is closed until further notice.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/wallace-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-crowder-state-park-will-be-closed-december-3-US-1752",
+   "ref": "US-1752",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — Crowder State Park will be closed December 3rd-7th, 2026 for a Veteran's deer hunt. Only hunters who have already been drawn for the hunt will be allowed in the park. Hunting is not normally allowed i · Park trails are open to hiking only due to muddy conditions. There is still debris and erosion due to the flooding which occurred on May 16/17th. We anticipa",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/crowder-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-construction-is-occurring-in-the-campground-US-1767",
+   "ref": "US-1767",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — Construction is occurring in the campground Monday thru Friday due to an infrastructure project. · The public is advised to not eat largemouth or smallmouth bass 12 inches or larger in size, due to elevated mercury levels. For more information, visit www.health.mo.gov/fishadvisory · Due to the wet conditions, the following advisories are in effect: --Opossum",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/knob-noster-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-campground-trail-will-be-closed-due-to-const-US-1792",
+   "ref": "US-1792",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — Campground Trail will be closed due to construction. · The walk-in campsites at Wakonda State Park/Boulder Lake Campground will be closed for ongoing construction in the area.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/wakonda-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-at-this-time-the-following-areas-are-closed-US-1764",
+   "ref": "US-1764",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure — At this time, the following areas are closed due to flood damage: · Multiple sections of the campground trail system · Full-Service Cabins 707 – 712 · The river is at a GREEN flag level and is open for enjoyment!",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/johnsons-shut-ins-state-park"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-US-1766",
+   "ref": "US-1766",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Partial Closure",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/basic-page/active-advisories"
+  },
+  {
+   "id": "uc-mo-parks-closed-this-park-is-currently-not-open-to-the-public-US-5714",
+   "ref": "US-5714",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Closed — This park is currently not open to the public.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/shepherd-hills-state-park"
+  },
+  {
+   "id": "uc-mo-parks-closed-this-park-is-currently-not-open-to-the-public-US-3370",
+   "ref": "US-3370",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Closed — This park is currently not open to the public.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/eleven-point-state-park"
+  },
+  {
+   "id": "uc-mo-parks-closed-the-site-is-located-at-the-end-of-a-narrow-residentia-US-3351",
+   "ref": "US-3351",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Closed — The site is located at the end of a narrow residential road. There is not enough room for large vehicles to turn around. The cul-de-sac on some maps is on private property behind a gate. · The site is closed as we replace the trail surface. We are putting permeable pavers down, replacing the wayside panel, and trimming the overgrowth down at the overlook. Projected o",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/gov-daniel-dunklins-grave-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-closed-locust-creek-covered-bridge-state-historic-site-has-b-US-3355",
+   "ref": "US-3355",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Closed — Locust Creek Covered Bridge State Historic Site has been moved to the day use area within Pershing State Park. The bridge has been set in place, however, it will remain closed until the approaches can",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/locust-creek-covered-bridge-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-trail-closure-portions-of-white-river-valley-trail-US-1787",
+   "ref": "US-1787",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Trail Closure: Portions of White River Valley Trail will be closed during the dates below to allow for hunting seasons on Corps of Engineers property. Closed sections: Trailhead 2; Trailhead 3; on the",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/table-rock-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-site-is-closed-on-tuesdays-and-wednesdays-tour-US-3365",
+   "ref": "US-3365",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The site is closed on Tuesdays and Wednesdays. Tours on the hour except for noon. No tours on Mondays during winter hours. · On July 20, 2026 the site will be closed to the public while a documentary crew is filming on site. We apologize for the inconvenience.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/thomas-hart-benton-home-and-studio-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-shelter-at-big-oak-tree-state-park-is-closed-un-US-1749",
+   "ref": "US-1749",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The shelter at Big Oak Tree State Park is closed until further notice for roof repairs.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/big-oak-tree-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-rosebud-cafe-is-temporarily-closed-due-to-repai-US-3364",
+   "ref": "US-3364",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The Rosebud Cafe is temporarily closed due to repairs.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/scott-joplin-house-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-riparian-trail-boardwalk-trailhead-is-back-open-US-1777",
+   "ref": "US-1777",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The Riparian Trail/Boardwalk Trailhead is back open with limited parking. The boardwalk has been reopened which includes a detour requiring a step down onto a short mulch pathway that detours a constr",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/pershing-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-park-s-office-is-open-from-8-a-m-to-4-p-m-th-US-3345",
+   "ref": "US-3345",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The park's office is open from 8 a.m. to 4 p.m., Thursday through Sunday.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/confederate-memorial-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-outer-loop-and-the-north-half-of-the-inner-loop-US-1783",
+   "ref": "US-1783",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The Outer-Loop and the North half of the Inner-Loop Trail will be closed September 20th from 7am - 1:30pm for the Eureka Wildcat Mtn Bike Race · The old Route 66 bridge that goes through the park has been permanently closed. With the closing of the Old Route 66 Bridge, there are now two different ways to access facilities at Route 66 State Par · --From I-44 West: T",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/route-66-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-campground-boat-ramp-is-closed-due-to-low-lake-US-3356",
+   "ref": "US-3356",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The campground boat ramp is closed due to low lake levels. · Mark Twain State Park and Mark Twain Birthplace State Historic will be completely closed to the public NOVEMBER 6-9, 2026, due to a managed deer hunt on the property. This will affect the entire park ",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/mark-twain-birthplace-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-campground-boat-ramp-is-closed-due-to-low-lake-US-1772",
+   "ref": "US-1772",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The campground boat ramp is closed due to low lake levels. · Mark Twain State Park and Mark Twain Birthplace State Historic will be completely closed to the public NOVEMBER 6-9, 2026, due to a managed deer hunt on the property. This will affect the entire park ",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/mark-twain-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-boil-advisory-at-onondaga-cave-state-park-has-b-US-1776",
+   "ref": "US-1776",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The boil advisory at Onondaga Cave State Park has been lifted and the water has been deemed safe.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/onondaga-cave-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-boat-ramp-is-currently-closed-due-to-low-water-US-1770",
+   "ref": "US-1770",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — The boat ramp is currently closed due to low water levels. · Due to construction work, the open picnic shelter is closed at this time.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/lewis-and-clark-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-st-joe-state-park-is-under-a-boil-order-advisory-u-US-1785",
+   "ref": "US-1785",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — St. Joe State Park is under a boil order advisory until further notice. · Lead information -- St. Joe State Park's location in the old \"Lead Belt\" and the associated mine tailings used for off-road vehicle riding represent a unique management challenge. The Department of Na",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/st-joe-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-site-is-open-from-sunrise-to-sunset-US-3354",
+   "ref": "US-3354",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Site is open from sunrise to sunset.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/jewell-cemetery-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-site-is-closed-until-further-notice-US-3342",
+   "ref": "US-3342",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Site is Closed until further notice.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/boones-lick-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-please-be-advised-that-the-park-will-be-closed-to-a-US-1781",
+   "ref": "US-1781",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Please be advised that the park will be closed to all visitors on Saturday, November 7th and Sunday, November 8th, 2026 for a managed deer hunt. The park will also be closed to campers on Friday, Nove",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/robertsville-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-please-be-advised-that-in-an-effort-to-deter-the-bl-US-1780",
+   "ref": "US-1780",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Please be advised that in an effort to deter the black vulture population at Roaring River State Park, park staff are using a pyrotechnic device between 8 a.m. and 10 a.m., daily. Park visitors may he",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/roaring-river-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-paved-trail-is-currently-closed-from-mile-marker-1-US-1796",
+   "ref": "US-1796",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Paved Trail is currently closed from mile marker 1 to mile marker 2 for construction. No entry into the work zone is permitted.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/weston-bend-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-ozark-caverns-and-the-visitor-center-is-closed-for-US-1768",
+   "ref": "US-1768",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Ozark Caverns and the Visitor Center is Closed for the Season · The entire campground, all yurts, and PB1 shelter-house, beach, boat ramp and day-use area will be closed starting the evening of Friday, December 4th through December 7th, 2026 for a managed deer hun",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/lake-ozarks-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-on-thursday-october-22nd-we-will-only-be-offering-US-3346",
+   "ref": "US-3346",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — On Thursday, October 22nd, we will only be offering guided house tours at 12:30pm & 2:30pm due to a school group. · The site will be closed Tuesday, October 20.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.mostateparks.com/historic-site/deutschheim-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-loop-5-is-closed-to-public-use-area-clearly-marked-US-1774",
+   "ref": "US-1774",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Loop 5 is closed to public use. Area clearly marked, \"Public Use Ends. No Trespassing.\" Visitors found beyond signs will be cited with trespass. · Contractors will begin demolition of the existing shower house in loop 4 and begin building the new shower house in the same location. Work to continue through October 2026.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/montauk-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-for-your-information-many-private-events-n-US-1751",
+   "ref": "US-1751",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — *** FOR YOUR INFORMATION *** -Many private events need prior approval and permitting before taking place. To ensure a successful event, please call the park office well in advance to discuss your prop",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/castlewood-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-due-to-the-unique-and-rare-diversity-of-life-preser-US-1779",
+   "ref": "US-1779",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Due to the unique and rare diversity of life preserved at Prairie State Park, pets are not allowed on park trails, EXCEPT for Path of the Earth People and Path of the Sky People trails. Bison graze fr",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/prairie-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-back-country-camping-reservations-are-available-onl-US-1763",
+   "ref": "US-1763",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — Back country camping reservations are available online at www.icampmo.com in the camping section.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/hawn-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-a-portion-of-turkey-pen-hollow-trail-is-temporarily-US-1761",
+   "ref": "US-1761",
+   "kind": "Park alert",
+   "details": "Missouri State Parks: Advisory — A portion of Turkey Pen Hollow Trail is temporarily closed beyond the white connector intersections (The 2-mile Loop) due to multiple fallen trees from recent storms. Continued rain followed by extrem · Turkey Pen backpack sites A & B are permanently closed. Backpacking options remain available for reservation by contacting the park office.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://mostateparks.com/park/ha-ha-tonka-state-park"
+  },
+  {
+   "id": "uc-fl-parks-closed-hurricane-tropical-storm-US-3664",
+   "ref": "US-3664",
+   "kind": "Park alert",
+   "details": "Florida State Parks: Closed-Hurricane/Tropical Storm",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.floridastateparks.org/"
+  },
+  {
+   "id": "uc-fl-parks-closed-hurricane-tropical-storm-US-3608",
+   "ref": "US-3608",
+   "kind": "Park alert",
+   "details": "Florida State Parks: Closed-Hurricane/Tropical Storm",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.floridastateparks.org/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-warning-river-users-due-to-low-water-conditions-US-1250",
+   "ref": "US-1250",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water - Warning — River Users: Due to low water conditions in the Yampa River, downstream travel is not recommended. Utilizing river bottom or shoreline on private property could result in trespassing violations. As of 6-23-2026 the CFS was 335 near Hayden.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-warning-north-boat-ramp-closes-to-trailered-laun-US-1240",
+   "ref": "US-1240",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water - Warning — North Boat Ramp closes to trailered launching one half hour after sunset on Fri., July 17, due to low water levels. Spinney Mountain Reservoir remains open to hand-launched, motorized vessels.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-west-boat-ramp-closed-to-trail-US-1224",
+   "ref": "US-1224",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — West boat ramp closed to trailered vessels due to low water. Hand-launched canoes, kayaks can continue launching. Guests with smaller crafts can launch boats from East ramp instead, but those with large boats should not attempt it. As of Aug. 5, guests are advised to avoid all direct skin contact wi",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-the-park-s-spring-fed-water-su-US-1247",
+   "ref": "US-1247",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — The park's spring-fed water supply is critically low. Water spigots, showers & flush toilets have been shut off, but the water in Cabin 1 is still available at this time. Fill camper tanks before arriving; limited potable water is available at the Visitor Center.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-the-horseshoe-lake-boat-ramp-i-US-1226",
+   "ref": "US-1226",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — The Horseshoe Lake boat ramp is closed due to low water levels and hazardous obstacles. Hand-launched vessels are still permitted. The Martin Lake boat ramp remains open for motorized vessels.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-the-boat-ramp-at-jackson-gulch-US-1229",
+   "ref": "US-1229",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — The boat ramp at Jackson Gulch Reservoir, within Mancos State Park, is closed and will remain closed the rest of the season due to low water levels. Hand-launched vessels are still allowed, but if it has a motor it needs to be inspected before launching.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-the-boat-ramp-at-crawford-rese-US-1215",
+   "ref": "US-1215",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — The boat ramp at Crawford Reservoir, within Crawford State Park, will close after operations conclude Aug. 2, 2026 and will remain closed the rest of the season due to low water levels. Hand-launched vessels are still allowed, but if it has a motor it needs to be inspected before launching.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-reservoir-dried-completely-cu-US-9675",
+   "ref": "US-9675",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Reservoir dried completely; currently growing wildlife habitat",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-extreme-drought-combined-with-US-9676",
+   "ref": "US-9676",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Extreme drought, combined with municipal water needs required the reservoir to be drawn down. Emergency public fish salvage has ended. Reservoir is dry.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-early-settlers-and-island-boat-US-1249",
+   "ref": "US-1249",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Early Settlers and Island Boat Ramp are closed for the season.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-due-to-low-water-the-last-day-US-1237",
+   "ref": "US-1237",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Due to low water, the last day for the Rifle Gap boating season is Sunday, August 2 (ending at 9 p.m.). Hand-launched vessels - like kayaks, canoes & paddleboards - will still be allowed. Read the news release for important operational adjustments and potential safety risks visitors should plan for.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-due-to-low-water-levels-effec-US-1210",
+   "ref": "US-1210",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Due to low water levels, effective 6-28-2026 at 9 p.m., Boyd Lake will be closed to boating for the rest of 2026. Hand-launched vessels, like kayaks and paddleboards, and swimming will still be allowed.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-due-to-low-reservoir-levels-t-US-1222",
+   "ref": "US-1222",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Due to low reservoir levels, the boat ramp at Jackson Lake State Park will close for the season on 8/6/26. Hand-launched vessels will still be allowed.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-due-to-low-reservoir-levels-p-US-1233",
+   "ref": "US-1233",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Due to low reservoir levels, Paonia's boat ramp closed Wednesday, July 1, through the rest of the 2026 boating season. Hand-launched vessels, like kayaks and paddleboards, will still be allowed.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-due-to-low-reservoir-levels-b-US-1209",
+   "ref": "US-1209",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Due to low reservoir levels, Barr Lake is CLOSED to all boating, including hand-launched vessels like paddleboards, effective as of 8/3 at 7 p.m. for the remainder of the 2026 season. Additionally, the reservoir is now on red alert due to high concentrations of toxic algae which can be harmful to hu",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-low-water-closure-mandatory-boat-ramp-closed-fishing-hand-US-9630",
+   "ref": "US-9630",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Low Water Closure - Mandatory — Boat ramp closed; Fishing/hand-launched watercraft launch from shore continues",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-fish-salvage-voluntary-windsor-reservoir-and-canal-company-US-11924",
+   "ref": "US-11924",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Fish Salvage - Voluntary — Windsor Reservoir and Canal Company owns and operates Douglas Reservoir. Levels will be drawn down primarily for irrigation demand. Boat ramp access may soon be closed due to low water levels. Douglas Reservoir is positive for Eurasian watermilfoil, an aquatic nuisance species. For current reservoir",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-fish-salvage-voluntary-the-trinchera-irrigation-company-ow-US-12756",
+   "ref": "US-12756",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Fish Salvage - Voluntary — The Trinchera Irrigation Company owns the water rights to Mountain Home reservoir. Due to drought and low snowpack, the company is draining the water for irrigation purposes. The boat ramp at the SWA will soon be unavailable with the decreasing reservoir levels.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-fish-salvage-voluntary-due-to-the-imminent-loss-of-the-fis-US-12181",
+   "ref": "US-12181",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Fish Salvage - Voluntary — Due to the imminent loss of the fishery from drought conditions, Colorado Parks and Wildlife is issuing an emergency public salvage order for Banner Lakes State Wildlife Area in Weld County, effective immediately. All bag and possession limits have been lifted. The order only applies to the ponds op",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-co-cpw-fish-salvage-voluntary-due-to-pending-maintenance-hugo-po-US-0185",
+   "ref": "US-0185",
+   "kind": "Park alert",
+   "details": "Colorado Parks & Wildlife: Fish Salvage - Voluntary — Due to pending maintenance, Hugo Ponds are open to public fish salvage beginning Sept 1. A valid Colorado fishing license is required; Size, bag, and possession limits are suspended for Hugo Ponds SWA until the salvage is lifted; Anglers may use only currently legal angling methods; Transporting liv",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://cpw.state.co.us/"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-woodside-fire-due-the-ongoing-woodside-fir-US-1194",
+   "ref": "US-1194",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Woodside Fire · Due the ongoing Woodside Fire, Woodside Campground will be closed through Thursday, August 6 and reopen Friday, August 7. Thank you for your patience as we continue fire suppression operations on hotspots and flare-ups. (until Aug 7)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-tropical-storm-rachel-crystal-cove-histori-US-1141",
+   "ref": "US-1141",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Tropical Storm Rachel · Crystal Cove Historic District is experiencing impacts from the current swell event coupled with high tides.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-seasonal-closure-paul-dimmick-campground-i-US-1179",
+   "ref": "US-1179",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Seasonal Closure · Paul Dimmick Campground is closed for the season and will be open for the summer season from 5/28/27 to 9/7/27 (until May 28)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-05-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-past-storm-event-lower-dock-was-washed-out-US-3532",
+   "ref": "US-3532",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Past Storm Event · Lower Dock was washed out in recent rain events and is not useable.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-other-toxic-algal-mats-have-been-detected-US-1159",
+   "ref": "US-1159",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Other · Toxic Algal mats have been detected in Navarro River at Hendy Woods State Park Day use and the Philo Greenwood Bridge. The CA Waterboard advises park visitors and dogs to not swim or drink where algal mats are present. Please check the CA Waterboard webpage for current reports of toxic algal mats: h (until Nov 1)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-01",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-in-progress-incident-mecca-beach-campgroun-US-3552",
+   "ref": "US-3552",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — In-progress Incident · Mecca Beach Campground is currently closed for maintenance repairs. It is unknown when the campground will reopen. The main campground remains open and available for camping and day use activities.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-current-anticipated-storm-event-due-to-rec-US-1139",
+   "ref": "US-1139",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Current/Anticipated Storm Event · Due to recent rainfall, all trails at Chino Hills State Park are temporarily closed for visitor safety and to prevent damage to soft, muddy trail surfaces. Day-use areas, the campground, and all roadways remain open and accessible. Please check for updates as conditions improve before planning any t (until Oct 24)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-current-anticipated-flooding-please-be-adv-US-1186",
+   "ref": "US-1186",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Current/Anticipated Flooding · Please be advised that Thornhill Broome Campground in Point Mugu State Park will be closed beginning 10/8/26 due to high tide.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-construction-mackerricher-state-park-lagun-US-1168",
+   "ref": "US-1168",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Construction · Mackerricher State Park Laguna Point Parking will be closed due to road repair in preparation for winter storms. Cleone Parking will still be open. Closure dates 10/1/26-10/21/26 (until Oct 21)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-partial-closure-construction-due-to-water-system-repairs-a-US-1123",
+   "ref": "US-1123",
+   "kind": "Park alert",
+   "details": "California State Parks: Partial Closure — Construction · Due to water system repairs and low water reserves, water is currently not available in the Camp Reynolds area and at water sources along Perimeter Road between Camp Reynolds and Four Corners through approximately December 1st. Affected campsites in the Camp Reynolds and Ridge Campsite areas will be",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-full-closure-seasonal-closure-US-3598",
+   "ref": "US-3598",
+   "kind": "Park alert",
+   "details": "California State Parks: Full Closure — Seasonal Closure (until Apr 1)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-full-closure-other-US-3584",
+   "ref": "US-3584",
+   "kind": "Park alert",
+   "details": "California State Parks: Full Closure — other",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
+  {
+   "id": "uc-ca-parks-full-closure-current-anticipated-flooding-the-park-is-clos-US-1130",
+   "ref": "US-1130",
+   "kind": "Park alert",
+   "details": "California State Parks: Full Closure — Current/Anticipated Flooding · The park is closed due to flooding and related contaminated flood waters. Avoid all standing water and mud. No vehicle, pedestrian, equestrian or bicyclist access is permitted.",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-10-28",
+   "link": "https://www.parks.ca.gov/?page_id=30009"
+  },
   {
    "id": "pa-kdfwr-buckhorn-lake-dam-ramp-access-closed-until-feb-2027-US-1275",
    "ref": "US-1275",
