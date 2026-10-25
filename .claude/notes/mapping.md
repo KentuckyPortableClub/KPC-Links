@@ -359,3 +359,4 @@ The same 4 steps everywhere, Kentucky first, then the US, Canada, then busy POTA
 
 - OUTLINE LEADS (Oct 24 11:35 PM): data/state-gis-leads-oct24.json = 48 state park-boundary layer links from Brandon's Parks_Without_Outlines sheet (14 already known, 29 new layers, 6 portal pages). For the mapping chat: test, then add good ones to data/state-gis.json. Not tested yet.
 - TRAILS hand-picked layers (Oct 24, Brandon's sheets): data/trails-layers.json {layers:{FL,HI,ID,OR,UT,NM,CA-ON,CA-AB,CA-YT:[urls]}} tried first by kpc_state_trails.py agency(). Run Oct 24 night; ID layer 128 + BLM layers untested; no official TN/VA layer found yet.
+- Trails layers added Oct 25 from the official AB Recreation Viewer + BC Sites and Trails map web maps: AB PLRA trails, BC Recreation Trails + Section 58 trails (data/trails-layers.json). Needs a CANADA rerun of kpc-state-trails.
