@@ -107,6 +107,16 @@ SRC['FR'] = SRC['FR'] + [('IGN Géoplateforme ZNIEFF ' + n, 'wfs', 'https://data
                       + [('ZNIEFF (INPN data, Esri France) layer ' + str(i), 'arcgis_alt', 'https://services.arcgis.com/d3voDfTFbHOCRwVR/arcgis/rest/services/ZNIEFF_2021/FeatureServer/' + str(i)) for i in (0, 1)]
 SRC['AU'] = SRC['AU'] + [('NSW State Forest (Forestry Corporation NSW)', 'arcgis', 'https://services2.arcgis.com/iCBB4zKDwkw2iwDD/arcgis/rest/services/NSW_Dedicated_State_Forests/FeatureServer/0'),
                          ('QLD State Forest (Queensland Government)', 'arcgisfind', 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/PlanningCadastre/LandParcelPropertyFramework/MapServer', r'state forest|timber reserve')]
+# Oct 25 (outside research bot, other countries round 2): Victoria DEECA + Western Australia DBCA state forest tenure, the
+# Śląskie voivodeship copy of Poland's nature-and-landscape complexes, and Japan's NATIONAL A10 file (FY2010) whose park-name
+# CODES (A10_005 -> KSJ codelist NaturalParkNameCd) name the areas the per-prefecture A10 files leave blank. Licences: VIC = same
+# data as DataVic PLM25 (CC BY 4.0); WA = CC BY-NC 4.0; JP FY2010 = non-commercial (KPC is a non-commercial club); PL = none stated
+# (regional copy of the national GDOŚ register). Northern Ireland (DAERA) left out: its terms forbid publishing maps without NIEA's
+# written permission. WA 'forest blocks' left out: management units, not the legal forest boundary.
+SRC['AU'] = SRC['AU'] + [('VIC DEECA state forests', 'arcgis', 'https://enterprise.mapshare.vic.gov.au/server/rest/services/Hosted/Public_Land___DEECA_Managed/FeatureServer/0', ["mmtgen='STATE FOREST' AND name<>' '"]),
+                         ('WA DBCA state forests (legislated lands)', 'arcgis', 'https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15', ["leg_category='State Forest'"])]
+SRC['PL'] = SRC['PL'] + [('Śląskie ORSIP nature and landscape complexes (GDOŚ register)', 'arcgis', 'https://geoportal.orsip.pl/site1/rest/services/DaneRegionalne/FormyOchronyPrzyrodyZieloneSlaskie/MapServer/5')]
+SRC['JP'] = SRC['JP'] + [('MLIT natural park areas, national file FY2010 (A10-10)', 'a10n', 'https://nlftp.mlit.go.jp/ksj/gml/data/A10/A10-10/A10-10_GML.zip')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
@@ -371,7 +381,7 @@ def inside(la, lo, rs): return sum(1 for r in rs if in_ring(lo, la, r)) % 2 == 1
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
-NAMEF = ['nom_site', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名']
+NAMEF = ['nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名']
 TYPEF = ['TYPE', 'Type', 'type', 'PA_TYPE', 'DESIGNATION', 'desig', 'GAZ_TYPE', 'KIND', '種別', 'TYPE_E']
 
 
@@ -547,6 +557,54 @@ def pull_a10(label, page):
     return recs
 
 
+def pull_a10n(label, url):
+    # Japan's national A10 file (FY2010): one shapefile for the whole country; the park NAME is a code (A10_005) in the KSJ
+    # codelist NaturalParkNameCd, and A10_003 says the class (1 national, 2 quasi-national, 3 prefectural)
+    import io, zipfile
+    try: import shapefile
+    except Exception:  # noqa: BLE001
+        import subprocess; subprocess.run([sys.executable, '-m', 'pip', 'install', '--quiet', 'pyshp'], check=False); import shapefile
+    names = {}
+    for cu in ('https://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalParkNameCd-v3_0.html', 'https://nlftp.mlit.go.jp/ksj/gml/codelist/NaturalParkNameCd.html'):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(cu, headers=UA), timeout=120) as r: raw = r.read()
+            html = None
+            for enc in ('utf-8', 'cp932', 'euc-jp'):
+                try: html = raw.decode(enc); break
+                except Exception: pass  # noqa: BLE001
+            for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', html or '', re.S):
+                cells = [re.sub(r'\s+', '', re.sub(r'<[^>]+>', '', c)) for c in re.findall(r'<td[^>]*>(.*?)</td>', tr, re.S)]
+                code = next((c for c in cells if re.fullmatch(r'\d{3,6}', c)), None)
+                nm = next((c for c in cells if re.search(r'公園', c)), None)
+                if code and nm: names.setdefault(code, []).append(nm)
+            if names: break
+        except Exception as e: notice(label, f'codelist {cu}: {e}')  # noqa: BLE001
+    notice(label, f'{len(names)} park-name codes read')
+    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=300) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+    recs = []
+    for sp in [n for n in z.namelist() if n.lower().endswith('.shp')]:
+        b = sp[:-4]
+        rd = None
+        for enc in ('cp932', 'utf-8'):
+            try: rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')), encoding=enc); rows = rd.records(); break
+            except Exception: rd = None  # noqa: BLE001
+        if not rd: continue
+        fn = [f[0] for f in rd.fields[1:]]
+        for i, (shp, rec) in enumerate(zip(rd.shapes(), rows)):
+            a = dict(zip(fn, list(rec)))
+            cls, code = str(a.get('A10_003') or '').strip(), str(a.get('A10_005') or '').strip()
+            want = {'1': '国立公園', '2': '国定公園'}.get(cls)
+            cand = names.get(code) or names.get(code.lstrip('0')) or names.get(code.zfill(3)) or []
+            nm = next((c for c in cand if want and want in c), None) or next((c for c in cand if not want and not re.search(r'国立公園|国定公園', c)), None) or (cand[0] if len(cand) == 1 else '')
+            if not nm: continue
+            pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
+            rs = [[list(q) for q in pts[parts[k]:parts[k + 1]]] for k in range(len(parts) - 1)]
+            recs.append({'id': f'a10n:{i}', 'n': nm, 'nj': nm, 'ty': nm, 'src': label, '_bb': bbox(rs), '_r': thin(rs), '_a': {'A10_003': cls, 'A10_005': code},
+                         'code': '', 'dc': '', '_k0': jkind(nm) or ({'np'} if cls == '1' else {'qnp'} if cls == '2' else {'pnp'})})
+    notice(label, f'{len(recs)} areas named from the codelist, e.g. ' + ' / '.join(r['n'] for r in recs[:4]))
+    return recs
+
+
 def chpart(s):
     t = str(s or '').lower(); o = set()
     for k, ws in (('n', ('nördlich', 'nord')), ('s', ('südlich', 'sud ', 'sud)')), ('w', ('westlich', 'ouest')), ('e', ('östlich', ' est)', ' est,', 'partie est'))):
@@ -648,7 +706,7 @@ for cc in COUNTRIES:
         for s in SRC.get(cc, []):
             try:
                 if s[1] == 'arcgis_alt' and any(r['src'].startswith('IGN Géoplateforme ZNIEFF') for r in recs): continue   # the same zones already came from IGN
-                got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
+                got = pull_arcgis(s[0], s[2], s[3] if len(s) > 3 and s[1] != 'arcgisfind' else None) if s[1] in ('arcgis', 'arcgis_alt') else pull_find(s[0], s[2], s[3]) if s[1] == 'arcgisfind' else pull_a10(s[0], s[2]) if s[1] == 'a10' else pull_a10n(s[0], s[2]) if s[1] == 'a10n' else pull_chshp(s[0], s[2]) if s[1] == 'chshp' else pull_wfs(s[0], s[2], s[3])
                 recs += got; print(f'{cc} {s[0]}: {len(got)}', flush=True)
             except Exception as e:  # noqa: BLE001
                 notice(f'World key {cc}', f'{s[0]} FAILED: {e}'); failed = True
