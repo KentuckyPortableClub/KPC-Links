@@ -1,0 +1,312 @@
+{
+ "about": "Hours, overnight rules and extra fees for Kentucky parks from each park's official page (research round 7, Oct 25 2026; rows without a source link left out). Not re-checked park by park: confirm on the linked page. Kentucky State Parks charge no general entry fee; that is a statewide note, not a per-park fact.",
+ "feeNote": "Kentucky State Parks charge no general entry fee; camping, lodging, golf, museums and tours can cost extra.",
+ "updated": "2026-10-25",
+ "parks": {
+  "US-0019": {
+   "hours": "24 hours",
+   "night": "Yes—only in designated campground/backcountry sites with applicable rules",
+   "link": "https://www.nps.gov/cuga/planyourvisit/basicinfo.htm",
+   "checked": "2026-10-25"
+  },
+  "US-0050": {
+   "hours": "24 hours",
+   "night": "Yes—designated campgrounds or backcountry sites with valid reservation/permit",
+   "link": "https://www.nps.gov/maca/planyourvisit/hours.htm",
+   "checked": "2026-10-25"
+  },
+  "US-0295": {
+   "hours": "Sunrise to Sunset",
+   "night": "No camping; permitted hunting-season exception to public access hours",
+   "link": "https://www.fws.gov/refuge/clarks-river/visit-us",
+   "checked": "2026-10-25"
+  },
+  "US-0608": {
+   "hours": "1 hour before sunrise to 1 hour after sunset",
+   "night": "No camping; overnight mooring on islands prohibited",
+   "link": "https://www.fws.gov/rivers/carp/carp/refuge/ohio-river-islands/visit-us",
+   "checked": "2026-10-25"
+  },
+  "US-0686": {
+   "hours": "24 hours",
+   "night": "Yes—designated campgrounds/backcountry with applicable permits/rules",
+   "link": "https://www.nps.gov/biso/planyourvisit/basicinfo.htm",
+   "checked": "2026-10-25"
+  },
+  "US-0703": {
+   "hours": "8:00 AM to 8:00 PM (seasonal: confirm)",
+   "link": "https://www.nps.gov/fodo/",
+   "checked": "2026-10-25"
+  },
+  "US-0724": {
+   "hours": "9:00 AM to 5:00 PM",
+   "night": "No overnight access indicated; Birthplace grounds close at 5 PM; Knob Creek grounds sunrise–sunset",
+   "link": "https://www.nps.gov/abli/planyourvisit/basicinfo.htm",
+   "checked": "2026-10-25"
+  },
+  "US-1251": {
+   "night": "Campground available; seasonal amenities; verify current campground status before travel",
+   "link": "https://parks.ky.gov/explore/carr-creek-campground-7869",
+   "checked": "2026-10-25"
+  },
+  "US-1252": {
+   "hours": "Year-round to Dark",
+   "night": "Yes—campground open year-round; seasonal services vary",
+   "link": "https://parks.ky.gov/explore/columbus-belmont-state-park-7809",
+   "checked": "2026-10-25"
+  },
+  "US-1253": {
+   "hours": "Sunrise to Sunset",
+   "night": "No overnight use indicated",
+   "link": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831",
+   "checked": "2026-10-25"
+  },
+  "US-1254": {
+   "night": "No overnight lodging/camping indicated on cited park overview",
+   "link": "https://parks.ky.gov/explore/e-p-tom-sawyer-meetings-8271",
+   "checked": "2026-10-25"
+  },
+  "US-1256": {
+   "hours": "Year-round to Dark",
+   "night": "Campground listed but currently closed indefinitely due to flood damage; do not plan overnight stay without rechecking",
+   "extra": "Fort tour/activity fees may apply",
+   "link": "https://parks.ky.gov/parks/find-a-park/fort-boonesborough-state-park-7811",
+   "checked": "2026-10-25"
+  },
+  "US-1257": {
+   "night": "Yes—campground seasonal, typically mid-March to mid-November",
+   "extra": "Golf/camping fees apply",
+   "link": "https://parks.ky.gov/explore/general-burnside-island-state-park-7812",
+   "checked": "2026-10-25"
+  },
+  "US-1258": {
+   "extra": "Golf/camping/amenity fees may apply",
+   "link": "https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park",
+   "checked": "2026-10-25"
+  },
+  "US-1259": {
+   "night": "Yes—campground; current restrictions limit use to some primitive/self-contained units",
+   "link": "https://parks.ky.gov/explore/green-river-lake-campground-7960",
+   "checked": "2026-10-25"
+  },
+  "US-1260": {
+   "hours": "Dawn to Dusk",
+   "night": "Yes—campground and cottages; seasonal availability",
+   "extra": "Museum admission charged",
+   "link": "https://parks.ky.gov/parks/find-a-park/john-james-audubon-state-park-7815",
+   "checked": "2026-10-25"
+  },
+  "US-1261": {
+   "night": "Yes—campground listed by Kentucky State Parks; verify current operating status",
+   "link": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park",
+   "checked": "2026-10-25"
+  },
+  "US-1263": {
+   "night": "Yes—campground with primitive and RV sites",
+   "link": "https://parks.ky.gov/explore/lake-malone-state-park-7818",
+   "checked": "2026-10-25"
+  },
+  "US-1265": {
+   "hours": "Dawn to Dusk",
+   "night": "No overnight use confirmed; historic-site day visits",
+   "extra": "Some tours/programs may charge",
+   "link": "https://parks.ky.gov/field-trips",
+   "checked": "2026-10-25"
+  },
+  "US-1266": {
+   "night": "No campground listed on source reviewed",
+   "extra": "Golf and some amenities cost",
+   "link": "https://parks.ky.gov/explore/mineral-mound-state-park-7820",
+   "checked": "2026-10-25"
+  },
+  "US-1267": {
+   "night": "Campground status: CLOSED / reopening date TBD per current state notice",
+   "extra": "Mansion tours and golf may cost",
+   "link": "https://parks.ky.gov/explore/my-old-kentucky-home-state-park-7821",
+   "checked": "2026-10-25"
+  },
+  "US-1268": {
+   "night": "Yes—primitive campsites currently reported open; other campground services may be limited",
+   "link": "https://parks.ky.gov/parks/find-a-park/nolin-lake-campground-8135",
+   "checked": "2026-10-25"
+  },
+  "US-1269": {
+   "hours": "Dawn to Dusk",
+   "night": "No overnight use confirmed; historic site is a day-use destination",
+   "extra": "Fort/museum admission charged",
+   "link": "https://parks.ky.gov/parks/find-a-park/old-fort-harrod-state-park-7823",
+   "checked": "2026-10-25"
+  },
+  "US-1270": {
+   "night": "Yes—campground open year-round per official park page",
+   "extra": "Camping/rentals may cost",
+   "link": "https://parks.ky.gov/explore/paintsville-lake-state-park-7824",
+   "checked": "2026-10-25"
+  },
+  "US-1271": {
+   "night": "Yes—campground; equestrian-friendly sites; verify current availability",
+   "link": "https://parks.ky.gov/explore/taylorsville-lake-state-park-7827",
+   "checked": "2026-10-25"
+  },
+  "US-1272": {
+   "night": "Yes—campground open mid-March through mid-November",
+   "extra": "Camping/golf/amenities may cost",
+   "link": "https://parks.ky.gov/parks/find-a-park/yatesville-lake-state-park-7828",
+   "checked": "2026-10-25"
+  },
+  "US-1273": {
+   "night": "Yes—campground mid-March through mid-November; lodge/cottage availability affected by renovations",
+   "link": "https://parks.ky.gov/parks/find-a-park/barren-river-lake-state-resort-park-7781",
+   "checked": "2026-10-25"
+  },
+  "US-1274": {
+   "night": "Yes—lodge/cottages and campground; campground mid-March through mid-November",
+   "extra": "Museum/tours/lodging/camping may cost",
+   "link": "https://parks.ky.gov/parks/find-a-park/blue-licks-battlefield-state-resort-park-7782",
+   "checked": "2026-10-25"
+  },
+  "US-1275": {
+   "night": "Yes—lodge/cottages; confirm campground availability separately",
+   "link": "https://parks.ky.gov/explore/buckhorn-lake-state-resort-park-7784",
+   "checked": "2026-10-25"
+  },
+  "US-1276": {
+   "night": "Yes—campground and backcountry campsites available; check current reservations",
+   "extra": "Cave tours and camping cost extra",
+   "link": "https://parks.ky.gov/parks/find-a-park/carter-caves-state-resort-park-7785",
+   "checked": "2026-10-25"
+  },
+  "US-1277": {
+   "night": "Yes—campgrounds and cabins; check current lodging status",
+   "link": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+   "checked": "2026-10-25"
+  },
+  "US-1278": {
+   "night": "Yes—campground and cabins/cottages; availability seasonal",
+   "link": "https://parks.ky.gov/parks/find-a-park/dale-hollow-lake-state-resort-park-7787",
+   "checked": "2026-10-25"
+  },
+  "US-1279": {
+   "night": "Yes—lodge, cottages, and campground; campground open year-round",
+   "link": "https://parks.ky.gov/parks/find-a-park/general-butler-state-resort-park-7789",
+   "checked": "2026-10-25"
+  },
+  "US-1280": {
+   "night": "Yes—RV/primitive camping; campground currently listed open after renovations",
+   "link": "https://parks.ky.gov/explore/greenbo-lake-state-resort-park-7790",
+   "checked": "2026-10-25"
+  },
+  "US-1281": {
+   "night": "Campground closed for renovations; state notice says reopening April 2027. Lodge also closed for structural renovations.",
+   "link": "https://parks.ky.gov/explore/jenny-wiley-state-resort-park-7791",
+   "checked": "2026-10-25"
+  },
+  "US-1282": {
+   "night": "Lodge/cottages available; campground reopening date TBD per current state notice",
+   "link": "https://parks.ky.gov/parks/find-a-park/kenlake-state-resort-park-7792",
+   "checked": "2026-10-25"
+  },
+  "US-1283": {
+   "night": "Yes—lodge/cottages and campground listed; confirm current campground and marina status",
+   "link": "https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park",
+   "checked": "2026-10-25"
+  },
+  "US-1284": {
+   "night": "Yes—campground and cottages; lodging currently available in Little River Lodge and cottages per state notice",
+   "link": "https://parks.ky.gov/parks/find-a-park/lake-barkley-campground-8066",
+   "checked": "2026-10-25"
+  },
+  "US-1285": {
+   "night": "Yes—campground open year-round; cabins available; lodge renovations ongoing",
+   "link": "https://parks.ky.gov/explore/lake-cumberland-state-resort-park-7795",
+   "checked": "2026-10-25"
+  },
+  "US-1286": {
+   "night": "Yes—lodge/cottages and campgrounds",
+   "extra": "Sky lift, mini-golf, lodging/camping may cost",
+   "link": "https://parks.ky.gov/parks/find-a-park/natural-bridge-state-resort-park-7796",
+   "checked": "2026-10-25"
+  },
+  "US-1287": {
+   "night": "Yes—campground mid-March to mid-November; equestrian campsites year-round",
+   "link": "https://parks.ky.gov/parks/find-a-park/pennyrile-forest-state-resort-park-7798",
+   "checked": "2026-10-25"
+  },
+  "US-1288": {
+   "night": "Yes—lodge/cottages; verify campground status from current official page",
+   "link": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park",
+   "checked": "2026-10-25"
+  },
+  "US-1289": {
+   "night": "Yes—lodge/cottages and an air-camp site; air camp listed open year-round",
+   "link": "https://parks.ky.gov/parks/find-a-park/rough-river-dam-state-resort-park-7800",
+   "checked": "2026-10-25"
+  },
+  "US-3779": {
+   "night": "Yes—campground listed by Kentucky State Parks; verify current seasonal operation",
+   "extra": "Museum/amenities may cost",
+   "link": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3781": {
+   "night": "Yes—official park site lists lodging/camping options; verify seasonal availability",
+   "link": "https://www.breakspark.com/",
+   "checked": "2026-10-25"
+  },
+  "US-3782": {
+   "night": "No overnight option confirmed from source reviewed",
+   "link": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3783": {
+   "night": "No overnight use confirmed",
+   "extra": "Museum/tour fees may apply",
+   "link": "https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3784": {
+   "night": "No overnight use confirmed",
+   "extra": "Museum/tour fees may apply",
+   "link": "https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3785": {
+   "night": "No overnight use confirmed",
+   "extra": "Museum/program fees may apply",
+   "link": "https://parks.ky.gov/perryville/parks/historic/perryville-battlefield-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3786": {
+   "night": "No overnight use confirmed",
+   "extra": "Mansion tours may cost",
+   "link": "https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3787": {
+   "night": "No overnight use confirmed",
+   "link": "https://whitehall.eku.edu",
+   "checked": "2026-10-25"
+  },
+  "US-3788": {
+   "night": "No overnight use confirmed",
+   "extra": "Museum admission may apply",
+   "link": "https://parks.ky.gov/wickliffe/parks/historic/wickliffe-mounds-state-historic-site",
+   "checked": "2026-10-25"
+  },
+  "US-3789": {
+   "night": "No overnight use confirmed",
+   "link": "https://explorekyhistory.ky.gov/files/show/236",
+   "checked": "2026-10-25"
+  },
+  "US-3790": {
+   "night": "No overnight access confirmed at Fort Heiman unit",
+   "link": "https://www.nps.gov/fodo/planyourvisit/maps.htm",
+   "checked": "2026-10-25"
+  },
+  "US-3792": {
+   "night": "Yes at designated campgrounds; check site-specific fees and seasonal operations",
+   "link": "https://landbetweenthelakes.us/",
+   "checked": "2026-10-25"
+  }
+ }
+}
