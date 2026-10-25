@@ -17,6 +17,15 @@ OUT = pathlib.Path('data/world-key'); (OUT / 'review').mkdir(parents=True, exist
 import gzip
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
+
+# Oct 25 (round 5 hand checks): a person's decisions per park, {ref: {join: [official names], no: [names], why}}
+try:
+    WOV = json.load(open('data/world-key/overrides.json', encoding='utf-8')).get('parks', {})
+except Exception:  # noqa: BLE001
+    WOV = {}
+
+
+def low(x): return ' '.join(unicodedata.normalize('NFKD', str(x or '')).encode('ascii', 'ignore').decode().lower().replace("'", '').split())
 from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: write only when the content changed)
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; the same scheme as kpc_us_key.py). Live runs have always fetched
 # outlines at 0.01 degrees (~1.1 km) and then THINNED every ring to about 60 points - a whole national park in 60
@@ -764,6 +773,18 @@ for cc in COUNTRIES:
             jam = cc == 'JP' and r.get('nj') and bool({re.sub(r'\s', '', q) for q in r.get('jp') or [jclean(r['nj'])]} & (JA.get(ref) or set()))
             if r['n'] and (jam or any(same_name(cc, q, rn) for q in cand for rn in (r.get('parts') or [r['n']]))) and (not kp or (kp & r['_k']) or (not r['_k'] and not (cc == 'AU' and r.get('ty')))):
                 m.append([r['id'], r['n'], r['src'], 'name']); mr.append(r)
+        # Oct 25 (round 5 hand checks, GB: 'Hill Rise', 'Castle Hill', 'Riverside' joined a same-named SMALL site 10-70 km
+        # away): a small site found by name alone must sit near the pin; a big one (a national park) may reach it.
+        if la is not None:
+            m = [q for q in m if not q[3] == 'name' or (lambda b: not b or near(la, lo, b, .08) or (b[2] - b[0] > .15 or b[3] - b[1] > .15))(next((r.get('_bb') for r in mr if r['id'] == q[0] and r['n'] == q[1]), None))]
+        ov = WOV.get(ref) or {}
+        if ov:
+            no = {low(x) for x in ov.get('no', [])}
+            m = [q for q in m if low(q[1]) not in no]
+            for want in ov.get('join', []):
+                for r in nearby(la, lo):
+                    if low(r['n']) == low(want) and (la is None or near(la, lo, r['_bb'], .6)) and not any(q[0] == r['id'] for q in m):
+                        m.append([r['id'], r['n'], r['src'], 'reviewed'])
         pref = [q for q in m if q[2] in CHPREF.get(typ, [])] if cc == 'CH' else []
         if pref: m = pref                                                          # the federal inventory of that kind decides
         if cc == 'CH' and m:                                                       # Oct 19: '(südlicher Teil)', '(Teilraum 2)': parts of one BLN area

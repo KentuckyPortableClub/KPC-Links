@@ -1,0 +1,171 @@
+{
+ "note": "Reviewed by hand. join = official land names that ARE this park (within ~60 km of the pin); no = names that are not. kpc_world_key.py follows this on every rerun.",
+ "parks": {
+  "AT-0412": {
+   "join": [
+    "Niedere Tauern"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "CH-0010": {
+   "no": [
+    "Waldreservat Gantrischberg"
+   ],
+   "join": [
+    "Naturpark Gantrisch",
+    "Gantrisch"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-0042": {
+   "no": [
+    "DEARNE VALLEY PARK"
+   ],
+   "join": [
+    "Dearne Valley Wetlands SSSI",
+    "Dearne Valley Wetlands"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-0101": {
+   "no": [
+    "DEARNE VALLEY PARK"
+   ],
+   "join": [
+    "Dearne Valley Wetlands SSSI",
+    "Dearne Valley Wetlands"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-0223": {
+   "no": [
+    "DEARNE VALLEY PARK"
+   ],
+   "join": [
+    "Dearne Valley Wetlands SSSI",
+    "Dearne Valley Wetlands"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-0331": {
+   "no": [
+    "DEARNE VALLEY PARK"
+   ],
+   "join": [
+    "Dearne Valley Wetlands SSSI",
+    "Dearne Valley Wetlands"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-1236": {
+   "no": [
+    "Cleeve Hill SSSI"
+   ],
+   "join": [
+    "Cleeve Common SSSI",
+    "Cleeve Common"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-1279": {
+   "no": [
+    "CASTLE HILL"
+   ],
+   "join": [
+    "CASTLE HILL, NEWHAVEN"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-2592": {
+   "no": [
+    "NORTHCLIFFE QUARRY"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-3043": {
+   "no": [
+    "NORTHUMBERLAND"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-3165": {
+   "no": [
+    "HASLAM PARK"
+   ],
+   "join": [
+    "HASLAM PARK, PRESTON"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-3199": {
+   "no": [
+    "WALTON"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-3862": {
+   "no": [
+    "SPRINGFIELD PARK"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-3866": {
+   "no": [
+    "RIVERSIDE"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-4630": {
+   "no": [
+    "St. Catherine's Hill SSSI"
+   ],
+   "join": [
+    "Town Common SSSI",
+    "Town Common"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-5162": {
+   "no": [
+    "WERNETH LOW"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-5468": {
+   "no": [
+    "HILL RISE"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-5476": {
+   "no": [
+    "PRIORY"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-6118": {
+   "no": [
+    "Cowslip Meadow SSSI"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-6440": {
+   "no": [
+    "Ox Close SSSI"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-6531": {
+   "no": [
+    "PHILIP'S PARK"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "GB-6787": {
+   "no": [
+    "GREEN LANE WOOD"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  }
+ }
+}
