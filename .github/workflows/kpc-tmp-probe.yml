@@ -12,15 +12,12 @@ jobs:
         run: |
           python3 - <<'PY' || true
           import urllib.request, json
-          U = {'TN tdec parks': 'https://tdeconline.tn.gov/arcgis/rest/services/TSP_TN_State_Parks/MapServer?f=json',
-               'TN tdec lands': 'https://tdeconline.tn.gov/arcgis/rest/services/TDEC_Public_Lands/FeatureServer?f=json',
-               'TN tnmap': 'https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/PUBLIC_LANDS/MapServer?f=json',
-               'TN agol parks': 'https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
-               'MD mdgeodata': 'https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
-               'MD geodata': 'https://geodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
-               'IA public lands': 'https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0?f=json',
-               'IA hub': 'https://geodata.iowa.gov/api/search/v1/collections/all/items?q=public%20lands&limit=5',
-               'ID idpr hub': 'https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/all/items?q=campground&limit=8'}
+          U = {'IA public lands q': 'https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
+               'IA state parks q': 'https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9/query?where=1%3D1&returnCountOnly=true&f=json',
+               'IA recreation 11 q': 'https://programs.iowadnr.gov/geospatial/rest/services/Recreation/Recreation/MapServer/11/query?where=1%3D1&returnCountOnly=true&f=json',
+               'MD feats': 'https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=2&returnGeometry=false&f=json',
+               'ID idpr hub': 'https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/all/items?q=camp&limit=10',
+               'ID hub2': 'https://data-idaho.hub.arcgis.com/api/search/v1/collections/all/items?q=state%20parks%20campgrounds&limit=10'}
           for k, u in U.items():
               try:
                   b = urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC check (kentuckyportableclub.github.io)'}), timeout=45).read().decode('utf-8', 'replace')
