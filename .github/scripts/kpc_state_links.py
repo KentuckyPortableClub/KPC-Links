@@ -17,6 +17,10 @@ def get(u):
     raise err
 def note(t, m): print(f'::notice title={t}::{m}')
 clean = lambda v: '' if v in (None, 'None', 'null') else str(v).strip()
+try: HANDWEB = json.load(open('data/parkinfo-web.json', encoding='utf-8')).get('parks', {})
+except Exception: HANDWEB = {}  # noqa: E722
+
+
 def fixurl(u):
     """POTA's list has some websites without https:// (e.g. 'parksandrecreation.idaho.gov'), which broke links"""
     u = clean(u)
@@ -48,6 +52,7 @@ for st in STATES:
         try: la, lo = round(float(p.get('latitude')), 5), round(float(p.get('longitude')), 5)
         except Exception: la, lo = (o[5], o[6]) if o and len(o) > 6 else (None, None)
         n_act = p.get('activations'); n_try = p.get('attempts'); n_q = p.get('qsos')
+        web = web or HANDWEB.get(ref, {}).get('web', '')   # Oct 25: official pages found by hand for parks POTA lists with no website (data/parkinfo-web.json, chat 2)
         parks[ref] = [clean(p.get('name')), web, typ, act, acc, la, lo,
                       int(n_act) if str(n_act).isdigit() else None, int(n_try) if str(n_try).isdigit() else None, int(n_q) if str(n_q).isdigit() else None]
     doms = collections.Counter(d for d in (urllib.parse.urlparse(v[1]).netloc.lower().replace('www.', '') for v in parks.values() if v[1] and v[2] == 'State Park') if '.' in d)

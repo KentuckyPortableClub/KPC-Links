@@ -1,0 +1,780 @@
+{
+ "about": "Official pages for US parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later.",
+ "parks": {
+  "US-0021": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/deva/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/deva/index.htm"
+  },
+  "US-0034": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/grsm/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/grsm/index.htm"
+  },
+  "US-0070": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/yell/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/yell/index.htm"
+  },
+  "US-0119": {
+   "agency": "U.S. Fish and Wildlife Service",
+   "map": "https://www.fws.gov/refuge/hawaiian-islands/visit-us",
+   "web": "https://www.fws.gov/refuge/hawaiian-islands"
+  },
+  "US-0184": {
+   "agency": "Colorado Parks and Wildlife",
+   "map": "https://cpw.state.co.us/sites/default/files/dam/vhuuk6xtqt/ramahswa_geo.pdf",
+   "web": "https://cpw.state.co.us/state-wildlife-areas/ramah-swa"
+  },
+  "US-0329": {
+   "agency": "U.S. Fish and Wildlife Service",
+   "map": "https://www.fws.gov/refuge/silvio-o-conte/visit-us",
+   "web": "https://www.fws.gov/refuge/silvio-o-conte"
+  },
+  "US-0456": {
+   "agency": "U.S. Fish and Wildlife Service",
+   "map": "https://www.fws.gov/refuge/wallkill-river/visit-us",
+   "web": "https://www.fws.gov/refuge/wallkill-river"
+  },
+  "US-0542": {
+   "agency": "U.S. Fish and Wildlife Service",
+   "map": "https://www.fws.gov/refuge/attwater-prairie-chicken/visit-us/trails",
+   "web": "https://www.fws.gov/refuge/attwater-prairie-chicken"
+  },
+  "US-0543": {
+   "agency": "U.S. Fish and Wildlife Service",
+   "map": "https://www.fws.gov/refuge/balcones-canyonlands/visit-us",
+   "web": "https://www.fws.gov/refuge/balcones-canyonlands"
+  },
+  "US-0596": {
+   "agency": "U.S. Fish and Wildlife Service",
+   "map": "https://www.fws.gov/refuge/umatilla/visit-us",
+   "web": "https://www.fws.gov/refuge/umatilla"
+  },
+  "US-0642": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/natr/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/natr/index.htm"
+  },
+  "US-0654": {
+   "agency": "National Park Service — National Capital Parks-East (administrative unit; the workbook name is broader than the official unit name)",
+   "map": "https://www.nps.gov/nace/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/nace/planyourvisit/index.htm"
+  },
+  "US-0661": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/guis/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/guis/index.htm"
+  },
+  "US-0670": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/gwmp/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/gwmp/index.htm"
+  },
+  "US-0703": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/fodo/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/fodo/index.htm"
+  },
+  "US-0722": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/shil/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/shil/index.htm"
+  },
+  "US-0727": {
+   "agency": "Washington State Parks and Recreation Commission",
+   "map": "https://parks.wa.gov/find-parks/state-parks/lake-lenore-caves-state-park",
+   "web": "https://parks.wa.gov/find-parks/state-parks/lake-lenore-caves-state-park"
+  },
+  "US-0735": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/hafe/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/hafe/index.htm"
+  },
+  "US-0743": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/lyjo/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/lyjo/index.htm"
+  },
+  "US-0768": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/arpo/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/arpo/index.htm"
+  },
+  "US-0842": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/chsc/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/chsc/index.htm"
+  },
+  "US-0943": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/hove/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/hove/index.htm"
+  },
+  "US-0959": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/rabr/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/rabr/index.htm"
+  },
+  "US-10383": {
+   "agency": "Bureau of Land Management, Idaho State Office",
+   "map": "https://www.blm.gov/programs/national-conservation-lands/idaho",
+   "web": "https://www.blm.gov/programs/national-conservation-lands/idaho"
+  },
+  "US-10527": {
+   "agency": "Bureau of Land Management, Lewistown Field Office",
+   "map": "https://www.blm.gov/visit/judith-landing",
+   "web": "https://www.blm.gov/visit/judith-landing"
+  },
+  "US-1071": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/arkansas-post-museum-state-park",
+   "web": "https://www.arkansasstateparks.com/parks/arkansas-post-museum-state-park"
+  },
+  "US-1073": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/cane-creek-state-park",
+   "web": "https://www.arkansasstateparks.com/parks/cane-creek-state-park"
+  },
+  "US-1075": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/cossatot-river-state-park-natural-area",
+   "web": "https://www.arkansasstateparks.com/parks/cossatot-river-state-park-natural-area"
+  },
+  "US-1076": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/sites/default/files/2025-10/70672e51baea990ccabc9806230b7019_craterofdiamondsparkinformationbrochure2022.pdf",
+   "web": "https://www.arkansasstateparks.com/parks/crater-diamonds-state-park"
+  },
+  "US-1083": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/hampson-archeological-museum-state-park",
+   "web": "https://www.arkansasstateparks.com/parks/hampson-archeological-museum-state-park"
+  },
+  "US-1097": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/louisiana-purchase-state-park",
+   "web": "https://www.arkansasstateparks.com/parks/louisiana-purchase-state-park"
+  },
+  "US-1104": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/sites/default/files/2025-10/9301f4131ac1aed6b7f8e5f26460af5b_MountMagazineParkInformationBrochure2022.pdf",
+   "web": "https://www.arkansasstateparks.com/parks/mount-magazine-state-park"
+  },
+  "US-1107": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/ozark-folk-center-state-park",
+   "web": "https://www.arkansasstateparks.com/parks/ozark-folk-center-state-park"
+  },
+  "US-1108": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/parks/parkin-archeological-state-park",
+   "web": "https://www.arkansasstateparks.com/parks/parkin-archeological-state-park"
+  },
+  "US-11157": {
+   "agency": "Idaho Department of Parks and Recreation",
+   "map": "https://parksandrecreation.idaho.gov/parks/lava-hot-springs/",
+   "web": "https://parksandrecreation.idaho.gov/parks/lava-hot-springs/"
+  },
+  "US-1117": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/sites/default/files/2025-10/VCSP_HikersTrailGuide_lowres.pdf",
+   "web": "https://www.arkansasstateparks.com/parks/village-creek-state-park"
+  },
+  "US-1120": {
+   "agency": "Arkansas Department of Parks, Heritage and Tourism — Arkansas State Parks",
+   "map": "https://www.arkansasstateparks.com/sites/default/files/2025-10/woollyhollow_2011a.pdf",
+   "web": "https://www.arkansasstateparks.com/parks/woolly-hollow-state-park"
+  },
+  "US-1150": {
+   "agency": "California Department of Parks and Recreation",
+   "map": "https://www.parks.ca.gov/?page_id=580",
+   "web": "https://www.parks.ca.gov/?page_id=580"
+  },
+  "US-1210": {
+   "agency": "Colorado Parks and Wildlife (Colorado Department of Natural Resources)",
+   "map": "https://cpw.state.co.us/state-parks/boyd-lake-state-park",
+   "web": "https://cpw.state.co.us/state-parks/boyd-lake-state-park"
+  },
+  "US-12376": {
+   "agency": "Iowa Department of Natural Resources",
+   "map": "https://www.iowadnr.gov/places-go/wildlife-management-areas",
+   "web": "https://www.iowadnr.gov/places-go/wildlife-management-areas"
+  },
+  "US-12412": {
+   "agency": "Tennessee Valley Authority",
+   "map": "https://www.tva.com/environment/recreation/recreation-areas/rockpile-recreation-area",
+   "web": "https://www.tva.com/environment/recreation/recreation-areas/rockpile-recreation-area"
+  },
+  "US-12469": {
+   "agency": "Bureau of Land Management, Oregon/Washington",
+   "map": "https://www.blm.gov/visit",
+   "web": "https://www.blm.gov/visit"
+  },
+  "US-12681": {
+   "agency": "California Department of Fish and Wildlife",
+   "map": "https://wildlife.ca.gov/Lands/Places-to-Visit/Spenceville-WA",
+   "web": "https://wildlife.ca.gov/Lands/Places-to-Visit/Spenceville-WA"
+  },
+  "US-12846": {
+   "agency": "Washington State Parks and Recreation Commission",
+   "map": "https://parks.wa.gov/find-parks/state-parks/columbia-hills-state-park",
+   "web": "https://parks.wa.gov/find-parks/state-parks/columbia-hills-state-park"
+  },
+  "US-2190": {
+   "agency": "Georgia Department of Natural Resources, State Parks & Historic Sites",
+   "map": "https://gastateparks.org/MagnoliaSprings",
+   "web": "https://gastateparks.org/MagnoliaSprings"
+  },
+  "US-2194": {
+   "agency": "Georgia Department of Natural Resources, State Parks & Historic Sites",
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/red_top_mountain_state_park_map.jpg",
+   "web": "https://gastateparks.org/redtopmountain/"
+  },
+  "US-2208": {
+   "agency": "Hawaii Department of Land and Natural Resources, Division of State Parks",
+   "map": "https://dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/",
+   "web": "https://dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/"
+  },
+  "US-2464": {
+   "agency": "Massachusetts Department of Conservation and Recreation",
+   "map": "https://www.mass.gov/locations/lake-whitehall-state-park",
+   "web": "https://www.mass.gov/locations/lake-whitehall-state-park"
+  },
+  "US-2605": {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "map": "https://fwp.mt.gov/stateparks/whitefish-lake",
+   "web": "https://fwp.mt.gov/stateparks/whitefish-lake"
+  },
+  "US-2880": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Agriculture and Forest Environment",
+   "map": "https://riparks.ri.gov/other-state-lands/snake-dendame-farm",
+   "web": "https://riparks.ri.gov/other-state-lands/snake-dendame-farm"
+  },
+  "US-2989": {
+   "agency": "Texas Parks and Wildlife Department",
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_003a.pdf",
+   "web": "https://tpwd.texas.gov/state-parks/big-spring"
+  },
+  "US-3015": {
+   "agency": "Texas Parks and Wildlife Department",
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_063c.pdf",
+   "web": "https://tpwd.texas.gov/state-parks/goliad"
+  },
+  "US-3021": {
+   "agency": "Texas Parks and Wildlife Department",
+   "map": "https://tpwd.texas.gov/state-parks/kickapoo-cavern/map",
+   "web": "https://tpwd.texas.gov/state-parks/kickapoo-cavern"
+  },
+  "US-3035": {
+   "agency": "Texas Parks and Wildlife Department",
+   "map": "https://tpwd.texas.gov/state-parks/lyndon-b-johnson/map",
+   "web": "https://tpwd.texas.gov/state-parks/lyndon-b-johnson"
+  },
+  "US-3057": {
+   "agency": "Texas Parks and Wildlife Department",
+   "map": "https://tpwd.texas.gov/state-parks/south-llano-river/map",
+   "web": "https://tpwd.texas.gov/state-parks/south-llano-river"
+  },
+  "US-3058": {
+   "agency": "Texas Parks and Wildlife Department",
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_051d.pdf",
+   "web": "https://tpwd.texas.gov/state-parks/stephen-f-austin"
+  },
+  "US-3061": {
+   "agency": "Texas Parks and Wildlife Department (park managed by Jefferson County)",
+   "map": "https://tpwd.texas.gov/state-parks/walter-umphrey",
+   "web": "https://tpwd.texas.gov/state-parks/walter-umphrey"
+  },
+  "US-3091": {
+   "agency": "Utah Division of State Parks",
+   "map": "https://stateparks.utah.gov/wp-content/uploads/sites/13/2023/02/web-Snow-Canyon-Trail-Guide-Map-Brochure-2023.pdf",
+   "web": "https://stateparks.utah.gov/parks/snow-canyon/"
+  },
+  "US-3106": {
+   "agency": "Vermont Department of Forests, Parks and Recreation",
+   "map": "https://vtstateparks.com/buttonbay.html",
+   "web": "https://vtstateparks.com/buttonbay.html"
+  },
+  "US-3290": {
+   "agency": "Washington State Parks and Recreation Commission",
+   "map": "https://parks.wa.gov/find-parks/state-parks/westport-light-state-park",
+   "web": "https://parks.wa.gov/find-parks/state-parks/westport-light-state-park"
+  },
+  "US-3378": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/blri/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/blri/index.htm"
+  },
+  "US-3379": {
+   "agency": "National Park Service (NPS)",
+   "map": "https://www.nps.gov/dewa/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/dewa/index.htm"
+  },
+  "US-3380": {
+   "agency": "National Park Service",
+   "map": "https://www.nps.gov/noca/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/noca/index.htm"
+  },
+  "US-3421": {
+   "agency": "California Department of Parks and Recreation",
+   "map": "https://www.parks.ca.gov/pages/583/files/ColAllensworthFinalWebLayout011415.pdf",
+   "web": "https://www.parks.ca.gov/?page_id=583"
+  },
+  "US-3441": {
+   "agency": "California Department of Parks and Recreation",
+   "map": "https://www.parks.ca.gov/?page_id=591",
+   "web": "https://www.parks.ca.gov/?page_id=591"
+  },
+  "US-3688": {
+   "agency": "Alabama Department of Conservation and Natural Resources, Division of Wildlife and Freshwater Fisheries",
+   "map": "https://www.outdooralabama.com/hunting/wildlife-management-areas",
+   "agency_page": "https://www.outdooralabama.com/hunting/wildlife-management-areas"
+  },
+  "US-3697": {
+   "agency": "Alabama Department of Conservation and Natural Resources, Division of Wildlife and Freshwater Fisheries",
+   "map": "https://www.outdooralabama.com/hunting/wildlife-management-areas",
+   "agency_page": "https://www.outdooralabama.com/hunting/wildlife-management-areas"
+  },
+  "US-3698": {
+   "agency": "Alabama Department of Conservation and Natural Resources, Division of Wildlife and Freshwater Fisheries",
+   "map": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/2025_26_D1-Swan%20Creek%2C%20Mallard%2C%20Fox%20Creek%20WMA.pdf",
+   "agency_page": "https://www.outdooralabama.com/hunting/wildlife-management-areas"
+  },
+  "US-3700": {
+   "agency": "Alabama Department of Conservation and Natural Resources, Division of Wildlife and Freshwater Fisheries",
+   "map": "https://www.outdooralabama.com/hunting/wildlife-management-areas",
+   "agency_page": "https://www.outdooralabama.com/hunting/wildlife-management-areas"
+  },
+  "US-3704": {
+   "agency": "Alabama Department of Conservation and Natural Resources, Division of Wildlife and Freshwater Fisheries",
+   "map": "https://www.outdooralabama.com/hunting/wildlife-management-areas",
+   "agency_page": "https://www.outdooralabama.com/hunting/wildlife-management-areas"
+  },
+  "US-3710": {
+   "agency": "Alabama Department of Conservation and Natural Resources, Division of Wildlife and Freshwater Fisheries",
+   "map": "https://www.outdooralabama.com/hunting/wildlife-management-areas",
+   "agency_page": "https://www.outdooralabama.com/hunting/wildlife-management-areas"
+  },
+  "US-4102": {
+   "agency": "Illinois Department of Natural Resources",
+   "map": "https://dnr.illinois.gov/parks/park.randolphcounty.html",
+   "web": "https://dnr.illinois.gov/parks/park.randolphcounty.html"
+  },
+  "US-4385": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r06/umatilla/maps-guides",
+   "web": "https://www.fs.usda.gov/r06/umatilla"
+  },
+  "US-4387": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r06/wallowa-whitman/maps-guides",
+   "web": "https://www.fs.usda.gov/r06/wallowa-whitman"
+  },
+  "US-4398": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r04/uinta-wasatch-cache/maps-guides",
+   "web": "https://www.fs.usda.gov/r04/uinta-wasatch-cache"
+  },
+  "US-4402": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r02/gmug/maps-guides",
+   "web": "https://www.fs.usda.gov/r02/gmug"
+  },
+  "US-4424": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r08/ouachita/maps-guides",
+   "web": "https://www.fs.usda.gov/r08/ouachita"
+  },
+  "US-4454": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r05/cleveland/maps-guides",
+   "web": "https://www.fs.usda.gov/r05/cleveland"
+  },
+  "US-4477": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/detail/ipnf/maps-pubs?cid=fsm9_019030",
+   "web": "https://www.fs.usda.gov/r01/idahopanhandle"
+  },
+  "US-4500": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r01/bitterroot/maps-guides",
+   "web": "https://www.fs.usda.gov/r01/bitterroot"
+  },
+  "US-4505": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r01/kootenai/maps-guides",
+   "web": "https://www.fs.usda.gov/r01/kootenai/about-area/about-forest"
+  },
+  "US-4560": {
+   "agency": "National Park Service (NPS), administered by Natchez Trace Parkway",
+   "map": "https://www.nps.gov/natt/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/natt/index.htm"
+  },
+  "US-4561": {
+   "agency": "National Park Service (NPS), in partnership with the New England Trail organization",
+   "map": "https://www.nps.gov/neen/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/neen/index.htm"
+  },
+  "US-4562": {
+   "agency": "U.S. Department of Agriculture, Forest Service (overall trail administration)",
+   "map": "https://www.fs.usda.gov/trails/pacific-crest-nst",
+   "web": "https://www.fs.usda.gov/trails/pacific-crest-nst"
+  },
+  "US-4563": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/trails/pacific-northwest-nst",
+   "web": "https://www.fs.usda.gov/trails/pacific-northwest-nst"
+  },
+  "US-4564": {
+   "agency": "National Park Service (Potomac Heritage National Scenic Trail)",
+   "map": "https://www.nps.gov/pohe/planyourvisit/maps.htm",
+   "web": "https://www.nps.gov/pohe/index.htm"
+  },
+  "US-4607": {
+   "agency": "California Department of Forestry and Fire Protection (CAL FIRE)",
+   "map": "https://www.fire.ca.gov/what-we-do/natural-resource-management/forestry/forest-management",
+   "web": "https://www.fire.ca.gov/what-we-do/natural-resource-management/forestry/forest-management"
+  },
+  "US-4655": {
+   "agency": "Iowa Department of Natural Resources",
+   "map": "https://www.iowadnr.gov/places-go/state-forests/backbone-state-forest",
+   "web": "https://www.iowadnr.gov/places-go/state-forests/backbone-state-forest"
+  },
+  "US-4667": {
+   "agency": "Indiana Department of Natural Resources, Division of Forestry",
+   "map": "https://www.in.gov/dnr/forestry/properties/spencer-county-state-forest/",
+   "web": "https://www.in.gov/dnr/forestry/properties/spencer-county-state-forest/"
+  },
+  "US-5454": {
+   "agency": "Ohio Department of Natural Resources, Division of Forestry",
+   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/yellow-creek-state-forest",
+   "web": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/yellow-creek-state-forest"
+  },
+  "US-5483": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Parks and Recreation",
+   "map": "https://riparks.ri.gov/parks/lincoln-woods-state-park",
+   "web": "https://riparks.ri.gov/parks/lincoln-woods-state-park"
+  },
+  "US-5694": {
+   "agency": "New York State Department of Environmental Conservation",
+   "map": "https://dec.ny.gov/places/balsam-lake-mountain-wild-forest",
+   "web": "https://dec.ny.gov/places/balsam-lake-mountain-wild-forest"
+  },
+  "US-5750": {
+   "agency": "Bureau of Land Management",
+   "map": "https://www.blm.gov/programs/national-conservation-lands/colorado/black-ridge-canyons-wilderness",
+   "web": "https://www.blm.gov/programs/national-conservation-lands/colorado/black-ridge-canyons-wilderness"
+  },
+  "US-5768": {
+   "agency": "Bureau of Land Management",
+   "map": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management",
+   "web": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management"
+  },
+  "US-5790": {
+   "agency": "Grand County, Utah",
+   "map": "https://www.grandcountyutah.net/Facilities/Facility/Details/Sand-Flats-Recreation-Area-1",
+   "web": "https://www.grandcountyutah.net/Facilities/Facility/Details/Sand-Flats-Recreation-Area-1"
+  },
+  "US-5793": {
+   "agency": "U.S. Department of Agriculture, Forest Service (Ashley National Forest)",
+   "map": "https://www.fs.usda.gov/sites/nfs/files/r04/ashley/publication/Ashley%20Visitor%20Guide.pdf",
+   "web": "https://www.fs.usda.gov/r04/ashley/recreation/flaming-gorge-national-recreation-area"
+  },
+  "US-5859": {
+   "agency": "Bureau of Land Management",
+   "map": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management",
+   "web": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management"
+  },
+  "US-5875": {
+   "agency": "Bureau of Land Management, Price Field Office",
+   "map": "https://www.blm.gov/visit/wedge-overlook",
+   "web": "https://www.blm.gov/visit/wedge-overlook"
+  },
+  "US-5897": {
+   "agency": "Bureau of Land Management, Utah State Office",
+   "map": "https://www.blm.gov/programs/national-conservation-lands/utah",
+   "web": "https://www.blm.gov/programs/national-conservation-lands/utah"
+  },
+  "US-5923": {
+   "agency": "Utah Division of Wildlife Resources",
+   "map": "https://wildlife.utah.gov/hunting/hunting-in-utah/wildlife-management-areas.html",
+   "web": "https://wildlife.utah.gov/hunting/hunting-in-utah/wildlife-management-areas.html"
+  },
+  "US-6146": {
+   "agency": "U.S. Department of Agriculture, Forest Service — Bighorn National Forest",
+   "map": "https://www.fs.usda.gov/visit/destination/cloud-peak-wilderness",
+   "web": "https://www.fs.usda.gov/visit/destination/cloud-peak-wilderness"
+  },
+  "US-6209": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/visit/destination/absaroka-beartooth-wilderness",
+   "web": "https://www.fs.usda.gov/visit/destination/absaroka-beartooth-wilderness"
+  },
+  "US-6401": {
+   "agency": "Hawaii Department of Land and Natural Resources, Division of State Parks",
+   "map": "https://dlnr.hawaii.gov/dsp/parks/oahu/mauna-kea-state-recreation-area/",
+   "web": "https://dlnr.hawaii.gov/dsp/parks/oahu/mauna-kea-state-recreation-area/"
+  },
+  "US-6559": {
+   "agency": "Texas Historical Commission",
+   "map": "https://thc.texas.gov/historic-sites/fort-mckavett-state-historic-site",
+   "web": "https://thc.texas.gov/historic-sites/fort-mckavett-state-historic-site"
+  },
+  "US-6599": {
+   "agency": "Texas Historical Commission",
+   "map": "",
+   "web": "https://thc.texas.gov/historic-sites/sabine-pass-battleground"
+  },
+  "US-6958": {
+   "agency": "North Carolina Wildlife Resources Commission",
+   "map": "https://www.ncwildlife.gov/hunting/where-hunt-and-shoot/game-lands",
+   "web": "https://www.ncwildlife.gov/hunting/where-hunt-and-shoot/game-lands"
+  },
+  "US-6982": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish & Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/maps/mapfile/huntingatlas/15.pdf",
+   "agency_page": "https://dem.ri.gov/natural-resources-bureau/fish-wildlife"
+  },
+  "US-6983": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+   "agency_page": "https://dem.ri.gov/online-services/data-maps"
+  },
+  "US-6984": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+   "agency_page": "https://dem.ri.gov/online-services/data-maps"
+  },
+  "US-6985": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+   "agency_page": "https://dem.ri.gov/online-services/data-maps"
+  },
+  "US-6989": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+   "agency_page": "https://dem.ri.gov/online-services/data-maps"
+  },
+  "US-6990": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+   "agency_page": "https://dem.ri.gov/online-services/data-maps"
+  },
+  "US-6991": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+   "agency_page": "https://dem.ri.gov/online-services/data-maps"
+  },
+  "US-7106": {
+   "agency": "Mississippi Department of Wildlife, Fisheries, and Parks",
+   "map": "https://www.mdwfp.com/wildlife-hunting/wma",
+   "web": "https://www.mdwfp.com/wildlife-hunting/wma/leaf-river-wma"
+  },
+  "US-7266": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/blue-mountain-wma/"
+  },
+  "US-7268": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/brewer-lake-wma/"
+  },
+  "US-7269": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/brushy-creek-wma/"
+  },
+  "US-7276": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/cherokee-wma/"
+  },
+  "US-7282": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/departee-creek-wma/"
+  },
+  "US-7284": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/earl-buss-bayou-deview-wma/"
+  },
+  "US-7285": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/ed-gordon-point-remove-wma/"
+  },
+  "US-7286": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/fort-chaffee-wma/"
+  },
+  "US-7287": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/galla-creek-wma/"
+  },
+  "US-7294": {
+   "agency": "Arkansas Game and Fish Commission / Arkansas Natural Heritage Commission",
+   "map": "https://apps.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/holland-bottoms-wma/"
+  },
+  "US-7296": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/howard-county-wma/"
+  },
+  "US-7299": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/jim-kress-wma/"
+  },
+  "US-7315": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/piney-creeks-wma/"
+  },
+  "US-7318": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/rainey-wma/"
+  },
+  "US-7325": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/shirey-bay-rainey-brake-wma/"
+  },
+  "US-7329": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/sweden-creek-falls-wma/"
+  },
+  "US-7336": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc/wma/bearcat-hollow-wma/"
+  },
+  "US-7338": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/cut-off-creek-wma/"
+  },
+  "US-7342": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/henry-gray-hurricane-lake-wma/"
+  },
+  "US-7343": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/j-perry-mikles-blue-mountain-wma/"
+  },
+  "US-7354": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/spring-bank-wma/"
+  },
+  "US-7358": {
+   "agency": "Arkansas Game and Fish Commission",
+   "map": "https://www.agfc.com/maps/",
+   "web": "https://www.agfc.com/wma/trusten-holder-wma/"
+  },
+  "US-7361": {
+   "agency": "U.S. Department of Agriculture, Forest Service",
+   "map": "https://www.fs.usda.gov/r06/wallowa-whitman/maps-guides",
+   "web": "https://www.fs.usda.gov/r06/wallowa-whitman/recreation/hells-canyon-national-recreation-area"
+  },
+  "US-7377": {
+   "agency": "California Department of Fish and Wildlife",
+   "map": "https://wildlife.ca.gov/Lands/Places-to-Visit/Bolsa-Chica-ER",
+   "web": "https://wildlife.ca.gov/Lands/Places-to-Visit/Bolsa-Chica-ER"
+  },
+  "US-7412": {
+   "agency": "Kansas Department of Wildlife and Parks",
+   "map": "https://ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/South-Central-Region/Black-Kettle",
+   "web": "https://ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/South-Central-Region/Black-Kettle"
+  },
+  "US-7421": {
+   "agency": "Kansas Department of Wildlife and Parks",
+   "map": "https://ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/Northwest-Region/Rooks",
+   "web": "https://ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/Northwest-Region/Rooks"
+  },
+  "US-7442": {
+   "agency": "U.S. Department of Agriculture, Forest Service — Ozark-St. Francis National Forests",
+   "map": "https://www.fs.usda.gov/recarea/osfnf/recarea/?recid=43431",
+   "web": "https://www.fs.usda.gov/recarea/osfnf/recarea/?recid=43431"
+  },
+  "US-7508": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Parks and Recreation",
+   "map": "https://riparks.ri.gov/parks/pulaski-state-park",
+   "web": "https://riparks.ri.gov/parks/pulaski-state-park"
+  },
+  "US-7714": {
+   "agency": "Rhode Island Department of Environmental Management, Division of Fish and Wildlife",
+   "map": "https://dem.ri.gov/programs/bnatres/fishwild/pdf/wrisum19.pdf",
+   "agency_page": "https://dem.ri.gov/programs/fish-wildlife"
+  },
+  "US-7746": {
+   "agency": "Maryland Department of Natural Resources, Wildlife and Heritage Service",
+   "map": "https://dnr.maryland.gov/wildlife/Pages/publiclands/wma.aspx",
+   "web": "https://dnr.maryland.gov/wildlife/Pages/publiclands/wma.aspx"
+  },
+  "US-7949": {
+   "agency": "Kansas Department of Wildlife and Parks",
+   "map": "https://ksoutdoors.com/KDWP-Info/Locations/Wildlife-Areas",
+   "web": "https://ksoutdoors.com/KDWP-Info/Locations/Wildlife-Areas"
+  },
+  "US-8020": {
+   "agency": "New Hampshire Division of Parks and Recreation",
+   "map": "https://www.nhstateparks.org/visit/historic-sites/franklin-pierce-homestead",
+   "web": "https://www.nhstateparks.org/visit/historic-sites/franklin-pierce-homestead"
+  },
+  "US-8025": {
+   "agency": "New Hampshire Division of Parks and Recreation",
+   "map": "https://www.nhstateparks.org/visit/historic-sites/wentworth-coolidge-mansion",
+   "web": "https://www.nhstateparks.org/visit/historic-sites/wentworth-coolidge-mansion"
+  },
+  "US-8028": {
+   "agency": "New Hampshire Division of Parks and Recreation",
+   "map": "https://www.nhstateparks.org/visit/state-parks/madison-boulder-natural-area",
+   "web": "https://www.nhstateparks.org/visit/state-parks/madison-boulder-natural-area"
+  },
+  "US-8029": {
+   "agency": "New Hampshire Division of Parks and Recreation",
+   "map": "https://www.nhstateparks.org/visit/state-parks/sculptured-rocks-natural-area",
+   "web": "https://www.nhstateparks.org/visit/state-parks/sculptured-rocks-natural-area"
+  },
+  "US-8300": {
+   "agency": "Bureau of Land Management, Bishop Field Office",
+   "map": "https://www.blm.gov/sites/default/files/docs/2023-03/AH_Avenza_Map_508.pdf",
+   "web": "https://www.blm.gov/programs/national-conservation-lands/california/alabama-hills-national-scenic-area"
+  },
+  "US-8396": {
+   "agency": "Massachusetts Department of Conservation and Recreation",
+   "map": "https://www.mass.gov/doc/nashua-river-rail-trail-map/download",
+   "web": "https://www.mass.gov/locations/nashua-river-rail-trail"
+  },
+  "US-9300": {
+   "agency": "Iowa Department of Natural Resources",
+   "map": "https://www.iowadnr.gov/places-go/wildlife-management-areas",
+   "web": "https://www.iowadnr.gov/places-go/wildlife-management-areas"
+  },
+  "US-9596": {
+   "agency": "Bureau of Land Management, Colorado River Valley Field Office",
+   "map": "https://www.blm.gov/visit/north-sand-hills-recreation-area",
+   "web": "https://www.blm.gov/visit/north-sand-hills-recreation-area"
+  },
+  "US-9632": {
+   "agency": "Colorado Parks and Wildlife",
+   "map": "https://cpw.state.co.us/state-wildlife-areas/cochetopa-swa",
+   "web": "https://cpw.state.co.us/state-wildlife-areas/cochetopa-swa"
+  },
+  "US-9643": {
+   "agency": "Colorado Parks and Wildlife",
+   "map": "https://cpw.state.co.us/state-wildlife-areas/dome-lakes-swa",
+   "web": "https://cpw.state.co.us/state-wildlife-areas/dome-lakes-swa"
+  }
+ }
+}
