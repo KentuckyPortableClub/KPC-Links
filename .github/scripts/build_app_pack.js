@@ -52,11 +52,13 @@ const sz = o => Buffer.byteLength(JSON.stringify(o));
   console.log('KY', parks.length, 'parks,', nOut, 'with outlines (' + nApprox + ' approx),', (sz(ky) / 1e6).toFixed(2), 'MB');
   /* ---- every other state: parks + pins ---- */
   const dir = path.join(ROOT, 'data', 'parkinfo');
+  /* Oct 25 storage plan (chat 2): parkinfo files no longer carry 'updated'; the change date lives in data/status/kpc_state_links.json {changed:{'data/parkinfo/US-XX.json': 'YYYY-MM-DD'}} */
+  let CHG = {}; try { CHG = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'status', 'kpc_state_links.json'), 'utf8')).changed || {}; } catch (e) {}
   for (const f of fs.readdirSync(dir).filter(x => /^US-[A-Z]{2}\.json$/.test(x)).sort()) {
     const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')), st = j.state;
     if (st === 'KY' || !j.parks) continue;
     const P = Object.entries(j.parks).map(([ref, a]) => ({ ref, name: a[0], web: a[1] || '', kind: a[2] || '', act: a[3] || '', acc: a[4] || '', la: a[5], lo: a[6], ap: [] })).filter(p => p.la && p.lo);
-    const pack = { state: st, updated: j.updated || index.updated, site: j.stateSite || '', note: 'Pins only: no outlines on the phone yet for this state. With signal the app can fetch the official outline (USGS PAD-US) for a park the key knows.', parks: P, outlines: {} };
+    const pack = { state: st, updated: CHG['data/parkinfo/' + f] || j.updated || index.updated, site: j.stateSite || '', note: 'Pins only: no outlines on the phone yet for this state. With signal the app can fetch the official outline (USGS PAD-US) for a park the key knows.', parks: P, outlines: {} };
     fs.writeFileSync(path.join(OUT, 'US-' + st + '.json'), JSON.stringify(pack));
     index.states[st] = { parks: P.length, outlines: 0, approx: 0, bytes: sz(pack) };
   }
