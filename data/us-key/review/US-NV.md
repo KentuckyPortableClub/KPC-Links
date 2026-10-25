@@ -1,6 +1,6 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **213 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **213 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 

@@ -1,6 +1,6 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **193 of 298** parks joined to official land (same name + same kind of place). **10** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **192 of 298** parks joined to official land (same name + same kind of place). **11** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,6 +13,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **193 of 298** parks joined
 - **US-12719** Newton Lakes BOR Recreation Site (Recreation Site) → Newton Lakes (~471 ac, similar name)
 - **US-6117** Camp Douglas WW-II POW Officers' Club State Historic Site (State Historic Site) → Camp Douglas (~1 ac, similar name)
 - **US-6119** Wyoming Pioneer Memorial Museum State Historic Site (State Historic Site) → Wyoming Pioneer Museum (~2 ac, similar name)
+- **US-6196** Rock Springs BLM Herd Management Area (BLM Herd Management Area) → Rock Springs Field Office (~3,606,721 ac, similar name); Rock Springs Field Office ERMA (~3,308,154 ac, similar name)
 - **US-6212** Whiskey Basin/ Little Red Creek Wildlife Management Area (Wildlife Management Area) → Whiskey Basin (~5,682 ac, similar name); Whiskey Basin Wildlife Habitat Management Area (~12,843 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -152,7 +153,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **193 of 298** parks joined
 - Absaroka Mountain Foothills SRMA ·  · BLM recreation sites · ~42,866 ac
 - Lander Slope/Red Canyon ERMA ·  · BLM recreation sites · ~38,978 ac
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~37,820 ac
-- Targhee National Forest · NF · Forest Service Region 04 Intermountain · ~37,247 ac
 - Face of the Bighorns/North Fork ERMA ·  · BLM recreation sites · ~34,487 ac
 - Dempsey Ridge SRMA ·  · BLM recreation sites · ~33,330 ac
 - Raymond Mountain SRMA ·  · BLM recreation sites · ~32,842 ac
@@ -178,3 +178,4 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **193 of 298** parks joined
 - Beck Lake SRMA ·  · BLM recreation sites · ~6,916 ac
 - Willow Creek ERMA ·  · BLM recreation sites · ~6,835 ac
 - Green and New Fork Rivers SRMA (Lower Zone) ·  · BLM recreation sites · ~6,710 ac
+- Lander Valley Community SRMA ·  · BLM recreation sites · ~6,169 ac

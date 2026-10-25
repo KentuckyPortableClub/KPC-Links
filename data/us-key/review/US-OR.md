@@ -1,6 +1,6 @@
 # OR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **352 of 440** parks joined to official land (same name + same kind of place). **0** to check by hand, **50** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **352 of 440** parks joined to official land (same name + same kind of place). **0** to check by hand, **50** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -108,7 +108,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **352 of 440** parks joined
 - Burns Andrews Field Office · PUB · BLM · ~1,602,437 ac
 - Prineville Central Oregon Field Office · PUB · BLM · ~907,261 ac
 - Prineville Deschutes Field Office · PUB · BLM · ~744,205 ac
-- Forest Development Fund (Board Of Forestry) · SRMA · Oregon Department of Forestry · ~627,317 ac
 - Rangeland · SRMA · Unknown · ~595,893 ac
 - Rogue River National Forest · NF · Forest Service Region 06 Pacific Northwest · ~577,492 ac
 - Little Owyhee ·  · BLM herd management areas · ~463,133 ac
@@ -161,3 +160,4 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **352 of 440** parks joined
 - North Fork Owyhee Backcountry ·  · BLM recreation sites · ~57,830 ac
 - High Desert ·  · BLM recreation sites · ~56,717 ac
 - Mount Thielsen Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~55,127 ac
+- Mount Washington Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~54,407 ac
