@@ -727,6 +727,12 @@ for cc in COUNTRIES:
         JA = wd_ja(P)
         notice('World key JP sample', '; '.join(f"{r.get('nj')} → {r['n']} [{r['ty']}]" for r in recs[:12]) + ' | fields: ' + ', '.join(list(recs[0]['_a'].keys())[:30]))
     for r in recs: r['_k'] = kinds(cc, r['n']) | kinds(cc, r['ty']) | kinds(cc, r['src']) | r.get('_k0', set())
+    # Oct 25: dual names - Australia files many parks under the Aboriginal name with the English one in brackets
+    # ('Bandilngan (Windjana Gorge)', 'Danggu (Geikie Gorge)'); norm() drops bracket text, so both names become parts
+    if cc != 'JP':
+        for r in recs:
+            br = [q.strip() for q in re.findall(r'\(([^)]{3,})\)', r['n'] or '') if re.search(r'[A-Za-z]{3}', q)]
+            if br: r['parts'] = [r['n']] + br + [re.sub(r'\(.*?\)', ' ', r['n']).strip()]
     # 1-degree grid so big countries (FR: 14k parks x 15k areas) stay quick
     GRID = {}
     for i, r in enumerate(recs):
@@ -826,8 +832,8 @@ for cc in COUNTRIES:
             w1 = words(cc, name)
             def agrees(r):
                 for q in cand:
-                    if same_name(cc, q, r['n']): return 'same name'
-                w2 = words(cc, r['n'])
+                    if any(same_name(cc, q, rn) for rn in (r.get('parts') or [r['n']])): return 'same name'
+                w2 = set().union(*[words(cc, rn) for rn in (r.get('parts') or [r['n']])])
                 if w1 and w2 and len(w1 & w2) >= 1 and (w1 <= w2 or w2 <= w1) and max(len(w1), len(w2)) >= 2: return 'shared name words'
                 return None
             holds = [(r, agrees(r)) for r in nearby(la, lo) if r['n'] and near(la, lo, r['_bb'], 0) and inside(la, lo, r['_r'])]
