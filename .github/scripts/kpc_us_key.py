@@ -63,7 +63,8 @@ ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation
         # 'Flagler Reservoir SWA' for PAD-US's 'Flagler Reservoir State Wildlife Area'; unexpanded, the two read as two places
         'swa': 'state wildlife area', 'sra': 'state recreation area', 'nca': 'national conservation area',
         'nwr': 'national wildlife refuge', 'srma': 'special recreation management area', 'sna': 'state natural area',
-        'sfu': 'state fish hatchery', 'historical': 'historic'}   # Colorado Parks & Wildlife 'Rifle Falls SFU' = Rifle Falls State Fish Hatchery
+        'sfu': 'state fish hatchery', 'historical': 'historic',
+        'dnp': 'state nature preserve', 'snp': 'state nature preserve', 'shs': 'state historic site'}   # Oct 25: Ohio ODNR 'Acadia Cliffs DNP' (dedicated nature preserve)   # Colorado Parks & Wildlife 'Rifle Falls SFU' = Rifle Falls State Fish Hatchery
 # Oct 24: the Oct 22 'keep a leading type word' rule must not keep a leading article or filler - 'The 400 State Trail'
 # came out as 'the 400 trail' and no longer met '400 State Trail' (found measuring the WI key)
 NOTNAME = {'the', 'of', 'and', 'state', 'national', 'no', 'number', 'blm', 'designated', 'a', 'an'}
@@ -411,7 +412,7 @@ try:
             if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
             XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
-                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1'}))
+                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1', 'nm2': _l.get('nm2') or ''}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
 def resolve(pre, url, nf, af):
@@ -462,7 +463,7 @@ def extra_state(st, have, only=None):
         off, n = 0, 0
         while True:
             q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                 'outFields': ','.join(q for q in (oidf, nf, af) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
+                 'outFields': ','.join(q for q in (oidf, nf, af, opt.get('nm2')) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
             try:
                 j, pg = fetch_geo(url, q)
             except Exception as e:  # noqa: BLE001
@@ -476,7 +477,8 @@ def extra_state(st, have, only=None):
                 k = kinds(nm) | kk
                 if (norm(nm), frozenset(k)) in have: continue
                 g = f.get('geometry') or {}
-                out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
+                nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
+                out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
                             'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
                             **({'Water': 1} if opt.get('water') else {})})
                 n += 1
