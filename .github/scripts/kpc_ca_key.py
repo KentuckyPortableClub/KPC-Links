@@ -289,7 +289,7 @@ if recs is None:
     # authorities, NovaRoc, GeoNB, GeoLinc, Nunavut, Saskatchewan, Québec culture ministry). Each gets a unique short code
     # as its label start, so ids from two layers can never collide ('ON-NPCA Niag:5').
     PROVS = {'AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'}
-    GJ = []
+    GJ, SZ = [], []
     try:
         _sg = json.load(open('data/state-gis.json')).get('states') or {}
         _have = {e[1].rstrip('/') for e in MORE}
@@ -300,6 +300,7 @@ if recs is None:
                 if not _u or _u in _have or not _l.get('nm') or _l.get('water'): continue
                 _lab = f"{_l.get('code') or _pv} {_l.get('ag') or ''}"
                 if _l.get('fmt') == 'geojson': GJ.append((_lab, _u, _l['nm']))
+                elif _l.get('fmt') == 'shpzip': SZ.append((_lab, _u, _l['nm'], _l.get('epsg') or 4326))
                 else: MORE.append((_lab, _u, [_l['nm']]))
     except Exception as ex: notice('Canada state-gis layers', f'not read: {ex}')  # noqa: BLE001
 
@@ -317,7 +318,34 @@ if recs is None:
             rr = {'oid': f'{label[:12]}:{P.get("OBJECTID") or P.get("objectid") or i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
             rr['_k'] = kinds(nm); got.append(rr)
         return got
+    def sz_pull(label, url, nf, epsg):
+        # a zipped shapefile in the agency's own projection (Grand River CA: UTM zone 17, no live map service)
+        import io, zipfile, shapefile
+        from pyproj import Transformer
+        tr = Transformer.from_crs(int(epsg), 4326, always_xy=True)
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: z = zipfile.ZipFile(io.BytesIO(r.read()))
+        got = []
+        for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
+            b = sp[:-4]
+            rd = shapefile.Reader(shp=io.BytesIO(z.read(sp)), dbf=io.BytesIO(z.read(b + '.dbf')), shx=io.BytesIO(z.read(b + '.shx')))
+            fn = [f[0] for f in rd.fields[1:]]
+            for i, (shp, rec) in enumerate(zip(rd.shapes(), rd.records())):
+                a = dict(zip(fn, list(rec))); nm = str(a.get(nf) or '').strip()
+                if not nm: continue
+                pts, parts = shp.points, list(shp.parts) + [len(shp.points)]
+                rs = []
+                for k in range(len(parts) - 1):
+                    ring = pts[parts[k]:parts[k + 1]]; st = max(1, len(ring) // 400)
+                    xs, ys = tr.transform([q[0] for q in ring[::st]], [q[1] for q in ring[::st]])
+                    rs.append([[round(x, 5), round(y, 5)] for x, y in zip(xs, ys)])
+                g = {'rings': rs}
+                rr = {'oid': f'{label[:12]}:{i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                rr['_k'] = kinds(nm); got.append(rr)
+        return got
     _mores = []   # Oct 20: GitHub shows only 10 notices per step, so all layer counts go in ONE notice
+    for e in SZ:
+        try: g = sz_pull(*e); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
+        except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
     for e in GJ:
         try: g = gj_pull(*e); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
         except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
@@ -359,6 +387,8 @@ for pv, parks_in in sorted(by.items()):
     for ref, x in sorted(parks_in.items()):
         name, typ, la, lo = x[0], x[2], x[5], x[6]
         if not la and not lo: la = lo = None   # Oct 18: POTA has no pin for ~200 Canadian parks (0,0): match by name in the province only
+        elif abs(la) > 90:                      # Oct 25: POTA has a few pins with latitude and longitude swapped (Churchill WMA 92.6, -57.1): Canada is north + west
+            la, lo = abs(lo), -abs(la)
         kp = kinds(name) | kinds(typ)
         m, c = [], []
         for r in recs:

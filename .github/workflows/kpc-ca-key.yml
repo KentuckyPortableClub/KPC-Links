@@ -20,7 +20,9 @@ jobs:
         env:
           GEO_CACHE_MODE: refresh      # Oct 22: keep the outlines it read, so the next step can save the missing park files
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
-        run: python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Canada key::stopped early (see the log above); the old files are kept"
+        run: |
+          pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || true
+          python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Canada key::stopped early (see the log above); the old files are kept"
       - name: Save outline files for joined parks that have none (never overwrites)
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
