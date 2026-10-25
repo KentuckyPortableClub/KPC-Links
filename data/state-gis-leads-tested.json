@@ -1,0 +1,2005 @@
+{
+ "tested": "2026-10-25 13:01 UTC",
+ "states": {
+  "AK": [
+   {
+    "park": "Afognak Island State Park",
+    "ref": "US-1639",
+    "link": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer",
+    "layers": [
+     {
+      "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/0",
+      "name": "ASP Park Facility",
+      "geom": "esriGeometryPoint"
+     },
+     {
+      "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/1",
+      "name": "ASP Park Trail",
+      "geom": "esriGeometryPolyline"
+     },
+     {
+      "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
+      "name": "ASP Park Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "PARKNAME",
+      "fields": [
+       "OBJECTID",
+       "PARKNAME",
+       "REGION",
+       "NAME",
+       "LWCF",
+       "DEV_GRANTS",
+       "RFRSHDT",
+       "GlobalID",
+       "Shape__Area",
+       "Shape__Length",
+       "PRKTYPABRV",
+       "PRMRYLASFL",
+       "DTPRKCRTD",
+       "MI_LABEL",
+       "UID_",
+       "ACREAGE"
+      ],
+      "count": 157,
+      "sample": [
+       "Mosquito Lake State Recreation Site",
+       "Centennial Lake Trail",
+       "Juneau Trail System"
+      ],
+      "parkWord": "Afognak",
+      "parkHits": [
+       "Afognak Island State Park",
+       "Afognak Island State Recreation Area"
+      ]
+     },
+     {
+      "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/3",
+      "name": "ASP Park Road",
+      "geom": "esriGeometryPolyline"
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "AL": [
+   {
+    "park": "Blackwater River State Nature Preserve",
+    "ref": "US-9916",
+    "link": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "AR": [
+   {
+    "park": "Arkansas Museam of Natural Resources State Park",
+    "ref": "US-1070",
+    "link": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "AZ": [
+   {
+    "park": "Boyce Thompson Arboretum State Park",
+    "ref": "US-1053",
+    "link": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "CA": [
+   {
+    "park": "La Purisima Mission State Historical Park",
+    "ref": "US-3454",
+    "link": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "CT": [
+   {
+    "park": "Beckley Iron Furnace State Park",
+    "ref": "US-7529",
+    "link": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "DE": [
+   {
+    "park": "Auburn Valley State Park",
+    "ref": "US-4366",
+    "link": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer",
+    "layers": [
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/0",
+      "name": "DNREC Building Points (No Build Points- Bay)",
+      "geom": "esriGeometryPoint"
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/1",
+      "name": "DNREC Building Line (No Build Line - Bay)",
+      "geom": "esriGeometryPolyline"
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/2",
+      "name": "DNREC Building Points (No Build Points - Ocean)",
+      "geom": "esriGeometryPoint"
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/3",
+      "name": "DNREC Building Line (No Build Line - Ocean)",
+      "geom": "esriGeometryPolyline"
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/4",
+      "name": "Beach Preservation Regulatory Area ",
+      "geom": "esriGeometryPolygon",
+      "nameField": "",
+      "fields": [
+       "OBJECTID",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN"
+      ],
+      "count": 1
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/6",
+      "name": "Outdoor Recreation, Parks and Trails Program Lands",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "NAME",
+       "FACILITYID",
+       "COUNTY",
+       "TYPE",
+       "ACRES",
+       "REGION",
+       "PROJ_NUM",
+       "PROJ_NAME",
+       "STATUS",
+       "DESCRIP",
+       "ALIAS",
+       "PROJ_DATE",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN",
+       "REPLACEMENT"
+      ],
+      "count": 521,
+      "sample": [
+       "Rahway Park",
+       "Johnston Playground",
+       "Stapler Park"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": []
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/7",
+      "name": "Land and Water Conservation Fund",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "NAME",
+       "FACILITYID",
+       "COUNTY",
+       "TYPE",
+       "ACRES",
+       "REGION",
+       "PROJ_NUM",
+       "PROJ_NAME",
+       "STATUS",
+       "DESCRIP",
+       "PROJ_TYPE",
+       "ALIAS",
+       "PROJ_DATE",
+       "REPLACEMENT",
+       "LWCF_FUNDS_TOTAL",
+       "PROJECT_TOTAL",
+       "PROJ_SUB_TYPE",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN"
+      ],
+      "count": 236,
+      "sample": [
+       "Brandywine Creek State Park",
+       "Delaware Seashore State Park",
+       "Delaware Seashore State Park"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": [
+       "Auburn Heights"
+      ]
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8",
+      "name": "Nature Preserves",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "NAME",
+       "TRACT",
+       "OWNERSHIP",
+       "ACRES",
+       "SHAPE"
+      ],
+      "count": 129,
+      "sample": [
+       "Cedar Creek Nature Preserve",
+       "Cedar Creek Nature Preserve",
+       "Cedar Creek Nature Preserve"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": []
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/9",
+      "name": "Outdoor Recreation Areas",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "TRACT",
+       "NAME",
+       "USE_",
+       "PUBLIC_ACESS",
+       "COUNTY",
+       "ACRES",
+       "GLOBALID",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN",
+       "MANAGING_AGENCY"
+      ],
+      "count": 2283,
+      "sample": [
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "First State National Monument"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": [
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "Auburn Valley State Park"
+      ]
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/10",
+      "name": "Outdoor Recreation, Parks and Trails Program Open Space",
+      "geom": "esriGeometryPolygon",
+      "nameField": "AGENCY",
+      "fields": [
+       "OBJECTID",
+       "AGENCY",
+       "COUNTY",
+       "MANAGEMENT_AREA",
+       "ACRES",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN"
+      ],
+      "count": 110,
+      "sample": [
+       "Parks",
+       "Forestry",
+       "Forestry"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": []
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11",
+      "name": "Public Protected Lands",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "FACILITYID",
+       "NAME",
+       "USE",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN",
+       "ACRES",
+       "WEB_ADDRESSES",
+       "MANAGING_AGENCY"
+      ],
+      "count": 869,
+      "sample": [
+       "Cape Henlopen State Park",
+       "H. Fletcher Brown Park",
+       "Fenwick Island State Park"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": [
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "Auburn Valley State Park",
+       "Auburn Valley State Park"
+      ]
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/12",
+      "name": "Conservation Easements",
+      "geom": "esriGeometryPolygon",
+      "nameField": "GRANTOR",
+      "fields": [
+       "OBJECTID",
+       "GRANTOR",
+       "HELDBY",
+       "FILE_",
+       "ACRES",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN"
+      ],
+      "count": 209,
+      "sample": [
+       "Teevan Holding Company (lt 20)",
+       "Teevan Holding Company (lt 9)",
+       "The Nature Conservancy"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": []
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/14",
+      "name": "Seasonal Restricted Areas",
+      "geom": "esriGeometryPolygon",
+      "nameField": "PARK",
+      "fields": [
+       "OBJECTID",
+       "SHAPE",
+       "PARK",
+       "CLOSURE",
+       "SHAPE.AREA",
+       "SHAPE.LEN"
+      ],
+      "count": 2,
+      "sample": [
+       "Cape Henlopen State Park",
+       "Cape Henlopen State Park"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": []
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/15",
+      "name": "Permanent Restricted Areas",
+      "geom": "esriGeometryPolygon",
+      "nameField": "PARK",
+      "fields": [
+       "OBJECTID",
+       "SHAPE",
+       "PARK",
+       "CLOSURE",
+       "SHAPE.AREA",
+       "SHAPE.LEN"
+      ],
+      "count": 43,
+      "sample": [
+       "Cape Henlopen State Park",
+       "Cape Henlopen State Park",
+       "Beach Plum Island Nature Preserve"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": [
+       "Auburn Heights Preserve"
+      ]
+     },
+     {
+      "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17",
+      "name": "Wildlife Area Boundaries",
+      "geom": "esriGeometryPolygon",
+      "nameField": "AREA_NAME",
+      "fields": [
+       "OBJECTID",
+       "AREA_NAME",
+       "TRACT_NAME",
+       "OWNER",
+       "GIS_ACRES",
+       "PUB_ENTRY",
+       "SUN_HUNT",
+       "SHAPE",
+       "SHAPE.AREA",
+       "SHAPE.LEN",
+       "STORYSTOP"
+      ],
+      "count": 76,
+      "sample": [
+       "Augustine Wildlife Area",
+       "DNERR Blackbird Creek Reserve",
+       "Milford Neck Wildlife Area"
+      ],
+      "parkWord": "Auburn",
+      "parkHits": []
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "FL": [
+   {
+    "park": "47 Bridge State Conservation Area",
+    "ref": "US-8674",
+    "link": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "GA": [
+   {
+    "park": "Bartram Educational State Forest",
+    "ref": "US-4648",
+    "link": "https://services2.arcgis.com/PYn6bWCjT6bhw1z3/ArcGIS/rest/services/GA_State_Parks/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services2.arcgis.com/PYn6bWCjT6bhw1z3/ArcGIS/rest/services/GA_State_Parks/FeatureServer/0",
+      "name": "GA_State_Parks",
+      "geom": "esriGeometryPoint"
+     }
+    ],
+    "status": "no outline layers"
+   }
+  ],
+  "HI": [
+   {
+    "park": "Queen Emma Summer Palace State Park",
+    "ref": "US-6430",
+    "link": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "IA": [
+   {
+    "park": "Blackburn State Park",
+    "ref": "US-11875",
+    "link": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "ID": [
+   {
+    "park": "Antelope Valley Airstrip State Recreation Area",
+    "ref": "US-7805",
+    "link": "https://idpr-data-idaho.hub.arcgis.com/  (IDPR Open Data Hub - check for park boundary layers; no single public FeatureServer polygons found)",
+    "layers": [],
+    "status": "not a map service address (portal / item page)"
+   }
+  ],
+  "IL": [
+   {
+    "park": "Beall Woods State Park",
+    "ref": "US-0980",
+    "link": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer/0",
+      "name": "DNR_Parks_Unit_Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Facility",
+      "fields": [
+       "FID",
+       "UniqueID",
+       "LinkID",
+       "Acres",
+       "District",
+       "Facility",
+       "CreatedUse",
+       "CreatedDat",
+       "EditName",
+       "EditDate",
+       "GlobalID",
+       "OBJECTID",
+       "Shape__Are",
+       "Shape__Len",
+       "GlobalID_2",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 108,
+      "sample": [
+       "Young State Park",
+       "W.C. Wetzel Recreation Area",
+       "Onaway State Park"
+      ],
+      "parkWord": "Beall",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   },
+   {
+    "park": "Bohm Woods State Nature Preserve",
+    "ref": "US-4111",
+    "link": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer/0",
+      "name": "DNR_Parks_Unit_Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Facility",
+      "fields": [
+       "FID",
+       "UniqueID",
+       "LinkID",
+       "Acres",
+       "District",
+       "Facility",
+       "CreatedUse",
+       "CreatedDat",
+       "EditName",
+       "EditDate",
+       "GlobalID",
+       "OBJECTID",
+       "Shape__Are",
+       "Shape__Len",
+       "GlobalID_2",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 108,
+      "sample": [
+       "Young State Park",
+       "W.C. Wetzel Recreation Area",
+       "Onaway State Park"
+      ],
+      "parkWord": "Woods",
+      "parkHits": [
+       "Warren Woods State Park"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "IN": [
+   {
+    "park": "Allens Creek State Recreation Area",
+    "ref": "US-5684",
+    "link": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "KS": [
+   {
+    "park": "Cross Timbers State Park",
+    "ref": "US-2334",
+    "link": "https://www.arcgis.com/home/item.html",
+    "layers": [],
+    "status": "not a map service address (portal / item page)"
+   }
+  ],
+  "LA": [
+   {
+    "park": "Cypremort Point State Park",
+    "ref": "US-2360",
+    "link": "https://gis.wlf.la.gov/arcgis/rest/services/Wildlife_Services/LA_StateParks/MapServer",
+    "layers": [],
+    "status": "no outline layers"
+   }
+  ],
+  "MA": [
+   {
+    "park": "Carlisle State Forest",
+    "ref": "US-4735",
+    "link": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer",
+    "layers": [
+     {
+      "url": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer/1",
+      "name": "OpenSpace: Interest Overlay",
+      "geom": "esriGeometryPolygon",
+      "nameField": "SITE_NAME",
+      "fields": [
+       "OBJECTID",
+       "TOWN_ID",
+       "POLY_ID",
+       "SITE_NAME",
+       "FEE_OWNER",
+       "OWNER_ABRV",
+       "OWNER_TYPE",
+       "MANAGER",
+       "MANAGR_ABRV",
+       "MANAGR_TYPE",
+       "PRIM_PURP",
+       "PUB_ACCESS",
+       "LEV_PROT",
+       "OLI_1_ORG",
+       "OLI_1_ABRV",
+       "OLI_1_TYPE",
+       "OLI_1_INT",
+       "OLI_2_ORG",
+       "OLI_2_ABRV",
+       "OLI_2_TYPE",
+       "OLI_2_INT",
+       "OLI_3_ORG",
+       "OLI_3_ABRV",
+       "OLI_3_TYPE",
+       "OLI_3_INT",
+       "GRANTPROG1",
+       "GRANTTYPE1",
+       "GRANTPROG2",
+       "GRANTTYPE2",
+       "PROJ_ID1",
+       "PROJ_ID2",
+       "PROJ_ID3",
+       "EOEAINVOLVE",
+       "ARTICLE97",
+       "FY_FUNDING",
+       "GIS_ACRES",
+       "DEED_ACRES",
+       "OS_DEED_BOOK",
+       "OS_DEED_PAGE",
+       "ASSESS_ACRE"
+      ],
+      "count": 13760,
+      "sample": [
+       "Almy CR",
+       "Almy CR",
+       "Ponzecchi CR"
+      ],
+      "parkWord": "Carlisle",
+      "parkHits": [
+       "Town of Carlisle APR",
+       "Town of Carlisle APR",
+       "Carlisle Meadows CR",
+       "Carlisle CR",
+       "Carlisle Meadows CR"
+      ]
+     },
+     {
+      "url": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer/2",
+      "name": "OpenSpace (Arcs)",
+      "geom": "esriGeometryPolyline"
+     },
+     {
+      "url": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer/3",
+      "name": "OpenSpace: Lands",
+      "geom": "esriGeometryPolygon",
+      "nameField": "SITE_NAME",
+      "fields": [
+       "OBJECTID",
+       "TOWN_ID",
+       "POLY_ID",
+       "SITE_NAME",
+       "FEE_OWNER",
+       "OWNER_ABRV",
+       "OWNER_TYPE",
+       "MANAGER",
+       "MANAGR_ABRV",
+       "MANAGR_TYPE",
+       "PRIM_PURP",
+       "PUB_ACCESS",
+       "LEV_PROT",
+       "OLI_1_ORG",
+       "OLI_1_ABRV",
+       "OLI_1_TYPE",
+       "OLI_1_INT",
+       "OLI_2_ORG",
+       "OLI_2_ABRV",
+       "OLI_2_TYPE",
+       "OLI_2_INT",
+       "OLI_3_ORG",
+       "OLI_3_ABRV",
+       "OLI_3_TYPE",
+       "OLI_3_INT",
+       "GRANTPROG1",
+       "GRANTTYPE1",
+       "GRANTPROG2",
+       "GRANTTYPE2",
+       "PROJ_ID1",
+       "PROJ_ID2",
+       "PROJ_ID3",
+       "EOEAINVOLVE",
+       "ARTICLE97",
+       "FY_FUNDING",
+       "GIS_ACRES",
+       "DEED_ACRES",
+       "OS_DEED_BOOK",
+       "OS_DEED_PAGE",
+       "ASSESS_ACRE"
+      ],
+      "count": 61486,
+      "sample": [
+       "Almy CR",
+       "Almy CR",
+       "Northampton-Russell Beagle Club"
+      ],
+      "parkWord": "Carlisle",
+      "parkHits": [
+       "Carlisle Conservation Area",
+       "Carlisle Conservation Area",
+       "Carlisle Road Woods Conservation Area",
+       "Concord-Carlisle High School Recreational Fields",
+       "Concord-Carlisle High School Recreational Fields"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "MD": [
+   {
+    "park": "Helen Avalynne Tawes Garden State Park",
+    "ref": "US-6388",
+    "link": "https://geodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer",
+    "layers": [],
+    "status": "service did not answer: HTTP Error 503: Service Unavailable"
+   }
+  ],
+  "ME": [
+   {
+    "park": "Capitol State Park",
+    "ref": "US-8287",
+    "link": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/ArcGIS/rest/services/ConservedLandsMaine/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/ArcGIS/rest/services/ConservedLandsMaine/FeatureServer/0",
+      "name": "ConservedLandsMaine",
+      "geom": "esriGeometryPolygon",
+      "nameField": "HOLD1_NAME",
+      "fields": [
+       "OBJECTID",
+       "PROJECT",
+       "PARCEL_NAM",
+       "DESIGNATIO",
+       "CONS1_TYPE",
+       "HOLD1_NAME",
+       "HOLD1_TYPE",
+       "CONS2_TYPE",
+       "HOLD2_NAME",
+       "HOLD2_TYPE",
+       "ECO_RESERV",
+       "ACQ_YEAR",
+       "ACQ_DATE",
+       "RPT_AC",
+       "PUB_ACCESS",
+       "PURPOSE1",
+       "PURPOSE2",
+       "EDITOR",
+       "BPL_ID",
+       "IFW_ID",
+       "LMF_ID",
+       "DEPT_ID",
+       "FMPROCSS",
+       "FMUPDDAT",
+       "NOTE_",
+       "CALC_AC",
+       "REVIEW",
+       "GAP_STATUS",
+       "IUCN_STATU",
+       "CL_UNIQUEI"
+      ],
+      "count": 8785,
+      "sample": [
+       "US Fish and Wildlife Service",
+       "US Fish and Wildlife Service",
+       " "
+      ],
+      "parkWord": "Capitol",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   }
+  ],
+  "MI": [
+   {
+    "park": "Au Sable State Forest",
+    "ref": "US-4774",
+    "link": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+    "layers": [
+     {
+      "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+      "name": "DNR Parks Unit Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Facility",
+      "fields": [
+       "UniqueID",
+       "LinkID",
+       "Acres",
+       "District",
+       "Facility",
+       "CreatedUser",
+       "CreatedDate",
+       "EditName",
+       "EditDate",
+       "GlobalID",
+       "OBJECTID",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 109,
+      "sample": [
+       "Young State Park",
+       "W.C. Wetzel Recreation Area",
+       "Onaway State Park"
+      ],
+      "parkWord": "Sable",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   }
+  ],
+  "MN": [
+   {
+    "park": "Beltrami Island State Forest",
+    "ref": "US-4783",
+    "link": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "MO": [
+   {
+    "park": "Bruce R. Watkins Cultural Heritage Center State Park",
+    "ref": "US-5716",
+    "link": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "MS": [
+   {
+    "park": "Aberdeen Lake State Recreation Area",
+    "ref": "US-7130",
+    "link": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer",
+    "layers": [],
+    "status": "no outline layers"
+   }
+  ],
+  "MT": [
+   {
+    "park": "Grey Cliff Prairie Dog State Park",
+    "ref": "US-2576",
+    "link": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/ArcGIS/rest/services/FWPLND_STATEPARKS/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/ArcGIS/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+      "name": "Montana State Parks - Polygons",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "SITEID",
+       "NAME",
+       "FWPREG",
+       "ACRES",
+       "WEB_PAGE",
+       "CAMPING",
+       "BOAT_FAC",
+       "HUNTING",
+       "Shape__Area",
+       "Shape__Length",
+       "PDFMAP",
+       "GlobalID",
+       "HUNT_ACCESS",
+       "ACQDATE"
+      ],
+      "count": 55,
+      "sample": [
+       "Thompson Chain-of-Lakes",
+       "Finley Point",
+       "Big Arm"
+      ],
+      "parkWord": "Prairie",
+      "parkHits": [
+       "Greycliff Prairie Dog Town"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "NC": [
+   {
+    "park": "Brumley Forest State Nature Preserve",
+    "ref": "US-3851",
+    "link": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/ArcGIS/rest/services/2019_NCParks/FeatureServer",
+    "layers": [],
+    "status": "service did not answer: {'code': 400, 'message': 'Invalid URL', 'details': ['Invalid URL']}"
+   }
+  ],
+  "ND": [
+   {
+    "park": "Crow Flies High State Recreation Area",
+    "ref": "US-5747",
+    "link": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Parks/FeatureServer",
+    "layers": [
+     {
+      "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Parks/FeatureServer/0",
+      "name": "State Parks",
+      "geom": "esriGeometryPolygon",
+      "nameField": "UNIT_NAME",
+      "fields": [
+       "Shape__Area",
+       "Shape__Length",
+       "OBJECTID",
+       "UNIT_NAME",
+       "DESCRIPTION",
+       "ACRES"
+      ],
+      "count": 22,
+      "sample": [
+       "Fort Stevenson State Park",
+       "Beaver Lake State Park",
+       "Fort Abraham Lincoln State Park"
+      ],
+      "parkWord": "Flies",
+      "parkHits": [
+       "Crow Flies High State Recreation Area"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "NE": [
+   {
+    "park": "Buckley Creek State Recreation Area",
+    "ref": "US-4025",
+    "link": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "NH": [
+   {
+    "park": "Androscoggin Wayside State Park",
+    "ref": "US-2642",
+    "link": "https://hub.arcgis.com/datasets/ac1d1c9b7fb548dcaaa6bdb5c80b70d5  (or check NH GIS for conserved lands / parks)",
+    "layers": [],
+    "status": "not a map service address (portal / item page)"
+   }
+  ],
+  "NJ": [
+   {
+    "park": "Garret Mountain Reservation State Park",
+    "ref": "US-6462",
+    "link": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "NM": [
+   {
+    "park": "Cerrillos Hills State Park",
+    "ref": "US-2690",
+    "link": "https://gstore.unm.edu/apps/rgis/datasets/057d2f19-4ec6-47d5-82a4-f03309ef94fb/  (RGIS New Mexico State Parks polygons)",
+    "layers": [],
+    "status": "not a map service address (portal / item page)"
+   }
+  ],
+  "NV": [
+   {
+    "park": "Berlin-Ichthyosaur State Park",
+    "ref": "US-2626",
+    "link": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer",
+    "layers": [
+     {
+      "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0",
+      "name": "SCORPRecAreas_Master",
+      "geom": "esriGeometryPolygon",
+      "nameField": "name",
+      "fields": [
+       "objectid",
+       "id",
+       "name",
+       "acres",
+       "ownership",
+       "jurisdict",
+       "SHAPE__Length",
+       "SHAPE__Area"
+      ],
+      "count": 759,
+      "sample": [
+       "Lake Mead",
+       "Death Valley National Park",
+       "Ash Meadows National Wildlife Refuge"
+      ],
+      "parkWord": "Ichthyosaur",
+      "parkHits": [
+       "Berlin-Ichthyosaur State Park"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "NY": [
+   {
+    "park": "Adirondack State Park",
+    "ref": "US-2001",
+    "link": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "OH": [
+   {
+    "park": "Clifton Gorge State Nature Preserve",
+    "ref": "US-7848",
+    "link": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "OK": [
+   {
+    "park": "Boiling Springs State Park",
+    "ref": "US-2774",
+    "link": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/ArcGIS/rest/services/State_Parks/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/ArcGIS/rest/services/State_Parks/FeatureServer/0",
+      "name": "State Parks",
+      "geom": "esriGeometryPolygon",
+      "nameField": "UNIT_ID",
+      "fields": [
+       "OBJECTID_1",
+       "OBJECTID",
+       "UNIT_ID",
+       "SITE_NAME",
+       "DISTRICT",
+       "UPLAND",
+       "SUBMERGED",
+       "PUBLIC_ACC",
+       "JURISDICTI",
+       "ZONES",
+       "FIRST_ACQ",
+       "ACREAGE",
+       "COUNTY",
+       "OWNER",
+       "URL",
+       "ADDRESS",
+       "WEB_ALIAS",
+       "ABBREVIATI",
+       "REGION",
+       "SHAPEAREA",
+       "SHAPELEN",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 19,
+      "sample": [
+       "S00041",
+       "S00035",
+       "S00037"
+      ],
+      "parkWord": "Boiling",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   }
+  ],
+  "OR": [
+   {
+    "park": "Bob Creek Wayside State Recreation Site",
+    "ref": "US-13096",
+    "link": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "PA": [
+   {
+    "park": "Bear Run State Conservation Area",
+    "ref": "US-0622",
+    "link": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "RI": [
+   {
+    "park": "Barber Pond State Recreation Area",
+    "ref": "US-10548",
+    "link": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "SC": [
+   {
+    "park": "Black River State Park",
+    "ref": "US-13198",
+    "link": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "SD": [
+   {
+    "park": "Adams Homestead State Nature Preserve",
+    "ref": "US-7844",
+    "link": "https://gfp.sd.gov/  (GFP manages parks; no public FeatureServer polygon boundaries located)",
+    "layers": [],
+    "status": "not a map service address (portal / item page)"
+   }
+  ],
+  "TN": [
+   {
+    "park": "Cherokee Trail of Tears State Park",
+    "ref": "US-13364",
+    "link": "https://tdeconline.tn.gov/arcgis/rest/services/TSP_TN_State_Parks/MapServer",
+    "layers": [],
+    "status": "service did not answer: HTTP Error 403: Forbidden"
+   }
+  ],
+  "TX": [
+   {
+    "park": "Atlanta State Park",
+    "ref": "US-2984",
+    "link": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+      "name": "Park Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "ParkName",
+      "fields": [
+       "OBJECTID",
+       "ParkName",
+       "PropType",
+       "County1",
+       "County2",
+       "Creator",
+       "CreatedDate",
+       "LastEditor",
+       "LastEditDate",
+       "GlobalID",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 116,
+      "sample": [
+       "Copper Breaks",
+       "Lake Colorado City",
+       "Devil's Sinkhole"
+      ],
+      "parkWord": "Atlanta",
+      "parkHits": [
+       "Atlanta"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "UT": [
+   {
+    "park": "Cache Valley Public Shooting Range Utah DWR State Recreation Site",
+    "ref": "US-12998",
+    "link": "https://gis.trustlands.utah.gov/mapping/rest/services/Land_Ownership/FeatureServer",
+    "layers": [
+     {
+      "url": "https://gis.trustlands.utah.gov/mapping/rest/services/Land_Ownership/FeatureServer/0",
+      "name": "Land_Ownership",
+      "geom": "esriGeometryPolygon",
+      "nameField": "label_federal",
+      "fields": [
+       "objectid",
+       "owner",
+       "agency",
+       "admin",
+       "desig",
+       "state_lgd",
+       "ut_lgd",
+       "natl_lgd",
+       "edit_date",
+       "gis_acres",
+       "label_federal",
+       "label_state",
+       "county",
+       "tribe",
+       "globalid",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 16047,
+      "sample": [
+       null,
+       null,
+       null
+      ],
+      "parkWord": "Shooting",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   }
+  ],
+  "VA": [
+   {
+    "park": "Chesterfield State Forest",
+    "ref": "US-5508",
+    "link": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/SP_Boundary/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/SP_Boundary/FeatureServer/3",
+      "name": "SP_Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "LABEL",
+      "fields": [
+       "OBJECTID",
+       "LABEL",
+       "MA_ID",
+       "DISTRICT",
+       "ACRES",
+       "Shape__Area",
+       "Shape__Length",
+       "GlobalID",
+       "Alias",
+       "DEED_ACRES",
+       "Owner",
+       "YearAcq",
+       "Manager"
+      ],
+      "count": 44,
+      "sample": [
+       "Shenandoah River State Park",
+       "Bear Creek Lake State Park",
+       "Breaks Interstate Park"
+      ],
+      "parkWord": "Chesterfield",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   }
+  ],
+  "VT": [
+   {
+    "park": "Big Deer State Park",
+    "ref": "US-3100",
+    "link": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/FS_VCGI_VT_Protected_Lands_Database_WM_v2/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/FS_VCGI_VT_Protected_Lands_Database_WM_v2/FeatureServer/0",
+      "name": "FS_VCGI_VT_Protected_Lands_Database_WM_v2",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "POLYID",
+       "SOURCEID",
+       "NAME",
+       "PAGENCY1",
+       "PTYPE1",
+       "PAGENCY2",
+       "PTYPE2",
+       "PAGENCY3",
+       "PTYPE3",
+       "PAGENCY4",
+       "PTYPE4",
+       "PAGENCY5",
+       "PTYPE5",
+       "PNOTES",
+       "SOURCE",
+       "SRCNOTES",
+       "GISSTEWARD",
+       "DATEAQRD",
+       "GAPSTATUS",
+       "DESIGNAT",
+       "PUBACCESS",
+       "ACT59CAT",
+       "LISTED_AC",
+       "CreateDate",
+       "Creator",
+       "UPDDATE",
+       "Editor",
+       "VPLDSUBMIT",
+       "INT_ORGTYP",
+       "SOURCE_LYR",
+       "SOURCE_ACR",
+       "GISACRES",
+       "AGGDATE",
+       "OWNERKIND",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 13979,
+      "sample": [
+       "Appalachian Trail Corridor Easement",
+       "Missisquoi National Wildlife Refuge Easement",
+       "Appalachian Trail Corridor Easement"
+      ],
+      "parkWord": "Deer",
+      "parkHits": [
+       "Deerfield Valley Elementary School Forest",
+       "Rogers Forest Deer Yard",
+       "West Branch Deerfield",
+       "Springer-Miller Deer Conservation Easement",
+       "Deer Lake (North parcel)"
+      ]
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "WA": [
+   {
+    "park": "Ahtanum State Forest",
+    "ref": "US-5565",
+    "link": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/ArcGIS/rest/services/ParkBoundaries/FeatureServer",
+    "layers": [
+     {
+      "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/ArcGIS/rest/services/ParkBoundaries/FeatureServer/2",
+      "name": "WA State Park Park Boundaries",
+      "geom": "esriGeometryPolygon",
+      "nameField": "ParkName",
+      "fields": [
+       "OBJECTID",
+       "ParkName",
+       "Category",
+       "ParkCode",
+       "WebPage",
+       "Description",
+       "Imagelink",
+       "Lat_Entrance",
+       "Long_Entrance",
+       "PublicRoadAccess",
+       "ParkMgmntArea",
+       "ParkSubRegion",
+       "ParkRegion",
+       "SubRegionManager",
+       "Abbrv",
+       "Acres",
+       "LABEL_LOCAL",
+       "Shape__Area",
+       "Shape__Length"
+      ],
+      "count": 207,
+      "sample": [
+       "Alta Lake",
+       "Anderson Lake",
+       "Battle Ground Lake"
+      ],
+      "parkWord": "Ahtanum",
+      "parkHits": []
+     }
+    ],
+    "status": "outlines, but the sheet's park was not found by name"
+   }
+  ],
+  "WI": [
+   {
+    "park": "Bear Beach State Natural Area",
+    "ref": "US-8211",
+    "link": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer",
+    "layers": [],
+    "status": "already in state-gis.json"
+   }
+  ],
+  "WV": [
+   {
+    "park": "Cedar Lakes State Recreation Area",
+    "ref": "US-9915",
+    "link": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer",
+    "layers": [
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/1",
+      "name": "WV_Counties",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "FIPS",
+       "Districts",
+       "CO_CODE",
+       "NAME",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 55,
+      "sample": [
+       "Barbour",
+       "Berkeley",
+       "Boone"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/2",
+      "name": "WV_Boundary",
+      "geom": "esriGeometryPolygon",
+      "nameField": "",
+      "fields": [
+       "OBJECTID",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 1
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/3",
+      "name": "WVDOH_Districts",
+      "geom": "esriGeometryPolygon",
+      "nameField": "",
+      "fields": [
+       "OBJECTID",
+       "AREA_",
+       "PERIMETER",
+       "Districts",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 10
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/4",
+      "name": "Ecoregions",
+      "geom": "esriGeometryPolygon",
+      "nameField": "ECOCODE",
+      "fields": [
+       "OBJECTID",
+       "PERIMETER",
+       "A4ERG_",
+       "A4ERG_ID",
+       "ECOCODE",
+       "DOMAIN",
+       "DIVISION",
+       "PROVINCE",
+       "SECTION",
+       "Shape",
+       "GTI_PUB_WM.DBO.Ecoregions.AREA",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 6,
+      "sample": [
+       "-221E",
+       "M221B",
+       "M221A"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/6",
+      "name": "Wildlife_Management_Areas",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Mang_Name",
+      "fields": [
+       "OBJECTID",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "Category",
+       "Own_Type",
+       "Own_Name",
+       "Loc_Own",
+       "Mang_Type",
+       "Mang_Name",
+       "Loc_Mang",
+       "Des_Tp",
+       "Loc_Ds",
+       "Unit_Nm",
+       "Loc_Nm",
+       "State_Nm",
+       "Agg_Src",
+       "GIS_Src",
+       "Src_Date",
+       "GIS_Acres",
+       "Source_PAI",
+       "WDPA_Cd",
+       "Access",
+       "Access_Src",
+       "GAP_Sts",
+       "GAPCdSrc",
+       "GAPCdDt",
+       "IUCN_Cat",
+       "IUCNCtSrc",
+       "IUCNCtDt",
+       "Date_Est",
+       "Comments",
+       "Shape_Ar_1",
+       "Shape_Leng"
+      ],
+      "count": 120,
+      "sample": [
+       "SDNR",
+       "SDNR",
+       "SDNR"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/7",
+      "name": "National_Forests",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Mang_Name",
+      "fields": [
+       "OBJECTID_1",
+       "OBJECTID",
+       "temp",
+       "Ownership",
+       "GIS_Acres",
+       "Category",
+       "Own_Type",
+       "Own_Name",
+       "Loc_Own",
+       "Mang_Type",
+       "Mang_Name",
+       "Loc_Mang",
+       "Des_Tp",
+       "Loc_Ds",
+       "Unit_Nm",
+       "Loc_Nm",
+       "State_Nm",
+       "Agg_Src",
+       "GIS_Src",
+       "Src_Date",
+       "Source_PAI",
+       "WDPA_Cd",
+       "Access",
+       "Access_Src",
+       "GAP_Sts",
+       "GAPCdSrc",
+       "GAPCdDt",
+       "IUCN_Cat",
+       "IUCNCtSrc",
+       "IUCNCtDt",
+       "Date_Est",
+       "Comments",
+       "Type",
+       "Shape_Leng",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 4,
+      "sample": [
+       "USFS",
+       "USFS",
+       "USFS"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/8",
+      "name": "National_Parks",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Mang_Name",
+      "fields": [
+       "OBJECTID",
+       "Shape",
+       "Shape_Leng",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "Category",
+       "Own_Type",
+       "Own_Name",
+       "Loc_Own",
+       "Mang_Type",
+       "Mang_Name",
+       "Loc_Mang",
+       "Des_Tp",
+       "Loc_Ds",
+       "Unit_Nm",
+       "Loc_Nm",
+       "State_Nm",
+       "Agg_Src",
+       "GIS_Src",
+       "Src_Date",
+       "GIS_Acres",
+       "Source_PAI",
+       "WDPA_Cd",
+       "Pub_Access",
+       "Access_Src",
+       "Access_Dt",
+       "GAP_Sts",
+       "GAPCdSrc",
+       "GAPCdDt",
+       "IUCN_Cat",
+       "IUCNCtSrc",
+       "IUCNCtDt",
+       "Date_Est",
+       "Comments",
+       "FeatClass",
+       "d_Category",
+       "d_Own_Type",
+       "d_Own_Name",
+       "d_Mang_Typ",
+       "d_Mang_Nam"
+      ],
+      "count": 5,
+      "sample": [
+       "NPS",
+       "NPS",
+       "NPS"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/9",
+      "name": "State_Forests",
+      "geom": "esriGeometryPolygon",
+      "nameField": "DNRName",
+      "fields": [
+       "Shape",
+       "OBJECTID",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "ACRES",
+       "HECTARES",
+       "Method",
+       "Accuracy",
+       "DNRName",
+       "ManagedAs",
+       "AreaType",
+       "Contact",
+       "Address1",
+       "City",
+       "State",
+       "Zip",
+       "Telephone",
+       "DNRDistrict",
+       "County1",
+       "County2",
+       "County3",
+       "County4",
+       "Ownership_1",
+       "ManagedBy",
+       "HighResMapURL",
+       "LowResMapURL",
+       "WebsiteURL",
+       "KRONOS",
+       "AvenzaMapURL"
+      ],
+      "count": 8,
+      "sample": [
+       "Seneca State Forest",
+       "Kumbrabow State Forest",
+       "Kanawha State Forest"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10",
+      "name": "State_Parks",
+      "geom": "esriGeometryPolygon",
+      "nameField": "Loc_Nm",
+      "fields": [
+       "OBJECTID",
+       "Shape",
+       "Loc_Own",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "Loc_Nm",
+       "Loc_Mang",
+       "Loc_Ds",
+       "State_Nm",
+       "Agg_Src",
+       "GIS_Src",
+       "Src_Date",
+       "GIS_Acres",
+       "Source_PAID",
+       "WDPA_Cd",
+       "Pub_Access",
+       "Access_Src",
+       "Access_Dt",
+       "GAP_Sts",
+       "GAPCdSrc",
+       "GAPCdDt",
+       "IUCN_Cat",
+       "IUCNCtSrc",
+       "IUCNCtDt",
+       "Date_Est",
+       "Comments",
+       "EsmtHldr",
+       "EHoldTyp"
+      ],
+      "count": 36,
+      "sample": [
+       "Blennerhassett Island Historical State Park",
+       "Blackwater Falls State Park",
+       "Canaan Valley Resort State Park"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": [
+       "Cedar Creek State Park"
+      ]
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/12",
+      "name": "WV_Congressional_Districts",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "ID",
+       "DISTRICT",
+       "MEMBERS",
+       "LOCKED",
+       "NAME",
+       "POPULATION",
+       "IDEAL_VALU",
+       "DEVIATION",
+       "F_DEVIATIO",
+       "Shape",
+       "GTI_PUB_WM.DBO.US_Congressional_Districts.AREA",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "F18_POP",
+       "F_18_POP",
+       "MULTIPLE_F",
+       "DISTRICT_L"
+      ],
+      "count": 2,
+      "sample": [
+       " Congressional 2",
+       " Congressional 1"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/13",
+      "name": "State_House_Delegates_Districts",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "ID",
+       "DISTRICT",
+       "MEMBERS",
+       "LOCKED",
+       "NAME",
+       "POPULATION",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "GTI_PUB_UTM_DBO_WV_State_House_",
+       "DISTRICT_L",
+       "Senator_1",
+       "lengthmile",
+       "Lengthmil",
+       "Interstate",
+       "USRoute",
+       "WVRoute",
+       "CountyRout",
+       "SF",
+       "HARP"
+      ],
+      "count": 100,
+      "sample": [
+       " ",
+       " ",
+       " "
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/14",
+      "name": "State_Senate_Districts",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "ID",
+       "DISTRICT",
+       "MEMBERS",
+       "LOCKED",
+       "NAME",
+       "POPULATION",
+       "IDEAL_VALU",
+       "DEVIATION",
+       "F_DEVIATIO",
+       "MULTIPLE_F",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()",
+       "GTI_PUB_UTM_DBO_WV_State_Senate",
+       "DISTRICT_L",
+       "Shape_Leng",
+       "Senator1",
+       "Senator2",
+       "LengthMile",
+       "Interstate",
+       "USRoute",
+       "WVRoute",
+       "County",
+       "SF",
+       "HARP",
+       "Counties",
+       "Counties2",
+       "Counties3",
+       "Counties4",
+       "Countries5",
+       "Shape_Le_1"
+      ],
+      "count": 17,
+      "sample": [
+       " ",
+       " ",
+       " "
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/15",
+      "name": "Incorporated Places",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "STATEFP",
+       "PLACEFP",
+       "PLACENS",
+       "GEOID",
+       "NAME",
+       "NAMELSAD",
+       "LSAD",
+       "CLASSFP",
+       "PCICBSA",
+       "MTFCC",
+       "FUNCSTAT",
+       "ALAND",
+       "AWATER",
+       "INTPTLAT",
+       "INTPTLON",
+       "PopCalcYear",
+       "PopCalc",
+       "PopDecYear",
+       "PopDecCount",
+       "OBJECTID",
+       "GEOIDFQ",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 231,
+      "sample": [
+       "Grafton",
+       "Sand Fork",
+       "Gauley Bridge"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": [
+       "Cedar Grove"
+      ]
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/16",
+      "name": "Incorporated_Places_Annex",
+      "geom": "esriGeometryPolygon",
+      "nameField": "NAME",
+      "fields": [
+       "OBJECTID",
+       "STATEFP",
+       "PLACEFP",
+       "PLACENS",
+       "GEOID",
+       "GEOIDFQ",
+       "NAME",
+       "NAMELSAD",
+       "LSAD",
+       "CLASSFP",
+       "PCICBSA",
+       "PopCalcYear",
+       "PopCalc",
+       "PopDecYear",
+       "PopDecCount",
+       "MTFCC",
+       "FUNCSTAT",
+       "ALAND",
+       "AWATER",
+       "INTPTLAT",
+       "INTPTLON",
+       "Last_Edited_By",
+       "Last_Edit_Date",
+       "Edit_User_Tracking",
+       "Edit_Date_Tracking",
+       "Edit_Description",
+       "Shape",
+       "Shape.STArea()",
+       "Shape.STLength()"
+      ],
+      "count": 231,
+      "sample": [
+       "Grafton",
+       "Sand Fork",
+       "Gauley Bridge"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": [
+       "Cedar Grove"
+      ]
+     },
+     {
+      "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/17",
+      "name": "Metropolitan_Planning_Organization",
+      "geom": "esriGeometryPolygon",
+      "nameField": "MPO_NAME",
+      "fields": [
+       "OBJECTID_1",
+       "OBJECTID",
+       "FID_Metrop",
+       "MPO_ID",
+       "MPO_NAME",
+       "MPO_ACRONY",
+       "STAFF_AGEN",
+       "STAFF_AGE1",
+       "CITY",
+       "STATE",
+       "MPO_WEB_SI",
+       "DESIGNATIO",
+       "MPO_POPULA",
+       "TMA",
+       "INCLUDED_U",
+       "INCLUDED_1",
+       "INCLUDED_2",
+       "INCLUDED_3",
+       "INCLUDED_4",
+       "INCLUDED_5",
+       "INCLUDED_6",
+       "INCLUDED_7",
+       "INCLUDED_8",
+       "INCLUDED_9",
+       "INCLUDED10",
+       "INCLUDED11",
+       "INCLUDED12",
+       "INCLUDED13",
+       "INCLUDED14",
+       "NO_OF_UAS",
+       "PRIME_UA",
+       "UA_POP",
+       "STFIPS",
+       "VERSION",
+       "LAST_UPDAT",
+       "FID_FRMPO_",
+       "Shape_Leng",
+       "Shape_Ar_1",
+       "Shape",
+       "Shape.STArea()"
+      ],
+      "count": 10,
+      "sample": [
+       "Southwestern Pennsylvania Commission",
+       "RIC (Charleston)",
+       "BELOMAR (Wheeling)"
+      ],
+      "parkWord": "Cedar",
+      "parkHits": []
+     }
+    ],
+    "status": "GOOD: outlines + the sheet's park found"
+   }
+  ],
+  "WY": [
+   {
+    "park": "Edness Kimball Wilkins State Park",
+    "ref": "US-3296",
+    "link": "No official public FeatureServer or downloadable state park boundary polygons located. Points available at https://services.arcgis.com/Mst6sJ6aFGwWU3UM/ArcGIS/rest/services/Wyo_State_Parks_WFL1/FeatureServer",
+    "layers": [],
+    "status": "service did not answer: <urlopen error unknown url type: no official public featureserver or downloadable state park boundary polygons located. "
+   }
+  ]
+ }
+}
