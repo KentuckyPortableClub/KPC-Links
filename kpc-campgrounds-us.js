@@ -84,7 +84,7 @@
       var ex = extra.filter(function (p) { return norm(p.name) === norm(nm); })[0];
       if (ex) { ex.rv.push(n); return; }
       ex = { id: 'm' + n.id, name: nm, la: g ? g[0] : null, lo: g ? g[1] : null, kind: /cabin|cottage|lodge/i.test((n.other && n.other.type) || '') ? 'b' : 'c', src: 'member', ref: r,
-        web: n.other && n.other.web, where: n.other && n.other.where, rv: [n] };
+        web: n.other && n.other.web, where: n.other && n.other.where, near: !!n.near, rv: [n] };
       extra.push(ex);
     });
     places = places.concat(extra);
@@ -102,7 +102,7 @@
     S.parks.forEach(function (p) { p.places = []; });
     S.loose = [];
     S.places.forEach(function (x) {
-      if (x.ref && S.byRef[x.ref]) { var p = S.byRef[x.ref]; p.places.push({ x: x, d: isFinite(x.la) && x.la !== null ? miles(p.la, p.lo, x.la, x.lo) : 0, own: true }); return; }
+      if (x.ref && S.byRef[x.ref]) { var p = S.byRef[x.ref], dd = isFinite(x.la) && x.la !== null ? miles(p.la, p.lo, x.la, x.lo) : NaN; p.places.push({ x: x, d: dd, own: !x.near, near: !!x.near }); return; }
       if (x.la === null || !isFinite(x.la)) { S.loose.push(x); return; }
       var any = false;
       if (x.home && S.byRef[x.home]) { var h = S.byRef[x.home]; h.places.push({ x: x, d: miles(h.la, h.lo, x.la, x.lo), home: true }); any = true; }
@@ -131,7 +131,7 @@
   function placeHtml(o, p) {
     var x = o.x, lab = (p ? p.ref + ' · ' : '') + x.name, fl = formLink(lab);
     var mi = isFinite(o.d) ? (o.d < 1 ? 'under 1 mi' : Math.round(o.d) + ' mi') + ' from the park pin' : '';
-    var dist = !p ? '' : o.own ? 'at the park' : o.home ? 'in this ' + (/forest|grassland/i.test(p.type || '') ? 'forest' : 'park') + (mi ? ' · ' + mi : '') : mi;
+    var dist = !p ? '' : o.near ? 'near this park' + (mi ? ' · ' + mi : '') : o.own ? 'at the park' : o.home ? 'in this ' + (/forest|grassland/i.test(p.type || '') ? 'forest' : 'park') + (mi ? ' · ' + mi : '') : mi;
     return '<div class="cg-place"><h3>' + (x.kind !== 'c' ? '<span class="cg-kind">' + KIND[x.kind] + '</span>' : '') + esc(x.name) + '</h3>' +
       '<p class="cgu-meta">' + srcTag(x) + (dist ? ' <span>' + esc(dist) + '</span>' : '') + (x.where ? ' <span>' + esc(x.where) + '</span>' : '') + '</p>' +
       '<div class="cg-btns">' + ext(x.web, 'OFFICIAL PAGE') + ext(x.book, x.src === 'fed' ? 'RECREATION.GOV ›' : 'RESERVE ›', 'dark') +
