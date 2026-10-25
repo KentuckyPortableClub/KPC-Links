@@ -1,8 +1,10 @@
 {
- "updated": "2026-10-17",
+ "updated": "2026-10-25",
  "notes": [
   {
    "id": "ea0ca6025b59",
+   "st": "KY",
+   "ref": "US-8144",
    "place": "otter-creek-ora-campground",
    "call": "K4ZSR",
    "rating": 5,
@@ -44,7 +46,8 @@
      "Amenities",
      "Dump station, Drinking water"
     ]
-   ]
+   ],
+   "near": 1
   }
  ]
 }
