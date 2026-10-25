@@ -1,0 +1,1522 @@
+{
+ "AK": [
+  {
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer",
+   "layers": [
+    {
+     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
+     "name": "ASP Park Boundary",
+     "count": 157,
+     "strfields": [
+      "PARKNAME",
+      "NAME"
+     ],
+     "sample": [
+      "Mosquito Lake State Recreation Site",
+      "Centennial Lake Trail",
+      "Juneau Trail System",
+      "Rocky Lake State Recreation Site",
+      "Moon Lake State Recreation Site",
+      "Fort Rousseau Causeway State Historical "
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "AL": [
+  {
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer",
+   "layers": [
+    {
+     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0",
+     "name": "State Parks",
+     "count": 21,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Blue Springs State Park",
+      "Buck's Pocket State Park",
+      "Cathedral Caverns State Park",
+      "Cheaha State Park",
+      "Chewacla State Park",
+      "Desoto State Park"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "AR": [
+  {
+   "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer",
+   "layers": [
+    {
+     "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0",
+     "name": "StateParks",
+     "count": 52,
+     "strfields": [
+      "park_num",
+      "name"
+     ],
+     "sample": [
+      "PT33",
+      "PT23",
+      "PT40",
+      "PT61",
+      "PT62",
+      "PT46"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "AZ": [
+  {
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
+     "name": "AZ_State_Parks_Boundary",
+     "count": 31,
+     "strfields": [
+      "AFFIL_PARK",
+      "NAME"
+     ],
+     "sample": [
+      "Alamo Lake State Park",
+      "Boyce Thompson Arboretum State Park",
+      "Buckskin Mountain State Park",
+      "Catalina State Park",
+      "Cattail Cove State Park",
+      "Dead Horse Ranch State Park"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "CA": [
+  {
+   "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
+     "name": "ParkBoundaries",
+     "count": 467,
+     "strfields": [
+      "UNITNAME",
+      "UNITNBR"
+     ],
+     "sample": [
+      "Wildwood Canyon",
+      "Andrew Molera SP",
+      "Angel Island SP",
+      "Trione-Annadel SP",
+      "Antelope Valley California Poppy Preserv",
+      "Antelope Valley Indian Museum (SHP)"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "CT": [
+  {
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
+     "name": "DEEP Property",
+     "count": 491,
+     "strfields": [
+      "PROPERTY"
+     ],
+     "sample": [
+      "Bashan Lake",
+      "Beach Pond",
+      "Beachdale Pond",
+      "Beseck Lake",
+      "Billings Lake",
+      "Bolton Lake"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "DE": [
+  {
+   "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer",
+   "layers": [
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/4",
+     "name": "Beach Preservation Regulatory Area ",
+     "count": 1,
+     "strfields": [],
+     "sample": [],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/6",
+     "name": "Outdoor Recreation, Parks and Trails Program Lands",
+     "count": 521,
+     "strfields": [
+      "NAME",
+      "PROJ_NAME"
+     ],
+     "sample": [
+      "Rahway Park",
+      "Johnston Playground",
+      "Stapler Park",
+      "Natter Property",
+      "Issacs",
+      "Issacs"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/7",
+     "name": "Land and Water Conservation Fund",
+     "count": 236,
+     "strfields": [
+      "NAME",
+      "PROJ_NAME"
+     ],
+     "sample": [
+      "Brandywine Creek State Park",
+      "Delaware Seashore State Park",
+      "Delaware Seashore State Park",
+      "Fox Point Park",
+      "Killens Pond State Park",
+      "Killens Pond State Park"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8",
+     "name": "Nature Preserves",
+     "count": 129,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Cedar Creek Nature Preserve",
+      "Cedar Creek Nature Preserve",
+      "Cedar Creek Nature Preserve",
+      "Flint Woods Nature Preserve",
+      "Flint Woods Nature Preserve",
+      "Flint Woods Nature Preserve"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/9",
+     "name": "Outdoor Recreation Areas",
+     "count": 2283,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Auburn Valley State Park",
+      "Auburn Valley State Park",
+      "First State National Monument",
+      "First State National Monument",
+      "Auburn Valley State Park",
+      "Auburn Valley State Park"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/10",
+     "name": "Outdoor Recreation, Parks and Trails Program Open Space",
+     "count": 110,
+     "strfields": [
+      "MANAGEMENT_AREA"
+     ],
+     "sample": [
+      "Lums Pond State Park",
+      "Blackbird State Forest",
+      "Blackbird State Forest",
+      "Taber State Forest",
+      "Taber State Forest",
+      "Norman G. Wilder Wildlife Area"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11",
+     "name": "Public Protected Lands",
+     "count": 869,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Cape Henlopen State Park",
+      "H. Fletcher Brown Park",
+      "Fenwick Island State Park",
+      "Fort Delaware State Park",
+      "Holts Landing State Park",
+      "Trap Pond State Park"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/12",
+     "name": "Conservation Easements",
+     "count": 209,
+     "strfields": [],
+     "sample": [],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/14",
+     "name": "Seasonal Restricted Areas",
+     "count": 2,
+     "strfields": [
+      "PARK"
+     ],
+     "sample": [
+      "Cape Henlopen State Park",
+      "Cape Henlopen State Park"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/15",
+     "name": "Permanent Restricted Areas",
+     "count": 43,
+     "strfields": [
+      "PARK"
+     ],
+     "sample": [
+      "Cape Henlopen State Park",
+      "Cape Henlopen State Park",
+      "Beach Plum Island Nature Preserve",
+      "Cape Henlopen State Park",
+      "Cape Henlopen State Park",
+      "Auburn Heights Preserve"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17",
+     "name": "Wildlife Area Boundaries",
+     "count": 76,
+     "strfields": [
+      "AREA_NAME",
+      "TRACT_NAME"
+     ],
+     "sample": [
+      "Augustine Wildlife Area",
+      "DNERR Blackbird Creek Reserve",
+      "Milford Neck Wildlife Area",
+      "Augustine Wildlife Area",
+      "Woodland Beach Wildlife Area",
+      "Woodland Beach Wildlife Area"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "FL": [
+  {
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer",
+   "layers": [
+    {
+     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0",
+     "name": "Florida State Park Boundaries",
+     "count": 179,
+     "strfields": [
+      "UNIT_ID",
+      "SITE_NAME"
+     ],
+     "sample": [
+      "S00206",
+      "S00139",
+      "S00241",
+      "S00259",
+      "S00243",
+      "S00260"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/4",
+     "name": "Florida State Park Management Zones",
+     "count": 5015,
+     "strfields": [
+      "UNIT_ID",
+      "PARK_NAME"
+     ],
+     "sample": [
+      "S00001",
+      "S00002",
+      "S00002",
+      "S00002",
+      "S00002",
+      "S00002"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/5",
+     "name": "Florida State Park Natural Communities",
+     "count": 40963,
+     "strfields": [
+      "UNIT_ID",
+      "SITE_NAME"
+     ],
+     "sample": [
+      "S00003",
+      "S00003",
+      "S00003",
+      "S00003",
+      "S00003",
+      "S00003"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/7",
+     "name": "Florida State Park Structures",
+     "count": 2180,
+     "strfields": [
+      "UNIT_ID",
+      "SITE_NAME",
+      "NAME"
+     ],
+     "sample": [
+      "S00002",
+      "S00002",
+      "S00002",
+      "S00002",
+      "S00002",
+      "S00002"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/9",
+     "name": "Florida State Park Burn Goals (Current Year)",
+     "count": 797,
+     "strfields": [
+      "UNIT_ID",
+      "PARK_NAME",
+      "PRIORITY_NAME",
+      "SEASON_NAME"
+     ],
+     "sample": [
+      "S00004",
+      "S00007",
+      "S00007",
+      "S00007",
+      "S00007",
+      "S00007"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/10",
+     "name": "Florida State Park Burn Goals (Previous Year)",
+     "count": 740,
+     "strfields": [
+      "UNIT_ID",
+      "PARK_NAME",
+      "PRIORITY_NAME",
+      "SEASON_NAME"
+     ],
+     "sample": [
+      "S00004",
+      "S00007",
+      "S00007",
+      "S00007",
+      "S00007",
+      "S00008"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "GA": [
+  {
+   "url": "https://services2.arcgis.com/PYn6bWCjT6bhw1z3/ArcGIS/rest/services/GA_State_Parks/FeatureServer",
+   "layers": []
+  }
+ ],
+ "HI": [
+  {
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0",
+     "name": "State Park Boundaries",
+     "count": 72,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "MALAEKAHANA STATE RECREATION AREA (KAHUK",
+      "MALAEKAHANA STATE RECREATION AREA (LAIE ",
+      "PUU O MAHUKA HEIAU STATE HISTORIC SITE",
+      "SACRED FALLS STATE PARK *CLOSED*",
+      "AHUPUAA O KAHANA STATE PARK",
+      "KAENA POINT STATE PARK"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "IA": [
+  {
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer",
+   "layers": [
+    {
+     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9",
+     "name": "Public Hunting Areas",
+     "count": 1843,
+     "strfields": [
+      "AREA_NAME"
+     ],
+     "sample": [
+      "ADAIR WILDLIFE AREA",
+      "ALDO LEOPOLD WILDLIFE AREA",
+      "ANDERSON PRAIRIE COMPLEX",
+      "ARTESIAN LAKE",
+      "AUGUSTA WILDLIFE AREA",
+      "BADGER CREEK RECREATION AREA"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10",
+     "name": "Public Area Boundaries",
+     "count": 326,
+     "strfields": [
+      "NameUnit"
+     ],
+     "sample": [
+      "Lake Macbride State Park",
+      "Gull Point State Park - Abbie Gardner Sh",
+      "Ambrose A. Call State Park",
+      "Backbone State Forest",
+      "Backbone State Park",
+      "Banner Lakes At Summerset State Park"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "ID": [
+  {
+   "url": "https://idpr-data-idaho.hub.arcgis.com",
+   "skip": "not a layer link"
+  }
+ ],
+ "IL": [
+  {
+   "url": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer/0",
+     "name": "DNR_Parks_Unit_Boundary",
+     "count": 108,
+     "strfields": [
+      "EditName"
+     ],
+     "sample": [
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR"
+     ],
+     "max": 2000
+    }
+   ]
+  },
+  {
+   "url": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer/0",
+     "name": "DNR_Parks_Unit_Boundary",
+     "count": 108,
+     "strfields": [
+      "EditName"
+     ],
+     "sample": [
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "IN": [
+  {
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer",
+   "layers": [
+    {
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
+     "name": "ManagedLandsAll_DNR_INHD_IN",
+     "count": 654,
+     "strfields": [
+      "unitname",
+      "subunit"
+     ],
+     "sample": [
+      "206th St Public Access Site",
+      "Adams Lake Public Access Site",
+      "Adams Mill Public Fishing Area",
+      "Adamsboro Bridge Public Access Site",
+      "Alcoa Public Access Site",
+      "Ambler Flatwoods"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "KS": [
+  {
+   "url": "https://www.arcgis.com/home/item.html?id=266d124c24d640b28d4bb3b7ee84b027",
+   "skip": "not a layer link"
+  }
+ ],
+ "LA": [
+  {
+   "url": "https://gis.wlf.la.gov/arcgis/rest/services/Wildlife_Services/LA_StateParks/MapServer",
+   "layers": []
+  }
+ ],
+ "MA": [
+  {
+   "url": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer",
+   "layers": [
+    {
+     "url": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer/1",
+     "name": "OpenSpace: Interest Overlay",
+     "count": 13760,
+     "strfields": [
+      "SITE_NAME",
+      "ALT_SITE_NAME",
+      "FORMAL_SITE_NAME"
+     ],
+     "sample": [
+      "Almy CR",
+      "Almy CR",
+      "Ponzecchi CR",
+      "Ponzecchi CR",
+      "Graves CR",
+      "Connington CR"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer/3",
+     "name": "OpenSpace: Lands",
+     "count": 61486,
+     "strfields": [
+      "SITE_NAME",
+      "ALT_SITE_NAME",
+      "FORMAL_SITE_NAME"
+     ],
+     "sample": [
+      "Almy CR",
+      "Almy CR",
+      "Northampton-Russell Beagle Club",
+      "Ponzecchi CR",
+      "Ponzecchi CR",
+      "Shelburne Falls Water Supply Land"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "MD": [
+  {
+   "url": "https://geodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer",
+   "err": "HTTP Error 503: Service Unavailable"
+  }
+ ],
+ "ME": [
+  {
+   "url": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/ArcGIS/rest/services/ConservedLandsMaine/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/ArcGIS/rest/services/ConservedLandsMaine/FeatureServer/0",
+     "name": "ConservedLandsMaine",
+     "count": 8785,
+     "strfields": [
+      "HOLD1_NAME",
+      "HOLD2_NAME"
+     ],
+     "sample": [
+      "US Fish and Wildlife Service",
+      "US Fish and Wildlife Service",
+      " ",
+      " ",
+      " ",
+      "US Department of Interior"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "MI": [
+  {
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+   "layers": [
+    {
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
+     "name": "DNR Parks Unit Boundary",
+     "count": 109,
+     "strfields": [
+      "EditName"
+     ],
+     "sample": [
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR",
+      "MichiganDNR"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "MN": [
+  {
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
+     "name": "Minnesota State Parks, Recreation Areas, & Waysides - Statutory Boundaries",
+     "count": 84,
+     "strfields": [
+      "AREA_NAME",
+      "AREA_TYPE",
+      "LEGISLATIVE_NAME"
+     ],
+     "sample": [
+      "Crow Wing",
+      "Minnesota Valley",
+      "La Salle Lake",
+      "Split Rock Lighthouse",
+      "Lake Bemidji",
+      "Sam Brown Memorial"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "MO": [
+  {
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer",
+   "layers": [
+    {
+     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0",
+     "name": "Missouri Department of Natural Resources Lands",
+     "count": 207,
+     "strfields": [
+      "LOC_NAME",
+      "SHORT_NAME"
+     ],
+     "sample": [
+      "Ha Ha Tonka State Park",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2",
+     "name": "Wild Areas",
+     "count": 13,
+     "strfields": [
+      "WA_NAME",
+      "LOC_NAME"
+     ],
+     "sample": [
+      "Mudlick Mountain Wild Area",
+      "East Fork Wild Area",
+      "Goggins Mountain Wild Area",
+      "Gans Creek Wild Area",
+      "Northwoods Wild Area",
+      "Coonville Creek Wild Area"
+     ],
+     "max": 2000
+    },
+    {
+     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3",
+     "name": "Natural Areas",
+     "count": 36,
+     "strfields": [
+      "NAME",
+      "LTANAME",
+      "AREA_NAME"
+     ],
+     "sample": [
+      "Bennett Spring Hanging Fen NA",
+      "Montauk Upland Forest NA",
+      "Elk River Breaks Woodland NA",
+      "Des Moines River Ravines NA",
+      "Oumessourit NA",
+      "Big Sugar Creek NA"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "MS": [
+  {
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer",
+   "layers": []
+  }
+ ],
+ "MT": [
+  {
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/ArcGIS/rest/services/FWPLND_STATEPARKS/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/ArcGIS/rest/services/FWPLND_STATEPARKS/FeatureServer/0",
+     "name": "Montana State Parks - Polygons",
+     "count": 55,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "NC": [
+  {
+   "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/ArcGIS/rest/services/2019_NCParks/FeatureServer",
+   "err": "{'code': 400, 'message': 'Invalid URL', 'details': ['Invalid URL']}"
+  }
+ ],
+ "ND": [
+  {
+   "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Parks/FeatureServer",
+   "layers": [
+    {
+     "url": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Parks/FeatureServer/0",
+     "name": "State Parks",
+     "count": 22,
+     "strfields": [
+      "UNIT_NAME"
+     ],
+     "sample": [
+      "Fort Stevenson State Park",
+      "Beaver Lake State Park",
+      "Fort Abraham Lincoln State Park",
+      "Fort Ransom State Park",
+      "Grahams Island State Park",
+      "Icelandic State Park"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "NE": [
+  {
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
+     "name": "StateParks_GeneralBoundaries",
+     "count": 60,
+     "strfields": [
+      "PropName"
+     ],
+     "sample": [
+      "Balls Ferry State Park",
+      "Chattahoochee Bend State Park",
+      "Dukes Creek - Smithgall Woods State Park",
+      "F. D. Roosevelt State Park",
+      "Fort Yargo State Park",
+      "Hard Labor Creek State Park"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "NH": [
+  {
+   "url": "https://hub.arcgis.com/datasets/ac1d1c9b7fb548dcaaa6bdb5c80b70d5",
+   "skip": "not a layer link"
+  }
+ ],
+ "NJ": [
+  {
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67",
+     "name": "Open Space (State Owned) Generalized",
+     "count": 373,
+     "strfields": [
+      "FEATURE_NAME",
+      "PARKING",
+      "NAME_CONTACT",
+      "LAND_FACILITY_NAME",
+      "FEE_SMPL_NAME",
+      "NAME_LABEL"
+     ],
+     "sample": [
+      "Abbotts Meadow Wildlife Management Area",
+      "Abraitys Pine Stand Preserve",
+      "Abram S. Hewitt State Forest",
+      "Absecon Lighthouse Historic Site",
+      "Absecon Wildlife Management Area",
+      "Alexauken Creek Wildlife Management Area"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "NM": [
+  {
+   "url": "https://gstore.unm.edu/apps/rgis/datasets/057d2f19-4ec6-47d5-82a4-f03309ef94fb",
+   "skip": "not a layer link"
+  }
+ ],
+ "NV": [
+  {
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer",
+   "layers": [
+    {
+     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0",
+     "name": "SCORPRecAreas_Master",
+     "count": 759,
+     "strfields": [
+      "name"
+     ],
+     "sample": [
+      "Lake Mead",
+      "Death Valley National Park",
+      "Ash Meadows National Wildlife Refuge",
+      "Mason Valley Wildlife Management Area",
+      "Tule Springs Fossil Beds National Monume",
+      "Mason Valley Wildlife Management Area"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "NY": [
+  {
+   "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0",
+     "name": "NYS_Park_Polygon",
+     "count": 857,
+     "strfields": [
+      "Name"
+     ],
+     "sample": [
+      "Robert Moses",
+      "Robert Moses",
+      "Robert Moses",
+      "Croil Island",
+      "Croil Island",
+      "Croil Island"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "OH": [
+  {
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134",
+   "layers": [
+    {
+     "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134",
+     "name": "ODNR Lands (9,028)",
+     "count": 705,
+     "strfields": [
+      "PROP_TYPE",
+      "NAME",
+      "MARCS_Property_Type",
+      "Name_Label"
+     ],
+     "sample": [
+      "CONS",
+      "DED NAT PRES",
+      "PARK",
+      "DED NAT PRES",
+      "WA",
+      "WA"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "OK": [
+  {
+   "url": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/ArcGIS/rest/services/State_Parks/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/ArcGIS/rest/services/State_Parks/FeatureServer/0",
+     "name": "State Parks",
+     "count": 19,
+     "strfields": [
+      "UNIT_ID",
+      "SITE_NAME"
+     ],
+     "sample": [
+      "S00041",
+      "S00035",
+      "S00037",
+      "S00259",
+      "S00273",
+      "S00088"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "OR": [
+  {
+   "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer",
+   "layers": [
+    {
+     "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0",
+     "name": "Oregon State Parks",
+     "count": 422,
+     "strfields": [
+      "NAME",
+      "FULL_NAME"
+     ],
+     "sample": [
+      "Rough and Ready",
+      "Butteville Store",
+      "Government Island",
+      "Prospect",
+      "Frenchglen Hotel",
+      "Frenchglen Hotel"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "PA": [
+  {
+   "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer",
+   "layers": [
+    {
+     "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0",
+     "name": "State Parks",
+     "count": 240,
+     "strfields": [
+      "StParkName"
+     ],
+     "sample": [
+      "Patterson State Park",
+      "Prouty Place State Park",
+      "Ole Bull State Park",
+      "Sinnemahoning State Park",
+      "Worlds End State Park",
+      "Hyner View State Park"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "RI": [
+  {
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0",
+     "name": "ENV_Conservation_Lands_State_2026_spf",
+     "count": 1057,
+     "strfields": [
+      "DEM_AREA",
+      "NAME",
+      "ManArea"
+     ],
+     "sample": [
+      "Slatersville",
+      "Round Top Management Area",
+      "Stillwater Reservoir",
+      "Point Judith Pond",
+      "Blackstone River High Rocks Gorge",
+      "Mary Donavan Marsh"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "SC": [
+  {
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
+     "name": "South Carolina State Parks",
+     "count": 55,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Aiken State Park",
+      "Andrew Jackson State Park",
+      "Baker Creek State Park",
+      "Barnwell State Park",
+      "Calhoun Falls State Park",
+      "Charles Towne Landing Historic Site"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "SD": [
+  {
+   "url": "https://gfp.sd.gov",
+   "skip": "not a layer link"
+  }
+ ],
+ "TN": [
+  {
+   "url": "https://tdeconline.tn.gov/arcgis/rest/services/TSP_TN_State_Parks/MapServer",
+   "err": "HTTP Error 403: Forbidden"
+  }
+ ],
+ "TX": [
+  {
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0",
+     "name": "Park Boundary",
+     "count": 116,
+     "strfields": [
+      "ParkName",
+      "PropType"
+     ],
+     "sample": [
+      "Copper Breaks",
+      "Lake Colorado City",
+      "Devil's Sinkhole",
+      "Hill Country - Louise Merrick Unit",
+      "Kickapoo Cavern",
+      "Cleburne"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "UT": [
+  {
+   "url": "https://gis.trustlands.utah.gov/mapping/rest/services/Land_Ownership/FeatureServer",
+   "layers": [
+    {
+     "url": "https://gis.trustlands.utah.gov/mapping/rest/services/Land_Ownership/FeatureServer/0",
+     "name": "Land_Ownership",
+     "count": 16047,
+     "strfields": [],
+     "sample": [],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "VA": [
+  {
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/SP_Boundary/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/SP_Boundary/FeatureServer/3",
+     "name": "SP_Boundary",
+     "count": 44,
+     "strfields": [],
+     "sample": [],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "VT": [
+  {
+   "url": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/FS_VCGI_VT_Protected_Lands_Database_WM_v2/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/FS_VCGI_VT_Protected_Lands_Database_WM_v2/FeatureServer/0",
+     "name": "FS_VCGI_VT_Protected_Lands_Database_WM_v2",
+     "count": 13979,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Appalachian Trail Corridor Easement",
+      "Missisquoi National Wildlife Refuge Ease",
+      "Appalachian Trail Corridor Easement",
+      "Appalachian Trail Corridor Easement",
+      "Appalachian Trail Corridor Easement",
+      "Appalachian Trail Corridor Easement"
+     ],
+     "max": 2000
+    }
+   ]
+  }
+ ],
+ "WA": [
+  {
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/ArcGIS/rest/services/ParkBoundaries/FeatureServer",
+   "layers": [
+    {
+     "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/ArcGIS/rest/services/ParkBoundaries/FeatureServer/2",
+     "name": "WA State Park Park Boundaries",
+     "count": 207,
+     "strfields": [
+      "ParkName",
+      "ParkMgmntArea",
+      "ParkSubRegion",
+      "ParkRegion"
+     ],
+     "sample": [
+      "Alta Lake",
+      "Anderson Lake",
+      "Battle Ground Lake",
+      "Bay View",
+      "Beacon Rock",
+      "Beebe Bridge"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "WI": [
+  {
+   "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer",
+   "err": "<urlopen error timed out>"
+  }
+ ],
+ "WV": [
+  {
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer",
+   "layers": [
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/1",
+     "name": "WV_Counties",
+     "count": 55,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Barbour",
+      "Berkeley",
+      "Boone",
+      "Braxton",
+      "Brooke",
+      "Calhoun"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/2",
+     "name": "WV_Boundary",
+     "count": 1,
+     "strfields": [],
+     "sample": [],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/3",
+     "name": "WVDOH_Districts",
+     "count": 10,
+     "strfields": [],
+     "sample": [],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/4",
+     "name": "Ecoregions",
+     "count": 6,
+     "strfields": [],
+     "sample": [],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/6",
+     "name": "Wildlife_Management_Areas",
+     "count": 120,
+     "strfields": [
+      "Own_Name",
+      "Mang_Name",
+      "Unit_Nm"
+     ],
+     "sample": [
+      "SDNR",
+      "USFS",
+      "USFS",
+      "USFS",
+      "USFS",
+      "USFS"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/7",
+     "name": "National_Forests",
+     "count": 4,
+     "strfields": [
+      "Own_Name",
+      "Mang_Name",
+      "Unit_Nm"
+     ],
+     "sample": [
+      "USFS",
+      "USFS",
+      "USFS",
+      "USFS"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/8",
+     "name": "National_Parks",
+     "count": 5,
+     "strfields": [
+      "Own_Name",
+      "Mang_Name",
+      "Unit_Nm",
+      "d_Own_Name"
+     ],
+     "sample": [
+      "NPS",
+      "NPS",
+      "NPS",
+      "NPS",
+      "NPS"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/9",
+     "name": "State_Forests",
+     "count": 8,
+     "strfields": [
+      "DNRName",
+      "AreaType",
+      "WebsiteURL"
+     ],
+     "sample": [
+      "Seneca State Forest",
+      "Kumbrabow State Forest",
+      "Kanawha State Forest",
+      "Coopers Rock State Forest",
+      "Greenbrier State Forest",
+      "Camp Creek State Forest"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10",
+     "name": "State_Parks",
+     "count": 36,
+     "strfields": [],
+     "sample": [],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/12",
+     "name": "WV_Congressional_Districts",
+     "count": 2,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      " Congressional 2",
+      " Congressional 1"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/13",
+     "name": "State_House_Delegates_Districts",
+     "count": 100,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/14",
+     "name": "State_Senate_Districts",
+     "count": 17,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/15",
+     "name": "Incorporated Places",
+     "count": 231,
+     "strfields": [
+      "NAME",
+      "NAMELSAD"
+     ],
+     "sample": [
+      "Grafton",
+      "Sand Fork",
+      "Gauley Bridge",
+      "Meadow Bridge",
+      "Beech Bottom",
+      "Grantsville"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/16",
+     "name": "Incorporated_Places_Annex",
+     "count": 231,
+     "strfields": [
+      "NAME",
+      "NAMELSAD"
+     ],
+     "sample": [
+      "Grafton",
+      "Sand Fork",
+      "Gauley Bridge",
+      "Meadow Bridge",
+      "Beech Bottom",
+      "Grantsville"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/17",
+     "name": "Metropolitan_Planning_Organization",
+     "count": 10,
+     "strfields": [
+      "MPO_NAME"
+     ],
+     "sample": [
+      "Southwestern Pennsylvania Commission",
+      "RIC (Charleston)",
+      "BELOMAR (Wheeling)",
+      "KYOVA (Huntington)",
+      "WWW (Parkersburg)",
+      "MMMPO (Morgantown)"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/18",
+     "name": "Urban_Areas_Highways",
+     "count": 24,
+     "strfields": [
+      "NAME20",
+      "NAMELSAD20"
+     ],
+     "sample": [
+      "Beckley, WV",
+      "Buckhannon, WV",
+      "Charleston, WV",
+      "Clarksburg, WV",
+      "Cumberland, MD--WV--PA",
+      "East Liverpool, OH--WV--PA"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/20",
+     "name": "State_Police_Detachments",
+     "count": 55,
+     "strfields": [
+      "NAME"
+     ],
+     "sample": [
+      "Ohio",
+      "Marshall",
+      "Preston",
+      "Morgan",
+      "Monongalia",
+      "Wetzel"
+     ],
+     "max": 1000
+    },
+    {
+     "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/19",
+     "name": "US_States",
+     "count": 50,
+     "strfields": [
+      "STATE_NAME"
+     ],
+     "sample": [
+      "Hawaii",
+      "Washington",
+      "Montana",
+      "Maine",
+      "North Dakota",
+      "South Dakota"
+     ],
+     "max": 1000
+    }
+   ]
+  }
+ ],
+ "WY": [
+  {
+   "url": "No",
+   "skip": "not a layer link"
+  }
+ ]
+}
