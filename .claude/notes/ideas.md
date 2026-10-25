@@ -103,3 +103,4 @@
 - [DONE by the Oct 22 override; the river line is a trails-bot job] Fix US-11852 Beaver Creek, which is matched to the wrong outline.
 - A table of Kentucky PVA offices, one per county.
 - The list of POTA trails around Kentucky.
+- **ACTIVATORS LOUNGE fixes (Oct 24 PM, Brandon):** Official Info Finder no longer says 'any' ('where one has been published'); new SOTA Summit Checker line; WHERE tags only when limited: KENTUCKY ONLY / US ONLY, no tag = works everywhere (no more 'US · CANADA · 64 COUNTRIES' / ANYWHERE); phone hero = Brandon's new tall picture (no Kentucky outline on the sign) hero-activators-mobile.webp?v=20261024b; Campgrounds card = US ONLY, all states.
