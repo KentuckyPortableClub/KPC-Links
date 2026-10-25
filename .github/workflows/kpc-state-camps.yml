@@ -1,0 +1,46 @@
+name: KPC state park camping (every state but Kentucky)
+# Weekly: campgrounds, cabins and lodges inside each state's parks, read ONLY from the state's own GIS open data
+# (official sources only). Writes data/campstate/US-XX.json + index.json for the Activators Lounge state picker.
+# States with no readable official layer go in the BODY of the rolling issue labelled 'state-camps' (edited in place,
+# never a comment, so no email). Every step ends green: a failed read keeps last week's files.
+on:
+  schedule:
+    - cron: '23 8 * * 3'
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States, e.g. "TN OH" (blank = every state but KY)'
+        default: ''
+      dry_run:
+        description: 'Practice run: print what it finds, write nothing'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: kpc-state-camps
+  cancel-in-progress: false
+jobs:
+  camps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the state GIS servers
+        continue-on-error: true
+        env:
+          STATES: ${{ inputs.states }}
+          DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/kpc_state_camps.py || true
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p data/campstate; git add data/campstate 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'State park camping: weekly update'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
