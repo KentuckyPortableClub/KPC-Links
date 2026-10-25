@@ -52,8 +52,8 @@
    "updated": "2026-10-25"
   },
   "OH": {
-   "n": 53,
-   "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56)",
+   "n": 62,
+   "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56); gis.ohiodnr.gov \u00b7 Lodges (9)",
    "updated": "2026-10-25"
   },
   "PA": {
@@ -79,6 +79,11 @@
   "VA": {
    "n": 40,
    "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (71)",
+   "updated": "2026-10-25"
+  },
+  "WA": {
+   "n": 66,
+   "source": "services5.arcgis.com \u00b7 Campsites (76)",
    "updated": "2026-10-25"
   },
   "WV": {
@@ -118,11 +123,11 @@
   "SC",
   "SD",
   "VT",
-  "WA",
   "WI",
   "WY"
  ],
  "none_why": {
+  "AL": "the only official layer (ADCNR Activities/Camping) is 5 delta camping platforms, not park campgrounds (held back)",
   "AR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "AZ": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "CO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
@@ -152,9 +157,7 @@
   "SC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "SD": "the state GIS server did not answer from GitHub (<urlopen error timed out>); ArcGIS Online had no camp layer from an account named like the state's agencies",
   "VT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "WA": "the only layer found lists camp-host sites, not campgrounds (held back)",
   "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "AL": "the only official layer (ADCNR Activities/Camping) is 5 delta camping platforms, not park campgrounds (held back)"
+  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
  }
 }
