@@ -1,17 +1,14 @@
 # LT: POTA parks vs official land
 
-Built 2026-10-20 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **25 of 38** joined (same name + same kind), **12** to check, **1** nothing found. Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **28 of 38** joined (same name + same kind), **9** to check, **1** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
 - **LT-0003** Curonian Spit National Park (National Park) → Kuršių nerijos nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0005** The Trakai Historical National Park (National Park) → Trakų istorinis nacionalinis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **LT-0006** Nemuno delta Regional Park (Regional Park) → Nemuno delta (EEA Natura 2000, same name, different kind of place); Nemuno delta (EEA Natura 2000, same name, different kind of place); Nemuno deltos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0013** Venta Regional Park (Regional Park) → Ventos regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0015** Biržai Regional Park (Regional Park) → Biržų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0017** Sartai Regional Park (Regional Park) → Sartų regioninis parkas (EEA Natura 2000, the POTA pin is inside it (different name)); Sartų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **LT-0024** Kauno marios Regional Park (Regional Park) → Kauno marios (EEA Natura 2000, same name, different kind of place); Kauno marios (EEA Natura 2000, same name, different kind of place); Kauno marių regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **LT-0025** Nemuno kilpos Regional Park (Regional Park) → Nemuno kilpos (EEA Natura 2000, same name, different kind of place); Nemuno kilpų regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0026** Dieveniškės Historical Regional Park (Regional Park) → Dieveniškių istorinis regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0028** Neris Regional Park (Regional Park) → Neries kilpų apylinkės (EEA Natura 2000, the POTA pin is inside it (different name)); Neries regioninis parkas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **LT-0036** Viešvile Strict Nature Reserve (Nature Reserve) → Viešvilės aukštupio pelkynas (EEA Natura 2000, the POTA pin is inside it (different name)); Viešvilės valstybinis gamtinis rezervatas (EEA nationally designated areas, the POTA pin is inside it (different name))
