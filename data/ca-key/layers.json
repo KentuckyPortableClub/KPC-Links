@@ -1,5 +1,87 @@
 {
  "cpcad": [
   "https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer/0"
+ ],
+ "Parks Canada": [
+  "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/vw_Places_Public_lieux_public_APCA/FeatureServer/0"
+ ],
+ "Ontario Park": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4"
+ ],
+ "Ontario cons": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2"
+ ],
+ "Alberta Park": [
+  "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0"
+ ],
+ "Québec prote": [
+  "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23"
+ ],
+ "Saskatchewan": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/1",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/2",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/3",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/5",
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
+ ],
+ "Manitoba Par": [
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
+ ],
+ "Nova Scotia ": [
+  "https://nsgiwa.novascotia.ca/arcgis/rest/services/ENV/ENV_NS_Prot_Area_Sys_UT83/MapServer/0",
+  "https://nsgiwa.novascotia.ca/arcgis/rest/services/PLAN/PLANCrownLandsWM84V1/MapServer/0",
+  "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1"
+ ],
+ "New Brunswic": [
+  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0",
+  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Nature_Legacy_Protected_Areas/FeatureServer/0",
+  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer/0"
+ ],
+ "Manitoba wil": [
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0",
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1",
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2",
+  "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0"
+ ],
+ "Québec ecolo": [
+  "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/10"
+ ],
+ "Québec recog": [
+  "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/12"
+ ],
+ "Yukon parks ": [
+  "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3"
+ ],
+ "Yukon campgr": [
+  "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0"
+ ],
+ "Ontario fede": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/10"
+ ],
+ "Ontario muni": [
+  "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/3"
+ ],
+ "BC recreatio": [
+  "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5"
+ ],
+ "Québec Aire ": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/0"
+ ],
+ "Québec Parc ": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/3",
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/4",
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/5",
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/6"
+ ],
+ "Québec Refug": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/10"
+ ],
+ "Québec Réser": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11"
+ ],
+ "Québec Zone ": [
+  "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16"
  ]
 }

@@ -1,6 +1,6 @@
 # Canada BC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (same name + same kind). **0** to check, **133** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (same name + same kind). **0** to check, **134** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -9,18 +9,17 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (sa
 
 - CA-3211 Becher's Prairie Provincial Park (Provincial Park) → on Old Growth Management Areas (Mapped Legal) (~3,560,536 ac)
 - CA-3282 Delta Nature Reserve (Nature Reserve) → on Burns Bog Ecological Conservancy Area (~5,833 ac)
-- CA-3298 Cardiff Mountain Ecological Reserve (Ecological Reserve) → on TŜI ʔEẐƗSH ECOLOGICAL RESERVE (~178 ac)
 - CA-3334 Chukachida Protected Area (Protected Area) → on CHU CHUA COTTONWOOD PARK (~267 ac)
 - CA-3476 Endeavour Hydrothermal Vents Marine Protected Area (Marine Protected Area) → on Tang.ɢ̲wan — ḥačxʷiqak — Tsig̱is Marine Protected Area (~31,089,960 ac)
-- CA-3778 Maquinna Marine Provincial Park (Provincial Park) → on Nism̓aakqin PARK (~3,383 ac)
-- CA-3960 Pine River Breaks Provincial Park (Provincial Park) → on GRAHAM-LAURIER PARK (~246,868 ac)
 - CA-4793 Kicking Horse Pass National Historic Site (National Historic Site) → on Yoho National Park Of Canada (~324,474 ac)
-- CA-4795 Nan Sdins National Historic Site (National Historic Site) → on Gwaii Haanas National Park Reserve Of Canada And Haida Heritage Site (~364,332 ac)
+- CA-4795 Nan Sdins National Historic Site (National Historic Site) → on Gwaii Haanas National Marine Conservation Area Reserve & Haida Heritage Site (~864,868 ac)
 - CA-4796 Rogers Pass National Historic Site (National Historic Site) → on Glacier National Park Of Canada (~333,345 ac)
 - CA-4798 Twin Falls Tea House National Historic Site (National Historic Site) → on Yoho National Park Of Canada (~324,474 ac)
+- CA-5344 The West Coast Trail National Park (National Park) → on Pacific Rim National Park Reserve Of Canada (~55,599 ac)
 - CA-5346 Thompson Regional Park (Regional Park) → on CHILLIWACK RIVER PARK (~57 ac)
 - CA-5483 SGang Gwaay National Heritage Site (National Heritage Site) → on Gwaii Haanas National Park Reserve Of Canada And Haida Heritage Site (~364,332 ac)
 - CA-6133 Kicking Horse River National Heritage Area (National Heritage Area) → on Yoho National Park Of Canada (~324,474 ac)
+- CA-6382 Stewart Farm Historic Site (Historic Site) → on BOUNDARY BAY WILDLIFE MANAGEMENT AREA (~605 ac)
 
 ## Nothing found in CPCAD
 
@@ -36,6 +35,7 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (sa
 - CA-3267 Buckingham Park Protected Area (Protected Area)
 - CA-3272 Buntzen Lake Recreation Park (Recreation Park)
 - CA-3278 Burnaby Mountain Conservation Area (Conservation Area)
+- CA-3298 Cardiff Mountain Ecological Reserve (Ecological Reserve)
 - CA-3300 Cariboo Park (Park)
 - CA-3304 Castle Park (Park)
 - CA-3307 Cedar Creek Park Conservation Area (Conservation Area)
@@ -86,6 +86,7 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (sa
 - CA-3774 Maple Park (Park)
 - CA-3775 Maple Ridge Park (Park)
 - CA-3777 Maquabeak Park (Park)
+- CA-3778 Maquinna Marine Provincial Park (Provincial Park)
 - CA-3786 Margaret Pigott Park (Park)
 - CA-3792 McClughan Park (Park)
 - CA-3800 Memorial Park (Park)
@@ -98,6 +99,7 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (sa
 - CA-3888 Negiy / Nekite Estuary Conservancy Protected Area (Protected Area)
 - CA-3918 Oak Meadows Park (Park)
 - CA-3943 Parkgate Recreation Park (Recreation Park)
+- CA-3960 Pine River Breaks Provincial Park (Provincial Park)
 - CA-3966 Pitt Meadows Athletic Park Recreation Site (Recreation Site)
 - CA-3968 Pitt River Regional Greenway Park (Park)
 - CA-4002 Queen Elizabeth Park (Park)
@@ -139,7 +141,6 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (sa
 - CA-5331 Kelowna City Recreation Park (Recreation Park)
 - CA-5341 Rotary Beach Recreation Park (Recreation Park)
 - CA-5343 Skaha Lake Recreation Park (Recreation Park)
-- CA-5344 The West Coast Trail National Park (National Park)
 - CA-5349 Gwynne Vaughan Park (Park)
 - CA-5350 Tumbler Ridge UNESCO Global Geopark (Geopark)
 - CA-5499 Crippen Regional Park (Regional Park)
@@ -153,7 +154,6 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (sa
 - CA-5667 Mount Tolmie Park (Park)
 - CA-6132 Fraser River National Heritage Area (National Heritage Area)
 - CA-6369 Cape Mudge Lighthouse National Historic Site (National Historic Site)
-- CA-6382 Stewart Farm Historic Site (Historic Site)
 - CA-6397 Britannia Mines Concentrator National Historic Site (National Historic Site)
 - CA-6398 Craigflower Manor House National Historic Site (National Historic Site)
 - CA-6399 Craigflower Schoolhouse National Historic Site (National Historic Site)
