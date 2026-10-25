@@ -209,3 +209,6 @@
 
 - DISCORD RELAY SAVE FIX (chat 5, Oct 25): kpc_save_filter.py puts back a state file whose only change is a time stamp (updated/commands_from/checked...), run before git add in kpc-discord-relay.yml; was 199 'Club post from Discord' commits a day. Hunter counts / Facebook comments / Discord watch commit ~14 a day each (hourly), left as is. Same filter can be added to any saver.
 - CHAT 5 SESSION NOTE (Oct 25 8:10 AM): did the Discord relay save fix (kpc_save_filter.py). Overnight maps/camping work was done in chat 5 by mistake of routing; handed to chat 2 in mapping.md. Nothing else of chat 5's is pending. Bots keep-up reminder: temp workflows deleted (none left), no failure emails, one dispatch at a time.
+
+## HAND-OFF FROM CHAT 2 TO CHAT 3 (Oct 25): Campgrounds page and the new camping points
+- data/campstate-manual now holds official campground / cabin POINT rows for 14 states (CO IL NE VT MO AL + DE GA MD MS NH NM NV WY). Row: [id,name,lat,lon,kind c|b,parkRef,parksPage,reservePage,detail,'point','confirmed'|'label only',km from pin,source layer]; park-level rows end with 'park'. kpc-campgrounds-us.js shows EVERY manual row as 'Camping at this park / park-level' with the detail text: point rows could show as real campground pins (name, GPS, DIRECTIONS; 'label only' = 'official point, no campground name'). Your call; the data shape won't change.
