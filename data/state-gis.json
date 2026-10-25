@@ -16,6 +16,14 @@
     "nm": "LDA_NAME_1",
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "forest",
+    "ag": "Alaska DNR Division of Forestry (Alaska DNR AGOL org)",
+    "nm": "forestname",
+    "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 13"
    }
   ],
   "AR": [
@@ -77,6 +85,14 @@
     "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41",
     "ds": "State Park",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Colorado Parks & Wildlife (CPW AGOL org ttNGmDvKQA7oeDQ3)",
+    "nm": "PropName",
+    "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWAdminData/FeatureServer/5",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3"
    }
   ],
   "DE": [
@@ -141,13 +157,6 @@
     "host": "agol"
    },
    {
-    "kind": "wild",
-    "ag": "Florida Fish & Wildlife Conservation Commission",
-    "nm": "NAME",
-    "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/0",
-    "host": "agency"
-   },
-   {
     "kind": "land",
     "ag": "Suwannee River Water Management District",
     "nm": "TRACT_NAME",
@@ -193,6 +202,14 @@
     "nm": "PropName",
     "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Georgia DNR Wildlife Resources Division (GA DNR AGOL org)",
+    "nm": "PropName",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/WRD_WMA_Public/FeatureServer/14",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3"
    }
   ],
   "HI": [
@@ -377,6 +394,14 @@
     "web": "WEB_PAGE",
     "ds": "Wildlife Management Area",
     "host": "agol"
+   },
+   {
+    "kind": "land",
+    "ag": "Montana Fish, Wildlife & Parks",
+    "nm": "NAME",
+    "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 3"
    }
   ],
   "ND": [
@@ -421,6 +446,14 @@
     "nm": "NAME",
     "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/State_Game_Commission_Lands_view/FeatureServer/6",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "NM EMNRD State Parks data, hosted in the State of New Mexico Mapping Community AGOL org",
+    "nm": "Name",
+    "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 3; uploaded by a contractor account inside the state of New Mexico ArcGIS org"
    }
   ],
   "NV": [
@@ -531,6 +564,14 @@
     "nm": "StParkName",
     "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Pennsylvania Game Commission (PGC AGOL org k8yxvICm95iIFicb)",
+    "nm": "sgl_name",
+    "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 1"
    }
   ],
   "RI": [
@@ -579,6 +620,14 @@
     "nm": "StateForestName",
     "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map",
+    "nm": "NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 4 of 11"
    }
   ],
   "TX": [
@@ -798,14 +847,16 @@
     "ag": "Ohio DNR Division of Parks and Watercraft",
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5",
-    "host": "agency"
+    "host": "agency",
+    "nm2": "ALT_NAME"
    },
    {
     "kind": "wild",
     "ag": "Ohio DNR Division of Wildlife",
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7",
-    "host": "agency"
+    "host": "agency",
+    "nm2": "ALT_NAME"
    },
    {
     "kind": "forest",
@@ -813,14 +864,16 @@
     "nm": "LANDS_NAME",
     "ds": "State Forest",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/6",
-    "host": "agency"
+    "host": "agency",
+    "nm2": "ALT_NAME"
    },
    {
     "kind": "preserve",
     "ag": "Ohio DNR Division of Natural Areas and Preserves",
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8",
-    "host": "agency"
+    "host": "agency",
+    "nm2": "ALT_NAME"
    },
    {
     "kind": "land",
@@ -910,6 +963,22 @@
     "nm": "NAME",
     "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Arizona Game and Fish Department (AZGFD_GIS org)",
+    "nm": "MasterName",
+    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Arizona Game and Fish Department (AZGFD_GIS org)",
+    "nm": "Prop_name",
+    "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 1"
    }
   ],
   "MO": [
@@ -926,6 +995,14 @@
     "nm": "NAME",
     "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Missouri Department of Conservation (gisblue.mdc.mo.gov)",
+    "nm": "Area_Name",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 6"
    }
   ],
   "CT": [
@@ -935,6 +1012,14 @@
     "nm": "PROPERTY",
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "CT DEEP (deepgis account)",
+    "nm": "OFFIC_NAME",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2011_Protected_Open_Space_Mapping/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 5; a 2011 open-space set"
    }
   ],
   "IL": [
@@ -969,6 +1054,14 @@
     "nm": "SITE_NAME",
     "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Massachusetts DCR (DCRStateParks account, mass-eoeea org)",
+    "nm": "SITE_NAME",
+    "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Search_DCRownManOS_SitenameDiss/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 9 of 14"
    }
   ],
   "NE": [
@@ -1012,6 +1105,14 @@
     "nm": "name",
     "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "New Hampshire Fish and Game Department (NHFG AGOL org)",
+    "nm": "NAME",
+    "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 3"
    }
   ],
   "NU": [
@@ -1295,6 +1396,25 @@
     "host": "agency",
     "code": "AB-PLUZ",
     "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 2 (AB Recreation Park)"
+   }
+  ],
+  "SD": [
+   {
+    "kind": "park",
+    "ag": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data)",
+    "nm": "AreaName",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/4787d99dcb1f4728b33f89a9eb9ae03e/rest/services/OpenData/SouthDakota_ParksAndRecreationAreas/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 6"
+   },
+   {
+    "kind": "land",
+    "ag": "South Dakota Game, Fish and Parks (gfp.gis.coord, SD GFP open data)",
+    "nm": "AreaName",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/0a01764b6c3b4d13b9af23df1610214b/rest/services/OpenData/SouthDakota_GFPManagedLands/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 2 of 6",
+    "where": "Division='Parks and Rec'"
    }
   ]
  },
