@@ -6,6 +6,16 @@
    "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84)",
    "updated": "2026-10-25"
   },
+  "FL": {
+   "n": 149,
+   "source": "services3.arcgis.com \u00b7 Recreation_Points_Website_Staging (170)",
+   "updated": "2026-10-25"
+  },
+  "HI": {
+   "n": 8,
+   "source": "geodata.hawaii.gov \u00b7 Campsites - Hawaii State Parks (11)",
+   "updated": "2026-10-25"
+  },
   "IA": {
    "n": 94,
    "source": "programs.iowadnr.gov \u00b7 Recreation Amenities (185); programs.iowadnr.gov \u00b7 Recreation Amenities (176); programs.iowadnr.gov \u00b7 Recreation Amenities (176)",
@@ -32,8 +42,8 @@
    "updated": "2026-10-25"
   },
   "NY": {
-   "n": 81,
-   "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services.arcgis.com \u00b7 Facility (147)",
+   "n": 162,
+   "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services.arcgis.com \u00b7 Facility (147); services6.arcgis.com \u00b7 DEC_OPRHP_camground_centriods (112) (+1 more)",
    "updated": "2026-10-25"
   },
   "OH": {
@@ -47,8 +57,8 @@
    "updated": "2026-10-25"
   },
   "TN": {
-   "n": 278,
-   "source": "services5.arcgis.com \u00b7 Park Assets (321); services5.arcgis.com \u00b7 TDEC_GIS_TSP.TSP_Cabins (380); services5.arcgis.com \u00b7 TSP_Campground_Point (125) (+3 more)",
+   "n": 267,
+   "source": "services5.arcgis.com \u00b7 Park Assets (214); services5.arcgis.com \u00b7 TDEC_GIS_TSP.TSP_Cabins (380); services5.arcgis.com \u00b7 TSP_Campground_Point (120) (+3 more)",
    "updated": "2026-10-25"
   },
   "TX": {
@@ -81,9 +91,7 @@
   "CT",
   "DC",
   "DE",
-  "FL",
   "GA",
-  "HI",
   "ID",
   "IL",
   "KS",
@@ -109,5 +117,9 @@
   "WA",
   "WI",
   "WY"
- ]
+ ],
+ "none_why": {
+  "CA": "1 layer(s) looked promising but held no camp / cabin / lodge records",
+  "ID": "the state GIS servers answered but publish no campground / cabin layer we can read"
+ }
 }
