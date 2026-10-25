@@ -163,9 +163,15 @@ def file_rows(lay):
         lat = next((c for c in cols if re.fullmatch(r'(?i)y|lat(itude)?|point_y', c.strip())), None) or next((c for c in cols if re.search(r'(?i)lat', c)), None)
         lon = next((c for c in cols if re.fullmatch(r'(?i)x|lon(g|gitude)?|lng|point_x', c.strip())), None) or next((c for c in cols if re.search(r'(?i)lon|lng', c)), None)
         for row in rd:
-            try: feats.append({'attributes': row, 'geometry': {'x': float(row[lon]), 'y': float(row[lat])}})
+            try:
+                x, y = float(row[lon]), float(row[lat])
+                if abs(x) > 180 or abs(y) > 90:                      # metres, not degrees: Web Mercator (EPSG:3857) is the usual case
+                    if abs(x) > 2.0038e7 or abs(y) > 2.0038e7: continue
+                    x, y = x / 20037508.34 * 180, math.degrees(math.atan(math.sinh(y / 6378137.0)))
+                feats.append({'attributes': row, 'geometry': {'x': x, 'y': y}})
             except Exception: continue  # noqa: E722
     if feats: lay['fields'] = [(k, 'esriFieldTypeString') for k in feats[0]['attributes']]
+    lay['raw'] = [{k: str(v)[:40] for k, v in list(f['attributes'].items())[:12]} for f in feats[:2]] + [{'geometry': f['geometry']} for f in feats[:1]]
     return feats
 
 
@@ -466,7 +472,7 @@ def do_state(st):
             got = rows_to_camps(lay, feats)
             DIAG.setdefault(st, {}).setdefault('layers', []).append(
                 {'url': lay['url'], 'name': lay['name'], 'fields': [n for n, _ in lay['fields']][:14], 'read': len(feats), 'kept': len(got),
-                 'sample': [c['name'] for c in got[:3]]})
+                 'sample': [c['name'] for c in got[:3]], **({'raw': lay['raw']} if lay.get('raw') else {})})
             if got:
                 cands += got; used.append(f"{urllib.parse.urlparse(lay['url']).netloc} · {lay['name']} ({len(got)})")
         n0 = len(cands)
