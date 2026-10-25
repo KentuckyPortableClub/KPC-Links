@@ -104,3 +104,5 @@
 - A table of Kentucky PVA offices, one per county.
 - The list of POTA trails around Kentucky.
 - **ACTIVATORS LOUNGE fixes (Oct 24 PM, Brandon):** Official Info Finder no longer says 'any' ('where one has been published'); new SOTA Summit Checker line; WHERE tags only when limited: KENTUCKY ONLY / US ONLY, no tag = works everywhere (no more 'US · CANADA · 64 COUNTRIES' / ANYWHERE); phone hero = Brandon's new tall picture (no Kentucky outline on the sign) hero-activators-mobile.webp?v=20261024b; Campgrounds card = US ONLY, all states.
+- **OWNERS for the Oct 24 website to-do list (chat 1, Oct 25):** Hunters Lounge install = chat 3 (hand-off note written in logger-lounge-digi.md). The 3 club bots + contests = already built (chat 5 / 6). Still undecided who runs, waiting on Brandon: KPC NET pick, DigiPi help + guide page, UV-K5 fox firmware question, trip planners public / boundaries note / Lounge plans (talk-throughs: chat 2 for planners + boundaries, chat 3 for the Lounge, HQ to track). App look on the website = after Brandon likes the app, then chat 1 does the regular site look.
+
