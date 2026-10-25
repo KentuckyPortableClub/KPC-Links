@@ -1,0 +1,412 @@
+{
+ "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note.",
+ "parks": {
+  "CA-5536": {
+   "name": "Nassagaweya Canyon Trail Recreation Site",
+   "parts": [
+    {
+     "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis1071a/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+     "where": "TRAIL_NAME='Nassagaweya Canyon Trail'",
+     "by": "Conservation Halton (data: Ontario MNR LIO, Ontario Trail Network)"
+    }
+   ]
+  },
+  "US-0673": {
+   "name": "Saint Croix National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id IN ('6','9','SD5')",
+     "by": "NPS St. Croix NSR"
+    }
+   ]
+  },
+  "US-0675": {
+   "name": "Missouri National Recreational River National Wild & Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id IN ('118','22')",
+     "by": "NPS"
+    }
+   ]
+  },
+  "US-0681": {
+   "name": "Upper Delaware National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='19'",
+     "by": "NPS"
+    }
+   ]
+  },
+  "US-0684": {
+   "name": "Lower Delaware National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='165'",
+     "by": "NPS partnership river"
+    }
+   ]
+  },
+  "US-0877": {
+   "name": "Alatna National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='26'",
+     "by": "NPS (Gates of the Arctic NP&P)"
+    }
+   ]
+  },
+  "US-0882": {
+   "name": "Farmington National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='156'",
+     "by": "NPS partnership river (Farmington River Coordinating Committee)"
+    }
+   ],
+   "note": "NOT SURE which WSR: pin 41.8745,-72.9672 (New Hartford) fits West Branch Farmington (river_id 156); a separate Lower Farmington & Salmon Brook WSR is river_id 225. Source: G Tested: yes 2026-10-25"
+  },
+  "US-0887": {
+   "name": "Mulchatna National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='32'",
+     "by": "NPS (Lake Clark NP&P)"
+    }
+   ]
+  },
+  "US-0892": {
+   "name": "Tinayguk National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='36'",
+     "by": "NPS (Gates of the Arctic NP&P)"
+    }
+   ]
+  },
+  "US-10429": {
+   "name": "Middle Fork Clearwater River National Wild & Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='1'",
+     "by": "USFS (Nez Perce-Clearwater NF)"
+    }
+   ]
+  },
+  "US-10430": {
+   "name": "St Joe River National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='23'",
+     "by": "USFS Idaho Panhandle NF"
+    }
+   ]
+  },
+  "US-10709": {
+   "name": "Klickitat National Wild & Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='60'",
+     "by": "USFS Columbia River Gorge NSA"
+    }
+   ]
+  },
+  "US-10733": {
+   "name": "Bolt Mountain BLM Historic Trail",
+   "parts": [
+    {
+     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
+     "where": "ROUTE_PRMRY_NM='Bolt Mountain Trail'",
+     "by": "BLM Medford District (Grants Pass Interagency Office)"
+    }
+   ],
+   "note": "NOT SURE: 1 feature, 3.78 km, BLM land only; lower part is on Josephine County Fish Hatchery Park land and not in the layer. Source: G Tested: yes 2026-10-25"
+  },
+  "US-10970": {
+   "name": "Laverkin Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='La Verkin Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-10971": {
+   "name": "Smith Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Smith Creek'",
+     "by": "BLM St. George FO"
+    }
+   ]
+  },
+  "US-10972": {
+   "name": "Beartrap Canyon BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND (gnis_name='Bear Trap Canyon' OR gnis_name='Beartrap Canyon')",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-10973": {
+   "name": "Middle Fork Taylor Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Middle Fork Taylor Creek'",
+     "by": "NPS Zion NP"
+    }
+   ]
+  },
+  "US-10974": {
+   "name": "Deep Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Deep Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-10975": {
+   "name": "Oak Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Oak Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-10976": {
+   "name": "Kolob Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Kolob Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-11115": {
+   "name": "North Fork Virgin River BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND (gnis_name='North Fork Virgin River' OR gnis_name='North Fork Virgin, above Temple')",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-11755": {
+   "name": "Goose Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Goose Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-11852": {
+   "name": "Beaver Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='45'",
+     "by": "BLM Fairbanks District (segments also FWS)"
+    }
+   ]
+  },
+  "US-12224": {
+   "name": "Bruneau River Access BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='182'",
+     "by": "BLM Boise District"
+    }
+   ]
+  },
+  "US-12234": {
+   "name": "Allegheny National Wild & Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='133'",
+     "by": "USFS Allegheny NF"
+    }
+   ]
+  },
+  "US-12630": {
+   "name": "Upper Missouri River BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='14'",
+     "by": "BLM Lewistown Field Office (Upper Missouri River Breaks NM)"
+    }
+   ]
+  },
+  "US-12790": {
+   "name": "East Branch of the Taquamenon National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='130'",
+     "by": "USFS Hiawatha NF"
+    }
+   ]
+  },
+  "US-12798": {
+   "name": "Sturgeon (Hiawatha) National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='128'",
+     "by": "USFS Hiawatha NF"
+    }
+   ]
+  },
+  "US-12799": {
+   "name": "Sturgeon (Ottawa) National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='129'",
+     "by": "USFS Ottawa NF"
+    }
+   ]
+  },
+  "US-3382": {
+   "name": "John National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='30'",
+     "by": "NPS (Gates of the Arctic NP&P)"
+    }
+   ]
+  },
+  "US-3660": {
+   "name": "Suwannee River Wilderness State Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Designated_Paddling_Trails/FeatureServer/0",
+     "where": "NAME='SUWANNEE RIVER WILDERNESS TRAIL'",
+     "by": "Florida DEP Office of Greenways & Trails"
+    }
+   ]
+  },
+  "US-5835": {
+   "name": "Green River Utah BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='224'",
+     "by": "BLM Price/Moab Field Offices"
+    }
+   ]
+  },
+  "US-6012": {
+   "name": "Shunes Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Shunes Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-6025": {
+   "name": "Willis Creek BLM Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "river_id='204' AND gnis_name='Willis Creek'",
+     "by": "BLM St. George FO + NPS Zion NP"
+    }
+   ]
+  },
+  "US-6207": {
+   "name": "Clarks Fork of the Yellowstone National Wild & Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='116'",
+     "by": "USFS Shoshone NF"
+    }
+   ]
+  },
+  "US-6227": {
+   "name": "Snake River National Wild & Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='12'",
+     "by": "USFS Wallowa-Whitman NF (Hells Canyon NRA) with BLM"
+    },
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='206'",
+     "by": "USFS Bridger-Teton NF, NPS (Grand Teton/Yellowstone), FWS"
+    }
+   ]
+  },
+  "US-7366": {
+   "name": "Trail of the Coeur d'Alene's State Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128",
+     "where": "NAME='Trail of The Coeur D'' Alenes' AND Miles>70",
+     "by": "Idaho Dept of Parks & Recreation with Coeur d'Alene Tribe"
+    }
+   ]
+  },
+  "US-8014": {
+   "name": "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0",
+     "where": "river_id='227'",
+     "by": "NPS partnership river"
+    }
+   ]
+  },
+  "US-8618": {
+   "name": "White Ridge National Recreation Trail",
+   "parts": [
+    {
+     "url": "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8",
+     "where": "ROUTE_PRMRY_NM='White Ridge Bike Trails' AND ADMIN_ST='NM'",
+     "by": "BLM Rio Puerco Field Office"
+    }
+   ]
+  },
+  "US-9159": {
+   "name": "Lower Deschutes National Wild and Scenic River",
+   "parts": [
+    {
+     "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
+     "where": "segment_id='73.1002'",
+     "by": "BLM Prineville District"
+    }
+   ]
+  }
+ }
+}
