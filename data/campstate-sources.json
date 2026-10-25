@@ -1,0 +1,397 @@
+{
+ "about": "Official starting links per state (state park camping page, reservation site, wildlife agency, statewide GIS portal), from Brandon's US_Camping_and_GIS_Directory.xlsx (Oct 24 2026). Starting points only, not campground data. Third-party cross-check sites in the workbook are NOT used (official sources only). Read by kpc_state_camps_probe.py.",
+ "states": {
+  "AL": {
+   "name": "Alabama",
+   "parks": "https://www.alapark.com/camping",
+   "reserve": "https://www.reservealapark.com/",
+   "reserve_note": "Alabama State Parks reservation portal",
+   "wildlife": "https://www.outdooralabama.com/",
+   "gis": "https://alabamagis.com/"
+  },
+  "AK": {
+   "name": "Alaska",
+   "parks": "https://dnr.alaska.gov/parks/",
+   "reserve": "https://dnr.alaska.gov/parks/aspunits/campsitelist.htm",
+   "reserve_note": "Limited/varies by park; verify current campground page",
+   "wildlife": "https://www.adfg.alaska.gov/",
+   "gis": "https://gis.data.alaska.gov/"
+  },
+  "AZ": {
+   "name": "Arizona",
+   "parks": "https://azstateparks.com/",
+   "reserve": "https://azstateparks.com/reserve/",
+   "reserve_note": "Arizona State Parks reservation portal",
+   "wildlife": "https://www.azgfd.com/",
+   "gis": "https://azgeo-open-data-agic.hub.arcgis.com/"
+  },
+  "AR": {
+   "name": "Arkansas",
+   "parks": "https://www.arkansasstateparks.com/accommodations/camping",
+   "reserve": "https://www.arkansasstateparks.com/reservations",
+   "reserve_note": "Arkansas State Parks reservations",
+   "wildlife": "https://www.agfc.com/",
+   "gis": "https://gis.arkansas.gov/"
+  },
+  "CA": {
+   "name": "California",
+   "parks": "https://www.parks.ca.gov/",
+   "reserve": "https://www.reservecalifornia.com/",
+   "reserve_note": "ReserveCalifornia; confirm individual park",
+   "wildlife": "https://wildlife.ca.gov/",
+   "gis": "https://www.parks.ca.gov/geodata/"
+  },
+  "CO": {
+   "name": "Colorado",
+   "parks": "https://cpw.state.co.us/state-parks",
+   "reserve": "https://cpwshop.com/campinghome.page",
+   "reserve_note": "Colorado Parks & Wildlife reservation system",
+   "wildlife": "https://cpw.state.co.us/",
+   "gis": "https://geodata.colorado.gov/"
+  },
+  "CT": {
+   "name": "Connecticut",
+   "parks": "https://portal.ct.gov/deep/state-parks",
+   "reserve": "https://portal.ct.gov/DEEP/State-Parks/Camping/Campground-Reservation-Service---CT-State-Parks-and-Forests",
+   "reserve_note": "State campground reservation service; see official page",
+   "wildlife": "https://portal.ct.gov/deep",
+   "gis": "https://portal.ct.gov/DEEP/GIS-and-Maps/GIS-and-Maps"
+  },
+  "DE": {
+   "name": "Delaware",
+   "parks": "https://destateparks.com/",
+   "reserve": "https://destateparks.com/reservations/",
+   "reserve_note": "Delaware State Parks reservations",
+   "wildlife": "https://dnrec.delaware.gov/fish-wildlife/",
+   "gis": "https://firstmap.delaware.gov/"
+  },
+  "FL": {
+   "name": "Florida",
+   "parks": "https://www.floridastateparks.org/",
+   "reserve": "https://reserve.floridastateparks.org/Web/",
+   "reserve_note": "Florida State Parks reservation portal",
+   "wildlife": "https://myfwc.com/",
+   "gis": "https://geodata.floridagio.gov/"
+  },
+  "GA": {
+   "name": "Georgia",
+   "parks": "https://gastateparks.org/",
+   "reserve": "https://gastateparks.reserveamerica.com/",
+   "reserve_note": "Georgia State Parks reservations",
+   "wildlife": "https://georgiawildlife.com/",
+   "gis": "https://data.georgiaspatial.org/"
+  },
+  "HI": {
+   "name": "Hawaii",
+   "parks": "https://dlnr.hawaii.gov/dsp/",
+   "reserve": "https://camping.ehawaii.gov/camping/",
+   "reserve_note": "State camping permit portal; permits differ by site",
+   "wildlife": "https://dlnr.hawaii.gov/dofaw/",
+   "gis": "https://geoportal.hawaii.gov/"
+  },
+  "ID": {
+   "name": "Idaho",
+   "parks": "https://parksandrecreation.idaho.gov/",
+   "reserve": "https://idahostateparks.reserveamerica.com/",
+   "reserve_note": "Idaho State Parks / ReserveAmerica",
+   "wildlife": "https://idfg.idaho.gov/",
+   "gis": "https://insideidaho.org/"
+  },
+  "IL": {
+   "name": "Illinois",
+   "parks": "https://dnr.illinois.gov/parks.html",
+   "reserve": "https://camp.exploremoreil.com/",
+   "reserve_note": "Use official camping/reservation site and park page",
+   "wildlife": "https://dnr.illinois.gov/hunting.html",
+   "gis": "https://clearinghouse.isgs.illinois.edu/"
+  },
+  "IN": {
+   "name": "Indiana",
+   "parks": "https://www.in.gov/dnr/state-parks/",
+   "reserve": "https://indianastateparks.reserveamerica.com/",
+   "reserve_note": "Indiana State Parks reservation portal",
+   "wildlife": "https://www.in.gov/dnr/fish-and-wildlife/",
+   "gis": "https://www.indianamap.org/"
+  },
+  "IA": {
+   "name": "Iowa",
+   "parks": "https://www.iowadnr.gov/places-go/state-parks",
+   "reserve": "https://iowastateparks.reserveamerica.com/",
+   "reserve_note": "Iowa State Parks reservation portal",
+   "wildlife": "https://www.iowadnr.gov/hunting",
+   "gis": "https://geodata.iowa.gov/"
+  },
+  "KS": {
+   "name": "Kansas",
+   "parks": "https://ksoutdoors.gov/State-Parks",
+   "reserve": "https://www.campitks.com/",
+   "reserve_note": "CampItKS; campsite availability varies by location",
+   "wildlife": "https://ksoutdoors.gov/Hunting",
+   "gis": "https://hub.kansasgis.org/"
+  },
+  "LA": {
+   "name": "Louisiana",
+   "parks": "https://www.lastateparks.com/",
+   "reserve": "https://www.lastateparks.com/",
+   "reserve_note": "Start with official state parks page; follow booking links",
+   "wildlife": "https://www.wlf.louisiana.gov/",
+   "gis": "https://atlas.ga.lsu.edu/"
+  },
+  "ME": {
+   "name": "Maine",
+   "parks": "https://www.maine.gov/dacf/parks/camping/",
+   "reserve": "https://www.maine.gov/dacf/parks/camping/reservations/index.shtml",
+   "reserve_note": "Maine state campground reservations",
+   "wildlife": "https://www.maine.gov/ifw/",
+   "gis": "https://www.maine.gov/geolib/"
+  },
+  "MD": {
+   "name": "Maryland",
+   "parks": "https://dnr.maryland.gov/publiclands/Pages/default.aspx",
+   "reserve": "https://parkreservations.maryland.gov/",
+   "reserve_note": "Maryland Park Service reservations",
+   "wildlife": "https://dnr.maryland.gov/wildlife/Pages/default.aspx",
+   "gis": "https://imap.maryland.gov/"
+  },
+  "MA": {
+   "name": "Massachusetts",
+   "parks": "https://www.mass.gov/orgs/department-of-conservation-recreation",
+   "reserve": "https://www.mass.gov/how-to/reserve-a-campsite",
+   "reserve_note": "Massachusetts campsite reservation page",
+   "wildlife": "https://www.mass.gov/orgs/division-of-fisheries-and-wildlife",
+   "gis": "https://massgis.maps.arcgis.com/"
+  },
+  "MI": {
+   "name": "Michigan",
+   "parks": "https://www.michigan.gov/dnr/places/state-parks",
+   "reserve": "https://midnrreservations.com/",
+   "reserve_note": "Michigan DNR reservations",
+   "wildlife": "https://www.michigan.gov/dnr/things-to-do/hunting",
+   "gis": "https://gis-michigan.opendata.arcgis.com/"
+  },
+  "MN": {
+   "name": "Minnesota",
+   "parks": "https://www.dnr.state.mn.us/state_parks/index.html",
+   "reserve": "https://reservations.dnr.state.mn.us/",
+   "reserve_note": "Minnesota state park reservation system",
+   "wildlife": "https://www.dnr.state.mn.us/wmas/index.html",
+   "gis": "https://gisdata.mn.gov/"
+  },
+  "MS": {
+   "name": "Mississippi",
+   "parks": "https://www.mdwfp.com/parks-destinations/state-parks",
+   "reserve": "https://reserve.mdwfp.com/",
+   "reserve_note": "Mississippi state parks reservation portal",
+   "wildlife": "https://www.mdwfp.com/wildlife-hunting",
+   "gis": "https://opendata.gis.ms.gov/"
+  },
+  "MO": {
+   "name": "Missouri",
+   "parks": "https://mostateparks.com/",
+   "reserve": "https://mostateparks.com/page/54942/camping-reservation-system",
+   "reserve_note": "Missouri State Parks reservation system",
+   "wildlife": "https://mdc.mo.gov/",
+   "gis": "https://msdis.missouri.edu/"
+  },
+  "MT": {
+   "name": "Montana",
+   "parks": "https://fwp.mt.gov/parks",
+   "reserve": "https://montanastateparks.reserveamerica.com/",
+   "reserve_note": "Montana State Parks / ReserveAmerica",
+   "wildlife": "https://fwp.mt.gov/",
+   "gis": "https://geoinfo.msl.mt.gov/"
+  },
+  "NE": {
+   "name": "Nebraska",
+   "parks": "https://outdoornebraska.gov/parks/",
+   "reserve": "https://nebraskastateparks.reserveamerica.com/",
+   "reserve_note": "Nebraska State Parks reservation portal",
+   "wildlife": "https://outdoornebraska.gov/hunt/",
+   "gis": "https://www.nebraskamap.gov/"
+  },
+  "NV": {
+   "name": "Nevada",
+   "parks": "https://parks.nv.gov/",
+   "reserve": "https://parks.nv.gov/",
+   "reserve_note": "Use each Nevada State Parks page; reservations vary",
+   "wildlife": "https://www.ndow.org/",
+   "gis": "https://nvgeospatial.org/"
+  },
+  "NH": {
+   "name": "New Hampshire",
+   "parks": "https://www.nhstateparks.org/",
+   "reserve": "https://newhampshirestateparks.reserveamerica.com/",
+   "reserve_note": "New Hampshire State Parks reservation portal",
+   "wildlife": "https://www.wildlife.nh.gov/",
+   "gis": "https://www.granit.unh.edu/"
+  },
+  "NJ": {
+   "name": "New Jersey",
+   "parks": "https://www.nj.gov/dep/parksandforests/",
+   "reserve": "https://www.njportal.com/DEP/NJOutdoors",
+   "reserve_note": "NJ Outdoors reservation system",
+   "wildlife": "https://dep.nj.gov/njfw/",
+   "gis": "https://njogis-newjersey.opendata.arcgis.com/"
+  },
+  "NM": {
+   "name": "New Mexico",
+   "parks": "https://www.emnrd.nm.gov/spd/",
+   "reserve": "https://newmexicostateparks.reserveamerica.com/",
+   "reserve_note": "New Mexico State Parks reservation portal",
+   "wildlife": "https://www.wildlife.state.nm.us/",
+   "gis": "https://rgis.unm.edu/"
+  },
+  "NY": {
+   "name": "New York",
+   "parks": "https://parks.ny.gov/",
+   "reserve": "https://newyorkstateparks.reserveamerica.com/",
+   "reserve_note": "New York State Parks / ReserveAmerica",
+   "wildlife": "https://dec.ny.gov/places-to-go/dec-lands",
+   "gis": "https://gis.ny.gov/"
+  },
+  "NC": {
+   "name": "North Carolina",
+   "parks": "https://www.ncparks.gov/",
+   "reserve": "https://northcarolinastateparks.reserveamerica.com/",
+   "reserve_note": "North Carolina State Parks reservation portal",
+   "wildlife": "https://www.ncwildlife.gov/",
+   "gis": "https://www.nconemap.gov/"
+  },
+  "ND": {
+   "name": "North Dakota",
+   "parks": "https://www.parkrec.nd.gov/",
+   "reserve": "https://www.parkrec.nd.gov/",
+   "reserve_note": "Start at ND Parks & Recreation; booking varies",
+   "wildlife": "https://gf.nd.gov/",
+   "gis": "https://www.gis.nd.gov/"
+  },
+  "OH": {
+   "name": "Ohio",
+   "parks": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property",
+   "reserve": "https://www.reserveohio.com/OhioCampWeb/",
+   "reserve_note": "ReserveOhio for many state park campgrounds",
+   "wildlife": "https://ohiodnr.gov/discover-and-learn/safety-conservation/about-ODNR/wildlife",
+   "gis": "https://geo.ohio.gov/"
+  },
+  "OK": {
+   "name": "Oklahoma",
+   "parks": "https://www.travelok.com/state-parks",
+   "reserve": "https://www.travelok.com/state-parks/bookings",
+   "reserve_note": "Use Oklahoma state park booking pages",
+   "wildlife": "https://www.wildlifedepartment.com/",
+   "gis": "https://okmaps.org/"
+  },
+  "OR": {
+   "name": "Oregon",
+   "parks": "https://stateparks.oregon.gov/",
+   "reserve": "https://stateparks.oregon.gov/index.cfm?do=reserve.make",
+   "reserve_note": "Oregon State Parks reservation page",
+   "wildlife": "https://myodfw.com/",
+   "gis": "https://www.oregon.gov/geo/Pages/index.aspx"
+  },
+  "PA": {
+   "name": "Pennsylvania",
+   "parks": "https://www.dcnr.pa.gov/StateParks/Pages/default.aspx",
+   "reserve": "https://pennsylvaniastateparks.reserveamerica.com/",
+   "reserve_note": "Pennsylvania State Parks reservation portal",
+   "wildlife": "https://www.pgc.pa.gov/",
+   "gis": "https://www.pasda.psu.edu/"
+  },
+  "RI": {
+   "name": "Rhode Island",
+   "parks": "https://riparks.ri.gov/",
+   "reserve": "https://rhodeislandstateparks.reserveamerica.com/",
+   "reserve_note": "Rhode Island state campground reservations",
+   "wildlife": "https://dem.ri.gov/natural-resources-bureau/fish-wildlife",
+   "gis": "https://www.rigis.org/"
+  },
+  "SC": {
+   "name": "South Carolina",
+   "parks": "https://southcarolinaparks.com/",
+   "reserve": "https://reserve.southcarolinaparks.com/",
+   "reserve_note": "South Carolina State Parks reservation portal",
+   "wildlife": "https://www.dnr.sc.gov/",
+   "gis": "https://www.scgis.gov/"
+  },
+  "SD": {
+   "name": "South Dakota",
+   "parks": "https://gfp.sd.gov/parks/",
+   "reserve": "https://www.campsd.com/",
+   "reserve_note": "CampSD reservation portal",
+   "wildlife": "https://gfp.sd.gov/hunting/",
+   "gis": "https://gfp.sd.gov/gis/"
+  },
+  "TN": {
+   "name": "Tennessee",
+   "parks": "https://tnstateparks.com/",
+   "reserve": "https://tnstateparks.com/about/reservations",
+   "reserve_note": "Tennessee State Parks reservation page",
+   "wildlife": "https://www.tn.gov/twra.html",
+   "gis": "https://geodata.tn.gov/"
+  },
+  "TX": {
+   "name": "Texas",
+   "parks": "https://tpwd.texas.gov/state-parks/",
+   "reserve": "https://tpwd.texas.gov/state-parks/park-reservation-information/reservations",
+   "reserve_note": "Texas Parks & Wildlife reservation system",
+   "wildlife": "https://tpwd.texas.gov/huntwild/",
+   "gis": "https://tnris.org/"
+  },
+  "UT": {
+   "name": "Utah",
+   "parks": "https://stateparks.utah.gov/",
+   "reserve": "https://utahstateparks.reserveamerica.com/",
+   "reserve_note": "Utah State Parks / ReserveAmerica",
+   "wildlife": "https://wildlife.utah.gov/",
+   "gis": "https://gis.utah.gov/"
+  },
+  "VT": {
+   "name": "Vermont",
+   "parks": "https://www.vtstateparks.com/",
+   "reserve": "https://www.vtstateparks.com/reservations.html",
+   "reserve_note": "Vermont State Parks reservation page",
+   "wildlife": "https://vtfishandwildlife.com/",
+   "gis": "https://geodata.vermont.gov/"
+  },
+  "VA": {
+   "name": "Virginia",
+   "parks": "https://www.dcr.virginia.gov/state-parks/",
+   "reserve": "https://virginiastateparks.reserveamerica.com/",
+   "reserve_note": "Virginia State Parks reservation portal",
+   "wildlife": "https://dwr.virginia.gov/",
+   "gis": "https://www.dcr.virginia.gov/land-conservation/land-conservation-data"
+  },
+  "WA": {
+   "name": "Washington",
+   "parks": "https://parks.wa.gov/",
+   "reserve": "https://parks.wa.gov/find-parks/state-parks",
+   "reserve_note": "Washington State Parks camping pages",
+   "wildlife": "https://wdfw.wa.gov/lands",
+   "gis": "https://geo.wa.gov/"
+  },
+  "WV": {
+   "name": "West Virginia",
+   "parks": "https://wvstateparks.com/",
+   "reserve": "https://wvstateparks.com/everything-you-need-to-know-to-reserve-a-campsite-at-wv-state-parks/",
+   "reserve_note": "Check park-specific reservation instructions; some booking methods vary",
+   "wildlife": "https://wvdnr.gov/",
+   "gis": "https://wvgis.wvu.edu/"
+  },
+  "WI": {
+   "name": "Wisconsin",
+   "parks": "https://dnr.wisconsin.gov/topic/parks",
+   "reserve": "https://wisconsin.goingtocamp.com/",
+   "reserve_note": "Wisconsin State Parks reservation portal",
+   "wildlife": "https://dnr.wisconsin.gov/topic/Lands/wildlifeareas",
+   "gis": "https://data-wi-dnr.opendata.arcgis.com/"
+  },
+  "WY": {
+   "name": "Wyoming",
+   "parks": "https://wyoparks.wyo.gov/",
+   "reserve": "https://wyoparks.wyo.gov/index.php/places-to-go",
+   "reserve_note": "Check individual state recreation area / park pages",
+   "wildlife": "https://wgfd.wyo.gov/",
+   "gis": "https://wyominggeospatialhub.org/"
+  }
+ }
+}
