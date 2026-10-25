@@ -19,6 +19,13 @@
     "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/21",
     "ds": "Natural Area",
     "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Arkansas State Parks",
+    "nm": "name",
+    "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "CA": [
@@ -29,6 +36,13 @@
     "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0",
     "web": "LINK",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "California State Parks",
+    "nm": "UNITNAME",
+    "url": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "CO": [
@@ -110,6 +124,13 @@
     "web": "Website",
     "ds": "WMA",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "Georgia State Parks (DNR)",
+    "nm": "PropName",
+    "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "HI": [
@@ -126,6 +147,13 @@
     "nm": "name",
     "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1",
     "web": "linktowebpage",
+    "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Hawaii State Parks (DLNR)",
+    "nm": "NAME",
+    "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer/0",
     "host": "agency"
    }
   ],
@@ -218,6 +246,13 @@
     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4",
     "ds": "Scientific and Natural Area",
     "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Minnesota State Parks (DNR)",
+    "nm": "AREA_NAME",
+    "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
+    "host": "agency"
    }
   ],
   "MT": [
@@ -265,6 +300,13 @@
     "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1",
     "web": "AGENCY_URL",
     "ds": "Preserve",
+    "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "New Jersey DEP (state-owned open space)",
+    "nm": "FEATURE_NAME",
+    "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer/67",
     "host": "agency"
    }
   ],
@@ -337,6 +379,13 @@
     "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9",
     "web": "WEBLINK",
     "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Pennsylvania State Parks (DCNR)",
+    "nm": "StParkName",
+    "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0",
+    "host": "agency"
    }
   ],
   "RI": [
@@ -346,6 +395,13 @@
     "nm": "NAME",
     "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0",
     "web": "SurvURL",
+    "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Rhode Island DEM",
+    "nm": "NAME",
+    "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0",
     "host": "agency"
    }
   ],
@@ -511,6 +567,13 @@
     "nm": "LANDS_NAME",
     "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Ohio DNR",
+    "nm": "NAME",
+    "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134",
+    "host": "agency"
    }
   ],
   "SC": [
@@ -522,6 +585,13 @@
     "acc": "PublicAccess",
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "South Carolina State Parks (PRT)",
+    "nm": "NAME",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "ME": [
@@ -544,6 +614,49 @@
     "own": "ManagedBy",
     "ds": "",
     "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "AL": [
+   {
+    "kind": "park",
+    "ag": "Alabama State Parks (ADCNR)",
+    "nm": "NAME",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0",
+    "host": "agency"
+   }
+  ],
+  "AZ": [
+   {
+    "kind": "park",
+    "ag": "Arizona State Parks & Trails",
+    "nm": "NAME",
+    "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "MO": [
+   {
+    "kind": "park",
+    "ag": "Missouri State Parks (DNR)",
+    "nm": "LOC_NAME",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Missouri Natural Areas (DNR)",
+    "nm": "NAME",
+    "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3",
+    "host": "agency"
+   }
+  ],
+  "CT": [
+   {
+    "kind": "land",
+    "ag": "Connecticut DEEP",
+    "nm": "PROPERTY",
+    "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
     "host": "agency"
    }
   ]
