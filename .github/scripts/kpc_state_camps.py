@@ -48,6 +48,7 @@ LODGEWORD = re.compile(r'\b(?:lodge|lodges|lodging)\b', re.I)
 CAMP_SUBSTR = ('CAMP', 'CABIN', 'LODG', 'YURT', 'COTTAGE')
 # individual sites / units are not places to list: 'Campsites' layers of thousands of points, 'Campsite 33', 'Cabin 30', '004'
 SITE_LAYER = re.compile(r'camp[ _]?sites?\b|camping[ _]?sites?|reservable|individual|\bsites?$|\bspaces?\b|\bpads?\b|\bunits?$', re.I)
+SITE_END = re.compile(r'\b(?:camp ?sites?|sites?|units?|spaces?|lots?|cabins?|yurts?|pads?)\s*#?\d+[a-z]?$', re.I)    # '... Campsite 4'
 SITE_NAME = re.compile(r'^(?:[\W\d_]*|[A-Za-z]{0,3}\W?\d+[A-Za-z]?|(?:camp ?sites?|sites?|cabins?|yurts?|spaces?|units?|lots?|loops?|pads?|rv)\W*[#]?\s*\w{0,3}\d+\w*)$', re.I)
 EXCL = re.compile(r'picnic|shelter|boat ramp|launch|trailhead|restroom|day[- ]use|dump station|parking|playground|'
                   r'pavilion|overlook|museum|visitor center|golf|marina|beach', re.I)
@@ -285,7 +286,7 @@ def rows_to_camps(lay, feats):
         if GENERIC_NAME.match(name):                      # 'Campground' / 'Group Camp': only useful with its park in front
             if not park: continue
             name = f'{park} {name}'
-        if HARD_EXCL.search(name): continue
+        if HARD_EXCL.search(name) or SITE_END.search(name): continue
         text = name + ' ' + ' '.join(str(a.get(x) or '') for x in tf)
         camp, lodge = bool(CAMPWORD.search(text)), bool(LODGEWORD.search(text)) and lay['lodging']
         if not (camp or lodge or (lay['strong'] and not EXCL.search(name))): continue
