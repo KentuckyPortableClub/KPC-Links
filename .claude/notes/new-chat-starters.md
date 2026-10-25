@@ -62,11 +62,12 @@ Rule: work goes to the chat that owns it. BOTS (Brandon Oct 25 8:04 AM): a data 
 6. Campout & events: campout pages, Kentucky Radio Calendar (kpc_ses.py, kpc_events.py, kpc_contests.py), videos, KPC27 challenges scorer.
 7. HQ: notes + to-do lists, what's next, shared-file watch, weekly status. Small fixes only.
 
+- DECIDED (HQ Oct 25 8:12 AM): app/hunters.json = CHAT 3 adds it as a second output of its existing kpc_hunters.py ('When Is POTA Busiest', same counts, no second bot), once that data is ready (14 days from Oct 23 → about Nov 6; 'ready' flag in kpc-hunters.json). CHAT 4 owns the file's FORMAT (the app reads {windows:[{days,from,to,note}]}) and tests the app with it. Exception to the feeds-the-tool rule: one data source = one bot.
 - DECIDED (HQ Oct 25 8:00 AM): ACTIVATORS LOUNGE LAUNCH stays ONE pass by chat 3 (Brandon Oct 24 6:03 PM gave chat 3 the launch incl. menu + See More fix). For that launch only, chat 3 may edit news.html + run the header/menu update on every page; it then writes a dated line in website.md so chat 1 knows the menu changed. Any other menu change = chat 1.
 
 ## HQ WATCH LIST (KPC HQ, Oct 25)
 - kpc-cat.js has FORKED: website 404 lines, app 539 (app added port memory, meters, radio on/off, Windows RTS). The Oct 22 mode-before-frequency fix is in both. Rule from now: a radio-control fix made in one copy is noted in BOTH topic files, and chat 3 (CAT in the public Hunters Lounge) copies from the app's version, not the other way round.
-- Oct 24-25 night: maps work (state-gis.json +17 layers, US key prefix pinning, trails layers, outline leads, camping points) was done in chat 5, not chat 2. Nothing broke (US joins 10,333 → 10,601); hand-off note is in mapping.md. Keep that work in chat 2 from now on.
+- Oct 24-25 night (CORRECTED Oct 25 8:12 AM, chat 2 + chat 5 reports): chat 5 did state-gis.json +17 layers, trails layers, outline leads, camping points/lists and started the trails run; CHAT 2 itself did the US key prefix pinning and the Canada key 'never fail' fix that morning. Nothing broke (US joins 10,333 → 10,601); hand-offs are in mapping.md. Trails run started by chat 5 is left running and is chat 2's to read when it ends (HQ OK). NEBRASKA: its public campsite layer shows campers' license plates; we don't use it; Brandon may tell the agency.
 - kpc-cont.js + kpc-ft8.wasm: identical in both. kpc-ft8.js: app adds the built-in wasm loader (fine). kpc-digi.js = kpc-dsp.js except the rename.
 
 ## WHICH MODEL + WHAT EACH CHAT KEEPS UP (Brandon Oct 24 6:06 PM)
