@@ -203,7 +203,9 @@ async function extras(p){
  const [kyN,usN]=await Promise.all([once('kpc-park-notes.json'),once('kpc-park-notes-us.json')]);
  X.tips=[].concat((kyN&&kyN.notes)||[],(usN&&usN.notes)||[]).filter(t=>t.ref===p.c).slice(-3).reverse();
  if(p.ky){const C=await once('kpc-campgrounds.json');const cg=((C&&C.parks)||[]).find(x=>x.pota===p.c);X.stay=cg?[].concat(cg.campgrounds||[],cg.lodging||[]).slice(0,5).map(c=>({n:c.name,d:[c.sites,c.season].filter(Boolean).join(' · ')})):[]}
- else{if(p.us!==false&&(p.prog||'POTA')==='POTA')tasks.push((async()=>{const st=p.st;if(!st)return;const [I,F]=await Promise.all([once('data/parkinfo/US-'+st+'.json'),once('data/campfed/US-'+st+'.json')]);
+ else{if(p.us!==false&&(p.prog||'POTA')==='POTA')tasks.push((async()=>{const st=p.st;if(!st)return;const [I,F,A]=await Promise.all([once('data/parkinfo/US-'+st+'.json'),once('data/campfed/US-'+st+'.json'),once('data/access/US-'+st+'.json')]);
+   /* Oct 25 (HQ hand-off): official parking / entrance / gate / ramp points outside Kentucky (chat 2's data/access, same as the Kit) */
+   if(!(p.ap||[]).length){const ap=A&&A.parks&&A.parks[p.c];if(ap&&ap.length)p.ap=ap}
    const r=I&&I.parks&&I.parks[p.c];if(r){X.how=String(r[3]||'').split(',').map(x=>({Automobile:'car',Campground:'campground',Pedestrian:'on foot',Boat:'boat',Bicycle:'bike'}[x.trim()]||x.trim().toLowerCase())).filter(Boolean);X.stateSite=I.stateSite;if(!p.web)p.web=r[1]}
    const near=((F&&F.camps)||[]).map(c=>({c,mi:KPC.miles(p.la,p.lo,c[2],c[3])})).filter(o=>o.mi<=10).sort((a,b)=>a.mi-b.mi);
    const AG={FS:'Forest Service',NPS:'National Park Service',USACE:'Army Corps',BLM:'BLM',FWS:'Fish & Wildlife'};
