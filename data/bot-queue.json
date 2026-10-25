@@ -57,13 +57,6 @@
    "next": "2026-11-05T06:00+00:00"
   },
   {
-   "wf": "kpc-ca-key.yml",
-   "inputs": {},
-   "why": "Canada: another pass",
-   "every": 14,
-   "next": "2026-10-25T06:00+00:00"
-  },
-  {
    "wf": "kpc-world-key.yml",
    "inputs": {
     "countries": "AU DE GB JP PL ES FR CH AT IT SE HU DK PT EE",
@@ -81,6 +74,13 @@
    "why": "US outlines, live refresh: AK DC IL MI NE OK TX WY",
    "every": 14,
    "next": "2026-11-07T07:05+00:00"
+  },
+  {
+   "wf": "kpc-ca-key.yml",
+   "inputs": {},
+   "why": "Canada: another pass",
+   "every": 14,
+   "next": "2026-11-08T07:07+00:00"
   }
  ]
 }
