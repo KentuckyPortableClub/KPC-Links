@@ -1,6 +1,6 @@
 # JP: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10). **183 of 1217** joined (same name + same kind), **1** to check, **1033** nothing found. Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **186 of 1217** joined (same name + same kind), **1** to check, **1030** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -18,7 +18,6 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Env
 - JP-0115 Myogi-Arafune-Saku Kogen Quasi-National Park (Quasi-National Park)
 - JP-0116 Minami-Boso Quasi-National Park (Quasi-National Park)
 - JP-0117 Meiji no Mori Takao Quasi-National Park (Quasi-National Park)
-- JP-0118 Tanzawa-Oyama Quasi-National Park (Quasi-National Park)
 - JP-0120 Noto Hanto Quasi-National Park (Quasi-National Park)
 - JP-0121 Echizen-Kaga Kaigan Quasi-National Park (Quasi-National Park)
 - JP-0122 Wakasa Wan Quasi-National Park (Quasi-National Park)
@@ -72,7 +71,6 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Env
 - JP-1005 Notsuke-Furen Prefectural Nature Park (Prefectural Nature Park)
 - JP-1006 Matsumae-Yagoshi Prefectural Nature Park (Prefectural Nature Park)
 - JP-1007 North Okhotsk Prefectural Nature Park (Prefectural Nature Park)
-- JP-1008 Nopporo Shinrin Kouen Prefectural Nature Park (Prefectural Nature Park)
 - JP-1009 Kariba-Motta Prefectural Nature Park (Prefectural Nature Park)
 - JP-1010 Shumarinai Prefectural Nature Park (Prefectural Nature Park)
 - JP-1011 Teshiodake Prefectural Nature Park (Prefectural Nature Park)
@@ -304,7 +302,6 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Env
 - JP-1285 Musashinonomori Prefectural Park (Prefectural Park)
 - JP-1286 Ryonan Prefectural Park (Prefectural Park)
 - JP-1287 Rokusen Prefectural Park (Prefectural Park)
-- JP-1289 Tanzawa Oyama Prefectural Nature Park (Prefectural Nature Park)
 - JP-1290 Jinba Sagamiko Prefectural Nature Park (Prefectural Nature Park)
 - JP-1291 Oku Yugawara Prefectural Nature Park (Prefectural Nature Park)
 - JP-1292 Manazuru Hanto Prefectural Nature Park (Prefectural Nature Park)
