@@ -1,0 +1,346 @@
+{
+ "about": "Brandon's boundary-layer leads from KPC_Parks_Without_Outlines_updated.xlsx (Oct 24 2026, found by another AI, NOT tested by the bot): one park row per state holds the state's park-boundary layer link. 14 were already in state-gis.json; 29 are new layer links; ID KS NH NM SD WY are portal/item pages, not layers. For the mapping chat to test, then add good ones to data/state-gis.json.",
+ "states": {
+  "AK": [
+   {
+    "park": "Afognak Island State Park",
+    "ref": "US-1639",
+    "link": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer"
+   }
+  ],
+  "AL": [
+   {
+    "park": "Blackwater River State Nature Preserve",
+    "ref": "US-9916",
+    "link": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer"
+   }
+  ],
+  "AR": [
+   {
+    "park": "Arkansas Museam of Natural Resources State Park",
+    "ref": "US-1070",
+    "link": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer"
+   }
+  ],
+  "AZ": [
+   {
+    "park": "Boyce Thompson Arboretum State Park",
+    "ref": "US-1053",
+    "link": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer"
+   }
+  ],
+  "CA": [
+   {
+    "park": "La Purisima Mission State Historical Park",
+    "ref": "US-3454",
+    "link": "https://services2.arcgis.com/Uq9r85Potqm3MfRV/ArcGIS/rest/services/ParkBoundaries/FeatureServer"
+   }
+  ],
+  "CT": [
+   {
+    "park": "Beckley Iron Furnace State Park",
+    "ref": "US-7529",
+    "link": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer"
+   }
+  ],
+  "DE": [
+   {
+    "park": "Auburn Valley State Park",
+    "ref": "US-4366",
+    "link": "https://enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer"
+   }
+  ],
+  "FL": [
+   {
+    "park": "47 Bridge State Conservation Area",
+    "ref": "US-8674",
+    "link": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer"
+   }
+  ],
+  "GA": [
+   {
+    "park": "Bartram Educational State Forest",
+    "ref": "US-4648",
+    "link": "https://services2.arcgis.com/PYn6bWCjT6bhw1z3/ArcGIS/rest/services/GA_State_Parks/FeatureServer"
+   }
+  ],
+  "HI": [
+   {
+    "park": "Queen Emma Summer Palace State Park",
+    "ref": "US-6430",
+    "link": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/State_Park_Boundaries/FeatureServer"
+   }
+  ],
+  "IA": [
+   {
+    "park": "Blackburn State Park",
+    "ref": "US-11875",
+    "link": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer"
+   }
+  ],
+  "ID": [
+   {
+    "park": "Antelope Valley Airstrip State Recreation Area",
+    "ref": "US-7805",
+    "link": "https://idpr-data-idaho.hub.arcgis.com/  (IDPR Open Data Hub - check for park boundary layers; no single public FeatureServer polygons found)"
+   }
+  ],
+  "IL": [
+   {
+    "park": "Beall Woods State Park",
+    "ref": "US-0980",
+    "link": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer"
+   },
+   {
+    "park": "Bohm Woods State Nature Preserve",
+    "ref": "US-4111",
+    "link": "https://services.arcgis.com/HRPe58bUyBqyyiCt/ArcGIS/rest/services/DNR_Parks_Unit_Boundary/FeatureServer"
+   }
+  ],
+  "IN": [
+   {
+    "park": "Allens Creek State Recreation Area",
+    "ref": "US-5684",
+    "link": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer"
+   }
+  ],
+  "KS": [
+   {
+    "park": "Cross Timbers State Park",
+    "ref": "US-2334",
+    "link": "https://www.arcgis.com/home/item.html?id=266d124c24d640b28d4bb3b7ee84b027  (Kansas DOT State Park Area boundaries; map service)"
+   }
+  ],
+  "LA": [
+   {
+    "park": "Cypremort Point State Park",
+    "ref": "US-2360",
+    "link": "https://gis.wlf.la.gov/arcgis/rest/services/Wildlife_Services/LA_StateParks/MapServer"
+   }
+  ],
+  "MA": [
+   {
+    "park": "Carlisle State Forest",
+    "ref": "US-4735",
+    "link": "http://arcgisserver.digital.mass.gov/arcgisserver/rest/services/NHESP/OpenSpace/MapServer"
+   }
+  ],
+  "MD": [
+   {
+    "park": "Helen Avalynne Tawes Garden State Park",
+    "ref": "US-6388",
+    "link": "https://geodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer"
+   }
+  ],
+  "ME": [
+   {
+    "park": "Capitol State Park",
+    "ref": "US-8287",
+    "link": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/ArcGIS/rest/services/ConservedLandsMaine/FeatureServer"
+   }
+  ],
+  "MI": [
+   {
+    "park": "Au Sable State Forest",
+    "ref": "US-4774",
+    "link": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8"
+   }
+  ],
+  "MN": [
+   {
+    "park": "Beltrami Island State Forest",
+    "ref": "US-4783",
+    "link": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer"
+   }
+  ],
+  "MO": [
+   {
+    "park": "Bruce R. Watkins Cultural Heritage Center State Park",
+    "ref": "US-5716",
+    "link": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer"
+   }
+  ],
+  "MS": [
+   {
+    "park": "Aberdeen Lake State Recreation Area",
+    "ref": "US-7130",
+    "link": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer"
+   }
+  ],
+  "MT": [
+   {
+    "park": "Grey Cliff Prairie Dog State Park",
+    "ref": "US-2576",
+    "link": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/ArcGIS/rest/services/FWPLND_STATEPARKS/FeatureServer"
+   }
+  ],
+  "NC": [
+   {
+    "park": "Brumley Forest State Nature Preserve",
+    "ref": "US-3851",
+    "link": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/ArcGIS/rest/services/2019_NCParks/FeatureServer"
+   }
+  ],
+  "ND": [
+   {
+    "park": "Crow Flies High State Recreation Area",
+    "ref": "US-5747",
+    "link": "https://gis.dmr.nd.gov/dmrpublicservices/rest/services/State_Parks/FeatureServer"
+   }
+  ],
+  "NE": [
+   {
+    "park": "Buckley Creek State Recreation Area",
+    "ref": "US-4025",
+    "link": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer"
+   }
+  ],
+  "NH": [
+   {
+    "park": "Androscoggin Wayside State Park",
+    "ref": "US-2642",
+    "link": "https://hub.arcgis.com/datasets/ac1d1c9b7fb548dcaaa6bdb5c80b70d5  (or check NH GIS for conserved lands / parks)"
+   }
+  ],
+  "NJ": [
+   {
+    "park": "Garret Mountain Reservation State Park",
+    "ref": "US-6462",
+    "link": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Open_Space__State_Owned__Generalized_h/FeatureServer"
+   }
+  ],
+  "NM": [
+   {
+    "park": "Cerrillos Hills State Park",
+    "ref": "US-2690",
+    "link": "https://gstore.unm.edu/apps/rgis/datasets/057d2f19-4ec6-47d5-82a4-f03309ef94fb/  (RGIS New Mexico State Parks polygons)"
+   }
+  ],
+  "NV": [
+   {
+    "park": "Berlin-Ichthyosaur State Park",
+    "ref": "US-2626",
+    "link": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer"
+   }
+  ],
+  "NY": [
+   {
+    "park": "Adirondack State Park",
+    "ref": "US-2001",
+    "link": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer"
+   }
+  ],
+  "OH": [
+   {
+    "park": "Clifton Gorge State Nature Preserve",
+    "ref": "US-7848",
+    "link": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134"
+   }
+  ],
+  "OK": [
+   {
+    "park": "Boiling Springs State Park",
+    "ref": "US-2774",
+    "link": "https://services1.arcgis.com/oS5ru2iHb8I5vlTv/ArcGIS/rest/services/State_Parks/FeatureServer"
+   }
+  ],
+  "OR": [
+   {
+    "park": "Bob Creek Wayside State Recreation Site",
+    "ref": "US-13096",
+    "link": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer"
+   }
+  ],
+  "PA": [
+   {
+    "park": "Bear Run State Conservation Area",
+    "ref": "US-0622",
+    "link": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer"
+   }
+  ],
+  "RI": [
+   {
+    "park": "Barber Pond State Recreation Area",
+    "ref": "US-10548",
+    "link": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer"
+   }
+  ],
+  "SC": [
+   {
+    "park": "Black River State Park",
+    "ref": "US-13198",
+    "link": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer"
+   }
+  ],
+  "SD": [
+   {
+    "park": "Adams Homestead State Nature Preserve",
+    "ref": "US-7844",
+    "link": "https://gfp.sd.gov/  (GFP manages parks; no public FeatureServer polygon boundaries located)"
+   }
+  ],
+  "TN": [
+   {
+    "park": "Cherokee Trail of Tears State Park",
+    "ref": "US-13364",
+    "link": "https://tdeconline.tn.gov/arcgis/rest/services/TSP_TN_State_Parks/MapServer"
+   }
+  ],
+  "TX": [
+   {
+    "park": "Atlanta State Park",
+    "ref": "US-2984",
+    "link": "https://services1.arcgis.com/1mtXwieMId59thmg/ArcGIS/rest/services/Texas_State_Parks_Boundaries/FeatureServer"
+   }
+  ],
+  "UT": [
+   {
+    "park": "Cache Valley Public Shooting Range Utah DWR State Recreation Site",
+    "ref": "US-12998",
+    "link": "https://gis.trustlands.utah.gov/mapping/rest/services/Land_Ownership/FeatureServer"
+   }
+  ],
+  "VA": [
+   {
+    "park": "Chesterfield State Forest",
+    "ref": "US-5508",
+    "link": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/SP_Boundary/FeatureServer"
+   }
+  ],
+  "VT": [
+   {
+    "park": "Big Deer State Park",
+    "ref": "US-3100",
+    "link": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/FS_VCGI_VT_Protected_Lands_Database_WM_v2/FeatureServer"
+   }
+  ],
+  "WA": [
+   {
+    "park": "Ahtanum State Forest",
+    "ref": "US-5565",
+    "link": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/ArcGIS/rest/services/ParkBoundaries/FeatureServer"
+   }
+  ],
+  "WI": [
+   {
+    "park": "Bear Beach State Natural Area",
+    "ref": "US-8211",
+    "link": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer"
+   }
+  ],
+  "WV": [
+   {
+    "park": "Cedar Lakes State Recreation Area",
+    "ref": "US-9915",
+    "link": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer"
+   }
+  ],
+  "WY": [
+   {
+    "park": "Edness Kimball Wilkins State Park",
+    "ref": "US-3296",
+    "link": "No official public FeatureServer or downloadable state park boundary polygons located. Points available at https://services.arcgis.com/Mst6sJ6aFGwWU3UM/ArcGIS/rest/services/Wyo_State_Parks_WFL1/FeatureServer"
+   }
+  ]
+ }
+}
