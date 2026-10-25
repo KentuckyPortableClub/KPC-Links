@@ -1,5 +1,2418 @@
 {
- "updated": "2026-10-25",
+ "agency": [
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Narrows Peninsula Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Kingsmere River Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Boundary Bog Trail National Geologic Trail",
+   "1 lines 0 km from pin",
+   "official layer picked by KPC",
+   ".com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0 TrailEn",
+   {
+    "Boundary Bog Trail": [
+     2,
+     "SectionEn=Boundary Bog Trail SectionFr=Sentier Marais Limitrophe TrailId=0 TrailFr=Sentier Marais Limitrophe ParkEn=Prince Albert National Park of Canada  ParkF"
+    ]
+   }
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Red Deer Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Fisher Trail National Recreation Trail",
+   "1 lines 0 km from pin",
+   "official layer picked by KPC",
+   ".com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0 TrailEn",
+   {
+    "Fisher Trail": [
+     6,
+     "SectionEn=Fisher Trail SectionFr=Sentier Fisher TrailId=0 TrailFr=Sentier Fisher ParkEn=Prince Albert National Park of Canada  ParkFr=Parc national du Canada de"
+    ]
+   }
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Battleford-Swift Current Trail National Recreation Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Cochin Green Lake Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Meadow lake Battleford Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Fort Carlton- Touchwood Trail National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Troy-Prince Albert National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "River Ridge Trails National Historic Trail",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Meewasin Valley Authority | MeewasinGIS",
+   "Meewasin_Trail_Data_2020"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "© Trans Canada Trail | alanablock_Selkirk",
+   "Trans Canada Trail _ Explore the Map"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "Little Red River Park Trails"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "gis_citypa",
+   "LED Lights"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EPND Sandpiper Pipeline"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Existing Enbridge EEP Sandpiper Pipeline"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Ted Auch, Dan Berghoff | maps_ft",
+   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "North_Saskatchewan_Rabbit_Hill_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
+   "SeniorsResiden_ExportFeature"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Alberta Standards Compliance Reporting - Continuing Care Bra",
+   "Seniors’ Residential Facilities / Résidences pour Aînés"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "200590358@student.georgianc.on.ca_GeorgianCollege",
+   "SeniorsResidentialFacilities"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "All Input Push and Pull Factors Layers"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "RPCPublisher",
+   "-"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC6"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "hayley.melrose@ucalgary.ca_ucalgary",
+   "SLCN Pop Up Map_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC8"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "ochaudhry",
+   "LMC7"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Ecological_Guidance_dp_202405028_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "Derek.Piitz@stantec.com_stantec",
+   "Program_Guidance_dp_20240528_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "BeaverHillsBiosphere_Admin",
+   "SOTB_GDB"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "bhoffos",
+   "James River Retreat"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "gwascreator",
+   "GroundUp_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "O2.Staff4_O2design",
+   "Active_Outdoor_Recreation_PushAndPull_Factors"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "nathan.cutting_alema",
+   "Lifelines_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "gwascreator",
+   "Base_Features_Altalis_forweb_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Map_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "Final NWT Fire Map_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Wildfire Map_WFL1"
+  ],
+  [
+   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
+   "skip (not state/federal)",
+   "d38ve_UNBGIS",
+   "NWT Final Map_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "hollik_UofA",
+   "Major Roads"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "lmacker_UVGeog",
+   "Roads_1M_shp"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "hollik_UofA",
+   "All Roads"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "faith.espinosa@alaska.gov_AKDOT",
+   "Juneau Access Corridor to Yukon_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "faith.espinosa@alaska.gov_AKDOT",
+   "2022 Winter Trails Map_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "ldf5129_pennstate",
+   "nps_boundary"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "richard@kdfn",
+   "Fixing the Broken Salmon Trail Map1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "richard@kdfn",
+   "Fixing the Broken Salmon Trail Overview_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "7OlEO8z_HpWF7O80CtYl8SfzFTSpH6zHoydA_8Pjavo__Carleton_U",
+   "Available Land_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "7OlEO8z_HpWF7O80CtYl8SfzFTSpH6zHoydA_8Pjavo__Carleton_U",
+   "Accessible Land_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "faith.espinosa@alaska.gov_AKDOT",
+   "2024 Winter Trail Updates_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "faith.espinosa@alaska.gov_AKDOT",
+   "2025 SIRA and Winter Trail Marking Applications_WFL1"
+  ],
+  [
+   "Spruce Beetle Trail Recreation Site",
+   "skip (not state/federal)",
+   "p1130317",
+   "SHP_ALL"
+  ]
+ ],
  "found": [
   [
    "US-9741",
@@ -259,7 +2672,7 @@
   ],
   [
    "US-9778",
-   "Devil\u2019s River State Trail",
+   "Devil’s River State Trail",
    "WI",
    "Wisconsin Department of Natural Resources, Bureau of Parks and Recreation. Managed by Joe Warren and Dave Winston | Wi_DNR",
    23,
@@ -413,7 +2826,7 @@
    "US-2350",
    "Prairie Spirit Trail State Trail",
    "KS",
-   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O\u2019Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
+   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O’Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
    83,
    0.0
   ],
@@ -421,7 +2834,7 @@
    "US-5718",
    "Flint Hills Trail State Park",
    "KS",
-   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O\u2019Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
+   "Larry Ross, Sunflower Rails to Trails, Wichita, KS; Clark Coan, Kansa Rails to Trails, Lawrence, KS; Jeffrey Bender, Kansas Department of Wildlife, Parks, & Tourism; Kathy Pruitt, Kansas Department of Wildlife, Parks, & Tourism; Trent Mc Cown, Kansas Department of Wildlife, Parks, & Tourism; Doug Walker, Kansa Rails to Trails Conservancey; John Rosacker, Kansas Department of Transportation; Ed Lincoln, Kansas Coordinator, American Discovery Trail, Wichita, KS; Dale Crawford, KanBikeWalk, Olathe, KS; Becky Pepper, Kansas Department of Transportation; Linda Craghead, Kansas Department of Wildlife, Parks, & Tourism; Steve O’Neil, Marshall County Connections, Marysville, KS; Mary Hanson, Rivers, Trails and Conservation Assistance, National Park Service | KanDOT",
    107,
    0.1
   ],
@@ -1170,78 +3583,6 @@
    0.5
   ],
   [
-   "US-3608",
-   "Blackwater Heritage State Trail",
-   "FL",
-   "official layer picked by KPC",
-   12,
-   0.0
-  ],
-  [
-   "US-3620",
-   "Florida Keys Overseas Heritage Trail State Park",
-   "FL",
-   "official layer picked by KPC",
-   105,
-   1.0
-  ],
-  [
-   "US-3624",
-   "Gainesville-Hawthorne State Trail",
-   "FL",
-   "official layer picked by KPC",
-   26,
-   0.0
-  ],
-  [
-   "US-3627",
-   "General James A. Van Fleet State Trail",
-   "FL",
-   "official layer picked by KPC",
-   65,
-   0.1
-  ],
-  [
-   "US-3640",
-   "Nature Coast State Trail",
-   "FL",
-   "official layer picked by KPC",
-   52,
-   0.1
-  ],
-  [
-   "US-3644",
-   "Palatka-St. Augustine State Trail",
-   "FL",
-   "official layer picked by KPC",
-   30,
-   0.0
-  ],
-  [
-   "US-3645",
-   "Palatka-to-Lake Butler State Trail",
-   "FL",
-   "official layer picked by KPC",
-   71,
-   0.0
-  ],
-  [
-   "US-3661",
-   "Tallahassee-St. Marks Historic Railroad State Trail",
-   "FL",
-   "official layer picked by KPC",
-   26,
-   0.2
-  ],
-  [
-   "US-3667",
-   "Withlacoochee State Trail",
-   "FL",
-   "official layer picked by KPC",
-   512,
-   0.0
-  ],
-  [
    "US-10912",
    "'Ualaka'a State Trail",
    "HI",
@@ -1259,7 +3600,7 @@
   ],
   [
    "US-10914",
-   "Ka\u2018ena Point State Trail",
+   "Ka‘ena Point State Trail",
    "HI",
    "OpenStreetMap (not official)",
    3,
@@ -1275,7 +3616,7 @@
   ],
   [
    "US-10917",
-   "\u02bbAiea Loop State Trail",
+   "ʻAiea Loop State Trail",
    "HI",
    "OpenStreetMap (not official)",
    6,
@@ -1283,99 +3624,11 @@
   ],
   [
    "US-10918",
-   "Wa\u02bbahila Ridge State Trail",
+   "Waʻahila Ridge State Trail",
    "HI",
    "official layer picked by KPC",
    2,
    0.3
-  ],
-  [
-   "US-4584",
-   "Ashton-Tetonia Trail State Park",
-   "ID",
-   "official layer picked by KPC",
-   46,
-   0.0
-  ],
-  [
-   "US-10006",
-   "Idaho Centennial Trail State Trail",
-   "ID",
-   "Idaho Department of Parks and Recreation | State_of_Idaho",
-   2015,
-   0.0
-  ],
-  [
-   "US-9155",
-   "Historic Columbia River Highway State Trail",
-   "OR",
-   "This database and GIS data are made available under the Open Database License (ODbL v1) and Database Content License (DbCL v1). \nNational Park Service - National Trails, University of Utah Department of Geography DIGIT Lab | ntirres_nps",
-   20,
-   0.0
-  ],
-  [
-   "US-9524",
-   "Angel's Rest State Trail",
-   "OR",
-   "This database and GIS data are made available under the Open Database License (ODbL v1) and Database Content License (DbCL v1). \nNational Park Service - National Trails, University of Utah Department of Geography DIGIT Lab | ntirres_nps",
-   4,
-   1.7
-  ],
-  [
-   "US-9528",
-   "Banks-Vernonia State Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   37,
-   0.0
-  ],
-  [
-   "US-10007",
-   "Oregon Coast State Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   1090,
-   0.0
-  ],
-  [
-   "US-10009",
-   "Row River National Recreation Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   54,
-   0.0
-  ],
-  [
-   "US-10011",
-   "OC&E Woods Line State Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   162,
-   0.0
-  ],
-  [
-   "US-10355",
-   "I-205 Multi-Use State Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   28,
-   0.3
-  ],
-  [
-   "US-10506",
-   "Estacada- Boring State Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   11,
-   0.0
-  ],
-  [
-   "US-10734",
-   "East Applegate Ridge Trail BLM Historic Trail",
-   "OR",
-   "OpenStreetMap (not official)",
-   8,
-   0.0
   ],
   [
    "US-5788",
@@ -1424,14 +3677,6 @@
    "OpenStreetMap (not official)",
    1199,
    16.4
-  ],
-  [
-   "US-8617",
-   "Perea Nature National Recreation Trail",
-   "NM",
-   "OpenStreetMap (not official)",
-   1,
-   0.0
   ],
   [
    "US-0878",
@@ -1538,6 +3783,14 @@
    0.0
   ],
   [
+   "US-0882",
+   "Farmington National Wild and Scenic River",
+   "CT",
+   "NPS partnership river (Farmington River Coordinating Committee) (official layer, picked by hand)",
+   24,
+   0.3
+  ],
+  [
    "US-0898",
    "White Clay Creek National Wild and Scenic River",
    "DE",
@@ -1578,6 +3831,30 @@
    0.5
   ],
   [
+   "US-6227",
+   "Snake River National Wild & Scenic River",
+   "ID",
+   "USFS Wallowa-Whitman NF (Hells Canyon NRA) with BLM (official layer, picked by hand)",
+   831,
+   0.2
+  ],
+  [
+   "US-10429",
+   "Middle Fork Clearwater River National Wild & Scenic River",
+   "ID",
+   "USFS (Nez Perce-Clearwater NF) (official layer, picked by hand)",
+   301,
+   0.2
+  ],
+  [
+   "US-12224",
+   "Bruneau River Access BLM Wild and Scenic River",
+   "ID",
+   "BLM Boise District (official layer, picked by hand)",
+   63,
+   4.2
+  ],
+  [
    "US-0891",
    "Taunton National Wild and Scenic River",
    "MA",
@@ -1592,6 +3869,14 @@
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): NPS",
    136,
    28.0
+  ],
+  [
+   "US-8014",
+   "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
+   "MA",
+   "NPS partnership river (official layer, picked by hand)",
+   81,
+   0.1
   ],
   [
    "US-12786",
@@ -1624,6 +3909,14 @@
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): USFS",
    46,
    0.0
+  ],
+  [
+   "US-12790",
+   "East Branch of the Taquamenon National Wild and Scenic River",
+   "MI",
+   "USFS Hiawatha NF (official layer, picked by hand)",
+   21,
+   0.1
   ],
   [
    "US-12791",
@@ -1682,6 +3975,22 @@
    0.1
   ],
   [
+   "US-12798",
+   "Sturgeon (Hiawatha) National Wild and Scenic River",
+   "MI",
+   "USFS Hiawatha NF (official layer, picked by hand)",
+   62,
+   0.0
+  ],
+  [
+   "US-12799",
+   "Sturgeon (Ottawa) National Wild and Scenic River",
+   "MI",
+   "USFS Ottawa NF (official layer, picked by hand)",
+   43,
+   0.1
+  ],
+  [
    "US-12800",
    "Whitefish National Wild and Scenic River",
    "MI",
@@ -1698,6 +4007,14 @@
    0.0
   ],
   [
+   "US-0673",
+   "Saint Croix National Wild and Scenic River",
+   "MN",
+   "NPS St. Croix NSR (official layer, picked by hand)",
+   407,
+   0.3
+  ],
+  [
    "US-0883",
    "Flathead National Wild and Scenic River",
    "MT",
@@ -1706,12 +4023,28 @@
    0.4
   ],
   [
+   "US-12630",
+   "Upper Missouri River BLM Wild and Scenic River",
+   "MT",
+   "BLM Lewistown Field Office (Upper Missouri River Breaks NM) (official layer, picked by hand)",
+   241,
+   0.3
+  ],
+  [
    "US-9758",
    "Chattooga National Wild and Scenic River",
    "NC",
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): USFS",
    91,
    0.1
+  ],
+  [
+   "US-0675",
+   "Missouri National Recreational River National Wild & Scenic River",
+   "NE",
+   "NPS (official layer, picked by hand)",
+   151,
+   0.3
   ],
   [
    "US-5622",
@@ -1730,6 +4063,14 @@
    1.3
   ],
   [
+   "US-8014",
+   "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
+   "NH",
+   "NPS partnership river (official layer, picked by hand)",
+   81,
+   0.1
+  ],
+  [
    "US-8015",
    "Wildcat National Wild and Scenic River",
    "NH",
@@ -1743,6 +4084,14 @@
    "NJ",
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): NPS",
    227,
+   0.1
+  ],
+  [
+   "US-0684",
+   "Lower Delaware National Wild and Scenic River",
+   "NJ",
+   "NPS partnership river (official layer, picked by hand)",
+   111,
    0.1
   ],
   [
@@ -1760,6 +4109,22 @@
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): NPS",
    48,
    0.1
+  ],
+  [
+   "US-0681",
+   "Upper Delaware National Wild and Scenic River",
+   "NY",
+   "NPS (official layer, picked by hand)",
+   118,
+   0.4
+  ],
+  [
+   "US-6227",
+   "Snake River National Wild & Scenic River",
+   "OR",
+   "USFS Wallowa-Whitman NF (Hells Canyon NRA) with BLM (official layer, picked by hand)",
+   831,
+   0.2
   ],
   [
    "US-9156",
@@ -1784,6 +4149,14 @@
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): BLM",
    234,
    0.0
+  ],
+  [
+   "US-9159",
+   "Lower Deschutes National Wild and Scenic River",
+   "OR",
+   "BLM Prineville District (official layer, picked by hand)",
+   160,
+   0.1
   ],
   [
    "US-9985",
@@ -1858,12 +4231,36 @@
    0.2
   ],
   [
+   "US-0681",
+   "Upper Delaware National Wild and Scenic River",
+   "PA",
+   "NPS (official layer, picked by hand)",
+   118,
+   0.4
+  ],
+  [
+   "US-0684",
+   "Lower Delaware National Wild and Scenic River",
+   "PA",
+   "NPS partnership river (official layer, picked by hand)",
+   111,
+   0.1
+  ],
+  [
    "US-0898",
    "White Clay Creek National Wild and Scenic River",
    "PA",
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): NPS",
    318,
    0.1
+  ],
+  [
+   "US-12234",
+   "Allegheny National Wild & Scenic River",
+   "PA",
+   "USFS Allegheny NF (official layer, picked by hand)",
+   148,
+   0.2
   ],
   [
    "US-12235",
@@ -1880,6 +4277,14 @@
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): USFS",
    91,
    0.1
+  ],
+  [
+   "US-0675",
+   "Missouri National Recreational River National Wild & Scenic River",
+   "SD",
+   "NPS (official layer, picked by hand)",
+   151,
+   0.3
   ],
   [
    "US-0685",
@@ -1906,6 +4311,118 @@
    0.0
   ],
   [
+   "US-5835",
+   "Green River Utah BLM Wild and Scenic River",
+   "UT",
+   "BLM Price/Moab Field Offices (official layer, picked by hand)",
+   100,
+   2.4
+  ],
+  [
+   "US-6012",
+   "Shunes Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   5,
+   0.1
+  ],
+  [
+   "US-6025",
+   "Willis Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   3,
+   0.0
+  ],
+  [
+   "US-10970",
+   "Laverkin Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   26,
+   0.1
+  ],
+  [
+   "US-10971",
+   "Smith Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO (official layer, picked by hand)",
+   3,
+   0.1
+  ],
+  [
+   "US-10972",
+   "Beartrap Canyon BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   6,
+   0.0
+  ],
+  [
+   "US-10973",
+   "Middle Fork Taylor Creek BLM Wild and Scenic River",
+   "UT",
+   "NPS Zion NP (official layer, picked by hand)",
+   5,
+   0.3
+  ],
+  [
+   "US-10974",
+   "Deep Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   9,
+   0.1
+  ],
+  [
+   "US-10975",
+   "Oak Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   7,
+   0.1
+  ],
+  [
+   "US-10976",
+   "Kolob Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   12,
+   0.0
+  ],
+  [
+   "US-11115",
+   "North Fork Virgin River BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   29,
+   0.0
+  ],
+  [
+   "US-11755",
+   "Goose Creek BLM Wild and Scenic River",
+   "UT",
+   "BLM St. George FO + NPS Zion NP (official layer, picked by hand)",
+   7,
+   0.1
+  ],
+  [
+   "US-6227",
+   "Snake River National Wild & Scenic River",
+   "WA",
+   "USFS Wallowa-Whitman NF (Hells Canyon NRA) with BLM (official layer, picked by hand)",
+   831,
+   0.2
+  ],
+  [
+   "US-10709",
+   "Klickitat National Wild & Scenic River",
+   "WA",
+   "USFS Columbia River Gorge NSA (official layer, picked by hand)",
+   18,
+   0.1
+  ],
+  [
    "US-12343",
    "White Salmon National Wild and Scenic River",
    "WA",
@@ -1914,12 +4431,236 @@
    0.0
   ],
   [
+   "US-0673",
+   "Saint Croix National Wild and Scenic River",
+   "WI",
+   "NPS St. Croix NSR (official layer, picked by hand)",
+   407,
+   0.3
+  ],
+  [
    "US-0697",
    "Bluestone National Wild and Scenic River",
    "WV",
    "National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): NPS",
    21,
    0.3
+  ],
+  [
+   "US-6207",
+   "Clarks Fork of the Yellowstone National Wild & Scenic River",
+   "WY",
+   "USFS Shoshone NF (official layer, picked by hand)",
+   37,
+   0.3
+  ],
+  [
+   "US-6227",
+   "Snake River National Wild & Scenic River",
+   "WY",
+   "USFS Wallowa-Whitman NF (Hells Canyon NRA) with BLM (official layer, picked by hand)",
+   831,
+   0.2
+  ],
+  [
+   "US-3608",
+   "Blackwater Heritage State Trail",
+   "FL",
+   "official layer picked by KPC",
+   12,
+   0.0
+  ],
+  [
+   "US-3620",
+   "Florida Keys Overseas Heritage Trail State Park",
+   "FL",
+   "official layer picked by KPC",
+   105,
+   1.0
+  ],
+  [
+   "US-3624",
+   "Gainesville-Hawthorne State Trail",
+   "FL",
+   "official layer picked by KPC",
+   26,
+   0.0
+  ],
+  [
+   "US-3627",
+   "General James A. Van Fleet State Trail",
+   "FL",
+   "official layer picked by KPC",
+   65,
+   0.1
+  ],
+  [
+   "US-3640",
+   "Nature Coast State Trail",
+   "FL",
+   "official layer picked by KPC",
+   52,
+   0.1
+  ],
+  [
+   "US-3644",
+   "Palatka-St. Augustine State Trail",
+   "FL",
+   "official layer picked by KPC",
+   30,
+   0.0
+  ],
+  [
+   "US-3645",
+   "Palatka-to-Lake Butler State Trail",
+   "FL",
+   "official layer picked by KPC",
+   71,
+   0.0
+  ],
+  [
+   "US-3660",
+   "Suwannee River Wilderness State Trail",
+   "FL",
+   "Florida DEP Office of Greenways & Trails (official layer, picked by hand)",
+   255,
+   0.1
+  ],
+  [
+   "US-3661",
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "FL",
+   "official layer picked by KPC",
+   26,
+   0.2
+  ],
+  [
+   "US-3667",
+   "Withlacoochee State Trail",
+   "FL",
+   "official layer picked by KPC",
+   512,
+   0.0
+  ],
+  [
+   "US-4584",
+   "Ashton-Tetonia Trail State Park",
+   "ID",
+   "official layer picked by KPC",
+   46,
+   0.0
+  ],
+  [
+   "US-7366",
+   "Trail of the Coeur d'Alene's State Trail",
+   "ID",
+   "Idaho Dept of Parks & Recreation with Coeur d'Alene Tribe (official layer, picked by hand)",
+   116,
+   0.0
+  ],
+  [
+   "US-10006",
+   "Idaho Centennial Trail State Trail",
+   "ID",
+   "Idaho Department of Parks and Recreation | State_of_Idaho",
+   2015,
+   0.0
+  ],
+  [
+   "US-8617",
+   "Perea Nature National Recreation Trail",
+   "NM",
+   "OpenStreetMap (not official)",
+   1,
+   0.0
+  ],
+  [
+   "US-8618",
+   "White Ridge National Recreation Trail",
+   "NM",
+   "BLM Rio Puerco Field Office (official layer, picked by hand)",
+   19,
+   0.0
+  ],
+  [
+   "US-9155",
+   "Historic Columbia River Highway State Trail",
+   "OR",
+   "This database and GIS data are made available under the Open Database License (ODbL v1) and Database Content License (DbCL v1). \nNational Park Service - National Trails, University of Utah Department of Geography DIGIT Lab | ntirres_nps",
+   20,
+   0.0
+  ],
+  [
+   "US-9524",
+   "Angel's Rest State Trail",
+   "OR",
+   "This database and GIS data are made available under the Open Database License (ODbL v1) and Database Content License (DbCL v1). \nNational Park Service - National Trails, University of Utah Department of Geography DIGIT Lab | ntirres_nps",
+   4,
+   1.7
+  ],
+  [
+   "US-9528",
+   "Banks-Vernonia State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   37,
+   0.0
+  ],
+  [
+   "US-10007",
+   "Oregon Coast State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   1090,
+   0.0
+  ],
+  [
+   "US-10009",
+   "Row River National Recreation Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   54,
+   0.0
+  ],
+  [
+   "US-10011",
+   "OC&E Woods Line State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   162,
+   0.0
+  ],
+  [
+   "US-10355",
+   "I-205 Multi-Use State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   28,
+   0.3
+  ],
+  [
+   "US-10506",
+   "Estacada- Boring State Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   11,
+   0.0
+  ],
+  [
+   "US-10733",
+   "Bolt Mountain BLM Historic Trail",
+   "OR",
+   "BLM Medford District (Grants Pass Interagency Office) (official layer, picked by hand)",
+   4,
+   0.1
+  ],
+  [
+   "US-10734",
+   "East Applegate Ridge Trail BLM Historic Trail",
+   "OR",
+   "OpenStreetMap (not official)",
+   8,
+   0.0
   ],
   [
    "CA-3546",
@@ -1970,14 +4711,6 @@
    0.1
   ],
   [
-   "CA-5722",
-   "Saunder's Brook Trail National Recreation Trail",
-   "CA-NB",
-   "OpenStreetMap (not official)",
-   3,
-   0.0
-  ],
-  [
    "CA-1301",
    "Barron Canyon National Geologic Trail",
    "CA-ON",
@@ -1992,6 +4725,14 @@
    "Ontario Ministry of Natural Resources and Forestry | https://www.ontario.ca/page/open-government-licence-ontario | OntarioProvincialMapping",
    7,
    0.1
+  ],
+  [
+   "CA-5536",
+   "Nassagaweya Canyon Trail Recreation Site",
+   "CA-ON",
+   "Conservation Halton (data: Ontario MNR LIO, Ontario Trail Network) (official layer, picked by hand)",
+   4,
+   0.6
   ],
   [
    "CA-5565",
@@ -2168,39 +4909,15 @@
    "no line found"
   ],
   [
-   "US-3660",
-   "Suwannee River Wilderness State Trail",
-   "FL",
-   "no line found"
-  ],
-  [
    "US-2216",
-   "Makapu\u02bbu  Point Wayside State Trail",
+   "Makapuʻu  Point Wayside State Trail",
    "HI",
    "no line found"
   ],
   [
    "US-10916",
-   "Kapa\u02bbele\u02bbele State Trail",
+   "Kapaʻeleʻele State Trail",
    "HI",
-   "no line found"
-  ],
-  [
-   "US-7366",
-   "Trail of the Coeur d'Alene's State Trail",
-   "ID",
-   "no line found"
-  ],
-  [
-   "US-10733",
-   "Bolt Mountain BLM Historic Trail",
-   "OR",
-   "no line found"
-  ],
-  [
-   "US-10757",
-   "Sterling Mine Ditch Trail BLM Historic Trail",
-   "OR",
    "no line found"
   ],
   [
@@ -2213,12 +4930,6 @@
    "US-11001",
    "Gooseberry Mesa National Recreation Trail",
    "UT",
-   "no line found"
-  ],
-  [
-   "US-8618",
-   "White Ridge National Recreation Trail",
-   "NM",
    "no line found"
   ],
   [
@@ -2258,63 +4969,9 @@
    "no line found"
   ],
   [
-   "US-0882",
-   "Farmington National Wild and Scenic River",
-   "CT",
-   "no line found"
-  ],
-  [
-   "US-6227",
-   "Snake River National Wild & Scenic River",
-   "ID",
-   "no line found"
-  ],
-  [
-   "US-10429",
-   "Middle Fork Clearwater River National Wild & Scenic River",
-   "ID",
-   "no line found"
-  ],
-  [
    "US-10430",
    "St Joe River National Wild and Scenic River",
    "ID",
-   "no line found"
-  ],
-  [
-   "US-12224",
-   "Bruneau River Access BLM Wild and Scenic River",
-   "ID",
-   "no line found"
-  ],
-  [
-   "US-8014",
-   "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
-   "MA",
-   "no line found"
-  ],
-  [
-   "US-12790",
-   "East Branch of the Taquamenon National Wild and Scenic River",
-   "MI",
-   "no line found"
-  ],
-  [
-   "US-12798",
-   "Sturgeon (Hiawatha) National Wild and Scenic River",
-   "MI",
-   "no line found"
-  ],
-  [
-   "US-12799",
-   "Sturgeon (Ottawa) National Wild and Scenic River",
-   "MI",
-   "no line found"
-  ],
-  [
-   "US-0673",
-   "Saint Croix National Wild and Scenic River",
-   "MN",
    "no line found"
   ],
   [
@@ -2324,171 +4981,9 @@
    "no line found"
   ],
   [
-   "US-12630",
-   "Upper Missouri River BLM Wild and Scenic River",
-   "MT",
-   "no line found"
-  ],
-  [
-   "US-0675",
-   "Missouri National Recreational River National Wild & Scenic River",
-   "NE",
-   "no line found"
-  ],
-  [
-   "US-8014",
-   "Nashua, Squannacook, and Nissitissit National Wild and Scenic River",
-   "NH",
-   "no line found"
-  ],
-  [
-   "US-0684",
-   "Lower Delaware National Wild and Scenic River",
-   "NJ",
-   "no line found"
-  ],
-  [
-   "US-0681",
-   "Upper Delaware National Wild and Scenic River",
-   "NY",
-   "no line found"
-  ],
-  [
-   "US-6227",
-   "Snake River National Wild & Scenic River",
+   "US-10757",
+   "Sterling Mine Ditch Trail BLM Historic Trail",
    "OR",
-   "no line found"
-  ],
-  [
-   "US-9159",
-   "Lower Deschutes National Wild and Scenic River",
-   "OR",
-   "no line found"
-  ],
-  [
-   "US-0681",
-   "Upper Delaware National Wild and Scenic River",
-   "PA",
-   "no line found"
-  ],
-  [
-   "US-0684",
-   "Lower Delaware National Wild and Scenic River",
-   "PA",
-   "no line found"
-  ],
-  [
-   "US-12234",
-   "Allegheny National Wild & Scenic River",
-   "PA",
-   "no line found"
-  ],
-  [
-   "US-0675",
-   "Missouri National Recreational River National Wild & Scenic River",
-   "SD",
-   "no line found"
-  ],
-  [
-   "US-5835",
-   "Green River Utah BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-6012",
-   "Shunes Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-6025",
-   "Willis Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10970",
-   "Laverkin Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10971",
-   "Smith Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10972",
-   "Beartrap Canyon BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10973",
-   "Middle Fork Taylor Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10974",
-   "Deep Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10975",
-   "Oak Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-10976",
-   "Kolob Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-11115",
-   "North Fork Virgin River BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-11755",
-   "Goose Creek BLM Wild and Scenic River",
-   "UT",
-   "no line found"
-  ],
-  [
-   "US-6227",
-   "Snake River National Wild & Scenic River",
-   "WA",
-   "no line found"
-  ],
-  [
-   "US-10709",
-   "Klickitat National Wild & Scenic River",
-   "WA",
-   "no line found"
-  ],
-  [
-   "US-0673",
-   "Saint Croix National Wild and Scenic River",
-   "WI",
-   "no line found"
-  ],
-  [
-   "US-6207",
-   "Clarks Fork of the Yellowstone National Wild & Scenic River",
-   "WY",
-   "no line found"
-  ],
-  [
-   "US-6227",
-   "Snake River National Wild & Scenic River",
-   "WY",
    "no line found"
   ],
   [
@@ -2528,6 +5023,12 @@
    "no line found"
   ],
   [
+   "CA-5722",
+   "Saunder's Brook Trail National Recreation Trail",
+   "CA-NB",
+   "no line found"
+  ],
+  [
    "CA-6234",
    "Fundy Trail Provincial Park",
    "CA-NB",
@@ -2541,7 +5042,7 @@
   ],
   [
    "CA-6530",
-   "Sentier Nepisiguit Mi\u2019gmaq Trail Recreation Site",
+   "Sentier Nepisiguit Mi’gmaq Trail Recreation Site",
    "CA-NB",
    "no line found"
   ],
@@ -2562,12 +5063,6 @@
    "Northwest Passage Trail Territorial Park",
    "CA-NU",
    "no line found"
-  ],
-  [
-   "CA-5536",
-   "Nassagaweya Canyon Trail Recreation Site",
-   "CA-ON",
-   "short: probably a park, not a trail"
   ],
   [
    "CA-5993",
@@ -2804,2420 +5299,6 @@
    "Nine Mile Portage Heritage Trail Recreation Site",
    "CA-ON",
    "a driving route, area or water trail: no single line to draw"
-  ]
- ],
- "agency": [
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Narrows Peninsula Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Kingsmere River Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Boundary Bog Trail National Geologic Trail",
-   "1 lines 0 km from pin",
-   "official layer picked by KPC",
-   ".com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0 TrailEn",
-   {
-    "Boundary Bog Trail": [
-     2,
-     "SectionEn=Boundary Bog Trail SectionFr=Sentier Marais Limitrophe TrailId=0 TrailFr=Sentier Marais Limitrophe ParkEn=Prince Albert National Park of Canada  ParkF"
-    ]
-   }
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Red Deer Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Fisher Trail National Recreation Trail",
-   "1 lines 0 km from pin",
-   "official layer picked by KPC",
-   ".com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0 TrailEn",
-   {
-    "Fisher Trail": [
-     6,
-     "SectionEn=Fisher Trail SectionFr=Sentier Fisher TrailId=0 TrailFr=Sentier Fisher ParkEn=Prince Albert National Park of Canada  ParkFr=Parc national du Canada de"
-    ]
-   }
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Battleford-Swift Current Trail National Recreation Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Cochin Green Lake Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Meadow lake Battleford Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Fort Carlton- Touchwood Trail National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Troy-Prince Albert National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "River Ridge Trails National Historic Trail",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Meewasin Valley Authority | MeewasinGIS",
-   "Meewasin_Trail_Data_2020"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "\u00a9 Trans Canada Trail | alanablock_Selkirk",
-   "Trans Canada Trail _ Explore the Map"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "Little Red River Park Trails"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "gis_citypa",
-   "LED Lights"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EPND Sandpiper Pipeline"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Northern Route East of Clearbrook to WI"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Existing Enbridge EEP Sandpiper Pipeline"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Ted Auch, Dan Berghoff | maps_ft",
-   "Enbridge Sandpiper Southern Route East of Clearbrook to WI"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "North_Saskatchewan_Rabbit_Hill_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting\nContinuing Care Branc",
-   "SeniorsResiden_ExportFeature"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Alberta Standards Compliance Reporting - Continuing Care Bra",
-   "Seniors\u2019 Residential Facilities / R\u00e9sidences pour A\u00een\u00e9s"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_North_Saskatchewan_Central_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "200590358@student.georgianc.on.ca_GeorgianCollege",
-   "SeniorsResidentialFacilities"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "All Input Push and Pull Factors Layers"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "RPCPublisher",
-   "-"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC6"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "hayley.melrose@ucalgary.ca_ucalgary",
-   "SLCN Pop Up Map_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC8"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "ochaudhry",
-   "LMC7"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Ecological_Guidance_dp_202405028_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "Derek.Piitz@stantec.com_stantec",
-   "Program_Guidance_dp_20240528_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "BeaverHillsBiosphere_Admin",
-   "SOTB_GDB"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "bhoffos",
-   "James River Retreat"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "gwascreator",
-   "GroundUp_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "O2.Staff4_O2design",
-   "Active_Outdoor_Recreation_PushAndPull_Factors"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "nathan.cutting_alema",
-   "Lifelines_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "gwascreator",
-   "Base_Features_Altalis_forweb_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Map_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "Final NWT Fire Map_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Wildfire Map_WFL1"
-  ],
-  [
-   "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
-   "skip (not state/federal)",
-   "d38ve_UNBGIS",
-   "NWT Final Map_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "hollik_UofA",
-   "Major Roads"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "lmacker_UVGeog",
-   "Roads_1M_shp"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "hollik_UofA",
-   "All Roads"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "faith.espinosa@alaska.gov_AKDOT",
-   "Juneau Access Corridor to Yukon_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "faith.espinosa@alaska.gov_AKDOT",
-   "2022 Winter Trails Map_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "ldf5129_pennstate",
-   "nps_boundary"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "richard@kdfn",
-   "Fixing the Broken Salmon Trail Map1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "richard@kdfn",
-   "Fixing the Broken Salmon Trail Overview_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "7OlEO8z_HpWF7O80CtYl8SfzFTSpH6zHoydA_8Pjavo__Carleton_U",
-   "Available Land_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "7OlEO8z_HpWF7O80CtYl8SfzFTSpH6zHoydA_8Pjavo__Carleton_U",
-   "Accessible Land_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "faith.espinosa@alaska.gov_AKDOT",
-   "2024 Winter Trail Updates_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "faith.espinosa@alaska.gov_AKDOT",
-   "2025 SIRA and Winter Trail Marking Applications_WFL1"
-  ],
-  [
-   "Spruce Beetle Trail Recreation Site",
-   "skip (not state/federal)",
-   "p1130317",
-   "SHP_ALL"
   ]
  ]
 }
