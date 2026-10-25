@@ -35,9 +35,10 @@ C = {'ts': col('timestamp'), 'call': col('call sign'), 'kind': col('what are you
      'ant': col('room for antennas', 'antenna'), 'shade': col('shade'), 'amen': col('other amenities', 'amenities'), 'photo': col('photo'), 'app': col('approved')}
 _miss = [k for k, v in C.items() if v is None and k not in ('app',)]
 if _miss: notice('Sheet columns not found (check the question names start with these words): ' + ', '.join(_miss) + '. Columns seen: ' + ' | '.join(h[:30] for h in H))
-PARKCOLS = [i for i, h in enumerate(H) if h.startswith('park number')]   # 'Park number' (one in each form section is fine)
+PARKCOLS = [i for i, h in enumerate(H) if 'park number' in h]   # 'Park number' (inside a park) / 'Near by park number' (outside one)
 def parkno(r):
     for i in PARKCOLS:
+        parkno.near = 'near' in H[i]
         m = re.search(r'\b([A-Z]{1,3})-?0*(\d{1,5})\b', (r[i] if i < len(r) else '').upper())
         if m: return ('US' if m.group(1) == 'K' else m.group(1)) + '-' + m.group(2).zfill(4)
         m = re.fullmatch(r'\s*0*(\d{1,5})\s*', r[i] if i < len(r) else '')
@@ -140,6 +141,7 @@ for r in rows[1:]:
     n = {'id': nid, 'st': st, 'ref': ref, 'place': place, 'call': call, 'rating': rating, 'text': text[:3000], 'site': cell(r, 'site')[:20], 'stayed': cell(r, 'when')[:40], 'date': date, 'photos': photos,
          'facts': [[lab, cell(r, k)[:160]] for k, lab in FACTS if cell(r, k)]}
     if ref: n['ref'] = ref
+    if ref and parkno.near: n['near'] = 1   # recommended NEAR this park, not inside it
     if not place:
         web = cell(r, 'web'); web = web if re.match(r'https?://', web) else ''
         n['other'] = {'name': re.sub(r'^\s*(outside a park:?)\s*', '', ptxt, flags=re.I)[:120] or 'Other', 'where': cell(r, 'where')[:120], 'gps': cell(r, 'gps')[:60],
