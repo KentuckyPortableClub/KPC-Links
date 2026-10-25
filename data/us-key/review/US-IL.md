@@ -1,17 +1,15 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined to official land (same name + same kind of place). **0** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined to official land (same name + same kind of place). **0** to check by hand, **51** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0998 Horseshoe Lake State Park (State Park) → on Horshoe Lake State Park (~3,339 ac)
 - US-10661 Oakwood Bottoms USFS Recreation Area (USFS Recreation Area) → on Shawnee National Forest (~273,706 ac)
 - US-10788 Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → on Miscellaneous Property (~104 ac)
 - US-12368 Hooper Branch Savanna State Nature Preserve (State Nature Preserve) → on Iroquois County State Fish and Wildlife Area (~2,842 ac)
-- US-13298 North Point Marina State Recreation Area (State Recreation Area) → on Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac)
 - US-4094 Eagle Creek State Park (State Park) → on Recreation Area (~2,294 ac)
 - US-7871 Martin T Snyder Memorial State Nature Preserve (State Nature Preserve) → on Hanging Rock Sandstone Cliff State Natural Area (~94 ac)
 
@@ -23,6 +21,7 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined
 - US-0983 Campbell's Island State Park (State Park)
 - US-0989 Dixon Springs State Park (State Park)
 - US-0990 Donnelley/DePue State Park (State Park)
+- US-0998 Horseshoe Lake State Park (State Park)
 - US-1001 James Pate Philip State Park (State Park)
 - US-1010 Mississippi Palisades State Park (State Park)
 - US-1013 Morrison-Rockwood State Park (State Park)
@@ -40,6 +39,7 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **163 of 219** parks joined
 - US-12617 Postville Courthouse State Historic Site (State Historic Site)
 - US-12640 Rauchfuss Hill State Recreation Area (State Recreation Area)
 - US-12641 David Davis Mansion State Historic Site (State Historic Site)
+- US-13298 North Point Marina State Recreation Area (State Recreation Area)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-4096 Golconda Marina State Recreation Area (State Recreation Area)
 - US-4105 Washington County State Recreation Area (State Recreation Area)

@@ -1,47 +1,42 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-22 by `.github/scripts/kpc_us_key.py`. **818 of 850** parks joined to official land (same name + same kind of place). **21** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **823 of 850** parks joined to official land (same name + same kind of place). **1** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-12060** Crystal Lake State Forest (State Forest) → Crystal Lake Wild Forest (~502 ac, same name, different kind of place)
-- **US-2081** Iona Island Wildlife Management Area (Wildlife Management Area) → Bear Mountain State Park (~5,477 ac, the POTA pin is inside it (different name))
-- **US-2151** Thompsons Lake State Park (State Park) → John Boyd Thacher State Park (~2,477 ac, the POTA pin is inside it (different name))
-- **US-5197** Dannemora State Forest (State Forest) → Chazy Highlands State Forest (~5,544 ac, the POTA pin is inside it (different name))
-- **US-5308** Split Rock State Forest (State Forest) → Split Rock Wild Forest (~3,543 ac, same name, different kind of place)
-- **US-5310** Skenoh Island Wildlife Management Area (Wildlife Management Area) → Squaw Island Wma (~0 ac, the POTA pin is inside it (different name))
-- **US-8061** Ellis Island National Historic Site (National Historic Site) → Statue of Liberty National Monument (~19 ac, the POTA pin is inside it (different name))
-- **US-8063** North-South Lake State Recreation Area (State Recreation Area) → North/South Lake Campground (~1,108 ac, similar name)
-- **US-8064** Barcelona Neck Cooperative State Forest (State Forest) → Sag Harbor Golf Course State Park (~49 ac, the POTA pin is inside it (different name))
-- **US-8081** Floyd Bennett Field National Historic District (National Historic District) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8082** Jamaica Bay State Wildlife Area (State Wildlife Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8083** Canarsie Pier State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8084** Breezy Point Tip State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8085** Fort Tilden National Historic Site (National Historic Site) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8086** Jacob Riis Park National Historic Site (National Historic Site) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8087** Fort Wadsworth National Historic Site (National Historic Site) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8088** Miller Field State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8089** Great Kills Park State Recreation Area (State Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8090** Frank Charles Park National Recreation Area (National Recreation Area) → Gateway National Recreation Area (~18,548 ac, the POTA pin is inside it (different name))
-- **US-8103** Cayuga Lake Wildlife Management Area (Wildlife Management Area) → Cayuga-Seneca Canal (~1,234 ac, the POTA pin is inside it (different name))
-- **US-9068** Little John Wildlife Management Area (Wildlife Management Area) → Littlejohn Wma (~7,926 ac, the POTA pin is inside it (different name))
+- **US-8064** Barcelona Neck Cooperative State Forest (State Forest) → Linda A. Gronlund Memorial Nature State Forest At Barcelona Neck (~276 ac, similar name); Linda A. Gronlund Memorial Nature State Forest At Barcelona Neck (~13 ac, similar name); Linda Gronlund Memorial Nature Preserve (~289 ac, the POTA pin is inside it (different name)); Sag Harbor Golf Course State Park (~49 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-2081 Iona Island Wildlife Management Area (Wildlife Management Area) → on Bear Mountain State Park (~5,477 ac)
+- US-5197 Dannemora State Forest (State Forest) → on Chazy Highlands State Forest (~5,544 ac)
+- US-8061 Ellis Island National Historic Site (National Historic Site) → on Statue of Liberty National Monument (~19 ac)
+- US-8084 Breezy Point Tip State Recreation Area (State Recreation Area) → on Gateway National Recreation Area (~18,548 ac)
+- US-8089 Great Kills Park State Recreation Area (State Recreation Area) → on Gateway National Recreation Area (~18,548 ac)
 
 ## Nothing found in PAD-US
 
 - US-0778 Hamilton Grange National Memorial (National Memorial)
-- US-12113 Blue Hill State Forest (State Forest)
-- US-13270 Otis Pike Pine Barrens State Forest (State Forest)
+- US-12060 Crystal Lake State Forest (State Forest)
 - US-2001 Adirondack State Park (State Park)
+- US-2151 Thompsons Lake State Park (State Park)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
+- US-5308 Split Rock State Forest (State Forest)
 - US-6532 Erie Canalway Corridor National Heritage Area (National Heritage Area)
 - US-8070 Catskill State Park (State Park)
+- US-8081 Floyd Bennett Field National Historic District (National Historic District)
+- US-8082 Jamaica Bay State Wildlife Area (State Wildlife Area)
+- US-8083 Canarsie Pier State Recreation Area (State Recreation Area)
+- US-8085 Fort Tilden National Historic Site (National Historic Site)
+- US-8086 Jacob Riis Park National Historic Site (National Historic Site)
+- US-8087 Fort Wadsworth National Historic Site (National Historic Site)
+- US-8088 Miller Field State Recreation Area (State Recreation Area)
+- US-8090 Frank Charles Park National Recreation Area (National Recreation Area)
 - US-8098 Empire State Trail (State Trail)
+- US-8103 Cayuga Lake Wildlife Management Area (Wildlife Management Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

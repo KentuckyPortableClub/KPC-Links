@@ -1,10 +1,9 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined to official land (same name + same kind of place). **1** to check by hand, **45** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **89 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **45** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-2545** Legion State Park (State Park) → Legion Lake State Park (~431 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -24,8 +23,8 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 - US-7121 Sandy Creek Wildlife Management Area (Wildlife Management Area) → on Homochitto National Forest (~191,846 ac)
 - US-7130 Aberdeen Lake State Recreation Area (State Recreation Area) → on Canal Section Wma (~29,203 ac)
 - US-7134 Holcut Memorial State Recreation Area (State Recreation Area) → on Divide Section (~16,145 ac)
+- US-7629 Davis Lake State Recreation Area (State Recreation Area) → on Tombigbee National Forest (~67,449 ac)
 - US-7630 Chewalla Lake State Recreation Area (State Recreation Area) → on Holly Springs National Forest (~156,210 ac)
-- US-7631 Owl Creek Mounds Archeological Reserve (Archeological Reserve) → on Tombigbee National Forest (~67,449 ac)
 - US-7633 Turkey Fork Lake State Recreation Area (State Recreation Area) → on De Soto National Forest (~532,454 ac)
 - US-7634 Ashe Lake State Recreation Area (State Recreation Area) → on De Soto National Forest (~532,454 ac)
 - US-7635 Airey Lake State Recreation Area (State Recreation Area) → on De Soto National Forest (~532,454 ac)
@@ -67,7 +66,7 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 - US-7131 Bay Springs Lake State Recreation Area (State Recreation Area)
 - US-7132 Jamie Whitten Historical Center State Recreation Area (State Recreation Area)
 - US-7133 Amory Recreation Area State Recreation Area (State Recreation Area)
-- US-7629 Davis Lake State Recreation Area (State Recreation Area)
+- US-7631 Owl Creek Mounds Archeological Reserve (Archeological Reserve)
 - US-8513 Archusa Creek State Recreation Area (State Recreation Area)
 - US-8514 Big Creek State Recreation Area (State Recreation Area)
 - US-8515 Dry Creek State Recreation Area (State Recreation Area)
@@ -123,7 +122,6 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 - Refuge · SCA · Unknown · ~764 ac
 - Davis Bayou Coastal Reserve · SCA · Unknown · ~744 ac
 - Muscadine Driftwood · SCA · Unknown · ~708 ac
-- Legion Lake State Park · SP · Unknown · ~431 ac
 - Grand Bayou Coastal Reserve · SCA · Unknown · ~309 ac
 - Southeastern States District Office · PUB · BLM · ~284 ac
 - Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~267 ac
@@ -140,3 +138,4 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **88 of 155** parks joined 
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
 - Lakeshore Recreation Area · LREC · Pearl River Valley and Water Supply District · ~103 ac
 - Pascagoula River Marshes (Sept 2002) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~79 ac
+- Burnside Park · LREC · Philadelphia-Neshoba County Park Commission · ~76 ac

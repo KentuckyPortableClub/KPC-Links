@@ -1,25 +1,20 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **222 of 254** parks joined to official land (same name + same kind of place). **1** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **226 of 254** parks joined to official land (same name + same kind of place). **1** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-2604** West Shore State Park (State Park) → Flathead Lake/West Shore State Park (~140 ac, similar name)
+- **US-10527** Judith Landing (BLM) Recreation Site (Recreation Site) → Judith Landing State Park (~109 ac, similar name); Upper Missouri River Breaks National Monument (~0 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-0054 Nez Perce National Historical Park (National Historical Park) → on Clearwater River (~44,818 ac)
 - US-0400 Halfbreed Lake National Wildlife Refuge (National Wildlife Refuge) → on Grass Lake National Wildlife Refuge (~3,394 ac); Grass Lake National Wildlife Refuge (~3,394 ac)
 - US-10526 Devils Elbow (BLM) Recreation Site (Recreation Site) → on Hauser Lake (~16,467 ac); Butte Field Office (~323,091 ac)
-- US-10527 Judith Landing (BLM) Recreation Site (Recreation Site) → on Upper Missouri River Breaks National Monument (~0 ac)
-- US-11215 Bear Paw Battlefield National Monument (National Monument) → on Nez Perce National Historical Park (~195 ac)
-- US-12696 Bighorn Viewing Wildlife Management Area (Wildlife Management Area) → on Big Horn Viewing Site Wildlife Management Area (~50 ac); Montana Fish, Wildlife and Parks (~1,481 ac)
+- US-11219 Jacko River Trout State Fish Hatchery (State Fish Hatchery) → on Montana Fish, Wildlife and Parks (~315 ac)
 - US-12822 Big Horn State Fish and Wildlife Area (State Fish and Wildlife Area) → on Bighorn Fishing Access Site (~72 ac)
-- US-12827 Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → on Brownes Bridge Fishing Access Site (~10 ac)
-- US-12877 Grey Cliff State Fish and Wildlife Area (State Fish and Wildlife Area) → on Greycliff Fishing Access Site (~548 ac)
+- US-12827 Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → on Brownes Bridge Fishing Access Site (~10 ac); Lower Big Hole River (~3,329 ac)
 - US-12925 Thoreau State Beach (State Beach) → on Missoula Field Office (~175,579 ac)
-- US-12941 Judith Landing State Park (State Park) → on Upper Missouri River Breaks National Monument (~0 ac)
-- US-2576 Grey Cliff Prairie Dog State Park (State Park) → on Greycliff Prairie Dog Town State Park (~98 ac)
 - US-4574 Nez Perce National Historic Trail (National Historic Trail) → on Lolo National Forest (~2,265,532 ac)
 
 ## Nothing found in PAD-US
@@ -27,12 +22,13 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **222 of 254** parks joined
 - US-0405 CSKT Bison Range Protected Area (Protected Area)
 - US-0883 Flathead National Wild and Scenic River (National Wild and Scenic River)
 - US-10521 Garnet Ghost Town BLM Historic Preservation Site (BLM Historic Preservation Site)
-- US-11146 Somers Beach State Park (State Park)
+- US-11215 Bear Paw Battlefield National Monument (National Monument)
 - US-11216 Big Springs Trout State Fish Hatchery (State Fish Hatchery)
 - US-11217 Bluewater Springs Trout State Fish Hatchery (State Fish Hatchery)
 - US-11218 Fort Peck State Fish Hatchery (State Fish Hatchery)
-- US-11219 Jacko River Trout State Fish Hatchery (State Fish Hatchery)
 - US-11221 Washoe Park Trout State Fish Hatchery (State Fish Hatchery)
+- US-12877 Grey Cliff State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-2576 Grey Cliff Prairie Dog State Park (State Park)
 - US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
 - US-4475 Caribou-Targhee National Forest (National Forest)
 - US-4477 Idaho Panhandle National Forest (National Forest)

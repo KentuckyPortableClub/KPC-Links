@@ -1,6 +1,6 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **187 of 205** parks joined to official land (same name + same kind of place). **0** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **187 of 205** parks joined to official land (same name + same kind of place). **0** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,14 +8,15 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **187 of 205** parks joined
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-11849 Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → on Wantastiquet Mountain Natural Area (~913 ac)
-- US-13529 Currier Wildlife Management Area (Wildlife Management Area) → on SPNH Tract (~0 ac)
 - US-2654 Gardner Memorial Wayside State Park (State Park) → on Gile State Forest (~0 ac)
 - US-2685 Winslow State Park (State Park) → on Kearsarge Mt State Forest (~0 ac)
 - US-4918 Kearsarge Mountain State Forest (State Forest) → on Kearsarge Mt State Forest (~0 ac)
+- US-8024 Taylor Saw Mill State Historic Site (State Historic Site) → on Ballard State Forest (~0 ac)
 
 ## Nothing found in PAD-US
 
 - US-0885 Lamprey National Wild and Scenic River (National Wild and Scenic River)
+- US-13529 Currier Wildlife Management Area (Wildlife Management Area)
 - US-13532 Deer Hill Wildlife Management Area (Wildlife Management Area)
 - US-13585 Theodore W. Walski State Wildlife Area (State Wildlife Area)
 - US-13595 Northern Recreational State Trail (State Trail)
@@ -27,7 +28,6 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **187 of 205** parks joined
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
 - US-8015 Wildcat National Wild and Scenic River (National Wild and Scenic River)
 - US-8021 Gov. Wentworth State Historic Site (State Historic Site)
-- US-8024 Taylor Saw Mill State Historic Site (State Historic Site)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
