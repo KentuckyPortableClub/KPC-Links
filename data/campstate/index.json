@@ -6,6 +6,11 @@
    "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84)",
    "updated": "2026-10-25"
   },
+  "CA": {
+   "n": 356,
+   "source": "gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
+   "updated": "2026-10-25"
+  },
   "FL": {
    "n": 149,
    "source": "services3.arcgis.com \u00b7 Recreation_Points_Website_Staging (170)",
@@ -86,7 +91,6 @@
   "AL",
   "AR",
   "AZ",
-  "CA",
   "CO",
   "CT",
   "DC",
@@ -119,7 +123,6 @@
   "WY"
  ],
  "none_why": {
-  "CA": "1 layer(s) looked promising but held no camp / cabin / lodge records",
   "ID": "the state GIS servers answered but publish no campground / cabin layer we can read"
  }
 }
