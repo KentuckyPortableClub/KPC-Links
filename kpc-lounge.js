@@ -103,10 +103,23 @@
       <div class="lg-ch"><span class="lg-tag ${P.toLowerCase()}">${P}</span> <span class="lg-ref">${esc(o.ref)}</span></div>
       <h2>${esc(o.name)}</h2>
       <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>${P === 'POTA' && store.get('kpcTrackActs', {})[o.ref] ? `<span class="lg-you">✅ You activated this${store.get('kpcTrackActs', {})[o.ref].n > 1 ? ' ' + store.get('kpcTrackActs', {})[o.ref].n + ' times' : ''}</span>` : ''}
-      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div>
-      <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, parking, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
+      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div><div id="lgAp"></div>
+      <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: some boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
     </section>`;
     $('lgOut').scrollIntoView({ block: 'start', behavior: 'smooth' });
+    /* Oct 25 (HQ hand-off): official parking / entrance / gate / ramp points: Kentucky from kpc-ky-data.json, other states from
+       chat 2's data/access/US-XX.json (same files as the Kit and the US Trip Planner) */
+    if (P === 'POTA' && o.us) (async () => {
+      let ap = [];
+      try {
+        if (ky) { const d = await (open.ky || (open.ky = j('kpc-ky-data.json'))); const k = d && (d.parks || []).find(p => p.c === o.ref); ap = (k && k.ap) || []; }
+        else if (o.st) { const d = await j('data/access/US-' + o.st + '.json').catch(() => null); ap = (d && d.parks && d.parks[o.ref]) || []; }
+      } catch (e) {}
+      const el = $('lgAp'); if (!el || !ap.length) return;
+      const n = 4, more = ap.length > n;
+      el.innerHTML = '<div class="lg-ap"><b>🅿 OFFICIAL PARKING &amp; ACCESS</b>' + ap.slice(0, n).map(a => '<a href="https://www.google.com/maps/dir/?api=1&destination=' + a[0] + ',' + a[1] + '" target="_blank" rel="noopener">' + esc(a[2] || 'Access point') + ' ›</a>').join('') +
+        (more ? '<a href="kpc-kit.html?ref=' + R + '">All ' + ap.length + ' on the Activation Kit map ›</a>' : '') + '</div>';
+    })();
     /* SOTA: public land or not (data/sota-land/<area>.json from the nightly check of the national public-lands map) */
     if (P === 'SOTA') fetch('data/sota-land/' + encodeURIComponent(o.ref.split('/')[0]) + '.json').then(r => r.ok ? r.json() : null).then(L => { const x = L && L.s && L.s[o.ref], el = $('lgLand'); if (!x || !el) return;
       const t = { P: '🟢 On public land', R: '🟠 Public land, restricted access', U: '🟡 Public land, access not known', X: '🔴 Closed to the public', E: '⚪ Private land (conservation easement): ask the owner', N: '⚪ Not on the public-lands map: likely private, ask the owner' }[x[0]];
