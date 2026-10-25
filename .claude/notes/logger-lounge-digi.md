@@ -159,3 +159,5 @@ Use this recipe for any new tool/app page (it lives in the KPC Logger kpc-logger
 
 ## HAND-OFF FROM CHAT 2 TO CHAT 3 (Oct 25): Park Sheet + official parking points outside Kentucky
 - data/access/US-XX.json {parks:{ref:[[lat, lon, label]]}} = official parking / entrance / gate / ramp points for parks outside Kentucky (Kentucky's 'ap' shape). The US Trip Planner card and the Kit already show them; the Park Sheet could too. Your call.
+
+- **HAND-OFF FROM HQ (Oct 25 12:16 PM), new park data from chat 2 today:** data/access/US-XX.json = OFFICIAL parking, entrances, gates and ramps for wildlife areas + state parks in 44 states (chat 2's US access points bot; today only the US planner card and the Kit map read it). Park Sheet's 'Official parking & access points' and the Activators Lounge park card still use the Kentucky list only: read data/access for other states the same way kpc-kit.js does. New outlines (state map layers, Canada) need nothing: they come through kpc-bounds.js by themselves. Campground GPS points are already on the Campgrounds page.
