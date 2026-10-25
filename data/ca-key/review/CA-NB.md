@@ -1,9 +1,10 @@
 # Canada NB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same name + same kind). **0** to check, **285** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **282 of 562** joined (same name + same kind). **1** to check, **268** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
+- **CA-0793** Saint Croix Island National Historic Site (National Historic Site) → Saint Croix (~0 ac, same name, different kind of place)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
@@ -21,24 +22,15 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 
 ## Nothing found in CPCAD
 
-- CA-0447 Herring Cove Provincial Park (Provincial Park)
 - CA-0448 Roosevelt Campobello International Park (International Park)
-- CA-0771 De la République Provincial Park (Provincial Park)
 - CA-0776 North Head Park Recreation Park (Recreation Park)
-- CA-0777 Hopewell Rocks Provincial Park (Provincial Park)
 - CA-0778 Ile-Aux-Foins (Hay Island) Recreation Park (Recreation Park)
 - CA-0782 Lakeside Recreation Park (Recreation Park)
 - CA-0783 MacNichol-Orser Conservation Easement Natural Area (Natural Area)
 - CA-0785 Mary's Point Ramsar Site (Ramsar Site)
 - CA-0787 Middle Island Historic Site (Historic Site)
-- CA-0789 Murray Beach Provincial Park (Provincial Park)
-- CA-0791 Oak Bay Recreation Park (Recreation Park)
-- CA-0792 Parlee Beach Provincial Park (Provincial Park)
-- CA-0793 Saint Croix Island National Historic Site (National Historic Site)
 - CA-0794 Shea Lake Natural Area (Natural Area)
-- CA-0796 Sugarloaf Provincial Park (Provincial Park)
 - CA-0797 Tetagouche Falls Recreation Park (Recreation Park)
-- CA-0798 The Anchorage Provincial Park (Provincial Park)
 - CA-0800 Youghall Beach Recreation Park (Recreation Park)
 - CA-1231 Daly Point Nature Reserve (Nature Reserve)
 - CA-1239 Grindstone Island Conservation Nature Reserve (Nature Reserve)
@@ -47,10 +39,8 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 - CA-1248 Pagan Point Nature Reserve (Nature Reserve)
 - CA-1251 Rockwood Park Nature Reserve (Nature Reserve)
 - CA-1255 Sugar Island Nature Reserve (Nature Reserve)
-- CA-1258 Val Comeau Recreation Site (Recreation Site)
 - CA-4355 Bantalor Protected Area (Protected Area)
 - CA-4444 McCoy Brook Protected Area (Protected Area)
-- CA-4460 Bonar Law House Historic Site (Historic Site)
 - CA-4463 Notre-Dame-de l'assompton Monument Historic Site (Historic Site)
 - CA-4493 Portage Lakes Protected Area (Protected Area)
 - CA-4522 Stony Brook Protected Area (Protected Area)
@@ -107,7 +97,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 - CA-5198 Marysville Cotton Mill National Historic Site (National Historic Site)
 - CA-5199 Marysville Historic District National Historic Site (National Historic Site)
 - CA-5200 McAdam Railway Station (Canadian Pacific) National Historic Site (National Historic Site)
-- CA-5201 Ministers Island National Historic Site (National Historic Site)
 - CA-5202 Ministers Island Pre-contact Sites National Historic Site (National Historic Site)
 - CA-5203 Miscou Island Lighthouse National Historic Site (National Historic Site)
 - CA-5205 Navy Island & Leigh Williamson Nature Reserve (Nature Reserve)
@@ -150,7 +139,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 - CA-5255 Ecological Park of the Acadian Peninsula Ecological Site (Ecological Site)
 - CA-5258 Killarney Lake Park Recreation Park (Recreation Park)
 - CA-5259 Kings Landing Historic Settlement Historic Site (Historic Site)
-- CA-5260 Lepreau Falls Natural Area (Natural Area)
 - CA-5262 Metepenagiag Heritage Park National Heritage Site (National Heritage Site)
 - CA-5264 O'Connell Park Recreation Park (Recreation Park)
 - CA-5265 Princess Louise Park Recreation Park (Recreation Park)
@@ -185,12 +173,10 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 - CA-5713 Queen Square West Recreation Park (Recreation Park)
 - CA-5722 Saunder's Brook Trail National Recreation Trail (National Recreation Trail)
 - CA-5726 Trinity Church and Rectory National Historic Site (National Historic Site)
-- CA-6099 Castalia Marsh Recreation Park (Recreation Park)
 - CA-6102 Oxbow National Historic Site (National Historic Site)
 - CA-6106 Our Lady of the Assumption Cathedral National Historic Site (National Historic Site)
 - CA-6113 St. John/Wolastoq Heritage River National Heritage Area (National Heritage Area)
 - CA-6218 Saint John Harbour Defensive Network provincial Historic Site (Historic Site)
-- CA-6234 Fundy Trail Provincial Park (Provincial Park)
 - CA-6235 Victoria County Court House Historic Site (Historic Site)
 - CA-6236 P'tit Sault Blockhouse Historic Site (Historic Site)
 - CA-6237 Église Saint-Pierre-aux-Liens Historic Site (Historic Site)
@@ -207,7 +193,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 - CA-6254 Gabriel Girard Provincial Historic Site (Historic Site)
 - CA-6312 Larry's Gulch Lodge Provincial Park (Provincial Park)
 - CA-6376 Ortho Robichaud Historic Site (Historic Site)
-- CA-6377 MacDonald Farm Provincial Historic Site (Provincial Historic Site)
 - CA-6379 St. Peters & St. Pauls Church Provincial Historic Site (Provincial Historic Site)
 - CA-6380 Convent of the Immaculate Conception Provincial Historic Site (Provincial Historic Site)
 - CA-6384 Kingston Historic District Historic Site (Historic Site)
@@ -260,7 +245,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **266 of 562** joined (same
 - CA-6487 42nd Highland Memorial Cemetery Historic Site (Historic Site)
 - CA-6488 Walker Trading Establishment Historic Site (Historic Site)
 - CA-6489 Hon. William Henry Steeves National Historical Site (National Historical Site)
-- CA-6490 Doak House Provincial Historic Site (Provincial Historic Site)
 - CA-6491 Welsh Chapel Historic Site (Historic Site)
 - CA-6492 Petitcodiac - Washademoak Portage National Historic Site (National Historic Site)
 - CA-6493 William Davidson National Historic Site (National Historic Site)

@@ -1,25 +1,23 @@
 # Canada SK: POTA parks vs official land (CPCAD)
 
-Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same name + same kind). **0** to check, **89** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **299 of 411** joined (same name + same kind). **0** to check, **83** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0618 Parr Hill Lake Recreation Site (Recreation Site) → on Porcupine Hills Area Provincial Park (~73,651 ac)
+- CA-0618 Parr Hill Lake Recreation Site (Recreation Site) → on Porcupine Hills Provincial Park (~0 ac); Porcupine Hills Area Provincial Park (~73,651 ac)
 - CA-2586 Boundary Dam Reservoir Recreation Site (Recreation Site) → on Woodlawn Regional Park (~0 ac)
-- CA-2743 McBride Lake Recreation Site (Recreation Site) → on Porcupine Hills Area Provincial Park (~73,651 ac)
+- CA-2743 McBride Lake Recreation Site (Recreation Site) → on Porcupine Hills Provincial Park (~0 ac); Porcupine Hills Area Provincial Park (~73,651 ac)
 - CA-2793 Patterson Lake Recreation Site (Recreation Site) → on Misaw Lake Special Management Area (~588,622 ac)
-- CA-2796 Pepaw Lake Recreation Site (Recreation Site) → on Porcupine Hills Area Provincial Park (~73,651 ac)
-- CA-2874 Top Lake Recreation Site (Recreation Site) → on Delaronde Lake (Zig Zag Bay) Recreation Site (~1,845 ac)
-- CA-2897 Wascana Trails Recreation Site (Recreation Site) → on Wascana Valley Natural Area Recreation Site (~314 ac)
+- CA-2796 Pepaw Lake Recreation Site (Recreation Site) → on Porcupine Hills Provincial Park (~0 ac); Porcupine Hills Area Provincial Park (~73,651 ac)
+- CA-2874 Top Lake Recreation Site (Recreation Site) → on Delaronde Lake (Zig Zag Bay) Recreation Site (~0 ac); Delaronde Lake (Zig Zag Bay) Recreation Site (~1,845 ac)
+- CA-2897 Wascana Trails Recreation Site (Recreation Site) → on Wascana Valley Natural Area Recreation Site (~0 ac); Wascana Valley Natural Area Recreation Site (~314 ac)
 - CA-2900 Waskesiu River Resource Management Area (Resource Management Area) → on Prince Albert National Park Of Canada (~957,433 ac)
 - CA-2912 Willow Bunch Recreation Site (Recreation Site) → on Jean Louis Legare Regional Park (~0 ac)
-- CA-5459 Holy Trinity Anglican Church National Historic Site (National Historic Site) → on Lac La Ronge Provincial Park (~788,652 ac)
-- CA-6054 Carlton House National Historic Site (National Historic Site) → on Fort Carlton Provincial Park (~325 ac)
 - CA-6061 Forestry Farm Park and Zoo National Historic Site (National Historic Site) → on Sutherland Migratory Bird Sanctuary (~320 ac)
-- CA-6127 Nut Point Campground Provincial Park (Provincial Park) → on Lac La Ronge Provincial Park (~788,652 ac)
+- CA-6127 Nut Point Campground Provincial Park (Provincial Park) → on Lac La Ronge Provincial Park (~0 ac); Lac La Ronge Provincial Park (~788,652 ac)
 - CA-6128 Gray Owl Trail National Recreation Trail (National Recreation Trail) → on Prince Albert National Park Of Canada (~957,433 ac)
 - CA-6130 Mud Creek Trail National Recreation Trail (National Recreation Trail) → on Prince Albert National Park Of Canada (~957,433 ac)
 - CA-6140 Shady Lake Trail National Recreation Trail (National Recreation Trail) → on Prince Albert National Park Of Canada (~957,433 ac)
@@ -79,9 +77,7 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same
 - CA-2852 Smoothstone Lake Recreation Site (Recreation Site)
 - CA-2854 Spiritwood Recreation Site (Recreation Site)
 - CA-2857 Statue of Queen Elizabeth II riding Burmese Regional Park Recreation Site (Recreation Site)
-- CA-2860 St. Walburg Recreation Site (Recreation Site)
 - CA-2890 Wanuskewin Heritage Park National Historical Park (National Historical Park)
-- CA-2899 Waskateena Beach Recreation Site (Recreation Site)
 - CA-2914 Wollaston Lake (Hidden Bay) Recreation Site (Recreation Site)
 - CA-2918 Woody River Recreation Site (Recreation Site)
 - CA-4926 Batoche National Historic Site (National Historic Site)
@@ -89,7 +85,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same
 - CA-4928 Cypress Hills Massacre National Historic Site (National Historic Site)
 - CA-4929 Fort Battleford National Historic Site (National Historic Site)
 - CA-4930 Fort Esperance National Historic Site (National Historic Site)
-- CA-4932 Fort Pelly National Historic Site (National Historic Site)
 - CA-4933 Fort Walsh National Historic Site (National Historic Site)
 - CA-4934 Frenchman Butte National Historic Site (National Historic Site)
 - CA-5131 Melville Railway Station National Historic Site (National Historic Site)
@@ -126,7 +121,4 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **291 of 411** joined (same
 - CA-6311 Troy-Prince Albert National Historic Trail (National Historic Trail)
 - CA-6320 Merrill School Historic Site (Historic Site)
 - CA-6339 River Ridge Trails National Historic Trail (National Historic Trail)
-- CA-6342 Buffalo Rubbing Stone Historic Site (Historic Site)
-- CA-6343 South Branch House Historic Site (Historic Site)
-- CA-6344 Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site (Provincial Historic Site)
 - CA-6438 Sergeant Hugh Cairns Statue National Historical Site (National Historical Site)
