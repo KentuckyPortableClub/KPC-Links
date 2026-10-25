@@ -176,8 +176,8 @@ def park_of_the_week(state):
 # ------------------------------------------------------------------ WMA closure heads-up (Wednesday before)
 def wma_closures(state, today, force=False):
     """Wednesday: which Kentucky WMAs are closed to non-hunters THIS coming weekend (Brandon Oct 25).
-    Reads chat 2's entries in kpc-conditions.json: id starts 'wma-', ref, details, link (KDFWR page),
-    from + to (ISO dates, the closure). No entry touching the weekend = no post. Never posts twice."""
+    Reads chat 2's entries in kpc-conditions.json: id 'hc-<ref>-<start date>', expires = day after the
+    closure ends, link = the WMA's KDFWR page; only short (10 days or less) quota-hunt closures. No entry touching the weekend = no post. Never posts twice."""
     if not force and today.weekday() != 2:
         return False
     sat = today + datetime.timedelta(days=(5 - today.weekday()) % 7 or 7)
@@ -188,12 +188,14 @@ def wma_closures(state, today, force=False):
     names = {c: p.get('n') for c, p in park_by_ref().items()}
     rows = []
     for it in (load('kpc-conditions.json', {}).get('items') or []):
-        if not str(it.get('id', '')).startswith('wma-'):
+        if not str(it.get('id', '')).startswith('hc-'):
             continue
         try:
-            a = datetime.date.fromisoformat(str(it.get('from'))[:10])
-            b = datetime.date.fromisoformat(str(it.get('to') or it.get('from'))[:10])
-        except ValueError:
+            a = datetime.date.fromisoformat(str(it['id'])[-10:])                       # hc-US-4687-2026-11-07
+            b = datetime.date.fromisoformat(str(it.get('expires'))[:10]) - datetime.timedelta(days=1)
+        except (ValueError, KeyError):
+            continue
+        if (b - a).days > 10:        # season-long closures stay on the park cards; this post is the one-weekend quota hunts
             continue
         if a <= sun and b >= sat:
             rows.append((names.get(it.get('ref')) or it.get('name') or it.get('ref'), a, b, it))
