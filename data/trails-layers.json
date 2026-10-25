@@ -18,6 +18,7 @@
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
   ],
   "UT": [
+   "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/TrailsAndPathways/FeatureServer/0",
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
   ],
@@ -26,18 +27,34 @@
    "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
   ],
   "CA-ON": [
-   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer"
+   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer",
+   "https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19"
   ],
   "CA-AB": [
    "https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
-   "https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1"
+   "https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1",
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
   ],
   "CA-YT": [
-   "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Transportation/MapServer/24"
+   "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Transportation/MapServer/24",
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
   ],
   "CA-BC": [
    "https://maps.gov.bc.ca/arcserver/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/3",
-   "https://maps.gov.bc.ca/arcserver/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/15"
+   "https://maps.gov.bc.ca/arcserver/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/15",
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  ],
+  "CA-SK": [
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  ],
+  "CA-NT": [
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  ],
+  "CA-NU": [
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  ],
+  "CA-NB": [
+   "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
   ]
  }
 }
