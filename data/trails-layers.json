@@ -29,10 +29,15 @@
    "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer"
   ],
   "CA-AB": [
-   "https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer"
+   "https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
+   "https://services.arcgis.com/Eb8P5h4CJk8utIBz/arcgis/rest/services/PLRA/FeatureServer/1"
   ],
   "CA-YT": [
    "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Transportation/MapServer/24"
+  ],
+  "CA-BC": [
+   "https://maps.gov.bc.ca/arcserver/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/3",
+   "https://maps.gov.bc.ca/arcserver/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/15"
   ]
  }
 }
