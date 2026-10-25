@@ -4,7 +4,9 @@ Licence - Canada) with a coarse outline, then join to the CA- POTA parks (data/p
 or French, generic words and accents dropped) AND it is the same kind of place, near the park's pin. EVERY piece with that name joins.
 Unsure = 'c' check list with the reason, never joined. Provincial layers (Québec, Ontario…) come in a later step.
 Writes data/ca-key/CA-XX.json per province/territory, data/ca-key/index.json, review pages data/ca-key/review/CA-XX.md."""
-import json, os, re, time, unicodedata, urllib.parse, urllib.request, pathlib
+import json, os, re, sys, time, unicodedata, urllib.parse, urllib.request, pathlib
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: write only when the content changed)
 
 SVC = 'https://maps-cartes.ec.gc.ca/arcgis/rest/services/CWS_SCF/CPCAD/MapServer'
 OUT = pathlib.Path('data/ca-key'); OUT.mkdir(parents=True, exist_ok=True)
@@ -354,7 +356,7 @@ if recs is None:
         except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
     notice('Canada more layers (all)', ' | '.join(_mores))
     notice('Canada extra layers', f'{extra} areas from the provincial + Parks Canada maps' + (' · errors: ' + ' | '.join(_ERR[:12]) if _ERR else ''))
-    try: json.dump(LAYERS, open(OUT / 'layers.json', 'w'), indent=1, ensure_ascii=False)
+    try: save_json(OUT / 'layers.json', LAYERS, indent=1)
     except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
     # Oct 22: a provincial map that did not answer must not cost Canada its parks: use the last saved copy instead,
     # and never save a half-read copy over a good one
@@ -451,19 +453,19 @@ for pv, parks_in in sorted(by.items()):
            'pin_swap': sum(1 for p in parks.values() if p.get('swap')), 'detail': USED_DETAIL}
     out = {'updated': time.strftime('%Y-%m-%d'), 'prov': pv, 'source': 'CPCAD (Environment and Climate Change Canada) + provincial and Parks Canada maps, Open Government Licence',
            'note': 'm = joined (same name + same kind), c = check by hand (NOT joined).', 'counts': cnt, 'parks': parks}
-    (OUT / f'CA-{pv}.json').write_text(json.dumps(out, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
+    save_json(OUT / f'CA-{pv}.json', out)
     R = OUT / 'review'; R.mkdir(exist_ok=True)
-    L = [f'# Canada {pv}: POTA parks vs official land (CPCAD)', '', f"Built {time.strftime('%Y-%m-%d')} by `.github/scripts/kpc_ca_key.py`. **{cnt['matched']} of {cnt['parks']}** joined (same name + same kind). "
+    L = [f'# Canada {pv}: POTA parks vs official land (CPCAD)', '', f"Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **{cnt['matched']} of {cnt['parks']}** joined (same name + same kind). "
          f"**{cnt['check']}** to check, **{cnt['none']}** nothing found in CPCAD (provincial maps come next). Nothing below is joined.", '', '## To check (not joined)', '']
     L += [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{q[1]} (~{q[2]:,} ac, {q[3]})" for q in p['c']) for r, p in parks.items() if not p['m'] and p['c']]
     L += ['', '## Sites on bigger land (no outline of their own; the land around the pin)', ''] + [f"- {r} {p['n']} ({p['t']}) → on " + '; '.join(f"{q[1]} (~{q[2]:,} ac)" for q in p['a']) for r, p in parks.items() if p.get('a')]
     L += ['', '## Nothing found in CPCAD', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')]
-    (R / f'CA-{pv}.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    save_text(R / f'CA-{pv}.md', '\n'.join(L) + '\n')
     idx[pv] = cnt
     print(f"{pv}: {cnt['parks']} parks, {cnt['matched']} joined, {cnt['check']} check, {cnt['none']} none", flush=True)
-json.dump({'updated': time.strftime('%Y-%m-%d'), 'provinces': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+save_json(OUT / 'index.json', {'provinces': idx})
 # Oct 24 (Brandon: 'hook the Canada answer key into the planner, Info Finder and the Kit'): the website needs to know which
 # province file holds a park (a CA- number says nothing about the province)
-json.dump({ref: pv for pv, pk in by.items() for ref in pk}, open(OUT / 'refs.json', 'w'), separators=(',', ':'))
+save_json(OUT / 'refs.json', {ref: pv for pv, pk in by.items() for ref in pk})
 t = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('Canada answer key', f"{t['parks']} parks: {t['matched']} joined, {t['check']} to check, {t['site']} sites on bigger land, {t['none']} nothing found · " + ' '.join(f"{k} {v['matched']}/{v['parks']}" for k, v in sorted(idx.items())))

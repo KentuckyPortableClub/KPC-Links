@@ -12,6 +12,7 @@ A statewide layer (every boat ramp in the state) only ever counts by PLACE. Noth
 Writes data/access/US-XX.json {updated, st, parks:{ref:[[lat, lon, label]]}} (Kentucky's 'ap' shape) + data/access/index.json.
 STATES='MO PA' picks states (default: every state in the layer list). Never fails."""
 import gzip, json, math, os, pathlib, re, sys, time, types, urllib.parse, urllib.request
+from kpc_save import save_json  # Oct 25 storage plan: write only when the content changed
 
 UA = {'User-Agent': 'KPC access points (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/access'); OUT.mkdir(parents=True, exist_ok=True)
@@ -224,8 +225,8 @@ def run(st, layers):
             keep.append(q)
             if len(keep) >= CAP: break
         out[ref] = keep
-    (OUT / f'US-{st}.json').write_text(json.dumps({'updated': time.strftime('%Y-%m-%d'), 'st': st, 'note': 'Official parking / entrance / gate / kiosk / boat ramp / trailhead points from the state agencies (data/access-layers.json), tied to POTA parks by the layer\'s area name or by sitting on the park\'s official land. Built by .github/scripts/kpc_us_access.py.',
-                                                   'parks': out}, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
+    save_json(OUT / f'US-{st}.json', {'st': st, 'note': 'Official parking / entrance / gate / kiosk / boat ramp / trailhead points from the state agencies (data/access-layers.json), tied to POTA parks by the layer\'s area name or by sitting on the park\'s official land. Built by .github/scripts/kpc_us_access.py.',
+                                                   'parks': out})
     c = {'parks_with_points': len(out), 'points': sum(len(v) for v in out.values()), 'wildlife_parks': sum(1 for r, x in parks.items() if WILD.search(x[1])), 'outlines': len(OL)}
     notice(f'Access {st}', f"{c['parks_with_points']} parks got {c['points']} points; " + ' | '.join(log)[:700])
     return c
@@ -243,7 +244,7 @@ def main():
         try: c = run(st, lay)
         except Exception as e: notice(f'Access {st}', f'stopped: {type(e).__name__}: {str(e)[:200]}'); continue  # noqa: BLE001
         if c: idx[st] = c
-        json.dump({'updated': time.strftime('%Y-%m-%d'), 'states': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+        save_json(OUT / 'index.json', {'states': idx})
     notice('Access points', f"{sum(v['parks_with_points'] for v in idx.values())} parks in {len(idx)} states have official parking / access points")
 
 

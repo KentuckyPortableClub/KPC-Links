@@ -7,6 +7,7 @@ finish all pins in North America'). Writes data/northam.json in the same row for
 Mexico, Central America, the Caribbean, Bermuda, Greenland and Saint Pierre et Miquelon. Keeps last week's POTA rows for
 a program POTA doesn't answer for."""
 import json, glob, time, urllib.request, datetime
+from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 
 UA = {'User-Agent': 'KPC North America pins (kentuckyportableclub.github.io)'}
 # POTA program prefixes (ISO codes since POTA's 2025 change) for North America outside US + Canada
@@ -98,5 +99,5 @@ for f in glob.glob('data/sota/t/*.json'):
 try: _was = json.load(open('data/northam.json')).get('rows')
 except Exception: _was = None
 if rows != _was:   # nightly (Oct 23): no commit when nothing changed
-    json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/northam.json', 'w'), separators=(',', ':'), ensure_ascii=False)
+    save_json('data/northam.json', {'rows': rows})
 note('North America pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(byprog.items()))}), {nw} WWFF, {len(seen)} SOTA")

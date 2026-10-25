@@ -11,6 +11,7 @@ Each line must pass near the POTA pin (CHECK_KM) or it is not used: wrong-place 
 Writes data/trails/<REF>.json (same format as the national trails) + data/trails/index-state.json
 [{ref,name,kind ST|NRT|TP,bbox,by,official,km}] and data/trails/state-report.json (found / missing, for KPC)."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
+from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA').split()
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
@@ -377,12 +378,12 @@ for st, cand in jobs():
         if kind(typ, name) == 'TP' and total < 4: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
         f = {'type': 'Feature', 'properties': {'ref': ref, 'name': name}, 'geometry': {'type': 'MultiLineString', 'coordinates': lines}}
-        json.dump(f, open(f'{OUT}/{ref}.json', 'w'), separators=(',', ':'))
+        save_json(f'{OUT}/{ref}.json', f)
         IDX[ref] = {'ref': ref, 'name': name, 'kind': kind(typ, name), 'type': typ, 'st': stc, 'bbox': [round(min(xs), 4), round(min(ys), 4), round(max(xs), 4), round(max(ys), 4)],
                     'by': by, 'official': off, 'km': round(total), 'kb': round(os.path.getsize(f'{OUT}/{ref}.json') / 1024)}
         report['found'].append([ref, name, stc, by, round(total), round(near, 1)]); got += 1
     note(st if st == 'CANADA' else f'US-{st}', f'{got} of {len(cand)} trail parks drawn')
-json.dump(sorted(IDX.values(), key=lambda x: (x['st'], x['name'])), open(f'{OUT}/index-state.json', 'w'), separators=(',', ':'))
+save_json(f'{OUT}/index-state.json', sorted(IDX.values(), key=lambda x: (x['st'], x['name'])))
 report['agency'] = ALOG[-400:]
-json.dump(report, open(f'{OUT}/state-report.json', 'w'), indent=1)
+save_json(f'{OUT}/state-report.json', report, indent=1)
 note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json)")

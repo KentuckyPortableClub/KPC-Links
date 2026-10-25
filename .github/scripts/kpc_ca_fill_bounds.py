@@ -24,10 +24,18 @@ def main():
     by = {}
     for r in recs: by.setdefault(str(r.get('oid')), r)
     have = {p.stem for p in OUT.glob('CA-*.json')}
-    wrote = 0
+    wrote = dropped = 0
+    # Oct 25 (storage plan Stage 1: retire most of this 30 MB folder): a park whose joined land is ALL in CPCAD needs no
+    # saved file - the website fetches CPCAD outlines live by id (KPCB.caKey; the Map Rep Tool Box already reads CPCAD from
+    # the browser). Files are kept only for parks joined to a provincial map or a download, which a browser may not reach.
+    cp_only = lambda p: all(str(m[0]).isdigit() for m in p.get('m') or [])
     for kf in sorted(glob.glob('data/ca-key/CA-*.json')):
         for ref, p in json.load(open(kf))['parks'].items():
-            if not p.get('m') or ref in have: continue
+            if p.get('m') and cp_only(p) and ref in have:
+                (OUT / f'{ref}.json').unlink(); have.discard(ref); dropped += 1
+    for kf in sorted(glob.glob('data/ca-key/CA-*.json')):
+        for ref, p in json.load(open(kf))['parks'].items():
+            if not p.get('m') or ref in have or cp_only(p): continue
             rings, names, srcs, approx = [], [], [], False
             for m in p['m']:
                 r = by.get(str(m[0]))
@@ -43,7 +51,7 @@ def main():
             if approx: props['approx'] = True
             (OUT / f'{ref}.json').write_text(json.dumps({'type': 'Feature', 'properties': props, 'geometry': {'type': 'MultiPolygon', 'coordinates': rings[:80]}}, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
             wrote += 1
-    notice('Canada fill', f'{wrote} park outline files written from the checked list (none overwritten)')
+    notice('Canada fill', f'{wrote} park outline files written from the checked list (none overwritten); {dropped} CPCAD-only files removed (drawn live now)')
 
 
 if __name__ == '__main__':

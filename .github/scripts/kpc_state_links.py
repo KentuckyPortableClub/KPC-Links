@@ -5,6 +5,7 @@ Writes data/parkinfo/US-XX.json  {state, updated, stateSite, parks:{ref:[name, w
 Automatic, NOT checked by KPC (Kentucky stays hand-checked in kpc-ky-data.json / kpc-campgrounds.json).
 Park details are fetched once and reused; RECHECK=1 fetches them all again. STATES='TN IN ...' picks states."""
 import json, os, re, time, urllib.request, urllib.parse, datetime, collections
+from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 STATES = [] if (os.environ.get('STATES') or '').strip().upper() == 'NONE' else (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SC SD TX UT VT WA WY').split()  # STATES=NONE = only the PROGS programs
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
 OUT = 'data/parkinfo'; os.makedirs(OUT, exist_ok=True)
@@ -55,7 +56,7 @@ for st in STATES:
         dom, n = doms.most_common(1)[0]
         if n >= 3: site = 'https://' + dom
     data = {'state': st, 'updated': datetime.date.today().isoformat(), 'stateSite': site, 'parks': parks}
-    json.dump(data, open(path, 'w'), separators=(',', ':'), ensure_ascii=False)
+    save_json(path, data)
     withweb = sum(1 for v in parks.values() if v[1])
     note(f'US-{st}', f'{len(parks)} parks, {withweb} with a website, {fetched} details fetched, state park site {site or "(none found)"}')
     total += len(parks)
@@ -103,7 +104,7 @@ for pre in PROGS:
         if doms:
             dom, n = doms.most_common(1)[0]
             if n >= 3: sites[sub] = 'https://' + dom
-    json.dump({'program': pre, 'updated': datetime.date.today().isoformat(), 'sites': sites, 'parks': parks}, open(path, 'w'), separators=(',', ':'), ensure_ascii=False)
+    save_json(path, {'program': pre, 'sites': sites, 'parks': parks})
     note(f'{pre} parks', f'{len(parks)} parks in {len(descs)} areas, {sum(1 for v in parks.values() if v[1])} with a website, {fetched} details fetched{f", {failed} areas failed" if failed else ""}; park sites {sites}')
 # small index for the site search box (kpc-search.js), built from EVERY state file on disk.
 # Compact (Oct 16, ~13k parks): {v:2, types:[...], rows:[[ref, name, state, lat, lon, typeIndex, activations]]}; coords fall back to locations.json.
@@ -123,5 +124,5 @@ for f in sorted(os.listdir(OUT)):
         if t not in ti: ti[t] = len(types); types.append(t)
         rows.append([ref, v[0], d['state'], round(la, 3) if la is not None else None, round(lo, 3) if lo is not None else None, ti[t], v[7] if len(v) > 7 else None])
 rows.sort(key=lambda r: (r[2], r[1]))
-json.dump({'v': 2, 'types': types, 'rows': rows}, open(f'{OUT}/index.json', 'w'), separators=(',', ':'), ensure_ascii=False)
+save_json(f'{OUT}/index.json', {'v': 2, 'types': types, 'rows': rows})
 note('Park links done', f'{total} parks in {len(STATES)} states')

@@ -17,6 +17,7 @@ OUT = pathlib.Path('data/world-key'); (OUT / 'review').mkdir(parents=True, exist
 import gzip
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
+from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: write only when the content changed)
 # SHAPE DETAIL + SAVED COPY (Oct 22, Fable's review; the same scheme as kpc_us_key.py). Live runs have always fetched
 # outlines at 0.01 degrees (~1.1 km) and then THINNED every ring to about 60 points - a whole national park in 60
 # dots - which is what 'pin inside' and PIN_JOIN were judged against. A saved copy is fetched once, so it can afford
@@ -693,7 +694,8 @@ try: idx = json.load(open(OUT / 'index.json')).get('countries', {})
 except Exception: pass  # noqa: BLE001
 # Oct 22: the website draws a park's outline straight from the key (KPCB.worldKey), so it needs each ArcGIS source's address
 try:
-    json.dump({x[0]: x[2] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}, open(OUT / 'layers.json', 'w'), indent=1, ensure_ascii=False)
+    if __name__ == '__main__':   # not when the golden tests load this file
+        save_json(OUT / 'layers.json', {x[0]: x[2] for v in SRC.values() for x in v if x[1] in ('arcgis', 'arcgis_alt')}, indent=1)
 except Exception as e: notice('World key layers', e)  # noqa: BLE001
 for cc in COUNTRIES:
     try: P = json.load(open(f'data/parkinfo/{cc}.json'))['parks']
@@ -988,24 +990,22 @@ for cc in COUNTRIES:
                     if len(pts) >= 3: keep.append(pts + [pts[0]])
                 num = int(re.sub(r'\D', '', ref.split('-', 1)[1]) or 0)
                 if keep: shards.setdefault(num // 100, {})[ref] = {'n': mm[0][1], 's': mm[0][2], 'r': keep}
-        if BD.exists():
-            for old_f in BD.glob('*.json'): old_f.unlink()
-        if shards:
-            BD.mkdir(parents=True, exist_ok=True)
-            for b, d in shards.items(): (BD / f'{b}.json').write_text(json.dumps(d, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
+        if BD.exists():                       # Oct 25: only shards that no longer exist are removed; the rest are written only if they changed
+            for old_f in BD.glob('*.json'):
+                if old_f.stem.isdigit() and int(old_f.stem) not in shards: old_f.unlink()
+        for b, d in shards.items(): save_json(BD / f'{b}.json', d)
         cnt['saved_outlines'] = sum(len(d) for d in shards.values())
     except Exception as e:  # noqa: BLE001
         notice(f'World key {cc}', f'saving outlines for the website stopped: {type(e).__name__}: {str(e)[:200]}')
-    (OUT / f'{cc}.json').write_text(json.dumps({'updated': time.strftime('%Y-%m-%d'), 'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks},
-                                               separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
-    L = [f'# {cc}: POTA parks vs official land', '', f"Built {time.strftime('%Y-%m-%d')} by `.github/scripts/kpc_world_key.py` from: {', '.join(s[0] for s in SRC[cc])}. "
+    save_json(OUT / f'{cc}.json', {'cc': cc, 'sources': [s[0] for s in SRC[cc]], 'counts': cnt, 'parks': parks})
+    L = [f'# {cc}: POTA parks vs official land', '', f"Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: {', '.join(s[0] for s in SRC[cc])}. "
          f"**{cnt['matched']} of {cnt['parks']}** joined (same name + same kind), **{cnt['check']}** to check, **{cnt['none']}** nothing found. Nothing below is joined.", '', '## To check (not joined)', '']
     L += [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{q[1]} ({q[2]}, {q[3]})" for q in p['c']) for r, p in parks.items() if not p['m'] and p['c']]
     L += ['', '## Nothing found', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c']]
-    (OUT / 'review' / f'{cc}.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
+    save_text(OUT / 'review' / f'{cc}.md', '\n'.join(L) + '\n')
     idx[cc] = cnt
     notice(f'World key {cc}', f"{cnt['matched']} of {cnt['parks']} joined, {cnt['check']} to check, {cnt['none']} nothing found ({cnt['areas']} official areas read); "
                               f"pin outside the joined land: {cnt['pin_outside']} ({cnt['pin_no_shape']} unmeasurable, {cnt['pin_well_outside']} well outside, {cnt['pin_swap']} same-name swap)")
-    json.dump({'updated': time.strftime('%Y-%m-%d'), 'countries': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+    save_json(OUT / 'index.json', {'countries': idx})
 if CMODE != 'off':
     notice('World key saved outlines', f"mode {CMODE}, detail {DETAIL}, thin {THIN_N}: loaded {len(WUSED)} ({' '.join(WUSED)}), saved {len(WSAVED)} ({' '.join(WSAVED)})")

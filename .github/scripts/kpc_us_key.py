@@ -494,6 +494,7 @@ def extra_state(st, have, only=None):
 # verdict is recorded wherever it disagrees, nothing it says changes a join - until the disagreements have been read.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import kpc_match as KM  # noqa: E402
+from kpc_save import save_json, save_text  # noqa: E402  (Oct 25 storage plan: write only when the content changed)
 
 
 def name_clusters(recs):
@@ -805,15 +806,15 @@ def run(st):
            'counts': counts, 'parks': parks, 'nonum': nonum[:300]}
     # plain-words review page for this state (GitHub shows .md files nicely)
     R = OUT / 'review'; R.mkdir(exist_ok=True)
-    L = [f'# {st}: POTA parks vs official land (USGS PAD-US)', '', f"Built {out_date()} by `.github/scripts/kpc_us_key.py`. **{counts['matched']} of {counts['parks']}** parks joined to official land "
+    L = [f'# {st}: POTA parks vs official land (USGS PAD-US)', '', f"Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **{counts['matched']} of {counts['parks']}** parks joined to official land "
          f"(same name + same kind of place). **{counts['check']}** to check by hand, **{counts['none']}** with nothing found. Nothing below is joined until a person checks it.", '']
     chk = [(r, p) for r, p in parks.items() if not p['m'] and p['c']]
     L += ['## To check (not joined)', ''] + [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{x[1]} (~{x[2]:,} ac, {x[3]})" for x in p['c']) for r, p in chk] + ['']
     L += ['## Sites on bigger public land (no outline of their own; the land around the pin)', ''] + [f"- {r} {p['n']} ({p['t']}) → on " + '; '.join(f"{x[1]} (~{x[2]:,} ac)" for x in p['a']) for r, p in parks.items() if p.get('a')] + ['']
     L += ['## Nothing found in PAD-US', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')] + ['']
     L += ['## Biggest federal / state places with no POTA park joined (first 60)', ''] + [f"- {x[1]} · {x[2]} · {x[3]} · ~{x[4]:,} ac" for x in nonum[:60]]
-    (R / f'US-{st}.md').write_text('\n'.join(L) + '\n', encoding='utf-8')
-    (OUT / f'US-{st}.json').write_text(json.dumps(out, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
+    save_text(R / f'US-{st}.md', '\n'.join(L) + '\n')
+    save_json(OUT / f'US-{st}.json', out)
     return counts
 
 
@@ -842,14 +843,14 @@ for st in STATES:
     if c:
         idx[st] = c; done.append(st)
         print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park", flush=True)
-    json.dump({'updated': time.strftime('%Y-%m-%d'), 'states': idx}, open(OUT / 'index.json', 'w'), separators=(',', ':'))
+    save_json(OUT / 'index.json', {'states': idx})
     # the map pages draw joined pieces live: tell them each layer's query url + name field (layers found at run time too)
     try: LJ = json.load(open(OUT / 'layers.json'))
     except Exception: LJ = {}  # noqa: BLE001
     for x in XS:
         if x[0] in RESOLVED: LJ[x[0]] = [RESOLVED[x[0]][0], RESOLVED[x[0]][1], x[5]]
         elif not x[1].startswith('svc:'): LJ[x[0]] = [x[1], x[2], x[5]]
-    json.dump(LJ, open(OUT / 'layers.json', 'w'), separators=(',', ':'))
+    save_json(OUT / 'layers.json', LJ)
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 if CMODE != 'off':

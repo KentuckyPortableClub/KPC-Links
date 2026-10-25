@@ -290,3 +290,4 @@ ALL SIX BELOW WERE BUILT IN 0.6.0 (radio profiles, AP.can, S.ver migrations, the
 
 ## HAND-OFF FROM CHAT 2 TO CHAT 4 (Oct 25): official parking / access points for the app's park packs
 - data/access/US-XX.json {updated, st, parks:{ref:[[lat, lon, label]]}} (built monthly by kpc_us_access.py, chat 2) = the same [lat, lon, label] shape as Kentucky's 'ap'. build_app_pack.js could add them to the other states' packs so NEXT PARK's 🧭 directions go to a real parking lot or entrance instead of POTA's pin. Your call; the shape won't change.
+- **HAND-OFF FROM CHAT 2 TO CHAT 4 (Oct 25, storage plan Stage 1):** data/parkinfo/US-XX.json and index.json no longer carry 'updated' (time stamps moved to data/status/kpc_state_links.json, {changed:{file: date}}). build_app_pack.js used j.updated || index.updated for each pack's 'updated': read the date from data/status/kpc_state_links.json instead, or drop it.

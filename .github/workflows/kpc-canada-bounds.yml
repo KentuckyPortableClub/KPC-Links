@@ -2,8 +2,7 @@ name: KPC Canada park boundaries
 # Monthly (and by hand): official outlines for Canadian POTA parks from CPCAD (Environment and Climate Change Canada)
 # -> data/canada-bounds/<REF>.json for the KPC US Trip Planner. Resumable: each run continues where the last one stopped.
 on:
-  schedule:
-    - cron: '29 8 9 * *'
+  # Oct 25 storage plan: the monthly schedule is RETIRED (cron was '29 8 9 * *'); the Canada answer key (kpc-ca-key.yml) decides the outlines now
   workflow_dispatch:
     inputs:
       mode:

@@ -7,6 +7,7 @@ How: (1) ArcGIS Online public search for "<State> state parks" etc. (Feature Ser
 server roots listed in ROOTS are crawled (folders → services → layers). Every polygon layer whose name/fields look like a
 park or wildlife layer is queried once (count) and its fields are saved."""
 import json, re, sys, time, urllib.request, urllib.parse, concurrent.futures as cf
+from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 
 UA = 'KPC-MapRep-state-gis/1.0 (Kentucky Portable Club; brandonwhite42166@gmail.com)'
 STATES = {'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 'DE': 'Delaware', 'FL': 'Florida', 'GA': 'Georgia', 'HI': 'Hawaii', 'ID': 'Idaho', 'IL': 'Illinois', 'IN': 'Indiana', 'IA': 'Iowa', 'KS': 'Kansas', 'LA': 'Louisiana', 'ME': 'Maine', 'MD': 'Maryland', 'MA': 'Massachusetts', 'MI': 'Michigan', 'MN': 'Minnesota', 'MS': 'Mississippi', 'MO': 'Missouri', 'MT': 'Montana', 'NE': 'Nebraska', 'NV': 'Nevada', 'NH': 'New Hampshire', 'NJ': 'New Jersey', 'NM': 'New Mexico', 'NY': 'New York', 'NC': 'North Carolina', 'ND': 'North Dakota', 'OH': 'Ohio', 'OK': 'Oklahoma', 'OR': 'Oregon', 'PA': 'Pennsylvania', 'RI': 'Rhode Island', 'SC': 'South Carolina', 'SD': 'South Dakota', 'TN': 'Tennessee', 'TX': 'Texas', 'UT': 'Utah', 'VT': 'Vermont', 'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 'WI': 'Wisconsin', 'WY': 'Wyoming'}
@@ -441,7 +442,7 @@ def main():
         if not official or re.search(r'buffer|intersect|proposed|easement|habitat|wetland|karst|county|city|parcel|zoning|soil|flood', r['layer'] + ' ' + str(r.get('agolTitle') or ''), re.I):
             continue
         prop.append(r)
-    json.dump({'when': time.strftime('%Y-%m-%d'), 'n': len(prop), 'layers': prop}, open('data/state-gis-proposed.json', 'w'), indent=0)
+    save_json('data/state-gis-proposed.json', {'n': len(prop), 'layers': prop}, indent=0)
     # AUTO-ADD (Brandon Oct 24: 'keep looking and add as found'): only the strong ones — a state .gov/.us server or the agency's own ArcGIS Online
     # organization, a clear park/wildlife/forest/preserve layer name, a name field, 5-5000 records, and no such kind for that state yet.
     # Marked auto:true so the Tool Box labels them 'found by the bot, not yet checked'. Everything else stays in the proposal file for a person.
@@ -483,7 +484,7 @@ def main():
             found = [r for r in old if r['st'] not in sts] + found
         except Exception:
             pass
-    json.dump({'when': time.strftime('%Y-%m-%d'), 'n': len(found), 'layers': found}, open(OUT, 'w'), indent=0)
+    save_json(OUT, {'n': len(found), 'layers': found}, indent=0)
     by = {}
     for r in found:
         by[r['st']] = by.get(r['st'], 0) + 1

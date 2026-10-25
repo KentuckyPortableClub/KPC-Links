@@ -13,6 +13,7 @@ Row shapes (unchanged): POTA [prog, ref, name, la, lo, url]; WWFF [.., url, None
 import json
 import pathlib
 import re
+from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 
 LOC, LKY, KY = pathlib.Path('locations.json'), pathlib.Path('locations-ky.json'), pathlib.Path('kpc-ky-data.json')
 US_SOTA = re.compile(r'^(W\d|K[HLP]\d)')
@@ -85,10 +86,10 @@ def update(pota=None, kff=None, sota=None, write=True):
         out += build('SOTA', sota, mk_s)
 
     if write:
-        LOC.write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+        save_text(LOC, json.dumps(out, ensure_ascii=False, separators=(',', ':')) + '\n')
         k = json.loads(LKY.read_text(encoding='utf-8'))
         b = k['box']
         k['rows'] = [r for r in out if b[0] <= r[3] <= b[1] and b[2] <= r[4] <= b[3]]
         k['total'] = len(k['rows'])
-        LKY.write_text(json.dumps(k, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+        save_text(LKY, json.dumps(k, ensure_ascii=False, separators=(',', ':')) + '\n')
     return summary
