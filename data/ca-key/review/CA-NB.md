@@ -1,6 +1,6 @@
 # Canada NB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **282 of 562** joined (same name + same kind). **1** to check, **268** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **282 of 562** joined (same name + same kind). **1** to check, **268** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 

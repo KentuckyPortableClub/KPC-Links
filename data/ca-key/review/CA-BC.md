@@ -1,12 +1,13 @@
 # Canada BC: POTA parks vs official land (CPCAD)
 
-Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **1107 of 1254** joined (same name + same kind). **0** to check, **134** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **1106 of 1254** joined (same name + same kind). **0** to check, **134** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
+- CA-3186 Nisga'a Memorial Lava Bed Provincial Park (Provincial Park) → on ANHLUUT'UKWSIM LAX̱MIHL ANGWINGA'ASANSKWHL NISG̱A'A PARK [A.K.A. NISG̱A'A MEMORIAL LAVA BED PARK] (~43,780 ac)
 - CA-3211 Becher's Prairie Provincial Park (Provincial Park) → on Old Growth Management Areas (Mapped Legal) (~3,560,536 ac)
 - CA-3282 Delta Nature Reserve (Nature Reserve) → on Burns Bog Ecological Conservancy Area (~5,833 ac)
 - CA-3334 Chukachida Protected Area (Protected Area) → on CHU CHUA COTTONWOOD PARK (~267 ac)
