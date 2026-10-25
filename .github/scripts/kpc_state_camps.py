@@ -39,7 +39,8 @@ GENERIC = re.compile(r'facilit|amenit|point[ _]?of[ _]?interest|\bpoi\b|park[ _]
 PARKCTX = re.compile(r'park|recre|\brec[ _]|camp|cabin|outdoor|visitor|tourism', re.I)   # a generic layer must sit in a park/recreation context
 SVC_OK = re.compile(STRONG.pattern + '|' + PARKCTX.pattern, re.I)
 FOLDER_OK = re.compile(r'park|recre|outdoor|dnr|tourism|public|open|facil|camp|visitor|lodg|asset|boundar|hosted|utility|data', re.I)
-LAYER_BAD = re.compile(r'trail(?!head)|boundary|boundaries|road|wetland|hunt|fish|stock|sign|photo|contour|parcel|district|'
+SVC_BAD = re.compile(r'campus|universit|college|school|hospital|health|business|census|election|parcel|cadastr', re.I)
+LAYER_BAD = re.compile(r'parking|\blots?\b|building|campus|footprint|structure|extension|\bccc\b|trail(?!head)|boundary|boundaries|road|wetland|hunt|fish|stock|sign|photo|contour|parcel|district|'
                        r'region|county|watershed|invasive|timber|burn|fire|flood|soil|geolog|survey|easement|zone', re.I)
 # rows: whole words only ('Campbell', 'Camden', 'campus' are not camps); lodges only count in a lodging layer (below)
 CAMPWORD = re.compile(r'\b(?:camps?|camping|campgrounds?|campsites?|campers?|cabins?|cottages?|yurts?|rv)\b', re.I)
@@ -50,11 +51,17 @@ SITE_LAYER = re.compile(r'camp[ _]?sites?\b|camping[ _]?sites?|reservable|indivi
 SITE_NAME = re.compile(r'^(?:[\W\d_]*|[A-Za-z]{0,3}\W?\d+[A-Za-z]?|(?:camp ?sites?|sites?|cabins?|yurts?|spaces?|units?|lots?|loops?|pads?|rv)\W*[#]?\s*\w{0,3}\d+\w*)$', re.I)
 EXCL = re.compile(r'picnic|shelter|boat ramp|launch|trailhead|restroom|day[- ]use|dump station|parking|playground|'
                   r'pavilion|overlook|museum|visitor center|golf|marina|beach', re.I)
+HARD_EXCL = re.compile(r'\bstore\b|bath ?house|\bshed\b|\boffice\b|comfort station|restroom|\bshowers?\b|laundry|dump station|amphitheat|concession|'
+                       r'maintenance|firewood|parking|\blot\b|trailhead|boat ramp|picnic|entrance station|kiosk|fee station|\bgate\b|water spigot|'
+                       r'hotel|motel|\bmarriott|hilton|comfort inn|best western|hampton|holiday inn', re.I)
+GENERIC_NAME = re.compile(r'^(?:(?:the|main|upper|lower|east|west|north|south|group|primitive|rustic|rv|tent|horse|equestrian|overflow|'
+                          r'walk-?in|cabin|cabins|camp|campground|campgrounds|camping|area|loop|side|and|day|use|\d+)\W*)+$', re.I)
 BAD_HOST = re.compile(r'campendium|hipcamp|tripadvisor|yelp|facebook|google\.|bing\.|openstreetmap|allstays|koa\.com|'
                       r'campgroundreviews|thedyrt|recreation\.gov/api', re.I)
 NAME_F = ['FACILITY_NAME', 'FACILITYNAME', 'FAC_NAME', 'CAMPGROUND_NAME', 'CAMP_NAME', 'CAMPGROUND', 'SITE_NAME', 'SITENAME',
           'FEATURE_NAME', 'NAME', 'LABEL', 'TITLE', 'FAC_NAME1', 'PLACE_NAME']
-PARK_F = ['PARK_NAME', 'PARKNAME', 'PARK', 'UNIT_NAME', 'UNITNAME', 'AREA_NAME', 'MANAGED_AREA', 'PROPERTY_NAME', 'SITE', 'LOCATION']
+PARK_F = ['PARK_NAME', 'PARKNAME', 'PARK', 'PARK_NM', 'UNIT_NAME', 'UNITNAME', 'AREA_NAME', 'MANAGED_AREA', 'PROPERTY_NAME', 'PROPNAME',
+          'SITE_NAME', 'SITENAME', 'SITE', 'LOCATION', 'PARKABBR']
 URL_F = ['WEBSITE', 'WEB_URL', 'WEBURL', 'URL', 'LINK', 'WEBPAGE', 'WEB_LINK', 'PAGE_URL', 'PARK_URL', 'HYPERLINK', 'WEB', 'WEBSITE_URL']
 RES_F = ['RESERVATION_URL', 'RESERVE_URL', 'RESERVATIONURL', 'RESERVATION_LINK', 'BOOKING_URL', 'BOOKING', 'RESERVE', 'RESERVATIONS',
          'RESERVATION', 'RSV_URL', 'ONLINE_RESERVATION']
@@ -92,6 +99,12 @@ def get_json(url, params=None, tries=3):
 
 def ok(j):
     return isinstance(j, dict) and 'error' not in j
+
+
+def denied():
+    """data/campstate-layers.json {"deny": [url fragments]}: layers a person has looked at and ruled out."""
+    try: return [d for d in json.load(open('data/campstate-layers.json')).get('deny', []) if d]
+    except Exception: return []  # noqa: E722
 
 
 # ---------------------------------------------------------------- where to look
@@ -165,7 +178,7 @@ def discover(st):
                 fj = get_json(root + '/' + fo)
                 if ok(fj): svcs += [(s['name'], s['type']) for s in fj.get('services', []) if s.get('type') in ('FeatureServer', 'MapServer')]
         dg['services'] = len(svcs)
-        svcs = [s for s in svcs if SVC_OK.search(s[0])][:90]
+        svcs = [s for s in svcs if SVC_OK.search(s[0]) and not SVC_BAD.search(s[0])][:90]
         dg['candidates'] = len(svcs)
         for name, typ in svcs:
             if time.time() > DEADLINE: break
@@ -176,6 +189,8 @@ def discover(st):
             for l in (sj.get('layers') or [])[:60]:
                 ln = l.get('name') or ''
                 if SITE_LAYER.search(ln.strip()) and not re.search(r'campgrounds?\b|cabins\b', ln, re.I): continue
+                if re.search(r'lodg|resort', ln, re.I) and not PARKCTX.search(ln + ' ' + name): continue
+                if any(d in f'{su}/{l["id"]}' for d in denied()): continue
                 st_ = bool(STRONG.search(ln))
                 gen = (bool(GENERIC.search(ln)) or bool(GENERIC.search(name) and not LAYER_BAD.search(ln))) and bool(PARKCTX.search(ln + ' ' + name))
                 if (st_ or gen) and not (LAYER_BAD.search(ln) and not st_):
@@ -264,7 +279,13 @@ def rows_to_camps(lay, feats):
         a, p = f.get('attributes') or {}, xy(f.get('geometry'), lay['geo'])
         if not p or not nf: continue
         name = nice(a.get(nf))
-        if not name or name.lower() in ('none', 'null', 'unnamed', 'other') or SITE_NAME.match(name): continue
+        if not name or name.lower() in ('none', 'null', 'unnamed', 'other', 'y', 'n', 'yes', 'no') or len(name) < 4 or SITE_NAME.match(name): continue
+        park = nice(a.get(pf)) if pf and pf != nf else ''
+        if park and (park.isupper() and len(park) <= 5 or len(park) < 4 or park.lower() in ('y', 'n', 'yes', 'no', 'none', 'null')): park = ''
+        if GENERIC_NAME.match(name):                      # 'Campground' / 'Group Camp': only useful with its park in front
+            if not park: continue
+            name = f'{park} {name}'
+        if HARD_EXCL.search(name): continue
         text = name + ' ' + ' '.join(str(a.get(x) or '') for x in tf)
         camp, lodge = bool(CAMPWORD.search(text)), bool(LODGEWORD.search(text)) and lay['lodging']
         if not (camp or lodge or (lay['strong'] and not EXCL.search(name))): continue
@@ -272,7 +293,7 @@ def rows_to_camps(lay, feats):
         u, r = url_ok(a.get(uf)) if uf else '', url_ok(a.get(rf)) if rf else ''
         if u and re.search(r'reserv|book|rsv|camis|usedirect|aspira|reserveamerica', u, re.I) and not r: r, u = u, ''
         out.append({'name': name, 'lat': p[0], 'lon': p[1], 'kind': kind_of(text, lay['name']), 'url': u, 'res': r,
-                    'park': nice(a.get(pf)) if pf else ''})
+                    'park': park})
     return out
 
 
@@ -360,7 +381,11 @@ def do_state(st):
         lays = discover(st)
         res['layers'] = len(lays)
         if not lays:
-            res['why'] = 'no campground / facilities layer found on the state GIS servers we know'; return res
+            rts = DIAG.get(st, {}).get('roots', [])
+            res['why'] = ('no official state GIS server known yet' if not rts else
+                          'the state GIS server did not answer from GitHub (' + '; '.join(r.get('err', '?') for r in rts if not r['ok'])[:90] + ')' if not any(r['ok'] for r in rts) else
+                          'the state GIS servers answered but publish no campground / cabin layer we can read')
+            return res
         cands, used = [], []
         for lay in lays:
             if time.time() > DEADLINE: break
