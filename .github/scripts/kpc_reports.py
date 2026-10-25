@@ -192,9 +192,10 @@ for rowno, r in enumerate(rows[1:]):
         events.append(ev)
 
 # ---------- items from the other bots are kept as they are: dc- = posted from Discord by the relay,
-# pa- = the park alert watcher (kpc_park_alerts.py)
+# pa- = the park alert watcher (kpc_park_alerts.py), uc- = US state agency closures (kpc_us_closures.py, chat 2),
+# hc- = Kentucky WMA hunt closures (Oct 25 2026, chat 2, from KDFWR's quota hunt list; each expires the day after)
 def _dc(path, key):
-    try: return [x for x in json.load(open(path, encoding='utf-8')).get(key, []) if str(x.get('id', '')).startswith(('dc-', 'pa-'))]
+    try: return [x for x in json.load(open(path, encoding='utf-8')).get(key, []) if str(x.get('id', '')).startswith(('dc-', 'pa-', 'uc-', 'hc-'))]
     except Exception: return []
 conds += _dc('kpc-conditions.json', 'items')
 events += _dc('kpc-events-submitted.json', 'events')
