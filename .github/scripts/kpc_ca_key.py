@@ -285,7 +285,42 @@ if recs is None:
         notice('Canada more layers', 'Québec TRQ layers: ' + ', '.join(f"{l['id']}:{l['name']}" for l in _ql))
         MORE += [(f"Québec {l['name']} (MRNF)", f"{_q}/{l['id']}", None) for l in _ql]
     except Exception as ex: notice('Canada more layers', f'Québec TRQ list FAILED: {ex}')  # noqa: BLE001
+    # Oct 25: the provinces' entries in data/state-gis.json (the outside research bot's tested layers: Ontario conservation
+    # authorities, NovaRoc, GeoNB, GeoLinc, Nunavut, Saskatchewan, Québec culture ministry). Each gets a unique short code
+    # as its label start, so ids from two layers can never collide ('ON-NPCA Niag:5').
+    PROVS = {'AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'NT', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT'}
+    GJ = []
+    try:
+        _sg = json.load(open('data/state-gis.json')).get('states') or {}
+        _have = {e[1].rstrip('/') for e in MORE}
+        for _pv, _ls in sorted(_sg.items()):
+            if _pv not in PROVS: continue
+            for _l in _ls:
+                _u = str(_l.get('url') or '').rstrip('/')
+                if not _u or _u in _have or not _l.get('nm') or _l.get('water'): continue
+                _lab = f"{_l.get('code') or _pv} {_l.get('ag') or ''}"
+                if _l.get('fmt') == 'geojson': GJ.append((_lab, _u, _l['nm']))
+                else: MORE.append((_lab, _u, [_l['nm']]))
+    except Exception as ex: notice('Canada state-gis layers', f'not read: {ex}')  # noqa: BLE001
+
+    def gj_pull(label, url, nf):
+        # a plain GeoJSON download (Québec's culture ministry publishes its heritage-site outlines this way)
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': UA}), timeout=240) as r: j = json.loads(r.read().decode('utf-8', 'replace'))
+        got = []
+        for i, f in enumerate(j.get('features') or []):
+            P = f.get('properties') or {}; nm = str(P.get(nf) or '').strip(); geo = f.get('geometry') or {}
+            if not nm: continue
+            t, c = geo.get('type'), geo.get('coordinates') or []
+            rs = c if t == 'Polygon' else [q for pp in c for q in pp] if t == 'MultiPolygon' else []
+            k = max(1, max((len(q) for q in rs), default=1) // 400)
+            g = {'rings': [[[round(pt[0], 5), round(pt[1], 5)] for pt in q[::k]] for q in rs]}
+            rr = {'oid': f'{label[:12]}:{P.get("OBJECTID") or P.get("objectid") or i}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+            rr['_k'] = kinds(nm); got.append(rr)
+        return got
     _mores = []   # Oct 20: GitHub shows only 10 notices per step, so all layer counts go in ONE notice
+    for e in GJ:
+        try: g = gj_pull(*e); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
+        except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
     for e in MORE:
         try: g = arc_pull(e[0], e[1], e[2]); recs += g; extra += len(g); _mores.append(f'{e[0]}: {len(g)}')
         except Exception as ex: _mores.append(f'{e[0]} FAILED: {ex}')  # noqa: BLE001
@@ -340,7 +375,7 @@ for pv, parks_in in sorted(by.items()):
             m = [q for q in m if str(q[0]) not in no and _nf(q[1]) not in {_nf(x) for x in no}]
             for want in ov.get('join', []):
                 for r in recs:
-                    if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
+                    if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .02 if ov.get('atpin') else .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
                         m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: approx = closest official land, bigger / other shape
         site = []
         if not m and la is not None:

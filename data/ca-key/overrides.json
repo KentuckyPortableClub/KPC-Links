@@ -1614,7 +1614,11 @@
   },
   "CA-2218": {
    "none": true,
-   "why": "a different place, not this park (hand review Oct 22)"
+   "why": "a different place, not this park (hand review Oct 22) | Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2",
+   "join": [
+    "Réserve faunique de Rimouski"
+   ],
+   "atpin": true
   },
   "CA-2220": {
    "join": [
@@ -1805,6 +1809,189 @@
    ],
    "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
    "approx": true
+  },
+  "CA-6368": {
+   "join": [
+    "Bells Lake Management Unit"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6010": {
+   "join": [
+    "Clinton CA"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5632": {
+   "join": [
+    "Cobourg C.A."
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6009": {
+   "join": [
+    "Crediton CA"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5638": {
+   "join": [
+    "Ganaraska Forest West"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6360": {
+   "join": [
+    "Hardwood Hills Management Unit"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6011": {
+   "join": [
+    "Lucan CA"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6013": {
+   "join": [
+    "Parkhill CA"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5652": {
+   "join": [
+    "Port Hope C.A."
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5647": {
+   "join": [
+    "Rice Lake C.A."
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6014": {
+   "join": [
+    "Rock Glen CA"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5658": {
+   "join": [
+    "Spirit Rock"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6015": {
+   "join": [
+    "Zurich CA"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-4460": {
+   "join": [
+    "Bonar Law Historic Site"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-4840": {
+   "join": [
+    "Grassy Island"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6054": {
+   "join": [
+    "Fort Carlton Provincial Park"
+   ],
+   "atpin": true,
+   "approx": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5459": {
+   "join": [
+    "Holy Trinity Anglican Church, Stanley Mission Historic Site"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6234": {
+   "join": [
+    "Fundy Trail Parkway"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5495": {
+   "join": [
+    "Swiss Air Memorial"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5877": {
+   "join": [
+    "Château De Ramezay"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5885": {
+   "join": [
+    "Site archéologique Droulers-Tsiionhiakwatha"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-4914": {
+   "join": [
+    "Maison Papineau"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-0963": {
+   "join": [
+    "Carré Royal"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5909": {
+   "join": [
+    "Pulperie de Chicoutimi"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5887": {
+   "join": [
+    "Maison Étienne-Paschal-Taché"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-6099": {
+   "join": [
+    "Castalia"
+   ],
+   "atpin": true,
+   "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
   }
  }
 }

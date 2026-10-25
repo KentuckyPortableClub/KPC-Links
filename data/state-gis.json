@@ -33,6 +33,15 @@
     "nm": "name",
     "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Arkansas Game and Fish Commission (AGOL org 5bMc8SlGDYGINZr5)",
+    "nm": "fisheries_name",
+    "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/lakes/FeatureServer/11",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 6 of 9",
+    "water": 1
    }
   ],
   "CA": [
@@ -158,6 +167,14 @@
     "nm": "PROJECT_NAME",
     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "FWC",
+    "nm": "NAME",
+    "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 2"
    }
   ],
   "GA": [
@@ -227,6 +244,15 @@
     "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0",
     "ds": "WMA",
     "host": "agol"
+   },
+   {
+    "kind": "land",
+    "ag": "Idaho Department of Fish and Game (Hydrography Public, Lakes and Reservoirs; owner idahofishandgame)",
+    "nm": "NAME",
+    "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hydrography_Public/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 51 of 52",
+    "water": 1
    }
   ],
   "IN": [
@@ -245,6 +271,23 @@
     "nm": "Description",
     "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Boundaries/State_Park_Area/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "KDWPT (owner jjones_KDWPT)",
+    "nm": "Label_Name",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 14 of 38"
+   },
+   {
+    "kind": "land",
+    "ag": "KDWPT (owner jjones_KDWPT; KS Natural Heritage Inventory compilation)",
+    "nm": "Unit_Name",
+    "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/protected_areas/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 3 of 24",
+    "where": "Owner LIKE 'Kansas Department of Wildlife%' OR Manager LIKE 'Kansas Department of Wildlife%'"
    }
   ],
   "LA": [
@@ -256,6 +299,14 @@
     "web": "Link",
     "ds": "WMA",
     "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "LDWF (owner LDWF_ArcGIS1), Sep 2025 edition",
+    "nm": "Name_Short",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 13"
    }
   ],
   "MI": [
@@ -265,6 +316,14 @@
     "nm": "Facility",
     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8",
     "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "Michigan Department of Natural Resources (AGOL owner MichiganDNR)",
+    "nm": "OfficialWLDProjectAreaName",
+    "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 23 of 52"
    }
   ],
   "MN": [
@@ -381,6 +440,14 @@
     "host": "agency",
     "own": "ownership",
     "note": "lead Oct 24, tested from GitHub Oct 25 (Berlin-Ichthyosaur SP found)"
+   },
+   {
+    "kind": "park",
+    "ag": "Nevada Division of State Parks (AGOL org owner NDSP_1PARK; copyright Nevada Division of State Lands; UsingAgenc NDSP)",
+    "nm": "LandName",
+    "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 9"
    }
   ],
   "NY": [
@@ -414,6 +481,14 @@
     "nm": "NAME",
     "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0",
     "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "ODWC (owner ODWC_GIS)",
+    "nm": "SHORTNAME",
+    "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Public_WMA_Boundaries/FeatureServer/1",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 12"
    }
   ],
   "OR": [
@@ -423,6 +498,22 @@
     "nm": "NAME",
     "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Oregon Parks and Recreation Department (AGOL owner orstateparks)",
+    "nm": "FULL_NAME",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Parks_view/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 5"
+   },
+   {
+    "kind": "wild",
+    "ag": "Oregon Department of Fish and Wildlife (AGOL owner ODFW_AGO)",
+    "nm": "AreaName",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 25"
    }
   ],
   "PA": [
@@ -505,6 +596,14 @@
     "nm": "Name",
     "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "TPWD Wildlife Division (owner nancy.heger@tpwd.texas.gov_TPWD)",
+    "nm": "LoName",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 2"
    }
   ],
   "UT": [
@@ -516,6 +615,14 @@
     "web": "weblink1",
     "ds": "State Park",
     "host": "agol"
+   },
+   {
+    "kind": "land",
+    "ag": "Utah Division of Wildlife Resources (AGOL owner dwrutah, Utah DNR org)",
+    "nm": "Property_N",
+    "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 12"
    }
   ],
   "VA": [
@@ -573,6 +680,25 @@
     "nm": "PARCEL_LABEL_NM",
     "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Cadastre_OpenData/MapServer/6",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Washington State Department of Natural Resources (Non-DNR Major Public Lands parcels; MANAGER field gives WDFW / State Parks)",
+    "nm": "NAME",
+    "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 54",
+    "where": "OWNER='State Government'"
+   },
+   {
+    "kind": "land",
+    "ag": "Washington State Department of Ecology (NHD Waterbodies, owner WAECY_Geoservices)",
+    "nm": "GNIS_Name",
+    "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/NHD/FeatureServer/6",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 71 of 73",
+    "where": "GNIS_Name IS NOT NULL AND FType IN (390,436)",
+    "water": 1
    }
   ],
   "WI": [
@@ -648,6 +774,22 @@
     "nm": "site_name",
     "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw)",
+    "nm": "WHMA_Name",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WHMA_Boundaries/FeatureServer/4",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 6"
+   },
+   {
+    "kind": "wild",
+    "ag": "Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw)",
+    "nm": "PAA_Name",
+    "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PAA_Boundaries/FeatureServer/1",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 5 of 16"
    }
   ],
   "OH": [
@@ -743,6 +885,22 @@
     "nm": "DCNR_Name",
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/ForeverWildTracts/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "ADCNR Wildlife and Freshwater Fisheries",
+    "nm": "Name",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WildlifeManagementAreas/MapServer/0",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 11 of 15"
+   },
+   {
+    "kind": "wild",
+    "ag": "ADCNR Wildlife and Freshwater Fisheries",
+    "nm": "Name",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 1"
    }
   ],
   "AZ": [
@@ -820,6 +978,14 @@
     "nm": "AreaName",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "NGPC (owner NGPC.GISAdmin)",
+    "nm": "AreaName",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 11 of 27"
    }
   ],
   "NC": [
@@ -829,6 +995,14 @@
     "nm": "MA_NAME",
     "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "wild",
+    "ag": "NCWRC (owner ncwildlife.gov)",
+    "nm": "GML_HAB",
+    "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21",
+    "host": "agency",
+    "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 15"
    }
   ],
   "NH": [
@@ -838,6 +1012,230 @@
     "nm": "name",
     "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6",
     "host": "agency"
+   }
+  ],
+  "NU": [
+   {
+    "kind": "park",
+    "ag": "Crown-Indigenous Relations and Northern Affairs Canada (Nunavut Map Viewer); SOURCE=GN-ENV (Government of Nunavut Environment)",
+    "nm": "NAME_E",
+    "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21",
+    "host": "agency",
+    "code": "NU-TP",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 6 of 7 (NU Territorial Park)"
+   }
+  ],
+  "NS": [
+   {
+    "kind": "land",
+    "ag": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
+    "nm": "NAME1",
+    "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29",
+    "host": "agency",
+    "code": "NS-NHS",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 17 of 118 (NS National Heritage Site, National Historic Site)"
+   },
+   {
+    "kind": "land",
+    "ag": "Nova Scotia Department of Natural Resources and Renewables (NovaRoc)",
+    "nm": "NAME1",
+    "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52",
+    "host": "agency",
+    "code": "NS-F111",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 39 (NS Provincial Park)"
+   }
+  ],
+  "QC": [
+   {
+    "kind": "land",
+    "ag": "Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec",
+    "nm": "nom_bien",
+    "url": "https://www.donneesquebec.ca/recherche/dataset/578d182d-4897-4c11-aa7f-ee0cfed222a0/resource/5abd7e57-bfeb-49ba-a76c-93d961ae0633/download/sites_classes_pg.geojson",
+    "host": "agency",
+    "code": "QC-SPC",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 8 of 250 (QC Historic Site, National Historic Site, Provincial Park, Regional Park)",
+    "fmt": "geojson"
+   },
+   {
+    "kind": "land",
+    "ag": "Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec",
+    "nm": "nom_bien",
+    "url": "https://www.donneesquebec.ca/recherche/dataset/b35078ae-f1a6-4f9a-a9d2-b00244ae1e84/resource/059897d4-f927-4c30-b345-bf6810f2d00f/download/sites_declares_pg.geojson",
+    "host": "agency",
+    "code": "QC-SPD",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 82 (QC National Historic Site)",
+    "fmt": "geojson"
+   },
+   {
+    "kind": "land",
+    "ag": "Ministère de la Culture et des Communications du Québec (Répertoire du patrimoine culturel du Québec), via Données Québec",
+    "nm": "nom_bien",
+    "url": "https://www.donneesquebec.ca/recherche/dataset/33a72ee0-4af3-4d76-8a13-0338e10cdaeb/resource/a82a8015-d06a-45bc-bedc-7e03399f71a8/download/terrains_protege_pg.geojson",
+    "host": "agency",
+    "code": "QC-IPC",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 5 of 104 (QC Historic Site, National Historic Site)",
+    "fmt": "geojson"
+   },
+   {
+    "kind": "wild",
+    "ag": "Ministère des Ressources naturelles et des Forêts du Québec (Territoires récréatifs du Québec)",
+    "nm": "NOM_OFFICIEL",
+    "url": "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/11",
+    "host": "agency",
+    "code": "QC-RF",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 44 (QC Nature Reserve)"
+   }
+  ],
+  "ON": [
+   {
+    "kind": "land",
+    "ag": "Niagara Peninsula Conservation Authority",
+    "nm": "CA_Name",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2",
+    "host": "agency",
+    "code": "ON-NPCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 17 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Ausable Bayfield Conservation Authority",
+    "nm": "prop_nam",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-ABCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 8 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Essex Region Conservation Authority",
+    "nm": "table_LandInformation_LMUName",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-ERCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 8 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Lower Thames Valley Conservation Authority",
+    "nm": "Site_Name",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-LTVCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Kawartha Region Conservation Authority (Kawartha Conservation)",
+    "nm": "Name",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6",
+    "host": "agency",
+    "code": "ON-KRCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Credit Valley Conservation",
+    "nm": "propname",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-CVC",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 182 (ON Conservation Area, Natural Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Toronto and Region Conservation Authority",
+    "nm": "PROP_NAME",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250",
+    "host": "agency",
+    "code": "ON-TRCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Lake Simcoe Region Conservation Authority",
+    "nm": "PROPERTY_NAME",
+    "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46",
+    "host": "agency",
+    "code": "ON-LSRCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Conservation Halton (Halton Region Conservation Authority)",
+    "nm": "Park_Name",
+    "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0",
+    "host": "agency",
+    "code": "ON-CH",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 7 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Grey County GIS (upper-tier municipal government) publishing Grey Sauble Conservation Authority property data",
+    "nm": "PROP_NAME",
+    "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3",
+    "host": "county",
+    "code": "ON-GSCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 15 of 180 (ON Conservation Area); published by Grey County for the conservation authority"
+   },
+   {
+    "kind": "land",
+    "ag": "Grey County GIS publishing Saugeen Valley Conservation Authority property data",
+    "nm": "PROPERTY_N",
+    "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4",
+    "host": "county",
+    "code": "ON-SVCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 12 of 180 (ON Conservation Area); published by Grey County for the conservation authority"
+   },
+   {
+    "kind": "land",
+    "ag": "Ganaraska Region Conservation Authority (maps2.grca.on.ca)",
+    "nm": "name",
+    "url": "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-GANA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 11 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Otonabee Region Conservation Authority (hosted on the Ganaraska server maps2.grca.on.ca, ORCA_Public folder)",
+    "nm": "CANAME",
+    "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2",
+    "host": "agency",
+    "code": "ON-ORCA",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 180 (ON Conservation Area)"
+   }
+  ],
+  "NB": [
+   {
+    "kind": "park",
+    "ag": "Government of New Brunswick, Dept of Natural Resources and Energy Development (GeoNB)",
+    "nm": "NAME",
+    "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0",
+    "host": "agency",
+    "code": "NB-PP",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 14 of 193 (NB Historic Site, National Historic Site, Natural Area, Provincial Park, Recreation Park, Recreation Site)"
+   }
+  ],
+  "SK": [
+   {
+    "kind": "park",
+    "ag": "Government of Saskatchewan, Ministry of Parks, Culture and Sport (gis.saskatchewan.ca)",
+    "nm": "PARKNM",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4",
+    "host": "agency",
+    "code": "SK-ALL",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 6 of 88 (SK Historic Site, National Historic Site, Recreation Site)"
+   }
+  ],
+  "PE": [
+   {
+    "kind": "park",
+    "ag": "Government of Prince Edward Island, Dept of Environment, Energy and Climate Action (GeoLinc, gis.princeedwardisland.ca)",
+    "nm": "PARK",
+    "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0",
+    "host": "agency",
+    "code": "PE-PP",
+    "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 18 (PE Provincial Park)"
    }
   ]
  },

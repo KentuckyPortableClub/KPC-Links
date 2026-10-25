@@ -262,10 +262,10 @@
   const stGis = async st => { if (!SGIS) { const j = await B.jget('data/state-gis.json?v=' + Math.floor(Date.now() / 864e5)).catch(() => null); SGIS = j && j.states || {}; SPORT = j && j.portals || {}; } return (SGIS[st] || []); };
   const stPortals = st => (SPORT[st] || []).map(x => [x[0].toUpperCase() + ' ↗', x[1]]);
   async function stLive(st, ws) {
-    const Ls = await stGis(st); if (!Ls.length) return [];
+    const Ls = (await stGis(st)).filter(L => !L.water && !L.fmt); if (!Ls.length) return [];   /* Oct 25: lake-surface layers are not land; a layer's own filter (where) is kept */
     const sq = x => x.replace(/'/g, "''"), out = [], all = !ws || !ws.length, SN2 = Object.entries(SN).find(([k, v]) => v === st);
     const sname = SN2 ? SN2[0].replace(/\b\w/g, c => c.toUpperCase()) : st;
-    await Promise.all(Ls.map(L => B.jget(L.url.replace(/\/$/, '') + '/query?' + new URLSearchParams({ where: all ? '1=1' : ws.map(x => `UPPER(${L.nm}) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND '), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: all ? 4 : 5, maxAllowableOffset: all ? 0.0008 : 0.0001, resultRecordCount: 2000, f: 'geojson' }), null, all ? 60000 : 20000).then(j => (j.features || []).forEach(f => {
+    await Promise.all(Ls.map(L => B.jget(L.url.replace(/\/$/, '') + '/query?' + new URLSearchParams({ where: (L.where ? '(' + L.where + ') AND ' : '') + (all ? '1=1' : ws.map(x => `UPPER(${L.nm}) LIKE '%${sq(x.toUpperCase())}%'`).join(' AND ')), outFields: '*', returnGeometry: true, outSR: 4326, geometryPrecision: all ? 4 : 5, maxAllowableOffset: all ? 0.0008 : 0.0001, resultRecordCount: 2000, f: 'geojson' }), null, all ? 60000 : 20000).then(j => (j.features || []).forEach(f => {
       const P = f.properties || {}; const nmv = P[L.nm]; if (!f.geometry || !nmv) return;
       const web = L.web ? (P[L.web] || '') : '', accv = L.acc ? String(P[L.acc] || '') : '', ownv = L.own ? String(P[L.own] || '') : '';
       const acc = !L.acc ? 'UK' : /^(n|no|closed|none)/i.test(accv) ? 'XA' : /restrict|permit|limited|season/i.test(accv) ? 'RA' : /open|yes|y\b|public/i.test(accv) ? 'OA' : 'UK';
