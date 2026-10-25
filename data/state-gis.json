@@ -515,6 +515,13 @@
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0",
     "web": "LANDLINK",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "Virginia DCR State Parks (tracts)",
+    "nm": "MANAME",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "WA": [
@@ -599,6 +606,13 @@
     "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0",
     "web": "Hyperlink",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "Wyoming State Parks, Historic Sites & Trails",
+    "nm": "site_name",
+    "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/SiteBoundaries/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "OH": [
