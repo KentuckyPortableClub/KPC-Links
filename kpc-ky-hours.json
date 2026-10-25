@@ -540,7 +540,9 @@
    "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9105"
   },
   "US-3828": {
-   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=229"
+   "link": "https://fw.ky.gov/licenses/pages/fees.aspx",
+   "fee": "Peabody WMA User Permit, $15.86 (not part of the Sportsman's License): check KDFWR for who needs it.",
+   "done": 1
   },
   "US-10157": {
    "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9208"
@@ -684,10 +686,11 @@
    "done": 1
   },
   "US-8144": {
-   "link": "https://fw.ky.gov/Pages/Otter-Creek-Outdoor-Recreation-Area.aspx",
-   "hours": "Open year-round from dawn to dusk.",
+   "link": "https://fw.ky.gov/Documents/ottercreekbrochure.pdf",
+   "hours": "Wednesday to Sunday, daylight until dark",
    "night": "General area closes at dusk; campground is operated separately by Meade County Fiscal Court. Overnight rules for campground are managed by the county.",
-   "done": 1
+   "done": 1,
+   "fee": "$3 per person daily entry permit ($30 a year); under 12 free. Horse, bike and shooting-range use $7 more per day."
   },
   "US-10103": {
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Cumberland-River-Wild-River.aspx"
