@@ -1,6 +1,6 @@
 {
- "ver": "0.6.7",
- "when": "2026-10-23",
+ "ver": "0.7.0",
+ "when": "2026-10-25",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "Pretend Radio button removed; your grid is saved on each contact (QRZ shows the park grid)."
+ "notes": "FT8 decoder fix (loads everywhere, says why if not); remote sound link fixed, with the QSO box, your log, ALC/power/SWR meters, radio on/off and a band view on the tablet; voice keyer with 6 memories and auto CQ; type-to-send CW/RTTY/PSK/HELL from the remote."
 }
