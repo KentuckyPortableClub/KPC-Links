@@ -1732,6 +1732,246 @@
    "link": "https://www.parks.ca.gov/?page_id=30009"
   },
   {
+   "id": "hc-US-4687-2026-11-07",
+   "ref": "US-4687",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=26"
+  },
+  {
+   "id": "hc-US-3837-2026-11-21",
+   "ref": "US-3837",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 21–24: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt; Shooting range(s) closed during deer quota hunts; Tract 1, Tracts 1A, 2A, 4A and parts of 7A closed to public use (no dates)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-25",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=137"
+  },
+  {
+   "id": "hc-US-3836-2026-11-07",
+   "ref": "US-3836",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt; Shooting range(s) closed during deer quota hunts; range closed for deer quota",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202"
+  },
+  {
+   "id": "hc-US-3834-2026-11-07",
+   "ref": "US-3834",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128"
+  },
+  {
+   "id": "hc-US-3831-2026-11-15",
+   "ref": "US-3831",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 15–Jan 15: closed to all hunting and public access, except waterfowl and dove hunting",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-01-16",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9067"
+  },
+  {
+   "id": "hc-US-3830-2026-11-01",
+   "ref": "US-3830",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 1–Mar 15: Sauerheber Unit (outside quota tracts) closed to all public access; entire Sauerheber Unit closed Mondays and Tuesdays during waterfowl season; Jenny Hole Unit closed to all boats 2026-11-26 (Thanksgiving) to 2027-01-31 except Jenny Hole permit holders",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-03-16",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230"
+  },
+  {
+   "id": "hc-US-3820-2026-11-07",
+   "ref": "US-3820",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169"
+  },
+  {
+   "id": "hc-US-3816-2026-12-05",
+   "ref": "US-3816",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Dec 5–6: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt; Shooting range(s) closed during deer quota hunts",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-12-07",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=14"
+  },
+  {
+   "id": "hc-US-3816-2026-11-07",
+   "ref": "US-3816",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=14"
+  },
+  {
+   "id": "hc-US-3815-2026-11-07",
+   "ref": "US-3815",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt; Shooting range(s) closed during deer quota hunts",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=132"
+  },
+  {
+   "id": "hc-US-3809-2026-12-05",
+   "ref": "US-3809",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Dec 5–6: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-12-07",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34"
+  },
+  {
+   "id": "hc-US-3809-2026-11-07",
+   "ref": "US-3809",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34"
+  },
+  {
+   "id": "hc-US-3808-2026-11-01",
+   "ref": "US-3808",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 1–Mar 15: some areas closed to public access, as marked by signs",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-03-16",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40"
+  },
+  {
+   "id": "hc-US-3806-2026-11-07",
+   "ref": "US-3806",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148"
+  },
+  {
+   "id": "hc-US-3805-2026-11-14",
+   "ref": "US-3805",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 14–21: huntable portion closed to all access except drawn quota hunters (incl. tube range; club ranges, pond, trail stay open); Shooting range(s) closed during deer quota hunts",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-22",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=153"
+  },
+  {
+   "id": "hc-US-3797-2026-10-15",
+   "ref": "US-3797",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Oct 15–Mar 15: areas identified by signs closed to all access",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-03-16",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222"
+  },
+  {
+   "id": "hc-US-3796-2026-11-07",
+   "ref": "US-3796",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203"
+  },
+  {
+   "id": "hc-US-3794-2026-11-07",
+   "ref": "US-3794",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39"
+  },
+  {
+   "id": "hc-US-3793-2026-11-07",
+   "ref": "US-3793",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224"
+  },
+  {
+   "id": "hc-US-3793-2026-10-15",
+   "ref": "US-3793",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Oct 15–Mar 15: main unit closed to unauthorized public access; closed to all access Mondays, Tuesdays, 2026-12-24, 2026-12-25, 2027-01-01",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-03-16",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224"
+  },
+  {
+   "id": "hc-US-1255-2026-11-21",
+   "ref": "US-1255",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 21–22: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-23",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25"
+  },
+  {
+   "id": "hc-US-10124-2027-02-24",
+   "ref": "US-10124",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Feb 24–27: main tract closed to public use (fox field trials)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2027-02-28",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=155"
+  },
+  {
+   "id": "hc-US-10124-2026-11-07",
+   "ref": "US-10124",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=155"
+  },
+  {
+   "id": "hc-US-10121-2026-11-07",
+   "ref": "US-10121",
+   "kind": "Hunt closure",
+   "details": "Kentucky Fish & Wildlife: Nov 7–8: closed to everyone except drawn hunters (and one helper each) for the deer quota hunt; Storm damage: only areas adjacent to Hwy 192 open, all other areas closed (no dates)",
+   "seen": "2026-10-25",
+   "call": "KPC BOT",
+   "expires": "2026-11-09",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
+  },
+  {
    "id": "pa-kdfwr-buckhorn-lake-dam-ramp-access-closed-until-feb-2027-US-1275",
    "ref": "US-1275",
    "kind": "Park alert",
