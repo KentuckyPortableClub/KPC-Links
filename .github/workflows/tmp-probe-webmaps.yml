@@ -1,0 +1,19 @@
+name: TEMP probe web maps
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - name: probe
+        continue-on-error: true
+        run: python3 .github/scripts/tmp_probe_webmaps.py || true
+      - name: save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/webmap-probe-oct25.json 2>/dev/null || true
+          git diff --cached --quiet || { git commit -qm 'Probe web maps'; for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && break; sleep 7; done; } || true
