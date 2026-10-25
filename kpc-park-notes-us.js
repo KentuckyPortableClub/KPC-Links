@@ -47,9 +47,10 @@
     const acts = [`<a class="gold" href="${esc(formUrl(ref))}" target="_blank" rel="noopener">📝 SUBMIT A TIP</a>`];
     if (prog(ref) === 'POTA') acts.push(`<a href="kpc-planner-us.html?q=${encodeURIComponent(ref)}">KPC TRIP PLANNER</a>`);
     acts.push(`<a href="kpc-park-info.html?ref=${encodeURIComponent(ref)}">OFFICIAL WEBSITE &amp; MAP</a>`, `<a href="${pg[0]}" target="_blank" rel="noopener">${pg[1]} ↗</a>`);
-    box.innerHTML = `<div class="pnu-card"><h3>${esc(name || ref)}</h3><div class="pnu-meta">${esc(ref)} · ${prog(ref)}${st2 ? ' · ' + esc(st2) : ''} · ${tips.length} tip${tips.length === 1 ? '' : 's'}</div>
+    box.innerHTML = `<div class="pnu-card"><h3>${esc(name || ref)}</h3><div class="pnu-meta">${esc(ref)} · ${prog(ref)}${st2 ? ' · ' + esc(st2) : ''} · ${tips.length} tip${tips.length === 1 ? '' : 's'}</div><div id="pnuClos"></div>
  ${tips.length ? tips.map(t => tip(t)).join('') : '<p class="pnu-none">No tips yet. Been there? Be the first.</p>'}
  <div class="pnu-acts">${acts.join('')}</div></div>`;
+    if (window.KPCClos && prog(ref) === 'POTA' && st2) KPCClos.html(ref, st2).then(h => { const el = document.getElementById('pnuClos'); if (el) el.innerHTML = h; }).catch(() => {});   // Oct 25 (HQ): closures + what is watched
     try { history.replaceState(null, '', '?ref=' + encodeURIComponent(ref) + '#find'); } catch (e) {}
   }
   function list() {
