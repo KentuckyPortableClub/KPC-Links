@@ -1,9 +1,10 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **172 of 298** parks joined to official land (same name + same kind of place). **0** to check by hand, **62** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined to official land (same name + same kind of place). **1** to check by hand, **59** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-10789** North Glendo State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Glendo (~0 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -76,7 +77,6 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **172 of 298** parks joined
 
 - US-10776 Packers Lake Public Access Area BLM Special Recreation Management Area (BLM Special Recreation Management Area)
 - US-10778 Sand Creek State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
-- US-10789 North Glendo State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-10791 Pilot Hill State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-10792 John/Annie Woodhouse State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-10795 Shoshone Cavern AKA Spirit Mtn Cave BLM Special Recreation Management Area (BLM Special Recreation Management Area)
@@ -117,14 +117,12 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **172 of 298** parks joined
 - US-12721 Miles Landing BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12727 Patrol Cabin State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-13244 1838 Mountain Man Rendezvous State Historic Site (State Historic Site)
-- US-3296 Edness Kimball Wilkins State Park (State Park)
 - US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
 - US-4574 Nez Perce National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
-- US-6107 Hawk Springs State Recreation Area (State Recreation Area)
 - US-6113 Grayrocks Reservoir State Recreation Area (State Recreation Area)
 - US-6117 Camp Douglas WW-II POW Officers' Club State Historic Site (State Historic Site)
 - US-6119 Wyoming Pioneer Memorial Museum State Historic Site (State Historic Site)

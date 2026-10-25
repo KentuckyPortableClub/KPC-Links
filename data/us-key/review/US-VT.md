@@ -1,23 +1,20 @@
 # VT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **85 of 109** parks joined to official land (same name + same kind of place). **11** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **88 of 109** parks joined to official land (same name + same kind of place). **0** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-3100** Big Deer State Park (State Park) → Groton State Forest (~3,028 ac, the POTA pin is inside it (different name))
-- **US-3109** Coolidge State Park (State Park) → President Calvin Coolidge State Historic Site (~405 ac, similar name); Coolidge State Forest (~4,237 ac, same name, different kind of place); Coolidge State Forest (~1,550 ac, same name, different kind of place); Coolidge State Forest (~1,095 ac, same name, different kind of place); Coolidge State Forest (~179 ac, same name, different kind of place); Coolidge State Forest (~30 ac, same name, different kind of place)
-- **US-3118** Halfmoon Pond State Park (State Park) → Bomoseen State Park (~296 ac, the POTA pin is inside it (different name))
-- **US-3122** Kettle Pond State Park (State Park) → Groton State Forest (~5,952 ac, the POTA pin is inside it (different name))
-- **US-3131** Maidstone State Park (State Park) → Maidstone Lake Access (~1 ac, similar name); Maidstone State Forest (~294 ac, same name, different kind of place); Maidstone State Forest (~119 ac, same name, different kind of place); Maidstone State Forest (~23 ac, same name, different kind of place)
-- **US-3135** New Discovery State Park (State Park) → Groton State Forest (~4,664 ac, the POTA pin is inside it (different name))
-- **US-3139** Ricker Pond State Park (State Park) → Groton State Forest (~5,952 ac, the POTA pin is inside it (different name))
-- **US-3142** Seyon Lodge State Park (State Park) → Groton State Forest (~3,215 ac, the POTA pin is inside it (different name))
-- **US-3147** Thetford Hill State Park (State Park) → Thetford Hill State Forest (~259 ac, same name, different kind of place)
-- **US-3149** Underhill State Park (State Park) → Mt. Mansfield State Forest (~369 ac, the POTA pin is inside it (different name))
-- **US-5564** Essex Nursery State Forest (State Forest) → State Tree Nursery (~10 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-3100 Big Deer State Park (State Park) → on Groton State Forest (~3,028 ac)
+- US-3118 Halfmoon Pond State Park (State Park) → on Bomoseen State Park (~296 ac)
+- US-3122 Kettle Pond State Park (State Park) → on Groton State Forest (~5,952 ac)
+- US-3135 New Discovery State Park (State Park) → on Groton State Forest (~4,664 ac)
+- US-3139 Ricker Pond State Park (State Park) → on Groton State Forest (~5,952 ac)
+- US-3142 Seyon Lodge State Park (State Park) → on Groton State Forest (~3,215 ac)
+- US-3149 Underhill State Park (State Park) → on Mt. Mansfield State Forest (~369 ac)
+- US-5564 Essex Nursery State Forest (State Forest) → on State Tree Nursery (~10 ac)
 
 ## Nothing found in PAD-US
 

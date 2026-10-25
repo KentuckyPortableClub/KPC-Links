@@ -1,10 +1,9 @@
 # WV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined to official land (same name + same kind of place). **1** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **160 of 172** parks joined to official land (same name + same kind of place). **0** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0697** Bluestone National Wild and Scenic River (National Wild and Scenic River) → Bluestone Recreation Area (~22,147 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -26,8 +25,19 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Cranberry Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~159,170 ac
+- Potomac Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~145,942 ac
+- Little River Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~121,552 ac
+- Neola Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~105,658 ac
+- Cheat Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~79,526 ac
+- Rimel Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~68,029 ac
+- Otter Creek Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~67,588 ac
+- Tea Creek Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~67,410 ac
+- Blackwater Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~61,289 ac
 - Wardensville Wildlife Management Area · SCA · WV Division of Natural Resources · ~54,942 ac
 - Shenandoah Wildlife Management Area · SCA · WV Division of Natural Resources · ~50,719 ac
+- Beaver Dam Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~40,622 ac
+- Logan Timber Lands ·  · West Virginia DNR (wild, state GIS table) · ~25,165 ac
 - East Lynn Recreation Area · REC · Huntington · ~24,834 ac
 - R.D. Bailey Recreation Area · REC · Huntington · ~19,158 ac
 - Potts Creek Wildlife Management Area · SCA · WV Division of Natural Resources · ~18,472 ac
@@ -36,6 +46,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 - Sutton Recreation Area · REC · Huntington · ~12,634 ac
 - Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
 - Rough Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,327 ac
+- Morris Creek Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~8,853 ac
 - James River Face Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,850 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~8,124 ac
 - Ramseys Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,577 ac
@@ -45,6 +56,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 - Shawvers Run Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,773 ac
 - Barbours Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,507 ac
 - Camp Creek State Forest · SRMA · WV Division of Forestry · ~5,312 ac
+- Delbarton Tract, Arc Land Tract ·  · West Virginia DNR (wild, state GIS table) · ~5,168 ac
 - Brush Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,795 ac
 - Three Ridges Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,607 ac
 - Peters Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,520 ac
@@ -63,6 +75,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 - Cove Creek Wildlife Management Area · SCA ·   · ~423 ac
 - Hoffman School Cave · SOTH ·   · ~381 ac
 - Winfield Pool Recreation Area · REC · Huntington · ~377 ac
+- West Virginia Wildlife Center ·  · West Virginia DNR (wild, state GIS table) · ~324 ac
 - West Virginia Wildlife Center · SOTH · WV Division of Natural Resources · ~322 ac
 - Belleville Pools Recreation Area · REC · Huntington · ~225 ac
 - Willow Island Pool Recreation Area · REC · Huntington · ~186 ac
@@ -72,17 +85,3 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **159 of 172** parks joined
 - Racine Pool Recreation Area · REC · Huntington · ~121 ac
 - Rotary Park · LP ·   · ~107 ac
 - Rotary Park · LP · Greater Huntington Park and Recreation District · ~107 ac
-- Forest Prod. Marketing Lab. Experimental Area · NF · Forest Service Region 09 Eastern · ~98 ac
-- Leetown National Fisheries Center · FOTH · US Geological Survey · ~90 ac
-- Kiwanivista Park · LP · Greater Huntington Park and Recreation District · ~81 ac
-- Ritter Park · LP ·   · ~75 ac
-- Ritter Park · LP · Greater Huntington Park and Recreation District · ~75 ac
-- Core Arboretum · LCA · University of West Virginia · ~72 ac
-- Kiwanis Park · LP · Greater Huntington Park and Recreation District · ~65 ac
-- Valley Park · LP ·   · ~61 ac
-- Valley Park · LP · Public Land Corp of WV · ~61 ac
-- Coopers Rock State Park (Mont Chateau??) · SP · WV Geological and Economic Survey · ~38 ac
-- London Pool Recreation Area · REC · Huntington · ~37 ac
-- Slaty Fork Wildlife Management Area · SCA ·   · ~37 ac
-- Eldon J. Haught Recreation Park · LP ·   · ~34 ac
-- Saint Cloud Commons · LP ·   · ~32 ac

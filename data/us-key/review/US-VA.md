@@ -1,32 +1,29 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **145 of 184** parks joined to official land (same name + same kind of place). **18** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **149 of 184** parks joined to official land (same name + same kind of place). **0** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-12716** Hayfields State Park (State Park) → VOF Holding (~1,101 ac, the POTA pin is inside it (different name)); Virginia Outdoors Foundation Holding (~1,101 ac, the POTA pin is inside it (different name))
-- **US-7804** Great Falls Park (Park) → George Washington Memorial Parkway (~3,477 ac, the POTA pin is inside it (different name))
-- **US-9897** Jamestowne National Historical Site (National Historical Site) → Colonial National Historical Park (~7,881 ac, the POTA pin is inside it (different name))
-- **US-9902** Colonial National Parkway (National Parkway) → Colonial National Historical Park (~7,881 ac, similar name)
-- **US-9903** Mount Rogers National Recreation Area (National Recreation Area) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Lewis Fork Wilderness (~6,075 ac, the POTA pin is inside it (different name))
-- **US-9904** Apple Orchard Falls National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9906** Cornelius Creek National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Blue Ridge Parkway (~35,237 ac, the POTA pin is inside it (different name))
-- **US-9907** First Landing National Recreation Trail (National Recreation Trail) → First Landing State Park (~2,916 ac, similar name); First Landing State Park (~2,916 ac, similar name)
-- **US-9908** Hoop Hole National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9909** Little Stony Creek National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name))
-- **US-9910** Massanutten National Recreation Trail (National Recreation Trail) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9920** Mount Rogers National Recreation Trail (National Recreation Trail) → Jefferson National Forest (~711,975 ac, the POTA pin is inside it (different name)); Lewis Fork Wilderness (~6,075 ac, the POTA pin is inside it (different name))
-- **US-9922** The Lion's Tale National Recreation Trail (National Recreation Trail) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9925** Wild Oak National Recreation Trail (National Recreation Trail) → George Washington National Forest (~961,006 ac, the POTA pin is inside it (different name))
-- **US-9933** Beaches to Bluegrass State Trail (State Trail) → Staunton River State Park (~1,612 ac, the POTA pin is inside it (different name)); Staunton River State Park (~1,526 ac, the POTA pin is inside it (different name))
-- **US-9935** Virginia Bird & Wildlife State Trail (State Trail) → Lake Anna State Park (~2,156 ac, the POTA pin is inside it (different name)); Lake Anna State Park (~1,624 ac, the POTA pin is inside it (different name))
-- **US-9957** Shenandoah Wilderness Area (Wilderness Area) → Shenandoah National Park (~195,790 ac, same name, different kind of place)
-- **US-9961** Dyke Marsh Wildlife Reserve (Wildlife Reserve) → George Washington Memorial Parkway (~2,776 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-12716 Hayfields State Park (State Park) → on VOF Holding (~1,101 ac); Virginia Outdoors Foundation Holding (~1,101 ac)
+- US-7804 Great Falls Park (Park) → on George Washington Memorial Parkway (~3,477 ac)
+- US-9897 Jamestowne National Historical Site (National Historical Site) → on Colonial National Historical Park (~7,881 ac)
 - US-9898 Mount Vernon National Historic Trail (National Historic Trail) → on George Washington Memorial Parkway (~2,776 ac)
+- US-9903 Mount Rogers National Recreation Area (National Recreation Area) → on Lewis Fork Wilderness (~6,075 ac); Jefferson National Forest (~711,975 ac)
+- US-9904 Apple Orchard Falls National Recreation Trail (National Recreation Trail) → on Jefferson National Forest (~711,975 ac)
+- US-9906 Cornelius Creek National Recreation Trail (National Recreation Trail) → on Blue Ridge Parkway (~35,237 ac); Jefferson National Forest (~711,975 ac)
+- US-9908 Hoop Hole National Recreation Trail (National Recreation Trail) → on Jefferson National Forest (~711,975 ac)
+- US-9909 Little Stony Creek National Recreation Trail (National Recreation Trail) → on Jefferson National Forest (~711,975 ac)
+- US-9910 Massanutten National Recreation Trail (National Recreation Trail) → on George Washington National Forest (~961,006 ac)
+- US-9920 Mount Rogers National Recreation Trail (National Recreation Trail) → on Lewis Fork Wilderness (~6,075 ac); Jefferson National Forest (~711,975 ac)
+- US-9922 The Lion's Tale National Recreation Trail (National Recreation Trail) → on George Washington National Forest (~961,006 ac)
+- US-9925 Wild Oak National Recreation Trail (National Recreation Trail) → on George Washington National Forest (~961,006 ac)
+- US-9933 Beaches to Bluegrass State Trail (State Trail) → on Staunton River State Park (~1,526 ac); Staunton River State Park (~1,612 ac)
+- US-9935 Virginia Bird & Wildlife State Trail (State Trail) → on Lake Anna State Park (~1,624 ac); Lake Anna State Park (~2,156 ac)
 - US-9937 Meadowood BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Southeastern States District Office (~804 ac)
+- US-9961 Dyke Marsh Wildlife Reserve (Wildlife Reserve) → on George Washington Memorial Parkway (~2,776 ac)
 
 ## Nothing found in PAD-US
 
@@ -39,7 +36,6 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **145 of 184** parks joined
 - US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
 - US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-5508 Chesterfield State Forest (State Forest)
 - US-8203 Cape Henry National Memorial (National Memorial)
 - US-8204 Yorktown National Battlefield (National Battlefield)
 - US-9899 Fort Hunt National Historical Site (National Historical Site)
@@ -83,6 +79,7 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **145 of 184** parks joined
 - Rapidan Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,343 ac
 - Havens Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,339 ac
 - DCR Holding · SOTH · VA Dept of Conservation and Recreation · ~7,326 ac
+- Parramore Island ·  · Virginia DCR Natural Heritage (preserve, state GIS table) · ~7,000 ac
 - Roaring Plains West Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,794 ac
 - Hidden Valley Wildlife Management Area · SCA ·   · ~6,239 ac
 - Hidden Valley Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~6,239 ac
@@ -105,10 +102,9 @@ Built 2026-10-20 by `.github/scripts/kpc_us_key.py`. **145 of 184** parks joined
 - Rapidan Wildlife Management Area · SCA ·   · ~4,119 ac
 - C.F. Phelps Wildlife Management Area · SCA ·   · ~4,084 ac
 - Thompson Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,964 ac
+- Southside Savanna Natural Area Preserve ·  · Virginia DCR Natural Heritage (preserve, state GIS table) · ~3,899 ac
 - Currituck National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,810 ac
 - Cavalier Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,770 ac
+- South Quay Sandhills ·  · Virginia DCR Natural Heritage (preserve, state GIS table) · ~3,753 ac
 - False Cape State Natural Area Preserve · SCA ·   · ~3,603 ac
 - False Cape State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,603 ac
-- North Landing River State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,532 ac
-- Thompson Wildlife Management Area · SCA ·   · ~3,396 ac
-- Ohio River Islands National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,354 ac

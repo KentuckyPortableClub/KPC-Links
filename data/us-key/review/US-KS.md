@@ -1,29 +1,24 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-23 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined to official land (same name + same kind of place). **1** to check by hand, **42** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **101 of 145** parks joined to official land (same name + same kind of place). **0** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-0803** Brown vs. Board of Education National Historic Site (National Historic Site) → Brown v. Board of Education National Historical Park (~2 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-2334 Cross Timbers State Park (State Park) → on Toronto State Park (~1,292 ac)
-- US-2335 Eisenhower State Park (State Park) → on Melvern Recreation Area (~23,490 ac)
 - US-7932 Kansas Veterans State Wildlife Area (State Wildlife Area) → on Sherman State Fishing Lake And Wildlife Area (~1,542 ac)
-- US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area) → on Finney Game Refuge (~3,622 ac)
-- US-7944 Smoky Hill State Wildlife Area (State Wildlife Area) → on Kanopolis State Park (~1,643 ac); Kanopolis Recreation Area (~21,212 ac)
 
 ## Nothing found in PAD-US
 
 - US-13456 Pratt Fish Hatchery State Fish Hatchery (State Fish Hatchery)
+- US-2334 Cross Timbers State Park (State Park)
 - US-2350 Prairie Spirit Trail State Trail (State Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
-- US-5717 Little Jerusalem Badlands State Park (State Park)
 - US-5718 Flint Hills Trail State Park (State Park)
 - US-7386 Browning Oxbow State Fishing Lake (State Fishing Lake)
 - US-7393 Milford State Fish Hatchery (State Fish Hatchery)
@@ -40,6 +35,8 @@ Built 2026-10-23 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined 
 - US-7936 Marion State Wildlife Area (State Wildlife Area)
 - US-7938 Milford State Wildlife Area (State Wildlife Area)
 - US-7941 Perry State Wildlife Area (State Wildlife Area)
+- US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area)
+- US-7944 Smoky Hill State Wildlife Area (State Wildlife Area)
 - US-7945 Toronto State Wildlife Area (State Wildlife Area)
 - US-7946 Tuttle Creek State Wildlife Area (State Wildlife Area)
 - US-7947 Webster State Wildlife Area (State Wildlife Area)
@@ -57,7 +54,6 @@ Built 2026-10-23 by `.github/scripts/kpc_us_key.py`. **97 of 145** parks joined 
 - US-9189 Iowa and Sac & Fox Mission State Historic Site (State Historic Site)
 - US-9190 Marais des Cygnes Massacre State Historic Site (State Historic Site)
 - US-9191 Pawnee Rock State Historic Site (State Historic Site)
-- US-9752 Lehigh Portland State Park (State Park)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
