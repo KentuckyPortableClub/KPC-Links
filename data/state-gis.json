@@ -94,6 +94,23 @@
     "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/17",
     "ds": "Wildlife Area",
     "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Delaware nature preserves (DNREC)",
+    "nm": "NAME",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/8",
+    "host": "agency",
+    "note": "lead Oct 24 (tested on DE's test server, same service as layer 17 here)"
+   },
+   {
+    "kind": "land",
+    "ag": "Delaware public protected lands (DNREC)",
+    "nm": "NAME",
+    "web": "WEB_ADDRESSES",
+    "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/MapServer/11",
+    "host": "agency",
+    "note": "lead Oct 24 (tested on DE's test server, same service as layer 17 here)"
    }
   ],
   "FL": [
@@ -355,6 +372,15 @@
     "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0",
     "ds": "WMA",
     "host": "agol"
+   },
+   {
+    "kind": "land",
+    "ag": "Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server)",
+    "nm": "name",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORPRecAreas_Master/FeatureServer/0",
+    "host": "agency",
+    "own": "ownership",
+    "note": "lead Oct 24, tested from GitHub Oct 25 (Berlin-Ichthyosaur SP found)"
    }
   ],
   "NY": [
@@ -596,6 +622,15 @@
     "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16",
     "web": "MapURL",
     "host": "agol"
+   },
+   {
+    "kind": "park",
+    "ag": "West Virginia State Parks (WVDOT boundaries server)",
+    "nm": "Loc_Nm",
+    "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/MapServer/10",
+    "host": "agency",
+    "acc": "Pub_Access",
+    "note": "lead Oct 24, tested Oct 25 (36 parks)"
    }
   ],
   "WY": [
