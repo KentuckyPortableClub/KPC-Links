@@ -21,8 +21,11 @@ def main():
     if not CF.exists():
         notice('Canada fill', 'no saved outlines (cache/ca/CA-ALL.json.gz): nothing written'); return
     with gzip.open(CF, 'rt', encoding='utf-8') as f: recs = json.load(f).get('recs') or []
+    # Oct 25 (round 5 hand checks: 400+ Québec ZEC / réserve / parc files were one wrong shape): ids repeat from layer to
+    # layer, so an id alone is not enough - the saved record must also carry the joined NAME
     by = {}
-    for r in recs: by.setdefault(str(r.get('oid')), r)
+    for r in recs: by.setdefault(str(r.get('oid')), []).append(r)
+    low = lambda x: ' '.join(str(x or '').lower().split())
     have = {p.stem for p in OUT.glob('CA-*.json')}
     wrote = dropped = 0
     # Oct 25 (storage plan Stage 1: retire most of this 30 MB folder): a park whose joined land is ALL in CPCAD needs no
@@ -38,7 +41,8 @@ def main():
             if not p.get('m') or ref in have or cp_only(p): continue
             rings, names, srcs, approx = [], [], [], False
             for m in p['m']:
-                r = by.get(str(m[0]))
+                oid = str(m[0])
+                r = next((x for x in by.get(oid, []) if low(m[1]) in (low(x.get('n')), low(x.get('nf')))), None)
                 if not r: continue
                 for ring in r.get('_r') or []:
                     pts = [[round(q[0], 5), round(q[1], 5)] for q in ring]

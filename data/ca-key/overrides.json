@@ -1539,39 +1539,39 @@
   },
   "CA-1023": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique de Matane"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-1025": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique des Chic-Chocs"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-1026": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique des Laurentides"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-1027": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique La Vérendrye"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-1028": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique Mastigouche"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-1029": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique Rouge-Matawin"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-1031": {
    "none": true,
@@ -1579,9 +1579,9 @@
   },
   "CA-1928": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique Ashuapmushuan"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-2039": {
    "none": true,
@@ -1602,15 +1602,15 @@
   },
   "CA-2208": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique de Port-Cartier-Sept-Îles"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-2209": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique de Port-Daniel"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-2218": {
    "none": true,
@@ -1629,15 +1629,15 @@
   },
   "CA-2242": {
    "join": [
-    "Québec Réser:None"
+    "Réserve faunique du Saint-Maurice"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)"
   },
   "CA-2335": {
    "join": [
-    "Québec Zone :None"
+    "Zec Onatchiway-Est"
    ],
-   "why": "the closest official land; bigger or a different shape (hand review Oct 22)",
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)",
    "approx": true
   },
   "CA-4918": {
@@ -1654,9 +1654,12 @@
   },
   "CA-4972": {
    "join": [
-    "Québec Parc :None"
+    "Parc régional du réservoir Kiamika"
    ],
-   "why": "same place, another name (hand review Oct 22)"
+   "why": "Oct 25 round 5 hand check: the official name in Québec MRNF (the old id join pointed at a record with no id)",
+   "no": [
+    "Parc national du Mont-Tremblant"
+   ]
   },
   "CA-4981": {
    "none": true,
@@ -1992,6 +1995,61 @@
    ],
    "atpin": true,
    "why": "Oct 25: outside research bot match (official provincial layer, pin inside or at it), accepted by chat 2"
+  },
+  "CA-5566": {
+   "join": [
+    "Devil's Punch Bowl Conservation Area & Saltfleet Conservation Area"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-3186": {
+   "join": [
+    "Anhluut'ukwsim Laxmihl Angwinga'asanskwhl Nisga'a Park",
+    "Anhluut'ukwsim Laxmihl Angwinga'asanskwhl Nisga'a Park [a.k.a. Nisga'a Memorial Lava Bed Park]"
+   ],
+   "no": [
+    "NISGA'A MEMORIAL LAVA BED PROTECTED AREA"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-1362": {
+   "join": [
+    "Crane Lake Forest Conservation Reserve"
+   ],
+   "no": [
+    "Crane Lake Reserve"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-2523": {
+   "no": [
+    "Turtle Mountain Provincial Park"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-1005": {
+   "join": [
+    "Parc régional de la Forêt Ouareau"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-4969": {
+   "join": [
+    "Parc régional des Sept-Chutes"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-1006": {
+   "join": [
+    "Parc régional de la Montagne du Diable"
+   ],
+   "why": "Oct 25 round 5 hand check"
+  },
+  "CA-2317": {
+   "join": [
+    "Zec du Lac-de-la-Boiteuse"
+   ],
+   "why": "Oct 25 round 5 hand check"
   }
  }
 }
