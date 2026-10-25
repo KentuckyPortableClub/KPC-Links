@@ -1,6 +1,6 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **143 of 205** parks joined to official land (same name + same kind of place). **1** to check by hand, **48** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **143 of 205** parks joined to official land (same name + same kind of place). **1** to check by hand, **48** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -95,7 +95,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **143 of 205** parks joined
 - Ozark Plateau National Wildlife Refuge · NWR · Ozark Plateau National Wildlife Refuge · ~4,338 ac
 - Southern Plains Experimental Range · REA · Agricultural Research Service (ARS) · ~4,325 ac
 - Ozark Plateau National Wildlife Refuge · NWR · OZARK PLATEAU NATIONAL WILDLIFE REFUGE · ~3,824 ac
-- Osage Wildlife Management Area - Rock Creek ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~3,729 ac
 - Osage - Rock Creek ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~3,729 ac
 - Okmulgee Public Hunting Areaa · SCA · Department of Wildlife Conservation · ~3,497 ac
 - Tishomingo Wildlife Management Unit ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~3,446 ac
@@ -135,3 +134,4 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **143 of 205** parks joined
 - Lake Vincent ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~142 ac
 - Edmond Park · PUB · Tulsa District Corps of Engineers · ~131 ac
 - Union High School Freshman Academy · LP · INDEPENDENT SCHOOL DIST NO 9 · ~79 ac
+- Oliver's Woods · SCA · Unknown · ~78 ac

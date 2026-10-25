@@ -1,6 +1,6 @@
 # WI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **326 of 348** parks joined to official land (same name + same kind of place). **3** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **326 of 348** parks joined to official land (same name + same kind of place). **3** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -86,7 +86,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **326 of 348** parks joined
 - Moose Lake State Natural Area · SCA · Wisconsin Department of Natural Resources · ~3,797 ac
 - Kickapoo Valley Reserve ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~3,680 ac
 - Lower Wolf River Bottomlands Natural Resource Area · SREC · Wisconsin Department of Natural Resources · ~3,641 ac
-- Kickapoo Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~3,634 ac
 - Suk Cerney Wetlands ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~3,611 ac
 - Nelson-Trevino Bottoms ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~3,608 ac
 - Scattered Wildlife - Wd · SREC · Wisconsin Department of Natural Resources · ~3,605 ac
@@ -95,3 +94,4 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **326 of 348** parks joined
 - Extensive Wl Habitat - Sd · SREC · Wisconsin Department of Natural Resources · ~3,451 ac
 - DuPage Lake Peatlands ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~3,287 ac
 - Kickapoo Wildlife Area-Wauzeka Unit ·  · Wisconsin DNR managed properties · ~3,184 ac
+- Kickapoo Wildlife Area-Wauzeka Unit ·  · Wisconsin DNR (land, state GIS table) · ~3,184 ac

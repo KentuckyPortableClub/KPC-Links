@@ -1,6 +1,6 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **122 of 134** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **122 of 134** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -32,7 +32,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **122 of 134** parks joined
 - Six Mile Run Reservoir Site ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~3,210 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~2,904 ac
 - Six Mile Run Reservoir Site · SP · Division of Parks and Forestry · ~2,294 ac
-- Palisades Park · LREC · Palisades Interstate Park Commission · ~2,218 ac
 - Fortescue Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,983 ac
 - Whittingham Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,948 ac
 - Trout Brook Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,947 ac
@@ -85,3 +84,4 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **122 of 134** parks joined
 - Warren Trail · SREC · Division of Parks and Forestry · ~602 ac
 - Sussex Branch Trail ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~586 ac
 - Port Republic Wildlife Management Area · SCA · Division of Fish and Wildlife · ~584 ac
+- Mahlon Dickerson Reservation · SOTH ·   · ~572 ac

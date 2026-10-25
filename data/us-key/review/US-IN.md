@@ -1,6 +1,6 @@
 # IN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **205 of 229** parks joined to official land (same name + same kind of place). **0** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **205 of 229** parks joined to official land (same name + same kind of place). **0** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -41,8 +41,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **205 of 229** parks joined
 - Monroe Lake ·  · Indiana DNR properties · ~18,310 ac
 - Monroe Lake ·  · Indiana DNR (land, state GIS table) · ~18,310 ac
 - Brookville Recreation Area · REC · Louisville · ~17,185 ac
-- Brookville Lake ·  · Indiana DNR properties · ~13,201 ac
-- Brookville Lake ·  · Indiana DNR (land, state GIS table) · ~13,201 ac
 - Mississinewa Lake ·  · Indiana DNR properties · ~13,064 ac
 - Mississinewa Lake ·  · Indiana DNR (land, state GIS table) · ~13,064 ac
 - Minnehana Fish and Wildlife Area · SCA · Indiana Department of Natural Resources Fish and Wildlife · ~12,889 ac
@@ -54,8 +52,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **205 of 229** parks joined
 - Monroe Lake ·  · Indiana DNR properties · ~3,142 ac
 - Monroe Lake ·  · Indiana DNR (land, state GIS table) · ~3,142 ac
 - Gibson Lake Recreation Area · SREC · Unknown State · ~2,908 ac
-- Brookville Lake ·  · Indiana DNR properties · ~2,734 ac
-- Brookville Lake ·  · Indiana DNR (land, state GIS table) · ~2,734 ac
 - Bradford Woods · SRMA · Indiana University · ~2,375 ac
 - Green River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,197 ac
 - Brush Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,869 ac
@@ -90,10 +86,14 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **205 of 229** parks joined
 - Elk Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~694 ac
 - Eagle Marsh ·  · Indiana DNR properties · ~670 ac
 - Eagle Marsh ·  · Indiana DNR (land, state GIS table) · ~670 ac
-- Brookville Lake ·  · Indiana DNR properties · ~663 ac
-- Brookville Lake ·  · Indiana DNR (land, state GIS table) · ~663 ac
 - Marsh Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~662 ac
 - Beaver Lake Nature Preserve · SCA · Indiana DNR, Fish and Wildlife Division · ~656 ac
 - Randolph County Wildlife Management Area ·  · Indiana DNR properties · ~584 ac
 - Randolph County Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~584 ac
-- Salamonie Lake ·  · Indiana DNR properties · ~556 ac
+- Salamonie Lake ·  · Indiana DNR (land, state GIS table) · ~556 ac
+- Stucker Fork Fish And Wildlife Area ·  · Indiana DNR properties · ~513 ac
+- Stucker Fork Fish And Wildlife Area ·  · Indiana DNR (land, state GIS table) · ~513 ac
+- Randolph Wildlife Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~505 ac
+- Monroe Lake ·  · Indiana DNR properties · ~482 ac
+- Monroe Lake ·  · Indiana DNR (land, state GIS table) · ~482 ac
+- Kankakee River Swampland · SCA · Indiana DNR, Fish and Wildlife Division · ~454 ac
