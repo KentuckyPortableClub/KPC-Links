@@ -1,6 +1,6 @@
 # PA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **477 of 494** parks joined to official land (same name + same kind of place). **0** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **478 of 494** parks joined to official land (same name + same kind of place). **0** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -19,7 +19,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **477 of 494** parks joined
 - US-0684 Lower Delaware National Wild and Scenic River (National Wild and Scenic River)
 - US-0898 White Clay Creek National Wild and Scenic River (National Wild and Scenic River)
 - US-10802 Gloria Dei Church National Historic Site (National Historic Site)
-- US-11977 PA 339 State Game Land (State Game Land)
 - US-12234 Allegheny National Wild & Scenic River (National Wild & Scenic River)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)

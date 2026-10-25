@@ -1,10 +1,11 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **345 of 692** parks joined to official land (same name + same kind of place). **4** to check by hand, **82** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **350 of 692** parks joined to official land (same name + same kind of place). **5** to check by hand, **78** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11749** Grand Gultch BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Grand Gulch (~0 ac, same name, different kind of place); Monticello Field Office (~1,787,477 ac, the POTA pin is inside it (different name))
+- **US-5840** Fry Canyon BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Fry Canyon Cabin (~0 ac, similar name); Monticello Field Office (~1,787,477 ac, the POTA pin is inside it (different name))
 - **US-5913** Historic Union Pacific Rail Trail State Park (State Park) → Rail Trail (~0 ac, similar name); Rail Trail (~0 ac, similar name)
 - **US-5932** Jordan River Off-Highway Vehicle State Park (State Park) → Jordan River OHV (~0 ac, similar name)
 - **US-5950** This Is The Place Heritage Park (Park) → This Is The Place (~0 ac, similar name); Pioneer Trail State Park (~236 ac, the POTA pin is inside it (different name))
@@ -14,7 +15,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **345 of 692** parks joined
 - US-0895 Virgin National Wild and Scenic River (National Wild and Scenic River) → on Zion National Park (~145,304 ac)
 - US-10730 Cedar Mountain Day Use Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on San Rafael Swell (~936,480 ac); Price Field Office (~2,480,295 ac)
 - US-10794 Logan Canyon National Scenic Byway National Parkway (National Parkway) → on Cache National Forest (~436,715 ac)
-- US-10963 Logan Aquatic Animal Health & Research Center State Fish Hatchery (State Fish Hatchery) → on Utah State Department of Wildlife Resources 204 (~18 ac)
+- US-10963 Logan Aquatic Animal Health & Research Center State Fish Hatchery (State Fish Hatchery) → on Fisheries Experiment Station (~0 ac); Utah State Department of Wildlife Resources 204 (~18 ac)
 - US-10964 Cathedral Valley Scenic Backway BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Richfield Field Office (~2,127,022 ac)
 - US-10965 Great Western Trail BLM Historic Trail (BLM Historic Trail) → on The State of Utah School and Institutional Trust Lands Administration 1548 (~638 ac); Richfield Field Office (~2,127,022 ac)
 - US-10968 Buckskin, White House, Wire Pass Day Use BLM Recreation Management Area (BLM Recreation Management Area) → on Paria Canyon - Vermilion Cliffs (~0 ac); Paria Canyon (~21,310 ac)
@@ -36,7 +37,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **345 of 692** parks joined
 - US-11008 Devil's Playground Desigated Routes BLM Recreation Management Area (BLM Recreation Management Area) → on Salt Lake  Field Office (~3,284,358 ac)
 - US-11010 Crystal Peak Rockhounding Area BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Wah Wah Mountains (~0 ac); Fillmore Field Office (~4,420,134 ac)
 - US-11011 Flying Monkey Trail BLM Recreation Management Area (BLM Recreation Management Area) → on St. George Field Office (~629,088 ac)
-- US-11097 Mammoth Creek State Fish Hatchery (State Fish Hatchery) → on State Trust Lands Hatch Block (~13,911 ac)
 - US-11109 Hidden Splendor Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Muddy Creek (~252,058 ac); San Rafael Swell (~936,480 ac)
 - US-11111 Pinhook Battleground National Historic Site (National Historic Site) → on Manti-La Sal National Forest (~1,243,191 ac)
 - US-11113 Baptist Draw BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Muddy Creek (~252,058 ac); San Rafael Swell (~936,480 ac)
@@ -163,7 +163,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **345 of 692** parks joined
 - US-5834 Nefertiti BLM Recreation Management Area (BLM Recreation Management Area) → on Desolation Canyon (~0 ac); Lower Gray Canyon (~3,805 ac)
 - US-5837 Labrynth Canyon BLM Wilderness Area (Wilderness Area) → on Labyrinth Canyon (~0 ac); Price Field Office (~2,480,295 ac)
 - US-5839 Daddy Canyon Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Nine Mile Canyon (~24,249 ac); Price Field Office (~2,480,295 ac)
-- US-5840 Fry Canyon BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Monticello Field Office (~1,787,477 ac)
 - US-5845 Fossil Point Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Price Field Office (~2,480,295 ac)
 - US-5851 Black Dragon Pictograph Panel BLM Historic Preservation Site (BLM Historic Preservation Site) → on Mexican Mountain (~0 ac); San Rafael Swell (~936,480 ac)
 - US-5852 Mexican Mountain Wilderness BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Mexican Mountain (~0 ac); San Rafael Swell (~936,480 ac)
@@ -286,9 +285,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **345 of 692** parks joined
 - US-11006 Hogup Mountains Designated Routes BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11009 South Caineville Mesa Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11090 Kamas Utah State Fish Hatchery (State Fish Hatchery)
-- US-11092 Midway Utah State Fish Hatchery (State Fish Hatchery)
-- US-11093 Egan State Fish Hatchery (State Fish Hatchery)
-- US-11094 Glenwood State Fish Hatchery (State Fish Hatchery)
 - US-11095 DWR Wahweap Warm Water State Fish Hatchery (State Fish Hatchery)
 - US-11099 Klondike Bluffs BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11110 Sego Canyon Rock Art BLM Interpretive Site (BLM Interpretive Site)
@@ -306,7 +302,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **345 of 692** parks joined
 - US-11767 Sevier River Canyon BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11963 Big Rock Candy Mountain Bike-Trailhead NPS Recreation Site (Recreation Site)
 - US-12069 Old Iron Town State Historical Park (State Historical Park)
-- US-12307 Springville State Fish Hatchery (State Fish Hatchery)
 - US-12496 Quichapa BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12998 Cache Valley Public Shooting Range Utah DWR State Recreation Site (State Recreation Site)
 - US-13000 Spiral Jetty NPS National Historic Site (National Historic Site)

@@ -1,6 +1,6 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,15 +13,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 196** parks joined
 ## Nothing found in PAD-US
 
 - US-0446 Funk WPA Wetland Management District (Wetland Management District)
-- US-12087 Scotia Canal Wildlife Management Area (Wildlife Management Area)
-- US-12088 Davis Creek Wildlife Management Area (Wildlife Management Area)
-- US-12089 Arcadia Diversion Dam Wildlife Management Area (Wildlife Management Area)
-- US-12090 Milburn Dam Wildlife Management Area (Wildlife Management Area)
-- US-12686 East Phillips Canyon Wildlife Management Area (Wildlife Management Area)
-- US-12946 Elwood Reservoir Wildlife Management Area (Wildlife Management Area)
-- US-13213 Guide Rock Diversion Dam Wildlife Management Area (Wildlife Management Area)
-- US-13379 Kent Diversion Dam Wildlife Management Area (Wildlife Management Area)
-- US-13380 Mirdan Canal Wildlife Management Area (Wildlife Management Area)
 - US-3373 Chimney Rock National Historic Site (National Historic Site)
 - US-3374 Neligh Mill State Historic Site (State Historic Site)
 - US-3375 Stolley National Historic Site (National Historic Site)
@@ -32,8 +23,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 196** parks joined
 - US-4012 Elkhorn Crossing State Park (State Park)
 - US-4013 Prairie View State Recreation Area (State Recreation Area)
 - US-4015 Platte River Landing State Park (State Park)
-- US-4018 Wildwood Lake Wildlife Management Area (Wildlife Management Area)
-- US-4023 Chalkrock Wildlife Management Area (Wildlife Management Area)
 - US-4025 Buckley Creek State Recreation Area (State Recreation Area)
 - US-4027 Lone Star State Recreation Area (State Recreation Area)
 - US-4036 Walnut Creek State Recreation Area (State Recreation Area)
@@ -50,12 +39,20 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 196** parks joined
 - Roman L. Hruska U.s. Animal Meat Research Center · REA · Agricultural Research Service (ARS) · ~34,541 ac
 - Harlan County Recreation Area · REC · Kansas City · ~31,020 ac
 - Carter Canyon (PRBE) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~10,533 ac
+- Calamus Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~9,932 ac
+- Merritt Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~9,103 ac
+- Medicine Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~8,639 ac
+- Swanson Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~8,059 ac
 - Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
 - Clay County Waterfowl Production Area Of Ne · RMA · CLAY COUNTY WATERFOWL PRODUCTION AREA OF NE · ~6,943 ac
+- Clear Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~6,118 ac
+- Red Willow Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~5,216 ac
 - Newcastle Field Office · PUB · BLM · ~5,144 ac
 - Phelps County Waterfowl Production Area · RMA · Phelps County Waterfowl Production Area · ~4,677 ac
+- Enders Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~4,359 ac
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,155 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,001 ac
+- Bazile Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~3,971 ac
 - N-CORPE (NRD) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~3,802 ac
 - Fillmore County Waterfowl Production Area · RMA · Fillmore County Waterfowl Production Area · ~3,622 ac
 - Fillmore County Waterfowl Production Area · RMA · FILLMORE COUNTY WATERFOWL PRODUCTION AREA · ~3,573 ac
@@ -75,6 +72,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 196** parks joined
 - Cedar Canyon Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,259 ac
 - Franklin County Waterfowl Production Area · RMA · Franklin County Waterfowl Production Area · ~2,149 ac
 - Franklin County Waterfowl Production Area · RMA · FRANKLIN COUNTY WATERFOWL PRODUCTION AREA · ~2,073 ac
+- Box Butte Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,005 ac
 - Branched Oak Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,981 ac
 - Grove Lake Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,965 ac
 - Branched Oak Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,948 ac
@@ -97,12 +95,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **163 of 196** parks joined
 - Wehrspann Recreation Area · REC · Omaha · ~1,196 ac
 - Oliver Reservoir Recreation Area (NRD) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~1,187 ac
 - Thomas Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,138 ac
-- Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,124 ac
-- Twin Oaks Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,117 ac
-- Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,084 ac
-- Ash Hollow SHP ·  · Nebraska Game and Parks areas · ~1,049 ac
-- Niobrara Confluence Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,034 ac
-- Hamilton County Waterfowl Production Area · RMA · HAMILTON COUNTY WATERFOWL PRODUCTION AREA · ~1,026 ac
-- Hamilton County Waterfowl Production Area · RMA · Hamilton County Waterfowl Production Area · ~1,026 ac
-- Pine Glen Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~961 ac
-- York County Waterfowl Production Area · RMA · YORK COUNTY WATERFOWL PRODUCTION AREA · ~937 ac

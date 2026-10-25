@@ -1,15 +1,19 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined to official land (same name + same kind of place). **0** to check by hand, **86** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **213 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-12372** Cave Rock State Park (State Park) → Cave Rock Lake Tahoe-Nevada State Park (~3 ac, similar name)
+- **US-13275** Pioneer Memorial Park State Historical Monument (State Historical Monument) → Pioneer Memorial Park (~6 ac, similar name)
+- **US-13287** Pershing County State Historical Monument (State Historical Monument) → Pershing County Park (~2 ac, similar name)
+- **US-13482** Galena Creek Fish Hatchery State Historical Monument (State Historical Monument) → GALENA CREEK RECREATION AREA (~68 ac, similar name); Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name)); GALENA CREEK REGIONAL PARK (~341 ac, the POTA pin is inside it (different name))
+- **US-2638** Van Sickle Bi State Park (State Park) → Van Sickle Unit/AmackerSchultz Lake Tahoe-Nevada State Park (~558 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10851 East Pershing Complex BLM Herd Management Area (BLM Herd Management Area) → on Stillwater Field Office (~3,582,451 ac)
-- US-11050 Ice Age Fossils State Park (State Park) → on Tule Springs Archaeology Site (~324 ac)
-- US-12817 Moon Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on Sierra Front Field Office (~1,146,352 ac)
+- US-12817 Moon Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on North Reno Recreation Area (~18,957 ac); Sierra Front Field Office (~1,146,352 ac)
 - US-13020 Smoke Creek BLM National Conservation Area (BLM National Conservation Area) → on Poodle Mountain Wilderness Study Area (~0 ac); Poodle Mountain (~0 ac)
 - US-13040 Grimes Point/Hidden Cave BLM Historic Preservation Site (BLM Historic Preservation Site) → on Usbr (~139,499 ac)
 - US-13058 Wilson Canyon BLM Recreation Management Area (BLM Recreation Management Area) → on Toiyabe National Forest (~3,206,430 ac)
@@ -41,8 +45,9 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - US-13288 Columbus Nevada State Historical Monument (State Historical Monument) → on Tonopah Field Office (~6,073,247 ac)
 - US-13292 Olinghouse Mining District BLM Historic Area (BLM Historic Area) → on Sierra Front Field Office (~1,146,352 ac)
 - US-13299 Moapa Valley State Historical Monument (State Historical Monument) → on Las Vegas Field Office (~2,378,020 ac)
-- US-13300 Powell of the Colorado State Historical Monument (State Historical Monument) → on Lake Mead National Recreation Area (~581,651 ac)
+- US-13300 Powell of the Colorado State Historical Monument (State Historical Monument) → on Lake Mead National Recreation Area (~563,267 ac); Lake Mead National Recreation Area (~581,651 ac)
 - US-13308 Old Boundary (Nevada’s Southern Boundary 1861-1867) #1 State Historical Monument (State Historical Monument) → on Caliente Field Office (~5,063,883 ac)
+- US-13324 Sparks State Historical Monument (State Historical Monument) → on Deer Park & Pool (~3 ac)
 - US-13326 Delamar BLM Historic Preservation Site (BLM Historic Preservation Site) → on Caliente Field Office (~5,063,883 ac)
 - US-13365 The Camel Corps State Historical Monument (State Historical Monument) → on Avi Kwa Ame (~0 ac); Laughlin (~21,250 ac)
 - US-13366 Edwards Creek Valley State Historical Monument (State Historical Monument) → on Stillwater Field Office (~3,582,451 ac)
@@ -57,7 +62,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - US-13467 Hiko Nevada State Historical Monument (State Historical Monument) → on Caliente Field Office (~5,063,883 ac)
 - US-13476 Stonehouse Nevada State Historical Monument (State Historical Monument) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13480 The Eureka Mining District Producing Ore Since 1864 State Historical Monument (State Historical Monument) → on Mount Lewis Field Office (~4,383,120 ac)
-- US-13482 Galena Creek Fish Hatchery State Historical Monument (State Historical Monument) → on Toiyabe National Forest (~3,206,430 ac)
 - US-13494 Lida BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Palmetto (~119,262 ac)
 - US-13496 Ione, NV BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Tonopah Field Office (~6,073,247 ac)
 - US-13497 Middlegate Station BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Stillwater Field Office (~3,582,451 ac)
@@ -74,15 +78,13 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - US-13522 Samsarg Field Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Sierra Front Field Office (~1,146,352 ac)
 - US-13523 Kingston Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Mount Lewis Field Office (~4,383,120 ac)
 - US-13524 Currant Ranch Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Bristlecone Field Office (~5,647,647 ac)
-- US-13525 Echo Bay Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Muddy Mountains (~187,798 ac); Lake Mead National Recreation Area (~581,651 ac)
+- US-13525 Echo Bay Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Muddy Mountains (~187,798 ac); Lake Mead National Recreation Area (~563,267 ac)
 - US-13526 Duckwater Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Pancake (~853,025 ac); Bristlecone Field Office (~5,647,647 ac)
 - US-13580 Bog Hot BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Jackson Mountains (~286,430 ac); Black Rock Field Office (~2,358,385 ac)
-- US-2626 Berlin-Ichthyosaur State Park (State Park) → on Toiyabe National Forest (~3,206,430 ac)
 - US-4438 Buckland Station State Park (State Park) → on Fort Churchill State Historic Park (~3,468 ac)
 
 ## Nothing found in PAD-US
 
-- US-12372 Cave Rock State Park (State Park)
 - US-12373 Sand Harbor State Park (State Park)
 - US-13010 Dry Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area)
 - US-13023 Artesia Lake State Wildlife Area (State Wildlife Area)
@@ -105,14 +107,12 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - US-13267 Pyramid Lake Road Scenic Byway Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty)
 - US-13268 Sutcliff-Nixon Rd Scenic Byway Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty)
 - US-13274 Empire & Carson River Mills State Historical Monument (State Historical Monument)
-- US-13275 Pioneer Memorial Park State Historical Monument (State Historical Monument)
 - US-13276 West End of Hastings Cutoff State Historical Monument (State Historical Monument)
 - US-13277 Pioche State Historical Monument (State Historical Monument)
 - US-13278 El Dorado Canyon State Historic Site (State Historic Site)
 - US-13280 Austin State Historical Monument (State Historical Monument)
 - US-13283 Nevada’s Birthplace State Historical Monument (State Historical Monument)
 - US-13285 Tonopah Nevada State Historical Monument (State Historical Monument)
-- US-13287 Pershing County State Historical Monument (State Historical Monument)
 - US-13289 The Humboldt Canal State Historical Monument (State Historical Monument)
 - US-13290 Forty Mile Desert State Historical Monument (State Historical Monument)
 - US-13291 Chinese in Nevada-#29 State Historical Monument (State Historical Monument)
@@ -127,7 +127,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - US-13321 Palisade Nevada State Historical Monument (State Historical Monument)
 - US-13322 Grand Army Of The Republic Memorial Tree State Historical Monument (State Historical Monument)
 - US-13323 Savage Mansion (c. 1863) State Historical Monument (State Historical Monument)
-- US-13324 Sparks State Historical Monument (State Historical Monument)
 - US-13325 Paradise Valley State Historical Monument (State Historical Monument)
 - US-13363 Panaca Mercantile Store State Historical Monument (State Historical Monument)
 - US-13367 Wabuska Nevada State Historical Monument (State Historical Monument)
@@ -161,13 +160,10 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - US-13484 Boulder City Navy Hangar/Bullock Field National Historic Site (National Historic Site)
 - US-13507 Sail Park, NV BLM Backcountry Airstrip (BLM Backcountry Airstrip)
 - US-13579 Pinson Mine Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip)
-- US-2638 Van Sickle Bi State Park (State Park)
-- US-3389 Spooner Lake and Backcountry State Park (State Park)
 - US-4440 Elgin School House State Park (State Park)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4575 Old Spanish National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
-- US-9682 Walker River State Recreation Area (State Recreation Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -187,6 +183,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - Black Rock Field Office · PUB · BLM · ~2,358,385 ac
 - Desert National Wildlife Range · NWR · Desert National Wildlife Range · ~1,512,944 ac
 - Desert National Wildlife Range · NWR · DESERT NATIONAL WILDLIFE RANGE · ~1,512,682 ac
+- DESERT NWR PROPOSED WILDERNESS AREA ·  · Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table) · ~1,365,058 ac
 - Nevada Wild Horse Range ·  · BLM herd management areas · ~1,299,285 ac
 - Black Rock SRMA ·  · BLM recreation sites · ~1,222,806 ac
 - Sierra Front Field Office · PUB · BLM · ~1,146,352 ac
@@ -230,4 +227,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **209 of 367** parks joined
 - Inyo National Forest · NF · Forest Service Region 05 Pacific Southwest · ~113,755 ac
 - Emigrant Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~112,782 ac
 - Jarbidge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~110,513 ac
-- Black Rock OHV Open Area ·  · BLM recreation areas · ~104,545 ac

@@ -1,24 +1,31 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined to official land (same name + same kind of place). **1** to check by hand, **59** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **193 of 298** parks joined to official land (same name + same kind of place). **10** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10789** North Glendo State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Glendo (~0 ac, similar name)
+- **US-10776** Packers Lake Public Access Area BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Packers Lake (~105 ac, similar name)
+- **US-10799** Ellis State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Ellis (~3,836 ac, similar name); Ellis (~0 ac, similar name); Ellis (~0 ac, similar name); Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); Middle Fork of the Powder River SRMA (~14,905 ac, the POTA pin is inside it (different name))
+- **US-10828** Quebec 01 Missile Alert Facility State Park (State Park) → Quebec 01 MAF (~6 ac, similar name)
+- **US-10845** Bobcat-Houlihan Trail BLM Recreation Management Area (BLM Recreation Management Area) → South Fork Shoshone River-Houlihan/Bobcat (~58 ac, similar name); South Fork Shoshone River-Houlihan/Bobcat (~18 ac, similar name); Rivers SRMA (~6,059 ac, the POTA pin is inside it (different name))
+- **US-10853** Cody Canal BLM Recreation Management Area (BLM Recreation Management Area) → South Fork Shoshone River-Cody Canal (~72 ac, similar name); Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name))
+- **US-10883** Red Canyon Overlook BLM Interpretive Site (BLM Interpretive Site) → Red Canyon (~1,987 ac, similar name); Red Canyon (~1 ac, similar name)
+- **US-12719** Newton Lakes BOR Recreation Site (Recreation Site) → Newton Lakes (~471 ac, similar name)
+- **US-6117** Camp Douglas WW-II POW Officers' Club State Historic Site (State Historic Site) → Camp Douglas (~1 ac, similar name)
+- **US-6119** Wyoming Pioneer Memorial Museum State Historic Site (State Historic Site) → Wyoming Pioneer Museum (~2 ac, similar name)
+- **US-6212** Whiskey Basin/ Little Red Creek Wildlife Management Area (Wildlife Management Area) → Whiskey Basin (~5,682 ac, similar name); Whiskey Basin Wildlife Habitat Management Area (~12,843 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10799 Ellis State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → on Middle Fork of the Powder River SRMA (~14,905 ac); Worland Field Office (~2,099,390 ac)
 - US-10822 Daniel State Fish Hatchery (State Fish Hatchery) → on State Lands 1111115411 (~639 ac)
 - US-10824 Ten Sleep State Fish Hatchery (State Fish Hatchery) → on Bighorn National Forest (~1,105,122 ac)
 - US-10825 Tillett Springs State Fish Hatchery (State Fish Hatchery) → on Cody Field Office (~1,090,720 ac)
+- US-10829 Fetterman Fight National Battlefield (National Battlefield) → on Fetterman Battlefield (~457 ac)
 - US-10837 Little Sandy Crossing BLM Historic Area (BLM Historic Area) → on Usbr (~735,338 ac)
 - US-10840 Gebo - Causley Historic Mining District BLM Interpretive Site (BLM Interpretive Site) → on Worland Field Office (~2,099,390 ac)
 - US-10842 Boar's Tusk BLM Recreation Management Area (BLM Recreation Management Area) → on Sand Dunes (~0 ac); Rock Springs Field Office (~3,606,721 ac)
-- US-10845 Bobcat-Houlihan Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Rivers SRMA (~6,059 ac)
 - US-10848 Castle Gardens Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
 - US-10850 Cedar Canyon Petroglyphs BLM Recreation Management Area (BLM Recreation Management Area) → on Rock Springs Field Office ERMA (~3,308,154 ac); Rock Springs Field Office (~3,606,721 ac)
-- US-10853 Cody Canal BLM Recreation Management Area (BLM Recreation Management Area) → on Cody Field Office (~1,090,720 ac)
 - US-10854 Corral Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on North Platte River SRMA (~7,095 ac); Rawlins Field Office (~3,531,790 ac)
 - US-10855 Deep Gulch BLM Recreation Management Area (BLM Recreation Management Area) → on Western Rawlins Field Office ERMA (~1,904,417 ac); Rawlins Field Office (~3,531,790 ac)
 - US-10856 Dome Rock BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
@@ -36,10 +43,8 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - US-10898 Lake Hattie BLM Recreation Management Area (BLM Recreation Management Area) → on Rawlins Field Office (~3,531,790 ac)
 - US-10929 Cottonwood Creek Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~129,768 ac); Cody Field Office (~1,090,720 ac)
 - US-11741 Palisades WSA USFS Recreation Area (USFS Recreation Area) → on Targhee National Forest (~37,247 ac)
-- US-12704 Bear River Divide State HMA Wildlife Area (Wildlife Area) → on Kemmerer Field Office ERMA (~1,290,770 ac); Kemmerer Field Office (~1,421,062 ac)
 - US-12722 Wheatland Reservoir #3 BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac)
 - US-12723 Whitetail Day Use BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
-- US-12726 Camp Creek State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → on Teton National Forest (~1,660,590 ac)
 - US-6131 Bessemer Bend BLM Historic Preservation Site (BLM Historic Preservation Site) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
 - US-6143 Outlaw Cave Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Middle Fork Powder River SRMA (~10,084 ac); Buffalo Field Office (~779,089 ac)
 - US-6153 Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
@@ -49,7 +54,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - US-6162 Red Gulch Dinosaur Tracksite BLM Recreation Management Area (BLM Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
 - US-6164 Duck Swamp Interpretive Area BLM Interpretive Site (BLM Interpretive Site) → on Bighorn River ERMA (~1,915 ac); Worland Field Office (~2,099,390 ac)
 - US-6165 Triangle BLM Herd Management Area (BLM Herd Management Area) → on Wind River Front SRMA (~258,170 ac); Rock Springs Field Office (~3,606,721 ac)
-- US-6169 Lake Cameahwait State Recreation Area (State Recreation Area) → on Sand Mesa Wildlife Habitat Management Area (~21,133 ac)
+- US-6169 Lake Cameahwait State Recreation Area (State Recreation Area) → on Sand Mesa (~11,691 ac); Sand Mesa Wildlife Habitat Management Area (~21,133 ac)
 - US-6177 Johnny Behind the Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on Lander Valley Community SRMA (~6,169 ac)
 - US-6181 Divide Basin BLM Herd Management Area (BLM Herd Management Area) → on South Pinnacles (~0 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6182 Miner's Delight BLM Historic Preservation Site (BLM Historic Preservation Site) → on Lander Field Office (~2,388,958 ac)
@@ -65,35 +70,20 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - US-6200 Overland Stage BLM Interpretive Site (BLM Interpretive Site) → on White Mountain (~207,372 ac)
 - US-6203 Pilot Butte Wild Horse Scenic Tour BLM Recreation Management Area (BLM Recreation Management Area) → on White Mountain (~207,372 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6207 Clarks Fork of the Yellowstone National Wild & Scenic River (National Wild & Scenic River) → on Shoshone National Forest (~2,439,182 ac)
-- US-6212 Whiskey Basin/ Little Red Creek Wildlife Management Area (Wildlife Management Area) → on Whiskey Basin Wildlife Habitat Management Area (~12,843 ac)
 - US-6215 Simpsons Hollow BLM Recreation Management Area (BLM Recreation Management Area) → on Little Colorado (~525,421 ac); Rock Springs Field Office (~3,606,721 ac)
 - US-6216 Pilot Butte Overlook BLM Interpretive Site (BLM Interpretive Site) → on Little Colorado (~525,421 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6219 Lombard Ferry State Historic Site (State Historic Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
 - US-6220 NHT Auto Tour Route BLM Interpretive Site (BLM Interpretive Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River) → on Teton National Forest (~1,660,590 ac)
-- US-6230 Cumberland Wildlife Management Area (Wildlife Management Area) → on Kemmerer Field Office ERMA (~1,290,770 ac); Kemmerer Field Office (~1,421,062 ac)
+- US-6230 Cumberland Wildlife Management Area (Wildlife Management Area) → on Bear River Divide (~229,798 ac); Kemmerer Field Office ERMA (~1,290,770 ac)
 
 ## Nothing found in PAD-US
 
-- US-10776 Packers Lake Public Access Area BLM Special Recreation Management Area (BLM Special Recreation Management Area)
-- US-10778 Sand Creek State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
-- US-10791 Pilot Hill State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
-- US-10792 John/Annie Woodhouse State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-10795 Shoshone Cavern AKA Spirit Mtn Cave BLM Special Recreation Management Area (BLM Special Recreation Management Area)
-- US-10796 Coco Belle Van Meerendonk BLM Special Recreation Management Area (BLM Special Recreation Management Area)
-- US-10798 Viva Naughton State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
-- US-10805 Sinks Canyon State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
-- US-10807 Black Butte State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
-- US-10809 Luke Lynch State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-10817 Story State Fish Hatchery (State Fish Hatchery)
 - US-10818 Auburn State Fish Hatchery (State Fish Hatchery)
-- US-10819 Boulder Rearing Station State Fish Hatchery (State Fish Hatchery)
-- US-10820 Clarks Fork State Fish Hatchery (State Fish Hatchery)
 - US-10821 Dan Speas State Fish Hatchery (State Fish Hatchery)
 - US-10823 Dubois State Fish Hatchery (State Fish Hatchery)
-- US-10826 Wigwam Rearing Station State Fish Hatchery (State Fish Hatchery)
-- US-10828 Quebec 01 Missile Alert Facility State Park (State Park)
-- US-10829 Fetterman Fight National Battlefield (National Battlefield)
 - US-10835 Pacific Creek BLM Interpretive Site (BLM Interpretive Site)
 - US-10836 Emigrant Gap BLM Interpretive Site (BLM Interpretive Site)
 - US-10838 Buckskin Crossing BLM Interpretive Site (BLM Interpretive Site)
@@ -104,18 +94,13 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - US-10865 Lance Creek Fossil Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10877 Mallo Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10880 Paintrock Canyon Trail BLM Recreation Management Area (BLM Recreation Management Area)
-- US-10883 Red Canyon Overlook BLM Interpretive Site (BLM Interpretive Site)
 - US-10893 Three Patches BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10900 South Bighorn/Red Wall Backcountry Byway BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10946 Crazy Woman Creek National Battlefield (National Battlefield)
 - US-10947 The Battle of Red Buttes National Battlefield (National Battlefield)
-- US-11717 Woodruff Narrows State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-11718 Bear River State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-12718 Kortes Reservoir/Miracle Mile BOR Recreation Site (Recreation Site)
-- US-12719 Newton Lakes BOR Recreation Site (Recreation Site)
 - US-12720 Ralston Reservoir BOR & State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-12721 Miles Landing BLM Recreation Management Area (BLM Recreation Management Area)
-- US-12727 Patrol Cabin State Wildlife Habitat Management Area (State Wildlife Habitat Management Area)
 - US-13244 1838 Mountain Man Rendezvous State Historic Site (State Historic Site)
 - US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
@@ -123,12 +108,8 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - US-4574 Nez Perce National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
-- US-6113 Grayrocks Reservoir State Recreation Area (State Recreation Area)
-- US-6117 Camp Douglas WW-II POW Officers' Club State Historic Site (State Historic Site)
-- US-6119 Wyoming Pioneer Memorial Museum State Historic Site (State Historic Site)
 - US-6134 Indian Bathtubs Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-6149 Martin's Cove National Historic Site (National Historic Site)
-- US-6170 Yellowtail State Wildlife Area (State Wildlife Area)
 - US-6187 South Pass Historic Mining Area BLM Historic Area (BLM Historic Area)
 - US-6190 Oregon Buttes BLM Historic Area (BLM Historic Area)
 - US-6199 White Mountain Petroglyphs BLM Historic Preservation Site (BLM Historic Preservation Site)
@@ -185,6 +166,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - Whiskey Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~12,843 ac
 - Whiskey Mountain/East Fork ERMA ·  · BLM recreation sites · ~12,659 ac
 - Winegar Hole Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,662 ac
+- Badwater Ranch ·  · Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw) (wild, state GIS table) · ~10,211 ac
 - Continental Divide National Scenic Trail SRMA ·  · BLM recreation sites · ~10,181 ac
 - Sweetwater Canyon Undeveloped SRMA ·  · BLM recreation sites · ~9,154 ac
 - Newcastle Field Office · PUB · BLM · ~8,871 ac
@@ -196,4 +178,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **174 of 298** parks joined
 - Beck Lake SRMA ·  · BLM recreation sites · ~6,916 ac
 - Willow Creek ERMA ·  · BLM recreation sites · ~6,835 ac
 - Green and New Fork Rivers SRMA (Lower Zone) ·  · BLM recreation sites · ~6,710 ac
-- Lander Valley Community SRMA ·  · BLM recreation sites · ~6,169 ac

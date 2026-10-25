@@ -1,17 +1,16 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **101 of 145** parks joined to official land (same name + same kind of place). **0** to check by hand, **43** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **118 of 145** parks joined to official land (same name + same kind of place). **1** to check by hand, **26** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-13456** Pratt Fish Hatchery State Fish Hatchery (State Fish Hatchery) → Pratt Backwaters (~0 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-7932 Kansas Veterans State Wildlife Area (State Wildlife Area) → on Sherman State Fishing Lake And Wildlife Area (~1,542 ac)
 
 ## Nothing found in PAD-US
 
-- US-13456 Pratt Fish Hatchery State Fish Hatchery (State Fish Hatchery)
 - US-2334 Cross Timbers State Park (State Park)
 - US-2350 Prairie Spirit Trail State Trail (State Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
@@ -23,24 +22,8 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **101 of 145** parks joined
 - US-7386 Browning Oxbow State Fishing Lake (State Fishing Lake)
 - US-7393 Milford State Fish Hatchery (State Fish Hatchery)
 - US-7405 Melvern River State Fishing Lake (State Fishing Lake)
-- US-7412 Black Kettle State Fishing Lake (State Fishing Lake)
 - US-7866 Mine Creek Civil War Battlefield State Historic Site (State Historic Site)
-- US-7867 Benedictine Bottoms State Wildlife Area (State Wildlife Area)
-- US-7923 Copan State Wildlife Area (State Wildlife Area)
-- US-7924 Council Grove State Wildlife Area (State Wildlife Area)
-- US-7925 El Dorado State Wildlife Area (State Wildlife Area)
-- US-7926 Elk City Reservoir State Wildlife Area (State Wildlife Area)
-- US-7927 Fall River State Wildlife Area (State Wildlife Area)
-- US-7929 Hillsdale State Wildlife Area (State Wildlife Area)
-- US-7936 Marion State Wildlife Area (State Wildlife Area)
-- US-7938 Milford State Wildlife Area (State Wildlife Area)
-- US-7941 Perry State Wildlife Area (State Wildlife Area)
 - US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area)
-- US-7944 Smoky Hill State Wildlife Area (State Wildlife Area)
-- US-7945 Toronto State Wildlife Area (State Wildlife Area)
-- US-7946 Tuttle Creek State Wildlife Area (State Wildlife Area)
-- US-7947 Webster State Wildlife Area (State Wildlife Area)
-- US-7948 Wilson State Wildlife Area (State Wildlife Area)
 - US-9177 Constitution Hall State Historic Site (State Historic Site)
 - US-9179 Grinter Place State Historic Site (State Historic Site)
 - US-9180 Hollenberg Pony Express Station State Historic Site (State Historic Site)

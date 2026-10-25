@@ -1,6 +1,6 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **405 of 421** parks joined to official land (same name + same kind of place). **2** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **405 of 421** parks joined to official land (same name + same kind of place). **2** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,6 +10,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **405 of 421** parks joined
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-13236 Rockdale Heights Wildlife Management Area (Wildlife Management Area) → on Rockdale Highlands WMA (~0 ac); Rockdale Highlands WMA (~264 ac)
+- US-2445 Lynn Shores/Nahant Beach State Reserve (State Reserve) → on Lynn Shore Reservation (~0 ac)
 - US-8387 Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → on Neponset River Reservation (~68 ac)
 
 ## Nothing found in PAD-US
@@ -17,7 +18,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **405 of 421** parks joined
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
 - US-0802 Boston African American National Historic Site (National Historic Site)
 - US-2436 Greycourt State Park (State Park)
-- US-2445 Lynn Shores/Nahant Beach State Reserve (State Reserve)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4561 New England Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)

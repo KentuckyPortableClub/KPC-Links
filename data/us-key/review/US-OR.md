@@ -1,6 +1,6 @@
 # OR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **350 of 440** parks joined to official land (same name + same kind of place). **0** to check by hand, **52** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **352 of 440** parks joined to official land (same name + same kind of place). **0** to check by hand, **50** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -17,7 +17,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **350 of 440** parks joined
 - US-10484 Antelope Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → on NA (~453,327 ac); Vale Malheur Field Office (~4,641,633 ac)
 - US-10486 Warner Wetland Reserve (Wetland Reserve) → on Lakeview District Lakeview Field Office (~3,203,414 ac)
 - US-10488 Sunstone Collection BLM Recreation Management Area (BLM Recreation Management Area) → on Sunstone Dayuse Area (~3 ac); Sunstone Dayuse Area (~3 ac)
-- US-10489 Chikahominy BLM Recreation Management Area (BLM Recreation Management Area) → on Chickahominy Reservoir Campground (~36 ac); Chickahominy Reservoir Campground (~36 ac)
 - US-10612 Wizard Falls State Fish Hatchery (State Fish Hatchery) → on Deschutes National Forest (~1,612,322 ac)
 - US-10752 Cascadia short bridge day use National Recreation Area (National Recreation Area) → on Willamette National Forest (~1,681,108 ac)
 - US-12179 Echo Meadows BLM Interpretive Site (BLM Interpretive Site) → on NA (~318 ac); Vale Baker Field Office (~426,273 ac)
@@ -39,6 +38,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **350 of 440** parks joined
 - US-5459 Santiam State Forest (State Forest) → on Forest Development Fund (Board Of Forestry) (~627,317 ac)
 - US-5460 Sun Pass State Forest (State Forest) → on Forest Development Fund (Board Of Forestry) (~627,317 ac)
 - US-9150 Saddle Mt State Natural Area (State Natural Area) → on Saddle Mountain State Natural Area (~3,190 ac); Saddle Mountain (~3,226 ac)
+- US-9152 TouVelle State Park State Recreation Area (State Recreation Area) → on Ken Denman (~1,421 ac)
 - US-9156 Crooked River National Wild and Scenic River (National Wild and Scenic River) → on High Desert (~56,717 ac); Prineville Deschutes Field Office (~744,205 ac)
 - US-9157 Donner und Blitzen National Wild and Scenic River (National Wild and Scenic River) → on Malheur National Wildlife Refuge (~188,071 ac); Malheur National Wildlife Refuge (~188,071 ac)
 - US-9159 Lower Deschutes National Wild and Scenic River (National Wild and Scenic River) → on Prineville Deschutes Field Office (~744,205 ac)
@@ -65,7 +65,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **350 of 440** parks joined
 - US-12470 Emerald Waters BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12471 Lone Rock BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12475 Wolf Creek BLM Special Recreation Management Area (BLM Special Recreation Management Area)
-- US-12945 Coquille Valley State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-12959 Quartzville BC Byway Kiosk BLM Special Recreation Management Area (BLM Special Recreation Management Area)
 - US-12977 Salmon River State Fish Hatchery (State Fish Hatchery)
 - US-12978 Willamette State Fish Hatchery (State Fish Hatchery)
@@ -92,7 +91,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **350 of 440** parks joined
 - US-5458 Gilchrist State Forest (State Forest)
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
 - US-7361 Hells Canyon National Recreation Area (National Recreation Area)
-- US-9152 TouVelle State Park State Recreation Area (State Recreation Area)
 - US-9158 John Day National Wild and Scenic River (National Wild and Scenic River)
 - US-9524 Angel's Rest State Trail (State Trail)
 - US-9540 Devil's Punchbowl State Natural Area (State Natural Area)

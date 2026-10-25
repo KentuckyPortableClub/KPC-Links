@@ -1,20 +1,21 @@
 # WA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined to official land (same name + same kind of place). **12** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **468 of 536** parks joined to official land (same name + same kind of place). **13** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-12317** Rocky Lake State Recreation Site (State Recreation Site) → Rocky Lake (~0 ac, similar name); Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac, the POTA pin is inside it (different name))
 - **US-13383** Big Eddy Water Access State Recreation Site (State Recreation Site) → Big Eddy (~0 ac, similar name)
-- **US-13384** Jonker Water Access State Recreation Site (State Recreation Site) → Jonker (~0 ac, similar name)
+- **US-13384** Jonker Water Access State Recreation Site (State Recreation Site) → Jonker (~0 ac, similar name); Skykomish River Sites (~0 ac, the POTA pin is inside it (different name))
 - **US-13392** Massey Bar State Recreation Site (State Recreation Site) → Massey Bar (~0 ac, similar name)
 - **US-13393** Woodland Bar State Recreation Site (State Recreation Site) → Woodland Bar (~0 ac, similar name)
 - **US-13394** Three Mile State Recreation Site (State Recreation Site) → Three Mile (~0 ac, similar name)
-- **US-13395** County Line State Recreation Site (State Recreation Site) → County Line (~0 ac, similar name)
+- **US-13395** County Line State Recreation Site (State Recreation Site) → County Line (~0 ac, similar name); Washougal River Sites (~0 ac, the POTA pin is inside it (different name))
 - **US-13396** Steel Bridge State Recreation Site (State Recreation Site) → Steel Bridge (~0 ac, similar name)
-- **US-13399** Hand State Recreation Site (State Recreation Site) → Hand (~0 ac, similar name)
+- **US-13399** Hand State Recreation Site (State Recreation Site) → Hand (~0 ac, similar name); Kalama River Site (~0 ac, the POTA pin is inside it (different name))
 - **US-13400** Puget Island State Recreation Site (State Recreation Site) → Puget Island (~0 ac, similar name)
 - **US-13401** Deep River State Recreation Site (State Recreation Site) → Deep River (~0 ac, similar name)
-- **US-13402** Highway 4 State Recreation Site (State Recreation Site) → Highway 4 (~0 ac, similar name)
+- **US-13402** Highway 4 State Recreation Site (State Recreation Site) → Highway 4 (~0 ac, similar name); Naselle River Sites (~0 ac, the POTA pin is inside it (different name))
 - **US-5573** Teanaway State Forest (State Forest) → Teanaway Com Forest (~0 ac, same name, different kind of place); Teanaway Com Forest (~0 ac, same name, different kind of place); Teanaway Com Forest (~0 ac, same name, different kind of place); Teanaway Com Forest (~0 ac, same name, different kind of place); Teanaway Com Forest (~0 ac, same name, different kind of place); Teanaway Com Forest (~0 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
@@ -29,15 +30,12 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined
 - US-12279 South Huckleberry Mountains BLM Recreation Management Area (BLM Recreation Management Area) → on Spokane Border Field Office (~168,544 ac)
 - US-12296 Raging River State Forest (State Forest) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12316 Sherry Creek State Recreation Site (State Recreation Site) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
-- US-12317 Rocky Lake State Recreation Site (State Recreation Site) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12426 Hog Canyon State Fishing Lake (State Fishing Lake) → on Hog Lake (~0 ac); Spokane Border Field Office (~168,544 ac)
 - US-12563 Douglas Creek BLM Recreation Management Area (BLM Recreation Management Area) → on Spokane Wenatchee Field Office (~254,416 ac)
 - US-12565 Skookum Creek State Recreation Area (State Recreation Area) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12566 Sheep Creek State Recreation Area (State Recreation Area) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12567 Douglas Falls State Recreation Area (State Recreation Area) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
-- US-12570 Starvation Lake State Recreation Area (State Recreation Area) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12829 Duffy Creek BLM Recreation Management Area (BLM Recreation Management Area) → on Spokane Wenatchee Field Office (~254,416 ac)
-- US-13361 Lake Stevens State Fishing Lake (State Fishing Lake) → on North Cove (~0 ac)
 - US-3157 Bayview State Park (State Park) → on Bay View (~66 ac)
 - US-3171 Spokane River Centennial State Trail (State Trail) → on Riverside (~8,735 ac)
 - US-4555 Hanford Reach National Monument (National Monument) → on Hanford Site (~211,071 ac)
@@ -51,7 +49,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined
 - US-5571 Loomis-Loup Loup State Forest (State Forest) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-5576 Yacolt Burn State Forest (State Forest) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-6473 Chief Joesph State Wildlife Area (State Wildlife Area) → on Chief Joseph (~0 ac); Chief Joseph (~0 ac)
-- US-8664 Fishtrap National Recreation Area (National Recreation Area) → on Spokane Border Field Office (~168,544 ac)
+- US-8663 Plymouth Park National Recreation Area (National Recreation Area) → on Lake Umatilla (~0 ac)
 
 ## Nothing found in PAD-US
 
@@ -62,18 +60,13 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined
 - US-12281 North Huckleberry Mountains BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12315 Dragoon Creek State Recreation Site (State Recreation Site)
 - US-12343 White Salmon National Wild and Scenic River (National Wild and Scenic River)
-- US-12399 Spokane State Fish Hatchery (State Fish Hatchery)
 - US-12403 Columbia Basin Hatchery Creek State Fish Hatchery (State Fish Hatchery)
 - US-12466 Jump Off Joe State Fishing Lake (State Fishing Lake)
 - US-12480 Govan BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12569 Beverly Dunes State Recreation Site (State Recreation Site)
-- US-12745 Wallace River State Fish Hatchery (State Fish Hatchery)
 - US-12828 Packer Creek BLM Recreation Management Area (BLM Recreation Management Area)
-- US-13348 Puyallup State Fish Hatchery (State Fish Hatchery)
-- US-13360 Lake Washington State Fishing Lake (State Fishing Lake)
 - US-13391 Olequa Crossing State Recreation Site (State Recreation Site)
 - US-13516 Horseshoe -Kitsap- State Fishing Lake (State Fishing Lake)
-- US-2441 Scooteney Reservoir State Park (State Park)
 - US-3385 Mt. St. Helens National Monument (National Monument)
 - US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
 - US-4376 Manhattan Project National Historical Park (National Historical Park)
@@ -85,7 +78,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined
 - US-5572 Olympic Peninsula State Forest (State Forest)
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
 - US-8662 Chestnut Beach National Recreation Area (National Recreation Area)
-- US-8663 Plymouth Park National Recreation Area (National Recreation Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -138,6 +130,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined
 - Lenore Game Range · NCA · LENORE GAME RANGE · ~6,170 ac
 - Lenore Game Range · NCA · Lenore Game Range · ~6,170 ac
 - Trapper Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,963 ac
+- Palouse to Cascades ·  · Washington State Parks (park, state GIS table) · ~5,788 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · Billy Frank Jr. Nisqually National Wildlife Refuge · ~5,558 ac
 - Billy Frank Jr. Nisqually National Wildlife Refuge · NWR · BILLY FRANK JR. NISQUALLY NATIONAL WILDLIFE REFUGE · ~5,534 ac
 - Colockum Game Range · NCA · COLOCKUM GAME RANGE · ~4,927 ac
@@ -148,4 +141,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **460 of 536** parks joined
 - NA ·  · BLM recreation sites · ~4,011 ac
 - Columbia Plateau ·  · Washington State Parks (park, state GIS table) · ~3,874 ac
 - Hoffstadt · SCA · Washington Department of Fish & Wildlife · ~3,721 ac
-- Lt Murray · SCA · Washington Department of Fish and Wildlife · ~3,495 ac
