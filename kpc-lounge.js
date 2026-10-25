@@ -103,12 +103,13 @@
       <div class="lg-ch"><span class="lg-tag ${P.toLowerCase()}">${P}</span> <span class="lg-ref">${esc(o.ref)}</span></div>
       <h2>${esc(o.name)}</h2>
       <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>${P === 'POTA' && store.get('kpcTrackActs', {})[o.ref] ? `<span class="lg-you">✅ You activated this${store.get('kpcTrackActs', {})[o.ref].n > 1 ? ' ' + store.get('kpcTrackActs', {})[o.ref].n + ' times' : ''}</span>` : ''}
-      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div><div id="lgAp"></div>
+      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div><div id="lgAp"></div><div id="lgClos"></div>
       <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: some boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
     </section>`;
     $('lgOut').scrollIntoView({ block: 'start', behavior: 'smooth' });
     /* Oct 25 (HQ hand-off): official parking / entrance / gate / ramp points: Kentucky from kpc-ky-data.json, other states from
        chat 2's data/access/US-XX.json (same files as the Kit and the US Trip Planner) */
+    if (P === 'POTA' && o.us && window.KPCClos) KPCClos.html(o.ref, ky ? 'KY' : o.st).then(h => { const el = $('lgClos'); if (el) el.innerHTML = h; }).catch(() => {});
     if (P === 'POTA' && o.us) (async () => {
       let ap = [];
       try {

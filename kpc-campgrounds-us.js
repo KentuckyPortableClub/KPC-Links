@@ -171,7 +171,7 @@
     var ms = p.places.filter(function (o) { return o.x.src === 'manual'; }), rest = p.places.filter(function (o) { return o.x.src !== 'manual'; });
     var cs = rest.filter(function (o) { return o.x.kind === 'c'; }), ls = rest.filter(function (o) { return o.x.kind !== 'c'; });
     [cs, ls].forEach(function (L) { var u = L.filter(function (o) { return o.x.unnamed; }); u.forEach(function (o, i) { o.no = u.length > 1 ? i + 1 : 0; }); });
-    return '<article class="cg-card" id="park-' + esc(p.ref) + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(p.type || 'Park') + ' • ' + esc(ST[S.st]) + '</p>' +
+    return '<article class="cg-card" id="park-' + esc(p.ref) + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(p.type || 'Park') + ' • ' + esc(ST[S.st]) + '</p><div data-clos="' + esc(p.ref) + '"></div>' +
       '<div class="cg-prog"><a class="p-pota" href="https://next.pota.app/park/' + esc(p.ref) + '" target="_blank" rel="noopener">POTA ' + esc(p.ref) + '</a></div>' +
       '<div class="cg-btns">' + ext(p.url, 'OFFICIAL PARK PAGE') + '<a class="cg-b" href="kpc-park-notes-us.html?ref=' + esc(p.ref) + '">PARK TIPS ›</a>' + ext(gps(p.la, p.lo), 'PARK GPS') + ext(wx(p.la, p.lo), 'WEATHER') + '</div>' +
       (ms.length ? '<div class="cg-h">STATE PARK CAMPING</div>' + ms.map(function (o) { return placeHtml(o, p); }).join('') : '') +
@@ -204,6 +204,8 @@
     $('cguNone').hidden = !!list.length;
     $('cguCount').textContent = list.length + ' PARK' + (list.length === 1 ? '' : 'S') + ' • ' + Object.keys(nPl).length + ' PLACE' + (Object.keys(nPl).length === 1 ? '' : 'S') + ' TO STAY';
     var m = $('cguMore'); if (m) m.onclick = function () { shown += PAGE; draw(); };
+    if (window.KPCClos) $('cguList').querySelectorAll('[data-clos]').forEach(function (el) {   // Oct 25 (HQ): the park's current closures (cards only show them when there are some)
+      KPCClos.html(el.getAttribute('data-clos'), S.st, { quiet: true }).then(function (h) { el.innerHTML = h; }).catch(function () {}); });
     var lo = S.loose.filter(function (x) { return x.src === 'member'; });
     $('cguLoose').innerHTML = lo.length ? '<h2>Member picks in ' + esc(ST[S.st]) + '</h2><p class="cg-note">Added by members, not tied to a park on this list yet.</p>' + lo.map(function (x) { return placeHtml({ x: x }, null); }).join('') : '';
   }
@@ -215,10 +217,17 @@
         S.hasManual ? 'State park campgrounds from ' + esc(ST[S.st]) + '’s own map points where the state publishes them (tagged OFFICIAL GPS); other parks are listed park by park from the state’s official listing (not checked site by site: confirm on the state’s page). Also federal campgrounds (recreation.gov) ' :
         'State park campgrounds for ' + esc(ST[S.st]) + ' are not listed here yet: use the state’s own pages below. Listed now: federal campgrounds (Forest Service, National Park Service, Corps of Engineers and more, from recreation.gov) ') +
       'and places members have added. Forest Service and Park Service campgrounds sit under their own forest or park; the rest are matched by distance from each park’s map pin.' +
-      (links ? '<div class="cg-btns">' + links + '</div>' : '') +
+      '<span id="cguClosCov"></span>' + (links ? '<div class="cg-btns">' + links + '</div>' : '') +
       (add ? '<div class="cg-btns"><a class="cg-b gold" href="' + esc(add) + '" target="_blank" rel="noopener">＋ ADD A CAMPGROUND OR CABIN WE ARE MISSING</a></div>' : '');
   }
 
+  function closCover() {   // which closure sources we watch for this state (data/alerts/us-parks.json via kpc-closures.js)
+    var el = $('cguClosCov'); if (!el || !window.KPCClos) return;
+    KPCClos.get('', S.st).then(function (r) {
+      el.innerHTML = '<span class="cgu-clos">' + (r.cover.length ? '<b>Closures:</b> we check ' + esc(r.cover.map(function (x) { return x.agency; }).join(', ')) + ' every 6 hours; notices show on the park cards. Other managers are not watched.'
+        : '<b>Closures:</b> we do not watch closures in ' + esc(ST[S.st]) + ' yet, so no notice does NOT mean open. Check the state’s page before you go.') + '</span>';
+    });
+  }
   function setMode(st) {
     cur = st; store('kpcCgSt', st);
     var u = new URL(location.href); if (st === 'KY') u.searchParams.delete('state'); else u.searchParams.set('state', st);
@@ -234,7 +243,7 @@
     }).then(function (a) {
       if (cur !== want) return;
       build(st, a[0], a[1], a[2], a[4]); shown = PAGE; $('cguPark').value = '';
-      attach(+$('cguRad').value); parkSelect(); head(); draw();
+      attach(+$('cguRad').value); parkSelect(); head(); closCover(); draw();
     });
   }
 
