@@ -3,5 +3,7 @@
  "placeEntry": "entry.261951225",
  "kindEntry": "entry.995343506",
  "kindInside": "A campground or cabin inside a park",
- "kindOutside": "Recommend a campground NOT in a park"
+ "kindOutside": "Recommend a campground NOT in a park",
+ "parkEntry": "entry.821773400",
+ "nearEntry": "entry.167251063"
 }

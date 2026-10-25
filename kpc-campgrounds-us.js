@@ -35,7 +35,9 @@
     if (!FORM || !FORM.url) return '';
     var q = ['usp=pp_url'];
     if (FORM.kindEntry && (outside ? FORM.kindOutside : FORM.kindInside)) q.push(FORM.kindEntry + '=' + encodeURIComponent(outside ? FORM.kindOutside : FORM.kindInside));
-    if (label && FORM.placeEntry && !outside) q.push(FORM.placeEntry + '=' + encodeURIComponent(label));
+    if (label && FORM.placeEntry && !outside && !/ · $/.test(label)) q.push(FORM.placeEntry + '=' + encodeURIComponent(label));
+    var rm = /\b(US-\d{4,5})\b/.exec(label || ''), pe = outside ? FORM.nearEntry : FORM.parkEntry;   // the form's own Park number boxes
+    if (rm && pe) q.push(pe + '=' + encodeURIComponent(rm[1]));
     return FORM.url + (FORM.url.indexOf('?') < 0 ? '?' : '&') + q.join('&');
   }
 
@@ -139,7 +141,7 @@
       revHtml(x.rv) + '</div>';
   }
   function card(p) {
-    var add = formLink(p.ref + ' · ');
+    var add = formLink(p.ref + ' · '), near = formLink(p.ref, true);
     var cs = p.places.filter(function (o) { return o.x.kind === 'c'; }), ls = p.places.filter(function (o) { return o.x.kind !== 'c'; });
     return '<article class="cg-card" id="park-' + esc(p.ref) + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(p.type || 'Park') + ' • ' + esc(ST[S.st]) + '</p>' +
       '<div class="cg-prog"><a class="p-pota" href="https://next.pota.app/park/' + esc(p.ref) + '" target="_blank" rel="noopener">POTA ' + esc(p.ref) + '</a></div>' +
@@ -147,7 +149,8 @@
       (cs.length ? '<div class="cg-h">CAMPGROUNDS (' + cs.length + ')</div>' + cs.map(function (o) { return placeHtml(o, p); }).join('') : '') +
       (ls.length ? '<div class="cg-h">CABINS &amp; LODGES (' + ls.length + ')</div>' + ls.map(function (o) { return placeHtml(o, p); }).join('') : '') +
       (!p.places.length ? '<p class="cg-note">Nothing listed yet within this distance. Try a wider distance, or add one you know.</p>' : '') +
-      (add ? '<div class="cg-btns"><a class="cg-b gold" href="' + esc(add) + '" target="_blank" rel="noopener">＋ ADD A CAMPGROUND OR CABIN HERE</a></div>' : '') + '</article>';
+      (add ? '<div class="cg-btns"><a class="cg-b gold" href="' + esc(add) + '" target="_blank" rel="noopener">＋ ADD ONE IN THIS PARK</a>' +
+        (near ? '<a class="cg-b gold" href="' + esc(near) + '" target="_blank" rel="noopener">＋ ADD ONE NEAR THIS PARK</a>' : '') + '</div>' : '') + '</article>';
   }
   function match(p) {
     var pk = $('cguPark').value; if (pk) return p.ref === pk;
