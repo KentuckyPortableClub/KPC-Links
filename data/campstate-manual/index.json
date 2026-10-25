@@ -1,0 +1,111 @@
+{
+ "about": "Hand-built, park-LEVEL camping from each state's official park pages (researched Oct 24 2026 and NOT re-checked park by park). One entry per park, at the park's own coordinates (from our POTA park data). 'Likely/verify' entries were left out. Row = [id, name, lat, lon, kind, parkRef, officialParksPage, reservePage, whatItHas]. Separate from data/campstate (the weekly GIS bot) so the bot never overwrites it.",
+ "level": "park",
+ "updated": "2026-10-24",
+ "states": {
+  "AL": {
+   "n": 27
+  },
+  "AR": {
+   "n": 33
+  },
+  "AZ": {
+   "n": 15
+  },
+  "CO": {
+   "n": 37
+  },
+  "CT": {
+   "n": 14
+  },
+  "DE": {
+   "n": 5
+  },
+  "GA": {
+   "n": 50
+  },
+  "ID": {
+   "n": 21
+  },
+  "IL": {
+   "n": 38
+  },
+  "KS": {
+   "n": 24
+  },
+  "LA": {
+   "n": 21
+  },
+  "MA": {
+   "n": 21
+  },
+  "MD": {
+   "n": 23
+  },
+  "ME": {
+   "n": 14
+  },
+  "MO": {
+   "n": 41
+  },
+  "MS": {
+   "n": 24
+  },
+  "NC": {
+   "n": 32
+  },
+  "ND": {
+   "n": 13
+  },
+  "NE": {
+   "n": 87
+  },
+  "NH": {
+   "n": 20
+  },
+  "NJ": {
+   "n": 19
+  },
+  "NM": {
+   "n": 30
+  },
+  "NV": {
+   "n": 21
+  },
+  "OK": {
+   "n": 38
+  },
+  "OR": {
+   "n": 43
+  },
+  "RI": {
+   "n": 4
+  },
+  "SC": {
+   "n": 37
+  },
+  "SD": {
+   "n": 91
+  },
+  "VT": {
+   "n": 42
+  },
+  "WI": {
+   "n": 40
+  },
+  "WY": {
+   "n": 12
+  }
+ },
+ "left_out": {
+  "AR (unconfirmed)": 1,
+  "IL (unconfirmed)": 27,
+  "MO (unconfirmed)": 8,
+  "MS (unconfirmed)": 22,
+  "NC (unconfirmed)": 1,
+  "OR (unconfirmed)": 93,
+  "WA (bot list exists)": 136,
+  "WI (unconfirmed)": 26
+ },
+ "no_match": []
+}
