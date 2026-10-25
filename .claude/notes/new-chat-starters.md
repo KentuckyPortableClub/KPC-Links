@@ -85,3 +85,19 @@ Rule: work goes to the chat that owns it. BOTS (Brandon Oct 25 8:04 AM): a data 
 - 4 App keeps up: one build a night (batch pushes; build by hand only when Brandon waits to test); bump kpc-links app/version.json after each build; the test suite must pass (129 checks) before a push; a CLAUDE.md section per version; signing secret only Brandon sets.
 - 5 Bots keeps up: email only for real issues (temp workflows end '|| true', deleted after); one dispatch at a time; secrets only Brandon sets (setup-todo.md); Facebook posts to the Page only.
 - 6 Campout keeps up: the Kentucky Radio Calendar date rules (kpc_ses.py yearly()); Suno credit only in YouTube descriptions; campout pages public.
+
+## STORAGE PLAN (KPC HQ, Brandon Oct 25 10:47 AM: 'a plan for in future to solve the storage limit')
+WHERE WE ARE (Oct 25): two limits. (A) the SITE (today's files, what Pages publishes): ~413 MB of GitHub's 1 GB Pages limit; data/ = 214 MB (wwff 32, canada-bounds 30, world-bounds 26, pota 24, names 21, sota 20, parkinfo 15, world-key 14), PDFs 66 MB (photo archive PDF 25 MB), pictures ~96 MB. (B) the REPO WITH ITS HISTORY: ~500 MB on GitHub (guide: under 1 GB, problems past 5 GB). Every rewrite of a file keeps the old copy, and the bots rewrite big files daily (locations.json 5 MB 6x a week, country key files 2-3 MB, guide PDFs 3 MB 5x a week, mapping.md 66 saves): ~550 MB a week of rewrites before compression. History is the limit we hit first.
+HQ CHECKS size every week (GitHub repo size + site size) and starts the next stage at the trigger.
+STAGE 1 = NOW, cheap, no moves (chat 5 for bot habits, chat 2 for data bots, every chat for notes):
+- A bot saves a file only when its CONTENT changed (time stamps don't count), like the Oct 25 relay fix. Applies to the key bots, guide PDFs, locations.json, parkinfo, names.
+- Bots write JSON the same way every time (sorted keys, same order, no 'updated' inside big files: put time stamps in one small status file), so git stores only the small change.
+- Guide PDFs rebuilt only when their pages changed.
+- Notes: one save per session (rule above); when a topic file passes ~150 KB, move the old bullets to .claude/notes/archive/ once.
+- Retire data/canada-bounds (30 MB) once nothing reads it (Canada key is hooked in everywhere since Oct 24; chat 2 checks).
+STAGE 2 = when the repo passes ~750 MB or the site ~700 MB (or sooner if Brandon wants), a few sessions:
+- BIG PDFs + photo archive → GitHub RELEASES files on the repo (2 GB per file, not counted in the site or the history); pages link to them. Chat 1.
+- A second repo KPC-Data with its own Pages site (kentuckyportableclub.github.io/KPC-Data/) for the big BOT data the tools fetch (keys, bounds, pota, wwff, sota, names, parkinfo, trails, camps). Tools fetch it from there (same github.io, so no browser blocks). The bots save there, so their rewrites stop growing the main repo and stop rebuilding the main site. That repo's history is only bot output, so it can be RESET to one fresh save each month (keeps it small forever). Chat 2 owns the move (data + bots); chat 1 changes the page links; chat 4 points the app's pack builder at it. Do it in one planned batch, tools tested before the switch.
+STAGE 3 = only if KPC-Data itself gets near 1 GB: split it (US / world) or use free outside storage (Cloudflare R2, 10 GB free). Not expected.
+NOT the fix: deleting history from the main repo (risky, breaks every chat's copy); paying GitHub (Pages limits don't change with a paid plan).
+
