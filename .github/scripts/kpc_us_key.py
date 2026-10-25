@@ -405,11 +405,13 @@ try:
             if k not in _taken: _taken.add(k); _byurl[u] = k; return k
             n += 1
     for _st, _lays in sorted(_sg.items()):
+        if _st not in ALL: continue          # Oct 25: province codes (ON, QC…) are the Canada key's
         for _i, _l in enumerate(_lays):
             _u = str(_l.get('url') or '').rstrip('/')
             if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
-            XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st}))
+            XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st},
+                       {'water': bool(_l.get('water')), 'where': _l.get('where') or '1=1'}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
 def resolve(pre, url, nf, af):
@@ -444,20 +446,22 @@ XCOUNT = {}
 FAILED_READ = set()
 
 
-def extra_state(st, have):
+def extra_state(st, have, only=None):
     box = st_box(st)
     if not box: return []
     out = []
     for x in XS:
         pre, url, nf, af, kk, label = x[:6]
+        if only is not None and pre not in only: continue
         own = x[6] if len(x) > 6 else 'FED'
         if len(x) > 7 and st not in x[7]: continue
+        opt = x[8] if len(x) > 8 else {}      # Oct 25: state-GIS options: 'where' = the layer's own filter, 'water' = lake surfaces, not property lines
         try: url, nf, af, oidf = resolve(pre, url, nf, af)
         except Exception as e:  # noqa: BLE001
             notice(f'US key {st}', f'{label} layer not found ({e})'); continue
         off, n = 0, 0
         while True:
-            q = {'where': '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+            q = {'where': opt.get('where') or '1=1', 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                  'outFields': ','.join(q for q in (oidf, nf, af) if q), 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json', 'resultOffset': off}
             try:
                 j, pg = fetch_geo(url, q)
@@ -473,7 +477,8 @@ def extra_state(st, have):
                 if (norm(nm), frozenset(k)) in have: continue
                 g = f.get('geometry') or {}
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
-                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k})
+                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
+                            **({'Water': 1} if opt.get('water') else {})})
                 n += 1
             if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
             off += len(fs); time.sleep(.5)
@@ -624,6 +629,17 @@ def run(st):
         notice(f'US key {st}', 'no saved shapes yet; skipped (saved-copy-only run)'); return None
     if got is not None:
         recs, seen, used_detail = got; CACHE_USED.append(st)
+        # Oct 25: a saved copy made before a layer was added (data/state-gis.json grows) never had that layer's land, so the
+        # nightly rebuild could not join it. Top the copy up: read live only the layers it has no records from, add, re-save.
+        if CMODE == 'use':
+            present = {re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) for a in recs}
+            missing = {x[0] for x in XS if (len(x) <= 7 or st in x[7]) and x[0] not in present}
+            if missing:
+                add = extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs}, only=missing)
+                if add:
+                    recs += add
+                    notice(f'US key {st}', f'saved copy topped up with {len(add)} areas from {len({str(a["OBJECTID"]).rstrip("0123456789") for a in add})} newer layer(s)')
+                    if st not in FAILED_READ: save_cache(st, recs, seen)
     else:
         recs, seen = pad_state(st)
         recs += fws_state(st, {norm(a.get('Unit_Nm') or '') for a in recs if a.get('Mang_Name') == 'FWS'})
@@ -649,7 +665,9 @@ def run(st):
             if not close: continue
             if bool(kp) != bool(a['_k']) and la is not None and not near(la, lo, a['_bb'], .1): close = False   # one name has no kind word: must be close by
             if not close: continue
+            if a.get('Water') and (la is None or not near(la, lo, a['_bb'], .02)): continue   # Oct 25: lake names repeat (Washington has dozens of Lost Lakes): a lake surface joins only right at the pin
             how = join_how(name, kp, a, near(la, lo, a['_bb'], .1) if la is not None else False)
+            if how and a.get('Water'): how += ' · water outline only'
             if how:
                 m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), how])
         ov = OVR.get(ref) or {}

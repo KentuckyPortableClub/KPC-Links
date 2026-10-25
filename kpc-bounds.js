@@ -184,8 +184,10 @@
        (overrides.json) always counts as sure. */
     const how = new Set(m.map(x => String(x[3] || ''))), reviewed = how.has('reviewed'), named = [...how].some(h => h.startsWith('name'));
     const handApprox = how.has('reviewed-approx') && !reviewed;   /* Oct 22: checked by hand, the closest official land is bigger / shaped differently */
-    const approx = handApprox || (!reviewed && !named && !!hit.far);
-    const why = handApprox ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
+    /* Oct 25: a state's lake-surface map (Idaho, Washington, Arkansas) draws the water, not the agency's lake property around it */
+    const water = !reviewed && [...how].every(h => h.indexOf('water outline only') >= 0);
+    const approx = handApprox || water || (!reviewed && !named && !!hit.far);
+    const why = handApprox ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : water ? 'this is the lake\u2019s shoreline from the state\u2019s water map; the park is the agency\u2019s lake property around it, so check the agency\u2019s map for the land' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
     return { state: 'ok', n: hit.n, m, fs, approx, why };
   }
   /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
