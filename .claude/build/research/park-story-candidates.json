@@ -1,0 +1,624 @@
+{
+ "note": "CANDIDATES ONLY (Oct 25, from Round 7 tab 2, auto-trimmed of filler). Not read by any bot. Brandon picks; good ones get a history/why-see-it rewrite and move into data/kpc-park-stories.json.",
+ "parks": [
+  {
+   "ref": "US-0019",
+   "name": "Cumberland Gap National Historical Park",
+   "kind": "National / NPS",
+   "story": "Historic mountain pass and trail network on the Kentucky\u2013Tennessee\u2013Virginia border.",
+   "source": "https://www.nps.gov/cuga/planyourvisit/basicinfo.htm",
+   "trimmed": true
+  },
+  {
+   "ref": "US-0050",
+   "name": "Mammoth Cave National Park",
+   "kind": "National Park",
+   "story": "Large karst landscape centered on an extensive cave system, with surface trails, river recreation, and guided cave tours.",
+   "source": "https://www.nps.gov/maca/planyourvisit/hours.htm",
+   "trimmed": true
+  },
+  {
+   "ref": "US-0295",
+   "name": "Clarks River National Wildlife Refuge",
+   "kind": "National / NPS",
+   "story": "Public wildlife refuge protecting bottomland hardwoods and wetlands in western Kentucky.",
+   "source": "https://www.fws.gov/refuge/clarks-river/visit-us",
+   "trimmed": true
+  },
+  {
+   "ref": "US-0608",
+   "name": "Ohio River Islands National Wildlife Refuge",
+   "kind": "National / NPS",
+   "story": "A chain of river islands and mainland tracts along the Ohio River supports trails and wildlife viewing. Most sites have few facilities, so visitors should plan for limited services.",
+   "source": "https://www.fws.gov/rivers/carp/carp/refuge/ohio-river-islands/visit-us",
+   "trimmed": false
+  },
+  {
+   "ref": "US-0686",
+   "name": "Big South Fork National Recreation Area",
+   "kind": "National Recreation Area",
+   "story": "Rugged Cumberland Plateau recreation area with river gorges, forests, hiking, horseback riding, and camping.",
+   "source": "https://www.nps.gov/biso/planyourvisit/basicinfo.htm",
+   "trimmed": true
+  },
+  {
+   "ref": "US-0703",
+   "name": "Fort Donelson National Battlefield",
+   "kind": "National / NPS",
+   "story": "Civil War battlefield and national cemetery site spanning the Kentucky\u2013Tennessee region. Visitors can explore historic landscapes and interpretive areas.",
+   "source": "https://www.nps.gov/fodo/",
+   "trimmed": false
+  },
+  {
+   "ref": "US-0724",
+   "name": "Abraham Lincoln Birthplace National Historic Site",
+   "kind": "National / NPS",
+   "story": "Commemorates Abraham Lincoln\u2019s birthplace with a memorial building, visitor center, and historic grounds.",
+   "source": "https://www.nps.gov/abli/planyourvisit/basicinfo.htm",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1251",
+   "name": "Carr Creek State Park",
+   "kind": "State Park",
+   "story": "Recreation park on Carr Creek Lake with a campground, utility hookups, beach, and playground.",
+   "source": "https://parks.ky.gov/explore/carr-creek-campground-7869",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1252",
+   "name": "Columbus Belmont State Park",
+   "kind": "State Park",
+   "story": "Historic Civil War site above the Mississippi River with earthworks, a museum, trails, and a campground. The campground operates year-round, although some water services are seasonal.",
+   "source": "https://parks.ky.gov/explore/columbus-belmont-state-park-7809",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1253",
+   "name": "Dawkins Line Rail Trail State Park",
+   "kind": "Trail",
+   "story": "A 36-mile rail trail linking Hagerhill in Johnson County with Evanston in Breathitt County. It is open to hikers, cyclists, and horseback riders, with trailheads and trestles along the route.",
+   "source": "https://parks.ky.gov/explore/dawkins-line-rail-trail-7831",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1254",
+   "name": "E.P. 'Tom' Sawyer State Park",
+   "kind": "State Park",
+   "story": "Urban recreation park in Louisville with sports courts, walking trails, an archery range, and a seasonal outdoor pool.",
+   "source": "https://parks.ky.gov/explore/e-p-tom-sawyer-meetings-8271",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1255",
+   "name": "Fishtrap Lake Wildlife Management Area",
+   "kind": "WMA",
+   "story": "A large public wildlife management area surrounding much of Fishtrap Lake, with forested ridges, hunting, fishing, boating, and wildlife viewing opportunities.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1256",
+   "name": "Fort Boonesborough State Park",
+   "kind": "State Park",
+   "story": "A reconstructed frontier fort interprets Kentucky\u2019s early settlement history beside the Kentucky River. The park also offers trails, boating access, and campground facilities when available.",
+   "source": "https://parks.ky.gov/parks/find-a-park/fort-boonesborough-state-park-7811",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1257",
+   "name": "General Burnside State Park",
+   "kind": "State Park",
+   "story": "An island park on Lake Cumberland with a public golf course, boat launch, campground, and picnic areas.",
+   "source": "https://parks.ky.gov/explore/general-burnside-island-state-park-7812",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1258",
+   "name": "Grayson Lake State Park",
+   "kind": "State Park",
+   "story": "A lakeside recreation park in northeastern Kentucky with boating, fishing, and outdoor activities.",
+   "source": "https://parks.ky.gov/olive-hill/parks/recreation/grayson-lake-state-park",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1259",
+   "name": "Green River Lake State Park",
+   "kind": "State Park",
+   "story": "Lake-centered recreation park with camping, boating, fishing, and shoreline activities.",
+   "source": "https://parks.ky.gov/explore/green-river-lake-campground-7960",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1260",
+   "name": "John James Audubon State Park",
+   "kind": "State Park",
+   "story": "Park and nature preserve celebrating naturalist John James Audubon, with a museum, nature center, boardwalks, and hiking trails. Pets are restricted on most preserve trails.",
+   "source": "https://parks.ky.gov/parks/find-a-park/john-james-audubon-state-park-7815",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1261",
+   "name": "Kincaid Lake State Park",
+   "kind": "State Park",
+   "story": "A lakeside recreation park in northern Kentucky offering fishing, boating, and camping.",
+   "source": "https://parks.ky.gov/falmouth/parks/recreation/kincaid-lake-state-park",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1262",
+   "name": "Kingdom Come State Park",
+   "kind": "State Park",
+   "story": "Mountain park in eastern Kentucky with scenic overlooks and outdoor recreation.",
+   "source": "https://parks.ky.gov/cumberland/parks/recreation/kingdom-come-state-park",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1263",
+   "name": "Lake Malone State Park",
+   "kind": "State Park",
+   "story": "Lakeside park with primitive tent sites, RV hookups, hiking trails, a swimming beach, and boat access.",
+   "source": "https://parks.ky.gov/explore/lake-malone-state-park-7818",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1264",
+   "name": "Levi Jackson Wilderness Road State Park",
+   "kind": "State Park",
+   "story": "A local park near London focused on the Wilderness Road and early settlement history, with outdoor recreation and heritage features.",
+   "source": "https://levijacksonpark.com/",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1265",
+   "name": "Lincoln Homestead State Park",
+   "kind": "State Park",
+   "story": "Historic park interpreting the Lincoln family\u2019s early Kentucky connections, with historic homes, reconstructed buildings, a museum area, and picnic/playground facilities.",
+   "source": "https://parks.ky.gov/field-trips",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1266",
+   "name": "Mineral Mounds State Park",
+   "kind": "State Park",
+   "story": "Lake Barkley-side recreation property with a golf course, picnic area, fishing pier, and boat ramp.",
+   "source": "https://parks.ky.gov/explore/mineral-mound-state-park-7820",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1267",
+   "name": "My Old Kentucky Home State Park",
+   "kind": "State Park",
+   "story": "Historic Federal Hill mansion and gardens associated with Stephen Foster, with golf, picnicking, and seasonal events.",
+   "source": "https://parks.ky.gov/explore/my-old-kentucky-home-state-park-7821",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1268",
+   "name": "Nolin Lake State Park",
+   "kind": "State Park",
+   "story": "Lake-area park with boat access, trails, and camping.",
+   "source": "https://parks.ky.gov/parks/find-a-park/nolin-lake-campground-8135",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1269",
+   "name": "Old Fort Harrod State Park",
+   "kind": "State Park",
+   "story": "Historic site centered on a full-scale replica of the 1774 fort, with a museum, pioneer-era buildings, monuments, and cemetery grounds.",
+   "source": "https://parks.ky.gov/parks/find-a-park/old-fort-harrod-state-park-7823",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1270",
+   "name": "Paintsville Lake State Park",
+   "kind": "State Park",
+   "story": "Lake park in eastern Kentucky with full-service RV and walk-in sites, boating, fishing, kayak access, and lakeside recreation areas.",
+   "source": "https://parks.ky.gov/explore/paintsville-lake-state-park-7824",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1271",
+   "name": "Taylorsville Lake State Park",
+   "kind": "State Park",
+   "story": "Lake recreation park with boating, fishing, birding, hiking, and horseback riding. The multi-use trail network supports hikers, cyclists, and equestrians.",
+   "source": "https://parks.ky.gov/explore/taylorsville-lake-state-park-7827",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1272",
+   "name": "Yatesville Lake State Park",
+   "kind": "State Park",
+   "story": "Mountain reservoir park with RV, primitive, boat-in, and hike-in campsites, boating, fishing, golf, and multi-use trails.",
+   "source": "https://parks.ky.gov/parks/find-a-park/yatesville-lake-state-park-7828",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1273",
+   "name": "Barren River Lake State Park",
+   "kind": "State Park",
+   "story": "Resort park on a large lake with camping, boating, fishing, golf, and family recreation. Major 2026 renovations affect lodging and dining services.",
+   "source": "https://parks.ky.gov/parks/find-a-park/barren-river-lake-state-resort-park-7781",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1274",
+   "name": "Blue Licks Battlefield State Park",
+   "kind": "State Park",
+   "story": "Historic battlefield and resort park with trails, a pioneer museum, lodging, and a seasonal campground.",
+   "source": "https://parks.ky.gov/parks/find-a-park/blue-licks-battlefield-state-resort-park-7782",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1275",
+   "name": "Buckhorn Lake State Park",
+   "kind": "State Park",
+   "story": "Mountain resort park overlooking Buckhorn Lake with lodge rooms, cottages, dining, and hiking trails. Pool and beach facilities are seasonal.",
+   "source": "https://parks.ky.gov/explore/buckhorn-lake-state-resort-park-7784",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1276",
+   "name": "Carter Caves State Park",
+   "kind": "State Park",
+   "story": "Cave and forest park with guided cave tours, trails, a lodge, and several camping options.",
+   "source": "https://parks.ky.gov/parks/find-a-park/carter-caves-state-resort-park-7785",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1277",
+   "name": "Cumberland Falls State Park",
+   "kind": "State Park",
+   "story": "Known for a 125-foot waterfall and the rare moonbow, this park offers hiking, camping, cabins, horseback riding, and river scenery.",
+   "source": "https://parks.ky.gov/parks/find-a-park/cumberland-falls-state-resort-park-7786",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1278",
+   "name": "Dale Hollow State Park",
+   "kind": "State Park",
+   "story": "Lake resort park with lodge rooms, cabins, golf, boating, trails, and equestrian-friendly camping. Winter lodging is limited to selected nights.",
+   "source": "https://parks.ky.gov/parks/find-a-park/dale-hollow-lake-state-resort-park-7787",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1279",
+   "name": "General Butler State Park",
+   "kind": "State Park",
+   "story": "Hillside resort park near the Ohio and Kentucky river confluence with lake trails, historic house, lodge, cottages, and year-round camping.",
+   "source": "https://parks.ky.gov/parks/find-a-park/general-butler-state-resort-park-7789",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1280",
+   "name": "Greenbo Lake State Park",
+   "kind": "State Park",
+   "story": "Lake resort park honoring writer Jesse Stuart, with lodging, RV and primitive camping, hiking, mountain biking, and horseback trails.",
+   "source": "https://parks.ky.gov/explore/greenbo-lake-state-resort-park-7790",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1281",
+   "name": "Jenny Wiley State Park",
+   "kind": "State Park",
+   "story": "Mountain resort park near Prestonsburg with a lake, trails, lodge, cottages, and boat-in camping.",
+   "source": "https://parks.ky.gov/explore/jenny-wiley-state-resort-park-7791",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1282",
+   "name": "Kenlake State Park",
+   "kind": "State Park",
+   "story": "Lake resort park on Kentucky Lake with lodge, cottages, marina, and water-based recreation.",
+   "source": "https://parks.ky.gov/parks/find-a-park/kenlake-state-resort-park-7792",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1283",
+   "name": "Kentucky Dam Village State Park",
+   "kind": "State Park",
+   "story": "Resort park on Kentucky Lake with lodging, golf, marina access, fishing, and family recreation.",
+   "source": "https://parks.ky.gov/gilbertsville/parks/resort/kentucky-dam-village-state-resort-park",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1284",
+   "name": "Lake Barkley State Park",
+   "kind": "State Park",
+   "story": "Lake resort park with camping, cottages, marina access, fishing, and outdoor recreation on Lake Barkley.",
+   "source": "https://parks.ky.gov/parks/find-a-park/lake-barkley-campground-8066",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1285",
+   "name": "Lake Cumberland State Park",
+   "kind": "State Park",
+   "story": "Large-lake resort park offering cabins, camping, boating, fishing, and trails. The campground operates year-round, but water facilities close seasonally and other amenities are under renovation.",
+   "source": "https://parks.ky.gov/explore/lake-cumberland-state-resort-park-7795",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1286",
+   "name": "Natural Bridge State Park",
+   "kind": "State Park",
+   "story": "Forest park known for a large natural sandstone arch, hiking trails, lodge, cottages, and camping. Some trails and attractions can close for repairs or seasonally.",
+   "source": "https://parks.ky.gov/parks/find-a-park/natural-bridge-state-resort-park-7796",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1287",
+   "name": "Pennyrile Forest State Park",
+   "kind": "State Park",
+   "story": "Forest and lake resort park with lodge, cottages, camping, hiking, golf, and seasonal beach/pool facilities. Equestrian camping remains available year-round.",
+   "source": "https://parks.ky.gov/parks/find-a-park/pennyrile-forest-state-resort-park-7798",
+   "trimmed": false
+  },
+  {
+   "ref": "US-1288",
+   "name": "Pine Mountain State Park",
+   "kind": "State Park",
+   "story": "Mountain resort park overlooking the Kentucky Ridge with lodging, cottages, trails, and golf.",
+   "source": "https://parks.ky.gov/pineville/parks/resort/pine-mountain-state-resort-park",
+   "trimmed": true
+  },
+  {
+   "ref": "US-1289",
+   "name": "Rough River Dam State Park",
+   "kind": "State Park",
+   "story": "Lake resort park with lodge, cottages, marina, trails, and fishing. A small air-camp site provides overnight camping near the park airport.",
+   "source": "https://parks.ky.gov/parks/find-a-park/rough-river-dam-state-resort-park-7800",
+   "trimmed": false
+  },
+  {
+   "ref": "US-3779",
+   "name": "Big Bone Lick State Historic Site",
+   "kind": "Other",
+   "story": "Historic site and nature preserve with fossil beds, trails, a museum, and campground facilities.",
+   "source": "https://parks.ky.gov/union/parks/historic/big-bone-lick-state-historic-site",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3781",
+   "name": "Breaks Interstate State Park",
+   "kind": "State Park",
+   "story": "Interstate park straddling the Kentucky\u2013Virginia border, known for the Breaks canyon, overlooks, trails, and outdoor recreation.",
+   "source": "https://www.breakspark.com/",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3782",
+   "name": "Dr. Thomas Walker State Historic Site",
+   "kind": "Other",
+   "story": "Historic site commemorating explorer Dr. Thomas Walker and his early expedition into Kentucky, with a reconstructed cabin and heritage interpretation.",
+   "source": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site",
+   "trimmed": false
+  },
+  {
+   "ref": "US-3783",
+   "name": "Jefferson Davis State Historic Site",
+   "kind": "Other",
+   "story": "Historic site honoring Jefferson Davis, with a monument and interpretive grounds.",
+   "source": "https://parks.ky.gov/fairview/parks/historic/jefferson-davis-state-historic-site",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3784",
+   "name": "Old Mulkey Meetinghouse State Historic Site",
+   "kind": "Other",
+   "story": "Historic meetinghouse and cemetery site preserving an early Kentucky religious landmark. Visitor services and tours may operate seasonally.",
+   "source": "https://parks.ky.gov/tompkinsville/parks/historic/old-mulkey-meetinghouse-state-historic-site",
+   "trimmed": false
+  },
+  {
+   "ref": "US-3785",
+   "name": "Perryville Battlefield State Historic Site",
+   "kind": "Other",
+   "story": "Civil War battlefield preserving the landscape of the 1862 Battle of Perryville, with interpretive trails, historic grounds, and visitor exhibits.",
+   "source": "https://parks.ky.gov/perryville/parks/historic/perryville-battlefield-state-historic-site",
+   "trimmed": false
+  },
+  {
+   "ref": "US-3786",
+   "name": "Waveland State Historic Site",
+   "kind": "Other",
+   "story": "Historic plantation-era house and grounds in Lexington with guided interpretation and gardens.",
+   "source": "https://parks.ky.gov/lexington/parks/historic/waveland-state-historic-site",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3787",
+   "name": "White Hall State Historic Site",
+   "kind": "Other",
+   "story": "Historic White Hall estate and former home of Cassius Marcellus Clay, managed by Eastern Kentucky University.",
+   "source": "https://whitehall.eku.edu",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3788",
+   "name": "Wickliffe Mounds State Historic Site",
+   "kind": "Other",
+   "story": "Archaeological and cultural site interpreting a prehistoric Mississippian settlement and regional Indigenous history, with museum exhibits and grounds.",
+   "source": "https://parks.ky.gov/wickliffe/parks/historic/wickliffe-mounds-state-historic-site",
+   "trimmed": false
+  },
+  {
+   "ref": "US-3789",
+   "name": "William Whitley House State Historic Site",
+   "kind": "Other",
+   "story": "Historic house and grounds associated with Kentucky pioneer William Whitley.",
+   "source": "https://explorekyhistory.ky.gov/files/show/236",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3790",
+   "name": "Fort Heiman National Battlefield",
+   "kind": "National / NPS",
+   "story": "Fort Heiman is a Civil War battlefield unit associated with Fort Donelson National Battlefield in western Kentucky.",
+   "source": "https://www.nps.gov/fodo/planyourvisit/maps.htm",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3791",
+   "name": "Trail of Tears National Historic Trail",
+   "kind": "National / NPS",
+   "story": "A multi-state historic trail commemorating the forced removal of Cherokee people. It is a route with many separate sites rather than one continuously gated park.",
+   "source": "https://www.nps.gov/trte/index.htm",
+   "trimmed": false
+  },
+  {
+   "ref": "US-3792",
+   "name": "Land Between the Lakes National Recreation Area",
+   "kind": "National Recreation Area",
+   "story": "A large multi-use recreation area between Kentucky and Tennessee with forests, lakes, trails, wildlife viewing, and camping.",
+   "source": "https://landbetweenthelakes.us/",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3793",
+   "name": "Ballard Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Ballard Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=224",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3794",
+   "name": "Beaver Creek Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Beaver Creek Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3795",
+   "name": "Beechy Creek Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Beechy Creek Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://fw.ky.gov/More/Documents/BeechyCreekWMA-ALL.pdf",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3796",
+   "name": "Big Rivers Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Big Rivers Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3797",
+   "name": "Boatwright Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Boatwright Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3798",
+   "name": "Buck Creek Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Buck Creek Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://fw.ky.gov/More/Documents/BuckCreekWMA_All.pdf",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3799",
+   "name": "Burchell-Beech Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Burchell-Beech Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/default.aspx",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3800",
+   "name": "Cedar Creek Lake Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Cedar Creek Lake Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3801",
+   "name": "Clifty Wilderness Area",
+   "kind": "River / Wilderness",
+   "story": "Clifty Wilderness Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3802",
+   "name": "Clyde E Buckley Sanctuary",
+   "kind": "Sanctuary",
+   "story": "Clyde E Buckley Sanctuary is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://bggreensource.org/buckley/",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3803",
+   "name": "Coil Estate Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Coil Estate Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://fw.ky.gov/More/Documents/CoilEstateWMA_ALL.pdf",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3804",
+   "name": "Cranks Creek Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Cranks Creek Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://fw.ky.gov/More/Documents/CranksCreekWMA_ALL.pdf",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3805",
+   "name": "Curtis Gates Lloyd Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Curtis Gates Lloyd Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=153",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3806",
+   "name": "Dennis-Gray Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Dennis-Gray Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3807",
+   "name": "Dix River Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Dix River Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3808",
+   "name": "Doug Travis Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Doug Travis Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3809",
+   "name": "Dr. James R. Rich Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Dr. James R. Rich Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34",
+   "trimmed": true
+  },
+  {
+   "ref": "US-3810",
+   "name": "Dr. Norman And Martha Adair Wildlife Management Area",
+   "kind": "WMA",
+   "story": "Dr. Norman And Martha Adair Wildlife Management Area is a public-land management area listed for outdoor recreation and wildlife management.",
+   "source": "https://app.fw.ky.gov/Public_Lands_Search/default.aspx",
+   "trimmed": true
+  }
+ ],
+ "skipped": [
+  "US-0538"
+ ]
+}
