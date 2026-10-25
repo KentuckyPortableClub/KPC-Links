@@ -265,14 +265,30 @@ def park_list(st):
     return {ref: (v[0], v[2] or '', v[5], v[6]) for ref, v in P.items() if v[5] is not None and 'National' not in (v[2] or '')}
 
 
-def match(K, row, parks):
+# the agencies' short forms (the key already knows SWA / SRA / SNA ...); 'ST' here is State Trail, not Saint
+SHORT = [(r'\bSHP\b', 'State Historical Park'), (r'\bSHS\b', 'State Historic Site'), (r'\bSB\b', 'State Beach'),
+         (r'\bSVRA\b', 'State Vehicle Recreational Area'), (r'\bSNR\b', 'State Natural Reserve'), (r'\bSP\b', 'State Park'),
+         (r'\bSF\b', 'State Forest'), (r'\bST\b', 'State Trail'), (r'\bSWA\b', 'State Wildlife Area'),
+         (r'\bWA\b$', 'Wildlife Area'), (r'\bFAS\b', 'Fishing Access Site')]
+
+
+def match(K, row, parks, st=''):
     hit = []
     if row.get('name'):
         nm = str(row['name'])
+        for rx, full in SHORT: nm = re.sub(rx, full, nm)
         kn = K.kinds(nm)
         for ref, (pn, typ, la, lo) in parks.items():
             if row.get('at') and km(la, lo, *row['at']) > NEAR_KM: continue
             if K.name_ok(pn, nm, K.kinds(pn) | K.kinds(typ), kn): hit.append(ref)
+        if hit or not row.get('at'): return hit
+        # close by (15 km) and every word of the park's own name inside the notice's longer name:
+        # 'Dr. Edmund A. Babler Memorial State Park' = Babler Memorial State Park, 'Southern Unit - Kettle Moraine SF'
+        have = set(K.norm(nm).split())
+        for ref, (pn, typ, la, lo) in parks.items():
+            if km(la, lo, *row['at']) > 15: continue
+            core = [w for w in K.norm(pn).split() if w != st.lower()]
+            if core and len(' '.join(core)) >= 6 and set(core) <= have and K.same_kind(K.kinds(pn) | K.kinds(typ), kn): hit.append(ref)
         return hit
     hay = ' ' + K.norm(row.get('hay') or '') + ' '            # news-style post: the park's own name inside the text
     for ref, (pn, typ, la, lo) in parks.items():
@@ -318,16 +334,17 @@ def main():
         parks = park_list(st)
         n, nomatch = 0, []
         for r in rows:
-            refs = match(K, r, parks)
+            refs = match(K, r, parks, st)
             if not refs:
                 nomatch.append(str(r.get('name') or r.get('title'))[:40]); continue
             exp = r['end'] if r.get('end') and r['end'] >= TODAY else TODAY + dt.timedelta(days=3)
             det = f"{agency}: {r['title']}" + (f" — {r['text']}" if r.get('text') and r['text'] != r['title'] else '')
             if r.get('end'): det += f" (until {r['end'].strftime('%b %-d')})"
+            kind = 'Closure' if re.search(r'clos|restrict', r['title'] + ' ' + r['text'], re.I) else 'Park notice'
             for ref in refs:
                 key = re.sub(r'[^a-z0-9]+', '-', (r['title'] + ' ' + r['text'])[:60].lower()).strip('-')
                 iid = f'uc-{sid}-{key}-{ref}'
-                items.append({'id': iid, 'src': sid, 'ref': ref, 'kind': 'Park alert', 'details': det[:400],
+                items.append({'id': iid, 'src': sid, 'ref': ref, 'kind': kind, 'details': det[:400],
                               'seen': first.get(iid) or (r.get('date') or TODAY).isoformat(), 'call': 'KPC BOT',
                               'expires': exp.isoformat(), 'link': r.get('link') or page})
                 n += 1

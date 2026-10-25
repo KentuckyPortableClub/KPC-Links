@@ -215,6 +215,10 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const ios=/iPhone|iPad|iPod/.test(navigator.userAgent),dir=q=>ios?`https://maps.apple.com/?daddr=${q[0]},${q[1]}`:`https://www.google.com/maps/dir/?api=1&destination=${q[0]},${q[1]}`;
   h+=`<div class="meta" style="margin-top:8px"><b>&#127359; PARKING &amp; ACCESS (THE AGENCY'S OWN MAP)</b></div>`+a.slice(0,6).map(q=>`<div class="meta">&bull; ${esc(q[2])} &middot; <a href="${dir(q)}" target="_blank" rel="noopener">DIRECTIONS ↗</a></div>`).join('')+
    (a.length>6?`<div class="meta">+${a.length-6} more points on file.</div>`:'')+`<div class="meta" style="opacity:.8">Gates and seasons change: check the agency's map before you go.</div>`;break}
+ /* Oct 25: the state agencies' current closures and notices (uc- entries in kpc-conditions.json, kpc_us_closures.py) */
+ if(P==='POTA'&&pre==='US'){if(!('cond' in PINFO))PINFO.cond=fetch('kpc-conditions.json').then(r=>r.ok?r.json():null).catch(()=>null);
+  const d=await PINFO.cond,now=Date.now(),c=(d&&d.items||[]).filter(x=>x.ref===s.c&&String(x.id).startsWith('uc-')&&(!x.expires||Date.parse(x.expires)>now));
+  if(c.length)h+=`<div class="meta" style="margin-top:8px;color:#c2410c"><b>&#9888; ${c.length===1?'A CLOSURE OR NOTICE':c.length+' CLOSURES OR NOTICES'} FROM THE AGENCY</b></div>`+c.slice(0,4).map(x=>`<div class="meta">&bull; ${esc(x.details)}${x.link?` &middot; <a href="${esc(x.link)}" target="_blank" rel="noopener">MORE ↗</a>`:''}</div>`).join('')}
  if(P==='SOTA')h+=await sotaFacts(s);
  if(P==='WWFF')h+=await wwffFacts(s);
  /* Park Notes tips (Kentucky page or the other-states page; parks, summits and KFF references) */
