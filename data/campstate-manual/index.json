@@ -1,114 +1,40 @@
 {
- "about": "Hand-built, park-LEVEL camping from each state's official park pages (researched Oct 24 2026 and NOT re-checked park by park). One entry per park, at the park's own coordinates (from our POTA park data). 'Likely/verify' entries were left out. Row = [id, name, lat, lon, kind, parkRef, officialParksPage, reservePage, whatItHas]. Separate from data/campstate (the weekly GIS bot) so the bot never overwrites it. Oct 25: for CO IL NE VT MO AL, parks with official GPS points from the state's own layers show those points instead of the park-level row. Point rows: [id,name,lat,lon,kind,parkRef,parksPage,reservePage,detail,'point','confirmed'|'label only',km from park pin,source layer]; park-level rows end with 'park'. 'label only' = the layer has no campground name (name built from site numbers or type). Rows matched only by distance (CHECK) are kept out in data/campstate-manual/review-points.json.",
+ "about": "Hand-built, park-LEVEL camping from each state's official park pages (researched Oct 24 2026 and NOT re-checked park by park). One entry per park, at the park's own coordinates (from our POTA park data). 'Likely/verify' entries were left out. Row = [id, name, lat, lon, kind, parkRef, officialParksPage, reservePage, whatItHas]. Separate from data/campstate (the weekly GIS bot) so the bot never overwrites it. Oct 25: for CO IL NE VT MO AL, parks with official GPS points from the state's own layers show those points instead of the park-level row. Point rows: [id,name,lat,lon,kind,parkRef,parksPage,reservePage,detail,'point','confirmed'|'label only',km from park pin,source layer]; park-level rows end with 'park'. 'label only' = the layer has no campground name (name built from site numbers or type). Rows matched only by distance (CHECK) are kept out in data/campstate-manual/review-points.json. Oct 25: + official GPS points for DE GA MD MS NH NM NV WY from the outside research bot (pass 2): DE DNREC Park_Facilities, GA WRD campground layer, MD iMAP state facilities, MS MDWFP recreational facilities 2017 (MARIS shapefile; types only, so label only), NH recreational points (point-in-park), NM EMNRD campsite points (clustered), NV NDSP reservation map (unimproved sites only), WY Game & Fish fishing-guide campgrounds inside state park outlines. AMC huts and points outside a park outline were held back.",
  "level": "park",
- "updated": "2026-10-24",
- "states": {
-  "AL": {
-   "n": 37,
-   "points": 25,
-   "park_level": 12
-  },
-  "AR": {
-   "n": 33
-  },
-  "AZ": {
-   "n": 15
-  },
-  "CO": {
-   "n": 274,
-   "points": 270,
-   "park_level": 4
-  },
-  "CT": {
-   "n": 14
-  },
-  "DE": {
-   "n": 5
-  },
-  "GA": {
-   "n": 50
-  },
-  "ID": {
-   "n": 21
-  },
-  "IL": {
-   "n": 191,
-   "points": 189,
-   "park_level": 2
-  },
-  "KS": {
-   "n": 24
-  },
-  "LA": {
-   "n": 21
-  },
-  "MA": {
-   "n": 21
-  },
-  "MD": {
-   "n": 23
-  },
-  "ME": {
-   "n": 14
-  },
-  "MO": {
-   "n": 84,
-   "points": 80,
-   "park_level": 4
-  },
-  "MS": {
-   "n": 24
-  },
-  "NC": {
-   "n": 32
-  },
-  "ND": {
-   "n": 13
-  },
-  "NE": {
-   "n": 146,
-   "points": 113,
-   "park_level": 33
-  },
-  "NH": {
-   "n": 20
-  },
-  "NJ": {
-   "n": 19
-  },
-  "NM": {
-   "n": 30
-  },
-  "NV": {
-   "n": 21
-  },
-  "OK": {
-   "n": 38
-  },
-  "OR": {
-   "n": 43
-  },
-  "RI": {
-   "n": 4
-  },
-  "SC": {
-   "n": 37
-  },
-  "SD": {
-   "n": 91
-  },
-  "VT": {
-   "n": 107,
-   "points": 92,
-   "park_level": 15
-  },
-  "WI": {
-   "n": 40
-  },
-  "WY": {
-   "n": 12
-  }
- },
+ "updated": "2026-10-25",
+ "states": [
+  "AL",
+  "AR",
+  "AZ",
+  "CO",
+  "CT",
+  "DE",
+  "GA",
+  "ID",
+  "IL",
+  "KS",
+  "LA",
+  "MA",
+  "MD",
+  "ME",
+  "MO",
+  "MS",
+  "NC",
+  "ND",
+  "NE",
+  "NH",
+  "NJ",
+  "NM",
+  "NV",
+  "OK",
+  "OR",
+  "RI",
+  "SC",
+  "SD",
+  "VT",
+  "WI",
+  "WY"
+ ],
  "left_out": {
   "AR (unconfirmed)": 1,
   "IL (unconfirmed)": 27,
