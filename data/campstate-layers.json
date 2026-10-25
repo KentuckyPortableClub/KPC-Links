@@ -27,11 +27,23 @@
   "NY": [
    "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_and_OPRHP_campground_points/FeatureServer",
    "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Camping/FeatureServer"
+  ],
+  "WA": [
+   "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Campsites/FeatureServer/78",
+   "https://gis.dnr.wa.gov/site2/rest/services/Recreation/DNR_Recreation_Sites/MapServer/2"
+  ],
+  "OH": [
+   "https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer"
   ]
  },
  "files": {
   "CA": {
    "ckan": "https://publish.data.ca.gov/api/3/action/package_show?id=campgrounds"
   }
+ },
+ "group": {
+  "WA": [
+   "Campsites/FeatureServer"
+  ]
  }
 }
