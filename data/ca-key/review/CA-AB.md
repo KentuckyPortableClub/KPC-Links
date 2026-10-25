@@ -1,20 +1,18 @@
 # Canada AB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **391 of 459** joined (same name + same kind). **1** to check, **46** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **391 of 459** joined (same name + same kind). **0** to check, **50** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
-- **CA-4774** Bar U Ranch National Historic Site (National Historic Site) → OH Ranch (~0 ac, similar name)
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
 - CA-0663 Peace-Athabasca Delta Natural Area (Natural Area) → on Wood Buffalo (~0 ac); Wood Buffalo National Park Of Canada (~8,807,344 ac)
 - CA-2938 Big Elbow Provincial Recreation Area (Provincial Recreation Area) → on Don Getty Wildland (~0 ac); Don Getty Wildland Provincial Park (~154,882 ac)
 - CA-3076 McLean Pond Natural Area (Natural Area) → on McLean Creek (~0 ac)
-- CA-3111 Prairie Coulees Natural Area (Natural Area) → on Hargrave Coulees (~0 ac); Hargrave Coulees Natural Area (~4,129 ac)
 - CA-3157 Waterton-Glacier International Peace Park (Park) → on Waterton Lakes (~0 ac); Waterton Lakes National Park Of Canada (~124,788 ac)
-- CA-4771 Abbot Pass Refuge Cabin National Historic Site (National Historic Site) → on Yoho National Park Of Canada (~324,474 ac)
-- CA-4772 Athabasca Pass National Historic Site (National Historic Site) → on Jasper (~0 ac); Jasper National Park Of Canada (~2,688,008 ac)
+- CA-4771 Abbot Pass Refuge Cabin National Historic Site (National Historic Site) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
+- CA-4772 Athabasca Pass National Historic Site (National Historic Site) → on Jasper National Park Of Canada (~2,688,008 ac)
 - CA-4775 Cave and Basin National Historic Site (National Historic Site) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
 - CA-4776 First Oil Well in Western Canada National Historic Site (National Historic Site) → on Waterton Lakes (~0 ac); Waterton Lakes National Park Of Canada (~124,788 ac)
 - CA-4778 Howse Pass National Historic Site (National Historic Site) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
@@ -27,8 +25,6 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **391 of 459** joined (same
 - CA-6112 Kananaskis Country Provincial Park (Provincial Park) → on Spray Valley (~0 ac); Spray Valley Provincial Park (~63,169 ac)
 - CA-6116 Athabasca River National Heritage River National Heritage Area (National Heritage Area) → on Jasper (~0 ac); Jasper National Park Of Canada (~2,688,008 ac)
 - CA-6117 North Saskatchewan River National Heritage River National Heritage Area (National Heritage Area) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
-- CA-6396 Leitch Collieries Provincial Historic Site (Provincial Historic Site) → on Privately Protected Area (NCC 20075) (~95 ac)
-- CA-6588 Barrier Lake PRA Recreation Site (Recreation Site) → on Bow Valley (~0 ac); Bow Valley Provincial Park (~8,033 ac)
 
 ## Nothing found in CPCAD
 
@@ -39,9 +35,11 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **391 of 459** joined (same
 - CA-3018 Eyrie Gap Provincial Recreation Area (Provincial Recreation Area)
 - CA-3073 Mary Reimer Regional Park (Regional Park)
 - CA-3089 Nose Hill Park Natural Area (Natural Area)
+- CA-3111 Prairie Coulees Natural Area (Natural Area)
 - CA-3113 Gaetz Lakes Migratory (Red Deer Migratory) Bird Sanctuary (Bird Sanctuary)
 - CA-3136 Fort Vermilion National Historic Site (National Historic Site)
 - CA-4773 Banff Park Museum National Historic Site (National Historic Site)
+- CA-4774 Bar U Ranch National Historic Site (National Historic Site)
 - CA-4777 Frog Lake National Historic Site (National Historic Site)
 - CA-4779 Jasper House National Historic Site (National Historic Site)
 - CA-4780 Jasper Park Information Centre National Historic Site (National Historic Site)
@@ -78,3 +76,5 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **391 of 459** joined (same
 - CA-6126 Livingston Public Land Use Zone Recreation Park (Recreation Park)
 - CA-6134 Athabasca Ranch Public Land Use Zone Recreation Park (Recreation Park)
 - CA-6395 Turner Valley Gas Plant National Historic Site (National Historic Site)
+- CA-6396 Leitch Collieries Provincial Historic Site (Provincial Historic Site)
+- CA-6588 Barrier Lake PRA Recreation Site (Recreation Site)

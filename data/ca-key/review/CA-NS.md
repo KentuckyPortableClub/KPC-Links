@@ -1,19 +1,18 @@
 # Canada NS: POTA parks vs official land (CPCAD)
 
-Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **302 of 489** joined (same name + same kind). **0** to check, **179** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **302 of 489** joined (same name + same kind). **0** to check, **180** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac)
-- CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~1,835 ac)
+- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~1,835 ac)
+- CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac)
 - CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~0 ac); St. Margarets Bay Islands Nature Reserve (~0 ac)
 - CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~0 ac); Cape Breton Highlands National Park Of Canada (~0 ac)
 - CA-6111 Swiss Air Memorial Peggys Cove Provincial Park (Provincial Park) → on West Dover Provincial Park (~0 ac); West Dover Provincial Park (~0 ac)
 - CA-6189 Peter Island Lighthouse National Heritage Site (National Heritage Site) → on Peter's Island Conservation Lands (~0 ac); Peter's Island Conservation Lands (~0 ac)
-- CA-6375 Louisbourg Lighthouse (The Tower) Historic Site (Historic Site) → on Fortress of Louisbourg National Historic site (~14,629 ac)
 - CA-6567 Roseway Beach Provincial Park (Provincial Park) → on Bowers Meadows Wilderness Area (~0 ac); Bowers Meadows Wilderness Area (~118 ac)
 
 ## Nothing found in CPCAD
@@ -180,6 +179,7 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **302 of 489** joined (same
 - CA-6361 Sutherland Steam Mill Historic Site (Historic Site)
 - CA-6372 Cape Sable Island Lighthouse National Heritage Site (National Heritage Site)
 - CA-6374 Sydney and Louisburg Railway Station Historic Site (Historic Site)
+- CA-6375 Louisbourg Lighthouse (The Tower) Historic Site (Historic Site)
 - CA-6467 Tidnish Bridge Historic Site (Historic Site)
 - CA-6483 Roxbury Provincial Park (Provincial Park)
 - CA-6502 Wallace River Railway Swing Bridge Historic Site (Historic Site)

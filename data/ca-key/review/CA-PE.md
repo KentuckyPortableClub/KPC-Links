@@ -1,13 +1,12 @@
 # Canada PE: POTA parks vs official land (CPCAD)
 
-Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **11 of 53** joined (same name + same kind). **0** to check, **39** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **11 of 53** joined (same name + same kind). **0** to check, **40** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-5288 Covehead Harbour National Historic Site (National Historic Site) → on Prince Edward Island National Park Of Canada (~6,714 ac)
 - CA-6439 Holman's Island National Nature Reserve (National Nature Reserve) → on Privately Protected Area (NCC 142051) (~100 ac)
 - CA-6595 Buffaloland Provincial Wildlife Area (Provincial Wildlife Area) → on Harvey Moore Wildlife Management Area (~1,232 ac)
 
@@ -38,6 +37,7 @@ Built 2026-10-24 by `.github/scripts/kpc_ca_key.py`. **11 of 53** joined (same n
 - CA-4891 Ardgowan National Historic Site (National Historic Site)
 - CA-4893 Green Gables Heritage Place (L.M. Montgomery's Cavendish NHS) National Historic Site (National Historic Site)
 - CA-4894 Skmaqn-Port-la-Joye-Fort Amherst National Historic Site (National Historic Site)
+- CA-5288 Covehead Harbour National Historic Site (National Historic Site)
 - CA-5414 Farmers' Bank of Rustico National Historic Site (National Historic Site)
 - CA-5418 Jean-Pierre Roma at Three Rivers, P.E.I. National Historic Site (National Historic Site)
 - CA-5419 Kensington Railway Station National Historic Site (National Historic Site)
