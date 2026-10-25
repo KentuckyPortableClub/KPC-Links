@@ -1,0 +1,47 @@
+name: KPC US access points (parking, entrances, ramps)
+# Oct 25 2026 (Brandon: 'parking / entrance layer is weak… start with US Wildlife Management Areas'): official agency
+# point layers (data/access-layers.json) tied to POTA parks by area name or by sitting on the park's official land.
+# Monthly + by hand. Never fails (a failed run emails Brandon). Chat 2 starts it.
+on:
+  schedule:
+    - cron: '41 8 6 * *'          # monthly, the 6th (after the US key on the 1st)
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States, e.g. "MO PA" (blank = every state in data/access-layers.json)'
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-us-access
+  cancel-in-progress: false
+jobs:
+  access:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v5
+      - name: Fetch the saved park outlines
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache/us
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
+      - name: Build the access points
+        continue-on-error: true
+        env:
+          STATES: ${{ inputs.states }}
+          MINUTES: '150'
+        run: python3 .github/scripts/kpc_us_access.py || true
+      - name: Save
+        if: always()
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/access 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'US access points: parking, entrances, ramps'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
+          true

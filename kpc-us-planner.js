@@ -209,6 +209,12 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
   h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;break}
+ /* Oct 25 (Brandon: 'parking / entrance layer is weak'): the state agencies' own parking, entrance, gate and ramp points (data/access, kpc_us_access.py) */
+ if(P==='POTA'&&pre==='US')for(const st of sts){const k='acc'+st;if(!(k in PINFO))PINFO[k]=fetch('data/access/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+  const d=await PINFO[k],a=d&&d.parks&&d.parks[s.c];if(!a||!a.length)continue;
+  const ios=/iPhone|iPad|iPod/.test(navigator.userAgent),dir=q=>ios?`https://maps.apple.com/?daddr=${q[0]},${q[1]}`:`https://www.google.com/maps/dir/?api=1&destination=${q[0]},${q[1]}`;
+  h+=`<div class="meta" style="margin-top:8px"><b>&#127359; PARKING &amp; ACCESS (THE AGENCY'S OWN MAP)</b></div>`+a.slice(0,6).map(q=>`<div class="meta">&bull; ${esc(q[2])} &middot; <a href="${dir(q)}" target="_blank" rel="noopener">DIRECTIONS ↗</a></div>`).join('')+
+   (a.length>6?`<div class="meta">+${a.length-6} more points on file.</div>`:'')+`<div class="meta" style="opacity:.8">Gates and seasons change: check the agency's map before you go.</div>`;break}
  if(P==='SOTA')h+=await sotaFacts(s);
  if(P==='WWFF')h+=await wwffFacts(s);
  /* Park Notes tips (Kentucky page or the other-states page; parks, summits and KFF references) */
