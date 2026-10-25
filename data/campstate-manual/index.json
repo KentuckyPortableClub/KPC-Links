@@ -1,15 +1,17 @@
 {
- "about": "Hand-built, park-LEVEL camping from each state's official park pages (researched Oct 24 2026 and NOT re-checked park by park). One entry per park, at the park's own coordinates (from our POTA park data). 'Likely/verify' entries were left out. Row = [id, name, lat, lon, kind, parkRef, officialParksPage, reservePage, whatItHas]. Separate from data/campstate (the weekly GIS bot) so the bot never overwrites it. Oct 25: for CO IL NE VT MO AL, parks with official GPS points from the state's own layers show those points instead of the park-level row. Point rows: [id,name,lat,lon,kind,parkRef,parksPage,reservePage,detail,'point','confirmed'|'label only',km from park pin,source layer]; park-level rows end with 'park'. 'label only' = the layer has no campground name (name built from site numbers or type). Rows matched only by distance (CHECK) are kept out in data/campstate-manual/review-points.json. Oct 25: + official GPS points for DE GA MD MS NH NM NV WY from the outside research bot (pass 2): DE DNREC Park_Facilities, GA WRD campground layer, MD iMAP state facilities, MS MDWFP recreational facilities 2017 (MARIS shapefile; types only, so label only), NH recreational points (point-in-park), NM EMNRD campsite points (clustered), NV NDSP reservation map (unimproved sites only), WY Game & Fish fishing-guide campgrounds inside state park outlines. AMC huts and points outside a park outline were held back.",
+ "about": "Hand-built, park-LEVEL camping from each state's official park pages (researched Oct 24 2026 and NOT re-checked park by park). One entry per park, at the park's own coordinates (from our POTA park data). 'Likely/verify' entries were left out. Row = [id, name, lat, lon, kind, parkRef, officialParksPage, reservePage, whatItHas]. Separate from data/campstate (the weekly GIS bot) so the bot never overwrites it. Oct 25: for CO IL NE VT MO AL, parks with official GPS points from the state's own layers show those points instead of the park-level row. Point rows: [id,name,lat,lon,kind,parkRef,parksPage,reservePage,detail,'point','confirmed'|'label only',km from park pin,source layer]; park-level rows end with 'park'. 'label only' = the layer has no campground name (name built from site numbers or type). Rows matched only by distance (CHECK) are kept out in data/campstate-manual/review-points.json. Oct 25: + official GPS points for DE GA MD MS NH NM NV WY from the outside research bot (pass 2): DE DNREC Park_Facilities, GA WRD campground layer, MD iMAP state facilities, MS MDWFP recreational facilities 2017 (MARIS shapefile; types only, so label only), NH recreational points (point-in-park), NM EMNRD campsite points (clustered), NV NDSP reservation map (unimproved sites only), WY Game & Fish fishing-guide campgrounds inside state park outlines. AMC huts and points outside a park outline were held back. Oct 25 PM (HQ campground worklist, 620 parks in 30 states): park-level rows now carry the campground names, sites, cabins, open months and reservation link from each park's official page ('may/usually' notes left out); 89 official GPS points from the park pages and 195 park street addresses placed by the US Census geocoder became point rows (detail says which); 85 addresses the geocoder could not place and the town-only ones stay park-level; 8 points more than 15 km from the park pin (incl. Custer SD, 25 km) and Lake Herman SD (61 km) are held back in review-points.json.",
  "level": "park",
  "updated": "2026-10-25",
  "states": {
   "AL": {
    "n": 37,
-   "points": 25,
-   "park_level": 12
+   "points": 30,
+   "park_level": 7
   },
   "AR": {
-   "n": 33
+   "n": 33,
+   "points": 17,
+   "park_level": 16
   },
   "AZ": {
    "n": 15
@@ -20,7 +22,9 @@
    "park_level": 4
   },
   "CT": {
-   "n": 14
+   "n": 15,
+   "points": 9,
+   "park_level": 6
   },
   "DE": {
    "n": 20,
@@ -28,12 +32,14 @@
    "park_level": 0
   },
   "GA": {
-   "n": 59,
-   "points": 18,
-   "park_level": 41
+   "n": 62,
+   "points": 40,
+   "park_level": 22
   },
   "ID": {
-   "n": 21
+   "n": 21,
+   "points": 13,
+   "park_level": 8
   },
   "IL": {
    "n": 191,
@@ -41,50 +47,64 @@
    "park_level": 2
   },
   "KS": {
-   "n": 24
+   "n": 24,
+   "points": 5,
+   "park_level": 19
   },
   "LA": {
-   "n": 21
+   "n": 21,
+   "points": 12,
+   "park_level": 9
   },
   "MA": {
-   "n": 21
+   "n": 22,
+   "points": 16,
+   "park_level": 6
   },
   "MD": {
-   "n": 23,
-   "points": 1,
-   "park_level": 22
+   "n": 25,
+   "points": 11,
+   "park_level": 14
   },
   "ME": {
-   "n": 14
+   "n": 14,
+   "points": 1,
+   "park_level": 13
   },
   "MO": {
    "n": 84,
-   "points": 80,
-   "park_level": 4
+   "points": 82,
+   "park_level": 2
   },
   "MS": {
    "n": 86,
-   "points": 84,
-   "park_level": 2
+   "points": 85,
+   "park_level": 1
   },
   "NC": {
-   "n": 32
+   "n": 57,
+   "points": 51,
+   "park_level": 6
   },
   "ND": {
-   "n": 13
+   "n": 13,
+   "points": 3,
+   "park_level": 10
   },
   "NE": {
    "n": 146,
-   "points": 113,
-   "park_level": 33
+   "points": 117,
+   "park_level": 29
   },
   "NH": {
    "n": 41,
-   "points": 34,
-   "park_level": 7
+   "points": 37,
+   "park_level": 4
   },
   "NJ": {
-   "n": 19
+   "n": 19,
+   "points": 12,
+   "park_level": 7
   },
   "NM": {
    "n": 49,
@@ -93,36 +113,48 @@
   },
   "NV": {
    "n": 29,
-   "points": 11,
-   "park_level": 18
-  },
-  "OK": {
-   "n": 38
-  },
-  "OR": {
-   "n": 43
-  },
-  "RI": {
-   "n": 4
-  },
-  "SC": {
-   "n": 37
-  },
-  "SD": {
-   "n": 91
-  },
-  "VT": {
-   "n": 107,
-   "points": 92,
+   "points": 14,
    "park_level": 15
   },
+  "OK": {
+   "n": 38,
+   "points": 6,
+   "park_level": 32
+  },
+  "OR": {
+   "n": 43,
+   "points": 5,
+   "park_level": 38
+  },
+  "RI": {
+   "n": 4,
+   "points": 2,
+   "park_level": 2
+  },
+  "SC": {
+   "n": 37,
+   "points": 11,
+   "park_level": 26
+  },
+  "SD": {
+   "n": 91,
+   "points": 43,
+   "park_level": 48
+  },
+  "VT": {
+   "n": 106,
+   "points": 100,
+   "park_level": 6
+  },
   "WI": {
-   "n": 40
+   "n": 40,
+   "points": 19,
+   "park_level": 21
   },
   "WY": {
    "n": 24,
-   "points": 16,
-   "park_level": 8
+   "points": 17,
+   "park_level": 7
   }
  },
  "left_out": {
