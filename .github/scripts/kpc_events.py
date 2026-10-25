@@ -83,6 +83,10 @@ def recurring():
             s = full_weekends(y, m)[2]
             ev.append({'name': 'POTA Support Your Parks Weekend', 'tags': ['POTA'], 'start': iso(s), 'end': iso(s + dt.timedelta(days=1)),
                        'where': 'Any Kentucky park. Get out and activate!', 'by': 'Parks on the Air', 'url': 'https://pota.app/', 'rule': 'Third full weekend of Jan, Apr, Jul and Oct'})
+        # POTA New Year's Week: Jan 1-7 every year (docs.pota.app/docs/events.html, checked Oct 25 2026), UTC days.
+        ev.append({'name': 'POTA New Year’s Week', 'tags': ['POTA'], 'start': iso(dt.date(y, 1, 1)), 'end': iso(dt.date(y, 1, 7)),
+                   'time': 'Runs on UTC days: 7 PM Eastern Dec. 31 to 6:59 PM Eastern Jan. 7', 'where': 'Any Kentucky park. A week of casual activations to start the year.',
+                   'by': 'Parks on the Air', 'url': 'https://docs.pota.app/docs/events.html', 'rule': 'January 1-7'})
         s = full_weekends(y, 6)[3]
         ev.append({'name': 'ARRL Field Day', 'tags': ['ONAIR'], 'start': iso(s), 'end': iso(s + dt.timedelta(days=1)),
                    'time': 'Starts 1800 UTC Saturday (2 PM Eastern)', 'where': 'Clubs and portable stations everywhere. A great weekend to operate from a park.',

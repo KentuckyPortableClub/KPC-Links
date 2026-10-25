@@ -4,6 +4,7 @@
 (function(root){
 var EVENTS=[
  {name:'Kentucky Mountains ARC Hamfest',tags:['HAMFEST'],start:'2026-10-31',where:'VFW Post 7387, 1700 N. Main St., Hazard, KY',by:'Kentucky Mountains Amateur Radio Club (KMARC)',url:'https://www.arrl.org/hamfests/kentucky-mountains-amateur-radio-club-hamfest'},
+ {name:'POTA New Year’s Week',tags:['POTA'],start:'2027-01-01',end:'2027-01-07',time:'Runs on UTC days: 7 PM Eastern Dec. 31 to 6:59 PM Eastern Jan. 7',where:'Any Kentucky park — a week of casual activations to start the year',by:'Parks on the Air',url:'https://docs.pota.app/docs/events.html'},
  {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-01-16',end:'2027-01-17',where:'Any Kentucky park — get out and activate!',by:'Parks on the Air',url:'https://pota.app/'},
  {name:'Orlando HamCation',tags:['HAMFEST'],start:'2027-02-12',end:'2027-02-14',time:'Fri.–Sat. 9 AM–5 PM, Sun. 9 AM–1 PM (Eastern)',where:'Central Florida Fairgrounds & Expo Park, 4603 W. Colonial Dr., Orlando, FL — one of the biggest hamfests in the Southeast',by:'Orlando Amateur Radio Club',url:'https://www.hamcation.com/'},
  {name:'Cave City Hamfest',tags:['HAMFEST'],start:'2027-03-06',where:'Cave City Convention Center, Cave City, KY',by:'Mammoth Cave Amateur Radio Club',url:'https://www.ky4x.org/hamfest',url2:'https://www.arrl.org/hamfests/cave-city-hamfest-17'},
@@ -16,6 +17,9 @@ var EVENTS=[
  {name:'POTA Support Your Parks Weekend',tags:['POTA'],start:'2027-07-17',end:'2027-07-18',where:'Any Kentucky park',by:'Parks on the Air',url:'https://pota.app/'},
  {name:'KPC 2027 KYPOTA Campout',tags:['KPC','CAMPOUT'],start:'2027-09-24',end:'2027-09-26',time:'2 PM Eastern Friday – 1 PM Eastern Sunday',where:'Taylorsville Lake State Park (US-1271)',by:'Kentucky Portable Club',url:'campout.html',local:true},
  {name:'Huntsville Hamfest',tags:['HAMFEST'],start:'2027-08-21',end:'2027-08-22',time:'Sat. 9 AM–4:30 PM, Sun. 9 AM–3 PM (Central)',where:'Von Braun Center South Hall, 700 Monroe St. SW, Huntsville, AL',by:'Huntsville Hamfest',url:'https://hamfest.org/'},
+ {name:'MPARC Hamfest',tags:['HAMFEST'],start:'2027-02-06',where:'Gloucester, VA (eastern Virginia)',by:'Middle Peninsula Amateur Radio Club',url:'https://www.arrl.org/hamfests/mparc-hamfest-2'},
+ {name:'Roanoke Valley Hamfest',tags:['HAMFEST'],start:'2027-07-31',where:'Roanoke, VA',by:'Roanoke Valley Amateur Radio Club',url:'https://www.arrl.org/hamfests/roanoke-valley-hamfest-1'},
+ {name:'Southeastern Virginia Regional Hamfest and Swap Meet',tags:['HAMFEST'],start:'2027-08-07',where:'Newport News, VA (eastern Virginia)',by:'Tidewater Radio Conventions',url:'https://www.arrl.org/hamfests/southeastern-virginia-regional-hamfest-and-swap-meet-1'},
  {name:'Winterfest',tags:['HAMFEST'],start:'2027-01-23',where:'Gateway Convention Center, Collinsville, IL (St. Louis area)',by:'St. Louis and Suburban Radio Club (SLSRC)',url:'https://winterfest.slsrc.org/',url2:'https://www.arrl.org/hamfests/winterfest-24'},
  {name:'Auburn Hamfest',tags:['HAMFEST'],start:'2027-07-17',where:'Auburn, IN',by:'Northeastern Indiana Amateur Radio Association',url:'https://www.arrl.org/hamfests/auburn-hamfest-5'},
  {name:'Cincinnati Hamfest — ARRL Great Lakes Division Convention',tags:['HAMFEST'],start:'2027-08-14',where:'Clermont County Fairgrounds, 1000 Locust St., Owensville, OH (near Cincinnati)',by:'Milford Amateur Radio Club',url:'https://cincinnatihamfest.org/',url2:'https://www.arrl.org/hamfests/cincinnati-hamfest-arrl-great-lakes-division-convention-2'},
