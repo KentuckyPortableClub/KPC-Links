@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20",
+ "updated": "2026-10-25",
  "found": [
   [
    "US-9741",
@@ -1154,44 +1154,156 @@
    2.4
   ],
   [
-   "US-5788",
-   "Slickrock Bike National Recreation Trail",
-   "UT",
-   "OpenStreetMap (not official)",
-   4,
-   27.8
-  ],
-  [
-   "US-5804",
-   "Corona Arch BLM National Recreation Trail",
-   "UT",
-   "OpenStreetMap (not official)",
-   2,
+   "US-2955",
+   "Wilson Cumberland Trail State Park",
+   "TN",
+   "TDEC_Bureau_of_Conservation",
+   418,
    0.1
   ],
   [
-   "US-5872",
-   "Burr Trail BLM Historic Trail",
-   "UT",
-   "OpenStreetMap (not official)",
+   "US-11181",
+   "Sheltowee Trace National Recreation Trail",
+   "TN",
+   "US Forest Service",
+   346,
+   0.5
+  ],
+  [
+   "US-3608",
+   "Blackwater Heritage State Trail",
+   "FL",
+   "official layer picked by KPC",
+   12,
+   0.0
+  ],
+  [
+   "US-3620",
+   "Florida Keys Overseas Heritage Trail State Park",
+   "FL",
+   "official layer picked by KPC",
    105,
+   1.0
+  ],
+  [
+   "US-3624",
+   "Gainesville-Hawthorne State Trail",
+   "FL",
+   "official layer picked by KPC",
+   26,
    0.0
   ],
   [
-   "US-5913",
-   "Historic Union Pacific Rail Trail State Park",
-   "UT",
-   "Utah State Parks and Recreation paper copy of grants from January 1st, 2005 - Dec 31, 2012 GIS Specialists: Sean Hirschi and Vili Kotobalavu Project Cordinator: Chris Haller | carlylansche3",
-   42,
+   "US-3627",
+   "General James A. Van Fleet State Trail",
+   "FL",
+   "official layer picked by KPC",
+   65,
+   0.1
+  ],
+  [
+   "US-3640",
+   "Nature Coast State Trail",
+   "FL",
+   "official layer picked by KPC",
+   52,
+   0.1
+  ],
+  [
+   "US-3644",
+   "Palatka-St. Augustine State Trail",
+   "FL",
+   "official layer picked by KPC",
+   30,
    0.0
   ],
   [
-   "US-10965",
-   "Great Western Trail BLM Historic Trail",
-   "UT",
+   "US-3645",
+   "Palatka-to-Lake Butler State Trail",
+   "FL",
+   "official layer picked by KPC",
+   71,
+   0.0
+  ],
+  [
+   "US-3661",
+   "Tallahassee-St. Marks Historic Railroad State Trail",
+   "FL",
+   "official layer picked by KPC",
+   26,
+   0.2
+  ],
+  [
+   "US-3667",
+   "Withlacoochee State Trail",
+   "FL",
+   "official layer picked by KPC",
+   512,
+   0.0
+  ],
+  [
+   "US-10912",
+   "'Ualaka'a State Trail",
+   "HI",
+   "official layer picked by KPC",
+   1,
+   0.1
+  ],
+  [
+   "US-10913",
+   "Diamond Head Summit State Trail",
+   "HI",
    "OpenStreetMap (not official)",
-   1199,
-   16.4
+   1,
+   0.2
+  ],
+  [
+   "US-10914",
+   "Ka\u2018ena Point State Trail",
+   "HI",
+   "OpenStreetMap (not official)",
+   3,
+   2.7
+  ],
+  [
+   "US-10915",
+   "Nakoa State Trail",
+   "HI",
+   "OpenStreetMap (not official)",
+   0,
+   1.6
+  ],
+  [
+   "US-10917",
+   "\u02bbAiea Loop State Trail",
+   "HI",
+   "OpenStreetMap (not official)",
+   6,
+   0.4
+  ],
+  [
+   "US-10918",
+   "Wa\u02bbahila Ridge State Trail",
+   "HI",
+   "official layer picked by KPC",
+   2,
+   0.3
+  ],
+  [
+   "US-4584",
+   "Ashton-Tetonia Trail State Park",
+   "ID",
+   "official layer picked by KPC",
+   46,
+   0.0
+  ],
+  [
+   "US-10006",
+   "Idaho Centennial Trail State Trail",
+   "ID",
+   "Idaho Department of Parks and Recreation | State_of_Idaho",
+   2015,
+   0.0
   ],
   [
    "US-9155",
@@ -1266,132 +1378,52 @@
    0.0
   ],
   [
-   "US-10913",
-   "Diamond Head Summit State Trail",
-   "HI",
+   "US-5788",
+   "Slickrock Bike National Recreation Trail",
+   "UT",
    "OpenStreetMap (not official)",
-   1,
-   0.2
+   4,
+   27.8
   ],
   [
-   "US-10914",
-   "Ka\u2018ena Point State Trail",
-   "HI",
-   "OpenStreetMap (not official)",
-   3,
-   2.7
-  ],
-  [
-   "US-10915",
-   "Nakoa State Trail",
-   "HI",
-   "OpenStreetMap (not official)",
-   0,
-   1.6
-  ],
-  [
-   "US-10917",
-   "\u02bbAiea Loop State Trail",
-   "HI",
-   "OpenStreetMap (not official)",
-   6,
-   0.4
-  ],
-  [
-   "US-10918",
-   "Wa\u02bbahila Ridge State Trail",
-   "HI",
+   "US-5804",
+   "Corona Arch BLM National Recreation Trail",
+   "UT",
    "OpenStreetMap (not official)",
    2,
-   1.7
-  ],
-  [
-   "US-3608",
-   "Blackwater Heritage State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
-   13,
-   0.0
-  ],
-  [
-   "US-3620",
-   "Florida Keys Overseas Heritage Trail State Park",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
-   99,
-   1.0
-  ],
-  [
-   "US-3624",
-   "Gainesville-Hawthorne State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
-   26,
-   0.0
-  ],
-  [
-   "US-3627",
-   "General James A. Van Fleet State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
-   47,
    0.1
   ],
   [
-   "US-3640",
-   "Nature Coast State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
-   145,
-   0.0
-  ],
-  [
-   "US-3644",
-   "Palatka-St. Augustine State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection, Division of Recreation and Parks, Bureau of Natural and Cultural Resources | FDEPOpenDataPortal",
-   30,
-   0.0
-  ],
-  [
-   "US-3645",
-   "Palatka-to-Lake Butler State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
-   79,
-   0.0
-  ],
-  [
-   "US-3661",
-   "Tallahassee-St. Marks Historic Railroad State Trail",
-   "FL",
-   "Florida Department of Environmental Protection | Florida Department of Environmental Protection Office of Greenways & Trails | FDEPOpenDataPortal",
-   8,
-   6.4
-  ],
-  [
-   "US-3667",
-   "Withlacoochee State Trail",
-   "FL",
+   "US-5872",
+   "Burr Trail BLM Historic Trail",
+   "UT",
    "OpenStreetMap (not official)",
    105,
    0.0
   ],
   [
-   "US-2955",
-   "Wilson Cumberland Trail State Park",
-   "TN",
-   "TDEC_Bureau_of_Conservation",
-   418,
-   0.1
+   "US-5906",
+   "Burr Trail Scenic Byway BLM Historic Trail",
+   "UT",
+   "OpenStreetMap (not official)",
+   108,
+   0.0
   ],
   [
-   "US-11181",
-   "Sheltowee Trace National Recreation Trail",
-   "TN",
-   "US Forest Service",
-   346,
-   0.5
+   "US-5913",
+   "Historic Union Pacific Rail Trail State Park",
+   "UT",
+   "Utah State Parks and Recreation paper copy of grants from January 1st, 2005 - Dec 31, 2012 GIS Specialists: Sean Hirschi and Vili Kotobalavu Project Cordinator: Chris Haller | carlylansche3",
+   42,
+   0.0
+  ],
+  [
+   "US-10965",
+   "Great Western Trail BLM Historic Trail",
+   "UT",
+   "OpenStreetMap (not official)",
+   1199,
+   16.4
   ],
   [
    "US-8617",
@@ -1399,22 +1431,6 @@
    "NM",
    "OpenStreetMap (not official)",
    1,
-   0.0
-  ],
-  [
-   "US-4584",
-   "Ashton-Tetonia Trail State Park",
-   "ID",
-   "State of Idaho | Idaho Parks and Recreation Department, United States Forest Service, Bureau of Land Management. | aernst_idpr",
-   46,
-   0.0
-  ],
-  [
-   "US-10006",
-   "Idaho Centennial Trail State Trail",
-   "ID",
-   "Idaho Department of Parks and Recreation | State_of_Idaho",
-   2015,
    0.0
   ],
   [
@@ -1440,6 +1456,14 @@
    "OpenStreetMap (not official)",
    3,
    0.0
+  ],
+  [
+   "CA-5701",
+   "Matthew's Brook Trail National Recreation Trail",
+   "CA-NB",
+   "OpenStreetMap (not official)",
+   0,
+   0.1
   ],
   [
    "CA-5722",
@@ -1554,15 +1578,33 @@
    "no line found"
   ],
   [
-   "US-5809",
-   "Little Red Mountain BLM Historic Trail",
-   "UT",
+   "US-8313",
+   "Mountains to Sea State Trail",
+   "TN",
    "no line found"
   ],
   [
-   "US-11001",
-   "Gooseberry Mesa National Recreation Trail",
-   "UT",
+   "US-3660",
+   "Suwannee River Wilderness State Trail",
+   "FL",
+   "no line found"
+  ],
+  [
+   "US-2216",
+   "Makapu\u02bbu  Point Wayside State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-10916",
+   "Kapa\u02bbele\u02bbele State Trail",
+   "HI",
+   "no line found"
+  ],
+  [
+   "US-7366",
+   "Trail of the Coeur d'Alene's State Trail",
+   "ID",
    "no line found"
   ],
   [
@@ -1578,45 +1620,21 @@
    "no line found"
   ],
   [
-   "US-2216",
-   "Makapu\u02bbu  Point Wayside State Trail",
-   "HI",
+   "US-5809",
+   "Little Red Mountain BLM Historic Trail",
+   "UT",
    "no line found"
   ],
   [
-   "US-10912",
-   "'Ualaka'a State Trail",
-   "HI",
-   "no line found"
-  ],
-  [
-   "US-10916",
-   "Kapa\u02bbele\u02bbele State Trail",
-   "HI",
-   "no line found"
-  ],
-  [
-   "US-3660",
-   "Suwannee River Wilderness State Trail",
-   "FL",
-   "no line found"
-  ],
-  [
-   "US-8313",
-   "Mountains to Sea State Trail",
-   "TN",
+   "US-11001",
+   "Gooseberry Mesa National Recreation Trail",
+   "UT",
    "no line found"
   ],
   [
    "US-8618",
    "White Ridge National Recreation Trail",
    "NM",
-   "no line found"
-  ],
-  [
-   "US-7366",
-   "Trail of the Coeur d'Alene's State Trail",
-   "ID",
    "no line found"
   ],
   [
@@ -1664,12 +1682,6 @@
   [
    "CA-5674",
    "Chatham Waterfront Trail Recreation Park",
-   "CA-NB",
-   "no line found"
-  ],
-  [
-   "CA-5701",
-   "Matthew's Brook Trail National Recreation Trail",
    "CA-NB",
    "no line found"
   ],
@@ -1982,9 +1994,15 @@
    "a driving route, area or water trail: no single line to draw"
   ],
   [
-   "US-5906",
-   "Burr Trail Scenic Byway BLM Historic Trail",
-   "UT",
+   "US-10919",
+   "Na Ala Hele State Trail",
+   "HI",
+   "a driving route, area or water trail: no single line to draw"
+  ],
+  [
+   "US-3424",
+   "Ice Age Floods National Geologic Trail",
+   "ID",
    "a driving route, area or water trail: no single line to draw"
   ],
   [
@@ -1997,18 +2015,6 @@
    "US-9980",
    "Willamette River Greenway and Water State Trail",
    "OR",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
-   "US-10919",
-   "Na Ala Hele State Trail",
-   "HI",
-   "a driving route, area or water trail: no single line to draw"
-  ],
-  [
-   "US-3424",
-   "Ice Age Floods National Geologic Trail",
-   "ID",
    "a driving route, area or water trail: no single line to draw"
   ],
   [
@@ -2083,13 +2089,13 @@
    "Narrows Peninsula Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Narrows Peninsula Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Narrows Peninsula Trail National Recreation Trail",
@@ -2281,13 +2287,13 @@
    "Kingsmere River Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Kingsmere River Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Kingsmere River Trail National Recreation Trail",
@@ -2479,13 +2485,13 @@
    "Boundary Bog Trail National Geologic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Boundary Bog Trail National Geologic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Boundary Bog Trail National Geologic Trail",
@@ -2677,13 +2683,13 @@
    "Red Deer Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Red Deer Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Red Deer Trail National Recreation Trail",
@@ -2875,13 +2881,13 @@
    "Fisher Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Fisher Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Fisher Trail National Recreation Trail",
@@ -3073,13 +3079,13 @@
    "Battleford-Swift Current Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Battleford-Swift Current Trail National Recreation Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Battleford-Swift Current Trail National Recreation Trail",
@@ -3271,13 +3277,13 @@
    "Cochin Green Lake Trail National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Cochin Green Lake Trail National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Cochin Green Lake Trail National Historic Trail",
@@ -3469,13 +3475,13 @@
    "Meadow lake Battleford Trail National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Meadow lake Battleford Trail National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Meadow lake Battleford Trail National Historic Trail",
@@ -3667,13 +3673,13 @@
    "Fort Carlton- Touchwood Trail National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Fort Carlton- Touchwood Trail National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Fort Carlton- Touchwood Trail National Historic Trail",
@@ -3865,13 +3871,13 @@
    "Troy-Prince Albert National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Troy-Prince Albert National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Troy-Prince Albert National Historic Trail",
@@ -4063,13 +4069,13 @@
    "River Ridge Trails National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "River Ridge Trails National Historic Trail",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "River Ridge Trails National Historic Trail",
@@ -4261,13 +4267,13 @@
    "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC7"
+   "LMC8"
   ],
   [
    "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
    "skip (not state/federal)",
    "ochaudhry",
-   "LMC8"
+   "LMC7"
   ],
   [
    "Fort Qu'Appelle - Touchwood Hills Trail Provincial Historic Site",
