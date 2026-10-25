@@ -1,0 +1,35 @@
+name: KPC temp probe (chat 2, delete after)
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Probe
+        continue-on-error: true
+        run: |
+          python3 - <<'PY' || true
+          import urllib.request, json
+          U = {'TN tdec parks': 'https://tdeconline.tn.gov/arcgis/rest/services/TSP_TN_State_Parks/MapServer?f=json',
+               'TN tdec lands': 'https://tdeconline.tn.gov/arcgis/rest/services/TDEC_Public_Lands/FeatureServer?f=json',
+               'TN tnmap': 'https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/PUBLIC_LANDS/MapServer?f=json',
+               'TN agol parks': 'https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
+               'MD mdgeodata': 'https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
+               'MD geodata': 'https://geodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/MapServer/0/query?where=1%3D1&returnCountOnly=true&f=json',
+               'IA public lands': 'https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0?f=json',
+               'IA hub': 'https://geodata.iowa.gov/api/search/v1/collections/all/items?q=public%20lands&limit=5',
+               'ID idpr hub': 'https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/all/items?q=campground&limit=8'}
+          for k, u in U.items():
+              try:
+                  b = urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC check (kentuckyportableclub.github.io)'}), timeout=45).read().decode('utf-8', 'replace')
+                  j = json.loads(b)
+                  if 'features' in j and 'type' in j and k.endswith('hub'):
+                      x = '; '.join(f"{(f.get('properties') or {}).get('title')} [{(f.get('properties') or {}).get('type')}] {(f.get('properties') or {}).get('url') or ''}" for f in j['features'][:8])
+                  else:
+                      x = json.dumps({kk: j.get(kk) for kk in ('count', 'name', 'error', 'geometryType')} | {'layers': [(l.get('id'), l.get('name')) for l in j.get('layers', [])][:14]})
+                  print(f'::notice title=probe {k}::{x[:850]}')
+              except Exception as e:
+                  print(f'::notice title=probe {k}::FAILED {str(e)[:150]}')
+          PY
