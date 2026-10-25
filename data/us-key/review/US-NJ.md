@@ -1,23 +1,22 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **121 of 134** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **122 of 134** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0886 Maurice River National Wild and Scenic River (National Wild and Scenic River) → on Heislerville Wildlife Management Area (~317 ac); Heislerville Wildlife Management Area (~7,330 ac)
 - US-6544 New Jersey Coastal State Trail (State Trail) → on Gateway National Recreation Area (~1,810 ac)
-- US-6609 Pinelands Preserve National Conservation Area (National Conservation Area) → on Wharton State Forest (~72,322 ac)
+- US-6609 Pinelands Preserve National Conservation Area (National Conservation Area) → on Wharton State Forest (~2,845 ac); Wharton State Forest (~72,322 ac)
 
 ## Nothing found in PAD-US
 
 - US-0677 Great Egg Harbor National Wild and Scenic River (National Wild and Scenic River)
 - US-0684 Lower Delaware National Wild and Scenic River (National Wild and Scenic River)
+- US-0886 Maurice River National Wild and Scenic River (National Wild and Scenic River)
 - US-0888 Musconetcong River National Wild and Scenic River (National Wild and Scenic River)
 - US-13061 Gum Tree Corner Wildlife Management Area (Wildlife Management Area)
-- US-13117 D.O.D. Ponds Wildlife Management Area (Wildlife Management Area)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6462 Garret Mountain Reservation State Park (State Park)
@@ -30,6 +29,7 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **121 of 134** parks joined
 - Franklin Parker Preserve · PCON · New Jersey Conservation Foundation · ~8,931 ac
 - Franklin Parker Preserve · SCA ·   · ~7,500 ac
 - Cherry Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,803 ac
+- Six Mile Run Reservoir Site ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~3,210 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~2,904 ac
 - Six Mile Run Reservoir Site · SP · Division of Parks and Forestry · ~2,294 ac
 - Palisades Park · LREC · Palisades Interstate Park Commission · ~2,218 ac
@@ -57,6 +57,7 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **121 of 134** parks joined
 - Bear Creek Preserve · SCA · New Jersey Natural Lands Trust · ~1,014 ac
 - John Heinz National Wildlife Refuge At Tinicum ·  · U.S. Fish & Wildlife Service (own map) · ~1,011 ac
 - Fortescue Wildlife Management Area · SCA · Division of Fish and Wildlife · ~970 ac
+- Forest Resource Education Center ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~940 ac
 - Baldpate Mountain · SCA · NJ Department of Environmental Protection · ~919 ac
 - Manahawkin Wildlife Management Area · SCA · Division of Fish and Wildlife · ~918 ac
 - Baldpate Mountain · LCA · Mercer County · ~914 ac
@@ -74,6 +75,7 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **121 of 134** parks joined
 - Weldon Brook Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~744 ac
 - Crossley Preserve · SCA · New Jersey Natural Lands Trust · ~714 ac
 - Retreat Preserve · SCA · New Jersey Natural Lands Trust · ~710 ac
+- UNEXPECTED WILDLIFE REFUGE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~668 ac
 - Fortescue Wildlife Management Area · SCA · Division of Fish and Wildlife · ~638 ac
 - Buckhorn Creek Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~635 ac
 - Raritan River Confluence State Park · SP · Division of Parks and Forestry · ~633 ac
@@ -81,8 +83,5 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **121 of 134** parks joined
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~621 ac
 - Maskells Mills Pond Wildlife Management Area · SCA · Division of Fish and Wildlife · ~605 ac
 - Warren Trail · SREC · Division of Parks and Forestry · ~602 ac
+- Sussex Branch Trail ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~586 ac
 - Port Republic Wildlife Management Area · SCA · Division of Fish and Wildlife · ~584 ac
-- Mahlon Dickerson Reservation · SOTH ·   · ~572 ac
-- Mahlon Dickerson Reservation · LCA · Morris County Park Commission · ~572 ac
-- Retreat Preserve · SCA · New Jersey Natural Lands Trust · ~551 ac
-- White Lake Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~548 ac

@@ -1,70 +1,44 @@
 # MN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **223 of 294** parks joined to official land (same name + same kind of place). **0** to check by hand, **60** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **249 of 294** parks joined to official land (same name + same kind of place). **4** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-12378** Whitewater Wildlife Management Area (Wildlife Management Area) → Whitewater WMA: Main Branch Unit (~21,664 ac, similar name)
+- **US-13156** Schueler: East Sub Unit Wildlife Management Area (Wildlife Management Area) → Schueler WMA: East Subunit (~192 ac, similar name)
+- **US-13545** Horseshoe Bay Protected Area (Protected Area) → Horseshoe Bay WMA (~276 ac, similar name); Grand Portage (~100,174 ac, the POTA pin is inside it (different name))
+- **US-6468** Iron Range OHV State Recreation Area (State Recreation Area) → Iron Range Off-Highway Vehicle (~3,676 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-0358 Detroit Lakes Wetland Management District (Wetland Management District) → on Becker County Waterfowl Production Area (~14,050 ac); Becker County Waterfowl Production Area (~14,209 ac)
-- US-0359 Fergus Falls Wetland Management District (Wetland Management District) → on Otter Tail County Waterfowl Production Area (~24,120 ac); Otter Tail County Waterfowl Production Area (~24,232 ac)
-- US-0362 Litchfield Wetland Management District (Wetland Management District) → on Meeker County Waterfowl Production Area (~5,166 ac); Meeker County Waterfowl Production Area (~5,354 ac)
+- US-0362 Litchfield Wetland Management District (Wetland Management District) → on Meeker County Waterfowl Production Area (~5,166 ac)
+- US-0365 Minnesota Valley Wetland Management District (Wetland Management District) → on Meeker County Waterfowl Production Area (~5,166 ac)
 - US-0366 Morris Wetland Management District (Wetland Management District) → on Stevens County Waterfowl Production Area (~9,785 ac); Stevens County Waterfowl Production Area (~9,785 ac)
 - US-0373 Windom Wetland Management District (Wetland Management District) → on Cottonwood County Waterfowl Production Area (~3,454 ac); Cottonwood County Waterfowl Production Area (~3,744 ac)
 - US-11153 Matthew Lourey State Trail (State Trail) → on Chengwatana State Forest (~17,023 ac)
-- US-11154 Taconite State Trail (State Trail) → on Superior National Forest (~2,093,610 ac)
-- US-11872 Lost 40 SNA State Natural Area (State Natural Area) → on Big Fork State Forest (~45,218 ac)
-- US-11904 Migizi National Recreation Trail (National Recreation Trail) → on Chippewa National Forest (~672,038 ac)
-- US-12377 Coldwater Spring Unit National Recreation Area (National Recreation Area) → on Mississippi National River and Recreation Area (~64 ac)
-- US-9373 Paul Bunyan State Trail (State Trail) → on Lake Bemidji State Park (~1,614 ac)
+- US-12380 McCarthy Lake Wildlife Management Area (Wildlife Management Area) → on Mc Carthy Lake WMA (~3,262 ac)
 
 ## Nothing found in PAD-US
 
 - US-0356 Big Stone Wetland Management District (Wetland Management District)
-- US-0365 Minnesota Valley Wetland Management District (Wetland Management District)
+- US-0359 Fergus Falls Wetland Management District (Wetland Management District)
 - US-10720 Forest Lake AMA Aquatic Reserve (Aquatic Reserve)
-- US-10723 Crystal Spring SNA Scenic Reserve (Scenic Reserve)
 - US-11014 David Dill/Taconite and Taconite State Trails State Trail (State Trail)
 - US-11150 CJ Ramstad North Shore State Trail (State Trail)
 - US-11151 Cuyuna Lakes State Trail (State Trail)
 - US-11152 Heartland State Trail (State Trail)
-- US-11983 Keystone Wildlife Management Area (Wildlife Management Area)
-- US-12152 Canosia Wildlife Management Area (Wildlife Management Area)
-- US-12378 Whitewater Wildlife Management Area (Wildlife Management Area)
-- US-12380 McCarthy Lake Wildlife Management Area (Wildlife Management Area)
-- US-12395 St. Croix Boom Site Unique Area (Unique Area)
-- US-12457 Riverlands State Forest (State Forest)
-- US-12458 Mille Lacs Wildlife Management Area (Wildlife Management Area)
-- US-12600 Blackhoof River Wildlife Management Area (Wildlife Management Area)
-- US-12625 Tiger Marsh Wildlife Management Area (Wildlife Management Area)
-- US-12626 Indian Lake Wildlife Management Area (Wildlife Management Area)
-- US-12685 Mallard Marsh:Gombold Unit Wildlife Management Area (Wildlife Management Area)
-- US-12809 Yucatan Wildlife Management Area (Wildlife Management Area)
-- US-12810 Choice Wildlife Management Area (Wildlife Management Area)
-- US-13156 Schueler: East Sub Unit Wildlife Management Area (Wildlife Management Area)
-- US-13203 Robert’s-Wickstrom:East Unit Wildlife Management Area (Wildlife Management Area)
-- US-13502 Gichigami Ziibi Wildlife Management Area (Wildlife Management Area)
-- US-13545 Horseshoe Bay Protected Area (Protected Area)
+- US-11154 Taconite State Trail (State Trail)
+- US-11904 Migizi National Recreation Trail (National Recreation Trail)
+- US-12377 Coldwater Spring Unit National Recreation Area (National Recreation Area)
 - US-13546 Twin Points Protected Area (Protected Area)
 - US-13547 Two Harbors Protected Area (Protected Area)
 - US-13548 Knife River Marine Protected Area (Marine Protected Area)
 - US-13549 McQuade Marine Protected Area (Marine Protected Area)
-- US-13562 Gores Pool #3 Wildlife Management Area (Wildlife Management Area)
-- US-2491 Hayes Lake State Park (State Park)
-- US-2517 St. Croix State Park (State Park)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
-- US-4783 Beltrami Island State Forest (State Forest)
-- US-4786 Blackduck State Forest (State Forest)
-- US-4789 Burntside State Forest (State Forest)
-- US-4801 Grand Portage State Forest (State Forest)
-- US-4824 St. Croix State Forest (State Forest)
-- US-6466 Cuyuna Country State Recreation Area (State Recreation Area)
-- US-6468 Iron Range OHV State Recreation Area (State Recreation Area)
-- US-7145 Minnesota Valley State Recreation Area (State Recreation Area)
-- US-7147 Centennial State Forest (State Forest)
 - US-7759 David Dill Arrowhead State Trail (State Trail)
 - US-8095 Gitchi Gami State Trail (State Trail)
+- US-9373 Paul Bunyan State Trail (State Trail)
 - US-9374 Root River State Trail (State Trail)
 - US-9375 Harmony-Preston State Trail (State Trail)
 - US-9376 Shooting Star State Trail (State Trail)
@@ -86,8 +60,10 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **223 of 294** parks joined
 
 - Boundary Waters Canoe Area Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,097,112 ac
 - Miscellaneous · SRMA · DNR Forestry · ~737,854 ac
+- Red Lake WMA: Main Unit ·  · Minnesota DNR (wild, state GIS table) · ~212,965 ac
 - Beltrami Wildlife Management Area · NCA · Beltrami Wildlife Management Area · ~86,982 ac
 - Beltrami Wildlife Management Area · NCA · BELTRAMI WILDLIFE MANAGEMENT AREA · ~86,741 ac
+- Red Lake WMA: Supplement Unit ·  · Minnesota DNR (wild, state GIS table) · ~84,064 ac
 - Red Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~83,591 ac
 - Roseau River State Wildlife Management Area · SCA · DNR Wildlife · ~75,144 ac
 - Kabetogama Purchase Unit · NF · Forest Service Region 09 Eastern · ~68,258 ac
@@ -96,14 +72,22 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **223 of 294** parks joined
 - Necedah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~44,040 ac
 - Wapiti State Wildlife Management Area · SCA · DNR Wildlife · ~31,757 ac
 - Beaches Lake State Wildlife Management Area · SCA · DNR Wildlife · ~30,598 ac
+- Beaches Lake WMA: Main Unit ·  · Minnesota DNR (wild, state GIS table) · ~27,921 ac
+- Red Lake WMA: Main Unit - Baudette Area ·  · Minnesota DNR (wild, state GIS table) · ~25,216 ac
+- Lac qui Parle WMA: Main Unit ·  · Minnesota DNR (wild, state GIS table) · ~24,884 ac
 - Otter Tail County Waterfowl Production Area · RMA · Otter Tail County Waterfowl Production Area · ~24,232 ac
 - Otter Tail County Waterfowl Production Area · RMA · OTTER TAIL COUNTY WATERFOWL PRODUCTION AREA · ~24,120 ac
 - Myrtle Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~22,998 ac
+- Whitewater WMA: Main Branch Unit ·  · Minnesota DNR (wild, state GIS table) · ~21,664 ac
 - Moose River State Wildlife Management Area · SCA · DNR Wildlife · ~21,272 ac
+- Mud Goose WMA ·  · Minnesota DNR (wild, state GIS table) · ~17,011 ac
+- Moose Willow WMA ·  · Minnesota DNR (wild, state GIS table) · ~16,946 ac
 - Elm Lake State Wildlife Management Area · SCA · DNR Wildlife · ~15,744 ac
+- Carp Swamp WMA: Main Unit ·  · Minnesota DNR (wild, state GIS table) · ~15,264 ac
 - Palmville State Wildlife Management Area · SCA · DNR Wildlife · ~14,886 ac
 - Kandiyohi County Waterfowl Production Area · RMA · KANDIYOHI COUNTY WATERFOWL PRODUCTION AREA · ~14,498 ac
 - Kandiyohi County Waterfowl Production Area · RMA · Kandiyohi County Waterfowl Production Area · ~14,493 ac
+- Moose River WMA: Red Lake Unit ·  · Minnesota DNR (wild, state GIS table) · ~14,323 ac
 - Pope County Waterfowl Production Area · RMA · Pope County Waterfowl Production Area · ~14,213 ac
 - Becker County Waterfowl Production Area · RMA · Becker County Waterfowl Production Area · ~14,209 ac
 - Becker County Waterfowl Production Area · RMA · BECKER COUNTY WATERFOWL PRODUCTION AREA · ~14,050 ac
@@ -124,23 +108,13 @@ Built 2026-10-24 by `.github/scripts/kpc_us_key.py`. **223 of 294** parks joined
 - Grant County Waterfowl Production Area · RMA · GRANT COUNTY WATERFOWL PRODUCTION AREA · ~11,151 ac
 - Graceton State Wildlife Management Area · SCA · DNR Wildlife · ~10,713 ac
 - East Park State Wildlife Management Area · SCA · DNR Wildlife · ~10,420 ac
+- Kimberly Marsh WMA: Main Unit ·  · Minnesota DNR (wild, state GIS table) · ~10,390 ac
 - Stearns County Waterfowl Production Area · RMA · Stearns County Waterfowl Production Area · ~10,147 ac
+- Grayling Marsh WMA ·  · Minnesota DNR (wild, state GIS table) · ~9,952 ac
 - Stearns County Waterfowl Production Area · RMA · STEARNS COUNTY WATERFOWL PRODUCTION AREA · ~9,921 ac
 - Stevens County Waterfowl Production Area · RMA · STEVENS COUNTY WATERFOWL PRODUCTION AREA · ~9,785 ac
 - Stevens County Waterfowl Production Area · RMA · Stevens County Waterfowl Production Area · ~9,785 ac
 - Nereson State Wildlife Management Area · SCA · DNR Wildlife · ~9,580 ac
 - Twin Lakes State Wildlife Management Area · SCA · DNR Wildlife · ~8,867 ac
+- Lac qui Parle WMA: State Game Refuge Unit ·  · Minnesota DNR (wild, state GIS table) · ~8,739 ac
 - Swift County Waterfowl Production Area · RMA · Swift County Waterfowl Production Area · ~8,650 ac
-- North Black River Peatland · SCA · Bureau of Land Management · ~8,541 ac
-- Swift County Waterfowl Production Area · RMA · SWIFT COUNTY WATERFOWL PRODUCTION AREA · ~8,317 ac
-- Skull Lake State Wildlife Management Area · SCA · DNR Wildlife · ~7,444 ac
-- Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
-- Trempealeau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,929 ac
-- Mahnomen County Waterfowl Production Area · RMA · Mahnomen County Waterfowl Production Area · ~6,789 ac
-- Mahnomen County Waterfowl Production Area · RMA · MAHNOMEN COUNTY WATERFOWL PRODUCTION AREA · ~6,734 ac
-- Huntly State Wildlife Management Area · SCA · DNR Wildlife · ~6,502 ac
-- Eckvoll State Wildlife Management Area · SCA · DNR Wildlife · ~6,497 ac
-- South Black River Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,877 ac
-- Meadow Brook State Wildlife Management Area · SCA · DNR Wildlife · ~5,774 ac
-- Northeastern States District Office · PUB · BLM · ~5,555 ac
-- Mulligan Lake Peatland State Scientific and Natural Area · SCA · DNR Ecologic and Water Resources · ~5,478 ac
