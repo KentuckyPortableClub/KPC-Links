@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T11:03:28Z",
+ "updated": "2026-10-25T11:03:45Z",
  "week": [
   {
    "name": "CQ Worldwide DX Contest, SSB",
@@ -379,6 +379,52 @@
     [
      "2026-10-30T20:00Z",
      "2026-10-30T21:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ARRL EME Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003drkyp",
+   "when": "0000Z, Oct 31 to 2359Z, Nov 1",
+   "segs": [
+    [
+     "2026-10-31T00:00Z",
+     "2026-11-01T23:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [
+    "VHF"
+   ],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "UK/EI DX Contest, SSB",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=0039u4ic",
+   "when": "1200Z, Oct 31 to 1200Z, Nov 1",
+   "segs": [
+    [
+     "2026-10-31T12:00Z",
+     "2026-11-01T12:00Z"
+    ]
+   ],
+   "modes": [
+    "PHONE"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Russian WW MultiMode Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003b7f6m",
+   "when": "1200Z, Oct 31 to 1159Z, Nov 1",
+   "segs": [
+    [
+     "2026-10-31T12:00Z",
+     "2026-11-01T11:59Z"
     ]
    ],
    "modes": [],
@@ -1314,7 +1360,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (26)",
+  "WA7BNM": "ok (29)",
   "CORRAL": "ok (8)"
  }
 }
