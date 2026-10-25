@@ -140,6 +140,8 @@ def lyr_lines(url, where, la, lo, d=1.0, fld=None, want=''):
 def likes(fld, w):
     """PAD-US style firewalls hate long wheres: one LIKE, words joined by %, tried as Title Case and UPPER."""
     return [f"{fld} LIKE '%{'%'.join(x.title() for x in w)}%'", f"{fld} LIKE '%{'%'.join(x.upper() for x in w)}%'"]
+try: EXTRA = json.load(open('data/trails-layers.json')).get('layers', {})
+except Exception: EXTRA = {}
 def agency(name, st, la, lo, lim=None):
     lim = lim or CHECK_KM
     """ArcGIS Online search for the trail's name; only services published by a STATE agency of that state or a federal
@@ -168,7 +170,9 @@ def agency(name, st, la, lo, lim=None):
         org = ((org_name(it.get('orgId', '')) if it.get('orgId') else '') + ' | ' + (it.get('accessInformation') or '') + ' | ' + (it.get('owner') or '')).strip(' |')
         if not official_org(org, st): ALOG.append([name, 'skip (not state/federal)', org[:60], it.get('title', '')[:60]]); continue
         tries.append((u, org, None))
-    for u, org, flds in tries[:22]:
+    # Oct 24 (Brandon's layer lists): official layers picked by hand per state / province (data/trails-layers.json), tried first
+    tries[1:1] = [(u, 'official layer picked by KPC', None) for u in EXTRA.get(st, [])]
+    for u, org, flds in tries[:26]:
         try:
             lays = [u] if re.search(r'/\d+$', u) else [f"{u}/{l['id']}" for l in (get(u + '?f=json', t=40).get('layers') or [])[:8]]
             for lu in lays:
