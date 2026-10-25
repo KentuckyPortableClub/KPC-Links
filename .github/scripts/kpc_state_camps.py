@@ -437,19 +437,36 @@ def group_by_park(lay, feats):
     flds = [n for n, _ in lay['fields']]
     pf = pick(flds, PARK_F, r'park') or pick(flds, ['PARKNAME', 'ParkName', 'PARK'], r'park')
     if not pf: return []
-    by = {}
+    # Oct 25 2026 (chat 2, from chat 5's note 'the WA list has host sites and yurts'): read the site's TYPE too.
+    # Camp host / staff sites are not for the public: left out. Cabins, yurts and cottages become their own
+    # '<park> Cabins & Yurts' row (kind 'b'), so they no longer pull the campground's middle point or call a
+    # yurt-only park a 'Campground'.
+    tf = [n for n, t in lay['fields'] if n != pf and t == 'esriFieldTypeString' and TYPE_RX.search(n)][:8]
+    by, skipped = {}, 0
     for f in feats:
         p = xy(f.get('geometry'), lay['geo'])
         a = f.get('attributes') or {}
         park = nice(a.get(pf))
         if not p or not park or len(park) < 4: continue
-        by.setdefault(park, []).append(p)
+        text = ' '.join(str(a.get(n) or '') for n in tf)
+        if HOSTSITE.search(text):
+            skipped += 1
+            continue
+        k = 'b' if re.search(r'cabin|cottage|yurt', text, re.I) else 'c'
+        by.setdefault((park, k), []).append(p)
+    if skipped: print(f'    {lay["name"]}: {skipped} camp host / staff sites left out')
     out = []
-    for park, pts in by.items():
+    for (park, k), pts in by.items():
         la, lo = sum(x[0] for x in pts) / len(pts), sum(x[1] for x in pts) / len(pts)
-        name = park if re.search(r'camp|cabin|yurt|lodge', park, re.I) else f'{park} Campground'
-        out.append({'name': name, 'lat': la, 'lon': lo, 'kind': 'c', 'url': '', 'res': '', 'park': park})
+        if k == 'b':
+            name = f'{park} Cabins & Yurts'
+        else:
+            name = park if re.search(r'camp|cabin|yurt|lodge', park, re.I) else f'{park} Campground'
+        out.append({'name': name, 'lat': la, 'lon': lo, 'kind': k, 'url': '', 'res': '', 'park': park})
     return out
+
+
+HOSTSITE = re.compile(r'\bhost|\bstaff|employee|volunteer|ranger|admin|\bresidence|not\s+reserv', re.I)
 
 
 # ---------------------------------------------------------------- inside the state?
