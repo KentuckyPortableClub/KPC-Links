@@ -179,10 +179,13 @@
     $('cguLoose').innerHTML = lo.length ? '<h2>Member picks in ' + esc(ST[S.st]) + '</h2><p class="cg-note">Added by members, not tied to a park on this list yet.</p>' + lo.map(function (x) { return placeHtml({ x: x }, null); }).join('') : '';
   }
   function head() {
-    var add = formLink('', true);
+    var add = formLink('', true), o = SRC[S.st] || {};
+    var links = ext(o.parks, 'STATE PARKS ↗', 'gold') + (o.reserve_ok !== false ? ext(o.reserve, 'STATE PARK RESERVATIONS ↗', 'gold') : '');
     $('cguHead').innerHTML = '<b>' + esc(ST[S.st].toUpperCase()) + '</b>' +
-      (S.hasState ? 'State park campgrounds and cabins from the state’s official pages, ' : 'Federal campgrounds (Forest Service, National Park Service, Corps of Engineers and more, from recreation.gov) for now. State park campgrounds and cabins are being added, ') +
-      'plus places members have added. Forest Service and Park Service campgrounds are listed under their own forest or park; the rest are matched by distance from each park’s map pin.' +
+      (S.hasState ? 'State park campgrounds and cabins from ' + esc(ST[S.st]) + '’s official data (may not be complete), federal campgrounds from recreation.gov, ' :
+        'State park campgrounds for ' + esc(ST[S.st]) + ' are not listed here yet: use the state’s own pages below. Listed now: federal campgrounds (Forest Service, National Park Service, Corps of Engineers and more, from recreation.gov) ') +
+      'and places members have added. Forest Service and Park Service campgrounds sit under their own forest or park; the rest are matched by distance from each park’s map pin.' +
+      (links ? '<div class="cg-btns">' + links + '</div>' : '') +
       (add ? '<div class="cg-btns"><a class="cg-b gold" href="' + esc(add) + '" target="_blank" rel="noopener">＋ ADD A CAMPGROUND OR CABIN WE ARE MISSING</a></div>' : '');
   }
 
@@ -195,15 +198,19 @@
     if (st === 'KY') return;
     $('cguList').innerHTML = ''; $('cguCount').textContent = 'Loading ' + ST[st] + '…'; $('cguHead').innerHTML = ''; $('cguLoose').innerHTML = '';
     var want = st;
-    Promise.all([getJSON('data/parkinfo/US-' + st + '.json'), getJSON('data/campfed/US-' + st + '.json'), getJSON('data/campstate/US-' + st + '.json'), ready]).then(function (a) {
+    ready.then(function () {
+      var has = IDX && IDX.states && IDX.states[st];
+      return Promise.all([getJSON('data/parkinfo/US-' + st + '.json'), getJSON('data/campfed/US-' + st + '.json'), has ? getJSON('data/campstate/US-' + st + '.json') : null]);
+    }).then(function (a) {
       if (cur !== want) return;
       build(st, a[0], a[1], a[2]); shown = PAGE; $('cguPark').value = '';
       attach(+$('cguRad').value); parkSelect(); head(); draw();
     });
   }
 
-  var ready = Promise.all([getJSON('kpc-campground-form.json'), getJSON('kpc-campground-notes.json'), getJSON('kpc-us-states.json')]).then(function (a) {
-    FORM = a[0]; NOTES = (a[1] && a[1].notes) || []; SHAPES = a[2];
+  var IDX = null, SRC = {};   // data/campstate/index.json (which states have a state-park list) + data/campstate-sources.json (official links)
+  var ready = Promise.all([getJSON('kpc-campground-form.json'), getJSON('kpc-campground-notes.json'), getJSON('kpc-us-states.json'), getJSON('data/campstate/index.json'), getJSON('data/campstate-sources.json')]).then(function (a) {
+    FORM = a[0]; NOTES = (a[1] && a[1].notes) || []; SHAPES = a[2]; IDX = a[3] || {}; SRC = (a[4] && a[4].states) || {};
   });
 
   /* ---- controls ---- */
