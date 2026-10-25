@@ -1,11 +1,12 @@
 # CH: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **262 of 319** joined (same name + same kind), **21** to check, **36** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **261 of 319** joined (same name + same kind), **22** to check, **36** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
 - **CH-0002** Aargau Nature Park (Nature Park) → Aargauer Tafeljura (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
 - **CH-0007** Doubs Nature Park (Nature Park) → Vallée du Doubs (BAFU landscapes and natural monuments (BLN), similar name)
+- **CH-0010** Gantrisch Nature Park (Nature Park) → Gurnigel/Gantrisch (BAFU mire landscapes, similar name)
 - **CH-0012** Jura Vaudois Nature Park (Nature Park) → Vallée de Joux et Haut-Jura vaudois (BAFU landscapes and natural monuments (BLN), similar name)
 - **CH-0013** Pfyn-Finges Nature Park (Nature Park) → Finges (BAFU Emerald sites, similar name); Blatte (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CH-0016** Zürich Wilderness Park (Wilderness Park) → Wildnispark Zürich Sihlwald (EEA nationally designated areas, the POTA pin is inside it (different name)); Albiskette – Reppischtal (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
