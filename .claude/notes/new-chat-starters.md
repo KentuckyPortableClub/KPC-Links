@@ -51,8 +51,19 @@ This chat OWNS the Activators Lounge (Brandon Oct 24 6:03 PM): its launch (menu 
 5. Bots: ~~Facebook question helper step 2 (auto-reply)~~ BUILT Oct 24 but OFF (Brandon 6 PM: 'Not ready for that… only send a message to discord for now'); turn on = data/fb-comments-auto.json auto: true + token permission · ~~Discord: Founders vs Mod role~~ DECIDED Oct 24 (Brandon: 'Admin' — Founders keep Administrator, no separate Mod role) · keep 'email only for real issues'.
 6. Campout & events: KPC27 challenges scorer (needs the rules from Brandon first) · contest + QSO party scoring (shared with the app) · more videos when wanted (music credit only on YouTube).
 
+## WHO OWNS WHAT (KPC HQ, Brandon Oct 25 7:55 AM: 'recap what the chats own')
+Rule: work goes to the chat that owns it. If a job lands in the wrong chat, that chat writes a short dated hand-off note in the OWNER's topic file instead of doing it.
+1. Website: every page's look, menu/header/footer (news.html + assemble.py), kpc-gate.js PUBLIC list, search/Find/Tool Box, forms + approvals, guides, CW room, kids room, themes/dark mode.
+2. Maps & park data: boundaries + answer keys (KY/US/Canada/world), data/state-gis.json, trails, outlines, campground + camping DATA (state camps bot, campstate files), closures data + closure watcher sources, 2-fers/3-fers, Park Control, trip planners, Am I in the Park, Map Rep, Info Finder, Kit. Also the bots that BUILD park data (keys, boundary check, trails, state camps, new lands).
+3. Lounges + Logger: Activators Lounge, both Hunters Lounges + Park Checker, Park Tracker, Rarely Activated, Top 25, SOTA checker, website KPC Logger + DIGI tab, spots pages (On The Air Now, Spot Me), kpc-my-parks.js.
+4. App: the kpc-app repo, kpc-links app/ (version.json, packs), FT8 decoder changes (kpc-ft8.js/.wasm).
+5. Bots: the bots that POST or TALK: Discord relay/mod/watch/helper, Facebook posts + comments, email relay + subscribers, club posts (Lonely Parks, Park of the Week, Event Weather, busy bands), closure ANNOUNCEMENTS, workflow schedules, setup-todo.md (secrets). Not park-data building (that is 2).
+6. Campout & events: campout pages, Kentucky Radio Calendar (kpc_ses.py, kpc_events.py, kpc_contests.py), videos, KPC27 challenges scorer.
+7. HQ: notes + to-do lists, what's next, shared-file watch, weekly status. Small fixes only.
+
 ## HQ WATCH LIST (KPC HQ, Oct 25)
 - kpc-cat.js has FORKED: website 404 lines, app 539 (app added port memory, meters, radio on/off, Windows RTS). The Oct 22 mode-before-frequency fix is in both. Rule from now: a radio-control fix made in one copy is noted in BOTH topic files, and chat 3 (CAT in the public Hunters Lounge) copies from the app's version, not the other way round.
+- Oct 24-25 night: maps work (state-gis.json +17 layers, US key prefix pinning, trails layers, outline leads, camping points) was done in chat 5, not chat 2. Nothing broke (US joins 10,333 → 10,601); hand-off note is in mapping.md. Keep that work in chat 2 from now on.
 - kpc-cont.js + kpc-ft8.wasm: identical in both. kpc-ft8.js: app adds the built-in wasm loader (fine). kpc-digi.js = kpc-dsp.js except the rename.
 
 ## WHICH MODEL + WHAT EACH CHAT KEEPS UP (Brandon Oct 24 6:06 PM)
