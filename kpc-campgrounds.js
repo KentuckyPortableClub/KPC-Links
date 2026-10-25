@@ -26,6 +26,8 @@
     var q = ['usp=pp_url'];
     if (FORM.kindEntry && (outside ? FORM.kindOutside : FORM.kindInside)) q.push(FORM.kindEntry + '=' + encodeURIComponent(outside ? FORM.kindOutside : FORM.kindInside));
     if (label && FORM.placeEntry && !outside) q.push(FORM.placeEntry + '=' + encodeURIComponent(label));
+    var rm = /\b(US-\d{4,5})\b/.exec(label || ''), pe = outside ? FORM.nearEntry : FORM.parkEntry;   // the form's own Park number boxes
+    if (rm && pe) q.push(pe + '=' + encodeURIComponent(rm[1]));
     return FORM.url + (FORM.url.indexOf('?') < 0 ? '?' : '&') + q.join('&');
   }
   function reviewsFor(id) { return N.filter(function (n) { return n.place === id; }); }
