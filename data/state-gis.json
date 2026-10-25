@@ -9,6 +9,13 @@
     "nm": "PARKNAME",
     "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer/2",
     "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Alaska Department of Natural Resources",
+    "nm": "LDA_NAME_1",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/SurfaceClassification_LegislativelyDesignatedAreas/MapServer/0",
+    "host": "agency"
    }
   ],
   "AR": [
@@ -112,6 +119,27 @@
     "ag": "Florida Fish & Wildlife Conservation Commission",
     "nm": "NAME",
     "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Suwannee River Water Management District",
+    "nm": "TRACT_NAME",
+    "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/SRWMD_LM_Ownership/FeatureServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "St. Johns River Water Management District",
+    "nm": "CONSERVATION_AREA",
+    "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_viewLayer/FeatureServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Florida DEP Division of State Lands",
+    "nm": "PROJECT_NAME",
+    "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/0",
     "host": "agency"
    }
   ],
@@ -427,6 +455,13 @@
     "nm": "NAME",
     "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Hunting_Allowed/FeatureServer/0",
     "host": "agol"
+   },
+   {
+    "kind": "forest",
+    "ag": "Tennessee Department of Agriculture, Division of Forestry",
+    "nm": "StateForestName",
+    "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0",
+    "host": "agency"
    }
   ],
   "TX": [
@@ -491,6 +526,20 @@
     "web": "WebPage",
     "ds": "State Park",
     "host": "agol"
+   },
+   {
+    "kind": "wild",
+    "ag": "Washington Department of Fish and Wildlife",
+    "nm": "ManagedPlaceName",
+    "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/ManagedPlaces/MapServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Washington State Department of Natural Resources",
+    "nm": "PARCEL_LABEL_NM",
+    "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Cadastre_OpenData/MapServer/6",
+    "host": "agency"
    }
   ],
   "WI": [
@@ -507,6 +556,20 @@
     "nm": "PROP_NAME",
     "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0",
     "web": "INFO_URL",
+    "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Wisconsin DNR Natural Heritage Conservation",
+    "nm": "SNA_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1",
+    "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Wisconsin DNR Bureau of Facilities and Lands",
+    "nm": "PROP_NAME",
+    "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/1",
     "host": "agency"
    }
   ],
@@ -624,6 +687,13 @@
     "nm": "NAME",
     "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Alabama Dept of Conservation and Natural Resources, State La",
+    "nm": "DCNR_Name",
+    "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/ForeverWildTracts/MapServer/0",
+    "host": "agency"
    }
   ],
   "AZ": [
@@ -657,6 +727,67 @@
     "ag": "Connecticut DEEP",
     "nm": "PROPERTY",
     "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "IL": [
+   {
+    "kind": "preserve",
+    "ag": "Illinois Department of Natural Resources",
+    "nm": "Site_Name",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/0",
+    "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Illinois Department of Natural Resources",
+    "nm": "Site_Name",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
+    "host": "agency"
+   }
+  ],
+  "VT": [
+   {
+    "kind": "preserve",
+    "ag": "Vermont Agency of Natural Resources",
+    "nm": "NAME",
+    "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/38",
+    "host": "agency"
+   }
+  ],
+  "MA": [
+   {
+    "kind": "land",
+    "ag": "MassGIS / Executive Office of Energy and Environmental Affai",
+    "nm": "SITE_NAME",
+    "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "NE": [
+   {
+    "kind": "wild",
+    "ag": "Nebraska Game and Parks Commission",
+    "nm": "AreaName",
+    "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0",
+    "host": "agency"
+   }
+  ],
+  "NC": [
+   {
+    "kind": "preserve",
+    "ag": "NC Natural Heritage Program, NC Dept of Natural and Cultural",
+    "nm": "MA_NAME",
+    "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Managed_Areas/MapServer/0",
+    "host": "agency"
+   }
+  ],
+  "NH": [
+   {
+    "kind": "land",
+    "ag": "NH GRANIT",
+    "nm": "name",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6",
     "host": "agency"
    }
   ]
