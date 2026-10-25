@@ -33,6 +33,10 @@ This chat OWNS the Activators Lounge (Brandon Oct 24 6:03 PM): its launch (menu 
 ## 6. Campout & events (KPC27, calendar, videos)
 "Read .claude/notes/website.md (campout + events parts) and ideas.md (KPC27 challenges scorer, contests on the calendar, videos). We're working on the 2027 campout pages and the Kentucky Radio Calendar."
 
+## 7. KPC HQ (the overseer; Brandon Oct 25: 'one chat that over sees them')
+"Read .claude/notes/new-chat-starters.md (the to-do per chat), ideas.md and setup-todo.md, plus `git log --since='7 days ago' --oneline` in kpc-links and kpc-app. You are KPC HQ: you plan and check, you don't build. Tell me what to work on next and which chat does it, catch two chats touching the same shared files, keep the to-do list per chat up to date (tick off done items, add new ones), and give me a short weekly 'where everything stands'. Small fixes are OK; anything bigger goes to its own chat."
+(HQ cannot see the other chats' conversations: it knows only what is in the notes and the commits, so every chat must keep writing its notes.)
+
 ## Links
 - Website: https://kentuckyportableclub.github.io/KPC-Links/
 - Activators Lounge (members): https://kentuckyportableclub.github.io/KPC-Links/kpc-activators-lounge.html
