@@ -1,32 +1,27 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **144 of 157** parks joined to official land (same name + same kind of place). **0** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **145 of 157** parks joined to official land (same name + same kind of place). **2** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-6875** The Preserve Essex Land Trust State Park Preserve (State Park Preserve) → Preserve State Forest (~889 ac, similar name)
+- **US-7547** Captain George Comer Memorial State Park (State Park) → Captain Comer Memorial (~3 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~260 ac)
-- US-12460 Suffield Wildlife Management Area (Wildlife Management Area) → on Unspecified (~195 ac); Wildlife Area (~195 ac)
-- US-1664 Eagle Landing State Park (State Park) → on Connecticut Valley Railroad State Park Trail (~4 ac)
-- US-1723 Sunrise State Park (State Park) → on Machimoodus State Park (~144 ac)
-- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac); Other (~16 ac)
-- US-7529 Beckley Iron Furnace State Park (State Park) → on Industrial Monument Historic Preserve (~1 ac); Historic Preserve (~3 ac)
-- US-7536 Nassahegon State Forest (State Forest) → on State Forest (~1,150 ac)
+- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac)
 - US-7542 Satan's Kingdom State Recreation Area (State Recreation Area) → on Farmington River Water Access (~8 ac); Water Access (~12 ac)
 
 ## Nothing found in PAD-US
 
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
+- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River)
 - US-0882 Farmington National Wild and Scenic River (National Wild and Scenic River)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4561 New England Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-6862 Horse Guard State Park (State Park)
-- US-6875 The Preserve Essex Land Trust State Park Preserve (State Park Preserve)
+- US-7529 Beckley Iron Furnace State Park (State Park)
 - US-7544 Windsor Locks Canal State Trail (State Trail)
-- US-7547 Captain George Comer Memorial State Park (State Park)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -88,5 +83,5 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **144 of 157** parks joined
 - Wildlife Area ·  · Connecticut DEEP property · ~916 ac
 - Unknown · LOTH ·   · ~912 ac
 - State Forest ·  · Connecticut DEEP property · ~889 ac
+- Preserve State Forest ·  · Connecticut DEEP (land, state GIS table) · ~889 ac
 - Hammonasset Natural Area Preserve · SCA ·   · ~886 ac
-- Goshen Wildlife Area · SCA ·   · ~841 ac

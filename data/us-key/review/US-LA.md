@@ -1,17 +1,17 @@
 # LA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined to official land (same name + same kind of place). **0** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **112 of 123** parks joined to official land (same name + same kind of place). **2** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-10563** Fort Johnson-Vernon Wildlife Management Area (Wildlife Management Area) → Fort Polk-Vernon (~105,545 ac, similar name); Kisatchie National Forest (~607,492 ac, the POTA pin is inside it (different name)); Fort Polk WMA (~105,885 ac, the POTA pin is inside it (different name)); Fort Polk WMA (~105,885 ac, the POTA pin is inside it (different name))
+- **US-4072** Fort Johnson North Wildlife Management Area (Wildlife Management Area) → Fort Polk North (~74,309 ac, similar name); Peason Ridge WMA (~75,464 ac, the POTA pin is inside it (different name)); Peason Ridge WMA (~75,464 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10456 Esler Field Wildlife Management Area (Wildlife Management Area) → on Camp Beauregard Wildlife Management Area (~12,606 ac)
-- US-10563 Fort Johnson-Vernon Wildlife Management Area (Wildlife Management Area) → on Fort Polk WMA (~105,885 ac); Fort Polk WMA (~105,885 ac)
 - US-2365 Jimmie Davis State Park (State Park) → on Caney Creek Lake State Park (~312 ac)
 - US-2373 Poverty Point Reservoir State Park (State Park) → on State Lands (~7,733 ac)
-- US-4072 Fort Johnson North Wildlife Management Area (Wildlife Management Area) → on Peason Ridge WMA (~75,464 ac); Peason Ridge WMA (~75,464 ac)
 - US-4568 El Camino Real de los Tejas National Historic Trail (National Historic Trail) → on Los Adaes State Historic Site (~15 ac)
 
 ## Nothing found in PAD-US
@@ -19,20 +19,18 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined
 - US-0958 Poverty Point National Monument (National Monument)
 - US-10354 Forts Randolph & Buhlow State Historic Site (State Historic Site)
 - US-10447 Audubon State Historic Site (State Historic Site)
-- US-12489 Bogue Chitto Wildlife Management Area (Wildlife Management Area)
-- US-12490 Flatwoods Savanna Wildlife Management Area (Wildlife Management Area)
-- US-13090 John Franks Wildlife Management Area (Wildlife Management Area)
 - US-2360 Cypremort Point State Park (State Park)
 - US-2374 Saint Bernard State Park (State Park)
-- US-9760 Bussey Brake Wildlife Management Area (Wildlife Management Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Fort Polk WMA ·  · Louisiana Dept. of Wildlife and Fisheries WMAs and refuges · ~105,885 ac
 - Fort Polk WMA ·  · Louisiana Department of Wildlife & Fisheries (wild, state GIS table) · ~105,885 ac
+- Fort Polk-Vernon ·  · LDWF (owner LDWF_ArcGIS1), Sep 2025 edition (wild, state GIS table) · ~105,545 ac
 - Felsenthal National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~77,617 ac
 - Peason Ridge WMA ·  · Louisiana Dept. of Wildlife and Fisheries WMAs and refuges · ~75,464 ac
 - Peason Ridge WMA ·  · Louisiana Department of Wildlife & Fisheries (wild, state GIS table) · ~75,464 ac
+- Fort Polk North ·  · LDWF (owner LDWF_ArcGIS1), Sep 2025 edition (wild, state GIS table) · ~74,309 ac
 - Mcfaddin National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~59,859 ac
 - Dow Donation · SOTH · Unknown · ~50,072 ac
 - Red River Wildlife Management Area · SCA · Unknown · ~45,140 ac
@@ -86,5 +84,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **108 of 123** parks joined
 - Corney Bayou · SCA · Unknown · ~1,001 ac
 - Lsu Research Station · REA · Unknown · ~995 ac
 - Bayou Bartholomew · SCA · Unknown · ~870 ac
-- Middle Fork Of Bayou D'arbonne · SCA · Unknown · ~850 ac
-- Lsu Research Station · REA · Unknown · ~833 ac

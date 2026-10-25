@@ -1,6 +1,6 @@
 # NM: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **92 of 122** parks joined to official land (same name + same kind of place). **0** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **94 of 122** parks joined to official land (same name + same kind of place). **0** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -30,7 +30,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **92 of 122** parks joined 
 - US-12737 Casamero Pueblo | New Mexico BLM Historic Area (BLM Historic Area)
 - US-13185 Dow Canyon Tract BLM Recreation Management Area (BLM Recreation Management Area)
 - US-13186 Lincoln Tract BLM Recreation Management Area (BLM Recreation Management Area)
-- US-2690 Cerrillos Hills State Park (State Park)
 - US-2719 Angel Fire Vietnam Veterans Memorial Park (Park)
 - US-4376 Manhattan Project National Historical Park (National Historical Park)
 - US-4569 El Camino Real de Tierra Adentro National Historic Trail (National Historic Trail)
@@ -38,7 +37,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **92 of 122** parks joined 
 - US-4579 Santa Fe National Historic Trail (National Historic Trail)
 - US-7876 Three Rivers Petroglyphs National Historic Site (National Historic Site)
 - US-8618 White Ridge National Recreation Trail (National Recreation Trail)
-- US-9679 Pecos Canyon State Park (State Park)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)

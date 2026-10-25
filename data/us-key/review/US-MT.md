@@ -12,7 +12,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **226 of 254** parks joined
 - US-0400 Halfbreed Lake National Wildlife Refuge (National Wildlife Refuge) → on Grass Lake National Wildlife Refuge (~3,394 ac); Grass Lake National Wildlife Refuge (~3,394 ac)
 - US-10526 Devils Elbow (BLM) Recreation Site (Recreation Site) → on Hauser Lake (~16,467 ac); Butte Field Office (~323,091 ac)
 - US-11219 Jacko River Trout State Fish Hatchery (State Fish Hatchery) → on Montana Fish, Wildlife and Parks (~315 ac)
-- US-12822 Big Horn State Fish and Wildlife Area (State Fish and Wildlife Area) → on Bighorn Fishing Access Site (~72 ac)
+- US-12822 Big Horn State Fish and Wildlife Area (State Fish and Wildlife Area) → on Bighorn Fishing Access Site (~72 ac); Bighorn (~72 ac)
 - US-12827 Brownes Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → on Brownes Bridge Fishing Access Site (~10 ac); Lower Big Hole River (~3,329 ac)
 - US-12925 Thoreau State Beach (State Beach) → on Missoula Field Office (~175,579 ac)
 - US-4574 Nez Perce National Historic Trail (National Historic Trail) → on Lolo National Forest (~2,265,532 ac)

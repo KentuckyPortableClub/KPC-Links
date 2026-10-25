@@ -1,26 +1,23 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **218 of 237** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **220 of 237** parks joined to official land (same name + same kind of place). **0** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-12416 Little River (GA) Wildlife Management Area (Wildlife Management Area) → on Cedar Creek Wildlife Management Area (~40,488 ac)
-- US-3724 Roosevelts Little White House State Historic Site (State Historic Site) → on F. D. Roosevelt State Park (~9,995 ac)
+- US-3724 Roosevelts Little White House State Historic Site (State Historic Site) → on F. D. ROOSEVELT STATE PARK (~9,989 ac); F. D. Roosevelt State Park (~9,995 ac)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail) → on Chattahoochee National Forest (~750,991 ac)
 - US-4648 Bartram Educational State Forest (State Forest) → on Bartram Forest Wildlife Management Area (~2,063 ac); Baldwin State Forest (~2,153 ac)
 - US-4649 Hitchiti State Forest (State Forest) → on Oconee National Forest (~116,196 ac)
-- US-7140 Charlie Elliot Wildlife Management Area (Wildlife Management Area) → on Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac)
+- US-7140 Charlie Elliot Wildlife Management Area (Wildlife Management Area) → on Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac); CLYBEL WMA (~6,275 ac)
 - US-7473 DeSoto Falls National Recreation Area (National Recreation Area) → on Chestatee Wildlife Management Area (~19,724 ac); Chattahoochee National Forest (~750,991 ac)
 - US-7861 Suwannee River Eco-Lodge State Park (State Park) → on Stephen C. Foster State Park (~320 ac)
 - US-9758 Chattooga National Wild and Scenic River (National Wild and Scenic River) → on Chattahoochee National Forest (~750,991 ac)
-- US-9795 Sandhills West Wildlife Management Area (Wildlife Management Area) → on Fall Line Sandhills Wildlife Management Area (~733 ac); 133-001 (~735 ac)
 
 ## Nothing found in PAD-US
 
-- US-12421 Cochrans Creek Wildlife Management Area (Wildlife Management Area)
 - US-12772 Georgia National Fairgrounds State Recreation Area (State Recreation Area)
 - US-2200 Okefenokee State Park (State Park)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
@@ -50,46 +47,46 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **218 of 237** parks joined
 - Tray Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,343 ac
 - King Tract Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~9,610 ac
 - Raven Cliffs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,240 ac
+- UPATOI NATURAL AREA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~9,102 ac
 - Little Tybee-Cabbage Island Tract · SCA · Georgia Department of Natural Resources · ~8,985 ac
 - Dugger Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,947 ac
 - Carters Recreation Area · REC · Mobile · ~8,777 ac
 - Big Frog Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,502 ac
 - Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
+- DI-LANE PLANTATION WMA ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~8,181 ac
 - Blood Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,742 ac
 - 091-001 · SCA · Department of Transportation · ~7,221 ac
 - Ogeechee Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~6,647 ac
+- ROCKY MOUNTAIN RECREATION PFA ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~4,752 ac
+- ROCKY MOUNTAIN RECREATION PFA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~4,752 ac
+- CHATTAHOOCHEE FALL LINE WMA - VPA TRACTS ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~4,414 ac
+- CHATTAHOOCHEE FALL LINE WMA - VPA TRACTS ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~4,228 ac
 - Alaphaha Research Farm · SOTH · Board of Regents · ~2,794 ac
 - Fall Line Sandhills Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~2,649 ac
+- CHATTAHOOCHEE FALL LINE WMA - FORT PERRY ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~2,515 ac
+- CHATTAHOOCHEE FALL LINE WMA - FORT PERRY ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~2,515 ac
 - Wheatley Forest · SCA · Board of Regents · ~2,396 ac
 - Baldwin State Forest · SRMA · Georgia Forestry Commission · ~2,153 ac
 - 109-001 · SREC · Georgia Department of Transportation · ~2,069 ac
 - 016-003 · SCA · Department of Transportation · ~1,936 ac
 - 146-001 · SCA · Department of Transportation · ~1,781 ac
 - George W. Andrews Recreation Area · REC · Mobile · ~1,764 ac
+- CHATTAHOOCHEE FALL LINE WMA - VPA TRACTS ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~1,762 ac
 - 100-001 · SCA · Department of Transportation · ~1,667 ac
 - Skidaway Institute · SCA · Board of Regents · ~1,659 ac
 - Wilkes County Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~1,653 ac
 - 109-002 · SREC · Georgia Department of Transportation · ~1,625 ac
 - Camp Thunder Voluntary Public Access · PCON · Georgia Department of Natural Resources · ~1,623 ac
+- STANDING BOY CREEK WMA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~1,622 ac
 - Satilla River Forest · SCA · Board of Regents · ~1,602 ac
+- CHATTAHOOCHEE FALL LINE WMA - BLACKJACK CROSSING ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~1,599 ac
 - Flat Tub Wildlife Management Area / Broxton Rocks Mitigation Bank · SCA · Georgia Department of Natural Resources · ~1,595 ac
+- CAMP THUNDER VPA ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~1,592 ac
+- CEDAR CREEK - LITTLE RIVER AREA ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~1,539 ac
 - Allen Creek Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~1,537 ac
 - 117-001 · SREC · Department of Transportation · ~1,534 ac
-- 145-001 · SCA · Department of Transportation · ~1,281 ac
-- Rock Eagle 4-H Center · SREC · Board of Regents · ~1,245 ac
-- Zahnd Natural Area · SCA · SDNR · ~1,221 ac
-- 012-001 · SCA · Department of Transportation · ~1,153 ac
-- Ocmulgee River Greenway · SP · Georgia Department of Natural Resources · ~1,075 ac
-- Camp Appalachian Wilderness · SREC · Georgia Department of Natural Resources · ~1,044 ac
-- 103-001 · SCA · Department of Transportation · ~1,008 ac
-- 086-001 · SCA · Department of Transportation · ~1,005 ac
-- Little Wahoo Island Tract · SCA · Georgia Department of Natural Resources · ~996 ac
-- Farm Service Agency Interest Of Ga · NWR · FARM SERVICE AGENCY INTEREST OF GA · ~893 ac
-- Farm Service Agency Interest Of Ga · NWR · Farm Service Agency Interest Of Ga · ~893 ac
-- Beef Cattle Research Farm · SRMA · Georgia Board of Regents · ~882 ac
-- Savannah River Tract · SCA · Georgia Department of Natural Resources · ~860 ac
-- Little Hogan Island Tract · SCA · Georgia Department of Natural Resources · ~856 ac
-- Whitehall Forest · SCA · Board of Regents · ~828 ac
-- Bush Head Shoals State Park · SP · Georgia Department of Natural Resources · ~811 ac
-- 133-001 · SCA · Department of Transportation · ~735 ac
-- Fall Line Sandhills Wildlife Management Area · SCA · Georgia Department of Natural Resources · ~733 ac
+- CAMP THUNDER VPA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~1,469 ac
+- CHATTAHOOCHEE FALL LINE WMA - FORT PERRY EAST ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~1,345 ac
+- PARADISE PFA ·  · Georgia DNR Wildlife Resources Division (wild, state GIS table) · ~1,341 ac
+- PARADISE PFA ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~1,341 ac
+- CHATTAHOOCHEE FALL LINE WMA - FORT PERRY EAST ·  · Georgia DNR Wildlife Resources Division (GA DNR AGOL org) (wild, state GIS table) · ~1,341 ac

@@ -1,6 +1,6 @@
 # SD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **103 of 120** parks joined to official land (same name + same kind of place). **1** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **108 of 120** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,23 +10,18 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **103 of 120** parks joined
 
 - US-0675 Missouri National Recreational River National Wild & Scenic River (National Wild & Scenic River) → on Lewis And Clark Recreation Area (~25,792 ac)
 - US-10363 DeGray State Recreation Area (State Recreation Area) → on Degrey Recreation Area (~25 ac); Sharpe Recreation Area (~78,431 ac)
-- US-10372 Spillway (Ft. Randall) State Recreation Area (State Recreation Area) → on Francis Case Recreation Area (~102,941 ac)
 - US-10376 Le Beau State Recreation Area (State Recreation Area) → on Lebeau Recreation Area (~46 ac); Oaha Recreation Area (~314,305 ac)
+- US-11905 Centennial Trail State Trail (State Trail) → on Bear Butte Lake (~0 ac)
 - US-8164 George S. Mickelson State Trail (State Trail) → on Exemption Area (~22,459 ac)
-- US-8193 Sheps Canyon State Recreation Area (State Recreation Area) → on Angostura Reservoir (~4,841 ac)
 
 ## Nothing found in PAD-US
 
 - US-0525 Huron Wetland Management District (Wetland Management District)
 - US-0529 Madison Wetland Management District (Wetland Management District)
 - US-0532 Waubay Wetland Management District (Wetland Management District)
-- US-10374 Bob's Landing State Recreation Area (State Recreation Area)
-- US-11905 Centennial Trail State Trail (State Trail)
-- US-2919 Good Earth State Park (State Park)
 - US-4501 Custer Gallatin National Forest (National Forest)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-7844 Adams Homestead State Nature Preserve (State Nature Preserve)
-- US-8195 Spearfish Canyon Nature Recreation Area (Nature Recreation Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 

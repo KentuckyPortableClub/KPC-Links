@@ -1,6 +1,6 @@
 # AK: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **130 of 179** parks joined to official land (same name + same kind of place). **6** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **131 of 179** parks joined to official land (same name + same kind of place). **6** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -42,7 +42,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **130 of 179** parks joined
 - US-12711 Morgan’s Landing Campground State Recreation Site (State Recreation Site) → on Kenai River (~0 ac); Kenai River Special Management Area (~50,234 ac)
 - US-13462 Sportsman's Angler Access State Recreation Site (State Recreation Site) → on Chugach National Forest (~5,401,397 ac)
 - US-4537 Admiralty Island National Monument (National Monument) → on Kootznoowoo Wilderness (~999,979 ac); Tongass National Forest (~16,739,631 ac)
-- US-4593 Southeast State Forest (State Forest) → on Favor Peak (~0 ac); State Tentatively Approved (ta) (~42,740 ac)
 - US-7884 Kenai Mountains-Turnagain Arm National Heritage Area (National Heritage Area) → on State Land Disposals - Municipal Purposes (~676,504 ac)
 
 ## Nothing found in PAD-US
