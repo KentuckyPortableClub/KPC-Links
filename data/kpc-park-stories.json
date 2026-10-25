@@ -1,5 +1,5 @@
 {
- "note": "Short, checkable notes about why a park is worth seeing, for the Park of the Week post (Brandon Oct 21: 'park of the week but leave out the bands that work there ...maybe tell a brief history if it has it or why it is a place to see'). NO BANDS, NO ANTENNA ADVICE - the post is about the place. A park is only ever featured if it has an entry here, so the bot can never invent a history. Keep each to two or three plain sentences about things a visitor could check for themselves, and let the park's own page carry the detail. References were resolved against kpc-ky-data.json on 21 Oct 2026, not typed from memory.",
+ "note": "Short, checkable notes about why a park is worth seeing, for the Park of the Week post (Brandon Oct 21: 'park of the week but leave out the bands that work there ...maybe tell a brief history if it has it or why it is a place to see'). NO BANDS, NO ANTENNA ADVICE - the post is about the place. A park is only ever featured if it has an entry here, so the bot can never invent a history. Keep each to two or three plain sentences about things a visitor could check for themselves, and let the park's own page carry the detail. References were resolved against kpc-ky-data.json on 21 Oct 2026, not typed from memory. | Oct 25: +35 from research round 9H (KPC_Round9H_done.xlsx), each with the page it came from; \"first\" = state parks and national/historic sites, featured before the rest. Blue Licks blurb not confirmable on its park page (landing page only).",
  "parks": [
   {
    "ref": "US-0050",
@@ -64,6 +64,216 @@
   {
    "ref": "US-1288",
    "story": "Kentucky's first state park, set aside in 1924, on the ridge above Pineville. The chained rock above the town is the local landmark, and the laurel is the reason people come in late spring."
+  },
+  {
+   "ref": "US-1274",
+   "story": "Blue Licks’ salt springs drew prehistoric animals, Native Americans, and frontier settlers. The park preserves the site of the 1782 Battle of Blue Licks, commonly identified as the last major battle of the American Revolution.",
+   "source": "https://parks.ky.gov/parks/find-a-park/blue-licks-battlefield-state-resort-park-7782",
+   "first": true
+  },
+  {
+   "ref": "US-1252",
+   "story": "The park recalls the November 7, 1861 Battle of Belmont, fought along the Mississippi River. Confederate forces stretched a massive chain and anchor across the river here to impede Union gunboats.",
+   "source": "https://parks.ky.gov/explore/columbus-belmont-state-park-7809",
+   "first": true
+  },
+  {
+   "ref": "US-1254",
+   "story": "The site was formerly the Lakeland Asylum, Kentucky’s fourth state mental hospital, established here in 1873. Its campus included a working farm and orchards before the old buildings were demolished in 1996.",
+   "source": "https://history.ky.gov/markers/lakeland-asylum",
+   "first": true
+  },
+  {
+   "ref": "US-1279",
+   "story": "The park honors General William Orlando Butler, a Kentucky-born soldier and public official. Its Butler-Turpin House, a brick Federal-style residence built in 1859, preserves a tangible piece of the area’s nineteenth-century family history.",
+   "source": "https://parks.ky.gov/parks/find-a-park/general-butler-state-resort-park-7789",
+   "first": true
+  },
+  {
+   "ref": "US-1282",
+   "story": "The grounds include the former Cherokee State Park, proposed in 1946 and opened in 1951 as Kentucky’s park developed for African Americans under segregation. It closed by 1964 after Kentucky ended segregation in public facilities.",
+   "source": "https://history.ky.gov/markers/cherokee-state-park",
+   "first": true
+  },
+  {
+   "ref": "US-1269",
+   "story": "Old Fort Harrod preserves the story of Harrodsburg, established by James Harrod and fellow settlers in 1774. It was among the earliest permanent English settlements west of the Allegheny Mountains.",
+   "source": "https://parks.ky.gov/parks/find-a-park/old-fort-harrod-state-park-7823",
+   "first": true
+  },
+  {
+   "ref": "US-0724",
+   "story": "Abraham Lincoln was born on February 12, 1809, in a one-room log cabin on Sinking Spring Farm near Hodgenville. The park preserves the birthplace landscape and the later Knob Creek farm where he spent part of his childhood.",
+   "source": "https://www.nps.gov/abli/learn/historyculture/index.htm",
+   "first": true
+  },
+  {
+   "ref": "US-7950",
+   "story": "The U.S. Army established Camp Nelson in April 1863 as a fortified supply depot and hospital. It later became a major recruitment center for United States Colored Troops and a refuge for Black people escaping slavery and their families.",
+   "source": "https://www.nps.gov/cane/learn/historyculture/overview-of-camp-nelson.htm",
+   "first": true
+  },
+  {
+   "ref": "US-0703",
+   "story": "Fort Donelson was a key Union victory in February 1862 that opened the Cumberland River route and helped secure a path into the Confederate interior. The battlefield preserves earthworks and landscapes associated with the campaign.",
+   "source": "https://www.nps.gov/fodo/learn/historyculture/index.htm",
+   "first": true
+  },
+  {
+   "ref": "US-3790",
+   "story": "Fort Heiman was built by Confederate forces in 1861 to help defend the Tennessee and Cumberland river approaches. Union forces captured it during the February 1862 Fort Henry–Fort Donelson campaign, strengthening control of the river corridor.",
+   "source": "https://www.nps.gov/fodo/planyourvisit/fort-heiman-history.htm",
+   "first": true
+  },
+  {
+   "ref": "US-7708",
+   "story": "On January 19, 1862, Union forces under George H. Thomas defeated Confederate troops at Mill Springs. The victory was the Union’s first major success in the Western Theater and helped secure Kentucky for the Union.",
+   "source": "https://www.nps.gov/misp/battle-of-mill-springs.htm",
+   "first": true
+  },
+  {
+   "ref": "US-3782",
+   "story": "Frontiersman Dr. Thomas Walker reached Kentucky in 1750, seventeen years before Daniel Boone’s better-known exploration. Walker and five companions built a cabin here, represented today by a replica.",
+   "source": "https://parks.ky.gov/barbourville/parks/historic/dr-thomas-walker-state-historic-site",
+   "first": true
+  },
+  {
+   "ref": "US-3784",
+   "story": "Built in 1804, the cross-shaped log meetinghouse was established by pioneer Baptists led by Philip Mulkey. A major theological split in 1809 helped shape the restoration movement and later Christian Church and Church of Christ traditions.",
+   "source": "https://parks.ky.gov/parks/find-a-park/old-mulkey-meetinghouse-state-historic-site-7803",
+   "first": true
+  },
+  {
+   "ref": "US-3786",
+   "story": "Waveland’s Greek Revival mansion was built in 1848 for the Bryan family. The historic site interprets both the family’s life and the experiences of enslaved people who labored on the plantation.",
+   "source": "https://parks.ky.gov/kentucky-african-american-heritage-trail",
+   "first": true
+  },
+  {
+   "ref": "US-3788",
+   "story": "A Mississippian culture village occupied Wickliffe Mounds from about A.D. 1100 to 1350, with earthen mounds and houses around a central plaza overlooking the Mississippi River. The site opened to the public in 1932.",
+   "source": "https://parks.ky.gov/parks/find-a-park/wickliffe-mounds-state-historic-site-7806",
+   "first": true
+  },
+  {
+   "ref": "US-11181",
+   "story": "Created in 1976, the Sheltowee Trace runs from Pickett State Park in Tennessee into northern Kentucky. Its name refers to “Sheltowee,” meaning “Big Turtle,” the name given to Daniel Boone when he was adopted by Shawnee leader Chief Blackfish.",
+   "source": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5380473.pdf",
+   "first": false
+  },
+  {
+   "ref": "US-7966",
+   "story": "Dedicated in 1985, Bad Branch protects a forested gorge on Pine Mountain, including a 60-foot waterfall and habitat for rare species. The preserve is known for one of Kentucky’s few nesting pairs of common ravens.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7956",
+   "story": "Dedicated in 1982, Beargrass Creek State Nature Preserve protects 41 acres of second-growth woodland in urban Louisville. It provides habitat for migrating birds and preserves a patch of native woodland amid the city.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Beargrass-Creek.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7954",
+   "story": "Dedicated in 1979, Blackacre was the first state nature preserve in Kentucky’s preserve system. Its 175 acres combine natural areas with historic agricultural landscapes used for environmental education.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blackacre.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7967",
+   "story": "The first 1,075 acres of Blanton Forest were dedicated in 1995, protecting part of Kentucky’s largest known old-growth forest. Some trees date to the late 1600s, and the preserve is named for former landowners Grover and Oxie Blanton.",
+   "source": "https://eec.ky.gov/nature-preserves/locations/pages/blanton-forest.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7965",
+   "story": "Brigadoon’s original 95 acres were dedicated in 1985, with later additions expanding the preserve to 187 acres. Its mature forest supports spring wildflowers, including rare or uncommon species, as well as resident and migratory birds.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Brigadoon.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7960",
+   "story": "Crooked Creek Barrens State Nature Preserve began with a 60-acre tract dedicated in 1999 and has since grown to 728 acres. Its oak barrens and adjoining oak-hickory forest protect rare prairie-associated plants in northeastern Kentucky.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7968",
+   "story": "Dedicated in 2007, E. Lucy Braun State Nature Preserve protects Pine Mountain habitats including sandstone outcrops, pine woodland, and an Appalachian bog. It is named for botanist E. Lucy Braun, known for her work on eastern North American vegetation.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/E.-Lucy-Braun.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-12752",
+   "story": "Green River State Natural Areas protect sections of the Green River corridor, including Rush Island Bottoms, where Gorin Mill Springs feeds the river and mussels and bats occur. The area also preserves land linked to the 1862 Battle of Munfordville.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7957",
+   "story": "Dedicated in 1992, Vernon-Douglas protects 730 acres of mature second-growth forest in the Knobs region. Hall Hollow supports spring wildflowers, and the preserve’s ridges and valley contain stands of sugar maple, beech, and tulip poplar.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7961",
+   "story": "Dedicated in 1979, Jesse Stuart State Nature Preserve protects the 710-acre W-Hollow landscape made famous in the writings of Kentucky author Jesse Stuart. The preserve’s hills and hollows connect literary history with Appalachian natural heritage.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Jesse-Stuart.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7953",
+   "story": "Dedicated in 1984, Metropolis Lake State Nature Preserve protects a 50-acre natural lake in the Ohio River floodplain. Bald cypress and swamp tupelo ring the lake, which supports several rare or uncommon fish, plants, and crayfish.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Metropolis-Lake.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7963",
+   "story": "The original 308 acres were dedicated in 1985. A sandstone outcrop atop the 730-foot knob is known as Boone’s Overlook, a place traditionally associated with Daniel Boone’s first view across the Bluegrass region.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Pilot-Knob.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7959",
+   "story": "The Wigglesworth family donated Quiet Trails to the Commonwealth after using it as a private nature sanctuary for Scout troops, schools, and other groups. It was dedicated in 1992 to preserve its ridges, ravines, and wildlife.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Quiet-Trails.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-7955",
+   "story": "Dedicated in 1979, Six Mile Island State Nature Preserve protects an undeveloped island in the Ohio River near Louisville. Its purpose is to let the island return toward its natural state and provide a place to study river-island ecology.",
+   "source": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx",
+   "first": false
+  },
+  {
+   "ref": "US-3801",
+   "story": "Clifty Wilderness was designated in 1985 within Daniel Boone National Forest. Its rugged sandstone cliffs, steep ravines, and forested slopes preserve a largely roadless portion of the Red River Gorge landscape.",
+   "source": "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460",
+   "first": false
+  },
+  {
+   "ref": "US-4484",
+   "story": "The forest was established in 1937 as Cumberland National Forest. It was renamed Daniel Boone National Forest in 1966, honoring the frontiersman Daniel Boone.",
+   "source": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd678960.pdf",
+   "first": true
+  },
+  {
+   "ref": "US-10173",
+   "story": "Kentucky Horse Park opened in 1978 as a working horse farm and educational theme park dedicated to the horse. It interprets the Commonwealth’s horse industry, breeding traditions, and equine history through exhibits and demonstrations.",
+   "source": "https://www.kyhorsepark.com/",
+   "first": true
+  },
+  {
+   "ref": "US-1281",
+   "story": "The park is named for Jenny Wiley, a frontier woman remembered in Appalachian history for surviving captivity during the late eighteenth century. The interpretive center shares her story alongside the region’s mountain and coal-mining heritage.",
+   "source": "https://parks.ky.gov/explore/jenny-wiley-state-resort-park-7791",
+   "first": true
+  },
+  {
+   "ref": "US-3789",
+   "story": "William Whitley House preserves the home of pioneer William Whitley, built in the late eighteenth century. Its distinctive circular racecourse nearby is associated with early horse racing and reflects Whitley’s efforts to promote local racing traditions.",
+   "source": "https://explorekyhistory.ky.gov/files/show/236",
+   "first": true
   }
  ]
 }

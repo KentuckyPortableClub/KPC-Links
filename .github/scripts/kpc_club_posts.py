@@ -128,7 +128,8 @@ def park_of_the_week(state):
     if left is stories and done:
         done = []
         notice('Every park with a story has been featured; starting the list again.')
-    pick = random.Random(datetime.date.today().isoformat()).choice(left)
+    pool = [x for x in left if x.get('first')] or left        # state parks and national sites first
+    pick = random.Random(datetime.date.today().isoformat()).choice(pool)
     parks = park_by_ref()
     p = parks.get(pick['ref'])
     if not p:
