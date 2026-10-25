@@ -105,5 +105,5 @@ NOT the fix: deleting history from the main repo (risky, breaks every chat's cop
 ## OUTSIDE RESEARCH BOT (Brandon's other agent; chat 2 writes its worklists in .claude/build/research/)
 - Done by Oct 25: rounds 2-4 (state/Canada/world layers, camping points, 150 access-point layers → 32,066 points / 44 states, 133 closure sources → US closure watcher 10 states, 97 park-map sources). Round 5 out: 435 pin-far-outside hand checks + KY PVA offices.
 - Next jobs HQ suggested (Oct 25): missing trails (HI AR UT AK ME NM CA CO IA MT NJ NV), camping for states still without a list, land-owner viewers WY MD DE ND NH VA, weather alert feeds (Environment Canada, MeteoAlarm) for chat 3, an official DXpedition list for chat 4, contest date rules from sponsor pages for chat 6, KPC NET options for Brandon. Rules: official sources, a link on every row, 'not sure' marked, 'blocked' never worked around, no logins; the owning chat checks results before use.
-- OPEN QUESTION FOR BRANDON (Oct 25): should chat 5 ANNOUNCE the new out-of-state closures (uc-) in Discord/Facebook? HQ suggests: no, cards only; maybe the states around KY.
+- DECIDED (Brandon Oct 25 12:39 PM: 'No only ky closures'): closure ANNOUNCEMENTS (Discord / Facebook / website posts, chat 5) = Kentucky only. Out-of-state 'uc-' closures show on park cards and tools only, never posted.
 
