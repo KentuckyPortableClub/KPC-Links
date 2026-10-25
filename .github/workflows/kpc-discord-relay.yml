@@ -72,6 +72,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Oct 25: a state file whose only change is a time stamp is put back, so a quiet run commits nothing
+          python3 .github/scripts/kpc_save_filter.py kpc-relay-state.json kpc-conditions.json data/discord-ask-state.json data/discord-mod-state.json || true
           for f in kpc-announcements.json kpc-relay-state.json kpc-conditions.json kpc-events-submitted.json kpc-events-auto.json data/discord-ask-state.json data/discord-mod-state.json; do if [ -e "$f" ]; then git add "$f"; fi; done
           git add -A photos/announce 2>/dev/null || true
           if ! git diff --cached --quiet; then

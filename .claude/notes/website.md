@@ -207,3 +207,4 @@
 - Why it matters: each commit rebuilds the site (~12 Pages builds an hour, GitHub's soft limit is ~10; builds are already being cancelled), so a real fix from another chat can wait to go live; it also floods the history HQ reads.
 - FIX: before saving, compare the state with the time-stamp fields left out; commit only when something real changed (new hello/command/action). Check the same in the other state savers (Hunter counts, Facebook comments, Discord watch, park alerts). Keep every run green, no emails (house rule).
 
+- DISCORD RELAY SAVE FIX (chat 5, Oct 25): kpc_save_filter.py puts back a state file whose only change is a time stamp (updated/commands_from/checked...), run before git add in kpc-discord-relay.yml; was 199 'Club post from Discord' commits a day. Hunter counts / Facebook comments / Discord watch commit ~14 a day each (hourly), left as is. Same filter can be added to any saver.
