@@ -1,0 +1,36 @@
+name: KPC state camps probe
+# BY HAND ONLY (no timer, no email). Asks each state's GIS portal, agency ArcGIS account and reservation site what they
+# answer, from GitHub's network, and saves the facts to data/campstate/probe.json. Read the result, then extend the
+# weekly bot (kpc-state-camps.yml). Every step ends green.
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: 'States, e.g. "GA NC" (blank = all but KY)'
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: kpc-state-camps-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Probe
+        continue-on-error: true
+        env:
+          STATES: ${{ inputs.states }}
+        run: python3 .github/scripts/kpc_state_camps_probe.py || true
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/campstate/probe.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'State camps probe: what each portal and reservation site answers'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
