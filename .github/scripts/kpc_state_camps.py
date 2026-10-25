@@ -21,6 +21,7 @@ Env: STATES (blank = every state but KY), DRY_RUN=1 (print, write nothing), SPEE
 import ast, datetime, hashlib, json, math, os, pathlib, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
 import concurrent.futures as cf
 
+DIAG = {}                                   # per state: what was crawled and what each layer held (data/campstate/layers.json)
 UA = 'KPC-state-camps/1.0 (Kentucky Portable Club; kentuckyportableclub.github.io)'
 OUT = pathlib.Path('data/campstate')
 DRY = os.environ.get('DRY_RUN') == '1'
@@ -35,7 +36,7 @@ TODAY = datetime.date.today().isoformat()
 
 STRONG = re.compile(r'camp|cabin|lodg|yurt|cottage|\brv\b', re.I)                  # picks LAYERS (names only, loose on purpose)
 GENERIC = re.compile(r'facilit|amenit|point[ _]?of[ _]?interest|\bpoi\b|park[ _]?site|asset|overnight|\bsites?\b', re.I)
-PARKCTX = re.compile(r'park|recre|\brec[ _]|camp|cabin|outdoor|visitor|tourism|lodging|resort', re.I)   # a generic layer must sit in a park/recreation context
+PARKCTX = re.compile(r'park|recre|\brec[ _]|camp|cabin|outdoor|visitor|tourism', re.I)   # a generic layer must sit in a park/recreation context
 SVC_OK = re.compile(STRONG.pattern + '|' + PARKCTX.pattern, re.I)
 FOLDER_OK = re.compile(r'park|recre|outdoor|dnr|tourism|public|open|facil|camp|visitor|lodg|asset|boundar|hosted|utility|data', re.I)
 LAYER_BAD = re.compile(r'trail(?!head)|boundary|boundaries|road|wetland|hunt|fish|stock|sign|photo|contour|parcel|district|'
@@ -44,6 +45,9 @@ LAYER_BAD = re.compile(r'trail(?!head)|boundary|boundaries|road|wetland|hunt|fis
 CAMPWORD = re.compile(r'\b(?:camps?|camping|campgrounds?|campsites?|campers?|cabins?|cottages?|yurts?|rv)\b', re.I)
 LODGEWORD = re.compile(r'\b(?:lodge|lodges|lodging)\b', re.I)
 CAMP_SUBSTR = ('CAMP', 'CABIN', 'LODG', 'YURT', 'COTTAGE')
+# individual sites / units are not places to list: 'Campsites' layers of thousands of points, 'Campsite 33', 'Cabin 30', '004'
+SITE_LAYER = re.compile(r'camp[ _]?sites?\b|camping[ _]?sites?|reservable|individual|\bsites?$|\bspaces?\b|\bpads?\b|\bunits?$', re.I)
+SITE_NAME = re.compile(r'^(?:[\W\d_]*|[A-Za-z]{0,3}\W?\d+[A-Za-z]?|(?:camp ?sites?|sites?|cabins?|yurts?|spaces?|units?|lots?|loops?|pads?|rv)\W*[#]?\s*\w{0,3}\d+\w*)$', re.I)
 EXCL = re.compile(r'picnic|shelter|boat ramp|launch|trailhead|restroom|day[- ]use|dump station|parking|playground|'
                   r'pavilion|overlook|museum|visitor center|golf|marina|beach', re.I)
 BAD_HOST = re.compile(r'campendium|hipcamp|tripadvisor|yelp|facebook|google\.|bing\.|openstreetmap|allstays|koa\.com|'
@@ -112,7 +116,16 @@ def roots_for(st):
             if isinstance(n, ast.Assign) and getattr(n.targets[0], 'id', '') == 'ROOTS':
                 extra += ast.literal_eval(n.value).get(st, [])
     except Exception: pass  # noqa: E722
-    urls += [u for u in extra if u and gov.match(u)]
+    host = lambda u: re.sub(r'^https?://([^/:]+).*', r'\1', u or '').lower()
+    trusted = {host(u) for u in urls}
+    try:
+        for n in ast.parse(open('.github/scripts/kpc_state_gis.py', encoding='utf-8').read()).body:
+            if isinstance(n, ast.Assign) and getattr(n.targets[0], 'id', '') == 'ROOTS':
+                trusted |= {host(u) for u in ast.literal_eval(n.value).get(st, []) if not re.search(r'arcgis\.com', u)}
+    except Exception: pass  # noqa: E722
+    mine = re.compile(r'(?:^|\.)%s\.(?:gov|us)$|\.state\.%s\.us$' % (st.lower(), st.lower()))
+    # the layer scan also holds other states' and counties' servers (Ohio listed Minnesota's): only the state's own hosts
+    urls += [u for u in extra if u and gov.match(u) and (host(u) in trusted or mine.search(host(u)))]
     roots, folders = [], {}
     urls = [u for u in urls if u]
     for u in urls:
@@ -138,16 +151,22 @@ def discover(st):
     """-> list of layer dicts {url, name, fields, geo, strong, max, svc}."""
     roots, known_folders = roots_for(st)
     found, seen = [], set()
+    DIAG[st] = {'roots': []}
     for root in roots[:6]:
         if time.time() > DEADLINE: break
         top = get_json(root)
-        if not ok(top): continue
+        dg = {'root': root, 'ok': ok(top), 'services': 0, 'candidates': 0, 'layers': 0}
+        DIAG[st]['roots'].append(dg)
+        if not ok(top):
+            dg['err'] = str((top or {}).get('error'))[:80]; continue
         svcs = [(s['name'], s['type']) for s in top.get('services', []) if s.get('type') in ('FeatureServer', 'MapServer')]
         for fo in top.get('folders', [])[:80]:
             if fo in known_folders.get(root, set()) or FOLDER_OK.search(fo) or len(top.get('folders', [])) <= 12:
                 fj = get_json(root + '/' + fo)
                 if ok(fj): svcs += [(s['name'], s['type']) for s in fj.get('services', []) if s.get('type') in ('FeatureServer', 'MapServer')]
+        dg['services'] = len(svcs)
         svcs = [s for s in svcs if SVC_OK.search(s[0])][:90]
+        dg['candidates'] = len(svcs)
         for name, typ in svcs:
             if time.time() > DEADLINE: break
             su = f'{root}/{name}/{typ}'
@@ -156,6 +175,7 @@ def discover(st):
             cand = []
             for l in (sj.get('layers') or [])[:60]:
                 ln = l.get('name') or ''
+                if SITE_LAYER.search(ln.strip()) and not re.search(r'campgrounds?\b|cabins\b', ln, re.I): continue
                 st_ = bool(STRONG.search(ln))
                 gen = (bool(GENERIC.search(ln)) or bool(GENERIC.search(name) and not LAYER_BAD.search(ln))) and bool(PARKCTX.search(ln + ' ' + name))
                 if (st_ or gen) and not (LAYER_BAD.search(ln) and not st_):
@@ -168,6 +188,7 @@ def discover(st):
                 if not ok(lj): continue
                 geo = lj.get('geometryType') or ''
                 if geo not in ('esriGeometryPoint', 'esriGeometryPolygon') or (geo.endswith('Polygon') and not strong): continue
+                dg['layers'] += 1
                 found.append({'url': lu, 'name': ln, 'fields': [(f.get('name'), f.get('type')) for f in lj.get('fields', [])],
                               'geo': geo, 'strong': strong, 'max': int(lj.get('maxRecordCount') or 1000), 'svc': name,
                               'lodging': bool(re.search(r'lodg|resort', ln + ' ' + name, re.I))})
@@ -243,7 +264,7 @@ def rows_to_camps(lay, feats):
         a, p = f.get('attributes') or {}, xy(f.get('geometry'), lay['geo'])
         if not p or not nf: continue
         name = nice(a.get(nf))
-        if not name or name.lower() in ('none', 'null', 'unnamed'): continue
+        if not name or name.lower() in ('none', 'null', 'unnamed', 'other') or SITE_NAME.match(name): continue
         text = name + ' ' + ' '.join(str(a.get(x) or '') for x in tf)
         camp, lodge = bool(CAMPWORD.search(text)), bool(LODGEWORD.search(text)) and lay['lodging']
         if not (camp or lodge or (lay['strong'] and not EXCL.search(name))): continue
@@ -315,16 +336,15 @@ def match_pota(c, parks):
 
 
 def dedupe(cands, fed):
+    """Drop what the federal list already has, and repeats. A campground and the cabins beside it stay separate."""
     out = []
     pool = [(norm(f[1]), f[2], f[3]) for f in fed]
     for c in cands:
         n = norm(c['name'])
-        near = False
-        for fn, la, lo in pool:
-            d = hav(c['lat'], c['lon'], la, lo)
-            if d < 0.19 or (fn == n and d < 3): near = True; break      # 300 m, or same name within 3 miles
-        if near: continue
-        dup = next((o for o in out if hav(c['lat'], c['lon'], o['lat'], o['lon']) < 0.19 or
+        if any((c['kind'] == 'c' and hav(c['lat'], c['lon'], la, lo) < 0.19) or (fn == n and hav(c['lat'], c['lon'], la, lo) < 3)
+               for fn, la, lo in pool):          # already in data/campfed: 300 m (campgrounds), or the same name within 3 miles
+            continue
+        dup = next((o for o in out if (o['kind'] == c['kind'] and hav(c['lat'], c['lon'], o['lat'], o['lon']) < 0.19) or
                     (norm(o['name']) == n and hav(c['lat'], c['lon'], o['lat'], o['lon']) < 3)), None)
         if dup:
             dup['url'] = dup['url'] or c['url']; dup['res'] = dup['res'] or c['res']; continue
@@ -344,7 +364,11 @@ def do_state(st):
         cands, used = [], []
         for lay in lays:
             if time.time() > DEADLINE: break
-            got = rows_to_camps(lay, fetch_rows(lay))
+            feats = fetch_rows(lay)
+            got = rows_to_camps(lay, feats)
+            DIAG.setdefault(st, {}).setdefault('layers', []).append(
+                {'url': lay['url'], 'name': lay['name'], 'fields': [n for n, _ in lay['fields']][:14], 'read': len(feats), 'kept': len(got),
+                 'sample': [c['name'] for c in got[:3]]})
             if got:
                 cands += got; used.append(f"{urllib.parse.urlparse(lay['url']).netloc} · {lay['name']} ({len(got)})")
         n0 = len(cands)
@@ -424,7 +448,14 @@ def main():
         if st in STATES: continue
     idx = {'updated': TODAY, 'states': dict(sorted(states.items())),
            'none': sorted(s for s in ALL if s not in states)}
-    if not DRY: (OUT / 'index.json').write_text(json.dumps(idx, indent=1) + '\n', encoding='utf-8')
+    if not DRY:
+        (OUT / 'index.json').write_text(json.dumps(idx, indent=1) + '\n', encoding='utf-8')
+        try:
+            old = json.loads((OUT / 'layers.json').read_text(encoding='utf-8')).get('states', {})
+        except Exception: old = {}  # noqa: E722
+        old.update({k: v for k, v in DIAG.items() if k in STATES})
+        (OUT / 'layers.json').write_text(json.dumps({'updated': TODAY, 'note': 'What the weekly state-camps bot crawled and read, for tuning. Not for the website.',
+                                                     'states': dict(sorted(old.items()))}, separators=(',', ':')) + '\n', encoding='utf-8')
     update_issue(missing, list(states), None)
     note('State camps done', f'{wrote} written, {len(missing)} without a source. Counts: ' + ' '.join(f"{k}={len(v['camps'])}" for k, v in sorted(results.items())))
     note('State camps: why not', ' | '.join(f"{k}: {v['why'][:70]}" for k, v in sorted(results.items()) if not v['camps'] or v['why']))
