@@ -732,8 +732,15 @@ def run(st):
                 # right one is right here. Recorded, not acted on, until a person has looked at a few.
                 if shaped:
                     jn = {_nf(x[1]) for x in m}
+                    # Oct 25 review of the first 9 'swaps': 5 were the SAME land in two maps (PAD-US + the state's own copy),
+                    # 2 a different KIND of place with the same name (herd area vs recreation area / study area), 1 an office
+                    # name shared by two areas. A swap must now be a different place: land apart from the joined land, a
+                    # kind that fits the park, and not an office boundary.
+                    def apart(b): return bool(b) and all(b[2] < q['_bb'][0] or b[0] > q['_bb'][2] or b[3] < q['_bb'][1] or b[1] > q['_bb'][3] for q in shaped if q['_bb'])
                     swap = [a for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') in jn
                             and _oid(a) not in {str(x[0]) for x in m}
+                            and not KM.is_admin(a.get('Unit_Nm') or a.get('Loc_Nm') or '')
+                            and same_kind(kp, a['_k']) and apart(a['_bb'])
                             and rings(a.get('_g')) and inside(la, lo, a['_g'])]
                     if swap:
                         parks[ref]['swap'] = [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '',

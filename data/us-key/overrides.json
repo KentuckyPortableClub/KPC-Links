@@ -2855,9 +2855,10 @@
   },
   "US-4178": {
    "join": [
-    "ind5037"
+    "ind5037",
+    "ind5036"
    ],
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) | Oct 25: the pin sits on the 556-acre Salamonie Lake tract (Lost Bridge), joined too",
    "approx": true
   },
   "US-4179": {
