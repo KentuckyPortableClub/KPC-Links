@@ -850,7 +850,7 @@
    ],
    "src": "RULE",
    "by": "ARRL",
-   "exch": "RS(T) + state (KY); work DX stations only"
+   "exch": "RS(T) + state (KY); work DX stations only, they send RS(T) + power"
   },
   {
    "name": "CQ 160-Meter Contest (SSB)",
@@ -910,11 +910,11 @@
    ],
    "src": "RULE",
    "by": "ARRL",
-   "exch": "RS(T) + state (KY); work DX stations only"
+   "exch": "RS(T) + state (KY); work DX stations only, they send RS(T) + power"
   },
   {
    "name": "Virginia QSO Party",
-   "url": "https://www.contestcalendar.com/contestcal.php",
+   "url": "https://www.qsl.net/sterling/home.htm",
    "when": "Usual dates (Sterling Park ARC); check the rules",
    "segs": [
     [
@@ -978,12 +978,12 @@
   },
   {
    "name": "Indiana QSO Party",
-   "url": "https://www.contestcalendar.com/contestcal.php",
+   "url": "http://www.hdxcc.org/inqp/rules.html",
    "when": "Usual dates (Hoosier DX and Contest Club); check the rules",
    "segs": [
     [
-     "2027-05-01T16:00Z",
-     "2027-05-02T04:00Z"
+     "2027-05-01T15:00Z",
+     "2027-05-02T03:00Z"
     ]
    ],
    "modes": [
@@ -1020,8 +1020,8 @@
   },
   {
    "name": "Kentucky QSO Party",
-   "url": "https://www.contestcalendar.com/contestcal.php",
-   "when": "Usual dates (Kentucky QSO Party); check the rules",
+   "url": "https://kyqsoparty.org/rules/",
+   "when": "Usual dates (Kentucky QSO Party); the 2027 rules are still marked DRAFT and the start time may change",
    "segs": [
     [
      "2027-06-05T13:00Z",
@@ -1047,7 +1047,7 @@
    "segs": [
     [
      "2027-06-05T18:00Z",
-     "2027-06-06T18:00Z"
+     "2027-06-07T00:00Z"
     ]
    ],
    "modes": [
@@ -1191,7 +1191,7 @@
   },
   {
    "name": "Ohio QSO Party",
-   "url": "https://contestcalendar.com/stateparties.php",
+   "url": "https://www.ohqp.org/index.php/rules/",
    "when": "Usual dates (Ohio Contest Club); check the rules",
    "segs": [
     [
@@ -1213,7 +1213,7 @@
   },
   {
    "name": "Tennessee QSO Party",
-   "url": "https://contestcalendar.com/stateparties.php",
+   "url": "https://tnqp.org/",
    "when": "Usual dates (Tennessee Contest Group); check the rules",
    "segs": [
     [
@@ -1258,7 +1258,7 @@
   },
   {
    "name": "Illinois QSO Party",
-   "url": "https://www.contestcalendar.com/contestcal.php",
+   "url": "https://w9awe.org/ilqp/",
    "when": "Usual dates (Western Illinois ARC); check the rules",
    "segs": [
     [

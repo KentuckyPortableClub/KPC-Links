@@ -192,7 +192,7 @@ def exch_for(name):
     if 'sweepstakes' in n: return 'number, precedence (Q/A/B/U/M/S), your call, check (last 2 digits of the year you were first licensed), section (KY)'
     if 'cq world wide' in n: return 'RS(T) + CQ zone 4'
     if 'wpx' in n: return 'RS(T) + serial number (001, 002...)'
-    if 'international dx' in n: return 'RS(T) + state (KY); work DX stations only'
+    if 'international dx' in n: return 'RS(T) + state (KY); work DX stations only, they send RS(T) + power'
     if 'north american qso' in n: return 'your name + state (KY)'
     if 'kentucky qso' in n: return 'RS(T) + your Kentucky county (out of state: RS(T) + state)'
     if 'qso party' in n: return 'RS(T) + state (KY)'
@@ -204,6 +204,12 @@ def exch_for(name):
     if 'iaru' in n: return 'RS(T) + ITU zone 8'
     if 'digital contest' in n: return 'your 4-character grid square'
     return ''
+
+
+# END TIMES (Oct 25, HQ round 6): our 'end' is the moment the contest is over (e.g. 0000Z Monday); sponsors write the
+# last minute (2359Z Sunday). Same thing, one minute apart, so we keep ours everywhere.
+# Notes that replace the usual 'check the rules' line (only where we know something specific).
+WHEN_NOTE = {'Kentucky QSO Party': 'Usual dates (Kentucky QSO Party); the 2027 rules are still marked DRAFT and the start time may change'}
 
 
 def big():
@@ -218,7 +224,7 @@ def big():
         ('ARRL International DX Contest (Phone)', 3, 1, 0, 48, ['PHONE'], ['BIG'], 'ARRL', 'https://www.arrl.org/arrl-dx'),
         ('CQ WPX Contest (SSB)', 3, -1, 0, 48, ['PHONE'], ['BIG'], 'CQ', 'https://www.cqwpx.com/rules.htm'),
         ('CQ WPX Contest (CW)', 5, -1, 0, 48, ['CW'], ['BIG'], 'CQ', 'https://www.cqwpx.com/rules.htm'),
-        ('ARRL International Digital Contest', 6, 1, 18, 24, ['DIGITAL'], ['BIG'], 'ARRL', 'https://www.arrl.org/arrl-digital-contest'),
+        ('ARRL International Digital Contest', 6, 1, 18, 30, ['DIGITAL'], ['BIG'], 'ARRL', 'https://www.arrl.org/arrl-digital-contest'),
         ('ARRL June VHF Contest', 6, 2, 18, 33, ['CW', 'PHONE', 'DIGITAL'], ['VHF', 'BIG'], 'ARRL', 'https://www.arrl.org/june-vhf'),
         ('ARRL Field Day', 6, 4, 18, 27, ['CW', 'PHONE', 'DIGITAL'], ['FIELD', 'BIG'], 'ARRL', 'https://www.arrl.org/field-day'),
         ('IARU HF World Championship', 7, 2, 12, 24, ['CW', 'PHONE'], ['BIG'], 'ARRL / IARU', 'https://www.arrl.org/iaru-hf-world-championship'),
@@ -237,16 +243,16 @@ def big():
         ('North American QSO Party (CW)', 1, 5, 2, 18, 12, ['CW'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
         ('North American QSO Party (SSB)', 1, 5, 3, 18, 12, ['PHONE'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
         ('North American QSO Party (RTTY)', 2, 5, -1, 18, 12, ['DIGITAL'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
-        ('Virginia QSO Party', 3, 5, 3, 14, 34, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Sterling Park ARC', 'https://www.contestcalendar.com/contestcal.php'),
+        ('Virginia QSO Party', 3, 5, 3, 14, 34, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Sterling Park ARC', 'https://www.qsl.net/sterling/home.htm'),
         ('Missouri QSO Party', 4, 5, 1, 14, 30, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Missouri QSO Party', 'https://www.moqp.org/'),
-        ('Indiana QSO Party', 5, 5, 1, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Hoosier DX and Contest Club', 'https://www.contestcalendar.com/contestcal.php'),
-        ('Kentucky QSO Party', 6, 5, 1, 13, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Kentucky QSO Party', 'https://www.contestcalendar.com/contestcal.php'),
+        ('Indiana QSO Party', 5, 5, 1, 15, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Hoosier DX and Contest Club', 'http://www.hdxcc.org/inqp/rules.html'),
+        ('Kentucky QSO Party', 6, 5, 1, 13, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Kentucky QSO Party', 'https://kyqsoparty.org/rules/'),
         ('North American QSO Party (CW)', 8, 5, 1, 18, 12, ['CW'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
         ('North American QSO Party (SSB)', 8, 5, 3, 18, 12, ['PHONE'], ['BIG'], 'NCJ', 'https://ncjweb.com/naqp/'),
         ('West Virginia QSO Party', 6, 5, 3, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'West Virginia State ARC', 'https://contestcalendar.com/stateparties.php'),
-        ('Ohio QSO Party', 8, 5, 4, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Ohio Contest Club', 'https://contestcalendar.com/stateparties.php'),
-        ('Tennessee QSO Party', 9, 6, 1, 17, 10, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Tennessee Contest Group', 'https://contestcalendar.com/stateparties.php'),
-        ('Illinois QSO Party', 10, 6, 3, 17, 8, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Western Illinois ARC', 'https://www.contestcalendar.com/contestcal.php'),
+        ('Ohio QSO Party', 8, 5, 4, 16, 12, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Ohio Contest Club', 'https://www.ohqp.org/index.php/rules/'),
+        ('Tennessee QSO Party', 9, 6, 1, 17, 10, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Tennessee Contest Group', 'https://tnqp.org/'),
+        ('Illinois QSO Party', 10, 6, 3, 17, 8, ['CW', 'PHONE', 'DIGITAL'], ['QSOPARTY'], 'Western Illinois ARC', 'https://w9awe.org/ilqp/'),
     ]
     out = []
     for y in (TODAY.year, TODAY.year + 1):
@@ -261,7 +267,7 @@ def big():
             e = s + dt.timedelta(hours=length)
             if e < NOW or s > NOW + dt.timedelta(days=400):
                 continue
-            out.append({'name': name, 'url': url, 'when': 'Usual dates (' + by + '); check the rules', 'segs': [[s.strftime('%Y-%m-%dT%H:%MZ'), e.strftime('%Y-%m-%dT%H:%MZ')]],
+            out.append({'name': name, 'url': url, 'when': WHEN_NOTE.get(name, 'Usual dates (' + by + '); check the rules'), 'segs': [[s.strftime('%Y-%m-%dT%H:%MZ'), e.strftime('%Y-%m-%dT%H:%MZ')]],
                         'modes': modes, 'kinds': kinds, 'src': 'RULE', 'by': by, 'exch': exch_for(name)})
         for name, m, w, h, length, modes, kinds, by, url in R:
             fw = full_weekends(y, m)
@@ -270,7 +276,7 @@ def big():
             e = s + dt.timedelta(hours=length)
             if e < NOW or s > NOW + dt.timedelta(days=400):
                 continue
-            out.append({'name': name, 'url': url, 'when': 'Usual dates (' + by + '); check the rules', 'segs': [[s.strftime('%Y-%m-%dT%H:%MZ'), e.strftime('%Y-%m-%dT%H:%MZ')]],
+            out.append({'name': name, 'url': url, 'when': WHEN_NOTE.get(name, 'Usual dates (' + by + '); check the rules'), 'segs': [[s.strftime('%Y-%m-%dT%H:%MZ'), e.strftime('%Y-%m-%dT%H:%MZ')]],
                         'modes': modes, 'kinds': kinds, 'src': 'RULE', 'by': by, 'exch': exch_for(name)})
     out.sort(key=lambda c: c['segs'][0][0])
     return out
