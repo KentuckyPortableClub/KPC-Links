@@ -251,6 +251,14 @@
     "nm": "NAME",
     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Iowa DNR",
+    "nm": "NAME",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
+    "host": "agency",
+    "note": "Public Lands Used for Conservation and Recreation in Iowa (5,439 areas; on Iowa Geodata). Reachable from GitHub Oct 25 2026 (earlier 403 was temporary). chat 2"
    }
   ],
   "ID": [
