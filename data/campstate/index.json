@@ -46,11 +46,6 @@
    "source": "services3.arcgis.com \u00b7 Montana State Parks Facilities (Point Features) (390)",
    "updated": "2026-10-25"
   },
-  "NH": {
-   "n": 12,
-   "source": "nhgeodata.unh.edu \u00b7 Recreation Inventory: Points (12)",
-   "updated": "2026-10-25"
-  },
   "NY": {
    "n": 162,
    "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services.arcgis.com \u00b7 Facility (147); services6.arcgis.com \u00b7 DEC_OPRHP_camground_centriods (112) (+1 more)",
@@ -86,11 +81,6 @@
    "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (71)",
    "updated": "2026-10-25"
   },
-  "WA": {
-   "n": 12,
-   "source": "services5.arcgis.com \u00b7 Warming Shelters (1); services5.arcgis.com \u00b7 Campsites (53); services5.arcgis.com \u00b7 Trailheads (1)",
-   "updated": "2026-10-25"
-  },
   "WV": {
    "n": 60,
    "source": "services9.arcgis.com \u00b7 Campgrounds (221)",
@@ -118,6 +108,7 @@
   "NC",
   "ND",
   "NE",
+  "NH",
   "NJ",
   "NM",
   "NV",
@@ -127,6 +118,7 @@
   "SC",
   "SD",
   "VT",
+  "WA",
   "WI",
   "WY"
  ],
@@ -161,6 +153,8 @@
   "SD": "the state GIS server did not answer from GitHub (<urlopen error timed out>); ArcGIS Online had no camp layer from an account named like the state's agencies",
   "VT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
+  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "WA": "the only layer found lists camp-host sites, not campgrounds (held back)",
+  "NH": "the only layer found is trail huts, not state park camping (held back)"
  }
 }
