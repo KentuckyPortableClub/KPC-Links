@@ -1,6 +1,6 @@
 # Canada MB: POTA parks vs official land (CPCAD)
 
-Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **216 of 308** joined (same name + same kind). **0** to check, **87** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **219 of 308** joined (same name + same kind). **0** to check, **84** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -27,7 +27,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **216 of 308** joined (same
 - CA-1079 The Forks National Historic Site (National Historic Site)
 - CA-1091 York Factory Provincial Park (Provincial Park)
 - CA-2373 Primrose Wayside Recreation Park (Recreation Park)
-- CA-2395 Churchill Wildlife Management Area (Wildlife Management Area)
 - CA-2407 Ellice-Archie Wildlife Management Area (Wildlife Management Area)
 - CA-2408 Ernie O' Dowda Recreation Park (Recreation Park)
 - CA-2411 Fort Douglas Recreation Park (Recreation Park)
@@ -37,7 +36,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **216 of 308** joined (same
 - CA-2433 Lagimodiere-Gaboury Park Recreation Park (Recreation Park)
 - CA-2443 Birch River (Community Pasture) Conservation Area (Conservation Area)
 - CA-2444 Lenswood (Community Pasture) Conservation Area (Conservation Area)
-- CA-2456 Maple Lake Wildlife Management Area (Wildlife Management Area)
 - CA-2464 Narcisse Provincial Park (Provincial Park)
 - CA-2475 Parc Joseph Royal Recreation Park (Recreation Park)
 - CA-2478 Pimachiowin Aki (Pauingassi) Wildlife Management Area (Wildlife Management Area)
@@ -46,7 +44,6 @@ Built 2026-10-25 by `.github/scripts/kpc_ca_key.py`. **216 of 308** joined (same
 - CA-2503 Sandilands Provincial Forest Wildlife Management Area (Wildlife Management Area)
 - CA-2527 Vimy Ridge Memorial Park Recreation Park (Recreation Park)
 - CA-2529 Wallace Lake Wildlife Management Area (Wildlife Management Area)
-- CA-2538 Westlake Wildlife Management Area (Wildlife Management Area)
 - CA-4799 Forts Rouge, Garry and Gibraltar National Historic Site (National Historic Site)
 - CA-4800 Linear Mounds National Historic Site (National Historic Site)
 - CA-4803 Riding Mountain Park East Gate Registration Complex National Historic Site (National Historic Site)

@@ -83,5 +83,77 @@
  ],
  "Québec Zone ": [
   "https://servicescarto.mrnf.gouv.qc.ca/pes/rest/services/Territoire/TRQ_WMS/MapServer/16"
+ ],
+ "AB-PLUZ Gove": [
+  "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11"
+ ],
+ "NB-PP Govern": [
+  "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+ ],
+ "NS-NHS Nova ": [
+  "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29"
+ ],
+ "NS-F111 Nova": [
+  "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/52"
+ ],
+ "NU-TP Crown-": [
+  "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
+ ],
+ "ON-NPCA Niag": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2"
+ ],
+ "ON-ABCA Ausa": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ABCA_Properties/FeatureServer/0"
+ ],
+ "ON-ERCA Esse": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ERCA_Property/FeatureServer/0"
+ ],
+ "ON-LTVCA Low": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0"
+ ],
+ "ON-KRCA Kawa": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6"
+ ],
+ "ON-CVC Credi": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Properties_CVC_2023_NAD/FeatureServer/0"
+ ],
+ "ON-TRCA Toro": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250"
+ ],
+ "ON-LSRCA Lak": [
+  "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46"
+ ],
+ "ON-CH Conser": [
+  "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0"
+ ],
+ "ON-GSCA Grey": [
+  "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3"
+ ],
+ "ON-SVCA Grey": [
+  "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"
+ ],
+ "ON-GANA Gana": [
+  "https://maps2.grca.on.ca/server/rest/services/Hosted/LANDMGNT_CA_Lands/FeatureServer/0"
+ ],
+ "ON-ORCA Oton": [
+  "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
+ ],
+ "ON-LTC Lower": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0"
+ ],
+ "ON-MVC Missi": [
+  "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0"
+ ],
+ "ON-RVCA Ride": [
+  "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
+ ],
+ "ON-CRCA Cata": [
+  "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0"
+ ],
+ "PE-PP Govern": [
+  "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0"
+ ],
+ "SK-ALL Gover": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
  ]
 }
