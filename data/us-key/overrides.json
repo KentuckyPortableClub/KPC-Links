@@ -89,7 +89,7 @@
    "join": [
     "Connecticut Valley Railroad State Park Trail"
    ],
-   "why": "Oct 18 review: same place"
+   "why": "Oct 18 review: same place; Oct 25 round 5 hand check (outside research bot)"
   },
   "US-12402": {
    "join": [
@@ -3521,9 +3521,10 @@
   },
   "US-6365": {
    "join": [
+    "Osage Wildlife Management Area - Rock Creek",
     "odw76"
    ],
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list))",
+   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)); Oct 25 round 5 hand check (outside research bot)",
    "approx": true
   },
   "US-10008": {
@@ -4254,6 +4255,228 @@
     190224
    ],
    "why": "same place (hand review Oct 23)"
+  },
+  "US-4398": {
+   "join": [
+    "2774"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-8319": {
+   "join": [
+    "216684"
+   ],
+   "no": [
+    "Palisades State Park"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-4365": {
+   "join": [
+    "56687"
+   ],
+   "no": [
+    "North Point State Park"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-4162": {
+   "join": [
+    "Brookville Lake"
+   ],
+   "no": [
+    "Brookville Lake Public Fishing Area"
+   ],
+   "approx": true,
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-4475": {
+   "join": [
+    "2806"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-7528": {
+   "join": [
+    "52487",
+    "52489",
+    "52492"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-5461": {
+   "join": [
+    "241270"
+   ],
+   "approx": true,
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-2268": {
+   "join": [
+    "201114"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-2242": {
+   "join": [
+    "199788",
+    "199789"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-10784": {
+   "join": [
+    "56629"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-8679": {
+   "join": [
+    "190969"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-2674": {
+   "join": [
+    "64271"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-9224": {
+   "join": [
+    "254173"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-2228": {
+   "join": [
+    "199934",
+    "199935"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-11104": {
+   "join": [
+    "264124"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-6196": {
+   "no": [
+    "Rock Spring"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-4296": {
+   "join": [
+    "Kickapoo Wildlife Area",
+    "Kickapoo Wildlife Area-Bell Center Unit"
+   ],
+   "no": [
+    "Kickapoo River Fishery Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-10551": {
+   "join": [
+    "FALLING CREEK",
+    "Falling Creek"
+   ],
+   "no": [
+    "Falling Creek Park"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-3313": {
+   "join": [
+    "Holly Recreation Area",
+    "Holly State Recreation Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-1727": {
+   "join": [
+    "West Rock Ridge State Park"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-9874": {
+   "join": [
+    "Mud Creek Management Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-9875": {
+   "join": [
+    "Raccoon Creek Management Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-9876": {
+   "join": [
+    "Crow Creek Management Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-3690": {
+   "join": [
+    "Geneva State Forest Wildlife Management Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-2633": {
+   "join": [
+    "Spooner and Backcountry Lake Tahoe-Nevada State Park"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-12660": {
+   "join": [
+    "Severance Lake WMA: North Unit"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-7880": {
+   "join": [
+    "Luper Mountain"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-10904": {
+   "join": [
+    "EWA FOREST RESERVE (WAIMANO SEC.)"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-10910": {
+   "join": [
+    "WAIMANALO FOREST RESERVE"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-9317": {
+   "join": [
+    "HARRIER MARSH WPA"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-6318": {
+   "join": [
+    "Okaloacoochee Slough Wildlife Management Area"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-6916": {
+   "join": [
+    "Jordan"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-6897": {
+   "join": [
+    "Croatan"
+   ],
+   "why": "Oct 25 round 5 hand check (outside research bot)"
   }
  }
 }

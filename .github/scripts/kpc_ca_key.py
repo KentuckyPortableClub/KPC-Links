@@ -227,6 +227,10 @@ if recs is None:
             fl = [f['name'] for f in li.get('fields', [])]
             names = [n for n in (nf or []) if n in fl] or [f for f in fl if NAMEY.search(f) and not re.search(r'(file|url|link|code|id$)', f, re.I)][:3]
             oidf = li.get('objectIdField') or 'OBJECTID'; mx = int(li.get('maxRecordCount') or 1000); off = 0
+            # Oct 25 (round 5 hand checks): Québec's MRNF MapServer answers objectIds queries with the field ALIASES as keys,
+            # so a.get('OBJECTID') was None and every ZEC / réserve / parc got the id 'None' (one shared, wrong shape)
+            oida = {oidf.lower(), 'objectid', 'fid'} | {str(f.get('alias') or '').lower() for f in li.get('fields', []) if f.get('name') == oidf}
+            oidv = lambda a: a.get(oidf) if a.get(oidf) is not None else next((v for k, v in a.items() if k.lower() in oida and v is not None), None)
             ids = None   # Oct 20: Québec's MRNF MapServer answers 400 to paged queries (no pagination): fall back to asking by object ids
             while True:
                 try:
@@ -248,7 +252,7 @@ if recs is None:
                     a = f.get('attributes') or {}; g = f.get('geometry') or {}
                     nm = next((str(a[n]) for n in names if a.get(n)), '')
                     if not nm: continue
-                    r = {'oid': f'{label[:12]}:{a.get(oidf)}', 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
+                    r = {'oid': f'{label[:12]}:' + (str(oidv(a)) if oidv(a) is not None else 'n-' + nm[:60]), 'n': nm, 'nf': '', 'ty': label, 'ow': '', 'mg': '', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': label}
                     r['_k'] = kinds(nm) | next((k for h, k in HINT if h.lower() in label.lower()), set())
                     got.append(r)
                 if ids is not None: off += 100; time.sleep(.4); continue

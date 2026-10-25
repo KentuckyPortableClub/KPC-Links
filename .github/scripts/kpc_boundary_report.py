@@ -52,6 +52,25 @@ def api(path, method='GET', body=None):
         return json.loads(t) if t.strip() else {}
 
 
+# Oct 25 (round 5 hand checks): parks a person already looked at and found fine (the outline is right and only POTA's
+# pin is off, or the park has no single outline). They leave the lists while the key still joins the SAME land;
+# if a later run joins something else, the park comes back.
+try:
+    CHECKED = json.loads(pathlib.Path('data/boundary-checked.json').read_text(encoding='utf-8')).get('parks', {})
+except Exception:  # noqa: BLE001
+    CHECKED = {}
+OKV = ('OUTLINE RIGHT, PIN OFF', 'NOT A LAND PARK')
+HIDDEN = {'n': 0}
+
+
+def checked_ok(ref, joined):
+    c = CHECKED.get(ref)
+    if c and c.get('v') in OKV and str(c.get('j', '')).strip().lower() == str(joined or '').strip().lower():
+        HIDDEN['n'] += 1
+        return True
+    return False
+
+
 def gather(keys, field, tag):
     states, tot = [], {'matched': 0, 'far': 0, 'noshape': 0, 'edge': 0, 'out': 0, 'swap': 0}
     swaps, outs = [], []
@@ -84,6 +103,8 @@ def gather(keys, field, tag):
         for k in tot:
             tot[k] += row.get(k, 0)
         for ref, v in (d.get('parks') or {}).items():
+            if checked_ok(ref, v['m'][0][1] if v.get('m') else ''):
+                continue
             if v.get('swap'):
                 swaps.append((st, ref, v.get('n', ''), v['m'][0][1] if v.get('m') else '', v['swap'][0][1]))
             elif v.get('far') == 'well outside':
@@ -115,6 +136,8 @@ def main():
     if not any_rows:
         notice('No key has been rebuilt with the check yet; nothing to report.')
         return
+    if HIDDEN['n']:
+        L.append(f"_{HIDDEN['n']} parks already checked by hand and found fine (pin off, or no single outline) are left out: data/boundary-checked.json._")
     body = '\n'.join(L)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(saved, indent=1) + '\n', encoding='utf-8')

@@ -1,0 +1,1085 @@
+{
+ "about": "Kentucky Property Valuation Administrators (one per county): who keeps the land and owner records. From the Kentucky Department of Revenue PVA directory and each office's own site; checked Oct 25 2026 by the outside research bot (round 5). Some county sites block robots, so a few links were not opened.",
+ "counties": [
+  {
+   "county": "Adair",
+   "pva": "Landon Edwards",
+   "addr": "424 Public Square, Suite 2, Columbia, KY 42728",
+   "phone": "(270) 384-3673",
+   "web": "https://www.adairpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=AdairCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Allen",
+   "pva": "Tracy W. Oliver",
+   "addr": "P. O. Box 397, 201 W. Main Street, Scottsville, KY 42164",
+   "phone": "(270) 237-3711",
+   "web": "https://allencountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Anderson",
+   "pva": "Brian Stivers",
+   "addr": "101 Ollie Bowen Court, Lawrenceburg, KY 40342",
+   "phone": "(502) 839-4061",
+   "web": "https://www.qpublic.net/ky/anderson/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=AndersonCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Ballard",
+   "pva": "Susan Sullivan",
+   "addr": "P. O. Box 267, Courthouse, 132 N. 4th Street, Wickliffe, KY 42087",
+   "phone": "(270) 335-3400",
+   "web": "https://www.qpublic.net/ky/ballard/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=805&LayerID=13594&PageTypeID=2&PageID=6047",
+   "owners": ""
+  },
+  {
+   "county": "Barren",
+   "pva": "Kim Shipley",
+   "addr": "P. O. Box 1836, Glasgow, KY 42142-1836, 200 S. Green St., Suite 204, Glasgow, KY 42141",
+   "phone": "(270) 651-2026",
+   "web": "https://www.barrencountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Bath",
+   "pva": "Jacky S. Watson",
+   "addr": "P. O. Box 688, 17 W. Main Street, Owingsville, KY 40360",
+   "phone": "(606) 674-6382",
+   "web": "https://www.qpublic.net/ky/bath/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=BathCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Bell",
+   "pva": "Ben Barnett",
+   "addr": "101 Courthouse Square, P. O. Box 255, Pineville, KY 40977",
+   "phone": "(606) 337-2720",
+   "web": "https://www.bellcountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Boone",
+   "pva": "Jonathan L. Brown",
+   "addr": "2950 Washington Square, P. O. Box 388, Burlington, KY 41005",
+   "phone": "(859) 334-2181",
+   "web": "https://www.boonepva.ky.gov",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Bourbon",
+   "pva": "Tim Lizer",
+   "addr": "301 Main Street, Suite 15, Courthouse, Paris, KY 40361",
+   "phone": "(859) 987-2152",
+   "web": "https://www.bourbonpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Boyd",
+   "pva": "Homer “Jay” Woods Jr.",
+   "addr": "2800 Louisa Street, P. O. Box 434, Catlettsburg, KY 41129",
+   "phone": "(606) 739-5173",
+   "web": "https://qpublic.net/ky/boyd/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=BoydCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Boyle",
+   "pva": "Lacresha “My” Gibson",
+   "addr": "321 Main Street, Room 127, Danville, KY 40422",
+   "phone": "(859) 238-1104",
+   "web": "https://www.boylepva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Bracken",
+   "pva": "Tracey R. Florer",
+   "addr": "P. O. Box 310, 116 W. Miami Street, Brooksville, KY 41004",
+   "phone": "(606) 735-2228",
+   "web": "https://www.brackenpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=BrackenCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Breathitt",
+   "pva": "Jeff Douglas Allen",
+   "addr": "Courthouse, Suite 302, 1137 Main Street, Jackson, KY 41339",
+   "phone": "(606)666-7973",
+   "web": "https://www.breathittcounty.ky.gov",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Breckinridge",
+   "pva": "Dana Bland",
+   "addr": "P. O. Box 516, 208 South Main Street, Hardinsburg, KY 40143",
+   "phone": "(270) 756-5154",
+   "web": "https://www.breckinridgekypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Bullitt",
+   "pva": "Clint Mattingly",
+   "addr": "149 N. Walnut Street, P. O. Box 681, Shepherdsville, KY 40165",
+   "phone": "(502) 543-7480",
+   "web": "https://bullittpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Butler",
+   "pva": "Kenny Swift",
+   "addr": "110 N. Main Street, P. O. Box 538, Morgantown, KY 42261",
+   "phone": "(270) 526-3455",
+   "web": "https://qpublic.net/ky/butler/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=ButlerCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Caldwell",
+   "pva": "Ronald Wood",
+   "addr": "100 E. Market Street, Courthouse, Room 28, Princeton, KY 42445",
+   "phone": "(270) 365-7227",
+   "web": "https://www.qpublic.net/ky/caldwell/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=CaldwellCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Calloway",
+   "pva": "Nikki McMillen-Crouch",
+   "addr": "P. O. Box 547, 101 S. 5th Street, Courthouse, Murray, KY 42071",
+   "phone": "(270) 753-3482",
+   "web": "https://www.ccpva.org",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Campbell",
+   "pva": "Fred A. Macke, III",
+   "addr": "1098 Monmouth Street, Room 329, Newport, KY 41071",
+   "phone": "(859) 292-3871",
+   "web": "https://pva.campbellcountykentucky.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Carlisle",
+   "pva": "Jonathan Bruer",
+   "addr": "P. O. Box 206, 985 US Hwy 62, Bardwell, KY 42023",
+   "phone": "(270) 628-5498",
+   "web": "https://www.qpublic.net/ky/carlisle/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=CarlisleCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Carroll",
+   "pva": "Rob Robertson",
+   "addr": "440 Main Street, Courthouse, Carrollton, KY 41008",
+   "phone": "(502) 732-5448",
+   "web": "https://www.carrollpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Carter",
+   "pva": "Leslie Kiser Roseberry",
+   "addr": "300 W. Main Street, Courthouse, Room 214, Grayson, KY 41143",
+   "phone": "(606) 474-5663",
+   "web": "https://www.carterpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Casey",
+   "pva": "Brad Johnson",
+   "addr": "P. O. Box 38, 133 Courthouse Square, Liberty, KY 42539",
+   "phone": "(606) 787-7621",
+   "web": "https://www.qpublic.net/ky/casey/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=891&LayerID=16818&PageTypeID=2&PageID=7500",
+   "owners": ""
+  },
+  {
+   "county": "Christian",
+   "pva": "Angie M. Strader",
+   "addr": "P. O. Box 96, Hopkinsville, KY 42241, 503 S. Main Street, 2nd Floor, Hopkinsville, KY 42240",
+   "phone": "(270) 887-4115",
+   "web": "https://www.christianpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Clark",
+   "pva": "Jada Brady",
+   "addr": "34 South Main Street, Winchester, KY 40391",
+   "phone": "(859) 745-0250",
+   "web": "https://www.qpublic.net/ky/clark/",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Clay",
+   "pva": "Paul G. Durham",
+   "addr": "102 Richmond Road, Suite 200, Manchester, KY 40962",
+   "phone": "(606) 598-3832",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Clinton",
+   "pva": "Pat Campbell",
+   "addr": "100 S. Cross Street, Courthouse, Suite 217, Albany, KY 42602",
+   "phone": "(606) 387-5938",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Crittenden",
+   "pva": "Todd Perryman",
+   "addr": "200 Industrial Drive, Suite C, Marion, KY 42064",
+   "phone": "(270) 965-4598",
+   "web": "https://www.crittendenpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=941&LayerID=18385&PageTypeID=2&PageID=8194",
+   "owners": ""
+  },
+  {
+   "county": "Cumberland",
+   "pva": "Gina Shaye Lee-Watson",
+   "addr": "P. O. Box 431, 600 Courthouse Square, Burkesville, KY 42717",
+   "phone": "(270) 864-5161",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Daviess",
+   "pva": "Rachel Pence Foster",
+   "addr": "212 St. Ann Street, Courthouse, Room 102, Owensboro, KY 42303",
+   "phone": "(270) 685-8474",
+   "web": "https://www.daviesskypva.org",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Edmonson",
+   "pva": "Kyle White",
+   "addr": "110 E. Main Cross Street, P. O. Box 37, Brownsville, KY 42210-0037",
+   "phone": "(270) 597-2381",
+   "web": "https://www.qpublic.net/ky/edmonson/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=EdmonsonCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Elliott",
+   "pva": "Adam Ison",
+   "addr": "P. O. Box 690, 113 Main Street, Sandy Hook, KY 41171",
+   "phone": "(606) 738-5090",
+   "web": "https://www.qpublic.net/ky/elliott/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=978&LayerID=19646&PageTypeID=2&PageID=8609",
+   "owners": ""
+  },
+  {
+   "county": "Estill",
+   "pva": "Jeff L. Hix",
+   "addr": "Courthouse, Room 104, 130 Main Street, Irvine, KY 40336",
+   "phone": "(606) 723-4569",
+   "web": "https://www.estillkypva.org",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1162&LayerID=31497&PageTypeID=30&PageID=12816",
+   "owners": ""
+  },
+  {
+   "county": "Fayette",
+   "pva": "David O’Neill",
+   "addr": "101 E. Vine Street, Phoenix Building, Suite 600, Lexington, KY 40507",
+   "phone": "(859) 246-2722",
+   "web": "https://www.fayettepva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1019&LayerID=21445&PageTypeID=2&PageID=9141",
+   "owners": ""
+  },
+  {
+   "county": "Fleming",
+   "pva": "Stephanie Hardin",
+   "addr": "100 Court Square, Room B110, Flemingsburg, KY 41041",
+   "phone": "(606) 845-1401",
+   "web": "https://www.flemingpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1137&LayerID=28923&PageTypeID=30&PageID=12016",
+   "owners": ""
+  },
+  {
+   "county": "Floyd",
+   "pva": "David A. Layne",
+   "addr": "149 S. Central Ave., Room 5, Prestonsburg, KY 41653",
+   "phone": "(606) 886-9622",
+   "web": "https://www.qpublic.net/ky/floyd/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=FloydCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Franklin",
+   "pva": "Wil Rhodes",
+   "addr": "313 W. Main Street, Courthouse Annex, Room 209, Frankfort, KY 40601",
+   "phone": "(502) 875-8780",
+   "web": "https://www.franklincountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Fulton",
+   "pva": "Pete Morgan",
+   "addr": "2216 Myron Cory Drive, Suite 2, Hickman, KY 42050",
+   "phone": "(270) 236-2548",
+   "web": "https://www.qpublic.net/ky/fulton/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=FultonCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Gallatin",
+   "pva": "Sheryl L. Jones",
+   "addr": "P. O. Box 470, 200 Washington Street, Warsaw, KY 41095",
+   "phone": "(859) 567-5621",
+   "web": "https://www.gallatinpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Garrard",
+   "pva": "Brian Swinney",
+   "addr": "7 Public Square, Suite 2, Lancaster, KY 40444",
+   "phone": "(859) 792-3291",
+   "web": "https://www.garrardpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1145&LayerID=30284&PageTypeID=30&PageID=12294",
+   "owners": ""
+  },
+  {
+   "county": "Grant",
+   "pva": "Eli Anderson",
+   "addr": "101 N Main Street, Courthouse, Room 15, Williamstown, KY 41097",
+   "phone": "(859) 824-6511",
+   "web": "https://www.grantpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Graves",
+   "pva": "Lee Martin",
+   "addr": "1102 Paris Rd., Suite 2, Mayfield, KY 42066",
+   "phone": "(270) 247-3301",
+   "web": "https://www.gravespva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=GravesCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Grayson",
+   "pva": "Ernie Perkins",
+   "addr": "125 E. Market Street, Suite B, Leitchfield, KY 42754",
+   "phone": "none found (state directory lists no office phone)",
+   "web": "https://www.graysoncountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Green",
+   "pva": "Sean D. Curry",
+   "addr": "103 S. First Street, Greensburg, KY 42743",
+   "phone": "(270) 932-7518",
+   "web": "https://www.qpublic.net/ky/green/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=GreenCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Greenup",
+   "pva": "Tony Quillen",
+   "addr": "301 Main Street, Room 209, Courthouse, Greenup, KY 41144",
+   "phone": "(606) 473-9984",
+   "web": "https://www.qpublic.net/ky/greenup/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=882&LayerID=16690&PageTypeID=2&PageID=7389",
+   "owners": ""
+  },
+  {
+   "county": "Hancock",
+   "pva": "Karen Robertson",
+   "addr": "P. O. Box 523, 225 Main Street, Hawesville, KY 42348",
+   "phone": "(270) 927-6846",
+   "web": "https://www.hancockpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=HancockCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Hardin",
+   "pva": "Danny Hutcherson",
+   "addr": "P. O. Box 70, Elizabethtown, KY 42702, 150 N. Provident Way, Suite 227, Elizabethtown, KY 42701",
+   "phone": "(270) 765-2129",
+   "web": "https://www.hardincountypva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=HardinCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Harlan",
+   "pva": "Felicia Tamme",
+   "addr": "P. O. Box 209, 210 E. Central Street, Suite 207, Harlan, KY 40831",
+   "phone": "(606) 573-1990",
+   "web": "https://qpublic.net/ky/harlan/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=HarlanCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Harrison",
+   "pva": "Allen Patrick Darnell",
+   "addr": "111 South Main Street, Suite 101, Cynthiana, KY 41031",
+   "phone": "(859) 234-7133",
+   "web": "https://www.harrisoncountypva.com",
+   "map": "https://beacon.schneidercorp.com/Application.aspx?AppID=1141&LayerID=29296&PageTypeID=2&PageID=12165",
+   "owners": ""
+  },
+  {
+   "county": "Hart",
+   "pva": "Cindy Atwell",
+   "addr": "P. O. Box 566, 118 E. Union Street, Munfordville, KY 42765",
+   "phone": "(270) 524-2321",
+   "web": "https://www.hartpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Henderson",
+   "pva": "Andrew M. Powell",
+   "addr": "P. O. Box 2003, Henderson, KY 42419, 20 N. Main Street, Henderson, KY 42420",
+   "phone": "(270) 827-6024",
+   "web": "https://www.hendersoncopva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Henry",
+   "pva": "Jason Scriber",
+   "addr": "P. O. Box 11, 23 South Property Road, New Castle, KY 40050",
+   "phone": "(502) 845-5740",
+   "web": "https://www.henrypva.com",
+   "map": "https://beacon.schneidercorp.com/Application.aspx?App=HenryCountyKY&PageType=Map",
+   "owners": ""
+  },
+  {
+   "county": "Hickman",
+   "pva": "Amanda Ballantine",
+   "addr": "110 E. Clay Street, Suite F, Clinton, KY 42031",
+   "phone": "(270) 653-5521",
+   "web": "https://www.qpublic.net/ky/hickman/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=HickmanCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Hopkins",
+   "pva": "Joe Blue",
+   "addr": "25 East Center Street, Madisonville, KY 42431",
+   "phone": "(270) 821-3092",
+   "web": "https://www.hopkinspva.org",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Jackson",
+   "pva": "Bobby S. Edwards",
+   "addr": "P. O. Box 249, 100 Main Street, McKee, KY 40447",
+   "phone": "(606) 287-7634",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Jefferson",
+   "pva": "Colleen Younger",
+   "addr": "Glassworks Building, 815 W. Market Street, Suite 400, Louisville, KY 40202-2654",
+   "phone": "(502) 574-6380",
+   "web": "https://www.jeffersonpva.ky.gov",
+   "map": "https://lojic.maps.arcgis.com/apps/instant/lookup/index.html?appid=6ca6380d5eeb4b72b9f714997101d97b",
+   "owners": "no"
+  },
+  {
+   "county": "Jessamine",
+   "pva": "Brad Freeman",
+   "addr": "P. O. Box 530, Nicholasville, KY 40340, 116 N. Main Street, Suite 1, Nicholasville, KY 40356",
+   "phone": "(859) 885-4931",
+   "web": "https://www.jessaminepva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=864&LayerID=16311&PageTypeID=2&PageID=7209",
+   "owners": ""
+  },
+  {
+   "county": "Johnson",
+   "pva": "Michael “Dip” Stafford",
+   "addr": "230 Court Street, Suite 229, Paintsville, KY 41240",
+   "phone": "(606) 789-2564",
+   "web": "https://www.johnsoncountypva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=JohnsonCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Kenton",
+   "pva": "Darlene M. Plummer",
+   "addr": "1840 Simon Kenton Way, Suite 3300, Covington, KY 41011-2229",
+   "phone": "(859) 392-1750",
+   "web": "https://www.kentonpva.org",
+   "map": "https://gis.kentoncountyky.gov/landrecordsmap/",
+   "owners": "yes"
+  },
+  {
+   "county": "Knott",
+   "pva": "Tonya Amburgey Fugate",
+   "addr": "P. O. Box 1021, 54 W. Main Street, Hindman, KY 41822",
+   "phone": "(606) 785-5569",
+   "web": "https://www.knottcountypva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=KnottCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Knox",
+   "pva": "Bob Blevins",
+   "addr": "P. O. Box 1509, 401 Court Square, Suite 101, Barbourville, KY 40906",
+   "phone": "(606) 546-4113",
+   "web": "https://www.qpublic.net/ky/knox/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=KnoxCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Larue",
+   "pva": "Chad Puyear",
+   "addr": "209 W. High Street, Courthouse, Suite 1, Hodgenville, KY 42748",
+   "phone": "(270) 358-4202",
+   "web": "https://www.laruecountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Laurel",
+   "pva": "Don McFadden",
+   "addr": "Courthouse, Room 127, 101 S. Main Street, London, KY 40741",
+   "phone": "(606) 864-2889",
+   "web": "https://www.laurelpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Lawrence",
+   "pva": "Chris Rose",
+   "addr": "Courthouse, 122 Main Cross Street, Louisa, KY 41230",
+   "phone": "(606) 638-4743",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Lee",
+   "pva": "Elizabeth “Libby” Roach",
+   "addr": "P. O. Box 1008, 256 Main Street, Courthouse Room 10, Beattyville, KY 41311",
+   "phone": "(606) 464-4105",
+   "web": "https://www.leecokypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Leslie",
+   "pva": "Jeff Boggs",
+   "addr": "P. O. Box 1891, 22010 Main Street, Hyden, KY 41749",
+   "phone": "(606) 672-2456",
+   "web": "https://www.qpublic.net/ky/leslie/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=LeslieCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Letcher",
+   "pva": "Ricky R. Rose",
+   "addr": "156 Main Street, Suite 105, Whitesburg, KY 41858",
+   "phone": "(606) 633-2182",
+   "web": "https://www.qpublic.net/ky/letcher/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=LetcherCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Lewis",
+   "pva": "Kenneth D. Ruckel",
+   "addr": "112 Second Street, Suite 101, Vanceburg, KY 41179",
+   "phone": "(606) 796-2622",
+   "web": "https://www.qpublic.net/ky/lewis/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=LewisCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Lincoln",
+   "pva": "Mary L. Adams",
+   "addr": "201 E. Main Street, Suite 2, Stanford, KY 40484",
+   "phone": "(606) 365-4550",
+   "web": "https://lincolnkypva.net",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Livingston",
+   "pva": "Elisha Harp",
+   "addr": "P. O. Box 77, 321 Court Street, 2nd Floor, Smithland, KY 42081",
+   "phone": "(270) 928-2524",
+   "web": "https://www.livingstoncountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Logan",
+   "pva": "Timothy Rainwaters",
+   "addr": "P. O. Box 307, 206 W. 4th Street, Russellville, KY 42276",
+   "phone": "(270) 726-8334",
+   "web": "https://www.loganpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=LoganCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Lyon",
+   "pva": "Christie D. Cruce",
+   "addr": "P. O. Box 148, 500 B West Dale Ave., Suite 130, Eddyville, KY 42038",
+   "phone": "(270) 388-7271",
+   "web": "https://www.lyonkypva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=LyonCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "McCracken",
+   "pva": "Bill Dunn",
+   "addr": "621 Washington Street, Paducah, KY 42003",
+   "phone": "(270) 444-4712",
+   "web": "https://www.mccrackenpva.gov",
+   "map": "https://mapgis-map-gis.hub.arcgis.com/",
+   "owners": "yes"
+  },
+  {
+   "county": "McCreary",
+   "pva": "Dwight A. Ross",
+   "addr": "P. O. Box 609, 1 North Main Street, Courthouse, Suite 114, Whitley City, KY 42653",
+   "phone": "(606) 376-2514",
+   "web": "https://www.qpublic.net/ky/mccreary/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=999&LayerID=20377&PageTypeID=2&PageID=8871",
+   "owners": ""
+  },
+  {
+   "county": "McLean",
+   "pva": "Dale W. Ayer",
+   "addr": "P. O. Box 246, 180 E. Second Street, Calhoun, KY 42327",
+   "phone": "(270) 273-3291",
+   "web": "https://www.qpublic.net/ky/mclean/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=McleanCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Madison",
+   "pva": "Billy Ackerman",
+   "addr": "135 W. Irvine Street, Suite 103, Richmond, KY 40475-1436",
+   "phone": "(859) 623-5410",
+   "web": "https://www.madisoncountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Magoffin",
+   "pva": "Rebecca Allen",
+   "addr": "P. O. Box 107, Courthouse, Suite 110, 56 East Maple Street, Salyersville, KY 41465",
+   "phone": "(606) 349-6198",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Marion",
+   "pva": "Terry “Catfish” Rakes",
+   "addr": "223 N. Spalding Avenue, Suite 202, Lebanon, KY 40033",
+   "phone": "(270) 692-3401",
+   "web": "https://www.marionkypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Marshall",
+   "pva": "Tony Henson",
+   "addr": "1101 Main Street, Benton, KY 42025",
+   "phone": "(270) 527-4728",
+   "web": "https://www.mcpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=MarshallCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Martin",
+   "pva": "Bobby Eugene Hale, Jr.",
+   "addr": "P. O. Box 341, 42 East Main Street, Inez, KY 41224",
+   "phone": "(606) 298-2807",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Mason",
+   "pva": "Troy Cracraft",
+   "addr": "220½ Sutton Street, Maysville, KY 41056",
+   "phone": "(606) 564-3700",
+   "web": "https://www.masonpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=MasonCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Meade",
+   "pva": "Gabriel Chapman",
+   "addr": "516 Hillcrest Drive, Suite 3, Brandenburg, KY 40108",
+   "phone": "(270) 422-2178",
+   "web": "https://www.qpublic.net/ky/meade/",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Menifee",
+   "pva": "Jim Lawson",
+   "addr": "P. O. Box 36, 12 Main Street, Frenchburg, KY 40322",
+   "phone": "(606) 768-3514",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Mercer",
+   "pva": "Jessica Elliott",
+   "addr": "P. O. Box 244, 207 W. Lexington Street, Harrodsburg, KY 40330",
+   "phone": "(859) 734-6330",
+   "web": "https://www.mercercountypva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1103&LayerID=27300&PageTypeID=1&PageID=11108",
+   "owners": ""
+  },
+  {
+   "county": "Metcalfe",
+   "pva": "Michael Welsh",
+   "addr": "P. O. Box 939, 201 N. Main Street, Edmonton, KY 42129",
+   "phone": "(270) 432-3162",
+   "web": "https://www.qpublic.net/ky/metcalfe/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=MetcalfeCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Monroe",
+   "pva": "Shawn Guffey",
+   "addr": "200 N. Main Street, Suite A, Tompkinsville, KY 42167-1548",
+   "phone": "(270) 487-6401",
+   "web": "https://www.qpublic.net/ky/monroe/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=MonroeCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Montgomery",
+   "pva": "Steven Q. Tuttle",
+   "addr": "44 W. Main Street, Courthouse Annex, Suite E, Mt. Sterling, KY 40353",
+   "phone": "(859) 498-8710",
+   "web": "https://www.qpublic.net/ky/montgomery/",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Morgan",
+   "pva": "Darby Franklin",
+   "addr": "P. O. Box 57, 450 Prestonsburg Street, West Liberty, KY 41472",
+   "phone": "(606) 743-3349",
+   "web": "https://www.morganpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=806&LayerID=13638&PageTypeID=2&PageID=6051",
+   "owners": ""
+  },
+  {
+   "county": "Muhlenberg",
+   "pva": "Belinda S. McKinney",
+   "addr": "P.O. Box 546, 100 S. Main Street, Greenville, KY 42345",
+   "phone": "(270) 338-4664",
+   "web": "https://www.muhlcopva.org",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Nelson",
+   "pva": "Jay Williams",
+   "addr": "113 E. Stephen Foster Avenue, Bardstown, KY 40004",
+   "phone": "(502) 348-1810",
+   "web": "https://www.nelsoncountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Nicholas",
+   "pva": "Jacqueline M. Earlywine",
+   "addr": "P. O. Box 2, Courthouse, 125 E. Main Street, Carlisle, KY 40311",
+   "phone": "(859) 289-3735",
+   "web": "https://www.nicholaspva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=807&LayerID=13697&PageTypeID=2&PageID=6055",
+   "owners": ""
+  },
+  {
+   "county": "Ohio",
+   "pva": "Arthur D. Leach",
+   "addr": "P. O. Box 187, 301 S. Main Street, Hartford, KY 42347",
+   "phone": "(270) 298-4433",
+   "web": "https://www.ohiopva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1159&LayerID=31236&PageTypeID=30&PageID=13112",
+   "owners": ""
+  },
+  {
+   "county": "Oldham",
+   "pva": "Barbara W. Dietrich",
+   "addr": "110 W. Jefferson Street, LaGrange, KY 40031",
+   "phone": "(502) 222-9320",
+   "web": "https://www.oldhampva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Owen",
+   "pva": "Blake Robertson",
+   "addr": "100 N. Thomas Street, Room 6, Owenton, KY 40359",
+   "phone": "(502) 484-5172",
+   "web": "https://www.qpublic.net/ky/owen/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=OwenCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Owsley",
+   "pva": "Mike Reynolds",
+   "addr": "P. O. Box 337, 20 Main Street, Booneville, KY 41314",
+   "phone": "(606) 593-6265",
+   "web": "https://www.qpublic.net/ky/owsley/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=OwsleyCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Pendleton",
+   "pva": "John E. Steele",
+   "addr": "233 Main Street, Courthouse, Room 2, Falmouth, KY 41040",
+   "phone": "(859) 654-6055",
+   "web": "https://www.pendletonpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1157&LayerID=31118&PageTypeID=30&PageID=12669",
+   "owners": ""
+  },
+  {
+   "county": "Perry",
+   "pva": "Lonnie Douglas Adams",
+   "addr": "481 Main Street, Courthouse, Suite 201, Hazard, KY 41701",
+   "phone": "(606) 436-4914",
+   "web": "https://www.qpublic.net/ky/perry/",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Pike",
+   "pva": "Kevin D. Auton",
+   "addr": "146 Main Street, Suite 303, Pikeville, KY 41501",
+   "phone": "(606) 432-6201",
+   "web": "https://pikekypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Powell",
+   "pva": "Carmen Rogers",
+   "addr": "P. O. Box 277, 584 Washington Street, Stanton, KY 40380",
+   "phone": "(606) 663-4184",
+   "web": "https://www.powellpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Pulaski",
+   "pva": "Karen H. Strand",
+   "addr": "P. O. Box 110, 100 N. Main Street, Suite 201, Somerset, KY 42502",
+   "phone": "(606) 679-1812",
+   "web": "https://www.pulaskipva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Robertson",
+   "pva": "Annette C. Lovins",
+   "addr": "P. O. Box 216, Courthouse, 26 Court St., Mt. Olivet, KY 41064",
+   "phone": "(606) 724-5213",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Rockcastle",
+   "pva": "Kathy Robinson",
+   "addr": "P. O. Box 977, 205 E. Main Street, Mt. Vernon, KY 40456",
+   "phone": "(606) 256-4194",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Rowan",
+   "pva": "Carmen Eldridge Swim",
+   "addr": "600 W. Main Street, Suite 118, Morehead, KY 40351",
+   "phone": "(606) 784-5512",
+   "web": "https://www.rowanpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Russell",
+   "pva": "Tim Popplewell",
+   "addr": "410 Monument Square, Suite 106, Jamestown, KY 42629",
+   "phone": "(270) 343-4395",
+   "web": "https://www.russellpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Scott",
+   "pva": "John A. Burke",
+   "addr": "101 E. Main Street, Courthouse, Suite 206, Georgetown, KY 40324",
+   "phone": "(502) 863-7885",
+   "web": "https://www.scottkypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Shelby",
+   "pva": "Brad McDowell",
+   "addr": "501 Washington Street, Shelbyville, KY 40065",
+   "phone": "(502) 633-4403",
+   "web": "https://www.shelbypva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=ShelbyCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Simpson",
+   "pva": "Alison Smith Cummings",
+   "addr": "P. O. Box 424, Franklin, KY 42135, 103 W. Cedar Street, Courthouse Annex, 2nd Floor, Franklin, KY 42134",
+   "phone": "(270) 586-4261",
+   "web": "https://www.simpsonpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?AppID=963&LayerID=19131&PageTypeID=2&PageID=8439",
+   "owners": ""
+  },
+  {
+   "county": "Spencer",
+   "pva": "Kim Stump",
+   "addr": "P. O. Box 425, 2 West Main Street, Taylorsville, KY 40071",
+   "phone": "(502) 477-3207",
+   "web": "https://spencercountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Taylor",
+   "pva": "Chad Shively",
+   "addr": "Courthouse, Suite 6, 203 N. Court Street, Campbellsville, KY 42718",
+   "phone": "(270) 465-5811",
+   "web": "https://www.taylorpva.com",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=TaylorCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Todd",
+   "pva": "Perry Stokes",
+   "addr": "P. O. Box 593, 200 E. Washington Street, Elkton KY 42220",
+   "phone": "(270) 265-9966 (ext.4)",
+   "web": "https://www.qpublic.net/ky/todd/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=ToddCountyKY&Layer=Parcels&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Trigg",
+   "pva": "Lauren Fowler",
+   "addr": "P. O. Box 1776, 38 Main Street, Cadiz, KY 42211",
+   "phone": "(270) 522-3271",
+   "web": "https://triggpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Trimble",
+   "pva": "Jill Mahoney",
+   "addr": "P. O. Box 131, 107 Hwy. 42E, Bedford, KY 40006",
+   "phone": "(502) 255-3592",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Union",
+   "pva": "Clay Wells",
+   "addr": "P. O. Box 177, 100 W. Main, Morganfield, KY 42437",
+   "phone": "(270) 389-1933",
+   "web": "https://www.unionpva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Warren",
+   "pva": "Joshua R. Hardy",
+   "addr": "P. O. Box 1269, Bowling Green, KY 42102-1269, 429 E. Tenth Ave., Bowling Green, KY 42101",
+   "phone": "(270) 843-3268",
+   "web": "https://www.warrenkypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Washington",
+   "pva": "Fran Carrico",
+   "addr": "120 E. Main Street, Springfield, KY 40069",
+   "phone": "(859) 336-5420",
+   "web": "https://www.washingtonkypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Wayne",
+   "pva": "Bobby Upchurch",
+   "addr": "55 North Main Street, Suite 107, Monticello, KY 42633",
+   "phone": "(606) 348-6621",
+   "web": "https://www.waynecountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Webster",
+   "pva": "Jeffrey D. Kelley",
+   "addr": "P. O. Box 88, 25 US Hwy 41A South, Dixon, KY 42409",
+   "phone": "(270) 639-7016",
+   "web": "https://www.webstercountypva.com",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Whitley",
+   "pva": "Ronnie Moses",
+   "addr": "P. O. Box 462, 200 Main Street, 2nd Floor, Courthouse, Williamsburg, KY 40769",
+   "phone": "(606) 549-6008",
+   "web": "https://www.qpublic.net/ky/whitley/",
+   "map": "https://qpublic.schneidercorp.com/Application.aspx?App=WhitleyCountyKY&PageType=Search",
+   "owners": ""
+  },
+  {
+   "county": "Wolfe",
+   "pva": "Justina Trusty Smith",
+   "addr": "10 Court Street, P. O. Box 155, Campton, KY 41301",
+   "phone": "(606) 668-6923",
+   "web": "",
+   "map": "",
+   "owners": ""
+  },
+  {
+   "county": "Woodford",
+   "pva": "John Paul Coyle",
+   "addr": "103 S. Main Street, Courthouse, Room 108, Versailles, KY 40383",
+   "phone": "(859) 873-4101",
+   "web": "https://woodfordkypva.com",
+   "map": "",
+   "owners": ""
+  }
+ ]
+}
