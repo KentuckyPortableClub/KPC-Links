@@ -76,6 +76,12 @@
       var dup = places.some(function (p) { return p.src === 'fed' && (norm(p.name) === norm(c[1]) || miles(p.la, p.lo, c[2], c[3]) < 0.19); });
       if (!dup) places.push({ id: 's' + c[0], name: c[1], la: c[2], lo: c[3], kind: c[4] || 'c', src: 'state', ref: c[5], web: c[6], book: c[7] });
     });
+    /* data/campstate-manual (states with no bot list): ONE entry per PARK from the state's official listing, researched and not
+       re-checked park by park: shown as park-level, never as a checked campground. Row [id, name, lat, lon, kind, parkRef, parksPage, reservePage, whatItHas] */
+    var man = !(sta && sta.camps && sta.camps.length) && arguments[4];
+    ((man && man.camps) || []).forEach(function (c) {
+      places.push({ id: 'p' + c[0], name: c[1], la: c[2], lo: c[3], kind: c[4] || 'c', src: 'manual', ref: c[5], web: c[6], book: c[7], what: c[8] });
+    });
     var extra = [];
     (NOTES || []).forEach(function (n) {
       if (n.place) return;   // a Kentucky place
@@ -97,7 +103,7 @@
       list.forEach(function (p) { if (!re.test(p.type || '')) return; var d = miles(p.la, p.lo, x.la, x.lo); if (d < bd) { bd = d; best = p; } });
       if (best) x.home = best.ref;
     });
-    S = { st: st, parks: list, places: places, byRef: {}, hasState: !!(sta && sta.camps && sta.camps.length), fedN: ((fed && fed.camps) || []).filter(function (c) { return !c[7] || c[7] === 'c'; }).length };
+    S = { st: st, parks: list, places: places, byRef: {}, hasState: !!(sta && sta.camps && sta.camps.length), hasManual: !!(man && man.camps && man.camps.length), fedN: ((fed && fed.camps) || []).filter(function (c) { return !c[7] || c[7] === 'c'; }).length };
     list.forEach(function (p) { S.byRef[p.ref] = p; });
   }
   function attach(radius) {
@@ -128,9 +134,11 @@
   function srcTag(x) {
     if (x.src === 'fed') return '<span class="cgu-src fed">FEDERAL · ' + esc(AG[x.ag] || x.ag || 'RECREATION.GOV') + '</span>';
     if (x.src === 'state') return '<span class="cgu-src st">STATE PARKS · OFFICIAL</span>';
+    if (x.src === 'manual') return '<span class="cgu-src pk">PARK-LEVEL · FROM THE STATE’S OFFICIAL LISTING</span>';
     return '<span class="cgu-src mem">MEMBER ADDED</span>';
   }
   function placeHtml(o, p) {
+    if (o.x.src === 'manual') return manHtml(o, p);
     var x = o.x, lab = (p ? p.ref + ' · ' : '') + x.name, fl = formLink(lab);
     var mi = isFinite(o.d) ? (o.d < 1 ? 'under 1 mi' : Math.round(o.d) + ' mi') + ' from the park pin' : '';
     var dist = !p ? '' : o.near ? 'near this park' + (mi ? ' · ' + mi : '') : o.own ? 'at the park' : o.home ? 'in this ' + (/forest|grassland/i.test(p.type || '') ? 'forest' : 'park') + (mi ? ' · ' + mi : '') : mi;
@@ -140,12 +148,22 @@
       (isFinite(x.la) && x.la !== null ? ext(gps(x.la, x.lo), 'GPS') : '') + (fl ? '<a class="cg-b rev" href="' + esc(fl) + '" target="_blank" rel="noopener">RATE IT ›</a>' : '') + '</div>' +
       revHtml(x.rv) + '</div>';
   }
+  function manHtml(o, p) {   // park-level camping line (not a single campground, not checked by us)
+    var x = o.x, fl = formLink((p ? p.ref : x.ref) + ' · ' + x.name);
+    return '<div class="cg-place cgu-man"><h3>Camping at this park' + (x.what ? ': <span>' + esc(x.what) + '</span>' : '') + '</h3>' +
+      '<p class="cgu-meta">' + srcTag(x) + '</p>' +
+      '<p class="cg-note">The state lists camping at this park. Not checked site by site: see the state’s page for campgrounds, cabins and open dates before you go.</p>' +
+      '<div class="cg-btns">' + ext(x.web, 'STATE PARKS PAGE') + ext(x.book, 'RESERVE ›', 'dark') + (fl ? '<a class="cg-b rev" href="' + esc(fl) + '" target="_blank" rel="noopener">RATE IT ›</a>' : '') + '</div>' +
+      revHtml(x.rv) + '</div>';
+  }
   function card(p) {
     var add = formLink(p.ref + ' · '), near = formLink(p.ref, true);
-    var cs = p.places.filter(function (o) { return o.x.kind === 'c'; }), ls = p.places.filter(function (o) { return o.x.kind !== 'c'; });
+    var ms = p.places.filter(function (o) { return o.x.src === 'manual'; }), rest = p.places.filter(function (o) { return o.x.src !== 'manual'; });
+    var cs = rest.filter(function (o) { return o.x.kind === 'c'; }), ls = rest.filter(function (o) { return o.x.kind !== 'c'; });
     return '<article class="cg-card" id="park-' + esc(p.ref) + '"><h2>' + esc(p.n) + '</h2><p class="cg-sub">' + esc(p.type || 'Park') + ' • ' + esc(ST[S.st]) + '</p>' +
       '<div class="cg-prog"><a class="p-pota" href="https://next.pota.app/park/' + esc(p.ref) + '" target="_blank" rel="noopener">POTA ' + esc(p.ref) + '</a></div>' +
       '<div class="cg-btns">' + ext(p.url, 'OFFICIAL PARK PAGE') + '<a class="cg-b" href="kpc-park-notes-us.html?ref=' + esc(p.ref) + '">PARK TIPS ›</a>' + ext(gps(p.la, p.lo), 'PARK GPS') + ext(wx(p.la, p.lo), 'WEATHER') + '</div>' +
+      (ms.length ? '<div class="cg-h">STATE PARK CAMPING</div>' + ms.map(function (o) { return placeHtml(o, p); }).join('') : '') +
       (cs.length ? '<div class="cg-h">CAMPGROUNDS (' + cs.length + ')</div>' + cs.map(function (o) { return placeHtml(o, p); }).join('') : '') +
       (ls.length ? '<div class="cg-h">CABINS &amp; LODGES (' + ls.length + ')</div>' + ls.map(function (o) { return placeHtml(o, p); }).join('') : '') +
       (!p.places.length ? '<p class="cg-note">Nothing listed yet within this distance. Try a wider distance, or add one you know.</p>' : '') +
@@ -183,6 +201,7 @@
     var links = ext(o.parks, 'STATE PARKS ↗', 'gold') + (o.reserve_ok !== false ? ext(o.reserve, 'STATE PARK RESERVATIONS ↗', 'gold') : '');
     $('cguHead').innerHTML = '<b>' + esc(ST[S.st].toUpperCase()) + '</b>' +
       (S.hasState ? 'State park campgrounds and cabins from ' + esc(ST[S.st]) + '’s official data (may not be complete), federal campgrounds from recreation.gov, ' :
+        S.hasManual ? 'State parks that have camping, park by park, from ' + esc(ST[S.st]) + '’s official listing (not checked site by site: confirm on the state’s page), federal campgrounds (recreation.gov) ' :
         'State park campgrounds for ' + esc(ST[S.st]) + ' are not listed here yet: use the state’s own pages below. Listed now: federal campgrounds (Forest Service, National Park Service, Corps of Engineers and more, from recreation.gov) ') +
       'and places members have added. Forest Service and Park Service campgrounds sit under their own forest or park; the rest are matched by distance from each park’s map pin.' +
       (links ? '<div class="cg-btns">' + links + '</div>' : '') +
@@ -199,18 +218,18 @@
     $('cguList').innerHTML = ''; $('cguCount').textContent = 'Loading ' + ST[st] + '…'; $('cguHead').innerHTML = ''; $('cguLoose').innerHTML = '';
     var want = st;
     ready.then(function () {
-      var has = IDX && IDX.states && IDX.states[st];
-      return Promise.all([getJSON('data/parkinfo/US-' + st + '.json'), getJSON('data/campfed/US-' + st + '.json'), has ? getJSON('data/campstate/US-' + st + '.json') : null]);
+      var has = IDX && IDX.states && IDX.states[st], hm = !has && MIDX && MIDX.states && MIDX.states[st];
+      return Promise.all([getJSON('data/parkinfo/US-' + st + '.json'), getJSON('data/campfed/US-' + st + '.json'), has ? getJSON('data/campstate/US-' + st + '.json') : null, null, hm ? getJSON('data/campstate-manual/US-' + st + '.json') : null]);
     }).then(function (a) {
       if (cur !== want) return;
-      build(st, a[0], a[1], a[2]); shown = PAGE; $('cguPark').value = '';
+      build(st, a[0], a[1], a[2], a[4]); shown = PAGE; $('cguPark').value = '';
       attach(+$('cguRad').value); parkSelect(); head(); draw();
     });
   }
 
-  var IDX = null, SRC = {};   // data/campstate/index.json (which states have a state-park list) + data/campstate-sources.json (official links)
-  var ready = Promise.all([getJSON('kpc-campground-form.json'), getJSON('kpc-campground-notes.json'), getJSON('kpc-us-states.json'), getJSON('data/campstate/index.json'), getJSON('data/campstate-sources.json')]).then(function (a) {
-    FORM = a[0]; NOTES = (a[1] && a[1].notes) || []; SHAPES = a[2]; IDX = a[3] || {}; SRC = (a[4] && a[4].states) || {};
+  var IDX = null, SRC = {}, MIDX = null;   // + data/campstate-manual/index.json (park-level lists for states the bot has none for)   // data/campstate/index.json (which states have a state-park list) + data/campstate-sources.json (official links)
+  var ready = Promise.all([getJSON('kpc-campground-form.json'), getJSON('kpc-campground-notes.json'), getJSON('kpc-us-states.json'), getJSON('data/campstate/index.json'), getJSON('data/campstate-sources.json'), getJSON('data/campstate-manual/index.json')]).then(function (a) {
+    FORM = a[0]; NOTES = (a[1] && a[1].notes) || []; SHAPES = a[2]; IDX = a[3] || {}; SRC = (a[4] && a[4].states) || {}; MIDX = a[5] || {};
   });
 
   /* ---- controls ---- */
