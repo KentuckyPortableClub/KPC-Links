@@ -407,6 +407,11 @@ def rows_to_camps(lay, feats):
     out = []
     for f in feats:
         a, p = f.get('attributes') or {}, xy(f.get('geometry'), lay['geo'])
+        if not p:                                           # some layers carry the position only as LAT / LONG fields
+            try:
+                la_, lo_ = float(a.get('LAT') or a.get('Lat') or a.get('LATITUDE') or a.get('latitude')), float(a.get('LONG_') or a.get('LONG') or a.get('Long') or a.get('LON') or a.get('LONGITUDE') or a.get('longitude'))
+                if 15 < la_ < 72 and -180 < lo_ < -60: p = (la_, lo_)
+            except (TypeError, ValueError): p = None
         if not p or not nf: continue
         name = nice(a.get(nf))
         if not name or name.lower() in ('none', 'null', 'unnamed', 'other', 'y', 'n', 'yes', 'no') or len(name) < 4 or SITE_NAME.match(name): continue
