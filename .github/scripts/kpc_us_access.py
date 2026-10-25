@@ -49,7 +49,7 @@ K = _key()
 
 # ---------------------------------------------------------------- what kind of point it is
 KIND = [('Parking', r'park(ing)?\b(?! *(name|code))|\blot\b|pull.?off|pullout|lot type|vehpark|rigpark'),
-        ('Entrance', r'entrance|entry|access point|designated access'),
+        ('Entrance', r'entrance|entry|access point|designated access|navigation point|directions point|contact station'),
         ('Gate', r'\bgate'),
         ('Kiosk / information', r'kiosk|information|info (station|source|sign)|reader ?board|sign ?in|entrance sign'),
         ('Check station', r'check(ing)? ?(station|in)'),
