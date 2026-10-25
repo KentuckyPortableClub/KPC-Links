@@ -391,12 +391,25 @@ SGK = {'park': {'sp'}, 'wild': {'wma'}, 'forest': {'sf'}, 'preserve': {'snp'}, '
 try:
     _sg = json.load(open('data/state-gis.json')).get('states') or {}
     _have = {x[1].split('/query')[0].rstrip('/') for x in XS}
+    # Oct 25: a layer keeps the prefix it was first given (read back from data/us-key/layers.json), so a layer added in
+    # the MIDDLE of a state's list can never shift the others and make saved ids point at the wrong map
+    try: _LJ = json.load(open(OUT / 'layers.json'))
+    except Exception: _LJ = {}  # noqa: BLE001
+    _byurl = {v[0].split('/query')[0].rstrip('/'): k for k, v in _LJ.items() if k.startswith('sg') and isinstance(v, list) and v}
+    _taken = set(_LJ)
+    def _pre(st, u):
+        if u in _byurl: return _byurl[u]
+        n = 0
+        while True:
+            k = f'sg{st.lower()}' + (chr(97 + n) if n < 26 else chr(97 + n // 26 - 1) + chr(97 + n % 26))
+            if k not in _taken: _taken.add(k); _byurl[u] = k; return k
+            n += 1
     for _st, _lays in sorted(_sg.items()):
         for _i, _l in enumerate(_lays):
             _u = str(_l.get('url') or '').rstrip('/')
             if not _u or not _l.get('nm') or _u in _have or not re.search(r'/\d+$', _u): continue
             # prefix = letters only ('sgfla'): the website splits an id into prefix + number with /^[a-z]+/
-            XS.append((f'sg{_st.lower()}{chr(97 + _i)}', _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st}))
+            XS.append((_pre(_st, _u), _u + '/query', _l['nm'], '', SGK.get(_l.get('kind'), set()), f"{_l.get('ag') or _st + ' state GIS'} ({_l.get('kind')}, state GIS table)", 'STAT', {_st}))
 except Exception as _e: print(f'state-gis.json not read: {_e}', flush=True)  # noqa: BLE001
 RESOLVED = {}
 def resolve(pre, url, nf, af):
