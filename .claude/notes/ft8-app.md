@@ -1,3 +1,4 @@
 
 
 - **HAND-OFF FROM HQ (Oct 25 12:40 PM): app closures miss the new US ones.** www/kpc-alerts.js keeps only ids /^pa-/ (Kentucky state parks). kpc-conditions.json now also has 'uc-' entries (chat 2's US closure watcher, 173 today in 10 states). Take 'uc-' too in the next batch; alert only for MY PARK / parks in the downloaded packs, not every state.
+- **Oct 25 12:42 PM (chat 4): HQ's closures hand-off taken into the app batch.** kpc-alerts.js closures() (line ~42-49) keeps only 'pa-' ids → also take 'uc-' (chat 2's US closure watcher); alert only when x.ref = MY PARK (S.ref / myrefs of the open log) or a park in a DOWNLOADED pack (KPCParks list), so a KY op is not buzzed for Oregon. Same list on Parks → park info + NEXT PARK (a 🚧 mark), and the 0.7.0 'closure' switch covers both. Chat 3 shows the same notices on the website pages (their own hand-off).
