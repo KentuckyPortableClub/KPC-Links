@@ -1,6 +1,6 @@
 # TN: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **243 of 277** parks joined to official land (same name + same kind of place). **1** to check by hand, **26** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **245 of 277** parks joined to official land (same name + same kind of place). **1** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -22,7 +22,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **243 of 277** parks joined
 - US-11181 Sheltowee Trace National Recreation Trail (National Recreation Trail)
 - US-11357 Sellars Farm State Archeological Reserve (Archeological Reserve)
 - US-11869 Jim Cummings Park (Park)
-- US-12360 Wolf River State Forest (State Forest)
 - US-12775 Davy Crockett State Fishing Lake (State Fishing Lake)
 - US-13514 Lake Halford State Fishing Lake (State Fishing Lake)
 - US-13567 Clinch River Valley State Park (State Park)
@@ -32,7 +31,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **243 of 277** parks joined
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
 - US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
-- US-5497 Martha Sundquist State Forest (State Forest)
 - US-6242 Elsie Quarterman Cedar Glade State Natural Area (State Natural Area)
 - US-6247 Hawkins Cove State Natural Area (State Natural Area)
 - US-6254 Lucius E. Burch, Jr. State Natural Area (State Natural Area)
