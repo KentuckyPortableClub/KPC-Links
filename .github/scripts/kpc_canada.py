@@ -5,6 +5,7 @@ boundaries later'). Writes data/canada.json in the same row format as locations.
   ['SOTA', 'VE7/..', name, lat, lon, url, altM, points] from our weekly SOTA tiles (VE/VA/VY/VO associations)
 Keeps last week's POTA rows if POTA can't be reached."""
 import json, os, glob, time, urllib.request, datetime
+from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 UA = {'User-Agent': 'KPC Canada pins (kentuckyportableclub.github.io)'}
 def note(t, m): print(f'::notice title={t}::{m}')
 def get(u):
@@ -51,5 +52,5 @@ for f in glob.glob('data/sota/t/*.json'):
         if a[:2] in ('VE', 'VA', 'VY', 'VO') and r[0] not in seen:
             seen.add(r[0]); rows.append(['SOTA', r[0], r[1], r[4], r[5], 'https://sotl.as/summits/' + r[0], r[3], r[6]])
 if rows != old.get('rows'):   # nightly: no commit when nothing changed
-    json.dump({'updated': datetime.date.today().isoformat(), 'rows': rows}, open('data/canada.json', 'w'), separators=(',', ':'), ensure_ascii=False)
+    save_json('data/canada.json', {'rows': rows})
 note('Canada pins', f"{len(pota)} POTA parks ({', '.join(f'{k} {v}' for k, v in sorted(prov.items()))}), {sum(1 for r in rows if r[0]=='WWFF')} WWFF, {len(seen)} SOTA")

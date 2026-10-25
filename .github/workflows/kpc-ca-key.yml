@@ -37,6 +37,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/ca-key
+          git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           git add data/canada-bounds 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Canada answer key'
