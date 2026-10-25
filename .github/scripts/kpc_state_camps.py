@@ -102,6 +102,73 @@ def ok(j):
     return isinstance(j, dict) and 'error' not in j
 
 
+def cfg():
+    try: return json.load(open('data/campstate-layers.json'))
+    except Exception: return {}  # noqa: E722
+
+
+def allowed(st):
+    """Layers a person found by hand (data/campstate-layers.json "allow": {ST: [service or layer urls]}): read like the crawl's own."""
+    out = []
+    for u in cfg().get('allow', {}).get(st, []):
+        m = re.match(r'(.*/(?:Feature|Map)Server)(?:/(\d+))?$', u.strip())
+        if not m: continue
+        svc = m.group(1)
+        ids = [int(m.group(2))] if m.group(2) is not None else []
+        if not ids:
+            sj = get_json(svc)
+            ids = [l['id'] for l in (sj.get('layers') or [])][:12] if ok(sj) else []
+        for lid in ids:
+            lu = f'{svc}/{lid}'; lj = get_json(lu)
+            if not ok(lj) or (lj.get('geometryType') or '') not in ('esriGeometryPoint', 'esriGeometryPolygon'): continue
+            nm = lj.get('name') or ''
+            if LAYER_BAD.search(nm) and not STRONG.search(nm): continue
+            out.append({'url': lu, 'name': nm, 'fields': [(f.get('name'), f.get('type')) for f in lj.get('fields', [])], 'geo': lj['geometryType'],
+                        'strong': bool(STRONG.search(nm + ' ' + svc.rsplit('/', 2)[-2])), 'max': int(lj.get('maxRecordCount') or 1000), 'svc': svc,
+                        'lodging': bool(re.search(r'lodg|resort|cabin', nm + ' ' + svc, re.I))})
+    return out
+
+
+def file_layers(st):
+    """Official open-data FILES ("files": {ST: {"ckan": package_show url}}), e.g. California State Parks' campground dataset."""
+    out = []
+    c = cfg().get('files', {}).get(st)
+    if not c: return out
+    j = get_json(c['ckan']) if c.get('ckan') else None
+    if not ok(j): return out
+    for r in ((j.get('result') or {}).get('resources') or []):
+        fmt = (r.get('format') or '').upper()
+        if fmt in ('CSV', 'GEOJSON') and r.get('url'):
+            out.append({'url': r['url'], 'file': r['url'], 'fmt': fmt, 'name': ((j['result'].get('title') or 'dataset')[:60]), 'fields': [], 'geo': 'esriGeometryPoint',
+                        'strong': True, 'lodging': True, 'max': 1000, 'svc': 'file'})
+            break
+    return out
+
+
+def file_rows(lay):
+    import csv, io
+    try:
+        with urllib.request.urlopen(urllib.request.Request(lay['file'], headers={'User-Agent': UA}), timeout=120) as r:
+            raw = r.read(40_000_000).decode('utf-8-sig', 'replace')
+    except Exception: return []  # noqa: E722
+    feats = []
+    if lay['fmt'] == 'GEOJSON':
+        try:
+            for f in json.loads(raw).get('features', []):
+                g = f.get('geometry') or {}
+                if g.get('type') == 'Point': feats.append({'attributes': f.get('properties') or {}, 'geometry': {'x': g['coordinates'][0], 'y': g['coordinates'][1]}})
+        except Exception: pass  # noqa: E722
+    else:
+        rd = csv.DictReader(io.StringIO(raw)); cols = rd.fieldnames or []
+        lat = next((c for c in cols if re.fullmatch(r'(?i)y|lat(itude)?|point_y', c.strip())), None) or next((c for c in cols if re.search(r'(?i)lat', c)), None)
+        lon = next((c for c in cols if re.fullmatch(r'(?i)x|lon(g|gitude)?|lng|point_x', c.strip())), None) or next((c for c in cols if re.search(r'(?i)lon|lng', c)), None)
+        for row in rd:
+            try: feats.append({'attributes': row, 'geometry': {'x': float(row[lon]), 'y': float(row[lat])}})
+            except Exception: continue  # noqa: E722
+    if feats: lay['fields'] = [(k, 'esriFieldTypeString') for k in feats[0]['attributes']]
+    return feats
+
+
 def denied():
     """data/campstate-layers.json {"deny": [url fragments]}: layers a person has looked at and ruled out."""
     try: return [d for d in json.load(open('data/campstate-layers.json')).get('deny', []) if d]
@@ -209,11 +276,16 @@ def discover(st):
                               'geo': geo, 'strong': strong, 'max': int(lj.get('maxRecordCount') or 1000), 'svc': name,
                               'lodging': bool(re.search(r'lodg|resort', ln + ' ' + name, re.I))})
             time.sleep(.2)
+    for lay in allowed(st) + file_layers(st):
+        if lay['url'] not in seen and not any(d in lay['url'] for d in denied()):
+            seen.add(lay['url']); found.append(lay)
+    DIAG[st]['allowed'] = sum(1 for l in found if l.get('svc') not in (None,) and (l['url'] in {x for x in cfg().get('allow', {}).get(st, [])} or l.get('file')))
     return found
 
 
 # ---------------------------------------------------------------- reading a layer
 def fetch_rows(lay):
+    if lay.get('file'): return file_rows(lay)
     strs = [n for n, t in lay['fields'] if t == 'esriFieldTypeString']
     where = '1=1'
     if not lay['strong']:
@@ -472,8 +544,12 @@ def main():
             states.pop(st, None); missing[st] = r['why'] or 'nothing found'
     for st in list(states):
         if st in STATES: continue
+    why = idx.get('none_why', {}) if isinstance(idx, dict) else {}
+    why.update(missing)
+    for s in list(why):
+        if s in states: why.pop(s)
     idx = {'updated': TODAY, 'states': dict(sorted(states.items())),
-           'none': sorted(s for s in ALL if s not in states)}
+           'none': sorted(s for s in ALL if s not in states), 'none_why': dict(sorted(why.items()))}
     if not DRY:
         (OUT / 'index.json').write_text(json.dumps(idx, indent=1) + '\n', encoding='utf-8')
         try:
@@ -482,7 +558,7 @@ def main():
         old.update({k: v for k, v in DIAG.items() if k in STATES})
         (OUT / 'layers.json').write_text(json.dumps({'updated': TODAY, 'note': 'What the weekly state-camps bot crawled and read, for tuning. Not for the website.',
                                                      'states': dict(sorted(old.items()))}, separators=(',', ':')) + '\n', encoding='utf-8')
-    update_issue(missing, list(states), None)
+    update_issue({s: idx['none_why'].get(s, 'not read yet') for s in idx['none']}, list(states), None)
     note('State camps done', f'{wrote} written, {len(missing)} without a source. Counts: ' + ' '.join(f"{k}={len(v['camps'])}" for k, v in sorted(results.items())))
     note('State camps: why not', ' | '.join(f"{k}: {v['why'][:70]}" for k, v in sorted(results.items()) if not v['camps'] or v['why']))
 

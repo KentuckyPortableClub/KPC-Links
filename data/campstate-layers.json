@@ -1,5 +1,5 @@
 {
- "note": "Layers a person ruled out for the weekly state-camps bot (kpc_state_camps.py). A layer whose URL contains any fragment below is never read. Oct 24 2026 first runs: hotel lists, county parcels, campus buildings, history sites.",
+ "note": "Layers a person ruled out for the weekly state-camps bot (kpc_state_camps.py). A layer whose URL contains any fragment below is never read. Oct 24 2026 first runs: hotel lists, county parcels, campus buildings, history sites. ALLOW = layers/services a person found (Oct 24 probe: data/campstate/probe.json) that the crawl missed; FILES = official open-data file datasets (CKAN package_show url).",
  "deny": [
   "SIN_GreenLodgings",
   "Hosted/416Campgrounds",
@@ -9,5 +9,29 @@
   "MD_CampusFacilities",
   "PSU_Commonwealth",
   "State_Parks/MapServer/12"
- ]
+ ],
+ "allow": {
+  "TN": [
+   "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TSP_Campground_Point/FeatureServer",
+   "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TSP_Cabin_Area_Points/FeatureServer"
+  ],
+  "HI": [
+   "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/31"
+  ],
+  "ID": [
+   "https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0"
+  ],
+  "FL": [
+   "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/FFS_Recreation_Points/FeatureServer"
+  ],
+  "NY": [
+   "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_and_OPRHP_campground_points/FeatureServer",
+   "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Camping/FeatureServer"
+  ]
+ },
+ "files": {
+  "CA": {
+   "ckan": "https://publish.data.ca.gov/api/3/action/package_show?id=campgrounds"
+  }
+ }
 }
