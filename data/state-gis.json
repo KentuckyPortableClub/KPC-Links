@@ -1203,6 +1203,54 @@
     "host": "agency",
     "code": "ON-ORCA",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Lower Trent Conservation",
+    "nm": "AREA_NAME",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-LTC",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 5 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Mississippi Valley Conservation Authority",
+    "nm": "PROP_NAME",
+    "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-MVC",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Rideau Valley Conservation Authority",
+    "nm": "Property_Name",
+    "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8",
+    "host": "agency",
+    "code": "ON-RVCA",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 180 (ON Conservation Area)"
+   },
+   {
+    "kind": "land",
+    "ag": "Grand River Conservation Authority (GRCA Open Data Licence)",
+    "nm": "CA_NAME",
+    "url": "https://data.grandriver.ca/downloads/gis/GRCA_Parks.zip",
+    "host": "agency",
+    "code": "ON-GRCA",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 12 of 183 (ON Conservation Area, Wildlife Management Area)",
+    "fmt": "shpzip",
+    "epsg": 26917,
+    "licence": "GRCA Open Data Licence v2 (attribution required)"
+   },
+   {
+    "kind": "land",
+    "ag": "Cataraqui Conservation",
+    "nm": "Property_Name",
+    "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0",
+    "host": "agency",
+    "code": "ON-CRCA",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 180 (ON Conservation Area); built for a 2021 report by a CRCA staff account: check it is still kept up"
    }
   ],
   "NB": [
@@ -1236,6 +1284,17 @@
     "host": "agency",
     "code": "PE-PP",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 18 (PE Provincial Park)"
+   }
+  ],
+  "AB": [
+   {
+    "kind": "land",
+    "ag": "Government of Alberta - Forestry and Parks / Public Lands",
+    "nm": "PLUZ_NAME",
+    "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11",
+    "host": "agency",
+    "code": "AB-PLUZ",
+    "note": "outside research bot Canada round 2b, tested 2026-10-25; matched 1 of 2 (AB Recreation Park)"
    }
   ]
  },
