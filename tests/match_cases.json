@@ -149,6 +149,13 @@
    "b": "Alta",
    "same": true,
    "why": "Oct 24: Alta is a Norwegian town, not 'upper'."
+  },
+  {
+   "cc": "AU",
+   "a": "Windjana Gorge National Park",
+   "b": "Windjana Gorge",
+   "same": true,
+   "why": "Oct 25: CAPAD files it as 'Bandilngan (Windjana Gorge)'; the bracket name is read as a second name."
   }
  ],
  "shadow_names": [
