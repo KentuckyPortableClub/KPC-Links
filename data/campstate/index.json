@@ -6,6 +6,11 @@
    "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84)",
    "updated": "2026-10-25"
   },
+  "AL": {
+   "n": 5,
+   "source": "conservationgis.alabama.gov \u00b7 Camping (5)",
+   "updated": "2026-10-25"
+  },
   "CA": {
    "n": 356,
    "source": "gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
@@ -88,7 +93,6 @@
   }
  },
  "none": [
-  "AL",
   "AR",
   "AZ",
   "CO",
@@ -123,7 +127,6 @@
   "WY"
  ],
  "none_why": {
-  "AL": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "AR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "AZ": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "CO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
@@ -143,6 +146,7 @@
   "NC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "ND": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NE": "the state GIS server did not answer from GitHub (<urlopen error [Errno -2] Name or service not known>); ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "NH": "the only layer found is trail huts, not state park camping (held back)",
   "NJ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NM": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
@@ -152,9 +156,8 @@
   "SC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "SD": "the state GIS server did not answer from GitHub (<urlopen error timed out>); ArcGIS Online had no camp layer from an account named like the state's agencies",
   "VT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WA": "the only layer found lists camp-host sites, not campgrounds (held back)",
-  "NH": "the only layer found is trail huts, not state park camping (held back)"
+  "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "WY": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
  }
 }
