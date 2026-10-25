@@ -1,1 +1,1 @@
-{"type":"Feature","properties":{"ref":"CA-6151","name":"Boundary Bog Trail National Geologic Trail"},"geometry":{"type":"MultiLineString","coordinates":[[[-106.02143,53.90944],[-106.02143,53.90944]]]}}
+{"geometry":{"coordinates":[[[-106.02143,53.90944],[-106.02143,53.90944]]],"type":"MultiLineString"},"properties":{"name":"Boundary Bog Trail National Geologic Trail","ref":"CA-6151"},"type":"Feature"}
