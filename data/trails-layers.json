@@ -1,0 +1,38 @@
+{
+ "about": "Official trail LINE layers picked by hand (Brandon's sheets, Oct 24 2026). The trails bot tries these first for trails in that state / province; the name must still match and the line must be near the POTA pin. Key = state letters or CA-province.",
+ "layers": {
+  "FL": [
+   "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/ArcGIS/rest/services/Existing_Trails/FeatureServer"
+  ],
+  "HI": [
+   "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/34"
+  ],
+  "ID": [
+   "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer/128",
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  "OR": [
+   "https://gis.blm.gov/orarcgis/rest/services/Facility/BLM_OR_GTRN_PUB_Trails/MapServer",
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  "UT": [
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  "NM": [
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/7",
+   "https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/8"
+  ],
+  "CA-ON": [
+   "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer"
+  ],
+  "CA-AB": [
+   "https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer"
+  ],
+  "CA-YT": [
+   "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Transportation/MapServer/24"
+  ]
+ }
+}
