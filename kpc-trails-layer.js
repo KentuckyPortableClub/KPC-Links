@@ -21,9 +21,9 @@
     const g = L.layerGroup(), done = {}; let IDX = null, busy = false;
     if (!map.getPane('kpcTrails')) { map.createPane('kpcTrails'); map.getPane('kpcTrails').style.zIndex = 390; }
     const rend = L.svg({ pane: 'kpcTrails', padding: .5 });
-    const KIND = { NST: ['National Scenic Trail', '#ff5fa2', null], NHT: ['National Historic Trail', '#ffb347', '9 6'], ST: ['State Trail', '#3ddc84', null], NRT: ['National Recreation Trail', '#b388ff', '4 5'], TP: ['Trail park', '#3ddc84', null] };
-    const pop = t => { const k = KIND[t.kind] || KIND.ST; return `<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${esc(t.type || k[0])}${t.km ? ' · about ' + t.km + ' km of trail drawn' : ''}</div>` +
-      `<div class="meta" style="margin-top:6px">${t.official === false ? 'Line from <b>OpenStreetMap</b> (a volunteer map, usually close but <b>not official</b>).' : 'Official route from the ' + esc(t.by) + '.'} A trail is one POTA park along its whole length: check the trail's POTA page for where you can set up.</div>` +
+    const KIND = { NST: ['National Scenic Trail', '#ff5fa2', null], NHT: ['National Historic Trail', '#ffb347', '9 6'], ST: ['State Trail', '#3ddc84', null], NRT: ['National Recreation Trail', '#b388ff', '4 5'], TP: ['Trail park', '#3ddc84', null], WSR: ['Wild and Scenic River', '#4fc3f7', null] };   /* Oct 25: designated river stretches */
+    const pop = t => { const k = KIND[t.kind] || KIND.ST; return `<div class="us-pop"><b>${esc(t.name)}</b><div class="meta">POTA <b>${esc(t.ref)}</b> · ${esc(t.type || k[0])}${t.km ? ' · about ' + t.km + (t.kind === 'WSR' ? ' km of river drawn' : ' km of trail drawn') : ''}</div>` +
+      `<div class="meta" style="margin-top:6px">${t.official === false ? 'Line from <b>OpenStreetMap</b> (a volunteer map, usually close but <b>not official</b>).' : (t.kind === 'WSR' ? 'Official designated river stretch from the ' : 'Official route from the ') + esc(t.by) + '.'} ${t.kind === 'WSR' ? 'The river is one park along its designated stretch: check its POTA page and the managing agency for where you can set up.' : 'A trail is one POTA park along its whole length: check the trail\'s POTA page for where you can set up.'}</div>` +
       `<div class="acts" style="margin-top:8px"><a href="https://pota.app/#/park/${encodeURIComponent(t.ref)}" target="_blank" rel="noopener" style="font-weight:800">POTA PAGE ↗</a></div></div>`; };
     async function load() {
       if (!map.hasLayer(g) || busy) return; busy = true;
