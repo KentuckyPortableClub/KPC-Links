@@ -1,25 +1,28 @@
 # AR: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **234 of 304** parks joined to official land (same name + same kind of place). **1** to check by hand, **57** with nothing found. Nothing below is joined until a person checks it.
+Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **234 of 304** parks joined to official land (same name + same kind of place). **0** to check by hand, **56** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-11352** Rattlesnake Ridge National Heritage Area (National Heritage Area) → Rattlesnake Ridge Natural Area (~0 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10236 Lake Sylvia State Park (State Park) → on Winona WMA (~0 ac); Ouachita National Forest (~1,430,575 ac)
+- US-1102 Mississippi River State Park (State Park) → on St. Francis National Forest WMA (~0 ac); St. Francis National Forest (~21,307 ac)
 - US-11354 Fred Berry Crooked Creek Nature Center State Natural Site (State Natural Site) → on Kelly's Slab (~378 ac)
-- US-11355 Cook’s Lake Nature Center Nature Recreation Area (Nature Recreation Area) → on Dale Bumpers White River National Wildlife Refuge (~156,769 ac); Dale Bumpers White River National Wildlife Refuge (~156,927 ac)
+- US-11873 Iron Fork Reservoir State Fishing Lake (State Fishing Lake) → on Ouachita National Forest (~1,430,575 ac)
 - US-12078 Peppers Pond State Recreation Site (State Recreation Site) → on Lake Conway WMA (~0 ac); Camp Robinson Wildlife Demonstration Area (~4,211 ac)
+- US-13229 Arkansas River Water Trail Recreation Park (Recreation Park) → on J.P. Hammerschmidt Recreation Area (~4,491 ac)
 - US-13461 Upper Illinois River Water Trail State Trail (State Trail) → on Wedington WMA (~0 ac); Ozark National Forest (~1,132,752 ac)
-- US-7163 Cutoff Creek State Natural Area (State Natural Area) → on Casey Jones WMA (~0 ac)
+- US-7163 Cutoff Creek State Natural Area (State Natural Area) → on Cut-Off Creek WMA (~0 ac)
+- US-7169 Rock Creek State Natural Area (State Natural Area) → on Harold E. Alexander Spring River WMA (~0 ac)
 - US-7441 Gulpha Gorge National Recreation Area (National Recreation Area) → on Hot Springs National Park (~4,919 ac)
 - US-7442 Blanchard Springs State Recreation Area (State Recreation Area) → on Sylamore WMA (~0 ac); Ozark National Forest (~1,132,752 ac)
+- US-7444 Nimrood Lake River Road State Recreation Area (State Recreation Area) → on Nimrod Lloyd Millwood WMA (~0 ac)
 - US-7445 Cove Lake State Recreation Area (State Recreation Area) → on Mount Magazine WMA (~0 ac); Ozark National Forest (~1,132,752 ac)
+- US-8316 Scenic 7 Byway State Trail (State Trail) → on Nimrod Lloyd Millwood WMA (~0 ac)
 - US-8321 Talimena Scenic Byway State Trail (State Trail) → on Queen Wilhelmina State Park WMA (~0 ac); Ouachita National Forest (~1,430,575 ac)
 - US-9161 Butterfield State Trail (State Trail) → on Dardanelle WMA (~0 ac); Dardanelle Recreation Area (~57,103 ac)
-- US-9167 Lake Hinkle State Recreation Area (State Recreation Area) → on Ouachita National Forest (~1,430,575 ac)
 
 ## Nothing found in PAD-US
 
@@ -36,11 +39,12 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **234 of 304** parks joined
 - US-11213 Bragg Lake State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11214 Highway 7 Rec Area State Fish and Wildlife Area (State Fish and Wildlife Area)
 - US-11233 Rohwer Relocation Center Memorial Cemetery National Historical Site (National Historical Site)
+- US-11352 Rattlesnake Ridge National Heritage Area (National Heritage Area)
+- US-11355 Cook’s Lake Nature Center Nature Recreation Area (Nature Recreation Area)
 - US-11356 Ponca Nature Center Nature Recreation Area (Nature Recreation Area)
 - US-11393 Sylamore Scenic Byway State Trail (State Trail)
 - US-11394 Muddy Creek WMA Wildlife Management Area (Wildlife Management Area)
 - US-11870 Lake Wilhelmina State Fishing Lake (State Fishing Lake)
-- US-11873 Iron Fork Reservoir State Fishing Lake (State Fishing Lake)
 - US-11874 Tates Bluff Rec area State Recreation Area (State Recreation Area)
 - US-11951 J.B. and Johnelle Hunt Family Ozark Highlands Nature Center State Natural Reserve (State Natural Reserve)
 - US-11953 St. Francis Scenic Byway National Scenic Trail (National Scenic Trail)
@@ -53,7 +57,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **234 of 304** parks joined
 - US-12754 Andrew H. Hulsey State Fish Hatchery (State Fish Hatchery)
 - US-12762 Charlie Craig State Fish Hatchery (State Fish Hatchery)
 - US-12764 Jim Hinkle Spring River State Fish Hatchery (State Fish Hatchery)
-- US-13229 Arkansas River Water Trail Recreation Park (Recreation Park)
 - US-13553 Sugar Loaf Lake State Fishing Lake (State Fishing Lake)
 - US-13554 Lake Atkins State Fishing Lake (State Fishing Lake)
 - US-13556 Lake June State Fishing Lake (State Fishing Lake)
@@ -63,12 +66,10 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **234 of 304** parks joined
 - US-7437 Little Missouri River Access State Recreation Area (State Recreation Area)
 - US-7438 Gurdon Lake State Recreation Area (State Recreation Area)
 - US-7443 DeGray Lower Lake State Recreation Area (State Recreation Area)
-- US-7444 Nimrood Lake River Road State Recreation Area (State Recreation Area)
 - US-7522 Cherokee State Recreation Area (State Recreation Area)
 - US-7524 Lake Greeson National Recreation Area (National Recreation Area)
 - US-7525 Mike Huckabee Delta Rivers Nature Park (Nature Park)
 - US-7526 Forest Wood Nature Park (Nature Park)
-- US-8316 Scenic 7 Byway State Trail (State Trail)
 - US-8322 Mount Magazine Scenic Byway State Trail (State Trail)
 - US-8323 Ozark Highlands Scenic Byway State Trail (State Trail)
 - US-9162 Lower White Oak Lake State Recreation Area (State Recreation Area)
@@ -76,6 +77,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **234 of 304** parks joined
 - US-9164 Lake Conway State Recreation Area (State Recreation Area)
 - US-9165 Cox Creek Lake State Recreation Area (State Recreation Area)
 - US-9166 Lake Elmdale State Recreation Area (State Recreation Area)
+- US-9167 Lake Hinkle State Recreation Area (State Recreation Area)
 - US-9168 Lake Jack Nolen State Recreation Area (State Recreation Area)
 - US-9169 Huckabee Lake State Recreation Area (State Recreation Area)
 - US-9681 Camden Expedition Scenic Highway State Trail (State Trail)

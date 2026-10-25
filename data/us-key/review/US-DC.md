@@ -9,15 +9,15 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **24 of 34** parks joined t
 
 - US-0657 President's Park (White House) Park (Park) → on National Capital Parks (~3,908 ac)
 - US-13597 George Mason National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
-- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail) → on Chesapeake and Ohio Canal National Historical Park (~323 ac)
+- US-7891 African American Civil War National Memorial (National Memorial) → on National Capital Parks (~3,908 ac)
 
 ## Nothing found in PAD-US
 
 - US-0015 Chesapeake and Ohio Canal National Historical Park (National Historical Park)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
+- US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-7891 African American Civil War National Memorial (National Memorial)
 - US-9898 Mount Vernon National Historic Trail (National Historic Trail)
 - US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
 
