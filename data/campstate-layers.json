@@ -27,9 +27,6 @@
   "NY": [
    "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/arcgis/rest/services/DEC_and_OPRHP_campground_points/FeatureServer",
    "https://services.arcgis.com/1xFZPtKn1wKC6POA/arcgis/rest/services/NY_State_Parks_Camping/FeatureServer"
-  ],
-  "AL": [
-   "https://conservationgis.alabama.gov/adcnrweb/rest/services/Activities/MapServer/0"
   ]
  },
  "files": {
