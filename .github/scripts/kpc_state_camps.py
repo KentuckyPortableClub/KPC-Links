@@ -427,6 +427,26 @@ def rows_to_camps(lay, feats):
     return out
 
 
+def group_by_park(lay, feats):
+    """A layer of individual campsites (listed under 'group' in campstate-layers.json): one camp per park, at the middle of its sites."""
+    flds = [n for n, _ in lay['fields']]
+    pf = pick(flds, PARK_F, r'park') or pick(flds, ['PARKNAME', 'ParkName', 'PARK'], r'park')
+    if not pf: return []
+    by = {}
+    for f in feats:
+        p = xy(f.get('geometry'), lay['geo'])
+        a = f.get('attributes') or {}
+        park = nice(a.get(pf))
+        if not p or not park or len(park) < 4: continue
+        by.setdefault(park, []).append(p)
+    out = []
+    for park, pts in by.items():
+        la, lo = sum(x[0] for x in pts) / len(pts), sum(x[1] for x in pts) / len(pts)
+        name = park if re.search(r'camp|cabin|yurt|lodge', park, re.I) else f'{park} Campground'
+        out.append({'name': name, 'lat': la, 'lon': lo, 'kind': 'c', 'url': '', 'res': '', 'park': park})
+    return out
+
+
 # ---------------------------------------------------------------- inside the state?
 try:
     _SHAPES = {b['a']: [pl[0] for pl in b['p']] for b in json.load(open('kpc-us-states.json'))}
@@ -509,7 +529,10 @@ def read_layers(st, lays):
     for lay in lays:
         if time.time() > DEADLINE: break
         feats = fetch_rows(lay)
-        got = rows_to_camps(lay, feats)
+        grp = any(g and g in lay['url'] for g in (cfg().get('group', {}).get(st) or []))
+        got = group_by_park(lay, feats) if grp else rows_to_camps(lay, feats)
+        if not got and feats and not lay.get('raw'):
+            lay['raw'] = [{k: str(v)[:60] for k, v in (f.get('attributes') or {}).items() if v not in (None, '')} for f in feats[:3]]
         DIAG.setdefault(st, {}).setdefault('layers', []).append(
             {'url': lay['url'], 'name': lay['name'], 'fields': [n for n, _ in lay['fields']][:14], 'read': len(feats), 'kept': len(got),
              'sample': [c['name'] for c in got[:3]], **({'raw': lay['raw']} if lay.get('raw') else {})})
