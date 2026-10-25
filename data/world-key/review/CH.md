@@ -1,6 +1,6 @@
 # CH: POTA parks vs official land
 
-Built 2026-10-24 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **263 of 319** joined (same name + same kind), **20** to check, **36** nothing found. Nothing below is joined.
+Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, BAFU landscapes and natural monuments (BLN), BAFU hunting reserves, BAFU water and migratory bird reserves, BAFU mire landscapes, BAFU floodplains, BAFU raised bogs, BAFU fens, BAFU Ramsar sites, BAFU parks of national importance, BAFU Emerald sites. **262 of 319** joined (same name + same kind), **21** to check, **36** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -8,19 +8,20 @@ Built 2026-10-24 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **CH-0007** Doubs Nature Park (Nature Park) → Vallée du Doubs (BAFU landscapes and natural monuments (BLN), similar name)
 - **CH-0012** Jura Vaudois Nature Park (Nature Park) → Vallée de Joux et Haut-Jura vaudois (BAFU landscapes and natural monuments (BLN), similar name)
 - **CH-0013** Pfyn-Finges Nature Park (Nature Park) → Finges (BAFU Emerald sites, similar name); Blatte (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CH-0016** Zürich Wilderness Park (Wilderness Park) → Sihlwald (EEA nationally designated areas, the POTA pin is inside it (different name)); Wildnispark Zürich Sihlwald (EEA nationally designated areas, the POTA pin is inside it (different name)); Albiskette – Reppischtal (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
+- **CH-0016** Zürich Wilderness Park (Wilderness Park) → Wildnispark Zürich Sihlwald (EEA nationally designated areas, the POTA pin is inside it (different name)); Albiskette – Reppischtal (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
 - **CH-0021** Altläufe der Glatt Nature Reserve (Nature Reserve) → Oberglatt (EEA nationally designated areas, the POTA pin is inside it (different name)); Glattaltlaufgebiet Schlosswinkel-Peterli-Solachten (EEA nationally designated areas, the POTA pin is inside it (different name)); Oberglatt (BAFU floodplains, the POTA pin is inside it (different name))
 - **CH-0032** Valli di Lodano, Busai and Soladino World Heritage Site (World Heritage Site) → Valli Busai e Soladino (EEA nationally designated areas, similar name); Valle di Lodano (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CH-0036** Alpes suisses Jungfrau-Aletsch World Heritage Site (World Heritage Site) → Berner Hochalpen und Aletsch-Bietschhorn-Gebiet (südlicher Teil) (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name))
 - **CH-0043** Ried am Äntschberg Nature Reserve (Nature Reserve) → Underäntschberg (BAFU fens, the POTA pin is inside it (different name))
 - **CH-0055** Wiese Landscape Park (Landscape Park) → Weiher Wiese-Ebene (EEA nationally designated areas, similar name)
+- **CH-0058** Rhein unterhalb KW Birsfelden Park (Park) → Rheinhalde (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CH-0132** Schwarzenburgerland mit Senseund Schwarzwasserschlucht Natural Monument (Natural Monument) → Schwarzenburgerland mit Sense- und Schwarzwasserschlucht (BAFU landscapes and natural monuments (BLN), similar name)
-- **CH-0265** Vogelroupfi Wetland Reserve (Wetland Reserve) → Vogelraupfi (EEA nationally designated areas, the POTA pin is inside it (different name)); Oberaargau (BAFU Emerald sites, the POTA pin is inside it (different name))
+- **CH-0265** Vogelroupfi Wetland Reserve (Wetland Reserve) → Oberaargau (BAFU Emerald sites, the POTA pin is inside it (different name))
 - **CH-0270** Turpenried Wetland Reserve (Wetland Reserve) → Turpenriet/Torf-Riet (EEA nationally designated areas, the POTA pin is inside it (different name)); Turpenriet (EEA nationally designated areas, the POTA pin is inside it (different name)); Turpenriet/Torf-Riet (BAFU fens, the POTA pin is inside it (different name))
-- **CH-0273** Faehnerenspitz Wetland Reserve (Wetland Reserve) → Fänerenspitz (BAFU mire landscapes, the POTA pin is inside it (different name))
-- **CH-0275** Bettnauer Weiher Wetland Reserve (Wetland Reserve) → Bettenauerweier (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **CH-0273** Faehnerenspitz Wetland Reserve (Wetland Reserve) → Säntisgebiet (BAFU landscapes and natural monuments (BLN), the POTA pin is inside it (different name)); Fänerenspitz (BAFU mire landscapes, the POTA pin is inside it (different name))
+- **CH-0277** Dénériaz-Tempêteries-Noirvaux Forest Reserve (Forest Reserve) → La Dénériaz (EEA nationally designated areas, similar name); Noirvaux (EEA nationally designated areas, similar name); Réserve forestière Dénériaz-Tempêteries-Noirvaux (EEA nationally designated areas, similar name)
 - **CH-0279** Bomer Weiher Wetland Reserve (Wetland Reserve) → Bommer Weiher (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **CH-0280** Justistal Wildlife Reserve (Wildlife Reserve) → Waldreservat Justistal (EEA nationally designated areas, similar name)
+- **CH-0280** Justistal Wildlife Reserve (Wildlife Reserve) → Waldreservat Justistal (EEA nationally designated areas, similar name); Grünenbergpass (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CH-0302** Les Ordons Est Forest Reserve (Forest Reserve) → Sur Vaferdeau (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **CH-0311** Hahnen Hunting Reserve Game Reserve (Game Reserve) → Hahnen (EEA nationally designated areas, similar name); Hahnen (BAFU hunting reserves, similar name)
 - **CH-0317** Schwändital Natural Monument National Monument (National Monument) → Schwändital (BAFU mire landscapes, similar name)
@@ -47,7 +48,6 @@ Built 2026-10-24 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - CH-0054 Kannenfeld Park (Park)
 - CH-0056 St. Johanns Park (Park)
 - CH-0057 Wenken Park (Park)
-- CH-0058 Rhein unterhalb KW Birsfelden Park (Park)
 - CH-0078 Gerlafingerweiher Nature Reserve (Nature Reserve)
 - CH-0216 Via Alpina National Scenic Trail (National Scenic Trail)
 - CH-0217 Trans Swiss National Scenic Trail (National Scenic Trail)
@@ -56,6 +56,7 @@ Built 2026-10-24 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - CH-0220 Jura Crest National Scenic Trail (National Scenic Trail)
 - CH-0221 Alpine Passes National Scenic Trail (National Scenic Trail)
 - CH-0222 ViaGottardo National Scenic Trail (National Scenic Trail)
+- CH-0275 Bettnauer Weiher Wetland Reserve (Wetland Reserve)
 - CH-0289 Westweg National Scenic Trail (National Scenic Trail)
 - CH-0291 Südliches Appenzeller Hinterland Wildlife Reserve (Wildlife Reserve)
 - CH-0294 Gorges de Court Forest Reserve (Forest Reserve)
