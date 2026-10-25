@@ -9,7 +9,9 @@ Form questions (each must START with these words; order doesn't matter; see .cla
   Type of campground | Rating | Site number | When did you stay | Restrooms | Showers | Hookups | Cell signal |
   RF noise | Room for antennas | Shade | Other amenities | Your review | Photos
 "Campground or cabin" is pre-filled by the site's REVIEW IT buttons as "US-1277 · Ridgeline & Clifty Campgrounds".
-Anything that doesn't match a place in kpc-campgrounds.json is shown in the "Stayed somewhere else?" section."""
+Anything that doesn't match a place in kpc-campgrounds.json is shown in the "Stayed somewhere else?" section.
+Every note also carries st (2-letter state) and ref (park number) when they can be worked out, so places outside Kentucky
+show on their state's list in the Activators Lounge (park number, then GPS point-in-state, then the Town or county words)."""
 import csv, io, json, os, re, hashlib, sys, urllib.request, datetime
 import kpc_preapproved as PA
 PRE = PA.load()
@@ -54,6 +56,49 @@ def find_place(txt):
         if len(cand) == 1: return cand[0][1]
     return None
 
+# ---- state (st) and park number (ref) for every review / new place, so a place outside Kentucky shows on its state's list
+# (Brandon Oct 24: state park camping for every state). Order: park number -> GPS (point in state) -> the "Town or county" words.
+import glob
+REF_ST = {r: 'KY' for r, _, _ in PLACES}
+for _f in glob.glob('data/parkinfo/US-??.json'):
+    try:
+        for _r in json.load(open(_f, encoding='utf-8')).get('parks', {}): REF_ST.setdefault(_r, os.path.basename(_f)[3:5])
+    except Exception: pass
+try:
+    _US = json.load(open('kpc-us-states.json', encoding='utf-8'))
+    SHAPES = [(b['a'], [pl[0] for pl in b['p']]) for b in _US]
+    NAMES = {b['n'].lower(): b['a'] for b in _US}
+except Exception: SHAPES, NAMES = [], {}
+ABBR = {a for a, _ in SHAPES}
+def _inside(x, y, ring):
+    c = False; j = len(ring) - 1
+    for i in range(len(ring)):
+        xi, yi = ring[i]; xj, yj = ring[j]
+        if (yi > y) != (yj > y) and x < (xj - xi) * (y - yi) / (yj - yi) + xi: c = not c
+        j = i
+    return c
+def st_of_gps(txt):
+    m = re.search(r'(-?\d{1,3}\.\d+)\s*[°]?\s*([NSns])?[\s,;/]+(-?\d{1,3}\.\d+)\s*[°]?\s*([EWew])?', txt or '')
+    if not m: return ''
+    la, lo = float(m.group(1)), float(m.group(3))
+    if (m.group(2) or '').upper() == 'S': la = -la
+    if (m.group(4) or '').upper() == 'W' or (lo > 0 and 15 < la < 72 and (m.group(4) or '').upper() != 'E'): lo = -abs(lo)
+    for a, rings in SHAPES:
+        if any(_inside(lo, la, r) for r in rings): return a
+    return ''
+def st_of_words(txt):
+    t = txt or ''
+    m = re.findall(r'(?:,|\s)([A-Za-z]{2})\.?\s*$', t.strip())
+    if m and m[-1].upper() in ABBR: return m[-1].upper()
+    for nm, a in sorted(NAMES.items(), key=lambda kv: -len(kv[0])):
+        if re.search(r'\b' + re.escape(nm) + r'\b', t.lower()): return a
+    return ''
+def ref_of(*texts):
+    for t in texts:
+        m = re.search(r'\bUS-?0*(\d{1,5})\b', (t or '').upper())
+        if m: return 'US-' + m.group(1).zfill(4)
+    return ''
+
 notes = []; newph = 0; os.makedirs('photos/campgrounds', exist_ok=True)
 try:
     from PIL import Image
@@ -79,7 +124,10 @@ for r in rows[1:]:
         if os.path.exists(fn): photos.append(fn)
     ts = cell(r, 'ts'); m = re.match(r'(\d+)/(\d+)/(\d{4})', ts)
     date = f'{["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][int(m.group(1)) - 1]} {m.group(3)}' if m else ''
-    n = {'id': nid, 'place': place, 'call': call, 'rating': rating, 'text': text[:3000], 'site': cell(r, 'site')[:20], 'stayed': cell(r, 'when')[:40], 'date': date, 'photos': photos,
+    ref = ref_of(ptxt, cell(r, 'place'), cell(r, 'where'))
+    if place: ref = next((p[0] for p in PLACES if p[1] == place), ref)
+    st = REF_ST.get(ref, '') or ('KY' if place else '') or st_of_gps(cell(r, 'gps')) or st_of_words(cell(r, 'where')) or st_of_words(ptxt)
+    n = {'id': nid, 'st': st, 'ref': ref, 'place': place, 'call': call, 'rating': rating, 'text': text[:3000], 'site': cell(r, 'site')[:20], 'stayed': cell(r, 'when')[:40], 'date': date, 'photos': photos,
          'facts': [[lab, cell(r, k)[:160]] for k, lab in FACTS if cell(r, k)]}
     if not place:
         web = cell(r, 'web'); web = web if re.match(r'https?://', web) else ''
