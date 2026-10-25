@@ -55,11 +55,13 @@ This chat OWNS the Activators Lounge (Brandon Oct 24 6:03 PM): its launch (menu 
 Rule: work goes to the chat that owns it. If a job lands in the wrong chat, that chat writes a short dated hand-off note in the OWNER's topic file instead of doing it.
 1. Website: every page's look, menu/header/footer (news.html + assemble.py), kpc-gate.js PUBLIC list, search/Find/Tool Box, forms + approvals, guides, CW room, kids room, themes/dark mode.
 2. Maps & park data: boundaries + answer keys (KY/US/Canada/world), data/state-gis.json, trails, outlines, campground + camping DATA (state camps bot, campstate files), closures data + closure watcher sources, 2-fers/3-fers, Park Control, trip planners, Am I in the Park, Map Rep, Info Finder, Kit. Also the bots that BUILD park data (keys, boundary check, trails, state camps, new lands).
-3. Lounges + Logger: Activators Lounge, both Hunters Lounges + Park Checker, Park Tracker, Rarely Activated, Top 25, SOTA checker, website KPC Logger + DIGI tab, spots pages (On The Air Now, Spot Me), kpc-my-parks.js.
+3. Lounges + Logger: Activators Lounge, both Hunters Lounges + Park Checker, Park Tracker, Rarely Activated, Top 25, SOTA checker, website KPC Logger + DIGI tab, spots pages (On The Air Now, Spot Me), kpc-my-parks.js, and the activator tool PAGES that read chat 2's data: Campgrounds & Cabins (page + kpc-campgrounds*.js + the member-places review bot kpc_campground_notes.py), Park Sheet, Park Notes pages. The data files under them stay chat 2's.
 4. App: the kpc-app repo, kpc-links app/ (version.json, packs), FT8 decoder changes (kpc-ft8.js/.wasm).
 5. Bots: the bots that POST or TALK: Discord relay/mod/watch/helper, Facebook posts + comments, email relay + subscribers, club posts (Lonely Parks, Park of the Week, Event Weather, busy bands), closure ANNOUNCEMENTS, workflow schedules, setup-todo.md (secrets). Not park-data building (that is 2).
 6. Campout & events: campout pages, Kentucky Radio Calendar (kpc_ses.py, kpc_events.py, kpc_contests.py), videos, KPC27 challenges scorer.
 7. HQ: notes + to-do lists, what's next, shared-file watch, weekly status. Small fixes only.
+
+- DECIDED (HQ Oct 25 8:00 AM): ACTIVATORS LOUNGE LAUNCH stays ONE pass by chat 3 (Brandon Oct 24 6:03 PM gave chat 3 the launch incl. menu + See More fix). For that launch only, chat 3 may edit news.html + run the header/menu update on every page; it then writes a dated line in website.md so chat 1 knows the menu changed. Any other menu change = chat 1.
 
 ## HQ WATCH LIST (KPC HQ, Oct 25)
 - kpc-cat.js has FORKED: website 404 lines, app 539 (app added port memory, meters, radio on/off, Windows RTS). The Oct 22 mode-before-frequency fix is in both. Rule from now: a radio-control fix made in one copy is noted in BOTH topic files, and chat 3 (CAT in the public Hunters Lounge) copies from the app's version, not the other way round.
