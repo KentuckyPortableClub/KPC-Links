@@ -62,6 +62,7 @@ def core(n):  # Oct 18: Hawaiian okina / accents dropped ('Makapuʻu' = 'makapuu
     n = ''.join(c for c in n if unicodedata.category(c) != 'Mn')
     return re.sub(r'\s+', ' ', re.sub(GEN, ' ', n.lower())).strip()
 def kind(t, n):
+    if re.search(r'wild (and|&) scenic river|recreational river|scenic river', t or '', re.I): return 'WSR'   # Oct 25: river lines
     if 'National Recreation Trail' in t: return 'NRT'
     if 'Trail' in t: return 'ST'
     return 'TP'
@@ -84,6 +85,38 @@ def forest(name, la, lo):
         return lines or None
     except Exception as e:
         note('Forest Service', f'{name}: {str(e)[:120]}'); return None
+# ---------------------------------------------------------------- 1c. Wild and Scenic Rivers (Oct 25, Brandon's list: 'wild and scenic river lines')
+# The national Wild and Scenic Rivers System layer (Forest Service EDW, made with NPS, BLM and FWS: all 208 rivers): the
+# river's own designated line. Read once, then matched by name near the POTA pin (many rivers share a name).
+WSRL = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/0'
+WSRF = None
+RGEN = r'\b(national|blm|state|wild|and|scenic|recreational|river|rivers|creek|fork|the|of|wsr)\b'
+def _rcore(n): return re.sub(r'\s+', ' ', re.sub(RGEN, ' ', core(n))).strip()
+def wsr(name, la, lo, lim):
+    global WSRF
+    try:
+        if WSRF is None:
+            WSRF, off = [], 0
+            while True:
+                j = get(WSRL + '/query?' + urllib.parse.urlencode({'where': '1=1', 'outFields': 'wsr_river_name,wsr_river_shortname,agency', 'returnGeometry': 'true',
+                                                                   'outSR': 4326, 'maxAllowableOffset': 0.0003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}))
+                fs = j.get('features', [])
+                for f in fs:
+                    a = f.get('attributes') or {}
+                    WSRF.append((a.get('wsr_river_name') or '', a.get('wsr_river_shortname') or '', a.get('agency') or '',
+                                 [[[round(x, 5), round(y, 5)] for x, y in pth] for pth in (f.get('geometry') or {}).get('paths', [])]))
+                if not fs or (not j.get('exceededTransferLimit') and len(fs) < 1000): break
+                off += len(fs)
+            note('Wild and Scenic Rivers', f'{len(WSRF)} river pieces read')
+        want, full = _rcore(name), core(name)
+        if not want: return None
+        hit = [(n, sn, ag, ls) for n, sn, ag, ls in WSRF if _rcore(sn) == want or _rcore(n) == want]
+        # the pieces of the right river: same name AND within reach of this park's pin
+        hit = [(n, sn, ag, ls) for n, sn, ag, ls in hit if ls and min(km(la, lo, q[1], q[0]) for l in ls for q in l) <= lim]
+        if not hit: return None
+        return [l for _, _, _, ls in hit for l in ls], 'National Wild and Scenic Rivers System (USFS, NPS, BLM, FWS): ' + (hit[0][2] or '')
+    except Exception as e:
+        note('Wild and Scenic Rivers', f'{name}: {str(e)[:120]}'); return None
 # ---------------------------------------------------------------- 2. official agency layers (Oct 18, Brandon: 'look state first etc then unofficial last')
 STN = {'AL':'Alabama','AR':'Arkansas','AZ':'Arizona','CA':'California','CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia','IA':'Iowa','ID':'Idaho','IL':'Illinois',
        'IN':'Indiana','KS':'Kansas','KY':'Kentucky','LA':'Louisiana','MA':'Massachusetts','MD':'Maryland','ME':'Maine','MI':'Michigan','MN':'Minnesota','MO':'Missouri','MS':'Mississippi','MT':'Montana',
@@ -244,16 +277,40 @@ try:
         if r[0] == 'POTA': LOC[r[1]] = (r[3], r[4])
 except Exception: pass
 report = {'updated': datetime.date.today().isoformat(), 'found': [], 'missing': []}
-_ran = lambda s: s in STATES or ('CANADA' in [z.upper() for z in STATES] and str(s).startswith('CA-'))
+# Oct 25: a run that hit the job's time limit was cut off with nothing saved (2 hours lost). The bot now stops itself
+# before the limit (MINUTES, default 150) and saves; parks it did not reach keep last run's rows and lines.
+T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
+OLDROWS = {}
+_WSRREFS = set()
+if 'WSR' in [z.upper() for z in STATES]:   # Oct 25: a rivers-only run replaces just the river parks' rows
+    for _fp in os.listdir('data/parkinfo'):
+        if re.fullmatch(r'US-[A-Z]{2}\.json', _fp):
+            try: _WSRREFS |= {r for r, v in json.load(open('data/parkinfo/' + _fp))['parks'].items() if kind(v[2] or '', v[0]) == 'WSR'}
+            except Exception: pass
+_ran0 = lambda s: s in STATES or ('CANADA' in [z.upper() for z in STATES] and str(s).startswith('CA-'))
+_ran = _ran0
 try:  # keep last run's rows for the states not run this time (Oct 17), so the report covers every state
     _old = json.load(open(f'{OUT}/state-report.json'))
-    report['found'] = [x for x in _old.get('found', []) if not _ran(x[2])]; report['missing'] = [x for x in _old.get('missing', []) if not _ran(x[2])]
-    report['noline'] = [x for x in _old.get('noline', []) if not _ran(x[2])]
+    _rr = lambda x: _ran(x[2]) or x[0] in _WSRREFS
+    report['found'] = [x for x in _old.get('found', []) if not _rr(x)]; report['missing'] = [x for x in _old.get('missing', []) if not _rr(x)]
+    report['noline'] = [x for x in _old.get('noline', []) if not _rr(x)]
+    for _k in ('found', 'missing', 'noline'):
+        for x in _old.get(_k, []):
+            if _rr(x): OLDROWS.setdefault(x[0], []).append((_k, x))
 except Exception: pass
 def jobs():
     """(label, [(ref, row, iso)]) per state; 'CANADA' (Oct 17, Brandon: 'Canada outlines and trail') = every CA- POTA park
     whose type or name says Trail, from data/parkinfo/CA.json (province = field 10), searched in that province."""
     for st in STATES:
+        if st.upper() == 'WSR':
+            out = []
+            for fp in sorted(os.listdir('data/parkinfo')):
+                if not re.fullmatch(r'US-[A-Z]{2}\.json', fp): continue
+                try: d = json.load(open('data/parkinfo/' + fp))
+                except Exception: continue
+                out += [(r, v, fp[:-5]) for r, v in d['parks'].items() if r not in NAT and kind(v[2] or '', v[0]) == 'WSR']
+            yield 'WSR', out
+            continue
         if st.upper() == 'CANADA':
             try: d = json.load(open('data/parkinfo/CA.json'))
             except Exception: note('Canada', 'no park file'); continue
@@ -265,17 +322,27 @@ def jobs():
         yield st, [(r, v, f'US-{st}') for r, v in d['parks'].items() if r not in NAT and (
             ('Trail' in (v[2] or '') and 'National Scenic' not in (v[2] or '') and 'National Historic' not in (v[2] or ''))
             or ((v[2] or '') == 'State Park' and re.search(r'\bTrail\b', v[0]) and not re.search(r'Trail of Tears', v[0])))]
+OUT_OF_TIME = False
 for st, cand in jobs():
     got = 0
     for ref, v, iso in cand:
         stc = iso[3:] if iso.startswith('US-') else iso
         if ref in SKIP: continue
+        if OUT_OF_TIME or time.time() - T0 > LIMIT:
+            if not OUT_OF_TIME: note('State trails', f'stopped for time at {ref}; the parks not reached keep last run\'s results'); OUT_OF_TIME = True
+            for _k, x in OLDROWS.get(ref, []): report.setdefault(_k, []).append(x)
+            continue
         name, typ = v[0], v[2] or ''
         la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, stc, 'no pin']); continue
         lim = CHECK_KM if kind(typ, name) == 'TP' else CHECK_KM_TRAIL
         lines, by, off, near = None, '', False, 1e9
         for nm in [name] + ALIAS.get(ref, []):   # Oct 18: also the other names the maps use
+            if kind(typ, name) == 'WSR':
+                got_r = wsr(nm, la, lo, lim)
+                if got_r: lines, by, off = got_r[0], got_r[1], True
+                if lines: near = min(km(la, lo, q[1], q[0]) for l in lines for q in l); break
+                continue   # a river is drawn from the river layer only (an OpenStreetMap waterway would be the whole river, not the designated stretch)
             if 'National Recreation' in typ:
                 lines = forest(nm, la, lo); by, off = ('US Forest Service', True) if lines else ('', False)
             if not lines and (iso.startswith('US-') or iso[3:5].isalpha()):   # Oct 19: Canada too (provincial + Parks Canada layers)
