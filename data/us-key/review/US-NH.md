@@ -8,10 +8,10 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **187 of 205** parks joined
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-11849 Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → on Wantastiquet Mountain Natural Area (~913 ac)
-- US-2654 Gardner Memorial Wayside State Park (State Park) → on Gile State Forest (~0 ac)
-- US-2685 Winslow State Park (State Park) → on Kearsarge Mt State Forest (~0 ac)
-- US-4918 Kearsarge Mountain State Forest (State Forest) → on Kearsarge Mt State Forest (~0 ac)
-- US-8024 Taylor Saw Mill State Historic Site (State Historic Site) → on Ballard State Forest (~0 ac)
+- US-2654 Gardner Memorial Wayside State Park (State Park) → on Gile State Forest (~0 ac); Gile State Forest (~0 ac)
+- US-2685 Winslow State Park (State Park) → on Kearsarge Mt State Forest (~0 ac); Kearsarge Mt State Forest (~0 ac)
+- US-4918 Kearsarge Mountain State Forest (State Forest) → on Kearsarge Mt State Forest (~0 ac); Kearsarge Mt State Forest (~0 ac)
+- US-8024 Taylor Saw Mill State Historic Site (State Historic Site) → on Ballard State Forest (~0 ac); Ballard State Forest (~0 ac)
 
 ## Nothing found in PAD-US
 
