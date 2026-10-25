@@ -1,0 +1,360 @@
+{
+ "about": "Kentucky hunting seasons 2026-27 (Kentucky Dept. of Fish & Wildlife pages; outside research bot round 7, start dates checked on KDFWR's pages Oct 25 2026) and WMA-specific closures. Used for the hunting warning on park cards (WMAs, forests, recreation areas). orange = hunter orange required during that season.",
+ "seasons": [
+  {
+   "name": "Deer: youth-only gun",
+   "seg": [
+    [
+     "2026-10-10",
+     "2026-10-18"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Deer: early muzzleloader",
+   "seg": [
+    [
+     "2026-10-17",
+     "2026-10-18"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Deer: modern gun",
+   "seg": [
+    [
+     "2026-11-14",
+     "2026-11-29"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Deer: late muzzleloader",
+   "seg": [
+    [
+     "2026-12-12",
+     "2026-12-20"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Deer: free youth weekend",
+   "seg": [
+    [
+     "2026-12-26",
+     "2026-12-27"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Deer: archery",
+   "seg": [
+    [
+     "2026-09-05",
+     "2027-01-18"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 0
+  },
+  {
+   "name": "Deer: crossbow",
+   "seg": [
+    [
+     "2026-09-19",
+     "2027-01-18"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Deer.aspx",
+   "orange": 0
+  },
+  {
+   "name": "Elk: bull firearm",
+   "seg": [
+    [
+     "2026-09-26",
+     "2026-09-30"
+    ],
+    [
+     "2026-10-03",
+     "2026-10-07"
+    ]
+   ],
+   "where": "elk zone (16 eastern counties)",
+   "link": "https://fw.ky.gov/Hunt/Pages/Elk-Hunting-Regs.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Elk: cow firearm",
+   "seg": [
+    [
+     "2026-11-28",
+     "2026-12-02"
+    ],
+    [
+     "2027-01-02",
+     "2027-01-06"
+    ]
+   ],
+   "where": "elk zone (16 eastern counties)",
+   "link": "https://fw.ky.gov/Hunt/Pages/Elk-Hunting-Regs.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Black bear: firearm",
+   "seg": [
+    [
+     "2026-12-12",
+     "2026-12-16"
+    ]
+   ],
+   "where": "bear zones 1-3 (eastern Kentucky)",
+   "link": "https://fw.ky.gov/Hunt/Pages/Bear-Hunting.aspx",
+   "orange": 1
+  },
+  {
+   "name": "Turkey: fall shotgun",
+   "seg": [
+    [
+     "2026-10-24",
+     "2026-10-30"
+    ],
+    [
+     "2026-12-05",
+     "2026-12-11"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/ky-hunting-fishing-seasons-planner.aspx",
+   "orange": 0
+  },
+  {
+   "name": "Waterfowl: ducks",
+   "seg": [
+    [
+     "2026-11-26",
+     "2026-11-29"
+    ],
+    [
+     "2026-12-07",
+     "2027-01-31"
+    ]
+   ],
+   "where": "statewide",
+   "link": "https://fw.ky.gov/Hunt/Pages/Waterfowl-Hunting.aspx",
+   "orange": 0
+  }
+ ],
+ "wma": {
+  "US-10121": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
+  },
+  "US-10124": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=155"
+  },
+  "US-10128": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9715"
+  },
+  "US-10131": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9713"
+  },
+  "US-10137": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9709"
+  },
+  "US-10138": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9711"
+  },
+  "US-10139": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9078"
+  },
+  "US-10140": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=227"
+  },
+  "US-10141": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=186"
+  },
+  "US-10145": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9224"
+  },
+  "US-10146": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=37"
+  },
+  "US-10148": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=146"
+  },
+  "US-10153": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9609"
+  },
+  "US-10155": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9105"
+  },
+  "US-10157": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9208"
+  },
+  "US-10158": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=36"
+  },
+  "US-10159": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=35"
+  },
+  "US-10160": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9217"
+  },
+  "US-10161": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9219"
+  },
+  "US-10162": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9705"
+  },
+  "US-10164": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=170"
+  },
+  "US-10166": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9232"
+  },
+  "US-10167": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9613"
+  },
+  "US-10168": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9707"
+  },
+  "US-10170": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9116"
+  },
+  "US-10171": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9094"
+  },
+  "US-11274": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9721"
+  },
+  "US-12083": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9727"
+  },
+  "US-1255": {
+   "note": "Closed for the October muzzleloader deer season; modern gun deer season is quota hunt only.",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=25"
+  },
+  "US-12974": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=9006"
+  },
+  "US-3793": {
+   "closed": [
+    [
+     "10-15",
+     "03-15",
+     "Main unit closed to the public (waterfowl)"
+    ]
+   ],
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=224"
+  },
+  "US-3794": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=39"
+  },
+  "US-3796": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9203"
+  },
+  "US-3797": {
+   "closed": [
+    [
+     "10-15",
+     "03-15",
+     "Swan Lake Unit closed (waterfowl refuge), except the observation area"
+    ]
+   ],
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=222"
+  },
+  "US-3800": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9004"
+  },
+  "US-3805": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=153"
+  },
+  "US-3806": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=148"
+  },
+  "US-3807": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9032"
+  },
+  "US-3808": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=40"
+  },
+  "US-3809": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=34"
+  },
+  "US-3812": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=154"
+  },
+  "US-3815": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=132"
+  },
+  "US-3816": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=14"
+  },
+  "US-3817": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=238"
+  },
+  "US-3819": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=21"
+  },
+  "US-3820": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=169"
+  },
+  "US-3822": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=9011"
+  },
+  "US-3823": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9117"
+  },
+  "US-3825": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=15"
+  },
+  "US-3827": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=176"
+  },
+  "US-3828": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=229"
+  },
+  "US-3829": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=171"
+  },
+  "US-3830": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=230"
+  },
+  "US-3834": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=128"
+  },
+  "US-3836": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9202"
+  },
+  "US-3837": {
+   "note": "During quota deer hunts and the open firearm deer hunt, only drawn hunters and one helper each may enter.",
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=137"
+  },
+  "US-3839": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=23"
+  },
+  "US-3840": {
+   "link": "https://app.fw.ky.gov/public_lands_search/detail.aspx?Kdfwr_id=192"
+  },
+  "US-9756": {
+   "link": "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9717"
+  }
+ }
+}

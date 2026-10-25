@@ -106,7 +106,7 @@
 <div class="kit-btns"><a class="gold" href="${g}${P.la},${P.lo}" target="_blank" rel="noopener">DIRECTIONS ↗</a>${P.off ? `<a href="${esc(P.off)}" target="_blank" rel="noopener">OFFICIAL MAP ↗</a>` : ''}${P.web && P.web !== P.off ? `<a href="${esc(P.web)}" target="_blank" rel="noopener">WEBSITE ↗</a>` : ''}<a href="${esc(progLink[1])}" target="_blank" rel="noopener">${progLink[0]}</a>${P.prog !== 'SOTA' ? `<a href="kpc-park-info.html?q=${encodeURIComponent(P.c)}">PARK INFO ›</a>` : ''}</div></section>
  ${!P.ky && P.us ? '<div id="kitUS"></div>' : ''}<a class="kit-spot" id="kitSpot" href="kpc-spot-me.html?${spotKey[P.prog]}=${encodeURIComponent(P.c)}">📣 SPOT ME AT ${esc(P.c)} ›</a>
 <section class="kit-sec"><h3>➕ OTHER REFERENCES AT THIS SPOT</h3><div id="kitMulti"><p class="kit-small">Checking POTA, WWFF and SOTA…</p></div></section>
-<section class="kit-sec"><h3>⚠ HEADS UP</h3>${P.ky ? (conds.length ? conds.map(c => `<div class="kit-alert"><b>${esc(c.kind)}</b>${c.details ? ' · ' + esc(c.details) : ''}<span>Reported ${esc(c.seen || '')}${c.call ? ' by ' + esc(c.call) : ''}${c.ref !== P.c ? ' (for ' + esc(c.ref) + ')' : ''}</span></div>`).join('') : '<p>No closures or problems reported by members in the last 30 days.</p>') +
+<section class="kit-sec"><h3>⚠ HEADS UP</h3>${P.ky ? '<div id="kitHunt"></div>' : ''}${P.ky ? (conds.length ? conds.map(c => `<div class="kit-alert"><b>${esc(c.kind)}</b>${c.details ? ' · ' + esc(c.details) : ''}<span>Reported ${esc(c.seen || '')}${c.call ? ' by ' + esc(c.call) : ''}${c.ref !== P.c ? ' (for ' + esc(c.ref) + ')' : ''}</span></div>`).join('') : '<p>No closures or problems reported by members in the last 30 days.</p>') +
  (notes.length ? '<h4>Latest member tips</h4>' + notes.map(n => `<div class="kit-note">${esc(n.text)}<span>${esc(n.type || 'Tip')} · ${esc(n.call || '')} · ${esc(n.date || '')}</span></div>`).join('') : '') +
  `<div class="kit-btns"><a class="alt" href="kpc-park-notes.html?ref=${encodeURIComponent(kp ? kp.c : P.c)}">ALL PARK NOTES ›</a>${CAMP && CAMP.closures ? `<a class="alt" href="${esc(CAMP.closures.url)}" target="_blank" rel="noopener">STATE PARK CLOSURES ↗</a>` : ''}${/ County, Kentucky$/.test(P.where || '') ? `<a class="alt" href="kpc-ky-pva.html?county=${encodeURIComponent(P.where.replace(/ County, Kentucky$/, ''))}">WHO OWNS THE LAND? (COUNTY PVA) ›</a>` : ''}</div>`
  : conds.map(c => `<div class="kit-alert"><b>${esc(c.kind)}</b>${c.details ? ' · ' + esc(c.details) : ''}<span>Seen ${esc(c.seen || '')}${c.link ? ` · <a href="${esc(c.link)}" target="_blank" rel="noopener">the agency's page ↗</a>` : ''}</span></div>`).join('') + `<p>Check ${P.web ? '<a href="' + esc(P.web) + '" target="_blank" rel="noopener">the official website</a>' : 'the official website'} for closures, and the ${P.prog} page for recent activations.</p><div id="kitUSNotes"></div><div class="kit-btns"><a class="alt" href="kpc-park-notes-us.html?ref=${encodeURIComponent(P.c)}#find">PARK NOTES (ALL STATES) ›</a></div>`}</section>
@@ -122,7 +122,28 @@
     autoRefresh(P);
     others(P).then(L => drawMulti(P, L)).catch(() => drawMulti(P, []));
     if (!P.ky && P.us) usExtras(P);
+    if (P.ky) kyHunt(P);
     window.scrollTo({ top: $('kitOut').offsetTop - 70, behavior: 'smooth' });
+  }
+  /* Oct 25 (round 7, Kentucky Fish & Wildlife's own pages): hunting seasons on the lands hunters use (WMAs, forests,
+     recreation areas), today or starting within a week, plus a WMA's own closures (data/ky-hunting.json) */
+  async function kyHunt(P) {
+    const el = $('kitHunt'); if (!el) return;
+    const H = await jload('data/ky-hunting.json'); if (!H || cur !== P) return;
+    const typ = (P.park && P.park.t) || P.t || '', w = (H.wma || {})[P.c];
+    if (!/WMA|Forest|Recreation Area|River \/ Wilderness|Wildlife/i.test(typ) && !w) return;
+    const day = new Date(), iso = d => d.toISOString().slice(0, 10), today = iso(day), soon = iso(new Date(Date.now() + 7 * 864e5));
+    const fmt = s => new Date(s + 'T12:00:00').toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const L = [];
+    (H.seasons || []).forEach(x => (x.seg || []).forEach(g => { if (g[1] >= today && g[0] <= soon) L.push({ x, g, now: g[0] <= today }); }));
+    L.sort((a, b) => (b.x.orange - a.x.orange) || a.g[0].localeCompare(b.g[0]));
+    const md = today.slice(5), cl = ((w && w.closed) || []).filter(c => c[0] <= c[1] ? (md >= c[0] && md <= c[1]) : (md >= c[0] || md <= c[1]));
+    if (!L.length && !cl.length && !(w && w.note)) return;
+    const gun = L.some(o => o.x.orange && o.now);
+    el.innerHTML = `<div class="kit-alert"><b>🦌 HUNTING ${gun ? 'SEASON NOW: WEAR BLAZE ORANGE' : 'SEASONS'}</b>` +
+      L.slice(0, 5).map(o => `<br>${o.now ? '' : 'Starts soon: '}${esc(o.x.name)} ${fmt(o.g[0])}–${fmt(o.g[1])}${o.x.where !== 'statewide' ? ' (' + esc(o.x.where) + ')' : ''}`).join('') +
+      cl.map(c => `<br><b>Closed here now:</b> ${esc(c[2])}`).join('') + (w && w.note ? `<br>${esc(w.note)}` : '') +
+      `<span>From Kentucky Fish &amp; Wildlife. ${w && w.link ? `<a href="${esc(w.link)}" target="_blank" rel="noopener">This area's hunting rules ↗</a>` : `<a href="https://fw.ky.gov/Hunt/Pages/default.aspx" target="_blank" rel="noopener">Season dates ↗</a>`}</span></div>`;
   }
   /* Other states (Oct 16): park type / how to activate / state parks site from data/parkinfo, tips from
      kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the KPC Trip Planner) */
@@ -287,7 +308,7 @@
     try {
       const app = await caches.open(APP);
       const scripts = [...document.querySelectorAll('script[src],link[rel=stylesheet][href]')].map(e => e.src || e.href).filter(u => u.startsWith(location.origin) || /unpkg\.com\/leaflet@1\.9\.4/.test(u));
-      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
+      const files = ['kpc-kit.html', 'kpc-in-park.html', 'kpc-in-park.js', 'kpc-bounds.js', 'kpc-map-tools.js', 'kpc-padus-layer.js', 'kpc-place-suggest.js', 'kpc-ky-data.json', 'kpc-conditions.json', 'kpc-park-notes.json', 'kpc-campgrounds.json', 'data/ky-hunting.json', 'KPC-logo.png'].concat(B.KY.map(L => L.file), B.tilesUsed(), p.prog === 'WWFF' && !p.ky ? ['data/wwff/' + p.c.split('-')[0] + '.json'] : []);
       const urls = [...new Set(files.map(f => new URL(f, location.href).href).concat(scripts).concat(['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png'].map(f => 'https://unpkg.com/leaflet@1.9.4/dist/' + f)))];
       let ok = 0;
       for (const u of urls) { try { const r = await fetch(u, { cache: 'reload' }); if (r.ok) { const k = new URL(u); if (k.origin === location.origin) k.search = ''; await app.put(k.href, r); ok++; } } catch (e) {} }
