@@ -1,0 +1,13 @@
+{
+ "note": "Layers a person ruled out for the weekly state-camps bot (kpc_state_camps.py). A layer whose URL contains any fragment below is never read. Oct 24 2026 first runs: hotel lists, county parcels, campus buildings, history sites.",
+ "deny": [
+  "SIN_GreenLodgings",
+  "Hosted/416Campgrounds",
+  "Recreational_Facility_Locations",
+  "1xFZPtKn1wKC6POA/ArcGIS/rest/services/Lodging",
+  "dil_land_assets_parking",
+  "MD_CampusFacilities",
+  "PSU_Commonwealth",
+  "State_Parks/MapServer/12"
+ ]
+}
