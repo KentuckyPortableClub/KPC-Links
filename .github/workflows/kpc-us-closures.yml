@@ -1,0 +1,44 @@
+name: KPC US park closures (state agencies)
+# Oct 25 2026 (chat 2; Brandon's maps to-do: 'closures for every state'). Reads the state agencies' own closure feeds
+# (round 4 research) and ties them to POTA parks: data/alerts/us-parks.json + 'uc-' entries in kpc-conditions.json.
+# Posts nothing. Every 6 hours + by hand. Never fails (a failed run emails Brandon).
+on:
+  schedule:
+    - cron: '23 1,7,13,19 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-us-closures
+  cancel-in-progress: false
+jobs:
+  closures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - name: Read the closure feeds
+        continue-on-error: true
+        timeout-minutes: 20
+        run: python3 .github/scripts/kpc_us_closures.py || true
+      - name: Save
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          cp data/alerts/us-parks.json /tmp/us-parks.json 2>/dev/null || exit 0
+          cp data/status/kpc_us_closures.json /tmp/st.json 2>/dev/null || true
+          for i in 1 2 3 4; do
+            git add data/alerts/us-parks.json kpc-conditions.json data/status/kpc_us_closures.json 2>/dev/null || true
+            git diff --cached --quiet && exit 0
+            git commit -qm 'US park closures' || exit 0
+            git push -q origin HEAD:main && exit 0
+            # someone else pushed first: start again from theirs and redo only our part
+            git fetch -q origin main && git reset -q --hard origin/main
+            cp /tmp/us-parks.json data/alerts/us-parks.json
+            cp /tmp/st.json data/status/kpc_us_closures.json 2>/dev/null || true
+            python3 .github/scripts/kpc_us_closures.py --merge || true
+            sleep $((i * 7))
+          done
+          true
