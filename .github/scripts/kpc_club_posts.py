@@ -172,6 +172,55 @@ def park_of_the_week(state):
     return ok
 
 
+# ------------------------------------------------------------------ WMA closure heads-up (Wednesday before)
+def wma_closures(state, today, force=False):
+    """Wednesday: which Kentucky WMAs are closed to non-hunters THIS coming weekend (Brandon Oct 25).
+    Reads chat 2's entries in kpc-conditions.json: id starts 'wma-', ref, details, link (KDFWR page),
+    from + to (ISO dates, the closure). No entry touching the weekend = no post. Never posts twice."""
+    if not force and today.weekday() != 2:
+        return False
+    sat = today + datetime.timedelta(days=(5 - today.weekday()) % 7 or 7)
+    sun = sat + datetime.timedelta(days=1)
+    key = sat.isoformat()
+    if not force and state.get('wma_for') == key:
+        return False
+    names = {c: p.get('n') for c, p in park_by_ref().items()}
+    rows = []
+    for it in (load('kpc-conditions.json', {}).get('items') or []):
+        if not str(it.get('id', '')).startswith('wma-'):
+            continue
+        try:
+            a = datetime.date.fromisoformat(str(it.get('from'))[:10])
+            b = datetime.date.fromisoformat(str(it.get('to') or it.get('from'))[:10])
+        except ValueError:
+            continue
+        if a <= sun and b >= sat:
+            rows.append((names.get(it.get('ref')) or it.get('name') or it.get('ref'), a, b, it))
+    if not rows:
+        notice(f'No WMA closures for {sat:%b} {sat.day}-{sun.day}; no heads-up post.')
+        return False
+    rows.sort(key=lambda r: str(r[0]))
+    fmt = lambda d: f'{d:%b} {d.day}'
+    L = [f'These Kentucky WMAs are closed to non-hunters {fmt(sat)}-{sun.day}:', '']
+    for n, a, b, it in rows:
+        span = fmt(a) if a == b else f'{fmt(a)} to {fmt(b)}'
+        L.append(f"• **{n}**: {span}" + (f" · [KDFWR page]({it['link']})" if it.get('link') else ''))
+    L += ['', 'Hunters may be in the woods: wear blaze orange if you are anywhere near a hunt, and check the '
+              'KDFWR page before you drive.']
+    body = '\n'.join(L)
+    title = f'WMA closures this weekend ({fmt(sat)}-{sun.day})'
+    if DRY:
+        print(f'--- {title} ---\n{body}\n')
+        return True
+    ok = to_discord(('KPC_PARKS_WEBHOOK', 'KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK'), title, body, 0xE65100,
+                    f'{SITE}kpc-spots.html')
+    fb = [title, ''] + [l.replace('**', '') for l in L[2:]]
+    to_facebook('\n'.join(re.sub(r'\[KDFWR page\]\((.*?)\)', r'\1', x) for x in fb))
+    if ok:
+        state['wma_for'] = key
+    return ok
+
+
 # ------------------------------------------------------------------ the quiet ones
 def lonely_parks(state):
     rows = (load('kpc-top25.json', {}).get('acts') or [])
@@ -357,6 +406,8 @@ def main():
     want_lonely = ONLY == 'lonely' or (not ONLY and today.weekday() == LONELY_DAY
                                        and state.get('lonely_on') != today.isoformat())
     want_wx = ONLY == 'weather' or not ONLY
+    if ONLY == 'wma':
+        want_wx = False
 
     if want_park and park_of_the_week(state):
         state['park_on'] = today.isoformat()
@@ -366,6 +417,8 @@ def main():
         did.append('the quiet ones')
     if ONLY in ('contests', 'busy') or (not ONLY and today.weekday() == POST_DAY):
         did += busy_bands(state, today, force=ONLY in ('contests', 'busy'))
+    if wma_closures(state, today, force=ONLY == 'wma'):
+        did.append('WMA closure heads-up')
     if want_wx:
         r = event_weather(state, today)
         if r:
