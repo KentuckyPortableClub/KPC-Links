@@ -323,6 +323,23 @@ def jobs():
         yield st, [(r, v, f'US-{st}') for r, v in d['parks'].items() if r not in NAT and (
             ('Trail' in (v[2] or '') and 'National Scenic' not in (v[2] or '') and 'National Historic' not in (v[2] or ''))
             or ((v[2] or '') == 'State Park' and re.search(r'\bTrail\b', v[0]) and not re.search(r'Trail of Tears', v[0])))]
+# Oct 25 (round 6, outside research bot; chat 2): lines picked by hand = the exact official layer + filter for one park
+try: HAND = json.load(open('data/trails-hand.json')).get('parks', {})
+except Exception: HAND = {}  # noqa: E722
+def hand_lines(ref):
+    out, by = [], ''
+    for part in HAND[ref]['parts']:
+        off = 0
+        for _ in range(10):
+            j = get(part['url'] + '/query?' + urllib.parse.urlencode({'where': part.get('where') or '1=1', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
+                                                                    'maxAllowableOffset': 0.0003, 'f': 'json', 'resultOffset': off, 'resultRecordCount': 1000}), t=90)
+            if 'error' in j: raise Exception(str(j['error'])[:150])
+            fs = j.get('features', [])
+            for f in fs: out += [[[round(x, 5), round(y, 5)] for x, y in pth] for pth in (f.get('geometry') or {}).get('paths', [])]
+            if not fs or not j.get('exceededTransferLimit'): break
+            off += len(fs)
+        by = by or part.get('by') or ''
+    return out, (by + ' (official layer, picked by hand)').strip()
 OUT_OF_TIME = False
 for st, cand in jobs():
     got = 0
@@ -338,7 +355,15 @@ for st, cand in jobs():
         if la is None: report['missing'].append([ref, name, stc, 'no pin']); continue
         lim = CHECK_KM if kind(typ, name) == 'TP' else CHECK_KM_TRAIL
         lines, by, off, near = None, '', False, 1e9
-        for nm in [name] + ALIAS.get(ref, []):   # Oct 18: also the other names the maps use
+        if ref in HAND:
+            try:
+                hl, hb = hand_lines(ref)
+                hn = min((km(la, lo, q[1], q[0]) for l in hl for q in l), default=1e9)
+                if hl and hn <= max(lim, 50): lines, by, off, near = hl, hb, True, hn
+                elif hl: note(ref, 'hand-picked line is far from the POTA pin: not used')
+            except Exception as e:  # noqa: BLE001
+                note(ref, f'hand-picked layer not read: {str(e)[:100]}')
+        for nm in ([] if lines else [name] + ALIAS.get(ref, [])):   # Oct 18: also the other names the maps use
             if kind(typ, name) == 'WSR':
                 got_r = wsr(nm, la, lo, lim)
                 if got_r: lines, by, off = got_r[0], got_r[1], True
@@ -375,7 +400,7 @@ for st, cand in jobs():
             _seen.add(k); _u.append(l)
         lines = [dp(l, 0.0003) for l in _u]
         total = sum(seglen(l) for l in lines)
-        if kind(typ, name) == 'TP' and total < 4: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
+        if kind(typ, name) == 'TP' and total < 4 and ref not in HAND: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
         f = {'type': 'Feature', 'properties': {'ref': ref, 'name': name}, 'geometry': {'type': 'MultiLineString', 'coordinates': lines}}
         save_json(f'{OUT}/{ref}.json', f)

@@ -70,7 +70,8 @@
 "WY": {
 "list": "https://wyo-prop-div.wyo.gov/contacts/assessor-contacts",
 "name": "Wyoming county assessors (Dept. of Revenue)",
-"say": "find {county} County and call that office (free)"
+"say": "open the statewide parcel viewer (owner names come from the county assessors), or find {county} County and call that office (free)",
+"map": "https://wyo-prop-div.maps.arcgis.com/home/index.html"
 },
 "NV": {
 "list": "https://tax.nv.gov/wp-content/uploads/2024/04/County-Assessors-Contact-List-9-7-23.pdf",
@@ -141,6 +142,16 @@
 "list": "https://www.maine.gov/revenue/taxes/property-tax",
 "name": "Maine property tax (towns do the assessing; the state handles the unorganized territory: 207-624-5600)",
 "say": "ask the town office, or the state for the unorganized territory"
+},
+"MD": {
+"map": "https://planning.maryland.gov/MSDC/Pages/91_property_mapping/md-property-view.aspx",
+"name": "Maryland MdProperty View (Maryland Dept. of Planning)",
+"say": "open the property map, find the summit and tap its parcel; owner records are with SDAT"
+},
+"ND": {
+"map": "https://north-dakota-state-parcel-program-ndgov.hub.arcgis.com/",
+"name": "North Dakota State Parcel Program (ND GIS)",
+"say": "open the statewide parcel viewer; owner names depend on the county, so call the county if it is blank"
 }
 }
 }

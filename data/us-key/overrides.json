@@ -2855,11 +2855,12 @@
   },
   "US-4178": {
    "join": [
-    "ind5037",
     "ind5036"
    ],
-   "why": "the closest official land; bigger or a different shape than the park (hand review Oct 22 (waiting list)) | Oct 25: the pin sits on the 556-acre Salamonie Lake tract (Lost Bridge), joined too",
-   "approx": true
+   "no": [
+    "ind5037"
+   ],
+   "why": "Oct 25 HQ recheck (round 5): Lost Bridge is only the Lost Bridge West SRA subunit (IN DNR 5036); the whole Salamonie Lake property (5037) holds four POTA parks"
   },
   "US-4179": {
    "join": [
@@ -4256,12 +4257,6 @@
    ],
    "why": "same place (hand review Oct 23)"
   },
-  "US-4398": {
-   "join": [
-    "2774"
-   ],
-   "why": "Oct 25 round 5 hand check (outside research bot)"
-  },
   "US-8319": {
    "join": [
     "216684"
@@ -4290,12 +4285,6 @@
    "approx": true,
    "why": "Oct 25 round 5 hand check (outside research bot)"
   },
-  "US-4475": {
-   "join": [
-    "2806"
-   ],
-   "why": "Oct 25 round 5 hand check (outside research bot)"
-  },
   "US-7528": {
    "join": [
     "52487",
@@ -4315,7 +4304,10 @@
    "join": [
     "201114"
    ],
-   "why": "Oct 25 round 5 hand check (outside research bot)"
+   "why": "Oct 25 round 5 hand check (outside research bot); HQ recheck: 201115 is Shakamak Prairie Nature Preserve (US-12019), names swapped in PAD-US",
+   "no": [
+    "201115"
+   ]
   },
   "US-2242": {
    "join": [

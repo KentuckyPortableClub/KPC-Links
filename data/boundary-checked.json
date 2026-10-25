@@ -2514,11 +2514,11 @@
    "date": "2026-10-25"
   },
   "US-2268": {
-   "v": "OUTLINE TOO SMALL",
+   "v": "WRONG LAND",
    "j": "Shakamak State Park",
-   "name": "Shakamak State Park, Indiana DNR",
+   "name": "Shakamak State Park (IN DNR ManagedLands OBJECTID 5085), Indiana DNR",
    "link": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
-   "note": "KPC has PAD-US 201115 (27 ac). Pin is within 100 m of Indiana DNR's 'Shakamak State Park' property and inside PAD-US 201114 (1,749 ac, labelled 'Shakamak Prairie Nature Preserve'), 2.3 km from KPC's piece. Missing: the main park.",
+   "note": "REVISED (was OUTLINE TOO SMALL): KPC's only piece, PAD-US 201115 (27 ac, labelled 'Shakamak State Park'), is actually IN DNR ManagedLands OBJECTID 5086, subunit 'Shakamak Prairie Nature Preserve' (0.111 km²), which is a separate POTA park (US-12019, pin 39.1618,-87.2538). PAD-US has the two names swapped (201114, 1,749 ac, labelled 'Shakamak Prairie NP', is the state park). The pin is inside IN DNR OBJECTID 5085 'Shakamak State Park' (7.07 km²).",
    "date": "2026-10-25"
   },
   "US-2633": {
@@ -2642,11 +2642,11 @@
    "date": "2026-10-25"
   },
   "US-4178": {
-   "v": "OUTLINE RIGHT, PIN OFF",
+   "v": "WRONG LAND",
    "j": "Salamonie Lake",
-   "name": "Salamonie Lake (Lost Bridge SRA), Indiana DNR",
+   "name": "Lost Bridge West State Recreation Area (Salamonie Lake property; IN DNR ManagedLands OBJECTID 5036; possibly also Lost Bridge East SRA, OID 5035), Indiana DNR",
    "link": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer/0",
-   "note": "Pin is 0.34 km outside KPC's Indiana DNR 'Salamonie Lake' polygon, on the reservoir water (PAD-US 'Salamonie Reservoir'), and within 100 m of the DNR property. Edge case.",
+   "note": "REVISED (was OUTLINE RIGHT, PIN OFF): POTA has separate parks for Dora-New Holland (US-4177), Lost Bridge (US-4178), Mt Etna (US-4179) and Mt Hope (US-4180). KPC joined ind5037, the whole 'Salamonie Lake' subunit (43.7 km²). The pin is inside IN DNR ManagedLands OBJECTID 5036, subunit 'Lost Bridge West State Recreation Area' (2.25 km²); KPC's own key already lists a swap to ind5036. 'Lost Bridge East SRA' (OID 5035, 0.3 km²) is 1.63 km away and may also belong to this park.",
    "date": "2026-10-25"
   },
   "US-4236": {
@@ -2698,11 +2698,11 @@
    "date": "2026-10-25"
   },
   "US-4398": {
-   "v": "OUTLINE TOO SMALL",
+   "v": "OUTLINE RIGHT, PIN OFF",
    "j": "Cache National Forest",
-   "name": "Cache National Forest (Idaho part of Uinta-Wasatch-Cache NF), USDA Forest Service",
+   "name": "Uinta-Wasatch-Cache National Forest, USDA Forest Service",
    "link": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
-   "note": "ID outline is only PAD-US 2776 (24 ac sliver on the UT line). Missing PAD-US 2774 'Cache National Forest' ID, 263,730 ac. Pin is in Utah on PAD-US 2777 Cache NF (KPC's UT piece), 18.4 km from the ID sliver.",
+   "note": "REVISED (was OUTLINE TOO SMALL): The USFS admin boundary of Uinta-Wasatch-Cache NF inside Idaho is only 0.7 km², so KPC's 24-ac sliver (PAD-US 2776) is the right Idaho piece. PAD-US 2774 'Cache National Forest' ID (263,730 ac) has Loc_Nm 'Caribou-Targhee National Forest' and sits 99.9% inside the Caribou-Targhee admin boundary, so it belongs to that forest, not this one. The pin is in Utah inside UWC (PAD-US 2777, USFS ownership); KPC's union map contains it. Nothing is missing from the ID outline.",
    "date": "2026-10-25"
   },
   "US-4403": {
@@ -2722,11 +2722,11 @@
    "date": "2026-10-25"
   },
   "US-4475": {
-   "v": "OUTLINE TOO SMALL",
+   "v": "OUTLINE RIGHT, PIN OFF",
    "j": "Targhee National Forest",
    "name": "Caribou-Targhee National Forest, USDA Forest Service",
    "link": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer/0",
-   "note": "WY outline lacks PAD-US 2806 'Targhee National Forest' WY (37,247 ac). Pin is in Idaho near Soda Springs, outside the USFS admin boundary and 10 km from KPC's ID pieces, so the pin is also off. KPC's MT and UT rows have nothing joined.",
+   "note": "REVISED (was OUTLINE TOO SMALL): PAD-US 2806 'Targhee NF' WY (37,247 ac) has Loc_Nm Bridger-Teton and sits 99.7% inside the Bridger-Teton admin boundary, so it is not missing from this park. KPC's WY outline (PAD-US 2809, 2781, 2624, 2621) covers 100% of Caribou-Targhee USFS land in WY. The pin (42.7833,-111.55) is in Idaho, 10.0 km outside the C-T admin boundary near Soda Springs, on no PAD-US or FS land, so the pin is off. Separate flag: KPC's UT row lacks 28.8 km² of Caribou NF land in UT (around 41.949,-112.141), and its MT row lacks 5.7 km².",
    "date": "2026-10-25"
   },
   "US-4505": {
