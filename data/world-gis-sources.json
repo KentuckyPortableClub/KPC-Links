@@ -1,0 +1,465 @@
+{
+ "about": "Official protected-area GIS sources OUTSIDE the US, from Brandon's Official_GIS_Layers_Outside_US.xlsx (Oct 24 2026). For the boundary bots / world key (see notes/mapping.md); NOT used by the state camps bot.",
+ "countries": [
+  {
+   "country": "France",
+   "portal": "https://www.data.gouv.fr/",
+   "dataset": "https://www.data.gouv.fr/datasets/espaces-naturels-proteges",
+   "layer_types": "National parks, regional natural parks, nature reserves, protected areas; GIS layers",
+   "authority": "French Biodiversity Information System / PatriNat; open data listing includes geographic layers.",
+   "coverage": "Direct protected-area dataset verified; includes metropolitan France and overseas territories."
+  },
+  {
+   "country": "France",
+   "portal": "https://geoservices.ign.fr/",
+   "dataset": "https://www.data.gouv.fr/datasets/parcs-nationaux",
+   "layer_types": "National park polygons; WMS/WFS services",
+   "authority": "IGN Géoplateforme / INPN data access.",
+   "coverage": "Dataset page advertises WMS/WFS resources."
+  },
+  {
+   "country": "France",
+   "portal": "https://www.geoportail.gouv.fr/",
+   "dataset": "https://www.geoportail.gouv.fr/depot/layers/",
+   "layer_types": "Protected-area layer catalog including Ramsar, reserves, Natura 2000-related layers",
+   "authority": "Géoportail national mapping service.",
+   "coverage": "Layer directory; inspect individual service metadata and terms."
+  },
+  {
+   "country": "All 38 EEA reporting countries",
+   "portal": "https://www.eea.europa.eu/en/datahub",
+   "dataset": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer",
+   "layer_types": "Nationally designated protected areas; point and polygon layers",
+   "authority": "European Environment Agency (EEA), country-reported official protected-area inventory.",
+   "coverage": "Official shared GIS service for 38 European countries; some reported sites are not distributable for certain countries."
+  },
+  {
+   "country": "All countries (global baseline)",
+   "portal": "https://www.protectedplanet.net/",
+   "dataset": "https://www.protectedplanet.net/",
+   "layer_types": "Global protected-area polygons and points",
+   "authority": "UNEP-WCMC / Protected Planet; not each country's own GIS portal.",
+   "coverage": "Global baseline; review terms and use national sources for authoritative local detail."
+  },
+  {
+   "country": "Canada",
+   "portal": "https://open.canada.ca/",
+   "dataset": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "layer_types": "Protected and conserved areas; ESRI REST, WMS, geodatabase",
+   "authority": "Environment and Climate Change Canada; CPCAD.",
+   "coverage": "Official national database; provincial/territorial layers can be more detailed."
+  },
+  {
+   "country": "Australia",
+   "portal": "https://www.dcceew.gov.au/environment/land/nrs/science/capad",
+   "dataset": "https://www.dcceew.gov.au/environment/land/nrs/science/capad",
+   "layer_types": "Collaborative Australian Protected Areas Database (CAPAD); protected-area polygons",
+   "authority": "Australian Government Department of Climate Change, Energy, the Environment and Water.",
+   "coverage": "National official source; add state/territory park agency GIS for campground-level detail."
+  },
+  {
+   "country": "New Zealand",
+   "portal": "https://www.doc.govt.nz/our-work/maps-and-data/",
+   "dataset": "https://www.doc.govt.nz/our-work/maps-and-data/",
+   "layer_types": "DOC estate, conservation land, national parks, tracks and huts",
+   "authority": "Department of Conservation (DOC).",
+   "coverage": "Official agency map/data page; check each dataset's format and license."
+  },
+  {
+   "country": "United Kingdom",
+   "portal": "https://www.data.gov.uk/",
+   "dataset": "https://naturalengland-defra.opendata.arcgis.com/",
+   "layer_types": "Protected sites, nature reserves, national parks; search England, Scotland, Wales, Northern Ireland agencies",
+   "authority": "UK government open data portal; Natural England open data for England.",
+   "coverage": "National systems differ by constituent country; add NatureScot, NRW, DAERA layers."
+  },
+  {
+   "country": "England",
+   "portal": "https://naturalengland-defra.opendata.arcgis.com/",
+   "dataset": "https://naturalengland-defra.opendata.arcgis.com/",
+   "layer_types": "SSSIs, National Nature Reserves, protected sites",
+   "authority": "Natural England official open data.",
+   "coverage": "England only; not whole UK."
+  },
+  {
+   "country": "Scotland",
+   "portal": "https://www.data.gov.scot/",
+   "dataset": "https://www.nature.scot/professional-advice/protected-areas-and-species",
+   "layer_types": "Protected areas, national nature reserves, SSSI, Natura sites",
+   "authority": "Scottish Government and NatureScot.",
+   "coverage": "Use NatureScot's data and map services."
+  },
+  {
+   "country": "Wales",
+   "portal": "https://datamap.gov.wales/",
+   "dataset": "https://datamap.gov.wales/",
+   "layer_types": "Protected sites, national parks, conservation boundaries",
+   "authority": "Welsh Government DataMapWales.",
+   "coverage": "Official national map portal; identify downloadable layers individually."
+  },
+  {
+   "country": "Ireland",
+   "portal": "https://data.gov.ie/",
+   "dataset": "https://www.npws.ie/maps-and-data",
+   "layer_types": "National parks, nature reserves, SAC/SPA protected sites",
+   "authority": "Irish Government open data / National Parks and Wildlife Service.",
+   "coverage": "Official agency maps/data; use dataset-specific metadata."
+  },
+  {
+   "country": "Germany",
+   "portal": "https://www.govdata.de/",
+   "dataset": "https://www.bfn.de/daten-und-fakten",
+   "layer_types": "National parks, nature reserves, Natura 2000, protected areas",
+   "authority": "Federal Government open data and Federal Agency for Nature Conservation (BfN).",
+   "coverage": "State (Länder) geoportals often provide detailed official boundaries."
+  },
+  {
+   "country": "Spain",
+   "portal": "https://datos.gob.es/",
+   "dataset": "https://www.miteco.gob.es/",
+   "layer_types": "National parks, protected natural areas, Natura 2000",
+   "authority": "Spanish Government open data / Ministry for Ecological Transition.",
+   "coverage": "Autonomous communities may have more detailed official GIS."
+  },
+  {
+   "country": "Italy",
+   "portal": "https://dati.gov.it/",
+   "dataset": "https://www.mase.gov.it/",
+   "layer_types": "National parks, protected areas, Natura 2000",
+   "authority": "Italian national open data portal / environment ministry.",
+   "coverage": "Regional portals often hold authoritative local boundaries."
+  },
+  {
+   "country": "Norway",
+   "portal": "https://www.geonorge.no/",
+   "dataset": "https://www.miljodirektoratet.no/",
+   "layer_types": "Protected areas, national parks, nature reserves",
+   "authority": "National geodata portal / Norwegian Environment Agency.",
+   "coverage": "Inspect layer metadata, access service, and license."
+  },
+  {
+   "country": "Sweden",
+   "portal": "https://www.naturvardsverket.se/",
+   "dataset": "https://www.naturvardsverket.se/",
+   "layer_types": "Nature reserves, national parks, protected nature",
+   "authority": "Swedish Environmental Protection Agency.",
+   "coverage": "Find GIS/download services from official geodata pages."
+  },
+  {
+   "country": "Finland",
+   "portal": "https://www.paikkatietoikkuna.fi/",
+   "dataset": "https://www.metsa.fi/en/",
+   "layer_types": "Protected areas, national parks, state conservation lands",
+   "authority": "National geoportal / Metsähallitus.",
+   "coverage": "Verify data provider and license per layer."
+  },
+  {
+   "country": "Netherlands",
+   "portal": "https://www.pdok.nl/",
+   "dataset": "https://www.pdok.nl/",
+   "layer_types": "Natura 2000, national parks, protected areas",
+   "authority": "PDOK official national geodata platform.",
+   "coverage": "Look for downloadable vector layers and WFS/OGC APIs."
+  },
+  {
+   "country": "Switzerland",
+   "portal": "https://www.geocat.ch/",
+   "dataset": "https://www.bafu.admin.ch/",
+   "layer_types": "National parks, protected landscapes, biotopes",
+   "authority": "Swiss geodata catalogue / Federal Office for the Environment.",
+   "coverage": "Dataset-level metadata and licensing apply."
+  },
+  {
+   "country": "Poland",
+   "portal": "https://www.gov.pl/web/gdos",
+   "dataset": "https://www.gov.pl/web/gdos",
+   "layer_types": "National parks, nature reserves, Natura 2000",
+   "authority": "General Directorate for Environmental Protection.",
+   "coverage": "Look for official spatial data downloads/services."
+  },
+  {
+   "country": "Portugal",
+   "portal": "https://dados.gov.pt/",
+   "dataset": "https://www.icnf.pt/",
+   "layer_types": "Protected areas, national parks, nature reserves",
+   "authority": "Portuguese open data portal / ICNF.",
+   "coverage": "Check ICNF map and GIS resources."
+  },
+  {
+   "country": "Iceland",
+   "portal": "https://gatt.lmi.is/",
+   "dataset": "https://www.ni.is/",
+   "layer_types": "Protected areas, national parks, nature sites",
+   "authority": "National Land Survey / Icelandic Institute of Natural History.",
+   "coverage": "Confirm layer owner and service availability."
+  },
+  {
+   "country": "Japan",
+   "portal": "https://www.geospatial.jp/",
+   "dataset": "https://www.env.go.jp/en/nature/",
+   "layer_types": "National parks, protected areas, nature conservation",
+   "authority": "Japan geospatial platform / Ministry of the Environment.",
+   "coverage": "Some resources may be Japanese-language; confirm GIS download formats."
+  },
+  {
+   "country": "South Korea",
+   "portal": "https://www.data.go.kr/",
+   "dataset": "https://www.knps.or.kr/",
+   "layer_types": "National parks, protected areas",
+   "authority": "Korea public data portal / Korea National Park Service.",
+   "coverage": "Some APIs require registration."
+  },
+  {
+   "country": "South Africa",
+   "portal": "https://egis.environment.gov.za/",
+   "dataset": "https://egis.environment.gov.za/",
+   "layer_types": "Protected areas, conservation estate, biodiversity layers",
+   "authority": "Department of Forestry, Fisheries and the Environment GIS.",
+   "coverage": "Official environmental GIS portal."
+  },
+  {
+   "country": "Brazil",
+   "portal": "https://dados.gov.br/",
+   "dataset": "https://www.gov.br/icmbio/pt-br",
+   "layer_types": "Conservation units, national parks, protected areas",
+   "authority": "Brazilian government open data / ICMBio.",
+   "coverage": "Also check state environmental agency GIS."
+  },
+  {
+   "country": "Mexico",
+   "portal": "https://www.gob.mx/conanp",
+   "dataset": "https://www.gob.mx/conanp",
+   "layer_types": "Natural protected areas, national parks",
+   "authority": "National Commission of Natural Protected Areas (CONANP).",
+   "coverage": "Search agency GIS and downloadable spatial data."
+  },
+  {
+   "country": "Costa Rica",
+   "portal": "https://www.sinac.go.cr/",
+   "dataset": "https://www.sinac.go.cr/",
+   "layer_types": "National parks, wildlife refuges, conservation areas",
+   "authority": "National System of Conservation Areas (SINAC).",
+   "coverage": "Confirm official layer downloads and terms."
+  },
+  {
+   "country": "India",
+   "portal": "https://bhuvan.nrsc.gov.in/",
+   "dataset": "https://moef.gov.in/",
+   "layer_types": "Protected areas, national parks, forests, environmental layers",
+   "authority": "ISRO Bhuvan / Ministry of Environment, Forest and Climate Change.",
+   "coverage": "Confirm data provenance, format, and reuse rights."
+  },
+  {
+   "country": "Indonesia",
+   "portal": "https://tanahair.indonesia.go.id/",
+   "dataset": "https://www.menlhk.go.id/",
+   "layer_types": "Conservation areas, national parks, forest areas",
+   "authority": "National geospatial portal / Ministry of Environment and Forestry.",
+   "coverage": "May require registration; inspect metadata."
+  },
+  {
+   "country": "Thailand",
+   "portal": "https://data.go.th/",
+   "dataset": "https://www.dnp.go.th/",
+   "layer_types": "National parks and protected areas",
+   "authority": "Thai open data portal / Department of National Parks.",
+   "coverage": "Search agency-specific spatial datasets."
+  },
+  {
+   "country": "Philippines",
+   "portal": "https://geoportal.gov.ph/",
+   "dataset": "https://bmb.gov.ph/",
+   "layer_types": "Protected areas, national parks, administrative layers",
+   "authority": "Geoportal Philippines / Biodiversity Management Bureau.",
+   "coverage": "Check metadata and layer access terms."
+  },
+  {
+   "country": "Kenya",
+   "portal": "https://www.opendata.go.ke/",
+   "dataset": "https://www.kws.go.ke/",
+   "layer_types": "National parks, protected areas, conservancies",
+   "authority": "Kenya open data / Kenya Wildlife Service.",
+   "coverage": "Public GIS download availability varies."
+  },
+  {
+   "country": "Tanzania",
+   "portal": "https://www.tanzaniaparks.go.tz/",
+   "dataset": "https://www.tanzaniaparks.go.tz/",
+   "layer_types": "National parks and protected areas",
+   "authority": "Tanzania National Parks.",
+   "coverage": "May require direct agency inquiry for GIS data."
+  },
+  {
+   "country": "Argentina",
+   "portal": "https://datos.gob.ar/",
+   "dataset": "https://www.argentina.gob.ar/parquesnacionales",
+   "layer_types": "National parks and protected areas",
+   "authority": "National open data / National Parks Administration.",
+   "coverage": "Check official downloadable GIS data."
+  },
+  {
+   "country": "Chile",
+   "portal": "https://ide.minagri.gob.cl/",
+   "dataset": "https://www.conaf.cl/",
+   "layer_types": "Protected areas, national parks, forest and environment layers",
+   "authority": "National spatial data infrastructure / CONAF.",
+   "coverage": "Confirm current agency datasets."
+  },
+  {
+   "country": "Colombia",
+   "portal": "https://www.datos.gov.co/",
+   "dataset": "https://www.parquesnacionales.gov.co/",
+   "layer_types": "National parks and protected areas",
+   "authority": "Colombia open data / National Natural Parks.",
+   "coverage": "Search official spatial datasets and services."
+  },
+  {
+   "country": "Ecuador",
+   "portal": "https://www.geoportaligm.gob.ec/",
+   "dataset": "https://www.ambiente.gob.ec/",
+   "layer_types": "Protected areas, national parks, environmental layers",
+   "authority": "National geographic institute / environment ministry.",
+   "coverage": "Check official layer metadata and download access."
+  },
+  {
+   "country": "Peru",
+   "portal": "https://www.geoservidorperu.minam.gob.pe/",
+   "dataset": "https://www.gob.pe/sernanp",
+   "layer_types": "Protected natural areas",
+   "authority": "MINAM geoserver / SERNANP.",
+   "coverage": "Verify current WMS/WFS or downloadable data."
+  },
+  {
+   "country": "Uruguay",
+   "portal": "https://catalogodatos.gub.uy/",
+   "dataset": "https://www.gub.uy/ministerio-ambiente/",
+   "layer_types": "Protected areas and conservation sites",
+   "authority": "National open data catalog / Ministry of Environment.",
+   "coverage": "Search for official spatial datasets."
+  },
+  {
+   "country": "Iceland",
+   "portal": "https://gatt.lmi.is/",
+   "dataset": "https://www.ni.is/",
+   "layer_types": "Protected areas and nature sites",
+   "authority": "National Land Survey / Icelandic Institute of Natural History.",
+   "coverage": "Duplicate row retained only if combining agencies; use one country row in final data model."
+  }
+ ],
+ "global": [
+  {
+   "name": "EEA Nationally Designated Areas (NatDA) MapServer",
+   "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer",
+   "coverage": "38 European reporting countries including France, Germany, Spain, Italy, Norway, Sweden, Switzerland and others",
+   "use": "Shared polygon and point service for nationally designated protected areas.",
+   "caveat": "EEA notes it cannot distribute some reported sites for certain countries; check terms and metadata."
+  },
+  {
+   "name": "EEA public vector dataset catalog",
+   "url": "https://www.eea.europa.eu/en/datahub",
+   "coverage": "Europe",
+   "use": "Downloadable GeoPackage/GDB and related protected-area datasets.",
+   "caveat": "Select the current public release and review its metadata."
+  },
+  {
+   "name": "Protected Planet",
+   "url": "https://www.protectedplanet.net/",
+   "coverage": "Global",
+   "use": "Global protected-area boundary baseline for countries lacking a readily found national portal.",
+   "caveat": "Not a substitute for each country's official local dataset; review terms."
+  },
+  {
+   "name": "Canada CPCAD",
+   "url": "https://open.canada.ca/data/en/dataset/6c343726-1e92-451a-876a-76e17d398a1c",
+   "coverage": "Canada",
+   "use": "Official national protected and conserved areas with GIS services and geodatabase.",
+   "caveat": "Provincial/territorial layers may be more detailed."
+  },
+  {
+   "name": "France protected natural areas",
+   "url": "https://www.data.gouv.fr/datasets/espaces-naturels-proteges",
+   "coverage": "France and overseas territories",
+   "use": "Direct official dataset listing with geographic layers for multiple protected-area categories.",
+   "caveat": "Open Licence 2.0 listed; inspect individual resource metadata."
+  },
+  {
+   "name": "France national parks GIS",
+   "url": "https://www.data.gouv.fr/datasets/parcs-nationaux",
+   "coverage": "France",
+   "use": "National park GIS resources with WMS/WFS links.",
+   "caveat": "Review service endpoints and licensing shown on the dataset page."
+  }
+ ],
+ "schema": [
+  {
+   "field": "country_iso3",
+   "purpose": "Country identifier",
+   "example": "FRA, CAN, AUS"
+  },
+  {
+   "field": "program",
+   "purpose": "Radio activity",
+   "example": "POTA / WWFF / SOTA"
+  },
+  {
+   "field": "program_reference",
+   "purpose": "Official program reference ID",
+   "example": "Keep exact source ID; do not derive"
+  },
+  {
+   "field": "park_or_summit_name",
+   "purpose": "Reference name",
+   "example": "Official program name"
+  },
+  {
+   "field": "feature_type",
+   "purpose": "Geometry class",
+   "example": "protected_area_polygon / campground_point / summit_point"
+  },
+  {
+   "field": "official_gis_source",
+   "purpose": "Government GIS dataset or service URL",
+   "example": "National agency URL"
+  },
+  {
+   "field": "feature_id",
+   "purpose": "Source dataset ID",
+   "example": "Preserve source ID"
+  },
+  {
+   "field": "latitude",
+   "purpose": "WGS84 latitude for point features",
+   "example": "Decimal degrees"
+  },
+  {
+   "field": "longitude",
+   "purpose": "WGS84 longitude for point features",
+   "example": "Decimal degrees"
+  },
+  {
+   "field": "boundary_match_method",
+   "purpose": "How the program reference was linked to geometry",
+   "example": "official_id / exact_name / spatial_join / manual"
+  },
+  {
+   "field": "match_confidence",
+   "purpose": "Confidence of match",
+   "example": "high / medium / low"
+  },
+  {
+   "field": "data_license",
+   "purpose": "Reuse terms",
+   "example": "Copy exact license from metadata"
+  },
+  {
+   "field": "last_verified",
+   "purpose": "Date checked",
+   "example": "YYYY-MM-DD"
+  },
+  {
+   "field": "access_and_camping_status",
+   "purpose": "Access / camping restrictions",
+   "example": "Do not infer from radio-program eligibility"
+  }
+ ]
+}

@@ -1,5 +1,5 @@
 {
- "about": "Official starting links per state (state park camping page, reservation site, wildlife agency, statewide GIS portal), from Brandon's US_Camping_and_GIS_Directory.xlsx (Oct 24 2026). Starting points only, not campground data. Third-party cross-check sites in the workbook are NOT used (official sources only). Read by kpc_state_camps_probe.py.",
+ "about": "Official starting links per state (state park camping page, reservation site, wildlife agency, statewide GIS portal), from Brandon's US_Camping_and_GIS_Directory.xlsx (Oct 24 2026). Starting points only, not campground data. Third-party cross-check sites in the workbook are NOT used (official sources only). Read by kpc_state_camps_probe.py. Brandon verified the reservation links by hand Oct 24 (reserve_ok: true = loads for people, false = 404/dead so do NOT link it, null = could not be checked; 403s are the site refusing a checker, not a dead link).",
  "states": {
   "AL": {
    "name": "Alabama",
@@ -7,7 +7,9 @@
    "reserve": "https://www.reservealapark.com/",
    "reserve_note": "Alabama State Parks reservation portal",
    "wildlife": "https://www.outdooralabama.com/",
-   "gis": "https://alabamagis.com/"
+   "gis": "https://alabamagis.com/",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "AK": {
    "name": "Alaska",
@@ -15,7 +17,9 @@
    "reserve": "https://dnr.alaska.gov/parks/aspunits/campsitelist.htm",
    "reserve_note": "Limited/varies by park; verify current campground page",
    "wildlife": "https://www.adfg.alaska.gov/",
-   "gis": "https://gis.data.alaska.gov/"
+   "gis": "https://gis.data.alaska.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "AZ": {
    "name": "Arizona",
@@ -23,7 +27,9 @@
    "reserve": "https://azstateparks.com/reserve/",
    "reserve_note": "Arizona State Parks reservation portal",
    "wildlife": "https://www.azgfd.com/",
-   "gis": "https://azgeo-open-data-agic.hub.arcgis.com/"
+   "gis": "https://azgeo-open-data-agic.hub.arcgis.com/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "AR": {
    "name": "Arkansas",
@@ -31,7 +37,9 @@
    "reserve": "https://www.arkansasstateparks.com/reservations",
    "reserve_note": "Arkansas State Parks reservations",
    "wildlife": "https://www.agfc.com/",
-   "gis": "https://gis.arkansas.gov/"
+   "gis": "https://gis.arkansas.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Works; redirects"
   },
   "CA": {
    "name": "California",
@@ -39,7 +47,9 @@
    "reserve": "https://www.reservecalifornia.com/",
    "reserve_note": "ReserveCalifornia; confirm individual park",
    "wildlife": "https://wildlife.ca.gov/",
-   "gis": "https://www.parks.ca.gov/geodata/"
+   "gis": "https://www.parks.ca.gov/geodata/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "CO": {
    "name": "Colorado",
@@ -47,7 +57,9 @@
    "reserve": "https://cpwshop.com/campinghome.page",
    "reserve_note": "Colorado Parks & Wildlife reservation system",
    "wildlife": "https://cpw.state.co.us/",
-   "gis": "https://geodata.colorado.gov/"
+   "gis": "https://geodata.colorado.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "CT": {
    "name": "Connecticut",
@@ -55,7 +67,9 @@
    "reserve": "https://portal.ct.gov/DEEP/State-Parks/Camping/Campground-Reservation-Service---CT-State-Parks-and-Forests",
    "reserve_note": "State campground reservation service; see official page",
    "wildlife": "https://portal.ct.gov/deep",
-   "gis": "https://portal.ct.gov/DEEP/GIS-and-Maps/GIS-and-Maps"
+   "gis": "https://portal.ct.gov/DEEP/GIS-and-Maps/GIS-and-Maps",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "DE": {
    "name": "Delaware",
@@ -63,7 +77,9 @@
    "reserve": "https://destateparks.com/reservations/",
    "reserve_note": "Delaware State Parks reservations",
    "wildlife": "https://dnrec.delaware.gov/fish-wildlife/",
-   "gis": "https://firstmap.delaware.gov/"
+   "gis": "https://firstmap.delaware.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "FL": {
    "name": "Florida",
@@ -71,7 +87,9 @@
    "reserve": "https://reserve.floridastateparks.org/Web/",
    "reserve_note": "Florida State Parks reservation portal",
    "wildlife": "https://myfwc.com/",
-   "gis": "https://geodata.floridagio.gov/"
+   "gis": "https://geodata.floridagio.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "GA": {
    "name": "Georgia",
@@ -79,7 +97,9 @@
    "reserve": "https://gastateparks.reserveamerica.com/",
    "reserve_note": "Georgia State Parks reservations",
    "wildlife": "https://georgiawildlife.com/",
-   "gis": "https://data.georgiaspatial.org/"
+   "gis": "https://data.georgiaspatial.org/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "HI": {
    "name": "Hawaii",
@@ -87,7 +107,9 @@
    "reserve": "https://camping.ehawaii.gov/camping/",
    "reserve_note": "State camping permit portal; permits differ by site",
    "wildlife": "https://dlnr.hawaii.gov/dofaw/",
-   "gis": "https://geoportal.hawaii.gov/"
+   "gis": "https://geoportal.hawaii.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified redirect / page responds"
   },
   "ID": {
    "name": "Idaho",
@@ -95,7 +117,9 @@
    "reserve": "https://idahostateparks.reserveamerica.com/",
    "reserve_note": "Idaho State Parks / ReserveAmerica",
    "wildlife": "https://idfg.idaho.gov/",
-   "gis": "https://insideidaho.org/"
+   "gis": "https://insideidaho.org/",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "IL": {
    "name": "Illinois",
@@ -103,7 +127,9 @@
    "reserve": "https://camp.exploremoreil.com/",
    "reserve_note": "Use official camping/reservation site and park page",
    "wildlife": "https://dnr.illinois.gov/hunting.html",
-   "gis": "https://clearinghouse.isgs.illinois.edu/"
+   "gis": "https://clearinghouse.isgs.illinois.edu/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "IN": {
    "name": "Indiana",
@@ -111,7 +137,9 @@
    "reserve": "https://indianastateparks.reserveamerica.com/",
    "reserve_note": "Indiana State Parks reservation portal",
    "wildlife": "https://www.in.gov/dnr/fish-and-wildlife/",
-   "gis": "https://www.indianamap.org/"
+   "gis": "https://www.indianamap.org/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "IA": {
    "name": "Iowa",
@@ -119,7 +147,9 @@
    "reserve": "https://iowastateparks.reserveamerica.com/",
    "reserve_note": "Iowa State Parks reservation portal",
    "wildlife": "https://www.iowadnr.gov/hunting",
-   "gis": "https://geodata.iowa.gov/"
+   "gis": "https://geodata.iowa.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "KS": {
    "name": "Kansas",
@@ -127,7 +157,9 @@
    "reserve": "https://www.campitks.com/",
    "reserve_note": "CampItKS; campsite availability varies by location",
    "wildlife": "https://ksoutdoors.gov/Hunting",
-   "gis": "https://hub.kansasgis.org/"
+   "gis": "https://hub.kansasgis.org/",
+   "reserve_ok": null,
+   "reserve_check": "Redirect issue / needs review"
   },
   "LA": {
    "name": "Louisiana",
@@ -135,7 +167,9 @@
    "reserve": "https://www.lastateparks.com/",
    "reserve_note": "Start with official state parks page; follow booking links",
    "wildlife": "https://www.wlf.louisiana.gov/",
-   "gis": "https://atlas.ga.lsu.edu/"
+   "gis": "https://atlas.ga.lsu.edu/",
+   "reserve_ok": true,
+   "reserve_check": "Verified official page loads"
   },
   "ME": {
    "name": "Maine",
@@ -143,7 +177,9 @@
    "reserve": "https://www.maine.gov/dacf/parks/camping/reservations/index.shtml",
    "reserve_note": "Maine state campground reservations",
    "wildlife": "https://www.maine.gov/ifw/",
-   "gis": "https://www.maine.gov/geolib/"
+   "gis": "https://www.maine.gov/geolib/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "MD": {
    "name": "Maryland",
@@ -151,7 +187,9 @@
    "reserve": "https://parkreservations.maryland.gov/",
    "reserve_note": "Maryland Park Service reservations",
    "wildlife": "https://dnr.maryland.gov/wildlife/Pages/default.aspx",
-   "gis": "https://imap.maryland.gov/"
+   "gis": "https://imap.maryland.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "MA": {
    "name": "Massachusetts",
@@ -159,7 +197,9 @@
    "reserve": "https://www.mass.gov/how-to/reserve-a-campsite",
    "reserve_note": "Massachusetts campsite reservation page",
    "wildlife": "https://www.mass.gov/orgs/division-of-fisheries-and-wildlife",
-   "gis": "https://massgis.maps.arcgis.com/"
+   "gis": "https://massgis.maps.arcgis.com/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "MI": {
    "name": "Michigan",
@@ -167,7 +207,9 @@
    "reserve": "https://midnrreservations.com/",
    "reserve_note": "Michigan DNR reservations",
    "wildlife": "https://www.michigan.gov/dnr/things-to-do/hunting",
-   "gis": "https://gis-michigan.opendata.arcgis.com/"
+   "gis": "https://gis-michigan.opendata.arcgis.com/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "MN": {
    "name": "Minnesota",
@@ -175,7 +217,9 @@
    "reserve": "https://reservations.dnr.state.mn.us/",
    "reserve_note": "Minnesota state park reservation system",
    "wildlife": "https://www.dnr.state.mn.us/wmas/index.html",
-   "gis": "https://gisdata.mn.gov/"
+   "gis": "https://gisdata.mn.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "MS": {
    "name": "Mississippi",
@@ -183,7 +227,9 @@
    "reserve": "https://reserve.mdwfp.com/",
    "reserve_note": "Mississippi state parks reservation portal",
    "wildlife": "https://www.mdwfp.com/wildlife-hunting",
-   "gis": "https://opendata.gis.ms.gov/"
+   "gis": "https://opendata.gis.ms.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Responds but shows browser/security error"
   },
   "MO": {
    "name": "Missouri",
@@ -191,7 +237,9 @@
    "reserve": "https://mostateparks.com/page/54942/camping-reservation-system",
    "reserve_note": "Missouri State Parks reservation system",
    "wildlife": "https://mdc.mo.gov/",
-   "gis": "https://msdis.missouri.edu/"
+   "gis": "https://msdis.missouri.edu/",
+   "reserve_ok": false,
+   "reserve_check": "Likely broken / 404"
   },
   "MT": {
    "name": "Montana",
@@ -199,7 +247,9 @@
    "reserve": "https://montanastateparks.reserveamerica.com/",
    "reserve_note": "Montana State Parks / ReserveAmerica",
    "wildlife": "https://fwp.mt.gov/",
-   "gis": "https://geoinfo.msl.mt.gov/"
+   "gis": "https://geoinfo.msl.mt.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "NE": {
    "name": "Nebraska",
@@ -207,7 +257,9 @@
    "reserve": "https://nebraskastateparks.reserveamerica.com/",
    "reserve_note": "Nebraska State Parks reservation portal",
    "wildlife": "https://outdoornebraska.gov/hunt/",
-   "gis": "https://www.nebraskamap.gov/"
+   "gis": "https://www.nebraskamap.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "NV": {
    "name": "Nevada",
@@ -215,7 +267,9 @@
    "reserve": "https://parks.nv.gov/",
    "reserve_note": "Use each Nevada State Parks page; reservations vary",
    "wildlife": "https://www.ndow.org/",
-   "gis": "https://nvgeospatial.org/"
+   "gis": "https://nvgeospatial.org/",
+   "reserve_ok": null,
+   "reserve_check": "Timeout in checker"
   },
   "NH": {
    "name": "New Hampshire",
@@ -223,7 +277,9 @@
    "reserve": "https://newhampshirestateparks.reserveamerica.com/",
    "reserve_note": "New Hampshire State Parks reservation portal",
    "wildlife": "https://www.wildlife.nh.gov/",
-   "gis": "https://www.granit.unh.edu/"
+   "gis": "https://www.granit.unh.edu/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "NJ": {
    "name": "New Jersey",
@@ -231,7 +287,9 @@
    "reserve": "https://www.njportal.com/DEP/NJOutdoors",
    "reserve_note": "NJ Outdoors reservation system",
    "wildlife": "https://dep.nj.gov/njfw/",
-   "gis": "https://njogis-newjersey.opendata.arcgis.com/"
+   "gis": "https://njogis-newjersey.opendata.arcgis.com/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "NM": {
    "name": "New Mexico",
@@ -239,7 +297,9 @@
    "reserve": "https://newmexicostateparks.reserveamerica.com/",
    "reserve_note": "New Mexico State Parks reservation portal",
    "wildlife": "https://www.wildlife.state.nm.us/",
-   "gis": "https://rgis.unm.edu/"
+   "gis": "https://rgis.unm.edu/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "NY": {
    "name": "New York",
@@ -247,7 +307,9 @@
    "reserve": "https://newyorkstateparks.reserveamerica.com/",
    "reserve_note": "New York State Parks / ReserveAmerica",
    "wildlife": "https://dec.ny.gov/places-to-go/dec-lands",
-   "gis": "https://gis.ny.gov/"
+   "gis": "https://gis.ny.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "NC": {
    "name": "North Carolina",
@@ -255,7 +317,9 @@
    "reserve": "https://northcarolinastateparks.reserveamerica.com/",
    "reserve_note": "North Carolina State Parks reservation portal",
    "wildlife": "https://www.ncwildlife.gov/",
-   "gis": "https://www.nconemap.gov/"
+   "gis": "https://www.nconemap.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "ND": {
    "name": "North Dakota",
@@ -263,7 +327,9 @@
    "reserve": "https://www.parkrec.nd.gov/",
    "reserve_note": "Start at ND Parks & Recreation; booking varies",
    "wildlife": "https://gf.nd.gov/",
-   "gis": "https://www.gis.nd.gov/"
+   "gis": "https://www.gis.nd.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified official agency page loads"
   },
   "OH": {
    "name": "Ohio",
@@ -271,7 +337,9 @@
    "reserve": "https://www.reserveohio.com/OhioCampWeb/",
    "reserve_note": "ReserveOhio for many state park campgrounds",
    "wildlife": "https://ohiodnr.gov/discover-and-learn/safety-conservation/about-ODNR/wildlife",
-   "gis": "https://geo.ohio.gov/"
+   "gis": "https://geo.ohio.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "OK": {
    "name": "Oklahoma",
@@ -279,7 +347,9 @@
    "reserve": "https://www.travelok.com/state-parks/bookings",
    "reserve_note": "Use Oklahoma state park booking pages",
    "wildlife": "https://www.wildlifedepartment.com/",
-   "gis": "https://okmaps.org/"
+   "gis": "https://okmaps.org/",
+   "reserve_ok": true,
+   "reserve_check": "Verified official booking page loads"
   },
   "OR": {
    "name": "Oregon",
@@ -287,7 +357,9 @@
    "reserve": "https://stateparks.oregon.gov/index.cfm?do=reserve.make",
    "reserve_note": "Oregon State Parks reservation page",
    "wildlife": "https://myodfw.com/",
-   "gis": "https://www.oregon.gov/geo/Pages/index.aspx"
+   "gis": "https://www.oregon.gov/geo/Pages/index.aspx",
+   "reserve_ok": true,
+   "reserve_check": "Verified reservation page loads"
   },
   "PA": {
    "name": "Pennsylvania",
@@ -295,7 +367,9 @@
    "reserve": "https://pennsylvaniastateparks.reserveamerica.com/",
    "reserve_note": "Pennsylvania State Parks reservation portal",
    "wildlife": "https://www.pgc.pa.gov/",
-   "gis": "https://www.pasda.psu.edu/"
+   "gis": "https://www.pasda.psu.edu/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "RI": {
    "name": "Rhode Island",
@@ -303,7 +377,9 @@
    "reserve": "https://rhodeislandstateparks.reserveamerica.com/",
    "reserve_note": "Rhode Island state campground reservations",
    "wildlife": "https://dem.ri.gov/natural-resources-bureau/fish-wildlife",
-   "gis": "https://www.rigis.org/"
+   "gis": "https://www.rigis.org/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "SC": {
    "name": "South Carolina",
@@ -311,7 +387,9 @@
    "reserve": "https://reserve.southcarolinaparks.com/",
    "reserve_note": "South Carolina State Parks reservation portal",
    "wildlife": "https://www.dnr.sc.gov/",
-   "gis": "https://www.scgis.gov/"
+   "gis": "https://www.scgis.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "SD": {
    "name": "South Dakota",
@@ -319,7 +397,9 @@
    "reserve": "https://www.campsd.com/",
    "reserve_note": "CampSD reservation portal",
    "wildlife": "https://gfp.sd.gov/hunting/",
-   "gis": "https://gfp.sd.gov/gis/"
+   "gis": "https://gfp.sd.gov/gis/",
+   "reserve_ok": null,
+   "reserve_check": "502 / gateway error in checker"
   },
   "TN": {
    "name": "Tennessee",
@@ -327,7 +407,9 @@
    "reserve": "https://tnstateparks.com/about/reservations",
    "reserve_note": "Tennessee State Parks reservation page",
    "wildlife": "https://www.tn.gov/twra.html",
-   "gis": "https://geodata.tn.gov/"
+   "gis": "https://geodata.tn.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "TX": {
    "name": "Texas",
@@ -335,7 +417,9 @@
    "reserve": "https://tpwd.texas.gov/state-parks/park-reservation-information/reservations",
    "reserve_note": "Texas Parks & Wildlife reservation system",
    "wildlife": "https://tpwd.texas.gov/huntwild/",
-   "gis": "https://tnris.org/"
+   "gis": "https://tnris.org/",
+   "reserve_ok": true,
+   "reserve_check": "Verified official page loads; redirect"
   },
   "UT": {
    "name": "Utah",
@@ -343,7 +427,9 @@
    "reserve": "https://utahstateparks.reserveamerica.com/",
    "reserve_note": "Utah State Parks / ReserveAmerica",
    "wildlife": "https://wildlife.utah.gov/",
-   "gis": "https://gis.utah.gov/"
+   "gis": "https://gis.utah.gov/",
+   "reserve_ok": true,
+   "reserve_check": "Verified page loads"
   },
   "VT": {
    "name": "Vermont",
@@ -351,7 +437,9 @@
    "reserve": "https://www.vtstateparks.com/reservations.html",
    "reserve_note": "Vermont State Parks reservation page",
    "wildlife": "https://vtfishandwildlife.com/",
-   "gis": "https://geodata.vermont.gov/"
+   "gis": "https://geodata.vermont.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "VA": {
    "name": "Virginia",
@@ -359,7 +447,9 @@
    "reserve": "https://virginiastateparks.reserveamerica.com/",
    "reserve_note": "Virginia State Parks reservation portal",
    "wildlife": "https://dwr.virginia.gov/",
-   "gis": "https://www.dcr.virginia.gov/land-conservation/land-conservation-data"
+   "gis": "https://www.dcr.virginia.gov/land-conservation/land-conservation-data",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "WA": {
    "name": "Washington",
@@ -367,7 +457,9 @@
    "reserve": "https://parks.wa.gov/find-parks/state-parks",
    "reserve_note": "Washington State Parks camping pages",
    "wildlife": "https://wdfw.wa.gov/lands",
-   "gis": "https://geo.wa.gov/"
+   "gis": "https://geo.wa.gov/",
+   "reserve_ok": null,
+   "reserve_check": "Unable to verify in web checker"
   },
   "WV": {
    "name": "West Virginia",
@@ -375,7 +467,9 @@
    "reserve": "https://wvstateparks.com/everything-you-need-to-know-to-reserve-a-campsite-at-wv-state-parks/",
    "reserve_note": "Check park-specific reservation instructions; some booking methods vary",
    "wildlife": "https://wvdnr.gov/",
-   "gis": "https://wvgis.wvu.edu/"
+   "gis": "https://wvgis.wvu.edu/",
+   "reserve_ok": true,
+   "reserve_check": "Verified official info page loads"
   },
   "WI": {
    "name": "Wisconsin",
@@ -383,7 +477,9 @@
    "reserve": "https://wisconsin.goingtocamp.com/",
    "reserve_note": "Wisconsin State Parks reservation portal",
    "wildlife": "https://dnr.wisconsin.gov/topic/Lands/wildlifeareas",
-   "gis": "https://data-wi-dnr.opendata.arcgis.com/"
+   "gis": "https://data-wi-dnr.opendata.arcgis.com/",
+   "reserve_ok": null,
+   "reserve_check": "Loads blocked (403)"
   },
   "WY": {
    "name": "Wyoming",
@@ -391,7 +487,9 @@
    "reserve": "https://wyoparks.wyo.gov/index.php/places-to-go",
    "reserve_note": "Check individual state recreation area / park pages",
    "wildlife": "https://wgfd.wyo.gov/",
-   "gis": "https://wyominggeospatialhub.org/"
+   "gis": "https://wyominggeospatialhub.org/",
+   "reserve_ok": false,
+   "reserve_check": "404 / likely outdated URL"
   }
  }
 }
