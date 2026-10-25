@@ -1,0 +1,42 @@
+name: KPC temp geocode (chat 2, delete after)
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  geocode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+      - name: Geocode with the US Census geocoder
+        continue-on-error: true
+        run: |
+          python3 - <<'PY' || true
+          import json, time, urllib.parse, urllib.request
+          A = json.load(open('.claude/build/research/campground-addresses.json'))
+          out, bad = {}, 0
+          for k, a in A.items():
+              u = 'https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?' + urllib.parse.urlencode({'address': a, 'benchmark': 'Public_AR_Current', 'format': 'json'})
+              for t in range(3):
+                  try:
+                      j = json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC campgrounds (kentuckyportableclub.github.io)'}), timeout=40).read())
+                      m = (j.get('result') or {}).get('addressMatches') or []
+                      out[k] = [round(m[0]['coordinates']['y'], 6), round(m[0]['coordinates']['x'], 6), m[0].get('matchedAddress', '')] if m else None
+                      if not m: bad += 1
+                      break
+                  except Exception as e:
+                      out[k] = None; time.sleep(3)
+              time.sleep(0.3)
+          json.dump(out, open('.claude/build/research/campground-geocoded.json', 'w'), indent=0)
+          print(f'::notice title=Census geocode::{len(out)} addresses, {sum(1 for v in out.values() if v)} matched, {bad} no match')
+          PY
+      - name: Save
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/research/campground-geocoded.json || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -qm 'Census geocoder results for campground addresses (temp, chat 2)'
+          for i in 1 2 3; do git pull -q --rebase && git push -q && exit 0; sleep 7; done; true
