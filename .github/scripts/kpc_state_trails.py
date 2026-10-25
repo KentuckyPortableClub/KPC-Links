@@ -22,6 +22,12 @@ ALIAS = {'US-3627': ['Van Fleet'], 'US-9909': ['Little Stony'], 'US-9922': ["Lio
          'US-11014': ['Taconite'], 'US-13595': ['Northern Rail Trail', 'Northern Rail'], 'US-10506': ['Cazadero'], 'US-2216': ['Makapuu Point Lighthouse', 'Makapuu'],
          'US-10918': ['Waahila Ridge', 'Waahila'], 'US-5788': ['Slickrock'], 'US-5872': ['Burr Trail', 'Burr'], 'US-5809': ['Little Red Mountain'], 'US-11001': ['Gooseberry Mesa'],
          'US-10757': ['Sterling Mine Ditch'], 'US-8618': ['White Ridge'], 'US-13195': ['Jumbo Grade'], 'US-8313': ['Mountains to Sea'], 'US-9933': ['Beaches to Bluegrass']}
+# Oct 25 (outside research bot: these ARE in official layers, under another name)
+ALIAS.update({'US-3660': ['Lower Suwannee River Wilderness Trail', 'Suwannee River Wilderness Trail'], 'US-10912': ['Ualakaa', 'Ualaka'], 'US-7366': ['Trail of The Coeur D Alenes', 'Coeur d Alenes'],
+              'US-8618': ['White Ridge'], 'US-10733': ['Bolt Mountain'], 'US-10757': ['Sterling Mine Ditch'], 'US-11001': ['Gooseberry Mesa'],
+              'CA-6128': ['Grey Owl'], 'CA-6148': ['Treebeard'], 'CA-6144': ['Elk Trail'], 'CA-6153': ['Fisher Trail'], 'CA-6145': ['Hunters Lake'], 'CA-6146': ['Valleyview'],
+              'CA-4786': ['Chilkoot Trail'], 'CA-3546': ['Giscome Portage'], 'CA-5565': ['Dofasco 2000 Trail'], 'CA-5595': ['Gordon Harry'], 'CA-5536': ['Nassagaweya Canyon Trail'],
+              'CA-1599': ['South Point Trail'], 'CA-6003': ['Waterfront Trail']})
 # Oct 18: POTA trail parks that are NOT a line to draw (driving routes, areas, water trails, ordinary parks named 'Trail'): listed under 'noline'
 NOLINE = re.compile(r'Byway|Scenic Highway|Heritage|Geologic|Bird & Wildlife|Mining|Civil War Trail|Southwest Trail|Butterfield State|Saracen|West-Northwest|True Grit|Camden Expedition|Water State Trail|Water Trail|Coastal State Trail|Na Ala Hele', re.I)
 NOLINE_PARK = {'US-1002', 'US-1007', 'US-4098', 'US-3222', 'US-2152'}
