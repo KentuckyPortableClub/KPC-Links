@@ -11,17 +11,18 @@
 <meta property="og:site_name" content="Kentucky Portable Club">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Printable Park Sheet | KPC">
-<meta property="og:description" content="A one-page printable sheet for any Kentucky POTA park, with QR codes and an optional log sheet.">
+<meta property="og:description" content="A printable field sheet for a park, WWFF area or summit, with QR codes and a log sheet of 28 to 200 lines.">
 <meta property="og:url" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-park-sheet.html">
 <meta property="og:image" content="https://kentuckyportableclub.github.io/KPC-Links/kpc-share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <!-- /KPC icons -->
-<meta name="description" content="A one-page printable sheet for any Kentucky POTA park, with QR codes and an optional log sheet.">
+<meta name="description" content="A printable field sheet for a park, WWFF area or summit, with QR codes and a log sheet of 28 to 200 lines.">
 <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
 <script src="kpc-tools.js?v=20261023a"></script>
 <script src="kpc-bounds.js?v=20261024a"></script>
+<script src="kpc-map-tools.js?v=20261018u"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 </head>
 <body>
@@ -98,20 +99,20 @@
 <section class="tool-head th-map no-print"><div class="wrap">
 <p class="eyebrow">KPC FIELD TOOL</p>
 <h1>PRINTABLE <span>PARK SHEET</span></h1>
-<p class="sub">Pick any POTA park (any country), WWFF area or SOTA summit and print a one-page field sheet: QR codes to the official map, POTA page and directions, GPS, grid, how often it has been activated, the NOAA Weather Radio station for that county, places to stay, other programs at the same spot and the latest tips. Kentucky parks add parking points and 2-fers. Add a log sheet on the back.</p>
+<p class="sub">Pick any POTA park (any country), WWFF area or SOTA summit and print a one-page field sheet: QR codes to the official map, POTA page and directions, GPS, grid, how often it has been activated, the NOAA Weather Radio station for that county, places to stay, other programs at the same spot and the latest tips. Kentucky parks add parking points and 2-fers. Add a log sheet on the back: 28 lines, or up to 200 over several pages.</p>
 </div></section>
 <div class="no-print"><nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html">Grid & County</a><a href="kpc-park-sheet.html" aria-current=page>Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <aside class="kpc-disclaim" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box"><div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;color:#1c1c1c;font:14px/1.55 Arial,Helvetica,sans-serif"><b>We’re volunteers working from public maps, and we make mistakes.</b> Before you activate, check the official park map, make sure the land is public and open, and follow each program’s rules. Your activation is your responsibility. See something wrong? <a href="contact.html" style="color:#1d5a3a;font-weight:700">Let us know</a>.</div></aside>
 </div>
 <section class="section no-print" style="padding-bottom:0"><div class="wrap">
 <div class="panel"><form class="controls" id="f" autocomplete="off">
-<label class="field" style="flex:1 1 320px">PARK OR SUMMIT (ANY COUNTRY: NAME OR NUMBER)<input id="q" list="parks" autocomplete="off" placeholder="Yosemite, US-1271, FR-0098, GFF-0004 or W4K/EC-001"><datalist id="parks"></datalist></label>
+<label class="field" style="flex:1 1 320px">PARK OR SUMMIT (ANY COUNTRY: NAME OR NUMBER)<input id="q" autocomplete="off" placeholder="Yosemite, US-1271, FR-0098, GFF-0004 or W4K/EC-001"></label>
 <label class="field" style="flex:0 1 160px">YOUR CALLSIGN (OPTIONAL)<input id="call" autocapitalize="characters" spellcheck="false"></label>
 <button class="btn" type="submit" style="align-self:flex-end">MAKE SHEET</button>
 <button class="btn alt" type="button" id="clearSheet" style="align-self:flex-end">✕ CLEAR</button>
 </form>
 <div class="controls" style="margin-top:12px;align-items:center">
-<label style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" id="withLog" checked> Include a log sheet (page 2)</label>
+<label style="display:flex;gap:8px;align-items:center;font-weight:700"><input type="checkbox" id="withLog" checked> Include a log sheet</label><label style="display:flex;gap:8px;align-items:center;font-weight:700">LINES <select id="logN" aria-label="How many log lines"><option value="28">28 (1 page)</option><option value="56">56 (2 pages)</option><option value="100">100 (4 pages)</option><option value="150">150 (6 pages)</option><option value="200">200 (8 pages)</option></select></label>
 <span style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" id="shareBtn" disabled>📤 SEND / SAVE</button><button class="btn alt" type="button" id="copyBtn" disabled>COPY TEXT</button><button class="btn alt" type="button" id="mailBtn" disabled>✉ EMAIL</button><button class="btn alt" type="button" id="printBtn" disabled>🖨 PRINT / PDF</button></span>
 </div>
 <p class="muted" id="msg" style="font-size:14px;margin:8px 0 0"></p></div>
@@ -138,6 +139,7 @@
 .ps-list{margin:0;padding-left:18px;font-size:13px;line-height:1.5}
 .ps-warn{margin-top:14px;padding:9px 12px;border:2px solid #111;font-size:12px;line-height:1.45}
 .ps-foot{margin-top:12px;font-size:10px;color:#666;display:flex;justify-content:space-between;gap:10px}
+.field .kta-wrap{flex:0 0 auto;width:100%}.field .kta-wrap>input{width:100%}
 .ps-log{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
 .ps-log th,.ps-log td{border:1px solid #999;padding:0 5px;height:24px;text-align:left}.ps-log th{background:#eee;font-size:10px;letter-spacing:.8px;height:22px}
 .ps-log tr.ten td{border-bottom:3px solid #111}
@@ -166,7 +168,7 @@ const esc=KPC.esc;
 const jget=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||9000);return fetch(u,{signal:c.signal}).then(r=>r.ok?r.json():null).catch(()=>null).finally(()=>clearTimeout(t))};
 const J={};const once=u=>J[u]||(J[u]=jget(u));
 async function init(){D=await KPC.data();try{T=await fetch('kpc-ky-towns.json').then(r=>r.json())}catch(e){T=[]}
- $('parks').innerHTML=D.parks.map(p=>`<option value="${p.c} ${esc(p.n)}">`).join('');
+ 
  const q=new URLSearchParams(location.search);if(q.get('call'))$('call').value=q.get('call');if(q.get('ref')){$('q').value=q.get('ref');make()}}
 const pad=r=>{const m=String(r).toUpperCase().match(/^(US|K)-?(\d{1,5})$/);return m?'US-'+m[2].padStart(4,'0'):''};
 /* a Kentucky park from our files, else any US POTA park from POTA (by number or by name) */
@@ -239,15 +241,17 @@ async function make(){$('msg').textContent='Making the sheet…';const p=await f
  <div class="ps-h">See the boundary</div><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(FINDER)}">${p.ky?'Open this park in KY Park Commander →</a> (map, boundary, trail layers, offline)':'Open this park in the KPC Trip Planner →</a> (official boundary, campgrounds, nearby parks)'}</p><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(new URL('kpc-in-park.html?ref='+encodeURIComponent(p.c),location.href).href)}">Am I in the Park? →</a> (on your phone at the park: are you inside the boundary, and how far to the edge)</p><div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
  <div class="ps-warn"><b>Notes:</b> ______________________________________________________________________________<br><br>_______________________________________________________________________________________</div>
  <div class="ps-foot"><span>KPC Park Sheet • kentuckyportableclub.github.io/KPC-Links • printed ${new Date().toLocaleDateString()}</span><span>Planning aid only — always check the official map and current rules.</span></div></div>`;
- const NEED={POTA:10,SOTA:4,WWFF:0}[PG],rows=Array.from({length:28},(_,i)=>`<tr class="${NEED&&i===NEED-1?'ten':''}"><td style="width:28px">${i+1}</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`).join('');
- const page2=`<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • ACTIVATION LOG</div><div class="ps-name">${esc(p.n)}</div></div><div class="ps-ref"><b>${p.c}</b><span>Grid ${grid}</span></div></div>
- <div class="ps-fields"><div><small>STATION CALLSIGN</small>${esc(call)}</div><div><small>OPERATOR</small></div><div><small>DATE (UTC)</small></div><div><small>RIG / POWER / ANTENNA</small></div></div>
+ const NEED={POTA:10,SOTA:4,WWFF:44}[PG],LN=Math.max(28,+($('logN')&&$('logN').value)||28),PER=28,NP=Math.ceil(LN/PER);
+ const logPage=k=>{const a=k*PER,b=Math.min(LN,a+PER),rows=Array.from({length:b-a},(_,j)=>{const i=a+j;return `<tr class="${NEED&&i===NEED-1?'ten':''}"><td style="width:34px">${i+1}</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>`}).join('');
+ return `<div class="ps-page"><div class="ps-top"><img src="KPC-logo.png" alt=""><div><div class="ps-k">KENTUCKY PORTABLE CLUB • ACTIVATION LOG${NP>1?' • PAGE '+(k+1)+' OF '+NP:''}</div><div class="ps-name">${esc(p.n)}</div></div><div class="ps-ref"><b>${p.c}</b><span>Grid ${grid}</span></div></div>
+ ${k===0?`<div class="ps-fields"><div><small>STATION CALLSIGN</small>${esc(call)}</div><div><small>OPERATOR</small></div><div><small>DATE (UTC)</small></div><div><small>RIG / POWER / ANTENNA</small></div></div>`:''}
  <table class="ps-log"><thead><tr><th>#</th><th>TIME UTC</th><th>CALLSIGN</th><th>BAND / FREQ</th><th>MODE</th><th>SENT</th><th>RCVD</th><th>STATE / PARK</th><th>NOTES</th></tr></thead><tbody>${rows}</tbody></table>
- <div class="ps-foot"><span>${PG==='POTA'?'Heavy line after #10 = valid activation. Upload your log to pota.app → My Log Uploads.':PG==='SOTA'?'Heavy line after #4 = valid activation. Enter your log at sotadata.org.uk.':'WWFF: 44 contacts make a full activation; send your log to your WWFF log manager.'}</span><span>${p.c} • ${esc(p.n)}</span></div></div>`;
+ <div class="ps-foot"><span>${PG==='POTA'?'Heavy line after #10 = valid activation. Upload your log to pota.app → My Log Uploads.':PG==='SOTA'?'Heavy line after #4 = valid activation. Enter your log at sotadata.org.uk.':'Heavy line after #44 = a full WWFF activation; send your log to your WWFF log manager.'}</span><span>${p.c} • ${esc(p.n)}</span></div></div>`};
+ const page2=Array.from({length:NP},(_,k)=>logPage(k)).join('');
  $('sheet').innerHTML=page1+($('withLog').checked?page2:'');
  qr($('qr1'),off);qr($('qr2'),potaU);qr($('qr3'),dirU);$('printBtn').disabled=false;['shareBtn','copyBtn','mailBtn'].forEach(i=>$(i).disabled=false);txt={p,grid,towns,off,potaU,dirU,FINDER,sheet:location.href,X,where}}
 $('clearSheet').onclick=()=>{cur=null;txt=null;['shareBtn','copyBtn','mailBtn'].forEach(i=>$(i).disabled=true);$('q').value='';$('sheet').innerHTML='';$('printBtn').disabled=true;$('msg').textContent='';try{history.replaceState(null,'',location.pathname)}catch(e){}$('q').focus()};
-$('f').onsubmit=e=>{e.preventDefault();make()};$('withLog').onchange=()=>cur&&make();$('printBtn').onclick=()=>window.print();
+$('f').onsubmit=e=>{e.preventDefault();make()};$('withLog').onchange=()=>cur&&make();try{const n=localStorage.getItem('kpcSheetLogN');if(n)$('logN').value=n}catch(e){}$('logN').onchange=()=>{try{localStorage.setItem('kpcSheetLogN',$('logN').value)}catch(e){}if(cur)make()};$('printBtn').onclick=()=>window.print();
 function body(){if(!txt)return '';const {p,grid,towns,off,potaU,dirU,FINDER,sheet,X,where}=txt;
  return [p.n+' ('+p.c+')',where+(p.t?' - '+p.t:''),'Grid '+grid+'  GPS '+(+p.la).toFixed(5)+', '+(+p.lo).toFixed(5),towns.length?'Nearest: '+towns.map(t=>t[1].toFixed(0)+' mi '+t[2]+' of '+t[0]).join('; '):'',
  X.acts!=null?'Activated '+X.acts+' times'+(X.last?' (last '+fmtD(X.last)+')':''):'',(X.nwr||[]).length?'NOAA Weather Radio: '+X.nwr.map(t=>t.freq+' MHz '+t.call+' '+t.site).join('; '):'','',
@@ -256,14 +260,9 @@ const flash=(b,t)=>{const o=b.textContent;b.textContent=t;setTimeout(()=>b.textC
 $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(body());flash($('copyBtn'),'COPIED ✓')}catch(e){const a=document.createElement('textarea');a.value=body();document.body.append(a);a.select();try{document.execCommand('copy');flash($('copyBtn'),'COPIED ✓')}catch(_){}a.remove()}};
 $('mailBtn').onclick=()=>{location.href='mailto:?subject='+encodeURIComponent(txt.p.n+' ('+txt.p.c+') - KPC park sheet')+'&body='+encodeURIComponent(body())};
 $('shareBtn').onclick=async()=>{if(navigator.share){try{await navigator.share({title:txt.p.n+' ('+txt.p.c+')',text:body().split('\n').slice(0,4).join('\n'),url:txt.sheet})}catch(e){}}else{$('copyBtn').click()}};
-/* Oct 24 (Brandon: 'print a park search is only ky'): as you type a name, POTA's own lookup fills the list with parks
-   from every country (Kentucky ones stay at the top) */
-let sugT=null,sugQ='';
-$('q').addEventListener('input',()=>{clearTimeout(sugT);const v=$('q').value.trim();if(v.length<3||/^[A-Z0-9\/]+-\d/i.test(v)||v===sugQ)return;
- sugT=setTimeout(async()=>{sugQ=v;const L=await jget('https://api.pota.app/lookup?search='+encodeURIComponent(v)+'&size=30');if(!L||$('q').value.trim()!==v)return;
-  const ky=D?D.parks.filter(p=>p.n.toLowerCase().includes(v.toLowerCase())).slice(0,8).map(p=>`<option value="${p.c} ${esc(p.n)}">`):[];
-  const w=L.filter(x=>x.type==='park').slice(0,25).map(x=>`<option value="${esc(x.value)} ${esc(String(x.display||'').replace(/^\S+\s+/,''))}">`);
-  $('parks').innerHTML=ky.concat(w).join('')},350)});
+/* Oct 24 PM (Brandon: phone list did not suggest outside KY and showed a see-through list + a black list): the shared
+   KPC type-ahead (kpc-map-tools.js KPCTA: KY POTA/WWFF/SOTA, POTA parks anywhere, typed WWFF/SOTA numbers) replaces the datalist */
+if(window.KPCTA)KPCTA.attach($('q'),ref=>{$('q').value=ref;make()});
 init();
 </script>
 
