@@ -57,6 +57,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          # Oct 25: put back a state file whose only change is a time stamp, so quiet runs commit nothing
+          python3 .github/scripts/kpc_save_filter.py data/discord-watch-state.json || true
           git add data/discord-watch-state.json 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'Discord watch: what has been flagged'
