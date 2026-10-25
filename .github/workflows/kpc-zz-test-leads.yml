@@ -1,0 +1,26 @@
+name: KPC temp - test outline leads
+# Temporary (Oct 25, chat 2): tests Brandon's outline leads from GitHub, saves the answers, never fails. Delete after use.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v5
+      - name: Test the leads
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_test_leads.py || true
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/state-gis-leads-tested.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git commit -m 'Outline leads: test results'
+            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
+          fi
+          true
