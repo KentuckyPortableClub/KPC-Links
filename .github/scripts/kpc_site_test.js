@@ -20,6 +20,9 @@ const SWAP = Object.keys(JSON.parse(((gate.match(/var SWAP = (\{[^}]*\})/) || ['
 const MH = (gate.match(/var MH = '([0-9a-f]{64})'/) || ['', ''])[1];      // the member key (a hash; the password itself is never here)
 const MEMBER = process.env.MEMBER_PASS === '1';                         // release night: also every page as a signed-in member
 const ORIGIN = new URL(BASE).origin;
+// the code libraries the pages load (Leaflet etc.) are part of the page; outside DATA services are not tested here
+const LIBS = /^(cdnjs\.cloudflare\.com|unpkg\.com|cdn\.jsdelivr\.net|code\.jquery\.com|fonts\.googleapis\.com|fonts\.gstatic\.com)$/;
+const OUTSIDE = u => { const x = new URL(u); return x.origin !== ORIGIN && !LIBS.test(x.hostname); };
 const LOCKED_SAMPLE = ['parks.html', 'toolbox.html', 'find.html', 'kpc-kit.html'].filter(f => fs.existsSync(f));
 
 function chatOf(page) {
@@ -39,7 +42,7 @@ function chatOf(page) {
       const ctx = await browser.newContext({ viewport, deviceScaleFactor: 1, isMobile: label === 'phone', hasTouch: label === 'phone' });
       await ctx.addInitScript(() => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); });
       // outside services are not part of this test: block them so a slow API can't hold the run (the page must cope)
-      await ctx.route(u => new URL(u).origin !== ORIGIN, r => r.abort());
+      await ctx.route(OUTSIDE, r => r.abort());
       for (const page of PUBLIC) {
         if (!fs.existsSync(page)) continue;
         const pg = await ctx.newPage();
@@ -101,7 +104,7 @@ function chatOf(page) {
       // every page as a signed-in member at phone width: JavaScript errors and sideways scroll (the new menu is on all of them)
       const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
       await ctx.addInitScript(([k]) => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); try { localStorage.setItem('kpcMember', k); } catch (e) {} }, [MH]);
-      await ctx.route(u => new URL(u).origin !== ORIGIN, r => r.abort());
+      await ctx.route(OUTSIDE, r => r.abort());
       const all = fs.readdirSync('.').filter(f => /\.html$/.test(f)).sort();
       let n = 0;
       for (const page of all) {
