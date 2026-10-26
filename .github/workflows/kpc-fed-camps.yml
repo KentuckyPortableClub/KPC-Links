@@ -1,12 +1,12 @@
-name: KPC federal campgrounds (states around Kentucky)
-# Weekly: Recreation.gov (RIDB) campgrounds on federal land for the US Trip Planner park cards. Needs secret RIDB_API_KEY.
+name: KPC federal campgrounds (all states)
+# Monthly (Oct 26, HQ: all states, monthly, never fails): Recreation.gov (RIDB) campgrounds on federal land for the park cards. Needs secret RIDB_API_KEY.
 on:
   schedule:
-    - cron: '17 9 * * 2'
+    - cron: '17 9 12 * *'
   workflow_dispatch:
     inputs:
       states:
-        description: 'States (blank = every state but KY)'
+        description: 'States (blank = every state + DC)'
         default: ''
 permissions:
   contents: write
@@ -23,10 +23,13 @@ jobs:
         env:
           RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
           STATES: ${{ inputs.states }}
-        run: python3 .github/scripts/kpc_fed_camps.py
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_fed_camps.py || true
       - name: Save
+        if: always()
+        continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           mkdir -p data/campfed; git add data/campfed
-          if ! git diff --cached --quiet; then git commit -m 'Federal campgrounds: states around Kentucky'; git pull --rebase --autostash || true; git push; fi
+          if ! git diff --cached --quiet; then git commit -m 'Federal campgrounds: all states'; for i in 1 2 3; do git pull --rebase --autostash && git push && break; sleep 9; done; fi; true

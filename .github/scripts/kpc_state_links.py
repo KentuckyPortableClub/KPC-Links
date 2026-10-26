@@ -19,6 +19,10 @@ def note(t, m): print(f'::notice title={t}::{m}')
 clean = lambda v: '' if v in (None, 'None', 'null') else str(v).strip()
 try: HANDWEB = json.load(open('data/parkinfo-web.json', encoding='utf-8')).get('parks', {})
 except Exception: HANDWEB = {}  # noqa: E722
+# Oct 26 HOLD RULE (Brandon 6:27 AM: no new data on the site until GO): pages the link harvester BOT found ('web_by':
+# 'bot: …') wait in parkinfo-web.json; only the hand-checked ones are filled in. Set BOT_LINKS_GO = True on Brandon's go.
+BOT_LINKS_GO = False
+HANDWEB = {r: e for r, e in HANDWEB.items() if BOT_LINKS_GO or not str(e.get('web_by', '')).startswith('bot:')}
 
 
 def fixurl(u):
