@@ -1,5 +1,5 @@
 {
- "about": "Official parking / entrance / gate / kiosk / boat ramp / trailhead point layers for US wildlife areas (and later state parks), from the outside research bot's round 3 (KPC_Round3_WMA.xlsx, Oct 25 2026). Read by .github/scripts/kpc_us_access.py. Append new layers; a layer that stops answering is skipped.",
+ "about": "Official parking / entrance / gate / kiosk / boat ramp / trailhead point layers for US wildlife areas (and later state parks), from the outside research bot's round 3 (KPC_Round3_WMA.xlsx, Oct 25 2026). Read by .github/scripts/kpc_us_access.py. Append new layers; a layer that stops answering is skipped. Oct 25 PM: + CA State Parks parking + entry points, VA DCR facilities (parking only, by place), VA DWR river accesses, UT UGRC boat ramps + trailheads (by place) from the good bot (tested by chat 2). AZ 'Freedom 250' trailheads NOT added: the layer says Arizona State Parks but sits on a BLM account.",
  "layers": [
   {
    "prog": "wma",
@@ -1950,6 +1950,84 @@
    "tested": "yes 2026-10-25",
    "licence": "edit restriction only",
    "agency": "5 parks"
+  },
+  {
+   "prog": "park",
+   "st": "CA",
+   "url": "https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkingPoints/FeatureServer/0",
+   "what": "points: parking areas",
+   "typef": "TYPE, SUBTYPE",
+   "vals": "Vehicle, Day Use, Group Camp…",
+   "area": "UNITNAME (often blank: then by place)",
+   "count": "2359",
+   "tested": "yes 2026-10-25 (chat 2 test)",
+   "licence": "none stated",
+   "agency": "California State Parks (ArcGIS Online csparks)"
+  },
+  {
+   "prog": "park",
+   "st": "CA",
+   "url": "https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkEntryPoints/FeatureServer/2",
+   "what": "points: park entrance",
+   "typef": "none (layer = type)",
+   "vals": "Park entry points",
+   "area": "PARK_NAME",
+   "count": "288",
+   "tested": "yes 2026-10-25 (chat 2 test)",
+   "licence": "none stated",
+   "agency": "California State Parks (Publications Section)"
+  },
+  {
+   "prog": "park",
+   "st": "VA",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/StatePark_FacilitiesPOI/FeatureServer/12",
+   "what": "points: state park facilities (parking kept)",
+   "typef": "USeDirect_UseType",
+   "vals": "Parking (362 of 1,375)",
+   "area": "location only (ParkAbbr is a code)",
+   "count": "362",
+   "tested": "yes 2026-10-25 (chat 2 test)",
+   "licence": "none stated",
+   "agency": "Virginia DCR State Parks"
+  },
+  {
+   "prog": "wma",
+   "st": "VA",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/VA_DWR_River_Accesses_WFL1/FeatureServer/0",
+   "what": "points: boat launches (river access)",
+   "typef": "none (layer = type)",
+   "vals": "boat access",
+   "area": "location only",
+   "count": "67",
+   "tested": "yes 2026-10-25 (chat 2 test)",
+   "licence": "none stated",
+   "agency": "Virginia DWR"
+  },
+  {
+   "prog": "park",
+   "st": "UT",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BoatRamps/FeatureServer/0",
+   "what": "points: boat ramps (statewide)",
+   "typef": "none (layer = type)",
+   "vals": "boat ramps",
+   "area": "location only",
+   "count": "117",
+   "tested": "yes 2026-10-25 (chat 2 test)",
+   "licence": "none stated",
+   "agency": "Utah UGRC (statewide; State Parks / DWR / federal ramps)"
+  },
+  {
+   "prog": "park",
+   "st": "UT",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahTrailheads/FeatureServer/0",
+   "what": "points: trailheads (statewide)",
+   "typef": "none (layer = type)",
+   "vals": "trailheads",
+   "area": "location only",
+   "count": "568",
+   "tested": "yes 2026-10-25 (chat 2 test)",
+   "licence": "none stated",
+   "agency": "Utah UGRC statewide trailheads"
   }
  ]
 }
