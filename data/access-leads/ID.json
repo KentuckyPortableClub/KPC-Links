@@ -1,0 +1,77 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "IDFG, IFWIS",
+   "area": "site_name",
+   "count": 358,
+   "fields": [
+    "status",
+    "site_name",
+    "public_info_notes",
+    "landowner",
+    "idfg_propertyright",
+    "county",
+    "camp",
+    "rest",
+    "ramp",
+    "dock",
+    "ada_fish",
+    "created_user",
+    "last_edited_user",
+    "fishing_boating",
+    "access_ACNO"
+   ],
+   "known": true,
+   "layer": "IDFG Fishing and Boating Access Sites Secured",
+   "sample": [
+    {
+     "ada_fish": "no",
+     "camp": "yes",
+     "county": "Boundary",
+     "created_user": "idahofishandgame",
+     "dock": "no",
+     "idfg_propertyright": "Deed Permit",
+     "landowner": "IDFG USFS",
+     "public_info_notes": "Primitive Site.  River Fishing Access Only.",
+     "ramp": "no",
+     "rest": "yes",
+     "site_name": "Moyie River",
+     "status": "Active"
+    },
+    {
+     "ada_fish": "yes",
+     "camp": "no",
+     "county": "Boundary",
+     "created_user": "idahofishandgame",
+     "dock": "yes",
+     "idfg_propertyright": "Deed",
+     "landowner": "IDFG",
+     "public_info_notes": "Trail and fishing dock as well. ",
+     "ramp": "yes",
+     "rest": "yes",
+     "site_name": "Dawson Lake",
+     "status": "Active"
+    },
+    {
+     "ada_fish": "no",
+     "camp": "no",
+     "county": "Boundary",
+     "created_user": "idahofishandgame",
+     "dock": "no",
+     "idfg_propertyright": "Deed Esmt",
+     "landowner": "IDFG Private",
+     "public_info_notes": "Earthen boat launch. Closet style outhouse non ADA.",
+     "ramp": "yes",
+     "rest": "yes",
+     "site_name": "Bonner Lake",
+     "status": "Active"
+    }
+   ],
+   "service": "IDFG_Fishing_and_Boating_Access_FFW_App",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Fishing_and_Boating_Access_FFW_App/FeatureServer/1"
+  }
+ ],
+ "st": "ID"
+}
