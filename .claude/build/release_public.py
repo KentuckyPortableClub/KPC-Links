@@ -15,7 +15,7 @@ PLAN = (sys.argv[1] if len(sys.argv) > 1 else '').upper()
 APPLY = '--apply' in sys.argv
 if PLAN not in ('A', 'B'): sys.exit('say A or B: python3 .claude/build/release_public.py A [--apply]')
 
-B_PUBLIC = ['kpc-activators-lounge.html', 'kpc-about-info.html']
+B_PUBLIC = ['kpc-activators-lounge.html', 'kpc-about-info.html', 'find.html']   # find.html: Brandon Oct 26 6:45 PM (guests get the search icon)
 A_PUBLIC = B_PUBLIC + [
     # all-states / world tools in the Lounge
     'kpc-rare.html', 'kpc-guide-top25.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-sota-az.html', 'kpc-park-info.html',
