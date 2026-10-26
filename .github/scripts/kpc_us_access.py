@@ -89,12 +89,13 @@ def outlines_ca(prov):
         if bf.exists():
             try:
                 g = json.load(open(bf)).get('geometry') or {}
-                rs = [ring for poly in g.get('coordinates', []) for ring in poly] if g.get('type') == 'MultiPolygon' else g.get('coordinates', [])
+                c = g.get('coordinates') or []
+                rs = [poly for poly in c if poly] if g.get('type') == 'MultiPolygon' else ([c] if c else [])   # one group per polygon
             except Exception: rs = []  # noqa: BLE001
         if not rs:
             for x in p.get('m') or []:
                 r = next((q for q in by.get(str(x[0]), []) if low(x[1]) in (low(q.get('n')), low(q.get('nf')))), None)
-                if r: rs += r.get('_r') or []
+                if r and r.get('_r'): rs.append(r['_r'])   # one group per record (Oct 26)
         if rs: out[ref] = rs
     return out
 
@@ -112,7 +113,8 @@ def outlines(st):
     by = {str(r.get('OBJECTID')): r.get('_r') or [] for r in recs}
     out = {}
     for ref, p in key.items():
-        rs = [ring for x in p.get('m') or [] for ring in by.get(str(x[0]), [])]
+        # Oct 26: one group of rings per joined record (two records of the same land would cancel each other's inside test)
+        rs = [by[str(x[0])] for x in p.get('m') or [] if by.get(str(x[0]))]
         if rs: out[ref] = rs
     return out
 
@@ -139,6 +141,8 @@ def m_to_ring(la, lo, r):
 
 
 def on_land(la, lo, rings):
+    if rings and rings[0] and rings[0][0] and isinstance(rings[0][0][0], list):   # groups: inside ANY record's land
+        return any(on_land(la, lo, g) for g in rings)
     if sum(1 for r in rings if in_ring(lo, la, r)) % 2 == 1: return True
     return any(m_to_ring(la, lo, r) <= NEAR_M for r in rings if len(r) > 2)
 
@@ -236,6 +240,11 @@ def run(st, layers):
         if (not ca and 'National' in typ) or v[5] is None: continue   # Canada: Parks Canada sites count too
         parks[ref] = (v[0], typ, v[5], v[6])          # every state / local park: a ramp on a state park's own land is that park's too
     OL = outlines(st)
+    # Oct 26: the box around each park's own land (a big national park reaches far past 60 km from its pin: Nahanni, Banff)
+    OLB = {}
+    for ref, rings in OL.items():
+        xs = [q[0] for g in rings for r in g for q in r]; ys = [q[1] for g in rings for r in g for q in r]
+        if xs: OLB[ref] = (min(xs) - .01, min(ys) - .01, max(xs) + .01, max(ys) + .01)
     box = st_box(st)
     got, log = {}, []
     for L in layers:
@@ -254,7 +263,8 @@ def run(st, layers):
             for ref, rings in OL.items():
                 if ref in parks and ref not in hit:
                     name, typ, la, lo = parks[ref]
-                    if km(la, lo, p['la'], p['lo']) <= 60 and on_land(p['la'], p['lo'], rings): hit.add(ref)
+                    b = OLB.get(ref)
+                    if b and b[0] <= p['lo'] <= b[2] and b[1] <= p['la'] <= b[3] and on_land(p['la'], p['lo'], rings): hit.add(ref)
             for ref in hit:
                 got.setdefault(ref, []).append([round(p['la'], 6), round(p['lo'], 6), f"{p['k']}{(': ' + p['nm'])[:60] if p['nm'] and p['nm'] != p['area'] else ''} ({src})"])
                 n += 1
