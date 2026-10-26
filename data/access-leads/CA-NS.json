@@ -1,0 +1,50 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "...",
+   "area": "Name",
+   "count": 3,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Seawall_Trailhead",
+   "sample": [
+    {
+     "FolderPath": "Cape North .kmz",
+     "Name": "Cape North",
+     "PopupInfo": " ",
+     "Snippet": " ",
+     "created_user": "Chuck_Sangster",
+     "last_edited_user": "Chuck_Sangster"
+    },
+    {
+     "FolderPath": "North Trailhead.kmz",
+     "Name": "North Trailhead",
+     "PopupInfo": " ",
+     "Snippet": " ",
+     "created_user": "Chuck_Sangster",
+     "last_edited_user": "Chuck_Sangster"
+    },
+    {
+     "FolderPath": "South Trailhead.kmz",
+     "Name": "South Trailhead",
+     "PopupInfo": " ",
+     "Snippet": " ",
+     "created_user": "Chuck_Sangster",
+     "last_edited_user": "Chuck_Sangster"
+    }
+   ],
+   "service": "Seawall_Trail_Mapping",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Seawall_Trail_Mapping/FeatureServer/0"
+  }
+ ],
+ "st": "CA-NS"
+}
