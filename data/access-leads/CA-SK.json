@@ -9,7 +9,7 @@
     "NAME_1_EN",
     "NAME_1_FR"
    ],
-   "known": false,
+   "known": true,
    "layer": "Boat Ramp",
    "sample": [
     {},

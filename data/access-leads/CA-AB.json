@@ -1,5 +1,30 @@
 {
  "checked": "2026-10-26",
- "leads": [],
+ "leads": [
+  {
+   "agency": "Base Data provided by Spatial Data Warehouse Ltd.",
+   "area": "",
+   "count": 65,
+   "fields": [
+    "SITE_ID"
+   ],
+   "known": false,
+   "layer": "RAMP Water Quality Stations",
+   "sample": [
+    {
+     "SITE_ID": "MAR-2"
+    },
+    {
+     "SITE_ID": "TAR-1"
+    },
+    {
+     "SITE_ID": "ELR-1"
+    }
+   ],
+   "service": "osip/osip_layers",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/osip/osip_layers/MapServer/34"
+  }
+ ],
  "st": "CA-AB"
 }
