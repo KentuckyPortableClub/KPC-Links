@@ -1,5 +1,5 @@
 {
- "about": "Kentucky park hours, after-dark rules and fees. DONE rows from KPC_Park_Hours_done.xlsx (Oct 25, official page per park) + round 7 facts for other parks (rows with a source link only). Any park with no hours or fee listed shows the default 'free and open' line (Brandon Oct 25). Confirm on the linked page.",
+ "about": "Kentucky park hours, after-dark rules and fees. DONE rows from KPC_Park_Hours_done.xlsx (Oct 25, official page per park) + round 7 facts for other parks (rows with a source link only). Any park with no hours or fee listed shows the default 'free and open' line (Brandon Oct 25). Confirm on the linked page. Oct 25: 'access' = visitor limits from eec.ky.gov (round 10, HQ wording for Green River).",
  "default": "Free and open: the official page lists no hours or entry fee.",
  "feeNote": "Kentucky State Parks charge no general entry fee; camping, lodging, golf, museums and tours can cost extra.",
  "updated": "2026-10-25",
@@ -197,7 +197,9 @@
    "done": 1
   },
   "US-12971": {
-   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx"
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx",
+   "access": "The caves are closed October through May to protect hibernating bats; surface trails are open all year.",
+   "done": 1
   },
   "US-7956": {
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Beargrass-Creek.aspx",
@@ -209,7 +211,8 @@
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Blackacre.aspx",
    "hours": "Preserve/homestead: weekdays 3 p.m. to dusk; weekends dawn to dusk. Visitor Center: Sundays 1–5 p.m. year-round.",
    "night": "Day use only; closes at dusk.",
-   "done": 1
+   "done": 1,
+   "access": "Weekdays the preserve opens only at 3 PM (until dusk); weekends dawn to dusk."
   },
   "US-7967": {
    "link": "https://eec.ky.gov/nature-preserves/locations/pages/blanton-forest.aspx",
@@ -224,7 +227,9 @@
    "done": 1
   },
   "US-12972": {
-   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx"
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx",
+   "access": "The caves are closed October through May to protect hibernating bats; surface trails are open all year.",
+   "done": 1
   },
   "US-7960": {
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Crooked-Creek.aspx",
@@ -239,7 +244,9 @@
    "done": 1
   },
   "US-12752": {
-   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx",
+   "access": "Boat access only, by the Green River: put in at Thelma Stovall Park in Munfordville. Three Hundred Springs at Davis Bend is private property: view it from the boat only.",
+   "done": 1
   },
   "US-7957": {
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Vernon-Douglas.aspx",
@@ -257,10 +264,13 @@
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Tom-Dorman.aspx",
    "hours": "Garrard County tract open to public sunrise to sunset year-round; Jessamine County tract closed to public.",
    "night": "Day use only; sunrise to sunset on the open Garrard County tract.",
-   "done": 1
+   "done": 1,
+   "access": "Only the Garrard County tract is open; the Jessamine County tract is closed."
   },
   "US-7962": {
-   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx"
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Burnett-WWCA.aspx",
+   "access": "Steele Hollow is open on foot only (no horses, ATVs, camping or campfires). The Burnett Branch unit is closed.",
+   "done": 1
   },
   "US-7953": {
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Metropolis-Lake.aspx",
@@ -284,7 +294,9 @@
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Sinking-Creek.aspx"
   },
   "US-7955": {
-   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx"
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Six-Mile-Island.aspx",
+   "access": "Boat access only, no facilities. Watch for barge and motorboat traffic.",
+   "done": 1
   },
   "US-7964": {
    "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Dr.-William-H.-Martin-WWCA.aspx"

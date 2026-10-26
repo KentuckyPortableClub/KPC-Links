@@ -111,8 +111,8 @@
        chat 2's data/access/US-XX.json (same files as the Kit and the US Trip Planner) */
     /* Oct 25 (HQ): Kentucky hours + fees (kpc-ky-hours.json; no hours or fee listed = the 'free and open' default, Brandon) */
     if (P === 'POTA' && ky) (open.hrs || (open.hrs = j('kpc-ky-hours.json').catch(() => null))).then(H => { const el = $('lgHrs'); if (!el || !H) return;
-      const h = (H.parks && H.parks[o.ref]) || {}, def = !h.hours && !h.fee;
-      el.innerHTML = '<div class="lg-ap"><b>🕒 HOURS &amp; FEES</b>' + (def ? '<span>' + esc(H.default) + '</span>' : '') + (h.hours ? '<span>' + esc(h.hours) + '</span>' : '') + (h.fee ? '<span>💵 ' + esc(h.fee) + '</span>' : '') +
+      const h = (H.parks && H.parks[o.ref]) || {}, def = !h.hours && !h.fee && !h.access;
+      el.innerHTML = '<div class="lg-ap"><b>🕒 HOURS &amp; FEES</b>' + (h.access ? '<span style="color:#ffb27a;font-weight:700">⚠ ' + esc(h.access) + '</span>' : '') + (def ? '<span>' + esc(H.default) + '</span>' : '') + (h.hours ? '<span>' + esc(h.hours) + '</span>' : '') + (h.fee ? '<span>💵 ' + esc(h.fee) + '</span>' : '') +
         (h.night ? '<span>🌙 ' + esc(h.night) + '</span>' : '') + (h.link ? '<a href="' + esc(h.link) + '" target="_blank" rel="noopener">Official page · confirm before you go ›</a>' : '') + '</div>'; });
     if (P === 'POTA' && o.us && window.KPCClos) KPCClos.html(o.ref, ky ? 'KY' : o.st).then(h => { const el = $('lgClos'); if (el) el.innerHTML = h; }).catch(() => {});
     if (P === 'POTA' && o.us) (async () => {
