@@ -11,7 +11,7 @@
 //     channel ("Post Nov 4 2026 8:00 AM + Facebook + Website: ...") through that channel's webhook. The relay
 //     (kpc_discord_relay.py, every 15 min) then does everything it already does: website, Facebook, other
 //     Discord server, Groups.io, subscribers, Events calendar, scheduling. Same email rules: email goes out
-//     ONLY when Groups.io / Email subscribers is ticked. Nobody's name is ever shown.
+//     ONLY when Groups.io or a subscriber choice is ticked (now, or in the Sunday roundup). Nobody's name is ever shown.
 //  4. The sheet keeps a Status column (Sent, Waiting for approval, Declined, Problem: ...). No emails from here.
 
 var FOUNDERS = [
@@ -19,7 +19,7 @@ var FOUNDERS = [
   // add the other founders' Google emails here, one per line in quotes, with a comma after each but the last
 ];
 
-var PLACES = ['Website', 'Facebook', 'Discord', 'Groups.io', 'Email subscribers', 'Events calendar'];
+var PLACES = ['Website', 'Facebook', 'Discord', 'Groups.io', 'Email subscribers now', 'Email subscribers in the Sunday roundup', 'Events calendar'];
 var KINDS = ['Post (news, general)', 'Campout post', 'Event for the calendar'];
 var MAX_TEXT = 1600;          // Discord allows 2000 letters in all; the tag takes some
 var MAX_FILE = 8 * 1024 * 1024;
@@ -38,7 +38,7 @@ function makeClubPostForm() {
 
   var where = form.addCheckboxItem();
   where.setTitle('Where should it go?');
-  where.setHelpText('Email only goes out when you tick Groups.io or Email subscribers. Website also shows it on the other Discord server.');
+  where.setHelpText('Email only goes out when you tick Groups.io or one of the two subscriber choices. Now = subscribers are emailed right away. Sunday roundup = it goes on the website and is in the weekly Sunday email. Website also shows it on the other Discord server.');
   where.setChoiceValues(PLACES);
   where.setRequired(true);
 
@@ -110,9 +110,13 @@ function buildTag(kind, places, when) {
   var words = [];
   var isEvent = (String(kind).indexOf('Event') === 0) || places.indexOf('Events calendar') >= 0;
   var chosen = [];
-  var map = { 'Website': 'Website', 'Facebook': 'Facebook', 'Discord': 'Discord', 'Groups.io': 'Groups.io', 'Email subscribers': 'Subscribers' };
+  var map = { 'Website': 'Website', 'Facebook': 'Facebook', 'Discord': 'Discord', 'Groups.io': 'Groups.io', 'Email subscribers now': 'Subscribers' };
+  var roundup = places.indexOf('Email subscribers in the Sunday roundup') >= 0;
+  // The Sunday email is made from the week's WEBSITE posts, so that choice means the post must be on the website.
+  var want = places.slice();
+  if (roundup && want.indexOf('Website') < 0) { want.push('Website'); }
   for (var i = 0; i < PLACES.length; i++) {
-    if (places.indexOf(PLACES[i]) >= 0 && map[PLACES[i]]) { chosen.push(map[PLACES[i]]); }
+    if (want.indexOf(PLACES[i]) >= 0 && map[PLACES[i]]) { chosen.push(map[PLACES[i]]); }
   }
   if (chosen.length === 5) { words.push('All'); } else { words = chosen; }
   if (String(kind).indexOf('Campout') === 0) { parts.push('Campout'); }
@@ -205,7 +209,8 @@ function sendRow_(sh, row, cols) {
 // Run by hand to check the tag text with no Google calls and nothing sent (see the Execution log).
 function testTags() {
   Logger.log(buildTag(KINDS[0], ['Website', 'Facebook'], ''));
-  Logger.log(buildTag(KINDS[0], ['Website', 'Facebook', 'Discord', 'Groups.io', 'Email subscribers'], 'Nov 4 2026 8:00 AM'));
-  Logger.log(buildTag(KINDS[1], ['Website', 'Email subscribers'], ''));
+  Logger.log(buildTag(KINDS[0], ['Website', 'Facebook', 'Discord', 'Groups.io', 'Email subscribers now'], 'Nov 4 2026 8:00 AM'));
+  Logger.log(buildTag(KINDS[1], ['Website', 'Email subscribers now'], ''));
+  Logger.log(buildTag(KINDS[0], ['Facebook', 'Email subscribers in the Sunday roundup'], ''));
   Logger.log(buildTag(KINDS[2], ['Events calendar', 'Website'], 'Nov 10 2026 6:30 PM'));
 }
