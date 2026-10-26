@@ -1,0 +1,36 @@
+name: KPC parking layer explorer
+# Oct 25 2026 (chat 2; Brandon via HQ): looks on the state servers already in data/state-gis.json for parking, trailhead,
+# access, boat-ramp and entrance POINT layers -> data/access-leads.json + .md for chat 2 to review. Adds nothing by itself.
+# Monthly (the 3rd, before the access run on the 6th) + by hand. Never fails (a failed run emails Brandon).
+on:
+  schedule:
+    - cron: '17 9 3 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-parking-explorer
+  cancel-in-progress: false
+jobs:
+  explore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - name: Look for parking layers
+        continue-on-error: true
+        timeout-minutes: 110
+        env:
+          MINUTES: '100'
+        run: python3 .github/scripts/kpc_parking_explorer.py || true
+      - name: Save
+        if: always()
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          for f in data/access-leads.json data/access-leads.md data/status/kpc_parking_explorer.json; do [ -f "$f" ] && git add "$f"; done
+          git diff --cached --quiet && exit 0
+          git commit -qm 'Parking layer leads' || exit 0
+          for i in 1 2 3 4; do git pull -q --rebase && git push -q && exit 0; sleep $((i * 7)); done
+          true
