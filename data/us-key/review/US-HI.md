@@ -14,11 +14,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-0971 World War II Valor in the Pacific National Monument (National Monument) → on PEARL HARBOR NATIONAL MEMORIAL (~22 ac)
 - US-10915 Nakoa State Trail (State Trail) → on Ahupuaa O Kahana State Park (~5,195 ac); AHUPUAA O KAHANA STATE PARK (~5,218 ac)
 - US-10916 Kapaʻeleʻele State Trail (State Trail) → on Ahupuaa O Kahana State Park (~5,195 ac); AHUPUAA O KAHANA STATE PARK (~5,218 ac)
-- US-10917 ʻAiea Loop State Trail (State Trail) → on Keaiwa Heiau State Recreation Area (~385 ac)
+- US-10917 ʻAiea Loop State Trail (State Trail) → on Keaiwa Heiau State Recreation Area (~385 ac); KEAIWA HEIAU STATE RECREATION AREA (~385 ac)
 - US-10919 Na Ala Hele State Trail (State Trail) → on IOLANI PALACE STATE MONUMENT (~11 ac)
 - US-10925 HI State Game Reserve (Game Reserve) → on KAALA NATURAL AREA RESERVE (~1,086 ac); Kaala Natural Area Reserve (~1,087 ac)
 - US-4565 Ala Kahakai National Historic Trail (National Historic Trail) → on Kaloko-Honokohau National Historical Park (~631 ac); KALOKO-HONOKOHAU NATIONAL HISTORICAL PARK (~1,254 ac)
-- US-6424 Pāʻulaʻula State Historic Site (State Historic Site) → on Russian Fort Elizabeth State Historical Park (~19 ac); PAULAULA STATE HISTORIC SITE (~19 ac)
+- US-6424 Pāʻulaʻula State Historic Site (State Historic Site) → on Russian Fort Elizabeth State Historical Park (~19 ac); RUSSIAN FORT ELIZABETH STATE HISTORICAL PARK (~19 ac)
 
 ## Nothing found in PAD-US
 
@@ -39,6 +39,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Mauna Loa Forest Reserve · SCA · Unknown · ~121,778 ac
 - POHAKULOA TRAINING AREA RESERVATION ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~84,182 ac
 - MAUNA KEA FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~67,385 ac
+- PUU ANAHULU GAME MANAGEMENT AREA ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~62,740 ac
 - KAU FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~61,624 ac
 - Ka'u Forest Reserve · SCA · Unknown · ~61,083 ac
 - MAUNA LOA FOREST AND GAME RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~54,933 ac
@@ -51,12 +52,14 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - KAPAPALA FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~37,275 ac
 - Kapapala Forest Reserve · SCA · Unknown · ~36,632 ac
 - Kipuka 'ainahou Nene Sanctuary · SCA · Unknown · ~35,160 ac
+- LANAI COOPERATIVE GAME MANAGEMENT AREA ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~34,163 ac
 - Lana'i Cooperative Game Management Area · SCA · Unknown · ~31,952 ac
 - KOOLAU FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~31,059 ac
 - Ko'olau Forest Reserve · SCA · Unknown · ~30,989 ac
 - Kapapala Cooperative Game Management Area · SCA · Unknown · ~29,551 ac
 - KAHOOLAWE ISLAND RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~28,549 ac
 - Kaho'olawe Island Reserve · SCA · Unknown · ~28,503 ac
+- KAPAPALA COOPERATIVE GAME MANAGEMENT AREA ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~28,428 ac
 - WAO KELE O PUNA ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~25,780 ac
 - MAUNA LOA FOR & GAME RES/KIPUKA AINAHOU NENE SANCT ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~24,094 ac
 - POHAKULOA TRAINING AREA RESERVATION (KEAMUKU SEC) ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~22,880 ac
@@ -72,6 +75,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Na Pali-kona Forest Reserve · SCA · Unknown · ~13,136 ac
 - HANA FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~13,124 ac
 - Hana Forest Reserve · SCA · Unknown · ~13,104 ac
+- KEKAHA GAME MANAGEMENT AREA ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~12,977 ac
 - State Department of Land State Resource Management Area · SRMA · Unknown · ~12,795 ac
 - Lihu'e-koloa Forest Reserve · SCA · Unknown · ~12,417 ac
 - State Dept. Of Hawaiian Home Lands · SCA · Unknown · ~11,944 ac
@@ -87,7 +91,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Waiakea Forest Reserve · SCA · Unknown · ~9,832 ac
 - State Department of Land State Other or Unknown · SOTH · Unknown · ~9,593 ac
 - PUU KA PELE FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~9,406 ac
-- 'Ola'a Forest Reserve · SCA · Unknown · ~9,333 ac
-- NA PALI-KONA FOREST RESERVE ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~8,953 ac
-- Ka'ohe State Lease · SCA · Unknown · ~8,893 ac
-- KONA HEMA PRESERVE (NATURE CONSERVANCY) ·  · Hawaii DLNR reserves (DOFAW) (wild, state GIS table) · ~8,107 ac
