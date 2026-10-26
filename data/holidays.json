@@ -1,5 +1,5 @@
 {
- "about": "KPC holiday art (Brandon, Oct 26 2026). Website (chat 1): show the holiday's .webp on the home page from 'show_days' before the date through the day itself, then back to normal. Posts (chat 5): on the morning of the date, post the -post.jpg + 'post' text to Discord + the Facebook Page (+ website announcement), one post per holiday, no emails. Dates: 'MM-DD' fixed, or a rule. Edit the post text here; no code change needed. HOLD: nothing shows or posts until Brandon says GO.",
+ "about": "KPC holiday art (Brandon, Oct 26 2026). Website (chat 1): show the holiday's .webp on the home page from 'show_days' before the date through the day itself, then back to normal. Posts (chat 5): on the morning of the date, post the -post.jpg + 'post' text to Discord + the Facebook Page (+ website announcement), one post per holiday, no emails. Dates: 'MM-DD' fixed, or a rule. Edit the post text here; no code change needed. HOLD: nothing shows or posts until Brandon says GO. EFFECT (Brandon Oct 26: 'graphics like snow for Christmas'): light animated touch on the home page while the picture shows: snow / leaves / bats / hearts / clovers / fireworks / petals / sparks; 'none' on Memorial Day, Veterans Day (solemn), Labor Day, Father's Day. Off with reduced motion and when printing, tap to stop, low CPU, stops itself after ~30 s on phones.",
  "holidays": [
   {
    "id": "valentines",
@@ -8,7 +8,8 @@
    "show_days": 3,
    "img": "img/holidays/valentines.webp",
    "post_img": "img/holidays/valentines-post.jpg",
-   "post": "Happy Valentine's Day from the Kentucky Portable Club! Take your sweetheart to a park and get on the air together. 73"
+   "post": "Happy Valentine's Day from the Kentucky Portable Club! Take your sweetheart to a park and get on the air together. 73",
+   "effect": "hearts"
   },
   {
    "id": "st-patricks",
@@ -17,7 +18,8 @@
    "show_days": 3,
    "img": "img/holidays/st-patricks.webp",
    "post_img": "img/holidays/st-patricks-post.jpg",
-   "post": "Happy St. Patrick's Day from the Kentucky Portable Club! May your bands be open and your pileups lucky. 73"
+   "post": "Happy St. Patrick's Day from the Kentucky Portable Club! May your bands be open and your pileups lucky. 73",
+   "effect": "clovers"
   },
   {
    "id": "easter",
@@ -26,7 +28,18 @@
    "show_days": 3,
    "img": "img/holidays/easter.webp",
    "post_img": "img/holidays/easter-post.jpg",
-   "post": "He is risen! Happy Easter from the Kentucky Portable Club. 73"
+   "post": "He is risen! Happy Easter from the Kentucky Portable Club. 73",
+   "effect": "petals"
+  },
+  {
+   "id": "mothers-day",
+   "name": "Mother's Day",
+   "rule": "second sunday of 05",
+   "show_days": 3,
+   "img": "img/holidays/mothers-day.webp",
+   "post_img": "img/holidays/mothers-day-post.jpg",
+   "post": "Happy Mother's Day from the Kentucky Portable Club to all the moms, and to every mom who puts up with antennas in the trees. 73",
+   "effect": "petals"
   },
   {
    "id": "memorial-day",
@@ -35,7 +48,28 @@
    "show_days": 3,
    "img": "img/holidays/memorial-day.webp",
    "post_img": "img/holidays/memorial-day-post.jpg",
-   "post": "This Memorial Day, the Kentucky Portable Club remembers the men and women who gave their lives in service to our country. All gave some, some gave all."
+   "post": "This Memorial Day, the Kentucky Portable Club remembers the men and women who gave their lives in service to our country. All gave some, some gave all.",
+   "effect": "none"
+  },
+  {
+   "id": "fathers-day",
+   "name": "Father's Day",
+   "rule": "third sunday of 06",
+   "show_days": 3,
+   "img": "img/holidays/fathers-day.webp",
+   "post_img": "img/holidays/fathers-day-post.jpg",
+   "post": "Happy Father's Day from the Kentucky Portable Club! Here's to the dads who taught us to tie knots, build things and get outside. 73",
+   "effect": "none"
+  },
+  {
+   "id": "field-day",
+   "name": "ARRL Field Day",
+   "rule": "fourth full weekend of 06",
+   "show_days": 7,
+   "img": "img/holidays/field-day.webp",
+   "post_img": "img/holidays/field-day-post.jpg",
+   "post": "It's Field Day weekend! Set up outside, get on the air, and have fun. Good luck to everyone operating. 73",
+   "effect": "sparks"
   },
   {
    "id": "july-4th",
@@ -44,7 +78,8 @@
    "show_days": 3,
    "img": "img/holidays/july-4th.webp",
    "post_img": "img/holidays/july-4th-post.jpg",
-   "post": "Happy Independence Day from the Kentucky Portable Club! Enjoy the fireworks, and if you're out at a park today, good luck with the activation. 73"
+   "post": "Happy Independence Day from the Kentucky Portable Club! Enjoy the fireworks, and if you're out at a park today, good luck with the activation. 73",
+   "effect": "fireworks"
   },
   {
    "id": "labor-day",
@@ -53,16 +88,8 @@
    "show_days": 3,
    "img": "img/holidays/labor-day.webp",
    "post_img": "img/holidays/labor-day-post.jpg",
-   "post": "Happy Labor Day from the Kentucky Portable Club! Enjoy the long weekend, and maybe squeeze in one more park. 73"
-  },
-  {
-   "id": "veterans-day",
-   "name": "Veterans Day",
-   "date": "11-11",
-   "show_days": 3,
-   "img": "img/holidays/veterans-day.webp",
-   "post_img": "img/holidays/veterans-day-post.jpg",
-   "post": "On Veterans Day, the Kentucky Portable Club honors and thanks everyone who has served. Honor. Remember. Thank."
+   "post": "Happy Labor Day from the Kentucky Portable Club! Enjoy the long weekend, and maybe squeeze in one more park. 73",
+   "effect": "none"
   },
   {
    "id": "halloween",
@@ -71,7 +98,18 @@
    "show_days": 3,
    "img": "img/holidays/halloween.webp",
    "post_img": "img/holidays/halloween-post.jpg",
-   "post": "Happy Halloween from the Kentucky Portable Club! If you're out at a park tonight, watch for things that go beep in the night. 73"
+   "post": "Happy Halloween from the Kentucky Portable Club! If you're out at a park tonight, watch for things that go beep in the night. 73",
+   "effect": "leaves+bats"
+  },
+  {
+   "id": "veterans-day",
+   "name": "Veterans Day",
+   "date": "11-11",
+   "show_days": 3,
+   "img": "img/holidays/veterans-day.webp",
+   "post_img": "img/holidays/veterans-day-post.jpg",
+   "post": "On Veterans Day, the Kentucky Portable Club honors and thanks everyone who has served. Honor. Remember. Thank.",
+   "effect": "none"
   },
   {
    "id": "thanksgiving",
@@ -80,7 +118,8 @@
    "show_days": 3,
    "img": "img/holidays/thanksgiving.webp",
    "post_img": "img/holidays/thanksgiving-post.jpg",
-   "post": "Happy Thanksgiving from the Kentucky Portable Club! We're thankful for every contact, every park and every one of you. 73"
+   "post": "Happy Thanksgiving from the Kentucky Portable Club! We're thankful for every contact, every park and every one of you. 73",
+   "effect": "leaves"
   },
   {
    "id": "christmas",
@@ -89,7 +128,8 @@
    "show_days": 10,
    "img": "img/holidays/christmas.webp",
    "post_img": "img/holidays/christmas-post.jpg",
-   "post": "Merry Christmas from the Kentucky Portable Club! Wishing you and your family a blessed Christmas. 73"
+   "post": "Merry Christmas from the Kentucky Portable Club! Wishing you and your family a blessed Christmas. 73",
+   "effect": "snow"
   }
  ]
 }
