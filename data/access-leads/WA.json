@@ -1,0 +1,222 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 913,
+   "fields": [
+    "PARK_ID",
+    "NAME",
+    "NOTES"
+   ],
+   "known": false,
+   "layer": "PARKS - Park Activities",
+   "sample": [
+    {
+     "NAME": "Fishing",
+     "NOTES": " ",
+     "PARK_ID": "Joemma Beach"
+    },
+    {
+     "NAME": "Sailing",
+     "NOTES": " ",
+     "PARK_ID": "Joemma Beach"
+    },
+    {
+     "NAME": "Boating",
+     "NOTES": " ",
+     "PARK_ID": "Joemma Beach"
+    }
+   ],
+   "service": "PARKS_Park_Activities",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS_Park_Activities/FeatureServer/0"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "ParkName",
+   "count": 207,
+   "fields": [
+    "ParkName",
+    "Status",
+    "Category",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Park Entrances",
+   "sample": [
+    {
+     "Category": "State Park",
+     "Notes": "ok",
+     "ParkName": "Alta Lake"
+    },
+    {
+     "Category": "State Park",
+     "Notes": "ok",
+     "ParkName": "Anderson Lake"
+    },
+    {
+     "Category": "State Park Property",
+     "Notes": "ok",
+     "ParkName": "Auburn"
+    }
+   ],
+   "service": "ParkEntrances",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkEntrances/FeatureServer/0"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "ParkName",
+   "count": 203,
+   "fields": [
+    "ParkName",
+    "Status",
+    "Category",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "ParkEntrances",
+   "sample": [
+    {
+     "Category": "State Park",
+     "Notes": "ok",
+     "ParkName": "Alta Lake"
+    },
+    {
+     "Category": "State Park",
+     "Notes": "ok",
+     "ParkName": "Anderson Lake"
+    },
+    {
+     "Category": "State Park",
+     "Notes": "ok",
+     "ParkName": "Battle Ground Lake"
+    }
+   ],
+   "service": "Park_Entrances",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Park_Entrances/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 67,
+   "fields": [
+    "Region",
+    "AreaName",
+    "ParkName",
+    "Type",
+    "BuildingNumber",
+    "Availability",
+    "Status",
+    "Furnishings",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "Seasonal Park Aide Housing Locations",
+   "sample": [
+    {
+     "AreaName": "Cascade Foothills Area",
+     "Availability": "Year round",
+     "Comments": "1 of 2 RV sites available - both located at the boat launch",
+     "Furnishings": "N/A",
+     "ParkName": "Lake Sammamish",
+     "Region": "Northwest",
+     "Status": "Existing",
+     "Type": "RV Site ONLY"
+    },
+    {
+     "AreaName": "Cascade Foothills Area",
+     "Availability": "Year round",
+     "Comments": "2 of 2 RV sites available - both located at the boat launch",
+     "Furnishings": "N/A",
+     "ParkName": "Lake Sammamish",
+     "Region": "Northwest",
+     "Status": "Existing",
+     "Type": "RV Site ONLY"
+    },
+    {
+     "AreaName": "Cascade Foothills Area",
+     "Availability": "Year round",
+     "Comments": "RV site located in shop compound",
+     "Furnishings": "N/A",
+     "ParkName": "Wallace Falls",
+     "Region": "Northwest",
+     "Status": "Existing",
+     "Type": "RV Site ONLY"
+    }
+   ],
+   "service": "Seasonal_Park_Aide_Housing_Locations",
+   "typef": "Type",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Seasonal_Park_Aide_Housing_Locations/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30,
+   "fields": [
+    "Observer",
+    "Comments",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Gate / Access Point",
+   "sample": [
+    {
+     "Comments": "Foot access through fence.",
+     "Creator": "Neil.Lasley@parks.wa.gov_wa_stateparks",
+     "Editor": "Neil.Lasley@parks.wa.gov_wa_stateparks",
+     "Observer": "Lisa Younger "
+    },
+    {
+     "Comments": "Stock gate.",
+     "Creator": "Neil.Lasley@parks.wa.gov_wa_stateparks",
+     "Editor": "Neil.Lasley@parks.wa.gov_wa_stateparks",
+     "Observer": "Lisa Younger "
+    },
+    {
+     "Comments": "Stock gate.",
+     "Creator": "Neil.Lasley@parks.wa.gov_wa_stateparks",
+     "Editor": "Neil.Lasley@parks.wa.gov_wa_stateparks",
+     "Observer": "Lisa Younger "
+    }
+   ],
+   "service": "Dalles_Mt_Ranch_Survey",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Dalles_Mt_Ranch_Survey/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 117,
+   "fields": [
+    "Identifier",
+    "Width",
+    "LaunchType"
+   ],
+   "known": true,
+   "layer": "WAStateParks_BoatLaunches",
+   "sample": [
+    {
+     "Identifier": "Alta lake - launch area",
+     "Width": "6"
+    },
+    {
+     "Identifier": "Battle Ground Lake",
+     "Width": "6"
+    },
+    {
+     "Identifier": "Battle Ground Lake",
+     "Width": "varies"
+    }
+   ],
+   "service": "WAStateParks_BoatLaunches",
+   "typef": "LaunchType",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WAStateParks_BoatLaunches/FeatureServer/0"
+  }
+ ],
+ "st": "WA"
+}

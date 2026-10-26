@@ -1,0 +1,398 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 6362,
+   "fields": [
+    "ORG_CODE",
+    "PARK_NAME",
+    "LOOP_AREA_NAME",
+    "SITE_TYPE_NAME",
+    "SITE_NAME",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "State Park Reservable Sites",
+   "sample": [
+    {
+     "LOOP_AREA_NAME": "Modern Campground (Russel P. Letterman)",
+     "ORG_CODE": "6133",
+     "PARK_NAME": "BALD EAGLE STATE PARK",
+     "SITE_NAME": "M001(H)",
+     "SITE_TYPE_NAME": "Modern Electric"
+    },
+    {
+     "LOOP_AREA_NAME": "Modern Campground (Russel P. Letterman)",
+     "ORG_CODE": "6133",
+     "PARK_NAME": "BALD EAGLE STATE PARK",
+     "SITE_NAME": "M002",
+     "SITE_TYPE_NAME": "Modern Electric"
+    },
+    {
+     "LOOP_AREA_NAME": "Modern Campground (Russel P. Letterman)",
+     "ORG_CODE": "6133",
+     "PARK_NAME": "BALD EAGLE STATE PARK",
+     "SITE_NAME": "M003",
+     "SITE_TYPE_NAME": "Modern Electric"
+    }
+   ],
+   "service": "Parks/Park_Reservable",
+   "typef": "SITE_TYPE_NAME",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/Park_Reservable/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 822,
+   "fields": [
+    "ORG_CODE",
+    "PARK_NAME",
+    "SITE_NAME",
+    "SITE_TYPE_NAME",
+    "Loop_Area_name",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "State Park Reservable Structures",
+   "sample": [
+    {
+     "Loop_Area_name": "Sycamore",
+     "ORG_CODE": "6133",
+     "PARK_NAME": "BALD EAGLE STATE PARK",
+     "SITE_NAME": "Cottage 1",
+     "SITE_TYPE_NAME": "Camping Cottages"
+    },
+    {
+     "Loop_Area_name": "Sycamore",
+     "ORG_CODE": "6133",
+     "PARK_NAME": "BALD EAGLE STATE PARK",
+     "SITE_NAME": "Cottage 2",
+     "SITE_TYPE_NAME": "Camping Cottages"
+    },
+    {
+     "Loop_Area_name": "Sycamore",
+     "ORG_CODE": "6133",
+     "PARK_NAME": "BALD EAGLE STATE PARK",
+     "SITE_NAME": "Cottage 3",
+     "SITE_TYPE_NAME": "Camping Cottages"
+    }
+   ],
+   "service": "Parks/PARK_RESERVATIONS_INS",
+   "typef": "SITE_TYPE_NAME",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/PARK_RESERVATIONS_INS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 511,
+   "fields": [
+    "MATERIAL",
+    "LOCK",
+    "GATE_TYPE",
+    "ACCESS",
+    "EDITOR",
+    "MOD_DATE",
+    "GATE_ID",
+    "NOTES",
+    "CURRENT_"
+   ],
+   "known": false,
+   "layer": "Gate",
+   "sample": [
+    {
+     "ACCESS": "no",
+     "CURRENT_": "Y",
+     "EDITOR": "dzj",
+     "GATE_ID": "12-1",
+     "GATE_TYPE": "A",
+     "LOCK": "Y",
+     "MATERIAL": "M",
+     "MOD_DATE": "06/02/2015"
+    },
+    {
+     "ACCESS": "no",
+     "CURRENT_": "Y",
+     "EDITOR": "dzj",
+     "GATE_ID": "12-5",
+     "GATE_TYPE": "P",
+     "LOCK": "Y",
+     "MATERIAL": "M",
+     "MOD_DATE": "06/02/2015"
+    },
+    {
+     "ACCESS": "no",
+     "CURRENT_": "Y",
+     "EDITOR": "dzj",
+     "GATE_ID": "12-100",
+     "GATE_TYPE": "S",
+     "LOCK": "Y",
+     "MATERIAL": "M",
+     "MOD_DATE": "06/02/2015"
+    }
+   ],
+   "service": "GateID",
+   "typef": "GATE_TYPE",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/GateID/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 78,
+   "fields": [
+    "PARK_NAME",
+    "COUNTY",
+    "Nav_Desc"
+   ],
+   "known": false,
+   "layer": "State Park Office",
+   "sample": [
+    {
+     "COUNTY": "Bedford",
+     "Nav_Desc": "Park Office",
+     "PARK_NAME": "Shawnee"
+    },
+    {
+     "COUNTY": "Venango",
+     "Nav_Desc": "Park Office",
+     "PARK_NAME": "Oil Creek"
+    },
+    {
+     "COUNTY": "Erie",
+     "Nav_Desc": "Park Office",
+     "PARK_NAME": "Presque Isle"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "Nav_Desc",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "FEATURE_TYPE",
+    "DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "Access Point",
+   "sample": [
+    {},
+    {
+     "DESCRIPTION": "test point",
+     "FEATURE_TYPE": "PL"
+    },
+    {
+     "DESCRIPTION": "test point\r\n",
+     "FEATURE_TYPE": "NF"
+    }
+   ],
+   "service": "GateID",
+   "typef": "FEATURE_TYPE",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/GateID/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 25,
+   "fields": [
+    "Type",
+    "Name",
+    "Status",
+    "Notes",
+    "VisiblePublic",
+    "Round1QAQCStatus",
+    "Round1QAQCBy",
+    "Round1QAQCComments",
+    "Round2QAQCStatus",
+    "Round2QAQCBy",
+    "Round2QAQCComments",
+    "CreatedBy",
+    "LastEditedBy",
+    "ParkName",
+    "Archived",
+    "ArchivedReason",
+    "SubmittedBy",
+    "OPS_Visible",
+    "CampingMap_Visible",
+    "ADA"
+   ],
+   "known": false,
+   "layer": "State Park Assets",
+   "sample": [
+    {
+     "CreatedBy": "CHGREENLEE",
+     "Round1QAQCStatus": "Queued",
+     "Status": "Open",
+     "Type": "Picnicking"
+    },
+    {
+     "CreatedBy": "CHGREENLEE",
+     "Round1QAQCStatus": "Queued",
+     "Status": "Proposed",
+     "Type": "Scenic View",
+     "VisiblePublic": "No"
+    },
+    {
+     "CreatedBy": "BSPDBO",
+     "Name": "PennDel 3 Mile Marker",
+     "Round1QAQCBy": "CWOPA\\chgreenlee",
+     "Round1QAQCStatus": "Approved",
+     "Round2QAQCBy": "CWOPA\\alerose",
+     "Round2QAQCStatus": "Approved",
+     "Status": "Open",
+     "Type": "Sign",
+     "VisiblePublic": "Yes"
+    }
+   ],
+   "service": "Parks/StateParkAssetsMASTER",
+   "typef": "Type",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/StateParkAssetsMASTER/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3293,
+   "fields": [
+    "pgc_region",
+    "gate_id",
+    "gate_exists",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": true,
+   "layer": "Gate",
+   "sample": [
+    {
+     "created_user": "PAGameCommissionGIS",
+     "gate_exists": "Yes",
+     "gate_id": "1",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Southcentral"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "gate_exists": "Yes",
+     "gate_id": "181-15",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Southcentral"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "gate_exists": "Yes",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Southcentral"
+    }
+   ],
+   "service": "PGC_Infrastructure",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/103"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 146,
+   "fields": [
+    "COMMENTS"
+   ],
+   "known": true,
+   "layer": "BSP.BSP_DBO.PA_PARK_BOAT_LAUNCHES",
+   "sample": [
+    {},
+    {},
+    {}
+   ],
+   "service": "Parks/boat_launch",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/boat_launch/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 65,
+   "fields": [
+    "Name",
+    "PARK_NAME",
+    "MAP_LINK",
+    "RESTROOMS",
+    "ELECTRIC",
+    "PETS_ALLOWED",
+    "ADA_SITES"
+   ],
+   "known": true,
+   "layer": "Campground Entrances",
+   "sample": [
+    {
+     "ADA_SITES": "No",
+     "ELECTRIC": "No",
+     "MAP_LINK": "http://www.dcnr.state.pa.us/cs/groups/public/documents/document/dcnr_20026363.pdf",
+     "Name": "Bald Eagle Rustic Campground",
+     "PARK_NAME": "Bald Eagle",
+     "PETS_ALLOWED": "No",
+     "RESTROOMS": "Rustic"
+    },
+    {
+     "ADA_SITES": "Yes",
+     "ELECTRIC": "Yes",
+     "MAP_LINK": "http://www.dcnr.state.pa.us/cs/groups/public/documents/document/dcnr_005020.pdf",
+     "Name": "Bald Eagle Russell P. Letterman Campground",
+     "PARK_NAME": "Bald Eagle",
+     "PETS_ALLOWED": "Yes",
+     "RESTROOMS": "Modern"
+    },
+    {
+     "ADA_SITES": "Yes",
+     "ELECTRIC": "Yes",
+     "MAP_LINK": "http://www.dcnr.state.pa.us/cs/groups/public/documents/document/dcnr_004914.pdf",
+     "Name": "Black Moshannon Campground",
+     "PARK_NAME": "Black Moshannon",
+     "PETS_ALLOWED": "Yes",
+     "RESTROOMS": "Modern"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "pgc_region",
+    "launch_id",
+    "launch_exists",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": true,
+   "layer": "Boat Launch",
+   "sample": [
+    {
+     "created_user": "PAGameCommissionGIS",
+     "last_edited_user": "PAGameCommissionGIS",
+     "launch_exists": "Yes",
+     "pgc_region": "Southeast"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "last_edited_user": "PAGameCommissionGIS",
+     "launch_exists": "Yes",
+     "pgc_region": "Southeast"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "last_edited_user": "PAGameCommissionGIS",
+     "launch_exists": "Yes",
+     "pgc_region": "Southeast"
+    }
+   ],
+   "service": "PGC_Infrastructure",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Infrastructure/FeatureServer/105"
+  }
+ ],
+ "st": "PA"
+}

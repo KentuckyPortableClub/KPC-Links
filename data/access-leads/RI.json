@@ -1,0 +1,198 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "URI EDC, RIGIS; RI Dept. of Transportation",
+   "area": "",
+   "count": 149,
+   "fields": [
+    "EXIT_NUMBE",
+    "EXIT_ROUTE",
+    "EXIT_SIGNA",
+    "EXIT_DESCR",
+    "TOWN",
+    "OSP",
+    "HIGHWAY",
+    "DIRECTION"
+   ],
+   "known": false,
+   "layer": "Exit Ramps",
+   "sample": [
+    {
+     "DIRECTION": "West",
+     "EXIT_DESCR": "Broadway to US 6 East & West (Warren Avenue) and US 44 East & West (Taunton Ave)",
+     "EXIT_NUMBE": "6",
+     "EXIT_ROUTE": "103/US 44",
+     "EXIT_SIGNA": "Route 103/US 44/Broadway - East Providence",
+     "HIGHWAY": "195",
+     "OSP": "10",
+     "TOWN": "East Providence"
+    },
+    {
+     "DIRECTION": "North",
+     "EXIT_DESCR": "Hummocks Avenue to Common Fence Point",
+     "EXIT_NUMBE": "3",
+     "EXIT_ROUTE": " ",
+     "EXIT_SIGNA": "Hummocks Avenue/Common Fence Point",
+     "HIGHWAY": "24",
+     "OSP": "27",
+     "TOWN": "Portsmouth"
+    },
+    {
+     "DIRECTION": "South",
+     "EXIT_DESCR": "I-195 East/US 6 East - East Providence/Cape Cod",
+     "EXIT_NUMBE": "20",
+     "EXIT_ROUTE": "I-195/US 6",
+     "EXIT_SIGNA": "I-195 East/US 6 East - East Providence/Cape Cod",
+     "HIGHWAY": "95",
+     "OSP": "28",
+     "TOWN": "Providence"
+    }
+   ],
+   "service": "Exit_Ramps",
+   "typef": "EXIT_DESCR",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Exit_Ramps/FeatureServer/0"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "NAME",
+   "count": 43,
+   "fields": [
+    "NAME",
+    "RMP_CNS",
+    "RMP_CND",
+    "PARK",
+    "RSTRCTN",
+    "UNI",
+    "TYPE",
+    "Wat_Ttp",
+    "Grid"
+   ],
+   "known": false,
+   "layer": "Boat Ramp",
+   "sample": [
+    {
+     "Grid": "I14",
+     "NAME": "Annawanscutt",
+     "PARK": "gravel lot",
+     "RMP_CND": "poor condition near water",
+     "RMP_CNS": "Concrete plank ramp",
+     "RSTRCTN": "New Ramp 2005",
+     "TYPE": "trailer ramp",
+     "UNI": "N",
+     "Wat_Ttp": "Salt"
+    },
+    {
+     "Grid": "J10",
+     "NAME": "Goddard Park",
+     "PARK": "gravel lot",
+     "RMP_CND": "good condition",
+     "RMP_CNS": "Concrete plank ramp",
+     "RSTRCTN": "High tide ramp only",
+     "TYPE": "trailer ramp",
+     "UNI": "N",
+     "Wat_Ttp": "Salt"
+    },
+    {
+     "Grid": "G11",
+     "NAME": "Stillhouse Cove",
+     "PARK": "parking along side of road",
+     "RMP_CND": "poor condition",
+     "RMP_CNS": "Paved Ramp",
+     "RSTRCTN": "usable only at extremely high tides",
+     "TYPE": "trailer ramp",
+     "UNI": "N",
+     "Wat_Ttp": "Salt"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 25,
+   "fields": [
+    "Name",
+    "Seasonal"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "Name": "Arcadia",
+     "Seasonal": "No"
+    },
+    {
+     "Name": "Arcadia",
+     "Seasonal": "No"
+    },
+    {
+     "Name": "Arcadia",
+     "Seasonal": "No"
+    }
+   ],
+   "service": "RIDEM/Arcadia_Trails_Rev2",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Arcadia_Trails_Rev2/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 181,
+   "fields": [
+    "DESC_",
+    "Seasonal"
+   ],
+   "known": true,
+   "layer": "Recreation - Trail Barrier or Gate",
+   "sample": [
+    {
+     "DESC_": "Barrier",
+     "Seasonal": "No"
+    },
+    {
+     "DESC_": "Gate",
+     "Seasonal": "No"
+    },
+    {
+     "DESC_": "Gate",
+     "Seasonal": "No"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "DESC_",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 150,
+   "fields": [
+    "Name",
+    "Seasonal"
+   ],
+   "known": true,
+   "layer": "Recreation -  Trail Head",
+   "sample": [
+    {
+     "Name": "Y",
+     "Seasonal": "No"
+    },
+    {
+     "Name": "Y",
+     "Seasonal": "No"
+    },
+    {
+     "Name": "Y",
+     "Seasonal": "No"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/15"
+  }
+ ],
+ "st": "RI"
+}

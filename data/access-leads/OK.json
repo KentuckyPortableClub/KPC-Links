@@ -1,0 +1,230 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "ODOT GIS Management Branch",
+   "area": "",
+   "count": 26796,
+   "fields": [
+    "ProjName",
+    "City",
+    "Corridor",
+    "Driveway",
+    "Ramp_Type",
+    "CornerID",
+    "MedianID",
+    "RampID",
+    "Lands_CW",
+    "F48in_CW_ex",
+    "Edge_Type",
+    "Sides",
+    "Text_Cnst",
+    "Color_Cnst",
+    "Ponding",
+    "Obstrction",
+    "Obstr_Type",
+    "Landing",
+    "Land_Size",
+    "Flsh_Trans"
+   ],
+   "known": false,
+   "layer": "Ramps",
+   "sample": [
+    {
+     "City": "Beggs",
+     "CornerID": "1",
+     "Corridor": "State Hwy 16",
+     "Driveway": "No",
+     "Edge_Type": " ",
+     "F48in_CW_ex": " ",
+     "Lands_CW": " ",
+     "MedianID": " ",
+     "ProjName": "Intersection of State Hwy 16 and S Creek Ave",
+     "RampID": "No Ramp",
+     "Ramp_Type": "Standard Corner",
+     "Sides": " "
+    },
+    {
+     "City": "Beggs",
+     "CornerID": "4",
+     "Corridor": "State Hwy 16",
+     "Driveway": "No",
+     "Edge_Type": " ",
+     "F48in_CW_ex": " ",
+     "Lands_CW": " ",
+     "MedianID": " ",
+     "ProjName": "Intersection of State Hwy 16 and S Creek Ave",
+     "RampID": "No Ramp",
+     "Ramp_Type": "Standard Corner",
+     "Sides": " "
+    },
+    {
+     "City": "Beggs",
+     "CornerID": "2",
+     "Corridor": "State Hwy 16",
+     "Driveway": "No",
+     "Edge_Type": " ",
+     "F48in_CW_ex": " ",
+     "Lands_CW": " ",
+     "MedianID": " ",
+     "ProjName": "Intersection of State Hwy 16 and S Creek Ave",
+     "RampID": "No Ramp",
+     "Ramp_Type": "Standard Corner",
+     "Sides": " "
+    }
+   ],
+   "service": "ADA_Compliance",
+   "typef": "Ramp_Type",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/ADA_Compliance/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 299,
+   "fields": [
+    "PointType",
+    "Description",
+    "DatesOpen",
+    "OpenToPublic",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "OLAP Parking Alerts 062626",
+   "sample": [
+    {
+     "Comments": "Park on road shoulder",
+     "DatesOpen": " ",
+     "Description": " ",
+     "OpenToPublic": "Yes",
+     "PointType": "Parking"
+    },
+    {
+     "DatesOpen": " ",
+     "Description": " ",
+     "PointType": "Parking"
+    },
+    {
+     "DatesOpen": " ",
+     "Description": " ",
+     "PointType": "Parking"
+    }
+   ],
+   "service": "OLAP_UpdatedLayers_062626_OnX_View",
+   "typef": "PointType",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/OLAP_UpdatedLayers_062626_OnX_View/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 299,
+   "fields": [
+    "PointType",
+    "Description",
+    "DatesOpen",
+    "OpenToPublic",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "OLAP Parking Alerts 062626",
+   "sample": [
+    {
+     "Comments": "Park on road shoulder",
+     "DatesOpen": " ",
+     "Description": " ",
+     "OpenToPublic": "Yes",
+     "PointType": "Parking"
+    },
+    {
+     "DatesOpen": " ",
+     "Description": " ",
+     "PointType": "Parking"
+    },
+    {
+     "DatesOpen": " ",
+     "Description": " ",
+     "PointType": "Parking"
+    }
+   ],
+   "service": "OLAP_UpdatedLayers_062626_PublicView",
+   "typef": "PointType",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/OLAP_UpdatedLayers_062626_PublicView/FeatureServer/6"
+  },
+  {
+   "agency": "ODOT GIS Management Branch",
+   "area": "Facility",
+   "count": 18,
+   "fields": [
+    "Report",
+    "Inspector",
+    "Insp_Phone",
+    "Insp_Email",
+    "Client",
+    "Type_Insp",
+    "Facility",
+    "Address",
+    "City",
+    "County",
+    "Facil_con",
+    "Cnct_Phone",
+    "Gen_Notes",
+    "Park_Lot_C",
+    "Gen_Notes1",
+    "Tot_Park_1",
+    "Park_Lot_1",
+    "Gen_Notes2",
+    "Tot_Park_2",
+    "Park_Lot_2"
+   ],
+   "known": false,
+   "layer": "Capitol Complex Parking Lots",
+   "sample": [
+    {
+     "Address": "Unknown",
+     "City": "Oklahoma City",
+     "Client": "Oklahoma DOT",
+     "Cnct_Phone": "Unknown",
+     "County": "Oklahoma",
+     "Facil_con": "Unknown",
+     "Facility": "Senate Parking Lot",
+     "Insp_Email": "rthomas@accessology.com",
+     "Insp_Phone": "972-434-0068",
+     "Inspector": "Ross Thomas",
+     "Report": "Senate_Parking_Lot.pdf",
+     "Type_Insp": "ADA Transition Plan"
+    },
+    {
+     "Address": "Unknown",
+     "City": "Oklahoma City",
+     "Client": "Oklahoma DOT",
+     "Cnct_Phone": "Unknown",
+     "County": "Oklahoma",
+     "Facil_con": "Unknown",
+     "Facility": "House Parking Lot",
+     "Insp_Email": "rthomas@accessology.com",
+     "Insp_Phone": "972-434-0068",
+     "Inspector": "Ross Thomas",
+     "Report": "House_Parking_Lot.pdf",
+     "Type_Insp": "ADA Transition Plan"
+    },
+    {
+     "Address": "Unknown",
+     "City": "Oklahoma City",
+     "Client": "Oklahoma DOT",
+     "Cnct_Phone": "Unknown",
+     "County": "Oklahoma",
+     "Facil_con": "Unknown",
+     "Facility": "Visitor Parking Lot",
+     "Insp_Email": "rthomas@accessology.com",
+     "Insp_Phone": "972-434-0068",
+     "Inspector": "Ross Thomas",
+     "Report": "Visitor_Parking_Lot.pdf",
+     "Type_Insp": "ADA Transition Plan"
+    }
+   ],
+   "service": "ADA_Compliance",
+   "typef": "Type_Insp",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/ADA_Compliance/FeatureServer/5"
+  }
+ ],
+ "st": "OK"
+}

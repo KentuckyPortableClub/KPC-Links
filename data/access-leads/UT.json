@@ -1,0 +1,492 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "PrimaryName",
+    "TrailheadID",
+    "Features",
+    "PrimaryMaintenance",
+    "SeasonalRestriction",
+    "InfoURL",
+    "Comments",
+    "DataSource"
+   ],
+   "known": false,
+   "layer": "Trailheads_HighUintas",
+   "sample": [
+    {
+     "Comments": "OVPrimaryUseMTB",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Upper Setting",
+     "TrailheadID": "OV210972"
+    },
+    {
+     "Comments": "OVPrimaryUseHIKE",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Grandaddy",
+     "TrailheadID": "OV1412710"
+    },
+    {
+     "Comments": "OVPrimaryUseHIKE",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Uinta Canyon",
+     "TrailheadID": "OV1414835"
+    }
+   ],
+   "service": "BlueRibbon_HighUintasBoulderMtn",
+   "typef": "Features",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BlueRibbon_HighUintasBoulderMtn/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "PrimaryName",
+    "TrailheadID",
+    "Features",
+    "PrimaryMaintenance",
+    "SeasonalRestriction",
+    "InfoURL",
+    "Comments",
+    "DataSource"
+   ],
+   "known": false,
+   "layer": "Trailheads_HighUintas",
+   "sample": [
+    {
+     "Comments": "OVPrimaryUseMTB",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Upper Setting",
+     "TrailheadID": "OV210972"
+    },
+    {
+     "Comments": "OVPrimaryUseHIKE",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Grandaddy",
+     "TrailheadID": "OV1412710"
+    },
+    {
+     "Comments": "OVPrimaryUseHIKE",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Uinta Canyon",
+     "TrailheadID": "OV1414835"
+    }
+   ],
+   "service": "BlueRibbon_HighUintasBoulderMtn",
+   "typef": "Features",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BlueRibbon_HighUintasBoulderMtn/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "Comment",
+    "TYPE",
+    "SubType"
+   ],
+   "known": false,
+   "layer": "Improved Public Access Points",
+   "sample": [
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    }
+   ],
+   "service": "BLCMP_GIS_Viewer_FFSL",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_GIS_Viewer_FFSL/FeatureServer/54"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "Comment",
+    "TYPE",
+    "SubType"
+   ],
+   "known": false,
+   "layer": "Improved Public Access Points",
+   "sample": [
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "Comment",
+    "TYPE",
+    "SubType"
+   ],
+   "known": false,
+   "layer": "Improved Public Access Points",
+   "sample": [
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    }
+   ],
+   "service": "BLCMP_GIS_Viewer_FFSL",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_GIS_Viewer_FFSL/FeatureServer/54"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "Comment",
+    "TYPE",
+    "SubType"
+   ],
+   "known": false,
+   "layer": "Improved Public Access Points",
+   "sample": [
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    },
+    {
+     "Comment": "Southwest Shoreline Access - Vehicle Turnout Access",
+     "SubType": "Public Access",
+     "TYPE": "Free Public Access"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Recreation/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "TYPE",
+    "SubType",
+    "Name",
+    "Material"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "Name": "Bear Lake State Park Marina Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "First Point Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "Rainbow Cove Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    }
+   ],
+   "service": "BLCMP_GIS_Viewer_FFSL",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_GIS_Viewer_FFSL/FeatureServer/51"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "TYPE",
+    "SubType",
+    "Name",
+    "Material"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "Name": "Bear Lake State Park Marina Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "First Point Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "Rainbow Cove Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    }
+   ],
+   "service": "BLCMP_Infrastructure",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Infrastructure/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "TYPE",
+    "SubType",
+    "Name",
+    "Material"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "Name": "Bear Lake State Park Marina Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "First Point Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "Rainbow Cove Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "TYPE",
+    "SubType",
+    "Name",
+    "Material"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "Name": "Bear Lake State Park Marina Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "First Point Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "Rainbow Cove Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    }
+   ],
+   "service": "BLCMP_GIS_Viewer_FFSL",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_GIS_Viewer_FFSL/FeatureServer/51"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "TYPE",
+    "SubType",
+    "Name",
+    "Material"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "Name": "Bear Lake State Park Marina Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "First Point Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "Rainbow Cove Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    }
+   ],
+   "service": "BLCMP_Infrastructure",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Infrastructure/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "TYPE",
+    "SubType",
+    "Name",
+    "Material"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "Name": "Bear Lake State Park Marina Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "First Point Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    },
+    {
+     "Name": "Rainbow Cove Boat Ramp",
+     "SubType": "Boat Ramp",
+     "TYPE": "Public Ramps"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Recreation/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "PrimaryName",
+    "TrailheadID",
+    "Features",
+    "PrimaryMaintenance",
+    "SeasonalRestriction",
+    "InfoURL",
+    "Comments",
+    "DataSource"
+   ],
+   "known": false,
+   "layer": "Trailheads_BoulderMtn",
+   "sample": [
+    {
+     "Comments": "OVPrimaryUseMTB",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Green Lake (Upper Trailhead)",
+     "TrailheadID": "OV9528411"
+    },
+    {
+     "Comments": "OVPrimaryUseMTB",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Trail 144 (Lower Trailhead)",
+     "TrailheadID": "OV9528412"
+    },
+    {
+     "Comments": "OVPrimaryUseHIKE",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Chriss Lake",
+     "TrailheadID": "OV9530632"
+    }
+   ],
+   "service": "BlueRibbon_HighUintasBoulderMtn",
+   "typef": "Features",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BlueRibbon_HighUintasBoulderMtn/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "PrimaryName",
+    "TrailheadID",
+    "Features",
+    "PrimaryMaintenance",
+    "SeasonalRestriction",
+    "InfoURL",
+    "Comments",
+    "DataSource"
+   ],
+   "known": false,
+   "layer": "Trailheads_BoulderMtn",
+   "sample": [
+    {
+     "Comments": "OVPrimaryUseMTB",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Green Lake (Upper Trailhead)",
+     "TrailheadID": "OV9528411"
+    },
+    {
+     "Comments": "OVPrimaryUseMTB",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Trail 144 (Lower Trailhead)",
+     "TrailheadID": "OV9528412"
+    },
+    {
+     "Comments": "OVPrimaryUseHIKE",
+     "DataSource": "OrbitalView",
+     "PrimaryName": "Chriss Lake",
+     "TrailheadID": "OV9530632"
+    }
+   ],
+   "service": "BlueRibbon_HighUintasBoulderMtn",
+   "typef": "Features",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BlueRibbon_HighUintasBoulderMtn/FeatureServer/0"
+  }
+ ],
+ "st": "UT"
+}

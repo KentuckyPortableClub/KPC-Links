@@ -1,0 +1,77 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Website",
+   "count": 77,
+   "fields": [
+    "LIBID",
+    "Library_Name",
+    "Alt_Branch_Library_Name",
+    "Library_Type",
+    "Location_Type",
+    "County",
+    "Physical_Address",
+    "Physical_City",
+    "Physical_State",
+    "Mailing_Street",
+    "Mailing_City",
+    "Mailing_State",
+    "Phone",
+    "Email",
+    "Website",
+    "Resource_Network",
+    "Geocoded_Address"
+   ],
+   "known": false,
+   "layer": "Participating Day Use Fee Park Pass Libraries",
+   "sample": [
+    {
+     "County": "Umatilla",
+     "LIBID": "OR0040",
+     "Library_Name": "Adams Public Library",
+     "Library_Type": "Public",
+     "Location_Type": "Main",
+     "Mailing_City": "Adams",
+     "Mailing_State": "OR",
+     "Mailing_Street": "PO Box 20",
+     "Physical_Address": "190 North Main Street",
+     "Physical_City": "Adams",
+     "Physical_State": "OR"
+    },
+    {
+     "Alt_Branch_Library_Name": "Main Library",
+     "County": "Linn",
+     "LIBID": "OR0106",
+     "Library_Name": "Albany Public Library",
+     "Library_Type": "Public",
+     "Location_Type": "Main",
+     "Mailing_City": "Albany",
+     "Mailing_State": "OR",
+     "Mailing_Street": "2450 14th Avenue SE",
+     "Physical_Address": "2450 14th Avenue SE",
+     "Physical_City": "Albany",
+     "Physical_State": "OR"
+    },
+    {
+     "County": "Yamhill",
+     "LIBID": "OR0002",
+     "Library_Name": "Amity Public Library",
+     "Library_Type": "Public",
+     "Location_Type": "Main",
+     "Mailing_City": "Amity",
+     "Mailing_State": "OR",
+     "Mailing_Street": "PO Box 470",
+     "Physical_Address": "307 S Trade St",
+     "Physical_City": "Amity",
+     "Physical_State": "OR"
+    }
+   ],
+   "service": "2026_Participating_Libraries",
+   "typef": "Library_Type",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/2026_Participating_Libraries/FeatureServer/0"
+  }
+ ],
+ "st": "OR"
+}
