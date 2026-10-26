@@ -101,7 +101,7 @@
      48.576735
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -142,7 +142,7 @@
      48.634434
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -2509,7 +2509,7 @@
      58.858806
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -3904,7 +3904,7 @@
      49.772219
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 240
   }
  ],

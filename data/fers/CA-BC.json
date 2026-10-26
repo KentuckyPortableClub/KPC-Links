@@ -178,7 +178,7 @@
      50.829303
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -231,7 +231,7 @@
      50.907441
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -365,7 +365,7 @@
      52.726838
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -406,7 +406,7 @@
      50.886094
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -455,7 +455,7 @@
      49.09799
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -520,7 +520,7 @@
      49.103054
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -1481,22 +1481,22 @@
   },
   {
    "box": [
-    -124.81783,
-    48.66299,
-    -124.81457,
-    48.66351
+    -124.8185,
+    48.54677,
+    -124.41617,
+    48.66366
    ],
    "center": [
-    48.663248,
-    -124.816199
+    48.573982,
+    -124.628206
    ],
    "found": "2026-10-26",
    "id": "CA-0066+CA-5344@trail@48.663,-124.816",
    "kind": "trail",
-   "len_m": 247,
+   "len_m": 77487,
    "passes": [
     1,
-    0,
+    1,
     0
    ],
    "refs": [
@@ -1505,107 +1505,283 @@
    ],
    "shape": [
     [
-     -124.81783,
-     48.66351
+     -124.81197,
+     48.66305
     ],
     [
-     -124.817694,
-     48.663488
+     -124.810409,
+     48.658282
     ],
     [
-     -124.817558,
-     48.663466
+     -124.806396,
+     48.654028
     ],
     [
-     -124.817422,
-     48.663444
+     -124.802584,
+     48.650008
     ],
     [
-     -124.817286,
-     48.663423
+     -124.799462,
+     48.645956
     ],
     [
-     -124.81715,
-     48.663401
+     -124.795033,
+     48.642103
     ],
     [
-     -124.817014,
-     48.663379
+     -124.789773,
+     48.638971
     ],
     [
-     -124.816879,
-     48.663357
+     -124.782398,
+     48.63809
     ],
     [
-     -124.816743,
-     48.663335
+     -124.778291,
+     48.634485
     ],
     [
-     -124.816607,
-     48.663313
+     -124.773834,
+     48.630534
     ],
     [
-     -124.816471,
-     48.663291
+     -124.767193,
+     48.628431
     ],
     [
-     -124.816335,
-     48.66327
+     -124.764755,
+     48.62412
     ],
     [
-     -124.816199,
-     48.663248
+     -124.763205,
+     48.619519
     ],
     [
-     -124.816063,
-     48.663226
+     -124.757847,
+     48.617091
     ],
     [
-     -124.815927,
-     48.663204
+     -124.752303,
+     48.61391
     ],
     [
-     -124.815791,
-     48.663182
+     -124.745858,
+     48.612106
     ],
     [
-     -124.815655,
-     48.66316
+     -124.739047,
+     48.612296
     ],
     [
-     -124.815519,
-     48.663139
+     -124.733509,
+     48.608991
     ],
     [
-     -124.815383,
-     48.663117
+     -124.728463,
+     48.605777
     ],
     [
-     -124.815247,
-     48.663095
+     -124.726742,
+     48.60091
     ],
     [
-     -124.815111,
-     48.663073
+     -124.722203,
+     48.597467
     ],
     [
-     -124.814976,
-     48.663051
+     -124.716907,
+     48.594042
     ],
     [
-     -124.81484,
-     48.663029
+     -124.710113,
+     48.591833
     ],
     [
-     -124.814704,
-     48.663007
+     -124.703116,
+     48.59004
     ],
     [
-     -124.814568,
-     48.662986
+     -124.696458,
+     48.589875
+    ],
+    [
+     -124.689125,
+     48.58983
+    ],
+    [
+     -124.682831,
+     48.587099
+    ],
+    [
+     -124.677075,
+     48.585159
+    ],
+    [
+     -124.669715,
+     48.584062
+    ],
+    [
+     -124.66259,
+     48.582506
+    ],
+    [
+     -124.655757,
+     48.58115
+    ],
+    [
+     -124.649475,
+     48.579067
+    ],
+    [
+     -124.641965,
+     48.578608
+    ],
+    [
+     -124.635345,
+     48.576267
+    ],
+    [
+     -124.628928,
+     48.574255
+    ],
+    [
+     -124.621809,
+     48.572583
+    ],
+    [
+     -124.615958,
+     48.569953
+    ],
+    [
+     -124.610344,
+     48.567815
+    ],
+    [
+     -124.60285,
+     48.568282
+    ],
+    [
+     -124.595562,
+     48.567131
+    ],
+    [
+     -124.589022,
+     48.565187
+    ],
+    [
+     -124.583148,
+     48.562548
+    ],
+    [
+     -124.576047,
+     48.560848
+    ],
+    [
+     -124.569104,
+     48.560076
+    ],
+    [
+     -124.562126,
+     48.561141
+    ],
+    [
+     -124.554884,
+     48.562371
+    ],
+    [
+     -124.550224,
+     48.560328
+    ],
+    [
+     -124.547357,
+     48.559139
+    ],
+    [
+     -124.541211,
+     48.557888
+    ],
+    [
+     -124.537155,
+     48.553758
+    ],
+    [
+     -124.530516,
+     48.551634
+    ],
+    [
+     -124.523981,
+     48.54978
+    ],
+    [
+     -124.517031,
+     48.547952
+    ],
+    [
+     -124.50974,
+     48.546903
+    ],
+    [
+     -124.505977,
+     48.55015
+    ],
+    [
+     -124.504139,
+     48.554445
+    ],
+    [
+     -124.496871,
+     48.555756
+    ],
+    [
+     -124.490202,
+     48.557909
+    ],
+    [
+     -124.483678,
+     48.560437
+    ],
+    [
+     -124.476821,
+     48.562548
+    ],
+    [
+     -124.469893,
+     48.563105
+    ],
+    [
+     -124.462373,
+     48.563767
+    ],
+    [
+     -124.45509,
+     48.56513
+    ],
+    [
+     -124.447936,
+     48.566729
+    ],
+    [
+     -124.440971,
+     48.568677
+    ],
+    [
+     -124.434974,
+     48.571148
+    ],
+    [
+     -124.428003,
+     48.573096
+    ],
+    [
+     -124.421457,
+     48.575131
+    ],
+    [
+     -124.416774,
+     48.57739
     ]
    ],
-   "status": "waiting for pass 2"
+   "status": "pass 2"
   },
   {
    "box": [
@@ -3305,7 +3481,7 @@
      49.366079
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -3350,7 +3526,7 @@
      49.310279
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -3391,7 +3567,7 @@
      49.301058
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -3432,7 +3608,7 @@
      49.301058
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -3473,7 +3649,7 @@
      49.282406
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -3538,7 +3714,7 @@
      53.998513
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -3579,7 +3755,7 @@
      54.008099
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -3644,7 +3820,7 @@
      51.114397
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -3685,7 +3861,7 @@
      51.134112
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -3730,7 +3906,7 @@
      51.12941
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -3791,7 +3967,7 @@
      51.13357
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -3844,7 +4020,7 @@
      51.16052
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -3889,7 +4065,7 @@
      51.166308
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -3942,7 +4118,7 @@
      51.195248
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -3991,7 +4167,7 @@
      51.199046
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -4068,7 +4244,7 @@
      51.209718
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -4109,7 +4285,7 @@
      50.575704
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -4154,7 +4330,7 @@
      50.575885
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -4207,7 +4383,7 @@
      50.600303
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 176
   },
   {
@@ -4256,7 +4432,7 @@
      50.606996
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -4313,7 +4489,7 @@
      52.997225
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -4354,7 +4530,7 @@
      52.999215
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -4872,7 +5048,7 @@
      52.806595
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -4945,7 +5121,7 @@
      52.8283
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -4986,7 +5162,7 @@
      52.858325
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -5043,7 +5219,7 @@
      57.729638
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5084,7 +5260,7 @@
      58.488234
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -5125,7 +5301,7 @@
      58.510301
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -5166,7 +5342,7 @@
      57.65492
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -5207,7 +5383,7 @@
      57.686573
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5252,7 +5428,7 @@
      57.72528
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 176
   },
   {
@@ -5293,7 +5469,7 @@
      49.543752
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5346,7 +5522,7 @@
      59.905804
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5407,7 +5583,7 @@
      51.02109
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 216
   },
   {
@@ -5448,7 +5624,7 @@
      53.598159
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -5493,7 +5669,7 @@
      50.08629
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5534,7 +5710,7 @@
      50.12337
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5583,7 +5759,7 @@
      50.126625
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5632,7 +5808,7 @@
      50.147245
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -5729,7 +5905,7 @@
      59.326067
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5826,7 +6002,7 @@
      59.326067
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5867,7 +6043,7 @@
      59.231504
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -6625,7 +6801,7 @@
      50.426369
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -6666,7 +6842,7 @@
      49.373731
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -6864,7 +7040,7 @@
      49.087849
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6913,7 +7089,7 @@
      49.087849
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -6962,7 +7138,7 @@
      59.351793
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7003,7 +7179,7 @@
      59.412205
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7048,7 +7224,7 @@
      51.401975
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -7097,7 +7273,7 @@
      50.191601
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -7138,7 +7314,7 @@
      52.771199
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7179,7 +7355,7 @@
      52.690557
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -7236,7 +7412,7 @@
      52.708101
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7281,7 +7457,7 @@
      52.720039
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7326,7 +7502,7 @@
      52.764534
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7367,7 +7543,7 @@
      52.784792
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7408,7 +7584,7 @@
      52.783888
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7485,7 +7661,7 @@
      52.852801
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7562,7 +7738,7 @@
      49.004648
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7603,7 +7779,7 @@
      49.000539
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7644,7 +7820,7 @@
      52.27564
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -7685,7 +7861,7 @@
      52.079644
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7782,7 +7958,7 @@
      52.646345
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7823,7 +7999,7 @@
      53.563368
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7960,7 +8136,7 @@
      53.56174
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -8001,7 +8177,7 @@
      53.587605
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -8042,7 +8218,7 @@
      53.588509
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -8083,7 +8259,7 @@
      53.597191
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -8128,7 +8304,7 @@
      53.606235
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -8229,7 +8405,7 @@
      53.939996
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -8330,7 +8506,7 @@
      53.939996
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -8371,7 +8547,7 @@
      52.662766
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -8432,7 +8608,7 @@
      52.68646
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -8473,7 +8649,7 @@
      52.763204
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -8522,7 +8698,7 @@
      52.772971
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -8579,7 +8755,7 @@
      52.839352
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -8640,7 +8816,7 @@
      52.869739
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -8681,7 +8857,7 @@
      52.876251
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -8827,7 +9003,7 @@
      52.89054
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 176
   },
   {
@@ -8868,7 +9044,7 @@
      52.895423
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -8925,7 +9101,7 @@
      52.991106
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -9010,7 +9186,7 @@
      53.020769
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -9055,7 +9231,7 @@
      53.024929
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -9096,7 +9272,7 @@
      53.026557
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -9145,7 +9321,7 @@
      53.057822
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -9194,7 +9370,7 @@
      49.256122
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -9371,7 +9547,7 @@
      54.046047
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -9548,7 +9724,7 @@
      54.046047
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -9725,7 +9901,7 @@
      54.046047
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -9902,7 +10078,7 @@
      54.046047
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -10068,7 +10244,7 @@
      54.069699
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -10125,7 +10301,7 @@
      54.069699
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -10166,7 +10342,7 @@
      53.084829
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -10223,7 +10399,7 @@
      53.100384
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -10264,7 +10440,7 @@
      53.176171
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -10313,7 +10489,7 @@
      53.177256
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -10446,7 +10622,7 @@
      53.236919
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -10495,7 +10671,7 @@
      53.283223
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -10536,7 +10712,7 @@
      52.97923
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 216
   },
   {
@@ -10597,7 +10773,7 @@
      54.674064
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -10638,7 +10814,7 @@
      54.745202
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -10780,7 +10956,7 @@
      54.722318
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -10837,7 +11013,7 @@
      54.726478
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -10910,7 +11086,7 @@
      54.73932
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -10951,7 +11127,7 @@
      53.686714
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -11008,7 +11184,7 @@
      57.729638
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -11306,7 +11482,7 @@
      59.397372
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -11347,7 +11523,7 @@
      59.441686
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -11444,7 +11620,7 @@
      59.458146
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -11485,7 +11661,7 @@
      59.397372
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -11526,7 +11702,7 @@
      59.441686
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -11623,7 +11799,7 @@
      59.458146
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -11672,7 +11848,7 @@
      51.543161
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -11713,7 +11889,7 @@
      50.488397
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -11754,7 +11930,7 @@
      49.284338
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -11852,7 +12028,7 @@
      49.452783
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -11909,7 +12085,7 @@
      49.445257
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -11950,7 +12126,7 @@
      50.109086
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -12079,7 +12255,7 @@
      49.49328
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -12120,7 +12296,7 @@
      52.853946
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -12161,7 +12337,7 @@
      52.885056
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -12202,7 +12378,7 @@
      52.891929
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -12259,7 +12435,7 @@
      52.893557
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -12428,7 +12604,7 @@
      52.987069
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -12469,7 +12645,7 @@
      53.025053
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -12510,7 +12686,7 @@
      53.026138
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -12551,7 +12727,7 @@
      52.853946
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -12592,7 +12768,7 @@
      52.885056
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -12633,7 +12809,7 @@
      52.891929
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -12690,7 +12866,7 @@
      52.893557
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -12859,7 +13035,7 @@
      52.987069
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -12900,7 +13076,7 @@
      53.025053
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -12941,7 +13117,7 @@
      53.026138
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -12986,7 +13162,7 @@
      50.294077
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -13027,7 +13203,7 @@
      51.910633
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -13076,7 +13252,7 @@
      58.491513
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -13117,7 +13293,7 @@
      58.510324
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -13231,7 +13407,7 @@
      49.31115
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 176
   },
   {
@@ -13272,7 +13448,7 @@
      49.117444
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -13325,7 +13501,7 @@
      49.758214
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -13382,7 +13558,7 @@
      49.752968
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -13443,7 +13619,7 @@
      59.729951
     ]
    ],
-   "status": "waiting for pass 2",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
