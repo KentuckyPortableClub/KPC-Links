@@ -255,7 +255,7 @@
      35.501675
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -316,7 +316,7 @@
      35.627383
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -365,7 +365,7 @@
      36.397585
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -406,7 +406,7 @@
      36.401564
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -459,7 +459,7 @@
      36.402107
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -634,7 +634,7 @@
      36.085973
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -727,7 +727,7 @@
      36.490583
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 168
   },
   {
@@ -768,15 +768,15 @@
      35.276424
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
    "acres": 3066.3,
    "box": [
     -85.92857,
-    35.05479,
-    -85.88115,
+    35.05977,
+    -85.88148,
     35.11521
    ],
    "center": [
@@ -1229,7 +1229,7 @@
    "acres": 5503.0,
    "box": [
     -89.32791,
-    35.10013,
+    35.10022,
     -89.23542,
     35.15792
    ],
@@ -1682,10 +1682,10 @@
   {
    "acres": 7141.1,
    "box": [
-    -85.36787,
-    35.80113,
+    -85.35657,
+    35.80122,
     -85.22048,
-    35.88578
+    35.88515
    ],
    "center": [
     35.833867,
@@ -2613,9 +2613,9 @@
   {
    "acres": 2259.4,
    "box": [
-    -85.08282,
-    35.51562,
-    -85.0137,
+    -85.07896,
+    35.51652,
+    -85.01601,
     35.60108
    ],
    "center": [
@@ -3761,16 +3761,16 @@
      36.491537
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
    "acres": 3552.8,
    "box": [
     -84.86128,
-    35.89394,
-    -84.80181,
-    35.94784
+    35.89403,
+    -84.80192,
+    35.9464
    ],
    "center": [
     35.919537,
@@ -4323,7 +4323,7 @@
    "acres": 19688.2,
    "box": [
     -89.44974,
-    36.35059,
+    36.35177,
     -89.31108,
     36.49755
    ],
@@ -5169,16 +5169,16 @@
      35.198594
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
    "acres": 24032.0,
    "box": [
-    -84.02317,
-    36.27321,
-    -83.84843,
-    36.39883
+    -84.02306,
+    36.27502,
+    -83.8501,
+    36.39702
    ],
    "center": [
     36.335252,
@@ -5737,7 +5737,7 @@
      35.795309
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5778,7 +5778,7 @@
      35.245963
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5843,7 +5843,7 @@
      35.260795
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5888,7 +5888,7 @@
      35.260252
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5929,7 +5929,7 @@
      35.26803
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -5986,7 +5986,7 @@
      35.399887
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6043,7 +6043,7 @@
      35.781214
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6120,7 +6120,7 @@
      35.790982
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6161,7 +6161,7 @@
      35.785917
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -6222,7 +6222,7 @@
      35.841626
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6287,7 +6287,7 @@
      35.93749
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -6352,7 +6352,7 @@
      35.971856
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6393,7 +6393,7 @@
      35.970228
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6478,7 +6478,7 @@
      36.007488
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6531,7 +6531,7 @@
      36.01201
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6588,7 +6588,7 @@
      36.017979
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -6653,7 +6653,7 @@
      36.034077
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -6710,7 +6710,7 @@
      36.035885
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -6751,7 +6751,7 @@
      36.046376
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6792,7 +6792,7 @@
      36.046738
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -6901,7 +6901,7 @@
      36.114566
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -6954,7 +6954,7 @@
      36.123067
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -6995,7 +6995,7 @@
      36.109863
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -7036,7 +7036,7 @@
      36.118364
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7093,7 +7093,7 @@
      35.781214
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7170,7 +7170,7 @@
      35.790982
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7211,7 +7211,7 @@
      35.785917
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 144
   },
   {
@@ -7272,7 +7272,7 @@
      35.841626
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7337,7 +7337,7 @@
      35.93749
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7402,7 +7402,7 @@
      35.971856
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7443,7 +7443,7 @@
      35.970228
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7528,7 +7528,7 @@
      36.007488
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7581,7 +7581,7 @@
      36.01201
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7638,7 +7638,7 @@
      36.017979
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7703,7 +7703,7 @@
      36.034077
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -7760,7 +7760,7 @@
      36.035885
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -7801,7 +7801,7 @@
      36.046376
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -7842,7 +7842,7 @@
      36.046738
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -7951,7 +7951,7 @@
      36.114566
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -8004,7 +8004,7 @@
      36.123067
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -8045,7 +8045,7 @@
      36.109863
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 128
   },
   {
@@ -8086,7 +8086,7 @@
      36.118364
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {

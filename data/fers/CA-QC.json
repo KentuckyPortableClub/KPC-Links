@@ -2120,7 +2120,7 @@
      50.261812
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -2537,7 +2537,7 @@
      50.261812
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -3942,7 +3942,7 @@
      45.5375
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {
@@ -4255,7 +4255,7 @@
      48.158828
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -4304,7 +4304,7 @@
      48.163892
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -4345,7 +4345,7 @@
      48.222496
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -4430,7 +4430,7 @@
      48.242392
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -4483,7 +4483,7 @@
      48.239498
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -4524,7 +4524,7 @@
      48.239136
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -4573,7 +4573,7 @@
      48.250712
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -4618,7 +4618,7 @@
      48.246733
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -4659,7 +4659,7 @@
      48.256681
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -4712,7 +4712,7 @@
      48.264459
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -4753,7 +4753,7 @@
      48.295569
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -4794,7 +4794,7 @@
      48.323243
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -4835,7 +4835,7 @@
      48.334276
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -4900,7 +4900,7 @@
      48.348203
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -4949,7 +4949,7 @@
      48.350916
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -4990,7 +4990,7 @@
      48.354715
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -5043,7 +5043,7 @@
      48.363035
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -5108,7 +5108,7 @@
      48.374973
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -5149,7 +5149,7 @@
      48.382569
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -5222,7 +5222,7 @@
      45.474787
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -5624,7 +5624,7 @@
      48.890896
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -7167,7 +7167,7 @@
      48.887671
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2 (an outline could not be downloaded)",
    "wide_m": 112
   },
   {
@@ -11635,7 +11635,7 @@
    "box": [
     -73.13514,
     48.85906,
-    -72.77905,
+    -72.78096,
     49.11427
    ],
    "center": [
@@ -11961,7 +11961,7 @@
     -73.50645,
     49.16612,
     -73.24469,
-    49.39095
+    49.37232
    ],
    "center": [
     49.194697,
@@ -13572,7 +13572,7 @@
      51.525125
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -13658,7 +13658,7 @@
      45.220886
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 160
   },
   {
@@ -13703,7 +13703,7 @@
      45.5375
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 200
   },
   {

@@ -45,7 +45,7 @@
      45.571082
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -102,7 +102,7 @@
      45.601468
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -151,7 +151,7 @@
      45.626371
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -196,7 +196,7 @@
      45.571082
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -253,7 +253,7 @@
      45.601468
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -302,7 +302,7 @@
      45.626371
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -343,7 +343,7 @@
      45.913994
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -412,7 +412,7 @@
      45.953967
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -457,7 +457,7 @@
      45.957947
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -526,7 +526,7 @@
      45.953967
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -571,7 +571,7 @@
      45.957947
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -690,7 +690,7 @@
   {
    "acres": 3786.9,
    "box": [
-    -66.45532,
+    -66.45404,
     45.25401,
     -66.39708,
     45.32889

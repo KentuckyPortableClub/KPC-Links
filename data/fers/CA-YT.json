@@ -45,7 +45,7 @@
      61.263237
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 2040
   },
   {
@@ -187,7 +187,7 @@
      68.55592
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -232,7 +232,7 @@
      60.000779
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   }
  ],

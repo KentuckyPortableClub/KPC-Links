@@ -7,9 +7,9 @@
    "acres": 676.5,
    "box": [
     -117.31705,
-    52.15905,
+    52.1595,
     -117.02309,
-    52.27137
+    52.27092
    ],
    "center": [
     52.243158,
@@ -374,7 +374,7 @@
      51.085847
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -435,7 +435,7 @@
      51.09887
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -476,7 +476,7 @@
      51.124554
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -517,7 +517,7 @@
      51.190031
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -558,7 +558,7 @@
      51.250986
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -615,7 +615,7 @@
      51.307418
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -660,7 +660,7 @@
      51.43457
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -766,7 +766,7 @@
      51.515601
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -807,7 +807,7 @@
      51.547073
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -848,7 +848,7 @@
      51.553947
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -889,7 +889,7 @@
      51.560458
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -930,7 +930,7 @@
      51.637872
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -971,7 +971,7 @@
      50.745665
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -1036,7 +1036,7 @@
      50.752176
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1077,7 +1077,7 @@
      50.776594
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1134,7 +1134,7 @@
      50.793958
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -1175,7 +1175,7 @@
      50.817666
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1240,7 +1240,7 @@
      50.854021
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -1285,7 +1285,7 @@
      50.857458
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1350,7 +1350,7 @@
      50.868672
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -1427,7 +1427,7 @@
      50.914614
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -1468,7 +1468,7 @@
      50.933968
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1525,7 +1525,7 @@
      50.94482
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1594,7 +1594,7 @@
      50.970866
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -1639,7 +1639,7 @@
      50.978825
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -1724,7 +1724,7 @@
      51.026033
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -1765,7 +1765,7 @@
      50.706468
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -1850,7 +1850,7 @@
      51.092816
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 224
   },
   {
@@ -1923,7 +1923,7 @@
      51.162091
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 224
   },
   {
@@ -1984,7 +1984,7 @@
      51.182751
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -2053,7 +2053,7 @@
      51.202104
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -2094,7 +2094,7 @@
      51.225437
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -2155,7 +2155,7 @@
      51.241354
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -2232,7 +2232,7 @@
      51.260346
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -2305,7 +2305,7 @@
      51.294893
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 232
   },
   {
@@ -2378,7 +2378,7 @@
      51.462201
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -2527,7 +2527,7 @@
      51.318446
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -2580,7 +2580,7 @@
      51.793528
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -2653,7 +2653,7 @@
      51.814148
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -2738,7 +2738,7 @@
      51.833863
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -2787,7 +2787,7 @@
      51.823011
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -2864,7 +2864,7 @@
      51.823011
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -2937,7 +2937,7 @@
      51.836938
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -2998,7 +2998,7 @@
      51.856473
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -3047,7 +3047,7 @@
      51.886317
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -3092,7 +3092,7 @@
      51.926833
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -3173,7 +3173,7 @@
      52.131896
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -3242,7 +3242,7 @@
      52.150164
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -3299,7 +3299,7 @@
      52.209129
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -3368,7 +3368,7 @@
      50.874146
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -3429,7 +3429,7 @@
      50.917556
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -3611,7 +3611,7 @@
      51.007631
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -3827,7 +3827,7 @@
      51.057191
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -3912,7 +3912,7 @@
      51.082694
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -3961,7 +3961,7 @@
      52.707205
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -5133,9 +5133,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -5410,9 +5410,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -5687,9 +5687,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -5964,9 +5964,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -6241,9 +6241,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -6518,9 +6518,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -6795,9 +6795,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -7072,9 +7072,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -7349,9 +7349,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -7626,9 +7626,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -7903,9 +7903,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -8180,9 +8180,9 @@
    "acres": 201.7,
    "box": [
     -118.24131,
-    53.32421,
-    -117.96923,
-    53.3867
+    53.32448,
+    -117.97585,
+    53.38444
    ],
    "center": [
     53.36825,
@@ -8503,7 +8503,7 @@
      53.409621
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -8564,7 +8564,7 @@
      52.224843
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -8605,7 +8605,7 @@
      52.27386
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -8662,7 +8662,7 @@
      52.29647
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -8719,15 +8719,15 @@
      52.31727
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
    "acres": 97.0,
    "box": [
     -117.53037,
-    52.90066,
-    -117.41135,
+    52.90102,
+    -117.4121,
     52.95927
    ],
    "center": [
@@ -8963,8 +8963,8 @@
    "acres": 97.0,
    "box": [
     -117.53037,
-    52.90066,
-    -117.41135,
+    52.90102,
+    -117.4121,
     52.95927
    ],
    "center": [
@@ -9200,8 +9200,8 @@
    "acres": 97.0,
    "box": [
     -117.53037,
-    52.90066,
-    -117.41135,
+    52.90102,
+    -117.4121,
     52.95927
    ],
    "center": [
@@ -9437,8 +9437,8 @@
    "acres": 97.0,
    "box": [
     -117.53037,
-    52.90066,
-    -117.41135,
+    52.90102,
+    -117.4121,
     52.95927
    ],
    "center": [
@@ -9674,8 +9674,8 @@
    "acres": 97.0,
    "box": [
     -117.53037,
-    52.90066,
-    -117.41135,
+    52.90102,
+    -117.4121,
     52.95927
    ],
    "center": [
@@ -10279,7 +10279,7 @@
      53.375119
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -10328,15 +10328,15 @@
      53.387238
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
    "acres": 186.2,
    "box": [
     -119.54531,
-    53.39533,
-    -119.43586,
+    53.39578,
+    -119.43737,
     53.47654
    ],
    "center": [
@@ -10656,8 +10656,8 @@
    "acres": 186.2,
    "box": [
     -119.54531,
-    53.39533,
-    -119.43586,
+    53.39578,
+    -119.43737,
     53.47654
    ],
    "center": [
@@ -10977,8 +10977,8 @@
    "acres": 186.2,
    "box": [
     -119.54531,
-    53.39533,
-    -119.43586,
+    53.39578,
+    -119.43737,
     53.47654
    ],
    "center": [
@@ -11298,9 +11298,9 @@
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -11632,7 +11632,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -11905,7 +11905,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -12231,7 +12231,7 @@
      53.429924
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -12300,7 +12300,7 @@
      53.441319
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -12308,7 +12308,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -12580,9 +12580,9 @@
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -12914,7 +12914,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -13186,9 +13186,9 @@
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -13520,7 +13520,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -13792,9 +13792,9 @@
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -14126,7 +14126,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -14398,9 +14398,9 @@
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -14785,16 +14785,16 @@
      53.450725
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -15175,7 +15175,7 @@
      53.45597
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 208
   },
   {
@@ -15216,16 +15216,16 @@
      53.456151
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -15602,16 +15602,16 @@
      53.462662
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -15996,15 +15996,15 @@
      53.462301
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
    "acres": 186.2,
    "box": [
     -119.54531,
-    53.39533,
-    -119.43586,
+    53.39578,
+    -119.43737,
     53.47654
    ],
    "center": [
@@ -16386,7 +16386,7 @@
      53.469355
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -16431,7 +16431,7 @@
      53.46845
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -16439,7 +16439,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -16712,7 +16712,7 @@
    "box": [
     -119.13085,
     53.42156,
-    -118.81096,
+    -118.81322,
     53.48143
    ],
    "center": [
@@ -17022,7 +17022,7 @@
      53.470983
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -17071,16 +17071,16 @@
      53.475685
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
    "acres": 339.2,
    "box": [
     -118.71323,
-    53.41939,
-    -118.29505,
-    53.47645
+    53.41975,
+    -118.29656,
+    53.47609
    ],
    "center": [
     53.432502,
@@ -17449,7 +17449,7 @@
      53.474962
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -17494,7 +17494,7 @@
      52.306175
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -17539,7 +17539,7 @@
      52.322454
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 232
   },
   {
@@ -17584,7 +17584,7 @@
      52.382323
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -17641,7 +17641,7 @@
      52.413795
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -17682,7 +17682,7 @@
      52.401858
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -17723,7 +17723,7 @@
      52.407826
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -17942,7 +17942,7 @@
      52.426637
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -17983,7 +17983,7 @@
      52.45829
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -18032,7 +18032,7 @@
      52.466068
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -18445,7 +18445,7 @@
      52.59669
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -19040,7 +19040,7 @@
      52.692553
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -19955,7 +19955,7 @@
      53.05814
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -19996,7 +19996,7 @@
      53.054342
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -20344,7 +20344,7 @@
      53.163409
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 224
   },
   {
@@ -20945,7 +20945,7 @@
      53.187104
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -21107,7 +21107,7 @@
      53.203382
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -21164,7 +21164,7 @@
      53.215863
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -21452,7 +21452,7 @@
      53.270306
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -21501,7 +21501,7 @@
      53.29183
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -21708,7 +21708,7 @@
      52.59669
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -22303,7 +22303,7 @@
      52.692553
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -23218,7 +23218,7 @@
      53.05814
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -23259,7 +23259,7 @@
      53.054342
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -23607,7 +23607,7 @@
      53.163409
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 224
   },
   {
@@ -24208,7 +24208,7 @@
      53.187104
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -24370,7 +24370,7 @@
      53.203382
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -24427,7 +24427,7 @@
      53.215863
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -24715,7 +24715,7 @@
      53.270306
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -24764,7 +24764,7 @@
      53.29183
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -24817,7 +24817,7 @@
      49.035742
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -24894,7 +24894,7 @@
      49.073907
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 240
   },
   {
@@ -24947,7 +24947,7 @@
      49.083312
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -24996,7 +24996,7 @@
      49.118583
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -25037,7 +25037,7 @@
      58.484425
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -25094,7 +25094,7 @@
      58.605068
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -25360,7 +25360,7 @@
      51.057827
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -25401,7 +25401,7 @@
      51.020536
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -25470,7 +25470,7 @@
      52.47228
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 640
   },
   {
@@ -25575,7 +25575,7 @@
      50.571038
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -25632,7 +25632,7 @@
      50.574474
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -25685,7 +25685,7 @@
      50.579358
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 232
   },
   {
@@ -25851,7 +25851,7 @@
      50.561951
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -25912,7 +25912,7 @@
      50.577687
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -25993,7 +25993,7 @@
      50.600839
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -26054,7 +26054,7 @@
      50.613681
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -26099,7 +26099,7 @@
      50.625981
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -26152,7 +26152,7 @@
      50.638642
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -26193,7 +26193,7 @@
      50.638461
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -26339,7 +26339,7 @@
      50.663783
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -26550,7 +26550,7 @@
      50.722387
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 232
   },
   {
@@ -26716,7 +26716,7 @@
      50.60647
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -26773,7 +26773,7 @@
      50.609906
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -26826,7 +26826,7 @@
      50.624919
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -26871,7 +26871,7 @@
      50.630888
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -26912,7 +26912,7 @@
      50.639931
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -26957,7 +26957,7 @@
      50.642644
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -27030,7 +27030,7 @@
      50.653497
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -27087,7 +27087,7 @@
      50.64789
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -27136,7 +27136,7 @@
      50.65006
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -27177,7 +27177,7 @@
      50.657657
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -27242,7 +27242,7 @@
      50.663083
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -27307,7 +27307,7 @@
      50.664711
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -27396,7 +27396,7 @@
      50.678638
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -27441,7 +27441,7 @@
      50.685693
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -27450,7 +27450,7 @@
     -115.1757,
     50.88113,
     -115.14178,
-    50.92879
+    50.92843
    ],
    "center": [
     50.893158,
@@ -27811,7 +27811,7 @@
      49.943964
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -27872,7 +27872,7 @@
      49.995513
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -27913,7 +27913,7 @@
      51.057827
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -27954,7 +27954,7 @@
      51.020536
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -27999,7 +27999,7 @@
      51.287336
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 176
   },
   {
@@ -28048,7 +28048,7 @@
      51.308317
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -28093,7 +28093,7 @@
      51.335629
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -28134,7 +28134,7 @@
      51.366197
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -28287,7 +28287,7 @@
      51.418831
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -28340,7 +28340,7 @@
      51.425162
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -28401,7 +28401,7 @@
      51.42896
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -28522,7 +28522,7 @@
      56.699321
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -28587,7 +28587,7 @@
      56.667968
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -28636,7 +28636,7 @@
      56.669958
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -28693,7 +28693,7 @@
      56.678821
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -28742,7 +28742,7 @@
      56.682981
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -28863,7 +28863,7 @@
      56.686236
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -28940,7 +28940,7 @@
      56.711921
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -29061,7 +29061,7 @@
      56.699321
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -29126,7 +29126,7 @@
      56.667968
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -29175,7 +29175,7 @@
      56.669958
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -29232,7 +29232,7 @@
      56.678821
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -29281,7 +29281,7 @@
      56.682981
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -29402,7 +29402,7 @@
      56.686236
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -29479,15 +29479,15 @@
      56.711921
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
    "acres": 26477.6,
    "box": [
     -111.17469,
-    58.34648,
-    -110.91856,
+    58.34658,
+    -110.91874,
     58.45447
    ],
    "center": [

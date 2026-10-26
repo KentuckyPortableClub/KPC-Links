@@ -20,7 +20,7 @@
   "with official lines": 234
  },
  "pass2": {
-  "agree with the pass before": 4042,
+  "agree with the pass before": 0,
   "cell_m": 10.0,
   "date": "2026-10-26",
   "left out": {
@@ -30,14 +30,17 @@
    "no pin": 0,
    "pin well outside": 259
   },
-  "new here only (not counted)": 777,
+  "new here only (not counted)": 2001,
   "official parks": 14620,
-  "pairs tested": 1884,
-  "parks whose outline could not be read": 86,
+  "pairs tested": 521,
+  "parks whose outline could not be read": 350,
   "parks with a saved copy only (no fresh download possible)": 0,
   "pass": 2,
   "problems": [
-   "CA-0091 + CA-4569: cannot convert float infinity to integer"
+   "CWS_SCF/CPCAD/MapServer/0/query: not read (HTTP Error 500: Internal Server Error)",
+   "CWS_SCF/CPCAD/MapServer/0/query: not read (HTTP Error 500: Internal Server Error)",
+   "CWS_SCF/CPCAD/MapServer/0/query: not read (HTTP Error 500: Internal Server Error)",
+   "CWS_SCF/CPCAD/MapServer/0/query: not read (HTTP Error 500: Internal Server Error)"
   ],
   "with official lines": 234
  },
