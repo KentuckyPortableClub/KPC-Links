@@ -1,12 +1,13 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **351 of 692** parks joined to official land (same name + same kind of place). **5** to check by hand, **77** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **353 of 692** parks joined to official land (same name + same kind of place). **6** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11749** Grand Gultch BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Grand Gulch (~0 ac, same name, different kind of place); Monticello Field Office (~1,787,477 ac, the POTA pin is inside it (different name))
 - **US-5840** Fry Canyon BLM Backcountry Airstrip (BLM Backcountry Airstrip) → Fry Canyon Cabin (~0 ac, similar name); Monticello Field Office (~1,787,477 ac, the POTA pin is inside it (different name))
 - **US-5913** Historic Union Pacific Rail Trail State Park (State Park) → Rail Trail (~0 ac, similar name); Rail Trail (~0 ac, similar name)
+- **US-5926** Fort Douglas National Historical Park (National Historical Park) → Fort Douglas (~0 ac, similar name)
 - **US-5932** Jordan River Off-Highway Vehicle State Park (State Park) → Jordan River OHV (~0 ac, similar name)
 - **US-5950** This Is The Place Heritage Park (Park) → This Is The Place (~0 ac, similar name); Pioneer Trail State Park (~236 ac, the POTA pin is inside it (different name))
 
@@ -152,7 +153,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-5817 Lone Mesa Viewpoint BLM Wilderness Area (Wilderness Area) → on Labyrinth Rims / Gemini Bridges (~299,971 ac); Moab Field Office (~1,860,872 ac)
 - US-5818 Magnificent Seven (Mag 7) Trail System BLM Recreation Management Area (BLM Recreation Management Area) → on The State of Utah School and Institutional Trust Lands Administration 1972 (~1,032 ac)
 - US-5820 Big Mesa BLM Recreation Management Area (BLM Recreation Management Area) → on Labyrinth Rims / Gemini Bridges (~299,971 ac); Moab Field Office (~1,860,872 ac)
-- US-5821 Mountain Meadows Massacre National Historic Site (National Historic Site) → on Dixie National Forest (~1,632,927 ac)
 - US-5823 Jewell Tibbets Arch Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Labyrinth Rims / Gemini Bridges (~299,971 ac); Moab Field Office (~1,860,872 ac)
 - US-5825 Kane Gulch Ranger Station BLM Historic Preservation Site (BLM Historic Preservation Site) → on Monticello Field Office (~1,787,477 ac)
 - US-5826 Book Cliffs BLM Recreation Management Area (BLM Recreation Management Area) → on Floy Canyon (~0 ac); Moab Field Office (~1,860,872 ac)
@@ -334,10 +334,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-5901 Gordon Creek Trailhead BLM Recreation Management Area (BLM Recreation Management Area)
 - US-5906 Burr Trail Scenic Byway BLM Historic Trail (BLM Historic Trail)
 - US-5912 Little Creek BLM Recreation Management Area (BLM Recreation Management Area)
-- US-5926 Fort Douglas National Historical Park (National Historical Park)
 - US-5965 Stateline Campground BLM Recreation Management Area (BLM Recreation Management Area)
 - US-5977 Crocodile Staging Area BLM Recreation Management Area (BLM Recreation Management Area)
-- US-5980 Central Utah Relocation Center (Topaz) National Historical Site (National Historical Site)
 - US-5981 Simpson Springs Pony Express Station National Historic Site (National Historic Site)
 - US-5982 Tom's Canyon Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-5986 Greenhalgh Trail BLM Recreation Management Area (BLM Recreation Management Area)

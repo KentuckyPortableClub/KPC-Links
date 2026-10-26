@@ -4,12 +4,12 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## To check (not joined)
 
-- **US-10464** Chena Wayside State Recreation Site (Recreation Site) → Chena River State Recreation Site (~27 ac, similar name)
+- **US-10464** Chena Wayside State Recreation Site (Recreation Site) → Chena River State Recreation Site (~27 ac, similar name); Chena River State Recreation Site (~27 ac, similar name)
 - **US-11804** Gulkana BLM Wild and Scenic River (BLM Wild and Scenic River) → Gulkana River SRMA (~94,513 ac, similar name); Glennallen Field Office (~89,450 ac, the POTA pin is inside it (different name))
-- **US-7208** Big Lake North State Recreation Site (State Recreation Site) → Big Lake State Recreation Site (~211 ac, similar name); Rocky Lake State Recreation Site (~60 ac, similar name)
-- **US-7209** Big Lake South State Recreation Site (State Recreation Site) → Big Lake State Recreation Site (~211 ac, similar name)
-- **US-7234** Harding Lake State Recreation Site (State Recreation Site) → Harding Lake State Recreation Area (~336 ac, similar name); State Land Disposals - Other Than Municipal (~1,165,571 ac, the POTA pin is inside it (different name))
-- **US-7245** Juneau State Trail (State Trail) → Juneau Trail System (~67 ac, same name, different kind of place)
+- **US-7208** Big Lake North State Recreation Site (State Recreation Site) → Big Lake State Recreation Site (~211 ac, similar name); Big Lake State Recreation Site (~211 ac, similar name); Rocky Lake State Recreation Site (~60 ac, similar name); Rocky Lake State Recreation Site (~60 ac, similar name)
+- **US-7209** Big Lake South State Recreation Site (State Recreation Site) → Big Lake State Recreation Site (~211 ac, similar name); Big Lake State Recreation Site (~211 ac, similar name)
+- **US-7234** Harding Lake State Recreation Site (State Recreation Site) → Harding Lake State Recreation Area (~336 ac, similar name); Harding Lake State Recreation Area (~336 ac, similar name); State Land Disposals - Other Than Municipal (~1,165,571 ac, the POTA pin is inside it (different name))
+- **US-7245** Juneau State Trail (State Trail) → Juneau Trail System (~67 ac, same name, different kind of place); Juneau Trail System (~67 ac, same name, different kind of place)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 

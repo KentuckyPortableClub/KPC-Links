@@ -1,15 +1,12 @@
 # LA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **112 of 123** parks joined to official land (same name + same kind of place). **2** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **115 of 123** parks joined to official land (same name + same kind of place). **0** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-10563** Fort Johnson-Vernon Wildlife Management Area (Wildlife Management Area) → Fort Polk-Vernon (~105,545 ac, similar name); Kisatchie National Forest (~607,492 ac, the POTA pin is inside it (different name)); Fort Polk WMA (~105,885 ac, the POTA pin is inside it (different name)); Fort Polk WMA (~105,885 ac, the POTA pin is inside it (different name))
-- **US-4072** Fort Johnson North Wildlife Management Area (Wildlife Management Area) → Fort Polk North (~74,309 ac, similar name); Peason Ridge WMA (~75,464 ac, the POTA pin is inside it (different name)); Peason Ridge WMA (~75,464 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10456 Esler Field Wildlife Management Area (Wildlife Management Area) → on Camp Beauregard (~12,500 ac); Camp Beauregard WMA (~12,594 ac)
 - US-2365 Jimmie Davis State Park (State Park) → on Caney Creek Lake State Park (~312 ac)
 - US-2373 Poverty Point Reservoir State Park (State Park) → on State Lands (~7,733 ac)
 - US-4568 El Camino Real de los Tejas National Historic Trail (National Historic Trail) → on Los Adaes State Historic Site (~15 ac)
@@ -65,6 +62,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Farm Service Agency Interest Of La · NWR · FARM SERVICE AGENCY INTEREST OF LA · ~3,298 ac
 - Lsu Research Station · REA · Unknown · ~3,077 ac
 - Isles Dernieres Barrier Islands Refuge ·  · Louisiana Department of Wildlife & Fisheries (wild, state GIS table) · ~2,980 ac
+- Isles Dernieres Barrier Islands Refuge ·  · Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024) (wild, state GIS table) · ~2,980 ac
 - State Lands · SOTH · Unknown · ~2,721 ac
 - Bayou Des Allemands · SCA · Unknown · ~2,597 ac
 - Bayou D'loutre · SCA · Unknown · ~2,583 ac
@@ -83,4 +81,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Ouachita River · SCA · Unknown · ~1,059 ac
 - Russell Sage Wildlife Management Area - Portion In Morehouse · SCA · Unknown · ~1,026 ac
 - Bayou Dorcheat · SCA · Unknown · ~1,012 ac
-- Corney Bayou · SCA · Unknown · ~1,001 ac

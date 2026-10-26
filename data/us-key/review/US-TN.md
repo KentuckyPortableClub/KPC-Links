@@ -1,6 +1,6 @@
 # TN: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **247 of 277** parks joined to official land (same name + same kind of place). **2** to check by hand, **22** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **252 of 277** parks joined to official land (same name + same kind of place). **2** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,9 +12,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13364 Cherokee Trail of Tears State Park (State Park) → on Hiwassee Refuge (~3,148 ac); Hiwassee Refuge (~6,917 ac)
 - US-3941 Grundy Forest State Natural Area (State Natural Area) → on Fiery Gizzard State Park (~0 ac)
 - US-3950 Lauderdale Waterfowl Wildlife Management Area (Wildlife Management Area) → on Lake Lauderdale Refuge (~652 ac); LAKE LAUDERDALE WATERFOWL REFUGE (~652 ac)
-- US-6237 Mr. and Mrs. Harry Lee Carter State Natural Area (State Natural Area) → on Head of the Crow State Park (~3,100 ac); Sherwood Forest State Natural Area (~4,061 ac)
-- US-6248 Honey Creek State Natural Area (State Natural Area) → on Big South Fork N.R.R.A. (~71,848 ac); Big South Fork N.R.R.A. (~71,848 ac)
-- US-6272 Twin Arches State Natural Area (State Natural Area) → on Big South Fork National River and Recreation Area (~83,326 ac)
+- US-6237 Mr. and Mrs. Harry Lee Carter State Natural Area (State Natural Area) → on South Cumberland State Park (~0 ac); Head of the Crow State Park (~3,100 ac)
 
 ## Nothing found in PAD-US
 
@@ -29,10 +27,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4560 Natchez Trace Trail National Scenic Trail (National Scenic Trail)
 - US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
-- US-6242 Elsie Quarterman Cedar Glade State Natural Area (State Natural Area)
 - US-6247 Hawkins Cove State Natural Area (State Natural Area)
-- US-6254 Lucius E. Burch, Jr. State Natural Area (State Natural Area)
-- US-6258 Old Forest State Natural Area (State Natural Area)
 - US-6259 Ozone Falls State Natural Area (State Natural Area)
 - US-6261 Pogue Creek Canyon State Natural Area (State Natural Area)
 - US-6273 Vine Cedar Glade State Natural Area (State Natural Area)
@@ -65,6 +60,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~22,177 ac
 - Joyce Kilmer-Slickrock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~19,247 ac
 - Shining Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,478 ac
+- South Cumberland State Park ·  · Tennessee Department of Environment and Conservation (TDEC public lands) (land, state GIS table) · ~18,462 ac
 - Barkley Recreation Area · REC · Nashville · ~17,136 ac
 - Pickett SF & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~17,013 ac
 - Pickett SF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~17,013 ac
@@ -99,7 +95,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Edgar Evins SP & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~6,087 ac
 - A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~6,032 ac
 - A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~5,829 ac
+- South Cumberland State Park ·  · Tennessee Department of Environment and Conservation (TDEC public lands) (land, state GIS table) · ~5,676 ac
 - Little Frog Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,635 ac
 - Edgar Evins SP & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~5,121 ac
-- South Cumberland · SP · OTHS · ~5,047 ac
-- North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~4,555 ac

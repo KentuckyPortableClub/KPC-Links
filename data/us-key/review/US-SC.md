@@ -1,11 +1,9 @@
 # SC: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **156 of 167** parks joined to official land (same name + same kind of place). **2** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **159 of 167** parks joined to official land (same name + same kind of place). **0** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-13257** Coosawhatchie Heritage Preserve (Heritage Preserve) → Coosawhatchie HP and WMA (~10,879 ac, similar name)
-- **US-8148** Lighthouse Inlet Heritage Preserve (Heritage Preserve) → Lighthouse Inlet HP (~80 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -15,7 +13,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-10414 Wateree Heritage Preserve (Heritage Preserve)
 - US-13016 Pine Island State Park (State Park)
 - US-13198 Black River State Park (State Park)
 - US-4577 Overmountain Victory National Historic Trail (National Historic Trail)
@@ -37,6 +34,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Tom Yawkey Wildlife Center Heritage Preserve · SHCA · Unknown · ~19,761 ac
 - St. Helena Sound HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~19,143 ac
 - Tom Yawkey Wildlife Center HP ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~18,093 ac
+- Tom Yawkey Wildlife Center Heritage Preserve ·  · South Carolina DNR (heritage preserves) (preserve, state GIS table) · ~18,093 ac
+- Tom Yawkey Wildlife Center Heritage Preserve ·  · South Carolina DNR (heritage preserves) (preserve, state GIS table) · ~18,093 ac
+- Tom Yawkey Wildlife Center Heritage Preserve ·  · South Carolina DNR (heritage preserves) (preserve, state GIS table) · ~18,093 ac
+- Tom Yawkey Wildlife Center Heritage Preserve ·  · South Carolina DNR (heritage preserves) (preserve, state GIS table) · ~18,086 ac
 - Sparkleberry Swamp · SOTH · Unknown · ~16,816 ac
 - Belle W. Baruch Institute for Marine and Coastal Sciences · REA · Unknown · ~15,955 ac
 - Wee Tee WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~12,439 ac
@@ -45,6 +46,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Lewis Ocean Bay HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~10,788 ac
 - Crackerneck WMA and Ecological Reserve ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~10,600 ac
 - Little Pee Dee HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~10,455 ac
+- Little Pee Dee Heritage Preserve and Wildlife Management Area ·  · South Carolina DNR (heritage preserves) (preserve, state GIS table) · ~10,455 ac
 - Moultrie Hunt Unit ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~9,773 ac
 - Pee Dee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,661 ac
 - Waccamaw River HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~8,557 ac
@@ -79,8 +81,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,279 ac
 - Delta South WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~2,174 ac
 - Capers Island Heritage Preserve · SHCA · Unknown · ~2,171 ac
-- Hell Hole Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,122 ac
-- Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,087 ac
-- Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,042 ac
-- Daws Island HP ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~1,881 ac
-- Catawba River Wildlife Management Area - McDowell Tract · SCA · Unknown · ~1,878 ac
