@@ -126,3 +126,24 @@ NOT the fix: deleting history from the main repo (risky, breaks every chat's cop
 - Next jobs HQ suggested (Oct 25): missing trails (HI AR UT AK ME NM CA CO IA MT NJ NV), camping for states still without a list, land-owner viewers WY MD DE ND NH VA, weather alert feeds (Environment Canada, MeteoAlarm) for chat 3, an official DXpedition list for chat 4, contest date rules from sponsor pages for chat 6, KPC NET options for Brandon. Rules: official sources, a link on every row, 'not sure' marked, 'blocked' never worked around, no logins; the owning chat checks results before use.
 - DECIDED (Brandon Oct 25 12:39 PM: 'No only ky closures'): closure ANNOUNCEMENTS (Discord / Facebook / website posts, chat 5) = Kentucky only. Out-of-state 'uc-' closures show on park cards and tools only, never posted.
 
+## SITE REORGANIZATION PLAN — DRAFT, NOT APPROVED (HQ with Brandon, Oct 25 9:20 PM). No chat acts on this until Brandon says go.
+GOAL: every tool has ONE home room; other rooms point to it with doorway buttons; nothing deleted; kpc-gate.js PUBLIC list still decides what guests see (room pages themselves public, locked links hide themselves). Done in ONE release pass with the Activators Lounge going public. Menu = chat 1 only (replaces the earlier 'chat 3 edits the menu at launch' decision).
+MENU (top bar unchanged: Home · Campout · Parks · Events · Photos · Live · search). See More:
+ OPERATING: Activators Lounge · Hunters Lounge · Map Room · Campgrounds & Cabins · Weather · Radio Conditions
+ LEARNING: Antenna & Power Room · POTA / WWFF / SOTA Rooms (one line) · Learning Room · Kids Room · Library · Videos
+ CLUB: News · Community · Guestbook / Members · About · Join · Contact
+ small links: Tool Box (every tool) · Find It · Privacy
+ROOMS:
+- Activators Lounge (chat 3): add Spot Me, Activation Board (chat 3 owns it), Kentucky Park Notes (merge with Other States); later the rebuilt Parking & Access Finder.
+- Hunters Lounge (chat 3): add On The Air Now (kpc-spots.html), KPC POTA Spotter (kpc-spot-discord.html).
+- Map Room (chat 2): keep Park Commander, KY + KPC Trip Planners, SOTA Summit Map, Am I in the Park, Grid & County Lookup; ADD map downloads (GPX/KML from parks.html), County PVA Offices, Kentucky 2-Fers & 3-Fers (members-only); MOVE OUT Kit, Info Finder, Rarely Activated, Tracker (Activators Lounge), Park Checker (Hunters Lounge), Weather (own item).
+- Parks page (chat 1 + chat 2 for map files): about PLACES (state parks, national lands, trails, wild rivers, KY guides); its 21 tool links become 3 doorways (Activators Lounge, Map Room, Hunters Lounge).
+- POTA / WWFF / SOTA Rooms (chat 1, make_rooms.py): learning the program (rules, first activation, our KY guide, the program's own links); tool lists become the 2 Lounge doorways.
+- Antenna & Power Room (chat 1, rename antennas.html): add Battery Guide; Beginner's + Safety guides move to Library (link kept); Fox Hunting stays linked.
+- Learning Room (chat 1, NEW small page): CW Practice, Digital Modes (kpc-digital.html, today in no room), Band Plan, Get Your License (kpc-license.html), Quick Reference (kpc-reference.html), Frequency Quick Reference, Fox Hunting.
+- Kids Room (chat 1): Voice Pileup Practice RENAMED 'Call CQ!' (Brandon Oct 25 9:16 PM: 'more suited for kids'), stays here; default practice call W4KIDS (not K4TEST), BETA tag off.
+- Library (chat 1, rename resources.html): reading only (field guides, PDFs, starter guides, rules, campout resources, links); weather / bands sections become links to their rooms.
+- Members Room (chat 1; Brandon: keep the hidden apps there): 3 sections = Hidden apps & testing (KPC Logger, VIP Hunters Lounge, VIP Top 50, Map Rep Tool Box, ADD Beta Test Room) · Club (Club Room, Monthly Recap, Park Tracker, members) · 'Public tools' cut to one line pointing at the rooms.
+- No change: Tool Box (directory), Live dashboard, Club Room, CW Practice Room, contact card, 404, Map Rep Suggest.
+LATER (not part of the pass): Parking & Access Finder rebuilt by chat 2 from data/access (44 states) + KY access points, then into the Activators Lounge.
+
