@@ -1,0 +1,1911 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 36747,
+   "fields": [],
+   "known": false,
+   "layer": "18 DNR_Forest_Practices_watercourses_200ftbuffer",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "RedZones_Code": 18,
+     "Shape__Area": 434446.4287109375,
+     "Shape__Length": 2800.6575919751194
+    },
+    {
+     "OBJECTID": 2,
+     "RedZones_Code": 18,
+     "Shape__Area": 420181.21936035156,
+     "Shape__Length": 2728.2667852110026
+    },
+    {
+     "OBJECTID": 3,
+     "RedZones_Code": 18,
+     "Shape__Area": 479156.9930419922,
+     "Shape__Length": 3018.5220576841266
+    }
+   ],
+   "service": "RZ_18",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/RZ_18/FeatureServer/116"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10391,
+   "fields": [],
+   "known": false,
+   "layer": "19 DNR_Forest_Practices_wetlands",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "RedZones_Code": 19,
+     "Shape__Area": 460127.00381469727,
+     "Shape__Length": 4031.133265867583
+    },
+    {
+     "OBJECTID": 2,
+     "RedZones_Code": 19,
+     "Shape__Area": 2322227.0898742676,
+     "Shape__Length": 17663.009971699717
+    },
+    {
+     "OBJECTID": 3,
+     "RedZones_Code": 19,
+     "Shape__Area": 588064.9648132324,
+     "Shape__Length": 3578.5053108010165
+    }
+   ],
+   "service": "RZ_19",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/RZ_19/FeatureServer/114"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7017,
+   "fields": [],
+   "known": false,
+   "layer": "31 Forage_Fish_Surveys_200ftbuffer",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "RedZones_Code": 31,
+     "Shape__Area": 31569.171142578125,
+     "Shape__Length": 705.9365739060167
+    },
+    {
+     "OBJECTID": 2,
+     "RedZones_Code": 31,
+     "Shape__Area": 72307.958984375,
+     "Shape__Length": 1372.6662272253714
+    },
+    {
+     "OBJECTID": 3,
+     "RedZones_Code": 31,
+     "Shape__Area": 72572.98016357422,
+     "Shape__Length": 1381.2721386664955
+    }
+   ],
+   "service": "RZ_31",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/RZ_31/FeatureServer/113"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission - Stewardship Program and Washi",
+   "area": "PARK_NAME",
+   "count": 5476,
+   "fields": [
+    "KEYLINK",
+    "PARK_NAME",
+    "REGION",
+    "CONTRACTOR",
+    "OBSERVER",
+    "DATE_OF_SURVEY",
+    "LINK",
+    "DOM_TREES",
+    "DOM_SHRUBS",
+    "DOM_GRAM",
+    "DOM_FORBS",
+    "FERNS",
+    "NOXIOUS_SPECIES_PRE2010",
+    "OTHEREXO",
+    "HYDROLOGY_PRE2010",
+    "HYDROLOGY",
+    "PA1",
+    "RANK1",
+    "PA1_G_RANK",
+    "PA1_S_RANK"
+   ],
+   "known": false,
+   "layer": "WNHP_state_parks_EIA",
+   "sample": [
+    {
+     "CONTRACTOR": "PBI",
+     "DATE_OF_SURVEY": "6/24/2008",
+     "DOM_FORBS": "LIDAD, CEDI3, MEOF, LACTU, MESA",
+     "DOM_GRAM": "JUARL, CALAA, POBU, BRTE",
+     "DOM_SHRUBS": "RICE, PUTR2, RHGL",
+     "DOM_TREES": "POBAT, SALIX, BEOC2, POTR5, ULPU",
+     "KEYLINK": "AltaLake_16",
+     "LINK": "N:\\Park Information\\Park Specific Information\\Alta Lake\\Biological Surveys",
+     "OBSERVER": "GW, AM",
+     "PARK_NAME": "Alta Lake",
+     "REGION": "EASTERN"
+    },
+    {
+     "CONTRACTOR": "PBI",
+     "DATE_OF_SURVEY": "7/3/2008",
+     "DOM_FORBS": "BASA3, STMI13, ACMI2, MEAL6, POARC, LIDAD, HECY2, CAMA5, APAN2",
+     "DOM_GRAM": "PSSP6, SECE, BRTE, POSE, POBU, CARO5",
+     "DOM_SHRUBS": "PUTR2, AMAL2, PHLE4, RHGL, ROWO, ERHE2, ACGLD4, RICE, PAMY",
+     "DOM_TREES": "PIPO, PSME, ACMA3",
+     "FERNS": "WOSC",
+     "KEYLINK": "AltaLake_17",
+     "LINK": "N:\\Park Information\\Park Specific Information\\Alta Lake\\Biological Surveys",
+     "OBSERVER": "GW, DH, AM",
+     "PARK_NAME": "Alta Lake",
+     "REGION": "EASTERN"
+    },
+    {
+     "CONTRACTOR": "PBI",
+     "DATE_OF_SURVEY": "6/24/2008",
+     "DOM_FORBS": "CEDI3, LIDAD, ERNI2, MESA, ARDR4, EQHY, ACMI2, GYPA",
+     "DOM_GRAM": "HECO26, SPCR, POBU, PSSP6",
+     "DOM_SHRUBS": "PUTR2, RHGL, AMAL2",
+     "DOM_TREES": "PIPO, SAAL2, BEOC2, POBAT",
+     "KEYLINK": "AltaLake_18",
+     "LINK": "N:\\Park Information\\Park Specific Information\\Alta Lake\\Biological Surveys",
+     "OBSERVER": "GW, AM",
+     "PARK_NAME": "Alta Lake",
+     "REGION": "EASTERN"
+    }
+   ],
+   "service": "Ecological_Integrity_Assessment_2021",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ecological_Integrity_Assessment_2021/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4900,
+   "fields": [],
+   "known": false,
+   "layer": "c17DNR_Forest_Practices_Clip",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "RedZones_Code": 17,
+     "Shape__Area": 4822.866455078125,
+     "Shape__Length": 276.1502491982432
+    },
+    {
+     "OBJECTID": 2,
+     "RedZones_Code": 17,
+     "Shape__Area": 1848943.3728027344,
+     "Shape__Length": 23861.25112545232
+    },
+    {
+     "OBJECTID": 3,
+     "RedZones_Code": 17,
+     "Shape__Area": 3185042.5939941406,
+     "Shape__Length": 16042.01222455164
+    }
+   ],
+   "service": "RZ_17",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/RZ_17/FeatureServer/148"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3332,
+   "fields": [
+    "Collector",
+    "data_source",
+    "location_description",
+    "SurveyIntensity",
+    "SoilDisturbance",
+    "FireDisturbance",
+    "common_nm",
+    "Species1_Coverage",
+    "common_nm2",
+    "Species2_Coverage",
+    "common_nm3",
+    "Species3_Coverage",
+    "common_nm4",
+    "Species4_Coverage",
+    "common_nm5",
+    "Species5_Coverage",
+    "common_nm6",
+    "Species6_Coverage",
+    "common_nm7",
+    "Species7_Coverage"
+   ],
+   "known": false,
+   "layer": "Noxious Weed Areas",
+   "sample": [
+    {
+     "Collector": "Rob Fimbel",
+     "FireDisturbance": "0",
+     "SoilDisturbance": "0",
+     "Species1_Coverage": "4",
+     "common_nm": "117",
+     "data_source": "WSPRC"
+    },
+    {
+     "Collector": "Rob Fimbel",
+     "FireDisturbance": "0",
+     "SoilDisturbance": "0",
+     "Species1_Coverage": "3",
+     "Species2_Coverage": "4",
+     "common_nm": "68",
+     "common_nm2": "117",
+     "data_source": "WSPRC"
+    },
+    {
+     "Collector": "Rob Fimbel",
+     "FireDisturbance": "0",
+     "SoilDisturbance": "0",
+     "Species1_Coverage": "2",
+     "Species2_Coverage": "2",
+     "common_nm": "68",
+     "common_nm2": "117",
+     "data_source": "WSPRC"
+    }
+   ],
+   "service": "ParksNoxiousWeedAreasPublic",
+   "typef": "location_description",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParksNoxiousWeedAreasPublic/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 1802,
+   "fields": [
+    "PAcq",
+    "Tenure",
+    "Map",
+    "SourceFile",
+    "GIS_Notes",
+    "ParkName",
+    "ParkNameHistory",
+    "County",
+    "Category",
+    "PARKCODEID",
+    "UNITID",
+    "PARCELID",
+    "PPMSCODE",
+    "PTYPE",
+    "PDIRECTWE",
+    "PFUNDSOUR",
+    "PEXCH",
+    "POTHER",
+    "PAUDITOR",
+    "PGRANTOR"
+   ],
+   "known": false,
+   "layer": "Land Acquisitions (PARKS)",
+   "sample": [
+    {
+     "Category": "State Park",
+     "County": "Clallam",
+     "Map": "510002",
+     "PARCELID": "2",
+     "PARKCODEID": "51000",
+     "PAcq": "2",
+     "ParkName": "Bogachiel",
+     "SourceFile": "P-2 Bogachiel",
+     "Tenure": "M",
+     "UNITID": "unit-51000"
+    },
+    {
+     "Category": "State Park",
+     "County": "Clallam",
+     "Map": "510003",
+     "PARCELID": "3",
+     "PARKCODEID": "51000",
+     "PAcq": "3",
+     "ParkName": "Bogachiel",
+     "SourceFile": "P-3 Bogachiel",
+     "Tenure": "O",
+     "UNITID": "unit-51000"
+    },
+    {
+     "Category": "State Park",
+     "County": "Klickitat",
+     "Map": "710031",
+     "PARCELID": "1",
+     "PARKCODEID": "71003",
+     "PAcq": "1",
+     "ParkName": "Brooks Memorial",
+     "SourceFile": "P-1 Brooks Memorial",
+     "Tenure": "O",
+     "UNITID": "unit-71003"
+    }
+   ],
+   "service": "Ike_Kinswa_Parks_TPU_Map_WFL1",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ike_Kinswa_Parks_TPU_Map_WFL1/FeatureServer/9"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "ParkName",
+   "count": 622,
+   "fields": [
+    "ParkName",
+    "Surface"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "ParkName": "Manchester",
+     "Surface": "Paved"
+    },
+    {
+     "ParkName": "Rainbow Falls",
+     "Surface": "Gravel"
+    },
+    {
+     "ParkName": "Twenty-Five Mile Creek",
+     "Surface": "Dirt"
+    }
+   ],
+   "service": "ParkingAreas",
+   "typef": "Surface",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkingAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 609,
+   "fields": [
+    "Name",
+    "Name_1",
+    "ParkName",
+    "Category",
+    "Notes",
+    "Breaks"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Category": "State Park",
+     "Name": "Location 1 : 60 - 90",
+     "Name_1": "Location 1",
+     "Notes": "ok",
+     "ParkName": "Alta Lake"
+    },
+    {
+     "Category": "State Park",
+     "Name": "Location 1 : 30 - 60",
+     "Name_1": "Location 1",
+     "Notes": "ok",
+     "ParkName": "Alta Lake"
+    },
+    {
+     "Category": "State Park",
+     "Name": "Location 1 : 0 - 30",
+     "Name_1": "Location 1",
+     "Notes": "ok",
+     "ParkName": "Alta Lake"
+    }
+   ],
+   "service": "TravelFromParkEntrances_(30_60_90_Minutes)_20230210",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/TravelFromParkEntrances_(30_60_90_Minutes)_20230210/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 408,
+   "fields": [
+    "Name",
+    "ParkName",
+    "Status",
+    "Category",
+    "Notes",
+    "ID",
+    "sourceCountry",
+    "aggregationMethod",
+    "ID_1",
+    "sourceCountry_1",
+    "aggregationMethod_1"
+   ],
+   "known": false,
+   "layer": "Enriched_Enriched_Travel_from_Park_Entrances_(30_60_90_Minutes)_20190829",
+   "sample": [
+    {
+     "Category": "Historical State Park",
+     "ID": "0",
+     "ID_1": "0",
+     "Name": "Location 37 : 0 - 30",
+     "Notes": "ok",
+     "ParkName": "Fort Columbia",
+     "aggregationMethod": "BlockApportionment:US.BlockGroups",
+     "aggregationMethod_1": "BlockApportionment:US.BlockGroups",
+     "sourceCountry": "US",
+     "sourceCountry_1": "US"
+    },
+    {
+     "Category": "State Park",
+     "ID": "0",
+     "ID_1": "1",
+     "Name": "Location 89 : 0 - 30",
+     "Notes": "ok",
+     "ParkName": "Potlatch",
+     "aggregationMethod": "BlockApportionment:US.BlockGroups",
+     "aggregationMethod_1": "BlockApportionment:US.BlockGroups",
+     "sourceCountry": "US",
+     "sourceCountry_1": "US"
+    },
+    {
+     "Category": "State Park",
+     "ID": "0",
+     "ID_1": "0",
+     "Name": "Location 15 : 0 - 30",
+     "Notes": "ok",
+     "ParkName": "Brooks Memorial",
+     "aggregationMethod": "BlockApportionment:US.BlockGroups",
+     "aggregationMethod_1": "BlockApportionment:US.BlockGroups",
+     "sourceCountry": "US",
+     "sourceCountry_1": "US"
+    }
+   ],
+   "service": "Enriched_Enriched_Travel_from_Park_Entrances_(30_60_90_Minutes)_20190829",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Enriched_Enriched_Travel_from_Park_Entrances_(30_60_90_Minutes)_20190829/FeatureServer/0"
+  },
+  {
+   "agency": "Washington Department of Fish and Wildlife",
+   "area": "WildlifeAreaUnitName",
+   "count": 218,
+   "fields": [
+    "WildlifeAreaUnitName",
+    "WildlifeAreaName",
+    "Region",
+    "Notes",
+    "HasAnOffice",
+    "BoatRampSurfaceTypes",
+    "HasADAOffice",
+    "HasRegionalHQ",
+    "HasADARegionalHQ",
+    "HasVisitorCenter",
+    "HasADAVisitorCenter",
+    "HasBoatRampWithADALoadingPlatform",
+    "HasBoatRampWithBoardingFloat",
+    "HasBoatRampWithADABoardingFloat"
+   ],
+   "known": false,
+   "layer": "UnitBoundaries",
+   "sample": [
+    {
+     "BoatRampSurfaceTypes": "Gravel",
+     "HasADAOffice": "N/A",
+     "HasADARegionalHQ": "N/A",
+     "HasADAVisitorCenter": "N/A",
+     "HasAnOffice": "No",
+     "HasBoatRampWithADALoadingPlatform": "No",
+     "HasRegionalHQ": "No",
+     "HasVisitorCenter": "No",
+     "Region": "Region 1 - Eastern",
+     "WildlifeAreaName": "Chief Joseph",
+     "WildlifeAreaUnitName": "4-O Ranch"
+    },
+    {
+     "BoatRampSurfaceTypes": "N/A",
+     "HasADAOffice": "N/A",
+     "HasADARegionalHQ": "N/A",
+     "HasADAVisitorCenter": "N/A",
+     "HasAnOffice": "No",
+     "HasBoatRampWithADALoadingPlatform": "N/A",
+     "HasRegionalHQ": "No",
+     "HasVisitorCenter": "No",
+     "Region": "Region 5 - Southwest",
+     "WildlifeAreaName": "Mount Saint Helens",
+     "WildlifeAreaUnitName": "Abernathy Creek"
+    },
+    {
+     "BoatRampSurfaceTypes": "Concrete",
+     "HasADAOffice": "N/A",
+     "HasADARegionalHQ": "N/A",
+     "HasADAVisitorCenter": "N/A",
+     "HasAnOffice": "No",
+     "HasBoatRampWithADALoadingPlatform": "No",
+     "HasRegionalHQ": "No",
+     "HasVisitorCenter": "No",
+     "Region": "Region 5 - Southwest",
+     "WildlifeAreaName": "Mount Saint Helens",
+     "WildlifeAreaUnitName": "Altoona"
+    }
+   ],
+   "service": "WP_RealEstate/WildlifeAreas",
+   "typef": "BoatRampSurfaceTypes",
+   "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/0"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "ParkName",
+   "count": 213,
+   "fields": [
+    "ParkName",
+    "Category",
+    "WebPage",
+    "Badminton",
+    "Baseball",
+    "Basketball",
+    "BeachExploration",
+    "Biking",
+    "Birdwatching",
+    "Boating",
+    "BoatingNonmotorized",
+    "BoatRental",
+    "Canoeing",
+    "Clamming",
+    "Crabbing",
+    "CrossCountrySkiing",
+    "Diving",
+    "DogSledding",
+    "FatTireBiking",
+    "FishingFreshwater"
+   ],
+   "known": false,
+   "layer": "ParkBoundaries_RecreationInfo",
+   "sample": [
+    {
+     "Birdwatching": "yes",
+     "Boating": "yes",
+     "Category": "State Park",
+     "ParkName": "Alta Lake",
+     "WebPage": "http://parks.state.wa.us/239/Alta-Lake"
+    },
+    {
+     "Biking": "yes",
+     "Birdwatching": "yes",
+     "BoatingNonmotorized": "yes",
+     "Category": "State Park",
+     "ParkName": "Anderson Lake",
+     "WebPage": "http://parks.state.wa.us/240/Anderson-Lake"
+    },
+    {
+     "Baseball": "yes",
+     "Biking": "yes",
+     "Birdwatching": "yes",
+     "BoatingNonmotorized": "yes",
+     "Category": "State Park",
+     "ParkName": "Battle Ground Lake",
+     "WebPage": "http://parks.state.wa.us/472/Battle-Ground-Lake"
+    }
+   ],
+   "service": "ParkBoundaries_RecreationInfo",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries_RecreationInfo/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 212,
+   "fields": [
+    "ParkName",
+    "Category",
+    "WebPage",
+    "Abbrv",
+    "Descriptio",
+    "Imagelink",
+    "Management",
+    "Manageme_1"
+   ],
+   "known": false,
+   "layer": "WA_State_Park_Boundaries",
+   "sample": [
+    {
+     "Abbrv": "ALL",
+     "Category": "State Park",
+     "Descriptio": "Alta Lake State Park is a 174-acre camping park where the mountainous pine forests meet the desert.",
+     "Imagelink": "http://parks.state.wa.us/ImageRepository/Path?filePath=%2f00000000-0000-0000-0000-000000000000%5c43%5c523%2fAlta.jpg",
+     "Manageme_1": " ",
+     "Management": " ",
+     "ParkName": "Alta Lake",
+     "WebPage": "http://parks.state.wa.us/239/Alta-Lake"
+    },
+    {
+     "Abbrv": "ANL",
+     "Category": "State Park",
+     "Descriptio": " ",
+     "Imagelink": " ",
+     "Manageme_1": " ",
+     "Management": " ",
+     "ParkName": "Anderson Lake",
+     "WebPage": "http://parks.state.wa.us/240/Anderson-Lake"
+    },
+    {
+     "Abbrv": "AUB",
+     "Category": "State Park Property",
+     "Descriptio": " ",
+     "Imagelink": " ",
+     "Manageme_1": " ",
+     "Management": " ",
+     "ParkName": "Auburn",
+     "WebPage": " "
+    }
+   ],
+   "service": "WA_State_Park_Boundaries",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WA_State_Park_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 123,
+   "fields": [
+    "ParkName"
+   ],
+   "known": false,
+   "layer": "Metal_Detection_Areas",
+   "sample": [
+    {
+     "ParkName": "Battle Ground Lake"
+    },
+    {
+     "ParkName": "Bay View"
+    },
+    {
+     "ParkName": "Bridle Trails"
+    }
+   ],
+   "service": "PARKS_Metal_Detection_Areas_Master_view",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS_Metal_Detection_Areas_Master_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 120,
+   "fields": [
+    "ParkName",
+    "Category",
+    "Description_1",
+    "Field_Assessed",
+    "Region",
+    "Park_Story",
+    "FC_Present_YN",
+    "AM_YN",
+    "AM_Condition",
+    "ParkPhoto_URL",
+    "Shoretype",
+    "Fieldwork_Observations",
+    "Adaptation_Opportunities",
+    "Exposed_Facilities_YN",
+    "CurrentlyExposed_Inundation",
+    "CurrentlyExposed_Erosion",
+    "CurrentlyExposed_Status",
+    "NearTermExposed_Inundation",
+    "NearTermExposed_Erosion",
+    "NearTermExposed_Status"
+   ],
+   "known": false,
+   "layer": "Park Boundaries",
+   "sample": [
+    {
+     "AM_YN": "Y",
+     "Category": "State Park",
+     "Description_1": "Bay View State Park is a 66-acre camping park with 1,285-feet of saltwater shoreline. The park offers views of the San Juan Islands fronting Padilla Bay, one of 15 existing national marine estuaries. ",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "•\tThe south shore is threatened by bluff erosion adjacent to Edison Road/Bayview Road.\n\n•\tThe park was built on fill on intertidal spawning habitat which both prevents sediment movement and reduces intertidal spawning habitats.",
+     "ParkName": "Bay View",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/0e6188998bf84e209d6ed88bc2bdbfeb/data",
+     "Park_Story": "shoreline",
+     "Region": "Northwest",
+     "Shoretype": "Accretion Shoreform, Transport Zone"
+    },
+    {
+     "Category": "State Park",
+     "Description_1": "Belfair State Park is a 94-acre, year-round camping park on 3,720 feet of saltwater shoreline at the southern end of Hood Canal in western Washington. It is noted for its saltwater tide flats and wetlands.",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "• The lower camp loop septic tank becomes inundated with saltwater at high tide.\r\n\r\n• The campground floods in the winter and many full-service sites are impacted. Overland flooding originates from the road, not coastal flooding, in the winter.",
+     "ParkName": "Belfair",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/9f22895d7e764e7bb9aa9fab633da54c/data",
+     "Park_Story": "Shellfishing",
+     "Region": "South Puget Sound",
+     "Shoretype": "Accretion Shoreform"
+    },
+    {
+     "Category": "State Park",
+     "Description_1": "Birch Bay State Park is a 664-acre camping park with 8,255 feet of saltwater shoreline on Birch Bay and 14,923 feet of freshwater shoreline on Terrell Creek. The park is rich in shellfish resources.",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "•\tBirch Bay Drive parallels the shoreline, chronically floods, and is shut down during King Tides and high-water events. Large erosional scour holes have formed beneath the waterward shoulder. The road is owned by Whatcom County and has many utilities underneath and alongside the road, including: water, sewer, and fiber optic cable that serve the park and the Birch Bay community to the south.\n\n•\tDuring king tides and storm surges, water in Terrell Creek rises within one foot of the bottom of the Helwig Road vehicle bridge. The pedestrian bridges over the creek have low freeboard and utilities running underneath. Logs catch during high water events.\n\n•\tThe CXT toilet near the boat launch is located in a wetland and surrounded by water on three sides from Terrell Creek. The toilet regularly floods during high water events and must be pumped out at the end of summer. ",
+     "ParkName": "Birch Bay",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/6ff33f8a18314344b069bc50f1e1f79b/data",
+     "Park_Story": "saltwater habitat",
+     "Region": "Northwest Region",
+     "Shoretype": "Accretion Shoreform"
+    }
+   ],
+   "service": "StoryMap_Methods_WFL1",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/StoryMap_Methods_WFL1/FeatureServer/29"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 99,
+   "fields": [
+    "ParkName",
+    "Category",
+    "Description_1",
+    "Field_Assessed",
+    "Region",
+    "Park_Story",
+    "FC_Present_YN",
+    "AM_YN",
+    "AM_Condition",
+    "ParkPhoto_URL",
+    "Shoretype",
+    "Fieldwork_Observations",
+    "Adaptation_Opportunities",
+    "Exposed_Facilities_YN",
+    "CurrentlyExposed_Inundation",
+    "CurrentlyExposed_Erosion",
+    "CurrentlyExposed_Status",
+    "NearTermExposed_Inundation",
+    "NearTermExposed_Erosion",
+    "NearTermExposed_Status"
+   ],
+   "known": false,
+   "layer": "Park Boundaries",
+   "sample": [
+    {
+     "AM_YN": "Y",
+     "Category": "State Park",
+     "Description_1": "Bay View State Park is a 66-acre camping park with 1,285-feet of saltwater shoreline. The park offers views of the San Juan Islands fronting Padilla Bay, one of 15 existing national marine estuaries. ",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "•\tThe south shore is threatened by bluff erosion adjacent to Edison Road/Bayview Road.\n\n•\tThe park was built on fill on intertidal spawning habitat which both prevents sediment movement and reduces intertidal spawning habitats.",
+     "ParkName": "Bay View",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/0e6188998bf84e209d6ed88bc2bdbfeb/data",
+     "Park_Story": "shoreline",
+     "Region": "Northwest",
+     "Shoretype": "Accretion Shoreform, Transport Zone"
+    },
+    {
+     "Category": "State Park",
+     "Description_1": "Belfair State Park is a 94-acre, year-round camping park on 3,720 feet of saltwater shoreline at the southern end of Hood Canal in western Washington. It is noted for its saltwater tide flats and wetlands.",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "• The lower camp loop septic tank becomes inundated with saltwater at high tide.\r\n\r\n• The campground floods in the winter and many full-service sites are impacted. Overland flooding originates from the road, not coastal flooding, in the winter.",
+     "ParkName": "Belfair",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/9f22895d7e764e7bb9aa9fab633da54c/data",
+     "Park_Story": "Shellfishing",
+     "Region": "South Puget Sound",
+     "Shoretype": "Accretion Shoreform"
+    },
+    {
+     "Category": "State Park",
+     "Description_1": "Birch Bay State Park is a 664-acre camping park with 8,255 feet of saltwater shoreline on Birch Bay and 14,923 feet of freshwater shoreline on Terrell Creek. The park is rich in shellfish resources.",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "•\tBirch Bay Drive parallels the shoreline, chronically floods, and is shut down during King Tides and high-water events. Large erosional scour holes have formed beneath the waterward shoulder. The road is owned by Whatcom County and has many utilities underneath and alongside the road, including: water, sewer, and fiber optic cable that serve the park and the Birch Bay community to the south.\n\n•\tDuring king tides and storm surges, water in Terrell Creek rises within one foot of the bottom of the Helwig Road vehicle bridge. The pedestrian bridges over the creek have low freeboard and utilities running underneath. Logs catch during high water events.\n\n•\tThe CXT toilet near the boat launch is located in a wetland and surrounded by water on three sides from Terrell Creek. The toilet regularly floods during high water events and must be pumped out at the end of summer. ",
+     "ParkName": "Birch Bay",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/6ff33f8a18314344b069bc50f1e1f79b/data",
+     "Park_Story": "saltwater habitat",
+     "Region": "Northwest Region",
+     "Shoretype": "Accretion Shoreform"
+    }
+   ],
+   "service": "ExperienceBuilder_Details_Map_WFL1",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ExperienceBuilder_Details_Map_WFL1/FeatureServer/21"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 99,
+   "fields": [
+    "ParkName",
+    "Category",
+    "Description_1",
+    "Field_Assessed",
+    "Region",
+    "Park_Story",
+    "FC_Present_YN",
+    "AM_YN",
+    "AM_Condition",
+    "ParkPhoto_URL",
+    "Shoretype",
+    "Fieldwork_Observations",
+    "Adaptation_Opportunities",
+    "Exposed_Facilities_YN",
+    "CurrentlyExposed_Inundation",
+    "CurrentlyExposed_Erosion",
+    "CurrentlyExposed_Status",
+    "NearTermExposed_Inundation",
+    "NearTermExposed_Erosion",
+    "NearTermExposed_Status"
+   ],
+   "known": false,
+   "layer": "Parks_Boundaries_forStoryMap",
+   "sample": [
+    {
+     "AM_YN": "Y",
+     "Category": "State Park",
+     "Description_1": "Bay View State Park is a 66-acre camping park with 1,285-feet of saltwater shoreline. The park offers views of the San Juan Islands fronting Padilla Bay, one of 15 existing national marine estuaries. ",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "•\tThe south shore is threatened by bluff erosion adjacent to Edison Road/Bayview Road.\n\n•\tThe park was built on fill on intertidal spawning habitat which both prevents sediment movement and reduces intertidal spawning habitats.",
+     "ParkName": "Bay View",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/0e6188998bf84e209d6ed88bc2bdbfeb/data",
+     "Park_Story": "shoreline",
+     "Region": "Northwest",
+     "Shoretype": "Accretion Shoreform, Transport Zone"
+    },
+    {
+     "Category": "State Park",
+     "Description_1": "Belfair State Park is a 94-acre, year-round camping park on 3,720 feet of saltwater shoreline at the southern end of Hood Canal in western Washington. It is noted for its saltwater tide flats and wetlands.",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "• The lower camp loop septic tank becomes inundated with saltwater at high tide.\r\n\r\n• The campground floods in the winter and many full-service sites are impacted. Overland flooding originates from the road, not coastal flooding, in the winter.",
+     "ParkName": "Belfair",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/9f22895d7e764e7bb9aa9fab633da54c/data",
+     "Park_Story": "Shellfishing",
+     "Region": "South Puget Sound",
+     "Shoretype": "Accretion Shoreform"
+    },
+    {
+     "Category": "State Park",
+     "Description_1": "Birch Bay State Park is a 664-acre camping park with 8,255 feet of saltwater shoreline on Birch Bay and 14,923 feet of freshwater shoreline on Terrell Creek. The park is rich in shellfish resources.",
+     "FC_Present_YN": "Y",
+     "Field_Assessed": "Yes",
+     "Fieldwork_Observations": "•\tBirch Bay Drive parallels the shoreline, chronically floods, and is shut down during King Tides and high-water events. Large erosional scour holes have formed beneath the waterward shoulder. The road is owned by Whatcom County and has many utilities underneath and alongside the road, including: water, sewer, and fiber optic cable that serve the park and the Birch Bay community to the south.\n\n•\tDuring king tides and storm surges, water in Terrell Creek rises within one foot of the bottom of the Helwig Road vehicle bridge. The pedestrian bridges over the creek have low freeboard and utilities running underneath. Logs catch during high water events.\n\n•\tThe CXT toilet near the boat launch is located in a wetland and surrounded by water on three sides from Terrell Creek. The toilet regularly floods during high water events and must be pumped out at the end of summer. ",
+     "ParkName": "Birch Bay",
+     "ParkPhoto_URL": "https://wa-stateparks.maps.arcgis.com/sharing/rest/content/items/6ff33f8a18314344b069bc50f1e1f79b/data",
+     "Park_Story": "saltwater habitat",
+     "Region": "Northwest Region",
+     "Shoretype": "Accretion Shoreform"
+    }
+   ],
+   "service": "ExperienceBuilder_Overview_Map_WFL1",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ExperienceBuilder_Overview_Map_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission (WSPRC) GIS Department",
+   "area": "ParkName",
+   "count": 65,
+   "fields": [
+    "ParkName",
+    "Category",
+    "ConditionalUse",
+    "Document",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "ConditionalUse",
+   "sample": [
+    {
+     "Category": "State Park",
+     "Comments": " ",
+     "ConditionalUse": "Recreation concession areas in Recreation Area.",
+     "Document": "N:\\_COMMISSION\\Commission Meeting-Minutes\\2020 Minutes\\Minutes November 18 19 2020 - Web-Oly.docx",
+     "ParkName": "Alta Lake"
+    },
+    {
+     "Category": "State Park",
+     "Comments": " ",
+     "ConditionalUse": "Recreation concession areas in Recreation Area.",
+     "Document": "N:\\_COMMISSION\\Commission Meeting-Agenda Items\\2007\\April\\07-04 E-12 Wenatchee Area State Parks CAMP.doc",
+     "ParkName": "Squilchuck"
+    },
+    {
+     "Category": "State Park",
+     "Comments": " ",
+     "ConditionalUse": "Recreation concession areas in Recreation Area.",
+     "Document": "N:\\_COMMISSION\\Commission Meeting-Agenda Items\\2002\\02-12- F6 Millersylvania CAMP-Master Plan Agenda Item.doc",
+     "ParkName": "Millersylvania"
+    }
+   ],
+   "service": "PARKS_Conditional_Uses",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/PARKS_Conditional_Uses/FeatureServer/0"
+  },
+  {
+   "agency": "Washington Department of Fish and Wildlife",
+   "area": "WildlifeAreaName",
+   "count": 33,
+   "fields": [
+    "WildlifeAreaName",
+    "Region",
+    "Notes",
+    "HasAnOffice",
+    "BoatRampSurfaceTypes",
+    "HasADAOffice",
+    "HasRegionalHQ",
+    "HasADARegionalHQ",
+    "HasVisitorCenter",
+    "HasADAVisitorCenter",
+    "HasBoatRampWithADALoadingPlatform",
+    "HasBoatRampWithBoardingFloat",
+    "HasBoatRampWithADABoardingFloat"
+   ],
+   "known": false,
+   "layer": "AreaBoundaries",
+   "sample": [
+    {
+     "BoatRampSurfaceTypes": "N/A",
+     "HasADAOffice": "N/A",
+     "HasADARegionalHQ": "N/A",
+     "HasADAVisitorCenter": "N/A",
+     "HasAnOffice": "No",
+     "HasBoatRampWithADALoadingPlatform": "N/A",
+     "HasBoatRampWithBoardingFloat": "N/A",
+     "HasRegionalHQ": "No",
+     "HasVisitorCenter": "No",
+     "Region": "Region 1 - Eastern",
+     "WildlifeAreaName": "Asotin Creek"
+    },
+    {
+     "BoatRampSurfaceTypes": "N/A",
+     "HasADAOffice": "N/A",
+     "HasADARegionalHQ": "N/A",
+     "HasADAVisitorCenter": "N/A",
+     "HasAnOffice": "No",
+     "HasBoatRampWithADALoadingPlatform": "N/A",
+     "HasBoatRampWithBoardingFloat": "N/A",
+     "HasRegionalHQ": "No",
+     "HasVisitorCenter": "No",
+     "Region": "Region 2 - North Central",
+     "WildlifeAreaName": "Big Bend"
+    },
+    {
+     "BoatRampSurfaceTypes": "Concrete",
+     "HasADAOffice": "N/A",
+     "HasADARegionalHQ": "N/A",
+     "HasADAVisitorCenter": "N/A",
+     "HasAnOffice": "No",
+     "HasBoatRampWithADALoadingPlatform": "Yes",
+     "HasBoatRampWithBoardingFloat": "No",
+     "HasRegionalHQ": "No",
+     "HasVisitorCenter": "No",
+     "Region": "Region 6 - Coastal",
+     "WildlifeAreaName": "Chehalis"
+    }
+   ],
+   "service": "WP_RealEstate/WildlifeAreas",
+   "typef": "BoatRampSurfaceTypes",
+   "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 31,
+   "fields": [
+    "Management",
+    "KEYLINK",
+    "PARK_NAME",
+    "REGION",
+    "CONTRACTOR",
+    "OBSERVER",
+    "LINK",
+    "DOM_TREES",
+    "DOM_SHRUBS",
+    "DOM_GRAM",
+    "DOM_FORBS",
+    "FERNS",
+    "NOXIOUS_SP",
+    "OTHEREXO",
+    "HYDROLOGY_",
+    "HYDROLOGY",
+    "PA1",
+    "RANK1",
+    "PA1_G_RANK",
+    "PA1_S_RANK"
+   ],
+   "known": false,
+   "layer": "Ash_Habitat_Associations_StateParks_VegetationSurveys",
+   "sample": [
+    {
+     "CONTRACTOR": "URS",
+     "DOM_FORBS": "WAPATO",
+     "DOM_GRAM": "PHAR",
+     "DOM_SHRUBS": "RUAR",
+     "DOM_TREES": "FRLA",
+     "FERNS": "PTAQ",
+     "KEYLINK": "BeaconRock_46",
+     "LINK": "N:\\Park Information\\Park Specific Information\\Beacon Rock\\Biological Surveys",
+     "Management": "Restore/Protect",
+     "OBSERVER": "NH",
+     "PARK_NAME": "Beacon Rock",
+     "REGION": "SOUTHWEST"
+    },
+    {
+     "CONTRACTOR": "PBI",
+     "DOM_FORBS": "ARDR4, ERFI2, LULE3, SPMU2,PLPA2, GAAR",
+     "DOM_GRAM": "LECI4, DISP, BRTE",
+     "DOM_SHRUBS": "ARTR2, ELAN, ERNA10, RICE, PHLE4, ARTR4, ERHE2, TORY, TETRA3",
+     "DOM_TREES": "FRAXI",
+     "FERNS": " ",
+     "KEYLINK": "Bridgeport_8",
+     "LINK": "N:\\Park Information\\Park Specific Information\\Bridgeport\\Biological Surveys",
+     "Management": "Restore/Protect",
+     "OBSERVER": "GW",
+     "PARK_NAME": "Bridgeport",
+     "REGION": "EASTERN"
+    },
+    {
+     "CONTRACTOR": "PBI",
+     "DOM_FORBS": "ACMI2, MEOF, CIUN, CEDI3, LIPU11, EPMI, HEPE, RUCR",
+     "DOM_GRAM": "PSSP6, LECI4, HECO26, ARPUL, BRRA2, POMO5, VULPI",
+     "DOM_SHRUBS": "ARTR2, PHLE4, ELAN, AMAL2, ERNA10, ARTR4, ERHE2",
+     "DOM_TREES": "FRAXI",
+     "FERNS": " ",
+     "KEYLINK": "Bridgeport_29",
+     "LINK": "N:\\Park Information\\Park Specific Information\\Bridgeport\\Biological Surveys",
+     "Management": "Restore/Protect",
+     "OBSERVER": "GW",
+     "PARK_NAME": "Bridgeport",
+     "REGION": "EASTERN"
+    }
+   ],
+   "service": "Ash_Habitat_Distribution_State_Parks",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ash_Habitat_Distribution_State_Parks/FeatureServer/1"
+  },
+  {
+   "agency": "Department of Natural Resources (DNR)",
+   "area": "NAME",
+   "count": 30,
+   "fields": [
+    "NAME",
+    "OWNER",
+    "MANAGER",
+    "MANAGEMENT_TYPE"
+   ],
+   "known": false,
+   "layer": "Wilderness Areas",
+   "sample": [
+    {
+     "MANAGEMENT_TYPE": "Wilderness",
+     "MANAGER": "US Forest Service",
+     "NAME": "Salmo Priest Wilderness",
+     "OWNER": "Federal Government"
+    },
+    {
+     "MANAGEMENT_TYPE": "Wilderness",
+     "MANAGER": "US Forest Service",
+     "NAME": "Mount Baker Wilderness",
+     "OWNER": "Federal Government"
+    },
+    {
+     "MANAGEMENT_TYPE": "Wilderness",
+     "MANAGER": "US Forest Service",
+     "NAME": "Pasayten Wilderness",
+     "OWNER": "Federal Government"
+    }
+   ],
+   "service": "Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR",
+   "typef": "MANAGEMENT_TYPE",
+   "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkMgmntArea",
+   "count": 25,
+   "fields": [
+    "ParkMgmntArea",
+    "ParkSubRegion",
+    "ParkRegion",
+    "SubRegionManager"
+   ],
+   "known": false,
+   "layer": "ParkManagementAreas",
+   "sample": [
+    {
+     "ParkMgmntArea": "Whatcom Bays",
+     "ParkRegion": "Northwest",
+     "ParkSubRegion": "Northwest North",
+     "SubRegionManager": "Ciera Strickland"
+    },
+    {
+     "ParkMgmntArea": "Central Whidbey",
+     "ParkRegion": "Northwest",
+     "ParkSubRegion": "Northwest North",
+     "SubRegionManager": "Ciera Strickland"
+    },
+    {
+     "ParkMgmntArea": "Deception Pass",
+     "ParkRegion": "Northwest",
+     "ParkSubRegion": "Northwest North",
+     "SubRegionManager": "Ciera Strickland"
+    }
+   ],
+   "service": "Parks_Administrative_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Parks_Administrative_Boundaries/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 17,
+   "fields": [
+    "ParkMgmntA",
+    "ParkSubReg",
+    "ParkRegion",
+    "SubRegionM",
+    "ParkName",
+    "Category",
+    "WebPage",
+    "Abbrv",
+    "Descriptio",
+    "Imagelink",
+    "Management",
+    "Manageme_1",
+    "PublicRoad",
+    "LABEL_LOCA"
+   ],
+   "known": false,
+   "layer": "PanAbodeParks",
+   "sample": [
+    {
+     "Abbrv": "BIBA",
+     "Category": "State Park",
+     "Descriptio": "Birch Bay State Park is a 664-acre camping park with 8,255 feet of saltwater shoreline on Birch Bay and 14,923 feet of freshwater shoreline on Terrell Creek. The park is rich in shellfish resources and offers panoramic views of the Cascade",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-02/BirchBay_ChildrenBeach.jpg",
+     "Manageme_1": " ",
+     "Management": " ",
+     "ParkMgmntA": "Whatcom Bays",
+     "ParkName": "Birch Bay",
+     "ParkRegion": "Northwest",
+     "ParkSubReg": "Northwest North",
+     "SubRegionM": "Ciera Strickland",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/birch-bay-state-park"
+    },
+    {
+     "Abbrv": "BLAK",
+     "Category": "Marine State Park",
+     "Descriptio": "Blake Island Marine State Park is a 1,127-acre, marine camping park with 5 miles of saltwater beach shoreline. The park is reachable only by tour boat or private boat",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-10/Blake%20Island%20Marina%20Tillicum%20view%202_1.jpg",
+     "Manageme_1": "https://www.parks.state.wa.us/DocumentCenter/View/1196/Central-Kitsap-Area-State-Parks-Management-Plan-PDF?bidId=",
+     "Management": "https://www.parks.state.wa.us/309/Central-Kitsap",
+     "ParkMgmntA": "Kitsap",
+     "ParkName": "Blake Island",
+     "ParkRegion": "Southwest",
+     "ParkSubReg": "Southwest North",
+     "SubRegionM": "Darrel Hopkins",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/blake-island-marine-state-park"
+    },
+    {
+     "Abbrv": "BRTR",
+     "Category": "State Park",
+     "Descriptio": "Bridle Trails State Park is a 489-acre day-use park with 28 miles of trails that welcomes equestrians, hikers and visitors.The park is known as one of the top equestrian parks west of the Mississippi; it does not, however, offer horse rentals.",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-02/Bridle%20Trails%20Horse%20Rider2%20web.jpg",
+     "Manageme_1": " ",
+     "Management": " ",
+     "ParkMgmntA": "Cascade Foothills",
+     "ParkName": "Bridle Trails",
+     "ParkRegion": "Northwest",
+     "ParkSubReg": "Northwest South",
+     "SubRegionM": "Stephanie Simek",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/bridle-trails-state-park"
+    }
+   ],
+   "service": "PanAbodeParks",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/PanAbodeParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 16,
+   "fields": [
+    "ParkName",
+    "Category"
+   ],
+   "known": false,
+   "layer": "Park Boundaries subset",
+   "sample": [
+    {
+     "Category": "State Park",
+     "ParkName": "Alta Lake"
+    },
+    {
+     "Category": "State Park",
+     "ParkName": "Beacon Rock"
+    },
+    {
+     "Category": "Historical State Park",
+     "ParkName": "Cama Beach"
+    }
+   ],
+   "service": "Park_Boundaries_subset",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Park_Boundaries_subset/FeatureServer/0"
+  },
+  {
+   "agency": "WDFW",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "WRIA_NM",
+    "CRIA_Nr"
+   ],
+   "known": false,
+   "layer": "Watershed",
+   "sample": [
+    {
+     "CRIA_Nr": "49",
+     "WRIA_NM": "Okanogan"
+    },
+    {
+     "CRIA_Nr": "48",
+     "WRIA_NM": "Methow"
+    },
+    {
+     "CRIA_Nr": "50",
+     "WRIA_NM": "Foster"
+    }
+   ],
+   "service": "FishAtlas_2016_2",
+   "typef": "",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/FishAtlas_2016_2/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 13,
+   "fields": [],
+   "known": false,
+   "layer": "FISH_75ftbuffer",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 2073537.9743652344,
+     "Shape__Length": 27882.89591257939
+    },
+    {
+     "OBJECTID": 2,
+     "Shape__Area": 1646143.6596679688,
+     "Shape__Length": 22171.267987379568
+    },
+    {
+     "OBJECTID": 3,
+     "Shape__Area": 2218668.846435547,
+     "Shape__Length": 29772.005464804104
+    }
+   ],
+   "service": "FISH_75ftbuffer",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/FISH_75ftbuffer/FeatureServer/90199"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 8,
+   "fields": [
+    "project",
+    "name",
+    "responsibl",
+    "type",
+    "notes",
+    "source",
+    "globalid"
+   ],
+   "known": false,
+   "layer": "Recreation_Polygons",
+   "sample": [
+    {
+     "globalid": "{D0D81BD5-F790-4EDA-A3AE-09819CBA4637}",
+     "name": "Ike Kinswa Park",
+     "notes": " ",
+     "project": "Cowlitz",
+     "responsibl": "Third Party",
+     "source": "Permit, Georeferenced PDF",
+     "type": "Permitted"
+    },
+    {
+     "globalid": "{ED1452FA-5B68-4B2C-B86F-D13DF39E75AD}",
+     "name": "Mayfield Lake Park",
+     "notes": " ",
+     "project": "Cowlitz",
+     "responsibl": "TPU",
+     "source": "Exhibit G, DWG",
+     "type": "Exhibit R"
+    },
+    {
+     "globalid": "{D740CCE2-A3BF-4A04-A441-CC7B43038AB1}",
+     "name": "Glenoma County Park",
+     "notes": "Approximate park boundary from Exhibit K, 1969",
+     "project": "Cowlitz",
+     "responsibl": "TPU",
+     "source": "Exhibit K, Georeferenced PDF",
+     "type": "Exhibit R"
+    }
+   ],
+   "service": "Ike_Kinswa_Parks_TPU_Map_WFL1",
+   "typef": "type",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ike_Kinswa_Parks_TPU_Map_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "RM_Name",
+    "SubRgnName"
+   ],
+   "known": false,
+   "layer": "ParkSubRegions",
+   "sample": [
+    {
+     "RM_Name": "Darrel Hopkins",
+     "SubRgnName": "Southwest North"
+    },
+    {
+     "RM_Name": "Heath Yeats",
+     "SubRgnName": "Northwest North"
+    },
+    {
+     "RM_Name": "Miles Wenzel",
+     "SubRgnName": "Southwest South"
+    }
+   ],
+   "service": "Parks_Administrative_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Parks_Administrative_Boundaries/FeatureServer/4"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "RM_Name",
+    "SubRgnName"
+   ],
+   "known": false,
+   "layer": "ParkSubRegions",
+   "sample": [
+    {
+     "RM_Name": "Darrel Hopkins",
+     "SubRgnName": "Southwest North"
+    },
+    {
+     "RM_Name": "Ciera Strickland",
+     "SubRgnName": "Northwest North"
+    },
+    {
+     "RM_Name": "Matt Niles",
+     "SubRgnName": "Southwest South"
+    }
+   ],
+   "service": "ParkSubRegions",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkSubRegions/FeatureServer/3"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission (WSPRC) GIS Department",
+   "area": "AreaName",
+   "count": 6,
+   "fields": [
+    "AreaName"
+   ],
+   "known": false,
+   "layer": "WinterRecAreas",
+   "sample": [
+    {},
+    {},
+    {}
+   ],
+   "service": "WinterRecreationAreas",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WinterRecreationAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LocationDescription",
+    "ProjectDescription"
+   ],
+   "known": false,
+   "layer": "Others_WtrCons_Polygon",
+   "sample": [
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    },
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    },
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    }
+   ],
+   "service": "Other_Districts_2_Conservation_Projects_Yakima_Basin",
+   "typef": "LocationDescription",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Other_Districts_2_Conservation_Projects_Yakima_Basin/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LocationDescription",
+    "ProjectDescription"
+   ],
+   "known": false,
+   "layer": "Others_WtrCons_Polygon",
+   "sample": [
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    },
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    },
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    }
+   ],
+   "service": "Other_ID_Conservation_Projects_Yakima_Basin",
+   "typef": "LocationDescription",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Other_ID_Conservation_Projects_Yakima_Basin/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LocationDescription",
+    "ProjectDescription"
+   ],
+   "known": false,
+   "layer": "Others_WtrCons_Polygon",
+   "sample": [
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    },
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    },
+    {
+     "LocationDescription": "used WaterSmart document information and imagery",
+     "ProjectDescription": "Low Water Use Garden Conversion Project"
+    }
+   ],
+   "service": "Yakima_Municipal_Conservation",
+   "typef": "LocationDescription",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Yakima_Municipal_Conservation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "CIVIC",
+    "GA_NAME"
+   ],
+   "known": false,
+   "layer": "Shellfish Protection Areas (Grays Harbor County)",
+   "sample": [
+    {},
+    {},
+    {}
+   ],
+   "service": "SCA_EcologicalWildlife_20230510",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/SCA_EcologicalWildlife_20230510/FeatureServer/2"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Region",
+    "Label"
+   ],
+   "known": false,
+   "layer": "ParkRegions",
+   "sample": [
+    {
+     "Label": "NW",
+     "Region": "Northwest"
+    },
+    {
+     "Label": "EA",
+     "Region": "Eastern"
+    },
+    {
+     "Label": "SW",
+     "Region": "Southwest"
+    }
+   ],
+   "service": "ParkRegions",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkRegions/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Region",
+    "Label"
+   ],
+   "known": false,
+   "layer": "ParkRegions",
+   "sample": [
+    {
+     "Label": "NW",
+     "Region": "Northwest"
+    },
+    {
+     "Label": "EA",
+     "Region": "Eastern"
+    },
+    {
+     "Label": "SW",
+     "Region": "Southwest"
+    }
+   ],
+   "service": "Parks_Administrative_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Parks_Administrative_Boundaries/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 2,
+   "fields": [
+    "ParkName",
+    "Surface"
+   ],
+   "known": false,
+   "layer": "Parking areas",
+   "sample": [
+    {
+     "ParkName": "Ike Kinswa",
+     "Surface": "Paved"
+    },
+    {
+     "ParkName": "Ike Kinswa",
+     "Surface": "Paved"
+    }
+   ],
+   "service": "Ike_Kinswa_Parks_TPU_Map_WFL1",
+   "typef": "Surface",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ike_Kinswa_Parks_TPU_Map_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Former Gasworks Property",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 57802.32768249512,
+     "Shape__Length": 998.514906275185
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Boundaries/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Former Gasworks Property",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 57802.32768249512,
+     "Shape__Length": 998.514906275185
+    }
+   ],
+   "service": "Bremerton_Gasworks_Natural_Background",
+   "typef": "",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Bremerton_Gasworks_Natural_Background/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Former Gasworks Property",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 57802.32768249512,
+     "Shape__Length": 998.514906275185
+    }
+   ],
+   "service": "Former_Gasworks_Property",
+   "typef": "",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/Former_Gasworks_Property/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Fisher Creek Watershed",
+   "sample": [
+    {
+     "Id": 0,
+     "OBJECTID": 1,
+     "Shape__Area": 286019968.2918701,
+     "Shape__Length": 125473.91804595247
+    }
+   ],
+   "service": "LowerSkagitTMDLElementsOnline",
+   "typef": "",
+   "url": "https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/LowerSkagitTMDLElementsOnline/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Potential Wildlife Displacement - Elk",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 560152341.6931152,
+     "Shape__Length": 176727.40094668124
+    }
+   ],
+   "service": "Potential_Wildlife_Displacement___Elk",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Potential_Wildlife_Displacement___Elk/FeatureServer/90173"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Trails_buffer_276m",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 456808553.9655762,
+     "Shape__Length": 281442.20491919055
+    }
+   ],
+   "service": "Trails_buffer_276m",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Trails_buffer_276m/FeatureServer/90187"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission (WSPRC) GIS Department",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Label"
+   ],
+   "known": false,
+   "layer": "USAWildernessAreas",
+   "sample": [
+    {
+     "Label": "USA Wilderness - No Snowmobiles",
+     "Name": "USA Wilderness"
+    }
+   ],
+   "service": "USAWildernessAreas",
+   "typef": "",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/USAWildernessAreas/FeatureServer/0"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission (WSPRC) GIS Departmen",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Type",
+    "Label"
+   ],
+   "known": false,
+   "layer": "WildernessAreas",
+   "sample": [
+    {
+     "Label": "Wildlife Winter Range (No Snowmobiles)",
+     "Name": "Wildlife Winter Range",
+     "Type": "closed"
+    }
+   ],
+   "service": "WildernessAreas",
+   "typef": "Type",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/WildernessAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "project",
+    "name",
+    "responsibl",
+    "type",
+    "notes",
+    "source",
+    "globalid"
+   ],
+   "known": false,
+   "layer": "Draft_Proposed_Project_Area_PARKS",
+   "sample": [
+    {
+     "notes": "draft proposed by Parks, as of June 9, 2026."
+    }
+   ],
+   "service": "Ike_Kinswa_Parks_TPU_Map_WFL1",
+   "typef": "type",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ike_Kinswa_Parks_TPU_Map_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 1,
+   "fields": [
+    "ParkName",
+    "Category",
+    "WebPage",
+    "Description",
+    "Imagelink",
+    "PublicRoadAccess",
+    "ParkMgmntArea",
+    "ParkSubRegion",
+    "ParkRegion",
+    "SubRegionManager",
+    "Abbrv",
+    "LABEL_LOCAL"
+   ],
+   "known": false,
+   "layer": "Park Boundaries (PARKS)",
+   "sample": [
+    {
+     "Abbrv": "IKKI",
+     "Category": "State Park",
+     "Description": "Ike Kinswa State Park is a 421-acre camping park with 46,000 feet of freshwater shoreline on the north side of Mayfield Lake. The park provides good fishing, recreational boating, and opportunities for swimming and children's play.",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-03/IkeKinswa_Paddleboarding_02232023.JPG",
+     "LABEL_LOCAL": "Ike Kinswa State Park",
+     "ParkMgmntArea": "Upper Cowlitz",
+     "ParkName": "Ike Kinswa",
+     "ParkRegion": "Southwest",
+     "ParkSubRegion": "Southwest South",
+     "PublicRoadAccess": "Yes",
+     "SubRegionManager": "Matt Niles",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/ike-kinswa-state-park"
+    }
+   ],
+   "service": "Ike_Kinswa_Parks_TPU_Map_WFL1",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/Ike_Kinswa_Parks_TPU_Map_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "Department of Natural Resources (DNR)",
+   "area": "NAME",
+   "count": 6413,
+   "fields": [
+    "NAME",
+    "OWNER",
+    "MANAGER",
+    "MANAGEMENT_TYPE"
+   ],
+   "known": true,
+   "layer": "Non-DNR Major Public Lands",
+   "sample": [
+    {
+     "MANAGEMENT_TYPE": "Recreation",
+     "MANAGER": "WA Dept of Fish and Wildlife",
+     "NAME": "Whatcom County Lakes",
+     "OWNER": "State Government"
+    },
+    {
+     "MANAGEMENT_TYPE": "Unknown",
+     "MANAGER": "US Bureau of Land Management",
+     "NAME": " ",
+     "OWNER": "Federal Government"
+    },
+    {
+     "MANAGEMENT_TYPE": "Wildlife",
+     "MANAGER": "WA Dept of Fish and Wildlife",
+     "NAME": "Sinlahekin Wildlife Area",
+     "OWNER": "State Government"
+    }
+   ],
+   "service": "Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR",
+   "typef": "MANAGEMENT_TYPE",
+   "url": "https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Major_Public_Lands_NonDNR/MapServer/1"
+  },
+  {
+   "agency": "Washington State Parks and Recreation Commission GIS",
+   "area": "ParkName",
+   "count": 207,
+   "fields": [
+    "ParkName",
+    "Category",
+    "WebPage",
+    "Description",
+    "Imagelink",
+    "PublicRoadAccess",
+    "ParkMgmntArea",
+    "ParkSubRegion",
+    "ParkRegion",
+    "SubRegionManager",
+    "Abbrv",
+    "LABEL_LOCAL"
+   ],
+   "known": true,
+   "layer": "WA State Park Park Boundaries",
+   "sample": [
+    {
+     "Abbrv": "ALLA",
+     "Category": "State Park",
+     "Description": "Alta Lake State Park is a 174-acre camping park where the mountainous pine forests meet the desert.",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-03/AltaLake_HikingSign.jpg",
+     "LABEL_LOCAL": "Alta Lake State Park",
+     "ParkMgmntArea": "Central Lakes",
+     "ParkName": "Alta Lake",
+     "ParkRegion": "Eastern",
+     "ParkSubRegion": "Eastern North",
+     "PublicRoadAccess": "Yes",
+     "SubRegionManager": "Joshua Bell",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/alta-lake-state-park"
+    },
+    {
+     "Abbrv": "ANLA",
+     "Category": "State Park",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-05/lake2.jpg",
+     "LABEL_LOCAL": "Anderson Lake State Park",
+     "ParkMgmntArea": "Olympic View",
+     "ParkName": "Anderson Lake",
+     "ParkRegion": "Southwest",
+     "ParkSubRegion": "Southwest North",
+     "PublicRoadAccess": "Yes",
+     "SubRegionManager": "Darrel Hopkins",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/anderson-lake-state-park"
+    },
+    {
+     "Abbrv": "BAGR",
+     "Category": "State Park",
+     "Description": "Battle Ground Lake State Park is a camping park with 275 acres of beautiful, forested land in the foothills of the Cascade Mountains.",
+     "Imagelink": "https://parks.wa.gov/sites/default/files/2023-02/BattleGroundLake_WaterActivity.jpg",
+     "LABEL_LOCAL": "Battle Ground Lake State Park",
+     "ParkMgmntArea": "Battle Ground",
+     "ParkName": "Battle Ground Lake",
+     "ParkRegion": "Southwest",
+     "ParkSubRegion": "Southwest South",
+     "PublicRoadAccess": "Yes",
+     "SubRegionManager": "Matt Niles",
+     "WebPage": "https://parks.wa.gov/find-parks/state-parks/battle-ground-lake-state-park"
+    }
+   ],
+   "service": "ParkBoundaries",
+   "typef": "Category",
+   "url": "https://services5.arcgis.com/4LKAHwqnBooVDUlX/arcgis/rest/services/ParkBoundaries/FeatureServer/2"
+  }
+ ],
+ "st": "WA"
+}

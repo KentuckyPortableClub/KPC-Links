@@ -1,0 +1,6305 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 3878,
+   "fields": [
+    "owner",
+    "agency",
+    "admin",
+    "desig",
+    "state_lgd",
+    "ut_lgd",
+    "natl_lgd",
+    "label_federal",
+    "label_state",
+    "county",
+    "tribe"
+   ],
+   "known": false,
+   "layer": "public_lands",
+   "sample": [
+    {
+     "admin": "BLM",
+     "agency": "BLM",
+     "county": "KANE",
+     "desig": "N/A",
+     "natl_lgd": "Bureau of Land Management (BLM)",
+     "owner": "Federal",
+     "state_lgd": "Bureau of Land Management",
+     "ut_lgd": "Bureau of Land Management (BLM)"
+    },
+    {
+     "admin": "BLM",
+     "agency": "BLM",
+     "county": "KANE",
+     "desig": "N/A",
+     "natl_lgd": "Bureau of Land Management (BLM)",
+     "owner": "Federal",
+     "state_lgd": "Bureau of Land Management",
+     "ut_lgd": "Bureau of Land Management (BLM)"
+    },
+    {
+     "admin": "BLM",
+     "agency": "BLM",
+     "county": "KANE",
+     "desig": "N/A",
+     "natl_lgd": "Bureau of Land Management (BLM)",
+     "owner": "Federal",
+     "state_lgd": "Bureau of Land Management",
+     "ut_lgd": "Bureau of Land Management (BLM)"
+    }
+   ],
+   "service": "Access_to_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Access_to_Parks/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2104,
+   "fields": [
+    "NAME",
+    "COUNTY",
+    "CITY",
+    "TYPE",
+    "STATUS"
+   ],
+   "known": false,
+   "layer": "ParksLocal",
+   "sample": [
+    {
+     "CITY": "Logan",
+     "COUNTY": "CACHE",
+     "NAME": "Lundstrom Park",
+     "STATUS": "Complete",
+     "TYPE": "Neighborhood Park"
+    },
+    {
+     "CITY": "Cache County",
+     "COUNTY": "CACHE",
+     "NAME": "Ray Hugie Park",
+     "STATUS": "Current",
+     "TYPE": "Neighborhood Park"
+    },
+    {
+     "CITY": "Lindon",
+     "COUNTY": "UTAH",
+     "NAME": "Canal Bridge Park",
+     "STATUS": "Complete",
+     "TYPE": "Park"
+    }
+   ],
+   "service": "UtahParksLocal",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahParksLocal/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 1813,
+   "fields": [
+    "UNIT",
+    "IS_THIS_STATE"
+   ],
+   "known": false,
+   "layer": "WildernessProp_UWC1995",
+   "sample": [
+    {
+     "IS_THIS_STATE": "Y",
+     "UNIT": "FIFTYMILE MOUNTAIN"
+    },
+    {
+     "IS_THIS_STATE": "Y",
+     "UNIT": "CARCASS CANYON"
+    },
+    {
+     "IS_THIS_STATE": "Y",
+     "UNIT": "SCORPION"
+    }
+   ],
+   "service": "WildernessProp_UWC1995",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_UWC1995/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1731,
+   "fields": [
+    "name",
+    "county",
+    "city",
+    "type",
+    "status"
+   ],
+   "known": false,
+   "layer": "parks_local",
+   "sample": [
+    {
+     "city": "Logan",
+     "county": "CACHE",
+     "name": "Lundstrom Park",
+     "status": "Complete",
+     "type": "Neighborhood Park"
+    },
+    {
+     "city": "Cache County",
+     "county": "CACHE",
+     "name": "Ray Hugie Park",
+     "status": "Current",
+     "type": "Neighborhood Park"
+    },
+    {
+     "city": "Logan",
+     "county": "CACHE",
+     "name": "Adams Park",
+     "status": "Current",
+     "type": "Neighborhood Park"
+    }
+   ],
+   "service": "Access_to_Parks",
+   "typef": "type",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Access_to_Parks/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1499,
+   "fields": [
+    "Permanent_Identifier",
+    "ReachCode",
+    "DWR_WaterID",
+    "WaterName",
+    "New_OR_Updated",
+    "DUP_WTRID_JOIN_NEW",
+    "DWR_WATER_ID",
+    "WTRID",
+    "Stocked_YN",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "UDWR Lakes",
+   "sample": [
+    {
+     "Creator": "dwrtodd",
+     "DWR_WATER_ID": "VI372C",
+     "DWR_WaterID": "VI372C",
+     "Editor": "dwrtodd",
+     "Permanent_Identifier": "78366153",
+     "ReachCode": "16030001003742",
+     "Stocked_YN": "Yes",
+     "WTRID": "VI 372C",
+     "WaterName": "QUIETER POND"
+    },
+    {
+     "Creator": "dwrtodd",
+     "DWR_WATER_ID": "VI013",
+     "DWR_WaterID": "VI013",
+     "Editor": "dwrtodd",
+     "Permanent_Identifier": "78955871",
+     "ReachCode": "16030007001054",
+     "Stocked_YN": "Yes",
+     "WTRID": "VI 013",
+     "WaterName": "KENTS L, LOWER"
+    },
+    {
+     "Creator": "dwrtodd",
+     "DWR_WATER_ID": "I492",
+     "DWR_WaterID": "I492",
+     "Editor": "dwrtodd",
+     "Permanent_Identifier": "79206881",
+     "ReachCode": "14070003005712",
+     "Stocked_YN": "Yes",
+     "WTRID": "I  492",
+     "WaterName": "ABERDUNK L FL"
+    }
+   ],
+   "service": "UDWR_Fish_Stocking_Events_1979_2024_VIEW",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/UDWR_Fish_Stocking_Events_1979_2024_VIEW/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1499,
+   "fields": [
+    "Permanent_Identifier",
+    "ReachCode",
+    "DWR_WaterID",
+    "WaterName",
+    "New_OR_Updated",
+    "DUP_WTRID_JOIN_NEW",
+    "DWR_WATER_ID",
+    "WTRID",
+    "Stocked_YN",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "UDWR Lakes",
+   "sample": [
+    {
+     "Creator": "dwrtodd",
+     "DWR_WATER_ID": "VI372C",
+     "DWR_WaterID": "VI372C",
+     "Editor": "dwrtodd",
+     "Permanent_Identifier": "78366153",
+     "ReachCode": "16030001003742",
+     "Stocked_YN": "Yes",
+     "WTRID": "VI 372C",
+     "WaterName": "QUIETER POND"
+    },
+    {
+     "Creator": "dwrtodd",
+     "DWR_WATER_ID": "VI013",
+     "DWR_WaterID": "VI013",
+     "Editor": "dwrtodd",
+     "Permanent_Identifier": "78955871",
+     "ReachCode": "16030007001054",
+     "Stocked_YN": "Yes",
+     "WTRID": "VI 013",
+     "WaterName": "KENTS L, LOWER"
+    },
+    {
+     "Creator": "dwrtodd",
+     "DWR_WATER_ID": "I492",
+     "DWR_WaterID": "I492",
+     "Editor": "dwrtodd",
+     "Permanent_Identifier": "79206881",
+     "ReachCode": "14070003005712",
+     "Stocked_YN": "Yes",
+     "WTRID": "I  492",
+     "WaterName": "ABERDUNK L FL"
+    }
+   ],
+   "service": "UDWR_Fish_Stocking_Events_1979_2024_VIEW",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/UDWR_Fish_Stocking_Events_1979_2024_VIEW/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1431,
+   "fields": [
+    "NAME",
+    "STATUS",
+    "UNIT"
+   ],
+   "known": false,
+   "layer": "Wilderness_BLM98Reinventory",
+   "sample": [
+    {
+     "NAME": "pilotrange",
+     "STATUS": "wc",
+     "UNIT": " "
+    },
+    {
+     "NAME": "newfoundland mtns",
+     "STATUS": "wc",
+     "UNIT": " "
+    },
+    {
+     "NAME": "pilotrange",
+     "STATUS": "wc",
+     "UNIT": " "
+    }
+   ],
+   "service": "Wilderness_BLM98Reinventory",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Wilderness_BLM98Reinventory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1408,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "LDR - Low Density Residential",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "466 N ELK DR",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1211-0093-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "474 N FOREST DR",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1211-0005-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "465 N 275 E",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1211-0120-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 1389,
+   "fields": [
+    "UNIT",
+    "BLMNAME",
+    "UNIT_LABEL",
+    "IS_THIS_STATE"
+   ],
+   "known": false,
+   "layer": "WildernessProp_BLM",
+   "sample": [
+    {
+     "BLMNAME": "FIFTYMILE MOUNTAIN",
+     "IS_THIS_STATE": "Y",
+     "UNIT": "S.040.080.FIFTY.MILE.MTN",
+     "UNIT_LABEL": " "
+    },
+    {
+     "BLMNAME": "RED MOUNTAIN",
+     "IS_THIS_STATE": " ",
+     "UNIT": "S.132.RED.MOUNTAIN",
+     "UNIT_LABEL": " "
+    },
+    {
+     "BLMNAME": "NORTH STANSBURY",
+     "IS_THIS_STATE": "Y",
+     "UNIT": "S.020.089.N.STANSBURY.MTS",
+     "UNIT_LABEL": " "
+    }
+   ],
+   "service": "WildernessProp_BLM",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_BLM/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1266,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "HDR - High Density Residential",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1167-0002-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "784 S PAINTBRUSH ST",
+     "PARCEL_CIT": " ",
+     "PARCEL_ID": "C-1148-0005-0028",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "664 S PAINTBRUSH ST",
+     "PARCEL_CIT": " ",
+     "PARCEL_ID": "C-1148-0005-0030",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 844,
+   "fields": [
+    "UNIT",
+    "IS_THIS_STATE",
+    "UNIT_LABEL",
+    "BLMNAME"
+   ],
+   "known": false,
+   "layer": "WildernessProp_HR1745",
+   "sample": [
+    {
+     "BLMNAME": " ",
+     "IS_THIS_STATE": " ",
+     "UNIT": "Cedar Mountains",
+     "UNIT_LABEL": "Cedar Mountains"
+    },
+    {
+     "BLMNAME": " ",
+     "IS_THIS_STATE": " ",
+     "UNIT": "N.DEEP.CREEK",
+     "UNIT_LABEL": "N Deep Creek"
+    },
+    {
+     "BLMNAME": " ",
+     "IS_THIS_STATE": "Y",
+     "UNIT": "N.DEEP.CREEK",
+     "UNIT_LABEL": " "
+    }
+   ],
+   "service": "WildernessProp_HR1745",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_HR1745/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 838,
+   "fields": [
+    "UNIT",
+    "IS_THIS_STATE",
+    "UNIT_LABEL"
+   ],
+   "known": false,
+   "layer": "WildernessProp_UWA1995",
+   "sample": [
+    {
+     "IS_THIS_STATE": " ",
+     "UNIT": "STANSBURY MTNS NORTH",
+     "UNIT_LABEL": "STANSBURY MTNS NORTH"
+    },
+    {
+     "IS_THIS_STATE": " ",
+     "UNIT": "STANSBURY MTNS NORTH",
+     "UNIT_LABEL": " "
+    },
+    {
+     "IS_THIS_STATE": "Y",
+     "UNIT": "STANSBURY MTNS NORTH",
+     "UNIT_LABEL": " "
+    }
+   ],
+   "service": "WildernessProp_UWA1995",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_UWA1995/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 750,
+   "fields": [
+    "HUC12Name",
+    "W_Name"
+   ],
+   "known": false,
+   "layer": "WAPConservationActionAreas",
+   "sample": [
+    {
+     "HUC12Name": "Bear Lake",
+     "W_Name": "Bear Lake"
+    },
+    {
+     "HUC12Name": "Headwaters Clear Creek",
+     "W_Name": "Raft River Mountains"
+    },
+    {
+     "HUC12Name": "Johnson Creek",
+     "W_Name": "Raft River Mountains"
+    }
+   ],
+   "service": "Utah_WAP_Conservation_Action_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Utah_WAP_Conservation_Action_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 482,
+   "fields": [
+    "WSA_NUMBER",
+    "WSA_NAME",
+    "WSA_TYPE",
+    "WSA_VALUES"
+   ],
+   "known": false,
+   "layer": "Utah Wilderness Proposal BLM",
+   "sample": [
+    {
+     "WSA_NAME": "Mill Creek Canyon",
+     "WSA_NUMBER": "UT-060-139A",
+     "WSA_TYPE": "WSA",
+     "WSA_VALUES": "Wilderness Study Area"
+    },
+    {
+     "WSA_NAME": "West Cold Springs",
+     "WSA_NUMBER": "UT-080-103",
+     "WSA_TYPE": "WSA",
+     "WSA_VALUES": "Wilderness Study Area"
+    },
+    {
+     "WSA_NAME": "Diamond Breaks",
+     "WSA_NUMBER": "UT-080-113",
+     "WSA_TYPE": "WSA",
+     "WSA_VALUES": "Wilderness Study Area"
+    }
+   ],
+   "service": "BLMWildernessStudyAreas",
+   "typef": "WSA_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BLMWildernessStudyAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 454,
+   "fields": [
+    "WSA_NUMBER",
+    "WSA_NAME",
+    "WSA_TYPE",
+    "WSA_VALUES"
+   ],
+   "known": false,
+   "layer": "Wilderness_BLMWSAs",
+   "sample": [
+    {
+     "WSA_NAME": "West Cold Springs",
+     "WSA_NUMBER": "UT-080-103",
+     "WSA_TYPE": "WSA",
+     "WSA_VALUES": "Wilderness Study Area"
+    },
+    {
+     "WSA_NAME": "Diamond Breaks",
+     "WSA_NUMBER": "UT-080-113",
+     "WSA_TYPE": "WSA",
+     "WSA_VALUES": "Wilderness Study Area"
+    },
+    {
+     "WSA_NAME": "North Stansbury Mountains",
+     "WSA_NUMBER": "UT-020-089",
+     "WSA_TYPE": "WSA",
+     "WSA_VALUES": "Wilderness Study Area"
+    }
+   ],
+   "service": "Wilderness_BLMWSAs",
+   "typef": "WSA_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Wilderness_BLMWSAs/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 424,
+   "fields": [
+    "Status",
+    "State",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "PARKNAME",
+    "CERT_TYPE",
+    "Creator",
+    "Editor",
+    "INT_REGION"
+   ],
+   "known": false,
+   "layer": "nps_park_unit_boundaries",
+   "sample": [
+    {
+     "CERT_TYPE": "IDSP",
+     "CREATED_BY": " ",
+     "Creator": "achristensen@UtahHCD",
+     "Editor": "achristensen@UtahHCD",
+     "GNIS_ID": " ",
+     "PARKNAME": "Grand Canyon Parahsant",
+     "REGION": "IW",
+     "State": "AZ",
+     "Status": "Certified",
+     "UNIT_CODE": "PARA",
+     "UNIT_NAME": "Grand Canyon Parashant",
+     "UNIT_TYPE": "National Monument"
+    },
+    {
+     "CERT_TYPE": " ",
+     "CREATED_BY": "Lands",
+     "Creator": "achristensen@UtahHCD",
+     "Editor": "achristensen@UtahHCD",
+     "GNIS_ID": "1879026",
+     "PARKNAME": "American Memorial Park",
+     "REGION": "PW",
+     "State": "MP",
+     "Status": "Unknown",
+     "UNIT_CODE": "AMME",
+     "UNIT_NAME": "American Memorial Park",
+     "UNIT_TYPE": "Park"
+    },
+    {
+     "CERT_TYPE": " ",
+     "CREATED_BY": "Lands",
+     "Creator": "achristensen@UtahHCD",
+     "Editor": "achristensen@UtahHCD",
+     "GNIS_ID": "1985663",
+     "PARKNAME": "Cedar Creek & Belle Grove",
+     "REGION": "NE",
+     "State": "VA",
+     "Status": "Unknown",
+     "UNIT_CODE": "CEBE",
+     "UNIT_NAME": "Cedar Creek and Belle Grove National Historical Park",
+     "UNIT_TYPE": "National Historical Park"
+    }
+   ],
+   "service": "nps_park_unit_boundaries",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/nps_park_unit_boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 352,
+   "fields": [
+    "NAME",
+    "REGION",
+    "CLUSTER"
+   ],
+   "known": false,
+   "layer": "WildernessProp_RedRock",
+   "sample": [
+    {
+     "CLUSTER": "Little Goose Creek",
+     "NAME": "Little Goose Creek",
+     "REGION": "Great Basin"
+    },
+    {
+     "CLUSTER": "Grouse Creek Mountains",
+     "NAME": "Grouse Creek Mtns. N",
+     "REGION": "Great Basin"
+    },
+    {
+     "CLUSTER": "Grouse Creek Mountains",
+     "NAME": "Grouse Creek Mtns. S",
+     "REGION": "Great Basin"
+    }
+   ],
+   "service": "WildernessProp_RedRock",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_RedRock/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 352,
+   "fields": [
+    "NAME",
+    "REGION",
+    "CLUSTER"
+   ],
+   "known": false,
+   "layer": "WildernessProp_UWC2008",
+   "sample": [
+    {
+     "CLUSTER": "Little Goose Creek",
+     "NAME": "Little Goose Creek",
+     "REGION": "Great Basin"
+    },
+    {
+     "CLUSTER": "Grouse Creek Mountains",
+     "NAME": "Grouse Creek Mtns. N",
+     "REGION": "Great Basin"
+    },
+    {
+     "CLUSTER": "Grouse Creek Mountains",
+     "NAME": "Grouse Creek Mtns. S",
+     "REGION": "Great Basin"
+    }
+   ],
+   "service": "WildernessProp_UWC2008",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_UWC2008/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 340,
+   "fields": [
+    "UNIT",
+    "IS_THIS_STATE",
+    "UNIT_LABEL"
+   ],
+   "known": false,
+   "layer": "WildernessProp_NineCo1995",
+   "sample": [
+    {
+     "IS_THIS_STATE": " ",
+     "UNIT": "CEDAR MOUNTAINS",
+     "UNIT_LABEL": "CEDAR MOUNTAINS"
+    },
+    {
+     "IS_THIS_STATE": " ",
+     "UNIT": "DEEP CREEK MT",
+     "UNIT_LABEL": "DEEP CREEK MT"
+    },
+    {
+     "IS_THIS_STATE": "Y",
+     "UNIT": "DEEP CREEK MT",
+     "UNIT_LABEL": " "
+    }
+   ],
+   "service": "WildernessProp_NineCo1995",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_NineCo1995/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 315,
+   "fields": [
+    "LekName",
+    "SGMA"
+   ],
+   "known": false,
+   "layer": "lek2014_3mi_buffer_merged",
+   "sample": [
+    {
+     "LekName": "Indian Peak",
+     "SGMA": "Hamlin Valley"
+    },
+    {
+     "LekName": "Marshall",
+     "SGMA": "Bald Hills"
+    },
+    {
+     "LekName": "Minersville",
+     "SGMA": "Bald Hills"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ProspectorTrail_WFL/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 315,
+   "fields": [
+    "LekName",
+    "SGMA"
+   ],
+   "known": false,
+   "layer": "lek2014_3mi_buffer_merged",
+   "sample": [
+    {
+     "LekName": "Indian Peak",
+     "SGMA": "Hamlin Valley"
+    },
+    {
+     "LekName": "Marshall",
+     "SGMA": "Bald Hills"
+    },
+    {
+     "LekName": "Minersville",
+     "SGMA": "Bald Hills"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ProspectorTrail_WFL/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 287,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "GC - General Commercial",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "665 N HWY",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1138-0006-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "54 E BEAR FLAT AVE",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0001-0013",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "70 E BEAR FLAT AVE",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0001-0002",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 260,
+   "fields": [
+    "DATA",
+    "IS_THIS_STATE",
+    "UNIT"
+   ],
+   "known": false,
+   "layer": "WildernessProp_WDesert1999",
+   "sample": [
+    {
+     "DATA": " ",
+     "IS_THIS_STATE": " ",
+     "UNIT": "PILOT PK"
+    },
+    {
+     "DATA": " ",
+     "IS_THIS_STATE": "Y",
+     "UNIT": "PILOT PK"
+    },
+    {
+     "DATA": " ",
+     "IS_THIS_STATE": "Y",
+     "UNIT": "PILOT PK"
+    }
+   ],
+   "service": "WildernessProp_WDesert1999",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_WDesert1999/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 253,
+   "fields": [
+    "UNIT",
+    "BLMNAME",
+    "IS_THIS_ST"
+   ],
+   "known": false,
+   "layer": "Wilderness_BLMSuitability",
+   "sample": [
+    {
+     "BLMNAME": "BLACK RIDGE CANYONS",
+     "IS_THIS_ST": " ",
+     "UNIT": "S.060.118.WSTWTR.CN"
+    },
+    {
+     "BLMNAME": "LOST SPRING CANYON",
+     "IS_THIS_ST": " ",
+     "UNIT": "S.060.131B.LST.SPR.CN"
+    },
+    {
+     "BLMNAME": "ISA ESCALANTE CANYON TRACT 5",
+     "IS_THIS_ST": " ",
+     "UNIT": "S.040.ISA.ESC.CN.TR5"
+    }
+   ],
+   "service": "Wilderness_BLMSuitability",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Wilderness_BLMSuitability/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 242,
+   "fields": [
+    "NAME",
+    "CATEGORY",
+    "FOREST",
+    "OWNERSHIP",
+    "COMMENT_",
+    "REV_CAT",
+    "REV_CAT_COM",
+    "FEATURE1",
+    "NAME1",
+    "COMMENT1",
+    "AUTHORITY1",
+    "FEATURE2",
+    "NAME2",
+    "COMMENT2",
+    "AUTHORITY2",
+    "FEATURE3",
+    "NAME3",
+    "COMMENT3",
+    "AUTHORITY3",
+    "STATE"
+   ],
+   "known": false,
+   "layer": "USFSWildernessAreas",
+   "sample": [
+    {
+     "AUTHORITY1": "C1",
+     "CATEGORY": "1C",
+     "COMMENT1": " ",
+     "COMMENT_": "Became Dark Canyon Wilderness.  Boundary of wilder",
+     "FEATURE1": "NWA",
+     "FEATURE2": " ",
+     "FOREST": "Manti-La Sal",
+     "NAME": "Dark-Woodenshoe Canyon",
+     "NAME1": "Dark Canyon Wilderness NWA",
+     "OWNERSHIP": "FS",
+     "REV_CAT": "1A",
+     "REV_CAT_COM": "Added OFFICIAL wilderness bdry"
+    },
+    {
+     "AUTHORITY1": "C1",
+     "CATEGORY": "1C",
+     "COMMENT1": " ",
+     "COMMENT_": "Became Dark Canyon Wilderness.  Boundary of wilder",
+     "FEATURE1": "NWA",
+     "FEATURE2": " ",
+     "FOREST": "Manti-La Sal",
+     "NAME": "Dark-Woodenshoe Canyon",
+     "NAME1": "Dark Canyon Wilderness NWA",
+     "OWNERSHIP": "FS",
+     "REV_CAT": "1A",
+     "REV_CAT_COM": "Added OFFICIAL wilderness bdry"
+    },
+    {
+     "AUTHORITY1": "C1",
+     "CATEGORY": "1C",
+     "COMMENT1": " ",
+     "COMMENT_": "Became Dark Canyon Wilderness.  Boundary of wilder",
+     "FEATURE1": "NWA",
+     "FEATURE2": " ",
+     "FOREST": "Manti-La Sal",
+     "NAME": "Dark-Woodenshoe Canyon",
+     "NAME1": "Dark Canyon Wilderness NWA",
+     "OWNERSHIP": "FS",
+     "REV_CAT": "1A",
+     "REV_CAT_COM": "Added OFFICIAL wilderness bdry"
+    }
+   ],
+   "service": "USFSWildernessAreas",
+   "typef": "CATEGORY",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/USFSWildernessAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 223,
+   "fields": [
+    "id",
+    "dashboardURL",
+    "Creator",
+    "Editor",
+    "streamID",
+    "id_1751051152308",
+    "name",
+    "type_",
+    "county",
+    "region",
+    "previousPropertyName",
+    "purpose",
+    "habitatManagementPlan",
+    "primaryHabitatSpecies",
+    "accessType",
+    "closureDates",
+    "restrictions",
+    "assetNumber",
+    "activityType",
+    "contactInfo"
+   ],
+   "known": false,
+   "layer": "Public_Access_Properties_Dashboards_",
+   "sample": [
+    {
+     "county": "Weber",
+     "id": "230",
+     "id_1751051152308": "230",
+     "name": "Ogden City Conservation Easement",
+     "previousPropertyName": "Ogden City Weber River Trail Conservation Easement",
+     "purpose": "angler access",
+     "region": "Northern",
+     "streamID": "5136855d-2835-463e-a6cf-b10e0edc585e",
+     "type_": "Conservation Easement"
+    },
+    {
+     "county": "Weber",
+     "id": "67",
+     "id_1751051152308": "67",
+     "name": "Ogden Office",
+     "purpose": "office space",
+     "region": "Northern",
+     "streamID": "c0323ebf-eb49-4872-a633-031088ba454a",
+     "type_": "Facility"
+    },
+    {
+     "county": "Weber",
+     "id": "180",
+     "id_1751051152308": "180",
+     "name": "Ogden River Angler Access",
+     "previousPropertyName": "Ogden Canyon WMA, Alaskan Inn WMA",
+     "purpose": "angler access",
+     "region": "Northern",
+     "streamID": "68db5113-9875-49f8-bf1e-64394e29a48b",
+     "type_": "Angler Access"
+    }
+   ],
+   "service": "Public_Access_Properties_Dashboards_",
+   "typef": "type_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Public_Access_Properties_Dashboards_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 223,
+   "fields": [
+    "id",
+    "dashboardURL",
+    "Creator",
+    "Editor",
+    "streamID",
+    "id_1751051152308",
+    "name",
+    "type_",
+    "county",
+    "region",
+    "previousPropertyName",
+    "purpose",
+    "habitatManagementPlan",
+    "primaryHabitatSpecies",
+    "accessType",
+    "closureDates",
+    "restrictions",
+    "assetNumber",
+    "activityType",
+    "contactInfo"
+   ],
+   "known": false,
+   "layer": "Public_Access_Properties_Dashboards_",
+   "sample": [
+    {
+     "county": "Weber",
+     "id": "230",
+     "id_1751051152308": "230",
+     "name": "Ogden City Conservation Easement",
+     "previousPropertyName": "Ogden City Weber River Trail Conservation Easement",
+     "purpose": "angler access",
+     "region": "Northern",
+     "streamID": "5136855d-2835-463e-a6cf-b10e0edc585e",
+     "type_": "Conservation Easement"
+    },
+    {
+     "county": "Weber",
+     "id": "67",
+     "id_1751051152308": "67",
+     "name": "Ogden Office",
+     "purpose": "office space",
+     "region": "Northern",
+     "streamID": "c0323ebf-eb49-4872-a633-031088ba454a",
+     "type_": "Facility"
+    },
+    {
+     "county": "Weber",
+     "id": "180",
+     "id_1751051152308": "180",
+     "name": "Ogden River Angler Access",
+     "previousPropertyName": "Ogden Canyon WMA, Alaskan Inn WMA",
+     "purpose": "angler access",
+     "region": "Northern",
+     "streamID": "68db5113-9875-49f8-bf1e-64394e29a48b",
+     "type_": "Angler Access"
+    }
+   ],
+   "service": "Public_Access_Properties_Dashboards_",
+   "typef": "type_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Public_Access_Properties_Dashboards_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 172,
+   "fields": [],
+   "known": false,
+   "layer": "WildernessProp_HR1500",
+   "sample": [
+    {
+     "ACRES": 23544.3,
+     "OBJECTID": 1,
+     "Shape__Area": 168123994.2734375,
+     "Shape__Length": 109556.70449677826
+    },
+    {
+     "ACRES": 19812,
+     "OBJECTID": 2,
+     "Shape__Area": 140583142.8828125,
+     "Shape__Length": 79957.53812250271
+    },
+    {
+     "ACRES": 7501.6,
+     "OBJECTID": 3,
+     "Shape__Area": 53260831.078125,
+     "Shape__Length": 37299.24581003045
+    }
+   ],
+   "service": "WildernessProp_HR1500",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_HR1500/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 159,
+   "fields": [
+    "PROJECT",
+    "PARTNERS",
+    "VALUES_",
+    "SOURCE",
+    "CONTACT",
+    "EASE_HOLD",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "ConservationEasements",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "CONTACT": "Laura Bohn, Governors Office of Planning and Budget, (801) 538-1027",
+     "EASE_HOLD": "Utah Division of Wildlife Resources/Natural Resource Conservation Service",
+     "PARTNERS": "32,11,7,10,22,45",
+     "PROJECT": "Sand Wash/Sink Draw",
+     "SOURCE": "Governors Office of Planning and Budget",
+     "VALUES_": "1,2,3"
+    },
+    {
+     "COMMENTS": "The Peaceful Valley Ranch was completed in two phases.  Phase 1 was completed on 6/3/99.",
+     "CONTACT": "Ann Price, Division of Forestry, Fire and State Lands, (801) 538-5540",
+     "EASE_HOLD": "Utah Department of Natural Resources, Division of Forestry, Fire and State Lands",
+     "PARTNERS": "6, 11, 13, 14, 15, 18, 30,31, 33",
+     "PROJECT": "Peaceful Valley Ranch",
+     "SOURCE": "Utah Department of Natural Resources, Division of Forestry, Fire and State Lands",
+     "VALUES_": "1, 3, 4, 5, 6,  8, 9"
+    },
+    {
+     "COMMENTS": " ",
+     "CONTACT": "Catherine Cargill, Utah Open Lands, (801) 463-6165",
+     "EASE_HOLD": "Utah Open Lands",
+     "PARTNERS": "6, 15",
+     "PROJECT": "Richard Clark Memorial Preserve",
+     "SOURCE": "Utah Open Lands",
+     "VALUES_": "1, 4, 7"
+    }
+   ],
+   "service": "Utah_Conservation_Easements",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Utah_Conservation_Easements/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 155,
+   "fields": [
+    "NAME",
+    "DIVISION"
+   ],
+   "known": false,
+   "layer": "WildernessProp_UWC1989",
+   "sample": [
+    {
+     "DIVISION": "WDSRT",
+     "NAME": "Newfoundland Mtns"
+    },
+    {
+     "DIVISION": "WDSRT",
+     "NAME": "Silver Island Mtns"
+    },
+    {
+     "DIVISION": "WDSRT",
+     "NAME": "Silver Island Mtns"
+    }
+   ],
+   "service": "WildernessProp_UWC1989",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_UWC1989/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 125,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "ROS - Recreation Open Space",
+   "sample": [
+    {
+     "OWN_TYPE": "Federal",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": " ",
+     "PARCEL_ID": " ",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "352 E SKATE CIR",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1143-0011-000C-36",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "318 E SKATE CIR",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1143-0011-000C-39",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/20"
+  },
+  {
+   "agency": "",
+   "area": "smallareaname",
+   "count": 99,
+   "fields": [
+    "smallareanumber",
+    "smallareaname"
+   ],
+   "known": false,
+   "layer": "SSA_2018_Pop_win_half_mile_parks",
+   "sample": [
+    {
+     "smallareaname": "Brigham City",
+     "smallareanumber": "1"
+    },
+    {
+     "smallareaname": "Riverdale",
+     "smallareanumber": "10"
+    },
+    {
+     "smallareaname": "Clearfield Area/Hooper",
+     "smallareanumber": "11"
+    }
+   ],
+   "service": "Access_to_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Access_to_Parks/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 93,
+   "fields": [
+    "PREP_FIRST",
+    "PREP_LAST",
+    "APPR_FIRST",
+    "APPR_LAST",
+    "P_CATEGORY",
+    "STATUS",
+    "PLAN_ID",
+    "PLAN_NAME",
+    "PPCALCSTAT",
+    "FUND_SHORT",
+    "FUND_LONG",
+    "PLAN_TYPE",
+    "IS_ACTIVE",
+    "RSN_INACTV",
+    "TAXABTMENT",
+    "FSC_CERT",
+    "T_FRM_CRT",
+    "SFI_CERT",
+    "THIRDP_CRT",
+    "CNSV_ESMT"
+   ],
+   "known": false,
+   "layer": "Forest_Stewardship_Properties",
+   "sample": [
+    {
+     "APPR_FIRST": "William",
+     "APPR_LAST": "Zanotti",
+     "FUND_LONG": " ",
+     "FUND_SHORT": " ",
+     "PLAN_ID": "109",
+     "PLAN_NAME": "Green Canyon",
+     "PLAN_TYPE": "New",
+     "PPCALCSTAT": "DONE",
+     "PREP_FIRST": "Natalie",
+     "PREP_LAST": "Conlin",
+     "P_CATEGORY": "Forest Stewardship Plan",
+     "STATUS": "Approved"
+    },
+    {
+     "APPR_FIRST": "William",
+     "APPR_LAST": "Zanotti",
+     "FUND_LONG": " ",
+     "FUND_SHORT": " ",
+     "PLAN_ID": "114",
+     "PLAN_NAME": "Deseret",
+     "PLAN_TYPE": "New",
+     "PPCALCSTAT": "DONE",
+     "PREP_FIRST": "Natalie",
+     "PREP_LAST": "Conlin",
+     "P_CATEGORY": "Forest Stewardship Plan",
+     "STATUS": "Approved"
+    },
+    {
+     "APPR_FIRST": "William",
+     "APPR_LAST": "Zanotti",
+     "FUND_LONG": " ",
+     "FUND_SHORT": " ",
+     "PLAN_ID": "85",
+     "PLAN_NAME": "Dennis Law",
+     "PLAN_TYPE": "New",
+     "PPCALCSTAT": "DONE",
+     "PREP_FIRST": "Natalie",
+     "PREP_LAST": "Conlin",
+     "P_CATEGORY": "Forest Stewardship Plan",
+     "STATUS": "Approved"
+    }
+   ],
+   "service": "Forest_Stewardship_Properties",
+   "typef": "P_CATEGORY",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Forest_Stewardship_Properties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 93,
+   "fields": [
+    "PREP_FIRST",
+    "PREP_LAST",
+    "APPR_FIRST",
+    "APPR_LAST",
+    "P_CATEGORY",
+    "STATUS",
+    "PLAN_ID",
+    "PLAN_NAME",
+    "PPCALCSTAT",
+    "FUND_SHORT",
+    "FUND_LONG",
+    "PLAN_TYPE",
+    "IS_ACTIVE",
+    "RSN_INACTV",
+    "TAXABTMENT",
+    "FSC_CERT",
+    "T_FRM_CRT",
+    "SFI_CERT",
+    "THIRDP_CRT",
+    "CNSV_ESMT"
+   ],
+   "known": false,
+   "layer": "Forest_Stewardship_Properties",
+   "sample": [
+    {
+     "APPR_FIRST": "William",
+     "APPR_LAST": "Zanotti",
+     "FUND_LONG": " ",
+     "FUND_SHORT": " ",
+     "PLAN_ID": "109",
+     "PLAN_NAME": "Green Canyon",
+     "PLAN_TYPE": "New",
+     "PPCALCSTAT": "DONE",
+     "PREP_FIRST": "Natalie",
+     "PREP_LAST": "Conlin",
+     "P_CATEGORY": "Forest Stewardship Plan",
+     "STATUS": "Approved"
+    },
+    {
+     "APPR_FIRST": "William",
+     "APPR_LAST": "Zanotti",
+     "FUND_LONG": " ",
+     "FUND_SHORT": " ",
+     "PLAN_ID": "114",
+     "PLAN_NAME": "Deseret",
+     "PLAN_TYPE": "New",
+     "PPCALCSTAT": "DONE",
+     "PREP_FIRST": "Natalie",
+     "PREP_LAST": "Conlin",
+     "P_CATEGORY": "Forest Stewardship Plan",
+     "STATUS": "Approved"
+    },
+    {
+     "APPR_FIRST": "William",
+     "APPR_LAST": "Zanotti",
+     "FUND_LONG": " ",
+     "FUND_SHORT": " ",
+     "PLAN_ID": "85",
+     "PLAN_NAME": "Dennis Law",
+     "PLAN_TYPE": "New",
+     "PPCALCSTAT": "DONE",
+     "PREP_FIRST": "Natalie",
+     "PREP_LAST": "Conlin",
+     "P_CATEGORY": "Forest Stewardship Plan",
+     "STATUS": "Approved"
+    }
+   ],
+   "service": "Forest_Stewardship_Properties",
+   "typef": "P_CATEGORY",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Forest_Stewardship_Properties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 92,
+   "fields": [
+    "name",
+    "city",
+    "county",
+    "type"
+   ],
+   "known": false,
+   "layer": "golf_courses",
+   "sample": [
+    {
+     "city": "Ogden",
+     "county": "Weber",
+     "name": "Ben Lomond Golf Course",
+     "type": "Municipal"
+    },
+    {
+     "city": "Smithfield",
+     "county": "Cache",
+     "name": "Birch Creek Golf Course",
+     "type": "Municipal"
+    },
+    {
+     "city": "Salt Lake City",
+     "county": "Salt Lake",
+     "name": "Bonneville Golf Course",
+     "type": "Municipal"
+    }
+   ],
+   "service": "Access_to_Parks",
+   "typef": "type",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Access_to_Parks/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 77,
+   "fields": [
+    "SEASON",
+    "VALUE",
+    "SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Greater sage-grouse_winter",
+   "sample": [
+    {
+     "SEASON": "Winter",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "SEASON": "Winter",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "SEASON": "Winter",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ProspectorTrail_WFL/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 77,
+   "fields": [
+    "SEASON",
+    "VALUE",
+    "SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Greater sage-grouse_winter",
+   "sample": [
+    {
+     "SEASON": "Winter",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "SEASON": "Winter",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "SEASON": "Winter",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ProspectorTrail_WFL/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "SEASON",
+    "VALUE",
+    "SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Greater sage-grouse brood",
+   "sample": [
+    {
+     "COMMENTS": "brood-rearing",
+     "SEASON": "spring-summer",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "COMMENTS": "brood-rearing",
+     "SEASON": "spring-summer",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "COMMENTS": "brood-rearing",
+     "SEASON": "spring-summer",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ProspectorTrail_WFL/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "SEASON",
+    "VALUE",
+    "SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Greater sage-grouse brood",
+   "sample": [
+    {
+     "COMMENTS": "brood-rearing",
+     "SEASON": "spring-summer",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "COMMENTS": "brood-rearing",
+     "SEASON": "spring-summer",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    },
+    {
+     "COMMENTS": "brood-rearing",
+     "SEASON": "spring-summer",
+     "SPECIES": "greater sage-grouse",
+     "VALUE": "NA"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ProspectorTrail_WFL/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 72,
+   "fields": [
+    "tax_id"
+   ],
+   "known": false,
+   "layer": "BRCMP_Habitat_Conservation_Easement_Cache_County",
+   "sample": [
+    {
+     "tax_id": "11-031-0015"
+    },
+    {
+     "tax_id": "01-095-0063"
+    },
+    {
+     "tax_id": "01-102-0001"
+    }
+   ],
+   "service": "BRCMP_Habitat_Conservation_Easement_Cache_County",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Habitat_Conservation_Easement_Cache_County/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 72,
+   "fields": [
+    "SEASON",
+    "VALUE",
+    "SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Greater sage-grouse occupied areas",
+   "sample": [
+    {
+     "COMMENTS": "occupied",
+     "SEASON": "year-long",
+     "SPECIES": "greater sage-grouse"
+    },
+    {
+     "COMMENTS": "occupied",
+     "SEASON": "year-long",
+     "SPECIES": "greater sage-grouse"
+    },
+    {
+     "COMMENTS": "occupied",
+     "SEASON": "year-long",
+     "SPECIES": "greater sage-grouse"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ProspectorTrail_WFL/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 72,
+   "fields": [
+    "tax_id"
+   ],
+   "known": false,
+   "layer": "BRCMP_Habitat_Conservation_Easement_Cache_County",
+   "sample": [
+    {
+     "tax_id": "11-031-0015"
+    },
+    {
+     "tax_id": "01-095-0063"
+    },
+    {
+     "tax_id": "01-102-0001"
+    }
+   ],
+   "service": "BRCMP_Habitat_Conservation_Easement_Cache_County",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Habitat_Conservation_Easement_Cache_County/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 72,
+   "fields": [
+    "SEASON",
+    "VALUE",
+    "SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Greater sage-grouse occupied areas",
+   "sample": [
+    {
+     "COMMENTS": "occupied",
+     "SEASON": "year-long",
+     "SPECIES": "greater sage-grouse"
+    },
+    {
+     "COMMENTS": "occupied",
+     "SEASON": "year-long",
+     "SPECIES": "greater sage-grouse"
+    },
+    {
+     "COMMENTS": "occupied",
+     "SEASON": "year-long",
+     "SPECIES": "greater sage-grouse"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ProspectorTrail_WFL/FeatureServer/6"
+  },
+  {
+   "agency": "Utah AGRC",
+   "area": "Name",
+   "count": 67,
+   "fields": [
+    "Name",
+    "Admin"
+   ],
+   "known": false,
+   "layer": "UtahWildernessAreas",
+   "sample": [
+    {
+     "Admin": "USFS",
+     "Name": "Ashdown Gorge Wilderness"
+    },
+    {
+     "Admin": "USFS",
+     "Name": "Dark Canyon Wilderness"
+    },
+    {
+     "Admin": "USFS",
+     "Name": "Deseret Peak Wilderness"
+    }
+   ],
+   "service": "UtahWildernessAreas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahWildernessAreas/FeatureServer/0"
+  },
+  {
+   "agency": "DPR",
+   "area": "name",
+   "count": 53,
+   "fields": [
+    "name",
+    "parkabbid",
+    "weblink1",
+    "bdy_type",
+    "CountyRecorder",
+    "Minerals"
+   ],
+   "known": false,
+   "layer": "UtahStateParksCID",
+   "sample": [
+    {
+     "CountyRecorder": "https://www.richcountyut.org/recorder-surveyor/",
+     "Minerals": "Unknown",
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "https://stateparks.utah.gov/parks/bear-lake/"
+    },
+    {
+     "CountyRecorder": "https://www.richcountyut.org/recorder-surveyor/",
+     "Minerals": "No",
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "https://stateparks.utah.gov/parks/bear-lake/"
+    },
+    {
+     "CountyRecorder": "https://www.richcountyut.org/recorder-surveyor/",
+     "Minerals": "No",
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "https://stateparks.utah.gov/parks/bear-lake/"
+    }
+   ],
+   "service": "STATEPARKSCID4FFSL",
+   "typef": "bdy_type",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/STATEPARKSCID4FFSL/FeatureServer/0"
+  },
+  {
+   "agency": "DPR",
+   "area": "name",
+   "count": 53,
+   "fields": [
+    "name",
+    "parkabbid",
+    "weblink1",
+    "bdy_type",
+    "CountyRecorder",
+    "Minerals"
+   ],
+   "known": false,
+   "layer": "UtahStateParksCID",
+   "sample": [
+    {
+     "CountyRecorder": "https://www.richcountyut.org/recorder-surveyor/",
+     "Minerals": "Unknown",
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "https://stateparks.utah.gov/parks/bear-lake/"
+    },
+    {
+     "CountyRecorder": "https://www.richcountyut.org/recorder-surveyor/",
+     "Minerals": "No",
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "https://stateparks.utah.gov/parks/bear-lake/"
+    },
+    {
+     "CountyRecorder": "https://www.richcountyut.org/recorder-surveyor/",
+     "Minerals": "No",
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "https://stateparks.utah.gov/parks/bear-lake/"
+    }
+   ],
+   "service": "STATEPARKSCID4FFSL",
+   "typef": "bdy_type",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/STATEPARKSCID4FFSL/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 51,
+   "fields": [
+    "STATE_NAME",
+    "SUB_REGION",
+    "STATE_AB_1",
+    "INT_REG"
+   ],
+   "known": false,
+   "layer": "NPS_Park_Certification_Totals_by_State",
+   "sample": [
+    {
+     "INT_REG": "9,10,12",
+     "STATE_AB_1": "HI",
+     "STATE_NAME": "Hawaii",
+     "SUB_REGION": "Pacific"
+    },
+    {
+     "INT_REG": "9,10,12",
+     "STATE_AB_1": "WA",
+     "STATE_NAME": "Washington",
+     "SUB_REGION": "Pacific"
+    },
+    {
+     "INT_REG": "6,7,8",
+     "STATE_AB_1": "MT",
+     "STATE_NAME": "Montana",
+     "SUB_REGION": "Mountain"
+    }
+   ],
+   "service": "NPS_Park_Certification_Totals_by_State",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/NPS_Park_Certification_Totals_by_State/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 48,
+   "fields": [
+    "County",
+    "OWNER",
+    "AGENCY",
+    "ADMIN",
+    "StateLegend",
+    "StateLabel",
+    "FederalLabel",
+    "Municipality"
+   ],
+   "known": false,
+   "layer": "FireRestrictions_ownership",
+   "sample": [
+    {
+     "ADMIN": "USFS",
+     "AGENCY": "USFS",
+     "County": "Piute",
+     "FederalLabel": "Fishlake National Forest",
+     "OWNER": "Federal",
+     "StateLegend": "National Forest"
+    },
+    {
+     "ADMIN": "USFS",
+     "AGENCY": "USFS",
+     "County": "Beaver",
+     "FederalLabel": "Fishlake National Forest",
+     "OWNER": "Federal",
+     "StateLegend": "National Forest"
+    },
+    {
+     "ADMIN": "USFS",
+     "AGENCY": "USFS",
+     "County": "Beaver",
+     "FederalLabel": "Fishlake National Forest",
+     "OWNER": "Federal",
+     "StateLegend": "National Forest"
+    }
+   ],
+   "service": "RESTRICT_20220718_USFS_FishlakeNF",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/RESTRICT_20220718_USFS_FishlakeNF/FeatureServer/36"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 48,
+   "fields": [
+    "County",
+    "OWNER",
+    "AGENCY",
+    "ADMIN",
+    "StateLegend",
+    "StateLabel",
+    "FederalLabel",
+    "Municipality"
+   ],
+   "known": false,
+   "layer": "FireRestrictions_ownership",
+   "sample": [
+    {
+     "ADMIN": "USFS",
+     "AGENCY": "USFS",
+     "County": "Piute",
+     "FederalLabel": "Fishlake National Forest",
+     "OWNER": "Federal",
+     "StateLegend": "National Forest"
+    },
+    {
+     "ADMIN": "USFS",
+     "AGENCY": "USFS",
+     "County": "Beaver",
+     "FederalLabel": "Fishlake National Forest",
+     "OWNER": "Federal",
+     "StateLegend": "National Forest"
+    },
+    {
+     "ADMIN": "USFS",
+     "AGENCY": "USFS",
+     "County": "Beaver",
+     "FederalLabel": "Fishlake National Forest",
+     "OWNER": "Federal",
+     "StateLegend": "National Forest"
+    }
+   ],
+   "service": "RESTRICT_20220718_USFS_FishlakeNF",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/RESTRICT_20220718_USFS_FishlakeNF/FeatureServer/36"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 47,
+   "fields": [
+    "label_state",
+    "boatramp",
+    "campground",
+    "muesuem",
+    "link",
+    "activities",
+    "facilities",
+    "thumbnail_url",
+    "truncated_name",
+    "full_name"
+   ],
+   "known": false,
+   "layer": "state_park_boundaries_dissolved",
+   "sample": [
+    {},
+    {
+     "boatramp": "no",
+     "campground": "no",
+     "label_state": "Anasazi State Park",
+     "muesuem": "yes",
+     "truncated_name": "Anasazi"
+    },
+    {
+     "boatramp": "no",
+     "campground": "yes",
+     "label_state": "Antelope Island State Park",
+     "muesuem": "no",
+     "truncated_name": "Antelope Island"
+    }
+   ],
+   "service": "state_park_boundaries_dissolved",
+   "typef": "facilities",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/state_park_boundaries_dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 47,
+   "fields": [
+    "District_Name",
+    "Crew",
+    "Region",
+    "Conservation_Officer",
+    "Sargent",
+    "Investigator",
+    "K9_Officer",
+    "Lieutenant"
+   ],
+   "known": false,
+   "layer": "Conservation Officer Crews",
+   "sample": [
+    {
+     "Conservation_Officer": "John Owen",
+     "Crew": "Bear River",
+     "District_Name": "Box Elder - Tremonton",
+     "Investigator": "Rustin Nielsen",
+     "K9_Officer": "Matt Burgess",
+     "Lieutenant": "David Beveridge",
+     "Region": "Northern",
+     "Sargent": "Brock Thornley"
+    },
+    {
+     "Conservation_Officer": "Dakota Pray",
+     "Crew": "Uinta",
+     "District_Name": "Rich County",
+     "Investigator": "Rustin Nielsen",
+     "K9_Officer": "Matt Burgess",
+     "Lieutenant": "David Beveridge",
+     "Region": "Northern",
+     "Sargent": "Mike Kinghorn"
+    },
+    {
+     "Conservation_Officer": "Nick Vidrine",
+     "Crew": "Bear River",
+     "District_Name": "Cache County - North",
+     "Investigator": "Rustin Nielsen",
+     "K9_Officer": "Matt Burgess",
+     "Lieutenant": "David Beveridge",
+     "Region": "Northern",
+     "Sargent": "Brock Thornley"
+    }
+   ],
+   "service": "Conservation_Officer_Crews",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Conservation_Officer_Crews/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 47,
+   "fields": [
+    "District_Name",
+    "Crew",
+    "Region",
+    "Conservation_Officer",
+    "Sargent",
+    "Investigator",
+    "K9_Officer",
+    "Lieutenant"
+   ],
+   "known": false,
+   "layer": "Conservation Officer Crews",
+   "sample": [
+    {
+     "Conservation_Officer": "John Owen",
+     "Crew": "Bear River",
+     "District_Name": "Box Elder - Tremonton",
+     "Investigator": "Rustin Nielsen",
+     "K9_Officer": "Matt Burgess",
+     "Lieutenant": "David Beveridge",
+     "Region": "Northern",
+     "Sargent": "Brock Thornley"
+    },
+    {
+     "Conservation_Officer": "Dakota Pray",
+     "Crew": "Uinta",
+     "District_Name": "Rich County",
+     "Investigator": "Rustin Nielsen",
+     "K9_Officer": "Matt Burgess",
+     "Lieutenant": "David Beveridge",
+     "Region": "Northern",
+     "Sargent": "Mike Kinghorn"
+    },
+    {
+     "Conservation_Officer": "Nick Vidrine",
+     "Crew": "Bear River",
+     "District_Name": "Cache County - North",
+     "Investigator": "Rustin Nielsen",
+     "K9_Officer": "Matt Burgess",
+     "Lieutenant": "David Beveridge",
+     "Region": "Northern",
+     "Sargent": "Brock Thornley"
+    }
+   ],
+   "service": "Conservation_Officer_Crews",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Conservation_Officer_Crews/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "FOREST_NAME",
+    "ADMIN_FOREST",
+    "FOREST",
+    "MAP_NAME"
+   ],
+   "known": false,
+   "layer": "ForestService",
+   "sample": [
+    {
+     "ADMIN_FOREST": "Sawtooth",
+     "FOREST": "Y",
+     "FOREST_NAME": "Sawtooth",
+     "MAP_NAME": "Sawtooth N.F."
+    },
+    {
+     "ADMIN_FOREST": "Sawtooth",
+     "FOREST": "Y",
+     "FOREST_NAME": "Sawtooth",
+     "MAP_NAME": "Sawtooth N.F."
+    },
+    {
+     "ADMIN_FOREST": "Caribou",
+     "FOREST": "Y",
+     "FOREST_NAME": "Caribou",
+     "MAP_NAME": "Caribou N.F."
+    }
+   ],
+   "service": "ForestService",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/ForestService/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "DistName"
+   ],
+   "known": false,
+   "layer": "UtahConservationDistricts",
+   "sample": [
+    {
+     "DistName": "Navajo Indian Nation"
+    },
+    {
+     "DistName": "Kane County"
+    },
+    {
+     "DistName": "Dixie"
+    }
+   ],
+   "service": "UtahConservationDistricts",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahConservationDistricts/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "DistName"
+   ],
+   "known": false,
+   "layer": "swcd_a_ut",
+   "sample": [
+    {
+     "DistName": "Navajo Indian Nation"
+    },
+    {
+     "DistName": "Kane County"
+    },
+    {
+     "DistName": "Dixie"
+    }
+   ],
+   "service": "NRCS_Conservation_Districts_UT",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/NRCS_Conservation_Districts_UT/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "DistName"
+   ],
+   "known": false,
+   "layer": "swcd_a_ut",
+   "sample": [
+    {
+     "DistName": "Navajo Indian Nation"
+    },
+    {
+     "DistName": "Kane County"
+    },
+    {
+     "DistName": "Dixie"
+    }
+   ],
+   "service": "NRCS_Conservation_Districts_UT",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/NRCS_Conservation_Districts_UT/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 38,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "VC - Village Commercial",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": " ",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0001-0025-01",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "66 S CREEK LN",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0001-0008",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/21"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 35,
+   "fields": [
+    "Name",
+    "ReachCode",
+    "WaterID",
+    "BlueRibbon_YN",
+    "Waterbody"
+   ],
+   "known": false,
+   "layer": "BlueRibbon_Lakes",
+   "sample": [
+    {
+     "BlueRibbon_YN": "Yes",
+     "Name": "Bear Lake",
+     "ReachCode": "16010201001422",
+     "WaterID": "IV405",
+     "Waterbody": "Bear Lake"
+    },
+    {
+     "BlueRibbon_YN": "Yes",
+     "Name": "Duck Fork Reservoir",
+     "ReachCode": "14060009001027",
+     "WaterID": "II447",
+     "Waterbody": "Duck Fork Reservoir"
+    },
+    {
+     "BlueRibbon_YN": "Yes",
+     "Name": "Fish Lake",
+     "ReachCode": "14070003000749",
+     "WaterID": "I501",
+     "Waterbody": "Fish Lake"
+    }
+   ],
+   "service": "Blue_Ribbon_Fisheries_VIEW",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Blue_Ribbon_Fisheries_VIEW/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 35,
+   "fields": [
+    "Name",
+    "ReachCode",
+    "WaterID",
+    "BlueRibbon_YN",
+    "Waterbody"
+   ],
+   "known": false,
+   "layer": "BlueRibbon_Lakes",
+   "sample": [
+    {
+     "BlueRibbon_YN": "Yes",
+     "Name": "Bear Lake",
+     "ReachCode": "16010201001422",
+     "WaterID": "IV405",
+     "Waterbody": "Bear Lake"
+    },
+    {
+     "BlueRibbon_YN": "Yes",
+     "Name": "Duck Fork Reservoir",
+     "ReachCode": "14060009001027",
+     "WaterID": "II447",
+     "Waterbody": "Duck Fork Reservoir"
+    },
+    {
+     "BlueRibbon_YN": "Yes",
+     "Name": "Fish Lake",
+     "ReachCode": "14070003000749",
+     "WaterID": "I501",
+     "Waterbody": "Fish Lake"
+    }
+   ],
+   "service": "Blue_Ribbon_Fisheries_VIEW",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Blue_Ribbon_Fisheries_VIEW/FeatureServer/1"
+  },
+  {
+   "agency": "sch",
+   "area": "Name",
+   "count": 30,
+   "fields": [
+    "Name",
+    "Directions"
+   ],
+   "known": false,
+   "layer": "2015 Utah Youth Pheasant Hunt WMA",
+   "sample": [
+    {
+     "Directions": "Pahvant WMA is located in Millard County, 7 miles southwest of Holden, south of Bald Mountain. Take SR-100 west from Holden. At approximately mile post 11, turn east onto the county gravel road. Go 1/4 mile to northwest corner of WMA.",
+     "Name": "Pahvant Wildlife Management Area"
+    },
+    {
+     "Directions": "The WMA is located in Millard County, south of Delta. Follow US-50/6 west out of Delta for about 5 miles to SR- 257. Go south on SR-257 for 16 miles to gravel county road which is marked with a sign to Clear Lake. Go east on county road for 7 miles.",
+     "Name": "Clear Lake Wildlife Management Area"
+    },
+    {
+     "Directions": "The WMA is located in Wayne County, about 9 miles southeast of Loa. Follow SR-24 southeast out of Loa, past Bicknell for 2 miles. Turn south on Aquarius Plateau road. Go about 1 mile to the beginning of the property, on the north side of the road.",
+     "Name": "Bicknell Wildlife Management Area"
+    }
+   ],
+   "service": "2015_Youth_Pheasant_Hunt",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/2015_Youth_Pheasant_Hunt/FeatureServer/3"
+  },
+  {
+   "agency": "sch",
+   "area": "Name",
+   "count": 30,
+   "fields": [
+    "Name",
+    "Directions"
+   ],
+   "known": false,
+   "layer": "2015 Utah Youth Pheasant Hunt WMA",
+   "sample": [
+    {
+     "Directions": "Pahvant WMA is located in Millard County, 7 miles southwest of Holden, south of Bald Mountain. Take SR-100 west from Holden. At approximately mile post 11, turn east onto the county gravel road. Go 1/4 mile to northwest corner of WMA.",
+     "Name": "Pahvant Wildlife Management Area"
+    },
+    {
+     "Directions": "The WMA is located in Millard County, south of Delta. Follow US-50/6 west out of Delta for about 5 miles to SR- 257. Go south on SR-257 for 16 miles to gravel county road which is marked with a sign to Clear Lake. Go east on county road for 7 miles.",
+     "Name": "Clear Lake Wildlife Management Area"
+    },
+    {
+     "Directions": "The WMA is located in Wayne County, about 9 miles southeast of Loa. Follow SR-24 southeast out of Loa, past Bicknell for 2 miles. Turn south on Aquarius Plateau road. Go about 1 mile to the beginning of the property, on the north side of the road.",
+     "Name": "Bicknell Wildlife Management Area"
+    }
+   ],
+   "service": "2015_Youth_Pheasant_Hunt",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/2015_Youth_Pheasant_Hunt/FeatureServer/3"
+  },
+  {
+   "agency": "DPR",
+   "area": "name",
+   "count": 29,
+   "fields": [
+    "countynbr",
+    "name",
+    "stateplane",
+    "globalid",
+    "fips_str"
+   ],
+   "known": false,
+   "layer": "opensgid.boundaries.county_boundaries",
+   "sample": [
+    {
+     "countynbr": "20",
+     "fips_str": "49039",
+     "globalid": "02C0C074-657F-44AE-A886-44ADB97263BD",
+     "name": "SANPETE",
+     "stateplane": "Central"
+    },
+    {
+     "countynbr": "11",
+     "fips_str": "49021",
+     "globalid": "2ACA2EB9-31B5-4D6A-A858-A0F6B16C64E2",
+     "name": "IRON",
+     "stateplane": "South"
+    },
+    {
+     "countynbr": "13",
+     "fips_str": "49025",
+     "globalid": "A250C849-8914-4E00-A80F-C1B45CD8F0A7",
+     "name": "KANE",
+     "stateplane": "South"
+    }
+   ],
+   "service": "STATEPARKSCID4FFSL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/STATEPARKSCID4FFSL/FeatureServer/1"
+  },
+  {
+   "agency": "DPR",
+   "area": "name",
+   "count": 29,
+   "fields": [
+    "countynbr",
+    "name",
+    "stateplane",
+    "globalid",
+    "fips_str"
+   ],
+   "known": false,
+   "layer": "opensgid.boundaries.county_boundaries",
+   "sample": [
+    {
+     "countynbr": "20",
+     "fips_str": "49039",
+     "globalid": "02C0C074-657F-44AE-A886-44ADB97263BD",
+     "name": "SANPETE",
+     "stateplane": "Central"
+    },
+    {
+     "countynbr": "11",
+     "fips_str": "49021",
+     "globalid": "2ACA2EB9-31B5-4D6A-A858-A0F6B16C64E2",
+     "name": "IRON",
+     "stateplane": "South"
+    },
+    {
+     "countynbr": "13",
+     "fips_str": "49025",
+     "globalid": "A250C849-8914-4E00-A80F-C1B45CD8F0A7",
+     "name": "KANE",
+     "stateplane": "South"
+    }
+   ],
+   "service": "STATEPARKSCID4FFSL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/STATEPARKSCID4FFSL/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 28,
+   "fields": [
+    "PROJECT",
+    "SOURCE"
+   ],
+   "known": false,
+   "layer": "BRCMP_Habitat_Conservation_Easment_AGRC",
+   "sample": [
+    {
+     "PROJECT": "UDOT Wetland Mitigation",
+     "SOURCE": "Utah Department of Transportation"
+    },
+    {
+     "PROJECT": "UDOT Wetland Mitigation",
+     "SOURCE": "Utah Department of Transportation"
+    },
+    {
+     "PROJECT": "UDOT Wetland Mitigation",
+     "SOURCE": "Utah Department of Transportation"
+    }
+   ],
+   "service": "BRCMP_Habitat_Conservation_Easment_AGRC",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Habitat_Conservation_Easment_AGRC/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 28,
+   "fields": [
+    "COUNTYNBR",
+    "NAME",
+    "STATEPLANE",
+    "FIPS_STR",
+    "CLASS"
+   ],
+   "known": false,
+   "layer": "RichCountyMask",
+   "sample": [
+    {
+     "CLASS": "Third",
+     "COUNTYNBR": "03",
+     "FIPS_STR": "49005",
+     "NAME": "CACHE",
+     "STATEPLANE": "North"
+    },
+    {
+     "CLASS": "Fourth",
+     "COUNTYNBR": "07",
+     "FIPS_STR": "49013",
+     "NAME": "DUCHESNE",
+     "STATEPLANE": "Central"
+    },
+    {
+     "CLASS": "Second",
+     "COUNTYNBR": "06",
+     "FIPS_STR": "49011",
+     "NAME": "DAVIS",
+     "STATEPLANE": "North"
+    }
+   ],
+   "service": "Rich_County_Trail_Assets_and_Access_WFL1",
+   "typef": "CLASS",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Rich_County_Trail_Assets_and_Access_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 28,
+   "fields": [
+    "PROJECT",
+    "SOURCE"
+   ],
+   "known": false,
+   "layer": "BRCMP_Habitat_Conservation_Easment_AGRC",
+   "sample": [
+    {
+     "PROJECT": "UDOT Wetland Mitigation",
+     "SOURCE": "Utah Department of Transportation"
+    },
+    {
+     "PROJECT": "UDOT Wetland Mitigation",
+     "SOURCE": "Utah Department of Transportation"
+    },
+    {
+     "PROJECT": "UDOT Wetland Mitigation",
+     "SOURCE": "Utah Department of Transportation"
+    }
+   ],
+   "service": "BRCMP_Habitat_Conservation_Easment_AGRC",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Habitat_Conservation_Easment_AGRC/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 28,
+   "fields": [
+    "COUNTYNBR",
+    "NAME",
+    "STATEPLANE",
+    "FIPS_STR",
+    "CLASS"
+   ],
+   "known": false,
+   "layer": "RichCountyMask",
+   "sample": [
+    {
+     "CLASS": "Third",
+     "COUNTYNBR": "03",
+     "FIPS_STR": "49005",
+     "NAME": "CACHE",
+     "STATEPLANE": "North"
+    },
+    {
+     "CLASS": "Fourth",
+     "COUNTYNBR": "07",
+     "FIPS_STR": "49013",
+     "NAME": "DUCHESNE",
+     "STATEPLANE": "Central"
+    },
+    {
+     "CLASS": "Second",
+     "COUNTYNBR": "06",
+     "FIPS_STR": "49011",
+     "NAME": "DAVIS",
+     "STATEPLANE": "North"
+    }
+   ],
+   "service": "Rich_County_Trail_Assets_and_Access_WFL1",
+   "typef": "CLASS",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Rich_County_Trail_Assets_and_Access_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "Permittee",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "Motorized Access",
+   "sample": [
+    {
+     "TYPE": "Closed to Motorized Vehicles"
+    },
+    {
+     "TYPE": "Closed to Motorized Vehicles"
+    },
+    {
+     "TYPE": "Closed to Motorized Vehicles"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "SEASON",
+    "VALUE"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Mule_Deer",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE": "substantial"
+    },
+    {
+     "SEASON": "winter",
+     "VALUE": "crucial"
+    },
+    {
+     "SEASON": "winter",
+     "VALUE": "substantial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Mule_Deer",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Habitat_Mule_Deer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "Permittee",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "Motorized Access",
+   "sample": [
+    {
+     "TYPE": "Closed to Motorized Vehicles"
+    },
+    {
+     "TYPE": "Closed to Motorized Vehicles"
+    },
+    {
+     "TYPE": "Closed to Motorized Vehicles"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Recreation/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "SEASON",
+    "VALUE"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Mule_Deer",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE": "substantial"
+    },
+    {
+     "SEASON": "winter",
+     "VALUE": "crucial"
+    },
+    {
+     "SEASON": "winter",
+     "VALUE": "substantial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Mule_Deer",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Habitat_Mule_Deer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 20,
+   "fields": [
+    "L_Name",
+    "Smith_Tri",
+    "HowDerived",
+    "FromNHLDoc",
+    "Landowner"
+   ],
+   "known": false,
+   "layer": "Utah_National_Historic_Landmarks",
+   "sample": [
+    {
+     "FromNHLDoc": " ",
+     "HowDerived": "From poor BLM map",
+     "L_Name": "Alkali Ridge",
+     "Landowner": "BLM",
+     "Smith_Tri": "42SA13"
+    },
+    {
+     "FromNHLDoc": " ",
+     "HowDerived": "Existing CURES plot",
+     "L_Name": "Danger Cave",
+     "Landowner": "State of Utah",
+     "Smith_Tri": "42TO13"
+    },
+    {
+     "FromNHLDoc": " ",
+     "HowDerived": "Aerial Photography",
+     "L_Name": "Temple Square",
+     "Landowner": "Private",
+     "Smith_Tri": "42SL734"
+    }
+   ],
+   "service": "Utah_National_Historic_Landmarks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 19,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo"
+   ],
+   "known": false,
+   "layer": "Bonneville Shorline Trail Advancement Act",
+   "sample": [
+    {
+     "FolderPath": "BST Wilderness Adjustments Legislation.kmz/BST Wilderness Adjustments Legislation/BST Wilderness Adjustments",
+     "Name": "ZW BST Adj Bells South 13.5 ac",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "BST Wilderness Adjustments Legislation.kmz/BST Wilderness Adjustments Legislation/BST Wilderness Adjustments",
+     "Name": "ZW BST Adj LCC to Bells 11.2 ac",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "BST Wilderness Adjustments Legislation.kmz/BST Wilderness Adjustments Legislation/BST Wilderness Adjustments",
+     "Name": "Adjustment for BST Mt O to Heughs 114 acre",
+     "PopupInfo": " ",
+     "Snippet": " "
+    }
+   ],
+   "service": "BST_Feature_Service",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BST_Feature_Service/FeatureServer/0"
+  },
+  {
+   "agency": "Bureau of Land Management (BLM), Utah State Office",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "NLCS_ID",
+    "NLCS_NAME",
+    "CASEFILE_NO",
+    "NLCS_TYPE",
+    "ADMIN_ST"
+   ],
+   "known": false,
+   "layer": "BLMMonumentsAndNCAs",
+   "sample": [
+    {
+     "ADMIN_ST": "UT",
+     "CASEFILE_NO": "UTU    087516",
+     "NLCS_ID": "NLCS000853",
+     "NLCS_NAME": "Beaver Dam Wash - Designated Road Area",
+     "NLCS_TYPE": "National Conservation Area"
+    },
+    {
+     "ADMIN_ST": "UT",
+     "CASEFILE_NO": "UTU    087516",
+     "NLCS_ID": "NLCS000853",
+     "NLCS_NAME": "Beaver Dam Wash - Designated Road Area",
+     "NLCS_TYPE": "National Conservation Area"
+    },
+    {
+     "ADMIN_ST": "UT",
+     "CASEFILE_NO": "UTU    087516",
+     "NLCS_ID": "NLCS000854",
+     "NLCS_NAME": "Beaver Dam Wash",
+     "NLCS_TYPE": "National Conservation Area"
+    }
+   ],
+   "service": "BLMMonumentsAndNCAs",
+   "typef": "NLCS_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BLMMonumentsAndNCAs/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 14,
+   "fields": [
+    "UNIT",
+    "BLMNAME",
+    "UNIT_LABEL",
+    "IS_THIS_ST",
+    "label"
+   ],
+   "known": false,
+   "layer": "WildernessProp_WashingtonCo",
+   "sample": [
+    {
+     "BLMNAME": "COTTONWOOD FOREST",
+     "IS_THIS_ST": " ",
+     "UNIT": "S.046.COTTONWOOD.CYN",
+     "UNIT_LABEL": " ",
+     "label": " "
+    },
+    {
+     "BLMNAME": "LAVERKIN CREEK",
+     "IS_THIS_ST": " ",
+     "UNIT": "S.040.0153.202.LAVERKIN.CR.CN",
+     "UNIT_LABEL": "LAVERKIN CREEK",
+     "label": "LAVERKIN CREEK"
+    },
+    {
+     "BLMNAME": "TAYLOR CREEK CANYON",
+     "IS_THIS_ST": "Y",
+     "UNIT": "S.040.0154.202.TAYLOR.CR.CYN",
+     "UNIT_LABEL": "TAYLOR CREEK CANYON",
+     "label": "TAYLOR CREEK CANYON"
+    }
+   ],
+   "service": "WildernessProp_WashingtonCo",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/WildernessProp_WashingtonCo/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 14,
+   "fields": [
+    "Comments",
+    "Organizati",
+    "Owner",
+    "Status",
+    "Name",
+    "GISnotes",
+    "PLSS",
+    "SurfaceMgm",
+    "Source",
+    "StagingAre",
+    "StagingA_1"
+   ],
+   "known": false,
+   "layer": "HDT_Staging_Areas_20260327",
+   "sample": [
+    {
+     "Comments": "Potential staging area",
+     "GISnotes": " ",
+     "Name": "Knolls",
+     "Organizati": "DOR",
+     "Owner": " ",
+     "PLSS": "T1S R13W, sections 13 and 24",
+     "Source": "20250930",
+     "StagingA_1": "Knolls",
+     "StagingAre": "Staging Area",
+     "Status": "Disturbed Area",
+     "SurfaceMgm": "BLM"
+    },
+    {
+     "Comments": " The staging area should be in this location so as to not block the fence on the SW side of the cattle guard",
+     "GISnotes": " ",
+     "Name": "U.S. 6/50",
+     "Organizati": "BLM",
+     "Owner": "BLM",
+     "PLSS": "T19S R10W, section 7",
+     "Source": "20250930",
+     "StagingA_1": "U.S. 6/50",
+     "StagingAre": "Staging Area",
+     "Status": "New-Proposed",
+     "SurfaceMgm": "BLM"
+    },
+    {
+     "Comments": " ",
+     "GISnotes": "Highway 257",
+     "Name": "Georges Pass",
+     "Organizati": "BLM",
+     "Owner": "BLM",
+     "PLSS": "T23S R9W, section 4",
+     "Source": "20250930",
+     "StagingA_1": "Georges Pass",
+     "StagingAre": "Staging Area",
+     "Status": "New-Proposed",
+     "SurfaceMgm": "BLM"
+    }
+   ],
+   "service": "HDT_Trailheads_Polygons_Final",
+   "typef": "SurfaceMgm",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/HDT_Trailheads_Polygons_Final/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 14,
+   "fields": [
+    "Comments",
+    "Organizati",
+    "Owner",
+    "Status",
+    "Name",
+    "GISnotes",
+    "PLSS",
+    "SurfaceMgm",
+    "Source",
+    "StagingAre",
+    "StagingA_1"
+   ],
+   "known": false,
+   "layer": "HDT_Staging_Areas_20260327",
+   "sample": [
+    {
+     "Comments": "Potential staging area",
+     "GISnotes": " ",
+     "Name": "Knolls",
+     "Organizati": "DOR",
+     "Owner": " ",
+     "PLSS": "T1S R13W, sections 13 and 24",
+     "Source": "20250930",
+     "StagingA_1": "Knolls",
+     "StagingAre": "Staging Area",
+     "Status": "Disturbed Area",
+     "SurfaceMgm": "BLM"
+    },
+    {
+     "Comments": " The staging area should be in this location so as to not block the fence on the SW side of the cattle guard",
+     "GISnotes": " ",
+     "Name": "U.S. 6/50",
+     "Organizati": "BLM",
+     "Owner": "BLM",
+     "PLSS": "T19S R10W, section 7",
+     "Source": "20250930",
+     "StagingA_1": "U.S. 6/50",
+     "StagingAre": "Staging Area",
+     "Status": "New-Proposed",
+     "SurfaceMgm": "BLM"
+    },
+    {
+     "Comments": " ",
+     "GISnotes": "Highway 257",
+     "Name": "Georges Pass",
+     "Organizati": "BLM",
+     "Owner": "BLM",
+     "PLSS": "T23S R9W, section 4",
+     "Source": "20250930",
+     "StagingA_1": "Georges Pass",
+     "StagingAre": "Staging Area",
+     "Status": "New-Proposed",
+     "SurfaceMgm": "BLM"
+    }
+   ],
+   "service": "HDT_Trailheads_Polygons_Final",
+   "typef": "SurfaceMgm",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/HDT_Trailheads_Polygons_Final/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "COS - Conservation Open Space",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1115-0003-0064",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1148-0001-0004-013",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0009-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "lotName",
+    "Description",
+    "Acronym"
+   ],
+   "known": false,
+   "layer": "USH_parking_lots",
+   "sample": [
+    {
+     "Acronym": "PM",
+     "Description": "Pediatrics",
+     "lotName": "Parking for Mountain Springs Pediatric Building"
+    },
+    {
+     "Acronym": "PM",
+     "Description": "Pediatrics",
+     "lotName": "Parking for Mountain Springs Pediatric Building"
+    },
+    {
+     "Acronym": "LP",
+     "Description": "Parking for Warehouse, Laundry/Housekeeping, and the public",
+     "lotName": "Parking for Warehouse and Laundry/Housekeeping"
+    }
+   ],
+   "service": "USH_parking_lots",
+   "typef": "Description",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/USH_parking_lots/FeatureServer/9"
+  },
+  {
+   "agency": "BLM Admin State.",
+   "area": "NAME",
+   "count": 10,
+   "fields": [
+    "NAME",
+    "CASEFILE_NO",
+    "NLCS_TYPE",
+    "ADMIN_ST"
+   ],
+   "known": false,
+   "layer": "BLMMonumentsAndNCAs_Historic",
+   "sample": [
+    {
+     "ADMIN_ST": "UT",
+     "CASEFILE_NO": "UNK",
+     "NAME": "Red Cliffs NCA",
+     "NLCS_TYPE": "National Conservation Area"
+    },
+    {
+     "ADMIN_ST": "UT",
+     "CASEFILE_NO": "UNK",
+     "NAME": "Beaver Dam Wash NCA Designated Road Area",
+     "NLCS_TYPE": "National Conservation Area"
+    },
+    {
+     "ADMIN_ST": "UT",
+     "CASEFILE_NO": "UNK",
+     "NAME": "Red Cliffs NCA",
+     "NLCS_TYPE": "National Conservation Area"
+    }
+   ],
+   "service": "BLMNationalMonumentsAndNCAs",
+   "typef": "NLCS_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BLMNationalMonumentsAndNCAs/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "LABEL_STATE",
+    "Label"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "LABEL_STATE": "Bear Lake State Park"
+    },
+    {
+     "LABEL_STATE": "Bear Lake State Park"
+    },
+    {
+     "LABEL_STATE": "Bear Lake State Park",
+     "Label": "Bear Lake State Park Marina"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "Area_name",
+   "count": 10,
+   "fields": [
+    "Area_name",
+    "weblink"
+   ],
+   "known": false,
+   "layer": "Other_SGMAs_ParkerMtnEmery",
+   "sample": [
+    {
+     "Area_name": "Bald Hills",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=440222b69493495a8d023b9f3b0257fe"
+    },
+    {
+     "Area_name": "Box Elder",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=5e908b9dd5514078aaa323b3ad4069dd"
+    },
+    {
+     "Area_name": "Carbon",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=e0859fad5dc043159323cabf9c6137f7"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "Creator",
+    "Editor",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Polygon layer",
+   "sample": [
+    {
+     "Creator": "jasonajohnson",
+     "Editor": "justinjohnson_DNR",
+     "Notes": "SITLA LaSal South Block. 1.7 miles from southwest corner to Shared Stewardship Area."
+    },
+    {
+     "Creator": "jasonajohnson",
+     "Editor": "justinjohnson_DNR",
+     "Notes": "North Block La Sal; 1.7 miles to nearest SS Priority Area."
+    },
+    {
+     "Creator": "jasonajohnson",
+     "Editor": "justinjohnson_DNR",
+     "Notes": "Lower Fish Creek WMA. 1.25 miles from SS. Some possibilities here. South side of river has a lot of issues w/ steep slopes, springs, slumping soils. North side of river recently purchased by DWR. Has moderate slopes and low-elevation aspen with sagebrush."
+    }
+   ],
+   "service": "Shared_Stewardship_106_Reforestation_Notes",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Shared_Stewardship_106_Reforestation_Notes/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "LABEL_STATE",
+    "Label"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "LABEL_STATE": "Bear Lake State Park"
+    },
+    {
+     "LABEL_STATE": "Bear Lake State Park"
+    },
+    {
+     "LABEL_STATE": "Bear Lake State Park",
+     "Label": "Bear Lake State Park Marina"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Recreation/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "Area_name",
+   "count": 10,
+   "fields": [
+    "Area_name",
+    "weblink"
+   ],
+   "known": false,
+   "layer": "Other_SGMAs_ParkerMtnEmery",
+   "sample": [
+    {
+     "Area_name": "Bald Hills",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=440222b69493495a8d023b9f3b0257fe"
+    },
+    {
+     "Area_name": "Box Elder",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=5e908b9dd5514078aaa323b3ad4069dd"
+    },
+    {
+     "Area_name": "Carbon",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=e0859fad5dc043159323cabf9c6137f7"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "Creator",
+    "Editor",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Polygon layer",
+   "sample": [
+    {
+     "Creator": "jasonajohnson",
+     "Editor": "justinjohnson_DNR",
+     "Notes": "SITLA LaSal South Block. 1.7 miles from southwest corner to Shared Stewardship Area."
+    },
+    {
+     "Creator": "jasonajohnson",
+     "Editor": "justinjohnson_DNR",
+     "Notes": "North Block La Sal; 1.7 miles to nearest SS Priority Area."
+    },
+    {
+     "Creator": "jasonajohnson",
+     "Editor": "justinjohnson_DNR",
+     "Notes": "Lower Fish Creek WMA. 1.25 miles from SS. Some possibilities here. South side of river has a lot of issues w/ steep slopes, springs, slumping soils. North side of river recently purchased by DWR. Has moderate slopes and low-elevation aspen with sagebrush."
+    }
+   ],
+   "service": "Shared_Stewardship_106_Reforestation_Notes",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Shared_Stewardship_106_Reforestation_Notes/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 9,
+   "fields": [
+    "name",
+    "center",
+    "forecast_link",
+    "forecast_key"
+   ],
+   "known": false,
+   "layer": "avalanche_center_forecast_zones",
+   "sample": [
+    {
+     "center": "Utah Avalanche Center",
+     "forecast_key": "abajos",
+     "forecast_link": "https://utahavalanchecenter.org/forecast/abajos",
+     "name": "Abajos"
+    },
+    {
+     "center": "Utah Avalanche Center",
+     "forecast_key": "logan",
+     "forecast_link": "https://utahavalanchecenter.org/forecast/logan",
+     "name": "Logan"
+    },
+    {
+     "center": "Utah Avalanche Center",
+     "forecast_key": "moab",
+     "forecast_link": "https://utahavalanchecenter.org/forecast/moab",
+     "name": "Moab"
+    }
+   ],
+   "service": "recreation_avalanche_center_forecast_zones",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/recreation_avalanche_center_forecast_zones/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [],
+   "known": false,
+   "layer": "UtahConservationZones",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 8305665916.808594,
+     "Shape__Length": 943626.7049895497,
+     "ZoneNo": 0
+    },
+    {
+     "OBJECTID": 2,
+     "Shape__Area": 41673310398.85547,
+     "Shape__Length": 1061809.5288599066,
+     "ZoneNo": 1
+    },
+    {
+     "OBJECTID": 3,
+     "Shape__Area": 44959500312.55469,
+     "Shape__Length": 1172898.6958053212,
+     "ZoneNo": 2
+    }
+   ],
+   "service": "UtahConservationZones",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahConservationZones/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Bonytail Chub",
+   "sample": [
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Co_Wildlife/FeatureServer/1"
+  },
+  {
+   "agency": "SWCA",
+   "area": "unit",
+   "count": 7,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Humpback Chub",
+   "sample": [
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Co_Wildlife/FeatureServer/2"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Razorback Sucker",
+   "sample": [
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Co_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Bonytail Chub",
+   "sample": [
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Gr_Wildlife/FeatureServer/1"
+  },
+  {
+   "agency": "SWCA",
+   "area": "unit",
+   "count": 7,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Humpback Chub",
+   "sample": [
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Gr_Wildlife/FeatureServer/2"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Razorback Sucker",
+   "sample": [
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Gr_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Bonytail Chub",
+   "sample": [
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Wildlife/FeatureServer/1"
+  },
+  {
+   "agency": "SWCA",
+   "area": "unit",
+   "count": 7,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Humpback Chub",
+   "sample": [
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Wildlife/FeatureServer/2"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Razorback Sucker",
+   "sample": [
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Bonytail Chub",
+   "sample": [
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    },
+    {
+     "comname": "Bonytail chub",
+     "listing_st": "Endangered",
+     "sciname": "Gila elegans",
+     "status": "Final"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Wildlife/FeatureServer/1"
+  },
+  {
+   "agency": "SWCA",
+   "area": "unit",
+   "count": 7,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Humpback Chub",
+   "sample": [
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    },
+    {
+     "comname": "Humpback chub",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Gila cypha",
+     "singlmulti": "SINGLE",
+     "spcode": "E000",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Wildlife/FeatureServer/2"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Razorback Sucker",
+   "sample": [
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    },
+    {
+     "comname": "Razorback sucker",
+     "listing_st": "Endangered",
+     "sciname": "Xyrauchen texanus",
+     "status": "Final"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "I - Industrial",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "267 W SPRUCE ST",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1138-0054-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "539 N HALF CIRCLE DR",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1138-0043-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "530 N HWY",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "SA-A-1138-0030-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/18"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "PARCEL_ID",
+    "PARCEL_ADD",
+    "PARCEL_CIT",
+    "PARCEL_ZIP",
+    "OWN_TYPE",
+    "RECORDER"
+   ],
+   "known": false,
+   "layer": "CV - Civic",
+   "sample": [
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0005-0000",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": "11 E BEAR FLAT AVE",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1150-0001-0006",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    },
+    {
+     "OWN_TYPE": "Private",
+     "PARCEL_ADD": " ",
+     "PARCEL_CIT": "Brian Head",
+     "PARCEL_ID": "A-1148-1150-0002-01",
+     "PARCEL_ZIP": "84719",
+     "RECORDER": "1-435-477-8350"
+    }
+   ],
+   "service": "Brian_Head_Zoning_and_Trails",
+   "typef": "OWN_TYPE",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Brian_Head_Zoning_and_Trails/FeatureServer/14"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SiteName",
+   "count": 5,
+   "fields": [
+    "SiteName",
+    "Use_",
+    "Location",
+    "UDWRProgram"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access Areas ",
+   "sample": [
+    {
+     "Location": "East of Corinne, where State Route 13 crosses the Bear River",
+     "SiteName": "Little Mountain Fish",
+     "UDWRProgram": "WIA",
+     "Use_": "Fishing"
+    },
+    {
+     "Location": "East of Corinne, where State Route13 crosses the Bear River (adjacent to Little Mountain Fish)",
+     "SiteName": "Corinne",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching"
+    },
+    {
+     "Location": "Between Deweyville and Tremonton, where Highway 102 crosses the Bear River",
+     "SiteName": "Deweyville",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching "
+    }
+   ],
+   "service": "BRCMP_Recreation_Access",
+   "typef": "Use_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Recreation_Access/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "SiteName",
+   "count": 5,
+   "fields": [
+    "SiteName",
+    "Use_",
+    "Location",
+    "UDWRProgram"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access Areas ",
+   "sample": [
+    {
+     "Location": "East of Corinne, where State Route 13 crosses the Bear River",
+     "SiteName": "Little Mountain Fish",
+     "UDWRProgram": "WIA",
+     "Use_": "Fishing"
+    },
+    {
+     "Location": "East of Corinne, where State Route13 crosses the Bear River (adjacent to Little Mountain Fish)",
+     "SiteName": "Corinne",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching"
+    },
+    {
+     "Location": "Between Deweyville and Tremonton, where Highway 102 crosses the Bear River",
+     "SiteName": "Deweyville",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching "
+    }
+   ],
+   "service": "BRCMP_Recreation_Access_DWR_Managed_Access_Areas",
+   "typef": "Use_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Recreation_Access_DWR_Managed_Access_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Colorado Pikeminnow",
+   "sample": [
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Co_Wildlife/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 5,
+   "fields": [
+    "Office",
+    "Name",
+    "SRMA_TYPE"
+   ],
+   "known": false,
+   "layer": "ExtensiveRecreationManagementAreas_1_UTAH",
+   "sample": [
+    {
+     "Name": "MONTICELLO ERMA",
+     "Office": " ",
+     "SRMA_TYPE": "Extensive"
+    },
+    {
+     "Name": "TRES RIOS ERMA",
+     "Office": " ",
+     "SRMA_TYPE": "Extensive"
+    },
+    {
+     "Name": "MOAB ERMA",
+     "Office": "MOAB",
+     "SRMA_TYPE": "Extensive"
+    }
+   ],
+   "service": "ExtRecMgtAreas",
+   "typef": "SRMA_TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ExtRecMgtAreas/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Colorado Pikeminnow",
+   "sample": [
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Gr_Wildlife/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "AcresRange"
+   ],
+   "known": false,
+   "layer": "ParkerMtnEmery_Opp_AcresCategory_MERGE",
+   "sample": [
+    {
+     "AcresRange": "0 - 100"
+    },
+    {
+     "AcresRange": "100 - 500"
+    },
+    {
+     "AcresRange": "500 - 1000"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "DWR_REGION",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "REGIONS",
+   "sample": [
+    {
+     "DWR_REGION": "SOUTHEASTERN REGION",
+     "Phone": "435-613-3700"
+    },
+    {
+     "DWR_REGION": "NORTHEASTERN REGION",
+     "Phone": "435-781-9453"
+    },
+    {
+     "DWR_REGION": "CENTRAL REGION",
+     "Phone": "801-491-5678"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ProspectorTrail_WFL/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "PriorityName"
+   ],
+   "known": false,
+   "layer": "Forest Action Plan",
+   "sample": [
+    {
+     "PriorityName": "Uinta"
+    },
+    {
+     "PriorityName": "Wasatch"
+    },
+    {
+     "PriorityName": "Sevier-Skyline"
+    }
+   ],
+   "service": "Utah_Forest_Action_Plan_Priority_Areas",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Utah_Forest_Action_Plan_Priority_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SiteName",
+   "count": 5,
+   "fields": [
+    "SiteName",
+    "Use_",
+    "Location",
+    "UDWRProgram"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access Areas ",
+   "sample": [
+    {
+     "Location": "East of Corinne, where State Route 13 crosses the Bear River",
+     "SiteName": "Little Mountain Fish",
+     "UDWRProgram": "WIA",
+     "Use_": "Fishing"
+    },
+    {
+     "Location": "East of Corinne, where State Route13 crosses the Bear River (adjacent to Little Mountain Fish)",
+     "SiteName": "Corinne",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching"
+    },
+    {
+     "Location": "Between Deweyville and Tremonton, where Highway 102 crosses the Bear River",
+     "SiteName": "Deweyville",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching "
+    }
+   ],
+   "service": "BRCMP_Recreation_Access",
+   "typef": "Use_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Recreation_Access/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "SiteName",
+   "count": 5,
+   "fields": [
+    "SiteName",
+    "Use_",
+    "Location",
+    "UDWRProgram"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access Areas ",
+   "sample": [
+    {
+     "Location": "East of Corinne, where State Route 13 crosses the Bear River",
+     "SiteName": "Little Mountain Fish",
+     "UDWRProgram": "WIA",
+     "Use_": "Fishing"
+    },
+    {
+     "Location": "East of Corinne, where State Route13 crosses the Bear River (adjacent to Little Mountain Fish)",
+     "SiteName": "Corinne",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching"
+    },
+    {
+     "Location": "Between Deweyville and Tremonton, where Highway 102 crosses the Bear River",
+     "SiteName": "Deweyville",
+     "UDWRProgram": "WMA",
+     "Use_": "Boating Access, Fishing, Hunting, Wildlife Watching "
+    }
+   ],
+   "service": "BRCMP_Recreation_Access_DWR_Managed_Access_Areas",
+   "typef": "Use_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Recreation_Access_DWR_Managed_Access_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Colorado Pikeminnow",
+   "sample": [
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Wildlife/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 5,
+   "fields": [
+    "Office",
+    "Name",
+    "SRMA_TYPE"
+   ],
+   "known": false,
+   "layer": "ExtensiveRecreationManagementAreas_1_UTAH",
+   "sample": [
+    {
+     "Name": "MONTICELLO ERMA",
+     "Office": " ",
+     "SRMA_TYPE": "Extensive"
+    },
+    {
+     "Name": "TRES RIOS ERMA",
+     "Office": " ",
+     "SRMA_TYPE": "Extensive"
+    },
+    {
+     "Name": "MOAB ERMA",
+     "Office": "MOAB",
+     "SRMA_TYPE": "Extensive"
+    }
+   ],
+   "service": "ExtRecMgtAreas",
+   "typef": "SRMA_TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ExtRecMgtAreas/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "comname",
+    "sciname",
+    "status",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Colorado Pikeminnow",
+   "sample": [
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    },
+    {
+     "comname": "Colorado pikeminnow (=squawfish)",
+     "listing_st": "Endangered",
+     "sciname": "Ptychocheilus lucius",
+     "status": "Final"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Wildlife/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "AcresRange"
+   ],
+   "known": false,
+   "layer": "ParkerMtnEmery_Opp_AcresCategory_MERGE",
+   "sample": [
+    {
+     "AcresRange": "0 - 100"
+    },
+    {
+     "AcresRange": "100 - 500"
+    },
+    {
+     "AcresRange": "500 - 1000"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "DWR_REGION",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "REGIONS",
+   "sample": [
+    {
+     "DWR_REGION": "SOUTHEASTERN REGION",
+     "Phone": "435-613-3700"
+    },
+    {
+     "DWR_REGION": "NORTHEASTERN REGION",
+     "Phone": "435-781-9453"
+    },
+    {
+     "DWR_REGION": "CENTRAL REGION",
+     "Phone": "801-491-5678"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ProspectorTrail_WFL/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "PriorityName"
+   ],
+   "known": false,
+   "layer": "Forest Action Plan",
+   "sample": [
+    {
+     "PriorityName": "Uinta"
+    },
+    {
+     "PriorityName": "Wasatch"
+    },
+    {
+     "PriorityName": "Sevier-Skyline"
+    }
+   ],
+   "service": "Utah_Forest_Action_Plan_Priority_Areas",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Forest_Action_Plan_Priority_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "OWNER",
+    "AGENCY"
+   ],
+   "known": false,
+   "layer": "ParkerMtnEmery_Opp_Landowner_DISSOLVE",
+   "sample": [
+    {
+     "AGENCY": "Private",
+     "OWNER": "Private"
+    },
+    {
+     "AGENCY": "DNR",
+     "OWNER": "State"
+    },
+    {
+     "AGENCY": "SITLA",
+     "OWNER": "State"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "RegionName",
+    "Foreman",
+    "Phone",
+    "email"
+   ],
+   "known": false,
+   "layer": "Trail Crew Regions",
+   "sample": [
+    {
+     "Foreman": "Cole Jeffery",
+     "RegionName": "Northern",
+     "email": "cjeffery@utah.gov"
+    },
+    {
+     "Foreman": "Nathan Conder",
+     "RegionName": "Central",
+     "email": "nateconder@utah.gov"
+    },
+    {
+     "Foreman": "Ron Cooper",
+     "RegionName": "Southwest",
+     "email": "rtcooper@utah.gov"
+    }
+   ],
+   "service": "Trail_Crew_Regions",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Trail_Crew_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "OWNER",
+    "AGENCY"
+   ],
+   "known": false,
+   "layer": "ParkerMtnEmery_Opp_Landowner_DISSOLVE",
+   "sample": [
+    {
+     "AGENCY": "Private",
+     "OWNER": "Private"
+    },
+    {
+     "AGENCY": "DNR",
+     "OWNER": "State"
+    },
+    {
+     "AGENCY": "SITLA",
+     "OWNER": "State"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "RegionName",
+    "Foreman",
+    "Phone",
+    "email"
+   ],
+   "known": false,
+   "layer": "Trail Crew Regions",
+   "sample": [
+    {
+     "Foreman": "Cole Jeffery",
+     "RegionName": "Northern",
+     "email": "cjeffery@utah.gov"
+    },
+    {
+     "Foreman": "Nathan Conder",
+     "RegionName": "Central",
+     "email": "nateconder@utah.gov"
+    },
+    {
+     "Foreman": "Ron Cooper",
+     "RegionName": "Southwest",
+     "email": "rtcooper@utah.gov"
+    }
+   ],
+   "service": "Trail_Crew_Regions",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Trail_Crew_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 3,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access",
+   "sample": [
+    {
+     "Name": "Swan Creek WMA"
+    },
+    {
+     "Name": "RTeichert WIA"
+    },
+    {
+     "Name": "East Bear Lake WIA"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BLCMP_Recreation/FeatureServer/9"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "RecAccessName"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access",
+   "sample": [
+    {
+     "RecAccessName": "Lower San Rafael River Wildlife Management Area"
+    },
+    {
+     "RecAccessName": "Stewart Lake Wildlife Management Area"
+    },
+    {
+     "RecAccessName": "LRThayn Hunting Property"
+    }
+   ],
+   "service": "Gr_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Gr_Recreation/FeatureServer/6"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 3,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Lone Peak Wilderness Drainages",
+     "ORDER_NUMB": "Order # 04-19-32",
+     "RESTRICTIO": "Campfire"
+    },
+    {
+     "NAME": "Lone/Twin Peaks, Mt. Olympus & Deseret Wilderness",
+     "ORDER_NUMB": "Order # 04-19-32",
+     "RESTRICTIO": "Other restrictions"
+    },
+    {
+     "NAME": "Twin Peaks Wilderness Drainage",
+     "ORDER_NUMB": "Order # 04-19-32",
+     "RESTRICTIO": "Campfire"
+    }
+   ],
+   "service": "Order_04_19_32_TwinPeaksWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Order_04_19_32_TwinPeaksWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Habitat_ID"
+   ],
+   "known": false,
+   "layer": "habitat",
+   "sample": [
+    {
+     "Habitat_ID": "habitat"
+    },
+    {
+     "Habitat_ID": "not habitat"
+    },
+    {
+     "Habitat_ID": "opportunity"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ProspectorTrail_WFL/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Region_Name"
+   ],
+   "known": false,
+   "layer": "State Parks LE Regions",
+   "sample": [
+    {
+     "Region_Name": "Northern"
+    },
+    {
+     "Region_Name": "Eastern"
+    },
+    {
+     "Region_Name": "Southern"
+    }
+   ],
+   "service": "State_Parks_Regions",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/State_Parks_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 3,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access",
+   "sample": [
+    {
+     "Name": "Swan Creek WMA"
+    },
+    {
+     "Name": "RTeichert WIA"
+    },
+    {
+     "Name": "East Bear Lake WIA"
+    }
+   ],
+   "service": "BLCMP_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Recreation/FeatureServer/9"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "RecAccessName"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access",
+   "sample": [
+    {
+     "RecAccessName": "Lower San Rafael River Wildlife Management Area"
+    },
+    {
+     "RecAccessName": "Stewart Lake Wildlife Management Area"
+    },
+    {
+     "RecAccessName": "LRThayn Hunting Property"
+    }
+   ],
+   "service": "Gr_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Recreation/FeatureServer/6"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 3,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Lone Peak Wilderness Drainages",
+     "ORDER_NUMB": "Order # 04-19-32",
+     "RESTRICTIO": "Campfire"
+    },
+    {
+     "NAME": "Lone/Twin Peaks, Mt. Olympus & Deseret Wilderness",
+     "ORDER_NUMB": "Order # 04-19-32",
+     "RESTRICTIO": "Other restrictions"
+    },
+    {
+     "NAME": "Twin Peaks Wilderness Drainage",
+     "ORDER_NUMB": "Order # 04-19-32",
+     "RESTRICTIO": "Campfire"
+    }
+   ],
+   "service": "Order_04_19_32_TwinPeaksWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Order_04_19_32_TwinPeaksWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Habitat_ID"
+   ],
+   "known": false,
+   "layer": "habitat",
+   "sample": [
+    {
+     "Habitat_ID": "habitat"
+    },
+    {
+     "Habitat_ID": "not habitat"
+    },
+    {
+     "Habitat_ID": "opportunity"
+    }
+   ],
+   "service": "ProspectorTrail_WFL",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ProspectorTrail_WFL/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Region_Name"
+   ],
+   "known": false,
+   "layer": "State Parks LE Regions",
+   "sample": [
+    {
+     "Region_Name": "Northern"
+    },
+    {
+     "Region_Name": "Eastern"
+    },
+    {
+     "Region_Name": "Southern"
+    }
+   ],
+   "service": "State_Parks_Regions",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/State_Parks_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Chukar_Partridge",
+   "sample": [
+    {
+     "SEASON": "winter",
+     "VALUE_": "high"
+    },
+    {
+     "SEASON": "winter",
+     "VALUE_": "high"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Chukar_Partridge",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Habitat_Chukar_Partridge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Ring_necked_Pheasant",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE_": "substantial"
+    },
+    {
+     "SEASON": "year-long",
+     "VALUE_": "substantial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Ring_necked_Pheasant",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Habitat_Ring_necked_Pheasant/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Desciption"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Wild_Turkey",
+   "sample": [
+    {
+     "Desciption": "Wild Turkey Habitat"
+    },
+    {
+     "Desciption": "Wild Turkey Habitat"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Wild_Turkey",
+   "typef": "Desciption",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Habitat_Wild_Turkey/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SITE_NAME",
+   "count": 2,
+   "fields": [
+    "SITE_NAME",
+    "PRIORITY",
+    "STATUS",
+    "CONTACT_EM",
+    "FLYWAY",
+    "SCALE",
+    "SOURCE",
+    "EBIRD_LINK",
+    "WEBSITE_1",
+    "WEBSITE_2"
+   ],
+   "known": false,
+   "layer": "Important Bird Areas",
+   "sample": [
+    {
+     "CONTACT_EM": "wmartinson@audubon.org",
+     "EBIRD_LINK": "http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=ibas&continue=Continue&reportType=location&ibas=US-UT_2367",
+     "FLYWAY": "Central",
+     "PRIORITY": "State",
+     "SCALE": "1:50,000",
+     "SITE_NAME": "Ouray National Wildlife Refuge UT13",
+     "SOURCE": "National",
+     "STATUS": "Recognized",
+     "WEBSITE_1": "http://netapp.audubon.org/iba/site/2367",
+     "WEBSITE_2": "http://netapp.audubon.org/iba/Reports/2367"
+    },
+    {
+     "CONTACT_EM": "wmartinson@audubon.org",
+     "EBIRD_LINK": "http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=ibas&continue=Continue&reportType=location&ibas=US-UT_4578",
+     "FLYWAY": "Central",
+     "PRIORITY": "Global",
+     "SCALE": "1:24,000",
+     "SITE_NAME": "Canyonlands Area",
+     "SOURCE": "State",
+     "STATUS": "Recognized",
+     "WEBSITE_1": "http://netapp.audubon.org/iba/site/4578",
+     "WEBSITE_2": "http://netapp.audubon.org/iba/Reports/4578"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Gr_Wildlife/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "National Audubon Society Christmas Bird Count Circle",
+   "sample": [
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTJR)"
+    },
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTSL)"
+    }
+   ],
+   "service": "JRCMP_StoryMap_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/JRCMP_StoryMap_Wildlife/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "JRCMP_Wildlife_Monitoring_Locations_National_Audubon_Society_Christmas_Bird_Count_Circle",
+   "sample": [
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTJR)"
+    },
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTSL)"
+    }
+   ],
+   "service": "JRCMP_Wildlife_Monitoring_Locations_National_Audubon_Society_Christmas_Bird_Count_Circle",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/JRCMP_Wildlife_Monitoring_Locations_National_Audubon_Society_Christmas_Bird_Count_Circle/FeatureServer/0"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Mount Timpanogos Wilderness",
+     "ORDER_NUMB": "Order # 04-18-93-08",
+     "RESTRICTIO": "Campfire"
+    },
+    {
+     "NAME": "Silver Lake Basin",
+     "ORDER_NUMB": "Order # 04-18-93-08",
+     "RESTRICTIO": "Campfire"
+    }
+   ],
+   "service": "Order_04_18_93_08_TimpanogosWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Order_04_18_93_08_TimpanogosWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Chukar_Partridge",
+   "sample": [
+    {
+     "SEASON": "winter",
+     "VALUE_": "high"
+    },
+    {
+     "SEASON": "winter",
+     "VALUE_": "high"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Chukar_Partridge",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Habitat_Chukar_Partridge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Ring_necked_Pheasant",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE_": "substantial"
+    },
+    {
+     "SEASON": "year-long",
+     "VALUE_": "substantial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Ring_necked_Pheasant",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Habitat_Ring_necked_Pheasant/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Desciption"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Wild_Turkey",
+   "sample": [
+    {
+     "Desciption": "Wild Turkey Habitat"
+    },
+    {
+     "Desciption": "Wild Turkey Habitat"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Wild_Turkey",
+   "typef": "Desciption",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Habitat_Wild_Turkey/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SITE_NAME",
+   "count": 2,
+   "fields": [
+    "SITE_NAME",
+    "PRIORITY",
+    "STATUS",
+    "CONTACT_EM",
+    "FLYWAY",
+    "SCALE",
+    "SOURCE",
+    "EBIRD_LINK",
+    "WEBSITE_1",
+    "WEBSITE_2"
+   ],
+   "known": false,
+   "layer": "Important Bird Areas",
+   "sample": [
+    {
+     "CONTACT_EM": "wmartinson@audubon.org",
+     "EBIRD_LINK": "http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=ibas&continue=Continue&reportType=location&ibas=US-UT_2367",
+     "FLYWAY": "Central",
+     "PRIORITY": "State",
+     "SCALE": "1:50,000",
+     "SITE_NAME": "Ouray National Wildlife Refuge UT13",
+     "SOURCE": "National",
+     "STATUS": "Recognized",
+     "WEBSITE_1": "http://netapp.audubon.org/iba/site/2367",
+     "WEBSITE_2": "http://netapp.audubon.org/iba/Reports/2367"
+    },
+    {
+     "CONTACT_EM": "wmartinson@audubon.org",
+     "EBIRD_LINK": "http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=ibas&continue=Continue&reportType=location&ibas=US-UT_4578",
+     "FLYWAY": "Central",
+     "PRIORITY": "Global",
+     "SCALE": "1:24,000",
+     "SITE_NAME": "Canyonlands Area",
+     "SOURCE": "State",
+     "STATUS": "Recognized",
+     "WEBSITE_1": "http://netapp.audubon.org/iba/site/4578",
+     "WEBSITE_2": "http://netapp.audubon.org/iba/Reports/4578"
+    }
+   ],
+   "service": "Gr_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Wildlife/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "National Audubon Society Christmas Bird Count Circle",
+   "sample": [
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTJR)"
+    },
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTSL)"
+    }
+   ],
+   "service": "JRCMP_StoryMap_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/JRCMP_StoryMap_Wildlife/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "JRCMP_Wildlife_Monitoring_Locations_National_Audubon_Society_Christmas_Bird_Count_Circle",
+   "sample": [
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTJR)"
+    },
+    {
+     "Label": "National Audubon Society Bird Count Circle (UTSL)"
+    }
+   ],
+   "service": "JRCMP_Wildlife_Monitoring_Locations_National_Audubon_Society_Christmas_Bird_Count_Circle",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/JRCMP_Wildlife_Monitoring_Locations_National_Audubon_Society_Christmas_Bird_Count_Circle/FeatureServer/0"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Mount Timpanogos Wilderness",
+     "ORDER_NUMB": "Order # 04-18-93-08",
+     "RESTRICTIO": "Campfire"
+    },
+    {
+     "NAME": "Silver Lake Basin",
+     "ORDER_NUMB": "Order # 04-18-93-08",
+     "RESTRICTIO": "Campfire"
+    }
+   ],
+   "service": "Order_04_18_93_08_TimpanogosWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Order_04_18_93_08_TimpanogosWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "2024GS_HB0562_Utah_Fairpark_Area_Investment_and_Restoration_District",
+   "sample": [
+    {
+     "Name": "Utah Fairpark Area Investment and Restoration District"
+    }
+   ],
+   "service": "2024GS_HB0562_Utah_Fairpark_Area_Investment_and_Restoration_District",
+   "typef": "",
+   "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/2024GS_HB0562_Utah_Fairpark_Area_Investment_and_Restoration_District/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SITE_NAME",
+   "count": 1,
+   "fields": [
+    "SITE_NAME"
+   ],
+   "known": false,
+   "layer": "Cutler Reservoir and Marsh Important Bird Area",
+   "sample": [
+    {
+     "SITE_NAME": "Cutler Reservoir and Marsh UT08"
+    }
+   ],
+   "service": "BRCMP_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 1,
+   "fields": [
+    "SITE_NAME"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Cutler_Reservoir_and_Marsh_Important_Bird_Area",
+   "sample": [
+    {
+     "SITE_NAME": "Cutler Reservoir and Marsh UT08"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Cutler_Reservoir_and_Marsh_Important_Bird_Area",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Cutler_Reservoir_and_Marsh_Important_Bird_Area/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Hungarian_Partridge",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE_": "substantial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Hungarian_Partridge",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Habitat_Hungarian_Partridge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Sharp_tailed_Grouse",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE_": "crucial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Sharp_tailed_Grouse",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/BRCMP_Wildlife_Habitat_Sharp_tailed_Grouse/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "RecAccessName"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access",
+   "sample": [
+    {
+     "RecAccessName": "Scott M. Matheson Wetlands Preserve"
+    }
+   ],
+   "service": "Co_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Co_Recreation/FeatureServer/6"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SITE_NAME",
+   "count": 1,
+   "fields": [
+    "SITE_NAME",
+    "PRIORITY",
+    "STATUS",
+    "CONTACT_EM",
+    "FLYWAY",
+    "SCALE",
+    "SOURCE",
+    "EBIRD_LINK",
+    "WEBSITE_1",
+    "WEBSITE_2"
+   ],
+   "known": false,
+   "layer": "Important Bird Areas",
+   "sample": [
+    {
+     "CONTACT_EM": "wmartinson@audubon.org",
+     "EBIRD_LINK": "http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=ibas&continue=Continue&reportType=location&ibas=US-UT_4578",
+     "FLYWAY": "Central",
+     "PRIORITY": "Global",
+     "SCALE": "1:24,000",
+     "SITE_NAME": "Canyonlands Area",
+     "SOURCE": "State",
+     "STATUS": "Recognized",
+     "WEBSITE_1": "http://netapp.audubon.org/iba/site/4578",
+     "WEBSITE_2": "http://netapp.audubon.org/iba/Reports/4578"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Co_Wildlife/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "Creator",
+    "Editor",
+    "streamID",
+    "id",
+    "name",
+    "type_",
+    "county",
+    "region",
+    "previousPropertyName",
+    "purpose",
+    "habitatManagementPlan",
+    "primaryHabitatSpecies",
+    "accessType",
+    "closureDates",
+    "restrictions"
+   ],
+   "known": false,
+   "layer": "Locomotive Springs WMA",
+   "sample": [
+    {
+     "county": "Box Elder",
+     "habitatManagementPlan": "https://drive.google.com/file/d/1k5_jAxu96SJNzo0I90xz5oFZn6fJ9Wql/view?usp=sharing",
+     "id": "5",
+     "name": "Locomotive Springs WMA",
+     "primaryHabitatSpecies": "Locomotive Springs WMA (LSWMA) provides crucial year-round habitat for a variety of avian species, but particularly for waterfowl, passerines and shorebirds. Wintering Bald Eagles utilize the area for foraging and the area is used by Short-eared owl, Bur",
+     "purpose": "waterfowl hunting",
+     "region": "Northern",
+     "streamID": "7c88d05c-e156-441c-8d53-8ff46290d002",
+     "type_": "Waterfowl Management Area"
+    }
+   ],
+   "service": "Fishing__Loco",
+   "typef": "type_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Fishing__Loco/FeatureServer/1"
+  },
+  {
+   "agency": "FFSL",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "GalenaProperty",
+   "sample": [
+    {
+     "Name": "Galena Property"
+    }
+   ],
+   "service": "GalenaConservationEasement",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/GalenaConservationEasement/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "SP_Boundary_20190920",
+   "sample": [
+    {
+     "Name": " "
+    }
+   ],
+   "service": "GSL_Shorelands_Preserve",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/GSL_Shorelands_Preserve/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "Creator",
+    "Editor",
+    "streamID",
+    "id",
+    "name",
+    "type_",
+    "county",
+    "region",
+    "previousPropertyName",
+    "purpose",
+    "habitatManagementPlan",
+    "primaryHabitatSpecies",
+    "accessType",
+    "closureDates",
+    "restrictions"
+   ],
+   "known": false,
+   "layer": "Locomotive Springs WMA",
+   "sample": [
+    {
+     "county": "Box Elder",
+     "habitatManagementPlan": "https://drive.google.com/file/d/1k5_jAxu96SJNzo0I90xz5oFZn6fJ9Wql/view?usp=sharing",
+     "id": "5",
+     "name": "Locomotive Springs WMA",
+     "primaryHabitatSpecies": "Locomotive Springs WMA (LSWMA) provides crucial year-round habitat for a variety of avian species, but particularly for waterfowl, passerines and shorebirds. Wintering Bald Eagles utilize the area for foraging and the area is used by Short-eared owl, Bur",
+     "purpose": "waterfowl hunting",
+     "region": "Northern",
+     "streamID": "7c88d05c-e156-441c-8d53-8ff46290d002",
+     "type_": "Waterfowl Management Area"
+    }
+   ],
+   "service": "Loconotive_Springs_WMA_Fishing___view",
+   "typef": "type_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Loconotive_Springs_WMA_Fishing___view/FeatureServer/1"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "High Uintas Wilderness Lakes",
+     "ORDER_NUMB": "Order # 04-19-146",
+     "RESTRICTIO": "Campfire"
+    }
+   ],
+   "service": "Order_04_19_146_HighUintasWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Order_04_19_146_HighUintasWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Silver Lake Flat Reservoir & Roads",
+     "ORDER_NUMB": "Order # 04-19-189",
+     "RESTRICTIO": "Campfire & other restrictions"
+    }
+   ],
+   "service": "Order_04_19_189_LonePeakWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Order_04_19_189_LonePeakWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Indian Cold Water Trail/Head",
+     "ORDER_NUMB": "Order # 04-19-48",
+     "RESTRICTIO": "Campfire & camping"
+    }
+   ],
+   "service": "Order_04_19_48_IndianTrailTrailhead",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Order_04_19_48_IndianTrailTrailhead/FeatureServer/0"
+  },
+  {
+   "agency": "Esri",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "facilityid",
+    "name",
+    "factype",
+    "agencytype",
+    "comments",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Park and Recreation Sites",
+   "sample": [
+    {
+     "Creator": "BuckEhler",
+     "Editor": "BuckEhler",
+     "agencytype": "State",
+     "comments": "Special unit",
+     "facilityid": "GC",
+     "name": "Karpowitz Unit"
+    }
+   ],
+   "service": "Park_and_Recreation_Facilities_7691fd71b83b46198718ffc7fa864dc4",
+   "typef": "facilityid",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Park_and_Recreation_Facilities_7691fd71b83b46198718ffc7fa864dc4/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Area_name",
+   "count": 1,
+   "fields": [
+    "Area_name",
+    "weblink"
+   ],
+   "known": false,
+   "layer": "ParkerMtnEmery_SGMA",
+   "sample": [
+    {
+     "Area_name": "Parker Mountain-Emery",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=1663f16e5c404c72bb5e07b32612fc41"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "Creator",
+    "Editor",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "National Parks Service Boundaries",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "Creator": "SCarlton@nps.gov_nps",
+     "Editor": "RJohnson@nps.gov_nps",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/CANY/Metadata/cany_metadata.xml",
+     "GNIS_ID": "1448008",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2165304",
+     "PARKNAME": "Canyonlands",
+     "REGION": "IM",
+     "STATE": "UT",
+     "UNIT_CODE": "CANY",
+     "UNIT_NAME": "Canyonlands National Park",
+     "UNIT_TYPE": "National Park"
+    }
+   ],
+   "service": "RESTRICT_2022MMDD_NPS_CanyonlandsNP",
+   "typef": "UNIT_TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/RESTRICT_2022MMDD_NPS_CanyonlandsNP/FeatureServer/32"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "restrict_20240712_USFS_Fishlake",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 9680490693.21875,
+     "Shape__Length": 2387441.1857359787
+    }
+   ],
+   "service": "restrict_20240712_USFS_Fishlake",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/restrict_20240712_USFS_Fishlake/FeatureServer/464"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "COUNTYNBR",
+    "NAME",
+    "STATEPLANE",
+    "FIPS_STR",
+    "CLASS"
+   ],
+   "known": false,
+   "layer": "RichCounty",
+   "sample": [
+    {
+     "CLASS": "Sixth",
+     "COUNTYNBR": "17",
+     "FIPS_STR": "49033",
+     "NAME": "RICH",
+     "STATEPLANE": "North"
+    }
+   ],
+   "service": "Rich_County_Trail_Assets_and_Access_WFL1",
+   "typef": "CLASS",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Rich_County_Trail_Assets_and_Access_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SITE_NAME",
+   "count": 1,
+   "fields": [
+    "SITE_NAME"
+   ],
+   "known": false,
+   "layer": "Cutler Reservoir and Marsh Important Bird Area",
+   "sample": [
+    {
+     "SITE_NAME": "Cutler Reservoir and Marsh UT08"
+    }
+   ],
+   "service": "BRCMP_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 1,
+   "fields": [
+    "SITE_NAME"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Cutler_Reservoir_and_Marsh_Important_Bird_Area",
+   "sample": [
+    {
+     "SITE_NAME": "Cutler Reservoir and Marsh UT08"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Cutler_Reservoir_and_Marsh_Important_Bird_Area",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Cutler_Reservoir_and_Marsh_Important_Bird_Area/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Hungarian_Partridge",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE_": "substantial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Hungarian_Partridge",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Habitat_Hungarian_Partridge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SEASON",
+    "VALUE_"
+   ],
+   "known": false,
+   "layer": "BRCMP_Wildlife_Habitat_Sharp_tailed_Grouse",
+   "sample": [
+    {
+     "SEASON": "year-long",
+     "VALUE_": "crucial"
+    }
+   ],
+   "service": "BRCMP_Wildlife_Habitat_Sharp_tailed_Grouse",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BRCMP_Wildlife_Habitat_Sharp_tailed_Grouse/FeatureServer/0"
+  },
+  {
+   "agency": "SWCA",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "RecAccessName"
+   ],
+   "known": false,
+   "layer": "DWR-Managed Access",
+   "sample": [
+    {
+     "RecAccessName": "Scott M. Matheson Wetlands Preserve"
+    }
+   ],
+   "service": "Co_Recreation",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Recreation/FeatureServer/6"
+  },
+  {
+   "agency": "SWCA",
+   "area": "SITE_NAME",
+   "count": 1,
+   "fields": [
+    "SITE_NAME",
+    "PRIORITY",
+    "STATUS",
+    "CONTACT_EM",
+    "FLYWAY",
+    "SCALE",
+    "SOURCE",
+    "EBIRD_LINK",
+    "WEBSITE_1",
+    "WEBSITE_2"
+   ],
+   "known": false,
+   "layer": "Important Bird Areas",
+   "sample": [
+    {
+     "CONTACT_EM": "wmartinson@audubon.org",
+     "EBIRD_LINK": "http://ebird.org/ebird/GuideMe?step=saveChoices&getLocations=ibas&continue=Continue&reportType=location&ibas=US-UT_4578",
+     "FLYWAY": "Central",
+     "PRIORITY": "Global",
+     "SCALE": "1:24,000",
+     "SITE_NAME": "Canyonlands Area",
+     "SOURCE": "State",
+     "STATUS": "Recognized",
+     "WEBSITE_1": "http://netapp.audubon.org/iba/site/4578",
+     "WEBSITE_2": "http://netapp.audubon.org/iba/Reports/4578"
+    }
+   ],
+   "service": "Co_Wildlife",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Wildlife/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "Creator",
+    "Editor",
+    "streamID",
+    "id",
+    "name",
+    "type_",
+    "county",
+    "region",
+    "previousPropertyName",
+    "purpose",
+    "habitatManagementPlan",
+    "primaryHabitatSpecies",
+    "accessType",
+    "closureDates",
+    "restrictions"
+   ],
+   "known": false,
+   "layer": "Locomotive Springs WMA",
+   "sample": [
+    {
+     "county": "Box Elder",
+     "habitatManagementPlan": "https://drive.google.com/file/d/1k5_jAxu96SJNzo0I90xz5oFZn6fJ9Wql/view?usp=sharing",
+     "id": "5",
+     "name": "Locomotive Springs WMA",
+     "primaryHabitatSpecies": "Locomotive Springs WMA (LSWMA) provides crucial year-round habitat for a variety of avian species, but particularly for waterfowl, passerines and shorebirds. Wintering Bald Eagles utilize the area for foraging and the area is used by Short-eared owl, Bur",
+     "purpose": "waterfowl hunting",
+     "region": "Northern",
+     "streamID": "7c88d05c-e156-441c-8d53-8ff46290d002",
+     "type_": "Waterfowl Management Area"
+    }
+   ],
+   "service": "Fishing__Loco",
+   "typef": "type_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Fishing__Loco/FeatureServer/1"
+  },
+  {
+   "agency": "FFSL",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "GalenaProperty",
+   "sample": [
+    {
+     "Name": "Galena Property"
+    }
+   ],
+   "service": "GalenaConservationEasement",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/GalenaConservationEasement/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "SP_Boundary_20190920",
+   "sample": [
+    {
+     "Name": " "
+    }
+   ],
+   "service": "GSL_Shorelands_Preserve",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/GSL_Shorelands_Preserve/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "Creator",
+    "Editor",
+    "streamID",
+    "id",
+    "name",
+    "type_",
+    "county",
+    "region",
+    "previousPropertyName",
+    "purpose",
+    "habitatManagementPlan",
+    "primaryHabitatSpecies",
+    "accessType",
+    "closureDates",
+    "restrictions"
+   ],
+   "known": false,
+   "layer": "Locomotive Springs WMA",
+   "sample": [
+    {
+     "county": "Box Elder",
+     "habitatManagementPlan": "https://drive.google.com/file/d/1k5_jAxu96SJNzo0I90xz5oFZn6fJ9Wql/view?usp=sharing",
+     "id": "5",
+     "name": "Locomotive Springs WMA",
+     "primaryHabitatSpecies": "Locomotive Springs WMA (LSWMA) provides crucial year-round habitat for a variety of avian species, but particularly for waterfowl, passerines and shorebirds. Wintering Bald Eagles utilize the area for foraging and the area is used by Short-eared owl, Bur",
+     "purpose": "waterfowl hunting",
+     "region": "Northern",
+     "streamID": "7c88d05c-e156-441c-8d53-8ff46290d002",
+     "type_": "Waterfowl Management Area"
+    }
+   ],
+   "service": "Loconotive_Springs_WMA_Fishing___view",
+   "typef": "type_",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Loconotive_Springs_WMA_Fishing___view/FeatureServer/1"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "High Uintas Wilderness Lakes",
+     "ORDER_NUMB": "Order # 04-19-146",
+     "RESTRICTIO": "Campfire"
+    }
+   ],
+   "service": "Order_04_19_146_HighUintasWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Order_04_19_146_HighUintasWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Silver Lake Flat Reservoir & Roads",
+     "ORDER_NUMB": "Order # 04-19-189",
+     "RESTRICTIO": "Campfire & other restrictions"
+    }
+   ],
+   "service": "Order_04_19_189_LonePeakWilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Order_04_19_189_LonePeakWilderness/FeatureServer/0"
+  },
+  {
+   "agency": "Leah Smith, GIS Specialist, Kathy Jo Pollock, Public Affairs Office",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "RESTRICTIO",
+    "ORDER_NUMB"
+   ],
+   "known": false,
+   "layer": "USFS_Restricted_Use_Areas",
+   "sample": [
+    {
+     "NAME": "Indian Cold Water Trail/Head",
+     "ORDER_NUMB": "Order # 04-19-48",
+     "RESTRICTIO": "Campfire & camping"
+    }
+   ],
+   "service": "Order_04_19_48_IndianTrailTrailhead",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Order_04_19_48_IndianTrailTrailhead/FeatureServer/0"
+  },
+  {
+   "agency": "Esri",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "facilityid",
+    "name",
+    "factype",
+    "agencytype",
+    "comments",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Park and Recreation Sites",
+   "sample": [
+    {
+     "Creator": "BuckEhler",
+     "Editor": "BuckEhler",
+     "agencytype": "State",
+     "comments": "Special unit",
+     "facilityid": "GC",
+     "name": "Karpowitz Unit"
+    }
+   ],
+   "service": "Park_and_Recreation_Facilities_7691fd71b83b46198718ffc7fa864dc4",
+   "typef": "facilityid",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Park_and_Recreation_Facilities_7691fd71b83b46198718ffc7fa864dc4/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Area_name",
+   "count": 1,
+   "fields": [
+    "Area_name",
+    "weblink"
+   ],
+   "known": false,
+   "layer": "ParkerMtnEmery_SGMA",
+   "sample": [
+    {
+     "Area_name": "Parker Mountain-Emery",
+     "weblink": "http://utahdnr.maps.arcgis.com/apps/StorytellingTextLegend/index.html?appid=1663f16e5c404c72bb5e07b32612fc41"
+    }
+   ],
+   "service": "ParkerMtnEmery_PJ_Opportunity",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ParkerMtnEmery_PJ_Opportunity/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "Creator",
+    "Editor",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "National Parks Service Boundaries",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "Creator": "SCarlton@nps.gov_nps",
+     "Editor": "RJohnson@nps.gov_nps",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/CANY/Metadata/cany_metadata.xml",
+     "GNIS_ID": "1448008",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2165304",
+     "PARKNAME": "Canyonlands",
+     "REGION": "IM",
+     "STATE": "UT",
+     "UNIT_CODE": "CANY",
+     "UNIT_NAME": "Canyonlands National Park",
+     "UNIT_TYPE": "National Park"
+    }
+   ],
+   "service": "RESTRICT_2022MMDD_NPS_CanyonlandsNP",
+   "typef": "UNIT_TYPE",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/RESTRICT_2022MMDD_NPS_CanyonlandsNP/FeatureServer/32"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "restrict_20240712_USFS_Fishlake",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 9680490693.21875,
+     "Shape__Length": 2387441.1857359787
+    }
+   ],
+   "service": "restrict_20240712_USFS_Fishlake",
+   "typef": "",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/restrict_20240712_USFS_Fishlake/FeatureServer/464"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "COUNTYNBR",
+    "NAME",
+    "STATEPLANE",
+    "FIPS_STR",
+    "CLASS"
+   ],
+   "known": false,
+   "layer": "RichCounty",
+   "sample": [
+    {
+     "CLASS": "Sixth",
+     "COUNTYNBR": "17",
+     "FIPS_STR": "49033",
+     "NAME": "RICH",
+     "STATEPLANE": "North"
+    }
+   ],
+   "service": "Rich_County_Trail_Assets_and_Access_WFL1",
+   "typef": "CLASS",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Rich_County_Trail_Assets_and_Access_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "Susan Zarekarizi",
+   "area": "name",
+   "count": 77,
+   "fields": [
+    "name",
+    "parkabbid",
+    "weblink1",
+    "bdy_type"
+   ],
+   "known": true,
+   "layer": "Utah State Park Management Areas",
+   "sample": [
+    {
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "http://www.stateparks.utah.gov/parks/bear-lake"
+    },
+    {
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "http://www.stateparks.utah.gov/parks/bear-lake"
+    },
+    {
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "http://www.stateparks.utah.gov/parks/bear-lake"
+    }
+   ],
+   "service": "Utah_State_Park_Management_Areas",
+   "typef": "bdy_type",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Susan Zarekarizi",
+   "area": "name",
+   "count": 77,
+   "fields": [
+    "name",
+    "parkabbid",
+    "weblink1",
+    "bdy_type"
+   ],
+   "known": true,
+   "layer": "Utah State Park Management Areas",
+   "sample": [
+    {
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "http://www.stateparks.utah.gov/parks/bear-lake"
+    },
+    {
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "http://www.stateparks.utah.gov/parks/bear-lake"
+    },
+    {
+     "bdy_type": "PKBDY",
+     "name": "Bear Lake",
+     "parkabbid": "BRSP",
+     "weblink1": "http://www.stateparks.utah.gov/parks/bear-lake"
+    }
+   ],
+   "service": "Utah_State_Park_Management_Areas",
+   "typef": "bdy_type",
+   "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_State_Park_Management_Areas/FeatureServer/0"
+  }
+ ],
+ "st": "UT"
+}

@@ -1,0 +1,1785 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2049,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (577,791)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Beulah Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Calloway Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Boots Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/210"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2049,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (288,895)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Beulah Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Calloway Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Boots Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/216"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2049,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (144,488)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Beulah Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Calloway Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Boots Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/226"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2049,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (2,257)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Beulah Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Calloway Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Boots Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/300"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (288,895)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/49"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (144,448)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/63"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (72,224)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/76"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (36,112)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/93"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (18,056)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/112"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (9,028)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/132"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (4,514)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/152"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1389,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "ESRI_Parks_OH (2,257)",
+   "sample": [
+    {
+     "FCC": "D89",
+     "NAME": "Delhi Township Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Miles Edwards Park"
+    },
+    {
+     "FCC": "D89",
+     "NAME": "Joseph M Bruening Park"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/172"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1248,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "OWN_NAME",
+    "CNTY_FIPS",
+    "COMMENTS",
+    "NAME",
+    "DIV_CODE",
+    "Label"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (2,257)",
+   "sample": [
+    {
+     "CNTY_FIPS": "049",
+     "COMMENTS": "Boundary taken from Franklin County parcel data, matches deed description, 12/7/2012 by NLR",
+     "DIV_CODE": "740",
+     "Label": "District 1 Headquarters State Wa Hq",
+     "NAME": "DISTRICT 1 HEADQUARTERS",
+     "OWN_NAME": "OH",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "HQ"
+    },
+    {
+     "CNTY_FIPS": "079",
+     "COMMENTS": " ",
+     "DIV_CODE": "740",
+     "Label": "Cooper Hollow State Wa ",
+     "NAME": "COOPER HOLLOW",
+     "OWN_NAME": "OH",
+     "OWN_TYPE": "Own"
+    },
+    {
+     "CNTY_FIPS": "025",
+     "COMMENTS": " ",
+     "DIV_CODE": "740",
+     "Label": "East Fork State Wa",
+     "NAME": "EAST FORK",
+     "OWN_NAME": "OH",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/174"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 977,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "Name_Label",
+    "MANAGING_AGENCY",
+    "LANDS_NAME",
+    "HUNTING_STATUS",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "COMMENTS",
+    "SHOW",
+    "created_by",
+    "edit_by"
+   ],
+   "known": false,
+   "layer": "Ohio DNR Lands",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "AWMarionSP",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "BARKCAMP",
+     "CNTY_FIPS": "013",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "BarkcampSP",
+     "MARCS_BEAT": "BarkCampSP",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "Barkcamp SP",
+     "ORIG_BEAT": "011",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    },
+    {
+     "ALT_NAME": "BUCK CREEK",
+     "CNTY_FIPS": "023",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "BuckCreekSP",
+     "MARCS_BEAT": "BuckCrSP",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "Buck Creek SP",
+     "ORIG_BEAT": "024",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/DNR_Fed_Lands_Nav_Base",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/DNR_Fed_Lands_Nav_Base/MapServer/2"
+  },
+  {
+   "agency": "Ohio Department of Natural Resources, Office of Information Technology",
+   "area": "",
+   "count": 949,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "Name_Label",
+    "LANDS_NAME",
+    "SHOW",
+    "created_by",
+    "edit_by",
+    "MANAGING_AGENCY",
+    "HUNTING_STATUS"
+   ],
+   "known": false,
+   "layer": "ODNR Lands",
+   "sample": [
+    {
+     "ALT_NAME": "A W Marion",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "A W Marion State Park",
+     "Name_Label": "A W Marion SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS",
+     "SHOW": "YES",
+     "edit_by": "OIT_CREATOR"
+    },
+    {
+     "ALT_NAME": "Barkcamp",
+     "CNTY_FIPS": "013",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "Barkcamp State Park",
+     "Name_Label": "Barkcamp SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK",
+     "SHOW": "YES",
+     "edit_by": "OIT_CREATOR"
+    },
+    {
+     "ALT_NAME": "Buck Creek",
+     "CNTY_FIPS": "023",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "Buck Creek State Park",
+     "Name_Label": "Buck Creek SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK",
+     "SHOW": "YES",
+     "edit_by": "OIT_CREATOR"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_External3",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External3/FeatureServer/1"
+  },
+  {
+   "agency": "Ohio Department of Natural Resources, Office of Information Technology",
+   "area": "",
+   "count": 949,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "Name_Label",
+    "LANDS_NAME",
+    "SHOW",
+    "created_by",
+    "edit_by",
+    "MANAGING_AGENCY",
+    "HUNTING_STATUS"
+   ],
+   "known": false,
+   "layer": "ODNR Lands",
+   "sample": [
+    {
+     "ALT_NAME": "A W Marion",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "A W Marion State Park",
+     "Name_Label": "A W Marion SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS",
+     "SHOW": "YES",
+     "edit_by": "OIT_CREATOR"
+    },
+    {
+     "ALT_NAME": "Barkcamp",
+     "CNTY_FIPS": "013",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "Barkcamp State Park",
+     "Name_Label": "Barkcamp SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK",
+     "SHOW": "YES",
+     "edit_by": "OIT_CREATOR"
+    },
+    {
+     "ALT_NAME": "Buck Creek",
+     "CNTY_FIPS": "023",
+     "DIV_CODE": "750",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "Buck Creek State Park",
+     "Name_Label": "Buck Creek SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK",
+     "SHOW": "YES",
+     "edit_by": "OIT_CREATOR"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_External3",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External3/FeatureServer/2"
+  },
+  {
+   "agency": "Department of Natural Resources, Office of Information Technology",
+   "area": "",
+   "count": 949,
+   "fields": [
+    "CNTY_FIPS",
+    "Name_Label",
+    "DIV_CODE",
+    "DIV_CODE_desc",
+    "ALT_NAME",
+    "LANDS_NAME",
+    "OWN_TYPE",
+    "PROP_TYPE",
+    "COUNTY",
+    "MANAGING_AGENCY",
+    "SHOW",
+    "HUNTING_STATUS",
+    "LANDS_NAME_CODE"
+   ],
+   "known": false,
+   "layer": "ODNR Lands",
+   "sample": [
+    {
+     "ALT_NAME": "A W Marion",
+     "CNTY_FIPS": "129",
+     "COUNTY": "PICKAWAY",
+     "DIV_CODE": "750",
+     "DIV_CODE_desc": "Division of Parks and Watercraft",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "A W Marion State Park",
+     "Name_Label": "A W Marion SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "Conservation Area",
+     "SHOW": "YES"
+    },
+    {
+     "ALT_NAME": "Barkcamp",
+     "CNTY_FIPS": "013",
+     "COUNTY": "BELMONT",
+     "DIV_CODE": "750",
+     "DIV_CODE_desc": "Division of Parks and Watercraft",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "Barkcamp State Park",
+     "Name_Label": "Barkcamp SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "Park",
+     "SHOW": "YES"
+    },
+    {
+     "ALT_NAME": "Buck Creek",
+     "CNTY_FIPS": "023",
+     "COUNTY": "CLARK",
+     "DIV_CODE": "750",
+     "DIV_CODE_desc": "Division of Parks and Watercraft",
+     "HUNTING_STATUS": "RESTRICTED",
+     "LANDS_NAME": "Buck Creek State Park",
+     "Name_Label": "Buck Creek SP",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "Park",
+     "SHOW": "YES"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_External",
+   "typef": "DIV_CODE_desc",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 760,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "ALT_NAME",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (4,622,324)",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "ACADIA CLIFFS",
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "ODOW",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Acadia Cliffs DNP",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "ALDRICH POND",
+     "CNTY_FIPS": "143",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AldrichPondWA",
+     "MARCS_CNTY": "72",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Aldrich Pond WA",
+     "ORIG_BEAT": "005",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 760,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "ALT_NAME",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (2,311,162)",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "ACADIA CLIFFS",
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "ODOW",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Acadia Cliffs DNP",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "ALDRICH POND",
+     "CNTY_FIPS": "143",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AldrichPondWA",
+     "MARCS_CNTY": "72",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Aldrich Pond WA",
+     "ORIG_BEAT": "005",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 760,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "ALT_NAME",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (1,155,581)",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "ACADIA CLIFFS",
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "ODOW",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Acadia Cliffs DNP",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "ALDRICH POND",
+     "CNTY_FIPS": "143",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AldrichPondWA",
+     "MARCS_CNTY": "72",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Aldrich Pond WA",
+     "ORIG_BEAT": "005",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/27"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 760,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "ALT_NAME",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (577,791)",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "ACADIA CLIFFS",
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "ODOW",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Acadia Cliffs DNP",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "ALDRICH POND",
+     "CNTY_FIPS": "143",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AldrichPondWA",
+     "MARCS_CNTY": "72",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Aldrich Pond WA",
+     "ORIG_BEAT": "005",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/37"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 760,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "ALT_NAME",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (288,895)",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "ACADIA CLIFFS",
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "ODOW",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Acadia Cliffs DNP",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "ALDRICH POND",
+     "CNTY_FIPS": "143",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AldrichPondWA",
+     "MARCS_CNTY": "72",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Aldrich Pond WA",
+     "ORIG_BEAT": "005",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/51"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 705,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "NAME",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "OLD_BEAT",
+    "MARCS_CNTY",
+    "Name_Label"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (144,448)",
+   "sample": [
+    {
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "NAME": "A W MARION",
+     "Name_Label": "A W Marion State Park",
+     "OLD_BEAT": "NR65338438",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "NAME": "ACADIA CLIFFS",
+     "Name_Label": "Acadia Cliffs Dedicated Nature Preserve",
+     "OLD_BEAT": "NR05426435",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "CNTY_FIPS": "001",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AdamsLakeSP",
+     "MARCS_CNTY": "01",
+     "MARCS_Property_Type": "SP",
+     "NAME": "ADAMS LAKE",
+     "Name_Label": "Adams Lake State Park",
+     "OLD_BEAT": "NR01280429",
+     "ORIG_BEAT": "004",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/65"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 705,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "NAME",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "OLD_BEAT",
+    "MARCS_CNTY",
+    "Name_Label"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (72,224)",
+   "sample": [
+    {
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "NAME": "A W MARION",
+     "Name_Label": "A W Marion State Park",
+     "OLD_BEAT": "NR65338438",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "NAME": "ACADIA CLIFFS",
+     "Name_Label": "Acadia Cliffs Dedicated Nature Preserve",
+     "OLD_BEAT": "NR05426435",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "CNTY_FIPS": "001",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AdamsLakeSP",
+     "MARCS_CNTY": "01",
+     "MARCS_Property_Type": "SP",
+     "NAME": "ADAMS LAKE",
+     "Name_Label": "Adams Lake State Park",
+     "OLD_BEAT": "NR01280429",
+     "ORIG_BEAT": "004",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/78"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 705,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "NAME",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "OLD_BEAT",
+    "MARCS_CNTY",
+    "Name_Label"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (36,112)",
+   "sample": [
+    {
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "NAME": "A W MARION",
+     "Name_Label": "A W Marion State Park",
+     "OLD_BEAT": "NR65338438",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "NAME": "ACADIA CLIFFS",
+     "Name_Label": "Acadia Cliffs Dedicated Nature Preserve",
+     "OLD_BEAT": "NR05426435",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "CNTY_FIPS": "001",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AdamsLakeSP",
+     "MARCS_CNTY": "01",
+     "MARCS_Property_Type": "SP",
+     "NAME": "ADAMS LAKE",
+     "Name_Label": "Adams Lake State Park",
+     "OLD_BEAT": "NR01280429",
+     "ORIG_BEAT": "004",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/95"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 705,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "NAME",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "OLD_BEAT",
+    "MARCS_CNTY",
+    "Name_Label"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (18,056)",
+   "sample": [
+    {
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "NAME": "A W MARION",
+     "Name_Label": "A W Marion State Park",
+     "OLD_BEAT": "NR65338438",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "NAME": "ACADIA CLIFFS",
+     "Name_Label": "Acadia Cliffs Dedicated Nature Preserve",
+     "OLD_BEAT": "NR05426435",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "CNTY_FIPS": "001",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AdamsLakeSP",
+     "MARCS_CNTY": "01",
+     "MARCS_Property_Type": "SP",
+     "NAME": "ADAMS LAKE",
+     "Name_Label": "Adams Lake State Park",
+     "OLD_BEAT": "NR01280429",
+     "ORIG_BEAT": "004",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/114"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 705,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "NAME",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "OLD_BEAT",
+    "MARCS_CNTY",
+    "Name_Label"
+   ],
+   "known": false,
+   "layer": "ODNR Lands (4,514)",
+   "sample": [
+    {
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "NAME": "A W MARION",
+     "Name_Label": "A W Marion State Park",
+     "OLD_BEAT": "NR65338438",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "NAME": "ACADIA CLIFFS",
+     "Name_Label": "Acadia Cliffs Dedicated Nature Preserve",
+     "OLD_BEAT": "NR05426435",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "CNTY_FIPS": "001",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AdamsLakeSP",
+     "MARCS_CNTY": "01",
+     "MARCS_Property_Type": "SP",
+     "NAME": "ADAMS LAKE",
+     "Name_Label": "Adams Lake State Park",
+     "OLD_BEAT": "NR01280429",
+     "ORIG_BEAT": "004",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/154"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 533,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (9,244,649)",
+   "sample": [
+    {
+     "FCC": "D85",
+     "NAME": "Shakamak State Park"
+    },
+    {
+     "FCC": "D85",
+     "NAME": "Hilands Overlook State Park"
+    },
+    {
+     "FCC": "D83",
+     "NAME": "Hoosier National Forest"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/183"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 533,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (4,622,324)",
+   "sample": [
+    {
+     "FCC": "D85",
+     "NAME": "Shakamak State Park"
+    },
+    {
+     "FCC": "D85",
+     "NAME": "Hilands Overlook State Park"
+    },
+    {
+     "FCC": "D83",
+     "NAME": "Hoosier National Forest"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/190"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 533,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (2,311,162)",
+   "sample": [
+    {
+     "FCC": "D85",
+     "NAME": "Shakamak State Park"
+    },
+    {
+     "FCC": "D85",
+     "NAME": "Hilands Overlook State Park"
+    },
+    {
+     "FCC": "D83",
+     "NAME": "Hoosier National Forest"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/198"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 266,
+   "fields": [
+    "NAME",
+    "FCC"
+   ],
+   "known": false,
+   "layer": "Parks (1,155,581)",
+   "sample": [
+    {
+     "FCC": "D85",
+     "NAME": "Lost Bridge West State Recreation Area"
+    },
+    {
+     "FCC": "D85",
+     "NAME": "Kil-SO-Quah State Recreation Area"
+    },
+    {
+     "FCC": "D85",
+     "NAME": "Markle State Recreation Area"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/204"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 88,
+   "fields": [
+    "COUNTY",
+    "STATUS",
+    "FIPS"
+   ],
+   "known": false,
+   "layer": "Counties",
+   "sample": [
+    {
+     "COUNTY": "Lawrence",
+     "FIPS": "087",
+     "STATUS": "Land"
+    },
+    {
+     "COUNTY": "Scioto",
+     "FIPS": "145",
+     "STATUS": "Land"
+    },
+    {
+     "COUNTY": "Gallia",
+     "FIPS": "053",
+     "STATUS": "Land"
+    }
+   ],
+   "service": "OIT_Services/WildlifeLicenseAgents",
+   "typef": "",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/WildlifeLicenseAgents/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 705,
+   "fields": [
+    "PROP_TYPE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "NAME",
+    "DIV_CODE",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "OLD_BEAT",
+    "MARCS_CNTY",
+    "Name_Label"
+   ],
+   "known": true,
+   "layer": "ODNR Lands (9,028)",
+   "sample": [
+    {
+     "CNTY_FIPS": "129",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "NAME": "A W MARION",
+     "Name_Label": "A W Marion State Park",
+     "OLD_BEAT": "NR65338438",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "CNTY_FIPS": "009",
+     "DIV_CODE": "740",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "NAME": "ACADIA CLIFFS",
+     "Name_Label": "Acadia Cliffs Dedicated Nature Preserve",
+     "OLD_BEAT": "NR05426435",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "CNTY_FIPS": "001",
+     "DIV_CODE": "730",
+     "MARCS_BEAT": "AdamsLakeSP",
+     "MARCS_CNTY": "01",
+     "MARCS_Property_Type": "SP",
+     "NAME": "ADAMS LAKE",
+     "Name_Label": "Adams Lake State Park",
+     "OLD_BEAT": "NR01280429",
+     "ORIG_BEAT": "004",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_Basemap_Streets_2018_WM",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/image/rest/services/OIT_Services/ODNR_Basemap_Streets_2018_WM/MapServer/134"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 431,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW",
+    "created_by",
+    "edit_by",
+    "HUNTING_STATUS"
+   ],
+   "known": true,
+   "layer": "Division of Wildlife",
+   "sample": [
+    {
+     "ALT_NAME": "ACADIA CLIFFS",
+     "CNTY_FIPS": "009",
+     "COMMENTS": "Boundary traversed from deed and rotated to fit land features on 9/26/2012 by NLR.",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "ODOW",
+     "MARCS_BEAT": "AcadiaCliffsWA1",
+     "MARCS_CNTY": "05",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Acadia Cliffs DNP",
+     "ORIG_BEAT": "002A",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    },
+    {
+     "ALT_NAME": "AQUILLA",
+     "CNTY_FIPS": "055",
+     "COMMENTS": "Boundary traversed from deeds and taken from county parcel data on 10/1/2012 by NLR.",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "DOW",
+     "MARCS_BEAT": "AquillaWA",
+     "MARCS_CNTY": "28",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Aquilla WA",
+     "ORIG_BEAT": "007",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    },
+    {
+     "ALT_NAME": "AUBURN MARSH",
+     "CNTY_FIPS": "055",
+     "COMMENTS": "Boundary traversed from deeds on 10/2/2012 by NLR.",
+     "DIV_CODE": "740",
+     "MANAGING_AGENCY": "DOW",
+     "MARCS_BEAT": "AuburnMarshWA",
+     "MARCS_CNTY": "28",
+     "MARCS_Property_Type": "WA",
+     "Name_Label": "Auburn Marsh WA",
+     "ORIG_BEAT": "009",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "WA"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_Public_nolakes",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 246,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW",
+    "created_by",
+    "edit_by",
+    "HUNTING_STATUS"
+   ],
+   "known": true,
+   "layer": "Natural Areas and Preserves",
+   "sample": [
+    {
+     "ALT_NAME": "ANDERSON COMPASS PLANT PRAIRIE",
+     "CNTY_FIPS": "087",
+     "COMMENTS": "Permit Only Access",
+     "DIV_CODE": "741",
+     "MANAGING_AGENCY": "DNAP",
+     "MARCS_BEAT": "AndersonCompassNP",
+     "MARCS_CNTY": "44",
+     "MARCS_Property_Type": "NP",
+     "Name_Label": "Anderson Compass Plant Prairie DNP",
+     "ORIG_BEAT": "229",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "AUGUSTA-ANNE OLSEN",
+     "CNTY_FIPS": "077",
+     "DIV_CODE": "741",
+     "MANAGING_AGENCY": "DNAP",
+     "MARCS_BEAT": "AugustaAnneNP",
+     "MARCS_CNTY": "39",
+     "MARCS_Property_Type": "NP",
+     "Name_Label": "Augusta-Anne Olsen DNP",
+     "ORIG_BEAT": "320",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    },
+    {
+     "ALT_NAME": "BAKER WOODS",
+     "CNTY_FIPS": "107",
+     "DIV_CODE": "741",
+     "MANAGING_AGENCY": "DNAP",
+     "MARCS_BEAT": "BakerWoodsNP",
+     "MARCS_CNTY": "54",
+     "MARCS_Property_Type": "NP",
+     "Name_Label": "Baker Woods DNP",
+     "ORIG_BEAT": "010",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "DED NAT PRES"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_Public_nolakes",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 201,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW",
+    "created_by",
+    "edit_by",
+    "HUNTING_STATUS"
+   ],
+   "known": true,
+   "layer": "Division of Parks and Watercraft",
+   "sample": [
+    {
+     "ALT_NAME": "A W MARION",
+     "CNTY_FIPS": "129",
+     "COMMENTS": "<Null>",
+     "DIV_CODE": "750",
+     "MARCS_BEAT": "AWMarionSP",
+     "MARCS_CNTY": "65",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "A W Marion SP",
+     "ORIG_BEAT": "001",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "CONS"
+    },
+    {
+     "ALT_NAME": "BARKCAMP",
+     "CNTY_FIPS": "013",
+     "DIV_CODE": "750",
+     "MARCS_BEAT": "BarkCampSP",
+     "MARCS_CNTY": "07",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "Barkcamp SP",
+     "ORIG_BEAT": "011",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    },
+    {
+     "ALT_NAME": "BUCK CREEK",
+     "CNTY_FIPS": "023",
+     "DIV_CODE": "750",
+     "MARCS_BEAT": "BuckCrSP",
+     "MARCS_CNTY": "12",
+     "MARCS_Property_Type": "SP",
+     "Name_Label": "Buck Creek SP",
+     "ORIG_BEAT": "024",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "PARK"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_Public_nolakes",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 43,
+   "fields": [
+    "ALT_NAME",
+    "PROP_TYPE",
+    "DIV_CODE",
+    "OWN_TYPE",
+    "CNTY_FIPS",
+    "MARCS_Property_Type",
+    "MARCS_BEAT",
+    "ORIG_BEAT",
+    "MARCS_CNTY",
+    "Name_Label",
+    "MANAGING_AGENCY",
+    "COMMENTS",
+    "LANDS_NAME",
+    "SHOW",
+    "created_by",
+    "edit_by",
+    "HUNTING_STATUS"
+   ],
+   "known": true,
+   "layer": "Division of Forestry",
+   "sample": [
+    {
+     "ALT_NAME": "CHAPIN",
+     "CNTY_FIPS": "085",
+     "DIV_CODE": "727",
+     "MARCS_BEAT": "ChapinSF",
+     "MARCS_CNTY": "43",
+     "MARCS_Property_Type": "SF",
+     "Name_Label": "Chapin SF",
+     "ORIG_BEAT": "036",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "FOREST RES"
+    },
+    {
+     "ALT_NAME": "DEAN",
+     "CNTY_FIPS": "087",
+     "DIV_CODE": "727",
+     "MARCS_BEAT": "DeanSF",
+     "MARCS_CNTY": "44",
+     "MARCS_Property_Type": "SF",
+     "Name_Label": "Dean SF",
+     "ORIG_BEAT": "055",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "FOREST"
+    },
+    {
+     "ALT_NAME": "FERNWOOD",
+     "CNTY_FIPS": "081",
+     "DIV_CODE": "727",
+     "MARCS_BEAT": "FernwoodSF",
+     "MARCS_CNTY": "41",
+     "MARCS_Property_Type": "SF",
+     "Name_Label": "Fernwood SF",
+     "ORIG_BEAT": "074",
+     "OWN_TYPE": "Own",
+     "PROP_TYPE": "FOREST"
+    }
+   ],
+   "service": "OIT_Services/ODNR_ODNR_Lands_Public_nolakes",
+   "typef": "PROP_TYPE",
+   "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer/6"
+  }
+ ],
+ "st": "OH"
+}

@@ -1,0 +1,409 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "ODOT",
+   "area": "",
+   "count": 6465,
+   "fields": [],
+   "known": false,
+   "layer": "Lakes and Rivers",
+   "sample": [
+    {
+     "AREASQKM": 0.025,
+     "FDATE": 1063756800000,
+     "OBJECTID_1": 1,
+     "Shape__Area": 24744.240997314453,
+     "Shape__Length": 933.9905766548806
+    },
+    {
+     "AREASQKM": 0.019,
+     "FDATE": 1034812800000,
+     "OBJECTID_1": 2,
+     "Shape__Area": 18554.85711288452,
+     "Shape__Length": 1116.6951613138199
+    },
+    {
+     "AREASQKM": 0.009000000000000001,
+     "FDATE": 1034812800000,
+     "OBJECTID_1": 3,
+     "Shape__Area": 9447.245700836182,
+     "Shape__Length": 517.5037630767616
+    }
+   ],
+   "service": "OklahomaRecreationalAreas",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/6"
+  },
+  {
+   "agency": "ODOT GIS Management Branch",
+   "area": "Name",
+   "count": 649,
+   "fields": [
+    "Name",
+    "NRHP"
+   ],
+   "known": false,
+   "layer": "Polygons",
+   "sample": [
+    {
+     "NRHP": "Listed",
+     "Name": "Andarko Downton HD Corrected Polygon"
+    },
+    {
+     "NRHP": "Listed",
+     "Name": "Ardmore Hx. Coml. Dist. Polygon"
+    },
+    {
+     "NRHP": "Listed",
+     "Name": "Automobile Alley Hx. Dist. Polygon"
+    }
+   ],
+   "service": "CRM_Historic_Districts",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/CRM_Historic_Districts/FeatureServer/2"
+  },
+  {
+   "agency": "ODOT GIS Management Branch",
+   "area": "Park_Name",
+   "count": 49,
+   "fields": [
+    "Park_Name"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Park_Name": "Sequoyah Bay State Park"
+    },
+    {
+     "Park_Name": "Natural Falls State Park"
+    },
+    {
+     "Park_Name": "Alabaster Caverns State Park"
+    }
+   ],
+   "service": "State_Parks",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "LOOPNAME",
+    "HYPERLINK",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "GPT_Loop_Areas_wmas",
+   "sample": [
+    {
+     "COMMENTS": "A light shade to highlight Loop areas.",
+     "LOOPNAME": "High Plains Loop"
+    },
+    {
+     "COMMENTS": "A light shade to highlight Loop areas.",
+     "LOOPNAME": "Bats and Bluffs Loop"
+    },
+    {
+     "COMMENTS": "A light shade to highlight Loop areas.",
+     "LOOPNAME": "Salt Plains Loop"
+    }
+   ],
+   "service": "Great_Plains_Trail_of_Oklahoma__v2_0__Webmap_of_2021_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Great_Plains_Trail_of_Oklahoma__v2_0__Webmap_of_2021_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "LOOPNAME",
+    "HYPERLINK",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "GPT_Loop_Areas_wmas",
+   "sample": [
+    {
+     "COMMENTS": "A light shade to highlight Loop areas.",
+     "LOOPNAME": "High Plains Loop"
+    },
+    {
+     "COMMENTS": "A light shade to highlight Loop areas.",
+     "LOOPNAME": "Bats and Bluffs Loop"
+    },
+    {
+     "COMMENTS": "A light shade to highlight Loop areas.",
+     "LOOPNAME": "Salt Plains Loop"
+    }
+   ],
+   "service": "Great_Plains_Trail_of_Oklahoma__v2_1__PVL",
+   "typef": "",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Great_Plains_Trail_of_Oklahoma__v2_1__PVL/FeatureServer/4"
+  },
+  {
+   "agency": "ODOT",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "ORGNAME",
+    "RSL_TYPE"
+   ],
+   "known": false,
+   "layer": "Oklahoma Wildlife Refuge",
+   "sample": [
+    {
+     "ORGNAME": "DEEP FORK NATIONAL WILDLIFE REFUGE",
+     "RSL_TYPE": "NWR"
+    },
+    {
+     "ORGNAME": "LITTLE RIVER NATIONAL WILDLIFE REFUGE",
+     "RSL_TYPE": "NWR"
+    },
+    {
+     "ORGNAME": "OPTIMA NATIONAL WILDLIFE REFUGE",
+     "RSL_TYPE": "NWR"
+    }
+   ],
+   "service": "OklahomaRecreationalAreas",
+   "typef": "RSL_TYPE",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "CONCATENATE_COUNTY",
+    "Commissioner",
+    "Xtra1",
+    "Xtra2"
+   ],
+   "known": false,
+   "layer": "OK77_Commissions",
+   "sample": [
+    {
+     "CONCATENATE_COUNTY": "NOWATA, PAWNEE, OTTAWA, TULSA, DELAWARE, OSAGE, CRAIG, WASHINGTON, ROGERS, MAYES",
+     "Commissioner": "Jess Kane",
+     "Xtra1": "2029",
+     "Xtra2": "jess.kane@ok.gov"
+    },
+    {
+     "CONCATENATE_COUNTY": "SEQUOYAH, WAGONER, MCINTOSH, ADAIR, MUSKOGEE, CHEROKEE, OKMULGEE, HASKELL",
+     "Commissioner": "Mark Mabrey",
+     "Xtra1": "2030",
+     "Xtra2": "mark.mabrey@ok.gov"
+    },
+    {
+     "CONCATENATE_COUNTY": "PUSHMATAHA, LE FLORE, LOVE, ATOKA, LATIMER, CHOCTAW, MARSHALL, MCCURTAIN, PITTSBURG, BRYAN, CARTER",
+     "Commissioner": "Timothy Diehl",
+     "Xtra1": "2023",
+     "Xtra2": "timothy.diehl3@ok.gov"
+    }
+   ],
+   "service": "ODWC_Wildlife_Commissions_Regions",
+   "typef": "",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/ODWC_Wildlife_Commissions_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "REGIONNAME",
+    "GlobalID",
+    "SUPERVISOR",
+    "SUPERVIS_1",
+    "Creator",
+    "Editor",
+    "Creator_1",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "Wildlife_Admin_Region_06132025",
+   "sample": [
+    {
+     "Creator": "abmk_odwc",
+     "Creator_1": "ODWC_GIS",
+     "Editor": "abmk_odwc",
+     "Editor_1": "ODWC_GIS",
+     "GlobalID": "{EE3848B6-D39E-4BBE-B624-202421559021}",
+     "REGIONNAME": "Northwest",
+     "SUPERVISOR": "Scott Parry",
+     "SUPERVIS_1": "(580) 334-3345"
+    },
+    {
+     "Creator": "abmk_odwc",
+     "Creator_1": "ODWC_GIS",
+     "Editor": "abmk_odwc",
+     "Editor_1": "ODWC_GIS",
+     "GlobalID": "{47B8AE33-889D-43F7-A1D5-FF5B8E01A9FF}",
+     "REGIONNAME": "Northeast",
+     "SUPERVISOR": "Matt Mattioda",
+     "SUPERVIS_1": "(918) 625-4475"
+    },
+    {
+     "Creator": "abmk_odwc",
+     "Creator_1": "ODWC_GIS",
+     "Editor": "abmk_odwc",
+     "Editor_1": "ODWC_GIS",
+     "GlobalID": "{B7D3E7F5-BD4C-4FC2-9351-FEF3A2A051A1}",
+     "REGIONNAME": "Southeast",
+     "SUPERVISOR": "Eric Suttles",
+     "SUPERVIS_1": "(580) 421-7226"
+    }
+   ],
+   "service": "WMA_AdminBoundaries",
+   "typef": "",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/WMA_AdminBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "ODOT",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "GRASSLANDN"
+   ],
+   "known": false,
+   "layer": "USFS National Grassland",
+   "sample": [
+    {
+     "GRASSLANDN": "Caddo National Grassland"
+    },
+    {
+     "GRASSLANDN": "Cimarron National Grassland"
+    },
+    {
+     "GRASSLANDN": "Comanche National Grassland"
+    }
+   ],
+   "service": "OklahomaRecreationalAreas",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/4"
+  },
+  {
+   "agency": "US Fish & Wildlife Service",
+   "area": "",
+   "count": 4,
+   "fields": [],
+   "known": false,
+   "layer": "ABB Conservation Priority Areas",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "Shape_Leng": 9.20585462484
+    },
+    {
+     "OBJECTID": 2,
+     "OBJECTID_1": 2,
+     "Shape_Leng": 1.73447510847
+    },
+    {
+     "OBJECTID": 3,
+     "OBJECTID_1": 3,
+     "Shape_Leng": 1.98611977838
+    }
+   ],
+   "service": "ABB_Conservation_Priority",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/ABB_Conservation_Priority/FeatureServer/0"
+  },
+  {
+   "agency": "ODOT",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "WILDERNE_1"
+   ],
+   "known": false,
+   "layer": "USFS Wilderness",
+   "sample": [
+    {
+     "WILDERNE_1": "Black Fork Mountain Wilderness"
+    },
+    {
+     "WILDERNE_1": "Upper Kiamichi River Wilderness"
+    }
+   ],
+   "service": "OklahomaRecreationalAreas",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/2"
+  },
+  {
+   "agency": "Choctaw Nation of Oklahoma\nD.Murray (ODWC) did the feature-mashing.",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Land_Type"
+   ],
+   "known": false,
+   "layer": "Choctaw Nation Property Published Online Merged",
+   "sample": [
+    {
+     "Land_Type": "Choctaw"
+    }
+   ],
+   "service": "Choctaw_Nation_Property_Published_Online_Merged",
+   "typef": "Land_Type",
+   "url": "https://services1.arcgis.com/jRf8jjFwxedITdFe/arcgis/rest/services/Choctaw_Nation_Property_Published_Online_Merged/FeatureServer/1"
+  },
+  {
+   "agency": "ODOT",
+   "area": "NAME",
+   "count": 111,
+   "fields": [
+    "NAME",
+    "SHORTNAME"
+   ],
+   "known": true,
+   "layer": "Oklahoma Wildlife Management Areas",
+   "sample": [
+    {
+     "NAME": "Tenkiller Wildlife Management Area",
+     "SHORTNAME": "Tenkiller WMA"
+    },
+    {
+     "NAME": "Deep Fork Wildlife Management Area",
+     "SHORTNAME": "Deep Fork WMA"
+    },
+    {
+     "NAME": "Okmulgee Public Hunting Area",
+     "SHORTNAME": "Okmulgee PHA"
+    }
+   ],
+   "service": "OklahomaRecreationalAreas",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/0"
+  },
+  {
+   "agency": "ODOT",
+   "area": "PARK_NAME",
+   "count": 50,
+   "fields": [
+    "PARK_NAME"
+   ],
+   "known": true,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "PARK_NAME": "Walnut Creek State Park"
+    },
+    {
+     "PARK_NAME": "Sequoyah Bay State Park"
+    },
+    {
+     "PARK_NAME": "Natural Falls State Park"
+    }
+   ],
+   "service": "OklahomaRecreationalAreas",
+   "typef": "",
+   "url": "https://services6.arcgis.com/RBtoEUQ2lmN0K3GY/arcgis/rest/services/OklahomaRecreationalAreas/FeatureServer/3"
+  }
+ ],
+ "st": "OK"
+}

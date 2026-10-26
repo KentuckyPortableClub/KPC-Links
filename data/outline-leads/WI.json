@@ -1,0 +1,932 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "UNITNAME",
+   "count": 10797,
+   "fields": [
+    "CMPXNAME",
+    "ORGNAME",
+    "DIVNAME",
+    "UNITNAME",
+    "SUBUNAME",
+    "IFWS",
+    "LIT",
+    "INTTYPE1",
+    "INTTYPE2",
+    "TRACTNO",
+    "COMMENTS",
+    "INTIDNO",
+    "RSL_TYPE",
+    "FWSREGION"
+   ],
+   "known": false,
+   "layer": "US Fish & Wildlife Service",
+   "sample": [
+    {
+     "CMPXNAME": "N/A",
+     "COMMENTS": " ",
+     "DIVNAME": "Ogemaw County",
+     "IFWS": "970",
+     "INTIDNO": "970.36",
+     "INTTYPE1": "O",
+     "INTTYPE2": "N/A",
+     "LIT": "KIW",
+     "ORGNAME": "KIRTLANDS WARBLER WILDLIFE MANAGEMENT AREA",
+     "SUBUNAME": "N/A",
+     "TRACTNO": "36",
+     "UNITNAME": "N/A"
+    },
+    {
+     "CMPXNAME": "DETROIT LAKES WETLAND MANAGEMENT DISTRICT",
+     "COMMENTS": " ",
+     "DIVNAME": "N/A",
+     "IFWS": "1242",
+     "INTIDNO": "1242.15",
+     "INTTYPE1": "O",
+     "INTTYPE2": "N/A",
+     "LIT": "WNR",
+     "ORGNAME": "NORMAN COUNTY WATERFOWL PRODUCTION AREA",
+     "SUBUNAME": "N/A",
+     "TRACTNO": "15",
+     "UNITNAME": "Pheasants Forever Inc. WPA"
+    },
+    {
+     "CMPXNAME": "N/A",
+     "COMMENTS": " ",
+     "DIVNAME": "N/A",
+     "IFWS": "415",
+     "INTIDNO": "415.1418",
+     "INTTYPE1": "O",
+     "INTTYPE2": "N/A",
+     "LIT": "CRO",
+     "ORGNAME": "CRAB ORCHARD NATIONAL WILDLIFE REFUGE",
+     "SUBUNAME": "N/A",
+     "TRACTNO": "1418",
+     "UNITNAME": "N/A"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "INTTYPE1",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/2"
+  },
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "PROP_NAME",
+   "count": 8560,
+   "fields": [
+    "COUNTY_NAME",
+    "PROP_NAME",
+    "COMMENT_TEXT",
+    "ORIG_HRZ_COLL_MTHD_CODE",
+    "ORIG_HRZ_COLL_MTHD_TEXT",
+    "ORIG_HRZ_REF_SYS_CODE",
+    "LAST_UPDATE_USER_NAME",
+    "AUXCLASS"
+   ],
+   "known": false,
+   "layer": "Local Park",
+   "sample": [
+    {
+     "AUXCLASS": "X4",
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Allens Grove Park"
+    },
+    {
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Anders Park"
+    },
+    {
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Badger Girl Scout Camp"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "LAST_UPDATE_USER_NAME",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/5"
+  },
+  {
+   "agency": "WI DNR , Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 7178,
+   "fields": [
+    "COUNTY_NAME",
+    "PROP_NAME",
+    "COMMENT_TEXT",
+    "ORIG_HRZ_COLL_MTHD_CODE",
+    "ORIG_HRZ_COLL_MTHD_TEXT",
+    "ORIG_HRZ_REF_SYS_CODE",
+    "LAST_UPDATE_USER_NAME",
+    "AUXCLASS"
+   ],
+   "known": false,
+   "layer": "Local Community Park (40K - 250K)",
+   "sample": [
+    {
+     "AUXCLASS": "X4",
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Allens Grove Park"
+    },
+    {
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Anders Park"
+    },
+    {
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Badger Girl Scout Camp"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_LAND_ANNO_WTM_Ext",
+   "typef": "LAST_UPDATE_USER_NAME",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_LAND_ANNO_WTM_Ext/MapServer/21"
+  },
+  {
+   "agency": "WI DNR , Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 7178,
+   "fields": [
+    "COUNTY_NAME",
+    "PROP_NAME",
+    "COMMENT_TEXT",
+    "ORIG_HRZ_COLL_MTHD_CODE",
+    "ORIG_HRZ_COLL_MTHD_TEXT",
+    "ORIG_HRZ_REF_SYS_CODE",
+    "LAST_UPDATE_USER_NAME",
+    "AUXCLASS"
+   ],
+   "known": false,
+   "layer": "Local Community Park (0 - 40K)",
+   "sample": [
+    {
+     "AUXCLASS": "X4",
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Allens Grove Park"
+    },
+    {
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Anders Park"
+    },
+    {
+     "COUNTY_NAME": "Walworth",
+     "LAST_UPDATE_USER_NAME": "CEELEW",
+     "ORIG_HRZ_COLL_MTHD_CODE": "CNV001",
+     "ORIG_HRZ_REF_SYS_CODE": "SP009",
+     "PROP_NAME": "Badger Girl Scout Camp"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_LAND_ANNO_WTM_Ext",
+   "typef": "LAST_UPDATE_USER_NAME",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_LAND_ANNO_WTM_Ext/MapServer/22"
+  },
+  {
+   "agency": "Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 1993,
+   "fields": [
+    "FUNCTION_MGT_CODE",
+    "PROP_NAME",
+    "PROP_NAME_LABEL",
+    "ADMIN_CODE"
+   ],
+   "known": false,
+   "layer": "DNR Managed Lands (Dissolved)",
+   "sample": [
+    {
+     "ADMIN_CODE": "FM",
+     "FUNCTION_MGT_CODE": "FM",
+     "PROP_NAME": "ALBION REARING STATION",
+     "PROP_NAME_LABEL": "Albion Rearing Station"
+    },
+    {
+     "ADMIN_CODE": "FM",
+     "FUNCTION_MGT_CODE": "FM",
+     "PROP_NAME": "ALBION REARING STATION",
+     "PROP_NAME_LABEL": "Albion Rearing Station"
+    },
+    {
+     "ADMIN_CODE": "FM",
+     "FUNCTION_MGT_CODE": "FM",
+     "PROP_NAME": "ANDREW KRAKOW PUBLIC ACCESS AND FISHERY AREA",
+     "PROP_NAME_LABEL": "Andrew Krakow Public Access And Fishery Area"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_Managed_Lands_Dissolved_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_Managed_Lands_Dissolved_WTM_Ext/MapServer/0"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 1981,
+   "fields": [
+    "RE_INFO_URL",
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "DNR Managed Land Property Search Layer",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Albion Rearing Station",
+     "PROP_NAME": "ALBION REARING STATION",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/10albionrearing.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Andrew Krakow Public Access And Fishery Area",
+     "PROP_NAME": "ANDREW KRAKOW PUBLIC ACCESS AND FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Asylum Bay Rough Fish Station",
+     "PROP_NAME": "ASYLUM BAY ROUGH FISH STATION",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/0"
+  },
+  {
+   "agency": "WDNR",
+   "area": "",
+   "count": 1937,
+   "fields": [
+    "PLSS_SS_OR_GOVLOT_DESCR",
+    "DNR_REGION_NAME"
+   ],
+   "known": false,
+   "layer": "BCPL Managed Lands",
+   "sample": [
+    {
+     "DNR_REGION_NAME": "NORTHERN",
+     "PLSS_SS_OR_GOVLOT_DESCR": "Merged polygons"
+    },
+    {
+     "DNR_REGION_NAME": "Northern",
+     "PLSS_SS_OR_GOVLOT_DESCR": "No"
+    },
+    {
+     "DNR_REGION_NAME": "Northern",
+     "PLSS_SS_OR_GOVLOT_DESCR": "N"
+    }
+   ],
+   "service": "ER_Biotics/ER_Biotics_WGS84_Managed_Lands",
+   "typef": "PLSS_SS_OR_GOVLOT_DESCR",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/0"
+  },
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "",
+   "count": 1914,
+   "fields": [
+    "PLSS_SS_OR_GOVLOT_DESCR",
+    "DNR_REGION_NAME"
+   ],
+   "known": false,
+   "layer": "Board of Commissioners of Public Lands",
+   "sample": [
+    {
+     "DNR_REGION_NAME": "Northern",
+     "PLSS_SS_OR_GOVLOT_DESCR": "No"
+    },
+    {
+     "DNR_REGION_NAME": "Northern",
+     "PLSS_SS_OR_GOVLOT_DESCR": "No"
+    },
+    {
+     "DNR_REGION_NAME": "Northern",
+     "PLSS_SS_OR_GOVLOT_DESCR": "No"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "PLSS_SS_OR_GOVLOT_DESCR",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/1"
+  },
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "PROP_NAME",
+   "count": 1395,
+   "fields": [
+    "PROP_NAME",
+    "SOURCE"
+   ],
+   "known": false,
+   "layer": "National Park Service",
+   "sample": [
+    {
+     "PROP_NAME": "Apostle Islands National Lakeshore",
+     "SOURCE": "NPS WASO Land Resources Division August 25 2017"
+    },
+    {
+     "PROP_NAME": "Apostle Islands National Lakeshore",
+     "SOURCE": "NPS WASO Land Resources Division August 25 2017"
+    },
+    {
+     "PROP_NAME": "Apostle Islands National Lakeshore",
+     "SOURCE": "NPS WASO Land Resources Division August 25 2017"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/3"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 1324,
+   "fields": [
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "RE_INFO_URL",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "DNR Owned (property)",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Albion Rearing Station",
+     "PROP_NAME": "ALBION REARING STATION",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/10albionrearing.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Andrew Krakow Public Access And Fishery Area",
+     "PROP_NAME": "ANDREW KRAKOW PUBLIC ACCESS AND FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Asylum Bay Rough Fish Station",
+     "PROP_NAME": "ASYLUM BAY ROUGH FISH STATION",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/2"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 1324,
+   "fields": [
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "RE_INFO_URL",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "DNR Owned (property)",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Albion Rearing Station",
+     "PROP_NAME": "ALBION REARING STATION",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/10albionrearing.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Andrew Krakow Public Access And Fishery Area",
+     "PROP_NAME": "ANDREW KRAKOW PUBLIC ACCESS AND FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Asylum Bay Rough Fish Station",
+     "PROP_NAME": "ASYLUM BAY ROUGH FISH STATION",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/9"
+  },
+  {
+   "agency": "WDNR",
+   "area": "PROP_NAME",
+   "count": 1214,
+   "fields": [
+    "PROP_NAME"
+   ],
+   "known": false,
+   "layer": "DNR Managed Lands",
+   "sample": [
+    {
+     "PROP_NAME": "Bashaw Lake - Island No 1"
+    },
+    {
+     "PROP_NAME": "Bass Hollow State Natural Area"
+    },
+    {
+     "PROP_NAME": "Bass Lake - Bass Island"
+    }
+   ],
+   "service": "ER_Biotics/ER_Biotics_WGS84_Managed_Lands",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/3"
+  },
+  {
+   "agency": " U.S. Department of Agriculture, Service Center Agencies",
+   "area": "",
+   "count": 846,
+   "fields": [
+    "AGREEMENT_NUM",
+    "PROGRAM_NAME",
+    "EASE_TYPE"
+   ],
+   "known": false,
+   "layer": "National Resources Conservation Service Easement",
+   "sample": [
+    {
+     "EASE_TYPE": "Permanent Easement",
+     "PROGRAM_NAME": "Wetland Reserve Program"
+    },
+    {
+     "EASE_TYPE": "Permanent Easement",
+     "PROGRAM_NAME": "Wetland Reserve Program"
+    },
+    {
+     "EASE_TYPE": "Permanent Easement",
+     "PROGRAM_NAME": "Wetland Reserve Program"
+    }
+   ],
+   "service": "LF_DML/LF_NRCS_EASEMENT_WTM_Ext",
+   "typef": "EASE_TYPE",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_NRCS_EASEMENT_WTM_Ext/MapServer/0"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 648,
+   "fields": [
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "RE_INFO_URL",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "DNR Easement (property)",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Bean Brook Fishery Area",
+     "PROP_NAME": "BEAN BROOK FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/100beanbrook.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Black Earth Creek Fishery Area",
+     "PROP_NAME": "BLACK EARTH CREEK FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/270blackearthcreek.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Buffalo River Fishery Area",
+     "PROP_NAME": "BUFFALO RIVER FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/382buffaloriver.html"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/3"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 648,
+   "fields": [
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "RE_INFO_URL",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "DNR Easement (property)",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Bean Brook Fishery Area",
+     "PROP_NAME": "BEAN BROOK FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/100beanbrook.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Black Earth Creek Fishery Area",
+     "PROP_NAME": "BLACK EARTH CREEK FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/270blackearthcreek.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Buffalo River Fishery Area",
+     "PROP_NAME": "BUFFALO RIVER FISHERY AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/Lands/FisheriesAreas/382buffaloriver.html"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/7"
+  },
+  {
+   "agency": "DNR",
+   "area": "",
+   "count": 392,
+   "fields": [
+    "PROJECT_TYPE",
+    "GRANT_NO",
+    "FORMAL_NAME",
+    "CURRENT_STATUS",
+    "GRANTEE_NAME",
+    "GRANTEE_EMAIL",
+    "EASEMENT_YN"
+   ],
+   "known": false,
+   "layer": "Land and Water Conservation Fund",
+   "sample": [
+    {
+     "CURRENT_STATUS": "CLOSE",
+     "FORMAL_NAME": "Kenosha West Side Park Acq",
+     "GRANTEE_EMAIL": "JWARNOCK@KENOSHA.ORG",
+     "GRANTEE_NAME": "CITY OF KENOSHA",
+     "GRANT_NO": "55-01678",
+     "PROJECT_TYPE": "ACQ"
+    },
+    {
+     "CURRENT_STATUS": "CLOSE",
+     "FORMAL_NAME": "High Cliff St Pk Toilet Dev",
+     "GRANTEE_EMAIL": "Carolyn.Morgen@wisconsin.gov",
+     "GRANTEE_NAME": "WISCONSIN DEPARTMENT OF NATURAL RESOURCES",
+     "GRANT_NO": "55-01249",
+     "PROJECT_TYPE": "DEV"
+    },
+    {
+     "CURRENT_STATUS": "CLOSE",
+     "FORMAL_NAME": "High Cliff State Park Mueller Acq",
+     "GRANTEE_EMAIL": "Carolyn.Morgen@wisconsin.gov",
+     "GRANTEE_NAME": "WISCONSIN DEPARTMENT OF NATURAL RESOURCES",
+     "GRANT_NO": "55-01419",
+     "PROJECT_TYPE": "DEV"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_Federal_Interest_WTM_Int",
+   "typef": "PROJECT_TYPE",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_Federal_Interest_WTM_Int/MapServer/1"
+  },
+  {
+   "agency": "WDNR",
+   "area": "FR_PROP_NAME",
+   "count": 30,
+   "fields": [
+    "FR_PROP_NAME",
+    "LAST_CHANGED_BY",
+    "ORIG_HRZ_COLL_MTHD_CODE",
+    "ORIG_HRZ_COLL_MTHD_TEXT"
+   ],
+   "known": false,
+   "layer": "County Forests",
+   "sample": [
+    {
+     "FR_PROP_NAME": "Adams County Forest",
+     "LAST_CHANGED_BY": "schaezr",
+     "ORIG_HRZ_COLL_MTHD_CODE": "OTH001",
+     "ORIG_HRZ_COLL_MTHD_TEXT": "Dissolved from WisFIRS stands - excluding private and other non-DNR ownership."
+    },
+    {
+     "FR_PROP_NAME": "Ashland County Forest",
+     "LAST_CHANGED_BY": "schaezr",
+     "ORIG_HRZ_COLL_MTHD_CODE": "OTH001",
+     "ORIG_HRZ_COLL_MTHD_TEXT": "Dissolved from WisFIRS stands - excluding private and other non-DNR ownership."
+    },
+    {
+     "FR_PROP_NAME": "Barron County Forest",
+     "LAST_CHANGED_BY": "schaezr",
+     "ORIG_HRZ_COLL_MTHD_CODE": "OTH001",
+     "ORIG_HRZ_COLL_MTHD_TEXT": "Dissolved from WisFIRS stands - excluding private and other non-DNR ownership."
+    }
+   ],
+   "service": "ER_Biotics/ER_Biotics_WGS84_Managed_Lands",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/2"
+  },
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "FR_PROP_NAME",
+   "count": 30,
+   "fields": [
+    "FR_PROP_NAME",
+    "LAST_CHANGED_BY",
+    "ORIG_HRZ_COLL_MTHD_CODE",
+    "ORIG_HRZ_COLL_MTHD_TEXT"
+   ],
+   "known": false,
+   "layer": "County Forests",
+   "sample": [
+    {
+     "FR_PROP_NAME": "ADAMS COUNTY FOREST",
+     "LAST_CHANGED_BY": "jaino",
+     "ORIG_HRZ_COLL_MTHD_CODE": "OTH001",
+     "ORIG_HRZ_COLL_MTHD_TEXT": "Dissolved from WisFIRS stands - excluding private and other non-DNR ownership."
+    },
+    {
+     "FR_PROP_NAME": "ASHLAND COUNTY FOREST",
+     "LAST_CHANGED_BY": "jaino",
+     "ORIG_HRZ_COLL_MTHD_CODE": "OTH001",
+     "ORIG_HRZ_COLL_MTHD_TEXT": "Dissolved from WisFIRS stands - excluding private and other non-DNR ownership."
+    },
+    {
+     "FR_PROP_NAME": "BARRON COUNTY FOREST",
+     "LAST_CHANGED_BY": "jaino",
+     "ORIG_HRZ_COLL_MTHD_CODE": "OTH001",
+     "ORIG_HRZ_COLL_MTHD_TEXT": "Dissolved from WisFIRS stands - excluding private and other non-DNR ownership."
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/0"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 9,
+   "fields": [
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "RE_INFO_URL",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "Leased Land (property)",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Wood County Wildlife Area",
+     "PROP_NAME": "WOOD COUNTY WILDLIFE AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/lands/WildlifeAreas/woodcounty.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Buena Vista Wildlife Area",
+     "PROP_NAME": "BUENA VISTA WILDLIFE AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wisconsin.gov/topic/Lands/WildlifeAreas/buenavista.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Meadow Valley Wildlife Area",
+     "PROP_NAME": "MEADOW VALLEY WILDLIFE AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/lands/WildlifeAreas/meadowvalley.html"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/4"
+  },
+  {
+   "agency": "WI DNR Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 9,
+   "fields": [
+    "EASE_OPEN",
+    "EASE_STATUS",
+    "RE_INFO_URL",
+    "PROP_NAME",
+    "LOCAL_NAME_LABEL",
+    "PUBLIC_ACCESS"
+   ],
+   "known": false,
+   "layer": "Leased Land (property)",
+   "sample": [
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Wood County Wildlife Area",
+     "PROP_NAME": "WOOD COUNTY WILDLIFE AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/lands/WildlifeAreas/woodcounty.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Buena Vista Wildlife Area",
+     "PROP_NAME": "BUENA VISTA WILDLIFE AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wisconsin.gov/topic/Lands/WildlifeAreas/buenavista.html"
+    },
+    {
+     "EASE_OPEN": "Open",
+     "EASE_STATUS": "Open",
+     "LOCAL_NAME_LABEL": "Meadow Valley Wildlife Area",
+     "PROP_NAME": "MEADOW VALLEY WILDLIFE AREA",
+     "PUBLIC_ACCESS": "Open to Hiking, Fishing, Hunting and Trapping",
+     "RE_INFO_URL": "https://dnr.wi.gov/topic/lands/WildlifeAreas/meadowvalley.html"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_MGD_PROP_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_MGD_PROP_WTM_Ext/MapServer/8"
+  },
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "PROP_NAME",
+   "count": 1,
+   "fields": [
+    "PROP_NAME",
+    "OWNER_TYPE",
+    "OWNER_DESC"
+   ],
+   "known": false,
+   "layer": "Conservation Reserve Land",
+   "sample": [
+    {
+     "OWNER_DESC": "Joint Ownership",
+     "OWNER_TYPE": "Local/Tribal/Federal",
+     "PROP_NAME": "Kickapoo Valley Reserve"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "OWNER_TYPE",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/6"
+  },
+  {
+   "agency": "DNR-IT, US Forest Service, National Park Service, US Fish and Wildlife Services,",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "NAME_ORIG",
+    "NAME1",
+    "NAME2"
+   ],
+   "known": false,
+   "layer": "US Forest Service",
+   "sample": [
+    {
+     "NAME1": "Chequamegon-Nicolet National Forest",
+     "NAME2": "CNNF",
+     "NAME_ORIG": "USDA FOREST SERVICE"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_PUBLIC_LAND_WTM_Ext/MapServer/4"
+  },
+  {
+   "agency": "Department of Natural Resources, Bureau of Facilities and Lands",
+   "area": "PROP_NAME",
+   "count": 1,
+   "fields": [
+    "PROP_NAME",
+    "OWNER_TYPE",
+    "OWNER_DESC"
+   ],
+   "known": false,
+   "layer": "Conservation Reserve Land",
+   "sample": [
+    {
+     "OWNER_DESC": "Joint Ownership",
+     "OWNER_TYPE": "Local/Tribal/Federal",
+     "PROP_NAME": "Kickapoo Valley Reserve"
+    }
+   ],
+   "service": "LF_DML/LF_DNR_REC_OPPS_WTM_Ext",
+   "typef": "OWNER_TYPE",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_DNR_REC_OPPS_WTM_Ext/MapServer/4"
+  },
+  {
+   "agency": "Wisconain Department of Natural Resoucres; Bureau of Faciltieis and Lands",
+   "area": "PROP_NAME",
+   "count": 1799,
+   "fields": [
+    "PROP_NAME",
+    "PROGRAM"
+   ],
+   "known": true,
+   "layer": "DNR Managed Land by Property",
+   "sample": [
+    {
+     "PROGRAM": "FM",
+     "PROP_NAME": "Albion Rearing Station"
+    },
+    {
+     "PROGRAM": "FM",
+     "PROP_NAME": "Andrew Krakow Public Access And Fishery Area"
+    },
+    {
+     "PROGRAM": "FM",
+     "PROP_NAME": "Asylum Bay Rough Fish Station"
+    }
+   ],
+   "service": "LF_DML/LF_AGOL_STAGING_WTM_Ext",
+   "typef": "",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/LF_DML/LF_AGOL_STAGING_WTM_Ext/MapServer/0"
+  },
+  {
+   "agency": "Wisconsin Department of Natural Resources - Parks and Recreation Management",
+   "area": "PROP_NAME",
+   "count": 81,
+   "fields": [
+    "PROP_NAME",
+    "PROP_TYPE",
+    "INFO_URL"
+   ],
+   "known": true,
+   "layer": "WSPS Properties",
+   "sample": [
+    {
+     "INFO_URL": "https://dnr.wi.gov/topic/stateforests/nhal/info",
+     "PROP_NAME": "American Legion State Forest",
+     "PROP_TYPE": "SF"
+    },
+    {
+     "INFO_URL": "https://dnr.wi.gov/topic/parks/amnicon/info",
+     "PROP_NAME": "Amnicon Falls State Park",
+     "PROP_TYPE": "SP"
+    },
+    {
+     "INFO_URL": "https://dnr.wi.gov/topic/parks/aztalan/info",
+     "PROP_NAME": "Aztalan State Park",
+     "PROP_TYPE": "SP"
+    }
+   ],
+   "service": "PR_Recreation/PR_WSPS_Property_Info_WTM_Ext",
+   "typef": "PROP_TYPE",
+   "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer/0"
+  }
+ ],
+ "st": "WI"
+}

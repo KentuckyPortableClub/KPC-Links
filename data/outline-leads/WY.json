@@ -1,0 +1,1597 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "PrivateLand",
+   "count": 2152,
+   "fields": [
+    "GNIS_Name",
+    "ReachCode",
+    "WaterID",
+    "ContactInfo",
+    "Reservation",
+    "YellowstoneNP",
+    "PrivateLand",
+    "WaterName",
+    "CommonGameFish",
+    "GameFishPresent",
+    "MaxDepth",
+    "AvgDepth",
+    "WaterID_1",
+    "WaterType",
+    "DateCreated",
+    "Acres",
+    "ReachID",
+    "RegulationsLink",
+    "LiveBaitfishUse"
+   ],
+   "known": false,
+   "layer": "Lakes",
+   "sample": [
+    {
+     "AvgDepth": "Undetermined",
+     "CommonGameFish": "None",
+     "ContactInfo": "Casper Regional Office 1-307-473-3400",
+     "GameFishPresent": "None",
+     "MaxDepth": "Undetermined",
+     "PrivateLand": "Portions of this lake are bordered by private land",
+     "ReachCode": "10180007002859",
+     "WaterID": "CR0N0010NA",
+     "WaterName": "Brooks Lake"
+    },
+    {
+     "AvgDepth": "Undetermined",
+     "CommonGameFish": "None",
+     "ContactInfo": "Casper Regional Office 1-307-473-3400",
+     "GNIS_Name": "Piaya Lake",
+     "GameFishPresent": "None",
+     "MaxDepth": "Undetermined",
+     "PrivateLand": "Portions of this lake are bordered by private land",
+     "ReachCode": "10180006001262",
+     "WaterID": "CR0N0210NA",
+     "WaterName": "Playa Lake"
+    },
+    {
+     "AvgDepth": "Undetermined",
+     "CommonGameFish": "None",
+     "ContactInfo": "Casper Regional Office 1-307-473-3400",
+     "GameFishPresent": "None",
+     "MaxDepth": "Undetermined",
+     "PrivateLand": "Portions of this lake are bordered by private land",
+     "ReachCode": "10090204000558",
+     "WaterID": "CR0P0066NA",
+     "WaterName": "Paul Reservoir  1"
+    }
+   ],
+   "service": "Lakes_FishingGuide_PublicView",
+   "typef": "WaterType",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Lakes_FishingGuide_PublicView/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PrivateLand",
+   "count": 2152,
+   "fields": [
+    "WaterID",
+    "ContactInfo",
+    "Reservation",
+    "YellowstoneNP",
+    "PrivateLand",
+    "CommonGameFish",
+    "GameFishPresent",
+    "MaxDepth",
+    "AvgDepth",
+    "Acres",
+    "RegulationsLink",
+    "LiveBaitfishUse",
+    "DateUpdated",
+    "WaterName"
+   ],
+   "known": false,
+   "layer": "FishingGuideLakes_OnX",
+   "sample": [
+    {
+     "Acres": "8.00",
+     "AvgDepth": "Undetermined",
+     "CommonGameFish": "None",
+     "ContactInfo": "Casper Regional Office 1-307-473-3400",
+     "GameFishPresent": "None",
+     "LiveBaitfishUse": "Live Baitfish Use Prohibited",
+     "MaxDepth": "Undetermined",
+     "PrivateLand": "Portions of this lake are bordered by private land",
+     "RegulationsLink": "<a href=https://wgfd.wyo.gov/current-fishing-regulations><img src=https://wgfd.wyo.gov/sites/default/files/2024-03/regulation_area-05.jpg></a>",
+     "WaterID": "CR0N0010NA"
+    },
+    {
+     "Acres": "160.00",
+     "AvgDepth": "Undetermined",
+     "CommonGameFish": "None",
+     "ContactInfo": "Casper Regional Office 1-307-473-3400",
+     "GameFishPresent": "None",
+     "LiveBaitfishUse": "Live Baitfish Use Prohibited",
+     "MaxDepth": "Undetermined",
+     "PrivateLand": "Portions of this lake are bordered by private land",
+     "RegulationsLink": "<a href=https://wgfd.wyo.gov/current-fishing-regulations><img src=https://wgfd.wyo.gov/sites/default/files/2024-03/regulation_area-05.jpg></a>",
+     "WaterID": "CR0N0210NA"
+    },
+    {
+     "Acres": "7.00",
+     "AvgDepth": "Undetermined",
+     "CommonGameFish": "None",
+     "ContactInfo": "Casper Regional Office 1-307-473-3400",
+     "GameFishPresent": "None",
+     "LiveBaitfishUse": "Live Baitfish Use Prohibited",
+     "MaxDepth": "Undetermined",
+     "PrivateLand": "Portions of this lake are bordered by private land",
+     "RegulationsLink": "<a href=https://wgfd.wyo.gov/current-fishing-regulations><img src=https://wgfd.wyo.gov/sites/default/files/2024-03/regulation_area-03.jpg></a>",
+     "WaterID": "CR0P0066NA"
+    }
+   ],
+   "service": "FishingGuideLakes_OnX",
+   "typef": "LiveBaitfishUse",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/FishingGuideLakes_OnX/FeatureServer/0"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 115,
+   "fields": [
+    "WHMA_Name"
+   ],
+   "known": false,
+   "layer": "WildlifeHabitatManagementAreas",
+   "sample": [
+    {
+     "WHMA_Name": "Kerns"
+    },
+    {
+     "WHMA_Name": "Sunlight Basin"
+    },
+    {
+     "WHMA_Name": "Bud Love"
+    }
+   ],
+   "service": "WildlifeHabitatManagementAreaBoundaries",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeHabitatManagementAreaBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 107,
+   "fields": [
+    "HUNTNAME",
+    "MD_HERDNAM",
+    "WD_HERDNAM",
+    "Region",
+    "SMANAME",
+    "SMANAME2",
+    "SMATYPE",
+    "FILENOTE",
+    "SACODE",
+    "POS_ACC",
+    "DIGSOURCE",
+    "COMMENTS",
+    "FSNAME",
+    "HERDNAME"
+   ],
+   "known": false,
+   "layer": "CWD_Pos_MD_w_parks_071724",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "DIGSOURCE": " ",
+     "FILENOTE": " ",
+     "HUNTNAME": "Beartooth",
+     "MD_HERDNAM": "Clark's Fork",
+     "POS_ACC": " ",
+     "Region": "F",
+     "SACODE": " ",
+     "SMANAME": " ",
+     "SMANAME2": " ",
+     "SMATYPE": " ",
+     "WD_HERDNAM": "Bighorn Basin"
+    },
+    {
+     "COMMENTS": " ",
+     "DIGSOURCE": " ",
+     "FILENOTE": " ",
+     "HUNTNAME": "Northwest Gillette",
+     "MD_HERDNAM": "Powder River",
+     "POS_ACC": " ",
+     "Region": "C",
+     "SACODE": " ",
+     "SMANAME": " ",
+     "SMANAME2": " ",
+     "SMATYPE": " ",
+     "WD_HERDNAM": "Powder River"
+    },
+    {
+     "COMMENTS": " ",
+     "DIGSOURCE": " ",
+     "FILENOTE": " ",
+     "HUNTNAME": "Tongue-Goose",
+     "MD_HERDNAM": "North Bighorn",
+     "POS_ACC": " ",
+     "Region": "Y",
+     "SACODE": " ",
+     "SMANAME": " ",
+     "SMANAME2": " ",
+     "SMATYPE": " ",
+     "WD_HERDNAM": "Powder River"
+    }
+   ],
+   "service": "CWD_Positive_Mule_Deer_Hunt_Areas",
+   "typef": "SMATYPE",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/CWD_Positive_Mule_Deer_Hunt_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 85,
+   "fields": [
+    "HUC_10",
+    "Name"
+   ],
+   "known": false,
+   "layer": "AquaticConservationAreas",
+   "sample": [
+    {
+     "HUC_10": "1404010602",
+     "Name": "Middle Flaming Gorge Reservoir"
+    },
+    {
+     "HUC_10": "1008000104",
+     "Name": "East Fork Wind River"
+    },
+    {
+     "HUC_10": " ",
+     "Name": "Prairie Stream and Riparian Corridors"
+    }
+   ],
+   "service": "Aquatic_Conservation_Areas",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Aquatic_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 73,
+   "fields": [
+    "DRAINAGE",
+    "Type",
+    "Label",
+    "COORD",
+    "RegionalOffice",
+    "Coord_Region",
+    "WaterName",
+    "RiverMiles",
+    "WIF_Name"
+   ],
+   "known": false,
+   "layer": "WalkInFishingBoundaries",
+   "sample": [
+    {
+     "COORD": "Pokallus",
+     "Coord_Region": "Casper",
+     "DRAINAGE": "Powder River",
+     "Label": "Powder River Drainage 2",
+     "RegionalOffice": "Casper",
+     "Type": "Boundary",
+     "WIF_Name": "Powder River 2",
+     "WaterName": "North Fork Buffalo Creek"
+    },
+    {
+     "COORD": "Pokallus",
+     "Coord_Region": "Casper",
+     "DRAINAGE": "Cheyenne River",
+     "Label": "Cheyenne River Drainage 2",
+     "RegionalOffice": "Casper",
+     "Type": "Boundary",
+     "WIF_Name": "Cheyenne River 2",
+     "WaterName": "Geier Reservoir"
+    },
+    {
+     "COORD": "Pokallus",
+     "Coord_Region": "Casper",
+     "DRAINAGE": "Cheyenne River",
+     "Label": "Cheyenne River Drainage 1",
+     "RegionalOffice": "Casper",
+     "Type": "Boundary",
+     "WIF_Name": "Cheyenne River 1",
+     "WaterName": "Stockade Beaver Creek"
+    }
+   ],
+   "service": "WalkInFishingBoundaries",
+   "typef": "Type",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WalkInFishingBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "site_name",
+   "count": 41,
+   "fields": [
+    "COUNTY",
+    "site_name",
+    "Site_Type",
+    "subunit",
+    "legal_sour",
+    "SB_ID",
+    "Facility"
+   ],
+   "known": false,
+   "layer": "SPHS_WebsiteView",
+   "sample": [
+    {
+     "COUNTY": "Fremont",
+     "Facility": "Boysen State Park",
+     "SB_ID": "BOY",
+     "Site_Type": "State Park",
+     "legal_sour": "MA Exhibit A & Deed Areas",
+     "site_name": "Boysen",
+     "subunit": "Reservoir Mngmt MA"
+    },
+    {
+     "COUNTY": "Platte",
+     "Facility": "Guernsey State Park",
+     "SB_ID": "GUER",
+     "Site_Type": "State Park",
+     "legal_sour": "MA Exhibit A & Deed Areas",
+     "site_name": "Guernsey",
+     "subunit": "Reservoir Mngmt MA & Deed Areas"
+    },
+    {
+     "COUNTY": "Albany",
+     "Facility": "Curt Gowdy State Park",
+     "SB_ID": "CG",
+     "Site_Type": "State Park",
+     "legal_sour": " ",
+     "site_name": "Curt Gowdy",
+     "subunit": "North Crow Unit"
+    }
+   ],
+   "service": "StateParks_StateHistoricSites_MnMWebsite",
+   "typef": "Site_Type",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/StateParks_StateHistoricSites_MnMWebsite/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 30,
+   "fields": [
+    "name",
+    "surface",
+    "condition",
+    "Facility"
+   ],
+   "known": false,
+   "layer": "CG_Parkinglots",
+   "sample": [
+    {
+     "Facility": "Curt Gowdy State Park",
+     "condition": " ",
+     "name": "FEDERAL BAY SANITARY",
+     "surface": "GRAVEL"
+    },
+    {
+     "Facility": "Curt Gowdy State Park",
+     "condition": " ",
+     "name": "TWIN BAYS CAMPSITE 128",
+     "surface": "GRAVEL"
+    },
+    {
+     "Facility": "Curt Gowdy State Park",
+     "condition": " ",
+     "name": "SHERMAN HILLS GROUP SHELTER",
+     "surface": "GRAVEL"
+    }
+   ],
+   "service": "CG_DAYUSE_PARKING",
+   "typef": "surface",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/CG_DAYUSE_PARKING/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 30,
+   "fields": [
+    "name",
+    "surface",
+    "condition",
+    "Facility"
+   ],
+   "known": false,
+   "layer": "CG_Parkinglots",
+   "sample": [
+    {
+     "Facility": "Curt Gowdy State Park",
+     "condition": " ",
+     "name": "FEDERAL BAY SANITARY",
+     "surface": "GRAVEL"
+    },
+    {
+     "Facility": "Curt Gowdy State Park",
+     "condition": " ",
+     "name": "TWIN BAYS CAMPSITE 128",
+     "surface": "GRAVEL"
+    },
+    {
+     "Facility": "Curt Gowdy State Park",
+     "condition": " ",
+     "name": "SHERMAN HILLS GROUP SHELTER",
+     "surface": "GRAVEL"
+    }
+   ],
+   "service": "Overview_Map_WFL1",
+   "typef": "surface",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/Overview_Map_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "BIOLOGIST",
+    "District",
+    "Contact_Email",
+    "Contact_Phone",
+    "Title",
+    "Region"
+   ],
+   "known": false,
+   "layer": "WildlifeBiologistDistricts",
+   "sample": [
+    {
+     "BIOLOGIST": "Austin Wieseler",
+     "Contact_Phone": "(307) 271-2164",
+     "District": "Cody",
+     "Region": "Cody Region",
+     "Title": "Wildlife Biologist"
+    },
+    {
+     "BIOLOGIST": "Eric Maichak",
+     "Contact_Phone": "(307) 752-0659",
+     "District": "Sheridan",
+     "Region": "Sheridan Region",
+     "Title": "Wildlife Biologist"
+    },
+    {
+     "BIOLOGIST": "Erika Peckham",
+     "Contact_Phone": "(307) 670-8164",
+     "District": "Gillette",
+     "Region": "Sheridan Region",
+     "Title": "Wildlife Biologist"
+    }
+   ],
+   "service": "WildlifeBiologistDistrictBiologists",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeBiologistDistrictBiologists/FeatureServer/0"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "BIOLOGIST",
+    "District",
+    "Contact_Email",
+    "Contact_Phone"
+   ],
+   "known": false,
+   "layer": "WildlifeBiologistDistricts",
+   "sample": [
+    {
+     "BIOLOGIST": "Tony Mong",
+     "Contact_Email": "Tony.Mong@wyo.gov",
+     "Contact_Phone": "307-527-7322 x819",
+     "District": "Cody"
+    },
+    {
+     "BIOLOGIST": "Eric Maichak",
+     "Contact_Email": "Eric.Maichak@wyo.gov",
+     "Contact_Phone": "307-675-5476\r\n",
+     "District": "Sheridan"
+    },
+    {
+     "BIOLOGIST": "Erika Peckham",
+     "Contact_Email": "Erika.Peckham@wyo.gov\r\n",
+     "Contact_Phone": "307-670-8164\r\n",
+     "District": "Gillette"
+    }
+   ],
+   "service": "WildlifeBiologistDistricts",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeBiologistDistricts/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "BIOLOGIST",
+    "District",
+    "Contact_Em",
+    "Contact_Ph",
+    "GF_Number"
+   ],
+   "known": false,
+   "layer": "WildlifeBiologistDistricts",
+   "sample": [
+    {
+     "BIOLOGIST": "Austin Wieseler",
+     "Contact_Em": "austin.wieseler1@wyo.gov",
+     "Contact_Ph": "307-527-7322 x819",
+     "District": "Cody",
+     "GF_Number": "GF126"
+    },
+    {
+     "BIOLOGIST": "Eric Maichak",
+     "Contact_Em": "Eric.Maichak@wyo.gov",
+     "Contact_Ph": "307-675-5476\r\n",
+     "District": "Sheridan",
+     "GF_Number": "GF132"
+    },
+    {
+     "BIOLOGIST": "Erika Peckham",
+     "Contact_Em": "Erika.Peckham@wyo.gov\r\n",
+     "Contact_Ph": "307-670-8164\r\n",
+     "District": "Gillette",
+     "GF_Number": "GF134"
+    }
+   ],
+   "service": "Biologist_Districts",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Biologist_Districts/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "Key_",
+    "Region",
+    "HUC",
+    "PriorityHUCname",
+    "ProjectComments"
+   ],
+   "known": false,
+   "layer": "FishPassageFocusWatersheds",
+   "sample": [
+    {
+     "HUC": "10080009",
+     "Key_": "CY1",
+     "PriorityHUCname": "Greybull River",
+     "ProjectComments": "YSC habitat, WWDC projects, many projects completed",
+     "Region": "CY"
+    },
+    {
+     "HUC": "10080013",
+     "Key_": "CY2",
+     "PriorityHUCname": "South Fork Shoshone",
+     "ProjectComments": "YSC habitat, potential for WWDC projects on large irrigation diversions",
+     "Region": "CY"
+    },
+    {
+     "HUC": "10090206",
+     "Key_": "SN1",
+     "PriorityHUCname": "Clear Creek",
+     "ProjectComments": "SGCN species, sauger, prairie fish assemblage; BNT fishery above Buffalo",
+     "Region": "SN"
+    }
+   ],
+   "service": "Fish_Passage_Focus_Watersheds",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Fish_Passage_Focus_Watersheds/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 15,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Wilderness Areas USFS",
+   "sample": [
+    {
+     "Name": "Cloud Peak Wilderness"
+    },
+    {
+     "Name": "Encampment River Wilderness"
+    },
+    {
+     "Name": "Fitzpatrick Wilderness"
+    }
+   ],
+   "service": "Wilderness_Areas_USFS",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Wilderness_Areas_USFS/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "site_name",
+   "count": 13,
+   "fields": [
+    "COUNTY",
+    "site_name",
+    "data_sourc",
+    "qc",
+    "subunit",
+    "legal_sour",
+    "SB_ID",
+    "Facility",
+    "Site_Type"
+   ],
+   "known": false,
+   "layer": "WYSPHS_Boundaries",
+   "sample": [
+    {
+     "COUNTY": "Fremont",
+     "Facility": "Boysen State Park",
+     "SB_ID": "BOY",
+     "Site_Type": "State Park",
+     "data_sourc": "File",
+     "legal_sour": "MA Exhibit A & Deed Areas",
+     "qc": "Y",
+     "site_name": "Boysen",
+     "subunit": "Reservoir Mngmt MA"
+    },
+    {
+     "COUNTY": "Platte",
+     "Facility": "Guernsey State Park",
+     "SB_ID": "GUER",
+     "Site_Type": "State Park",
+     "data_sourc": "File",
+     "legal_sour": "MA Exhibit A & Deed Areas",
+     "qc": "Y",
+     "site_name": "Guernsey",
+     "subunit": "Reservoir Mngmt MA & Deed Areas"
+    },
+    {
+     "COUNTY": " ",
+     "Facility": "Curt Gowdy State Park",
+     "SB_ID": "CG",
+     "Site_Type": "State Park",
+     "data_sourc": "SPHS GIS",
+     "legal_sour": " ",
+     "qc": " ",
+     "site_name": "Curt Gowdy",
+     "subunit": "North Crow Unit"
+    }
+   ],
+   "service": "StateParkBoundaries",
+   "typef": "Facility",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/StateParkBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area5A_CollectionOfBaitfish_Part1",
+   "sample": [
+    {
+     "Name": "Area 5A - Collection Of Baitfish - Part 1"
+    },
+    {
+     "Name": "Area 5A - Collection Of Baitfish - Part 1"
+    },
+    {
+     "Name": "Area 5A - Collection Of Baitfish - Part 1"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/63"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "SUPERVISOR",
+    "Region",
+    "Supervisor_Email",
+    "Supervisor_Phone",
+    "Aquatic_Habitat_Biologist"
+   ],
+   "known": false,
+   "layer": "FishAdministrativeRegions",
+   "sample": [
+    {
+     "Aquatic_Habitat_Biologist": "John McCoy",
+     "Region": "Casper",
+     "SUPERVISOR": "Matt Hahn",
+     "Supervisor_Email": "Matt.Hahn@wyo.gov",
+     "Supervisor_Phone": "307-473-3415"
+    },
+    {
+     "Aquatic_Habitat_Biologist": "Laura Burckhardt",
+     "Region": "Cody",
+     "SUPERVISOR": "Sam Hochhalter",
+     "Supervisor_Email": "Sam.Hochhalter@wyo.gov",
+     "Supervisor_Phone": "307-527-7125"
+    },
+    {
+     "Aquatic_Habitat_Biologist": "Vacant (Lara Gertsch)",
+     "Region": "Green River",
+     "SUPERVISOR": "Robb Keith",
+     "Supervisor_Email": "Robert.Keith@wyo.gov",
+     "Supervisor_Phone": "307-875-3225 x8620"
+    }
+   ],
+   "service": "FishAdministrativeRegions",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/FishAdministrativeRegions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "CMPXNAME",
+    "ORGNAME",
+    "IFWS",
+    "LIT",
+    "COMMENTS",
+    "RSL_TYPE",
+    "FWSREGION"
+   ],
+   "known": false,
+   "layer": "NationalRefuges",
+   "sample": [
+    {
+     "CMPXNAME": " ",
+     "COMMENTS": " ",
+     "FWSREGION": "6",
+     "IFWS": "141",
+     "LIT": "BMF",
+     "ORGNAME": "BAMFORTH NATIONAL WILDLIFE REFUGE",
+     "RSL_TYPE": "NWR"
+    },
+    {
+     "CMPXNAME": " ",
+     "COMMENTS": " ",
+     "FWSREGION": "6",
+     "IFWS": "1213",
+     "LIT": "CKV",
+     "ORGNAME": "COKEVILLE MEADOWS NATIONAL WILDLIFE REFUGE",
+     "RSL_TYPE": "NWR"
+    },
+    {
+     "CMPXNAME": " ",
+     "COMMENTS": " ",
+     "FWSREGION": "6",
+     "IFWS": "140",
+     "LIT": "HTL",
+     "ORGNAME": "HUTTON LAKE NATIONAL WILDLIFE REFUGE",
+     "RSL_TYPE": "NWR"
+    }
+   ],
+   "service": "PublicAccessAndWetlands",
+   "typef": "RSL_TYPE",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/PublicAccessAndWetlands/FeatureServer/2"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "SUPERVISOR",
+    "Region",
+    "Aquatic_Habitat_Biologist",
+    "City",
+    "Biologist_1",
+    "Biologist_2",
+    "AIS_Specialist",
+    "Supervisor_Title",
+    "Biologist_Title",
+    "AIS_Specialist_Title",
+    "Aquatic_Habitat_Title",
+    "Region_Phone",
+    "AIS_Coordinator_Title",
+    "AIS_Coordinator"
+   ],
+   "known": false,
+   "layer": "FishAdministrativeRegions",
+   "sample": [
+    {
+     "AIS_Specialist": "Eric Hansen",
+     "AIS_Specialist_Title": "AIS Specialist",
+     "Aquatic_Habitat_Biologist": "John McCoy",
+     "Aquatic_Habitat_Title": "Aquatic Habitat Biologist",
+     "Biologist_1": "Nick Hogberg",
+     "Biologist_2": "Jeff Glaid",
+     "Biologist_Title": "Fishery Biologist",
+     "City": "Casper",
+     "Region": "Casper Region",
+     "Region_Phone": "(307) 473-3400",
+     "SUPERVISOR": "Matt Hahn",
+     "Supervisor_Title": "Regional Fisheries Supervisor"
+    },
+    {
+     "AIS_Specialist": "Emily Youse",
+     "AIS_Specialist_Title": "AIS Specialist",
+     "Aquatic_Habitat_Biologist": "Laura Burckhardt",
+     "Aquatic_Habitat_Title": "Aquatic Habitat Biologist",
+     "Biologist_1": "Jason Burckhardt",
+     "Biologist_2": "Joe Skorupski",
+     "Biologist_Title": "Fishery Biologist",
+     "City": "Cody",
+     "Region": "Cody Region",
+     "Region_Phone": "(307) 527-7125",
+     "SUPERVISOR": "Sam Hochhalter",
+     "Supervisor_Title": "Regional Fisheries Supervisor"
+    },
+    {
+     "AIS_Specialist": "Quinn Davis",
+     "AIS_Specialist_Title": "AIS Specialist",
+     "Aquatic_Habitat_Title": "Aquatic Habitat Biologist",
+     "Biologist_1": "Jessica Lockwood",
+     "Biologist_2": "Colton Curtis",
+     "Biologist_Title": "Fishery Biologist",
+     "City": "Green River",
+     "Region": "Green River Region",
+     "Region_Phone": "(307) 875-3223",
+     "SUPERVISOR": "John Walrath",
+     "Supervisor_Title": "Regional Fisheries Supervisor"
+    }
+   ],
+   "service": "FishAdministrativeRegionBiologists",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/FishAdministrativeRegionBiologists/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "AC",
+    "Contact_Ph",
+    "DB2",
+    "IE2",
+    "OM1",
+    "OM2",
+    "Region",
+    "RBio2",
+    "Supervisor",
+    "RWS",
+    "WCord2",
+    "WT",
+    "WT2",
+    "COORDINATO",
+    "WTech"
+   ],
+   "known": false,
+   "layer": "WildlifeAdministrativeRegions",
+   "sample": [
+    {
+     "AC": "John Johnson - GF44",
+     "Contact_Ph": "307-473-3400",
+     "DB2": "NA",
+     "IE2": "Janet Milek",
+     "OM1": "Kelly Lesser",
+     "OM2": "Michelle Parker",
+     "RBio2": "NA",
+     "RWS": "Ken Wolfley - GF177",
+     "Region": "Casper",
+     "Supervisor": "Mark Dexter - GF17",
+     "WCord2": "NA",
+     "WT": "NA"
+    },
+    {
+     "AC": "Spencer Carstens - GF21",
+     "Contact_Ph": "307-527-7125",
+     "DB2": "VACANT",
+     "IE2": "Tara Hodges",
+     "OM1": "Stacey Olson",
+     "OM2": "VACANT",
+     "RBio2": "VACANT",
+     "RWS": "NA",
+     "Region": "Cody",
+     "Supervisor": "Grant Gerharter - GF12",
+     "WCord2": "Kyle Lash - GF19",
+     "WT": "Dylan Scherer GF-42"
+    },
+    {
+     "AC": "Heather Sterling - GF69",
+     "Contact_Ph": "307-875-3223",
+     "DB2": "NA",
+     "IE2": "Regina Dickson",
+     "OM1": "Brooke Frantzen",
+     "OM2": "Jaelyn Knudson",
+     "RBio2": "NA",
+     "RWS": "Angela Clark - GF145",
+     "Region": "Green River",
+     "Supervisor": "James Hobbs - GF14",
+     "WCord2": "NA",
+     "WT": "Jacob Folaron GF-49"
+    }
+   ],
+   "service": "Regional_Wildlife_Personnel_on_Region_Layer",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Regional_Wildlife_Personnel_on_Region_Layer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Region",
+    "Title",
+    "Name",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "WildlifeAdministrativeRegionBiologists",
+   "sample": [
+    {
+     "Name": "Brandon Werner",
+     "Phone": "(307) 262-9203",
+     "Region": "Casper",
+     "Title": "Wildlife Management Coordinator"
+    },
+    {
+     "Name": "Corey Class",
+     "Phone": "(307) 399-9241",
+     "Region": "Cody",
+     "Title": "Wildlife Management Coordinator"
+    },
+    {
+     "Name": "Sean Yancey",
+     "Phone": "(307) 870-8817",
+     "Region": "Green River",
+     "Title": "Wildlife Management Coordinator"
+    }
+   ],
+   "service": "WildlifeAdministrativeRegionBiologists",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeAdministrativeRegionBiologists/FeatureServer/0"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department, State of Wyoming",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Region",
+    "Address",
+    "Contact_Phone",
+    "WebpageLink"
+   ],
+   "known": false,
+   "layer": "WildlifeAdministrativeRegions",
+   "sample": [
+    {
+     "Address": "3030 Energy Lane Casper, WY 82604",
+     "Contact_Phone": "(307) 473-3400",
+     "Region": "Casper",
+     "WebpageLink": "<a href=\"https://wgfd.wyo.gov/regional-information/casper\"><b><i>Casper Region Webpage</b></i></a>"
+    },
+    {
+     "Address": "2 Tilden Trail Cody, WY 82414",
+     "Contact_Phone": "(307) 527-7125",
+     "Region": "Cody",
+     "WebpageLink": "<a href=\"https://wgfd.wyo.gov/regional-information/cody\"><b><i>Cody Region Webpage</b></i></a>"
+    },
+    {
+     "Address": "351 Astle Green River, WY 82935",
+     "Contact_Phone": "(307) 875-3223",
+     "Region": "Green River",
+     "WebpageLink": "<a href=\"https://wgfd.wyo.gov/regional-information/green-river\"><b><i>Green River Region Webpage</b></i></a>"
+    }
+   ],
+   "service": "WildlifeAdministrativeRegionContactInfo",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeAdministrativeRegionContactInfo/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Region",
+    "COORDINATOR",
+    "Contact_Email",
+    "Contact_Phone"
+   ],
+   "known": false,
+   "layer": "WildlifeAdministrativeRegions",
+   "sample": [
+    {
+     "COORDINATOR": "Justin Binfet",
+     "Contact_Email": "Justin.Binfet@wyo.gov",
+     "Contact_Phone": "307-473-3400",
+     "Region": "Casper"
+    },
+    {
+     "COORDINATOR": "Corey Class",
+     "Contact_Email": "Corey.Class@wyo.gov",
+     "Contact_Phone": "307-527-7125",
+     "Region": "Cody"
+    },
+    {
+     "COORDINATOR": "Sean Yancey",
+     "Contact_Email": "Sean.Yancey@wyo.gov",
+     "Contact_Phone": "307-875-3223",
+     "Region": "Green River"
+    }
+   ],
+   "service": "WildlifeAdministrativeRegions",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeAdministrativeRegions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Region",
+    "District",
+    "Name",
+    "Phone",
+    "MailingAddress",
+    "PhysicalAddress",
+    "Name1",
+    "Phone1",
+    "MailingAddress1",
+    "PhysicalAddrss1"
+   ],
+   "known": false,
+   "layer": "WildlifeAdministrativeRegionWardens",
+   "sample": [
+    {
+     "District": "Casper",
+     "MailingAddress": "3030 Energy Lane Casper, WY 82604",
+     "MailingAddress1": "3030 Energy Lane Casper, WY 82604",
+     "Name": "Vacant",
+     "Phone": "(307) 473-3425",
+     "Phone1": "(307) 473-3447",
+     "PhysicalAddress": "Same",
+     "PhysicalAddrss1": "Same",
+     "Region": "Casper"
+    },
+    {
+     "District": "Cody",
+     "MailingAddress": "2820 State Highway 120 Cody, WY 82414",
+     "Name": "Dylan Scherer",
+     "Name1": "Vacant",
+     "Phone": "(307) 527-7125",
+     "PhysicalAddress": "Same",
+     "Region": "Cody"
+    },
+    {
+     "District": "Green River",
+     "MailingAddress": "351 Astle Green River, WY 82935",
+     "MailingAddress1": "351 Astle Green River, WY 82935",
+     "Name": "Jacob Folaron",
+     "Name1": "Vacant",
+     "Phone": "(307) 875-3223",
+     "Phone1": "(307) 875-3223",
+     "PhysicalAddress": "Same",
+     "PhysicalAddrss1": "Same",
+     "Region": "Green River"
+    }
+   ],
+   "service": "WildlifeAdministrativeRegionWardens",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WildlifeAdministrativeRegionWardens/FeatureServer/0"
+  },
+  {
+   "agency": "Wyoming Game and Fish Department",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Region"
+   ],
+   "known": false,
+   "layer": "wrgwd15_Regions_WGS84WebMercator",
+   "sample": [
+    {
+     "Region": "Casper"
+    },
+    {
+     "Region": "Cody"
+    },
+    {
+     "Region": "Green River"
+    }
+   ],
+   "service": "WIldlifeRegions_BB_AGOL2020",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WIldlifeRegions_BB_AGOL2020/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "FEATURE1",
+    "FEATURE2",
+    "FEATURE3",
+    "AGBUR",
+    "URL",
+    "NAME1",
+    "NAME2",
+    "NAME3",
+    "STATE",
+    "STATE_FIPS"
+   ],
+   "known": false,
+   "layer": "WildernessUpdate",
+   "sample": [
+    {
+     "AGBUR": "FS",
+     "FEATURE1": "Wilderness FS",
+     "FEATURE2": "National Forest FS",
+     "FEATURE3": " ",
+     "NAME1": "Teton Wilderness",
+     "NAME2": "Teton National Forest",
+     "NAME3": " ",
+     "STATE": "WY",
+     "STATE_FIPS": "56",
+     "URL": "http://www.fs.fed.us/btnf/"
+    },
+    {
+     "AGBUR": "FS",
+     "FEATURE1": "Wilderness FS",
+     "FEATURE2": "National Forest FS",
+     "FEATURE3": " ",
+     "NAME1": "Jedediah Smith Wilderness",
+     "NAME2": "Targhee National Forest",
+     "NAME3": " ",
+     "STATE": "WY",
+     "STATE_FIPS": "56",
+     "URL": "http://www.fs.fed.us/tnf/"
+    },
+    {
+     "AGBUR": "FS",
+     "FEATURE1": "Wilderness FS",
+     "FEATURE2": "National Forest FS",
+     "FEATURE3": " ",
+     "NAME1": "Gros Ventre Wilderness",
+     "NAME2": "Teton National Forest",
+     "NAME3": " ",
+     "STATE": "WY",
+     "STATE_FIPS": "56",
+     "URL": "http://www.wilderness.net/nwps/wild_view.cfm?wname=Gros%20Ventre"
+    }
+   ],
+   "service": "Wilderness_Update",
+   "typef": "FEATURE1",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/Wilderness_Update/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 4,
+   "fields": [
+    "NAME",
+    "TYPE",
+    "QUAD",
+    "COUNTY"
+   ],
+   "known": false,
+   "layer": "CG_Reservoirs",
+   "sample": [
+    {
+     "COUNTY": " ",
+     "NAME": "Granite Springs Reservoir Crow Creek Causeway",
+     "QUAD": " ",
+     "TYPE": " "
+    },
+    {
+     "COUNTY": " ",
+     "NAME": "Upper North Crow Reservoir",
+     "QUAD": " ",
+     "TYPE": " "
+    },
+    {
+     "COUNTY": " ",
+     "NAME": "Granite Springs Reservoir",
+     "QUAD": " ",
+     "TYPE": " "
+    }
+   ],
+   "service": "CG_DAYUSE_PARKING",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/CG_DAYUSE_PARKING/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area4_CollectionForDeadBait",
+   "sample": [
+    {
+     "Name": "Area 4 - Collection For Dead Bait"
+    },
+    {
+     "Name": "Closed"
+    },
+    {
+     "Name": "Closed"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/61"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 3,
+   "fields": [
+    "GIS_LOC_ID",
+    "UNIT_CODE",
+    "GROUP_CODE",
+    "UNIT_NAME",
+    "UNIT_TYPE",
+    "META_MIDF",
+    "LANDS_CODE",
+    "GIS_NOTES",
+    "Name",
+    "Hyperlink"
+   ],
+   "known": false,
+   "layer": "NPS_Boundaries",
+   "sample": [
+    {
+     "GIS_LOC_ID": " ",
+     "GIS_NOTES": "Shifted 0.04 miles",
+     "GROUP_CODE": " ",
+     "Hyperlink": "http://www.nps.gov/grte/",
+     "LANDS_CODE": " ",
+     "META_MIDF": " ",
+     "Name": "Grand Teton National Park",
+     "UNIT_CODE": "GRTE",
+     "UNIT_NAME": "Grand Teton",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "GIS_LOC_ID": " ",
+     "GIS_NOTES": "Shifted 0.04 miles",
+     "GROUP_CODE": " ",
+     "Hyperlink": "http://www.nps.gov/yell/",
+     "LANDS_CODE": " ",
+     "META_MIDF": " ",
+     "Name": "Yellowstone National Park",
+     "UNIT_CODE": "YELL",
+     "UNIT_NAME": "Yellowstone",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "GIS_LOC_ID": " ",
+     "GIS_NOTES": "Lands - http://landsnet.nps.gov/tractsnet/documents/JODR/Metadata/jodr_metadata.xml",
+     "GROUP_CODE": " ",
+     "Hyperlink": "http://www.nps.gov/grte/",
+     "LANDS_CODE": " ",
+     "META_MIDF": " ",
+     "Name": "John D. Rockefeller, Jr. Memorial Parkway",
+     "UNIT_CODE": "JODR",
+     "UNIT_NAME": "John D. Rockefeller, Jr.",
+     "UNIT_TYPE": "Memorial Parkway"
+    }
+   ],
+   "service": "NationalParkBoundaries",
+   "typef": "UNIT_TYPE",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/NationalParkBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "site_name",
+   "count": 2,
+   "fields": [
+    "COUNTY",
+    "site_name",
+    "data_sourc",
+    "qc",
+    "subunit",
+    "legal_sour",
+    "SB_ID",
+    "Facility",
+    "Site_Type"
+   ],
+   "known": false,
+   "layer": "CG_Boundaries",
+   "sample": [
+    {
+     "COUNTY": "Albany",
+     "Facility": "Curt Gowdy State Park",
+     "SB_ID": "CG",
+     "Site_Type": "State Park",
+     "data_sourc": "SPHS GIS",
+     "legal_sour": " ",
+     "qc": " ",
+     "site_name": "Curt Gowdy",
+     "subunit": "North Crow Unit"
+    },
+    {
+     "COUNTY": "Laramie",
+     "Facility": "Curt Gowdy State Park",
+     "SB_ID": "CG",
+     "Site_Type": "State Park",
+     "data_sourc": "SPHS GIS",
+     "legal_sour": " ",
+     "qc": " ",
+     "site_name": "Curt Gowdy",
+     "subunit": "Granite/Crystal Unit"
+    }
+   ],
+   "service": "CG_DAYUSE_PARKING",
+   "typef": "Facility",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/CG_DAYUSE_PARKING/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "CG_Dayuse_Area",
+   "sample": [
+    {
+     "Name": "Causeway Day-Use"
+    }
+   ],
+   "service": "CG_DAYUSE_PARKING",
+   "typef": "",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/CG_DAYUSE_PARKING/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area1_CollectionForDeadBait",
+   "sample": [
+    {
+     "Name": "Area 1 - Collection For DeadBait"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/55"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area2A_CollectionOfBaitfish",
+   "sample": [
+    {
+     "Name": "Area 2A - Collection Of Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/56"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area2A_PossessionOfLiveBaitfish",
+   "sample": [
+    {
+     "Name": "Area 2A - Possession Of Live Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/57"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area3A_CollectionOfBaitfish",
+   "sample": [
+    {
+     "Name": "Area 3A - Collection Of Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/58"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area3A_PossessionOfLiveBaitfish",
+   "sample": [
+    {
+     "Name": "Area 3A - Possession Of Live Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/59"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area3C_CollectionForDeadBait",
+   "sample": [
+    {
+     "Name": "Area 3C - Collection For Dead Bait"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/60"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area5A_PossessionOfLiveBaitfish",
+   "sample": [
+    {
+     "Name": "Area 5A - Possession Of Live Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/62"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area5B_CollectionOfBaitfish",
+   "sample": [
+    {
+     "Name": "Area 5B - Collection Of Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/65"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area5B_PossessionOfLiveBaitfish",
+   "sample": [
+    {
+     "Name": "Area 5B - Possession Of Live Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/66"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Area5C_CollectionAndPossessionOfLiveBaitfish",
+   "sample": [
+    {
+     "Name": "Area 5C - Collection And Possession Of Live Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/67"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "CommerciallyProduced_PossessionOfLiveBaitfish",
+   "sample": [
+    {
+     "Name": "Commercially Produced - Possession of Live Baitfish"
+    }
+   ],
+   "service": "BaitFish2026",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/BaitFish2026/FeatureServer/70"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Dry_Fork_Smiths_Fork_Fish_Passage",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 28500.4296875,
+     "Shape__Length": 680.1109182012896
+    }
+   ],
+   "service": "Dry_Fork_Smiths_Fork_Fish_Passage",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/Dry_Fork_Smiths_Fork_Fish_Passage/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Park_Name",
+   "count": 12,
+   "fields": [
+    "Park_Name",
+    "Hyperlink"
+   ],
+   "known": true,
+   "layer": "WY_State_Parks",
+   "sample": [
+    {
+     "Hyperlink": "http://wyoparks.state.wy.us/Site/SiteInfo.asp?siteID=1",
+     "Park_Name": "Bear River"
+    },
+    {
+     "Hyperlink": "http://wyoparks.state.wy.us/Site/SiteInfo.asp?siteID=5",
+     "Park_Name": "Edness K. Wilkins"
+    },
+    {
+     "Hyperlink": "http://wyoparks.state.wy.us/Site/SiteInfo.asp?siteID=4",
+     "Park_Name": "Curt Gowdy"
+    }
+   ],
+   "service": "WyomingStateParks",
+   "typef": "",
+   "url": "https://services6.arcgis.com/cWzdqIyxbijuhPLw/arcgis/rest/services/WyomingStateParks/FeatureServer/0"
+  }
+ ],
+ "st": "WY"
+}

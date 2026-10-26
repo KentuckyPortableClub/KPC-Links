@@ -1,0 +1,3154 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 182015,
+   "fields": [
+    "System",
+    "Class",
+    "Community",
+    "Type",
+    "ECC_Code",
+    "Descriptio"
+   ],
+   "known": false,
+   "layer": "Ecological Communities",
+   "sample": [
+    {
+     "Class": "Developed Land",
+     "Community": "Urban/Recreational Grasses",
+     "Descriptio": "Urban/Recreational Grasses",
+     "ECC_Code": "1G1",
+     "System": "Upland System",
+     "Type": "NC"
+    },
+    {
+     "Class": "Developed Land",
+     "Community": "Urban/Recreational Grasses",
+     "Descriptio": "Urban/Recreational Grasses",
+     "ECC_Code": "1G1",
+     "System": "Upland System",
+     "Type": "NC"
+    },
+    {
+     "Class": "Developed Land",
+     "Community": "Urban/Recreational Grasses",
+     "Descriptio": "Urban/Recreational Grasses",
+     "ECC_Code": "1G1",
+     "System": "Upland System",
+     "Type": "NC"
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "Class",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/16"
+  },
+  {
+   "agency": "RIGIS-derived databases were used in analysis. Rockwell Richards and Molly Ahern",
+   "area": "",
+   "count": 135809,
+   "fields": [],
+   "known": false,
+   "layer": "ENV_Forest_Mortality_2_cls",
+   "sample": [
+    {
+     "ID_upd": 2,
+     "OBJECTID": 1,
+     "Shape__Area": 107638.67361068726,
+     "Shape__Length": 1312.3333333358169,
+     "TrMrt2ct_p": 1
+    },
+    {
+     "ID_upd": 6,
+     "OBJECTID": 2,
+     "Shape__Area": 107638.67360687256,
+     "Shape__Length": 1312.3333333358169,
+     "TrMrt2ct_p": 1
+    },
+    {
+     "ID_upd": 9,
+     "OBJECTID": 3,
+     "Shape__Area": 107638.67361068726,
+     "Shape__Length": 1312.3333333358169,
+     "TrMrt2ct_p": 1
+    }
+   ],
+   "service": "ENV_Forest_Mortality_2_cls",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Forest_Mortality_2_cls/FeatureServer/3"
+  },
+  {
+   "agency": "RIGIS-derived databases were used in analysis. Rockwell Richards and Molly Ahern",
+   "area": "",
+   "count": 135809,
+   "fields": [],
+   "known": false,
+   "layer": "ENV_forest_mortality_3_cls_spf",
+   "sample": [
+    {
+     "ID_upd": 2,
+     "OBJECTID": 1,
+     "Shape__Area": 107638.67361068726,
+     "Shape__Length": 1312.3333333358169,
+     "TrMrt3ct_p": 1
+    },
+    {
+     "ID_upd": 6,
+     "OBJECTID": 2,
+     "Shape__Area": 107638.67360687256,
+     "Shape__Length": 1312.3333333358169,
+     "TrMrt3ct_p": 1
+    },
+    {
+     "ID_upd": 9,
+     "OBJECTID": 3,
+     "Shape__Area": 107638.67361068726,
+     "Shape__Length": 1312.3333333358169,
+     "TrMrt3ct_p": 1
+    }
+   ],
+   "service": "forest_mortality_3_cls_spf",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/forest_mortality_3_cls_spf/FeatureServer/1"
+  },
+  {
+   "agency": "URI EDC, RIGIS; Bill Buffum, URI Dept. of Natural Resources Science",
+   "area": "",
+   "count": 80389,
+   "fields": [
+    "STATE",
+    "Habitat_Cl",
+    "Grass_Info",
+    "Developed_"
+   ],
+   "known": false,
+   "layer": "BIO_Forest_Habitat_spf",
+   "sample": [
+    {
+     "Developed_": " ",
+     "Grass_Info": " ",
+     "Habitat_Cl": "Agriculture",
+     "STATE": "CT"
+    },
+    {
+     "Developed_": " ",
+     "Grass_Info": " ",
+     "Habitat_Cl": "Agriculture",
+     "STATE": "CT"
+    },
+    {
+     "Developed_": " ",
+     "Grass_Info": " ",
+     "Habitat_Cl": "Agriculture",
+     "STATE": "CT"
+    }
+   ],
+   "service": "Forest_Habitat",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Forest_Habitat/FeatureServer/0"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 19226,
+   "fields": [
+    "RCN_DESC_NEW"
+   ],
+   "known": false,
+   "layer": "TNC Resilient & Connected Network",
+   "sample": [
+    {
+     "RCN_DESC_NEW": "9 Developed"
+    },
+    {
+     "RCN_DESC_NEW": "9 Developed"
+    },
+    {
+     "RCN_DESC_NEW": "9 Developed"
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "RCN_DESC_NEW",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4204,
+   "fields": [],
+   "known": false,
+   "layer": "State and Local Cons. Areas",
+   "sample": [
+    {
+     "FID_Local_cons_areas_Project_sp": -1,
+     "FID_State_cons_areas_Project_sp": 1,
+     "OBJECTID": 1,
+     "Shape__Area": 899.78125,
+     "Shape__Length": 478.44878157842726
+    },
+    {
+     "FID_Local_cons_areas_Project_sp": -1,
+     "FID_State_cons_areas_Project_sp": 2,
+     "OBJECTID": 2,
+     "Shape__Area": 992493.3203125,
+     "Shape__Length": 6594.417926356122
+    },
+    {
+     "FID_Local_cons_areas_Project_sp": -1,
+     "FID_State_cons_areas_Project_sp": 3,
+     "OBJECTID": 3,
+     "Shape__Area": 108.640625,
+     "Shape__Length": 2000.2284547723004
+    }
+   ],
+   "service": "State_and_Local_Conservation_Areas",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/State_and_Local_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Site",
+   "count": 3158,
+   "fields": [
+    "DEM_ID",
+    "P_Year",
+    "Site",
+    "Com_Name",
+    "Fee_Own",
+    "Eas_Own_1",
+    "Eas_Own_2",
+    "PROTYP",
+    "EASTYP",
+    "PURP",
+    "PUBACC",
+    "DATSRC",
+    "InStaCon",
+    "FOwnTyp",
+    "EOwnTyp",
+    "SubDivisionOS"
+   ],
+   "known": false,
+   "layer": "Local Conservation Land",
+   "sample": [
+    {
+     "Com_Name": "87 Wilson Street",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Southside Community Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "ALP",
+     "P_Year": "1990",
+     "Site": "Southside Community Land Trust"
+    },
+    {
+     "Com_Name": "112 Miner Street",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Southside Community Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "ALP",
+     "P_Year": "1990",
+     "Site": "Southside Community Land Trust"
+    },
+    {
+     "Com_Name": "92 Burnett Street",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Southside Community Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "ALP",
+     "P_Year": "2003",
+     "Site": "Southside Community Land Trust"
+    }
+   ],
+   "service": "RIDEM/Conserved_Land_in_RI_v2",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/4"
+  },
+  {
+   "agency": "URI EDC, RIGIS; RI Dept. of Environmental Management",
+   "area": "Site",
+   "count": 3158,
+   "fields": [
+    "DEM_ID",
+    "P_Year",
+    "Site",
+    "Com_Name",
+    "Fee_Own",
+    "Eas_Own_1",
+    "Eas_Own_2",
+    "PROTYP",
+    "EASTYP",
+    "PURP",
+    "PUBACC",
+    "DATSRC",
+    "InStaCon",
+    "FOwnTyp",
+    "EOwnTyp",
+    "SubDivisionOS"
+   ],
+   "known": false,
+   "layer": "ENV_Conservation_Lands_Local_2026_spf",
+   "sample": [
+    {
+     "Com_Name": "87 Wilson Street",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Southside Community Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "ALP",
+     "P_Year": "1990",
+     "Site": "Southside Community Land Trust"
+    },
+    {
+     "Com_Name": "112 Miner Street",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Southside Community Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "ALP",
+     "P_Year": "1990",
+     "Site": "Southside Community Land Trust"
+    },
+    {
+     "Com_Name": "92 Burnett Street",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Southside Community Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "ALP",
+     "P_Year": "2003",
+     "Site": "Southside Community Land Trust"
+    }
+   ],
+   "service": "ENV_Conservation_Lands_Local_spf",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_Local_spf/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Site",
+   "count": 3149,
+   "fields": [
+    "DEM_ID",
+    "P_Year",
+    "Site",
+    "Com_Name",
+    "Fee_Own",
+    "Eas_Own_1",
+    "Eas_Own_2",
+    "PROTYP",
+    "EASTYP",
+    "PURP",
+    "PUBACC",
+    "DATSRC",
+    "InStaCon",
+    "FOwnTyp",
+    "EOwnTyp",
+    "SubDivisio"
+   ],
+   "known": false,
+   "layer": "ENV_Conservation_Lands_Local_spf__4488990662872159577",
+   "sample": [
+    {
+     "Com_Name": "NF",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Bonnet Shores Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "CLU",
+     "P_Year": "1997",
+     "Site": "Bonnet Shores / Laptik"
+    },
+    {
+     "Com_Name": "NF",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Bonnet Shores Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "CLU",
+     "P_Year": "1996",
+     "Site": "Bonnet Shores / Hawley"
+    },
+    {
+     "Com_Name": "NF",
+     "DATSRC": "TGIS",
+     "DEM_ID": "NA",
+     "EASTYP": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "Fee_Own": "Bonnet Shores Land Trust",
+     "PROTYP": "FEE",
+     "PUBACC": "LIM",
+     "PURP": "CLU",
+     "P_Year": "1995",
+     "Site": "Bonnet Shores / Bodwell"
+    }
+   ],
+   "service": "ENV_Conservation_Lands_Local_spf__4488990662872159577",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_Local_spf__4488990662872159577/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SiteName",
+   "count": 1597,
+   "fields": [
+    "UID",
+    "Security",
+    "SiteName",
+    "EsmtHldr",
+    "EHoldTyp",
+    "LandType",
+    "CoHeld",
+    "Purpose",
+    "ConsIntent",
+    "PubAccess",
+    "Duration",
+    "State",
+    "DataAgg",
+    "DataPvdr",
+    "DataSrc",
+    "OrigUID",
+    "BoundCF",
+    "Conflict",
+    "Stacked",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "National Conservation Easement Data (RI)",
+   "sample": [
+    {
+     "CoHeld": "N",
+     "ConsIntent": "2",
+     "Duration": "Permanent",
+     "EHoldTyp": "Local",
+     "EsmtHldr": "Town of Smithfield",
+     "LandType": "Private",
+     "PubAccess": "Unknown",
+     "Purpose": "NA",
+     "Security": "N",
+     "SiteName": "Village in the Woods",
+     "State": "RI",
+     "UID": "11633"
+    },
+    {
+     "CoHeld": "N",
+     "ConsIntent": "4",
+     "Duration": "Permanent",
+     "EHoldTyp": "Federal",
+     "EsmtHldr": "US Federal",
+     "LandType": "Local",
+     "PubAccess": "Unknown",
+     "Purpose": "NA",
+     "Security": "N",
+     "SiteName": "Buckeye Brook",
+     "State": "RI",
+     "UID": "11634"
+    },
+    {
+     "CoHeld": "N",
+     "ConsIntent": "4",
+     "Duration": "Permanent",
+     "EHoldTyp": "Federal",
+     "EsmtHldr": "US Federal",
+     "LandType": "Local",
+     "PubAccess": "Unknown",
+     "Purpose": "NA",
+     "Security": "N",
+     "SiteName": "Lincoln Developments",
+     "State": "RI",
+     "UID": "11635"
+    }
+   ],
+   "service": "RIDEM/Conserved_Land_in_RI_v2",
+   "typef": "LandType",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/5"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 1342,
+   "fields": [],
+   "known": false,
+   "layer": "High Value / High Vulnerability Habitat",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "Shape.STArea()": 10649.183631896973,
+     "Shape.STLength()": 621.2520807812983,
+     "Shape_Leng": 621.25208078
+    },
+    {
+     "OBJECTID": 2,
+     "OBJECTID_1": 2,
+     "Shape.STArea()": 2817.8466806411743,
+     "Shape.STLength()": 228.5320906471691,
+     "Shape_Leng": 228.53209065
+    },
+    {
+     "OBJECTID": 3,
+     "OBJECTID_1": 3,
+     "Shape.STArea()": 62216.49192428589,
+     "Shape.STLength()": 1277.9644530605426,
+     "Shape_Leng": 1277.96445306
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Site",
+   "count": 1176,
+   "fields": [
+    "P_Year",
+    "Site",
+    "Com_Name",
+    "Fee_Own",
+    "Eas_Own_1",
+    "Eas_Own_2",
+    "PROTYP",
+    "EASTYP",
+    "PUBACC",
+    "InStaCon",
+    "FOwnTyp",
+    "EOwnTyp"
+   ],
+   "known": false,
+   "layer": "Other Public Park & Recreation Areas",
+   "sample": [
+    {
+     "Com_Name": "Woodward Road",
+     "EASTYP": "NA",
+     "EOwnTyp": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "FOwnTyp": "MUN",
+     "Fee_Own": "City of Providence",
+     "InStaCon": "N",
+     "PROTYP": "FEE",
+     "PUBACC": "YES",
+     "P_Year": "1948",
+     "Site": "Wanskuck Park"
+    },
+    {
+     "Com_Name": "Tom Larson Rec Complex",
+     "EASTYP": "NA",
+     "EOwnTyp": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "FOwnTyp": "MUN",
+     "Fee_Own": "City of Pawtucket",
+     "InStaCon": "N",
+     "PROTYP": "FEE",
+     "PUBACC": "YES",
+     "P_Year": "1976",
+     "Site": "Ten Mile River"
+    },
+    {
+     "Com_Name": "NF",
+     "EASTYP": "NA",
+     "EOwnTyp": "NA",
+     "Eas_Own_1": "NA",
+     "Eas_Own_2": "NA",
+     "FOwnTyp": "NGO",
+     "Fee_Own": "Audubon Society of Rhode Island",
+     "InStaCon": "N",
+     "PROTYP": "FEE",
+     "PUBACC": "YES",
+     "P_Year": "UNK",
+     "Site": "Caratunk Wildlife Refuge"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/22"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 1062,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Managed",
+    "FedAid",
+    "USFW_GrntID",
+    "SurvURL",
+    "DeedURL",
+    "Year"
+   ],
+   "known": false,
+   "layer": "State Conservation Land",
+   "sample": [
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "No",
+     "DEM_AREA": "Slatersville",
+     "DEM_DIV": "Forest Legacy",
+     "DEM_ID": "6069",
+     "FISHING": "No",
+     "HUNTING": "No",
+     "NAME": "Screech Hole Bog/Wright",
+     "NPS_6f": "N",
+     "Poly_Src": "PSUR",
+     "PrimUse": "Forest Habitat",
+     "Pub_Access": "NO"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Round Top Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5113",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Round Top",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "Yes",
+     "DEM_AREA": "Stillwater Reservoir",
+     "DEM_DIV": "Local Grants / Openspace",
+     "DEM_ID": "1085",
+     "FISHING": "No",
+     "HUNTING": "No",
+     "NAME": "Mowry, Pleasant Avenue",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Conservation",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "RIDEM/Conserved_Land_in_RI_v2",
+   "typef": "ACQ_TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 1032,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Manage",
+    "Year"
+   ],
+   "known": false,
+   "layer": "ENV_Conservation_Lands_State_spf_964060921107075426_(1)",
+   "sample": [
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "Yes",
+     "DEM_AREA": "Ponagansett River",
+     "DEM_DIV": "Local Grants / Openspace",
+     "DEM_ID": "1147",
+     "FISHING": "Yes",
+     "HUNTING": "No",
+     "NAME": "Hopkins",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Conservation",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "Yes",
+     "DEM_AREA": "Arcadia Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "6004",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Maiello",
+     "NPS_6f": "N",
+     "Poly_Src": "PMAP",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "Yes",
+     "DEM_AREA": "Arcadia Management Area",
+     "DEM_DIV": "Forest Environment",
+     "DEM_ID": "6026",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Maiello",
+     "NPS_6f": "N",
+     "Poly_Src": "PMAP",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "ENV_Conservation_Lands_State_spf_964060921107075426_(1)",
+   "typef": "ACQ_TYPE",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf_964060921107075426_(1)/FeatureServer/0"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 868,
+   "fields": [
+    "Quality"
+   ],
+   "known": false,
+   "layer": "Ecological Land Unit",
+   "sample": [
+    {
+     "Quality": "Better"
+    },
+    {
+     "Quality": "Better"
+    },
+    {
+     "Quality": "Better"
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/6"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "",
+   "count": 854,
+   "fields": [],
+   "known": false,
+   "layer": "SAV 2006 to 2021",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 14109.792434692383,
+     "Shape__Length": 566.8200561867045,
+     "Year": 2006
+    },
+    {
+     "OBJECTID": 2,
+     "Shape__Area": 32498.39714050293,
+     "Shape__Length": 1370.6958047878202,
+     "Year": 2006
+    },
+    {
+     "OBJECTID": 3,
+     "Shape__Area": 17061.71132659912,
+     "Shape__Length": 913.5877325522408,
+     "Year": 2006
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/0"
+  },
+  {
+   "agency": "RIHPC; RIGIS",
+   "area": "",
+   "count": 728,
+   "fields": [
+    "SITENAME1",
+    "SITENAME2",
+    "QUADNAME"
+   ],
+   "known": false,
+   "layer": "CULT_Historic_Candidate_Sites_spf",
+   "sample": [
+    {
+     "QUADNAME": "BLAC",
+     "SITENAME1": "ARAM POTHIER MONUMENT, PRECIOUS BLOOD CE",
+     "SITENAME2": " "
+    },
+    {
+     "QUADNAME": "BLAC",
+     "SITENAME1": "MAMMOTH MILL/SAMAC MILL SITE",
+     "SITENAME2": " "
+    },
+    {
+     "QUADNAME": "GEOR",
+     "SITENAME1": "ALDRICH FARM",
+     "SITENAME2": " "
+    }
+   ],
+   "service": "CULT_Historic_Candidate_Sites_spf",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/CULT_Historic_Candidate_Sites_spf/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 535,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Managed",
+    "FedAid",
+    "USFW_GrntID",
+    "SurvURL",
+    "DeedURL",
+    "Year"
+   ],
+   "known": false,
+   "layer": "DEM Managed Recreational Land",
+   "sample": [
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Round Top Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5113",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Round Top",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "Yes",
+     "DEM_AREA": "Blackstone River High Rocks Gorge",
+     "DEM_DIV": "Parks & Recreation",
+     "DEM_ID": "7038",
+     "FISHING": "Yes",
+     "HUNTING": "No",
+     "NAME": "High Rocks Gorge",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Conservation",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Mary Donavan Marsh",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5094",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Mary C Donovan Marsh",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "ACQ_TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/21"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 370,
+   "fields": [
+    "Forest2020"
+   ],
+   "known": false,
+   "layer": "Core Forest Solar Restriction",
+   "sample": [
+    {
+     "Forest2020": "Y"
+    },
+    {
+     "Forest2020": "Y"
+    },
+    {
+     "Forest2020": "Y"
+    }
+   ],
+   "service": "RIDEM/Boundaries_and_Regulatory_Overlays_v2",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Boundaries_and_Regulatory_Overlays_v2/FeatureServer/35"
+  },
+  {
+   "agency": "",
+   "area": "Site",
+   "count": 319,
+   "fields": [
+    "DEM_ID",
+    "P_Year",
+    "Site",
+    "Fee_Own",
+    "Other_6f",
+    "Type",
+    "Title",
+    "Sponsor",
+    "URL",
+    "ConvReq",
+    "ConvCmnt",
+    "ConvType",
+    "UniName",
+    "MapName",
+    "CompStat",
+    "Inspect"
+   ],
+   "known": false,
+   "layer": "Land and Water Conservation Fund",
+   "sample": [
+    {
+     "ConvCmnt": "NA",
+     "ConvReq": "N",
+     "ConvType": "NA",
+     "DEM_ID": "44-00048",
+     "Fee_Own": "State of Rhode Island (RIDEM)",
+     "Other_6f": "4400048",
+     "P_Year": "1974",
+     "Site": "Snake Den",
+     "Sponsor": "DEPT. OF NATURAL RESOURCES",
+     "Title": "SNAKE DEN PARK",
+     "Type": "Acquisition",
+     "URL": "http://www.dem.ri.gov/maps/mapfile/lwcf/44-00048.pdf"
+    },
+    {
+     "ConvCmnt": "NA",
+     "ConvReq": "N",
+     "ConvType": "NA",
+     "DEM_ID": "44-00015",
+     "Fee_Own": "State of Rhode Island (RIDEM)",
+     "Other_6f": "4400069,4400101,4400390",
+     "P_Year": "1974",
+     "Site": "Galilee",
+     "Sponsor": "DEPT. OF NATURAL RESOURCES",
+     "Title": "POINT JUDITH POND",
+     "Type": "Acquisition",
+     "URL": "http://www.dem.ri.gov/maps/mapfile/lwcf/44-00015.pdf"
+    },
+    {
+     "ConvCmnt": "NA",
+     "ConvReq": "N",
+     "ConvType": "NA",
+     "DEM_ID": "44-00121",
+     "Fee_Own": "State of Rhode Island (RIDEM)",
+     "Other_6f": "4400121",
+     "P_Year": "1976",
+     "Site": "Sand Hill Cove",
+     "Sponsor": "DEPT. OF NATURAL RESOURCES",
+     "Title": "SAND HILL COVE SEWER",
+     "Type": "Development",
+     "URL": "http://www.dem.ri.gov/maps/mapfile/lwcf/44-00121.pdf"
+    }
+   ],
+   "service": "RIDEM/Conserved_Land_in_RI_v2",
+   "typef": "Type",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "Site",
+   "count": 319,
+   "fields": [
+    "DEM_ID",
+    "P_Year",
+    "Site",
+    "Fee_Own",
+    "Other_6f",
+    "Type",
+    "Title",
+    "Sponsor",
+    "URL",
+    "ConvReq",
+    "ConvCmnt",
+    "ConvType",
+    "UniName",
+    "MapName",
+    "CompStat",
+    "Inspect"
+   ],
+   "known": false,
+   "layer": "LWCF Federal Aid",
+   "sample": [
+    {
+     "ConvCmnt": "NA",
+     "ConvReq": "N",
+     "ConvType": "NA",
+     "DEM_ID": "44-00048",
+     "Fee_Own": "State of Rhode Island (RIDEM)",
+     "Other_6f": "4400048",
+     "P_Year": "1974",
+     "Site": "Snake Den",
+     "Sponsor": "DEPT. OF NATURAL RESOURCES",
+     "Title": "SNAKE DEN PARK",
+     "Type": "Acquisition",
+     "URL": "http://www.dem.ri.gov/maps/mapfile/lwcf/44-00048.pdf"
+    },
+    {
+     "ConvCmnt": "NA",
+     "ConvReq": "N",
+     "ConvType": "NA",
+     "DEM_ID": "44-00015",
+     "Fee_Own": "State of Rhode Island (RIDEM)",
+     "Other_6f": "4400069,4400101,4400390",
+     "P_Year": "1974",
+     "Site": "Galilee",
+     "Sponsor": "DEPT. OF NATURAL RESOURCES",
+     "Title": "POINT JUDITH POND",
+     "Type": "Acquisition",
+     "URL": "http://www.dem.ri.gov/maps/mapfile/lwcf/44-00015.pdf"
+    },
+    {
+     "ConvCmnt": "NA",
+     "ConvReq": "N",
+     "ConvType": "NA",
+     "DEM_ID": "44-00121",
+     "Fee_Own": "State of Rhode Island (RIDEM)",
+     "Other_6f": "4400121",
+     "P_Year": "1976",
+     "Site": "Sand Hill Cove",
+     "Sponsor": "DEPT. OF NATURAL RESOURCES",
+     "Title": "SAND HILL COVE SEWER",
+     "Type": "Development",
+     "URL": "http://www.dem.ri.gov/maps/mapfile/lwcf/44-00121.pdf"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "Type",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/24"
+  },
+  {
+   "agency": "RI Hist Preservation Commission; RIGIS",
+   "area": "NAME",
+   "count": 307,
+   "fields": [
+    "NAME",
+    "NAME2",
+    "TOWN"
+   ],
+   "known": false,
+   "layer": "CULT_Historic_Districts_spf",
+   "sample": [
+    {
+     "NAME": "BLACKSTONE CANAL",
+     "NAME2": " ",
+     "TOWN": "WOONSOCKET"
+    },
+    {
+     "NAME": "BLACKSTONE CANAL",
+     "NAME2": " ",
+     "TOWN": "NORTH SMITHFIELD"
+    },
+    {
+     "NAME": "NORTH END HIST. DIST.",
+     "NAME2": " ",
+     "TOWN": "WOONSOCKET"
+    }
+   ],
+   "service": "CULT_Historic_Districts",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/CULT_Historic_Districts/FeatureServer/0"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, URI CRC, All Stakeholders",
+   "area": "",
+   "count": 213,
+   "fields": [],
+   "known": false,
+   "layer": "Fishing Pressure",
+   "sample": [
+    {
+     "Id": 1,
+     "OBJECTID": 1,
+     "gridcode": 1
+    },
+    {
+     "Id": 2,
+     "OBJECTID": 2,
+     "gridcode": 1
+    },
+    {
+     "Id": 3,
+     "OBJECTID": 3,
+     "gridcode": 1
+    }
+   ],
+   "service": "AreaOfMutualInterest",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/AreaOfMutualInterest/FeatureServer/1"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 208,
+   "fields": [
+    "Forest2020"
+   ],
+   "known": false,
+   "layer": "Unfragmented Forest Blocks 2025 (500 acres or more)",
+   "sample": [
+    {
+     "Forest2020": "Y"
+    },
+    {
+     "Forest2020": "Y"
+    },
+    {
+     "Forest2020": "Y"
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/7"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 207,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Managed",
+    "FedAid",
+    "USFW_GrntID",
+    "SurvURL",
+    "DeedURL",
+    "Year"
+   ],
+   "known": false,
+   "layer": "State Land - No Hunting",
+   "sample": [
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "Yes",
+     "DEM_AREA": "Blackstone River High Rocks Gorge",
+     "DEM_DIV": "Parks & Recreation",
+     "DEM_ID": "7038",
+     "FISHING": "Yes",
+     "HUNTING": "No",
+     "NAME": "High Rocks Gorge",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Conservation",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Black Farm Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5105",
+     "FISHING": "Yes",
+     "HUNTING": "No",
+     "NAME": "Pianka",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Wilson Reservoir Boat Ramp",
+     "DEM_DIV": "Boat Ramps & Fishing Access",
+     "DEM_ID": "9041",
+     "FISHING": "Yes",
+     "HUNTING": "No",
+     "NAME": "Wilson Reservoir",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Fishing  Access",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "RIDEM/Hunting_Atlas",
+   "typef": "ACQ_TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Hunting_Atlas/MapServer/3"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "Name",
+   "count": 203,
+   "fields": [
+    "Name",
+    "File_Numbe",
+    "GPS_Source",
+    "Purpose",
+    "Restric",
+    "Notes",
+    "Oysters",
+    "Clams",
+    "Scallops",
+    "Kelp",
+    "Winter_Sto",
+    "Bottom_Cul",
+    "Upweller",
+    "Mussels",
+    "Longline",
+    "Water_Body",
+    "DBA",
+    "Past_File_",
+    "Bottom_Gea",
+    "Suspended_"
+   ],
+   "known": false,
+   "layer": "Aquaculture_Lease_Site",
+   "sample": [
+    {
+     "Bottom_Cul": "Yes",
+     "Clams": "Yes",
+     "File_Numbe": "2014-09-016",
+     "GPS_Source": "Withdrawn/Expired",
+     "Kelp": "No",
+     "Name": "Papa",
+     "Notes": " ",
+     "Oysters": "Yes",
+     "Purpose": " ",
+     "Restric": " ",
+     "Scallops": "No",
+     "Winter_Sto": "No"
+    },
+    {
+     "Bottom_Cul": "No",
+     "Clams": "No",
+     "File_Numbe": "2014-10-119",
+     "GPS_Source": "Withdrawn/Expired",
+     "Kelp": "No",
+     "Name": "Roberts",
+     "Notes": " ",
+     "Oysters": "Yes",
+     "Purpose": " ",
+     "Restric": " ",
+     "Scallops": "No",
+     "Winter_Sto": "No"
+    },
+    {
+     "Bottom_Cul": " ",
+     "Clams": " ",
+     "File_Numbe": "2014-11-045",
+     "GPS_Source": "Withdrawn/Expired",
+     "Kelp": " ",
+     "Name": "Johnson",
+     "Notes": " ",
+     "Oysters": " ",
+     "Purpose": " ",
+     "Restric": " ",
+     "Scallops": " ",
+     "Winter_Sto": " "
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 189,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Managed",
+    "FedAid",
+    "USFW_GrntID",
+    "SurvURL",
+    "DeedURL",
+    "Year"
+   ],
+   "known": false,
+   "layer": "USFW Federal Aid",
+   "sample": [
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Round Top Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5113",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Round Top",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Mary Donavan Marsh",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5094",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Mary C Donovan Marsh",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Black Farm Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5105",
+     "FISHING": "Yes",
+     "HUNTING": "No",
+     "NAME": "Pianka",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "ACQ_TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/23"
+  },
+  {
+   "agency": "RIDEM",
+   "area": "Name",
+   "count": 173,
+   "fields": [
+    "Last",
+    "Prior1",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Historic_Fire",
+   "sample": [
+    {
+     "Last": "35",
+     "Prior1": "None"
+    },
+    {
+     "Last": "25",
+     "Prior1": "None"
+    },
+    {
+     "Last": "35",
+     "Prior1": "None"
+    }
+   ],
+   "service": "RIDEM/RI_Historic_Fire_Map",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/RI_Historic_Fire_Map/MapServer/5"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 162,
+   "fields": [
+    "Forest2020"
+   ],
+   "known": false,
+   "layer": "Unfragmented Forest Blocks 2025 (250 to 500 acres)",
+   "sample": [
+    {
+     "Forest2020": "Y"
+    },
+    {
+     "Forest2020": "Y"
+    },
+    {
+     "Forest2020": "Y"
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/17"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 122,
+   "fields": [
+    "DEM_AREA"
+   ],
+   "known": false,
+   "layer": "State Hunting Land (Boundary)",
+   "sample": [
+    {
+     "DEM_AREA": "Adamsville Brook"
+    },
+    {
+     "DEM_AREA": "Adamsville Brook"
+    },
+    {
+     "DEM_AREA": "Arcadia Management Area"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/18"
+  },
+  {
+   "agency": "",
+   "area": "DEM_AREA",
+   "count": 122,
+   "fields": [
+    "DEM_AREA"
+   ],
+   "known": false,
+   "layer": "State Hunting Land",
+   "sample": [
+    {
+     "DEM_AREA": "Adamsville Brook"
+    },
+    {
+     "DEM_AREA": "Adamsville Brook"
+    },
+    {
+     "DEM_AREA": "Arcadia Management Area"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 118,
+   "fields": [
+    "NAME",
+    "SFC",
+    "SFCID",
+    "Assessed",
+    "URL_ShlCL",
+    "URL_SS2018",
+    "GA_Class"
+   ],
+   "known": false,
+   "layer": "Shellfishing Restriction Areas",
+   "sample": [
+    {
+     "Assessed": "Yes",
+     "GA_Class": "Seasonal Closure",
+     "NAME": "Trim Pond Block Island",
+     "SFC": "Block Island Seasonal Closure - Harris Point",
+     "SFCID": "GA13-1",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2025-05/2024spcr.pdf#page=196",
+     "URL_ShlCL": "http://www.dem.ri.gov/maps/mapfile/shellfsh.pdf#page=10"
+    },
+    {
+     "Assessed": "Yes",
+     "GA_Class": "Prohibited",
+     "NAME": "Offshore Block Island Pebbly Beach",
+     "SFC": "Shellfishing Prohibited",
+     "SFCID": "GA14W-3",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2025-05/2024spcr.pdf#page=210",
+     "URL_ShlCL": "http://www.dem.ri.gov/maps/mapfile/shellfsh.pdf#page=7"
+    },
+    {
+     "Assessed": "Yes",
+     "GA_Class": "Seasonal Closure",
+     "NAME": "Great Salt Pond Block Island",
+     "SFC": "Block Island Seasonal Closure - Harris Point",
+     "SFCID": "GA13-1",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2025-05/2024spcr.pdf#page=196",
+     "URL_ShlCL": "http://www.dem.ri.gov/maps/mapfile/shellfsh.pdf#page=10"
+    }
+   ],
+   "service": "RIDEM/Shellfish_Harvest_Restrictions",
+   "typef": "GA_Class",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Shellfish_Harvest_Restrictions/FeatureServer/0"
+  },
+  {
+   "agency": "RI DEM Geographic Information System",
+   "area": "NAME",
+   "count": 118,
+   "fields": [
+    "NAME",
+    "SFC",
+    "SFCID",
+    "Assessed",
+    "URL_ShlCL",
+    "URL_SS2018"
+   ],
+   "known": false,
+   "layer": "ENV_ShellfishRestriction_2024_spf",
+   "sample": [
+    {
+     "Assessed": "Yes",
+     "NAME": "Trim Pond Block Island",
+     "SFC": "Block Island Seasonal Closure - Harris Point",
+     "SFCID": "GA13-1",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2022-08/2021spcr.pdf#page=174",
+     "URL_ShlCL": "http://www.dem.ri.gov/maps/mapfile/shellfsh.pdf#page=10"
+    },
+    {
+     "Assessed": "Yes",
+     "NAME": "Offshore Block Island Pebbly Beach",
+     "SFC": "Shellfishing Prohibited",
+     "SFCID": "GA14W-3",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2022-08/2021spcr.pdf#page=183",
+     "URL_ShlCL": "http://www.dem.ri.gov/maps/mapfile/shellfsh.pdf#page=7"
+    },
+    {
+     "Assessed": "Yes",
+     "NAME": "Great Salt Pond Block Island",
+     "SFC": "Block Island Seasonal Closure - Harris Point",
+     "SFCID": "GA13-1",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2022-08/2021spcr.pdf#page=174",
+     "URL_ShlCL": "http://www.dem.ri.gov/maps/mapfile/shellfsh.pdf#page=10"
+    }
+   ],
+   "service": "ENV_ShellfishRestriction_2024_spf",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_ShellfishRestriction_2024_spf/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 117,
+   "fields": [
+    "NAME",
+    "SFC",
+    "SFCID",
+    "Assessed",
+    "URL_ShlCL",
+    "URL_SS2018",
+    "GA_Class"
+   ],
+   "known": false,
+   "layer": "Shellfishing Restriction Areas (June 2026)",
+   "sample": [
+    {
+     "Assessed": "Yes",
+     "GA_Class": "Seasonal Closure",
+     "NAME": "Trim Pond Block Island",
+     "SFC": "Block Island Seasonal Closure - Harris Point",
+     "SFCID": "GA13-1",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2026-05/2025spcr.pdf#page=196",
+     "URL_ShlCL": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2026-05/shellfish.pdf#page=10"
+    },
+    {
+     "Assessed": "Yes",
+     "GA_Class": "Prohibited",
+     "NAME": "Offshore Block Island Pebbly Beach",
+     "SFC": "Shellfishing Prohibited",
+     "SFCID": "GA14W-3",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2026-05/2025spcr.pdf#page=207",
+     "URL_ShlCL": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2026-05/shellfish.pdf#page=7"
+    },
+    {
+     "Assessed": "Yes",
+     "GA_Class": "Seasonal Closure",
+     "NAME": "Great Salt Pond Block Island",
+     "SFC": "Block Island Seasonal Closure - Harris Point",
+     "SFCID": "GA13-1",
+     "URL_SS2018": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2026-05/2025spcr.pdf#page=195",
+     "URL_ShlCL": "https://dem.ri.gov/sites/g/files/xkgbur861/files/2026-05/shellfish.pdf#page=10"
+    }
+   ],
+   "service": "RIDEM/Shellfish_Harvest_Restrictions_FS",
+   "typef": "GA_Class",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Shellfish_Harvest_Restrictions_FS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 92,
+   "fields": [
+    "NAME",
+    "WBID",
+    "Region",
+    "PDWS",
+    "SizeClass",
+    "Regulation",
+    "URL",
+    "Trout_Stk",
+    "PubAcc",
+    "BoatRamp",
+    "Rstrctn",
+    "Dam",
+    "WBDesc",
+    "Impairments",
+    "TMDLs_For",
+    "WQS_1",
+    "CAT_1",
+    "ColdWarm",
+    "SRPW_1",
+    "SW_Pot"
+   ],
+   "known": false,
+   "layer": "Potential Anadromous Lakes",
+   "sample": [
+    {
+     "BoatRamp": "UNK",
+     "Dam": "N",
+     "NAME": "No Name",
+     "PDWS": "N",
+     "PubAcc": "UNK",
+     "Region": "2",
+     "Regulation": "H2d Ponds < 1/4 Acre in Region 1 or 2",
+     "Rstrctn": "UNK",
+     "SizeClass": "< 1/4 acre",
+     "Trout_Stk": "N",
+     "URL": "https://risos-apa-production-public.s3.amazonaws.com/DEM/REG_11509_20211123141709.pdf#page=130",
+     "WBID": "None"
+    },
+    {
+     "BoatRamp": "UNK",
+     "Dam": "Y",
+     "NAME": "No Name",
+     "PDWS": "N",
+     "PubAcc": "UNK",
+     "Region": "2",
+     "Regulation": "H2c 1/4 to 10 Acres in Regions 1 or 2",
+     "Rstrctn": "UNK",
+     "SizeClass": ">=1/4 acre and <10 acres",
+     "Trout_Stk": "N",
+     "URL": "https://risos-apa-production-public.s3.amazonaws.com/DEM/REG_11509_20211123141709.pdf#page=130",
+     "WBID": "None"
+    },
+    {
+     "BoatRamp": "UNK",
+     "Dam": "N",
+     "NAME": "No Name",
+     "PDWS": "N",
+     "PubAcc": "UNK",
+     "Region": "1",
+     "Regulation": "H2d Ponds < 1/4 Acre in Region 1 or 2",
+     "Rstrctn": "UNK",
+     "SizeClass": "< 1/4 acre",
+     "Trout_Stk": "N",
+     "URL": "https://risos-apa-production-public.s3.amazonaws.com/DEM/REG_11509_20211123141709.pdf#page=130",
+     "WBID": "None"
+    }
+   ],
+   "service": "RIDEM/Essential_Anadromous_Fish_Habitat",
+   "typef": "SizeClass",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Essential_Anadromous_Fish_Habitat/FeatureServer/2"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "",
+   "count": 87,
+   "fields": [
+    "Note"
+   ],
+   "known": false,
+   "layer": "Recreational Shellfish Area",
+   "sample": [
+    {
+     "Note": " "
+    },
+    {
+     "Note": " "
+    },
+    {
+     "Note": " "
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/8"
+  },
+  {
+   "agency": "USDA RIDEM",
+   "area": "",
+   "count": 83,
+   "fields": [
+    "SUBBASIN",
+    "HUC_8",
+    "HUC_12",
+    "HU_12_NAME",
+    "Impaired",
+    "SRPW",
+    "Cold"
+   ],
+   "known": false,
+   "layer": "Contains Cold Water Fishery?",
+   "sample": [
+    {
+     "Cold": "Yes",
+     "HUC_12": "010900030202",
+     "HUC_8": "01090003",
+     "HU_12_NAME": "Clear River",
+     "Impaired": "No",
+     "SRPW": "No",
+     "SUBBASIN": "Blackstone"
+    },
+    {
+     "Cold": "Yes",
+     "HUC_12": "010900030202",
+     "HUC_8": "01090003",
+     "HU_12_NAME": "Clear River",
+     "Impaired": "Yes",
+     "SRPW": "Yes",
+     "SUBBASIN": "Blackstone"
+    },
+    {
+     "Cold": "Yes",
+     "HUC_12": "010900030204",
+     "HUC_8": "01090003",
+     "HU_12_NAME": "Branch River",
+     "Impaired": "Yes",
+     "SRPW": "No",
+     "SUBBASIN": "Blackstone"
+    }
+   ],
+   "service": "RIDEM/Watersheds",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Watersheds/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 82,
+   "fields": [
+    "CLIPPED",
+    "FIELD_VISIT",
+    "NAME",
+    "WBID",
+    "WBDesc",
+    "ColdWarm",
+    "Trout_Stk",
+    "Dam",
+    "Impairments",
+    "URL_1",
+    "Region",
+    "PDWS",
+    "SizeClass",
+    "Regulation",
+    "URL",
+    "PubAcc",
+    "BoatRamp",
+    "Rstrctn",
+    "TMDLs_For",
+    "WQS_1"
+   ],
+   "known": false,
+   "layer": "Anadromous Lakes",
+   "sample": [
+    {
+     "ColdWarm": "Warm",
+     "Dam": "Y",
+     "FIELD_VISIT": "No",
+     "Impairments": "ALUMINUM; PHOSPHORUS, TOTAL; CADMIUM; DISSOLVED OXYGEN; NON-NATIVE AQUATIC PLANTS",
+     "NAME": "Turner Reservoir (North & South)",
+     "PDWS": "N",
+     "Region": "2",
+     "Trout_Stk": "N",
+     "URL_1": "https://mywaterway.epa.gov/waterbody-report/RIDEM/RI0004009L-01B/2022",
+     "WBDesc": "Turner Reservoir South of Newman Avenue Dam.   East Providence",
+     "WBID": "RI0004009L-01B"
+    },
+    {
+     "ColdWarm": "Unassessed",
+     "Dam": "Y",
+     "FIELD_VISIT": "No",
+     "Impairments": "x",
+     "NAME": "No Name",
+     "PDWS": "N",
+     "Region": "1",
+     "Trout_Stk": "N",
+     "URL_1": "None",
+     "WBDesc": "None",
+     "WBID": "None"
+    },
+    {
+     "ColdWarm": "Warm",
+     "Dam": "N",
+     "FIELD_VISIT": "No",
+     "Impairments": "MERCURY IN FISH TISSUE",
+     "NAME": "Worden Pond",
+     "PDWS": "N",
+     "Region": "1",
+     "Trout_Stk": "N",
+     "URL_1": "https://mywaterway.epa.gov/waterbody-report/RIDEM/RI0008039L-07/2022",
+     "WBDesc": "Worden Pond.  South Kingstown",
+     "WBID": "RI0008039L-07"
+    }
+   ],
+   "service": "RIDEM/Essential_Anadromous_Fish_Habitat",
+   "typef": "WBDesc",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Essential_Anadromous_Fish_Habitat/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "Note1",
+    "Note4",
+    "Note6",
+    "URL",
+    "Map_Name",
+    "Media_ID"
+   ],
+   "known": false,
+   "layer": "Hunting - Map Download",
+   "sample": [
+    {
+     "Map_Name": "Eight Rod Farm",
+     "Media_ID": "61661",
+     "Note1": "Management Area",
+     "Note4": " ",
+     "Note6": " ",
+     "URL": "https://dem.ri.gov/media/61661/download"
+    },
+    {
+     "Map_Name": "Simmons Mill",
+     "Media_ID": "61856",
+     "Note1": "Management Area",
+     "Note4": " ",
+     "Note6": " ",
+     "URL": "https://dem.ri.gov/media/61856/download"
+    },
+    {
+     "Map_Name": "Sapowet Marsh",
+     "Media_ID": "61851",
+     "Note1": "Management Area",
+     "Note4": " ",
+     "Note6": " ",
+     "URL": "https://dem.ri.gov/media/61851/download"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/7"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 73,
+   "fields": [],
+   "known": false,
+   "layer": "Important_Coastal_Habitat",
+   "sample": [
+    {
+     "ACRES": 30.14615212,
+     "OBJECTID_1": 1,
+     "Shape.STArea()": 1312661.6782512665,
+     "Shape.STLength()": 4500.117640105936
+    },
+    {
+     "ACRES": 20.36104377,
+     "OBJECTID_1": 2,
+     "Shape.STArea()": 886378.0986127853,
+     "Shape.STLength()": 3416.686974571287
+    },
+    {
+     "ACRES": 220.39829287,
+     "OBJECTID_1": 3,
+     "Shape.STArea()": 9597661.307235718,
+     "Shape.STLength()": 22778.575105487376
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 73,
+   "fields": [
+    "DEM_ID",
+    "NAME",
+    "Poly_Src",
+    "PWSID"
+   ],
+   "known": false,
+   "layer": "Water Supplier Conservation Land",
+   "sample": [
+    {
+     "NAME": "Chase1",
+     "PWSID": "1647515",
+     "Poly_Src": "Sketch"
+    },
+    {
+     "NAME": "Bettencourt",
+     "PWSID": "1647515",
+     "Poly_Src": "Sketch"
+    },
+    {
+     "DEM_ID": "12037",
+     "NAME": "Kinney/Faella",
+     "PWSID": "1858421",
+     "Poly_Src": "Parcel"
+    }
+   ],
+   "service": "RIDEM/Conserved_Land_in_RI_v2",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 73,
+   "fields": [
+    "DEM_ID",
+    "NAME",
+    "Poly_Src",
+    "PWSID"
+   ],
+   "known": false,
+   "layer": "WRB_Conservation_Land",
+   "sample": [
+    {
+     "NAME": "Chase1",
+     "PWSID": "1647515",
+     "Poly_Src": "Sketch"
+    },
+    {
+     "NAME": "Bettencourt",
+     "PWSID": "1647515",
+     "Poly_Src": "Sketch"
+    },
+    {
+     "DEM_ID": "12037",
+     "NAME": "Kinney/Faella",
+     "PWSID": "1858421",
+     "Poly_Src": "Parcel"
+    }
+   ],
+   "service": "RIDEM/RI_DrinkingWater_ServiceAreas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/RI_DrinkingWater_ServiceAreas/FeatureServer/4"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, URI CRC, SeaPlan, URI EDC",
+   "area": "",
+   "count": 73,
+   "fields": [
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "Recreational Fisheries, 2015",
+   "sample": [
+    {
+     "SPECIES": "Tautog|Fluke|Sea Bass|Striped Bass"
+    },
+    {
+     "SPECIES": "Tautog"
+    },
+    {
+     "SPECIES": "Tautog"
+    }
+   ],
+   "service": "Fisheries_2015_Updates",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Fisheries_2015_Updates/FeatureServer/0"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "Site_Name",
+   "count": 72,
+   "fields": [
+    "Month",
+    "Common_Name",
+    "Site_Name",
+    "Sta_ID",
+    "Location"
+   ],
+   "known": false,
+   "layer": "Fixed Monitoring Site",
+   "sample": [
+    {},
+    {},
+    {
+     "Common_Name": "Black Sea Bass",
+     "Month": "August"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/4"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "",
+   "count": 65,
+   "fields": [
+    "Note"
+   ],
+   "known": false,
+   "layer": "Recreational Fin Finfish Area from CRMC Ocean SAMP",
+   "sample": [
+    {
+     "Note": "Recreational Fishing"
+    },
+    {
+     "Note": "Recreational Fishing"
+    },
+    {
+     "Note": "Recreational Fishing"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 61,
+   "fields": [
+    "Name",
+    "Type",
+    "Abrv"
+   ],
+   "known": false,
+   "layer": "Special Hunting Area",
+   "sample": [
+    {
+     "Abrv": "GR1",
+     "Name": "Grills Preserve",
+     "Type": "DEM"
+    },
+    {
+     "Abrv": "BNC",
+     "Name": "Burlingame North Camp",
+     "Type": "DEM"
+    },
+    {
+     "Abrv": "BEA",
+     "Name": "Beavertail",
+     "Type": "DEM"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "Type",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/20"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "Area_Name",
+   "count": 49,
+   "fields": [
+    "Area_Name",
+    "DMF_Reg_Re",
+    "Harvest_Lo",
+    "Public_Har"
+   ],
+   "known": false,
+   "layer": "Shellfish Tag Area",
+   "sample": [
+    {
+     "Area_Name": "East Passage (North of Newport Bridge)",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "6A",
+     "Public_Har": "6A"
+    },
+    {
+     "Area_Name": "Point Judith Pond",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "10PJ",
+     "Public_Har": "10PJ"
+    },
+    {
+     "Area_Name": "Narrow River",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "7-2",
+     "Public_Har": "No Harvest"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 47,
+   "fields": [
+    "TWNCODE"
+   ],
+   "known": false,
+   "layer": "Hunting - Deer Management Zone",
+   "sample": [
+    {
+     "TWNCODE": "BA"
+    },
+    {
+     "TWNCODE": "BI"
+    },
+    {
+     "TWNCODE": "BR"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 45,
+   "fields": [
+    "NAME",
+    "WBID",
+    "Pond",
+    "Trout_Stk",
+    "PubAcc",
+    "BoatRamp",
+    "Rstrctn",
+    "AsmntBasn",
+    "Dam",
+    "WBDesc"
+   ],
+   "known": false,
+   "layer": "Fishing - Trout Stock Lake",
+   "sample": [
+    {
+     "AsmntBasn": "1",
+     "BoatRamp": "Yes",
+     "Dam": "yes",
+     "NAME": "Spring Grove Pond",
+     "Pond": "Y",
+     "PubAcc": "Yes",
+     "Rstrctn": "UNK",
+     "Trout_Stk": "Y",
+     "WBDesc": "Spring Grove Pond.  Glocester",
+     "WBID": "RI0001002L-06"
+    },
+    {
+     "AsmntBasn": "8",
+     "BoatRamp": "No",
+     "Dam": "yes",
+     "NAME": "Wyoming Pond",
+     "Pond": "Y",
+     "PubAcc": "Yes",
+     "Rstrctn": "UNK",
+     "Trout_Stk": "Y",
+     "WBDesc": "Wyoming Pond.  Hopkinton",
+     "WBID": "RI0008040L-11"
+    },
+    {
+     "AsmntBasn": "8",
+     "BoatRamp": "No",
+     "Dam": "yes",
+     "NAME": "Alton Pond",
+     "Pond": "Y",
+     "PubAcc": "Yes",
+     "Rstrctn": "UNK",
+     "Trout_Stk": "Y",
+     "WBDesc": "Alton Pond.  Hopkinton",
+     "WBID": "RI0008040L-01"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "WBDesc",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 44,
+   "fields": [
+    "CLIPPED",
+    "FIELD_VISIT",
+    "NAME",
+    "WBID",
+    "WBDesc",
+    "Impairments",
+    "URL",
+    "TMDLs_For",
+    "WQS_1",
+    "CAT_1",
+    "SRPW_1",
+    "SW_Pot",
+    "SW_Con",
+    "Region",
+    "Regulation",
+    "WetRegURL",
+    "ColdWarm",
+    "SW_Status",
+    "Trout",
+    "FType"
+   ],
+   "known": false,
+   "layer": "Anadromous Estuary",
+   "sample": [
+    {
+     "CAT_1": "5",
+     "FIELD_VISIT": "No",
+     "Impairments": "FECAL COLIFORM; DISSOLVED OXYGEN",
+     "NAME": "Tidal Pawcatuck River",
+     "SRPW_1": "x",
+     "SW_Pot": "YES",
+     "TMDLs_For": "FECAL COLIFORM",
+     "URL": "https://mywaterway.epa.gov/waterbody-report/RIDEM/RI0008038E-01A/2022/",
+     "WBDesc": "Tidal Pawcatuck River from Route 1 highway bridge to Pawcatuck Rock.  Westerly",
+     "WBID": "RI0008038E-01A",
+     "WQS_1": "SB1"
+    },
+    {
+     "CAT_1": "2",
+     "FIELD_VISIT": "No",
+     "Impairments": "x",
+     "NAME": "Quicksand Pond",
+     "SRPW_1": "Ecological Habitat, Critical Habitat (Rare and Endangered Species), Unique Freshwater Wetland",
+     "SW_Pot": "NO",
+     "TMDLs_For": "x",
+     "URL": "https://mywaterway.epa.gov/waterbody-report/RIDEM/RI0010048E-02/2022/",
+     "WBDesc": "Quicksand Pond.  Little Compton",
+     "WBID": "RI0010048E-02",
+     "WQS_1": "SA"
+    },
+    {
+     "CAT_1": "4A",
+     "FIELD_VISIT": "No",
+     "Impairments": "FECAL COLIFORM",
+     "NAME": "Tidal Pawcatuck River",
+     "SRPW_1": "x",
+     "SW_Pot": "YES",
+     "TMDLs_For": "FECAL COLIFORM",
+     "URL": "https://mywaterway.epa.gov/waterbody-report/RIDEM/RI0008038E-01B/2022/",
+     "WBDesc": "Tidal Pawcatuck River from Pawcatuck Rock to a line from Rhodes Point, RI to Pawcatuck Point, CT.   Westerly",
+     "WBID": "RI0008038E-01B",
+     "WQS_1": "SB"
+    }
+   ],
+   "service": "RIDEM/Essential_Anadromous_Fish_Habitat",
+   "typef": "WBDesc",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Essential_Anadromous_Fish_Habitat/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "Area_Name",
+   "count": 43,
+   "fields": [
+    "Area_Name",
+    "DMF_Reg_Re",
+    "Harvest_Lo",
+    "Public_Har"
+   ],
+   "known": false,
+   "layer": "Shellfish Tag Area",
+   "sample": [
+    {
+     "Area_Name": "East Passage (North of Newport Bridge)",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "6A",
+     "Public_Har": "6A"
+    },
+    {
+     "Area_Name": "Point Judith Pond",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "10PJ",
+     "Public_Har": "10PJ"
+    },
+    {
+     "Area_Name": "Ninigret Pond",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "11N",
+     "Public_Har": "11N"
+    }
+   ],
+   "service": "RIDEM/Shellfish_Harvest_Restrictions_FS",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Shellfish_Harvest_Restrictions_FS/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Area_Name",
+   "count": 43,
+   "fields": [
+    "Area_Name",
+    "DMF_Reg_Re",
+    "Harvest_Lo",
+    "Public_Har"
+   ],
+   "known": false,
+   "layer": "Shellfish Tag Area",
+   "sample": [
+    {
+     "Area_Name": "East Passage (North of Newport Bridge)",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "6A",
+     "Public_Har": "6A"
+    },
+    {
+     "Area_Name": "Point Judith Pond",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "10PJ",
+     "Public_Har": "10PJ"
+    },
+    {
+     "Area_Name": "Ninigret Pond",
+     "DMF_Reg_Re": " ",
+     "Harvest_Lo": "11N",
+     "Public_Har": "11N"
+    }
+   ],
+   "service": "RIDEM/Shellfish_Harvest_Restrictions",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Shellfish_Harvest_Restrictions/FeatureServer/5"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "Name",
+   "count": 35,
+   "fields": [
+    "Name",
+    "SMA_Sub",
+    "Regulation"
+   ],
+   "known": false,
+   "layer": "Shellfish Management Area",
+   "sample": [
+    {
+     "Name": "E. Bissel Cove/Fox Island Shellfish Management Area",
+     "Regulation": "Shellfish (250-RICR-90-00-4)",
+     "SMA_Sub": "Management area"
+    },
+    {
+     "Name": "G. Bristol Harbor Shellfish Management Area",
+     "Regulation": "Shellfish (250-RICR-90-00-4)",
+     "SMA_Sub": "Management area"
+    },
+    {
+     "Name": "B. Conimicut Point Shellfish Management Area",
+     "Regulation": "Shellfish (250-RICR-90-00-4)",
+     "SMA_Sub": "Management area"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/10"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, RI EDC, All Stakeholders",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "All_Year",
+    "Winter",
+    "Spring",
+    "Summer",
+    "Fall",
+    "Season_Det"
+   ],
+   "known": false,
+   "layer": "Recreational Fishing",
+   "sample": [
+    {
+     "All_Year": " ",
+     "Fall": "Yes",
+     "Season_Det": "Summer,Fall",
+     "Spring": " ",
+     "Summer": "Yes",
+     "Winter": " "
+    },
+    {
+     "All_Year": " ",
+     "Fall": "Yes",
+     "Season_Det": "Summer,Fall",
+     "Spring": " ",
+     "Summer": "Yes",
+     "Winter": " "
+    },
+    {
+     "All_Year": " ",
+     "Fall": "Yes",
+     "Season_Det": "Summer,Fall",
+     "Spring": " ",
+     "Summer": "Yes",
+     "Winter": " "
+    }
+   ],
+   "service": "Fisheries",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Fisheries/FeatureServer/4"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, URI CRC, SeaPlan, URI EDC",
+   "area": "NAME",
+   "count": 19,
+   "fields": [
+    "NAME",
+    "NOTES"
+   ],
+   "known": false,
+   "layer": "Spear Fishing, 2015",
+   "sample": [
+    {
+     "NOTES": "North side only."
+    },
+    {},
+    {}
+   ],
+   "service": "Fisheries_2015_Updates",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Fisheries_2015_Updates/FeatureServer/1"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, RI EDC, All Stakeholders",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "All_Year",
+    "Winter",
+    "Spring",
+    "Summer",
+    "Fall",
+    "Gear",
+    "Season_det"
+   ],
+   "known": false,
+   "layer": "Fixed Gear Fishing",
+   "sample": [
+    {
+     "All_Year": " ",
+     "Fall": "Yes",
+     "Gear": " ",
+     "Season_det": "Spring until October 15th",
+     "Spring": "Yes",
+     "Summer": "Yes",
+     "Winter": " "
+    },
+    {
+     "All_Year": "Yes",
+     "Fall": "Yes",
+     "Gear": " No bottom",
+     "Season_det": "Year round",
+     "Spring": "Yes",
+     "Summer": "Yes",
+     "Winter": "Yes"
+    },
+    {
+     "All_Year": " ",
+     "Fall": " ",
+     "Gear": " ",
+     "Season_det": "Spring, Summer",
+     "Spring": "Yes",
+     "Summer": "Yes",
+     "Winter": " "
+    }
+   ],
+   "service": "Fisheries",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Fisheries/FeatureServer/1"
+  },
+  {
+   "agency": "RIDEM",
+   "area": "",
+   "count": 17,
+   "fields": [
+    "Last",
+    "Prior1"
+   ],
+   "known": false,
+   "layer": "Earlier_Fire",
+   "sample": [
+    {
+     "Last": "55",
+     "Prior1": "35"
+    },
+    {
+     "Last": "55",
+     "Prior1": "45"
+    },
+    {
+     "Last": "55",
+     "Prior1": "35"
+    }
+   ],
+   "service": "RIDEM/RI_Historic_Fire_Map",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/RI_Historic_Fire_Map/MapServer/2"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, RI EDC, All Stakeholders",
+   "area": "",
+   "count": 17,
+   "fields": [
+    "All_Year",
+    "Winter",
+    "Spring",
+    "Summer",
+    "Fall",
+    "Gear",
+    "Season_Det"
+   ],
+   "known": false,
+   "layer": "Mobile Gear Fishing",
+   "sample": [
+    {
+     "All_Year": "Yes",
+     "Fall": "Yes",
+     "Gear": " ",
+     "Season_Det": "All year",
+     "Spring": "Yes",
+     "Summer": "Yes",
+     "Winter": "Yes"
+    },
+    {
+     "All_Year": " ",
+     "Fall": " ",
+     "Gear": " ",
+     "Season_Det": "Winter, Spring",
+     "Spring": "Yes",
+     "Summer": " ",
+     "Winter": "Yes"
+    },
+    {
+     "All_Year": " ",
+     "Fall": "Yes",
+     "Gear": " ",
+     "Season_Det": "Fall",
+     "Spring": " ",
+     "Summer": " ",
+     "Winter": " "
+    }
+   ],
+   "service": "Fisheries",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Fisheries/FeatureServer/2"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, RI EDC, All Stakeholders",
+   "area": "",
+   "count": 14,
+   "fields": [],
+   "known": false,
+   "layer": "Party/Charter Boat Fishing",
+   "sample": [
+    {
+     "OBJECTID": 4
+    },
+    {
+     "OBJECTID": 5
+    },
+    {
+     "OBJECTID": 8
+    }
+   ],
+   "service": "Fisheries",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/Fisheries/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 12,
+   "fields": [
+    "Name",
+    "Closed",
+    "Restriction"
+   ],
+   "known": false,
+   "layer": "Hunting - Restricted Waterfowl Area",
+   "sample": [
+    {
+     "Closed": "Y",
+     "Name": "Seekonk River",
+     "Restriction": "Closed"
+    },
+    {
+     "Closed": "Y",
+     "Name": "Mill Creek",
+     "Restriction": "Closed"
+    },
+    {
+     "Closed": "Y",
+     "Name": "Brushneck Cove",
+     "Restriction": "Closed"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "ALPHA"
+   ],
+   "known": false,
+   "layer": "Blackstone River Valley National Historic Park",
+   "sample": [
+    {
+     "ALPHA": "BLRV"
+    },
+    {
+     "ALPHA": "BLRV"
+    },
+    {
+     "ALPHA": "BLRV"
+    }
+   ],
+   "service": "RIDEM/Conserved_Land_in_RI_v2",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/8"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "Com_Name",
+    "JURIS",
+    "TYPE",
+    "Oyster_Har",
+    "Descriptio",
+    "Com_QUAHOG",
+    "Com_STEAME",
+    "Com_OYSTER",
+    "Com_Other",
+    "RecR_QUAHO",
+    "RecR_STEAM",
+    "RecR_OYSTE",
+    "RecR_Other",
+    "RecN_QUAHO",
+    "RecN_STEAM",
+    "RecN_OYSTE",
+    "RecN_Other",
+    "Display"
+   ],
+   "known": false,
+   "layer": "Shellfish Spawner Sanctuary",
+   "sample": [
+    {
+     "Com_Name": "Ninigret Pond Spawner Sanctuary",
+     "Com_OYSTER": " ",
+     "Com_Other": "Closed area",
+     "Com_QUAHOG": "Prohibited",
+     "Com_STEAME": "Prohibited",
+     "Descriptio": "Harvest Prohibited",
+     "JURIS": "DEM",
+     "Oyster_Har": "Prohibited",
+     "RecR_OYSTE": "Prohibited",
+     "RecR_QUAHO": "Prohibited",
+     "RecR_STEAM": "Prohibited",
+     "TYPE": "Sanctuary within SMA"
+    },
+    {
+     "Com_Name": "Quonochontaug West Spawner Sanctuary",
+     "Com_OYSTER": " ",
+     "Com_Other": "Closed area",
+     "Com_QUAHOG": "Prohibited",
+     "Com_STEAME": "Prohibited",
+     "Descriptio": "Harvest Prohibited",
+     "JURIS": "DEM",
+     "Oyster_Har": "Prohibited",
+     "RecR_OYSTE": "Prohibited",
+     "RecR_QUAHO": "Prohibited",
+     "RecR_STEAM": "Prohibited",
+     "TYPE": "Sanctuary within SMA"
+    },
+    {
+     "Com_Name": "Winnapaug Spawner Sanctuary",
+     "Com_OYSTER": " ",
+     "Com_Other": "Closed area",
+     "Com_QUAHOG": "Prohibited",
+     "Com_STEAME": "Prohibited",
+     "Descriptio": "Harvest Prohibited",
+     "JURIS": "DEM",
+     "Oyster_Har": "Prohibited",
+     "RecR_OYSTE": "Prohibited",
+     "RecR_QUAHO": "Prohibited",
+     "RecR_STEAM": "Prohibited",
+     "TYPE": "Sanctuary within SMA"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/11"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "BioSecurity Zone",
+   "sample": [
+    {
+     "Name": "Pt. Judith and Potter Pond"
+    },
+    {
+     "Name": "Quonochontaug Pond"
+    },
+    {
+     "Name": "Winnapaug Pond"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/6"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, URI CRC, All Stakeholders",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "Bird_Watch",
+    "Shark_Divi",
+    "Whale_Watc",
+    "Activity",
+    "When_"
+   ],
+   "known": false,
+   "layer": "Bird Watching",
+   "sample": [
+    {
+     "Activity": "Bird watching and shark diving",
+     "Bird_Watch": "Yes",
+     "Shark_Divi": "Yes",
+     "Whale_Watc": "No"
+    },
+    {
+     "Activity": "Bird and whale watching",
+     "Bird_Watch": "Yes",
+     "Shark_Divi": "No",
+     "Whale_Watc": "Yes"
+    },
+    {
+     "Activity": "Bird and whale watching and shark diving",
+     "Bird_Watch": "Yes",
+     "Shark_Divi": "Yes",
+     "Whale_Watc": "Yes"
+    }
+   ],
+   "service": "RecreationTourism",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/RecreationTourism/FeatureServer/0"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "Comment",
+    "Parc_Name",
+    "Res_Name",
+    "Comp_Name",
+    "Parc_Type"
+   ],
+   "known": false,
+   "layer": "NBNERR Reserve Waters",
+   "sample": [
+    {
+     "Comment": "Owner isNBNERR",
+     "Comp_Name": " ",
+     "Parc_Name": "North Prudence",
+     "Parc_Type": " ",
+     "Res_Name": "NAR"
+    },
+    {
+     "Comment": "Owner isNBNERR",
+     "Comp_Name": " ",
+     "Parc_Name": "Hope Island",
+     "Parc_Type": " ",
+     "Res_Name": "NAR"
+    },
+    {
+     "Comment": "Owner isNBNERR",
+     "Comp_Name": " ",
+     "Parc_Name": "Dyer Island",
+     "Parc_Type": " ",
+     "Res_Name": "NAR"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "Parc_Type",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/13"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, URI CRC, All Stakeholders",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "Bird_Watch",
+    "Shark_Divi",
+    "Whale_Watc",
+    "Activity"
+   ],
+   "known": false,
+   "layer": "Whale Watching",
+   "sample": [
+    {
+     "Activity": "Bird and whale watching",
+     "Bird_Watch": "Yes",
+     "Shark_Divi": "No",
+     "Whale_Watc": "Yes"
+    },
+    {
+     "Activity": "Bird and whale watching and shark diving",
+     "Bird_Watch": "Yes",
+     "Shark_Divi": "Yes",
+     "Whale_Watc": "Yes"
+    },
+    {
+     "Activity": "Whale watching",
+     "Bird_Watch": "No",
+     "Shark_Divi": "No",
+     "Whale_Watc": "Yes"
+    }
+   ],
+   "service": "RecreationTourism",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/RecreationTourism/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Status"
+   ],
+   "known": false,
+   "layer": "Hunting - Late Season Goose",
+   "sample": [
+    {
+     "Status": "Closed"
+    },
+    {
+     "Status": "Open"
+    },
+    {
+     "Status": "Closed"
+    }
+   ],
+   "service": "RIDEM/Outdoor_Recreation_Map_v4",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Outdoor_Recreation_Map_v4/FeatureServer/10"
+  },
+  {
+   "agency": "RI Division of Fish & Widlife /  Marine Fisheries / Julia Livermore",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Name",
+    "Site",
+    "Type"
+   ],
+   "known": false,
+   "layer": "Oyster Research",
+   "sample": [
+    {
+     "Name": "ORA_W",
+     "Site": "DEM MF Oyster Research Reserve - 1",
+     "Type": "Research Area"
+    },
+    {
+     "Name": "ORA_N",
+     "Site": "DEM MF Oyster Research Reserve - 2",
+     "Type": "Reserch Area"
+    }
+   ],
+   "service": "RIDEM/Marine_Fisheries_Map_Layers",
+   "typef": "Type",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Marine_Fisheries_Map_Layers/FeatureServer/5"
+  },
+  {
+   "agency": "RhodeMap; RIGIS; RIDEM",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Corridor",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "SHAPE.STArea()": 2645377639.601183,
+     "SHAPE.STLength()": 4733200.819279022
+    }
+   ],
+   "service": "RIDEM/Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conservation_Opportunity_Areas/MapServer/4"
+  },
+  {
+   "agency": "RIDEM",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Last",
+    "Prior1",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Big River 2023",
+   "sample": [
+    {
+     "Last": "2023",
+     "Name": "Big River",
+     "Prior1": "None"
+    }
+   ],
+   "service": "RIDEM/RI_Historic_Fire_Map",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/RI_Historic_Fire_Map/MapServer/3"
+  },
+  {
+   "agency": "RIDEM",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Last",
+    "Prior1",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Queen River 2023",
+   "sample": [
+    {
+     "Last": "2023",
+     "Name": "Queen River"
+    }
+   ],
+   "service": "RIDEM/RI_Historic_Fire_Map",
+   "typef": "",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/RI_Historic_Fire_Map/MapServer/4"
+  },
+  {
+   "agency": "RI OceanSAMP, RI CRMC, URI CRC, All Stakeholders",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Shark Cage Diving",
+   "sample": [
+    {}
+   ],
+   "service": "RecreationTourism",
+   "typef": "",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/RecreationTourism/FeatureServer/2"
+  },
+  {
+   "agency": "RIDEM",
+   "area": "DEM_AREA",
+   "count": 1062,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Managed",
+    "USFW_GrntID",
+    "SurvURL",
+    "DeedURL",
+    "Year"
+   ],
+   "known": true,
+   "layer": "State Conservation Land",
+   "sample": [
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "No",
+     "DEM_AREA": "Slatersville",
+     "DEM_DIV": "Forest Legacy",
+     "DEM_ID": "6069",
+     "FISHING": "No",
+     "HUNTING": "No",
+     "NAME": "Screech Hole Bog/Wright",
+     "NPS_6f": "N",
+     "Poly_Src": "PSUR",
+     "PrimUse": "Forest Habitat",
+     "Pub_Access": "NO"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Round Top Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5113",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Round Top",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "Yes",
+     "DEM_AREA": "Stillwater Reservoir",
+     "DEM_DIV": "Local Grants / Openspace",
+     "DEM_ID": "1085",
+     "FISHING": "No",
+     "HUNTING": "No",
+     "NAME": "Mowry, Pleasant Avenue",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Conservation",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "RIDEM/State_Conservation_Land",
+   "typef": "ACQ_TYPE",
+   "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/State_Conservation_Land/MapServer/0"
+  },
+  {
+   "agency": "URI EDC, RIGIS; RI Dept. of Environmental Management",
+   "area": "DEM_AREA",
+   "count": 1057,
+   "fields": [
+    "DEM_ID",
+    "DEM_DIV",
+    "DEM_AREA",
+    "NAME",
+    "ACQ_TYPE",
+    "HUNTING",
+    "FISHING",
+    "Pub_Access",
+    "Poly_Src",
+    "BondFund",
+    "NPS_6f",
+    "PrimUse",
+    "ManArea",
+    "DEM_Managed",
+    "FedAid",
+    "USFW_GrntID",
+    "SurvURL",
+    "DeedURL",
+    "Year"
+   ],
+   "known": true,
+   "layer": "ENV_Conservation_Lands_State_2026_spf",
+   "sample": [
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "No",
+     "DEM_AREA": "Slatersville",
+     "DEM_DIV": "Forest Legacy",
+     "DEM_ID": "6069",
+     "FISHING": "No",
+     "HUNTING": "No",
+     "NAME": "Screech Hole Bog/Wright",
+     "NPS_6f": "N",
+     "Poly_Src": "PSUR",
+     "PrimUse": "Forest Habitat",
+     "Pub_Access": "NO"
+    },
+    {
+     "ACQ_TYPE": "Fee Title",
+     "BondFund": "No",
+     "DEM_AREA": "Round Top Management Area",
+     "DEM_DIV": "Fish & Wildlife",
+     "DEM_ID": "5113",
+     "FISHING": "Yes",
+     "HUNTING": "Yes",
+     "NAME": "Round Top",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Management Area",
+     "Pub_Access": "YES"
+    },
+    {
+     "ACQ_TYPE": "Conservation Easement",
+     "BondFund": "Yes",
+     "DEM_AREA": "Stillwater Reservoir",
+     "DEM_DIV": "Local Grants / Openspace",
+     "DEM_ID": "1085",
+     "FISHING": "No",
+     "HUNTING": "No",
+     "NAME": "Mowry, Pleasant Avenue",
+     "NPS_6f": "N",
+     "Poly_Src": "TGIS",
+     "PrimUse": "Conservation",
+     "Pub_Access": "YES"
+    }
+   ],
+   "service": "ENV_Conservation_Lands_State_spf",
+   "typef": "ACQ_TYPE",
+   "url": "https://services2.arcgis.com/S8zZg9pg23JUEexQ/ArcGIS/rest/services/ENV_Conservation_Lands_State_spf/FeatureServer/0"
+  }
+ ],
+ "st": "RI"
+}
