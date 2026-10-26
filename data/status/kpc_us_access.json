@@ -1,0 +1,19 @@
+{
+"about": "When each park-data file last CHANGED (the files themselves carry no time stamps, so unchanged runs save nothing). Written by .github/scripts/kpc_save.py.",
+"changed": {
+"data/access/US-CA.json": "2026-10-26",
+"data/access/US-PA.json": "2026-10-26",
+"data/access/US-RI.json": "2026-10-26",
+"data/access/US-SC.json": "2026-10-26",
+"data/access/US-TN.json": "2026-10-26",
+"data/access/US-TX.json": "2026-10-26",
+"data/access/US-UT.json": "2026-10-26",
+"data/access/US-VA.json": "2026-10-26",
+"data/access/US-VT.json": "2026-10-26",
+"data/access/US-WA.json": "2026-10-26",
+"data/access/US-WI.json": "2026-10-26",
+"data/access/US-WV.json": "2026-10-26",
+"data/access/US-WY.json": "2026-10-26",
+"data/access/index.json": "2026-10-26"
+}
+}
