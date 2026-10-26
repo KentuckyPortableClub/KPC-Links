@@ -1,5 +1,5 @@
 {
- "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note.",
+ "about": "Trail and river lines picked by hand: the exact official layer + filter for one POTA park (outside research bot, round 6, Oct 25 2026; checked by chat 2). kpc_state_trails.py draws these first, whatever the name. NOT SURE rows keep their note. Oct 26 (round 11, HQ): + 16 National Historic Trails from NPS National Trails (one layer per trail, so the whole layer is the trail; 5 have no name field: Oregon, California, Pony Express, Mormon Pioneer, El Camino Real de los Tejas). Ala Kahakai is a corridor polygon: in the US key instead.",
  "parks": {
   "CA-5536": {
    "name": "Nassagaweya Canyon Trail Recreation Site",
@@ -405,6 +405,166 @@
      "url": "https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiverSegments_01/MapServer/1",
      "where": "segment_id='73.1002'",
      "by": "BLM Prineville District"
+    }
+   ]
+  },
+  "US-4579": {
+   "name": "Santa Fe National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/SAFE_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-3791": {
+   "name": "Trail of Tears National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/TRTE_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4569": {
+   "name": "El Camino Real de Tierra Adentro National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELCA_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4575": {
+   "name": "Old Spanish National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OLSP_CAS_Line_201801/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-9757": {
+   "name": "Butterfield Overland National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/BUOV_Congressionally_Designated_Alignment/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4571": {
+   "name": "Juan Bautista de Anza National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JUBA_HistoricTrail_ln/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4572": {
+   "name": "Lewis and Clark National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Lewis_and_Clark_National_Historic_Trail_Congressionally_Designated_Route/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4580": {
+   "name": "Selma to Montgomery National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Selma_to_Montgomery_National_Historic_Trail_Official/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4581": {
+   "name": "Star-Spangled Banner National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Sta_Spangled_Banner_National_Historic_Trail_Official_Centerline/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4577": {
+   "name": "Overmountain Victory National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Overmountain_Victory_National_Historic_Trail_Official_Temp/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail) (provisional: NPS marks it Temp)"
+    }
+   ]
+  },
+  "US-4570": {
+   "name": "Iditarod National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Iditarod_National_Historic_Trail_BLM_Official_Temp/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail) (provisional: BLM data, marked Temp)"
+    }
+   ]
+  },
+  "US-4576": {
+   "name": "Oregon National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/OREG_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4566": {
+   "name": "California National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/CALI_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4578": {
+   "name": "Pony Express National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/POEX_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4573": {
+   "name": "Mormon Pioneer National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/MOPI_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
+    }
+   ]
+  },
+  "US-4568": {
+   "name": "El Camino Real de los Tejas National Historic Trail",
+   "parts": [
+    {
+     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ELTE_NHT/FeatureServer/0",
+     "where": "1=1",
+     "by": "National Park Service National Trails (one layer = this trail)"
     }
    ]
   }

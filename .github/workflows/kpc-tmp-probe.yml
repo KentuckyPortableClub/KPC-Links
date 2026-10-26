@@ -6,26 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - continue-on-error: true
-        run: |
-          python3 - <<'PY' || true
-          import json,urllib.request,urllib.parse
-          def g(u,p):
-              return json.loads(urllib.request.urlopen(urllib.request.Request(u+'?'+urllib.parse.urlencode(p),headers={'User-Agent':'KPC probe'}),timeout=90).read())
-          U='https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query'
-          out=[];off=0
-          while True:
-              j=g(U,{'where':'1=1','outFields':'OBJECTID,FET_NAME,FET_SUBTYPE,FET_TYPE,ADMIN_ST,GIS_ACRES','returnGeometry':'true','outSR':4326,'returnCentroid':'false','maxAllowableOffset':0.05,'geometryPrecision':3,'resultOffset':off,'resultRecordCount':2000,'f':'json'})
-              fs=j.get('features',[])
-              for f in fs:
-                  rs=(f.get('geometry') or {}).get('rings') or []
-                  pts=[p for r in rs for p in r]
-                  a=f['attributes']; a['c']=[round(sum(p[0] for p in pts)/len(pts),3),round(sum(p[1] for p in pts)/len(pts),3)] if pts else None
-                  out.append(a)
-              if not fs or not j.get('exceededTransferLimit'): break
-              off+=len(fs)
-          json.dump(out,open('blm.json','w'))
-          print('::notice title=blm::%d'%len(out))
-          PY
-      - continue-on-error: true
         env: {GH_TOKEN: '${{ github.token }}'}
-        run: gh release upload boundary-cache blm.json -R "$GITHUB_REPOSITORY" --clobber || true
+        run: gh release delete-asset boundary-cache blm.json -R "$GITHUB_REPOSITORY" -y || true
