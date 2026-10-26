@@ -10,7 +10,9 @@ What it does to each page:
      page's own link. The 3 beta-room pages keep their Hunters Lounge link pointing at kpc-beta-room.html.
   2. FOOTER: 'ABOUT OUR INFORMATION' (kpc-about-info.html) before PRIVACY in the footer link row.
 Pages without the standard header/footer (contact-card.html, kpc-maprep.html, finder.html footer) are listed for a hand check.
-Map Rep is never in the menu (Brandon Oct 26 4:40 PM: it lives only in the Club Room)."""
+Map Rep is never in the menu (Brandon Oct 26 4:40 PM: it lives only in the Club Room).
+Brandon Oct 26 6:35 PM: top-bar Photos keeps its Google Photos link (the header is copied from news.html, untouched); Videos is in Club;
+Weather (Activators Lounge) and Radio Conditions (both Lounges) are not in See More."""
 import glob, re, sys
 
 APPLY = '--apply' in sys.argv
@@ -21,8 +23,6 @@ MENU = [
         ('&#127890;', 'Activators Lounge', 'kpc-activators-lounge.html'),
         ('&#127919;', 'Hunters Lounge', 'kpc-hunters.html'),
         ('&#127957;', 'Campgrounds &amp; Cabins', 'kpc-campgrounds.html'),
-        ('&#127783;', 'Weather', 'kpc-weather.html'),
-        ('&#128246;', 'Radio Conditions', 'kpc-space-weather.html'),
     ]),
     ('Learning', [
         ('&#128251;', 'Antenna &amp; Power Room', 'antennas.html'),
@@ -30,11 +30,11 @@ MENU = [
         ('&#127891;', 'Learning Room', 'kpc-learning.html'),
         ('&#129490;', 'Kids Room', 'kpc-kids.html'),
         ('&#128218;', 'Library', 'resources.html'),
-        ('&#127909;', 'Videos', 'videos.html'),
     ]),
     ('Club', [
         ('&#128240;', 'News', 'news.html'),
         ('&#129309;', 'Community', 'kpc-community.html'),
+        ('&#127909;', 'Videos', 'videos.html'),
         ('&#9997;&#65039;', 'Guestbook', 'kpc-guestbook.html'),
         ('&#127969;', 'Club Room (members)', 'kpc-club.html'),
         ('&#128075;', 'About KPC', 'about.html'),
