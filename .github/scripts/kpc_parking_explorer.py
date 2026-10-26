@@ -62,6 +62,26 @@ PROV = [('AB', 'AB-|Alberta'), ('BC', 'BC '), ('MB', 'Manitoba'), ('NB', 'NB-|Ne
         ('ON', 'ON-|Ontario'), ('PE', 'PE-'), ('QC', 'Québec'), ('SK', 'SK-|Saskatchewan'), ('YT', 'Yukon'), ('PC', 'Parks Canada')]
 
 
+REC = re.compile(r'park|rec|tour|wild|fish|hunt|trail|outdoor|boat|conserv|land|crown|protect|forest|nature|camp|access|amenit|facilit', re.I)
+DEEP_GROUPS = {'canada-deep-west': ['CA-BC', 'CA-AB', 'CA-SK', 'CA-MB', 'CA-YT', 'CA-NU', 'CA-PC'],
+               'canada-deep-east': ['CA-ON', 'CA-QC', 'CA-NB', 'CA-NS', 'CA-PE']}
+
+
+def folders(base, depth=2):
+    """Oct 25 (Brandon: 'set one of the bots up' for the deeper Canada look): every folder on a server, likely ones first."""
+    out, todo = [''], ['']
+    for _ in range(depth):
+        nxt = []
+        for f in todo:
+            try: j = get(base + ('/' + f if f else ''), {'f': 'json'})
+            except Exception: continue  # noqa: E722
+            for g in j.get('folders', []) or []:
+                g = g if not f or g.startswith(f + '/') else f + '/' + g
+                if g not in out: out.append(g); nxt.append(g)
+        todo = nxt
+    return sorted(out, key=lambda f: (f != '', not REC.search(f), f))
+
+
 def canada_targets():
     """Oct 25 (Brandon: 'hit the easy Canada parks'): the provincial / Parks Canada map servers the Canada key already reads."""
     try: L = json.load(open('data/ca-key/layers.json'))
@@ -90,7 +110,8 @@ def main():
     us = sorted(s for s in sg if not s.startswith('CA-')); ca = sorted(s for s in sg if s.startswith('CA-'))
     part = (os.environ.get('PART') or '').strip().lower()
     n3 = (len(us) + 2) // 3
-    pick = {'us-a': us[:n3], 'us-b': us[n3:2 * n3], 'us-c': us[2 * n3:], 'canada': ca}.get(part, us + ca)
+    pick = {'us-a': us[:n3], 'us-b': us[n3:2 * n3], 'us-c': us[2 * n3:], 'canada': ca, **DEEP_GROUPS}.get(part, us + ca)
+    deep = part.startswith('canada-deep')
     sg = {k: v for k, v in sg.items() if k in pick}
     rest = sorted((s for s in sg if s not in FIRST), key=lambda s: (checked.get(s, ''), s))   # never checked / oldest first
     sts = [s for s in FIRST if s in sg and not checked.get(s)] + rest + [s for s in FIRST if s in sg and checked.get(s)]
@@ -103,11 +124,18 @@ def main():
         got = []
         pairs = {roots(e.get('url', '')) for e in sg[st] if e.get('url')}
         first = [(r, '') for r in ROOTS.get(st, [])]
-        for base, folder in first + sorted(p for p in pairs if p[0] and p not in first):
+        todo = first + sorted(p for p in pairs if p[0] and p not in first)
+        if deep:   # the WHOLE server of each of this province's map addresses, not just the one folder
+            bases = list(dict.fromkeys(b for b, _ in todo))
+            todo = [(b, f) for b in bases for f in folders(b)]
+            todo.sort(key=lambda p: (not REC.search(p[1]), p))
+        for base, folder in todo:
             key = (base, folder)
             if key in seen_svc: continue
             seen_svc.add(key)
-            try: svcs = services(base, folder)[:200]
+            try:
+                svcs = services(base, folder)
+                svcs = sorted(svcs, key=lambda x: not REC.search(x[0]))[:200 if not deep else 400]
             except Exception as e:  # noqa: BLE001
                 log.append(f'{st}: {base}/{folder} not listed ({str(e)[:60]})'); continue
             for name, typ in svcs:
@@ -135,6 +163,11 @@ def main():
                                 'fields': flds[:20], 'sample': [{k: v for k, v in (x.get('attributes') or {}).items() if v not in (None, '')} for x in smp],
                                 'known': lu.rstrip('/').lower() in known, 'agency': (info.get('copyrightText') or '')[:80]})
                 time.sleep(.2)
+        if deep:   # keep what the shallow look found before
+            try: old = json.load(open(D / f'{st}.json')).get('leads', [])
+            except Exception: old = []  # noqa: E722
+            have = {x['url'] for x in got}
+            got += [x for x in old if x['url'] not in have]
         leads[st] = sorted(got, key=lambda x: (x['known'], -x['count']))
         save_json(D / f'{st}.json', {'st': st, 'checked': today, 'leads': leads[st]}, indent=1)
         log.append(f"{st}: {len(got)} point layers ({sum(1 for x in got if not x['known'])} new)")
