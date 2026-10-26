@@ -56,6 +56,11 @@ def public_list():
     return set(re.findall(r"'([\w.-]+\.html)'", m.group(1))) if m else set()
 
 
+STAY_LOCKED = {'kpc-spot-me.html', 'kpc-logger.html', 'kpc-hunt.html', 'kpc-hunt-cat.html', 'kpc-hunt-need.html', 'kpc-top50.html',
+               'kpc-maprep.html', 'kpc-club.html', 'kpc-recap.html', 'kpc-multi-park-spots.html', 'kpc-ky-pva.html', 'members.html'}
+MAPREP_HOME = {'kpc-club.html', 'members.html'}      # the Club Room (members.html merges into it at the release)
+
+
 def guard():
     problems, notes = [], []
     pub = public_list()
@@ -83,6 +88,18 @@ def guard():
             if not noindex and not re.search(r'HOLD\.html$', p):
                 problems.append({'key': f'guard:privindex:{p}', 'chat': 1,
                                  'msg': f'{p}: members-only page with no noindex, so Google may list it (add <meta name="robots" content="noindex,nofollow">)'})
+    # release rules (HQ FINAL RELEASE RUN SHEET, Oct 26): these stay members-only; Map Rep only in the Club Room;
+    # the Beta Test Room is public but never linked.
+    for p in sorted(pub & STAY_LOCKED):
+        problems.append({'key': f'guard:mustlock:{p}', 'chat': 1, 'msg': f'{p}: must stay MEMBERS-ONLY (release run sheet) but is on the PUBLIC list'})
+    texts = {p: pathlib.Path(p).read_text(encoding='utf-8', errors='replace') for p in pages}
+    for f in ('kpc-search.js',):
+        if pathlib.Path(f).is_file(): texts[f] = pathlib.Path(f).read_text(encoding='utf-8', errors='replace')
+    for p, t in sorted(texts.items()):
+        if re.search(r'kpc-maprep[\w-]*\.html', t) and p not in MAPREP_HOME and not p.startswith('kpc-maprep'):
+            problems.append({'key': f'guard:maprep:{p}', 'chat': 1, 'msg': f'{p}: links the Map Rep Tool Box, which may only be in the Club Room'})
+        if re.search(r'kpc-beta-[\w-]*\.html', t) and not p.startswith('kpc-beta-'):
+            problems.append({'key': f'guard:beta:{p}', 'chat': 1, 'msg': f'{p}: links the Beta Test Room, which stays unlinked (no menu, search, Tool Box, Find It)'})
     for p in sorted(pub):
         if not pathlib.Path(p).is_file():
             problems.append({'key': f'guard:pubmissing:{p}', 'chat': 1, 'msg': f'{p}: on the PUBLIC list but the page does not exist'})

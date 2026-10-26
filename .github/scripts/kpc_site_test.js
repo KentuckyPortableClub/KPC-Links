@@ -17,6 +17,9 @@ const OUTF = process.argv[3] || 'checkup-out/site.json';
 const gate = fs.readFileSync('kpc-gate.js', 'utf8');
 const PUBLIC = (gate.match(/var PUBLIC = \[([\s\S]*?)\];/) || ['', ''])[1].match(/'[\w.-]+\.html'/g).map(s => s.slice(1, -1));
 const SWAP = Object.keys(JSON.parse(((gate.match(/var SWAP = (\{[^}]*\})/) || ['', '{}'])[1]).replace(/'/g, '"')));
+const MH = (gate.match(/var MH = '([0-9a-f]{64})'/) || ['', ''])[1];      // the member key (a hash; the password itself is never here)
+const MEMBER = process.env.MEMBER_PASS === '1';                         // release night: also every page as a signed-in member
+const ORIGIN = new URL(BASE).origin;
 const LOCKED_SAMPLE = ['parks.html', 'toolbox.html', 'find.html', 'kpc-kit.html'].filter(f => fs.existsSync(f));
 
 function chatOf(page) {
@@ -36,7 +39,7 @@ function chatOf(page) {
       const ctx = await browser.newContext({ viewport, deviceScaleFactor: 1, isMobile: label === 'phone', hasTouch: label === 'phone' });
       await ctx.addInitScript(() => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); });
       // outside services are not part of this test: block them so a slow API can't hold the run (the page must cope)
-      await ctx.route(/^https?:\/\/(?!127\.0\.0\.1|localhost)/, r => r.abort());
+      await ctx.route(u => new URL(u).origin !== ORIGIN, r => r.abort());
       for (const page of PUBLIC) {
         if (!fs.existsSync(page)) continue;
         const pg = await ctx.newPage();
@@ -92,6 +95,34 @@ function chatOf(page) {
         }
         ok.push(`members door checked on ${LOCKED_SAMPLE.join(', ')}`);
       }
+      await ctx.close();
+    }
+    if (MEMBER && MH) {
+      // every page as a signed-in member at phone width: JavaScript errors and sideways scroll (the new menu is on all of them)
+      const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
+      await ctx.addInitScript(([k]) => { Object.defineProperty(navigator, 'webdriver', { get: () => false }); try { localStorage.setItem('kpcMember', k); } catch (e) {} }, [MH]);
+      await ctx.route(u => new URL(u).origin !== ORIGIN, r => r.abort());
+      const all = fs.readdirSync('.').filter(f => /\.html$/.test(f)).sort();
+      let n = 0;
+      for (const page of all) {
+        const pg = await ctx.newPage();
+        const errs = [];
+        pg.on('pageerror', e => errs.push(String(e.message || e).slice(0, 160)));
+        try {
+          await pg.goto(BASE + page, { waitUntil: 'load', timeout: 45000 });
+          await pg.waitForTimeout(1500);
+          const r = await pg.evaluate(() => ({ wide: Math.max(document.documentElement.scrollWidth, document.body ? document.body.scrollWidth : 0) - window.innerWidth, door: !!document.getElementById('kpcDoor') }));
+          const c = chatOf(page);
+          if (errs.length) problems.push({ key: `site:member:jserr:${page}`, chat: c, msg: `${page} (member, phone): JavaScript error: ${[...new Set(errs)].slice(0, 2).join(' | ')}` });
+          if (r.wide > 2) problems.push({ key: `site:member:wide:${page}`, chat: c, msg: `${page} (member, phone): page is ${r.wide}px wider than the screen` });
+          if (r.door && page !== '404.html' && !/^kpc-beta-/.test(page)) problems.push({ key: `site:member:door:${page}`, chat: 1, msg: `${page}: a signed-in member still gets the members door` });
+          n++;
+        } catch (e) {
+          problems.push({ key: `site:member:load:${page}`, chat: chatOf(page), msg: `${page} (member): did not load (${String(e.message || e).slice(0, 100)})` });
+        }
+        await pg.close();
+      }
+      ok.push(`${n} pages opened as a signed-in member at phone width`);
       await ctx.close();
     }
   } catch (e) {
