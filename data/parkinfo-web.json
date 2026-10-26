@@ -1,6 +1,731 @@
 {
- "about": "Official pages for US parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later.",
+ "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3).",
  "parks": {
+  "CA-0653": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-0655": {
+   "agency": "Alberta Parks",
+   "map": "https://www.albertaparks.ca/media/123323/long-lake-tear-sheet.pdf",
+   "web": "https://www.albertaparks.ca/media/123323/long-lake-tear-sheet.pdf"
+  },
+  "CA-0671": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-0672": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/media/123338/saskatoon-island-tear-sheet.pdf",
+   "web": "https://www.abpp-pl.castatic.reserveamerica.com/camping/saskatoon-island-provincial-park/r/campgroundDetails.do?contractCode=ABPP&parkId=330142"
+  },
+  "CA-0677": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-0678": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-0680": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-0681": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-0686": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-0687": {
+   "agency": "Alberta Parks",
+   "map": "https://www.albertaparks.ca/media/6492882/switzer-park-brochure.pdf",
+   "web": "https://www.albertaparks.ca/media/6492882/switzer-park-brochure.pdf"
+  },
+  "CA-0688": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-0689": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1112": {
+   "agency": "Jean Louis Legare Regional Park Authority (listed by Saskatchewan Regional Parks)",
+   "map": "https://saskregionalparks.ca/park/jean-louis-legare/",
+   "web": "https://saskregionalparks.ca/park/jean-louis-legare/"
+  },
+  "CA-1163": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/parks/central/aspen-beach-pp/",
+   "web": "https://www.albertaparks.ca/parks/central/aspen-beach-pp/"
+  },
+  "CA-1164": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1166": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-1167": {
+   "agency": "Alberta Parks",
+   "map": "https://www.albertaparks.ca/media/6495982/canmore-nordic-centre-tear-sheet.pdf",
+   "web": "https://www.albertaparks.ca/media/6495982/canmore-nordic-centre-tear-sheet.pdf"
+  },
+  "CA-1169": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-1170": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1171": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/media/6494242/cold-lake-district-map-of-parks-in-cold-lake-district.pdf",
+   "web": "https://cms.albertaparks.ca/parks/north/cold-lake-pp/information-facilities/"
+  },
+  "CA-1175": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-1176": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1179": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1181": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/media/767923/kinbrook-island-tear-sheet.pdf",
+   "web": "https://www.albertaparks.ca/parks/south/kinbrook-island-pp/"
+  },
+  "CA-1182": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/parks/north/lesser-slave-lake-pp/information-facilities/",
+   "web": "https://www.albertaparks.ca/parks/north/lesser-slave-lake-pp/information-facilities/"
+  },
+  "CA-1183": {
+   "agency": "Alberta Parks",
+   "map": "https://www.albertaparks.ca/media/3301738/little-bow-tear-sheet.pdf",
+   "web": "https://www.albertaparks.ca/media/3301738/little-bow-tear-sheet.pdf"
+  },
+  "CA-1185": {
+   "agency": "Alberta Parks, Government of Alberta (park) / City of St. Albert (local access information)",
+   "map": "https://www.albertaparks.ca/media/6494205/lois_hole_centennial_provincial_park_management_plan.pdf",
+   "web": "https://stalbert.ca/rec/parks/places/region/lois-hole-centennial/"
+  },
+  "CA-1188": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/parks/central/pembina-river-pp/information-facilities/camping/pembina-river/",
+   "web": "https://www.albertaparks.ca/parks/central/pembina-river-pp/information-facilities/camping/pembina-river/"
+  },
+  "CA-1192": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1195": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/parks/central/thunder-lake-pp/information-facilities/",
+   "web": "https://www.albertaparks.ca/parks/central/thunder-lake-pp/information-facilities/"
+  },
+  "CA-1197": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1198": {
+   "agency": "Alberta Parks",
+   "map": "https://albertaparks.ca/media/3494066/wabamun-lake-tear-sheet.pdf",
+   "web": "https://albertaparks.ca/media/3494066/wabamun-lake-tear-sheet.pdf"
+  },
+  "CA-1200": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1201": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-1202": {
+   "agency": "Alberta Parks",
+   "map": "https://www.albertaparks.ca/media/3329737/wyndham-carseland-campground-map.pdf",
+   "web": "https://cms.albertaparks.ca/parks/south/wyndham-carseland-pp/"
+  },
+  "CA-1668": {
+   "agency": "City of Markham",
+   "map": "https://www.markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/FINAL-Cycling%2BMap%2B2023-aug-9-v2.pdf",
+   "web": "https://www.markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/FINAL-Cycling%2BMap%2B2023-aug-9-v2.pdf"
+  },
+  "CA-2034": {
+   "agency": "Parc linéaire Le P’tit Train du Nord (official park operator)",
+   "map": "https://carte.ptittraindunord.com/",
+   "web": "https://en.ptittraindunord.com/"
+  },
+  "CA-2159": {
+   "agency": "Ville de Saint-Jérôme (municipal park; official name record by Gouvernement du Québec)",
+   "map": "https://www.vsj.ca/wp-content/uploads/2023/02/Plan_LacJerome_Web.pdf",
+   "web": "https://toponymie.gouv.qc.ca/ct/ToposWeb/Fiche.aspx?no_seq=441966"
+  },
+  "CA-2176": {
+   "agency": "Société du parc Jean-Drapeau",
+   "map": "https://www.parcjeandrapeau.com/en/publications/",
+   "web": "https://www.parcjeandrapeau.com/en/"
+  },
+  "CA-2233": {
+   "agency": "Ville de Vaudreuil-Dorion",
+   "map": "https://www.ville.vaudreuil-dorion.qc.ca/uploads/sections/Loisirs_culture/Installations_recreatives/Espaces_verts/Plan-directeur_PEV.pdf",
+   "web": "https://www.ville.vaudreuil-dorion.qc.ca/en/recreation-and-culture/recreation-facilities/parc-de-la-maison-valois"
+  },
+  "CA-2515": {
+   "agency": "City of Winnipeg",
+   "map": "https://legacy.winnipeg.ca/publicworks/parks/st-vital.stm",
+   "web": "https://legacy.winnipeg.ca/publicworks/parks/st-vital.stm"
+  },
+  "CA-2921": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2924": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2931": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2939": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-2940": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2945": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-2952": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2953": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2954": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-2956": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2959": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2961": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-2962": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-2964": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2970": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2972": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2973": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2978": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2980": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2982": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2984": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2985": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2993": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-2995": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2996": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2997": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-2999": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3002": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3003": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3004": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3008": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3009": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3010": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3019": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3023": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3024": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3031": {
+   "agency": "Thorhild County (municipal government page); Alberta Parks is the provincial protected-area authority",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "web": "https://www.thorhildcounty.com/Community/Facilities-Recreation/Recreation-Facilities"
+  },
+  "CA-3032": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3033": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3035": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3036": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3045": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3046": {
+   "agency": "City of Calgary",
+   "map": "https://www.calgary.ca/content/dam/www/transportation/tp/documents/cycling/inglewood-bird-sanctuary.pdf",
+   "web": "https://www.calgary.ca/parks/inglewood-bird-sanctuary.html"
+  },
+  "CA-3047": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3048": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3049": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3051": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://www.albertaparks.ca/media/2y1hxqec/alberta-parks-protected-areas-provincial-map.pdf",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3056": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3057": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3066": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3067": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3069": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3071": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3075": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3081": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3086": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3087": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3088": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3089": {
+   "agency": "City of Calgary Parks",
+   "map": "https://www.calgary.ca/content/dam/www/csps/parks/documents/construction/nose-hill-project/trail-pathways-map.pdf",
+   "web": "https://www.calgary.ca/parks/nose-hill-park.html"
+  },
+  "CA-3091": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3094": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3100": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "web": "https://new.albertaparks.ca/parks/south/lake-mcgregor-pra/information-facilities/camping/lake-mcgregor/"
+  },
+  "CA-3102": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3110": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3112": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3114": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3117": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3118": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3121": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3123": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3124": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3132": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3137": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3142": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-3145": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3146": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3147": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+   "agency_page": "https://albertaparks.ca/albertaparksca/library/land-reference-manual.aspx?search=Provincial+Recreation+Area"
+  },
+  "CA-3157": {
+   "agency": "Parks Canada (Waterton Lakes National Park) / U.S. National Park Service (Glacier National Park)",
+   "map": "https://parks.canada.ca/pn-np/ab/waterton/visit/cartes-maps/~/media/bddfcc88d8744c629e94b432625ae743.ashx",
+   "web": "https://parks.canada.ca/pn-np/ab/waterton/culture/designation"
+  },
+  "CA-3160": {
+   "agency": "Alberta Parks, Government of Alberta",
+   "map": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer",
+   "agency_page": "https://www.alberta.ca/parks-protected-areas"
+  },
+  "CA-4559": {
+   "agency": "Government of Newfoundland and Labrador, Environment, Conservation and Climate Change",
+   "map": "https://www.gov.nl.ca/eccc/natural-areas/wer/r-mpe/",
+   "web": "https://www.gov.nl.ca/eccc/natural-areas/wer/r-mpe/"
+  },
+  "CA-4619": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/culture/designation/lieu-site/tawtaar",
+   "web": "https://parks.canada.ca/culture/designation/lieu-site/tawtaar"
+  },
+  "CA-4787": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/bc/fortroddhill/visit/plandusite-sitemap",
+   "web": "https://parks.canada.ca/lhn-nhs/bc/fortroddhill/visit"
+  },
+  "CA-4837": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/ns/louisbourg/visit/brochures",
+   "web": "https://parks.canada.ca/lhn-nhs/ns/louisbourg"
+  },
+  "CA-4896": {
+   "agency": "Parks Canada",
+   "map": "https://www.parks.canada.ca/lhn-nhs/qc/chateauguay/activ/sentiers-trails",
+   "web": "https://www.parks.canada.ca/lhn-nhs/qc/chateauguay"
+  },
+  "CA-4897": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/qc/ristigouche/visit/cartes-maps",
+   "web": "https://parks.canada.ca/lhn-nhs/qc/ristigouche"
+  },
+  "CA-4899": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/qc/canalcarillon/visit/cartes-maps",
+   "web": "https://parks.canada.ca/lhn-nhs/qc/canalcarillon"
+  },
+  "CA-4904": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/qc/fortchambly/visit",
+   "web": "https://parks.canada.ca/lhn-nhs/qc/fortchambly"
+  },
+  "CA-4909": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/qc/fortifications/visit/carte-map",
+   "web": "https://parks.canada.ca/lhn-nhs/qc/fortifications"
+  },
+  "CA-4911": {
+   "agency": "Parks Canada",
+   "map": "https://parks.canada.ca/lhn-nhs/qc/canallachine/visit",
+   "web": "https://parks.canada.ca/lhn-nhs/qc/canallachine/visit"
+  },
+  "CA-4914": {
+   "agency": "Parks Canada",
+   "map": "",
+   "web": "https://www.parks.canada.ca/lhn-nhs/qc/louisjosephpapineau"
+  },
+  "CA-4948": {
+   "agency": "Corporation de gestion et de mise en valeur du mont Saint-Joseph",
+   "map": "https://montsaintjoseph.com/wp-content/uploads/2020/06/Carte_rando_complete_MSJ_2020.pdf",
+   "web": "https://montsaintjoseph.com/"
+  },
+  "CA-4954": {
+   "agency": "Ville de Terrebonne / Groupe Plein Air Terrebonne",
+   "map": "https://pra.terrebonne.ca/wp-content/uploads/2024/05/plan-directeur-corridor-de-biodiversite-juin-2021.pdf",
+   "web": "https://terrebonne.ca/parc/parc-de-la-riviere/"
+  },
+  "CA-4956": {
+   "agency": "Parc régional des Chutes Monte-à-Peine-et-des-Dalles / participating municipalities",
+   "map": "https://parcdeschutes.com/en/trails/",
+   "web": "https://parcdeschutes.com/en/"
+  },
+  "CA-4959": {
+   "agency": "Ville de Saint-Hyacinthe",
+   "map": "https://www.st-hyacinthe.ca/medias/loisirs-et-culture/installations/LCVC_Installations-recreatives_Parc-Les-Salines_carte-sentiers.pdf",
+   "web": "https://www.st-hyacinthe.ca/loisirs-et-culture/parcs-et-espaces-verts/parc-les-salines"
+  },
+  "CA-4960": {
+   "agency": "Ville de Longueuil / Parcs-nature Longueuil",
+   "map": "https://cms.longueuil.quebec/sites/default/files/medias/documents/2021-11/Rapport%20Table%20de%20concertation%20du%20parc%20Michel-Chartrand%20-%2022%20novembre%202021.pdf",
+   "web": "https://www.longueuil.quebec/fr/parc-michel-chartand"
+  },
+  "CA-4975": {
+   "agency": "MRC de Drummond",
+   "map": "https://www.mrcdrummond.qc.ca/parc-regional-foret-drummond/",
+   "web": "https://www.mrcdrummond.qc.ca/parc-regional-foret-drummond/"
+  },
+  "CA-4988": {
+   "agency": "Ville de Montréal",
+   "map": "https://montreal.ca/en/places/parc-de-la-promenade-bellerive",
+   "web": "https://montreal.ca/en/places/parc-de-la-promenade-bellerive"
+  },
+  "CA-5004": {
+   "agency": "Ville de Gatineau",
+   "map": "https://www.gatineau.ca/docs/activites_evenements_idees_sorties/plein_air_urbain/sites_plein_air/lac_leamy/20200220_carte_sentiers_ski_fond.fr-CA.pdf",
+   "web": "https://www.gatineau.ca/portail/default.aspx?p=activites_evenements_idees_sorties%2Fplein_air_urbain%2Fsites_plein_air%2Flac_leamy"
+  },
+  "CA-5005": {
+   "agency": "Ville de Montréal",
+   "map": "https://montreal.ca/en/places/parc-des-rapides",
+   "web": "https://montreal.ca/en/places/parc-des-rapides"
+  },
+  "CA-5019": {
+   "agency": "Ville de Salaberry-de-Valleyfield",
+   "map": "https://valleyfield.ca/parc-des-iles",
+   "web": "https://valleyfield.ca/parc-des-iles"
+  },
+  "CA-5032": {
+   "agency": "Ville de Laval",
+   "map": "https://www.laval.ca/sports-loisirs/centre-nature/acces-plan/",
+   "web": "https://www.laval.ca/sports-loisirs/centre-nature/acces-plan/"
+  },
+  "CA-5033": {
+   "agency": "Ville de Laval",
+   "map": "",
+   "web": "https://www.laval.ca/carte-interactive/parc-bernard-landry/"
+  },
+  "CA-5075": {
+   "agency": "Ville de Sherbrooke",
+   "map": "",
+   "web": "https://www.sherbrooke.ca/fr/culture-sports-et-loisirs/parcs-et-espaces-de-plein-air/espaces-de-plein-air"
+  },
+  "CA-5288": {
+   "agency": "Parks Canada / Prince Edward Island National Park",
+   "map": "https://parks.canada.ca/pn-np/pe/pei-ipe/visit/~/media/pn-np/pe/pei-ipe/pdfs/visitors-guide-2016-eng.ashx",
+   "web": "https://parks.canada.ca/culture/designation/phare-lighthouse"
+  },
   "US-0021": {
    "agency": "National Park Service (NPS)",
    "map": "https://www.nps.gov/deva/planyourvisit/maps.htm",
