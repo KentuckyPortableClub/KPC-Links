@@ -533,11 +533,13 @@ def grid_pairs(boxes):
     return pairs
 
 
+TESTED = set()
 def find_spots(G, LN, pairs, counts):
     spots = []
     for a, b in sorted(pairs):
         if late(): counts['stopped for time'] = True; break
         counts['pairs tested'] += 1
+        TESTED.add((a, b))
         ba = bbox_groups(G[a]) if a in G else bbox_lines(LN[a]['lines'])
         bb = bbox_groups(G[b]) if b in G else bbox_lines(LN[b]['lines'])
         box = inter(ba, bb, 0.0008)
@@ -673,7 +675,9 @@ def main():
             save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': sorted(by.get(st, []), key=lambda s: s['id'])}, indent=1)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
-        prev = [s for d in files.values() for s in d.get('spots', []) if s['passes'][PASS - 2] == 1]
+        # resume: a spot this pass already decided (agreed, or dropped) is not done again
+        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: a pin')))
+        prev = [s for d in files.values() for s in d.get('spots', []) if todo(s)]
         refs = sorted({r for s in prev for r in s['refs'] if r in parks})
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
         G, bad = download(parks, [r for r in refs if parks[r]['ids']], DET, PREC)
@@ -695,7 +699,10 @@ def main():
         agree = new_only = 0
         for st, d in files.items():
             for s in d.get('spots', []):
-                if s['passes'][PASS - 2] != 1: continue
+                if not todo(s): continue
+                pk = tuple(sorted(s['refs'][:2]))
+                if pk not in TESTED and len(s['refs']) == 2:   # out of time before this pair: the next run carries on
+                    s['status'] = f'waiting for pass {PASS}'; continue
                 sb = bbox_lines([s['shape']])
                 m = next((n for n in newk.get(key_of(s), []) if inter(sb, bbox_lines([n['shape']]), 0.0005)), None)
                 if m:

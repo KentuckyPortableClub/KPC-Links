@@ -15,7 +15,7 @@ T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
 MAX = int(os.environ.get('MAX') or 600)
 UA = {'User-Agent': 'KPC map finder (kentuckyportableclub.github.io; one page at a time)', 'Accept': 'text/html,application/xhtml+xml'}
 OUT = pathlib.Path('data/map-leads.json')
-WORDS = re.compile(r'\bmaps?\b|brochure|park guide|visitor guide|trail guide|site guide|area guide|boundary|\bpdf\b', re.I)
+WORDS = re.compile(r'\bmaps?\b|brochure|park guide|visitor guide|trail guide|site guide|area guide|\bpdf\b', re.I)
 NOTW = re.compile(r'google\.com/maps|maps\.google|maps\.apple|bing\.com/maps|site ?map|sitemap|directions|mapquest|waze|facebook|twitter|instagram|'
                   r'youtube|privacy|accessibility|newsletter|login|sign ?in|donate|shop|store|jobs|careers', re.I)
 GOV = re.compile(r'(\.gov|\.mil|\.us|\.gc\.ca|\.gov\.[a-z]{2}\.ca|ontarioparks\.(com|ca)|bcparks\.ca|albertaparks\.ca|sepaq\.com|parks\.canada\.ca|'
