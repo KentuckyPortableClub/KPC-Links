@@ -147,6 +147,12 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
 @media(max-width:560px){.site-nav .nav-utc{padding:4px 7px 5px;margin-right:0}.site-nav .nav-utc b{font-size:14px}.site-nav .nav-utc small{font-size:8px;letter-spacing:1.5px}}
 @media(max-width:350px){.site-nav .nav-utc{display:none}}
 </style>
+<script id="kpc-embed">/* Oct 26 (release prep): ?embed=1 = Happening Now inside a Lounge tab: no site menu, footer or hero; tells the Lounge its height */
+(function(){if(!/[?&]embed=1/.test(location.search))return;document.documentElement.classList.add('kpc-embed');
+ var send=function(){try{parent.postMessage({kpcLiveH:document.documentElement.scrollHeight},'*')}catch(e){}};
+ addEventListener('load',function(){send();setInterval(send,1500)});addEventListener('resize',send);
+ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(a&&!a.target&&!/^#/.test(a.getAttribute('href')))a.target='_top'},true);})();</script>
+<style id="kpc-embed-css">html.kpc-embed header.site-nav,html.kpc-embed footer,html.kpc-embed .lv-hero,html.kpc-embed .kpc-disclaim,html.kpc-embed #kpc-looks,html.kpc-embed .kpm-glint{display:none!important}html.kpc-embed body{padding-top:0!important;margin-top:0!important}</style>
 </head>
 <body>
 <header class="site-nav">
