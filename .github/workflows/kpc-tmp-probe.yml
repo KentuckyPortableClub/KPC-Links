@@ -13,17 +13,15 @@ jobs:
               return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC probe'}),timeout=40).read())
           def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n',' ')[:950]),flush=True)
           A='https://open.canada.ca/data/api/3/action/'
-          try:
-              r=g(A+'package_search?'+urllib.parse.urlencode({'q':'Parks Canada facilities OR components OR parking OR trailhead','fq':'organization:pc','rows':40}))['result']
-              for p in r['results']:
-                  n('pkg',p['id']+' | '+p['title']+' | '+p.get('license_id',''))
-                  for res in p.get('resources',[]):
-                      if any(w in (p['title']+res.get('name','')).lower() for w in ('facilit','component','park','trail','access')):
-                          n('res',p['title'][:40]+' | '+res.get('format','')+' | '+res.get('url',''))
-          except Exception as e: n('err',e)
-          for pid in ['3969368d-33b5-47c8-8953-f31b15d8e007']:
+          out=[]
+          for q in ['Facilities - Point','Components - Point','Parks Canada parking','Parks Canada trailheads']:
               try:
-                  p=g(A+'package_show?id='+pid)['result']; n('show',p['title']+' '+p.get('license_title',''))
-                  for res in p['resources']: n('res2',res.get('format','')+' | '+res.get('url',''))
-              except Exception as e: n('err2',e)
+                  r=g(A+'package_search?'+urllib.parse.urlencode({'q':'title:"%s"'%q if 'Point' in q else q,'rows':8}))['result']['results']
+                  out.append(q+' => '+' ; '.join(p['id'][:8]+' '+p['title'][:40]+' ['+p.get('organization',{}).get('name','')+']' for p in r))
+              except Exception as e: out.append(q+' err '+str(e))
+          for t in out: n('search',t)
+          try:
+              p=g(A+'package_show?id=3969368d-33b5-47c8-8953-f31b15d8e007')['result']
+              n('show',p['title']+' | '+p.get('license_title','')+' | '+' ; '.join(r.get('format','')+' '+r.get('url','') for r in p['resources']))
+          except Exception as e: n('show err',e)
           PY
