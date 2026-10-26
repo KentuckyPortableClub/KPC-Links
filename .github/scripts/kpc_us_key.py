@@ -447,6 +447,11 @@ XCOUNT = {}
 FAILED_READ = set()
 
 
+def _num(v):   # Oct 25: an acres field can be text (NPS legal boundary layer): never let it stop a state
+    try: return float(v or 0)
+    except (TypeError, ValueError): return 0
+
+
 def extra_state(st, have, only=None):
     box = st_box(st)
     if not box: return []
@@ -479,7 +484,7 @@ def extra_state(st, have, only=None):
                 g = f.get('geometry') or {}
                 nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
-                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': (a.get(af.lower()) if af else 0) or 0, 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
+                            'Loc_Mang': label, 'Des_Tp': '', 'GIS_Acres': _num(a.get(af.lower()) if af else 0), 'Category': 'Fee', '_bb': bbox(g), '_g': g, '_k': k,
                             **({'Water': 1} if opt.get('water') else {})})
                 n += 1
             if not fs or (not j.get('exceededTransferLimit') and len(fs) < pg): break
