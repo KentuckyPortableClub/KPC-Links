@@ -890,6 +890,24 @@ def main():
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
             by.setdefault(st_of(s['refs'][0]), []).append(s)
+        if REGION == 'ky':
+            # Brandon Oct 26 2:03 PM ('Fort Heiman and Donelson, it is what it is: both'): two park numbers on ONE official outline
+            # (the NPS folded Fort Heiman into Fort Donelson National Battlefield) are both valid there: a 'same land' spot on
+            # the piece nearest the second park's pin. (Outside Kentucky the same-outline list stays an answer-key question.)
+            for x in same:
+                a, b = x['refs']
+                if a not in G or b not in G: continue
+                la, lo = PIN[b][1], PIN[b][2]
+                best = min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)
+                ring = best[0]; xs = [q[0] for q in ring]; ys = [q[1] for q in ring]
+                sp = {'refs': sorted([a, b]), 'kind': 'same land', 'center': [round(sum(ys) / len(ys), 6), round(sum(xs) / len(xs), 6)],
+                      'box': [round(min(xs), 5), round(min(ys), 5), round(max(xs), 5), round(max(ys), 5)],
+                      'shape': [[round(q[0], 6), round(q[1], 6)] for q in ring[::max(1, len(ring) // 80)]],
+                      'passes': [1, 1, 1], 'status': 'candidate (same land, two park numbers)', 'found': today,
+                      'note': f"both park numbers are joined to the same official outline ({x['name']}); POTA lists them separately: check POTA's current list",
+                      'maps': [[r, PIN[r][3]] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
+                sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
+                by.setdefault('US-KY', []).append(sp)
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st not in by and st in old: continue
             save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(by.get(st, []), key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
