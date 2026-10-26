@@ -5,7 +5,7 @@
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
  ],
- "checked": "2026-10-26T17:17+00:00",
+ "checked": "2026-10-26T22:00+00:00",
  "weekly": {
   "site": {
    "part": "site",
@@ -15,7 +15,8 @@
    "ok": [
     "29 public pages opened as a guest at phone width (390px)",
     "members door checked on parks.html, toolbox.html, find.html, kpc-kit.html",
-    "29 public pages opened as a guest at desktop width (1280px)"
+    "29 public pages opened as a guest at desktop width (1280px)",
+    "116 pages opened as a signed-in member at phone width"
    ]
   },
   "refs": {
