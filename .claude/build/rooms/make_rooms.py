@@ -79,6 +79,8 @@ def doorways(prog):
         card('parks.html', '🌲', 'Kentucky Parks', 'Our Kentucky home: KY Park Commander, the KY Trip Planner, park guides and Kentucky tools.', 'you\'re operating in Kentucky.'),
     ], alt=True)
 
+INFOLINE = ('<section class="kb-sec"><div class="kb-in"><p class="kb-small rm-note">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p></div></section>')
+
 PAGES = {}
 
 # ================================================================== MAP ROOM
@@ -125,7 +127,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
         '<b>Upload an ADIF log</b> when you\'re done, under My Log Uploads on pota.app. Any logging program that makes a proper ADIF file works.',
         '<b>Hunters don\'t send logs.</b> POTA runs on the honor system: hunters get credit from the logs activators upload.',
         '<b>Be a good guest:</b> follow the law and the park\'s rules, listen to rangers, leave no trace, be courteous to other visitors, and follow the DX Code of Conduct.',
-        '<b>Two-fers and three-fers.</b> POTA\'s rules say: “Activations of multiple references (‘two-fer,’ ‘three-fer,’ etc.) are permitted with Parks on the Air. Such a multi-park activation requires an overlapped area where all activated parks’ boundaries intersect. The intersection must entirely contain the activator and the station equipment.” (<a href="https://docs.pota.app/docs/rules.html" target="_blank" rel="noopener">POTA rules ↗</a>) Submit a separate log for each park.',
+        '<b>Two-fers and three-fers.</b> POTA\'s rules say: “Activations of multiple references (“Multi-loc” or “two-fer,” “three-fer,” etc.) are permitted with Parks on the Air. Such a multi-park activation requires an overlapped area where all activated parks’ boundaries intersect. The intersection must entirely contain the activator and the station equipment.” (<a href="https://docs.pota.app/docs/rules.html" target="_blank" rel="noopener">POTA rules ↗</a>) Submit a separate log for each park.',
     ], 'Sources: <a href="https://parksontheair.com/rules/" target="_blank" rel="noopener">parksontheair.com/rules</a> and the detailed rules at <a href="https://docs.pota.app/" target="_blank" rel="noopener">docs.pota.app</a>.' + DISCLAIM + AFF['pota']),
     steps('HOW TO START', '🚀 Your First Activation or Hunt', [
         ('📻 Activating', ['Pick a park: <a href="finder.html">KY Park Commander</a> or <a href="kpc-rare.html">Rarely Activated Parks</a>.',
@@ -156,6 +158,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
         card('https://docs.pota.app/', '📖', 'POTA Docs', 'The full rules, logging details, and how parks get added.', 'you have a detailed rules question.', ext=True),
     ]),
     other_rooms('kpc-pota-room.html'),
+    INFOLINE,
 ]))
 
 # ================================================================== WWFF ROOM
@@ -200,6 +203,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
         card('https://wwff.us/', '🦅', 'wwff.us (KFF)', 'The US program: references, how to send your log, and US awards.', 'you\'re activating in the USA.', ext=True),
     ]),
     other_rooms('kpc-wwff-room.html'),
+    INFOLINE,
 ]))
 
 # ================================================================== SOTA ROOM
@@ -211,9 +215,9 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
     '<section class="kb-sec"><div class="kb-in"><p class="kb-k">WHAT IT IS</p><h2>SOTA in a Minute</h2>'
     '<p class="kb-lead"><b>Activators</b> carry a station to a listed summit and make contacts from the top. <b>Chasers</b> work them. Every summit has a reference like <b>W4K/EC-001</b> '
     'and a points value set by its height. Summits are picked by how much they stand out from the land around them, not just how high they are.</p>'
-    + nums([('25 m', '(80 ft) below the top: the activation zone'), ('1', 'contact logs an activation'), ('4', 'contacts earn the summit\'s points'), ('0', 'cars: no operating from or next to a vehicle')]) + '</div></section>',
+    + nums([('25 m', '(82 ft) below the top: the activation zone'), ('1', 'contact logs an activation'), ('4', 'contacts earn the summit\'s points'), ('0', 'cars: no operating from or next to a vehicle')]) + '</div></section>',
     rules('THE RULES', '📜 The Main Rules', 'Our plain-words summary (KPC wrote it; it is not official). Read the SOTA General Rules and the W4K (Kentucky) Association Reference Manual before you go.', [
-        '<b>Activation zone:</b> you must be within <b>25 m (about 80 ft)</b> of height below the very top of the summit.',
+        '<b>Activation zone:</b> you must be within <b>25 m (about 82 ft)</b> of height below the very top of the summit.',
         '<b>1 contact</b> is enough to log an activation; <b>4 contacts</b> are needed to earn the summit\'s points. Making more doesn\'t add points.',
         '<b>No vehicles:</b> you can\'t operate from or close to a vehicle, and the trip up has to be on foot (or under your own power). Use legitimate access routes and follow the local land rules.',
         '<b>Log every contact</b> and upload your log to the SOTA database (sotadata).',
@@ -245,6 +249,7 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
         card('https://sotl.as/', '🗺', 'SOTLAS', 'A map of every summit worldwide with activation history.', 'you want summit details and past activations.', ext=True),
     ]),
     other_rooms('kpc-sota-room.html'),
+    INFOLINE,
 ]))
 
 if __name__ == '__main__':

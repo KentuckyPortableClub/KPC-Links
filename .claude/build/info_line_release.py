@@ -24,6 +24,8 @@ PAGES = [
     'kpc-guide-pota.html', 'kpc-guide-sota.html', 'kpc-guide-wwff.html', 'kpc-guide-top25.html', 'kpc-rules-you-should-know.html',
     # park details from members, camping, owners, activations
     'kpc-park-notes.html', 'kpc-park-notes-us.html', 'kpc-campgrounds.html', 'kpc-activations.html', 'kpc-ky-pva.html',
+    # Brandon Oct 26 5:50 PM: the New-to guides and On The Air Now (the program rooms carry it from make_rooms.py)
+    'kpc-new-to-pota.html', 'kpc-new-to-wwff.html', 'kpc-new-to-sota.html', 'kpc-spots.html', 'kpc-pota-room.html', 'kpc-wwff-room.html', 'kpc-sota-room.html',
     # members' maps
     'kpc-multi-park-spots.html', 'kpc-club.html',
 ]

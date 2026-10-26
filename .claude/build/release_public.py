@@ -30,6 +30,9 @@ A_PUBLIC = B_PUBLIC + [
     'kpc-map-room.html',
 ]
 ADD = A_PUBLIC if PLAN == 'A' else B_PUBLIC
+# Safety (HQ Oct 26): the Map Room pointer (chat 2, release step 9) must be in BEFORE anything goes public.
+if 'EVERY MAP TOOL IN ONE PLACE' in open('kpc-map-room.html', encoding='utf-8').read():
+    sys.exit('STOP: kpc-map-room.html is still the old Map Room. Chat 2 swaps in the pointer page first (release step 9), then run this again.')
 SWAP_DROP = ['parks.html', 'finder.html', 'kpc-planner.html', 'kpc-map-room.html', 'kpc-live.html'] if PLAN == 'A' else []
 NEWV = '20261029a'
 log = []
