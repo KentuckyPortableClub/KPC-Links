@@ -1,0 +1,54 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 6,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "first_nations_reserves_zones",
+   "sample": [
+    {
+     "NAME": "Rocky Point 3"
+    },
+    {
+     "NAME": "Lennox Island 6"
+    },
+    {
+     "NAME": "Lennox Island 5"
+    }
+   ],
+   "service": "first_nations_reserves_zones",
+   "typef": "",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/first_nations_reserves_zones/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK",
+   "count": 46,
+   "fields": [
+    "PARK"
+   ],
+   "known": true,
+   "layer": "provincial_park_polygon_ENV",
+   "sample": [
+    {
+     "PARK": "PROV"
+    },
+    {
+     "PARK": "PROV PARK"
+    },
+    {
+     "PARK": "BRUDENELL"
+    }
+   ],
+   "service": "GeoLinc_Provincial_Parks",
+   "typef": "",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLinc_Provincial_Parks/MapServer/0"
+  }
+ ],
+ "st": "CA-PE"
+}

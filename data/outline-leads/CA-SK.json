@@ -1,0 +1,1591 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 27358,
+   "fields": [
+    "LLD",
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL",
+    "OWNPRCLNO",
+    "QSTRM"
+   ],
+   "known": false,
+   "layer": "Wildlife Habitat Protection (WHPA)",
+   "sample": [
+    {
+     "DA_TYPE": "Wildlife Habitat Protection",
+     "IUCN_CAT": "N/A",
+     "LEGISL": "The Wildlife Habitat Protection Act",
+     "LEG_STAT": "Permanent",
+     "LLD": "NE  19-27-30-1 Ext 0",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "1984",
+     "PUBLICCL": "PLANNING.Wildlife_Habitat_Protection",
+     "PUBLICNM": "WILDLIFE HABITAT PROTECTION",
+     "QSTRM": "NE-19-27-30-1"
+    },
+    {
+     "DA_TYPE": "Wildlife Habitat Protection",
+     "IUCN_CAT": "N/A",
+     "LEGISL": "The Wildlife Habitat Protection Act",
+     "LEG_STAT": "Permanent",
+     "LLD": "NE  17-57-07-3 Ext 0",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "1984",
+     "PUBLICCL": "PLANNING.Wildlife_Habitat_Protection",
+     "PUBLICNM": "WILDLIFE HABITAT PROTECTION",
+     "QSTRM": "NE-17-57-07-3"
+    },
+    {
+     "DA_TYPE": "Wildlife Habitat Protection",
+     "IUCN_CAT": "N/A",
+     "LEGISL": "The Wildlife Habitat Protection Act",
+     "LEG_STAT": "Permanent",
+     "LLD": "SE  27-58-14-3 Ext 0",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "1984",
+     "PUBLICCL": "PLANNING.Wildlife_Habitat_Protection",
+     "PUBLICNM": "WILDLIFE HABITAT PROTECTION",
+     "QSTRM": "SE-27-58-14-3"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/14"
+  },
+  {
+   "agency": "Fish & Wildlife - Ministry of Environment",
+   "area": "",
+   "count": 4782,
+   "fields": [
+    "SPECIES",
+    "MAPSHEET",
+    "ANTL",
+    "WDER",
+    "MDER",
+    "MOOS",
+    "ELKS",
+    "BEAR",
+    "BEAV",
+    "CAGO",
+    "STGR",
+    "RGRO",
+    "SGRO",
+    "SPGR",
+    "HUPA",
+    "PHEA",
+    "GOEA",
+    "BAEA",
+    "PRFR",
+    "FEHA"
+   ],
+   "known": false,
+   "layer": "Terrestrial Wildlife Habitat Inventory",
+   "sample": [
+    {
+     "ANTL": "N",
+     "BEAR": "Y",
+     "BEAV": "N",
+     "CAGO": "N",
+     "ELKS": "N",
+     "MAPSHEET": "73k",
+     "MDER": "N",
+     "MOOS": "Y",
+     "RGRO": "Y",
+     "SPECIES": "WDER-RGRO-SPGR-BEAR-MOOS",
+     "STGR": "N",
+     "WDER": "Y"
+    },
+    {
+     "ANTL": "N",
+     "BEAR": "Y",
+     "BEAV": "N",
+     "CAGO": "N",
+     "ELKS": "N",
+     "MAPSHEET": "73k",
+     "MDER": "N",
+     "MOOS": "Y",
+     "RGRO": "Y",
+     "SPECIES": "WDER-RGRO-MOOS-SPGR-BEAR",
+     "STGR": "N",
+     "WDER": "Y"
+    },
+    {
+     "ANTL": "N",
+     "BEAR": "N",
+     "BEAV": "N",
+     "CAGO": "N",
+     "ELKS": "N",
+     "MAPSHEET": "73k",
+     "MDER": "N",
+     "MOOS": "N",
+     "RGRO": "N",
+     "SPECIES": "CAGU-COTE",
+     "STGR": "N",
+     "WDER": "N"
+    }
+   ],
+   "service": "Habitat",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Habitat/FeatureServer/0"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 4340,
+   "fields": [
+    "PRCLCLSSCD",
+    "TWP",
+    "RGE",
+    "MER",
+    "PORTIONCD",
+    "SECT",
+    "QSECT",
+    "LSD",
+    "LLD",
+    "PRCLSTACD",
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL"
+   ],
+   "known": false,
+   "layer": "Conservation Easements",
+   "sample": [
+    {
+     "IUCN_CAT": "IV",
+     "LLD": "NE  06-06-22-3 Ext 0",
+     "LSD": " ",
+     "MER": "3",
+     "PORTIONCD": "2",
+     "PRCLCLSSCD": "PARC",
+     "PRCLSTACD": "ttld",
+     "PUBLICNM": "PRIVATE CONSERVATION LANDS",
+     "QSECT": "NE",
+     "RGE": "22",
+     "SECT": "06",
+     "TWP": "06"
+    },
+    {
+     "IUCN_CAT": "IV",
+     "LLD": "SW  36-37-26-2 Ext 0",
+     "LSD": " ",
+     "MER": "2",
+     "PORTIONCD": "2",
+     "PRCLCLSSCD": "PARC",
+     "PRCLSTACD": "ttld",
+     "PUBLICNM": "PRIVATE CONSERVATION LANDS",
+     "QSECT": "SW",
+     "RGE": "26",
+     "SECT": "36",
+     "TWP": "37"
+    },
+    {
+     "IUCN_CAT": "IV",
+     "LLD": "SW  33-38-24-2 Ext 0",
+     "LSD": " ",
+     "MER": "2",
+     "PORTIONCD": "2",
+     "PRCLCLSSCD": "PARC",
+     "PRCLSTACD": "ttld",
+     "PUBLICNM": "PRIVATE CONSERVATION LANDS",
+     "QSECT": "SW",
+     "RGE": "24",
+     "SECT": "33",
+     "TWP": "38"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/4"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 2724,
+   "fields": [
+    "PRCLCLSSCD",
+    "TWP",
+    "RGE",
+    "MER",
+    "SECT",
+    "QSECT",
+    "LLD",
+    "PRCLSTACD",
+    "VERIFY",
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Development Fund Lands",
+   "sample": [
+    {
+     "DA_TYPE": "Fish and Wildlife Development Fund Land",
+     "IUCN_CAT": "IV",
+     "LLD": "SW-31-08-01-2",
+     "MER": "2",
+     "PRCLCLSSCD": "PARC",
+     "PRCLSTACD": "ttld",
+     "PUBLICNM": "FISH AND WILDLIFE DEVELOPMENT FUND",
+     "QSECT": "SW",
+     "RGE": "01",
+     "SECT": "31",
+     "TWP": "08",
+     "VERIFY": "y"
+    },
+    {
+     "DA_TYPE": "Fish and Wildlife Development Fund Land",
+     "IUCN_CAT": "IV",
+     "LLD": "SE-28-12-05-3",
+     "MER": "3",
+     "PRCLCLSSCD": "PARC",
+     "PRCLSTACD": "ttld",
+     "PUBLICNM": "FISH AND WILDLIFE DEVELOPMENT FUND",
+     "QSECT": "SE",
+     "RGE": "05",
+     "SECT": "28",
+     "TWP": "12",
+     "VERIFY": "y"
+    },
+    {
+     "DA_TYPE": "Fish and Wildlife Development Fund Land",
+     "IUCN_CAT": "IV",
+     "LLD": "NE-12-62-13-3",
+     "PRCLCLSSCD": "PARC",
+     "PRCLSTACD": "ttld",
+     "PUBLICNM": "FISH AND WILDLIFE DEVELOPMENT FUND",
+     "VERIFY": "y"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/7"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 1222,
+   "fields": [
+    "NAME_E",
+    "LLD",
+    "QSTRM"
+   ],
+   "known": false,
+   "layer": "Crown Conservation Easements",
+   "sample": [
+    {
+     "LLD": "SE 28-47-13-3 Ext 3",
+     "NAME_E": "Crown Conservation Easement",
+     "QSTRM": "SE-28-47-13-3"
+    },
+    {
+     "LLD": "SW 11-42-22-2 Ext 0",
+     "NAME_E": "Crown Conservation Easement",
+     "QSTRM": "SW-11-42-22-2"
+    },
+    {
+     "LLD": "SE 8-44-1-3 Ext 2",
+     "NAME_E": "Crown Conservation Easement",
+     "QSTRM": "SE-8-44-1-3"
+    }
+   ],
+   "service": "Planning",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/19"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "",
+   "count": 1053,
+   "fields": [
+    "VALDATE",
+    "ID",
+    "THEME"
+   ],
+   "known": false,
+   "layer": "Park/Sports Field",
+   "sample": [
+    {
+     "ID": "e840a1ba29c04e9db7f69ca2ea38d15e",
+     "THEME": "LX",
+     "VALDATE": "1993"
+    },
+    {
+     "ID": "ea9961d1a889403594fa12e61173472c",
+     "THEME": "LX",
+     "VALDATE": "1993"
+    },
+    {
+     "ID": "fd5deb36d51e435481fc5cfdef401151",
+     "THEME": "LX",
+     "VALDATE": "1993"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/7"
+  },
+  {
+   "agency": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Surveyor ",
+   "area": "",
+   "count": 829,
+   "fields": [
+    "PPID",
+    "FEATURECD",
+    "IRNO",
+    "IRNM",
+    "IRBANDNAME",
+    "IRBANDNUM"
+   ],
+   "known": false,
+   "layer": "Indian Reserve (ISC)",
+   "sample": [
+    {
+     "FEATURECD": "IRPPID",
+     "IRBANDNAME": "FOND DU LAC",
+     "IRBANDNUM": "351",
+     "IRNM": "FOND DU LAC INDIAN RESERVE",
+     "IRNO": "232",
+     "PPID": "0117001077"
+    },
+    {
+     "FEATURECD": "IRPPID",
+     "IRBANDNAME": "POUNDMAKER",
+     "IRBANDNUM": "345",
+     "IRNM": "POUNDMAKER INDIAN RESERVE",
+     "IRNO": "114-9A",
+     "PPID": "0117000828"
+    },
+    {
+     "FEATURECD": "IRPPID",
+     "IRBANDNAME": "MOOSOMIN",
+     "IRBANDNUM": "342",
+     "IRNM": "MOOSOMIN INDIAN RESERVE",
+     "IRNO": "112F",
+     "PPID": "0117001138"
+    }
+   ],
+   "service": "AboriginalLands",
+   "typef": "FEATURECD",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/AboriginalLands/MapServer/1"
+  },
+  {
+   "agency": "Government of Canada, Natural Resources Canada, Earth Sciences Sector, Surveyor ",
+   "area": "",
+   "count": 823,
+   "fields": [
+    "NID",
+    "CREDATE",
+    "REVDATE",
+    "PROVIDER",
+    "NAME1",
+    "ALTYPE",
+    "WEBREF"
+   ],
+   "known": false,
+   "layer": "Indian Reserve (NRCan)",
+   "sample": [
+    {
+     "ALTYPE": "Indian Reserve",
+     "CREDATE": "20041029",
+     "NAME1": "STAR BLANKET I.R. 83D",
+     "NID": "6c9ebc20849c20c37b31038a5c053c61",
+     "PROVIDER": "Federal",
+     "REVDATE": "20251031",
+     "WEBREF": "https://clss.nrcan-rncan.gc.ca/mb-nc/en/index.html?can=09539"
+    },
+    {
+     "ALTYPE": "Indian Reserve",
+     "CREDATE": "20180629",
+     "NAME1": "SAULTEAUX FIRST NATION RESERVE NO. 159NN",
+     "NID": "f6c77cdef4114c21a25ab12708c719fc",
+     "PROVIDER": "Federal",
+     "REVDATE": "20251031",
+     "WEBREF": "https://clss.nrcan-rncan.gc.ca/mb-nc/en/index.html?can=10069"
+    },
+    {
+     "ALTYPE": "Indian Reserve",
+     "CREDATE": "20030714",
+     "NAME1": "MUSKEG LAKE I.R. 102F",
+     "NID": "f416d723bbe211d892e2080020a0f4c9",
+     "PROVIDER": "Federal",
+     "REVDATE": "20251031",
+     "WEBREF": "https://clss.nrcan-rncan.gc.ca/mb-nc/en/index.html?can=09273"
+    }
+   ],
+   "service": "AboriginalLands",
+   "typef": "ALTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/AboriginalLands/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 717,
+   "fields": [
+    "FUR_CON",
+    "FUR_SUB",
+    "FCA_NAME"
+   ],
+   "known": false,
+   "layer": "Furblock Subunits",
+   "sample": [
+    {
+     "FCA_NAME": "Delta",
+     "FUR_CON": "N-90",
+     "FUR_SUB": "24"
+    },
+    {
+     "FCA_NAME": "Sturgeon Landing",
+     "FUR_CON": "N-86",
+     "FUR_SUB": "5"
+    },
+    {
+     "FCA_NAME": "Sturgeon Landing",
+     "FUR_CON": "N-86",
+     "FUR_SUB": "3"
+    }
+   ],
+   "service": "WildlifeManagement",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/WildlifeManagement/MapServer/3"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARK_NAME",
+   "count": 106,
+   "fields": [
+    "PARK_NAME",
+    "SECONDARY_NAME",
+    "PARK_TYPE",
+    "PARK_STATUS",
+    "LLD",
+    "SRPA_CONTACT",
+    "SPONSORING_BODIES",
+    "AMENDMENTS",
+    "EDITOR_COMMENTS",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Regional Park",
+   "sample": [
+    {
+     "AMENDMENTS": "Antelope Lake OC 1365-72 Creation",
+     "LAST_EDITED_USER": "PCS_PARKS",
+     "LLD": "NE-21, NW-22-15-18-W3",
+     "PARK_NAME": "Antelope Lake Regional Park",
+     "PARK_STATUS": "1",
+     "PARK_TYPE": "RP",
+     "SPONSORING_BODIES": "RM of Carmichael No. 109, RM of Gull Lake No. 139, RM of Webb No. 138, RM of Riverside No. 168, RM of Pittville No. 169, Town of Gull Lake, Village of Webb, Village of Hazlet",
+     "SRPA_CONTACT": "https://saskregionalparks.ca/park/antelope-lake/"
+    },
+    {
+     "AMENDMENTS": "Assiniboia OC 1401/77 Creation, Assiniboia MO 2016-11-21 Boundary Change",
+     "CREATED_USER": "Bbishop1",
+     "LAST_EDITED_USER": "PCS_PARKS",
+     "LLD": "N-34-07-29-W2, SW-02-08-29-W2,S-08-10-30-W2, S-01-08-30-W2",
+     "PARK_NAME": "Assiniboia Regional Park",
+     "PARK_STATUS": "1",
+     "PARK_TYPE": "RP",
+     "SPONSORING_BODIES": "RM of Lake of the Rivers No. 72, RM of Stonehenge No. 73, RM of Excel No. 71, Town of Assiniboia",
+     "SRPA_CONTACT": "https://saskregionalparks.ca/park/assiniboia/"
+    },
+    {
+     "AMENDMENTS": "Atton's Lake OC 856/65 Creation, Atton's Lake MO 2022-07-20 Boundary Change",
+     "CREATED_USER": "EDESGRA2",
+     "EDITOR_COMMENTS": "Requested by SDukart on 2022-05-11.",
+     "LAST_EDITED_USER": "PCS_PARKS",
+     "LLD": "NW-32-44-20-W3",
+     "PARK_NAME": "Atton's Lake Regional Park",
+     "PARK_STATUS": "1",
+     "PARK_TYPE": "RP",
+     "SPONSORING_BODIES": "RM of Cut Knife No. 439, Town of Cut Knife",
+     "SRPA_CONTACT": "https://saskregionalparks.ca/park/attons-lake-2/"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARK_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/6"
+  },
+  {
+   "agency": "Saskatchewan Ministry of Parks, Culture and Sport",
+   "area": "PARKNM",
+   "count": 104,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE",
+    "HUNTING"
+   ],
+   "known": false,
+   "layer": "Recreation Site as Legislated",
+   "sample": [
+    {
+     "HUNTING": "0",
+     "PARKNM": "Amisk Lake Recreation Site",
+     "PARKTYPE": "RS",
+     "PPID": "0124A00100"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Arm River Recreation Site",
+     "PARKTYPE": "RS",
+     "PPID": "0124A00102"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Armit River Recreation Site",
+     "PARKTYPE": "RS",
+     "PPID": "0124A00103"
+    }
+   ],
+   "service": "ParksAsLegislated",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/1"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARKNM",
+   "count": 104,
+   "fields": [
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "Recreation Site",
+   "sample": [
+    {
+     "PARKNM": "BIG SHELL RECREATION SITE",
+     "PARKTYPE": "RS"
+    },
+    {
+     "PARKNM": "ST. WALBURG RECREATION SITE",
+     "PARKTYPE": "RS"
+    },
+    {
+     "PARKNM": "HERITAGE LAKE RECREATION SITE",
+     "PARKTYPE": "RS"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 98,
+   "fields": [
+    "FCA"
+   ],
+   "known": false,
+   "layer": "Furblocks",
+   "sample": [
+    {
+     "FCA": "M-60"
+    },
+    {
+     "FCA": "M-55"
+    },
+    {
+     "FCA": "P-62"
+    }
+   ],
+   "service": "WildlifeManagement",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/WildlifeManagement/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 83,
+   "fields": [
+    "DA_NAME",
+    "ZONE_NUM",
+    "CREATED_USER",
+    "LAST_EDITED_USER",
+    "LEGISL_E"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Zones",
+   "sample": [
+    {
+     "CREATED_USER": "manders1",
+     "DA_NAME": "WMZ No. 63",
+     "LEGISL_E": "https://publications.saskatchewan.ca/#/products/1607",
+     "ZONE_NUM": "63"
+    },
+    {
+     "CREATED_USER": "manders1",
+     "DA_NAME": "WMZ No. 74",
+     "LEGISL_E": "https://publications.saskatchewan.ca/#/products/1607",
+     "ZONE_NUM": "74"
+    },
+    {
+     "CREATED_USER": "manders1",
+     "DA_NAME": "WMZ No. 1",
+     "LEGISL_E": "https://publications.saskatchewan.ca/#/products/1607",
+     "ZONE_NUM": "1"
+    }
+   ],
+   "service": "WildlifeManagement",
+   "typef": "CREATED_USER",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/WildlifeManagement/MapServer/0"
+  },
+  {
+   "agency": "Government of Saskatchewan - Fish, Wildlife and Lands Branch",
+   "area": "",
+   "count": 50,
+   "fields": [
+    "LAKNAMEEN",
+    "NRCAN_CODE",
+    "CLOSURE_DATE",
+    "CLOSURE_START",
+    "CLOSURE_END"
+   ],
+   "known": false,
+   "layer": "Angling Closures",
+   "sample": [
+    {
+     "CLOSURE_DATE": "January 1 up to and including December 31",
+     "CLOSURE_END": "1231",
+     "CLOSURE_START": "0101",
+     "LAKNAMEEN": "Mercer River",
+     "NRCAN_CODE": "HALLD"
+    },
+    {
+     "CLOSURE_DATE": "April 1 up to and including June 15",
+     "CLOSURE_END": "0615",
+     "CLOSURE_START": "0401",
+     "LAKNAMEEN": "Torch Lake",
+     "NRCAN_CODE": "HANTM"
+    },
+    {
+     "CLOSURE_DATE": "March 1 up to and including May 31",
+     "CLOSURE_END": "0531",
+     "CLOSURE_START": "0301",
+     "LAKNAMEEN": "Unnamed Lake",
+     "NRCAN_CODE": "HXXMY"
+    }
+   ],
+   "service": "Fisheries_Closures",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Fisheries_Closures/MapServer/3"
+  },
+  {
+   "agency": "Government of Saskatchewan - Fish, Wildlife and Lands Branch",
+   "area": "",
+   "count": 49,
+   "fields": [
+    "LAKE_NAME",
+    "NRCAN",
+    "CLOSURE_DATE",
+    "CLOSURE_START",
+    "CLOSURE_END"
+   ],
+   "known": false,
+   "layer": "Commercial Closures",
+   "sample": [
+    {
+     "CLOSURE_DATE": "April 1 up to and including May 14",
+     "CLOSURE_END": "0514",
+     "CLOSURE_START": "0401",
+     "LAKE_NAME": "Delaronde Lake",
+     "NRCAN": "HAFXO"
+    },
+    {
+     "CLOSURE_DATE": "April 1 up to and including May 14",
+     "CLOSURE_END": "0514",
+     "CLOSURE_START": "0401",
+     "LAKE_NAME": "Delaronde Lake",
+     "NRCAN": "HAFXO"
+    },
+    {
+     "CLOSURE_DATE": "January 1 up to and including December 31",
+     "CLOSURE_END": "1231",
+     "CLOSURE_START": "0101",
+     "LAKE_NAME": "Hunter Bay",
+     "NRCAN": "HAFTF"
+    }
+   ],
+   "service": "Fisheries_Closures",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Fisheries_Closures/MapServer/1"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 42,
+   "fields": [
+    "LEGALDATE",
+    "NOTES",
+    "SOURCE",
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL"
+   ],
+   "known": false,
+   "layer": "Wildlife Refuge",
+   "sample": [
+    {
+     "DA_TYPE": "Wildlife Refuge",
+     "IUCN_CAT": "IV",
+     "LEGALDATE": "1982-03-16",
+     "LEGISL": "The Wildlife Act; The Wildlife Management Zones and Special Area Boundary Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.WMZSABR_V_Wildlife_Refuge",
+     "PUBLICNM": "PRESTON LAKE"
+    },
+    {
+     "DA_TYPE": "Wildlife Refuge",
+     "IUCN_CAT": "IV",
+     "LEGALDATE": "1971-07-19",
+     "LEGISL": "The Wildlife Act; The Wildlife Management Zones and Special Area Boundary Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.WMZSABR_V_Wildlife_Refuge",
+     "PUBLICNM": "SCHEELHAASE ISLAND"
+    },
+    {
+     "DA_TYPE": "Wildlife Refuge",
+     "IUCN_CAT": "IV",
+     "LEGALDATE": "1988-09-09",
+     "LEGISL": "The Wildlife Act; The Wildlife Management Zones and Special Area Boundary Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "NOTES": " ",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.WMZSABR_V_Wildlife_Refuge",
+     "PUBLICNM": "STEVENSON"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/15"
+  },
+  {
+   "agency": "Saskatchewan Ministry of Parks, Culture and Sport",
+   "area": "PARKNM",
+   "count": 36,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE",
+    "HUNTING"
+   ],
+   "known": false,
+   "layer": "Provincial Park as Legislated",
+   "sample": [
+    {
+     "HUNTING": "1",
+     "PARKNM": "Athabasca Sand Dunes Provincial Park",
+     "PARKTYPE": "PP-W",
+     "PPID": "0124000066"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Blackstrap Provincial Park",
+     "PARKTYPE": "PP-R",
+     "PPID": "0124000029"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Buffalo Pound Provincial Park",
+     "PARKTYPE": "PP-R",
+     "PPID": "0124000055"
+    }
+   ],
+   "service": "ParksAsLegislated",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARKNM",
+   "count": 36,
+   "fields": [
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "Provincial Park",
+   "sample": [
+    {
+     "PARKNM": "CANDLE LAKE PROVINCIAL PARK",
+     "PARKTYPE": "RP"
+    },
+    {
+     "PARKNM": "PIKE LAKE PROVINCIAL PARK",
+     "PARKTYPE": "RP"
+    },
+    {
+     "PARKNM": "FORT CARLTON PROVINCIAL PARK",
+     "PARKTYPE": "HP"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/1"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "PARKNM",
+   "count": 36,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "Provincial Park",
+   "sample": [
+    {
+     "PARKNM": "CANDLE LAKE PROVINCIAL PARK",
+     "PARKTYPE": "RP",
+     "PPID": "0124000054"
+    },
+    {
+     "PARKNM": "PIKE LAKE PROVINCIAL PARK",
+     "PARKTYPE": "RP",
+     "PPID": "0124000035"
+    },
+    {
+     "PARKNM": "FORT CARLTON PROVINCIAL PARK",
+     "PARKTYPE": "HP",
+     "PPID": "0124000002"
+    }
+   ],
+   "service": "OverviewMap",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/OverviewMap/MapServer/7"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "FLOOR_AREA",
+   "count": 34,
+   "fields": [
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL",
+    "PROPERTY_S",
+    "PLACE_NAME",
+    "NOTES",
+    "UNIT_IDENT",
+    "FGO_UNIT_N",
+    "ABBREVIATE",
+    "PROPERTY_N",
+    "PROPERTY_1",
+    "DESCRIPTOR",
+    "DESCRIPT_1",
+    "TYPE_CODE"
+   ],
+   "known": false,
+   "layer": "National Wildlife Area",
+   "sample": [
+    {
+     "DA_TYPE": "National Wildlife Area",
+     "IUCN_CAT": "IV",
+     "LEGISL": "Wildlife Area Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Canada, Environment Canada, Canadian",
+     "NOTES": "Geocoded from SK Cadastre and Wildlife Area Regulations by GW and JS.",
+     "PLACE_NAME": "Rosthern, SK",
+     "PROPERTY_S": "Rosthern No. 403",
+     "PROP_OWN": "Government of Canada, Environment Canada, Canadian Wildlife Service ",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.EC_NWA_SK_Outline",
+     "PUBLICNM": "PRAIRIE NATIONAL WILDLIFE AREA - UNIT NUMBER 4"
+    },
+    {
+     "DA_TYPE": "National Wildlife Area",
+     "IUCN_CAT": "IV",
+     "LEGISL": "Wildlife Area Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Canada, Environment Canada, Canadian",
+     "NOTES": "Geocoded from SK Cadastre and Wildlife Area Regulations by GW and JS.",
+     "PLACE_NAME": "Golden Prairie, SK",
+     "PROPERTY_S": "Big Stick No. 141",
+     "PROP_OWN": "Government of Canada, Environment Canada, Canadian Wildlife Service ",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.EC_NWA_SK_Outline",
+     "PUBLICNM": "PRAIRIE NATIONAL WILDLIFE AREA - UNIT NUMBER 17"
+    },
+    {
+     "DA_TYPE": "National Wildlife Area",
+     "IUCN_CAT": "IV",
+     "LEGISL": "Wildlife Area Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Canada, Environment Canada, Canadian",
+     "NOTES": "Geocoded from SK Cadastre and Wildlife Area Regulations by GW and JS.",
+     "PLACE_NAME": "Stalwart, SK",
+     "PROPERTY_S": "Big Arm No. 251",
+     "PROP_OWN": "Government of Canada, Environment Canada, Canadian Wildlife Service ",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.EC_NWA_SK_Outline",
+     "PUBLICNM": "STALWART NATIONAL WILDLIFE AREA"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/2"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 26,
+   "fields": [
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL"
+   ],
+   "known": false,
+   "layer": "Ecological Reserves",
+   "sample": [
+    {
+     "DA_TYPE": "Ecological Reserve",
+     "IUCN_CAT": "Ia",
+     "LEGISL": "The Ecological Reserves Act; The Assiniboine Slopes Provincial Ecological Reserve Regulations; The Buffalograss Provincial Ecological Reserve Designation Regulations; The Qu'Appelle Coulee Provincial Ecological Reserve Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "1998",
+     "PUBLICCL": "PLANNING.Ecological_Reserve",
+     "PUBLICNM": "MCCUSKER RIVER"
+    },
+    {
+     "DA_TYPE": "Ecological Reserve",
+     "IUCN_CAT": "Ia",
+     "LEGISL": "The Ecological Reserves Act; The Assiniboine Slopes Provincial Ecological Reserve Regulations; The Buffalograss Provincial Ecological Reserve Designation Regulations; The Qu'Appelle Coulee Provincial Ecological Reserve Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "1994",
+     "PUBLICCL": "PLANNING.Ecological_Reserve",
+     "PUBLICNM": "BUFFALOGRASS"
+    },
+    {
+     "DA_TYPE": "Ecological Reserve",
+     "IUCN_CAT": "Ia",
+     "LEGISL": "The Ecological Reserves Act; The Assiniboine Slopes Provincial Ecological Reserve Regulations; The Buffalograss Provincial Ecological Reserve Designation Regulations; The Qu'Appelle Coulee Provincial Ecological Reserve Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "1986",
+     "PUBLICCL": "PLANNING.Ecological_Reserve",
+     "PUBLICNM": "ASSINIBOINE SLOPES"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/6"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "TIMBER_SUPPLY_AREA",
+   "count": 24,
+   "fields": [
+    "LAND_USE",
+    "FOREST_NAME",
+    "TIMBER_SUPPLY_AREA",
+    "AREA_BASED_LICENCE_NAME",
+    "AREA_BASED_LICENSEE",
+    "FOREST_NAME_OLD",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Timber Supply Areas",
+   "sample": [
+    {
+     "AREA_BASED_LICENCE_NAME": "Kitsaki TSL",
+     "AREA_BASED_LICENSEE": "KDC Development Corp.",
+     "CREATED_USER": "NPODBIEL",
+     "FOREST_NAME": "North Central",
+     "FOREST_NAME_OLD": "Kitsaki Zelensky",
+     "LAND_USE": "Commercial Forest",
+     "LAST_EDITED_USER": "NPODBIEL",
+     "TIMBER_SUPPLY_AREA": "North Central TSA"
+    },
+    {
+     "CREATED_USER": "NPODBIEL",
+     "FOREST_NAME": "Turnor",
+     "FOREST_NAME_OLD": "Turnor West, Turnor East",
+     "LAND_USE": "Commercial Forest",
+     "LAST_EDITED_USER": "NPODBIEL",
+     "TIMBER_SUPPLY_AREA": "Turnor TSA"
+    },
+    {
+     "CREATED_USER": "NPODBIEL",
+     "FOREST_NAME": "Northern Reconnaisance",
+     "FOREST_NAME_OLD": "Northern Reconnaisance",
+     "LAND_USE": "Other Uses",
+     "LAST_EDITED_USER": "NPODBIEL"
+    }
+   ],
+   "service": "Forestry",
+   "typef": "LAND_USE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Forestry/MapServer/2"
+  },
+  {
+   "agency": "Saskatchewan Ministry of Parks, Culture and Sport",
+   "area": "PARKNM",
+   "count": 24,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE",
+    "HUNTING"
+   ],
+   "known": false,
+   "layer": "Protected Area as Legislated",
+   "sample": [
+    {
+     "HUNTING": "0",
+     "PARKNM": "Anderson Island Protected Area",
+     "PARKTYPE": "PA",
+     "PPID": "0124000008"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Besant Midden Protected Area",
+     "PARKTYPE": "PA",
+     "PPID": "0124000020"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Brockelbank Hill Protected Area",
+     "PARKTYPE": "PA",
+     "PPID": "0124000070"
+    }
+   ],
+   "service": "ParksAsLegislated",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/2"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARKNM",
+   "count": 24,
+   "fields": [
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "Protected Area",
+   "sample": [
+    {
+     "PARKNM": "BROCKELBANK HILL",
+     "PARKTYPE": "PR"
+    },
+    {
+     "PARKNM": "GRAY ARCHAEOLOGICAL SITE",
+     "PARKTYPE": "PR"
+    },
+    {
+     "PARKNM": "HICKSON - MARIBELLI LAKES PICTOGRAPHS",
+     "PARKTYPE": "PR"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/3"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "PUBLICNM",
+    "IUCN_CAT",
+    "DA_TYPE",
+    "MGMT_JUR",
+    "LEGISL",
+    "LEG_STAT",
+    "PROTDATE",
+    "PROP_OWN",
+    "PUBLICCL"
+   ],
+   "known": false,
+   "layer": "Game Preserve",
+   "sample": [
+    {
+     "DA_TYPE": "Game Preserve",
+     "IUCN_CAT": "IV",
+     "LEGISL": "The Wildlife Act; The Wildlife Management Zones and Special Area Boundary Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.WMZSABR_III_Game_Preserve",
+     "PUBLICNM": "WASCANA"
+    },
+    {
+     "DA_TYPE": "Game Preserve",
+     "IUCN_CAT": "IV",
+     "LEGISL": "The Wildlife Act; The Wildlife Management Zones and Special Area Boundary Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.WMZSABR_III_Game_Preserve",
+     "PUBLICNM": "MARSDEN"
+    },
+    {
+     "DA_TYPE": "Game Preserve",
+     "IUCN_CAT": "IV",
+     "LEGISL": "The Wildlife Act; The Wildlife Management Zones and Special Area Boundary Regulations",
+     "LEG_STAT": "Permanent",
+     "MGMT_JUR": "Government of Saskatchewan, Ministry of Environment",
+     "PROP_OWN": "Government of Saskatchewan, Ministry of Environment",
+     "PROTDATE": "0000",
+     "PUBLICCL": "PLANNING.WMZSABR_III_Game_Preserve",
+     "PUBLICNM": "SHAWAGA"
+    }
+   ],
+   "service": "Planning",
+   "typef": "DA_TYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Planning/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "DA_NAME",
+    "LEGISL_ENA",
+    "LEGISL_REG"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Units",
+   "sample": [
+    {
+     "DA_NAME": "Horsehide Lake Wildlife Management Unit",
+     "LEGISL_ENA": "Wildlife Act, Wildlife Management Zones and Special Areas Boundaries Regulations",
+     "LEGISL_REG": "Wildlife Regulations"
+    },
+    {
+     "DA_NAME": "Mariposa Wildlife Management Unit",
+     "LEGISL_ENA": "Wildlife Act, Wildlife Management Zones and Special Areas Boundaries Regulations",
+     "LEGISL_REG": "Wildlife Regulations"
+    },
+    {
+     "DA_NAME": "Skinners Wildlife Management Unit",
+     "LEGISL_ENA": "Wildlife Act, Wildlife Management Zones and Special Areas Boundaries Regulations",
+     "LEGISL_REG": "Wildlife Regulations"
+    }
+   ],
+   "service": "WildlifeManagement",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/WildlifeManagement/MapServer/4"
+  },
+  {
+   "agency": "Saskatchewan Ministry of Parks, Culture and Sport",
+   "area": "PARKNM",
+   "count": 18,
+   "fields": [
+    "PPID",
+    "FEATURECD",
+    "PARKNM",
+    "PARKTYPE",
+    "HUNTING"
+   ],
+   "known": false,
+   "layer": "Hunting Allowed Parks as Legislated",
+   "sample": [
+    {
+     "HUNTING": "1",
+     "PARKNM": "Athabasca Sand Dunes Provincial Park",
+     "PARKTYPE": "PP-W",
+     "PPID": "0124000066"
+    },
+    {
+     "HUNTING": "1",
+     "PARKNM": "Bronson Forest Recreation Site",
+     "PARKTYPE": "RS",
+     "PPID": "0124A00120"
+    },
+    {
+     "HUNTING": "1",
+     "PARKNM": "Clarence-Steepbank Lakes Provincial Park",
+     "PARKTYPE": "PP-W",
+     "PPID": "0124000067"
+    }
+   ],
+   "service": "ParksAsLegislated",
+   "typef": "FEATURECD",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/5"
+  },
+  {
+   "agency": "Saskatchewan Ministry of Parks, Culture and Sport",
+   "area": "PARKNM",
+   "count": 8,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE",
+    "HUNTING"
+   ],
+   "known": false,
+   "layer": "Historic Site as Legislated",
+   "sample": [
+    {
+     "HUNTING": "0",
+     "PARKNM": "Buffalo Rubbing Stone Historic Site",
+     "PARKTYPE": "HS",
+     "PPID": "0124A00121"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Chimney Coulee Historic Site",
+     "PARKTYPE": "HS",
+     "PPID": "0124A00127"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Fort Pelly #1 Historic Site",
+     "PARKTYPE": "HS",
+     "PPID": "0124A00156"
+    }
+   ],
+   "service": "ParksAsLegislated",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/3"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARKNM",
+   "count": 8,
+   "fields": [
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "Historic Site",
+   "sample": [
+    {
+     "PARKNM": "BUFFALO RUBBING STONE HISTORIC SITE",
+     "PARKTYPE": "HS"
+    },
+    {
+     "PARKNM": "LA ROCHE PERCEE HISTORIC SITE",
+     "PARKTYPE": "HS"
+    },
+    {
+     "PARKNM": "HOLY TRINITY ANGLICAN CHURCH, STANLEY MISSION HISTORIC SITE",
+     "PARKTYPE": "HS"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "Area Fisheries Ecologists",
+   "sample": [
+    {
+     "DISTRICT": "North East"
+    },
+    {
+     "DISTRICT": "North West"
+    },
+    {
+     "DISTRICT": "PANP"
+    }
+   ],
+   "service": "Administrative",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Administrative/MapServer/10"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "FOREST_BOUNDARY",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Provincial Forest",
+   "sample": [
+    {
+     "FOREST_BOUNDARY": "PF-CAN"
+    },
+    {
+     "FOREST_BOUNDARY": "PF-FALC"
+    },
+    {
+     "FOREST_BOUNDARY": "PF-NIS"
+    }
+   ],
+   "service": "Forestry",
+   "typef": "CREATED_USER",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Forestry/MapServer/0"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARKNM",
+   "count": 6,
+   "fields": [
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "National Park",
+   "sample": [
+    {
+     "PARKNM": "BATOCHE NATIONAL HISTORIC PARK",
+     "PARKTYPE": "NP"
+    },
+    {
+     "PARKNM": "MOTHERWELL HOMESTEAD NATIONAL HISTORIC PARK",
+     "PARKTYPE": "NP"
+    },
+    {
+     "PARKNM": "FORT WALSH NATIONAL HISTORIC PARK",
+     "PARKTYPE": "NP"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "COMP_AREA",
+   "count": 6,
+   "fields": [
+    "COMP_AREA",
+    "PHONE_NO"
+   ],
+   "known": false,
+   "layer": "Area Wildlife Ecologists",
+   "sample": [
+    {
+     "COMP_AREA": "SHIELD REGION",
+     "PHONE_NO": " 800-567-4224"
+    },
+    {
+     "COMP_AREA": "EAST BOREAL REGION",
+     "PHONE_NO": " 800-567-4224"
+    },
+    {
+     "COMP_AREA": "WEST BOREAL REGION",
+     "PHONE_NO": " 800-567-4224"
+    }
+   ],
+   "service": "WildlifeManagement",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/WildlifeManagement/MapServer/5"
+  },
+  {
+   "agency": "Ministry of Environment",
+   "area": "PARKNM",
+   "count": 6,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "National Park",
+   "sample": [
+    {
+     "PARKNM": "BATOCHE NATIONAL HISTORIC PARK",
+     "PARKTYPE": "NP",
+     "PPID": "0124A00256"
+    },
+    {
+     "PARKNM": "MOTHERWELL HOMESTEAD NATIONAL HISTORIC PARK",
+     "PARKTYPE": "NP",
+     "PPID": "0124A00259"
+    },
+    {
+     "PARKNM": "FORT WALSH NATIONAL HISTORIC PARK",
+     "PARKTYPE": "NP",
+     "PPID": "0124A00258"
+    }
+   ],
+   "service": "OverviewMap",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/OverviewMap/MapServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "REGION",
+    "CONTACT"
+   ],
+   "known": false,
+   "layer": "Parks Regions",
+   "sample": [
+    {
+     "CONTACT": "https://www.saskatchewan.ca/government/directory?ou=253a15bd-4725-486f-9e9d-1102a07305c4",
+     "REGION": "CE"
+    },
+    {
+     "CONTACT": "https://www.saskatchewan.ca/government/directory?ou=d1982957-4f4c-45d4-93e4-4a3521922954",
+     "REGION": "NE"
+    },
+    {
+     "CONTACT": "https://www.saskatchewan.ca/government/directory?ou=2b4a8d2d-c9f8-4a5f-a173-6ecfb0bacf9f",
+     "REGION": "NW"
+    }
+   ],
+   "service": "Administrative",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Administrative/MapServer/11"
+  },
+  {
+   "agency": "Information Services Corp.",
+   "area": "PARKNM",
+   "count": 3,
+   "fields": [
+    "PARKNM",
+    "PARKTYPE"
+   ],
+   "known": false,
+   "layer": "Authority",
+   "sample": [
+    {
+     "PARKNM": "WAKAMOW VALLEY AUTHORITY",
+     "PARKTYPE": "AT"
+    },
+    {
+     "PARKNM": "WASCANA CENTRE",
+     "PARKTYPE": "AT"
+    },
+    {
+     "PARKNM": "MEEWASIN VALLEY AUTHORITY",
+     "PARKTYPE": "AT"
+    }
+   ],
+   "service": "ParksAsTitled",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "LABEL",
+    "REGULATION"
+   ],
+   "known": false,
+   "layer": "Fishing Zones",
+   "sample": [
+    {
+     "LABEL": "Southern Zone",
+     "REGULATION": "https://publications.saskatchewan.ca/#/products/1116"
+    },
+    {
+     "LABEL": "Central Zone",
+     "REGULATION": "https://publications.saskatchewan.ca/#/products/1116"
+    },
+    {
+     "LABEL": "Northern Zone",
+     "REGULATION": "https://publications.saskatchewan.ca/#/products/1116"
+    }
+   ],
+   "service": "Administrative",
+   "typef": "",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/Administrative/MapServer/9"
+  },
+  {
+   "agency": "Saskatchewan Ministry of Parks, Culture and Sport",
+   "area": "PARKNM",
+   "count": 172,
+   "fields": [
+    "PPID",
+    "PARKNM",
+    "PARKTYPE",
+    "HUNTING"
+   ],
+   "known": true,
+   "layer": "All Parks as Legislated",
+   "sample": [
+    {
+     "HUNTING": "0",
+     "PARKNM": "Amisk Lake Recreation Site",
+     "PARKTYPE": "RS",
+     "PPID": "0124A00100"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Anderson Island Protected Area",
+     "PARKTYPE": "PA",
+     "PPID": "0124000008"
+    },
+    {
+     "HUNTING": "0",
+     "PARKNM": "Arm River Recreation Site",
+     "PARKTYPE": "RS",
+     "PPID": "0124A00102"
+    }
+   ],
+   "service": "ParksAsLegislated",
+   "typef": "PARKTYPE",
+   "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+  }
+ ],
+ "st": "CA-SK"
+}

@@ -1,0 +1,600 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Government of Manitoba",
+   "area": "",
+   "count": 214,
+   "fields": [
+    "Data_Date"
+   ],
+   "known": false,
+   "layer": "1-Year_Historical_Percentile_of_Precepitation",
+   "sample": [
+    {
+     "Data_Date": "September 30, 2026"
+    },
+    {
+     "Data_Date": "September 30, 2026"
+    },
+    {
+     "Data_Date": "September 30, 2026"
+    }
+   ],
+   "service": "Manitoba_Drought_App_Precipitation_Indicators",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Drought_App_Precipitation_Indicators/FeatureServer/2"
+  },
+  {
+   "agency": "Government of Manitoba",
+   "area": "",
+   "count": 197,
+   "fields": [
+    "Data_Date"
+   ],
+   "known": false,
+   "layer": "3-Month_Historical_Percentile_of_Precipitation",
+   "sample": [
+    {
+     "Data_Date": "September 30, 2026"
+    },
+    {
+     "Data_Date": "September 30, 2026"
+    },
+    {
+     "Data_Date": "September 30, 2026"
+    }
+   ],
+   "service": "Manitoba_Drought_App_Precipitation_Indicators",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Drought_App_Precipitation_Indicators/FeatureServer/1"
+  },
+  {
+   "agency": "Government of Manitoba",
+   "area": "",
+   "count": 156,
+   "fields": [
+    "Data_Date"
+   ],
+   "known": false,
+   "layer": "1-Month_Historical__Percentile_of_Precipitation",
+   "sample": [
+    {
+     "Data_Date": "September 30, 2026"
+    },
+    {
+     "Data_Date": "September 30, 2026"
+    },
+    {
+     "Data_Date": "September 30, 2026"
+    }
+   ],
+   "service": "Manitoba_Drought_App_Precipitation_Indicators",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Drought_App_Precipitation_Indicators/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 152,
+   "fields": [
+    "NAME_E",
+    "NOM_F",
+    "ZONEDESC_E",
+    "ZONEDESC_F",
+    "BIOME",
+    "JUR_ID",
+    "IUCN_CAT",
+    "LOC_E",
+    "LOC_F",
+    "TYPE_E",
+    "TYPE_F",
+    "MGMT_E",
+    "MGMT_F",
+    "LEGISL_E",
+    "LEGISL_F",
+    "STATUS_E",
+    "STATUS_F",
+    "OWNER_E",
+    "OWNER_F",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "bdy_wildlife_mgmt_areas_py_shp",
+   "sample": [
+    {
+     "BIOME": "T",
+     "IUCN_CAT": "IV",
+     "JUR_ID": "0",
+     "LOC_E": "Manitoba",
+     "LOC_F": "Manitoba",
+     "MGMT_E": "Manitoba Agriculture and Resource Development",
+     "NAME_E": "Donald W. Orchard Wildlife Management Area",
+     "NOM_F": "Zone de gestion de la faune de Donald W. Orchard",
+     "TYPE_E": "Protected Wildlife Management Area",
+     "TYPE_F": "Zone de gestion de la faune protégée",
+     "ZONEDESC_E": " ",
+     "ZONEDESC_F": " "
+    },
+    {
+     "BIOME": "T",
+     "IUCN_CAT": "IV",
+     "JUR_ID": "0",
+     "LOC_E": "Manitoba",
+     "LOC_F": "Manitoba",
+     "MGMT_E": "Manitoba Agriculture and Resource Development",
+     "NAME_E": "Deerwood Wildlife Management Area",
+     "NOM_F": "Zone de gestion de la faune de Deerwood",
+     "TYPE_E": "Protected Wildlife Management Area",
+     "TYPE_F": "Zone de gestion de la faune protégée",
+     "ZONEDESC_E": " ",
+     "ZONEDESC_F": " "
+    },
+    {
+     "BIOME": "T",
+     "IUCN_CAT": "IV",
+     "JUR_ID": "0",
+     "LOC_E": "Manitoba",
+     "LOC_F": "Manitoba",
+     "MGMT_E": "Manitoba Agriculture and Resource Development",
+     "NAME_E": "Hilbre Wildlife Management Area",
+     "NOM_F": "Zone de gestion de la faune de Hilbre",
+     "TYPE_E": "Protected Wildlife Management Area",
+     "TYPE_F": "Zone de gestion de la faune protégée",
+     "ZONEDESC_E": " ",
+     "ZONEDESC_F": " "
+    }
+   ],
+   "service": "bdy_wildlife_mgmt_areas_py_shp",
+   "typef": "ZONEDESC_E",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/bdy_wildlife_mgmt_areas_py_shp/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 129,
+   "fields": [
+    "NAME_E",
+    "NOM_F",
+    "D_OF_S",
+    "UNIT_SUB",
+    "LOCATION",
+    "DESCRIPTION",
+    "VEHICLE_RESTRICTIONS",
+    "DES_TRAIL_MAP",
+    "WALK_TRAIL_MAP",
+    "GAME_SPP",
+    "HUNTING_RESTRICTIONS",
+    "Fur_spp"
+   ],
+   "known": false,
+   "layer": "Wildlife_Management_Areas",
+   "sample": [
+    {
+     "DESCRIPTION": "Hilbre WMA butts up against the eastern edge of Portage Bay at the northern end of Lake Manitoba. The topography is gently rolling with ridges dominated by bur oak and aspen. Native grasslands form meadows between the wooded areas giving it a park-like setting. <br><br>The native grasslands protect habitat for grassland birds such as the savannah sparrow. The lake's edge is home to the wee sedge wren and the red-winged blackbird whose unmistakable call tells you that you are in a wetland. <br><br>The combination of grassland and deciduous forest makes this WMA good habitat for deer and grouse.",
+     "D_OF_S": "Legal Description",
+     "Fur_spp": "Beaver, Muskrat, Red Squirrel, Badger, Short-tailed Weasel, Fisher, Marten, Mink, River Otter, Coyote, Red Fox, Lynx, Raccoon",
+     "GAME_SPP": "White-tailed Deer, Elk, Black Bear, Sharp-tailed Grouse, Ruffed Grouse, Woodcock, Gray Wolf, Ducks, Geese, Sandhill Crane",
+     "LOCATION": "1,041 ha, 16 km west of Hilbre, off PTH 6",
+     "NAME_E": "Hilbre Wildlife Management Area",
+     "NOM_F": "Zone de gestion de la faune de Hilbre",
+     "UNIT_SUB": "N/A"
+    },
+    {
+     "DESCRIPTION": "Holmfield WMA was purchased in 1986 to protect an important waterfowl nesting area. Its establishment was a partnership between many leading habitat conservation groups. The partners included Manitoba Habitat Heritage Corporation, Wildlife Habitat Canada, Manitoba Naturalists Society, Manitoba Wildlife Federation and Manitoba Conservation. Ducks Unlimited Canada developed a marsh management project for the WMA to improve its attractiveness to waterfowl.   <br><br>Approximately one-third of the WMA is a wetland used by a variety of waterfowl to raise their young. Look for mallards, blue-winged teal and Canada geese. Some of the other marsh species you will find are red-winged and yellow-headed blackbirds. The wetland also provides a home to muskrats and western painted turtles.  <br><br>The rest of Holmfield WMA is primarily mixed-grass prairie with some willow and aspen bush. The prairie provides nesting sites for a variety of grassland species. Listen for the melodic call of the meadowlark. On the prairie you can find weasels lurking, foxes hunting on the sly and deer gazing quietly. At night listen for the yip and howls of coyotes celebrating the evening.",
+     "D_OF_S": "Legal Description",
+     "Fur_spp": "Beaver, Muskrat, Red Squirrel, Badger, Short-tailed Weasel, Long-tailed Weasel, Mink, River Otter, Coyote, Red Fox, Bobcat, Raccoon",
+     "GAME_SPP": "White-tailed Deer, Sharp-tailed Grouse, Ruffed Grouse, Gray Partridge, Ducks, Geese, Sandhill Crane",
+     "HUNTING_RESTRICTIONS": "Hunting is prohibited <br> No person shall hunt or kill a game bird or a big game animal",
+     "LOCATION": "64 ha, 7.2 km west of Cartwright, north side of PTH 3",
+     "NAME_E": "Holmfield Wildlife Management Area",
+     "NOM_F": "Zone de gestion de la faune de Holmfield",
+     "UNIT_SUB": "N/A"
+    },
+    {
+     "DESCRIPTION": "Langruth WMA is on the west side of Lake Manitoba, between the big lake and Big Grass Marsh. Before settlement this area was a mosaic of aspen/oak groves and rough fescue grasslands. A fescue grassland includes species such as rough fescue, porcupine grass, wheat grasses, wild oatgrass, prairie smoke or three-flowered aven, seneca root and snowberry. Look for the Baird's sparrow in this habitat. <br><br>Langruth was set aside to protect habitat for neo-tropical birds, deer, waterfowl and grouse. The ridge and swale topography, with wetland in low areas and grasslands and aspen-balsam poplar mix in the higher locations, is particularly attractive to the neo-tropical migrants. <br><br>The Royal Canadian Air Force used what is now the WMA during WW II as a bombing practice range. Now it provides hunting of a different kind – for deer, waterfowl and grouse.",
+     "D_OF_S": "Legal Description",
+     "Fur_spp": "Beaver, Muskrat, Red Squirrel, Badger, Short-tailed Weasel, Fisher, Marten, Mink, River Otter, Coyote, Red Fox, Lynx, Raccoon",
+     "GAME_SPP": "White-tailed Deer, Black Bear, Sharp-tailed Grouse, Ruffed Grouse, Woodcock",
+     "LOCATION": "1,813 ha, 5 km north and 2 km west of Langruth, off PTH 50",
+     "NAME_E": "Langruth Wildlife Management Area",
+     "NOM_F": "Zone de gestion de la faune de Langruth",
+     "UNIT_SUB": "N/A"
+    }
+   ],
+   "service": "Manitoba_Wildlife_Lands",
+   "typef": "DESCRIPTION",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2"
+  },
+  {
+   "agency": "Manitoba Government",
+   "area": "",
+   "count": 93,
+   "fields": [
+    "NAME_E",
+    "NOM_F",
+    "BIOME",
+    "LOC_E",
+    "LOC_F",
+    "TYPE_E",
+    "TYPE_F",
+    "MGMT_E",
+    "MGMT_F",
+    "LEGISL_E",
+    "LEGISL_F",
+    "STATUS_E",
+    "STATUS_F",
+    "YR_PP_DES",
+    "OWNER_E",
+    "OWNER_F",
+    "PRK_CLSS",
+    "PR_EXP",
+    "D_OF_S",
+    "OIC_NM"
+   ],
+   "known": false,
+   "layer": "Manitoba Parks",
+   "sample": [
+    {
+     "BIOME": "T",
+     "LEGISL_E": "Provincial Parks Act (1993); Provincial Parks Designation Regulation (37/97)",
+     "LEGISL_F": "Loi sur les parcs provinciaux (1993); Règlement sur la désignation des parcs provinciaux (37/97)",
+     "LOC_E": "Manitoba",
+     "LOC_F": "Manitoba",
+     "MGMT_E": "Manitoba Sustainable Development",
+     "MGMT_F": "Développement durable Manitoba",
+     "NAME_E": "Hecla/Grindstone Provincial Park",
+     "NOM_F": "Parc provincial d'Hecla/Grindstone",
+     "STATUS_E": "Legally Designated - Includes Protected and Not Protected Lands",
+     "TYPE_E": "Provincial Park",
+     "TYPE_F": "Parc provincial"
+    },
+    {
+     "BIOME": "T",
+     "LEGISL_E": "Provincial Parks Act (1993); Provincial Parks Designation Regulation (37/97)",
+     "LEGISL_F": "Loi sur les parcs provinciaux (1993); Règlement sur la désignation des parcs provinciaux (37/97)",
+     "LOC_E": "Manitoba",
+     "LOC_F": "Manitoba",
+     "MGMT_E": "Manitoba Sustainable Development",
+     "MGMT_F": "Développement durable Manitoba",
+     "NAME_E": "Elk Island Provincial Park",
+     "NOM_F": "Parc provincial de l'Île Elk",
+     "STATUS_E": "Legally Designated - Permanent Protection",
+     "TYPE_E": "Provincial Park",
+     "TYPE_F": "Parc provincial"
+    },
+    {
+     "BIOME": "T",
+     "LEGISL_E": "Provincial Parks Act (1993); Park Reserves Designation Regulation (66/99)",
+     "LEGISL_F": "Loi sur les parcs provinciaux (1993); Règlement sur la désignation des réserves de parcs provinciaux (66/99)",
+     "LOC_E": "Manitoba",
+     "LOC_F": "Manitoba",
+     "MGMT_E": "Manitoba Sustainable Development",
+     "MGMT_F": "Développement durable Manitoba",
+     "NAME_E": "Amisk Park Reserve",
+     "NOM_F": "Réserve de parc Amisk",
+     "STATUS_E": "Legally Designated - Interim Protection",
+     "TYPE_E": "Park Reserve",
+     "TYPE_F": "Réserve de parc"
+    }
+   ],
+   "service": "Manitoba_Parks",
+   "typef": "TYPE_E",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 71,
+   "fields": [
+    "NAME",
+    "TYPE",
+    "D_OF_S_PLA",
+    "OWNERSHIP",
+    "HUNTING_RESTRICTIONS"
+   ],
+   "known": false,
+   "layer": "Refuges",
+   "sample": [
+    {
+     "D_OF_S_PLA": "none",
+     "HUNTING_RESTRICTIONS": "No person shall hunt, take, kill, capture, retrieve or possess wildlife, or possess or discharge a loaded firearm <br>No person, except the lawful occupant of the land which constitutes the refuge, shall use a vehicle except to assist in a farming operation located within the refuge",
+     "NAME": "Harry Cox",
+     "OWNERSHIP": "Crown",
+     "TYPE": "Wildlife Refuge"
+    },
+    {
+     "D_OF_S_PLA": "none",
+     "HUNTING_RESTRICTIONS": "No person shall hunt, take, kill, capture, retrieve or possess a game bird, or possess a loaded firearm",
+     "NAME": "Red Deer Point",
+     "OWNERSHIP": "Crown",
+     "TYPE": "Game Bird Refuge"
+    },
+    {
+     "D_OF_S_PLA": "19547A",
+     "HUNTING_RESTRICTIONS": "No person shall hunt, take, kill, capture, retrieve or possess wildlife, or possess or discharge a loaded firearm",
+     "NAME": "Duck Mountain",
+     "OWNERSHIP": "Crown",
+     "TYPE": "Wildlife Refuge"
+    }
+   ],
+   "service": "Manitoba_Wildlife_Lands",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 71,
+   "fields": [
+    "NAME",
+    "TYPE",
+    "D_OF_S_PLA",
+    "OWNERSHIP"
+   ],
+   "known": false,
+   "layer": "Wildlife_Refuges_06_Feb_2019",
+   "sample": [
+    {
+     "D_OF_S_PLA": "none",
+     "NAME": "Harry Cox",
+     "OWNERSHIP": "Crown",
+     "TYPE": "Wildlife Refuge"
+    },
+    {
+     "D_OF_S_PLA": "none",
+     "NAME": "Red Deer Point",
+     "OWNERSHIP": "Crown",
+     "TYPE": "Game Bird Refuge"
+    },
+    {
+     "D_OF_S_PLA": "19547A",
+     "NAME": "Duck Mountain",
+     "OWNERSHIP": "Crown",
+     "TYPE": "Wildlife Refuge"
+    }
+   ],
+   "service": "Wildlife_Refuges_06_Feb_2019",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Wildlife_Refuges_06_Feb_2019/FeatureServer/0"
+  },
+  {
+   "agency": "Manitoba Government, Gouvernement du Manitoba",
+   "area": "",
+   "count": 57,
+   "fields": [
+    "PROV_FOREST_NAME",
+    "NOM_FORET_PROV"
+   ],
+   "known": false,
+   "layer": "Manitoba Provincial Forests - Version 6",
+   "sample": [
+    {
+     "NOM_FORET_PROV": "Forêt provinciale d'Agassiz",
+     "PROV_FOREST_NAME": "Agassiz Provincial Forest"
+    },
+    {
+     "NOM_FORET_PROV": "Forêt provinciale Belair",
+     "PROV_FOREST_NAME": "Belair Provincial Forest"
+    },
+    {
+     "NOM_FORET_PROV": "Forêt provinciale Brightstone Sand Hills",
+     "PROV_FOREST_NAME": "Brightstone Sand Hills Provincial Forest"
+    }
+   ],
+   "service": "Manitoba_Provincial_Forests___Version_6",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Provincial_Forests___Version_6/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 24,
+   "fields": [
+    "Name",
+    "D_of_S",
+    "Reg",
+    "Restric"
+   ],
+   "known": false,
+   "layer": "Wildlife_Act_Restricted_Hunting_and_Trapping_Areas",
+   "sample": [
+    {
+     "D_of_S": " ",
+     "Name": "Ralls Island",
+     "Reg": "The Wildlife Act (C.C.S.M. c. W130), General Hunting Regulation (351/87)",
+     "Restric": "No person shall hunt with a rifle requiring a centrefire cartridge"
+    },
+    {
+     "D_of_S": " ",
+     "Name": "Parks Creek Drain",
+     "Reg": "The Wildlife Act (C.C.S.M. c. W130), General Hunting Regulation (351/87)",
+     "Restric": "No person shall hunt or kill an upland game bird, a wild turkey, a migratory game bird, or a big game animal"
+    },
+    {
+     "D_of_S": " ",
+     "Name": "Deer Island",
+     "Reg": "The Wildlife Act (C.C.S.M. c. W130), General Hunting Regulation (351/87)",
+     "Restric": "No person shall hunt or kill a moose"
+    }
+   ],
+   "service": "Lands_Closed_to_Hunting",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Lands_Closed_to_Hunting/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "GAME_HUNT_",
+    "DofS",
+    "Restrict_",
+    "Reg"
+   ],
+   "known": false,
+   "layer": "Moose_Conservation_Closures",
+   "sample": [
+    {
+     "DofS": " ",
+     "GAME_HUNT_": "29A",
+     "Reg": "The Wildlife Act (C.C.S.M. c . W130), Moose Conservation Closure Regulation (122/2011)",
+     "Restrict_": "No person shall hunt or trap a moose. This regulation applies to all persons, including those persons who may exercise aboriginal rights or treaty rights or rights under the Manitoba Natural Resource Transfer Agreement."
+    },
+    {
+     "DofS": " ",
+     "GAME_HUNT_": "29",
+     "Reg": "The Wildlife Act (C.C.S.M. c . W130), Moose Conservation Closure Regulation (122/2011)",
+     "Restrict_": "No person shall hunt or trap a moose. This regulation applies to all persons, including those persons who may exercise aboriginal rights or treaty rights or rights under the Manitoba Natural Resource Transfer Agreement."
+    },
+    {
+     "DofS": " ",
+     "GAME_HUNT_": "18C",
+     "Reg": "The Wildlife Act (C.C.S.M. c . W130), Moose Conservation Closure Regulation (122/2011)",
+     "Restrict_": "No person shall hunt or trap a moose. This regulation applies to all persons, including those persons who may exercise aboriginal rights or treaty rights or rights under the Manitoba Natural Resource Transfer Agreement."
+    }
+   ],
+   "service": "Lands_Closed_to_Hunting",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Lands_Closed_to_Hunting/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Name",
+    "DofS",
+    "Species"
+   ],
+   "known": false,
+   "layer": "Special_Conservation_Areas",
+   "sample": [
+    {
+     "DofS": "19981A",
+     "Name": "Churchill Special Conservation Area",
+     "Species": "Ross' gull (Rhodostethia rosea)"
+    },
+    {
+     "DofS": "19933",
+     "Name": "Clandeboye Bay Special Conservation Area",
+     "Species": "Piping plover (Charadrius melodus)"
+    },
+    {
+     "DofS": "20451",
+     "Name": "Walter Cook Special Conservation Area",
+     "Species": "Piping plover (Charadrius melodus)"
+    }
+   ],
+   "service": "Special_Conservation_Areas_06_Feb_2019",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Special_Conservation_Areas_06_Feb_2019/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME",
+    "D_OF_S",
+    "SPECIES",
+    "RESTRICTIONS"
+   ],
+   "known": false,
+   "layer": "Special_Conservation_Areas",
+   "sample": [
+    {
+     "D_OF_S": "19981A",
+     "NAME": "Churchill Special Conservation Area",
+     "RESTRICTIONS": "No person shall enter or be in a special conservation area during the period when an order or notice of closure is in effect.",
+     "SPECIES": "Ross' gull (Rhodostethia rosea)"
+    },
+    {
+     "D_OF_S": "19933",
+     "NAME": "Clandeboye Bay Special Conservation Area",
+     "RESTRICTIONS": "No person shall enter or be in a special conservation area during the period when an order or notice of closure is in effect.",
+     "SPECIES": "Piping plover (Charadrius melodus)"
+    },
+    {
+     "D_OF_S": "20451",
+     "NAME": "Walter Cook Special Conservation Area",
+     "RESTRICTIONS": "No person shall enter or be in a special conservation area during the period when an order or notice of closure is in effect. <br>No person shall operate an off-road vehicle during the period beginning on April 24 and ending on August 5",
+     "SPECIES": "Piping plover (Charadrius melodus)"
+    }
+   ],
+   "service": "Manitoba_Wildlife_Lands",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "Fishing_Division"
+   ],
+   "known": false,
+   "layer": "Fishing_Divisions",
+   "sample": [
+    {
+     "Fishing_Division": "North Central Division"
+    },
+    {
+     "Fishing_Division": "Northeast Division"
+    },
+    {
+     "Fishing_Division": "Northwest Division"
+    }
+   ],
+   "service": "Manitoba_Fishing_Divisions",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Fishing_Divisions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Special_Area",
+   "count": 2,
+   "fields": [
+    "Fishing_Division",
+    "Special_Area"
+   ],
+   "known": false,
+   "layer": "Fishing_Division_Special_Areas",
+   "sample": [
+    {
+     "Fishing_Division": "Southern Division",
+     "Special_Area": "Area A"
+    },
+    {
+     "Fishing_Division": "Southern Division",
+     "Special_Area": "Area B"
+    }
+   ],
+   "service": "Manitoba_Fishing_Divisions",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Fishing_Divisions/FeatureServer/1"
+  },
+  {
+   "agency": "Manitoba Government, Gouvernement du Manitoba",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "FML_NAME"
+   ],
+   "known": false,
+   "layer": "Manitoba FMLs - Version 4",
+   "sample": [
+    {
+     "FML_NAME": "FML-3"
+    },
+    {
+     "FML_NAME": "FML-2"
+    }
+   ],
+   "service": "Manitoba_Forest_Management_License_Areas_FML_Version_4",
+   "typef": "",
+   "url": "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Forest_Management_License_Areas_FML_Version_4/FeatureServer/1"
+  }
+ ],
+ "st": "CA-MB"
+}

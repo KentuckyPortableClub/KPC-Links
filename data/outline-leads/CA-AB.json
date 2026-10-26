@@ -1,0 +1,1899 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 1654,
+   "fields": [
+    "RFMA_NAME"
+   ],
+   "known": false,
+   "layer": "Registered Fur Management Area Outline",
+   "sample": [
+    {
+     "RFMA_NAME": "224"
+    },
+    {
+     "RFMA_NAME": "2603"
+    },
+    {
+     "RFMA_NAME": "1256"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/28"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 728,
+   "fields": [
+    "IRES_NAME",
+    "IRES_CODE",
+    "NTN_NAME",
+    "NTN_CODE",
+    "TC_NAME",
+    "TC_CODE"
+   ],
+   "known": false,
+   "layer": "Indian Reserve Outline 1:27,733,946 to 1:27,084",
+   "sample": [
+    {
+     "IRES_CODE": "06695",
+     "IRES_NAME": "Wabasca 166D",
+     "NTN_CODE": "458",
+     "NTN_NAME": "Bigstone Cree Nation",
+     "TC_CODE": "N/A",
+     "TC_NAME": "Unaffiliated"
+    },
+    {
+     "IRES_CODE": "06688",
+     "IRES_NAME": "Sucker Creek 150A",
+     "NTN_CODE": "456",
+     "NTN_NAME": "Sucker Creek First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    },
+    {
+     "IRES_CODE": "06683",
+     "IRES_NAME": "Sawridge 150G",
+     "NTN_CODE": "454",
+     "NTN_NAME": "Sawridge First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    }
+   ],
+   "service": "boundary/first_nations_land",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/first_nations_land/MapServer/1"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 728,
+   "fields": [
+    "IRES_NAME",
+    "IRES_CODE",
+    "NTN_NAME",
+    "NTN_CODE",
+    "TC_NAME",
+    "TC_CODE"
+   ],
+   "known": false,
+   "layer": "Indian Reserve Outline Not Visible Beyond 1:27,083",
+   "sample": [
+    {
+     "IRES_CODE": "06695",
+     "IRES_NAME": "Wabasca 166D",
+     "NTN_CODE": "458",
+     "NTN_NAME": "Bigstone Cree Nation",
+     "TC_CODE": "N/A",
+     "TC_NAME": "Unaffiliated"
+    },
+    {
+     "IRES_CODE": "06688",
+     "IRES_NAME": "Sucker Creek 150A",
+     "NTN_CODE": "456",
+     "NTN_NAME": "Sucker Creek First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    },
+    {
+     "IRES_CODE": "06683",
+     "IRES_NAME": "Sawridge 150G",
+     "NTN_CODE": "454",
+     "NTN_NAME": "Sawridge First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    }
+   ],
+   "service": "boundary/first_nations_land",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/first_nations_land/MapServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 728,
+   "fields": [
+    "IRES_NAME",
+    "IRES_CODE",
+    "NTN_NAME",
+    "NTN_CODE",
+    "TC_NAME",
+    "TC_CODE"
+   ],
+   "known": false,
+   "layer": "Indian Reserve 1:27,733,946 to 1:27,084",
+   "sample": [
+    {
+     "IRES_CODE": "06695",
+     "IRES_NAME": "Wabasca 166D",
+     "NTN_CODE": "458",
+     "NTN_NAME": "Bigstone Cree Nation",
+     "TC_CODE": "N/A",
+     "TC_NAME": "Unaffiliated"
+    },
+    {
+     "IRES_CODE": "06688",
+     "IRES_NAME": "Sucker Creek 150A",
+     "NTN_CODE": "456",
+     "NTN_NAME": "Sucker Creek First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    },
+    {
+     "IRES_CODE": "06683",
+     "IRES_NAME": "Sawridge 150G",
+     "NTN_CODE": "454",
+     "NTN_NAME": "Sawridge First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    }
+   ],
+   "service": "boundary/first_nations_land",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/first_nations_land/MapServer/3"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 728,
+   "fields": [
+    "IRES_NAME",
+    "IRES_CODE",
+    "NTN_NAME",
+    "NTN_CODE",
+    "TC_NAME",
+    "TC_CODE"
+   ],
+   "known": false,
+   "layer": "Indian Reserve Not Visible Beyond 1:27,083",
+   "sample": [
+    {
+     "IRES_CODE": "06695",
+     "IRES_NAME": "Wabasca 166D",
+     "NTN_CODE": "458",
+     "NTN_NAME": "Bigstone Cree Nation",
+     "TC_CODE": "N/A",
+     "TC_NAME": "Unaffiliated"
+    },
+    {
+     "IRES_CODE": "06688",
+     "IRES_NAME": "Sucker Creek 150A",
+     "NTN_CODE": "456",
+     "NTN_NAME": "Sucker Creek First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    },
+    {
+     "IRES_CODE": "06683",
+     "IRES_NAME": "Sawridge 150G",
+     "NTN_CODE": "454",
+     "NTN_NAME": "Sawridge First Nation",
+     "TC_CODE": "1025",
+     "TC_NAME": "Lesser Slave Lake Indian Regional Council"
+    }
+   ],
+   "service": "boundary/first_nations_land",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/first_nations_land/MapServer/4"
+  },
+  {
+   "agency": "Alberta Parks, Government of Alberta",
+   "area": "NAME",
+   "count": 469,
+   "fields": [
+    "NAME",
+    "TYPE",
+    "SUBTYPE",
+    "STATUS",
+    "IUCN",
+    "OC_NO",
+    "OC_NAME",
+    "NOTES"
+   ],
+   "known": false,
+   "layer": "Protected Area Designations",
+   "sample": [
+    {
+     "IUCN": "NR",
+     "NAME": "Demmitt",
+     "NOTES": "Former Alberta Transportation Highway Wayside Campsite.  Transferred to Alberta Parks in 1992.",
+     "OC_NAME": "Demmitt Provincial Recreation Area",
+     "OC_NO": "OC 390/97",
+     "STATUS": "OC",
+     "SUBTYPE": " ",
+     "TYPE": "PRA"
+    },
+    {
+     "IUCN": "NR",
+     "NAME": "Chain Lakes",
+     "NOTES": "Former Alberta Forest Recreation Area.  Transferred to Alberta Parks in 1996.",
+     "OC_NAME": "Chain Lakes Provincial Recreation Area",
+     "OC_NO": "OC 7/98",
+     "STATUS": "OC",
+     "TYPE": "PRA"
+    },
+    {
+     "IUCN": "IV",
+     "NAME": "Pembina River",
+     "OC_NAME": "Pembina River Natural Area",
+     "OC_NO": "OC 454/71-42",
+     "STATUS": "OC",
+     "SUBTYPE": "Conservation",
+     "TYPE": "NA"
+    }
+   ],
+   "service": "boundary/parks_protected_areas_alberta",
+   "typef": "TYPE",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/FeatureServer/0"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 238,
+   "fields": [
+    "NPERMIT_NAME",
+    "NPERMIT_CODE"
+   ],
+   "known": false,
+   "layer": "Non Permit Area",
+   "sample": [
+    {
+     "NPERMIT_CODE": "00045",
+     "NPERMIT_NAME": "T96R21W5"
+    },
+    {
+     "NPERMIT_CODE": "00033",
+     "NPERMIT_NAME": "T96R20W5"
+    },
+    {
+     "NPERMIT_CODE": "00044",
+     "NPERMIT_NAME": "T95R21W5"
+    }
+   ],
+   "service": "boundary/forest_protection",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/forest_protection/MapServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "WMUNIT_NAME",
+   "count": 198,
+   "fields": [
+    "WMUNIT_NAME",
+    "WMUNIT_CODE"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Unit Outline",
+   "sample": [
+    {
+     "WMUNIT_CODE": "00539",
+     "WMUNIT_NAME": "Bistcho Lake"
+    },
+    {
+     "WMUNIT_CODE": "00532",
+     "WMUNIT_NAME": "Chipewyan"
+    },
+    {
+     "WMUNIT_CODE": "00534",
+     "WMUNIT_NAME": "Caribou Mountains"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/31"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "WMUNIT_NAME",
+   "count": 198,
+   "fields": [
+    "WMUNIT_NAME"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Unit",
+   "sample": [
+    {
+     "WMUNIT_NAME": "Bistcho Lake"
+    },
+    {
+     "WMUNIT_NAME": "Chipewyan"
+    },
+    {
+     "WMUNIT_NAME": "Caribou Mountains"
+    }
+   ],
+   "service": "boundary/pows",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/pows/MapServer/5"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "NAME",
+   "count": 130,
+   "fields": [
+    "NAME",
+    "HUC_8",
+    "HYDRO_CODE",
+    "FEAT_TY",
+    "SPECIES_PR",
+    "GlobalID",
+    "District",
+    "POS1",
+    "EMAIL1",
+    "PHONE1",
+    "CONT1",
+    "Region",
+    "CONT2",
+    "POS2",
+    "PHONE2",
+    "EMAIL2",
+    "CONT3",
+    "POS3",
+    "PHONE3",
+    "EMAIL3"
+   ],
+   "known": false,
+   "layer": "Special Waters (RL-PAAS) - Lakes and Reservoirs Outline Visible Between 1:433,342 to 1:27,084",
+   "sample": [
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{E95AD73E-DBAB-49B7-8786-0610E1D94E73}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{DF11A8DC-87AA-4642-A48E-173155207137}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910_0002.42,R,028855",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{16B203F3-C58E-47A1-8C98-DDC21CA5902A}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "FEAT_TY",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/11"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "NAME",
+   "count": 130,
+   "fields": [
+    "NAME",
+    "HUC_8",
+    "HYDRO_CODE",
+    "FEAT_TY",
+    "SPECIES_PR",
+    "GlobalID",
+    "District",
+    "POS1",
+    "EMAIL1",
+    "PHONE1",
+    "CONT1",
+    "Region",
+    "CONT2",
+    "POS2",
+    "PHONE2",
+    "EMAIL2",
+    "CONT3",
+    "POS3",
+    "PHONE3",
+    "EMAIL3"
+   ],
+   "known": false,
+   "layer": "Special Waters (RL-PAAS) - Lakes and Reservoirs Outline Not Visible Beyond 1:27,083",
+   "sample": [
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{E95AD73E-DBAB-49B7-8786-0610E1D94E73}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{DF11A8DC-87AA-4642-A48E-173155207137}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910_0002.42,R,028855",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{16B203F3-C58E-47A1-8C98-DDC21CA5902A}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "FEAT_TY",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/12"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "NAME",
+   "count": 130,
+   "fields": [
+    "NAME",
+    "HUC_8",
+    "HYDRO_CODE",
+    "FEAT_TY",
+    "SPECIES_PR",
+    "GlobalID",
+    "District",
+    "POS1",
+    "EMAIL1",
+    "PHONE1",
+    "CONT1",
+    "Region",
+    "CONT2",
+    "POS2",
+    "PHONE2",
+    "EMAIL2",
+    "CONT3",
+    "POS3",
+    "PHONE3",
+    "EMAIL3"
+   ],
+   "known": false,
+   "layer": "Special Waters (RL-PAAS) - Lakes and Reservoirs Visible Between 1:433,342 to 1:27,084",
+   "sample": [
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{E95AD73E-DBAB-49B7-8786-0610E1D94E73}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{DF11A8DC-87AA-4642-A48E-173155207137}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910_0002.42,R,028855",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{16B203F3-C58E-47A1-8C98-DDC21CA5902A}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "FEAT_TY",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/13"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "NAME",
+   "count": 130,
+   "fields": [
+    "NAME",
+    "HUC_8",
+    "HYDRO_CODE",
+    "FEAT_TY",
+    "SPECIES_PR",
+    "GlobalID",
+    "District",
+    "POS1",
+    "EMAIL1",
+    "PHONE1",
+    "CONT1",
+    "Region",
+    "CONT2",
+    "POS2",
+    "PHONE2",
+    "EMAIL2",
+    "CONT3",
+    "POS3",
+    "PHONE3",
+    "EMAIL3"
+   ],
+   "known": false,
+   "layer": "Special Waters (RL-PAAS) - Lakes and Reservoirs Not Visible Beyond 1:27,083",
+   "sample": [
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{E95AD73E-DBAB-49B7-8786-0610E1D94E73}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{DF11A8DC-87AA-4642-A48E-173155207137}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910_0002.42,R,028855",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "District": "Crowsnest",
+     "EMAIL1": "andreas.luek@gov.ab.ca",
+     "FEAT_TY": "LAKE-PER",
+     "GlobalID": "{16B203F3-C58E-47A1-8C98-DDC21CA5902A}",
+     "HUC_8": "04010103",
+     "HYDRO_CODE": "H,S,S,OldmaR_0331.78,R,CastlR_0022.60,R,Mill_C_0014.51,L,GladsC_0005.16,L,028910",
+     "NAME": "UNNAMED",
+     "PHONE1": "587-486-1036",
+     "POS1": "Senior Fisheries Biologist",
+     "Region": "South",
+     "SPECIES_PR": "NO FISH SAMPLED TO DATE"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "FEAT_TY",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/14"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 90,
+   "fields": [
+    "FMU_NAME",
+    "FMU_CODE",
+    "APPROVAL",
+    "EFFECTIVE"
+   ],
+   "known": false,
+   "layer": "Forest Management Unit",
+   "sample": [
+    {
+     "APPROVAL": "NOT TRACKED",
+     "EFFECTIVE": "NOT TRACKED",
+     "FMU_CODE": "A10",
+     "FMU_NAME": "A10"
+    },
+    {
+     "APPROVAL": "NOT TRACKED",
+     "EFFECTIVE": "NOT TRACKED",
+     "FMU_CODE": "A11",
+     "FMU_NAME": "A11"
+    },
+    {
+     "APPROVAL": "NOT TRACKED",
+     "EFFECTIVE": "NOT TRACKED",
+     "FMU_CODE": "A12",
+     "FMU_NAME": "A12"
+    }
+   ],
+   "service": "boundary/asrd_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/asrd_administrative_area/MapServer/4"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 90,
+   "fields": [
+    "FMU_NAME",
+    "APPROVAL",
+    "EFFECTIVE"
+   ],
+   "known": false,
+   "layer": "Forest Management Unit",
+   "sample": [
+    {
+     "APPROVAL": "NOT TRACKED",
+     "EFFECTIVE": "NOT TRACKED",
+     "FMU_NAME": "A10"
+    },
+    {
+     "APPROVAL": "NOT TRACKED",
+     "EFFECTIVE": "NOT TRACKED",
+     "FMU_NAME": "A11"
+    },
+    {
+     "APPROVAL": "NOT TRACKED",
+     "EFFECTIVE": "NOT TRACKED",
+     "FMU_NAME": "A12"
+    }
+   ],
+   "service": "boundary/pows",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/pows/MapServer/7"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 87,
+   "fields": [
+    "EDNUMBER",
+    "EDNAME",
+    "EDPROV",
+    "MLA_TITLE",
+    "MLA_FNAME",
+    "MLA_LNAME"
+   ],
+   "known": false,
+   "layer": "Provincial Electoral Division - Historical 2010",
+   "sample": [
+    {
+     "EDNAME": "Wetaskiwin-Camrose",
+     "EDNUMBER": "86",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Bruce",
+     "MLA_LNAME": "Hinkley",
+     "MLA_TITLE": "Mr."
+    },
+    {
+     "EDNAME": "Cardston-Taber-Warner",
+     "EDNUMBER": "53",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Grant",
+     "MLA_LNAME": "Hunter",
+     "MLA_TITLE": "Mr."
+    },
+    {
+     "EDNAME": "Medicine Hat",
+     "EDNUMBER": "72",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Robert",
+     "MLA_LNAME": "Wanner",
+     "MLA_TITLE": "Honourable"
+    }
+   ],
+   "service": "boundary/goa_administrative_area_10tm_nad83_aep",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/goa_administrative_area_10tm_nad83_aep/MapServer/4"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 87,
+   "fields": [
+    "EDNUMBER",
+    "EDNAME",
+    "EDPROV",
+    "MLA_TITLE",
+    "MLA_FNAME",
+    "MLA_LNAME"
+   ],
+   "known": false,
+   "layer": "Provincial Electoral Division - Historical 2010",
+   "sample": [
+    {
+     "EDNAME": "Wetaskiwin-Camrose",
+     "EDNUMBER": "86",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Bruce",
+     "MLA_LNAME": "Hinkley",
+     "MLA_TITLE": "Mr."
+    },
+    {
+     "EDNAME": "Cardston-Taber-Warner",
+     "EDNUMBER": "53",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Grant",
+     "MLA_LNAME": "Hunter",
+     "MLA_TITLE": "Mr."
+    },
+    {
+     "EDNAME": "Medicine Hat",
+     "EDNUMBER": "72",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Robert",
+     "MLA_LNAME": "Wanner",
+     "MLA_TITLE": "Honourable"
+    }
+   ],
+   "service": "boundary/goa_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/goa_administrative_area/MapServer/4"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 84,
+   "fields": [
+    "EDNUMBER",
+    "EDNAME",
+    "EDPROV",
+    "MLA_TITLE",
+    "MLA_FNAME",
+    "MLA_LNAME"
+   ],
+   "known": false,
+   "layer": "Provincial Electoral Division - Historical 2003",
+   "sample": [
+    {
+     "EDNAME": "Wetaskiwin-Camrose",
+     "EDNUMBER": "82",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Verlyn",
+     "MLA_LNAME": "Olson",
+     "MLA_TITLE": "Mr."
+    },
+    {
+     "EDNAME": "Peace River",
+     "EDNUMBER": "70",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Frank",
+     "MLA_LNAME": "Oberle",
+     "MLA_TITLE": "Honourable"
+    },
+    {
+     "EDNAME": "Edmonton-Centre",
+     "EDNUMBER": "28",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Laurie",
+     "MLA_LNAME": "Blakeman",
+     "MLA_TITLE": "Ms."
+    }
+   ],
+   "service": "boundary/goa_administrative_area_10tm_nad83_aep",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/goa_administrative_area_10tm_nad83_aep/MapServer/5"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 84,
+   "fields": [
+    "EDNUMBER",
+    "EDNAME",
+    "EDPROV",
+    "MLA_TITLE",
+    "MLA_FNAME",
+    "MLA_LNAME"
+   ],
+   "known": false,
+   "layer": "Provincial Electoral Division - Historical 2003",
+   "sample": [
+    {
+     "EDNAME": "Wetaskiwin-Camrose",
+     "EDNUMBER": "82",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Verlyn",
+     "MLA_LNAME": "Olson",
+     "MLA_TITLE": "Mr."
+    },
+    {
+     "EDNAME": "Peace River",
+     "EDNUMBER": "70",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Frank",
+     "MLA_LNAME": "Oberle",
+     "MLA_TITLE": "Honourable"
+    },
+    {
+     "EDNAME": "Edmonton-Centre",
+     "EDNUMBER": "28",
+     "EDPROV": "AB",
+     "MLA_FNAME": "Laurie",
+     "MLA_LNAME": "Blakeman",
+     "MLA_TITLE": "Ms."
+    }
+   ],
+   "service": "boundary/goa_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/goa_administrative_area/MapServer/5"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 64,
+   "fields": [
+    "PLREC_NAME",
+    "PLREC_CODE",
+    "TYPE",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Public Land Recreation Area",
+   "sample": [
+    {
+     "PLREC_CODE": "00025",
+     "PLREC_NAME": "Meander River",
+     "TYPE": "PLREC"
+    },
+    {
+     "PLREC_CODE": "00001",
+     "PLREC_NAME": "Bustard Island Remote",
+     "TYPE": "PLREC"
+    },
+    {
+     "PLREC_CODE": "00005",
+     "PLREC_NAME": "Dore Lake",
+     "TYPE": "PLREC"
+    }
+   ],
+   "service": "boundary/land_use_management",
+   "typef": "TYPE",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/14"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 61,
+   "fields": [
+    "PLUZ_NAME",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "Public Land Use Zone",
+   "sample": [
+    {
+     "PLUZ_NAME": "Castle Special Management Area",
+     "TYPE": "PLUZ"
+    },
+    {
+     "PLUZ_NAME": "Livingstone",
+     "TYPE": "PLUZ"
+    },
+    {
+     "PLUZ_NAME": "Livingstone",
+     "TYPE": "PLUZ"
+    }
+   ],
+   "service": "boundary/pows",
+   "typef": "TYPE",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/pows/MapServer/9"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 56,
+   "fields": [
+    "FWED_NAME",
+    "FWED_CODE",
+    "REG_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement District Outline",
+   "sample": [
+    {
+     "FWED_CODE": "00005",
+     "FWED_NAME": "Brooks",
+     "REG_NAME": "South"
+    },
+    {
+     "FWED_CODE": "00033",
+     "FWED_NAME": "Nordegg",
+     "REG_NAME": "Northwest"
+    },
+    {
+     "FWED_CODE": "00028",
+     "FWED_NAME": "Hinton",
+     "REG_NAME": "Northwest"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/33"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 56,
+   "fields": [
+    "FWED_NAME",
+    "FWED_CODE",
+    "REG_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement District Area",
+   "sample": [
+    {
+     "FWED_CODE": "00005",
+     "FWED_NAME": "Brooks",
+     "REG_NAME": "South"
+    },
+    {
+     "FWED_CODE": "00033",
+     "FWED_NAME": "Nordegg",
+     "REG_NAME": "Northwest"
+    },
+    {
+     "FWED_CODE": "00028",
+     "FWED_NAME": "Hinton",
+     "REG_NAME": "Northwest"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/34"
+  },
+  {
+   "agency": "PSES, Sheriff, Fish and Wildlife Enforcement",
+   "area": "",
+   "count": 56,
+   "fields": [
+    "FWED_CODE",
+    "FWED_NAME",
+    "REG_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Districts",
+   "sample": [
+    {
+     "FWED_CODE": "00005",
+     "FWED_NAME": "Brooks",
+     "REG_NAME": "South"
+    },
+    {
+     "FWED_CODE": "00033",
+     "FWED_NAME": "Nordegg",
+     "REG_NAME": "Northwest"
+    },
+    {
+     "FWED_CODE": "00028",
+     "FWED_NAME": "Hinton",
+     "REG_NAME": "Northwest"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_enforcement_boundaries",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_enforcement_boundaries/FeatureServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 51,
+   "fields": [
+    "FIREC_NAME",
+    "FIREC_CODE"
+   ],
+   "known": false,
+   "layer": "Fire Control Zone",
+   "sample": [
+    {
+     "FIREC_CODE": "00037",
+     "FIREC_NAME": "37"
+    },
+    {
+     "FIREC_CODE": "00039",
+     "FIREC_NAME": "39"
+    },
+    {
+     "FIREC_CODE": "00038",
+     "FIREC_NAME": "38"
+    }
+   ],
+   "service": "boundary/forest_protection",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/forest_protection/MapServer/3"
+  },
+  {
+   "agency": "Parks Operations Division, Alberta Environment and Parks",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "District",
+   "sample": [
+    {
+     "DISTRICT": "Pincher Creek"
+    },
+    {
+     "DISTRICT": "Lethbridge"
+    },
+    {
+     "DISTRICT": "Cypress"
+    }
+   ],
+   "service": "boundary/parks_operations_division_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_operations_division_administrative_area/FeatureServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "FMA_NAME",
+    "FMA_CODE",
+    "FMA_NUM",
+    "WEB_LINK"
+   ],
+   "known": false,
+   "layer": "Forest Management Agreement Area",
+   "sample": [
+    {
+     "FMA_CODE": "J",
+     "FMA_NAME": "Alberta-Pacific Forest Industries Inc.",
+     "FMA_NUM": "9100029",
+     "WEB_LINK": "https://www.alberta.ca/forest-management-agreements.aspx"
+    },
+    {
+     "FMA_CODE": "A",
+     "FMA_NAME": "ANC Timber Ltd.",
+     "FMA_NUM": "8900026",
+     "WEB_LINK": "https://www.alberta.ca/forest-management-agreements.aspx"
+    },
+    {
+     "FMA_CODE": "C",
+     "FMA_NAME": "Canadian Forest Products Ltd.",
+     "FMA_NUM": "9900037",
+     "WEB_LINK": "https://www.alberta.ca/forest-management-agreements.aspx"
+    }
+   ],
+   "service": "boundary/asrd_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/asrd_administrative_area/MapServer/5"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "NAME_1",
+    "PHONE_1",
+    "EMAIL_1",
+    "NAME_2",
+    "PHONE_2",
+    "EMAIL_2",
+    "TOWN"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Area Contact",
+   "sample": [
+    {
+     "EMAIL_1": "Greg.Hale@gov.ab.ca",
+     "EMAIL_2": " ",
+     "NAME_1": "Greg Hale",
+     "NAME_2": " ",
+     "PHONE_1": "403-627-1155",
+     "PHONE_2": " ",
+     "TOWN": "Pincher Creek"
+    },
+    {
+     "EMAIL_1": "Leo.Dube@gov.ab.ca",
+     "EMAIL_2": " ",
+     "NAME_1": "Leo Dube",
+     "NAME_2": " ",
+     "PHONE_1": "403-382-4363",
+     "PHONE_2": " ",
+     "TOWN": "Lethbridge"
+    },
+    {
+     "EMAIL_1": "Shane.Petry@gov.ab.ca",
+     "EMAIL_2": " ",
+     "NAME_1": "Shane Petry",
+     "NAME_2": " ",
+     "PHONE_1": "403-528-5207",
+     "PHONE_2": " ",
+     "TOWN": "Medicine Hat"
+    }
+   ],
+   "service": "boundary/pows",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/pows/MapServer/3"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "NAME_1",
+    "PHONE_1",
+    "EMAIL_1",
+    "TOWN_1",
+    "NAME_2",
+    "PHONE_2",
+    "EMAIL_2",
+    "TOWN_2",
+    "NAME_3",
+    "PHONE_3",
+    "EMAIL_3",
+    "TOWN_3"
+   ],
+   "known": false,
+   "layer": "Fisheries Management Area Contact",
+   "sample": [
+    {
+     "EMAIL_1": "Kayedon.Wilcox@gov.ab.ca",
+     "EMAIL_2": "Chad.Sherburne@gov.ab.ca",
+     "EMAIL_3": "Brian.Lucko@gov.ab.ca",
+     "NAME_1": "KayeDon Wilcox",
+     "NAME_2": "FRLs: Chad Sherburne",
+     "NAME_3": "FRLs: Brian Lucko",
+     "PHONE_1": "780-624-6499",
+     "PHONE_2": "780-624-6498",
+     "PHONE_3": "780-624-6192",
+     "TOWN_1": "Peace River",
+     "TOWN_2": "Peace River",
+     "TOWN_3": "Peace River"
+    },
+    {
+     "EMAIL_1": "Rebecca. Baldwin@gov.ab.ca",
+     "EMAIL_2": " ",
+     "EMAIL_3": " ",
+     "NAME_1": "Rebecca Baldwin",
+     "NAME_2": " ",
+     "NAME_3": " ",
+     "PHONE_1": "780-743-7470",
+     "PHONE_2": " ",
+     "PHONE_3": " ",
+     "TOWN_1": "Fort McMurray",
+     "TOWN_2": " ",
+     "TOWN_3": " "
+    },
+    {
+     "EMAIL_1": "Kayedon.Wilcox@gov.ab.ca",
+     "EMAIL_2": "Chad.Sherburne@gov.ab.ca",
+     "EMAIL_3": "Brian.Lucko@gov.ab.ca",
+     "NAME_1": "KayeDon Wilcox",
+     "NAME_2": "FRLs: Chad Sherburne",
+     "NAME_3": "FRLs: Brian Lucko",
+     "PHONE_1": "780-624-6499",
+     "PHONE_2": "780-624-6498",
+     "PHONE_3": "780-624-6192",
+     "TOWN_1": "Peace River",
+     "TOWN_2": "Peace River",
+     "TOWN_3": "Peace River"
+    }
+   ],
+   "service": "boundary/pows",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/pows/MapServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 17,
+   "fields": [
+    "HGW_NAME"
+   ],
+   "known": false,
+   "layer": "Green White Area Historical",
+   "sample": [
+    {
+     "HGW_NAME": "Historical Green Area"
+    },
+    {
+     "HGW_NAME": "Historical Yellow Area"
+    },
+    {
+     "HGW_NAME": "Historical Yellow Area"
+    }
+   ],
+   "service": "boundary/asrd_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/asrd_administrative_area/MapServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "District",
+    "POS1",
+    "EMAIL1",
+    "PHONE1",
+    "CONT1",
+    "Region",
+    "CONT2",
+    "POS2",
+    "PHONE2",
+    "EMAIL2",
+    "CONT3",
+    "POS3",
+    "PHONE3",
+    "EMAIL3",
+    "CONT4",
+    "POS4",
+    "PHONE4",
+    "EMAIL4",
+    "REGION_EMAIL",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Fisheries Contact District Outline",
+   "sample": [
+    {
+     "CONT1": "Caitlin Gifford",
+     "CONT2": "Kenton Neufeld",
+     "District": "Cochrane",
+     "EMAIL1": "EPA.CochraneFisheries@gov.ab.ca",
+     "EMAIL2": "EPA.CochraneFisheries@gov.ab.ca",
+     "PHONE1": "403-340-7738",
+     "PHONE2": "403-846-7297",
+     "POS1": "Fisheries Biologist",
+     "POS2": "Fisheries Biologist",
+     "Region": "South"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "CONT2": "Brian Meagher",
+     "District": "Blairmore",
+     "EMAIL1": "EPA.BlairmoreFisheries@gov.ab.ca",
+     "EMAIL2": "EPA.BlairmoreFisheries@gov.ab.ca",
+     "PHONE1": "587-486-1036",
+     "PHONE2": "403-562-3372",
+     "POS1": "Senior Fisheries Biologist",
+     "POS2": "Fisheries Biologist",
+     "Region": "South"
+    },
+    {
+     "CONT1": "Steven Griffeth",
+     "CONT2": "Chad Lyttle",
+     "District": "Cold Lake",
+     "EMAIL1": "EPA.ColdLakeFisheries@gov.ab.ca",
+     "EMAIL2": "EPA.ColdLakeFisheries@gov.ab.ca",
+     "PHONE1": "780-594-7803",
+     "PHONE2": "780-594-7873",
+     "POS1": "Senior Fisheries Biologist",
+     "POS2": "Senior Fisheries Technician",
+     "Region": "Northeast"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "last_edited_user",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/19"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "District",
+    "POS1",
+    "EMAIL1",
+    "PHONE1",
+    "CONT1",
+    "Region",
+    "CONT2",
+    "POS2",
+    "PHONE2",
+    "EMAIL2",
+    "CONT3",
+    "POS3",
+    "PHONE3",
+    "EMAIL3",
+    "CONT4",
+    "POS4",
+    "PHONE4",
+    "EMAIL4",
+    "REGION_EMAIL",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Fisheries Contact Region Area",
+   "sample": [
+    {
+     "CONT1": "Caitlin Gifford",
+     "CONT2": "Kenton Neufeld",
+     "District": "Cochrane",
+     "EMAIL1": "EPA.CochraneFisheries@gov.ab.ca",
+     "EMAIL2": "EPA.CochraneFisheries@gov.ab.ca",
+     "PHONE1": "403-340-7738",
+     "PHONE2": "403-846-7297",
+     "POS1": "Fisheries Biologist",
+     "POS2": "Fisheries Biologist",
+     "Region": "South"
+    },
+    {
+     "CONT1": "Andreas Luek",
+     "CONT2": "Brian Meagher",
+     "District": "Blairmore",
+     "EMAIL1": "EPA.BlairmoreFisheries@gov.ab.ca",
+     "EMAIL2": "EPA.BlairmoreFisheries@gov.ab.ca",
+     "PHONE1": "587-486-1036",
+     "PHONE2": "403-562-3372",
+     "POS1": "Senior Fisheries Biologist",
+     "POS2": "Fisheries Biologist",
+     "Region": "South"
+    },
+    {
+     "CONT1": "Steven Griffeth",
+     "CONT2": "Chad Lyttle",
+     "District": "Cold Lake",
+     "EMAIL1": "EPA.ColdLakeFisheries@gov.ab.ca",
+     "EMAIL2": "EPA.ColdLakeFisheries@gov.ab.ca",
+     "PHONE1": "780-594-7803",
+     "PHONE2": "780-594-7873",
+     "POS1": "Senior Fisheries Biologist",
+     "POS2": "Senior Fisheries Technician",
+     "Region": "Northeast"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "last_edited_user",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/20"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "FWEU_NAME",
+    "REG_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Unit Outline",
+   "sample": [
+    {
+     "FWEU_NAME": "Edmonton",
+     "REG_NAME": "Northeast"
+    },
+    {
+     "FWEU_NAME": "Lac La Biche",
+     "REG_NAME": "Northeast"
+    },
+    {
+     "FWEU_NAME": "Red Deer",
+     "REG_NAME": "Northeast"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/45"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "FWEU_NAME",
+    "REG_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Unit Area",
+   "sample": [
+    {
+     "FWEU_NAME": "Edmonton",
+     "REG_NAME": "Northeast"
+    },
+    {
+     "FWEU_NAME": "Lac La Biche",
+     "REG_NAME": "Northeast"
+    },
+    {
+     "FWEU_NAME": "Red Deer",
+     "REG_NAME": "Northeast"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/46"
+  },
+  {
+   "agency": "PSES, Sheriff, Fish and Wildlife Enforcement",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "FWEU_NAME",
+    "REG_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Units",
+   "sample": [
+    {
+     "FWEU_NAME": "Edmonton",
+     "REG_NAME": "Northeast"
+    },
+    {
+     "FWEU_NAME": "Lac La Biche",
+     "REG_NAME": "Northeast"
+    },
+    {
+     "FWEU_NAME": "Red Deer",
+     "REG_NAME": "Northeast"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_enforcement_boundaries",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_enforcement_boundaries/FeatureServer/1"
+  },
+  {
+   "agency": "Parks Operations Division, Alberta Environment and Parks",
+   "area": "MANAGEMENT_AREA",
+   "count": 12,
+   "fields": [
+    "MANAGEMENT_AREA"
+   ],
+   "known": false,
+   "layer": "Management Area",
+   "sample": [
+    {
+     "MANAGEMENT_AREA": "Southwest"
+    },
+    {
+     "MANAGEMENT_AREA": "Cypress"
+    },
+    {
+     "MANAGEMENT_AREA": "Parkland"
+    }
+   ],
+   "service": "boundary/parks_operations_division_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_operations_division_administrative_area/FeatureServer/1"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "FISHUNIT_NAME",
+   "count": 10,
+   "fields": [
+    "FISHUNIT_NAME"
+   ],
+   "known": false,
+   "layer": "Fish Watershed Unit Outline",
+   "sample": [
+    {
+     "FISHUNIT_NAME": "NB3"
+    },
+    {
+     "FISHUNIT_NAME": "NB4"
+    },
+    {
+     "FISHUNIT_NAME": "NB2"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/22"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "FISHUNIT_NAME",
+   "count": 10,
+   "fields": [
+    "FISHUNIT_NAME"
+   ],
+   "known": false,
+   "layer": "Fish Watershed Unit Area",
+   "sample": [
+    {
+     "FISHUNIT_NAME": "NB3"
+    },
+    {
+     "FISHUNIT_NAME": "NB4"
+    },
+    {
+     "FISHUNIT_NAME": "NB2"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/23"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "FWER_NAME",
+    "FWER_CODE"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Region Outline",
+   "sample": [
+    {
+     "FWER_CODE": "00002",
+     "FWER_NAME": "Northeast"
+    },
+    {
+     "FWER_CODE": "00003",
+     "FWER_NAME": "South"
+    },
+    {
+     "FWER_CODE": "00001",
+     "FWER_NAME": "Northwest"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/36"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "FWER_NAME",
+    "FWER_CODE"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Region Area",
+   "sample": [
+    {
+     "FWER_CODE": "00002",
+     "FWER_NAME": "Northeast"
+    },
+    {
+     "FWER_CODE": "00003",
+     "FWER_NAME": "South"
+    },
+    {
+     "FWER_CODE": "00001",
+     "FWER_NAME": "Northwest"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/37"
+  },
+  {
+   "agency": "PSES, Sheriff, Fish and Wildlife Enforcement",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "FWER_CODE",
+    "FWER_NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Enforcement Regions",
+   "sample": [
+    {
+     "FWER_CODE": "00002",
+     "FWER_NAME": "Northeast"
+    },
+    {
+     "FWER_CODE": "00003",
+     "FWER_NAME": "South"
+    },
+    {
+     "FWER_CODE": "00001",
+     "FWER_NAME": "Northwest"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_enforcement_boundaries",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_enforcement_boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "NRCB_NAME"
+   ],
+   "known": false,
+   "layer": "Natural Resources Conservation Board Service Area",
+   "sample": [
+    {
+     "NRCB_NAME": "Fairview"
+    },
+    {
+     "NRCB_NAME": "Red Deer"
+    },
+    {
+     "NRCB_NAME": "Lethbridge"
+    }
+   ],
+   "service": "boundary/asrd_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/asrd_administrative_area/MapServer/3"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "ROCKYMTN_NAME",
+    "ROCKYMTN_CODE"
+   ],
+   "known": false,
+   "layer": "Rocky Mountains Forest Reserve",
+   "sample": [
+    {
+     "ROCKYMTN_CODE": "00001",
+     "ROCKYMTN_NAME": "Rocky Mountain Forest Reserve"
+    },
+    {
+     "ROCKYMTN_CODE": "00001",
+     "ROCKYMTN_NAME": "Rocky Mountain Forest Reserve"
+    },
+    {
+     "ROCKYMTN_CODE": "00001",
+     "ROCKYMTN_NAME": "Rocky Mountain Forest Reserve"
+    }
+   ],
+   "service": "boundary/land_use_management",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/20"
+  },
+  {
+   "agency": "Parks Operations Division, Alberta Environment and Parks",
+   "area": "NAME",
+   "count": 4,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Region",
+   "sample": [
+    {
+     "NAME": "South"
+    },
+    {
+     "NAME": "Kananaskis"
+    },
+    {
+     "NAME": "Central"
+    }
+   ],
+   "service": "boundary/parks_operations_division_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_operations_division_administrative_area/FeatureServer/0"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "Name",
+   "count": 3,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Stewardship Region Outline",
+   "sample": [
+    {
+     "Name": "Northeast Region"
+    },
+    {
+     "Name": "Northwest Region"
+    },
+    {
+     "Name": "South Region"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/1"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "Name",
+   "count": 3,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Fish and Wildlife Stewardship Region Area",
+   "sample": [
+    {
+     "Name": "Northeast Region"
+    },
+    {
+     "Name": "Northwest Region"
+    },
+    {
+     "Name": "South Region"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/2"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "FISHMGMT_NAME"
+   ],
+   "known": false,
+   "layer": "Fish Management Zone Outline",
+   "sample": [
+    {
+     "FISHMGMT_NAME": "Northern Boreal Zone"
+    },
+    {
+     "FISHMGMT_NAME": "Parkland-Prairie Zone"
+    },
+    {
+     "FISHMGMT_NAME": "Eastern Slopes Zone"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/25"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "FISHMGMT_NAME"
+   ],
+   "known": false,
+   "layer": "Fish Management Zone Area",
+   "sample": [
+    {
+     "FISHMGMT_NAME": "Northern Boreal Zone"
+    },
+    {
+     "FISHMGMT_NAME": "Parkland-Prairie Zone"
+    },
+    {
+     "FISHMGMT_NAME": "Eastern Slopes Zone"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/26"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "FPA_NAME"
+   ],
+   "known": false,
+   "layer": "Forest Protection Area",
+   "sample": [
+    {
+     "FPA_NAME": "Forest Protection Area"
+    },
+    {
+     "FPA_NAME": "Forest Protection Area"
+    },
+    {
+     "FPA_NAME": "Forest Protection Area"
+    }
+   ],
+   "service": "boundary/asrd_administrative_area",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/asrd_administrative_area/MapServer/0"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Bison Protection Areas",
+   "sample": [
+    {
+     "NAME": "Northwest Bison Protection Area"
+    },
+    {
+     "NAME": "Wabasca Bison Protection Area"
+    }
+   ],
+   "service": "boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2",
+   "typef": "",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/fish_and_wildlife_administrative_area_10tm_nad83_aep_v2/MapServer/38"
+  },
+  {
+   "agency": "Copyright Government of Alberta",
+   "area": "",
+   "count": 61,
+   "fields": [
+    "PLUZ_NAME",
+    "PLUZ_CODE",
+    "TYPE"
+   ],
+   "known": true,
+   "layer": "Public Land Use Zone",
+   "sample": [
+    {
+     "PLUZ_CODE": "00019",
+     "PLUZ_NAME": "Castle Special Management Area",
+     "TYPE": "PLUZ"
+    },
+    {
+     "PLUZ_CODE": "00020",
+     "PLUZ_NAME": "Livingstone",
+     "TYPE": "PLUZ"
+    },
+    {
+     "PLUZ_CODE": "00020",
+     "PLUZ_NAME": "Livingstone",
+     "TYPE": "PLUZ"
+    }
+   ],
+   "service": "boundary/land_use_management",
+   "typef": "TYPE",
+   "url": "https://geospatial.alberta.ca/titan/rest/services/boundary/land_use_management/MapServer/11"
+  }
+ ],
+ "st": "CA-AB"
+}

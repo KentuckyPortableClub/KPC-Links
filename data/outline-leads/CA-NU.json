@@ -1,0 +1,112 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "MTA_SITE_ORDER_RESTR_CODE",
+    "MTA_SITE_STATUS_CODE",
+    "UPDATE_USERID",
+    "ENTRY_USERID",
+    "IOL_ID",
+    "FEE_SIMPLE",
+    "JURIS",
+    "OIC",
+    "NAME_E",
+    "CATEGORY",
+    "MRO_CAT",
+    "NAME_F"
+   ],
+   "known": false,
+   "layer": "National Park",
+   "sample": [
+    {
+     "CATEGORY": "NP",
+     "ENTRY_USERID": " ",
+     "FEE_SIMPLE": "Surface and Subsurface",
+     "IOL_ID": " ",
+     "JURIS": "NO STAKING",
+     "MRO_CAT": "National Park",
+     "MTA_SITE_ORDER_RESTR_CODE": " ",
+     "MTA_SITE_STATUS_CODE": " ",
+     "NAME_E": "Sirmilik National Park of Canada",
+     "NAME_F": "Parc national du Canada Sirmilik",
+     "OIC": " ",
+     "UPDATE_USERID": " "
+    },
+    {
+     "CATEGORY": "NHS",
+     "ENTRY_USERID": " ",
+     "FEE_SIMPLE": "Surface and Subsurface",
+     "IOL_ID": " ",
+     "JURIS": "NO STAKING",
+     "MRO_CAT": "Parks Canada (National Historic Site)",
+     "MTA_SITE_ORDER_RESTR_CODE": " ",
+     "MTA_SITE_STATUS_CODE": " ",
+     "NAME_E": "HMS Erebus and HMS Terror National Historic Site",
+     "NAME_F": " ",
+     "OIC": "CRC c 1112",
+     "UPDATE_USERID": " "
+    },
+    {
+     "CATEGORY": "NP",
+     "ENTRY_USERID": " ",
+     "FEE_SIMPLE": "Surface and Subsurface",
+     "IOL_ID": " ",
+     "JURIS": "NO STAKING",
+     "MRO_CAT": "National Park",
+     "MTA_SITE_ORDER_RESTR_CODE": " ",
+     "MTA_SITE_STATUS_CODE": " ",
+     "NAME_E": "Quttinirpaaq National Park of Canada",
+     "NAME_F": "Parc national du Canada Quttinirpaaq",
+     "OIC": " ",
+     "UPDATE_USERID": " "
+    }
+   ],
+   "service": "nms20/nms",
+   "typef": "UPDATE_USERID",
+   "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/20"
+  },
+  {
+   "agency": "",
+   "area": "PROJ_AREA",
+   "count": 13,
+   "fields": [
+    "SOURCE",
+    "TERR",
+    "TYPE_1",
+    "NAME_E",
+    "CATEDESC",
+    "CATEGORY",
+    "MRO_CAT",
+    "PROJ_AREA",
+    "JURIS"
+   ],
+   "known": true,
+   "layer": "Territorial Park",
+   "sample": [
+    {
+     "CATEDESC": "Territorial Park",
+     "NAME_E": "Ovayok Territorial Park",
+     "SOURCE": "GN-ENV"
+    },
+    {
+     "CATEDESC": "Territorial Park",
+     "NAME_E": "Katannilik Territorial Park",
+     "SOURCE": "GN-ENV"
+    },
+    {
+     "CATEDESC": "Territorial Park",
+     "NAME_E": "Kugluk Territorial Park",
+     "SOURCE": "GN-ENV"
+    }
+   ],
+   "service": "nms20/nms",
+   "typef": "TYPE_1",
+   "url": "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
+  }
+ ],
+ "st": "CA-NU"
+}
