@@ -273,7 +273,7 @@ main#hl .ct-card a{color:#ffcf7a}
  </ul>
 </section>
 </main>
-<script src="kpc-cat.js?v=20261022a"></script>
+<script src="kpc-cat.js?v=20261026a"></script>
 <script id="cat-page">
 (function(){
  const $=id=>document.getElementById(id);
@@ -291,12 +291,16 @@ main#hl .ct-card a{color:#ffcf7a}
   if(await KPCCat.connect(true)){if(!$('ctOn').checked){$('ctOn').checked=true;save()}st('✅ Radio connected. Press <b>TEST: READ MY DIAL</b> to check it.',true)}show()};
  $('ctDrop').onclick=async()=>{await KPCCat.disconnect();show()};
  /* change the port (Brandon Oct 17) */
- async function plist(){const L=await KPCCat.ports();$('ctPortList').innerHTML=L.length?L.map(p=>`<div class="ct-prow${p.now?' on':''}"><span>${p.now?'✅ ':''}Port ${p.i+1}: ${p.label}${p.now?' <i>(in use)</i>':''}</span><button type="button" class="ct-btn sm" data-puse="${p.i}">${p.now?'RECONNECT':'USE THIS ONE'}</button><button type="button" class="ct-btn ghost sm" data-pfor="${p.i}" title="Take this port off the list">🗑 FORGET</button></div>`).join(''):'<p class="ct-st">No ports allowed yet. Press <b>PICK A DIFFERENT PORT</b>.</p>'}
+ async function plist(){const L=await KPCCat.ports();$('ctPortList').innerHTML=L.length?L.map(p=>`<div class="ct-prow${p.now?' on':''}"><span>${p.now?'✅ ':''}${p.name?'<b>'+p.name.replace(/[<>&"]/g,'')+'</b> · ':''}Port ${p.i+1}: ${p.label}${p.now?' <i>(in use)</i>':''}</span><button type="button" class="ct-btn ghost sm" data-pname="${p.i}" data-pn="${(p.name||'').replace(/[<>&"]/g,'')}" title="Name this port after the radio on it">✏ NAME</button><button type="button" class="ct-btn sm" data-puse="${p.i}">${p.now?'RECONNECT':'USE THIS ONE'}</button><button type="button" class="ct-btn ghost sm" data-pfor="${p.i}" title="Take this port off the list">🗑 FORGET</button></div>`).join(''):'<p class="ct-st">No ports allowed yet. Press <b>PICK A DIFFERENT PORT</b>.</p>'}
  $('ctPortBtn').onclick=async()=>{const b=$('ctPorts');b.hidden=!b.hidden;$('ctPortBtn').setAttribute('aria-expanded',!b.hidden);if(!b.hidden)await plist()};
  $('ctPortDone').onclick=()=>{$('ctPorts').hidden=true;$('ctPortBtn').setAttribute('aria-expanded','false')};
  $('ctPortNew').onclick=async()=>{save();if(await KPCCat.pickNew()){if(!$('ctOn').checked){$('ctOn').checked=true;save()}st('✅ Connected on the new port. Press <b>TEST: READ MY DIAL</b> to check it.',true)}show();plist()};
- $('ctPortList').addEventListener('click',async e=>{const u=e.target.closest('[data-puse]'),f=e.target.closest('[data-pfor]');
-  if(u){save();if(await KPCCat.usePort(+u.dataset.puse))st('✅ Connected on port '+(+u.dataset.puse+1)+'. Press <b>TEST: READ MY DIAL</b> to check it.',true);show();plist()}
+ $('ctPortList').addEventListener('click',async e=>{const nb=e.target.closest('[data-pname]'),ns=e.target.closest('[data-pnsave]');
+  /* Oct 26 (Brandon: 'rename the port to match the radio if people run more then one radio'): name a port; each port also keeps its own radio settings */
+  if(nb){const row=nb.closest('.ct-prow'),sp=row.querySelector('span');sp.innerHTML='<input class="ct-pnin" maxlength="40" placeholder="e.g. FT-710 home rig" value="'+nb.dataset.pn+'"> <button type="button" class="ct-btn sm" data-pnsave="'+nb.dataset.pname+'">✓ SAVE</button>';nb.hidden=true;const i=sp.querySelector('input');i.focus();i.onkeydown=k=>{if(k.key==='Enter')sp.querySelector('[data-pnsave]').click()};return}
+  if(ns){const v=ns.parentNode.querySelector('input').value;await KPCCat.setName(+ns.dataset.pnsave,v);st(v?'✅ Port named <b>'+v.replace(/[<>&]/g,'')+'</b>. It remembers its own radio settings, so switching ports switches radios.':'Port name cleared.',true);plist();return}
+  const u=e.target.closest('[data-puse]'),f=e.target.closest('[data-pfor]');
+  if(u){save();if(await KPCCat.usePort(+u.dataset.puse))st('✅ Connected to <b>'+(KPCCat.portName()||'port '+(+u.dataset.puse+1))+'</b>'+(KPCCat.portName()?' (its own radio settings loaded)':'')+'. Press <b>TEST: READ MY DIAL</b> to check it.',true);show();plist()}
   if(f){await KPCCat.forget(+f.dataset.pfor);show();plist()}});
  $('ctRead').onclick=async()=>{save();if(!KPCCat.connected()&&!await KPCCat.connect(true))return;st('Asking the radio…');const r=await KPCCat.read();
   if(r&&r.khz)st(`✅ Your radio is on <b>${(r.khz/1000).toFixed(4)} MHz</b>${r.mode?' '+r.mode:''}. You're set: open the Hunters Lounge and click a spot.`,true);

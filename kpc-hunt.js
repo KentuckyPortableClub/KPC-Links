@@ -349,7 +349,7 @@
   function markSel() { const M = new Map(SP.map(s => [keyOf(s), s])); document.querySelectorAll('#hlSpots [data-k], #hlFavs [data-k], .hl-win [data-k]').forEach(e => { const s = M.get(e.dataset.k); e.classList.toggle('sel', e.dataset.k === SELK); e.classList.toggle('dial', !!(s && onDial(s))); }); }
   function pickSpot(s) {   /* logger off: a tap just picks the station (tunes the radio when CAT is on) */
     SELK = keyOf(s); markSel();
-    if (window.KPCCat && KPCCat.get().on && s.khz) KPCCat.tune(s.khz, s.mode).then(ok => { try { catChip(); } catch (e) {} if (!ok) toast('📻 Radio not set: open the CAT & QRZ tab to connect it.'); });
+    if (window.KPCCat && KPCCat.get().on && s.khz) KPCCat.tune(s.khz, s.mode).then(ok => { try { catChip(); } catch (e) {} if (!ok) toast(CATWHERE); });
     toast(`📻 ${s.call}${s.ref ? ' · ' + s.ref : ''} picked. Tap ✅ QSL when you've worked them.`);
   }
   /* 📒 LOGGER ON/OFF (Brandon Oct 17: 'toggle the on screen logger off if people use the upload to qrz'): off = no log box,
@@ -1642,15 +1642,17 @@
     $('dRef').value = s.ref || ''; $('dName').value = s.name || ''; $('dSt').value = s.st || ''; $('dNote').value = '';
     $('dRs').value = rstFor($('dMode').value); $('dRr').value = rstFor($('dMode').value);
     $('dFreq').dispatchEvent(new Event('input')); dkRadT(); dkWho();
-    if (!PUB && window.KPCCat && KPCCat.get().on && s.khz) KPCCat.tune(s.khz, $('dMode').value || s.mode).then(ok => { catChip(); if (!ok) toast('📻 Radio not set: open the CAT & QRZ tab to connect it.'); });
+    /* Oct 26 (Brandon: 'something wrong with cat control on hunters lounge'): the public Lounge has had RADIO CONTROL since Oct 24, but this line still said !PUB, so a spot tap never tuned the radio there */
+    if (window.KPCCat && KPCCat.get().on && s.khz) KPCCat.tune(s.khz, $('dMode').value || s.mode).then(ok => { catChip(); if (!ok) toast(CATWHERE); });
     const d = $('dkForm'); d.classList.remove('flash'); void d.offsetWidth; d.classList.add('flash');
     (s.call ? $('dRr') : $('dCall')).focus({ preventScroll: true }); if (s.call) $('dRr').select();
   }
   /* radio control (CAT, kpc-cat.js; set up on the CAT & QRZ tab): chip on the log + the log follows the radio's dial */
   let DKS = null;
+  const CATWHERE = PUB ? '📻 Radio not set: open RADIO CONTROL (under the spots) and press CONNECT MY RADIO.' : '📻 Radio not set: open the CAT & QRZ tab to connect it.';
   function catChip() { const c = $('dkCat'); if (!c || !window.KPCCat) return; const S = KPCCat.get(); c.hidden = !S.on; const on = KPCCat.connected();
     c.className = 'dk-cat mem-only ' + (on ? 'on' : 'off'); c.textContent = on ? '📻 CAT ON' : '📻 CAT: CONNECT'; c.title = on ? 'Your radio follows the spots you click' : 'Radio not connected: tap to set it up'; }
-  if (!PUB && window.KPCCat) {
+  if (window.KPCCat) {   // Oct 26: public Lounge too (its RADIO CONTROL box); #dkCat stays hidden there by CSS
     KPCCat.onStatus(() => catChip()); catChip();
     if (KPCCat.get().on) KPCCat.connect(false).then(catChip); // a radio this browser was allowed before reconnects by itself
     $('dkCat') && $('dkCat').addEventListener('click', async e => { if (!KPCCat.connected() && KPCCat.supported()) { e.preventDefault(); if (await KPCCat.connect(true)) toast('📻 Radio connected.'); else location.href = (window.KPCRoom ? KPCRoom.map : x => x)('kpc-hunt-cat.html'); catChip(); } });
