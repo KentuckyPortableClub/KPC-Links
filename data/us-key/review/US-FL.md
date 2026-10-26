@@ -1,6 +1,6 @@
 # FL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **440 of 460** parks joined to official land (same name + same kind of place). **6** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **440 of 460** parks joined to official land (same name + same kind of place). **6** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -14,18 +14,18 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-12121 Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area (State Conservation Area) → on Kissimmee Chain of Lakes Area Wildlife Management Area (~0 ac); Kissimmee Chain of Lakes (~29,709 ac)
+- US-12123 Oak Creek, No Name Slough and Starvation Slough State Conservation Area (State Conservation Area) → on Kissimmee River Public Use Area (~24,820 ac)
 - US-12124 Harold A. Campbell Public Use and STA 3/4 State Conservation Area (State Conservation Area) → on Stormwater Treatment Areas (~47,574 ac)
+- US-12130 Nubbin Slough Stormwater Treatment Area State Conservation Area (State Conservation Area) → on Lake Okeechobee Water Retention Phosphorous Removal Project (~2,037 ac); Lake Okeechobee Water Retention Phosphorus Removal Project (~2,401 ac)
 - US-12132 Chandler Slough State Conservation Area (State Conservation Area) → on Kissimmee River Public Use Area (~0 ac); Kissimmee River Public Use Area (~24,820 ac)
+- US-12134 A-1 Flow Equalization Basin State Conservation Area (State Conservation Area) → on Everglades Agricultural Area (~51,975 ac)
 - US-3621 Fort Foster State Historic Site (State Historic Site) → on Hillsborough River State Park (~3,319 ac); Hillsborough River State Park (~3,319 ac)
-- US-8719 Horse Creek State Conservation Area (State Conservation Area) → on Upper Lake Marion Creek Watershed (~290 ac); Lake Marion Creek Horseshoe Scrub Tract (~290 ac)
+- US-8719 Horse Creek State Conservation Area (State Conservation Area) → on Lake Marion Creek Wildlife Management Area (~0 ac); Upper Lake Marion Creek Watershed (~290 ac)
 
 ## Nothing found in PAD-US
 
 - US-0896 Wekiva National Wild and Scenic River (National Wild and Scenic River)
-- US-12123 Oak Creek, No Name Slough and Starvation Slough State Conservation Area (State Conservation Area)
 - US-12125 Seaboard Marsh, Telex Marsh and Yates Marsh State Conservation Area (State Conservation Area)
-- US-12130 Nubbin Slough Stormwater Treatment Area State Conservation Area (State Conservation Area)
-- US-12134 A-1 Flow Equalization Basin State Conservation Area (State Conservation Area)
 - US-4559 Florida Trail National Scenic Trail (National Scenic Trail)
 - US-7374 Wysong Park State Conservation Area (State Conservation Area)
 - US-8329 Choctawhatchee & Holmes Creek State Conservation Area (State Conservation Area)
