@@ -33,6 +33,14 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "park",
+    "ag": "Alaska DNR State Parks (park boundaries)",
+    "nm": "PARKNAME",
+    "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "AR": [
@@ -377,6 +385,14 @@
     "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_LDWF_WMAs_09262025_WGS84_WMAS/FeatureServer/0",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 13"
+   },
+   {
+    "kind": "wild",
+    "ag": "Louisiana Dept. of Wildlife and Fisheries (WMAs, refuges, conservation areas 2024)",
+    "nm": "NAME",
+    "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
    }
   ],
   "MI": [
@@ -427,6 +443,14 @@
     "nm": "AREA_NAME",
     "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/MN_State_Parks_and_Recreation_Areas/FeatureServer/2",
     "host": "agency"
+   },
+   {
+    "kind": "park",
+    "ag": "Minnesota DNR (state land admin: parks and trails)",
+    "nm": "mgtprjname",
+    "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 17 outline-less parks"
    }
   ],
   "MT": [
@@ -534,6 +558,14 @@
     "url": "https://services7.arcgis.com/5hLFVlePaucIMGhw/arcgis/rest/services/VS_Boundary_Map_2_WFL1/FeatureServer/2",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 9"
+   },
+   {
+    "kind": "land",
+    "ag": "Nevada (SCORP recreation areas)",
+    "nm": "name",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks"
    }
   ],
   "NY": [
@@ -609,6 +641,22 @@
     "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ODFW_Wildlife_Areas/FeatureServer/0",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 1 of 25"
+   },
+   {
+    "kind": "land",
+    "ag": "State of Oregon (all state owned and managed lands)",
+    "nm": "NAME",
+    "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 8 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "State of Oregon (Oregon parklands)",
+    "nm": "PARK_NAME",
+    "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
    }
   ],
   "PA": [
@@ -669,6 +717,14 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Rhode Island DEM (state conservation land)",
+    "nm": "NAME",
+    "url": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Conserved_Land_in_RI_v2/FeatureServer/3",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "TN": [
@@ -708,6 +764,30 @@
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/49",
     "host": "agency",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 4 of 11"
+   },
+   {
+    "kind": "land",
+    "ag": "Tennessee Department of Environment and Conservation (TDEC public lands)",
+    "nm": "NAME_1",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 11 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Tennessee State Parks (TDEC state park boundaries)",
+    "nm": "PRIMARY_NAME__LONG_",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 5 outline-less parks"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Tennessee Natural Areas (TDEC, non-state-park natural areas)",
+    "nm": "NaturalAreaName",
+    "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 5 outline-less parks"
    }
   ],
   "TX": [
@@ -733,6 +813,14 @@
     "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WMA_Boundaries_4PublicDistribution/FeatureServer/0",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 2 of 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Texas Parks and Wildlife (public conservation lands)",
+    "nm": "P_Loc_Nm",
+    "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 6 outline-less parks"
    }
   ],
   "UT": [
@@ -752,6 +840,14 @@
     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMAs_WFL1/FeatureServer/0",
     "host": "agency",
     "note": "outside research bot round 2, tested 2026-10-25; matched 7 of 12"
+   },
+   {
+    "kind": "land",
+    "ag": "Utah (National Historic Landmarks)",
+    "nm": "L_Name",
+    "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_National_Historic_Landmarks/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "VA": [
@@ -784,6 +880,22 @@
     "nm": "MANAME",
     "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/SP_Boundary_-_Tracts/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Virginia DCR (Virginia's conservation lands)",
+    "nm": "LABEL",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Virginia DCR (local parks 2023)",
+    "nm": "NAME",
+    "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "WA": [
@@ -988,6 +1100,14 @@
     "nm": "NAME",
     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "South Carolina DNR (heritage preserves)",
+    "nm": "PropertyName",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
    }
   ],
   "ME": [
@@ -1077,6 +1197,14 @@
     "host": "agency",
     "where": "ORGCODE IN (41570,22560)",
     "note": "FWS approved acquisition boundary, only Merritt Island + Imperial (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "park",
+    "ag": "Arizona State Parks and Trails (park boundaries)",
+    "nm": "NAME",
+    "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/arcgis/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "MO": [
@@ -1134,6 +1262,14 @@
     "nm": "Site_Name",
     "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3",
     "host": "agency"
+   },
+   {
+    "kind": "land",
+    "ag": "Illinois DNR (public conservation lands)",
+    "nm": "Site_Name",
+    "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
    }
   ],
   "VT": [
@@ -1169,6 +1305,14 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   },
+   {
+    "kind": "park",
+    "ag": "National Park Service (property boundaries)",
+    "nm": "UNIT_NAME",
+    "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "NE": [
@@ -1229,6 +1373,14 @@
     "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/2",
     "host": "agency",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 3 of 3"
+   },
+   {
+    "kind": "land",
+    "ag": "NH GRANIT (recreation inventory areas)",
+    "nm": "site",
+    "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks"
    }
   ],
   "NU": [
@@ -1260,6 +1412,15 @@
     "host": "agency",
     "code": "NS-F111",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 2 of 39 (NS Provincial Park)"
+   },
+   {
+    "kind": "land",
+    "ag": "Nova Scotia Environment (Parks and Protected Areas System)",
+    "nm": "PROT_NAME",
+    "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1",
+    "host": "agol",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "code": "NS-PPA"
    }
   ],
   "QC": [
@@ -1490,6 +1651,15 @@
     "host": "agency",
     "code": "SK-ALL",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 6 of 88 (SK Historic Site, National Historic Site, Recreation Site)"
+   },
+   {
+    "kind": "park",
+    "ag": "Government of Saskatchewan (Parks as titled)",
+    "nm": "PARKNM",
+    "url": "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks",
+    "code": "SK-PT"
    }
   ],
   "PE": [
@@ -1540,6 +1710,26 @@
     "host": "agency",
     "where": "UNIT_CODE IN ('CURE','KALA','UPDE','MNRR','DAAV','BLRV','CAKR')",
     "note": "NPS Land Resources Division legislated boundary, only the 7 round-5 parks whose PAD-US piece is a sliver (good bot, tested Oct 25 2026). chat 2"
+   }
+  ],
+  "BC": [
+   {
+    "kind": "land",
+    "ag": "Government of British Columbia (Historic Places)",
+    "nm": "COMMON_SITE_NAME",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 18 outline-less parks",
+    "code": "BC-HP"
+   },
+   {
+    "kind": "land",
+    "ag": "Government of British Columbia (Heritage Conservation Areas)",
+    "nm": "DESIGNATED_AREA_NAME",
+    "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46",
+    "host": "agency",
+    "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
+    "code": "BC-HCA"
    }
   ]
  },
