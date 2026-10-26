@@ -1,0 +1,32 @@
+{
+ "about": "Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.",
+ "pass1": {
+  "cell_m": 20.0,
+  "date": "2026-10-26",
+  "left out": {
+   "approximate": 0,
+   "no outline": 4,
+   "no pin": 0,
+   "pin well outside": 0
+  },
+  "official parks": 190,
+  "pairs tested": 166,
+  "pairs whose boxes touch": 166,
+  "parks done by the box test": 80,
+  "parks whose outline could not be read": 0,
+  "pass": 1,
+  "problems": [],
+  "with official lines": 1
+ },
+ "per state": {
+  "US-KY": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 77,
+   "n-fers": 3,
+   "pass1": 119,
+   "pass2": 0,
+   "spots": 119
+  }
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "about": "Two park numbers joined to the SAME outline record: an answer-key mistake to fix, never a 2-fer.",
+ "pairs": [
+  {
+   "name": "Fort Donelson National Battlefield",
+   "record": "bnps|Fort Donelson National Battlefield",
+   "refs": [
+    "US-0703",
+    "US-3790"
+   ]
+  },
+  {
+   "name": "Jefferson National Forest",
+   "record": "bwma|Jefferson National Forest",
+   "refs": [
+    "US-10139",
+    "US-4526"
+   ]
+  }
+ ]
+}
