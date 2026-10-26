@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ALL-STATES 2-FER BOT (chat 2, Oct 26 2026; Brandon via HQ: 'dead certain before anything is shown').
 
-Finds spots where two (or more) POTA parks share the same ground, in the US (all states but Kentucky, which has its own
+Finds spots where our maps suggest the boundaries of two or more POTA parks may overlap, in the US (all states but Kentucky, which has its own
 hand-checked list in ky-overlaps.geojson) and Canada. HIDDEN: it writes data files only (data/fers/), nothing links to them.
 
 GOLDEN RULES = POTA's own (Activation Location and Access; Brandon Oct 26 5:55 AM: 'use these as a golden rule'):
@@ -18,12 +18,12 @@ GOLDEN RULES = POTA's own (Activation Location and Access; Brandon Oct 26 5:55 A
 KPC's extra rules (Brandon, Oct 26):
 - OFFICIAL outlines only: the answer keys' joins (data/us-key, data/ca-key), never a park the key marks approximate
   ('reviewed-approx', a lake surface), never a park whose pin is 'well outside' its land. POTA parks only.
-- A spot counts only when the shared ground holds a spot AT LEAST 100 YARDS ACROSS: shrink the overlap 50 yards inward
+- A spot counts only when the overlap holds a spot AT LEAST 50 YARDS ACROSS (Oct 26 2:11 PM; was 100): shrink the overlap 25 yards inward
   and something must remain (no slivers, no parks that only touch). Holes (inholdings) in an outline stay holes.
 - TRAILS + RIVERS (official lines, data/trails): POTA's rule = the station entirely within 100 ft of the trail (KPC applies
   the same to rivers). So a stretch AT LEAST 100 YARDS LONG where a station spot inside the other park (5 m in) is within
   100 ft of the line; two lines: their 100-ft zones meet along 100 yards.
-- n-fers: a 3-fer is three parks sharing the SAME ground (never a chain); same for 4.
+- n-fers: a 3-fer is three parks whose boundaries may overlap at the SAME place (never a chain); same for 4.
 - Two park numbers joined to the SAME outline record = an answer-key mistake: listed in data/fers/same-outline.json,
   never a spot.
 - Both pins inside their own outlines (checked on the finest shapes, pass 3).
@@ -53,7 +53,7 @@ REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + C
 CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0}[PASS]   # 4 = access pins only, for candidates that have none
 DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002}[PASS]
 PREC = {1: 5, 2: 5, 3: 6, 4: 6}[PASS]
-# Oct 26 2:11 PM (Brandon, RULE CHANGES): the shared land must hold a spot at least 50 YARDS across (POTA only says the
+# Oct 26 2:11 PM (Brandon, RULE CHANGES): the overlap must hold a spot at least 50 YARDS across (POTA only says the
 # overlap must ENTIRELY contain the activator + station; 50 yd still clears map error); 50-100 yd = 'small overlap'.
 SHRINK = 22.86            # 25 yards in from every edge = a spot 50 yards across
 SMALL_M = 91.44           # under 100 yards across = 'small overlap: tight fit, check carefully'
@@ -492,14 +492,14 @@ def tiles(box, cell, pad):
 
 
 def dt(mask, outside=0):
-    """Distance to the nearest pixel OUTSIDE (in cells). A one-pixel empty border, so a tile lying wholly inside the shared
-    ground (a wilderness inside a national forest) measures to the tile edge instead of 'infinity' (Oct 26 pass-2 bug)."""
+    """Distance to the nearest pixel OUTSIDE (in cells). A one-pixel empty border, so a tile lying wholly inside the overlap
+    (a wilderness inside a national forest) measures to the tile edge instead of 'infinity' (Oct 26 pass-2 bug)."""
     m = cv2.copyMakeBorder(mask, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=outside)
     return cv2.distanceTransform(m, cv2.DIST_L2, 5)[1:-1, 1:-1]
 
 
 def area_spots(G, refs, box):
-    """Spots where every park in refs shares ground holding a 100-yard spot. G[ref] = groups. Coarse look first."""
+    """Spots where the boundaries of every park in refs may overlap, holding a 50-yard spot. G[ref] = groups. Coarse look first."""
     # coarse: at most ~1 M pixels over the shared box; parks grown by one pixel so thin-but-real overlaps are not lost
     f = Frame(box, max(CELL, math.sqrt(max(1.0, (box[2] - box[0]) * 111320 * math.cos(math.radians(box[1])) * (box[3] - box[1]) * 110574) / 1e6)), 0)
     k = np.ones((3, 3), np.uint8)
@@ -509,7 +509,7 @@ def area_spots(G, refs, box):
         ov = m if ov is None else ov & m
         if not ov.any(): return []
     rows, cols = np.nonzero(ov)
-    if f.cell > CELL:   # fine tiles only where the coarse look saw shared ground
+    if f.cell > CELL:   # fine tiles only where the coarse look saw an overlap
         lon = f.lon0 + (f.x0 + (cols + .5) * f.cell) / f.kx
         lat = f.lat0 + (f.y1 - (rows + .5) * f.cell) / f.ky
         fine_box = [lon.min() - f.cell / f.kx, lat.min() - f.cell / f.ky, lon.max() + f.cell / f.kx, lat.max() + f.cell / f.ky]
@@ -646,7 +646,7 @@ def find_spots(G, LN, pairs, counts):
             spots += got
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
-    # n-fers: a third park sharing the SAME ground as an area spot (100 yards across, all three)
+    # n-fers: a third park whose boundary may overlap the SAME place as an area spot (50 yards across, all three)
     nb = {}
     for a, b in pairs: nb.setdefault(a, set()).add(b); nb.setdefault(b, set()).add(a)
     level = [s for s in spots if s['kind'] == 'area']
@@ -747,7 +747,7 @@ def access_points(refs, st_of):
 
 def access_pin(s, G, LN, st_of):
     """Brandon Oct 26: 'drop a pin closest to the easiest public access (a public road, parking, trail)'. The pin is the
-    point INSIDE the shared ground (5 m in from every line; for a trail / river within 100 ft of it) that is nearest, as the
+    point INSIDE the overlap (5 m in from every line; for a trail / river within 100 ft of it) that is nearest, as the
     crow flies, to a public road, an official parking / access point or a public path."""
     sb = sbox(s)
     pad = .015
@@ -914,7 +914,9 @@ def main():
             if not s.get('access'): s['access'] = nearest_access(s, st_of)
             try: s['access_pin'] = access_pin(s, G, LN, st_of); n += 1
             except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
-        for st, d in files.items(): save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+        for st, d in files.items():
+            d['about'] = ABOUT
+            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
         counts.update({'candidates without a pin': len(cand), 'pins placed': n})
     elif PASS == 1:
         same = same_outline(parks)
@@ -1027,6 +1029,7 @@ def main():
                         s['names'] = {r: PIN[r][0] for r in s['refs']}
                     else: s['status'] = 'dropped: a pin is outside its own outline'
             d[f'pass{PASS}'] = today
+            d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
             save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
         new_only = sum(1 for v in newk.values() for n in v if not n.get('_used'))
