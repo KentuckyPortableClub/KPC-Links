@@ -22,7 +22,8 @@ jobs:
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
         run: |
           pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || true
-          python3 .github/scripts/kpc_ca_key.py || echo "::notice title=Canada key::stopped early (see the log above); the old files are kept"
+          python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
+          tail -n 3 ca-key.log
       - name: Save outline files for joined parks that have none (never overwrites)
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
