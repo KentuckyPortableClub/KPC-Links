@@ -144,6 +144,7 @@ ROOMS:
 - Kids Room (chat 1): Voice Pileup Practice RENAMED 'Call CQ!' (Brandon Oct 25 9:16 PM: 'more suited for kids'), stays here; default practice call W4KIDS (not K4TEST), BETA tag off.
 - Library (chat 1, rename resources.html): reading only (field guides, PDFs, starter guides, rules, campout resources, links); weather / bands sections become links to their rooms.
 - Members Room (chat 1; Brandon: keep the hidden apps there): 3 sections = Hidden apps & testing (KPC Logger, VIP Hunters Lounge, VIP Top 50, Map Rep Tool Box, ADD Beta Test Room) · Club (Club Room, Monthly Recap, Park Tracker, members) · 'Public tools' cut to one line pointing at the rooms.
-- No change: Tool Box (directory), Live dashboard, Club Room, CW Practice Room, contact card, 404, Map Rep Suggest.
+- Happening Now (kpc-live.html, chat 3 owns it; Brandon Oct 25 9:21 PM: 'reprogram it to work on a person's location … hunters dont have many toys'): make the whole page follow the viewer's location with the same 'use my location' switch the Activators Lounge uses (data-where=me, Oct 24): weather + radar at your spot, conditions, grey line, 'where you're being heard' from your grid; Kentucky stays the default with no location. Doorway from BOTH Lounges (Hunters Lounge's best extra). Stays 'Live' in the top bar; guests still swapped to kpc-spots until released.
+- No change: Tool Box (directory), Club Room, CW Practice Room, contact card, 404, Map Rep Suggest.
 LATER (not part of the pass): Parking & Access Finder rebuilt by chat 2 from data/access (44 states) + KY access points, then into the Activators Lounge.
 
