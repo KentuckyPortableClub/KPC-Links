@@ -226,11 +226,22 @@
     if (useUsb()) { const d = await navigator.usb.requestDevice({ filters: USBF }); const ps = await usbPorts(); return ps.find(p => p.dev === d) || ps[0]; }
     return navigator.serial.requestPort(PICK);
   }
+  /* PORT NAMES + each port's own radio (Oct 26, Brandon: 'rename the port to match the radio if people run more then one radio').
+     kpcCatPorts = {key: {name, radio, proto, baud, civ, data, model}}; key = USB maker:product:interface#n (n counts identical
+     cables, so two of the same radio stay apart while they keep their order). Opening a port loads its radio's settings. */
+  const PK = () => LS('kpcCatPorts') || {}, RF = ['radio', 'proto', 'baud', 'civ', 'data', 'model'];
+  function keys(ps) { const seen = {}; return ps.map(p => { const f = (p.getInfo && p.getInfo()) || {}, b = [f.usbVendorId, f.usbProductId, f.usbInterface].join(':'); seen[b] = (seen[b] || 0) + 1; return b + '#' + seen[b]; }); }
+  async function keyOf(p) { const ps = await allPorts(); return keys(ps)[ps.indexOf(p)] || ''; }
+  async function remember() { if (!port) return; try { const k = await keyOf(port); if (!k) return; const A = PK(); A[k] = Object.assign({}, A[k] || {}, Object.fromEntries(RF.map(x => [x, S[x]]))); SV('kpcCatPorts', A); } catch (e) {} }
+  async function applyFor(p) { try { const k = await keyOf(p), e = k && PK()[k]; if (e && e.proto) { S = Object.assign({}, S, Object.fromEntries(RF.filter(x => e[x] !== undefined).map(x => [x, e[x]]))); SV('kpcCat', S); } return e || null; } catch (x) { return null; } }
+  async function setName(i, name) { const ps = await allPorts(), k = keys(ps)[i]; if (!k) return; const A = PK(); A[k] = Object.assign({}, A[k] || {}, { name: String(name || '').trim().slice(0, 40) }); if (!A[k].name) delete A[k].name; SV('kpcCatPorts', A); }
+  let curName = '';
   async function openPort(p) {
+    const e = await applyFor(p); curName = (e && e.name) || '';
     port = p; await port.open({ baudRate: +S.baud || 38400, dataBits: 8, stopBits: S.proto === 'yaesuold' ? 2 : 1, parity: 'none', flowControl: 'none' });
     try { await port.setSignals({ dataTerminalReady: !!S.dtr, requestToSend: !!S.rts }); } catch (e) {}
     writer = port.writable.getWriter(); readLoop();
-    say('Radio connected.', true); return true;
+    remember(); say('Radio connected' + (curName ? ': ' + curName : '') + '.', true); return true;
   }
   async function readLoop() {
     try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { rbuf.push(...value); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }
@@ -337,7 +348,8 @@
   async function ports() {
     const ps = await allPorts();
     return ps.map((p, i) => { const f = (p.getInfo && p.getInfo()) || {}, v = f.usbVendorId;
-      return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; });
+      const k = keys(ps)[i], nm = (PK()[k] || {}).name || '';
+      return { i, key: k, name: nm, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; });
   }
   async function usePort(i) { await disconnect(); S.portIx = i; SV('kpcCat', S); return connect(false); }
   /* Let go of the radio's USB port right now, so the tablet's sound reaches the radio cleanly (Android).
@@ -356,7 +368,8 @@
     S.portIx = 0; SV('kpcCat', S); say(p.forget ? 'Port forgotten. Press PICK A DIFFERENT PORT to choose the right one.' : 'This browser can\'t forget ports: pick the right one with PICK A DIFFERENT PORT.', null);
   }
   window.KPCCat = {
-    get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); },
+    get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); if (port && o && RF.some(x => x in o)) remember(); },
+    setName, portName: () => curName,
     supported: () => 'serial' in navigator || !!navigator.usb, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt, letGo,
     onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine
   };
