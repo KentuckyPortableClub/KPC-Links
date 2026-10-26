@@ -5,15 +5,6 @@
   {
    "wf": "kpc-us-key.yml",
    "inputs": {
-    "states": "AL DE IN MN NH OR UT"
-   },
-   "why": "US outlines, live refresh: AL DE IN MN NH OR UT",
-   "every": 14,
-   "next": "2026-10-26T06:00+00:00"
-  },
-  {
-   "wf": "kpc-us-key.yml",
-   "inputs": {
     "states": "AR FL KS MO NJ PA VA"
    },
    "why": "US outlines, live refresh: AR FL KS MO NJ PA VA",
@@ -81,6 +72,15 @@
    "why": "Canada: another pass",
    "every": 14,
    "next": "2026-11-08T07:07+00:00"
+  },
+  {
+   "wf": "kpc-us-key.yml",
+   "inputs": {
+    "states": "AL DE IN MN NH OR UT"
+   },
+   "why": "US outlines, live refresh: AL DE IN MN NH OR UT",
+   "every": 14,
+   "next": "2026-11-09T07:18+00:00"
   }
  ]
 }
