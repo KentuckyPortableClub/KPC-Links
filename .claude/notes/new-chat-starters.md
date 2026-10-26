@@ -159,3 +159,24 @@ ROOMS:
 - No change: Tool Box (directory), Club Room, CW Practice Room, contact card, 404, Map Rep Suggest.
 LATER (not part of the pass): PARKING & ACCESS FINDER rebuild = CHAT 3 (page owner; data already built by chat 2). Brandon Oct 25 9:47 PM: 'it only uses open source, how do we improve it'. Plan: (1) official points first = data/access/US-XX.json (44 states, ~32,000 agency parking/entrance/gate/ramp points) + KY kpc-access-points.json, ky-access-extra.json, ky-wma-parking.json + state-park trailheads with PARKING yes (data/ky-park-features.json); OpenStreetMap only to fill gaps, labelled 'volunteer map'. (2) every point labelled with its source agency. (3) inside the official outline? else distance to the line (Am I in the Park math, kpc-bounds). (4) closures beside the parking (hc- WMA hunts, pa-, uc-). (5) any state (Lounge picker), nearest to me, directions. Then back into the Activators Lounge. LABEL (Brandon Oct 25 9:51 PM): Lounge WHERE tag 'KENTUCKY · LIMITED REST OF US'; on the page, one plain line per picked state from the data, e.g. 'Official parking for 452 of 561 Missouri parks; the rest use the volunteer map'. COVERAGE Oct 25: KY 191/193 parks (complete); US 4,927 of 12,824 parks (38%), busy parks 43%; strong MO WI OH PA NY SC IA WV; none yet CA KS MS NM SD HI, nearly none AZ MT UT VA (next good-bot job: find those states' official parking/entrance layers → chat 2's access bot; the page needs no change as data grows).
 
+## BOUNDARY + OFFICIAL INFO PLAN (HQ, Brandon Oct 26 6:08 AM: 'improve our boundaries accuracy … the amount of boundaries and official literature')
+WHERE WE ARE (Oct 26): US 11,036 of 13,074 parks have an outline (84%); 2,038 none, 587 of them busy (50+ activations). Nightly pin check: US 158 pins OUTSIDE their outline (real problems), 3,569 'edge' (pin within ~1 mile: precision, mostly fine); Canada 4,125 of 5,897 (70%), 97 outside; GB 3,288 of 7,074 (46%), DE 683 of 1,265 (54%). Missing US outlines by kind: BLM Recreation Management Areas 391 (UT 281, ID 82, WY 72, NV 50), State Recreation Areas 118, National Historic Trails 117, State Historic Sites 112 + Monuments 69, State Parks 85, State Trails 81, WMAs 66, Fish Hatcheries 63, Wild & Scenic Rivers 61. Worst states: UT 342/692, ID 159/361, NV 154/367, WY 106/298, MS 66/155 (server blocked), ND, OK. Official websites: US 12,950 of 13,074 (99%), Canada 88%, AU 29%, PL 27%.
+A. MORE OUTLINES (biggest wins first):
+ 1. BLM national Recreation Management Area layer (one layer → most of the 391; fixes UT/ID/NV/WY) — good bot finds it, chat 2 adds to the US key.
+ 2. National Historic Trails (NPS trails program lines) + Wild & Scenic Rivers (national rivers layer) → chat 2's trails bot (lines; 100-yard rules apply later to 2-fers).
+ 3. OUTLINE LAYER EXPLORER (chat 2, same idea as the parking explorer): scan the state servers in state-gis.json for POLYGON layers named park / recreation area / historic site / WMA / forest / hatchery that are not used yet.
+ 4. Small sites (historic sites, monuments, hatcheries): agency parcel or site layers; if none, keep 'no boundary' (never invent one).
+ 5. Canada: worst provinces first (from the ca-key counts); GB + DE only among countries (rest = ~2% of activity, house rule: no new countries).
+B. MORE ACCURATE:
+ 1. Fix the 158 US + 97 Canada 'pin outside' parks, busiest first (good-bot rounds, like round 5 which found the Québec bug).
+ 2. Add NAME + SIZE checks to the nightly check (already on chat 2's to-do) → a worst-first list.
+ 3. Upgrade 'approximate' joins (120 reviewed-approx, 96 water-outline-only) to official when an agency layer turns up.
+ 4. QUALITY SAMPLE each quarter: 50 random busy parks checked by hand against the agency map → an honest error rate in the weekly status.
+ 5. Watch for change: an outline that shifts a lot between runs goes on the review list (lost outlines already go in the bot issue body).
+C. MORE OFFICIAL INFO (link, never copy: storage + copyright):
+ 1. Official MAP link per park (we track websites, not maps): add a 'map' field to parkinfo-web.json; fill from the round-6/official-pages results, then second-agent rounds for busy parks.
+ 2. AU + PL websites (29% / 27%): second agent, busiest parks first, like the US and Canada official-pages rounds.
+ 3. Brochures / regulations PDFs: link from the park card, never stored in the repo.
+D. THE MONTHLY CYCLE (how it keeps improving): bots find gaps → HQ makes the worklists (good bot = map layers, hard; second agent = pages, maps, simple) → chat 2 imports → nightly check measures → HQ reports the numbers in the weekly status. SCOREBOARD per state: % official outlines, pins outside, % with an official map link.
+TARGETS: US outlines 84% → 90% (busy parks with no outline 587 → under 200) by the end of November; pins outside under 50; Canada 70% → 80%.
+
