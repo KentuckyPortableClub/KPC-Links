@@ -1,0 +1,147 @@
+{
+ "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "pass1": "2026-10-26",
+ "spots": [
+  {
+   "acres": 30.1,
+   "center": [
+    46.183246,
+    20.521211
+   ],
+   "found": "2026-10-26",
+   "id": "HU-0009+RO-0431@area@46.183,20.521",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "HU-0009",
+    "RO-0431"
+   ],
+   "shape": [
+    [
+     20.514208,
+     46.185416
+    ],
+    [
+     20.521211,
+     46.182522
+    ],
+    [
+     20.531845,
+     46.181437
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 160
+  },
+  {
+   "acres": 9.4,
+   "center": [
+    46.950045,
+    21.655585
+   ],
+   "found": "2026-10-26",
+   "id": "HU-0009+RO-1119@area@46.950,21.656",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "HU-0009",
+    "RO-1119"
+   ],
+   "shape": [
+    [
+     21.657427,
+     46.953663
+    ],
+    [
+     21.653744,
+     46.948236
+    ],
+    [
+     21.656112,
+     46.949864
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 112
+  },
+  {
+   "acres": 30.1,
+   "center": [
+    46.183246,
+    20.521211
+   ],
+   "found": "2026-10-26",
+   "id": "HU-0046+RO-0431@area@46.183,20.521",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "HU-0046",
+    "RO-0431"
+   ],
+   "shape": [
+    [
+     20.514208,
+     46.185416
+    ],
+    [
+     20.521211,
+     46.182522
+    ],
+    [
+     20.531845,
+     46.181437
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 160
+  },
+  {
+   "acres": 9.4,
+   "center": [
+    46.950045,
+    21.655585
+   ],
+   "found": "2026-10-26",
+   "id": "HU-0046+RO-1119@area@46.950,21.656",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "HU-0046",
+    "RO-1119"
+   ],
+   "shape": [
+    [
+     21.657427,
+     46.953663
+    ],
+    [
+     21.653744,
+     46.948236
+    ],
+    [
+     21.656112,
+     46.949864
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 112
+  }
+ ],
+ "st": "W-HU"
+}
