@@ -1,5 +1,5 @@
 {
- "about": "Official parking / entrance / gate / kiosk / boat ramp / trailhead point layers for US wildlife areas (and later state parks), from the outside research bot's round 3 (KPC_Round3_WMA.xlsx, Oct 25 2026). Read by .github/scripts/kpc_us_access.py. Append new layers; a layer that stops answering is skipped. Oct 25 PM: + CA State Parks parking + entry points, VA DCR facilities (parking only, by place), VA DWR river accesses, UT UGRC boat ramps + trailheads (by place) from the good bot (tested by chat 2). AZ 'Freedom 250' trailheads NOT added: the layer says Arizona State Parks but sits on a BLM account.",
+ "about": "Official parking / entrance / gate / kiosk / boat ramp / trailhead point layers for US wildlife areas (and later state parks), from the outside research bot's round 3 (KPC_Round3_WMA.xlsx, Oct 25 2026). Read by .github/scripts/kpc_us_access.py. Append new layers; a layer that stops answering is skipped. Oct 25 PM: + CA State Parks parking + entry points, VA DCR facilities (parking only, by place), VA DWR river accesses, UT UGRC boat ramps + trailheads (by place) from the good bot (tested by chat 2). AZ 'Freedom 250' trailheads NOT added: the layer says Arizona State Parks but sits on a BLM account. Oct 26: + round 2 (HQ [USE] lines, 28 layers in TN MT WY VA AZ KS NM IN NC NV LA AK ND); mixed-owner statewide ramp layers by place only; SKIPPED Utah Walk-In Access (private landowner names), Hawaii parking inventory (licence 'For Review Only'), SD (login).",
  "layers": [
   {
    "prog": "wma",
@@ -2028,6 +2028,71 @@
    "tested": "yes 2026-10-25 (chat 2 test)",
    "licence": "none stated",
    "agency": "Utah UGRC statewide trailheads"
+  },
+  {
+   "prog": "wma",
+   "st": "MT",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS_POINTS/FeatureServer/0",
+   "what": "points: fishing access site (boat access)",
+   "typef": "none (layer = type)",
+   "vals": "FAS are POTA parks in MT",
+   "area": "NAME",
+   "count": "337",
+   "tested": "yes 2026-10-26 (good bot round 2, HQ [USE])",
+   "licence": "none stated",
+   "agency": "Montana FWP"
+  },
+  {
+   "prog": "wma",
+   "st": "AZ",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/2045fa1bcdbc4b309f887f4cba94790b/rest/services/FishandBoat_reference/FeatureServer/2",
+   "what": "points: boat ramps",
+   "typef": "none (layer = type)",
+   "vals": "mixed owners: by place",
+   "area": "location only",
+   "count": "135",
+   "tested": "yes 2026-10-26 (good bot round 2, HQ [USE])",
+   "licence": "none stated",
+   "agency": "Arizona Game and Fish"
+  },
+  {
+   "prog": "wma",
+   "st": "KS",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/River_Access_STWD_2022/FeatureServer/0",
+   "what": "points: river access (boat launch)",
+   "typef": "none (layer = type)",
+   "vals": "by place",
+   "area": "location only",
+   "count": "82",
+   "tested": "yes 2026-10-26 (good bot round 2, HQ [USE])",
+   "licence": "none stated",
+   "agency": "Kansas KDWP"
+  },
+  {
+   "prog": "wma",
+   "st": "NM",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer/0",
+   "what": "points: fishing access",
+   "typef": "Access_Type",
+   "vals": "by place",
+   "area": "location only",
+   "count": "476",
+   "tested": "yes 2026-10-26 (good bot round 2, HQ [USE])",
+   "licence": "none stated",
+   "agency": "New Mexico Game and Fish"
+  },
+  {
+   "prog": "wma",
+   "st": "ND",
+   "url": "https://ndgishub.nd.gov/arcgis/rest/services/Applications/GNF_GeneralInformation/MapServer/54",
+   "what": "points: WMA parking",
+   "typef": "none (layer = type)",
+   "vals": "",
+   "area": "location only",
+   "count": "65",
+   "tested": "yes 2026-10-26 (good bot round 2, HQ [USE])",
+   "licence": "none stated",
+   "agency": "North Dakota Game and Fish"
   }
  ]
 }
