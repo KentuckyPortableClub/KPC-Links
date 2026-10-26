@@ -1,0 +1,1538 @@
+{
+ "about": "Kentucky park facilities for activators (shelters, tables, restrooms, water, parking). State parks + historic sites: Kentucky State Parks GIS buildings (BL_NAME shelter / pavilion; restroom, bath house, vault toilet) + trailheads within 4 km (PARKING / RESTROOMS = Yes). Other parks: HQ facilities sheet (KPC_Park_Facilities_done.xlsx), yes/no as the official page says; missing = not mentioned. shelterPts = [lat, lon, building] for 'nearest shelter'. Built Oct 25 2026 by chat 2; shown by chat 3's pages.",
+ "parks": {
+  "US-0019": {
+   "n": "Cumberland Gap National Historical Park",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "parking": "yes",
+   "note": "NPS lists reservable picnic shelters with tables, bathrooms, and parking; shelter reservation is required for some sites.",
+   "link": "https://www.nps.gov/cuga/planyourvisit/picnic-shelters.htm",
+   "src": "official park page"
+  },
+  "US-0050": {
+   "n": "Mammoth Cave National Park",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "water": "yes",
+   "parking": "yes",
+   "note": "NPS lists reservable shelters, picnic tables, restrooms, potable water, and parking-area access at multiple picnic areas; details vary by site and season.",
+   "link": "https://home.nps.gov/maca/planyourvisit/picnic-areas.htm",
+   "src": "official park page"
+  },
+  "US-0295": {
+   "n": "Clarks River National Wildlife Refuge",
+   "tables": "yes",
+   "note": "FWS says picnic tables are under the Environmental Education Pavilion at the Environmental Education and Recreation Area; grills require a special use permit.",
+   "link": "https://www.fws.gov/refuge/clarks-river/visit-us/activities/picnicking",
+   "src": "official park page"
+  },
+  "US-0608": {
+   "n": "Ohio River Islands National Wildlife Refuge",
+   "restrooms": "yes",
+   "water": "yes",
+   "note": "FWS says the Buckley mainland tract/visitor center has indoor restrooms and potable water; Middle Island has an outdoor toilet. Other properties have no refuge facilities.",
+   "link": "https://www.fws.gov/rivers/carp/carp/refuge/ohio-river-islands/visit-us",
+   "src": "official park page"
+  },
+  "US-0686": {
+   "n": "Big South Fork National Recreation Area",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "note": "NPS lists reservable picnic shelters with tables and nearby restrooms at multiple sites. Water availability varies by shelter; reservations are required at some shelters.",
+   "link": "https://home.nps.gov/biso/planyourvisit/day-use-shelter-reservations.htm",
+   "src": "official park page"
+  },
+  "US-0703": {
+   "n": "Fort Donelson National Battlefield",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "parking": "yes",
+   "note": "NPS lists a picnic area/pavilion near the fort with tables, restrooms, and accessible parking; tables are first-come, first-served.",
+   "link": "https://www.nps.gov/places/picnic-area-and-comfort-station.htm",
+   "src": "official park page"
+  },
+  "US-0724": {
+   "n": "Abraham Lincoln Birthplace National Historic Site",
+   "tables": "yes",
+   "restrooms": "yes",
+   "note": "NPS compendium identifies picnic tables in designated areas; NPS Plan Your Visit lists visitor restrooms at the Birthplace Unit.",
+   "link": "https://www.nps.gov/abli/learn/management/superintendent-s-compendium.htm",
+   "src": "official park page"
+  },
+  "US-10098": {
+   "n": "Green River National Wildlife Refuge",
+   "note": "FWS says there is no designated picnicking area, though picnicking is allowed in public areas during daylight; fires/grills require a special use permit.",
+   "link": "https://www.fws.gov/refuge/green-river/visit-us/activities/picnicking",
+   "src": "official park page"
+  },
+  "US-10099": {
+   "n": "Wolf Creek National Fish Hatchery",
+   "note": "Official FWS map page found; requested picnic/restroom/water/parking amenities were not confirmed from the map page reviewed.",
+   "link": "https://www.fws.gov/fish-hatchery/wolf-creek/map",
+   "src": "official park page"
+  },
+  "US-10105": {
+   "n": "The Green National Wild and Scenic River",
+   "note": "Official page notes multiple paddling/boating/canoe-camping access points and refers visitors to Mammoth Cave backcountry maps; no corridor-wide shelter/table/restroom/water details listed.",
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Green-River-Wild-River.aspx",
+   "src": "official park page"
+  },
+  "US-10106": {
+   "n": "The Rockcastle National Wild and Scenic River",
+   "note": "Official page points to recreation opportunities at Bee Rocks Campground and Laurel River Lake and directs visitors to US Forest Service maps; no corridor-wide amenities listed.",
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rockcastle-River-Wild-River.aspx",
+   "src": "official park page"
+  },
+  "US-10111": {
+   "n": "Rock Creek National Wild and Scenic River",
+   "note": "Official page says there are multiple access points and refers visitors to the Forest Service for details; amenities vary by access point and are not listed for the whole corridor.",
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rock-Creek-Wild-River.aspx",
+   "src": "official park page"
+  },
+  "US-10112": {
+   "n": "Bad Branch National Wild and Scenic River",
+   "parking": "yes",
+   "note": "The included Bad Branch State Nature Preserve page says there are no facilities and identifies a gravel parking area for 10 vehicles or one bus; preserve rules prohibit picnicking.",
+   "link": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx",
+   "src": "official park page"
+  },
+  "US-10172": {
+   "n": "Salato Wildlife Refuge",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "parking": "yes",
+   "note": "Kentucky Fish & Wildlife lists covered picnic shelters, open-air picnic tables, and an official exhibit map showing restrooms and parking. Drinking water not confirmed.",
+   "link": "https://fw.ky.gov/Education/Pages/What-You%27ll-Discover.aspx",
+   "src": "official park page"
+  },
+  "US-11181": {
+   "n": "Sheltowee Trace National Recreation Trail",
+   "note": "Official Forest Service trail page is a regional trail resource; picnic shelters, tables, restrooms, water, and parking vary by access point and were not confirmed for this whole trail.",
+   "link": "https://www.fs.usda.gov/wildflowers/regions/southern/SheltoweeTrace/index.shtml",
+   "src": "official park page"
+  },
+  "US-1251": {
+   "n": "Carr Creek State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 1,
+   "shelterPts": [
+    [
+     37.22895,
+     -83.00053,
+     "Picnic Shelter"
+    ]
+   ],
+   "restrooms": "yes"
+  },
+  "US-1252": {
+   "n": "Columbus Belmont State Park",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "water": "yes",
+   "note": "Official park page lists four rentable picnic shelters, picnic tables, restrooms/showers/laundry at campground service, and campground water (not to each site in winter).",
+   "link": "https://parks.ky.gov/explore/columbus-belmont-state-park-7809",
+   "src": "official park page"
+  },
+  "US-1254": {
+   "n": "E.P. 'Tom' Sawyer State Park",
+   "src": "Kentucky State Parks map + official park page",
+   "link": "https://parks.ky.gov/explore/e-p-tom-sawyer-meetings-8271",
+   "shelters": 3,
+   "shelterPts": [
+    [
+     38.27804,
+     -85.55318,
+     "Picnic Shelter/ Csh"
+    ],
+    [
+     38.28756,
+     -85.55815,
+     "Shelter W/O Rr"
+    ],
+    [
+     38.28456,
+     -85.55639,
+     "Shelter House W/Rr"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes",
+   "shelter": "yes",
+   "tables": "yes",
+   "note": "Official Kentucky Parks page lists pavilion/shelter rentals and picnic tables; restroom, drinking-water, and parking details not confirmed on this page."
+  },
+  "US-1256": {
+   "n": "Fort Boonesborough State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     37.89901,
+     -84.2668,
+     "Shelter W/O Rr"
+    ],
+    [
+     37.89916,
+     -84.2654,
+     "Shelter W/ Rr"
+    ],
+    [
+     37.89561,
+     -84.26742,
+     "Shelter At  Foot Of Hill"
+    ],
+    [
+     37.89629,
+     -84.26404,
+     "Shelter W/O Rr"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1257": {
+   "n": "General Burnside State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     36.97304,
+     -84.59829,
+     "Shelter W/O Restrooms"
+    ],
+    [
+     36.98029,
+     -84.6006,
+     "Picnic Shelter With Rr"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1258": {
+   "n": "Grayson Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 3,
+   "shelterPts": [
+    [
+     38.20424,
+     -83.02508,
+     "Corporate Shelter"
+    ],
+    [
+     38.20304,
+     -83.01249,
+     "Shelter By Boat Ramp"
+    ],
+    [
+     38.20187,
+     -83.02812,
+     "Picnic Shelter / Camping"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1259": {
+   "n": "Green River Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.27079,
+     -85.31338,
+     "Shelter House"
+    ],
+    [
+     37.27376,
+     -85.3175,
+     "Mini-Golf Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1260": {
+   "n": "John James Audubon State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 7,
+   "shelterPts": [
+    [
+     37.88052,
+     -87.55703,
+     "Sycamore Shelter"
+    ],
+    [
+     37.88024,
+     -87.56247,
+     "Hilltop Shelter"
+    ],
+    [
+     37.8798,
+     -87.55887,
+     "Lakeview Shelter"
+    ],
+    [
+     37.88006,
+     -87.56129,
+     "Cardinal Shelter"
+    ],
+    [
+     37.87888,
+     -87.5634,
+     "Campground Shelter"
+    ],
+    [
+     37.87516,
+     -87.55108,
+     "Rain Shelter Golf Course"
+    ],
+    [
+     37.88051,
+     -87.55739,
+     "Bbq Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1261": {
+   "n": "Kincaid Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     38.72467,
+     -84.28327,
+     "Shelter House / Office / Rr"
+    ],
+    [
+     38.72338,
+     -84.28232,
+     "Nature Open Shelter Bldg"
+    ],
+    [
+     38.72631,
+     -84.28218,
+     "Restroom Near Shelter"
+    ],
+    [
+     38.72639,
+     -84.28201,
+     "Shelter House W/O Restrooms"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1262": {
+   "n": "Kingdom Come State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     36.99184,
+     -82.98341,
+     "Shelter W/Restrooms"
+    ],
+    [
+     36.99291,
+     -82.98072,
+     "Shelter W/Restrooms"
+    ],
+    [
+     36.98909,
+     -82.98413,
+     "Round Shelter/Open"
+    ],
+    [
+     36.99699,
+     -82.98081,
+     "Pine Mtn Trail Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1263": {
+   "n": "Lake Malone State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.07582,
+     -87.03944,
+     "Shelter"
+    ],
+    [
+     37.07458,
+     -87.03663,
+     "Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1265": {
+   "n": "Lincoln Homestead State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     37.75052,
+     -85.21565,
+     "Shelter Hse 12 Tee"
+    ],
+    [
+     37.75352,
+     -85.21843,
+     "Shelter Hse 17 Tee"
+    ],
+    [
+     37.76229,
+     -85.21357,
+     "Shelter House W/Restrooms"
+    ],
+    [
+     37.76175,
+     -85.21885,
+     "Shelter House 3 Tee"
+    ]
+   ],
+   "restrooms": "yes"
+  },
+  "US-1266": {
+   "n": "Mineral Mounds State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer"
+  },
+  "US-1267": {
+   "n": "My Old Kentucky Home State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 5,
+   "shelterPts": [
+    [
+     37.79954,
+     -85.45957,
+     "Small Shelter - Golf Course"
+    ],
+    [
+     37.8062,
+     -85.45584,
+     "Pavilion/Shelter House"
+    ],
+    [
+     37.79556,
+     -85.45971,
+     "Large Shelter-Golf Course"
+    ],
+    [
+     37.79653,
+     -85.45364,
+     "Picnic Shelter W/Restrooms"
+    ],
+    [
+     37.80135,
+     -85.45839,
+     "Small Shelter - Golf Course"
+    ]
+   ],
+   "restrooms": "yes"
+  },
+  "US-1268": {
+   "n": "Nolin Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 1,
+   "shelterPts": [
+    [
+     37.29713,
+     -86.21273,
+     "Shelter W/O Rr"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1269": {
+   "n": "Old Fort Harrod State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.76223,
+     -84.84952,
+     "Picnic Shelter"
+    ],
+    [
+     37.76192,
+     -84.84789,
+     "Animal Shelter"
+    ]
+   ],
+   "restrooms": "yes"
+  },
+  "US-1270": {
+   "n": "Paintsville Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     37.84371,
+     -82.87908,
+     "Shelter W/O Restrooms #4"
+    ],
+    [
+     37.84164,
+     -82.88092,
+     "Picnic Shelter/Open"
+    ],
+    [
+     37.84235,
+     -82.87955,
+     "Shelter W/O Restrooms #3"
+    ],
+    [
+     37.84321,
+     -82.87941,
+     "Shelter W/O Restrooms #5"
+    ]
+   ],
+   "restrooms": "yes"
+  },
+  "US-1271": {
+   "n": "Taylorsville Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     38.02523,
+     -85.26416,
+     "Picnic Shelter 2"
+    ],
+    [
+     38.02541,
+     -85.26496,
+     "Picnic Shelter 1"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1272": {
+   "n": "Yatesville Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 5,
+   "shelterPts": [
+    [
+     38.0725,
+     -82.69165,
+     "Rain Shelter W/Rr @#5"
+    ],
+    [
+     38.07028,
+     -82.70092,
+     "Shelter/Golf Course"
+    ],
+    [
+     38.07062,
+     -82.70057,
+     "Rain Shelter W/Rr @7"
+    ],
+    [
+     38.11922,
+     -82.69182,
+     "Picnic Shelter #2"
+    ],
+    [
+     38.11901,
+     -82.69196,
+     "Picnic Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1273": {
+   "n": "Barren River Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 8,
+   "shelterPts": [
+    [
+     36.85656,
+     -86.05505,
+     "Shelter At Highlands"
+    ],
+    [
+     36.8557,
+     -86.05453,
+     "Large Shelter At Highlands"
+    ],
+    [
+     36.85779,
+     -86.05467,
+     "Small Shelter Highland 5"
+    ],
+    [
+     36.85785,
+     -86.05512,
+     "Small Shelter Highland"
+    ],
+    [
+     36.8576,
+     -86.05542,
+     "Shelter At 13 Tee"
+    ],
+    [
+     36.85646,
+     -86.05571,
+     "Shelter At Highlands 6"
+    ],
+    [
+     36.85625,
+     -86.05607,
+     "Shelter At Highlands 4"
+    ],
+    [
+     36.86356,
+     -86.0692,
+     "Shelter At Tennis Cts"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1274": {
+   "n": "Blue Licks Battlefield State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 3,
+   "shelterPts": [
+    [
+     38.43185,
+     -83.99413,
+     "Shelter House"
+    ],
+    [
+     38.42774,
+     -83.99368,
+     "Picnic Shelter/Camping"
+    ],
+    [
+     38.43032,
+     -83.99376,
+     "Shelter W/Restrooms"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1275": {
+   "n": "Buckhorn Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.30245,
+     -83.44417,
+     "Shelter House & Restroom"
+    ],
+    [
+     37.30273,
+     -83.44514,
+     "Shelter House W/O Restrooms"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-12752": {
+   "n": "Green River State Natural Area",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-1276": {
+   "n": "Carter Caves State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     38.37225,
+     -83.11711,
+     "Shelter In Cabin Area"
+    ],
+    [
+     38.37815,
+     -83.12467,
+     "Shelter W/O Restrooms"
+    ],
+    [
+     38.37696,
+     -83.12352,
+     "Saltpeter Cave Shelter"
+    ],
+    [
+     38.36838,
+     -83.12715,
+     "Shelter W/Restrooms @ Pool"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1277": {
+   "n": "Cumberland Falls State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 1,
+   "shelterPts": [
+    [
+     36.83767,
+     -84.33773,
+     "Open Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1278": {
+   "n": "Dale Hollow State Park",
+   "shelter": "yes",
+   "tables": "yes",
+   "restrooms": "yes",
+   "parking": "yes",
+   "note": "Official park page lists a rentable picnic shelter with restrooms and tables; parking is listed at multiple trailheads/parking lots. Water not specifically confirmed for picnic area.",
+   "link": "https://parks.ky.gov/parks/find-a-park/dale-hollow-lake-state-resort-park-7787",
+   "src": "official park page"
+  },
+  "US-1279": {
+   "n": "General Butler State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 4,
+   "shelterPts": [
+    [
+     38.66585,
+     -85.14763,
+     "Lake Side Shelter / Bath House"
+    ],
+    [
+     38.66655,
+     -85.1471,
+     "Stone Shelter House W/Restroom"
+    ],
+    [
+     38.66929,
+     -85.15117,
+     "Ice Machine Shelter Building"
+    ],
+    [
+     38.67155,
+     -85.16689,
+     "Butler Shelter W/Restrooms"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1280": {
+   "n": "Greenbo Lake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 7,
+   "shelterPts": [
+    [
+     38.48932,
+     -82.87211,
+     "Trail Shelter #2 (E. Stevens Shelter)"
+    ],
+    [
+     38.47931,
+     -82.88474,
+     "Picnic Shelter/Picnic Area"
+    ],
+    [
+     38.47933,
+     -82.88528,
+     "Picnic Shelter W/Restrooms"
+    ],
+    [
+     38.48539,
+     -82.8933,
+     "Picnic Shelter W/O Restrooms"
+    ],
+    [
+     38.48418,
+     -82.89103,
+     "Mini-Golf Picnic Shelter"
+    ],
+    [
+     38.48546,
+     -82.91149,
+     "Trail Shelter #1 (Blackberry Shelter)"
+    ],
+    [
+     38.48643,
+     -82.8881,
+     "Trail Shelter #3 (Belwood Shelter)"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1281": {
+   "n": "Jenny Wiley State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.70373,
+     -82.73972,
+     "Shelter Hse W/O Rr"
+    ],
+    [
+     37.71473,
+     -82.73952,
+     "Shelter House W/O Rr"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1282": {
+   "n": "Kenlake State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 6,
+   "shelterPts": [
+    [
+     36.76625,
+     -88.13352,
+     "Grill Shelter"
+    ],
+    [
+     36.76636,
+     -88.13342,
+     "Woodland Shelter"
+    ],
+    [
+     36.76783,
+     -88.13065,
+     "Shelter House W/Rr @ Tennis Courts"
+    ],
+    [
+     36.76509,
+     -88.13222,
+     "Shelter House W/Rr"
+    ],
+    [
+     36.76165,
+     -88.14312,
+     "Pavilion By Pro Shop"
+    ],
+    [
+     36.78453,
+     -88.14236,
+     "Cherokee Picnic Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1283": {
+   "n": "Kentucky Dam Village State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 10,
+   "shelterPts": [
+    [
+     37.00064,
+     -88.29927,
+     "Shelter Tee 16"
+    ],
+    [
+     36.9959,
+     -88.30208,
+     "Shelter Tee 13"
+    ],
+    [
+     36.995,
+     -88.30155,
+     "Shelter/ Rr Tee 7"
+    ],
+    [
+     37.00185,
+     -88.3026,
+     "Shelter Tee 15"
+    ],
+    [
+     37.00076,
+     -88.28527,
+     "Shelter W/Rr Concessions"
+    ],
+    [
+     36.9965,
+     -88.29781,
+     "Shelter Tee 5"
+    ],
+    [
+     36.99108,
+     -88.28825,
+     "Shelter 3"
+    ],
+    [
+     36.99105,
+     -88.29035,
+     "Shelter 2"
+    ],
+    [
+     36.98958,
+     -88.29147,
+     "Shelter 1"
+    ],
+    [
+     37.00038,
+     -88.28389,
+     "Shelter Paddle Boat Area"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1284": {
+   "n": "Lake Barkley State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 5,
+   "shelterPts": [
+    [
+     36.85283,
+     -87.92728,
+     "Shelter House W/Rr"
+    ],
+    [
+     36.82165,
+     -87.91686,
+     "Golf Course Shelter #1"
+    ],
+    [
+     36.83108,
+     -87.9191,
+     "Pavilion @ Pro Shop"
+    ],
+    [
+     36.82671,
+     -87.92479,
+     "Golf Course Shelter #2"
+    ],
+    [
+     36.8557,
+     -87.91915,
+     "Recreation Pavilion"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1285": {
+   "n": "Lake Cumberland State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 1,
+   "shelterPts": [
+    [
+     36.9166,
+     -85.05762,
+     "Shelter House W/Restrooms"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1286": {
+   "n": "Natural Bridge State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 15,
+   "shelterPts": [
+    [
+     37.77243,
+     -83.67761,
+     "Shelter House Below Cabins"
+    ],
+    [
+     37.7797,
+     -83.6771,
+     "Shelter #4 / Public Area"
+    ],
+    [
+     37.7796,
+     -83.67652,
+     "Shelter #3 / Public Area"
+    ],
+    [
+     37.77909,
+     -83.67661,
+     "Restrooms & Shelter"
+    ],
+    [
+     37.77588,
+     -83.67947,
+     "Shelter W/O R.R. & Snack Bar"
+    ],
+    [
+     37.77376,
+     -83.68479,
+     "Trail Shelter #2"
+    ],
+    [
+     37.7806,
+     -83.6735,
+     "Shelter / Whittleton Campground"
+    ],
+    [
+     37.77618,
+     -83.67897,
+     "Shelter / Hoedown Island"
+    ],
+    [
+     37.77601,
+     -83.67941,
+     "Shelter At Paddle Boat Dock"
+    ],
+    [
+     37.77595,
+     -83.68058,
+     "Shelter / Foot Of Trail #1"
+    ],
+    [
+     37.77567,
+     -83.68201,
+     "Trail Shelter #4"
+    ],
+    [
+     37.77464,
+     -83.68349,
+     "Trail Shelter #1"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1287": {
+   "n": "Pennyrile Forest State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 5,
+   "shelterPts": [
+    [
+     37.07029,
+     -87.66098,
+     "Shelter W/Rr - Beach Area"
+    ],
+    [
+     37.07433,
+     -87.66808,
+     "Carport Cart Storage/Shelter"
+    ],
+    [
+     37.06951,
+     -87.65821,
+     "Pennyrile Shelter"
+    ],
+    [
+     37.07138,
+     -87.66138,
+     "Lake Shelter"
+    ],
+    [
+     37.07093,
+     -87.65928,
+     "Church Shelter/Camping Area"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1288": {
+   "n": "Pine Mountain State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 8,
+   "shelterPts": [
+    [
+     36.74024,
+     -83.74913,
+     "Shelter House/Camping Area"
+    ],
+    [
+     36.74238,
+     -83.74573,
+     "Shelter/Horse Stables"
+    ],
+    [
+     36.7434,
+     -83.70558,
+     "Shelter House W/O Rr = Cove Area"
+    ],
+    [
+     36.74446,
+     -83.70936,
+     "Shelter House W/Rr @ Picnic"
+    ],
+    [
+     36.74244,
+     -83.70738,
+     "Shelter/Cove Area"
+    ],
+    [
+     36.73651,
+     -83.73758,
+     "Pavilion Round House"
+    ],
+    [
+     36.73432,
+     -83.74094,
+     "Shelter W/O Restrooms/Hemlock Garden"
+    ],
+    [
+     36.73816,
+     -83.70219,
+     "Shelter On Golf Course"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-1289": {
+   "n": "Rough River Dam State Park",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.61085,
+     -86.50196,
+     "Octagon Shelter"
+    ],
+    [
+     37.61201,
+     -86.49923,
+     "Shelterhouse"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-12971": {
+   "n": "Bat Cave State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-12972": {
+   "n": "Cascade Caverns State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-13598": {
+   "n": "Beaver Lake State Fishing Lake",
+   "restrooms": "yes",
+   "parking": "yes",
+   "note": "KDFWR access-site listing reports paved parking, seasonal restrooms, and a seasonal picnic area; the page does not confirm drinking water or a shelter.",
+   "link": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=15",
+   "src": "official park page"
+  },
+  "US-13599": {
+   "n": "Kingfisher Lakes State Fishing Lake",
+   "restrooms": "no",
+   "parking": "yes",
+   "note": "KDFWR access-site listing for New Kingfisher Lake reports unpaved parking and no restrooms or picnic area; amenities can differ between lake access points.",
+   "link": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=148",
+   "src": "official park page"
+  },
+  "US-13601": {
+   "n": "Guist Creek Lake State Fishing Lake",
+   "restrooms": "yes",
+   "parking": "yes",
+   "note": "KDFWR access-site listing reports unpaved parking and seasonal restrooms; picnic area is listed as unknown.",
+   "link": "https://app.fw.ky.gov/fisheries/accesssitedetail.aspx?asid=928",
+   "src": "official park page"
+  },
+  "US-3779": {
+   "n": "Big Bone Lick State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 3,
+   "shelterPts": [
+    [
+     38.8819,
+     -84.74383,
+     "Shelter House - Office W/O Rr"
+    ],
+    [
+     38.88812,
+     -84.75086,
+     "Shelter House W/Rr"
+    ],
+    [
+     38.88665,
+     -84.74768,
+     "Shelter House W/O Rr"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-3782": {
+   "n": "Dr. Thomas Walker State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     36.83928,
+     -83.91764,
+     "Shelter House W/O Rr"
+    ],
+    [
+     36.83909,
+     -83.91953,
+     "Shelter House W/Rr"
+    ]
+   ],
+   "restrooms": "yes"
+  },
+  "US-3783": {
+   "n": "Jefferson Davis State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     36.84089,
+     -87.29945,
+     "Shelter House W/O Restroom"
+    ],
+    [
+     36.84063,
+     -87.29985,
+     "Shelter Large"
+    ]
+   ]
+  },
+  "US-3784": {
+   "n": "Old Mulkey Meetinghouse State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 1,
+   "shelterPts": [
+    [
+     36.67832,
+     -85.70612,
+     "Picnic Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-3785": {
+   "n": "Perryville Battlefield State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 2,
+   "shelterPts": [
+    [
+     37.67564,
+     -84.96903,
+     "Shelter W/Restrooms"
+    ],
+    [
+     37.67448,
+     -84.97008,
+     "Meeting Room / Shelter"
+    ]
+   ],
+   "restrooms": "yes",
+   "parking": "yes"
+  },
+  "US-3786": {
+   "n": "Waveland State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer"
+  },
+  "US-3788": {
+   "n": "Wickliffe Mounds State Historic Site",
+   "src": "Kentucky State Parks map (buildings + trailheads)",
+   "link": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_State_Parks_Features_WGS84WM/MapServer",
+   "shelters": 1,
+   "shelterPts": [
+    [
+     36.97117,
+     -89.09259,
+     "Recreation Shelter #1"
+    ]
+   ]
+  },
+  "US-4484": {
+   "n": "Daniel Boone National Forest",
+   "note": "Forest Service page describes 600+ miles of trails and 250+ recreation sites; check individual recreation-site pages for amenities before operating.",
+   "link": "https://www.fs.usda.gov/r08/danielboone",
+   "src": "official park page"
+  },
+  "US-4526": {
+   "n": "George Washington & Jefferson National Forest",
+   "note": "Forest Service page is for the multi-state national forests; amenities depend on the specific recreation site and are not listed on this general page.",
+   "link": "https://www.fs.usda.gov/r08/gwj",
+   "src": "official park page"
+  },
+  "US-4572": {
+   "n": "Lewis and Clark National Historic Trail",
+   "note": "NPS page describes a multi-state trail managed through many federal, tribal, state, local, public, and private partners; no site-specific amenities listed on the page reviewed.",
+   "link": "https://www.nps.gov/lecl/planyourvisit/index.htm",
+   "src": "official park page"
+  },
+  "US-4688": {
+   "n": "Kentenia State Forest",
+   "parking": "yes",
+   "note": "Official page allows primitive camping, hiking, picnicking, and horseback riding; parking is limited to pullouts along Little Shepherd Trail. No developed picnic/restroom/water details listed.",
+   "link": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentenia-State-Forest.aspx",
+   "src": "official park page"
+  },
+  "US-4689": {
+   "n": "Kentucky Ridge State Forest",
+   "parking": "yes",
+   "note": "Official page allows primitive camping, hiking, picnicking, and horseback riding; parking area is signed near KY 92. No specific picnic shelter/table/restroom/water details listed.",
+   "link": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Kentucky-Ridge-State-Forest.aspx",
+   "src": "official park page"
+  },
+  "US-4690": {
+   "n": "Knobs State Forest",
+   "parking": "yes",
+   "note": "Official page says day use only except extended hunting hours; three small parking areas are identified. Hiking and wildlife viewing permitted; requested picnic/restroom/water facilities not listed.",
+   "link": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Knobs-State-Forest-and-Wildlife-Management-Area.aspx",
+   "src": "official park page"
+  },
+  "US-4692": {
+   "n": "Pennyrile State Forest",
+   "note": "Supplied official link leads to Pennyrile Forest State Resort Park, a separate developed park; requested amenities for the state forest itself were not verified.",
+   "link": "https://parks.ky.gov/dawson-springs/parks/resort/pennyrile-forest-state-resort-park",
+   "src": "official park page"
+  },
+  "US-4693": {
+   "n": "Tygarts State Forest",
+   "note": "Official page says camping is prohibited in the forest; public campsites are available at adjacent Carter Caves State Resort Park. No requested facilities listed for the forest itself.",
+   "link": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Tygarts-State-Forest.aspx",
+   "src": "official park page"
+  },
+  "US-7708": {
+   "n": "Mill Springs Battlefield National Monument",
+   "tables": "yes",
+   "note": "NPS directions page says picnic tables and trails are at the core battlefield/Zollicoffer Park; other requested amenities not confirmed.",
+   "link": "https://www.nps.gov/misp/planyourvisit/directions.htm",
+   "src": "official park page"
+  },
+  "US-7950": {
+   "n": "Camp Nelson National Monument",
+   "tables": "yes",
+   "parking": "yes",
+   "note": "NPS compendium identifies picnic tables near the Visitor Center, Depot Trail/Officers Spring, and Barracks Loop Trail; picnicking includes the parking lot. Shelter/restroom/water not confirmed.",
+   "link": "https://www.nps.gov/cane/learn/management/superintendent-s-compendium.htm",
+   "src": "official park page"
+  },
+  "US-7951": {
+   "n": "Green River State Forest",
+   "note": "Official page says forest is open dawn to dusk by foot traffic only; ATV/off-road vehicles prohibited. Requested picnic/restroom/water/parking facilities not listed.",
+   "link": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Green-River-State-Forest.aspx",
+   "src": "official park page"
+  },
+  "US-7952": {
+   "n": "Marrowbone State Forest",
+   "parking": "yes",
+   "note": "Official page says day use only except hunting extensions; access parking is available along several roads. Hiking/wildlife viewing allowed; picnic shelters/tables, restrooms, and drinking water not listed.",
+   "link": "https://eec.ky.gov/Natural-Resources/Forestry/ky-state-forests/Pages/Marrowbone-State-Forest-and-Wildlife-Management-Area.aspx",
+   "src": "official park page"
+  },
+  "US-7953": {
+   "n": "Metropolis Lake State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7954": {
+   "n": "Blackacre State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7955": {
+   "n": "Six Mile Island State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7956": {
+   "n": "Beargrass Creek State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7957": {
+   "n": "Hall-Hill/Vernon-Douglas State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7958": {
+   "n": "Kentucky River Palisades/Tom Dorman State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7959": {
+   "n": "Quiet Trails State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7960": {
+   "n": "Crooked Creek State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7961": {
+   "n": "Jesse Stuart State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7962": {
+   "n": "Little South Fork State Natural Area",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7963": {
+   "n": "Pilot Knob State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7964": {
+   "n": "William H. Martin State Natural Area",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7965": {
+   "n": "Brigadoon State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7966": {
+   "n": "Bad Branch State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7967": {
+   "n": "Blanton Forest State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "parking": "yes",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7968": {
+   "n": "E. Lucy Braun State Nature Preserve",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-7970": {
+   "n": "Sinking Creek State Natural Area",
+   "shelter": "no",
+   "tables": "no",
+   "note": "Kentucky Nature Preserves official rules state there are no picnic facilities and picnicking/camping are not allowed on state nature preserves; other amenities not listed for this site.",
+   "link": "https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/Pages/faq.aspx",
+   "src": "official park page"
+  },
+  "US-8144": {
+   "n": "Otter Creek State Recreation Area",
+   "shelter": "yes",
+   "restrooms": "yes",
+   "water": "yes",
+   "parking": "yes",
+   "note": "Official recreation-area map legend marks picnic shelters, restrooms, parking areas, and water spigots. Amenities vary by specific site; map also links to campground map and reservation info.",
+   "link": "https://fw.ky.gov/documents/otter_creek_brochure_map.pdf",
+   "src": "official park page"
+  }
+ }
+}
