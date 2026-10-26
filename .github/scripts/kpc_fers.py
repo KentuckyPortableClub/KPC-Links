@@ -666,8 +666,14 @@ def same_outline(parks):
     return out
 
 
+WILDRIVER = re.compile(r'wild (and|&) scenic|wild river|scenic river|recreational river', re.I)
+
+
 def pin_inside(ref, PIN, G, LN):
     nm, la, lo = PIN[ref][0], PIN[ref][1], PIN[ref][2]
+    # Brandon Oct 26 2 PM: 'the wild rivers, I have to side with the wild river boundaries being correct and POTA wrong':
+    # a river corridor's official boundary wins over POTA's pin (pins sit at a road or bridge outside the corridor)
+    if WILDRIVER.search(f'{nm} {PIN[ref][4]}'): return True
     d = .004
     b = [lo - d, la - d, lo + d, la + d]
     F = Frame(b, CELL, 0)
@@ -790,7 +796,16 @@ def nearest_access(spot, st_of):
     return best
 
 
-FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'US-KY' if REGION == 'ky' else r'(US|CA)-[A-Z]{2}'
+FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'US-KY' if REGION == 'ky' else r'(?!US-KY)(US|CA)-[A-Z]{2}'
+def two_owners(refs, parks):
+    """Brandon Oct 26 2 PM ('Cumberland Falls and another state park … one is state one is federal'): two parks whose land
+    is OWNED by two different governments cannot really share ground. Kentucky: a state park (bstate) on the Forest Service's
+    fee land (Daniel Boone from PAD-US)."""
+    if REGION != 'ky': return False
+    kinds = [{i.split('|')[0] for i in parks.get(r, {}).get('ids', [])} for r in refs]
+    return any('bstate' in k for k in kinds) and any('padus' in k for k in kinds)
+
+
 def file_of(st): return OUT / f'{st}.json'
 
 
@@ -922,6 +937,8 @@ def main():
                 else:
                     s['passes'][PASS - 1] = 0
                     s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else '')
+                if PASS == 3 and m and two_owners(s['refs'], parks):
+                    s['status'] = 'check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)'; continue
                 if PASS == 3 and m:
                     pin_ok = {r: pin_inside(r, PIN, G, LN) for r in s['refs']}
                     s['pins_inside'] = pin_ok
