@@ -443,6 +443,16 @@
     "US-1559",
     2072
    ],
+   "access_pin": {
+    "at": [
+     38.241674,
+     -75.136113
+    ],
+    "from": "road",
+    "name": "McCabe Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 731.6,
    "box": [
     -75.15642,
@@ -525,6 +535,16 @@
     "US-7758",
     976
    ],
+   "access_pin": {
+    "at": [
+     38.583783,
+     -77.116225
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 271.0,
    "box": [
     -77.11809,
@@ -703,6 +723,16 @@
     "US-7758",
     3461
    ],
+   "access_pin": {
+    "at": [
+     38.595948,
+     -77.055836
+    ],
+    "from": "road",
+    "name": "Foxburrow Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 508.7,
    "box": [
     -77.07517,
@@ -905,6 +935,16 @@
     "US-7758",
     2724
    ],
+   "access_pin": {
+    "at": [
+     38.615531,
+     -77.08515
+    ],
+    "from": "road",
+    "name": "Laurel Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1363.4,
    "box": [
     -77.11863,
@@ -1213,6 +1253,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.498515,
+     -77.620781
+    ],
+    "from": "road",
+    "name": "Washington Monument Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 14.4,
    "box": [
     -77.6217,
@@ -1315,6 +1365,16 @@
     "US-6384",
     1090
    ],
+   "access_pin": {
+    "at": [
+     38.139481,
+     -75.509963
+    ],
+    "from": "road",
+    "name": "Dividing Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1949.6,
    "box": [
     -75.49876,
@@ -1537,6 +1597,16 @@
     "US-6384",
     2154
    ],
+   "access_pin": {
+    "at": [
+     38.13948,
+     -75.509961
+    ],
+    "from": "road",
+    "name": "Dividing Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 95.9,
    "box": [
     -75.51155,
@@ -1631,6 +1701,16 @@
     "US-4767",
     10186
    ],
+   "access_pin": {
+    "at": [
+     38.220419,
+     -75.539464
+    ],
+    "from": "road",
+    "name": "Old Furnace Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 4525.3,
    "box": [
     -75.55816,
@@ -1917,6 +1997,16 @@
     "US-6384",
     13369
    ],
+   "access_pin": {
+    "at": [
+     38.279204,
+     -75.474744
+    ],
+    "from": "road",
+    "name": "Mount Olive Church Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1103.1,
    "box": [
     -75.50811,
@@ -2279,6 +2369,16 @@
     "US-6384",
     16250
    ],
+   "access_pin": {
+    "at": [
+     38.297025,
+     -75.384419
+    ],
+    "from": "road",
+    "name": "Powell School Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 593.5,
    "box": [
     -75.4063,
@@ -2621,6 +2721,16 @@
     "US-7779",
     1090
    ],
+   "access_pin": {
+    "at": [
+     38.139481,
+     -75.509963
+    ],
+    "from": "road",
+    "name": "Dividing Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1949.6,
    "box": [
     -75.49876,
@@ -2843,6 +2953,16 @@
     "US-7779",
     2154
    ],
+   "access_pin": {
+    "at": [
+     38.13948,
+     -75.509961
+    ],
+    "from": "road",
+    "name": "Dividing Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 95.9,
    "box": [
     -75.51155,
@@ -2937,6 +3057,16 @@
     "US-4767",
     10186
    ],
+   "access_pin": {
+    "at": [
+     38.220419,
+     -75.539464
+    ],
+    "from": "road",
+    "name": "Old Furnace Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 4525.3,
    "box": [
     -75.55816,
@@ -3223,6 +3353,16 @@
     "US-7779",
     13369
    ],
+   "access_pin": {
+    "at": [
+     38.279204,
+     -75.474744
+    ],
+    "from": "road",
+    "name": "Mount Olive Church Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1103.1,
    "box": [
     -75.50811,
@@ -3585,6 +3725,16 @@
     "US-7779",
     16250
    ],
+   "access_pin": {
+    "at": [
+     38.297025,
+     -75.384419
+    ],
+    "from": "road",
+    "name": "Powell School Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 593.5,
    "box": [
     -75.4063,

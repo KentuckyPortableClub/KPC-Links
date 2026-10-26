@@ -6,6 +6,16 @@
  "spots": [
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     35.824542,
+     -83.211658
+    ],
+    "from": "road",
+    "name": "Foothills Pkwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 63.0,
    "box": [
     -83.23175,
@@ -590,6 +600,16 @@
     "US-3931",
     2920
    ],
+   "access_pin": {
+    "at": [
+     36.080499,
+     -84.763001
+    ],
+    "from": "road",
+    "name": "Potter Chapel Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 80
+   },
    "acres": 9.8,
    "box": [
     -84.77476,
@@ -688,6 +708,16 @@
     "US-3931",
     1563
    ],
+   "access_pin": {
+    "at": [
+     36.070594,
+     -84.666161
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8.8,
    "box": [
     -84.67392,
@@ -953,6 +983,16 @@
     "US-12714",
     1349
    ],
+   "access_pin": {
+    "at": [
+     35.107186,
+     -85.917895
+    ],
+    "from": "road",
+    "name": "Ford Spring Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3055.5,
    "box": [
     -85.92861,
@@ -1283,6 +1323,16 @@
     "US-11918",
     2866
    ],
+   "access_pin": {
+    "at": [
+     35.092532,
+     -85.876483
+    ],
+    "from": "road",
+    "name": "Champion Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 987.0,
    "box": [
     -85.89746,
@@ -1870,6 +1920,16 @@
     "US-12361",
     3022
    ],
+   "access_pin": {
+    "at": [
+     35.873117,
+     -85.347052
+    ],
+    "from": "road",
+    "name": "Lost Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1136.9,
    "box": [
     -85.33956,
@@ -2474,6 +2534,16 @@
     "US-3959",
     1207
    ],
+   "access_pin": {
+    "at": [
+     36.194077,
+     -88.890042
+    ],
+    "from": "road",
+    "name": "Big Cypress Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 330.1,
    "box": [
     -88.89405,
@@ -2620,6 +2690,16 @@
     "US-2935",
     3036
    ],
+   "access_pin": {
+    "at": [
+     36.083615,
+     -86.4014
+    ],
+    "from": "road",
+    "name": "Cedar Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 148.5,
    "box": [
     -86.4031,
@@ -2770,6 +2850,16 @@
     "US-2946",
     321
    ],
+   "access_pin": {
+    "at": [
+     35.585668,
+     -84.192878
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 426.5,
    "box": [
     -84.20712,
@@ -5757,6 +5847,16 @@
     "US-2972",
     1198
    ],
+   "access_pin": {
+    "at": [
+     36.190415,
+     -82.111792
+    ],
+    "from": "road",
+    "name": "Hogum Hollow Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 106.4,
    "box": [
     -82.11852,
@@ -5995,6 +6095,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     36.393498,
+     -83.948204
+    ],
+    "from": "road",
+    "name": "Henegar Bend Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 24029.5,
    "box": [
     -84.02282,
@@ -9089,6 +9199,16 @@
     "US-6938",
     503
    ],
+   "access_pin": {
+    "at": [
+     36.550882,
+     -81.693404
+    ],
+    "from": "road",
+    "name": "Cut Laurel Gap Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 16.0,
    "box": [
     -81.70845,

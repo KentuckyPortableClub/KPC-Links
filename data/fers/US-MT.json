@@ -26818,6 +26818,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     48.404549,
+     -113.257763
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 171.7,
    "box": [
     -113.33224,
@@ -27046,6 +27056,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     48.404552,
+     -113.257748
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 46.6,
    "box": [
     -113.26017,
@@ -27178,6 +27198,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     48.71902,
+     -114.247888
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 713
+   },
    "acres": 6.8,
    "box": [
     -114.2479,
@@ -50655,6 +50685,16 @@
     "US-12630",
     68222
    ],
+   "access_pin": {
+    "at": [
+     47.736609,
+     -109.644539
+    ],
+    "from": "road",
+    "name": "Hahn Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 549
+   },
    "box": [
     -109.645,
     47.73633,
@@ -51004,6 +51044,16 @@
     "US-12630",
     140436
    ],
+   "access_pin": {
+    "at": [
+     47.629274,
+     -108.700981
+    ],
+    "from": "road",
+    "name": "14102",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 239
+   },
    "box": [
     -108.68928,
     47.63033,
@@ -51297,6 +51347,16 @@
     "US-12630",
     139078
    ],
+   "access_pin": {
+    "at": [
+     47.62928,
+     -108.701006
+    ],
+    "from": "road",
+    "name": "14102",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 238
+   },
    "box": [
     -108.7085,
     47.62902,
@@ -51610,6 +51670,16 @@
     "US-12630",
     137683
    ],
+   "access_pin": {
+    "at": [
+     47.629285,
+     -108.701016
+    ],
+    "from": "road",
+    "name": "14102",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 238
+   },
    "box": [
     -108.72705,
     47.64123,
@@ -51963,6 +52033,16 @@
     "US-12630",
     49594
    ],
+   "access_pin": {
+    "at": [
+     47.920907,
+     -110.494854
+    ],
+    "from": "road",
+    "name": "Loma Bridge Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -110.67474,
     47.6434,
@@ -53298,6 +53378,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     47.735505,
+     -109.627547
+    ],
+    "from": "road",
+    "name": "Pn Bridge Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 47
+   },
    "acres": 111.1,
    "box": [
     -109.64477,
@@ -55316,6 +55406,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     45.855036,
+     -114.269914
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 456
+   },
    "acres": 105280.1,
    "box": [
     -114.54506,
@@ -55592,6 +55692,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     46.512053,
+     -114.243042
+    ],
+    "from": "road",
+    "name": "Saint Marys Peak Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 138473.7,
    "box": [
     -114.47073,
@@ -55956,6 +56066,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     45.234101,
+     -109.744525
+    ],
+    "from": "road",
+    "name": "NFS Rd 2072",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 337406.3,
    "box": [
     -110.15663,
@@ -57000,6 +57120,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     46.643099,
+     -114.322761
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 745
+   },
    "acres": 9786.6,
    "box": [
     -114.34416,

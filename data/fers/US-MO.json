@@ -791,6 +791,23 @@
    "wide_m": 324
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    3930
+   ],
+   "access_pin": {
+    "at": [
+     37.154983,
+     -91.174312
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.19833,
     37.12891,
@@ -1129,6 +1146,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    2049
+   ],
+   "access_pin": {
+    "at": [
+     37.164476,
+     -91.166805
+    ],
+    "from": "road",
+    "name": "Co Rd 533",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.17522,
     37.15093,
@@ -1347,6 +1381,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    842
+   ],
+   "access_pin": {
+    "at": [
+     37.164523,
+     -91.166754
+    ],
+    "from": "road",
+    "name": "Co Rd 533",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.17489,
     37.15342,
@@ -1709,6 +1760,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.185878,
+    -91.176394,
+    "Trailhead: Ozark Trail-Blair Creek Section (n/a)",
+    "US-0788",
+    3356
+   ],
+   "access_pin": {
+    "at": [
+     37.186254,
+     -91.176405
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Ozark Trail-Blair Creek Section (n/a)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "box": [
     -91.21376,
     37.18604,
@@ -2927,6 +2995,16 @@
     "US-6512",
     688
    ],
+   "access_pin": {
+    "at": [
+     39.748076,
+     -93.212916
+    ],
+    "from": "road",
+    "name": "Export Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 15
+   },
    "acres": 298.9,
    "box": [
     -93.2393,
@@ -4217,6 +4295,21 @@
    "wide_m": 120
   },
   {
+   "access": [
+    37.572685,
+    -90.728194,
+    "Parking (n/a)",
+    "US-1788",
+    5286
+   ],
+   "access_pin": {
+    "at": [
+     37.568615,
+     -90.78789
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -90.78853,
     37.56831,
@@ -6510,6 +6603,15 @@
    "status": "dropped: a pin is outside its own outline"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.568443,
+     -90.785406
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -90.7855,
     37.56793,
@@ -6801,6 +6903,23 @@
    "wide_m": 120
   },
   {
+   "access": [
+    37.052991,
+    -91.184228,
+    "Parking (Missouri Department of Conservation)",
+    "US-6491",
+    1517
+   ],
+   "access_pin": {
+    "at": [
+     37.060834,
+     -91.181647
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.19498,
     36.99861,
@@ -7123,6 +7242,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    38.056962,
+    -91.22209,
+    "Parking (Missouri Department of Conservation)",
+    "US-6499",
+    478
+   ],
+   "access_pin": {
+    "at": [
+     38.057046,
+     -91.222318
+    ],
+    "from": "road",
+    "name": "Cave Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.22223,
     38.00613,
@@ -7488,6 +7624,16 @@
     "US-7665",
     851
    ],
+   "access_pin": {
+    "at": [
+     39.551582,
+     -91.172835
+    ],
+    "from": "road",
+    "name": "Bottom Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 48.4,
    "box": [
     -91.16969,
@@ -7567,6 +7713,23 @@
    "wide_m": 220
   },
   {
+   "access": [
+    37.555069,
+    -90.687745,
+    "Parking (Missouri Department of Conservation)",
+    "US-8252",
+    1587
+   ],
+   "access_pin": {
+    "at": [
+     37.54887,
+     -90.67977
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Missouri Department of Conservation)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.70123,
     37.54812,
@@ -7933,6 +8096,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.555069,
+    -90.687745,
+    "Parking (Missouri Department of Conservation)",
+    "US-8252",
+    1587
+   ],
+   "access_pin": {
+    "at": [
+     37.54887,
+     -90.67977
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Missouri Department of Conservation)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.70123,
     37.54812,
@@ -8299,6 +8479,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.568557,
+    -90.71974,
+    "Parking (Missouri Department of Conservation)",
+    "US-8252",
+    206
+   ],
+   "access_pin": {
+    "at": [
+     37.567791,
+     -90.720062
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Missouri Department of Conservation)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 86
+   },
    "box": [
     -90.72447,
     37.56694,
@@ -8621,6 +8818,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.573161,
+    -90.724773,
+    "Parking (n/a)",
+    "US-8252",
+    5578
+   ],
+   "access_pin": {
+    "at": [
+     37.55459,
+     -90.78469
+    ],
+    "from": "road",
+    "name": "Co Rd 209",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1525
+   },
    "box": [
     -90.78853,
     37.55461,
@@ -8947,6 +9161,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    36.94783,
+    -90.367506,
+    "Parking (Missouri Department of Conservation)",
+    "US-8282",
+    432
+   ],
+   "access_pin": {
+    "at": [
+     36.949532,
+     -90.384516
+    ],
+    "from": "road",
+    "name": "Hwy 172",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.39787,
     36.94155,
@@ -9248,6 +9479,16 @@
     "US-8278",
     782
    ],
+   "access_pin": {
+    "at": [
+     37.86765,
+     -93.708749
+    ],
+    "from": "road",
+    "name": "SE 451 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 10
+   },
    "acres": 35.0,
    "box": [
     -93.70874,

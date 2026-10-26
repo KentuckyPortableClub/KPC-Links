@@ -12,6 +12,16 @@
     "CA-0001",
     1017
    ],
+   "access_pin": {
+    "at": [
+     49.097857,
+     -123.166199
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (Province of British Columbia)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 415
+   },
    "acres": 354.3,
    "box": [
     -123.18876,
@@ -586,6 +596,21 @@
    "wide_m": 168
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    20961
+   ],
+   "access_pin": {
+    "at": [
+     48.57401,
+     -124.628278
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.8195,
     48.54676,
@@ -888,6 +913,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    20961
+   ],
+   "access_pin": {
+    "at": [
+     48.57401,
+     -124.628278
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.8195,
     48.54676,
@@ -1190,6 +1230,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    9752
+   ],
+   "access_pin": {
+    "at": [
+     48.663438,
+     -124.835811
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.84217,
     48.65959,
@@ -1524,6 +1579,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    20961
+   ],
+   "access_pin": {
+    "at": [
+     48.57401,
+     -124.628278
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.8195,
     48.54676,
@@ -1826,6 +1896,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    9752
+   ],
+   "access_pin": {
+    "at": [
+     48.663438,
+     -124.835811
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.84217,
     48.65959,
@@ -2160,6 +2245,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    10184
+   ],
+   "access_pin": {
+    "at": [
+     48.670795,
+     -124.860661
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.87238,
     48.67046,
@@ -2514,6 +2614,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.739194,
+    -124.767893,
+    "Boat ramp / launch (Province of British Columbia)",
+    "CA-0066",
+    10184
+   ],
+   "access_pin": {
+    "at": [
+     48.670795,
+     -124.860661
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -124.87238,
     48.67046,
@@ -2868,6 +2983,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.78667,
+    -125.171463,
+    "Trailhead: Keeha Beach Backcountry (Parks Canada)",
+    "CA-0066",
+    14511
+   ],
+   "access_pin": {
+    "at": [
+     48.711091,
+     -125.00996
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -125.12237,
     48.67638,
@@ -3198,6 +3328,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    48.78667,
+    -125.171463,
+    "Trailhead: Keeha Beach Backcountry (Parks Canada)",
+    "CA-0066",
+    3434
+   ],
+   "access_pin": {
+    "at": [
+     48.773068,
+     -125.129382
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -125.13023,
     48.75156,
@@ -4625,6 +4770,14 @@
     "CA-0711",
     15704
    ],
+   "access_pin": {
+    "at": [
+     50.787377,
+     -128.407279
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 7334.6,
    "box": [
     -128.44523,
@@ -6241,6 +6394,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     58.924,
+     -134.334863
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 352.6,
    "box": [
     -134.35609,
@@ -6317,6 +6478,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.445361,
+     -125.437979
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 162.0,
    "box": [
     -125.45082,
@@ -6461,6 +6630,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.504687,
+     -125.700156
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 21.0,
    "box": [
     -125.70232,
@@ -6525,6 +6702,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.516761,
+     -125.704875
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 80.5,
    "box": [
     -125.71083,
@@ -6637,6 +6822,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.562612,
+     -125.709594
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 456.7,
    "box": [
     -125.72739,
@@ -6769,6 +6962,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.633044,
+     -125.855574
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 86.2,
    "box": [
     -125.86349,
@@ -6881,6 +7082,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.676545,
+     -125.891438
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 135.2,
    "box": [
     -125.89896,
@@ -7037,6 +7246,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     55.056868,
+     -126.513724
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 5.3,
    "box": [
     -126.51545,
@@ -7113,6 +7330,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     55.067359,
+     -126.536127
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 352.5,
    "box": [
     -126.55273,
@@ -9478,6 +9703,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     52.891495,
+     -127.857677
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 160.7,
    "box": [
     -127.86482,
@@ -10790,6 +11023,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     49.097648,
+     -123.194933
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 564.4,
    "box": [
     -123.2149,
@@ -11585,6 +11826,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.523276,
+     -129.76954
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 100.8,
    "box": [
     -129.78146,
@@ -12002,6 +12251,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     50.804213,
+     -128.710859
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 8427.2,
    "box": [
     -128.73026,
@@ -14372,6 +14629,14 @@
     "CA-4258",
     1648
    ],
+   "access_pin": {
+    "at": [
+     48.445587,
+     -123.272362
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 44.5,
    "box": [
     -123.27561,

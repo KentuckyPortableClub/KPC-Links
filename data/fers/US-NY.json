@@ -77,6 +77,16 @@
     "US-8068",
     851
    ],
+   "access_pin": {
+    "at": [
+     40.654098,
+     -73.860309
+    ],
+    "from": "parking / access point",
+    "name": "Parking: New York City Shirley Chisholm (NYS OPRHP)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 396.5,
    "box": [
     -73.87766,
@@ -335,6 +345,16 @@
     "US-2054",
     111
    ],
+   "access_pin": {
+    "at": [
+     43.2618,
+     -79.062733
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (NYS OPRHP GIS Bureau; Details field notes e.g. \"No parking)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8.6,
    "box": [
     -79.06454,
@@ -478,6 +498,16 @@
     "US-2017",
     659
    ],
+   "access_pin": {
+    "at": [
+     42.525635,
+     -75.690556
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 131.0,
    "box": [
     -75.69978,
@@ -576,6 +606,16 @@
     "US-2128",
     2804
    ],
+   "access_pin": {
+    "at": [
+     40.625845,
+     -73.31159
+    ],
+    "from": "road",
+    "name": "Oak Beach Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1373
+   },
    "acres": 14.0,
    "box": [
     -73.31384,
@@ -657,6 +697,16 @@
     "US-4374",
     2804
    ],
+   "access_pin": {
+    "at": [
+     40.625845,
+     -73.31159
+    ],
+    "from": "road",
+    "name": "Oak Beach Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1373
+   },
    "acres": 14.0,
    "box": [
     -73.31384,
@@ -738,6 +788,16 @@
     "US-2028",
     2807
    ],
+   "access_pin": {
+    "at": [
+     40.625855,
+     -73.311565
+    ],
+    "from": "road",
+    "name": "Oak Beach Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1374
+   },
    "acres": 18.2,
    "box": [
     -73.31494,
@@ -804,6 +864,16 @@
     "US-2128",
     1852
    ],
+   "access_pin": {
+    "at": [
+     40.63089,
+     -73.225118
+    ],
+    "from": "road",
+    "name": "Robert Moses State Pkwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 933.2,
    "box": [
     -73.31383,
@@ -1058,6 +1128,16 @@
     "US-4374",
     1852
    ],
+   "access_pin": {
+    "at": [
+     40.6309,
+     -73.225118
+    ],
+    "from": "road",
+    "name": "Robert Moses State Pkwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 930.8,
    "box": [
     -73.31383,
@@ -1312,6 +1392,16 @@
     "US-9082",
     1072
    ],
+   "access_pin": {
+    "at": [
+     43.290384,
+     -76.9062
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 145.0,
    "box": [
     -76.92103,
@@ -1534,6 +1624,16 @@
     "US-9082",
     564
    ],
+   "access_pin": {
+    "at": [
+     43.280161,
+     -76.916257
+    ],
+    "from": "road",
+    "name": "Garner Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 38.2,
    "box": [
     -76.93121,
@@ -1664,6 +1764,16 @@
     "US-9082",
     1072
    ],
+   "access_pin": {
+    "at": [
+     43.290384,
+     -76.9062
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 145.0,
    "box": [
     -76.92103,
@@ -1943,6 +2053,16 @@
     "US-2128",
     2884
    ],
+   "access_pin": {
+    "at": [
+     40.62644,
+     -73.314239
+    ],
+    "from": "road",
+    "name": "Oak Beach Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1265
+   },
    "acres": 30.5,
    "box": [
     -73.31501,
@@ -2049,6 +2169,16 @@
     "US-4374",
     2884
    ],
+   "access_pin": {
+    "at": [
+     40.62644,
+     -73.314239
+    ],
+    "from": "road",
+    "name": "Oak Beach Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1265
+   },
    "acres": 30.5,
    "box": [
     -73.31501,
@@ -2155,6 +2285,16 @@
     "US-5161",
     757
    ],
+   "access_pin": {
+    "at": [
+     41.370998,
+     -73.944845
+    ],
+    "from": "road",
+    "name": "Wing and Wing",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 130.9,
    "box": [
     -73.94765,
@@ -2353,6 +2493,16 @@
     "US-2118",
     1115
    ],
+   "access_pin": {
+    "at": [
+     42.175247,
+     -75.412929
+    ],
+    "from": "road",
+    "name": "Co Hwy 20",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 120.9,
    "box": [
     -75.41911,
@@ -2516,6 +2666,16 @@
     "US-5411",
     992
    ],
+   "access_pin": {
+    "at": [
+     42.107198,
+     -77.217798
+    ],
+    "from": "road",
+    "name": "Vastbinder Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 703.0,
    "box": [
     -77.22916,
@@ -2790,6 +2950,16 @@
     "US-2159",
     2346
    ],
+   "access_pin": {
+    "at": [
+     43.671499,
+     -75.501993
+    ],
+    "from": "road",
+    "name": "Dec No 9 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 37.3,
    "box": [
     -75.51633,
@@ -2868,6 +3038,16 @@
     "US-2159",
     1765
    ],
+   "access_pin": {
+    "at": [
+     43.685648,
+     -75.504408
+    ],
+    "from": "road",
+    "name": "Tabolt Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 88.8,
    "box": [
     -75.50726,
@@ -2944,6 +3124,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.306968,
+     -76.69112
+    ],
+    "from": "road",
+    "name": "Tudi Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 108.1,
    "box": [
     -76.69109,
@@ -3074,6 +3264,16 @@
     "US-5623",
     3254
    ],
+   "access_pin": {
+    "at": [
+     41.734457,
+     -74.175291
+    ],
+    "from": "road",
+    "name": "Durmo Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 291
+   },
    "acres": 60.7,
    "box": [
     -74.1853,
@@ -3587,6 +3787,16 @@
     "US-8299",
     10619
    ],
+   "access_pin": {
+    "at": [
+     43.01994,
+     -74.952535
+    ],
+    "from": "road",
+    "name": "Co Rd 212A",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 302
+   },
    "acres": 15.4,
    "box": [
     -74.9536,

@@ -65,6 +65,16 @@
     "US-1939",
     423
    ],
+   "access_pin": {
+    "at": [
+     39.5449,
+     -82.062025
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 36
+   },
    "acres": 100.6,
    "box": [
     -82.06412,
@@ -227,6 +237,16 @@
     "US-1939",
     423
    ],
+   "access_pin": {
+    "at": [
+     39.5449,
+     -82.062025
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 36
+   },
    "acres": 100.6,
    "box": [
     -82.06412,
@@ -683,6 +703,16 @@
     "US-1958",
     1198
    ],
+   "access_pin": {
+    "at": [
+     39.385238,
+     -82.54927
+    ],
+    "from": "road",
+    "name": "Amerine Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 120
+   },
    "acres": 30.3,
    "box": [
     -82.54935,
@@ -761,6 +791,16 @@
     "US-1964",
     375
    ],
+   "access_pin": {
+    "at": [
+     39.787822,
+     -83.846429
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 12.3,
    "box": [
     -83.86337,
@@ -863,6 +903,16 @@
     "US-1964",
     523
    ],
+   "access_pin": {
+    "at": [
+     39.789813,
+     -83.834851
+    ],
+    "from": "road",
+    "name": "Clifton Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5.9,
    "box": [
     -83.85238,
@@ -937,6 +987,16 @@
     "US-1964",
     414
    ],
+   "access_pin": {
+    "at": [
+     39.793968,
+     -83.826485
+    ],
+    "from": "road",
+    "name": "Clay St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 236.2,
    "box": [
     -83.84688,
@@ -1255,6 +1315,16 @@
     "US-9485",
     8914
    ],
+   "access_pin": {
+    "at": [
+     41.384336,
+     -80.73939
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6586.3,
    "box": [
     -80.77952,

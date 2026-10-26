@@ -2142,6 +2142,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     54.492083,
+     -101.352976
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 4489.1,
    "box": [
     -101.38112,

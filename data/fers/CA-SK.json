@@ -171,6 +171,23 @@
    "wide_m": 800
   },
   {
+   "access": [
+    54.025632,
+    -106.416336,
+    "Boat ramp / launch: Kingsmere River (Parks Canada)",
+    "CA-0075",
+    8207
+   ],
+   "access_pin": {
+    "at": [
+     54.02777,
+     -106.417319
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Kingsmere River (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 243
+   },
    "box": [
     -106.47258,
     54.02834,
@@ -496,6 +513,16 @@
     "CA-0075",
     777
    ],
+   "access_pin": {
+    "at": [
+     53.706989,
+     -106.053767
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Freight Tait Springs Trail (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -106.0769,
     53.70694,
@@ -805,6 +832,16 @@
     "CA-0075",
     5004
    ],
+   "access_pin": {
+    "at": [
+     53.621662,
+     -106.059318
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Elk Trail (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -106.2276,
     53.62141,
@@ -1134,6 +1171,16 @@
     "CA-0075",
     4530
    ],
+   "access_pin": {
+    "at": [
+     53.590216,
+     -106.277858
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Hunters Lake Trail (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -106.3484,
     53.59014,
@@ -1459,6 +1506,16 @@
     "CA-0075",
     1045
    ],
+   "access_pin": {
+    "at": [
+     53.710515,
+     -106.718783
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Valleyview Lookout Trail (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -106.72437,
     53.6435,
@@ -1753,6 +1810,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    53.710453,
+    -106.718787,
+    "Trailhead: Valleyview Lookout Trail (Parks Canada)",
+    "CA-0075",
+    4992
+   ],
+   "access_pin": {
+    "at": [
+     53.682182,
+     -106.659749
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -106.66929,
     53.67633,
@@ -2066,6 +2138,16 @@
     "CA-0075",
     314
    ],
+   "access_pin": {
+    "at": [
+     53.97266,
+     -106.290198
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Treebeard Trail (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -106.29425,
     53.96915,
@@ -2423,6 +2505,16 @@
     "CA-0075",
     1745
    ],
+   "access_pin": {
+    "at": [
+     53.921044,
+     -106.068838
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Fisher Trail (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 163
+   },
    "box": [
     -106.06852,
     53.91298,
@@ -2754,6 +2846,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     52.440378,
+     -104.996919
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 233.9,
    "box": [
     -105.00392,
@@ -3139,6 +3239,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     51.348543,
+     -105.22025
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 74.4,
    "box": [
     -105.22572,
@@ -3633,6 +3741,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.011318,
+     -102.616531
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 126.6,
    "box": [
     -102.62826,
@@ -3773,6 +3889,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.105192,
+     -102.676546
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 254.5,
    "box": [
     -102.69194,
@@ -4005,6 +4129,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     52.987219,
+     -102.599565
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 55.6,
    "box": [
     -102.60203,
@@ -4174,6 +4306,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     50.676774,
+     -107.717341
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 212.4,
    "box": [
     -107.73627,
@@ -4278,6 +4418,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     50.696715,
+     -107.71408
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 10.1,
    "box": [
     -107.7155,
@@ -4346,6 +4494,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     52.95788,
+     -108.14541
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 1534.6,
    "box": [
     -108.18515,
@@ -4586,6 +4742,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     50.429328,
+     -104.590438
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 291.6,
    "box": [
     -104.59495,
@@ -4825,6 +4989,15 @@
    "wide_m": 632
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     53.676317,
+     -106.669284
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -106.66996,
     53.67608,

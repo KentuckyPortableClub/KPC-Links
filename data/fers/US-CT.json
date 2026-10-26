@@ -112,6 +112,16 @@
     "US-1662",
     374
    ],
+   "access_pin": {
+    "at": [
+     41.484145,
+     -72.341762
+    ],
+    "from": "road",
+    "name": "Foxtown Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.3419,
     41.47119,
@@ -403,6 +413,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.842299,
+     -72.950997
+    ],
+    "from": "trail",
+    "name": "path",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.95695,
     41.84256,
@@ -714,6 +734,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.945187,
+     -73.016898
+    ],
+    "from": "road",
+    "name": "W River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.0166,
     41.92136,
@@ -1065,6 +1095,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.967409,
+     -73.017765
+    ],
+    "from": "road",
+    "name": "School St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -73.02116,
     41.96715,
@@ -1388,6 +1428,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.921616,
+     -72.997558
+    ],
+    "from": "road",
+    "name": "W River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -73.00553,
     41.92139,
@@ -1679,6 +1729,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.930774,
+     -73.002241
+    ],
+    "from": "road",
+    "name": "W River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -73.01662,
     41.9432,
@@ -2000,6 +2060,16 @@
     "US-10961",
     358
    ],
+   "access_pin": {
+    "at": [
+     41.70797,
+     -73.107485
+    ],
+    "from": "road",
+    "name": "Fenn Rd Exd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 100.8,
    "box": [
     -73.11321,
@@ -2270,6 +2340,16 @@
     "US-1649",
     1220
    ],
+   "access_pin": {
+    "at": [
+     41.663043,
+     -73.111312
+    ],
+    "from": "road",
+    "name": "Old Northfield Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 355.3,
    "box": [
     -73.11299,
@@ -2500,6 +2580,16 @@
     "US-1648",
     484
    ],
+   "access_pin": {
+    "at": [
+     42.019451,
+     -72.140436
+    ],
+    "from": "road",
+    "name": "Ferry Tavern Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 481.6,
    "box": [
     -72.13961,
@@ -3341,6 +3431,16 @@
     "US-1669",
     1506
    ],
+   "access_pin": {
+    "at": [
+     41.728355,
+     -72.45074
+    ],
+    "from": "road",
+    "name": "French Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 490.0,
    "box": [
     -72.46026,
@@ -3616,6 +3716,16 @@
     "US-1656",
     1040
    ],
+   "access_pin": {
+    "at": [
+     41.378306,
+     -72.584687
+    ],
+    "from": "road",
+    "name": "Beckwith Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 161.0,
    "box": [
     -72.59832,
@@ -3874,6 +3984,16 @@
     "US-1656",
     1321
    ],
+   "access_pin": {
+    "at": [
+     41.378309,
+     -72.584737
+    ],
+    "from": "road",
+    "name": "Beckwith Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 408.1,
    "box": [
     -72.58497,
@@ -4148,6 +4268,16 @@
     "US-1664",
     265
    ],
+   "access_pin": {
+    "at": [
+     41.450615,
+     -72.466969
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 16.4,
    "box": [
     -72.46698,
@@ -4246,6 +4376,16 @@
     "US-1681",
     618
    ],
+   "access_pin": {
+    "at": [
+     41.611968,
+     -71.913071
+    ],
+    "from": "road",
+    "name": "Roode Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 9.2,
    "box": [
     -71.91372,
@@ -4328,6 +4468,16 @@
     "US-1693",
     573
    ],
+   "access_pin": {
+    "at": [
+     41.505107,
+     -72.478341
+    ],
+    "from": "road",
+    "name": "Echo Farm Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 145.9,
    "box": [
     -72.48748,
@@ -4502,6 +4652,16 @@
     "US-1695",
     2314
    ],
+   "access_pin": {
+    "at": [
+     41.840866,
+     -71.984306
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 296
+   },
    "acres": 6.3,
    "box": [
     -71.98266,
@@ -4686,6 +4846,16 @@
     "US-7531",
     434
    ],
+   "access_pin": {
+    "at": [
+     41.532239,
+     -72.678479
+    ],
+    "from": "road",
+    "name": "Laurel Grove Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 101.2,
    "box": [
     -72.68523,
@@ -4838,6 +5008,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.939222,
+     -72.327505
+    ],
+    "from": "road",
+    "name": "Tolland Tpke",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 344.0,
    "box": [
     -72.33258,
@@ -4988,6 +5168,16 @@
     "US-6866",
     653
    ],
+   "access_pin": {
+    "at": [
+     41.373589,
+     -72.290665
+    ],
+    "from": "road",
+    "name": "Grassy Hill Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 202.8,
    "box": [
     -72.31149,
@@ -5298,6 +5488,16 @@
     "US-6863",
     1459
    ],
+   "access_pin": {
+    "at": [
+     41.814606,
+     -72.086832
+    ],
+    "from": "road",
+    "name": "Station Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 233.2,
    "box": [
     -72.10127,
@@ -5601,6 +5801,16 @@
     "US-7548",
     2874
    ],
+   "access_pin": {
+    "at": [
+     41.564568,
+     -71.878578
+    ],
+    "from": "road",
+    "name": "Sheldon Cir",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8227.7,
    "box": [
     -71.90548,

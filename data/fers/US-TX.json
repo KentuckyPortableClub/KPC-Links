@@ -12,6 +12,16 @@
     "US-6540",
     14101
    ],
+   "access_pin": {
+    "at": [
+     29.591096,
+     -103.039519
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 156.4,
    "box": [
     -103.08822,
@@ -144,6 +154,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983168,
+     -103.184043
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.174,
     28.97162,
@@ -919,6 +939,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983178,
+     -103.184047
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.24938,
     28.97872,
@@ -1442,6 +1472,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983178,
+     -103.184047
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.24938,
     28.97872,
@@ -1785,6 +1825,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.006189,
+     -103.29507
+    ],
+    "from": "road",
+    "name": "Woodsuns Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 42
+   },
    "box": [
     -103.29622,
     28.9848,
@@ -2152,6 +2202,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.986584,
+     -103.25303
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -103.26769,
     28.98044,
@@ -2495,6 +2553,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.006189,
+     -103.29507
+    ],
+    "from": "road",
+    "name": "Woodsuns Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 42
+   },
    "box": [
     -103.29622,
     28.9848,
@@ -2862,6 +2930,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983168,
+     -103.184043
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.174,
     28.97162,
@@ -3153,6 +3231,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.00617,
+     -103.295056
+    ],
+    "from": "road",
+    "name": "Woodsuns Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 42
+   },
    "box": [
     -103.30119,
     29.0067,
@@ -3460,6 +3548,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983168,
+     -103.184043
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.174,
     28.97162,
@@ -3751,6 +3849,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983168,
+     -103.184043
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.174,
     28.97162,
@@ -4042,6 +4150,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     28.983168,
+     -103.184043
+    ],
+    "from": "road",
+    "name": "Talley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -103.174,
     28.97162,
@@ -4333,6 +4451,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.100963,
+     -103.054365
+    ],
+    "from": "road",
+    "name": "Casa de Piedra Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 108
+   },
    "box": [
     -103.07162,
     29.09144,
@@ -4688,6 +4816,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.100963,
+     -103.054365
+    ],
+    "from": "road",
+    "name": "Casa de Piedra Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 108
+   },
    "box": [
     -103.07162,
     29.09144,
@@ -5043,6 +5181,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.100963,
+     -103.054365
+    ],
+    "from": "road",
+    "name": "Casa de Piedra Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 108
+   },
    "box": [
     -103.07162,
     29.09144,
@@ -5398,6 +5546,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.100963,
+     -103.054365
+    ],
+    "from": "road",
+    "name": "Casa de Piedra Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 108
+   },
    "box": [
     -103.07162,
     29.09144,
@@ -5753,6 +5911,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.130421,
+     -103.01494
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 110
+   },
    "box": [
     -103.03724,
     29.10822,
@@ -6068,6 +6236,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.130421,
+     -103.01494
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 110
+   },
    "box": [
     -103.03724,
     29.10822,
@@ -6383,6 +6561,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.130421,
+     -103.01494
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 110
+   },
    "box": [
     -103.03724,
     29.10822,
@@ -6698,6 +6886,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.130421,
+     -103.01494
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 110
+   },
    "box": [
     -103.03724,
     29.10822,
@@ -7013,6 +7211,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.152062,
+     -103.00173
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 43
+   },
    "box": [
     -103.01566,
     29.13035,
@@ -7544,6 +7752,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.189072,
+     -102.945351
+    ],
+    "from": "road",
+    "name": "Boquillas Xing",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -102.992,
     29.17364,
@@ -7887,6 +8105,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.178738,
+     -102.996237
+    ],
+    "from": "road",
+    "name": "Hot Springs Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 283
+   },
    "box": [
     -102.99613,
     29.17848,
@@ -8202,6 +8430,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.189072,
+     -102.945351
+    ],
+    "from": "road",
+    "name": "Boquillas Xing",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -102.992,
     29.17364,
@@ -8545,6 +8783,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.189072,
+     -102.945351
+    ],
+    "from": "road",
+    "name": "Boquillas Xing",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -102.992,
     29.17364,
@@ -8964,6 +9212,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -9255,6 +9513,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.189072,
+     -102.945351
+    ],
+    "from": "road",
+    "name": "Boquillas Xing",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -102.992,
     29.17364,
@@ -9598,6 +9866,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -10481,6 +10759,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -10772,6 +11060,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -11063,6 +11361,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -11354,6 +11662,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.353773,
+     -102.875636
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -102.89312,
     29.29298,
@@ -11693,6 +12011,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -11984,6 +12312,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     29.377064,
+     -102.841346
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 146
+   },
    "box": [
     -102.84503,
     29.37336,
@@ -12497,6 +12835,16 @@
     "US-6580",
     37682
    ],
+   "access_pin": {
+    "at": [
+     28.331924,
+     -96.457255
+    ],
+    "from": "parking / access point",
+    "name": "Kiosk / information (TPWD Wildlife Division)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 29353.6,
    "box": [
     -96.8516,
@@ -12835,6 +13183,14 @@
     "US-6580",
     7954
    ],
+   "access_pin": {
+    "at": [
+     28.389291,
+     -96.408413
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 466.1,
    "box": [
     -96.42148,
@@ -13163,6 +13519,16 @@
     "US-3052",
     346
    ],
+   "access_pin": {
+    "at": [
+     26.00125,
+     -97.562358
+    ],
+    "from": "road",
+    "name": "Carmen Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 202.8,
    "box": [
     -97.57157,
@@ -14227,6 +14593,16 @@
     "US-6534",
     2852
    ],
+   "access_pin": {
+    "at": [
+     31.48325,
+     -94.794663
+    ],
+    "from": "road",
+    "name": "Co Rd 641",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1448
+   },
    "acres": 9.7,
    "box": [
     -94.7947,
@@ -14321,6 +14697,16 @@
     "US-6537",
     84
    ],
+   "access_pin": {
+    "at": [
+     31.393167,
+     -94.243597
+    ],
+    "from": "road",
+    "name": "Usfr Su 301 A",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 24148.2,
    "box": [
     -94.31572,
@@ -14619,6 +15005,16 @@
     "US-6533",
     1737
    ],
+   "access_pin": {
+    "at": [
+     31.207149,
+     -94.896677
+    ],
+    "from": "road",
+    "name": "Spencer Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 14535.4,
    "box": [
     -94.97457,
@@ -14925,6 +15321,16 @@
     "US-6584",
     2124
    ],
+   "access_pin": {
+    "at": [
+     31.299757,
+     -93.857304
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 26632.8,
    "box": [
     -93.97707,
@@ -15259,6 +15665,16 @@
     "US-6540",
     13569
    ],
+   "access_pin": {
+    "at": [
+     29.449215,
+     -102.823611
+    ],
+    "from": "road",
+    "name": "FM 2627 Hwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 32
+   },
    "box": [
     -102.82901,
     29.4461,
@@ -15520,6 +15936,16 @@
     "US-6540",
     12844
    ],
+   "access_pin": {
+    "at": [
+     29.449185,
+     -102.823674
+    ],
+    "from": "road",
+    "name": "FM 2627 Hwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 21
+   },
    "box": [
     -102.82402,
     29.45191,
@@ -15793,6 +16219,16 @@
     "US-6540",
     2126
    ],
+   "access_pin": {
+    "at": [
+     29.561263,
+     -102.777815
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (TPWD Inland Fisheries; statewide)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -102.79294,
     29.54077,
@@ -16126,6 +16562,16 @@
     "US-6540",
     1125
    ],
+   "access_pin": {
+    "at": [
+     29.561253,
+     -102.777776
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (TPWD Inland Fisheries; statewide)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -102.77602,
     29.55087,
@@ -16363,6 +16809,16 @@
     "US-6540",
     2942
    ],
+   "access_pin": {
+    "at": [
+     29.597912,
+     -102.765504
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 42
+   },
    "box": [
     -102.76587,
     29.58128,
@@ -16720,6 +17176,16 @@
     "US-6540",
     4519
    ],
+   "access_pin": {
+    "at": [
+     29.59791,
+     -102.765483
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 42
+   },
    "box": [
     -102.76864,
     29.59214,
@@ -17061,6 +17527,16 @@
     "US-6540",
     7764
    ],
+   "access_pin": {
+    "at": [
+     29.614116,
+     -102.738949
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 190
+   },
    "box": [
     -102.73932,
     29.61988,
@@ -17358,6 +17834,16 @@
     "US-6540",
     8833
    ],
+   "access_pin": {
+    "at": [
+     29.651627,
+     -102.725746
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 30
+   },
    "box": [
     -102.74219,
     29.62945,
@@ -17727,6 +18213,16 @@
     "US-6540",
     10048
    ],
+   "access_pin": {
+    "at": [
+     29.651603,
+     -102.725733
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "box": [
     -102.73665,
     29.64067,
@@ -18096,6 +18592,16 @@
     "US-6540",
     13378
    ],
+   "access_pin": {
+    "at": [
+     29.65161,
+     -102.725724
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "box": [
     -102.72574,
     29.64933,
@@ -18445,6 +18951,16 @@
     "US-6540",
     17169
    ],
+   "access_pin": {
+    "at": [
+     29.681522,
+     -102.696322
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 238
+   },
    "box": [
     -102.69898,
     29.69178,
@@ -18750,6 +19266,14 @@
     "US-6540",
     18417
    ],
+   "access_pin": {
+    "at": [
+     29.709286,
+     -102.690451
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -102.69046,
     29.70668,

@@ -12,6 +12,16 @@
     "US-2679",
     2420
    ],
+   "access_pin": {
+    "at": [
+     44.728344,
+     -71.035756
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 242.8,
    "box": [
     -71.0517,
@@ -94,6 +104,16 @@
     "US-2679",
     7563
    ],
+   "access_pin": {
+    "at": [
+     44.784459,
+     -71.107323
+    ],
+    "from": "road",
+    "name": "Mountain Pond Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2130.1,
    "box": [
     -71.11247,
@@ -364,6 +384,16 @@
     "US-4876",
     161
    ],
+   "access_pin": {
+    "at": [
+     44.857041,
+     -71.052324
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (mixed ownership)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 68
+   },
    "acres": 13.5,
    "box": [
     -71.05459,

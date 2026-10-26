@@ -91,6 +91,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.520414,
+     -71.632924
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.63404,
     42.49488,
@@ -394,6 +404,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.520414,
+     -71.632924
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.63404,
     42.49488,
@@ -697,6 +717,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.561733,
+     -71.610908
+    ],
+    "from": "road",
+    "name": "Bishops Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.63934,
     42.52214,
@@ -1108,6 +1138,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.567086,
+     -71.607083
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.61602,
     42.55585,
@@ -1774,6 +1814,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.934053,
+     -70.944053
+    ],
+    "from": "road",
+    "name": "Woloski Park",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 167
+   },
    "box": [
     -70.94448,
     41.93407,
@@ -2081,6 +2131,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.978515,
+     -70.911794
+    ],
+    "from": "road",
+    "name": "Cherry St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -70.93325,
     41.95795,
@@ -2416,6 +2476,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.978515,
+     -70.911794
+    ],
+    "from": "road",
+    "name": "Cherry St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -70.93325,
     41.95795,
@@ -2751,6 +2821,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.978504,
+     -70.911753
+    ],
+    "from": "road",
+    "name": "Cherry St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -70.91219,
     41.97686,
@@ -3065,6 +3145,23 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": [
+    42.255817,
+    -72.947081,
+    "Parking (2005-2013 field data)",
+    "US-11395",
+    332
+   ],
+   "access_pin": {
+    "at": [
+     42.262791,
+     -72.9609
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.96262,
     42.25776,
@@ -3423,6 +3520,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.255817,
+    -72.947081,
+    "Parking (2005-2013 field data)",
+    "US-11395",
+    1848
+   ],
+   "access_pin": {
+    "at": [
+     42.262872,
+     -72.961102
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.96337,
     42.26598,
@@ -3693,6 +3807,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.255817,
+    -72.947081,
+    "Parking (2005-2013 field data)",
+    "US-11395",
+    2322
+   ],
+   "access_pin": {
+    "at": [
+     42.262936,
+     -72.961207
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.96724,
     42.2719,
@@ -3943,6 +4074,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.386217,
+    -73.003991,
+    "Parking (MassWildlife DFW Parking)",
+    "US-11409",
+    8912
+   ],
+   "access_pin": {
+    "at": [
+     42.339233,
+     -72.944542
+    ],
+    "from": "road",
+    "name": "E River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.93182,
     42.32491,
@@ -4333,6 +4481,23 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": [
+    42.386217,
+    -73.003991,
+    "Parking (MassWildlife DFW Parking)",
+    "US-11409",
+    7164
+   ],
+   "access_pin": {
+    "at": [
+     42.343284,
+     -72.953616
+    ],
+    "from": "road",
+    "name": "E River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.95086,
     42.33751,
@@ -4739,6 +4904,23 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": [
+    42.386217,
+    -73.003991,
+    "Parking (MassWildlife DFW Parking)",
+    "US-11409",
+    5061
+   ],
+   "access_pin": {
+    "at": [
+     42.359633,
+     -72.965122
+    ],
+    "from": "road",
+    "name": "E River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.97677,
     42.34495,
@@ -5025,6 +5207,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.386217,
+    -73.003991,
+    "Parking (MassWildlife DFW Parking)",
+    "US-11409",
+    5462
+   ],
+   "access_pin": {
+    "at": [
+     42.343236,
+     -72.953566
+    ],
+    "from": "road",
+    "name": "E River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.96917,
     42.34757,
@@ -5387,6 +5586,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.386217,
+    -73.003991,
+    "Parking (MassWildlife DFW Parking)",
+    "US-11409",
+    2535
+   ],
+   "access_pin": {
+    "at": [
+     42.402764,
+     -72.978621
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.97788,
     42.3698,
@@ -5741,6 +5957,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.386217,
+    -73.003991,
+    "Parking (MassWildlife DFW Parking)",
+    "US-11409",
+    3452
+   ],
+   "access_pin": {
+    "at": [
+     42.402748,
+     -72.978695
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.98228,
     42.40489,
@@ -6055,6 +6288,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.407362,
+     -72.877634
+    ],
+    "from": "road",
+    "name": "Cummington Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 36
+   },
    "box": [
     -72.87568,
     42.39457,
@@ -6413,6 +6657,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.407395,
+     -72.877621
+    ],
+    "from": "road",
+    "name": "Cummington Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 36
+   },
    "box": [
     -72.8778,
     42.40718,
@@ -6751,6 +7006,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.441577,
+     -72.994588
+    ],
+    "from": "road",
+    "name": "Parish Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.99185,
     42.4278,
@@ -7117,6 +7383,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.558409,
+     -73.049726
+    ],
+    "from": "road",
+    "name": "Old Dalton Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "box": [
     -73.05128,
     42.54841,
@@ -7691,6 +7968,17 @@
    "status": "dropped: a pin is outside its own outline"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.507247,
+     -72.991536
+    ],
+    "from": "road",
+    "name": "River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.99137,
     42.49322,
@@ -8021,6 +8309,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.309567,
+     -73.0236
+    ],
+    "from": "road",
+    "name": "Town Hill Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 96
+   },
    "box": [
     -73.02351,
     42.30446,
@@ -8331,6 +8630,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.310212,
+     -72.993934
+    ],
+    "from": "road",
+    "name": "Middlefield Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 132
+   },
    "box": [
     -72.99427,
     42.30994,
@@ -8553,6 +8863,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.310217,
+     -72.993895
+    ],
+    "from": "road",
+    "name": "Middlefield Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 127
+   },
    "box": [
     -72.99812,
     42.31406,
@@ -8895,6 +9216,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.330909,
+     -73.088162
+    ],
+    "from": "road",
+    "name": "Brooker Hill Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -73.08984,
     42.33069,
@@ -9969,6 +10301,23 @@
    "status": "dropped in pass 3"
   },
   {
+   "access": [
+    42.330287,
+    -73.128061,
+    "Gate (2005-2013 field data)",
+    "US-4717",
+    659
+   ],
+   "access_pin": {
+    "at": [
+     42.333026,
+     -73.132028
+    ],
+    "from": "road",
+    "name": "Stanley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.14671,
     42.33121,
@@ -10303,6 +10652,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.341819,
+    -73.140659,
+    "Gate (2005-2013 field data)",
+    "US-4717",
+    786
+   ],
+   "access_pin": {
+    "at": [
+     42.350547,
+     -73.12553
+    ],
+    "from": "road",
+    "name": "Pittsfield Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -73.15055,
     42.34298,
@@ -10657,6 +11023,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.341819,
+    -73.140659,
+    "Gate (2005-2013 field data)",
+    "US-4717",
+    1438
+   ],
+   "access_pin": {
+    "at": [
+     42.350419,
+     -73.125391
+    ],
+    "from": "road",
+    "name": "Pittsfield Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -73.12987,
     42.35002,
@@ -10999,6 +11382,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.341819,
+    -73.140659,
+    "Gate (2005-2013 field data)",
+    "US-4717",
+    1740
+   ],
+   "access_pin": {
+    "at": [
+     42.350372,
+     -73.125364
+    ],
+    "from": "road",
+    "name": "Pittsfield Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -73.13416,
     42.35535,
@@ -11333,6 +11733,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.347569,
+    -73.030015,
+    "Trailhead (2005-2013 field data)",
+    "US-4718",
+    3176
+   ],
+   "access_pin": {
+    "at": [
+     42.320346,
+     -73.040545
+    ],
+    "from": "road",
+    "name": "W Hill Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 614
+   },
    "box": [
     -73.04301,
     42.31984,
@@ -11567,6 +11984,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.347569,
+    -73.030015,
+    "Trailhead (2005-2013 field data)",
+    "US-4718",
+    3281
+   ],
+   "access_pin": {
+    "at": [
+     42.320325,
+     -73.040526
+    ],
+    "from": "road",
+    "name": "W Hill Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 617
+   },
    "box": [
     -73.04864,
     42.32026,
@@ -11793,6 +12227,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.380983,
+    -72.875538,
+    "Gate (2005-2013 field data)",
+    "US-4722",
+    961
+   ],
+   "access_pin": {
+    "at": [
+     42.380984,
+     -72.875315
+    ],
+    "from": "parking / access point",
+    "name": "Gate (2005-2013 field data)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 15
+   },
    "box": [
     -72.87512,
     42.36602,
@@ -12227,6 +12678,23 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": [
+    42.429603,
+    -72.87233,
+    "Gate (2005-2013 field data)",
+    "US-4722",
+    1020
+   ],
+   "access_pin": {
+    "at": [
+     42.453053,
+     -72.881189
+    ],
+    "from": "road",
+    "name": "Old Rt 9 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 26
+   },
    "box": [
     -72.86628,
     42.42363,
@@ -12565,6 +13033,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.454739,
+    -72.884231,
+    "Trailhead (2005-2013 field data)",
+    "US-4722",
+    695
+   ],
+   "access_pin": {
+    "at": [
+     42.455728,
+     -72.885006
+    ],
+    "from": "road",
+    "name": "Mougin Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.88495,
     42.44551,
@@ -12923,6 +13408,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.52246,
+    -73.004693,
+    "Trailhead (2005-2013 field data)",
+    "US-4733",
+    297
+   ],
+   "access_pin": {
+    "at": [
+     42.535972,
+     -73.014266
+    ],
+    "from": "road",
+    "name": "River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.0099,
     42.51542,
@@ -13253,6 +13755,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.523322,
+    -72.992568,
+    "Parking (2005-2013 field data)",
+    "US-4733",
+    366
+   ],
+   "access_pin": {
+    "at": [
+     42.528253,
+     -72.993027
+    ],
+    "from": "road",
+    "name": "Lower Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -72.99366,
     42.52044,
@@ -13595,6 +14114,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.524756,
+    -73.009589,
+    "Kiosk / information (2005-2013 field data)",
+    "US-4733",
+    1011
+   ],
+   "access_pin": {
+    "at": [
+     42.54653,
+     -73.01776
+    ],
+    "from": "road",
+    "name": "River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.01492,
     42.53034,
@@ -13925,6 +14461,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.524756,
+    -73.009589,
+    "Kiosk / information (2005-2013 field data)",
+    "US-4733",
+    2259
+   ],
+   "access_pin": {
+    "at": [
+     42.546508,
+     -73.017763
+    ],
+    "from": "road",
+    "name": "River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.01773,
     42.54028,
@@ -14283,6 +14836,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.524756,
+    -73.009589,
+    "Kiosk / information (2005-2013 field data)",
+    "US-4733",
+    3108
+   ],
+   "access_pin": {
+    "at": [
+     42.546604,
+     -73.017718
+    ],
+    "from": "road",
+    "name": "River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.01537,
     42.55131,
@@ -14609,6 +15179,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.571528,
+    -73.021932,
+    "Gate (2005-2013 field data)",
+    "US-4743",
+    1107
+   ],
+   "access_pin": {
+    "at": [
+     42.589982,
+     -73.038607
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -73.04322,
     42.56991,
@@ -15277,6 +15864,16 @@
     "US-11499",
     1456
    ],
+   "access_pin": {
+    "at": [
+     42.447437,
+     -71.669
+    ],
+    "from": "road",
+    "name": "Center Bridge Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -71.66925,
     42.44727,
@@ -15810,6 +16407,16 @@
     "US-11499",
     1799
    ],
+   "access_pin": {
+    "at": [
+     42.495675,
+     -71.626816
+    ],
+    "from": "road",
+    "name": "Harvard Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -71.65003,
     42.46379,
@@ -16135,6 +16742,16 @@
     "US-11604",
     246
    ],
+   "access_pin": {
+    "at": [
+     42.591545,
+     -71.627063
+    ],
+    "from": "parking / access point",
+    "name": "Parking (MassWildlife DFW Parking)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 46.2,
    "box": [
     -71.63424,
@@ -16233,6 +16850,16 @@
     "US-11600",
     472
    ],
+   "access_pin": {
+    "at": [
+     42.577194,
+     -71.612979
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 150
+   },
    "box": [
     -71.61582,
     42.5749,
@@ -16607,6 +17234,16 @@
     "US-11601",
     307
    ],
+   "access_pin": {
+    "at": [
+     42.671861,
+     -71.576988
+    ],
+    "from": "road",
+    "name": "Mill St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -71.57442,
     42.6712,
@@ -16968,6 +17605,16 @@
     "US-11601",
     193
    ],
+   "access_pin": {
+    "at": [
+     42.692172,
+     -71.591803
+    ],
+    "from": "parking / access point",
+    "name": "Parking (MassWildlife DFW Parking)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.58777,
     42.6717,
@@ -17317,6 +17964,16 @@
     "US-11601",
     282
    ],
+   "access_pin": {
+    "at": [
+     42.692689,
+     -71.591216
+    ],
+    "from": "road",
+    "name": "Prescott St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.60943,
     42.69176,
@@ -17898,6 +18555,16 @@
     "US-11604",
     922
    ],
+   "access_pin": {
+    "at": [
+     42.591132,
+     -71.623423
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.61071,
     42.57794,
@@ -18243,6 +18910,16 @@
     "US-11604",
     245
    ],
+   "access_pin": {
+    "at": [
+     42.591135,
+     -71.623388
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.62666,
     42.5825,
@@ -18616,6 +19293,16 @@
     "US-11604",
     353
    ],
+   "access_pin": {
+    "at": [
+     42.621083,
+     -71.643663
+    ],
+    "from": "road",
+    "name": "Townsend Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 40
+   },
    "box": [
     -71.64151,
     42.61371,
@@ -18865,6 +19552,16 @@
     "US-11604",
     907
    ],
+   "access_pin": {
+    "at": [
+     42.620959,
+     -71.643652
+    ],
+    "from": "road",
+    "name": "Townsend Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 40
+   },
    "box": [
     -71.65664,
     42.61709,
@@ -19230,6 +19927,16 @@
     "US-11604",
     947
    ],
+   "access_pin": {
+    "at": [
+     42.650944,
+     -71.667901
+    ],
+    "from": "road",
+    "name": "Edward Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 71
+   },
    "box": [
     -71.66899,
     42.63474,
@@ -19579,6 +20286,16 @@
     "US-11604",
     351
    ],
+   "access_pin": {
+    "at": [
+     42.652089,
+     -71.688044
+    ],
+    "from": "road",
+    "name": "Old Meeting House Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.68822,
     42.65097,
@@ -19924,6 +20641,16 @@
     "US-11604",
     527
    ],
+   "access_pin": {
+    "at": [
+     42.652107,
+     -71.68805
+    ],
+    "from": "road",
+    "name": "Old Meeting House Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -71.70423,
     42.65962,
@@ -20269,6 +20996,16 @@
     "US-11604",
     137
    ],
+   "access_pin": {
+    "at": [
+     42.661873,
+     -71.708818
+    ],
+    "from": "parking / access point",
+    "name": "Parking (MassWildlife DFW Parking)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -71.70863,
     42.66126,
@@ -20582,6 +21319,16 @@
     "US-11604",
     772
    ],
+   "access_pin": {
+    "at": [
+     42.678386,
+     -71.724433
+    ],
+    "from": "road",
+    "name": "Barker Hill Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -71.73158,
     42.67418,
@@ -20947,6 +21694,16 @@
     "US-11604",
     967
    ],
+   "access_pin": {
+    "at": [
+     42.679176,
+     -71.730965
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 11
+   },
    "box": [
     -71.743,
     42.67808,
@@ -21164,6 +21921,16 @@
     "US-11604",
     1276
    ],
+   "access_pin": {
+    "at": [
+     42.679157,
+     -71.731023
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 14
+   },
    "box": [
     -71.74984,
     42.67773,
@@ -21493,6 +22260,16 @@
     "US-11604",
     591
    ],
+   "access_pin": {
+    "at": [
+     42.67912,
+     -71.741608
+    ],
+    "from": "road",
+    "name": "Canal St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 97
+   },
    "box": [
     -71.75493,
     42.6869,
@@ -21866,6 +22643,16 @@
     "US-11605",
     3264
    ],
+   "access_pin": {
+    "at": [
+     42.671456,
+     -71.706979
+    ],
+    "from": "road",
+    "name": "Squannacook Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 76
+   },
    "box": [
     -71.71107,
     42.67126,
@@ -23175,6 +23962,16 @@
     "US-11615",
     785
    ],
+   "access_pin": {
+    "at": [
+     41.82469,
+     -70.661522
+    ],
+    "from": "road",
+    "name": "Fearing Pond Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 732.4,
    "box": [
     -70.66445,
@@ -23474,6 +24271,16 @@
     "US-12781",
     817
    ],
+   "access_pin": {
+    "at": [
+     42.63207,
+     -71.588279
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 126
+   },
    "box": [
     -71.59309,
     42.63291,
@@ -23807,6 +24614,16 @@
     "US-12781",
     1146
    ],
+   "access_pin": {
+    "at": [
+     42.632079,
+     -71.588235
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 123
+   },
    "box": [
     -71.59262,
     42.63696,
@@ -24052,6 +24869,16 @@
     "US-12781",
     1149
    ],
+   "access_pin": {
+    "at": [
+     42.632068,
+     -71.588264
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 126
+   },
    "box": [
     -71.58807,
     42.63805,
@@ -24720,6 +25547,16 @@
     "US-4704",
     2495
    ],
+   "access_pin": {
+    "at": [
+     42.036884,
+     -71.424038
+    ],
+    "from": "road",
+    "name": "Ash St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 43
+   },
    "acres": 9.9,
    "box": [
     -71.43967,
@@ -24879,6 +25716,16 @@
     "US-4747",
     912
    ],
+   "access_pin": {
+    "at": [
+     42.630713,
+     -72.973025
+    ],
+    "from": "road",
+    "name": "Blackbrook Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1215.9,
    "box": [
     -73.01172,
@@ -25205,6 +26052,16 @@
     "US-4748",
     577
    ],
+   "access_pin": {
+    "at": [
+     42.632949,
+     -72.371958
+    ],
+    "from": "road",
+    "name": "Quarry Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 541.1,
    "box": [
     -72.37524,

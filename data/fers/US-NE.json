@@ -97,6 +97,16 @@
     "US-5655",
     205
    ],
+   "access_pin": {
+    "at": [
+     41.947809,
+     -103.504101
+    ],
+    "from": "road",
+    "name": "Anchor Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 26.5,
    "box": [
     -103.50447,
@@ -360,6 +370,16 @@
     "US-5655",
     205
    ],
+   "access_pin": {
+    "at": [
+     41.947809,
+     -103.504101
+    ],
+    "from": "road",
+    "name": "Anchor Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 26.5,
    "box": [
     -103.50447,
@@ -538,6 +558,16 @@
     "US-9360",
     647
    ],
+   "access_pin": {
+    "at": [
+     42.757815,
+     -98.03714
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 10
+   },
    "acres": 558.2,
    "box": [
     -98.06199,
@@ -840,6 +870,16 @@
     "US-5631",
     823
    ],
+   "access_pin": {
+    "at": [
+     42.63615,
+     -100.913689
+    ],
+    "from": "road",
+    "name": "Powderhorn Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 269.8,
    "box": [
     -100.92784,

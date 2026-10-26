@@ -327,6 +327,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     56.761581,
+     -157.570725
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -157.57289,
     56.76124,
@@ -954,6 +962,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     56.801706,
+     -157.720869
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -158.14254,
     56.76396,
@@ -2328,6 +2344,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     60.62563,
+     -154.417544
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -154.45104,
     60.61475,
@@ -2647,6 +2671,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     60.688165,
+     -154.146916
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -154.27416,
     60.66155,
@@ -2966,6 +2998,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     60.6262,
+     -153.400368
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -153.81618,
     60.39272,
@@ -3281,6 +3321,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     60.071822,
+     -141.48254
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 6.4,
    "box": [
     -141.48407,
@@ -3534,6 +3582,14 @@
     "US-1638",
     3507
    ],
+   "access_pin": {
+    "at": [
+     59.461304,
+     -151.412326
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 22.7,
    "box": [
     -151.41578,
@@ -3668,6 +3724,14 @@
     "US-1638",
     5916
    ],
+   "access_pin": {
+    "at": [
+     59.47591,
+     -151.446835
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 13.4,
    "box": [
     -151.44949,
@@ -3996,6 +4060,14 @@
     "US-1639",
     6355
    ],
+   "access_pin": {
+    "at": [
+     58.202868,
+     -152.043561
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 1090.9,
    "box": [
     -152.11516,
@@ -4355,6 +4427,14 @@
     "US-1639",
     11651
    ],
+   "access_pin": {
+    "at": [
+     58.397877,
+     -152.128206
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 1101.0,
    "box": [
     -152.26731,
@@ -4717,6 +4797,14 @@
     "US-1639",
     15068
    ],
+   "access_pin": {
+    "at": [
+     58.459826,
+     -152.483344
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 9.7,
    "box": [
     -152.48635,
@@ -4871,6 +4959,14 @@
     "US-1640",
     13634
    ],
+   "access_pin": {
+    "at": [
+     58.465827,
+     -152.415765
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 54.4,
    "box": [
     -152.46746,
@@ -4949,6 +5045,14 @@
     "US-1640",
     7568
    ],
+   "access_pin": {
+    "at": [
+     58.473243,
+     -152.576917
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 30.8,
    "box": [
     -152.57907,
@@ -5019,6 +5123,14 @@
     "US-1640",
     6430
    ],
+   "access_pin": {
+    "at": [
+     58.479981,
+     -152.605476
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 9.0,
    "box": [
     -152.60668,
@@ -5085,6 +5197,14 @@
     "US-1640",
     5920
    ],
+   "access_pin": {
+    "at": [
+     58.495717,
+     -152.685301
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 86.6,
    "box": [
     -152.689,
@@ -5151,6 +5271,14 @@
     "US-1640",
     13840
    ],
+   "access_pin": {
+    "at": [
+     58.629496,
+     -152.329708
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 16.8,
    "box": [
     -152.3342,
@@ -5502,6 +5630,14 @@
     "US-1640",
     10297
    ],
+   "access_pin": {
+    "at": [
+     58.669108,
+     -152.518464
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 25.2,
    "box": [
     -152.522,
@@ -5877,6 +6013,14 @@
     "US-3392",
     3507
    ],
+   "access_pin": {
+    "at": [
+     59.461304,
+     -151.412326
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 22.7,
    "box": [
     -151.41578,
@@ -6011,6 +6155,14 @@
     "US-3392",
     5916
    ],
+   "access_pin": {
+    "at": [
+     59.47591,
+     -151.446835
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 13.4,
    "box": [
     -151.44949,
@@ -6151,6 +6303,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.317076,
+     -167.538203
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 60.3,
    "box": [
     -167.54173,
@@ -6291,6 +6451,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.317257,
+     -167.712812
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 42473.7,
    "box": [
     -167.85291,
@@ -6627,6 +6795,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -6955,6 +7133,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -7283,6 +7471,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -7611,6 +7809,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -7939,6 +8147,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -8267,6 +8485,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -8595,6 +8823,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -8923,6 +9161,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -9251,6 +9499,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -9579,6 +9837,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -9907,6 +10175,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     53.896342,
+     -166.459373
+    ],
+    "from": "road",
+    "name": "Summer Bay Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 323346.1,
    "box": [
     -167.52919,
@@ -11029,6 +11307,16 @@
     "US-7194",
     2293
    ],
+   "access_pin": {
+    "at": [
+     60.791065,
+     -151.012577
+    ],
+    "from": "road",
+    "name": "Swanson River Access Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 55
+   },
    "acres": 187.0,
    "box": [
     -151.08825,
@@ -11598,6 +11886,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     56.761581,
+     -157.570725
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -157.57289,
     56.76124,
@@ -12225,6 +12521,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     56.801706,
+     -157.720869
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -158.14254,
     56.76396,
@@ -16209,6 +16513,14 @@
     "US-4592",
     21432
    ],
+   "access_pin": {
+    "at": [
+     59.196632,
+     -135.131232
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 74863.8,
    "box": [
     -135.2508,
@@ -16327,6 +16639,16 @@
     "US-4592",
     1549
    ],
+   "access_pin": {
+    "at": [
+     59.424732,
+     -135.972378
+    ],
+    "from": "road",
+    "name": "Duck Marsh Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 20715.2,
    "box": [
     -136.11518,
@@ -16681,6 +17003,16 @@
     "US-4592",
     211
    ],
+   "access_pin": {
+    "at": [
+     59.335777,
+     -135.561816
+    ],
+    "from": "road",
+    "name": "Chilkoot Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 146.6,
    "box": [
     -135.57037,
@@ -16881,6 +17213,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     63.163863,
+     -143.218441
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 273.3,
    "box": [
     -143.2264,

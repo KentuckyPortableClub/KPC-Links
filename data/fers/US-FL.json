@@ -12,6 +12,16 @@
     "US-1886",
     18754
    ],
+   "access_pin": {
+    "at": [
+     25.337689,
+     -80.246618
+    ],
+    "from": "road",
+    "name": "Cardinal Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1196
+   },
    "acres": 35.1,
    "box": [
     -80.2551,
@@ -144,6 +154,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     24.946195,
+     -80.650931
+    ],
+    "from": "road",
+    "name": "Blackwood Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 3237
+   },
    "acres": 74.9,
    "box": [
     -80.67811,
@@ -234,6 +254,14 @@
     "US-3618",
     4114
    ],
+   "access_pin": {
+    "at": [
+     25.891935,
+     -81.439142
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 80.0,
    "box": [
     -81.45771,
@@ -324,6 +352,16 @@
     "US-8720",
     15417
    ],
+   "access_pin": {
+    "at": [
+     25.505853,
+     -80.566918
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 483.0,
    "box": [
     -80.57484,
@@ -447,6 +485,16 @@
     "US-1852",
     5530
    ],
+   "access_pin": {
+    "at": [
+     25.240205,
+     -80.316812
+    ],
+    "from": "road",
+    "name": "Le Jeune Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 28.3,
    "box": [
     -80.32304,
@@ -549,6 +597,16 @@
     "US-1863",
     476
    ],
+   "access_pin": {
+    "at": [
+     27.589068,
+     -82.762058
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Egmont Key Egmont Key State Park (Florida DEP)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 224.5,
    "box": [
     -82.76553,
@@ -1049,6 +1107,16 @@
     "US-4627",
     1765
    ],
+   "access_pin": {
+    "at": [
+     29.120103,
+     -81.486831
+    ],
+    "from": "road",
+    "name": "St Johns River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1575
+   },
    "acres": 45.8,
    "box": [
     -81.49088,
@@ -1155,6 +1223,14 @@
     "US-3660",
     79808
    ],
+   "access_pin": {
+    "at": [
+     29.318396,
+     -83.115857
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -83.11741,
     29.31796,
@@ -1464,6 +1540,16 @@
     "US-3660",
     79103
    ],
+   "access_pin": {
+    "at": [
+     29.337641,
+     -83.099637
+    ],
+    "from": "road",
+    "name": "SE 371 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 493
+   },
    "box": [
     -83.11377,
     29.32394,
@@ -1753,6 +1839,16 @@
     "US-3660",
     78447
    ],
+   "access_pin": {
+    "at": [
+     29.337639,
+     -83.09966
+    ],
+    "from": "road",
+    "name": "SE 865 Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 485
+   },
    "box": [
     -83.10447,
     29.32733,
@@ -2094,6 +2190,16 @@
     "US-3660",
     78447
    ],
+   "access_pin": {
+    "at": [
+     29.337639,
+     -83.09966
+    ],
+    "from": "road",
+    "name": "SE 865 Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 485
+   },
    "box": [
     -83.10447,
     29.32733,
@@ -2435,6 +2541,16 @@
     "US-3660",
     73748
    ],
+   "access_pin": {
+    "at": [
+     29.397323,
+     -83.035315
+    ],
+    "from": "road",
+    "name": "SE 614 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 179
+   },
    "box": [
     -83.0673,
     29.36749,
@@ -2740,6 +2856,16 @@
     "US-3660",
     73748
    ],
+   "access_pin": {
+    "at": [
+     29.397323,
+     -83.035315
+    ],
+    "from": "road",
+    "name": "SE 614 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 179
+   },
    "box": [
     -83.0673,
     29.36749,
@@ -3045,6 +3171,16 @@
     "US-3660",
     67957
    ],
+   "access_pin": {
+    "at": [
+     29.436467,
+     -83.017023
+    ],
+    "from": "road",
+    "name": "NW 143 Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 308
+   },
    "box": [
     -83.0268,
     29.41947,
@@ -3406,6 +3542,16 @@
     "US-3660",
     66330
    ],
+   "access_pin": {
+    "at": [
+     29.436482,
+     -83.017059
+    ],
+    "from": "road",
+    "name": "NW 143 Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 312
+   },
    "box": [
     -83.02292,
     29.42862,
@@ -3775,6 +3921,16 @@
     "US-3660",
     64475
    ],
+   "access_pin": {
+    "at": [
+     29.436479,
+     -83.01706
+    ],
+    "from": "road",
+    "name": "NW 143 Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 312
+   },
    "box": [
     -83.01462,
     29.44457,
@@ -4116,6 +4272,16 @@
     "US-6288",
     49692
    ],
+   "access_pin": {
+    "at": [
+     30.079418,
+     -84.476061
+    ],
+    "from": "road",
+    "name": "Pullback Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 180
+   },
    "acres": 82.8,
    "box": [
     -84.47614,
@@ -4187,6 +4353,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     30.079383,
+     -84.476083
+    ],
+    "from": "road",
+    "name": "Pullback Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 180
+   },
    "acres": 82.3,
    "box": [
     -84.47611,
@@ -4257,6 +4433,16 @@
     "US-6288",
     54354
    ],
+   "access_pin": {
+    "at": [
+     30.076469,
+     -84.405731
+    ],
+    "from": "road",
+    "name": "Carraway Cutoff",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 71.9,
    "box": [
     -84.41318,
@@ -4359,6 +4545,16 @@
     "US-6288",
     49692
    ],
+   "access_pin": {
+    "at": [
+     30.079408,
+     -84.476061
+    ],
+    "from": "road",
+    "name": "Pullback Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 180
+   },
    "acres": 82.8,
    "box": [
     -84.47614,
@@ -4429,6 +4625,16 @@
     "US-1847",
     1757
    ],
+   "access_pin": {
+    "at": [
+     25.944634,
+     -81.621351
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Canoeing/Kayaking (FDEP DRP; approximate locations for visit",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 450
+   },
    "acres": 70.0,
    "box": [
     -81.61177,
@@ -4572,6 +4778,16 @@
     "US-1839",
     774
    ],
+   "access_pin": {
+    "at": [
+     30.446171,
+     -81.437092
+    ],
+    "from": "road",
+    "name": "Houston Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5.8,
    "box": [
     -81.43681,
@@ -4837,6 +5053,16 @@
     "US-1839",
     762
    ],
+   "access_pin": {
+    "at": [
+     30.463763,
+     -81.434897
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Parking (FDEP DRP; approximate locations for visitors)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 27
+   },
    "acres": 46.9,
    "box": [
     -81.45703,
@@ -5099,6 +5325,16 @@
     "US-1839",
     759
    ],
+   "access_pin": {
+    "at": [
+     30.481761,
+     -81.436625
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Big Pine Trail Parking (FDEP DRP; approximate locations for visitors)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 246
+   },
    "acres": 57.0,
    "box": [
     -81.43515,
@@ -5253,6 +5489,16 @@
     "US-1839",
     654
    ],
+   "access_pin": {
+    "at": [
+     30.481756,
+     -81.436611
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Big Pine Trail Parking (FDEP DRP; approximate locations for visitors)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 246
+   },
    "acres": 17.2,
    "box": [
     -81.45359,
@@ -5518,6 +5764,14 @@
     "US-6301",
     4305
    ],
+   "access_pin": {
+    "at": [
+     25.793985,
+     -80.855764
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 27.5,
    "box": [
     -80.85641,
@@ -5592,6 +5846,16 @@
     "US-1927",
     376
    ],
+   "access_pin": {
+    "at": [
+     28.737188,
+     -81.457354
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Wekiwa River / Rock Springs Run (FDEP DRP; approximate locat",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.49243,
     28.71193,
@@ -5897,6 +6161,16 @@
     "US-1927",
     1010
    ],
+   "access_pin": {
+    "at": [
+     28.767368,
+     -81.501506
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Kelly Park / Rock Springs Camp Joy Paddlecraft Launch Weki (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.49683,
     28.75815,
@@ -6238,6 +6512,16 @@
     "US-1927",
     81
    ],
+   "access_pin": {
+    "at": [
+     28.767373,
+     -81.501463
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Kelly Park / Rock Springs Camp Joy Paddlecraft Launch Weki (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -81.50309,
     28.76441,
@@ -6583,6 +6867,16 @@
     "US-1927",
     1278
    ],
+   "access_pin": {
+    "at": [
+     28.767378,
+     -81.501502
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Kelly Park / Rock Springs Camp Joy Paddlecraft Launch Weki (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -81.49734,
     28.77681,
@@ -6928,6 +7222,16 @@
     "US-3634",
     1410
    ],
+   "access_pin": {
+    "at": [
+     28.855009,
+     -81.380926
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Paddling Trail (FDEP DRP; approximate locations for visitors",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.42985,
     28.83335,
@@ -7281,6 +7585,16 @@
     "US-3650",
     2649
    ],
+   "access_pin": {
+    "at": [
+     28.713917,
+     -81.443946
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Wekiva Island Canoe/Kayak Rentals & Launch Wekiva River (Flo",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 43
+   },
    "box": [
     -81.44885,
     28.71363,
@@ -7614,6 +7928,16 @@
     "US-3650",
     4751
    ],
+   "access_pin": {
+    "at": [
+     28.771854,
+     -81.503251
+    ],
+    "from": "road",
+    "name": "Baptist Camp Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 99
+   },
    "box": [
     -81.49914,
     28.77602,
@@ -7883,6 +8207,16 @@
     "US-3650",
     4289
    ],
+   "access_pin": {
+    "at": [
+     28.771841,
+     -81.503292
+    ],
+    "from": "road",
+    "name": "Baptist Camp Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 96
+   },
    "box": [
     -81.49416,
     28.77769,
@@ -8276,6 +8610,16 @@
     "US-4639",
     172
    ],
+   "access_pin": {
+    "at": [
+     28.835265,
+     -81.406494
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Canoeing/Kayaking (FDEP DRP; approximate locations for visit",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 79
+   },
    "box": [
     -81.40885,
     28.83342,
@@ -8593,6 +8937,16 @@
     "US-4639",
     1640
    ],
+   "access_pin": {
+    "at": [
+     28.85816,
+     -81.43714
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Seminole State Forest - Blackwater Creek Canoe Launch Blac (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.46006,
     28.83024,
@@ -8938,6 +9292,16 @@
     "US-4639",
     3946
    ],
+   "access_pin": {
+    "at": [
+     28.877152,
+     -81.489067
+    ],
+    "from": "road",
+    "name": "Burlington Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -81.48994,
     28.85854,
@@ -9287,6 +9651,16 @@
     "US-4639",
     3137
    ],
+   "access_pin": {
+    "at": [
+     28.877141,
+     -81.48904
+    ],
+    "from": "road",
+    "name": "Burlington Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -81.5307,
     28.87429,
@@ -9616,6 +9990,16 @@
     "US-8357",
     399
    ],
+   "access_pin": {
+    "at": [
+     28.914478,
+     -81.544315
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (St. Johns River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.54884,
     28.91371,
@@ -9954,6 +10338,16 @@
     "US-3660",
     6830
    ],
+   "access_pin": {
+    "at": [
+     30.411345,
+     -82.957634
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 11
+   },
    "box": [
     -82.97016,
     30.41056,
@@ -10327,6 +10721,16 @@
     "US-8683",
     974
    ],
+   "access_pin": {
+    "at": [
+     29.759845,
+     -82.952155
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 320.0,
    "box": [
     -82.95824,
@@ -10557,6 +10961,16 @@
     "US-10559",
     1209
    ],
+   "access_pin": {
+    "at": [
+     30.382322,
+     -82.88922
+    ],
+    "from": "road",
+    "name": "SE 128th Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 246
+   },
    "box": [
     -82.88976,
     30.36641,
@@ -10922,6 +11336,16 @@
     "US-10559",
     501
    ],
+   "access_pin": {
+    "at": [
+     30.396397,
+     -82.934154
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.93803,
     30.38573,
@@ -11319,6 +11743,16 @@
     "US-10559",
     821
    ],
+   "access_pin": {
+    "at": [
+     30.40807,
+     -82.925407
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 689.9,
    "box": [
     -82.94178,
@@ -11541,6 +11975,16 @@
     "US-10565",
     2759
    ],
+   "access_pin": {
+    "at": [
+     29.889006,
+     -82.886941
+    ],
+    "from": "road",
+    "name": "SE Riverside West Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 36
+   },
    "box": [
     -82.88927,
     29.88831,
@@ -11862,6 +12306,16 @@
     "US-10566",
     2759
    ],
+   "access_pin": {
+    "at": [
+     29.889006,
+     -82.886941
+    ],
+    "from": "road",
+    "name": "SE Riverside West Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 36
+   },
    "box": [
     -82.88927,
     29.88831,
@@ -12183,6 +12637,16 @@
     "US-10567",
     5159
    ],
+   "access_pin": {
+    "at": [
+     29.823335,
+     -82.925725
+    ],
+    "from": "road",
+    "name": "SE Foster Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 235
+   },
    "box": [
     -82.92768,
     29.82151,
@@ -12472,6 +12936,16 @@
     "US-10567",
     202
    ],
+   "access_pin": {
+    "at": [
+     29.851194,
+     -82.88889
+    ],
+    "from": "road",
+    "name": "Nancy Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -82.88008,
     29.86116,
@@ -12797,6 +13271,16 @@
     "US-10567",
     1129
    ],
+   "access_pin": {
+    "at": [
+     29.868473,
+     -82.876482
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Suwannee River at 90th Street Primitive Boat Ramp Suwannee (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 163
+   },
    "box": [
     -82.88399,
     29.88205,
@@ -13026,6 +13510,16 @@
     "US-10567",
     1523
    ],
+   "access_pin": {
+    "at": [
+     29.868381,
+     -82.876469
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Suwannee River at 90th Street Primitive Boat Ramp Suwannee (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 165
+   },
    "box": [
     -82.87657,
     29.8817,
@@ -13267,6 +13761,16 @@
     "US-3660",
     2927
    ],
+   "access_pin": {
+    "at": [
+     30.427452,
+     -83.067772
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 248
+   },
    "box": [
     -83.06806,
     30.42763,
@@ -13496,6 +14000,16 @@
     "US-10570",
     2667
    ],
+   "access_pin": {
+    "at": [
+     30.486335,
+     -82.714381
+    ],
+    "from": "road",
+    "name": "Co Rd 135",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 154.5,
    "box": [
     -82.71916,
@@ -13822,6 +14336,16 @@
     "US-10619",
     2272
    ],
+   "access_pin": {
+    "at": [
+     29.968296,
+     -82.937337
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1057.8,
    "box": [
     -82.96182,
@@ -14088,6 +14612,16 @@
     "US-8700",
     2133
    ],
+   "access_pin": {
+    "at": [
+     29.834945,
+     -82.138538
+    ],
+    "from": "road",
+    "name": "Co Rd 1471",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1583.5,
    "box": [
     -82.16151,
@@ -14278,6 +14812,16 @@
     "US-3660",
     8762
    ],
+   "access_pin": {
+    "at": [
+     30.327167,
+     -82.763095
+    ],
+    "from": "road",
+    "name": "N W White Springs Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 92
+   },
    "box": [
     -82.77237,
     30.32497,
@@ -14615,6 +15159,16 @@
     "US-3660",
     57366
    ],
+   "access_pin": {
+    "at": [
+     29.525203,
+     -82.97212
+    ],
+    "from": "road",
+    "name": "SE 851 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 30
+   },
    "box": [
     -82.97645,
     29.51769,
@@ -14892,6 +15446,16 @@
     "US-3660",
     56793
    ],
+   "access_pin": {
+    "at": [
+     29.525201,
+     -82.972059
+    ],
+    "from": "road",
+    "name": "SE 851 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "box": [
     -82.97066,
     29.52263,
@@ -15205,6 +15769,16 @@
     "US-8716",
     383
    ],
+   "access_pin": {
+    "at": [
+     30.393698,
+     -82.933998
+    ],
+    "from": "road",
+    "name": "91st Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 131.4,
    "box": [
     -82.93855,
@@ -15367,6 +15941,16 @@
     "US-8716",
     756
    ],
+   "access_pin": {
+    "at": [
+     30.390138,
+     -82.928211
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 174.2,
    "box": [
     -82.92917,
@@ -15529,6 +16113,16 @@
     "US-3660",
     2593
    ],
+   "access_pin": {
+    "at": [
+     30.341729,
+     -82.836607
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 16
+   },
    "box": [
     -82.83683,
     30.34141,
@@ -15931,6 +16525,16 @@
     "US-8716",
     389
    ],
+   "access_pin": {
+    "at": [
+     30.339685,
+     -82.836646
+    ],
+    "from": "parking / access point",
+    "name": "Parking: 62 STREET SOUTH PARKING (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 247.6,
    "box": [
     -82.83666,
@@ -16053,6 +16657,16 @@
     "US-3660",
     5418
    ],
+   "access_pin": {
+    "at": [
+     30.340492,
+     -82.819879
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -82.80808,
     30.33929,
@@ -16350,6 +16964,16 @@
     "US-3660",
     4265
    ],
+   "access_pin": {
+    "at": [
+     30.340486,
+     -82.819925
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.81536,
     30.33973,
@@ -16719,6 +17343,16 @@
     "US-3660",
     3680
    ],
+   "access_pin": {
+    "at": [
+     30.340518,
+     -82.81992
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -82.8216,
     30.34073,
@@ -17068,6 +17702,16 @@
     "US-3660",
     3095
    ],
+   "access_pin": {
+    "at": [
+     30.340476,
+     -82.819924
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.82837,
     30.34119,
@@ -17313,6 +17957,16 @@
     "US-8716",
     946
    ],
+   "access_pin": {
+    "at": [
+     30.346314,
+     -82.831929
+    ],
+    "from": "road",
+    "name": "I- 75",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 47
+   },
    "acres": 45.4,
    "box": [
     -82.8321,
@@ -17431,6 +18085,16 @@
     "US-10615",
     967
    ],
+   "access_pin": {
+    "at": [
+     30.541786,
+     -82.722139
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 979.8,
    "box": [
     -82.73017,
@@ -17773,6 +18437,16 @@
     "US-10615",
     1290
    ],
+   "access_pin": {
+    "at": [
+     30.537851,
+     -82.718969
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 351.6,
    "box": [
     -82.72991,
@@ -17947,6 +18621,16 @@
     "US-3660",
     1980
    ],
+   "access_pin": {
+    "at": [
+     30.351242,
+     -82.848614
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.84077,
     30.34215,
@@ -18312,6 +18996,16 @@
     "US-3660",
     602
    ],
+   "access_pin": {
+    "at": [
+     30.351243,
+     -82.848632
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.85198,
     30.35039,
@@ -18653,6 +19347,16 @@
     "US-3660",
     744
    ],
+   "access_pin": {
+    "at": [
+     30.351275,
+     -82.848576
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.86218,
     30.35884,
@@ -18930,6 +19634,16 @@
     "US-3660",
     1228
    ],
+   "access_pin": {
+    "at": [
+     30.350885,
+     -82.84884
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 30
+   },
    "box": [
     -82.8664,
     30.36119,
@@ -19203,6 +19917,16 @@
     "US-8708",
     341
    ],
+   "access_pin": {
+    "at": [
+     30.359191,
+     -82.846115
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 523.0,
    "box": [
     -82.86612,
@@ -19577,6 +20301,16 @@
     "US-1887",
     1207
    ],
+   "access_pin": {
+    "at": [
+     26.940798,
+     -80.175733
+    ],
+    "from": "road",
+    "name": "Taylor Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1032.8,
    "box": [
     -80.17774,
@@ -19824,6 +20558,16 @@
     "US-1880",
     889
    ],
+   "access_pin": {
+    "at": [
+     28.054483,
+     -82.810799
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Dunedin Causeway Non-Motorized Watercraft Launching Beach  (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 367
+   },
    "acres": 25.5,
    "box": [
     -82.82005,
@@ -20149,6 +20893,16 @@
     "US-1862",
     7742
    ],
+   "access_pin": {
+    "at": [
+     30.30323,
+     -84.355665
+    ],
+    "from": "road",
+    "name": "Log Cabin Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 66.4,
    "box": [
     -84.3615,
@@ -20219,6 +20973,16 @@
     "US-1888",
     276
    ],
+   "access_pin": {
+    "at": [
+     30.127163,
+     -83.22546
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: LAFAYETTE BLUE SPRING STATE PARK RAMP STATE (Suwannee River ",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -83.22591,
     30.12251,
@@ -20580,6 +21344,16 @@
     "US-1888",
     557
    ],
+   "access_pin": {
+    "at": [
+     30.164604,
+     -83.231827
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: EZELL LANDING RAMP STATE (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 140
+   },
    "box": [
     -83.23732,
     30.1553,
@@ -20949,6 +21723,16 @@
     "US-4628",
     727
    ],
+   "access_pin": {
+    "at": [
+     30.385795,
+     -84.645789
+    ],
+    "from": "road",
+    "name": "Crooked Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 29
+   },
    "acres": 8.9,
    "box": [
     -84.64706,
@@ -21043,6 +21827,16 @@
     "US-1895",
     653
    ],
+   "access_pin": {
+    "at": [
+     30.443095,
+     -84.522181
+    ],
+    "from": "road",
+    "name": "Julow Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 69.0,
    "box": [
     -84.52742,
@@ -21238,6 +22032,16 @@
     "US-1919",
     189
    ],
+   "access_pin": {
+    "at": [
+     30.328189,
+     -82.759883
+    ],
+    "from": "road",
+    "name": "River St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 76
+   },
    "box": [
     -82.76973,
     30.32567,
@@ -21507,6 +22311,16 @@
     "US-1919",
     1706
    ],
+   "access_pin": {
+    "at": [
+     30.325216,
+     -82.77967
+    ],
+    "from": "road",
+    "name": "Number 11 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 107
+   },
    "box": [
     -82.79264,
     30.32436,
@@ -21872,6 +22686,16 @@
     "US-1919",
     292
    ],
+   "access_pin": {
+    "at": [
+     30.328194,
+     -82.75987
+    ],
+    "from": "road",
+    "name": "River St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 76
+   },
    "box": [
     -82.76186,
     30.32775,
@@ -22105,6 +22929,16 @@
     "US-1919",
     2062
    ],
+   "access_pin": {
+    "at": [
+     30.325154,
+     -82.779501
+    ],
+    "from": "road",
+    "name": "Number 11 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 106
+   },
    "box": [
     -82.79492,
     30.33631,
@@ -22410,6 +23244,16 @@
     "US-1921",
     206
    ],
+   "access_pin": {
+    "at": [
+     30.244929,
+     -83.250074
+    ],
+    "from": "road",
+    "name": "Co Rd 250",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 29
+   },
    "box": [
     -83.24945,
     30.2461,
@@ -22767,6 +23611,16 @@
     "US-1921",
     206
    ],
+   "access_pin": {
+    "at": [
+     30.244929,
+     -83.250074
+    ],
+    "from": "road",
+    "name": "Co Rd 250",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 29
+   },
    "box": [
     -83.24945,
     30.2461,
@@ -23124,6 +23978,16 @@
     "US-1921",
     235
    ],
+   "access_pin": {
+    "at": [
+     30.385097,
+     -83.174679
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -83.17491,
     30.38486,
@@ -23457,6 +24321,16 @@
     "US-1921",
     604
    ],
+   "access_pin": {
+    "at": [
+     30.400357,
+     -83.158165
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 20
+   },
    "box": [
     -83.15694,
     30.4089,
@@ -23730,6 +24604,16 @@
     "US-1921",
     1104
    ],
+   "access_pin": {
+    "at": [
+     30.415285,
+     -83.15692
+    ],
+    "from": "road",
+    "name": "SW 46th Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 104
+   },
    "box": [
     -83.14903,
     30.41775,
@@ -23943,6 +24827,16 @@
     "US-1921",
     2351
    ],
+   "access_pin": {
+    "at": [
+     30.431948,
+     -83.118834
+    ],
+    "from": "road",
+    "name": "10th Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 139
+   },
    "box": [
     -83.14079,
     30.42264,
@@ -24296,6 +25190,16 @@
     "US-1921",
     4554
    ],
+   "access_pin": {
+    "at": [
+     30.431934,
+     -83.118831
+    ],
+    "from": "road",
+    "name": "10th Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 137
+   },
    "box": [
     -83.11912,
     30.43179,
@@ -24605,6 +25509,16 @@
     "US-1921",
     3562
    ],
+   "access_pin": {
+    "at": [
+     30.435525,
+     -83.131431
+    ],
+    "from": "road",
+    "name": "SW 59th Blvd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 48.1,
    "box": [
     -83.13172,
@@ -24769,6 +25683,16 @@
     "US-1925",
     286
    ],
+   "access_pin": {
+    "at": [
+     30.00612,
+     -82.996458
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Troy Spring State Park - Canoe Launch Suwannee River (Florid",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -83.00332,
     30.00544,
@@ -25138,6 +26062,16 @@
     "US-1927",
     1512
    ],
+   "access_pin": {
+    "at": [
+     28.812354,
+     -81.504366
+    ],
+    "from": "road",
+    "name": "State Rd 429",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 333.5,
    "box": [
     -81.52865,
@@ -25448,6 +26382,16 @@
     "US-4614",
     2592
    ],
+   "access_pin": {
+    "at": [
+     30.747196,
+     -87.017465
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 120.6,
    "box": [
     -87.01357,
@@ -25522,6 +26466,16 @@
     "US-4614",
     3429
    ],
+   "access_pin": {
+    "at": [
+     30.747154,
+     -87.01742
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 159.0,
    "box": [
     -87.02591,
@@ -25600,6 +26554,16 @@
     "US-4634",
     3103
    ],
+   "access_pin": {
+    "at": [
+     25.978381,
+     -81.494668
+    ],
+    "from": "road",
+    "name": "Union Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 1265.4,
    "box": [
     -81.50608,
@@ -25771,6 +26735,16 @@
     "US-3624",
     53
    ],
+   "access_pin": {
+    "at": [
+     29.612194,
+     -82.253897
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 67.2,
    "box": [
     -82.3083,
@@ -26106,6 +27080,16 @@
     "US-3637",
     2448
    ],
+   "access_pin": {
+    "at": [
+     29.518656,
+     -81.856294
+    ],
+    "from": "road",
+    "name": "NE 247th Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 806
+   },
    "acres": 75.3,
    "box": [
     -81.85634,
@@ -26247,6 +27231,16 @@
     "US-3637",
     971
    ],
+   "access_pin": {
+    "at": [
+     29.291722,
+     -81.913818
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 75
+   },
    "acres": 14.4,
    "box": [
     -81.92593,
@@ -26413,6 +27407,16 @@
     "US-3637",
     3004
    ],
+   "access_pin": {
+    "at": [
+     29.376213,
+     -81.899173
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 55.7,
    "box": [
     -81.9026,
@@ -26644,6 +27648,16 @@
     "US-3637",
     1945
    ],
+   "access_pin": {
+    "at": [
+     29.506866,
+     -81.810234
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 172
+   },
    "acres": 6.3,
    "box": [
     -81.82442,
@@ -26803,6 +27817,16 @@
     "US-3637",
     1945
    ],
+   "access_pin": {
+    "at": [
+     29.506866,
+     -81.810234
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 172
+   },
    "acres": 6.3,
    "box": [
     -81.82442,
@@ -26909,6 +27933,16 @@
     "US-3637",
     2418
    ],
+   "access_pin": {
+    "at": [
+     29.511572,
+     -81.858318
+    ],
+    "from": "road",
+    "name": "NE 247th Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 143
+   },
    "acres": 127.4,
    "box": [
     -81.86079,
@@ -27156,6 +28190,16 @@
     "US-3637",
     1688
    ],
+   "access_pin": {
+    "at": [
+     29.511287,
+     -81.891925
+    ],
+    "from": "road",
+    "name": "160th Avenue Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 384
+   },
    "acres": 156.9,
    "box": [
     -81.89708,
@@ -27386,6 +28430,16 @@
     "US-3637",
     7516
    ],
+   "access_pin": {
+    "at": [
+     29.613649,
+     -81.745607
+    ],
+    "from": "road",
+    "name": "Hunter Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 15972.5,
    "box": [
     -81.86248,
@@ -27720,6 +28774,16 @@
     "US-8368",
     8091
    ],
+   "access_pin": {
+    "at": [
+     29.610651,
+     -81.778173
+    ],
+    "from": "road",
+    "name": "Hunter Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 372
+   },
    "acres": 159.6,
    "box": [
     -81.77839,
@@ -27858,6 +28922,16 @@
     "US-3642",
     519
    ],
+   "access_pin": {
+    "at": [
+     30.223772,
+     -82.366496
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 612.6,
    "box": [
     -82.39929,
@@ -28180,6 +29254,16 @@
     "US-3660",
     6061
    ],
+   "access_pin": {
+    "at": [
+     30.338231,
+     -82.794879
+    ],
+    "from": "road",
+    "name": "27th Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 405
+   },
    "box": [
     -82.79583,
     30.33793,
@@ -28469,6 +29553,16 @@
     "US-3660",
     4486
    ],
+   "access_pin": {
+    "at": [
+     30.378826,
+     -82.890066
+    ],
+    "from": "road",
+    "name": "SE 129 Ct",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 10
+   },
    "box": [
     -82.89144,
     30.3741,
@@ -28842,6 +29936,16 @@
     "US-3660",
     4486
    ],
+   "access_pin": {
+    "at": [
+     30.378826,
+     -82.890066
+    ],
+    "from": "road",
+    "name": "SE 129 Ct",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 10
+   },
    "box": [
     -82.89144,
     30.3741,
@@ -29379,6 +30483,16 @@
     "US-3660",
     1613
    ],
+   "access_pin": {
+    "at": [
+     30.260964,
+     -83.24137
+    ],
+    "from": "road",
+    "name": "SE Boundary Bend Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 76
+   },
    "box": [
     -83.24574,
     30.26073,
@@ -29672,6 +30786,16 @@
     "US-4642",
     2822
    ],
+   "access_pin": {
+    "at": [
+     30.302571,
+     -83.224854
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Twin Rivers State Forest - North Mill Creek Undeveloped Ca (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -83.24041,
     30.26773,
@@ -30009,6 +31133,16 @@
     "US-4642",
     982
    ],
+   "access_pin": {
+    "at": [
+     30.302572,
+     -83.224859
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Twin Rivers State Forest - North Mill Creek Undeveloped Ca (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "box": [
     -83.23319,
     30.29207,
@@ -30350,6 +31484,16 @@
     "US-4642",
     121
    ],
+   "access_pin": {
+    "at": [
+     30.345779,
+     -83.213115
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Florida Fish and Wildlife Conservation Commission)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 14
+   },
    "box": [
     -83.21287,
     30.33882,
@@ -30675,6 +31819,16 @@
     "US-4642",
     2227
    ],
+   "access_pin": {
+    "at": [
+     30.38447,
+     -83.178305
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -83.19847,
     30.34868,
@@ -31224,6 +32378,16 @@
     "US-8681",
     5224
    ],
+   "access_pin": {
+    "at": [
+     30.427884,
+     -83.128015
+    ],
+    "from": "road",
+    "name": "10th Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -83.14221,
     30.42076,
@@ -31577,6 +32741,16 @@
     "US-3660",
     4045
    ],
+   "access_pin": {
+    "at": [
+     30.425106,
+     -82.984881
+    ],
+    "from": "road",
+    "name": "18th Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 830
+   },
    "box": [
     -82.99689,
     30.4267,
@@ -31922,6 +33096,16 @@
     "US-8683",
     3695
    ],
+   "access_pin": {
+    "at": [
+     29.603093,
+     -82.965492
+    ],
+    "from": "road",
+    "name": "NE 824 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 78
+   },
    "box": [
     -82.96555,
     29.59771,
@@ -32279,6 +33463,16 @@
     "US-8683",
     521
    ],
+   "access_pin": {
+    "at": [
+     29.644489,
+     -82.957168
+    ],
+    "from": "road",
+    "name": "NE 832 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 30
+   },
    "box": [
     -82.96488,
     29.63397,
@@ -32608,6 +33802,16 @@
     "US-8683",
     521
    ],
+   "access_pin": {
+    "at": [
+     29.644489,
+     -82.957168
+    ],
+    "from": "road",
+    "name": "NE 832 St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 30
+   },
    "box": [
     -82.96488,
     29.63397,
@@ -32937,6 +34141,16 @@
     "US-8683",
     802
    ],
+   "access_pin": {
+    "at": [
+     29.746667,
+     -82.938829
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: LOG LANDING RAMP GILCHRIST (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 100
+   },
    "box": [
     -82.95696,
     29.71525,
@@ -33262,6 +34476,16 @@
     "US-8683",
     802
    ],
+   "access_pin": {
+    "at": [
+     29.746667,
+     -82.938829
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: LOG LANDING RAMP GILCHRIST (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 100
+   },
    "box": [
     -82.95696,
     29.71525,
@@ -33587,6 +34811,16 @@
     "US-8684",
     1396
    ],
+   "access_pin": {
+    "at": [
+     29.922669,
+     -82.926667
+    ],
+    "from": "road",
+    "name": "SE River Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "box": [
     -82.92641,
     29.90941,
@@ -34092,6 +35326,16 @@
     "US-8684",
     1981
    ],
+   "access_pin": {
+    "at": [
+     29.922675,
+     -82.926661
+    ],
+    "from": "road",
+    "name": "SE River Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "box": [
     -82.92511,
     29.92578,
@@ -34401,6 +35645,16 @@
     "US-8685",
     2316
    ],
+   "access_pin": {
+    "at": [
+     30.422676,
+     -83.008078
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 86
+   },
    "box": [
     -83.01347,
     30.42333,
@@ -34614,6 +35868,16 @@
     "US-3660",
     1997
    ],
+   "access_pin": {
+    "at": [
+     30.422686,
+     -83.008057
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 85
+   },
    "box": [
     -83.01746,
     30.42392,
@@ -34871,6 +36135,16 @@
     "US-8685",
     4467
    ],
+   "access_pin": {
+    "at": [
+     30.426127,
+     -82.988532
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 955
+   },
    "box": [
     -82.99007,
     30.4263,
@@ -35216,6 +36490,16 @@
     "US-3660",
     3115
    ],
+   "access_pin": {
+    "at": [
+     30.422683,
+     -83.008045
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 85
+   },
    "box": [
     -83.00427,
     30.42795,
@@ -35485,6 +36769,16 @@
     "US-3660",
     3914
    ],
+   "access_pin": {
+    "at": [
+     30.377951,
+     -82.890808
+    ],
+    "from": "road",
+    "name": "SE 90th Way",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 76
+   },
    "box": [
     -82.89166,
     30.37162,
@@ -35854,6 +37148,16 @@
     "US-3660",
     5264
    ],
+   "access_pin": {
+    "at": [
+     30.377912,
+     -82.890783
+    ],
+    "from": "road",
+    "name": "SE 90th Way",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 76
+   },
    "box": [
     -82.90304,
     30.38447,
@@ -36183,6 +37487,16 @@
     "US-3660",
     7124
    ],
+   "access_pin": {
+    "at": [
+     30.006426,
+     -82.986188
+    ],
+    "from": "road",
+    "name": "NE Troy Springs Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.97194,
     29.98436,
@@ -36488,6 +37802,16 @@
     "US-3660",
     7124
    ],
+   "access_pin": {
+    "at": [
+     30.006426,
+     -82.986188
+    ],
+    "from": "road",
+    "name": "NE Troy Springs Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.97194,
     29.98436,
@@ -36793,6 +38117,16 @@
     "US-3660",
     5140
    ],
+   "access_pin": {
+    "at": [
+     30.006431,
+     -82.986203
+    ],
+    "from": "road",
+    "name": "NE Troy Springs Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.98684,
     29.99799,
@@ -37166,6 +38500,16 @@
     "US-3660",
     58575
    ],
+   "access_pin": {
+    "at": [
+     29.509699,
+     -82.984369
+    ],
+    "from": "road",
+    "name": "SE 360 Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 230
+   },
    "box": [
     -82.98462,
     29.50284,
@@ -37535,6 +38879,16 @@
     "US-3660",
     8958
    ],
+   "access_pin": {
+    "at": [
+     30.39641,
+     -82.934145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.93724,
     30.38574,
@@ -37996,6 +39350,16 @@
     "US-8708",
     444
    ],
+   "access_pin": {
+    "at": [
+     30.326099,
+     -82.75664
+    ],
+    "from": "road",
+    "name": "Wesson St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 263
+   },
    "box": [
     -82.7566,
     30.31879,
@@ -38345,6 +39709,16 @@
     "US-8708",
     436
    ],
+   "access_pin": {
+    "at": [
+     30.340938,
+     -82.819504
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: BLUE SINK LAUNCH SRWMD (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 53
+   },
    "box": [
     -82.8114,
     30.33907,
@@ -38666,6 +40040,16 @@
     "US-8708",
     133
    ],
+   "access_pin": {
+    "at": [
+     30.340911,
+     -82.819459
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: BLUE SINK LAUNCH SRWMD (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 56
+   },
    "box": [
     -82.81963,
     30.34056,
@@ -38895,6 +40279,16 @@
     "US-8708",
     373
    ],
+   "access_pin": {
+    "at": [
+     30.340914,
+     -82.819488
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: BLUE SINK LAUNCH SRWMD (Suwannee River WMD)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 56
+   },
    "box": [
     -82.82632,
     30.34091,
@@ -39164,6 +40558,16 @@
     "US-8708",
     476
    ],
+   "access_pin": {
+    "at": [
+     30.351242,
+     -82.848614
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.84077,
     30.34215,
@@ -39529,6 +40933,16 @@
     "US-3660",
     602
    ],
+   "access_pin": {
+    "at": [
+     30.351243,
+     -82.848632
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.85198,
     30.35039,
@@ -39870,6 +41284,16 @@
     "US-8708",
     661
    ],
+   "access_pin": {
+    "at": [
+     30.351275,
+     -82.848576
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.86218,
     30.35884,
@@ -40147,6 +41571,16 @@
     "US-8708",
     329
    ],
+   "access_pin": {
+    "at": [
+     30.350885,
+     -82.84884
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 30
+   },
    "box": [
     -82.8664,
     30.36119,
@@ -40420,6 +41854,16 @@
     "US-8716",
     432
    ],
+   "access_pin": {
+    "at": [
+     30.341729,
+     -82.836607
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 16
+   },
    "box": [
     -82.83683,
     30.34119,
@@ -40781,6 +42225,16 @@
     "US-3660",
     313
    ],
+   "access_pin": {
+    "at": [
+     30.354228,
+     -82.852915
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (FDEP DRP; approximates entrance stations)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -82.85314,
     30.35353,
@@ -41130,6 +42584,16 @@
     "US-8716",
     453
    ],
+   "access_pin": {
+    "at": [
+     30.354209,
+     -82.852924
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (FDEP DRP; approximates entrance stations)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -82.85799,
     30.35749,
@@ -41483,6 +42947,16 @@
     "US-8716",
     972
    ],
+   "access_pin": {
+    "at": [
+     30.371741,
+     -82.890613
+    ],
+    "from": "road",
+    "name": "SE 128th Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 386
+   },
    "box": [
     -82.88173,
     30.36447,
@@ -41908,6 +43382,16 @@
     "US-8716",
     489
    ],
+   "access_pin": {
+    "at": [
+     30.386484,
+     -82.897207
+    ],
+    "from": "road",
+    "name": "SE Marable Loop",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 283
+   },
    "box": [
     -82.90608,
     30.38588,
@@ -42257,6 +43741,16 @@
     "US-8716",
     489
    ],
+   "access_pin": {
+    "at": [
+     30.386484,
+     -82.897207
+    ],
+    "from": "road",
+    "name": "SE Marable Loop",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 283
+   },
    "box": [
     -82.90608,
     30.38588,
@@ -42606,6 +44100,16 @@
     "US-3666",
     1444
    ],
+   "access_pin": {
+    "at": [
+     28.529857,
+     -82.59641
+    ],
+    "from": "road",
+    "name": "Cyclops Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 393.7,
    "box": [
     -82.59897,
@@ -43049,6 +44553,16 @@
     "US-6288",
     18197
    ],
+   "access_pin": {
+    "at": [
+     30.438859,
+     -84.449992
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 572219.0,
    "box": [
     -85.11897,
@@ -43411,6 +44925,16 @@
     "US-6288",
     18197
    ],
+   "access_pin": {
+    "at": [
+     30.438859,
+     -84.449992
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 572219.0,
    "box": [
     -85.11897,
@@ -43773,6 +45297,16 @@
     "US-8326",
     4795
    ],
+   "access_pin": {
+    "at": [
+     29.998718,
+     -85.031595
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 32.9,
    "box": [
     -85.03218,
@@ -43871,6 +45405,16 @@
     "US-8326",
     489
    ],
+   "access_pin": {
+    "at": [
+     30.047107,
+     -85.079656
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Kennedy Creek Hunting & Fishing Apalachicola River - Creek (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 281
+   },
    "acres": 16.7,
    "box": [
     -85.08471,
@@ -44055,6 +45599,16 @@
     "US-8326",
     5050
    ],
+   "access_pin": {
+    "at": [
+     30.101498,
+     -85.101964
+    ],
+    "from": "road",
+    "name": "Holt Ct",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 69
+   },
    "acres": 8.9,
    "box": [
     -85.09753,
@@ -44243,6 +45797,16 @@
     "US-6295",
     5668
    ],
+   "access_pin": {
+    "at": [
+     29.518666,
+     -81.856325
+    ],
+    "from": "road",
+    "name": "NE 247th Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 805
+   },
    "acres": 76.2,
    "box": [
     -81.85632,
@@ -44377,6 +45941,16 @@
     "US-4614",
     1880
    ],
+   "access_pin": {
+    "at": [
+     30.68414,
+     -86.793348
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 10542.0,
    "box": [
     -86.90451,
@@ -44675,6 +46249,16 @@
     "US-4628",
     13364
    ],
+   "access_pin": {
+    "at": [
+     30.28534,
+     -84.715494
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 588.2,
    "box": [
     -84.73027,
@@ -44885,6 +46469,16 @@
     "US-6312",
     1125
    ],
+   "access_pin": {
+    "at": [
+     30.47141,
+     -84.412609
+    ],
+    "from": "road",
+    "name": "Houston Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 88
+   },
    "acres": 66.6,
    "box": [
     -84.42072,
@@ -44975,6 +46569,16 @@
     "US-6312",
     1416
    ],
+   "access_pin": {
+    "at": [
+     30.513729,
+     -84.512197
+    ],
+    "from": "road",
+    "name": "Co Rd 268",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6121.8,
    "box": [
     -84.53866,
@@ -45281,6 +46885,16 @@
     "US-6312",
     1416
    ],
+   "access_pin": {
+    "at": [
+     30.513729,
+     -84.512197
+    ],
+    "from": "road",
+    "name": "Co Rd 268",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6121.8,
    "box": [
     -84.53866,
@@ -45587,6 +47201,16 @@
     "US-4630",
     2949
    ],
+   "access_pin": {
+    "at": [
+     28.71403,
+     -81.035392
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: C.S. Lee Park St. Johns River - Lake Harney (Florida Fish an",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 84
+   },
    "acres": 67.3,
    "box": [
     -81.03542,
@@ -45877,6 +47501,16 @@
     "US-6318",
     5407
    ],
+   "access_pin": {
+    "at": [
+     26.613249,
+     -81.343681
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 32591.1,
    "box": [
     -81.38431,
@@ -46191,6 +47825,16 @@
     "US-4640",
     471
    ],
+   "access_pin": {
+    "at": [
+     29.828359,
+     -84.912417
+    ],
+    "from": "road",
+    "name": "Pitts Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 227
+   },
    "acres": 6.5,
    "box": [
     -84.91339,
@@ -46273,6 +47917,16 @@
     "US-4640",
     283
    ],
+   "access_pin": {
+    "at": [
+     30.002511,
+     -84.539502
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 11.4,
    "box": [
     -84.54128,
@@ -46375,6 +48029,16 @@
     "US-4640",
     1489
    ],
+   "access_pin": {
+    "at": [
+     30.002508,
+     -84.539663
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 13.2,
    "box": [
     -84.54746,
@@ -46481,6 +48145,16 @@
     "US-4640",
     46
    ],
+   "access_pin": {
+    "at": [
+     30.03186,
+     -84.595208
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 98.3,
    "box": [
     -84.59533,
@@ -46667,6 +48341,16 @@
     "US-4640",
     46
    ],
+   "access_pin": {
+    "at": [
+     30.03186,
+     -84.595208
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 98.3,
    "box": [
     -84.59533,
@@ -46853,6 +48537,16 @@
     "US-6288",
     3594
    ],
+   "access_pin": {
+    "at": [
+     29.90408,
+     -84.976908
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 190
+   },
    "acres": 204.3,
    "box": [
     -84.97696,
@@ -46923,6 +48617,16 @@
     "US-4640",
     1440
    ],
+   "access_pin": {
+    "at": [
+     30.03986,
+     -84.616372
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 18.0,
    "box": [
     -84.60394,
@@ -47053,6 +48757,16 @@
     "US-4640",
     2938
    ],
+   "access_pin": {
+    "at": [
+     30.03977,
+     -84.616289
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 358.6,
    "box": [
     -84.6752,
@@ -47147,6 +48861,16 @@
     "US-4641",
     3661
    ],
+   "access_pin": {
+    "at": [
+     29.128647,
+     -81.242516
+    ],
+    "from": "road",
+    "name": "Jolly Ford Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 68.4,
    "box": [
     -81.24898,
@@ -47277,6 +49001,16 @@
     "US-4641",
     882
    ],
+   "access_pin": {
+    "at": [
+     29.119242,
+     -81.184
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 93.6,
    "box": [
     -81.20198,
@@ -47584,6 +49318,16 @@
     "US-5520",
     1611
    ],
+   "access_pin": {
+    "at": [
+     28.767342,
+     -82.589836
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5622.3,
    "box": [
     -82.60882,
@@ -47938,6 +49682,16 @@
     "US-4646",
     3357
    ],
+   "access_pin": {
+    "at": [
+     28.858118,
+     -82.426997
+    ],
+    "from": "road",
+    "name": "S Haid Ter",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 48671.3,
    "box": [
     -82.50057,
@@ -48208,6 +49962,16 @@
     "US-8335",
     1056
    ],
+   "access_pin": {
+    "at": [
+     30.51658,
+     -87.007287
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Escribano Point Wildlife Management Area - Bayside Kayak B (",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1159.6,
    "box": [
     -87.01009,
@@ -48466,6 +50230,16 @@
     "US-6301",
     3000
    ],
+   "access_pin": {
+    "at": [
+     26.333451,
+     -80.639076
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 334.7,
    "box": [
     -80.7748,
@@ -48556,6 +50330,16 @@
     "US-6321",
     299
    ],
+   "access_pin": {
+    "at": [
+     26.33213,
+     -80.775549
+    ],
+    "from": "road",
+    "name": "Miami Canal Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 184.8,
    "box": [
     -80.83289,
@@ -48650,6 +50434,16 @@
     "US-8370",
     3430
    ],
+   "access_pin": {
+    "at": [
+     28.617681,
+     -80.937551
+    ],
+    "from": "road",
+    "name": "Indian Field Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2583.5,
    "box": [
     -80.94693,
@@ -48916,6 +50710,14 @@
     "US-6329",
     3104
    ],
+   "access_pin": {
+    "at": [
+     28.396839,
+     -80.885256
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 6.7,
    "box": [
     -80.88633,
@@ -49006,6 +50808,14 @@
     "US-6329",
     3283
    ],
+   "access_pin": {
+    "at": [
+     28.435908,
+     -80.899406
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 26.8,
    "box": [
     -80.90155,
@@ -49140,6 +50950,16 @@
     "US-8373",
     3184
    ],
+   "access_pin": {
+    "at": [
+     28.959824,
+     -81.860064
+    ],
+    "from": "road",
+    "name": "Saddle Ridge Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 83
+   },
    "acres": 453.6,
    "box": [
     -81.86008,
@@ -49290,6 +51110,16 @@
     "US-8716",
     153
    ],
+   "access_pin": {
+    "at": [
+     30.379615,
+     -82.912118
+    ],
+    "from": "road",
+    "name": "40th St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1163.6,
    "box": [
     -82.91219,

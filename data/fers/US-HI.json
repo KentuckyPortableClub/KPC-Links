@@ -200,6 +200,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     21.318091,
+     -157.819337
+    ],
+    "from": "road",
+    "name": "Round Top Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 18
+   },
    "box": [
     -157.82032,
     21.31763,
@@ -463,6 +473,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     21.307411,
+     -157.797374
+    ],
+    "from": "road",
+    "name": "Peter St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 178
+   },
    "box": [
     -157.7972,
     21.30731,
@@ -802,6 +822,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     21.31845,
+     -157.81773
+    ],
+    "from": "road",
+    "name": "Round Top Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -157.81987,
     21.31668,
@@ -1145,6 +1175,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     21.316404,
+     -157.819005
+    ],
+    "from": "road",
+    "name": "Nutridge St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 26.5,
    "box": [
     -157.8237,
@@ -1249,6 +1289,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     21.316446,
+     -157.819715
+    ],
+    "from": "road",
+    "name": "Nutridge St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 39
+   },
    "box": [
     -157.82036,
     21.31624,
@@ -1556,6 +1606,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     21.307049,
+     -157.797202
+    ],
+    "from": "road",
+    "name": "Peter St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 141
+   },
    "box": [
     -157.79722,
     21.3073,

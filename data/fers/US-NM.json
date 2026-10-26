@@ -6,6 +6,14 @@
  "spots": [
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     32.097203,
+     -104.663992
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 191.3,
    "box": [
     -104.66542,
@@ -268,6 +276,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     33.227256,
+     -108.27914
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 370
+   },
    "acres": 88.3,
    "box": [
     -108.28151,
@@ -549,6 +567,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     33.527335,
+     -105.438297
+    ],
+    "from": "road",
+    "name": "Salazar Canyon",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 264.1,
    "box": [
     -105.47176,
@@ -775,6 +803,16 @@
     "US-2698",
     7161
    ],
+   "access_pin": {
+    "at": [
+     36.663602,
+     -106.705032
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 20.6,
    "box": [
     -106.74504,
@@ -925,6 +963,16 @@
     "US-2699",
     1825
    ],
+   "access_pin": {
+    "at": [
+     35.886645,
+     -106.723676
+    ],
+    "from": "road",
+    "name": "Fenton Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8.3,
    "box": [
     -106.74623,
@@ -1035,6 +1083,16 @@
     "US-2699",
     250
    ],
+   "access_pin": {
+    "at": [
+     35.89157,
+     -106.720176
+    ],
+    "from": "road",
+    "name": "Forest Rd 378",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 38.7,
    "box": [
     -106.73514,

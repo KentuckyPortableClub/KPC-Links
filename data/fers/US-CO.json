@@ -556,6 +556,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     40.370858,
+     -105.894406
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8.6,
    "box": [
     -105.91369,
@@ -871,6 +881,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     40.550839,
+     -105.703357
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 13.2,
    "box": [
     -105.7069,
@@ -1510,6 +1528,23 @@
    "wide_m": 1170
   },
   {
+   "access": [
+    38.988548,
+    -108.617376,
+    "Trailhead: Bangs Canyon Trailhead (State of Colorado)",
+    "US-11906",
+    10408
+   ],
+   "access_pin": {
+    "at": [
+     38.960811,
+     -108.483706
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -108.58139,
     38.90718,
@@ -1832,6 +1867,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    38.988548,
+    -108.617376,
+    "Trailhead: Bangs Canyon Trailhead (State of Colorado)",
+    "US-11906",
+    1278
+   ],
+   "access_pin": {
+    "at": [
+     38.991446,
+     -108.619402
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -108.61945,
     38.93806,
@@ -2158,6 +2210,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    39.025335,
+    -108.605692,
+    "Trailhead: Gunny Loop Trailhead (State of Colorado)",
+    "US-11906",
+    1273
+   ],
+   "access_pin": {
+    "at": [
+     39.025488,
+     -108.60591
+    ],
+    "from": "road",
+    "name": "Little Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -108.61193,
     39.02515,
@@ -2835,6 +2904,16 @@
     "US-1234",
     663
    ],
+   "access_pin": {
+    "at": [
+     40.783765,
+     -106.891393
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Pearl Lake Boat Ramp Parking (Colorado Parks and Wildlife)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 221
+   },
    "acres": 48.4,
    "box": [
     -106.88965,
@@ -3071,6 +3150,16 @@
     "US-1243",
     10120
    ],
+   "access_pin": {
+    "at": [
+     40.806748,
+     -106.051826
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 192
+   },
    "acres": 26.8,
    "box": [
     -106.04712,
@@ -5335,6 +5424,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.633848,
+     -105.543
+    ],
+    "from": "road",
+    "name": "Arrastre Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 167
+   },
    "acres": 20.5,
    "box": [
     -105.54255,
@@ -6627,6 +6726,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.225764,
+     -106.423777
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2559.7,
    "box": [
     -106.47791,

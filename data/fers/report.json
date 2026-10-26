@@ -59,6 +59,24 @@
   "problems": [],
   "with official lines": 234
  },
+ "pass4": {
+  "candidates without a pin": 2889,
+  "cell_m": 5.0,
+  "date": "2026-10-26",
+  "left out": {
+   "Kentucky (own list)": "all (ky-overlaps.geojson)",
+   "approximate": 414,
+   "no outline": 3731,
+   "no pin": 0,
+   "pin well outside": 262
+  },
+  "official parks": 14675,
+  "pairs tested": 0,
+  "pass": 4,
+  "pins placed": 2889,
+  "problems": [],
+  "with official lines": 233
+ },
  "per state": {
   "CA-AB": {
    "candidates": 113,
@@ -70,7 +88,7 @@
    "spots": 268
   },
   "CA-BC": {
-   "candidates": 16,
+   "candidates": 25,
    "candidates (saved outline only)": 0,
    "lines": 9,
    "n-fers": 0,
@@ -124,7 +142,7 @@
    "spots": 64
   },
   "CA-ON": {
-   "candidates": 122,
+   "candidates": 126,
    "candidates (saved outline only)": 0,
    "lines": 184,
    "n-fers": 0,
@@ -151,7 +169,7 @@
    "spots": 231
   },
   "CA-SK": {
-   "candidates": 15,
+   "candidates": 18,
    "candidates (saved outline only)": 0,
    "lines": 9,
    "n-fers": 0,
@@ -205,7 +223,7 @@
    "spots": 67
   },
   "US-CA": {
-   "candidates": 48,
+   "candidates": 51,
    "candidates (saved outline only)": 0,
    "lines": 96,
    "n-fers": 0,
@@ -214,7 +232,7 @@
    "spots": 228
   },
   "US-CO": {
-   "candidates": 6,
+   "candidates": 9,
    "candidates (saved outline only)": 0,
    "lines": 4,
    "n-fers": 1,
@@ -277,7 +295,7 @@
    "spots": 1
   },
   "US-ID": {
-   "candidates": 268,
+   "candidates": 350,
    "candidates (saved outline only)": 0,
    "lines": 539,
    "n-fers": 1,
@@ -322,7 +340,7 @@
    "spots": 3
   },
   "US-MA": {
-   "candidates": 35,
+   "candidates": 68,
    "candidates (saved outline only)": 0,
    "lines": 78,
    "n-fers": 0,
@@ -358,7 +376,7 @@
    "spots": 356
   },
   "US-MN": {
-   "candidates": 166,
+   "candidates": 345,
    "candidates (saved outline only)": 0,
    "lines": 429,
    "n-fers": 2,
@@ -367,7 +385,7 @@
    "spots": 606
   },
   "US-MO": {
-   "candidates": 3,
+   "candidates": 16,
    "candidates (saved outline only)": 0,
    "lines": 17,
    "n-fers": 1,
@@ -484,7 +502,7 @@
    "spots": 85
   },
   "US-OR": {
-   "candidates": 108,
+   "candidates": 120,
    "candidates (saved outline only)": 0,
    "lines": 157,
    "n-fers": 3,
@@ -547,7 +565,7 @@
    "spots": 70
   },
   "US-UT": {
-   "candidates": 99,
+   "candidates": 114,
    "candidates (saved outline only)": 0,
    "lines": 90,
    "n-fers": 18,

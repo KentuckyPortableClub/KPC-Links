@@ -102,6 +102,16 @@
     "US-12436",
     3052
    ],
+   "access_pin": {
+    "at": [
+     37.919435,
+     -80.272927
+    ],
+    "from": "road",
+    "name": "Anthony Station Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "acres": 5132.5,
    "box": [
     -80.32614,
@@ -402,6 +412,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.337597,
+     -80.37529
+    ],
+    "from": "road",
+    "name": "Pub Rd 108",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 49361.5,
    "box": [
     -80.43773,
@@ -674,6 +694,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.032087,
+     -79.331867
+    ],
+    "from": "road",
+    "name": "Blackbird Knob Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 17700.9,
    "box": [
     -79.40575,
@@ -926,6 +956,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.754635,
+     -79.651786
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6030.0,
    "box": [
     -79.69322,
@@ -1254,6 +1294,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.721951,
+     -79.681219
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5825.9,
    "box": [
     -79.73918,
@@ -1554,6 +1604,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.050423,
+     -79.618505
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 20622.3,
    "box": [
     -79.70307,
@@ -2211,6 +2271,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.04413,
+     -80.154418
+    ],
+    "from": "road",
+    "name": "Beaver Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6025.7,
    "box": [
     -80.24865,
@@ -2889,6 +2959,16 @@
     "US-5589",
     5183
    ],
+   "access_pin": {
+    "at": [
+     38.265472,
+     -79.971137
+    ],
+    "from": "road",
+    "name": "Co Rte 11/2",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 30.4,
    "box": [
     -79.99204,
@@ -3199,6 +3279,16 @@
     "US-5589",
     5183
    ],
+   "access_pin": {
+    "at": [
+     38.265472,
+     -79.971137
+    ],
+    "from": "road",
+    "name": "Co Rte 11/2",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 30.4,
    "box": [
     -79.99204,
@@ -3503,6 +3593,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.894585,
+     -80.329958
+    ],
+    "from": "trail",
+    "name": "River Trail Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.32973,
     37.90325,
@@ -3870,6 +3970,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.927757,
+     -80.33173
+    ],
+    "from": "road",
+    "name": "Rock Trail Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.34136,
     37.93147,
@@ -4197,6 +4307,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.025645,
+     -80.261214
+    ],
+    "from": "trail",
+    "name": "path",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.2658,
     38.02486,
@@ -4544,6 +4664,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.02565,
+     -80.260476
+    ],
+    "from": "trail",
+    "name": "path",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.24904,
     38.02468,
@@ -4895,6 +5025,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.17218,
+     -80.1206
+    ],
+    "from": "trail",
+    "name": "Greenbrier River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.12134,
     38.17131,
@@ -5326,6 +5466,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.24931,
+     -80.038424
+    ],
+    "from": "road",
+    "name": "Co Rte 11/2",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.05239,
     38.23289,
@@ -5693,6 +5843,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.242647,
+     -80.049113
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.06536,
     38.2273,
@@ -6028,6 +6188,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.24931,
+     -80.038424
+    ],
+    "from": "road",
+    "name": "Co Rte 11/2",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.05239,
     38.23289,
@@ -6395,6 +6565,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.24931,
+     -80.038424
+    ],
+    "from": "road",
+    "name": "Co Rte 11/2",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.05239,
     38.23289,
@@ -6762,6 +6942,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.285235,
+     -80.005432
+    ],
+    "from": "trail",
+    "name": "Greenbrier River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.01735,
     38.26992,
@@ -7085,6 +7275,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.285304,
+     -80.005547
+    ],
+    "from": "trail",
+    "name": "Greenbrier River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.01169,
     38.28104,
@@ -7440,6 +7640,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.285257,
+     -80.005459
+    ],
+    "from": "trail",
+    "name": "Greenbrier River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.00817,
     38.28472,
@@ -7763,6 +7973,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.324542,
+     -79.963475
+    ],
+    "from": "trail",
+    "name": "Greenbrier River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.98239,
     38.30709,
@@ -8114,6 +8334,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.324736,
+     -79.963707
+    ],
+    "from": "trail",
+    "name": "Greenbrier River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.97862,
     38.31179,
@@ -8597,6 +8827,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.380229,
+     -79.922138
+    ],
+    "from": "trail",
+    "name": "path",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "box": [
     -79.92235,
     38.37782,
@@ -10793,6 +11033,16 @@
     "US-12049",
     955
    ],
+   "access_pin": {
+    "at": [
+     39.171987,
+     -81.41183
+    ],
+    "from": "road",
+    "name": "Co Rte 7",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 10
+   },
    "box": [
     -81.41592,
     39.17003,
@@ -11130,6 +11380,16 @@
     "US-12049",
     1093
    ],
+   "access_pin": {
+    "at": [
+     39.179404,
+     -81.381489
+    ],
+    "from": "road",
+    "name": "Co Rte 7",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -81.39288,
     39.17161,
@@ -11467,6 +11727,16 @@
     "US-12049",
     1244
    ],
+   "access_pin": {
+    "at": [
+     39.179387,
+     -81.381504
+    ],
+    "from": "road",
+    "name": "Co Rte 7",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -81.38409,
     39.17887,
@@ -11792,6 +12062,16 @@
     "US-1800",
     2641
    ],
+   "access_pin": {
+    "at": [
+     38.34678,
+     -82.406495
+    ],
+    "from": "road",
+    "name": "Co Rd 50/3",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 7807.2,
    "box": [
     -82.43456,
@@ -12114,6 +12394,16 @@
     "US-7046",
     901
    ],
+   "access_pin": {
+    "at": [
+     38.309794,
+     -82.316753
+    ],
+    "from": "road",
+    "name": "Beech Fork Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1056.8,
    "box": [
     -82.34854,
@@ -12444,6 +12734,16 @@
     "US-1804",
     2482
    ],
+   "access_pin": {
+    "at": [
+     37.64374,
+     -80.880208
+    ],
+    "from": "road",
+    "name": "Observation Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 18540.2,
    "box": [
     -80.94622,
@@ -12794,6 +13094,16 @@
     "US-1817",
     152
    ],
+   "access_pin": {
+    "at": [
+     37.623365,
+     -80.35191
+    ],
+    "from": "road",
+    "name": "Co Rd 8/2",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 80.2,
    "box": [
     -80.35928,
@@ -13044,6 +13354,16 @@
     "US-1818",
     3001
    ],
+   "access_pin": {
+    "at": [
+     39.230592,
+     -81.115515
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.11736,
     39.22827,
@@ -13698,6 +14018,16 @@
     "US-5589",
     6698
    ],
+   "access_pin": {
+    "at": [
+     38.37195,
+     -79.933819
+    ],
+    "from": "trail",
+    "name": "path",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.94898,
     38.35792,

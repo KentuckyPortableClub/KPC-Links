@@ -47,6 +47,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     35.793748,
+     -94.25531
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 399.0,
    "box": [
     -94.27383,
@@ -167,6 +177,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     35.793747,
+     -94.255304
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 232.2,
    "box": [
     -94.26918,
@@ -275,6 +295,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.646761,
+     -91.050412
+    ],
+    "from": "road",
+    "name": "Lee Road 102",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 48
+   },
    "acres": 36.1,
    "box": [
     -91.05422,
@@ -347,6 +377,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     35.176362,
+     -93.644861
+    ],
+    "from": "road",
+    "name": "Overlook Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2164.6,
    "box": [
     -93.6839,
@@ -705,6 +745,16 @@
     "US-4426",
     1699
    ],
+   "access_pin": {
+    "at": [
+     33.686107,
+     -93.085224
+    ],
+    "from": "road",
+    "name": "Ouachita Road 312",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 495
+   },
    "acres": 35.9,
    "box": [
     -93.08936,

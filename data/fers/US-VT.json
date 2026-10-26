@@ -61,6 +61,16 @@
     "US-5549",
     4549
    ],
+   "access_pin": {
+    "at": [
+     44.070377,
+     -72.809105
+    ],
+    "from": "road",
+    "name": "High View Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 490
+   },
    "acres": 20.2,
    "box": [
     -72.80914,

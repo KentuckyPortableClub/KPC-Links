@@ -298,6 +298,16 @@
     "US-2870",
     350
    ],
+   "access_pin": {
+    "at": [
+     41.454277,
+     -71.356767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 11.0,
    "box": [
     -71.34791,

@@ -309,6 +309,16 @@
     "US-1290",
     185
    ],
+   "access_pin": {
+    "at": [
+     37.53669,
+     -78.271927
+    ],
+    "from": "road",
+    "name": "Co Rd 629",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 322.6,
    "box": [
     -78.27927,
@@ -411,6 +421,16 @@
     "US-5503",
     200
    ],
+   "access_pin": {
+    "at": [
+     37.408372,
+     -78.648446
+    ],
+    "from": "road",
+    "name": "State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 453.1,
    "box": [
     -78.6484,
@@ -761,6 +781,16 @@
     "US-1315",
     1955
    ],
+   "access_pin": {
+    "at": [
+     38.838679,
+     -78.483366
+    ],
+    "from": "parking / access point",
+    "name": "Trailhead: Seven Bends State Park Seven Bends State Park (Virginia DCR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 238
+   },
    "box": [
     -78.49774,
     38.82266,
@@ -1094,6 +1124,16 @@
     "US-5522",
     134
    ],
+   "access_pin": {
+    "at": [
+     37.178667,
+     -78.266297
+    ],
+    "from": "road",
+    "name": "Co Rd 629",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 458.5,
    "box": [
     -78.28447,
@@ -1684,6 +1724,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.512606,
+     -79.52928
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 723
+   },
    "box": [
     -79.52954,
     37.51263,
@@ -1921,6 +1971,16 @@
     "US-9946",
     3879
    ],
+   "access_pin": {
+    "at": [
+     36.6837,
+     -81.538625
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 252
+   },
    "box": [
     -81.55462,
     36.65817,
@@ -2282,6 +2342,16 @@
     "US-9953",
     1081
    ],
+   "access_pin": {
+    "at": [
+     38.363207,
+     -79.29771
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Ramseys Draft, R. Prong George Washington and Jefferson Na (Virginia D",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 941
+   },
    "box": [
     -79.30651,
     38.34892,

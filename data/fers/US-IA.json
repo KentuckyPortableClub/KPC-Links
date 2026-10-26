@@ -12,6 +12,16 @@
     "US-5736",
     181
    ],
+   "access_pin": {
+    "at": [
+     43.473173,
+     -95.125357
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 39.5,
    "box": [
     -95.12617,

@@ -252,6 +252,16 @@
     "US-8652",
     962
    ],
+   "access_pin": {
+    "at": [
+     34.972776,
+     -99.336197
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 558.8,
    "box": [
     -99.34627,
@@ -560,6 +570,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.563541,
+     -93.256805
+    ],
+    "from": "road",
+    "name": "Tanner Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46848,
     34.53196,
@@ -927,6 +947,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.563541,
+     -93.256805
+    ],
+    "from": "road",
+    "name": "Tanner Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46848,
     34.53196,
@@ -1294,6 +1324,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.563541,
+     -93.256805
+    ],
+    "from": "road",
+    "name": "Tanner Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46848,
     34.53196,
@@ -2009,6 +2049,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.563541,
+     -93.256805
+    ],
+    "from": "road",
+    "name": "Tanner Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46848,
     34.53196,
@@ -2376,6 +2426,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.552618,
+     -93.473521
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.48129,
     34.54751,
@@ -2735,6 +2795,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.563541,
+     -93.256805
+    ],
+    "from": "road",
+    "name": "Tanner Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46848,
     34.53196,
@@ -3294,6 +3364,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.563541,
+     -93.256805
+    ],
+    "from": "road",
+    "name": "Tanner Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46848,
     34.53196,
@@ -3661,6 +3741,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.56731,
+     -93.200847
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 31
+   },
    "box": [
     -93.20082,
     34.56623,
@@ -3924,6 +4014,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.567315,
+     -93.200839
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 31
+   },
    "box": [
     -93.20943,
     34.56895,
@@ -4223,6 +4323,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.748054,
+     -93.462409
+    ],
+    "from": "road",
+    "name": "148",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.89447,
     34.66113,
@@ -4546,6 +4656,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.748054,
+     -93.462409
+    ],
+    "from": "road",
+    "name": "148",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.89447,
     34.66113,
@@ -4869,6 +4989,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.748054,
+     -93.462409
+    ],
+    "from": "road",
+    "name": "148",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.89447,
     34.66113,
@@ -5192,6 +5322,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.834795,
+     -93.015091
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.34089,
     34.68907,
@@ -5531,6 +5671,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.834795,
+     -93.015091
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.34089,
     34.68907,
@@ -5870,6 +6020,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.876654,
+     -92.906215
+    ],
+    "from": "road",
+    "name": "Co Rd 55",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.95556,
     34.84433,
@@ -6205,6 +6365,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     34.876654,
+     -92.906215
+    ],
+    "from": "road",
+    "name": "Co Rd 55",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.95556,
     34.84433,
@@ -6675,6 +6845,16 @@
     "US-12167",
     478
    ],
+   "access_pin": {
+    "at": [
+     35.204153,
+     -98.482978
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 14.2,
    "box": [
     -98.49604,
@@ -6907,6 +7087,16 @@
     "US-6362",
     1466
    ],
+   "access_pin": {
+    "at": [
+     34.748379,
+     -99.015599
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 698.9,
    "box": [
     -99.0185,
@@ -7157,6 +7347,16 @@
     "US-6359",
     8191
    ],
+   "access_pin": {
+    "at": [
+     35.621695,
+     -95.180045
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 9.1,
    "box": [
     -95.17662,
@@ -7279,6 +7479,16 @@
     "US-2787",
     415
    ],
+   "access_pin": {
+    "at": [
+     34.108246,
+     -95.448458
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (Oklahoma Dept. of Wildlife Conservation)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 210
+   },
    "acres": 142.3,
    "box": [
     -95.44938,
@@ -7509,6 +7719,16 @@
     "US-6353",
     1492
    ],
+   "access_pin": {
+    "at": [
+     34.118828,
+     -95.41737
+    ],
+    "from": "road",
+    "name": "E 1996 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 10
+   },
    "acres": 400.0,
    "box": [
     -95.42963,
@@ -8394,6 +8614,16 @@
     "US-6373",
     1790
    ],
+   "access_pin": {
+    "at": [
+     35.02915,
+     -95.348999
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5045.2,
    "box": [
     -95.34916,
@@ -8610,6 +8840,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     35.944988,
+     -98.42769
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 224.8,
    "box": [
     -98.42986,
@@ -8740,6 +8980,16 @@
     "US-6340",
     4577
    ],
+   "access_pin": {
+    "at": [
+     35.59542,
+     -99.702811
+    ],
+    "from": "road",
+    "name": "N 1850 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 29.7,
    "box": [
     -99.70463,
@@ -8814,6 +9064,16 @@
     "US-6340",
     909
    ],
+   "access_pin": {
+    "at": [
+     35.609749,
+     -99.662519
+    ],
+    "from": "road",
+    "name": "12th St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1210.3,
    "box": [
     -99.66909,
@@ -8936,6 +9196,16 @@
     "US-6340",
     687
    ],
+   "access_pin": {
+    "at": [
+     35.609885,
+     -99.601347
+    ],
+    "from": "road",
+    "name": "E0970 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 465.8,
    "box": [
     -99.60687,
@@ -9006,6 +9276,16 @@
     "US-6340",
     2304
    ],
+   "access_pin": {
+    "at": [
+     35.63177,
+     -99.588852
+    ],
+    "from": "road",
+    "name": "Ew096",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 38.6,
    "box": [
     -99.58891,
@@ -9080,6 +9360,16 @@
     "US-6340",
     4054
    ],
+   "access_pin": {
+    "at": [
+     35.668537,
+     -99.943502
+    ],
+    "from": "road",
+    "name": "N1710 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 119.6,
    "box": [
     -99.9518,
@@ -9150,6 +9440,16 @@
     "US-6340",
     5383
    ],
+   "access_pin": {
+    "at": [
+     35.668216,
+     -99.978926
+    ],
+    "from": "road",
+    "name": "N 1690 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 121.6,
    "box": [
     -99.98728,
@@ -9220,6 +9520,16 @@
     "US-6340",
     3664
    ],
+   "access_pin": {
+    "at": [
+     35.669481,
+     -99.961115
+    ],
+    "from": "road",
+    "name": "RM Ns 170",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 258.0,
    "box": [
     -99.98733,
@@ -9290,6 +9600,16 @@
     "US-6340",
     1687
    ],
+   "access_pin": {
+    "at": [
+     35.697241,
+     -99.976112
+    ],
+    "from": "road",
+    "name": "RM Ew 091",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 683.5,
    "box": [
     -99.96114,
@@ -9380,6 +9700,16 @@
     "US-6340",
     6386
    ],
+   "access_pin": {
+    "at": [
+     35.68187,
+     -99.544417
+    ],
+    "from": "road",
+    "name": "N1930 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 805
+   },
    "acres": 32.0,
    "box": [
     -99.54443,
@@ -9450,6 +9780,16 @@
     "US-6340",
     5599
    ],
+   "access_pin": {
+    "at": [
+     35.700867,
+     -99.588286
+    ],
+    "from": "road",
+    "name": "N1910 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 159.4,
    "box": [
     -99.58852,
@@ -9520,6 +9860,16 @@
     "US-6340",
     1808
    ],
+   "access_pin": {
+    "at": [
+     35.70443,
+     -99.978684
+    ],
+    "from": "road",
+    "name": "RM Ew 091",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 140.6,
    "box": [
     -99.99656,
@@ -9590,6 +9940,16 @@
     "US-6340",
     3808
    ],
+   "access_pin": {
+    "at": [
+     35.70412,
+     -99.588284
+    ],
+    "from": "road",
+    "name": "N 1910 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 308.4,
    "box": [
     -99.58841,
@@ -9660,6 +10020,16 @@
     "US-6340",
     213
    ],
+   "access_pin": {
+    "at": [
+     35.708455,
+     -99.978729
+    ],
+    "from": "road",
+    "name": "N 1690 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 382.1,
    "box": [
     -99.98732,
@@ -9754,6 +10124,16 @@
     "US-6340",
     3831
    ],
+   "access_pin": {
+    "at": [
+     35.696571,
+     -99.694704
+    ],
+    "from": "road",
+    "name": "RM Ew 091",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 642.4,
    "box": [
     -99.69472,
@@ -9832,6 +10212,16 @@
     "US-6340",
     3433
    ],
+   "access_pin": {
+    "at": [
+     35.696565,
+     -99.694715
+    ],
+    "from": "road",
+    "name": "RM Ew 091",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 114.8,
    "box": [
     -99.71216,
@@ -9918,6 +10308,16 @@
     "US-6340",
     3171
    ],
+   "access_pin": {
+    "at": [
+     35.71877,
+     -99.858636
+    ],
+    "from": "road",
+    "name": "RM Ns 176",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 868.6,
    "box": [
     -99.85478,
@@ -10056,6 +10456,16 @@
     "US-6340",
     3778
    ],
+   "access_pin": {
+    "at": [
+     35.739975,
+     -99.720888
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 474.4,
    "box": [
     -99.74774,
@@ -10126,6 +10536,16 @@
     "US-6340",
     579
    ],
+   "access_pin": {
+    "at": [
+     35.791887,
+     -99.943412
+    ],
+    "from": "road",
+    "name": "RM Ns 171",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6614.6,
    "box": [
     -99.96601,
@@ -10316,6 +10736,16 @@
     "US-6340",
     1433
    ],
+   "access_pin": {
+    "at": [
+     35.740922,
+     -99.67622
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Oklahoma Dept. of Wildlife Conservation)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 497.3,
    "box": [
     -99.67663,
@@ -10442,6 +10872,16 @@
     "US-6340",
     298
    ],
+   "access_pin": {
+    "at": [
+     35.754855,
+     -99.570516
+    ],
+    "from": "road",
+    "name": "E0870 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 464.3,
    "box": [
     -99.58382,
@@ -10536,6 +10976,16 @@
     "US-6340",
     1041
    ],
+   "access_pin": {
+    "at": [
+     35.751463,
+     -99.720487
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 900.0,
    "box": [
     -99.73003,
@@ -10646,6 +11096,16 @@
     "US-6340",
     1713
    ],
+   "access_pin": {
+    "at": [
+     35.740116,
+     -99.787507
+    ],
+    "from": "road",
+    "name": "E0880 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 158.2,
    "box": [
     -99.77425,
@@ -10716,6 +11176,16 @@
     "US-6340",
     579
    ],
+   "access_pin": {
+    "at": [
+     35.791887,
+     -99.943412
+    ],
+    "from": "road",
+    "name": "RM Ns 171",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6614.6,
    "box": [
     -99.96601,
@@ -10906,6 +11376,16 @@
     "US-6340",
     579
    ],
+   "access_pin": {
+    "at": [
+     35.791887,
+     -99.943412
+    ],
+    "from": "road",
+    "name": "RM Ns 171",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6614.6,
    "box": [
     -99.96601,
@@ -11096,6 +11576,16 @@
     "US-6340",
     1482
    ],
+   "access_pin": {
+    "at": [
+     35.750014,
+     -99.718222
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 272.1,
    "box": [
     -99.70325,
@@ -11174,6 +11664,16 @@
     "US-6340",
     2194
    ],
+   "access_pin": {
+    "at": [
+     35.754855,
+     -99.570511
+    ],
+    "from": "road",
+    "name": "E0870 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 72.4,
    "box": [
     -99.57491,
@@ -11248,6 +11748,16 @@
     "US-6340",
     3440
    ],
+   "access_pin": {
+    "at": [
+     35.766341,
+     -99.658624
+    ],
+    "from": "road",
+    "name": "E 0878 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 146.0,
    "box": [
     -99.6457,
@@ -11334,6 +11844,16 @@
     "US-6340",
     579
    ],
+   "access_pin": {
+    "at": [
+     35.791887,
+     -99.943412
+    ],
+    "from": "road",
+    "name": "RM Ns 171",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6614.6,
    "box": [
     -99.96601,
@@ -11524,6 +12044,16 @@
     "US-6340",
     3431
    ],
+   "access_pin": {
+    "at": [
+     35.766653,
+     -99.658616
+    ],
+    "from": "road",
+    "name": "E 0878 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 93.5,
    "box": [
     -99.6587,
@@ -11626,6 +12156,16 @@
     "US-6340",
     1332
    ],
+   "access_pin": {
+    "at": [
+     35.783836,
+     -99.589598
+    ],
+    "from": "road",
+    "name": "E0850 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 338.7,
    "box": [
     -99.59688,
@@ -11724,6 +12264,16 @@
     "US-6340",
     728
    ],
+   "access_pin": {
+    "at": [
+     35.79804,
+     -99.840524
+    ],
+    "from": "road",
+    "name": "E 840 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2306.6,
    "box": [
     -99.84598,
@@ -11890,6 +12440,16 @@
     "US-6340",
     1330
    ],
+   "access_pin": {
+    "at": [
+     35.78411,
+     -99.907707
+    ],
+    "from": "road",
+    "name": "N1730 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 190.7,
    "box": [
     -99.90796,
@@ -11968,6 +12528,16 @@
     "US-6340",
     518
    ],
+   "access_pin": {
+    "at": [
+     35.783157,
+     -99.889161
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Oklahoma Dept. of Wildlife Conservation)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 135.1,
    "box": [
     -99.88958,
@@ -12046,6 +12616,16 @@
     "US-6340",
     348
    ],
+   "access_pin": {
+    "at": [
+     35.797762,
+     -99.605706
+    ],
+    "from": "road",
+    "name": "N1900 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 437.9,
    "box": [
     -99.60574,
@@ -12208,6 +12788,16 @@
     "US-6340",
     2155
    ],
+   "access_pin": {
+    "at": [
+     35.812375,
+     -99.623416
+    ],
+    "from": "road",
+    "name": "N1890 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 69.7,
    "box": [
     -99.61459,
@@ -12302,6 +12892,16 @@
     "US-6340",
     3397
    ],
+   "access_pin": {
+    "at": [
+     35.79849,
+     -99.943386
+    ],
+    "from": "road",
+    "name": "RM Ew 084",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 466.1,
    "box": [
     -99.96136,
@@ -12372,6 +12972,16 @@
     "US-6340",
     3724
    ],
+   "access_pin": {
+    "at": [
+     35.81237,
+     -99.623463
+    ],
+    "from": "road",
+    "name": "E0830 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 314.4,
    "box": [
     -99.6235,

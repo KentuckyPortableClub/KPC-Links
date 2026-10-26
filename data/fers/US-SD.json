@@ -6,6 +6,16 @@
  "spots": [
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.637144,
+     -103.451291
+    ],
+    "from": "road",
+    "name": "Highland Ridge Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 46.7,
    "box": [
     -103.48057,
@@ -2824,6 +2834,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     45.727078,
+     -102.250404
+    ],
+    "from": "road",
+    "name": "S Cabin Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 150.2,
    "box": [
     -102.25268,
@@ -3072,6 +3092,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.866752,
+     -97.863548
+    ],
+    "from": "road",
+    "name": "Dempsters Cove Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 44.3,
    "box": [
     -97.86874,
@@ -3228,6 +3258,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.876064,
+     -97.827446
+    ],
+    "from": "road",
+    "name": "Sand Creek Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 109.4,
    "box": [
     -97.84876,
@@ -3492,6 +3532,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.861765,
+     -97.647793
+    ],
+    "from": "road",
+    "name": "Tabor Rec Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 64.5,
    "box": [
     -97.65715,
@@ -4491,6 +4541,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.863929,
+     -97.46989
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 209.7,
    "box": [
     -97.47079,
@@ -4651,6 +4711,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.875994,
+     -97.479153
+    ],
+    "from": "road",
+    "name": "Marine Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 68.7,
    "box": [
     -97.48827,
@@ -4743,6 +4813,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.86496,
+     -97.877791
+    ],
+    "from": "road",
+    "name": "312th St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 119.0,
    "box": [
     -97.88629,

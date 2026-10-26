@@ -100,6 +100,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     32.54331,
+     -89.945131
+    ],
+    "from": "road",
+    "name": "Pipeline Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 43.0,
    "box": [
     -89.97038,
@@ -261,6 +271,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     32.508074,
+     -88.81469
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1029.1,
    "box": [
     -88.82948,
@@ -573,6 +593,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     32.538595,
+     -88.791503
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 797.0,
    "box": [
     -88.77834,
@@ -789,6 +819,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     32.576719,
+     -88.823026
+    ],
+    "from": "road",
+    "name": "Byrd-Doerner Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 4289.4,
    "box": [
     -88.84146,

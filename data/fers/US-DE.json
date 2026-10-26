@@ -81,6 +81,16 @@
     "US-9882",
     176
    ],
+   "access_pin": {
+    "at": [
+     39.194013,
+     -75.403527
+    ],
+    "from": "road",
+    "name": "Port Mahon Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 14
+   },
    "acres": 6.2,
    "box": [
     -75.406,
@@ -3473,6 +3483,16 @@
     "US-7648",
     1881
    ],
+   "access_pin": {
+    "at": [
+     39.55708,
+     -75.579514
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 50
+   },
    "acres": 28.7,
    "box": [
     -75.58132,
@@ -3555,6 +3575,16 @@
     "US-10670",
     409
    ],
+   "access_pin": {
+    "at": [
+     38.56188,
+     -75.539646
+    ],
+    "from": "road",
+    "name": "Chipmans Pond Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 39.3,
    "box": [
     -75.54811,
@@ -3761,6 +3791,16 @@
     "US-11810",
     424
    ],
+   "access_pin": {
+    "at": [
+     38.515052,
+     -75.461177
+    ],
+    "from": "road",
+    "name": "Lagowski Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 12.9,
    "box": [
     -75.46113,
@@ -3939,6 +3979,16 @@
     "US-11810",
     424
    ],
+   "access_pin": {
+    "at": [
+     38.515052,
+     -75.461177
+    ],
+    "from": "road",
+    "name": "Lagowski Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 12.9,
    "box": [
     -75.46113,
@@ -4117,6 +4167,16 @@
     "US-11812",
     2856
    ],
+   "access_pin": {
+    "at": [
+     38.49707,
+     -75.452214
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 104.9,
    "box": [
     -75.45727,
@@ -4279,6 +4339,16 @@
     "US-11812",
     2755
    ],
+   "access_pin": {
+    "at": [
+     38.496623,
+     -75.454283
+    ],
+    "from": "road",
+    "name": "Pepperbox Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 45.3,
    "box": [
     -75.47535,
@@ -4381,6 +4451,16 @@
     "US-11812",
     1534
    ],
+   "access_pin": {
+    "at": [
+     38.526014,
+     -75.510991
+    ],
+    "from": "road",
+    "name": "Wootten Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 277.7,
    "box": [
     -75.51439,
@@ -4615,6 +4695,16 @@
     "US-11812",
     217
    ],
+   "access_pin": {
+    "at": [
+     38.530308,
+     -75.480733
+    ],
+    "from": "road",
+    "name": "Rd 449",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 29.7,
    "box": [
     -75.48534,
@@ -4753,6 +4843,16 @@
     "US-1730",
     318
    ],
+   "access_pin": {
+    "at": [
+     39.775138,
+     -75.543438
+    ],
+    "from": "road",
+    "name": "E Park Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -75.55979,
     39.76571,
@@ -5122,6 +5222,16 @@
     "US-1731",
     63
    ],
+   "access_pin": {
+    "at": [
+     39.778959,
+     -75.498673
+    ],
+    "from": "parking / access point",
+    "name": "Kiosk / information (last edit 2018)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -75.50632,
     39.7772,
@@ -5451,6 +5561,16 @@
     "US-1731",
     313
    ],
+   "access_pin": {
+    "at": [
+     39.784242,
+     -75.497633
+    ],
+    "from": "road",
+    "name": "Carr Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 29.7,
    "box": [
     -75.50008,
@@ -5537,6 +5657,16 @@
     "US-1732",
     81
    ],
+   "access_pin": {
+    "at": [
+     39.760131,
+     -75.555731
+    ],
+    "from": "road",
+    "name": "N Park Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -75.55601,
     39.75624,
@@ -5850,6 +5980,16 @@
     "US-1735",
     1176
    ],
+   "access_pin": {
+    "at": [
+     38.509614,
+     -75.055963
+    ],
+    "from": "road",
+    "name": "Boone Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 81.1,
    "box": [
     -75.05953,
@@ -6060,6 +6200,16 @@
     "US-1741",
     473
    ],
+   "access_pin": {
+    "at": [
+     39.555348,
+     -75.70347
+    ],
+    "from": "road",
+    "name": "Summit Pointe Cir",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 58.7,
    "box": [
     -75.71011,
@@ -6254,6 +6404,16 @@
     "US-1742",
     2856
    ],
+   "access_pin": {
+    "at": [
+     38.49707,
+     -75.452214
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 104.9,
    "box": [
     -75.45727,
@@ -6416,6 +6576,16 @@
     "US-1742",
     2755
    ],
+   "access_pin": {
+    "at": [
+     38.496623,
+     -75.454283
+    ],
+    "from": "road",
+    "name": "Pepperbox Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 45.3,
    "box": [
     -75.47535,
@@ -6518,6 +6688,16 @@
     "US-1742",
     1534
    ],
+   "access_pin": {
+    "at": [
+     38.526014,
+     -75.510991
+    ],
+    "from": "road",
+    "name": "Wootten Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 277.7,
    "box": [
     -75.51439,
@@ -6752,6 +6932,16 @@
     "US-1742",
     217
    ],
+   "access_pin": {
+    "at": [
+     38.530308,
+     -75.480733
+    ],
+    "from": "road",
+    "name": "Rd 449",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 29.7,
    "box": [
     -75.48534,
@@ -7143,6 +7333,16 @@
     "US-7648",
     1852
    ],
+   "access_pin": {
+    "at": [
+     39.562259,
+     -75.584391
+    ],
+    "from": "road",
+    "name": "Polktown Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 43.4,
    "box": [
     -75.58177,
@@ -7257,6 +7457,16 @@
     "US-7648",
     690
    ],
+   "access_pin": {
+    "at": [
+     39.559542,
+     -75.583455
+    ],
+    "from": "road",
+    "name": "Polktown Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 25.7,
    "box": [
     -75.58503,
@@ -7335,6 +7545,16 @@
     "US-7649",
     498
    ],
+   "access_pin": {
+    "at": [
+     39.375523,
+     -75.569631
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 211.5,
    "box": [
     -75.57761,
@@ -7509,6 +7729,16 @@
     "US-7649",
     323
    ],
+   "access_pin": {
+    "at": [
+     39.392983,
+     -75.586591
+    ],
+    "from": "road",
+    "name": "Walker School Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 184.4,
    "box": [
     -75.59754,
@@ -7647,6 +7877,16 @@
     "US-7649",
     1491
    ],
+   "access_pin": {
+    "at": [
+     39.404265,
+     -75.623844
+    ],
+    "from": "road",
+    "name": "Union Church Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 214.2,
    "box": [
     -75.62788,

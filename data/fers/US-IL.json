@@ -12,6 +12,16 @@
     "US-4140",
     6749
    ],
+   "access_pin": {
+    "at": [
+     41.0606,
+     -89.423029
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 319
+   },
    "acres": 16.4,
    "box": [
     -89.42301,
@@ -94,6 +104,16 @@
     "US-0996",
     998
    ],
+   "access_pin": {
+    "at": [
+     37.604462,
+     -89.159168
+    ],
+    "from": "road",
+    "name": "Beaver Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 95.7,
    "box": [
     -89.16041,
@@ -424,6 +444,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.159668,
+     -89.269081
+    ],
+    "from": "road",
+    "name": "Bridge St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 66
+   },
    "acres": 28.1,
    "box": [
     -89.26944,
@@ -680,6 +710,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.389914,
+     -88.660824
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 60
+   },
    "acres": 17.2,
    "box": [
     -88.66089,
@@ -918,6 +958,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.515242,
+     -88.538449
+    ],
+    "from": "road",
+    "name": "Ragan Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1029
+   },
    "acres": 45.1,
    "box": [
     -88.53384,
@@ -1004,6 +1054,16 @@
     "US-12332",
     529
    ],
+   "access_pin": {
+    "at": [
+     37.48901,
+     -89.338097
+    ],
+    "from": "road",
+    "name": "State Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 234.0,
    "box": [
     -89.35703,
@@ -1294,6 +1354,16 @@
     "US-4132",
     882
    ],
+   "access_pin": {
+    "at": [
+     41.00994,
+     -87.548139
+    ],
+    "from": "road",
+    "name": "Delaware",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 554.0,
    "box": [
     -87.56132,
@@ -1453,6 +1523,16 @@
     "US-4120",
     539
    ],
+   "access_pin": {
+    "at": [
+     41.387863,
+     -88.227779
+    ],
+    "from": "road",
+    "name": "Des Plaines River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 89.1,
    "box": [
     -88.22963,
@@ -4881,6 +4961,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.423637,
+     -89.355535
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 82.5,
    "box": [
     -89.36018,

@@ -605,6 +605,16 @@
     "US-8030",
     5230
    ],
+   "access_pin": {
+    "at": [
+     39.47386,
+     -74.477966
+    ],
+    "from": "road",
+    "name": "Galloway Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 28.6,
    "box": [
     -74.4808,
@@ -695,6 +705,16 @@
     "US-8052",
     3426
    ],
+   "access_pin": {
+    "at": [
+     39.707513,
+     -74.304825
+    ],
+    "from": "road",
+    "name": "Stocum S Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 16.9,
    "box": [
     -74.29686,
@@ -6337,6 +6357,16 @@
     "US-8755",
     160
    ],
+   "access_pin": {
+    "at": [
+     40.512529,
+     -75.154152
+    ],
+    "from": "road",
+    "name": "Beaver Run Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -75.15472,
     40.5128,
@@ -9098,6 +9128,16 @@
     "US-13256",
     775
    ],
+   "access_pin": {
+    "at": [
+     39.383617,
+     -74.983786
+    ],
+    "from": "parking / access point",
+    "name": "Parking (NJ Division of Fish & Wildlife)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1346.3,
    "box": [
     -74.99316,
@@ -9361,6 +9401,16 @@
     "US-1609",
     1373
    ],
+   "access_pin": {
+    "at": [
+     39.758162,
+     -74.11985
+    ],
+    "from": "road",
+    "name": "Sunset Blvd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 29
+   },
    "acres": 140.7,
    "box": [
     -74.12539,
@@ -9723,6 +9773,16 @@
     "US-1619",
     830
    ],
+   "access_pin": {
+    "at": [
+     41.231988,
+     -74.685259
+    ],
+    "from": "road",
+    "name": "Degroat Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5.6,
    "box": [
     -74.68528,
@@ -9809,6 +9869,16 @@
     "US-8037",
     1466
    ],
+   "access_pin": {
+    "at": [
+     39.348517,
+     -75.284122
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 21
+   },
    "acres": 86.6,
    "box": [
     -75.28431,
@@ -10031,6 +10101,16 @@
     "US-8037",
     1371
    ],
+   "access_pin": {
+    "at": [
+     39.348521,
+     -75.284125
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 21
+   },
    "acres": 9.8,
    "box": [
     -75.27322,

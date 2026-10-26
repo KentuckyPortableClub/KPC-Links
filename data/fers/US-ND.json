@@ -110,6 +110,16 @@
     "US-2764",
     25206
    ],
+   "access_pin": {
+    "at": [
+     47.68858,
+     -101.100226
+    ],
+    "from": "road",
+    "name": "24th Ave NW",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6067.9,
    "box": [
     -101.26627,
@@ -424,6 +434,16 @@
     "US-2760",
     816
    ],
+   "access_pin": {
+    "at": [
+     47.608103,
+     -101.42591
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 629.8,
    "box": [
     -101.43299,
@@ -782,6 +802,16 @@
     "US-2764",
     565
    ],
+   "access_pin": {
+    "at": [
+     48.132703,
+     -103.236651
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 538.8,
    "box": [
     -103.2599,
@@ -1004,6 +1034,16 @@
     "US-2764",
     23117
    ],
+   "access_pin": {
+    "at": [
+     47.578446,
+     -102.743933
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 820.4,
    "box": [
     -102.76384,
@@ -1254,6 +1294,16 @@
     "US-2764",
     479
    ],
+   "access_pin": {
+    "at": [
+     47.978765,
+     -102.552106
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 64.6,
    "box": [
     -102.55358,
@@ -1472,6 +1522,16 @@
     "US-2764",
     9658
    ],
+   "access_pin": {
+    "at": [
+     47.978513,
+     -103.857291
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 285.6,
    "box": [
     -103.8593,
@@ -1626,6 +1686,16 @@
     "US-7697",
     2365
    ],
+   "access_pin": {
+    "at": [
+     48.110646,
+     -103.690657
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 11852.6,
    "box": [
     -103.79659,
@@ -3218,6 +3288,16 @@
     "US-2764",
     5103
    ],
+   "access_pin": {
+    "at": [
+     47.48393,
+     -101.380503
+    ],
+    "from": "road",
+    "name": "Co Hwy 16",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 254.5,
    "box": [
     -101.38448,
@@ -3376,6 +3456,16 @@
     "US-7700",
     2193
    ],
+   "access_pin": {
+    "at": [
+     47.574625,
+     -101.313072
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5251.9,
    "box": [
     -101.37058,
@@ -3710,6 +3800,16 @@
     "US-8566",
     792
    ],
+   "access_pin": {
+    "at": [
+     47.688579,
+     -101.100236
+    ],
+    "from": "road",
+    "name": "24th Ave NW",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2260.6,
    "box": [
     -101.19442,
@@ -4020,6 +4120,16 @@
     "US-2764",
     1068
    ],
+   "access_pin": {
+    "at": [
+     47.746219,
+     -102.18506
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 611.3,
    "box": [
     -102.18485,
@@ -4286,6 +4396,16 @@
     "US-2764",
     1068
    ],
+   "access_pin": {
+    "at": [
+     47.746219,
+     -102.18506
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 611.3,
    "box": [
     -102.18485,
@@ -4552,6 +4672,16 @@
     "US-8576",
     462
    ],
+   "access_pin": {
+    "at": [
+     47.746215,
+     -102.185042
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 522.9,
    "box": [
     -102.2024,
@@ -4838,6 +4968,16 @@
     "US-8577",
     7175
    ],
+   "access_pin": {
+    "at": [
+     47.566985,
+     -101.680739
+    ],
+    "from": "road",
+    "name": "53rd Ave NW",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 465
+   },
    "acres": 273.4,
    "box": [
     -101.69672,
@@ -5092,6 +5232,16 @@
     "US-2764",
     4622
    ],
+   "access_pin": {
+    "at": [
+     47.566995,
+     -101.600384
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 973.6,
    "box": [
     -101.67401,
@@ -5430,6 +5580,16 @@
     "US-8577",
     473
    ],
+   "access_pin": {
+    "at": [
+     47.610269,
+     -101.631889
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 968.4,
    "box": [
     -101.679,
@@ -5716,6 +5876,16 @@
     "US-8577",
     4033
    ],
+   "access_pin": {
+    "at": [
+     47.624825,
+     -101.547891
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 504.3,
    "box": [
     -101.59336,
@@ -5978,6 +6148,16 @@
     "US-2764",
     5860
    ],
+   "access_pin": {
+    "at": [
+     48.182889,
+     -103.017816
+    ],
+    "from": "road",
+    "name": "108th Ave NW",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1496.1,
    "box": [
     -103.02723,

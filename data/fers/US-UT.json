@@ -344,6 +344,16 @@
     "US-5794",
     1502
    ],
+   "access_pin": {
+    "at": [
+     38.683518,
+     -109.477973
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Sandy Beach (Utah UGRC)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 107
+   },
    "acres": 1596.6,
    "box": [
     -109.50012,
@@ -938,6 +948,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.863653,
+     -111.003642
+    ],
+    "from": "road",
+    "name": "Notom Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1094
+   },
    "acres": 8.5,
    "box": [
     -110.9984,
@@ -5263,6 +5283,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.431665,
+     -113.126278
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -113.12686,
     37.41765,
@@ -5621,6 +5651,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.463013,
+     -113.196297
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 114
+   },
    "box": [
     -113.19632,
     37.45502,
@@ -5997,6 +6038,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.213276,
+     -112.998845
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -113.00965,
     37.20528,
@@ -6356,6 +6407,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369845,
+     -112.968109
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 821
+   },
    "box": [
     -112.96766,
     37.3493,
@@ -6675,6 +6736,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.398465,
+     -113.013564
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 250
+   },
    "box": [
     -113.02279,
     37.39424,
@@ -7030,6 +7101,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.398465,
+     -113.013564
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 250
+   },
    "box": [
     -113.02279,
     37.39424,
@@ -7385,6 +7466,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.398465,
+     -113.013564
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 250
+   },
    "box": [
     -113.02279,
     37.39424,
@@ -7740,6 +7831,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.398465,
+     -113.013564
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 250
+   },
    "box": [
     -113.02279,
     37.39424,
@@ -8095,6 +8196,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.398465,
+     -113.013564
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 250
+   },
    "box": [
     -113.02279,
     37.39424,
@@ -8450,6 +8561,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.398465,
+     -113.013564
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 250
+   },
    "box": [
     -113.02279,
     37.39424,
@@ -8805,6 +8926,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.284225,
+     -112.945397
+    ],
+    "from": "road",
+    "name": "Floor of the Valley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -112.98733,
     37.20114,
@@ -9128,6 +9259,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369805,
+     -112.91317
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1063
+   },
    "box": [
     -112.91634,
     37.3689,
@@ -9443,6 +9584,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.144145,
+     -112.955061
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -112.97023,
     37.1414,
@@ -9798,6 +9947,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.445385,
+     -113.092962
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -113.11759,
     37.43975,
@@ -10230,6 +10389,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.692355,
+     -111.273006
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1262
+   },
    "acres": 80.6,
    "box": [
     -111.27302,
@@ -11239,6 +11408,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369544,
+     -113.174102
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 553
+   },
    "box": [
     -113.18914,
     37.36727,
@@ -11586,6 +11765,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.431665,
+     -113.126278
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -113.12686,
     37.41765,
@@ -11944,6 +12133,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.463013,
+     -113.196297
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 114
+   },
    "box": [
     -113.19632,
     37.45502,
@@ -12270,6 +12470,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.463013,
+     -113.196297
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 114
+   },
    "box": [
     -113.19632,
     37.45502,
@@ -13521,6 +13732,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.213289,
+     -112.998847
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -113.00965,
     37.20528,
@@ -14220,6 +14441,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369755,
+     -112.967939
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 838
+   },
    "box": [
     -112.96766,
     37.3493,
@@ -14539,6 +14770,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.284253,
+     -112.945397
+    ],
+    "from": "road",
+    "name": "Floor of the Valley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -112.98733,
     37.20114,
@@ -16366,6 +16607,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.144145,
+     -112.955061
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -112.97023,
     37.1414,
@@ -17093,6 +17342,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.445399,
+     -113.092962
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -113.11759,
     37.43975,
@@ -17970,6 +18229,16 @@
     "US-3067",
     1571
    ],
+   "access_pin": {
+    "at": [
+     40.449578,
+     -111.477055
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 58.1,
    "box": [
     -111.49254,
@@ -18186,6 +18455,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369589,
+     -113.169524
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 532
+   },
    "box": [
     -113.18914,
     37.36727,
@@ -18505,6 +18784,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369608,
+     -113.169498
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 531
+   },
    "box": [
     -113.1608,
     37.37066,
@@ -18816,6 +19105,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.354906,
+     -113.160376
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 25
+   },
    "acres": 1400.0,
    "box": [
     -113.1649,
@@ -18952,6 +19251,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.369653,
+     -113.164923
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 592
+   },
    "box": [
     -113.16069,
     37.37067,
@@ -19259,6 +19568,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.425226,
+     -113.091237
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1799
+   },
    "box": [
     -113.09131,
     37.42383,
@@ -19526,6 +19845,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.410716,
+     -112.995793
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 330
+   },
    "box": [
     -112.99637,
     37.39813,
@@ -19857,6 +20186,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.372728,
+     -112.973552
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 298
+   },
    "box": [
     -112.97384,
     37.36989,
@@ -20188,6 +20527,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.39868,
+     -113.013616
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 230
+   },
    "box": [
     -113.03149,
     37.38365,
@@ -20519,6 +20868,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.371921,
+     -112.919519
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 925
+   },
    "box": [
     -112.92868,
     37.36977,
@@ -20842,6 +21201,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.372508,
+     -112.973092
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 334
+   },
    "box": [
     -112.97338,
     37.36989,
@@ -21153,6 +21522,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.372508,
+     -112.973092
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 334
+   },
    "box": [
     -112.97338,
     37.36989,
@@ -21464,6 +21843,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.879278,
+     -113.813718
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 4419.2,
    "box": [
     -113.92477,
@@ -21708,6 +22097,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.228175,
+     -114.036246
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3751.0,
    "box": [
     -114.05019,
@@ -22072,6 +22471,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.680913,
+     -113.856132
+    ],
+    "from": "road",
+    "name": "Pony Express Hwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 12.2,
    "box": [
     -113.86007,
@@ -22144,6 +22553,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.702124,
+     -113.813757
+    ],
+    "from": "road",
+    "name": "Snake Valley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5.4,
    "box": [
     -113.82342,
@@ -22208,6 +22627,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.702122,
+     -113.813747
+    ],
+    "from": "road",
+    "name": "Snake Valley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 10.5,
    "box": [
     -113.81734,
@@ -22561,6 +22990,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.467065,
+     -111.943483
+    ],
+    "from": "road",
+    "name": "Willard Peak Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 55.8,
    "box": [
     -111.99378,
@@ -23319,6 +23758,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.371921,
+     -112.919519
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 925
+   },
    "box": [
     -112.92868,
     37.36977,
@@ -23638,6 +24087,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.371921,
+     -112.919519
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 925
+   },
    "box": [
     -112.92868,
     37.36977,
@@ -23957,6 +24416,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     40.961295,
+     -109.36044
+    ],
+    "from": "road",
+    "name": "D18 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 283
+   },
    "acres": 41.3,
    "box": [
     -109.37015,
@@ -24021,6 +24490,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     40.191266,
+     -110.969285
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6722.2,
    "box": [
     -111.01622,
@@ -24585,6 +25064,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.663212,
+     -111.578261
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 828.9,
    "box": [
     -111.60862,
@@ -24786,6 +25275,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.942764,
+     -111.358833
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 44.1,
    "box": [
     -111.3448,
@@ -24850,6 +25349,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.94276,
+     -111.358843
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 24.2,
    "box": [
     -111.35887,
@@ -24914,6 +25423,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.95791,
+     -111.386782
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 80.1,
    "box": [
     -111.38769,
@@ -25581,6 +26100,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.791455,
+     -112.814952
+    ],
+    "from": "road",
+    "name": "Second Left Hand Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 900.2,
    "box": [
     -112.84402,
@@ -25739,6 +26268,16 @@
     "US-3066",
     1008
    ],
+   "access_pin": {
+    "at": [
+     38.471728,
+     -109.744046
+    ],
+    "from": "parking / access point",
+    "name": "Parking (n/a)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 220
+   },
    "acres": 24.4,
    "box": [
     -109.73487,
@@ -25921,6 +26460,16 @@
     "US-3071",
     1502
    ],
+   "access_pin": {
+    "at": [
+     38.583745,
+     -112.32355
+    ],
+    "from": "road",
+    "name": "Sam Stowe Canyon Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 19.5,
    "box": [
     -112.35425,
@@ -26101,6 +26650,16 @@
     "US-3073",
     4431
    ],
+   "access_pin": {
+    "at": [
+     38.596066,
+     -110.706906
+    ],
+    "from": "road",
+    "name": "E Big Wild Horse Spr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2605.1,
    "box": [
     -110.78638,
@@ -26255,6 +26814,16 @@
     "US-3073",
     3570
    ],
+   "access_pin": {
+    "at": [
+     38.653224,
+     -110.654893
+    ],
+    "from": "road",
+    "name": "Goblin Valley Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3680.0,
    "box": [
     -110.71592,
@@ -26569,6 +27138,16 @@
     "US-3086",
     1215
    ],
+   "access_pin": {
+    "at": [
+     37.205325,
+     -113.385199
+    ],
+    "from": "road",
+    "name": "Redbluff Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 477
+   },
    "acres": 96.8,
    "box": [
     -113.38517,
@@ -26747,6 +27326,16 @@
     "US-3086",
     1215
    ],
+   "access_pin": {
+    "at": [
+     37.205325,
+     -113.385199
+    ],
+    "from": "road",
+    "name": "Redbluff Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 477
+   },
    "acres": 96.6,
    "box": [
     -113.38517,
@@ -26921,6 +27510,16 @@
     "US-3091",
     536
    ],
+   "access_pin": {
+    "at": [
+     37.245497,
+     -113.659148
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6315.5,
    "box": [
     -113.67891,
@@ -27223,6 +27822,16 @@
     "US-3091",
     536
    ],
+   "access_pin": {
+    "at": [
+     37.245502,
+     -113.659148
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6310.1,
    "box": [
     -113.67891,
@@ -27515,6 +28124,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.681946,
+     -109.77226
+    ],
+    "from": "road",
+    "name": "Co Rd 268",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 30284.2,
    "box": [
     -109.89401,
@@ -27757,6 +28376,16 @@
     "US-5856",
     16377
    ],
+   "access_pin": {
+    "at": [
+     40.568384,
+     -110.824805
+    ],
+    "from": "road",
+    "name": "Grandview Trailhead Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 68
+   },
    "acres": 284484.6,
    "box": [
     -110.88948,
@@ -28272,6 +28901,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.633949,
+     -112.901609
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 7053.0,
    "box": [
     -112.91982,
@@ -28695,6 +29334,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.254995,
+     -113.384293
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2647.3,
    "box": [
     -113.43026,
@@ -29017,6 +29666,16 @@
     "US-6066",
     9616
    ],
+   "access_pin": {
+    "at": [
+     37.450352,
+     -113.440429
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 51576.6,
    "box": [
     -113.56158,
@@ -29457,6 +30116,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.677324,
+     -114.010583
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 23869.5,
    "box": [
     -114.01128,
@@ -29868,6 +30537,16 @@
     "US-5838",
     1688
    ],
+   "access_pin": {
+    "at": [
+     41.690162,
+     -111.775546
+    ],
+    "from": "road",
+    "name": "Canyon Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 41.3,
    "box": [
     -111.79011,
@@ -29995,6 +30674,16 @@
     "US-5941",
     3408
    ],
+   "access_pin": {
+    "at": [
+     41.994903,
+     -111.673111
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 44967.5,
    "box": [
     -111.78537,
@@ -30359,6 +31048,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.349892,
+     -111.69146
+    ],
+    "from": "road",
+    "name": "E Wcmf8 Rd N",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 737.6,
    "box": [
     -111.79636,
@@ -30627,6 +31326,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.349842,
+     -111.691498
+    ],
+    "from": "road",
+    "name": "E Wcmf8 Rd N",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 38.1,
    "box": [
     -111.7104,
@@ -30707,6 +31416,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     41.731994,
+     -112.03219
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 22760.4,
    "box": [
     -112.08088,
@@ -31017,6 +31736,16 @@
     "US-5794",
     2513
    ],
+   "access_pin": {
+    "at": [
+     38.601126,
+     -109.389171
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 7540.2,
    "box": [
     -109.53433,
@@ -31332,6 +32061,17 @@
    "wide_m": 3290
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.138711,
+     -110.100513
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 97
+   },
    "box": [
     -110.11507,
     39.1234,
@@ -31542,6 +32282,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.138576,
+     -110.100503
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 102
+   },
    "box": [
     -110.10522,
     39.13344,
@@ -31784,6 +32535,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.138722,
+     -110.100512
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 97
+   },
    "box": [
     -110.10135,
     39.13762,
@@ -32102,6 +32864,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.138596,
+     -110.100504
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 99
+   },
    "box": [
     -110.11229,
     39.14607,
@@ -32300,6 +33073,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.163451,
+     -110.103807
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 238
+   },
    "box": [
     -110.11467,
     39.15719,
@@ -32762,6 +33546,17 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.195247,
+     -110.078692
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 98
+   },
    "box": [
     -110.09461,
     39.19146,
@@ -33024,6 +33819,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.19562,
+     -110.078475
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 79
+   },
    "box": [
     -110.0795,
     39.19367,
@@ -33366,6 +34172,15 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.216874,
+     -110.07712
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -110.07778,
     39.21555,
@@ -33664,6 +34479,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.226544,
+     -110.077137
+    ],
+    "from": "road",
+    "name": "Big Horn Mt Spr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1938
+   },
    "box": [
     -110.07811,
     39.22147,
@@ -34030,6 +34856,15 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.223939,
+     -110.061464
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -110.06275,
     39.22352,
@@ -34356,6 +35191,15 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.228729,
+     -110.054211
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -110.0551,
     39.22804,
@@ -34818,6 +35662,15 @@
    "status": "dropped in pass 3"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     39.2513,
+     -110.0626
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -110.06307,
     39.2499,
@@ -37080,6 +37933,16 @@
     "US-5867",
     14991
    ],
+   "access_pin": {
+    "at": [
+     39.067946,
+     -110.671839
+    ],
+    "from": "road",
+    "name": "Mounds S Lp",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 18157.0,
    "box": [
     -110.69564,
@@ -37399,6 +38262,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.067966,
+     -110.671883
+    ],
+    "from": "road",
+    "name": "Mounds S Lp",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 33546.6,
    "box": [
     -110.69551,
@@ -37725,6 +38598,16 @@
     "US-5867",
     28878
    ],
+   "access_pin": {
+    "at": [
+     39.11868,
+     -110.597685
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 75962.4,
    "box": [
     -110.6958,
@@ -38031,6 +38914,16 @@
     "US-5867",
     4600
    ],
+   "access_pin": {
+    "at": [
+     39.118633,
+     -110.676244
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 228.7,
    "box": [
     -110.69781,
@@ -38181,6 +39074,16 @@
     "US-5867",
     4266
    ],
+   "access_pin": {
+    "at": [
+     39.143953,
+     -110.703223
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "acres": 20.1,
    "box": [
     -110.7069,
@@ -38283,6 +39186,16 @@
     "US-5867",
     20776
    ],
+   "access_pin": {
+    "at": [
+     39.080858,
+     -110.666219
+    ],
+    "from": "road",
+    "name": "Buckhorn Draw Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 92531.5,
    "box": [
     -110.70325,
@@ -38609,6 +39522,16 @@
     "US-5867",
     28106
    ],
+   "access_pin": {
+    "at": [
+     38.500074,
+     -110.674678
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 180
+   },
    "acres": 17650.9,
    "box": [
     -110.77725,
@@ -38915,6 +39838,16 @@
     "US-5867",
     27711
    ],
+   "access_pin": {
+    "at": [
+     38.57062,
+     -110.805021
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 15849.7,
    "box": [
     -110.92671,
@@ -39520,6 +40453,16 @@
     "US-5867",
     9507
    ],
+   "access_pin": {
+    "at": [
+     38.744674,
+     -110.831722
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 20621.8,
    "box": [
     -110.8607,
@@ -39830,6 +40773,16 @@
     "US-5867",
     17080
    ],
+   "access_pin": {
+    "at": [
+     38.937165,
+     -110.870872
+    ],
+    "from": "road",
+    "name": "4086",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 10975.6,
    "box": [
     -110.89233,
@@ -40513,6 +41466,16 @@
     "US-5867",
     24042
    ],
+   "access_pin": {
+    "at": [
+     38.698022,
+     -110.869228
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 12093.0,
    "box": [
     -110.92487,
@@ -40863,6 +41826,16 @@
     "US-5867",
     15711
    ],
+   "access_pin": {
+    "at": [
+     38.666414,
+     -110.833969
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 22
+   },
    "acres": 23.7,
    "box": [
     -110.82688,
@@ -40977,6 +41950,16 @@
     "US-5867",
     18825
    ],
+   "access_pin": {
+    "at": [
+     38.951994,
+     -110.883511
+    ],
+    "from": "road",
+    "name": "4086",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 13792.7,
    "box": [
     -110.93574,
@@ -43259,6 +44242,16 @@
     "US-5867",
     20580
    ],
+   "access_pin": {
+    "at": [
+     38.840066,
+     -110.953948
+    ],
+    "from": "road",
+    "name": "4094",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8651.0,
    "box": [
     -111.03445,
@@ -43573,6 +44566,16 @@
     "US-5867",
     30047
    ],
+   "access_pin": {
+    "at": [
+     38.782422,
+     -111.007896
+    ],
+    "from": "road",
+    "name": "3764",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 91388.0,
    "box": [
     -111.10304,
@@ -46913,6 +47916,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     40.96814,
+     -111.430113
+    ],
+    "from": "road",
+    "name": "Echo Dam Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -111.42971,
     40.91345,
@@ -47272,6 +48285,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     40.966955,
+     -111.426595
+    ],
+    "from": "trail",
+    "name": "Union Pacific Rail Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 14
+   },
    "box": [
     -111.42941,
     40.96584,
@@ -47631,6 +48654,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.282726,
+     -111.372696
+    ],
+    "from": "road",
+    "name": "Beas Lewis Flat Rd Breakoff",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2822.8,
    "box": [
     -111.37518,
@@ -47773,6 +48806,16 @@
     "US-5967",
     1281
    ],
+   "access_pin": {
+    "at": [
+     41.137604,
+     -112.180203
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 328.7,
    "box": [
     -112.1839,
@@ -47909,6 +48952,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.739783,
+     -112.402927
+    ],
+    "from": "road",
+    "name": "Oscarthorpe Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 9314.2,
    "box": [
     -112.46134,
@@ -48037,6 +49090,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.137798,
+     -112.924278
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1030
+   },
    "box": [
     -112.93652,
     37.1378,
@@ -48404,6 +49467,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.55225,
+     -113.34152
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 60233.8,
    "box": [
     -113.40483,
@@ -48813,6 +49886,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.350593,
+     -113.322378
+    ],
+    "from": "road",
+    "name": "Death Canyon Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 37.8,
    "box": [
     -113.31426,
@@ -48897,6 +49980,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.35063,
+     -113.322323
+    ],
+    "from": "road",
+    "name": "Death Canyon Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 117.7,
    "box": [
     -113.34795,
@@ -49124,6 +50217,16 @@
     "US-6063",
     5089
    ],
+   "access_pin": {
+    "at": [
+     37.227307,
+     -113.529684
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 11627.9,
    "box": [
     -113.54336,
@@ -49410,6 +50513,16 @@
     "US-6063",
     11352
    ],
+   "access_pin": {
+    "at": [
+     37.280458,
+     -113.735001
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 18621.1,
    "box": [
     -113.7677,
@@ -49678,6 +50791,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.227307,
+     -113.529684
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 11627.9,
    "box": [
     -113.54336,
@@ -49958,6 +51081,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.25749,
+     -113.699099
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8305.3,
    "box": [
     -113.71622,
@@ -50278,6 +51411,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.22924,
+     -114.050237
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3759.4,
    "box": [
     -114.05018,

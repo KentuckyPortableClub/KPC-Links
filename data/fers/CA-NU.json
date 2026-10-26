@@ -394,6 +394,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.931033,
+     -78.973817
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 2477154.9,
    "box": [
     -80.89714,
@@ -1030,6 +1038,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.252191,
+     -78.816823
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 118.5,
    "box": [
     -78.8562,
@@ -1342,6 +1358,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.252191,
+     -78.816823
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 118.5,
    "box": [
     -78.8562,
@@ -1654,6 +1678,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.353143,
+     -78.638624
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 61.0,
    "box": [
     -78.72403,
@@ -1922,6 +1954,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.755211,
+     -79.570579
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 126.3,
    "box": [
     -79.68216,
@@ -2218,6 +2258,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.755211,
+     -79.570579
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 126.3,
    "box": [
     -79.68216,
@@ -2514,6 +2562,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.802736,
+     -79.745086
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 130.4,
    "box": [
     -79.75177,
@@ -2727,6 +2783,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.896905,
+     -77.645113
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 69.6,
    "box": [
     -77.72739,
@@ -2996,6 +3060,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.942848,
+     -80.049967
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 61.1,
    "box": [
     -80.06404,
@@ -3156,6 +3228,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.946827,
+     -76.217341
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 133.9,
    "box": [
     -76.30635,
@@ -3452,6 +3532,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.979384,
+     -80.105942
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 86.7,
    "box": [
     -80.11374,
@@ -3576,6 +3664,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     72.988407,
+     -80.119196
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 33.0,
    "box": [
     -80.13075,
@@ -4128,6 +4224,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.323979,
+     -80.841148
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 158.9,
    "box": [
     -80.88041,
@@ -4449,6 +4553,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.310278,
+     -76.721244
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 69.7,
    "box": [
     -76.74048,
@@ -4709,6 +4821,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.323979,
+     -80.841148
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 158.9,
    "box": [
     -80.88041,
@@ -5303,6 +5423,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.47128,
+     -80.85919
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 51.1,
    "box": [
     -80.86187,
@@ -5491,6 +5619,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.449576,
+     -84.352884
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 33.0,
    "box": [
     -84.37621,
@@ -5737,6 +5873,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.476707,
+     -84.192583
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 47.9,
    "box": [
     -84.22742,
@@ -5841,6 +5985,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.49398,
+     -83.930082
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 227.8,
    "box": [
     -83.93402,
@@ -6161,6 +6313,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.500311,
+     -80.726473
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 66.4,
    "box": [
     -80.77423,
@@ -6397,6 +6557,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.519056,
+     -80.787766
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 80.2,
    "box": [
     -80.8683,
@@ -6949,6 +7117,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.747163,
+     -80.841368
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 132.9,
    "box": [
     -80.84633,
@@ -7237,6 +7413,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     73.355994,
+     -80.911275
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 192615.8,
    "box": [
     -80.99338,

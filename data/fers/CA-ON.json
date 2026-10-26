@@ -12,6 +12,16 @@
     "CA-0006",
     88
    ],
+   "access_pin": {
+    "at": [
+     42.583537,
+     -80.440446
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Marina Shores (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 71
+   },
    "box": [
     -80.44817,
     42.57891,
@@ -385,6 +395,16 @@
     "CA-0006",
     153
    ],
+   "access_pin": {
+    "at": [
+     42.583497,
+     -80.440406
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Marina Shores (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 69
+   },
    "box": [
     -80.45851,
     42.59728,
@@ -686,6 +706,16 @@
     "CA-0168",
     1919
    ],
+   "access_pin": {
+    "at": [
+     45.21599,
+     -81.467804
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Emmett Lake (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 10866.9,
    "box": [
     -81.51779,
@@ -1005,6 +1035,16 @@
     "CA-0010",
     4316
    ],
+   "access_pin": {
+    "at": [
+     45.127253,
+     -81.539287
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 172
+   },
    "acres": 2232.1,
    "box": [
     -81.54322,
@@ -1327,6 +1367,16 @@
     "CA-0273",
     276
    ],
+   "access_pin": {
+    "at": [
+     45.24927,
+     -81.613214
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 43.5,
    "box": [
     -81.61579,
@@ -1409,6 +1459,16 @@
     "CA-0010",
     4916
    ],
+   "access_pin": {
+    "at": [
+     45.24929,
+     -81.613379
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.63171,
     45.18103,
@@ -1746,6 +1806,16 @@
     "CA-0021",
     710
    ],
+   "access_pin": {
+    "at": [
+     45.257204,
+     -81.6563
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.65671,
     45.25019,
@@ -5155,6 +5225,16 @@
     "CA-0052",
     1038
    ],
+   "access_pin": {
+    "at": [
+     42.581311,
+     -80.39601
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Old Cut Government Boat Launch (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 468
+   },
    "box": [
     -80.39629,
     42.579,
@@ -5497,6 +5577,16 @@
     "CA-0067",
     561
    ],
+   "access_pin": {
+    "at": [
+     41.986803,
+     -82.54904
+    ],
+    "from": "parking / access point",
+    "name": "Kiosk / information: Park Entrance Main Kiosk (Parks Canada)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.55056,
     41.93492,
@@ -5893,6 +5983,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.37434,
+     -82.39358
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -82.39799,
     42.37069,
@@ -6238,6 +6336,16 @@
     "CA-0099",
     139
    ],
+   "access_pin": {
+    "at": [
+     44.3532,
+     -76.076184
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 101
+   },
    "box": [
     -76.08006,
     44.35208,
@@ -6587,6 +6695,14 @@
     "CA-0099",
     19876
    ],
+   "access_pin": {
+    "at": [
+     44.452845,
+     -75.861136
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -75.86306,
     44.45061,
@@ -6952,6 +7068,14 @@
     "CA-0099",
     25004
    ],
+   "access_pin": {
+    "at": [
+     44.490385,
+     -75.818692
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -75.82244,
     44.48851,
@@ -7297,6 +7421,14 @@
     "CA-0099",
     25004
    ],
+   "access_pin": {
+    "at": [
+     44.490385,
+     -75.818692
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -75.82244,
     44.48851,
@@ -7642,6 +7774,16 @@
     "CA-0138",
     47
    ],
+   "access_pin": {
+    "at": [
+     45.890065,
+     -77.634977
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -77.63498,
     45.88915,
@@ -8185,6 +8327,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.104654,
+     -80.140514
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.1527,
     44.09442,
@@ -8480,6 +8630,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.104654,
+     -80.140514
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.1527,
     44.09442,
@@ -8781,6 +8939,16 @@
     "CA-0168",
     3452
    ],
+   "access_pin": {
+    "at": [
+     45.229451,
+     -81.466045
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Emmett Lake (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1517
+   },
    "box": [
     -81.46982,
     45.18102,
@@ -9110,6 +9278,16 @@
     "CA-0168",
     3452
    ],
+   "access_pin": {
+    "at": [
+     45.229451,
+     -81.466045
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Emmett Lake (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1517
+   },
    "box": [
     -81.46982,
     45.18102,
@@ -9439,6 +9617,16 @@
     "CA-0168",
     3452
    ],
+   "access_pin": {
+    "at": [
+     45.229451,
+     -81.466045
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Emmett Lake (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1517
+   },
    "box": [
     -81.46982,
     45.18102,
@@ -9768,6 +9956,16 @@
     "CA-0168",
     2745
    ],
+   "access_pin": {
+    "at": [
+     45.229458,
+     -81.466072
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Emmett Lake (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1517
+   },
    "box": [
     -81.49862,
     45.22717,
@@ -10105,6 +10303,16 @@
     "CA-0168",
     2745
    ],
+   "access_pin": {
+    "at": [
+     45.229458,
+     -81.466072
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Emmett Lake (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1517
+   },
    "box": [
     -81.49862,
     45.22717,
@@ -10790,6 +10998,16 @@
     "CA-0189",
     333
    ],
+   "access_pin": {
+    "at": [
+     43.87404,
+     -78.78409
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 38
+   },
    "box": [
     -78.8004,
     43.87378,
@@ -11121,6 +11339,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.354717,
+     -80.218308
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.21846,
     44.35419,
@@ -11548,6 +11774,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.361907,
+     -80.2099
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.21323,
     44.35952,
@@ -11859,6 +12093,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.423472,
+     -80.457013
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.47305,
     44.40897,
@@ -12702,6 +12944,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.978479,
+     -80.066093
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.07001,
     43.97278,
@@ -13069,6 +13319,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.911268,
+     -81.166874
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -81.16847,
     44.90843,
@@ -13406,6 +13664,16 @@
     "CA-0238",
     968
    ],
+   "access_pin": {
+    "at": [
+     42.860094,
+     -79.669502
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: DN-9 (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 887
+   },
    "box": [
     -79.66979,
     42.86034,
@@ -13693,6 +13961,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.605563,
+     -81.447862
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -81.45395,
     42.60541,
@@ -14028,6 +14304,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.605563,
+     -81.447862
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -81.45395,
     42.60541,
@@ -15325,6 +15609,16 @@
     "CA-0273",
     42
    ],
+   "access_pin": {
+    "at": [
+     45.249215,
+     -81.613265
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.61616,
     45.24647,
@@ -15922,6 +16216,16 @@
     "CA-0308",
     179
    ],
+   "access_pin": {
+    "at": [
+     44.047048,
+     -80.06208
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.09354,
     44.02831,
@@ -16295,6 +16599,16 @@
     "CA-0308",
     179
    ],
+   "access_pin": {
+    "at": [
+     44.047048,
+     -80.06208
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.09354,
     44.02831,
@@ -17077,6 +17391,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.408216,
+     -80.255849
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.26518,
     44.39809,
@@ -17404,6 +17726,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.408216,
+     -80.255849
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.26518,
     44.39809,
@@ -22315,6 +22645,16 @@
     "CA-0351",
     487
    ],
+   "access_pin": {
+    "at": [
+     44.014639,
+     -77.737325
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Municipality of Brighton Ontario Street Docks (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 162
+   },
    "box": [
     -77.74459,
     44.01144,
@@ -22644,6 +22984,16 @@
     "CA-0352",
     427
    ],
+   "access_pin": {
+    "at": [
+     44.441434,
+     -80.306865
+    ],
+    "from": "parking / access point",
+    "name": "Parking (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.30951,
     44.42494,
@@ -22977,6 +23327,16 @@
     "CA-0352",
     427
    ],
+   "access_pin": {
+    "at": [
+     44.441434,
+     -80.306865
+    ],
+    "from": "parking / access point",
+    "name": "Parking (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.30951,
     44.42494,
@@ -23310,6 +23670,16 @@
     "CA-0352",
     427
    ],
+   "access_pin": {
+    "at": [
+     44.441434,
+     -80.306865
+    ],
+    "from": "parking / access point",
+    "name": "Parking (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.30951,
     44.42494,
@@ -23643,6 +24013,16 @@
     "CA-0352",
     427
    ],
+   "access_pin": {
+    "at": [
+     44.441434,
+     -80.306865
+    ],
+    "from": "parking / access point",
+    "name": "Parking (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.30951,
     44.42494,
@@ -24017,6 +24397,16 @@
     "CA-4882",
     3266
    ],
+   "access_pin": {
+    "at": [
+     44.882037,
+     -75.885134
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 27
+   },
    "acres": 611.7,
    "box": [
     -75.88532,
@@ -24351,6 +24741,14 @@
     "CA-4882",
     2942
    ],
+   "access_pin": {
+    "at": [
+     45.058261,
+     -75.667349
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 79.3,
    "box": [
     -75.67987,
@@ -24597,6 +24995,16 @@
     "CA-0367",
     989
    ],
+   "access_pin": {
+    "at": [
+     42.856563,
+     -79.562713
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: SB-9 (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 534
+   },
    "box": [
     -79.563,
     42.85683,
@@ -24906,6 +25314,16 @@
     "CA-0368",
     3014
    ],
+   "access_pin": {
+    "at": [
+     42.281745,
+     -81.854419
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.86476,
     42.25436,
@@ -25241,6 +25659,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.81345,
+     -79.95502
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.95715,
     42.80815,
@@ -25550,6 +25976,16 @@
     "CA-0387",
     1072
    ],
+   "access_pin": {
+    "at": [
+     43.09902,
+     -79.302371
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 999
+   },
    "box": [
     -79.30358,
     43.09925,
@@ -25795,6 +26231,16 @@
     "CA-0387",
     393
    ],
+   "access_pin": {
+    "at": [
+     43.107834,
+     -79.287079
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 31
+   },
    "box": [
     -79.28712,
     43.09832,
@@ -26156,6 +26602,16 @@
     "CA-0387",
     393
    ],
+   "access_pin": {
+    "at": [
+     43.107834,
+     -79.287079
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 31
+   },
    "box": [
     -79.28712,
     43.09832,
@@ -26517,6 +26973,16 @@
     "CA-0387",
     472
    ],
+   "access_pin": {
+    "at": [
+     43.112633,
+     -79.2699
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 444
+   },
    "box": [
     -79.27099,
     43.11049,
@@ -26844,6 +27310,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     45.055243,
+     -81.269601
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -81.27308,
     45.05246,
@@ -27175,6 +27649,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     45.072298,
+     -81.265447
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -81.27285,
     45.06298,
@@ -27494,6 +27976,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     45.072298,
+     -81.265447
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -81.27285,
     45.06298,
@@ -27813,6 +28303,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     46.077528,
+     -83.921732
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 957.0,
    "box": [
     -83.95423,
@@ -28582,6 +29080,16 @@
     "CA-0417",
     612
    ],
+   "access_pin": {
+    "at": [
+     42.698272,
+     -80.328801
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Post Office (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 268
+   },
    "box": [
     -80.33608,
     42.69794,
@@ -28927,6 +29435,16 @@
     "CA-0419",
     4034
    ],
+   "access_pin": {
+    "at": [
+     44.938933,
+     -75.091395
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 86
+   },
    "box": [
     -75.09839,
     44.93917,
@@ -29451,6 +29969,15 @@
    "wide_m": 304
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     43.477794,
+     -79.937351
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94397,
     43.4718,
@@ -29769,6 +30296,15 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     43.477794,
+     -79.937351
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94397,
     43.4718,
@@ -30300,6 +30836,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.472966,
+     -79.933638
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94402,
     43.46735,
@@ -30627,6 +31171,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.472966,
+     -79.933638
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94402,
     43.46735,
@@ -30954,6 +31506,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.472966,
+     -79.933638
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94402,
     43.46735,
@@ -31287,6 +31847,16 @@
     "CA-1297",
     678
    ],
+   "access_pin": {
+    "at": [
+     43.134587,
+     -79.384719
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Click for Directions (Niagara Peninsula Conservation Authority)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 590
+   },
    "box": [
     -79.38446,
     43.13343,
@@ -31616,6 +32186,14 @@
     "CA-1297",
     2151
    ],
+   "access_pin": {
+    "at": [
+     43.134851,
+     -79.365274
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.3685,
     43.13477,
@@ -31929,6 +32507,16 @@
     "CA-1307",
     78
    ],
+   "access_pin": {
+    "at": [
+     43.188435,
+     -79.572704
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.57794,
     43.18301,
@@ -32246,6 +32834,16 @@
     "CA-1307",
     78
    ],
+   "access_pin": {
+    "at": [
+     43.188435,
+     -79.572704
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.57794,
     43.18301,
@@ -32563,6 +33161,16 @@
     "CA-1307",
     78
    ],
+   "access_pin": {
+    "at": [
+     43.188435,
+     -79.572704
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.57794,
     43.18301,
@@ -33401,6 +34009,16 @@
     "CA-1323",
     199
    ],
+   "access_pin": {
+    "at": [
+     43.291242,
+     -79.936622
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 95
+   },
    "box": [
     -79.93708,
     43.28851,
@@ -33746,6 +34364,16 @@
     "CA-1323",
     245
    ],
+   "access_pin": {
+    "at": [
+     43.291256,
+     -79.936607
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 98
+   },
    "box": [
     -79.93583,
     43.28753,
@@ -34043,6 +34671,16 @@
     "CA-1323",
     199
    ],
+   "access_pin": {
+    "at": [
+     43.291242,
+     -79.936622
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 95
+   },
    "box": [
     -79.93708,
     43.28851,
@@ -34388,6 +35026,16 @@
     "CA-1323",
     199
    ],
+   "access_pin": {
+    "at": [
+     43.291242,
+     -79.936622
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 95
+   },
    "box": [
     -79.93708,
     43.28851,
@@ -36320,6 +36968,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.242478,
+     -79.943471
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94835,
     43.23559,
@@ -36667,6 +37323,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.242478,
+     -79.943471
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.94835,
     43.23559,
@@ -37484,6 +38148,16 @@
     "CA-1490",
     315
    ],
+   "access_pin": {
+    "at": [
+     43.121975,
+     -79.351932
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 67
+   },
    "box": [
     -79.35327,
     43.12123,
@@ -37857,6 +38531,16 @@
     "CA-1490",
     315
    ],
+   "access_pin": {
+    "at": [
+     43.121975,
+     -79.351932
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 67
+   },
    "box": [
     -79.35327,
     43.12123,
@@ -38224,6 +38908,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.849181,
+     -78.971396
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -78.97167,
     43.83389,
@@ -38558,6 +39250,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    43.470841,
+    -79.949421,
+    "Entrance (Ontario MNRF)",
+    "CA-1541",
+    618
+   ],
+   "access_pin": {
+    "at": [
+     43.470868,
+     -79.949421
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.94943,
     43.47087,
@@ -38863,6 +39572,16 @@
     "CA-1541",
     865
    ],
+   "access_pin": {
+    "at": [
+     43.470868,
+     -79.94943
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.9495,
     43.46242,
@@ -39192,6 +39911,16 @@
     "CA-1541",
     865
    ],
+   "access_pin": {
+    "at": [
+     43.470868,
+     -79.94943
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.9495,
     43.46242,
@@ -39621,6 +40350,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.801367,
+     -79.107923
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.11201,
     43.79779,
@@ -40139,6 +40876,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.112481,
+     -79.320652
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.32547,
     43.11091,
@@ -40470,6 +41215,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.112481,
+     -79.320652
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.32547,
     43.11091,
@@ -40927,6 +41680,16 @@
     "CA-1639",
     106
    ],
+   "access_pin": {
+    "at": [
+     43.27367,
+     -79.957967
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 47
+   },
    "box": [
     -79.95768,
     43.2724,
@@ -41200,6 +41963,16 @@
     "CA-1639",
     317
    ],
+   "access_pin": {
+    "at": [
+     43.276984,
+     -79.979429
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.97902,
     43.27342,
@@ -41521,6 +42294,16 @@
     "CA-1639",
     317
    ],
+   "access_pin": {
+    "at": [
+     43.276984,
+     -79.979429
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.97902,
     43.27342,
@@ -41842,6 +42625,16 @@
     "CA-1639",
     317
    ],
+   "access_pin": {
+    "at": [
+     43.276984,
+     -79.979429
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.97902,
     43.27342,
@@ -42163,6 +42956,16 @@
     "CA-1643",
     9
    ],
+   "access_pin": {
+    "at": [
+     42.694166,
+     -80.346442
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -80.34895,
     42.6917,
@@ -42484,6 +43287,16 @@
     "CA-1673",
     1063
    ],
+   "access_pin": {
+    "at": [
+     44.220731,
+     -76.537486
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 25.3,
    "box": [
     -76.55235,
@@ -42582,6 +43395,16 @@
     "CA-1673",
     1488
    ],
+   "access_pin": {
+    "at": [
+     44.220726,
+     -76.537481
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 100.1,
    "box": [
     -76.54232,
@@ -42752,6 +43575,14 @@
     "CA-1673",
     3362
    ],
+   "access_pin": {
+    "at": [
+     44.251017,
+     -76.543384
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 177.1,
    "box": [
     -76.54708,
@@ -42990,6 +43821,14 @@
     "CA-1673",
     3362
    ],
+   "access_pin": {
+    "at": [
+     44.251017,
+     -76.543384
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 177.1,
    "box": [
     -76.54708,
@@ -43897,6 +44736,16 @@
     "CA-5956",
     1266
    ],
+   "access_pin": {
+    "at": [
+     44.892416,
+     -76.20659
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 425
+   },
    "acres": 24.7,
    "box": [
     -76.19346,
@@ -44707,6 +45556,16 @@
     "CA-5093",
     304
    ],
+   "access_pin": {
+    "at": [
+     43.944815,
+     -79.344659
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.35614,
     43.94101,
@@ -45036,6 +45895,16 @@
     "CA-5093",
     304
    ],
+   "access_pin": {
+    "at": [
+     43.944815,
+     -79.344659
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.35614,
     43.94101,
@@ -45359,6 +46228,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.942238,
+     -79.941296
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.96197,
     43.92736,
@@ -45694,6 +46571,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.942238,
+     -79.941296
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.96197,
     43.92736,
@@ -46029,6 +46914,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.942238,
+     -79.941296
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.96197,
     43.92736,
@@ -46405,6 +47298,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.498492,
+     -79.937769
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.95257,
     43.49132,
@@ -46764,6 +47665,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.945217,
+     -79.865019
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.87285,
     43.94199,
@@ -47111,6 +48020,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.945217,
+     -79.865019
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.87285,
     43.94199,
@@ -47464,6 +48381,16 @@
     "CA-5141",
     249
    ],
+   "access_pin": {
+    "at": [
+     44.232304,
+     -76.609557
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -76.61195,
     44.21599,
@@ -47825,6 +48752,16 @@
     "CA-5142",
     42
    ],
+   "access_pin": {
+    "at": [
+     44.21473,
+     -76.693941
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 14
+   },
    "box": [
     -76.69583,
     44.21373,
@@ -48190,6 +49127,16 @@
     "CA-5143",
     989
    ],
+   "access_pin": {
+    "at": [
+     44.220227,
+     -76.537401
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 46
+   },
    "box": [
     -76.55264,
     44.21937,
@@ -49659,6 +50606,16 @@
     "CA-5353",
     192
    ],
+   "access_pin": {
+    "at": [
+     43.79531,
+     -80.012722
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.01275,
     43.79413,
@@ -50004,6 +50961,14 @@
     "CA-5358",
     2725
    ],
+   "access_pin": {
+    "at": [
+     43.198966,
+     -79.725542
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.72892,
     43.19806,
@@ -50369,6 +51334,16 @@
     "CA-5358",
     689
    ],
+   "access_pin": {
+    "at": [
+     43.211005,
+     -79.754885
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.75489,
     43.20304,
@@ -50722,6 +51697,16 @@
     "CA-5358",
     81
    ],
+   "access_pin": {
+    "at": [
+     43.211103,
+     -79.754925
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 11
+   },
    "box": [
     -79.76701,
     43.21032,
@@ -51051,6 +52036,16 @@
     "CA-5358",
     81
    ],
+   "access_pin": {
+    "at": [
+     43.211103,
+     -79.754925
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 11
+   },
    "box": [
     -79.76701,
     43.21032,
@@ -51380,6 +52375,16 @@
     "CA-5358",
     81
    ],
+   "access_pin": {
+    "at": [
+     43.211103,
+     -79.754925
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 11
+   },
    "box": [
     -79.76701,
     43.21032,
@@ -57638,6 +58643,15 @@
    "status": "dropped: a pin is outside its own outline"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     43.472124,
+     -79.927241
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.92842,
     43.47179,
@@ -57863,6 +58877,16 @@
     "CA-5563",
     423
    ],
+   "access_pin": {
+    "at": [
+     43.632492,
+     -79.972925
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -79.97949,
     43.62925,
@@ -59772,6 +60796,16 @@
     "CA-5572",
     1396
    ],
+   "access_pin": {
+    "at": [
+     43.19349,
+     -79.626538
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 326
+   },
    "box": [
     -79.61699,
     43.1904,
@@ -60125,6 +61159,16 @@
     "CA-5572",
     1396
    ],
+   "access_pin": {
+    "at": [
+     43.19349,
+     -79.626538
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 326
+   },
    "box": [
     -79.61699,
     43.1904,
@@ -60478,6 +61522,16 @@
     "CA-5572",
     1396
    ],
+   "access_pin": {
+    "at": [
+     43.19349,
+     -79.626538
+    ],
+    "from": "parking / access point",
+    "name": "Entrance (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 326
+   },
    "box": [
     -79.61699,
     43.1904,
@@ -61135,6 +62189,16 @@
     "CA-5574",
     342
    ],
+   "access_pin": {
+    "at": [
+     43.14899,
+     -79.445083
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Cave Springs (Niagara Peninsula Conservation Authority)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 179
+   },
    "box": [
     -79.44963,
     43.14561,
@@ -62144,6 +63208,16 @@
     "CA-5596",
     271
    ],
+   "access_pin": {
+    "at": [
+     42.873809,
+     -79.420517
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: WF-17 (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 80
+   },
    "box": [
     -79.42706,
     42.87372,
@@ -63813,6 +64887,16 @@
     "CA-5657",
     167
    ],
+   "access_pin": {
+    "at": [
+     44.461177,
+     -80.554677
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Epping-John_Muir_Lookout (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -80.55519,
     44.46115,
@@ -64170,6 +65254,16 @@
     "CA-5658",
     270
    ],
+   "access_pin": {
+    "at": [
+     44.764177,
+     -81.133862
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Spirit Rock (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.14135,
     44.75383,
@@ -64539,6 +65633,16 @@
     "CA-5658",
     270
    ],
+   "access_pin": {
+    "at": [
+     44.764177,
+     -81.133862
+    ],
+    "from": "parking / access point",
+    "name": "Parking: Spirit Rock (County of Grey)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.14135,
     44.75383,
@@ -66206,6 +67310,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.159517,
+     -79.049736
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.05079,
     43.15866,
@@ -66541,6 +67653,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.190595,
+     -79.055389
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.06162,
     43.16727,
@@ -66848,6 +67968,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.200237,
+     -79.556413
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.5571,
     43.19972,
@@ -67231,6 +68359,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.24542,
+     -79.070555
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -79.07349,
     43.24402,
@@ -67598,6 +68734,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.584854,
+     -80.946047
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -80.94763,
     44.58248,
@@ -68397,6 +69541,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.03471,
+     -83.023944
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -83.03399,
     42.02875,
@@ -68766,6 +69918,16 @@
     "CA-5942",
     350
    ],
+   "access_pin": {
+    "at": [
+     43.894959,
+     -78.672137
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: CLOCA Port Darlington (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 246
+   },
    "box": [
     -78.67487,
     43.89496,
@@ -69019,6 +70181,16 @@
     "CA-5942",
     723
    ],
+   "access_pin": {
+    "at": [
+     43.894962,
+     -78.672115
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: CLOCA Port Darlington (Ontario MNRF)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 242
+   },
    "box": [
     -78.67971,
     43.89464,

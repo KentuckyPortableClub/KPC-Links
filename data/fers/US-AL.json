@@ -12,6 +12,16 @@
     "US-3683",
     20028
    ],
+   "access_pin": {
+    "at": [
+     33.739659,
+     -85.727436
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3305.1,
    "box": [
     -85.78686,
@@ -354,6 +364,16 @@
     "US-1037",
     863
    ],
+   "access_pin": {
+    "at": [
+     33.454548,
+     -85.818345
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 630
+   },
    "acres": 82.1,
    "box": [
     -85.81866,
@@ -435,6 +455,16 @@
     "US-1037",
     1127
    ],
+   "access_pin": {
+    "at": [
+     33.454602,
+     -85.818325
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 625
+   },
    "acres": 83.7,
    "box": [
     -85.81864,
@@ -517,6 +547,16 @@
     "US-1037",
     723
    ],
+   "access_pin": {
+    "at": [
+     33.46959,
+     -85.834628
+    ],
+    "from": "road",
+    "name": "Cheaha Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 801.1,
    "box": [
     -85.83559,
@@ -631,6 +671,16 @@
     "US-1037",
     2222
    ],
+   "access_pin": {
+    "at": [
+     33.471218,
+     -85.800855
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 190
+   },
    "acres": 41.0,
    "box": [
     -85.78739,
@@ -701,6 +751,16 @@
     "US-1037",
     3191
    ],
+   "access_pin": {
+    "at": [
+     33.49881,
+     -85.839948
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 130.2,
    "box": [
     -85.85271,
@@ -787,6 +847,16 @@
     "US-1037",
     2847
    ],
+   "access_pin": {
+    "at": [
+     33.49881,
+     -85.839951
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 41.0,
    "box": [
     -85.84356,
@@ -857,6 +927,16 @@
     "US-1037",
     3673
    ],
+   "access_pin": {
+    "at": [
+     33.512778,
+     -85.786361
+    ],
+    "from": "road",
+    "name": "Cheaha Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1210
+   },
    "acres": 40.0,
    "box": [
     -85.77769,
@@ -927,6 +1007,16 @@
     "US-1037",
     2073
    ],
+   "access_pin": {
+    "at": [
+     33.5201,
+     -85.801383
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 115
+   },
    "acres": 397.1,
    "box": [
     -85.79993,
@@ -1037,6 +1127,16 @@
     "US-1037",
     3034
    ],
+   "access_pin": {
+    "at": [
+     33.527697,
+     -85.816418
+    ],
+    "from": "road",
+    "name": "Ducknest Mtwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 41.1,
    "box": [
     -85.8029,
@@ -1107,6 +1207,16 @@
     "US-1037",
     4209
    ],
+   "access_pin": {
+    "at": [
+     33.527698,
+     -85.816401
+    ],
+    "from": "road",
+    "name": "Ducknest Mtwy",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 56.8,
    "box": [
     -85.82158,
@@ -1488,6 +1598,16 @@
     "US-10396",
     7024
    ],
+   "access_pin": {
+    "at": [
+     34.348836,
+     -87.502898
+    ],
+    "from": "road",
+    "name": "Co Rd 3",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 25737.3,
    "box": [
     -87.51878,
@@ -2067,6 +2187,16 @@
     "US-3694",
     5327
    ],
+   "access_pin": {
+    "at": [
+     34.891215,
+     -86.056618
+    ],
+    "from": "road",
+    "name": "Co Rd 13",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 187
+   },
    "acres": 117.9,
    "box": [
     -86.06114,
@@ -2145,6 +2275,16 @@
     "US-3694",
     9104
    ],
+   "access_pin": {
+    "at": [
+     34.898443,
+     -85.97054
+    ],
+    "from": "road",
+    "name": "Co Rd 566",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 121
+   },
    "acres": 523.8,
    "box": [
     -85.98859,
@@ -2243,6 +2383,16 @@
     "US-3694",
     2738
    ],
+   "access_pin": {
+    "at": [
+     34.932175,
+     -86.15529
+    ],
+    "from": "road",
+    "name": "Co Rd 140",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 284.7,
    "box": [
     -86.15664,
@@ -2477,6 +2627,16 @@
     "US-3694",
     4593
    ],
+   "access_pin": {
+    "at": [
+     34.93218,
+     -86.155285
+    ],
+    "from": "road",
+    "name": "Co Rd 140",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 68.7,
    "box": [
     -86.1562,
@@ -2571,6 +2731,16 @@
     "US-3694",
     879
    ],
+   "access_pin": {
+    "at": [
+     34.989243,
+     -86.051663
+    ],
+    "from": "road",
+    "name": "Cave Springs Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 11678.0,
    "box": [
     -86.13598,
@@ -2801,6 +2971,16 @@
     "US-3682",
     5680
    ],
+   "access_pin": {
+    "at": [
+     33.37214,
+     -85.841435
+    ],
+    "from": "road",
+    "name": "High Falls Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 7390.1,
    "box": [
     -85.87532,
@@ -3047,6 +3227,16 @@
     "US-3683",
     2465
    ],
+   "access_pin": {
+    "at": [
+     33.831188,
+     -85.579793
+    ],
+    "from": "road",
+    "name": "Co Rd 540",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 47118.7,
    "box": [
     -85.65598,
@@ -3345,6 +3535,16 @@
     "US-3683",
     10721
    ],
+   "access_pin": {
+    "at": [
+     33.72937,
+     -85.659086
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 957.5,
    "box": [
     -85.67311,
@@ -3836,6 +4036,16 @@
     "US-3693",
     14384
    ],
+   "access_pin": {
+    "at": [
+     33.263306,
+     -86.104113
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 24004.9,
    "box": [
     -86.19946,
@@ -4477,6 +4687,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     31.05772,
+     -86.651455
+    ],
+    "from": "road",
+    "name": "309",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6887.6,
    "box": [
     -86.70027,
@@ -4695,6 +4915,16 @@
     "US-9912",
     4561
    ],
+   "access_pin": {
+    "at": [
+     31.171797,
+     -86.572083
+    ],
+    "from": "road",
+    "name": "Fs 332A",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 24612.6,
    "box": [
     -86.62244,
@@ -4981,6 +5211,16 @@
     "US-9924",
     2443
    ],
+   "access_pin": {
+    "at": [
+     33.011616,
+     -87.480722
+    ],
+    "from": "road",
+    "name": "S Sandy Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 49446.4,
    "box": [
     -87.5063,

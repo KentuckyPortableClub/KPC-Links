@@ -75,6 +75,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.929752,
+     -95.437364
+    ],
+    "from": "road",
+    "name": "Co Rd 350E",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 8492.9,
    "box": [
     -95.55648,
@@ -383,6 +393,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.97121,
+     -95.45086
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2040.7,
    "box": [
     -95.4639,
@@ -752,6 +772,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.48417,
+     -94.697749
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 421.0,
    "box": [
     -94.70485,
@@ -832,6 +862,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.282193,
+     -95.781832
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 105.3,
    "box": [
     -95.79898,
@@ -984,6 +1024,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     38.735628,
+     -94.959344
+    ],
+    "from": "road",
+    "name": "W 217th St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 6449.6,
    "box": [
     -95.01004,
@@ -1631,6 +1681,16 @@
     "US-2345",
     23931
    ],
+   "access_pin": {
+    "at": [
+     39.195894,
+     -97.005481
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 12491.2,
    "box": [
     -96.99174,
@@ -1989,6 +2049,16 @@
     "US-2347",
     1665
    ],
+   "access_pin": {
+    "at": [
+     39.399019,
+     -95.516608
+    ],
+    "from": "road",
+    "name": "Swabville Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 21698.8,
    "box": [
     -95.5523,
@@ -2289,6 +2359,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.817879,
+     -99.943946
+    ],
+    "from": "road",
+    "name": "Rd W-3",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 956.4,
    "box": [
     -99.9782,
@@ -2621,6 +2701,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.688343,
+     -96.657556
+    ],
+    "from": "road",
+    "name": "Lincoln St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 16954.8,
    "box": [
     -96.80151,
@@ -3319,6 +3409,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     37.656796,
+     -98.256079
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 156.2,
    "box": [
     -98.26885,
@@ -3511,6 +3611,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     39.198595,
+     -101.791995
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1547.4,
    "box": [
     -101.80142,

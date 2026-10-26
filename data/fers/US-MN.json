@@ -1526,6 +1526,16 @@
     "US-2482",
     2054
    ],
+   "access_pin": {
+    "at": [
+     44.860896,
+     -93.212682
+    ],
+    "from": "road",
+    "name": "E American Blvd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 50
+   },
    "acres": 154.4,
    "box": [
     -93.21273,
@@ -1674,6 +1684,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.717621,
+     -93.62442
+    ],
+    "from": "road",
+    "name": "Carver Highland Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 264
+   },
    "box": [
     -93.62443,
     44.70302,
@@ -1973,6 +1993,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.717835,
+     -93.624411
+    ],
+    "from": "road",
+    "name": "Carver Highland Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -93.63012,
     44.73258,
@@ -2332,6 +2362,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.795916,
+     -93.422582
+    ],
+    "from": "road",
+    "name": "Co Rd 101",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 45
+   },
    "box": [
     -93.42521,
     44.79565,
@@ -2589,6 +2629,16 @@
     "US-4825",
     2462
    ],
+   "access_pin": {
+    "at": [
+     45.444051,
+     -93.699418
+    ],
+    "from": "road",
+    "name": "Co Rd 4 NW",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2121.0,
    "box": [
     -93.68541,
@@ -2844,6 +2894,17 @@
    "wide_m": 2052
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.297237,
+     -93.48586
+    ],
+    "from": "road",
+    "name": "Prairie Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.52272,
     47.24823,
@@ -3190,6 +3251,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.364227,
+     -93.502785
+    ],
+    "from": "road",
+    "name": "Co Rd 325",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.50253,
     47.29566,
@@ -3528,6 +3600,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.364227,
+     -93.502785
+    ],
+    "from": "road",
+    "name": "Co Rd 325",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.50253,
     47.29566,
@@ -3866,6 +3949,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.364227,
+     -93.502785
+    ],
+    "from": "road",
+    "name": "Co Rd 325",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.50253,
     47.29566,
@@ -4204,6 +4298,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.387988,
+     -93.467721
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.47995,
     47.37357,
@@ -4522,6 +4627,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.47108,
+     -93.409031
+    ],
+    "from": "road",
+    "name": "Co Rd 50",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.46915,
     47.3873,
@@ -4860,6 +4976,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.502412,
+     -93.396657
+    ],
+    "from": "road",
+    "name": "Co Rd 343",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.41751,
     47.46284,
@@ -5214,6 +5341,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.527585,
+     -93.322231
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.3739,
     47.50747,
@@ -5576,6 +5714,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.502423,
+     -93.396695
+    ],
+    "from": "road",
+    "name": "Co Rd 343",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.41005,
     47.49487,
@@ -5870,6 +6019,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.527585,
+     -93.322231
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.3739,
     47.50747,
@@ -6232,6 +6392,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.527585,
+     -93.322231
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.3739,
     47.50747,
@@ -6594,6 +6765,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.527613,
+     -93.322185
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.32784,
     47.52759,
@@ -6892,6 +7074,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.527613,
+     -93.322185
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.32784,
     47.52759,
@@ -7190,6 +7383,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.571048,
+     -93.334808
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -93.36616,
     47.54259,
@@ -7528,6 +7732,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.571048,
+     -93.334808
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -93.36616,
     47.54259,
@@ -7866,6 +8081,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.571048,
+     -93.334808
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -93.36616,
     47.54259,
@@ -8204,6 +8430,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.571048,
+     -93.334808
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 260
+   },
    "box": [
     -93.36616,
     47.54259,
@@ -8542,6 +8779,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.572435,
+     -93.329244
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.35283,
     47.5669,
@@ -8892,6 +9140,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.591658,
+     -93.279715
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28406,
     47.58132,
@@ -9162,6 +9421,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.591701,
+     -93.279767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.29257,
     47.58222,
@@ -9492,6 +9762,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.588327,
+     -93.280916
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30218,
     47.59179,
@@ -9810,6 +10091,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.591701,
+     -93.279767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.29257,
     47.58222,
@@ -10140,6 +10432,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.588327,
+     -93.280916
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30218,
     47.59179,
@@ -10458,6 +10761,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.572435,
+     -93.329244
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.35283,
     47.5669,
@@ -10808,6 +11122,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.591636,
+     -93.279726
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28148,
     47.58785,
@@ -11146,6 +11471,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.591636,
+     -93.279726
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28148,
     47.58785,
@@ -11484,6 +11820,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.626393,
+     -93.2145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 205
+   },
    "box": [
     -93.21313,
     47.62801,
@@ -11814,6 +12161,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.626393,
+     -93.2145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 205
+   },
    "box": [
     -93.21313,
     47.62801,
@@ -12144,6 +12502,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.657369,
+     -93.184804
+    ],
+    "from": "road",
+    "name": "Bear Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 820
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -12502,6 +12871,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.657369,
+     -93.184804
+    ],
+    "from": "road",
+    "name": "Bear Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 820
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -12860,6 +13240,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.674777,
+     -92.899906
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93957,
     47.66661,
@@ -13198,6 +13589,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.674777,
+     -92.899906
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93957,
     47.66661,
@@ -13536,6 +13938,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.681069,
+     -92.975661
+    ],
+    "from": "road",
+    "name": "Dean Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9717,
     47.6678,
@@ -13870,6 +14283,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.657369,
+     -93.184804
+    ],
+    "from": "road",
+    "name": "Bear Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 820
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -14228,6 +14652,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.681069,
+     -92.975661
+    ],
+    "from": "road",
+    "name": "Dean Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9717,
     47.6678,
@@ -14562,6 +14997,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.674758,
+     -92.899878
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.88738,
     47.67956,
@@ -14852,6 +15298,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.696388,
+     -93.012167
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00127,
     47.68241,
@@ -15194,6 +15651,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.695092,
+     -92.626665
+    ],
+    "from": "road",
+    "name": "F Rd 257",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.63892,
     47.68338,
@@ -15464,6 +15932,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.689715,
+     -92.751648
+    ],
+    "from": "road",
+    "name": "Anderson Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.7597,
     47.67468,
@@ -15826,6 +16305,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.689731,
+     -92.751662
+    ],
+    "from": "road",
+    "name": "Anderson Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.77506,
     47.68612,
@@ -16156,6 +16646,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -16494,6 +16995,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.689731,
+     -92.751662
+    ],
+    "from": "road",
+    "name": "Anderson Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.77506,
     47.68612,
@@ -16824,6 +17336,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.697654,
+     -92.559651
+    ],
+    "from": "road",
+    "name": "F Rd 256",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.6274,
     47.68952,
@@ -17142,6 +17665,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.674758,
+     -92.899878
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.88738,
     47.67956,
@@ -17432,6 +17966,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.696388,
+     -93.012167
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00127,
     47.68241,
@@ -17774,6 +18319,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.689715,
+     -92.751648
+    ],
+    "from": "road",
+    "name": "Anderson Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.7597,
     47.67468,
@@ -18136,6 +18692,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.696399,
+     -93.012199
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00871,
     47.69048,
@@ -18470,6 +19037,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.697654,
+     -92.559651
+    ],
+    "from": "road",
+    "name": "F Rd 256",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.6274,
     47.68952,
@@ -18788,6 +19366,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -19110,6 +19699,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -19448,6 +20048,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.705225,
+     -93.133136
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 103
+   },
    "box": [
     -93.1434,
     47.70549,
@@ -19750,6 +20361,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -20088,6 +20710,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -20410,6 +21043,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.716957,
+     -93.093699
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.12159,
     47.70829,
@@ -20772,6 +21416,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.717505,
+     -93.06635
+    ],
+    "from": "road",
+    "name": "Beatrice Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.07468,
     47.69988,
@@ -21138,6 +21793,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.716957,
+     -93.093699
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.12159,
     47.70829,
@@ -21500,6 +22166,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.697654,
+     -92.559651
+    ],
+    "from": "road",
+    "name": "F Rd 256",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.6274,
     47.68952,
@@ -21818,6 +22495,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.775034,
+     -92.389506
+    ],
+    "from": "road",
+    "name": "Koski Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.43669,
     47.75191,
@@ -22172,6 +22860,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.808457,
+     -92.251374
+    ],
+    "from": "road",
+    "name": "Junction Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.29371,
     47.78868,
@@ -22482,6 +23181,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.800141,
+     -92.10907
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.15474,
     47.7853,
@@ -22812,6 +23522,15 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.793639,
+     -92.159484
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.18368,
     47.79073,
@@ -23170,6 +23889,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.812442,
+     -92.052316
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.11405,
     47.79602,
@@ -23488,6 +24218,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.812442,
+     -92.052316
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.11405,
     47.79602,
@@ -23806,6 +24547,15 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.793639,
+     -92.159484
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.18368,
     47.79073,
@@ -24164,6 +24914,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.808457,
+     -92.251374
+    ],
+    "from": "road",
+    "name": "Junction Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.29371,
     47.78868,
@@ -24474,6 +25235,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.808457,
+     -92.251374
+    ],
+    "from": "road",
+    "name": "Junction Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.29371,
     47.78868,
@@ -24784,6 +25556,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.808808,
+     -92.222743
+    ],
+    "from": "road",
+    "name": "Thompson Farm Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.25352,
     47.80657,
@@ -25122,6 +25905,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.812352,
+     -92.052369
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.0669,
     47.81104,
@@ -25432,6 +26226,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.812352,
+     -92.052369
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.0669,
     47.81104,
@@ -25742,6 +26547,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.844677,
+     -91.951985
+    ],
+    "from": "road",
+    "name": "W Boundary Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 2278
+   },
    "box": [
     -91.99952,
     47.82398,
@@ -26064,6 +26880,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.844677,
+     -91.951985
+    ],
+    "from": "road",
+    "name": "W Boundary Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 2278
+   },
    "box": [
     -91.99952,
     47.82398,
@@ -26386,6 +27213,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.899341,
+     -91.835206
+    ],
+    "from": "road",
+    "name": "N Cemetery Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.92259,
     47.88213,
@@ -26676,6 +27514,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     47.899341,
+     -91.835206
+    ],
+    "from": "road",
+    "name": "N Cemetery Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.92259,
     47.88213,
@@ -26966,6 +27815,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.811658,
+    -92.067338,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-2468",
+    1364
+   ],
+   "access_pin": {
+    "at": [
+     47.812358,
+     -92.052371
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.0669,
     47.81104,
@@ -27328,6 +28194,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.811658,
+    -92.067338,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-2468",
+    1364
+   ],
+   "access_pin": {
+    "at": [
+     47.812358,
+     -92.052371
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.0669,
     47.81104,
@@ -27690,6 +28573,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.671935,
+    -93.027104,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-2508",
+    3114
+   ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -28012,6 +28912,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.671935,
+    -93.027104,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-2508",
+    3114
+   ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -36178,6 +37095,23 @@
    "status": "dropped: a pin is outside its own outline"
   },
   {
+   "access": [
+    47.800011,
+    -92.11639,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    2474
+   ],
+   "access_pin": {
+    "at": [
+     47.800141,
+     -92.10907
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.15474,
     47.7853,
@@ -36508,6 +37442,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.800011,
+    -92.11639,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    3299
+   ],
+   "access_pin": {
+    "at": [
+     47.793639,
+     -92.159484
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.17983,
     47.79073,
@@ -36866,6 +37815,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.800011,
+    -92.11639,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    712
+   ],
+   "access_pin": {
+    "at": [
+     47.800087,
+     -92.109024
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.11405,
     47.79704,
@@ -37156,6 +38122,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.800011,
+    -92.11639,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    712
+   ],
+   "access_pin": {
+    "at": [
+     47.800087,
+     -92.109024
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.11405,
     47.79704,
@@ -37446,6 +38429,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.826403,
+    -92.006674,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    966
+   ],
+   "access_pin": {
+    "at": [
+     47.826638,
+     -92.006937
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -92.03445,
     47.82001,
@@ -37756,6 +38756,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.826403,
+    -92.006674,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    966
+   ],
+   "access_pin": {
+    "at": [
+     47.826638,
+     -92.006937
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -92.03445,
     47.82001,
@@ -38066,6 +39083,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.826403,
+    -92.006674,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    784
+   ],
+   "access_pin": {
+    "at": [
+     47.826634,
+     -92.006925
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -91.99952,
     47.82398,
@@ -38388,6 +39422,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.826403,
+    -92.006674,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    784
+   ],
+   "access_pin": {
+    "at": [
+     47.826634,
+     -92.006925
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -91.99952,
     47.82398,
@@ -38710,6 +39761,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.826403,
+    -92.006674,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    8871
+   ],
+   "access_pin": {
+    "at": [
+     47.88948,
+     -91.870168
+    ],
+    "from": "road",
+    "name": "Co Hwy 21",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 235
+   },
    "box": [
     -91.92747,
     47.88213,
@@ -39024,6 +40092,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.799127,
+    -91.869614,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4782",
+    9551
+   ],
+   "access_pin": {
+    "at": [
+     47.889474,
+     -91.861191
+    ],
+    "from": "road",
+    "name": "S 3rd Ave E",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.86893,
     47.88472,
@@ -39362,6 +40447,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.550404,
+    -93.406061,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    3401
+   ],
+   "access_pin": {
+    "at": [
+     47.571319,
+     -93.336138
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 300
+   },
    "box": [
     -93.36616,
     47.54433,
@@ -39700,6 +40802,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.550404,
+    -93.406061,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    3401
+   ],
+   "access_pin": {
+    "at": [
+     47.571319,
+     -93.336138
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 300
+   },
    "box": [
     -93.36616,
     47.54433,
@@ -40038,6 +41157,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.550404,
+    -93.406061,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    3401
+   ],
+   "access_pin": {
+    "at": [
+     47.571319,
+     -93.336138
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 300
+   },
    "box": [
     -93.36616,
     47.54433,
@@ -40376,6 +41512,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    4571
+   ],
+   "access_pin": {
+    "at": [
+     47.572435,
+     -93.329244
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.35283,
     47.5669,
@@ -40726,6 +41879,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    6716
+   ],
+   "access_pin": {
+    "at": [
+     47.591658,
+     -93.279715
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28406,
     47.58132,
@@ -40996,6 +42166,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    5796
+   ],
+   "access_pin": {
+    "at": [
+     47.591701,
+     -93.279767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.29257,
     47.58222,
@@ -41326,6 +42513,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    5127
+   ],
+   "access_pin": {
+    "at": [
+     47.588327,
+     -93.280916
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30218,
     47.59179,
@@ -41644,6 +42848,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    5796
+   ],
+   "access_pin": {
+    "at": [
+     47.591701,
+     -93.279767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.29257,
     47.58222,
@@ -41974,6 +43195,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    5127
+   ],
+   "access_pin": {
+    "at": [
+     47.588327,
+     -93.280916
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30218,
     47.59179,
@@ -42292,6 +43530,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.60707,
+    -93.363852,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    4571
+   ],
+   "access_pin": {
+    "at": [
+     47.572435,
+     -93.329244
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.35283,
     47.5669,
@@ -42642,6 +43897,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.622016,
+    -93.212819,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    5481
+   ],
+   "access_pin": {
+    "at": [
+     47.591636,
+     -93.279726
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28148,
     47.58785,
@@ -42980,6 +44252,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.622016,
+    -93.212819,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    5481
+   ],
+   "access_pin": {
+    "at": [
+     47.591636,
+     -93.279726
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28148,
     47.58785,
@@ -43318,6 +44607,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.622016,
+    -93.212819,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    1166
+   ],
+   "access_pin": {
+    "at": [
+     47.626393,
+     -93.2145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 205
+   },
    "box": [
     -93.21313,
     47.62801,
@@ -43648,6 +44954,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.622016,
+    -93.212819,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    1166
+   ],
+   "access_pin": {
+    "at": [
+     47.626393,
+     -93.2145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 205
+   },
    "box": [
     -93.21313,
     47.62801,
@@ -43978,6 +45301,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.655495,
+    -93.194821,
+    "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "US-4799",
+    1370
+   ],
+   "access_pin": {
+    "at": [
+     47.657233,
+     -93.184804
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 782
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -44336,6 +45676,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.655495,
+    -93.194821,
+    "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "US-4799",
+    1370
+   ],
+   "access_pin": {
+    "at": [
+     47.657233,
+     -93.184804
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 782
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -44694,6 +46051,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.655495,
+    -93.194821,
+    "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "US-4799",
+    1370
+   ],
+   "access_pin": {
+    "at": [
+     47.657233,
+     -93.184804
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 782
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -45052,6 +46426,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.655495,
+    -93.194821,
+    "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "US-4799",
+    5101
+   ],
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -45390,6 +46781,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.655495,
+    -93.194821,
+    "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "US-4799",
+    5101
+   ],
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -45728,6 +47136,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.703709,
+    -93.096021,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    2746
+   ],
+   "access_pin": {
+    "at": [
+     47.705225,
+     -93.133136
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 103
+   },
    "box": [
     -93.1434,
     47.70549,
@@ -46030,6 +47455,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.655495,
+    -93.194821,
+    "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "US-4799",
+    5101
+   ],
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -46368,6 +47810,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.710612,
+    -93.073761,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    990
+   ],
+   "access_pin": {
+    "at": [
+     47.717454,
+     -93.066396
+    ],
+    "from": "road",
+    "name": "Beatrice Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.06812,
     47.7156,
@@ -46654,6 +48113,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.703709,
+    -93.096021,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    1476
+   ],
+   "access_pin": {
+    "at": [
+     47.716957,
+     -93.093699
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.12159,
     47.70829,
@@ -47016,6 +48492,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.703709,
+    -93.096021,
+    "Boat ramp / launch: Itasca (Minnesota DNR; all administrators)",
+    "US-4799",
+    1476
+   ],
+   "access_pin": {
+    "at": [
+     47.716957,
+     -93.093699
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.12159,
     47.70829,
@@ -47378,6 +48871,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.640957,
+    -92.935228,
+    "Entrance: Shannon River RGMA (Minnesota DNR)",
+    "US-4831",
+    3596
+   ],
+   "access_pin": {
+    "at": [
+     47.674777,
+     -92.899906
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93957,
     47.66661,
@@ -47716,6 +49226,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.640957,
+    -92.935228,
+    "Entrance: Shannon River RGMA (Minnesota DNR)",
+    "US-4831",
+    3596
+   ],
+   "access_pin": {
+    "at": [
+     47.674777,
+     -92.899906
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93957,
     47.66661,
@@ -48054,6 +49581,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    3897
+   ],
+   "access_pin": {
+    "at": [
+     47.681069,
+     -92.975661
+    ],
+    "from": "road",
+    "name": "Dean Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9717,
     47.6678,
@@ -48388,6 +49932,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    3897
+   ],
+   "access_pin": {
+    "at": [
+     47.681069,
+     -92.975661
+    ],
+    "from": "road",
+    "name": "Dean Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9717,
     47.6678,
@@ -48722,6 +50283,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.71134,
+    -92.931383,
+    "Entrance: Mud Hole RGMA (Minnesota DNR)",
+    "US-4831",
+    5322
+   ],
+   "access_pin": {
+    "at": [
+     47.674758,
+     -92.899878
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.88738,
     47.67956,
@@ -49012,6 +50590,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    1395
+   ],
+   "access_pin": {
+    "at": [
+     47.696388,
+     -93.012167
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00127,
     47.68241,
@@ -49354,6 +50949,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.71134,
+    -92.931383,
+    "Entrance: Mud Hole RGMA (Minnesota DNR)",
+    "US-4831",
+    5322
+   ],
+   "access_pin": {
+    "at": [
+     47.674758,
+     -92.899878
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.88738,
     47.67956,
@@ -49644,6 +51256,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    1395
+   ],
+   "access_pin": {
+    "at": [
+     47.696388,
+     -93.012167
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00127,
     47.68241,
@@ -49986,6 +51615,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    1528
+   ],
+   "access_pin": {
+    "at": [
+     47.696399,
+     -93.012199
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00871,
     47.69048,
@@ -50320,6 +51966,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    2837
+   ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -50642,6 +52305,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    2837
+   ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -50964,6 +52644,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.678624,
+    -93.003798,
+    "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "US-4831",
+    7306
+   ],
+   "access_pin": {
+    "at": [
+     47.715288,
+     -93.059053
+    ],
+    "from": "road",
+    "name": "Snake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 58
+   },
    "box": [
     -93.08221,
     47.72012,
@@ -51270,6 +52967,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.845799,
+    -92.520477,
+    "Entrance: Hwy 115 RGMA (Minnesota DNR)",
+    "US-4831",
+    10755
+   ],
+   "access_pin": {
+    "at": [
+     47.752139,
+     -92.471984
+    ],
+    "from": "road",
+    "name": "Forest Rte 256",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.52502,
     47.74339,
@@ -51612,6 +53326,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    47.845799,
+    -92.520477,
+    "Entrance: Hwy 115 RGMA (Minnesota DNR)",
+    "US-4831",
+    12062
+   ],
+   "access_pin": {
+    "at": [
+     47.75148,
+     -92.439502
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.44094,
     47.75126,
@@ -55886,6 +57615,17 @@
    "status": "dropped in pass 3"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.912283,
+     -92.744158
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 493
+   },
    "box": [
     -92.74423,
     45.90298,
@@ -56120,6 +57860,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.952953,
+     -92.749795
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.76557,
     45.93429,
@@ -56450,6 +58201,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.952953,
+     -92.749795
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.76557,
     45.93429,
@@ -56780,6 +58542,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.956752,
+     -92.676533
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.66893,
     45.9495,
@@ -57094,6 +58867,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.957161,
+     -92.732956
+    ],
+    "from": "road",
+    "name": "Fire Tower Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.75972,
     45.9427,
@@ -57428,6 +59212,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.957161,
+     -92.732956
+    ],
+    "from": "road",
+    "name": "Fire Tower Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.75972,
     45.9427,
@@ -57762,6 +59557,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.960761,
+     -92.611507
+    ],
+    "from": "road",
+    "name": "Co Rd 22",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.64325,
     45.9502,
@@ -58128,6 +59934,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.960761,
+     -92.611507
+    ],
+    "from": "road",
+    "name": "Co Rd 22",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.64325,
     45.9502,
@@ -58494,6 +60311,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.997486,
+     -92.521835
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.56893,
     45.98331,
@@ -58824,6 +60652,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.997486,
+     -92.521835
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.56893,
     45.98331,
@@ -59154,6 +60993,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.823092,
+    -92.764575,
+    "Boat ramp / launch: Pine St. Croix River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    1615
+   ],
+   "access_pin": {
+    "at": [
+     45.819016,
+     -92.779424
+    ],
+    "from": "road",
+    "name": "Snake River Campground Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78747,
     45.82001,
@@ -59520,6 +61376,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.823092,
+    -92.764575,
+    "Boat ramp / launch: Pine St. Croix River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    1421
+   ],
+   "access_pin": {
+    "at": [
+     45.819022,
+     -92.779448
+    ],
+    "from": "road",
+    "name": "Snake River Campground Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78723,
     45.81808,
@@ -59858,6 +61731,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.823092,
+    -92.764575,
+    "Boat ramp / launch: Pine St. Croix River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    1615
+   ],
+   "access_pin": {
+    "at": [
+     45.819016,
+     -92.779424
+    ],
+    "from": "road",
+    "name": "Snake River Campground Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78747,
     45.82001,
@@ -60224,6 +62114,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.823092,
+    -92.764575,
+    "Boat ramp / launch: Pine St. Croix River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    1615
+   ],
+   "access_pin": {
+    "at": [
+     45.819016,
+     -92.779424
+    ],
+    "from": "road",
+    "name": "Snake River Campground Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78747,
     45.82001,
@@ -60590,6 +62497,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.823092,
+    -92.764575,
+    "Boat ramp / launch: Pine St. Croix River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    4566
+   ],
+   "access_pin": {
+    "at": [
+     45.863844,
+     -92.766241
+    ],
+    "from": "road",
+    "name": "Chengwatana Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.7683,
     45.85656,
@@ -60908,6 +62832,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.904246,
+    -92.731249,
+    "Boat ramp / launch: Pine Kettle River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    3801
+   ],
+   "access_pin": {
+    "at": [
+     45.87112,
+     -92.74433
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.74658,
     45.87058,
@@ -61186,6 +63125,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.904246,
+    -92.731249,
+    "Boat ramp / launch: Pine Kettle River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    3922
+   ],
+   "access_pin": {
+    "at": [
+     45.863825,
+     -92.766266
+    ],
+    "from": "road",
+    "name": "Chengwatana Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.76478,
     45.86605,
@@ -61512,6 +63468,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.904246,
+    -92.731249,
+    "Boat ramp / launch: Pine Kettle River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    3801
+   ],
+   "access_pin": {
+    "at": [
+     45.87112,
+     -92.74433
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.74658,
     45.87058,
@@ -61790,6 +63761,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.904246,
+    -92.731249,
+    "Boat ramp / launch: Pine Kettle River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    1850
+   ],
+   "access_pin": {
+    "at": [
+     45.902911,
+     -92.740132
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 608
+   },
    "box": [
     -92.74304,
     45.884,
@@ -62136,6 +64124,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    45.904246,
+    -92.731249,
+    "Boat ramp / launch: Pine Kettle River State Water Trail (Minnesota DNR; all administrators)",
+    "US-4790",
+    1850
+   ],
+   "access_pin": {
+    "at": [
+     45.902911,
+     -92.740132
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 608
+   },
    "box": [
     -92.74304,
     45.884,
@@ -62482,6 +64487,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    16272
+   ],
+   "access_pin": {
+    "at": [
+     46.214879,
+     -92.418852
+    ],
+    "from": "road",
+    "name": "Doyle Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1586
+   },
    "box": [
     -92.41862,
     46.21518,
@@ -62824,6 +64846,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    13541
+   ],
+   "access_pin": {
+    "at": [
+     46.244265,
+     -92.440159
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.44285,
     46.2328,
@@ -63114,6 +65151,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    13541
+   ],
+   "access_pin": {
+    "at": [
+     46.244265,
+     -92.440159
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.44285,
     46.2328,
@@ -63404,6 +65456,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    13541
+   ],
+   "access_pin": {
+    "at": [
+     46.244265,
+     -92.440159
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.44285,
     46.2328,
@@ -63694,6 +65761,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    10003
+   ],
+   "access_pin": {
+    "at": [
+     46.29606,
+     -92.424883
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 20
+   },
    "box": [
     -92.43162,
     46.27237,
@@ -64000,6 +66084,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    8467
+   ],
+   "access_pin": {
+    "at": [
+     46.296124,
+     -92.424918
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 21
+   },
    "box": [
     -92.42802,
     46.28264,
@@ -64338,6 +66439,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    8467
+   ],
+   "access_pin": {
+    "at": [
+     46.296124,
+     -92.424918
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 21
+   },
    "box": [
     -92.42802,
     46.28264,
@@ -64676,6 +66794,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    3546
+   ],
+   "access_pin": {
+    "at": [
+     46.333405,
+     -92.418015
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.41835,
     46.32388,
@@ -65022,6 +67155,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    2982
+   ],
+   "access_pin": {
+    "at": [
+     46.357376,
+     -92.425675
+    ],
+    "from": "road",
+    "name": "Sfr 4 C",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1536
+   },
    "box": [
     -92.44376,
     46.33,
@@ -65360,6 +67510,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    2982
+   ],
+   "access_pin": {
+    "at": [
+     46.357376,
+     -92.425675
+    ],
+    "from": "road",
+    "name": "Sfr 4 C",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1536
+   },
    "box": [
     -92.44376,
     46.33,
@@ -65698,6 +67865,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    2982
+   ],
+   "access_pin": {
+    "at": [
+     46.357376,
+     -92.425675
+    ],
+    "from": "road",
+    "name": "Sfr 4 C",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1536
+   },
    "box": [
     -92.44376,
     46.33,
@@ -66036,6 +68220,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    2982
+   ],
+   "access_pin": {
+    "at": [
+     46.357376,
+     -92.425675
+    ],
+    "from": "road",
+    "name": "Sfr 4 C",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1536
+   },
    "box": [
     -92.44376,
     46.33,
@@ -66374,6 +68575,21 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    2165
+   ],
+   "access_pin": {
+    "at": [
+     46.36793,
+     -92.434352
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.43756,
     46.35886,
@@ -66720,6 +68936,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.364479,
+    -92.406604,
+    "Entrance: Klondike Trail RGMA (Minnesota DNR)",
+    "US-4814",
+    2916
+   ],
+   "access_pin": {
+    "at": [
+     46.40501,
+     -92.425713
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.4461,
     46.37253,
@@ -67066,6 +69299,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    960
+   ],
+   "access_pin": {
+    "at": [
+     46.405005,
+     -92.425691
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.44498,
     46.39046,
@@ -67396,6 +69646,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    2373
+   ],
+   "access_pin": {
+    "at": [
+     46.407503,
+     -92.405236
+    ],
+    "from": "road",
+    "name": "Big Tooth Ridge Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.42238,
     46.40213,
@@ -67702,6 +69969,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    960
+   ],
+   "access_pin": {
+    "at": [
+     46.405005,
+     -92.425691
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.44498,
     46.39046,
@@ -68032,6 +70316,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    2567
+   ],
+   "access_pin": {
+    "at": [
+     46.411231,
+     -92.36265
+    ],
+    "from": "road",
+    "name": "Net Lake Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.40833,
     46.40601,
@@ -68378,6 +70679,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    6072
+   ],
+   "access_pin": {
+    "at": [
+     46.411244,
+     -92.362657
+    ],
+    "from": "road",
+    "name": "Net Lake Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.36756,
     46.41206,
@@ -68664,6 +70982,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    6072
+   ],
+   "access_pin": {
+    "at": [
+     46.411244,
+     -92.362657
+    ],
+    "from": "road",
+    "name": "Net Lake Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.36756,
     46.41206,
@@ -68950,6 +71285,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    6463
+   ],
+   "access_pin": {
+    "at": [
+     46.446897,
+     -92.347786
+    ],
+    "from": "road",
+    "name": "Twp Rd 18",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.36755,
     46.42055,
@@ -69248,6 +71600,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    6463
+   ],
+   "access_pin": {
+    "at": [
+     46.446897,
+     -92.347786
+    ],
+    "from": "road",
+    "name": "Twp Rd 18",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.36755,
     46.42055,
@@ -69546,6 +71915,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    6890
+   ],
+   "access_pin": {
+    "at": [
+     46.448557,
+     -92.338933
+    ],
+    "from": "road",
+    "name": "Forestry Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.36359,
     46.43184,
@@ -69860,6 +72246,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    6890
+   ],
+   "access_pin": {
+    "at": [
+     46.448557,
+     -92.338933
+    ],
+    "from": "road",
+    "name": "Forestry Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.36359,
     46.43184,
@@ -70174,6 +72577,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    9259
+   ],
+   "access_pin": {
+    "at": [
+     46.448553,
+     -92.338956
+    ],
+    "from": "road",
+    "name": "Forestry Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.34133,
     46.44773,
@@ -70492,6 +72912,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    46.404644,
+    -92.439587,
+    "Boat ramp / launch: Pine (Minnesota DNR; all administrators)",
+    "US-4814",
+    9925
+   ],
+   "access_pin": {
+    "at": [
+     46.448578,
+     -92.338942
+    ],
+    "from": "road",
+    "name": "Forestry Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.35182,
     46.45929,
@@ -70842,6 +73279,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.037178,
+     -92.446546
+    ],
+    "from": "road",
+    "name": "Co Rd 173",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.48501,
     46.01253,
@@ -71204,6 +73652,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.037178,
+     -92.446546
+    ],
+    "from": "road",
+    "name": "Co Rd 173",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.48501,
     46.01253,
@@ -71566,6 +74025,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.037181,
+     -92.446537
+    ],
+    "from": "road",
+    "name": "Co Rd 173",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.44535,
     46.03357,
@@ -71836,6 +74306,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.037181,
+     -92.446537
+    ],
+    "from": "road",
+    "name": "Co Rd 173",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.44535,
     46.03357,
@@ -72106,6 +74587,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.072698,
+     -92.449708
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.44639,
     46.04339,
@@ -72436,6 +74928,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.072698,
+     -92.449708
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.44639,
     46.04339,
@@ -72766,6 +75269,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.127855,
+     -92.467484
+    ],
+    "from": "road",
+    "name": "Co Rd 141",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.4807,
     46.09558,
@@ -73072,6 +75586,17 @@
    "status": "candidate"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     46.127855,
+     -92.467484
+    ],
+    "from": "road",
+    "name": "Co Rd 141",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.4807,
     46.09558,
@@ -73385,6 +75910,16 @@
     "US-2468",
     1364
    ],
+   "access_pin": {
+    "at": [
+     47.812358,
+     -92.052371
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.0669,
     47.81104,
@@ -73754,6 +76289,16 @@
     "US-2468",
     1364
    ],
+   "access_pin": {
+    "at": [
+     47.812358,
+     -92.052371
+    ],
+    "from": "road",
+    "name": "Bear Head State Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.0669,
     47.81104,
@@ -74123,6 +76668,16 @@
     "US-2508",
     3114
    ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -74452,6 +77007,16 @@
     "US-2508",
     3114
    ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -82625,6 +85190,16 @@
     "US-4782",
     2474
    ],
+   "access_pin": {
+    "at": [
+     47.800141,
+     -92.10907
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.15474,
     47.7853,
@@ -82962,6 +85537,14 @@
     "US-4782",
     3299
    ],
+   "access_pin": {
+    "at": [
+     47.793639,
+     -92.159484
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.17983,
     47.79073,
@@ -83327,6 +85910,16 @@
     "US-4782",
     712
    ],
+   "access_pin": {
+    "at": [
+     47.800087,
+     -92.109024
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.11405,
     47.79704,
@@ -83624,6 +86217,16 @@
     "US-4782",
     712
    ],
+   "access_pin": {
+    "at": [
+     47.800087,
+     -92.109024
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.11405,
     47.79704,
@@ -83921,6 +86524,16 @@
     "US-4782",
     966
    ],
+   "access_pin": {
+    "at": [
+     47.826638,
+     -92.006937
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -92.03445,
     47.82001,
@@ -84238,6 +86851,16 @@
     "US-4782",
     966
    ],
+   "access_pin": {
+    "at": [
+     47.826638,
+     -92.006937
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -92.03445,
     47.82001,
@@ -84555,6 +87178,16 @@
     "US-4782",
     784
    ],
+   "access_pin": {
+    "at": [
+     47.826634,
+     -92.006925
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -91.99952,
     47.82398,
@@ -84884,6 +87517,16 @@
     "US-4782",
     784
    ],
+   "access_pin": {
+    "at": [
+     47.826634,
+     -92.006925
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: St. Louis (Minnesota DNR; all administrators)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 28
+   },
    "box": [
     -91.99952,
     47.82398,
@@ -85213,6 +87856,16 @@
     "US-4782",
     8871
    ],
+   "access_pin": {
+    "at": [
+     47.88948,
+     -91.870168
+    ],
+    "from": "road",
+    "name": "Co Hwy 21",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 235
+   },
    "box": [
     -91.92747,
     47.88213,
@@ -85534,6 +88187,16 @@
     "US-4782",
     9551
    ],
+   "access_pin": {
+    "at": [
+     47.889474,
+     -91.861191
+    ],
+    "from": "road",
+    "name": "S 3rd Ave E",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.86893,
     47.88472,
@@ -85879,6 +88542,16 @@
     "US-4799",
     3401
    ],
+   "access_pin": {
+    "at": [
+     47.571319,
+     -93.336138
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 300
+   },
    "box": [
     -93.36616,
     47.54433,
@@ -86224,6 +88897,16 @@
     "US-4799",
     3401
    ],
+   "access_pin": {
+    "at": [
+     47.571319,
+     -93.336138
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 300
+   },
    "box": [
     -93.36616,
     47.54433,
@@ -86569,6 +89252,16 @@
     "US-4799",
     3401
    ],
+   "access_pin": {
+    "at": [
+     47.571319,
+     -93.336138
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 300
+   },
    "box": [
     -93.36616,
     47.54433,
@@ -86914,6 +89607,16 @@
     "US-4799",
     4571
    ],
+   "access_pin": {
+    "at": [
+     47.572435,
+     -93.329244
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.35283,
     47.5669,
@@ -87271,6 +89974,16 @@
     "US-4799",
     6716
    ],
+   "access_pin": {
+    "at": [
+     47.591658,
+     -93.279715
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28406,
     47.58132,
@@ -87548,6 +90261,16 @@
     "US-4799",
     5796
    ],
+   "access_pin": {
+    "at": [
+     47.591701,
+     -93.279767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.29257,
     47.58222,
@@ -87885,6 +90608,16 @@
     "US-4799",
     5127
    ],
+   "access_pin": {
+    "at": [
+     47.588327,
+     -93.280916
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30218,
     47.59179,
@@ -88210,6 +90943,16 @@
     "US-4799",
     5796
    ],
+   "access_pin": {
+    "at": [
+     47.591701,
+     -93.279767
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.29257,
     47.58222,
@@ -88547,6 +91290,16 @@
     "US-4799",
     5127
    ],
+   "access_pin": {
+    "at": [
+     47.588327,
+     -93.280916
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30218,
     47.59179,
@@ -88872,6 +91625,16 @@
     "US-4799",
     4571
    ],
+   "access_pin": {
+    "at": [
+     47.572435,
+     -93.329244
+    ],
+    "from": "road",
+    "name": "Co Rd 53",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.35283,
     47.5669,
@@ -89229,6 +91992,16 @@
     "US-4799",
     5481
    ],
+   "access_pin": {
+    "at": [
+     47.591636,
+     -93.279726
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28148,
     47.58785,
@@ -89574,6 +92347,16 @@
     "US-4799",
     5481
    ],
+   "access_pin": {
+    "at": [
+     47.591636,
+     -93.279726
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.28148,
     47.58785,
@@ -89919,6 +92702,16 @@
     "US-4799",
     1166
    ],
+   "access_pin": {
+    "at": [
+     47.626393,
+     -93.2145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 205
+   },
    "box": [
     -93.21313,
     47.62801,
@@ -90256,6 +93049,16 @@
     "US-4799",
     1166
    ],
+   "access_pin": {
+    "at": [
+     47.626393,
+     -93.2145
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 205
+   },
    "box": [
     -93.21313,
     47.62801,
@@ -90593,6 +93396,16 @@
     "US-4799",
     1370
    ],
+   "access_pin": {
+    "at": [
+     47.657233,
+     -93.184804
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 782
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -90958,6 +93771,16 @@
     "US-4799",
     1370
    ],
+   "access_pin": {
+    "at": [
+     47.657233,
+     -93.184804
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 782
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -91323,6 +94146,16 @@
     "US-4799",
     1370
    ],
+   "access_pin": {
+    "at": [
+     47.657233,
+     -93.184804
+    ],
+    "from": "parking / access point",
+    "name": "Entrance: Stoney Ridge RGMA (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 782
+   },
    "box": [
     -93.18451,
     47.65514,
@@ -91688,6 +94521,16 @@
     "US-4799",
     5101
    ],
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -92033,6 +94876,16 @@
     "US-4799",
     5101
    ],
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -92378,6 +95231,16 @@
     "US-4799",
     2746
    ],
+   "access_pin": {
+    "at": [
+     47.705225,
+     -93.133136
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 103
+   },
    "box": [
     -93.1434,
     47.70549,
@@ -92687,6 +95550,16 @@
     "US-4799",
     5101
    ],
+   "access_pin": {
+    "at": [
+     47.699565,
+     -93.176918
+    ],
+    "from": "road",
+    "name": "Link Lake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.17937,
     47.69098,
@@ -93032,6 +95905,16 @@
     "US-4799",
     990
    ],
+   "access_pin": {
+    "at": [
+     47.717454,
+     -93.066396
+    ],
+    "from": "road",
+    "name": "Beatrice Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.06812,
     47.7156,
@@ -93325,6 +96208,16 @@
     "US-4799",
     1476
    ],
+   "access_pin": {
+    "at": [
+     47.716957,
+     -93.093699
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.12159,
     47.70829,
@@ -93694,6 +96587,16 @@
     "US-4799",
     1476
    ],
+   "access_pin": {
+    "at": [
+     47.716957,
+     -93.093699
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.12159,
     47.70829,
@@ -94063,6 +96966,16 @@
     "US-4831",
     3596
    ],
+   "access_pin": {
+    "at": [
+     47.674777,
+     -92.899906
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93957,
     47.66661,
@@ -94408,6 +97321,16 @@
     "US-4831",
     3596
    ],
+   "access_pin": {
+    "at": [
+     47.674777,
+     -92.899906
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93957,
     47.66661,
@@ -94753,6 +97676,16 @@
     "US-4831",
     3897
    ],
+   "access_pin": {
+    "at": [
+     47.681069,
+     -92.975661
+    ],
+    "from": "road",
+    "name": "Dean Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9717,
     47.6678,
@@ -95094,6 +98027,16 @@
     "US-4831",
     3897
    ],
+   "access_pin": {
+    "at": [
+     47.681069,
+     -92.975661
+    ],
+    "from": "road",
+    "name": "Dean Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9717,
     47.6678,
@@ -95435,6 +98378,16 @@
     "US-4831",
     5322
    ],
+   "access_pin": {
+    "at": [
+     47.674758,
+     -92.899878
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.88738,
     47.67956,
@@ -95732,6 +98685,16 @@
     "US-4831",
     1395
    ],
+   "access_pin": {
+    "at": [
+     47.696388,
+     -93.012167
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00127,
     47.68241,
@@ -96081,6 +99044,16 @@
     "US-4831",
     5322
    ],
+   "access_pin": {
+    "at": [
+     47.674758,
+     -92.899878
+    ],
+    "from": "road",
+    "name": "Co Hwy 65",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.88738,
     47.67956,
@@ -96378,6 +99351,16 @@
     "US-4831",
     1395
    ],
+   "access_pin": {
+    "at": [
+     47.696388,
+     -93.012167
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00127,
     47.68241,
@@ -96727,6 +99710,16 @@
     "US-4831",
     1528
    ],
+   "access_pin": {
+    "at": [
+     47.696399,
+     -93.012199
+    ],
+    "from": "road",
+    "name": "Co Hwy 5",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.00871,
     47.69048,
@@ -97068,6 +100061,16 @@
     "US-4831",
     2837
    ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -97397,6 +100400,16 @@
     "US-4831",
     2837
    ],
+   "access_pin": {
+    "at": [
+     47.700085,
+     -93.032011
+    ],
+    "from": "road",
+    "name": "Co Rd 501",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.03206,
     47.69562,
@@ -97726,6 +100739,16 @@
     "US-4831",
     7306
    ],
+   "access_pin": {
+    "at": [
+     47.715288,
+     -93.059053
+    ],
+    "from": "road",
+    "name": "Snake Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 58
+   },
    "box": [
     -93.08221,
     47.72012,
@@ -98039,6 +101062,16 @@
     "US-4831",
     10755
    ],
+   "access_pin": {
+    "at": [
+     47.752139,
+     -92.471984
+    ],
+    "from": "road",
+    "name": "Forest Rte 256",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.52502,
     47.74339,
@@ -98388,6 +101421,14 @@
     "US-4831",
     12062
    ],
+   "access_pin": {
+    "at": [
+     47.75148,
+     -92.439502
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.44094,
     47.75126,
@@ -98617,6 +101658,16 @@
     "US-11701",
     368
    ],
+   "access_pin": {
+    "at": [
+     44.980969,
+     -93.545752
+    ],
+    "from": "road",
+    "name": "Co Rd 112",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 7
+   },
    "box": [
     -93.54596,
     44.98081,
@@ -99020,6 +102071,16 @@
     "US-11872",
     513
    ],
+   "access_pin": {
+    "at": [
+     47.766394,
+     -94.083805
+    ],
+    "from": "road",
+    "name": "Barb Clark Forestry Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 14
+   },
    "acres": 137.1,
    "box": [
     -94.09009,
@@ -99096,6 +102157,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     47.607623,
+     -90.774555
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.77218,
     47.60812,
@@ -99327,6 +102398,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     46.699793,
+     -92.420954
+    ],
+    "from": "road",
+    "name": "I- 35",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 882.9,
    "box": [
     -92.42838,
@@ -99693,6 +102774,16 @@
     "US-4791",
     9577
    ],
+   "access_pin": {
+    "at": [
+     47.245465,
+     -92.241018
+    ],
+    "from": "road",
+    "name": "Whiteface River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 15
+   },
    "acres": 18.2,
    "box": [
     -92.24107,
@@ -99763,6 +102854,16 @@
     "US-4823",
     1328
    ],
+   "access_pin": {
+    "at": [
+     45.951897,
+     -93.543337
+    ],
+    "from": "road",
+    "name": "280th St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 4.6,
    "box": [
     -93.53218,
@@ -99841,6 +102942,16 @@
     "US-4823",
     1151
    ],
+   "access_pin": {
+    "at": [
+     45.948821,
+     -93.453214
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Minnesota DNR)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 641.0,
    "box": [
     -93.47378,
@@ -99911,6 +103022,16 @@
     "US-12811",
     219
    ],
+   "access_pin": {
+    "at": [
+     44.080372,
+     -95.681484
+    ],
+    "from": "road",
+    "name": "161st St",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -95.68421,
     44.07938,
@@ -100228,6 +103349,16 @@
     "US-2496",
     1777
    ],
+   "access_pin": {
+    "at": [
+     44.150065,
+     -91.795021
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 195
+   },
    "acres": 25.4,
    "box": [
     -91.80096,
@@ -100758,6 +103889,16 @@
     "US-2475",
     1283
    ],
+   "access_pin": {
+    "at": [
+     47.730761,
+     -90.439491
+    ],
+    "from": "parking / access point",
+    "name": "Boat ramp / launch: Cook Lake Superior State Water Trail (Minnesota DNR; all adm",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.43955,
     47.73096,
@@ -101091,6 +104232,16 @@
     "US-2477",
     783
    ],
+   "access_pin": {
+    "at": [
+     46.272965,
+     -94.335637
+    ],
+    "from": "road",
+    "name": "Co Hwy 27",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.33555,
     46.27246,
@@ -101392,6 +104543,16 @@
     "US-2477",
     1548
    ],
+   "access_pin": {
+    "at": [
+     46.272999,
+     -94.335622
+    ],
+    "from": "road",
+    "name": "Co Hwy 27",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.32345,
     46.28628,
@@ -101745,6 +104906,16 @@
     "US-2477",
     1548
    ],
+   "access_pin": {
+    "at": [
+     46.272999,
+     -94.335622
+    ],
+    "from": "road",
+    "name": "Co Hwy 27",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.32345,
     46.28628,
@@ -102098,6 +105269,16 @@
     "US-2477",
     1548
    ],
+   "access_pin": {
+    "at": [
+     46.272999,
+     -94.335622
+    ],
+    "from": "road",
+    "name": "Co Hwy 27",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.32345,
     46.28628,
@@ -102451,6 +105632,16 @@
     "US-2477",
     5236
    ],
+   "access_pin": {
+    "at": [
+     46.301945,
+     -94.288289
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.28301,
     46.30274,
@@ -102780,6 +105971,16 @@
     "US-4822",
     117
    ],
+   "access_pin": {
+    "at": [
+     43.617668,
+     -92.311762
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 40.0,
    "box": [
     -92.31342,
@@ -102850,6 +106051,16 @@
     "US-4795",
     3047
    ],
+   "access_pin": {
+    "at": [
+     47.510469,
+     -91.113324
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 907.3,
    "box": [
     -91.11877,
@@ -102980,6 +106191,16 @@
     "US-2488",
     130
    ],
+   "access_pin": {
+    "at": [
+     47.148719,
+     -91.451187
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.47254,
     47.13682,
@@ -103321,6 +106542,16 @@
     "US-2488",
     130
    ],
+   "access_pin": {
+    "at": [
+     47.148719,
+     -91.451187
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.47254,
     47.13682,
@@ -103662,6 +106893,16 @@
     "US-2488",
     284
    ],
+   "access_pin": {
+    "at": [
+     47.148736,
+     -91.451144
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.45876,
     47.13851,
@@ -103917,6 +107158,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     48.643867,
+     -95.54516
+    ],
+    "from": "road",
+    "name": "River Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2360.8,
    "box": [
     -95.56057,
@@ -104067,6 +107318,16 @@
     "US-2495",
     2713
    ],
+   "access_pin": {
+    "at": [
+     46.652694,
+     -92.292303
+    ],
+    "from": "road",
+    "name": "Fond du Lac Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "acres": 111.4,
    "box": [
     -92.31162,
@@ -104153,6 +107414,16 @@
     "US-2495",
     2401
    ],
+   "access_pin": {
+    "at": [
+     46.654639,
+     -92.292363
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 142.3,
    "box": [
     -92.31482,
@@ -104249,6 +107520,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     47.878425,
+     -90.056735
+    ],
+    "from": "road",
+    "name": "Camp 20 Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 100
+   },
    "acres": 134.6,
    "box": [
     -90.10935,
@@ -104343,6 +107624,16 @@
     "US-2500",
     1081
    ],
+   "access_pin": {
+    "at": [
+     47.554894,
+     -94.799694
+    ],
+    "from": "road",
+    "name": "Co Rd 405",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 836.1,
    "box": [
     -94.82125,
@@ -104509,6 +107800,16 @@
     "US-2500",
     5932
    ],
+   "access_pin": {
+    "at": [
+     47.484757,
+     -94.837934
+    ],
+    "from": "road",
+    "name": "Carol Dr NE",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 115
+   },
    "box": [
     -94.84244,
     47.47514,
@@ -104826,6 +108127,16 @@
     "US-2500",
     2163
    ],
+   "access_pin": {
+    "at": [
+     47.54051,
+     -94.788292
+    ],
+    "from": "road",
+    "name": "Birchmont Beach Rd NE",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.81191,
     47.53049,
@@ -105183,6 +108494,16 @@
     "US-2500",
     154
    ],
+   "access_pin": {
+    "at": [
+     47.531612,
+     -94.800689
+    ],
+    "from": "road",
+    "name": "New Bass Rd NE",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.82424,
     47.53178,
@@ -105516,6 +108837,16 @@
     "US-2500",
     2163
    ],
+   "access_pin": {
+    "at": [
+     47.54051,
+     -94.788292
+    ],
+    "from": "road",
+    "name": "Birchmont Beach Rd NE",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.81191,
     47.53049,
@@ -106969,6 +110300,16 @@
     "US-2505",
     333
    ],
+   "access_pin": {
+    "at": [
+     44.101596,
+     -95.69072
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -95.6922,
     44.08975,
@@ -107302,6 +110643,16 @@
     "US-2505",
     333
    ],
+   "access_pin": {
+    "at": [
+     44.101596,
+     -95.69072
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -95.6922,
     44.08975,
@@ -107635,6 +110986,16 @@
     "US-2505",
     333
    ],
+   "access_pin": {
+    "at": [
+     44.101596,
+     -95.69072
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -95.6922,
     44.08975,
@@ -107968,6 +111329,16 @@
     "US-2505",
     333
    ],
+   "access_pin": {
+    "at": [
+     44.101596,
+     -95.69072
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -95.6922,
     44.08975,
@@ -108301,6 +111672,16 @@
     "US-4799",
     515
    ],
+   "access_pin": {
+    "at": [
+     47.720425,
+     -93.065255
+    ],
+    "from": "road",
+    "name": "Beatrice Lake Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 279.5,
    "box": [
     -93.07412,
@@ -108403,6 +111784,16 @@
     "US-4831",
     3055
    ],
+   "access_pin": {
+    "at": [
+     47.720705,
+     -93.065151
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2551.7,
    "box": [
     -93.0668,
@@ -108681,6 +112072,16 @@
     "US-2509",
     2148
    ],
+   "access_pin": {
+    "at": [
+     46.099055,
+     -93.729396
+    ],
+    "from": "road",
+    "name": "Stark Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 141.2,
    "box": [
     -93.73658,
@@ -108831,6 +112232,16 @@
     "US-2513",
     126
    ],
+   "access_pin": {
+    "at": [
+     43.642825,
+     -93.322562
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.32044,
     43.6354,
@@ -109148,6 +112559,16 @@
     "US-2513",
     126
    ],
+   "access_pin": {
+    "at": [
+     43.642825,
+     -93.322562
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.32044,
     43.6354,
@@ -109465,6 +112886,16 @@
     "US-2513",
     947
    ],
+   "access_pin": {
+    "at": [
+     43.642806,
+     -93.322557
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.32267,
     43.63716,
@@ -109782,6 +113213,16 @@
     "US-2513",
     719
    ],
+   "access_pin": {
+    "at": [
+     43.636735,
+     -93.308601
+    ],
+    "from": "road",
+    "name": "780th Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.30288,
     43.6375,
@@ -110127,6 +113568,16 @@
     "US-4790",
     262
    ],
+   "access_pin": {
+    "at": [
+     45.902919,
+     -92.730618
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 105
+   },
    "acres": 54.7,
    "box": [
     -92.79526,
@@ -111465,6 +114916,16 @@
     "US-4826",
     3790
    ],
+   "access_pin": {
+    "at": [
+     46.769717,
+     -93.237565
+    ],
+    "from": "road",
+    "name": "181st Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 26.0,
    "box": [
     -93.25826,
@@ -111571,6 +115032,16 @@
     "US-4826",
     4191
    ],
+   "access_pin": {
+    "at": [
+     46.749868,
+     -93.257714
+    ],
+    "from": "road",
+    "name": "Co Hwy 14",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 195
+   },
    "acres": 7.9,
    "box": [
     -93.27579,
@@ -111685,6 +115156,16 @@
     "US-2519",
     1546
    ],
+   "access_pin": {
+    "at": [
+     46.853243,
+     -93.20013
+    ],
+    "from": "road",
+    "name": "Lake Pl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 16076.6,
    "box": [
     -93.24986,
@@ -112092,6 +115573,16 @@
     "US-2520",
     1935
    ],
+   "access_pin": {
+    "at": [
+     47.741644,
+     -93.566052
+    ],
+    "from": "road",
+    "name": "Twp Rd 40",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1185.4,
    "box": [
     -93.5866,
@@ -113358,6 +116849,16 @@
     "US-2524",
     58
    ],
+   "access_pin": {
+    "at": [
+     47.181823,
+     -91.409115
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.40981,
     47.18028,
@@ -113615,6 +117116,16 @@
     "US-2524",
     58
    ],
+   "access_pin": {
+    "at": [
+     47.181823,
+     -91.409115
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.40981,
     47.18028,
@@ -113872,6 +117383,16 @@
     "US-2524",
     1119
    ],
+   "access_pin": {
+    "at": [
+     47.202172,
+     -91.372176
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.39495,
     47.18906,
@@ -114173,6 +117694,16 @@
     "US-2524",
     1119
    ],
+   "access_pin": {
+    "at": [
+     47.202172,
+     -91.372176
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.39495,
     47.18906,
@@ -114474,6 +118005,16 @@
     "US-2524",
     842
    ],
+   "access_pin": {
+    "at": [
+     47.207155,
+     -91.363372
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.38701,
     47.19357,
@@ -114807,6 +118348,16 @@
     "US-2524",
     763
    ],
+   "access_pin": {
+    "at": [
+     47.219616,
+     -91.351911
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.37238,
     47.20114,
@@ -115136,6 +118687,16 @@
     "US-2524",
     763
    ],
+   "access_pin": {
+    "at": [
+     47.219616,
+     -91.351911
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -91.37238,
     47.20114,
@@ -115670,6 +119231,16 @@
     "US-2525",
     1405
    ],
+   "access_pin": {
+    "at": [
+     47.56691,
+     -90.852462
+    ],
+    "from": "road",
+    "name": "Good Neighbor Hill",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.87051,
     47.55806,
@@ -116019,6 +119590,16 @@
     "US-2525",
     1405
    ],
+   "access_pin": {
+    "at": [
+     47.56691,
+     -90.852462
+    ],
+    "from": "road",
+    "name": "Good Neighbor Hill",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -90.87051,
     47.55806,
@@ -116368,6 +119949,16 @@
     "US-2526",
     6784
    ],
+   "access_pin": {
+    "at": [
+     47.385989,
+     -91.258616
+    ],
+    "from": "road",
+    "name": "Co Hwy 4",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 487.7,
    "box": [
     -91.27708,
@@ -138412,6 +142003,16 @@
     "US-4788",
     6025
    ],
+   "access_pin": {
+    "at": [
+     47.540515,
+     -94.78829
+    ],
+    "from": "road",
+    "name": "Birchmont Beach Rd NE",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.81191,
     47.53049,
@@ -138769,6 +142370,16 @@
     "US-4788",
     6025
    ],
+   "access_pin": {
+    "at": [
+     47.540515,
+     -94.78829
+    ],
+    "from": "road",
+    "name": "Birchmont Beach Rd NE",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.81191,
     47.53049,
@@ -139126,6 +142737,16 @@
     "US-4792",
     2695
    ],
+   "access_pin": {
+    "at": [
+     46.51093,
+     -93.98391
+    ],
+    "from": "road",
+    "name": "Hiller Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 344.0,
    "box": [
     -94.00477,
@@ -139232,6 +142853,16 @@
     "US-4814",
     25228
    ],
+   "access_pin": {
+    "at": [
+     46.652669,
+     -92.292268
+    ],
+    "from": "road",
+    "name": "Fond du Lac Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "acres": 1852.4,
    "box": [
     -92.3223,
@@ -139649,6 +143280,16 @@
     "US-4806",
     6500
    ],
+   "access_pin": {
+    "at": [
+     47.891494,
+     -92.675661
+    ],
+    "from": "road",
+    "name": "E Olson Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.695,
     47.89133,
@@ -139958,6 +143599,16 @@
     "US-4806",
     6500
    ],
+   "access_pin": {
+    "at": [
+     47.891494,
+     -92.675661
+    ],
+    "from": "road",
+    "name": "E Olson Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.695,
     47.89133,
@@ -140267,6 +143918,16 @@
     "US-4806",
     11592
    ],
+   "access_pin": {
+    "at": [
+     47.921754,
+     -92.707516
+    ],
+    "from": "road",
+    "name": "Co Rd 505",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 88
+   },
    "box": [
     -92.74164,
     47.9351,
@@ -140624,6 +144285,16 @@
     "US-4806",
     11592
    ],
+   "access_pin": {
+    "at": [
+     47.921754,
+     -92.707516
+    ],
+    "from": "road",
+    "name": "Co Rd 505",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 88
+   },
    "box": [
     -92.74164,
     47.9351,
@@ -140981,6 +144652,16 @@
     "US-4806",
     10699
    ],
+   "access_pin": {
+    "at": [
+     47.974341,
+     -92.686914
+    ],
+    "from": "road",
+    "name": "Co Hwy 24",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 951
+   },
    "box": [
     -92.71717,
     47.96877,
@@ -141338,6 +145019,16 @@
     "US-4806",
     12758
    ],
+   "access_pin": {
+    "at": [
+     47.974358,
+     -92.686872
+    ],
+    "from": "road",
+    "name": "Co Hwy 24",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 946
+   },
    "box": [
     -92.72978,
     47.98664,
@@ -141703,6 +145394,16 @@
     "US-4806",
     12287
    ],
+   "access_pin": {
+    "at": [
+     48.036621,
+     -92.6298
+    ],
+    "from": "road",
+    "name": "S Ban Lake Spr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.65104,
     48.03064,
@@ -142020,6 +145721,14 @@
     "US-4806",
     12756
    ],
+   "access_pin": {
+    "at": [
+     48.03337,
+     -92.655285
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.66476,
     48.03097,
@@ -142373,6 +146082,16 @@
     "US-4806",
     10285
    ],
+   "access_pin": {
+    "at": [
+     48.089015,
+     -92.617228
+    ],
+    "from": "road",
+    "name": "Orr Buyck Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.6194,
     48.04371,
@@ -142702,6 +146421,16 @@
     "US-4806",
     6572
    ],
+   "access_pin": {
+    "at": [
+     48.088985,
+     -92.617257
+    ],
+    "from": "road",
+    "name": "Orr Buyck Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.70196,
     48.08849,
@@ -143039,6 +146768,16 @@
     "US-4806",
     6572
    ],
+   "access_pin": {
+    "at": [
+     48.088985,
+     -92.617257
+    ],
+    "from": "road",
+    "name": "Orr Buyck Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.70196,
     48.08849,
@@ -143376,6 +147115,16 @@
     "US-4806",
     6572
    ],
+   "access_pin": {
+    "at": [
+     48.088985,
+     -92.617257
+    ],
+    "from": "road",
+    "name": "Orr Buyck Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.70196,
     48.08849,
@@ -143713,6 +147462,16 @@
     "US-4806",
     3695
    ],
+   "access_pin": {
+    "at": [
+     48.133625,
+     -92.733586
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.71862,
     48.11123,
@@ -144062,6 +147821,16 @@
     "US-4806",
     1302
    ],
+   "access_pin": {
+    "at": [
+     48.134824,
+     -92.749846
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.73488,
     48.12903,
@@ -144435,6 +148204,16 @@
     "US-4806",
     1302
    ],
+   "access_pin": {
+    "at": [
+     48.134824,
+     -92.749846
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.73488,
     48.12903,
@@ -144808,6 +148587,16 @@
     "US-4806",
     70
    ],
+   "access_pin": {
+    "at": [
+     48.149554,
+     -92.789052
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78196,
     48.13409,
@@ -145153,6 +148942,16 @@
     "US-4806",
     1621
    ],
+   "access_pin": {
+    "at": [
+     48.149544,
+     -92.789038
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78511,
     48.13751,
@@ -145510,6 +149309,16 @@
     "US-4806",
     1621
    ],
+   "access_pin": {
+    "at": [
+     48.149544,
+     -92.789038
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.78511,
     48.13751,
@@ -145867,6 +149676,16 @@
     "US-4806",
     1828
    ],
+   "access_pin": {
+    "at": [
+     48.167445,
+     -92.741002
+    ],
+    "from": "road",
+    "name": "Co Rd 180",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.75688,
     48.16717,
@@ -146240,6 +150059,16 @@
     "US-4806",
     2117
    ],
+   "access_pin": {
+    "at": [
+     48.16738,
+     -92.741857
+    ],
+    "from": "road",
+    "name": "Co Rd 180",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 85
+   },
    "box": [
     -92.77875,
     48.16947,
@@ -146557,6 +150386,16 @@
     "US-4806",
     1828
    ],
+   "access_pin": {
+    "at": [
+     48.167445,
+     -92.741002
+    ],
+    "from": "road",
+    "name": "Co Rd 180",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.75688,
     48.16717,
@@ -146930,6 +150769,16 @@
     "US-4806",
     3310
    ],
+   "access_pin": {
+    "at": [
+     48.185522,
+     -92.71046
+    ],
+    "from": "road",
+    "name": "Forest Rd 601",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.75979,
     48.18667,
@@ -147275,6 +151124,14 @@
     "US-4806",
     4198
    ],
+   "access_pin": {
+    "at": [
+     48.23038,
+     -92.76295
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.80198,
     48.22703,
@@ -147596,6 +151453,14 @@
     "US-4806",
     4198
    ],
+   "access_pin": {
+    "at": [
+     48.23038,
+     -92.76295
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "box": [
     -92.80198,
     48.22703,
@@ -147917,6 +151782,16 @@
     "US-4806",
     9047
    ],
+   "access_pin": {
+    "at": [
+     48.274926,
+     -92.933559
+    ],
+    "from": "road",
+    "name": "Sheep Ranch Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93411,
     48.24546,
@@ -148222,6 +152097,16 @@
     "US-4806",
     9047
    ],
+   "access_pin": {
+    "at": [
+     48.274926,
+     -92.933559
+    ],
+    "from": "road",
+    "name": "Sheep Ranch Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93411,
     48.24546,
@@ -148527,6 +152412,16 @@
     "US-4806",
     12191
    ],
+   "access_pin": {
+    "at": [
+     48.274865,
+     -92.933772
+    ],
+    "from": "road",
+    "name": "Sheep Ranch Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93555,
     48.2779,
@@ -148864,6 +152759,16 @@
     "US-4806",
     12191
    ],
+   "access_pin": {
+    "at": [
+     48.274865,
+     -92.933772
+    ],
+    "from": "road",
+    "name": "Sheep Ranch Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.93555,
     48.2779,
@@ -149201,6 +153106,16 @@
     "US-4806",
     10919
    ],
+   "access_pin": {
+    "at": [
+     48.35091,
+     -92.91528
+    ],
+    "from": "road",
+    "name": "Camp 90 Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9243,
     48.32131,
@@ -149562,6 +153477,16 @@
     "US-4806",
     10919
    ],
+   "access_pin": {
+    "at": [
+     48.35091,
+     -92.91528
+    ],
+    "from": "road",
+    "name": "Camp 90 Forest Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.9243,
     48.32131,
@@ -149923,6 +153848,16 @@
     "US-4806",
     6863
    ],
+   "access_pin": {
+    "at": [
+     48.39007,
+     -92.983258
+    ],
+    "from": "road",
+    "name": "Ash River Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.01307,
     48.37588,
@@ -150268,6 +154203,16 @@
     "US-4806",
     3884
    ],
+   "access_pin": {
+    "at": [
+     48.414667,
+     -93.048933
+    ],
+    "from": "road",
+    "name": "Co Hwy 122",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.0898,
     48.40756,
@@ -150625,6 +154570,16 @@
     "US-4806",
     3884
    ],
+   "access_pin": {
+    "at": [
+     48.414667,
+     -93.048933
+    ],
+    "from": "road",
+    "name": "Co Hwy 122",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.0898,
     48.40756,
@@ -150982,6 +154937,16 @@
     "US-4807",
     10403
    ],
+   "access_pin": {
+    "at": [
+     48.454676,
+     -93.098401
+    ],
+    "from": "road",
+    "name": "Melhiem Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 1038
+   },
    "box": [
     -93.1026,
     48.44476,
@@ -151339,6 +155304,16 @@
     "US-4807",
     10095
    ],
+   "access_pin": {
+    "at": [
+     48.47642,
+     -93.392205
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.39106,
     48.47525,
@@ -151700,6 +155675,16 @@
     "US-4807",
     8951
    ],
+   "access_pin": {
+    "at": [
+     48.476562,
+     -93.428957
+    ],
+    "from": "road",
+    "name": "Co Rd 97",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.49604,
     48.4741,
@@ -152025,6 +156010,16 @@
     "US-4807",
     8951
    ],
+   "access_pin": {
+    "at": [
+     48.476562,
+     -93.428957
+    ],
+    "from": "road",
+    "name": "Co Rd 97",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.49604,
     48.4741,
@@ -152350,6 +156345,16 @@
     "US-4807",
     2643
    ],
+   "access_pin": {
+    "at": [
+     48.474694,
+     -93.330962
+    ],
+    "from": "road",
+    "name": "Co Rd 98",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.34784,
     48.46464,
@@ -153089,6 +157094,16 @@
     "US-4817",
     11638
    ],
+   "access_pin": {
+    "at": [
+     47.146396,
+     -94.686024
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -94.68849,
     47.13363,
@@ -156118,6 +160133,16 @@
     "US-4822",
     8054
    ],
+   "access_pin": {
+    "at": [
+     43.706263,
+     -92.037262
+    ],
+    "from": "road",
+    "name": "Heron Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 255
+   },
    "box": [
     -92.03851,
     43.70605,
@@ -157219,6 +161244,16 @@
     "US-4831",
     2077
    ],
+   "access_pin": {
+    "at": [
+     47.850087,
+     -92.501985
+    ],
+    "from": "road",
+    "name": "Little Fork River Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -92.56862,
     47.84109,
@@ -157566,6 +161601,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.692089,
+     -93.641925
+    ],
+    "from": "road",
+    "name": "Co Hwy 9",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.76513,
     44.63181,
@@ -157893,6 +161938,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.6921,
+     -93.641962
+    ],
+    "from": "road",
+    "name": "Co Hwy 9",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.62851,
     44.6994,
@@ -158200,6 +162255,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.718208,
+     -93.624334
+    ],
+    "from": "road",
+    "name": "Carver Highland Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 279
+   },
    "box": [
     -93.6289,
     44.71799,
@@ -158511,6 +162576,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.796523,
+     -93.542485
+    ],
+    "from": "road",
+    "name": "1st Ave W",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.62065,
     44.74701,
@@ -158850,6 +162925,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.796523,
+     -93.542485
+    ],
+    "from": "road",
+    "name": "1st Ave W",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.62065,
     44.74701,
@@ -159189,6 +163274,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.796523,
+     -93.542485
+    ],
+    "from": "road",
+    "name": "1st Ave W",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.62065,
     44.74701,
@@ -159528,6 +163623,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.796523,
+     -93.542485
+    ],
+    "from": "road",
+    "name": "1st Ave W",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.62065,
     44.74701,
@@ -160007,6 +164112,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.796523,
+     -93.542485
+    ],
+    "from": "road",
+    "name": "1st Ave W",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.62065,
     44.74701,
@@ -160346,6 +164461,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.802745,
+     -93.490274
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -93.52082,
     44.80114,

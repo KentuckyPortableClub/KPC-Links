@@ -613,6 +613,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.798359,
+     -110.859737
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 18.7,
    "box": [
     -110.86515,
@@ -1034,6 +1042,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.01619,
+     -110.869722
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 21.2,
    "box": [
     -110.87135,
@@ -5804,6 +5820,16 @@
     "US-6213",
     11864
    ],
+   "access_pin": {
+    "at": [
+     41.859354,
+     -109.780712
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3388.8,
    "box": [
     -109.79984,
@@ -6838,6 +6864,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.003741,
+     -107.854017
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 688.4,
    "box": [
     -107.96964,
@@ -6966,6 +7002,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.059185,
+     -107.812224
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 643.5,
    "box": [
     -107.81401,
@@ -7036,6 +7082,16 @@
     "US-3302",
     2382
    ],
+   "access_pin": {
+    "at": [
+     42.75665,
+     -108.800768
+    ],
+    "from": "road",
+    "name": "Sinks Canyon Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 516.2,
    "box": [
     -108.83369,
@@ -7160,6 +7216,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.201388,
+     -108.468711
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 14885.8,
    "box": [
     -108.535,
@@ -7785,6 +7851,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.673096,
+     -108.863486
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 22884.8,
    "box": [
     -108.90467,
@@ -8521,6 +8597,16 @@
     "US-6152",
     5809
    ],
+   "access_pin": {
+    "at": [
+     44.377493,
+     -107.468348
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 3902.4,
    "box": [
     -107.54822,
@@ -9563,6 +9649,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.287835,
+     -108.475563
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 969.7,
    "box": [
     -108.48211,
@@ -9791,6 +9887,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     42.39849,
+     -108.502979
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 55.8,
    "box": [
     -108.51696,
@@ -11407,6 +11513,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.976409,
+     -110.620268
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 606511.8,
    "box": [
     -110.68356,
@@ -12352,6 +12468,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     43.622621,
+     -110.587063
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 291795.1,
    "box": [
     -110.73274,
@@ -26142,6 +26268,16 @@
     "US-6233",
     2481
    ],
+   "access_pin": {
+    "at": [
+     43.156875,
+     -111.011246
+    ],
+    "from": "road",
+    "name": "Terrace Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 690.1,
    "box": [
     -111.01665,
@@ -27085,6 +27221,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.827754,
+     -109.344278
+    ],
+    "from": "road",
+    "name": "Morrison Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 8
+   },
    "box": [
     -109.55351,
     44.78376,
@@ -27400,6 +27546,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.865576,
+     -109.63389
+    ],
+    "from": "road",
+    "name": "Crandall Park Ln",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 60
+   },
    "box": [
     -109.63584,
     44.85492,
@@ -27768,6 +27924,16 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     44.953732,
+     -109.6332
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "acres": 24000.2,
    "box": [
     -109.85232,
@@ -29064,6 +29230,16 @@
     "US-6217",
     27784
    ],
+   "access_pin": {
+    "at": [
+     43.482651,
+     -109.692986
+    ],
+    "from": "road",
+    "name": "Jakeys Fork Trl",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 180463.1,
    "box": [
     -109.78869,
@@ -29394,6 +29570,16 @@
     "US-6140",
     2903
    ],
+   "access_pin": {
+    "at": [
+     43.607125,
+     -107.005196
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2065.7,
    "box": [
     -107.01373,
@@ -29612,6 +29798,16 @@
     "US-6150",
     129
    ],
+   "access_pin": {
+    "at": [
+     44.30197,
+     -107.541185
+    ],
+    "from": "road",
+    "name": "Dry Medicine Lodge Creek",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 56.5,
    "box": [
     -107.54316,

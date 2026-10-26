@@ -6,6 +6,14 @@
  "spots": [
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     61.254119,
+     -140.880353
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 8741.4,
    "box": [
     -140.99993,
@@ -90,6 +98,14 @@
   },
   {
    "access": null,
+   "access_pin": {
+    "at": [
+     61.254119,
+     -140.880353
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
    "acres": 8741.4,
    "box": [
     -140.99993,
