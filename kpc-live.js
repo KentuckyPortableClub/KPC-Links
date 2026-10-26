@@ -5,6 +5,11 @@
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const MEMBERS=(typeof KPC!=='undefined'&&KPC.MEMBERS)||[]; /* roster lives in kpc-tools.js */
+/* Oct 26 (release: 'Happening Now follows the viewer's location; Kentucky = default'): ONE saved spot for the page, the
+   conditions bar and the band maps = localStorage kpcHuntCx {la, lo, g, src:'gps'|'grid', t} (set by any USE MY LOCATION). */
+const WH=(()=>{try{const c=JSON.parse(localStorage.getItem('kpcHuntCx')||'null');return c&&isFinite(c.la)&&isFinite(c.lo)&&c.src!=='ky'?c:null}catch(e){return null}})();
+const HERE=WH?{la:+WH.la,lo:+WH.lo}:{la:37.8,lo:-85.7},INP=WH?'at your spot':'in Kentucky';
+const mi=(a,b,c,d)=>{const r=Math.PI/180,x=Math.sin((c-a)*r/2),y=Math.sin((d-b)*r/2);return 7917.6*Math.asin(Math.sqrt(x*x+Math.cos(a*r)*Math.cos(c*r)*y*y))};
 const CITIES=[{n:'Louisville',la:38.25,lo:-85.76,c:'#e6194b'},{n:'Bowling Green',la:36.99,lo:-86.44,c:'#3b6fe0'},{n:'Hazard',la:37.25,lo:-83.19,c:'#f58231'},{n:'Paducah',la:37.08,lo:-88.60,c:'#8e3fc4'},{n:'Ashland',la:38.48,lo:-82.64,c:'#0f9d8a'}];
 const BL={1:'160m',3:'80m',7:'40m',10:'30m',14:'20m',18:'17m',21:'15m',24:'12m',28:'10m',50:'6m'};
 const base=c=>String(c||'').toUpperCase().split('/').reduce((a,b)=>b.length>a.length?b:a,'');
@@ -16,10 +21,10 @@ const R=Math.PI/180;
 function sunPos(d){const jd=d.getTime()/864e5+2440587.5,n=jd-2451545.0;const L=(280.460+0.9856474*n)%360,g=((357.528+0.9856003*n)%360)*R;const lam=(L+1.915*Math.sin(g)+0.020*Math.sin(2*g))*R,eps=(23.439-0.0000004*n)*R;const dec=Math.asin(Math.sin(eps)*Math.sin(lam)),ra=Math.atan2(Math.cos(eps)*Math.sin(lam),Math.cos(lam));const gmst=((280.46061837+360.98564736629*n)%360+360)%360;return{dec,ra,gmst}}
 function sunAlt(lat,lon,s){const H=((s.gmst+lon)*R)-s.ra;return Math.asin(Math.sin(lat*R)*Math.sin(s.dec)+Math.cos(lat*R)*Math.cos(s.dec)*Math.cos(H))/R}
 let sunMode='day';
-function sunStatus(){const now=new Date(),a=sunAlt(37.8,-85.7,sunPos(now)),b=sunAlt(37.8,-85.7,sunPos(new Date(now.getTime()+15*60000)));
- if(a>6){sunMode='day';return['DAYLIGHT','Sun is up in Kentucky']}
- if(a>=-6){sunMode='gray';return['GRAY LINE',b>a?'Sunrise in Kentucky':'Sunset in Kentucky']}
- sunMode='night';return['NIGHT','Dark in Kentucky']}
+function sunStatus(){const now=new Date(),a=sunAlt(HERE.la,HERE.lo,sunPos(now)),b=sunAlt(HERE.la,HERE.lo,sunPos(new Date(now.getTime()+15*60000)));
+ if(a>6){sunMode='day';return['DAYLIGHT','Sun is up '+INP]}
+ if(a>=-6){sunMode='gray';return['GRAY LINE',(b>a?'Sunrise ':'Sunset ')+INP]}
+ sunMode='night';return['NIGHT','Dark '+INP]}
 let sfi=null,kp=null,lastRows=null,parksN=0,membersN=0;
 function renderStatus(){const [t,s]=sunStatus();const su=$('lv-sun');if(su)su.innerHTML='<b>'+t+'</b><span>'+s+'</span>';
  $('lv-sfi').innerHTML='<b>'+(Number.isFinite(sfi)?'SFI '+Math.round(sfi):'SFI --')+'</b><span>Solar flux</span>';
@@ -69,10 +74,11 @@ function alertsUI(list,where){const box=$('lv-alerts');
  const g={};list.forEach(f=>{const p=f.properties||{};g[p.event]=(g[p.event]||0)+1});const ev=Object.entries(g).sort((a,b)=>(/Warning/.test(b[0])-/Warning/.test(a[0]))||b[1]-a[1]);
  const sev=ev.some(e=>/Warning/.test(e[0]));box.className='alert'+(sev?' sev':'');
  box.innerHTML='<b>&#9888; Active NWS alerts'+(where?' for '+esc(where):'')+':</b> '+ev.slice(0,6).map(e=>esc(e[0])+(e[1]>1&&!where?' ('+e[1]+')':'')).join(', ')+'. <a href="https://alerts.weather.gov/search?area=KY" target="_blank" rel="noopener">See details &rarr;</a>'}
-async function alerts(){try{const j=await jget('https://api.weather.gov/alerts/active?area=KY');warnData=j.features||[];drawWarnings();alertsUI(j.features||[])}catch(e){alertsUI(null)}}
+async function alerts(){try{const j=await jget(WH?'https://api.weather.gov/alerts/active?point='+HERE.la.toFixed(4)+','+HERE.lo.toFixed(4):'https://api.weather.gov/alerts/active?area=KY');warnData=j.features||[];drawWarnings();alertsUI(j.features||[],WH?'your spot':'')}catch(e){alertsUI(null)}}
 function useLocation(){const b=$('lv-loc');if(!navigator.geolocation){b.textContent='LOCATION NOT AVAILABLE';return}b.textContent='LOCATING...';
  navigator.geolocation.getCurrentPosition(async p=>{const la=p.coords.latitude,lo=p.coords.longitude;b.textContent='\u{1F4CD} UPDATE MY LOCATION';
-  try{const j=await jget('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+Q);youCard=wxCard('YOUR LOCATION',j.current).replace('class="w"','class="w you"');weather();
+  try{const A='ABCDEFGHIJKLMNOPQR',x=lo+180,y=la+90;localStorage.setItem('kpcHuntCx',JSON.stringify({la,lo,g:A[Math.floor(x/20)]+A[Math.floor(y/10)]+Math.floor(x%20/2)+Math.floor(y%10),src:'gps',t:Date.now()}));if(!WH){location.reload();return}}catch(e){}
+  try{const j=await jget('https://api.open-meteo.com/v1/forecast?latitude='+la+'&longitude='+lo+Q);youCard=wxCard('YOUR LOCATION',j.current).replace('class="w"','class="w you"');weather();if(WH&&(Math.abs(WH.la-la)>.05||Math.abs(WH.lo-lo)>.05)){location.reload();return}
    try{const a=await jget('https://api.weather.gov/alerts/active?point='+la.toFixed(4)+','+lo.toFixed(4));alertsUI(a.features||[],'your location')}catch(e){}}catch(e){b.textContent='COULD NOT GET WEATHER'}},()=>{b.textContent='LOCATION BLOCKED'},{timeout:12000,maximumAge:300000})}
 
 /* ---------- radar + lightning map ---------- */
@@ -84,7 +90,7 @@ function radarCities(){if(!cityLayer)return;cityLayer.clearLayers();CITIES.forEa
 function initMap(){if(typeof L==='undefined'||typeof KPC==='undefined'||!$('lv-map'))return;
  let svb=null;try{svb=localStorage.getItem('kpcBaseMap');localStorage.setItem('kpcBaseMap',localStorage.getItem('lvBase')||'Street')}catch(e){}
  map=KPC.leafletMap('lv-map');try{if(svb===null)localStorage.removeItem('kpcBaseMap');else localStorage.setItem('kpcBaseMap',svb)}catch(e){}
- map.on('baselayerchange',e=>{try{localStorage.setItem('lvBase',e.name)}catch(_){}});map.setView([37.75,-85.7],6);
+ map.on('baselayerchange',e=>{try{localStorage.setItem('lvBase',e.name)}catch(_){}});map.setView(WH?[HERE.la,HERE.lo]:[37.75,-85.7],WH?7:6);if(WH)L.circleMarker([HERE.la,HERE.lo],{radius:9,color:'#fff',weight:3,fillColor:'#1f6fd1',fillOpacity:1}).bindTooltip('Your spot').addTo(map);
  map.createPane('radarp');map.getPane('radarp').style.zIndex=350;map.createPane('lightp');map.getPane('lightp').style.zIndex=355;map.createPane('dotp');map.getPane('dotp').style.zIndex=650;
  let re=0,rok=0;const rnote=()=>{$('lv-rnote').textContent=re>3&&!rok?'Radar tiles did not load. Check your connection or try again.':rok?'Radar: NOAA NEXRAD, latest scan about '+frameLabel(0):''};
  cur=L.tileLayer(RTILE(0)+'?t='+Math.floor(Date.now()/300000),{pane:'radarp',opacity:.8,maxZoom:12,attribution:'Radar: NOAA/NWS via Iowa Environmental Mesonet'}).addTo(map);
@@ -124,13 +130,13 @@ function gridXY(g){g=String(g||'').trim();if(!/^[A-R]{2}\d{2}([A-X]{2})?$/i.test
 function spotXY(s){const la=Number(s.latitude),lo=Number(s.longitude);if(isFinite(la)&&isFinite(lo)&&(la||lo))return[la,lo];return parkXY[s.reference]||gridXY(s.grid6)||gridXY(s.grid4)||null}
 function drawSpotPins(){if(!spotLayer)return;spotLayer.clearLayers();let n=0,m=0;
  allSpots.forEach(s=>{const xy=spotXY(s);if(!xy)return;const la=xy[0],lo=xy[1];
-  const ky=String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY'),mem=MEMBERS.includes(base(s.activator));if(!spotAll&&!ky&&!mem)return;n++;if(mem)m++;
+  const sxy=isFinite(+s.latitude)&&+s.latitude?[+s.latitude,+s.longitude]:null,ky=WH?!!(sxy&&mi(HERE.la,HERE.lo,sxy[0],sxy[1])<=250):String(s.locationDesc||'').split(',').some(x=>x.trim()==='US-KY'),mem=MEMBERS.includes(base(s.activator));if(!spotAll&&!ky&&!mem)return;n++;if(mem)m++;
   L.circleMarker([la,lo],{radius:mem?10:7,color:mem?'#171717':'#fff',weight:2.5,fillColor:mem?'#f0c030':'#2fa84f',fillOpacity:1,pane:'spotp'})
    .bindPopup('<b>'+esc(s.name||s.parkName||s.reference)+'</b> ('+esc(s.reference)+')<br><b>'+esc(s.activator)+'</b> &middot; '+mhz(s.frequency)+' MHz '+esc(s.mode)+(s.comments?'<br><small>'+esc(s.comments)+'</small>':'')+'<br><a href="https://pota.app/#/park/'+encodeURIComponent(s.reference)+'" target="_blank" rel="noopener">POTA park page</a>'+(+s.frequency?' &middot; <a href="#rx-card" data-tune="'+(+s.frequency)+'|'+esc(s.mode||'')+'">Listen</a>':'')).addTo(spotLayer)});
- $('lv-snote').textContent=n?n+' park'+(n>1?'s':'')+' on the air'+(spotAll?' (all US)':' in Kentucky')+(m?', '+m+' KPC':'')+' (gold = KPC member)':'No parks on the air '+(spotAll?'':'in Kentucky ')+'right now'}
+ $('lv-snote').textContent=n?n+' park'+(n>1?'s':'')+' on the air'+(spotAll?' (all US)':WH?' within 250 miles of you':' in Kentucky')+(m?', '+m+' KPC':'')+' (gold = KPC member)':'No parks on the air '+(spotAll?'':WH?'within 250 miles of you ':'in Kentucky ')+'right now'}
 const WCOLS=v=>v<5?'#6f9fd8':v<10?'#2fa86a':v<15?'#c99a00':v<25?'#f07d1e':'#d7191c';
 const CMP=['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'];
-async function loadWind(){if(!map||!windLayer)return;const la=['36.60','37.40','38.20','39.00'],xs=['-89.00','-87.70','-86.40','-85.10','-83.80','-82.50'],A=[],B=[];la.forEach(y=>xs.forEach(x=>{A.push(y);B.push(x)}));
+async function loadWind(){if(!map||!windLayer)return;const la=WH?[-1.2,-.4,.4,1.2].map(d=>(HERE.la+d).toFixed(2)):['36.60','37.40','38.20','39.00'],xs=WH?[-3.25,-1.95,-.65,.65,1.95,3.25].map(d=>(HERE.lo+d).toFixed(2)):['-89.00','-87.70','-86.40','-85.10','-83.80','-82.50'],A=[],B=[];la.forEach(y=>xs.forEach(x=>{A.push(y);B.push(x)}));
  try{const j=await jget('https://api.open-meteo.com/v1/forecast?latitude='+A.join(',')+'&longitude='+B.join(',')+'&current=wind_speed_10m,wind_direction_10m,wind_gusts_10m&wind_speed_unit=mph');const a=Array.isArray(j)?j:[j];windLayer.clearLayers();
   a.forEach((x,i)=>{const c=x.current;if(!c)return;const sp=Math.round(c.wind_speed_10m),dir=c.wind_direction_10m,g=Math.round(c.wind_gusts_10m),rot=(dir+180)%360;
    L.marker([+A[i],+B[i]],{pane:'windp',icon:L.divIcon({className:'',iconSize:[0,0],html:'<div class="wd" style="color:'+WCOLS(sp)+'"><svg width="30" height="30" viewBox="-15 -15 30 30" style="transform:rotate('+rot+'deg)"><path d="M0,-13 L7,7 L0,3 L-7,7 Z" fill="currentColor" stroke="#fff" stroke-width="1.6"/></svg><span>'+sp+'</span></div>'})})
@@ -152,6 +158,9 @@ function stop(){playing=false;clearInterval(loopTimer);$('lv-play').innerHTML='&
 /* ---------- start ---------- */
 function openSignalMap(){const t=setInterval(()=>{const d=document.getElementById('kb-det');if(d){clearInterval(t);if(!d.open)d.open=true}},300);setTimeout(()=>clearInterval(t),15000)}
 function init(){renderStatus();noaaBasic();spots();weather();alerts();initMap();openSignalMap();
+ if(WH)jget('https://api.open-meteo.com/v1/forecast?latitude='+HERE.la+'&longitude='+HERE.lo+Q).then(j=>{youCard=wxCard('YOUR SPOT',j.current).replace('class="w"','class="w you"');weather()}).catch(()=>{});
+ const wb=$('lv-where');if(wb){wb.innerHTML=WH?'📍 Showing the area around <b>your spot ('+esc(String(WH.g||'').slice(0,4))+')</b>. <button type="button" id="lv-where-me">UPDATE</button> <button type="button" id="lv-where-ky">SHOW KENTUCKY</button>':'📍 Showing <b>Kentucky</b>. <button type="button" id="lv-where-me">USE MY LOCATION</button>';
+  const m=$('lv-where-me'),k=$('lv-where-ky');if(m)m.onclick=()=>{const b=$('lv-loc');if(b)useLocation()};if(k)k.onclick=()=>{try{localStorage.removeItem('kpcHuntCx')}catch(e){}location.reload()}}
  $('lv-loc').onclick=useLocation;
  setInterval(spots,60000);setInterval(()=>{noaaBasic();weather();alerts();renderStatus();if(windOn)loadWind()},300000);
  setInterval(()=>{renderStatus();stamp()},60000);stamp();
