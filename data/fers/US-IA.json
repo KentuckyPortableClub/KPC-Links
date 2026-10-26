@@ -1,19 +1,20 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
+ "pass2": "2026-10-26",
  "spots": [
   {
-   "acres": 45.8,
+   "acres": 40.6,
    "center": [
-    43.467268,
-    -95.123048
+    43.467223,
+    -95.123166
    ],
    "found": "2026-10-26",
    "id": "US-10174+US-5736@area@43.467,-95.123",
    "kind": "area",
    "passes": [
     1,
-    0,
+    1,
     0
    ],
    "refs": [
@@ -22,36 +23,40 @@
    ],
    "shape": [
     [
-     -95.125771,
-     43.477759
+     -95.126136,
+     43.477804
     ],
     [
-     -95.126018,
-     43.476312
+     -95.124404,
+     43.467042
     ],
     [
-     -95.124285,
-     43.467268
+     -95.123042,
+     43.463967
     ],
     [
-     -95.1228,
-     43.463831
+     -95.121185,
+     43.463967
     ],
     [
-     -95.121067,
-     43.464012
+     -95.122052,
+     43.467765
     ],
     [
-     -95.121562,
-     43.466364
+     -95.12428,
+     43.470931
     ],
     [
-     -95.125276,
-     43.47396
+     -95.125394,
+     43.474096
+    ],
+    [
+     -95.125518,
+     43.477804
     ]
    ],
-   "status": "pass 1",
-   "wide_m": 208
+   "status": "pass 2",
+   "wide_m": 204
   }
  ],
  "st": "US-IA"

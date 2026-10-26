@@ -1,6 +1,7 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
+ "pass2": "2026-10-26",
  "spots": [
   {
    "acres": 941.8,
@@ -126,7 +127,7 @@
      44.766542
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 1095
   },
   {
@@ -189,7 +190,7 @@
      44.809771
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 256
   },
   {
@@ -684,7 +685,7 @@
      44.84269
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 4132
   },
   {
@@ -767,7 +768,7 @@
      44.859149
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 527
   },
   {
@@ -810,7 +811,7 @@
      44.861501
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 376
   },
   {
@@ -869,7 +870,7 @@
      44.872896
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 720
   },
   {
@@ -928,7 +929,7 @@
      44.280318
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -987,7 +988,7 @@
      44.280318
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -1062,7 +1063,7 @@
      44.28663
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -1125,7 +1126,7 @@
      44.251902
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -1196,7 +1197,7 @@
      44.268
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -1259,7 +1260,7 @@
      45.996875
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 240
   },
   {
@@ -1294,7 +1295,7 @@
      46.252689
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1333,7 +1334,7 @@
      46.355596
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 128
   },
   {
@@ -1448,7 +1449,7 @@
      45.798647
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 1462
   },
   {
@@ -1491,7 +1492,7 @@
      46.051426
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1574,7 +1575,7 @@
      44.770155
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 1622
   },
   {
@@ -1625,7 +1626,7 @@
      46.829775
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -1700,7 +1701,7 @@
      44.286468
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -1823,7 +1824,7 @@
      44.251921
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -1978,7 +1979,7 @@
      44.277967
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -2053,7 +2054,7 @@
      44.289518
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 360
   },
   {
@@ -2092,7 +2093,7 @@
      45.923746
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -2167,7 +2168,7 @@
      44.286468
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -2290,7 +2291,7 @@
      44.251921
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -2445,7 +2446,7 @@
      44.277967
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   }
  ],

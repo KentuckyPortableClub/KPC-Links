@@ -1,6 +1,7 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
+ "pass2": "2026-10-26",
  "spots": [
   {
    "acres": 7910.8,
@@ -38,21 +39,21 @@
      61.263237
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 2040
   },
   {
-   "acres": 394.6,
+   "acres": 8880.8,
    "center": [
-    61.312074,
-    -140.116972
+    61.254121,
+    -140.883527
    ],
    "found": "2026-10-26",
    "id": "CA-0044+CA-0842@area@61.312,-140.117",
    "kind": "area",
    "passes": [
     1,
-    0,
+    1,
     0
    ],
    "refs": [
@@ -61,20 +62,76 @@
    ],
    "shape": [
     [
-     -140.107627,
-     61.313159
+     -139.754737,
+     61.42152
     ],
     [
-     -140.117346,
-     61.312797
+     -139.755299,
+     61.415099
     ],
     [
-     -140.407802,
-     61.253651
+     -139.755673,
+     61.414918
+    ],
+    [
+     -139.830746,
+     61.403071
+    ],
+    [
+     -139.888594,
+     61.406508
+    ],
+    [
+     -139.922854,
+     61.382361
+    ],
+    [
+     -139.847782,
+     61.32629
+    ],
+    [
+     -139.847969,
+     61.326109
+    ],
+    [
+     -140.117181,
+     61.312905
+    ],
+    [
+     -140.17035,
+     61.301962
+    ],
+    [
+     -140.17035,
+     61.300515
+    ],
+    [
+     -140.106136,
+     61.313448
+    ],
+    [
+     -139.847595,
+     61.326109
+    ],
+    [
+     -139.922854,
+     61.382361
+    ],
+    [
+     -139.888594,
+     61.406508
+    ],
+    [
+     -139.830746,
+     61.403071
+    ],
+    [
+     -139.755299,
+     61.415009
     ]
    ],
-   "status": "pass 1",
-   "wide_m": 176
+   "status": "pass 2",
+   "wide_m": 2060
   },
   {
    "acres": 906.7,
@@ -112,7 +169,7 @@
      68.55592
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   },
   {
@@ -151,7 +208,7 @@
      60.000779
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 120
   }
  ],
