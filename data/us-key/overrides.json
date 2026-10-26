@@ -973,7 +973,12 @@
    "join": [
     "Upper Delaware Scenic and Recreational River"
    ],
-   "why": "Oct 18 review: same place, official name written differently"
+   "no": [
+    "3562",
+    "3563"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
+   "note": "Private or other-agency land inside the boundary: set up on public land."
   },
   "US-11861": {
    "join": [
@@ -2948,8 +2953,13 @@
    "why": "same place, another name (hand review Oct 22 (waiting list))"
   },
   "US-7971": {
-   "none": true,
-   "why": "a different place, not this park; no outline of its own on file (hand review Oct 22 (waiting list))"
+   "join": [
+    "Blackstone River Valley National Historical Park"
+   ],
+   "no": [
+    "3186"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece"
   },
   "US-10751": {
    "none": true,
@@ -4469,6 +4479,80 @@
     "Croatan"
    ],
    "why": "Oct 25 round 5 hand check (outside research bot)"
+  },
+  "US-0652": {
+   "join": [
+    "Curecanti National Recreation Area"
+   ],
+   "no": [
+    "3497"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece"
+  },
+  "US-0043": {
+   "join": [
+    "Kalaupapa National Historical Park"
+   ],
+   "no": [
+    "sghib367",
+    "sghib154",
+    "sghib342",
+    "sghib343",
+    "3215"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
+   "note": "Private or other-agency land inside the boundary: set up on public land."
+  },
+  "US-0249": {
+   "join": [
+    "MERRITT ISLAND NATIONAL WILDLIFE REFUGE"
+   ],
+   "no": [
+    "4112",
+    "5068"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
+   "note": "Private or other-agency land inside the boundary: set up on public land."
+  },
+  "US-0675": {
+   "join": [
+    "Missouri National Recreational River"
+   ],
+   "no": [
+    "3514"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
+   "note": "Private or other-agency land inside the boundary: set up on public land."
+  },
+  "US-0732": {
+   "join": [
+    "Dayton Aviation Heritage National Historical Park"
+   ],
+   "no": [
+    "3199"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece"
+  },
+  "US-0909": {
+   "join": [
+    "Cape Krusenstern National Monument"
+   ],
+   "no": [
+    "3346"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
+   "note": "Private or other-agency land inside the boundary: set up on public land."
+  },
+  "US-0176": {
+   "join": [
+    "IMPERIAL NATIONAL WILDLIFE REFUGE"
+   ],
+   "no": [
+    "3956",
+    "4903"
+   ],
+   "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
+   "note": "Private or other-agency land inside the boundary: set up on public land."
   }
  }
 }
