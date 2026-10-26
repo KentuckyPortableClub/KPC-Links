@@ -64,4 +64,4 @@ header.site-nav{position:sticky;top:0;z-index:1000;margin:0;padding:0;background
 .site-nav .nav-dropdown .nav-multi a{padding:9px 6px;white-space:nowrap}
 .site-nav .nav-dropdown .nav-multi a+a::before{content:'\00b7';margin-right:10px;color:#a07c26}
 .site-nav .nav-dropdown .nav-multi .nm-tail{color:#b8c5bc;font-size:13.5px;font-weight:600;padding-left:4px}
-@media(min-width:1001px){.site-nav .nav-dropdown{min-width:270px}}
+@media(min-width:1001px){.site-nav .nav-dropdown:has(.nav-multi){min-width:270px}}
