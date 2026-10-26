@@ -1,5 +1,5 @@
 {
- "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26: + official maps for the 267 busiest US parks outside KY (HQ: KPC_Official_Maps_done.xlsx): map (+ map_what, map_date); map_note 'map on the park page' when the map link IS the park page; agency_map = a general agency map page reused for 3+ parks (agency-level, not the park's own map).",
+ "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level).",
  "parks": {
   "CA-0653": {
    "agency": "Alberta Parks, Government of Alberta",
@@ -728,6 +728,7 @@
   },
   "US-0001": {
    "map": "https://www.nps.gov/acad/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official NPS maps page"
   },
@@ -781,6 +782,7 @@
   },
   "US-0015": {
    "map": "https://www.nps.gov/choh/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated November 19, 2025",
    "map_what": "Official NPS maps page (parkwide and trail maps)"
   },
@@ -802,6 +804,7 @@
   },
   "US-0020": {
    "map": "https://www.nps.gov/cuva/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated June 10, 2026",
    "map_what": "Official NPS map page (interactive map, park map, area map)"
   },
@@ -828,6 +831,7 @@
   },
   "US-0027": {
    "map": "https://www.nps.gov/gett/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_what": "Official NPS maps page"
   },
   "US-0028": {
@@ -839,9 +843,9 @@
    "map_by": "bot: National Park Service (maps page answered)"
   },
   "US-0030": {
-   "map": "https://www.nps.gov/grca/planyourvisit/maps.htm",
-   "map_date": "Grand Canyon Area Map revised 2/2015; other map dates vary",
-   "map_what": "Map page (official park maps, pocket maps and trail maps)"
+   "map": "https://www.nps.gov/grca/planyourvisit/upload/GRCAmap2.pdf",
+   "map_page": "https://www.nps.gov/grca/planyourvisit/maps.htm",
+   "map_what": "PDF map"
   },
   "US-0031": {
    "map": "https://www.nps.gov/grte/planyourvisit/maps.htm",
@@ -882,6 +886,7 @@
   },
   "US-0041": {
    "map": "https://www.nps.gov/jotr/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_what": "Official NPS maps page"
   },
   "US-0043": {
@@ -942,6 +947,7 @@
   },
   "US-0060": {
    "map": "https://www.nps.gov/sagu/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated May 29, 2025; individual map dates not sta",
    "map_what": "Official NPS maps page (district hiking guides and maps)"
   },
@@ -951,6 +957,7 @@
   },
   "US-0064": {
    "map": "https://www.nps.gov/shen/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Some individual trail maps updated; no single map year",
    "map_what": "Map page (official park brochure, trail maps and campground maps)"
   },
@@ -1005,6 +1012,7 @@
   "US-0189": {
    "map": "https://www.fws.gov/refuge/don-edwards-san-francisco-bay/visit-us",
    "map_date": "Map date not stated",
+   "map_page": "https://www.fws.gov/refuge/don-edwards-san-francisco-bay/map",
    "map_what": "Official USFWS visit page with refuge maps / visitor information"
   },
   "US-0218": {
@@ -1014,16 +1022,19 @@
   "US-0225": {
    "map": "https://www.fws.gov/sites/default/files/documents/Rocky%20Flats%20Trail%20Map.pdf",
    "map_date": "Official map; page date not stated",
+   "map_page": "https://www.fws.gov/refuge/rocky-flats/map",
    "map_what": "PDF refuge trail map"
   },
   "US-0226": {
    "map": "https://www.fws.gov/sites/default/files/documents/2025-03/rma-wildlife-drive-and-trails-web.pdf",
    "map_date": "January 2025",
+   "map_page": "https://www.fws.gov/refuge/rocky-mountain-arsenal/map",
    "map_what": "Official U.S. Fish & Wildlife Service wildlife drive and trails map (PDF)"
   },
   "US-0249": {
    "map": "https://www.fws.gov/media/merritt-island-nwr-rules-regulations-and-map",
    "map_date": "Map date not stated",
+   "map_page": "https://www.fws.gov/refuge/merritt-island/map",
    "map_what": "PDF map / visitor information"
   },
   "US-0264": {
@@ -1042,6 +1053,7 @@
   "US-0364": {
    "map": "https://www.fws.gov/refuge/minnesota-valley/visit-us/trails",
    "map_date": "Map date not stated",
+   "map_page": "https://www.fws.gov/refuge/minnesota-valley/map",
    "map_what": "Official USFWS trails page with unit trail maps"
   },
   "US-0456": {
@@ -1052,6 +1064,7 @@
   "US-0522": {
    "map": "https://www.fws.gov/media/savannah-nwr-full-and-trail-maps",
    "map_date": "Publication date listed July 9, 2026",
+   "map_page": "https://www.fws.gov/media/savannah-national-wildlife-refuge-brochure-and-map",
    "map_what": "Official U.S. Fish & Wildlife Service full refuge and trail maps"
   },
   "US-0542": {
@@ -1067,6 +1080,7 @@
   "US-0548": {
    "map": "https://www.fws.gov/media/hagerman-national-wildlife-refuge-map-1",
    "map_date": "Map created 03/03/2022",
+   "map_page": "https://www.fws.gov/refuge/hagerman/map",
    "map_what": "Official refuge map image/download"
   },
   "US-0583": {
@@ -1077,6 +1091,10 @@
    "agency": "U.S. Fish and Wildlife Service",
    "map": "https://www.fws.gov/refuge/umatilla/visit-us",
    "web": "https://www.fws.gov/refuge/umatilla"
+  },
+  "US-0637": {
+   "map": "https://www.arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/mills-park-natural-area-boundary-map-3-18-22.pdf?sfvrsn=56454d3",
+   "map_what": "PDF map (boundary map)"
   },
   "US-0640": {
    "map": "https://www.nps.gov/pinn/planyourvisit/maps.htm",
@@ -1109,6 +1127,7 @@
   },
   "US-0648": {
    "map": "https://www.nps.gov/samo/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated April 10, 2025",
    "map_what": "Official NPS maps page (park brochure/map and site maps)"
   },
@@ -1131,6 +1150,7 @@
   },
   "US-0655": {
    "map": "https://www.nps.gov/nama/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated June 26, 2025",
    "map_what": "Official NPS maps page (National Mall points-of-interest map and related maps)"
   },
@@ -1140,6 +1160,7 @@
   },
   "US-0659": {
    "map": "https://www.nps.gov/bicy/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official NPS maps page"
   },
@@ -1154,6 +1175,7 @@
   },
   "US-0662": {
    "map": "https://www.nps.gov/chat/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Various map dates; Island Ford updated May 2026",
    "map_what": "Map page (official unit trail maps in PDF)"
   },
@@ -1175,6 +1197,7 @@
   },
   "US-0668": {
    "map": "https://www.nps.gov/gree/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2024 (map date not stated)",
    "map_what": "Map page"
   },
@@ -1201,12 +1224,14 @@
   },
   "US-0675": {
    "map": "https://www.nps.gov/mnrr/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official NPS maps page"
   },
   "US-0676": {
    "map": "https://home.nps.gov/lake/planyourvisit/maps.htm",
    "map_date": "Page last updated May 28, 2026",
+   "map_page": "https://www.nps.gov/lake/planyourvisit/maps.htm",
    "map_what": "Official NPS maps page (backcountry and boating restriction maps)"
   },
   "US-0679": {
@@ -1215,11 +1240,13 @@
   },
   "US-0680": {
    "map": "https://www.nps.gov/gate/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Island unit maps have individual update dates",
    "map_what": "Map page (official unit maps)"
   },
   "US-0682": {
    "map": "https://www.nps.gov/caha/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "ORV access map 2025; page updated July 29, 2025",
    "map_what": "Official NPS maps page (park overview and beach access maps)"
   },
@@ -1229,6 +1256,7 @@
   },
   "US-0684": {
    "map": "https://www.nps.gov/lode/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated April 1, 2026",
    "map_what": "Official NPS maps page"
   },
@@ -1274,6 +1302,7 @@
   },
   "US-0702": {
    "map": "https://www.nps.gov/cowp/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official NPS maps page"
   },
@@ -1300,6 +1329,7 @@
   },
   "US-0708": {
    "map": "https://www.nps.gov/stri/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Last updated July 1, 2019",
    "map_what": "Map page (park map and trail connections)"
   },
@@ -1313,11 +1343,13 @@
   },
   "US-0711": {
    "map": "https://www.nps.gov/kemo/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_what": "Map page (official park map)"
   },
   "US-0712": {
    "map": "https://home.nps.gov/mana/planyourvisit/maps.htm",
    "map_date": "Page last updated October 25, 2021",
+   "map_page": "https://www.nps.gov/mana/planyourvisit/upload/Manassas-Driving-Tour-Map-Website.jpg",
    "map_what": "Official NPS maps page (park driving tour and hiking trail maps)"
   },
   "US-0713": {
@@ -1334,6 +1366,7 @@
   },
   "US-0716": {
    "map": "https://www.nps.gov/chch/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated November 23, 2022",
    "map_what": "Official NPS maps page (Point Park map and trail map information)"
   },
@@ -1343,6 +1376,7 @@
   },
   "US-0718": {
    "map": "https://www.nps.gov/guco/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_what": "Official NPS maps page (park map in multiple formats)"
   },
   "US-0719": {
@@ -1351,6 +1385,7 @@
   },
   "US-0720": {
    "map": "https://www.nps.gov/kimo/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official NPS maps page"
   },
@@ -1395,10 +1430,12 @@
   "US-0731": {
    "map": "https://www.fs.usda.gov/crgnsa/maps",
    "map_date": "Map date not stated",
+   "map_page": "https://www.fs.usda.gov/r06/columbiarivergorge/maps-guides",
    "map_what": "Official U.S. Forest Service Columbia River Gorge maps page; verify if page resolves to forest map resources"
   },
   "US-0732": {
    "map": "https://www.nps.gov/daav/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated February 1, 2018; map date not stated",
    "map_what": "Official map page (NPS map embed)"
   },
@@ -1499,6 +1536,7 @@
   "US-0761": {
    "map": "https://www.nps.gov/vafo/planyourvisit/maps.htm",
    "map_date": "Map dates not stated on page",
+   "map_page": "https://www.nps.gov/npgallery/GetAsset/62e60a60-25ba-4af1-87fa-68964cd105c5",
    "map_what": "Official map page (brochure map and trail map)"
   },
   "US-0763": {
@@ -1511,6 +1549,7 @@
   },
   "US-0765": {
    "map": "https://www.nps.gov/indu/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated August 27, 2024",
    "map_what": "Official NPS maps page (area, beach, hiking, horse and bike trail maps)"
   },
@@ -1577,6 +1616,7 @@
   },
   "US-0784": {
    "map": "https://www.nps.gov/lyba/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated February 22, 2016",
    "map_what": "Official National Park Service maps page"
   },
@@ -1726,6 +1766,7 @@
   },
   "US-0824": {
    "map": "https://www.nps.gov/fova/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Last updated November 3, 2023",
    "map_what": "Official NPS maps page (McLoughlin House Area Map PDF)"
   },
@@ -2025,6 +2066,7 @@
   "US-0928": {
    "map": "https://home.nps.gov/fomc/planyourvisit/maps.htm",
    "map_date": "Page last updated September 21, 2026",
+   "map_page": "https://www.nps.gov/fomc/planyourvisit/maps.htm",
    "map_what": "Official NPS map page (printable grounds overview)"
   },
   "US-0929": {
@@ -2208,13 +2250,13 @@
   "US-1000": {
    "map": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/calendar/publishingimages/first-day-hikes/illinoisbeach.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/publications/documents/00000049.pdf",
    "map_what": "PDF park map"
   },
   "US-10007": {
-   "map": "https://stateparks.oregon.gov/index.cfm?do=v.page&id=95",
-   "map_date": "Maps updated summer 2020",
-   "map_note": "map on the park page",
-   "map_what": "Official Oregon State Parks trail map page"
+   "map": "https://stateparks.oregon.gov/ckFiles/files/OCT-Map-1.pdf",
+   "map_page": "https://stateparks.oregon.gov/index.cfm?do=v.page&id=95",
+   "map_what": "PDF map (section 1 of several on page)"
   },
   "US-10008": {
    "map": "https://www.blm.gov/sites/blm.gov/files/docs/2022-03/orwa-klamath-hills-rec-area-map.pdf",
@@ -2248,6 +2290,10 @@
   "US-10116": {
    "map": "https://mdc.mo.gov/media/area/map/8116",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
+  },
+  "US-1012": {
+   "map": "https://s7d1.scene7.com/is/image/isp/morainehillsmap2026",
+   "map_what": "map image (linked from dnr.illinois.gov page; image host scene7)"
   },
   "US-10135": {
    "map": "https://mdc.mo.gov/media/area/map/7918",
@@ -2323,6 +2369,7 @@
   },
   "US-10247": {
    "map": "https://www.in.gov/dnr/nature-preserves/files/np-Lawrence_Creek.pdf",
+   "map_confirmed": true,
    "map_date": "Date not stated",
    "map_note": "map on the park page",
    "map_what": "PDF map / preserve document (official Indiana DNR PDF)"
@@ -2399,6 +2446,7 @@
   "US-1042": {
    "map": "https://www.alapark.com/sites/default/files/2020-02/Gulf%20State%20Park%20Map_2020.pdf",
    "map_date": "2020",
+   "map_page": "https://www.alapark.com/sites/default/files/2023-08/Park%20map%202023%20Page%201.pdf",
    "map_what": "PDF park and campground map"
   },
   "US-10428": {
@@ -2415,11 +2463,13 @@
   },
   "US-1048": {
    "map": "https://www.alapark.com/maps-directory",
+   "map_page": "https://conservationgis.alabama.gov/alapark",
    "map_what": "Official state parks map directory (includes Monte Sano campground and trail maps)"
   },
   "US-1049": {
    "map": "https://www.alapark.com/sites/default/files/2019-07/OMSPparkmap_0.pdf",
    "map_date": "2019 file upload; map date not stated",
+   "map_page": "https://conservationgis.alabama.gov/alapark",
    "map_what": "Official Oak Mountain State Park map PDF"
   },
   "US-10509": {
@@ -2435,6 +2485,7 @@
   "US-1055": {
    "map": "https://arizona-content.usedirect.com/storage/catalina/20241016113013park-map-cata.pdf",
    "map_date": "2024-10-11",
+   "map_page": "https://azstateparks.com/catalina/explore/maps",
    "map_what": "PDF map (official Arizona State Parks park and trails map)"
   },
   "US-10555": {
@@ -3049,6 +3100,7 @@
   "US-1139": {
    "map": "https://www.parks.ca.gov/pages/648/files/ChinoHillsFinalWebLayout2018.pdf",
    "map_date": "2018",
+   "map_page": "https://www.parks.ca.gov/pages/648/files/ChinoHillsSP_Brochure_092326_FINAL.pdf",
    "map_what": "PDF park map"
   },
   "US-1150": {
@@ -3061,9 +3113,10 @@
    "map_by": "bot: Recreation.gov RIDB (agency link)"
   },
   "US-1176": {
-   "map": "https://www.parks.ca.gov/?page_id=517",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with campground, visitor center and brochure maps"
+   "map": "https://www.parks.ca.gov/pages/517/files/MountDiabloFinalWebLayout2018.pdf",
+   "map_date": "© 2018",
+   "map_page": "https://www.parks.ca.gov/?page_id=517",
+   "map_what": "brochure with map"
   },
   "US-11771": {
    "map": "https://mdc.mo.gov/media/area/map/9225",
@@ -3238,10 +3291,9 @@
    "map_by": "bot: West Virginia DNR (wild, state GIS table) (HighResMapURL field)"
   },
   "US-1209": {
-   "map": "https://cpw.state.co.us/state-parks/barr-lake-state-park",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with park brochure/map"
+   "map": "https://cpw.state.co.us/sites/default/files/dam/typuvxypbr/barr-lake-state-park-brochure.pdf",
+   "map_page": "https://cpw.state.co.us/state-parks/barr-lake-state-park",
+   "map_what": "brochure with map"
   },
   "US-12099": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/alexauken_creek.pdf",
@@ -3278,6 +3330,7 @@
   },
   "US-1211": {
    "map": "https://cpw.state.co.us/sites/default/files/dam/4ejxonyydw/castlewood-canyon-state-park-brochure.pdf",
+   "map_confirmed": true,
    "map_date": "Brochure current as of 2024 (PDF publication metadata)",
    "map_what": "Official Colorado Parks & Wildlife brochure and map (PDF)"
   },
@@ -3290,21 +3343,20 @@
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
   },
   "US-1212": {
-   "map": "https://cpw.state.co.us/state-parks/chatfield-state-park",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with park brochure/map link"
+   "map": "https://cpw.state.co.us/sites/default/files/dam/tskv7n0amk/chatfield-state-park-brochure.pdf",
+   "map_page": "https://cpw.state.co.us/state-parks/chatfield-state-park",
+   "map_what": "brochure with map"
   },
   "US-1213": {
    "map": "https://cpw.state.co.us/sites/default/files/dam/weqlvdc5nv/cherry-creek-state-park-brochure.pdf",
+   "map_confirmed": true,
    "map_date": "Brochure version 03/25/2024",
    "map_what": "Official Colorado Parks and Wildlife park brochure and map PDF"
   },
   "US-1214": {
-   "map": "https://cpw.state.co.us/state-parks/cheyenne-mountain-state-park",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official park page / park brochure map"
+   "map": "https://cpw.state.co.us/sites/default/files/dam/5kdmua7w7p/cheyenne-mountain-state-park-brochure.pdf",
+   "map_page": "https://cpw.state.co.us/state-parks/cheyenne-mountain-state-park",
+   "map_what": "brochure with map"
   },
   "US-12158": {
    "map": "https://mdc.mo.gov/media/area/map/9407",
@@ -3329,6 +3381,10 @@
   "US-12319": {
    "map": "https://mdc.mo.gov/media/area/map/6528",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
+  },
+  "US-12320": {
+   "map": "https://trails.nc.gov/maps/map-pdfs-yadkin-river-state-trail/open",
+   "map_what": "PDF map"
   },
   "US-12346": {
    "map": "https://mdc.mo.gov/media/area/map/6807",
@@ -3365,6 +3421,7 @@
   },
   "US-1241": {
    "map": "https://cpw.state.co.us/sites/default/files/dam/c2osani8ac/st.pdf",
+   "map_confirmed": true,
    "map_date": "Version 03/25/2024",
    "map_what": "PDF brochure and location map (official Colorado Parks and Wildlife)"
   },
@@ -3515,6 +3572,7 @@
   "US-1299": {
    "map": "https://www.virginiastateparks.gov/state-parks/document/data/trail-guide-firstlanding.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.dcr.virginia.gov/state-parks/document/fl-campground-map.pdf",
    "map_what": "PDF trail guide/map"
   },
   "US-13057": {
@@ -3532,6 +3590,10 @@
   "US-13117": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/dod_ponds.pdf",
    "map_by": "bot: New Jersey DEP (state-owned open space) (land, state GIS tab (FACILITY_MAP_URL field)"
+  },
+  "US-1312": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/po-campground-map.pdf",
+   "map_what": "PDF map (campground map)"
   },
   "US-13147": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/andaloro.pdf",
@@ -3560,11 +3622,13 @@
   "US-13184": {
    "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/Iron_Belle_Trail.pdf?hash=AF1DE25252BE6A19A2ECED0E000690F3&rev=4b5da54922134c478354414e88875732",
    "map_date": "Map date not stated",
+   "map_page": "https://experience.arcgis.com/experience/157fd543acd047a3ab851f1ceb09bdeb",
    "map_what": "PDF overview map (official Michigan DNR)"
   },
   "US-1319": {
    "map": "https://www.dcr.virginia.gov/state-parks/document/maps/Smith-Mountain-Lake-Avenza.Map.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.dcr.virginia.gov/state-parks/document/sm-campground-map.pdf",
    "map_what": "PDF park map (geo-referenced)"
   },
   "US-13254": {
@@ -3590,71 +3654,84 @@
   "US-1352": {
    "map": "https://elibrary.dcnr.pa.gov/PDFProvider.ashx?PromptToSave=False&Size=4135995&ViewerMode=2&action=PDFStream&docID=1753400&docName=FOWA_ParkGuide&nativeExt=pdf&overlay=0&revision=0",
    "map_date": "Map date not stated",
+   "map_page": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/fort-washington-state-park/maps",
    "map_what": "PDF park guide and map (Pennsylvania DCNR)"
   },
   "US-1355": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/french-creek-state-park/maps",
+   "map_confirmed": true,
    "map_what": "Map page (park, campground, lake depth and interactive GIS maps)"
   },
   "US-1356": {
    "map": "https://elibrary.dcnr.pa.gov/PDFProvider.ashx?PromptToSave=False&Size=1854693&ViewerMode=2&action=PDFStream&chksum=&docID=1737648&docName=GIPI_CampgroundMap&nativeExt=pdf&overlay=0&revision=3",
    "map_date": "Rev. 07/23/2024",
+   "map_page": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/gifford-pinchot-state-park/maps",
    "map_what": "PDF campground map"
   },
   "US-1387": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/moraine-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official Pennsylvania DCNR maps and guides page (PDF maps and interactive GIS)"
   },
   "US-1391": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/nockamixon-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map date not stated on map page",
    "map_what": "Official map page (park, cabin, marina, lake-depth and GIS maps)"
   },
   "US-1402": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/presque-isle-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official map page (park and trail maps)"
   },
   "US-1407": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/pymatuning-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official map page (park, campgrounds, cabins, lake depth and GIS maps)"
   },
   "US-1409": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/raccoon-creek-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "Official map page (park, campground, wildflower reserve and GIS maps)"
   },
   "US-1418": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/samuel-s-lewis-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official map page (park map and recreational guide)"
   },
   "US-1430": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/tyler-state-park/maps",
+   "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official map page (park map and recreational guide)"
   },
   "US-1487": {
    "map": "https://www.michigan.gov/recsearch/parks/belleisle",
    "map_date": "Map date not stated",
-   "map_note": "map on the park page",
+   "map_page": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsA-D/BelleIsle_ParkMap.pdf",
    "map_what": "Official Michigan DNR park page with printable PDF map"
   },
   "US-1511": {
    "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/KalHavenTrail.pdf?hash=EF06B7A2974AD7316CBF8635600319C5&rev=1ab54ca4b9a54bf68a9eabe270649539",
    "map_date": "Map date not stated",
+   "map_page": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/KalHavenTrail.pdf",
    "map_what": "Official Michigan DNR PDF linear trail map"
   },
   "US-1518": {
    "map": "https://www.dnr.state.mi.us/publications/pdfs/RecreationCamping/maybury_map.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/maybury_map.pdf",
    "map_what": "PDF park map"
   },
   "US-1573": {
-   "map": "https://dnr.maryland.gov/publiclands/Pages/western/Gambrill/Trails-and-Trail-Maps.aspx",
-   "map_what": "Official trail maps page"
+   "map": "https://dnr.maryland.gov/publiclands/Documents/Gambrill_map.pdf",
+   "map_page": "https://dnr.maryland.gov/publiclands/Pages/western/Gambrill/Trails-and-Trail-Maps.aspx",
+   "map_what": "PDF map"
   },
   "US-1574": {
    "map": "https://dnr.maryland.gov/publiclands/pages/parkmaps/gathlandmap.aspx",
@@ -3664,6 +3741,7 @@
   "US-1588": {
    "map": "https://dnr.maryland.gov/publiclands/Pages/central/PatapscoValley/Trail-Maps.aspx",
    "map_date": "Map dates not stated",
+   "map_page": "https://dnr.maryland.gov/publiclands/documents/patapsco_overviewmap.pdf",
    "map_what": "Official Maryland DNR trail maps page (multiple PDF maps for park areas)"
   },
   "US-1607": {
@@ -3791,11 +3869,13 @@
   "US-1728": {
    "map": "https://portal.ct.gov/-/media/DEEP/stateparks/maps/whartonbrookpdf.pdf",
    "map_date": "January 20, 2011",
+   "map_page": "https://ctparks.com/media/588/download?inline",
    "map_what": "PDF park and natural area map"
   },
   "US-1743": {
    "map": "https://documents.dnrec.delaware.gov/parks/Information/Documents/Tri-ValleyTrail/White%20Clay%20State%20Park%20Trail%20Plan.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.destateparks.com/wp-content/uploads/2024/08/maps_White_Clay_Creek.pdf",
    "map_what": "PDF map (Map B1, park map in official trail plan)"
   },
   "US-1762": {
@@ -3834,9 +3914,14 @@
    "map": "http://www.swl.usace.army.mil/Portals/50/docs/tablerocklake/TABLE%20ROCK%20MAP%203-05.pdf",
    "map_by": "bot: Recreation.gov RIDB (agency link)"
   },
+  "US-1800": {
+   "map": "https://wvstateparks.com/wp-content/uploads/2025/06/2024.10.24_WVSP_BeechFork_Map_FINAL.pdf",
+   "map_what": "PDF map"
+  },
   "US-1810": {
    "map": "https://wvstateparks.com/wp-content/uploads/2020/10/ChiefLoganStateParkMap.pdf",
    "map_date": "2020 file upload; map date not stated",
+   "map_page": "https://wvstateparks.com/wp-content/uploads/2025/06/2024.08.14_WVSP_ChiefLogan_Map_FINAL.pdf",
    "map_what": "Official West Virginia State Parks Chief Logan State Park map PDF"
   },
   "US-1847": {
@@ -3886,18 +3971,20 @@
   },
   "US-1933": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/alumcreekparkmap.pdf",
+   "map_confirmed": true,
    "map_date": "Map date not stated in retrieved map text",
    "map_what": "PDF park map"
   },
   "US-1937": {
-   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/buck-creek-state-park",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with downloadable park and equestrian maps"
+   "map": "https://ohiodnr.gov/static/documents/parks/parkmaps/buckcreekparkmap.pdf",
+   "map_page": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/buck-creek-state-park",
+   "map_what": "PDF map"
   },
   "US-1940": {
-   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/caesar-creek-state-park",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with downloadable park, hiking, mountain-bike, equestrian and hunting maps"
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/caesarcreektrailmap.pdf",
+   "map_date": "Rev 04/2025",
+   "map_page": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/caesar-creek-state-park",
+   "map_what": "PDF map (hiking map; park map link is 404)"
   },
   "US-1942": {
    "map": "https://www.clevelandmetroparks.com/assets/media/Cleveland_Metroparks/Documents/Reservation_Maps/Lakefront-Reservation-Map.pdf",
@@ -3906,24 +3993,26 @@
   },
   "US-1946": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/delawareparkmap.pdf",
+   "map_confirmed": true,
    "map_date": "Rev. 05/2025",
    "map_what": "PDF park map"
   },
   "US-1953": {
-   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/grand-lake-st-marys-state-park",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with downloadable park map"
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/grandlakeparkmap.pdf",
+   "map_date": "Rev: 11/2025",
+   "map_page": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/grand-lake-st-marys-state-park",
+   "map_what": "PDF map (ohiodnr.gov/static link is 404; same file on Ohio DNR asset host)"
   },
   "US-1956": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/harrisonlakeparkmap.pdf",
+   "map_confirmed": true,
    "map_date": "Revised December 2025",
    "map_what": "PDF park map (official Ohio DNR)"
   },
   "US-1960": {
-   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/independence-dam-state-park",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official Ohio DNR park page with park map download"
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/independenceparkmap.pdf",
+   "map_page": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/independence-dam-state-park",
+   "map_what": "PDF map (ohiodnr.gov/static link is 404; same file on Ohio DNR asset host)"
   },
   "US-1964": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/johnbryanparkmap.pdf",
@@ -3932,24 +4021,29 @@
   },
   "US-1972": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/littlemiamiparkmap.pdf",
+   "map_page": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/littlemiamiregionmap.pdf",
    "map_what": "Official Ohio DNR PDF park map"
   },
   "US-1973": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/madisonlakeparkmap.pdf",
+   "map_confirmed": true,
    "map_date": "Revised 2025-03",
    "map_what": "PDF map (Ohio DNR state park map)"
   },
   "US-1984": {
-   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/portage-lakes-state-park",
-   "map_date": "Map dates not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official Ohio DNR park page with downloadable park and hiking maps"
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/portagelakesparkmap.pdf",
+   "map_page": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/portage-lakes-state-park",
+   "map_what": "PDF map"
+  },
+  "US-1998": {
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/vanburenparkmap.pdf",
+   "map_date": "Rev: 10/2025",
+   "map_what": "PDF map"
   },
   "US-1999": {
-   "map": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/west-branch-state-park",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official Ohio DNR park page with downloadable park, hiking, mountain-bike and equestrian maps"
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/westbranchhuntingmap.pdf",
+   "map_page": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/west-branch-state-park",
+   "map_what": "PDF map (hunting map; no general park map listed)"
   },
   "US-2001": {
    "map": "https://dec.ny.gov/nature/forests-trees/forest-preserve/welcome-to-the-adirondacks",
@@ -3971,28 +4065,31 @@
    "map_what": "Official NY State Parks maps page (park, trail and marina maps)"
   },
   "US-2169": {
-   "map": "https://gastateparks.org/cloudlandcanyon",
-   "map_date": "Map dates not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official Georgia State Parks page with park and trail maps"
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/CloudlandCanyon_TrailMap.pdf",
+   "map_page": "https://gastateparks.org/cloudlandcanyon",
+   "map_what": "PDF map (trail map)"
   },
   "US-2171": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/DonCarter_TrailMap.pdf",
+   "map_confirmed": true,
    "map_date": "Published approx. 2019 (search index date)",
    "map_what": "PDF trail map (official Georgia State Parks)"
   },
   "US-2173": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/FDRoosevelt_ParkMap.pdf",
+   "map_confirmed": true,
    "map_date": "Copyright/publication year 2020",
    "map_what": "Official Georgia State Parks park map (PDF)"
   },
   "US-2177": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/fortyargo/Fort%20Yargo%20State%20Park%20Map%202023.pdf",
    "map_date": "2023",
+   "map_page": "https://gastateparks.org/sites/default/files/parks/pdf/fortyargo/Fort%20Yargo%20State%20Park%202024.pdf",
    "map_what": "PDF park map"
   },
   "US-2184": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/HardLaborCreek_TrailMap.pdf",
+   "map_confirmed": true,
    "map_date": "Published 2026; map date not stated",
    "map_what": "PDF trail map"
   },
@@ -4020,10 +4117,9 @@
    "map_by": "bot: Recreation.gov RIDB (agency link)"
   },
   "US-2207": {
-   "map": "https://gastateparks.org/WatsonMillBridge",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official Georgia State Parks page with park map"
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/WatsonMillBridge_TrailMap.pdf",
+   "map_page": "https://gastateparks.org/WatsonMillBridge",
+   "map_what": "PDF map (trail map)"
   },
   "US-2208": {
    "agency": "Hawaii Department of Land and Natural Resources, Division of State Parks",
@@ -4031,45 +4127,57 @@
    "web": "https://dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/"
   },
   "US-2252": {
-   "map": "https://www.in.gov/dnr/state-parks/parks-lakes/chain-o-lakes-state-park/",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with property map and campground maps"
+   "map": "https://www.in.gov/dnr/state-parks/files/chain_o_lakes_trail.pdf",
+   "map_date": "© 02/2026",
+   "map_page": "https://www.in.gov/dnr/state-parks/parks-lakes/chain-o-lakes-state-park/",
+   "map_what": "PDF map"
   },
   "US-2253": {
-   "agency_map": "https://www.in.gov/dnr/state-parks/maps"
+   "agency_map": "https://www.in.gov/dnr/state-parks/maps",
+   "map": "https://www.in.gov/dnr/state-parks/files/charlestown_trail.pdf",
+   "map_date": "© 01/2026",
+   "map_what": "PDF map"
   },
   "US-2256": {
-   "agency_map": "https://www.in.gov/dnr/state-parks/maps"
+   "agency_map": "https://www.in.gov/dnr/state-parks/maps",
+   "map": "https://www.in.gov/dnr/state-parks/files/ftharrison_trail.pdf",
+   "map_date": "01/2026",
+   "map_what": "PDF map"
   },
   "US-2258": {
-   "map": "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/",
-   "map_date": "Property map PDF © 08/2025",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with property map and campground maps"
+   "map": "https://www.in.gov/dnr/state-parks/files/dunes_trail.pdf",
+   "map_date": "© 08/2025",
+   "map_page": "https://www.in.gov/dnr/state-parks/parks-lakes/indiana-dunes-state-park/",
+   "map_what": "PDF map"
   },
   "US-2261": {
-   "agency_map": "https://www.in.gov/dnr/state-parks/maps"
+   "agency_map": "https://www.in.gov/dnr/state-parks/maps",
+   "map": "https://www.in.gov/dnr/state-parks/files/mounds_trail.pdf",
+   "map_date": "© 01/2026",
+   "map_what": "PDF map"
   },
   "US-2263": {
-   "map": "https://www.in.gov/dnr/state-parks/parks-lakes/ouabache-state-park/",
-   "map_date": "Map dates not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with property and campground maps"
+   "map": "https://www.in.gov/dnr/state-parks/files/ouabache_trail.pdf",
+   "map_date": "© 03/2026",
+   "map_page": "https://www.in.gov/dnr/state-parks/parks-lakes/ouabache-state-park/",
+   "map_what": "PDF map"
   },
   "US-2265": {
-   "map": "https://secure.in.gov/dnr/state-parks/parks-lakes/potato-creek-state-park/",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official park page with property map under Maps tab"
+   "map": "https://www.in.gov/dnr/state-parks/files/potato_creek_trail.pdf",
+   "map_date": "© 05/2026",
+   "map_page": "https://secure.in.gov/dnr/state-parks/parks-lakes/potato-creek-state-park/",
+   "map_what": "PDF map"
   },
   "US-2266": {
    "map": "https://www.in.gov/dnr/state-parks/files/prophetstown_trail.pdf",
+   "map_confirmed": true,
    "map_date": "© January 2026",
    "map_what": "Official Indiana DNR park map (PDF)"
   },
   "US-2281": {
    "map": "https://www.iowadnr.gov/portals/idnr/uploads/parks/parkmaps/bigcreekmap.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.iowadnr.gov/media/1248/download?inline",
    "map_what": "PDF park map (official Iowa DNR)"
   },
   "US-2332": {
@@ -4142,26 +4250,29 @@
   "US-2723": {
    "map": "https://www.ncparks.gov/state-parks/carvers-creek-state-park/plan-your-visit",
    "map_date": "Map dates not stated",
+   "map_page": "https://www.ncparks.gov/maps/carvers-creek-state-park-sandhills-access-map/open",
    "map_what": "Official NC State Parks page with Long Valley Farm and Sandhills access PDF maps"
   },
   "US-2726": {
    "map": "https://www.ncparks.gov/maps/crowders-mountain-state-park-map/open",
+   "map_confirmed": true,
    "map_date": "May 2024",
    "map_what": "Official park map (PDF/map page)"
   },
   "US-2740": {
-   "map": "https://www.ncparks.gov/lake-norman-state-park/home",
-   "map_note": "map on the park page",
-   "map_what": "Map page (official park page; map link not separately verified)"
+   "map": "https://www.ncparks.gov/maps/lake-norman-state-park-map/open",
+   "map_page": "https://www.ncparks.gov/lake-norman-state-park/home",
+   "map_what": "PDF map"
   },
   "US-2746": {
    "map": "https://www.ncparks.gov/state-parks/morrow-mountain-state-park",
-   "map_note": "map on the park page",
+   "map_page": "https://www.ncparks.gov/maps/morrow-mountain-state-park-map/open",
    "map_what": "Official park page with park map PDF"
   },
   "US-2755": {
    "map": "https://www.ncparks.gov/state-parks/william-b-umstead-state-park",
    "map_date": "Map date not stated on page",
+   "map_page": "https://www.ncparks.gov/maps/william-b-umstead-state-park-map/open",
    "map_what": "Official North Carolina State Parks page with Park Map (PDF) and Campground Map (PDF)"
   },
   "US-2764": {
@@ -4197,9 +4308,9 @@
    "map_what": "PDF park map"
   },
   "US-2982": {
-   "map": "https://www.tn.gov/environment/program-areas/na-natural-areas/na-natural-areas/na-natural-areas---warriors-path-state-park.html",
-   "map_date": "Map date not stated",
-   "map_what": "Tennessee State Parks official resources; park map and trail map are available in state park materials"
+   "map": "https://tnstateparks.com/sites/default/files/2025-09/warriors_path_brochure.pdf",
+   "map_page": "https://www.tn.gov/environment/program-areas/na-natural-areas/na-natural-areas/na-natural-areas---warriors-path-state-park.html",
+   "map_what": "brochure with map"
   },
   "US-2989": {
    "agency": "Texas Parks and Wildlife Department",
@@ -4207,33 +4318,40 @@
    "web": "https://tpwd.texas.gov/state-parks/big-spring"
   },
   "US-2991": {
-   "map": "https://tpwd.texas.gov/state-parks/bonham/map",
-   "map_date": "Map dates not stated",
-   "map_what": "Official map page (park map, trails map and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_028c.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/bonham/map",
+   "map_what": "PDF map"
   },
   "US-2992": {
-   "map": "https://tpwd.texas.gov/state-parks/brazos-bend/map",
-   "map_date": "Trails map updated July 2025",
-   "map_what": "Official map page (facility map, trails map and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_110l.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/brazos-bend/map",
+   "map_what": "PDF map"
   },
   "US-2996": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_131l.pdf",
+   "map_confirmed": true,
    "map_date": "2026 (copyright/map publication code 2/26)",
    "map_what": "PDF park map"
   },
   "US-3000": {
-   "map": "https://tpwd.texas.gov/state-parks/cooper-lake/map",
-   "map_what": "Map page (park maps for both units, trail maps and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_154a.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/cooper-lake/map",
+   "map_what": "PDF map (Doctors Creek Unit)"
   },
   "US-3005": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_032f.pdf",
+   "map_confirmed": true,
    "map_date": "2026 (PWD MP P4503-032F, 2/26)",
    "map_what": "PDF park facility map"
   },
   "US-3013": {
-   "map": "https://tpwd.texas.gov/state-parks/galveston-island/map",
-   "map_date": "Trails map date not stated",
-   "map_what": "Official map page (park map, trails map and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_042e.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/galveston-island/map",
+   "map_what": "PDF map"
   },
   "US-3015": {
    "agency": "Texas Parks and Wildlife Department",
@@ -4242,12 +4360,14 @@
   },
   "US-3017": {
    "map": "https://tpwd.texas.gov/state-parks/guadalupe-river/map",
+   "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_040e.pdf",
    "map_what": "Map page (park map PDF, trails map PDF and interactive trails map)"
   },
   "US-3019": {
-   "map": "https://tpwd.texas.gov/state-parks/huntsville/map",
-   "map_date": "Park map copyright 2026 (PWD MP P4505-044G, 2/26)",
-   "map_what": "Official Texas Parks & Wildlife map page (park map, trails map and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_044g.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/huntsville/map",
+   "map_what": "PDF map"
   },
   "US-3021": {
    "agency": "Texas Parks and Wildlife Department",
@@ -4256,16 +4376,20 @@
   },
   "US-3022": {
    "map": "https://tpwd.texas.gov/state-parks/lake-arrowhead/map",
+   "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_098b.pdf",
    "map_what": "Map page (park map PDF, trails map PDF and interactive map)"
   },
   "US-3030": {
-   "map": "https://tpwd.texas.gov/state-parks/lake-somerville/map",
-   "map_what": "Map page (park maps for Birch Creek and Nails Creek, trail maps and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_056e.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/lake-somerville/map",
+   "map_what": "PDF map (Birch Creek Unit)"
   },
   "US-3031": {
-   "map": "https://tpwd.texas.gov/state-parks/lake-tawakoni/map",
-   "map_date": "Map dates not stated",
-   "map_what": "Official map page (park map, trails map and interactive trails map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_142.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/lake-tawakoni/map",
+   "map_what": "PDF map"
   },
   "US-3032": {
    "map": "http://www.swf-wc.usace.army.mil/whitney/Information/Maps.asp",
@@ -4277,22 +4401,27 @@
    "web": "https://tpwd.texas.gov/state-parks/lyndon-b-johnson"
   },
   "US-3038": {
-   "map": "https://tpwd.texas.gov/state-parks/mckinney-falls/map",
-   "map_date": "Map date not stated",
-   "map_what": "Official map page (park map, trails map and interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_090d.pdf",
+   "map_date": "© 2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/mckinney-falls/map",
+   "map_what": "PDF map"
   },
   "US-3042": {
    "map": "https://tpwd.texas.gov/state-parks/mother-neff/map",
    "map_date": "Trails map 2025",
+   "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_022b.pdf",
    "map_what": "Map page (park map PDF and trails map PDF)"
   },
   "US-3051": {
-   "map": "https://tpwd.texas.gov/state-parks/ray-roberts-lake/map",
-   "map_what": "Official park map page (park and unit maps, trail maps, interactive map)"
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_0137a.pdf",
+   "map_date": "2026",
+   "map_page": "https://tpwd.texas.gov/state-parks/ray-roberts-lake/map",
+   "map_what": "PDF map"
   },
   "US-3056": {
    "map": "https://tpwd.texas.gov/state-parks/sheldon-lake/map",
    "map_date": "Map date not stated on map page",
+   "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_0138p.pdf",
    "map_what": "Official Texas Parks & Wildlife map page; trail map PDF and interactive trails map"
   },
   "US-3057": {
@@ -4319,6 +4448,10 @@
    "map": "https://stateparks.utah.gov/wp-content/uploads/sites/13/2023/02/web-Snow-Canyon-Trail-Guide-Map-Brochure-2023.pdf",
    "web": "https://stateparks.utah.gov/parks/snow-canyon/"
   },
+  "US-3094": {
+   "map": "https://stateparks.utah.gov/wp-content/uploads/utahlake-digital-brochure-2026.pdf",
+   "map_what": "brochure with map"
+  },
   "US-3106": {
    "agency": "Vermont Department of Forests, Parks and Recreation",
    "map": "https://vtstateparks.com/buttonbay.html",
@@ -4331,16 +4464,19 @@
   "US-3171": {
    "map": "https://parks.wa.gov/DocumentCenter/View/9837/Centennial-Trail-State-Park-PDF?bidId=",
    "map_date": "Date not stated",
+   "map_page": "https://parks.wa.gov/sites/default/files/2023-04/Centennial%20Trail%20brochure.pdf",
    "map_what": "PDF trail brochure/map (official Washington State Parks)"
   },
   "US-3216": {
    "map": "https://parks.wa.gov/sites/default/files/2024-01/Lake%20Sammamish%20full%20color%20Map.pdf",
+   "map_confirmed": true,
    "map_date": "Revised January 2, 2024",
    "map_what": "PDF park map (official Washington State Parks)"
   },
   "US-3257": {
    "map": "https://parks.wa.gov/sites/default/files/2024-08/Riverside%20State%20Park%20Brochure.pdf",
    "map_date": "Revised 2024-08-12",
+   "map_page": "https://parks.wa.gov/sites/default/files/2024-08/Riverside%20Overview%20Map.pdf",
    "map_what": "PDF park brochure/map (official Washington State Parks)"
   },
   "US-3290": {
@@ -4351,11 +4487,13 @@
   "US-3310": {
    "map": "https://www2.dnr.state.mi.us/Publications/PDFS/RecreationCamping/fort_custer_map.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsE-H/fort_custer_map.pdf",
    "map_what": "PDF recreation area map"
   },
   "US-3315": {
    "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/island_lake_map.pdf?rev=50394ffdafde43d2a520e468b4046709",
    "map_date": "Map date not stated",
+   "map_page": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/island_lake_map.pdf",
    "map_what": "PDF park map (official Michigan DNR)"
   },
   "US-3378": {
@@ -4373,9 +4511,14 @@
    "map": "https://www.nps.gov/noca/planyourvisit/maps.htm",
    "web": "https://www.nps.gov/noca/index.htm"
   },
+  "US-3383": {
+   "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsA-D/bald_mountain_map.pdf",
+   "map_what": "PDF map"
+  },
   "US-3411": {
    "map": "https://www.parks.ca.gov/pages/642/files/Welcome%20to%20Bolsa%20Chica%20SB.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.parks.ca.gov/pages/642/files/BolsaChicaSBCampMap2009Rev.pdf",
    "map_what": "PDF state beach map"
   },
   "US-3421": {
@@ -4385,14 +4528,15 @@
   },
   "US-3424": {
    "map": "https://www.nps.gov/iafl/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2026 (map date not stated)",
    "map_what": "Map page (interactive trail map and official brochure)"
   },
   "US-3432": {
-   "map": "https://www.parks.ca.gov/?page_id=500",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official park map page (park map and individual trail maps)"
+   "map": "https://www.parks.ca.gov/pages/500/files/FolsomLake_FINALWebLayout_20220811.pdf",
+   "map_date": "Rev. 2022",
+   "map_page": "https://www.parks.ca.gov/?page_id=500",
+   "map_what": "brochure with map"
   },
   "US-3441": {
    "agency": "California Department of Parks and Recreation",
@@ -4402,11 +4546,13 @@
   "US-3473": {
    "map": "https://files.santaclaracounty.gov/migrated/MartialCottleGuideMap.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://csparks.maps.arcgis.com/apps/instant/basic/index.html?appid=065b067caa204e8da48d4b53c9483ab0&UNITNBR=229",
    "map_what": "PDF park guide map (Santa Clara County Parks; park is county-operated)"
   },
   "US-3503": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_0165e.pdf",
    "map_date": "Published approx. 2024",
+   "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_165c.pdf",
    "map_what": "PDF trails map (official Texas Parks & Wildlife)"
   },
   "US-3521": {
@@ -4526,21 +4672,24 @@
   },
   "US-3791": {
    "map": "https://www.nps.gov/trte/planyourvisit/upload/National-Park-Service-Trail-of-Tears-Map-508.pdf",
+   "map_page": "https://www.nps.gov/trte/planyourvisit/maps.htm",
    "map_what": "PDF map / brochure"
   },
   "US-3792": {
    "map": "https://www.landbetweenthelakes.us/help-center/lbl-maps/",
+   "map_confirmed": true,
    "map_date": "2026 MVUM; recreation maps include 2022 editions",
    "map_what": "Map page (visitor information, recreation, trail and MVUM maps)"
   },
   "US-3841": {
    "map": "https://www.ncparks.gov/state-parks/falls-lake-state-recreation-area/home",
    "map_date": "Map dates not stated",
-   "map_note": "map on the park page",
+   "map_page": "https://www.ncparks.gov/maps/falls-lake-state-recreation-area-map/open",
    "map_what": "Official park page with park and access-area PDF maps"
   },
   "US-3844": {
    "map": "https://www.ncparks.gov/maps/jordan-lake-state-recreation-area-map/open",
+   "map_confirmed": true,
    "map_date": "November 2021",
    "map_what": "PDF park map (official NC State Parks)"
   },
@@ -4585,6 +4734,7 @@
   },
   "US-4187": {
    "map": "https://www.in.gov/dnr/fish-and-wildlife/files/bluegrass.pdf",
+   "map_confirmed": true,
    "map_date": "Published 2025",
    "map_what": "PDF property map / brochure"
   },
@@ -4592,36 +4742,47 @@
    "map": "https://www.in.gov/dnr/fish-and-wildlife/properties/je-roush-lake-fwa/",
    "map_date": "Map date not stated",
    "map_note": "map on the park page",
+   "map_page": "https://www.in.gov/dnr/fish-and-wildlife/files/fw-roush_property_map.pdf",
    "map_what": "Official property page with Property Map (PDF)"
   },
   "US-4215": {
-   "map": "https://secure.in.gov/dnr/forestry/properties/morgan-monroe-state-forest/",
-   "map_date": "Map dates not stated",
-   "map_what": "Official Indiana DNR forest page with hunting maps and trail/map resources"
+   "map": "https://www.in.gov/dA/7ac22c7c01/fo-morgan-monroe-map.pdf?language_id=1",
+   "map_date": "© 8/2021",
+   "map_page": "https://secure.in.gov/dnr/forestry/properties/morgan-monroe-state-forest/",
+   "map_what": "PDF map"
+  },
+  "US-4236": {
+   "map": "https://www.fws.gov/refuge/upper-mississippi-river/map",
+   "map_what": "map page (FWS interactive)"
   },
   "US-4238": {
    "map": "https://www.nps.gov/iatr/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2026 (map date not stated)",
    "map_note": "map on the park page",
    "map_what": "Map page (interactive web map, state overview and brochure)"
   },
   "US-4239": {
    "map": "https://www.nps.gov/noco/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2025 (map date not stated)",
    "map_what": "Map page (trail overview map)"
   },
   "US-4265": {
    "map": "https://dnr.wisconsin.gov/topic/parks/richardbong/maps",
+   "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official maps page (park, horse trails, campgrounds and other maps)"
   },
   "US-4352": {
    "map": "https://dnr.wisconsin.gov/topic/parks/kms/maps",
    "map_date": "Map dates not stated",
+   "map_page": "https://dnr.wisconsin.gov/topic/parks/kmn/maps",
    "map_what": "Official forest maps page (Southern Unit; verify unit relevance against worklist label)"
   },
   "US-4378": {
    "map": "https://www.fs.usda.gov/r06/deschutes/maps-guides",
+   "map_confirmed": true,
    "map_date": "Map dates vary by map",
    "map_what": "Official visitor maps and guides page (Forest Service maps)"
   },
@@ -4642,11 +4803,13 @@
   "US-4391": {
    "map": "https://www.fs.usda.gov/htnf/",
    "map_note": "map on the park page",
+   "map_page": "https://www.fs.usda.gov/r04/humboldt-toiyabe/maps-guides",
    "map_what": "Official Forest Service page linking to Interactive Visitor Map and vicinity map"
   },
   "US-4395": {
    "map": "https://www.fs.usda.gov/r04/dixie/planning/forest-plan/forest-plan-and-amendments",
    "map_date": "Forest plan map dates not stated on page",
+   "map_page": "https://www.fs.usda.gov/r04/dixie/maps-guides",
    "map_what": "Official Forest Service map page (forest plan maps)"
   },
   "US-4398": {
@@ -4660,16 +4823,20 @@
    "web": "https://www.fs.usda.gov/r02/gmug"
   },
   "US-4404": {
-   "agency_map": "https://www.fs.usda.gov/ivm/"
+   "agency_map": "https://www.fs.usda.gov/ivm/",
+   "map": "https://www.fs.usda.gov/r02/psicc/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
   },
   "US-4407": {
    "map": "https://www.fs.usda.gov/psicc/maps-pubs",
    "map_date": "Map date varies by map; not stated on landing page",
+   "map_page": "https://www.fs.usda.gov/r02/psicc/maps-guides",
    "map_what": "Official U.S. Forest Service maps and publications page for Pike-San Isabel National Forests & Cimarron/Comanche Nationa"
   },
   "US-4417": {
    "map": "https://www.fs.usda.gov/texas/maps-pubs",
    "map_date": "Map date varies by map; not stated on landing page",
+   "map_page": "https://www.fs.usda.gov/r08/texas/maps-guides",
    "map_what": "Official U.S. Forest Service maps and publications page for National Forests and Grasslands in Texas"
   },
   "US-4422": {
@@ -4688,35 +4855,45 @@
    "web": "https://www.fs.usda.gov/r08/ouachita"
   },
   "US-4427": {
-   "agency_map": "https://www.fs.usda.gov/r03/maps-guides"
+   "agency_map": "https://www.fs.usda.gov/r03/maps-guides",
+   "map": "https://www.fs.usda.gov/r03/apache-sitgreaves/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
   },
   "US-4428": {
    "map": "https://www.fs.usda.gov/sites/nfs/files/r03/coconino/publication/2025-travel-map.pdf",
    "map_date": "April 15, 2025",
+   "map_page": "https://www.fs.usda.gov/r03/coconino/maps-guides",
    "map_what": "PDF forest travel map"
   },
   "US-4429": {
    "agency_map": "https://www.fs.usda.gov/ivm/",
-   "map": "https://www.nps.gov/coro/planyourvisit/maps.htm",
-   "map_by": "bot: National Park Service (maps page answered)"
+   "map": "https://www.fs.usda.gov/r03/coronado/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
   },
   "US-4431": {
    "map": "https://www.fs.usda.gov/main/prescott/maps-pubs",
    "map_date": "Map date varies by map",
+   "map_page": "https://www.fs.usda.gov/r03/prescott/maps-guides",
    "map_what": "Official Forest Service maps and publications page (visitor and motor vehicle use maps)"
   },
   "US-4432": {
    "map": "https://www.fs.usda.gov/visit/maps",
    "map_date": "Map date not stated",
+   "map_page": "https://www.fs.usda.gov/r03/tonto/maps-guides",
    "map_what": "Official U.S. Forest Service maps portal for national forests; forest-specific map products searchable here"
   },
   "US-4436": {
    "map": "https://www.blm.gov/sites/blm.gov/files/docs/2020-12/AZ_VermilionCliffs_NM_map-508.pdf",
    "map_by": "bot: Recreation.gov RIDB (agency link)"
   },
+  "US-4451": {
+   "map": "https://www.fs.usda.gov/r08/alabama/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
+  },
   "US-4453": {
    "map": "https://www.fs.usda.gov/angeles/maps-pubs",
    "map_date": "Map date varies by map; not stated on landing page",
+   "map_page": "https://www.fs.usda.gov/r05/angeles/maps-guides",
    "map_what": "Official U.S. Forest Service maps and publications page"
   },
   "US-4454": {
@@ -4727,29 +4904,35 @@
   "US-4456": {
    "map": "https://www.fs.usda.gov/main/inyo/maps-pubs",
    "map_date": "Map date varies by map",
+   "map_page": "https://www.fs.usda.gov/r05/inyo/maps-guides",
    "map_what": "Official Forest Service maps and publications page (visitor and motor vehicle use maps)"
   },
   "US-4462": {
    "map": "https://www.fs.usda.gov/main/plumas/maps-pubs",
    "map_date": "Map date varies by map",
+   "map_page": "https://www.fs.usda.gov/r05/plumas/maps-guides",
    "map_what": "Official Forest Service maps and publications page (visitor maps and motor vehicle use maps)"
   },
   "US-4463": {
    "map": "https://www.fs.usda.gov/sbnf/maps-pubs",
+   "map_page": "https://www.fs.usda.gov/r05/sanbernardino/maps-guides",
    "map_what": "Official Forest Service maps and publications page"
   },
   "US-4469": {
    "map": "https://www.fs.usda.gov/tahoe/maps-pubs",
    "map_date": "Map date varies by map; not stated on landing page",
+   "map_page": "https://www.fs.usda.gov/r05/tahoe/maps-guides",
    "map_what": "Official U.S. Forest Service maps and publications page"
   },
   "US-4471": {
    "map": "https://www.fs.usda.gov/detail/florida/maps-pubs/?cid=stelprdb5192625",
    "map_date": "Map date varies by map",
+   "map_page": "https://www.fs.usda.gov/r08/florida/maps-guides",
    "map_what": "Official Forest Service maps and publications page (National Forests in Florida, including Ocala NF)"
   },
   "US-4473": {
    "map": "https://www.fs.usda.gov/detailfull/conf/landmanagement/resourcemanagement/?cid=fsm9_029305",
+   "map_page": "https://www.fs.usda.gov/r08/chattahoochee-oconee/maps-guides",
    "map_what": "Official Forest Service maps page (forest, district, motor-vehicle-use and visitor maps)"
   },
   "US-4477": {
@@ -4772,40 +4955,53 @@
    "web": "https://www.fs.usda.gov/r01/kootenai/about-area/about-forest"
   },
   "US-4509": {
-   "agency_map": "https://www.fs.usda.gov/ivm/"
+   "agency_map": "https://www.fs.usda.gov/r08/northcarolina/maps-guides"
   },
   "US-4510": {
-   "agency_map": "https://www.fs.usda.gov/ivm/"
+   "agency_map": "https://www.fs.usda.gov/r08/northcarolina/maps-guides"
   },
   "US-4511": {
+   "agency_map": "https://www.fs.usda.gov/r08/northcarolina/maps-guides",
    "map": "https://www.fs.usda.gov/sites/nfs/files/r08/northcarolina/publication/UWH%20--%20Uwharrie%20National%20Forest%20Recreation%20Guide.pdf",
    "map_date": "Map date not stated",
    "map_what": "PDF recreation guide and forest map (official USDA Forest Service)"
   },
   "US-4514": {
-   "agency_map": "https://www.fs.usda.gov/r03/maps-guides"
+   "agency_map": "https://www.fs.usda.gov/r03/maps-guides",
+   "map": "https://www.fs.usda.gov/r03/cibola/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
   },
   "US-4516": {
-   "agency_map": "https://www.fs.usda.gov/r03/maps-guides"
+   "agency_map": "https://www.fs.usda.gov/r03/maps-guides",
+   "map": "https://www.fs.usda.gov/r03/lincoln/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
   },
   "US-4522": {
    "map": "https://www.fs.usda.gov/scnfs/maps-pubs",
    "map_date": "Map date varies by map",
+   "map_page": "https://www.fs.usda.gov/r08/francismarionsumter/maps-guides",
    "map_what": "Official Forest Service maps and publications page (Francis Marion and Sumter National Forests)"
+  },
+  "US-4524": {
+   "map": "https://www.fs.usda.gov/r02/blackhills/maps-guides",
+   "map_what": "map page (USFS Maps & Guides)"
   },
   "US-4525": {
    "map": "https://www.fs.usda.gov/cherokee/maps-pubs",
    "map_date": "Map date varies by map; not stated on landing page",
+   "map_page": "https://www.fs.usda.gov/r08/cherokee/maps-guides",
    "map_what": "Official U.S. Forest Service maps and publications page"
   },
   "US-4526": {
    "map": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd1136678.pdf",
    "map_date": "March 28, 2022",
+   "map_page": "https://www.fs.usda.gov/r08/gwj/maps-guides",
    "map_what": "PDF forest vicinity map"
   },
   "US-4531": {
    "map": "https://www.fs.usda.gov/r06/okanogan-wenatchee/data-tools/interactive-maps",
    "map_date": "Last updated June 10, 2025",
+   "map_page": "https://www.fs.usda.gov/r06/okanogan-wenatchee/maps-guides",
    "map_what": "Official Forest Service interactive maps page"
   },
   "US-4532": {
@@ -4825,18 +5021,20 @@
    "map_by": "bot: National Park Service (maps page answered)"
   },
   "US-4556": {
-   "map": "https://www.nps.gov/appa/planyourvisit/maps.htm",
-   "map_date": "Page last updated 2022 (map date not stated)",
-   "map_what": "Map page (official park map and interactive webapp)"
+   "map": "https://www.nps.gov/appa/planyourvisit/upload/APPA_Map.pdf",
+   "map_page": "https://www.nps.gov/appa/planyourvisit/maps.htm",
+   "map_what": "PDF map"
   },
   "US-4558": {
    "map": "https://www.fs.usda.gov/managing-land/trails/cdt",
    "map_date": "Map date not stated",
    "map_note": "map on the park page",
+   "map_page": "https://www.fs.usda.gov/trails/continental-divide-nst/maps-guides",
    "map_what": "Official Forest Service Continental Divide Trail page (trail map resources)"
   },
   "US-4559": {
    "map": "https://www.fs.usda.gov/detailfull/fnst",
+   "map_page": "https://www.fs.usda.gov/trails/florida-nst/maps-guides",
    "map_what": "Map page (USDA Forest Service interactive ArcGIS map)"
   },
   "US-4560": {
@@ -4870,51 +5068,59 @@
   },
   "US-4566": {
    "map": "https://www.nps.gov/cali/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2025 (map date not stated)",
    "map_what": "Map page (interactive trail map and state auto-tour guides)"
   },
   "US-4567": {
-   "map": "https://www.nps.gov/cajo/planyourvisit/maps.htm",
-   "map_date": "Page last updated 2024 (map date not stated)",
-   "map_note": "map on the park page",
-   "map_what": "Map page (interactive trail map and downloadable brochures)"
+   "map": "https://www.nps.gov/cajo/planyourvisit/upload/2024_993-082-DOI-NPS-CAJO-Unigrid-508-2.pdf",
+   "map_page": "https://www.nps.gov/cajo/planyourvisit/maps.htm",
+   "map_what": "brochure with map"
   },
   "US-4568": {
    "map": "https://parkplanning.nps.gov/document.cfm?documentID=19543",
+   "map_page": "https://www.nps.gov/elte/planyourvisit/maps.htm",
    "map_what": "PDF map (official NPS trail map)"
   },
   "US-4571": {
    "map": "https://www.nps.gov/juba/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2024 (map date not stated)",
    "map_note": "map on the park page",
    "map_what": "Map page (interactive route and campsites map)"
   },
   "US-4572": {
    "map": "https://www.nps.gov/lecl/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2026 (map date not stated)",
    "map_what": "Map page (interactive trail map and downloadable brochure map)"
   },
   "US-4575": {
    "map": "https://www.nps.gov/olsp/planyourvisit/upload/National-Park-Service-Old-Spanish-Brochure-Map-508.pdf",
    "map_date": "2012 (NPS/BLM 05/12 shown on map)",
+   "map_page": "https://www.nps.gov/olsp/planyourvisit/maps.htm",
    "map_what": "PDF map / brochure"
   },
   "US-4576": {
    "map": "https://www.nps.gov/oreg/planyourvisit/upload/National-Park-Service-Oregon-Trail-Map-508.pdf",
+   "map_page": "https://www.nps.gov/oreg/planyourvisit/maps.htm",
    "map_what": "PDF map (official trail map)"
   },
   "US-4577": {
    "map": "https://www.nps.gov/ovvi/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2024",
    "map_what": "Map page (brochure map and interactive map)"
   },
   "US-4578": {
    "map": "https://www.nps.gov/poex/planyourvisit/upload/National-Park-Service-Pony-Express-Map-508.pdf",
+   "map_confirmed": true,
    "map_what": "PDF map (official trail map)"
   },
   "US-4579": {
    "map": "https://www.nps.gov/safe/planyourvisit/trail-brochures.htm",
    "map_date": "Page last updated 2025 (map date not stated)",
+   "map_page": "https://www.nps.gov/safe/planyourvisit/maps.htm",
    "map_what": "Brochure page (official map and guide; map side downloadable)"
   },
   "US-4580": {
@@ -4923,12 +5129,14 @@
   },
   "US-4581": {
    "map": "https://www.nps.gov/stsp/upload/508-StarSpangled-Side2-2.pdf",
+   "map_page": "https://www.nps.gov/stsp/upload/508-StarSpangled-Side1-2.pdf",
    "map_what": "PDF map (official trail brochure map)"
   },
   "US-4582": {
-   "map": "https://www.nps.gov/waro/planyourvisit/maps.htm",
-   "map_date": "2024 brochure map; page updated 2026",
-   "map_what": "Map page (interactive map and downloadable trail brochure)"
+   "map": "https://www.nps.gov/waro/planyourvisit/upload/WARO_UnigridBrochure_2024_Back-2.pdf",
+   "map_date": "2024 (GPO:2024)",
+   "map_page": "https://www.nps.gov/waro/planyourvisit/maps.htm",
+   "map_what": "brochure with map"
   },
   "US-4598": {
    "map": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2023-2024/SOA/SOA_Little_River.pdf",
@@ -4943,13 +5151,13 @@
    "map": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Myakka-State-Forest",
    "map_date": "Forest map dated June 2024",
    "map_note": "map on the park page",
+   "map_page": "https://www.fdacs.gov/content/download/29774/file/Myakka-state-forest-entire-forest.pdf",
    "map_what": "Official state forest page with forest and aerial PDF maps"
   },
   "US-4646": {
-   "map": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Withlacoochee-State-Forest",
-   "map_date": "Map date not stated",
-   "map_note": "map on the park page",
-   "map_what": "Official Florida Forest Service maps page (includes georeferenced forest map and trail maps)"
+   "map": "https://www.fdacs.gov/content/download/40669/file/Withlacoocheestateforest-entireforest.pdf",
+   "map_page": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Withlacoochee-State-Forest",
+   "map_what": "PDF map"
   },
   "US-4655": {
    "agency": "Iowa Department of Natural Resources",
@@ -4975,6 +5183,7 @@
   },
   "US-4858": {
    "map": "https://www.ncagr.gov/divisions/nc-forest-service/NCFS%20-%20Mountain%20Island%20Trail%20Map.pdf/open",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "PDF trail map (official NC Forest Service)"
   },
@@ -5029,6 +5238,7 @@
   "US-5330": {
    "map": "https://www5.swfwmd.state.fl.us/greenswamp/map",
    "map_date": "Map date not stated",
+   "map_page": "https://www.swfwmd.state.fl.us/recreation/recreation-maps",
    "map_what": "Official interactive map page (Southwest Florida Water Management District)"
   },
   "US-5454": {
@@ -5087,11 +5297,13 @@
   },
   "US-5643": {
    "map": "https://dnr.wisconsin.gov/topic/lands/lowerwisconsin/maps",
+   "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official maps page (water trail, trail and property maps)"
   },
   "US-5683": {
    "map": "https://www.in.gov/dnr/fish-and-wildlife/files/fw-roush_property_map.pdf",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_note": "map on the park page",
    "map_what": "PDF property map (official Indiana DNR; Kil-So-Quah SRA is shown on the map)"
@@ -5198,9 +5410,9 @@
    "web": "https://wildlife.utah.gov/hunting/hunting-in-utah/wildlife-management-areas.html"
   },
   "US-5929": {
-   "map": "https://stateparks.utah.gov/parks/flight-park/",
-   "map_note": "map on the park page",
-   "map_what": "Official map embed and brochure on park page"
+   "map": "https://stateparks.utah.gov/wp-content/uploads/flightpark-digital-brochure-2024.pdf",
+   "map_page": "https://stateparks.utah.gov/parks/flight-park/",
+   "map_what": "brochure with map"
   },
   "US-5988": {
    "map": "https://www.blm.gov/sites/blm.gov/files/uploads/BLMUtahKanabCommunityNonMotorizedTrails.pdf",
@@ -5232,6 +5444,10 @@
    "map": "https://www.fs.usda.gov/visit/destination/absaroka-beartooth-wilderness",
    "web": "https://www.fs.usda.gov/visit/destination/absaroka-beartooth-wilderness"
   },
+  "US-6281": {
+   "map": "https://www.fws.gov/rivers/map",
+   "map_what": "map page (national Wild & Scenic Rivers map; not river-specific)"
+  },
   "US-6291": {
    "map": "https://myfwc.com/recreation/lead/babcockwebb/planning-your-visit/",
    "map_date": "Map date not stated",
@@ -5257,6 +5473,7 @@
   "US-6393": {
    "map": "https://dnr.maryland.gov/publiclands/documents/morganrun_map.pdf",
    "map_date": "Last updated Apr 2017",
+   "map_page": "https://dnr.maryland.gov/publiclands/Pages/central/MorganRun/Trails.aspx",
    "map_what": "PDF map (Morgan Run NEA location map)"
   },
   "US-6401": {
@@ -5266,6 +5483,7 @@
   },
   "US-6432": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/washington-crossing-historic-park/maps",
+   "map_confirmed": true,
    "map_date": "Master plan 2014; map date not stated",
    "map_what": "Official map page (park map PDF and recreational guide)"
   },
@@ -5288,8 +5506,9 @@
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
   },
   "US-6470": {
-   "map": "https://mdc.mo.gov/media/area/map/7812",
-   "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
+   "map": "https://mdc.mo.gov/sites/default/files/2022-12/7812map_0.pdf",
+   "map_date": "© 11/4/2022",
+   "map_what": "PDF map"
   },
   "US-6471": {
    "map": "https://mdc.mo.gov/media/area/map/8234",
@@ -5526,6 +5745,7 @@
   },
   "US-6544": {
    "map": "https://www.nps.gov/npgallery/GetAsset/e8a647dd-3641-4f45-bc7f-a2f2d56d2fe3",
+   "map_confirmed": true,
    "map_note": "map on the park page",
    "map_what": "Official NPS map asset (direct link supplied on official page)"
   },
@@ -5549,12 +5769,14 @@
   },
   "US-6609": {
    "map": "https://www.nj.gov/pinelands/home/maps/",
+   "map_confirmed": true,
    "map_date": "Permanent Land Protection map as of July 2025",
    "map_what": "Official Pinelands Commission maps page (permanent land protection and interactive maps)"
   },
   "US-6700": {
    "map": "https://www.swfwmd.state.fl.us/sites/default/files/recreation/maps/sawgrass.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://www.swfwmd.state.fl.us/recreation/recreation-maps",
    "map_what": "PDF park map"
   },
   "US-6877": {
@@ -5947,6 +6169,7 @@
   },
   "US-7145": {
    "map": "https://files.dnr.state.mn.us/maps/state_parks/sra00304.pdf",
+   "map_confirmed": true,
    "map_date": "2025",
    "map_what": "Official Minnesota DNR Map and Guide PDF for Minnesota Valley State Recreation Area and Trail"
   },
@@ -6333,6 +6556,10 @@
    "map": "https://mdc.mo.gov/media/area/map/6124",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
   },
+  "US-7839": {
+   "map": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/inpc/publishingimages/topographic-maps/santa-fe.jpg",
+   "map_what": "map image (topographic)"
+  },
   "US-7840": {
    "map": "https://mdc.mo.gov/media/area/map/7926",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
@@ -6394,6 +6621,7 @@
   "US-7889": {
    "map": "https://www.nps.gov/prsf/planyourvisit/maps.htm",
    "map_date": "Maps updated July 2018",
+   "map_page": "https://www.nps.gov/prsf/planyourvisit/upload/2018-Presidio-Map-for-Web.pdf",
    "map_what": "Map page (Color Park Map PDF)"
   },
   "US-7891": {
@@ -6459,6 +6687,7 @@
   },
   "US-7973": {
    "map": "https://www.nps.gov/bawa/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2016 (map date not stated)",
    "map_what": "Map page"
   },
@@ -6863,12 +7092,14 @@
    "map_what": "Official Palisades Interstate Park map PDF"
   },
   "US-8353": {
-   "map": "https://www.sjrwmd.com/documents/trailguides/",
-   "map_what": "Official geospatial trail maps page (includes Lake Apopka North Shore)"
+   "map": "https://aws.sjrwmd.com/SJRWMD/lands/trailguides/lake-apopka-north-shore-trail-map.pdf",
+   "map_page": "https://www.sjrwmd.com/documents/trailguides/",
+   "map_what": "PDF map (trail map)"
   },
   "US-8375": {
    "map": "https://aws.sjrwmd.com/SJRWMD/lands/recreation/Three_Forks_Conservation_Area.pdf",
    "map_date": "Map date not stated",
+   "map_page": "https://aws.sjrwmd.com/SJRWMD/lands/trailguides/Three-Forks-Conservation-Area-recreation-map.pdf",
    "map_what": "Official St. Johns River Water Management District conservation area map (PDF)"
   },
   "US-8396": {
@@ -6951,16 +7182,19 @@
   },
   "US-9384": {
    "map": "https://files.dnr.state.mn.us/maps/state_parks/sra00304.pdf",
+   "map_confirmed": true,
    "map_date": "PDF published approx. 2025; printed map date not clearly sta",
    "map_what": "Official Minnesota DNR Map and Guide PDF for Minnesota Valley State Recreation Area and Trail"
   },
   "US-9387": {
    "map": "https://files.dnr.state.mn.us/maps/state_trails/luce_line.pdf",
+   "map_confirmed": true,
    "map_date": "© 2023",
    "map_what": "PDF trail map (official Minnesota DNR)"
   },
   "US-9409": {
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/natural-areas/maps/GOLL_8_5x11.pdf",
+   "map_confirmed": true,
    "map_date": "Map date not stated",
    "map_what": "PDF preserve trail map (official Ohio DNR)"
   },
@@ -6972,6 +7206,10 @@
    "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/wildlife-area-maps/parkersburg.pdf",
    "map_date": "Published 2022-05-17",
    "map_what": "PDF map (Ohio DNR wildlife area map)"
+  },
+  "US-9507": {
+   "map": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/wildlife-area-maps/tiffin.pdf",
+   "map_what": "PDF map (ohiodnr.gov/static link is 404; same file on Ohio DNR asset host)"
   },
   "US-9541": {
    "map": "http://www.nwp.usace.army.mil/Locations/WillametteValley/Dexter.aspx",
@@ -7013,6 +7251,7 @@
   },
   "US-9757": {
    "map": "https://www.nps.gov/buov/planyourvisit/maps.htm",
+   "map_confirmed": true,
    "map_date": "Page last updated 2026 (map date not stated)",
    "map_what": "Map page (interactive trail map)"
   },
@@ -7026,12 +7265,14 @@
   },
   "US-9898": {
    "map": "https://www.nps.gov/gwmp/planyourvisit/upload/Mt-Vernon-Trail-map-508-2021.pdf",
+   "map_confirmed": true,
    "map_date": "2021",
    "map_what": "PDF trail map"
   },
   "US-9901": {
    "map": "https://www.nps.gov/cwdw/learn/historyculture/historic-maps.htm",
    "map_date": "Historic maps; page last updated October 8, 2021",
+   "map_page": "https://www.nps.gov/cwdw/planyourvisit/maps.htm",
    "map_what": "Official NPS historic maps page (includes historic fortification maps)"
   },
   "US-9907": {
