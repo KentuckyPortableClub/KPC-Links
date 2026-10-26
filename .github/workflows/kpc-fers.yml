@@ -15,6 +15,9 @@ on:
       states:
         description: 'Only these (e.g. "US-OH CA-ON W-GB"; blank = all)'
         default: ''
+      region:
+        description: 'both, na (US + Canada) or world'
+        default: 'both'
 permissions:
   contents: write
 concurrency:
@@ -27,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        region: [na, world]
+        region: ${{ fromJSON(inputs.region == 'na' && '["na"]' || inputs.region == 'world' && '["world"]' || '["na","world"]') }}
     steps:
       - uses: actions/checkout@v5
       - name: Tools + saved outlines
