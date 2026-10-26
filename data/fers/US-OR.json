@@ -29382,6 +29382,20 @@
    "id": "US-12370+US-9157@river@42.802,-118.868",
    "kind": "river",
    "len_m": 326,
+   "maps": [
+    [
+     "US-12370",
+     "https://www.blm.gov/visit/page-springs-campground"
+    ],
+    [
+     "US-9157",
+     "https://www.blm.gov/programs/national-conservation-lands/oregon-washington/donner-und-blitzen-wsr"
+    ]
+   ],
+   "names": {
+    "US-12370": "Page Springs BLM Recreation Management Area",
+    "US-9157": "Donner und Blitzen National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -29389,7 +29403,7 @@
    ],
    "pins_inside": {
     "US-12370": true,
-    "US-9157": false
+    "US-9157": true
    },
    "refs": [
     "US-12370",
@@ -29661,7 +29675,7 @@
      42.802327
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -29678,6 +29692,20 @@
    "id": "US-12370+US-9157@river@42.804,-118.868",
    "kind": "river",
    "len_m": 326,
+   "maps": [
+    [
+     "US-12370",
+     "https://www.blm.gov/visit/page-springs-campground"
+    ],
+    [
+     "US-9157",
+     "https://www.blm.gov/programs/national-conservation-lands/oregon-washington/donner-und-blitzen-wsr"
+    ]
+   ],
+   "names": {
+    "US-12370": "Page Springs BLM Recreation Management Area",
+    "US-9157": "Donner und Blitzen National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -29685,7 +29713,7 @@
    ],
    "pins_inside": {
     "US-12370": true,
-    "US-9157": false
+    "US-9157": true
    },
    "refs": [
     "US-12370",
@@ -29957,7 +29985,7 @@
      42.802327
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [
@@ -34324,6 +34352,20 @@
    "id": "US-4378+US-9985@river@44.095,-121.698",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -34331,7 +34373,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -34655,7 +34697,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -34672,6 +34714,20 @@
    "id": "US-4378+US-9985@river@44.096,-121.705",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -34679,7 +34735,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -35003,7 +35059,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -35020,6 +35076,20 @@
    "id": "US-4378+US-9985@river@44.098,-121.691",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -35027,7 +35097,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -35351,7 +35421,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -35368,6 +35438,20 @@
    "id": "US-4378+US-9985@river@44.099,-121.681",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -35375,7 +35459,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -35699,7 +35783,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -35716,6 +35800,20 @@
    "id": "US-4378+US-9985@river@44.104,-121.715",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -35723,7 +35821,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -36047,7 +36145,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -36064,6 +36162,20 @@
    "id": "US-4378+US-9985@river@44.132,-121.755",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -36071,7 +36183,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -36395,7 +36507,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -36412,6 +36524,20 @@
    "id": "US-4378+US-9985@river@44.143,-121.755",
    "kind": "river",
    "len_m": 59558,
+   "maps": [
+    [
+     "US-4378",
+     "https://www.fs.usda.gov/main/deschutes/home"
+    ],
+    [
+     "US-9985",
+     "https://www.fs.usda.gov/ivm/index.html?minx=-13542053&miny=5496651&maxx=-13527378&maxy=5503482&exploremenu=no"
+    ]
+   ],
+   "names": {
+    "US-4378": "Deschutes National Forest",
+    "US-9985": "Whychus Creek National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -36419,7 +36545,7 @@
    ],
    "pins_inside": {
     "US-4378": true,
-    "US-9985": false
+    "US-9985": true
    },
    "refs": [
     "US-4378",
@@ -36743,7 +36869,7 @@
      44.121685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 185.8,
@@ -37216,6 +37342,20 @@
    "id": "US-4381+US-9524@trail@45.567,-122.133",
    "kind": "trail",
    "len_m": 3553,
+   "maps": [
+    [
+     "US-4381",
+     "https://www.fs.usda.gov/mthood/"
+    ],
+    [
+     "US-9524",
+     "https://stateparks.oregon.gov/index.cfm?do=park.profile&parkId=219"
+    ]
+   ],
+   "names": {
+    "US-4381": "Mount Hood National Forest",
+    "US-9524": "Angel's Rest State Trail"
+   },
    "passes": [
     1,
     1,
@@ -37223,7 +37363,7 @@
    ],
    "pins_inside": {
     "US-4381": true,
-    "US-9524": false
+    "US-9524": true
    },
    "refs": [
     "US-4381",
@@ -37503,7 +37643,7 @@
      45.568632
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 16.2,
@@ -55717,13 +55857,27 @@
    "id": "US-9157+US-9160@river@42.545,-118.769",
    "kind": "river",
    "len_m": 135522,
+   "maps": [
+    [
+     "US-9157",
+     "https://www.blm.gov/programs/national-conservation-lands/oregon-washington/donner-und-blitzen-wsr"
+    ],
+    [
+     "US-9160",
+     "https://www.blm.gov/visit/steens-mountain-cooperative-management-protection-area"
+    ]
+   ],
+   "names": {
+    "US-9157": "Donner und Blitzen National Wild and Scenic River",
+    "US-9160": "Steens Mountain BLM Special Recreation Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-9157": false,
+    "US-9157": true,
     "US-9160": true
    },
    "refs": [
@@ -56016,7 +56170,7 @@
      42.594643
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -56033,13 +56187,27 @@
    "id": "US-9157+US-9160@river@42.592,-118.647",
    "kind": "river",
    "len_m": 135522,
+   "maps": [
+    [
+     "US-9157",
+     "https://www.blm.gov/programs/national-conservation-lands/oregon-washington/donner-und-blitzen-wsr"
+    ],
+    [
+     "US-9160",
+     "https://www.blm.gov/visit/steens-mountain-cooperative-management-protection-area"
+    ]
+   ],
+   "names": {
+    "US-9157": "Donner und Blitzen National Wild and Scenic River",
+    "US-9160": "Steens Mountain BLM Special Recreation Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-9157": false,
+    "US-9157": true,
     "US-9160": true
    },
    "refs": [
@@ -56332,7 +56500,7 @@
      42.594643
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": null,

@@ -19,13 +19,27 @@
    "id": "US-0890+US-10006@river@45.489,-115.334",
    "kind": "river",
    "len_m": 243,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -230,7 +244,7 @@
      45.488148
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -247,13 +261,27 @@
    "id": "US-0890+US-10006@river@45.506,-115.325",
    "kind": "river",
    "len_m": 1160,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -546,7 +574,7 @@
      45.504931
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -915,13 +943,27 @@
    "id": "US-0890+US-10006@river@45.531,-115.302",
    "kind": "river",
    "len_m": 108,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -1106,7 +1148,7 @@
      45.530866
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1123,13 +1165,27 @@
    "id": "US-0890+US-10006@river@45.533,-115.282",
    "kind": "river",
    "len_m": 613,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -1386,7 +1442,7 @@
      45.533433
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1683,13 +1739,27 @@
    "id": "US-0890+US-10006@river@45.551,-115.243",
    "kind": "river",
    "len_m": 290,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -1934,7 +2004,7 @@
      45.557362
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1951,13 +2021,27 @@
    "id": "US-0890+US-10006@river@45.555,-115.166",
    "kind": "river",
    "len_m": 153,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -2214,7 +2298,7 @@
      45.55093
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -2231,13 +2315,27 @@
    "id": "US-0890+US-10006@river@45.567,-115.196",
    "kind": "river",
    "len_m": 1980,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10006",
+     "https://parksandrecreation.idaho.gov/"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10006": "Idaho Centennial Trail State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10006": true
    },
    "refs": [
@@ -2510,7 +2608,7 @@
      45.559843
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -2891,13 +2989,27 @@
    "id": "US-0890+US-10381@river@45.297,-114.589",
    "kind": "river",
    "len_m": 93,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -3058,7 +3170,7 @@
      45.296807
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3255,13 +3367,27 @@
    "id": "US-0890+US-10381@river@45.301,-114.571",
    "kind": "river",
    "len_m": 628,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -3522,7 +3648,7 @@
      45.301086
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3539,13 +3665,27 @@
    "id": "US-0890+US-10381@river@45.302,-114.615",
    "kind": "river",
    "len_m": 2510,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -3822,7 +3962,7 @@
      45.342672
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3839,13 +3979,27 @@
    "id": "US-0890+US-10381@river@45.304,-114.517",
    "kind": "river",
    "len_m": 324,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -4114,7 +4268,7 @@
      45.303807
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4423,13 +4577,27 @@
    "id": "US-0890+US-10381@river@45.316,-114.457",
    "kind": "river",
    "len_m": 233,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -4626,7 +4794,7 @@
      45.31562
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4723,13 +4891,27 @@
    "id": "US-0890+US-10381@river@45.323,-114.424",
    "kind": "river",
    "len_m": 499,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -5006,7 +5188,7 @@
      45.322933
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5023,13 +5205,27 @@
    "id": "US-0890+US-10381@river@45.358,-114.677",
    "kind": "river",
    "len_m": 2510,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -5306,7 +5502,7 @@
      45.342672
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5451,13 +5647,27 @@
    "id": "US-0890+US-10381@river@45.367,-114.685",
    "kind": "river",
    "len_m": 88051,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -5734,7 +5944,7 @@
      45.370831
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5751,13 +5961,27 @@
    "id": "US-0890+US-10381@river@45.395,-115.604",
    "kind": "river",
    "len_m": 8593,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -6046,7 +6270,7 @@
      45.395422
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6063,13 +6287,27 @@
    "id": "US-0890+US-10381@river@45.396,-115.592",
    "kind": "river",
    "len_m": 8593,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -6358,7 +6596,7 @@
      45.395422
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6703,13 +6941,27 @@
    "id": "US-0890+US-10381@river@45.411,-115.633",
    "kind": "river",
    "len_m": 10429,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -7002,7 +7254,7 @@
      45.443211
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7019,13 +7271,27 @@
    "id": "US-0890+US-10381@river@45.428,-115.657",
    "kind": "river",
    "len_m": 10429,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -7318,7 +7584,7 @@
      45.443211
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7335,13 +7601,27 @@
    "id": "US-0890+US-10381@river@45.439,-115.688",
    "kind": "river",
    "len_m": 10429,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -7634,7 +7914,7 @@
      45.443211
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7651,13 +7931,27 @@
    "id": "US-0890+US-10381@river@45.459,-115.871",
    "kind": "river",
    "len_m": 5206,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -7930,7 +8224,7 @@
      45.461286
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7947,13 +8241,27 @@
    "id": "US-0890+US-10381@river@45.462,-115.852",
    "kind": "river",
    "len_m": 5206,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -8226,7 +8534,7 @@
      45.461286
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8243,13 +8551,27 @@
    "id": "US-0890+US-10381@river@45.466,-115.834",
    "kind": "river",
    "len_m": 5206,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -8522,7 +8844,7 @@
      45.461286
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8539,13 +8861,27 @@
    "id": "US-0890+US-10381@river@45.467,-115.799",
    "kind": "river",
    "len_m": 10429,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -8838,7 +9174,7 @@
      45.443211
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8855,13 +9191,27 @@
    "id": "US-0890+US-10381@river@45.533,-115.119",
    "kind": "river",
    "len_m": 88051,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10381",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10381": "Frank Church-River of No Return Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10381": true
    },
    "refs": [
@@ -9138,7 +9488,7 @@
      45.370831
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -9639,13 +9989,27 @@
    "id": "US-0890+US-10382@river@45.444,-115.752",
    "kind": "river",
    "len_m": 178,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10382",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10382": "Gospel Hump Wilderness Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10382": true
    },
    "refs": [
@@ -9942,7 +10306,7 @@
      45.444355
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10503,13 +10867,27 @@
    "id": "US-0890+US-10382@river@45.466,-115.820",
    "kind": "river",
    "len_m": 141,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10382",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10382": "Gospel Hump Wilderness Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10382": true
    },
    "refs": [
@@ -10746,7 +11124,7 @@
      45.466267
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10763,13 +11141,27 @@
    "id": "US-0890+US-10382@river@45.467,-115.796",
    "kind": "river",
    "len_m": 93,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-10382",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-10382": "Gospel Hump Wilderness Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-10382": true
    },
    "refs": [
@@ -10930,7 +11322,7 @@
      45.466997
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11023,13 +11415,27 @@
    "id": "US-0890+US-4476@river@45.376,-115.508",
    "kind": "river",
    "len_m": 290,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -11314,7 +11720,7 @@
      45.375707
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11463,13 +11869,27 @@
    "id": "US-0890+US-4476@river@45.385,-115.538",
    "kind": "river",
    "len_m": 219,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -11654,7 +12074,7 @@
      45.384793
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11671,13 +12091,27 @@
    "id": "US-0890+US-4476@river@45.386,-115.497",
    "kind": "river",
    "len_m": 1182,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -11978,7 +12412,7 @@
      45.388099
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11995,13 +12429,27 @@
    "id": "US-0890+US-4476@river@45.390,-115.572",
    "kind": "river",
    "len_m": 98,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -12170,7 +12618,7 @@
      45.388521
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12187,13 +12635,27 @@
    "id": "US-0890+US-4476@river@45.393,-115.492",
    "kind": "river",
    "len_m": 1182,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -12494,7 +12956,7 @@
      45.388099
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12511,13 +12973,27 @@
    "id": "US-0890+US-4476@river@45.395,-115.586",
    "kind": "river",
    "len_m": 211,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -12698,7 +13174,7 @@
      45.393777
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12715,13 +13191,27 @@
    "id": "US-0890+US-4476@river@45.397,-115.481",
    "kind": "river",
    "len_m": 530,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -13014,7 +13504,7 @@
      45.397023
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13031,13 +13521,27 @@
    "id": "US-0890+US-4476@river@45.397,-115.594",
    "kind": "river",
    "len_m": 239,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -13246,7 +13750,7 @@
      45.395724
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13263,13 +13767,27 @@
    "id": "US-0890+US-4476@river@45.398,-115.615",
    "kind": "river",
    "len_m": 278,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -13502,7 +14020,7 @@
      45.397406
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13519,13 +14037,27 @@
    "id": "US-0890+US-4476@river@45.400,-115.477",
    "kind": "river",
    "len_m": 203,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -13698,7 +14230,7 @@
      45.401961
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13839,13 +14371,27 @@
    "id": "US-0890+US-4476@river@45.406,-115.479",
    "kind": "river",
    "len_m": 203,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -14018,7 +14564,7 @@
      45.401961
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14103,13 +14649,27 @@
    "id": "US-0890+US-4476@river@45.413,-115.635",
    "kind": "river",
    "len_m": 206,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -14286,7 +14846,7 @@
      45.412233
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14303,13 +14863,27 @@
    "id": "US-0890+US-4476@river@45.419,-115.463",
    "kind": "river",
    "len_m": 926,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -14626,7 +15200,7 @@
      45.420291
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14867,13 +15441,27 @@
    "id": "US-0890+US-4476@river@45.431,-115.459",
    "kind": "river",
    "len_m": 205,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -15050,7 +15638,7 @@
      45.429916
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -15459,13 +16047,27 @@
    "id": "US-0890+US-4476@river@45.444,-115.442",
    "kind": "river",
    "len_m": 110,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -15654,7 +16256,7 @@
      45.445763
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -15671,13 +16273,27 @@
    "id": "US-0890+US-4476@river@45.444,-115.752",
    "kind": "river",
    "len_m": 173,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -15966,7 +16582,7 @@
      45.444361
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -15983,13 +16599,27 @@
    "id": "US-0890+US-4476@river@45.453,-115.433",
    "kind": "river",
    "len_m": 350,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -16282,7 +16912,7 @@
      45.455171
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -16299,13 +16929,27 @@
    "id": "US-0890+US-4476@river@45.459,-115.871",
    "kind": "river",
    "len_m": 195,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -16478,7 +17122,7 @@
      45.459414
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -16643,13 +17287,27 @@
    "id": "US-0890+US-4476@river@45.461,-115.421",
    "kind": "river",
    "len_m": 743,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -16958,7 +17616,7 @@
      45.460479
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -16975,13 +17633,27 @@
    "id": "US-0890+US-4476@river@45.462,-115.848",
    "kind": "river",
    "len_m": 108,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -17166,7 +17838,7 @@
      45.460489
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -17183,13 +17855,27 @@
    "id": "US-0890+US-4476@river@45.463,-115.785",
    "kind": "river",
    "len_m": 123,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -17398,7 +18084,7 @@
      45.462368
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -17415,13 +18101,27 @@
    "id": "US-0890+US-4476@river@45.466,-115.820",
    "kind": "river",
    "len_m": 151,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -17674,7 +18374,7 @@
      45.466279
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -17691,13 +18391,27 @@
    "id": "US-0890+US-4476@river@45.467,-115.400",
    "kind": "river",
    "len_m": 879,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -17958,7 +18672,7 @@
      45.465924
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18211,13 +18925,27 @@
    "id": "US-0890+US-4476@river@45.473,-115.371",
    "kind": "river",
    "len_m": 666,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -18450,7 +19178,7 @@
      45.471265
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18467,13 +19195,27 @@
    "id": "US-0890+US-4476@river@45.474,-115.391",
    "kind": "river",
    "len_m": 203,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -18646,7 +19388,7 @@
      45.473522
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18663,13 +19405,27 @@
    "id": "US-0890+US-4476@river@45.475,-115.357",
    "kind": "river",
    "len_m": 380,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -18846,7 +19602,7 @@
      45.473012
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18863,13 +19619,27 @@
    "id": "US-0890+US-4476@river@45.484,-115.346",
    "kind": "river",
    "len_m": 845,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -19182,7 +19952,7 @@
      45.481141
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -19199,13 +19969,27 @@
    "id": "US-0890+US-4476@river@45.486,-115.335",
    "kind": "river",
    "len_m": 514,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -19490,7 +20274,7 @@
      45.489256
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -19507,13 +20291,27 @@
    "id": "US-0890+US-4476@river@45.493,-115.334",
    "kind": "river",
    "len_m": 193,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -19834,7 +20632,7 @@
      45.493524
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -19851,13 +20649,27 @@
    "id": "US-0890+US-4476@river@45.503,-115.325",
    "kind": "river",
    "len_m": 2194,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -20130,7 +20942,7 @@
      45.513721
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -20147,13 +20959,27 @@
    "id": "US-0890+US-4476@river@45.507,-115.030",
    "kind": "river",
    "len_m": 1526,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -20422,7 +21248,7 @@
      45.507416
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -20439,13 +21265,27 @@
    "id": "US-0890+US-4476@river@45.507,-115.033",
    "kind": "river",
    "len_m": 1526,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -20714,7 +21554,7 @@
      45.507416
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -20879,13 +21719,27 @@
    "id": "US-0890+US-4476@river@45.513,-115.043",
    "kind": "river",
    "len_m": 1526,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -21154,7 +22008,7 @@
      45.507416
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -21171,13 +22025,27 @@
    "id": "US-0890+US-4476@river@45.518,-115.073",
    "kind": "river",
    "len_m": 276,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -21410,7 +22278,7 @@
      45.517585
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -21515,13 +22383,27 @@
    "id": "US-0890+US-4476@river@45.520,-115.088",
    "kind": "river",
    "len_m": 173,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -21810,7 +22692,7 @@
      45.520318
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -22163,13 +23045,27 @@
    "id": "US-0890+US-4476@river@45.529,-115.106",
    "kind": "river",
    "len_m": 1117,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -22478,7 +23374,7 @@
      45.52535
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -22495,13 +23391,27 @@
    "id": "US-0890+US-4476@river@45.534,-115.274",
    "kind": "river",
    "len_m": 689,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -22726,7 +23636,7 @@
      45.538319
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -22743,13 +23653,27 @@
    "id": "US-0890+US-4476@river@45.535,-115.291",
    "kind": "river",
    "len_m": 928,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -23074,7 +23998,7 @@
      45.53348
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -23091,13 +24015,27 @@
    "id": "US-0890+US-4476@river@45.537,-115.126",
    "kind": "river",
    "len_m": 1125,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -23418,7 +24356,7 @@
      45.531544
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -23435,13 +24373,27 @@
    "id": "US-0890+US-4476@river@45.538,-115.269",
    "kind": "river",
    "len_m": 689,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -23666,7 +24618,7 @@
      45.538319
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -23683,13 +24635,27 @@
    "id": "US-0890+US-4476@river@45.540,-115.263",
    "kind": "river",
    "len_m": 1176,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -23990,7 +24956,7 @@
      45.540568
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -24007,13 +24973,27 @@
    "id": "US-0890+US-4476@river@45.547,-115.247",
    "kind": "river",
    "len_m": 1176,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -24314,7 +25294,7 @@
      45.540568
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -24331,13 +25311,27 @@
    "id": "US-0890+US-4476@river@45.550,-115.159",
    "kind": "river",
    "len_m": 1592,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -24646,7 +25640,7 @@
      45.549408
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -24663,13 +25657,27 @@
    "id": "US-0890+US-4476@river@45.556,-115.167",
    "kind": "river",
    "len_m": 1592,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -24978,7 +25986,7 @@
      45.549408
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25079,13 +26087,27 @@
    "id": "US-0890+US-4476@river@45.557,-115.236",
    "kind": "river",
    "len_m": 666,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -25318,7 +26340,7 @@
      45.558088
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25335,13 +26357,27 @@
    "id": "US-0890+US-4476@river@45.561,-115.224",
    "kind": "river",
    "len_m": 623,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -25634,7 +26670,7 @@
      45.566626
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25651,13 +26687,27 @@
    "id": "US-0890+US-4476@river@45.563,-115.174",
    "kind": "river",
    "len_m": 578,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -25922,7 +26972,7 @@
      45.561198
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25939,13 +26989,27 @@
    "id": "US-0890+US-4476@river@45.567,-115.186",
    "kind": "river",
    "len_m": 536,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4476",
+     "https://www.fs.usda.gov/nezperceclearwater"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4476": "Clearwater National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4476": true
    },
    "refs": [
@@ -26122,7 +27186,7 @@
      45.567302
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -40435,13 +41499,27 @@
    "id": "US-0890+US-4480@river@45.341,-114.337",
    "kind": "river",
    "len_m": 59294,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4480",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4480": "Salmon-Challis National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4480": true
    },
    "refs": [
@@ -40746,7 +41824,7 @@
      45.395069
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -40763,13 +41841,27 @@
    "id": "US-0890+US-4480@river@45.389,-114.048",
    "kind": "river",
    "len_m": 2718,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4480",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4480": "Salmon-Challis National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4480": true
    },
    "refs": [
@@ -41070,7 +42162,7 @@
      45.395657
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -41087,13 +42179,27 @@
    "id": "US-0890+US-4480@river@45.389,-114.117",
    "kind": "river",
    "len_m": 17549,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4480",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4480": "Salmon-Challis National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4480": true
    },
    "refs": [
@@ -41378,7 +42484,7 @@
      45.381163
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -41395,13 +42501,27 @@
    "id": "US-0890+US-4480@river@45.390,-114.796",
    "kind": "river",
    "len_m": 766,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4480",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4480": "Salmon-Challis National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4480": true
    },
    "refs": [
@@ -41666,7 +42786,7 @@
      45.391655
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -41683,13 +42803,27 @@
    "id": "US-0890+US-4480@river@45.392,-114.765",
    "kind": "river",
    "len_m": 59294,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4480",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4480": "Salmon-Challis National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4480": true
    },
    "refs": [
@@ -41994,7 +43128,7 @@
      45.395069
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -42011,13 +43145,27 @@
    "id": "US-0890+US-4480@river@45.395,-114.744",
    "kind": "river",
    "len_m": 59294,
+   "maps": [
+    [
+     "US-0890",
+     "https://www.rivers.gov"
+    ],
+    [
+     "US-4480",
+     "https://www.fs.usda.gov"
+    ]
+   ],
+   "names": {
+    "US-0890": "Salmon National Wild and Scenic River",
+    "US-4480": "Salmon-Challis National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0890": false,
+    "US-0890": true,
     "US-4480": true
    },
    "refs": [
@@ -42322,7 +43470,7 @@
      45.395069
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [

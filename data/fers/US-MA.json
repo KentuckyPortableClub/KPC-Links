@@ -3079,13 +3079,27 @@
    "id": "US-0897+US-11395@river@42.258,-72.948",
    "kind": "river",
    "len_m": 2913,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11395",
+     "https://www.mass.gov/info-details/abbott-brook-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11395": "Abbott Brook Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11395": true
    },
    "refs": [
@@ -3406,7 +3420,7 @@
      42.264482
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3423,13 +3437,27 @@
    "id": "US-0897+US-11395@river@42.268,-72.963",
    "kind": "river",
    "len_m": 418,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11395",
+     "https://www.mass.gov/info-details/abbott-brook-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11395": "Abbott Brook Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11395": true
    },
    "refs": [
@@ -3662,7 +3690,7 @@
      42.26959
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3679,13 +3707,27 @@
    "id": "US-0897+US-11395@river@42.273,-72.965",
    "kind": "river",
    "len_m": 369,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11395",
+     "https://www.mass.gov/info-details/abbott-brook-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11395": "Abbott Brook Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11395": true
    },
    "refs": [
@@ -3898,7 +3940,7 @@
      42.274139
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3915,13 +3957,27 @@
    "id": "US-0897+US-11409@river@42.326,-72.931",
    "kind": "river",
    "len_m": 687,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11409",
+     "https://www.mass.gov/info-details/fox-den-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11409": "Fox Den Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11409": true
    },
    "refs": [
@@ -4206,7 +4262,7 @@
      42.329188
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4291,13 +4347,27 @@
    "id": "US-0897+US-11409@river@42.340,-72.943",
    "kind": "river",
    "len_m": 1354,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11409",
+     "https://www.mass.gov/info-details/fox-den-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11409": "Fox Den Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11409": true
    },
    "refs": [
@@ -4578,7 +4648,7 @@
      42.341352
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4683,13 +4753,27 @@
    "id": "US-0897+US-11409@river@42.345,-72.977",
    "kind": "river",
    "len_m": 150,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11409",
+     "https://www.mass.gov/info-details/fox-den-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11409": "Fox Den Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11409": true
    },
    "refs": [
@@ -4938,7 +5022,7 @@
      42.344947
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4955,13 +5039,27 @@
    "id": "US-0897+US-11409@river@42.350,-72.959",
    "kind": "river",
    "len_m": 2888,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11409",
+     "https://www.mass.gov/info-details/fox-den-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11409": "Fox Den Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11409": true
    },
    "refs": [
@@ -5286,7 +5384,7 @@
      42.351891
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5303,13 +5401,27 @@
    "id": "US-0897+US-11409@river@42.371,-72.966",
    "kind": "river",
    "len_m": 2893,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11409",
+     "https://www.mass.gov/info-details/fox-den-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11409": "Fox Den Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11409": true
    },
    "refs": [
@@ -5626,7 +5738,7 @@
      42.391404
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5643,13 +5755,27 @@
    "id": "US-0897+US-11409@river@42.412,-72.979",
    "kind": "river",
    "len_m": 1512,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11409",
+     "https://www.mass.gov/info-details/fox-den-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11409": "Fox Den Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11409": true
    },
    "refs": [
@@ -5926,7 +6052,7 @@
      42.417654
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5943,13 +6069,27 @@
    "id": "US-0897+US-11438@river@42.398,-72.874",
    "kind": "river",
    "len_m": 388,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11438",
+     "https://www.mass.gov/info-details/oak-hill-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11438": "Oak Hill Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11438": true
    },
    "refs": [
@@ -6270,7 +6410,7 @@
      42.397696
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6287,13 +6427,27 @@
    "id": "US-0897+US-11438@river@42.409,-72.876",
    "kind": "river",
    "len_m": 2750,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11438",
+     "https://www.mass.gov/info-details/oak-hill-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11438": "Oak Hill Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11438": true
    },
    "refs": [
@@ -6594,7 +6748,7 @@
      42.423765
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6611,13 +6765,27 @@
    "id": "US-0897+US-11439@river@42.430,-72.991",
    "kind": "river",
    "len_m": 1197,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11439",
+     "https://www.mass.gov/info-details/peru-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11439": "Peru Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11439": true
    },
    "refs": [
@@ -6946,7 +7114,7 @@
      42.437085
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6963,13 +7131,27 @@
    "id": "US-0897+US-11443@river@42.555,-73.051",
    "kind": "river",
    "len_m": 1751,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11443",
+     "https://www.mass.gov/info-details/savoy-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11443": "Savoy Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11443": true
    },
    "refs": [
@@ -7294,7 +7476,7 @@
      42.548414
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7523,13 +7705,27 @@
    "id": "US-0897+US-11453@river@42.494,-72.978",
    "kind": "river",
    "len_m": 2442,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11453",
+     "https://www.mass.gov/info-details/upper-westfield-river-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11453": "Upper Westfield River Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11453": true
    },
    "refs": [
@@ -7822,7 +8018,7 @@
      42.508714
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7839,13 +8035,27 @@
    "id": "US-0897+US-11454@river@42.306,-73.011",
    "kind": "river",
    "len_m": 2517,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11454",
+     "https://www.mass.gov/info-details/walnut-hill-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11454": "Walnut Hill Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11454": true
    },
    "refs": [
@@ -8118,7 +8328,7 @@
      42.309625
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8135,13 +8345,27 @@
    "id": "US-0897+US-11454@river@42.311,-72.994",
    "kind": "river",
    "len_m": 217,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11454",
+     "https://www.mass.gov/info-details/walnut-hill-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11454": "Walnut Hill Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11454": true
    },
    "refs": [
@@ -8326,7 +8550,7 @@
      42.311833
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8343,13 +8567,27 @@
    "id": "US-0897+US-11454@river@42.315,-72.997",
    "kind": "river",
    "len_m": 369,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-11454",
+     "https://www.mass.gov/info-details/walnut-hill-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-11454": "Walnut Hill Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-11454": true
    },
    "refs": [
@@ -8654,7 +8892,7 @@
      42.314059
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8671,13 +8909,27 @@
    "id": "US-0897+US-13237@river@42.331,-73.088",
    "kind": "river",
    "len_m": 306,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-13237",
+     "https://www.mass.gov/info-details/shaker-mill-brook-wma"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-13237": "Shaker Mill Brook Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-13237": true
    },
    "refs": [
@@ -8930,7 +9182,7 @@
      42.332117
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -9731,13 +9983,27 @@
    "id": "US-0897+US-4717@river@42.333,-73.135",
    "kind": "river",
    "len_m": 4998,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4717",
+     "https://www.mass.gov/locations/october-mountain-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4717": "October Mountain State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4717": true
    },
    "refs": [
@@ -10034,7 +10300,7 @@
      42.340025
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10051,13 +10317,27 @@
    "id": "US-0897+US-4717@river@42.349,-73.143",
    "kind": "river",
    "len_m": 1733,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4717",
+     "https://www.mass.gov/locations/october-mountain-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4717": "October Mountain State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4717": true
    },
    "refs": [
@@ -10374,7 +10654,7 @@
      42.354102
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10391,13 +10671,27 @@
    "id": "US-0897+US-4717@river@42.351,-73.128",
    "kind": "river",
    "len_m": 552,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4717",
+     "https://www.mass.gov/locations/october-mountain-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4717": "October Mountain State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4717": true
    },
    "refs": [
@@ -10702,7 +10996,7 @@
      42.352739
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10719,13 +11013,27 @@
    "id": "US-0897+US-4717@river@42.357,-73.134",
    "kind": "river",
    "len_m": 356,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4717",
+     "https://www.mass.gov/locations/october-mountain-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4717": "October Mountain State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4717": true
    },
    "refs": [
@@ -11022,7 +11330,7 @@
      42.35814
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11039,13 +11347,27 @@
    "id": "US-0897+US-4718@river@42.320,-73.042",
    "kind": "river",
    "len_m": 235,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4718",
+     "https://www.mass-trails.org/towns/Middlefield/middlefieldstateforest.html"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4718": "Middlefield State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4718": true
    },
    "refs": [
@@ -11242,7 +11564,7 @@
      42.319853
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11259,13 +11581,27 @@
    "id": "US-0897+US-4718@river@42.321,-73.047",
    "kind": "river",
    "len_m": 222,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4718",
+     "https://www.mass-trails.org/towns/Middlefield/middlefieldstateforest.html"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4718": "Middlefield State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4718": true
    },
    "refs": [
@@ -11454,7 +11790,7 @@
      42.321314
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11471,13 +11807,27 @@
    "id": "US-0897+US-4722@river@42.371,-72.870",
    "kind": "river",
    "len_m": 3223,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4722",
+     "https://www.mass-trails.org/towns/Cummington/gilbertablissstateforest.html"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4722": "Gilbert A. Bliss State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4722": true
    },
    "refs": [
@@ -11802,7 +12152,7 @@
      42.38836
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11891,13 +12241,27 @@
    "id": "US-0897+US-4722@river@42.432,-72.860",
    "kind": "river",
    "len_m": 3200,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4722",
+     "https://www.mass-trails.org/towns/Cummington/gilbertablissstateforest.html"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4722": "Gilbert A. Bliss State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4722": true
    },
    "refs": [
@@ -12198,7 +12562,7 @@
      42.439962
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12215,13 +12579,27 @@
    "id": "US-0897+US-4722@river@42.452,-72.877",
    "kind": "river",
    "len_m": 1753,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4722",
+     "https://www.mass-trails.org/towns/Cummington/gilbertablissstateforest.html"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4722": "Gilbert A. Bliss State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4722": true
    },
    "refs": [
@@ -12542,7 +12920,7 @@
      42.456026
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12559,13 +12937,27 @@
    "id": "US-0897+US-4733@river@42.521,-73.004",
    "kind": "river",
    "len_m": 1785,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4733",
+     "https://www.mass.gov/locations/windsor-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4733": "Windsor State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4733": true
    },
    "refs": [
@@ -12858,7 +13250,7 @@
      42.525813
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12875,13 +13267,27 @@
    "id": "US-0897+US-4733@river@42.527,-72.993",
    "kind": "river",
    "len_m": 1484,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4733",
+     "https://www.mass.gov/locations/windsor-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4733": "Windsor State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4733": true
    },
    "refs": [
@@ -13186,7 +13592,7 @@
      42.532581
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13203,13 +13609,27 @@
    "id": "US-0897+US-4733@river@42.533,-73.015",
    "kind": "river",
    "len_m": 705,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4733",
+     "https://www.mass.gov/locations/windsor-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4733": "Windsor State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4733": true
    },
    "refs": [
@@ -13502,7 +13922,7 @@
      42.536207
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13519,13 +13939,27 @@
    "id": "US-0897+US-4733@river@42.544,-73.017",
    "kind": "river",
    "len_m": 1172,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4733",
+     "https://www.mass.gov/locations/windsor-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4733": "Windsor State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4733": true
    },
    "refs": [
@@ -13846,7 +14280,7 @@
      42.547964
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13863,13 +14297,27 @@
    "id": "US-0897+US-4733@river@42.553,-73.015",
    "kind": "river",
    "len_m": 349,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4733",
+     "https://www.mass.gov/locations/windsor-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4733": "Windsor State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4733": true
    },
    "refs": [
@@ -14158,7 +14606,7 @@
      42.554011
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14175,13 +14623,27 @@
    "id": "US-0897+US-4743@river@42.575,-73.034",
    "kind": "river",
    "len_m": 3795,
+   "maps": [
+    [
+     "US-0897",
+     "https://www.westfieldriverwildscenic.org"
+    ],
+    [
+     "US-4743",
+     "https://www.mass.gov/locations/savoy-mountain-state-forest"
+    ]
+   ],
+   "names": {
+    "US-0897": "Westfield National Wild and Scenic River",
+    "US-4743": "Savoy Mountain State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0897": false,
+    "US-0897": true,
     "US-4743": true
    },
    "refs": [
@@ -14470,7 +14932,7 @@
      42.581729
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 104.1,

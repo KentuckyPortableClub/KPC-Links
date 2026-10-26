@@ -805,6 +805,20 @@
    "id": "US-0788+US-7836@trail@37.140,-91.194",
    "kind": "trail",
    "len_m": 3815,
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -812,7 +826,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-0788",
@@ -1112,7 +1126,7 @@
      37.129068
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1129,6 +1143,20 @@
    "id": "US-0788+US-7836@trail@37.151,-91.175",
    "kind": "trail",
    "len_m": 105,
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -1136,7 +1164,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-0788",
@@ -1316,7 +1344,7 @@
      37.150934
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1333,6 +1361,20 @@
    "id": "US-0788+US-7836@trail@37.162,-91.169",
    "kind": "trail",
    "len_m": 2357,
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -1340,7 +1382,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-0788",
@@ -1664,7 +1706,7 @@
      37.153423
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1681,6 +1723,20 @@
    "id": "US-0788+US-7836@trail@37.192,-91.203",
    "kind": "trail",
    "len_m": 6956,
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -1688,7 +1744,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-0788",
@@ -1940,7 +1996,7 @@
      37.197174
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 48.7,
@@ -4175,6 +4231,20 @@
    "id": "US-1788+US-7836@trail@37.569,-90.788",
    "kind": "trail",
    "len_m": 132,
+   "maps": [
+    [
+     "US-1788",
+     "https://mostateparks.com/park/taum-sauk-mountain-state-park"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-1788": "Taum Sauk Mountain State Park",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -4182,7 +4252,7 @@
    ],
    "pins_inside": {
     "US-1788": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-1788",
@@ -4402,7 +4472,7 @@
      37.568921
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 28.2,
@@ -6454,6 +6524,20 @@
    "id": "US-5713+US-7836@trail@37.568,-90.785",
    "kind": "trail",
    "len_m": 116,
+   "maps": [
+    [
+     "US-5713",
+     "https://mostateparks.com/park/jay-nixon-state-park"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-5713": "Jay Nixon State Park",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -6461,7 +6545,7 @@
    ],
    "pins_inside": {
     "US-5713": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-5713",
@@ -6657,7 +6741,7 @@
      37.567926
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 46.8,
@@ -6731,6 +6815,20 @@
    "id": "US-6491+US-7836@trail@37.050,-91.168",
    "kind": "trail",
    "len_m": 15495,
+   "maps": [
+    [
+     "US-6491",
+     "https://mdc.mo.gov/discover-nature/places/peck-ranch-conservation-area"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-6491": "Peck Ranch State Conservation Area",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -6738,7 +6836,7 @@
    ],
    "pins_inside": {
     "US-6491": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-6491",
@@ -7022,7 +7120,7 @@
      36.999181
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7039,6 +7137,20 @@
    "id": "US-6499+US-7836@trail@38.053,-91.220",
    "kind": "trail",
    "len_m": 10846,
+   "maps": [
+    [
+     "US-6499",
+     "https://mdc.mo.gov/discover-nature/places/huzzah-conservation-area"
+    ],
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ]
+   ],
+   "names": {
+    "US-6499": "Huzzah State Conservation Area",
+    "US-7836": "Ozark State Trail"
+   },
    "passes": [
     1,
     1,
@@ -7046,7 +7158,7 @@
    ],
    "pins_inside": {
     "US-6499": true,
-    "US-7836": false
+    "US-7836": true
    },
    "refs": [
     "US-6499",
@@ -7366,7 +7478,7 @@
      38.056809
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [
@@ -7469,13 +7581,27 @@
    "id": "US-7836+US-8252@trail@37.549,-90.691",
    "kind": "trail",
    "len_m": 4973,
+   "maps": [
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ],
+    [
+     "US-8252",
+     "https://mdc.mo.gov/discover-nature/places/ketcherside-mountain-conservation-area"
+    ]
+   ],
+   "names": {
+    "US-7836": "Ozark State Trail",
+    "US-8252": "Ketcherside Mountain State Conservation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-7836": false,
+    "US-7836": true,
     "US-8252": true
    },
    "refs": [
@@ -7804,7 +7930,7 @@
      37.568495
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7821,13 +7947,27 @@
    "id": "US-7836+US-8252@trail@37.567,-90.698",
    "kind": "trail",
    "len_m": 4973,
+   "maps": [
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ],
+    [
+     "US-8252",
+     "https://mdc.mo.gov/discover-nature/places/ketcherside-mountain-conservation-area"
+    ]
+   ],
+   "names": {
+    "US-7836": "Ozark State Trail",
+    "US-8252": "Ketcherside Mountain State Conservation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-7836": false,
+    "US-7836": true,
     "US-8252": true
    },
    "refs": [
@@ -8156,7 +8296,7 @@
      37.568495
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8173,13 +8313,27 @@
    "id": "US-7836+US-8252@trail@37.567,-90.722",
    "kind": "trail",
    "len_m": 513,
+   "maps": [
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ],
+    [
+     "US-8252",
+     "https://mdc.mo.gov/discover-nature/places/ketcherside-mountain-conservation-area"
+    ]
+   ],
+   "names": {
+    "US-7836": "Ozark State Trail",
+    "US-8252": "Ketcherside Mountain State Conservation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-7836": false,
+    "US-7836": true,
     "US-8252": true
    },
    "refs": [
@@ -8464,7 +8618,7 @@
      37.56694
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8481,13 +8635,27 @@
    "id": "US-7836+US-8252@trail@37.569,-90.788",
    "kind": "trail",
    "len_m": 4858,
+   "maps": [
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ],
+    [
+     "US-8252",
+     "https://mdc.mo.gov/discover-nature/places/ketcherside-mountain-conservation-area"
+    ]
+   ],
+   "names": {
+    "US-7836": "Ozark State Trail",
+    "US-8252": "Ketcherside Mountain State Conservation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-7836": false,
+    "US-7836": true,
     "US-8252": true
    },
    "refs": [
@@ -8776,7 +8944,7 @@
      37.559529
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8793,13 +8961,27 @@
    "id": "US-7836+US-8282@trail@36.948,-90.372",
    "kind": "trail",
    "len_m": 6055,
+   "maps": [
+    [
+     "US-7836",
+     "https://www.ozarktrail.com/planner/"
+    ],
+    [
+     "US-8282",
+     "https://mdc.mo.gov/discover-nature/places/university-forest-conservation-area"
+    ]
+   ],
+   "names": {
+    "US-7836": "Ozark State Trail",
+    "US-8282": "University Forest State Conservation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-7836": false,
+    "US-7836": true,
     "US-8282": true
    },
    "refs": [
@@ -9056,7 +9238,7 @@
      36.949969
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [

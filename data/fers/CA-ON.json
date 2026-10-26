@@ -29465,6 +29465,20 @@
    "id": "CA-1046+CA-5536@trail@43.474,-79.932",
    "kind": "trail",
    "len_m": 2546,
+   "maps": [
+    [
+     "CA-1046",
+     "https://ontarioconservationareas.ca/conservation-areas/rattlesnake-point/"
+    ],
+    [
+     "CA-5536",
+     "https://www.ontariotrails.on.ca/index.php?url=trails/view/nassagaweya-canyon-trail"
+    ]
+   ],
+   "names": {
+    "CA-1046": "Rattlesnake Point Conservation Area",
+    "CA-5536": "Nassagaweya Canyon Trail Recreation Site"
+   },
    "passes": [
     1,
     1,
@@ -29472,7 +29486,7 @@
    ],
    "pins_inside": {
     "CA-1046": true,
-    "CA-5536": false
+    "CA-5536": true
    },
    "refs": [
     "CA-1046",
@@ -29752,7 +29766,7 @@
      43.477658
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -29769,6 +29783,20 @@
    "id": "CA-1046+CA-5536@trail@43.481,-79.941",
    "kind": "trail",
    "len_m": 2546,
+   "maps": [
+    [
+     "CA-1046",
+     "https://ontarioconservationareas.ca/conservation-areas/rattlesnake-point/"
+    ],
+    [
+     "CA-5536",
+     "https://www.ontariotrails.on.ca/index.php?url=trails/view/nassagaweya-canyon-trail"
+    ]
+   ],
+   "names": {
+    "CA-1046": "Rattlesnake Point Conservation Area",
+    "CA-5536": "Nassagaweya Canyon Trail Recreation Site"
+   },
    "passes": [
     1,
     1,
@@ -29776,7 +29804,7 @@
    ],
    "pins_inside": {
     "CA-1046": true,
-    "CA-5536": false
+    "CA-5536": true
    },
    "refs": [
     "CA-1046",
@@ -30056,7 +30084,7 @@
      43.477658
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -38544,6 +38572,20 @@
    "id": "CA-1541+CA-5536@trail@43.475,-79.949",
    "kind": "trail",
    "len_m": 1267,
+   "maps": [
+    [
+     "CA-1541",
+     "https://www.conservationhalton.ca/parks/crawford-lake/"
+    ],
+    [
+     "CA-5536",
+     "https://www.ontariotrails.on.ca/index.php?url=trails/view/nassagaweya-canyon-trail"
+    ]
+   ],
+   "names": {
+    "CA-1541": "Crawford Lake Conservation Area",
+    "CA-5536": "Nassagaweya Canyon Trail Recreation Site"
+   },
    "passes": [
     1,
     1,
@@ -38551,7 +38593,7 @@
    ],
    "pins_inside": {
     "CA-1541": true,
-    "CA-5536": false
+    "CA-5536": true
    },
    "refs": [
     "CA-1541",
@@ -38811,7 +38853,7 @@
      43.471004
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [
@@ -57610,13 +57652,27 @@
    "id": "CA-5536+CA-5628@trail@43.481,-79.942",
    "kind": "trail",
    "len_m": 211,
+   "maps": [
+    [
+     "CA-5536",
+     "https://www.ontariotrails.on.ca/index.php?url=trails/view/nassagaweya-canyon-trail"
+    ],
+    [
+     "CA-5628",
+     "https://brucetrail.org/trail-sections"
+    ]
+   ],
+   "names": {
+    "CA-5536": "Nassagaweya Canyon Trail Recreation Site",
+    "CA-5628": "Bruce Trail National Recreation Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "CA-5536": false,
+    "CA-5536": true,
     "CA-5628": true
    },
    "refs": [
@@ -57797,7 +57853,7 @@
      43.472537
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [

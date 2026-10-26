@@ -5635,6 +5635,20 @@
    "id": "US-0072+US-10973@river@37.460,-113.173",
    "kind": "river",
    "len_m": 4682,
+   "maps": [
+    [
+     "US-0072",
+     "https://www.nps.gov/zion/index.htm"
+    ],
+    [
+     "US-10973",
+     "https://www.blm.gov/visit/middle-fork-taylor-creek-wild-and-scenic-river"
+    ]
+   ],
+   "names": {
+    "US-0072": "Zion National Park",
+    "US-10973": "Middle Fork Taylor Creek BLM Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -5642,7 +5656,7 @@
    ],
    "pins_inside": {
     "US-0072": true,
-    "US-10973": false
+    "US-10973": true
    },
    "refs": [
     "US-0072",
@@ -5930,7 +5944,7 @@
      37.455023
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 14.4,
@@ -11944,6 +11958,20 @@
    "id": "US-0895+US-10973@river@37.458,-113.166",
    "kind": "river",
    "len_m": 4682,
+   "maps": [
+    [
+     "US-0895",
+     "https://www.rivers.gov/rivers/virgin.php"
+    ],
+    [
+     "US-10973",
+     "https://www.blm.gov/visit/middle-fork-taylor-creek-wild-and-scenic-river"
+    ]
+   ],
+   "names": {
+    "US-0895": "Virgin National Wild and Scenic River",
+    "US-10973": "Middle Fork Taylor Creek BLM Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -11951,7 +11979,7 @@
    ],
    "pins_inside": {
     "US-0895": true,
-    "US-10973": false
+    "US-10973": true
    },
    "refs": [
     "US-0895",
@@ -12239,7 +12267,7 @@
      37.455023
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12256,6 +12284,20 @@
    "id": "US-0895+US-10973@river@37.463,-113.196",
    "kind": "river",
    "len_m": 4682,
+   "maps": [
+    [
+     "US-0895",
+     "https://www.rivers.gov/rivers/virgin.php"
+    ],
+    [
+     "US-10973",
+     "https://www.blm.gov/visit/middle-fork-taylor-creek-wild-and-scenic-river"
+    ]
+   ],
+   "names": {
+    "US-0895": "Virgin National Wild and Scenic River",
+    "US-10973": "Middle Fork Taylor Creek BLM Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -12263,7 +12305,7 @@
    ],
    "pins_inside": {
     "US-0895": true,
-    "US-10973": false
+    "US-10973": true
    },
    "refs": [
     "US-0895",
@@ -12551,7 +12593,7 @@
      37.455023
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -31304,13 +31346,27 @@
    "id": "US-5835+US-5843@river@39.125,-110.114",
    "kind": "river",
    "len_m": 203,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -31483,7 +31539,7 @@
      39.125073
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -31500,13 +31556,27 @@
    "id": "US-5835+US-5843@river@39.133,-110.106",
    "kind": "river",
    "len_m": 446,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -31711,7 +31781,7 @@
      39.135314
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -31728,13 +31798,27 @@
    "id": "US-5835+US-5843@river@39.139,-110.101",
    "kind": "river",
    "len_m": 335,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -32015,7 +32099,7 @@
      39.140434
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -32032,13 +32116,27 @@
    "id": "US-5835+US-5843@river@39.147,-110.113",
    "kind": "river",
    "len_m": 93,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -32199,7 +32297,7 @@
      39.146592
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -32216,13 +32314,27 @@
    "id": "US-5835+US-5843@river@39.158,-110.114",
    "kind": "river",
    "len_m": 105,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -32403,7 +32515,7 @@
      39.15806
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -32664,13 +32776,27 @@
    "id": "US-5835+US-5843@river@39.192,-110.093",
    "kind": "river",
    "len_m": 268,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -32895,7 +33021,7 @@
      39.192741
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -32912,13 +33038,27 @@
    "id": "US-5835+US-5843@river@39.197,-110.077",
    "kind": "river",
    "len_m": 254,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -33131,7 +33271,7 @@
      39.195682
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -33240,13 +33380,27 @@
    "id": "US-5835+US-5843@river@39.217,-110.077",
    "kind": "river",
    "len_m": 492,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -33507,7 +33661,7 @@
      39.218159
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -33524,13 +33678,27 @@
    "id": "US-5835+US-5843@river@39.222,-110.077",
    "kind": "river",
    "len_m": 509,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -33859,7 +34027,7 @@
      39.226646
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -33876,13 +34044,27 @@
    "id": "US-5835+US-5843@river@39.224,-110.062",
    "kind": "river",
    "len_m": 241,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -34087,7 +34269,7 @@
      39.224359
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -34188,13 +34370,27 @@
    "id": "US-5835+US-5843@river@39.229,-110.054",
    "kind": "river",
    "len_m": 214,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -34375,7 +34571,7 @@
      39.229523
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -34636,13 +34832,27 @@
    "id": "US-5835+US-5843@river@39.251,-110.063",
    "kind": "river",
    "len_m": 321,
+   "maps": [
+    [
+     "US-5835",
+     "https://www.blm.gov/national-conservation-lands/utah/green-river-wsr"
+    ],
+    [
+     "US-5843",
+     "https://www.blm.gov/visit/desolation-canyon"
+    ]
+   ],
+   "names": {
+    "US-5835": "Green River Utah BLM Wild and Scenic River",
+    "US-5843": "Desolation Canyon BLM Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-5835": false,
+    "US-5835": true,
     "US-5843": true
    },
    "refs": [
@@ -34911,7 +35121,7 @@
      39.252704
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 40017.0,

@@ -185,6 +185,20 @@
    "id": "CA-0075+CA-6128@trail@54.100,-106.404",
    "kind": "trail",
    "len_m": 18327,
+   "maps": [
+    [
+     "CA-0075",
+     "https://parks.canada.ca/pn-np/sk/princealbert/index?utm_source=gmb&utm_medium=princealbert"
+    ],
+    [
+     "CA-6128",
+     "https://parks.canada.ca/pn-np/sk/princealbert/activ/experiences/randonee-hiking/grey-owl"
+    ]
+   ],
+   "names": {
+    "CA-0075": "Prince Albert National Park",
+    "CA-6128": "Gray Owl Trail National Recreation Trail"
+   },
    "passes": [
     1,
     1,
@@ -192,7 +206,7 @@
    ],
    "pins_inside": {
     "CA-0075": true,
-    "CA-6128": false
+    "CA-6128": true
    },
    "refs": [
     "CA-0075",
@@ -472,7 +486,7 @@
      54.029115
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [
@@ -1753,6 +1767,20 @@
    "id": "CA-0075+CA-6147@trail@53.682,-106.660",
    "kind": "trail",
    "len_m": 1939,
+   "maps": [
+    [
+     "CA-0075",
+     "https://parks.canada.ca/pn-np/sk/princealbert/index?utm_source=gmb&utm_medium=princealbert"
+    ],
+    [
+     "CA-6147",
+     "https://parks.canada.ca/pn-np/sk/princealbert/activ/experiences/randonee-hiking/amyot"
+    ]
+   ],
+   "names": {
+    "CA-0075": "Prince Albert National Park",
+    "CA-6147": "Amyot Lake Trail National Recreation Trail"
+   },
    "passes": [
     1,
     1,
@@ -1760,7 +1788,7 @@
    ],
    "pins_inside": {
     "CA-0075": true,
-    "CA-6147": false
+    "CA-6147": true
    },
    "refs": [
     "CA-0075",
@@ -2028,7 +2056,7 @@
      53.688009
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [
@@ -4811,6 +4839,20 @@
    "id": "CA-6146+CA-6147@trail@53.676,-106.669",
    "kind": "trail",
    "len_m": 103,
+   "maps": [
+    [
+     "CA-6146",
+     "https://parks.canada.ca/pn-np/sk/princealbert/activ/experiences/randonee-hiking/valleyview"
+    ],
+    [
+     "CA-6147",
+     "https://parks.canada.ca/pn-np/sk/princealbert/activ/experiences/randonee-hiking/amyot"
+    ]
+   ],
+   "names": {
+    "CA-6146": "Valleyview Trail Network National Recreation Trail",
+    "CA-6147": "Amyot Lake Trail National Recreation Trail"
+   },
    "passes": [
     1,
     1,
@@ -4818,7 +4860,7 @@
    ],
    "pins_inside": {
     "CA-6146": true,
-    "CA-6147": false
+    "CA-6147": true
    },
    "refs": [
     "CA-6146",
@@ -4994,7 +5036,7 @@
      53.676079
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   }
  ],
  "st": "CA-SK"

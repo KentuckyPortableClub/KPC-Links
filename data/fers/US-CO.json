@@ -1524,6 +1524,20 @@
    "id": "US-11906+US-12173@trail@38.919,-108.537",
    "kind": "trail",
    "len_m": 14408,
+   "maps": [
+    [
+     "US-11906",
+     "https://www.blm.gov/documents/grand-junction-fo/public-room/map/bangs-special-recreation-management-area-overview-map"
+    ],
+    [
+     "US-12173",
+     "https://www.blm.gov/visit/tabeguache"
+    ]
+   ],
+   "names": {
+    "US-11906": "Bangs BLM Special Recreation Management Area",
+    "US-12173": "Tabeguache BLM Historic Trail"
+   },
    "passes": [
     1,
     1,
@@ -1531,7 +1545,7 @@
    ],
    "pins_inside": {
     "US-11906": true,
-    "US-12173": false
+    "US-12173": true
    },
    "refs": [
     "US-11906",
@@ -1815,7 +1829,7 @@
      38.961572
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -1832,6 +1846,20 @@
    "id": "US-11906+US-12173@trail@38.979,-108.609",
    "kind": "trail",
    "len_m": 8780,
+   "maps": [
+    [
+     "US-11906",
+     "https://www.blm.gov/documents/grand-junction-fo/public-room/map/bangs-special-recreation-management-area-overview-map"
+    ],
+    [
+     "US-12173",
+     "https://www.blm.gov/visit/tabeguache"
+    ]
+   ],
+   "names": {
+    "US-11906": "Bangs BLM Special Recreation Management Area",
+    "US-12173": "Tabeguache BLM Historic Trail"
+   },
    "passes": [
     1,
     1,
@@ -1839,7 +1867,7 @@
    ],
    "pins_inside": {
     "US-11906": true,
-    "US-12173": false
+    "US-12173": true
    },
    "refs": [
     "US-11906",
@@ -2127,7 +2155,7 @@
      38.991302
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -2144,6 +2172,20 @@
    "id": "US-11906+US-12173@trail@39.036,-108.611",
    "kind": "trail",
    "len_m": 3416,
+   "maps": [
+    [
+     "US-11906",
+     "https://www.blm.gov/documents/grand-junction-fo/public-room/map/bangs-special-recreation-management-area-overview-map"
+    ],
+    [
+     "US-12173",
+     "https://www.blm.gov/visit/tabeguache"
+    ]
+   ],
+   "names": {
+    "US-11906": "Bangs BLM Special Recreation Management Area",
+    "US-12173": "Tabeguache BLM Historic Trail"
+   },
    "passes": [
     1,
     1,
@@ -2151,7 +2193,7 @@
    ],
    "pins_inside": {
     "US-11906": true,
-    "US-12173": false
+    "US-12173": true
    },
    "refs": [
     "US-11906",
@@ -2463,7 +2505,7 @@
      39.048587
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [

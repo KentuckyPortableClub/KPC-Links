@@ -329,6 +329,20 @@
    "id": "US-0046+US-0884@river@36.989,-118.598",
    "kind": "river",
    "len_m": 100188,
+   "maps": [
+    [
+     "US-0046",
+     "https://www.nps.gov/seki/index.htm"
+    ],
+    [
+     "US-0884",
+     "https://www.rivers.gov/rivers/kings.php"
+    ]
+   ],
+   "names": {
+    "US-0046": "Kings Canyon National Park",
+    "US-0884": "Kings River National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -336,7 +350,7 @@
    ],
    "pins_inside": {
     "US-0046": true,
-    "US-0884": false
+    "US-0884": true
    },
    "refs": [
     "US-0046",
@@ -616,7 +630,7 @@
      37.105957
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "acres": 23.0,
@@ -30686,13 +30700,27 @@
    "id": "US-0884+US-4466@river@36.852,-118.932",
    "kind": "river",
    "len_m": 24314,
+   "maps": [
+    [
+     "US-0884",
+     "https://www.rivers.gov/rivers/kings.php"
+    ],
+    [
+     "US-4466",
+     "https://www.fs.usda.gov/sierra"
+    ]
+   ],
+   "names": {
+    "US-0884": "Kings River National Wild and Scenic River",
+    "US-4466": "Sierra National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0884": false,
+    "US-0884": true,
     "US-4466": true
    },
    "refs": [
@@ -31001,7 +31029,7 @@
      36.817703
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -31018,13 +31046,27 @@
    "id": "US-0884+US-4466@river@36.861,-118.832",
    "kind": "river",
    "len_m": 24314,
+   "maps": [
+    [
+     "US-0884",
+     "https://www.rivers.gov/rivers/kings.php"
+    ],
+    [
+     "US-4466",
+     "https://www.fs.usda.gov/sierra"
+    ]
+   ],
+   "names": {
+    "US-0884": "Kings River National Wild and Scenic River",
+    "US-4466": "Sierra National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0884": false,
+    "US-0884": true,
     "US-4466": true
    },
    "refs": [
@@ -31333,7 +31375,7 @@
      36.817703
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": null,

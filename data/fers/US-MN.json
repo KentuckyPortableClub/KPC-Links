@@ -2858,13 +2858,27 @@
    "id": "US-11014+US-11154@trail@47.266,-93.505",
    "kind": "trail",
    "len_m": 12039,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -3173,7 +3187,7 @@
      47.285373
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3190,13 +3204,27 @@
    "id": "US-11014+US-11154@trail@47.288,-93.489",
    "kind": "trail",
    "len_m": 9762,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -3497,7 +3525,7 @@
      47.363518
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3514,13 +3542,27 @@
    "id": "US-11014+US-11154@trail@47.357,-93.484",
    "kind": "trail",
    "len_m": 9762,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -3821,7 +3863,7 @@
      47.363518
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -3838,13 +3880,27 @@
    "id": "US-11014+US-11154@trail@47.373,-93.501",
    "kind": "trail",
    "len_m": 9762,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -4145,7 +4201,7 @@
      47.363518
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4162,13 +4218,27 @@
    "id": "US-11014+US-11154@trail@47.384,-93.470",
    "kind": "trail",
    "len_m": 1918,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -4449,7 +4519,7 @@
      47.387278
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4466,13 +4536,27 @@
    "id": "US-11014+US-11154@trail@47.428,-93.456",
    "kind": "trail",
    "len_m": 12001,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -4773,7 +4857,7 @@
      47.426054
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -4790,13 +4874,27 @@
    "id": "US-11014+US-11154@trail@47.490,-93.407",
    "kind": "trail",
    "len_m": 4154,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -5113,7 +5211,7 @@
      47.485495
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5130,13 +5228,27 @@
    "id": "US-11014+US-11154@trail@47.503,-93.376",
    "kind": "trail",
    "len_m": 4259,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -5461,7 +5573,7 @@
      47.522489
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5478,13 +5590,27 @@
    "id": "US-11014+US-11154@trail@47.503,-93.400",
    "kind": "trail",
    "len_m": 2827,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -5741,7 +5867,7 @@
      47.501766
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -5758,13 +5884,27 @@
    "id": "US-11014+US-11154@trail@47.517,-93.350",
    "kind": "trail",
    "len_m": 4259,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -6089,7 +6229,7 @@
      47.522489
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6106,13 +6246,27 @@
    "id": "US-11014+US-11154@trail@47.525,-93.326",
    "kind": "trail",
    "len_m": 4259,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -6437,7 +6591,7 @@
      47.522489
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6454,13 +6608,27 @@
    "id": "US-11014+US-11154@trail@47.532,-93.326",
    "kind": "trail",
    "len_m": 1095,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -6721,7 +6889,7 @@
      47.531103
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -6738,13 +6906,27 @@
    "id": "US-11014+US-11154@trail@47.537,-93.330",
    "kind": "trail",
    "len_m": 1095,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -7005,7 +7187,7 @@
      47.531103
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7022,13 +7204,27 @@
    "id": "US-11014+US-11154@trail@47.540,-93.348",
    "kind": "trail",
    "len_m": 3033,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -7329,7 +7525,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7346,13 +7542,27 @@
    "id": "US-11014+US-11154@trail@47.551,-93.361",
    "kind": "trail",
    "len_m": 3033,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -7653,7 +7863,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7670,13 +7880,27 @@
    "id": "US-11014+US-11154@trail@47.563,-93.361",
    "kind": "trail",
    "len_m": 3033,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -7977,7 +8201,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -7994,13 +8218,27 @@
    "id": "US-11014+US-11154@trail@47.565,-93.355",
    "kind": "trail",
    "len_m": 3033,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -8301,7 +8539,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8318,13 +8556,27 @@
    "id": "US-11014+US-11154@trail@47.573,-93.329",
    "kind": "trail",
    "len_m": 4821,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -8637,7 +8889,7 @@
      47.591983
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8654,13 +8906,27 @@
    "id": "US-11014+US-11154@trail@47.581,-93.283",
    "kind": "trail",
    "len_m": 1002,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -8893,7 +9159,7 @@
      47.585227
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -8910,13 +9176,27 @@
    "id": "US-11014+US-11154@trail@47.592,-93.290",
    "kind": "trail",
    "len_m": 1507,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -9209,7 +9489,7 @@
      47.582265
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -9226,13 +9506,27 @@
    "id": "US-11014+US-11154@trail@47.592,-93.299",
    "kind": "trail",
    "len_m": 491,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -9513,7 +9807,7 @@
      47.59222
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -9530,13 +9824,27 @@
    "id": "US-11014+US-11154@trail@47.593,-93.294",
    "kind": "trail",
    "len_m": 1507,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -9829,7 +10137,7 @@
      47.582265
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -9846,13 +10154,27 @@
    "id": "US-11014+US-11154@trail@47.594,-93.304",
    "kind": "trail",
    "len_m": 491,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -10133,7 +10455,7 @@
      47.59222
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10150,13 +10472,27 @@
    "id": "US-11014+US-11154@trail@47.597,-93.317",
    "kind": "trail",
    "len_m": 4821,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -10469,7 +10805,7 @@
      47.591983
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10486,13 +10822,27 @@
    "id": "US-11014+US-11154@trail@47.599,-93.277",
    "kind": "trail",
    "len_m": 5696,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -10793,7 +11143,7 @@
      47.61033
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10810,13 +11160,27 @@
    "id": "US-11014+US-11154@trail@47.624,-93.239",
    "kind": "trail",
    "len_m": 5696,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -11117,7 +11481,7 @@
      47.61033
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11134,13 +11498,27 @@
    "id": "US-11014+US-11154@trail@47.627,-93.219",
    "kind": "trail",
    "len_m": 2320,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -11433,7 +11811,7 @@
      47.633155
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11450,13 +11828,27 @@
    "id": "US-11014+US-11154@trail@47.630,-93.202",
    "kind": "trail",
    "len_m": 2320,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -11749,7 +12141,7 @@
      47.633155
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -11766,13 +12158,27 @@
    "id": "US-11014+US-11154@trail@47.638,-93.189",
    "kind": "trail",
    "len_m": 2366,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -12093,7 +12499,7 @@
      47.675151
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12110,13 +12516,27 @@
    "id": "US-11014+US-11154@trail@47.665,-93.182",
    "kind": "trail",
    "len_m": 2366,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -12437,7 +12857,7 @@
      47.675151
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12454,13 +12874,27 @@
    "id": "US-11014+US-11154@trail@47.668,-92.946",
    "kind": "trail",
    "len_m": 4844,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -12761,7 +13195,7 @@
      47.679558
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -12778,13 +13212,27 @@
    "id": "US-11014+US-11154@trail@47.669,-92.912",
    "kind": "trail",
    "len_m": 4844,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -13085,7 +13533,7 @@
      47.679558
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13102,13 +13550,27 @@
    "id": "US-11014+US-11154@trail@47.676,-92.952",
    "kind": "trail",
    "len_m": 2813,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -13405,7 +13867,7 @@
      47.66847
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13422,13 +13884,27 @@
    "id": "US-11014+US-11154@trail@47.677,-93.181",
    "kind": "trail",
    "len_m": 2366,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -13749,7 +14225,7 @@
      47.675151
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -13766,13 +14242,27 @@
    "id": "US-11014+US-11154@trail@47.680,-92.976",
    "kind": "trail",
    "len_m": 2813,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -14069,7 +14559,7 @@
      47.66847
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14086,13 +14576,27 @@
    "id": "US-11014+US-11154@trail@47.681,-92.877",
    "kind": "trail",
    "len_m": 1676,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -14345,7 +14849,7 @@
      47.68133
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14362,13 +14866,27 @@
    "id": "US-11014+US-11154@trail@47.682,-92.980",
    "kind": "trail",
    "len_m": 1878,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -14673,7 +15191,7 @@
      47.684313
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14690,13 +15208,27 @@
    "id": "US-11014+US-11154@trail@47.683,-92.639",
    "kind": "trail",
    "len_m": 1289,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -14929,7 +15461,7 @@
      47.6895
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -14946,13 +15478,27 @@
    "id": "US-11014+US-11154@trail@47.683,-92.656",
    "kind": "trail",
    "len_m": 10483,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -15277,7 +15823,7 @@
      47.688205
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -15294,13 +15840,27 @@
    "id": "US-11014+US-11154@trail@47.686,-92.761",
    "kind": "trail",
    "len_m": 1104,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -15593,7 +16153,7 @@
      47.686838
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -15610,13 +16170,27 @@
    "id": "US-11014+US-11154@trail@47.686,-93.181",
    "kind": "trail",
    "len_m": 2767,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -15917,7 +16491,7 @@
      47.706503
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -15934,13 +16508,27 @@
    "id": "US-11014+US-11154@trail@47.687,-92.774",
    "kind": "trail",
    "len_m": 1104,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -16233,7 +16821,7 @@
      47.686838
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -16250,13 +16838,27 @@
    "id": "US-11014+US-11154@trail@47.688,-92.628",
    "kind": "trail",
    "len_m": 16194,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -16537,7 +17139,7 @@
      47.695319
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -16554,13 +17156,27 @@
    "id": "US-11014+US-11154@trail@47.688,-92.820",
    "kind": "trail",
    "len_m": 1676,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -16813,7 +17429,7 @@
      47.68133
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -16830,13 +17446,27 @@
    "id": "US-11014+US-11154@trail@47.688,-92.991",
    "kind": "trail",
    "len_m": 1878,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -17141,7 +17771,7 @@
      47.684313
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -17158,13 +17788,27 @@
    "id": "US-11014+US-11154@trail@47.689,-92.752",
    "kind": "trail",
    "len_m": 10483,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -17489,7 +18133,7 @@
      47.688205
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -17506,13 +18150,27 @@
    "id": "US-11014+US-11154@trail@47.692,-93.005",
    "kind": "trail",
    "len_m": 826,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -17809,7 +18467,7 @@
      47.69054
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -17826,13 +18484,27 @@
    "id": "US-11014+US-11154@trail@47.693,-92.627",
    "kind": "trail",
    "len_m": 16194,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -18113,7 +18785,7 @@
      47.695319
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18130,13 +18802,27 @@
    "id": "US-11014+US-11154@trail@47.700,-93.025",
    "kind": "trail",
    "len_m": 1956,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -18421,7 +19107,7 @@
      47.696219
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18438,13 +19124,27 @@
    "id": "US-11014+US-11154@trail@47.700,-93.177",
    "kind": "trail",
    "len_m": 2767,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -18745,7 +19445,7 @@
      47.706503
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -18762,13 +19462,27 @@
    "id": "US-11014+US-11154@trail@47.706,-93.133",
    "kind": "trail",
    "len_m": 1754,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -19033,7 +19747,7 @@
      47.705715
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -19050,13 +19764,27 @@
    "id": "US-11014+US-11154@trail@47.707,-93.145",
    "kind": "trail",
    "len_m": 2767,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -19357,7 +20085,7 @@
      47.706503
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -19374,13 +20102,27 @@
    "id": "US-11014+US-11154@trail@47.716,-93.062",
    "kind": "trail",
    "len_m": 1956,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -19665,7 +20407,7 @@
      47.696219
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -19682,13 +20424,27 @@
    "id": "US-11014+US-11154@trail@47.717,-93.101",
    "kind": "trail",
    "len_m": 3305,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -20013,7 +20769,7 @@
      47.716659
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -20030,13 +20786,27 @@
    "id": "US-11014+US-11154@trail@47.722,-93.077",
    "kind": "trail",
    "len_m": 4338,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -20365,7 +21135,7 @@
      47.717226
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -20382,13 +21152,27 @@
    "id": "US-11014+US-11154@trail@47.722,-93.083",
    "kind": "trail",
    "len_m": 3305,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -20713,7 +21497,7 @@
      47.716659
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -20730,13 +21514,27 @@
    "id": "US-11014+US-11154@trail@47.749,-92.507",
    "kind": "trail",
    "len_m": 16194,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -21017,7 +21815,7 @@
      47.695319
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -21034,13 +21832,27 @@
    "id": "US-11014+US-11154@trail@47.752,-92.439",
    "kind": "trail",
    "len_m": 17047,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -21357,7 +22169,7 @@
      47.788635
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -21374,13 +22186,27 @@
    "id": "US-11014+US-11154@trail@47.784,-92.307",
    "kind": "trail",
    "len_m": 4224,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -21653,7 +22479,7 @@
      47.805819
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -21670,13 +22496,27 @@
    "id": "US-11014+US-11154@trail@47.787,-92.144",
    "kind": "trail",
    "len_m": 3963,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -21969,7 +22809,7 @@
      47.785341
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -21986,13 +22826,27 @@
    "id": "US-11014+US-11154@trail@47.794,-92.159",
    "kind": "trail",
    "len_m": 2797,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -22313,7 +23167,7 @@
      47.790742
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -22330,13 +23184,27 @@
    "id": "US-11014+US-11154@trail@47.799,-92.107",
    "kind": "trail",
    "len_m": 4734,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -22617,7 +23485,7 @@
      47.798677
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -22634,13 +23502,27 @@
    "id": "US-11014+US-11154@trail@47.799,-92.116",
    "kind": "trail",
    "len_m": 4734,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -22921,7 +23803,7 @@
      47.798677
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -22938,13 +23820,27 @@
    "id": "US-11014+US-11154@trail@47.801,-92.215",
    "kind": "trail",
    "len_m": 2797,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -23265,7 +24161,7 @@
      47.790742
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -23282,13 +24178,27 @@
    "id": "US-11014+US-11154@trail@47.804,-92.270",
    "kind": "trail",
    "len_m": 4224,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -23561,7 +24471,7 @@
      47.805819
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -23578,13 +24488,27 @@
    "id": "US-11014+US-11154@trail@47.807,-92.255",
    "kind": "trail",
    "len_m": 4224,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -23857,7 +24781,7 @@
      47.805819
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -23874,13 +24798,27 @@
    "id": "US-11014+US-11154@trail@47.809,-92.237",
    "kind": "trail",
    "len_m": 2600,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -24181,7 +25119,7 @@
      47.808631
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -24198,13 +25136,27 @@
    "id": "US-11014+US-11154@trail@47.813,-92.049",
    "kind": "trail",
    "len_m": 3324,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -24477,7 +25429,7 @@
      47.822122
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -24494,13 +25446,27 @@
    "id": "US-11014+US-11154@trail@47.821,-92.017",
    "kind": "trail",
    "len_m": 3324,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -24773,7 +25739,7 @@
      47.822122
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -24790,13 +25756,27 @@
    "id": "US-11014+US-11154@trail@47.825,-91.996",
    "kind": "trail",
    "len_m": 6529,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -25081,7 +26061,7 @@
      47.824563
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25098,13 +26078,27 @@
    "id": "US-11014+US-11154@trail@47.871,-91.939",
    "kind": "trail",
    "len_m": 6529,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -25389,7 +26383,7 @@
      47.824563
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25406,13 +26400,27 @@
    "id": "US-11014+US-11154@trail@47.885,-91.925",
    "kind": "trail",
    "len_m": 9268,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -25665,7 +26673,7 @@
      47.899101
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25682,13 +26690,27 @@
    "id": "US-11014+US-11154@trail@47.889,-91.859",
    "kind": "trail",
    "len_m": 9268,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-11154",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-11154": "Taconite State Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-11154": true
    },
    "refs": [
@@ -25941,7 +26963,7 @@
      47.899101
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -25958,13 +26980,27 @@
    "id": "US-11014+US-2468@trail@47.796,-92.095",
    "kind": "trail",
    "len_m": 1663,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-2468",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00109#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-2468": "Bear Head Lake State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-2468": true
    },
    "refs": [
@@ -26289,7 +27325,7 @@
      47.814778
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -26306,13 +27342,27 @@
    "id": "US-11014+US-2468@trail@47.813,-92.049",
    "kind": "trail",
    "len_m": 1663,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-2468",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00109#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-2468": "Bear Head Lake State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-2468": true
    },
    "refs": [
@@ -26637,7 +27687,7 @@
      47.814778
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -26654,13 +27704,27 @@
    "id": "US-11014+US-2508@trail@47.700,-93.025",
    "kind": "trail",
    "len_m": 1956,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-2508",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00226#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-2508": "McCarthy Beach State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-2508": true
    },
    "refs": [
@@ -26945,7 +28009,7 @@
      47.696219
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -26962,13 +28026,27 @@
    "id": "US-11014+US-2508@trail@47.716,-93.062",
    "kind": "trail",
    "len_m": 1956,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-2508",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00226#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-2508": "McCarthy Beach State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-2508": true
    },
    "refs": [
@@ -27253,7 +28331,7 @@
      47.696219
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -35114,13 +36192,27 @@
    "id": "US-11014+US-4782@trail@47.787,-92.144",
    "kind": "trail",
    "len_m": 3963,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -35413,7 +36505,7 @@
      47.785341
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -35430,13 +36522,27 @@
    "id": "US-11014+US-4782@trail@47.794,-92.159",
    "kind": "trail",
    "len_m": 2477,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -35757,7 +36863,7 @@
      47.790742
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -35774,13 +36880,27 @@
    "id": "US-11014+US-4782@trail@47.799,-92.107",
    "kind": "trail",
    "len_m": 886,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -36033,7 +37153,7 @@
      47.797053
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -36050,13 +37170,27 @@
    "id": "US-11014+US-4782@trail@47.799,-92.116",
    "kind": "trail",
    "len_m": 886,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -36309,7 +37443,7 @@
      47.797053
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -36326,13 +37460,27 @@
    "id": "US-11014+US-4782@trail@47.818,-92.039",
    "kind": "trail",
    "len_m": 3111,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -36605,7 +37753,7 @@
      47.826867
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -36622,13 +37770,27 @@
    "id": "US-11014+US-4782@trail@47.821,-92.017",
    "kind": "trail",
    "len_m": 3111,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -36901,7 +38063,7 @@
      47.826867
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -36918,13 +38080,27 @@
    "id": "US-11014+US-4782@trail@47.825,-91.996",
    "kind": "trail",
    "len_m": 6529,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -37209,7 +38385,7 @@
      47.824563
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -37226,13 +38402,27 @@
    "id": "US-11014+US-4782@trail@47.871,-91.939",
    "kind": "trail",
    "len_m": 6529,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -37517,7 +38707,7 @@
      47.824563
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -37534,13 +38724,27 @@
    "id": "US-11014+US-4782@trail@47.885,-91.925",
    "kind": "trail",
    "len_m": 3853,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -37817,7 +39021,7 @@
      47.889384
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -37834,13 +39038,27 @@
    "id": "US-11014+US-4782@trail@47.886,-91.857",
    "kind": "trail",
    "len_m": 2715,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4782",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00004#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4782": "Bear Island State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4782": true
    },
    "refs": [
@@ -38141,7 +39359,7 @@
      47.889677
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -38158,13 +39376,27 @@
    "id": "US-11014+US-4799@trail@47.551,-93.361",
    "kind": "trail",
    "len_m": 2801,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -38465,7 +39697,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -38482,13 +39714,27 @@
    "id": "US-11014+US-4799@trail@47.563,-93.361",
    "kind": "trail",
    "len_m": 2801,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -38789,7 +40035,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -38806,13 +40052,27 @@
    "id": "US-11014+US-4799@trail@47.565,-93.355",
    "kind": "trail",
    "len_m": 2801,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -39113,7 +40373,7 @@
      47.563249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -39130,13 +40390,27 @@
    "id": "US-11014+US-4799@trail@47.573,-93.329",
    "kind": "trail",
    "len_m": 4821,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -39449,7 +40723,7 @@
      47.591983
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -39466,13 +40740,27 @@
    "id": "US-11014+US-4799@trail@47.581,-93.283",
    "kind": "trail",
    "len_m": 1002,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -39705,7 +40993,7 @@
      47.585227
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -39722,13 +41010,27 @@
    "id": "US-11014+US-4799@trail@47.592,-93.290",
    "kind": "trail",
    "len_m": 1507,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -40021,7 +41323,7 @@
      47.582265
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -40038,13 +41340,27 @@
    "id": "US-11014+US-4799@trail@47.592,-93.299",
    "kind": "trail",
    "len_m": 491,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -40325,7 +41641,7 @@
      47.59222
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -40342,13 +41658,27 @@
    "id": "US-11014+US-4799@trail@47.593,-93.294",
    "kind": "trail",
    "len_m": 1507,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -40641,7 +41971,7 @@
      47.582265
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -40658,13 +41988,27 @@
    "id": "US-11014+US-4799@trail@47.594,-93.304",
    "kind": "trail",
    "len_m": 491,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -40945,7 +42289,7 @@
      47.59222
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -40962,13 +42306,27 @@
    "id": "US-11014+US-4799@trail@47.597,-93.317",
    "kind": "trail",
    "len_m": 4821,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -41281,7 +42639,7 @@
      47.591983
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -41298,13 +42656,27 @@
    "id": "US-11014+US-4799@trail@47.599,-93.277",
    "kind": "trail",
    "len_m": 5696,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -41605,7 +42977,7 @@
      47.61033
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -41622,13 +42994,27 @@
    "id": "US-11014+US-4799@trail@47.624,-93.239",
    "kind": "trail",
    "len_m": 5696,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -41929,7 +43315,7 @@
      47.61033
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -41946,13 +43332,27 @@
    "id": "US-11014+US-4799@trail@47.627,-93.219",
    "kind": "trail",
    "len_m": 2320,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -42245,7 +43645,7 @@
      47.633155
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -42262,13 +43662,27 @@
    "id": "US-11014+US-4799@trail@47.630,-93.202",
    "kind": "trail",
    "len_m": 2320,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -42561,7 +43975,7 @@
      47.633155
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -42578,13 +43992,27 @@
    "id": "US-11014+US-4799@trail@47.638,-93.189",
    "kind": "trail",
    "len_m": 2366,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -42905,7 +44333,7 @@
      47.675151
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -42922,13 +44350,27 @@
    "id": "US-11014+US-4799@trail@47.665,-93.182",
    "kind": "trail",
    "len_m": 2366,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -43249,7 +44691,7 @@
      47.675151
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -43266,13 +44708,27 @@
    "id": "US-11014+US-4799@trail@47.677,-93.181",
    "kind": "trail",
    "len_m": 2366,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -43593,7 +45049,7 @@
      47.675151
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -43610,13 +45066,27 @@
    "id": "US-11014+US-4799@trail@47.686,-93.181",
    "kind": "trail",
    "len_m": 2767,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -43917,7 +45387,7 @@
      47.706503
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -43934,13 +45404,27 @@
    "id": "US-11014+US-4799@trail@47.700,-93.177",
    "kind": "trail",
    "len_m": 2767,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -44241,7 +45725,7 @@
      47.706503
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -44258,13 +45742,27 @@
    "id": "US-11014+US-4799@trail@47.706,-93.133",
    "kind": "trail",
    "len_m": 1754,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -44529,7 +46027,7 @@
      47.705715
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -44546,13 +46044,27 @@
    "id": "US-11014+US-4799@trail@47.707,-93.145",
    "kind": "trail",
    "len_m": 2767,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -44853,7 +46365,7 @@
      47.706503
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -44870,13 +46382,27 @@
    "id": "US-11014+US-4799@trail@47.716,-93.064",
    "kind": "trail",
    "len_m": 875,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -45125,7 +46651,7 @@
      47.715614
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -45142,13 +46668,27 @@
    "id": "US-11014+US-4799@trail@47.717,-93.101",
    "kind": "trail",
    "len_m": 3305,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -45473,7 +47013,7 @@
      47.716659
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -45490,13 +47030,27 @@
    "id": "US-11014+US-4799@trail@47.722,-93.083",
    "kind": "trail",
    "len_m": 3305,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4799",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00021#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4799": "George Washington State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4799": true
    },
    "refs": [
@@ -45821,7 +47375,7 @@
      47.716659
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -45838,13 +47392,27 @@
    "id": "US-11014+US-4831@trail@47.668,-92.946",
    "kind": "trail",
    "len_m": 4844,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -46145,7 +47713,7 @@
      47.679558
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -46162,13 +47730,27 @@
    "id": "US-11014+US-4831@trail@47.669,-92.912",
    "kind": "trail",
    "len_m": 4844,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -46469,7 +48051,7 @@
      47.679558
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -46486,13 +48068,27 @@
    "id": "US-11014+US-4831@trail@47.676,-92.952",
    "kind": "trail",
    "len_m": 2813,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -46789,7 +48385,7 @@
      47.66847
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -46806,13 +48402,27 @@
    "id": "US-11014+US-4831@trail@47.680,-92.976",
    "kind": "trail",
    "len_m": 2813,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -47109,7 +48719,7 @@
      47.66847
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -47126,13 +48736,27 @@
    "id": "US-11014+US-4831@trail@47.681,-92.877",
    "kind": "trail",
    "len_m": 1676,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -47385,7 +49009,7 @@
      47.68133
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -47402,13 +49026,27 @@
    "id": "US-11014+US-4831@trail@47.682,-92.980",
    "kind": "trail",
    "len_m": 1878,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -47713,7 +49351,7 @@
      47.684313
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -47730,13 +49368,27 @@
    "id": "US-11014+US-4831@trail@47.683,-92.827",
    "kind": "trail",
    "len_m": 1676,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -47989,7 +49641,7 @@
      47.68133
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -48006,13 +49658,27 @@
    "id": "US-11014+US-4831@trail@47.688,-92.991",
    "kind": "trail",
    "len_m": 1878,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -48317,7 +49983,7 @@
      47.684313
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -48334,13 +50000,27 @@
    "id": "US-11014+US-4831@trail@47.692,-93.005",
    "kind": "trail",
    "len_m": 826,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -48637,7 +50317,7 @@
      47.69054
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -48654,13 +50334,27 @@
    "id": "US-11014+US-4831@trail@47.700,-93.025",
    "kind": "trail",
    "len_m": 1956,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -48945,7 +50639,7 @@
      47.696219
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -48962,13 +50656,27 @@
    "id": "US-11014+US-4831@trail@47.715,-93.060",
    "kind": "trail",
    "len_m": 1956,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -49253,7 +50961,7 @@
      47.696219
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -49270,13 +50978,27 @@
    "id": "US-11014+US-4831@trail@47.722,-93.077",
    "kind": "trail",
    "len_m": 1252,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -49545,7 +51267,7 @@
      47.720174
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -49562,13 +51284,27 @@
    "id": "US-11014+US-4831@trail@47.749,-92.507",
    "kind": "trail",
    "len_m": 7532,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -49873,7 +51609,7 @@
      47.752171
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -49890,13 +51626,27 @@
    "id": "US-11014+US-4831@trail@47.751,-92.439",
    "kind": "trail",
    "len_m": 218,
+   "maps": [
+    [
+     "US-11014",
+     "https://www.dnr.state.mn.us/state_trails/taconite/index.html"
+    ],
+    [
+     "US-4831",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00050#homepage"
+    ]
+   ],
+   "names": {
+    "US-11014": "David Dill/Taconite and Taconite State Trails State Trail",
+    "US-4831": "Sturgeon River State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11014": false,
+    "US-11014": true,
     "US-4831": true
    },
    "refs": [
@@ -50081,7 +51831,7 @@
      47.75169
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -54150,13 +55900,27 @@
    "id": "US-11153+US-2517@trail@45.904,-92.741",
    "kind": "trail",
    "len_m": 406,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -54353,7 +56117,7 @@
      45.90298
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -54370,13 +56134,27 @@
    "id": "US-11153+US-2517@trail@45.921,-92.750",
    "kind": "trail",
    "len_m": 1137,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -54669,7 +56447,7 @@
      45.93609
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -54686,13 +56464,27 @@
    "id": "US-11153+US-2517@trail@45.939,-92.765",
    "kind": "trail",
    "len_m": 1137,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -54985,7 +56777,7 @@
      45.93609
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -55002,13 +56794,27 @@
    "id": "US-11153+US-2517@trail@45.951,-92.656",
    "kind": "trail",
    "len_m": 2014,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -55285,7 +57091,7 @@
      45.950445
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -55302,13 +57108,27 @@
    "id": "US-11153+US-2517@trail@45.954,-92.731",
    "kind": "trail",
    "len_m": 5395,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -55605,7 +57425,7 @@
      45.956947
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -55622,13 +57442,27 @@
    "id": "US-11153+US-2517@trail@45.957,-92.677",
    "kind": "trail",
    "len_m": 5395,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -55925,7 +57759,7 @@
      45.956947
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -55942,13 +57776,27 @@
    "id": "US-11153+US-2517@trail@45.958,-92.631",
    "kind": "trail",
    "len_m": 3344,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -56277,7 +58125,7 @@
      45.95113
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -56294,13 +58142,27 @@
    "id": "US-11153+US-2517@trail@45.961,-92.608",
    "kind": "trail",
    "len_m": 3344,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -56629,7 +58491,7 @@
      45.95113
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -56646,13 +58508,27 @@
    "id": "US-11153+US-2517@trail@45.964,-92.598",
    "kind": "trail",
    "len_m": 10059,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -56945,7 +58821,7 @@
      45.983312
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -56962,13 +58838,27 @@
    "id": "US-11153+US-2517@trail@45.997,-92.525",
    "kind": "trail",
    "len_m": 10059,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-2517",
+     "https://www.dnr.state.mn.us/state_parks/park.html?id=spk00253#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-2517": "St. Croix State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-2517": true
    },
    "refs": [
@@ -57261,7 +59151,7 @@
      45.983312
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -57278,13 +59168,27 @@
    "id": "US-11153+US-4790@trail@45.818,-92.767",
    "kind": "trail",
    "len_m": 4007,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -57613,7 +59517,7 @@
      45.825261
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -57630,13 +59534,27 @@
    "id": "US-11153+US-4790@trail@45.819,-92.782",
    "kind": "trail",
    "len_m": 1032,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -57937,7 +59855,7 @@
      45.818225
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -57954,13 +59872,27 @@
    "id": "US-11153+US-4790@trail@45.835,-92.777",
    "kind": "trail",
    "len_m": 4007,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -58289,7 +60221,7 @@
      45.825261
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -58306,13 +60238,27 @@
    "id": "US-11153+US-4790@trail@45.852,-92.769",
    "kind": "trail",
    "len_m": 4007,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -58641,7 +60587,7 @@
      45.825261
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -58658,13 +60604,27 @@
    "id": "US-11153+US-4790@trail@45.864,-92.766",
    "kind": "trail",
    "len_m": 1094,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -58945,7 +60905,7 @@
      45.86396
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -58962,13 +60922,27 @@
    "id": "US-11153+US-4790@trail@45.871,-92.744",
    "kind": "trail",
    "len_m": 534,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -59209,7 +61183,7 @@
      45.873422
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -59226,13 +61200,27 @@
    "id": "US-11153+US-4790@trail@45.871,-92.748",
    "kind": "trail",
    "len_m": 1562,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -59521,7 +61509,7 @@
      45.870907
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -59538,13 +61526,27 @@
    "id": "US-11153+US-4790@trail@45.878,-92.740",
    "kind": "trail",
    "len_m": 534,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -59785,7 +61787,7 @@
      45.873422
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -59802,13 +61804,27 @@
    "id": "US-11153+US-4790@trail@45.889,-92.741",
    "kind": "trail",
    "len_m": 1670,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -60117,7 +62133,7 @@
      45.8961
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -60134,13 +62150,27 @@
    "id": "US-11153+US-4790@trail@45.900,-92.741",
    "kind": "trail",
    "len_m": 1670,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4790",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00012#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4790": "Chengwatana State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4790": true
    },
    "refs": [
@@ -60449,7 +62479,7 @@
      45.8961
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -60466,13 +62496,27 @@
    "id": "US-11153+US-4814@trail@46.218,-92.419",
    "kind": "trail",
    "len_m": 341,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -60777,7 +62821,7 @@
      46.21685
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -60794,13 +62838,27 @@
    "id": "US-11153+US-4814@trail@46.223,-92.422",
    "kind": "trail",
    "len_m": 5597,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -61053,7 +63111,7 @@
      46.248811
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -61070,13 +63128,27 @@
    "id": "US-11153+US-4814@trail@46.244,-92.440",
    "kind": "trail",
    "len_m": 5597,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -61329,7 +63401,7 @@
      46.248811
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -61346,13 +63418,27 @@
    "id": "US-11153+US-4814@trail@46.271,-92.439",
    "kind": "trail",
    "len_m": 5597,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -61605,7 +63691,7 @@
      46.248811
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -61622,13 +63708,27 @@
    "id": "US-11153+US-4814@trail@46.275,-92.429",
    "kind": "trail",
    "len_m": 1141,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -61897,7 +63997,7 @@
      46.278988
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -61914,13 +64014,27 @@
    "id": "US-11153+US-4814@trail@46.282,-92.427",
    "kind": "trail",
    "len_m": 1535,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -62221,7 +64335,7 @@
      46.293249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -62238,13 +64352,27 @@
    "id": "US-11153+US-4814@trail@46.289,-92.424",
    "kind": "trail",
    "len_m": 1535,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -62545,7 +64673,7 @@
      46.293249
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -62562,13 +64690,27 @@
    "id": "US-11153+US-4814@trail@46.315,-92.413",
    "kind": "trail",
    "len_m": 1630,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -62877,7 +65019,7 @@
      46.33272
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -62894,13 +65036,27 @@
    "id": "US-11153+US-4814@trail@46.333,-92.418",
    "kind": "trail",
    "len_m": 4867,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -63201,7 +65357,7 @@
      46.356993
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -63218,13 +65374,27 @@
    "id": "US-11153+US-4814@trail@46.334,-92.440",
    "kind": "trail",
    "len_m": 4867,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -63525,7 +65695,7 @@
      46.356993
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -63542,13 +65712,27 @@
    "id": "US-11153+US-4814@trail@46.348,-92.437",
    "kind": "trail",
    "len_m": 4867,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -63849,7 +66033,7 @@
      46.356993
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -63866,13 +66050,27 @@
    "id": "US-11153+US-4814@trail@46.358,-92.427",
    "kind": "trail",
    "len_m": 4867,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -64173,7 +66371,7 @@
      46.356993
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -64190,13 +66388,27 @@
    "id": "US-11153+US-4814@trail@46.368,-92.434",
    "kind": "trail",
    "len_m": 1920,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -64505,7 +66717,7 @@
      46.358903
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -64522,13 +66734,27 @@
    "id": "US-11153+US-4814@trail@46.376,-92.441",
    "kind": "trail",
    "len_m": 2244,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -64837,7 +67063,7 @@
      46.390438
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -64854,13 +67080,27 @@
    "id": "US-11153+US-4814@trail@46.396,-92.443",
    "kind": "trail",
    "len_m": 2464,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -65153,7 +67393,7 @@
      46.39599
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -65170,13 +67410,27 @@
    "id": "US-11153+US-4814@trail@46.405,-92.409",
    "kind": "trail",
    "len_m": 1412,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -65445,7 +67699,7 @@
      46.40496
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -65462,13 +67716,27 @@
    "id": "US-11153+US-4814@trail@46.405,-92.424",
    "kind": "trail",
    "len_m": 2464,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -65761,7 +68029,7 @@
      46.39599
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -65778,13 +68046,27 @@
    "id": "US-11153+US-4814@trail@46.407,-92.406",
    "kind": "trail",
    "len_m": 4091,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -66093,7 +68375,7 @@
      46.410767
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -66110,13 +68392,27 @@
    "id": "US-11153+US-4814@trail@46.416,-92.362",
    "kind": "trail",
    "len_m": 917,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -66365,7 +68661,7 @@
      46.415428
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -66382,13 +68678,27 @@
    "id": "US-11153+US-4814@trail@46.417,-92.368",
    "kind": "trail",
    "len_m": 917,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -66637,7 +68947,7 @@
      46.415428
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -66654,13 +68964,27 @@
    "id": "US-11153+US-4814@trail@46.419,-92.366",
    "kind": "trail",
    "len_m": 1589,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -66921,7 +69245,7 @@
      46.42542
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -66938,13 +69262,27 @@
    "id": "US-11153+US-4814@trail@46.429,-92.363",
    "kind": "trail",
    "len_m": 1589,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -67205,7 +69543,7 @@
      46.42542
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -67222,13 +69560,27 @@
    "id": "US-11153+US-4814@trail@46.432,-92.359",
    "kind": "trail",
    "len_m": 1378,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -67505,7 +69857,7 @@
      46.431954
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -67522,13 +69874,27 @@
    "id": "US-11153+US-4814@trail@46.448,-92.346",
    "kind": "trail",
    "len_m": 1378,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -67805,7 +70171,7 @@
      46.431954
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -67822,13 +70188,27 @@
    "id": "US-11153+US-4814@trail@46.450,-92.338",
    "kind": "trail",
    "len_m": 1812,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -68109,7 +70489,7 @@
      46.456386
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -68126,13 +70506,27 @@
    "id": "US-11153+US-4814@trail@46.462,-92.340",
    "kind": "trail",
    "len_m": 2883,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4814",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00035#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4814": "Nemadji State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4814": true
    },
    "refs": [
@@ -68445,7 +70839,7 @@
      46.46539
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -68462,13 +70856,27 @@
    "id": "US-11153+US-4824@trail@46.017,-92.479",
    "kind": "trail",
    "len_m": 5846,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -68793,7 +71201,7 @@
      46.01362
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -68810,13 +71218,27 @@
    "id": "US-11153+US-4824@trail@46.035,-92.449",
    "kind": "trail",
    "len_m": 5846,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -69141,7 +71563,7 @@
      46.01362
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -69158,13 +71580,27 @@
    "id": "US-11153+US-4824@trail@46.036,-92.443",
    "kind": "trail",
    "len_m": 710,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -69397,7 +71833,7 @@
      46.0369
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -69414,13 +71850,27 @@
    "id": "US-11153+US-4824@trail@46.040,-92.432",
    "kind": "trail",
    "len_m": 710,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -69653,7 +72103,7 @@
      46.0369
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -69670,13 +72120,27 @@
    "id": "US-11153+US-4824@trail@46.054,-92.436",
    "kind": "trail",
    "len_m": 3514,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -69969,7 +72433,7 @@
      46.061323
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -69986,13 +72450,27 @@
    "id": "US-11153+US-4824@trail@46.070,-92.442",
    "kind": "trail",
    "len_m": 3514,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -70285,7 +72763,7 @@
      46.061323
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -70302,13 +72780,27 @@
    "id": "US-11153+US-4824@trail@46.072,-92.447",
    "kind": "trail",
    "len_m": 4733,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -70577,7 +73069,7 @@
      46.102212
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -70594,13 +73086,27 @@
    "id": "US-11153+US-4824@trail@46.116,-92.469",
    "kind": "trail",
    "len_m": 4733,
+   "maps": [
+    [
+     "US-11153",
+     "https://www.dnr.state.mn.us/state_trails/heartland/index.html"
+    ],
+    [
+     "US-4824",
+     "https://www.dnr.state.mn.us/state_forests/forest.html?id=sft00044#homepage"
+    ]
+   ],
+   "names": {
+    "US-11153": "Matthew Lourey State Trail",
+    "US-4824": "St. Croix State Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-11153": false,
+    "US-11153": true,
     "US-4824": true
    },
    "refs": [
@@ -70869,7 +73375,7 @@
      46.102212
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [

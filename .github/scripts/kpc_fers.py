@@ -839,6 +839,7 @@ def main():
         for s in cand:
             if late(): break
             if any(r not in G and r not in LN for r in s['refs']): continue
+            if not s.get('access'): s['access'] = nearest_access(s, st_of)
             try: s['access_pin'] = access_pin(s, G, LN, st_of); n += 1
             except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
         for st, d in files.items(): save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
