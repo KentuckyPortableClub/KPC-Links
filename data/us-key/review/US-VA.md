@@ -1,13 +1,12 @@
 # VA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **149 of 184** parks joined to official land (same name + same kind of place). **0** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **151 of 184** parks joined to official land (same name + same kind of place). **0** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-12716 Hayfields State Park (State Park) → on VOF Holding (~1,101 ac); Virginia Outdoors Foundation Holding (~1,101 ac)
 - US-7804 Great Falls Park (Park) → on George Washington Memorial Parkway (~3,477 ac)
 - US-9897 Jamestowne National Historical Site (National Historical Site) → on Colonial National Historical Park (~7,881 ac)
 - US-9898 Mount Vernon National Historic Trail (National Historic Trail) → on George Washington Memorial Parkway (~2,776 ac)
@@ -20,8 +19,8 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **149 of 184** parks joined
 - US-9920 Mount Rogers National Recreation Trail (National Recreation Trail) → on Lewis Fork Wilderness (~6,075 ac); Jefferson National Forest (~711,975 ac)
 - US-9922 The Lion's Tale National Recreation Trail (National Recreation Trail) → on George Washington National Forest (~961,006 ac)
 - US-9925 Wild Oak National Recreation Trail (National Recreation Trail) → on George Washington National Forest (~961,006 ac)
-- US-9933 Beaches to Bluegrass State Trail (State Trail) → on Staunton River State Park (~1,526 ac); Staunton River State Park (~1,612 ac)
-- US-9935 Virginia Bird & Wildlife State Trail (State Trail) → on Lake Anna State Park (~1,624 ac); Lake Anna State Park (~2,156 ac)
+- US-9933 Beaches to Bluegrass State Trail (State Trail) → on Staunton River State Park (~1,380 ac); Staunton River State Park (~1,526 ac)
+- US-9935 Virginia Bird & Wildlife State Trail (State Trail) → on Lake Anna State Park (~587 ac); Lake Anna State Park (~1,624 ac)
 - US-9937 Meadowood BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Southeastern States District Office (~804 ac)
 - US-9961 Dyke Marsh Wildlife Reserve (Wildlife Reserve) → on George Washington Memorial Parkway (~2,776 ac)
 
@@ -29,7 +28,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **149 of 184** parks joined
 
 - US-10015 Accotink Bay Wildlife Refuge (Wildlife Refuge)
 - US-10507 Rock Castle Gorge National Recreation Trail (National Recreation Trail)
-- US-11719 Culpeper Battlefield State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
@@ -79,6 +77,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **149 of 184** parks joined
 - Rapidan Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,343 ac
 - Havens Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~7,339 ac
 - DCR Holding · SOTH · VA Dept of Conservation and Recreation · ~7,326 ac
+- Falkland Farms ·  · Virginia DCR State Parks (tracts) (park, state GIS table) · ~7,264 ac
 - Parramore Island ·  · Virginia DCR Natural Heritage (preserve, state GIS table) · ~7,000 ac
 - Roaring Plains West Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,794 ac
 - Hidden Valley Wildlife Management Area · SCA ·   · ~6,239 ac
@@ -107,4 +106,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **149 of 184** parks joined
 - Cavalier Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,770 ac
 - South Quay Sandhills ·  · Virginia DCR Natural Heritage (preserve, state GIS table) · ~3,753 ac
 - False Cape State Natural Area Preserve · SCA ·   · ~3,603 ac
-- False Cape State Natural Area Preserve · SCA · VA Dept of Conservation and Recreation · ~3,603 ac

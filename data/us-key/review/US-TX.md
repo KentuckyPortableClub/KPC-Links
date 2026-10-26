@@ -1,6 +1,6 @@
 # TX: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **196 of 222** parks joined to official land (same name + same kind of place). **1** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **197 of 222** parks joined to official land (same name + same kind of place). **1** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,8 +12,8 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **196 of 222** parks joined
 - US-4419 I.D. Farichild State Forest (State Forest) → on I.D. FairChild State Forest (~1,727 ac)
 - US-4514 Cibola National Forest (National Forest) → on Sandia Mountain Wilderness (~37,690 ac)
 - US-6538 Barrington Plantation State Historic Site (State Historic Site) → on Washington-on-the-Brazos State Historic Site (~295 ac)
-- US-6580 Matagorda Island Wildlife Management Area (Wildlife Management Area) → on Aransas National Wildlife Refuge (~90,764 ac); Aransas National Wildlife Refuge (~90,764 ac)
-- US-6608 W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → on Gene Howe Wildlife Management Area (~890 ac)
+- US-6597 Rio Grande National Wild and Scenic River (National Wild and Scenic River) → on Black Gap WMA (~0 ac); Black Gap WMA (~0 ac)
+- US-6608 W.A. Pat Murphy Unit Wildlife Management Area (Wildlife Management Area) → on Gene Howe WMA-W.A. (Pat) Murphy (~0 ac); Gene Howe WMA - W.A. (Pat) Murphy (~0 ac)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail) → on Guadalupe Mountains National Park (~86,840 ac)
 
 ## Nothing found in PAD-US
@@ -31,7 +31,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **196 of 222** parks joined
 - US-4569 El Camino Real de Tierra Adentro National Historic Trail (National Historic Trail)
 - US-6560 French Legation State Historic Site (State Historic Site)
 - US-6582 Mission Dolores State Historic Site (State Historic Site)
-- US-6597 Rio Grande National Wild and Scenic River (National Wild and Scenic River)
 - US-6599 Sabine Pass Battleground State Historic Site (State Historic Site)
 - US-6601 Sam Rayburn House State Historic Site (State Historic Site)
 - US-6602 San Felipe de Austin State Historic Site (State Historic Site)

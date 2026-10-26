@@ -7,7 +7,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10540 Bellevue-Watson State Fish Hatchery (State Fish Hatchery) → on Watson Lake SFU (~142 ac)
+- US-10540 Bellevue-Watson State Fish Hatchery (State Fish Hatchery) → on Watson Lake SFU (~12 ac); Watson Lake SFU (~142 ac)
 - US-11902 Camp Hale National Monument (National Monument) → on White River National Forest (~2,289,410 ac)
 - US-11907 Calamity Camp BLM Historic Preservation Site (BLM Historic Preservation Site) → on Gateway (~42,959 ac); Grand Junction Field Office (~1,275,594 ac)
 - US-11911 Damaree BLM Wilderness Area (BLM Wilderness Area) → on Grand Junction Field Office (~1,275,594 ac)

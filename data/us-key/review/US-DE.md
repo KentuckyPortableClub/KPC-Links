@@ -1,6 +1,6 @@
 # DE: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined to official land (same name + same kind of place). **0** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **76 of 89** parks joined to official land (same name + same kind of place). **0** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,8 +9,10 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 
 - US-10681 Masseys Millpond State Fishing Lake (State Fishing Lake) → on Masseys Pond (~38 ac)
 - US-9877 Junction and Breakwater National Recreation Trail (National Recreation Trail) → on Cape Henlopen State Park (~964 ac)
-- US-9879 Pinelands Nature National Recreation Trail (National Recreation Trail) → on Cape Henlopen State Park (~562 ac); Cape Henlopen State Park (~3,641 ac)
-- US-9881 Pomeroy and Newark National Recreation Trail (National Recreation Trail) → on White Clay Creek Nature Preserve (~31 ac); White Clay Creek Nature Preserve (~56 ac)
+- US-9878 Northern Delaware Greenway National Recreation Trail (National Recreation Trail) → on Alapocas Run State Park (~0 ac)
+- US-9879 Pinelands Nature National Recreation Trail (National Recreation Trail) → on Cape Henlopen State Park (~0 ac); Cape Henlopen State Park (~562 ac)
+- US-9881 Pomeroy and Newark National Recreation Trail (National Recreation Trail) → on White Clay Creek State Park (~0 ac); White Clay Creek Nature Preserve (~31 ac)
+- US-9885 Indian River Life-Saving Station State Historic Site (State Historic Site) → on Delaware Seashore State Park (~0 ac)
 - US-9886 Dupont Nature Center State Conservation Area (State Conservation Area) → on Milford Neck Wildlife Area (~5,131 ac)
 
 ## Nothing found in PAD-US
@@ -21,8 +23,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 - US-4367 First State Heritage State Park (State Park)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-9878 Northern Delaware Greenway National Recreation Trail (National Recreation Trail)
-- US-9885 Indian River Life-Saving Station State Historic Site (State Historic Site)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
@@ -37,6 +37,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 - I-95 Corridor Wetlands · SOTH · DE Department of Transportation · ~392 ac
 - Sunset Lake · SP · DE Division of Parks and Recreation · ~305 ac
 - Blackbird Reserve Wildlife Area · SOTH ·   · ~297 ac
+- Doe Bridge Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~294 ac
 - Industrial Forest Lands - Laurel Complex ·  · Delaware Fish & Wildlife (DNREC) (wild, state GIS table) · ~285 ac
 - Mispillion Marine Reserve ·  · Delaware Fish & Wildlife (DNREC) (wild, state GIS table) · ~281 ac
 - Delaware Airpark · SOTH · DE Department of Transportation · ~276 ac
@@ -46,10 +47,12 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 - Great Marsh Preserve · SP ·   · ~245 ac
 - Rehoboth Bay Marshes Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~238 ac
 - Murderkill River Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~231 ac
+- Angola Neck Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~229 ac
 - St. Jones River Natural Area · SOTH ·   · ~228 ac
 - Sunset Lake · SP ·   · ~201 ac
 - Mispillion Marine Reserve · SOTH · DE Division of Fish and Wildlife · ~200 ac
 - Thompson Island Nature Preserve · SP ·   · ~197 ac
+- Milford Millponds ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~196 ac
 - Pleasanton · SOTH · DE Department of Transportation · ~195 ac
 - Auburn Heights · SP · DE Division of Parks and Recreation · ~189 ac
 - Appoquinimink High School · REA ·   · ~186 ac
@@ -57,6 +60,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 - White Clay Creek Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~185 ac
 - Indian River Open Space · LOTH ·   · ~183 ac
 - Milford Millponds Nature Preserve · SOTH · DE Division of Fish and Wildlife · ~181 ac
+- Doe Bridge Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~181 ac
 - Thompsons Island Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~173 ac
 - Pea Patch Island Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~167 ac
 - Murderkill River Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~165 ac
@@ -73,6 +77,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 - Sunshine Builders Tract · SOTH ·   · ~141 ac
 - Fortney Tract · SOTH ·   · ~136 ac
 - Isaacs Branch · SOTH · DE Department of Natural Resources and Env Control · ~132 ac
+- Angola Neck Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~132 ac
 - Murderkill River Nature Preserve · SP · DE Division of Parks and Recreation · ~131 ac
 - Oversee Property · SP · DE Division of Parks and Recreation · ~123 ac
 - Ashland Nature Center · SCA · Delaware Nature Society · ~120 ac
@@ -81,8 +86,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **76 of 89** parks joined t
 - Burrows Run Nature Preserve ·  · Delaware nature preserves (DNREC) (preserve, state GIS table) · ~110 ac
 - Hawkey Branch Road Open Space · SOTH · DE Department of Transportation · ~108 ac
 - Patriots Way Open Space · SRMA · DE Department of Transportation · ~107 ac
-- Leipsic River Open Space · SOTH · DE Department of Transportation · ~106 ac
-- Other Division Lands - Owens Station · SOTH ·   · ~105 ac
-- Auburn Heights · SP ·   · ~103 ac
-- Sunset Lake · SP ·   · ~102 ac
-- Larrimore/Hitchens Tract · SRMA · State of Delaware · ~101 ac

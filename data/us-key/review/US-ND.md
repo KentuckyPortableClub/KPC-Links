@@ -1,13 +1,13 @@
 # ND: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **102 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **102 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **49** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-4239 North Country Trail National Scenic Trail (National Scenic Trail) → on Lake Sakakawea State Park (~733 ac); Sakakawea Recreation Area (~478,564 ac)
+- US-4239 North Country Trail National Scenic Trail (National Scenic Trail) → on Lake Sakakawea State Park (~733 ac); Lake Sakakawea State Park (~740 ac)
 - US-5741 Turtle Mountain State Forest (State Forest) → on North Dakota State Forest Service Land (~14,517 ac)
 - US-5742 Homen State Forest (State Forest) → on North Dakota State Forest Service Land (~14,517 ac)
 - US-7702 Lone Tree Wildlife Management Area (Wildlife Management Area) → on Lonetree (~19,798 ac); Lonetree (~19,798 ac)

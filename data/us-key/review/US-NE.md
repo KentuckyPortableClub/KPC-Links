@@ -1,6 +1,6 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **174 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **175 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-4011 Chalco Hills State Recreation Area (State Recreation Area) → on Wehrspann Recreation Area (~1,196 ac)
-- US-9356 Willow Lake Wildlife Management Area (Wildlife Management Area) → on Valentine National Wildlife Refuge (~72,350 ac); Valentine National Wildlife Refuge (~72,350 ac)
 
 ## Nothing found in PAD-US
 
@@ -48,9 +47,12 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Clear Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~6,118 ac
 - Red Willow Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~5,216 ac
 - Newcastle Field Office · PUB · BLM · ~5,144 ac
+- Ponderosa WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~4,831 ac
 - Phelps County Waterfowl Production Area · RMA · Phelps County Waterfowl Production Area · ~4,677 ac
 - Enders Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~4,359 ac
+- Peterson WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~4,261 ac
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,155 ac
+- Buffalo Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~4,141 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~4,001 ac
 - Bazile Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~3,971 ac
 - N-CORPE (NRD) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~3,802 ac
@@ -59,39 +61,36 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Ponderosa Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~3,551 ac
 - Metcalf Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~3,360 ac
 - N-CORPE east tract (NRD) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~3,325 ac
+- Metcalf WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~3,317 ac
 - Bead Mountain (PRBE) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~3,055 ac
 - Cottonwood/Steverson Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,987 ac
+- Cottonwood/Steverson WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,902 ac
 - Kearney County Waterfowl Production Area · RMA · Kearney County Waterfowl Production Area · ~2,891 ac
 - Buffalo Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~2,877 ac
+- Branched Oak WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,866 ac
 - Peterson Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,664 ac
 - Gilbert-Baker Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,585 ac
+- Gilbert-Baker WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,535 ac
+- Chadron Creek Ranch WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,529 ac
+- Williams Gap WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,422 ac
 - Chadron Creek Ranch Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,417 ac
 - John W. And Louise Seier National Wildlife Refuge · NWR · JOHN W. AND LOUISE SEIER NATIONAL WILDLIFE REFUGE · ~2,403 ac
 - John W. And Louise Seier National Wildlife Refuge · NWR · John W. And Louise Seier National Wildlife Refuge · ~2,403 ac
+- Sacramento-Wilcox WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,320 ac
 - Sacramento-Wilcox Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,269 ac
 - Cedar Canyon Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~2,259 ac
+- Cedar Canyon WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,200 ac
 - Franklin County Waterfowl Production Area · RMA · Franklin County Waterfowl Production Area · ~2,149 ac
 - Franklin County Waterfowl Production Area · RMA · FRANKLIN COUNTY WATERFOWL PRODUCTION AREA · ~2,073 ac
+- Montz Point (PRBE) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~2,007 ac
 - Box Butte Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~2,005 ac
+- Grove Lake WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,985 ac
 - Branched Oak Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,981 ac
 - Grove Lake Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,965 ac
 - Branched Oak Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,948 ac
+- Wapiti WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,920 ac
+- Bordeaux WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,915 ac
 - Wapiti Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,863 ac
+- Wood Duck WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,833 ac
 - Wood Duck Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,831 ac
 - Bordeaux Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,769 ac
-- Williams Gap Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,765 ac
-- Harry Strunk Lake · RMA · Unknown · ~1,745 ac
-- Jack Sinn Memorial Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,631 ac
-- Hugh Butler Lake · RMA · Unknown · ~1,565 ac
-- Glenn Cunningham Recreation Area · REC · Omaha · ~1,543 ac
-- Gilbert-baker Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,507 ac
-- Gosper County Waterfowl Production Area · RMA · Gosper County Waterfowl Production Area · ~1,451 ac
-- Sacramento-wilcox Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,413 ac
-- Plum Creek Valley Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,307 ac
-- Petersen Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,279 ac
-- Bighorn Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,270 ac
-- Bighorn Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,270 ac
-- Metcalf Wildlife Management Area · SCA · Nebraska Game and Parks Commission · ~1,245 ac
-- Wehrspann Recreation Area · REC · Omaha · ~1,196 ac
-- Oliver Reservoir Recreation Area (NRD) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~1,187 ac
-- Thomas Creek Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,138 ac

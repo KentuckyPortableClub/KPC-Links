@@ -1,6 +1,6 @@
 # OR: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **352 of 440** parks joined to official land (same name + same kind of place). **0** to check by hand, **50** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **353 of 440** parks joined to official land (same name + same kind of place). **0** to check by hand, **50** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -41,7 +41,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-9152 TouVelle State Park State Recreation Area (State Recreation Area) → on Ken Denman (~1,421 ac)
 - US-9156 Crooked River National Wild and Scenic River (National Wild and Scenic River) → on High Desert (~56,717 ac); Prineville Deschutes Field Office (~744,205 ac)
 - US-9157 Donner und Blitzen National Wild and Scenic River (National Wild and Scenic River) → on Malheur National Wildlife Refuge (~188,071 ac); Malheur National Wildlife Refuge (~188,071 ac)
-- US-9159 Lower Deschutes National Wild and Scenic River (National Wild and Scenic River) → on Prineville Deschutes Field Office (~744,205 ac)
 - US-9983 Valley of the Giants Outstanding Natural Area (Natural Area) → on Nw Oregon Marys Peak Field Office (~128,244 ac)
 - US-9985 Whychus Creek National Wild and Scenic River (National Wild and Scenic River) → on Deschutes National Forest (~1,612,322 ac)
 - US-9990 Mayfield Pond BLM Recreation Management Area (BLM Recreation Management Area) → on High Desert (~26,191 ac); Prineville Deschutes Field Office (~744,205 ac)

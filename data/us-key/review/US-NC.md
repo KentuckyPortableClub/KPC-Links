@@ -1,6 +1,6 @@
 # NC: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **218 of 253** parks joined to official land (same name + same kind of place). **5** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **219 of 253** parks joined to official land (same name + same kind of place). **5** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -43,7 +43,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-6837 CSS Neuse Civil War Interpretive Center State Historic Site (State Historic Site)
 - US-6847 NC Transportation Museum State Historic Site (State Historic Site)
 - US-6852 State Capitol State Historic Site (State Historic Site)
-- US-6936 Pisgah State Game Land (State Game Land)
 - US-8005 Fontana TVA Dam National Recreation Area (National Recreation Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)

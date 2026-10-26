@@ -1,19 +1,19 @@
 # GA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **220 of 237** parks joined to official land (same name + same kind of place). **0** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **220 of 237** parks joined to official land (same name + same kind of place). **0** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-3724 Roosevelts Little White House State Historic Site (State Historic Site) → on F. D. ROOSEVELT STATE PARK (~9,989 ac); F. D. Roosevelt State Park (~9,995 ac)
+- US-3724 Roosevelts Little White House State Historic Site (State Historic Site) → on F. D. Roosevelt State Park (~9,989 ac); F. D. ROOSEVELT STATE PARK (~9,989 ac)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail) → on Chattahoochee National Forest (~750,991 ac)
-- US-4648 Bartram Educational State Forest (State Forest) → on Bartram Forest Wildlife Management Area (~2,063 ac); Baldwin State Forest (~2,153 ac)
+- US-4648 Bartram Educational State Forest (State Forest) → on BARTRAM FOREST WMA (~874 ac); BARTRAM FOREST WMA (~1,346 ac)
 - US-4649 Hitchiti State Forest (State Forest) → on Oconee National Forest (~116,196 ac)
 - US-7140 Charlie Elliot Wildlife Management Area (Wildlife Management Area) → on Charlie Elliott Wildlife Center Clybel Wildlife Management Area Marben Public Fishing Area (~6,273 ac); CLYBEL WMA (~6,275 ac)
-- US-7473 DeSoto Falls National Recreation Area (National Recreation Area) → on Chestatee Wildlife Management Area (~19,724 ac); Chattahoochee National Forest (~750,991 ac)
-- US-7861 Suwannee River Eco-Lodge State Park (State Park) → on Stephen C. Foster State Park (~320 ac)
+- US-7473 DeSoto Falls National Recreation Area (National Recreation Area) → on Chestatee Wildlife Management Area (~19,724 ac); CHESTATEE WMA (~21,784 ac)
+- US-7861 Suwannee River Eco-Lodge State Park (State Park) → on Stephen C. Foster State Park (~320 ac); Stephen C. Foster State Park (~320 ac)
 - US-9758 Chattooga National Wild and Scenic River (National Wild and Scenic River) → on Chattahoochee National Forest (~750,991 ac)
 
 ## Nothing found in PAD-US

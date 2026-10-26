@@ -1,6 +1,6 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **350 of 692** parks joined to official land (same name + same kind of place). **5** to check by hand, **78** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **350 of 692** parks joined to official land (same name + same kind of place). **5** to check by hand, **77** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -50,6 +50,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-11166 Lake Mountains BLM Recreation Management Area (BLM Recreation Management Area) → on Salt Lake  Field Office (~3,284,358 ac)
 - US-11167 Little Hole National Scenic Trail (National Scenic Trail) → on Ashley National Forest (~1,282,369 ac)
 - US-11179 Clover Spring BLM Recreation Management Area (BLM Recreation Management Area) → on Salt Lake  Field Office (~3,284,358 ac)
+- US-11186 Timber Canyon Wildlife Management Area (Wildlife Management Area) → on Strawberry River WMA (~2,287 ac)
 - US-11193 Desolation Gray Canyons of The Green River BLM Recreation Management Area (BLM Recreation Management Area) → on Vernal Field Office (~1,665,188 ac)
 - US-11200 Calao CCC Camp BLM Recreation Management Area (BLM Recreation Management Area) → on Deep Creek Mountains (~101,458 ac); Fillmore Field Office (~4,420,134 ac)
 - US-11207 Elliott Mesa Wildlife Management Area (Wildlife Management Area) → on Desolation Canyon (~0 ac); Price Field Office (~2,480,295 ac)
@@ -183,7 +184,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-5882 Swasey's Cabin Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on San Rafael Swell (~936,480 ac); Price Field Office (~2,480,295 ac)
 - US-5885 Little Wild Horse Canyon TH BLM Recreation Management Area (BLM Recreation Management Area) → on Muddy Creek (~0 ac); The State of Utah School and Institutional Trust Lands Administration 1939 (~657 ac)
 - US-5887 Little Grand Canyon Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Price Field Office (~2,480,295 ac)
-- US-5889 Fullers Bottom Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on The State of Utah School and Institutional Trust Lands Administration 2757 (~1,319 ac)
+- US-5889 Fullers Bottom Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Upper San Rafael River WMA (~0 ac); The State of Utah School and Institutional Trust Lands Administration 2757 (~1,319 ac)
 - US-5892 Behind the Reef Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Muddy Creek (~0 ac); The State of Utah School and Institutional Trust Lands Administration 1937 (~652 ac)
 - US-5894 Copper Globe Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Muddy Creek (~252,058 ac); San Rafael Swell (~936,480 ac)
 - US-5898 Scenic Byway 143 - Utah's Patchwork National Parkway (National Parkway) → on Cedar Breaks National Monument (~6,125 ac); Dixie National Forest (~1,632,927 ac)
@@ -289,7 +290,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-11099 Klondike Bluffs BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11110 Sego Canyon Rock Art BLM Interpretive Site (BLM Interpretive Site)
 - US-11176 Rojo Mountain Bike Trail BLM Recreation Management Area (BLM Recreation Management Area)
-- US-11186 Timber Canyon Wildlife Management Area (Wildlife Management Area)
 - US-11211 Chimney Rock BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11659 Rocky Rapid Boat Ramp BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11705 Poison Spider Mesa BLM Recreation Management Area (BLM Recreation Management Area)

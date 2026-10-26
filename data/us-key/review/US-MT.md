@@ -1,6 +1,6 @@
 # MT: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **226 of 254** parks joined to official land (same name + same kind of place). **1** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **226 of 254** parks joined to official land (same name + same kind of place). **1** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -75,12 +75,14 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **226 of 254** parks joined
 - Cabinet Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~93,766 ac
 - Uppermost Missouri River ·  · BLM recreation sites · ~82,354 ac
 - Mission Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~76,145 ac
+- Mount Haggin ·  · Montana Fish, Wildlife & Parks (wild, state GIS table) · ~60,029 ac
 - Mount Haggin Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~58,853 ac
 - Upper Big Hole River ·  · BLM recreation sites · ~56,847 ac
 - Silver Valley ·  · BLM recreation sites · ~53,188 ac
 - Agricultural Research Service (ARS) · REA · Agricultural Research Service (ARS) · ~52,321 ac
 - Clearwater River ·  · BLM recreation sites · ~44,818 ac
 - Spotted Dog Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 2 · ~37,774 ac
+- Spotted Dog ·  · Montana Fish, Wildlife & Parks (wild, state GIS table) · ~37,690 ac
 - Rocky Hills ·  · BLM recreation sites · ~35,863 ac
 - Rattlesnake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~34,313 ac
 - Lewis-Clark Nat Hist Trail ·  · BLM recreation sites · ~32,612 ac
@@ -91,6 +93,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **226 of 254** parks joined
 - Gates of the Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~28,460 ac
 - Kaniksu National Forest · NF · Forest Service Region 01 Northern · ~28,249 ac
 - Welcome Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~28,247 ac
+- Robb-Ledford ·  · Montana Fish, Wildlife & Parks (wild, state GIS table) · ~28,236 ac
 - Robb-Ledford Wildlife Management Area · SCA · Montana Fish, Wildlife & Parks, Region 3 · ~28,234 ac
 - Ruby Mountains ·  · BLM recreation sites · ~26,195 ac
 - Lower Salmon Recreational ·  · BLM recreation sites · ~25,701 ac
@@ -98,6 +101,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **226 of 254** parks joined
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
 - Hungry Horse Reservoir · RMA · Unknown · ~22,929 ac
 - State of Montana · ND · Unknown · ~21,189 ac
-- Lubrecht State Experimental Forest · SCA · University of Montana, College of Forestry and Conservation · ~20,393 ac
-- Lolo Creek ·  · BLM recreation sites · ~19,283 ac
-- South Pioneers ·  · BLM recreation sites · ~18,966 ac

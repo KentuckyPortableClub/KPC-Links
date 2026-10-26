@@ -1,6 +1,6 @@
 # LA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **112 of 123** parks joined to official land (same name + same kind of place). **2** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **112 of 123** parks joined to official land (same name + same kind of place). **2** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **112 of 123** parks joined
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10456 Esler Field Wildlife Management Area (Wildlife Management Area) → on Camp Beauregard Wildlife Management Area (~12,606 ac)
+- US-10456 Esler Field Wildlife Management Area (Wildlife Management Area) → on Camp Beauregard (~12,500 ac); Camp Beauregard WMA (~12,594 ac)
 - US-2365 Jimmie Davis State Park (State Park) → on Caney Creek Lake State Park (~312 ac)
 - US-2373 Poverty Point Reservoir State Park (State Park) → on State Lands (~7,733 ac)
 - US-4568 El Camino Real de los Tejas National Historic Trail (National Historic Trail) → on Los Adaes State Historic Site (~15 ac)
@@ -45,6 +45,8 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **112 of 123** parks joined
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
+- Camp Beauregard WMA ·  · Louisiana Department of Wildlife & Fisheries (wild, state GIS table) · ~12,594 ac
+- Camp Beauregard ·  · LDWF (owner LDWF_ArcGIS1), Sep 2025 edition (wild, state GIS table) · ~12,500 ac
 - Indian Mounds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,224 ac
 - State Lands · SOTH · Unknown · ~11,466 ac
 - Ouachita Wildlife Management Area · SCA · Unknown · ~10,403 ac
@@ -82,5 +84,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **112 of 123** parks joined
 - Russell Sage Wildlife Management Area - Portion In Morehouse · SCA · Unknown · ~1,026 ac
 - Bayou Dorcheat · SCA · Unknown · ~1,012 ac
 - Corney Bayou · SCA · Unknown · ~1,001 ac
-- Lsu Research Station · REA · Unknown · ~995 ac
-- Bayou Bartholomew · SCA · Unknown · ~870 ac
