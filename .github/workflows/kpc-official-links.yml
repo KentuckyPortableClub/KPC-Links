@@ -1,7 +1,7 @@
 name: KPC official links (harvester + map finder)
 # Oct 26 2026 (Brandon via HQ 'BOTS FOR THE GAPS', chat 2): official park pages + map links grow by themselves.
 # Harvester: website fields in the outline layers we read + NPS API + Recreation.gov RIDB -> data/parkinfo-web.json
-# (bot-tagged; kept off the site until Brandon's GO, see kpc_state_links.py BOT_LINKS_GO). Map finder: SUGGESTIONS from
+# (bot-tagged; used by kpc_state_links.py, switch BOT_LINKS_GO). Map finder: SUGGESTIONS from
 # each park's official page -> data/map-leads.json (never added blindly). Data only. Monthly. Never fails.
 on:
   schedule:
