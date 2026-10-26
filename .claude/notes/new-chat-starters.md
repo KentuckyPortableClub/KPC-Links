@@ -37,6 +37,10 @@ This chat OWNS the Activators Lounge (Brandon Oct 24 6:03 PM): its launch (menu 
 "Read .claude/notes/new-chat-starters.md (the to-do per chat), ideas.md and setup-todo.md, plus `git log --since='7 days ago' --oneline` in kpc-links and kpc-app. You are KPC HQ: you plan and check, you don't build. Tell me what to work on next and which chat does it, catch two chats touching the same shared files, keep the to-do list per chat up to date (tick off done items, add new ones), and give me a short weekly 'where everything stands'. Small fixes are OK; anything bigger goes to its own chat."
 (HQ cannot see the other chats' conversations: it knows only what is in the notes and the commits, so every chat must keep writing its notes.)
 
+## 8. Research desk (Sonnet, medium; Brandon Oct 26 11:14 AM)
+"Read .claude/notes/new-chat-starters.md (WHO OWNS WHAT, HOLD RULE, OUTSIDE RESEARCH BOT, BOUNDARY + OFFICIAL INFO PLAN) and the newest files in .claude/build/research/. You are KPC's RESEARCH DESK: you check and research, you don't build site pages or bots. Jobs: (1) judgment rounds: boundary checks, picking between layers, reviewing 2-fer candidates against the agencies' own maps; (2) spot-check every outside-agent results file before the owning chat imports it (sample rows against their links, flag hedged / non-official / wrong answers, write a short verdict file next to it); (3) small leftovers the agents could not do. Official sources only, a link on every answer, NOT SURE when unsure. Results go in .claude/build/research/ + one dated line in the owning chat's topic file (usually mapping.md); you never edit the data files the bots build."
+(Bulk copying from websites stays with the free outside agents; reading map servers stays with the free GitHub bots.)
+
 ## Links
 - Website: https://kentuckyportableclub.github.io/KPC-Links/
 - Activators Lounge (members): https://kentuckyportableclub.github.io/KPC-Links/kpc-activators-lounge.html
@@ -70,6 +74,7 @@ Rule: work goes to the chat that owns it. BOTS (Brandon Oct 25 8:04 AM): a data 
 4. App: the kpc-app repo, kpc-links app/ (version.json, packs), FT8 decoder changes (kpc-ft8.js/.wasm).
 5. Bots: the bots that POST or TALK: Discord relay/mod/watch/helper, Facebook posts + comments, email relay + subscribers, club posts (Lonely Parks, Park of the Week, Event Weather, busy bands), closure ANNOUNCEMENTS, workflow schedules, setup-todo.md (secrets). Not park-data building (that is 2).
 6. Campout & events: campout pages, Kentucky Radio Calendar (kpc_ses.py, kpc_events.py, kpc_contests.py), videos, KPC27 challenges scorer.
+8. Research desk (Sonnet): checks outside-agent results, judgment research rounds, leftovers; writes to .claude/build/research/ only.
 7. HQ: notes + to-do lists, what's next, shared-file watch, weekly status. Small fixes only.
 
 - DECIDED (HQ Oct 25 8:12 AM): app/hunters.json = CHAT 3 adds it as a second output of its existing kpc_hunters.py ('When Is POTA Busiest', same counts, no second bot), once that data is ready (14 days from Oct 23 → about Nov 6; 'ready' flag in kpc-hunters.json). CHAT 4 owns the file's FORMAT (the app reads {windows:[{days,from,to,note}]}) and tests the app with it. Exception to the feeds-the-tool rule: one data source = one bot.
@@ -88,6 +93,7 @@ Rule: work goes to the chat that owns it. BOTS (Brandon Oct 25 8:04 AM): a data 
 - kpc-cont.js + kpc-ft8.wasm: identical in both. kpc-ft8.js: app adds the built-in wasm loader (fine). kpc-digi.js = kpc-dsp.js except the rename.
 
 ## WHICH MODEL + WHAT EACH CHAT KEEPS UP (Brandon Oct 24 6:06 PM)
+- EFFORT (Brandon Oct 26: 'let me know when I need to increase'): default MEDIUM everywhere; HQ tells Brandon when a job needs HIGH (chat 2 bot design / tricky data, chat 4 decoder / remote / radio bugs, chat 1 release night) and when to drop back. 8 Research desk = Sonnet medium. Chat 1 = OPUS for the site remodel prep + release night (HIGH on release night), Sonnet again for small fixes after.
 - Models: 1 Website = Sonnet for small fixes, Opus for new tools · 2 Maps = Opus (Fable for the heavy data builds) · 3 Lounges = Opus · 4 App = Opus for screens/features, Fable for engine/decoder/remote/radio · 5 Bots = Sonnet is fine (Opus if a bot is new or tricky) · 6 Campout = Sonnet, Opus for the KPC27 scorer.
 - EVERY chat: reset to origin/main before editing; bump ?v= on changed scripts; test at 390 px + desktop; put a short dated note in its own topic file.
 - SHARED FILES (change in one place = check the other): kpc-cat.js (website + app), kpc-cont.js (website + app), kpc-digi.js (website) = kpc-dsp.js (app), kpc-ft8.js/.wasm (website → app, note the commit), kpc-my-parks.js POTA file store (Lounges + planners + Park Control), menu/header/footer (news.html → every page).
