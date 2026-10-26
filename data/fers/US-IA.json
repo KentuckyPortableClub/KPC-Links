@@ -2,67 +2,121 @@
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
  "pass2": "2026-10-26",
+ "pass3": "2026-10-26",
  "spots": [
   {
-   "acres": 40.6,
+   "access": [
+    43.466483,
+    -95.125181,
+    "Parking (Iowa DNR; one 403 on a query)",
+    "US-5736",
+    181
+   ],
+   "acres": 39.5,
    "box": [
-    -95.12614,
-    43.46397,
-    -95.12118,
-    43.4778
+    -95.12617,
+    43.46399,
+    -95.12109,
+    43.47782
    ],
    "center": [
-    43.467223,
-    -95.123166
+    43.46724,
+    -95.123197
    ],
    "found": "2026-10-26",
    "id": "US-10174+US-5736@area@43.467,-95.123",
    "kind": "area",
+   "maps": [
+    [
+     "US-10174",
+     "https://iowadnr.maps.arcgis.com/apps/webappviewer/index.html?id=63ec8e3d7fbc4f3bb0cf01f232118e68&query=Atlas_Web_Application_4143_1966%2CAREA_NAME%2CMarble%20Beach%20State%20Recreation%20Area"
+    ],
+    [
+     "US-5736",
+     "https://iowastateparks.reserveamerica.com/camping/templar-state-recreation-area/r/campgroundDetails.do?contractCode=IA&parkId=610199"
+    ]
+   ],
+   "names": {
+    "US-10174": "Marble Beach State Recreation Area",
+    "US-5736": "Templar State Recreation Area"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "US-10174": true,
+    "US-5736": true
+   },
    "refs": [
     "US-10174",
     "US-5736"
    ],
    "shape": [
     [
-     -95.126136,
-     43.477804
+     -95.126167,
+     43.477821
     ],
     [
-     -95.124404,
-     43.467042
+     -95.126106,
+     43.476827
     ],
     [
-     -95.123042,
-     43.463967
+     -95.124373,
+     43.466879
     ],
     [
-     -95.121185,
-     43.463967
+     -95.123011,
+     43.463985
     ],
     [
-     -95.122052,
-     43.467765
+     -95.121092,
+     43.463985
     ],
     [
-     -95.12428,
-     43.470931
+     -95.121526,
+     43.465251
     ],
     [
-     -95.125394,
-     43.474096
+     -95.121773,
+     43.466788
     ],
     [
-     -95.125518,
-     43.477804
+     -95.122145,
+     43.467919
+    ],
+    [
+     -95.122516,
+     43.468597
+    ],
+    [
+     -95.124001,
+     43.470451
+    ],
+    [
+     -95.124434,
+     43.471446
+    ],
+    [
+     -95.12493,
+     43.473345
+    ],
+    [
+     -95.125301,
+     43.473933
+    ],
+    [
+     -95.12561,
+     43.47538
+    ],
+    [
+     -95.125549,
+     43.477821
     ]
    ],
-   "status": "pass 2",
-   "wide_m": 204
+   "status": "candidate",
+   "wide_m": 206
   }
  ],
  "st": "US-IA"

@@ -2,6 +2,7 @@
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
  "pass2": "2026-10-26",
+ "pass3": "2026-10-26",
  "spots": [
   {
    "acres": 7.4,
@@ -53,57 +54,90 @@
    "wide_m": 112
   },
   {
-   "acres": 21.2,
+   "access": [
+    44.091672,
+    -72.757888,
+    "Parking (VT state agency)",
+    "US-5549",
+    4549
+   ],
+   "acres": 20.2,
    "box": [
-    -72.80907,
-    44.06722,
-    -72.80544,
-    44.07301
+    -72.80914,
+    44.06716,
+    -72.80545,
+    44.07299
    ],
    "center": [
-    44.071201,
-    -72.807318
+    44.071319,
+    -72.807322
    ],
    "found": "2026-10-26",
    "id": "US-4527+US-5549@area@44.071,-72.807",
    "kind": "area",
+   "maps": [
+    [
+     "US-4527",
+     "https://www.fs.usda.gov/gmfl"
+    ],
+    [
+     "US-5549",
+     "https://fpr.vermont.gov/roxbury-state-forest"
+    ]
+   ],
+   "names": {
+    "US-4527": "Green Mountain National Forest",
+    "US-5549": "Roxbury State Forest"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "US-4527": true,
+    "US-5549": true
+   },
    "refs": [
     "US-4527",
     "US-5549"
    ],
    "shape": [
     [
-     -72.807193,
-     44.07301
+     -72.807259,
+     44.072992
     ],
     [
-     -72.809069,
-     44.070388
+     -72.809072,
+     44.070415
     ],
     [
-     -72.808569,
-     44.068398
+     -72.808572,
+     44.068244
     ],
     [
-     -72.809069,
-     44.067765
+     -72.809135,
+     44.067882
     ],
     [
-     -72.808694,
-     44.067222
+     -72.808635,
+     44.067159
     ],
     [
-     -72.805443,
-     44.072377
+     -72.807384,
+     44.069103
+    ],
+    [
+     -72.807509,
+     44.069465
+    ],
+    [
+     -72.805446,
+     44.072495
     ]
    ],
-   "status": "pass 2",
-   "wide_m": 176
+   "status": "candidate",
+   "wide_m": 164
   }
  ],
  "st": "US-VT"
