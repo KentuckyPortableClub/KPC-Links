@@ -4,6 +4,75 @@
   {
    "agency": "",
    "area": "",
+   "count": 70,
+   "fields": [
+    "Name_e",
+    "Nom_f",
+    "Label_e",
+    "Etiquette_f",
+    "Asset_N_Bien",
+    "Asset_Comp_N_Comp_Bien",
+    "URL_e",
+    "URL_f"
+   ],
+   "known": false,
+   "layer": "Facilities_Installations_Point",
+   "sample": [
+    {
+     "Etiquette_f": "Athabasca Falls",
+     "Label_e": "Athabasca Falls",
+     "Name_e": "Athabasca Falls"
+    },
+    {
+     "Etiquette_f": "Athabasca River",
+     "Label_e": "Athabasca River",
+     "Name_e": "Athabasca River"
+    },
+    {
+     "Etiquette_f": "Cabin Lake",
+     "Label_e": "Cabin Lake",
+     "Name_e": "Cabin Lake"
+    }
+   ],
+   "service": "JNP_Trailhead_Area",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/JNP_Trailhead_Area/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 20,
+   "fields": [
+    "Name",
+    "Address",
+    "Area"
+   ],
+   "known": false,
+   "layer": "wsLakeSimcoeBoatLaunches2025",
+   "sample": [
+    {
+     "Address": "119 Riveredge Dr., Keswick",
+     "Area": "Cook's Bay East",
+     "Name": "Coves of Keswick"
+    },
+    {
+     "Address": "967 Lake Dr N, Keswick",
+     "Area": "Cook's Bay East",
+     "Name": "East Point Marina"
+    },
+    {
+     "Address": "233 The Queensway S., Keswick",
+     "Area": "Cook's Bay East",
+     "Name": "Harry’s Riverside Bait"
+    }
+   ],
+   "service": "wsLakeSimcoeBoatLaunches2025",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/wsLakeSimcoeBoatLaunches2025/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
    "count": 98,
    "fields": [
     "Name_e",
@@ -12,7 +81,7 @@
     "Etiquette_f",
     "Notes"
    ],
-   "known": false,
+   "known": true,
    "layer": "Trails Access Points",
    "sample": [
     {
