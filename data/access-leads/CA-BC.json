@@ -1,0 +1,148 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "© 2024 Government of British Columbia",
+   "area": "",
+   "count": 761,
+   "fields": [
+    "FOREST_FILE_ID",
+    "SITE_LOCATION",
+    "PROJECT_NAME",
+    "OPERATOR_LEGAL_FIRST_NAME",
+    "OPERATOR_CLIENT_NAME",
+    "RECREATION_MAINTAIN_STD_CODE",
+    "MAINTAIN_STD_DESC",
+    "DRIVING_DIRECTIONS",
+    "CLOSURE_DESCRIPTION",
+    "PROJECT_DESCRIPTION",
+    "RECREATION_FEATURE_CODE",
+    "RESOURCE_FEATURE_IND",
+    "ARCH_IMPACT_ASSESS_IND",
+    "ACTIVITY1",
+    "ACTIVITY_DESC1",
+    "ACTIVITY2",
+    "ACTIVITY_DESC2",
+    "ACTIVITY3",
+    "ACTIVITY_DESC3",
+    "ACTIVITY4"
+   ],
+   "known": false,
+   "layer": "Recreation Trail Heads Subset - Information Purposes Only",
+   "sample": [
+    {
+     "DRIVING_DIRECTIONS": " To access the canoe route via Pacific Yew Rec Site:\r\nFrom Campbell River (Campbellton area) take Hwy 19 north towards Sayward; follow highway for approx 14.5 km, then turn left onto Menzies Mainline (gravel logging road); follow the mainline for 10.5 km and then turn right onto Pacific Yew Recreation Site. Free parking is currently provided adjacent to the boat launch. About a 35 minute drive from town (depending upon the condition of the gravel road.)",
+     "FOREST_FILE_ID": "REC0197",
+     "MAINTAIN_STD_DESC": "User Maintained",
+     "PROJECT_DESCRIPTION": "The Sayward Forest Canoe Route is a popular paddling circuit that can be completed in 3-5 days. There are a few options for starting points but the most popular is starting point is Mohun Lake, accessed from the new Pacific Yew Recreation Site (with designated parking for paddlers).<br><br> \r\n\r\nNote: additional portaging/lining will be needed during dry seasons with low water levels (particularly at the Twin Swamps and Gray Lake to Whymper channel).\r\n\r\nThe following rec sites along the canoe route are fee for service sites, first come first served and cash only:\r\nBrewster Lake, Apple Point, Brewster Camp, Gray Lake, Orchard Meadow, Loon Bay, Dogwood Bay, Campbell Lake, Pacific Yew.",
+     "PROJECT_NAME": "Sayward Forest Canoe Route",
+     "RECREATION_MAINTAIN_STD_CODE": "U",
+     "RESOURCE_FEATURE_IND": "Y",
+     "SITE_LOCATION": "CAMPBELL RIVER"
+    },
+    {
+     "DRIVING_DIRECTIONS": " When travelling along Hwy 1., take Exit 119A on Vedder Road and begin travelling south. After approximately 5.5 km, turn left onto Chilliwack Lake Road before the Vedder Bridge. After travelling approximately 20 km up the Chilliwack Lake Road, turn right at the road immediately after a gated gravel road shortly after the Canadian Force Base rifle range.  You will see a parking area just off the Chilliwack Lake Road. You are required to park here and walk a short distance, approximately 230 m through an experimental forest to the old parking area where you will find the trailhead located behind the large log to the right off the clearing. ",
+     "FOREST_FILE_ID": "REC0342",
+     "PROJECT_DESCRIPTION": " As you venture through the forest along this 16 km hike you will come upon an opening where you can experience picturesque views of Mt. Mercer and the Cheam Range. After this point, the trail lowers through a beautiful old growth forest guiding you across Pierce Creek. Once you have reached the summit, you will have the opportunity to fish in the deep blue water of Pierce Lake.",
+     "PROJECT_NAME": "Pierce Lake Trail",
+     "RESOURCE_FEATURE_IND": "N",
+     "SITE_LOCATION": "CHILLIWACK RIVER VALLEY"
+    },
+    {
+     "DRIVING_DIRECTIONS": "When travelling on Hwy 1., take Exit 119A and begin travelling south down Vedder Road. After approximately 5.5 km, you will reach a three-way stop at Vedder Bridge. Continue straight over the bridge. Turn left at the next set of traffic lights onto Cultus Lake Road. Continue for 2 km, then turn right onto Parmenter Road. Continue past the gravel pit and keep right as the road changes to gravel. Continue 600 m until the next fork in the road. 2WD vehicles will need to park here. 4WD vehicles may continue uphill for 2.9 km to a large yellow sign and wooden trailhead post on the right side of the road. ",
+     "FOREST_FILE_ID": "REC0350",
+     "MAINTAIN_STD_DESC": "User Maintained",
+     "PROJECT_DESCRIPTION": "The Vedder Mountain Trail is within the Vedder Interpretive Forest. Enjoy this 11 km hike through a pleasant forest with Vedder Mtn. at its center with an elevation of 924 m / 3031 ft.\r\nAlong the trail, you will come across marshy areas, ponds and creeks. Upon reaching the summit you will enjoy excellent views of Chilliwack and the surrounding valleys with Cultus Lake to the East, Greendale Valley to the North and a view of Sumas Mtn. lying to the Northwest.\r\n",
+     "PROJECT_NAME": "Vedder Mountain",
+     "RECREATION_MAINTAIN_STD_CODE": "U",
+     "RESOURCE_FEATURE_IND": "N",
+     "SITE_LOCATION": "CHILLIWACK RIVER VALLEY"
+    }
+   ],
+   "service": "whse/bcgw_pub_whse_forest_tenure",
+   "typef": "MAINTAIN_STD_DESC",
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/1"
+  },
+  {
+   "agency": "© 2024 Government of British Columbia",
+   "area": "",
+   "count": 215,
+   "fields": [
+    "FEATURE_CODE",
+    "LOCATION",
+    "COMMENTS",
+    "DATA_SOURCE",
+    "SOURCE_PROJECT"
+   ],
+   "known": false,
+   "layer": "Coastal BC Boat Launches",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "DATA_SOURCE": "Focus group information from ARA Consulting, (Ray",
+     "FEATURE_CODE": " ",
+     "LOCATION": "Becher Bay",
+     "SOURCE_PROJECT": "WCVI"
+    },
+    {
+     "COMMENTS": " ",
+     "DATA_SOURCE": "CHS3641",
+     "FEATURE_CODE": " ",
+     "LOCATION": "Becher Bay",
+     "SOURCE_PROJECT": "WCVI"
+    },
+    {
+     "COMMENTS": " ",
+     "DATA_SOURCE": "CHS3641",
+     "FEATURE_CODE": " ",
+     "LOCATION": "Becher Bay",
+     "SOURCE_PROJECT": "WCVI"
+    }
+   ],
+   "service": "whse/bcgw_pub_whse_environmental_monitoring",
+   "typef": "FEATURE_CODE",
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_environmental_monitoring/MapServer/9"
+  },
+  {
+   "agency": "© 2024 Government of British Columbia",
+   "area": "",
+   "count": 214,
+   "fields": [
+    "FEATURE_CODE",
+    "DESCRIPTION",
+    "LOCATION",
+    "DATA_SOURCE",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Coastal BC Marine Kayaking Destinations",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "DATA_SOURCE": "MOF / CTRIP",
+     "DESCRIPTION": "Staging Area",
+     "FEATURE_CODE": " ",
+     "LOCATION": "Lund"
+    },
+    {
+     "COMMENTS": " ",
+     "DATA_SOURCE": "MOF / CTRIP",
+     "DESCRIPTION": "Staging Area",
+     "FEATURE_CODE": " ",
+     "LOCATION": "Okeover Inlet"
+    },
+    {
+     "COMMENTS": "Okeover Arm Provincial Park",
+     "DATA_SOURCE": "PARKS, STREETMAP",
+     "DESCRIPTION": "Picnic Site & Campsite",
+     "FEATURE_CODE": " ",
+     "LOCATION": "Okeover Inlet, Malaspina Peninsula"
+    }
+   ],
+   "service": "whse/bcgw_pub_whse_environmental_monitoring",
+   "typef": "FEATURE_CODE",
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_environmental_monitoring/MapServer/31"
+  }
+ ],
+ "st": "CA-BC"
+}

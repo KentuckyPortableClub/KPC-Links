@@ -1,0 +1,44 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 98,
+   "fields": [
+    "Name_e",
+    "Nom_f",
+    "Label_e",
+    "Etiquette_f",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Trails Access Points",
+   "sample": [
+    {
+     "Etiquette_f": "Point de départ du sentier du  Rivière Alexandra",
+     "Label_e": "Alexandra River Trailhead",
+     "Name_e": "Alexandra River",
+     "Nom_f": "Rivière Alexandra"
+    },
+    {
+     "Etiquette_f": "Point de départ du sentier du Ruisseau Bryant",
+     "Label_e": "Bryant Creek Trailhead",
+     "Name_e": "Bryant Creek",
+     "Nom_f": "Ruisseau Bryant"
+    },
+    {
+     "Etiquette_f": "Point de départ du sentier du Amphithéâtre Cascade",
+     "Label_e": "Cascade Amphitheatre Trailhead",
+     "Name_e": "Cascade Amphitheatre",
+     "Nom_f": "Amphithéâtre Cascade",
+     "Notes": "Cascade Amphitheatre Trailhead"
+    }
+   ],
+   "service": "Access_Points_Draft",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Access_Points_Draft/FeatureServer/2"
+  }
+ ],
+ "st": "CA-PC"
+}

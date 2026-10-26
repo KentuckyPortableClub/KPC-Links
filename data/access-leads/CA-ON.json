@@ -1,0 +1,433 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 3731,
+   "fields": [
+    "FISHING_ACCESS_POINT_TYPE",
+    "VERIFICATION_DATE_SOURCE",
+    "PARKING_PRESENCE_FLG",
+    "SITE_OWNERSHIP_TYPE",
+    "MATERIAL_TYPE",
+    "ACCESSIBILITY_FLG",
+    "USER_FEE_FLG",
+    "VISIBILITY_IND",
+    "SITE_NAME",
+    "SITE_PHOTO_URL",
+    "ADDITIONAL_INFORMATION_URL",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Fishing Access Point",
+   "sample": [
+    {
+     "ACCESSIBILITY_FLG": "Unknown",
+     "FISHING_ACCESS_POINT_TYPE": "Boat Launch",
+     "GENERAL_COMMENTS": "RECREATION_POINT.OGF_ID = 151345828",
+     "MATERIAL_TYPE": "Unknown",
+     "PARKING_PRESENCE_FLG": "Unknown",
+     "SITE_NAME": "Mcwhinney Lake Access",
+     "SITE_OWNERSHIP_TYPE": "Unknown",
+     "USER_FEE_FLG": "Unknown",
+     "VISIBILITY_IND": "Yes"
+    },
+    {
+     "ACCESSIBILITY_FLG": "Unknown",
+     "FISHING_ACCESS_POINT_TYPE": "Boat Launch",
+     "GENERAL_COMMENTS": "RECREATION_POINT.OGF_ID = 601438092",
+     "MATERIAL_TYPE": "Unknown",
+     "PARKING_PRESENCE_FLG": "Unknown",
+     "SITE_NAME": "BE-13",
+     "SITE_OWNERSHIP_TYPE": "Unknown",
+     "USER_FEE_FLG": "Unknown",
+     "VISIBILITY_IND": "No"
+    },
+    {
+     "ACCESSIBILITY_FLG": "Unknown",
+     "FISHING_ACCESS_POINT_TYPE": "Boat Launch",
+     "GENERAL_COMMENTS": "RECREATION_POINT.OGF_ID = 400291069",
+     "MATERIAL_TYPE": "Unknown",
+     "PARKING_PRESENCE_FLG": "Unknown",
+     "SITE_OWNERSHIP_TYPE": "Unknown",
+     "USER_FEE_FLG": "Unknown",
+     "VISIBILITY_IND": "No"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "FISHING_ACCESS_POINT_TYPE",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 853,
+   "fields": [
+    "LOCATION_ACCURACY"
+   ],
+   "known": false,
+   "layer": "OTN Access Point",
+   "sample": [
+    {
+     "LOCATION_ACCURACY": "Within 10 metres"
+    },
+    {
+     "LOCATION_ACCURACY": "Within 10 metres"
+    },
+    {
+     "LOCATION_ACCURACY": "Within 10 metres"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open04",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/20"
+  },
+  {
+   "agency": "County of Grey",
+   "area": "NAME",
+   "count": 301,
+   "fields": [
+    "TYPE",
+    "NAME",
+    "ROLLNUMBER",
+    "CIVIC",
+    "STREET",
+    "PHONE",
+    "POSTAL_CODE",
+    "WEBSITE",
+    "MUNICIPALITY",
+    "Community",
+    "Notes",
+    "AlternateWebsites",
+    "Verified"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "MUNICIPALITY": "Township of Georgian Bluffs",
+     "NAME": " ",
+     "ROLLNUMBER": "420362000300700",
+     "STREET": "719521 Highway 6",
+     "TYPE": "Parking",
+     "WEBSITE": " "
+    },
+    {
+     "MUNICIPALITY": "Township of Georgian Bluffs",
+     "NAME": " ",
+     "ROLLNUMBER": "420354000106100",
+     "STREET": "237785 INGLIS FALLS ROAD",
+     "TYPE": "Parking",
+     "WEBSITE": " "
+    },
+    {
+     "MUNICIPALITY": "Town of The Blue Mountains",
+     "NAME": " ",
+     "ROLLNUMBER": "424200000800119",
+     "TYPE": "Parking",
+     "WEBSITE": " "
+    }
+   ],
+   "service": "Public/Service_Tourism",
+   "typef": "TYPE",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_Tourism/MapServer/19"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 87,
+   "fields": [
+    "NAME",
+    "Address",
+    "EDITOR"
+   ],
+   "known": false,
+   "layer": "Forest Entrance",
+   "sample": [
+    {
+     "Address": "083634 Sideroad 6",
+     "NAME": "Massie North"
+    },
+    {
+     "Address": "497250 6th Concession S",
+     "NAME": "Massie East"
+    },
+    {
+     "Address": "063350 Sunny Valley Rd",
+     "NAME": "South"
+    }
+   ],
+   "service": "Public/Service_ForestTract",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ForestTract/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Property",
+   "count": 81,
+   "fields": [
+    "Property",
+    "Access_Typ",
+    "Dock",
+    "Lake_Name",
+    "PUBLIC_Boat_Launches_on_lake",
+    "Address_Comment",
+    "Parking",
+    "GEL_NAME_I"
+   ],
+   "known": false,
+   "layer": "Boat_Launch_CRCA",
+   "sample": [
+    {
+     "Access_Typ": "Water Access",
+     "Address_Comment": "5980 Bedford Rd, Sydenham, ON K0H 2T0",
+     "Dock": "N",
+     "GEL_NAME_I": "0c367e37849c20c32a3fb1984f651486",
+     "Lake_Name": "Cronk Lake",
+     "Parking": "No",
+     "Property": "Cronk Lake"
+    },
+    {
+     "Access_Typ": "Boat Ramp",
+     "Address_Comment": "Perth Rd, South Frontenac, ON K0H 1X0",
+     "Dock": "Floating",
+     "GEL_NAME_I": "2",
+     "Lake_Name": "Loughborough Lake West",
+     "PUBLIC_Boat_Launches_on_lake": "Y",
+     "Parking": "Yes",
+     "Property": "Loughborough Lake"
+    },
+    {
+     "Access_Typ": "Boat Ramp",
+     "Address_Comment": "130 Mill St, Seeley's Bay, ON K0H 2N0",
+     "Dock": "Municipal",
+     "GEL_NAME_I": "35ce5518c6be11d892e2080020a0f4c9",
+     "Lake_Name": "Little Cranberry Lake",
+     "Parking": "Yes",
+     "Property": "Seeleys Bay"
+    }
+   ],
+   "service": "Boat_Launch_CRCA_2021",
+   "typef": "",
+   "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Boat_Launch_CRCA_2021/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "compliance_overall",
+    "check1_dws",
+    "check2_running_slope",
+    "check3_cross_slope",
+    "check4_left_flare_slope",
+    "check5_right_flare_slope",
+    "dws_present_1"
+   ],
+   "known": false,
+   "layer": "Sidewalks Ramp StreetScan",
+   "sample": [
+    {
+     "check1_dws": "Fail",
+     "check2_running_slope": "Pass",
+     "check3_cross_slope": "Fail",
+     "check4_left_flare_slope": "Fail",
+     "check5_right_flare_slope": "Pass",
+     "compliance_overall": "Not Compliant",
+     "dws_present_1": "Not Present"
+    },
+    {
+     "check1_dws": "Fail",
+     "check2_running_slope": "Pass",
+     "check3_cross_slope": "Pass",
+     "check4_left_flare_slope": "Pass",
+     "check5_right_flare_slope": "Pass",
+     "compliance_overall": "Not Compliant",
+     "dws_present_1": "Not Present"
+    },
+    {
+     "check1_dws": "Fail",
+     "check2_running_slope": "Fail",
+     "check3_cross_slope": "Fail",
+     "check4_left_flare_slope": "Pass",
+     "check5_right_flare_slope": "Fail",
+     "compliance_overall": "Not Compliant",
+     "dws_present_1": "Not Present"
+    }
+   ],
+   "service": "Public/Service_ChatsworthAssets",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ChatsworthAssets/MapServer/17"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 11,
+   "fields": [
+    "name",
+    "description",
+    "icon_color",
+    "pic_url",
+    "thumb_url"
+   ],
+   "known": false,
+   "layer": "MAP_TOUR",
+   "sample": [
+    {
+     "description": "Fort Rouillé was built by the French military in 1750 to serve as a trading post intended to intercept the path that Indigenous traders took when carrying valuable furs to Lake Ontario and to the English post at Oswego, New York. It never saw military action, and was in use until July 1759 when the garrison of 16 men withdrew and burned the fort after the fall of Fort Niagara to the British. The outline of the palisade can be seen on the grounds of the CNE.",
+     "icon_color": "g",
+     "name": "Fort Rouillé",
+     "pic_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0/1/attachments/1",
+     "thumb_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0/1/attachments/2"
+    },
+    {
+     "description": "The Seed-Barker Site is a Late Iroquoian (16th century)&nbsp;village strategically located along the Carrying Place Trail. Excavations have found evidence of 7 longhouses, 13 other structures, and more than 1 million artifacts. Between 1975-2005, the site was home to a number of archaeological field schools and excavated annually, contributing to the education of a generation of archaeologists.",
+     "icon_color": "g",
+     "name": "Seed-Barker Site",
+     "pic_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0/2/attachments/3",
+     "thumb_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0/2/attachments/4"
+    },
+    {
+     "description": "Originally built by the Seneca, the historical village of Teiaiagon means “to cross”, appropriately named as the village was the last stopping point on foot before continuing the portage portion of the Carrying Place Trail. The important meeting place and trading post supported approximately 2000 Seneca and Mohawk people and was settled for several decades. The area was futher settled by the Mississauga in the 18th century.",
+     "icon_color": "g",
+     "name": "Teiaiagon ",
+     "pic_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0/3/attachments/5",
+     "thumb_url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0/3/attachments/6"
+    }
+   ],
+   "service": "Carrying_Place_Trail_Points",
+   "typef": "description",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Carrying_Place_Trail_Points/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_ID",
+    "CA_Name",
+    "Feature",
+    "Comments",
+    "Directions"
+   ],
+   "known": false,
+   "layer": "Balls Falls Entrance",
+   "sample": [
+    {
+     "CA_ID": "13",
+     "CA_Name": "Click for Directions",
+     "Directions": "https://www.google.com/maps?saddr=My+Location&daddr=43.13295,-79.39163",
+     "Feature": "Entrance"
+    }
+   ],
+   "service": "Balls_Falls_Entrance",
+   "typef": "Feature",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Balls_Falls_Entrance/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_ID",
+    "CA_Name",
+    "Feature",
+    "Comments",
+    "Directions",
+    "Click"
+   ],
+   "known": false,
+   "layer": "Beamer_Memorial_Entrance",
+   "sample": [
+    {
+     "CA_ID": "34",
+     "CA_Name": "Beamer Memorial",
+     "Click": "Click for Directions",
+     "Directions": "https://www.google.com/maps?saddr=My+Location&daddr=43.18829,-79.57565",
+     "Feature": "Entrance"
+    }
+   ],
+   "service": "Beamer_Memorial_Entrance",
+   "typef": "Feature",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Beamer_Memorial_Entrance/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_ID",
+    "CA_Name",
+    "Feature",
+    "Comments",
+    "Directions",
+    "Click"
+   ],
+   "known": false,
+   "layer": "Binbrook_Entrance",
+   "sample": [
+    {
+     "CA_ID": "20",
+     "CA_Name": "Binbrook",
+     "Directions": "https://www.google.com/maps?saddr=My+Location&daddr=43.09663,-79.82849",
+     "Feature": "Entrance"
+    }
+   ],
+   "service": "Binbrook_Entrance",
+   "typef": "Feature",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Binbrook_Entrance/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_ID",
+    "CA_Name",
+    "Feature",
+    "Comments",
+    "Directions"
+   ],
+   "known": false,
+   "layer": "Canborough Entrance",
+   "sample": [
+    {
+     "CA_ID": "25",
+     "CA_Name": "Canborough",
+     "Directions": "https://www.google.com/maps?saddr=My+Location&daddr=42.99219,-79.677",
+     "Feature": "Entrance"
+    }
+   ],
+   "service": "Canborough_Entrance",
+   "typef": "Feature",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Canborough_Entrance/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_ID",
+    "CA_Name",
+    "Feature",
+    "Comments",
+    "Directions"
+   ],
+   "known": false,
+   "layer": "Cave Springs Entrance",
+   "sample": [
+    {
+     "CA_ID": "32",
+     "CA_Name": "Cave Springs",
+     "Directions": "https://www.google.com/maps?saddr=My+Location&daddr=43.15013,-79.44672",
+     "Feature": "Entrance"
+    }
+   ],
+   "service": "Cave_Springs_Entrance",
+   "typef": "Feature",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Cave_Springs_Entrance/FeatureServer/0"
+  }
+ ],
+ "st": "CA-ON"
+}
