@@ -147,7 +147,7 @@
           show(fc, '#ffb000', ap ? '10 6' : null, ap ? .06 : .12); dl(); B.className = 'pi-bnd ' + (ap ? 'osm' : 'ok');
           const names = [...new Set(u.fs.map(f => f._nm))].slice(0, 3).map(esc).join('; ');
           B.innerHTML = ap ? `<b>Approximate outline, not official:</b> ${names} (${esc(u.src)}). We are not sure this is the park: ${esc(u.why)}. Check the park's own map.`
-            : `<b>${names}</b>. Official boundary from ${esc(u.src)}. Check the park's own map for closed areas.`;
+            : `<b>${names}</b>. Official boundary from ${esc(u.src)}. Check the park's own map for closed areas.${u.note ? ' <b>' + esc(u.note) + '</b>' : ''}`;
           return;
         }
         if (u.label === 'none') {

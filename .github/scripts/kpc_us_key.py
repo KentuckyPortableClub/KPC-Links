@@ -680,7 +680,7 @@ def run(st):
             for want in ov.get('join', []):
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
-                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):
+                    if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):   # Oct 25: an id in 'no' is never re-added by a same-name join
                         m.append([a['OBJECTID'], nm, round(a.get('GIS_Acres') or 0), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: 'approx' = a person picked the closest official land, but it is bigger or shaped differently: the tools label it Approximate
         site = []
         if not m and la is not None:
@@ -771,6 +771,9 @@ def run(st):
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
         if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
+    # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
+    for ref in parks:
+        if (OVR.get(ref) or {}).get('note'): parks[ref]['note'] = OVR[ref]['note']
     # Oct 22 guard (a rebuild from the saved outlines dropped 315 joins: the land was simply not in the saved copy): a park
     # that HAD an outline keeps it when NONE of its old land is in what this run read. A join the new rules turned down
     # (its land is here, just not matched) is not kept; a person's 'no' always wins.
