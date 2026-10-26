@@ -23,9 +23,17 @@ ROOTS = {'VA': ['https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/servi
          'AZ': ['https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services']}
 WANT = re.compile(r'park(ing)?\b(?! *(boundar|unit|name|area\b))|trail ?heads?|access (point|site|area)s?\b|boat(ing)? (ramp|access|launch)|'
                   r'\bramps?\b|launch|entrance|\bgates?\b|kiosk|fishing access|water access|put[- ]?in|carry[- ]?in|canoe|kayak', re.I)
+# Oct 26 (HQ boundary plan A3): KIND=outline looks for POLYGON layers of parks instead (OUTLINE LAYER EXPLORER)
+KIND = (os.environ.get('KIND') or 'parking').strip().lower()
+if KIND == 'outline':
+    WANT = re.compile(r'park|recreation|historic|wildlife|\bwma\b|game land|forest|hatcher|preserve|reserve|natural area|conservation|'
+                      r'public land|managed land|propert|refuge|monument|trail|wilderness|state land|dnr land|fish', re.I)
 NOT = re.compile(r'parcel|boundar|polygon|district|zone|county|census|road|route|lane|centerline|bridge|culvert|dam\b|toilet|'
                  r'restroom|building|tower|well|tank|pipeline|sign(?!.*kiosk)|grazing|allotment|survey|plss|section|township|'
                  r'park(s)? (boundar|polygon|area)|state park(s)?$|parks?$', re.I)
+if KIND == 'outline':
+    NOT = re.compile(r'road|route|lane|centerline|bridge|culvert|building|tower|pipeline|census|zoning|flood|soil|geolog|sewer|utility|'
+                     r'school|voting|precinct|parcel|tax|plss|township|section|grid|index|footprint|label|anno', re.I)
 AREAF = re.compile(r'(area|wma|park|property|unit|site|facility|prop|land|loc)_?(name|nm)?$|^(name|sitename|propname|area_name|parkname)$', re.I)
 TYPEF = re.compile(r'type|class|categ|use|feat|desc|kind|subtype|fac', re.I)
 
@@ -99,10 +107,14 @@ def main():
     for k in [k for k in sg if k in ('AB', 'BC', 'MB', 'NB', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT')]:
         sg.setdefault('CA-' + k, []).extend(sg.pop(k))   # provinces in state-gis.json share the letters of states (CA = California)
     for k, v in canada_targets().items(): sg.setdefault(k, []).extend(v)
-    known = {L['url'].rstrip('/').lower() for L in json.load(open('data/access-layers.json')).get('layers', [])}
+    if KIND == 'outline':   # already used = in state-gis.json (the keys read it)
+        known = {str(e.get('url') or '').rstrip('/').lower() for v in json.load(open('data/state-gis.json'))['states'].values() for e in v}
+        known |= {str(v[0]).rsplit('/query', 1)[0].rstrip('/').lower() for v in json.load(open('data/us-key/layers.json')).values()}
+    else:
+        known = {L['url'].rstrip('/').lower() for L in json.load(open('data/access-layers.json')).get('layers', [])}
     # Oct 25 (Brandon: 'split it up between bots'): one file per state / province in data/access-leads/, and PART picks a
     # share of them, so several runs (the workflow's matrix jobs) can work at the same time without touching each other's files
-    D = pathlib.Path('data/access-leads'); D.mkdir(parents=True, exist_ok=True)
+    D = pathlib.Path('data/outline-leads' if KIND == 'outline' else 'data/access-leads'); D.mkdir(parents=True, exist_ok=True)
     checked = {}
     for f in D.glob('*.json'):
         try: checked[f.stem] = json.load(open(f)).get('checked', '')
@@ -150,7 +162,7 @@ def main():
                     lu = f"{su}/{L.get('id')}"
                     try:
                         li = get(lu, {'f': 'json'})
-                        if 'Point' not in str(li.get('geometryType', '')): continue
+                        if ('Polygon' if KIND == 'outline' else 'Point') not in str(li.get('geometryType', '')): continue
                         cnt = get(lu + '/query', {'where': '1=1', 'returnCountOnly': 'true', 'f': 'json'}).get('count')
                         flds = [f['name'] for f in li.get('fields', []) if f.get('type') == 'esriFieldTypeString']
                         smp = get(lu + '/query', {'where': '1=1', 'outFields': ','.join(flds[:12]) or '*', 'returnGeometry': 'false',
