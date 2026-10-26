@@ -96,6 +96,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Powhatan Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,555 ac
 - C.F. Phelps Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,543 ac
 - Powhatan Wildlife Management Area · SCA ·   · ~4,483 ac
+- Bluestone Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~4,336 ac
 - Short Hills Wildlife Management Area · SCA ·   · ~4,233 ac
 - Short Hills Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~4,233 ac
 - Rapidan Wildlife Management Area · SCA ·   · ~4,119 ac
@@ -105,4 +106,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Currituck National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,810 ac
 - Cavalier Wildlife Management Area · SCA · VA Department of Wildlife Resources · ~3,770 ac
 - South Quay Sandhills ·  · Virginia DCR Natural Heritage (preserve, state GIS table) · ~3,753 ac
-- False Cape State Natural Area Preserve · SCA ·   · ~3,603 ac

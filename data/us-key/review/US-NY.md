@@ -60,8 +60,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Saranac Lakes Wild Forest · SCA · NYS Department of Environmental Conservation · ~80,707 ac
 - Debar Mountain Wild Forest · SCA · NYS Department of Environmental Conservation · ~80,485 ac
 - Vanderwhacker Mountain Wild Forest ·  · New York State DEC (land, state GIS table) · ~72,972 ac
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~68,553 ac
 - Moose River Plains Wild Forest · SCA · NYS Department of Environmental Conservation · ~67,242 ac
 - Moose River Plains Wild Forest ·  · New York State DEC (land, state GIS table) · ~66,978 ac
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~57,111 ac
 - Slide Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~50,749 ac
 - Slide Mountain Wilderness ·  · New York State DEC (land, state GIS table) · ~50,711 ac
 - Jessup River Wild Forest · SCA · NYS Department of Environmental Conservation · ~48,491 ac
@@ -98,5 +100,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Hudson Gorge Wilderness ·  · New York State DEC (land, state GIS table) · ~24,509 ac
 - Pepperbox Wilderness · SW · NYS Department of Environmental Conservation · ~24,336 ac
 - Pepperbox Wilderness ·  · New York State DEC (land, state GIS table) · ~24,317 ac
-- Aldrich Pond Wild Forest ·  · New York State DEC (land, state GIS table) · ~23,950 ac
-- Sentinel Range Wilderness · SW · NYS Department of Environmental Conservation · ~23,879 ac

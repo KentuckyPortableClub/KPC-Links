@@ -1,9 +1,10 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **122 of 134** parks joined to official land (same name + same kind of place). **0** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **125 of 134** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0684** Lower Delaware National Wild and Scenic River (National Wild and Scenic River) → Delaware Wild and Scenic River (~21,333 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -12,10 +13,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-0677 Great Egg Harbor National Wild and Scenic River (National Wild and Scenic River)
-- US-0684 Lower Delaware National Wild and Scenic River (National Wild and Scenic River)
-- US-0886 Maurice River National Wild and Scenic River (National Wild and Scenic River)
-- US-0888 Musconetcong River National Wild and Scenic River (National Wild and Scenic River)
 - US-13061 Gum Tree Corner Wildlife Management Area (Wildlife Management Area)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
@@ -25,6 +22,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~68,553 ac
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~21,333 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Franklin Parker Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~10,763 ac
 - Franklin Parker Preserve · PCON · New Jersey Conservation Foundation · ~8,931 ac
@@ -83,5 +82,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,096 ac
 - BEAR CREEK PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~1,062 ac
 - Bear Creek Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,062 ac
-- Manahawkin Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,060 ac
-- Great Egg Harbor River Wildlife Management Area · SCA ·   · ~1,024 ac

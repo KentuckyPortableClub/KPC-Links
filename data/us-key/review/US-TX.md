@@ -38,22 +38,22 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Roswell Field Office ERMA ·  · BLM recreation sites · ~1,441,359 ac
+- Roswell Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,441,359 ac
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~1,324,218 ac
 - Sevilleta National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~227,850 ac
 - Pecos Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~221,835 ac
-- Taos Plateau ·  · BLM recreation sites · ~186,840 ac
+- Taos Plateau ·  · BLM recreation management areas · official (BLM planning area) · ~186,840 ac
 - Sabine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~123,814 ac
 - Sam Rayburn Recreation Area · REC · Forth Worth · ~116,718 ac
 - Wright Patman Recreation Area · REC · Forth Worth · ~81,011 ac
-- Ojo Caliente ·  · BLM recreation sites · ~72,019 ac
+- Ojo Caliente ·  · BLM recreation management areas · official (BLM planning area) · ~72,019 ac
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~65,497 ac
 - Wichita Mountains Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~59,021 ac
 - Hackberry Lake OHV Area ·  · BLM recreation areas · ~57,606 ac
-- Hackberry Lake OHV Area ·  · BLM recreation sites · ~57,606 ac
-- Hackberry Lake OHV ·  · BLM recreation sites · ~57,605 ac
+- Hackberry Lake OHV Area ·  · BLM recreation management areas · official (BLM planning area) · ~57,606 ac
+- Hackberry Lake OHV ·  · BLM recreation management areas · official (BLM planning area) · ~57,605 ac
 - San Andres National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~57,331 ac
-- Palacio Arroyos ·  · BLM recreation sites · ~56,345 ac
+- Palacio Arroyos ·  · BLM recreation management areas · official (BLM planning area) · ~56,345 ac
 - White Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,267 ac
 - Chama River Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,034 ac
 - Lewisville Recreation Area · REC · Forth Worth · ~46,194 ac
@@ -63,28 +63,28 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Lavon Recreation Area · REC · Forth Worth · ~37,671 ac
 - Chinati Mountains · SCA · Unknown · ~37,245 ac
 - Manzano Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,083 ac
-- Organ Mountains ·  · BLM recreation sites · ~36,667 ac
+- Organ Mountains ·  · BLM recreation management areas · official (BLM planning area) · ~36,667 ac
 - Anahuac National Wildlife Refuge · NWR · ANAHUAC NATIONAL WILDLIFE REFUGE · ~36,190 ac
 - Capitan Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~36,074 ac
 - Indio Ranch · REA · University of Texas at El Paso · ~34,445 ac
 - Red Sands OHV ·  · BLM recreation areas · ~33,872 ac
-- Red Sands OHV ·  · BLM recreation sites · ~33,872 ac
-- East Side ·  · BLM recreation sites · ~31,903 ac
+- Red Sands OHV ·  · BLM recreation management areas · official (BLM planning area) · ~33,872 ac
+- East Side ·  · BLM recreation management areas · official (BLM planning area) · ~31,903 ac
 - Lake O' The Pines Recreation Area · REC · Forth Worth · ~29,416 ac
-- West Santa Fe ·  · BLM recreation sites · ~28,353 ac
-- Chama ·  · BLM recreation sites · ~27,533 ac
+- West Santa Fe ·  · BLM recreation management areas · official (BLM planning area) · ~28,353 ac
+- Chama ·  · BLM recreation management areas · official (BLM planning area) · ~27,533 ac
 - Pond Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~27,457 ac
 - Belton Recreation Area · REC · Forth Worth · ~25,863 ac
 - Bitter Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~24,901 ac
-- Fort Stanton ·  · BLM recreation sites · ~24,654 ac
+- Fort Stanton ·  · BLM recreation management areas · official (BLM planning area) · ~24,654 ac
 - H. H. Coffield Unit · SOTH · TDCJ Correctional Institutions Division · ~22,254 ac
 - Sequoyah National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~20,917 ac
 - Boggy Slough · PCON · US Forest Service · ~19,891 ac
-- Rio Grande Rim/Copper Hill ·  · BLM recreation sites · ~19,870 ac
-- Sabinoso Primitive Area ·  · BLM recreation sites · ~19,798 ac
+- Rio Grande Rim/Copper Hill ·  · BLM recreation management areas · official (BLM planning area) · ~19,870 ac
+- Sabinoso Primitive Area ·  · BLM recreation management areas · official (BLM planning area) · ~19,798 ac
 - O.C. Fisher Recreation Area · REC · Forth Worth · ~17,940 ac
-- Rio Grande Gorge Recreation Area ·  · BLM recreation sites · ~16,948 ac
-- Sombrillo ·  · BLM recreation sites · ~16,898 ac
+- Rio Grande Gorge Recreation Area ·  · BLM recreation management areas · official (BLM planning area) · ~16,948 ac
+- Sombrillo ·  · BLM recreation management areas · official (BLM planning area) · ~16,898 ac
 - Bordo Atravesado ·  · BLM herd management areas · ~16,492 ac
 - Tishomingo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~16,467 ac
 - Eastham unit · SOTH · TDCJ Correctional Institutions Division · ~16,272 ac
@@ -95,6 +95,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Stillhouse Recreation Area · REC · Forth Worth · ~15,217 ac
 - Caney Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~14,262 ac
 - Little River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,236 ac
-- Rio Embudo ·  · BLM recreation sites · ~13,894 ac
+- Rio Embudo ·  · BLM recreation management areas · official (BLM planning area) · ~13,894 ac
 - Lake Texana · REC · Unknown · ~13,738 ac
 - Granger Recreation Area · REC · Forth Worth · ~13,609 ac

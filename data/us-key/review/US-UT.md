@@ -1,6 +1,6 @@
 # UT: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **350 of 692** parks joined to official land (same name + same kind of place). **5** to check by hand, **77** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **351 of 692** parks joined to official land (same name + same kind of place). **5** to check by hand, **77** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,7 +12,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0895 Virgin National Wild and Scenic River (National Wild and Scenic River) → on Zion National Park (~145,304 ac)
 - US-10730 Cedar Mountain Day Use Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on San Rafael Swell (~936,480 ac); Price Field Office (~2,480,295 ac)
 - US-10794 Logan Canyon National Scenic Byway National Parkway (National Parkway) → on Cache National Forest (~436,715 ac)
 - US-10963 Logan Aquatic Animal Health & Research Center State Fish Hatchery (State Fish Hatchery) → on Fisheries Experiment Station (~0 ac); Utah State Department of Wildlife Resources 204 (~18 ac)
@@ -357,7 +356,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Fillmore Field Office · PUB · BLM · ~4,420,134 ac
-- Rock Springs Field Office ERMA ·  · BLM recreation sites · ~3,308,154 ac
+- Rock Springs Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~3,308,154 ac
 - Salt Lake  Field Office · PUB · BLM · ~3,284,358 ac
 - Price Field Office · PUB · BLM · ~2,480,295 ac
 - Richfield Field Office · PUB · BLM · ~2,127,022 ac
@@ -366,53 +365,53 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Monticello Field Office · PUB · BLM · ~1,787,477 ac
 - Vernal Field Office · PUB · BLM · ~1,665,188 ac
 - Kanab Field Office · PUB · BLM · ~1,416,246 ac
-- Kemmerer Field Office ERMA ·  · BLM recreation sites · ~1,290,770 ac
+- Kemmerer Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,290,770 ac
 - National Public Lands · PUB · BLM · ~1,004,450 ac
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~876,512 ac
 - Uinta National Forest · NF · Forest Service Region 04 Intermountain · ~807,889 ac
 - St. George Field Office · PUB · BLM · ~629,088 ac
 - Little Colorado ·  · BLM herd management areas · ~525,421 ac
 - Antelope Valley ·  · BLM herd management areas · ~505,108 ac
-- Sheeprock / Tintic ORV Area ·  · BLM recreation sites · ~392,779 ac
+- Sheeprock / Tintic ORV Area ·  · BLM recreation management areas · official (BLM planning area) · ~392,779 ac
 - Antelope ·  · BLM herd management areas · ~327,747 ac
-- Labyrinth Rims / Gemini Bridges ·  · BLM recreation sites · ~299,971 ac
+- Labyrinth Rims / Gemini Bridges ·  · BLM recreation management areas · official (BLM planning area) · ~299,971 ac
 - Sulpher ·  · BLM herd management areas · ~230,177 ac
 - Onaqui Mountain ·  · BLM herd management areas · ~207,725 ac
 - White Mountain ·  · BLM herd management areas · ~207,372 ac
 - Kingtop ·  · BLM herd management areas · ~161,575 ac
 - Conger ·  · BLM herd management areas · ~151,620 ac
-- MCNCA SRMA ·  · BLM recreation sites · ~123,593 ac
-- North Desert ·  · BLM recreation sites · ~107,928 ac
+- MCNCA SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~123,593 ac
+- North Desert ·  · BLM recreation management areas · official (BLM planning area) · ~107,928 ac
 - State Trust Lands Parker Mountain Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~105,403 ac
-- Mockingbird Mesa ·  · BLM recreation sites · ~98,200 ac
+- Mockingbird Mesa ·  · BLM recreation management areas · official (BLM planning area) · ~98,200 ac
 - State Trust Lands West Price/Ferron Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~80,852 ac
 - Canyon Lands ·  · BLM herd management areas · ~77,311 ac
-- Desolation Canyon ·  · BLM recreation sites · ~72,754 ac
+- Desolation Canyon ·  · BLM recreation management areas · official (BLM planning area) · ~72,754 ac
 - State Trust Lands PR Springs Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~72,158 ac
 - Sawtooth National Forest · NF · Forest Service Region 04 Intermountain · ~71,846 ac
-- South Moab ·  · BLM recreation sites · ~63,982 ac
-- Beaver Dam Wash SRMA ·  · BLM recreation sites · ~63,478 ac
-- Oregon Trail SRMA ·  · BLM recreation sites · ~61,253 ac
+- South Moab ·  · BLM recreation management areas · official (BLM planning area) · ~63,982 ac
+- Beaver Dam Wash SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~63,478 ac
+- Oregon Trail SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~61,253 ac
 - Book Cliffs Roadless WMA ·  · Utah DWR public access properties · ~56,694 ac
 - Desert Range Exp. Station Experimental Area · NF · Forest Service Region 04 Intermountain · ~55,510 ac
-- MCNCA - Blcak Ridge Canyons West ·  · BLM recreation sites · ~52,986 ac
+- MCNCA - Blcak Ridge Canyons West ·  · BLM recreation management areas · official (BLM planning area) · ~52,986 ac
 - State Trust Lands Big Water Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~52,526 ac
 - Bear River Bay WMA ·  · Utah DWR public access properties · ~48,599 ac
 - State Trust Lands Oak City Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~47,366 ac
 - State Trust Lands Book Cliffs Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~46,844 ac
 - Dark Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~46,360 ac
-- Nine Mile ·  · BLM recreation sites · ~44,168 ac
-- Blue Mountain ·  · BLM recreation sites · ~42,729 ac
+- Nine Mile ·  · BLM recreation management areas · official (BLM planning area) · ~44,168 ac
+- Blue Mountain ·  · BLM recreation management areas · official (BLM planning area) · ~42,729 ac
 - State Trust Lands Johns Valley Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~41,932 ac
-- Sand Mountain ·  · BLM recreation sites · ~41,054 ac
-- Range Creek ·  · BLM recreation sites · ~40,706 ac
+- Sand Mountain ·  · BLM recreation management areas · official (BLM planning area) · ~41,054 ac
+- Range Creek ·  · BLM recreation management areas · official (BLM planning area) · ~40,706 ac
 - Knolls ORV ·  · BLM recreation areas · ~40,362 ac
-- Knolls ORV ·  · BLM recreation sites · ~40,362 ac
-- Killpecker Sand Dunes SRMA ·  · BLM recreation sites · ~39,245 ac
+- Knolls ORV ·  · BLM recreation management areas · official (BLM planning area) · ~40,362 ac
+- Killpecker Sand Dunes SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~39,245 ac
 - Hang-glider Dispersed Campsites ·  · BLM recreation areas · ~38,628 ac
-- Hang-glider Dispersed Campsites ·  · BLM recreation sites · ~38,628 ac
+- Hang-glider Dispersed Campsites ·  · BLM recreation management areas · official (BLM planning area) · ~38,628 ac
 - State Trust Lands Milford Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~38,372 ac
-- Labyrinth Canyon ·  · BLM recreation sites · ~37,203 ac
-- 'Unnamed' Cross Canyons ·  · BLM recreation sites · ~37,090 ac
+- Labyrinth Canyon ·  · BLM recreation management areas · official (BLM planning area) · ~37,203 ac
+- 'Unnamed' Cross Canyons ·  · BLM recreation management areas · official (BLM planning area) · ~37,090 ac
 - State Trust Lands I-80 Block · SRMA · The State of Utah School and Institutional Trust Lands Administration · ~35,309 ac
-- Gateway ·  · BLM recreation sites · ~35,084 ac
+- Gateway ·  · BLM recreation management areas · official (BLM planning area) · ~35,084 ac

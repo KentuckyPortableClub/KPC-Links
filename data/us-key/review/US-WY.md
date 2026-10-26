@@ -1,6 +1,6 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **192 of 298** parks joined to official land (same name + same kind of place). **11** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **193 of 298** parks joined to official land (same name + same kind of place). **11** to check by hand, **36** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -75,7 +75,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-6216 Pilot Butte Overlook BLM Interpretive Site (BLM Interpretive Site) → on Little Colorado (~525,421 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6219 Lombard Ferry State Historic Site (State Historic Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
 - US-6220 NHT Auto Tour Route BLM Interpretive Site (BLM Interpretive Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
-- US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River) → on Teton National Forest (~1,660,590 ac)
 - US-6230 Cumberland Wildlife Management Area (Wildlife Management Area) → on Bear River Divide (~229,798 ac); Kemmerer Field Office ERMA (~1,290,770 ac)
 
 ## Nothing found in PAD-US
@@ -121,61 +120,61 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - Rock Springs Field Office · PUB · BLM · ~3,606,721 ac
 - Rawlins Field Office · PUB · BLM · ~3,531,790 ac
-- Rock Springs Field Office ERMA ·  · BLM recreation sites · ~3,308,154 ac
+- Rock Springs Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~3,308,154 ac
 - Lander Field Office · PUB · BLM · ~2,388,958 ac
 - Worland Field Office · PUB · BLM · ~2,099,390 ac
-- Western Rawlins Field Office ERMA ·  · BLM recreation sites · ~1,904,417 ac
-- Eastern Rawlins Field Office ERMA ·  · BLM recreation sites · ~1,582,142 ac
+- Western Rawlins Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,904,417 ac
+- Eastern Rawlins Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,582,142 ac
 - Kemmerer Field Office · PUB · BLM · ~1,421,062 ac
 - Casper Field Office · PUB · BLM · ~1,361,339 ac
-- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
-- Kemmerer Field Office ERMA ·  · BLM recreation sites · ~1,290,770 ac
+- Casper Field Officer ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,343,359 ac
+- Kemmerer Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,290,770 ac
 - Cody Field Office · PUB · BLM · ~1,090,720 ac
 - Pinedale Field Office · PUB · BLM · ~925,688 ac
-- Pinedale Field Office ERMA ·  · BLM recreation sites · ~892,883 ac
+- Pinedale Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~892,883 ac
 - Buffalo Field Office · PUB · BLM · ~779,089 ac
 - Usbr · FOTH · Unknown · ~735,338 ac
 - Newcastle Field Office · PUB · BLM · ~279,233 ac
-- Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
-- Wind River Front SRMA ·  · BLM recreation sites · ~258,170 ac
-- Powder River Basin ERMA ·  · BLM recreation sites · ~224,080 ac
-- Badlands SRMA ·  · BLM recreation sites · ~211,695 ac
-- West Slope SRMA ·  · BLM recreation sites · ~190,622 ac
-- McCullough Peaks SRMA ·  · BLM recreation sites · ~159,811 ac
-- West Slope SRMA ·  · BLM recreation sites · ~129,768 ac
-- Green Mountain ERMA ·  · BLM recreation sites · ~129,578 ac
-- National Trails Undeveloped SRMA ·  · BLM recreation sites · ~92,516 ac
-- CDNST Destination SRMA ·  · BLM recreation sites · ~82,586 ac
-- South Bighorns ERMA ·  · BLM recreation sites · ~70,016 ac
-- Oregon Trail SRMA ·  · BLM recreation sites · ~61,253 ac
-- National Historic Trails Destination SRMA ·  · BLM recreation sites · ~59,924 ac
-- Gardner Mountain ERMA ·  · BLM recreation sites · ~55,153 ac
-- Absaroka Mountain Foothills SRMA ·  · BLM recreation sites · ~42,866 ac
-- Lander Slope/Red Canyon ERMA ·  · BLM recreation sites · ~38,978 ac
+- Newcastle Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~273,309 ac
+- Wind River Front SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~258,170 ac
+- Powder River Basin ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~224,080 ac
+- Badlands SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~211,695 ac
+- West Slope SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~190,622 ac
+- McCullough Peaks SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~159,811 ac
+- West Slope SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~129,768 ac
+- Green Mountain ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~129,578 ac
+- National Trails Undeveloped SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~92,516 ac
+- CDNST Destination SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~82,586 ac
+- South Bighorns ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~70,016 ac
+- Oregon Trail SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~61,253 ac
+- National Historic Trails Destination SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~59,924 ac
+- Gardner Mountain ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~55,153 ac
+- Absaroka Mountain Foothills SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~42,866 ac
+- Lander Slope/Red Canyon ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~38,978 ac
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~37,820 ac
 - Targhee National Forest · NF · Forest Service Region 04 Intermountain · ~37,247 ac
-- Face of the Bighorns/North Fork ERMA ·  · BLM recreation sites · ~34,487 ac
-- Dempsey Ridge SRMA ·  · BLM recreation sites · ~33,330 ac
-- Raymond Mountain SRMA ·  · BLM recreation sites · ~32,842 ac
-- National Historic Trails ERMA ·  · BLM recreation sites · ~31,289 ac
-- Absaroka ERMA ·  · BLM recreation sites · ~29,222 ac
-- South Bighorns ERMA ·  · BLM recreation sites · ~25,550 ac
+- Face of the Bighorns/North Fork ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~34,487 ac
+- Dempsey Ridge SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~33,330 ac
+- Raymond Mountain SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~32,842 ac
+- National Historic Trails ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~31,289 ac
+- Absaroka ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~29,222 ac
+- South Bighorns ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~25,550 ac
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
 - PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
 - Rock Creek ·  · BLM herd management areas · ~19,107 ac
-- Stateline SRMA ·  · BLM recreation sites · ~15,870 ac
+- Stateline SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~15,870 ac
 - Whiskey Basin Wildlife Habitat Management Area · SCA · Wyoming Game and Fish Department · ~12,843 ac
-- Whiskey Mountain/East Fork ERMA ·  · BLM recreation sites · ~12,659 ac
+- Whiskey Mountain/East Fork ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~12,659 ac
 - Winegar Hole Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,662 ac
 - Badwater Ranch ·  · Wyoming Game and Fish Department (AGOL org cWzdqIyxbijuhPLw) (wild, state GIS table) · ~10,211 ac
-- Continental Divide National Scenic Trail SRMA ·  · BLM recreation sites · ~10,181 ac
-- Sweetwater Canyon Undeveloped SRMA ·  · BLM recreation sites · ~9,154 ac
+- Continental Divide National Scenic Trail SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~10,181 ac
+- Sweetwater Canyon Undeveloped SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~9,154 ac
 - Newcastle Field Office · PUB · BLM · ~8,871 ac
-- Red Canyon Creek ERMA ·  · BLM recreation sites · ~8,426 ac
+- Red Canyon Creek ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~8,426 ac
 - Fontenelle Reservoir · RMA · Unknown · ~8,131 ac
-- Rattlesnake Ridge ERMA ·  · BLM recreation sites · ~7,863 ac
-- Green and New Fork Rivers SRMA (Warren Bridge) ·  · BLM recreation sites · ~7,189 ac
-- North Platte River SRMA ·  · BLM recreation sites · ~7,095 ac
-- Beck Lake SRMA ·  · BLM recreation sites · ~6,916 ac
-- Willow Creek ERMA ·  · BLM recreation sites · ~6,835 ac
-- Green and New Fork Rivers SRMA (Lower Zone) ·  · BLM recreation sites · ~6,710 ac
+- Rattlesnake Ridge ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~7,863 ac
+- Green and New Fork Rivers SRMA (Warren Bridge) ·  · BLM recreation management areas · official (BLM planning area) · ~7,189 ac
+- North Platte River SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~7,095 ac
+- Beck Lake SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~6,916 ac
+- Willow Creek ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~6,835 ac
+- Green and New Fork Rivers SRMA (Lower Zone) ·  · BLM recreation management areas · official (BLM planning area) · ~6,710 ac

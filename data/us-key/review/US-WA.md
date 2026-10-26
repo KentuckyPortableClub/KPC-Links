@@ -103,11 +103,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Washington State Department of Fish & Wildlife Trust Land · SRMA · Washington State Department of Fish & Wildlife · ~91,115 ac
 - Snoqualmie National Forest · NF · Forest Service Region 06 Pacific Northwest · ~82,394 ac
 - Mark O. Hatfield Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~65,434 ac
-- Coeur d'Alene Lake ·  · BLM recreation sites · ~64,584 ac
+- Coeur d'Alene Lake ·  · BLM recreation management areas · official (BLM planning area) · ~64,584 ac
 - Norse Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~52,297 ac
 - Boulder River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~49,249 ac
 - Mount Adams Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,123 ac
-- Clearwater River ·  · BLM recreation sites · ~44,818 ac
+- Clearwater River ·  · BLM recreation management areas · official (BLM planning area) · ~44,818 ac
 - Buckhorn Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~44,270 ac
 - Salmo-Priest Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,307 ac
 - Morning Star Natural Resources Conservation Area · SCA · Unknown · ~33,700 ac
@@ -136,8 +136,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Colockum Game Range · NCA · COLOCKUM GAME RANGE · ~4,927 ac
 - Colockum Game Range · NCA · Colockum Game Range · ~4,927 ac
 - Charles Lathrop Pack Experimental and Demonstration Forest · SRMA · STATE OF WASHINGTON · ~4,419 ac
-- NA ·  · BLM recreation sites · ~4,324 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~4,324 ac
 - Kachess Lake · RMA · Unknown · ~4,109 ac
-- NA ·  · BLM recreation sites · ~4,011 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~4,011 ac
 - Columbia Plateau ·  · Washington State Parks (park, state GIS table) · ~3,874 ac
 - Hoffstadt · SCA · Washington Department of Fish & Wildlife · ~3,721 ac

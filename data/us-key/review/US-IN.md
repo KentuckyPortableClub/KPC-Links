@@ -59,6 +59,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Austin Bottoms Conservation Area ·  · Indiana DNR (land, state GIS table) · ~1,857 ac
 - Austin Bottoms Conservation Area ·  · Indiana DNR properties · ~1,839 ac
 - Austin Bottoms Conservation Area ·  · Indiana DNR (land, state GIS table) · ~1,839 ac
+- Middle Fork Vermillion Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~1,771 ac
 - Brock Sampson-Hardin Ridge ·  · Indiana DNR properties · ~1,452 ac
 - Brock Sampson-Hardin Ridge ·  · Indiana DNR (land, state GIS table) · ~1,452 ac
 - Pedestal Rock Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~1,183 ac
@@ -96,4 +97,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Beaver Lake Nature Preserve · SCA · Indiana DNR, Fish and Wildlife Division · ~656 ac
 - Randolph County Wildlife Management Area ·  · Indiana DNR properties · ~584 ac
 - Randolph County Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~584 ac
-- Salamonie Lake ·  · Indiana DNR (land, state GIS table) · ~556 ac

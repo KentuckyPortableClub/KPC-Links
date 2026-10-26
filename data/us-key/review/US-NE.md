@@ -34,12 +34,15 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
+- Casper Field Officer ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,343,359 ac
+- Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~35,687 ac
 - Roman L. Hruska U.s. Animal Meat Research Center · REA · Agricultural Research Service (ARS) · ~34,541 ac
 - Harlan County Recreation Area · REC · Kansas City · ~31,020 ac
+- Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~24,274 ac
 - Carter Canyon (PRBE) ·  · Nebraska Game and Parks Commission (wild, state GIS table) · ~10,533 ac
 - Calamus Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~9,932 ac
 - Merritt Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~9,103 ac
+- Niobrara Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~8,987 ac
 - Medicine Creek WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~8,639 ac
 - Swanson Reservoir WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~8,059 ac
 - Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
@@ -91,6 +94,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Wapiti WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,920 ac
 - Bordeaux WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,915 ac
 - Wapiti Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,863 ac
-- Wood Duck WMA ·  · NGPC (owner NGPC.GISAdmin) (land, state GIS table) · ~1,833 ac
-- Wood Duck Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,831 ac
-- Bordeaux Wildlife Management Area · SCA · Nebraska Game and Parks Commission’ · ~1,769 ac

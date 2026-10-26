@@ -24,21 +24,24 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
+- Casper Field Officer ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,343,359 ac
 - Sd Public Land · SRMA · Unknown · ~595,248 ac
 - Oaha Recreation Area · REC · Omaha · ~314,305 ac
 - South Dakota Field Office · PUB · BLM · ~275,364 ac
-- Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
+- Newcastle Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~273,309 ac
 - State Lands · SRMA · Unknown · ~229,003 ac
 - Francis Case Recreation Area · REC · Omaha · ~102,941 ac
 - Sharpe Recreation Area · REC · Omaha · ~78,431 ac
 - Custer National Forest · NF · Forest Service Region 01 Northern · ~73,890 ac
 - Valentine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~72,350 ac
-- Exemption Area ·  · BLM recreation sites · ~22,459 ac
+- Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~35,687 ac
+- Niobrara Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~29,062 ac
+- Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~24,274 ac
+- Exemption Area ·  · BLM recreation management areas · official (BLM planning area) · ~22,459 ac
 - Mcpherson County Waterfowl Production Area · RMA · MCPHERSON COUNTY WATERFOWL PRODUCTION AREA · ~20,999 ac
 - Mcpherson County Waterfowl Production Area · RMA · Mcpherson County Waterfowl Production Area · ~20,999 ac
 - Fort Niobrara National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~19,093 ac
-- Stateline SRMA ·  · BLM recreation sites · ~15,870 ac
+- Stateline SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~15,870 ac
 - Belle Fourche Reservoir · RMA · Unknown · ~14,167 ac
 - Black Elk Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,534 ac
 - Big Stone National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,657 ac
@@ -46,6 +49,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Marshall County Waterfowl Production Area · RMA · MARSHALL COUNTY WATERFOWL PRODUCTION AREA · ~11,268 ac
 - Edmunds County Waterfowl Production Area · RMA · EDMUNDS COUNTY WATERFOWL PRODUCTION AREA · ~9,246 ac
 - Edmunds County Waterfowl Production Area · RMA · Edmunds County Waterfowl Production Area · ~9,246 ac
+- Niobrara Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~8,987 ac
 - Soldier Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,833 ac
 - Beadle County Waterfowl Production Area · RMA · BEADLE COUNTY WATERFOWL PRODUCTION AREA · ~7,777 ac
 - Beadle County Waterfowl Production Area · RMA · Beadle County Waterfowl Production Area · ~7,535 ac
@@ -55,7 +59,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Kingsbury County Waterfowl Production Area · RMA · Kingsbury County Waterfowl Production Area · ~7,052 ac
 - Brookings County Waterfowl Production Area · RMA · Brookings County Waterfowl Production Area · ~6,641 ac
 - Brookings County Waterfowl Production Area · RMA · BROOKINGS COUNTY WATERFOWL PRODUCTION AREA · ~6,640 ac
-- Fort Meade Recreation Area ACEC ·  · BLM recreation sites · ~6,569 ac
+- Fort Meade Recreation Area ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~6,569 ac
 - Clark County Waterfowl Production Area · RMA · CLARK COUNTY WATERFOWL PRODUCTION AREA · ~6,172 ac
 - Clark County Waterfowl Production Area · RMA · Clark County Waterfowl Production Area · ~6,172 ac
 - Lake County Waterfowl Production Area Of Sd · RMA · LAKE COUNTY WATERFOWL PRODUCTION AREA OF SD · ~6,090 ac
@@ -80,7 +84,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Douglas County Waterfowl Production Area Of Sd · RMA · Douglas County Waterfowl Production Area Of Sd · ~4,493 ac
 - Charles Mix County Waterfowl Production Area · RMA · CHARLES MIX COUNTY WATERFOWL PRODUCTION AREA · ~4,378 ac
 - Charles Mix County Waterfowl Production Area · RMA · Charles Mix County Waterfowl Production Area · ~4,378 ac
-- Hand County Waterfowl Production Area · RMA · HAND COUNTY WATERFOWL PRODUCTION AREA · ~4,034 ac
-- Hand County Waterfowl Production Area · RMA · Hand County Waterfowl Production Area · ~4,034 ac
-- Pactola Reservoir · RMA · Unknown · ~3,528 ac
-- Mccook County Waterfowl Production Area · RMA · MCCOOK COUNTY WATERFOWL PRODUCTION AREA · ~3,490 ac
