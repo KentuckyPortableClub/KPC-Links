@@ -15,9 +15,7 @@
   "parks done by the box test": 10191,
   "parks whose outline could not be read": 0,
   "pass": 1,
-  "problems": [
-   "FR-2822 + FR-2863: cannot convert float infinity to integer"
-  ],
+  "problems": [],
   "with official lines": 0
  },
  "pass2": {
@@ -106,236 +104,236 @@
  "per state": {
   "W-AT": {
    "candidates": 0,
-   "candidates (saved outline only)": 91,
-   "lines": 0,
-   "n-fers": 16,
-   "pass1": 148,
-   "pass2": 128,
-   "spots": 148
-  },
-  "W-AU": {
-   "candidates": 460,
    "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 282,
-   "pass1": 1978,
-   "pass2": 675,
-   "spots": 1978
+   "n-fers": 21,
+   "pass1": 176,
+   "pass2": 0,
+   "spots": 176
+  },
+  "W-AU": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 329,
+   "pass1": 2746,
+   "pass2": 0,
+   "spots": 2746
   },
   "W-BE": {
    "candidates": 0,
-   "candidates (saved outline only)": 6,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 0,
-   "pass1": 8,
-   "pass2": 7,
-   "spots": 8
+   "n-fers": 5,
+   "pass1": 23,
+   "pass2": 0,
+   "spots": 23
   },
   "W-CH": {
    "candidates": 0,
-   "candidates (saved outline only)": 58,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 11,
-   "pass1": 88,
-   "pass2": 67,
-   "spots": 88
+   "n-fers": 13,
+   "pass1": 163,
+   "pass2": 0,
+   "spots": 163
   },
   "W-CZ": {
    "candidates": 0,
-   "candidates (saved outline only)": 121,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 30,
-   "pass1": 147,
-   "pass2": 136,
-   "spots": 147
+   "n-fers": 64,
+   "pass1": 230,
+   "pass2": 0,
+   "spots": 230
   },
   "W-DE": {
    "candidates": 0,
-   "candidates (saved outline only)": 12,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 15,
-   "pass2": 12,
-   "spots": 15
+   "pass1": 29,
+   "pass2": 0,
+   "spots": 29
   },
   "W-DK": {
    "candidates": 0,
-   "candidates (saved outline only)": 12,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 15,
-   "pass2": 15,
-   "spots": 15
+   "pass1": 17,
+   "pass2": 0,
+   "spots": 17
   },
   "W-EE": {
    "candidates": 0,
-   "candidates (saved outline only)": 6,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 6,
-   "pass2": 6,
-   "spots": 6
+   "pass1": 7,
+   "pass2": 0,
+   "spots": 7
   },
   "W-ES": {
    "candidates": 0,
-   "candidates (saved outline only)": 2159,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 1060,
-   "pass1": 3543,
-   "pass2": 2976,
-   "spots": 3543
+   "n-fers": 1555,
+   "pass1": 4896,
+   "pass2": 0,
+   "spots": 4896
   },
   "W-FI": {
    "candidates": 0,
-   "candidates (saved outline only)": 395,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 4,
-   "pass1": 690,
-   "pass2": 633,
-   "spots": 690
+   "n-fers": 8,
+   "pass1": 891,
+   "pass2": 0,
+   "spots": 891
   },
   "W-FR": {
    "candidates": 0,
-   "candidates (saved outline only)": 35564,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 34591,
-   "pass1": 68190,
-   "pass2": 60759,
-   "spots": 68190
+   "n-fers": 44268,
+   "pass1": 85132,
+   "pass2": 0,
+   "spots": 85132
   },
   "W-GB": {
-   "candidates": 473,
-   "candidates (saved outline only)": 276,
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 210,
-   "pass1": 1433,
-   "pass2": 1274,
-   "spots": 1433
+   "n-fers": 256,
+   "pass1": 1710,
+   "pass2": 0,
+   "spots": 1710
   },
   "W-HR": {
    "candidates": 0,
-   "candidates (saved outline only)": 244,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 34,
-   "pass1": 365,
-   "pass2": 330,
-   "spots": 365
+   "n-fers": 46,
+   "pass1": 482,
+   "pass2": 0,
+   "spots": 482
   },
   "W-HU": {
    "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 4,
-   "pass2": 2,
-   "spots": 4
+   "pass1": 8,
+   "pass2": 0,
+   "spots": 8
   },
   "W-IE": {
    "candidates": 0,
-   "candidates (saved outline only)": 1,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 12,
-   "pass2": 12,
-   "spots": 12
+   "pass1": 13,
+   "pass2": 0,
+   "spots": 13
   },
   "W-IT": {
    "candidates": 0,
-   "candidates (saved outline only)": 339,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 29,
-   "pass1": 486,
-   "pass2": 426,
-   "spots": 486
+   "n-fers": 57,
+   "pass1": 707,
+   "pass2": 0,
+   "spots": 707
   },
   "W-LT": {
    "candidates": 0,
-   "candidates (saved outline only)": 2,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
-   "pass2": 2,
+   "pass2": 0,
    "spots": 2
   },
   "W-LU": {
    "candidates": 0,
-   "candidates (saved outline only)": 4,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
    "pass1": 5,
-   "pass2": 5,
+   "pass2": 0,
    "spots": 5
   },
   "W-NL": {
    "candidates": 0,
-   "candidates (saved outline only)": 14,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 18,
-   "pass2": 16,
-   "spots": 18
+   "pass1": 21,
+   "pass2": 0,
+   "spots": 21
   },
   "W-NO": {
    "candidates": 0,
-   "candidates (saved outline only)": 67,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 1,
-   "pass1": 109,
-   "pass2": 84,
-   "spots": 109
+   "n-fers": 3,
+   "pass1": 194,
+   "pass2": 0,
+   "spots": 194
   },
   "W-PL": {
    "candidates": 0,
-   "candidates (saved outline only)": 6049,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 2219,
-   "pass1": 6941,
-   "pass2": 6464,
-   "spots": 6941
+   "n-fers": 2587,
+   "pass1": 7904,
+   "pass2": 0,
+   "spots": 7904
   },
   "W-PT": {
    "candidates": 0,
-   "candidates (saved outline only)": 77,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 26,
-   "pass1": 140,
-   "pass2": 135,
-   "spots": 140
+   "n-fers": 23,
+   "pass1": 166,
+   "pass2": 0,
+   "spots": 166
   },
   "W-RO": {
    "candidates": 0,
-   "candidates (saved outline only)": 112,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 14,
-   "pass1": 167,
-   "pass2": 149,
-   "spots": 167
+   "n-fers": 16,
+   "pass1": 211,
+   "pass2": 0,
+   "spots": 211
   },
   "W-SE": {
    "candidates": 0,
-   "candidates (saved outline only)": 603,
+   "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 100,
-   "pass1": 915,
-   "pass2": 814,
-   "spots": 915
+   "n-fers": 139,
+   "pass1": 1072,
+   "pass2": 0,
+   "spots": 1072
   },
   "W-SI": {
    "candidates": 0,
-   "candidates (saved outline only)": 72,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 17,
-   "pass1": 91,
-   "pass2": 86,
-   "spots": 91
+   "pass1": 101,
+   "pass2": 0,
+   "spots": 101
   },
   "W-SK": {
    "candidates": 0,
-   "candidates (saved outline only)": 2,
+   "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
-   "pass2": 2,
+   "pass2": 0,
    "spots": 2
   }
  }
