@@ -136,6 +136,24 @@ def main():
     if not any_rows:
         notice('No key has been rebuilt with the check yet; nothing to report.')
         return
+    try:   # Oct 26 (HQ plan 2b): the second-witness score
+        sc = json.loads(pathlib.Path('data/boundary-score.json').read_text(encoding='utf-8'))
+        t = sc['totals']
+        L += ['## How sure are we? (second witness)', '',
+              f"Each US outline scored on evidence that is NOT POTA's pin: its name, its managing agency, a second map. "
+              f"**{t['high']} high, {t['medium']} medium, {t['low']} low** of {t['outlines']} outlines; "
+              f"{t['no_outline']} parks have none yet.", '',
+              f"**{t['pota_pin_off']} look like POTA PIN OFF**: the pin is well outside, but the name and a second witness say "
+              f"our outline is right. We keep the outline; these pins can be reported to POTA.", '']
+        if sc.get('pota_pin_off'):
+            L.append('<details><summary>POTA pin off, busiest first</summary>'); L.append('')
+            for ref, n, st, far, j, acts in sc['pota_pin_off'][:40]: L.append(f"- {ref} {n} ({st}, {acts} activations) → {j}")
+            L += ['', '</details>', '']
+        if sc.get('low_busiest_first'):
+            L.append('<details><summary>Low confidence, busiest first (worklist for the outside bot)</summary>'); L.append('')
+            for ref, n, st, j, acts, why in sc['low_busiest_first'][:40]: L.append(f"- {ref} {n} ({st}, {acts} activations) → {j}: {why}")
+            L += ['', '</details>', '']
+    except Exception: pass  # noqa: BLE001
     if HIDDEN['n']:
         L.append(f"_{HIDDEN['n']} parks already checked by hand and found fine (pin off, or no single outline) are left out: data/boundary-checked.json._")
     body = '\n'.join(L)
