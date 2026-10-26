@@ -68,8 +68,40 @@ def kind_of(text):
 
 
 # ---------------------------------------------------------------- park outlines (the answer key's joins + saved copies)
+def outlines_ca(prov):
+    """Oct 25 (Canada): rings for the parks the Canada key joined, from the saved provincial outline files
+    (data/canada-bounds) and the saved copy of every Canadian area (cache/ca/CA-ALL.json.gz). An id is only trusted with
+    its NAME (ids repeat from layer to layer: the Québec lesson of Oct 25)."""
+    try: key = json.load(open(f'data/ca-key/CA-{prov}.json'))['parks']
+    except Exception: return {}  # noqa: BLE001
+    by = {}
+    f = pathlib.Path(os.environ.get('GEO_CACHE_CA') or 'cache/ca') / 'CA-ALL.json.gz'
+    if f.exists():
+        try:
+            with gzip.open(f, 'rt', encoding='utf-8') as fh:
+                for r in json.load(fh).get('recs') or []: by.setdefault(str(r.get('oid')), []).append(r)
+        except Exception: by = {}  # noqa: BLE001
+    low = lambda x: ' '.join(str(x or '').lower().split())
+    out = {}
+    for ref, p in key.items():
+        rs = []
+        bf = pathlib.Path(f'data/canada-bounds/{ref}.json')
+        if bf.exists():
+            try:
+                g = json.load(open(bf)).get('geometry') or {}
+                rs = [ring for poly in g.get('coordinates', []) for ring in poly] if g.get('type') == 'MultiPolygon' else g.get('coordinates', [])
+            except Exception: rs = []  # noqa: BLE001
+        if not rs:
+            for x in p.get('m') or []:
+                r = next((q for q in by.get(str(x[0]), []) if low(x[1]) in (low(q.get('n')), low(q.get('nf')))), None)
+                if r: rs += r.get('_r') or []
+        if rs: out[ref] = rs
+    return out
+
+
 def outlines(st):
     """{ref: [rings]} for parks the key joined, from the saved copy of the state's official land."""
+    if st.startswith('CA-'): return outlines_ca(st[3:])
     try: key = json.load(open(f'data/us-key/US-{st}.json'))['parks']
     except Exception: return {}  # noqa: BLE001
     f = CACHE / f'US-{st}.json.gz'
@@ -165,6 +197,12 @@ def read_layer(L, box):
 STB = None
 def st_box(st):
     global STB
+    if st.startswith('CA-'):   # a province: the box around its POTA parks' pins
+        try: P = json.load(open('data/parkinfo/CA.json'))['parks']
+        except Exception: return None  # noqa: BLE001
+        pts = [(v[5], v[6]) for v in P.values() if len(v) > 10 and v[10] == st[3:] and v[5] is not None and v[6] is not None]
+        if not pts: return None
+        return [min(q[1] for q in pts) - .3, min(q[0] for q in pts) - .3, max(q[1] for q in pts) + .3, max(q[0] for q in pts) + .3]
     if STB is None:
         try: STB = json.load(open('kpc-us-states.json'))
         except Exception: STB = []  # noqa: BLE001
@@ -183,12 +221,14 @@ def agency_short(L):
 
 
 def run(st, layers):
-    try: P = json.load(open(f'data/parkinfo/US-{st}.json'))['parks']
+    ca = st.startswith('CA-')
+    try: P = json.load(open('data/parkinfo/CA.json' if ca else f'data/parkinfo/US-{st}.json'))['parks']
     except Exception: notice(f'Access {st}', 'no park file'); return None  # noqa: BLE001
+    if ca: P = {r: v for r, v in P.items() if len(v) > 10 and v[10] == st[3:]}
     parks = {}
     for ref, v in P.items():
         typ = v[2] or ''
-        if 'National' in typ or v[5] is None: continue
+        if (not ca and 'National' in typ) or v[5] is None: continue   # Canada: Parks Canada sites count too
         parks[ref] = (v[0], typ, v[5], v[6])          # every state / local park: a ramp on a state park's own land is that park's too
     OL = outlines(st)
     box = st_box(st)
@@ -225,7 +265,7 @@ def run(st, layers):
             keep.append(q)
             if len(keep) >= CAP: break
         out[ref] = keep
-    save_json(OUT / f'US-{st}.json', {'st': st, 'note': 'Official parking / entrance / gate / kiosk / boat ramp / trailhead points from the state agencies (data/access-layers.json), tied to POTA parks by the layer\'s area name or by sitting on the park\'s official land. Built by .github/scripts/kpc_us_access.py.',
+    save_json(OUT / (f'{st}.json' if ca else f'US-{st}.json'), {'st': st, 'note': 'Official parking / entrance / gate / kiosk / boat ramp / trailhead points from the state agencies (data/access-layers.json), tied to POTA parks by the layer\'s area name or by sitting on the park\'s official land. Built by .github/scripts/kpc_us_access.py.',
                                                    'parks': out})
     c = {'parks_with_points': len(out), 'points': sum(len(v) for v in out.values()), 'wildlife_parks': sum(1 for r, x in parks.items() if WILD.search(x[1])), 'outlines': len(OL)}
     notice(f'Access {st}', f"{c['parks_with_points']} parks got {c['points']} points; " + ' | '.join(log)[:700])
@@ -234,7 +274,7 @@ def run(st, layers):
 
 def main():
     cfg = json.load(open('data/access-layers.json'))['layers']
-    want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split() or sorted({L['st'] for L in cfg if re.fullmatch(r'[A-Z]{2}', L['st'])})
+    want = (os.environ.get('STATES') or '').upper().replace(',', ' ').split() or sorted({L['st'] for L in cfg if re.fullmatch(r'(CA-)?[A-Z]{2}', L['st'])})
     try: idx = json.load(open(OUT / 'index.json')).get('states', {})
     except Exception: idx = {}  # noqa: BLE001
     for st in want:
