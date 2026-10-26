@@ -16,6 +16,11 @@ from kpc_save import save_json, save_text
 UA = {'User-Agent': 'KPC parking layer explorer (kentuckyportableclub.github.io)'}
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 100) * 60
 FIRST = 'CA KS MS NM SD HI AZ MT UT VA'.split()
+# Oct 25 (good bot's 'service roots' list, via HQ): the agencies' own ArcGIS accounts, searched FIRST for these states
+ROOTS = {'VA': ['https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services', 'https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services'],
+         'CA': ['https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services'],
+         'UT': ['https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services', 'https://services.arcgis.com/ZzrwjTRez6FJiOq4/ArcGIS/rest/services'],
+         'AZ': ['https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services']}
 WANT = re.compile(r'park(ing)?\b(?! *(boundar|unit|name|area\b))|trail ?heads?|access (point|site|area)s?\b|boat(ing)? (ramp|access|launch)|'
                   r'\bramps?\b|launch|entrance|\bgates?\b|kiosk|fishing access|water access|put[- ]?in|carry[- ]?in|canoe|kayak', re.I)
 NOT = re.compile(r'parcel|boundar|polygon|district|zone|county|census|road|route|lane|centerline|bridge|culvert|dam\b|toilet|'
@@ -68,7 +73,8 @@ def main():
             break
         got = []
         pairs = {roots(e.get('url', '')) for e in sg[st] if e.get('url')}
-        for base, folder in sorted(p for p in pairs if p[0]):
+        first = [(r, '') for r in ROOTS.get(st, [])]
+        for base, folder in first + sorted(p for p in pairs if p[0] and p not in first):
             key = (base, folder)
             if key in seen_svc: continue
             seen_svc.add(key)
