@@ -201,7 +201,7 @@
       }).join(' + ') + esc(d.tag || '');
     });
     return '<p class="g-line g-2fer"><b>' + (three ? '3-FER / 2-FER' : '2-FER') + '</b> ' + parts.join(' • ') +
-      ' — GPS points for it are in the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (not exact: they only get you to the area); do your own research.</p>';
+      ' — GPS points for it are in the <a href="#fers">2-Fers &amp; 3-Fers Index</a> (not exact: they only get you to the area). <span class="g-2fer-warn">⚠️ Possible POTA overlap only. We think these POTA parks may share ground here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.</span></p>';
   }
 
   function alsoLine(p) {

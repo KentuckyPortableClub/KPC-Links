@@ -1,4 +1,7 @@
-"""Builds the four 'room' pages (Map Room, POTA Room, WWFF/KFF Room, SOTA Room) from the content below.
+"""Builds the three program rooms (POTA Room, WWFF/KFF Room, SOTA Room) from the content below. The Map Room entry is kept for
+reference only and is NOT built any more: it retires into the Activators Lounge at the Oct 29 2026 release (chat 2 owns its pointer page).
+Release remodel (chat 1, Oct 26 2026): the tool lists became doorways to the two Lounges + Kentucky Parks; no members-only links
+(Spot Me, Monthly Recap, PVA) because the rooms go public; members-only rooms keep noindex until release_public.py drops it.
 Run from the repo root:  python3 .claude/build/rooms/make_rooms.py   (writes the main files and calls assemble.py)
 Look comes from kpc-boards.css (main.kb) + kpc-rooms.css. Rules were checked Oct 16 2026 against parksontheair.com/rules,
 the WWFF Global Rules v5.10 PDF and SOTA activator material; re-check them if the programs change their rules."""
@@ -41,7 +44,8 @@ def steps(kicker, title, cols):
     return out + '</div></div></section>'
 
 def other_rooms(skip):
-    R = [('kpc-map-room.html', '🗺', 'Map Room', 'Every KPC map tool in one place.'),
+    R = [('kpc-activators-lounge.html', '🎒', 'Activators Lounge', 'Every activator tool for anywhere: trip planner, maps, park sheet, weather.'),
+         ('kpc-hunters.html', '🎯', 'Hunters Lounge', 'Live spots for POTA, WWFF, SOTA and DX, with the parks you still need.'),
          ('kpc-pota-room.html', '🌲', 'POTA Room', 'Parks on the Air: rules, guides and tools.'),
          ('kpc-wwff-room.html', '🦌', 'WWFF / KFF Room', 'World Wide Flora & Fauna: rules, guides and tools.'),
          ('kpc-sota-room.html', '⛰', 'SOTA Room', 'Summits on the Air: rules, guides and tools.')]
@@ -66,6 +70,14 @@ def files_box(only=None):
             '<li><b>Garmin handheld or car GPS:</b> GPX. Copy it to the Garmin\'s GPX folder or load it with Garmin Explore / BaseCamp.</li>'
             '<li><b>Computer:</b> KML for Google Earth (double-click it), GPX for most mapping programs.</li>'
             '<li>Pins are guides that get you to the area. The official boundary is what counts: check it with <a href="kpc-in-park.html">Am I in the Park?</a></li></ul></details>')
+
+
+def doorways(prog):
+    return section('TOOLS', '🧰 Where the Tools Live', 'Every KPC tool has one home. Pick yours.', [
+        card('kpc-activators-lounge.html', '🎒', 'Activators Lounge', 'Plan and run an activation anywhere: trip planner, maps and boundaries, Am I in the Park, Activation Kit, park sheet, rare parks, weather and conditions.', 'you\'re going out to activate.'),
+        card('kpc-hunters.html', '🎯', 'Hunters Lounge', 'Live ' + prog + ' spots with filters, the parks you still need, and quick logging.', 'you\'re hunting from home, the car or another park.'),
+        card('parks.html', '🌲', 'Kentucky Parks', 'Our Kentucky home: KY Park Commander, the KY Trip Planner, park guides and Kentucky tools.', 'you\'re operating in Kentucky.'),
+    ], alt=True)
 
 PAGES = {}
 
@@ -120,7 +132,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
                           'Read its <a href="kpc-park-notes.html">Park Notes</a> and open its <a href="kpc-kit.html">Activation Kit</a> (weather, parking, boundary).',
                           'Tell people you\'re going on the <a href="kpc-activations.html">Activation Board</a>.',
                           'At the park, check the line with <a href="kpc-in-park.html">Am I in the Park?</a>, then set up.',
-                          'Spot yourself with <a href="kpc-spot-me.html">Spot Me</a>, call CQ POTA and log every contact.',
+                          'Spot yourself at pota.app, call CQ POTA and log every contact.',
                           'Get 10 before the UTC day ends, then upload your ADIF log at pota.app.']),
         ('🎯 Hunting', ['Watch <a href="kpc-spots.html">On The Air Now</a> or <a href="kpc-live.html">Happening Now</a> for spots.',
                         'Check the <a href="kpc-activations.html">Activation Board</a> for planned activations, or post a park you need.',
@@ -135,15 +147,9 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
         card('kpc-guide-top25.html', '🏅', 'Top 25 Rare Kentucky Parks', 'The 25 parks with the fewest contacts and the 25 with the fewest activations, updated every week.', 'you want to be the activation hunters remember.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Tips from members for every park: where to set up, gates, cell signal, RF noise.', 'you want to know what a park is like before you go.'),
         card('kpc-campgrounds.html', '🏕', 'Campgrounds &amp; Cabins', 'Places to stay inside Kentucky POTA parks, with reviews.', 'you\'re making a weekend of it.'),
-        card('kpc-park-sheet.html', '🖨', 'Printable Park Sheet', 'A one-page sheet for any Kentucky park with QR codes and an optional paper log.', 'you want paper backup in the field.'),
+        card('kpc-park-sheet.html', '🖨', 'Printable Park Sheet', 'A one-page sheet for any park with QR codes and an optional paper log.', 'you want paper backup in the field.'),
     ], alt=True, sid='guides'),
-    section('POTA TOOLS', '🧰 Tools That Help', '', [
-        card('kpc-spot-me.html', '📣', 'Spot Me', 'Post your POTA spot (and copy it for other spotting sites) from one form.', 'you\'re on the air and want hunters to find you.'),
-        card('kpc-spots.html', '🔴', 'On The Air Now', 'Live POTA spots for Kentucky parks and KPC members.', 'you\'re hunting.'),
-        card('kpc-tracker.html', '📊', 'Park Tracker', 'Kentucky parks activated by any call sign, plus the club leaderboard.', 'you\'re chasing all of Kentucky.'),
-        card('kpc-recap.html', '📅', 'Monthly Recap', 'What KPC members activated in Kentucky each month.', 'you want to see what the club has been up to.'),
-        card('kpc-map-room.html', '🗺', 'Map Room', 'Every map tool in one place.', 'you need a map of any kind.'),
-    ], alt=True),
+    doorways('POTA'),
     section('OFFICIAL LINKS', '🔗 POTA Itself', '', [
         card('https://pota.app/', '🌐', 'pota.app', 'Spots, park pages, your account, log uploads and awards.', 'you\'re uploading a log or looking up a park\'s stats.', ext=True),
         card('https://parksontheair.com/', '🏞', 'parksontheair.com', 'The official POTA website: news, rules and how to get started.', 'you want the official word.', ext=True),
@@ -175,9 +181,9 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
         ('📻 Activating', ['Find a KFF reference: <a href="finder.html">KY Park Commander</a>, our <a href="kpc-guide-wwff.html">KFF guide</a>, or the <a href="kpc-park-info.html">Info Finder</a> for other states.',
                           'Check the boundary with <a href="kpc-in-park.html">Am I in the Park?</a> (it shows WWFF areas too).',
                           'Many Kentucky KFF areas are also POTA parks: log both programs at once.',
-                          'Spot yourself with <a href="kpc-spot-me.html">Spot Me</a> (fill in the WWFF/KFF box) and call CQ.',
+                          'Spot yourself on the WWFF spot page (wwff.co) and call CQ.',
                           'Aim for 44 over one or more visits, then send your log the way wwff.us explains.']),
-        ('🎯 Hunting', ['Watch the WWFF spots (Spot Me and <a href="kpc-live.html">Happening Now</a> link to them).',
+        ('🎯 Hunting', ['Watch the WWFF spots in the <a href="kpc-hunters.html">Hunters Lounge</a> or <a href="kpc-live.html">Happening Now</a>.',
                         'A POTA activator in a park with a KFF number is often activating KFF too: ask, or check the spot.',
                         'Log the contact with the KFF reference number.',
                         'Your credit shows up in WWFF Logsearch once the activator\'s log is uploaded.']),
@@ -187,12 +193,7 @@ PAGES['kpc-wwff-room.html'] = ('WWFF / KFF Room | KPC', 'World Wide Flora & Faun
         card('kpc-new-to-wwff.html', '🔰', 'New to WWFF?', 'Our beginner\'s walk-through for WWFF and KFF.', 'it\'s your very first time.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Member tips for every park and KFF reference.', 'you want to know what a place is like.'),
     ], alt=True, sid='guides'),
-    section('TOOLS', '🧰 Tools That Help', '', [
-        card('kpc-park-info.html', '🏛', 'Park &amp; Summit Info Finder', 'Any WWFF reference worldwide: official website and boundary map.', 'you\'re outside Kentucky.'),
-        card('kpc-in-park.html', '📍', 'Am I in the Park?', 'GPS check against official POTA and WWFF boundaries.', 'you want to be sure you\'re inside.'),
-        card('kpc-kit.html', '🎒', 'Activation Kit', 'Everything for one WWFF area on one screen, saved for no signal.', 'you\'re heading out.'),
-        card('kpc-spot-me.html', '📣', 'Spot Me', 'Copies your spot in the WWFF format and opens the WWFF spot page.', 'you\'re on the air.'),
-    ], alt=True),
+    doorways('WWFF'),
     section('OFFICIAL LINKS', '🔗 WWFF Itself', '', [
         card('https://wwff.co/', '🌐', 'wwff.co', 'The worldwide WWFF site: rules, the reference directory, Logsearch and awards.', 'you want the official word.', ext=True),
         card('https://wwff.co/wwff_cont/uploads/2025/09/WWFF-Global-Rules-V_5.10.pdf', '📖', 'WWFF Global Rules (PDF)', 'The full rules, version 5.10.', 'you have a detailed rules question.', ext=True),
@@ -224,7 +225,7 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
         ('⛰ Activating', ['Pick a summit: our <a href="kpc-guide-sota.html">Kentucky SOTA guide</a> or the <a href="kpc-sota.html">SOTA Summit Map</a>.',
                          'Post an alert on SOTAwatch and the <a href="kpc-activations.html">Activation Board</a>, and check <a href="kpc-weather.html">Field Weather</a>.',
                          'Hike up. At the top, <a href="kpc-in-park.html">Am I in the Park?</a> shows whether you\'re inside the 25 m activation zone.',
-                         'Set up away from your vehicle, spot yourself (<a href="kpc-spot-me.html">Spot Me</a> copies the SOTAwatch format) and call CQ SOTA.',
+                         'Set up away from your vehicle, spot yourself on SOTAwatch and call CQ SOTA.',
                          'Get at least 4 contacts, then upload your log at sotadata.']),
         ('🎯 Chasing', ['Watch SOTAwatch for spots and alerts (<a href="kpc-live.html">Happening Now</a> shows SOTA spots too).',
                         'Call once with your call sign, give a report, and listen for the summit reference.',
@@ -236,12 +237,7 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
         card('kpc-new-to-sota.html', '🔰', 'New to SOTA?', 'Our beginner\'s walk-through for your first summit.', 'it\'s your very first time.'),
         card('kpc-park-notes.html', '📝', 'Park Notes', 'Member tips for every summit: trails, parking, where to set up.', 'you want to know the hike before you go.'),
     ], alt=True, sid='guides'),
-    section('TOOLS', '🧰 Tools That Help', '', [
-        card('kpc-sota.html', '⛰', 'SOTA Summit Map', 'Every summit in Kentucky or any US SOTA area; load your log to see what you\'ve done.', 'you\'re planning which summit is next.'),
-        card('kpc-in-park.html', '📍', 'Am I in the Park?', 'Shows your height against the summit\'s and whether you\'re in the activation zone.', 'you\'re at the top.'),
-        card('kpc-kit.html', '🎒', 'Activation Kit', 'Weather, bands, map and more for one summit, saved for no signal.', 'you\'re heading out.'),
-        card('kpc-spot-me.html', '📣', 'Spot Me', 'Copies your spot in the SOTAwatch format and opens SOTAwatch.', 'you\'re on the air.'),
-    ], alt=True),
+    doorways('SOTA'),
     section('OFFICIAL LINKS', '🔗 SOTA Itself', '', [
         card('https://www.sota.org.uk/', '🌐', 'sota.org.uk', 'The official SOTA site: General Rules and each association\'s reference manual.', 'you want the official word.', ext=True),
         card('https://sotawatch.sota.org.uk/', '👀', 'SOTAwatch', 'Live spots and alerts.', 'you\'re chasing or posting an alert.', ext=True),
@@ -254,7 +250,9 @@ PAGES['kpc-sota-room.html'] = ('SOTA Room | KPC', 'Summits on the Air in plain w
 if __name__ == '__main__':
     os.makedirs(os.path.join(HERE, 'out'), exist_ok=True)
     CX = {'kpc-map-room.html'}   # pages with the scrolling conditions bar under the hero (Brandon Oct 17)
+    NOINDEX = '--public' not in __import__('sys').argv   # after the release: run with --public (no noindex)
     for page, (title, desc, body) in PAGES.items():
+        if page == 'kpc-map-room.html': continue   # retired Oct 29 2026 (chat 2's pointer page)
         mf = os.path.join(HERE, 'out', page.replace('.html', '-main.html'))
         tail = ''
         if page in CX:
@@ -262,3 +260,8 @@ if __name__ == '__main__':
             tail = '<script src="kpc-cx.js?v=20261017c" defer></script>\n'
         open(mf, 'w', encoding='utf-8').write('<link rel="stylesheet" href="kpc-boards.css?v=20261017a"><link rel="stylesheet" href="kpc-rooms.css?v=20261016a">\n@@HEADER@@\n<main class="kb rm">' + body + '</main>\n@@FOOTER@@\n' + tail)
         subprocess.run(['python3', os.path.join(REPO, '.claude/build/assemble.py'), mf, page, title, desc], cwd=REPO, check=True)
+        fp = os.path.join(REPO, page); t = open(fp, encoding='utf-8').read()
+        t = t.replace(f'<a href="{page}" role="menuitem">', f'<a href="{page}" role="menuitem" aria-current="page">', 1)
+        if NOINDEX and 'name="robots"' not in t:
+            t = t.replace(f'<title>{title.replace("&", "&amp;")}</title>', f'<meta name="robots" content="noindex,nofollow">\n<title>{title.replace("&", "&amp;")}</title>', 1)
+        open(fp, 'w', encoding='utf-8').write(t)
