@@ -1995,12 +1995,10 @@
   },
   "nc-parks": {
    "agency": "NC State Parks",
-   "n": 0,
-   "ok": true,
+   "ok": false,
    "page": "https://www.ncparks.gov/",
-   "rows": 0,
    "st": "NC",
-   "unmatched": []
+   "why": "<urlopen error [Errno -3] Temporary failure in name resolution>"
   },
   "nj-parks": {
    "agency": "NJ State Park Service",
