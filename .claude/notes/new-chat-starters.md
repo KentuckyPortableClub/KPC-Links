@@ -181,5 +181,6 @@ C. MORE OFFICIAL INFO (link, never copy: storage + copyright):
  3. Brochures / regulations PDFs: link from the park card, never stored in the repo.
 D. THE MONTHLY CYCLE (how it keeps improving): bots find gaps → HQ makes the worklists (good bot = map layers, hard; second agent = pages, maps, simple) → chat 2 imports → nightly check measures → HQ reports the numbers in the weekly status. SCOREBOARD per state: % official outlines, pins outside, % with an official map link.
 FIRST WORKLISTS (Oct 26 6:15 AM): good bot = .claude/build/research/KPC_Round11_goodbot_layers.md (BLM RMA, National Historic Trails, Wild & Scenic Rivers national layers); second agent = KPC_Official_Maps_worklist.xlsx (official map links for the 300 busiest US parks outside KY not yet in parkinfo-web.json).
+ROUND 11 RESULTS (good bot, Oct 26 6:23 AM) = .claude/build/research/KPC_Round11_goodbot_layers_done.md with HQ verdicts: BLM national RMA layer (SRMA 1,108 + ERMA 1,782), 17 NPS National Historic Trail layers (one per trail; the 5 'no name field' ones are usable since each layer is one trail), W&S river lines (249, USFS, all agencies) + NPS official corridors (33). → chat 2.
 TARGETS: US outlines 84% → 90% (busy parks with no outline 587 → under 200) by the end of November; pins outside under 50; Canada 70% → 80%.
 
