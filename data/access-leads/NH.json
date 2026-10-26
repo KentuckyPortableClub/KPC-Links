@@ -1,0 +1,194 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "facility",
+   "count": 990,
+   "fields": [
+    "pubacc_id",
+    "county",
+    "town",
+    "water_body",
+    "facility",
+    "ownership",
+    "access_typ",
+    "wb_type",
+    "wb_code",
+    "fee",
+    "siteaccess",
+    "parking_ty",
+    "ramp",
+    "dock",
+    "shorebank_",
+    "hcap_acc",
+    "additional",
+    "prim_use",
+    "fish",
+    "boat"
+   ],
+   "known": false,
+   "layer": "Access Sites to Public Waters",
+   "sample": [
+    {
+     "access_typ": "Remote",
+     "county": "Coos",
+     "facility": "Boundary Pond Remote Access",
+     "fee": "No",
+     "ownership": "State - NHFG",
+     "parking_ty": "Gravel",
+     "pubacc_id": "9018",
+     "siteaccess": "Difficult",
+     "town": "Pittsburg",
+     "water_body": "Boundary Pond",
+     "wb_code": "RD",
+     "wb_type": "Lake"
+    },
+    {
+     "access_typ": "Cartop",
+     "county": "Coos",
+     "facility": "Scott Bog Cartop Facility",
+     "fee": "No",
+     "ownership": "State - NHFG",
+     "parking_ty": "Gravel",
+     "pubacc_id": "9019",
+     "siteaccess": "Limited",
+     "town": "Pittsburg",
+     "water_body": "Scott Bog",
+     "wb_code": "RD",
+     "wb_type": "Lake"
+    },
+    {
+     "access_typ": "Cartop",
+     "county": "Coos",
+     "facility": "East Inlet Cartop Facility",
+     "fee": "No",
+     "ownership": "State - NHFG/Other - TNC",
+     "parking_ty": "Gravel",
+     "pubacc_id": "9865",
+     "siteaccess": "Limited",
+     "town": "Pittsburg",
+     "water_body": "East Inlet",
+     "wb_code": "RD",
+     "wb_type": "Lake"
+    }
+   ],
+   "service": "Hosted/CV_CulturalSocietyAndDemographic",
+   "typef": "facility",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_CulturalSocietyAndDemographic/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "facility",
+   "count": 990,
+   "fields": [
+    "pubacc_id",
+    "county",
+    "town",
+    "water_body",
+    "facility",
+    "ownership",
+    "access_typ",
+    "wb_type",
+    "wb_code",
+    "fee",
+    "siteaccess",
+    "parking_ty",
+    "ramp",
+    "dock",
+    "shorebank_",
+    "hcap_acc",
+    "additional",
+    "prim_use",
+    "fish",
+    "boat"
+   ],
+   "known": true,
+   "layer": "Access Sites to Public Waters",
+   "sample": [
+    {
+     "access_typ": "Remote",
+     "county": "Coos",
+     "facility": "Boundary Pond Remote Access",
+     "fee": "No",
+     "ownership": "State - NHFG",
+     "parking_ty": "Gravel",
+     "pubacc_id": "9018",
+     "siteaccess": "Difficult",
+     "town": "Pittsburg",
+     "water_body": "Boundary Pond",
+     "wb_code": "RD",
+     "wb_type": "Lake"
+    },
+    {
+     "access_typ": "Cartop",
+     "county": "Coos",
+     "facility": "Scott Bog Cartop Facility",
+     "fee": "No",
+     "ownership": "State - NHFG",
+     "parking_ty": "Gravel",
+     "pubacc_id": "9019",
+     "siteaccess": "Limited",
+     "town": "Pittsburg",
+     "water_body": "Scott Bog",
+     "wb_code": "RD",
+     "wb_type": "Lake"
+    },
+    {
+     "access_typ": "Cartop",
+     "county": "Coos",
+     "facility": "East Inlet Cartop Facility",
+     "fee": "No",
+     "ownership": "State - NHFG/Other - TNC",
+     "parking_ty": "Gravel",
+     "pubacc_id": "9865",
+     "siteaccess": "Limited",
+     "town": "Pittsburg",
+     "water_body": "East Inlet",
+     "wb_code": "RD",
+     "wb_type": "Lake"
+    }
+   ],
+   "service": "Hosted/CSD_RecreationResources",
+   "typef": "facility",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/0"
+  },
+  {
+   "agency": "NH FIsh and Game Department, November 3, 2025",
+   "area": "",
+   "count": 360,
+   "fields": [
+    "TYPE",
+    "P_NAME",
+    "WMU",
+    "TOWN"
+   ],
+   "known": true,
+   "layer": "ParkingGatesKiosks",
+   "sample": [
+    {
+     "P_NAME": "Lower Shaker WMA",
+     "TOWN": "Enfield",
+     "TYPE": "gate",
+     "WMU": "G1"
+    },
+    {
+     "P_NAME": "Lower Shaker WMA",
+     "TOWN": "Enfield",
+     "TYPE": "gate",
+     "WMU": "G1"
+    },
+    {
+     "P_NAME": "Squamscott River WMA",
+     "TOWN": "Stratham",
+     "TYPE": "gate",
+     "WMU": "M"
+    }
+   ],
+   "service": "NHFG_WMA_online",
+   "typef": "TYPE",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFG_WMA_online/FeatureServer/0"
+  }
+ ],
+ "st": "NH"
+}

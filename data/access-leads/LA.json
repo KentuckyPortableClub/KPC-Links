@@ -1,0 +1,144 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 719,
+   "fields": [
+    "Boat_Launc",
+    "Waterbody",
+    "Location",
+    "City",
+    "Phone",
+    "Website__j",
+    "Email",
+    "Hours",
+    "Fishing_Ty",
+    "Access",
+    "Ramp_and_P",
+    "Amenities",
+    "F15"
+   ],
+   "known": false,
+   "layer": "Boat_Launch",
+   "sample": [
+    {
+     "Access": "Public",
+     "Amenities": " ",
+     "Boat_Launc": "4th Street Boat Launch",
+     "City": "Covington",
+     "Email": " ",
+     "Fishing_Ty": "Saltwater, freshwater, brackish",
+     "Hours": " ",
+     "Location": "4th St",
+     "Phone": " ",
+     "Ramp_and_P": "2-lane concrete ramp, parking for 10 trailers",
+     "Waterbody": "Tchefuncte River",
+     "Website__j": " "
+    },
+    {
+     "Access": "Private; pay to launch",
+     "Amenities": " ",
+     "Boat_Launc": "A-1 Camp",
+     "City": "Noble",
+     "Email": " ",
+     "Fishing_Ty": "Freshwater",
+     "Hours": "24 hours a day",
+     "Location": "299 A-1 Camp Rd",
+     "Phone": "318-567-2269",
+     "Ramp_and_P": "1-lane concrete ramp, unimproved parking lot with 40 spaces",
+     "Waterbody": "Toledo Bend Reservoir",
+     "Website__j": " "
+    },
+    {
+     "Access": "Private",
+     "Amenities": " ",
+     "Boat_Launc": "Adam's Landing",
+     "City": " ",
+     "Email": " ",
+     "Fishing_Ty": "Freshwater",
+     "Hours": " ",
+     "Location": "Along Hwy 70, 14 miles north of Morgan City",
+     "Phone": " ",
+     "Ramp_and_P": "2-lane concrete ramp",
+     "Waterbody": "Atchafalaya Basin",
+     "Website__j": " "
+    }
+   ],
+   "service": "Boat_Launch_Mariana",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/Boat_Launch_Mariana/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Website",
+   "count": 597,
+   "fields": [
+    "Boat_Launc",
+    "Waterbody",
+    "Location",
+    "City",
+    "Phone",
+    "Website__j",
+    "Website",
+    "Email",
+    "Hours",
+    "Fishing_Ty",
+    "Access",
+    "Ramp_and_P",
+    "Amenities"
+   ],
+   "known": false,
+   "layer": "LA_Boat_Launch_Marina",
+   "sample": [
+    {
+     "Access": "Private",
+     "Boat_Launc": "Sunshine Acres Marina",
+     "City": "Dulac",
+     "Email": " ",
+     "Fishing_Ty": "Saltwater, brackish",
+     "Hours": " ",
+     "Location": " ",
+     "Phone": " ",
+     "Ramp_and_P": "1-lane gravel ramp",
+     "Waterbody": " ",
+     "Website": " ",
+     "Website__j": " "
+    },
+    {
+     "Access": "Public",
+     "Boat_Launc": "Port of Iberia Ramp",
+     "City": "New Iberia",
+     "Email": "info@portofiberia.com",
+     "Fishing_Ty": "Saltwater, freshwater, brackish",
+     "Hours": "24 hours a day",
+     "Location": "4690 S Lewis St",
+     "Phone": "337-364-1065",
+     "Ramp_and_P": "4-lane concrete ramp",
+     "Waterbody": "Commercial Canal",
+     "Website": "http://www.portofiberia.com",
+     "Website__j": "www.portofiberia.com"
+    },
+    {
+     "Access": "Private",
+     "Boat_Launc": "Four Point Landing",
+     "City": "Dulac",
+     "Email": " ",
+     "Fishing_Ty": "Saltwater, brackish",
+     "Hours": " ",
+     "Location": "1171 Four Point Rd",
+     "Phone": "504-563-4356; 985-563-2878",
+     "Ramp_and_P": "2-lane concrete ramp",
+     "Waterbody": " ",
+     "Website": " ",
+     "Website__j": " "
+    }
+   ],
+   "service": "LA_Boat_Launch_Marina",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LA_Boat_Launch_Marina/FeatureServer/0"
+  }
+ ],
+ "st": "LA"
+}

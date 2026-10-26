@@ -1,0 +1,204 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 2726,
+   "fields": [
+    "AmenityID",
+    "AmenityType",
+    "Description",
+    "AreaName",
+    "DB_GISID",
+    "Creator",
+    "Editor",
+    "BrochureDisplay",
+    "ADA"
+   ],
+   "known": false,
+   "layer": "Park Amenities",
+   "sample": [
+    {
+     "AmenityID": "AMT-00927",
+     "AmenityType": "Information",
+     "AreaName": "Niobrara SP",
+     "BrochureDisplay": "Yes",
+     "Creator": "Alexander.Duryea",
+     "DB_GISID": "126P",
+     "Description": "Information",
+     "Editor": "Alexander.Duryea"
+    },
+    {
+     "AmenityID": "AMT-00928",
+     "AmenityType": "Drinking Water",
+     "AreaName": "Niobrara SP",
+     "BrochureDisplay": "Yes",
+     "Creator": "Alexander.Duryea",
+     "DB_GISID": "126P",
+     "Description": "Drinking Water",
+     "Editor": "Alexander.Duryea"
+    },
+    {
+     "AmenityID": "AMT-00929",
+     "AmenityType": "Drinking Water",
+     "AreaName": "Niobrara SP",
+     "BrochureDisplay": "Yes",
+     "Creator": "Alexander.Duryea",
+     "DB_GISID": "126P",
+     "Description": "Drinking Water",
+     "Editor": "Alexander.Duryea"
+    }
+   ],
+   "service": "Map",
+   "typef": "AmenityType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Map/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Paddle_AreaName",
+   "count": 95,
+   "fields": [
+    "Paddle_Waterbody",
+    "Paddle_AreaName",
+    "ShoreLaunch",
+    "Paddle_Substrate",
+    "DockLaunch",
+    "ADAAccess",
+    "Paddle_GoogleLink",
+    "Paddle_Owner",
+    "Paddle_Maintainer",
+    "Paddle_County",
+    "AccessType",
+    "Creator",
+    "Editor",
+    "Season",
+    "SiteNotes",
+    "Ramp_Status",
+    "GoogleMapsHyperlink",
+    "Water_Trail"
+   ],
+   "known": false,
+   "layer": "Paddlecraft Launch",
+   "sample": [
+    {
+     "ADAAccess": "No",
+     "AccessType": "Public",
+     "Creator": "Zach.Horstman",
+     "DockLaunch": "No",
+     "Paddle_AreaName": "Yankee Hill WMA",
+     "Paddle_County": "Lancaster",
+     "Paddle_GoogleLink": "https://www.google.com/maps/search/?api=1&query=40.7288248,-96.7907042",
+     "Paddle_Maintainer": "NGPC WMA",
+     "Paddle_Owner": "NGPC WMA",
+     "Paddle_Substrate": "Sand/Gravel",
+     "Paddle_Waterbody": "Yankee Hill Lake",
+     "ShoreLaunch": "Yes"
+    },
+    {
+     "ADAAccess": "No",
+     "AccessType": "Public",
+     "Creator": "Zach.Horstman",
+     "DockLaunch": "No",
+     "Paddle_AreaName": "Enders Reservoir SRA",
+     "Paddle_County": "Chase",
+     "Paddle_GoogleLink": "https://www.google.com/maps/search/?api=1&query=40.4194734,-101.5199042",
+     "Paddle_Maintainer": "NGPC SRA",
+     "Paddle_Owner": "NGPC SRA",
+     "Paddle_Substrate": "Sand/Gravel",
+     "Paddle_Waterbody": "Enders Reservoir",
+     "ShoreLaunch": "Yes"
+    },
+    {
+     "ADAAccess": "No",
+     "AccessType": "Public",
+     "Creator": "Zach.Horstman",
+     "DockLaunch": "No",
+     "Paddle_AreaName": "Sandy Channel SRA",
+     "Paddle_County": "Buffalo",
+     "Paddle_GoogleLink": "https://www.google.com/maps/search/?api=1&query=40.6719655,-99.3753358",
+     "Paddle_Maintainer": "NGPC SRA",
+     "Paddle_Owner": "NGPC SRA",
+     "Paddle_Substrate": "Grass/Dirt/Bare Ground",
+     "Paddle_Waterbody": "Sandy Channel SRA",
+     "ShoreLaunch": "Yes"
+    }
+   ],
+   "service": "Paddle_Craft_Launch_View_Layer_for_Public_Web_Map",
+   "typef": "AccessType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Paddle_Craft_Launch_View_Layer_for_Public_Web_Map/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Paddle_AreaName",
+   "count": 45,
+   "fields": [
+    "Paddle_GoogleLink",
+    "Paddle_Substrate",
+    "Paddle_AreaName",
+    "Paddle_County",
+    "Paddle_Waterbody",
+    "Paddle_Owner",
+    "Paddle_Maintainer",
+    "AccessType",
+    "ShoreLaunch",
+    "DockLaunch",
+    "ADAAccess",
+    "Creator",
+    "Editor",
+    "RampStatus",
+    "WaterTrail"
+   ],
+   "known": false,
+   "layer": "Paddlecraft Launch",
+   "sample": [
+    {
+     "ADAAccess": "no",
+     "AccessType": "Public",
+     "Creator": "Zach.Horstman",
+     "DockLaunch": "no",
+     "Paddle_AreaName": "Yankee Hill WMA",
+     "Paddle_County": "Lancaster",
+     "Paddle_GoogleLink": "https://www.google.com/maps/search/?api=1&query=40.7288248,-96.7907042",
+     "Paddle_Maintainer": "NGPC_WMA",
+     "Paddle_Owner": "NGPC_WMA",
+     "Paddle_Substrate": "pea gravel",
+     "Paddle_Waterbody": "Yankee Hill Lake",
+     "ShoreLaunch": "yes"
+    },
+    {
+     "ADAAccess": "no",
+     "AccessType": "Public",
+     "Creator": "Zach.Horstman",
+     "DockLaunch": "no",
+     "Paddle_AreaName": "Enders Reservoir SRA",
+     "Paddle_County": "Chase",
+     "Paddle_GoogleLink": "https://www.google.com/maps/search/?api=1&query=40.4194734,-101.5199042",
+     "Paddle_Maintainer": "NGPC_SRA",
+     "Paddle_Owner": "NGPC_SRA",
+     "Paddle_Substrate": "pea gravel",
+     "Paddle_Waterbody": "Enders Reservoir",
+     "ShoreLaunch": "yes"
+    },
+    {
+     "ADAAccess": "no",
+     "AccessType": "Public",
+     "Creator": "Zach.Horstman",
+     "DockLaunch": "no",
+     "Paddle_AreaName": "Sandy Channel SRA",
+     "Paddle_County": "Buffalo",
+     "Paddle_GoogleLink": "https://www.google.com/maps/search/?api=1&query=40.6719655,-99.3753358",
+     "Paddle_Maintainer": "NGPC_SRA",
+     "Paddle_Owner": "NGPC_SRA",
+     "Paddle_Substrate": "concrete",
+     "Paddle_Waterbody": "Sandy Channel SRA",
+     "ShoreLaunch": "yes"
+    }
+   ],
+   "service": "Paddle_Craft_Access",
+   "typef": "AccessType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Paddle_Craft_Access/FeatureServer/0"
+  }
+ ],
+ "st": "NE"
+}

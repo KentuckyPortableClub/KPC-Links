@@ -1,0 +1,303 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Missouri Department of Conservation",
+   "area": "",
+   "count": 46,
+   "fields": [
+    "Tract_1",
+    "Tract_2",
+    "Tract_3",
+    "Access_Typ",
+    "GoogleHyperlink"
+   ],
+   "known": false,
+   "layer": "MRAP Parking Registration",
+   "sample": [
+    {
+     "Access_Typ": "Small Game And Turkey Hunting",
+     "Tract_1": "Brush Creek North Tract",
+     "Tract_2": " ",
+     "Tract_3": " "
+    },
+    {
+     "Access_Typ": "All Access Hunting And Fishing",
+     "Tract_1": "Samuel Ziegler Prairie Tract",
+     "Tract_2": " ",
+     "Tract_3": " "
+    },
+    {
+     "Access_Typ": "Small Game And Turkey Hunting",
+     "Tract_1": "Brush Creek South Tract",
+     "Tract_2": " ",
+     "Tract_3": " "
+    }
+   ],
+   "service": "Discover_Nature/MDC_Administrative_Areas",
+   "typef": "",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 26,
+   "fields": [
+    "TRAIL_NAME",
+    "DESCRIPTION",
+    "POINT_TYPE",
+    "ROUTE_NAME",
+    "STATUS",
+    "ADVISORY",
+    "URL",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Katy Trailheads",
+   "sample": [
+    {
+     "DESCRIPTION": "Machens Trailhead",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Trailhead",
+     "ROUTE_NAME": "Katy Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "East Section"
+    },
+    {
+     "ADVISORY": " ",
+     "DESCRIPTION": "St. Charles Trailhead",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Trailhead",
+     "ROUTE_NAME": "Katy Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "East Section",
+     "URL": " "
+    },
+    {
+     "DESCRIPTION": "Greensbottom Trailhead",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Trailhead",
+     "ROUTE_NAME": "Katy Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "East Section",
+     "URL": " "
+    }
+   ],
+   "service": "parks/Trail_Advisory_Viewer",
+   "typef": "DESCRIPTION",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Trail_Advisory_Viewer/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "TRAIL_NAME",
+    "DESCRIPTION",
+    "POINT_TYPE",
+    "ROUTE_NAME",
+    "STATUS",
+    "ADVISORY",
+    "URL",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Katy Parking Areas",
+   "sample": [
+    {
+     "ADVISORY": " ",
+     "DESCRIPTION": "Defiance Parking Area",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Parking",
+     "ROUTE_NAME": "Katy Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "East Section",
+     "URL": " "
+    },
+    {
+     "ADVISORY": " ",
+     "DESCRIPTION": "Rhineland Parking Area",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Parking",
+     "ROUTE_NAME": "Katy Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Mid-East Section",
+     "URL": " "
+    },
+    {
+     "ADVISORY": " ",
+     "DESCRIPTION": "Steedman Parking Area",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Parking",
+     "ROUTE_NAME": "Katy Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Mid-East Section",
+     "URL": " "
+    }
+   ],
+   "service": "parks/Trail_Advisory_Viewer",
+   "typef": "DESCRIPTION",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Trail_Advisory_Viewer/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "TRAIL_NAME",
+    "DESCRIPTION",
+    "POINT_TYPE",
+    "ROUTE_NAME",
+    "STATUS",
+    "ADVISORY",
+    "URL",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Rock Island Trailheads",
+   "sample": [
+    {
+     "DESCRIPTION": "Pleasant Hill Trailhead",
+     "LAST_EDITED_USER": "nrbrigd",
+     "POINT_TYPE": "Trailhead",
+     "ROUTE_NAME": "Rock Island Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Rock Island Trail",
+     "URL": " "
+    },
+    {
+     "ADVISORY": "From Nov. 1 to March 31, restrooms will be closed and water turned off at several of the Katy Trail State Park and Rock Island Spur trailheads.  The restroom at Medford will remain open but the water will be turned off.",
+     "DESCRIPTION": "Medford Trailhead",
+     "LAST_EDITED_USER": "SDNRGIPRKP",
+     "POINT_TYPE": "Trailhead",
+     "ROUTE_NAME": "Rock Island Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Rock Island Trail",
+     "URL": "https://mostateparks.com/advisory/89261/restrooms-and-water-unavailable-some-trailheads-oct-26-march-31-katy-trail-state-park"
+    },
+    {
+     "ADVISORY": " ",
+     "DESCRIPTION": "Chilhowee Trailhead",
+     "LAST_EDITED_USER": "SDNRGIPRKP",
+     "POINT_TYPE": "Trailhead",
+     "ROUTE_NAME": "Rock Island Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Rock Island Trail",
+     "URL": " "
+    }
+   ],
+   "service": "parks/Trail_Advisory_Viewer",
+   "typef": "DESCRIPTION",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Trail_Advisory_Viewer/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "TRAIL_NAME",
+    "DESCRIPTION",
+    "POINT_TYPE",
+    "ROUTE_NAME",
+    "STATUS",
+    "ADVISORY",
+    "URL",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "Rock Island Parking Areas",
+   "sample": [
+    {
+     "DESCRIPTION": "Route P Equestrian Parking",
+     "LAST_EDITED_USER": "GIS",
+     "POINT_TYPE": "Parking",
+     "ROUTE_NAME": "Rock Island Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Rock Island Trail",
+     "URL": " "
+    },
+    {
+     "DESCRIPTION": "Purvis Road Equestrian Parking",
+     "LAST_EDITED_USER": "nrbrigd",
+     "POINT_TYPE": "Parking",
+     "ROUTE_NAME": "Rock Island Trail",
+     "STATUS": "Open",
+     "TRAIL_NAME": "Rock Island Trail",
+     "URL": " "
+    }
+   ],
+   "service": "parks/Trail_Advisory_Viewer",
+   "typef": "DESCRIPTION",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Trail_Advisory_Viewer/MapServer/3"
+  },
+  {
+   "agency": "Missouri Department of Conservation",
+   "area": "Area_Name",
+   "count": 3076,
+   "fields": [
+    "Area_Name",
+    "Surface",
+    "Allows_Trailers",
+    "ADA"
+   ],
+   "known": true,
+   "layer": "Parking Lots",
+   "sample": [
+    {
+     "ADA": "No",
+     "Allows_Trailers": "No",
+     "Area_Name": "Star School Hill Prairie Conservation Area",
+     "Surface": "Paved"
+    },
+    {
+     "ADA": "No",
+     "Allows_Trailers": "No",
+     "Area_Name": "Clark Conservation Area",
+     "Surface": "Gravel"
+    },
+    {
+     "ADA": "No",
+     "Allows_Trailers": "No",
+     "Area_Name": "Pawnee Prairie Conservation Area",
+     "Surface": "Paved"
+    }
+   ],
+   "service": "Discover_Nature/Area_Feature_Layers",
+   "typef": "Surface",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/Area_Feature_Layers/FeatureServer/26"
+  },
+  {
+   "agency": "Missouri Department of Conservation",
+   "area": "Area_Name",
+   "count": 554,
+   "fields": [
+    "Area_Name",
+    "ADA"
+   ],
+   "known": true,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "ADA": "No",
+     "Area_Name": "Shelvin Rock Access"
+    },
+    {
+     "ADA": "No",
+     "Area_Name": "Delaware Town Access"
+    },
+    {
+     "ADA": "No",
+     "Area_Name": "Stubblefield Access"
+    }
+   ],
+   "service": "Discover_Nature/Area_Feature_Layers",
+   "typef": "",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/Area_Feature_Layers/FeatureServer/17"
+  }
+ ],
+ "st": "MO"
+}

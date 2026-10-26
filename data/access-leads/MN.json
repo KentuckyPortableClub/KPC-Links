@@ -1,0 +1,406 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "name",
+   "count": 214,
+   "fields": [
+    "pgrm_proje",
+    "directions",
+    "notes",
+    "type",
+    "name"
+   ],
+   "known": false,
+   "layer": "Sna Parking",
+   "sample": [
+    {
+     "directions": "From Deer River 22 miles N on MN Hwy 6, then 0.2 mile W on Co Rd 313. Park on SW road shoulder.",
+     "name": "Little Too Much Lake SNA",
+     "notes": " ",
+     "pgrm_proje": "SNA02054",
+     "type": "road shoulder"
+    },
+    {
+     "directions": "From Granite Falls, 0.2 mile S on MN Hwy 23, then 0.15 mile W on Co Hwy 39 (540th St). Park in pull-off on N near wood-routed sign.",
+     "name": "Blue Devil Valley SNA",
+     "notes": " ",
+     "pgrm_proje": "SNA01050",
+     "type": "pull off"
+    },
+    {
+     "directions": "From Zimmerman 5.4 miles W on Co Hwy 4, then 0.45 mile S on 168th St, then 1.25 miles W and S on forest road into Sand Dunes State Forest. Park in campground and hike S to site.",
+     "name": "Uncas Dunes SNA",
+     "notes": " ",
+     "pgrm_proje": "SNA01039",
+     "type": "state forest lot"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_scientific_and_nat_areas",
+   "typef": "type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "geopdfsite",
+   "count": 143,
+   "fields": [
+    "station_id",
+    "descriptio",
+    "descripti2",
+    "structure_",
+    "paleocurre",
+    "glacial_st",
+    "photo_numb",
+    "photo_desc",
+    "comments",
+    "time",
+    "geopdfsite",
+    "unit_1",
+    "unit_2"
+   ],
+   "known": false,
+   "layer": "Blue Mounds State Park Geologic Stations",
+   "sample": [
+    {
+     "comments": " ",
+     "descripti2": "j1=95=strike",
+     "descriptio": "pink med-crs sandstone",
+     "geopdfsite": "No",
+     "glacial_st": "N/A",
+     "paleocurre": "N/A",
+     "photo_desc": " ",
+     "photo_numb": "123-0001",
+     "station_id": "BM001",
+     "structure_": "J1",
+     "time": "08:31:10am",
+     "unit_1": "Kp"
+    },
+    {
+     "comments": " ",
+     "descripti2": "pink to pl-pink med-crs sandstone. 1m thick tr-xb",
+     "descriptio": "extends several hundred feet north to south",
+     "geopdfsite": "Yes",
+     "glacial_st": " ",
+     "paleocurre": "Ra",
+     "photo_desc": "002=extent 004=ripple mark 005=ventrification",
+     "photo_numb": "123-0002, 123-0004, 123-0005",
+     "station_id": "BM002",
+     "structure_": " ",
+     "time": "08:52:18am",
+     "unit_1": "Kp"
+    },
+    {
+     "comments": " ",
+     "descripti2": " ",
+     "descriptio": "pink-pale med-finegr ss with 20cm fine ss bed, rippled",
+     "geopdfsite": "Yes",
+     "glacial_st": " ",
+     "paleocurre": "Ra",
+     "photo_desc": "ripple feature",
+     "photo_numb": "123-0007",
+     "station_id": "BM003",
+     "structure_": "B",
+     "time": "09:31:39am",
+     "unit_1": "Kp"
+    }
+   ],
+   "service": "us_mn_state_dnr/geos_blue_mounds_state_park",
+   "typef": "descriptio",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/geos_blue_mounds_state_park/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 71,
+   "fields": [
+    "photo",
+    "feature",
+    "descript"
+   ],
+   "known": false,
+   "layer": "Blue Mounds State Park Geologic Features",
+   "sample": [
+    {
+     "descript": "pink and purple quartzite with multiple sets of trough cross beds",
+     "feature": "troughs",
+     "photo": "0037"
+    },
+    {
+     "descript": "contact of lower reddish unit with overlying pale purple trough cross bedded quartzite",
+     "feature": "troughs",
+     "photo": "0168"
+    },
+    {
+     "descript": "at contact purple troughs above, red quartzite below; some ripped up clasts  in purple",
+     "feature": "troughs",
+     "photo": "0173"
+    }
+   ],
+   "service": "us_mn_state_dnr/geos_blue_mounds_state_park",
+   "typef": "feature",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/geos_blue_mounds_state_park/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 66,
+   "fields": [
+    "orientationdatapoints_id",
+    "stationid",
+    "type",
+    "identityconfidence",
+    "label",
+    "notes",
+    "datasourceid",
+    "fgdc_refno"
+   ],
+   "known": false,
+   "layer": "Bedding",
+   "sample": [
+    {
+     "datasourceid": "M. Jirsa",
+     "fgdc_refno": "6.2",
+     "notes": " ",
+     "stationid": "BM003",
+     "type": "B"
+    },
+    {
+     "datasourceid": "M. Jirsa",
+     "fgdc_refno": "6.2",
+     "notes": " ",
+     "stationid": "BM006",
+     "type": "B"
+    },
+    {
+     "datasourceid": "M. Jirsa",
+     "fgdc_refno": "6.2",
+     "notes": "wind sculpted ventifaction",
+     "stationid": "BM008",
+     "type": "B"
+    }
+   ],
+   "service": "us_mn_state_dnr/geos_blue_mounds_state_park",
+   "typef": "type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/geos_blue_mounds_state_park/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "unit_name",
+   "count": 60,
+   "fields": [
+    "alt_name",
+    "county",
+    "hwt_shp",
+    "source",
+    "unit_name",
+    "area_name",
+    "admin",
+    "cooperator",
+    "nearest_to",
+    "directions",
+    "comments_1",
+    "pdf_file",
+    "unique_id",
+    "ident",
+    "comment"
+   ],
+   "known": false,
+   "layer": "Access Points",
+   "sample": [
+    {
+     "admin": "DNR",
+     "alt_name": "7-Mile RGMA",
+     "area_name": "Red Lake WMA",
+     "comments_1": " ",
+     "cooperator": " ",
+     "county": "Lake of the Woods",
+     "directions": " ",
+     "hwt_shp": "Y",
+     "nearest_to": "Grygla",
+     "pdf_file": "7mile_rgma.pdf",
+     "source": "SFRMP Shapefile - R1",
+     "unit_name": "7-Mile RGMA"
+    },
+    {
+     "admin": "DNR",
+     "alt_name": "Bear River RGMA 1",
+     "area_name": "Tower",
+     "comments_1": " ",
+     "cooperator": "St. Louis County",
+     "county": "St. Louis/Itasca",
+     "directions": "From Side Lake 7 mi N to Co Rd 22, 2.25 N mi N of Hwy 22 on Airport Rd.",
+     "hwt_shp": "Y",
+     "nearest_to": "Side Lake",
+     "pdf_file": "bear_river_rgma.pdf",
+     "source": "Area Staff",
+     "unit_name": "Bear River RGMA"
+    },
+    {
+     "admin": "DNR",
+     "alt_name": "Bear River RGMA 2",
+     "area_name": "Tower",
+     "comments_1": " ",
+     "cooperator": "St. Louis County",
+     "county": "St. Louis/Itasca",
+     "directions": "From Side Lake 7 mi N to Co Rd 22, 2.25 N mi N of Hwy 22 on Airport Rd.",
+     "hwt_shp": "Y",
+     "nearest_to": "Side Lake",
+     "pdf_file": "bear_river_rgma.pdf",
+     "source": "Area Staff",
+     "unit_name": "Bear River RGMA"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_ruffed_grouse_mgmt_areas",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_ruffed_grouse_mgmt_areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "orientationdatapoints_id",
+    "stationid",
+    "type",
+    "identityconfidence",
+    "label",
+    "notes",
+    "datasourceid",
+    "fgdc_refno"
+   ],
+   "known": false,
+   "layer": "Paleocurrent Directions",
+   "sample": [
+    {
+     "fgdc_refno": "9.1",
+     "notes": " ",
+     "stationid": "BM002",
+     "type": "Ra"
+    },
+    {
+     "fgdc_refno": "9.1",
+     "notes": " ",
+     "stationid": "BM003",
+     "type": "Ra"
+    },
+    {
+     "fgdc_refno": "9.2",
+     "notes": " ",
+     "stationid": "BM019",
+     "type": "Xt"
+    }
+   ],
+   "service": "us_mn_state_dnr/geos_blue_mounds_state_park",
+   "typef": "type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/geos_blue_mounds_state_park/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "orientationdatapoints_id",
+    "stationid",
+    "type",
+    "identityconfidence",
+    "label",
+    "notes",
+    "datasourceid",
+    "fgdc_refno"
+   ],
+   "known": false,
+   "layer": "Glacial Structures",
+   "sample": [
+    {
+     "fgdc_refno": "13.30",
+     "notes": " ",
+     "stationid": "BM007",
+     "type": "Gc"
+    },
+    {
+     "fgdc_refno": "13.29",
+     "notes": " ",
+     "stationid": "BM018",
+     "type": "Gs"
+    },
+    {
+     "fgdc_refno": "13.29",
+     "notes": " ",
+     "stationid": "BM022",
+     "type": "Gs"
+    }
+   ],
+   "service": "us_mn_state_dnr/geos_blue_mounds_state_park",
+   "typef": "type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/geos_blue_mounds_state_park/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3025,
+   "fields": [
+    "unique_swas_id",
+    "access_name",
+    "administrator",
+    "county_name",
+    "directions",
+    "launch_type",
+    "ramp_surface",
+    "parking_lot_surface",
+    "downstream_riverbank_side",
+    "state_water_trail_id",
+    "state_water_trail_name",
+    "dow_lake_id",
+    "lake_name",
+    "alternate_lake_name",
+    "shape_collection_method",
+    "lam_program_project_code",
+    "alerts",
+    "stable_prod_guid"
+   ],
+   "known": true,
+   "layer": "Water Access Sites",
+   "sample": [
+    {
+     "access_name": "West Two Rivers Reservoir Public Water Access Site",
+     "administrator": "City of Mountain Iron",
+     "county_name": "St. Louis",
+     "directions": "In Mountain Iron, south on county road 761 (Campground Road), adjacent West Two Rivers campground.",
+     "dow_lake_id": "69099400",
+     "launch_type": "Trailer Launch",
+     "parking_lot_surface": "Gravel",
+     "ramp_surface": "Concrete Slab",
+     "unique_swas_id": "WAS00147"
+    },
+    {
+     "access_name": "Twin Lake Public Water Access Site",
+     "administrator": "DNR Division of Parks and Trails",
+     "county_name": "St. Louis",
+     "directions": "From Hwy 169 west of Ely head south on Boundary Rd W for 1.8 miles to the access.",
+     "dow_lake_id": "69016302",
+     "launch_type": "Trailer Launch",
+     "parking_lot_surface": "Gravel",
+     "ramp_surface": "Concrete Slab",
+     "unique_swas_id": "WAS00148"
+    },
+    {
+     "access_name": "Sturgeon Lake Public Water Access Site",
+     "administrator": "DNR Division of Parks and Trails",
+     "county_name": "St. Louis",
+     "directions": "In McCarthy Beach State Park, 12 mi NW of Hibbing to SE shore.",
+     "dow_lake_id": "69093901",
+     "launch_type": "Trailer Launch",
+     "parking_lot_surface": "Natural",
+     "ramp_surface": "Concrete Slab",
+     "unique_swas_id": "WAS00149"
+    }
+   ],
+   "service": "us_mn_state_dnr/struc_water_access_sites",
+   "typef": "launch_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/struc_water_access_sites/FeatureServer/0"
+  }
+ ],
+ "st": "MN"
+}
