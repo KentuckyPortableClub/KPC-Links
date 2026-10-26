@@ -1,0 +1,26 @@
+name: KPC tmp probe
+on: workflow_dispatch
+permissions: {contents: read}
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - continue-on-error: true
+        run: |
+          python3 - <<'PY' || true
+          import json,urllib.request,urllib.parse
+          def g(u,p):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u+'?'+urllib.parse.urlencode(p),headers={'User-Agent':'KPC probe'}),timeout=60).read())
+          def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n',' ')[:950]),flush=True)
+          U='https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0'
+          try:
+              d=g(U,{'f':'json'}); n('rst fields',[f['name'] for f in d['fields']][:30]); n('rst max',d.get('maxRecordCount'))
+              j=g(U+'/query',{'where':"FET_NAME LIKE '%Moon Rocks%'",'outFields':'*','returnGeometry':'false','f':'json'}); n('moon rocks',json.dumps([f['attributes'] for f in j.get('features',[])])[:900])
+              j=g(U+'/query',{'where':"1=1",'geometry':'-120.01,35.0,-114.0,42.0','geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','returnCountOnly':'true','f':'json'}); n('NV box count',j)
+              j=g(U+'/query',{'where':"1=1",'outFields':'OBJECTID,FET_NAME,GIS_ACRES','geometry':'-120.01,35.0,-114.0,42.0','geometryType':'esriGeometryEnvelope','inSR':4326,'spatialRel':'esriSpatialRelIntersects','returnGeometry':'true','outSR':4326,'maxAllowableOffset':0.001,'geometryPrecision':5,'resultRecordCount':200,'f':'json'}); n('NV page',str(j.get('error') or len(j.get('features',[]))))
+          except Exception as e: n('err',e)
+          W='https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/WildScenicRiverBoundaries/FeatureServer/0'
+          try:
+              d=g(W,{'f':'json'}); n('wsr fields',[f['name'] for f in d['fields']][:25]); j=g(W+'/query',{'where':'1=1','outFields':'WSR_GNIS_NAME','returnGeometry':'false','f':'json'}); n('wsr names',sorted({f['attributes']['WSR_GNIS_NAME'] for f in j['features']})[:60])
+          except Exception as e: n('err2',e)
+          PY
