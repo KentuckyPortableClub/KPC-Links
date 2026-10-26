@@ -1,5 +1,5 @@
 {
- "about": "KPC holiday art (Brandon, Oct 26 2026). Website (chat 1): show the holiday's .webp on the home page from 'show_days' before the date through the day itself, then back to normal. Posts (chat 5): on the morning of the date, post the -post.jpg + 'post' text to Discord + the Facebook Page (+ website announcement), one post per holiday, no emails. Dates: 'MM-DD' fixed, or a rule. Edit the post text here; no code change needed. HOLD: nothing shows or posts until Brandon says GO. EFFECT (Brandon Oct 26: 'graphics like snow for Christmas'): light animated touch on the home page while the picture shows: snow / leaves / bats / hearts / clovers / fireworks / petals / sparks; 'none' on Memorial Day, Veterans Day (solemn), Labor Day, Father's Day. Off with reduced motion and when printing, tap to stop, low CPU, stops itself after ~30 s on phones.",
+ "about": "KPC holiday art (Brandon, Oct 26 2026). Website (chat 1): show the holiday's .webp on the home page from 'show_days' before the date through the day itself, then back to normal. Posts (chat 5): on the morning of the date, post the -post.jpg + 'post' text to Discord + the Facebook Page (+ website announcement), one post per holiday, no emails. Dates: 'MM-DD' fixed, or a rule. Edit the post text here; no code change needed. HOLD: nothing shows or posts until Brandon says GO: an entry is live only when it has go: true (Halloween has it since Oct 26 7:58 AM; add go: true to another holiday when Brandon says GO for it). Preview any holiday on the home page with index.html?holiday=<id>. EFFECT (Brandon Oct 26: 'graphics like snow for Christmas'): light animated touch on the home page while the picture shows: snow / leaves / bats / hearts / clovers / fireworks / petals / sparks; 'none' on Memorial Day, Veterans Day (solemn), Labor Day, Father's Day. Off with reduced motion and when printing, tap to stop, low CPU, stops itself after ~30 s on phones.",
  "holidays": [
   {
    "id": "valentines",
@@ -99,7 +99,8 @@
    "img": "img/holidays/halloween.webp",
    "post_img": "img/holidays/halloween-post.jpg",
    "post": "Happy Halloween from the Kentucky Portable Club! If you're out at a park tonight, watch for things that go beep in the night. 73",
-   "effect": "leaves+bats"
+   "effect": "leaves+bats",
+   "go": true
   },
   {
    "id": "veterans-day",
