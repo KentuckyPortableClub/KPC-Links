@@ -3,7 +3,7 @@ name: KPC Watcher
 # (KY park pages + POTA/SOTA/WWFF rules -> chat 8; closure sources that now answer -> chat 2; ARRL hamfests +
 # special events for KY and neighbours -> chat 6). Never fails, never posts, never emails (no issue comments).
 # Memory + report live on the 'bot-state' branch (one commit, replaced weekly): nothing on main changes, so the
-# site is not rebuilt. Read it:  git fetch origin bot-state && git show origin/bot-state:watcher-report.md
+# site is not rebuilt. Read it:  git fetch origin bot-state && git show FETCH_HEAD:watcher-report.md
 on:
   schedule:
     - cron: '29 4 * * 2'    # Monday 11:29 PM Central (10:29 in winter): a quiet hour, report ready Tuesday morning

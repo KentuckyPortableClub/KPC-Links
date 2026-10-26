@@ -270,11 +270,16 @@ def arrl_search(page_url, state_name):
         if '/search' in href:
             continue
         full = urllib.parse.urljoin('https://www.arrl.org/', href)
-        out[full] = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', label))).strip()[:90] or full.rsplit('/', 1)[-1]
+        lab = re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', label))).strip()[:90]
+        if not lab or re.fullmatch(r'(?i)(learn|read|see|view)( more)?|details|more', lab):
+            lab = re.sub(r'-\d+$', '', full.rsplit('/', 1)[-1]).replace('-', ' ').title()      # 'Learn More' -> name from the address
+        if full not in out or out[full] == full:
+            out[full] = lab
     return out
 
 
 def watch_arrl(old, new, rep):
+    empty = {}
     for kind, page in (('Hamfest', 'https://www.arrl.org/hamfests-and-conventions-calendar'),
                        ('Special event station', 'https://www.arrl.org/special-event-stations')):
         for st in NEAR:
@@ -288,10 +293,14 @@ def watch_arrl(old, new, rep):
                     break          # same form for every state: don't knock 7 more times
                 continue
             new[key] = {'links': got, 'date': TODAY}
+            empty.setdefault(kind, []).append(len(got))
             if prev.get('links') is not None:
                 for u, lab in sorted(got.items()):
                     if u not in prev['links']:
                         rep[6].append(f'{NEAR_AB[st]} new ARRL {kind.lower()} listing: {lab} {u}')
+    for kind, ns in empty.items():
+        if ns and not any(ns):
+            rep[6].append(f'ARRL {kind.lower()} search answered but listed nothing for any of the {len(ns)} states (ARRL may have changed the page); nothing new can be spotted until that is fixed')
 
 
 def main():
