@@ -4,7 +4,18 @@
 Finds spots where two (or more) POTA parks share the same ground, in the US (all states but Kentucky, which has its own
 hand-checked list in ky-overlaps.geojson) and Canada. HIDDEN: it writes data files only (data/fers/), nothing links to them.
 
-Rules (Brandon, Oct 26):
+GOLDEN RULES = POTA's own (Activation Location and Access; Brandon Oct 26 5:55 AM: 'use these as a golden rule'):
+- The activator and all equipment must be within the park's boundary and on public property; never private property, even
+  private land surrounded by the park (= holes in an outline stay holes; inholdings are out).
+- Official boundaries come from the official park websites / agencies; POTA's maps are guidelines only (= official outlines).
+- A trail or river designated BY ITSELF (not part of a land park with a defined boundary): the station must be on public
+  property within 30.5 m (100 ft) of the edge of the trail or river. (Our lines are centre lines, so measuring from the
+  centre is the stricter reading; a trail / river that also has a land outline is tested as that land.)
+- Multi-park ('two-fer'…): an overlapped area where ALL the parks' boundaries intersect, and the intersection must ENTIRELY
+  contain the activator and the station (= our 100-yard spot: stricter, never a chain).
+- The park must be open to the public (closures are not tested here: a reviewer checks them).
+
+KPC's extra rules (Brandon, Oct 26):
 - OFFICIAL outlines only: the answer keys' joins (data/us-key, data/ca-key), never a park the key marks approximate
   ('reviewed-approx', a lake surface), never a park whose pin is 'well outside' its land. POTA parks only.
 - A spot counts only when the shared ground holds a spot AT LEAST 100 YARDS ACROSS: shrink the overlap 50 yards inward
