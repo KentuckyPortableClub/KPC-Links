@@ -1,0 +1,174 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Park_Name",
+   "count": 185,
+   "fields": [
+    "SPHS_ID",
+    "Local_ID",
+    "Old_ID",
+    "Park_Name",
+    "Area_Name",
+    "ParkID",
+    "Setting",
+    "ADA",
+    "Group_Site",
+    "Reservable",
+    "Web_Visibl",
+    "RV_capacit",
+    "Unit_Size",
+    "Park_Pad_M",
+    "Pull_In_Ty",
+    "Water",
+    "Sewer",
+    "Electric",
+    "Electric_H",
+    "Fenced_Edg"
+   ],
+   "known": false,
+   "layer": "CG_Campsites",
+   "sample": [
+    {
+     "ADA": "NO",
+     "Area_Name": "UPPER SHERMAN HILLS",
+     "Group_Site": "NO",
+     "Local_ID": " ",
+     "Old_ID": "SH140",
+     "ParkID": "CG",
+     "Park_Name": "Curt Gowdy State Park",
+     "RV_capacit": "LARGE",
+     "Reservable": "NO",
+     "SPHS_ID": "SH140",
+     "Setting": "Reservoir",
+     "Web_Visibl": "YES"
+    },
+    {
+     "ADA": "NO",
+     "Area_Name": "UPPER SHERMAN HILLS",
+     "Group_Site": "NO",
+     "Local_ID": " ",
+     "Old_ID": "SH138",
+     "ParkID": "CG",
+     "Park_Name": "Curt Gowdy State Park",
+     "RV_capacit": "MEDIUM",
+     "Reservable": "NO",
+     "SPHS_ID": "SH138",
+     "Setting": "Reservoir",
+     "Web_Visibl": "YES"
+    },
+    {
+     "ADA": "NO",
+     "Area_Name": "UPPER SHERMAN HILLS",
+     "Group_Site": "NO",
+     "Local_ID": " ",
+     "Old_ID": "SH139",
+     "ParkID": "CG",
+     "Park_Name": "Curt Gowdy State Park",
+     "RV_capacit": "SMALL",
+     "Reservable": "NO",
+     "SPHS_ID": "SH139",
+     "Setting": "Reservoir",
+     "Web_Visibl": "YES"
+    }
+   ],
+   "service": "CG_DAYUSE_PARKING",
+   "typef": "",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/CG_DAYUSE_PARKING/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Facility",
+   "count": 22,
+   "fields": [
+    "Location_1",
+    "Occupancy_",
+    "Building_T",
+    "Type",
+    "Data_Sourc",
+    "Historic_E",
+    "Facility",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "CG_WaterFacilities",
+   "sample": [
+    {
+     "Building_T": "HYDRANT",
+     "COMMENTS": " ",
+     "Data_Sourc": " ",
+     "Facility": "Curt Gowdy State Park",
+     "Historic_E": " ",
+     "Location_1": "CAMP RUSSEL",
+     "Occupancy_": "WATER FACILITY",
+     "Type": "DRINKING"
+    },
+    {
+     "Building_T": "HYDRANT",
+     "COMMENTS": " ",
+     "Data_Sourc": " ",
+     "Facility": "Curt Gowdy State Park",
+     "Historic_E": " ",
+     "Location_1": "SHERMAN HILLS",
+     "Occupancy_": "WATER FACILITY",
+     "Type": "DRINKING"
+    },
+    {
+     "Building_T": "HYDRANT",
+     "COMMENTS": " ",
+     "Data_Sourc": " ",
+     "Facility": "Curt Gowdy State Park",
+     "Historic_E": " ",
+     "Location_1": "CRYSTAL DAM OVERLOOK",
+     "Occupancy_": "WATER FACILITY",
+     "Type": "DRINKING"
+    }
+   ],
+   "service": "CG_DAYUSE_PARKING",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/CG_DAYUSE_PARKING/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Facility",
+   "count": 19,
+   "fields": [
+    "Type",
+    "Facility",
+    "ID_Number",
+    "NonMotorized_Trail_Type",
+    "Trail_Status",
+    "Name",
+    "NewCreation",
+    "Reviewed"
+   ],
+   "known": true,
+   "layer": "NonMotorizedTrail_Features",
+   "sample": [
+    {
+     "Facility": "Curt Gowdy State Park",
+     "Name": "Aspen Grove Trailhead",
+     "NonMotorized_Trail_Type": "Hiking / Mountain Biking",
+     "Type": "Trailhead"
+    },
+    {
+     "Facility": "Curt Gowdy State Park",
+     "Name": "Dam Trailhead",
+     "NonMotorized_Trail_Type": "Hiking / Mountain Biking",
+     "Type": "Trailhead"
+    },
+    {
+     "Facility": "Glendo State Park",
+     "Name": "Two Moon Trailhead",
+     "NonMotorized_Trail_Type": "Hiking / Mountain Biking",
+     "Type": "Trailhead"
+    }
+   ],
+   "service": "Trailheads_Statewide",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/WOPmQY9FJsLgGOzw/arcgis/rest/services/Trailheads_Statewide/FeatureServer/0"
+  }
+ ],
+ "st": "WY"
+}

@@ -1,0 +1,562 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2832,
+   "fields": [
+    "Name",
+    "County_Name",
+    "Managing_Entity_Name",
+    "Managing_Entity_Level",
+    "Street_Name",
+    "City",
+    "State",
+    "Open_After_Dark",
+    "Joint_Use_Schoolyard",
+    "Waterfront",
+    "Fishing",
+    "Boat_Ramp",
+    "Waterfront_Swim_Area",
+    "ADA_Playground_Equipment",
+    "Rec_Center",
+    "Senior_Center",
+    "Camping_Area",
+    "Other_Facility_Type",
+    "Condition_of_Park",
+    "Website"
+   ],
+   "known": false,
+   "layer": "Existing and New State Parks, Local Parks, and Trailheads",
+   "sample": [
+    {
+     "Boat_Ramp": "No",
+     "City": "Chattanooga",
+     "County_Name": "Hamilton",
+     "Fishing": "No",
+     "Joint_Use_Schoolyard": "No",
+     "Managing_Entity_Level": "City",
+     "Managing_Entity_Name": "Chattanooga Parks Maintenance Division",
+     "Name": "Lake Hills Park",
+     "Open_After_Dark": "No",
+     "State": "TN",
+     "Street_Name": "Bellview AVE ",
+     "Waterfront": "No"
+    },
+    {
+     "Boat_Ramp": "No",
+     "City": "Chattanooga",
+     "County_Name": "Hamilton",
+     "Fishing": "No",
+     "Joint_Use_Schoolyard": "No",
+     "Managing_Entity_Level": "City",
+     "Managing_Entity_Name": "Chattanooga Parks Maintenance Division",
+     "Name": "Miller Park",
+     "Open_After_Dark": "Yes",
+     "State": "TN",
+     "Street_Name": "Market ST ",
+     "Waterfront": "No"
+    },
+    {
+     "Boat_Ramp": "No",
+     "City": "Chattanooga",
+     "County_Name": "Hamilton",
+     "Fishing": "No",
+     "Joint_Use_Schoolyard": "No",
+     "Managing_Entity_Level": "City",
+     "Managing_Entity_Name": "Chattanooga Parks Maintenance Division",
+     "Name": "John A Patten Park and Recreation Center",
+     "Open_After_Dark": "No",
+     "State": "TN",
+     "Street_Name": "Kelly's Ferry RD ",
+     "Waterfront": "No"
+    }
+   ],
+   "service": "CleanedParkDriveTimes",
+   "typef": "Joint_Use_Schoolyard",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/CleanedParkDriveTimes/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 679,
+   "fields": [
+    "County",
+    "Waterway",
+    "Name",
+    "Directions",
+    "Parking",
+    "Spaces",
+    "Trailer_Pa",
+    "Hours_Open",
+    "Ice",
+    "Bait",
+    "Camping",
+    "Comments",
+    "Ramp_Struc",
+    "Lanes",
+    "Launchable",
+    "Gas",
+    "Owner",
+    "Manager",
+    "Date_Lease",
+    "Type"
+   ],
+   "known": false,
+   "layer": "AllAccessSites",
+   "sample": [
+    {
+     "Bait": "Proximity",
+     "Camping": "Proximity",
+     "Comments": "Private property that is cuuretnly being used by public to launch small boats and bank fishing",
+     "County": "COCKE",
+     "Directions": "From Newport take Hwy. 73",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Tannery Island",
+     "Parking": "Dirt and Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Pigeon River"
+    },
+    {
+     "Bait": "Proximity",
+     "Camping": "Proximity",
+     "Comments": "Launch for canoes and small boats",
+     "County": "HAWKINS",
+     "Directions": "Hwy. 11W to Goshen Valley Rd. to River Rd. to Laurel Run Park Rd.",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Laurel Run Park",
+     "Parking": "Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Holston River"
+    },
+    {
+     "Bait": "Proximity",
+     "Camping": "No",
+     "Comments": " ",
+     "County": "STEWART",
+     "Directions": "HWY 233 West of Cumberland City, TN",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Wells Creek",
+     "Parking": "Gravel",
+     "Spaces": "Greater Than 25",
+     "Trailer_Pa": "11-24",
+     "Waterway": "Lake Barkley Reservoir"
+    }
+   ],
+   "service": "Boat_Launch_Sites",
+   "typef": "Type",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/Boat_Launch_Sites/FeatureServer/0"
+  },
+  {
+   "agency": "Lynn Barrett",
+   "area": "Name",
+   "count": 603,
+   "fields": [
+    "County",
+    "Waterway",
+    "Data_Colle",
+    "Name",
+    "Alternate",
+    "Directions",
+    "Parking",
+    "Spaces",
+    "Trailer_Pa",
+    "Hours_Open",
+    "Ice",
+    "Bait",
+    "Camping",
+    "Comments",
+    "Ramp_Struc",
+    "Lanes",
+    "Launchable",
+    "Gas",
+    "Owner",
+    "Manager"
+   ],
+   "known": false,
+   "layer": "BoatLaunchAccess",
+   "sample": [
+    {
+     "Alternate": " ",
+     "Bait": "Proximity",
+     "County": "SULLIVAN",
+     "Data_Colle": " ",
+     "Directions": "I-81 to Hwy. 36 (Fort Henry Drive) to SR 75.",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "SR 75 Bridge",
+     "Parking": "Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "South Fork Holston River"
+    },
+    {
+     "Alternate": " ",
+     "Bait": "Proximity",
+     "County": "COCKE",
+     "Data_Colle": " ",
+     "Directions": "From Newport take Hwy. 73",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Tannery Island",
+     "Parking": "Dirt and Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Pigeon River"
+    },
+    {
+     "Alternate": " ",
+     "Bait": "Proximity",
+     "County": "HAWKINS",
+     "Data_Colle": " ",
+     "Directions": "Hwy. 11W to Goshen Valley Rd. to River Rd. to Laurel Run Park Rd.",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Laurel Run Park",
+     "Parking": "Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Holston River"
+    }
+   ],
+   "service": "BoatAccessMay2018",
+   "typef": "Type",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/BoatAccessMay2018/FeatureServer/0"
+  },
+  {
+   "agency": "Lynn Barrett",
+   "area": "Name",
+   "count": 600,
+   "fields": [
+    "County",
+    "Waterway",
+    "Data_Colle",
+    "Name",
+    "Alternate",
+    "Directions",
+    "Parking",
+    "Spaces",
+    "Trailer_Pa",
+    "Hours_Open",
+    "Ice",
+    "Bait",
+    "Camping",
+    "Comments",
+    "Ramp_Struc",
+    "Lanes",
+    "Launchable",
+    "Gas",
+    "Owner",
+    "Manager"
+   ],
+   "known": false,
+   "layer": "BoatLaunchAccess",
+   "sample": [
+    {
+     "Alternate": " ",
+     "Bait": "Proximity",
+     "County": "SULLIVAN",
+     "Data_Colle": " ",
+     "Directions": "I-81 to Hwy. 36 (Fort Henry Drive) to SR 75.",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "SR 75 Bridge",
+     "Parking": "Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "South Fork Holston River"
+    },
+    {
+     "Alternate": " ",
+     "Bait": "Proximity",
+     "County": "COCKE",
+     "Data_Colle": " ",
+     "Directions": "From Newport take Hwy. 73",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Tannery Island",
+     "Parking": "Dirt and Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Pigeon River"
+    },
+    {
+     "Alternate": " ",
+     "Bait": "Proximity",
+     "County": "HAWKINS",
+     "Data_Colle": " ",
+     "Directions": "Hwy. 11W to Goshen Valley Rd. to River Rd. to Laurel Run Park Rd.",
+     "Hours_Open": "24",
+     "Ice": "Proximity",
+     "Name": "Laurel Run Park",
+     "Parking": "Gravel",
+     "Spaces": "Less Than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Holston River"
+    }
+   ],
+   "service": "BoatingAccessCategoriesMarch2017",
+   "typef": "Type",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/BoatingAccessCategoriesMarch2017/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 413,
+   "fields": [
+    "ParkName",
+    "Creator",
+    "Editor",
+    "NoService",
+    "ParkFullName",
+    "EntranceType",
+    "EntranceUID"
+   ],
+   "known": false,
+   "layer": "ExistingAndNewStateParkEntrancesTrailheads",
+   "sample": [
+    {
+     "Creator": "andrew.mcdonagh",
+     "Editor": "andrew.mcdonagh",
+     "EntranceUID": "TSP-0276 | Entry Type: ",
+     "ParkFullName": "T.O. Fuller State Park",
+     "ParkName": "TSP-0276"
+    },
+    {
+     "Creator": "andrew.mcdonagh",
+     "Editor": "andrew.mcdonagh",
+     "EntranceType": "Main",
+     "EntranceUID": "TSP-0276 | Entry Type: Main",
+     "ParkFullName": "T.O. Fuller State Park",
+     "ParkName": "TSP-0276"
+    },
+    {
+     "Creator": "andrew.mcdonagh",
+     "Editor": "andrew.mcdonagh",
+     "EntranceUID": "TSP-0276 | Entry Type: ",
+     "ParkFullName": "T.O. Fuller State Park",
+     "ParkName": "TSP-0276"
+    }
+   ],
+   "service": "CleanedParkDriveTimes",
+   "typef": "EntranceType",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/CleanedParkDriveTimes/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 345,
+   "fields": [
+    "ParkName",
+    "Creator",
+    "Editor",
+    "NoService",
+    "ParkFullName",
+    "EntranceType",
+    "EntranceUID"
+   ],
+   "known": false,
+   "layer": "ExistingStateParkEntrancesTrailheads",
+   "sample": [
+    {
+     "Creator": "andrew.mcdonagh",
+     "Editor": "andrew.mcdonagh",
+     "EntranceUID": "TSP-0276 | Entry Type: ",
+     "ParkFullName": "T.O. Fuller State Park",
+     "ParkName": "TSP-0276"
+    },
+    {
+     "Creator": "andrew.mcdonagh",
+     "Editor": "andrew.mcdonagh",
+     "EntranceType": "Main",
+     "EntranceUID": "TSP-0276 | Entry Type: Main",
+     "ParkFullName": "T.O. Fuller State Park",
+     "ParkName": "TSP-0276"
+    },
+    {
+     "Creator": "andrew.mcdonagh",
+     "Editor": "andrew.mcdonagh",
+     "EntranceUID": "TSP-0276 | Entry Type: ",
+     "ParkFullName": "T.O. Fuller State Park",
+     "ParkName": "TSP-0276"
+    }
+   ],
+   "service": "CleanedParkDriveTimes",
+   "typef": "EntranceType",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/CleanedParkDriveTimes/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 240,
+   "fields": [
+    "County",
+    "Waterway",
+    "Data_Colle",
+    "Name",
+    "Alternate",
+    "Directions",
+    "Parking",
+    "Spaces",
+    "Trailer_Pa",
+    "Hours_Open",
+    "Ice",
+    "Bait",
+    "Camping",
+    "Comments",
+    "Ramp_Struc",
+    "Lanes",
+    "Launchable",
+    "Gas",
+    "Owner",
+    "Manager"
+   ],
+   "known": false,
+   "layer": "TWRA Candidate Blueways Access Points",
+   "sample": [
+    {
+     "Alternate": " ",
+     "Bait": "No",
+     "County": "UNION",
+     "Data_Colle": "Rick Roberts",
+     "Directions": "HWY 33 to Shards Chapel Rd, take Left on Post Master Rd",
+     "Hours_Open": "24",
+     "Ice": "No",
+     "Name": "Post Master",
+     "Parking": "Dirt",
+     "Spaces": "Less than 25",
+     "Trailer_Pa": "Less than 5",
+     "Waterway": "Norris Reservoir"
+    },
+    {
+     "Alternate": " ",
+     "Bait": "No",
+     "County": "UNION",
+     "Data_Colle": "Rick Roberts",
+     "Directions": "HWY 33 to Shards Chapel Rd, first Left off Shards Chapel Rd",
+     "Hours_Open": "24",
+     "Ice": "No",
+     "Name": "Palmers Junction",
+     "Parking": "Gravel",
+     "Spaces": "Less than 25",
+     "Trailer_Pa": "5-10",
+     "Waterway": "Norris Reservoir"
+    },
+    {
+     "Alternate": "Point 19",
+     "Bait": "No",
+     "County": "UNION",
+     "Data_Colle": "Rick Roberts",
+     "Directions": "HWY 61 to Andersonville, Turn on Park Rd",
+     "Hours_Open": "24",
+     "Ice": "No",
+     "Name": "Loyston Point",
+     "Parking": "Paved",
+     "Spaces": "Greater Than 25",
+     "Trailer_Pa": "Greater than 25",
+     "Waterway": "Norris Reservoir"
+    }
+   ],
+   "service": "Blueways_Water_Access_WFL1",
+   "typef": "Type",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Blueways_Water_Access_WFL1/FeatureServer/56"
+  },
+  {
+   "agency": "",
+   "area": "Recreation_Area_Name",
+   "count": 77,
+   "fields": [
+    "Asset_Type",
+    "Recreation_Area_Name",
+    "Operator",
+    "Phone_Number",
+    "Creator",
+    "Editor",
+    "Comments",
+    "PhaseNumber"
+   ],
+   "known": false,
+   "layer": "TVA Recreation Access Points",
+   "sample": [
+    {
+     "Asset_Type": "5",
+     "Creator": "NHunt73",
+     "Editor": "NHunt73",
+     "Operator": "Ijams Nature Center",
+     "PhaseNumber": "Phase 1",
+     "Phone_Number": "865-577-4717",
+     "Recreation_Area_Name": "Ijams Nature Center"
+    },
+    {
+     "Asset_Type": "5",
+     "Creator": "NHunt73",
+     "Editor": "NHunt73",
+     "Operator": "City of Kingston",
+     "PhaseNumber": "Phase 1",
+     "Phone_Number": "865-376-3641",
+     "Recreation_Area_Name": "Southwest Point Park"
+    },
+    {
+     "Asset_Type": "2",
+     "Creator": "NHunt73",
+     "Editor": "NHunt73",
+     "Operator": "USFWS",
+     "PhaseNumber": "Phase 1",
+     "Phone_Number": "731-642-2091",
+     "Recreation_Area_Name": "Gaynor Slough"
+    }
+   ],
+   "service": "Blueways_Water_Access_WFL1",
+   "typef": "Asset_Type",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Blueways_Water_Access_WFL1/FeatureServer/49"
+  },
+  {
+   "agency": "Lynn Barrett",
+   "area": "WMA",
+   "count": 385,
+   "fields": [
+    "WMA",
+    "Entrance_R",
+    "GoogleText",
+    "lat_long",
+    "Directions",
+    "Hunt"
+   ],
+   "known": true,
+   "layer": "WMA_Entrances",
+   "sample": [
+    {
+     "Directions": "https://www.google.com/maps/dir/Current+Location/36.512308,-87.850628",
+     "Entrance_R": "River Rd/ Sugar Camp Rd",
+     "GoogleText": "https://www.google.com/maps/dir/Current+Location/",
+     "WMA": "Barkley WMA",
+     "lat_long": "36.512308,-87.850628"
+    },
+    {
+     "Directions": "https://www.google.com/maps/dir/Current+Location/36.203579,-88.776481",
+     "Entrance_R": "McKelvey Rd",
+     "GoogleText": "https://www.google.com/maps/dir/Current+Location/",
+     "WMA": "Bean Switch Refuge",
+     "lat_long": "36.203579,-88.776481"
+    },
+    {
+     "Directions": "https://www.google.com/maps/dir/Current+Location/36.231602,-88.112857",
+     "Entrance_R": "Hwy 69",
+     "GoogleText": "https://www.google.com/maps/dir/Current+Location/",
+     "WMA": "Big Sandy WMA",
+     "lat_long": "36.231602,-88.112857"
+    }
+   ],
+   "service": "WMA_Entrances",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/WMA_Entrances/FeatureServer/0"
+  }
+ ],
+ "st": "TN"
+}

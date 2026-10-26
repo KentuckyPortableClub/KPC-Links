@@ -1,0 +1,141 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "VTANR GIS",
+   "area": "Name",
+   "count": 446,
+   "fields": [
+    "Access",
+    "Condition",
+    "ANRDept",
+    "ANRDist",
+    "Name",
+    "ManagedUse",
+    "Difficulty",
+    "SurfMat",
+    "Notes",
+    "Creator",
+    "Editor"
+   ],
+   "known": true,
+   "layer": "Parking",
+   "sample": [
+    {
+     "ANRDept": "FWD",
+     "ANRDist": "Barre",
+     "Access": "Seasonal",
+     "Condition": "Excellent",
+     "Creator": "DFW Infrastructure Project",
+     "Difficulty": "Easy",
+     "Editor": "ANR_ADMIN",
+     "ManagedUse": "VEH",
+     "Notes": "Installed 07/17/2021",
+     "SurfMat": "IMP"
+    },
+    {
+     "ANRDept": "FWD",
+     "ANRDist": "Barre",
+     "Access": "Year-round",
+     "Condition": "Good",
+     "Creator": "DFW Infrastructure Project",
+     "Difficulty": "Easy",
+     "Editor": "ANR_ADMIN",
+     "ManagedUse": "VEH",
+     "SurfMat": "IMP"
+    },
+    {
+     "ANRDept": "FWD",
+     "ANRDist": "Barre",
+     "Access": "Seasonal",
+     "Condition": "Good",
+     "Creator": "DFW Infrastructure Project",
+     "Difficulty": "Moderate",
+     "Editor": "ANR_ADMIN",
+     "ManagedUse": "VEH",
+     "SurfMat": "IMP"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2",
+   "typef": "ManagedUse",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2/MapServer/23"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 206,
+   "fields": [
+    "WaterBody",
+    "Town",
+    "County",
+    "Owner",
+    "Manager",
+    "AccessType",
+    "RampType",
+    "Dock",
+    "WinterPlowing",
+    "SummerPortolet",
+    "WinterPortolet",
+    "AccessName",
+    "Bowfin",
+    "Carp",
+    "ChannelCatfish",
+    "WhiteCrappie",
+    "LongnoseGar",
+    "Muskellunge",
+    "WhitePerch",
+    "AmericanShad"
+   ],
+   "known": true,
+   "layer": "Fishing Access Areas",
+   "sample": [
+    {
+     "AccessName": "Brownington Pond",
+     "AccessType": "Boating/Fishing",
+     "County": "Orleans",
+     "Dock": "No",
+     "Manager": "F&W",
+     "Owner": "F&W",
+     "RampType": "Concrete Plank",
+     "SummerPortolet": "No",
+     "Town": "Brownington",
+     "WaterBody": "Brownington Pond",
+     "WinterPlowing": "No",
+     "WinterPortolet": "No"
+    },
+    {
+     "AccessName": "Burr Pond",
+     "AccessType": "Boating/Fishing",
+     "County": "Rutland",
+     "Dock": "No",
+     "Manager": "F&W",
+     "Owner": "F&W",
+     "RampType": "Gravel",
+     "SummerPortolet": "No",
+     "Town": "Sudbury",
+     "WaterBody": "Burr Pond",
+     "WinterPlowing": "Yes",
+     "WinterPortolet": "No"
+    },
+    {
+     "AccessName": "Barton River",
+     "AccessType": "Shore Fishing",
+     "County": "Orleans",
+     "Dock": "No",
+     "Manager": "F&W",
+     "Owner": "F&W",
+     "RampType": "None",
+     "SummerPortolet": "No",
+     "Town": "Glover",
+     "WaterBody": "Barton River",
+     "WinterPlowing": "No",
+     "WinterPortolet": "No"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2",
+   "typef": "AccessType",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2/MapServer/163"
+  }
+ ],
+ "st": "VT"
+}

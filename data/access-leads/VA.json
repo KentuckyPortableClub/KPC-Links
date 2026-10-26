@@ -1,0 +1,1220 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 3081,
+   "fields": [
+    "src_table",
+    "src_name",
+    "join_table",
+    "join_name",
+    "use_why",
+    "src_gdb",
+    "NAMELSAD"
+   ],
+   "known": false,
+   "layer": "Aquatic recreation access points",
+   "sample": [
+    {
+     "NAMELSAD": "James City County",
+     "join_name": "Chickahominy Riverside Park",
+     "join_table": "public_lands_final",
+     "src_gdb": "rec_datasets_v2021.gdb",
+     "src_name": "Chickahominy Riverside Park",
+     "src_table": "dcrWaterAccess2020_upd"
+    },
+    {
+     "NAMELSAD": "Stafford County",
+     "join_name": "Aquia Landing Park",
+     "join_table": "public_lands_final",
+     "src_gdb": "rec_datasets_v2021.gdb",
+     "src_name": "Aquia Landing Park",
+     "src_table": "dcrWaterAccess2020_upd"
+    },
+    {
+     "NAMELSAD": "Westmoreland County",
+     "src_gdb": "rec_datasets_v2021.gdb",
+     "src_name": "Colonial Beach Beaches",
+     "src_table": "dcrWaterAccess2020_upd"
+    }
+   ],
+   "service": "Aquatic_recreation_access_points",
+   "typef": "use_why",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Aquatic_recreation_access_points/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3081,
+   "fields": [
+    "src_table",
+    "src_name",
+    "join_table",
+    "join_name",
+    "use_why",
+    "src_gdb",
+    "NAMELSAD"
+   ],
+   "known": false,
+   "layer": "Aquatic recreation access points",
+   "sample": [
+    {
+     "NAMELSAD": "James City County",
+     "join_name": "Chickahominy Riverside Park",
+     "join_table": "public_lands_final",
+     "src_gdb": "rec_datasets_v2021.gdb",
+     "src_name": "Chickahominy Riverside Park",
+     "src_table": "dcrWaterAccess2020_upd"
+    },
+    {
+     "NAMELSAD": "Stafford County",
+     "join_name": "Aquia Landing Park",
+     "join_table": "public_lands_final",
+     "src_gdb": "rec_datasets_v2021.gdb",
+     "src_name": "Aquia Landing Park",
+     "src_table": "dcrWaterAccess2020_upd"
+    },
+    {
+     "NAMELSAD": "Westmoreland County",
+     "src_gdb": "rec_datasets_v2021.gdb",
+     "src_name": "Colonial Beach Beaches",
+     "src_table": "dcrWaterAccess2020_upd"
+    }
+   ],
+   "service": "Aquatic_recreation_access_points",
+   "typef": "use_why",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Aquatic_recreation_access_points/FeatureServer/0"
+  },
+  {
+   "agency": "VA-DCR, Robbie Rhur",
+   "area": "PARK_NAME",
+   "count": 2551,
+   "fields": [
+    "PARK_NAME",
+    "CITY",
+    "COUNTY",
+    "MULTIPURPOSE_RECTANGLE_FIELD",
+    "DIAMOND_FIELD",
+    "BASKETBALL_COURT",
+    "TENNIS_COURT",
+    "VOLLEYBALL_COURT",
+    "PICNIC_SHELTER",
+    "PLAYGROUND",
+    "TRAIL_TYPE",
+    "SWIMMING_AREA",
+    "WATER_ACCESS",
+    "GOLF_COURSE",
+    "DISC_GOLF",
+    "DOG_PARK",
+    "CAMPING",
+    "ADA_ACCESSIBLE",
+    "Comments",
+    "WEBSITE"
+   ],
+   "known": false,
+   "layer": "Local Park Inventory",
+   "sample": [
+    {
+     "BASKETBALL_COURT": "NONE",
+     "CITY": "ABINGDON",
+     "COUNTY": "WASHINGTON",
+     "DIAMOND_FIELD": "NONE",
+     "MULTIPURPOSE_RECTANGLE_FIELD": "NONE",
+     "PARK_NAME": "HARRY L. COOMES RECREATON CENTER",
+     "PICNIC_SHELTER": "YES",
+     "PLAYGROUND": "YES",
+     "SWIMMING_AREA": "POOL",
+     "TENNIS_COURT": "YES",
+     "TRAIL_TYPE": "NONE",
+     "VOLLEYBALL_COURT": "YES"
+    },
+    {
+     "BASKETBALL_COURT": "NONE",
+     "CITY": "ABINGDON",
+     "COUNTY": "WASHINGTON",
+     "DIAMOND_FIELD": "NONE",
+     "MULTIPURPOSE_RECTANGLE_FIELD": "NONE",
+     "PARK_NAME": "ALVARADO STATION AND PARK",
+     "PICNIC_SHELTER": "YES",
+     "PLAYGROUND": "YES",
+     "SWIMMING_AREA": "NONE",
+     "TENNIS_COURT": "NONE",
+     "TRAIL_TYPE": "MULTI-USE",
+     "VOLLEYBALL_COURT": "NONE"
+    },
+    {
+     "BASKETBALL_COURT": "NONE",
+     "CITY": "ABINGDON",
+     "COUNTY": "WASHINGTON",
+     "DIAMOND_FIELD": "NONE",
+     "MULTIPURPOSE_RECTANGLE_FIELD": "NONE",
+     "PARK_NAME": "TECH PARK",
+     "PICNIC_SHELTER": "NONE",
+     "PLAYGROUND": "NONE",
+     "SWIMMING_AREA": "NONE",
+     "TENNIS_COURT": "NONE",
+     "TRAIL_TYPE": "NONE",
+     "VOLLEYBALL_COURT": "NONE"
+    }
+   ],
+   "service": "LocalParks",
+   "typef": "TRAIL_TYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/LocalParks/FeatureServer/0"
+  },
+  {
+   "agency": "VA-DCR, Robbie Rhur",
+   "area": "PARK_NAME",
+   "count": 2551,
+   "fields": [
+    "PARK_NAME",
+    "CITY",
+    "COUNTY",
+    "MULTIPURPOSE_RECTANGLE_FIELD",
+    "DIAMOND_FIELD",
+    "BASKETBALL_COURT",
+    "TENNIS_COURT",
+    "VOLLEYBALL_COURT",
+    "PICNIC_SHELTER",
+    "PLAYGROUND",
+    "TRAIL_TYPE",
+    "SWIMMING_AREA",
+    "WATER_ACCESS",
+    "GOLF_COURSE",
+    "DISC_GOLF",
+    "DOG_PARK",
+    "CAMPING",
+    "ADA_ACCESSIBLE",
+    "Comments",
+    "WEBSITE"
+   ],
+   "known": false,
+   "layer": "Local Park Inventory",
+   "sample": [
+    {
+     "BASKETBALL_COURT": "NONE",
+     "CITY": "ABINGDON",
+     "COUNTY": "WASHINGTON",
+     "DIAMOND_FIELD": "NONE",
+     "MULTIPURPOSE_RECTANGLE_FIELD": "NONE",
+     "PARK_NAME": "HARRY L. COOMES RECREATON CENTER",
+     "PICNIC_SHELTER": "YES",
+     "PLAYGROUND": "YES",
+     "SWIMMING_AREA": "POOL",
+     "TENNIS_COURT": "YES",
+     "TRAIL_TYPE": "NONE",
+     "VOLLEYBALL_COURT": "YES"
+    },
+    {
+     "BASKETBALL_COURT": "NONE",
+     "CITY": "ABINGDON",
+     "COUNTY": "WASHINGTON",
+     "DIAMOND_FIELD": "NONE",
+     "MULTIPURPOSE_RECTANGLE_FIELD": "NONE",
+     "PARK_NAME": "ALVARADO STATION AND PARK",
+     "PICNIC_SHELTER": "YES",
+     "PLAYGROUND": "YES",
+     "SWIMMING_AREA": "NONE",
+     "TENNIS_COURT": "NONE",
+     "TRAIL_TYPE": "MULTI-USE",
+     "VOLLEYBALL_COURT": "NONE"
+    },
+    {
+     "BASKETBALL_COURT": "NONE",
+     "CITY": "ABINGDON",
+     "COUNTY": "WASHINGTON",
+     "DIAMOND_FIELD": "NONE",
+     "MULTIPURPOSE_RECTANGLE_FIELD": "NONE",
+     "PARK_NAME": "TECH PARK",
+     "PICNIC_SHELTER": "NONE",
+     "PLAYGROUND": "NONE",
+     "SWIMMING_AREA": "NONE",
+     "TENNIS_COURT": "NONE",
+     "TRAIL_TYPE": "NONE",
+     "VOLLEYBALL_COURT": "NONE"
+    }
+   ],
+   "service": "LocalParks",
+   "typef": "TRAIL_TYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/LocalParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1648,
+   "fields": [
+    "Uses",
+    "LOCATION",
+    "Name",
+    "LANDLINK",
+    "MALEVEL",
+    "Park_Name",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Trailheads",
+   "sample": [
+    {
+     "Creator": "jamie.vanemmerik_vdcr",
+     "Editor": "jamie.vanemmerik_vdcr",
+     "LANDLINK": "http://www.dcr.virginia.gov/state-parks/new-river-trail#general_information",
+     "LOCATION": "Pulaski",
+     "MALEVEL": "state",
+     "Name": "New River Trail State Park",
+     "Park_Name": "New River Trail State park",
+     "Uses": "H-B-E"
+    },
+    {
+     "Creator": "jamie.vanemmerik_vdcr",
+     "Editor": "jamie.vanemmerik_vdcr",
+     "LANDLINK": "https://www.virginia.org/listings/OutdoorsAndSports/PandapasPond/",
+     "LOCATION": "Montgomery",
+     "MALEVEL": "several",
+     "Name": "Pandapas Pond and Poverty Creek Trails",
+     "Park_Name": "Pandapas Pond",
+     "Uses": "H"
+    },
+    {
+     "Creator": "jamie.vanemmerik_vdcr",
+     "Editor": "jamie.vanemmerik_vdcr",
+     "LANDLINK": "www.danville-va.gov",
+     "LOCATION": "City of Danville",
+     "MALEVEL": "local",
+     "Name": "Riverwalk Trail",
+     "Park_Name": "Danville Riverwalk",
+     "Uses": "H-B"
+    }
+   ],
+   "service": "Managed_Trails",
+   "typef": "Uses",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Managed_Trails/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1648,
+   "fields": [
+    "Uses",
+    "LOCATION",
+    "Name",
+    "LANDLINK",
+    "MALEVEL",
+    "Park_Name",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Trailheads",
+   "sample": [
+    {
+     "Creator": "jamie.vanemmerik_vdcr",
+     "Editor": "jamie.vanemmerik_vdcr",
+     "LANDLINK": "http://www.dcr.virginia.gov/state-parks/new-river-trail#general_information",
+     "LOCATION": "Pulaski",
+     "MALEVEL": "state",
+     "Name": "New River Trail State Park",
+     "Park_Name": "New River Trail State park",
+     "Uses": "H-B-E"
+    },
+    {
+     "Creator": "jamie.vanemmerik_vdcr",
+     "Editor": "jamie.vanemmerik_vdcr",
+     "LANDLINK": "https://www.virginia.org/listings/OutdoorsAndSports/PandapasPond/",
+     "LOCATION": "Montgomery",
+     "MALEVEL": "several",
+     "Name": "Pandapas Pond and Poverty Creek Trails",
+     "Park_Name": "Pandapas Pond",
+     "Uses": "H"
+    },
+    {
+     "Creator": "jamie.vanemmerik_vdcr",
+     "Editor": "jamie.vanemmerik_vdcr",
+     "LANDLINK": "www.danville-va.gov",
+     "LOCATION": "City of Danville",
+     "MALEVEL": "local",
+     "Name": "Riverwalk Trail",
+     "Park_Name": "Danville Riverwalk",
+     "Uses": "H-B"
+    }
+   ],
+   "service": "Managed_Trails",
+   "typef": "Uses",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Managed_Trails/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 946,
+   "fields": [
+    "NAME",
+    "FEATURETYP",
+    "AW_URL",
+    "ID",
+    "DIFFICULTY"
+   ],
+   "known": false,
+   "layer": "Whitewater River Access Points (WA)",
+   "sample": [
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/2121",
+     "DIFFICULTY": "N/A",
+     "FEATURETYP": "access",
+     "ID": "OzkCXvhxIqau1ohgsU0wa",
+     "NAME": "Forest Road 2870 Bridge"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/10690",
+     "DIFFICULTY": "N/A",
+     "FEATURETYP": "take-out",
+     "ID": "115233",
+     "NAME": "Highway 9 Take Out"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/2224",
+     "DIFFICULTY": "N/A",
+     "FEATURETYP": "take-out",
+     "ID": "115219",
+     "NAME": "Take Out"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_1_WFL1",
+   "typef": "FEATURETYP",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_1_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 946,
+   "fields": [
+    "NAME",
+    "FEATURETYP",
+    "AW_URL",
+    "ID",
+    "DIFFICULTY"
+   ],
+   "known": false,
+   "layer": "Whitewater River Access Points (WA)",
+   "sample": [
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/2121",
+     "DIFFICULTY": "N/A",
+     "FEATURETYP": "access",
+     "ID": "OzkCXvhxIqau1ohgsU0wa",
+     "NAME": "Forest Road 2870 Bridge"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/10690",
+     "DIFFICULTY": "N/A",
+     "FEATURETYP": "take-out",
+     "ID": "115233",
+     "NAME": "Highway 9 Take Out"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/2224",
+     "DIFFICULTY": "N/A",
+     "FEATURETYP": "take-out",
+     "ID": "115219",
+     "NAME": "Take Out"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_2_WFL1",
+   "typef": "FEATURETYP",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_2_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 584,
+   "fields": [
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "boat_launch_sites",
+   "sample": [
+    {
+     "BOAT_RAMP": "N",
+     "COUNTY": "Norfolk",
+     "FISHING": "Y",
+     "NAME": "East Ocean View Park",
+     "Owner": "LOC",
+     "PARKING": " ",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "N",
+     "Water_Body": "Pretty Lake",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "N",
+     "COUNTY": "Williamsburg",
+     "FISHING": "N",
+     "NAME": "College Park Landing",
+     "Owner": "LOC",
+     "PARKING": " ",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "N",
+     "Water_Body": "College Creek",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "N",
+     "COUNTY": "Hampton",
+     "FISHING": "N",
+     "NAME": "Fort Monroe National Monument",
+     "Owner": "FED",
+     "PARKING": " ",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "Y",
+     "Water_Body": "Hampton Roads",
+     "West_of_95": "Y"
+    }
+   ],
+   "service": "boat_launch_sites",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/boat_launch_sites/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 584,
+   "fields": [
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "boat_launch_sites",
+   "sample": [
+    {
+     "BOAT_RAMP": "N",
+     "COUNTY": "Norfolk",
+     "FISHING": "Y",
+     "NAME": "East Ocean View Park",
+     "Owner": "LOC",
+     "PARKING": " ",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "N",
+     "Water_Body": "Pretty Lake",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "N",
+     "COUNTY": "Williamsburg",
+     "FISHING": "N",
+     "NAME": "College Park Landing",
+     "Owner": "LOC",
+     "PARKING": " ",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "N",
+     "Water_Body": "College Creek",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "N",
+     "COUNTY": "Hampton",
+     "FISHING": "N",
+     "NAME": "Fort Monroe National Monument",
+     "Owner": "FED",
+     "PARKING": " ",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "Y",
+     "Water_Body": "Hampton Roads",
+     "West_of_95": "Y"
+    }
+   ],
+   "service": "boat_launch_sites",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/boat_launch_sites/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 30,
+   "fields": [
+    "name",
+    "descriptio",
+    "AW_URL",
+    "Inside_Lolo"
+   ],
+   "known": false,
+   "layer": "Whitewater Access Points",
+   "sample": [
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/1017",
+     "Inside_Lolo": "No",
+     "descriptio": " ",
+     "name": "Put In"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/1017",
+     "Inside_Lolo": "No",
+     "descriptio": " ",
+     "name": "Take Out"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/11417",
+     "Inside_Lolo": "No",
+     "descriptio": " ",
+     "name": "Mormon Creek Bridge Take-Out"
+    }
+   ],
+   "service": "Lolo_NF_Whitewater_WSR_Wildfire_Map_WFL1",
+   "typef": "descriptio",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Lolo_NF_Whitewater_WSR_Wildfire_Map_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 11,
+   "fields": [
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "BCLSP_boat_launch",
+   "sample": [
+    {
+     "BOAT_RAMP": " ",
+     "COUNTY": "Nelson",
+     "FISHING": " ",
+     "NAME": "Easement for takeout",
+     "Owner": "LOC",
+     "PARKING": "None",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": " ",
+     "TRAIL": " ",
+     "Water_Body": "Rockfish",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Cumberland",
+     "FISHING": "Y",
+     "NAME": "Bear Creek State park",
+     "Owner": "ST",
+     "PARKING": "Medium",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Bear Creek Lake",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Buckingham",
+     "FISHING": "Y",
+     "NAME": "Holliday Lake State park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Appomattox River",
+     "West_of_95": "Y"
+    }
+   ],
+   "service": "BCLSP_boat_launch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/BCLSP_boat_launch/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 11,
+   "fields": [
+    "TITLE",
+    "DESCRIPTION",
+    "IMAGE_URL",
+    "IMAGE_LINK_URL",
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "NEW_ALL_BCLSP_BOAT_LAUNCHES",
+   "sample": [
+    {
+     "TITLE": "Point"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Nottoway",
+     "FISHING": "Y",
+     "NAME": "Twin Lakes State Park",
+     "PARKING": "Large",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Buckingham",
+     "FISHING": "Y",
+     "NAME": "Holliday Lake State park",
+     "PARKING": "Large",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y"
+    }
+   ],
+   "service": "NEW_ALL_BCLSP_BOAT_LAUNCHES",
+   "typef": "DESCRIPTION",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/NEW_ALL_BCLSP_BOAT_LAUNCHES/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 11,
+   "fields": [
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "BCLSP_boat_launch",
+   "sample": [
+    {
+     "BOAT_RAMP": " ",
+     "COUNTY": "Nelson",
+     "FISHING": " ",
+     "NAME": "Easement for takeout",
+     "Owner": "LOC",
+     "PARKING": "None",
+     "RESTROOM": " ",
+     "SITE": "0",
+     "SWIMMING": " ",
+     "TRAIL": " ",
+     "Water_Body": "Rockfish",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Cumberland",
+     "FISHING": "Y",
+     "NAME": "Bear Creek State park",
+     "Owner": "ST",
+     "PARKING": "Medium",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Bear Creek Lake",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Buckingham",
+     "FISHING": "Y",
+     "NAME": "Holliday Lake State park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Appomattox River",
+     "West_of_95": "Y"
+    }
+   ],
+   "service": "BCLSP_boat_launch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/BCLSP_boat_launch/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 11,
+   "fields": [
+    "TITLE",
+    "DESCRIPTION",
+    "IMAGE_URL",
+    "IMAGE_LINK_URL",
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "NEW_ALL_BCLSP_BOAT_LAUNCHES",
+   "sample": [
+    {
+     "TITLE": "Point"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Nottoway",
+     "FISHING": "Y",
+     "NAME": "Twin Lakes State Park",
+     "PARKING": "Large",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Buckingham",
+     "FISHING": "Y",
+     "NAME": "Holliday Lake State park",
+     "PARKING": "Large",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y"
+    }
+   ],
+   "service": "NEW_ALL_BCLSP_BOAT_LAUNCHES",
+   "typef": "DESCRIPTION",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/NEW_ALL_BCLSP_BOAT_LAUNCHES/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 10,
+   "fields": [
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "BCLSP_Most_boat_launch",
+   "sample": [
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Nottoway",
+     "FISHING": "Y",
+     "NAME": "Twin Lakes State Park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Twin Lakes",
+     "West_of_95": "N"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Buckingham",
+     "FISHING": "Y",
+     "NAME": "Holliday Lake State park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Appomattox River",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Appomattox",
+     "FISHING": "Y",
+     "NAME": "James River State Park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "N",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "Y",
+     "Water_Body": "James River",
+     "West_of_95": "N"
+    }
+   ],
+   "service": "BCLSP_Most_boat_launch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/BCLSP_Most_boat_launch/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE",
+   "count": 10,
+   "fields": [
+    "SITE",
+    "COUNTY",
+    "PARKING",
+    "NAME",
+    "BOAT_RAMP",
+    "FISHING",
+    "SWIMMING",
+    "TRAIL",
+    "RESTROOM",
+    "West_of_95",
+    "Water_Body",
+    "Owner",
+    "Status",
+    "Hyperlink",
+    "CZM"
+   ],
+   "known": false,
+   "layer": "BCLSP_Most_boat_launch",
+   "sample": [
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Nottoway",
+     "FISHING": "Y",
+     "NAME": "Twin Lakes State Park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Twin Lakes",
+     "West_of_95": "N"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Buckingham",
+     "FISHING": "Y",
+     "NAME": "Holliday Lake State park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "Y",
+     "SITE": "0",
+     "SWIMMING": "Y",
+     "TRAIL": "Y",
+     "Water_Body": "Appomattox River",
+     "West_of_95": "Y"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "COUNTY": "Appomattox",
+     "FISHING": "Y",
+     "NAME": "James River State Park",
+     "Owner": "ST",
+     "PARKING": "Large",
+     "RESTROOM": "N",
+     "SITE": "0",
+     "SWIMMING": "N",
+     "TRAIL": "Y",
+     "Water_Body": "James River",
+     "West_of_95": "N"
+    }
+   ],
+   "service": "BCLSP_Most_boat_launch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/BCLSP_Most_boat_launch/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Width_unit",
+   "count": 543,
+   "fields": [
+    "Type_I",
+    "Type_II",
+    "Material",
+    "Status",
+    "Color",
+    "Width_unit",
+    "Height_unit",
+    "Notes",
+    "Jurisdiction",
+    "Park",
+    "Field_Verification_Status",
+    "QAQC_Status",
+    "QAQC_Name",
+    "QAQC_Comment",
+    "created_user",
+    "last_edited_user",
+    "ASSETID",
+    "parentid",
+    "PD_CostCode",
+    "PD_Name"
+   ],
+   "known": true,
+   "layer": "Gates",
+   "sample": [
+    {
+     "Color": "Natural",
+     "Field_Verification_Status": "1",
+     "Height_unit": "Feet",
+     "Jurisdiction": "4",
+     "Material": "Wood",
+     "Park": "Bear Creek Lake State Park",
+     "QAQC_Status": "1",
+     "Status": "Normally Open",
+     "Type_I": "Manual",
+     "Type_II": "Dual Lane",
+     "Width_unit": "Feet"
+    },
+    {
+     "Color": "Natural",
+     "Field_Verification_Status": "1",
+     "Height_unit": "Feet",
+     "Jurisdiction": "4",
+     "Material": "Wood",
+     "Park": "Bear Creek Lake State Park",
+     "QAQC_Status": "1",
+     "Status": "Normally Open",
+     "Type_I": "Manual",
+     "Type_II": "Dual Lane",
+     "Width_unit": "Feet"
+    },
+    {
+     "Color": "Natural",
+     "Field_Verification_Status": "1",
+     "Height_unit": "Feet",
+     "Jurisdiction": "4",
+     "Material": "Wood",
+     "Park": "Bear Creek Lake State Park",
+     "QAQC_Status": "1",
+     "Status": "Normally Closed",
+     "Type_I": "Manual",
+     "Type_II": "Dual Lane",
+     "Width_unit": "Feet"
+    }
+   ],
+   "service": "Gates_AMGMT__Phase1_VIEW",
+   "typef": "Type_I",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Gates_AMGMT__Phase1_VIEW/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Width_unit",
+   "count": 543,
+   "fields": [
+    "Type_I",
+    "Type_II",
+    "Material",
+    "Status",
+    "Color",
+    "Width_unit",
+    "Height_unit",
+    "Notes",
+    "Jurisdiction",
+    "Park",
+    "Field_Verification_Status",
+    "QAQC_Status",
+    "QAQC_Name",
+    "QAQC_Comment",
+    "created_user",
+    "last_edited_user",
+    "ASSETID",
+    "parentid",
+    "PD_CostCode",
+    "PD_Name"
+   ],
+   "known": true,
+   "layer": "Gates",
+   "sample": [
+    {
+     "Color": "Natural",
+     "Field_Verification_Status": "1",
+     "Height_unit": "Feet",
+     "Jurisdiction": "4",
+     "Material": "Wood",
+     "Park": "Bear Creek Lake State Park",
+     "QAQC_Status": "1",
+     "Status": "Normally Open",
+     "Type_I": "Manual",
+     "Type_II": "Dual Lane",
+     "Width_unit": "Feet"
+    },
+    {
+     "Color": "Natural",
+     "Field_Verification_Status": "1",
+     "Height_unit": "Feet",
+     "Jurisdiction": "4",
+     "Material": "Wood",
+     "Park": "Bear Creek Lake State Park",
+     "QAQC_Status": "1",
+     "Status": "Normally Open",
+     "Type_I": "Manual",
+     "Type_II": "Dual Lane",
+     "Width_unit": "Feet"
+    },
+    {
+     "Color": "Natural",
+     "Field_Verification_Status": "1",
+     "Height_unit": "Feet",
+     "Jurisdiction": "4",
+     "Material": "Wood",
+     "Park": "Bear Creek Lake State Park",
+     "QAQC_Status": "1",
+     "Status": "Normally Closed",
+     "Type_I": "Manual",
+     "Type_II": "Dual Lane",
+     "Width_unit": "Feet"
+    }
+   ],
+   "service": "Gates_AMGMT__Phase1_VIEW",
+   "typef": "Type_I",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Gates_AMGMT__Phase1_VIEW/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "SITENAME",
+   "count": 67,
+   "fields": [
+    "SITENAME",
+    "WATERBODY",
+    "BARRIER_FREE",
+    "FIPS",
+    "TYPE",
+    "COUNTY",
+    "LOCATION",
+    "RIVER",
+    "SECTION",
+    "ALTNAME",
+    "CLASS",
+    "HUC",
+    "ID",
+    "URL",
+    "URL2",
+    "URL3"
+   ],
+   "known": true,
+   "layer": "VA DWR Whitewater Boating Access Sites",
+   "sample": [
+    {
+     "ALTNAME": "Barren Springs to Allisonia boat ramp (Claytor Lake)",
+     "BARRIER_FREE": "Y",
+     "CLASS": "II",
+     "COUNTY": "Pulaski",
+     "FIPS": "155",
+     "HUC": "05050001",
+     "LOCATION": "At Allisonia, Rt 693",
+     "RIVER": "New",
+     "SECTION": "03.1 Barren Springs to Allisonia",
+     "SITENAME": "Allisonia",
+     "TYPE": "R",
+     "WATERBODY": "Claytor Lake"
+    },
+    {
+     "ALTNAME": "Clinch River Gorge",
+     "BARRIER_FREE": "N",
+     "CLASS": "I-III",
+     "COUNTY": "Russell",
+     "FIPS": "167",
+     "HUC": "06010205",
+     "LOCATION": "From Honaker on Rt 80 South (1.4); L on Rt 641 (.03)",
+     "RIVER": "Clinch",
+     "SECTION": "Pucketts Hole to Nash Ford",
+     "SITENAME": "Blackford Bridge",
+     "TYPE": "GA",
+     "WATERBODY": "Clinch River"
+    },
+    {
+     "ALTNAME": " ",
+     "BARRIER_FREE": "N",
+     "CLASS": "I-II",
+     "COUNTY": "Alleghany",
+     "FIPS": "5",
+     "HUC": "02080201",
+     "LOCATION": "From Covington, E. on Rt. 1104 (2 mi. on right)",
+     "RIVER": "Jackson",
+     "SECTION": "2. Gathright Dam to James River",
+     "SITENAME": "Island Ford II",
+     "TYPE": "SA",
+     "WATERBODY": "Jackson River"
+    }
+   ],
+   "service": "VA_DWR_River_Accesses_WFL1",
+   "typef": "TYPE",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/VA_DWR_River_Accesses_WFL1/FeatureServer/0"
+  }
+ ],
+ "st": "VA"
+}

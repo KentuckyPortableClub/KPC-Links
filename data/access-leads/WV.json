@@ -1,0 +1,100 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "SiteName",
+   "count": 515,
+   "fields": [
+    "SiteName",
+    "SiteType",
+    "County",
+    "AccessType",
+    "Ownership",
+    "Waterbody",
+    "ParkingType",
+    "LaunchType",
+    "ToiletType",
+    "LightType"
+   ],
+   "known": true,
+   "layer": "Public Fishing Access Sites",
+   "sample": [
+    {
+     "AccessType": "Ramp",
+     "County": "Braxton",
+     "LaunchType": "Dirt",
+     "LightType": "No",
+     "Ownership": "WVDOH",
+     "ParkingType": "Lot",
+     "SiteName": "Frametown",
+     "SiteType": "Stream",
+     "ToiletType": "No",
+     "Waterbody": "Elk River"
+    },
+    {
+     "AccessType": "Carry Down",
+     "County": "Randolph",
+     "LaunchType": "Dirt",
+     "LightType": "No",
+     "Ownership": "WVDOH",
+     "ParkingType": "Pull-Off",
+     "SiteName": "CR 39 Bridge",
+     "SiteType": "Stream",
+     "ToiletType": "No",
+     "Waterbody": "Tygart River"
+    },
+    {
+     "AccessType": "Carry Down",
+     "County": "Randolph",
+     "LaunchType": "Dirt",
+     "LightType": "No",
+     "Ownership": "WVDOH",
+     "ParkingType": "Pull-Off",
+     "SiteName": "Burnt Bridge",
+     "SiteType": "Stream",
+     "ToiletType": "No",
+     "Waterbody": "Tygart River"
+    }
+   ],
+   "service": "West_Virginia_Public_Fishing_Access_Sites",
+   "typef": "SiteType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Access_Sites/FeatureServer/28"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 491,
+   "fields": [
+    "Name",
+    "Type",
+    "Subtype",
+    "Surface"
+   ],
+   "known": true,
+   "layer": "Parking",
+   "sample": [
+    {
+     "Subtype": "Lot",
+     "Type": "Hunter Access Parking"
+    },
+    {
+     "Name": "Boat Launch",
+     "Subtype": "Lot",
+     "Surface": "Gravel",
+     "Type": "Hunter Access Parking"
+    },
+    {
+     "Name": "At Office",
+     "Subtype": "Lot",
+     "Surface": "Gravel",
+     "Type": "Hunter Access Parking"
+    }
+   ],
+   "service": "West_Virginia_Parking_Areas",
+   "typef": "Type",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Parking_Areas/FeatureServer/38"
+  }
+ ],
+ "st": "WV"
+}

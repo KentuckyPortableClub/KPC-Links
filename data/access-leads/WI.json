@@ -1,0 +1,74 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "DNR",
+   "area": "",
+   "count": 3135,
+   "fields": [
+    "LMS_BOAT_LANDING_NAME",
+    "LANDING_TYPE_CODE",
+    "RAMP_TYPE_CODE",
+    "ADA_ACCESSIBLE_FEATURE_CODE",
+    "OWNERSHIP_NAME_TEXT",
+    "OWNERSHIP_MANAGER_NAME_TEXT",
+    "OWNERSHIP_MANAGER_PHONE_TEXT",
+    "WATERBODY_NAME_TEXT",
+    "COUNTY_NAME_TEXT",
+    "MUNICIPALITY_NAME_TEXT",
+    "RANGE_DIRECTION",
+    "ABANDON_FLAG"
+   ],
+   "known": true,
+   "layer": "Boat Access Sites",
+   "sample": [
+    {
+     "ABANDON_FLAG": "No",
+     "ADA_ACCESSIBLE_FEATURE_CODE": "No",
+     "COUNTY_NAME_TEXT": "Waukesha",
+     "LANDING_TYPE_CODE": "RAMP",
+     "LMS_BOAT_LANDING_NAME": "Merton Millpond Access",
+     "MUNICIPALITY_NAME_TEXT": "VILLAGE OF MERTON",
+     "OWNERSHIP_MANAGER_NAME_TEXT": "Village of Merton",
+     "OWNERSHIP_MANAGER_PHONE_TEXT": "262-538-0820",
+     "OWNERSHIP_NAME_TEXT": "VILLAGE",
+     "RAMP_TYPE_CODE": "Concrete",
+     "RANGE_DIRECTION": "E",
+     "WATERBODY_NAME_TEXT": "Merton Millpond"
+    },
+    {
+     "ABANDON_FLAG": "No",
+     "ADA_ACCESSIBLE_FEATURE_CODE": "Yes",
+     "COUNTY_NAME_TEXT": "Waukesha",
+     "LANDING_TYPE_CODE": "RAMP",
+     "LMS_BOAT_LANDING_NAME": "School Section Lake Public Access",
+     "MUNICIPALITY_NAME_TEXT": "TOWN OF OTTAWA",
+     "OWNERSHIP_MANAGER_NAME_TEXT": "Dept. of Parks & Land Use",
+     "OWNERSHIP_MANAGER_PHONE_TEXT": "(262) 548-7790",
+     "OWNERSHIP_NAME_TEXT": "COUNTY",
+     "RAMP_TYPE_CODE": "Other",
+     "RANGE_DIRECTION": "E",
+     "WATERBODY_NAME_TEXT": "School Section Lake"
+    },
+    {
+     "ABANDON_FLAG": "No",
+     "ADA_ACCESSIBLE_FEATURE_CODE": "Yes",
+     "COUNTY_NAME_TEXT": "Jefferson",
+     "LANDING_TYPE_CODE": "RAMP",
+     "LMS_BOAT_LANDING_NAME": "Lower Spring Lake Access",
+     "MUNICIPALITY_NAME_TEXT": "TOWN OF PALMYRA",
+     "OWNERSHIP_MANAGER_NAME_TEXT": "Kettle Moraine State Forest - South. Unit",
+     "OWNERSHIP_MANAGER_PHONE_TEXT": "(262) 594-6200",
+     "OWNERSHIP_NAME_TEXT": "STATE(DNR)",
+     "RAMP_TYPE_CODE": "Concrete",
+     "RANGE_DIRECTION": "E",
+     "WATERBODY_NAME_TEXT": "Lower Spring Lake"
+    }
+   ],
+   "service": "PR_Recreation/PR_Boat_Access_Shore_Fishing_WTM_Ext",
+   "typef": "LANDING_TYPE_CODE",
+   "url": "https://dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_Boat_Access_Shore_Fishing_WTM_Ext/MapServer/2"
+  }
+ ],
+ "st": "WI"
+}
