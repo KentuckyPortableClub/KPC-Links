@@ -45,7 +45,7 @@ function draw(){
   const cs=KR?KR.conds(relRefs(r.ref)):[],rf=KR?KR.formUrl('conditions',r.ref):'';
   return `<details class="pn-item" data-ref="${esc(r.ref)}"><summary><span class="pn-ref">${esc(r.ref)}</span><span class="pn-nm">${esc(r.n)}${cs.length?`<span class="kpc-cond-n" title="Recent condition reports">⚠ ${cs.length} REPORT${cs.length>1?'S':''}</span>`:''}<span class="pn-co">${esc([r.co&&r.co+(/county|counties|see official|\//i.test(r.co)?'':' County'),r.ex].filter(Boolean).join(' • '))}</span></span><span class="pn-n${t.length?' has':''}">${t.length?t.length+' TIP'+(t.length>1?'S':''):'NO TIPS YET'}</span></summary>
   <div class="pn-body">${cs.length?KR.banner(relRefs(r.ref)):''}<div class="pn-acts">${f?`<a class="go" href="${esc(f)}" target="_blank" rel="noopener">✎ SUBMIT A TIP</a>`:'<a class="go" aria-disabled="true">TIP FORM COMING SOON</a>'}${rf?`<a class="kpc-rep-btn" href="${esc(rf)}" target="_blank" rel="noopener">⚠ REPORT CONDITIONS</a>`:''}<a href="${LINK[tab](r.ref)}" target="_blank" rel="noopener">${LAB[tab]} PAGE ↗</a>${tab==='pota'?`<a href="kpc-park-sheet.html?ref=${encodeURIComponent(r.ref)}">PARK SHEET</a>`:''}${tab==='pota'&&CG[r.ref]?`<a href="kpc-campgrounds.html#park-${esc(r.ref)}">⛺ CAMPGROUNDS &amp; REVIEWS</a>`:''}</div>
-  ${tab==='pota'?hrsHtml(r.ref):''}${t.length?t.map(tipHtml).join(''):'<p class="pn-none">No tips yet. Been here? Share what you know.</p>'}</div></details>`}).join(''):'<p class="pn-none">Nothing matches. Try another search.</p>';
+  ${tab==='pota'?hrsHtml(r.ref)+`<div data-fac="${esc(r.ref)}"></div>`:''}${t.length?t.map(tipHtml).join(''):'<p class="pn-none">No tips yet. Been here? Share what you know.</p>'}</div></details>`}).join(''):'<p class="pn-none">Nothing matches. Try another search.</p>';
 }
 let CG={};   // POTA parks with a card on Campgrounds & Cabins
 /* Oct 25 (HQ, research round 7): hours, overnight rules and extra fees from each park's official page (kpc-ky-hours.json;
@@ -53,6 +53,9 @@ let CG={};   // POTA parks with a card on Campgrounds & Cabins
 let HRS=null;
 function hrsHtml(ref){if(!HRS)return'';const h=(HRS.parks&&HRS.parks[ref])||{},def=!h.hours&&!h.fee&&!h.access;   // no hours or fee listed = 'free and open' (Brandon Oct 25)
  return `<div class="pn-hrs"><b>HOURS &amp; FEES</b>${h.access?`<span class="pn-acc">⚠ ${esc(h.access)}</span>`:''}${def?`<span>🆓 ${esc(HRS.default)}</span>`:''}${h.hours?`<span>🕒 ${esc(h.hours)}</span>`:''}${h.fee?`<span>💵 ${esc(h.fee)}</span>`:''}${h.night?`<span>🌙 ${esc(h.night)}</span>`:''}${h.extra?`<span>💵 ${esc(h.extra)}</span>`:''}<small>${h.link?`From the <a href="${esc(h.link)}" target="_blank" rel="noopener">official page ↗</a>. `:''}Confirm before you go.</small></div>`}
+/* Oct 25 (HQ): shelters, restrooms + trailheads (kpc-facilities.js), filled when a park is opened */
+document.addEventListener('toggle',e=>{const d=e.target;if(!d.matches||!d.matches('details.pn-item')||!d.open||!window.KPCFac)return;const el=d.querySelector('[data-fac]');if(!el||el.dataset.done)return;el.dataset.done=1;
+ const p=D&&D.parks&&D.parks.find(x=>x.c===el.dataset.fac),a=p&&p.ap&&p.ap[0];KPCFac.html(el.dataset.fac,{la:a?a[0]:p&&p.la,lo:a?a[1]:p&&p.lo}).then(h=>{el.innerHTML=h})},true);
 async function init(){
  try{HRS=await (await fetch('kpc-ky-hours.json',{cache:'no-cache'})).json()}catch(e){HRS=null}
  try{const c=await (await fetch('kpc-campgrounds.json',{cache:'no-cache'})).json();(c.parks||[]).forEach(p=>{CG[p.pota]=1})}catch(e){}
