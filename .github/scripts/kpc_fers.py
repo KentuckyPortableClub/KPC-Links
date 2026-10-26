@@ -77,17 +77,23 @@ def late(): return time.time() - T0 > LIMIT
 def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower()).split())
 
 
+GET_ONLY = set()
 def get(url, params, tries=3, timeout=120):
     body = urllib.parse.urlencode(params).encode()
     last = None
     for i in range(tries):
         try:
-            req = urllib.request.Request(url, data=body, headers=dict(UA, **{'Content-Type': 'application/x-www-form-urlencoded'}))
+            if url in GET_ONLY or len(body) < 1500:   # Oct 26: the EEA server answers 405 to POST
+                req = urllib.request.Request(url + '?' + body.decode(), headers=UA)
+            else:
+                req = urllib.request.Request(url, data=body, headers=dict(UA, **{'Content-Type': 'application/x-www-form-urlencoded'}))
             j = json.loads(urllib.request.urlopen(req, timeout=timeout).read().decode('utf-8', 'replace'))
             if isinstance(j, dict) and j.get('error'): raise RuntimeError(str(j['error'])[:150])
             return j
         except Exception as e:  # noqa: BLE001
-            last = e; time.sleep(2 + 3 * i)
+            last = e
+            if '405' in str(e): GET_ONLY.add(url)
+            time.sleep(2 + 3 * i)
     raise last
 
 
@@ -410,6 +416,13 @@ def tiles(box, cell, pad):
     return [[box[0] + i * dx, box[1] + j * dy, box[0] + (i + 1) * dx, box[1] + (j + 1) * dy] for i in range(nx) for j in range(ny)]
 
 
+def dt(mask, outside=0):
+    """Distance to the nearest pixel OUTSIDE (in cells). A one-pixel empty border, so a tile lying wholly inside the shared
+    ground (a wilderness inside a national forest) measures to the tile edge instead of 'infinity' (Oct 26 pass-2 bug)."""
+    m = cv2.copyMakeBorder(mask, 1, 1, 1, 1, cv2.BORDER_CONSTANT, value=outside)
+    return cv2.distanceTransform(m, cv2.DIST_L2, 5)[1:-1, 1:-1]
+
+
 def area_spots(G, refs, box):
     """Spots where every park in refs shares ground holding a 100-yard spot. G[ref] = groups. Coarse look first."""
     # coarse: at most ~1 M pixels over the shared box; parks grown by one pixel so thin-but-real overlaps are not lost
@@ -439,7 +452,7 @@ def area_spots(G, refs, box):
             m = F.area(G[r]); ovf = m if ovf is None else ovf & m
             if not ovf.any(): break
         if ovf is None or not ovf.any(): continue
-        dist = cv2.distanceTransform(ovf, cv2.DIST_L2, 5) * CELL
+        dist = dt(ovf) * CELL
         core = (dist >= SHRINK + CELL * (1.0 if PASS == 3 else .5)).astype(np.uint8)   # pass 3 strict, 1-2 a little lenient (screens)
         if not core.any(): continue
         n, lab = cv2.connectedComponents(ovf, connectivity=8)
@@ -497,8 +510,8 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
             F = Frame(b, CELL, 120)
             if other_is_line: ok = F.lines(other, 2 * ZONE)
             else:
-                spot_ok = (cv2.distanceTransform(F.area(other), cv2.DIST_L2, 5) * CELL >= STATION_IN).astype(np.uint8)
-                ok = (cv2.distanceTransform(1 - spot_ok, cv2.DIST_L2, 5) * CELL <= ZONE).astype(np.uint8)
+                spot_ok = (dt(F.area(other)) * CELL >= STATION_IN).astype(np.uint8)
+                ok = (dt(1 - spot_ok, outside=1) * CELL <= ZONE).astype(np.uint8)
             P = F.px([pts[i] for i in idx]).astype(int)
             P[:, 0] = P[:, 0].clip(0, F.W - 1); P[:, 1] = P[:, 1].clip(0, F.H - 1)
             ins[idx] = ok[P[:, 1], P[:, 0]] > 0
@@ -620,6 +633,20 @@ FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'(US|CA)-[A-Z]{2}'
 def file_of(st): return OUT / f'{st}.json'
 
 
+def sbox(s): return s.get('box') or bbox_lines([s['shape']])
+
+
+def slim(spots):
+    """Storage (Oct 26: France alone gave 68,000 spots = 94 MB): the world keeps each spot's box, not its outline; North
+    America keeps an outline of at most 80 points."""
+    for s in spots:
+        if s.get('shape'):
+            b = bbox_lines([s['shape']]); s['box'] = [round(v, 5) for v in b]
+            if REGION == 'world': s.pop('shape', None)
+            elif len(s['shape']) > 80: s['shape'] = s['shape'][::int(math.ceil(len(s['shape']) / 80))]
+    return spots
+
+
 def key_of(s): return '+'.join(s['refs']) + '@' + s['kind']
 
 
@@ -672,7 +699,7 @@ def main():
             by.setdefault(st_of(s['refs'][0]), []).append(s)
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st not in by and st in old: continue
-            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': sorted(by.get(st, []), key=lambda s: s['id'])}, indent=1)
+            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(by.get(st, []), key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
@@ -703,11 +730,11 @@ def main():
                 pk = tuple(sorted(s['refs'][:2]))
                 if pk not in TESTED and len(s['refs']) == 2:   # out of time before this pair: the next run carries on
                     s['status'] = f'waiting for pass {PASS}'; continue
-                sb = bbox_lines([s['shape']])
-                m = next((n for n in newk.get(key_of(s), []) if inter(sb, bbox_lines([n['shape']]), 0.0005)), None)
+                sb = sbox(s)
+                m = next((n for n in newk.get(key_of(s), []) if inter(sb, sbox(n), 0.0005)), None)
                 if m:
                     s['passes'][PASS - 1] = 1; agree += 1
-                    for k in ('center', 'shape', 'acres', 'wide_m', 'len_m'):
+                    for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m'):
                         if k in m: s[k] = m[k]
                     m['_used'] = 1
                     s['status'] = f'pass {PASS}'
@@ -725,7 +752,8 @@ def main():
                         s['names'] = {r: PIN[r][0] for r in s['refs']}
                     else: s['status'] = 'dropped: a pin is outside its own outline'
             d[f'pass{PASS}'] = today
-            save_json(file_of(st), d, indent=1)
+            d['spots'] = slim(d.get('spots', []))
+            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
         new_only = sum(1 for v in newk.values() for n in v if not n.get('_used'))
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
     # report
