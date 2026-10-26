@@ -85,6 +85,15 @@ jobs:
           gh release view boundary-cache -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
             gh release create boundary-cache -R "$GITHUB_REPOSITORY" --prerelease --title 'Saved park outlines' --notes 'Saved outlines for the boundary answer keys.' || true
           ls cache/us/*.json.gz >/dev/null 2>&1 && gh release upload boundary-cache cache/us/*.json.gz -R "$GITHUB_REPOSITORY" --clobber || true
+      - name: Second witness (how sure is each outline?)
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Oct 26 (HQ boundary plan 2b): name, agency, a second map, POTA pin -> data/boundary-score.json
+          mkdir -p cache/us
+          ls cache/us/US-*.json.gz >/dev/null 2>&1 || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
+          python3 .github/scripts/kpc_outline_score.py || true
       - name: Write up what it found
         continue-on-error: true
         env:
@@ -95,7 +104,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/us-key data/boundary-report.json 2>/dev/null || true
+          git add data/us-key data/boundary-report.json data/boundary-score.json 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           if ! git diff --cached --quiet; then
             git commit -m 'Boundary check: are the joins in the right place?'
