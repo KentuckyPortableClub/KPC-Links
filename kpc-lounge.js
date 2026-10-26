@@ -103,7 +103,7 @@
       <div class="lg-ch"><span class="lg-tag ${P.toLowerCase()}">${P}</span> <span class="lg-ref">${esc(o.ref)}</span></div>
       <h2>${esc(o.name)}</h2>
       <p class="lg-where">${esc([o.type, o.where].filter(Boolean).join(' · '))}</p><p class="lg-where" id="lgLand"></p>${P === 'POTA' && store.get('kpcTrackActs', {})[o.ref] ? `<span class="lg-you">✅ You activated this${store.get('kpcTrackActs', {})[o.ref].n > 1 ? ' ' + store.get('kpcTrackActs', {})[o.ref].n + ' times' : ''}</span>` : ''}
-      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div><div id="lgHrs"></div><div id="lgAp"></div><div id="lgClos"></div>
+      <div class="lg-btns">${b.map(x => `<a class="${x[2] || ''}"${x[2] === 'gold' ? ' data-keep-light' : ''} href="${esc(x[1])}"${x[3] ? ' target="_blank" rel="noopener"' : ''}>${esc(x[0])}</a>`).join('')}</div><div id="lgHrs"></div><div id="lgFac"></div><div id="lgAp"></div><div id="lgClos"></div>
       <p class="lg-small">${ky ? 'Kentucky: the Activation Kit adds member reports, trailheads and places to stay.' : o.us ? 'Outside Kentucky some tools have less: some boundaries come from the national map, and Park Notes only has what members sent in.' : 'Outside the US: the Kit, Am I in the Park and the weather forecast work; boundaries are approximate and marked so.'}</p>
     </section>`;
     $('lgOut').scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -114,6 +114,8 @@
       const h = (H.parks && H.parks[o.ref]) || {}, def = !h.hours && !h.fee && !h.access;
       el.innerHTML = '<div class="lg-ap"><b>🕒 HOURS &amp; FEES</b>' + (h.access ? '<span style="color:#ffb27a;font-weight:700">⚠ ' + esc(h.access) + '</span>' : '') + (def ? '<span>' + esc(H.default) + '</span>' : '') + (h.hours ? '<span>' + esc(h.hours) + '</span>' : '') + (h.fee ? '<span>💵 ' + esc(h.fee) + '</span>' : '') +
         (h.night ? '<span>🌙 ' + esc(h.night) + '</span>' : '') + (h.link ? '<a href="' + esc(h.link) + '" target="_blank" rel="noopener">Official page · confirm before you go ›</a>' : '') + '</div>'; });
+    if (P === 'POTA' && ky && window.KPCFac) (open.ky || (open.ky = j('kpc-ky-data.json'))).then(d => { const k = d && (d.parks || []).find(p => p.c === o.ref), a = k && k.ap && k.ap[0];
+      return KPCFac.html(o.ref, { la: a ? a[0] : o.la, lo: a ? a[1] : o.lo }); }).then(h => { const el = $('lgFac'); if (el && h) el.innerHTML = h; }).catch(() => {});
     if (P === 'POTA' && o.us && window.KPCClos) KPCClos.html(o.ref, ky ? 'KY' : o.st).then(h => { const el = $('lgClos'); if (el) el.innerHTML = h; }).catch(() => {});
     if (P === 'POTA' && o.us) (async () => {
       let ap = [];

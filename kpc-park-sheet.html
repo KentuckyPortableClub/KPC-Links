@@ -24,6 +24,7 @@
 <script src="kpc-bounds.js?v=20261025n"></script>
 <script src="kpc-map-tools.js?v=20261018u"></script>
 <script src="kpc-closures.js?v=20261025a"></script>
+<script src="kpc-facilities.js?v=20261025a"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
 </head>
 <body>
@@ -200,6 +201,7 @@ async function extras(p){
  /* Oct 25 (HQ): closures + notices (KY alerts/reports, US state agencies) and which agencies are watched (kpc-closures.js) */
  /* Oct 25 (HQ, round 7): Kentucky hours, overnight rules and extra fees from official pages (kpc-ky-hours.json) */
  if(p.ky&&PG==='POTA')tasks.push(once('kpc-ky-hours.json').then(H=>{X.hrs=H&&H.parks&&H.parks[p.c];X.feeNote=H&&H.feeNote;X.hdef=H&&H.default}));
+ if(p.ky&&PG==='POTA'&&window.KPCFac){const a=(p.ap||[])[0];tasks.push(KPCFac.html(p.c,{print:true,la:a?a[0]:p.la,lo:a?a[1]:p.lo}).then(h=>{X.fac=h}))}
  if(window.KPCClos&&PG==='POTA'&&(p.ky||p.us!==false))tasks.push(KPCClos.html(p.c,p.ky?'KY':p.st,{print:true}).then(h=>{X.clos=h}));
  if(PG==='POTA')tasks.push(jget('https://api.pota.app/park/activations/'+p.c+'?count=all').then(a=>{if(Array.isArray(a)){const v=a.filter(x=>x.totalQSOs==null||+x.totalQSOs>=10);X.acts=v.length;X.last=v.map(x=>String(x.qso_date||'')).sort().pop()||''}})   /* valid activations only (10+ contacts), like Rare Parks */);
  if(p.us!==false)tasks.push(jget(`https://geo.fcc.gov/api/census/area?lat=${p.la}&lon=${p.lo}&format=json`).then(async g=>{const r=g&&g.results&&g.results[0];if(r){X.county=r.county_name;X.same='0'+r.county_fips;X.st2=r.state_code}
@@ -247,6 +249,7 @@ async function make(){$('msg').textContent='Making the sheet…';const p=await f
  ${(X.stay||[]).length||(X.shel||[]).length||p.ky?'<div class="ps-h">Where to stay</div>'+stay+shel:''}
  ${tips}
  ${p.ky&&PG==='POTA'&&X.hdef?(()=>{const h=X.hrs||{},def=!h.hours&&!h.fee&&!h.access;return '<div class="ps-h">Hours &amp; fees</div><ul class="ps-list">'+(h.access?'<li><b>Access: '+esc(h.access)+'</b></li>':'')+(def?'<li>'+esc(X.hdef)+'</li>':'')+(h.hours?'<li>Hours: '+esc(h.hours)+'</li>':'')+(h.fee?'<li>Fee: '+esc(h.fee)+'</li>':'')+(h.night?'<li>After dark: '+esc(h.night)+'</li>':'')+(h.extra?'<li>Extra fees: '+esc(h.extra)+'</li>':'')+(/state (resort )?park|state historic/i.test(p.n+' '+(p.t||''))&&!h.fee&&X.feeNote?'<li>Statewide: '+esc(X.feeNote)+'</li>':'')+'<li style="font-size:12px">'+(h.link?'From the official page ('+esc(h.link)+'). ':'')+'Confirm before you go.</li></ul>'})():''}
+ ${X.fac?'<div class="ps-h">Shelters, restrooms &amp; trailheads</div>'+X.fac:''}
  ${X.clos?'<div class="ps-h">Closures &amp; notices</div>'+X.clos:''}
  <div class="ps-h">See the boundary</div><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(FINDER)}">${p.ky?'Open this park in KY Park Commander →</a> (map, boundary, trail layers, offline)':'Open this park in the KPC Trip Planner →</a> (official boundary, campgrounds, nearby parks)'}</p><p style="font-size:13px;margin:0 0 4px"><a class="ps-a" href="${esc(new URL('kpc-in-park.html?ref='+encodeURIComponent(p.c),location.href).href)}">Am I in the Park? →</a> (on your phone at the park: are you inside the boundary, and how far to the edge)</p><div class="ps-h">Before you go</div><ul class="ps-list"><li>Confirm the boundary on the official map — you and your gear must be inside it, on public land.</li><li>10 contacts in one UTC day makes a valid activation. Log times in UTC.</li>${isWMA?'<li><b>Hunting land:</b> check season dates and wear blaze orange during gun seasons.</li>':''}<li>Check weather, closures and posted rules. Tell someone where you are going.</li></ul>
  <div class="ps-warn"><b>Notes:</b> ______________________________________________________________________________<br><br>_______________________________________________________________________________________</div>
