@@ -1,32 +1,32 @@
 {
  "United States": {
   "totals": {
-   "matched": 10601,
-   "far": 4375,
+   "matched": 11036,
+   "far": 3727,
    "noshape": 0,
-   "edge": 4163,
-   "out": 212,
-   "swap": 9
+   "edge": 3569,
+   "out": 158,
+   "swap": 0
   },
   "states": [
    {
     "st": "AK",
-    "matched": 128,
-    "far": 59,
+    "matched": 131,
+    "far": 41,
     "noshape": 0,
-    "out": 7,
-    "swap": 1,
+    "out": 6,
+    "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 52
+    "edge": 35
    },
    {
     "st": "AL",
-    "matched": 110,
-    "far": 44,
+    "matched": 126,
+    "far": 41,
     "noshape": 0,
-    "out": 8,
+    "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
@@ -35,63 +35,63 @@
    },
    {
     "st": "AR",
-    "matched": 234,
-    "far": 93,
+    "matched": 249,
+    "far": 96,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 91
+    "edge": 94
    },
    {
     "st": "AZ",
-    "matched": 96,
-    "far": 25,
-    "noshape": 0,
-    "out": 4,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 21
-   },
-   {
-    "st": "CA",
-    "matched": 373,
-    "far": 112,
+    "matched": 99,
+    "far": 21,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 109
+    "edge": 18
+   },
+   {
+    "st": "CA",
+    "matched": 373,
+    "far": 93,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 90
    },
    {
     "st": "CO",
     "matched": 257,
-    "far": 125,
+    "far": 120,
     "noshape": 0,
-    "out": 14,
+    "out": 12,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 111
+    "edge": 108
    },
    {
     "st": "CT",
-    "matched": 144,
-    "far": 65,
+    "matched": 145,
+    "far": 30,
     "noshape": 0,
-    "out": 5,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
     "thin": null,
-    "edge": 60
+    "edge": 28
    },
    {
     "st": "DC",
@@ -107,10 +107,70 @@
    },
    {
     "st": "DE",
-    "matched": 74,
-    "far": 30,
+    "matched": 76,
+    "far": 14,
     "noshape": 0,
     "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 14
+   },
+   {
+    "st": "FL",
+    "matched": 440,
+    "far": 66,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 65
+   },
+   {
+    "st": "GA",
+    "matched": 220,
+    "far": 28,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 28
+   },
+   {
+    "st": "HI",
+    "matched": 84,
+    "far": 21,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 21
+   },
+   {
+    "st": "IA",
+    "matched": 172,
+    "far": 30,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 29
+   },
+   {
+    "st": "ID",
+    "matched": 202,
+    "far": 36,
+    "noshape": 0,
+    "out": 6,
     "swap": 0,
     "stale": false,
     "detail": "~110 m",
@@ -118,136 +178,76 @@
     "edge": 30
    },
    {
-    "st": "FL",
-    "matched": 389,
-    "far": 65,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 60
-   },
-   {
-    "st": "GA",
-    "matched": 218,
-    "far": 34,
-    "noshape": 0,
-    "out": 0,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 34
-   },
-   {
-    "st": "HI",
-    "matched": 84,
-    "far": 34,
+    "st": "IL",
+    "matched": 203,
+    "far": 75,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 31
-   },
-   {
-    "st": "IA",
-    "matched": 171,
-    "far": 40,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 38
-   },
-   {
-    "st": "ID",
-    "matched": 148,
-    "far": 44,
-    "noshape": 0,
-    "out": 11,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 33
-   },
-   {
-    "st": "IL",
-    "matched": 163,
-    "far": 74,
-    "noshape": 0,
-    "out": 6,
-    "swap": 0,
-    "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 68
+    "edge": 72
    },
    {
     "st": "IN",
     "matched": 205,
-    "far": 75,
+    "far": 67,
     "noshape": 0,
-    "out": 4,
-    "swap": 1,
+    "out": 2,
+    "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 71
+    "edge": 65
    },
    {
     "st": "KS",
-    "matched": 101,
-    "far": 46,
+    "matched": 118,
+    "far": 36,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 46
+    "edge": 36
    },
    {
     "st": "LA",
-    "matched": 108,
-    "far": 32,
+    "matched": 112,
+    "far": 30,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 31
+    "edge": 29
    },
    {
     "st": "MA",
-    "matched": 393,
-    "far": 250,
+    "matched": 406,
+    "far": 177,
     "noshape": 0,
-    "out": 4,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 246
+    "edge": 175
    },
    {
     "st": "MD",
     "matched": 152,
-    "far": 61,
+    "far": 55,
     "noshape": 0,
-    "out": 4,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 57
+    "edge": 53
    },
    {
     "st": "ME",
@@ -263,39 +263,39 @@
    },
    {
     "st": "MI",
-    "matched": 288,
-    "far": 127,
+    "matched": 310,
+    "far": 107,
     "noshape": 0,
-    "out": 4,
+    "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 123
+    "edge": 106
    },
    {
     "st": "MN",
     "matched": 249,
-    "far": 92,
+    "far": 68,
     "noshape": 0,
-    "out": 6,
+    "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 86
+    "edge": 63
    },
    {
     "st": "MO",
     "matched": 544,
-    "far": 229,
+    "far": 217,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 229
+    "edge": 217
    },
    {
     "st": "MS",
@@ -312,189 +312,33 @@
    {
     "st": "MT",
     "matched": 226,
-    "far": 95,
+    "far": 75,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 94
+    "edge": 74
    },
    {
     "st": "NC",
-    "matched": 212,
-    "far": 110,
-    "noshape": 0,
-    "out": 4,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 106
-   },
-   {
-    "st": "ND",
-    "matched": 102,
-    "far": 49,
-    "noshape": 0,
-    "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 48
-   },
-   {
-    "st": "NE",
-    "matched": 159,
-    "far": 69,
-    "noshape": 0,
-    "out": 1,
-    "swap": 1,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 68
-   },
-   {
-    "st": "NH",
-    "matched": 187,
-    "far": 120,
-    "noshape": 0,
-    "out": 9,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 111
-   },
-   {
-    "st": "NJ",
-    "matched": 122,
-    "far": 53,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 51
-   },
-   {
-    "st": "NM",
-    "matched": 92,
-    "far": 30,
-    "noshape": 0,
-    "out": 0,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 30
-   },
-   {
-    "st": "NV",
-    "matched": 209,
-    "far": 93,
-    "noshape": 0,
-    "out": 21,
-    "swap": 1,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 72
-   },
-   {
-    "st": "NY",
-    "matched": 823,
-    "far": 315,
-    "noshape": 0,
-    "out": 5,
-    "swap": 1,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 310
-   },
-   {
-    "st": "OH",
-    "matched": 260,
-    "far": 97,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 95
-   },
-   {
-    "st": "OK",
-    "matched": 143,
-    "far": 64,
-    "noshape": 0,
-    "out": 7,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 57
-   },
-   {
-    "st": "OR",
-    "matched": 350,
-    "far": 129,
+    "matched": 219,
+    "far": 100,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 126
+    "edge": 97
    },
    {
-    "st": "PA",
-    "matched": 477,
-    "far": 197,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 195
-   },
-   {
-    "st": "RI",
-    "matched": 56,
-    "far": 36,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 34
-   },
-   {
-    "st": "SC",
-    "matched": 156,
-    "far": 94,
+    "st": "ND",
+    "matched": 102,
+    "far": 48,
     "noshape": 0,
     "out": 1,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 93
-   },
-   {
-    "st": "SD",
-    "matched": 103,
-    "far": 47,
-    "noshape": 0,
-    "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
@@ -502,35 +346,23 @@
     "edge": 47
    },
    {
-    "st": "TN",
-    "matched": 243,
-    "far": 121,
-    "noshape": 0,
-    "out": 4,
-    "swap": 1,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 117
-   },
-   {
-    "st": "TX",
-    "matched": 196,
-    "far": 67,
+    "st": "NE",
+    "matched": 175,
+    "far": 65,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 66
+    "edge": 64
    },
    {
-    "st": "UT",
-    "matched": 345,
-    "far": 128,
+    "st": "NH",
+    "matched": 190,
+    "far": 116,
     "noshape": 0,
-    "out": 20,
+    "out": 8,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
@@ -538,191 +370,259 @@
     "edge": 108
    },
    {
-    "st": "VA",
-    "matched": 149,
-    "far": 55,
+    "st": "NJ",
+    "matched": 122,
+    "far": 44,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 43
+   },
+   {
+    "st": "NM",
+    "matched": 94,
+    "far": 28,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 28
+   },
+   {
+    "st": "NV",
+    "matched": 213,
+    "far": 86,
+    "noshape": 0,
+    "out": 20,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 66
+   },
+   {
+    "st": "NY",
+    "matched": 823,
+    "far": 248,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 243
+   },
+   {
+    "st": "OH",
+    "matched": 273,
+    "far": 93,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 92
+   },
+   {
+    "st": "OK",
+    "matched": 143,
+    "far": 57,
+    "noshape": 0,
+    "out": 6,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 51
+   },
+   {
+    "st": "OR",
+    "matched": 353,
+    "far": 125,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 123
+   },
+   {
+    "st": "PA",
+    "matched": 478,
+    "far": 85,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 84
+   },
+   {
+    "st": "RI",
+    "matched": 56,
+    "far": 34,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 33
+   },
+   {
+    "st": "SC",
+    "matched": 156,
+    "far": 86,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 86
+   },
+   {
+    "st": "SD",
+    "matched": 109,
+    "far": 46,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 46
+   },
+   {
+    "st": "TN",
+    "matched": 247,
+    "far": 111,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 52
+    "edge": 108
+   },
+   {
+    "st": "TX",
+    "matched": 197,
+    "far": 60,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 59
+   },
+   {
+    "st": "UT",
+    "matched": 350,
+    "far": 117,
+    "noshape": 0,
+    "out": 17,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 100
+   },
+   {
+    "st": "VA",
+    "matched": 151,
+    "far": 50,
+    "noshape": 0,
+    "out": 3,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 47
    },
    {
     "st": "VT",
-    "matched": 88,
-    "far": 42,
+    "matched": 91,
+    "far": 33,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 39
+    "edge": 30
    },
    {
     "st": "WA",
-    "matched": 376,
-    "far": 198,
+    "matched": 468,
+    "far": 185,
     "noshape": 0,
-    "out": 4,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 194
+    "edge": 183
    },
    {
     "st": "WI",
-    "matched": 315,
-    "far": 146,
+    "matched": 326,
+    "far": 115,
     "noshape": 0,
-    "out": 3,
-    "swap": 2,
+    "out": 2,
+    "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 143
+    "edge": 113
    },
    {
     "st": "WV",
     "matched": 160,
-    "far": 53,
+    "far": 43,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 50
+    "edge": 40
    },
    {
     "st": "WY",
-    "matched": 174,
-    "far": 72,
+    "matched": 192,
+    "far": 69,
     "noshape": 0,
-    "out": 14,
-    "swap": 1,
+    "out": 13,
+    "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 58
+    "edge": 56
    }
   ],
-  "swaps": [
-   [
-    "AK",
-    "US-10281",
-    "White Mountains National Recreation Area BLM Recreation Management Area",
-    "White Mountains SRMA",
-    "Eastern Interior Field Office"
-   ],
-   [
-    "IN",
-    "US-4178",
-    "Lost Bridge on Salamonie Lake State Recreation Area",
-    "Salamonie Lake",
-    "Salamonie Lake"
-   ],
-   [
-    "NE",
-    "US-3489",
-    "Massie National Waterfowl Production Area",
-    "Clay County Waterfowl Production Area Of Ne",
-    "Clay County Waterfowl Production Area Of Ne"
-   ],
-   [
-    "NV",
-    "US-13139",
-    "Muddy Mountains BLM Herd Management Area",
-    "Muddy Mountains",
-    "Muddy Mountains"
-   ],
-   [
-    "NY",
-    "US-8062",
-    "Kenneth L. Wilson State Recreation Area",
-    "Kenneth L. Wilson Campground",
-    "Kenneth L. Wilson Campground"
-   ],
-   [
-    "TN",
-    "US-3967",
-    "Whites Mill Wildlife Refuge",
-    "Whites Mill Refuge",
-    "Whites Mill Refuge"
-   ],
-   [
-    "WI",
-    "US-4342",
-    "Herb Behnke Unit of Wolf River Bottoms State Wildlife Area",
-    "Wolf River Bottoms Wildlife Area",
-    "Wolf River Bottoms Wildlife Area"
-   ],
-   [
-    "WI",
-    "US-8209",
-    "Dewey Marsh State Natural Area",
-    "Dewey Marsh Wildlife Area",
-    "Dewey Marsh Wildlife Area"
-   ],
-   [
-    "WY",
-    "US-6171",
-    "Adobe Town BLM Herd Management Area",
-    "Adobe Town",
-    "Adobe Town"
-   ]
-  ],
+  "swaps": [],
   "well_outside": [
    [
     "AK",
-    "US-0150",
-    "Kodiak National Wildlife Refuge",
-    "Kodiak National Wildlife Refuge"
-   ],
-   [
-    "AK",
-    "US-0909",
-    "Cape Krusenstern National Monument",
-    "Cape Krusenstern National Monument"
-   ],
-   [
-    "AK",
-    "US-7191",
-    "Anchor River State Recreation Area",
-    "Anchor River State Recreation Area"
-   ],
-   [
-    "AK",
-    "US-7193",
-    "Caines Head State Recreation Area",
-    "Caines Head State Recreation Area"
-   ],
-   [
-    "AK",
-    "US-7242",
-    "Portage Cove State Recreation Site",
-    "Portage Cove State Recreation Site"
-   ],
-   [
-    "AK",
-    "US-9701",
-    "Palmer Hay Flats Wildlife Refuge",
-    "Palmer Hay Flats State Game Refuge"
+    "US-6332",
+    "Hatcher Pass State Natural Area",
+    "Hatcher Pass"
    ],
    [
     "AL",
-    "US-0384",
-    "Grand Bay National Wildlife Refuge",
-    "Grand Bay National Wildlife Refuge"
-   ],
-   [
-    "AL",
-    "US-0642",
-    "Natchez Trace Parkway National Parkway",
-    "Natchez Trace Parkway"
+    "US-11033",
+    "The Portland Landing Conservation Reserve",
+    "Portland Landing - Gilmore Addition"
    ],
    [
     "AL",
@@ -731,178 +631,10 @@
     "Fowl River"
    ],
    [
-    "AL",
-    "US-3690",
-    "Geneva State Forest Wildlife Management Area",
-    "Geneva State Forest"
-   ],
-   [
-    "AL",
-    "US-3701",
-    "Pike County Pocosin Complex State Fish and Wildlife Area",
-    "Pike County Pocosin Complex"
-   ],
-   [
-    "AL",
-    "US-9874",
-    "Mud Creek Management Area",
-    "Mud Creek Management Area"
-   ],
-   [
-    "AL",
-    "US-9875",
-    "Raccoon Creek Management Area",
-    "Raccoon Creek Wildlife Management Area"
-   ],
-   [
-    "AL",
-    "US-9876",
-    "Crow Creek Management Area",
-    "Crow Creek"
-   ],
-   [
-    "AR",
-    "US-7271",
-    "Camp Robinson Wildlife Management Area",
-    "Camp Robinson WMA"
-   ],
-   [
-    "AR",
-    "US-7274",
-    "Cedar Creek Wildlife Management Area",
-    "Cedar Creek WMA"
-   ],
-   [
-    "AZ",
-    "US-0176",
-    "Imperial National Wildlife Refuge",
-    "Imperial National Wildlife Refuge"
-   ],
-   [
-    "AZ",
-    "US-0676",
-    "Lake Mead National Recreation Area",
-    "Lake Mead National Recreation Area"
-   ],
-   [
-    "AZ",
-    "US-11943",
-    "Sonoita Creek State Natural Area",
-    "Sonoita Creek Natural Area"
-   ],
-   [
-    "AZ",
-    "US-6090",
-    "Beaver Dam Mountain Wilderness Area",
-    "Beaver Dam Mountains"
-   ],
-   [
-    "CA",
-    "US-0203",
-    "North Central Valley Wildlife Management Area",
-    "North Central Valley Wildlife Management Area"
-   ],
-   [
-    "CA",
-    "US-0211",
-    "San Luis National Wildlife Refuge",
-    "San Luis National Wildlife Refuge"
-   ],
-   [
     "CA",
     "US-3523",
     "Oceano Dunes State Recreation Area",
-    "Oceano Dunes State Vehicular Recreation Area"
-   ],
-   [
-    "CO",
-    "US-0185",
-    "Hugo State Wildlife Area",
-    "Hugo SWA"
-   ],
-   [
-    "CO",
-    "US-0191",
-    "Brush Hollow State Wildlife Area",
-    "Brush Hollow SWA"
-   ],
-   [
-    "CO",
-    "US-0652",
-    "Curecanti National Recreation Area",
-    "Curecanti National Recreation Area"
-   ],
-   [
-    "CO",
-    "US-0943",
-    "Hovenweep National Monument",
-    "Hovenweep National Monument"
-   ],
-   [
-    "CO",
-    "US-12185",
-    "Grand Junction: West Lake State Wildlife Area",
-    "West Lake State Wildlife Area"
-   ],
-   [
-    "CO",
-    "US-1249",
-    "Vega State Park",
-    "Vega State Park"
-   ],
-   [
-    "CO",
-    "US-9594",
-    "Gunnison Gorge BLM National Conservation Area",
-    "Gunnison Gorge National Conservation Area"
-   ],
-   [
-    "CO",
-    "US-9605",
-    "Alma State Wildlife Area",
-    "Alma State Wildlife Area"
-   ],
-   [
-    "CO",
-    "US-9620",
-    "Bodo State Wildlife Area",
-    "Bodo SWA"
-   ],
-   [
-    "CO",
-    "US-9622",
-    "Bosque Del Oso State Wildlife Area",
-    "Bosque del Oso SWA"
-   ],
-   [
-    "CO",
-    "US-9631",
-    "Coalbed Canyon State Wildlife Area",
-    "Coalbed Canyon SWA"
-   ],
-   [
-    "CO",
-    "US-9632",
-    "Cochetopa State Wildlife Area",
-    "Cochetopa SWA"
-   ],
-   [
-    "CO",
-    "US-9635",
-    "Colorow Mountain State Wildlife Area",
-    "Colorow Mountain SWA"
-   ],
-   [
-    "CO",
-    "US-9638",
-    "Dan Noble State Wildlife Area",
-    "Dan Noble SWA - Greager Tract"
-   ],
-   [
-    "CT",
-    "US-1658",
-    "Connecticut Valley Railroad State Park",
-    "Connecticut Valley Railroad State Park Trail"
+    "Oceano Dunes SVRA"
    ],
    [
     "CT",
@@ -912,105 +644,15 @@
    ],
    [
     "CT",
-    "US-1727",
-    "West Rock Ridge State Park",
-    "West Rock State Park"
-   ],
-   [
-    "CT",
     "US-7528",
     "Air Line State Trail",
     "Air Line State Park Trail"
    ],
    [
-    "CT",
-    "US-7530",
-    "Centennial Watershed State Forest",
-    "Centennial Watershed State Forest"
-   ],
-   [
-    "DC",
-    "US-0670",
-    "George Washington Memorial Parkway",
-    "George Washington Memorial Parkway"
-   ],
-   [
-    "FL",
-    "US-0249",
-    "Merritt Island National Wildlife Refuge",
-    "Merritt Island National Wildlife Refuge"
-   ],
-   [
-    "FL",
-    "US-10551",
-    "Falling Creek State Conservation Area",
-    "Falling Creek Park"
-   ],
-   [
-    "FL",
-    "US-3660",
-    "Suwannee River Wilderness State Trail",
-    "Suwannee River Wilderness State Trail"
-   ],
-   [
-    "FL",
-    "US-6318",
-    "Okaloacoochee Slough Wildlife Management Area",
-    "Okaloacoochee Slough Wildlife Management Area"
-   ],
-   [
-    "FL",
-    "US-8679",
-    "Devil's Hammock State Conservation Area",
-    "Devil's Hammock"
-   ],
-   [
-    "HI",
-    "US-0043",
-    "Kalaupapa National Historical Park",
-    "Kalaupapa National Historical Park"
-   ],
-   [
-    "HI",
-    "US-10904",
-    "\u02bbEwa Forest Reserve",
-    "\u2018Ewa Forest Reserve (Helemano Section)"
-   ],
-   [
-    "HI",
-    "US-10910",
-    "Waimanalo Forest Reserve",
-    "Waimanalo Forest Reserve"
-   ],
-   [
     "IA",
     "US-4236",
     "Upper Mississippi River National Wildlife Refuge",
-    "Upper Mississippi River National Wildlife And Fish Refuge"
-   ],
-   [
-    "IA",
-    "US-9317",
-    "Harrier Marsh Wildlife Management Area",
-    "Harrier Marsh Wildlife Management Area"
-   ],
-   [
-    "ID",
-    "US-0070",
-    "Yellowstone National Park",
-    "Yellowstone National Park"
-   ],
-   [
-    "ID",
-    "US-11258",
-    "Mormon Reservoir State Fishing Lake",
-    "Mormon Reservoir Access Site"
-   ],
-   [
-    "ID",
-    "US-11463",
-    "Murtaugh Lake Reservoir State Fishing Lake",
-    "Murtaugh Lake Access Site"
+    "UPPER MISSISSIPPI RIVER FISH & WILDLIFE REFUGE"
    ],
    [
     "ID",
@@ -1019,286 +661,34 @@
     "Upper Salmon River"
    ],
    [
-    "ID",
-    "US-2228",
-    "Bear Lake State Park",
-    "Bear Lake State Park"
-   ],
-   [
-    "ID",
-    "US-2242",
-    "Lucky Peak State Park",
-    "Lucky Peak State Park"
-   ],
-   [
-    "ID",
-    "US-4387",
-    "Wallowa-Whitman National Forest",
-    "Nezperce National Forest"
-   ],
-   [
-    "ID",
-    "US-4398",
-    "Uinta-Wasatch-Cache National Forest",
-    "Cache National Forest"
-   ],
-   [
-    "ID",
-    "US-4505",
-    "Kootenai National Forest",
-    "Kootenai National Forest"
-   ],
-   [
-    "ID",
-    "US-5599",
-    "CJ Strike Wildlife Management Area",
-    "C. J. Strike Wildlife Management Area"
-   ],
-   [
-    "ID",
-    "US-5616",
-    "Red River Wildlife Management Area",
-    "Red River Wildlife Management Area"
+    "IL",
+    "US-0376",
+    "Great River National Wildlife Refuge",
+    "Great River National Wildlife Refuge"
    ],
    [
     "IL",
-    "US-0272",
-    "Port Louisa National Wildlife Refuge",
-    "Port Louisa National Wildlife Refuge"
-   ],
-   [
-    "IL",
-    "US-1015",
-    "Pere Marquette State Park",
-    "Pere Marquette State Park"
-   ],
-   [
-    "IL",
-    "US-12110",
-    "Rend Lake State Fish and Wildlife Area",
-    "Rend Lake"
-   ],
-   [
-    "IL",
-    "US-12184",
-    "Heidecke Lake State Fish and Wildlife Area",
-    "Heidecke Lake State Fish and Wildlife Area"
-   ],
-   [
-    "IL",
-    "US-4093",
-    "Clinton Lake State Recreation Area",
-    "Clinton State Recreation Area"
-   ],
-   [
-    "IL",
-    "US-4114",
-    "Carlyle Lake State Fish and Wildlife Area",
-    "Carlyle Lake State Fish and Wildlife Area"
-   ],
-   [
-    "IN",
-    "US-10231",
-    "Limberlost Swamp State Nature Preserve",
-    "Limberlost Nature Preserve"
-   ],
-   [
-    "IN",
-    "US-10237",
-    "Mongoquinong State Nature Preserve",
-    "Mongoquinong Nature Preserve Sawmill Fen"
-   ],
-   [
-    "IN",
-    "US-2268",
-    "Shakamak State Park",
-    "Shakamak State Park"
-   ],
-   [
-    "IN",
-    "US-4162",
-    "Mounds on Brookville Lake State Recreation Area",
-    "Brookville Lake Public Fishing Area"
-   ],
-   [
-    "LA",
-    "US-0723",
-    "Vicksburg National Military Park",
-    "Vicksburg National Military Park"
-   ],
-   [
-    "MA",
-    "US-11401",
-    "Cummington Wildlife Management Area",
-    "Cummington Wildlife Management Area"
-   ],
-   [
-    "MA",
-    "US-11631",
-    "Hartley Reservoir Wildlife Management Area",
-    "Hartley Reservoir Wildlife Management Area"
-   ],
-   [
-    "MA",
-    "US-8394",
-    "Ashuwillticook Rail Trail State Trail",
-    "Ashuwillticook Rail Trail"
-   ],
-   [
-    "MA",
-    "US-8398",
-    "Southern New England Trunkline Trail State Trail",
-    "Southern New England Trunkline Trail"
-   ],
-   [
-    "MD",
-    "US-10784",
-    "Deep Creek Lake Natural Resource Management Area",
-    "Deep Creek Lake Natural Resource Management Area"
-   ],
-   [
-    "MD",
-    "US-4365",
-    "North Point Battlefield State Park",
-    "North Point State Park"
-   ],
-   [
-    "MD",
-    "US-7749",
-    "Pocomoke Sound Wildlife Management Area",
-    "Pocomoke Sound Wma"
-   ],
-   [
-    "MD",
-    "US-7760",
-    "Nanjemoy Creek Wildlife Management Area",
-    "Nanjemoy Wma"
-   ],
-   [
-    "ME",
-    "US-0450",
-    "Lake Umbagog National Wildlife Refuge",
-    "Umbagog National Wildlife Refuge"
-   ],
-   [
-    "MI",
-    "US-10717",
-    "Sylvania Wilderness Area",
-    "Sylvania Wilderness"
-   ],
-   [
-    "MI",
-    "US-3313",
-    "Holly State Recreation Area",
-    "Holly State Recreation Area"
-   ],
-   [
-    "MI",
-    "US-6787",
-    "St. Clair Flats State Wildlife Area",
-    "St. Clair Flats State Wildlife Area"
-   ],
-   [
-    "MI",
-    "US-6804",
-    "Waterloo Unit State Game Land",
-    "Waterloo State Wildlife Area"
-   ],
-   [
-    "MN",
-    "US-0361",
-    "Hamden Slough National Wildlife Refuge",
-    "Hamden Slough National Wildlife Refuge"
-   ],
-   [
-    "MN",
-    "US-11023",
-    "Egret Island SNA State Conservation Area",
-    "Egret Island State Scientific and Natural Area"
-   ],
-   [
-    "MN",
-    "US-12152",
-    "Canosia Wildlife Management Area",
-    "Canosia WMA"
-   ],
-   [
-    "MN",
-    "US-12660",
-    "Severance Lake Wildlife Management Area",
-    "Severance Lake WMA: Main Unit"
+    "US-4136",
+    "Kinkaid Lake State Fish and Wildlife Area",
+    "Kincaid Lake State Fish and Wildlife Area"
    ],
    [
     "MN",
     "US-13354",
     "Pelican Lake Wildlife Management Area",
-    "Pelican Lake State Wildlife Management Area"
-   ],
-   [
-    "MN",
-    "US-9387",
-    "Luce Line State Trail",
-    "Luce Line Trail"
-   ],
-   [
-    "MS",
-    "US-0722",
-    "Shiloh National Battlefield",
-    "Shiloh National Military Park"
-   ],
-   [
-    "MT",
-    "US-0070",
-    "Yellowstone National Park",
-    "Yellowstone National Park"
+    "Pelican Lake WMA"
    ],
    [
     "NC",
-    "US-0566",
-    "Great Dismal Swamp National Wildlife Refuge",
-    "Great Dismal Swamp National Wildlife Refuge"
-   ],
-   [
-    "NC",
-    "US-12717",
-    "Deep River State Trail",
-    "Deep River State Trail"
-   ],
-   [
-    "NC",
-    "US-6897",
-    "Croatan State Game Land",
-    "Croatan Game Land"
-   ],
-   [
-    "NC",
-    "US-6916",
-    "Jordan State Game Land",
-    "Jordan Game Land"
-   ],
-   [
-    "ND",
-    "US-7707",
-    "Maclean Bottoms Wildlife Management Area",
-    "MacLean Bottoms"
+    "US-9758",
+    "Chattooga National Wild and Scenic River",
+    "Chattooga National Wild and Scenic River"
    ],
    [
     "NE",
-    "US-0675",
-    "Missouri National Recreational River National Wild & Scenic River",
-    "Missouri National Recreational River"
-   ],
-   [
-    "NH",
-    "US-2674",
-    "Pisgah State Park",
-    "Pisgah State Park"
-   ],
-   [
-    "NH",
-    "US-4868",
-    "Annett State Forest",
-    "Annett State Forest"
+    "US-9356",
+    "Willow Lake Wildlife Management Area",
+    "Willow Lake B.C. WMA"
    ],
    [
     "NH",
@@ -1307,190 +697,10 @@
     "Connecticut Lakes State Forest"
    ],
    [
-    "NH",
-    "US-4894",
-    "Davis-White State Forest",
-    "Davis-White State Forest"
-   ],
-   [
-    "NH",
-    "US-4926",
-    "Lovewell Mountain State Forest",
-    "Lovewell Mountain State Forest"
-   ],
-   [
-    "NH",
-    "US-4933",
-    "Merrimack River State Forest",
-    "Merrimack River State Forest"
-   ],
-   [
-    "NH",
-    "US-4934",
-    "Merriman State Forest",
-    "Merriman State Forest"
-   ],
-   [
-    "NH",
-    "US-4935",
-    "Mount Major State Forest",
-    "Mount Major State Forest"
-   ],
-   [
-    "NH",
-    "US-8396",
-    "Nashua River Rail Trail State Trail",
-    "Nashua River Rail Trail"
-   ],
-   [
-    "NJ",
-    "US-0680",
-    "Gateway National Recreation Area",
-    "Gateway National Recreation Area"
-   ],
-   [
-    "NJ",
-    "US-8319",
-    "Palisades Interstate Park",
-    "Palisades State Park"
-   ],
-   [
-    "NV",
-    "US-10844",
-    "Diamond BLM Herd Management Area",
-    "Diamond"
-   ],
-   [
-    "NV",
-    "US-11913",
-    "Bad Lands BLM Wilderness Area",
-    "Bad Lands"
-   ],
-   [
-    "NV",
-    "US-13017",
-    "Agusta Mountains BLM Herd Management Area",
-    "Augusta Mountains"
-   ],
-   [
-    "NV",
-    "US-13018",
-    "Black Rock Range East/West BLM Herd Management Area",
-    "Black Rock Range"
-   ],
-   [
-    "NV",
-    "US-13024",
-    "Callaghan BLM Herd Management Area",
-    "Callaghan"
-   ],
-   [
-    "NV",
-    "US-13034",
-    "Goshute BLM Herd Management Area",
-    "Goshute"
-   ],
-   [
-    "NV",
-    "US-13039",
-    "Owyhee River Wilderness Area",
-    "Owyhee River Wilderness"
-   ],
-   [
-    "NV",
-    "US-13048",
-    "Rocky Hills BLM Herd Management Area",
-    "Rocky Hills"
-   ],
-   [
-    "NV",
-    "US-13128",
-    "Jackson Mountains BLM Herd Management Area",
-    "Jackson Mountains"
-   ],
-   [
-    "NV",
-    "US-13130",
-    "Lava Beds BLM Herd Management Area",
-    "Lava Beds"
-   ],
-   [
-    "NV",
-    "US-13132",
-    "Seven Mile BLM Herd Management Area",
-    "Seven Mile"
-   ],
-   [
-    "NV",
-    "US-13134",
-    "Rock Creek BLM Herd Management Area",
-    "Rock Creek"
-   ],
-   [
-    "NV",
-    "US-13138",
-    "Wassuk BLM Herd Management Area",
-    "Wassuk"
-   ],
-   [
-    "NV",
-    "US-13145",
-    "Warm Springs Canyon BLM Herd Management Area",
-    "Warm Springs Canyon"
-   ],
-   [
-    "NV",
-    "US-13194",
-    "Egan Crest Trailhead BLM Recreation Management Area",
-    "Egan Crest Trailhead Recreation Area"
-   ],
-   [
-    "NV",
-    "US-2633",
-    "Lake Tahoe State Park",
-    "Lake Tahoe State Park"
-   ],
-   [
-    "NV",
-    "US-9246",
-    "East Fork High Rock Canyon Wilderness Area",
-    "East Fork High Rock Canyon Wilderness"
-   ],
-   [
-    "NV",
-    "US-9247",
-    "Eldorado BLM Wilderness Area",
-    "Eldorado"
-   ],
-   [
-    "NV",
-    "US-9258",
-    "Ireteba Peaks BLM Wilderness Area",
-    "Ireteba Peaks"
-   ],
-   [
-    "NV",
-    "US-9273",
-    "North Jackson Mountains Wilderness Area",
-    "North Jackson Mountains"
-   ],
-   [
-    "NY",
-    "US-0456",
-    "Wallkill River National Wildlife Refuge",
-    "Wallkill River National Wildlife Refuge"
-   ],
-   [
     "NY",
     "US-10292",
     "Watson's East Triangle Complex State Preserve",
     "Watsons East Triangle"
-   ],
-   [
-    "NY",
-    "US-10293",
-    "Raquette Boreal Complex State Preserve",
-    "Raquette Boreal"
    ],
    [
     "NY",
@@ -1506,171 +716,15 @@
    ],
    [
     "OH",
-    "US-0732",
-    "Dayton Aviation Heritage National Historical Park",
-    "Dayton Aviation Heritage National Historical Park"
-   ],
-   [
-    "OH",
     "US-9470",
     "Jockey Hollow State Wildlife Area",
-    "JOCKEY HOLLOW"
-   ],
-   [
-    "OK",
-    "US-12027",
-    "Altus-Lugert State Fishing Lake",
-    "Altus Lugert Wildlife Management Area"
-   ],
-   [
-    "OK",
-    "US-12028",
-    "Barren Fork Wildlife Management Area",
-    "Barren Fork Wildlife Management Area"
-   ],
-   [
-    "OK",
-    "US-6361",
-    "McGee Creek Wildlife Management Area",
-    "McGee Creek Wildlife Management Area"
-   ],
-   [
-    "OK",
-    "US-6365",
-    "Osage Wildlife Management Area",
-    "Osage Wildlife Management Area - Western Wall"
-   ],
-   [
-    "OK",
-    "US-7481",
-    "Rita Blanca National Grassland",
-    "Rita Blanca National Grassland"
-   ],
-   [
-    "OK",
-    "US-7682",
-    "Lake Vanderwork State Fishing Lake",
-    "Lake Vanderwork"
-   ],
-   [
-    "OK",
-    "US-8140",
-    "Gary Sherrer Wildlife Management Area",
-    "Gary Sherrer Wildlife Management Area"
-   ],
-   [
-    "OR",
-    "US-0199",
-    "Lower Klamath National Wildlife Refuge",
-    "Lower Klamath National Wildlife Refuge"
-   ],
-   [
-    "OR",
-    "US-4457",
-    "Klamath National Forest",
-    "Klamath National Forest"
-   ],
-   [
-    "OR",
-    "US-5461",
-    "Tillamook State Forest",
-    "Tillamook State Forest"
-   ],
-   [
-    "PA",
-    "US-0681",
-    "Upper Delaware National Wild and Scenic River",
-    "Upper Delaware Scenic and Recreational River"
-   ],
-   [
-    "PA",
-    "US-0733",
-    "First State National Historical Park",
-    "First State National Historical Park"
+    "JckyHllwWA"
    ],
    [
     "RI",
     "US-5484",
     "George Washington Memorial State Forest",
     "George Washington"
-   ],
-   [
-    "RI",
-    "US-7971",
-    "Blackstone River Valley National Historical Park",
-    "Blackstone River Valley National Historical Park"
-   ],
-   [
-    "SC",
-    "US-9224",
-    "Lake Wallace Wildlife Management Area",
-    "Lake Paul Wallace Wildlife Management Area"
-   ],
-   [
-    "TN",
-    "US-0716",
-    "Chickamauga and Chattanooga National Military Park",
-    "Chickamauga and Chattanooga National Military Park"
-   ],
-   [
-    "TN",
-    "US-3792",
-    "Land Between the Lakes National Recreation Area",
-    "Land Between the Lakes Other"
-   ],
-   [
-    "TN",
-    "US-6275",
-    "Walls of Jericho State Natural Area",
-    "Walls of Jericho Designated State Natural Area"
-   ],
-   [
-    "TN",
-    "US-7880",
-    "Luper Mountain Wildlife Management Area",
-    "Luper Mountain Wildlife Management Area"
-   ],
-   [
-    "TX",
-    "US-7480",
-    "Black Kettle National Grassland",
-    "Black Kettle National Grassland"
-   ],
-   [
-    "UT",
-    "US-0921",
-    "Dinosaur National Monument",
-    "Dinosaur National Monument"
-   ],
-   [
-    "UT",
-    "US-10972",
-    "Beartrap Canyon BLM Wild and Scenic River",
-    "Beartrap Canyon"
-   ],
-   [
-    "UT",
-    "US-11007",
-    "White River BLM Recreation Management Area",
-    "White River"
-   ],
-   [
-    "UT",
-    "US-11104",
-    "Brigham Face State Wildlife Habitat Management Area",
-    "Brigham Face State Wildlife Area"
-   ],
-   [
-    "UT",
-    "US-11115",
-    "North Fork Virgin River BLM Wild and Scenic River",
-    "North Fork Virgin River"
-   ],
-   [
-    "UT",
-    "US-11194",
-    "Lower Fish Creek Wildlife Management Area",
-    "Lower Fish Creek State Wildlife Area"
    ],
    [
     "UT",
@@ -1680,39 +734,9 @@
    ],
    [
     "UT",
-    "US-12151",
-    "Point of Pines BLM Special Recreation Management Area",
-    "Point of Pines Campsite 1"
-   ],
-   [
-    "UT",
-    "US-3097",
-    "Yuba State Park",
-    "Yuba State Park"
-   ],
-   [
-    "UT",
-    "US-5758",
-    "Dolores River BLM Recreation Management Area",
-    "Dolores River Canyons"
-   ],
-   [
-    "UT",
     "US-5782",
     "Indian Creek BLM Special Recreation Management Area",
     "Indian Creek"
-   ],
-   [
-    "UT",
-    "US-5789",
-    "Behind the Rocks Wilderness Area",
-    "Behind the Rocks"
-   ],
-   [
-    "UT",
-    "US-5793",
-    "Flaming Gorge National Recreation Area",
-    "Flaming Gorge Reservoir National Recreation Area"
    ],
    [
     "UT",
@@ -1721,239 +745,35 @@
     "Dark Canyon"
    ],
    [
-    "UT",
-    "US-5833",
-    "Horseshoe Canyon (North) BLM Wilderness Area",
-    "Horseshoe Canyon (North)"
-   ],
-   [
-    "UT",
-    "US-5869",
-    "9 Mile Canyon BLM Recreation Management Area",
-    "Nine Mile Canyon"
-   ],
-   [
-    "UT",
-    "US-5897",
-    "Lower Last Chance BLM Wilderness Area",
-    "Lower Last Chance"
-   ],
-   [
-    "UT",
-    "US-6007",
-    "Cedar Mountain BLM Herd Management Area",
-    "Cedar Mountain"
-   ],
-   [
-    "UT",
-    "US-6090",
-    "Beaver Dam Mountain Wilderness Area",
-    "Beaver Dam Mountains"
-   ],
-   [
-    "UT",
-    "US-9291",
-    "White Rock Range BLM National Conservation Area",
-    "White Rock Range"
-   ],
-   [
-    "VA",
-    "US-0573",
-    "Wallops Island National Wildlife Refuge",
-    "Wallops Island National Wildlife Refuge"
-   ],
-   [
-    "VA",
-    "US-0671",
-    "Assateague Island National Seashore",
-    "Assateague Island National Seashore"
-   ],
-   [
-    "VA",
-    "US-3378",
-    "Blue Ridge National Parkway",
-    "Blue Ridge Parkway"
-   ],
-   [
-    "VT",
-    "US-5532",
-    "Hapgood State Forest",
-    "Hapgood State Forest"
-   ],
-   [
-    "VT",
-    "US-5538",
-    "Lower Clarendon Gorge State Forest",
-    "Lower Clarendon Gorge State Forest"
-   ],
-   [
     "VT",
     "US-5553",
     "Camels Hump State Forest",
-    "Camels Hump State Forest"
-   ],
-   [
-    "WA",
-    "US-0054",
-    "Nez Perce National Historical Park",
-    "Nez Perce National Historical Park"
-   ],
-   [
-    "WA",
-    "US-10625",
-    "Weatherly Wildlife Area",
-    "Weatherly"
-   ],
-   [
-    "WA",
-    "US-12481",
-    "Nisqually State Wildlife Area",
-    "Nisqually"
-   ],
-   [
-    "WA",
-    "US-5640",
-    "Lewis and Clark National Historical Park",
-    "Lewis and Clark National Historical Park"
-   ],
-   [
-    "WI",
-    "US-12601",
-    "Hackmatack National Wildlife Refuge",
-    "Hackmatack National Wildlife Refuge"
-   ],
-   [
-    "WI",
-    "US-4296",
-    "Kickapoo River State Wildlife Area",
-    "Kickapoo River Fishery Area"
-   ],
-   [
-    "WI",
-    "US-9800",
-    "Hank Aaron State Trail",
-    "Hank Aaron State Trail"
-   ],
-   [
-    "WV",
-    "US-0015",
-    "Chesapeake and Ohio Canal National Historical Park",
-    "Chesapeake and Ohio Canal National Historical Park"
-   ],
-   [
-    "WV",
-    "US-7027",
-    "Slatyfork Wildlife Management Area",
-    "Slatyfork Wildlife Management Area"
-   ],
-   [
-    "WV",
-    "US-7043",
-    "Tate Lohr Wildlife Management Area",
-    "Tate Lohr Wildlife Management Area"
-   ],
-   [
-    "WY",
-    "US-10816",
-    "Saratoga National Fish Hatchery",
-    "Saratoga National Fish Hatchery"
-   ],
-   [
-    "WY",
-    "US-10846",
-    "Boulder Lake BLM Recreation Management Area",
-    "Boulder Lake SRMA"
+    "Camel's Hump State Forest"
    ],
    [
     "WY",
     "US-10890",
     "Sinks Canyon BLM Recreation Management Area",
     "Sinks Canyon"
-   ],
-   [
-    "WY",
-    "US-4394",
-    "Ashley National Forest",
-    "Ashley National Forest"
-   ],
-   [
-    "WY",
-    "US-4403",
-    "Medicine Bow - Routt National Forest",
-    "Medicine Bow National Forest"
-   ],
-   [
-    "WY",
-    "US-4475",
-    "Caribou-Targhee National Forest",
-    "Targhee National Forest"
-   ],
-   [
-    "WY",
-    "US-4524",
-    "Black Hills National Forest",
-    "Black Hills National Forest"
-   ],
-   [
-    "WY",
-    "US-5793",
-    "Flaming Gorge National Recreation Area",
-    "Flaming Gorge Reservoir National Recreation Area"
-   ],
-   [
-    "WY",
-    "US-6135",
-    "Pennock Mountain Wildlife Management Area",
-    "Pennock Mountain Wildlife Habitat Management Area"
-   ],
-   [
-    "WY",
-    "US-6196",
-    "Rock Springs BLM Herd Management Area",
-    "Rock Spring"
-   ],
-   [
-    "WY",
-    "US-6197",
-    "Popo Agie Wilderness Area",
-    "Popo Agie Wilderness"
-   ],
-   [
-    "WY",
-    "US-6202",
-    "North Absaroka Wilderness Area",
-    "North Absaroka Wilderness"
-   ],
-   [
-    "WY",
-    "US-6204",
-    "Little Colorado BLM Herd Management Area",
-    "Little Colorado"
-   ],
-   [
-    "WY",
-    "US-6218",
-    "Boulder Lake BLM Recreation Management Area",
-    "Boulder Lake SRMA"
    ]
   ]
  },
  "Canada": {
   "totals": {
-   "matched": 3949,
-   "far": 1540,
+   "matched": 4125,
+   "far": 1609,
    "noshape": 0,
-   "edge": 1367,
-   "out": 173,
+   "edge": 1512,
+   "out": 97,
    "swap": 1
   },
   "states": [
    {
     "st": "CA-AB",
-    "matched": 391,
-    "far": 168,
+    "matched": 392,
+    "far": 169,
     "noshape": 0,
-    "out": 4,
+    "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
@@ -1962,10 +782,10 @@
    },
    {
     "st": "CA-BC",
-    "matched": 1107,
-    "far": 391,
+    "matched": 1106,
+    "far": 390,
     "noshape": 0,
-    "out": 9,
+    "out": 8,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
@@ -1974,10 +794,10 @@
    },
    {
     "st": "CA-MB",
-    "matched": 216,
-    "far": 85,
+    "matched": 219,
+    "far": 87,
     "noshape": 0,
-    "out": 22,
+    "out": 24,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
@@ -1986,15 +806,15 @@
    },
    {
     "st": "CA-NB",
-    "matched": 266,
-    "far": 146,
+    "matched": 282,
+    "far": 155,
     "noshape": 0,
     "out": 28,
     "swap": 1,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 118
+    "edge": 127
    },
    {
     "st": "CA-NL",
@@ -2010,15 +830,15 @@
    },
    {
     "st": "CA-NS",
-    "matched": 302,
-    "far": 78,
+    "matched": 321,
+    "far": 89,
     "noshape": 0,
-    "out": 1,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 77
+    "edge": 87
    },
    {
     "st": "CA-NT",
@@ -2034,34 +854,10 @@
    },
    {
     "st": "CA-NU",
-    "matched": 29,
-    "far": 3,
+    "matched": 34,
+    "far": 5,
     "noshape": 0,
     "out": 0,
-    "swap": 0,
-    "stale": false,
-    "detail": "~2.2 km",
-    "thin": null,
-    "edge": 3
-   },
-   {
-    "st": "CA-ON",
-    "matched": 794,
-    "far": 273,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~2.2 km",
-    "thin": null,
-    "edge": 268
-   },
-   {
-    "st": "CA-PE",
-    "matched": 11,
-    "far": 6,
-    "noshape": 0,
-    "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
@@ -2069,16 +865,40 @@
     "edge": 5
    },
    {
-    "st": "CA-QC",
-    "matched": 431,
-    "far": 201,
+    "st": "CA-ON",
+    "matched": 903,
+    "far": 354,
     "noshape": 0,
-    "out": 84,
+    "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 117
+    "edge": 350
+   },
+   {
+    "st": "CA-PE",
+    "matched": 17,
+    "far": 10,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~2.2 km",
+    "thin": null,
+    "edge": 9
+   },
+   {
+    "st": "CA-QC",
+    "matched": 441,
+    "far": 167,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~2.2 km",
+    "thin": null,
+    "edge": 162
    },
    {
     "st": "CA-SI",
@@ -2094,15 +914,15 @@
    },
    {
     "st": "CA-SK",
-    "matched": 291,
-    "far": 154,
+    "matched": 299,
+    "far": 148,
     "noshape": 0,
-    "out": 16,
+    "out": 17,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 138
+    "edge": 131
    },
    {
     "st": "CA-SP",
@@ -2141,69 +961,9 @@
   "well_outside": [
    [
     "CA-AB",
-    "CA-0109",
-    "Waterton Biosphere Reserve",
-    "Waterton Lakes"
-   ],
-   [
-    "CA-AB",
-    "CA-1164",
-    "Beaver Lake Provincial Recreation Area",
-    "Beaver Lake"
-   ],
-   [
-    "CA-AB",
-    "CA-1197",
-    "Victoria Settlement Provincial Park",
-    "Victoria Settlement"
-   ],
-   [
-    "CA-AB",
-    "CA-3085",
-    "Mystery Lake Natural Area",
-    "Mystery Lake Natural Area"
-   ],
-   [
-    "CA-BC",
-    "CA-3186",
-    "Nisga'a Memorial Lava Bed Provincial Park",
-    "NISGA'A MEMORIAL LAVA BED PROTECTED AREA"
-   ],
-   [
-    "CA-BC",
-    "CA-3408",
-    "Denetiah Corridor Protected Area",
-    "DENETIAH CORRIDOR PROTECTED AREA"
-   ],
-   [
-    "CA-BC",
-    "CA-3445",
-    "Glen Valley Regional Park",
-    "Glen Valley Regional Park"
-   ],
-   [
-    "CA-BC",
-    "CA-3900",
-    "Nisga'a Memorial Lava Bed Corridor Protected Area",
-    "NISGA'A MEMORIAL LAVA BED CORRIDOR PROTECTED AREA (No.2)"
-   ],
-   [
-    "CA-BC",
-    "CA-3905",
-    "Nooseseck Conservation Area",
-    "NOOSESECK CONSERVANCY"
-   ],
-   [
-    "CA-BC",
-    "CA-3937",
-    "Pa-aat Conservation Area",
-    "PA-AAT CONSERVANCY"
-   ],
-   [
-    "CA-BC",
-    "CA-4094",
-    "Skagit River Cottonwoods Ecological Reserve",
-    "SKAGIT RIVER COTTONWOODS ECOLOGICAL RESERVE"
+    "CA-6112",
+    "Kananaskis Country Provincial Park",
+    "The Kananaskis Country"
    ],
    [
     "CA-BC",
@@ -2212,34 +972,10 @@
     "Swalwell Lake"
    ],
    [
-    "CA-BC",
-    "CA-6131",
-    "Cowichan River National Heritage Area",
-    "COWICHAN RIVER PARK"
-   ],
-   [
     "CA-MB",
     "CA-2378",
     "Basket Lake Wildlife Management Area",
     "Basket Lake Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2380",
-    "Bernice Wildlife Management Area",
-    "Bernice Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2388",
-    "Broomhill Wildlife Management Area",
-    "Broomhill Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2391",
-    "Catfish Creek Wildlife Management Area",
-    "Catfish Creek Wildlife Management Area"
    ],
    [
     "CA-MB",
@@ -2267,45 +1003,15 @@
    ],
    [
     "CA-MB",
-    "CA-2439",
-    "Langruth Wildlife Management Area",
-    "Langruth Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2440",
-    "Lauder Sandhills Wildlife Management Area",
-    "Lauder Sandhills Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2441",
-    "Lee Lake Wildlife Management Area",
-    "Lee Lake"
-   ],
-   [
-    "CA-MB",
     "CA-2453",
     "Lundar Wildlife Management Area",
     "Lundar Wildlife Management Area"
    ],
    [
     "CA-MB",
-    "CA-2460",
-    "Moose Creek Wildlife Management Area",
-    "Moose Creek Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2461",
-    "Moosehorn Wildlife Management Area",
-    "Moosehorn Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2485",
-    "Pierson Wildlife Management Area",
-    "Pierson Wildlife Management Area"
+    "CA-2456",
+    "Maple Lake Wildlife Management Area",
+    "Maple Lake Wildlife Management Area"
    ],
    [
     "CA-MB",
@@ -2315,27 +1021,9 @@
    ],
    [
     "CA-MB",
-    "CA-2506",
-    "Saskeram Wildlife Management Area",
-    "Saskeram Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
     "CA-2507",
     "Sharpewood Wildlife Management Area",
     "Sharpewood Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2516",
-    "Steeprock Wildlife Management Area",
-    "Steeprock Wildlife Management Area"
-   ],
-   [
-    "CA-MB",
-    "CA-2522",
-    "Tom Lamb Wildlife Management Area",
-    "Tom Lamb Wildlife Management Area"
    ],
    [
     "CA-MB",
@@ -2345,87 +1033,9 @@
    ],
    [
     "CA-MB",
-    "CA-2535",
-    "Weiden Wildlife Management Area",
-    "Weiden Wildlife Management Area"
-   ],
-   [
-    "CA-NB",
-    "CA-0770",
-    "Clark Point Natural Area",
-    "Clark's Point"
-   ],
-   [
-    "CA-NB",
-    "CA-4350",
-    "Allardville Protected Natural Area",
-    "Allardville"
-   ],
-   [
-    "CA-NB",
-    "CA-4356",
-    "Bass River Protected Area",
-    "Bass River"
-   ],
-   [
-    "CA-NB",
-    "CA-4357",
-    "Becaguimec Stream Protected Natural Area",
-    "Becaguimec Stream"
-   ],
-   [
-    "CA-NB",
-    "CA-4360",
-    "Belleville Protected Area",
-    "Belleville"
-   ],
-   [
-    "CA-NB",
-    "CA-4362",
-    "Belone Brook Protected Area",
-    "Belone Brook"
-   ],
-   [
-    "CA-NB",
-    "CA-4365",
-    "Big Falls Protected Area",
-    "Big Falls"
-   ],
-   [
-    "CA-NB",
-    "CA-4367",
-    "Big Rocky Brook Protected Area",
-    "Big Rocky Brook"
-   ],
-   [
-    "CA-NB",
-    "CA-4380",
-    "Cains River Protected Area",
-    "Cains River"
-   ],
-   [
-    "CA-NB",
-    "CA-4382",
-    "Carr Falls Brook Protected Area",
-    "Carr Falls Brook"
-   ],
-   [
-    "CA-NB",
-    "CA-4393",
-    "Estey Wetlands Wetland Reserve",
-    "Estey Wetlands"
-   ],
-   [
-    "CA-NB",
-    "CA-4420",
-    "Kingston Family Nature Preserve Protected Area",
-    "Kingston Family"
-   ],
-   [
-    "CA-NB",
-    "CA-4434",
-    "Lower North Branch Little Southwest Miramichi River Protected Area",
-    "Lower North Branch Little Southwest Miramichi River"
+    "CA-2538",
+    "Westlake Wildlife Management Area",
+    "Westlake Wildlife Management Area"
    ],
    [
     "CA-NB",
@@ -2441,87 +1051,15 @@
    ],
    [
     "CA-NB",
-    "CA-4453",
-    "Miscou Grande Plaine Protected Area",
-    "Miscou Grande Plaine"
-   ],
-   [
-    "CA-NB",
-    "CA-4457",
-    "Mount Denys Protected Area",
-    "Mount Denys"
-   ],
-   [
-    "CA-NB",
-    "CA-4459",
-    "Mount Tom Protected Area",
-    "Mount Tom"
-   ],
-   [
-    "CA-NB",
-    "CA-4470",
-    "North Branch Burnt Church River Protected Area",
-    "North Branch Burnt Church River"
-   ],
-   [
-    "CA-NB",
-    "CA-4472",
-    "North Pole Stream Protected Area",
-    "North Pole Stream"
-   ],
-   [
-    "CA-NB",
-    "CA-4486",
-    "Pocowogamis Stream Protected Area",
-    "Pocowogamis Stream"
-   ],
-   [
-    "CA-NB",
-    "CA-4496",
-    "Quisibis River Protected Area",
-    "Quisibis River"
-   ],
-   [
-    "CA-NB",
-    "CA-4508",
-    "Shikatehawk Stream Protected Area",
-    "Shikatehawk Stream"
-   ],
-   [
-    "CA-NB",
-    "CA-5153",
-    "Butternut Island Nature Reserve",
-    "Butternut Island"
-   ],
-   [
-    "CA-NB",
     "CA-5204",
     "Nashwaaksis Stream Nature Park",
     "Nashwaaksis Stream"
    ],
    [
-    "CA-NB",
-    "CA-5235",
-    "Warren Kent Coleman Nature Reserve",
-    "Warren Kent Coleman"
-   ],
-   [
-    "CA-NB",
-    "CA-6103",
-    "North Lake Provincial Park",
-    "North Lake"
-   ],
-   [
-    "CA-NL",
-    "CA-4547",
-    "Funk Island Ecological Reserve",
-    "Funk Island Ecological Reserve"
-   ],
-   [
     "CA-NS",
-    "CA-1752",
-    "Dunraven Bog Nature Reserve",
-    "Dunraven Bog Nature Reserve"
+    "CA-5830",
+    "Marconi Wireless Station National Historic Site",
+    "Marconi Wireless Station"
    ],
    [
     "CA-NT",
@@ -2531,237 +1069,15 @@
    ],
    [
     "CA-ON",
-    "CA-0366",
-    "River Aux Sables Provincial Park",
-    "River Aux Sables Provincial Park (Waterway Class)"
-   ],
-   [
-    "CA-ON",
-    "CA-1336",
-    "Cache Bay Wetland Conservation Reserve",
-    "Cache Bay Wetland Conservation Reserve"
-   ],
-   [
-    "CA-ON",
-    "CA-1362",
-    "Crane Lakes Conservation Reserve",
-    "Crane Lake Reserve"
-   ],
-   [
-    "CA-ON",
-    "CA-5566",
-    "Saltfleet Conservation Area",
-    "Saltfleet"
+    "CA-5111",
+    "Oak Ridges Corridor Conservation Reserve",
+    "Oak Ridges Corridor Park"
    ],
    [
     "CA-ON",
     "CA-5633",
     "Bowmanville Valley Conservation Area",
     "Bowmanville/Westside Conservation Area"
-   ],
-   [
-    "CA-PE",
-    "CA-4663",
-    "Pituamkek National Park Reserve",
-    "Pituamkek National Park Reserve"
-   ],
-   [
-    "CA-QC",
-    "CA-0129",
-    "Ulittaniujalik National Park",
-    "Ulittaniujalik National Park (Qu\u00e9bec)"
-   ],
-   [
-    "CA-QC",
-    "CA-1005",
-    "Parc r\u00e9gional de la For\u00eat Ouareau Regional Park",
-    "Parc r\u00e9gional de la For\u00eat Ouareau"
-   ],
-   [
-    "CA-QC",
-    "CA-1006",
-    "Parc r\u00e9gional Montagne du Diable Regional Park",
-    "Parc r\u00e9gional de la Montagne du Diable"
-   ],
-   [
-    "CA-QC",
-    "CA-1008",
-    "Parc r\u00e9gional des Appalaches Regional Park",
-    "Parc r\u00e9gional des Appalaches"
-   ],
-   [
-    "CA-QC",
-    "CA-1011",
-    "Parc r\u00e9gional du Massif du Sud Regional Park",
-    "Parc r\u00e9gional du Massif du Sud"
-   ],
-   [
-    "CA-QC",
-    "CA-1012",
-    "Parc r\u00e9gional du Mont-Ham Regional Park",
-    "Parc r\u00e9gional du Mont-Ham"
-   ],
-   [
-    "CA-QC",
-    "CA-1013",
-    "Parc regional du Poisson Blanc Regional Park",
-    "Parc r\u00e9gional du Poisson Blanc"
-   ],
-   [
-    "CA-QC",
-    "CA-1023",
-    "R\u00e9serve faunique de Matane Wildlife Reserve",
-    "R\u00e9serve faunique de Matane"
-   ],
-   [
-    "CA-QC",
-    "CA-1024",
-    "R\u00e9serve faunique de Papineau-Labelle Wildlife Reserve",
-    "R\u00e9serve faunique de Papineau-Labelle"
-   ],
-   [
-    "CA-QC",
-    "CA-1026",
-    "R\u00e9serve faunique des Laurentides Wildlife Reserve",
-    "R\u00e9serve faunique des Laurentides"
-   ],
-   [
-    "CA-QC",
-    "CA-1027",
-    "R\u00e9serve faunique La V\u00e9rendrye Wildlife Reserve",
-    "R\u00e9serve faunique de Papineau-Labelle"
-   ],
-   [
-    "CA-QC",
-    "CA-1028",
-    "R\u00e9serve faunique Mastigouche Wildlife Reserve",
-    "R\u00e9serve faunique du Saint-Maurice"
-   ],
-   [
-    "CA-QC",
-    "CA-1029",
-    "R\u00e9serve faunique Rouge-Matawin Wildlife Reserve",
-    "R\u00e9serve faunique Rouge-Matawin"
-   ],
-   [
-    "CA-QC",
-    "CA-1928",
-    "Ashuapmushuan Nature Reserve",
-    "R\u00e9serve faunique Ashuapmushuan"
-   ],
-   [
-    "CA-QC",
-    "CA-2208",
-    "Port-Cartier-Sept-Iles Nature Reserve",
-    "R\u00e9serve faunique de Port-Cartier-Sept-\u00celes"
-   ],
-   [
-    "CA-QC",
-    "CA-2209",
-    "Port-Daniel  Reserve Nature Reserve",
-    "R\u00e9serve faunique de la Rivi\u00e8re-Saint-Jean"
-   ],
-   [
-    "CA-QC",
-    "CA-2211",
-    "Portneuf Reserve faunique Nature Reserve",
-    "R\u00e9serve faunique de Portneuf"
-   ],
-   [
-    "CA-QC",
-    "CA-2242",
-    "Saint-Maurice Reserve Nature Reserve",
-    "R\u00e9serve faunique du Saint-Maurice"
-   ],
-   [
-    "CA-QC",
-    "CA-2285",
-    "ZEC Anse-St-Jean Nature Reserve",
-    "Zec de  l'Anse-Saint-Jean"
-   ],
-   [
-    "CA-QC",
-    "CA-2286",
-    "ZEC des Anses Nature Reserve",
-    "Zec des Anses"
-   ],
-   [
-    "CA-QC",
-    "CA-2287",
-    "ZEC Baillargeon Nature Reserve",
-    "Zec Baillargeon"
-   ],
-   [
-    "CA-QC",
-    "CA-2288",
-    "ZEC du Bas-Saint-Laurent Nature Reserve",
-    "Zec du Bas-Saint-Laurent"
-   ],
-   [
-    "CA-QC",
-    "CA-2289",
-    "ZEC Batiscan-Neilson Nature Reserve",
-    "Zec Batiscan-Neilson"
-   ],
-   [
-    "CA-QC",
-    "CA-2290",
-    "ZEC de la Bessonne Nature Reserve",
-    "Zec Bessonne"
-   ],
-   [
-    "CA-QC",
-    "CA-2291",
-    "Zec Borgia Nature Reserve",
-    "Zec Borgia"
-   ],
-   [
-    "CA-QC",
-    "CA-2292",
-    "Zec Boull\u00e9 Nature Reserve",
-    "Zec Boull\u00e9"
-   ],
-   [
-    "CA-QC",
-    "CA-2293",
-    "Zec Bras-Coup\u00e9-D\u00e9sert Nature Reserve",
-    "Zec Bras-Coup\u00e9-D\u00e9sert"
-   ],
-   [
-    "CA-QC",
-    "CA-2294",
-    "Zec Buteux-Bas-Saguenay Nature Reserve",
-    "Zec Buteux-Bas-Saguenay"
-   ],
-   [
-    "CA-QC",
-    "CA-2295",
-    "Zec Cap-Chat Nature Reserve",
-    "Zec Cap-Chat"
-   ],
-   [
-    "CA-QC",
-    "CA-2296",
-    "Zec Capitachouane Nature Reserve",
-    "Zec Capitachouane"
-   ],
-   [
-    "CA-QC",
-    "CA-2297",
-    "Zec Casault Nature Reserve",
-    "Zec Casault"
-   ],
-   [
-    "CA-QC",
-    "CA-2298",
-    "Zec Chapais Nature Reserve",
-    "Zec Chapais"
-   ],
-   [
-    "CA-QC",
-    "CA-2300",
-    "Zec Chauvin Nature Reserve",
-    "Zec Chauvin"
    ],
    [
     "CA-QC",
@@ -2771,249 +1087,9 @@
    ],
    [
     "CA-QC",
-    "CA-2302",
-    "Zec La Croche Nature Reserve",
-    "Zec de la Croche"
-   ],
-   [
-    "CA-QC",
-    "CA-2303",
-    "Zec d'Iberville Nature Reserve",
-    "Zec d'Iberville"
-   ],
-   [
-    "CA-QC",
-    "CA-2304",
-    "Zec Dumoine Nature Reserve",
-    "Zec Dumoine"
-   ],
-   [
-    "CA-QC",
-    "CA-2305",
-    "Zec Festubert Nature Reserve",
-    "Zec Festubert"
-   ],
-   [
-    "CA-QC",
-    "CA-2306",
-    "Zec Forestville Nature Reserve",
-    "Zec Forestville"
-   ],
-   [
-    "CA-QC",
-    "CA-2307",
-    "Zec Fremont Nature Reserve",
-    "Zec Fr\u00e9mont"
-   ],
-   [
-    "CA-QC",
-    "CA-2309",
-    "Zec Gros-Brochet Nature Reserve",
-    "Zec Gros-Brochet"
-   ],
-   [
-    "CA-QC",
-    "CA-2310",
-    "Zec Jaro Nature Reserve",
-    "Zec Jaro"
-   ],
-   [
-    "CA-QC",
-    "CA-2311",
-    "Zec Jeannotte Nature Reserve",
-    "Zec Jeannotte"
-   ],
-   [
-    "CA-QC",
-    "CA-2312",
-    "Zec Kipawa Nature Reserve",
-    "Zec Kipawa"
-   ],
-   [
-    "CA-QC",
-    "CA-2313",
-    "Zec Kiskissink Nature Reserve",
-    "Zec Kiskissink"
-   ],
-   [
-    "CA-QC",
-    "CA-2314",
-    "Zec Labrieville Nature Reserve",
-    "Zec Labrieville"
-   ],
-   [
-    "CA-QC",
-    "CA-2315",
-    "Zec Lac-au-Sable Nature Reserve",
-    "Zec Lac-au-Sable"
-   ],
-   [
-    "CA-QC",
-    "CA-2316",
-    "Zec Lac-Br\u00e9beuf Nature Reserve",
-    "Zec Lac-Br\u00e9beuf"
-   ],
-   [
-    "CA-QC",
-    "CA-2317",
-    "Zec Lac-de-la-Boiteuse Nature Reserve",
-    "Zec du Lac-de-la-Boiteuse"
-   ],
-   [
-    "CA-QC",
-    "CA-2318",
-    "Zec Lavigne Nature Reserve",
-    "Zec Lavigne"
-   ],
-   [
-    "CA-QC",
-    "CA-2319",
-    "Zec Lesueur Nature Reserve",
-    "Zec Lesueur"
-   ],
-   [
-    "CA-QC",
-    "CA-2320",
-    "Zec La Li\u00e8vre Nature Reserve",
-    "Zec de La Li\u00e8vre"
-   ],
-   [
-    "CA-QC",
-    "CA-2321",
-    "Zec Louise-Gosford Nature Reserve",
-    "Zec Louise-Gosford"
-   ],
-   [
-    "CA-QC",
-    "CA-2322",
-    "Zec Maganasipi Nature Reserve",
-    "Zec Maganasipi"
-   ],
-   [
-    "CA-QC",
-    "CA-2323",
-    "Zec Maison-de-Pierre Nature Reserve",
-    "Zec Maison-de-Pierre"
-   ],
-   [
-    "CA-QC",
     "CA-2324",
     "Zec Mars-Moulin Nature Reserve",
     "Zec Mars-Moulin"
-   ],
-   [
-    "CA-QC",
-    "CA-2325",
-    "Zec Martin-Valin Nature Reserve",
-    "Zec Martin-Valin"
-   ],
-   [
-    "CA-QC",
-    "CA-2326",
-    "Zec Des Martres Nature Reserve",
-    "Zec des Martres"
-   ],
-   [
-    "CA-QC",
-    "CA-2327",
-    "Zec Matimek Nature Reserve",
-    "Zec Matimek"
-   ],
-   [
-    "CA-QC",
-    "CA-2328",
-    "Zec Mazana Nature Reserve",
-    "Zec Mazana"
-   ],
-   [
-    "CA-QC",
-    "CA-2329",
-    "Zec Menokeosawin Nature Reserve",
-    "Zec Menokeosawin"
-   ],
-   [
-    "CA-QC",
-    "CA-2330",
-    "Zec Mitchinamecus Nature Reserve",
-    "Zec Mitchinamecus"
-   ],
-   [
-    "CA-QC",
-    "CA-2333",
-    "Zec Des Nymphes Nature Reserve",
-    "Zec des Nymphes"
-   ],
-   [
-    "CA-QC",
-    "CA-2335",
-    "Zec Onatchiway Nature Reserve",
-    "Zec Mars-Moulin"
-   ],
-   [
-    "CA-QC",
-    "CA-2336",
-    "Zec Owen Nature Reserve",
-    "Zec Owen"
-   ],
-   [
-    "CA-QC",
-    "CA-2338",
-    "Zec Des Passes Nature Reserve",
-    "Zec des Passes"
-   ],
-   [
-    "CA-QC",
-    "CA-2339",
-    "Zec Petawaga Nature Reserve",
-    "Zec Petawaga"
-   ],
-   [
-    "CA-QC",
-    "CA-2341",
-    "ZEC Pontiac Nature Reserve",
-    "Zec Pontiac"
-   ],
-   [
-    "CA-QC",
-    "CA-2342",
-    "Zec Rapides-des-Joachims Nature Reserve",
-    "Zec Rapides-des-Joachims"
-   ],
-   [
-    "CA-QC",
-    "CA-2345",
-    "Zec Rivi\u00e8re-aux-Rats Nature Reserve",
-    "Zec de la Rivi\u00e8re-aux-Rats"
-   ],
-   [
-    "CA-QC",
-    "CA-2365",
-    "Zec Saint-Patrice Nature Reserve",
-    "Zec Saint-Patrice"
-   ],
-   [
-    "CA-QC",
-    "CA-2366",
-    "Zec Saint-Romain Nature Reserve",
-    "Zec Saint-Romain"
-   ],
-   [
-    "CA-QC",
-    "CA-2367",
-    "Zec Tawachiche Nature Reserve",
-    "Zec Tawachiche"
-   ],
-   [
-    "CA-QC",
-    "CA-2368",
-    "Zec Trinit\u00e9 Nature Reserve",
-    "Zec Trinit\u00e9"
-   ],
-   [
-    "CA-QC",
-    "CA-2369",
-    "Zec Varin Nature Reserve",
-    "Zec Varin"
    ],
    [
     "CA-QC",
@@ -3023,63 +1099,9 @@
    ],
    [
     "CA-QC",
-    "CA-4963",
-    "Parc regional de la Chute-a-Bull Regional Park",
-    "Parc r\u00e9gional de la Chute-\u00e0-Bull"
-   ],
-   [
-    "CA-QC",
-    "CA-4966",
-    "Parc regional de la Seigneurie-du-Lac-Matapedia Regional Park",
-    "Parc r\u00e9gional de la Seigneurie du Lac Matap\u00e9dia"
-   ],
-   [
-    "CA-QC",
-    "CA-4967",
-    "Parc regional des Grandes-Coulees Regional Park",
-    "Parc r\u00e9gional des Grandes Coul\u00e9es"
-   ],
-   [
-    "CA-QC",
-    "CA-4969",
-    "Parc regional des Sept-Chutes Regional Park",
-    "Parc r\u00e9gional des Sept-Chutes"
-   ],
-   [
-    "CA-QC",
-    "CA-4971",
-    "Parc regional du Lac Taureau Regional Park",
-    "Parc r\u00e9gional du Lac Taureau"
-   ],
-   [
-    "CA-QC",
-    "CA-4972",
-    "Parc regional Kiamika Regional Park",
-    "Parc national du Mont-Tremblant"
-   ],
-   [
-    "CA-QC",
     "CA-5042",
     "Sentiers p\u00e9destres Neil-Tillotson Regional Park",
     "Neil-et-Louise-Tillotson (Conservation de la nature Canada) Nature reserve"
-   ],
-   [
-    "CA-QC",
-    "CA-5051",
-    "Parc du Marecage-des-Scots Regional Park",
-    "Parc r\u00e9gional du Mar\u00e9cage des Scots"
-   ],
-   [
-    "CA-SK",
-    "CA-0625",
-    "St. Victor Petroglyphs Provincial Park",
-    "St. Victor Petroglyphs Provincial Park"
-   ],
-   [
-    "CA-SK",
-    "CA-2547",
-    "Amisk Lake Ecological Reserve",
-    "Amisk Lake"
    ],
    [
     "CA-SK",
@@ -3089,45 +1111,15 @@
    ],
    [
     "CA-SK",
-    "CA-2554",
-    "Backes Island Wildlife Refuge",
-    "Backes Island"
-   ],
-   [
-    "CA-SK",
-    "CA-2581",
-    "Bittern Lake Recreation Site",
-    "Bittern Lake Recreation Site"
-   ],
-   [
-    "CA-SK",
     "CA-2582",
     "Bluebell Recreation Site",
     "Bluebell"
    ],
    [
     "CA-SK",
-    "CA-2633",
-    "Dore Lake Recreation Site",
-    "Dore Lake Recreation Site"
-   ],
-   [
-    "CA-SK",
     "CA-2658",
     "Foam Lake Recreation Site",
     "Foam Lake"
-   ],
-   [
-    "CA-SK",
-    "CA-2679",
-    "Gull Lake Recreation Site",
-    "Gull Lake"
-   ],
-   [
-    "CA-SK",
-    "CA-2687",
-    "Hazlet Regional Park Recreation Site",
-    "Hazlet Regional Park"
    ],
    [
     "CA-SK",
@@ -3143,146 +1135,5701 @@
    ],
    [
     "CA-SK",
-    "CA-2816",
-    "Raymore Recreation Site",
-    "Raymore Recreation Site"
-   ],
-   [
-    "CA-SK",
-    "CA-2826",
-    "Riverhurst Ferry Recreation Site",
-    "Riverhurst Ferry Recreation Site"
-   ],
-   [
-    "CA-SK",
-    "CA-2846",
-    "Shell Lake Recreation Site",
-    "Shell Lake Recreation Site"
+    "CA-2860",
+    "St. Walburg Recreation Site",
+    "St. Walburg Recreation Site"
    ],
    [
     "CA-SK",
     "CA-2919",
     "Wreford Recreation Site",
     "Wreford"
-   ],
-   [
-    "CA-YT",
-    "CA-4623",
-    "Old Crow Flats Special Management Area Habitat Protection Area",
-    "Old Crow Flats"
    ]
   ]
  },
  "World": {
   "totals": {
-   "matched": 3870,
-   "far": 857,
+   "matched": 39749,
+   "far": 10028,
    "noshape": 0,
-   "edge": 814,
-   "out": 43,
-   "swap": 1
+   "edge": 9101,
+   "out": 927,
+   "swap": 97
   },
   "states": [
    {
     "st": "AT",
-    "matched": 278,
-    "far": 53,
+    "matched": 273,
+    "far": 67,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 62
+   },
+   {
+    "st": "AU",
+    "matched": 6977,
+    "far": 1433,
+    "noshape": 0,
+    "out": 18,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 1415
+   },
+   {
+    "st": "BE",
+    "matched": 164,
+    "far": 46,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 46
+   },
+   {
+    "st": "CH",
+    "matched": 261,
+    "far": 30,
+    "noshape": 0,
+    "out": 2,
+    "swap": 1,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 28
+   },
+   {
+    "st": "CZ",
+    "matched": 193,
+    "far": 36,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 36
+   },
+   {
+    "st": "DE",
+    "matched": 683,
+    "far": 679,
+    "noshape": 0,
+    "out": 677,
+    "swap": 96,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 2
+   },
+   {
+    "st": "DK",
+    "matched": 106,
+    "far": 25,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 25
+   },
+   {
+    "st": "EE",
+    "matched": 72,
+    "far": 13,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 11
+   },
+   {
+    "st": "ES",
+    "matched": 1789,
+    "far": 460,
+    "noshape": 0,
+    "out": 11,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 449
+   },
+   {
+    "st": "FI",
+    "matched": 1592,
+    "far": 391,
+    "noshape": 0,
+    "out": 14,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 377
+   },
+   {
+    "st": "FR",
+    "matched": 13102,
+    "far": 3553,
+    "noshape": 0,
+    "out": 151,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 3402
+   },
+   {
+    "st": "GB",
+    "matched": 3288,
+    "far": 1073,
+    "noshape": 0,
+    "out": 12,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 1061
+   },
+   {
+    "st": "HR",
+    "matched": 366,
+    "far": 76,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 76
+   },
+   {
+    "st": "HU",
+    "matched": 23,
+    "far": 6,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 6
+   },
+   {
+    "st": "IE",
+    "matched": 96,
+    "far": 22,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 22
+   },
+   {
+    "st": "IT",
+    "matched": 1919,
+    "far": 226,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 226
+   },
+   {
+    "st": "JP",
+    "matched": 185,
+    "far": 22,
+    "noshape": 0,
+    "out": 7,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 15
+   },
+   {
+    "st": "LT",
+    "matched": 28,
+    "far": 1,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 1
+   },
+   {
+    "st": "LU",
+    "matched": 45,
+    "far": 24,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 24
+   },
+   {
+    "st": "LV",
+    "matched": 7,
+    "far": 0,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 0
+   },
+   {
+    "st": "NL",
+    "matched": 81,
+    "far": 14,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 13
+   },
+   {
+    "st": "NO",
+    "matched": 3044,
+    "far": 514,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 513
+   },
+   {
+    "st": "PL",
+    "matched": 2691,
+    "far": 402,
+    "noshape": 0,
+    "out": 0,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 402
+   },
+   {
+    "st": "PT",
+    "matched": 223,
+    "far": 54,
+    "noshape": 0,
+    "out": 10,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 44
+   },
+   {
+    "st": "RO",
+    "matched": 305,
+    "far": 91,
     "noshape": 0,
     "out": 6,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": 250,
-    "edge": 47
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 85
    },
    {
-    "st": "CH",
-    "matched": 263,
-    "far": 26,
+    "st": "SE",
+    "matched": 2016,
+    "far": 697,
     "noshape": 0,
-    "out": 3,
-    "swap": 1,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": 250,
-    "edge": 23
-   },
-   {
-    "st": "GB",
-    "matched": 3329,
-    "far": 778,
-    "noshape": 0,
-    "out": 34,
+    "out": 8,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
-    "thin": 250,
-    "edge": 744
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 689
+   },
+   {
+    "st": "SI",
+    "matched": 137,
+    "far": 46,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 45
+   },
+   {
+    "st": "SK",
+    "matched": 83,
+    "far": 27,
+    "noshape": 0,
+    "out": 1,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": 60,
+    "edge": 26
    }
   ],
   "swaps": [
    [
-    "CH",
-    "CH-0226",
-    "Gh\u00f6ggerh\u00fctte Wetland Reserve",
-    "Gh\u00f6ggerh\u00fctte",
-    "Gh\u00f6ggerh\u00fctte"
+    "DE",
+    "DE-0004",
+    "S\u00fcdschwarzwald Nature Park",
+    "S\u00fcdschwarzwald",
+    "S\u00fcdschwarzwald"
+   ],
+   [
+    "DE",
+    "DE-0006",
+    "Augsburg Westliche W\u00e4lder Nature Park",
+    "Augsburg - westliche W\u00e4lder",
+    "Augsburg - Westliche W\u00e4lder"
+   ],
+   [
+    "DE",
+    "DE-0008",
+    "Sch\u00f6nbuch Nature Park",
+    "Sch\u00f6nbuch",
+    "Sch\u00f6nbuch"
+   ],
+   [
+    "DE",
+    "DE-0011",
+    "Bayerischer Wald Nature Park",
+    "Bayerischer Wald",
+    "LSG \\\"Bayerischer Wald\\\""
+   ],
+   [
+    "DE",
+    "DE-0012",
+    "Bayerischer Wald National Park",
+    "Bayerischer Wald",
+    "LSG \\\"Bayerischer Wald\\\""
+   ],
+   [
+    "DE",
+    "DE-0028",
+    "Bayerischer Spessart Nature Park",
+    "Spessart",
+    "Spessart"
+   ],
+   [
+    "DE",
+    "DE-0029",
+    "Soonwald-Nahe Nature Park",
+    "Soonwald-Nahe",
+    "Soonwald"
+   ],
+   [
+    "DE",
+    "DE-0031",
+    "Fichtelgebirge Nature Park",
+    "Fichtelgebirge",
+    "LSG \\\"Fichtelgebirge\\\""
+   ],
+   [
+    "DE",
+    "DE-0038",
+    "Bayerische Rhoen Nature Park",
+    "Bayerische Rh\u00f6n",
+    "LSG \\\"Bayerische Rh\u00f6n\\\""
+   ],
+   [
+    "DE",
+    "DE-0043",
+    "Thueringer Wald UNESCO Biosphere Reserve",
+    "Th\u00fcringer Wald",
+    "Th\u00fcringer Wald"
+   ],
+   [
+    "DE",
+    "DE-0052",
+    "Hainich National Park",
+    "Hainich",
+    "Hainich"
+   ],
+   [
+    "DE",
+    "DE-0053",
+    "Kellerwald-Edersee National Park",
+    "Kellerwald Edersee",
+    "Kellerwald-Edersee"
+   ],
+   [
+    "DE",
+    "DE-0059",
+    "Kyffhaeuser Nature Park",
+    "Kyffh\u00e4user",
+    "Kyffh\u00e4user (ohne Sachs. - Anh.)"
+   ],
+   [
+    "DE",
+    "DE-0061",
+    "Arnsberger Wald Nature Park",
+    "Arnsberger Wald",
+    "NSG Arnsberger Wald"
+   ],
+   [
+    "DE",
+    "DE-0064",
+    "D\u00fcbener Heide Nature Park",
+    "D\u00fcbener Heide",
+    "D\u00fcbener Heide"
+   ],
+   [
+    "DE",
+    "DE-0070",
+    "Harz Niedersachsen Nature Park",
+    "Harz",
+    "Harz (Landkreis Goslar)"
+   ],
+   [
+    "DE",
+    "DE-0074",
+    "Schlaubetal Nature Park",
+    "Schlaubetal",
+    "Schlaubetal"
+   ],
+   [
+    "DE",
+    "DE-0076",
+    "Dahme-Heideseen Nature Park",
+    "Dahme-Heideseen",
+    "Dahme-Heideseen"
+   ],
+   [
+    "DE",
+    "DE-0080",
+    "Steinhuder Meer Nature Park",
+    "Steinhuder Meer",
+    "Steinhuder Meer"
+   ],
+   [
+    "DE",
+    "DE-0081",
+    "Ohre-Dr\u00f6mling Biosphere Reserve",
+    "Biosph\u00e4renreservat Dr\u00f6mling",
+    "Vogelschutzgebiet Dr\u00f6mling"
+   ],
+   [
+    "DE",
+    "DE-0082",
+    "D\u00fcmmer Nature Park",
+    "D\u00fcmmer",
+    "D\u00fcmmer"
+   ],
+   [
+    "DE",
+    "DE-0085",
+    "Westhavelland Nature Park",
+    "Westhavelland",
+    "Westhavelland"
+   ],
+   [
+    "DE",
+    "DE-0098",
+    "Nossentiner Heide Nature Park",
+    "Nossentiner/Schwinzer Heide",
+    "Nossentiner/Schwinzer Heide"
+   ],
+   [
+    "DE",
+    "DE-0099",
+    "Mecklenburgische Schweiz und Kummerower See Nature Park",
+    "Mecklenburgische Schweiz und Kummerower See",
+    "Mecklenburgische Schweiz und Kummerower See"
+   ],
+   [
+    "DE",
+    "DE-0113",
+    "Schlei Nature Park",
+    "Schlei",
+    "Schlei"
+   ],
+   [
+    "DE",
+    "DE-0119",
+    "Teufelsmoor Nature Reserve",
+    "Teufelsmoor",
+    "Teufelsmoor"
+   ],
+   [
+    "DE",
+    "DE-0139",
+    "Arendsee Recreation Site",
+    "Arendsee",
+    "Arendsee"
+   ],
+   [
+    "DE",
+    "DE-0162",
+    "S\u00fcdharz Nature Park",
+    "S\u00fcdharz",
+    "S\u00fcdharz"
+   ],
+   [
+    "DE",
+    "DE-0177",
+    "Unteres Odertal National Park",
+    "Unteres Odertal",
+    "Unteres Odertal"
+   ],
+   [
+    "DE",
+    "DE-0190",
+    "Schweimker Moor und L\u00fcderbruch Nature Reserve Wilderness Area",
+    "Schweimker Moor und L\u00fcderbruch",
+    "Schweimker Moor und L\u00fcderbruch"
+   ],
+   [
+    "DE",
+    "DE-0199",
+    "Donnersberg Landscape Reserve",
+    "Donnersberg",
+    "Donnersberg"
+   ],
+   [
+    "DE",
+    "DE-0218",
+    "Grunewald Historical Reserve",
+    "Grunewald",
+    "Grunewald"
+   ],
+   [
+    "DE",
+    "DE-0247",
+    "Kalbescher Werder Natura 2000",
+    "Kalbescher Werder bei Vienau",
+    "Kalbescher Werder bei Vienau"
+   ],
+   [
+    "DE",
+    "DE-0255",
+    "Luneplate Nature Reserve",
+    "Luneplate",
+    "Luneplate"
+   ],
+   [
+    "DE",
+    "DE-0272",
+    "\u00d6stliche Chiemgauer Alpen National Park",
+    "\u00d6stliche Chiemgauer Alpen",
+    "\u00d6stliche Chiemgauer Alpen"
+   ],
+   [
+    "DE",
+    "DE-0350",
+    "Laacher See Nature Reserve",
+    "Laacher See",
+    "Laacher See"
+   ],
+   [
+    "DE",
+    "DE-0366",
+    "Kn\u00fcll Nature Park",
+    "Kn\u00fcll",
+    "Kn\u00fcll"
+   ],
+   [
+    "DE",
+    "DE-0436",
+    "Ohligser Heide Nature Park",
+    "Ohligser Heide",
+    "NSG Ohligser Heide"
+   ],
+   [
+    "DE",
+    "DE-0459",
+    "Ellbach- und Kirchseemoor Natura 2000",
+    "Ellbach- und Kirchseemoor",
+    "Ellbach- und Kirchseemoor"
+   ],
+   [
+    "DE",
+    "DE-0464",
+    "Hoher Ifen National Park",
+    "Hoher Ifen",
+    "Hoher Ifen"
+   ],
+   [
+    "DE",
+    "DE-0489",
+    "Binnend\u00fcnen Nordoe Natura 2000",
+    "Binnend\u00fcnen Nordoe",
+    "Binnend\u00fcnen Nordoe"
+   ],
+   [
+    "DE",
+    "DE-0499",
+    "Langes Elsenflie\u00df und Wegendorfer M\u00fchlenflie\u00df Natura 2000",
+    "Langes Elsenflie\u00df und Wegendorfer M\u00fchlenflie\u00df",
+    "Langes Elsenflie\u00df und Wegendorfer M\u00fchlenflie\u00df"
+   ],
+   [
+    "DE",
+    "DE-0507",
+    "Buchen- und Bruchwaelder bei Einsiedelei und Apollmicke Natura 2000",
+    "Buchen- und Bruchw\u00e4lder bei Einsiedelei und Apollmicke",
+    "NSG Buchen- und Bruchw\u00e4lder bei Einsiedelei und Apollmicke"
+   ],
+   [
+    "DE",
+    "DE-0511",
+    "Niederspreer Teichgebiet und Kleine Heide H\u00e4hnichen Natura 2000",
+    "Niederspreer Teichgebiet und Kleine Heide H\u00e4hnichen",
+    "Niederspreer Teichgebiet und Kleine Heide H\u00e4hnichen"
+   ],
+   [
+    "DE",
+    "DE-0539",
+    "Fischbeker Heide Nature Park",
+    "Fischbeker Heide",
+    "Fischbeker Heide"
+   ],
+   [
+    "DE",
+    "DE-0547",
+    "Bislicher Insel Nature Reserve",
+    "NSG Bislicher Insel",
+    "LSG-Bislicher Insel"
+   ],
+   [
+    "DE",
+    "DE-0565",
+    "Attlesee Natura 2000",
+    "Attlesee",
+    "Attlesee"
+   ],
+   [
+    "DE",
+    "DE-0579",
+    "Mittlere Oder Natura 2000",
+    "Mittlere Oder",
+    "Mittlere Oder"
+   ],
+   [
+    "DE",
+    "DE-0618",
+    "K\u00f6nigsbr\u00fccker Heide National Nature Reserve",
+    "K\u00f6nigsbr\u00fccker Heide",
+    "K\u00f6nigsbr\u00fccker Heide"
+   ],
+   [
+    "DE",
+    "DE-0632",
+    "Alter Flugplatz Karlsruhe Natura 2000",
+    "Alter Flugplatz Karlsruhe",
+    "Alter Flugplatz Karlsruhe"
+   ],
+   [
+    "DE",
+    "DE-0643",
+    "Bentheimer Wald Natura 2000",
+    "Bentheimer Wald",
+    "Bentheimer Wald"
+   ],
+   [
+    "DE",
+    "DE-0661",
+    "Pfrunger-Burgweiler Ried Natura 2000",
+    "Pfrunger und Burgweiler Ried",
+    "Pfrunger-Burgweiler Ried"
+   ],
+   [
+    "DE",
+    "DE-0688",
+    "Moritzburger Kleinkuppenlandschaft Natura 2000",
+    "Moritzburger Kleinkuppenlandschaft",
+    "Moritzburger Kleinkuppenlandschaft"
+   ],
+   [
+    "DE",
+    "DE-0689",
+    "LSG \u00d6rtze Natura 2000",
+    "\u00d6rtze mit Nebenb\u00e4chen",
+    "\u00d6rtze mit Nebenb\u00e4chen"
+   ],
+   [
+    "DE",
+    "DE-0719",
+    "Duvenstedter Brook National Nature Reserve",
+    "Duvenstedter Brook",
+    "Duvenstedter Brook"
+   ],
+   [
+    "DE",
+    "DE-0720",
+    "Wurzacher Ried National Nature Reserve",
+    "Wurzacher Ried",
+    "Wurzacher Ried"
+   ],
+   [
+    "DE",
+    "DE-0721",
+    "Neust\u00e4dter Binnenwasser Natura 2000",
+    "NSG Neust\u00e4dter Binnenwasser",
+    "Neust\u00e4dter Binnenwasser"
+   ],
+   [
+    "DE",
+    "DE-0730",
+    "Hessische Rh\u00f6n Nature Park",
+    "Hessische Rh\u00f6n",
+    "Hessische Rh\u00f6n"
+   ],
+   [
+    "DE",
+    "DE-0731",
+    "Bodenm\u00f6ser Natura 2000",
+    "Bodenm\u00f6ser",
+    "Bodenm\u00f6ser"
+   ],
+   [
+    "DE",
+    "DE-0762",
+    "Kanalwiesen Wendisch Rietz Flora and Fauna Reserve",
+    "Kanalwiesen Wendisch- Rietz",
+    "Kanalwiesen Wendisch Rietz"
+   ],
+   [
+    "DE",
+    "DE-0765",
+    "Leineaue zwischen Ruthe und Hannover National Nature Reserve",
+    "Leineaue zwischen Hannover und Ruthe",
+    "Leineaue zwischen Hannover und Ruthe"
+   ],
+   [
+    "DE",
+    "DE-0778",
+    "Buschschleuse National Nature Reserve",
+    "Buschschleuse",
+    "Buschschleuse"
+   ],
+   [
+    "DE",
+    "DE-0784",
+    "Teufelsbad National Nature Reserve",
+    "Teufelsbad",
+    "Teufelsbad"
+   ],
+   [
+    "DE",
+    "DE-0844",
+    "Elstersteilh\u00e4nge n\u00f6rdlich Plauen National Nature Reserve",
+    "Elstersteilh\u00e4nge",
+    "Elstersteilh\u00e4nge"
+   ],
+   [
+    "DE",
+    "DE-0845",
+    "Schaalsee UNESCO Biosphere Reserve",
+    "Biosph\u00e4renreservat Schaalsee",
+    "Schaalsee"
+   ],
+   [
+    "DE",
+    "DE-0857",
+    "Vogelfreist\u00e4tte Mittlere Isarstauseen Natura 2000",
+    "Naturschutzgebiet 'Vogelfreist\u00e4tte Mittlere Isarstauseen'",
+    "Vogelfreist\u00e4tte Mittlere Isarstauseen"
+   ],
+   [
+    "DE",
+    "DE-0867",
+    "Sulzschneider Moore Natura 2000",
+    "Sulzschneider Moore",
+    "Sulzschneider Moore"
+   ],
+   [
+    "DE",
+    "DE-0901",
+    "Lenorenwald Natura 2000",
+    "Lenorenwald",
+    "Lenorenwald"
+   ],
+   [
+    "DE",
+    "DE-0916",
+    "Warndt Nature Reserve",
+    "Naturschutzgebiet \\\"Warndt\\\" (N 6706-301)",
+    "Warndt"
+   ],
+   [
+    "DE",
+    "DE-0918",
+    "Steilh\u00e4nge der Saar Nature Reserve",
+    "Naturschutzgebiet \\\"Steilh\u00e4nge der Saar\\\" (N 6505-301)",
+    "Steilh\u00e4nge der Saar"
+   ],
+   [
+    "DE",
+    "DE-0921",
+    "Ostertal Nature Reserve",
+    "Naturschutzgebiet \\\"Ostertal\\\" (N 6509-301)",
+    "Ostertal"
+   ],
+   [
+    "DE",
+    "DE-0923",
+    "Prims Nature Reserve",
+    "Naturschutzgebiet \\\"Prims\\\" (N 6507-301)",
+    "Prims"
+   ],
+   [
+    "DE",
+    "DE-0956",
+    "Gevelsberger Stadtwald Natura 2000",
+    "Gevelsberger Stadtwald",
+    "NSG Gevelsberger Stadtwald"
+   ],
+   [
+    "DE",
+    "DE-0971",
+    "K\u00fchlung Flora and Fauna Reserve",
+    "K\u00fchlung",
+    "K\u00fchlung"
+   ],
+   [
+    "DE",
+    "DE-0973",
+    "Estergebirge Flora and Fauna Reserve",
+    "Estergebirge",
+    "Estergebirge"
+   ],
+   [
+    "DE",
+    "DE-0974",
+    "Ammergebirge National Nature Reserve",
+    "Ammergebirge",
+    "Ammergebirge"
+   ],
+   [
+    "DE",
+    "DE-1021",
+    "Eriskircher Ried National Nature Reserve",
+    "Eriskircher Ried",
+    "Eriskircher Ried"
+   ],
+   [
+    "DE",
+    "DE-1035",
+    "Granitz Flora and Fauna Reserve",
+    "Granitz",
+    "Granitz"
+   ],
+   [
+    "DE",
+    "DE-1065",
+    "Starnberger See Flora and Fauna Reserve",
+    "Starnberger See",
+    "Starnberger See"
+   ],
+   [
+    "DE",
+    "DE-1078",
+    "Ostfriesische Seemarsch zwischen Norden und Esens Bird Sanctuary",
+    "Ostfriesische Seemarsch zwischen Norden und Esens",
+    "Ostfriesische Seemarsch zwischen Norden und Esens"
+   ],
+   [
+    "DE",
+    "DE-1079",
+    "Westermarsch Bird Sanctuary",
+    "Westermarsch",
+    "Westermarsch"
+   ],
+   [
+    "DE",
+    "DE-1109",
+    "Donauried Bird Sanctuary",
+    "Donauried",
+    "Donauried"
+   ],
+   [
+    "DE",
+    "DE-1126",
+    "Herrenholz und Sch\u00f6ppinger Berg Flora and Fauna Reserve",
+    "Herrenholz und Sch\u00f6ppinger Berg",
+    "NSG Herrenholz und Schoeppinger Berg"
+   ],
+   [
+    "DE",
+    "DE-1143",
+    "Charlottenhofer Weihergebiet, Hirtlohweiher und Langwiedteiche Flora and Fauna Reserve",
+    "Charlottenhofer Weihergebiet, Hirtlohweiher und Langwiedteiche",
+    "Charlottenhofer Weihergebiet, Hirtlohweiher und Langwiedteiche"
+   ],
+   [
+    "DE",
+    "DE-1145",
+    "W\u00e4lder im Donautal Flora and Fauna Reserve",
+    "W\u00e4lder im Donautal",
+    "W\u00e4lder im Donautal"
+   ],
+   [
+    "DE",
+    "DE-1161",
+    "Gleichberge Flora and Fauna Reserve",
+    "Gleichberge",
+    "Gleichberge"
+   ],
+   [
+    "DE",
+    "DE-1180",
+    "Elstertal zwischen Greiz und W\u00fcnschendorf Flora and Fauna Reserve",
+    "Elstertal zwischen Greiz und W\u00fcnschendorf",
+    "Elstertal zwischen Greiz und W\u00fcnschendorf"
+   ],
+   [
+    "DE",
+    "DE-1183",
+    "Leipziger Auwald Bird Sanctuary",
+    "Leipziger Auwald",
+    "Leipziger Auwald"
+   ],
+   [
+    "DE",
+    "DE-1184",
+    "Bleicher\u00f6der Berge Flora and Fauna Reserve",
+    "Bleicher\u00f6der Berge",
+    "Bleicher\u00f6der Berge"
+   ],
+   [
+    "DE",
+    "DE-1185",
+    "Westliche Hainleite - W\u00f6belsburg Flora and Fauna Reserve",
+    "Westliche Hainleite - W\u00f6belsburg",
+    "Westliche Hainleite - W\u00f6belsburg"
+   ],
+   [
+    "DE",
+    "DE-1192",
+    "Untere Haseniederung Nature Reserve",
+    "Untere Haseniederung",
+    "Natura 2000-Untere Haseniederung"
+   ],
+   [
+    "DE",
+    "DE-1205",
+    "Tegeler Flie\u00dftal Flora and Fauna Reserve",
+    "Tegeler Flie\u00dftal",
+    "Tegeler Flie\u00dftal"
+   ],
+   [
+    "DE",
+    "DE-1214",
+    "Mehlinger Heide Nature Reserve",
+    "Mehlinger Heide",
+    "Mehlinger Heide"
+   ],
+   [
+    "DE",
+    "DE-1222",
+    "G\u00fcltlinger und Holzbronner Heiden Nature Reserve",
+    "G\u00fcltlinger und Holzbronner Heiden (8 Teilgebiete)",
+    "G\u00fcltlinger und Holzbronner Heiden"
+   ],
+   [
+    "DE",
+    "DE-1232",
+    "Bacht\u00e4ler im Kaufunger Wald Flora and Fauna Reserve",
+    "Bacht\u00e4ler im Kaufunger Wald",
+    "Bacht\u00e4ler im Kaufunger Wald"
+   ],
+   [
+    "DE",
+    "DE-1269",
+    "Kuppendorfer B\u00f6hrde Bird Sanctuary",
+    "Kuppendorfer B\u00f6hrde",
+    "Kuppendorfer B\u00f6hrde"
    ]
   ],
   "well_outside": [
    [
-    "AT",
-    "AT-0029",
-    "Kaunergrat Nature Reserve",
-    "Kaunergrat"
+    "AU",
+    "AU-0016",
+    "Waychinicup National Park",
+    "Waychinicup"
    ],
    [
-    "AT",
-    "AT-0196",
-    "Naturschutzgebiet Sandberge Oberweiden Nature Reserve",
-    "Sandberge Oberweiden"
+    "AU",
+    "AU-0312",
+    "Mount Mitta Mitta (Mittamatite) Regional Park",
+    "Mount Mitta Mitta F.R."
    ],
    [
-    "AT",
-    "AT-0308",
-    "Tiefer-Wald Natura 2000",
-    "Tiefer-Wald"
+    "AU",
+    "AU-0345",
+    "Macedon Regional Park",
+    "Macedon F.R"
    ],
    [
-    "AT",
-    "AT-0388",
-    "Soboth - Radlpass Landscape Reserve",
-    "Soboth - Radlpass"
+    "AU",
+    "AU-0448",
+    "Crawford River Regional Park",
+    "CRAWFORD RIVER REGIONAL PARK - PART"
    ],
    [
-    "AT",
-    "AT-0412",
-    "Niedere Tauern Bird Sanctuary",
-    "Niedere Tauern"
+    "AU",
+    "AU-3273",
+    "Morton Nature Reserve",
+    "Morton"
    ],
    [
-    "AT",
-    "AT-0414",
-    "Altausseer See Nature Reserve",
-    "Altausseer See"
+    "AU",
+    "AU-3672",
+    "Mount Manning Range Nature Reserve",
+    "Mount Manning Range"
    ],
    [
-    "CH",
-    "CH-0010",
-    "Gantrisch Nature Park",
-    "Waldreservat Gantrischberg"
+    "AU",
+    "AU-3923",
+    "Ararat Bushland Reserve",
+    "Ararat (McLean St) B.R."
    ],
    [
-    "CH",
-    "CH-0225",
-    "Unteres Gh\u00f6gg Wetland Reserve",
-    "Unteres Gh\u00f6gg"
+    "AU",
+    "AU-4021",
+    "Beenak G180 Bushland Reserve",
+    "BEENAK STATE FOREST"
    ],
    [
-    "GB",
-    "GB-0042",
-    "Dearne Valley - Wombwell Ings RSPB Reserve",
-    "DEARNE VALLEY PARK"
+    "AU",
+    "AU-4022",
+    "Beenak G183 Bushland Reserve",
+    "BEENAK STATE FOREST"
+   ],
+   [
+    "AU",
+    "AU-5170",
+    "Mitta Mitta River K26 Streamside Reserve",
+    "Mitta Mitta River"
+   ],
+   [
+    "AU",
+    "AU-5171",
+    "Mitta Mitta River K27 Streamside Reserve",
+    "Mitta Mitta River"
+   ],
+   [
+    "AU",
+    "AU-5172",
+    "Mitta Mitta River K28 Streamside Reserve",
+    "Mitta Mitta River"
+   ],
+   [
+    "AU",
+    "AU-5809",
+    "Wail Bushland Reserve",
+    "WAIL STATE FOREST"
+   ],
+   [
+    "AU",
+    "AU-7029",
+    "Ellis Creek State Forest",
+    "Ellis Creek State Forest"
+   ],
+   [
+    "AU",
+    "AU-7183",
+    "Dan Dan State Forest",
+    "Dan Dan"
+   ],
+   [
+    "AU",
+    "AU-7318",
+    "Wietalaba State Forest",
+    "Wietalaba"
+   ],
+   [
+    "AU",
+    "AU-7445",
+    "Mount Binga State Forest",
+    "Mount Binga"
+   ],
+   [
+    "AU",
+    "AU-9788",
+    "Mooball National Park",
+    "Mooball"
+   ],
+   [
+    "DE",
+    "DE-0001",
+    "Berchtesgaden National Park",
+    "Berchtesgaden"
+   ],
+   [
+    "DE",
+    "DE-0002",
+    "Nagelfluhkette Nature Park",
+    "Nagelfluhkette"
+   ],
+   [
+    "DE",
+    "DE-0003",
+    "Ammergauer Alpen Nature Park",
+    "Ammergauer Alpen"
+   ],
+   [
+    "DE",
+    "DE-0005",
+    "Obere Donau Nature Park",
+    "Obere Donau"
+   ],
+   [
+    "DE",
+    "DE-0007",
+    "Schwarzwald National Park",
+    "Schwarzwald"
+   ],
+   [
+    "DE",
+    "DE-0009",
+    "Schwarzwald Mitte/Nord Nature Park",
+    "Schwarzwald Mitte/Nord"
+   ],
+   [
+    "DE",
+    "DE-0010",
+    "Altm\u00fchltal Nature Park",
+    "Altm\u00fchltal"
+   ],
+   [
+    "DE",
+    "DE-0013",
+    "Stromberg-Heuchelberg Nature Park",
+    "Stromberg-Heuchelberg"
+   ],
+   [
+    "DE",
+    "DE-0014",
+    "Schwaebisch-Fraenkischer Wald Nature Park",
+    "Schw\u00e4bisch-Fr\u00e4nkischer-Wald"
+   ],
+   [
+    "DE",
+    "DE-0015",
+    "Oberer Bayerischer Wald Nature Park",
+    "Oberer Bayerischer Wald"
+   ],
+   [
+    "DE",
+    "DE-0016",
+    "Pf\u00e4lzerwald Nature Park",
+    "Pf\u00e4lzerwald-Nordvogesen"
+   ],
+   [
+    "DE",
+    "DE-0017",
+    "Oberpf\u00e4lzer Wald Nature Park",
+    "Oberpf\u00e4lzer Wald"
+   ],
+   [
+    "DE",
+    "DE-0018",
+    "Hirschwald Nature Park",
+    "Hirschwald"
+   ],
+   [
+    "DE",
+    "DE-0019",
+    "Frankenh\u00f6he Nature Park",
+    "Frankenh\u00f6he"
+   ],
+   [
+    "DE",
+    "DE-0020",
+    "Neckartal-Odenwald Nature Park",
+    "Neckartal-Odenwald"
+   ],
+   [
+    "DE",
+    "DE-0021",
+    "Bergstrasse-Odenwald Nature Park",
+    "Bergstra\u00dfe"
+   ],
+   [
+    "DE",
+    "DE-0022",
+    "Saar-Hunsrueck Nature Park",
+    "Saar-Hunsr\u00fcck"
+   ],
+   [
+    "DE",
+    "DE-0023",
+    "Steigerwald Nature Park",
+    "Steigerwald"
+   ],
+   [
+    "DE",
+    "DE-0024",
+    "Noerdlicher Oberpfaelzer Wald Nature Park",
+    "N\u00f6rdlicher Oberpf\u00e4lzer Wald"
+   ],
+   [
+    "DE",
+    "DE-0025",
+    "Fr\u00e4nkische Schweiz Nature Park",
+    "Fr\u00e4nkische Schweiz-Veldensteiner Forst"
+   ],
+   [
+    "DE",
+    "DE-0026",
+    "Hunsr\u00fcck-Hochwald National Park",
+    "Hunsr\u00fcck-Hochwald"
+   ],
+   [
+    "DE",
+    "DE-0027",
+    "Steinwald Nature Park",
+    "Steinwald"
+   ],
+   [
+    "DE",
+    "DE-0030",
+    "S\u00fcdeifel Nature Park",
+    "S\u00fcdeifel"
+   ],
+   [
+    "DE",
+    "DE-0032",
+    "Hassberge Nature Park",
+    "Ha\u00dfberge"
+   ],
+   [
+    "DE",
+    "DE-0033",
+    "Hessischer Spessart Nature Park",
+    "Hessischer Spessart"
+   ],
+   [
+    "DE",
+    "DE-0035",
+    "Rhein-Taunus Nature Park",
+    "Rhein-Taunus"
+   ],
+   [
+    "DE",
+    "DE-0036",
+    "Frankenwald Nature Park",
+    "Frankenwald"
+   ],
+   [
+    "DE",
+    "DE-0037",
+    "Nassau Nature Park",
+    "Nassau"
+   ],
+   [
+    "DE",
+    "DE-0039",
+    "Hohes Venn-Eifel Nature Park",
+    "Hohes Venn-Eifel (Nordeifel)"
+   ],
+   [
+    "DE",
+    "DE-0040",
+    "Erzgebirge Vogtland Nature Park",
+    "Erzgebirge / Vogtland"
+   ],
+   [
+    "DE",
+    "DE-0041",
+    "Rhein-Westerwald Nature Park",
+    "Rhein-Westerwald"
+   ],
+   [
+    "DE",
+    "DE-0042",
+    "Hoher Vogelsberg Nature Park",
+    "Hoher Vogelsberg"
+   ],
+   [
+    "DE",
+    "DE-0044",
+    "Thueringer Schiefergebirge/Obere Saale Nature Park",
+    "Th\u00fcringer Schiefergebirge/Obere Saale"
+   ],
+   [
+    "DE",
+    "DE-0045",
+    "Eifel National Park",
+    "Nationalpark Eifel"
+   ],
+   [
+    "DE",
+    "DE-0046",
+    "Siebengebirge Nature Park",
+    "Siebengebirge"
+   ],
+   [
+    "DE",
+    "DE-0047",
+    "Lahn-Dill Bergland Nature Park",
+    "Lahn-Dill-Bergland"
+   ],
+   [
+    "DE",
+    "DE-0048",
+    "Rheinland Nature Park",
+    "Rheinland"
+   ],
+   [
+    "DE",
+    "DE-0049",
+    "Zittauer Gebirge Nature Park",
+    "Zittauer Gebirge"
+   ],
+   [
+    "DE",
+    "DE-0051",
+    "Bergisches Land Nature Park",
+    "Bergisches Land"
+   ],
+   [
+    "DE",
+    "DE-0054",
+    "Sauerland-Rothaargebirge Nature Park",
+    "Sauerland-Rothaargebirge"
+   ],
+   [
+    "DE",
+    "DE-0056",
+    "Saale-Unstrut-Triasland Nature Park",
+    "Saale-Unstrut-Triasland"
+   ],
+   [
+    "DE",
+    "DE-0057",
+    "Eichsfeld-Hainich-Werratal Nature Park",
+    "Eichsfeld - Hainich - Werratal"
+   ],
+   [
+    "DE",
+    "DE-0058",
+    "Habichtswald Nature Park",
+    "Habichtswald"
+   ],
+   [
+    "DE",
+    "DE-0060",
+    "Muenden Nature Park",
+    "M\u00fcnden"
+   ],
+   [
+    "DE",
+    "DE-0062",
+    "Reinhardswald Nature Park",
+    "Reinhardswald"
+   ],
+   [
+    "DE",
+    "DE-0063",
+    "Niederlausitzer Heidelandschaft Nature Park",
+    "Niederlausitzer Heidelandschaft"
+   ],
+   [
+    "DE",
+    "DE-0065",
+    "Harz Sachsen-Anhalt Nature Park",
+    "Harz Sachsen-Anhalt (Mansfelder Land)"
+   ],
+   [
+    "DE",
+    "DE-0066",
+    "Unteres Saaletal Nature Park",
+    "Unteres Saaletal"
+   ],
+   [
+    "DE",
+    "DE-0067",
+    "Solling-Vogler Nature Park",
+    "Solling-Vogler im Weserbergland"
+   ],
+   [
+    "DE",
+    "DE-0068",
+    "Niederlausitzer Landruecken Nature Park",
+    "Niederlausitzer Landr\u00fccken"
+   ],
+   [
+    "DE",
+    "DE-0069",
+    "Harz National Park",
+    "Harz"
+   ],
+   [
+    "DE",
+    "DE-0071",
+    "Fl\u00e4ming Nature Park",
+    "Fl\u00e4ming"
+   ],
+   [
+    "DE",
+    "DE-0072",
+    "Teutoburger Wald Nature Park",
+    "Teutoburger Wald/Eggegebirge"
+   ],
+   [
+    "DE",
+    "DE-0073",
+    "Nuthe-Nieplitz Nature Park",
+    "Nuthe - Nieplitz"
+   ],
+   [
+    "DE",
+    "DE-0075",
+    "Hoher Fl\u00e4ming Nature Park",
+    "Hoher Fl\u00e4ming"
+   ],
+   [
+    "DE",
+    "DE-0077",
+    "Elm-Lappwald Nature Park",
+    "Elm-Lappwald"
+   ],
+   [
+    "DE",
+    "DE-0078",
+    "Weserbergland Nature Park",
+    "Weserbergland"
+   ],
+   [
+    "DE",
+    "DE-0083",
+    "M\u00e4rkische Schweiz Nature Park",
+    "M\u00e4rkische Schweiz"
+   ],
+   [
+    "DE",
+    "DE-0084",
+    "Bourtanger Moor-Bargerveen Nature Park",
+    "Bourtanger Moor-Bargerveen"
+   ],
+   [
+    "DE",
+    "DE-0086",
+    "Barnim Nature Park",
+    "Barnim"
+   ],
+   [
+    "DE",
+    "DE-0087",
+    "S\u00fcdheide Nature Park",
+    "S\u00fcdheide"
+   ],
+   [
+    "DE",
+    "DE-0088",
+    "Wildeshauser Geest Nature Park",
+    "Wildeshauser Geest"
+   ],
+   [
+    "DE",
+    "DE-0089",
+    "H\u00fcmmling Nature Park",
+    "H\u00fcmmling"
+   ],
+   [
+    "DE",
+    "DE-0090",
+    "Stechlin-Ruppiner Land Nature Park",
+    "Stechlin-Ruppiner Land"
+   ],
+   [
+    "DE",
+    "DE-0092",
+    "L\u00fcneburger Heide Nature Park",
+    "L\u00fcneburger Heide"
+   ],
+   [
+    "DE",
+    "DE-0093",
+    "Elbh\u00f6hen-Wendland Nature Park",
+    "Elbh\u00f6hen-Wendland"
+   ],
+   [
+    "DE",
+    "DE-0094",
+    "Nieders\u00e4chsisches Wattenmeer National Park",
+    "Nieders\u00e4chsisches Wattenmeer"
+   ],
+   [
+    "DE",
+    "DE-0095",
+    "Mecklenburgisches Elbetal UNESCO Biosphere Reserve",
+    "Mecklenburgisches Elbetal"
+   ],
+   [
+    "DE",
+    "DE-0097",
+    "M\u00fcritz National Park",
+    "M\u00fcritz-Nationalpark"
+   ],
+   [
+    "DE",
+    "DE-0100",
+    "Lauenburgische Seen Nature Park",
+    "Lauenburgische Seen"
+   ],
+   [
+    "DE",
+    "DE-0101",
+    "Stettiner Haff Nature Park",
+    "Am Stettiner Haff"
+   ],
+   [
+    "DE",
+    "DE-0102",
+    "Sternberger Seenland Nature Park",
+    "Sternberger Seenland"
+   ],
+   [
+    "DE",
+    "DE-0103",
+    "Flusslandschaft Peenetal Nature Park",
+    "Flusslandschaft Peenetal"
+   ],
+   [
+    "DE",
+    "DE-0104",
+    "Hamburgisches Wattenmeer National Park",
+    "Hamburgisches Wattenmeer"
+   ],
+   [
+    "DE",
+    "DE-0105",
+    "Insel Usedom Nature Park",
+    "Insel Usedom"
+   ],
+   [
+    "DE",
+    "DE-0106",
+    "Aukrug Nature Park",
+    "Aukrug"
+   ],
+   [
+    "DE",
+    "DE-0107",
+    "Holsteinische Schweiz Nature Park",
+    "Holsteinische Schweiz"
+   ],
+   [
+    "DE",
+    "DE-0108",
+    "Westensee Nature Park",
+    "Westensee"
+   ],
+   [
+    "DE",
+    "DE-0109",
+    "Schleswig-Holsteinisches Wattenmeer National Park",
+    "Schleswig-Holsteinisches Wattenmeer"
+   ],
+   [
+    "DE",
+    "DE-0110",
+    "H\u00fcttener Berge Nature Park",
+    "H\u00fcttener Berge"
+   ],
+   [
+    "DE",
+    "DE-0111",
+    "Vorpommersche Boddenlandschaft National Park",
+    "Vorpommersche Boddenlandschaft"
+   ],
+   [
+    "DE",
+    "DE-0112",
+    "Jasmund National Park",
+    "Jasmund"
+   ],
+   [
+    "DE",
+    "DE-0116",
+    "Ewiges Meer Nature Reserve",
+    "Ewiges Meer"
+   ],
+   [
+    "DE",
+    "DE-0118",
+    "Molberger Dose Nature Reserve",
+    "Molberger Dose"
+   ],
+   [
+    "DE",
+    "DE-0120",
+    "Holzurburg Bederkesaer See Nature Reserve",
+    "Holzurburg am Bederkesaer See"
+   ],
+   [
+    "DE",
+    "DE-0121",
+    "Schnuckenheide Repke Nature Reserve",
+    "Schnuckenheide"
+   ],
+   [
+    "DE",
+    "DE-0122",
+    "Altwarmbuechener See Recreation Park",
+    "Altwarmb\u00fcchener See"
+   ],
+   [
+    "DE",
+    "DE-0126",
+    "Lummenfelsen der Insel Helgoland Nature Reserve",
+    "Lummenfelsen der Insel Helgoland"
+   ],
+   [
+    "DE",
+    "DE-0127",
+    "Nordfriesisches Wattenmeer Nature Reserve",
+    "Nordfriesisches Wattenmeer"
+   ],
+   [
+    "DE",
+    "DE-0128",
+    "Froeruper Berge Nature Reserve",
+    "Wald-, Moor- und Heidelandschaft der Fr\u00f6ruper Berge und Umgebung"
+   ],
+   [
+    "DE",
+    "DE-0129",
+    "Braderuper Heide Nature Reserve",
+    "Braderuper Heide / Sylt"
+   ],
+   [
+    "DE",
+    "DE-0130",
+    "Halbinsel Holnis Nature Reserve",
+    "Halbinsel Holnis"
+   ],
+   [
+    "DE",
+    "DE-0131",
+    "Beltringharder Koog Nature Reserve",
+    "Beltringharder Koog"
+   ],
+   [
+    "DE",
+    "DE-0138",
+    "Westerweiden, S\u00fcderelbpark und Finkenwerder S\u00fcderelbe Nature Reserve",
+    "Westerweiden"
+   ],
+   [
+    "DE",
+    "DE-0147",
+    "Neandertal Nature Reserve",
+    "NSG Neandertal <A>"
+   ],
+   [
+    "DE",
+    "DE-0161",
+    "Wasserkuppe und Rh\u00f6n Biosphere Reserve",
+    "Biosph\u00e4renreservat Rh\u00f6n"
+   ],
+   [
+    "DE",
+    "DE-0166",
+    "Werbeliner See Nature Reserve",
+    "Werbeliner See"
+   ],
+   [
+    "DE",
+    "DE-0175",
+    "Riedensee Nature Reserve",
+    "Riedensee"
+   ],
+   [
+    "DE",
+    "DE-0179",
+    "Osterberg Recreation Park",
+    "Osterberg"
+   ],
+   [
+    "DE",
+    "DE-0180",
+    "Gallberg Recreation Park",
+    "Gallberg"
+   ],
+   [
+    "DE",
+    "DE-0181",
+    "Finkenberg/Lerchenberg Recreation Park",
+    "Finkenberg/ Lerchenberg"
+   ],
+   [
+    "DE",
+    "DE-0187",
+    "Rickelsbueller Koog Nature Reserve",
+    "Rickelsb\u00fcller Koog"
+   ],
+   [
+    "DE",
+    "DE-0188",
+    "Kudensee Recreation Park",
+    "Kudensee"
+   ],
+   [
+    "DE",
+    "DE-0191",
+    "Heiliger Hain Nature Reserve",
+    "Heiliger Hain"
+   ],
+   [
+    "DE",
+    "DE-0194",
+    "L\u00fcneburger Ilmenauniederung Recreation Park",
+    "L\u00fcneburger Ilmenauniederung mit Tiergarten"
+   ],
+   [
+    "DE",
+    "DE-0195",
+    "Ebenberg Nature Park",
+    "Ebenberg"
+   ],
+   [
+    "DE",
+    "DE-0196",
+    "Kleine Kalmit Landscape Reserve",
+    "Kleine Kalmit"
+   ],
+   [
+    "DE",
+    "DE-0198",
+    "Beversee Nature Reserve",
+    "NSG Beversee"
+   ],
+   [
+    "DE",
+    "DE-0200",
+    "Maulbeeraue Natura 2000",
+    "Maulbeeraue"
+   ],
+   [
+    "DE",
+    "DE-0201",
+    "Krofdorfer Forst Natura 2000",
+    "Krofdorfer Forst"
+   ],
+   [
+    "DE",
+    "DE-0202",
+    "Am\u00f6neburger Becken Natura 2000",
+    "Am\u00f6neburger Becken"
+   ],
+   [
+    "DE",
+    "DE-0203",
+    "Schw\u00e4bische Alb Biosphere Reserve",
+    "Schw\u00e4bische Alb"
+   ],
+   [
+    "DE",
+    "DE-0207",
+    "Vulkaneifel Nature Park",
+    "Vulkaneifel"
+   ],
+   [
+    "DE",
+    "DE-0208",
+    "Diemelsee Nature Park",
+    "Diemelsee"
+   ],
+   [
+    "DE",
+    "DE-0209",
+    "Mittleres Innerstetal mit Kanstein Nature Reserve",
+    "Mittleres Innerstetal mit Kanstein"
+   ],
+   [
+    "DE",
+    "DE-0210",
+    "K\u00f6llnischfeld Br\u00f6hn Nature Reserve",
+    "K\u00f6llnischfeld"
+   ],
+   [
+    "DE",
+    "DE-0211",
+    "Leineaue zwischen Ruthe und Koldingen Nature Reserve",
+    "Leineaue zwischen Ruthe und Koldingen"
+   ],
+   [
+    "DE",
+    "DE-0212",
+    "Ith Nature Reserve",
+    "Ith"
+   ],
+   [
+    "DE",
+    "DE-0213",
+    "Gro\u00dfer Fallstein Nature Reserve",
+    "Gro\u00dfer Fallstein"
+   ],
+   [
+    "DE",
+    "DE-0219",
+    "Sandgrube im Jagen 86 des Grunewaldes Nature Reserve",
+    "Sandgrube im Jagen 86"
+   ],
+   [
+    "DE",
+    "DE-0220",
+    "Grunewaldsee Recreation Park",
+    "Grunewaldsee (s\u00fcdl. Teil)"
+   ],
+   [
+    "DE",
+    "DE-0223",
+    "Isarauen zwischen Hangenham und Moosburg Landscape Park",
+    "Isarauen zwischen Hangenham und Moosburg"
+   ],
+   [
+    "DE",
+    "DE-0224",
+    "Freisinger Buckl Nature Park",
+    "Freisinger Buckl"
+   ],
+   [
+    "DE",
+    "DE-0227",
+    "Allg\u00e4uer Hochalpen Nature Reserve",
+    "Allg\u00e4uer Hochalpen"
+   ],
+   [
+    "DE",
+    "DE-0235",
+    "Volkspark Rehberge Recreation Park",
+    "Volkspark Rehberge"
+   ],
+   [
+    "DE",
+    "DE-0239",
+    "Dummersdorfer Ufer Natura 2000",
+    "Dummersdorfer Ufer"
+   ],
+   [
+    "DE",
+    "DE-0244",
+    "Rostocker Heide Nature Reserve",
+    "Rostocker Heide"
+   ],
+   [
+    "DE",
+    "DE-0245",
+    "Heerter See und Heerter Strauchholz Nature Reserve",
+    "Heerter See und Waldgebiet Heerter Strauchholz"
+   ],
+   [
+    "DE",
+    "DE-0246",
+    "Tagebau Haverlahwiese Nature Reserve",
+    "Tagebau Haverlahwiese"
+   ],
+   [
+    "DE",
+    "DE-0248",
+    "Oberlausitzer Heide- und Teichlandschaft UNESCO Biosphere Reserve",
+    "Oberlausitzer Heide- und Teichlandschaft"
+   ],
+   [
+    "DE",
+    "DE-0251",
+    "Boberger Niederung Nature Reserve",
+    "Boberger Niederung"
+   ],
+   [
+    "DE",
+    "DE-0256",
+    "Amrumer D\u00fcnen Nature Reserve",
+    "Amrumer D\u00fcnen"
+   ],
+   [
+    "DE",
+    "DE-0257",
+    "Wildes Moor Nature Reserve",
+    "Wildes Moor bei Schwabstedt"
+   ],
+   [
+    "DE",
+    "DE-0258",
+    "Schwansener See Nature Reserve",
+    "Schwansener See"
+   ],
+   [
+    "DE",
+    "DE-0263",
+    "Hadelner und Belumer Au\u00dfendeich Nature Reserve",
+    "Hadelner und Belumer Au\u00dfendeich"
+   ],
+   [
+    "DE",
+    "DE-0264",
+    "Cuxhavener K\u00fcstenheiden National Nature Reserve",
+    "Cuxhavener K\u00fcstenheiden"
+   ],
+   [
+    "DE",
+    "DE-0265",
+    "Leyh\u00f6rn Nature Reserve",
+    "Leyh\u00f6rn"
+   ],
+   [
+    "DE",
+    "DE-0266",
+    "Esterweger Dose Habitat Protection Area",
+    "Esterweger Dose"
+   ],
+   [
+    "DE",
+    "DE-0267",
+    "Obere W\u00fcmmeniederung Nature Reserve",
+    "Obere W\u00fcmmeniederung"
+   ],
+   [
+    "DE",
+    "DE-0269",
+    "Gr\u00fcner Brink Nature Reserve",
+    "Gr\u00fcner Brink"
+   ],
+   [
+    "DE",
+    "DE-0271",
+    "Barker Heide Nature Reserve",
+    "Barker Heide"
+   ],
+   [
+    "DE",
+    "DE-0274",
+    "Eggst\u00e4tt-Hemhofer Seenplatte Aquatic Reserve",
+    "Eggst\u00e4tt-Hemhofer Seenplatte"
+   ],
+   [
+    "DE",
+    "DE-0275",
+    "Kendlm\u00fchlfilzen National Park",
+    "Kendlm\u00fchlfilzen"
+   ],
+   [
+    "DE",
+    "DE-0276",
+    "Geigelstein National Park",
+    "Geigelstein"
+   ],
+   [
+    "DE",
+    "DE-0277",
+    "Karwendel und Karwendelvorgebirge National Park",
+    "Karwendel und Karwendelvorgebirge"
+   ],
+   [
+    "DE",
+    "DE-0288",
+    "Hirschau und Obere Isarau Nature Reserve",
+    "Hirschau und Obere Isarau"
+   ],
+   [
+    "DE",
+    "DE-0291",
+    "H\u00fctter Klosterteiche Nature Reserve",
+    "H\u00fctter Klosterteiche"
+   ],
+   [
+    "DE",
+    "DE-0292",
+    "Bergener Moos Recreation Park",
+    "Bergener Moos"
+   ],
+   [
+    "DE",
+    "DE-0293",
+    "Seeoner Seen Recreation Park",
+    "Seeoner Seen"
+   ],
+   [
+    "DE",
+    "DE-0294",
+    "Sossauer Filz und Wildmoos Nature Reserve",
+    "Sossauer Filz und Wildmoos"
+   ],
+   [
+    "DE",
+    "DE-0295",
+    "Hacken und Rottauer Filz Nature Reserve",
+    "Hacken und Rottauer Filz"
+   ],
+   [
+    "DE",
+    "DE-0297",
+    "Untere Alz Natura 2000",
+    "Untere Alz"
+   ],
+   [
+    "DE",
+    "DE-0298",
+    "Vogelfreist\u00e4tte Innstausee bei Attel und Freiham Nature Reserve",
+    "Vogelfreist\u00e4tte Innstausee bei Attel und Freiham"
+   ],
+   [
+    "DE",
+    "DE-0299",
+    "Moore im Salzach-H\u00fcgelland Natura 2000",
+    "Moore im Salzach-H\u00fcgelland"
+   ],
+   [
+    "DE",
+    "DE-0300",
+    "H\u00fctter Wohld Recreation Park",
+    "H\u00fctter Wohld und Kleingew\u00e4sserlandschaft westlich Hanstorf"
+   ],
+   [
+    "DE",
+    "DE-0301",
+    "Lutter Nature Reserve",
+    "Lutter"
+   ],
+   [
+    "DE",
+    "DE-0311",
+    "Endmor\u00e4nenweiher s\u00fcdlich Asten Nature Reserve",
+    "Endmor\u00e4nenweiher s\u00fcdlich Asten"
+   ],
+   [
+    "DE",
+    "DE-0314",
+    "Hohenstein Recreation Park",
+    "LSG-Hohenstein"
+   ],
+   [
+    "DE",
+    "DE-0321",
+    "Donauauen zwischen Ingolstadt und Weltenburg Flora and Fauna Reserve",
+    "Donauauen zwischen Ingolstadt und Weltenburg"
+   ],
+   [
+    "DE",
+    "DE-0345",
+    "An der Panne Nature Reserve",
+    "NSG An der Panne"
+   ],
+   [
+    "DE",
+    "DE-0348",
+    "Gerolsteiner Dolomiten Nature Reserve",
+    "Gerolsteiner Dolomiten (Auberg,Munterlay,Hustlay,Papenkaule,Juddenkirc"
+   ],
+   [
+    "DE",
+    "DE-0349",
+    "Sch\u00f6necker Schweiz Nature Reserve",
+    "Sch\u00f6necker Schweiz"
+   ],
+   [
+    "DE",
+    "DE-0351",
+    "Ahrschleife bei Altenahr Natura 2000",
+    "Ahrschleife bei Altenahr"
+   ],
+   [
+    "DE",
+    "DE-0352",
+    "Mattheiser Wald Nature Reserve",
+    "Mattheiser Wald"
+   ],
+   [
+    "DE",
+    "DE-0353",
+    "Mehlenbachtal Nature Reserve",
+    "Mehlenbachtal zwischen Gondenbrett und Weinsfeld"
+   ],
+   [
+    "DE",
+    "DE-0354",
+    "Rheinh\u00e4nge von Burg Gutenfels bis zur Loreley Nature Reserve",
+    "Rheinh\u00e4nge von Burg Gutenfels bis zur Loreley"
+   ],
+   [
+    "DE",
+    "DE-0355",
+    "Dauner Maare Nature Reserve",
+    "Dauner Maare"
+   ],
+   [
+    "DE",
+    "DE-0362",
+    "Zwillbrocker Venn Nature Reserve",
+    "NSG Zwillbrocker Venn"
+   ],
+   [
+    "DE",
+    "DE-0370",
+    "Schwabelsberger Weiher Recreation Park",
+    "LSG \\\"Schwabelsberger Weiher\\\""
+   ],
+   [
+    "DE",
+    "DE-0374",
+    "Wittelsbacher Park Recreation Park",
+    "LSG Wittelsbacherpark"
+   ],
+   [
+    "DE",
+    "DE-0391",
+    "Billetal Nature Reserve",
+    "Billetal"
+   ],
+   [
+    "DE",
+    "DE-0394",
+    "Elbtal zwischen Sch\u00f6na und M\u00fchlberg Natura 2000",
+    "Elbtal zwischen Sch\u00f6na und M\u00fchlberg"
+   ],
+   [
+    "DE",
+    "DE-0396",
+    "Blankenburger Holz Recreation Park",
+    "Blankenburger Holz und Klostermark"
+   ],
+   [
+    "DE",
+    "DE-0399",
+    "Bahndammgel\u00e4nde Krusenbusch Provincial Park",
+    "Bahndammgel\u00e4nde Krusenbusch"
+   ],
+   [
+    "DE",
+    "DE-0408",
+    "Hohe Mark Nature Park",
+    "Hohe Mark-Westm\u00fcnsterland"
+   ],
+   [
+    "DE",
+    "DE-0410",
+    "Kaltes Feld mit Hornberg, Galgenberg und Eierberg Provincial Recreation Area",
+    "Kaltes Feld mit Hornberg, Galgenberg und Eierberg"
+   ],
+   [
+    "DE",
+    "DE-0411",
+    "Emsaue bei Telgte Natura 2000",
+    "NSG Emsaue bei Telgte"
+   ],
+   [
+    "DE",
+    "DE-0413",
+    "Roberner See Recreation Site",
+    "Roberner See"
+   ],
+   [
+    "DE",
+    "DE-0415",
+    "Unteres B\u00fchlertal Nature Reserve",
+    "Unteres B\u00fchlertal"
+   ],
+   [
+    "DE",
+    "DE-0416",
+    "Stammberg Nature Reserve",
+    "Stammberg"
+   ],
+   [
+    "DE",
+    "DE-0421",
+    "Nonnenmattweiher Landscape Reserve",
+    "Nonnenmattweiher"
+   ],
+   [
+    "DE",
+    "DE-0423",
+    "Schwenninger Moos Provincial Recreation Area",
+    "Schwenninger Moos"
+   ],
+   [
+    "DE",
+    "DE-0426",
+    "Palingener Heide und Halbinsel Teschow Provincial Park Reserve",
+    "Palingener Heide und Halbinsel Teschow"
+   ],
+   [
+    "DE",
+    "DE-0427",
+    "Uedemer Hochwald National Recreation Trail",
+    "NSG Uedemer Hochwald"
+   ],
+   [
+    "DE",
+    "DE-0431",
+    "Kermeter National Nature Reserve",
+    "NSG Kermeter <EU>"
+   ],
+   [
+    "DE",
+    "DE-0433",
+    "Schavener Heide National Military Park",
+    "NSG Schavener Heide"
+   ],
+   [
+    "DE",
+    "DE-0440",
+    "M\u00fcndung der Tiroler Achen Nature Park",
+    "M\u00fcndung der Tiroler Achen"
+   ],
+   [
+    "DE",
+    "DE-0445",
+    "LSG \"Oberes Saalachtal mit Wendelberg und Kienberg, Gemeinde Schneizlreuth\" Landscape Reserve",
+    "LSG \\\"Oberes Saalachtal mit Wendelberg und Kienberg, Gemeinde Schneizlreuth\\\""
+   ],
+   [
+    "DE",
+    "DE-0446",
+    "Alz vom Chiemsee bis Altenmarkt Landscape Reserve",
+    "Alz vom Chiemsee bis Altenmarkt"
+   ],
+   [
+    "DE",
+    "DE-0447",
+    "Salzach und Unterer Inn Natura 2000",
+    "Salzach und Unterer Inn"
+   ],
+   [
+    "DE",
+    "DE-0448",
+    "Untersberg Natura 2000",
+    "Untersberg"
+   ],
+   [
+    "DE",
+    "DE-0452",
+    "Federsee und Blinder See bei Kanzach Natura 2000",
+    "Federsee und Blinder See bei Kanzach"
+   ],
+   [
+    "DE",
+    "DE-0453",
+    "Himmelmoor Historical Reserve",
+    "Himmelmoor"
+   ],
+   [
+    "DE",
+    "DE-0454",
+    "Moore um Raubling Nature Reserve",
+    "Moore um Raubling"
+   ],
+   [
+    "DE",
+    "DE-0455",
+    "Mangfallgebirge Natura 2000",
+    "Mangfallgebirge"
+   ],
+   [
+    "DE",
+    "DE-0456",
+    "Taubenberg Natura 2000",
+    "Taubenberg"
+   ],
+   [
+    "DE",
+    "DE-0457",
+    "Wattersdorfer Moor Natura 2000",
+    "Wattersdorfer Moor"
+   ],
+   [
+    "DE",
+    "DE-0458",
+    "Osterseen Nature Reserve",
+    "Osterseen"
+   ],
+   [
+    "DE",
+    "DE-0460",
+    "Vogelfreist\u00e4tte Eggelburger See Nature Reserve",
+    "Vogelfreist\u00e4tte Eggelburger See"
+   ],
+   [
+    "DE",
+    "DE-0461",
+    "Schachen und Reintal National Park",
+    "Schachen und Reintal"
+   ],
+   [
+    "DE",
+    "DE-0462",
+    "Murnauer Moos Nature Reserve",
+    "Murnauer Moos"
+   ],
+   [
+    "DE",
+    "DE-0463",
+    "Westlicher Staffelsee mit angrenzenden Mooren Nature Reserve",
+    "Westlicher Staffelsee mit angrenzenden Mooren"
+   ],
+   [
+    "DE",
+    "DE-0465",
+    "Ebersberger und Gro\u00dfhaager Forst Natura 2000",
+    "Ebersberger und Gro\u00dfhaager Forst"
+   ],
+   [
+    "DE",
+    "DE-0466",
+    "Stadtwald Augsburg Nature Park",
+    "Stadtwald Augsburg"
+   ],
+   [
+    "DE",
+    "DE-0467",
+    "Stadtwald G\u00f6ttingen und Kerstlinger\u00f6der Feld Provincial Park Reserve",
+    "Stadtwald G\u00f6ttingen und Kerstlinger\u00f6der Feld"
+   ],
+   [
+    "DE",
+    "DE-0470",
+    "Tennenloher Forst Forest Reserve",
+    "Tennenloher Forst"
+   ],
+   [
+    "DE",
+    "DE-0473",
+    "\u00d6berauer Donauschleife Nature Reserve",
+    "\u00d6berauer Donauschleife"
+   ],
+   [
+    "DE",
+    "DE-0474",
+    "Bogenberg Nature Reserve",
+    "Bogenberg"
+   ],
+   [
+    "DE",
+    "DE-0478",
+    "Isarm\u00fcndung Natura 2000",
+    "Isarm\u00fcndung"
+   ],
+   [
+    "DE",
+    "DE-0479",
+    "Sacrower See und K\u00f6nigswald Provincial Recreation Area",
+    "Sacrower See und K\u00f6nigswald"
+   ],
+   [
+    "DE",
+    "DE-0481",
+    "Sch\u00f6nower Heide State Wildlife Area",
+    "Sch\u00f6nower Heide"
+   ],
+   [
+    "DE",
+    "DE-0483",
+    "L\u00f6cknitztal National Recreation Trail",
+    "L\u00f6cknitztal"
+   ],
+   [
+    "DE",
+    "DE-0484",
+    "Biosph\u00e4renreservat Schorfheide-Chorin UNESCO Biosphere Reserve",
+    "Biosph\u00e4renreservat Schorfheide - Chorin"
+   ],
+   [
+    "DE",
+    "DE-0485",
+    "Kalten National Recreation Area",
+    "Kalten"
+   ],
+   [
+    "DE",
+    "DE-0486",
+    "Mittelelbe Biosphere Reserve",
+    "Mittelelbe"
+   ],
+   [
+    "DE",
+    "DE-0490",
+    "Gro\u00dfe H\u00f6he Provincial Recreation Area",
+    "Gro\u00dfe H\u00f6he"
+   ],
+   [
+    "DE",
+    "DE-0491",
+    "Auer Weidmoos Nature Reserve",
+    "Auer Weidmoos"
+   ],
+   [
+    "DE",
+    "DE-0498",
+    "Fredersdorfer M\u00fchlenflie\u00df, Langes Luch und Breites Luch Flora and Fauna Reserve",
+    "Fredersdorfer M\u00fchlenflie\u00df, Langes Luch und Breites Luch"
+   ],
+   [
+    "DE",
+    "DE-0503",
+    "Ebbemoore Nature Reserve",
+    "Ebbemoore"
+   ],
+   [
+    "DE",
+    "DE-0508",
+    "Heiden und Magerrasen Trupbach Natura 2000",
+    "Heiden und Magerrasen Trupbach"
+   ],
+   [
+    "DE",
+    "DE-0509",
+    "Naturschutzgebiet Waldenburg Nature Reserve",
+    "NSG Waldenburg"
+   ],
+   [
+    "DE",
+    "DE-0514",
+    "Spielburg Nature Reserve",
+    "Spielburg"
+   ],
+   [
+    "DE",
+    "DE-0519",
+    "Greifenberg und Waltenhofener H\u00e4nge Nature Reserve",
+    "Greifenberg und Waltenhofener H\u00e4nge"
+   ],
+   [
+    "DE",
+    "DE-0525",
+    "Rosensteinpark Recreation Park",
+    "Rosensteinpark"
+   ],
+   [
+    "DE",
+    "DE-0530",
+    "Wernauer Baggerseen Nature Reserve",
+    "Wernauer Baggerseen"
+   ],
+   [
+    "DE",
+    "DE-0534",
+    "Obere Allerniederung bei Celle National Nature Reserve",
+    "Obere Allerniederung bei Celle"
+   ],
+   [
+    "DE",
+    "DE-0537",
+    "H\u00f6ltigbaum Nature Park",
+    "H\u00f6ltigbaum"
+   ],
+   [
+    "DE",
+    "DE-0538",
+    "Balksee und Randmoore, Nordahner Holz Natura 2000",
+    "Balksee und Randmoore, Nordahner Holz"
+   ],
+   [
+    "DE",
+    "DE-0542",
+    "Barger Heide National Nature Reserve",
+    "Barger Heide"
+   ],
+   [
+    "DE",
+    "DE-0560",
+    "Eichhalde Nature Reserve",
+    "Eichhalde"
+   ],
+   [
+    "DE",
+    "DE-0561",
+    "Randecker Maar mit Zipfelbachschlucht Nature Reserve",
+    "Randecker Maar mit Zipfelbachschlucht"
+   ],
+   [
+    "DE",
+    "DE-0562",
+    "Limburg Nature Reserve",
+    "Limburg"
+   ],
+   [
+    "DE",
+    "DE-0564",
+    "Kempter Wald Natura 2000",
+    "Kempter Wald mit Oberem Rottachtal"
+   ],
+   [
+    "DE",
+    "DE-0566",
+    "Wertachschlucht Natura 2000",
+    "Wertachschlucht"
+   ],
+   [
+    "DE",
+    "DE-0567",
+    "Emsaue \u00f6stlich Warendorf Nature Reserve",
+    "NSG Emsaue"
+   ],
+   [
+    "DE",
+    "DE-0568",
+    "Schwalenberger Wald National Recreation Area",
+    "NSG Schwalenberger Wald"
+   ],
+   [
+    "DE",
+    "DE-0573",
+    "Stadtwald Bad Salzuflen Recreation Park",
+    "NSG Stadtwald"
+   ],
+   [
+    "DE",
+    "DE-0577",
+    "Taubergie\u00dfen Natura 2000",
+    "Taubergie\u00dfen"
+   ],
+   [
+    "DE",
+    "DE-0578",
+    "Kaisergarten Recreation Park",
+    "LSG-Kaisergarten"
+   ],
+   [
+    "DE",
+    "DE-0581",
+    "Hohe Wann Nature Reserve",
+    "Hohe Wann"
+   ],
+   [
+    "DE",
+    "DE-0585",
+    "Schwarzh\u00f6lzl Nature Reserve",
+    "Schwarzh\u00f6lzl"
+   ],
+   [
+    "DE",
+    "DE-0589",
+    "Mainaue bei Augsfeld Nature Recreation Reserve",
+    "Mainaue bei Augsfeld"
+   ],
+   [
+    "DE",
+    "DE-0591",
+    "Amperauen mit Leitenw\u00e4lder Nature Reserve",
+    "Amperauen mit Leitenw\u00e4lder zwischen F\u00fcrstenfeldbruck und Sch\u00f6ngeising"
+   ],
+   [
+    "DE",
+    "DE-0593",
+    "L\u00e4ngenb\u00fchl Nature Reserve",
+    "L\u00e4ngenb\u00fchl"
+   ],
+   [
+    "DE",
+    "DE-0615",
+    "Gr\u00f6nauer Heide, Gr\u00f6nauer Moor und Blankensee National Conservation Area",
+    "Gr\u00f6nauer Heide, Gr\u00f6nauer Moor und Blankensee"
+   ],
+   [
+    "DE",
+    "DE-0617",
+    "S\u00fcdlicher Priwall National Nature Reserve",
+    "S\u00fcdlicher Priwall"
+   ],
+   [
+    "DE",
+    "DE-0631",
+    "Sachsenwald National Historical Park",
+    "Sachsenwald-Gebiet"
+   ],
+   [
+    "DE",
+    "DE-0633",
+    "Speyerer Wald Natura 2000",
+    "Speyerer Wald, Nonnenwald und Bachauen zw. Geinsheim u.Hanhofen"
+   ],
+   [
+    "DE",
+    "DE-0634",
+    "Haardtrand Natura 2000",
+    "Haardtrand"
+   ],
+   [
+    "DE",
+    "DE-0635",
+    "Bellheimer Wald Natura 2000",
+    "Offenbacher Wald, Bellheimer Wald und Queichwiesen"
+   ],
+   [
+    "DE",
+    "DE-0636",
+    "Bienwald Natura 2000",
+    "Bienwald und Viehstrichwiesen"
+   ],
+   [
+    "DE",
+    "DE-0638",
+    "Naafbachtal Natura 2000",
+    "Naafbachtal"
+   ],
+   [
+    "DE",
+    "DE-0639",
+    "Wahner Heide Natura 2000",
+    "Wahner Heide"
+   ],
+   [
+    "DE",
+    "DE-0644",
+    "Heidfeld Nature Reserve",
+    "Heidfeld"
+   ],
+   [
+    "DE",
+    "DE-0645",
+    "Neukloster Forst Forest Reserve",
+    "Neukloster Forst"
+   ],
+   [
+    "DE",
+    "DE-0646",
+    "Agger Natura 2000",
+    "Agger"
+   ],
+   [
+    "DE",
+    "DE-0648",
+    "L\u00f6\u00dfnig-D\u00f6litz Recreation Park",
+    "L\u00f6\u00dfnig-D\u00f6litz"
+   ],
+   [
+    "DE",
+    "DE-0652",
+    "Rotwildpark Stuttgart Wildlife Reserve",
+    "Rotwildpark bei Stuttgart"
+   ],
+   [
+    "DE",
+    "DE-0654",
+    "Waldpark und Rei\u00dfinsel National Nature Reserve",
+    "Rei\u00dfinsel"
+   ],
+   [
+    "DE",
+    "DE-0657",
+    "Brandmoos Natura 2000",
+    "Brandmoos"
+   ],
+   [
+    "DE",
+    "DE-0658",
+    "Weiherlandschaft bei Wiesenfelden Natura 2000",
+    "Weiherlandschaft bei Wiesenfelden"
+   ],
+   [
+    "DE",
+    "DE-0659",
+    "Pfatterer Au Nature Reserve",
+    "Pfatterer Au"
+   ],
+   [
+    "DE",
+    "DE-0662",
+    "Pfrunger Ried und Seen bei Illmensee Natura 2000",
+    "Pfrunger Ried und Seen bei Illmensee"
+   ],
+   [
+    "DE",
+    "DE-0673",
+    "Rheinniederung von Philippsburg bis Mannheim Flora and Fauna Reserve",
+    "Rheinniederung von Philippsburg bis Mannheim"
+   ],
+   [
+    "DE",
+    "DE-0674",
+    "Haseldorfer Binnenelbe mit Elbvorland National Nature Reserve",
+    "Haseldorfer Binnenelbe mit Elbvorland"
+   ],
+   [
+    "DE",
+    "DE-0675",
+    "Lachte National Nature Reserve",
+    "Lachte"
+   ],
+   [
+    "DE",
+    "DE-0676",
+    "Riddagshausen National Recreation Area",
+    "Riddagshausen"
+   ],
+   [
+    "DE",
+    "DE-0680",
+    "Hochmoor am Kesselsee National Nature Reserve",
+    "Hochmoor am Kesselsee"
+   ],
+   [
+    "DE",
+    "DE-0682",
+    "Vilstal bei Marklkofen National Nature Reserve",
+    "Vilstal bei Marklkofen"
+   ],
+   [
+    "DE",
+    "DE-0683",
+    "Schwarzwassertal National Nature Reserve",
+    "Schwarzwassertal"
+   ],
+   [
+    "DE",
+    "DE-0693",
+    "Biosph\u00e4re Bliesgau Biosphere Reserve",
+    "Biosph\u00e4re Bliesgau"
+   ],
+   [
+    "DE",
+    "DE-0698",
+    "Hohenstein Nature Reserve",
+    "Hohenstein"
+   ],
+   [
+    "DE",
+    "DE-0702",
+    "Ruppersdorfer See Nature Reserve",
+    "Ruppersdorfer See"
+   ],
+   [
+    "DE",
+    "DE-0703",
+    "Bockmerholz und Gaim Nature Reserve",
+    "Bockmerholz, Gaim"
+   ],
+   [
+    "DE",
+    "DE-0704",
+    "Isarauen bei Goben Landscape Park",
+    "Isarauen bei Goben"
+   ],
+   [
+    "DE",
+    "DE-0722",
+    "Besenhorster Sandberge und Elbinsel Natura 2000",
+    "Besenhorster Sandberge und Elbinsel"
+   ],
+   [
+    "DE",
+    "DE-0729",
+    "Vogelfreist\u00e4tte Ammersee-S\u00fcdufer Bird Sanctuary",
+    "Vogelfreist\u00e4tte Ammersee-S\u00fcdufer"
+   ],
+   [
+    "DE",
+    "DE-0733",
+    "Hochsimmer Nature Reserve",
+    "Hochsimmer"
+   ],
+   [
+    "DE",
+    "DE-0734",
+    "Aachtobel Nature Reserve",
+    "Aachtobel"
+   ],
+   [
+    "DE",
+    "DE-0735",
+    "Aggenstein Nature Reserve",
+    "Aggenstein"
+   ],
+   [
+    "DE",
+    "DE-0738",
+    "Wei\u00dfenh\u00e4user Br\u00f6k Nature Reserve",
+    "Wei\u00dfenh\u00e4user Br\u00f6k"
+   ],
+   [
+    "DE",
+    "DE-0740",
+    "Th\u00fcringer Wald Nature Park",
+    "Th\u00fcringer Wald"
+   ],
+   [
+    "DE",
+    "DE-0741",
+    "Geltinger Birk Nature Reserve",
+    "Geltinger Birk"
+   ],
+   [
+    "DE",
+    "DE-0745",
+    "Malchower Aue Nature Reserve",
+    "Malchower Aue"
+   ],
+   [
+    "DE",
+    "DE-0749",
+    "Hardtwald zwischen Karlsruhe und Muggensturm National Forest",
+    "Hardtwald zwischen Karlsruhe und Muggensturm"
+   ],
+   [
+    "DE",
+    "DE-0750",
+    "Gro\u00dfes Torfmoor Natura 2000",
+    "NSG Grosses Torfmoor"
+   ],
+   [
+    "DE",
+    "DE-0751",
+    "Alt-Sternberg und Steinberg Nature Reserve",
+    "NSG Alt-Sternberg und Steinberg"
+   ],
+   [
+    "DE",
+    "DE-0752",
+    "K\u00f6nigsdorfer Forst Nature Reserve",
+    "NSG Koenigsdorfer Forst"
+   ],
+   [
+    "DE",
+    "DE-0754",
+    "\u00d6stlicher Teutoburger Wald (NSG Ochsenberg) Nature Reserve",
+    "NSG Oestlicher Teutoburger Wald (LP Bielefeld-Ost)"
+   ],
+   [
+    "DE",
+    "DE-0755",
+    "Rheinniederung von Karlsruhe bis Philippsburg Natura 2000",
+    "Rheinniederung von Karlsruhe bis Philippsburg"
+   ],
+   [
+    "DE",
+    "DE-0756",
+    "Falkenberger Krugwiesen Landscape Reserve",
+    "Falkenberger Krugwiesen"
+   ],
+   [
+    "DE",
+    "DE-0760",
+    "Storkower Kanal Nature Reserve",
+    "Storkower Kanal"
+   ],
+   [
+    "DE",
+    "DE-0761",
+    "Binnend\u00fcne Waltersberge Nature Reserve",
+    "Binnend\u00fcne Waltersberge"
+   ],
+   [
+    "DE",
+    "DE-0763",
+    "Damm\u00fchlenflie\u00dfniederung Nature Reserve",
+    "Damm\u00fchlenflie\u00dfniederung"
+   ],
+   [
+    "DE",
+    "DE-0767",
+    "K\u00f6nigsforst National Nature Reserve",
+    "K\u00f6nigsforst"
+   ],
+   [
+    "DE",
+    "DE-0768",
+    "Bodenseeufer (Bodman-Ludwigshafen) National Nature Reserve",
+    "Bodenseeufer (Bodman-Ludwigshafen)"
+   ],
+   [
+    "DE",
+    "DE-0770",
+    "Emsauen zwischen Herbrum und Vellage National Nature Reserve",
+    "Emsauen zwischen Herbrum und Vellage"
+   ],
+   [
+    "DE",
+    "DE-0774",
+    "Diersfordter Wald National Recreation Area",
+    "NSG Diersfordter Wald"
+   ],
+   [
+    "DE",
+    "DE-0776",
+    "Bergbaufolgelandschaft Geiseltal National Nature Reserve",
+    "Bergbaufolgelandschaft Geiseltal"
+   ],
+   [
+    "DE",
+    "DE-0779",
+    "Schwarzberge und Spreeniederung National Nature Reserve",
+    "Schwarzberge und Spreeniederung"
+   ],
+   [
+    "DE",
+    "DE-0780",
+    "Leineaue zwischen Gronau und Burgstemmen National Nature Reserve",
+    "Leineaue zwischen Gronau und Burgstemmen"
+   ],
+   [
+    "DE",
+    "DE-0782",
+    "Saupark National Nature Reserve",
+    "Saupark"
+   ],
+   [
+    "DE",
+    "DE-0786",
+    "Stillgew\u00e4sser bei Kluse National Nature Reserve",
+    "Stillgew\u00e4sser bei Kluse"
+   ],
+   [
+    "DE",
+    "DE-0789",
+    "Isaraltwasser- und Brennenbereich bei Mamming National Nature Reserve",
+    "Isaraltwasser- und Brennenbereich bei Mamming"
+   ],
+   [
+    "DE",
+    "DE-0790",
+    "Volkspark Sodingen National Historical Park",
+    "NSG Volkspark Sodingen."
+   ],
+   [
+    "DE",
+    "DE-0794",
+    "Unteres Warnowland National Nature Reserve",
+    "Unteres Warnowland"
+   ],
+   [
+    "DE",
+    "DE-0796",
+    "K\u00f6sterbeck National Nature Reserve",
+    "K\u00f6sterbeck"
+   ],
+   [
+    "DE",
+    "DE-0798",
+    "Ismaninger Speichersee und ehemalige Fischteiche Nature Reserve",
+    "Ismaninger Speichersee und Fischteiche"
+   ],
+   [
+    "DE",
+    "DE-0800",
+    "Deggendorfer Himmelreich Nature Reserve",
+    "Deggendorfer Himmelreich"
+   ],
+   [
+    "DE",
+    "DE-0801",
+    "Isaraltwasser bei Neutiefenweg National Nature Reserve",
+    "Isaraltwasser bei Neutiefenweg"
+   ],
+   [
+    "DE",
+    "DE-0803",
+    "Im Siesack Nature Reserve",
+    "NSG Im Siesack"
+   ],
+   [
+    "DE",
+    "DE-0804",
+    "Hungerbrunnen-, Sacken- und Lonetal Flora and Fauna Reserve",
+    "Hungerbrunnen-, Sacken- und Lonetal"
+   ],
+   [
+    "DE",
+    "DE-0812",
+    "Mallertshofer Holz Nature Reserve",
+    "Mallertshofer Holz mit Heiden"
+   ],
+   [
+    "DE",
+    "DE-0813",
+    "Steigerwald Erfurt Recreation Park",
+    "Steigerwald"
+   ],
+   [
+    "DE",
+    "DE-0814",
+    "Grainberg- Kalbenstein und Saupurzel Nature Reserve",
+    "Grainberg-Kalbenstein und Saupurzel"
+   ],
+   [
+    "DE",
+    "DE-0823",
+    "In den Eichen Nature Reserve",
+    "In den Eichen"
+   ],
+   [
+    "DE",
+    "DE-0824",
+    "Heinsener Klippen, Graupenburg Nature Reserve",
+    "Heinsener Klippen, Graupenburg"
+   ],
+   [
+    "DE",
+    "DE-0828",
+    "H\u00fclser Bruch Nature Reserve",
+    "NSG Huelser Bruch"
+   ],
+   [
+    "DE",
+    "DE-0833",
+    "Chiemsee und Ufergebiete Landscape Reserve",
+    "Chiemsee"
+   ],
+   [
+    "DE",
+    "DE-0846",
+    "Bergbaufolgelandschaft bei Hoyerswerda Natura 2000",
+    "Bergbaufolgelandschaft bei Hoyerswerda"
+   ],
+   [
+    "DE",
+    "DE-0847",
+    "Osterzgebirgst\u00e4ler Natura 2000",
+    "Osterzgebirgst\u00e4ler"
+   ],
+   [
+    "DE",
+    "DE-0848",
+    "Wei\u00dferitzt\u00e4ler Natura 2000",
+    "Wei\u00dferitzt\u00e4ler"
+   ],
+   [
+    "DE",
+    "DE-0849",
+    "T\u00e4ler in Mittelsachsen Natura 2000",
+    "T\u00e4ler in Mittelsachsen"
+   ],
+   [
+    "DE",
+    "DE-0850",
+    "Vereinigte Mulde Natura 2000",
+    "Vereinigte Mulde und Muldeauen"
+   ],
+   [
+    "DE",
+    "DE-0851",
+    "Tal der Zwickauer Mulde Natura 2000",
+    "Tal der Zwickauer Mulde"
+   ],
+   [
+    "DE",
+    "DE-0852",
+    "Linkselbische Bacht\u00e4ler Natura 2000",
+    "Linkselbische Bacht\u00e4ler"
+   ],
+   [
+    "DE",
+    "DE-0853",
+    "Elbtal zwischen M\u00fchlberg und Greudnitz Natura 2000",
+    "Elbtal zwischen M\u00fchlberg und Greudnitz"
+   ],
+   [
+    "DE",
+    "DE-0854",
+    "Wermsdorfer Teich- und Waldgebiet Natura 2000",
+    "Wermsdorfer Teich- und Waldgebiet"
+   ],
+   [
+    "DE",
+    "DE-0855",
+    "Vogtl\u00e4ndische P\u00f6hle und T\u00e4ler Natura 2000",
+    "Vogtl\u00e4ndische P\u00f6hle"
+   ],
+   [
+    "DE",
+    "DE-0856",
+    "Nei\u00dfetal Natura 2000",
+    "Nei\u00dfetal"
+   ],
+   [
+    "DE",
+    "DE-0860",
+    "Riede und Gew\u00e4sser bei Mengen und Pfullendorf Natura 2000",
+    "Riede und Gew\u00e4sser bei Mengen und Pfullendorf"
+   ],
+   [
+    "DE",
+    "DE-0861",
+    "Versmolder Bruch National Nature Reserve",
+    "NSG Versmolder Bruch"
+   ],
+   [
+    "DE",
+    "DE-0862",
+    "Feuchtwiesen H\u00f6rste National Nature Reserve",
+    "NSG Feuchtwiesen Hoerste"
+   ],
+   [
+    "DE",
+    "DE-0864",
+    "Puhlbruch - Silberkuhle Nature Reserve",
+    "NSG Puhlbruch / Silberkuhle"
+   ],
+   [
+    "DE",
+    "DE-0865",
+    "Illerdurchbruch zwischen Reicholzried und Lautrach Natura 2000",
+    "Illerdurchbruch zwischen Reicholzried und Lautrach"
+   ],
+   [
+    "DE",
+    "DE-0866",
+    "K\u00fcrnacher Wald Natura 2000",
+    "K\u00fcrnacher Wald"
+   ],
+   [
+    "DE",
+    "DE-0869",
+    "Aplerbecker Wald National Nature Reserve",
+    "NSG Aplerbecker Wald"
+   ],
+   [
+    "DE",
+    "DE-0870",
+    "Fuhsetal Nature Reserve",
+    "Fuhsetal"
+   ],
+   [
+    "DE",
+    "DE-0871",
+    "Lippeaue von Wethmar bis L\u00fcnen Nature Reserve",
+    "NSG Lippeaue von Wethmar bis L\u00fcnen"
+   ],
+   [
+    "DE",
+    "DE-0874",
+    "Grenzwiesen F\u00fcrstenau und F\u00fcrstenwalde Nature Reserve",
+    "Grenzwiesen F\u00fcrstenau und F\u00fcrstenwalde"
+   ],
+   [
+    "DE",
+    "DE-0875",
+    "Linkselbische Fels- und Waldgebiete Natura 2000",
+    "Linkselbische Fels- und Waldgebiete"
+   ],
+   [
+    "DE",
+    "DE-0876",
+    "Hohwald und Valtenberg Natura 2000",
+    "Hohwald und Valtenberg"
+   ],
+   [
+    "DE",
+    "DE-0877",
+    "Czorneboh und Hochstein Natura 2000",
+    "Czorneboh und Hochstein"
+   ],
+   [
+    "DE",
+    "DE-0878",
+    "Buchenwaldgebiet Wilthen Natura 2000",
+    "Buchenwaldgebiet Wilthen"
+   ],
+   [
+    "DE",
+    "DE-0879",
+    "Polenztal Natura 2000",
+    "Polenztal"
+   ],
+   [
+    "DE",
+    "DE-0880",
+    "Sebnitzer Wald und Kaiserberg Natura 2000",
+    "Sebnitzer Wald und Kaiserberg"
+   ],
+   [
+    "DE",
+    "DE-0881",
+    "Bosel und Elbh\u00e4nge n\u00f6rdlich Mei\u00dfen Natura 2000",
+    "Bosel und Elbh\u00e4nge n\u00f6rdlich Mei\u00dfen"
+   ],
+   [
+    "DE",
+    "DE-0882",
+    "Tafelberge und Felsreviere der linkselbischen S\u00e4chsischen Schweiz Natura 2000",
+    "Tafelberge und Felsreviere der linkselbischen S\u00e4chsischen Schweiz"
+   ],
+   [
+    "DE",
+    "DE-0883",
+    "Mittelerzgebirgische Basaltberge Natura 2000",
+    "Mittelerzgebirgische Basaltberge"
+   ],
+   [
+    "DE",
+    "DE-0888",
+    "Staffelwald bei Irsee und Lehmgrube Hammerschmiede Natura 2000",
+    "Staffelwald bei Irsee und Lehmgrube Hammerschmiede"
+   ],
+   [
+    "DE",
+    "DE-0889",
+    "Marzoller Au Flora and Fauna Reserve",
+    "Marzoller Au"
+   ],
+   [
+    "DE",
+    "DE-0890",
+    "Elbtalh\u00e4nge zwischen Loschwitz und Bonnewitz Natura 2000",
+    "Elbtalh\u00e4nge zwischen Loschwitz und Bonnewitz"
+   ],
+   [
+    "DE",
+    "DE-0891",
+    "Basalt- und Phonolithkuppen der \u00f6stlichen Oberlausitz Natura 2000",
+    "Basalt- und Phonolithkuppen der \u00f6stlichen Oberlausitz"
+   ],
+   [
+    "DE",
+    "DE-0892",
+    "Wesenitz unterhalb Buschm\u00fchle Natura 2000",
+    "Wesenitz unterhalb Buschm\u00fchle"
+   ],
+   [
+    "DE",
+    "DE-0893",
+    "P\u00f6belbachtal und Hofeh\u00fcbel Natura 2000",
+    "P\u00f6belbachtal und Hofeh\u00fcbel"
+   ],
+   [
+    "DE",
+    "DE-0894",
+    "Gottleubatal und angrenzende Laubw\u00e4lder Natura 2000",
+    "Gottleubatal und angrenzende Laubw\u00e4lder"
+   ],
+   [
+    "DE",
+    "DE-0898",
+    "Aller-Leinetal Nature Reserve",
+    "Aller-Leinetal"
+   ],
+   [
+    "DE",
+    "DE-0899",
+    "Kurler Busch Nature Reserve",
+    "NSG Kurler Busch"
+   ],
+   [
+    "DE",
+    "DE-0902",
+    "Sonnenberg bei Parchim Natura 2000",
+    "Sonnenberg bei Parchim"
+   ],
+   [
+    "DE",
+    "DE-0903",
+    "Tollensetal mit Zufl\u00fcssen Natura 2000",
+    "Tollensetal mit Zufl\u00fcssen"
+   ],
+   [
+    "DE",
+    "DE-0904",
+    "Recknitz- und Trebeltal mit Zufl\u00fcssen Natura 2000",
+    "Recknitz- und Trebeltal mit Zufl\u00fcssen"
+   ],
+   [
+    "DE",
+    "DE-0905",
+    "Paar und Ecknach Natura 2000",
+    "Paar und Ecknach"
+   ],
+   [
+    "DE",
+    "DE-0906",
+    "Im Ru\u00dfland und in der Kuhweide bei Lindheim Nature Reserve",
+    "Im Ru\u00dfland und in der Kuhweide bei Lindheim"
+   ],
+   [
+    "DE",
+    "DE-0907",
+    "Hainberg Nature Reserve",
+    "Hainberg"
+   ],
+   [
+    "DE",
+    "DE-0908",
+    "Mei\u00dfendorfer Teiche - Bannetzer Moor Nature Reserve",
+    "Mei\u00dfendorfer Teiche"
+   ],
+   [
+    "DE",
+    "DE-0909",
+    "Huvenhoopsmoor Nature Reserve",
+    "Huvenhoopsmoor"
+   ],
+   [
+    "DE",
+    "DE-0910",
+    "Ochsenweide, Schafhauser Wald und Feuchtwiesen bei Esens Nature Reserve",
+    "Ochsenweide, Schafhauser Wald und Feuchtwiesen bei Esens"
+   ],
+   [
+    "DE",
+    "DE-0913",
+    "Greutterwald Nature Reserve",
+    "Greutterwald"
+   ],
+   [
+    "DE",
+    "DE-0914",
+    "Weidach- und Zettachwald National Wildlife Area",
+    "Weidach- und Zettachwald"
+   ],
+   [
+    "DE",
+    "DE-0917",
+    "Limbacher und Spieser Wald Nature Reserve",
+    "Naturschutzgebiet \\\"Limbacher und Spieser Wald\\\" (N 6609-301)"
+   ],
+   [
+    "DE",
+    "DE-0919",
+    "Woogbachtal Nature Reserve",
+    "Naturschutzgebiet \\\"Woogbachtal\\\" (N 6708-305)"
+   ],
+   [
+    "DE",
+    "DE-0920",
+    "Nied Nature Reserve",
+    "Naturschutzgebiet \\\"Nied\\\" (N 6605-301)"
+   ],
+   [
+    "DE",
+    "DE-0922",
+    "Taubental Nature Reserve",
+    "Taubental (Biosph\u00e4ren-Kernzone)"
+   ],
+   [
+    "DE",
+    "DE-0925",
+    "Blau und Kleine Lauter Natura 2000",
+    "Blau und Kleine Lauter"
+   ],
+   [
+    "DE",
+    "DE-0940",
+    "Feuchtgebiete bei Waldburg und Ki\u00dflegg Flora and Fauna Reserve",
+    "Feuchtgebiete bei Waldburg und Ki\u00dflegg"
+   ],
+   [
+    "DE",
+    "DE-0946",
+    "Steinheimer Becken Flora and Fauna Reserve",
+    "Steinheimer Becken"
+   ],
+   [
+    "DE",
+    "DE-0957",
+    "Hahnheide Nature Reserve",
+    "Hahnheide"
+   ],
+   [
+    "DE",
+    "DE-0960",
+    "Rheinniederung Wittenweier bis Kehl Flora and Fauna Reserve",
+    "Rheinniederung von Wittenweier bis Kehl"
+   ],
+   [
+    "DE",
+    "DE-0961",
+    "Schutter und Unditz Flora and Fauna Reserve",
+    "Untere Schutter und Unditz"
+   ],
+   [
+    "DE",
+    "DE-0970",
+    "Conventer Niederung Flora and Fauna Reserve",
+    "Conventer Niederung"
+   ],
+   [
+    "DE",
+    "DE-0975",
+    "Hochriesgebiet und Hangw\u00e4lder im Aschauer Tal Flora and Fauna Reserve",
+    "Hochriesgebiet und Hangw\u00e4lder im Aschauer Tal"
+   ],
+   [
+    "DE",
+    "DE-0976",
+    "Flyschberge bei Bad Wiessee Flora and Fauna Reserve",
+    "Flyschberge bei Bad Wiessee"
+   ],
+   [
+    "DE",
+    "DE-0977",
+    "Rottachberg und Rottachschlucht Flora and Fauna Reserve",
+    "Rottachberg und Rottachschlucht"
+   ],
+   [
+    "DE",
+    "DE-0978",
+    "Falkenstein, Alatsee, Faulenbacher- und Lechtal Flora and Fauna Reserve",
+    "Falkenstein, Alatsee, Faulenbacher- und Lechtal"
+   ],
+   [
+    "DE",
+    "DE-0979",
+    "Oberes Isartal Flora and Fauna Reserve",
+    "Oberes Isartal"
+   ],
+   [
+    "DE",
+    "DE-0980",
+    "Isarauen von Unterf\u00f6hring bis Landshut Flora and Fauna Reserve",
+    "Isarauen von Unterf\u00f6hring bis Landshut"
+   ],
+   [
+    "DE",
+    "DE-0981",
+    "Kesselberggebiet Flora and Fauna Reserve",
+    "Kesselberggebiet"
+   ],
+   [
+    "DE",
+    "DE-0982",
+    "Schlappolt Flora and Fauna Reserve",
+    "Schlappolt"
+   ],
+   [
+    "DE",
+    "DE-0983",
+    "Mittenwalder Buckelwiesen Flora and Fauna Reserve",
+    "Mittenwalder Buckelwiesen"
+   ],
+   [
+    "DE",
+    "DE-0984",
+    "Innauen und Leitenw\u00e4lder Flora and Fauna Reserve",
+    "Innauen und Leitenw\u00e4lder"
+   ],
+   [
+    "DE",
+    "DE-0985",
+    "Leitzachtal Flora and Fauna Reserve",
+    "Leitzachtal"
+   ],
+   [
+    "DE",
+    "DE-0986",
+    "Mangfalltal Flora and Fauna Reserve",
+    "Mangfalltal"
+   ],
+   [
+    "DE",
+    "DE-0987",
+    "Nagelfluhkette Hochgrat-Steineberg Flora and Fauna Reserve",
+    "Nagelfluhkette Hochgrat-Steineberg"
+   ],
+   [
+    "DE",
+    "DE-0989",
+    "Moore bei Sittensen Bird Sanctuary",
+    "Moore bei Sittensen"
+   ],
+   [
+    "DE",
+    "DE-0994",
+    "H\u00f6ftland Bockholmwik und angrenzende Steilk\u00fcsten Nature Reserve",
+    "H\u00f6ftland Bockholmwik und angrenzende Steilk\u00fcsten"
+   ],
+   [
+    "DE",
+    "DE-0995",
+    "Crailsheimer Hart und Reusenberg Flora and Fauna Reserve",
+    "Crailsheimer Hart und Reusenberg"
+   ],
+   [
+    "DE",
+    "DE-0997",
+    "Rhein-Fischschutzzonen zwischen Emmerich und Bad Honnef Flora and Fauna Reserve",
+    "Rhein-Fischschutzzonen zwischen Emmerich und Bad Honnef"
+   ],
+   [
+    "DE",
+    "DE-0998",
+    "Ilvericher Altrheinschlinge Flora and Fauna Reserve",
+    "Ilvericher Altrheinschlinge"
+   ],
+   [
+    "DE",
+    "DE-0999",
+    "Latumer Bruch mit Buersbach, Stadtgr\u00e4ben und Wasserwerk Flora and Fauna Reserve",
+    "Latumer Bruch mit Buersbach, Stadtgr\u00e4ben und Wasserwerk"
+   ],
+   [
+    "DE",
+    "DE-1000",
+    "Oldenburger Bruch Nature Reserve",
+    "Oldenburger Bruch"
+   ],
+   [
+    "DE",
+    "DE-1003",
+    "Berchtesgadener Land Biosphere Reserve",
+    "Berchtesgadener Land"
+   ],
+   [
+    "DE",
+    "DE-1004",
+    "Eybtal mit Teilen des L\u00e4ngen- und Rohrachtales National Nature Reserve",
+    "Eybtal mit Teilen des L\u00e4ngen- und Rohrachtales"
+   ],
+   [
+    "DE",
+    "DE-1011",
+    "Erpetal Provincial Nature Reserve",
+    "Erpetal"
+   ],
+   [
+    "DE",
+    "DE-1012",
+    "Brexbach- und Saynbachtal Flora and Fauna Reserve",
+    "Brexbach- und Saynbachtal"
+   ],
+   [
+    "DE",
+    "DE-1022",
+    "Ammersbek-Niederung Nature Reserve",
+    "Ammersbek-Niederung"
+   ],
+   [
+    "DE",
+    "DE-1026",
+    "Vorland der mittleren Schw\u00e4bischen Alb Bird Sanctuary",
+    "Vorland der mittleren Schw\u00e4bischen Alb"
+   ],
+   [
+    "DE",
+    "DE-1029",
+    "Vilstal zwischen Vilsbiburg und Marklkofen Flora and Fauna Reserve",
+    "Vilstal zwischen Vilsbiburg und Marklkofen"
+   ],
+   [
+    "DE",
+    "DE-1030",
+    "Nymphenburger Park mit Allee und Kapuzinerh\u00f6lzl Flora and Fauna Reserve",
+    "Nymphenburger Park mit Allee und Kapuzinerh\u00f6lzl"
+   ],
+   [
+    "DE",
+    "DE-1031",
+    "Altbachgebiet s\u00fcdwestlich Triftern Flora and Fauna Reserve",
+    "Altbachgebiet s\u00fcdwestlich Triftern"
+   ],
+   [
+    "DE",
+    "DE-1032",
+    "Woja- und Haidleite Flora and Fauna Reserve",
+    "Woja- und Haidleite"
+   ],
+   [
+    "DE",
+    "DE-1033",
+    "Waldnaabtal zwischen Tirschenreuth und Windisch-Eschenbach Flora and Fauna Reserve",
+    "Waldnaabtal zwischen Tirschenreuth und Windisch-Eschenbach"
+   ],
+   [
+    "DE",
+    "DE-1034",
+    "Trockenh\u00e4nge am Donaurandbruch Flora and Fauna Reserve",
+    "Trockenh\u00e4nge am Donaurandbruch"
+   ],
+   [
+    "DE",
+    "DE-1037",
+    "Beuche - Wethautal Natura 2000",
+    "Beuche - Wethautal"
+   ],
+   [
+    "DE",
+    "DE-1039",
+    "Hochstein Nature Reserve",
+    "Hochstein"
+   ],
+   [
+    "DE",
+    "DE-1040",
+    "M\u00fcggelspree-M\u00fcggelsee Flora and Fauna Reserve",
+    "M\u00fcggelspree-M\u00fcggelsee"
+   ],
+   [
+    "DE",
+    "DE-1041",
+    "Holter Wald Nature Reserve",
+    "NSG Holter Wald"
+   ],
+   [
+    "DE",
+    "DE-1042",
+    "Schaichtal Nature Reserve",
+    "Schaichtal"
+   ],
+   [
+    "DE",
+    "DE-1043",
+    "Mittleres Altm\u00fchltal mit Wellheimer Trockental und Schambachtal Flora and Fauna Reserve",
+    "Mittleres Altm\u00fchltal mit Wellheimer Trockental und Schambachtal"
+   ],
+   [
+    "DE",
+    "DE-1048",
+    "K\u00f6nigsberg Flora and Fauna Reserve",
+    "K\u00f6nigsberg"
+   ],
+   [
+    "DE",
+    "DE-1049",
+    "Nettetal Flora and Fauna Reserve",
+    "Nettetal"
+   ],
+   [
+    "DE",
+    "DE-1050",
+    "Ahrgebirge Bird Sanctuary",
+    "Ahrgebirge"
+   ],
+   [
+    "DE",
+    "DE-1051",
+    "Irtenberger und Guttenberger Wald Flora and Fauna Reserve",
+    "Irtenberger und Guttenberger Wald"
+   ],
+   [
+    "DE",
+    "DE-1052",
+    "Laubw\u00e4lder um W\u00fcrzburg Flora and Fauna Reserve",
+    "Laubw\u00e4lder um W\u00fcrzburg"
+   ],
+   [
+    "DE",
+    "DE-1053",
+    "Gramschatzer Wald Flora and Fauna Reserve",
+    "Gramschatzer Wald"
+   ],
+   [
+    "DE",
+    "DE-1054",
+    "Altm\u00fchltal mit Brunst-Schwaigau und Altm\u00fchlsee Bird Sanctuary",
+    "Altm\u00fchltal mit Brunst-Schwaigau und Altm\u00fchlsee"
+   ],
+   [
+    "DE",
+    "DE-1055",
+    "W\u00f6rnitztal Flora and Fauna Reserve",
+    "W\u00f6rnitztal"
+   ],
+   [
+    "DE",
+    "DE-1056",
+    "Lechauen zwischen K\u00f6nigsbrunn und Augsburg Flora and Fauna Reserve",
+    "Lechauen zwischen K\u00f6nigsbrunn und Augsburg"
+   ],
+   [
+    "DE",
+    "DE-1057",
+    "Lech zwischen Landsberg und K\u00f6nigsbrunn mit Auen und Leite Flora and Fauna Reserve",
+    "Lech zwischen Landsberg und K\u00f6nigsbrunn mit Auen und Leite"
+   ],
+   [
+    "DE",
+    "DE-1058",
+    "Lech zwischen Hirschau und Landsberg mit Auen und Leiten Flora and Fauna Reserve",
+    "Lech zwischen Hirschau und Landsberg mit Auen und Leiten"
+   ],
+   [
+    "DE",
+    "DE-1059",
+    "Ammer vom Alpenrand b. zum NSG 'Vogelfreist\u00e4tte Ammersee-S\u00fcdufer' Flora and Fauna Reserve",
+    "Ammer vom Alpenrand b. zum NSG 'Vogelfreist\u00e4tte Ammersee-S\u00fcdufer'"
+   ],
+   [
+    "DE",
+    "DE-1060",
+    "Ammerseegebiet Bird Sanctuary",
+    "Ammerseegebiet"
+   ],
+   [
+    "DE",
+    "DE-1061",
+    "Ammerseeufer und Leitenw\u00e4lder Flora and Fauna Reserve",
+    "Ammerseeufer und Leitenw\u00e4lder"
+   ],
+   [
+    "DE",
+    "DE-1062",
+    "Ampertal Flora and Fauna Reserve",
+    "Ampertal"
+   ],
+   [
+    "DE",
+    "DE-1066",
+    "Moore und W\u00e4lder der Endmor\u00e4ne bei Starnberg Flora and Fauna Reserve",
+    "Moore und W\u00e4lder der Endmor\u00e4ne bei Starnberg"
+   ],
+   [
+    "DE",
+    "DE-1067",
+    "Mor\u00e4nenlandschaft zwischen Ammersee und Starnberger See Flora and Fauna Reserve",
+    "Mor\u00e4nenlandschaft zwischen Ammersee und Starnberger See"
+   ],
+   [
+    "DE",
+    "DE-1068",
+    "Bayerisches Bodenseeufer Flora and Fauna Reserve",
+    "Bayerisches Bodenseeufer"
+   ],
+   [
+    "DE",
+    "DE-1069",
+    "Obere Argen und Seitent\u00e4ler Flora and Fauna Reserve",
+    "Obere Argen und Seitent\u00e4ler"
+   ],
+   [
+    "DE",
+    "DE-1070",
+    "Untere Argen und Seitent\u00e4ler Flora and Fauna Reserve",
+    "Untere Argen und Seitent\u00e4ler"
+   ],
+   [
+    "DE",
+    "DE-1071",
+    "\u00dcberlinger See des Bodensees Bird Sanctuary",
+    "\u00dcberlinger See des Bodensees"
+   ],
+   [
+    "DE",
+    "DE-1072",
+    "Bodenseeufer westlich Friedrichshafen Flora and Fauna Reserve",
+    "Bodenseeufer westlich Friedrichshafen"
+   ],
+   [
+    "DE",
+    "DE-1073",
+    "Bodanr\u00fcck und westl. Bodensee Flora and Fauna Reserve",
+    "Bodanr\u00fcck und westl. Bodensee"
+   ],
+   [
+    "DE",
+    "DE-1074",
+    "Schiener Berg und westlicher Untersee Flora and Fauna Reserve",
+    "Schiener Berg und westlicher Untersee"
+   ],
+   [
+    "DE",
+    "DE-1075",
+    "Leiten der Unteren Isar Flora and Fauna Reserve",
+    "Leiten der Unteren Isar"
+   ],
+   [
+    "DE",
+    "DE-1076",
+    "Unteres Isartal zwischen Niederviehbach und Landau Flora and Fauna Reserve",
+    "Unteres Isartal zwischen Niederviehbach und Landau"
+   ],
+   [
+    "DE",
+    "DE-1077",
+    "Untere Isar zwischen Landau und Plattling Flora and Fauna Reserve",
+    "Untere Isar zwischen Landau und Plattling"
+   ],
+   [
+    "DE",
+    "DE-1080",
+    "Krummh\u00f6rn Bird Sanctuary",
+    "Krummh\u00f6rn"
+   ],
+   [
+    "DE",
+    "DE-1081",
+    "Wangerland Bird Sanctuary",
+    "Wangerland"
+   ],
+   [
+    "DE",
+    "DE-1082",
+    "Rheiderland Bird Sanctuary",
+    "Rheiderland"
+   ],
+   [
+    "DE",
+    "DE-1083",
+    "Ostfriesische Meere Bird Sanctuary",
+    "Ostfriesische Meere"
+   ],
+   [
+    "DE",
+    "DE-1084",
+    "Marschen am Jadebusen Bird Sanctuary",
+    "Marschen am  Jadebusen"
+   ],
+   [
+    "DE",
+    "DE-1085",
+    "Butjadingen Bird Sanctuary",
+    "Butjadingen"
+   ],
+   [
+    "DE",
+    "DE-1086",
+    "Unterems und Au\u00dfenems Flora and Fauna Reserve",
+    "Unterems und Au\u00dfenems"
+   ],
+   [
+    "DE",
+    "DE-1090",
+    "Flusslandschaft Elbe - Brandenburg Biosphere Reserve",
+    "Flusslandschaft Elbe"
+   ],
+   [
+    "DE",
+    "DE-1091",
+    "B\u00f6rnicke Flora and Fauna Reserve",
+    "B\u00f6rnicke"
+   ],
+   [
+    "DE",
+    "DE-1094",
+    "\u00d6stlicher Neuburger Wald und Innleiten bis Vornbach Flora and Fauna Reserve",
+    "\u00d6stlicher Neuburger Wald und Innleiten bis Vornbach"
+   ],
+   [
+    "DE",
+    "DE-1095",
+    "Donauleiten von Passau bis Jochenstein Flora and Fauna Reserve",
+    "Donauleiten von Passau bis Jochenstein"
+   ],
+   [
+    "DE",
+    "DE-1096",
+    "Laufenbachtal Flora and Fauna Reserve",
+    "Laufenbachtal"
+   ],
+   [
+    "DE",
+    "DE-1097",
+    "Moore im Bereich Sonnen-Wegscheid mit Abschnitten des Rannatals Flora and Fauna Reserve",
+    "Moore im Bereich Sonnen-Wegscheid mit Abschnitten des Rannatals"
+   ],
+   [
+    "DE",
+    "DE-1098",
+    "Erlau Flora and Fauna Reserve",
+    "Erlau"
+   ],
+   [
+    "DE",
+    "DE-1099",
+    "Unteres Vilstal Flora and Fauna Reserve",
+    "Unteres Vilstal"
+   ],
+   [
+    "DE",
+    "DE-1100",
+    "Tal der Gro\u00dfen Laaber zwischen Sandsbach und Unterdeggenbach Flora and Fauna Reserve",
+    "Tal der Gro\u00dfen Laaber zwischen Sandsbach und Unterdeggenbach"
+   ],
+   [
+    "DE",
+    "DE-1101",
+    "Sallingbachtal Flora and Fauna Reserve",
+    "Sallingbachtal"
+   ],
+   [
+    "DE",
+    "DE-1102",
+    "Loisach-Kochelsee-Moore Bird Sanctuary",
+    "Loisach-Kochelsee-Moore"
+   ],
+   [
+    "DE",
+    "DE-1103",
+    "Moore um Penzberg Flora and Fauna Reserve",
+    "Moore um Penzberg"
+   ],
+   [
+    "DE",
+    "DE-1104",
+    "Moore s\u00fcdlich K\u00f6nigsdorf, Rothenrainer Moore und K\u00f6nigsdorfer Alm Flora and Fauna Reserve",
+    "Moore s\u00fcdlich K\u00f6nigsdorf, Rothenrainer Moore und K\u00f6nigsdorfer Alm"
+   ],
+   [
+    "DE",
+    "DE-1105",
+    "Moore zwischen Dietramszell und Deining Flora and Fauna Reserve",
+    "Moore zwischen Dietramszell und Deining"
+   ],
+   [
+    "DE",
+    "DE-1106",
+    "Gennachhauser Moor Flora and Fauna Reserve",
+    "Gennachhauser Moor"
+   ],
+   [
+    "DE",
+    "DE-1107",
+    "Ilz-Talsystem Flora and Fauna Reserve",
+    "Ilz-Talsystem"
+   ],
+   [
+    "DE",
+    "DE-1108",
+    "Donau-Auen zwischen Thalfingen und H\u00f6chst\u00e4dt Flora and Fauna Reserve",
+    "Donau-Auen zwischen Thalfingen und H\u00f6chst\u00e4dt"
+   ],
+   [
+    "DE",
+    "DE-1110",
+    "Schw\u00e4bisches Donaumoos Bird Sanctuary",
+    "Schw\u00e4bisches Donaumoos"
+   ],
+   [
+    "DE",
+    "DE-1111",
+    "Untere Illerauen Flora and Fauna Reserve",
+    "Untere Illerauen"
+   ],
+   [
+    "DE",
+    "DE-1112",
+    "Obenhausener Ried und Muschelb\u00e4che im Rothtal Flora and Fauna Reserve",
+    "Obenhausener Ried und Muschelb\u00e4che im Rothtal"
+   ],
+   [
+    "DE",
+    "DE-1113",
+    "Donau zwischen Munderkingen und Ulm und n\u00f6rdliche Iller Flora and Fauna Reserve",
+    "Donau zwischen Munderkingen und Ulm und n\u00f6rdliche Iller"
+   ],
+   [
+    "DE",
+    "DE-1114",
+    "Rot, Bellamonter Rottum und D\u00fcrnach Flora and Fauna Reserve",
+    "Rot,  Bellamonter Rottum und D\u00fcrnach"
+   ],
+   [
+    "DE",
+    "DE-1115",
+    "Schussenbecken mit Tobelw\u00e4ldern s\u00fcdlich Blitzenreute Flora and Fauna Reserve",
+    "Schussenbecken mit Tobelw\u00e4ldern s\u00fcdlich Blitzenreute"
+   ],
+   [
+    "DE",
+    "DE-1116",
+    "Blitzenreuter Seenplatte mit Altshauser Weiher Bird Sanctuary",
+    "Blitzenreuter Seenplatte mit Altshauser Weiher"
+   ],
+   [
+    "DE",
+    "DE-1117",
+    "Feuchtgebiete um Altshausen Flora and Fauna Reserve",
+    "Feuchtgebiete um Altshausen"
+   ],
+   [
+    "DE",
+    "DE-1118",
+    "Altdorfer Wald Flora and Fauna Reserve",
+    "Altdorfer Wald"
+   ],
+   [
+    "DE",
+    "DE-1119",
+    "Isental mit Nebenb\u00e4chen Flora and Fauna Reserve",
+    "Isental mit Nebenb\u00e4chen"
+   ],
+   [
+    "DE",
+    "DE-1120",
+    "Strogn mit Hammerbach und K\u00f6llinger B\u00e4chlein Flora and Fauna Reserve",
+    "Strogn mit Hammerbach und K\u00f6llinger B\u00e4chlein"
+   ],
+   [
+    "DE",
+    "DE-1121",
+    "Unterlauf der Rott von Bayerbach bis zur M\u00fcndung Flora and Fauna Reserve",
+    "Unterlauf der Rott von Bayerbach bis zur M\u00fcndung"
+   ],
+   [
+    "DE",
+    "DE-1122",
+    "K\u00fcstenbereiche Flensburger F\u00f6rde von Flensburg bis Geltinger Birk Flora and Fauna Reserve",
+    "K\u00fcstenbereiche Flensburger F\u00f6rde von Flensburg bis Geltinger Birk"
+   ],
+   [
+    "DE",
+    "DE-1123",
+    "Treene Winderatter See bis Friedrichstadt und Bollingstedter Au Flora and Fauna Reserve",
+    "Treene Winderatter See bis Friedrichstadt und\u00a0Bollingstedter\u00a0Au"
+   ],
+   [
+    "DE",
+    "DE-1124",
+    "S\u00fcderl\u00fcgumer Binnend\u00fcnen Flora and Fauna Reserve",
+    "S\u00fcderl\u00fcgumer Binnend\u00fcnen"
+   ],
+   [
+    "DE",
+    "DE-1125",
+    "Bagno mit Steinfurter Aa Flora and Fauna Reserve",
+    "Bagno mit Steinfurter Aa"
+   ],
+   [
+    "DE",
+    "DE-1127",
+    "Emsdettener Venn und Wiesen am Max-Clemens-Kanal Flora and Fauna Reserve",
+    "Emsdettener Venn und Wiesen am Max-Clemens-Kanal"
+   ],
+   [
+    "DE",
+    "DE-1128",
+    "Moosheide Nature Reserve",
+    "NSG Moosheide <PB>"
+   ],
+   [
+    "DE",
+    "DE-1129",
+    "Schweinfurter Becken und n\u00f6rdliches Steigerwaldvorland Bird Sanctuary",
+    "Schweinfurter Becken und n\u00f6rdliches Steigerwaldvorland"
+   ],
+   [
+    "DE",
+    "DE-1130",
+    "Forst Dianenslust und Stadtwald Schweinfurt Flora and Fauna Reserve",
+    "Forst Dianenslust und Stadtwald Schweinfurt"
+   ],
+   [
+    "DE",
+    "DE-1131",
+    "Maintal zwischen Schweinfurt und Dettelbach Bird Sanctuary",
+    "Maintal zwischen Schweinfurt und Dettelbach"
+   ],
+   [
+    "DE",
+    "DE-1134",
+    "Heidefl\u00e4chen und Lohw\u00e4lder n\u00f6rdlich von M\u00fcnchen Flora and Fauna Reserve",
+    "Heidefl\u00e4chen und Lohw\u00e4lder n\u00f6rdlich von M\u00fcnchen"
+   ],
+   [
+    "DE",
+    "DE-1135",
+    "Allacher Forst und Angerlohe Flora and Fauna Reserve",
+    "Allacher Forst und Angerlohe"
+   ],
+   [
+    "DE",
+    "DE-1136",
+    "Haspelmoor Flora and Fauna Reserve",
+    "Haspelmoor"
+   ],
+   [
+    "DE",
+    "DE-1137",
+    "Feilenmoos mit N\u00f6ttinger Viehweide Flora and Fauna Reserve",
+    "Feilenmoos mit N\u00f6ttinger Viehweide"
+   ],
+   [
+    "DE",
+    "DE-1138",
+    "Forstmoos Flora and Fauna Reserve",
+    "Forstmoos"
+   ],
+   [
+    "DE",
+    "DE-1139",
+    "Trockenh\u00e4nge bei Regensburg Flora and Fauna Reserve",
+    "Trockenh\u00e4nge bei Regensburg"
+   ],
+   [
+    "DE",
+    "DE-1140",
+    "Flanken des Naabdurchbruchtals zwischen Kallm\u00fcnz und Mariaort Flora and Fauna Reserve",
+    "Flanken des Naabdurchbruchtals zwischen Kallm\u00fcnz und Mariaort"
+   ],
+   [
+    "DE",
+    "DE-1141",
+    "Trockenh\u00e4nge bei Kallm\u00fcnz Flora and Fauna Reserve",
+    "Trockenh\u00e4nge bei Kallm\u00fcnz"
+   ],
+   [
+    "DE",
+    "DE-1142",
+    "M\u00fcnchshofener Berg Flora and Fauna Reserve",
+    "M\u00fcnchshofener Berg"
+   ],
+   [
+    "DE",
+    "DE-1144",
+    "Bacht\u00e4ler im Falkensteiner Vorwald Flora and Fauna Reserve",
+    "Bacht\u00e4ler im Falkensteiner Vorwald"
+   ],
+   [
+    "DE",
+    "DE-1146",
+    "Schwarze Laaber Flora and Fauna Reserve",
+    "Schwarze Laaber"
+   ],
+   [
+    "DE",
+    "DE-1147",
+    "Binnend\u00fcnen und Albtrauf bei Neumarkt Flora and Fauna Reserve",
+    "Binnend\u00fcnen und Albtrauf bei Neumarkt"
+   ],
+   [
+    "DE",
+    "DE-1148",
+    "Frauenforst \u00f6stlich Ihrlerstein und westlich D\u00fcrnstetten Flora and Fauna Reserve",
+    "Frauenforst \u00f6stlich Ihrlerstein und westlich D\u00fcrnstetten"
+   ],
+   [
+    "DE",
+    "DE-1149",
+    "Kaltenkirchener Heide Flora and Fauna Reserve",
+    "Kaltenkirchener Heide"
+   ],
+   [
+    "DE",
+    "DE-1150",
+    "Oberlauf der Ohe Nature Reserve",
+    "Oberlauf der Ohe"
+   ],
+   [
+    "DE",
+    "DE-1154",
+    "Hardtwald Natura 2000",
+    "Hardtwald n\u00f6rdlich von Karlsruhe"
+   ],
+   [
+    "DE",
+    "DE-1155",
+    "Schluchten und Moore am oberen Furlbach Nature Reserve",
+    "NSG Schluchten und Moore am oberen Furlbach"
+   ],
+   [
+    "DE",
+    "DE-1156",
+    "Rietberger Emsniederung mit Steinhorster Becken Bird Sanctuary",
+    "VSG 'Rietberger Emsniederung mit Steinhorster Becken'"
+   ],
+   [
+    "DE",
+    "DE-1157",
+    "Muschelkalkzug von den Langen Bergen bis nach Wei\u00dfenbrunn v. Wald Flora and Fauna Reserve",
+    "Muschelkalkzug von den Langen Bergen bis nach Wei\u00dfenbrunn v. Wald"
+   ],
+   [
+    "DE",
+    "DE-1158",
+    "Veste Coburg, Bausenberger und Callenberger Forst Flora and Fauna Reserve",
+    "Veste Coburg, Bausenberger und Callenberger Forst"
+   ],
+   [
+    "DE",
+    "DE-1159",
+    "T\u00e4ler von Oberem Main, Unterer Rodach und Steinach Bird Sanctuary",
+    "T\u00e4ler von Oberem Main, Unterer Rodach und Steinach"
+   ],
+   [
+    "DE",
+    "DE-1160",
+    "Itz-, Rodach- und Baunachaue Bird Sanctuary",
+    "Itz-, Rodach- und Baunachaue"
+   ],
+   [
+    "DE",
+    "DE-1162",
+    "Muschelkalkh\u00e4nge nord\u00f6stlich Bayreuth Flora and Fauna Reserve",
+    "Muschelkalkh\u00e4nge nord\u00f6stlich Bayreuth"
+   ],
+   [
+    "DE",
+    "DE-1163",
+    "Mainaue und Muschelkalkh\u00e4nge zwischen Kauerndorf und Trebgast Flora and Fauna Reserve",
+    "Mainaue und Muschelkalkh\u00e4nge zwischen Kauerndorf und Trebgast"
+   ],
+   [
+    "DE",
+    "DE-1164",
+    "Muschelkalkh\u00e4nge der westlichen Saaleplatte Bird Sanctuary",
+    "Muschelkalkh\u00e4nge der westlichen Saaleplatte"
+   ],
+   [
+    "DE",
+    "DE-1165",
+    "Ackerh\u00fcgelland n\u00f6rdlich Weimar mit Ettersberg Bird Sanctuary",
+    "Ackerh\u00fcgelland n\u00f6rdlich Weimar mit Ettersberg"
+   ],
+   [
+    "DE",
+    "DE-1166",
+    "Kernberge - W\u00f6llmisse Flora and Fauna Reserve",
+    "Kernberge - W\u00f6llmisse"
+   ],
+   [
+    "DE",
+    "DE-1167",
+    "Gro\u00dfer Gleisberg - Jenzig Flora and Fauna Reserve",
+    "Gro\u00dfer Gleisberg - Jenzig"
+   ],
+   [
+    "DE",
+    "DE-1168",
+    "Tautenburger Forst - Hohe Lehde - Gleistalh\u00e4nge Flora and Fauna Reserve",
+    "Tautenburger Forst - Hohe Lehde - Gleistalh\u00e4nge"
+   ],
+   [
+    "DE",
+    "DE-1169",
+    "N\u00f6rdliches Erdinger Moos Bird Sanctuary",
+    "N\u00f6rdliches Erdinger Moos"
+   ],
+   [
+    "DE",
+    "DE-1170",
+    "Moselh\u00e4nge und Nebent\u00e4ler der unteren Mosel Flora and Fauna Reserve",
+    "Moselh\u00e4nge und Nebent\u00e4ler der unteren Mosel"
+   ],
+   [
+    "DE",
+    "DE-1171",
+    "W\u00e4lder zwischen Wittlich und Cochem Bird Sanctuary",
+    "W\u00e4lder zwischen Wittlich und Cochem"
+   ],
+   [
+    "DE",
+    "DE-1174",
+    "Ackerh\u00fcgelland westlich Erfurt mit Fahnerscher H\u00f6he Bird Sanctuary",
+    "Ackerh\u00fcgelland westlich Erfurt mit Fahnerscher H\u00f6he"
+   ],
+   [
+    "DE",
+    "DE-1175",
+    "Waldecker Schlo\u00dfgrund - Langes Tal Flora and Fauna Reserve",
+    "Waldecker Schlo\u00dfgrund - Langes Tal"
+   ],
+   [
+    "DE",
+    "DE-1176",
+    "An den Ziegenb\u00f6cken Flora and Fauna Reserve",
+    "An den Ziegenb\u00f6cken"
+   ],
+   [
+    "DE",
+    "DE-1177",
+    "Am Schwertstein - Himmelsgrund Flora and Fauna Reserve",
+    "Am Schwertstein - Himmelsgrund"
+   ],
+   [
+    "DE",
+    "DE-1178",
+    "Zeitzgrund - Teufelstal - Hermsdorfer Moore Flora and Fauna Reserve",
+    "Zeitzgrund - Teufelstal - Hermsdorfer Moore"
+   ],
+   [
+    "DE",
+    "DE-1179",
+    "Hainberg - Weinberg Flora and Fauna Reserve",
+    "Hainberg - Weinberg"
+   ],
+   [
+    "DE",
+    "DE-1181",
+    "P\u00f6llwitzer Wald Bird Sanctuary",
+    "P\u00f6llwitzer Wald"
+   ],
+   [
+    "DE",
+    "DE-1182",
+    "Saale-Elster-Aue s\u00fcdlich Halle Bird Sanctuary",
+    "Saale-Elster-Aue s\u00fcdlich Halle"
+   ],
+   [
+    "DE",
+    "DE-1187",
+    "Mittlerer D\u00fcn Flora and Fauna Reserve",
+    "Mittlerer D\u00fcn"
+   ],
+   [
+    "DE",
+    "DE-1188",
+    "Donaumoosb\u00e4che, Zucheringer W\u00f6rth und Brucker Forst Flora and Fauna Reserve",
+    "Donaumoosb\u00e4che, Zucheringer W\u00f6rth und Brucker Forst"
+   ],
+   [
+    "DE",
+    "DE-1189",
+    "Donauauen mit Gerolfinger Eichenwald Flora and Fauna Reserve",
+    "Donauauen mit Gerolfinger Eichenwald"
+   ],
+   [
+    "DE",
+    "DE-1190",
+    "Lechauen n\u00f6rdlich Augsburg Flora and Fauna Reserve",
+    "Lechauen n\u00f6rdlich Augsburg"
+   ],
+   [
+    "DE",
+    "DE-1191",
+    "Muschelkalkgebiet s\u00fcd\u00f6stlich Erfurt Bird Sanctuary",
+    "Muschelkalkgebiet s\u00fcd\u00f6stlich Erfurt"
+   ],
+   [
+    "DE",
+    "DE-1193",
+    "Aschendorfer Obermoor / Wildes Moor Nature Reserve",
+    "Aschendorfer Obermoor / Wildes Moor"
+   ],
+   [
+    "DE",
+    "DE-1194",
+    "Theikenmeer Nature Reserve",
+    "Theikenmeer"
+   ],
+   [
+    "DE",
+    "DE-1195",
+    "Melmmoor/Kuhdammoor Nature Reserve",
+    "Melmmoor/ Kuhdammoor"
+   ],
+   [
+    "DE",
+    "DE-1196",
+    "Ferbitzer Bruch Nature Reserve",
+    "Ferbitzer Bruch"
+   ],
+   [
+    "DE",
+    "DE-1202",
+    "Fort Hahneberg Historic Site",
+    "Fort Hahneberg"
+   ],
+   [
+    "DE",
+    "DE-1206",
+    "Eper-Graeser Venn Nature Reserve",
+    "NSG Eper-Graeser Venn"
+   ],
+   [
+    "DE",
+    "DE-1213",
+    "Talsperre Th\u00fclsfeld Nature Reserve",
+    "Talsperre Th\u00fclsfeld"
+   ],
+   [
+    "DE",
+    "DE-1215",
+    "Odertal Frankfurt-Lebus mit Pontischen H\u00e4ngen Nature Reserve",
+    "Odertal Frankfurt-Lebus mit Pontischen H\u00e4ngen"
+   ],
+   [
+    "DE",
+    "DE-1216",
+    "Auenw\u00e4lder und Feuchtwiesen westlich von \u00d6tigheim Nature Reserve",
+    "Auenw\u00e4lder und Feuchtwiesen westlich von \u00d6tigheim"
+   ],
+   [
+    "DE",
+    "DE-1218",
+    "Unterer Neckar Heidelberg - Mannheim Flora and Fauna Reserve",
+    "Unterer Neckar Heidelberg - Mannheim"
+   ],
+   [
+    "DE",
+    "DE-1219",
+    "Gotteskoog-Gebiet Bird Sanctuary",
+    "Gotteskoog-Gebiet"
+   ],
+   [
+    "DE",
+    "DE-1223",
+    "Ohrn-, Kupfer- und Forellental Flora and Fauna Reserve",
+    "Ohrn-, Kupfer- und Forellental"
+   ],
+   [
+    "DE",
+    "DE-1224",
+    "Schw\u00e4bisch Haller Bucht Flora and Fauna Reserve",
+    "Schw\u00e4bisch Haller Bucht"
+   ],
+   [
+    "DE",
+    "DE-1225",
+    "Kochertal Schw\u00e4bisch Hall - K\u00fcnzelsau Natura 2000",
+    "Kochertal Schw\u00e4bisch Hall - K\u00fcnzelsau"
+   ],
+   [
+    "DE",
+    "DE-1229",
+    "Werra- und Wehretal Flora and Fauna Reserve",
+    "Werra- und Wehretal"
+   ],
+   [
+    "DE",
+    "DE-1230",
+    "Oberes B\u00fchlertal Flora and Fauna Reserve",
+    "Oberes B\u00fchlertal"
+   ],
+   [
+    "DE",
+    "DE-1231",
+    "Niestetal und Niesteh\u00e4nge Flora and Fauna Reserve",
+    "Niestetal und Niesteh\u00e4nge"
+   ],
+   [
+    "DE",
+    "DE-1233",
+    "Biosph\u00e4renreservat S\u00fcdost-R\u00fcgen Biosphere Reserve",
+    "S\u00fcdost-R\u00fcgen"
+   ],
+   [
+    "DE",
+    "DE-1234",
+    "Neuensiener und Selliner See Nature Reserve",
+    "Neuensiener und Selliner See: Neuensiener See"
+   ],
+   [
+    "DE",
+    "DE-1235",
+    "Spyckerscher See und Mittelsee Nature Reserve",
+    "Spyckerscher See und Mittelsee"
+   ],
+   [
+    "DE",
+    "DE-1236",
+    "Roter See bei Glowe Nature Reserve",
+    "Roter See bei Glowe"
+   ],
+   [
+    "DE",
+    "DE-1237",
+    "Steilk\u00fcste und Blockgr\u00fcnde Wittow Flora and Fauna Reserve",
+    "Steilk\u00fcste und Blockgr\u00fcnde Wittow"
+   ],
+   [
+    "DE",
+    "DE-1238",
+    "Nordr\u00fcgensche Boddenlandschaft Flora and Fauna Reserve",
+    "Nordr\u00fcgensche Boddenlandschaft"
+   ],
+   [
+    "DE",
+    "DE-1239",
+    "Dar\u00df Flora and Fauna Reserve",
+    "Dar\u00df"
+   ],
+   [
+    "DE",
+    "DE-1240",
+    "Kleiner Jasmunder Bodden mit Halbinseln und Schmaler Heide Flora and Fauna Reserve",
+    "Kleiner Jasmunder Bodden mit Halbinseln und Schmaler Heide"
+   ],
+   [
+    "DE",
+    "DE-1241",
+    "M\u00f6nchgut: Zicker Nature Reserve",
+    "M\u00f6nchgut: Zicker"
+   ],
+   [
+    "DE",
+    "DE-1247",
+    "Oberes Rhinluch Nature Reserve",
+    "Oberes Rhinluch"
+   ],
+   [
+    "DE",
+    "DE-1248",
+    "Kremmener Luch Nature Reserve",
+    "Kremmener Luch"
+   ],
+   [
+    "DE",
+    "DE-1250",
+    "Alte Sorge-Schleife Nature Reserve",
+    "Alte Sorge-Schleife"
+   ],
+   [
+    "DE",
+    "DE-1251",
+    "NSG Lippeaue Nature Reserve",
+    "NSG Lippeaue"
+   ],
+   [
+    "DE",
+    "DE-1253",
+    "Bibert und Haselbach Flora and Fauna Reserve",
+    "Bibert und Haselbach"
+   ],
+   [
+    "DE",
+    "DE-1255",
+    "H\u00f6rselberge Flora and Fauna Reserve",
+    "H\u00f6rselberge"
+   ],
+   [
+    "DE",
+    "DE-1256",
+    "Plesse-Konstein-Karnberg Flora and Fauna Reserve",
+    "Plesse-Konstein-Karnberg"
+   ],
+   [
+    "DE",
+    "DE-1261",
+    "Rednitztal Flora and Fauna Reserve",
+    "Rednitztal - Mitte"
+   ],
+   [
+    "DE",
+    "DE-1262",
+    "Zenn von St\u00f6ckach bis zur M\u00fcndung Flora and Fauna Reserve",
+    "Zenn von St\u00f6ckach bis zur M\u00fcndung"
+   ],
+   [
+    "DE",
+    "DE-1263",
+    "Rodacher Wald mit Ruhh\u00fcgel Flora and Fauna Reserve",
+    "Rodacher Wald mit Ruhh\u00fcgel"
+   ],
+   [
+    "DE",
+    "DE-1264",
+    "Lundener Niederung Nature Reserve",
+    "Lundener Niederung"
+   ],
+   [
+    "DE",
+    "DE-1265",
+    "Gro\u00dfe Wiese Nature Reserve",
+    "NSG Grosse Wiese"
+   ],
+   [
+    "DE",
+    "DE-1266",
+    "B\u00fchlertal Vellberg - Geislingen Flora and Fauna Reserve",
+    "B\u00fchlertal Vellberg - Geislingen"
+   ],
+   [
+    "DE",
+    "DE-1267",
+    "Jagsttal D\u00f6rzbach - Krautheim Flora and Fauna Reserve",
+    "Jagsttal D\u00f6rzbach - Krautheim"
+   ],
+   [
+    "DE",
+    "DE-1268",
+    "Flutgrabenaue Waltersdorf Nature Reserve",
+    "Flutgrabenaue Waltersdorf"
+   ],
+   [
+    "DE",
+    "DE-1270",
+    "Werra-Aue zwischen Breitungen und Creuzburg Bird Sanctuary",
+    "Werra-Aue zwischen Breitungen und Creuzburg"
+   ],
+   [
+    "DE",
+    "DE-1271",
+    "Jagsttal Langenburg - Mulfingen Flora and Fauna Reserve",
+    "Jagsttal Langenburg - Mulfingen"
+   ],
+   [
+    "DE",
+    "DE-1272",
+    "Emsaue westlich Warendorf Nature Reserve",
+    "NSG Emsaue westlich Warendorf"
+   ],
+   [
+    "DE",
+    "DE-1273",
+    "Jagsttal bei Sch\u00f6ntal und Klosterwald Flora and Fauna Reserve",
+    "Jagsttal bei Sch\u00f6ntal und Klosterwald"
+   ],
+   [
+    "DE",
+    "DE-1274",
+    "Wetterau Bird Sanctuary",
+    "Wetterau"
+   ],
+   [
+    "EE",
+    "EE-0015",
+    "K\u00f5rvemaa Natura 2000",
+    "K\u00f5rvemaa"
+   ],
+   [
+    "EE",
+    "EE-0060",
+    "Ontika Natura 2000",
+    "Ontika"
+   ],
+   [
+    "ES",
+    "ES-0033",
+    "Enebrales de Punta Umbria Nature and Landscape Complex",
+    "Enebrales de Punta Umbr\u00eda"
+   ],
+   [
+    "ES",
+    "ES-0044",
+    "Moncayo Nature Park",
+    "Moncayo"
+   ],
+   [
+    "ES",
+    "ES-0058",
+    "Sierra de Santo Domingo Nature and Landscape Complex",
+    "Sierra de Santo Domingo"
+   ],
+   [
+    "ES",
+    "ES-0198",
+    "Sierra de la Encina de la Lastra Nature Park",
+    "Sierra de la Encina de la Lastra"
+   ],
+   [
+    "ES",
+    "ES-0737",
+    "Puertos de Beceite Natura 2000",
+    "Puertos de Beceite"
+   ],
+   [
+    "ES",
+    "ES-0785",
+    "Efesa de La Villa Natura 2000",
+    "Efesa de la Villa"
+   ],
+   [
+    "ES",
+    "ES-0832",
+    "Costa central y Ria de Ajo Natura 2000",
+    "Costa central y R\u00eda de Ajo"
+   ],
+   [
+    "ES",
+    "ES-1477",
+    "Laguna del Rincon del Muerto Wetland Reserve",
+    "Laguna del Rinc\u00f3n"
+   ],
+   [
+    "ES",
+    "ES-1665",
+    "Barranco Oscuro Nature Reserve",
+    "Barranco Oscuro"
+   ],
+   [
+    "ES",
+    "ES-1717",
+    "Tamanca Natura 2000",
+    "Tamanca"
+   ],
+   [
+    "ES",
+    "ES-1740",
+    "Los Sables Natura 2000",
+    "Los Sables"
+   ],
+   [
+    "FI",
+    "FI-0100",
+    "Livoj\u00e4rvi Natura 2000",
+    "LIVOJ\u00c4RVI"
+   ],
+   [
+    "FI",
+    "FI-0103",
+    "Torankij\u00e4rvi Natura 2000",
+    "Torankij\u00e4rvi"
+   ],
+   [
+    "FI",
+    "FI-0108",
+    "Runtelin lehto Natura 2000",
+    "Runtelin lehto"
+   ],
+   [
+    "FI",
+    "FI-0238",
+    "Sipoonkorpi National Park",
+    "Sipoonkorpi"
+   ],
+   [
+    "FI",
+    "FI-0378",
+    "Oukkulanlahti Marine Protected Area",
+    "Oukkulanlahti"
+   ],
+   [
+    "FI",
+    "FI-0528",
+    "Seksmiilarin saaristo Natura 2000",
+    "Seksmiilarin saaristo"
+   ],
+   [
+    "FI",
+    "FI-0590",
+    "Lamminj\u00e4rvi-Halila Natura 2000",
+    "Lamminj\u00e4rvi-Halila"
+   ],
+   [
+    "FI",
+    "FI-1086",
+    "M\u00e4ntypuro Natura 2000",
+    "M\u00e4ntypuro"
+   ],
+   [
+    "FI",
+    "FI-1417",
+    "Huutisuo - Sasi Natura 2000",
+    "Huutisuo-Sasi"
+   ],
+   [
+    "FI",
+    "FI-1461",
+    "Hangasnevan-S\u00e4\u00e4st\u00f6piirinnevan soidensuojelualue Protected Area",
+    "Hangasnevan-S\u00e4\u00e4st\u00f6piirinnevan soidensuojelualue"
+   ],
+   [
+    "FI",
+    "FI-1519",
+    "L\u00e4hdeneva Natura 2000",
+    "L\u00e4hdeneva"
+   ],
+   [
+    "FI",
+    "FI-1582",
+    "Kiiminkijoki Natura 2000",
+    "Kiiminkijoki"
+   ],
+   [
+    "FI",
+    "FI-1593",
+    "J\u00e4nessuon soidensuojelualue Protected Area",
+    "J\u00e4nessuon soidensuojelualue"
+   ],
+   [
+    "FI",
+    "FI-1723",
+    "Kallioj\u00e4rvi - Pit\u00e4m\u00e4vaara Natura 2000",
+    "Kallioj\u00e4rvi - Pit\u00e4m\u00e4vaara"
+   ],
+   [
+    "FR",
+    "FR-10270",
+    "Marais de Thun-Saint-Amand Biological Reserve",
+    "Marais de Thun-Saint-Amand"
+   ],
+   [
+    "FR",
+    "FR-10432",
+    "Tannes d'arceau Conservation Park",
+    "Tannes d'arceau"
+   ],
+   [
+    "FR",
+    "FR-10548",
+    "CAP DE SAINT-TROPEZ 2 Marine Conservation Area",
+    "CAP DE SAINT-TROPEZ"
+   ],
+   [
+    "FR",
+    "FR-11106",
+    "Perimetre De Protection De La Reserve Naturelle De La Vallee De Chaudefour Biological Reserve",
+    "P\u00e9rim\u00e8tre De Protection De La R\u00e9serve Naturelle De La Vall\u00e9e De Chaudefour"
+   ],
+   [
+    "FR",
+    "FR-11182",
+    "vallee de l'automne Biological Reserve",
+    "VALL\u00c9E DE L'AUTOMNE"
+   ],
+   [
+    "FR",
+    "FR-11218",
+    "Foret de Remy et bois de Pieumelle Biological Reserve",
+    "FOR\u00caT DE R\u00c9MY ET BOIS DE PIEUMELLE"
+   ],
+   [
+    "FR",
+    "FR-11230",
+    "Versant sud du Massif du Madres Biological Reserve",
+    "Versant sud du Massif du Madres"
+   ],
+   [
+    "FR",
+    "FR-11644",
+    "PLATEAU DE LA GRAU DE COURCHON ET DE LA MONTAGNE DE L'AUP Biological Reserve",
+    "PLATEAU DE LA GRAU DE COURCHON ET DE LA MONTAGNE DE L'AUP"
+   ],
+   [
+    "FR",
+    "FR-11649",
+    "ETANG DE HARAIGNE A DIEPPE-SOUS-DOUAUMONT Biological Reserve",
+    "ETANG DE HARAIGNE A DIEPPE-SOUS-DOUAUMONT"
+   ],
+   [
+    "FR",
+    "FR-11650",
+    "GITE A CHIROPTERES DE DIEPPE-SOUS-DOUAUMONT Biological Reserve",
+    "GITE A CHIROPTERES DE DIEPPE-SOUS-DOUAUMONT"
+   ],
+   [
+    "FR",
+    "FR-11822",
+    "Tourbiere de Panere Biological Reserve",
+    "Tourbi\u00e8re de Pan\u00e8re"
+   ],
+   [
+    "FR",
+    "FR-11879",
+    "L'ILE MOTELLE A LA ROQUETTE Biological Reserve",
+    "L'\u00ceLE MOTELLE A LA ROQUETTE"
+   ],
+   [
+    "FR",
+    "FR-11889",
+    "LE BOIS DES PLANCHES, LE HOM ET LA COTE DU HOM Biological Reserve",
+    "LE BOIS DES PLANCHES, LE HOM ET LA C\u00d4TE DU HOM"
+   ],
+   [
+    "FR",
+    "FR-11912",
+    "LES GRANDES COTES Biological Reserve",
+    "LES GRANDES C\u00d4TES"
+   ],
+   [
+    "FR",
+    "FR-11913",
+    "LES BOIS DES PRES ET DES MALADRERIES A JOUY-SUR-EURE Biological Reserve",
+    "LES BOIS DES PR\u00c9S ET DES MALADRERIES \u00c0 JOUY-SUR-EURE"
+   ],
+   [
+    "FR",
+    "FR-11914",
+    "LE BOIS DES PLAISIRS, LE BOIS DE VAUX, LA VALLEE COQUELINE Biological Reserve",
+    "LE BOIS DES PLAISIRS, LE BOIS DE VAUX, LA VALL\u00c9E COQUELINE"
+   ],
+   [
+    "FR",
+    "FR-11931",
+    "LA CAVITE DES MOULINS DE MEREY Biological Reserve",
+    "LA CAVITE DES MOULINS DE MEREY"
+   ],
+   [
+    "FR",
+    "FR-11941",
+    "LES COUTUMELLES Biological Reserve",
+    "LES COUTUMELLES"
+   ],
+   [
+    "FR",
+    "FR-12077",
+    "VALLON DE LA TRICHERIE Biological Reserve",
+    "VALLON DE LA TRICHERIE"
+   ],
+   [
+    "FR",
+    "FR-12099",
+    "Prairies humides du Touch a Fabas Biological Reserve",
+    "Prairies humides du Touch \u00e0 Fabas"
+   ],
+   [
+    "FR",
+    "FR-12129",
+    "L'ISOLE A PONT CROAC'H Biological Reserve",
+    "L'ISOLE A PONT CROAC'H"
+   ],
+   [
+    "FR",
+    "FR-12133",
+    "ETANG DE KERGAMP Biological Reserve",
+    "ETANG DE KERGAMP"
+   ],
+   [
+    "FR",
+    "FR-12171",
+    "ETANG DE LA VILLE ALAIN Biological Reserve",
+    "ETANG DE LA VILLE ALAIN"
+   ],
+   [
+    "FR",
+    "FR-12251",
+    "ANCIENS FOURS A CHAUX DE QUENON Biological Reserve",
+    "ANCIENS FOURS A CHAUX DE QUENON"
+   ],
+   [
+    "FR",
+    "FR-12255",
+    "ETANG DU BOULET Biological Reserve",
+    "ETANG DU BOULET"
+   ],
+   [
+    "FR",
+    "FR-12257",
+    "LA FONTAINE DE L'ILLE Biological Reserve",
+    "LA FONTAINE DE L'ILLE"
+   ],
+   [
+    "FR",
+    "FR-12279",
+    "RUISSEAU DE SAINT JEAN Biological Reserve",
+    "RUISSEAU DE SAINT JEAN"
+   ],
+   [
+    "FR",
+    "FR-12299",
+    "PARTIE AMONT DES MARAIS SALANTS ET ZONES DE TRANSITION Biological Reserve",
+    "PARTIE AMONT DES MARAIS SALANTS ET ZONES DE TRANSITION"
+   ],
+   [
+    "FR",
+    "FR-12310",
+    "Haute vallee de Planes Biological Reserve",
+    "Haute vall\u00e9e de Plan\u00e8s"
+   ],
+   [
+    "FR",
+    "FR-12328",
+    "Vallee dels Pedrons Biological Reserve",
+    "Vall\u00e9e dels Pedrons"
+   ],
+   [
+    "FR",
+    "FR-12351",
+    "Pic et Bois de la Rouquette Biological Reserve",
+    "Pic et Bois de la Rouquette"
+   ],
+   [
+    "FR",
+    "FR-12352",
+    "Haute vallee de la Casteillane Biological Reserve",
+    "Haute vall\u00e9e de la Casteillane"
+   ],
+   [
+    "FR",
+    "FR-12355",
+    "Foret domaniale de Montnaie-Gravas Biological Reserve",
+    "For\u00eat domaniale de Montnaie-Gravas"
+   ],
+   [
+    "FR",
+    "FR-12360",
+    "Haute vallee de la Grave Biological Reserve",
+    "Haute vall\u00e9e de la Grave"
+   ],
+   [
+    "FR",
+    "FR-12366",
+    "Foret de Rebenty Biological Reserve",
+    "For\u00eat de R\u00e9benty"
+   ],
+   [
+    "FR",
+    "FR-12400",
+    "Vallee de l'Aston Biological Reserve",
+    "Vall\u00e9e de l'Aston"
+   ],
+   [
+    "FR",
+    "FR-12401",
+    "Moyenne vallee de Vicdessos, Pic de Tristagne Biological Reserve",
+    "Moyenne vall\u00e9e de Vicdessos, Pic de Tristagne"
+   ],
+   [
+    "FR",
+    "FR-12419",
+    "Vallon du Nascouil et monts de la Bouiche, de la Garosse et de la Bouyche Biological Reserve",
+    "Vallon du Nascouil et monts de la Bouiche, de la Garosse et de la Bouyche"
+   ],
+   [
+    "FR",
+    "FR-12420",
+    "ETANG DES TREFFOUX Biological Reserve",
+    "ETANG DES TREFFOUX"
+   ],
+   [
+    "FR",
+    "FR-12432",
+    "Collines du Bas Razes Biological Reserve",
+    "Collines du Bas Raz\u00e8s"
+   ],
+   [
+    "FR",
+    "FR-12439",
+    "Pechs et vallees autour de Mayronnes Biological Reserve",
+    "Pechs et vall\u00e9es autour de Mayronnes"
+   ],
+   [
+    "FR",
+    "FR-12448",
+    "Crete du Ramaret et de la Serre de Massac Biological Reserve",
+    "Cr\u00eate du Ramaret et de la Serre de Massac"
+   ],
+   [
+    "FR",
+    "FR-12464",
+    "Garrigues de Vingrau Biological Reserve",
+    "Garrigues de Vingrau"
+   ],
+   [
+    "FR",
+    "FR-12472",
+    "Garrigues de Sournia et Grotte du Desix Biological Reserve",
+    "Garrigues de Sournia et Grotte du Desix"
+   ],
+   [
+    "FR",
+    "FR-12491",
+    "Soulane des gorges de l'Aude au Clat Biological Reserve",
+    "Soulane des gorges de l'Aude au Clat"
+   ],
+   [
+    "FR",
+    "FR-12495",
+    "Pic de Benal Biological Reserve",
+    "Pic de B\u00e9nal"
+   ],
+   [
+    "FR",
+    "FR-12513",
+    "Parois calcaires et quies de la haute vallee de l'Ariege Biological Reserve",
+    "Parois calcaires et qui\u00e8s de la haute vall\u00e9e de l'Ari\u00e8ge"
+   ],
+   [
+    "FR",
+    "FR-12518",
+    "Basse Cerdagne Biological Reserve",
+    "Basse Cerdagne"
+   ],
+   [
+    "FR",
+    "FR-12520",
+    "Capcir Biological Reserve",
+    "Capcir"
+   ],
+   [
+    "FR",
+    "FR-12522",
+    "Vallee du Conflent Biological Reserve",
+    "Vall\u00e9e du Conflent"
+   ],
+   [
+    "FR",
+    "FR-12528",
+    "Petit plateau de Sault Biological Reserve",
+    "Petit plateau de Sault"
+   ],
+   [
+    "FR",
+    "FR-12540",
+    "Coteaux de la Lauze et de l'Arrats Biological Reserve",
+    "Coteaux de la Lauze"
+   ],
+   [
+    "FR",
+    "FR-12542",
+    "Coteaux du Sousson de Samaran a Pavie Biological Reserve",
+    "Coteaux du Sousson de Samaran \u00e0 Pavie"
+   ],
+   [
+    "FR",
+    "FR-12543",
+    "Coteau en rive droite de la Ba\u00efsole Biological Reserve",
+    "Coteau en rive droite de la Ba\u00efsole"
+   ],
+   [
+    "FR",
+    "FR-12553",
+    "Plateau de Ger et coteaux de l'ouest tarbais Biological Reserve",
+    "Plateau de Ger et coteaux de l'ouest tarbais"
+   ],
+   [
+    "FR",
+    "FR-12554",
+    "Coteaux de la Guiroue de Castelnau-d\u00b4Angles a Roquebrune Biological Reserve",
+    "Coteaux de la Guiroue de Castelnau-d\u00b4Angl\u00e8s \u00e0 Roquebrune"
+   ],
+   [
+    "FR",
+    "FR-12573",
+    "Coteaux de Castelnau-Barbarens Biological Reserve",
+    "Coteaux de Castelnau-Barbarens"
+   ],
+   [
+    "FR",
+    "FR-12574",
+    "Pelouses, landes et champs extensifs de Pavie Biological Reserve",
+    "Pelouses, landes et champs extensifs de Pavie"
+   ],
+   [
+    "FR",
+    "FR-12580",
+    "Landes et bois de la Caussade Biological Reserve",
+    "Landes et bois de la Caussade"
+   ],
+   [
+    "FR",
+    "FR-12583",
+    "Lac de Lasserre sur la Gelise Biological Reserve",
+    "Lac de Lasserre sur la G\u00e9lise"
+   ],
+   [
+    "FR",
+    "FR-12585",
+    "Etangs de Beaulieu et de La Coste Biological Reserve",
+    "\u00c9tangs de Beaulieu et de La Coste"
+   ],
+   [
+    "FR",
+    "FR-12602",
+    "Bois de Sainte-Dode Biological Reserve",
+    "Bois de Sainte-Dode"
+   ],
+   [
+    "FR",
+    "FR-12634",
+    "Etang et bois de l'Escoubillon Biological Reserve",
+    "\u00c9tang et bois de l'Escoubillon"
+   ],
+   [
+    "FR",
+    "FR-12640",
+    "Etang et bois de Monbel Biological Reserve",
+    "\u00c9tang et bois de Monbel"
+   ],
+   [
+    "FR",
+    "FR-12641",
+    "RETENUES ET ZONES HUMIDES DE L'HARTAOU Biological Reserve",
+    "RETENUES ET ZONES HUMIDES DE L'HARTAOU"
+   ],
+   [
+    "FR",
+    "FR-12653",
+    "Vieux chenes, suberaies et landes de Montreal Biological Reserve",
+    "Vieux ch\u00eanes, sub\u00e9raies et landes de Montr\u00e9al"
+   ],
+   [
+    "FR",
+    "FR-12722",
+    "Prairie de fauche des Bourgeois Biological Reserve",
+    "Prairie de fauche des Bourgeois"
+   ],
+   [
+    "FR",
+    "FR-12826",
+    "PELOUSES CALCAIRES DE JENZAT, SAULZET ET MAZERIER Biological Reserve",
+    "PELOUSES CALCAIRES DE JENZAT, SAULZET ET MAZERIER"
+   ],
+   [
+    "FR",
+    "FR-12900",
+    "Etang de l'Estagnol Biological Reserve",
+    "Etang de l'Estagnol"
+   ],
+   [
+    "FR",
+    "FR-12975",
+    "Cascade de Cubservies Biological Reserve",
+    "Cascade de Cubservi\u00e8s"
+   ],
+   [
+    "FR",
+    "FR-13008",
+    "Garrigues du Puech Estrous Biological Reserve",
+    "Garrigues du Puech Estrous"
+   ],
+   [
+    "FR",
+    "FR-13057",
+    "Versants et cretes des Plo de Canac et Puech de Canac Biological Reserve",
+    "Versants et cr\u00eates des Plo de Canac et Puech de Canac"
+   ],
+   [
+    "FR",
+    "FR-13063",
+    "Pelouses de Po de Cambre Biological Reserve",
+    "Pelouses de Po de Cambre"
+   ],
+   [
+    "FR",
+    "FR-13148",
+    "Plaine entre Rhony et Vistre Biological Reserve",
+    "Plaine entre Rhony et Vistre"
+   ],
+   [
+    "FR",
+    "FR-13203",
+    "Roc Blanc Biological Reserve",
+    "Roc Blanc"
+   ],
+   [
+    "FR",
+    "FR-13308",
+    "Pelouse seche de La Carralliere Biological Reserve",
+    "Pelouse s\u00e8che de La Carralli\u00e8re"
+   ],
+   [
+    "FR",
+    "FR-13422",
+    "VALLEE DE L'OZE ENTRE BOUX-SOUS-SALMAISE ET GISSEY-SOUS-FLAVIGNY Biological Reserve",
+    "VALLEE DE L'OZE ENTRE BOUX-SOUS-SALMAISE  ET GISSEY-SOUS-FLAVIGNY "
+   ],
+   [
+    "FR",
+    "FR-13627",
+    "ETANG GROSS SCHWARZWEIHER A NIEDERSTINZEL Biological Reserve",
+    "ETANG GROSS SCHWARZWEIHER A NIEDERSTINZEL"
+   ],
+   [
+    "FR",
+    "FR-13748",
+    "BARRE DE SAINT-QUINIS Biological Reserve",
+    "BARRE DE SAINT-QUINIS"
+   ],
+   [
+    "FR",
+    "FR-13779",
+    "STATION A OEIL DE BOEUF A LAMORVILLE Biological Reserve",
+    "STATION A OEIL DE BOEUF A LAMORVILLE"
+   ],
+   [
+    "FR",
+    "FR-13795",
+    "GITE A CHIROPTERES DE SOMMEDIEUE Biological Reserve",
+    "GITE A CHIROPTERES DE SOMMEDIEUE"
+   ],
+   [
+    "FR",
+    "FR-13803",
+    "PRAIRIES INONDABLES SUR LE RUISSEAU DE SAULX A LEROUVILLE Biological Reserve",
+    "PRAIRIES INONDABLES SUR LE RUISSEAU DE SAULX A LEROUVILLE"
+   ],
+   [
+    "FR",
+    "FR-13968",
+    "Pelouses de la Serre Gaoujac Biological Reserve",
+    "Pelouses de la Serre Gaoujac"
+   ],
+   [
+    "FR",
+    "FR-14015",
+    "Plaine de Pujaut et de Rochefort Biological Reserve",
+    "Plaine de Pujaut et de Rochefort"
+   ],
+   [
+    "FR",
+    "FR-14049",
+    "Carriere de la Cote de l\u2019etang Biological Reserve",
+    "Carri\u00e8re de la C\u00f4te de l\u2019\u00e9tang"
+   ],
+   [
+    "FR",
+    "FR-14064",
+    "MARAIS ET PELOUSES DU PLATEAU GRESEUX DES LEURRES A COLOMBIER EN BRIONNAIS Biological Reserve",
+    "MARAIS ET PELOUSES DU PLATEAU GRESEUX DES LEURRES A COLOMBIER EN BRIONNAIS"
+   ],
+   [
+    "FR",
+    "FR-14144",
+    "PLAINE DE LA CROIX D'INGRAND Biological Reserve",
+    "PLAINE DE LA CROIX D'INGRAND"
+   ],
+   [
+    "FR",
+    "FR-14356",
+    "Partie haute du ruisseau de la Coise Biological Reserve",
+    "Partie haute du ruisseau de la Coise"
+   ],
+   [
+    "FR",
+    "FR-14400",
+    "GOUDOFFRE Biological Reserve",
+    "GOUDOFFRE"
+   ],
+   [
+    "FR",
+    "FR-14402",
+    "FERME DU MEZENC Biological Reserve",
+    "FERME DU MEZENC"
+   ],
+   [
+    "FR",
+    "FR-14434",
+    "Bois du Brugeas Biological Reserve",
+    "Bois du Brugeas"
+   ],
+   [
+    "FR",
+    "FR-14437",
+    "Zone humide de Lieurond Biological Reserve",
+    "Zone humide de Lieurond"
+   ],
+   [
+    "FR",
+    "FR-14446",
+    "SITE A CHAUVES-SOURIS : MINE DU CHATELET Biological Reserve",
+    "SITE \u00c0 CHAUVES-SOURIS : MINE DU CHATELET"
+   ],
+   [
+    "FR",
+    "FR-14462",
+    "Ruisseaux de Laval et de la Thuilliere Biological Reserve",
+    "Ruisseaux de Laval et de la Thuilli\u00e8re"
+   ],
+   [
+    "FR",
+    "FR-14476",
+    "TOURBIERE DE L'OULE Biological Reserve",
+    "TOURBIERE DE L'OULE"
+   ],
+   [
+    "FR",
+    "FR-14477",
+    "CROIX DE BARRAS Biological Reserve",
+    "CROIX DE BARRAS"
+   ],
+   [
+    "FR",
+    "FR-14478",
+    "TOURBIERE DE PEGROL Biological Reserve",
+    "TOURBIERE DE PEGROL"
+   ],
+   [
+    "FR",
+    "FR-14479",
+    "HAUTE VALLEE DE L'ANCE Biological Reserve",
+    "HAUTE VALLEE DE L'ANCE"
+   ],
+   [
+    "FR",
+    "FR-14482",
+    "HAUTES CHAUMES PEYRE - MAYOU / PIERRE - SUR - HAUTE Biological Reserve",
+    "HAUTES CHAUMES PEYRE - MAYOU / PIERRE - SUR - HAUTE"
+   ],
+   [
+    "FR",
+    "FR-14483",
+    "HAUTES CHAUMES NORD COL DU BEAL Biological Reserve",
+    "HAUTES CHAUMES NORD COL DU BEAL"
+   ],
+   [
+    "FR",
+    "FR-14487",
+    "LA JACINE Biological Reserve",
+    "LA JACINE"
+   ],
+   [
+    "FR",
+    "FR-14495",
+    "Marais du Gand Biological Reserve",
+    "Marais du Gand"
+   ],
+   [
+    "FR",
+    "FR-14496",
+    "Etang de Lachaud Biological Reserve",
+    "Etang de Lachaud"
+   ],
+   [
+    "FR",
+    "FR-14497",
+    "Les etangs Couzon et Richard Biological Reserve",
+    "Les \u00e9tangs Couzon et Richard"
+   ],
+   [
+    "FR",
+    "FR-14629",
+    "TOURBIERE DE LA COTE DE BRAVEIX Biological Reserve",
+    "TOURBIERE DE LA COTE DE BRAVEIX"
+   ],
+   [
+    "FR",
+    "FR-14631",
+    "TOURBIERE DES GORCES Biological Reserve",
+    "TOURBIERE DES GORCES"
+   ],
+   [
+    "FR",
+    "FR-14637",
+    "Prairies de Mons Biological Reserve",
+    "Prairies de Mons"
+   ],
+   [
+    "FR",
+    "FR-14647",
+    "TOURBIERES DES JASSERIES DE VIALLEVIEILLE ET DE LA FAYOLLE Biological Reserve",
+    "TOURBIERES DES JASSERIES DE VIALLEVIEILLE ET DE LA FAYOLLE"
+   ],
+   [
+    "FR",
+    "FR-14648",
+    "LES ALLEBASSES ET LES BRULADIS Biological Reserve",
+    "LES ALLEBASSES ET LES BRULADIS"
+   ],
+   [
+    "FR",
+    "FR-14650",
+    "TOURBIERES DE BALAYOUX ET DE LA CROIX DU PIALOUX Biological Reserve",
+    "TOURBIERES DE BALAYOUX ET DE LA CROIX DU PIALOUX"
+   ],
+   [
+    "FR",
+    "FR-14651",
+    "TOURBIERE DE MALMOTTE Biological Reserve",
+    "TOURBIERE DE MALMOTTE"
+   ],
+   [
+    "FR",
+    "FR-14652",
+    "TOURBIERE DU PLATEAU DES EGAUX Biological Reserve",
+    "TOURBIERE DU PLATEAU DES EGAUX"
+   ],
+   [
+    "FR",
+    "FR-14656",
+    "ROCHER DE LA VOLPIE Biological Reserve",
+    "ROCHER DE LA VOLPIE"
+   ],
+   [
+    "FR",
+    "FR-14667",
+    "TOURBIERE DE SEYCHAL ET DES BARAQUES Biological Reserve",
+    "TOURBIERE DE SEYCHAL ET DES BARAQUES"
+   ],
+   [
+    "FR",
+    "FR-14704",
+    "Prairies humides de la Vallee de du Bourdin Biological Reserve",
+    "Prairies humides de la Vall\u00e9e du Bourdin"
+   ],
+   [
+    "FR",
+    "FR-14857",
+    "Tourbiere des Crottes Biological Reserve",
+    "Tourbi\u00e8re des Crottes"
+   ],
+   [
+    "FR",
+    "FR-14903",
+    "Marais du Grand Plan Biological Reserve",
+    "Marais du Grand Plan"
+   ],
+   [
+    "FR",
+    "FR-14939",
+    "Foret de Genieux Biological Reserve",
+    "For\u00eat de G\u00e9nieux"
+   ],
+   [
+    "FR",
+    "FR-14968",
+    "BOIS DE BROSSE-DIEU Biological Reserve",
+    "BOIS DE BROSSE-DIEU "
+   ],
+   [
+    "FR",
+    "FR-14969",
+    "COTE CHATILLON ET MONT-AIGRE Biological Reserve",
+    "COTE CHATILLON ET MONT-AIGRE "
+   ],
+   [
+    "FR",
+    "FR-14979",
+    "VALLEE DU COUSIN AVAL, ROMANEE ET LEURS ABORDS Biological Reserve",
+    "VALLEE DU COUSIN AVAL, ROMANEE ET LEURS ABORDS"
+   ],
+   [
+    "FR",
+    "FR-14994",
+    "VALLON ET COTEAUX ENTRE CHAMOUX ET CHATEL-CENSOIR Biological Reserve",
+    "VALLON ET COTEAUX ENTRE CHAMOUX ET CHATEL-CENSOIR"
+   ],
+   [
+    "FR",
+    "FR-15145",
+    "LE CHEMIN DES MERISIERS ET LA MARE DES TULIPIERS Biological Reserve",
+    "LE CHEMIN DES MERISIERS ET LA MARE DES TULIPIERS"
+   ],
+   [
+    "FR",
+    "FR-15165",
+    "LA PELOUSE RASE DE LA MARE PERDUE Biological Reserve",
+    "LA PELOUSE RASE DE LA MARE PERDUE"
+   ],
+   [
+    "FR",
+    "FR-15184",
+    "Bois du chateau du Marais Biological Reserve",
+    "Bois du ch\u00e2teau du Marais"
+   ],
+   [
+    "FR",
+    "FR-15204",
+    "Tourbieres du plateau d'Ajon Biological Reserve",
+    "Tourbi\u00e8res du plateau d'Ajon"
+   ],
+   [
+    "FR",
+    "FR-15296",
+    "Mont d'Orchez - Pic de l'Aigle Biological Reserve",
+    "Mont d'Orchez - Pic de l'Aigle"
+   ],
+   [
+    "FR",
+    "FR-15347",
+    "STATIONS A SILENE VELUTINA ET A ROUYA POLYGAMA DU GOLFE DE PORTO-VECCHIO Biological Reserve",
+    "STATIONS A SILENE VELUTINA ET A ROUYA POLYGAMA DU GOLFE DE PORTO-VECCHIO"
+   ],
+   [
+    "FR",
+    "FR-15350",
+    "ZONE HUMIDE DU DELTA DU STABIACCIO Biological Reserve",
+    "ZONE HUMIDE DU DELTA DU STABIACCIO"
+   ],
+   [
+    "FR",
+    "FR-16532",
+    "agriates Biological Reserve",
+    "AGRIATE"
+   ],
+   [
+    "FR",
+    "FR-1954",
+    "Prairies de Schoubrouck Regional Reserve",
+    "Prairies Du Schoubrouck"
+   ],
+   [
+    "FR",
+    "FR-2560",
+    "LITTORAL CAUCHOIS FR2300139 Natura 2000",
+    "Orquevaux"
+   ],
+   [
+    "FR",
+    "FR-2929",
+    "VALLEES DE LA SAYE ET DU MEUDON FR7200689 Natura 2000",
+    "Vall\u00e9es de la Saye et du Meudon"
+   ],
+   [
+    "FR",
+    "FR-3060",
+    "Massifs forestiers d Halatte de Chantilly et d Ermenonville FR2200382 Natura 2000",
+    "Massif forestier de Compi\u00e8gne"
+   ],
+   [
+    "FR",
+    "FR-3061",
+    "Massif forestier de Compiegne FR2200380 Natura 2000",
+    "Massifs forestiers d'Halatte, de Chantilly et d'Ermenonville"
+   ],
+   [
+    "FR",
+    "FR-3156",
+    "Marais d Ippling FR4112014 Natura 2000",
+    "Marais d'Ippling"
+   ],
+   [
+    "FR",
+    "FR-3401",
+    "La Lauter FR4201796 Natura 2000",
+    "La Lauter"
+   ],
+   [
+    "FR",
+    "FR-3530",
+    "Tourbieres du plateau ardennais FR2100273 Natura 2000",
+    "Tourbi\u00e8res du plateau ardennais"
+   ],
+   [
+    "FR",
+    "FR-3611",
+    "RESEAU DE CAVITES A MINIOPTERES DE SCHREIBERS EN FRANCHE COMTE 6 CAVITES  FR4301351 Natura 2000",
+    "R\u00e9seau de cavit\u00e9s \u00e0 Miniopt\u00e8res de Schreibers en Franche-Comt\u00e9 (6 cavit\u00e9s)"
+   ],
+   [
+    "FR",
+    "FR-3625",
+    "MARAIS SALANTS DE GUERANDE TRAICTS DU CROISIC ET DUNES DE PEN BRON  FR5200627 Natura 2000",
+    "Marais salants de Gu\u00e9rande, traicts du Croisic et dunes de Pen-Bron"
+   ],
+   [
+    "FR",
+    "FR-3638",
+    "CHATAIGNERAIES A OSMODERMA EREMITA AU SUD DU MANS  FR5202005 Natura 2000",
+    "Ch\u00e2taigneraies \u00e0 Osmoderma eremita au sud du Mans"
+   ],
+   [
+    "FR",
+    "FR-3773",
+    "Massif Du Pibeste - Aoulhet Biological Reserve",
+    "Massif Du Pibeste - Aoulhet"
+   ],
+   [
+    "FR",
+    "FR-3912",
+    "Bresse Jurassienne Natura 2000",
+    "Bresse jurassienne"
+   ],
+   [
+    "FR",
+    "FR-4414",
+    "Bresse jurassienne Natura 2000",
+    "Bresse jurassienne"
+   ],
+   [
+    "FR",
+    "FR-4445",
+    "Colonie de Goelands d'Audouin d'Aspretto Ajaccio Natura 2000",
+    "Colonie de Go\u00e9lands d'Audouin d'Aspretto/Ajaccio"
+   ],
+   [
+    "FR",
+    "FR-6023",
+    "Pointe du Hourdel Conservation Park",
+    "POINTE DU HOURDEL"
+   ],
+   [
+    "FR",
+    "FR-6035",
+    "Le Marais de Picquigny Biological Reserve",
+    "le marais de picquigny"
+   ],
+   [
+    "FR",
+    "FR-6682",
+    "Source du Lison a Nans-sous-Ste Anne Conservation Area",
+    "Source Du Lison A Nans Sous Sainte Anne"
+   ],
+   [
+    "FR",
+    "FR-9421",
+    "Complexe humide arriere littoral de Waben et Conchil-le-temple Biological Reserve",
+    "COMPLEXE HUMIDE ARRIERE LITTORAL DE WABEN ET CONCHIL-LE-TEMPLE"
+   ],
+   [
+    "FR",
+    "FR-9428",
+    "Le Marais d'Hebecourt et les Pres Valloires Biological Reserve",
+    "Marais d'H\u00e9b\u00e9court et les Pr\u00e9s Valloires \u00e0 Saulchoy"
+   ],
+   [
+    "FR",
+    "FR-9661",
+    "MONT RAYA - CAYRE D'ARCHAS - MONT GIRAUD Biological Reserve",
+    "MONT RAYA - CAYRE D'ARCHAS - MONT GIRAUD"
    ],
    [
     "GB",
@@ -3292,39 +6839,9 @@
    ],
    [
     "GB",
-    "GB-0101",
-    "Dearne Valley - Old Moor RSPB Reserve",
-    "DEARNE VALLEY PARK"
-   ],
-   [
-    "GB",
-    "GB-0223",
-    "Dearne Valley - Gypsy Marsh RSPB Reserve",
-    "DEARNE VALLEY PARK"
-   ],
-   [
-    "GB",
     "GB-0287",
     "Rainham Marshes RSPB Reserve",
     "RAINHAM MARSHES"
-   ],
-   [
-    "GB",
-    "GB-0331",
-    "Dearne Valley - Bolton Ings RSPB Reserve",
-    "DEARNE VALLEY PARK"
-   ],
-   [
-    "GB",
-    "GB-0836",
-    "Cairngorms National Nature Reserve",
-    "Cairngorms"
-   ],
-   [
-    "GB",
-    "GB-0849",
-    "Corrie Fee National Nature Reserve",
-    "Corrie Fee"
    ],
    [
     "GB",
@@ -3340,105 +6857,9 @@
    ],
    [
     "GB",
-    "GB-0955",
-    "Noss National Nature Reserve",
-    "Noss"
-   ],
-   [
-    "GB",
-    "GB-1060",
-    "Lady Park Wood National Nature Reserve",
-    "LADY PARK WOOD"
-   ],
-   [
-    "GB",
-    "GB-1236",
-    "Cleeve Hill Park",
-    "Cleeve Hill SSSI"
-   ],
-   [
-    "GB",
-    "GB-1279",
-    "Castle Hill (Newhaven) Local Nature Reserve",
-    "CASTLE HILL"
-   ],
-   [
-    "GB",
-    "GB-1290",
-    "Tyne Green Country Park",
-    "TYNE GREEN"
-   ],
-   [
-    "GB",
-    "GB-2592",
-    "Northcliffe Park",
-    "NORTHCLIFFE QUARRY"
-   ],
-   [
-    "GB",
-    "GB-3043",
-    "Northumberlandia Park",
-    "NORTHUMBERLAND"
-   ],
-   [
-    "GB",
-    "GB-3165",
-    "Haslam Park and Nature Reserve",
-    "HASLAM PARK"
-   ],
-   [
-    "GB",
-    "GB-3199",
-    "Walton Dam and Country Park",
-    "WALTON"
-   ],
-   [
-    "GB",
-    "GB-3862",
-    "Springfield Hall Park",
-    "SPRINGFIELD PARK"
-   ],
-   [
-    "GB",
-    "GB-3866",
-    "Riverside Park",
-    "RIVERSIDE"
-   ],
-   [
-    "GB",
-    "GB-4630",
-    "St Catherine's Hill Nature Reserve",
-    "St. Catherine's Hill SSSI"
-   ],
-   [
-    "GB",
-    "GB-4987",
-    "Shire Brook Valley Local Nature Reserve",
-    "SHIRE BROOK"
-   ],
-   [
-    "GB",
-    "GB-5162",
-    "Werneth Park",
-    "WERNETH LOW"
-   ],
-   [
-    "GB",
     "GB-5213",
     "Roding Valley Park",
     "RODING VALLEY MEADOWS"
-   ],
-   [
-    "GB",
-    "GB-5468",
-    "Hill Rise Park",
-    "HILL RISE"
-   ],
-   [
-    "GB",
-    "GB-5476",
-    "Priory (St Neots) Park",
-    "PRIORY"
    ],
    [
     "GB",
@@ -3447,40 +6868,214 @@
     "NORTHLANDS WOOD"
    ],
    [
-    "GB",
-    "GB-6118",
-    "Cowslip Meadow Nature Reserve",
-    "Cowslip Meadow SSSI"
+    "JP",
+    "JP-0007",
+    "Towada-Hachimantai National Park",
+    "towada hachimantai"
    ],
    [
-    "GB",
-    "GB-6440",
-    "Ox Close Wood Nature Reserve",
-    "Ox Close SSSI"
+    "JP",
+    "JP-0114",
+    "Suigo-Tsukuba Quasi-National Park",
+    "suigou tsukuba"
    ],
    [
-    "GB",
-    "GB-6531",
-    "Philips Park",
-    "PHILIP'S PARK"
+    "JP",
+    "JP-0148",
+    "Genkai Quasi-National Park",
+    "genkai"
    ],
    [
-    "GB",
-    "GB-6775",
-    "Nightingale Valley Nature Reserve",
-    "Nightingale Valley SSSI"
+    "JP",
+    "JP-0151",
+    "Kyushu Chuo Sanchi Quasi-National Park",
+    "kyuushuu chuuou sanchi chiiki   oku kuma"
    ],
    [
-    "GB",
-    "GB-6787",
-    "Green Lane Local Nature Reserve",
-    "GREEN LANE WOOD"
+    "JP",
+    "JP-1110",
+    "Oarai Prefectural Prefectural Nature Park",
+    "ooarai"
    ],
    [
-    "GB",
-    "GB-7057",
-    "Inverneil Burn Site of Significant Scientific Interest",
-    "Inverneil Burn"
+    "JP",
+    "JP-1114",
+    "Kasama Prefectural Nature Park",
+    "kasama"
+   ],
+   [
+    "JP",
+    "JP-1720",
+    "Omurawan Prefectural Park",
+    "oomurawan"
+   ],
+   [
+    "NL",
+    "NL-0204",
+    "de Voorde Historic Site",
+    "Voordelta"
+   ],
+   [
+    "NO",
+    "NO-2977",
+    "Hjerkinn/Kongsvoll/Drivdalen Landscape Reserve",
+    "Hjerkinn"
+   ],
+   [
+    "PT",
+    "PT-0015",
+    "Alvito / Cuba Natura 2000",
+    "Alvito/Cuba"
+   ],
+   [
+    "PT",
+    "PT-0063",
+    "Azabuxo-Leiria Natura 2000",
+    "Azabuxo-Leiria"
+   ],
+   [
+    "PT",
+    "PT-0137",
+    "Reserva Natural da Terra Brava e Criacao das Lagoas Nature Reserve",
+    "Terra Brava e Criacao das Lagoas"
+   ],
+   [
+    "PT",
+    "PT-0146",
+    "Biscoito das Fontinhas Protected Area",
+    "Biscoito das Fontinhas"
+   ],
+   [
+    "PT",
+    "PT-0262",
+    "Reserva Natural do Morro do Castelo Branco Nature Reserve",
+    "Morro do Castelo Branco"
+   ],
+   [
+    "PT",
+    "PT-0263",
+    "Monumento Natural do Vulcao dos Capelinhos Natural Monument",
+    "Vulcao dos Capelinhos"
+   ],
+   [
+    "PT",
+    "PT-0283",
+    "Monumento Natural da Rocha dos Bordoes Natural Monument",
+    "Rocha dos Bordoes"
+   ],
+   [
+    "PT",
+    "PT-0318",
+    "Machico Protected Area",
+    "Machico"
+   ],
+   [
+    "PT",
+    "PT-0382",
+    "Litoral Norte Protected Landscape Area",
+    "Litoral Norte"
+   ],
+   [
+    "PT",
+    "PT-0414",
+    "Serra da Malcata Protected Area",
+    "Serra da Malcata"
+   ],
+   [
+    "RO",
+    "RO-0322",
+    "P\u0103durea Ro\u015fo\u015fa Forest Reserve",
+    "P\u0103durea Ro\u0219o\u0219a"
+   ],
+   [
+    "RO",
+    "RO-0450",
+    "P\u0103durea C\u0103lug\u0103reasc\u0103 Forest Reserve",
+    "P\u0103durea C\u0103lug\u0103reasc\u0103"
+   ],
+   [
+    "RO",
+    "RO-0573",
+    "F\u0103getul secular Stuhoasa Forest Reserve",
+    "F\u0103getul secular Stuhoasa"
+   ],
+   [
+    "RO",
+    "RO-0880",
+    "P\u0103durea Homi\u021ba Protected Area",
+    "P\u0103durea Homi\u021ba"
+   ],
+   [
+    "RO",
+    "RO-0883",
+    "P\u0103durea T\u0103t\u0103ru\u0219i Forest Reserve",
+    "Padurea T\u0103t\u0103ru\u0219i"
+   ],
+   [
+    "RO",
+    "RO-1019",
+    "Bucia\u0219 Nature Reserve",
+    "Bucia\u0219"
+   ],
+   [
+    "SE",
+    "SE-0199",
+    "Pessinki Nature Reserve",
+    "K\u00f6nk\u00e4m\u00e4 (Pessinki)"
+   ],
+   [
+    "SE",
+    "SE-0266",
+    "Kragen\u00e4s Natura 2000",
+    "Kragen\u00e4s"
+   ],
+   [
+    "SE",
+    "SE-1574",
+    "Skansen L\u00e4ck\u00f6 Nature Reserve",
+    "2000570 Skansen L\u00e4ck\u00f6"
+   ],
+   [
+    "SE",
+    "SE-1575",
+    "Skansen L\u00e4ck\u00f6 Natura 2000",
+    "Skansen L\u00e4ck\u00f6"
+   ],
+   [
+    "SE",
+    "SE-2042",
+    "V\u00e4stan\u00e5 Nature Reserve",
+    "2001378 V\u00e4stan\u00e5"
+   ],
+   [
+    "SE",
+    "SE-2138",
+    "Norra Kvill Natura 2000",
+    "Norra Kvill"
+   ],
+   [
+    "SE",
+    "SE-2179",
+    "Brattforshedens krigsflygf\u00e4lt 16 National Heritage Area",
+    "2003901 Brattforshedens krigsflygf\u00e4lt 16"
+   ],
+   [
+    "SE",
+    "SE-2180",
+    "Brattforsheden Natura 2000",
+    "Brattforsheden"
+   ],
+   [
+    "SI",
+    "SI-0361",
+    "Dolina reke Reke Natura 2000",
+    "Dolina Reke"
+   ],
+   [
+    "SK",
+    "SK-0300",
+    "Hr\u00e1dok - Park",
+    "Hr\u00e1dok"
    ]
   ]
  }
