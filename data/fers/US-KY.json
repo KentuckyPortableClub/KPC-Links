@@ -634,6 +634,17 @@
    "wide_m": 1384
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     36.668491,
+     -84.545703
+    ],
+    "from": "parking / access point",
+    "name": "KPC field check: parking (Big South Fork NRRA, about 450 ft outside the wild riv",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 138
+   },
    "acres": 2510.5,
    "box": [
     -84.60971,
@@ -5603,6 +5614,17 @@
    "wide_m": 452
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.81139,
+     -83.532982
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 117
+   },
    "acres": 592.5,
    "box": [
     -83.5739,
@@ -5934,6 +5956,17 @@
    "wide_m": 449
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.811355,
+     -83.532999
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 123
+   },
    "acres": 592.9,
    "box": [
     -83.57386,
@@ -6266,6 +6299,17 @@
    "wide_m": 448
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.811285,
+     -83.532881
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 119
+   },
    "acres": 705.4,
    "box": [
     -83.57391,
@@ -6562,6 +6606,17 @@
    "wide_m": 449
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.033883,
+     -84.303171
+    ],
+    "from": "road",
+    "name": "The Narrows Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 126
+   },
    "acres": 99.8,
    "box": [
     -84.30823,
@@ -6773,6 +6828,17 @@
    "wide_m": 294
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.033898,
+     -84.303121
+    ],
+    "from": "road",
+    "name": "The Narrows Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 124
+   },
    "acres": 100.2,
    "box": [
     -84.30818,
@@ -6977,6 +7043,17 @@
    "wide_m": 294
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.120869,
+     -84.300978
+    ],
+    "from": "road",
+    "name": "Fd-746A",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 143
+   },
    "acres": 27.6,
    "box": [
     -84.30099,
@@ -7089,6 +7166,17 @@
    "wide_m": 240
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.164308,
+     -84.288669
+    ],
+    "from": "road",
+    "name": "Rockhouse Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 2708.3,
    "box": [
     -84.33035,
@@ -7563,6 +7651,17 @@
    "wide_m": 316
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     36.627804,
+     -84.557131
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 865
+   },
    "box": [
     -84.59583,
     36.623,
@@ -7914,6 +8013,17 @@
    "status": "candidate (saved outline only)"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     36.664597,
+     -84.545398
+    ],
+    "from": "road",
+    "name": "Dick Gap Overlook Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 414
+   },
    "box": [
     -84.5442,
     36.65598,
@@ -8261,6 +8371,17 @@
    "status": "candidate (saved outline only)"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     36.664627,
+     -84.545231
+    ],
+    "from": "road",
+    "name": "Dick Gap Overlook Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 427
+   },
    "box": [
     -84.54353,
     36.66436,
@@ -9512,6 +9633,17 @@
    "wide_m": 843
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.0676,
+     -82.771772
+    ],
+    "from": "parking / access point",
+    "name": "Bad Branch",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 5
+   },
    "acres": 1202.9,
    "box": [
     -82.77904,
@@ -35169,6 +35301,17 @@
    "wide_m": 120
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     36.511187,
+     -88.059607
+    ],
+    "from": "road",
+    "name": "Williams Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -88.07358,
     36.49632,
@@ -35383,6 +35526,17 @@
    "status": "candidate (same land, two park numbers)"
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     37.100958,
+     -82.749235
+    ],
+    "from": "road",
+    "name": "Green Valley Dr",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -82.74958,
     37.08221,
