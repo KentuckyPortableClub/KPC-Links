@@ -480,7 +480,7 @@ def extra_state(st, have, only=None):
                 if not nm: continue
                 if re.search(r'easement', nm, re.I): continue   # Oct 20: CPW 'SWA (Fishing Easement)' = private land with an easement, never the park
                 k = kinds(nm) | kk
-                if (norm(nm), frozenset(k)) in have: continue
+                if (norm(nm), frozenset(k)) in have and not opt.get('where'): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
                 g = f.get('geometry') or {}
                 nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
                 out.append({'OBJECTID': pre + str(a.get(oidf.lower())), 'Unit_Nm': nm, 'Loc_Nm': nm2 if nm2 != nm else '', 'Own_Type': own, 'Mang_Type': own, 'Mang_Name': pre.upper(),
@@ -715,7 +715,7 @@ def run(st):
             # join only when the one same-named area also HOLDS the park's pin (or the pin sits at its edge): an
             # Oregon 'State Recreation Site' filed by PAD-US as a state park, a SC heritage preserve that is the WMA.
             if not m and c and NAME_JOIN and not ov.get('none') and not ov.get('site'):
-                sn = [x for x in c if x[3] == 'same name, different kind of place']
+                sn = [x for x in c if x[3] == 'same name, different kind of place' and str(x[0]) not in {str(y) for y in ov.get('no', [])}]   # Oct 25: a person's 'no' wins here too
                 if sn and len({_nf(x[1]) for x in sn}) == 1:
                     gs = {_oid(a): a for a in recs}
                     hold = [x for x in sn if str(x[0]) in gs and rings(gs[str(x[0])].get('_g'))
