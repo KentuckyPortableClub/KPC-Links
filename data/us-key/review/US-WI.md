@@ -49,8 +49,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Sylvania Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,440 ac
 - McCormick Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,184 ac
 - Sturgeon River Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,725 ac
+- Saint Croix Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~15,797 ac
 - Pine-Popple Wild Rivers ·  · Wisconsin DNR (land, state GIS table) · ~11,456 ac
 - Pine-Popple Wild Rivers · SP · Wisconsin Department of Natural Resources · ~11,409 ac
+- Saint Croix Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~11,297 ac
 - Horicon Wildlife Area · SREC · Wisconsin Department of Natural Resources · ~11,169 ac
 - Glacial Habitat Restoration · SCA · Unknown · ~9,591 ac
 - Glacial Habitat Restoration Area ·  · Wisconsin DNR managed properties · ~9,514 ac
@@ -59,6 +61,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Spread Eagle Barrens ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~7,908 ac
 - Scattered Forest Lands · SRMA · Unknown · ~7,832 ac
 - Whisker Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,434 ac
+- Wolf Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~7,199 ac
 - Rainbow Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,175 ac
 - Natural Area - Dedication ·  · Wisconsin DNR managed properties · ~6,993 ac
 - Natural Area - Dedication ·  · Wisconsin DNR (land, state GIS table) · ~6,993 ac
@@ -92,6 +95,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Norway Point Bottomlands ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~4,022 ac
 - Columbia County Waterfowl Production Area · RMA · Columbia County Waterfowl Production Area · ~3,893 ac
 - Columbia County Waterfowl Production Area · RMA · COLUMBIA COUNTY WATERFOWL PRODUCTION AREA · ~3,837 ac
-- Moose Lake State Natural Area · SCA · Wisconsin Department of Natural Resources · ~3,797 ac
-- Kickapoo Valley Reserve ·  · Wisconsin DNR Natural Heritage Conservation (preserve, state GIS table) · ~3,680 ac
-- Lower Wolf River Bottomlands Natural Resource Area ·  · Wisconsin DNR (land, state GIS table) · ~3,664 ac

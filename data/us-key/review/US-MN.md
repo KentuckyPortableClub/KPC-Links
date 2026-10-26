@@ -88,6 +88,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Moose River State Wildlife Management Area · SCA · DNR Wildlife · ~21,272 ac
 - Mud Goose WMA ·  · Minnesota DNR (wild, state GIS table) · ~17,011 ac
 - Moose Willow WMA ·  · Minnesota DNR (wild, state GIS table) · ~16,946 ac
+- Saint Croix Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~15,797 ac
 - Elm Lake State Wildlife Management Area · SCA · DNR Wildlife · ~15,744 ac
 - Elm Lake WMA ·  · Minnesota DNR (wild, state GIS table) · ~15,740 ac
 - Carp Swamp WMA: Main Unit ·  · Minnesota DNR (wild, state GIS table) · ~15,264 ac
@@ -115,6 +116,5 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Pigeon River Purchase Unit · NF · Forest Service Region 09 Eastern · ~11,475 ac
 - Douglas County Waterfowl Production Area · RMA · DOUGLAS COUNTY WATERFOWL PRODUCTION AREA · ~11,468 ac
 - Grant County Waterfowl Production Area · RMA · Grant County Waterfowl Production Area · ~11,390 ac
+- Saint Croix Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~11,297 ac
 - Grant County Waterfowl Production Area · RMA · GRANT COUNTY WATERFOWL PRODUCTION AREA · ~11,151 ac
-- Graceton State Wildlife Management Area · SCA · DNR Wildlife · ~10,713 ac
-- Graceton WMA ·  · Minnesota DNR (wild, state GIS table) · ~10,709 ac

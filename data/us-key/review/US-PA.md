@@ -1,9 +1,10 @@
 # PA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **478 of 494** parks joined to official land (same name + same kind of place). **0** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **479 of 494** parks joined to official land (same name + same kind of place). **1** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
+- **US-0684** Lower Delaware National Wild and Scenic River (National Wild and Scenic River) → Delaware Wild and Scenic River (~21,333 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -16,8 +17,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-0621 Todd Sanctuary State Conservation Area (State Conservation Area)
 - US-0622 Bear Run State Conservation Area (State Conservation Area)
 - US-0623 Powdermill State Conservation Area (State Conservation Area)
-- US-0684 Lower Delaware National Wild and Scenic River (National Wild and Scenic River)
-- US-0898 White Clay Creek National Wild and Scenic River (National Wild and Scenic River)
 - US-10802 Gloria Dei Church National Historic Site (National Historic Site)
 - US-12234 Allegheny National Wild & Scenic River (National Wild & Scenic River)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
@@ -29,11 +28,15 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~68,553 ac
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~57,111 ac
+- Great Egg Harbor Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~40,342 ac
 - Raystown Recreation Area · REC · Baltimore · ~30,608 ac
 - Susquehannock State Forest - Hammersley Wild Area · SRMA ·   · ~29,829 ac
 - Hammersley Wild Area · SW · Bureau of Forestry · ~29,829 ac
 - Moshannon State Forest - Quehanna Wild Area · SRMA ·   · ~24,008 ac
 - Quehanna Wild Area · SW · Bureau of Forestry · ~24,008 ac
+- Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~21,333 ac
 - Quehanna Wild Area · SW · Bureau of Forestry · ~21,319 ac
 - Sgl 091 · SREC · Pennsylvania Game Commission · ~17,479 ac
 - Sgl 141 · SREC · Pennsylvania Game Commission · ~16,570 ac
@@ -49,10 +52,12 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Hickory Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,633 ac
 - Sgl 217 · SREC · Pennsylvania Game Commission · ~8,494 ac
 - Sgl 168 · SRMA · Pennsylvania Game Commission · ~7,775 ac
+- Musconetcong Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~7,716 ac
 - Montage Tract · SRMA · Bureau of Forestry · ~7,554 ac
 - Wolf Run Wild Area · SW · Bureau of Forestry · ~7,526 ac
 - Loyalsock State Forest - Mcintyre Wild Area · SRMA ·   · ~7,227 ac
 - McIntyre Wild Area · SW · Bureau of Forestry · ~7,227 ac
+- Little Beaver Creek Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~7,227 ac
 - Crystal Lake Tract · SRMA · Bureau of Forestry · ~6,575 ac
 - Bald Eagle State Forest - Penns Creek Wild Area · SRMA ·   · ~6,291 ac
 - Penns Creek Wild Area · SW · Bureau of Forestry · ~6,291 ac
@@ -83,9 +88,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Sgl 119 · SREC · Pennsylvania Game Commission · ~3,630 ac
 - Sgl 135 · SREC · Pennsylvania Game Commission · ~3,525 ac
 - Mocanaqua Tract · SRMA · Bureau of Forestry · ~3,440 ac
-- Sgl 257 · SREC · Pennsylvania Game Commission · ~3,426 ac
-- Delaware State Forest - Bruce Lake Natural Area · SRMA ·   · ~3,161 ac
-- Bruce Lake Natural Area · SCA · Bureau of Forestry · ~3,161 ac
-- M.K. Goddard State Park ·  · Pennsylvania State Parks (DCNR) (park, state GIS table) · ~2,805 ac
-- Tioga State Forest - Asaph Wild Area · SRMA ·   · ~2,783 ac
-- Asaph Wild Area · SW · Bureau of Forestry · ~2,783 ac

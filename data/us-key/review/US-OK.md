@@ -83,7 +83,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Black Fork Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~13,466 ac
 - Hagerman National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,298 ac
 - Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
-- Cross Bar Recreation Area ·  · BLM recreation sites · ~9,856 ac
+- Cross Bar Recreation Area ·  · BLM recreation management areas · official (BLM planning area) · ~9,856 ac
 - Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
 - Osage Western Wall ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~7,317 ac
 - Honobia Creek Wildlife Management Area - Campbell ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,276 ac

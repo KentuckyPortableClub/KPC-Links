@@ -46,20 +46,20 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Carlsbad Field Office · PUB · BLM · ~2,091,256 ac
 - Socorro Field Office · PUB · BLM · ~1,508,543 ac
 - Roswell Field Office · PUB · BLM · ~1,501,751 ac
-- Roswell Field Office ERMA ·  · BLM recreation sites · ~1,441,359 ac
+- Roswell Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,441,359 ac
 - Farmington Field Office · PUB · BLM · ~1,425,067 ac
 - Rio Puerco Field Office · PUB · BLM · ~992,719 ac
 - Taos Field Office · PUB · BLM · ~598,331 ac
 - Gila Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~559,528 ac
 - Pecos Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~221,835 ac
 - Aldo Leopold Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~203,559 ac
-- Taos Plateau ·  · BLM recreation sites · ~186,840 ac
+- Taos Plateau ·  · BLM recreation management areas · official (BLM planning area) · ~186,840 ac
 - Jornada Experimental Range · REA · Agricultural Research Service (ARS) · ~109,258 ac
 - Carson Other · NF · Forest Service Region 03 Southwestern · ~101,380 ac
-- Ojo Caliente ·  · BLM recreation sites · ~72,019 ac
+- Ojo Caliente ·  · BLM recreation management areas · official (BLM planning area) · ~72,019 ac
 - Coronado National Forest · NF · Forest Service Region 03 Southwestern · ~68,124 ac
 - Usbr · FOTH · Unknown · ~57,247 ac
-- Palacio Arroyos ·  · BLM recreation sites · ~56,345 ac
+- Palacio Arroyos ·  · BLM recreation management areas · official (BLM planning area) · ~56,345 ac
 - White Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,267 ac
 - Chama River Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~47,034 ac
 - Apache Kid Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~44,678 ac
@@ -68,36 +68,36 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Sandia Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,690 ac
 - Manzano Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~37,083 ac
 - Marquez/LBar ·  · New Mexico Department of Game & Fish (wild, state GIS table) · ~36,711 ac
-- Organ Mountains ·  · BLM recreation sites · ~36,667 ac
+- Organ Mountains ·  · BLM recreation management areas · official (BLM planning area) · ~36,667 ac
 - Capitan Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~36,074 ac
 - Colin Neblett ·  · New Mexico Department of Game & Fish (wild, state GIS table) · ~31,937 ac
-- East Side ·  · BLM recreation sites · ~31,903 ac
+- East Side ·  · BLM recreation management areas · official (BLM planning area) · ~31,903 ac
 - Marquez/LBar ·  · New Mexico Department of Game & Fish (wild, state GIS table) · ~31,547 ac
 - Colin Neblett Wildlife Management Area · SCA · Unknown · ~30,989 ac
 - Blue Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~29,106 ac
 - Brantley Wildlife Area · SCA · Unknown · ~28,860 ac
-- West Santa Fe ·  · BLM recreation sites · ~28,353 ac
-- Chama ·  · BLM recreation sites · ~27,533 ac
+- West Santa Fe ·  · BLM recreation management areas · official (BLM planning area) · ~28,353 ac
+- Chama ·  · BLM recreation management areas · official (BLM planning area) · ~27,533 ac
 - Los Alamos National Laboratory · FOTH · Department of Energy (DOE) · ~26,247 ac
 - Latir Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~20,420 ac
 - Edward Sargent Wildlife Management Area · SCA · Unknown · ~20,107 ac
 - Edward Sargent ·  · New Mexico Department of Game & Fish (wild, state GIS table) · ~20,057 ac
-- Rio Grande Rim/Copper Hill ·  · BLM recreation sites · ~19,870 ac
-- Sabinoso Primitive Area ·  · BLM recreation sites · ~19,798 ac
+- Rio Grande Rim/Copper Hill ·  · BLM recreation management areas · official (BLM planning area) · ~19,870 ac
+- Sabinoso Primitive Area ·  · BLM recreation management areas · official (BLM planning area) · ~19,798 ac
 - Wheeler Peak Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~19,161 ac
 - Cruces Basin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,881 ac
 - Withington Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,827 ac
-- Cimarron Mesa ·  · BLM recreation sites · ~18,269 ac
-- Ute Mountain ·  · BLM recreation sites · ~17,770 ac
-- Endurance Trails ·  · BLM recreation sites · ~17,409 ac
-- Rio Grande Gorge Recreation Area ·  · BLM recreation sites · ~16,948 ac
-- Sombrillo ·  · BLM recreation sites · ~16,898 ac
+- Cimarron Mesa ·  · BLM recreation management areas · official (BLM planning area) · ~18,269 ac
+- Ute Mountain ·  · BLM recreation management areas · official (BLM planning area) · ~17,770 ac
+- Endurance Trails ·  · BLM recreation management areas · official (BLM planning area) · ~17,409 ac
+- Rio Grande Gorge Recreation Area ·  · BLM recreation management areas · official (BLM planning area) · ~16,948 ac
+- Sombrillo ·  · BLM recreation management areas · official (BLM planning area) · ~16,898 ac
 - Bordo Atravesado ·  · BLM herd management areas · ~16,492 ac
-- Thomas Canyon ·  · BLM recreation sites · ~15,759 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
-- Boca del Oso ·  · BLM recreation sites · ~14,531 ac
+- Thomas Canyon ·  · BLM recreation management areas · official (BLM planning area) · ~15,759 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac
+- Boca del Oso ·  · BLM recreation management areas · official (BLM planning area) · ~14,531 ac

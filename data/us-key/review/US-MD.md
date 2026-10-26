@@ -52,6 +52,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Dolly Sods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,777 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~11,973 ac
+- White Clay Creek Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~11,596 ac
 - Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
 - Prime Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~9,238 ac
 - Roaring Plains West Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,794 ac
@@ -106,4 +107,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Indian Creek Stream Valley Park · SOTH ·   · ~540 ac
 - Open Space · LOTH ·   · ~532 ac
 - Fred W Besley Demonstration Forest · SRMA ·   · ~530 ac
-- Belt Woods Heritage Conservation · SCA · MD Department of Natural Resources · ~511 ac

@@ -175,9 +175,9 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Wells Field Office · PUB · BLM · ~4,243,298 ac
 - Stillwater Field Office · PUB · BLM · ~3,582,451 ac
 - Tuscarora Field Office · PUB · BLM · ~3,199,984 ac
-- NA ·  · BLM recreation sites · ~2,812,486 ac
-- Southern Nevada ·  · BLM recreation sites · ~2,494,377 ac
-- Southern Nevada ·  · BLM recreation sites · ~2,494,377 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~2,812,486 ac
+- Southern Nevada ·  · BLM recreation management areas · official (BLM planning area) · ~2,494,377 ac
+- Southern Nevada ·  · BLM recreation management areas · official (BLM planning area) · ~2,494,377 ac
 - Humboldt National Forest · NF · Forest Service Region 04 Intermountain · ~2,400,994 ac
 - Las Vegas Field Office · PUB · BLM · ~2,378,020 ac
 - Black Rock Field Office · PUB · BLM · ~2,358,385 ac
@@ -185,10 +185,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Desert National Wildlife Range · NWR · DESERT NATIONAL WILDLIFE RANGE · ~1,512,682 ac
 - DESERT NWR PROPOSED WILDERNESS AREA ·  · Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table) · ~1,365,058 ac
 - Nevada Wild Horse Range ·  · BLM herd management areas · ~1,299,285 ac
-- Black Rock SRMA ·  · BLM recreation sites · ~1,222,806 ac
+- Black Rock SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,222,806 ac
 - Sierra Front Field Office · PUB · BLM · ~1,146,352 ac
 - Applegate Field Office · PUB · BLM · ~1,063,136 ac
-- Nightingale Zone 5 RMZ ·  · BLM recreation sites · ~773,972 ac
+- Nightingale Zone 5 RMZ ·  · BLM recreation management areas · official (BLM planning area) · ~773,972 ac
 - Pahrump Field Office · PUB · BLM · ~740,861 ac
 - Basin And Range Nm Field Office · PUB · BLM · ~703,784 ac
 - John Muir Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~653,633 ac
@@ -197,7 +197,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Nevada Test Site · FOTH · Department of Energy (DOE) · ~530,691 ac
 - Beaty Butte ·  · BLM herd management areas · ~399,447 ac
 - Nevada Test Site · FOTH · Department of Energy (DOE) · ~337,512 ac
-- Rustic Zone ·  · BLM recreation sites · ~331,560 ac
+- Rustic Zone ·  · BLM recreation management areas · official (BLM planning area) · ~331,560 ac
 - Antelope ·  · BLM herd management areas · ~327,747 ac
 - Eagle Lake Field Office · PUB · BLM · ~310,176 ac
 - Golden Trout Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~305,395 ac
@@ -206,22 +206,22 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Ansel Adams Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~231,586 ac
 - White Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~230,672 ac
 - Sulpher ·  · BLM herd management areas · ~230,177 ac
-- Jarbidge Foothills ERMA ·  · BLM recreation sites · ~190,944 ac
-- Canyonlands ERMA ·  · BLM recreation sites · ~183,254 ac
+- Jarbidge Foothills ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~190,944 ac
+- Canyonlands ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~183,254 ac
 - North Stillwater ·  · BLM herd management areas · ~180,445 ac
-- NA ·  · BLM recreation sites · ~179,286 ac
-- Jawbone ·  · BLM recreation sites · ~167,204 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~179,286 ac
+- Jawbone ·  · BLM recreation management areas · official (BLM planning area) · ~167,204 ac
 - Carson-Iceberg Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~159,070 ac
-- NA ·  · BLM recreation sites · ~151,643 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~151,643 ac
 - Usbr · FOTH · Unknown · ~139,499 ac
 - Black Mountains ACEC ·  · BLM recreation areas · ~134,533 ac
-- Black Mountains ACEC ·  · BLM recreation sites · ~134,533 ac
-- Muddy Mountains ·  · BLM recreation sites · ~128,292 ac
+- Black Mountains ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~134,533 ac
+- Muddy Mountains ·  · BLM recreation management areas · official (BLM planning area) · ~128,292 ac
 - Hoover Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~128,105 ac
 - High Schells Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~121,456 ac
 - Fox Hog ·  · BLM herd management areas · ~121,086 ac
 - Arc Dome Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~120,280 ac
-- Front Country Zone ·  · BLM recreation sites · ~119,553 ac
+- Front Country Zone ·  · BLM recreation management areas · official (BLM planning area) · ~119,553 ac
 - Snowstorm Mountains ·  · BLM herd management areas · ~117,835 ac
 - Ash Meadows ·  · BLM herd management areas · ~115,783 ac
 - Inyo National Forest · NF · Forest Service Region 05 Pacific Southwest · ~113,755 ac

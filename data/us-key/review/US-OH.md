@@ -21,11 +21,15 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - WayneNF ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~25,973 ac
 - WayneNF ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~24,371 ac
 - WayneNF ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~22,417 ac
+- Big and Little Darby Creeks Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~20,045 ac
 - WayneNF ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~18,783 ac
 - WayneNF ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~18,358 ac
+- Little Miami Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~15,103 ac
 - WayneNF ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~11,703 ac
 - LadueHA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~9,343 ac
 - TapanLkHA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~7,721 ac
+- Little Beaver Creek Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~7,227 ac
+- Little Miami Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~6,940 ac
 - CldnLkHA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~6,613 ac
 - WilCrkLkHA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~6,589 ac
 - SncvleLkHA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~6,195 ac
@@ -72,7 +76,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - AEPSoutOhRA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~1,391 ac
 - GavinWA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~1,346 ac
 - Three Creeks Metropark · LP · Columbus and Franklin County Metro Parks · ~1,342 ac
-- Pickerington Ponds Metropark · LP · Columbus and Franklin County Metro Parks (Metro Parks) · ~1,335 ac
-- AtwdLkHA ·  · Ohio DNR Division of Wildlife (wild, state GIS table) · ~1,309 ac
-- Detroit River International Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~1,284 ac
-- FrtHillEwNP ·  · Ohio DNR Division of Natural Areas and Preserves (preserve, state GIS table) · ~1,273 ac

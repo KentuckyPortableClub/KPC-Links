@@ -67,7 +67,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Nd State Lands - Surface Ownership · SRMA · Unknown · ~712,367 ac
-- Lewis and Clark Trail ·  · BLM recreation sites · ~240,750 ac
+- Lewis and Clark Trail ·  · BLM recreation management areas · official (BLM planning area) · ~240,750 ac
 - Devils Lake · RMA · Unknown · ~97,667 ac
 - Oaha Recreation Area · REC · Omaha · ~90,626 ac
 - North Dakota Field Office · PUB · BLM · ~58,891 ac

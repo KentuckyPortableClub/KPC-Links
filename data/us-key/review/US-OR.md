@@ -102,7 +102,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - Vale Malheur Field Office · PUB · BLM · ~4,641,633 ac
 - Lakeview District Lakeview Field Office · PUB · BLM · ~3,203,414 ac
-- NA ·  · BLM recreation sites · ~2,812,486 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~2,812,486 ac
 - Burns Three Rivers Field Office · PUB · BLM · ~1,661,825 ac
 - Burns Andrews Field Office · PUB · BLM · ~1,602,437 ac
 - Prineville Central Oregon Field Office · PUB · BLM · ~907,261 ac
@@ -110,53 +110,53 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Rangeland · SRMA · Unknown · ~595,893 ac
 - Rogue River National Forest · NF · Forest Service Region 06 Pacific Northwest · ~577,492 ac
 - Little Owyhee ·  · BLM herd management areas · ~463,133 ac
-- NA ·  · BLM recreation sites · ~453,327 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~453,327 ac
 - Vale Baker Field Office · PUB · BLM · ~426,273 ac
 - Medford Grants Pass Field Office · PUB · BLM · ~425,791 ac
 - Eagle Cap Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~356,310 ac
 - Owyhee ·  · BLM herd management areas · ~340,969 ac
 - Three Sisters Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~283,818 ac
-- NA ·  · BLM recreation sites · ~262,178 ac
-- NA ·  · BLM recreation sites · ~259,036 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~262,178 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~259,036 ac
 - Medford Ashland Field Office · PUB · BLM · ~248,190 ac
 - Roseburg District Swiftwater Field Office · PUB · BLM · ~223,710 ac
 - Hells Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~218,097 ac
 - Lakeview Klamath Falls Field Office · PUB · BLM · ~216,032 ac
-- Owyhee Front Trails - South Zone ·  · BLM recreation sites · ~213,700 ac
+- Owyhee Front Trails - South Zone ·  · BLM recreation management areas · official (BLM planning area) · ~213,700 ac
 - Medford Butte Falls Field Office · PUB · BLM · ~202,060 ac
 - Coos Bay Umpqua Field Office · PUB · BLM · ~188,796 ac
 - Roseburg District South River Field Office · PUB · BLM · ~185,021 ac
 - Kalmiopsis Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~180,025 ac
-- NA ·  · BLM recreation sites · ~179,286 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~179,286 ac
 - Wenaha-Tucannon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~176,785 ac
 - Nw Oregon Cascades Field Office · PUB · BLM · ~172,607 ac
-- NA ·  · BLM recreation sites · ~168,754 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~168,754 ac
 - Nw Oregon Siuslaw Field Office · PUB · BLM · ~157,518 ac
 - Nw Oregon Upper Willamette Field Office · PUB · BLM · ~152,817 ac
-- NA ·  · BLM recreation sites · ~151,643 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~151,643 ac
 - Nw Oregon Marys Peak Field Office · PUB · BLM · ~128,244 ac
-- Boise Front ·  · BLM recreation sites · ~126,220 ac
+- Boise Front ·  · BLM recreation management areas · official (BLM planning area) · ~126,220 ac
 - Coos Bay Myrtlewood Field Office · PUB · BLM · ~123,224 ac
 - Federal Railroad Administration (Common School Lands) · SOTH · Oregon Department of Forestry · ~121,000 ac
 - North Fork John Day Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~120,977 ac
 - Sky Lakes Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~113,571 ac
 - Mount Jefferson Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~109,098 ac
 - Nw Oregon Tillamook Field Office · PUB · BLM · ~104,132 ac
-- Pueblo Mountains ·  · BLM recreation sites · ~94,928 ac
-- Trout Creek/Oregon Canyon ·  · BLM recreation sites · ~92,977 ac
-- NA ·  · BLM recreation sites · ~80,305 ac
-- Lower John Day SRMA ·  · BLM recreation sites · ~76,021 ac
-- Owyhee Front Trails - North Zone ·  · BLM recreation sites · ~69,635 ac
+- Pueblo Mountains ·  · BLM recreation management areas · official (BLM planning area) · ~94,928 ac
+- Trout Creek/Oregon Canyon ·  · BLM recreation management areas · official (BLM planning area) · ~92,977 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~80,305 ac
+- Lower John Day SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~76,021 ac
+- Owyhee Front Trails - North Zone ·  · BLM recreation management areas · official (BLM planning area) · ~69,635 ac
 - Strawberry Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~69,423 ac
 - Hardtrigger ·  · BLM herd management areas · ~69,397 ac
 - Mark O. Hatfield Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~65,434 ac
 - Mount Hood Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~64,742 ac
-- NA ·  · BLM recreation sites · ~64,586 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~64,586 ac
 - Salmon-Huckleberry Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~62,213 ac
-- Bridge Creek SRMA ·  · BLM recreation sites · ~60,988 ac
-- NA ·  · BLM recreation sites · ~59,769 ac
-- NA ·  · BLM recreation sites · ~58,209 ac
-- North Fork Owyhee Backcountry ·  · BLM recreation sites · ~57,830 ac
-- High Desert ·  · BLM recreation sites · ~56,717 ac
+- Bridge Creek SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~60,988 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~59,769 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~58,209 ac
+- North Fork Owyhee Backcountry ·  · BLM recreation management areas · official (BLM planning area) · ~57,830 ac
+- High Desert ·  · BLM recreation management areas · official (BLM planning area) · ~56,717 ac
 - Mount Thielsen Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~55,127 ac
 - Mount Washington Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~54,407 ac
