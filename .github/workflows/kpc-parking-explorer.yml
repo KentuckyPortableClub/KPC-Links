@@ -10,6 +10,9 @@ on:
       minutes:
         description: 'Minutes to search (default 100; up to 330 for a long catch-up run)'
         default: '100'
+      kind:
+        description: 'parking (point layers) or outline (park POLYGON layers not used yet: the outline layer explorer)'
+        default: 'parking'
       deep:
         description: 'Canada deep look: search EVERY folder on the provincial / Parks Canada servers (two jobs, west + east)'
         type: boolean
@@ -37,6 +40,7 @@ jobs:
         env:
           MINUTES: ${{ inputs.minutes || '100' }}
           PART: ${{ matrix.part }}
+          KIND: ${{ inputs.kind || 'parking' }}
         run: python3 .github/scripts/kpc_parking_explorer.py || true
       - name: Save
         if: always()
@@ -44,8 +48,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/access-leads 2>/dev/null || true
+          git add data/access-leads data/outline-leads 2>/dev/null || true
           git diff --cached --quiet && exit 0
-          git commit -qm "Parking layer leads (${{ matrix.part }})" || exit 0
+          git commit -qm "Layer leads (${{ inputs.kind || 'parking' }}, ${{ matrix.part }})" || exit 0
           for i in 1 2 3 4; do git pull -q --rebase && git push -q && exit 0; sleep $((i * 7)); done
           true
