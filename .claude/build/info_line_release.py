@@ -35,6 +35,7 @@ for f in PAGES:
     if not os.path.exists(f): miss.append(f); continue
     s = open(f, encoding='utf-8').read()
     if MARK in s: skip.append(f); continue
+    if 'http-equiv="refresh"' in s: skip.append(f + ' (redirect)'); continue
     m = re.search(r'(<aside class="kpc-disclaim"[^>]*><div[^>]*>)(.*?)(</div></aside>)', s, re.S)
     if m:
         t = s[:m.end(2)] + '<br>' + LINE + s[m.end(2):]; how[f] = 'in box'
