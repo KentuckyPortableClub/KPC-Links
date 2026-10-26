@@ -12,16 +12,21 @@ jobs:
           def g(u):
               return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC probe'}),timeout=40).read())
           def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n',' ')[:950]),flush=True)
-          A='https://open.canada.ca/data/api/3/action/'
-          out=[]
-          for q in ['Facilities - Point','Components - Point','Parks Canada parking','Parks Canada trailheads']:
-              try:
-                  r=g(A+'package_search?'+urllib.parse.urlencode({'q':'title:"%s"'%q if 'Point' in q else q,'rows':8}))['result']['results']
-                  out.append(q+' => '+' ; '.join(p['id'][:8]+' '+p['title'][:40]+' ['+p.get('organization',{}).get('name','')+']' for p in r))
-              except Exception as e: out.append(q+' err '+str(e))
-          for t in out: n('search',t)
+          B='https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services'
           try:
-              p=g(A+'package_show?id=3969368d-33b5-47c8-8953-f31b15d8e007')['result']
-              n('show',p['title']+' | '+p.get('license_title','')+' | '+' ; '.join(r.get('format','')+' '+r.get('url','') for r in p['resources']))
-          except Exception as e: n('show err',e)
+              sv=[x['name'] for x in g(B+'?f=json')['services']]
+              n('svc', str(len(sv))+' services; facility/component/park/access ones: '+', '.join(x for x in sv if any(w in x.lower() for w in ('facil','compon','park','access','trail','install','amen','poi','place')))[:900])
+          except Exception as e: n('svc err',e)
+          for s in ['vw_Facilities_Installations_Point_V2_FGP','Facilities_Installations_Point_OpenData']:
+              U=B+'/'+s+'/FeatureServer/0'
+              try:
+                  d=g(U+'?f=json'); fl=[f['name'] for f in d['fields']]
+                  c=g(U+'/query?where=1%3D1&returnCountOnly=true&f=json').get('count')
+                  sm=g(U+'/query?where=1%3D1&outFields=*&returnGeometry=false&resultRecordCount=2&f=json')['features']
+                  n(s[:30],'%s %s count %s fields %s | sample %s'%(d.get('geometryType'),d.get('editingInfo',{}).get('lastEditDate',''),c,fl,json.dumps([x['attributes'] for x in sm],ensure_ascii=False)[:500]))
+                  tf=[f for f in fl if any(w in f.lower() for w in ('type','categ','class'))][:2]
+                  for f in tf:
+                      st=g(U+'/query?'+urllib.parse.urlencode({'where':'1=1','groupByFieldsForStatistics':f,'outStatistics':json.dumps([{'statisticType':'count','onStatisticField':fl[0],'outStatisticFieldName':'n'}]),'f':'json'}))['features']
+                      n(s[:20]+' '+f, ' ; '.join('%s=%s'%(x['attributes'].get(f),x['attributes'].get('n')) for x in sorted(st,key=lambda x:-x['attributes']['n']))[:950])
+              except Exception as e: n(s[:30]+' err',e)
           PY
