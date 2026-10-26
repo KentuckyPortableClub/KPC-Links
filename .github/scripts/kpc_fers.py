@@ -50,9 +50,9 @@ T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
 ONLY = set((os.environ.get('STATES') or '').upper().replace(',', ' ').split())
 REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + Canada, 'world' = the other countries (Brandon Oct 26: 'do the world')
-CELL = {1: 20.0, 2: 10.0, 3: 5.0}[PASS]
-DET = {1: 0.0005, 2: 0.0002, 3: 0.00002}[PASS]
-PREC = {1: 5, 2: 5, 3: 6}[PASS]
+CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0}[PASS]   # 4 = access pins only, for candidates that have none
+DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002}[PASS]
+PREC = {1: 5, 2: 5, 3: 6, 4: 6}[PASS]
 SHRINK = 45.72            # 50 yards: what must remain after shrinking the overlap this far = a spot 100 yards across
 STRETCH = 91.44           # 100 yards of a trail / river inside the other park
 # POTA's trail rule (Activator Guide, docs.pota.app): 'Your station must be located entirely within 100 feet (30.5m) of the
@@ -107,8 +107,13 @@ def pins():
         for r, v in json.load(open('data/parkinfo/CA.json'))['parks'].items():
             if v[5] is not None and len(v) > 10: P[r] = (v[0], v[5], v[6], v[1], v[2], 'CA-' + v[10])
     except Exception: pass  # noqa: BLE001
+    try:   # Kentucky's parks live in kpc-ky-data.json (data/parkinfo/KY.json is the Cayman Islands)
+        for x in json.load(open('kpc-ky-data.json')).get('parks') or []:
+            if x.get('la') is not None: P[x['c']] = (x.get('n', ''), x['la'], x['lo'], x.get('web', ''), x.get('t', ''), 'KY')
+    except Exception: pass  # noqa: BLE001
     for f in pathlib.Path('data/parkinfo').glob('[A-Z][A-Z].json'):
         if f.stem in ('CA', 'US'): continue
+
         try:
             for r, v in json.load(open(f))['parks'].items():
                 if len(v) > 6 and v[5] is not None and v[6] is not None: P[r] = (v[0], v[5], v[6], v[1], v[2], 'W-' + f.stem)
@@ -135,6 +140,20 @@ def official_parks(PIN):
     """{ref: {'st', 'ids': [record ids], 'names': {id: name}}} + why parks were left out."""
     water_prefixes()
     parks, skip = {}, {'approximate': 0, 'pin well outside': 0, 'no outline': 0, 'no pin': 0, 'Kentucky (own list)': 0}
+    if REGION == 'ky':   # Oct 26 (Brandon: 'run just KY and see if it matches the guide'): Kentucky's own answer key + official files
+        k = json.load(open('data/ky-answer-key.json'))['parks']
+        for ref, p in k.items():
+            tr = [t for t in p.get('tracts') or [] if t[0] not in ('bdbnf', 'bkpc')]   # the forest's proclamation line and KPC-drawn outlines are not proof
+            if not tr: skip['no outline'] += 1; continue
+            if ref not in PIN: skip['no pin'] += 1; continue
+            parks[ref] = {'st': 'US-KY', 'ids': [f'{t[0]}|{t[1]}' for t in tr], 'names': {f'{t[0]}|{t[1]}': t[1] for t in tr}}
+        # Daniel Boone NF: its KY file is the PROCLAMATION line (private land and towns inside). The Forest Service's own FEE
+        # land comes from PAD-US instead (downloaded each run), so only real forest land counts.
+        if 'US-4484' in PIN:
+            parks['US-4484'] = {'st': 'US-KY', 'ids': ['padus|Daniel Boone National Forest'], 'names': {'padus|Daniel Boone National Forest': 'Daniel Boone National Forest'}}
+            skip['no outline'] -= 1
+        skip.pop('Kentucky (own list)', None)
+        return parks, skip
     if REGION == 'world':
         for f in sorted(pathlib.Path('data/world-key').glob('[A-Z][A-Z].json')):
             for ref, p in json.load(open(f))['parks'].items():
@@ -348,6 +367,53 @@ def saved_world(parks):
                 else: ok = False
             if ok and gs: out[ref] = gs
     return out
+
+
+KYF = {'bstate': 'ky-state-parks.geojson', 'bwma': 'ky-hunting-areas.geojson', 'bsnp': 'ky-nature-preserves.geojson', 'bsna': 'ky-natural-areas.geojson',
+       'bnps': 'ky-nps.geojson', 'bwild': 'ky-wild-rivers.geojson', 'bwilder': 'ky-wilderness.geojson', 'bfws': 'ky-fws.geojson', 'bpad': 'ky-padus-parks.geojson'}
+KYIDX = {}
+def ky_geom(parks, refs):
+    """Kentucky: the official files the website draws (ky-*.geojson), each joined tract = every feature of that NAME near the
+    pin, one group per polygon (holes stay holes)."""
+    if not KYIDX:
+        for src, fn in KYF.items():
+            try: fs = json.load(open(fn)).get('features') or []
+            except Exception: continue  # noqa: BLE001
+            for f in fs:
+                g = f.get('geometry') or {}; c = g.get('coordinates') or []
+                polys = c if g.get('type') == 'MultiPolygon' else [c] if g.get('type') == 'Polygon' else []
+                nm = str((f.get('properties') or {}).get('NAME') or '')
+                if polys: KYIDX.setdefault((src, nm), []).extend(polys)
+    PINS = pins()
+    out, bad = {}, set()
+    for ref in refs:
+        la, lo = PINS[ref][1], PINS[ref][2]
+        gs = []
+        for rid in parks[ref]['ids']:
+            src, nm = rid.split('|', 1)
+            if src == 'padus':
+                if ('padus', nm) not in KYIDX:
+                    polys, off = [], 0
+                    try:
+                        while True:
+                            j = get(PADUS, {'where': f"State_Nm='KY' AND Category='Fee' AND Unit_Nm LIKE '{nm}%'", 'outFields': 'OBJECTID',
+                                            'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET, 'geometryPrecision': PREC,
+                                            'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'})
+                            fs = j.get('features') or []
+                            polys += [esri_rings(f.get('geometry')) for f in fs if esri_rings(f.get('geometry'))]
+                            if not fs or not j.get('exceededTransferLimit'): break
+                            off += len(fs)
+                    except Exception as e:  # noqa: BLE001
+                        LOG.append(f'PAD-US {nm}: {str(e)[:60]}')
+                    KYIDX[('padus', nm)] = polys
+                if KYIDX[('padus', nm)]: gs += KYIDX[('padus', nm)]
+                else: bad.add(ref)
+                continue
+            polys = [pp for pp in KYIDX.get((src, nm), []) if pp and pp[0] and any(abs(q[0] - lo) < .6 and abs(q[1] - la) < .6 for q in pp[0][::max(1, len(pp[0]) // 20)])]
+            if polys: gs += polys
+            else: bad.add(ref)
+        if gs and ref not in bad: out[ref] = gs
+    return out, bad
 
 
 # ------------------------------------------------------------------ rasters
@@ -609,10 +675,105 @@ def pin_inside(ref, PIN, G, LN):
     if ref in G:
         m = F.area(G[ref])
         return bool(m[min(max(r, 0), F.H - 1), min(max(c, 0), F.W - 1)])
-    if ref in LN:
-        m = F.lines(LN[ref]['lines'], 300)
-        return bool(m[min(max(r, 0), F.H - 1), min(max(c, 0), F.W - 1)])
+    if ref in LN: return True   # a trail / river park has no 'inside'; its pin is often at a trailhead or office far away
     return False
+
+
+TIGER = 'https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Transportation/MapServer'
+TLAY = {}
+def tiger_layers():
+    if not TLAY:
+        try:
+            for L in get(TIGER, {'f': 'json'}).get('layers') or []:
+                nm = L.get('name', '')
+                for k in ('Primary Roads', 'Secondary Roads', 'Local Roads'):
+                    if nm.strip() == k and k not in TLAY: TLAY[k] = L['id']
+        except Exception as e: LOG.append(f'TIGERweb: {str(e)[:60]}')  # noqa: BLE001
+    return TLAY
+
+
+def roads_near(box):
+    """Public roads (Census TIGER: primary, secondary, local streets; never private / 4WD / service roads) and public
+    paths (bike paths, bridle paths) in a box: [(kind, name, [[lon, lat]...])]."""
+    out = []
+    for k, lid in tiger_layers().items():
+        where = "MTFCC IN ('S1100','S1200','S1400','S1820','S1830')" if k == 'Local Roads' else '1=1'
+        try:
+            j = get(f'{TIGER}/{lid}/query', {'where': where, 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                             'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'NAME,MTFCC', 'returnGeometry': 'true', 'outSR': 4326,
+                                             'maxAllowableOffset': 0.00005, 'f': 'json'})
+        except Exception as e:  # noqa: BLE001
+            LOG.append(f'TIGER {k}: {str(e)[:60]}'); continue
+        for f in j.get('features') or []:
+            a = f.get('attributes') or {}
+            kind = 'trail' if a.get('MTFCC') in ('S1820', 'S1830') else 'road'
+            for pth in (f.get('geometry') or {}).get('paths') or []:
+                if len(pth) > 1: out.append((kind, a.get('NAME') or ('path' if kind == 'trail' else 'public road'), pth))
+    return out
+
+
+def access_points(refs, st_of):
+    pts = []
+    for ref in refs:
+        st = st_of(ref)
+        try: pts += [(q[0], q[1], q[2]) for q in (json.load(open(f'data/access/{st}.json'))['parks'].get(ref) or [])]
+        except Exception: pass  # noqa: BLE001
+    if st_of(refs[0]) == 'US-KY':
+        try:
+            for x in json.load(open('kpc-ky-data.json'))['parks']:
+                if x['c'] in refs: pts += [(q[0], q[1], q[2]) for q in x.get('ap') or []]
+        except Exception: pass  # noqa: BLE001
+    return pts
+
+
+def access_pin(s, G, LN, st_of):
+    """Brandon Oct 26: 'drop a pin closest to the easiest public access (a public road, parking, trail)'. The pin is the
+    point INSIDE the shared ground (5 m in from every line; for a trail / river within 100 ft of it) that is nearest, as the
+    crow flies, to a public road, an official parking / access point or a public path."""
+    sb = sbox(s)
+    pad = .015
+    box = [sb[0] - pad, sb[1] - pad, sb[2] + pad, sb[3] + pad]
+    cell = 5.0
+    F = Frame(box, cell, 0)
+    while F.W * F.H > MAXPX: cell *= 1.5; F = Frame(box, cell, 0)
+    ok = None
+    areas = [r for r in s['refs'] if r in G]
+    for r in areas:
+        m = (dt(F.area(G[r])) * cell >= STATION_IN).astype(np.uint8)
+        ok = m if ok is None else ok & m
+    for r in s['refs']:
+        if r in LN and r not in G:
+            z = (dt(1 - F.lines(LN[r]['lines'], 1), outside=1) * cell <= ZONE).astype(np.uint8)
+            ok = z if ok is None else ok & z
+    if ok is None or not ok.any(): return None
+    feats = {'road': np.zeros_like(ok), 'parking / access point': np.zeros_like(ok), 'trail': np.zeros_like(ok)}
+    rds = roads_near(box) if s['refs'][0].startswith('US-') else []
+    for kind, nm, pth in rds:
+        cv2.polylines(feats[kind], [np.round(F.px(pth) * 16).astype(np.int32)], False, 1, thickness=1, lineType=cv2.LINE_8, shift=4)
+    aps = access_points(s['refs'], st_of)
+    for la, lo, lab in aps:
+        c, r = F.px([[lo, la]])[0].astype(int)
+        if 0 <= c < F.W and 0 <= r < F.H: cv2.circle(feats['parking / access point'], (int(c), int(r)), 1, 1, -1)
+    best = None
+    for kind, fm in feats.items():
+        if not fm.any(): continue
+        d = dt(1 - fm, outside=1) * cell
+        d = np.where(ok > 0, d, np.inf)
+        i = np.unravel_index(np.argmin(d), d.shape)
+        if np.isfinite(d[i]) and (best is None or d[i] < best[0]): best = (float(d[i]), kind, i)
+    if not best:
+        return {'at': s['center'], 'from': 'none', 'note': 'no public road, parking or path within about 1.5 km: the pin is the middle of the spot'}
+    dist, kind, (r, c) = best
+    lon, lat = F.ll(int(c), int(r))
+    name = ''
+    if kind in ('road', 'trail'):
+        near = min(((min(math.hypot((q[0] - lon) * F.kx, (q[1] - lat) * F.ky) for q in pth), nm) for k, nm, pth in rds if k == kind), default=(0, ''))
+        name = near[1]
+    else:
+        near = min(((math.hypot((q[1] - lon) * F.kx, (q[0] - lat) * F.ky), q[2]) for q in aps), default=(0, ''))
+        name = near[1]
+    return {'at': [round(lat, 6), round(lon, 6)], 'from': kind, 'name': str(name)[:80], 'walk_m': round(dist),
+            'note': 'closest spot inside every park to that public access, straight line; check the road / lot is open and public'}
 
 
 def nearest_access(spot, st_of):
@@ -629,7 +790,7 @@ def nearest_access(spot, st_of):
     return best
 
 
-FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'(US|CA)-[A-Z]{2}'
+FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'US-KY' if REGION == 'ky' else r'(US|CA)-[A-Z]{2}'
 def file_of(st): return OUT / f'{st}.json'
 
 
@@ -655,7 +816,7 @@ def main():
     parks, skip = official_parks(PIN)
     LN = trail_lines()
     for ref in LN:
-        if ref not in parks and ref in PIN and (REGION == 'world') == PIN[ref][5].startswith('W-'):
+        if ref not in parks and ref in PIN and (REGION == 'world') == PIN[ref][5].startswith('W-') and (REGION == 'ky') == (PIN[ref][5] == 'KY'):
             st = PIN[ref][5]
             parks[ref] = {'st': st if st.startswith('CA-') else 'US-' + st, 'ids': [], 'names': {}}
     st_of = lambda r: parks[r]['st'] if r in parks else ''
@@ -668,18 +829,34 @@ def main():
             try: old[f.stem] = json.load(open(f))
             except Exception: pass  # noqa: BLE001
 
-    if PASS == 1:
+    if PASS == 4:   # access pins for candidates that have none yet (Oct 26: added after pass 3 had run)
+        files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
+        cand = [s for d in files.values() for s in d.get('spots', []) if str(s.get('status', '')).startswith('candidate') and not s.get('access_pin')]
+        refs = sorted({r for s in cand for r in s['refs'] if r in parks and parks[r]['ids']})
+        if REGION == 'ky': G, bad = ky_geom(parks, refs)
+        else: G, bad = download(parks, refs, DET, PREC)
+        n = 0
+        for s in cand:
+            if late(): break
+            if any(r not in G and r not in LN for r in s['refs']): continue
+            try: s['access_pin'] = access_pin(s, G, LN, st_of); n += 1
+            except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+        for st, d in files.items(): save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+        counts.update({'candidates without a pin': len(cand), 'pins placed': n})
+    elif PASS == 1:
         same = same_outline(parks)
-        save_json(OUT / ('same-outline.json' if REGION != 'world' else 'same-outline-world.json'), {'about': 'Two park numbers joined to the SAME outline record: an answer-key mistake to fix, never a 2-fer.', 'pairs': same}, indent=1)
+        save_json(OUT / {'world': 'same-outline-world.json', 'ky': 'same-outline-ky.json'}.get(REGION, 'same-outline.json'), {'about': 'Two park numbers joined to the SAME outline record: an answer-key mistake to fix, never a 2-fer.', 'pairs': same}, indent=1)
         skip_pairs = {tuple(x['refs']) for x in same}
         # saved outlines: PAD-US from the cache, Canada from the saved files; the rest from the state layers at the key's detail
-        pad = saved_us(parks) if REGION != 'world' else {}
+        pad = saved_us(parks) if REGION == 'na' else {}
         G, need = {}, []
         for ref, p in parks.items():
-            if p['st'].startswith(('CA-', 'W-')) or not p['ids']: continue
+            if p['st'].startswith(('CA-', 'W-')) or not p['ids'] or REGION == 'ky': continue
             if all(isinstance(i, int) and i in pad for i in p['ids']): G[ref] = [pad[i] for i in p['ids']]
             else: need.append(ref)
-        G.update(saved_world(parks) if REGION == 'world' else saved_ca(parks))
+        if REGION == 'ky':
+            kg, kb = ky_geom(parks, [r for r in parks if parks[r]['ids']]); G.update(kg); need = []
+        else: G.update(saved_world(parks) if REGION == 'world' else saved_ca(parks))
         notice('2-fer bot', f"pass 1: {len(G)} parks from saved outlines, {len(need)} to download, {len(LN)} official lines")
         got, bad = download(parks, need, DET, PREC)
         G.update(got)
@@ -707,8 +884,11 @@ def main():
         prev = [s for d in files.values() for s in d.get('spots', []) if todo(s)]
         refs = sorted({r for s in prev for r in s['refs'] if r in parks})
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
-        G, bad = download(parks, [r for r in refs if parks[r]['ids']], DET, PREC)
-        saved_only = set()
+        if REGION == 'ky':   # Kentucky's official files are the only copy (no agency download by id): saved copy, flagged
+            G, bad = ky_geom(parks, [r for r in refs if parks[r]['ids']]); saved_only = set(G)
+        else:
+            G, bad = download(parks, [r for r in refs if parks[r]['ids']], DET, PREC)
+            saved_only = set()
         if REGION == 'world' and bad:   # not an ArcGIS map (France's IGN, Germany's BfN, Japan's A10…): only the saved copy exists
             sw = saved_world({r: parks[r] for r in bad})
             for r, g in sw.items(): G[r] = g; saved_only.add(r)
@@ -748,6 +928,8 @@ def main():
                     if all(pin_ok.values()):
                         s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
                         s['access'] = nearest_access(s, st_of)
+                        try: s['access_pin'] = access_pin(s, G, LN, st_of)
+                        except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
                         s['maps'] = [[r, PIN[r][3]] for r in s['refs']]
                         s['names'] = {r: PIN[r][0] for r in s['refs']}
                     else: s['status'] = 'dropped: a pin is outside its own outline'
@@ -758,7 +940,7 @@ def main():
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
     # report
     rep = {}
-    RF = OUT / ('report.json' if REGION != 'world' else 'report-world.json')
+    RF = OUT / {'world': 'report-world.json', 'ky': 'report-ky.json'}.get(REGION, 'report.json')
     try: rep = json.load(open(RF))
     except Exception: pass  # noqa: BLE001
     per = {}

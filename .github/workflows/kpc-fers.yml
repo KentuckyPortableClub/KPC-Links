@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       pass:
-        description: 'Pass: 1 (saved outlines), 2 (fresh downloads), 3 (finest shapes)'
+        description: 'Pass: 1 (saved outlines), 2 (fresh downloads), 3 (finest shapes), 4 (access pins only)'
         default: '1'
       minutes:
         description: 'Minutes per job (default 320)'
@@ -16,7 +16,7 @@ on:
         description: 'Only these (e.g. "US-OH CA-ON W-GB"; blank = all)'
         default: ''
       region:
-        description: 'both, na (US + Canada) or world'
+        description: 'both, na (US + Canada), world, or ky (Kentucky only, from its official files)'
         default: 'both'
 permissions:
   contents: write
@@ -30,7 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        region: ${{ fromJSON(inputs.region == 'na' && '["na"]' || inputs.region == 'world' && '["world"]' || '["na","world"]') }}
+        region: ${{ fromJSON(inputs.region == 'na' && '["na"]' || inputs.region == 'world' && '["world"]' || inputs.region == 'ky' && '["ky"]' || '["na","world"]') }}
     steps:
       - uses: actions/checkout@v5
       - name: Tools + saved outlines
