@@ -1,6 +1,6 @@
 # CT: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **145 of 157** parks joined to official land (same name + same kind of place). **2** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **145 of 157** parks joined to official land (same name + same kind of place). **2** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,13 +9,13 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~0 ac); Devils Hopyard State Park (~891 ac)
 - US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac)
 - US-7542 Satan's Kingdom State Recreation Area (State Recreation Area) → on Farmington River Water Access (~8 ac); Water Access (~12 ac)
 
 ## Nothing found in PAD-US
 
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
-- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River)
 - US-0882 Farmington National Wild and Scenic River (National Wild and Scenic River)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4561 New England Trail National Scenic Trail (National Scenic Trail)
@@ -29,6 +29,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State Forest ·  · Connecticut DEEP property · ~16,512 ac
 - State Forest ·  · Connecticut DEEP property · ~12,596 ac
 - State Forest ·  · Connecticut DEEP property · ~10,623 ac
+- Housatonic State Forest ·  · Connecticut DEEP (land, state GIS table) · ~10,623 ac
 - State Forest ·  · Connecticut DEEP property · ~10,162 ac
 - State Forest ·  · Connecticut DEEP property · ~9,537 ac
 - State Forest ·  · Connecticut DEEP property · ~9,250 ac
@@ -42,6 +43,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State Forest ·  · Connecticut DEEP property · ~4,224 ac
 - State Forest ·  · Connecticut DEEP property · ~4,062 ac
 - State Forest ·  · Connecticut DEEP property · ~3,742 ac
+- Mohawk State Forest ·  · Connecticut DEEP (land, state GIS table) · ~3,742 ac
 - Mohawk State Forest · SRMA ·   · ~3,251 ac
 - State Forest ·  · Connecticut DEEP property · ~3,103 ac
 - Unknown · WPA ·   · ~2,895 ac
@@ -54,34 +56,32 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Roraback Wildlife Area · SCA ·   · ~2,088 ac
 - Metropolitan District Commission · LP · Metropolitan District · ~2,069 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~2,027 ac
+- Roraback Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~2,027 ac
 - State Forest ·  · Connecticut DEEP property · ~1,959 ac
 - State Forest ·  · Connecticut DEEP property · ~1,933 ac
 - Unknown · SOTH ·   · ~1,919 ac
 - State Forest ·  · Connecticut DEEP property · ~1,701 ac
 - Unknown · WPA ·   · ~1,667 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,579 ac
+- Robbins Swamp Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~1,579 ac
 - State Forest ·  · Connecticut DEEP property · ~1,553 ac
 - State Forest ·  · Connecticut DEEP property · ~1,525 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,500 ac
 - Naugatuck State Forestt · SRMA ·   · ~1,491 ac
 - Natural Area Preserve ·  · Connecticut DEEP property · ~1,442 ac
+- Canaan Mountain Natural Area Preserve ·  · Connecticut DEEP (land, state GIS table) · ~1,442 ac
 - State Forest ·  · Connecticut DEEP property · ~1,303 ac
 - Canaan Mountain Natural Area Preserve · SCA ·   · ~1,153 ac
 - State Forest ·  · Connecticut DEEP property · ~1,150 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,129 ac
+- Quinebaug Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~1,129 ac
 - Robbins Swamp Wildlife Area · SCA ·   · ~1,122 ac
 - Manchester Reservoir Property · WPA ·   · ~1,109 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~1,075 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,068 ac
+- Goshen Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~1,068 ac
 - State Forest ·  · Connecticut DEEP property · ~1,052 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,018 ac
 - Unknown · WPA ·   · ~1,016 ac
 - State Forest ·  · Connecticut DEEP property · ~993 ac
 - Silvio O. Conte National Fish And Wildlife Refuge · NWR · SILVIO O. CONTE NATIONAL FISH AND WILDLIFE REFUGE · ~973 ac
-- Housatonic State Forest · SRMA ·   · ~934 ac
-- State Forest ·  · Connecticut DEEP property · ~925 ac
-- Wildlife Area ·  · Connecticut DEEP property · ~916 ac
-- Unknown · LOTH ·   · ~912 ac
-- State Forest ·  · Connecticut DEEP property · ~889 ac
-- Preserve State Forest ·  · Connecticut DEEP (land, state GIS table) · ~889 ac
-- Hammonasset Natural Area Preserve · SCA ·   · ~886 ac

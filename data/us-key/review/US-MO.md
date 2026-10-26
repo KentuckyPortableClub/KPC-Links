@@ -1,6 +1,6 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **544 of 561** parks joined to official land (same name + same kind of place). **1** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **544 of 561** parks joined to official land (same name + same kind of place). **1** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -55,6 +55,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **544 of 561** parks joined
 - Truman Reservoir ML (Upper Tebo Creek) ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~7,736 ac
 - Paddy Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,080 ac
 - Busch (August A) Mem CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~6,951 ac
+- St. Francois Mountains NA ·  · Missouri Natural Areas (DNR) (preserve, state GIS table) · ~6,920 ac
 - Devils Backbone Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,691 ac
 - Two Rivers National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,227 ac
 - Bald Knob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,817 ac
@@ -89,4 +90,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **544 of 561** parks joined
 - Reform CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,580 ac
 - Wah'Kon-Tah Prairie ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,504 ac
 - Seat (Emmett and Leah) Mem CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,479 ac
-- Hornersville Swamp CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,382 ac

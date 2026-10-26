@@ -8,7 +8,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10248 Warbler Woods State Nature Preserve (State Nature Preserve) → on Fort Harrison State Park (~980 ac); Fort Harrison State Park (~980 ac)
-- US-4188 Bryan Woods State Nature Preserve (State Nature Preserve) → on Bryan (Eunice Hamilton) Nature Preserve (~30 ac)
+- US-4188 Bryan Woods State Nature Preserve (State Nature Preserve) → on Bryan (Eunice Hamilton) Nature Preserve (~30 ac); Bryan (Eunice Hamilton) Nature Preserve (~33 ac)
 - US-4208 J. E. Roush Lake State Fish and Wildlife Area (State Fish and Wildlife Area) → on J. Edward Roush Fish and Wildlife Area (~8,235 ac); J. Edward Roush Fish and Wildlife Area (~8,235 ac)
 - US-5680 Indian-Celina State Recreation Area (State Recreation Area) → on Hoosier National Forest (~204,291 ac)
 - US-5681 Little Turtle State Recreation Area (State Recreation Area) → on J. Edward Roush Fish and Wildlife Area (~8,235 ac); J. Edward Roush Fish and Wildlife Area (~8,235 ac)
@@ -62,9 +62,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Brock Sampson-Hardin Ridge ·  · Indiana DNR properties · ~1,452 ac
 - Brock Sampson-Hardin Ridge ·  · Indiana DNR (land, state GIS table) · ~1,452 ac
 - Pedestal Rock Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~1,183 ac
+- Big Walnut Nature Preserve ·  · Indiana DNR (land, state GIS table) · ~1,030 ac
 - Menominee Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~1,008 ac
 - Cedar Swamp Wetland Conservation Area ·  · Indiana DNR properties · ~982 ac
 - Cedar Swamp Wetland Conservation Area ·  · Indiana DNR (land, state GIS table) · ~982 ac
+- Menominee Wetland Conservation Area ·  · Indiana DNR (land, state GIS table) · ~980 ac
 - Salamonie State Forest · SRMA · Indiana DNR, Forestry Division · ~956 ac
 - Bloomfield Barrens Managed Area · SCA · Indiana DNR, Nature Preserve Division · ~946 ac
 - Sugar Creek Conservation Area ·  · Indiana DNR properties · ~935 ac
@@ -73,6 +75,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Whipporwill Woods Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~899 ac
 - Tern Bar Slough · SCA · Indiana DNR, Fish and Wildlife Division · ~843 ac
 - Fourteen Mile Creek Nature Preserve · SCA · Indiana DNR, State Parks and Reservoirs Division · ~830 ac
+- Bloomfield Barrens Nature Preserve ·  · Indiana DNR (land, state GIS table) · ~803 ac
 - Mississinewa Lake ·  · Indiana DNR properties · ~797 ac
 - Mississinewa Lake ·  · Indiana DNR (land, state GIS table) · ~797 ac
 - Leavenworth Barrens Nature Preserve · SCA · Indiana DNR, Nature Preserve Division · ~748 ac
@@ -82,8 +85,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Westwood Park · LP · Big Blue River Conservancy District · ~720 ac
 - White River Bend Wildlife Management Area ·  · Indiana DNR properties · ~710 ac
 - White River Bend Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~710 ac
+- Mallard Roost Wetland Conservation Area ·  · Indiana DNR (land, state GIS table) · ~701 ac
 - Mallard Roost Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~699 ac
 - Elk Creek Fish And Wildlife Area · SCA · Indiana DNR, Fish and Wildlife Division · ~694 ac
+- Elk Creek Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~694 ac
+- Marsh Lake Wetland Conservation Area ·  · Indiana DNR (land, state GIS table) · ~678 ac
 - Eagle Marsh ·  · Indiana DNR properties · ~670 ac
 - Eagle Marsh ·  · Indiana DNR (land, state GIS table) · ~670 ac
 - Marsh Lake Wetland Conservation Area · SCA · Indiana DNR, Fish and Wildlife Division · ~662 ac
@@ -91,9 +97,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Randolph County Wildlife Management Area ·  · Indiana DNR properties · ~584 ac
 - Randolph County Wildlife Management Area ·  · Indiana DNR (land, state GIS table) · ~584 ac
 - Salamonie Lake ·  · Indiana DNR (land, state GIS table) · ~556 ac
-- Stucker Fork Fish And Wildlife Area ·  · Indiana DNR properties · ~513 ac
-- Stucker Fork Fish And Wildlife Area ·  · Indiana DNR (land, state GIS table) · ~513 ac
-- Randolph Wildlife Management Area · SCA · Indiana DNR, Fish and Wildlife Division · ~505 ac
-- Monroe Lake ·  · Indiana DNR properties · ~482 ac
-- Monroe Lake ·  · Indiana DNR (land, state GIS table) · ~482 ac
-- Kankakee River Swampland · SCA · Indiana DNR, Fish and Wildlife Division · ~454 ac

@@ -1,6 +1,6 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **203 of 219** parks joined to official land (same name + same kind of place). **3** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **203 of 219** parks joined to official land (same name + same kind of place). **3** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -69,6 +69,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **203 of 219** parks joined
 - Bay Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~2,760 ac
 - Waterfall Glen ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~2,759 ac
 - Waterfall Glen · LCA · Forest Preserve District of DuPage County · ~2,728 ac
+- Prairie Ridge-Jasper State Natural Area ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~2,705 ac
 - Prairie Ridge-Jasper State Natural Area · SCA · Illinois Department of Natural Resources · ~2,666 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,599 ac
 - Green Island Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~2,580 ac
@@ -88,4 +89,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **203 of 219** parks joined
 - Green River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,197 ac
 - Embarras River Bottoms State Habitat Area ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~2,180 ac
 - Embarras River Bottoms State Habitat Area · SCA · Illinois Department of Natural Resources · ~2,179 ac
-- Comlara Park ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~2,171 ac

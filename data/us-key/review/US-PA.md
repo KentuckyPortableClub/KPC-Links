@@ -7,7 +7,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-12235 Clarion National Wild and Scenic River (National Wild and Scenic River) → on Clear Creek State Park (~1,798 ac)
+- US-12235 Clarion National Wild and Scenic River (National Wild and Scenic River) → on Clear Creek State Park (~1,741 ac); Clear Creek State Park (~1,798 ac)
 
 ## Nothing found in PAD-US
 

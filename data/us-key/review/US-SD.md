@@ -10,7 +10,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-10363 DeGray State Recreation Area (State Recreation Area) → on Degrey Recreation Area (~25 ac); Sharpe Recreation Area (~78,431 ac)
 - US-10376 Le Beau State Recreation Area (State Recreation Area) → on Lebeau Recreation Area (~46 ac); Oaha Recreation Area (~314,305 ac)
-- US-11905 Centennial Trail State Trail (State Trail) → on Bear Butte Lake (~0 ac)
+- US-11905 Centennial Trail State Trail (State Trail) → on Bear Butte Lake (~0 ac); Bear Butte Lake (~0 ac)
 - US-8164 George S. Mickelson State Trail (State Trail) → on Exemption Area (~22,459 ac)
 
 ## Nothing found in PAD-US

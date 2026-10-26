@@ -153,6 +153,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Absaroka Mountain Foothills SRMA ·  · BLM recreation sites · ~42,866 ac
 - Lander Slope/Red Canyon ERMA ·  · BLM recreation sites · ~38,978 ac
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~37,820 ac
+- Targhee National Forest · NF · Forest Service Region 04 Intermountain · ~37,247 ac
 - Face of the Bighorns/North Fork ERMA ·  · BLM recreation sites · ~34,487 ac
 - Dempsey Ridge SRMA ·  · BLM recreation sites · ~33,330 ac
 - Raymond Mountain SRMA ·  · BLM recreation sites · ~32,842 ac
@@ -178,4 +179,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Beck Lake SRMA ·  · BLM recreation sites · ~6,916 ac
 - Willow Creek ERMA ·  · BLM recreation sites · ~6,835 ac
 - Green and New Fork Rivers SRMA (Lower Zone) ·  · BLM recreation sites · ~6,710 ac
-- Lander Valley Community SRMA ·  · BLM recreation sites · ~6,169 ac

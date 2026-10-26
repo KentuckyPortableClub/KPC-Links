@@ -1,6 +1,6 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **213 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **79** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **213 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **78** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -26,7 +26,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13206 Barnes Canyon Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Caliente Field Office (~5,063,883 ac)
 - US-13207 Blue Mass Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Bristlecone Field Office (~5,647,647 ac)
 - US-13210 Goshute Canyon and Goshute Cave BLM Recreation Management Area (BLM Recreation Management Area) → on Antelope (~327,747 ac); Bristlecone Field Office (~5,647,647 ac)
-- US-13214 Logandale Trails BLM Recreation Management Area (BLM Recreation Management Area) → on Valley of Fire State Park (~41,930 ac); Las Vegas Field Office (~2,378,020 ac)
+- US-13214 Logandale Trails BLM Recreation Management Area (BLM Recreation Management Area) → on Valley of Fire State Park (~41,930 ac); Valley of Fire State Park (~45,938 ac)
 - US-13217 Panaca Charcoal Kilns BLM Historic Area (BLM Historic Area) → on Eagle (~660,700 ac); Caliente Field Office (~5,063,883 ac)
 - US-13218 Pine Canyon Dam BLM Recreation Management Area (BLM Recreation Management Area) → on Caliente Field Office (~5,063,883 ac)
 - US-13222 Shooting Gallery BLM Historic Preservation Site (BLM Historic Preservation Site) → on Basin and Range (~0 ac); Basin And Range Nm Field Office (~703,784 ac)
@@ -34,7 +34,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13228 ZOLD - Red Spring Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Red Rock Canyon (~0 ac); Red Rock/Sloan Field Office (~245,885 ac)
 - US-13230 Fairview Peak Earthquake Faults BLM Interpretive Site (BLM Interpretive Site) → on Stillwater Field Office (~3,582,451 ac)
 - US-13240 Gallagher State Fish Hatchery (State Fish Hatchery) → on Humboldt National Forest (~2,400,994 ac)
-- US-13248 Fort Ruby National Historic Site (National Historic Site) → on Ruby Lake National Wildlife Refuge (~39,950 ac); Ruby Lake National Wildlife Refuge (~40,070 ac)
+- US-13248 Fort Ruby National Historic Site (National Historic Site) → on Ruby Lake National Wildlife Refuge (~39,950 ac); Ruby Lake National Wildlife Refuge (~40,063 ac)
 - US-13252 Stokes Castle National Historic Site (National Historic Site) → on Mount Lewis Field Office (~4,383,120 ac)
 - US-13259 Great Basin Highway Scenic Byway Scenic Site (Scenic Site) → on Bristlecone Field Office (~5,647,647 ac)
 - US-13262 Mt. Charleston Scenic Byway Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty) → on Las Vegas Field Office (~2,378,020 ac); Southern Nevada (~2,494,377 ac)
@@ -60,6 +60,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13463 Wonder, Nevada BLM Historic Preservation Site (BLM Historic Preservation Site) → on Clan Alpine (~304,763 ac); Stillwater Field Office (~3,582,451 ac)
 - US-13465 Jackrabbit Nevada BLM Historic Area (BLM Historic Area) → on Silver King (~576,458 ac); Caliente Field Office (~5,063,883 ac)
 - US-13467 Hiko Nevada State Historical Monument (State Historical Monument) → on Caliente Field Office (~5,063,883 ac)
+- US-13470 Lahontan Dam State Historical Monument (State Historical Monument) → on Lake Lahontan Recreation Area (~28,890 ac)
 - US-13476 Stonehouse Nevada State Historical Monument (State Historical Monument) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13480 The Eureka Mining District Producing Ore Since 1864 State Historical Monument (State Historical Monument) → on Mount Lewis Field Office (~4,383,120 ac)
 - US-13494 Lida BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Palmetto (~119,262 ac)
@@ -150,7 +151,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13466 Crystal Springs Nevada BLM Historic Preservation Site (BLM Historic Preservation Site)
 - US-13468 Chollar Mine State Historical Monument (State Historical Monument)
 - US-13469 Old Geiger Grade State Historical Monument (State Historical Monument)
-- US-13470 Lahontan Dam State Historical Monument (State Historical Monument)
 - US-13474 Kyle (Kiel) Ranch National Historic Site (National Historic Site)
 - US-13475 Mount Rose Weather Observatory State Historical Monument (State Historical Monument)
 - US-13477 Dinner Station Nevada State Historical Monument (State Historical Monument)

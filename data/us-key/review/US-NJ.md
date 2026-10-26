@@ -26,62 +26,62 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
+- Franklin Parker Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~10,763 ac
 - Franklin Parker Preserve · PCON · New Jersey Conservation Foundation · ~8,931 ac
+- Great Egg Harbor River Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~8,462 ac
 - Franklin Parker Preserve · SCA ·   · ~7,500 ac
 - Cherry Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~5,803 ac
+- Maple Lake Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~4,696 ac
 - Six Mile Run Reservoir Site ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~3,210 ac
+- CROSSLEY PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~3,077 ac
+- Crossley Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~3,077 ac
+- Appalachian Trail ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~3,066 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~2,904 ac
+- HAMILTON PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~2,335 ac
+- Hamilton Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~2,335 ac
 - Six Mile Run Reservoir Site · SP · Division of Parks and Forestry · ~2,294 ac
 - Fortescue Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,983 ac
+- Trout Brook Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,981 ac
+- Fortescue Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,972 ac
+- Whittingham Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,969 ac
 - Whittingham Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,948 ac
 - Trout Brook Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,947 ac
+- GREAT PIECE MEADOWS PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~1,873 ac
+- Great Piece Meadows Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,873 ac
+- BEAR SWAMP AT RED LION PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~1,729 ac
+- Bear Swamp at Red Lion Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,729 ac
+- SOOY PLACE PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~1,633 ac
+- Sooy Place Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,633 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,615 ac
 - Sooy Place Preserve · SCA · New Jersey Natural Lands Trust · ~1,592 ac
+- Warren Trail ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,583 ac
+- Musconetcong River Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,581 ac
+- Weldon Brook Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,568 ac
+- Port Republic Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,556 ac
 - Whittingham Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,511 ac
 - Franklin Parker Preserve · SCA ·   · ~1,431 ac
 - Bear Swamp at Red Lion Preserve · SCA · New Jersey Natural Lands Trust · ~1,416 ac
 - Sooy Place Preserve · SCA · New Jersey Natural Lands Trust · ~1,395 ac
+- North Brigatine Natural Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,344 ac
+- Paulinskill Valley Trail ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,319 ac
 - Appalachian National Scenic Trail · NT · NPS · ~1,222 ac
+- Nantuxent Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,209 ac
 - Nantuxent Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,197 ac
+- Whiting Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,193 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,184 ac
+- Gumtree Corner Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,168 ac
 - Gumtree Corner Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,167 ac
 - Columbia Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,159 ac
+- Columbia Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,159 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,141 ac
+- Buck Mountain ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,138 ac
 - Maskells Mills Pond Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,125 ac
+- Maskells Mills Pond Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,125 ac
 - Crossley Preserve · SCA · New Jersey Natural Lands Trust · ~1,120 ac
 - Paulinskill Valley Trail · SREC · NJ Division of Parks and Forestry · ~1,118 ac
+- Prospertown Lake Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,098 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,096 ac
+- BEAR CREEK PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~1,062 ac
+- Bear Creek Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,062 ac
+- Manahawkin Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,060 ac
 - Great Egg Harbor River Wildlife Management Area · SCA ·   · ~1,024 ac
-- Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,024 ac
-- Bear Creek Preserve · SCA · New Jersey Natural Lands Trust · ~1,014 ac
-- John Heinz National Wildlife Refuge At Tinicum ·  · U.S. Fish & Wildlife Service (own map) · ~1,011 ac
-- Fortescue Wildlife Management Area · SCA · Division of Fish and Wildlife · ~970 ac
-- Forest Resource Education Center ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~940 ac
-- Baldpate Mountain · SCA · NJ Department of Environmental Protection · ~919 ac
-- Manahawkin Wildlife Management Area · SCA · Division of Fish and Wildlife · ~918 ac
-- Baldpate Mountain · LCA · Mercer County · ~914 ac
-- Great Piece Meadows Preserve · SCA · New Jersey Natural Lands Trust · ~912 ac
-- Manasquan Reservoir · LREC · Monmouth County · ~904 ac
-- Prospertown Lake Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~888 ac
-- Buck Mountain · SP · Division of Parks and Forestry · ~880 ac
-- Weldon Brook Wildlife Management Area · SCA · Division of Fish and Wildlife · ~829 ac
-- Appalachian Trail · SREC · Division of Parks and Forestry · ~797 ac
-- Nantuxent Wildlife Management Area · SCA · Division of Fish and Wildlife · ~797 ac
-- Hamilton Preserve · SCA · New Jersey Natural Lands Trust · ~786 ac
-- Port Republic Wildlife Management Area · SCA · Division of Fish and Wildlife · ~771 ac
-- North Brigatine Natural Area · SCA · Division of Parks and Forestry · ~758 ac
-- Sawmill Creek Wildlife Management Area · SCA · Division of Fish and Wildlife · ~752 ac
-- Weldon Brook Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~744 ac
-- Crossley Preserve · SCA · New Jersey Natural Lands Trust · ~714 ac
-- Retreat Preserve · SCA · New Jersey Natural Lands Trust · ~710 ac
-- UNEXPECTED WILDLIFE REFUGE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~668 ac
-- Fortescue Wildlife Management Area · SCA · Division of Fish and Wildlife · ~638 ac
-- Buckhorn Creek Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~635 ac
-- Raritan River Confluence State Park · SP · Division of Parks and Forestry · ~633 ac
-- Trout Brook Wildlife Management Area · SCA · Division of Fish and Wildlife · ~622 ac
-- Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~621 ac
-- Maskells Mills Pond Wildlife Management Area · SCA · Division of Fish and Wildlife · ~605 ac
-- Warren Trail · SREC · Division of Parks and Forestry · ~602 ac
-- Sussex Branch Trail ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~586 ac
-- Port Republic Wildlife Management Area · SCA · Division of Fish and Wildlife · ~584 ac
-- Mahlon Dickerson Reservation · SOTH ·   · ~572 ac

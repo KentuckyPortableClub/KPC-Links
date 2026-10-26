@@ -1,6 +1,6 @@
 # CA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **373 of 410** parks joined to official land (same name + same kind of place). **0** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **373 of 410** parks joined to official land (same name + same kind of place). **0** to check by hand, **16** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,6 +8,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-0197 Kern National Wild and Scenic River (National Wild and Scenic River) → on Sequoia National Forest (~1,114,950 ac)
+- US-0198 Kesterson National Wildlife Refuge (National Wildlife Refuge) → on Los Banos Wildlife Area (~0 ac)
 - US-0201 Merced National Wild and Scenic River (National Wild and Scenic River) → on Mother Lode Field Office (~230,415 ac)
 - US-0884 Kings River National Wild and Scenic River (National Wild and Scenic River) → on Monarch Wilderness (~44,223 ac)
 - US-0894 Tuolumne National Wild and Scenic River (National Wild and Scenic River) → on Stanislaus National Forest (~899,802 ac)
@@ -24,13 +25,12 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-3454 La Purisima Mission State Historical Park (State Historical Park) → on La Purísima Mission SHP (~1,873 ac); La Purísima Mission State Historic Park (~1,926 ac)
 - US-3578 Tijuana Estuary Reserve State Conservation Area (State Conservation Area) → on Tijuana Slough National Wildlife Refuge (~474 ac); Tijuana Slough National Wildlife Refuge (~1,059 ac)
 - US-4544 San Gabriel Mountains National Monument (National Monument) → on Angeles National Forest (~651,783 ac)
-- US-6448 William Randolph Hearst Memorial State Beach (State Beach) → on Hearst San Simeon State Park (~7 ac)
+- US-6448 William Randolph Hearst Memorial State Beach (State Beach) → on Hearst San Simeon State Park (~7 ac); Hearst San Simeon SP (~1,690 ac)
 - US-7888 Alcatraz Island National Historic Site (National Historic Site) → on Golden Gate National Recreation Area (~34,888 ac)
 - US-7889 Presidio of SF National Historic Site (National Historic Site) → on Golden Gate National Recreation Area (~34,888 ac)
 
 ## Nothing found in PAD-US
 
-- US-0198 Kesterson National Wildlife Refuge (National Wildlife Refuge)
 - US-0754 Rosie the Riveter WWII Home Front National Historical Park (National Historical Park)
 - US-0915 Cesar E. Chavez National Monument (National Monument)
 - US-11584 Panoche Hills BLM Special Recreation Management Area (BLM Special Recreation Management Area)

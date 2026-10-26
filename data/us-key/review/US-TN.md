@@ -77,8 +77,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Big Laurel Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,764 ac
 - A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~9,735 ac
 - A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~9,735 ac
+- Meeman-Shelby Forest WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~9,434 ac
 - Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
 - Upper Bald River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,037 ac
+- Meeman-Shelby Forest WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~8,989 ac
 - Big Frog Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,502 ac
 - Wapanocca National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,464 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~8,333 ac
@@ -101,5 +103,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Edgar Evins SP & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~5,121 ac
 - South Cumberland · SP · OTHS · ~5,047 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~4,555 ac
-- Unaka Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,463 ac
-- North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~4,277 ac

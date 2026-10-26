@@ -100,12 +100,14 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Salmon Lake-Kigluaik SRMA ·  · BLM recreation sites · ~249,962 ac
 - Eastern Interior Field Office · PUB · BLM · ~241,991 ac
 - Iditarod NHT ·  · BLM recreation sites · ~241,512 ac
+- Tanana Valley State Forest ·  · Alaska DNR Division of Forestry (Alaska DNR AGOL org) (forest, state GIS table) · ~199,686 ac
 - Redoubt Bay Critical Habitat Area · SCA · Unknown · ~170,861 ac
 - Trading Bay State Game Refuge · SCA · Unknown · ~161,885 ac
 - State Patented · SOTH · Unknown · ~150,671 ac
 - Mcneil River State Game Refuge · SCA · Unknown · ~140,581 ac
 - Mcneil River State Game Sanctuary · SCA · Unknown · ~136,370 ac
 - Teikel SRMA ·  · BLM recreation sites · ~124,646 ac
+- Tanana Valley State Forest ·  · Alaska DNR Division of Forestry (Alaska DNR AGOL org) (forest, state GIS table) · ~118,397 ac
 - Tugidak Island Critical Habitat Area · SCA · Unknown · ~116,780 ac
 - State Patented · SOTH · Unknown · ~114,229 ac
 - Tiekel SRMA ·  · BLM recreation sites · ~112,246 ac
@@ -113,11 +115,9 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State Patented · SOTH · Unknown · ~102,494 ac
 - Endicott River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~98,396 ac
 - Gulkana River SRMA ·  · BLM recreation sites · ~94,513 ac
+- Tanana Valley State Forest ·  · Alaska DNR Division of Forestry (Alaska DNR AGOL org) (forest, state GIS table) · ~94,037 ac
 - Glennallen Field Office · PUB · BLM · ~89,450 ac
 - South Prince of Wales Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,034 ac
 - Delta Junction Bison Range Area · SRMA · Unknown · ~86,914 ac
 - South Etolin Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~83,430 ac
 - Yakataga State Game Refuge · SCA · Unknown · ~80,615 ac
-- Knik SRMA ·  · BLM recreation sites · ~79,498 ac
-- Toolik Lake RNA ·  · BLM recreation areas · ~78,034 ac
-- Toolik Lake RNA ·  · BLM recreation sites · ~78,034 ac

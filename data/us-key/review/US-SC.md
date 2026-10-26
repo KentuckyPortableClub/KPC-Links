@@ -45,6 +45,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Lewis Ocean Bay HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~10,788 ac
 - Crackerneck WMA and Ecological Reserve ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~10,600 ac
 - Little Pee Dee HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~10,455 ac
+- Moultrie Hunt Unit ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~9,773 ac
 - Pee Dee National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,661 ac
 - Waccamaw River HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~8,557 ac
 - Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
@@ -57,6 +58,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~5,107 ac
 - Morgan Island · SCA · Unknown · ~4,969 ac
 - Little Wambaw Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,949 ac
+- Keowee WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~4,930 ac
 - St. Phillips Island ·  · South Carolina State Parks (PRT) (park, state GIS table) · ~4,849 ac
 - Wambaw Swamp Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,755 ac
 - Botany Bay Plantation HP and WMA ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~4,687 ac
@@ -82,5 +84,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~2,042 ac
 - Daws Island HP ·  · South Carolina DNR (WMAs, heritage preserves) (wild, state GIS table) · ~1,881 ac
 - Catawba River Wildlife Management Area - McDowell Tract · SCA · Unknown · ~1,878 ac
-- Saint Helena Sound Heritage Preserve / Wildlife Management Area · SCA · Unknown · ~1,863 ac
-- Wambaw Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,832 ac

@@ -1,6 +1,6 @@
 # WA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **468 of 536** parks joined to official land (same name + same kind of place). **13** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **468 of 536** parks joined to official land (same name + same kind of place). **13** to check by hand, **25** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -36,7 +36,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **468 of 536** parks joined
 - US-12566 Sheep Creek State Recreation Area (State Recreation Area) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12567 Douglas Falls State Recreation Area (State Recreation Area) → on Washington State Department of Natural Resources (WADNR) State Resource Management Area (~2,562,869 ac)
 - US-12829 Duffy Creek BLM Recreation Management Area (BLM Recreation Management Area) → on Spokane Wenatchee Field Office (~254,416 ac)
-- US-3157 Bayview State Park (State Park) → on Bay View (~66 ac)
+- US-3157 Bayview State Park (State Park) → on Bay View State Park (~0 ac); Bay View (~66 ac)
 - US-3171 Spokane River Centennial State Trail (State Trail) → on Riverside (~8,735 ac)
 - US-4555 Hanford Reach National Monument (National Monument) → on Hanford Site (~211,071 ac)
 - US-4562 Pacific Crest Trail National Scenic Trail (National Scenic Trail) → on Snoqualmie National Forest (~659,968 ac)

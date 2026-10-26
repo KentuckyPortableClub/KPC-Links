@@ -1,10 +1,11 @@
 # MI: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **310 of 388** parks joined to official land (same name + same kind of place). **24** to check by hand, **32** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **310 of 388** parks joined to official land (same name + same kind of place). **25** to check by hand, **31** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-13566** Houghton-Douglass Falls and Veterans Memorial Scenic Site (Scenic Site) → Houghton-Douglass Falls Veterans Scenic Site (~70 ac, similar name)
+- **US-4262** Pemene Falls Unit of Menominee River State Recreation Area (State Recreation Area) → Menominee River Recreation Area (~2,986 ac, similar name)
 - **US-6626** Bill Rollo Memorial State Game Land (State Game Land) → Bill Rollo Memorial Grouse Enhanced Mgmt.Sys.(GEMS)(SWMA) (~6,595 ac, similar name); Gwinn Forest Management Unit (~217,829 ac, the POTA pin is inside it (different name))
 - **US-6631** Blue Bill Creek State Game Land (State Game Land) → Blue Bill Creek Grouse Enh.Mgmt.Sys.(GEMS) of USFS Ottawa Nat.For (~9,772 ac, similar name); Ottawa National Forest (~994,695 ac, the POTA pin is inside it (different name))
 - **US-6642** Cedar River State Game Land (State Game Land) → Cedar River Grouse Enhanced Mgmt.Sys.(GEMS)(SWMA) (~3,088 ac, similar name); Escanaba Forest Management Unit (~73,270 ac, the POTA pin is inside it (different name))
@@ -27,7 +28,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - **US-6779** Schlee Waterfowl National Wildlife Management Area (National Wildlife Management Area) → Schlee Waterfowl Production Area (~159 ac, similar name); Jackson County Waterfowl Production Area Of Mi (~298 ac, the POTA pin is inside it (different name))
 - **US-6780** Schoonover Waterfowl National Wildlife Management Area (National Wildlife Management Area) → Schoonover Waterfowl Production Area (~95 ac, similar name)
 - **US-6792** Strickler State Game Land (State Game Land) → Strickler Grouse Enhanced Mgmt.Sys.(GEMS)(SWMA) (~2,179 ac, similar name)
-- **US-6796** Tobico Marsh Wildlife Management Area (Wildlife Management Area) → Tobico Marsh Unit of Bay City State Park (~2,088 ac, similar name)
+- **US-6796** Tobico Marsh Wildlife Management Area (Wildlife Management Area) → Tobico Marsh Unit of Bay City State Park (~2,088 ac, similar name); Bay City State Park (~2,366 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -50,7 +51,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4776 Escanaba River State Forest (State Forest) → on Escanaba Forest Management Unit (~73,270 ac)
 - US-4777 Lake Superior State Forest (State Forest) → on Newberry Forest Management Unit (~345,972 ac); Newberry State Forest Area (~348,461 ac)
 - US-4779 Pere Marquette State Forest (State Forest) → on Cadillac State Forest Area (~221,994 ac)
-- US-6647 Connors Marsh Wildlife Management Area (Wildlife Management Area) → on Conners Marsh Flooding State Wildlife Management Area (~1,052 ac); Grayling Forest Management Unit (~94,816 ac)
+- US-6647 Connors Marsh Wildlife Management Area (Wildlife Management Area) → on Conners Marsh Flooding State Wildlife Management Area (~1,052 ac); Conners Marsh Flooding State Wildlife Management Area (~1,052 ac)
 - US-6728 Manitou Island Group Wildlife Management Area (Wildlife Management Area) → on Sleeping Bear Dunes National Lakeshore (~56,717 ac)
 - US-6808 Cedar River State Harbor (State Harbor) → on Escanaba Forest Management Unit (~73,270 ac)
 
@@ -73,7 +74,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13184 Iron Belle State Trail (State Trail)
 - US-13565 Flint State Park (State Park)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
-- US-4262 Pemene Falls Unit of Menominee River State Recreation Area (State Recreation Area)
 - US-4778 Mackinaw State Forest (State Forest)
 - US-6809 Copper Harbor State Harbor (State Harbor)
 - US-6810 DeTour State Harbor (State Harbor)
@@ -146,8 +146,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Bullock Ranch State Wildlife Management Area · SCA · MIDNR Wildlife Division · ~13,392 ac
 - Gladwin Forest Management Unit ·  · Michigan DNR project boundaries · ~13,200 ac
 - Traverse City Forest Management Unit ·  · Michigan DNR project boundaries · ~12,972 ac
+- Bullock Ranch State Wildlife Management Area ·  · Michigan Department of Natural Resources (AGOL owner MichiganDNR) (wild, state GIS table) · ~12,681 ac
 - Delirium Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,951 ac
 - Upper Mississippi River National Wildlife And Fish Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,691 ac
 - Gwinn Forest Management Unit ·  · Michigan DNR project boundaries · ~11,679 ac
 - Gaylord Forest Management Unit ·  · Michigan DNR project boundaries · ~11,625 ac
-- Natural Area Dead Stream Swamp · SCA · MIDNR Forest Resources Division · ~11,547 ac

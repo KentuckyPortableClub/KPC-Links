@@ -16,7 +16,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-12121 Lower Reedy Creek: Rough Island North and South, and Johnson Island State Conservation Area (State Conservation Area) → on Kissimmee Chain of Lakes Area Wildlife Management Area (~0 ac); Kissimmee Chain of Lakes (~29,709 ac)
 - US-12124 Harold A. Campbell Public Use and STA 3/4 State Conservation Area (State Conservation Area) → on Stormwater Treatment Areas (~47,574 ac)
 - US-12132 Chandler Slough State Conservation Area (State Conservation Area) → on Kissimmee River Public Use Area (~0 ac); Kissimmee River Public Use Area (~24,820 ac)
-- US-3621 Fort Foster State Historic Site (State Historic Site) → on Hillsborough River State Park (~3,319 ac); Open Space (~18,062 ac)
+- US-3621 Fort Foster State Historic Site (State Historic Site) → on Hillsborough River State Park (~3,319 ac); Hillsborough River State Park (~3,319 ac)
 - US-8719 Horse Creek State Conservation Area (State Conservation Area) → on Upper Lake Marion Creek Watershed (~290 ac); Lake Marion Creek Horseshoe Scrub Tract (~290 ac)
 
 ## Nothing found in PAD-US
