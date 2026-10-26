@@ -1,0 +1,39 @@
+name: KPC temp probe (chat 2, delete after)
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Probe
+        continue-on-error: true
+        run: |
+          python3 - <<'PY' || true
+          import urllib.request, urllib.parse, json
+          def g(u, q=None):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u + ('?' + urllib.parse.urlencode(q) if q else ''), headers={'User-Agent': 'KPC check'}), timeout=50).read())
+          L = {'CA parking': ('https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkingPoints/FeatureServer/0', '1=1', 'UNITNAME,TYPE,SUBTYPE,USETYPE'),
+               'CA entry': ('https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ParkEntryPoints/FeatureServer/2', '1=1', 'PARK_NAME'),
+               'VA DCR': ('https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/StatePark_FacilitiesPOI/FeatureServer/12', "USeDirect_UseType='Parking'", 'ParkAbbr,Facility_Name,USeDirect_UseType'),
+               'VA DWR': ('https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/VA_DWR_River_Accesses_WFL1/FeatureServer/0', '1=1', 'SITENAME,WATERBODY'),
+               'UT ramps': ('https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/BoatRamps/FeatureServer/0', '1=1', '*'),
+               'UT trailheads': ('https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahTrailheads/FeatureServer/0', '1=1', '*'),
+               'AZ f250': ('https://services1.arcgis.com/KbxwQRRfWyEYLgp4/ArcGIS/rest/services/Arizona_State_Parks_and_Trails_Freedom_250/FeatureServer/61', '1=1', '*')}
+          for k, (u, w, f) in L.items():
+              try:
+                  i = g(u, {'f': 'json'}); c = g(u + '/query', {'where': w, 'returnCountOnly': 'true', 'f': 'json'}).get('count')
+                  s = g(u + '/query', {'where': w, 'outFields': f, 'returnGeometry': 'false', 'resultRecordCount': 2, 'f': 'json'}).get('features', [])
+                  print(f"::notice title=probe {k}::{i.get('geometryType')} count={c} copy={str(i.get('copyrightText'))[:80]} fields={[x['name'] for x in i.get('fields', [])][:16]} sample={[x['attributes'] for x in s]}"[:950])
+              except Exception as e:
+                  print(f'::notice title=probe {k}::FAILED {str(e)[:150]}')
+          try:
+              j = g('https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services', {'f': 'json'})
+              print('::notice title=probe AZ ASP root::' + str([s['name'] for s in j.get('services', [])])[:900])
+          except Exception as e: print('::notice title=probe AZ ASP root::FAILED ' + str(e)[:150])
+          try:
+              j = g('https://services1.arcgis.com/KbxwQRRfWyEYLgp4/ArcGIS/rest/services', {'f': 'json'})
+              print('::notice title=probe AZ f250 root::' + str([s['name'] for s in j.get('services', [])])[:900])
+          except Exception as e: print('::notice title=probe AZ f250 root::FAILED ' + str(e)[:150])
+          PY
