@@ -1,5 +1,5 @@
 {
- "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level).",
+ "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link.",
  "parks": {
   "CA-0653": {
    "agency": "Alberta Parks, Government of Alberta",
@@ -1012,6 +1012,7 @@
   "US-0189": {
    "map": "https://www.fws.gov/refuge/don-edwards-san-francisco-bay/visit-us",
    "map_date": "Map date not stated",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_page": "https://www.fws.gov/refuge/don-edwards-san-francisco-bay/map",
    "map_what": "Official USFWS visit page with refuge maps / visitor information"
   },
@@ -1020,10 +1021,12 @@
    "map_by": "bot: National Park Service (maps page answered)"
   },
   "US-0225": {
-   "map": "https://www.fws.gov/sites/default/files/documents/Rocky%20Flats%20Trail%20Map.pdf",
-   "map_date": "Official map; page date not stated",
+   "map": "https://fws.gov/sites/default/files/documents/2024-06/rocky-flats-nwr-brochure-web.pdf",
+   "map_date": "2024-06",
+   "map_fix": "research desk Oct 26",
+   "map_hold": "map page (/map) not confirmed (research desk): held until the link check passes",
    "map_page": "https://www.fws.gov/refuge/rocky-flats/map",
-   "map_what": "PDF refuge trail map"
+   "map_what": "FWS refuge brochure with trail map (2024)"
   },
   "US-0226": {
    "map": "https://www.fws.gov/sites/default/files/documents/2025-03/rma-wildlife-drive-and-trails-web.pdf",
@@ -1093,7 +1096,8 @@
    "web": "https://www.fws.gov/refuge/umatilla"
   },
   "US-0637": {
-   "map": "https://www.arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/mills-park-natural-area-boundary-map-3-18-22.pdf?sfvrsn=56454d3",
+   "map": "https://www.arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/mills-park-natural-area-boundary-map-3-18-22.pdf?sfvrsn=56454d3a_2",
+   "map_fix": "research desk Oct 26",
    "map_what": "PDF map (boundary map)"
   },
   "US-0640": {
@@ -2483,10 +2487,9 @@
    "web": "https://www.blm.gov/visit/judith-landing"
   },
   "US-1055": {
-   "map": "https://arizona-content.usedirect.com/storage/catalina/20241016113013park-map-cata.pdf",
-   "map_date": "2024-10-11",
-   "map_page": "https://azstateparks.com/catalina/explore/maps",
-   "map_what": "PDF map (official Arizona State Parks park and trails map)"
+   "map": "https://azstateparks.com/catalina/explore/maps",
+   "map_fix": "research desk Oct 26",
+   "map_what": "park's official maps page (newer maps than the 2024 PDF)"
   },
   "US-10555": {
    "map": "https://mdc.mo.gov/media/area/map/6121",
@@ -3592,8 +3595,10 @@
    "map_by": "bot: New Jersey DEP (state-owned open space) (land, state GIS tab (FACILITY_MAP_URL field)"
   },
   "US-1312": {
-   "map": "https://www.dcr.virginia.gov/state-parks/document/po-campground-map.pdf",
-   "map_what": "PDF map (campground map)"
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/trail-guide-pocahontas.pdf",
+   "map_fix": "research desk Oct 26",
+   "map_page": "https://www.dcr.virginia.gov/state-parks/document/po-campground-map.pdf",
+   "map_what": "trail guide PDF (official); campground map = map page"
   },
   "US-13147": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/andaloro.pdf",
@@ -3622,6 +3627,7 @@
   "US-13184": {
    "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/Iron_Belle_Trail.pdf?hash=AF1DE25252BE6A19A2ECED0E000690F3&rev=4b5da54922134c478354414e88875732",
    "map_date": "Map date not stated",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_page": "https://experience.arcgis.com/experience/157fd543acd047a3ab851f1ceb09bdeb",
    "map_what": "PDF overview map (official Michigan DNR)"
   },
@@ -3987,8 +3993,9 @@
    "map_what": "PDF map (hiking map; park map link is 404)"
   },
   "US-1942": {
-   "map": "https://www.clevelandmetroparks.com/assets/media/Cleveland_Metroparks/Documents/Reservation_Maps/Lakefront-Reservation-Map.pdf",
+   "map": "https://www.clevelandmetroparks.com/getmedia/3496c101-b5d3-44f1-b19c-7ddff3907e44/Lakefront-Reservation-Map.pdf",
    "map_date": "Map date not stated",
+   "map_fix": "research desk Oct 26",
    "map_what": "PDF map (Lakefront Reservation trail and facility map)"
   },
   "US-1946": {
@@ -4449,8 +4456,8 @@
    "web": "https://stateparks.utah.gov/parks/snow-canyon/"
   },
   "US-3094": {
-   "map": "https://stateparks.utah.gov/wp-content/uploads/utahlake-digital-brochure-2026.pdf",
-   "map_what": "brochure with map"
+   "map_fix": "research desk Oct 26",
+   "map_page": "https://stateparks.utah.gov/parks/utah-lake/publications/"
   },
   "US-3106": {
    "agency": "Vermont Department of Forests, Parks and Recreation",
@@ -4513,6 +4520,8 @@
   },
   "US-3383": {
    "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsA-D/bald_mountain_map.pdf",
+   "map_fix": "research desk Oct 26",
+   "map_hold": "link may need its ?rev=&hash= (research desk): held until the link check passes",
    "map_what": "PDF map"
   },
   "US-3411": {
@@ -4546,6 +4555,7 @@
   "US-3473": {
    "map": "https://files.santaclaracounty.gov/migrated/MartialCottleGuideMap.pdf",
    "map_date": "Map date not stated",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_page": "https://csparks.maps.arcgis.com/apps/instant/basic/index.html?appid=065b067caa204e8da48d4b53c9483ab0&UNITNBR=229",
    "map_what": "PDF park guide map (Santa Clara County Parks; park is county-operated)"
   },
@@ -4575,6 +4585,7 @@
   "US-3627": {
    "map": "https://floridadep.gov/sites/default/files/VanFleetStateTrail.pdf",
    "map_date": "PDF published approx. 2011; map date not stated",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_what": "Official Florida DEP overview/map PDF for General James A. Van Fleet State Trail"
   },
   "US-3633": {
@@ -4696,11 +4707,13 @@
   "US-3873": {
    "map": "https://embed.widencdn.net/pdf/plus/scprt/1b2dm2dbko/CDMap_2017.pdf?u=sgt8lu",
    "map_date": "2017",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_what": "PDF park map"
   },
   "US-4011": {
    "map": "https://www.papionrd.org/wp-content/uploads/2025/06/pPNRD-0031_MAP_Chalco_09-12.pdf",
    "map_date": "PDF posted June 2025; map date not stated",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_what": "Official Papio-Missouri River NRD park map PDF"
   },
   "US-4016": {
@@ -4845,9 +4858,11 @@
    "map_what": "PDF forest map (Texas A&M Forest Service)"
   },
   "US-4423": {
-   "map": "https://springcreekforest.org/wp-content/uploads/2021/08/scfp-map2021-2.pdf",
-   "map_date": "2021 (map source data collected 2020)",
-   "map_what": "Official Spring Creek Forest Preserve trail map PDF"
+   "group_site": "https://springcreekforest.org/wp-content/uploads/2021/08/scfp-map2021-2.pdf",
+   "map": "https://www.dallascounty.org/Assets/uploads/docs/plandev/trails/25-SpringCreekGarland.pdf",
+   "map_fix": "research desk Oct 26",
+   "map_page": "https://www.dallascounty.org/departments/plandev/openspaces/locations/04-spring-creek-forest.php",
+   "map_what": "Dallas County trail map PDF"
   },
   "US-4424": {
    "agency": "U.S. Department of Agriculture, Forest Service",
@@ -5445,8 +5460,8 @@
    "web": "https://www.fs.usda.gov/visit/destination/absaroka-beartooth-wilderness"
   },
   "US-6281": {
-   "map": "https://www.fws.gov/rivers/map",
-   "map_what": "map page (national Wild & Scenic Rivers map; not river-specific)"
+   "agency_map": "https://www.fws.gov/rivers/map",
+   "map_fix": "research desk Oct 26"
   },
   "US-6291": {
    "map": "https://myfwc.com/recreation/lead/babcockwebb/planning-your-visit/",
@@ -5494,6 +5509,7 @@
   "US-6462": {
    "map": "https://seepassaiccounty.org/wp-content/uploads/2022/12/Garret_122022.pdf",
    "map_date": "December 2022",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_note": "map on the park page",
    "map_what": "PDF park map (official Passaic County source)"
   },
@@ -5739,9 +5755,8 @@
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)"
   },
   "US-6532": {
-   "map": "https://eriecanalway.org/resources/news-and-publications",
-   "map_date": "2026 Map and Guide",
-   "map_what": "Map page (2026 Map and Guide; National Heritage Corridor Map)"
+   "group_site": "https://eriecanalway.org/resources/news-and-publications",
+   "map_fix": "research desk Oct 26"
   },
   "US-6544": {
    "map": "https://www.nps.gov/npgallery/GetAsset/e8a647dd-3641-4f45-bc7f-a2f2d56d2fe3",
@@ -5783,9 +5798,9 @@
    "agency_map": "https://www.ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps"
   },
   "US-6927": {
-   "map": "https://www.ncpaws.org/ncwrcmaps/GameLands",
-   "map_date": "Map date not stated",
-   "map_what": "Official NC Wildlife Resources Commission interactive Game Lands map (search for Nantahala Game Land)"
+   "map": "https://www.ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps/mountain-game-land-maps",
+   "map_fix": "research desk Oct 26",
+   "map_what": "NCWRC mountain game land maps page"
   },
   "US-6931": {
    "agency_map": "https://www.ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps"
@@ -7074,9 +7089,10 @@
    "map_by": "bot: Recreation.gov RIDB (agency link)"
   },
   "US-8313": {
-   "map": "https://mountainstoseatrail.org/the-trail/map/",
-   "map_date": "Map page dated 2026-06-22",
-   "map_what": "Interactive map page"
+   "group_site": "https://mountainstoseatrail.org/the-trail/map/",
+   "map": "https://trails.nc.gov/maps/map-pdfs-mountains-sea-state-trail/open",
+   "map_fix": "research desk Oct 26",
+   "map_what": "NC State Trails map PDFs page (official)"
   },
   "US-8314": {
    "map": "https://mdc.mo.gov/media/area/map/7809",
@@ -7218,6 +7234,7 @@
   "US-9557": {
    "map": "https://stateparks.oregon.gov/index.cfm?do=park.profile&parkId=178",
    "map_date": "PDF map dated 2019-12-16",
+   "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_note": "map on the park page",
    "map_what": "Official map page (Southern Willamette State Parks PDF map)"
   },
@@ -7237,9 +7254,9 @@
    "web": "https://cpw.state.co.us/state-wildlife-areas/dome-lakes-swa"
   },
   "US-9681": {
-   "map": "https://www.camdenexpedition.org/highwaymap.php",
-   "map_date": "Copyright 2016–2026; map date not stated",
-   "map_what": "Official trail/highway map page"
+   "group_site": "https://www.camdenexpedition.org/highwaymap.php",
+   "map_fix": "research desk Oct 26",
+   "map_hold": "no agency source found (research desk): non-official site only"
   },
   "US-9683": {
    "map": "https://www.nps.gov/amch/planyourvisit/maps.htm",
