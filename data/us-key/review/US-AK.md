@@ -84,6 +84,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Steese SRMA ·  · BLM recreation sites · ~707,907 ac
 - State Land Disposals - Municipal Purposes · SOTH · Unknown · ~676,504 ac
 - Tracy Arm-Fords Terror Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~647,358 ac
+- Cape Krusenstern National Monument · NM · NPS · ~617,870 ac
 - Denali Highway SRMA ·  · BLM recreation sites · ~557,672 ac
 - Copper River Delta Critical Habitat Area · SCA · Unknown · ~543,173 ac
 - Steese SRMA ·  · BLM recreation sites · ~539,040 ac
@@ -120,4 +121,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Knik SRMA ·  · BLM recreation sites · ~79,498 ac
 - Toolik Lake RNA ·  · BLM recreation areas · ~78,034 ac
 - Toolik Lake RNA ·  · BLM recreation sites · ~78,034 ac
-- Port Moller Critical Habitat Area · SCA · Unknown · ~77,681 ac

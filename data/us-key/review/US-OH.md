@@ -1,6 +1,6 @@
 # OH: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **273 of 276** parks joined to official land (same name + same kind of place). **0** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **272 of 276** parks joined to official land (same name + same kind of place). **0** to check by hand, **4** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,6 +10,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **273 of 276** parks joined
 
 ## Nothing found in PAD-US
 
+- US-0732 Dayton Aviation Heritage National Historical Park (National Historical Park)
 - US-3514 Fort Miamis Fallen Timbers Battlefield National Historic Site (National Historic Site)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)

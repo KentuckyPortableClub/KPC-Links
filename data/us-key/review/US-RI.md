@@ -1,11 +1,12 @@
 # RI: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **56 of 61** parks joined to official land (same name + same kind of place). **2** to check by hand, **1** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **55 of 61** parks joined to official land (same name + same kind of place). **3** to check by hand, **1** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10547** Silver Spring State Recreation Area (State Recreation Area) → Silver Spring Lake Fishing Access (~16 ac, similar name); Silver Spring Lake Fishing Access (~16 ac, similar name)
 - **US-7723** John H. Chaffee Rome Point State Nature Preserve (State Nature Preserve) → Rome Point (~244 ac, similar name); Rome Point (~244 ac, similar name)
+- **US-7971** Blackstone River Valley National Historical Park (National Historical Park) → Blackstone River (~81 ac, similar name); Blackstone River (~13 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
