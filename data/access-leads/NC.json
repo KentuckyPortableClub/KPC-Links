@@ -1,0 +1,30 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "North Carolina Wildlife Resources Commission",
+   "area": "",
+   "count": 307,
+   "fields": [
+    "TYPE"
+   ],
+   "known": true,
+   "layer": "Parking Areas",
+   "sample": [
+    {
+     "TYPE": "parking"
+    },
+    {
+     "TYPE": "parking"
+    },
+    {
+     "TYPE": "parking"
+    }
+   ],
+   "service": "Game_Land_Access",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/Game_Land_Access/FeatureServer/1"
+  }
+ ],
+ "st": "NC"
+}

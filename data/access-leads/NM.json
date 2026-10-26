@@ -1,0 +1,256 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 476,
+   "fields": [
+    "FIMS_Code",
+    "Waterbody_Name",
+    "Species1",
+    "Species2",
+    "Species3",
+    "Species4",
+    "Species5",
+    "Species6",
+    "Access_Name",
+    "Access_Type",
+    "Facilities",
+    "Restriction1",
+    "Restriction2",
+    "Restriction3",
+    "Notes",
+    "Review",
+    "Mobility_Access",
+    "Access_Type2",
+    "Fishing_Conditions"
+   ],
+   "known": false,
+   "layer": "Fishing Access",
+   "sample": [
+    {
+     "Access_Name": "Elliot Barker State Wildlife Area",
+     "Access_Type": "Wadeable Stream",
+     "FIMS_Code": "1151",
+     "Facilities": "Primitive/ Pack it Out/ No Entry Fee",
+     "Restriction1": "Seasonal Closure (see Rules and Information book)",
+     "Species1": "306",
+     "Waterbody_Name": "Middle Ponil Creek"
+    },
+    {
+     "Access_Type": "Foot or Horse Access only",
+     "FIMS_Code": "1155",
+     "Facilities": "Primitive/ Pack it Out/ No Entry Fee",
+     "Restriction1": "Special Trout Water (see Rules and Information book)",
+     "Species1": "302",
+     "Waterbody_Name": "McCrystal Creek"
+    },
+    {
+     "Access_Type": "Wadeable Stream",
+     "FIMS_Code": "0919",
+     "Facilities": "Primitive/ Pack it Out/ No Entry Fee",
+     "Restriction1": "Special Trout Water (see Rules and Information book)",
+     "Species1": "302",
+     "Species2": "310",
+     "Waterbody_Name": "Cañada Tio Grande"
+    }
+   ],
+   "service": "Fishing_Waters_Map",
+   "typef": "Access_Type",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "Water_name",
+    "Ramp_type",
+    "Ownership",
+    "Notes_info",
+    "Reminders",
+    "AIS_info"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "City of Carlsbad",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Bataan Lake"
+    },
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "CIty of Carlsbad",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Lake Carlsbad"
+    },
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "NM State Parks",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Brantley Lake"
+    }
+   ],
+   "service": "Fishing_Waters_Map",
+   "typef": "Ramp_type",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "Water_name",
+    "Ramp_type",
+    "Ownership",
+    "Notes_info",
+    "Reminders",
+    "AIS_info"
+   ],
+   "known": false,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "City of Carlsbad",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Bataan Lake"
+    },
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "CIty of Carlsbad",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Lake Carlsbad"
+    },
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "NM State Parks",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Brantley Lake"
+    }
+   ],
+   "service": "Fishing_Waters_Map_WFL1",
+   "typef": "Ramp_type",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 476,
+   "fields": [
+    "FIMS_Code",
+    "Name_Working",
+    "Species1",
+    "Species2",
+    "Species3",
+    "Species4",
+    "Species5",
+    "Species6",
+    "Access_Name",
+    "Access_Type",
+    "Facilities",
+    "Restriction1",
+    "Restriction2",
+    "Restriction3",
+    "Notes",
+    "Review",
+    "Accessibility",
+    "Access_Type2",
+    "Conditions"
+   ],
+   "known": true,
+   "layer": "Fishing Access",
+   "sample": [
+    {
+     "Access_Name": "Elliot Barker State Wildlife Area",
+     "Access_Type": "Wadeable Stream",
+     "FIMS_Code": "1151",
+     "Facilities": "Primitive/ Pack it Out/ No Entry Fee",
+     "Name_Working": "Middle Ponil Creek",
+     "Restriction1": "Seasonal Closure (see Rules and Information book)",
+     "Species1": "306"
+    },
+    {
+     "Access_Type": "Foot or Horse Access only",
+     "FIMS_Code": "1155",
+     "Facilities": "Primitive/ Pack it Out/ No Entry Fee",
+     "Name_Working": "McCrystal Creek",
+     "Restriction1": "Special Trout Water (see Rules and Information book)",
+     "Species1": "302"
+    },
+    {
+     "Access_Type": "Wadeable Stream",
+     "FIMS_Code": "0919",
+     "Facilities": "Primitive/ Pack it Out/ No Entry Fee",
+     "Name_Working": "Cañada Tio Grande",
+     "Restriction1": "Special Trout Water (see Rules and Information book)",
+     "Species1": "302",
+     "Species2": "310"
+    }
+   ],
+   "service": "Fishing_Access",
+   "typef": "Access_Type",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "Water_name",
+    "Ramp_type",
+    "Ownership",
+    "Notes_info",
+    "Reminders",
+    "AIS_info"
+   ],
+   "known": true,
+   "layer": "Boat Ramps",
+   "sample": [
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "City of Carlsbad",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Bataan Lake"
+    },
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "CIty of Carlsbad",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Lake Carlsbad"
+    },
+    {
+     "AIS_info": "https://www.wildlife.state.nm.us/fishing/fishing-regulations/aquatic-invasive-species/",
+     "Notes_info": "Motorized craft allowed",
+     "Ownership": "NM State Parks",
+     "Ramp_type": "Concrete",
+     "Reminders": "AIS inspection required for all out-of-state watercraft and any NM watercraft that has been out-of-state",
+     "Water_name": "Brantley Lake"
+    }
+   ],
+   "service": "Boat_Ramps",
+   "typef": "Ramp_type",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Boat_Ramps/FeatureServer/1"
+  }
+ ],
+ "st": "NM"
+}

@@ -1,0 +1,478 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "National Park Service Appalachian National Scenic Trail & Appalachian Trail Cons",
+   "area": "Name",
+   "count": 483,
+   "fields": [
+    "Reg_Acro",
+    "Acronym",
+    "Name",
+    "Status",
+    "In_FMSS",
+    "FMSS_Name",
+    "FMSS_LocID",
+    "Asset_ID1",
+    "Asset_ID2",
+    "GIS_ID",
+    "Type",
+    "Surface",
+    "Guide_Rai2",
+    "Ditch_Line",
+    "Curb_Mater",
+    "Railing_Ma",
+    "Retaining2",
+    "Culvert_Ma",
+    "Grate_Mate",
+    "Rack_Mater"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "Acronym": "7",
+     "FMSS_LocID": "250377",
+     "FMSS_Name": "NYNJTC NY Rte 22 A.T. Train Station Parking Area",
+     "GIS_ID": "PK339",
+     "In_FMSS": "0",
+     "Name": "NY Rte 22 A.T. Train Station Parking Area",
+     "Reg_Acro": "1",
+     "Status": "Official A.T. Parking Area",
+     "Surface": "3",
+     "Type": "1"
+    },
+    {
+     "Acronym": "7",
+     "FMSS_LocID": "105959",
+     "FMSS_Name": "NYNJTC NY Rte 55 Parking Area",
+     "GIS_ID": "PK353",
+     "In_FMSS": "0",
+     "Name": "NY Rte 55 Parking Area",
+     "Reg_Acro": "1",
+     "Status": "Official A.T. Parking Area",
+     "Surface": "4",
+     "Type": "1"
+    },
+    {
+     "Acronym": "7",
+     "FMSS_LocID": "250374",
+     "FMSS_Name": "NYNJTC Nuclear Lake Old NY Rte 55 Parking Area",
+     "GIS_ID": "PK340",
+     "In_FMSS": "0",
+     "Name": "Nuclear Lake (Old NY Rte 55) Parking Area",
+     "Reg_Acro": "1",
+     "Status": "Official A.T. Parking Area",
+     "Surface": "3",
+     "Type": "1"
+    }
+   ],
+   "service": "ANST_Facilities",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANST_Facilities/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 244,
+   "fields": [
+    "Watershed",
+    "Map_Type",
+    "Access_Type",
+    "Gate_Number",
+    "Gate_Location",
+    "DriveIn_Access",
+    "DriveInAccess_Type",
+    "DriveInAccess_Details",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "Parking and Access",
+   "sample": [
+    {
+     "Access_Type": "Parking Only",
+     "Comments": "Parking in dirt lot by swamp just north of turn off to the gate. ",
+     "DriveIn_Access": "N",
+     "Gate_Location": "Town Farm Rd Shutesburry",
+     "Gate_Number": "SH5",
+     "Map_Type": "HP",
+     "Watershed": "Quabbin"
+    },
+    {
+     "Access_Type": "Controlled",
+     "DriveIn_Access": "N",
+     "Gate_Location": "Rt 202 S.",
+     "Gate_Number": "SH4",
+     "Map_Type": "H",
+     "Watershed": "Quabbin"
+    },
+    {
+     "Access_Type": "Parking Only",
+     "DriveIn_Access": "N",
+     "Gate_Location": "RT 202 P Line NS",
+     "Gate_Number": "NS9",
+     "Map_Type": "HP",
+     "Watershed": "Quabbin"
+    }
+   ],
+   "service": "DCR-DWSP_Parking_and_Access_Locations_view",
+   "typef": "Map_Type",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR-DWSP_Parking_and_Access_Locations_view/FeatureServer/0"
+  },
+  {
+   "agency": "Maryland DNR & Virginia DGIF",
+   "area": "SITENAME",
+   "count": 16,
+   "fields": [
+    "STATE",
+    "COUNTYCODE",
+    "SITENAME",
+    "WATERBODY",
+    "OWNERSHIP",
+    "OWNERNAME",
+    "BOATRAMP",
+    "SOFTLAUNCH",
+    "FISHING",
+    "SWIMMING",
+    "TRAILS",
+    "RESTROOM",
+    "RESTROOMTY",
+    "PARKING",
+    "BARRIER_FR",
+    "FIPS",
+    "CLASS",
+    "ACCESSAREA",
+    "BODYOFWATE",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "ASIS: Boat Access Points",
+   "sample": [
+    {
+     "BOATRAMP": "Y",
+     "COUNTYCODE": "Worcester",
+     "FISHING": "U",
+     "OWNERNAME": "Worcester County - Department of Public Works",
+     "OWNERSHIP": "COUNTY",
+     "RESTROOM": "Y",
+     "SITENAME": "George Island Landing",
+     "SOFTLAUNCH": "N",
+     "STATE": "MD",
+     "SWIMMING": "U",
+     "TRAILS": "U",
+     "WATERBODY": "Chincoteague Bay"
+    },
+    {
+     "BOATRAMP": "Y",
+     "COUNTYCODE": "Worcester",
+     "FISHING": "U",
+     "OWNERNAME": "Worcester County - Department of Public Works",
+     "OWNERSHIP": "COUNTY",
+     "RESTROOM": "Y",
+     "SITENAME": "Taylors Landing",
+     "SOFTLAUNCH": "N",
+     "STATE": "MD",
+     "SWIMMING": "U",
+     "TRAILS": "U",
+     "WATERBODY": "Chincoteague Bay"
+    },
+    {
+     "BOATRAMP": "Y",
+     "COUNTYCODE": "Worcester",
+     "FISHING": "U",
+     "OWNERNAME": "Worcester County - Department of Public Works",
+     "OWNERSHIP": "COUNTY",
+     "RESTROOM": "Y",
+     "SITENAME": "Public Landing",
+     "SOFTLAUNCH": "N",
+     "STATE": "MD",
+     "SWIMMING": "U",
+     "TRAILS": "U",
+     "WATERBODY": "Chincoteague Bay"
+    }
+   ],
+   "service": "ASIS_Boat_Access",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ASIS_Boat_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 7,
+   "fields": [
+    "marker_color",
+    "marker_size",
+    "marker_symbol",
+    "name",
+    "url",
+    "image",
+    "notes",
+    "AGOL_Symbol",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "AGOL_Symbol": "Parking",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "parking",
+     "name": "Parking"
+    },
+    {
+     "AGOL_Symbol": "Parking",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "parking",
+     "name": "Parking"
+    },
+    {
+     "AGOL_Symbol": "Parking",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "parking",
+     "name": "Parking"
+    }
+   ],
+   "service": "ANAC_Visitor_Features_PublicView",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANAC_Visitor_Features_PublicView/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 3,
+   "fields": [
+    "marker_color",
+    "marker_size",
+    "marker_symbol",
+    "name",
+    "url",
+    "image",
+    "notes",
+    "AGOL_Symbol",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Park Entrance",
+   "sample": [
+    {
+     "AGOL_Symbol": "Park Entrance",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "entrance",
+     "name": "Park Entrance"
+    },
+    {
+     "AGOL_Symbol": "Park Entrance",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "entrance",
+     "name": "Park Entrance"
+    },
+    {
+     "AGOL_Symbol": "Park Entrance",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "entrance",
+     "name": "Park Entrance"
+    }
+   ],
+   "service": "ANAC_Visitor_Features_PublicView",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANAC_Visitor_Features_PublicView/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "marker_color",
+    "marker_size",
+    "marker_symbol",
+    "name",
+    "url",
+    "image",
+    "notes",
+    "AGOL_Symbol",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Boat Ramp",
+   "sample": [
+    {
+     "AGOL_Symbol": "Boat Ramp",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "marker_color": "#000000",
+     "marker_size": "medium",
+     "marker_symbol": "harbor",
+     "name": "Boat Ramp",
+     "url": "http://www.nps.gov/anac/planyourvisit/Boating-and-Fishing.htm"
+    }
+   ],
+   "service": "ANAC_Visitor_Features_PublicView",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANAC_Visitor_Features_PublicView/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "marker_color",
+    "marker_size",
+    "marker_symbol",
+    "name",
+    "url",
+    "image",
+    "notes",
+    "AGOL_Symbol",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Park Headquarters",
+   "sample": [
+    {
+     "AGOL_Symbol": "Park Headquarters",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "image": "http://www.nps.gov/anac/planyourvisit/images/nps.jpg",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "building",
+     "name": "Park Headquarters",
+     "url": "http://www.nps.gov/nace/index.htm"
+    }
+   ],
+   "service": "ANAC_Visitor_Features_PublicView",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANAC_Visitor_Features_PublicView/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "marker_color",
+    "marker_size",
+    "marker_symbol",
+    "name",
+    "url",
+    "image",
+    "notes",
+    "AGOL_Symbol",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "U.S. Park Police",
+   "sample": [
+    {
+     "AGOL_Symbol": "U.S. Park Police",
+     "Creator": "CWanschura@nps.gov_nps",
+     "Editor": "CWanschura@nps.gov_nps",
+     "image": "http://www.nps.gov/anac/planyourvisit/images/uspp.jpg",
+     "marker_color": "#7e7e7e",
+     "marker_size": "medium",
+     "marker_symbol": "police",
+     "name": "U.S. Park Police",
+     "url": "http://www.nps.gov/subjects/uspp/index.htm"
+    }
+   ],
+   "service": "ANAC_Visitor_Features_PublicView",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANAC_Visitor_Features_PublicView/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 1,
+   "fields": [
+    "MAPLABEL",
+    "FEATURE_TYPE",
+    "DESCRIPTION",
+    "NOTES",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE"
+   ],
+   "known": false,
+   "layer": "Park Information",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "DESCRIPTION": "A temporary park information site is available at the northeast corner of Dunker Church Road and Cornfield Avenue.",
+     "FEATURE_TYPE": "Park Information",
+     "GROUPCODE": "ANTI",
+     "GROUPNAME": "Antietam National Battlefield",
+     "MAPLABEL": "Park Information",
+     "PUBLICDISPLAY": "Public Map Display",
+     "REGIONCODE": "NCR",
+     "UNITCODE": "ANTI",
+     "UNITNAME": "Antietam National Battlefield"
+    }
+   ],
+   "service": "ANTI_Temp_Closure_Oct2026_View",
+   "typef": "FEATURE_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANTI_Temp_Closure_Oct2026_View/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 1,
+   "fields": [
+    "MAPLABEL",
+    "FEATURE_TYPE",
+    "DESCRIPTION",
+    "NOTES",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE"
+   ],
+   "known": false,
+   "layer": "Temporary Park Entrance",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "FEATURE_TYPE": "Temporary Entrance Station",
+     "GROUPCODE": "ANTI",
+     "GROUPNAME": "Antietam National Battlefield",
+     "PUBLICDISPLAY": "Public Map Display",
+     "REGIONCODE": "NCR",
+     "UNITCODE": "ANTI",
+     "UNITNAME": "Antietam National Battlefield"
+    }
+   ],
+   "service": "ANTI_Temp_Closure_Oct2026_View",
+   "typef": "FEATURE_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ANTI_Temp_Closure_Oct2026_View/FeatureServer/0"
+  }
+ ],
+ "st": "MA"
+}

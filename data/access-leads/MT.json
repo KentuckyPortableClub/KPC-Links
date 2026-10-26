@@ -1,0 +1,295 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Montana Department of Agriculture",
+   "area": "",
+   "count": 13663,
+   "fields": [
+    "LANDSNAME",
+    "PUBLICNAME",
+    "FILE4",
+    "SPECIES",
+    "SPECIESFULL",
+    "INFESTSIZE",
+    "SIZEFULL",
+    "WAYPOINTID",
+    "PICTUREID",
+    "NOTES",
+    "GIS_COMMENT"
+   ],
+   "known": false,
+   "layer": "Montana Fish, Wildlife & Parks Fishing Access Site Noxious Weed Inventory Locations (2005-2009)",
+   "sample": [
+    {
+     "FILE4": "4272",
+     "INFESTSIZE": "X",
+     "LANDSNAME": "Upper Carter Pond",
+     "PUBLICNAME": "Upper Carter Pond",
+     "SIZEFULL": "< .1 acre (approx size of a house)",
+     "SPECIES": "CENMA",
+     "SPECIESFULL": "Spotted Knapweed",
+     "WAYPOINTID": "756"
+    },
+    {
+     "FILE4": "4490",
+     "INFESTSIZE": "X",
+     "LANDSNAME": "Carroll Trail",
+     "PUBLICNAME": "Carroll Trail",
+     "SIZEFULL": "< .1 acre (approx size of a house)",
+     "SPECIES": "EPHES",
+     "SPECIESFULL": "Leafy Spurge",
+     "WAYPOINTID": "758"
+    },
+    {
+     "FILE4": "4490",
+     "INFESTSIZE": "X",
+     "LANDSNAME": "Carroll Trail",
+     "PUBLICNAME": "Carroll Trail",
+     "SIZEFULL": "< .1 acre (approx size of a house)",
+     "SPECIES": "CYWOF",
+     "SPECIESFULL": "Houndstongue",
+     "WAYPOINTID": "759"
+    }
+   ],
+   "service": "FWPLND_FAS_WEEDS",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS_WEEDS/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "SITE_NAME",
+   "count": 277,
+   "fields": [
+    "LOCATION",
+    "SITE_NAME",
+    "OWNER",
+    "OWNERTYPE",
+    "RISK_LEVEL",
+    "ACQUISITION_PRIORITY",
+    "REASON_FOR_ACQUISITION",
+    "DESIRED_ACCESS_TYPE",
+    "DEVELOPMENT_LEVEL",
+    "EXISTINGDEVELOPEDSITE",
+    "WATERBODY",
+    "ACCESSTYPE"
+   ],
+   "known": false,
+   "layer": "Fishing Access Site Priority Locations",
+   "sample": [
+    {
+     "DEVELOPMENT_LEVEL": "some",
+     "LOCATION": " - Fishtail RM .5",
+     "OWNER": "County ROW/Private",
+     "RISK_LEVEL": "M",
+     "SITE_NAME": "Grove Creek Road Crossing",
+     "WATERBODY": "West Rosebud Creek"
+    },
+    {
+     "DEVELOPMENT_LEVEL": "some",
+     "LOCATION": " RM 11",
+     "OWNER": "County ROW/Private",
+     "RISK_LEVEL": "M",
+     "SITE_NAME": "Fiddler Creek Road Crossing",
+     "WATERBODY": "Fishtail Creek"
+    },
+    {
+     "DEVELOPMENT_LEVEL": "some",
+     "LOCATION": " - Absrokee RM .7",
+     "OWNER": "County ROW/Private",
+     "RISK_LEVEL": "M",
+     "SITE_NAME": "Stillwater River Road",
+     "WATERBODY": "Rosebud Creek"
+    }
+   ],
+   "service": "FISH_FAS_ACCESSPRIORITIES",
+   "typef": "OWNERTYPE",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FISH_FAS_ACCESSPRIORITIES/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 238,
+   "fields": [
+    "PROJ_TYPE",
+    "PROJECT_ID",
+    "PERMISSIONTYPE",
+    "COUNTY",
+    "PDF_MAP",
+    "ACCESSINFO",
+    "COOPERATOR",
+    "PERMISSION",
+    "ACRES",
+    "TYPE_ACRES",
+    "STATUS",
+    "ENDDATE"
+   ],
+   "known": false,
+   "layer": "UGBHEP Access Areas Points - 2025",
+   "sample": [
+    {
+     "ACCESSINFO": "https://fwp.mt.gov/ugbep",
+     "ACRES": "251",
+     "COOPERATOR": "Linda Eklund",
+     "COUNTY": "Fergus",
+     "ENDDATE": "1/1/2027",
+     "PDF_MAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/hunting/hunteraccess/ugb/58_2026.pdf",
+     "PERMISSION": "0",
+     "PERMISSIONTYPE": "See Block Management Area Guide",
+     "PROJECT_ID": "7439",
+     "PROJ_TYPE": "Block Management Project",
+     "STATUS": "Active",
+     "TYPE_ACRES": "Block Management Project (251)"
+    },
+    {
+     "ACCESSINFO": "https://fwp.mt.gov/ugbep",
+     "ACRES": "1000",
+     "COOPERATOR": "Central Montana Chapter Pheasants Forever - Coffee Creek",
+     "COUNTY": "Fergus",
+     "ENDDATE": "1/1/2027",
+     "PDF_MAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/hunting/hunteraccess/ugb/47_2026.pdf",
+     "PERMISSION": "1",
+     "PERMISSIONTYPE": "See Block Management Area Guide",
+     "PROJECT_ID": "PFD4",
+     "PROJ_TYPE": "Block Management Project",
+     "STATUS": "Active",
+     "TYPE_ACRES": "Block Management Project (1000)"
+    },
+    {
+     "ACCESSINFO": "https://fwp.mt.gov/ugbep",
+     "ACRES": "800",
+     "COOPERATOR": "Chokecherry Bend",
+     "COUNTY": "Cascade",
+     "ENDDATE": "1/1/2027",
+     "PDF_MAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/hunting/hunteraccess/ugb/44_2026.pdf",
+     "PERMISSION": "1",
+     "PERMISSIONTYPE": "See Block Management Area Guide",
+     "PROJECT_ID": "3447",
+     "PROJ_TYPE": "Block Management Project",
+     "STATUS": "Active",
+     "TYPE_ACRES": "Block Management Project (800)"
+    }
+   ],
+   "service": "FWPLND_UGBPOINTIDENTIFY",
+   "typef": "PROJ_TYPE",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_UGBPOINTIDENTIFY/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "NAME",
+   "count": 337,
+   "fields": [
+    "NAME",
+    "WEB_PAGE",
+    "BOAT_FAC",
+    "CAMPING",
+    "HUNTING",
+    "PDFMAP",
+    "HUNT_ACCESS"
+   ],
+   "known": true,
+   "layer": "Fishing Access Sites - Points",
+   "sample": [
+    {
+     "BOAT_FAC": "No Boat Facilities",
+     "CAMPING": "Yes",
+     "HUNTING": "NO HUNTING",
+     "HUNT_ACCESS": "Refer to current hunting regulations for hunting and weapons restrictions.",
+     "NAME": "Forest Cooper",
+     "PDFMAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/39754521.pdf",
+     "WEB_PAGE": "https://myfwp.mt.gov/fishMT/fas/39754521"
+    },
+    {
+     "BOAT_FAC": "Ramp (Concrete)",
+     "CAMPING": "No",
+     "HUNTING": "NO HUNTING",
+     "HUNT_ACCESS": "Refer to current hunting regulations for hunting and weapons restrictions.",
+     "NAME": "Silver Star",
+     "PDFMAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/39753448.pdf",
+     "WEB_PAGE": "https://myfwp.mt.gov/fishMT/fas/39753448"
+    },
+    {
+     "BOAT_FAC": "No Boat Facilities",
+     "CAMPING": "No",
+     "HUNTING": "NO HUNTING",
+     "HUNT_ACCESS": "Refer to current hunting regulations for hunting and weapons restrictions.",
+     "NAME": "Corrals",
+     "PDFMAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/39753520.pdf",
+     "WEB_PAGE": "https://myfwp.mt.gov/fishMT/fas/39753520"
+    }
+   ],
+   "service": "FWPLND_FAS_POINTS",
+   "typef": "BOAT_FAC",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS_POINTS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 108,
+   "fields": [
+    "SITE_NAME",
+    "TH_NAME",
+    "MARKED",
+    "MAP",
+    "INFO",
+    "PRKNG",
+    "FACILITIES",
+    "ADA",
+    "MANAGER",
+    "MGR_NOTE",
+    "WEB_PAGE",
+    "GEO_PDF"
+   ],
+   "known": true,
+   "layer": "Montana_State_Parks_Trailheads",
+   "sample": [
+    {
+     "ADA": "NOT EVALUATED",
+     "FACILITIES": "NO FACILITIES AVAILABLE",
+     "GEO_PDF": "<a href=https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/parks/medicine_rocks_trail_map.pdf target='_blank'>Get Trail Map</a>",
+     "INFO": "UNAVAILABLE",
+     "MANAGER": "FWP",
+     "MAP": "NOT PRESENT",
+     "MARKED": "UNMARKED",
+     "MGR_NOTE": " ",
+     "PRKNG": "AVAILABLE",
+     "SITE_NAME": "Medicine Rocks",
+     "TH_NAME": "North Rock Trailhead",
+     "WEB_PAGE": "http://stateparks.mt.gov/medicine-rocks/"
+    },
+    {
+     "ADA": "NOT EVALUATED",
+     "FACILITIES": "NO FACILITIES AVAILABLE",
+     "GEO_PDF": "<a href=https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/parks/brush_lake_trail_map.pdf target='_blank'>Get Trail Map</a>",
+     "INFO": "UNAVAILABLE",
+     "MANAGER": "FWP",
+     "MAP": "NOT PRESENT",
+     "MARKED": "UNMARKED",
+     "MGR_NOTE": " ",
+     "PRKNG": "NO PARKING AVAILABLE",
+     "SITE_NAME": "Brush Lake",
+     "TH_NAME": "West Access Trailhead",
+     "WEB_PAGE": "http://stateparks.mt.gov/brush-lake/"
+    },
+    {
+     "ADA": "NOT EVALUATED",
+     "FACILITIES": "PICNIC, RESTROOM",
+     "GEO_PDF": "<a href=https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/parks/brush_lake_trail_map.pdf target='_blank'>Get Trail Map</a>",
+     "INFO": "UNAVAILABLE",
+     "MANAGER": "FWP",
+     "MAP": "NOT PRESENT",
+     "MARKED": "UNMARKED",
+     "MGR_NOTE": " ",
+     "PRKNG": "AVAILABLE",
+     "SITE_NAME": "Brush Lake",
+     "TH_NAME": "Shoreline Trailhead",
+     "WEB_PAGE": "http://stateparks.mt.gov/brush-lake/"
+    }
+   ],
+   "service": "Montana_State_Parks_Trailheads",
+   "typef": "FACILITIES",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_State_Parks_Trailheads/FeatureServer/0"
+  }
+ ],
+ "st": "MT"
+}

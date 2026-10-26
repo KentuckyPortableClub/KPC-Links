@@ -1,0 +1,172 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 18,
+   "fields": [
+    "UNIT",
+    "FACILITY",
+    "NAME",
+    "ASSET",
+    "DESCRIP",
+    "OFFICE",
+    "ACCESSIBLE",
+    "County",
+    "Wthin_50Mi",
+    "LandUse",
+    "BAP_Range",
+    "WaterbodyN",
+    "Site_Map",
+    "Directions"
+   ],
+   "known": false,
+   "layer": "BoatLaunch_DECPOI",
+   "sample": [
+    {
+     "ACCESSIBLE": "N",
+     "ASSET": "BOAT LAUNCH",
+     "BAP_Range": "5.01-7.5",
+     "County": "Jefferson",
+     "DESCRIP": "CAR TOP, GRAVEL",
+     "FACILITY": "LAKEVIEW WMA",
+     "LandUse": "Wetland, Forest, pasture, crop, slight dev",
+     "NAME": "SOUTH SANDY LAUNCH",
+     "OFFICE": "WATERTOWN",
+     "UNIT": "JEFFERSON 96",
+     "WaterbodyN": "South Sandy Creek",
+     "Wthin_50Mi": "Y"
+    },
+    {
+     "ACCESSIBLE": "N",
+     "ASSET": "BOAT LAUNCH",
+     "BAP_Range": "5.01-7.5",
+     "County": "Herkimer",
+     "DESCRIP": "CARTOP",
+     "FACILITY": "FIVE PONDS WILDERNESS",
+     "LandUse": "Forest, water, wetland",
+     "NAME": "TIED LAKE CARTOP BOAT LAUNCH",
+     "OFFICE": "LOWVILLE",
+     "UNIT": "AFP",
+     "WaterbodyN": "Tied Pond, Alder Creek",
+     "Wthin_50Mi": "N"
+    },
+    {
+     "ACCESSIBLE": "N",
+     "ASSET": "BOAT LAUNCH",
+     "BAP_Range": "5.01-7.5",
+     "County": "Oneida",
+     "DESCRIP": "HAND CARRY LAUNCH, ELECTRIC MOTORS ONLY",
+     "FACILITY": "ALBERT J. WOODFORD MEMORIAL FOREST",
+     "LandUse": "Forest, open water, wetland, slight dev",
+     "NAME": "CHITTNING POND BOAT LAUNCH",
+     "OFFICE": "HERKIMER",
+     "UNIT": "ONEIDA 08",
+     "WaterbodyN": "Beaver Creek, from Chitting Pond (access unknown)",
+     "Wthin_50Mi": "Y"
+    }
+   ],
+   "service": "BoatLaunch_DECPOI",
+   "typef": "FACILITY",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/BoatLaunch_DECPOI/FeatureServer/0"
+  },
+  {
+   "agency": "NYSDEC Bureau of Fisheries",
+   "area": "PARK",
+   "count": 904,
+   "fields": [
+    "COUNTY",
+    "WATERBODY",
+    "ACCESS_TYP",
+    "PARK",
+    "AGENCY",
+    "WEBLINK"
+   ],
+   "known": true,
+   "layer": "Boat Launch Sites",
+   "sample": [
+    {
+     "ACCESS_TYP": "Hard surface launch",
+     "AGENCY": "Municipal",
+     "COUNTY": "Albany",
+     "PARK": "15",
+     "WATERBODY": "Hudson River",
+     "WEBLINK": "https://www.dec.ny.gov/outdoor/23912.html"
+    },
+    {
+     "ACCESS_TYP": "Hand launch",
+     "AGENCY": "Municipal",
+     "COUNTY": "Albany",
+     "PARK": "10",
+     "WATERBODY": "Mohawk River",
+     "WEBLINK": "https://www.dec.ny.gov/outdoor/23912.html"
+    },
+    {
+     "ACCESS_TYP": "Hand launch",
+     "AGENCY": "DEC",
+     "COUNTY": "Albany",
+     "PARK": "5",
+     "WATERBODY": "Normans Kill",
+     "WEBLINK": "https://www.dec.ny.gov/outdoor/23912.html"
+    }
+   ],
+   "service": "Boat_Launch_Sites",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Boat_Launch_Sites/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 395,
+   "fields": [
+    "AreaID",
+    "WebID",
+    "ParkName",
+    "EntranceNa",
+    "Details",
+    "created_us",
+    "last_edite",
+    "MID"
+   ],
+   "known": true,
+   "layer": "ParkEntrance",
+   "sample": [
+    {
+     "AreaID": "323",
+     "Details": "No parking, just access to property",
+     "EntranceNa": "NO Webpage",
+     "MID": " ",
+     "ParkName": "Amherst",
+     "WebID": "n",
+     "created_us": "CROLLC",
+     "last_edite": "CROLLC"
+    },
+    {
+     "AreaID": "294",
+     "Details": " ",
+     "EntranceNa": "Main Entrance",
+     "MID": " ",
+     "ParkName": "Beaver Island",
+     "WebID": "93",
+     "created_us": "CROLLC",
+     "last_edite": "CROLLC"
+    },
+    {
+     "AreaID": "295",
+     "Details": " ",
+     "EntranceNa": "Main Entrance",
+     "MID": " ",
+     "ParkName": "Big Six Mile Creek Marina",
+     "WebID": "85",
+     "created_us": "CROLLC",
+     "last_edite": "CROLLC"
+    }
+   ],
+   "service": "ParkEntrance",
+   "typef": "",
+   "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/ParkEntrance/FeatureServer/0"
+  }
+ ],
+ "st": "NY"
+}
