@@ -36,7 +36,7 @@ async function data(){if(!_data)_data=Promise.all([fetch('kpc-ky-data.json').the
   for(const[c,n,la,lo]of rows){if(have.has(c))continue;have.add(c);let co='';try{co=await countyOf(la,lo)||''}catch(e){}
    d.parks.push({c,n,co,t:guessType(n),la,lo,web:'',off:'',camp:null,tf:[],kff:[],sota:[],acc:0,ap:[],nw:1});d.newParks.push(c)}
   return d});return _data}
-async function counties(){if(!_counties)_counties=fetch('kpc-ky-counties.json').then(r=>r.json());return _counties}
+async function counties(){if(!_counties)_counties=fetch(window.KPC_COUNTY_FILE||'kpc-ky-counties.json').then(r=>r.json());return _counties}   // a page may set KPC_COUNTY_FILE='kpc-ky-counties-hd.json' (full Census outlines; the Club Room does)
 async function countyOf(lat,lon){const C=await counties();for(const c of C)if(c.r.some(r=>pip(lon,lat,r)))return c.n;return null}
 const fmtDate=d=>{d=String(d);return d.length===8?new Date(+d.slice(0,4),+d.slice(4,6)-1,+d.slice(6,8)).toLocaleDateString([],{month:'short',day:'numeric',year:'numeric'}):d};
 const ok=q=>q>=10;
