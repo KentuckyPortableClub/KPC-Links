@@ -1,6 +1,6 @@
 # BE: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **171 of 593** joined (same name + same kind), **280** to check, **142** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **164 of 593** joined (same name + same kind), **285** to check, **144** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -111,6 +111,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **BE-0182** Paardenschor en Doelpolder Noord Nature Reserve (Nature Reserve) → Schorren en Polders van de Beneden-Schelde (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0184** Het Beiaardbos – Fonteinbos Park (Park) → Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0185** Osbroek-Molenkouter Nature Reserve (Nature Reserve) → Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen (EEA Natura 2000, the POTA pin is inside it (different name)); V-042 type 4 (EEA nationally designated areas, the POTA pin is inside it (different name)); De Vallei van de Dender en de Mark (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **BE-0186** Bos Ter Rijst Nature Reserve (Nature Reserve) → Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen (EEA Natura 2000, the POTA pin is inside it (different name)); De Bronbossen en bovenlopen van de Vlaamse Ardennen (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0188** De Warandeduinen Nature Reserve (Nature Reserve) → Schelde- en Durmeëstuarium van de Nederlandse grens tot Gent (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0190** De Hotond-Scherpenberg Nature Reserve (Nature Reserve) → Bossen van de Vlaamse Ardennen en andere Zuidvlaamse bossen (EEA Natura 2000, the POTA pin is inside it (different name)); De Vlaamse Ardennen van Kluisberg tot Koppenberg (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0191** Koppenbergbos Nature Reserve (Nature Reserve) → NBP-OV-22-0266 type 4 (EEA nationally designated areas, the POTA pin is inside it (different name)); De Vlaamse Ardennen van Kluisberg tot Koppenberg (EEA nationally designated areas, the POTA pin is inside it (different name))
@@ -225,6 +226,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **BE-0412** Vallée de l'Eisch et Clarefontaine Park (Park) → Vallées de l'Eisch et de Clairefontaine (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0414** Marais de Sampont Park (Park) → Sampont (EEA nationally designated areas, similar name); Marais de la Haute-Semois et Bois de Heinsch (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0420** Ardoisière de Laviot (Bouillon) Park (Park) → Laviot (Ardoisière de) (EEA nationally designated areas, similar name)
+- **BE-0421** Vallée de la Basseille Park (Park) → Haute-Sûre (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0422** Le Chevral (Barrages de Castors) Nature Reserve (Nature Reserve) → Plateau des Tailles (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0424** Virée de Grosse National Forest (National Forest) → Virée de Grosse (EEA nationally designated areas, similar name)
 - **BE-0426** Domaine Provincial de Mirwart State Park (State Park) → Bassin de la Lomme de Poix-Saint-Hubert à Grupont (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -235,6 +237,9 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **BE-0432** Cron de Montauban National Forest (National Forest) → Cron (Ruisseau du ) (Vallée de Laclaireau) (EEA nationally designated areas, similar name); Vallées de Laclaireau et du Rabais (EEA Natura 2000, the POTA pin is inside it (different name)); Crons de la Vallée de Laclaireau (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0435** Marais de Louftémont-Vlessart (Léglise) National Forest (National Forest) → Louftémont-Vlessart (EEA nationally designated areas, similar name); Forêt d'Anlier (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0438** Ardoisières Sainte-Adèle National Forest (National Forest) → Vallée du Ruisseau des Aleines (EEA Natura 2000, the POTA pin is inside it (different name)); Zones nodales du parc national de la Vallée de la Semois (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **BE-0441** Marais du Ton Park (Park) → Cussignière (marais de la) (EEA nationally designated areas, same name, more than one kind of area); Marais du Ton (EEA nationally designated areas, same name, more than one kind of area)
+- **BE-0442** Ruisseau du Cron National Forest (National Forest) → Cron (Ruisseau du ) (Vallée de Laclaireau) (EEA nationally designated areas, similar name); Bassin du Ton amont (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **BE-0443** Etang de Latour Park (Park) → Latour (Etangs de) (EEA nationally designated areas, similar name); Vallées de la Vire et du Ton (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0445** etang de l'illé Nature Reserve (Nature Reserve) → Bassin de la Semois de Etalle à Tintigny (EEA Natura 2000, the POTA pin is inside it (different name)); Illé et alentours (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0447** La Roche à l'Apple Nature Reserve (Nature Reserve) → Forêts de Muno (EEA Natura 2000, the POTA pin is inside it (different name)); Roche à l'Appel (EEA nationally designated areas, the POTA pin is inside it (different name)); Zones nodales du parc national de la Vallée de la Semois (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0448** Carriere de 'Aloutte Park (Park) → La Calestienne entre Marenne et Hotton (EEA Natura 2000, the POTA pin is inside it (different name)); Alouette (Carrière de l') à Hotton (EEA nationally designated areas, the POTA pin is inside it (different name))
@@ -243,11 +248,11 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **BE-0456** Fort de Dave Park (Park) → Dave (Ile de) (EEA nationally designated areas, similar name)
 - **BE-0462** Ile d'Yvoir Park (Park) → Vallée de la Meuse d'Yvoir à Dave (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0466** Ile d'al Golette Park (Park) → Al Golette (Ile d') (EEA nationally designated areas, similar name); Vallée de la Meuse de Dinant à Yvoir (EEA Natura 2000, the POTA pin is inside it (different name))
+- **BE-0473** Fond des Nues Park (Park) → Nues (Fonds des) (EEA nationally designated areas, similar name)
 - **BE-0483** indivisé de Stamburges Forest National Forest (National Forest) → Bord nord du bassin de la Haine (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0485** Bois du Pottelberg National Park (National Park) → Vallées de la Dendre et de la Marcq (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0488** Mirador d'observation Nature Reserve (Nature Reserve) → Vallée de la Haine en amont de Mons (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0490** Etang de Virelles National Park (National Park) → Vallée de l'Eau Blanche à Virelles (EEA Natura 2000, the POTA pin is inside it (different name))
-- **BE-0491** Marais d'Harchies Natura 2000 (Natura 2000) → Vallée de la Haine en aval de Mons (EEA Natura 2000, the POTA pin is inside it (different name)); Harchies-Hensies-Pommereuil (Marais d')     PS + LIFE (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **BE-0500** Burettes National Park (National Park) → Vallée de la Haine en aval de Mons (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0501** Bois de St-Amand - d'Hubermont - d'Antoing National Park (National Park) → Vallées de la Dendre et de la Marcq (EEA Natura 2000, the POTA pin is inside it (different name))
 - **BE-0510** Hof ter Musschen National Park (National Park) → La Forêt de Soignes avec lisières et domaines boisés avoisinants et la Vallée de la Woluwe - complexe Forêt de Soignes - Vallée de la Woluwe (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -295,6 +300,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - BE-0036 Marselaer Nature Reserve (Nature Reserve)
 - BE-0039 Hondsbossen Nature Reserve (Nature Reserve)
 - BE-0043 Hegte Heide Nature Reserve (Nature Reserve)
+- BE-0048 Vallei van de Molenbeek Nature Reserve (Nature Reserve)
 - BE-0057 t Asbroek Nature Reserve (Nature Reserve)
 - BE-0058 Zitbankje aan de Schijn Nature Reserve (Nature Reserve)
 - BE-0064 Ecureuil Park (Park)
@@ -410,6 +416,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - BE-0552 Diefhondbos National Park (National Park)
 - BE-0553 Bois de Boulogne National Park (National Park)
 - BE-0554 Park Ter Walle National Park (National Park)
+- BE-0556 VELPEVALLEI National Park (National Park)
 - BE-0559 Domein van Kwabeek National Park (National Park)
 - BE-0563 Park van Hoegaarden National Park (National Park)
 - BE-0564 Park Wonderwoud Oostakke National Park (National Park)

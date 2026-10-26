@@ -1,6 +1,6 @@
 # ES: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **1795 of 2497** joined (same name + same kind), **357** to check, **345** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **1789 of 2497** joined (same name + same kind), **359** to check, **349** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -103,6 +103,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **ES-0478** Laguna de la Galiana Natura 2000 (Natura 2000) → Complejo Endorreico de Lebrija-Las Cabezas (EEA Natura 2000, the POTA pin is inside it (different name)); Complejo endorreico Lebrija-las cabezas (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **ES-0527** Punta Entinas-Sabinar National Park (National Park) → Punta Entinas-Sabinar (EEA nationally designated areas, same name, more than one kind of area); Punta Entinas-Sabinar (EEA nationally designated areas, same name, more than one kind of area); Punta Entinas-Sabinar (EEA nationally designated areas, same name, more than one kind of area)
 - **ES-0546** Complejo endorreico de Chiclana National Park (National Park) → Complejo Endorreico de Chiclana (EEA nationally designated areas, same name, more than one kind of area); Complejo Endorreico de Chiclana (EEA nationally designated areas, same name, more than one kind of area)
+- **ES-0588** Acantilados y Fondos Marinos de Calahonda-Castell de Ferro Natura 2000 (Natura 2000) → Acantilados y Fondos Marinos de La Punta de La Mona (EEA Natura 2000, similar name); Acantilados y Fondos Marinos de la Punta de la Mona (EEA nationally designated areas, similar name)
 - **ES-0593** Marismas del Odiel National Park (National Park) → Marismas del Odiel (EEA nationally designated areas, same name, more than one kind of area); Marismas del Odiel (EEA nationally designated areas, same name, more than one kind of area)
 - **ES-0594** Sierra Pelada y Rivera del Aserrador National Park (National Park) → Sierra Pelada y Rivera del Aserrador (EEA nationally designated areas, same name, more than one kind of area); Sierra Pelada y Rivera del Aserrador (EEA nationally designated areas, same name, more than one kind of area)
 - **ES-0736** Sabinares del Puerto de Escadon Natura 2000 (Natura 2000) → Sabinares del Puerto de Escandón (EEA Natura 2000, similar name)
@@ -332,6 +333,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **ES-2329** Los Toruños Metropolitan Protected Areas (Metropolitan Protected Areas) → Bahía de Cádiz (EEA Natura 2000, the POTA pin is inside it (different name)); Bahía de Cádiz (EEA nationally designated areas, the POTA pin is inside it (different name)); Bahía de Cádiz (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **ES-2334** El Juncaral Ecological Park (Ecological Park) → Curso alto del río Aragón (EEA Natura 2000, the POTA pin is inside it (different name))
 - **ES-2388** Nacimiento del Río Pitarque Nature Monument (Nature Monument) → Nacimiento del Río Pitarque (EEA nationally designated areas, similar name); Río Guadalope - Maestrazgo (EEA Natura 2000, the POTA pin is inside it (different name)); Muelas y Estrechos del río Guadalope (EEA Natura 2000, the POTA pin is inside it (different name))
+- **ES-2392** Glaciares Pirenaicos Natural Monument (Natural Monument) → Río Ésera (EEA Natura 2000, the POTA pin is inside it (different name))
 - **ES-2396** Ibiza World Heritage Site (World Heritage Site) → Espacio marino del poniente y norte de Ibiza (EEA Natura 2000, similar name); Espacio marino de Formentera y del sur de Ibiza (EEA Natura 2000, similar name)
 - **ES-2442** Roque de Gando Site of Significant Scientific Interest (Site of Significant Scientific Interest) → Roque de Gando (EEA nationally designated areas, similar name)
 - **ES-2468** Canteras y encharcamientos de Alpedrete Wetland Reserve (Wetland Reserve) → Cuenca del río Manzanares (EEA Natura 2000, the POTA pin is inside it (different name))
@@ -378,9 +380,12 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - ES-0265 Barranco de Basaura Nature Reserve (Nature Reserve)
 - ES-0340 Via Rusadir National Recreation Trail (National Recreation Trail)
 - ES-0366 Vall Alta de Serradell-Serra de Sant Gervas Natura 2000 (Natura 2000)
+- ES-0452 Campo alto de Aliste Natura 2000 (Natura 2000)
 - ES-0472 Laguna del Charroao Wetland Reserve (Wetland Reserve)
 - ES-0509 La Suara Nature Park (Nature Park)
+- ES-0732 Cueva de Los Moros Natura 2000 (Natura 2000)
 - ES-0775 Cueva del Humero Natura 2000 (Natura 2000)
+- ES-0806 Meandros del Ebro Natura 2000 (Natura 2000)
 - ES-0881 Rio Jucar sobre Alarcon Natura 2000 (Natura 2000)
 - ES-1229 La Burgalesa National Historic Trail (National Historic Trail)
 - ES-1304 Ses Pallisses Natura 2000 (Natura 2000)
@@ -679,6 +684,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - ES-2253 Arqueositio Cántabro-Romano de Camesa-Rebolledo Archeological Reserve (Archeological Reserve)
 - ES-2254 Torre de Pero Niño Historic Site (Historic Site)
 - ES-2267 Camino Lebaniego Castellano National Recreation Trail (National Recreation Trail)
+- ES-2278 Rio Bergantes Natura 2000 (Natura 2000)
 - ES-2294 Cotorredondo y Lago Castiñeiras Natural Area (Natural Area)
 - ES-2295 Val d'Aran UNESCO Biosphere Reserve (UNESCO Biosphere Reserve)
 - ES-2297 Cuevas Prehistoricas de Cantabria Archeological Reserve (Archeological Reserve)

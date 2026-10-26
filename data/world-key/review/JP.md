@@ -1,6 +1,6 @@
 # JP: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **186 of 1217** joined (same name + same kind), **1** to check, **1030** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: Ministry of the Environment national parks (Esri Japan), MLIT natural park areas (A10), MLIT natural park areas, national file FY2010 (A10-10). **185 of 1217** joined (same name + same kind), **1** to check, **1031** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -39,6 +39,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: Ministry of the Env
 - JP-0138 Yamato-Aogaki Quasi-National Park (Quasi-National Park)
 - JP-0139 Koya-Ryujin Quasi-National Park (Quasi-National Park)
 - JP-0140 Hiba-Dogo-Taishaku Quasi-National Park (Quasi-National Park)
+- JP-0141 Nishi-Chugoku Sanchi Quasi-National Park (Quasi-National Park)
 - JP-0144 Tsurugisan Quasi-National Park (Quasi-National Park)
 - JP-0145 Muroto-Anan Kaigan Quasi-National Park (Quasi-National Park)
 - JP-0147 Kitakyushu Quasi-National Park (Quasi-National Park)

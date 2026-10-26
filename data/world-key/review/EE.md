@@ -1,6 +1,6 @@
 # EE: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **73 of 155** joined (same name + same kind), **51** to check, **31** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **72 of 155** joined (same name + same kind), **52** to check, **31** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -14,6 +14,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **EE-0031** Aegviidu-Kõrvemaa State Recreation Area (State Recreation Area) → Kõrvemaa (EEA Natura 2000, similar name); Kõrvemaa (EEA Natura 2000, similar name); Kõrvemaa maastikukaitseala (EEA nationally designated areas, similar name)
 - **EE-0036** Oandu-Aegviidu-Ikla State Trail (State Trail) → Lahemaa (EEA Natura 2000, the POTA pin is inside it (different name)); Lahemaa rahvuspark (EEA nationally designated areas, the POTA pin is inside it (different name)); Lahemaa RP, Lahemaa pv. (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **EE-0040** Hiiumaa Islets and Käina Bay Ramsar Site (Ramsar Site) → Väinamere (EEA Natura 2000, the POTA pin is inside it (different name)); Väinamere (EEA Natura 2000, the POTA pin is inside it (different name)); Käina lahe-Kassari MKA, Vaemla skv. (EEA nationally designated areas, the POTA pin is inside it (different name)); Käina lahe-Kassari maastikukaitseala (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **EE-0044** Aidu Natura 2000 (Natura 2000) → Aidu soo (EEA Natura 2000, similar name)
 - **EE-0079** Abula telkimisala State Recreation Site (State Recreation Site) → Koorunõmme (EEA Natura 2000, the POTA pin is inside it (different name))
 - **EE-0081** Diby puhkekoht State Recreation Site (State Recreation Site) → Väinamere (EEA Natura 2000, the POTA pin is inside it (different name)); Väinamere (EEA Natura 2000, the POTA pin is inside it (different name)); Väinamere hoiuala (Läänemaa) (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **EE-0082** Eesjärve telkimisala State Recreation Site (State Recreation Site) → Neeruti (EEA Natura 2000, the POTA pin is inside it (different name)); Neeruti maastikukaitseala (EEA nationally designated areas, the POTA pin is inside it (different name)); Neeruti MKA, Neeruti pv. (EEA nationally designated areas, the POTA pin is inside it (different name)); Neeruti MKA, Karuaugu skv. (EEA nationally designated areas, the POTA pin is inside it (different name))
