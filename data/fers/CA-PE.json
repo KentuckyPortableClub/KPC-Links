@@ -1,0 +1,106 @@
+{
+ "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "pass1": "2026-10-26",
+ "spots": [
+  {
+   "acres": 571.5,
+   "center": [
+    46.193469,
+    -62.419168
+   ],
+   "found": "2026-10-26",
+   "id": "CA-0870+CA-4650@area@46.193,-62.419",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "CA-0870",
+    "CA-4650"
+   ],
+   "shape": [
+    [
+     -62.41761,
+     46.2083
+    ],
+    [
+     -62.417351,
+     46.198533
+    ],
+    [
+     -62.426175,
+     46.197086
+    ],
+    [
+     -62.427733,
+     46.197448
+    ],
+    [
+     -62.432145,
+     46.196001
+    ],
+    [
+     -62.429809,
+     46.193107
+    ],
+    [
+     -62.430328,
+     46.191479
+    ],
+    [
+     -62.429809,
+     46.190032
+    ],
+    [
+     -62.419687,
+     46.188947
+    ],
+    [
+     -62.409565,
+     46.186776
+    ],
+    [
+     -62.404114,
+     46.183882
+    ],
+    [
+     -62.403595,
+     46.183159
+    ],
+    [
+     -62.404114,
+     46.181169
+    ],
+    [
+     -62.401519,
+     46.178456
+    ],
+    [
+     -62.396587,
+     46.17918
+    ],
+    [
+     -62.400481,
+     46.182797
+    ],
+    [
+     -62.401519,
+     46.188042
+    ],
+    [
+     -62.413977,
+     46.196724
+    ],
+    [
+     -62.416053,
+     46.200523
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 1056
+  }
+ ],
+ "st": "CA-PE"
+}

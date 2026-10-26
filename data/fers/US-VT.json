@@ -1,0 +1,97 @@
+{
+ "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "pass1": "2026-10-26",
+ "spots": [
+  {
+   "acres": 7.4,
+   "center": [
+    43.904321,
+    -73.063159
+   ],
+   "found": "2026-10-26",
+   "id": "US-3103+US-4527@area@43.904,-73.063",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-3103",
+    "US-4527"
+   ],
+   "shape": [
+    [
+     -73.06291,
+     43.91029
+    ],
+    [
+     -73.062162,
+     43.904863
+    ],
+    [
+     -73.065154,
+     43.904502
+    ],
+    [
+     -73.063409,
+     43.903778
+    ],
+    [
+     -73.062162,
+     43.904682
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 112
+  },
+  {
+   "acres": 23.9,
+   "center": [
+    44.071066,
+    -72.807256
+   ],
+   "found": "2026-10-26",
+   "id": "US-4527+US-5549@area@44.071,-72.807",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-4527",
+    "US-5549"
+   ],
+   "shape": [
+    [
+     -72.807006,
+     44.073055
+    ],
+    [
+     -72.809006,
+     44.070342
+    ],
+    [
+     -72.808506,
+     44.068534
+    ],
+    [
+     -72.809006,
+     44.06781
+    ],
+    [
+     -72.808506,
+     44.067087
+    ],
+    [
+     -72.805255,
+     44.072332
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 200
+  }
+ ],
+ "st": "US-VT"
+}

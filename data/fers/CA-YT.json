@@ -1,0 +1,159 @@
+{
+ "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "pass1": "2026-10-26",
+ "spots": [
+  {
+   "acres": 7910.8,
+   "center": [
+    61.254194,
+    -140.887035
+   ],
+   "found": "2026-10-26",
+   "id": "CA-0044+CA-0842@area@61.254,-140.887",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "CA-0044",
+    "CA-0842"
+   ],
+   "shape": [
+    [
+     -140.999928,
+     61.263418
+    ],
+    [
+     -140.999928,
+     61.248948
+    ],
+    [
+     -140.513218,
+     61.23267
+    ],
+    [
+     -140.878811,
+     61.263237
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 2040
+  },
+  {
+   "acres": 394.6,
+   "center": [
+    61.312074,
+    -140.116972
+   ],
+   "found": "2026-10-26",
+   "id": "CA-0044+CA-0842@area@61.312,-140.117",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "CA-0044",
+    "CA-0842"
+   ],
+   "shape": [
+    [
+     -140.107627,
+     61.313159
+    ],
+    [
+     -140.117346,
+     61.312797
+    ],
+    [
+     -140.407802,
+     61.253651
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 176
+  },
+  {
+   "acres": 906.7,
+   "center": [
+    68.555559,
+    -141.001257
+   ],
+   "found": "2026-10-26",
+   "id": "CA-0106+US-0142@area@68.556,-141.001",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "CA-0106",
+    "US-0142"
+   ],
+   "shape": [
+    [
+     -141.002232,
+     68.55592
+    ],
+    [
+     -141.002232,
+     68.186756
+    ],
+    [
+     -141.000769,
+     68.186032
+    ],
+    [
+     -141.000282,
+     68.55592
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 120
+  },
+  {
+   "acres": 324.9,
+   "center": [
+    60.000417,
+    -133.717467
+   ],
+   "found": "2026-10-26",
+   "id": "CA-0841+CA-3622@area@60.000,-133.717",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "CA-0841",
+    "CA-3622"
+   ],
+   "shape": [
+    [
+     -133.79113,
+     60.000598
+    ],
+    [
+     -133.79113,
+     59.999874
+    ],
+    [
+     -133.582718,
+     59.999874
+    ],
+    [
+     -133.582359,
+     60.000779
+    ]
+   ],
+   "status": "pass 1",
+   "wide_m": 120
+  }
+ ],
+ "st": "CA-YT"
+}
