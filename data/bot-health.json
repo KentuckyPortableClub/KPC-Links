@@ -1,4 +1,229 @@
 {
- "open": [],
- "checked": "2026-10-26T15:06+00:00"
+ "open": [
+  "refs:gone:CA-QC:CA-2156",
+  "refs:gone:CA-SI:CA-0120",
+  "refs:gone:CA-SP:CA-0122",
+  "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
+ ],
+ "checked": "2026-10-26T17:17+00:00",
+ "weekly": {
+  "site": {
+   "part": "site",
+   "date": "2026-10-26",
+   "problems": [],
+   "notes": [],
+   "ok": [
+    "29 public pages opened as a guest at phone width (390px)",
+    "members door checked on parks.html, toolbox.html, find.html, kpc-kit.html",
+    "29 public pages opened as a guest at desktop width (1280px)"
+   ]
+  },
+  "refs": {
+   "part": "refs",
+   "date": "2026-10-26",
+   "problems": [
+    {
+     "key": "refs:gone:CA-QC:CA-2156",
+     "chat": 2,
+     "msg": "CA-QC: 1 park number(s) POTA no longer lists, still in our data: CA-2156 (answer key)"
+    },
+    {
+     "key": "refs:gone:CA-SI:CA-0120",
+     "chat": 2,
+     "msg": "CA-SI: 1 park number(s) POTA no longer lists, still in our data: CA-0120 (answer key)"
+    },
+    {
+     "key": "refs:gone:CA-SP:CA-0122",
+     "chat": 2,
+     "msg": "CA-SP: 1 park number(s) POTA no longer lists, still in our data: CA-0122 (answer key)"
+    },
+    {
+     "key": "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153",
+     "chat": 2,
+     "msg": "US-WY: 4 park number(s) POTA no longer lists, still in our data: US-10846 (access points/answer key), US-12729 (access points/answer key), US-6128 (answer key), US-6153 (answer key)"
+    }
+   ],
+   "notes": [
+    {
+     "chat": 2,
+     "msg": "CA-AB: 4 name(s) differ from POTA (renamed or spelled differently): CA-6587 ours \"Lusk Creek PRA Recreation Site\" / POTA \"Lusk Creek Provincial Recreation Area\"; CA-6588 ours \"Barrier Lake PRA Recreation Site\" / POTA \"Barrier Lake Provincial Recreation Area\"; CA-6589 ours \"Snow Creek PRA Recreation Site\" / POTA \"Snow Creek Provincial Recreation Area\"; CA-6603 ours \"Saskatoon Mountain Provincial Recreation Park\" / POTA \"Saskatoon Mountain Provincial Recreation Area\""
+    },
+    {
+     "chat": 2,
+     "msg": "CA-NS: 1 name(s) differ from POTA (renamed or spelled differently): CA-6600 ours \"Mabou Provincal Park Provincial Park\" / POTA \"Mabou Provincial Park\""
+    },
+    {
+     "chat": 2,
+     "msg": "CA-ON: 1 name(s) differ from POTA (renamed or spelled differently): CA-6154 ours \"Lower Big Creek Conservation Area\" / POTA \"Big Creek Conservation Reserve\""
+    },
+    {
+     "chat": 2,
+     "msg": "US-AR: 1 name(s) differ from POTA (renamed or spelled differently): US-10258 ours \"Ouachita National National Recreation Trail\" / POTA \"Ouachita National Recreation Trail\""
+    },
+    {
+     "chat": 2,
+     "msg": "US-AZ: 1 name(s) differ from POTA (renamed or spelled differently): US-0917 ours \"Chiricahua National Monument\" / POTA \"Chiricahua National Park\""
+    },
+    {
+     "chat": 2,
+     "msg": "US-NV: 1 name(s) differ from POTA (renamed or spelled differently): US-13228 ours \"ZOLD - Red Spring Picnic Area BLM Recreation Management Area\" / POTA \"Red Spring Picnic Area BLM Recreation Management Area\""
+    },
+    {
+     "chat": 2,
+     "msg": "US-OK: 1 name(s) differ from POTA (renamed or spelled differently): US-10258 ours \"Ouachita National National Recreation Trail\" / POTA \"Ouachita National Recreation Trail\""
+    }
+   ],
+   "ok": [
+    "18928 current US + Canada parks compared with the answer keys, access points, 2-fer spots, state camps and trails"
+   ]
+  },
+  "links": {
+   "part": "links",
+   "date": "2026-10-26",
+   "problems": [
+    {
+     "key": "links:https://assessment.cot.tn.gov/TPAD",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://assessment.cot.tn.gov/TPAD → HTTP 403",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://aws.boe.ca.gov/proptaxes/countycontacts.htm → no answer (<urlopen error [Errno -2] Name or service not know)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6 → not a map-server answer",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf → HTTP 403",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dor.georgia.gov/node/27121",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://dor.georgia.gov/node/27121 → HTTP 403",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf → no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] ce)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer → server error: Token Required",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer",
+     "chat": 2,
+     "twice": true,
+     "msg": "campstate-layers.json: https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer → server error: Token Required",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "campstate-layers.json: https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0 → no answer (<urlopen error timed out>)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0 → not a map-server answer",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "state-gis.json: https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2 → server error: Invalid URL",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2 → not a map-server answer",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3 → not a map-server answer",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer → server error: Invalid URL",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
+     "chat": 2,
+     "twice": true,
+     "msg": "access-layers.json: https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828 → not a map-server answer",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+     "chat": 2,
+     "twice": true,
+     "msg": "trails-layers.json: https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19 → no answer (<urlopen error [Errno -2] Name or service not know)",
+     "confirmed": false
+    },
+    {
+     "key": "links:https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions",
+     "chat": 2,
+     "twice": true,
+     "msg": "land-owner.json: https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions → HTTP 403",
+     "confirmed": false
+    }
+   ],
+   "notes": [],
+   "ok": [
+    "455 of 472 map-server / data addresses answered"
+   ]
+  }
+ },
+ "link_fail_prev": [
+  "links:https://assessment.cot.tn.gov/TPAD",
+  "links:https://aws.boe.ca.gov/proptaxes/countycontacts.htm",
+  "links:https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6",
+  "links:https://ceat.okstate.edu/extension/clgt/site-files/docs/2025assessordirectory.pdf",
+  "links:https://dor.georgia.gov/node/27121",
+  "links:https://dor.ms.gov/sites/default/files/Property/2020%20Assessor%20Collector%202020%20updated1.pdf",
+  "links:https://geospatial.alberta.ca/titan/rest/services/boundary/trails/FeatureServer",
+  "links:https://gis.ohiodnr.gov/arcgis/rest/services/DSP_Services/Camping_POI_Symbols/MapServer",
+  "links:https://gis2.idaho.gov/arcgis/rest/services/ADM/Campgrounds/MapServer/0",
+  "links:https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/FWSApproved_Authoritative/FeatureServer/0",
+  "links:https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/HolmanConservationPropertiesUpdate_7_18/FeatureServer/2",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/2",
+  "links:https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/OPRD_Rec_Features_View_Hosted_view/FeatureServer/3",
+  "links:https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/ArcGIS/rest/services/Ontario_Trail_Network_(OTN)_Segment/FeatureServer",
+  "links:https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/arcgis/rest/services/NJDEP_Fish_and_Wildlife_Points_of_Interest_in_New_Jersey/FeatureServer/828",
+  "links:https://ws.lio.gov.on.ca/arcgis/rest/services/LIO_OPEN_DATA/LIO_Open04/MapServer/19",
+  "links:https://www.commerce.alaska.gov/web/dcra/OfficeoftheStateAssessor/TaxJurisdictions"
+ ]
 }
