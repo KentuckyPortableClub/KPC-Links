@@ -84,7 +84,7 @@
       if (c[9] === 'point') {   // an official GPS point from the state's own map layer (Oct 25, chat 2): a real campground / cabin spot
         var named = c[10] !== 'label only';
         places.push({ id: 'q' + c[0], name: named ? c[1] : (c[4] === 'b' ? 'Cabin' : 'Campground') + ' (official GPS point, name not given)', la: c[2], lo: c[3], kind: c[4] || 'c',
-          src: 'statept', ref: c[5], web: c[6], book: c[7], detail: c[8], unnamed: !named });
+          src: 'statept', ref: c[5], web: c[6], book: c[7], detail: c[8], unnamed: !named, addr: /census geocoder/i.test(c[8] || '') });
         return;
       }
       places.push({ id: 'p' + c[0], name: c[1], la: c[2], lo: c[3], kind: c[4] || 'c', src: 'manual', ref: c[5], web: c[6], book: c[7], what: c[8] });
@@ -141,7 +141,7 @@
   function srcTag(x) {
     if (x.src === 'fed') return '<span class="cgu-src fed">FEDERAL · ' + esc(AG[x.ag] || x.ag || 'RECREATION.GOV') + '</span>';
     if (x.src === 'state') return '<span class="cgu-src st">STATE PARKS · OFFICIAL</span>';
-    if (x.src === 'statept') return '<span class="cgu-src st">STATE PARKS · OFFICIAL GPS</span>';
+    if (x.src === 'statept') return x.addr ? '<span class="cgu-src pk">FROM THE PARK’S STREET ADDRESS</span>' : '<span class="cgu-src st">STATE PARKS · OFFICIAL GPS</span>';
     if (x.src === 'manual') return '<span class="cgu-src pk">PARK-LEVEL · FROM THE STATE’S OFFICIAL LISTING</span>';
     return '<span class="cgu-src mem">MEMBER ADDED</span>';
   }
@@ -153,6 +153,7 @@
     var nm = x.unnamed ? (x.kind === 'b' ? 'Cabin' : 'Campground') + (o.no ? ' ' + o.no : '') + ' (official GPS point, name not given)' : x.name;
     return '<div class="cg-place"><h3>' + (x.kind !== 'c' ? '<span class="cg-kind">' + KIND[x.kind] + '</span>' : '') + esc(nm) + '</h3>' +
       '<p class="cgu-meta">' + srcTag(x) + (dist ? ' <span>' + esc(dist) + '</span>' : '') + (x.where ? ' <span>' + esc(x.where) + '</span>' : '') + '</p>' +
+      (x.src === 'statept' && x.addr ? '<p class="cg-note">Placed from the park’s street address' + (/\(([^)]+)\)/.test(x.detail || '') ? ' (' + esc(/\(([^)]+)\)/.exec(x.detail)[1]) + ')' : '') + ', not a GPS point: the campground itself may be some way in. Check the park’s map.</p>' : '') +
       (x.src === 'statept' && x.unnamed ? '<p class="cg-note">The state’s map marks a ' + (x.kind === 'b' ? 'cabin' : 'campground') + ' here but gives no name: check the state’s page.</p>' : '') +
       '<div class="cg-btns">' + (isFinite(x.la) && x.la !== null ? ext(dirs(x.la, x.lo), 'DIRECTIONS ›', 'gold') : '') + ext(x.web, x.src === 'statept' ? 'STATE PARKS PAGE' : 'OFFICIAL PAGE') + ext(x.book, x.src === 'fed' ? 'RECREATION.GOV ›' : 'RESERVE ›', 'dark') +
       (isFinite(x.la) && x.la !== null ? ext(gps(x.la, x.lo), 'GPS') : '') + (fl ? '<a class="cg-b rev" href="' + esc(fl) + '" target="_blank" rel="noopener">RATE IT ›</a>' : '') + '</div>' +
