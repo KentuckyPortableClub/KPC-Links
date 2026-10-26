@@ -463,7 +463,7 @@ def merge(spots):
         b = bbox_lines([s['shape']])
         t = next((o for o in out if o['refs'] == s['refs'] and o['kind'] == s['kind'] and inter(o['_b'], b, 0.0005)), None)
         if t:
-            t['acres'] = round(t['acres'] + s.get('acres', 0), 1)
+            if 'acres' in t or 'acres' in s: t['acres'] = round(t.get('acres', 0) + s.get('acres', 0), 1)   # line spots have none
             if s.get('wide_m', 0) > t.get('wide_m', 0): t['center'], t['wide_m'] = s['center'], s['wide_m']
             if s.get('len_m'): t['len_m'] = round(t.get('len_m', 0) + s['len_m'])
             t['_b'] = [min(t['_b'][0], b[0]), min(t['_b'][1], b[1]), max(t['_b'][2], b[2]), max(t['_b'][3], b[3])]
@@ -541,7 +541,8 @@ def find_spots(G, LN, pairs, counts):
         ba = bbox_groups(G[a]) if a in G else bbox_lines(LN[a]['lines'])
         bb = bbox_groups(G[b]) if b in G else bbox_lines(LN[b]['lines'])
         box = inter(ba, bb, 0.0008)
-        if not box: continue
+        if not box or not all(math.isfinite(v) for v in box): continue
+        if box[2] - box[0] > 40 or box[3] - box[1] > 40: LOG.append(f'{a} + {b}: shared box too big (an outline crossing the date line?)'); continue
         try:
             if a in G and b in G: got = area_spots(G, [a, b], box)
             else:
