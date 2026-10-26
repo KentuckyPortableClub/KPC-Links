@@ -1,10 +1,10 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **823 of 850** parks joined to official land (same name + same kind of place). **1** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **823 of 850** parks joined to official land (same name + same kind of place). **1** to check by hand, **21** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-8064** Barcelona Neck Cooperative State Forest (State Forest) → Linda A. Gronlund Memorial Nature State Forest At Barcelona Neck (~276 ac, similar name); Linda A. Gronlund Memorial Nature State Forest At Barcelona Neck (~13 ac, similar name); Linda Gronlund Memorial Nature Preserve (~289 ac, the POTA pin is inside it (different name)); Sag Harbor Golf Course State Park (~49 ac, the POTA pin is inside it (different name))
+- **US-8064** Barcelona Neck Cooperative State Forest (State Forest) → Linda A. Gronlund Memorial Nature State Forest At Barcelona Neck (~276 ac, similar name); Linda A. Gronlund Memorial Nature State Forest At Barcelona Neck (~13 ac, similar name); Linda Gronlund Memorial Nature Preserve (~289 ac, the POTA pin is inside it (different name)); Sag Harbor Golf Course State Park (~49 ac, the POTA pin is inside it (different name)); Sag Harbor (~49 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -75,6 +75,7 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **823 of 850** parks joined
 - Pepperbox Wilderness · SW · NYS Department of Environmental Conservation · ~24,336 ac
 - Sentinel Range Wilderness · SW · NYS Department of Environmental Conservation · ~23,879 ac
 - Giant Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~23,680 ac
+- Minnewaska ·  · New York State Parks (park, state GIS table) · ~23,539 ac
 - Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
 - William C. Whitney Wilderness · SW · NYS Department of Environmental Conservation · ~20,362 ac
 - Saint Regis Canoe Area · SCA · NYS Department of Environmental Conservation · ~18,979 ac
@@ -99,4 +100,3 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **823 of 850** parks joined
 - Appalachian National Scenic Trail · NT · NPS · ~8,085 ac
 - Littlejohn Wma · SRMA · NYS Department of Environmental Conservation · ~7,926 ac
 - Jay Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~7,868 ac
-- Great Swamp National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,853 ac

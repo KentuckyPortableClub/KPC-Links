@@ -1,6 +1,6 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **405 of 421** parks joined to official land (same name + same kind of place). **2** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **406 of 421** parks joined to official land (same name + same kind of place). **2** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -21,7 +21,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **405 of 421** parks joined
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4561 New England Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
-- US-7971 Blackstone River Valley National Historical Park (National Historical Park)
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
 - US-8385 Farnham-Connolly State Park (State Park)
 - US-8388 Great Falls Discovery Center State Recreation Area (State Recreation Area)

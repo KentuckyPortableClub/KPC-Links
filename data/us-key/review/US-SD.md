@@ -1,6 +1,6 @@
 # SD: POTA parks vs official land (USGS PAD-US)
 
-Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **108 of 120** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **109 of 120** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built 2026-10-25 by `.github/scripts/kpc_us_key.py`. **108 of 120** parks joined
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0675 Missouri National Recreational River National Wild & Scenic River (National Wild & Scenic River) → on Lewis And Clark Recreation Area (~25,792 ac)
 - US-10363 DeGray State Recreation Area (State Recreation Area) → on Degrey Recreation Area (~25 ac); Sharpe Recreation Area (~78,431 ac)
 - US-10376 Le Beau State Recreation Area (State Recreation Area) → on Lebeau Recreation Area (~46 ac); Oaha Recreation Area (~314,305 ac)
 - US-11905 Centennial Trail State Trail (State Trail) → on Bear Butte Lake (~0 ac)
