@@ -1,10 +1,10 @@
-"""Federal campgrounds (Recreation.gov RIDB) for the states around Kentucky — US Trip Planner park cards.
+"""Federal campgrounds (Recreation.gov RIDB), EVERY state incl. Kentucky + DC (Oct 26, HQ: 'all states, not just around KY') — US Trip Planner park cards.
 Needs secret RIDB_API_KEY (free key from ridb.recreation.gov, Profile). Writes data/campfed/US-XX.json
 {state, updated, camps:[[id, name, lat, lon, agency, reservable(0/1), url, kind c=campground s=picnic shelter/day use]]}. Keeps last week's file if RIDB fails.
 The key is never printed or saved."""
 import json, os, re, time, urllib.request, urllib.parse, datetime
 KEY = os.environ.get('RIDB_API_KEY', '').strip()
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD TX UT VT WA WY').split()
+STATES = (os.environ.get('STATES') or 'KY TN IN OH WV VA MO IL AL GA NC MS AR MD DC PA MI WI IA NE KS OK AK AZ CA CO CT DE FL HI ID LA ME MA MN MT NV NH NJ NM NY ND OR RI SD SC TX UT VT WA WY').split()
 OUT = 'data/campfed'; os.makedirs(OUT, exist_ok=True)
 def note(t, m): print(f'::notice title={t}::{m}')
 if not KEY: note('RIDB_API_KEY missing', 'Add the secret RIDB_API_KEY (GitHub Settings > Secrets and variables > Actions).'); raise SystemExit(0)
