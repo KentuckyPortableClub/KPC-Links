@@ -1,0 +1,1450 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 483465,
+   "fields": [
+    "SITEI",
+    "VOLI",
+    "ORIGIN",
+    "TRT",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "RF",
+    "SI",
+    "L1DATASRC",
+    "L1FUNA",
+    "L1S1",
+    "L1DS1",
+    "L1S2",
+    "L1DS2",
+    "L1S3",
+    "L1DS3",
+    "L1S4",
+    "L1DS4"
+   ],
+   "known": false,
+   "layer": "Location (3-5)",
+   "sample": [
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "EHSW",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "EHSW",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "H2": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "THIH",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    }
+   ],
+   "service": "GeoNB_DNR_Forest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_Forest/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 456966,
+   "fields": [
+    "SITEI",
+    "VOLI",
+    "ORIGIN",
+    "TRT",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "RF",
+    "SI",
+    "L1DATASRC",
+    "L1FUNA",
+    "L1S1",
+    "L1DS1",
+    "L1S2",
+    "L1DS2",
+    "L1S3",
+    "L1DS3",
+    "L1S4",
+    "L1DS4"
+   ],
+   "known": false,
+   "layer": "Location (6-7)",
+   "sample": [
+    {
+     "H1": "PB",
+     "L1DATASRC": "IO",
+     "L1FUNA": "SPRC",
+     "SITEI": "F",
+     "TRT": "PB"
+    },
+    {
+     "H1": "PB",
+     "L1DATASRC": "IO",
+     "L1FUNA": "SPRC",
+     "SITEI": "F",
+     "TRT": "PB"
+    },
+    {
+     "H1": "PB",
+     "L1DATASRC": "IO",
+     "L1FUNA": "SPRC",
+     "SITEI": "F",
+     "TRT": "PB"
+    }
+   ],
+   "service": "GeoNB_DNR_Forest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_Forest/MapServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 393796,
+   "fields": [
+    "SOIL",
+    "SLOPE",
+    "ASPECT"
+   ],
+   "known": false,
+   "layer": "Units",
+   "sample": [
+    {
+     "ASPECT": "3",
+     "SLOPE": "B",
+     "SOIL": "TH"
+    },
+    {
+     "ASPECT": "1",
+     "SLOPE": "B",
+     "SOIL": "TH"
+    },
+    {
+     "ASPECT": "3",
+     "SLOPE": "A",
+     "SOIL": "TH"
+    }
+   ],
+   "service": "GeoNB_DNR_ForestSoils",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ForestSoils/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 393796,
+   "fields": [
+    "SOIL",
+    "SLOPE",
+    "ASPECT"
+   ],
+   "known": false,
+   "layer": "Mode of Deposition",
+   "sample": [
+    {
+     "ASPECT": "3",
+     "SLOPE": "B",
+     "SOIL": "TH"
+    },
+    {
+     "ASPECT": "1",
+     "SLOPE": "B",
+     "SOIL": "TH"
+    },
+    {
+     "ASPECT": "3",
+     "SLOPE": "A",
+     "SOIL": "TH"
+    }
+   ],
+   "service": "GeoNB_DNR_ForestSoils",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ForestSoils/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 393796,
+   "fields": [
+    "SOIL",
+    "SLOPE",
+    "ASPECT"
+   ],
+   "known": false,
+   "layer": "Primary Lithology",
+   "sample": [
+    {
+     "ASPECT": "3",
+     "SLOPE": "B",
+     "SOIL": "TH"
+    },
+    {
+     "ASPECT": "1",
+     "SLOPE": "B",
+     "SOIL": "TH"
+    },
+    {
+     "ASPECT": "3",
+     "SLOPE": "A",
+     "SOIL": "TH"
+    }
+   ],
+   "service": "GeoNB_DNR_ForestSoils",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ForestSoils/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 257686,
+   "fields": [
+    "SITEI",
+    "VOLI",
+    "ORIGIN",
+    "TRT",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "RF",
+    "SI",
+    "L1DATASRC",
+    "L1FUNA",
+    "L1S1",
+    "L1DS1",
+    "L1S2",
+    "L1DS2",
+    "L1S3",
+    "L1DS3",
+    "L1S4",
+    "L1DS4"
+   ],
+   "known": false,
+   "layer": "Location (1-2)",
+   "sample": [
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "BFSP",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "WPSW",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "L1FUNA": "UKWN",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC"
+    }
+   ],
+   "service": "GeoNB_DNR_Forest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_Forest/MapServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 236290,
+   "fields": [
+    "SITEI",
+    "VOLI",
+    "ORIGIN",
+    "TRT",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "RF",
+    "SI",
+    "L1DATASRC",
+    "L1FUNA",
+    "L1S1",
+    "L1DS1",
+    "L1S2",
+    "L1DS2",
+    "L1S3",
+    "L1DS3",
+    "L1S4",
+    "L1DS4"
+   ],
+   "known": false,
+   "layer": "Treatment Type (6-7)",
+   "sample": [
+    {
+     "H1": "PB",
+     "L1DATASRC": "IO",
+     "L1FUNA": "SPRC",
+     "SITEI": "F",
+     "TRT": "PB"
+    },
+    {
+     "H1": "PB",
+     "L1DATASRC": "IO",
+     "L1FUNA": "SPRC",
+     "SITEI": "F",
+     "TRT": "PB"
+    },
+    {
+     "H1": "PB",
+     "L1DATASRC": "IO",
+     "L1FUNA": "SPRC",
+     "SITEI": "F",
+     "TRT": "PB"
+    }
+   ],
+   "service": "GeoNB_DNR_Forest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_Forest/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 235303,
+   "fields": [
+    "SITEI",
+    "VOLI",
+    "ORIGIN",
+    "TRT",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "RF",
+    "SI",
+    "L1DATASRC",
+    "L1FUNA",
+    "L1S1",
+    "L1DS1",
+    "L1S2",
+    "L1DS2",
+    "L1S3",
+    "L1DS3",
+    "L1S4",
+    "L1DS4"
+   ],
+   "known": false,
+   "layer": "Treatment Type (3-5)",
+   "sample": [
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "EHSW",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "EHSW",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "H2": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "THIH",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    }
+   ],
+   "service": "GeoNB_DNR_Forest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_Forest/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 139755,
+   "fields": [
+    "SITEI",
+    "VOLI",
+    "ORIGIN",
+    "TRT",
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "RF",
+    "SI",
+    "L1DATASRC",
+    "L1FUNA",
+    "L1S1",
+    "L1DS1",
+    "L1S2",
+    "L1DS2",
+    "L1S3",
+    "L1DS3",
+    "L1S4",
+    "L1DS4"
+   ],
+   "known": false,
+   "layer": "Treatment Type (1-2)",
+   "sample": [
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "BFSP",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "L1DATASRC": "UG",
+     "L1FUNA": "WPSW",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC",
+     "VOLI": "V"
+    },
+    {
+     "H1": "CC",
+     "L1FUNA": "UKWN",
+     "ORIGIN": "C",
+     "SITEI": "D",
+     "TRT": "CC"
+    }
+   ],
+   "service": "GeoNB_DNR_Forest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_Forest/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 137865,
+   "fields": [
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "DATASRC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Non-Forested",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VT",
+     "PLU": "SET",
+     "SLU": "RU",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VS",
+     "PLU": "WIL",
+     "SLU": "RF",
+     "STATUS": "I"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VG",
+     "PLU": "AGR",
+     "SLU": "CL",
+     "STATUS": "A"
+    }
+   ],
+   "service": "OpenData/Non_Forest",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Non_Forest/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 56355,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Urban / Residential",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VT",
+     "PLU": "SET",
+     "SLU": "RU",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VG",
+     "PLU": "SET",
+     "SLU": "RU",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VG",
+     "PLU": "SET",
+     "SLU": "RU",
+     "STATUS": "A"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 43128,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Agricultural",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VG",
+     "PLU": "AGR",
+     "SLU": "CL",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IC",
+     "INVBLK": "2018W",
+     "LC": "VT",
+     "PLU": "AGR",
+     "SLU": "CT",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IO",
+     "INVBLK": "2018W",
+     "LC": "VT",
+     "PLU": "AGR",
+     "SLU": "CT",
+     "STATUS": "A"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 33960,
+   "fields": [
+    "PRESCRIPTION",
+    "PERIOD"
+   ],
+   "known": false,
+   "layer": "Planned Harvest Activity",
+   "sample": [
+    {
+     "PERIOD": "2012 - 2016",
+     "PRESCRIPTION": "Clearcut and final fellings"
+    },
+    {
+     "PERIOD": "2012 - 2016",
+     "PRESCRIPTION": "Clearcut and final fellings"
+    },
+    {
+     "PERIOD": "2012 - 2016",
+     "PRESCRIPTION": "Clearcut and final fellings"
+    }
+   ],
+   "service": "OpenData/Crown_Forest_Management_Plan",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Crown_Forest_Management_Plan/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23987,
+   "fields": [
+    "TREATMENTID",
+    "FISCAL_YEAR"
+   ],
+   "known": false,
+   "layer": "Reforestation",
+   "sample": [
+    {
+     "FISCAL_YEAR": "2008",
+     "TREATMENTID": "206263708BP02"
+    },
+    {
+     "FISCAL_YEAR": "2008",
+     "TREATMENTID": "206263708BP02"
+    },
+    {
+     "FISCAL_YEAR": "2008",
+     "TREATMENTID": "306030208BP03"
+    }
+   ],
+   "service": "OpenData/Reforestation",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Reforestation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 17373,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Wilderness",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VS",
+     "PLU": "WIL",
+     "SLU": "RF",
+     "STATUS": "I"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "NV",
+     "PLU": "WIL",
+     "SLU": "RF",
+     "STATUS": "I"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "NV",
+     "PLU": "WIL",
+     "SLU": "RF",
+     "STATUS": "I"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10885,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Transportation - Communication",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": " ",
+     "PLU": "INF",
+     "SLU": "RR",
+     "STATUS": " "
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VS",
+     "PLU": "INF",
+     "SLU": "TM",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VT",
+     "PLU": "INF",
+     "SLU": "RY",
+     "STATUS": "A"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7992,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Industrial",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "NV",
+     "PLU": "IND",
+     "SLU": "GP",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "NV",
+     "PLU": "IND",
+     "SLU": "SG",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VS",
+     "PLU": "IND",
+     "SLU": "IP",
+     "STATUS": "A"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/5"
+  },
+  {
+   "agency": "New Brunswick Department of Natural Resources and Energy Development",
+   "area": "APP_AREA",
+   "count": 4545,
+   "fields": [
+    "BLOCK_1",
+    "BLOCK_2",
+    "BLOCK_3",
+    "BLOCK_4",
+    "PROVINCE",
+    "MAP_NAM",
+    "AIRCRAFT",
+    "GUIDANCE",
+    "APP_SYS",
+    "REFERENCE",
+    "APP_AREA"
+   ],
+   "known": false,
+   "layer": "Historical Treatment Records",
+   "sample": [
+    {
+     "AIRCRAFT": "Boeing Stearman",
+     "APP_AREA": "1952_001",
+     "APP_SYS": "boom and nozzle",
+     "BLOCK_1": "unknown",
+     "BLOCK_2": " ",
+     "BLOCK_3": " ",
+     "BLOCK_4": " ",
+     "GUIDANCE": "visual maps and spray pilot ground sighting",
+     "MAP_NAM": "SBW.Spray.1952-Province.pdf",
+     "PROVINCE": "nb",
+     "REFERENCE": "1,4"
+    },
+    {
+     "AIRCRAFT": "Boeing Stearman",
+     "APP_AREA": "1953_001",
+     "APP_SYS": "boom and nozzle",
+     "BLOCK_1": "unknown",
+     "BLOCK_2": " ",
+     "BLOCK_3": " ",
+     "BLOCK_4": " ",
+     "GUIDANCE": "visual maps and spray pilot ground sighting",
+     "MAP_NAM": "SBW.Spray.1953-Province.pdf",
+     "PROVINCE": "nb",
+     "REFERENCE": "1,4"
+    },
+    {
+     "AIRCRAFT": "Boeing Stearman",
+     "APP_AREA": "1953_002",
+     "APP_SYS": "boom and nozzle",
+     "BLOCK_1": "unknown",
+     "BLOCK_2": "unknown",
+     "BLOCK_3": " ",
+     "BLOCK_4": " ",
+     "GUIDANCE": "visual maps and spray pilot ground sighting",
+     "MAP_NAM": "SBW.Spray.1953-Province.pdf",
+     "PROVINCE": "nb",
+     "REFERENCE": "1,4"
+    }
+   ],
+   "service": "OpenData/Historical_Pest_Treatment_Records",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Historical_Pest_Treatment_Records/FeatureServer/0"
+  },
+  {
+   "agency": "New Brunswick Dept. of Natural Resoures and Energy Development",
+   "area": "",
+   "count": 1817,
+   "fields": [
+    "SAR_SSWH"
+   ],
+   "known": false,
+   "layer": "Site-Specific Wildlife Habitat",
+   "sample": [
+    {
+     "SAR_SSWH": "1"
+    },
+    {
+     "SAR_SSWH": "1"
+    },
+    {
+     "SAR_SSWH": "1"
+    }
+   ],
+   "service": "OpenData/Site_Specific_Wildlife_Habitat",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Site_Specific_Wildlife_Habitat/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1320,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "Recreational",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "NV",
+     "PLU": "REC",
+     "SLU": "TR",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "NV",
+     "PLU": "REC",
+     "SLU": "TR",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2018W",
+     "LC": "VT",
+     "PLU": "REC",
+     "SLU": "SK",
+     "STATUS": "A"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 813,
+   "fields": [
+    "DATASRC",
+    "PLU",
+    "SLU",
+    "STATUS",
+    "LC",
+    "INVBLK"
+   ],
+   "known": false,
+   "layer": "National Defense",
+   "sample": [
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2014",
+     "LC": "VS",
+     "PLU": "DND",
+     "SLU": "IZ",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2014",
+     "LC": "VG",
+     "PLU": "DND",
+     "SLU": "EA",
+     "STATUS": "A"
+    },
+    {
+     "DATASRC": "IP",
+     "INVBLK": "2014",
+     "LC": "VS",
+     "PLU": "DND",
+     "SLU": "EA",
+     "STATUS": "A"
+    }
+   ],
+   "service": "GeoNB_DNR_NonForest",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_NonForest/MapServer/6"
+  },
+  {
+   "agency": "Service New Brunswick, Transportation and Infrastructure",
+   "area": "",
+   "count": 771,
+   "fields": [
+    "FCODE",
+    "KEY",
+    "ENG_NAME",
+    "FRE_NAME",
+    "DATE_"
+   ],
+   "known": false,
+   "layer": "Local Service Districts - Historical",
+   "sample": [
+    {
+     "DATE_": "2004_01_01",
+     "ENG_NAME": "West Isles",
+     "FCODE": "DLBNLSD_C",
+     "FRE_NAME": "West Isles",
+     "KEY": "502300517"
+    },
+    {
+     "DATE_": "2004_01_01",
+     "ENG_NAME": "Studholm",
+     "FCODE": "DLBNLSD_C",
+     "FRE_NAME": "Studholm",
+     "KEY": "502300416"
+    },
+    {
+     "DATE_": "2004_01_01",
+     "ENG_NAME": "West Isles",
+     "FCODE": "DLBNLSD_C",
+     "FRE_NAME": "West Isles",
+     "KEY": "502300517"
+    }
+   ],
+   "service": "GeoNB_SNB_Municipal_Planning",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_SNB_Municipal_Planning/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 621,
+   "fields": [],
+   "known": false,
+   "layer": "Parks",
+   "sample": [
+    {
+     "HOLDER": 66,
+     "OBJECTID": 14135,
+     "Shape__Area": 1409882.4666,
+     "Shape__Length": 7439.59726125992
+    },
+    {
+     "HOLDER": 66,
+     "OBJECTID": 14431,
+     "Shape__Area": 49362.10845,
+     "Shape__Length": 1074.3155927453
+    },
+    {
+     "HOLDER": 66,
+     "OBJECTID": 19461,
+     "Shape__Area": 2068184.26355,
+     "Shape__Length": 7098.17056303114
+    }
+   ],
+   "service": "OpenData/Parks",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 416,
+   "fields": [
+    "SITE_NUMBER",
+    "AUTHORIZATION_TYPE",
+    "AUTHORIZATION_STATUS_DESC",
+    "AUTHORIZATION_HOLDER",
+    "CULTIVATION_METHOD",
+    "SPECIES_CODE_DESCRIPTION",
+    "WATERBODY_TYPE_DESC"
+   ],
+   "known": false,
+   "layer": "Shellfish",
+   "sample": [
+    {
+     "AUTHORIZATION_HOLDER": "Jamoso Oyster Farm Inc.",
+     "AUTHORIZATION_STATUS_DESC": "Active",
+     "AUTHORIZATION_TYPE": "Q09",
+     "CULTIVATION_METHOD": "Bottom culture,Off-bottom culture,Suspended culture",
+     "SITE_NUMBER": "MS-0095",
+     "SPECIES_CODE_DESCRIPTION": "2: American oyster",
+     "WATERBODY_TYPE_DESC": "Neguac Bay"
+    },
+    {
+     "AUTHORIZATION_HOLDER": "Pêcheries Karine G. Ltée",
+     "AUTHORIZATION_STATUS_DESC": "Active",
+     "AUTHORIZATION_TYPE": "Q09",
+     "CULTIVATION_METHOD": "Bottom culture",
+     "SITE_NUMBER": "MS-1220",
+     "SPECIES_CODE_DESCRIPTION": "2: American oyster",
+     "WATERBODY_TYPE_DESC": "Lamèque Bay"
+    },
+    {
+     "AUTHORIZATION_HOLDER": "Brantville Acquaculture Ltee.",
+     "AUTHORIZATION_STATUS_DESC": "Active",
+     "AUTHORIZATION_TYPE": "Q09",
+     "CULTIVATION_METHOD": "Bottom culture,Not Applicable,Off-bottom culture,Suspended culture",
+     "SITE_NUMBER": "MS-1178",
+     "SPECIES_CODE_DESCRIPTION": "2: American oyster",
+     "WATERBODY_TYPE_DESC": "Tabusintac Bay"
+    }
+   ],
+   "service": "OpenData/MASMPS",
+   "typef": "AUTHORIZATION_TYPE",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/MASMPS/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 208,
+   "fields": [
+    "NAME",
+    "SOURCE",
+    "CLASS",
+    "SURVEY",
+    "NOM",
+    "GRP",
+    "OWNER",
+    "IUCN_CATEGORY",
+    "MANAGED_BY",
+    "PNA_CODE"
+   ],
+   "known": false,
+   "layer": "Protected Natural Areas",
+   "sample": [
+    {
+     "CLASS": "II",
+     "GRP": " ",
+     "IUCN_CATEGORY": "Ib",
+     "MANAGED_BY": "Private",
+     "NAME": "Green Island",
+     "NOM": "Ile Verte",
+     "OWNER": "Nature Trust of New Brunswick/Fondation pour la protection des sites naturels du Nouveau- Brunswick",
+     "PNA_CODE": "GrId",
+     "SOURCE": " ",
+     "SURVEY": " "
+    },
+    {
+     "CLASS": "II",
+     "GRP": " ",
+     "IUCN_CATEGORY": "II",
+     "MANAGED_BY": "Private",
+     "NAME": "Caughey-Taylor, Private Land Component",
+     "NOM": "Caughey-Taylor, composante sur terrains privés",
+     "OWNER": "Nature Trust of New Brunswick/Fondation pour la protection des sites naturels du Nouveau- Brunswick",
+     "PNA_CODE": "CTPL",
+     "SOURCE": " ",
+     "SURVEY": " "
+    },
+    {
+     "CLASS": "II",
+     "GRP": " ",
+     "IUCN_CATEGORY": "II",
+     "MANAGED_BY": "Private",
+     "NAME": "Meduxnekeag Valley",
+     "NOM": "Vallée de Meduxnekeag",
+     "OWNER": "Meduxnekeag River Association Inc. ",
+     "PNA_CODE": "MdVa",
+     "SOURCE": " ",
+     "SURVEY": " "
+    }
+   ],
+   "service": "OpenData/PNAs",
+   "typef": "CLASS",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/PNAs/FeatureServer/0"
+  },
+  {
+   "agency": "Service New Brunswick, Justice and Public Safety",
+   "area": "",
+   "count": 110,
+   "fields": [
+    "TYPE",
+    "ENG_LABEL",
+    "FRN_LABEL",
+    "OFFICIAL_E",
+    "OFFICIAL_F",
+    "KEY_",
+    "DATE_"
+   ],
+   "known": false,
+   "layer": "Municipal Areas - Historical",
+   "sample": [
+    {
+     "DATE_": "2004_01_01",
+     "ENG_LABEL": "Harvey",
+     "FRN_LABEL": "Harvey",
+     "KEY_": "500300042",
+     "OFFICIAL_E": "Village of Harvey",
+     "OFFICIAL_F": "Village de Harvey",
+     "TYPE": "Village"
+    },
+    {
+     "DATE_": "2004_01_01",
+     "ENG_LABEL": "Pointe-Verte",
+     "FRN_LABEL": "Pointe-Verte",
+     "KEY_": "500300067",
+     "OFFICIAL_E": "Village de Pointe-Verte",
+     "OFFICIAL_F": "Village de Pointe-Verte",
+     "TYPE": "Village"
+    },
+    {
+     "DATE_": "2004_01_01",
+     "ENG_LABEL": "Maisonnette",
+     "FRN_LABEL": "Maisonnette",
+     "KEY_": "500300048",
+     "OFFICIAL_E": "Maisonnette",
+     "OFFICIAL_F": "Maisonnette",
+     "TYPE": "Village"
+    }
+   ],
+   "service": "GeoNB_SNB_Historical_Municipal_Areas",
+   "typef": "TYPE",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_SNB_Historical_Municipal_Areas/MapServer/0"
+  },
+  {
+   "agency": "Service New Brunswick, Transportation and Infrastructure",
+   "area": "",
+   "count": 110,
+   "fields": [
+    "TYPE",
+    "ENG_LABEL",
+    "FRN_LABEL",
+    "OFFICIAL_E",
+    "OFFICIAL_F",
+    "KEY_",
+    "DATE_"
+   ],
+   "known": false,
+   "layer": "Municipal Areas - Historical",
+   "sample": [
+    {
+     "DATE_": "2004_01_01",
+     "ENG_LABEL": "Harvey",
+     "FRN_LABEL": "Harvey",
+     "KEY_": "500300042",
+     "OFFICIAL_E": "Village of Harvey",
+     "OFFICIAL_F": "Village de Harvey",
+     "TYPE": "Village"
+    },
+    {
+     "DATE_": "2004_01_01",
+     "ENG_LABEL": "Pointe-Verte",
+     "FRN_LABEL": "Pointe-Verte",
+     "KEY_": "500300067",
+     "OFFICIAL_E": "Village de Pointe-Verte",
+     "OFFICIAL_F": "Village de Pointe-Verte",
+     "TYPE": "Village"
+    },
+    {
+     "DATE_": "2004_01_01",
+     "ENG_LABEL": "Maisonnette",
+     "FRN_LABEL": "Maisonnette",
+     "KEY_": "500300048",
+     "OFFICIAL_E": "Maisonnette",
+     "OFFICIAL_F": "Maisonnette",
+     "TYPE": "Village"
+    }
+   ],
+   "service": "GeoNB_SNB_Municipal_Planning",
+   "typef": "TYPE",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_SNB_Municipal_Planning/MapServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 87,
+   "fields": [
+    "SITE_NUMBER",
+    "AUTHORIZATION_TYPE",
+    "AUTHORIZATION_STATUS_DESC",
+    "AUTHORIZATION_HOLDER",
+    "SPECIES_CODE_DESCRIPTION",
+    "WATERBODY_TYPE_DESC"
+   ],
+   "known": false,
+   "layer": "Finfish",
+   "sample": [
+    {
+     "AUTHORIZATION_HOLDER": "Benson Aquaculture Ltd.",
+     "AUTHORIZATION_STATUS_DESC": "Active",
+     "AUTHORIZATION_TYPE": "Q09",
+     "SITE_NUMBER": "MF-0270",
+     "WATERBODY_TYPE_DESC": "Seal Cove"
+    },
+    {
+     "AUTHORIZATION_HOLDER": "Kelly Cove Salmon Ltd.",
+     "AUTHORIZATION_STATUS_DESC": "Active",
+     "AUTHORIZATION_TYPE": "Q09",
+     "SITE_NUMBER": "MF-0002",
+     "SPECIES_CODE_DESCRIPTION": "4: Atlantic Salmon",
+     "WATERBODY_TYPE_DESC": "Long Island Bay"
+    },
+    {
+     "AUTHORIZATION_HOLDER": "MOWI Canada East Inc.",
+     "AUTHORIZATION_STATUS_DESC": "Active",
+     "AUTHORIZATION_TYPE": "Q09",
+     "SITE_NUMBER": "MF-0350",
+     "SPECIES_CODE_DESCRIPTION": "4: Atlantic Salmon",
+     "WATERBODY_TYPE_DESC": "Long Island Bay"
+    }
+   ],
+   "service": "OpenData/MASMPS",
+   "typef": "AUTHORIZATION_TYPE",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/MASMPS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 27,
+   "fields": [],
+   "known": false,
+   "layer": "Wildlife Management Zones",
+   "sample": [
+    {
+     "OBJECTID_1": 321,
+     "Shape__Area": 3576268552.5602,
+     "Shape__Length": 359874.263605,
+     "WMZ": 4
+    },
+    {
+     "OBJECTID_1": 322,
+     "Shape__Area": 1201551309.83045,
+     "Shape__Length": 407961.867720451,
+     "WMZ": 9
+    },
+    {
+     "OBJECTID_1": 323,
+     "Shape__Area": 3154818540.32235,
+     "Shape__Length": 318288.682691733,
+     "WMZ": 5
+    }
+   ],
+   "service": "OpenData/WMZ",
+   "typef": "",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 24,
+   "fields": [
+    "NAME",
+    "Nom"
+   ],
+   "known": false,
+   "layer": "Provincial Parks",
+   "sample": [
+    {
+     "NAME": "Herring Cove",
+     "Nom": "l’anse Herring"
+    },
+    {
+     "NAME": "Castalia",
+     "Nom": "Castalia"
+    },
+    {
+     "NAME": "Lepreau Falls",
+     "Nom": "chutes Lepreau"
+    }
+   ],
+   "service": "GeoNB_Basemap_Grey",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_Basemap_Grey/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 21,
+   "fields": [
+    "NAME",
+    "NAMF",
+    "W_CLASS"
+   ],
+   "known": false,
+   "layer": "Wildlife Refuges",
+   "sample": [
+    {
+     "NAME": "Kings Landing Wildlife Management Area",
+     "NAMF": "Unité d’aménagement de la faune de Kings Landing",
+     "W_CLASS": "WMA"
+    },
+    {
+     "NAME": "West Collette Wildlife Management Area",
+     "NAMF": "Unité d’aménagement de la faune de West Collette",
+     "W_CLASS": "WMA"
+    },
+    {
+     "NAME": "Kedgwick Wildlife Management Area",
+     "NAMF": "Unité d’aménagement de la faune de Kedgwick",
+     "W_CLASS": "WMA"
+    }
+   ],
+   "service": "OpenData/WildlifeRefuge",
+   "typef": "W_CLASS",
+   "url": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "CLAB_ID",
+    "CPC_CODE",
+    "CLAB_TYPE",
+    "ABS_ACCUR",
+    "NAME_E",
+    "NAME_F",
+    "CLAB_CAT"
+   ],
+   "known": false,
+   "layer": "National Parks",
+   "sample": [
+    {
+     "ABS_ACCUR": ">100m",
+     "CLAB_CAT": "PA",
+     "CLAB_ID": "FUND",
+     "CLAB_TYPE": "NP",
+     "CPC_CODE": "NB",
+     "NAME_E": "FUNDY NATIONAL PARK OF CANADA",
+     "NAME_F": "PARC NATIONAL DU CANADA FUNDY"
+    },
+    {
+     "ABS_ACCUR": "<2m",
+     "CLAB_CAT": "PA",
+     "CLAB_ID": "KOUC",
+     "CLAB_TYPE": "NP",
+     "CPC_CODE": "NB",
+     "NAME_E": "KOUCHIBOUGUAC NATIONAL PARK OF CANADA",
+     "NAME_F": "PARC NATIONAL DU CANADA KOUCHIBOUGUAC"
+    }
+   ],
+   "service": "GeoNB_Basemap_Grey",
+   "typef": "CLAB_TYPE",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_Basemap_Grey/MapServer/11"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SERVICE_NAME_OLD",
+    "SERVICE_NAME_NEW",
+    "URL_OLD",
+    "URL_NEW"
+   ],
+   "known": false,
+   "layer": "Retired Map Service",
+   "sample": [
+    {
+     "SERVICE_NAME_NEW": "DNR_WildlifeRefuges",
+     "SERVICE_NAME_OLD": "GeoNB_DNR_WildlifeRefuges",
+     "URL_NEW": "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WildlifeRefuge/MapServer",
+     "URL_OLD": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_WildlifeRefuges/MapServer"
+    }
+   ],
+   "service": "GeoNB_DNR_WildlifeRefuges",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_WildlifeRefuges/MapServer/0"
+  },
+  {
+   "agency": "Department of Natural Resources/Ministère des Ressources naturelles ",
+   "area": "NAME",
+   "count": 24,
+   "fields": [
+    "NAME",
+    "Nom"
+   ],
+   "known": true,
+   "layer": "Provincial Parks",
+   "sample": [
+    {
+     "NAME": "Herring Cove",
+     "Nom": "l’anse Herring"
+    },
+    {
+     "NAME": "Castalia",
+     "Nom": "Castalia"
+    },
+    {
+     "NAME": "Lepreau Falls",
+     "Nom": "chutes Lepreau"
+    }
+   ],
+   "service": "GeoNB_DNR_ProvincialParks",
+   "typef": "",
+   "url": "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
+  }
+ ],
+ "st": "CA-NB"
+}

@@ -1,0 +1,1504 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 245216,
+   "fields": [
+    "DRAFTING_TENURE_TYPE",
+    "REGULATION_TYPE",
+    "SOURCE_LAYER",
+    "GRANT_NUMBER",
+    "LEASE_NUMBER",
+    "LICENCE_NUMBER",
+    "LEASE_LENGTH",
+    "CLAIM_NAME",
+    "OWNER_NAME",
+    "TENURE_STATUS",
+    "GROUPING_NUMBER"
+   ],
+   "known": false,
+   "layer": "Historical mineral claims - 50k",
+   "sample": [
+    {
+     "DRAFTING_TENURE_TYPE": "Quartz",
+     "GRANT_NUMBER": "YA26745",
+     "REGULATION_TYPE": "Q",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "CLAIM_NAME": "PC",
+     "DRAFTING_TENURE_TYPE": "Placer",
+     "GRANT_NUMBER": "P 19954",
+     "LEASE_NUMBER": "5808   ",
+     "OWNER_NAME": "40419 Yukon Inc. - 100%",
+     "REGULATION_TYPE": "P",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "CLAIM_NAME": "LJS",
+     "DRAFTING_TENURE_TYPE": "Quartz",
+     "GRANT_NUMBER": "YC21977",
+     "OWNER_NAME": "Copper Ridge Explorations Inc. - 100%",
+     "REGULATION_TYPE": "Q",
+     "TENURE_STATUS": "Expired"
+    }
+   ],
+   "service": "GeoYukon/GY_Mining",
+   "typef": "DRAFTING_TENURE_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Mining/MapServer/77"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 231137,
+   "fields": [
+    "LANDSCAPE_POSITION",
+    "SOIL_MOISTURE_REGIME",
+    "LAND_TYPE",
+    "COVER_TYPE",
+    "COVER_TYPE_CLASS_MODIFIER",
+    "SPECIES_1_CODE",
+    "SPECIES_2_CODE",
+    "SPECIES_3_CODE",
+    "SPECIES_4_CODE",
+    "DISTURBANCE_1",
+    "DISTURBANCE_2",
+    "SITE_CLASS",
+    "STRATUM_CODE",
+    "FIELD_PLOT",
+    "LANDCOVER_CLASSIFICATION",
+    "NTS_MAP50K"
+   ],
+   "known": false,
+   "layer": "Vegetation Inventory - 40k",
+   "sample": [
+    {
+     "LANDSCAPE_POSITION": "Upland",
+     "LAND_TYPE": "Vegetated, Forested",
+     "SITE_CLASS": "L",
+     "SOIL_MOISTURE_REGIME": "Mesic",
+     "SPECIES_1_CODE": "SW",
+     "SPECIES_2_CODE": "F"
+    },
+    {
+     "LANDSCAPE_POSITION": "Upland",
+     "LAND_TYPE": "Vegetated, Forested",
+     "SITE_CLASS": "L",
+     "SOIL_MOISTURE_REGIME": "Mesic",
+     "SPECIES_1_CODE": "SB",
+     "SPECIES_2_CODE": "F",
+     "SPECIES_3_CODE": "SW"
+    },
+    {
+     "LANDSCAPE_POSITION": "Upland",
+     "LAND_TYPE": "Vegetated, Forested",
+     "SITE_CLASS": "L",
+     "SOIL_MOISTURE_REGIME": "Mesic",
+     "SPECIES_1_CODE": "SW",
+     "SPECIES_2_CODE": "F",
+     "SPECIES_3_CODE": "SB"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "LAND_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/23"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 226522,
+   "fields": [
+    "DRAFTING_TENURE_TYPE",
+    "REGULATION_TYPE",
+    "SOURCE_LAYER",
+    "GRANT_NUMBER",
+    "LEASE_NUMBER",
+    "LICENCE_NUMBER",
+    "LEASE_LENGTH",
+    "CLAIM_NAME",
+    "OWNER_NAME",
+    "TENURE_STATUS",
+    "GROUPING_NUMBER"
+   ],
+   "known": false,
+   "layer": "Quartz Historical Tenure",
+   "sample": [
+    {
+     "DRAFTING_TENURE_TYPE": "Quartz",
+     "GRANT_NUMBER": "YA26745",
+     "REGULATION_TYPE": "Q",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "CLAIM_NAME": "LJS",
+     "DRAFTING_TENURE_TYPE": "Quartz",
+     "GRANT_NUMBER": "YC21977",
+     "OWNER_NAME": "Copper Ridge Explorations Inc. - 100%",
+     "REGULATION_TYPE": "Q",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "CLAIM_NAME": "SUE",
+     "DRAFTING_TENURE_TYPE": "Quartz",
+     "GRANT_NUMBER": "YA22946",
+     "OWNER_NAME": "Energold Minerals Inc. - 100%",
+     "REGULATION_TYPE": "Q",
+     "TENURE_STATUS": "Expired"
+    }
+   ],
+   "service": "GeoYukon/GY_Mining",
+   "typef": "DRAFTING_TENURE_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Mining/MapServer/68"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "EXPOSED_LAND",
+   "count": 71073,
+   "fields": [
+    "UNIQUE_ID",
+    "NTS_MAP50K",
+    "DATA_SOURCE",
+    "FIELD_PLOT",
+    "LANDSCAPE_POSITION",
+    "SOIL_MOISTURE_REGIME",
+    "SOIL_NUTRIENT_REGIME",
+    "SLOPE_POSITION",
+    "COVER_TYPE",
+    "COVER_TYPE_CLASS",
+    "STAND_STRUCTURE",
+    "LAYER1_SPECIES1",
+    "LAYER1_SPECIES1_CODE",
+    "LAYER1_SPECIES2",
+    "LAYER1_SPECIES2_CODE",
+    "LAYER1_SPECIES3",
+    "LAYER1_SPECIES3_CODE",
+    "LAYER1_SPECIES4",
+    "LAYER1_SPECIES4_CODE",
+    "LAYER1_COVER_PATTERN"
+   ],
+   "known": false,
+   "layer": "Vegetation Inventory - 5k - Leading Species",
+   "sample": [
+    {
+     "COVER_TYPE": "Vegetated",
+     "COVER_TYPE_CLASS": "Vegetated Non-forested",
+     "DATA_SOURCE": "Interpreted",
+     "LANDSCAPE_POSITION": "Lowland",
+     "NTS_MAP50K": "115A13",
+     "SLOPE_POSITION": "Flat",
+     "SOIL_MOISTURE_REGIME": "Very Wet",
+     "SOIL_NUTRIENT_REGIME": "Moderately Rich",
+     "UNIQUE_ID": "115A130008"
+    },
+    {
+     "COVER_TYPE": "Vegetated",
+     "COVER_TYPE_CLASS": "Vegetated Non-forested",
+     "DATA_SOURCE": "Interpreted",
+     "LANDSCAPE_POSITION": "Subalpine",
+     "LAYER1_SPECIES1": "White Spruce",
+     "NTS_MAP50K": "115A13",
+     "SLOPE_POSITION": "Middle",
+     "SOIL_MOISTURE_REGIME": "Fresh",
+     "SOIL_NUTRIENT_REGIME": "Medium",
+     "STAND_STRUCTURE": "Simple",
+     "UNIQUE_ID": "115A130009"
+    },
+    {
+     "COVER_TYPE": "Non-Vegetated",
+     "COVER_TYPE_CLASS": "Water",
+     "DATA_SOURCE": "Interpreted",
+     "LANDSCAPE_POSITION": "Lowland",
+     "NTS_MAP50K": "115A13",
+     "SLOPE_POSITION": "Depression",
+     "UNIQUE_ID": "115A130010"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "COVER_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/14"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "EXPOSED_LAND",
+   "count": 71073,
+   "fields": [
+    "UNIQUE_ID",
+    "NTS_MAP50K",
+    "DATA_SOURCE",
+    "FIELD_PLOT",
+    "LANDSCAPE_POSITION",
+    "SOIL_MOISTURE_REGIME",
+    "SOIL_NUTRIENT_REGIME",
+    "SLOPE_POSITION",
+    "COVER_TYPE",
+    "COVER_TYPE_CLASS",
+    "STAND_STRUCTURE",
+    "LAYER1_SPECIES1",
+    "LAYER1_SPECIES1_CODE",
+    "LAYER1_SPECIES2",
+    "LAYER1_SPECIES2_CODE",
+    "LAYER1_SPECIES3",
+    "LAYER1_SPECIES3_CODE",
+    "LAYER1_SPECIES4",
+    "LAYER1_SPECIES4_CODE",
+    "LAYER1_COVER_PATTERN"
+   ],
+   "known": false,
+   "layer": "Vegetation Inventory - 5k - Land Cover",
+   "sample": [
+    {
+     "COVER_TYPE": "Vegetated",
+     "COVER_TYPE_CLASS": "Vegetated Non-forested",
+     "DATA_SOURCE": "Interpreted",
+     "LANDSCAPE_POSITION": "Lowland",
+     "NTS_MAP50K": "115A13",
+     "SLOPE_POSITION": "Flat",
+     "SOIL_MOISTURE_REGIME": "Very Wet",
+     "SOIL_NUTRIENT_REGIME": "Moderately Rich",
+     "UNIQUE_ID": "115A130008"
+    },
+    {
+     "COVER_TYPE": "Vegetated",
+     "COVER_TYPE_CLASS": "Vegetated Non-forested",
+     "DATA_SOURCE": "Interpreted",
+     "LANDSCAPE_POSITION": "Subalpine",
+     "LAYER1_SPECIES1": "White Spruce",
+     "NTS_MAP50K": "115A13",
+     "SLOPE_POSITION": "Middle",
+     "SOIL_MOISTURE_REGIME": "Fresh",
+     "SOIL_NUTRIENT_REGIME": "Medium",
+     "STAND_STRUCTURE": "Simple",
+     "UNIQUE_ID": "115A130009"
+    },
+    {
+     "COVER_TYPE": "Non-Vegetated",
+     "COVER_TYPE_CLASS": "Water",
+     "DATA_SOURCE": "Interpreted",
+     "LANDSCAPE_POSITION": "Lowland",
+     "NTS_MAP50K": "115A13",
+     "SLOPE_POSITION": "Depression",
+     "UNIQUE_ID": "115A130010"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "COVER_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/15"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 38561,
+   "fields": [
+    "DISTURBANCE_CODE",
+    "DISTURBANCE",
+    "SEVERITY_CODE",
+    "SEVERITY",
+    "TREE_SPECIES_CODE",
+    "TREE_SPECIES",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Forest Health Aerial Overview - 50k",
+   "sample": [
+    {
+     "DISTURBANCE": "Western Balsam Bark Beetle (Dryocoetes confusus)",
+     "DISTURBANCE_CODE": "IBB",
+     "SEVERITY": "Light",
+     "SEVERITY_CODE": "L"
+    },
+    {
+     "DISTURBANCE": "Western Balsam Bark Beetle (Dryocoetes confusus)",
+     "DISTURBANCE_CODE": "IBB",
+     "SEVERITY": "Light",
+     "SEVERITY_CODE": "L"
+    },
+    {
+     "DISTURBANCE": "Western Balsam Bark Beetle (Dryocoetes confusus)",
+     "DISTURBANCE_CODE": "IBB",
+     "SEVERITY": "Light",
+     "SEVERITY_CODE": "L"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/9"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 18516,
+   "fields": [
+    "DRAFTING_TENURE_TYPE",
+    "REGULATION_TYPE",
+    "SOURCE_LAYER",
+    "GRANT_NUMBER",
+    "LEASE_NUMBER",
+    "LICENCE_NUMBER",
+    "LEASE_LENGTH",
+    "CLAIM_NAME",
+    "OWNER_NAME",
+    "TENURE_STATUS",
+    "GROUPING_NUMBER"
+   ],
+   "known": false,
+   "layer": "Placer Historical Tenure",
+   "sample": [
+    {
+     "CLAIM_NAME": "PC",
+     "DRAFTING_TENURE_TYPE": "Placer",
+     "GRANT_NUMBER": "P 19954",
+     "LEASE_NUMBER": "5808   ",
+     "OWNER_NAME": "40419 Yukon Inc. - 100%",
+     "REGULATION_TYPE": "P",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "CLAIM_NAME": "Ketza",
+     "DRAFTING_TENURE_TYPE": "Placer",
+     "GRANT_NUMBER": "P 02887",
+     "LEASE_NUMBER": "4403   ",
+     "OWNER_NAME": "Peter Tyerman - 100%",
+     "REGULATION_TYPE": "P",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "CLAIM_NAME": "Vip",
+     "DRAFTING_TENURE_TYPE": "Placer",
+     "GRANT_NUMBER": "P 38672",
+     "LEASE_NUMBER": "8613   ",
+     "OWNER_NAME": "Peter M. Vowk - 100%",
+     "REGULATION_TYPE": "P",
+     "TENURE_STATUS": "Expired"
+    }
+   ],
+   "service": "GeoYukon/GY_Mining",
+   "typef": "DRAFTING_TENURE_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Mining/MapServer/65"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "BOREAL_UPLAND_ECO_UNIT",
+   "count": 7048,
+   "fields": [
+    "LANDSCAPE_POSITION",
+    "TOPOGRAPHIC_POSITION",
+    "SLOPE_PERCENT",
+    "SUBSTRATE",
+    "DRAINAGE",
+    "ASPECT",
+    "SPECIAL_SOIL_CONDITION",
+    "LAND_COVER_TYPE",
+    "LAND_COVER_CLASS",
+    "LAND_COVER_CLASS_MODIFIER",
+    "STAGE_OF_FOREST_STAND",
+    "STRUCTURAL_ATTRIBUTE",
+    "LAYER_1_SPECIES_1_CODE",
+    "LAYER_1_SPECIES_2_CODE",
+    "LAYER_1_SPECIES_3_CODE",
+    "LAYER_1_SPECIES_4_CODE",
+    "LAYER_2_SPECIES_1_CODE",
+    "LAYER_2_SPECIES_2_CODE",
+    "LAYER_2_SPECIES_3_CODE",
+    "LAYER_2_SPECIES_4_CODE"
+   ],
+   "known": false,
+   "layer": "Vegetation Inventory - Whitehorse - 10k",
+   "sample": [
+    {
+     "ASPECT": "Warm aspect (S and W)",
+     "DRAINAGE": "Well",
+     "LANDSCAPE_POSITION": "Lowland",
+     "LAND_COVER_TYPE": "Vegetated, Forested",
+     "SLOPE_PERCENT": "Gently sloping (3-8%)",
+     "STAGE_OF_FOREST_STAND": "Young and Mature",
+     "STRUCTURAL_ATTRIBUTE": "Single cohort",
+     "SUBSTRATE": "Glacio fluvial"
+    },
+    {
+     "ASPECT": "Warm aspect (S and W)",
+     "DRAINAGE": "Well",
+     "LANDSCAPE_POSITION": "Upland",
+     "LAND_COVER_CLASS": "Shrub",
+     "LAND_COVER_CLASS_MODIFIER": "Tall Shrub, Closed",
+     "LAND_COVER_TYPE": "Vegetated, Non-Forested",
+     "SLOPE_PERCENT": "Extreme (>50%)",
+     "SUBSTRATE": "Morainal",
+     "TOPOGRAPHIC_POSITION": "Mid slope"
+    },
+    {
+     "ASPECT": "Warm aspect (S and W)",
+     "DRAINAGE": "Moderately well (MW)",
+     "LANDSCAPE_POSITION": "Lowland",
+     "LAND_COVER_TYPE": "Vegetated, Forested",
+     "SLOPE_PERCENT": "Level (0-3%)",
+     "STAGE_OF_FOREST_STAND": "Young and Mature",
+     "STRUCTURAL_ATTRIBUTE": "Single cohort",
+     "SUBSTRATE": "Fluvial"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "LAND_COVER_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/32"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 3530,
+   "fields": [
+    "SILV_ID",
+    "ACTIVITY_CATEGORY",
+    "ACTIVITY_NAME",
+    "ACTIVITY_STATUS"
+   ],
+   "known": false,
+   "layer": "Historic Silviculture Activities - 50k",
+   "sample": [
+    {
+     "ACTIVITY_CATEGORY": "DISTURBANCE",
+     "ACTIVITY_NAME": "HARVEST",
+     "ACTIVITY_STATUS": "Done",
+     "SILV_ID": "105A05-0043"
+    },
+    {
+     "ACTIVITY_CATEGORY": "PLANTING",
+     "ACTIVITY_NAME": "PLANTING",
+     "ACTIVITY_STATUS": "Done",
+     "SILV_ID": "105A05-0043"
+    },
+    {
+     "ACTIVITY_CATEGORY": "SURVEY",
+     "ACTIVITY_NAME": "FREE TO GROW / PERFORMANCE",
+     "ACTIVITY_STATUS": "Plan",
+     "SILV_ID": "105A05-0043"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "ACTIVITY_CATEGORY",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/77"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 2123,
+   "fields": [
+    "PERMIT_NUMBER",
+    "PERMIT_TYPE_CODE",
+    "PERMIT_STATUS",
+    "BUSINESS_NAME",
+    "TERM",
+    "REPORTING_SCHEDULE"
+   ],
+   "known": false,
+   "layer": "Cutting Permits - 50k",
+   "sample": [
+    {
+     "BUSINESS_NAME": "CARPENTER'S CONSTRUCTION",
+     "PERMIT_NUMBER": "2011FWL006-01",
+     "PERMIT_STATUS": "Closed",
+     "PERMIT_TYPE_CODE": "FWL",
+     "REPORTING_SCHEDULE": "Quarterly",
+     "TERM": "3 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "KLUANE BED & BREAKFAST",
+     "PERMIT_NUMBER": "2011FWL015-01",
+     "PERMIT_STATUS": "Closed",
+     "PERMIT_TYPE_CODE": "FWL",
+     "REPORTING_SCHEDULE": "Annual",
+     "TERM": "3 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "CARPENTER'S CONSTRUCTION",
+     "PERMIT_NUMBER": "2011FWL016-01",
+     "PERMIT_STATUS": "Closed",
+     "PERMIT_TYPE_CODE": "FWL",
+     "REPORTING_SCHEDULE": "Quarterly",
+     "TERM": "0 years, 11 months"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "PERMIT_TYPE_CODE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/99"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 1926,
+   "fields": [
+    "SCIENTIFIC_NAME",
+    "COMMON_NAME",
+    "TAXONOMIC_GROUP",
+    "YUKON_RANK",
+    "NATIONAL_RANK",
+    "GLOBAL_RANK",
+    "COSEWIC_STATUS",
+    "ACCURACY_EST",
+    "PROBABILITY_RANK",
+    "SENSITIVE_DATA_IND",
+    "LAST_OBS_DATE"
+   ],
+   "known": false,
+   "layer": "CDC Species of Conservation Concern",
+   "sample": [
+    {
+     "ACCURACY_EST": "Medium",
+     "COMMON_NAME": "Black Tern",
+     "COSEWIC_STATUS": "Not at Risk",
+     "GLOBAL_RANK": "G4G5",
+     "LAST_OBS_DATE": "2013-06-25",
+     "NATIONAL_RANK": "N5B",
+     "PROBABILITY_RANK": "Verified extant (viability not assessed)",
+     "SCIENTIFIC_NAME": "Chlidonias niger",
+     "SENSITIVE_DATA_IND": "No",
+     "TAXONOMIC_GROUP": "birds",
+     "YUKON_RANK": "S1B"
+    },
+    {
+     "ACCURACY_EST": "High",
+     "COMMON_NAME": "Bull Trout",
+     "COSEWIC_STATUS": "Special Concern/DD",
+     "GLOBAL_RANK": "G3",
+     "LAST_OBS_DATE": "2021-09-16",
+     "NATIONAL_RANK": "N3N4",
+     "PROBABILITY_RANK": "Verified extant (viability not assessed)",
+     "SCIENTIFIC_NAME": "Salvelinus confluentus",
+     "SENSITIVE_DATA_IND": "No",
+     "TAXONOMIC_GROUP": "fishes",
+     "YUKON_RANK": "S3"
+    },
+    {
+     "ACCURACY_EST": "High",
+     "COMMON_NAME": "Bull Trout",
+     "COSEWIC_STATUS": "Special Concern/DD",
+     "GLOBAL_RANK": "G3",
+     "LAST_OBS_DATE": "2021-08-27",
+     "NATIONAL_RANK": "N3N4",
+     "PROBABILITY_RANK": "Verified extant (viability not assessed)",
+     "SCIENTIFIC_NAME": "Salvelinus confluentus",
+     "SENSITIVE_DATA_IND": "No",
+     "TAXONOMIC_GROUP": "fishes",
+     "YUKON_RANK": "S3"
+    }
+   ],
+   "service": "GeoYukon/GY_Biological",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Biological/MapServer/67"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 1104,
+   "fields": [
+    "SILV_ID"
+   ],
+   "known": false,
+   "layer": "Historic Silviculture Inventory - 50k",
+   "sample": [
+    {
+     "SILV_ID": "105A05-0043"
+    },
+    {
+     "SILV_ID": "105A05-0041"
+    },
+    {
+     "SILV_ID": "105A07-0004"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/40"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 531,
+   "fields": [
+    "PERMIT_NUMBER",
+    "PERMIT_TYPE",
+    "STATUS",
+    "ACTIVITY",
+    "DISTURBANCE_IND",
+    "DISTRICT",
+    "APPLICANT_FIRST_NAME",
+    "APPLICANT_LAST_NAME",
+    "APPLICANT_COMPANY",
+    "NTS_MAP50K",
+    "DRAFTING_COMMENTS",
+    "SOURCE",
+    "SOURCE_PROJECTION",
+    "SOURCE_DATUM"
+   ],
+   "known": false,
+   "layer": "Historical Land Use Permits Polygon - 50k",
+   "sample": [
+    {
+     "ACTIVITY": "Miscellaneous",
+     "APPLICANT_FIRST_NAME": "Daryl",
+     "APPLICANT_LAST_NAME": "McNab",
+     "DISTRICT": "Whitehorse",
+     "NTS_MAP50K": " 105D08",
+     "PERMIT_NUMBER": "2011-X495",
+     "PERMIT_TYPE": "Permit",
+     "SOURCE": "External Agency",
+     "STATUS": "Closed"
+    },
+    {
+     "ACTIVITY": "Miscellaneous",
+     "APPLICANT_COMPANY": "CITY OF WHITHEHORSE",
+     "APPLICANT_FIRST_NAME": "Pat",
+     "APPLICANT_LAST_NAME": "ROSS",
+     "DISTRICT": "Whitehorse",
+     "NTS_MAP50K": "105D11",
+     "PERMIT_NUMBER": "YA5X239",
+     "PERMIT_TYPE": "Permit",
+     "STATUS": "Closed"
+    },
+    {
+     "ACTIVITY": "Miscellaneous",
+     "APPLICANT_COMPANY": "CITY OF WHITHEHORSE",
+     "APPLICANT_FIRST_NAME": "Pat",
+     "APPLICANT_LAST_NAME": "ROSS",
+     "DISTRICT": "Whitehorse",
+     "NTS_MAP50K": "105D11",
+     "PERMIT_NUMBER": "YA5X239",
+     "PERMIT_TYPE": "Permit",
+     "STATUS": "Closed"
+    }
+   ],
+   "service": "GeoYukon/GY_LandTenure",
+   "typef": "PERMIT_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_LandTenure/MapServer/17"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 422,
+   "fields": [
+    "GRID_ID",
+    "NOTE"
+   ],
+   "known": false,
+   "layer": "CDC Species of Conservation Concern - Restricted",
+   "sample": [
+    {
+     "GRID_ID": "FN-332",
+     "NOTE": "This hexagon contains a mapped location of a species that is subject to persecution or harm; access to the precise location and species name can be requested from yukoncdc@yukon.ca provided you have a business case for needing it."
+    },
+    {
+     "GRID_ID": "FM-331",
+     "NOTE": "This hexagon contains a mapped location of a species that is subject to persecution or harm; access to the precise location and species name can be requested from yukoncdc@yukon.ca provided you have a business case for needing it."
+    },
+    {
+     "GRID_ID": "FN-331",
+     "NOTE": "This hexagon contains a mapped location of a species that is subject to persecution or harm; access to the precise location and species name can be requested from yukoncdc@yukon.ca provided you have a business case for needing it."
+    }
+   ],
+   "service": "GeoYukon/GY_Biological",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Biological/MapServer/69"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "PUFW_AREA_NAME",
+   "count": 335,
+   "fields": [
+    "PUFW_AREA_NAME",
+    "TYPE",
+    "STATUS",
+    "TIMBER_HARVESTING_AREA",
+    "WOOD_SUPPLY_COMMENTS",
+    "TERMS_AND_CONDITIONS_ID",
+    "RESTRICTION_IND",
+    "RESTRICTION_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Personal Use Fuelwood Areas - 50k",
+   "sample": [
+    {
+     "PUFW_AREA_NAME": "Jakes Corner",
+     "RESTRICTION_COMMENTS": "17. There are seasonal restrictions to harvesting. Harvesting in this area is not permitted from November 1 to April 30.",
+     "RESTRICTION_IND": "Y",
+     "STATUS": "Active",
+     "TERMS_AND_CONDITIONS_ID": "17",
+     "TIMBER_HARVESTING_AREA": "Whitehorse Annual Limit Region",
+     "TYPE": "Designated"
+    },
+    {
+     "PUFW_AREA_NAME": "Tagish and Tower Roads",
+     "RESTRICTION_COMMENTS": "17. There are seasonal restrictions to harvesting. Harvesting in this area is not permitted from November 1 to April 30.",
+     "RESTRICTION_IND": "Y",
+     "STATUS": "Active",
+     "TERMS_AND_CONDITIONS_ID": "17",
+     "TIMBER_HARVESTING_AREA": "Whitehorse Annual Limit Region",
+     "TYPE": "Designated"
+    },
+    {
+     "PUFW_AREA_NAME": "Tagish and Tower Roads",
+     "RESTRICTION_COMMENTS": "18. There are seasonal restrictions to harvesting. Harvesting in this area is not permitted from January 1 to March 31.",
+     "RESTRICTION_IND": "Y",
+     "STATUS": "Active",
+     "TERMS_AND_CONDITIONS_ID": "17",
+     "TIMBER_HARVESTING_AREA": "Whitehorse Annual Limit Region",
+     "TYPE": "Designated"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/6"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 175,
+   "fields": [
+    "DRAFTING_TENURE_TYPE",
+    "REGULATION_TYPE",
+    "SOURCE_LAYER",
+    "GRANT_NUMBER",
+    "LEASE_NUMBER",
+    "LICENCE_NUMBER",
+    "LEASE_LENGTH",
+    "CLAIM_NAME",
+    "OWNER_NAME",
+    "TENURE_STATUS",
+    "GROUPING_NUMBER"
+   ],
+   "known": false,
+   "layer": "Coal Historical Location",
+   "sample": [
+    {
+     "DRAFTING_TENURE_TYPE": "Coal licence",
+     "GRANT_NUMBER": "CYW0089",
+     "OWNER_NAME": "Cash Minerals Ltd. - 100%",
+     "REGULATION_TYPE": "C",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "DRAFTING_TENURE_TYPE": "Coal licence",
+     "GRANT_NUMBER": "CYW0029",
+     "OWNER_NAME": "Archer, Cathro & Associates (1981) Ltd - 100%",
+     "REGULATION_TYPE": "C",
+     "TENURE_STATUS": "Expired"
+    },
+    {
+     "DRAFTING_TENURE_TYPE": "Coal licence",
+     "GRANT_NUMBER": "CYW0074",
+     "OWNER_NAME": "Cash Minerals Ltd. - 100%",
+     "REGULATION_TYPE": "C",
+     "TENURE_STATUS": "Expired"
+    }
+   ],
+   "service": "GeoYukon/GY_Mining",
+   "typef": "DRAFTING_TENURE_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Mining/MapServer/69"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 138,
+   "fields": [
+    "PERMIT_NUMBER",
+    "PERMIT_TYPE_CODE",
+    "PERMIT_STATUS",
+    "BUSINESS_NAME",
+    "TERM",
+    "REPORTING_SCHEDULE"
+   ],
+   "known": false,
+   "layer": "Cutting Permits - Forest Resource Permit - 50k",
+   "sample": [
+    {
+     "BUSINESS_NAME": "GOVERNMENT OF YUKON - WILDLAND FIRE MANAGEMENT - WHITEHORSE",
+     "PERMIT_NUMBER": "2023FRP071",
+     "PERMIT_STATUS": "Issued",
+     "PERMIT_TYPE_CODE": "FRP",
+     "REPORTING_SCHEDULE": "No Report/Volume Assumed",
+     "TERM": "3 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "GOVERNMENT OF YUKON - WILDLAND FIRE MANAGEMENT - WHITEHORSE",
+     "PERMIT_NUMBER": "2023FRP062",
+     "PERMIT_STATUS": "Issued",
+     "PERMIT_TYPE_CODE": "FRP",
+     "REPORTING_SCHEDULE": "No Report/Volume Assumed",
+     "TERM": "3 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "GOVERNMENT OF YUKON - WILDLAND FIRE MANAGEMENT - WHITEHORSE",
+     "PERMIT_NUMBER": "2023FRP063",
+     "PERMIT_STATUS": "Issued",
+     "PERMIT_TYPE_CODE": "FRP",
+     "REPORTING_SCHEDULE": "No Report/Volume Assumed",
+     "TERM": "3 years, 0 months"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "PERMIT_TYPE_CODE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/37"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 124,
+   "fields": [
+    "APPLICATION_NUMBER",
+    "APPLICANT_NAME",
+    "APPLICATION_TYPE",
+    "APPLICATION_STATUS",
+    "APPLICATION_DETAILS",
+    "PARCEL_DESIGNATOR",
+    "CLSR_PLAN",
+    "LTO_PLAN",
+    "LINK_TO_DOCUMENT",
+    "FEATURE_DESC"
+   ],
+   "known": false,
+   "layer": "Subdivision Applications - Historical",
+   "sample": [
+    {
+     "APPLICANT_NAME": "Brenda and Leonard Faber",
+     "APPLICATION_DETAILS": "Subdivision to create 2 lots from Lot 7, Plan 31525 LTO.",
+     "APPLICATION_NUMBER": "2020-60-FR26",
+     "APPLICATION_STATUS": "Approved",
+     "APPLICATION_TYPE": "Subdivision",
+     "CLSR_PLAN": "55582 CLSR YT",
+     "FEATURE_DESC": "Outline",
+     "LINK_TO_DOCUMENT": "https://emr-ftp.gov.yk.ca/emrweb/LMB/LandPlanning/Subdivision/2020-60-FR26.pdf",
+     "LTO_PLAN": "31525 LTO YT",
+     "PARCEL_DESIGNATOR": "LOT 7 FARO"
+    },
+    {
+     "APPLICANT_NAME": "Mario Ley",
+     "APPLICATION_DETAILS": "Subdivision of Lot 1001, Quad 105D/13, Plan 55803 LTO.",
+     "APPLICATION_NUMBER": "2020-60-IV95",
+     "APPLICATION_STATUS": "Approved",
+     "APPLICATION_TYPE": "Subdivision",
+     "CLSR_PLAN": "65631 CLSR YT",
+     "FEATURE_DESC": "Outline",
+     "LINK_TO_DOCUMENT": "https://emr-ftp.gov.yk.ca/emrweb/LMB/LandPlanning/Subdivision/2020-60-IV95.pdf",
+     "LTO_PLAN": "55803 LTO YT",
+     "PARCEL_DESIGNATOR": "LOT 1001 QUAD 105D/13"
+    },
+    {
+     "APPLICANT_NAME": "Scott and Linda Goodwin",
+     "APPLICATION_DETAILS": "Subdivision to create 2 lots from Lot 1013, Quad 105A/03 Plan 2010-0173 LTO.",
+     "APPLICATION_NUMBER": "2020-60-RA47",
+     "APPLICATION_STATUS": "Approved",
+     "APPLICATION_TYPE": "Subdivision",
+     "CLSR_PLAN": "97887 CLSR YT",
+     "FEATURE_DESC": "Outline",
+     "LINK_TO_DOCUMENT": "https://emr-ftp.gov.yk.ca/emrweb/LMB/LandPlanning/Subdivision/2020-60-RA47.pdf",
+     "LTO_PLAN": "2010-0173 LTO YT",
+     "PARCEL_DESIGNATOR": "LOT 1013 QUAD 105A/03"
+    }
+   ],
+   "service": "GeoYukon/GY_LandPlanning",
+   "typef": "APPLICATION_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_LandPlanning/MapServer/14"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 99,
+   "fields": [
+    "PERMIT_NUMBER",
+    "PERMIT_TYPE_CODE",
+    "PERMIT_STATUS",
+    "BUSINESS_NAME",
+    "TERM",
+    "REPORTING_SCHEDULE"
+   ],
+   "known": false,
+   "layer": "Cutting Permits - Issued - 50k",
+   "sample": [
+    {
+     "BUSINESS_NAME": "CARIBOU WILD OUTDOOR SERVICES",
+     "PERMIT_NUMBER": "2023FWL027-01",
+     "PERMIT_STATUS": "Issued",
+     "PERMIT_TYPE_CODE": "FWL",
+     "REPORTING_SCHEDULE": "Annual",
+     "TERM": "3 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "WILDSCAPES LAND SERVICES",
+     "PERMIT_NUMBER": "2023FWL028-01",
+     "PERMIT_STATUS": "Issued",
+     "PERMIT_TYPE_CODE": "FWL",
+     "REPORTING_SCHEDULE": "Annual",
+     "TERM": "3 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "STAR MOUNTAIN RESOURCES LTD",
+     "PERMIT_NUMBER": "2021FWL049-06",
+     "PERMIT_STATUS": "Issued",
+     "PERMIT_TYPE_CODE": "FWL",
+     "REPORTING_SCHEDULE": "Monthly",
+     "TERM": "3 years, 1 month"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "PERMIT_TYPE_CODE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/1"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 84,
+   "fields": [
+    "LICENCE_NUMBER",
+    "LICENCE_TYPE_CODE",
+    "LICENCE_TYPE",
+    "LICENCE_STATUS",
+    "BUSINESS_NAME",
+    "CONTACT_NAME",
+    "TERM"
+   ],
+   "known": false,
+   "layer": "Harvest Licences - 50k",
+   "sample": [
+    {
+     "BUSINESS_NAME": "AROJAY LOGS AND GOLD",
+     "CONTACT_NAME": "ROB MOORE",
+     "LICENCE_NUMBER": "2019FWL018",
+     "LICENCE_STATUS": "Issued",
+     "LICENCE_TYPE": "Fuel Wood Licence",
+     "LICENCE_TYPE_CODE": "FWL",
+     "TERM": "10 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "BEAR CREEK LOGGING INC.",
+     "CONTACT_NAME": "IVAN THOMPSON",
+     "LICENCE_NUMBER": "2020TRL002",
+     "LICENCE_STATUS": "Issued",
+     "LICENCE_TYPE": "Timber Resources Licence",
+     "LICENCE_TYPE_CODE": "TRL",
+     "TERM": "10 years, 0 months"
+    },
+    {
+     "BUSINESS_NAME": "NEITZ FIREWOOD",
+     "CONTACT_NAME": "GORDON  NEITZ",
+     "LICENCE_NUMBER": "2021FWL006",
+     "LICENCE_STATUS": "Issued",
+     "LICENCE_TYPE": "Fuel Wood Licence",
+     "LICENCE_TYPE_CODE": "FWL",
+     "TERM": "7 years, 3 months"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "LICENCE_TYPE_CODE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/3"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "LANDSCAPE_UNIT_NAME",
+   "count": 68,
+   "fields": [
+    "LANDSCAPE_UNIT_NAME",
+    "STRATEGIC_DIRECTION",
+    "ACTIVITY_LEVEL",
+    "TIME_FRAME",
+    "PLANNING_PRIORITY",
+    "BOUNDARY_STATUS"
+   ],
+   "known": false,
+   "layer": "Landscape Management Units - 250k",
+   "sample": [
+    {
+     "BOUNDARY_STATUS": "Approved",
+     "LANDSCAPE_UNIT_NAME": "Lake Laberge"
+    },
+    {
+     "BOUNDARY_STATUS": "Approved",
+     "LANDSCAPE_UNIT_NAME": "South Big Salmon River"
+    },
+    {
+     "BOUNDARY_STATUS": "Approved",
+     "LANDSCAPE_UNIT_NAME": "East Laberge"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/4"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 65,
+   "fields": [
+    "TERMS_AND_CONDITIONS",
+    "NOTES",
+    "FIRE_ID",
+    "FIRE_NUMBER",
+    "FIRE_DISTRICT",
+    "TRADITIONAL_TERRITORY"
+   ],
+   "known": false,
+   "layer": "Morel Mushroom Areas",
+   "sample": [
+    {
+     "FIRE_DISTRICT": "Mayo",
+     "FIRE_ID": "2025MA010",
+     "FIRE_NUMBER": "010",
+     "TRADITIONAL_TERRITORY": "NND"
+    },
+    {
+     "FIRE_DISTRICT": "Carmacks",
+     "FIRE_ID": "2025CA004",
+     "FIRE_NUMBER": "004",
+     "TRADITIONAL_TERRITORY": "LSC, WRFN"
+    },
+    {
+     "FIRE_DISTRICT": "Dawson",
+     "FIRE_ID": "2025DA014",
+     "FIRE_NUMBER": "014",
+     "TRADITIONAL_TERRITORY": "SFN, TH, WRFN"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/38"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 57,
+   "fields": [
+    "TIMBER_HARVEST_PLAN_NAME",
+    "THP_STATUS",
+    "FRMP_NAME"
+   ],
+   "known": false,
+   "layer": "Timber Harvest Plans - 50k",
+   "sample": [
+    {
+     "FRMP_NAME": "Beaver Creek / Burwash / Dest. Bay Annual Limit",
+     "THP_STATUS": "Approved",
+     "TIMBER_HARVEST_PLAN_NAME": "White River Resource Report"
+    },
+    {
+     "FRMP_NAME": "Watson Lake Annual Limit Region",
+     "THP_STATUS": "Approved",
+     "TIMBER_HARVEST_PLAN_NAME": "Watson SVA"
+    },
+    {
+     "FRMP_NAME": "Carmacks Annual Limit Region",
+     "THP_STATUS": "Approved",
+     "TIMBER_HARVEST_PLAN_NAME": "Minto Burn CFW"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/5"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 50,
+   "fields": [
+    "PARCEL_DESIGNATOR",
+    "CLSR_PLAN",
+    "LTO_PLAN",
+    "GEO_ADMIN_CODE",
+    "PARCEL_TYPE",
+    "REMARKS",
+    "PARCEL_STATE"
+   ],
+   "known": false,
+   "layer": "Parks and Campgrounds - Surveyed",
+   "sample": [
+    {
+     "CLSR_PLAN": "50406 CLSR YT",
+     "GEO_ADMIN_CODE": "TPK",
+     "LTO_PLAN": "24095 LTO YT",
+     "PARCEL_DESIGNATOR": "LOT 66 GROUP 953",
+     "PARCEL_STATE": "ACTIVE",
+     "PARCEL_TYPE": "Inside Canada Lands",
+     "REMARKS": "LOT 66 GROUP 953 YT (TATCHUN CRK TERRITORIAL PARK CAMPGROUND)"
+    },
+    {
+     "CLSR_PLAN": "43543 CLSR YT",
+     "GEO_ADMIN_CODE": "TPK",
+     "LTO_PLAN": "23252 LTO YT",
+     "PARCEL_DESIGNATOR": "LOT 362 GROUP 804",
+     "PARCEL_STATE": "ACTIVE",
+     "PARCEL_TYPE": "Inside Canada Lands",
+     "REMARKS": "LOT 362 GROUP 804 ARMY BEACH MARSH LAKE CAMPGROUND TERRITORIAL PARK"
+    },
+    {
+     "CLSR_PLAN": "43232 CLSR YT",
+     "GEO_ADMIN_CODE": "TPK",
+     "LTO_PLAN": "22540 LTO YT",
+     "PARCEL_DESIGNATOR": "LOT 29 GROUP 803",
+     "PARCEL_STATE": "ACTIVE",
+     "PARCEL_TYPE": "Inside Canada Lands",
+     "REMARKS": "LOT 29 REM GROUP 803 NEAR HAINES JUNCTION PINE LAKE TERRITORIAL PARK"
+    }
+   ],
+   "service": "GeoYukon/GY_ParksProtectedAreas",
+   "typef": "PARCEL_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/0"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 30,
+   "fields": [
+    "PARCEL_DESIGNATOR",
+    "CLSR_PLAN",
+    "REMARKS",
+    "PARCEL_STATE"
+   ],
+   "known": false,
+   "layer": "Parks and Protected Areas Polygon - Surveyed",
+   "sample": [
+    {
+     "CLSR_PLAN": "103335 CLSR YT",
+     "PARCEL_DESIGNATOR": "ASI KEYI NATURAL ENVIRONMENT PARK",
+     "PARCEL_STATE": "ACTIVE",
+     "REMARKS": "SPECIAL MANAGEMENT AREA"
+    },
+    {
+     "CLSR_PLAN": "102874 CLSR YT",
+     "PARCEL_DESIGNATOR": "KUSAWA PARK",
+     "PARCEL_STATE": "ACTIVE",
+     "REMARKS": "SPECIAL MANAGEMENT AREA"
+    },
+    {
+     "CLSR_PLAN": "103539 CLSR YT",
+     "PARCEL_DESIGNATOR": "TACHAL REGION",
+     "PARCEL_STATE": "ACTIVE",
+     "REMARKS": "SPECIAL MANAGEMENT AREA"
+    }
+   ],
+   "service": "GeoYukon/GY_ParksProtectedAreas",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/1"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "PARK_NAME",
+   "count": 27,
+   "fields": [
+    "PARK_NAME",
+    "PARK_TYPE",
+    "PARK_LABEL"
+   ],
+   "known": false,
+   "layer": "Park and Protected Areas - 250k",
+   "sample": [
+    {
+     "PARK_LABEL": "Pickhandle Lake Habitat Protection Area",
+     "PARK_NAME": "Pickhandle Lake",
+     "PARK_TYPE": "Habitat Protection Area"
+    },
+    {
+     "PARK_LABEL": "Lewes Marsh Habitat Protection Area",
+     "PARK_NAME": "Lewes Marsh",
+     "PARK_TYPE": "Habitat Protection Area"
+    },
+    {
+     "PARK_LABEL": "Tagish Narrows Habitat Protection Area",
+     "PARK_NAME": "Tagish Narrows",
+     "PARK_TYPE": "Habitat Protection Area"
+    }
+   ],
+   "service": "GeoYukon/GY_ParksProtectedAreas",
+   "typef": "PARK_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/3"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "PARK_NAME",
+   "count": 26,
+   "fields": [
+    "PARK_NAME",
+    "PARK_TYPE",
+    "PARK_LABEL"
+   ],
+   "known": false,
+   "layer": "Park and Protected Areas - 1M",
+   "sample": [
+    {
+     "PARK_LABEL": "Herschel Island Territorial Park",
+     "PARK_NAME": "Herschel Island",
+     "PARK_TYPE": "Territorial Park"
+    },
+    {
+     "PARK_LABEL": "Ivvavik National Park",
+     "PARK_NAME": "Ivvavik",
+     "PARK_TYPE": "National Park"
+    },
+    {
+     "PARK_LABEL": "Horseshoe Slough Habitat Protection Area",
+     "PARK_NAME": "Horseshoe Slough",
+     "PARK_TYPE": "Habitat Protection Area"
+    }
+   ],
+   "service": "GeoYukon/GY_ParksProtectedAreas",
+   "typef": "PARK_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_ParksProtectedAreas/MapServer/4"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "FRMP_NAME_CODE",
+    "FRMP_NAME",
+    "FRMP_STATUS",
+    "GIS_BOUNDARY_STATUS"
+   ],
+   "known": false,
+   "layer": "Forest Resources Management Plans - 250k",
+   "sample": [
+    {
+     "FRMP_NAME": "Champagne and Aishihik Traditional Territory",
+     "FRMP_NAME_CODE": "CATT",
+     "FRMP_STATUS": "Active FRMP",
+     "GIS_BOUNDARY_STATUS": "Approved"
+    },
+    {
+     "FRMP_NAME": "Teslin Tlingit Traditional Territory",
+     "FRMP_NAME_CODE": "TFMP",
+     "FRMP_STATUS": "Active FRMP",
+     "GIS_BOUNDARY_STATUS": "Approved"
+    },
+    {
+     "FRMP_NAME": "Watson Lake Annual Limit Region",
+     "FRMP_NAME_CODE": "WL",
+     "FRMP_STATUS": "Annual Limit Region",
+     "GIS_BOUNDARY_STATUS": "Approved"
+    }
+   ],
+   "service": "GeoYukon/GY_Forestry",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_Forestry/MapServer/2"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "CO_DISTRICT",
+    "CO_DISTRICT_CD"
+   ],
+   "known": false,
+   "layer": "Conservation Officer Districts - 1M",
+   "sample": [
+    {
+     "CO_DISTRICT": "Old Crow",
+     "CO_DISTRICT_CD": "OCR"
+    },
+    {
+     "CO_DISTRICT": "Watson Lake",
+     "CO_DISTRICT_CD": "WAT"
+    },
+    {
+     "CO_DISTRICT": "Dawson",
+     "CO_DISTRICT_CD": "DAW"
+    }
+   ],
+   "service": "GeoYukon/GY_AdministrativeBoundaries",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_AdministrativeBoundaries/MapServer/72"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "CO_DISTRICT",
+    "CO_DISTRICT_CD"
+   ],
+   "known": false,
+   "layer": "Conservation Officer Districts - 50k",
+   "sample": [
+    {
+     "CO_DISTRICT": "Old Crow",
+     "CO_DISTRICT_CD": "OCR"
+    },
+    {
+     "CO_DISTRICT": "Ross River",
+     "CO_DISTRICT_CD": "RRV"
+    },
+    {
+     "CO_DISTRICT": "Mayo",
+     "CO_DISTRICT_CD": "MYO"
+    }
+   ],
+   "service": "GeoYukon/GY_AdministrativeBoundaries",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_AdministrativeBoundaries/MapServer/71"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "CO_DISTRICT",
+    "CO_DISTRICT_CD"
+   ],
+   "known": false,
+   "layer": "Conservation Officer Districts - 250k",
+   "sample": [
+    {
+     "CO_DISTRICT": "Faro",
+     "CO_DISTRICT_CD": "FRO"
+    },
+    {
+     "CO_DISTRICT": "Carmacks",
+     "CO_DISTRICT_CD": "CAR"
+    },
+    {
+     "CO_DISTRICT": "Mayo",
+     "CO_DISTRICT_CD": "MYO"
+    }
+   ],
+   "service": "GeoYukon/GY_AdministrativeBoundaries",
+   "typef": "",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_AdministrativeBoundaries/MapServer/70"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "REGULATION_TYPE",
+    "DESCRIPTION",
+    "STATUS",
+    "COMMENTS",
+    "SOURCE",
+    "LINK_TO_DOCUMENT",
+    "CURRENT_REGULATION_ID",
+    "PREVIOUS_REGULATION_ID"
+   ],
+   "known": false,
+   "layer": "OIC - Park and Land Certainty Act",
+   "sample": [
+    {
+     "CURRENT_REGULATION_ID": "1987/148",
+     "DESCRIPTION": "HERSCHEL ISLAND TERRITORIAL PARK",
+     "LINK_TO_DOCUMENT": "http://www.gov.yk.ca/legislation/regs/oic1987_148.pdf",
+     "REGULATION_TYPE": "Order in Council",
+     "SOURCE": "BASEA.QWTB",
+     "STATUS": "Active"
+    },
+    {
+     "CURRENT_REGULATION_ID": "2003/31",
+     "DESCRIPTION": "NI'IINLII NJIK (FISHING BRANCH) ECOLOGICAL RESERVE",
+     "LINK_TO_DOCUMENT": "http://www.gov.yk.ca/legislation/regs/oic2003_031.pdf",
+     "REGULATION_TYPE": "Order in Council",
+     "SOURCE": "NRCAN.LS_SMA",
+     "STATUS": "Active"
+    },
+    {
+     "CURRENT_REGULATION_ID": "2003/32",
+     "DESCRIPTION": "FISHING BRANCH WILDERNESS PRESERVE",
+     "LINK_TO_DOCUMENT": "http://www.gov.yk.ca/legislation/regs/oic2003_032.pdf",
+     "REGULATION_TYPE": "Order in Council",
+     "SOURCE": "Text description and NRCAN.LS_SMA",
+     "STATUS": "Active"
+    }
+   ],
+   "service": "GeoYukon/GY_LandTenure",
+   "typef": "REGULATION_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_LandTenure/MapServer/36"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGULATION_TYPE",
+    "DESCRIPTION",
+    "STATUS",
+    "COMMENTS",
+    "SOURCE",
+    "LINK_TO_DOCUMENT",
+    "CURRENT_REGULATION_ID",
+    "PREVIOUS_REGULATION_ID"
+   ],
+   "known": false,
+   "layer": "OIC - Forest Protection Act",
+   "sample": [
+    {
+     "COMMENTS": "text description",
+     "CURRENT_REGULATION_ID": "1972/159",
+     "DESCRIPTION": "Fire restriction",
+     "LINK_TO_DOCUMENT": "http://www.gov.yk.ca/legislation/regs/co1972_159.pdf",
+     "REGULATION_TYPE": "Commissioner's Order",
+     "SOURCE": " ",
+     "STATUS": "Active"
+    }
+   ],
+   "service": "GeoYukon/GY_LandTenure",
+   "typef": "REGULATION_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_LandTenure/MapServer/32"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGULATION_TYPE",
+    "DESCRIPTION",
+    "STATUS",
+    "COMMENTS",
+    "SOURCE",
+    "LINK_TO_DOCUMENT",
+    "CURRENT_REGULATION_ID",
+    "PREVIOUS_REGULATION_ID"
+   ],
+   "known": false,
+   "layer": "OIC - Historic Resources Act",
+   "sample": [
+    {
+     "COMMENTS": "text description",
+     "CURRENT_REGULATION_ID": "1972/159",
+     "DESCRIPTION": "Fire restriction",
+     "LINK_TO_DOCUMENT": "http://www.gov.yk.ca/legislation/regs/co1972_159.pdf",
+     "REGULATION_TYPE": "Commissioner's Order",
+     "SOURCE": " ",
+     "STATUS": "Active"
+    }
+   ],
+   "service": "GeoYukon/GY_LandTenure",
+   "typef": "REGULATION_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_LandTenure/MapServer/33"
+  },
+  {
+   "agency": "Government of Yukon",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGULATION_TYPE",
+    "DESCRIPTION",
+    "STATUS",
+    "COMMENTS",
+    "SOURCE",
+    "LINK_TO_DOCUMENT",
+    "CURRENT_REGULATION_ID",
+    "PREVIOUS_REGULATION_ID"
+   ],
+   "known": false,
+   "layer": "OIC - Wildlife Act",
+   "sample": [
+    {
+     "COMMENTS": "Established as Wildlife Sanctuary",
+     "CURRENT_REGULATION_ID": "2002/84",
+     "DESCRIPTION": "Kluane Wildlife Sanctuary, McArthur Wildlife Sanctuary",
+     "LINK_TO_DOCUMENT": "http://www.gov.yk.ca/legislation/regs/oic2002_084.pdf",
+     "REGULATION_TYPE": "Order in Council",
+     "SOURCE": "Text description and ENV.Conservation and NRCAN.LS_SMA",
+     "STATUS": "Active"
+    }
+   ],
+   "service": "GeoYukon/GY_LandTenure",
+   "typef": "REGULATION_TYPE",
+   "url": "https://mapservices.gov.yk.ca/arcgis/rest/services/GeoYukon/GY_LandTenure/MapServer/40"
+  }
+ ],
+ "st": "CA-YT"
+}

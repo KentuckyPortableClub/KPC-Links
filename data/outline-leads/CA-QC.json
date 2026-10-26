@@ -1,0 +1,429 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 5611,
+   "fields": [
+    "DESIG_GR",
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "BIOME",
+    "UICN",
+    "DA_CREATIO",
+    "DURE_RECON",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "note"
+   ],
+   "known": false,
+   "layer": "Ensemble des aires protégées et autres mesures de conservation efficaces",
+   "sample": [
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2005-09-15",
+     "DESIGNOM": "Habitat d'une espèce floristique menacée ou vulnérable",
+     "DESIG_GR": "Habitat d'une espèce floristique menacée ou vulnérable",
+     "LATDMS": "47° 03' 38,2\" N",
+     "LIEN": "http://www.environnement.gouv.qc.ca/biodiversite/habitats/anse-cap/index.htm",
+     "LONDMS": "70° 27' 23,8\" O",
+     "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs",
+     "TOPONYME": "Habitat d'une espèce floristique menacée ou vulnérable du Marais-de-l'Anse-du-Cap",
+     "UICN": "Ia"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2005-09-15",
+     "DESIGNOM": "Habitat d'une espèce floristique menacée ou vulnérable",
+     "DESIG_GR": "Habitat d'une espèce floristique menacée ou vulnérable",
+     "LATDMS": "46° 56' 21,0\" N",
+     "LIEN": "http://www.environnement.gouv.qc.ca/biodiversite/habitats/anse-verte/index.htm",
+     "LONDMS": "70° 43' 25,6\" O",
+     "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs",
+     "TOPONYME": "Habitat d'une espèce floristique menacée ou vulnérable du Marais-de-l'Anse-Verte",
+     "UICN": "Ia"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "1983-05-28",
+     "DESIGNOM": "Réserve écologique",
+     "DESIG_GR": "Réserve écologique",
+     "LATDMS": "48° 31' 20,0\" N",
+     "LIEN": "http://www.environnement.gouv.qc.ca/biodiversite/reserves/ernest_lepage/res_10.htm",
+     "LONDMS": "65° 42' 40,0\" O",
+     "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs",
+     "TOPONYME": "Réserve écologique Ernest-Lepage",
+     "UICN": "Ia"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/23"
+  },
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 3110,
+   "fields": [
+    "DESIG_GR",
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "BIOME",
+    "UICN",
+    "DA_CREATIO",
+    "DURE_RECON",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "note"
+   ],
+   "known": false,
+   "layer": "AP - Refuges biologiques - MRNF Forêts",
+   "sample": [
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2012-07-22",
+     "DESIGNOM": "Refuge biologique",
+     "DESIG_GR": "Refuge biologique",
+     "LATDMS": "46° 29' 14,8\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/forets/protection-forets/territoires-forestiers-proteges/refuges-biologiques",
+     "LONDMS": "77° 29' 33,6\" O",
+     "RESPONSABL": "Ministère des Ressources naturelles et des Forêts",
+     "TOPONYME": "Refuge biologique 07152R017",
+     "UICN": "IV"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2012-07-22",
+     "DESIGNOM": "Refuge biologique",
+     "DESIG_GR": "Refuge biologique",
+     "LATDMS": "46° 40' 24,1\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/forets/protection-forets/territoires-forestiers-proteges/refuges-biologiques",
+     "LONDMS": "76° 38' 19,8\" O",
+     "RESPONSABL": "Ministère des Ressources naturelles et des Forêts",
+     "TOPONYME": "Refuge biologique 07351R034",
+     "UICN": "IV"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2008-12-16",
+     "DESIGNOM": "Refuge biologique",
+     "DESIG_GR": "Refuge biologique",
+     "LATDMS": "50° 11' 11,5\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/forets/protection-forets/territoires-forestiers-proteges/refuges-biologiques",
+     "LONDMS": "76° 19' 09,5\" O",
+     "RESPONSABL": "Ministère des Ressources naturelles et des Forêts",
+     "TOPONYME": "Refuge biologique 08764R028",
+     "UICN": "IV"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/16"
+  },
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 242,
+   "fields": [
+    "DESIG_GR",
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "BIOME",
+    "UICN",
+    "DA_CREATIO",
+    "DURE_RECON",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "note"
+   ],
+   "known": false,
+   "layer": "AP - Écosystèmes forestiers exceptionnels - MRNF Forêts",
+   "sample": [
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2008-04-19",
+     "DESIGNOM": "Forêt ancienne",
+     "DESIG_GR": "Écosystème forestier exceptionnel",
+     "LATDMS": "50° 52' 59,6\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/forets/protection-forets/territoires-forestiers-proteges/ecosystemes-forestiers-exceptionnels",
+     "LONDMS": "67° 01' 02,7\" O",
+     "RESPONSABL": "Ministère des Ressources naturelles et des Forêts",
+     "TOPONYME": "Forêt ancienne du Lac-Cacaoui",
+     "UICN": "III"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2002-12-04",
+     "DESIGNOM": "Forêt ancienne",
+     "DESIG_GR": "Écosystème forestier exceptionnel",
+     "LATDMS": "46° 06' 00,0\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/forets/protection-forets/territoires-forestiers-proteges/ecosystemes-forestiers-exceptionnels",
+     "LONDMS": "75° 04' 60,0\" O",
+     "RESPONSABL": "Ministère des Ressources naturelles et des Forêts",
+     "TOPONYME": "Forêt ancienne du Lac-Gagnon",
+     "UICN": "III"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2005-02-04",
+     "DESIGNOM": "Forêt rare",
+     "DESIG_GR": "Écosystème forestier exceptionnel",
+     "LATDMS": "48° 04' 01,7\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/forets/protection-forets/territoires-forestiers-proteges/ecosystemes-forestiers-exceptionnels",
+     "LONDMS": "67° 32' 51,2\" O",
+     "RESPONSABL": "Ministère des Ressources naturelles et des Forêts",
+     "TOPONYME": "Forêt rare de la Montagne-du-Bleuet",
+     "UICN": "III"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/15"
+  },
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 52,
+   "fields": [
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "DA_CREATIO",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "NOTE"
+   ],
+   "known": false,
+   "layer": "Territoires d’importance pour la conservation",
+   "sample": [
+    {
+     "DESIGNOM": "Habitat d'une espèce floristique menacée ou vulnérable",
+     "LATDMS": "45° 41' 41,2\" N",
+     "LIEN": "http://www.environnement.gouv.qc.ca/biodiversite/habitats/mille-iles/index.htm",
+     "LONDMS": "73° 34' 53,0\" O",
+     "TOPONYME": "Habitat d'une espèce floristique menacée ou vulnérable de la Rivière-des-Mille-Îles"
+    },
+    {
+     "DESIGNOM": "Territoire mis en réserve aux fins de parc national",
+     "LATDMS": "51° 30' 07,5\" N",
+     "LONDMS": "60° 38' 38,7\" O",
+     "TOPONYME": "Territoire mis en réserve aux fins de parc national de Natashquan-Aguanus-Kenamu"
+    },
+    {
+     "DESIGNOM": "Habitat d'une espèce floristique menacée ou vulnérable",
+     "LATDMS": "47° 12' 55,5\" N",
+     "LIEN": "http://www.environnement.gouv.qc.ca/biodiversite/habitats/tourbiere-anse-cabane/index.htm",
+     "LONDMS": "61° 57' 56,3\" O",
+     "TOPONYME": "Habitat d'une espèce floristique menacée ou vulnérable de la Tourbière-de-L'Anse-à-la-Cabane"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/24"
+  },
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 27,
+   "fields": [
+    "DESIG_GR",
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "BIOME",
+    "UICN",
+    "DA_CREATIO",
+    "DURE_RECON",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "note"
+   ],
+   "known": false,
+   "layer": "AP - Refuges d’oiseaux migrateurs - Fédéral",
+   "sample": [
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "1941-01-29",
+     "DESIGNOM": "Refuge d'oiseaux migrateurs",
+     "DESIG_GR": "Refuge d'oiseaux migrateurs",
+     "LATDMS": "51° 51' 00,0\" N",
+     "LIEN": "https://www.canada.ca/fr/environnement-changement-climatique/services/refuges-oiseaux-migrateurs/ensemble/baie-boatswain.html",
+     "LONDMS": "78° 52' 30,0\" O",
+     "RESPONSABL": "Service canadien de la faune, Environnement et Changement climatique Canada",
+     "TOPONYME": "Refuge d'oiseaux migrateurs de la Baie de Boatswain",
+     "UICN": "Ia"
+    },
+    {
+     "BIOME": "X",
+     "DA_CREATIO": "1919-03-29",
+     "DESIGNOM": "Refuge d'oiseaux migrateurs",
+     "DESIG_GR": "Refuge d'oiseaux migrateurs",
+     "LATDMS": "48° 30' 00,0\" N",
+     "LIEN": "https://www.canada.ca/fr/environnement-changement-climatique/services/refuges-oiseaux-migrateurs/ensemble.html#qc",
+     "LONDMS": "64° 10' 00,0\" O",
+     "RESPONSABL": "Service canadien de la faune, Environnement et Changement climatique Canada",
+     "TOPONYME": "Refuge d'oiseaux migrateurs de l'Île-Bonaventure-et-du-Rocher-Percé",
+     "UICN": "III"
+    },
+    {
+     "BIOME": "X",
+     "DA_CREATIO": "1919-03-29",
+     "DESIGNOM": "Refuge d'oiseaux migrateurs",
+     "DESIG_GR": "Refuge d'oiseaux migrateurs",
+     "LATDMS": "47° 50' 40,0\" N",
+     "LIEN": "https://www.canada.ca/fr/environnement-changement-climatique/services/refuges-oiseaux-migrateurs/ensemble.html#qc",
+     "LONDMS": "61° 09' 20,0\" O",
+     "RESPONSABL": "Service canadien de la faune, Environnement et Changement climatique Canada",
+     "TOPONYME": "Refuge d'oiseaux migrateurs des Rochers-aux-Oiseaux",
+     "UICN": "Ia"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/19"
+  },
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "DESIG_GR",
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "BIOME",
+    "UICN",
+    "DA_CREATIO",
+    "DURE_RECON",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "note"
+   ],
+   "known": false,
+   "layer": "AMCE - Autres mesures de conservation efficaces",
+   "sample": [
+    {
+     "BIOME": "T",
+     "CORESPONSA": "Connexion Nature",
+     "DA_CREATIO": "2024-03-26",
+     "DESIGNOM": "Autres mesures de conservation efficaces",
+     "DESIG_GR": "Autres mesures de conservation efficaces",
+     "LATDMS": "45° 31' 04.0\" N",
+     "LIEN": "Protection de milieux naturels - Connexion Nature",
+     "LONDMS": "73° 11' 48.3\" O",
+     "RESPONSABL": "Ville de Mont-Saint-Hilaire",
+     "TOPONYME": "Zone de conservation des Peupliers-2",
+     "UICN": "Z"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2023-08-15",
+     "DESIGNOM": "Autres mesures de conservation efficaces (fédérale)",
+     "DESIG_GR": "Autres mesures de conservation efficaces",
+     "LATDMS": "45° 07' 28.5\" N",
+     "LIEN": "https://parcs.canada.ca/lhn-nhs/qc/lennox",
+     "LONDMS": "73° 15' 51.1\" O",
+     "RESPONSABL": "Parcs Canada",
+     "TOPONYME": "Lieu historique national du Fort-Lennox",
+     "UICN": "Z"
+    },
+    {
+     "BIOME": "T",
+     "CORESPONSA": "CANOPÉE",
+     "DA_CREATIO": "2023-03-08",
+     "DESIGNOM": "Autres mesures de conservation efficaces",
+     "DESIG_GR": "Autres mesures de conservation efficaces",
+     "LATDMS": "45° 36' 06.7\" N",
+     "LIEN": "https://www.reseaucanopee.org/fr/le-bois-papineau/",
+     "LONDMS": "73° 41' 12.6\" O",
+     "RESPONSABL": "Ville de Laval",
+     "TOPONYME": "Zone de conservation du Boisé-Papineau",
+     "UICN": "Z"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/25"
+  },
+  {
+   "agency": "© Gouvernement du Québec",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "DESIG_GR",
+    "DESIGNOM",
+    "TOPONYME",
+    "RESPONSABL",
+    "CORESPONSA",
+    "BIOME",
+    "UICN",
+    "DA_CREATIO",
+    "DURE_RECON",
+    "LONDMS",
+    "LATDMS",
+    "LIEN",
+    "note"
+   ],
+   "known": false,
+   "layer": "AP - Refuges fauniques - MELCCFP Faune",
+   "sample": [
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "1998-09-02",
+     "DESIGNOM": "Refuge faunique",
+     "DESIG_GR": "Refuge faunique",
+     "LATDMS": "45° 36' 30,0\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/faune/territoires-fauniques#c247172",
+     "LONDMS": "73° 49' 00,0\" O",
+     "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs",
+     "TOPONYME": "Refuge faunique de la Rivière-des-Mille-Îles",
+     "UICN": "M"
+    },
+    {
+     "BIOME": "T",
+     "DA_CREATIO": "2005-05-25",
+     "DESIGNOM": "Refuge faunique",
+     "DESIG_GR": "Refuge faunique",
+     "LATDMS": "46° 16' 27,8\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/faune/territoires-fauniques#c247172",
+     "LONDMS": "72° 41' 12,3\" O",
+     "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs",
+     "TOPONYME": "Refuge faunique de Pointe-du-Lac",
+     "UICN": "M"
+    },
+    {
+     "BIOME": "X",
+     "DA_CREATIO": "1998-10-07",
+     "DESIGNOM": "Refuge faunique",
+     "DESIG_GR": "Refuge faunique",
+     "LATDMS": "47° 36' 45,0\" N",
+     "LIEN": "https://www.quebec.ca/agriculture-environnement-et-ressources-naturelles/faune/territoires-fauniques#c247172",
+     "LONDMS": "61° 27' 00,0\" O",
+     "RESPONSABL": "Ministère de l'Environnement, de la Lutte contre les changements climatiques, de la Faune et des Parcs",
+     "TOPONYME": "Refuge faunique de la Pointe-de-l'Est",
+     "UICN": "IV"
+    }
+   ],
+   "service": "Biodiversite/Aires_protegees",
+   "typef": "",
+   "url": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Biodiversite/Aires_protegees/MapServer/6"
+  }
+ ],
+ "st": "CA-QC"
+}

@@ -1,0 +1,1931 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 1380,
+   "fields": [
+    "PROT_NAME",
+    "TYPE_E"
+   ],
+   "known": false,
+   "layer": "PROTECTED_AREAS_UT83_20240910",
+   "sample": [
+    {
+     "PROT_NAME": "Fort Lawrence Conservation Lands",
+     "TYPE_E": "Land Trust"
+    },
+    {
+     "PROT_NAME": "Fort Lawrence Conservation Lands",
+     "TYPE_E": "Land Trust"
+    },
+    {
+     "PROT_NAME": "Fort Lawrence Conservation Lands",
+     "TYPE_E": "Land Trust"
+    }
+   ],
+   "service": "Protected_Areas_and_Parks",
+   "typef": "TYPE_E",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Protected_Areas_and_Parks/FeatureServer/1"
+  },
+  {
+   "agency": "...",
+   "area": "",
+   "count": 1273,
+   "fields": [
+    "PROT_NAME",
+    "PROT_TYPE",
+    "PROT_STATUS",
+    "LEGISLATION",
+    "OWNER",
+    "MGMT_AUTHORITY",
+    "PARK_MGMT",
+    "PARK_TYPE",
+    "PARK_CLASS",
+    "NOTES",
+    "URL",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NS_Parks_and_Protected_Areas",
+   "sample": [
+    {
+     "Creator": "Chuck_Sangster",
+     "LEGISLATION": "Provincial Parks Act (1989)",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Wayside",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Day Use",
+     "PROT_NAME": "Bell Provincial Park",
+     "PROT_STATUS": "Designated",
+     "PROT_TYPE": "Provincial Park",
+     "URL": "https://parks.novascotia.ca/"
+    },
+    {
+     "Creator": "Chuck_Sangster",
+     "LEGISLATION": "Provincial Parks Act (1989)",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Wayside",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Day Use",
+     "PROT_NAME": "Ben Eoin Provincial Park",
+     "PROT_STATUS": "Designated",
+     "PROT_TYPE": "Provincial Park",
+     "URL": "http://www.gov.ns.ca/nse/protectedareas/consult/AreaHandler.ashx?id=673&type=html"
+    },
+    {
+     "Creator": "Chuck_Sangster",
+     "LEGISLATION": "Provincial Parks Act (1989)",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Outdoor Recreation",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Camping",
+     "PROT_NAME": "Boylston Provincial Park",
+     "PROT_STATUS": "Designated",
+     "PROT_TYPE": "Provincial Park",
+     "URL": "http://www.gov.ns.ca/nse/protectedareas/consult/AreaHandler.ashx?id=687&type=html"
+    }
+   ],
+   "service": "Nova_Scotia_Parks_and_Protected_Areas_System",
+   "typef": "PROT_TYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1273,
+   "fields": [
+    "PROT_NAME",
+    "PROT_TYPE",
+    "PROT_STATUS",
+    "LEGISLATION",
+    "OWNER",
+    "MGMT_AUTHORITY",
+    "PARK_MGMT",
+    "PARK_TYPE",
+    "PARK_CLASS",
+    "URL"
+   ],
+   "known": false,
+   "layer": "NS_Parks_and_Protected_Areas",
+   "sample": [
+    {
+     "LEGISLATION": "Provincial Parks Act (1989)",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Wayside",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Day Use",
+     "PROT_NAME": "Bell Provincial Park",
+     "PROT_STATUS": "Designated",
+     "PROT_TYPE": "Provincial Park",
+     "URL": "https://parks.novascotia.ca/"
+    },
+    {
+     "LEGISLATION": "Provincial Parks Act (1989)",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Wayside",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Day Use",
+     "PROT_NAME": "Ben Eoin Provincial Park",
+     "PROT_STATUS": "Designated",
+     "PROT_TYPE": "Provincial Park",
+     "URL": "http://www.gov.ns.ca/nse/protectedareas/consult/AreaHandler.ashx?id=673&type=html"
+    },
+    {
+     "LEGISLATION": "Provincial Parks Act (1989)",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Outdoor Recreation",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Camping",
+     "PROT_NAME": "Boylston Provincial Park",
+     "PROT_STATUS": "Designated",
+     "PROT_TYPE": "Provincial Park",
+     "URL": "http://www.gov.ns.ca/nse/protectedareas/consult/AreaHandler.ashx?id=687&type=html"
+    }
+   ],
+   "service": "Nova_Scotia_Parks_and_Protected_Areas_System_V1",
+   "typef": "PROT_TYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/1"
+  },
+  {
+   "agency": "...",
+   "area": "",
+   "count": 184,
+   "fields": [
+    "INT_NAME",
+    "INT_TYPE",
+    "PROGRESS",
+    "CUR_PROT",
+    "OWNER",
+    "MGMT_AUTHORITY",
+    "CONDITIONS",
+    "PARK_MGMT",
+    "PARK_TYPE",
+    "PARK_CLASS",
+    "URL",
+    "NOTES",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NS_Lands_Proposed_or_Pending_Protection",
+   "sample": [
+    {
+     "CUR_PROT": "Under interim policy",
+     "INT_NAME": "Trout Brook Provincial Park",
+     "INT_TYPE": "Provincial Park",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Outdoor Recreation",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Day Use",
+     "PROGRESS": "Pending Cabinet Submission",
+     "URL": "http://www.gov.ns.ca/nse/protectedareas/consult/AreaHandler.ashx?id=915&type=html"
+    },
+    {
+     "CONDITIONS": "Subject to addressing mineral rights",
+     "CUR_PROT": "Under interim policy",
+     "INT_NAME": "Tusket Saltmarshes Nature Reserve (Pending)",
+     "INT_TYPE": "Nature Reserve",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Pending Cabinet Submission",
+     "URL": "http://www.novascotia.ca/nse/protectedareas/consult/AreaHandler.ashx?id=643&type=html"
+    },
+    {
+     "CONDITIONS": "Designation subject to additional planning and consultation",
+     "CUR_PROT": "Under interim policy",
+     "INT_NAME": "Upper Stewiacke Wilderness Area (Pending)",
+     "INT_TYPE": "Wilderness Area",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Pending Cabinet Submission",
+     "URL": "http://www.novascotia.ca/nse/protectedareas/consult/AreaHandler.ashx?id=645&type=html"
+    }
+   ],
+   "service": "Nova_Scotia_Parks_and_Protected_Areas_System",
+   "typef": "INT_TYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 184,
+   "fields": [
+    "INT_NAME",
+    "INT_TYPE",
+    "PROGRESS",
+    "CUR_PROT",
+    "OWNER",
+    "MGMT_AUTHORITY",
+    "PARK_MGMT",
+    "PARK_TYPE",
+    "PARK_CLASS",
+    "URL"
+   ],
+   "known": false,
+   "layer": "NS_Lands_Proposed_or_Pending_Protection",
+   "sample": [
+    {
+     "CUR_PROT": "Under interim policy",
+     "INT_NAME": "Trout Brook Provincial Park",
+     "INT_TYPE": "Provincial Park",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "Outdoor Recreation",
+     "PARK_MGMT": "Managed as a supporting Park",
+     "PARK_TYPE": "Day Use",
+     "PROGRESS": "Pending Cabinet Submission",
+     "URL": "http://www.gov.ns.ca/nse/protectedareas/consult/AreaHandler.ashx?id=915&type=html"
+    },
+    {
+     "CUR_PROT": "Under interim policy",
+     "INT_NAME": "Tusket Saltmarshes Nature Reserve (Pending)",
+     "INT_TYPE": "Nature Reserve",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Pending Cabinet Submission",
+     "URL": "http://www.novascotia.ca/nse/protectedareas/consult/AreaHandler.ashx?id=643&type=html"
+    },
+    {
+     "CUR_PROT": "Under interim policy",
+     "INT_NAME": "Upper Stewiacke Wilderness Area (Pending)",
+     "INT_TYPE": "Wilderness Area",
+     "MGMT_AUTHORITY": "Nova Scotia Department of Natural Resources and Renewables",
+     "OWNER": "Nova Scotia Department of Natural Resources and Renewables",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Pending Cabinet Submission",
+     "URL": "http://www.novascotia.ca/nse/protectedareas/consult/AreaHandler.ashx?id=645&type=html"
+    }
+   ],
+   "service": "Nova_Scotia_Parks_and_Protected_Areas_System_V1",
+   "typef": "INT_TYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_V1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 121,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "Wilderness Areas",
+   "sample": [
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Wilderness Area",
+     "PRO_NAME": "Gully Lake Wilderness Area",
+     "STATUS": "Designated",
+     "SYMBOL": "Wilderness Area"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Wilderness Area",
+     "PRO_NAME": "Jim Campbells Barren Wilderness Area",
+     "STATUS": "Designated",
+     "SYMBOL": "Wilderness Area"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Wilderness Area",
+     "PRO_NAME": "Lake Rossignol Wilderness Area",
+     "STATUS": "Designated",
+     "SYMBOL": "Wilderness Area"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/25"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 121,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "Wilderness Areas",
+   "sample": [
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Wilderness Area",
+     "PRO_NAME": "Gully Lake Wilderness Area",
+     "STATUS": "Designated",
+     "SYMBOL": "Wilderness Area"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Wilderness Area",
+     "PRO_NAME": "Jim Campbells Barren Wilderness Area",
+     "STATUS": "Designated",
+     "SYMBOL": "Wilderness Area"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Wilderness Area",
+     "PRO_NAME": "Lake Rossignol Wilderness Area",
+     "STATUS": "Designated",
+     "SYMBOL": "Wilderness Area"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/25"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 111,
+   "fields": [
+    "REFERENCE",
+    "NAME2",
+    "NAME3",
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES"
+   ],
+   "known": false,
+   "layer": "Designated Provincial Parks",
+   "sample": [
+    {
+     "AUTHORITY": "NS Department of Lands and Forestry",
+     "CONFIDENT": "Public. Free to distribute",
+     "LGL_EFFECT": "Yes",
+     "NAME2": "Provincial Park",
+     "OWNER": "NS Department of Lands and Forestry",
+     "PROTECT1": "Provincial Park",
+     "PRO_NAME": "Bell Provincial Park",
+     "REFERENCE": "O.I.C. 2014-342",
+     "STATUS": "Designated",
+     "SYMBOL": "Provincial Park"
+    },
+    {
+     "AUTHORITY": "NS Department of Lands and Forestry",
+     "CONFIDENT": "Public. Free to distribute",
+     "LGL_EFFECT": "Yes",
+     "NAME2": "Provincial Park",
+     "OWNER": "NS Department of Lands and Forestry",
+     "PROTECT1": "Provincial Park",
+     "PRO_NAME": "Ben Eoin Provincial Park",
+     "STATUS": "Designated",
+     "SYMBOL": "Provincial Park"
+    },
+    {
+     "AUTHORITY": "NS Department of Lands and Forestry",
+     "CONFIDENT": "Public. Free to distribute",
+     "LGL_EFFECT": "Yes",
+     "NAME2": "Provincial Park",
+     "OWNER": "NS Department of Lands and Forestry",
+     "PROTECT1": "Provincial Park",
+     "PRO_NAME": "Blomidon Provincial Park",
+     "REFERENCE": "O.I.C. 2015-179",
+     "STATUS": "Designated",
+     "SYMBOL": "Provincial Park"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/23"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 111,
+   "fields": [
+    "REFERENCE",
+    "NAME2",
+    "NAME3",
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES"
+   ],
+   "known": false,
+   "layer": "Designated Provincial Parks",
+   "sample": [
+    {
+     "AUTHORITY": "NS Department of Lands and Forestry",
+     "CONFIDENT": "Public. Free to distribute",
+     "LGL_EFFECT": "Yes",
+     "NAME2": "Provincial Park",
+     "OWNER": "NS Department of Lands and Forestry",
+     "PROTECT1": "Provincial Park",
+     "PRO_NAME": "Bell Provincial Park",
+     "REFERENCE": "O.I.C. 2014-342",
+     "STATUS": "Designated",
+     "SYMBOL": "Provincial Park"
+    },
+    {
+     "AUTHORITY": "NS Department of Lands and Forestry",
+     "CONFIDENT": "Public. Free to distribute",
+     "LGL_EFFECT": "Yes",
+     "NAME2": "Provincial Park",
+     "OWNER": "NS Department of Lands and Forestry",
+     "PROTECT1": "Provincial Park",
+     "PRO_NAME": "Ben Eoin Provincial Park",
+     "STATUS": "Designated",
+     "SYMBOL": "Provincial Park"
+    },
+    {
+     "AUTHORITY": "NS Department of Lands and Forestry",
+     "CONFIDENT": "Public. Free to distribute",
+     "LGL_EFFECT": "Yes",
+     "NAME2": "Provincial Park",
+     "OWNER": "NS Department of Lands and Forestry",
+     "PROTECT1": "Provincial Park",
+     "PRO_NAME": "Blomidon Provincial Park",
+     "REFERENCE": "O.I.C. 2015-179",
+     "STATUS": "Designated",
+     "SYMBOL": "Provincial Park"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/23"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 110,
+   "fields": [
+    "PID_LRIS",
+    "AREANAME",
+    "INDIANRESERVENUM",
+    "COUNTY",
+    "NAME1"
+   ],
+   "known": false,
+   "layer": "Indian Reserve Lands",
+   "sample": [
+    {
+     "AREANAME": "Gold River",
+     "COUNTY": "M",
+     "INDIANRESERVENUM": "21",
+     "NAME1": "Gold River"
+    },
+    {
+     "AREANAME": "Paqtnkek Niktuek",
+     "COUNTY": "B",
+     "INDIANRESERVENUM": "23",
+     "NAME1": "Paqtnkek Niktuek"
+    },
+    {
+     "AREANAME": "Paqtnkek Niktuek",
+     "COUNTY": "B",
+     "INDIANRESERVENUM": "23",
+     "NAME1": "Paqtnkek Niktuek"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/41"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 110,
+   "fields": [
+    "NAME2",
+    "PID_LRIS",
+    "AREANAME",
+    "INDIANRESERVENUM",
+    "COUNTY",
+    "NAME1"
+   ],
+   "known": false,
+   "layer": "Indian Reserve Lands",
+   "sample": [
+    {
+     "AREANAME": "Gold River",
+     "COUNTY": "M",
+     "INDIANRESERVENUM": "21",
+     "NAME1": "Gold River",
+     "NAME2": "I.R. 21"
+    },
+    {
+     "AREANAME": "Paqtnkek Niktuek",
+     "COUNTY": "B",
+     "INDIANRESERVENUM": "23",
+     "NAME1": "Paqtnkek Niktuek",
+     "NAME2": "I.R. 23"
+    },
+    {
+     "AREANAME": "Paqtnkek Niktuek",
+     "COUNTY": "B",
+     "INDIANRESERVENUM": "23",
+     "NAME1": "Paqtnkek Niktuek",
+     "NAME2": "I.R. 23"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/41"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 103,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "Nature Reserves",
+   "sample": [
+    {
+     "AUTHORITY": "Nova Scotia Environment and private owner(s)",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Private owner(s)",
+     "PROTECT1": "Nature Reserve",
+     "PRO_NAME": "River Inhabitants Nature Reserve",
+     "STATUS": "Designated",
+     "SYMBOL": "Nature Reserve"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Nature Reserve",
+     "PRO_NAME": "Roman Valley Nature Reserve",
+     "STATUS": "Designated",
+     "SYMBOL": "Nature Reserve"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Nature Reserve",
+     "PRO_NAME": "Sixth and Coades Lakes Nature Reserve",
+     "STATUS": "Designated",
+     "SYMBOL": "Nature Reserve"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/27"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 103,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "Nature Reserves",
+   "sample": [
+    {
+     "AUTHORITY": "Nova Scotia Environment and private owner(s)",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Private owner(s)",
+     "PROTECT1": "Nature Reserve",
+     "PRO_NAME": "River Inhabitants Nature Reserve",
+     "STATUS": "Designated",
+     "SYMBOL": "Nature Reserve"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Nature Reserve",
+     "PRO_NAME": "Roman Valley Nature Reserve",
+     "STATUS": "Designated",
+     "SYMBOL": "Nature Reserve"
+    },
+    {
+     "AUTHORITY": "Nova Scotia Environment",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Nova Scotia Environment",
+     "PROTECT1": "Nature Reserve",
+     "PRO_NAME": "Sixth and Coades Lakes Nature Reserve",
+     "STATUS": "Designated",
+     "SYMBOL": "Nature Reserve"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/27"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 96,
+   "fields": [
+    "PARK_NAME",
+    "PARK_TYPE",
+    "PARK_CLASS"
+   ],
+   "known": false,
+   "layer": "OTHER_PARKS_UT83_20240910",
+   "sample": [
+    {
+     "PARK_CLASS": "Outdoor Recreation",
+     "PARK_NAME": "Amherst Shore Provincial Park",
+     "PARK_TYPE": "Camping"
+    },
+    {
+     "PARK_CLASS": "Wayside",
+     "PARK_NAME": "Annapolis Basin Lookoff Provincial Park",
+     "PARK_TYPE": "Day Use"
+    },
+    {
+     "PARK_CLASS": "Wayside",
+     "PARK_NAME": "Anthony Provincial Park",
+     "PARK_TYPE": "Day Use"
+    }
+   ],
+   "service": "Protected_Areas_and_Parks",
+   "typef": "PARK_TYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Protected_Areas_and_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "LB1_MEBGIS",
+    "MAREA_TYPE"
+   ],
+   "known": false,
+   "layer": "Historic Gold Mining Areas",
+   "sample": [
+    {
+     "LB1_MEBGIS": "Lawrencetown",
+     "MAREA_TYPE": "Gold Mining Area"
+    },
+    {
+     "LB1_MEBGIS": "Leipsigate",
+     "MAREA_TYPE": "Gold Mining Area"
+    },
+    {
+     "LB1_MEBGIS": "Liscomb Mills",
+     "MAREA_TYPE": "Gold Mining Area"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "MAREA_TYPE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/57"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "LB1_MEBGIS",
+    "MAREA_TYPE"
+   ],
+   "known": false,
+   "layer": "Historic Gold Mining Areas",
+   "sample": [
+    {
+     "LB1_MEBGIS": "Lawrencetown",
+     "MAREA_TYPE": "Gold Mining Area"
+    },
+    {
+     "LB1_MEBGIS": "Leipsigate",
+     "MAREA_TYPE": "Gold Mining Area"
+    },
+    {
+     "LB1_MEBGIS": "Liscomb Mills",
+     "MAREA_TYPE": "Gold Mining Area"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "MAREA_TYPE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/56"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 41,
+   "fields": [
+    "METACOVER",
+    "CREDATE",
+    "REVDATE",
+    "DATASETNAM",
+    "NID",
+    "ALCODE",
+    "LANGUAGE1",
+    "NAME1",
+    "LANGUAGE2",
+    "NAME2",
+    "ALTYPE",
+    "Band"
+   ],
+   "known": false,
+   "layer": "IndigenousReserveLand",
+   "sample": [
+    {
+     "ALCODE": "06033",
+     "ALTYPE": "Indian Reserve",
+     "Band": "Paq'tnkek, Pictou Landing",
+     "CREDATE": "20030407",
+     "DATASETNAM": "NS",
+     "LANGUAGE1": "English",
+     "LANGUAGE2": "French",
+     "METACOVER": "Partial",
+     "NAME1": "FRANKLIN MANOR INDIAN RESERVE NO. 22 (PART)",
+     "NAME2": "RÉSERVE INDIENNE FRANKLIN MANOR NO. 22 (PART)",
+     "NID": "b6ae1cacaffd11d892e2080020a0f4c9",
+     "REVDATE": "20150105"
+    },
+    {
+     "ALCODE": "06057",
+     "ALTYPE": "Indian Reserve",
+     "Band": "We'kopetwitk / Millbrook",
+     "CREDATE": "20030407",
+     "DATASETNAM": "NS",
+     "LANGUAGE1": "English",
+     "LANGUAGE2": "French",
+     "METACOVER": "Partial",
+     "NAME1": "BEAVER LAKE INDIAN RESERVE NO. 17",
+     "NAME2": "RÉSERVE INDIENNE BEAVER LAKE NO. 17",
+     "NID": "b6253d93affd11d892e2080020a0f4c9",
+     "REVDATE": "20170705"
+    },
+    {
+     "ALCODE": "06030",
+     "ALTYPE": "Indian Reserve",
+     "Band": "Malikiaq / Acadia",
+     "CREDATE": "20030407",
+     "DATASETNAM": "NS",
+     "LANGUAGE1": "English",
+     "LANGUAGE2": "French",
+     "METACOVER": "Partial",
+     "NAME1": "PONHOOK LAKE INDIAN RESERVE NO. 10",
+     "NAME2": "RÉSERVE INDIENNE PONHOOK LAKE NO. 10",
+     "NID": "b756b8c8affd11d892e2080020a0f4c9",
+     "REVDATE": "20170705"
+    }
+   ],
+   "service": "IndigenousReserveLand",
+   "typef": "ALTYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/IndigenousReserveLand/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 27,
+   "fields": [
+    "FEAT_CODE",
+    "NOTES",
+    "MODIFIED",
+    "REV",
+    "NAME1"
+   ],
+   "known": false,
+   "layer": "National Historic Sites and Parks",
+   "sample": [
+    {
+     "FEAT_CODE": "DLHS40",
+     "MODIFIED": "Matched to coast",
+     "NAME1": "Fort Anne",
+     "NOTES": " ",
+     "REV": "y"
+    },
+    {
+     "FEAT_CODE": "DLHS40",
+     "MODIFIED": " ",
+     "NAME1": "Fort Edward",
+     "NOTES": " ",
+     "REV": "y"
+    },
+    {
+     "FEAT_CODE": "DLHS40",
+     "MODIFIED": "Matched to coast and McNabs & Lawlor Island Provincial Park",
+     "NAME1": "Fort McNab",
+     "NOTES": " ",
+     "REV": "n"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "FEAT_CODE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/29"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "LB1_MEBGIS",
+    "MAREA_TYPE"
+   ],
+   "known": false,
+   "layer": "Historic Coal Mining Areas",
+   "sample": [
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Coal Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Coal Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Coal Mining Area"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "MAREA_TYPE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/59"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "LB1_MEBGIS",
+    "MAREA_TYPE"
+   ],
+   "known": false,
+   "layer": "Historic Coal Mining Areas",
+   "sample": [
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Coal Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Coal Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Coal Mining Area"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "MAREA_TYPE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/58"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "WMA_NAME_1",
+    "LEGISLATION",
+    "CONTACT",
+    "REFERENCE",
+    "PLAN",
+    "LANDOWN",
+    "DATAADM",
+    "DATE_",
+    "MEMO_",
+    "IUCN",
+    "NAME1",
+    "NAME2",
+    "NAME3"
+   ],
+   "known": false,
+   "layer": "Provincial Wildlife Management Areas",
+   "sample": [
+    {
+     "CONTACT": "NSDNR,Wildlife",
+     "DATAADM": "NSDNR,Forestry/Wildlife",
+     "DATE_": "NOV2016",
+     "IUCN": "IV",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATION": "Wildlife Act (1989)",
+     "MEMO_": "none",
+     "NAME1": "Tobeatic",
+     "NAME2": "Wildlife Management Area",
+     "PLAN": "------",
+     "REFERENCE": "OIC6853",
+     "WMA_NAME_1": "Tobeatic Wildlife Management Area"
+    },
+    {
+     "CONTACT": "NSDNR,Wildlife",
+     "DATAADM": "NSDNR,Forestry/Wildlife",
+     "DATE_": "NOV2016",
+     "IUCN": "IV",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATION": "Wildlife Act (1989)",
+     "MEMO_": "Also see OIC-79-1223",
+     "NAME1": "Shubenacadie",
+     "NAME2": "Wildlife Management Area",
+     "PLAN": "P-021/07",
+     "REFERENCE": "OIC200853",
+     "WMA_NAME_1": "Shubenacadie Wildlife Management Area"
+    },
+    {
+     "CONTACT": "NSDNR,Wildlife",
+     "DATAADM": "NSDNR,Forestry/Wildlife",
+     "DATE_": "NOV2016",
+     "IUCN": "III",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATION": "Wildlife Act (1989)",
+     "MEMO_": "none",
+     "NAME1": "Pearl Island",
+     "NAME2": "Wildlife Management Area",
+     "PLAN": "E-10-5",
+     "REFERENCE": "OIC761279",
+     "WMA_NAME_1": "Pearl Island Wildlife Management Area"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/43"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "WMA_NAME_1",
+    "LEGISLATION",
+    "CONTACT",
+    "REFERENCE",
+    "PLAN",
+    "LANDOWN",
+    "DATAADM",
+    "DATE_",
+    "MEMO_",
+    "IUCN",
+    "NAME1",
+    "NAME2",
+    "NAME3"
+   ],
+   "known": false,
+   "layer": "Provincial Wildlife Management Areas",
+   "sample": [
+    {
+     "CONTACT": "NSDNR,Wildlife",
+     "DATAADM": "NSDNR,Forestry/Wildlife",
+     "DATE_": "NOV2016",
+     "IUCN": "IV",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATION": "Wildlife Act (1989)",
+     "MEMO_": "none",
+     "NAME1": "Tobeatic",
+     "NAME2": "Wildlife Management Area",
+     "PLAN": "------",
+     "REFERENCE": "OIC6853",
+     "WMA_NAME_1": "Tobeatic Wildlife Management Area"
+    },
+    {
+     "CONTACT": "NSDNR,Wildlife",
+     "DATAADM": "NSDNR,Forestry/Wildlife",
+     "DATE_": "NOV2016",
+     "IUCN": "IV",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATION": "Wildlife Act (1989)",
+     "MEMO_": "Also see OIC-79-1223",
+     "NAME1": "Shubenacadie",
+     "NAME2": "Wildlife Management Area",
+     "PLAN": "P-021/07",
+     "REFERENCE": "OIC200853",
+     "WMA_NAME_1": "Shubenacadie Wildlife Management Area"
+    },
+    {
+     "CONTACT": "NSDNR,Wildlife",
+     "DATAADM": "NSDNR,Forestry/Wildlife",
+     "DATE_": "NOV2016",
+     "IUCN": "III",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATION": "Wildlife Act (1989)",
+     "MEMO_": "none",
+     "NAME1": "Pearl Island",
+     "NAME2": "Wildlife Management Area",
+     "PLAN": "E-10-5",
+     "REFERENCE": "OIC761279",
+     "WMA_NAME_1": "Pearl Island Wildlife Management Area"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/43"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "INT_NAME",
+    "INT_TYPE",
+    "PROGRESS",
+    "CUR_PROT",
+    "OWNER",
+    "MGMT_AUTHORITY",
+    "CONDITIONS",
+    "PARK_MGMT",
+    "PARK_TYPE",
+    "PARK_CLASS",
+    "URL",
+    "NOTES",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NS_Lands_Proposed_or_Pending_Protection",
+   "sample": [
+    {
+     "CONDITIONS": "None",
+     "CUR_PROT": "No protection",
+     "INT_NAME": "Canso Coastal Barrens Wilderness Area Addition (Pending)",
+     "INT_TYPE": "Wilderness Area",
+     "MGMT_AUTHORITY": "NS Department of Natural Resources",
+     "OWNER": "NS Department of Natural Resources",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Consultation - Open",
+     "URL": "https://storymaps.arcgis.com/stories/d40e8341de014f8b90d5ebb7cf0ffe47"
+    },
+    {
+     "CONDITIONS": "None",
+     "CUR_PROT": "No protection",
+     "INT_NAME": "Medway Lakes Wilderness Area Addition (Pending)",
+     "INT_TYPE": "Wilderness Area",
+     "MGMT_AUTHORITY": "NS Department of Natural Resources",
+     "OWNER": "NS Department of Natural Resources",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Consultation - Open",
+     "URL": "https://storymaps.arcgis.com/stories/d40e8341de014f8b90d5ebb7cf0ffe47"
+    },
+    {
+     "CONDITIONS": "None",
+     "CUR_PROT": "No protection",
+     "INT_NAME": "Ogden Round Lake Wilderness Area Addition (Pending)",
+     "INT_TYPE": "Wilderness Area",
+     "MGMT_AUTHORITY": "NS Department of Natural Resources",
+     "OWNER": "NS Department of Natural Resources",
+     "PARK_CLASS": "N/A",
+     "PARK_MGMT": "N/A",
+     "PARK_TYPE": "N/A",
+     "PROGRESS": "Consultation - Open",
+     "URL": "https://storymaps.arcgis.com/stories/d40e8341de014f8b90d5ebb7cf0ffe47"
+    }
+   ],
+   "service": "Nova_Scotia_Parks_and_Protected_Areas_System_2_view",
+   "typef": "INT_TYPE",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System_2_view/FeatureServer/0"
+  },
+  {
+   "agency": "This map is a graphic representation and is to be used for informational purpose",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "STATUS",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Medway_Community_Forest",
+   "sample": [
+    {
+     "Creator": "Chuck_Sangster",
+     "Editor": "Chuck_Sangster",
+     "STATUS": "MCFC"
+    },
+    {
+     "Creator": "Chuck_Sangster",
+     "Editor": "Chuck_Sangster",
+     "STATUS": "MCFC"
+    },
+    {
+     "Creator": "Chuck_Sangster",
+     "Editor": "Chuck_Sangster",
+     "STATUS": "MCFC"
+    }
+   ],
+   "service": "Medway_Community_Forest",
+   "typef": "",
+   "url": "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Medway_Community_Forest/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "National Wildlife Areas",
+   "sample": [
+    {
+     "AUTHORITY": "Environment Canada, Canadian Wildlife Services",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Environment Canada, Canadian Wildlife Services",
+     "PROTECT1": "National Wildlife Area",
+     "PRO_NAME": "Boot Island National Wildlife Area",
+     "STATUS": "Designated",
+     "SYMBOL": "National Wildlife Area"
+    },
+    {
+     "AUTHORITY": "Environment Canada, Canadian Wildlife Services",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Environment Canada, Canadian Wildlife Services",
+     "PROTECT1": "National Wildlife Area",
+     "PRO_NAME": "Chignecto National Wildlife Area",
+     "STATUS": "Designated",
+     "SYMBOL": "National Wildlife Area"
+    },
+    {
+     "AUTHORITY": "Environment Canada, Canadian Wildlife Services",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Environment Canada, Canadian Wildlife Services",
+     "PROTECT1": "National Wildlife Area",
+     "PRO_NAME": "John Lusby Marsh National Wildlife Area",
+     "STATUS": "Designated",
+     "SYMBOL": "National Wildlife Area"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/45"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "National Wildlife Areas",
+   "sample": [
+    {
+     "AUTHORITY": "Environment Canada, Canadian Wildlife Services",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Environment Canada, Canadian Wildlife Services",
+     "PROTECT1": "National Wildlife Area",
+     "PRO_NAME": "Boot Island National Wildlife Area",
+     "STATUS": "Designated",
+     "SYMBOL": "National Wildlife Area"
+    },
+    {
+     "AUTHORITY": "Environment Canada, Canadian Wildlife Services",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Environment Canada, Canadian Wildlife Services",
+     "PROTECT1": "National Wildlife Area",
+     "PRO_NAME": "Chignecto National Wildlife Area",
+     "STATUS": "Designated",
+     "SYMBOL": "National Wildlife Area"
+    },
+    {
+     "AUTHORITY": "Environment Canada, Canadian Wildlife Services",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Environment Canada, Canadian Wildlife Services",
+     "PROTECT1": "National Wildlife Area",
+     "PRO_NAME": "John Lusby Marsh National Wildlife Area",
+     "STATUS": "Designated",
+     "SYMBOL": "National Wildlife Area"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/45"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "National Parks and Park Adjuncts",
+   "sample": [
+    {
+     "AUTHORITY": "Department of Canadian Heritage, Parks Canada",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Department of Canadian Heritage, Parks Canada",
+     "PROTECT1": "National Park or Adjunct",
+     "PRO_NAME": "Cape Breton Highlands National Park",
+     "STATUS": "Designated",
+     "SYMBOL": "National Park or Adjunct"
+    },
+    {
+     "AUTHORITY": "Department of Canadian Heritage, Parks Canada",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Department of Canadian Heritage, Parks Canada",
+     "PROTECT1": "National Park or Adjunct",
+     "PRO_NAME": "Kejimkujik National Park",
+     "STATUS": "Designated",
+     "SYMBOL": "National Park or Adjunct"
+    },
+    {
+     "AUTHORITY": "Department of Canadian Heritage, Parks Canada",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Department of Canadian Heritage, Parks Canada",
+     "PROTECT1": "National Park or Adjunct",
+     "PRO_NAME": "Kejimkujik Seaside Adjunct National Park",
+     "STATUS": "Designated",
+     "SYMBOL": "National Park or Adjunct"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/30"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 4,
+   "fields": [
+    "THEMETXT",
+    "NAME",
+    "LEGISLATIO",
+    "CONTACT",
+    "REFERENCE",
+    "PLAN",
+    "LANDOWN",
+    "DATAADM",
+    "DATE_",
+    "MEMO",
+    "IUCN",
+    "THEME",
+    "NAME1",
+    "NAME2",
+    "NAME3"
+   ],
+   "known": false,
+   "layer": "Trails Act Lands",
+   "sample": [
+    {
+     "CONTACT": "NSDNR,Parks",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "AUG2000",
+     "IUCN": "V",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATIO": "Trails Act",
+     "MEMO": "TRAILS ACT 142570001",
+     "NAME": "Summerville/Liverpool",
+     "PLAN": "------",
+     "REFERENCE": "OIC91-1049",
+     "THEME": "19",
+     "THEMETXT": "Trails Act Lands"
+    },
+    {
+     "CONTACT": "NSDNR,Parks",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "AUG2000",
+     "IUCN": "V",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATIO": "Trails Act",
+     "MEMO": "TRAILS ACT 142570001",
+     "NAME": "Summerville/Liverpool",
+     "PLAN": "------",
+     "REFERENCE": "OIC91-1049",
+     "THEME": "19",
+     "THEMETXT": "Trails Act Lands"
+    },
+    {
+     "CONTACT": "NSDNR,Parks",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "AUG2000",
+     "IUCN": "V",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATIO": "Trails Act",
+     "MEMO": "TRAILS ACT 142570001",
+     "NAME": "Summerville/Liverpool",
+     "PLAN": "------",
+     "REFERENCE": "OIC91-1049",
+     "THEME": "19",
+     "THEMETXT": "Trails Act Lands"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/52"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LB1_MEBGIS",
+    "MAREA_TYPE"
+   ],
+   "known": false,
+   "layer": "Historic Iron Mining Areas",
+   "sample": [
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Iron Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Iron Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Iron Mining Area"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "MAREA_TYPE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/58"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "PRO_NAME",
+    "PROTECT1",
+    "PROTECT2",
+    "SYMBOL",
+    "CONFIDENT",
+    "OWNER",
+    "AUTHORITY",
+    "STATUS",
+    "LGL_EFFECT",
+    "REFERENCE",
+    "CONTRIB",
+    "INTENT",
+    "INT_NAME",
+    "CONDS",
+    "CONDS_DESC",
+    "CATEGORY",
+    "PAPA_KEY2",
+    "NOTES",
+    "WEB_URL",
+    "PARK_MGMT"
+   ],
+   "known": false,
+   "layer": "National Parks and Park Adjuncts",
+   "sample": [
+    {
+     "AUTHORITY": "Department of Canadian Heritage, Parks Canada",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Department of Canadian Heritage, Parks Canada",
+     "PROTECT1": "National Park or Adjunct",
+     "PRO_NAME": "Cape Breton Highlands National Park",
+     "STATUS": "Designated",
+     "SYMBOL": "National Park or Adjunct"
+    },
+    {
+     "AUTHORITY": "Department of Canadian Heritage, Parks Canada",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Department of Canadian Heritage, Parks Canada",
+     "PROTECT1": "National Park or Adjunct",
+     "PRO_NAME": "Kejimkujik National Park",
+     "STATUS": "Designated",
+     "SYMBOL": "National Park or Adjunct"
+    },
+    {
+     "AUTHORITY": "Department of Canadian Heritage, Parks Canada",
+     "CONFIDENT": "Public. Free to distribute",
+     "CONTRIB": "Contributes to Provincial protection goals",
+     "INTENT": "N/A",
+     "LGL_EFFECT": "Yes",
+     "OWNER": "Department of Canadian Heritage, Parks Canada",
+     "PROTECT1": "National Park or Adjunct",
+     "PRO_NAME": "Kejimkujik Seaside Adjunct National Park",
+     "STATUS": "Designated",
+     "SYMBOL": "National Park or Adjunct"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "CONDS_DESC",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/30"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 4,
+   "fields": [
+    "THEMETXT",
+    "NAME",
+    "LEGISLATIO",
+    "CONTACT",
+    "REFERENCE",
+    "PLAN",
+    "LANDOWN",
+    "DATAADM",
+    "DATE_",
+    "MEMO",
+    "IUCN",
+    "THEME",
+    "NAME1",
+    "NAME2",
+    "NAME3"
+   ],
+   "known": false,
+   "layer": "Trails Act Lands",
+   "sample": [
+    {
+     "CONTACT": "NSDNR,Parks",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "AUG2000",
+     "IUCN": "V",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATIO": "Trails Act",
+     "MEMO": "TRAILS ACT 142570001",
+     "NAME": "Summerville/Liverpool",
+     "PLAN": "------",
+     "REFERENCE": "OIC91-1049",
+     "THEME": "19",
+     "THEMETXT": "Trails Act Lands"
+    },
+    {
+     "CONTACT": "NSDNR,Parks",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "AUG2000",
+     "IUCN": "V",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATIO": "Trails Act",
+     "MEMO": "TRAILS ACT 142570001",
+     "NAME": "Summerville/Liverpool",
+     "PLAN": "------",
+     "REFERENCE": "OIC91-1049",
+     "THEME": "19",
+     "THEMETXT": "Trails Act Lands"
+    },
+    {
+     "CONTACT": "NSDNR,Parks",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "AUG2000",
+     "IUCN": "V",
+     "LANDOWN": "Nova Scotia Department of Natural Resources",
+     "LEGISLATIO": "Trails Act",
+     "MEMO": "TRAILS ACT 142570001",
+     "NAME": "Summerville/Liverpool",
+     "PLAN": "------",
+     "REFERENCE": "OIC91-1049",
+     "THEME": "19",
+     "THEMETXT": "Trails Act Lands"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/51"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LB1_MEBGIS",
+    "MAREA_TYPE"
+   ],
+   "known": false,
+   "layer": "Historic Iron Mining Areas",
+   "sample": [
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Iron Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Iron Mining Area"
+    },
+    {
+     "LB1_MEBGIS": " ",
+     "MAREA_TYPE": "Iron Mining Area"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "MAREA_TYPE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/57"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 3,
+   "fields": [
+    "THEMETXT",
+    "NAME",
+    "LEGISLATIO",
+    "CONTACT",
+    "REFERENCE",
+    "PLAN",
+    "LANDOWN",
+    "DATAADM",
+    "DATE_",
+    "MEMO",
+    "IUCN",
+    "THEME",
+    "NAME1",
+    "NAME2",
+    "NAME3"
+   ],
+   "known": false,
+   "layer": "Parkway Areas",
+   "sample": [
+    {
+     "CONTACT": "NSDTPW",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "DEC2006",
+     "IUCN": "UA",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATIO": "Public Highways Act",
+     "MEMO": "Parcel A in Louisbourg OIC",
+     "NAME": "Louisbourg Parkway",
+     "PLAN": "------",
+     "REFERENCE": "OIC84-69",
+     "THEME": "36",
+     "THEMETXT": "Parkways"
+    },
+    {
+     "CONTACT": "NSDTPW",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "DEC2006",
+     "IUCN": "UA",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATIO": "Public Highways Act",
+     "MEMO": "Parcel B in Louisbourg OIC",
+     "NAME": "Louisbourg Parkway",
+     "PLAN": "------",
+     "REFERENCE": "OIC84-69",
+     "THEME": "36",
+     "THEMETXT": "Parkways"
+    },
+    {
+     "CONTACT": "NSDTPW",
+     "DATAADM": "NSDNR,Surveys\n",
+     "DATE_": "NOV2006",
+     "IUCN": "UA",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATIO": "Public Highways Act",
+     "MEMO": "------",
+     "NAME": "Peggy's Cove Parkway",
+     "PLAN": "------",
+     "REFERENCE": "OIC69-409",
+     "THEME": "36",
+     "THEMETXT": "Parkways"
+    }
+   ],
+   "service": "NovaRoc_printing",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc_printing/MapServer/55"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 3,
+   "fields": [
+    "THEMETXT",
+    "NAME",
+    "LEGISLATIO",
+    "CONTACT",
+    "REFERENCE",
+    "PLAN",
+    "LANDOWN",
+    "DATAADM",
+    "DATE_",
+    "MEMO",
+    "IUCN",
+    "THEME",
+    "NAME1",
+    "NAME2",
+    "NAME3"
+   ],
+   "known": false,
+   "layer": "Parkway Areas",
+   "sample": [
+    {
+     "CONTACT": "NSDTPW",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "DEC2006",
+     "IUCN": "UA",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATIO": "Public Highways Act",
+     "MEMO": "Parcel A in Louisbourg OIC",
+     "NAME": "Louisbourg Parkway",
+     "PLAN": "------",
+     "REFERENCE": "OIC84-69",
+     "THEME": "36",
+     "THEMETXT": "Parkways"
+    },
+    {
+     "CONTACT": "NSDTPW",
+     "DATAADM": "NSDNR,Surveys",
+     "DATE_": "DEC2006",
+     "IUCN": "UA",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATIO": "Public Highways Act",
+     "MEMO": "Parcel B in Louisbourg OIC",
+     "NAME": "Louisbourg Parkway",
+     "PLAN": "------",
+     "REFERENCE": "OIC84-69",
+     "THEME": "36",
+     "THEMETXT": "Parkways"
+    },
+    {
+     "CONTACT": "NSDTPW",
+     "DATAADM": "NSDNR,Surveys\n",
+     "DATE_": "NOV2006",
+     "IUCN": "UA",
+     "LANDOWN": "Multiple Owners",
+     "LEGISLATIO": "Public Highways Act",
+     "MEMO": "------",
+     "NAME": "Peggy's Cove Parkway",
+     "PLAN": "------",
+     "REFERENCE": "OIC69-409",
+     "THEME": "36",
+     "THEMETXT": "Parkways"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/54"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 27,
+   "fields": [
+    "FEAT_CODE",
+    "NOTES",
+    "MODIFIED",
+    "REV",
+    "NAME1"
+   ],
+   "known": true,
+   "layer": "National Historic Sites and Parks",
+   "sample": [
+    {
+     "FEAT_CODE": "DLHS40",
+     "MODIFIED": "Matched to coast",
+     "NAME1": "Fort Anne",
+     "NOTES": " ",
+     "REV": "y"
+    },
+    {
+     "FEAT_CODE": "DLHS40",
+     "MODIFIED": " ",
+     "NAME1": "Fort Edward",
+     "NOTES": " ",
+     "REV": "y"
+    },
+    {
+     "FEAT_CODE": "DLHS40",
+     "MODIFIED": "Matched to coast and McNabs & Lawlor Island Provincial Park",
+     "NAME1": "Fort McNab",
+     "NOTES": " ",
+     "REV": "n"
+    }
+   ],
+   "service": "NovaRoc",
+   "typef": "FEAT_CODE",
+   "url": "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29"
+  }
+ ],
+ "st": "CA-NS"
+}

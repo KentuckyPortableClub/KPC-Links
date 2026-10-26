@@ -1,0 +1,3505 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 292336,
+   "fields": [
+    "FOREST_INSECT_NAME",
+    "FOREST_DAMAGE_RANKING",
+    "DAMAGE_EVENT_NOTES",
+    "LOCATION_ACCURACY"
+   ],
+   "known": false,
+   "layer": "Forest Insect Damage Event",
+   "sample": [
+    {
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "FOREST_INSECT_NAME": "Forest Tent Caterpillar",
+     "LOCATION_ACCURACY": "Within 100 metres"
+    },
+    {
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "FOREST_INSECT_NAME": "Large Aspen Tortrix",
+     "LOCATION_ACCURACY": "AP Approximate (to 500m)"
+    },
+    {
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "FOREST_INSECT_NAME": "Pine Shoot Beetle",
+     "LOCATION_ACCURACY": "AP Approximate (to 500m)"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 131560,
+   "fields": [
+    "WILDLIFE_ACTIVITY_TYPE",
+    "HABITAT_CLASS",
+    "LOCAL_IDENT",
+    "HABITAT_QUALIFICATION",
+    "HABITAT_RANK",
+    "LOCATION_CLASS",
+    "SPECIES_EVIDENCE_FLG",
+    "FORAGE_TYPE",
+    "LOCATION_DESCR",
+    "GENERAL_COMMENTS",
+    "VERIFICATION_STATUS_FLG",
+    "LOCATION_ACCURACY",
+    "SENSITIVITY_CLASS"
+   ],
+   "known": false,
+   "layer": "Wildlife Values Area",
+   "sample": [
+    {
+     "FORAGE_TYPE": "Emergent/Submergent",
+     "GENERAL_COMMENTS": "MAFA Surveys July 2017 - Pic Forest FMP Planning (completed by Wawa District Bios and Regional Terrestrial Ecosystem Specialist",
+     "HABITAT_CLASS": "Feeding",
+     "HABITAT_QUALIFICATION": "Not Specified",
+     "HABITAT_RANK": "Low",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "LOCATION_DESCR": "Surveys focused in northwest corner, centre (south of Manitouwadge) and eastern portions of the Pic Forest",
+     "SPECIES_EVIDENCE_FLG": "Not Evaluated",
+     "VERIFICATION_STATUS_FLG": "Verified",
+     "WILDLIFE_ACTIVITY_TYPE": "Moose Aquatic Feeding Area"
+    },
+    {
+     "HABITAT_CLASS": "Feeding",
+     "HABITAT_QUALIFICATION": "Presently Suitable",
+     "HABITAT_RANK": "Low",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "SPECIES_EVIDENCE_FLG": "Not Evaluated",
+     "VERIFICATION_STATUS_FLG": "Verified",
+     "WILDLIFE_ACTIVITY_TYPE": "Moose Aquatic Feeding Area"
+    },
+    {
+     "FORAGE_TYPE": "Emergent/Submergent",
+     "GENERAL_COMMENTS": "MAFA Surveys July 2017 - Pic Forest FMP Planning (completed by Wawa District Bios and Regional Terrestrial Ecosystem Specialist",
+     "HABITAT_CLASS": "Feeding",
+     "HABITAT_QUALIFICATION": "Not Specified",
+     "HABITAT_RANK": "Low",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "LOCATION_DESCR": "Surveys focused in northwest corner, centre (south of Manitouwadge) and eastern portions of the Pic Forest",
+     "SPECIES_EVIDENCE_FLG": "Not Evaluated",
+     "VERIFICATION_STATUS_FLG": "Verified",
+     "WILDLIFE_ACTIVITY_TYPE": "Moose Aquatic Feeding Area"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open10",
+   "typef": "WILDLIFE_ACTIVITY_TYPE",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open10/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 97769,
+   "fields": [
+    "CLASS_SHORT_NAME",
+    "CPCAD_REP_IND",
+    "NAME_E",
+    "NAME_F",
+    "NAME_ORIGIN",
+    "NAME_UTF8_IND",
+    "ZONEDESC_E",
+    "ZONEDESC_F",
+    "BIOME",
+    "JUR_ID",
+    "AICHI_T11",
+    "IUCN_CAT",
+    "PA_DEF",
+    "OECM",
+    "IPCA",
+    "CONS_OBJ",
+    "LOC_E",
+    "LOC_F",
+    "TYPE_E",
+    "TYPE_F"
+   ],
+   "known": false,
+   "layer": "Natural Area Derived",
+   "sample": [
+    {
+     "BIOME": "T",
+     "CLASS_SHORT_NAME": "ADNTRLAR",
+     "CPCAD_REP_IND": "No",
+     "JUR_ID": "21527",
+     "NAME_E": "Reek Lake Balsam Fir Mixedwoods",
+     "NAME_UTF8_IND": "No"
+    },
+    {
+     "BIOME": "T",
+     "CLASS_SHORT_NAME": "ADNTRLAR",
+     "CPCAD_REP_IND": "No",
+     "JUR_ID": "3367",
+     "NAME_E": "SHOOFLY LAKE ESKER",
+     "NAME_UTF8_IND": "No"
+    },
+    {
+     "BIOME": "T",
+     "CLASS_SHORT_NAME": "ADNTRLAR",
+     "CPCAD_REP_IND": "No",
+     "JUR_ID": "10259",
+     "NAME_E": "HOLLAND MARSH",
+     "NAME_UTF8_IND": "No"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open10",
+   "typef": "CLASS_SHORT_NAME",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open10/MapServer/21"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 26083,
+   "fields": [
+    "ABIOTIC_EVENT_NAME",
+    "FOREST_DAMAGE_RANKING",
+    "DAMAGE_EVENT_NOTES",
+    "LOCATION_ACCURACY"
+   ],
+   "known": false,
+   "layer": "Forest Abiotic Damage Event",
+   "sample": [
+    {
+     "ABIOTIC_EVENT_NAME": "Blowdown",
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "LOCATION_ACCURACY": "Within 100 metres"
+    },
+    {
+     "ABIOTIC_EVENT_NAME": "Blowdown",
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "LOCATION_ACCURACY": "Within 100 metres"
+    },
+    {
+     "ABIOTIC_EVENT_NAME": "Blowdown",
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "LOCATION_ACCURACY": "Within 100 metres"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/16"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21064,
+   "fields": [
+    "FISH_ACTIVITY_TYPE",
+    "HABITAT_CLASS",
+    "HABITAT_QUALIFICATION",
+    "HABITAT_RANK",
+    "SPECIES_EVIDENCE_FLG",
+    "OBSERVATION_DATE_FLG",
+    "LOCAL_IDENT",
+    "LOCATION_DESCR",
+    "GENERAL_COMMENTS",
+    "VERIFICATION_STATUS_FLG",
+    "LOCATION_ACCURACY",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE"
+   ],
+   "known": false,
+   "layer": "Fish Activity Area",
+   "sample": [
+    {
+     "FISH_ACTIVITY_TYPE": "Lake Trout Spawning Area",
+     "GENERAL_COMMENTS": "Identified by FAU 2003 Lake trout netting. Spawning trout captured.",
+     "HABITAT_CLASS": "Spawning Area",
+     "HABITAT_QUALIFICATION": "Presently Suitable",
+     "HABITAT_RANK": "High",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OBSERVATION_DATE_FLG": "Actual",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SPECIES_EVIDENCE_FLG": "Yes",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "FISH_ACTIVITY_TYPE": "Lake Trout Spawning Area",
+     "GENERAL_COMMENTS": "FAU identified. Spawning trout caught in 2003.",
+     "HABITAT_CLASS": "Spawning Area",
+     "HABITAT_QUALIFICATION": "Presently Suitable",
+     "HABITAT_RANK": "Very High",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OBSERVATION_DATE_FLG": "Actual",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SPECIES_EVIDENCE_FLG": "Yes",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "FISH_ACTIVITY_TYPE": "Lake Trout Spawning Area",
+     "GENERAL_COMMENTS": "Spawning lake trout recorded in 2003 by FAU",
+     "HABITAT_CLASS": "Spawning Area",
+     "HABITAT_QUALIFICATION": "Presently Suitable",
+     "HABITAT_RANK": "High",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OBSERVATION_DATE_FLG": "Actual",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SPECIES_EVIDENCE_FLG": "Yes",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "FISH_ACTIVITY_TYPE",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/31"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 10613,
+   "fields": [
+    "WET_AREA_T",
+    "LOCAL_NAME",
+    "SPA_NAME",
+    "UPDATE_INF",
+    "UPDATE_SOU",
+    "OFFICIAL_N",
+    "LOCAL_NAM1",
+    "AQUATIC_RE",
+    "ARA_RESOUR",
+    "DRAIN_IND",
+    "LAKE_AT_CA",
+    "SEGMENTATI",
+    "THERMAL_CO",
+    "COLDWATER_",
+    "PERMANENCY",
+    "WATER_LEVE",
+    "USER_NAME",
+    "WET_AREAS_",
+    "AUTHORITY_"
+   ],
+   "known": false,
+   "layer": "Wet Areas - GSCA",
+   "sample": [
+    {
+     "AQUATIC_RE": " ",
+     "ARA_RESOUR": " ",
+     "DRAIN_IND": " ",
+     "LAKE_AT_CA": " ",
+     "LOCAL_NAM1": " ",
+     "LOCAL_NAME": " ",
+     "OFFICIAL_N": " ",
+     "SEGMENTATI": " ",
+     "SPA_NAME": "20",
+     "UPDATE_INF": "Added Wetland",
+     "UPDATE_SOU": "SWOOP2010/site visit AW",
+     "WET_AREA_T": "Wetland"
+    },
+    {
+     "AQUATIC_RE": " ",
+     "ARA_RESOUR": " ",
+     "DRAIN_IND": " ",
+     "LAKE_AT_CA": " ",
+     "LOCAL_NAM1": " ",
+     "LOCAL_NAME": " ",
+     "OFFICIAL_N": " ",
+     "SEGMENTATI": " ",
+     "SPA_NAME": "20",
+     "UPDATE_INF": "Added Wetland",
+     "UPDATE_SOU": "SWOOP2010/site visit AW",
+     "WET_AREA_T": "Wetland"
+    },
+    {
+     "AQUATIC_RE": " ",
+     "ARA_RESOUR": " ",
+     "DRAIN_IND": " ",
+     "LAKE_AT_CA": " ",
+     "LOCAL_NAM1": " ",
+     "LOCAL_NAME": " ",
+     "OFFICIAL_N": " ",
+     "SEGMENTATI": " ",
+     "SPA_NAME": "20",
+     "UPDATE_INF": "Added Wetland",
+     "UPDATE_SOU": "Site Inspection / SWOOP2006 / 1991",
+     "WET_AREA_T": "Wetland"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "USER_NAME",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/11"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 4405,
+   "fields": [
+    "DESC_",
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "Water Features",
+   "sample": [
+    {
+     "DESC_": "Water Area, Permanent",
+     "LABEL": " "
+    },
+    {
+     "DESC_": "Wetland Area, Permanent",
+     "LABEL": " "
+    },
+    {
+     "DESC_": "Water Area, Permanent",
+     "LABEL": " "
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "DESC_",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/13"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 2860,
+   "fields": [
+    "REG_DESCRI",
+    "UPDATE_INF",
+    "UPDATE_SOU",
+    "UPDATED",
+    "REVISION_N"
+   ],
+   "known": false,
+   "layer": "Regulations - GSCA",
+   "sample": [
+    {},
+    {},
+    {}
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "REG_DESCRI",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1832,
+   "fields": [
+    "OWNER"
+   ],
+   "known": false,
+   "layer": "Public Lands",
+   "sample": [
+    {
+     "OWNER": "UCPR"
+    },
+    {
+     "OWNER": "UCPR"
+    },
+    {
+     "OWNER": "UCPR"
+    }
+   ],
+   "service": "WebMap_PublicLands",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_PublicLands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1581,
+   "fields": [
+    "FOREST_DISEASE_NAME",
+    "FOREST_DAMAGE_RANKING",
+    "DAMAGE_EVENT_NOTES",
+    "LOCATION_ACCURACY"
+   ],
+   "known": false,
+   "layer": "Forest Disease Damage Event",
+   "sample": [
+    {
+     "DAMAGE_EVENT_NOTES": "Jack Pine mortality",
+     "FOREST_DAMAGE_RANKING": "Mortality",
+     "FOREST_DISEASE_NAME": "Armillaria root rot",
+     "LOCATION_ACCURACY": "Within 100 metres"
+    },
+    {
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "FOREST_DISEASE_NAME": "Brown spot needle blight of pine",
+     "LOCATION_ACCURACY": "Within 20 metres"
+    },
+    {
+     "FOREST_DAMAGE_RANKING": "Moderate-Severe",
+     "FOREST_DISEASE_NAME": "Brown spot needle blight of pine",
+     "LOCATION_ACCURACY": "Within 20 metres"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/17"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "",
+   "count": 1365,
+   "fields": [
+    "CLASS_SUBTYPE",
+    "HABITAT_QUALIF_CODE",
+    "HABITAT_RANK_CODE",
+    "SPECIES_EVIDENCE_CODE",
+    "LOCATION_CLASS_CODE",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Nursery Area Fish",
+   "sample": [
+    {
+     "CLASS_SUBTYPE": "White Sucker Nursery Area",
+     "HABITAT_QUALIF_CODE": "N",
+     "HABITAT_RANK_CODE": "5",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "LOCATION_DESCR": "McKinnons Creek",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SPECIES_EVIDENCE_CODE": "Y",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "CLASS_SUBTYPE": "Pumpkinseed Nursery Area",
+     "HABITAT_QUALIF_CODE": "N",
+     "HABITAT_RANK_CODE": "5",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "LOCATION_DESCR": "McKinnons Creek",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SPECIES_EVIDENCE_CODE": "Y",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "CLASS_SUBTYPE": "Muskellunge Nursery Area",
+     "HABITAT_QUALIF_CODE": "N",
+     "HABITAT_RANK_CODE": "5",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "LOCATION_DESCR": "McKinnons Creek",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SPECIES_EVIDENCE_CODE": "Y",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "RVCA_LIO_Service",
+   "typef": "CLASS_SUBTYPE",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_LIO_Service/MapServer/16"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1158,
+   "fields": [],
+   "known": false,
+   "layer": "ConservationLands_06292022",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape_STLe": 1398.95576504,
+     "Shape__Area": 191330.546875,
+     "Shape__Length": 1980.8800431093468
+    },
+    {
+     "FID": 2,
+     "Shape_STLe": 2750.15937242,
+     "Shape__Area": 759447.8515625,
+     "Shape__Length": 3895.039276777419
+    },
+    {
+     "FID": 3,
+     "Shape_STLe": 2925.44089996,
+     "Shape__Area": 588073.54296875,
+     "Shape__Length": 4142.888669979082
+    }
+   ],
+   "service": "ConservationLands_06292022",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ConservationLands_06292022/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1080,
+   "fields": [
+    "OWNER",
+    "NAME",
+    "DESCR",
+    "SOURCE",
+    "SOURCEDATE",
+    "FILEDATE"
+   ],
+   "known": false,
+   "layer": "ConservationLandsVs5_Public_noOPG",
+   "sample": [
+    {
+     "DESCR": "-",
+     "FILEDATE": "20201028",
+     "NAME": "-",
+     "OWNER": "Management Board of Cabinet",
+     "SOURCE": "LIO",
+     "SOURCEDATE": "20200821"
+    },
+    {
+     "DESCR": "-",
+     "FILEDATE": "20201028",
+     "NAME": "-",
+     "OWNER": "Ministry of Natural Resources",
+     "SOURCE": "LIO",
+     "SOURCEDATE": "20200821"
+    },
+    {
+     "DESCR": "-",
+     "FILEDATE": "20201028",
+     "NAME": "-",
+     "OWNER": "Ministry of Natural Resources",
+     "SOURCE": "LIO",
+     "SOURCEDATE": "20200821"
+    }
+   ],
+   "service": "WebMap_ConservationLands",
+   "typef": "DESCR",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/WebMap_ConservationLands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 800,
+   "fields": [
+    "Source",
+    "Land_Ownership"
+   ],
+   "known": false,
+   "layer": "dbo.Forest_cover",
+   "sample": [
+    {
+     "Land_Ownership": "Non-HCA Lands",
+     "Source": "Watershed Report Card 2022 - Forest Cover - Final"
+    },
+    {
+     "Land_Ownership": "Non-HCA Lands",
+     "Source": "Watershed Report Card 2022 - Forest Cover - Final"
+    },
+    {
+     "Land_Ownership": "HCA-owned Land",
+     "Source": "Watershed Report Card 2022 - Forest Cover - Final"
+    }
+   ],
+   "service": "dbo_Forest_cover",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/dbo_Forest_cover/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 594,
+   "fields": [
+    "MISC_EVENT_NAME",
+    "FOREST_DAMAGE_RANKING",
+    "DAMAGE_EVENT_NOTES",
+    "LOCATION_ACCURACY"
+   ],
+   "known": false,
+   "layer": "Forest Misc Damage Event",
+   "sample": [
+    {
+     "DAMAGE_EVENT_NOTES": "present",
+     "FOREST_DAMAGE_RANKING": "Unknown",
+     "LOCATION_ACCURACY": "Within 50 metres",
+     "MISC_EVENT_NAME": "Aspen decline"
+    },
+    {
+     "DAMAGE_EVENT_NOTES": "present",
+     "FOREST_DAMAGE_RANKING": "Unknown",
+     "LOCATION_ACCURACY": "Within 50 metres",
+     "MISC_EVENT_NAME": "Aspen decline"
+    },
+    {
+     "DAMAGE_EVENT_NOTES": "present",
+     "FOREST_DAMAGE_RANKING": "Unknown",
+     "LOCATION_ACCURACY": "Within 50 metres",
+     "MISC_EVENT_NAME": "Aspen decline"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/21"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "Property_Name",
+   "count": 499,
+   "fields": [
+    "Property_Name",
+    "Compartment",
+    "Stand_Type",
+    "Age_Ht_St",
+    "Type",
+    "Density",
+    "B_A_",
+    "Soil_Type",
+    "Texture",
+    "Drainage",
+    "CL_Type",
+    "Forest_Mngmt",
+    "Inv_Date",
+    "Topo",
+    "Access"
+   ],
+   "known": false,
+   "layer": "Compartments",
+   "sample": [
+    {
+     "Age_Ht_St": "1973-19",
+     "B_A_": "42",
+     "Compartment": "9",
+     "Drainage": "poor",
+     "Forest_Mngmt": "IF",
+     "Property_Name": "Baxter",
+     "Soil_Type": "North Gower",
+     "Stand_Type": "Pw10",
+     "Texture": "silt loam",
+     "Type": "stand"
+    },
+    {
+     "Age_Ht_St": "1973-12",
+     "B_A_": "14",
+     "Compartment": "10",
+     "Drainage": "poor",
+     "Forest_Mngmt": "IF",
+     "Property_Name": "Baxter",
+     "Soil_Type": "North Gower",
+     "Stand_Type": "La5 Mr2 Ag1 Po1 Bw1",
+     "Texture": "silt loam",
+     "Type": "plantation"
+    },
+    {
+     "Age_Ht_St": "45-17",
+     "B_A_": "23",
+     "Compartment": "12",
+     "Drainage": "poor",
+     "Forest_Mngmt": "CE",
+     "Property_Name": "Baxter",
+     "Soil_Type": "North Gower",
+     "Stand_Type": "Pr6 Sb1 Pw1 Sw1 Bw1",
+     "Texture": "silt loam",
+     "Type": "stand"
+    }
+   ],
+   "service": "RVCA_ConservationArea_Service",
+   "typef": "Stand_Type",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 477,
+   "fields": [
+    "GenLanduse"
+   ],
+   "known": false,
+   "layer": "ELC_2008_ClipSturgeon120m",
+   "sample": [
+    {
+     "GenLanduse": "Natural"
+    },
+    {
+     "GenLanduse": "Natural"
+    },
+    {
+     "GenLanduse": "Agriculture"
+    }
+   ],
+   "service": "SturgeonShorelineLanduseHistoric",
+   "typef": "GenLanduse",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/SturgeonShorelineLanduseHistoric/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 347,
+   "fields": [
+    "PROTECTED_SITE_IDENT",
+    "PROTECTED_AREA_NAME_ENG",
+    "PROTECTED_AREA_NAME_FR",
+    "PROTECTED_AREA_NAME_OJIBWA",
+    "PROTECTED_AREA_NAME_OJI_CREE",
+    "PROTECTED_AREA_NAME_CREE",
+    "TYPE_ENG",
+    "TYPE_FR",
+    "STATUS_ENG",
+    "STATUS_FR",
+    "COMMON_SHORT_NAME",
+    "IUCN_CATEGORY",
+    "REGULATION_NUMBER",
+    "OPERATING_STATUS_IND",
+    "PROVINCIAL_PARK_CLASS_ENG",
+    "PROVINCIAL_PARK_CLASS_FR",
+    "OWNER_ENG",
+    "OWNER_FR",
+    "MANAGEMENT_ENG",
+    "MANAGEMENT_FR"
+   ],
+   "known": false,
+   "layer": "Provincial Park Regulated",
+   "sample": [
+    {
+     "COMMON_SHORT_NAME": "LAKE ST. PETER  ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "LAKE ST. PETER PROVINCIAL PARK (RECREATIONAL CLASS)",
+     "PROTECTED_SITE_IDENT": "P391",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    },
+    {
+     "COMMON_SHORT_NAME": "SAUBLE FALLS",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "SAUBLE FALLS PROVINCIAL PARK (RECREATIONAL CLASS)",
+     "PROTECTED_SITE_IDENT": "P4485",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    },
+    {
+     "COMMON_SHORT_NAME": "MENZEL CENTENNIAL  ",
+     "IUCN_CATEGORY": "Ia",
+     "PROTECTED_AREA_NAME_ENG": "MENZEL CENTENNIAL PROVINCIAL PARK (NATURE RESERVE CLASS)",
+     "PROTECTED_SITE_IDENT": "P4467",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open03",
+   "typef": "TYPE_ENG",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 306,
+   "fields": [
+    "PROTECTED_SITE_IDENT",
+    "PROTECTED_AREA_NAME_ENG",
+    "PROTECTED_AREA_NAME_FR",
+    "PROTECTED_AREA_NAME_OJIBWA",
+    "PROTECTED_AREA_NAME_OJI_CREE",
+    "PROTECTED_AREA_NAME_CREE",
+    "TYPE_ENG",
+    "TYPE_FR",
+    "STATUS_ENG",
+    "STATUS_FR",
+    "COMMON_SHORT_NAME",
+    "IUCN_CATEGORY",
+    "REGULATION_NUMBER",
+    "OWNER_ENG",
+    "OWNER_FR",
+    "MANAGEMENT_ENG",
+    "MANAGEMENT_FR",
+    "LOCATION_ENG",
+    "LOCATION_FR",
+    "LEGISLATION"
+   ],
+   "known": false,
+   "layer": "Conservation Reserve Regulated",
+   "sample": [
+    {
+     "COMMON_SHORT_NAME": "WEST WABIGOON RIVER ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "WEST WABIGOON RIVER CONSERVATION RESERVE",
+     "PROTECTED_SITE_IDENT": "C2338",
+     "STATUS_ENG": "Regulated Conservation Reserve",
+     "STATUS_FR": "Réserve de conservation réglementé",
+     "TYPE_ENG": "Conservation Reserve",
+     "TYPE_FR": "Réserve de conservation"
+    },
+    {
+     "COMMON_SHORT_NAME": "GREENWOOD LAKE ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "GREENWOOD LAKE CONSERVATION RESERVE",
+     "PROTECTED_SITE_IDENT": "C2638",
+     "STATUS_ENG": "Regulated Conservation Reserve",
+     "STATUS_FR": "Réserve de conservation réglementé",
+     "TYPE_ENG": "Conservation Reserve",
+     "TYPE_FR": "Réserve de conservation"
+    },
+    {
+     "COMMON_SHORT_NAME": "FARRINGTON TOWNSHIP ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "FARRINGTON TOWNSHIP CONSERVATION RESERVE",
+     "PROTECTED_SITE_IDENT": "C2329",
+     "STATUS_ENG": "Regulated Conservation Reserve",
+     "STATUS_FR": "Réserve de conservation réglementé",
+     "TYPE_ENG": "Conservation Reserve",
+     "TYPE_FR": "Réserve de conservation"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open03",
+   "typef": "TYPE_ENG",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 298,
+   "fields": [
+    "Agency",
+    "Program",
+    "SbPrgrm",
+    "Provinc",
+    "County",
+    "Townshp",
+    "Commnty",
+    "Mncplty"
+   ],
+   "known": false,
+   "layer": "LTVCA_Forest_Ontario_Projects_(up_to_2021)",
+   "sample": [
+    {
+     "Agency": "Lower Thames Valley Conservation Authority",
+     "Commnty": "Wheatley",
+     "County": "Essex",
+     "Mncplty": "Lakeshore",
+     "Program": "50 Million Tree Program",
+     "Provinc": "ON",
+     "SbPrgrm": " ",
+     "Townshp": "Leamington"
+    },
+    {
+     "Agency": "Lower Thames Valley Conservation Authority",
+     "Commnty": "Cedar Springs",
+     "County": "Chatham-Kent",
+     "Mncplty": "Chatham-Kent",
+     "Program": "50 Million Tree Program",
+     "Provinc": "ON",
+     "SbPrgrm": " ",
+     "Townshp": "Harwich"
+    },
+    {
+     "Agency": "Lower Thames Valley Conservation Authority",
+     "Commnty": "North Buxton",
+     "County": "Chatham-Kent",
+     "Mncplty": "Chatham-Kent",
+     "Program": "50 Million Tree Program",
+     "Provinc": "ON",
+     "SbPrgrm": " ",
+     "Townshp": "Raleigh"
+    }
+   ],
+   "service": "LTVCA_Forest_Ontario_Projects_(up_to_2021)_Public",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTVCA_Forest_Ontario_Projects_(up_to_2021)_Public/FeatureServer/0"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 268,
+   "fields": [
+    "DESCRIPTIO"
+   ],
+   "known": false,
+   "layer": "Approximate Regulated and Screening Areas - SVCA",
+   "sample": [
+    {
+     "DESCRIPTIO": "Approximate Screening Area"
+    },
+    {
+     "DESCRIPTIO": "Approximate Screening Area"
+    },
+    {
+     "DESCRIPTIO": "Approximate Screening Area"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "DESCRIPTIO",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/67"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 194,
+   "fields": [
+    "FireStatus"
+   ],
+   "known": false,
+   "layer": "Wildland Fire (Hazardous Forest Types)",
+   "sample": [
+    {
+     "FireStatus": "Extreme"
+    },
+    {
+     "FireStatus": "High"
+    },
+    {
+     "FireStatus": "High"
+    }
+   ],
+   "service": "Public/Service_GCOfficialPlan",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_GCOfficialPlan/MapServer/1"
+  },
+  {
+   "agency": "https://gis.npca.ca/portal/apps/sites/admin/assets/templates/sites/defaultSite/r",
+   "area": "",
+   "count": 167,
+   "fields": [
+    "Asset_ID"
+   ],
+   "known": false,
+   "layer": "Managed Lands NPCA",
+   "sample": [
+    {
+     "Asset_ID": "BAIR-1996-L-PROP-01"
+    },
+    {
+     "Asset_ID": "BALL-1959-L-PROP-01"
+    },
+    {
+     "Asset_ID": "BALL-1961-L-PROP-02"
+    }
+   ],
+   "service": "Managed_Lands_NPCA",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Managed_Lands_NPCA/FeatureServer/0"
+  },
+  {
+   "agency": "NPCA",
+   "area": "",
+   "count": 154,
+   "fields": [
+    "CA_Name",
+    "Legal_Txt",
+    "Owner",
+    "Municipali",
+    "PropCode",
+    "ARN"
+   ],
+   "known": false,
+   "layer": "Conservation Lands",
+   "sample": [
+    {
+     "ARN": "281002300502800",
+     "CA_Name": "Oswego Creek",
+     "Legal_Txt": "MLT CON 1 & 2 C PT LOT 20 PT",
+     "Municipali": "Haldimand County",
+     "Owner": " ",
+     "PropCode": " "
+    },
+    {
+     "ARN": "281002300502800",
+     "CA_Name": "Oswego Creek",
+     "Legal_Txt": "MLT CON 1 & 2 C PT LOT 20 PT",
+     "Municipali": "Haldimand County",
+     "Owner": " ",
+     "PropCode": " "
+    },
+    {
+     "ARN": "281002300502800",
+     "CA_Name": "Oswego Creek",
+     "Legal_Txt": "MLT CON 1 & 2 C PT LOT 20 PT",
+     "Municipali": "Haldimand County",
+     "Owner": " ",
+     "PropCode": " "
+    }
+   ],
+   "service": "Conservation_Properties",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Properties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 151,
+   "fields": [
+    "OFFICIAL_NAME",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Unit",
+   "sample": [
+    {
+     "BUSINESS_EFF_DATE_FLG": "Actual",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OFFICIAL_NAME": "3",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Actual",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OFFICIAL_NAME": "67",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Actual",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OFFICIAL_NAME": "87D",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open05",
+   "typef": "LOCATION_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/5"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 115,
+   "fields": [
+    "Reg_Meande"
+   ],
+   "known": false,
+   "layer": "Meanders",
+   "sample": [
+    {
+     "Reg_Meande": "Yes"
+    },
+    {
+     "Reg_Meande": "Yes"
+    },
+    {
+     "Reg_Meande": "Yes"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/9"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 105,
+   "fields": [
+    "NAME",
+    "Spcial_Ftr",
+    "Address",
+    "Park_Ftrs",
+    "URL"
+   ],
+   "known": false,
+   "layer": "Parks",
+   "sample": [
+    {
+     "Address": "175 Chesterton Shores, Scarborough",
+     "NAME": "PORT UNION WATERFRONT PARK",
+     "Park_Ftrs": "Bike trail, pedestrian node with lookout shelter",
+     "Spcial_Ftr": "13.5 hectares of waterfront green space, 3.8 km of continuous waterfront trails, Terrestrial and aquatic habitat restoration"
+    },
+    {
+     "Address": " ",
+     "NAME": "CUDIA PARK",
+     "Park_Ftrs": " ",
+     "Spcial_Ftr": " "
+    },
+    {
+     "Address": " ",
+     "NAME": "SOUTH MARINE DRIVE PARK",
+     "Park_Ftrs": " ",
+     "Spcial_Ftr": " "
+    }
+   ],
+   "service": "Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 99,
+   "fields": [
+    "CANAME",
+    "CADESN",
+    "CIVIC",
+    "OWNER",
+    "RollNumber",
+    "Lot",
+    "Concession",
+    "Municipality",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Conservation Area Boundaries",
+   "sample": [
+    {
+     "CADESN": "Conservation Area",
+     "CANAME": "Imagine the Marsh Conservation Area",
+     "CIVIC": "22 D'eyncourt Street, Harcourt, ON",
+     "Concession": "8",
+     "Lot": "27",
+     "Municipality": "Township of Selwyn",
+     "OWNER": "ORCA",
+     "RollNumber": "151603000109300"
+    },
+    {
+     "CADESN": "Forest Blocks",
+     "CANAME": "White Lake East Forest Blocks",
+     "CIVIC": "County Road 40",
+     "Concession": "9",
+     "Lot": "25-26",
+     "Municipality": "Township of Douro Dummer",
+     "RollNumber": "152202000538900"
+    },
+    {
+     "CADESN": "Conservation Area",
+     "CANAME": "Warsaw Caves Conservation Area",
+     "CIVIC": "Between 1479 and 1513 County Road 4",
+     "Concession": "2",
+     "Lot": "14-15",
+     "Municipality": "Township of Douro Dummer",
+     "OWNER": "ORCA",
+     "RollNumber": "152202000328300"
+    }
+   ],
+   "service": "ORCA_Public/ORCA_Annual_Report_2023",
+   "typef": "created_user",
+   "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_2023/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "FRI_UNIT_NAME",
+   "count": 88,
+   "fields": [
+    "FRI_UNIT_TYPE",
+    "FRI_UNIT_NAME",
+    "FRI_UNIT_IDENT",
+    "FRI_STATUS",
+    "FRI_STATUS_COMMENTS",
+    "IMAGERY",
+    "FRI_METADATA_URL",
+    "PP_FRI_FIMV1_AVAIL",
+    "PP_FRI_2D3D_AVAIL",
+    "PP_FRI_TILED_AVAIL",
+    "PP_FRI_LEGACY_AVAIL",
+    "PP_PI_INV_TYPE_AVAIL",
+    "PLAN_INV_IMP_DT",
+    "ADDITIONAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Forest Resource Inventory Status",
+   "sample": [
+    {
+     "FRI_STATUS": "Archived (Pre-FIMv2)",
+     "FRI_UNIT_IDENT": "994",
+     "FRI_UNIT_NAME": "Whitefeather Forest",
+     "FRI_UNIT_TYPE": "Forest Management Unit",
+     "IMAGERY": "1:20000 B&W Sept. 2001 scanned and processed in Softcopy",
+     "PP_FRI_2D3D_AVAIL": "None",
+     "PP_FRI_FIMV1_AVAIL": "Complete Coverage",
+     "PP_FRI_LEGACY_AVAIL": "None",
+     "PP_FRI_TILED_AVAIL": "None",
+     "PP_PI_INV_TYPE_AVAIL": "None"
+    },
+    {
+     "FRI_STATUS": "Complete",
+     "FRI_UNIT_IDENT": "NBI",
+     "FRI_UNIT_NAME": "Mishkigogamang",
+     "FRI_UNIT_TYPE": "Forest Management Unit",
+     "IMAGERY": "1:30000 B&W scanned and processed in Softcopy",
+     "PP_FRI_2D3D_AVAIL": "None",
+     "PP_FRI_FIMV1_AVAIL": "None",
+     "PP_FRI_LEGACY_AVAIL": "None",
+     "PP_FRI_TILED_AVAIL": "None",
+     "PP_PI_INV_TYPE_AVAIL": "None"
+    },
+    {
+     "FRI_STATUS": "None",
+     "FRI_UNIT_IDENT": "415",
+     "FRI_UNIT_NAME": "Ogoki Forest",
+     "FRI_UNIT_TYPE": "Forest Management Unit",
+     "PP_FRI_2D3D_AVAIL": "None",
+     "PP_FRI_FIMV1_AVAIL": "None",
+     "PP_FRI_LEGACY_AVAIL": "None",
+     "PP_FRI_TILED_AVAIL": "None",
+     "PP_PI_INV_TYPE_AVAIL": "Planning Composite Inventory (initial)"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "FRI_UNIT_TYPE",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/23"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "NAME",
+   "count": 58,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Regulations - NVCA",
+   "sample": [
+    {
+     "NAME": "Municipality of Grey Highlands"
+    },
+    {
+     "NAME": "Municipality of Grey Highlands"
+    },
+    {
+     "NAME": "Municipality of Grey Highlands"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/7"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "Property_Name",
+   "count": 58,
+   "fields": [
+    "Property_Name",
+    "Owner",
+    "HTTP",
+    "Address",
+    "PHOTO",
+    "Access"
+   ],
+   "known": false,
+   "layer": "Other RVCA Lands",
+   "sample": [
+    {
+     "Access": "Not open",
+     "Owner": "RVCF",
+     "Property_Name": "Fine"
+    },
+    {
+     "Access": "Not open",
+     "Owner": "RVCF",
+     "Property_Name": "Bula"
+    },
+    {
+     "Access": "Not open",
+     "Owner": "RVCA",
+     "Property_Name": "Richmond Weir"
+    }
+   ],
+   "service": "RVCA_ConservationArea_Service",
+   "typef": "",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/9"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 55,
+   "fields": [],
+   "known": false,
+   "layer": "Wet Areas - GRCA",
+   "sample": [
+    {
+     "Buffer_dis": 120.0,
+     "OBJECTID_12": 56,
+     "Shape.STArea()": 143658.275241925,
+     "Shape.STLength()": 2308.4835777751064
+    },
+    {
+     "Buffer_dis": 120.0,
+     "OBJECTID_12": 57,
+     "Shape.STArea()": 90981.27947817,
+     "Shape.STLength()": 1168.5862804532646
+    },
+    {
+     "Buffer_dis": 120.0,
+     "OBJECTID_12": 58,
+     "Shape.STArea()": 315564.60255572,
+     "Shape.STLength()": 2177.7262974810437
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/12"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 54,
+   "fields": [
+    "SUB_WATERS",
+    "CA"
+   ],
+   "known": false,
+   "layer": "Sub-Watershed Boundary",
+   "sample": [
+    {
+     "CA": "SVCA",
+     "SUB_WATERS": "Beatty Saugeen River"
+    },
+    {
+     "CA": "SVCA",
+     "SUB_WATERS": "South Saugeen River"
+    },
+    {
+     "CA": "SVCA",
+     "SUB_WATERS": "Rocky Saugeen River"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 45,
+   "fields": [
+    "Tract_Name",
+    "Permitted_Use",
+    "No_Hunting",
+    "Accessible",
+    "Address",
+    "Town",
+    "Postal_Code",
+    "Amenities",
+    "Amenities_other",
+    "Trail_Surface",
+    "Trail_Difficulty",
+    "Seasonal_Parking",
+    "Improved_Trails",
+    "Gates",
+    "visitgrey_url",
+    "trailforks_url",
+    "ontarionaturetrails_url",
+    "Tract_Name_Former",
+    "Description",
+    "Closure_Status"
+   ],
+   "known": false,
+   "layer": "Grey County Managed Forest",
+   "sample": [
+    {
+     "Accessible": "No",
+     "Address": "467200 12th Concession B",
+     "No_Hunting": "No",
+     "Permitted_Use": "Hiking,Snowshoeing,Cross_Country_Skiing,Hunting",
+     "Seasonal_Parking": "No",
+     "Town": "Municipality of Grey Highlands",
+     "Tract_Name": "Lady Bank",
+     "Trail_Difficulty": "Easy",
+     "Trail_Surface": "Natural"
+    },
+    {
+     "Accessible": "No",
+     "Address": "526918 Artemesia-Euphrasia Townline",
+     "No_Hunting": "No",
+     "Permitted_Use": "Hiking,Snowshoeing,Cross_Country_Skiing,Hunting",
+     "Seasonal_Parking": "No",
+     "Town": "Municipality of Grey Highlands",
+     "Tract_Name": "Eugenia",
+     "Trail_Difficulty": "Easy",
+     "Trail_Surface": "Natural"
+    },
+    {
+     "Accessible": "No",
+     "Address": "234902 Concession 2 WGR",
+     "No_Hunting": "No",
+     "Permitted_Use": "Hiking,Snowshoeing,Cross_Country_Skiing,Hunting,Fishing",
+     "Seasonal_Parking": "No",
+     "Town": "Municipality of West Grey",
+     "Tract_Name": "North Welbeck",
+     "Trail_Difficulty": "Easy",
+     "Trail_Surface": "Natural"
+    }
+   ],
+   "service": "Public/Service_ForestTract",
+   "typef": "Permitted_Use",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ForestTract/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [],
+   "known": false,
+   "layer": "dbo.Hrca_trail_parking",
+   "sample": [
+    {
+     "OID": 1,
+     "Shape__Area": 1962.46533203125,
+     "Shape__Length": 157.05906537487675,
+     "Version": 0
+    },
+    {
+     "OID": 2,
+     "Shape__Area": 1962.4638671875,
+     "Shape__Length": 157.05897520133163,
+     "Version": 0
+    },
+    {
+     "OID": 3,
+     "Shape__Area": 1962.465576171875,
+     "Shape__Length": 157.05905107627063,
+     "Version": 0
+    }
+   ],
+   "service": "dbo_Hca_trail_parking",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/dbo_Hca_trail_parking/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "FMU_NAME",
+    "FMU_CODE",
+    "LICENSEE_NAME",
+    "LICENSEE_NUMBER",
+    "LEAD_MNR_DISTRICT_NAME",
+    "LEAD_MNR_REGION_NAME",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Forest Management Unit",
+   "sample": [
+    {
+     "FMU_CODE": "816",
+     "FMU_NAME": "Lake Nipigon Forest",
+     "LEAD_MNR_DISTRICT_NAME": "Nipigon Geraldton District",
+     "LEAD_MNR_REGION_NAME": "Northwest",
+     "LICENSEE_NAME": "Lake Nipigon Forest Management Inc.",
+     "LICENSEE_NUMBER": "550412"
+    },
+    {
+     "FMU_CODE": "421",
+     "FMU_NAME": "Pineland Forest",
+     "LEAD_MNR_DISTRICT_NAME": "Chapleau Wawa District",
+     "LEAD_MNR_REGION_NAME": "Northeast",
+     "LICENSEE_NAME": "Pineland Timber Company Ltd.",
+     "LICENSEE_NUMBER": "550816"
+    },
+    {
+     "FMU_CODE": "574",
+     "FMU_NAME": "Missinaibi Forest",
+     "LEAD_MNR_DISTRICT_NAME": "Chapleau Wawa District",
+     "LEAD_MNR_REGION_NAME": "Northeast",
+     "LICENSEE_NAME": "Missinaibi Forest Management Inc.",
+     "LICENSEE_NUMBER": "550390"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/20"
+  },
+  {
+   "agency": "",
+   "area": "Website",
+   "count": 37,
+   "fields": [
+    "CA_Name",
+    "CA_Name_1",
+    "Label",
+    "Conservati",
+    "Address",
+    "Phone",
+    "Email",
+    "Website",
+    "TollFree",
+    "Last_Update"
+   ],
+   "known": false,
+   "layer": "ConservationAuthoritiesInformation",
+   "sample": [
+    {
+     "Address": "71108 Morrison Line, RR 3, Exeter, ON, N0M 1S5",
+     "CA_Name": "Ausable Bayfield Conservation Authority",
+     "CA_Name_1": "Ausable Bayfield Conservation Authority",
+     "Conservati": "Ausable Bayfield Conservation Authority",
+     "Email": "info@abca.ca",
+     "Label": "Ausable Bayfield",
+     "Last_Update": "January 2020",
+     "Phone": "519-235-2610",
+     "TollFree": "1-888-286-2610",
+     "Website": "http://www.abca.ca"
+    },
+    {
+     "Address": "1641 Perth Road, Box 160, Glenburnie, ON, K0H 1S0",
+     "CA_Name": "Cataraqui Region Conservation Authority",
+     "CA_Name_1": "Cataraqui Region Conservation Authority",
+     "Conservati": "Cataraqui Region Conservation Authority",
+     "Email": "info@crca.ca",
+     "Label": "Cataraqui Region",
+     "Last_Update": "January 2020",
+     "Phone": "613-546-4228",
+     "TollFree": "1-877-956-2722",
+     "Website": "http://www.crca.ca"
+    },
+    {
+     "Address": "8079 Springwater Road, RR 5, Aylmer, ON, N5H 2R4",
+     "CA_Name": "Catfish Creek Conservation Authority",
+     "CA_Name_1": "Catfish Creek Conservation Authority",
+     "Conservati": "Catfish Creek Conservation Authority",
+     "Email": "admin@catfishcreek.ca",
+     "Label": "Catfish",
+     "Last_Update": "January 2020",
+     "Phone": "519-773-9037",
+     "Website": "http://www.catfishcreek.ca"
+    }
+   ],
+   "service": "ConservationAuthoritiesInformation",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ConservationAuthoritiesInformation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36,
+   "fields": [
+    "LEGAL_NAME",
+    "COMMON_NAME",
+    "F_TYPE",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Conservation Authority Admin Area",
+   "sample": [
+    {
+     "COMMON_NAME": "Hamilton Conservation Authority",
+     "F_TYPE": "Land",
+     "LEGAL_NAME": "Hamilton Region Conservation Authority"
+    },
+    {
+     "COMMON_NAME": "Lower Thames Valley Conservation Authority",
+     "F_TYPE": "Land",
+     "LEGAL_NAME": "Lower Thames Valley Conservation Authority"
+    },
+    {
+     "COMMON_NAME": "North Bay-Mattawa Conservation Authority",
+     "F_TYPE": "Land",
+     "LEGAL_NAME": "North Bay Mattawa Conservation Authority"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open03",
+   "typef": "F_TYPE",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/11"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 35,
+   "fields": [
+    "ZONE_SET_IDENT",
+    "ZONE_SET_DESCR",
+    "ZONE_UNIT_IDENT",
+    "ZONE_UNIT_DESCR",
+    "ZONE_UNIT_GENETIC_SOURCE",
+    "ZONE_UNIT_SPECIES",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Forest Genetics Zone",
+   "sample": [
+    {
+     "GENERAL_COMMENTS": "Breeding zones re-digitized By Tyler Straight in Aug 2019.  Seed Zone boundaries based mostly on a combination of FMUs, Seed Zones (NWR and NER) and Hills regions (Southern Region).  Efforts were made to reduce the misalignment of Breeding Zones with other base features including FMU, Seed Zones and MNRF Regional boundaries.",
+     "ZONE_SET_DESCR": "Northwest Region Breeding Zones for Sw",
+     "ZONE_SET_IDENT": "BZ_Sw_NWR",
+     "ZONE_UNIT_DESCR": "4300 Fort Frances is a unit within the Northwest Region Breeding Zones for Sw zone set",
+     "ZONE_UNIT_IDENT": "4300 Fort Frances",
+     "ZONE_UNIT_SPECIES": "Sw"
+    },
+    {
+     "GENERAL_COMMENTS": "Breeding zones re-digitized By Tyler Straight in Aug 2019.  Seed Zone boundaries based mostly on a combination of FMUs, Seed Zones (NWR and NER) and Hills regions (Southern Region).  Efforts were made to reduce the misalignment of Breeding Zones with other base features including FMU, Seed Zones and MNRF Regional boundaries.",
+     "ZONE_SET_DESCR": "Northwest Region Breeding Zones for Sw",
+     "ZONE_SET_IDENT": "BZ_Sw_NWR",
+     "ZONE_UNIT_DESCR": "5300 Fort Frances unit within the Northwest Region Breeding Zones for Sw zone set",
+     "ZONE_UNIT_IDENT": "5300 Fort Frances",
+     "ZONE_UNIT_SPECIES": "Sw"
+    },
+    {
+     "GENERAL_COMMENTS": "Breeding zones re-digitized By Tyler Straight in Aug 2019.  Seed Zone boundaries based mostly on a combination of FMUs, Seed Zones (NWR and NER) and Hills regions (Southern Region).  Efforts were made to reduce the misalignment of Breeding Zones with other base features including FMU, Seed Zones and MNRF Regional boundaries.",
+     "ZONE_SET_DESCR": "Northwest Region Breeding Zones for Sw",
+     "ZONE_SET_IDENT": "BZ_Sw_NWR",
+     "ZONE_UNIT_DESCR": "3400 unit within the Northwest Region Breeding Zones for Sw zone set",
+     "ZONE_UNIT_IDENT": "3400",
+     "ZONE_UNIT_SPECIES": "Sw"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "ZONE_SET_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/18"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "HISTORICAL_OIL_FIELD_NAME"
+   ],
+   "known": false,
+   "layer": "Petroleum Historical Oil Field",
+   "sample": [
+    {
+     "HISTORICAL_OIL_FIELD_NAME": "Fairbanks-Baldwin North Property"
+    },
+    {
+     "HISTORICAL_OIL_FIELD_NAME": "Fairbanks-Byers Property"
+    },
+    {
+     "HISTORICAL_OIL_FIELD_NAME": "Fairbanks-James Property"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open08",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open08/MapServer/21"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "CANAME",
+    "CADESN",
+    "CIVIC",
+    "OWNER",
+    "RollNumber",
+    "Lot",
+    "Concession",
+    "Municipality",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Conservation Area Boundaries",
+   "sample": [
+    {
+     "CADESN": "Conservation Area",
+     "CANAME": "Imagine the Marsh Conservation Area",
+     "CIVIC": "22 D'eyncourt Street, Harcourt, ON",
+     "Concession": "8",
+     "Lot": "27",
+     "Municipality": "Township of Selwyn",
+     "OWNER": "ORCA",
+     "RollNumber": "151603000109300",
+     "created_user": "CODYADMIN",
+     "last_edited_user": "CODYADMIN"
+    },
+    {
+     "CADESN": "Conservation Area",
+     "CANAME": "Warsaw Caves Conservation Area",
+     "CIVIC": "Between 1479 and 1513 County Road 4",
+     "Concession": "2",
+     "Lot": "14-15",
+     "Municipality": "Township of Douro Dummer",
+     "OWNER": "ORCA",
+     "RollNumber": "152202000328300",
+     "created_user": "CODYADMIN",
+     "last_edited_user": "CODYADMIN"
+    },
+    {
+     "CADESN": "Campground",
+     "CANAME": "Beavermead Campground",
+     "CIVIC": "2011 Ashburnham Drive, Peterborough, ON",
+     "Concession": "13",
+     "Lot": "27-28",
+     "Municipality": "City of Peterborough",
+     "OWNER": "City of Peterborough",
+     "RollNumber": "040120055000000",
+     "created_user": "CODYADMIN",
+     "last_edited_user": "CODYADMIN"
+    }
+   ],
+   "service": "ORCA_Public/ORCA_60th_Anniversary_WebMap",
+   "typef": "created_user",
+   "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_60th_Anniversary_WebMap/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "OFFICIAL_NAME",
+    "PARK_OR_RESERVE_IDENT",
+    "REGULATED_IND",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "NGO Nature Reserve",
+   "sample": [
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "GENERAL_COMMENTS": "Some boundaries determined through Conservation Land Tax Reduction Program application process.  Lower Grand River Trust property boundaries to be included at a later date.",
+     "LOCATION_ACCURACY": "RE Reliable (to 100m)",
+     "OFFICIAL_NAME": "G.G NEWTON RESERVE",
+     "PARK_OR_RESERVE_IDENT": "174468464834294",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "GENERAL_COMMENTS": "Some boundaries determined through Conservation Land Tax Reduction Program application process.  Lower Grand River Trust property boundaries to be included at a later date.",
+     "LOCATION_ACCURACY": "RE Reliable (to 100m)",
+     "OFFICIAL_NAME": "K-W FIELD NATURALISTS PROPERTY",
+     "PARK_OR_RESERVE_IDENT": "175467724798773",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "GENERAL_COMMENTS": "Some boundaries determined through Conservation Land Tax Reduction Program application process.  Lower Grand River Trust property boundaries to be included at a later date.",
+     "LOCATION_ACCURACY": "RE Reliable (to 100m)",
+     "OFFICIAL_NAME": "K-W FIELD NAT. PROP. (MONT. PROP.)",
+     "PARK_OR_RESERVE_IDENT": "175290964797608",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open06",
+   "typef": "LOCATION_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open06/MapServer/23"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "ROLL_NUMBER",
+    "NOTE"
+   ],
+   "known": false,
+   "layer": "dbo.Managed_forest_2017",
+   "sample": [
+    {
+     "NOTE": "This is MFP eligible area only - Extracted from MFP 2017 with Silv-Econ",
+     "ROLL_NUMBER": "2301-000-004-00110"
+    },
+    {
+     "NOTE": "This is MFP eligible area only - Extracted from MFP 2017 with Silv-Econ",
+     "ROLL_NUMBER": "2301-000-005-00400"
+    },
+    {
+     "NOTE": "This is MFP eligible area only - Extracted from MFP 2017 with Silv-Econ",
+     "ROLL_NUMBER": "2301-000-005-00700"
+    }
+   ],
+   "service": "dbo_Managed_forest_2017",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/dbo_Managed_forest_2017/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 20,
+   "fields": [
+    "LOCATION_DESCR"
+   ],
+   "known": false,
+   "layer": "Fisheries Management Zone",
+   "sample": [
+    {},
+    {},
+    {}
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "LOCATION_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/14"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 19,
+   "fields": [
+    "Site_Name",
+    "Con_Year",
+    "Property_A",
+    "Street_Add",
+    "Municipali",
+    "Municipa_1",
+    "Label"
+   ],
+   "known": false,
+   "layer": "LTVCA_Public_Conservation_Areas_(2022)",
+   "sample": [
+    {
+     "Con_Year": "1974",
+     "Label": "Two Creeks Conservation Area",
+     "Municipa_1": " ",
+     "Municipali": "Chatham-Kent",
+     "Property_A": "Public",
+     "Site_Name": "Two Creeks",
+     "Street_Add": "21638 Wheatley Rd., Chatham-Kent and 525 Erie St. N., Chatham-Kent"
+    },
+    {
+     "Con_Year": "1987",
+     "Label": "Sinclair's Bush Conservation Area",
+     "Municipa_1": " ",
+     "Municipali": "Chatham-Kent",
+     "Property_A": "Public",
+     "Site_Name": "Sinclair's Bush",
+     "Street_Add": "Chatham-Kent"
+    },
+    {
+     "Con_Year": "1978",
+     "Label": "Walter Devereux Conservation Area",
+     "Municipa_1": " ",
+     "Municipali": "Chatham-Kent",
+     "Property_A": "Public",
+     "Site_Name": "Walter Devereux",
+     "Street_Add": "13016 McLarty Line, Chatham-Kent"
+    }
+   ],
+   "service": "LTVCA_Public_Conservation_Areas_(2022)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTVCA_Public_Conservation_Areas_(2022)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "LEGALDESCR",
+    "LANDOWNER",
+    "PROP_DEFN",
+    "ROLL_NUM",
+    "RD_ACCESS",
+    "WATER",
+    "SANITARY",
+    "HYDRO",
+    "M_ADDRESS1",
+    "M_ADDRESS2",
+    "M_ADDRESS3",
+    "M_ADDRESS4",
+    "POSTAL",
+    "DATA_SOURC",
+    "FILEDATE",
+    "ADDRESS_CN",
+    "MUNICIPALI",
+    "PARCELSOUR",
+    "ADDRESS"
+   ],
+   "known": false,
+   "layer": "CR_Parks_20230607",
+   "sample": [
+    {
+     "HYDRO": "Yes",
+     "LANDOWNER": "CLARENCE-ROCKLAND CITY",
+     "LEGALDESCR": "PLAN 50M299 LOT 17",
+     "M_ADDRESS1": "1560 LAURIER ST",
+     "M_ADDRESS2": "-",
+     "M_ADDRESS3": "-",
+     "M_ADDRESS4": "ROCKLAND ON",
+     "PROP_DEFN": "Land designated and zoned for open space",
+     "RD_ACCESS": "Year Round Road Access",
+     "ROLL_NUM": "031601601007370",
+     "SANITARY": "None",
+     "WATER": "None available"
+    },
+    {
+     "HYDRO": "Yes",
+     "LANDOWNER": "CLARENCE-ROCKLAND CITY",
+     "LEGALDESCR": "CLARENCE PL 50M91 LT 6",
+     "M_ADDRESS1": "1560 LAURIER ST",
+     "M_ADDRESS2": "-",
+     "M_ADDRESS3": "-",
+     "M_ADDRESS4": "ROCKLAND ON",
+     "PROP_DEFN": "Municipal park (excludes Provincial parks, Federal parks,campgrounds)",
+     "RD_ACCESS": "Year Round Road Access",
+     "ROLL_NUM": "031601602117818",
+     "SANITARY": "None",
+     "WATER": "None available"
+    },
+    {
+     "HYDRO": "Yes",
+     "LANDOWNER": "CLARENCE-ROCKLAND",
+     "LEGALDESCR": "PLAN 50M350 LOT 20",
+     "M_ADDRESS1": "1560 LAURIER ST",
+     "M_ADDRESS2": "-",
+     "M_ADDRESS3": "-",
+     "M_ADDRESS4": "ROCKLAND ON",
+     "PROP_DEFN": "Land designated and zoned for open space",
+     "RD_ACCESS": "Year Round Road Access",
+     "ROLL_NUM": "031601602121506",
+     "SANITARY": "Municipal",
+     "WATER": "Municipal"
+    }
+   ],
+   "service": "CR_Parks_20230607",
+   "typef": "LEGALDESCR",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CR_Parks_20230607/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "OFFICIAL_NAME",
+    "PARK_OR_RESERVE_IDENT",
+    "REGULATED_IND",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Crown Game Preserve",
+   "sample": [
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "LOCATION_ACCURACY": "Within 100 metres",
+     "OFFICIAL_NAME": "Shirley Bay Crown Game Preserve",
+     "PARK_OR_RESERVE_IDENT": "184285155025209",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "LOCATION_ACCURACY": "Within 10 metres",
+     "OFFICIAL_NAME": "Nipissing Crown Game Preserve",
+     "PARK_OR_RESERVE_IDENT": "176005875183320",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "LOCATION_ACCURACY": "Within 50 metres",
+     "LOCATION_DESCR": "Geographic Township of Gosfield",
+     "OFFICIAL_NAME": "Miner Crown Game Preserve",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open05",
+   "typef": "LOCATION_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open05/MapServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "AQUACULTURE_LICENCE_NUMBER",
+    "OPERATION_NAME",
+    "OPERATING_STATUS",
+    "SECURITY_PLAN_IND",
+    "CAGE_OPERATION_IND",
+    "FLOW_THROUGH_IND",
+    "POND_OPERATION_IND",
+    "RECIRCULATION_OPERATION_IND",
+    "OPERATION_WATER_SOURCE",
+    "POINT_SOURCE_DISCHARGE",
+    "OPERATION_COMMENT"
+   ],
+   "known": false,
+   "layer": "Fish Culture Operation MNR",
+   "sample": [
+    {
+     "CAGE_OPERATION_IND": "No",
+     "FLOW_THROUGH_IND": "Yes",
+     "OPERATING_STATUS": "Yes",
+     "OPERATION_NAME": "White Lake",
+     "OPERATION_WATER_SOURCE": "from surface water line and deep water line in White Lake",
+     "POINT_SOURCE_DISCHARGE": "Highway 7 culvert",
+     "POND_OPERATION_IND": "Yes",
+     "RECIRCULATION_OPERATION_IND": "No",
+     "SECURITY_PLAN_IND": "No"
+    },
+    {
+     "CAGE_OPERATION_IND": "No",
+     "FLOW_THROUGH_IND": "Yes",
+     "OPERATING_STATUS": "Yes",
+     "OPERATION_COMMENT": "number of raceways actually 148",
+     "OPERATION_NAME": "Tarentorus",
+     "OPERATION_WATER_SOURCE": "surface ground water springs",
+     "POINT_SOURCE_DISCHARGE": "West Branch of Coldwater Creek",
+     "POND_OPERATION_IND": "No",
+     "RECIRCULATION_OPERATION_IND": "No",
+     "SECURITY_PLAN_IND": "No"
+    },
+    {
+     "CAGE_OPERATION_IND": "No",
+     "FLOW_THROUGH_IND": "Yes",
+     "OPERATING_STATUS": "Yes",
+     "OPERATION_NAME": "North Bay Substation",
+     "OPERATION_WATER_SOURCE": "surface ground water springs",
+     "POINT_SOURCE_DISCHARGE": "Spring Cr.",
+     "POND_OPERATION_IND": "No",
+     "RECIRCULATION_OPERATION_IND": "No",
+     "SECURITY_PLAN_IND": "No"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "CLASS_SUBTYPE",
+    "SOURCE_WATER_DESCR",
+    "COMMENTS",
+    "LOCATION_ACCURACY"
+   ],
+   "known": false,
+   "layer": "Fish Culture Operation Areas of Impact",
+   "sample": [
+    {
+     "CLASS_SUBTYPE": "Aquaculture Area of Sensitivity",
+     "COMMENTS": " ",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "SOURCE_WATER_DESCR": "White Lake & spring"
+    },
+    {
+     "CLASS_SUBTYPE": "Aquaculture Area of Sensitivity",
+     "COMMENTS": " ",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "SOURCE_WATER_DESCR": "2 headponds, stream & 1 overflow pond"
+    },
+    {
+     "CLASS_SUBTYPE": "Aquaculture Area of Sensitivity",
+     "COMMENTS": " ",
+     "LOCATION_ACCURACY": "Within 20 metres",
+     "SOURCE_WATER_DESCR": "artesion wells (3)"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "CLASS_SUBTYPE",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/33"
+  },
+  {
+   "agency": "Southgate, MNR, County of Grey",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "Company",
+    "Link",
+    "Status",
+    "buildingType"
+   ],
+   "known": false,
+   "layer": "Eco Park Lots",
+   "sample": [
+    {
+     "Company": "Gro-Bark - ",
+     "Link": "https://restgeo.grey.ca/arcgis/rest/services/Public/Southgate_Assets/MapServer/22/2001/attachments/811",
+     "Status": "Occupied",
+     "buildingType": "Eco Park Industrial"
+    },
+    {
+     "Company": "Lystek - ",
+     "Link": "https://restgeo.grey.ca/arcgis/rest/services/Public/Southgate_Assets/MapServer/22/3/attachments/401",
+     "Status": "Occupied",
+     "buildingType": "Eco Park Industrial"
+    },
+    {
+     "Link": "https://restgeo.grey.ca/arcgis/rest/services/Public/Southgate_Assets/MapServer/22/4/attachments/810",
+     "Status": "Available",
+     "buildingType": "Eco Park Industrial"
+    }
+   ],
+   "service": "Public/Service_SouthgateAssets",
+   "typef": "buildingType",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_SouthgateAssets/MapServer/20"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 11,
+   "fields": [
+    "Name",
+    "Source",
+    "Address",
+    "Category",
+    "Status",
+    "Included",
+    "Master08_2",
+    "Master08_3",
+    "Master08_4",
+    "Master08_5",
+    "Master08_6",
+    "Master08_8",
+    "Name_1",
+    "Source_1",
+    "Conservati",
+    "CENTROID",
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "Parks in Priority Neighbourhoods",
+   "sample": [
+    {
+     "Address": " ",
+     "Category": "Park",
+     "Included": "Y",
+     "Master08_2": " ",
+     "Master08_3": " ",
+     "Master08_4": " ",
+     "Master08_5": " ",
+     "Master08_6": " ",
+     "Master08_8": " ",
+     "Name": "Arbour Park",
+     "Source": "Ajax",
+     "Status": " "
+    },
+    {
+     "Address": "13 Michaelman RD",
+     "Category": "Parkette",
+     "Included": "Y",
+     "Master08_2": " ",
+     "Master08_3": " ",
+     "Master08_4": " ",
+     "Master08_5": " ",
+     "Master08_6": " ",
+     "Master08_8": " ",
+     "Name": "Michaelman Parkette",
+     "Source": "Ajax",
+     "Status": " "
+    },
+    {
+     "Address": "990 Barbour CR",
+     "Category": "Park",
+     "Included": "Y",
+     "Master08_2": " ",
+     "Master08_3": " ",
+     "Master08_4": " ",
+     "Master08_5": " ",
+     "Master08_6": " ",
+     "Master08_8": " ",
+     "Name": "John A. Murray Park",
+     "Source": "Ajax",
+     "Status": " "
+    }
+   ],
+   "service": "CCWP_Parks_in_Priority_Neighbourhoods",
+   "typef": "Category",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CCWP_Parks_in_Priority_Neighbourhoods/FeatureServer/1"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "Property_Name",
+   "count": 10,
+   "fields": [
+    "Property_Name",
+    "Owner",
+    "HTTP",
+    "Address",
+    "PHOTO",
+    "Access"
+   ],
+   "known": false,
+   "layer": "Conservation Areas",
+   "sample": [
+    {
+     "Access": "Full",
+     "Address": "Royal York St, Richmond",
+     "HTTP": "https://www.rvca.ca/conservation-areas/no-fee-required/richmond-ca",
+     "Owner": "RVCA",
+     "PHOTO": "http://gis.rvca.ca/Imagery/CA_photos/richmond/Path 2.jpg",
+     "Property_Name": "Richmond"
+    },
+    {
+     "Access": "Full",
+     "Address": "1392 Anderson Road N, Crow Lake",
+     "HTTP": "https://www.rvca.ca/conservation-areas/no-fee-required/meisel-woods-ca",
+     "Owner": "RVCF",
+     "PHOTO": "http://gis.rvca.ca/Imagery/CA_photos/meiselWoods/Meiselopen4-03.jpg",
+     "Property_Name": "Meisel Woods"
+    },
+    {
+     "Access": "Full",
+     "Address": "Regional Road 19, Osgoode",
+     "HTTP": "https://www.rvca.ca/conservation-areas/fee-required/w-a-taylor-ca",
+     "Owner": "RVCA",
+     "PHOTO": "http://gis.rvca.ca/Imagery/CA_photos/WATaylor/Boat Launch.jpg",
+     "Property_Name": "W.A. Taylor"
+    }
+   ],
+   "service": "RVCA_Political_Service",
+   "typef": "",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_Political_Service/MapServer/17"
+  },
+  {
+   "agency": "",
+   "area": "ConservationArea",
+   "count": 10,
+   "fields": [
+    "ConservationArea"
+   ],
+   "known": false,
+   "layer": "ConservationAreas_PublicAccess",
+   "sample": [
+    {
+     "ConservationArea": "Bowmanville/Westside Conservation Area"
+    },
+    {
+     "ConservationArea": "Crow's Pass Conservation Area"
+    },
+    {
+     "ConservationArea": "Enniskillen Conservation Area"
+    }
+   ],
+   "service": "CLOCA_ConservationAreas_PublicAccess",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CLOCA_ConservationAreas_PublicAccess/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "MUNICIPAL_"
+   ],
+   "known": false,
+   "layer": "Reforestation",
+   "sample": [
+    {
+     "MUNICIPAL_": "Loyalist Township"
+    },
+    {
+     "MUNICIPAL_": "Greater Napanee"
+    },
+    {
+     "MUNICIPAL_": "City of Kingston"
+    }
+   ],
+   "service": "Foresty_Plantings_per_municipality",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Foresty_Plantings_per_municipality/FeatureServer/0"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "Property_Name",
+   "count": 9,
+   "fields": [
+    "Property_Name"
+   ],
+   "known": false,
+   "layer": "CA Managed Lands",
+   "sample": [
+    {
+     "Property_Name": "David Bartlett Park"
+    },
+    {
+     "Property_Name": "Queens University"
+    },
+    {
+     "Property_Name": "Ontario Reality Corp. (Foley)"
+    }
+   ],
+   "service": "RVCA_ConservationArea_Service",
+   "typef": "",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/11"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "CLASS_SUBTYPE",
+    "HABITAT_QUALIF_CODE",
+    "HABITAT_RANK_CODE",
+    "SPECIES_EVIDENCE_CODE",
+    "LOCATION_CLASS_CODE",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Staging Area Wildlife",
+   "sample": [
+    {
+     "CLASS_SUBTYPE": "Waterfowl Staging Area",
+     "HABITAT_QUALIF_CODE": "S",
+     "LOCATION_ACCURACY": "AP Approximate (to 500m)",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SPECIES_EVIDENCE_CODE": "Y",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "CLASS_SUBTYPE": "Waterfowl Staging Area",
+     "HABITAT_QUALIF_CODE": "S",
+     "LOCATION_ACCURACY": "AP Approximate (to 500m)",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SPECIES_EVIDENCE_CODE": "Y",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "CLASS_SUBTYPE": "Waterfowl Staging Area",
+     "HABITAT_QUALIF_CODE": "S",
+     "LOCATION_ACCURACY": "AP Approximate (to 500m)",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SPECIES_EVIDENCE_CODE": "Y",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "RVCA_LIO_Service",
+   "typef": "CLASS_SUBTYPE",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_LIO_Service/MapServer/18"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "Name",
+    "Authority",
+    "Prop_Type",
+    "ForestSection"
+   ],
+   "known": false,
+   "layer": "GFC_CA_Lands_PublicAccess_Web",
+   "sample": [
+    {
+     "Authority": "Ganaraska Region Conservation Auhtority",
+     "ForestSection": "East Forest",
+     "Name": "Ganaraska Forest",
+     "Prop_Type": "Authority Property"
+    },
+    {
+     "Authority": "Ganaraska Region Conservation Auhtority",
+     "ForestSection": "East Forest",
+     "Name": "Ganaraska Forest",
+     "Prop_Type": "Authority Property"
+    },
+    {
+     "Authority": "Ganaraska Region Conservation Auhtority",
+     "ForestSection": "East Forest",
+     "Name": "Ganaraska Forest",
+     "Prop_Type": "Authority Property"
+    }
+   ],
+   "service": "GFC_Recreational_Boundary",
+   "typef": "Prop_Type",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/GFC_Recreational_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "NAME",
+   "count": 6,
+   "fields": [
+    "created_user",
+    "last_edited_user",
+    "NAME",
+    "SHORT_NAME"
+   ],
+   "known": false,
+   "layer": "Conservation Authorities (Eastern Ontario) ",
+   "sample": [
+    {
+     "NAME": "Rideau Valley Conservation Authority",
+     "SHORT_NAME": "RVCA",
+     "created_user": "GIS_ADMIN",
+     "last_edited_user": "GIS_ADMIN"
+    },
+    {
+     "NAME": "Cataraqui Region Conservation Authority",
+     "SHORT_NAME": "CRCA",
+     "created_user": "GIS_ADMIN",
+     "last_edited_user": "GIS_ADMIN"
+    },
+    {
+     "NAME": "Mississippi Valley Conservation",
+     "SHORT_NAME": "MVC",
+     "created_user": "GIS_ADMIN",
+     "last_edited_user": "GIS_ADMIN"
+    }
+   ],
+   "service": "RVCA_Hydrology_Service",
+   "typef": "created_user",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_Hydrology_Service/MapServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "ForestCove"
+   ],
+   "known": false,
+   "layer": "Forest_cover_merged",
+   "sample": [
+    {
+     "ForestCove": "A"
+    },
+    {
+     "ForestCove": "B"
+    },
+    {
+     "ForestCove": "C"
+    }
+   ],
+   "service": "ForestCover2",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/ForestCover2/FeatureServer/0"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "PROTECTED_SITE_IDENT",
+    "PROTECTED_AREA_NAME_ENG",
+    "PROTECTED_AREA_NAME_FR",
+    "PROTECTED_AREA_NAME_OJIBWA",
+    "PROTECTED_AREA_NAME_OJI_CREE",
+    "PROTECTED_AREA_NAME_CREE",
+    "TYPE_ENG",
+    "TYPE_FR",
+    "STATUS_ENG",
+    "STATUS_FR",
+    "COMMON_SHORT_NAME",
+    "IUCN_CATEGORY",
+    "REGULATION_NUMBER",
+    "PROVINCIAL_PARK_CLASS_ENG",
+    "PROVINCIAL_PARK_CLASS_FR",
+    "OWNER_ENG",
+    "OWNER_FR",
+    "MANAGEMENT_ENG",
+    "MANAGEMENT_FR",
+    "LOCATION_ENG"
+   ],
+   "known": false,
+   "layer": "Prov Park Regulated",
+   "sample": [
+    {
+     "COMMON_SHORT_NAME": "PUZZLE LAKE   ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "PUZZLE LAKE PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS)",
+     "PROTECTED_SITE_IDENT": "P4",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    },
+    {
+     "COMMON_SHORT_NAME": "SILVER LAKE  ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "SILVER LAKE PROVINCIAL PARK",
+     "PROTECTED_SITE_IDENT": "P416",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    },
+    {
+     "COMMON_SHORT_NAME": "FRONTENAC  ",
+     "IUCN_CATEGORY": "II",
+     "PROTECTED_AREA_NAME_ENG": "FRONTENAC PROVINCIAL PARK",
+     "PROTECTED_SITE_IDENT": "P4446",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    }
+   ],
+   "service": "RVCA_LIO_Service",
+   "typef": "TYPE_ENG",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_LIO_Service/MapServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "CA_Name",
+    "CA"
+   ],
+   "known": false,
+   "layer": "CVCA_Conservation_Areas",
+   "sample": [
+    {
+     "CA": "CVCA",
+     "CA_Name": "Callaghans Conservation Area"
+    },
+    {
+     "CA": "CVCA",
+     "CA_Name": "Crowe Bridge Conservation Area"
+    },
+    {
+     "CA": "CVCA",
+     "CA_Name": "The Gut Conservation Area"
+    }
+   ],
+   "service": "CVCA_Conservation_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/CVCA_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "OFFICIAL_NAME",
+    "PARK_OR_RESERVE_IDENT",
+    "REGULATED_IND",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "National Wildlife Area",
+   "sample": [
+    {
+     "BUSINESS_EFF_DATE_FLG": "Actual",
+     "GEOG_UNIT_DESCR": "federally regulated Migratory Bird Sanctuary",
+     "LOCATION_ACCURACY": "Within 500 metres",
+     "LOCATION_DESCR": "the whole of Shipsands Island, including theat area known locally as  Wavy Creek lying between Shipsands Island and teh normal high tide  water mark of the mainland, together with all those portions of Moose River and James BAy  lying within a line conforming to the sinuosities of and 200 feet distant   from the normal high tide water mark of that area, said Island and portions   containing together by admeasurement 2,000 acres, approximately.",
+     "OFFICIAL_NAME": "Moose River Migratory Bird Sanctuary",
+     "REGULATED_IND": "Yes",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Actual",
+     "GEOG_UNIT_DESCR": "Federally regulated Migratory Bird Sanctuary",
+     "LOCATION_ACCURACY": "Within 500 metres",
+     "LOCATION_DESCR": "the whole of Shipsands Island, including theat area known locally as  Wavy Creek lying between Shipsands Island and teh normal high tide  water mark of the mainland, together with all those portions of Moose River and James BAy  lying within a line conforming to the sinuosities of and 200 feet distant   from the normal high tide water mark of that area, said Island and portions   containing together by admeasurement 2,000 acres, approximately.",
+     "OFFICIAL_NAME": "Moose River Migratory Bird Sanctuary",
+     "REGULATED_IND": "Yes",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    },
+    {
+     "BUSINESS_EFF_DATE_FLG": "Actual",
+     "GEOG_UNIT_DESCR": "Federally regulated Migratory Bird Sanctuary",
+     "LOCATION_ACCURACY": "Within 500 metres",
+     "LOCATION_DESCR": "All and singular that certain parcel or tract of land and premises lying and being within a boundary line beginning at the boundary of the Province of Ontario, at the extremity of East Point, at the east side of the mouth of Hannah Bay, at normal high tide, extending thence due westward to a point fourmiles due west of hight tide mark at the extremity of East Point, thence due southward to a point due west of the north bank of the mouth of the Little Missisicabi River at normal high tide , thance easterly follwing the north bank of said River and continuing easterly  on the north bank of the south branch of the Little Missisicabi River to the interprovincial boundary beteween the Province of Ontario and  the Province of Quebec, thence northtward along the siad interprovincial boundary to a point due east of the extremity of East Point, at the east side of Hannah Bay, at normal high tide, thence due westward to the extremity of East Point, at the boundary of the Province of Ontario, at the east side of Hannah Bay, at normal high tide, which is the point of beginning.",
+     "OFFICIAL_NAME": "Hannah Bay Bird Sanctuary",
+     "REGULATED_IND": "Yes",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open03",
+   "typef": "LOCATION_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open03/MapServer/9"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "NAME",
+   "count": 4,
+   "fields": [
+    "COMMENTS",
+    "AUTHORITY",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "CA Boundaries",
+   "sample": [
+    {
+     "AUTHORITY": "GRCA",
+     "COMMENTS": " ",
+     "NAME": "Grand River"
+    },
+    {
+     "AUTHORITY": "NVCA",
+     "COMMENTS": " ",
+     "NAME": "Nottawasaga Valley"
+    },
+    {
+     "AUTHORITY": "SVCA",
+     "COMMENTS": " ",
+     "NAME": "Saugeen Valley"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "ROLLNUMB",
+    "L_MUNICIPA",
+    "R_MUNICIPA",
+    "TYPE",
+    "LEGAL_DESC",
+    "MGMT_AGREE",
+    "PROP_NAM",
+    "prop_nmsrc",
+    "Mgmt_zone",
+    "Code_No"
+   ],
+   "known": false,
+   "layer": "Charles_Sauriol_CA",
+   "sample": [
+    {
+     "Code_No": " ",
+     "LEGAL_DESC": " ",
+     "L_MUNICIPA": "Toronto",
+     "MGMT_AGREE": "Yes",
+     "Mgmt_zone": "Charles Sauriol Conservation Area",
+     "PROP_NAM": "Charles Sauriol Conservation Area",
+     "ROLLNUMB": " ",
+     "R_MUNICIPA": "Toronto",
+     "TYPE": " ",
+     "prop_nmsrc": "GIS"
+    },
+    {
+     "Code_No": " ",
+     "LEGAL_DESC": " ",
+     "L_MUNICIPA": "Toronto",
+     "MGMT_AGREE": "Yes",
+     "Mgmt_zone": "Charles Sauriol Conservation Area",
+     "PROP_NAM": "Charles Sauriol Conservation Area",
+     "ROLLNUMB": " ",
+     "R_MUNICIPA": "Toronto",
+     "TYPE": " ",
+     "prop_nmsrc": "GIS"
+    },
+    {
+     "Code_No": " ",
+     "LEGAL_DESC": " ",
+     "L_MUNICIPA": "Toronto",
+     "MGMT_AGREE": "Yes",
+     "Mgmt_zone": "Charles Sauriol Conservation Area",
+     "PROP_NAM": "Charles Sauriol Conservation Area",
+     "ROLLNUMB": " ",
+     "R_MUNICIPA": "Toronto",
+     "TYPE": " ",
+     "prop_nmsrc": "GIS"
+    }
+   ],
+   "service": "Don_Recreation",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Don_Recreation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Name",
+    "FolderPath"
+   ],
+   "known": false,
+   "layer": "The_Meadoway",
+   "sample": [
+    {
+     "Name": "Local Study Area"
+    },
+    {
+     "Name": "Regional Study Area - V3"
+    }
+   ],
+   "service": "Don_Recreation",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Don_Recreation/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "ZONE_IDENT",
+    "ZONE_NAME",
+    "PATHOGEN_NAME",
+    "VHS_STATUS",
+    "SVC_STATUS",
+    "KHV_STATUS",
+    "ZONE_COMMENTS",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Fish Pathogen Management Zone",
+   "sample": [
+    {
+     "KHV_STATUS": "Unknown",
+     "PATHOGEN_NAME": "Viral hemorrhagic septicemia (VHS)",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SVC_STATUS": "Unknown",
+     "VERIFICATION_STATUS_FLG": "Verified",
+     "VHS_STATUS": "Positive",
+     "ZONE_COMMENTS": "Zone established by Lake Simcoe Management Zone technical task team lead by Koenig (2011); loaded from shapefile developed by Collins (2011).",
+     "ZONE_IDENT": "Lake Simcoe Management Zone",
+     "ZONE_NAME": "Lake Simcoe Management Zone"
+    },
+    {
+     "KHV_STATUS": "Unknown",
+     "PATHOGEN_NAME": "Viral hemorrhagic septicemia (VHS)",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "SVC_STATUS": "Unknown",
+     "VERIFICATION_STATUS_FLG": "Verified",
+     "VHS_STATUS": "Positive",
+     "ZONE_COMMENTS": "Primary zone established from work undertaken by Kerr (2007); loaded from shape file developed by Henson (2007).",
+     "ZONE_IDENT": "VHS Management Zone",
+     "ZONE_NAME": "VHS Management Zone"
+    }
+   ],
+   "service": "LIO_OPEN_DATA/LIO_Open07",
+   "typef": "GEOG_UNIT_DESCR",
+   "url": "https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_OPEN_DATA/LIO_Open07/MapServer/12"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "OFFICIAL_NAME",
+    "PARK_OR_RESERVE_IDENT",
+    "REGULATED_IND",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Ngo Nature Reserve",
+   "sample": [
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "LOCATION_ACCURACY": "RE Reliable (to 100m)",
+     "OFFICIAL_NAME": "Frontenac Provincial Park",
+     "PARK_OR_RESERVE_IDENT": "183808654933644",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "RVCA_LIO_Service",
+   "typef": "LOCATION_DESCR",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_LIO_Service/MapServer/6"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "OFFICIAL_NAME",
+    "PARK_OR_RESERVE_IDENT",
+    "REGULATED_IND",
+    "LOCATION_ACCURACY",
+    "LOCATION_DESCR",
+    "GEOG_UNIT_DESCR",
+    "SENSITIVITY_CLASS",
+    "SENSITIVITY_RATIONALE",
+    "SENS_RATIONALE_OTHER_DESCR",
+    "VERIFICATION_STATUS_FLG",
+    "BUSINESS_EFF_DATE_FLG",
+    "GENERAL_COMMENTS"
+   ],
+   "known": false,
+   "layer": "Crown Game Preserve",
+   "sample": [
+    {
+     "BUSINESS_EFF_DATE_FLG": "Estimated",
+     "LOCATION_ACCURACY": "RE Reliable (to 100m)",
+     "OFFICIAL_NAME": "Park or Reserve - Data Load",
+     "PARK_OR_RESERVE_IDENT": "184285155025209",
+     "SENSITIVITY_CLASS": "Non-Sensitive",
+     "SENSITIVITY_RATIONALE": "No Restriction Needed",
+     "VERIFICATION_STATUS_FLG": "Verified"
+    }
+   ],
+   "service": "RVCA_LIO_Service",
+   "typef": "LOCATION_DESCR",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_LIO_Service/MapServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "LTVCA Boundary",
+   "sample": [
+    {
+     "Label": "LTVCA"
+    }
+   ],
+   "service": "Conservation_Areas_(Public)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ROLLNUMB",
+    "L_MUNICIPA",
+    "R_MUNICIPA",
+    "TYPE",
+    "LEGAL_DESC",
+    "MGMT_AGREE",
+    "PROP_NAM",
+    "prop_nmsrc",
+    "Mgmt_zone",
+    "Code_No"
+   ],
+   "known": false,
+   "layer": "Mill_Pond_Splash",
+   "sample": [
+    {
+     "Code_No": " ",
+     "LEGAL_DESC": "PLAN 4908, PART BLOCK B",
+     "L_MUNICIPA": "Richmond Hill",
+     "MGMT_AGREE": "Yes",
+     "Mgmt_zone": "Don River Headwaters",
+     "ROLLNUMB": "040-051-325-50",
+     "R_MUNICIPA": "York",
+     "TYPE": " ",
+     "prop_nmsrc": " "
+    }
+   ],
+   "service": "Don_Recreation",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Don_Recreation/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "ILCA_Property",
+   "sample": [
+    {
+     "NAME": "Island Lake Reservoir Conservation Area"
+    }
+   ],
+   "service": "GIS_Data_IslandLake_2014",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/GIS_Data_IslandLake_2014/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "ILCA_Property",
+   "sample": [
+    {
+     "NAME": "Island Lake Reservoir Conservation Area"
+    }
+   ],
+   "service": "GIS_Data_IslandLake_V4_2014",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/GIS_Data_IslandLake_V4_2014/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "LEGAL_NAME",
+    "COMMON_NAM",
+    "F_TYPE",
+    "GENERAL_CO"
+   ],
+   "known": false,
+   "layer": "Lower_Thames_Valley_Conservation_Authority",
+   "sample": [
+    {
+     "COMMON_NAM": "Lower Thames Valley Conservation Authority",
+     "F_TYPE": "Land",
+     "GENERAL_CO": " ",
+     "LEGAL_NAME": "Lower Thames Valley Conservation Authority"
+    }
+   ],
+   "service": "Lower_Thames_Valley_Conservation_Authority",
+   "typef": "F_TYPE",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Lower_Thames_Valley_Conservation_Authority/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "TractName",
+    "YearAcquired",
+    "PIN",
+    "BlockMapNumber",
+    "Photo",
+    "Notes",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "LSRCALands",
+   "sample": [
+    {
+     "Creator": "lsrca.tfleischaker",
+     "Editor": "lsrca.tfleischaker",
+     "TractName": "Main Tract"
+    }
+   ],
+   "service": "LSRCA_-_Durham_Forest_Main_Tract",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LSRCA_-_Durham_Forest_Main_Tract/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SWP_Region"
+   ],
+   "known": false,
+   "layer": "Quinte_Conservation_Cartographic_Boundary",
+   "sample": [
+    {
+     "SWP_Region": "Quinte"
+    }
+   ],
+   "service": "Quinte_Conservation_Cartographic_Boundary",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Quinte_Conservation_Cartographic_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "LEGAL_NAME",
+    "COMMON_NAM",
+    "F_TYPE",
+    "GENERAL_CO"
+   ],
+   "known": false,
+   "layer": "Upper_Thames_River_Conservation_Authority",
+   "sample": [
+    {
+     "COMMON_NAM": "Upper Thames River Conservation Authority",
+     "F_TYPE": "Land",
+     "GENERAL_CO": " ",
+     "LEGAL_NAME": "Upper Thames River Conservation Authority"
+    }
+   ],
+   "service": "Upper_Thames_River_Conservation_Authority",
+   "typef": "F_TYPE",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Upper_Thames_River_Conservation_Authority/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "CRCABoundary",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 3559858485.260742,
+     "Shape__Length": 1181919.2405646942
+    }
+   ],
+   "service": "Cataraqui_Conservation_Boundary",
+   "typef": "",
+   "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Cataraqui_Conservation_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Cataraqui_Conservation_Jurisdiction",
+   "sample": [
+    {
+     "Name": "Cataraqui Conservation"
+    }
+   ],
+   "service": "Cataraqui_Conservation_Regulation_Jurisdiction",
+   "typef": "",
+   "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Cataraqui_Conservation_Regulation_Jurisdiction/FeatureServer/0"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "PROP_NAME",
+   "count": 211,
+   "fields": [
+    "PROP_NAME",
+    "COMP_NAME",
+    "Designation",
+    "Permitted"
+   ],
+   "known": true,
+   "layer": "Properties - GSCA",
+   "sample": [
+    {
+     "COMP_NAME": "AINSLIE WOOD",
+     "PROP_NAME": "Ainslie Wood",
+     "Permitted": " "
+    },
+    {
+     "COMP_NAME": "LEITH SPIT",
+     "PROP_NAME": "Leith Spit",
+     "Permitted": " "
+    },
+    {
+     "COMP_NAME": "ALBEMARLE BROOK - A",
+     "PROP_NAME": "Albemarle Brook",
+     "Permitted": " "
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/3"
+  },
+  {
+   "agency": "County of Grey, Township of Southgate, Township of Georgian Bluffs, Municipality",
+   "area": "",
+   "count": 172,
+   "fields": [
+    "PROPERTY_N",
+    "TRACT_NUMB",
+    "DESCRIPTIO",
+    "ARN",
+    "CIVIC_ADDR",
+    "STREET_NAM",
+    "MPAC_STREE",
+    "TOWNSHIP",
+    "MUNICIPALI",
+    "COUNTY",
+    "URL"
+   ],
+   "known": true,
+   "layer": "Properties - SVCA",
+   "sample": [
+    {
+     "ARN": "234100000310900",
+     "CIVIC_ADDR": " ",
+     "COUNTY": "Wellington",
+     "DESCRIPTIO": " ",
+     "MPAC_STREE": " ",
+     "MUNICIPALI": "Town of Minto",
+     "PROPERTY_N": "Clifford Complex",
+     "STREET_NAM": " ",
+     "TOWNSHIP": "Minto",
+     "TRACT_NUMB": "23-41-10",
+     "URL": " "
+    },
+    {
+     "ARN": "234100000314600",
+     "CIVIC_ADDR": "9656",
+     "COUNTY": "Wellington",
+     "DESCRIPTIO": " ",
+     "MPAC_STREE": "9656 Unopened Sideroad 3 N",
+     "MUNICIPALI": "Town of Minto",
+     "PROPERTY_N": "Drew Bog",
+     "STREET_NAM": "Unopened Sideroad 3 N",
+     "TOWNSHIP": "Minto",
+     "TRACT_NUMB": "23-41-05",
+     "URL": " "
+    },
+    {
+     "ARN": "410254000512100",
+     "CIVIC_ADDR": " ",
+     "COUNTY": "Bruce",
+     "DESCRIPTIO": " ",
+     "MPAC_STREE": "40 OLD BRIDGE RD",
+     "MUNICIPALI": "South Bruce Peninsula",
+     "PROPERTY_N": "Denny's Dam Conservation Area",
+     "STREET_NAM": "OLD BRIDGE RD",
+     "TOWNSHIP": "Amabel",
+     "TRACT_NUMB": "41-540-05",
+     "URL": "http://www.svca.on.ca/ca.php?page=dennysdam"
+    }
+   ],
+   "service": "Public/Service_ConservationAuthorities",
+   "typef": "DESCRIPTIO",
+   "url": "https://gis.grey.ca/server/rest/services/Public/Service_ConservationAuthorities/MapServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 99,
+   "fields": [
+    "CANAME",
+    "CADESN",
+    "CIVIC",
+    "OWNER",
+    "RollNumber",
+    "Lot",
+    "Concession",
+    "Municipality",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": true,
+   "layer": "Conservation Area Boundaries",
+   "sample": [
+    {
+     "CADESN": "Conservation Area",
+     "CANAME": "Imagine the Marsh Conservation Area",
+     "CIVIC": "22 D'eyncourt Street, Harcourt, ON",
+     "Concession": "8",
+     "Lot": "27",
+     "Municipality": "Township of Selwyn",
+     "OWNER": "ORCA",
+     "RollNumber": "151603000109300"
+    },
+    {
+     "CADESN": "Forest Blocks",
+     "CANAME": "White Lake East Forest Blocks",
+     "CIVIC": "County Road 40",
+     "Concession": "9",
+     "Lot": "25-26",
+     "Municipality": "Township of Douro Dummer",
+     "RollNumber": "152202000538900"
+    },
+    {
+     "CADESN": "Conservation Area",
+     "CANAME": "Warsaw Caves Conservation Area",
+     "CIVIC": "Between 1479 and 1513 County Road 4",
+     "Concession": "2",
+     "Lot": "14-15",
+     "Municipality": "Township of Douro Dummer",
+     "OWNER": "ORCA",
+     "RollNumber": "152202000328300"
+    }
+   ],
+   "service": "ORCA_Public/ORCA_Annual_Report_CAs",
+   "typef": "created_user",
+   "url": "https://maps2.grca.on.ca/server/rest/services/ORCA_Public/ORCA_Annual_Report_CAs/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Property_Name",
+   "count": 52,
+   "fields": [
+    "Property_Name"
+   ],
+   "known": true,
+   "layer": "Conservation_Areas_CRCA",
+   "sample": [
+    {
+     "Property_Name": "Bastard and South Burgess"
+    },
+    {
+     "Property_Name": "Bayly"
+    },
+    {
+     "Property_Name": "Cataraqui Trail"
+    }
+   ],
+   "service": "Conservation_Areas_Dissolved",
+   "typef": "",
+   "url": "https://services3.arcgis.com/DkDI7U7oNtqFwb5V/arcgis/rest/services/Conservation_Areas_Dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "NPCA",
+   "area": "",
+   "count": 45,
+   "fields": [
+    "CA_Name"
+   ],
+   "known": true,
+   "layer": "Conservation Areas",
+   "sample": [
+    {
+     "CA_Name": "Oswego Creek"
+    },
+    {
+     "CA_Name": "Canborough"
+    },
+    {
+     "CA_Name": "Hedley Forest"
+    }
+   ],
+   "service": "Conservation_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 19,
+   "fields": [
+    "Site_Name",
+    "Property_Access_Type",
+    "Street_Address",
+    "Municipality_LowerTier",
+    "Municipality_UpperTier",
+    "Label",
+    "Notes",
+    "Link"
+   ],
+   "known": true,
+   "layer": "Public Conservation Areas 2019",
+   "sample": [
+    {
+     "Label": "Two Creeks Conservation Area",
+     "Municipality_LowerTier": "Chatham-Kent",
+     "Property_Access_Type": "Public",
+     "Site_Name": "Two Creeks",
+     "Street_Address": "21638 Wheatley Rd., Chatham-Kent and 525 Erie St. N., Chatham-Kent"
+    },
+    {
+     "Label": "Sinclair's Bush Conservation Area",
+     "Municipality_LowerTier": "Chatham-Kent",
+     "Property_Access_Type": "Public",
+     "Site_Name": "Sinclair's Bush",
+     "Street_Address": "Chatham-Kent"
+    },
+    {
+     "Label": "Walter Devereux Conservation Area",
+     "Municipality_LowerTier": "Chatham-Kent",
+     "Property_Access_Type": "Public",
+     "Site_Name": "Walter Devereux",
+     "Street_Address": "13016 McLarty Line, Chatham-Kent"
+    }
+   ],
+   "service": "Conservation_Areas_(Public)",
+   "typef": "Property_Access_Type",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas_(Public)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREA_NAME",
+   "count": 17,
+   "fields": [
+    "COMMENT",
+    "AREA_NAME",
+    "AREA_TYPE",
+    "CA_NAME"
+   ],
+   "known": true,
+   "layer": "LTC_Conservation_Areas",
+   "sample": [
+    {
+     "AREA_NAME": "Trenton Greenbelt",
+     "AREA_TYPE": "Conservation Area",
+     "CA_NAME": "Lower Trent Conservation",
+     "COMMENT": "Conservation Areas provide natural habitat protection and/or erosion/flood protection, and at the same time are accessible and open to the public."
+    },
+    {
+     "AREA_NAME": "Haldimand",
+     "AREA_TYPE": "Conservation Area",
+     "CA_NAME": "Lower Trent Conservation",
+     "COMMENT": "Conservation Areas provide natural habitat protection and/or erosion/flood protection, and at the same time are accessible and open to the public."
+    },
+    {
+     "AREA_NAME": "Glen Miller",
+     "AREA_TYPE": "Conservation Area",
+     "CA_NAME": "Lower Trent Conservation",
+     "COMMENT": "Conservation Areas provide natural habitat protection and/or erosion/flood protection, and at the same time are accessible and open to the public."
+    }
+   ],
+   "service": "LTC_Conservation_Areas",
+   "typef": "AREA_TYPE",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/LTC_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Rideau Valley Conservation Authority (RVCA)",
+   "area": "Property_Name",
+   "count": 10,
+   "fields": [
+    "Property_Name",
+    "Owner",
+    "HTTP",
+    "Address",
+    "PHOTO",
+    "Access"
+   ],
+   "known": true,
+   "layer": "Conservation Areas",
+   "sample": [
+    {
+     "Access": "Full",
+     "Address": "Royal York St, Richmond",
+     "HTTP": "https://www.rvca.ca/conservation-areas/no-fee-required/richmond-ca",
+     "Owner": "RVCA",
+     "PHOTO": "http://gis.rvca.ca/Imagery/CA_photos/richmond/Path 2.jpg",
+     "Property_Name": "Richmond"
+    },
+    {
+     "Access": "Full",
+     "Address": "1392 Anderson Road N, Crow Lake",
+     "HTTP": "https://www.rvca.ca/conservation-areas/no-fee-required/meisel-woods-ca",
+     "Owner": "RVCF",
+     "PHOTO": "http://gis.rvca.ca/Imagery/CA_photos/meiselWoods/Meiselopen4-03.jpg",
+     "Property_Name": "Meisel Woods"
+    },
+    {
+     "Access": "Full",
+     "Address": "Regional Road 19, Osgoode",
+     "HTTP": "https://www.rvca.ca/conservation-areas/fee-required/w-a-taylor-ca",
+     "Owner": "RVCA",
+     "PHOTO": "http://gis.rvca.ca/Imagery/CA_photos/WATaylor/Boat Launch.jpg",
+     "Property_Name": "W.A. Taylor"
+    }
+   ],
+   "service": "RVCA_ConservationArea_Service",
+   "typef": "",
+   "url": "https://gis.rvca.ca/arcgis/rest/services/RVCA_ConservationArea_Service/MapServer/8"
+  },
+  {
+   "agency": "Kawartha Region Conservation Authority, last updated December 2011.",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "Name",
+    "Owner",
+    "ManagedBy",
+    "Accessible",
+    "SignificantFeatures",
+    "FeatureDescription"
+   ],
+   "known": true,
+   "layer": "ConservationAreas_20140818",
+   "sample": [
+    {
+     "Accessible": "Yes",
+     "FeatureDescription": "Pigeon River No. 23 Wetland Complex",
+     "ManagedBy": "KRCA",
+     "Name": "Windy Ridge",
+     "Owner": "OHT",
+     "SignificantFeatures": "PSW"
+    },
+    {
+     "Accessible": "Yes",
+     "FeatureDescription": "Pigeon River No. 23 Wetland Complex",
+     "ManagedBy": "KRCA",
+     "Name": "Windy Ridge",
+     "Owner": "KRCA",
+     "SignificantFeatures": "PSW"
+    },
+    {
+     "Accessible": "Yes",
+     "FeatureDescription": "Pigeon River No. 20 Wetland Complex",
+     "ManagedBy": "KRCA",
+     "Name": "Pigeon River",
+     "Owner": "KRCA",
+     "SignificantFeatures": "PSW"
+    }
+   ],
+   "service": "KRCA_Conservation_Areas",
+   "typef": "SignificantFeatures",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/KRCA_Conservation_Areas/FeatureServer/6"
+  },
+  {
+   "agency": "Conservation Halton",
+   "area": "Park_Name",
+   "count": 8,
+   "fields": [
+    "Park_Name",
+    "Park_Address"
+   ],
+   "known": true,
+   "layer": "Conservation Halton Parks",
+   "sample": [
+    {
+     "Park_Address": "4985 Campbellville Road, Milton ON",
+     "Park_Name": "Hilton Falls"
+    },
+    {
+     "Park_Address": "10025 First Line Nassagaweya, Milton ON",
+     "Park_Name": "Robert Edmondson"
+    },
+    {
+     "Park_Address": "3115 Conservation Road, Milton ON",
+     "Park_Name": "Crawford Lake"
+    }
+   ],
+   "service": "ms-opendata/CH_Parks",
+   "typef": "",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/f5ef7d87ccef45f4a0de9c0e4548c39f/rest/services/ms-opendata/CH_Parks/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROP_NAME",
+   "count": 4,
+   "fields": [
+    "CA_NAME",
+    "CA",
+    "PROP_NAME"
+   ],
+   "known": true,
+   "layer": "MVCA_Conservation_Areas",
+   "sample": [
+    {
+     "CA": "MVCA",
+     "CA_NAME": "Mississippi Valley",
+     "PROP_NAME": "Purdon"
+    },
+    {
+     "CA": "MVCA",
+     "CA_NAME": "Mississippi Valley",
+     "PROP_NAME": "Mill of Kintail"
+    },
+    {
+     "CA": "MVCA",
+     "CA_NAME": "Mississippi Valley",
+     "PROP_NAME": "Morris Island"
+    }
+   ],
+   "service": "MVC_Conservation_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/MVC_Conservation_Areas/FeatureServer/0"
+  }
+ ],
+ "st": "CA-ON"
+}

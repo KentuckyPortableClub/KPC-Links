@@ -1,0 +1,270 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 3526,
+   "fields": [],
+   "known": false,
+   "layer": "fishnet",
+   "sample": [
+    {
+     "FID": 1,
+     "GlobalID": "6f63e357-838b-4a5c-8f79-8a14ed6ea616",
+     "Id": 0,
+     "Shape__Area": 62500,
+     "Shape__Length": 1000
+    },
+    {
+     "FID": 2,
+     "GlobalID": "6e711be7-fc37-4e8b-aa57-c1fa14d77958",
+     "Id": 0,
+     "Shape__Area": 62500,
+     "Shape__Length": 1000
+    },
+    {
+     "FID": 3,
+     "GlobalID": "5a46aa7b-96f0-481b-9d9d-b3301e857cf2",
+     "Id": 0,
+     "Shape__Area": 62500,
+     "Shape__Length": 1000
+    }
+   ],
+   "service": "LSNMCA_OBBA_fishnet",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/LSNMCA_OBBA_fishnet/FeatureServer/44"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 3274,
+   "fields": [
+    "TYPE_DESC",
+    "SCODE_NAME",
+    "LCODE_NAME",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "New_Humber_TorontoParks",
+   "sample": [
+    {
+     "LCODE_NAME": "3017",
+     "NAME": "CITY WIDE OPEN SPACE",
+     "SCODE_NAME": " ",
+     "TYPE_DESC": "CGSP"
+    },
+    {
+     "LCODE_NAME": "3050",
+     "NAME": "PUBLIC ACCESS PROPERTY",
+     "SCODE_NAME": " ",
+     "TYPE_DESC": "CGSP"
+    },
+    {
+     "LCODE_NAME": "3017",
+     "NAME": "CITY WIDE OPEN SPACE",
+     "SCODE_NAME": " ",
+     "TYPE_DESC": "CGSP"
+    }
+   ],
+   "service": "New_Humber_TorontoParks",
+   "typef": "TYPE_DESC",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/New_Humber_TorontoParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 153,
+   "fields": [
+    "land_type"
+   ],
+   "known": false,
+   "layer": "historic_forests_wetlands_441m",
+   "sample": [
+    {
+     "land_type": "coniferous forest"
+    },
+    {
+     "land_type": "deciduous forest"
+    },
+    {
+     "land_type": "deciduous forest"
+    }
+   ],
+   "service": "historic_forests_wetlands_441m",
+   "typef": "land_type",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/historic_forests_wetlands_441m/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 16,
+   "fields": [
+    "Name",
+    "Types",
+    "MUN",
+    "CA",
+    "Type",
+    "Cleaned",
+    "Classifica"
+   ],
+   "known": false,
+   "layer": "Kettle_Lakes",
+   "sample": [
+    {
+     "CA": "TRCA",
+     "Classifica": "Lake",
+     "Cleaned": " ",
+     "MUN": " ",
+     "Name": "Gibson Lake",
+     "Type": " ",
+     "Types": " "
+    },
+    {
+     "CA": "TRCA",
+     "Classifica": "Pond",
+     "Cleaned": " ",
+     "MUN": " ",
+     "Name": "Pond",
+     "Type": " ",
+     "Types": " "
+    },
+    {
+     "CA": "TRCA",
+     "Classifica": "Pond",
+     "Cleaned": " ",
+     "MUN": " ",
+     "Name": "Pond",
+     "Type": " ",
+     "Types": " "
+    }
+   ],
+   "service": "New_Humber_Cultural_Recreational",
+   "typef": "Types",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/New_Humber_Cultural_Recreational/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "Decs_"
+   ],
+   "known": false,
+   "layer": "CBHNP_Property_Poly",
+   "sample": [
+    {
+     "Decs_": "Cheticamp Staff House"
+    },
+    {
+     "Decs_": "Cheticamp Island Lighthouse"
+    },
+    {
+     "Decs_": "Cape Breton Highlands National Park"
+    }
+   ],
+   "service": "Backcountry",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Backcountry/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "STATUS"
+   ],
+   "known": false,
+   "layer": "Medway_Community_Forest_Lands_CLIP",
+   "sample": [
+    {
+     "STATUS": "MCFC"
+    },
+    {
+     "STATUS": "MCFC"
+    },
+    {
+     "STATUS": "MCFC"
+    }
+   ],
+   "service": "Medway_Community_Forest_Lands_CLIP",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Medway_Community_Forest_Lands_CLIP/FeatureServer/47"
+  },
+  {
+   "agency": "",
+   "area": "M_AREA",
+   "count": 1,
+   "fields": [
+    "PROTECTED_",
+    "PROTECTE_1",
+    "PROTECTE_2",
+    "PROTECTE_3",
+    "PROTECTE_4",
+    "PROTECTE_5",
+    "TYPE_ENG",
+    "TYPE_FR",
+    "STATUS_ENG",
+    "STATUS_FR",
+    "COMMON_SHO",
+    "IUCN_CATEG",
+    "REGULATION",
+    "REGULATI_1",
+    "OPERATING_",
+    "PROVINCIAL",
+    "PROVINCI_1",
+    "NSUID",
+    "PARENTID",
+    "OWNER_ENG"
+   ],
+   "known": false,
+   "layer": "MissinaibiRiver_VectorData_OntarioParks",
+   "sample": [
+    {
+     "COMMON_SHO": "MISSINAIBI",
+     "IUCN_CATEG": "II",
+     "PROTECTED_": "P1543e",
+     "PROTECTE_1": "MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS)",
+     "PROTECTE_2": " ",
+     "PROTECTE_3": " ",
+     "PROTECTE_4": " ",
+     "PROTECTE_5": " ",
+     "STATUS_ENG": "Regulated Provincial Park",
+     "STATUS_FR": "Parc provincial réglementé",
+     "TYPE_ENG": "Provincial Park",
+     "TYPE_FR": "Parc provincial"
+    }
+   ],
+   "service": "MissinaibiRiver_VectorData_OntarioParks",
+   "typef": "TYPE_ENG",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/MissinaibiRiver_VectorData_OntarioParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "BFNATPK_NA",
+    "COMMENT",
+    "NAME2",
+    "FireDanger"
+   ],
+   "known": false,
+   "layer": "Park Boundary",
+   "sample": [
+    {
+     "BFNATPK_NA": " ",
+     "COMMENT": "Parc National Wood Buffalo",
+     "FireDanger": "EXTREME / EXTRÊME",
+     "NAME": "Wood Buffalo National Park",
+     "NAME2": "National Park"
+    }
+   ],
+   "service": "WBNP_Park_Boundary_Status_Map_Symbology",
+   "typef": "",
+   "url": "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/WBNP_Park_Boundary_Status_Map_Symbology/FeatureServer/18"
+  }
+ ],
+ "st": "CA-PC"
+}
