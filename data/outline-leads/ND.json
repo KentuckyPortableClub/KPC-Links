@@ -1,0 +1,245 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "U.S. Fish and Wildlife Service",
+   "area": "UNIT_NAME",
+   "count": 523,
+   "fields": [
+    "COMPLEX_NAME",
+    "ORGANIZATION_NAME",
+    "UNIT_NAME",
+    "UNIT_TYPE",
+    "INTEREST_TYPE1",
+    "INTEREST_TYPE2"
+   ],
+   "known": false,
+   "layer": "National Wildlife Refuges",
+   "sample": [
+    {
+     "COMPLEX_NAME": "KULM WMD",
+     "INTEREST_TYPE1": "Easement",
+     "INTEREST_TYPE2": "F",
+     "ORGANIZATION_NAME": "DAKOTA LAKE NATIONAL WILDLIFE REFUGE",
+     "UNIT_NAME": "Dakota Lake National Wildlife Refuge",
+     "UNIT_TYPE": "NWR"
+    },
+    {
+     "COMPLEX_NAME": "KULM WMD",
+     "INTEREST_TYPE1": "Easement",
+     "INTEREST_TYPE2": "F",
+     "ORGANIZATION_NAME": "DAKOTA LAKE NATIONAL WILDLIFE REFUGE",
+     "UNIT_NAME": "Dakota Lake National Wildlife Refuge",
+     "UNIT_TYPE": "NWR"
+    },
+    {
+     "COMPLEX_NAME": "KULM WMD",
+     "INTEREST_TYPE1": "Easement",
+     "INTEREST_TYPE2": "F",
+     "ORGANIZATION_NAME": "DAKOTA LAKE NATIONAL WILDLIFE REFUGE",
+     "UNIT_NAME": "Dakota Lake National Wildlife Refuge",
+     "UNIT_TYPE": "NWR"
+    }
+   ],
+   "service": "NDGISHUB_National_Wildlife_Refuges",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_National_Wildlife_Refuges/FeatureServer/0"
+  },
+  {
+   "agency": "North Dakota Game and Fish Department",
+   "area": "",
+   "count": 27,
+   "fields": [
+    "DESCRIPTION",
+    "UNIT_TYPE"
+   ],
+   "known": false,
+   "layer": "State Forest",
+   "sample": [
+    {
+     "DESCRIPTION": "ND Forest Service",
+     "UNIT_TYPE": "NDFS"
+    },
+    {
+     "DESCRIPTION": "ND Forest Service",
+     "UNIT_TYPE": "NDFS"
+    },
+    {
+     "DESCRIPTION": "ND Forest Service",
+     "UNIT_TYPE": "NDFS"
+    }
+   ],
+   "service": "NDGISHUB_State_Forest",
+   "typef": "DESCRIPTION",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Forest/FeatureServer/0"
+  },
+  {
+   "agency": "North Dakota Game and Fish Department",
+   "area": "UNIT_NAME",
+   "count": 7,
+   "fields": [
+    "UNIT_NAME",
+    "DESCRIPTION",
+    "UNIT_TYPE"
+   ],
+   "known": false,
+   "layer": "National Parks",
+   "sample": [
+    {
+     "DESCRIPTION": "Elkhorn Ranch Unit",
+     "UNIT_NAME": "Theodore Roosevelt",
+     "UNIT_TYPE": "Park"
+    },
+    {
+     "DESCRIPTION": "North Unit",
+     "UNIT_NAME": "Theodore Roosevelt",
+     "UNIT_TYPE": "Park"
+    },
+    {
+     "DESCRIPTION": "South Unit",
+     "UNIT_NAME": "Theodore Roosevelt",
+     "UNIT_TYPE": "Park"
+    }
+   ],
+   "service": "NDGISHUB_National_Parks",
+   "typef": "DESCRIPTION",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_National_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "Sandra Johnson, Conservation Biologist; North Dakota Game and Fish Department",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "IMPACT",
+    "OFFSET"
+   ],
+   "known": false,
+   "layer": "NDGISHUB_KeyNativeWildlifeHabitatAreas",
+   "sample": [
+    {
+     "IMPACT": "medium",
+     "OFFSET": "moderate"
+    },
+    {
+     "IMPACT": "high",
+     "OFFSET": "maximum"
+    },
+    {
+     "IMPACT": "low",
+     "OFFSET": "minimum"
+    }
+   ],
+   "service": "NDGISHUB_Key_Native_Wildlife_Habitat_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Key_Native_Wildlife_Habitat_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "SPECIES",
+    "RANGE"
+   ],
+   "known": false,
+   "layer": "Fisher Range",
+   "sample": [
+    {
+     "RANGE": "Secondary Fisher Range",
+     "SPECIES": "Fisher"
+    },
+    {
+     "RANGE": "Primary Fisher Range",
+     "SPECIES": "Fisher"
+    }
+   ],
+   "service": "NDGISHUB_Fisher_Range",
+   "typef": "",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Fisher_Range/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "UNIT_TYPE",
+    "UNIT_ID",
+    "STATUS"
+   ],
+   "known": false,
+   "layer": "Fisher Units",
+   "sample": [
+    {
+     "STATUS": "Closed",
+     "UNIT_ID": "NA",
+     "UNIT_TYPE": "Fisher Harvest Zone"
+    },
+    {
+     "STATUS": "Open",
+     "UNIT_ID": "Zone 1",
+     "UNIT_TYPE": "Fisher Harvest Zone"
+    }
+   ],
+   "service": "NDGISHUB_Fisher_Units",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Fisher_Units/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Name",
+   "count": 386,
+   "fields": [
+    "Unit_Name",
+    "COUNTY"
+   ],
+   "known": true,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "COUNTY": "McKenzie",
+     "Unit_Name": "Big Oxbow"
+    },
+    {
+     "COUNTY": "McLean",
+     "Unit_Name": "Riverdale"
+    },
+    {
+     "COUNTY": "Richland",
+     "Unit_Name": "Mirror Pool"
+    }
+   ],
+   "service": "NDGISHUB_Wildlife_Management_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Wildlife_Management_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "North Dakota Parks and Recreation Department.",
+   "area": "UNIT_NAME",
+   "count": 21,
+   "fields": [
+    "UNIT_NAME",
+    "DESCRIPTION"
+   ],
+   "known": true,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "DESCRIPTION": "State Park",
+     "UNIT_NAME": "Fort Stevenson State Park"
+    },
+    {
+     "DESCRIPTION": "State Park",
+     "UNIT_NAME": "Beaver Lake State Park"
+    },
+    {
+     "DESCRIPTION": "State Park",
+     "UNIT_NAME": "Fort Abraham Lincoln State Park"
+    }
+   ],
+   "service": "NDGISHUB_State_Parks",
+   "typef": "DESCRIPTION",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_State_Parks/FeatureServer/0"
+  }
+ ],
+ "st": "ND"
+}

@@ -1,0 +1,253 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Missouri Department of Conservation",
+   "area": "Area_Name",
+   "count": 192,
+   "fields": [
+    "Area_Name",
+    "Name",
+    "County",
+    "Owner",
+    "Manage_Agency"
+   ],
+   "known": false,
+   "layer": "Natural Areas",
+   "sample": [
+    {
+     "Area_Name": "Pawnee Prairie Natural Area",
+     "County": "Harrison",
+     "Manage_Agency": "MDC",
+     "Name": "Pawnee Prairie NA",
+     "Owner": "MDC"
+    },
+    {
+     "Area_Name": "The Wayne Helton Memorial Wildlife Area",
+     "County": "Harrison",
+     "Manage_Agency": "MDC",
+     "Name": "Helton Prairie NA",
+     "Owner": "MDC"
+    },
+    {
+     "Area_Name": "Yellow Creek Conservation Area",
+     "County": "Chariton",
+     "Manage_Agency": "MDC",
+     "Name": "Yellow Creek NA",
+     "Owner": "MDC"
+    }
+   ],
+   "service": "Discover_Nature/MDC_Administrative_Areas",
+   "typef": "",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "LOC_NAME",
+   "count": 13,
+   "fields": [
+    "WA_NAME",
+    "DATE_DES",
+    "LOC_NAME"
+   ],
+   "known": false,
+   "layer": "Wild Areas",
+   "sample": [
+    {
+     "DATE_DES": "19810128",
+     "LOC_NAME": "Sam A. Baker State Park",
+     "WA_NAME": "Mudlick Mountain Wild Area"
+    },
+    {
+     "DATE_DES": "19790329",
+     "LOC_NAME": "Johnson's Shut-Ins State Park",
+     "WA_NAME": "East Fork Wild Area"
+    },
+    {
+     "DATE_DES": "19950331",
+     "LOC_NAME": "Johnson's Shut-Ins State Park",
+     "WA_NAME": "Goggins Mountain Wild Area"
+    }
+   ],
+   "service": "parks/Missouri_State_Parks_Boundaries",
+   "typef": "",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/2"
+  },
+  {
+   "agency": "Missouri Department of Conservation",
+   "area": "Area_Name",
+   "count": 1049,
+   "fields": [
+    "Area_Name",
+    "OFF_Name",
+    "Division_Admin",
+    "Region",
+    "County",
+    "Public_Site",
+    "Display",
+    "GIS_Display",
+    "Sum_Link",
+    "Map_Link",
+    "Brochure_Link",
+    "Reg_Link",
+    "Regional_Resc_Mng_District"
+   ],
+   "known": true,
+   "layer": "Conservation Area Boundaries",
+   "sample": [
+    {
+     "Area_Name": "Fountain Grove CA",
+     "Brochure_Link": "https://mdc.mo.gov/media/area/brochure/4601",
+     "County": "Linn, Livingston",
+     "Display": "Y",
+     "Division_Admin": "Regional Resource Management",
+     "GIS_Display": "Y",
+     "Map_Link": "https://mdc.mo.gov/media/area/map/4601",
+     "OFF_Name": "Fountain Grove Conservation Area",
+     "Public_Site": "Y",
+     "Reg_Link": "https://mdc.mo.gov/discover-nature/places/area-regs/4601",
+     "Region": "Northwest",
+     "Sum_Link": "https://mdc.mo.gov/conservation-area/a4601"
+    },
+    {
+     "Area_Name": "Chesapeake Fish Hatchery",
+     "Brochure_Link": "https://mdc.mo.gov/media/area/brochure/4602",
+     "County": "Lawrence",
+     "Display": "Y",
+     "Division_Admin": "Statewide Resource Management",
+     "GIS_Display": "Y",
+     "Map_Link": "https://mdc.mo.gov/media/area/map/4602",
+     "OFF_Name": "Chesapeake Fish Hatchery",
+     "Public_Site": "Y",
+     "Reg_Link": "https://mdc.mo.gov/discover-nature/places/area-regs/4602",
+     "Region": "Southwest",
+     "Sum_Link": "https://mdc.mo.gov/conservation-area/a4602"
+    },
+    {
+     "Area_Name": "Daniel Boone CA",
+     "Brochure_Link": "https://mdc.mo.gov/media/area/brochure/4603",
+     "County": "Warren",
+     "Display": "Y",
+     "Division_Admin": "Regional Resource Management",
+     "GIS_Display": "Y",
+     "Map_Link": "https://mdc.mo.gov/media/area/map/4603",
+     "OFF_Name": "Daniel Boone Conservation Area",
+     "Public_Site": "Y",
+     "Reg_Link": "https://mdc.mo.gov/discover-nature/places/area-regs/4603",
+     "Region": "St. Louis",
+     "Sum_Link": "https://mdc.mo.gov/conservation-area/a4603"
+    }
+   ],
+   "service": "Discover_Nature/MDC_Administrative_Areas",
+   "typef": "",
+   "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "LOC_NAME",
+   "count": 207,
+   "fields": [
+    "LOC_NAME",
+    "URL",
+    "SHORT_NAME",
+    "REGION"
+   ],
+   "known": true,
+   "layer": "Missouri Department of Natural Resources Lands",
+   "sample": [
+    {
+     "LOC_NAME": "Ha Ha Tonka State Park",
+     "REGION": "Ozark Region",
+     "SHORT_NAME": "Ha Ha Tonka SP",
+     "URL": "http://mostateparks.com/park/ha-ha-tonka-state-park"
+    },
+    {
+     "LOC_NAME": "Arrow Rock State Historic Site",
+     "REGION": "Northern Region",
+     "SHORT_NAME": "Arrow Rock SHS",
+     "URL": "http://mostateparks.com/park/arrow-rock-state-historic-site"
+    },
+    {
+     "LOC_NAME": "Arrow Rock State Historic Site",
+     "REGION": "Northern Region",
+     "SHORT_NAME": "Arrow Rock SHS",
+     "URL": "http://mostateparks.com/park/arrow-rock-state-historic-site"
+    }
+   ],
+   "service": "parks/Missouri_State_Parks_Boundaries",
+   "typef": "",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 36,
+   "fields": [
+    "NAME",
+    "COUNTY",
+    "REGION",
+    "SECTION",
+    "SUBSECT",
+    "LTATYPE",
+    "LTANAME",
+    "ECO_DRAIN",
+    "DIRECTORY",
+    "OWNER",
+    "MANAG_AGEN",
+    "AREA_NAME",
+    "COUNTY_NAM",
+    "SUMLINK"
+   ],
+   "known": true,
+   "layer": "Natural Areas",
+   "sample": [
+    {
+     "AREA_NAME": "Bennett Spring Fish Hatchery",
+     "COUNTY": "Dallas",
+     "DIRECTORY": "Yes",
+     "ECO_DRAIN": "Ozark/Osage",
+     "LTANAME": "Niangua River Oak Woodland/Forest Breaks",
+     "LTATYPE": "OZ Rugged Hills & Forest Breaks",
+     "MANAG_AGEN": "DNR",
+     "NAME": "Bennett Spring Hanging Fen NA",
+     "OWNER": "DNR",
+     "REGION": "Southwest",
+     "SECTION": "Ozark Highlands",
+     "SUBSECT": "Osage River Hills"
+    },
+    {
+     "AREA_NAME": "Montauk Fish Hatchery",
+     "COUNTY": "Dent",
+     "DIRECTORY": "Yes",
+     "ECO_DRAIN": "Ozark/Black/Current",
+     "LTANAME": "Current River Oak-Pine Woodland/Forest Hills",
+     "LTATYPE": "OZ Oak-Pine Hills",
+     "MANAG_AGEN": "DNR",
+     "NAME": "Montauk Upland Forest NA",
+     "OWNER": "DNR",
+     "REGION": "Ozark",
+     "SECTION": "Ozark Highlands",
+     "SUBSECT": "Current River Hills"
+    },
+    {
+     "AREA_NAME": " ",
+     "COUNTY": "Mcdonald",
+     "DIRECTORY": "Yes",
+     "ECO_DRAIN": "Ozark/Neosho",
+     "LTANAME": "Big Sugar Creek Oak Woodland/Forest Hills",
+     "LTATYPE": "OZ Oak Woodland/Forest Hills",
+     "MANAG_AGEN": "DNR",
+     "NAME": "Elk River Breaks Woodland NA",
+     "OWNER": "DNR",
+     "REGION": "Southwest",
+     "SECTION": "Ozark Highlands",
+     "SUBSECT": "Elk River Hills"
+    }
+   ],
+   "service": "parks/Missouri_State_Parks_Boundaries",
+   "typef": "LTATYPE",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/parks/Missouri_State_Parks_Boundaries/FeatureServer/3"
+  }
+ ],
+ "st": "MO"
+}

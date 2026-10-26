@@ -1,0 +1,539 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Area",
+   "count": 95,
+   "fields": [
+    "Area",
+    "Supervisor_District",
+    "Officer_District",
+    "Duty_Station",
+    "created_user",
+    "last_edited_user",
+    "Area_1",
+    "Supervisor_District_1",
+    "Duty_Station_1",
+    "Title",
+    "First_Name",
+    "Last_Name",
+    "Phone",
+    "Email",
+    "Address",
+    "Non_Emergency_Dispatch"
+   ],
+   "known": false,
+   "layer": "outputLayer",
+   "sample": [
+    {
+     "Area": "SE",
+     "Area_1": "Southeast",
+     "Duty_Station": "Alamogordo",
+     "Duty_Station_1": "Alamogordo",
+     "First_Name": "Trevor",
+     "Last_Name": "Nygren",
+     "Officer_District": "ALAMOGORDO",
+     "Supervisor_District": "ALAMOGORDO",
+     "Supervisor_District_1": "ALAMOGORDO",
+     "Title": "Sergeant",
+     "created_user": "keary.howley@dgf.nm.gov_nmdgf",
+     "last_edited_user": "keary.howley@dgf.nm.gov_nmdgf"
+    },
+    {
+     "Area": "SE",
+     "Area_1": "Southeast",
+     "Duty_Station": "Alamogordo",
+     "Duty_Station_1": "Alamogordo",
+     "First_Name": "Anthony",
+     "Last_Name": "Chavez",
+     "Officer_District": "ALAMOGORDO",
+     "Supervisor_District": "ALAMOGORDO",
+     "Supervisor_District_1": "ALAMOGORDO",
+     "Title": "Corporal",
+     "created_user": "keary.howley@dgf.nm.gov_nmdgf",
+     "last_edited_user": "keary.howley@dgf.nm.gov_nmdgf"
+    },
+    {
+     "Area": "SE",
+     "Area_1": "Southeast",
+     "Duty_Station": "Artesia",
+     "Duty_Station_1": "Artesia",
+     "First_Name": "Dominic",
+     "Last_Name": "Graston",
+     "Officer_District": "ARTESIA",
+     "Supervisor_District": "CARLSBAD",
+     "Supervisor_District_1": "CARLSBAD",
+     "Title": "District Officer",
+     "created_user": "keary.howley@dgf.nm.gov_nmdgf",
+     "last_edited_user": "keary.howley@dgf.nm.gov_nmdgf"
+    }
+   ],
+   "service": "Conservation_Officers_Districts_RelateView",
+   "typef": "created_user",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Conservation_Officers_Districts_RelateView/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "Water_Name",
+    "Info",
+    "Trout_pres",
+    "Designatio",
+    "Pro_Reg"
+   ],
+   "known": false,
+   "layer": "Special Trout Waters Streams",
+   "sample": [
+    {
+     "Designatio": "Green chile",
+     "Info": "From San Antonio Hot Springs pedestrian bridge upstream 2.0 miles to the Valles Caldera National Preserve boundary",
+     "Pro_Reg": "2 trout any length, artificial fly or lure with single barbless hook",
+     "Trout_pres": "rainbow trout, brown trout",
+     "Water_Name": "Pecos River"
+    },
+    {
+     "Designatio": "Green chile",
+     "Info": "From Deer Creek Landing upstream 6.0 miles to Stable Canyon",
+     "Pro_Reg": "2 trout any length, artificial fly or lure with single barbless hook",
+     "Trout_pres": "Rio Grande cutthroat trout, brown trout",
+     "Water_Name": "Rio Guadalupe"
+    },
+    {
+     "Designatio": "Red chile",
+     "Info": "From the waterfalls located 0.25 miles downstream of NM63 crossing upstream to its headwaters",
+     "Pro_Reg": "Catch-and-release only, artificial fly or lure with single barbless hook",
+     "Trout_pres": "Rio Grande cutthroat trout",
+     "Water_Name": "Jack's Creek"
+    }
+   ],
+   "service": "Fishing_Waters_Map",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "Water_Name",
+    "Info",
+    "Trout_pres",
+    "Designatio",
+    "Pro_Reg"
+   ],
+   "known": false,
+   "layer": "Special Trout Waters Streams",
+   "sample": [
+    {
+     "Designatio": "Green chile",
+     "Info": "From San Antonio Hot Springs pedestrian bridge upstream 2.0 miles to the Valles Caldera National Preserve boundary",
+     "Pro_Reg": "2 trout any length, artificial fly or lure with single barbless hook",
+     "Trout_pres": "rainbow trout, brown trout",
+     "Water_Name": "Pecos River"
+    },
+    {
+     "Designatio": "Green chile",
+     "Info": "From Deer Creek Landing upstream 6.0 miles to Stable Canyon",
+     "Pro_Reg": "2 trout any length, artificial fly or lure with single barbless hook",
+     "Trout_pres": "Rio Grande cutthroat trout, brown trout",
+     "Water_Name": "Rio Guadalupe"
+    },
+    {
+     "Designatio": "Red chile",
+     "Info": "From the waterfalls located 0.25 miles downstream of NM63 crossing upstream to its headwaters",
+     "Pro_Reg": "Catch-and-release only, artificial fly or lure with single barbless hook",
+     "Trout_pres": "Rio Grande cutthroat trout",
+     "Water_Name": "Jack's Creek"
+    }
+   ],
+   "service": "Fishing_Waters_Map_WFL1",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 23,
+   "fields": [
+    "NAME",
+    "PropertyID",
+    "City",
+    "County",
+    "GMU",
+    "Activities",
+    "MORE_INFO",
+    "Term",
+    "OG_status"
+   ],
+   "known": false,
+   "layer": "Open_Gate_Properties",
+   "sample": [
+    {
+     "Activities": "Dove, Quail and Pronghorn Hunting",
+     "City": "Fort Sumner, NM",
+     "County": "DeBaca",
+     "GMU": "32",
+     "MORE_INFO": "https://wildlife.dgf.nm.gov/download/open-gate-property-info-map-og109-fort-sumner/?ind=0&filename=Open-Gate-Property-Info-Map-OG109-Fort-Sumner.pdf&wpdmdl=44936&refresh=669a7dc5e512c1721400773",
+     "NAME": "Lake Ranch",
+     "OG_status": "Active",
+     "PropertyID": "OG.109",
+     "Term": "Annual - Expires March 31, 2026"
+    },
+    {
+     "Activities": "Dove and Quail Hunting",
+     "City": "Fort Sumner, NM",
+     "County": "DeBaca",
+     "GMU": "40",
+     "MORE_INFO": "https://wildlife.dgf.nm.gov/download/open-gate-property-info-map-og134-fort-sumner/?ind=0&filename=Open-Gate-Property-Info-Map-OG134-Fort-Sumner.pdf&wpdmdl=44945&refresh=669a800b42c131721401355",
+     "NAME": "Head Ranch",
+     "OG_status": "Active",
+     "PropertyID": "OG.134",
+     "Term": "Annual - Expires March 31, 2026"
+    },
+    {
+     "Activities": "Dove, Quail, Pheasant, Turkey, Sandhill Crane, Waterfowl, and Deer (Archery Only) Hunting",
+     "City": "Socorro, NM",
+     "County": "Socorro",
+     "GMU": "18",
+     "MORE_INFO": "https://wildlife.dgf.nm.gov/download/24-25-open-gate-property-info-map-og148-socorro/?ind=1721401598196&filename=24-25-Open-Gate-Property-Info-Map-OG148-Socorro.pdf&wpdmdl=48741&refresh=669a81103e6bc1721401616",
+     "NAME": "Rhodes Ranch",
+     "OG_status": "Active",
+     "PropertyID": "OG.148",
+     "Term": "Annual - Expires March 31, 2026"
+    }
+   ],
+   "service": "NM_Open_Gate_Public_View",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/NM_Open_Gate_Public_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "Stream",
+    "Project",
+    "Details"
+   ],
+   "known": false,
+   "layer": "NMDOW Habitat Improvements Streams",
+   "sample": [
+    {
+     "Details": "BLM led project to improve trout habitat by increasing pool quality/quantity and installing woody debris",
+     "Project": "BLM reach",
+     "Stream": "Rio Bonito"
+    },
+    {
+     "Details": "Improved trout habitat by creating low flow channel, rock structure pools, installing woody debris, and planting native riparian vegetation",
+     "Project": "Bert Clancy",
+     "Stream": "Pecos River"
+    },
+    {
+     "Details": "Improved trout habitat by creating low flow channel, rock structure pools, installing woody debris, and planting native riparian vegetation",
+     "Project": "Tererro",
+     "Stream": "Pecos River"
+    }
+   ],
+   "service": "Fishing_Waters_Map",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "Stream",
+    "Project",
+    "Details"
+   ],
+   "known": false,
+   "layer": "NMDGF Habitat Improvements Streams",
+   "sample": [
+    {
+     "Details": "BLM led project to improve trout habitat by increasing pool quality/quantity and installing woody debris",
+     "Project": "BLM reach",
+     "Stream": "Rio Bonito"
+    },
+    {
+     "Details": "Improved trout habitat by creating low flow channel, rock structure pools, installing woody debris, and planting native riparian vegetation",
+     "Project": "Bert Clancy",
+     "Stream": "Pecos River"
+    },
+    {
+     "Details": "Improved trout habitat by creating low flow channel, rock structure pools, installing woody debris, and planting native riparian vegetation",
+     "Project": "Tererro",
+     "Stream": "Pecos River"
+    }
+   ],
+   "service": "Fishing_Waters_Map_WFL1",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "RanchName",
+    "Contact",
+    "Allocation",
+    "PhoneNumber",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "PronghornRanchWideProperties",
+   "sample": [
+    {
+     "Allocation": "2 MB",
+     "Contact": "Travis Nygren",
+     "Creator": "keary.howley@dgf.nm.gov_nmdgf",
+     "Editor": "keary.howley@dgf.nm.gov_nmdgf",
+     "PhoneNumber": "505-306-9889",
+     "RanchName": "Rose Ranch"
+    },
+    {
+     "Allocation": "10 MB",
+     "Contact": "Jim Haught",
+     "Creator": "keary.howley@dgf.nm.gov_nmdgf",
+     "Editor": "keary.howley@dgf.nm.gov_nmdgf",
+     "PhoneNumber": "575-772-5170",
+     "RanchName": "F-D Cattle Co LLC"
+    },
+    {
+     "Allocation": "13 MB",
+     "Contact": "Gerald Blake",
+     "Creator": "keary.howley@dgf.nm.gov_nmdgf",
+     "Editor": "keary.howley@dgf.nm.gov_nmdgf",
+     "PhoneNumber": "575-315-6791",
+     "RanchName": "Bruton Ranch"
+    }
+   ],
+   "service": "Pronghorn_Ranch_wide_Properties",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Pronghorn_Ranch_wide_Properties/FeatureServer/0"
+  },
+  {
+   "agency": "USFS, United States Forest Service, EDAC, Earth Data Analysis Center, UNM, Unive",
+   "area": "NFSLANDUNITNAME",
+   "count": 7,
+   "fields": [
+    "NFSLANDUNITID",
+    "NFSLANDUNITTYPE",
+    "NFFID",
+    "NFSLANDUNITNAME",
+    "HQ_LOCATION",
+    "COMMENTS",
+    "REGION",
+    "ShortName"
+   ],
+   "known": false,
+   "layer": "USFS_NationalForestSystemLandUnit_NM",
+   "sample": [
+    {
+     "HQ_LOCATION": "Taos, NM",
+     "NFFID": "0327",
+     "NFSLANDUNITID": "295429010328",
+     "NFSLANDUNITNAME": "Carson National Forest",
+     "NFSLANDUNITTYPE": "National Forest",
+     "REGION": "03",
+     "ShortName": "Carson NF"
+    },
+    {
+     "HQ_LOCATION": "Albuquerque, NM",
+     "NFFID": "0328",
+     "NFSLANDUNITID": "295428010328",
+     "NFSLANDUNITNAME": "Cibola National Forest",
+     "NFSLANDUNITTYPE": "National Forest",
+     "REGION": "03",
+     "ShortName": "Cibola NF"
+    },
+    {
+     "HQ_LOCATION": "Silver City, NM",
+     "NFFID": "0331",
+     "NFSLANDUNITID": "295427010328",
+     "NFSLANDUNITNAME": "Gila National Forest",
+     "NFSLANDUNITTYPE": "National Forest",
+     "REGION": "03",
+     "ShortName": "Gila NF"
+    }
+   ],
+   "service": "NM_USFS_National_Forest_System_Land_Units",
+   "typef": "NFSLANDUNITTYPE",
+   "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_USFS_National_Forest_System_Land_Units/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Water_Name",
+    "STW_acres",
+    "Info",
+    "Tackle_Reg",
+    "Trout_pres",
+    "Designatio",
+    "Pro_Reg"
+   ],
+   "known": false,
+   "layer": "Special Trout Waters Lakes",
+   "sample": [
+    {
+     "Designatio": "Red chile",
+     "Info": "Southern most pond, stocked with catchable rainbows",
+     "Pro_Reg": "Catch-and-release only, artificial fly or lure with single barbless hook",
+     "STW_acres": "1.6",
+     "Tackle_Reg": "Artificial fly or lure, single barbless hook",
+     "Trout_pres": "rainbow trout",
+     "Water_Name": "Tingley Beach southern most pond"
+    },
+    {
+     "Designatio": "Red chile",
+     "Info": "Sargent Wildlife Area",
+     "Pro_Reg": "Catch-and-release only, artificial fly or lure with single barbless hook",
+     "STW_acres": "3.2",
+     "Tackle_Reg": "Artificial fly or lure, single barbless hook",
+     "Trout_pres": "Rio Grande cutthroat trout",
+     "Water_Name": "Nabor Lake"
+    },
+    {
+     "Designatio": "Green chile",
+     "Info": "Valle Vidal, small pond located directly south of larger upper pond is designated for anglers 11 years old and younger",
+     "Pro_Reg": "2 fish any length, artificial fly or lure with single barbless hook",
+     "STW_acres": "9.5",
+     "Tackle_Reg": "Artificial fly or lure, single barbless hood",
+     "Trout_pres": "rainbow trout, cutthroat trout-hybrid",
+     "Water_Name": "Shuree Ponds"
+    }
+   ],
+   "service": "Fishing_Waters_Map",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Water_Name",
+    "STW_acres",
+    "Info",
+    "Tackle_Reg",
+    "Trout_pres",
+    "Designatio",
+    "Pro_Reg"
+   ],
+   "known": false,
+   "layer": "Special Trout Waters Lakes",
+   "sample": [
+    {
+     "Designatio": "Red chile",
+     "Info": "Southern most pond, stocked with catchable rainbows",
+     "Pro_Reg": "Catch-and-release only, artificial fly or lure with single barbless hook",
+     "STW_acres": "1.6",
+     "Tackle_Reg": "Artificial fly or lure, single barbless hook",
+     "Trout_pres": "rainbow trout",
+     "Water_Name": "Tingley Beach southern most pond"
+    },
+    {
+     "Designatio": "Red chile",
+     "Info": "Sargent Wildlife Area",
+     "Pro_Reg": "Catch-and-release only, artificial fly or lure with single barbless hook",
+     "STW_acres": "3.2",
+     "Tackle_Reg": "Artificial fly or lure, single barbless hook",
+     "Trout_pres": "Rio Grande cutthroat trout",
+     "Water_Name": "Nabor Lake"
+    },
+    {
+     "Designatio": "Green chile",
+     "Info": "Valle Vidal, small pond located directly south of larger upper pond is designated for anglers 11 years old and younger",
+     "Pro_Reg": "2 fish any length, artificial fly or lure with single barbless hook",
+     "STW_acres": "9.5",
+     "Tackle_Reg": "Artificial fly or lure, single barbless hood",
+     "Trout_pres": "rainbow trout, cutthroat trout-hybrid",
+     "Water_Name": "Shuree Ponds"
+    }
+   ],
+   "service": "Fishing_Waters_Map_WFL1",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Water",
+    "Project",
+    "Details"
+   ],
+   "known": false,
+   "layer": "NMDOW Habitat Improvements Lakes",
+   "sample": [
+    {
+     "Details": "Improved habitat for largemouth bass, channel catfish, trout, and sunfish by installing multiple spawning and cover structures and woody debris",
+     "Project": "Spawning and cover structures",
+     "Water": "Bill Evans Lake"
+    }
+   ],
+   "service": "Fishing_Waters_Map",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Water",
+    "Project",
+    "Details"
+   ],
+   "known": false,
+   "layer": "NMDGF Habitat Improvements Lakes",
+   "sample": [
+    {
+     "Details": "Improved habitat for largemouth bass, channel catfish, trout, and sunfish by installing multiple spawning and cover structures and woody debris",
+     "Project": "Spawning and cover structures",
+     "Water": "Bill Evans Lake"
+    }
+   ],
+   "service": "Fishing_Waters_Map_WFL1",
+   "typef": "",
+   "url": "https://services2.arcgis.com/CjbW1bVhK4dB3WOa/arcgis/rest/services/Fishing_Waters_Map_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 35,
+   "fields": [
+    "Name",
+    "County"
+   ],
+   "known": true,
+   "layer": "NM_State_Parks",
+   "sample": [
+    {
+     "County": "Cibola & McKinley",
+     "Name": "BLUEWATER LAKE"
+    },
+    {
+     "County": "Eddy",
+     "Name": "BRANTLEY LAKE"
+    },
+    {
+     "County": "Sierra",
+     "Name": "CABALLO LAKE"
+    }
+   ],
+   "service": "NM_State_Parks",
+   "typef": "",
+   "url": "https://services7.arcgis.com/fdxAYNZ9OCyQZXdN/arcgis/rest/services/NM_State_Parks/FeatureServer/0"
+  }
+ ],
+ "st": "NM"
+}

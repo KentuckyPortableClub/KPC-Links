@@ -1,0 +1,302 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 2436,
+   "fields": [
+    "NA_NAME",
+    "OWNER",
+    "R_RATING",
+    "C_RATING",
+    "TOP_RATING",
+    "DATA_DATE"
+   ],
+   "known": false,
+   "layer": "Natural Areas",
+   "sample": [
+    {
+     "C_RATING": "C4 (Moderate)",
+     "DATA_DATE": "2026-07-01",
+     "NA_NAME": "Eller Seep",
+     "OWNER": "PRV, TNC",
+     "R_RATING": "R1 (Exceptional)",
+     "TOP_RATING": "Exceptional"
+    },
+    {
+     "C_RATING": "C3 (High)",
+     "DATA_DATE": "2026-07-01",
+     "NA_NAME": "Locust Ridge Outcrops",
+     "OWNER": "PRV, USFS",
+     "R_RATING": "R2 (Very High)",
+     "TOP_RATING": "Very High"
+    },
+    {
+     "C_RATING": "C4 (Moderate)",
+     "DATA_DATE": "2026-07-01",
+     "NA_NAME": "Point Comfort Bluffs",
+     "OWNER": "PRV",
+     "R_RATING": "R1 (Exceptional)",
+     "TOP_RATING": "Exceptional"
+    }
+   ],
+   "service": "NC_Public/Natural_Areas",
+   "typef": "",
+   "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Natural_Areas/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "LOC_NAME",
+   "count": 1924,
+   "fields": [
+    "RULE_NAME",
+    "RULE_ID",
+    "LOC_NAME"
+   ],
+   "known": false,
+   "layer": "Fishing Nursery Areas",
+   "sample": [
+    {
+     "LOC_NAME": "Kitty Hawk Bay/Buzzards Bay",
+     "RULE_ID": "15A NCAC 03R .0105",
+     "RULE_NAME": "Special Secondary Nursery Areas"
+    },
+    {
+     "LOC_NAME": "Kitty Hawk Bay/Buzzards Bay",
+     "RULE_ID": "15A NCAC 03R .0105",
+     "RULE_NAME": "Special Secondary Nursery Areas"
+    },
+    {
+     "LOC_NAME": "Kitty Hawk Bay/Buzzards Bay",
+     "RULE_ID": "15A NCAC 03R .0105",
+     "RULE_NAME": "Special Secondary Nursery Areas"
+    }
+   ],
+   "service": "NC_Public/Fishing_Nursery_Areas",
+   "typef": "",
+   "url": "https://ncnhde.natureserve.org/arcgis/rest/services/NC_Public/Fishing_Nursery_Areas/MapServer/0"
+  },
+  {
+   "agency": "North Carolina Wildlife Resources Commission",
+   "area": "",
+   "count": 1665,
+   "fields": [
+    "GML_HAB",
+    "GML_TYPE",
+    "GML_TRACT",
+    "GML_OWN",
+    "GML_STATUS",
+    "REGION",
+    "COUNTY",
+    "GML_DESIG"
+   ],
+   "known": false,
+   "layer": "Game Lands - detail",
+   "sample": [
+    {
+     "COUNTY": "CURRITUCK",
+     "GML_DESIG": "Seven-days-per-week",
+     "GML_HAB": "Northwest River Marsh",
+     "GML_OWN": "NC Wildlife Resources Commission",
+     "GML_STATUS": "OWN",
+     "GML_TRACT": "Highlands - Nellie Bell Ponds",
+     "GML_TYPE": "Game Land",
+     "REGION": "Coastal"
+    },
+    {
+     "COUNTY": "RICHMOND",
+     "GML_DESIG": "Seven-days-per-week",
+     "GML_HAB": "Pee Dee River",
+     "GML_OWN": "NC Wildlife Resources Commission",
+     "GML_STATUS": "OWN",
+     "GML_TRACT": "Diggs",
+     "GML_TYPE": "Game Land",
+     "REGION": "Piedmont"
+    },
+    {
+     "COUNTY": "BLADEN",
+     "GML_DESIG": "Permit-only",
+     "GML_HAB": "Suggs Mill Pond",
+     "GML_OWN": "NC Wildlife Resources Commission",
+     "GML_STATUS": "OWN",
+     "GML_TRACT": "B. King - Turnbull",
+     "GML_TYPE": "Bear Management Area",
+     "REGION": "Coastal"
+    }
+   ],
+   "service": "gamelands_detail",
+   "typef": "GML_TYPE",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_detail/FeatureServer/22"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 168,
+   "fields": [
+    "SUPERSECT",
+    "SS_Name2",
+    "Rank2Desc",
+    "RankD3Desc",
+    "STATE",
+    "SUPERSEC_2",
+    "B3RankDesc",
+    "D3RankDesc",
+    "PriorityRe",
+    "BoundaryCh",
+    "CO_NAME",
+    "CO_ABBR"
+   ],
+   "known": false,
+   "layer": "priorityforest",
+   "sample": [
+    {
+     "B3RankDesc": "0 - 10%",
+     "BoundaryCh": " ",
+     "CO_ABBR": "SWAI",
+     "CO_NAME": "SWAIN",
+     "D3RankDesc": "0 - 27%",
+     "PriorityRe": "A3",
+     "Rank2Desc": "0 - 10%",
+     "RankD3Desc": "0 - 27%",
+     "SS_Name2": "BRM-BCR28",
+     "STATE": "Tennessee",
+     "SUPERSECT": "Blue Ridge Mountains",
+     "SUPERSEC_2": " "
+    },
+    {
+     "B3RankDesc": "0 - 10%",
+     "BoundaryCh": " ",
+     "CO_ABBR": "GRAH",
+     "CO_NAME": "GRAHAM",
+     "D3RankDesc": "0 - 27%",
+     "PriorityRe": "A3",
+     "Rank2Desc": "0 - 10%",
+     "RankD3Desc": "0 - 27%",
+     "SS_Name2": "BRM-BCR28",
+     "STATE": "Tennessee",
+     "SUPERSECT": "Blue Ridge Mountains",
+     "SUPERSEC_2": " "
+    },
+    {
+     "B3RankDesc": "0 - 10%",
+     "BoundaryCh": " ",
+     "CO_ABBR": "CHER",
+     "CO_NAME": "CHEROKEE",
+     "D3RankDesc": "0 - 27%",
+     "PriorityRe": "A3",
+     "Rank2Desc": "0 - 10%",
+     "RankD3Desc": "0 - 27%",
+     "SS_Name2": "BRM-BCR28",
+     "STATE": "Tennessee",
+     "SUPERSECT": "Blue Ridge Mountains",
+     "SUPERSEC_2": " "
+    }
+   ],
+   "service": "Audubon_IBAs_and_Priority_Blocks_WFL1",
+   "typef": "Rank2Desc",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/Audubon_IBAs_and_Priority_Blocks_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 46,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "Wildlife Habitat Connector",
+   "sample": [
+    {
+     "Type": "wildlife habitat connector"
+    },
+    {
+     "Type": "wildlife habitat connector"
+    },
+    {
+     "Type": "wildlife habitat connector"
+    }
+   ],
+   "service": "SandhillsRegionalData",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/SandhillsRegionalData/FeatureServer/5"
+  },
+  {
+   "agency": "NCWRC",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "Wildlife_Habitat_Connector",
+   "sample": [
+    {
+     "Type": "wildlife habitat connector"
+    },
+    {
+     "Type": "wildlife habitat connector"
+    },
+    {
+     "Type": "wildlife habitat connector"
+    }
+   ],
+   "service": "Tier2",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/Tier2/FeatureServer/6"
+  },
+  {
+   "agency": "NCWRC",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "WATERBODY",
+    "FishKillDe"
+   ],
+   "known": false,
+   "layer": "Fish Kill Areas",
+   "sample": [
+    {
+     "FishKillDe": "Neuse River from Goldsboro to Vanceboro (9/24/2018-9/25/2018)",
+     "WATERBODY": "Neuse River"
+    },
+    {
+     "FishKillDe": "Neuse River from Fort Barnwell to Bridgeton (10/1/2018-10/4/2018)",
+     "WATERBODY": "Neuse River"
+    },
+    {
+     "FishKillDe": "Cape Fear River from Tar Heel to Southport",
+     "WATERBODY": "Cape Fear River"
+    }
+   ],
+   "service": "FishKillAreas_HurricaneFlorence_102018",
+   "typef": "",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/FishKillAreas_HurricaneFlorence_102018/FeatureServer/0"
+  },
+  {
+   "agency": "North Carolina Wildlife Resources Commission",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "GML_HAB"
+   ],
+   "known": true,
+   "layer": "Game Lands - general",
+   "sample": [
+    {
+     "GML_HAB": "Alligator River"
+    },
+    {
+     "GML_HAB": "Angola Bay"
+    },
+    {
+     "GML_HAB": "Bachelor Bay"
+    }
+   ],
+   "service": "gamelands_general",
+   "typef": "",
+   "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/gamelands_general/FeatureServer/21"
+  }
+ ],
+ "st": "NC"
+}

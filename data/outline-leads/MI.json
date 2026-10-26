@@ -1,0 +1,2959 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 203128,
+   "fields": [
+    "PublicCoverType",
+    "FCKey",
+    "ManagementNotes",
+    "GeneralComments",
+    "FCSKEY"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Stand Yellow Outline",
+   "sample": [
+    {
+     "FCKey": "11012",
+     "FCSKEY": "9020201007",
+     "GeneralComments": "Acquired from Wisconsin Electric on 12/19/2008.\n\nRiparian Corridor to the Sturgeon River with very steep slopes."
+    },
+    {
+     "FCKey": "12010",
+     "FCSKEY": "12010025",
+     "GeneralComments": "Rub Line Mix TS harvested in 2023-2024.  Planted 2026.  2026 Regen count after planting is 774 TPA.",
+     "ManagementNotes": "Site sprayed in July of 2025 plant in spring of 2026"
+    },
+    {
+     "FCKey": "12043",
+     "FCSKEY": "12043021"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "PublicCoverType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 194079,
+   "fields": [
+    "FC_Key",
+    "FCS_KEY"
+   ],
+   "known": false,
+   "layer": "Michigan DNR Managed Land Covertype",
+   "sample": [
+    {
+     "FCS_KEY": "11012063",
+     "FC_Key": "11012"
+    },
+    {
+     "FCS_KEY": "12010025",
+     "FC_Key": "12010"
+    },
+    {
+     "FCS_KEY": "12043016",
+     "FC_Key": "12043"
+    }
+   ],
+   "service": "pub_MiMorelsApp_ancillary",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/pub_MiMorelsApp_ancillary/FeatureServer/1"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 159542,
+   "fields": [
+    "FCKey",
+    "ManagementNotes",
+    "GeneralComments",
+    "FCSKEY",
+    "created_user",
+    "last_edited_user",
+    "StandLockedComments"
+   ],
+   "known": false,
+   "layer": "Michigan Forest Inventory - Stand Covertype",
+   "sample": [
+    {
+     "FCKey": "11012",
+     "FCSKEY": "11012063",
+     "GeneralComments": "Acquired from Wisconsin Electric on 12/19/2008.\n\nRiparian Corridor to the Sturgeon River with very steep slopes.",
+     "created_user": "PoleyN_dnr",
+     "last_edited_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "12010",
+     "FCSKEY": "12010025",
+     "GeneralComments": "Highly variable stand.  BAs range from 30 to 200+.  Many openings within plantation resulting from poor planting techniques.  Some Aspen, Spruce, and Fir was harvested in 2003.  No Pine was harvested.  The planted Pine is of poor form and has much defect.\r\nRub Line Mix TS harvested in 2023-2024",
+     "created_user": "PoleyN_dnr",
+     "last_edited_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "12043",
+     "FCSKEY": "12043016",
+     "created_user": "PoleyN_dnr",
+     "last_edited_user": "PoleyN_dnr"
+    }
+   ],
+   "service": "Michigan_DNR_Public_Forest_Inventory_Data",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/3"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 159542,
+   "fields": [
+    "FCKey",
+    "ManagementNotes",
+    "GeneralComments",
+    "FCSKEY",
+    "created_user",
+    "last_edited_user",
+    "StandLockedComments"
+   ],
+   "known": false,
+   "layer": "Michigan Forest Inventory - Stand Yellow Outline",
+   "sample": [
+    {
+     "FCKey": "11012",
+     "FCSKEY": "11012063",
+     "GeneralComments": "Acquired from Wisconsin Electric on 12/19/2008.\n\nRiparian Corridor to the Sturgeon River with very steep slopes.",
+     "created_user": "PoleyN_dnr",
+     "last_edited_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "12010",
+     "FCSKEY": "12010025",
+     "GeneralComments": "Highly variable stand.  BAs range from 30 to 200+.  Many openings within plantation resulting from poor planting techniques.  Some Aspen, Spruce, and Fir was harvested in 2003.  No Pine was harvested.  The planted Pine is of poor form and has much defect.\r\nRub Line Mix TS harvested in 2023-2024",
+     "created_user": "PoleyN_dnr",
+     "last_edited_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "12043",
+     "FCSKEY": "12043016",
+     "created_user": "PoleyN_dnr",
+     "last_edited_user": "PoleyN_dnr"
+    }
+   ],
+   "service": "Michigan_DNR_Public_Forest_Inventory_Data",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/4"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 158670,
+   "fields": [
+    "PublicCoverType",
+    "FCKey",
+    "ManagementNotes",
+    "GeneralComments",
+    "FCSKEY"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Stand Cover Type",
+   "sample": [
+    {
+     "FCKey": "11012",
+     "FCSKEY": "9020201007",
+     "GeneralComments": "Acquired from Wisconsin Electric on 12/19/2008.\n\nRiparian Corridor to the Sturgeon River with very steep slopes."
+    },
+    {
+     "FCKey": "12010",
+     "FCSKEY": "12010025",
+     "GeneralComments": "Rub Line Mix TS harvested in 2023-2024.  Planted 2026.  2026 Regen count after planting is 774 TPA.",
+     "ManagementNotes": "Site sprayed in July of 2025 plant in spring of 2026"
+    },
+    {
+     "FCKey": "12043",
+     "FCSKEY": "12043021"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "PublicCoverType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 119346,
+   "fields": [
+    "status",
+    "county",
+    "town",
+    "range",
+    "section_",
+    "qtr_qtr",
+    "qtr",
+    "twnrng",
+    "twnrngsec",
+    "geo_id",
+    "fmu"
+   ],
+   "known": false,
+   "layer": "State_Forest_Land_Fuelwood_Permissions_Quarter_Quarters",
+   "sample": [
+    {
+     "county": "01",
+     "fmu": "Grayling",
+     "geo_id": "25N08E19NESE",
+     "qtr": "SE",
+     "qtr_qtr": "NE",
+     "range": "08E",
+     "section_": "19",
+     "status": "Open",
+     "town": "25N",
+     "twnrng": "25N08E",
+     "twnrngsec": "25N08E19"
+    },
+    {
+     "county": "01",
+     "fmu": "Grayling",
+     "geo_id": "25N08E19NESW",
+     "qtr": "SW",
+     "qtr_qtr": "NE",
+     "range": "08E",
+     "section_": "19",
+     "status": "Open",
+     "town": "25N",
+     "twnrng": "25N08E",
+     "twnrngsec": "25N08E19"
+    },
+    {
+     "county": "01",
+     "fmu": "Grayling",
+     "geo_id": "25N08E19NWNW",
+     "qtr": "NW",
+     "qtr_qtr": "NW",
+     "range": "08E",
+     "section_": "19",
+     "status": "Closed (Timber Sale)",
+     "town": "25N",
+     "twnrng": "25N08E",
+     "twnrngsec": "25N08E19"
+    }
+   ],
+   "service": "2026MichiganDNRFuelwoodCollection",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/2026MichiganDNRFuelwoodCollection/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 119162,
+   "fields": [
+    "status",
+    "county",
+    "town",
+    "range",
+    "section_",
+    "qtr_qtr",
+    "qtr",
+    "twnrng",
+    "twnrngsec",
+    "geo_id",
+    "fmu"
+   ],
+   "known": false,
+   "layer": "State Forest Land Fuelwood Permissions Quarter Quarters",
+   "sample": [
+    {
+     "county": "01",
+     "fmu": "Grayling",
+     "geo_id": "25N08E19NESE",
+     "qtr": "SE",
+     "qtr_qtr": "NE",
+     "range": "08E",
+     "section_": "19",
+     "status": "Open",
+     "town": "25N",
+     "twnrng": "25N08E",
+     "twnrngsec": "25N08E19"
+    },
+    {
+     "county": "01",
+     "fmu": "Grayling",
+     "geo_id": "25N08E19NESW",
+     "qtr": "SW",
+     "qtr_qtr": "NE",
+     "range": "08E",
+     "section_": "19",
+     "status": "Open",
+     "town": "25N",
+     "twnrng": "25N08E",
+     "twnrngsec": "25N08E19"
+    },
+    {
+     "county": "01",
+     "fmu": "Grayling",
+     "geo_id": "25N08E19NWNW",
+     "qtr": "NW",
+     "qtr_qtr": "NW",
+     "range": "08E",
+     "section_": "19",
+     "status": "Open",
+     "town": "25N",
+     "twnrng": "25N08E",
+     "twnrngsec": "25N08E19"
+    }
+   ],
+   "service": "MichiganDNRFuelwoodCollection",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRFuelwoodCollection/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 48104,
+   "fields": [
+    "PublicAccess",
+    "AccessComments",
+    "DNRName",
+    "MDNRID",
+    "PermanentIdentifier",
+    "County",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHMasterAnglerStatus",
+   "sample": [
+    {
+     "County": "025",
+     "MDNRID": "L21310",
+     "PermanentIdentifier": "152518292",
+     "created_user": "boonc_dnr",
+     "last_edited_user": "boonc_dnr"
+    },
+    {
+     "County": "159",
+     "MDNRID": "L23288",
+     "PermanentIdentifier": "155636435",
+     "created_user": "boonc_dnr",
+     "last_edited_user": "boonc_dnr"
+    },
+    {
+     "County": "125",
+     "MDNRID": "L5884",
+     "PermanentIdentifier": "145332595",
+     "created_user": "boonc_dnr",
+     "last_edited_user": "boonc_dnr"
+    }
+   ],
+   "service": "FISHMasterAnglerStatus",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHMasterAnglerStatus/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 46850,
+   "fields": [
+    "DNRName",
+    "MDNRID",
+    "PermanentIdentifier",
+    "GNISID",
+    "GNISName",
+    "NHDPlusID",
+    "ReachCode",
+    "Comments",
+    "AlternateNames",
+    "SpecialCase",
+    "State",
+    "County",
+    "HUC12",
+    "Peninsula",
+    "Treaty",
+    "TRS",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHHydroPolygons",
+   "sample": [
+    {
+     "County": "025",
+     "MDNRID": "L21310",
+     "NHDPlusID": "60002600151613",
+     "PermanentIdentifier": "152518292",
+     "ReachCode": "04050003004400",
+     "State": "26"
+    },
+    {
+     "County": "159",
+     "MDNRID": "L23288",
+     "NHDPlusID": "60002600144031",
+     "PermanentIdentifier": "155636435",
+     "ReachCode": "04050001011463",
+     "State": "26"
+    },
+    {
+     "County": "125",
+     "MDNRID": "L5884",
+     "NHDPlusID": "60001300130903",
+     "PermanentIdentifier": "145332595",
+     "ReachCode": "04100013003315",
+     "State": "26"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/3"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 46832,
+   "fields": [
+    "DNRName",
+    "MDNRID",
+    "PermanentIdentifier",
+    "LakeType",
+    "RegulationDesc",
+    "FSeasonStart",
+    "FSeasonEnd",
+    "PSeasonStart",
+    "PSeasonEnd",
+    "DPL",
+    "Tackle",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user",
+    "SpawningClosure"
+   ],
+   "known": false,
+   "layer": "Trout and Salmon Inland Lake Regulations",
+   "sample": [
+    {
+     "DNRName": "West Fish Lake",
+     "DPL": "Closed to fishing.",
+     "FSeasonEnd": "Closed",
+     "FSeasonStart": "Closed",
+     "LakeType": "Unclassified",
+     "MDNRID": "L13607",
+     "PSeasonEnd": "Closed",
+     "PSeasonStart": "Closed",
+     "PermanentIdentifier": "113471321",
+     "RegulationDesc": "Non Designated",
+     "Tackle": "Closed to fishing."
+    },
+    {
+     "DNRName": "Marshall Pond",
+     "DPL": "Closed to fishing.",
+     "FSeasonEnd": "Closed",
+     "FSeasonStart": "Closed",
+     "LakeType": "Unclassified",
+     "MDNRID": "L7630",
+     "PSeasonEnd": "Closed",
+     "PSeasonStart": "Closed",
+     "PermanentIdentifier": "113471267",
+     "RegulationDesc": "Non Designated",
+     "Tackle": "Closed to fishing."
+    },
+    {
+     "DNRName": "Middle Fish Lake",
+     "DPL": "Closed to fishing.",
+     "FSeasonEnd": "Closed",
+     "FSeasonStart": "Closed",
+     "LakeType": "Unclassified",
+     "MDNRID": "L817",
+     "PSeasonEnd": "Closed",
+     "PSeasonStart": "Closed",
+     "PermanentIdentifier": "113471315",
+     "RegulationDesc": "Non Designated",
+     "Tackle": "Closed to fishing."
+    }
+   ],
+   "service": "DNRFisheriesTroutRegsOPENDATA",
+   "typef": "LakeType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesTroutRegsOPENDATA/FeatureServer/2"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 43821,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Treatment History",
+   "sample": [
+    {
+     "FCKey": "54005",
+     "ImplementationNotes": "See Sign-Offs tab.",
+     "TreatmentName": "002-Cut"
+    },
+    {
+     "FCKey": "54005",
+     "ImplementationNotes": "See Sign-Offs tab.",
+     "TreatmentName": "003-Cut"
+    },
+    {
+     "FCKey": "54008",
+     "ImplementationNotes": "See Sign-Offs tab.",
+     "RxSpecs": "Reduce basal area to 80-90.  Favor leaving quality oak.  Avoid excessively steep slopes, if they occur.  Cut no red pine or white pine, even if doing so pushes the BA over 90.  ",
+     "TreatmentName": "005-S T Select"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/1"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 42201,
+   "fields": [
+    "ReportingCoverType",
+    "DamageAssessment"
+   ],
+   "known": false,
+   "layer": "Ice Storm Forestry Stands Damage Assessment",
+   "sample": [
+    {},
+    {},
+    {
+     "ReportingCoverType": "Oak"
+    }
+   ],
+   "service": "MichiganIceStormStandsDamageAssessment",
+   "typef": "ReportingCoverType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganIceStormStandsDamageAssessment/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 40231,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "HarvestSalePropId",
+    "SaleName",
+    "SaleNumber",
+    "ProposalStatusCode",
+    "ProposalStatusShortDescription",
+    "created_user",
+    "last_edited_user",
+    "BatchName",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Michigan Forest Inventory - Completed Treatments",
+   "sample": [
+    {
+     "FCKey": "54005",
+     "HarvestSalePropId": "540140801",
+     "ImplementationNotes": "See Sign-Offs tab.",
+     "TreatmentName": "002-Cut"
+    },
+    {
+     "FCKey": "54005",
+     "HarvestSalePropId": "540370801",
+     "ImplementationNotes": "See Sign-Offs tab.",
+     "TreatmentName": "003-Cut"
+    },
+    {
+     "FCKey": "54008",
+     "HarvestSalePropId": "540420801",
+     "ImplementationNotes": "See Sign-Offs tab.",
+     "RxSpecs": "Reduce basal area to 80-90.  Favor leaving quality oak.  Avoid excessively steep slopes, if they occur.  Cut no red pine or white pine, even if doing so pushes the BA over 90.  ",
+     "TreatmentName": "005-S T Select"
+    }
+   ],
+   "service": "Michigan_DNR_Public_Forest_Inventory_Data",
+   "typef": "ProposalStatusShortDescription",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/2"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 29963,
+   "fields": [
+    "FCSKey",
+    "Comments",
+    "FCKey"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Area's Unavailable to Harvest",
+   "sample": [
+    {
+     "FCKey": "11005",
+     "FCSKey": "11005054"
+    },
+    {
+     "FCKey": "11005",
+     "FCSKey": "11005055"
+    },
+    {
+     "Comments": "ERA Boreal Forest GU-S3",
+     "FCKey": "11075",
+     "FCSKey": "11075027"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 25629,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "HarvestSalePropID",
+    "SaleName",
+    "ProposalStatusCode",
+    "ProposalStatusShortDesc",
+    "created_user",
+    "last_edited_user",
+    "TreatmentLockedComments",
+    "BatchName",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Michigan Forest Inventory - Treatments Methods",
+   "sample": [
+    {
+     "FCKey": "11006",
+     "HarvestSalePropID": "110052301",
+     "NextSteps": "Check for adequate regeneration within 5 years of harvest completion.",
+     "OtherComments": "Retention for this stand will be greater than 3% and will consist of reserve tree species.  Stand will be put up with adjacent Compartment 7 in 2023.  Snowmobile trail will possibly be affected by the harvest of this stand, see cutting specs.",
+     "ProposalStatusCode": "05",
+     "ProposalStatusShortDesc": "SOLD",
+     "RxSpecs": "Harvest all species down to 2 inches DBH except red oak over 18\" and hemlock.",
+     "SaleName": "Blueper Cut",
+     "TreatmentName": "11006061-Cut",
+     "created_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "11007",
+     "NextSteps": "We recommend that stand gets mowed every 5-10 years to maintain opening.",
+     "RxSpecs": "Wildlife:  Grass/non forested - area has somewhat grown in but good small openings till exist through out.  FTP to mechanically spot treat with hydro mower to remove woody encroachment and maintain partial open land condition, possible plant a few persistent fruiting apples with adequate protection via local sportsmen's club participation.  Mechanically spot treat up to 50% of stand.",
+     "TreatmentName": "11007030-NonFor",
+     "created_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "11045",
+     "NextSteps": "Monitor and repeat as needed.",
+     "RxSpecs": "Cut all brush around Dam to protect its structural integrity.",
+     "TreatmentName": "11045009-NonFor",
+     "created_user": "PoleyN_dnr"
+    }
+   ],
+   "service": "Michigan_DNR_Public_Forest_Inventory_Data",
+   "typef": "ProposalStatusShortDesc",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 25629,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "HarvestSalePropID",
+    "SaleName",
+    "ProposalStatusCode",
+    "ProposalStatusShortDesc",
+    "created_user",
+    "last_edited_user",
+    "TreatmentLockedComments",
+    "BatchName",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Michigan Forest Inventory - Treatments Outline",
+   "sample": [
+    {
+     "FCKey": "11006",
+     "HarvestSalePropID": "110052301",
+     "NextSteps": "Check for adequate regeneration within 5 years of harvest completion.",
+     "OtherComments": "Retention for this stand will be greater than 3% and will consist of reserve tree species.  Stand will be put up with adjacent Compartment 7 in 2023.  Snowmobile trail will possibly be affected by the harvest of this stand, see cutting specs.",
+     "ProposalStatusCode": "05",
+     "ProposalStatusShortDesc": "SOLD",
+     "RxSpecs": "Harvest all species down to 2 inches DBH except red oak over 18\" and hemlock.",
+     "SaleName": "Blueper Cut",
+     "TreatmentName": "11006061-Cut",
+     "created_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "11007",
+     "NextSteps": "We recommend that stand gets mowed every 5-10 years to maintain opening.",
+     "RxSpecs": "Wildlife:  Grass/non forested - area has somewhat grown in but good small openings till exist through out.  FTP to mechanically spot treat with hydro mower to remove woody encroachment and maintain partial open land condition, possible plant a few persistent fruiting apples with adequate protection via local sportsmen's club participation.  Mechanically spot treat up to 50% of stand.",
+     "TreatmentName": "11007030-NonFor",
+     "created_user": "PoleyN_dnr"
+    },
+    {
+     "FCKey": "11045",
+     "NextSteps": "Monitor and repeat as needed.",
+     "RxSpecs": "Cut all brush around Dam to protect its structural integrity.",
+     "TreatmentName": "11045009-NonFor",
+     "created_user": "PoleyN_dnr"
+    }
+   ],
+   "service": "Michigan_DNR_Public_Forest_Inventory_Data",
+   "typef": "ProposalStatusShortDesc",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/1"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources, Forest Resources Division, Commercial ",
+   "area": "",
+   "count": 17321,
+   "fields": [
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Commercial Forest",
+   "sample": [
+    {
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "CommercialForestOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/CommercialForestOPENDATA/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 7121,
+   "fields": [
+    "RiverType",
+    "UniqueID",
+    "LinkID",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "IFR MI Fisheries River Classification Catchments",
+   "sample": [
+    {
+     "RiverType": "Warm transitional stream",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "RiverType": "Warm transitional stream",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "RiverType": "Cold transitional stream",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRFisheriesDataOPENDATA",
+   "typef": "RiverType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesDataOPENDATA/FeatureServer/4"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 5575,
+   "fields": [
+    "FCKey",
+    "CompartmentNumber",
+    "CompartmentComments",
+    "last_edited_user",
+    "created_user",
+    "CheckedOutUser",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Michigan Forest Inventory - Compartments",
+   "sample": [
+    {
+     "CompartmentNumber": "1",
+     "Creator": "PoleyN_dnr",
+     "Editor": "PoleyN_dnr",
+     "FCKey": "11001",
+     "created_user": "133",
+     "last_edited_user": "133"
+    },
+    {
+     "CompartmentComments": "The Nature Conservancy\nSlate River Forest Reserve\nupmichigan@tnc.org\n1-517-316-0300\n1-906-225-0399\nAlexander Helman\n1-906-370-7151\nAlexander.helmantnc.org\n",
+     "CompartmentNumber": "2",
+     "Creator": "PoleyN_dnr",
+     "Editor": "PoleyN_dnr",
+     "FCKey": "11002",
+     "created_user": "79",
+     "last_edited_user": "79"
+    },
+    {
+     "CompartmentNumber": "3",
+     "Creator": "PoleyN_dnr",
+     "Editor": "PoleyN_dnr",
+     "FCKey": "11003",
+     "created_user": "395",
+     "last_edited_user": "395"
+    }
+   ],
+   "service": "Michigan_DNR_Public_Forest_Inventory_Data",
+   "typef": "last_edited_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/5"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 5429,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Mi State Forest -  On-Going Treatments",
+   "sample": [
+    {
+     "FCKey": "11007",
+     "NextSteps": "We recommend that stand gets mowed every 5-10 years to maintain opening.",
+     "RxSpecs": "Wildlife:  Grass/non forested - area has somewhat grown in but good small openings till exist through out.  FTP to mechanically spot treat with hydro mower to remove woody encroachment and maintain partial open land condition, possible plant a few persistent fruiting apples with adequate protection via local sportsmen's club participation.  Mechanically spot treat up to 50% of stand.",
+     "TreatmentName": "11007030-NonFor"
+    },
+    {
+     "FCKey": "11045",
+     "NextSteps": "Monitor and repeat as needed.",
+     "RxSpecs": "Cut all brush around Dam to protect its structural integrity.",
+     "TreatmentName": "11045009-NonFor"
+    },
+    {
+     "AcceptableRegen": "grasses",
+     "FCKey": "11058",
+     "NextSteps": "repeat annually.",
+     "RxSpecs": "Brushing and herbicide application to maitain the dam impoundment.",
+     "TreatmentName": "11058005.2_NF"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/2"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 4247,
+   "fields": [
+    "Lakeshed",
+    "HUC12",
+    "HUC12Name",
+    "HUC10Name",
+    "HUC8Name",
+    "HUC6Name",
+    "HUC4Name",
+    "HUC2Name",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHHUC12",
+   "sample": [
+    {
+     "HUC10Name": "Kawkawlin River",
+     "HUC12": "040801020202",
+     "HUC12Name": "Waldo Drain",
+     "HUC2Name": "Great Lakes Region",
+     "HUC4Name": "Southwestern Lake Huron-Lake Huron",
+     "HUC6Name": "Southwestern Lake Huron",
+     "HUC8Name": "Kawkawlin-Pine",
+     "Lakeshed": "Lake Huron",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "HUC10Name": "Lower South Branch Thunder Bay River",
+     "HUC12": "040700060502",
+     "HUC12Name": "West Branch River",
+     "HUC2Name": "Great Lakes Region",
+     "HUC4Name": "Northwestern Lake Huron",
+     "HUC6Name": "Northwestern Lake Huron",
+     "HUC8Name": "Thunder Bay",
+     "Lakeshed": "Lake Huron",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "HUC10Name": "Au Sable River",
+     "HUC12": "040700070703",
+     "HUC12Name": "Wilbur Creek",
+     "HUC2Name": "Great Lakes Region",
+     "HUC4Name": "Northwestern Lake Huron",
+     "HUC6Name": "Northwestern Lake Huron",
+     "HUC8Name": "Au Sable",
+     "Lakeshed": "Lake Huron",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/7"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 3753,
+   "fields": [
+    "BoundaryPolygonID",
+    "GrantParcelID",
+    "GrantGroupIDDifferent",
+    "ProjectNumber",
+    "Title",
+    "Grantee",
+    "GranteeCounty",
+    "SuperlevelName",
+    "ProjectType",
+    "Status",
+    "ApplicationNumber",
+    "ApplicationStatus",
+    "ApplicationYear",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "DNR Recreation Grant Polygons",
+   "sample": [
+    {
+     "BoundaryPolygonID": "SLP000541",
+     "GrantGroupIDDifferent": "No"
+    },
+    {
+     "BoundaryPolygonID": "LLP001802",
+     "GrantGroupIDDifferent": "No",
+     "GrantParcelID": "LLP001802"
+    },
+    {
+     "BoundaryPolygonID": "LLP001839",
+     "GrantGroupIDDifferent": "No"
+    }
+   ],
+   "service": "DNRRecreationGrantsOPENDATA",
+   "typef": "ProjectType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRRecreationGrantsOPENDATA/FeatureServer/1"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "NAME",
+   "count": 3235,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "GEOID",
+    "NAME",
+    "NAMELSAD",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHUSCounty",
+   "sample": [
+    {
+     "COUNTYFP": "039",
+     "GEOID": "31039",
+     "NAME": "Cuming",
+     "NAMELSAD": "Cuming County",
+     "STATEFP": "31",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "COUNTYFP": "069",
+     "GEOID": "53069",
+     "NAME": "Wahkiakum",
+     "NAMELSAD": "Wahkiakum County",
+     "STATEFP": "53",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "COUNTYFP": "011",
+     "GEOID": "35011",
+     "NAME": "De Baca",
+     "NAMELSAD": "De Baca County",
+     "STATEFP": "35",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/5"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "PropertyName",
+   "count": 3179,
+   "fields": [
+    "PropertyName",
+    "PropertyType",
+    "AdditionalInfo",
+    "Region",
+    "County",
+    "Landowner",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Wildlife Property Project Area",
+   "sample": [
+    {
+     "AdditionalInfo": "North unit; general",
+     "County": "Houghton",
+     "Landowner": "State",
+     "PropertyName": "Sturgeon River Sloughs State Wildlife Management Area",
+     "PropertyType": "State Wildlife Management Area",
+     "Region": "UP",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "AdditionalInfo": "North unit; general",
+     "County": "Houghton",
+     "Landowner": "State",
+     "PropertyName": "Sturgeon River Sloughs State Wildlife Management Area",
+     "PropertyType": "State Wildlife Management Area",
+     "Region": "UP",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "AdditionalInfo": "North unit; general",
+     "County": "Houghton",
+     "Landowner": "State",
+     "PropertyName": "Sturgeon River Sloughs State Wildlife Management Area",
+     "PropertyType": "State Wildlife Management Area",
+     "Region": "UP",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRWILDLandsOPENDATA",
+   "typef": "PropertyType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "ManagementArea",
+   "count": 2609,
+   "fields": [
+    "MANAGEMENTTYPE",
+    "ECOREGION",
+    "ManagementArea",
+    "DISTRICTNAME",
+    "UNITNAME",
+    "FC_key",
+    "Comp_Num",
+    "COUNTY",
+    "YOE",
+    "StandExaminer",
+    "UserID",
+    "MAPPHASE",
+    "SOURCE",
+    "Comp_COMMENTS",
+    "MiFI_Link",
+    "Forest_Inventory",
+    "Web_URL",
+    "DNR_Logo"
+   ],
+   "known": false,
+   "layer": "DNR State Land",
+   "sample": [
+    {
+     "COUNTY": "Baraga",
+     "Comp_Num": "1",
+     "DISTRICTNAME": "West UP FD",
+     "ECOREGION": "West UP",
+     "FC_key": "11001",
+     "MANAGEMENTTYPE": "State Forests",
+     "MAPPHASE": "Locked",
+     "ManagementArea": "Huron Mountains",
+     "StandExaminer": "Brad Carlson",
+     "UNITNAME": "Baraga",
+     "UserID": "CarlsonB",
+     "YOE": "2012"
+    },
+    {
+     "COUNTY": "Baraga",
+     "Comp_Num": "2",
+     "DISTRICTNAME": "West UP FD",
+     "ECOREGION": "West UP",
+     "FC_key": "11002",
+     "MANAGEMENTTYPE": "State Forests",
+     "MAPPHASE": "Locked",
+     "ManagementArea": "Huron Mountains",
+     "StandExaminer": "Fred Hansen",
+     "UNITNAME": "Baraga",
+     "UserID": "Hansenf",
+     "YOE": "2015"
+    },
+    {
+     "COUNTY": "Baraga",
+     "Comp_Num": "3",
+     "DISTRICTNAME": "West UP FD",
+     "ECOREGION": "West UP",
+     "FC_key": "11003",
+     "MANAGEMENTTYPE": "State Forests",
+     "MAPPHASE": "Locked",
+     "ManagementArea": "Sturgeon Sloughs",
+     "StandExaminer": "Brad Carlson",
+     "UNITNAME": "Baraga",
+     "UserID": "CarlsonB",
+     "YOE": "2018"
+    }
+   ],
+   "service": "pub_GEMS",
+   "typef": "MANAGEMENTTYPE",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/pub_GEMS/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2476,
+   "fields": [
+    "FC_key",
+    "Comp_Num"
+   ],
+   "known": false,
+   "layer": "Michigan DNR Managed Lands",
+   "sample": [
+    {
+     "Comp_Num": "1",
+     "FC_key": "52001"
+    },
+    {
+     "Comp_Num": "2",
+     "FC_key": "52002"
+    },
+    {
+     "Comp_Num": "3",
+     "FC_key": "52003"
+    }
+   ],
+   "service": "pub_MiMorelsApp_ancillary",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/pub_MiMorelsApp_ancillary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2468,
+   "fields": [
+    "FC_key",
+    "Comp_Num",
+    "Comp_COMMENTS"
+   ],
+   "known": false,
+   "layer": "State Land",
+   "sample": [
+    {
+     "Comp_Num": "1",
+     "FC_key": "11001"
+    },
+    {
+     "Comp_Num": "2",
+     "FC_key": "11002"
+    },
+    {
+     "Comp_Num": "3",
+     "FC_key": "11003"
+    }
+   ],
+   "service": "dev_TroutTrails",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dev_TroutTrails/FeatureServer/8"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "ManagementArea",
+   "count": 2013,
+   "fields": [
+    "ManagementType",
+    "EcoRegion",
+    "ManagementArea",
+    "DistrictName",
+    "UnitName",
+    "FCKey",
+    "CompartmentNumber",
+    "County",
+    "YOE",
+    "MapPhase",
+    "Source",
+    "CompartmentComments",
+    "CompartmentPacket",
+    "RecordofDecision"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Compartments",
+   "sample": [
+    {
+     "CompartmentNumber": "1",
+     "County": "Baraga",
+     "DistrictName": "West UP FD",
+     "EcoRegion": "West UP",
+     "FCKey": "11001",
+     "ManagementArea": "Keweenaw Bay",
+     "ManagementType": "State Forests",
+     "MapPhase": "Locked",
+     "Source": "MIFI Inventory",
+     "UnitName": "Baraga",
+     "YOE": "2022"
+    },
+    {
+     "CompartmentComments": "The Nature Conservancy\nSlate River Forest Reserve\nupmichigan@tnc.org\n1-517-316-0300\n1-906-225-0399\nAlexander Helman\n1-906-370-7151\nAlexander.helmantnc.org\n",
+     "CompartmentNumber": "2",
+     "County": "Baraga",
+     "DistrictName": "West UP FD",
+     "EcoRegion": "West UP",
+     "FCKey": "11002",
+     "ManagementArea": "Keweenaw Bay",
+     "ManagementType": "State Forests",
+     "MapPhase": "Locked",
+     "Source": "MIFI Inventory",
+     "UnitName": "Baraga",
+     "YOE": "2025"
+    },
+    {
+     "CompartmentNumber": "3",
+     "County": "Baraga",
+     "DistrictName": "West UP FD",
+     "EcoRegion": "West UP",
+     "FCKey": "11003",
+     "ManagementArea": "Houghton Hardwoods",
+     "ManagementType": "State Forests",
+     "MapPhase": "Locked",
+     "Source": "MIFI Inventory",
+     "UnitName": "Baraga",
+     "YOE": "2028"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "ManagementType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/6"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "ManagementArea",
+   "count": 2011,
+   "fields": [
+    "ManagementType",
+    "EcoRegion",
+    "ManagementArea",
+    "DistrictName",
+    "UnitName",
+    "FCKey",
+    "CompartmentNumber",
+    "County",
+    "YOE",
+    "MapPhase",
+    "Source",
+    "CompartmentComments",
+    "CompartmentPacket",
+    "RecordofDecision"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Compartment Outline",
+   "sample": [
+    {
+     "CompartmentNumber": "1",
+     "County": "Baraga",
+     "DistrictName": "West UP FD",
+     "EcoRegion": "West UP",
+     "FCKey": "11001",
+     "ManagementArea": "Keweenaw Bay",
+     "ManagementType": "State Forests",
+     "MapPhase": "Locked",
+     "Source": "MIFI Inventory",
+     "UnitName": "Baraga",
+     "YOE": "2022"
+    },
+    {
+     "CompartmentComments": "The Nature Conservancy\nSlate River Forest Reserve\nupmichigan@tnc.org\n1-517-316-0300\n1-906-225-0399\nAlexander Helman\n1-906-370-7151\nAlexander.helmantnc.org\n",
+     "CompartmentNumber": "2",
+     "County": "Baraga",
+     "DistrictName": "West UP FD",
+     "EcoRegion": "West UP",
+     "FCKey": "11002",
+     "ManagementArea": "Keweenaw Bay",
+     "ManagementType": "State Forests",
+     "MapPhase": "Locked",
+     "Source": "MIFI Inventory",
+     "UnitName": "Baraga",
+     "YOE": "2025"
+    },
+    {
+     "CompartmentNumber": "3",
+     "County": "Baraga",
+     "DistrictName": "West UP FD",
+     "EcoRegion": "West UP",
+     "FCKey": "11003",
+     "ManagementArea": "Houghton Hardwoods",
+     "ManagementType": "State Forests",
+     "MapPhase": "Locked",
+     "Source": "MIFI Inventory",
+     "UnitName": "Baraga",
+     "YOE": "2028"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "ManagementType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/8"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 1069,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Mi State Forest -  On-Going Monitoring Treatments",
+   "sample": [
+    {
+     "AcceptableRegen": "RP",
+     "FCKey": "45155",
+     "NextSteps": "Continue to monitor for sawfly.",
+     "OtherComments": "Part of larger stand to the south in Compartment 156. Planted in 1996; released twice. FTP C44-395. Some scattered dead red pine present. Misc hardwood species are acceptable within this pine plantation.",
+     "RxSpecs": "Manage with larger stand in Compartment 156. Monitor for RHPS and spray when/if necessary. Aerial spray with pesticide recommended by Forest Health Specialist/TMS (previously Dimlin has been used). Could spray with backpack or mist blower if populations are small enough.",
+     "TreatmentName": "45155049.30_Monitor"
+    },
+    {
+     "AcceptableRegen": "RP",
+     "FCKey": "45155",
+     "NextSteps": "Continue to check regeneration if necessary. Continue to monitor for release needs. Continue to monitor for RHPS and other pests, and spray if necessary. Although this is a red pine plantation, some levels of aspen/maple/cherry are acceptable. Currently the red pine doesn't have full canopy cover due to its age.",
+     "OtherComments": "RP plantation planted in 2003. Released in 2005. Unit was not burned prior to trenching and planting. FTP C44-521. RP about 2' - 3' tall.  ",
+     "RxSpecs": "Monitor for release and spray with appropriate herbicide where/if necessary. Monitor for RHPS and spray when/if necessary with appropriate insecticide (previously have used Dimlin). Aerial spray when/if needed with pesticide recommended by Forest Health Specialist/TMS. Could spray with backpack or mist blower if area is too small for aerial spraying.",
+     "TreatmentName": "45155058.29_Monitor"
+    },
+    {
+     "FCKey": "53004",
+     "NextSteps": "Acceptable species for regeneration include Aspen species and mixed hardwood species.",
+     "OtherComments": "Cedar becomes more dominant near stand 51. When setting up sales, follow trail specs",
+     "TreatmentName": "53004105.36_Monitor"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/9"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 239,
+   "fields": [
+    "FCKey",
+    "TreatmentName",
+    "OtherComments",
+    "RxSpecs",
+    "NextSteps",
+    "ImplementationNotes",
+    "AcceptableRegen",
+    "OOYOEFCKey"
+   ],
+   "known": false,
+   "layer": "Mi State Forest - Proposed Treatments",
+   "sample": [
+    {
+     "FCKey": "72262",
+     "RxSpecs": "Periodic opening maintenance, as needed, that may include disking, fertilizing, liming, food plot seeding, mowing, brushing, tree and shrub planting, herbicide application, and removal of invasive species.",
+     "TreatmentName": "72262404-NF"
+    },
+    {
+     "AcceptableRegen": "Maple, birch, conifer, aspen, basswood, oak, and misc hdwds at minimal acceptable stocking,  Beech and ash are not acceptable.",
+     "FCKey": "52020",
+     "RxSpecs": "Monitor regen holes to see if natural regen is establishing.",
+     "TreatmentName": "52020004_Monitor"
+    },
+    {
+     "AcceptableRegen": "maple, birch, aspen, conifer, oak, and misc hdwds at minimal acceptable stocking.  Beech and ash are not acceptable.",
+     "FCKey": "52020",
+     "RxSpecs": "Monitor regen holes to see if natural regen is establishing.",
+     "TreatmentName": "52020040_Monitor"
+    }
+   ],
+   "service": "Mi_State_Forest",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 212,
+   "fields": [
+    "GNIS_ID",
+    "GNIS_Name",
+    "ReachCode",
+    "LakeType1",
+    "RegulationType",
+    "RegTypeDes"
+   ],
+   "known": false,
+   "layer": "MI Trout Salmon Regulations Inland Lakes 2021",
+   "sample": [
+    {
+     "GNIS_ID": "00635783",
+     "GNIS_Name": "Reid Lake",
+     "LakeType1": "Type B",
+     "ReachCode": "04070007001388",
+     "RegTypeDes": "Type B Non Designated",
+     "RegulationType": "Type B"
+    },
+    {
+     "GNIS_ID": " ",
+     "GNIS_Name": "South Hoist Lake",
+     "LakeType1": "Type B",
+     "ReachCode": "04070007002931",
+     "RegTypeDes": "Type B Non Designated",
+     "RegulationType": "Type B"
+    },
+    {
+     "GNIS_ID": "00627099",
+     "GNIS_Name": "Grand Marais Lake",
+     "LakeType1": "Type A",
+     "ReachCode": "04020201003279",
+     "RegTypeDes": "Type A Designated",
+     "RegulationType": "Type A"
+    }
+   ],
+   "service": "dev_TroutTrails",
+   "typef": "LakeType1",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dev_TroutTrails/FeatureServer/4"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "Facility",
+   "count": 183,
+   "fields": [
+    "District",
+    "Facility",
+    "HuntTrap",
+    "HuntTrapRestrictions",
+    "EarlyGoose",
+    "EarlyGooseDates",
+    "EarlyGooseRestrictions",
+    "Comments",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Parks Hunting Land Boundary",
+   "sample": [
+    {
+     "District": "Plainwell",
+     "EarlyGoose": "Closed",
+     "Facility": "Saugatuck Dunes State Park",
+     "HuntTrap": "Closed",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "Comments": "Standard 450' Safety Zones apply around occupied buildings (not shown).",
+     "District": "Cadillac",
+     "EarlyGoose": "Open",
+     "EarlyGooseDates": "Day After Labor Day - 9/15",
+     "Facility": "Silver Lake State Park",
+     "HuntTrap": "Open",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "Roscommon",
+     "EarlyGoose": "Closed",
+     "Facility": "North Higgins Lake State Park",
+     "HuntTrap": "Closed",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRBoundariesParksHuntableLandsOPENDATA",
+   "typef": "Facility",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRBoundariesParksHuntableLandsOPENDATA/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 116,
+   "fields": [
+    "HCVA_NAME"
+   ],
+   "known": false,
+   "layer": "Legally dedicated natural areas public",
+   "sample": [
+    {
+     "HCVA_NAME": "Natural Area Allegan Pine Plains"
+    },
+    {
+     "HCVA_NAME": "Natural Area Bald Mountain - Chamberlain Lakes"
+    },
+    {
+     "HCVA_NAME": "Natural Area Bald Mountain - Graham Lake Zone"
+    }
+   ],
+   "service": "HCVA_Data_Public",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/HCVA_Data_Public/FeatureServer/5"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "FACILITY",
+   "count": 108,
+   "fields": [
+    "DISTRICT",
+    "FACILITY"
+   ],
+   "known": false,
+   "layer": "Michigan State Park Boundaries",
+   "sample": [
+    {
+     "DISTRICT": "Plainwell",
+     "FACILITY": "Warren Woods State Park"
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Dodge 4 State Park"
+    },
+    {
+     "DISTRICT": "Cadillac",
+     "FACILITY": "Interlochen State Park"
+    }
+   ],
+   "service": "dnrParksAndRecreation",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "FACILITY",
+   "count": 106,
+   "fields": [
+    "DISTRICT",
+    "FACILITY",
+    "edit_name",
+    "unique_id",
+    "link_id"
+   ],
+   "known": false,
+   "layer": "State Park Boundaries",
+   "sample": [
+    {
+     "DISTRICT": "Plainwell",
+     "FACILITY": "Warren Woods State Park",
+     "link_id": "SPRK505"
+    },
+    {
+     "DISTRICT": "Rose Lake",
+     "FACILITY": "Sterling State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK497"
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Dodge 4 State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK445"
+    }
+   ],
+   "service": "contract_phrag_2022",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/contract_phrag_2022/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "FACILITY",
+   "count": 106,
+   "fields": [
+    "DISTRICT",
+    "FACILITY",
+    "edit_name",
+    "unique_id",
+    "link_id"
+   ],
+   "known": false,
+   "layer": "State Park Boundaries",
+   "sample": [
+    {
+     "DISTRICT": "Plainwell",
+     "FACILITY": "Warren Woods State Park",
+     "link_id": "SPRK505"
+    },
+    {
+     "DISTRICT": "Rose Lake",
+     "FACILITY": "Sterling State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK497"
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Dodge 4 State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK445"
+    }
+   ],
+   "service": "prd_contract_garlicmustard",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/prd_contract_garlicmustard/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "FACILITY",
+   "count": 105,
+   "fields": [
+    "DISTRICT",
+    "FACILITY",
+    "edit_name",
+    "unique_id",
+    "link_id"
+   ],
+   "known": false,
+   "layer": "State Park Boundaries",
+   "sample": [
+    {
+     "DISTRICT": "Plainwell",
+     "FACILITY": "Warren Woods State Park",
+     "link_id": "SPRK505"
+    },
+    {
+     "DISTRICT": "Rose Lake",
+     "FACILITY": "Sterling State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK497"
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Dodge 4 State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK445"
+    }
+   ],
+   "service": "prd_WICB_herbcontract",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/prd_WICB_herbcontract/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "FACILITY",
+   "count": 103,
+   "fields": [
+    "DISTRICT",
+    "FACILITY",
+    "edit_name",
+    "unique_id",
+    "link_id"
+   ],
+   "known": false,
+   "layer": "State Park Boundaries",
+   "sample": [
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Ortonville Recreation Area",
+     "edit_name": "PALMGRENG"
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Algonac State Park",
+     "edit_name": "PALMGRENG"
+    },
+    {
+     "DISTRICT": "Plainwell",
+     "FACILITY": "Warren Woods State Park"
+    }
+   ],
+   "service": "PRD_webmap_v1",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRD_webmap_v1/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 100,
+   "fields": [
+    "UNIT_NAME",
+    "Park_Label"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Park_Label": "Agate Falls Scenic Site",
+     "UNIT_NAME": "Agate Falls Scenic Site"
+    },
+    {
+     "Park_Label": "Algonac State Park",
+     "UNIT_NAME": "Algonac SP"
+    },
+    {
+     "Park_Label": "Aloha State Park",
+     "UNIT_NAME": "Aloha SP"
+    }
+   ],
+   "service": "State_Parks",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/State_Parks/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 49,
+   "fields": [
+    "Name",
+    "Division",
+    "Editor",
+    "Edit_Type",
+    "Status"
+   ],
+   "known": false,
+   "layer": "EMR CCAA Managed Land (FY20)",
+   "sample": [
+    {
+     "Division": "FRD",
+     "Edit_Type": "new",
+     "Editor": "FRD",
+     "Name": "Ward Road Wetlands",
+     "Status": "Approved"
+    },
+    {
+     "Division": "FRD",
+     "Edit_Type": "new",
+     "Editor": "FRD",
+     "Name": "Big Cannon Creek",
+     "Status": "Approved"
+    },
+    {
+     "Division": "FRD",
+     "Edit_Type": "new",
+     "Editor": "FRD",
+     "Name": "Wide Waters Road North",
+     "Status": "Approved"
+    }
+   ],
+   "service": "PRD_webmap_v1",
+   "typef": "Edit_Type",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRD_webmap_v1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 35,
+   "fields": [
+    "Name",
+    "Forest_Com",
+    "Level2_FT",
+    "Species"
+   ],
+   "known": false,
+   "layer": "Forest habitat core interior 2014 public",
+   "sample": [
+    {
+     "Forest_Com": "Mesic & Dry Mesic Northern Forest",
+     "Level2_FT": "Upland Mixed & Deciduous Forest",
+     "Name": "Tin Shanty Hardwoods",
+     "Species": "American Marten, Red-shouldered Hawk, Wood Thrush, Blackburnian Warbler"
+    },
+    {
+     "Forest_Com": "Dry Mesic Northern Forest",
+     "Level2_FT": "Upland Mixed Forest",
+     "Name": "Sand Lakes",
+     "Species": "Black-throated Blue Warbler, Pileated Woodpecker"
+    },
+    {
+     "Forest_Com": "Rich Conifer Swamp",
+     "Level2_FT": "Lowland Coniferous Forest",
+     "Name": "Deadstream Swamp",
+     "Species": " "
+    }
+   ],
+   "service": "HCVA_Data_Public",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/HCVA_Data_Public/FeatureServer/2"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 27,
+   "fields": [
+    "WFMU",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHLakeWhitefishManagementUnit",
+   "sample": [
+    {
+     "WFMU": "WFM-09",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "WFMU": "WFM-08",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "WFMU": "WFH-08",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 25,
+   "fields": [
+    "HCVA_NAME",
+    "HCVA_TYPE",
+    "TYPE",
+    "MGMT_AUTHO",
+    "DED_TYPE",
+    "NRC_DED",
+    "AR",
+    "TNC_DED",
+    "NNL_DED"
+   ],
+   "known": false,
+   "layer": "Natural Areas Legally Dedicated",
+   "sample": [
+    {
+     "AR": " ",
+     "DED_TYPE": "Legally Dedicated",
+     "HCVA_NAME": "Natural Area Besser Natural Area",
+     "HCVA_TYPE": "Natural Areas",
+     "MGMT_AUTHO": "MDNR Forest, Minerals, and Fire Management",
+     "NNL_DED": " ",
+     "NRC_DED": " ",
+     "TNC_DED": " ",
+     "TYPE": "NA"
+    },
+    {
+     "AR": " ",
+     "DED_TYPE": "Legally Dedicated",
+     "HCVA_NAME": "Natural Area Black Spruce Bog Natural Area , Black",
+     "HCVA_TYPE": "Natural Areas",
+     "MGMT_AUTHO": "MDNR Parks and Recreation Bureau",
+     "NNL_DED": "National Natural Landmark",
+     "NRC_DED": " ",
+     "TNC_DED": " ",
+     "TYPE": "NA , NNL"
+    },
+    {
+     "AR": " ",
+     "DED_TYPE": "Legally Dedicated",
+     "HCVA_NAME": "Natural Area Haven Hill Natural Area",
+     "HCVA_TYPE": "Natural Areas",
+     "MGMT_AUTHO": "MDNR Parks and Recreation Bureau",
+     "NNL_DED": " ",
+     "NRC_DED": " ",
+     "TNC_DED": " ",
+     "TYPE": "NA"
+    }
+   ],
+   "service": "PRD_webmap_v1",
+   "typef": "HCVA_TYPE",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRD_webmap_v1/FeatureServer/2"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "StatisticalDistrict",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "IFR Great Lakes Statistical Districts",
+   "sample": [
+    {
+     "Creator": "MichiganDNR",
+     "Editor": "MichiganDNR",
+     "StatisticalDistrict": "MH-4"
+    },
+    {
+     "Creator": "MichiganDNR",
+     "Editor": "MichiganDNR",
+     "StatisticalDistrict": "MM-8"
+    },
+    {
+     "Creator": "MichiganDNR",
+     "Editor": "MichiganDNR",
+     "StatisticalDistrict": "MI-3"
+    }
+   ],
+   "service": "DNRFisheriesDataOPENDATA",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesDataOPENDATA/FeatureServer/12"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "LTMU",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHLakeTroutManagementUnit",
+   "sample": [
+    {
+     "LTMU": "MM-8",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "LTMU": "MM-7",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "LTMU": "MH-4",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/10"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "HCVAType",
+    "HCVAName",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "MI Natural Rivers Vegetative Buffer",
+   "sample": [
+    {
+     "HCVAName": "Natural River Rogue River 50",
+     "HCVAType": "Natural River",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "HCVAName": "Natural River Huron River 50",
+     "HCVAType": "Natural River",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "HCVAName": "Natural River Flat River 25",
+     "HCVAType": "Natural River",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRFisheriesDataOPENDATA",
+   "typef": "HCVAType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesDataOPENDATA/FeatureServer/6"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "ForestManagementUnit",
+   "count": 15,
+   "fields": [
+    "ForestManagementUnit",
+    "UnitManager",
+    "UnitManagerEmail",
+    "District",
+    "DistrictLabel",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Forest Management Units",
+   "sample": [
+    {
+     "District": "Eastern Upper Peninsula",
+     "DistrictLabel": "EUP",
+     "ForestManagementUnit": "Newberry",
+     "UnitManager": "Keith Magnusson",
+     "UnitManagerEmail": "magnussonk@michigan.gov",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "North Western Lower Peninsula",
+     "DistrictLabel": "NWLP",
+     "ForestManagementUnit": "Gladwin",
+     "UnitManager": "Blair Tweedale",
+     "UnitManagerEmail": "tweedaleb1@michigan.gov",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "North Western Lower Peninsula",
+     "DistrictLabel": "NWLP",
+     "ForestManagementUnit": "Roscommon",
+     "UnitManager": "Jason Lewicki",
+     "UnitManagerEmail": "lewickij@michigan.gov",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "UnitName",
+   "count": 14,
+   "fields": [
+    "FisheriesBiologist",
+    "BiologistPhone",
+    "BiologistEmail",
+    "BasinName",
+    "BasinCoordinatorName",
+    "BasinCoordinatorPhone",
+    "BasinCoordinatorEmail",
+    "UnitName",
+    "UnitManager",
+    "UnitManagerPhone",
+    "UnitManagerEmail"
+   ],
+   "known": false,
+   "layer": "Fisheries Contact Information",
+   "sample": [
+    {
+     "BasinCoordinatorEmail": "FrancisJ@michigan.gov",
+     "BasinCoordinatorName": "James Francis",
+     "BasinCoordinatorPhone": "517-242-3593",
+     "BasinName": "Lake Erie Basin",
+     "BiologistEmail": "harrisc9@michigan.gov",
+     "BiologistPhone": "248-221-0328",
+     "FisheriesBiologist": "Cleyo Harris",
+     "UnitManager": "Sara Thomas",
+     "UnitManagerEmail": "ThomasS35@michigan.gov",
+     "UnitManagerPhone": "734-718-0474",
+     "UnitName": "Lake Erie "
+    },
+    {
+     "BasinCoordinatorEmail": "CaroffinoD@michigan.gov",
+     "BasinCoordinatorName": "Dave Caroffino",
+     "BasinCoordinatorPhone": "231-350-8654",
+     "BasinName": "Lake Michigan Basin",
+     "BiologistEmail": "johnsonj17@michigan.gov",
+     "BiologistPhone": "906-239-0472",
+     "FisheriesBiologist": "Jennifer Johnson",
+     "UnitManager": "Darren Kramer",
+     "UnitManagerEmail": "KramerD@michigan.gov",
+     "UnitManagerPhone": "906235-4949",
+     "UnitName": "Northern Lake Michigan"
+    },
+    {
+     "BasinCoordinatorEmail": "CaroffinoD@michigan.gov",
+     "BasinCoordinatorName": "Dave Caroffino",
+     "BasinCoordinatorPhone": "231-350-8654",
+     "BasinName": "Lake Superior Basin",
+     "BiologistEmail": "baetza@michigan.gov",
+     "BiologistPhone": "906-287-1646",
+     "FisheriesBiologist": "Audrey Baetz",
+     "UnitManager": "Cory Kovacs",
+     "UnitManagerEmail": "KovacsC@michigan.gov",
+     "UnitManagerPhone": "906-287-0816",
+     "UnitName": "Eastern Lake Superior"
+    }
+   ],
+   "service": "Fisheries_Contact_Information_Public_view",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Fisheries_Contact_Information_Public_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "BP_Name",
+    "HT_Link"
+   ],
+   "known": false,
+   "layer": "DNR_SDE.DNR_HIST_MARK.PY_GLBOTTOMLANDPRESERVES_DEQ",
+   "sample": [
+    {
+     "BP_Name": "Alger Preserve",
+     "HT_Link": "http://www.michigan.gov/deq/0,4561,7-135-3313_3677_3701-14591--,00.html#Alger"
+    },
+    {
+     "BP_Name": "Grand Traverse Bay Preserve",
+     "HT_Link": "http://www.michigan.gov/deq/0,1607,7-135-3313_3677_3701-14591--,00.html#GTBay"
+    },
+    {
+     "BP_Name": "Manitou Passage Preserve",
+     "HT_Link": "http://www.michigan.gov/deq/0,4561,7-135-3313_3677_3701-14591--,00.html#Manitou"
+    }
+   ],
+   "service": "Great_Lakes_Underwater_Preserves",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Great_Lakes_Underwater_Preserves/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "FACILITY",
+   "count": 12,
+   "fields": [
+    "DISTRICT",
+    "FACILITY",
+    "edit_name",
+    "unique_id",
+    "link_id"
+   ],
+   "known": false,
+   "layer": "Park Boundary",
+   "sample": [
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Algonac State Park",
+     "edit_name": "OrlandoJ1",
+     "link_id": "SPRK433",
+     "unique_id": " "
+    },
+    {
+     "DISTRICT": "Roscommon",
+     "FACILITY": "Bay City State Park",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK437",
+     "unique_id": " "
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Belle Isle Park (leased from City of Detroit)",
+     "edit_name": "PALMGRENG",
+     "link_id": "SPRK736",
+     "unique_id": " "
+    }
+   ],
+   "service": "prd_contract_phrag_2021v2",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/prd_contract_phrag_2021v2/FeatureServer/12"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "MGMT_UNIT",
+   "count": 9,
+   "fields": [
+    "MGMT_UNIT",
+    "CONTACT",
+    "PHONE"
+   ],
+   "known": false,
+   "layer": "Michigan DNR Parks and Recreation Management Units",
+   "sample": [
+    {
+     "CONTACT": "Doug Rich",
+     "MGMT_UNIT": "Western UP",
+     "PHONE": "9063536651"
+    },
+    {
+     "CONTACT": "Rich Hill",
+     "MGMT_UNIT": "Gaylord",
+     "PHONE": "9897323541"
+    },
+    {
+     "CONTACT": "Kasey Cline",
+     "MGMT_UNIT": "Cadillac",
+     "PHONE": "2317759727"
+    }
+   ],
+   "service": "dnrParksAndRecreation",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/6"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "District",
+    "DistrictManager",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Parks District Boundary",
+   "sample": [
+    {
+     "District": "Western UP",
+     "DistrictManager": "Doug Rich",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "Gaylord",
+     "DistrictManager": "Richard Hill",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "Cadillac",
+     "DistrictManager": "Kasey Cline",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "MGMT_UNIT",
+   "count": 8,
+   "fields": [
+    "MGMT_UNIT",
+    "OFFICE_1",
+    "PHONE_1",
+    "OFFICE_2",
+    "PHONE_2",
+    "OFFICE_3",
+    "PHONE_3"
+   ],
+   "known": false,
+   "layer": "Fish Management Units",
+   "sample": [
+    {
+     "MGMT_UNIT": "Central Lake Michigan",
+     "OFFICE_1": "Cadillac DNR Office",
+     "OFFICE_2": "Traverse City DNR Office",
+     "OFFICE_3": "Muskegon DNR Office",
+     "PHONE_1": "231-775-9727",
+     "PHONE_2": "231-922-5280",
+     "PHONE_3": "231-788-6798"
+    },
+    {
+     "MGMT_UNIT": "Eastern Lake Superior",
+     "OFFICE_1": "Newberry DNR Office",
+     "OFFICE_2": " ",
+     "OFFICE_3": " ",
+     "PHONE_1": "906-293-5131",
+     "PHONE_2": " ",
+     "PHONE_3": " "
+    },
+    {
+     "MGMT_UNIT": "Lake Erie",
+     "OFFICE_1": "Livonia DNR Office",
+     "OFFICE_2": "Livonia DNR Office",
+     "OFFICE_3": " ",
+     "PHONE_1": "734-953-1481",
+     "PHONE_2": "734-953-1539",
+     "PHONE_3": " "
+    }
+   ],
+   "service": "dev_TroutTrails",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dev_TroutTrails/FeatureServer/12"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "AgencyUnitCode",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHManagementUnits",
+   "sample": [
+    {
+     "AgencyUnitCode": "MI-MNM",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "AgencyUnitCode": "MI-MSH",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "AgencyUnitCode": "MI-MER",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/6"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "TreatyName",
+    "TreatyYear",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISHTreaty",
+   "sample": [
+    {
+     "TreatyName": "Cedar Point 1836",
+     "TreatyYear": "1836",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "TreatyName": "Detroit 1807",
+     "TreatyYear": "1807",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "TreatyName": "Foot of the Rapids 1817",
+     "TreatyYear": "1817",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "FISHHydrographyOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FISHHydrographyOPENDATA/FeatureServer/8"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "ManagementUnit",
+   "count": 8,
+   "fields": [
+    "ManagementUnit",
+    "ManagementUnitLabel",
+    "UnitManager",
+    "UnitManagerEmail",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Fisheries Management Units",
+   "sample": [
+    {
+     "ManagementUnit": "Northern Lake Michigan",
+     "UnitManager": "Darren Kramer",
+     "UnitManagerEmail": "KramerD",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "ManagementUnit": "Southern Lake Huron",
+     "UnitManager": "Jeff Jolley",
+     "UnitManagerEmail": "JolleyJ1",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "ManagementUnit": "Lake Erie",
+     "UnitManager": "Sara Thomas",
+     "UnitManagerEmail": "ThomasS35",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/1"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "TrailCoordinatorArea",
+   "count": 8,
+   "fields": [
+    "TrailSpecialist",
+    "Region",
+    "Office",
+    "TrailCoordinator",
+    "TrailCoordinatorArea",
+    "StateTrailCoordinator",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Trails Management Units",
+   "sample": [
+    {
+     "Office": "Bald Mountain Recreation Area",
+     "Region": "Southeast Lower Peninsula",
+     "StateTrailCoordinator": "Tim Novak, NovakT8@michigan.gov",
+     "TrailCoordinator": "Kinser, Greg",
+     "TrailCoordinatorArea": "SLP Trail Coordinator",
+     "TrailSpecialist": "Sage Hegdal",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "Office": "Plainwell Customer Service Center",
+     "Region": "Southwest Lower Peninsula",
+     "StateTrailCoordinator": "Tim Novak, NovakT8@michigan.gov",
+     "TrailCoordinator": "Kinser, Greg",
+     "TrailCoordinatorArea": "SLP Trail Coordinator",
+     "TrailSpecialist": "Jill Sell",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "Office": "Newberry Customer Service Center",
+     "Region": "Eastern Upper Peninsula",
+     "StateTrailCoordinator": "Tim Novak, NovakT8@michigan.gov",
+     "TrailCoordinator": "Yesney, Ron",
+     "TrailCoordinatorArea": "UP Trail Coordinator",
+     "TrailSpecialist": "Peter Costa",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/9"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "Name",
+   "count": 7,
+   "fields": [
+    "Category",
+    "Detail",
+    "Name",
+    "Ownership"
+   ],
+   "known": false,
+   "layer": "Michigan Public Recreational Vehicle Scramble Areas",
+   "sample": [
+    {
+     "Category": "Concentrated Recreational Area",
+     "Detail": "Scramble Area",
+     "Name": "St. Helen Motorsport Area",
+     "Ownership": "Unspecified"
+    },
+    {
+     "Category": "Concentrated Recreational Area",
+     "Detail": "Scramble Area",
+     "Name": "Black Mountain Scramble Area",
+     "Ownership": "Unspecified"
+    },
+    {
+     "Category": "Concentrated Recreational Area",
+     "Detail": "Scramble Area",
+     "Name": "Gladwin Scramble Area",
+     "Ownership": "Unspecified"
+    }
+   ],
+   "service": "dnrParksAndRecreation",
+   "typef": "Category",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer/4"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "Name",
+   "count": 6,
+   "fields": [
+    "Name",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "IFR MI Lake Trout Refuges",
+   "sample": [
+    {
+     "Name": "Lake Michigan (North part)",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "Name": "Lake Michigan (Mid lake)",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "Name": "Lake Huron (North end)",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRFisheriesDataOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesDataOPENDATA/FeatureServer/7"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "RegionName",
+    "RegionNameLabel",
+    "GrantCoordinator",
+    "GrantCoordinatorEmail",
+    "GrantCoordinatorPhone",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Recreation Grant Coordinator Regions",
+   "sample": [
+    {
+     "GrantCoordinator": "Merrie Carlock",
+     "GrantCoordinatorEmail": "carlockm@michigan.gov",
+     "GrantCoordinatorPhone": "248-410-5892",
+     "RegionName": "Upper Peninsula",
+     "RegionNameLabel": "Upper Peninsula Region",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "GrantCoordinator": "Charamy Cleary",
+     "GrantCoordinatorEmail": "clearyc1@michigan.gov",
+     "GrantCoordinatorPhone": "517-599-4565",
+     "RegionName": "Western",
+     "RegionNameLabel": "Western Region",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "GrantCoordinator": "Kelsey Dietz",
+     "GrantCoordinatorEmail": "DietzK2@michigan.gov",
+     "GrantCoordinatorPhone": "517-388-8473",
+     "RegionName": "Southern",
+     "RegionNameLabel": "Southern Region",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRRecreationGrantsOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRRecreationGrantsOPENDATA/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "FACILITY",
+   "count": 6,
+   "fields": [
+    "DISTRICT",
+    "FACILITY",
+    "edit_name",
+    "unique_id",
+    "link_id"
+   ],
+   "known": false,
+   "layer": "Park Boundary",
+   "sample": [
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Algonac State Park",
+     "edit_name": "OrlandoJ1",
+     "link_id": "SPRK433",
+     "unique_id": " "
+    },
+    {
+     "DISTRICT": "Rose Lake",
+     "FACILITY": "Brighton Recreation Area",
+     "edit_name": "OrlandoJ1",
+     "link_id": "SPRK438",
+     "unique_id": " "
+    },
+    {
+     "DISTRICT": "Metro Detroit",
+     "FACILITY": "Highland Recreation Area",
+     "edit_name": "OrlandoJ1",
+     "link_id": "SPRK455",
+     "unique_id": " "
+    }
+   ],
+   "service": "prd_woody_contract_2021",
+   "typef": "FACILITY",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/prd_woody_contract_2021/FeatureServer/7"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "FishingReportArea",
+   "count": 5,
+   "fields": [
+    "FishingReportArea",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "FISH Fishing Report Zones",
+   "sample": [
+    {
+     "FishingReportArea": "Upper Peninsula",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "FishingReportArea": "North East Lower Peninsula",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "FishingReportArea": "North West Lower Peninsula",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRFisheriesDataOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesDataOPENDATA/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 5,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Forest Legacy Areas",
+   "sample": [
+    {
+     "NAME": "Upper Peninsula"
+    },
+    {
+     "NAME": "Northeast Lower Peninsula"
+    },
+    {
+     "NAME": "Northwest Lower Peninsula"
+    }
+   ],
+   "service": "Forest_Legacy_Areas",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Forest_Legacy_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "District",
+    "DistrictManager",
+    "DistrictManagerEmail",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "DNR Forest District Boundary",
+   "sample": [
+    {
+     "District": "Northeastern Lower Peninsula",
+     "DistrictManager": "Cody Stevens",
+     "DistrictManagerEmail": "stevensc@michigan.gov",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "Eastern Upper Peninsula",
+     "DistrictManager": "Scott Lakosky",
+     "DistrictManagerEmail": "lakoskys@michigan.gov",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "District": "Northwestern Lower Peninsula",
+     "DistrictManager": "Ashley Autenrieth",
+     "DistrictManagerEmail": "autenrietha@michigan.gov",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/3"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "ManagementUnit",
+   "count": 4,
+   "fields": [
+    "ManagementUnitLabel",
+    "UnitManager",
+    "UnitMangerEmail",
+    "created_user",
+    "last_edited_user",
+    "ManagementUnit"
+   ],
+   "known": false,
+   "layer": "DNR Wildlife Management Units",
+   "sample": [
+    {
+     "ManagementUnit": "Upper Peninsula Region",
+     "ManagementUnitLabel": "Northern Michigan Region",
+     "UnitManager": "David Lemmien",
+     "UnitMangerEmail": "LemmienD",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "ManagementUnit": "Northern Lower Peninsula Region",
+     "ManagementUnitLabel": "Northern Michigan Region",
+     "UnitManager": "John Niewoonder",
+     "UnitMangerEmail": "NiewoonderJ",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "ManagementUnit": "Southeastern LP Region",
+     "ManagementUnitLabel": "Southern Michigan Region",
+     "UnitManager": "Joseph Robison",
+     "UnitMangerEmail": "RobisonJ",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "Status",
+    "TR"
+   ],
+   "known": false,
+   "layer": "State Forest Land (2021 Fuelwood Permission)",
+   "sample": [
+    {},
+    {
+     "Status": "Closed"
+    },
+    {
+     "Status": "Open"
+    }
+   ],
+   "service": "pub_FuelwoodLocator",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/pub_FuelwoodLocator/FeatureServer/1"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "DNRName",
+    "MDNRID",
+    "LakeType",
+    "RegulationDesc",
+    "PermanentIdentifier",
+    "FSeasonStart",
+    "FSeasonEnd",
+    "PSeasonStart",
+    "PSeasonEnd",
+    "DPL",
+    "Tackle",
+    "isActiveComment",
+    "created_user",
+    "last_edited_user",
+    "SpawningClosure"
+   ],
+   "known": false,
+   "layer": "Brook Trout Restoration Areas",
+   "sample": [
+    {
+     "DNRName": "Portage Lake",
+     "DPL": "5 fish, with no more than 3 trout 15“ or greater of which no more than one (1) Brook Trout, Lake Trout or Splake total combined of 20\" or greater. Zero (0) Arctic Grayling.",
+     "FSeasonEnd": "December 31st",
+     "FSeasonStart": "January 1st",
+     "LakeType": "BTRA",
+     "MDNRID": "L35220",
+     "PSeasonEnd": "September 30th for Brook Trout. December 31st for all other Trout and Salmon",
+     "PSeasonStart": "Last Saturday in April for Brook Trout. January 1st for all other Trout and Salmon",
+     "PermanentIdentifier": "116542669",
+     "RegulationDesc": "BTRA Designated",
+     "Tackle": "Artificial lures and all types of natural bait may be used."
+    }
+   ],
+   "service": "DNRFisheriesTroutRegsOPENDATA",
+   "typef": "LakeType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesTroutRegsOPENDATA/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Notes",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "ProtectedLandsForestLegacyProgram",
+   "sample": [
+    {
+     "created_user": "TOOHEYH",
+     "last_edited_user": "TOOHEYH"
+    }
+   ],
+   "service": "ForestLegacyProgramProtectedLands",
+   "typef": "created_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/ForestLegacyProgramProtectedLands/FeatureServer/0"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources.",
+   "area": "ManagementUnitName",
+   "count": 1,
+   "fields": [
+    "ManagementUnitName",
+    "Season",
+    "Year",
+    "last_edited_user",
+    "created_user"
+   ],
+   "known": false,
+   "layer": "FurBearerFisherManagementUnits",
+   "sample": [
+    {
+     "ManagementUnitName": "Zone 1",
+     "Season": "All",
+     "Year": "2026",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "WILDGameSpeciesManagementUnitsAndZonesOPENDATA",
+   "typef": "last_edited_user",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/WILDGameSpeciesManagementUnitsAndZonesOPENDATA/FeatureServer/10"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "OfficialWLDProjectAreaName",
+   "count": 225,
+   "fields": [
+    "AreaType",
+    "OfficialWLDProjectAreaName",
+    "last_edited_user",
+    "created_user"
+   ],
+   "known": true,
+   "layer": "Wildlife Property Boundary",
+   "sample": [
+    {
+     "AreaType": "Wildlife Managed Lands",
+     "OfficialWLDProjectAreaName": "(Bay City SP - middle day-use portion, adj. to Tobico Marsh Unit)",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "AreaType": "Wildlife Managed Lands",
+     "OfficialWLDProjectAreaName": "(Saginaw Contained Disposal Facility (special adj. area))",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    },
+    {
+     "OfficialWLDProjectAreaName": "(select pvt-owned lands with State reserved hunting rights)",
+     "created_user": "MichiganDNR",
+     "last_edited_user": "MichiganDNR"
+    }
+   ],
+   "service": "DNRWILDLandsOPENDATA",
+   "typef": "AreaType",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRWILDLandsOPENDATA/FeatureServer/2"
+  },
+  {
+   "agency": "Michigan Department of Natural Resources",
+   "area": "Facility",
+   "count": 109,
+   "fields": [
+    "UniqueID",
+    "LinkID",
+    "District",
+    "Facility",
+    "CreatedUser",
+    "EditName"
+   ],
+   "known": true,
+   "layer": "DNR Parks Unit Boundary",
+   "sample": [
+    {
+     "CreatedUser": "MichiganDNR",
+     "District": "Gaylord",
+     "EditName": "MichiganDNR",
+     "Facility": "Young State Park",
+     "LinkID": "SPRK512"
+    },
+    {
+     "CreatedUser": "MichiganDNR",
+     "District": "Metro Detroit",
+     "EditName": "MichiganDNR",
+     "Facility": "W.C. Wetzel Recreation Area",
+     "LinkID": "SPRK507"
+    },
+    {
+     "CreatedUser": "MichiganDNR",
+     "District": "Gaylord",
+     "EditName": "MichiganDNR",
+     "Facility": "Onaway State Park",
+     "LinkID": "SPRK479"
+    }
+   ],
+   "service": "DNRManagementBoundariesOPENDATA",
+   "typef": "Facility",
+   "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/8"
+  }
+ ],
+ "st": "MI"
+}

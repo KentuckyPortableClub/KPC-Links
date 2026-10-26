@@ -1,0 +1,3558 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "MassGIS, EOTSS",
+   "area": "",
+   "count": 226921,
+   "fields": [
+    "MAP_PAR_ID",
+    "LEGAL_TYPE",
+    "LS_BOOK",
+    "LS_PAGE",
+    "REG_ID",
+    "TAXPAR_ID"
+   ],
+   "known": false,
+   "layer": "Other Legal Interests",
+   "sample": [
+    {
+     "LEGAL_TYPE": "FEE",
+     "MAP_PAR_ID": "9-1",
+     "TAXPAR_ID": "F_394585_2970952"
+    },
+    {
+     "LEGAL_TYPE": "FEE",
+     "MAP_PAR_ID": "9-22",
+     "TAXPAR_ID": "F_394585_2970952"
+    },
+    {
+     "LEGAL_TYPE": "FEE",
+     "MAP_PAR_ID": "4-19",
+     "TAXPAR_ID": "F_394585_2970952"
+    }
+   ],
+   "service": "AGOL/MassachusettsPropertyTaxParcels",
+   "typef": "LEGAL_TYPE",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 71047,
+   "fields": [],
+   "known": false,
+   "layer": "Concentrated Commercial Fishing Traffic 2015-2016*",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 1,
+     "Shape__Area": 10005.898834228516,
+     "Shape__Length": 401.12470042792097,
+     "gridcode": 1
+    },
+    {
+     "FID": 2,
+     "Id": 2,
+     "Shape__Area": 10005.896575927734,
+     "Shape__Length": 401.1246759037365,
+     "gridcode": 0
+    },
+    {
+     "FID": 3,
+     "Id": 3,
+     "Shape__Area": 6850.778167724609,
+     "Shape__Length": 378.7708931137563,
+     "gridcode": 0
+    }
+   ],
+   "service": "Concentrated_Commercial_Fishing_Traffic_2015_2016",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Concentrated_Commercial_Fishing_Traffic_2015_2016/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 52784,
+   "fields": [
+    "SITE_NAME",
+    "FEE_OWNER",
+    "OWNER_ABRV",
+    "OWNER_TYPE",
+    "MANAGER",
+    "MANAGR_ABRV",
+    "MANAGR_TYPE",
+    "PRIM_PURP",
+    "PUB_ACCESS",
+    "LEV_PROT",
+    "OLI_1_ORG",
+    "OLI_1_ABRV",
+    "OLI_1_TYPE",
+    "OLI_1_INT",
+    "OLI_2_ORG",
+    "OLI_2_ABRV",
+    "OLI_2_TYPE",
+    "OLI_2_INT",
+    "OLI_3_ORG",
+    "OLI_3_ABRV"
+   ],
+   "known": false,
+   "layer": "Protected and Recreational OpenSpace (Polygons)",
+   "sample": [
+    {
+     "FEE_OWNER": "Almy Barbara Trustee",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "MAS",
+     "OLI_1_ORG": "Massachusetts Audubon Society",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "N",
+     "SITE_NAME": "Almy CR"
+    },
+    {
+     "FEE_OWNER": "Almy Anne T",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "MAS",
+     "OLI_1_ORG": "Massachusetts Audubon Society",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "N",
+     "SITE_NAME": "Almy CR"
+    },
+    {
+     "FEE_OWNER": "Ponzecchi Massachusetts Real Property Trust",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "MAS",
+     "OLI_1_ORG": "Massachusetts Audubon Society",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Ponzecchi CR"
+    }
+   ],
+   "service": "AGOL/Parcels_UseCode_DORClass1",
+   "typef": "OWNER_TYPE",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Parcels_UseCode_DORClass1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12597,
+   "fields": [
+    "QPCGID",
+    "SectionLotID",
+    "BlockSection",
+    "Lot",
+    "SubLot"
+   ],
+   "known": false,
+   "layer": "Cemetery Grave Lots",
+   "sample": [
+    {
+     "BlockSection": "10",
+     "Lot": "1",
+     "QPCGID": "1001-1",
+     "SectionLotID": "\b1001",
+     "SubLot": "1"
+    },
+    {
+     "BlockSection": "10",
+     "Lot": "1",
+     "QPCGID": "1001-2",
+     "SectionLotID": "1001",
+     "SubLot": "2"
+    },
+    {
+     "BlockSection": "10",
+     "Lot": "1",
+     "QPCGID": "1001-3",
+     "SectionLotID": "1001",
+     "SubLot": "3"
+    }
+   ],
+   "service": "Quabbin_Park_Cemetery_Grave_Lots_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Quabbin_Park_Cemetery_Grave_Lots_view/FeatureServer/0"
+  },
+  {
+   "agency": "National Park Service, NPS",
+   "area": "NAME",
+   "count": 8706,
+   "fields": [
+    "TRACT1",
+    "TRACT2",
+    "TRACT3",
+    "TRACT4",
+    "TRACT5",
+    "PARCEL",
+    "RELATE_ID",
+    "SOURCE",
+    "COMMENTS",
+    "PROTECTED",
+    "NAME",
+    "OWNER",
+    "INTEREST",
+    "STATUS",
+    "ESTATE",
+    "ES_TYPE",
+    "APPA_LAND",
+    "ADMIN",
+    "LEGEND",
+    "LEGEND2"
+   ],
+   "known": false,
+   "layer": "Appalachian Trail Lands",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "NAME": "WHITE MOUNTAIN NATIONAL FOREST",
+     "OWNER": "UNITED STATES GOVERNMENT",
+     "PARCEL": " ",
+     "PROTECTED": "YES",
+     "RELATE_ID": "193015",
+     "SOURCE": "NPS Segment Maps + ECBS plat",
+     "TRACT1": "193-15",
+     "TRACT2": " ",
+     "TRACT3": " ",
+     "TRACT4": " ",
+     "TRACT5": " "
+    },
+    {
+     "COMMENTS": " ",
+     "NAME": "WHITE MOUNTAIN NATIONAL FOREST",
+     "OWNER": "UNITED STATES GOVERNMENT",
+     "PARCEL": " ",
+     "PROTECTED": "YES",
+     "RELATE_ID": "193002",
+     "SOURCE": "NPS Segment Maps + ECBS plat",
+     "TRACT1": "193-02",
+     "TRACT2": " ",
+     "TRACT3": " ",
+     "TRACT4": " ",
+     "TRACT5": " "
+    },
+    {
+     "COMMENTS": " ",
+     "NAME": "WHITE MOUNTAIN NATIONAL FOREST",
+     "OWNER": "UNITED STATES GOVERNMENT",
+     "PARCEL": " ",
+     "PROTECTED": "YES",
+     "RELATE_ID": "193014",
+     "SOURCE": "NPS Segment Maps + ECBS plat",
+     "TRACT1": "193-14",
+     "TRACT2": " ",
+     "TRACT3": " ",
+     "TRACT4": " ",
+     "TRACT5": " "
+    }
+   ],
+   "service": "AT_Lands",
+   "typef": "ES_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AT_Lands/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8389,
+   "fields": [
+    "QPCGID",
+    "SectionLotID",
+    "BlockSection",
+    "Lot",
+    "SubLot",
+    "IC_QPCGID",
+    "IC_DeedLotID",
+    "IC_DeedNo",
+    "IC_DeedLotGraveID",
+    "IC_GraveNo",
+    "IC_LastName",
+    "IC_MiddleName",
+    "IC_FirstName",
+    "IC_SuffixName",
+    "IC_FullName",
+    "IC_Title",
+    "IC_BurialType",
+    "IC_ContainerType",
+    "IC_ContainerDim",
+    "IC_VeteranStatus"
+   ],
+   "known": false,
+   "layer": "Quabbin_Park_Cemetery_Filled_Graves",
+   "sample": [
+    {
+     "BlockSection": "10",
+     "IC_DeedLotGraveID": "1007NE3/4G3",
+     "IC_DeedLotID": "1007NE3/4",
+     "IC_DeedNo": "Q-528",
+     "IC_GraveNo": "3",
+     "IC_LastName": "Clifford",
+     "IC_MiddleName": "M.",
+     "IC_QPCGID": "1007-3",
+     "Lot": "7",
+     "QPCGID": "1007-3",
+     "SectionLotID": "1007",
+     "SubLot": "3"
+    },
+    {
+     "BlockSection": "10",
+     "IC_DeedLotGraveID": "1006-1007G1",
+     "IC_DeedLotID": "1006-1007",
+     "IC_DeedNo": "Q-1557",
+     "IC_GraveNo": "1",
+     "IC_LastName": "Loder",
+     "IC_MiddleName": "R.",
+     "IC_QPCGID": "1007-4",
+     "Lot": "7",
+     "QPCGID": "1007-4",
+     "SectionLotID": "1007",
+     "SubLot": "4"
+    },
+    {
+     "BlockSection": "10",
+     "IC_DeedLotGraveID": "1007NE3/4G4",
+     "IC_DeedLotID": "1007NE3/4",
+     "IC_DeedNo": "Q-528",
+     "IC_GraveNo": "4",
+     "IC_LastName": "Woodes",
+     "IC_MiddleName": "C.",
+     "IC_QPCGID": "1007-6",
+     "Lot": "7",
+     "QPCGID": "1007-6",
+     "SectionLotID": "1007",
+     "SubLot": "6"
+    }
+   ],
+   "service": "Quabbin_Park_Cemetery_Filled_Graves",
+   "typef": "IC_BurialType",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Quabbin_Park_Cemetery_Filled_Graves/FeatureServer/0"
+  },
+  {
+   "agency": "MHC, MassGIS",
+   "area": "",
+   "count": 7168,
+   "fields": [
+    "MHCN",
+    "TYPE",
+    "DESIGNATIO",
+    "D_DATE",
+    "LEGEND",
+    "HISTORIC_N",
+    "COMMON_NAM",
+    "ADDRESS",
+    "TOWN_NAME",
+    "ARCH",
+    "MAKER",
+    "USE_TYPE",
+    "SIGNIFICAN"
+   ],
+   "known": false,
+   "layer": "MassHistoric Commission Inventory (Areas)",
+   "sample": [
+    {
+     "ADDRESS": " ",
+     "ARCH": " ",
+     "COMMON_NAM": " ",
+     "DESIGNATIO": " ",
+     "D_DATE": " ",
+     "HISTORIC_N": "Palace Row",
+     "LEGEND": "Inventoried Property",
+     "MAKER": " ",
+     "MHCN": "ABI.A",
+     "TOWN_NAME": "Abington",
+     "TYPE": "Area",
+     "USE_TYPE": "Residential District;"
+    },
+    {
+     "ADDRESS": " ",
+     "ARCH": " ",
+     "COMMON_NAM": " ",
+     "DESIGNATIO": " ",
+     "D_DATE": " ",
+     "HISTORIC_N": "Washington Street Area",
+     "LEGEND": "Inventoried Property",
+     "MAKER": " ",
+     "MHCN": "ABI.B",
+     "TOWN_NAME": "Abington",
+     "TYPE": "Area",
+     "USE_TYPE": "Commercial District; Other Institutional; Residential District;"
+    },
+    {
+     "ADDRESS": " ",
+     "ARCH": " ",
+     "COMMON_NAM": " ",
+     "DESIGNATIO": " ",
+     "D_DATE": " ",
+     "HISTORIC_N": "Abington Town Center",
+     "LEGEND": "Inventoried Property",
+     "MAKER": " ",
+     "MHCN": "ABI.C",
+     "TOWN_NAME": "Abington",
+     "TYPE": "Area",
+     "USE_TYPE": "Commercial District; Other Institutional;"
+    }
+   ],
+   "service": "AGOL/MHC_Inventory",
+   "typef": "TYPE",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MHC_Inventory/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 5300,
+   "fields": [
+    "SITE_NAME"
+   ],
+   "known": false,
+   "layer": "HIKINGWILDERNESSTRAILS_10m_buffer2",
+   "sample": [
+    {},
+    {
+     "SITE_NAME": "#2 WELL"
+    },
+    {
+     "SITE_NAME": "119 COBURN STREET RECREATION AREA"
+    }
+   ],
+   "service": "Hiking_Wilderness_Trails_with_10_meter_buffer",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Hiking_Wilderness_Trails_with_10_meter_buffer/FeatureServer/9"
+  },
+  {
+   "agency": "MassGIS",
+   "area": "",
+   "count": 2557,
+   "fields": [
+    "HABITAT",
+    "COM_NAME",
+    "LH_STAGE",
+    "BEGIN_DATE",
+    "END_DATE"
+   ],
+   "known": false,
+   "layer": "Shellfish Suitability Areas",
+   "sample": [
+    {
+     "BEGIN_DATE": "5/15",
+     "COM_NAME": "Blue Mussel",
+     "END_DATE": "8/31",
+     "HABITAT": "BM",
+     "LH_STAGE": "spawnig / settlement"
+    },
+    {
+     "BEGIN_DATE": "5/15",
+     "COM_NAME": "Blue Mussel",
+     "END_DATE": "8/31",
+     "HABITAT": "BM",
+     "LH_STAGE": "spawnig / settlement"
+    },
+    {
+     "BEGIN_DATE": "5/15",
+     "COM_NAME": "Blue Mussel",
+     "END_DATE": "8/31",
+     "HABITAT": "BM",
+     "LH_STAGE": "spawnig / settlement"
+    }
+   ],
+   "service": "Shellfish_Suitability",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Shellfish_Suitability/FeatureServer/0"
+  },
+  {
+   "agency": "Massachusetts Division of Marine Fisheries, Fisheries Habitat Project",
+   "area": "",
+   "count": 2557,
+   "fields": [
+    "HABITAT",
+    "COM_NAME",
+    "LH_STAGE",
+    "BEGIN_DATE",
+    "END_DATE"
+   ],
+   "known": false,
+   "layer": "shellfish_suitability_areas",
+   "sample": [
+    {
+     "BEGIN_DATE": "5/1",
+     "COM_NAME": "Soft-shell clam",
+     "END_DATE": "9/30",
+     "HABITAT": "SSC",
+     "LH_STAGE": "spawnig / settlement"
+    },
+    {
+     "BEGIN_DATE": "5/1",
+     "COM_NAME": "Soft-shell clam",
+     "END_DATE": "9/30",
+     "HABITAT": "SSC",
+     "LH_STAGE": "spawnig / settlement"
+    },
+    {
+     "BEGIN_DATE": "5/1",
+     "COM_NAME": "Soft-shell clam",
+     "END_DATE": "9/30",
+     "HABITAT": "SSC",
+     "LH_STAGE": "spawnig / settlement"
+    }
+   ],
+   "service": "Shellfish_Suitability_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Shellfish_Suitability_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1366,
+   "fields": [
+    "ESTHAB_ID",
+    "VERSION"
+   ],
+   "known": false,
+   "layer": "NHESP Estimated Habitats of Rare Wildlife",
+   "sample": [
+    {
+     "ESTHAB_ID": "EH 45",
+     "VERSION": "15th Ed. Heritage Atlas - Effective August 1, 2021"
+    },
+    {
+     "ESTHAB_ID": "EH 46",
+     "VERSION": "15th Ed. Heritage Atlas - Effective August 1, 2021"
+    },
+    {
+     "ESTHAB_ID": "EH 47",
+     "VERSION": "15th Ed. Heritage Atlas - Effective August 1, 2021"
+    }
+   ],
+   "service": "AGOL/NHESP_Estimated_Habitats",
+   "typef": "",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/NHESP_Estimated_Habitats/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITE_NAME",
+   "count": 1031,
+   "fields": [
+    "SITE_NAME",
+    "ALT_SITE_NAME",
+    "OLI_1_INT",
+    "OLI_2_INT",
+    "OLI_3_INT",
+    "PROJ_ID1"
+   ],
+   "known": false,
+   "layer": "ProtectedandRecreationalOpenSpacePolygonsDissolved_v2_12_8_2021",
+   "sample": [
+    {},
+    {
+     "SITE_NAME": "Danvers Agricultural Reserve"
+    },
+    {
+     "SITE_NAME": "Hersey Farm Agricultural Licensing Program"
+    }
+   ],
+   "service": "ProtectedandRecreationalOpenSpacePolygons_Merged_SiteName",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/ProtectedandRecreationalOpenSpacePolygons_Merged_SiteName/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 978,
+   "fields": [
+    "PROJ_ID1",
+    "OLI_1_INT",
+    "OLI_2_INT",
+    "OLI_3_INT"
+   ],
+   "known": false,
+   "layer": "ProtectedandRecreationalOpenSpacePolygonsDissolved",
+   "sample": [
+    {},
+    {
+     "OLI_1_INT": "APR",
+     "PROJ_ID1": "070789_008FOR"
+    },
+    {
+     "OLI_1_INT": "APR",
+     "OLI_2_INT": "APR",
+     "OLI_3_INT": "EASE",
+     "PROJ_ID1": "DAR_010207339RIC"
+    }
+   ],
+   "service": "Protected_and_Recreational_Open_Space_Polygons_Merged",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Protected_and_Recreational_Open_Space_Polygons_Merged/FeatureServer/0"
+  },
+  {
+   "agency": "Department of Fish and Game's (DFG) Division of Marine Fisheries (DMF)",
+   "area": "NAME",
+   "count": 783,
+   "fields": [
+    "NAME",
+    "CONTACT",
+    "GROWING_AR",
+    "AREA_DESC",
+    "CLASS",
+    "CONDITION"
+   ],
+   "known": false,
+   "layer": "Designated Shellfish Growing Areas",
+   "sample": [
+    {
+     "AREA_DESC": "Sandwich Harbor",
+     "CLASS": "Conditionally Approved",
+     "CONDITION": "Season",
+     "CONTACT": "Allison Myers",
+     "GROWING_AR": "CCB37",
+     "NAME": "CCB37.0"
+    },
+    {
+     "AREA_DESC": "Mill Creek and Hallets Mill Pond",
+     "CLASS": "Conditionally Approved",
+     "CONDITION": "Season",
+     "CONTACT": "Holly Williams",
+     "GROWING_AR": "CCB29",
+     "NAME": "CCB29.0"
+    },
+    {
+     "AREA_DESC": "Barnstable Harbor",
+     "CLASS": "Approved",
+     "CONTACT": "Holly Williams",
+     "GROWING_AR": "CCB31",
+     "NAME": "CCB31.0"
+    }
+   ],
+   "service": "AGOL/DSGA",
+   "typef": "AREA_DESC",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/DSGA/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 759,
+   "fields": [
+    "NAME",
+    "CONTACT",
+    "GROWING_AR",
+    "AREA_DESC",
+    "LGL_DESC",
+    "CLASS",
+    "COND_DETAIL"
+   ],
+   "known": false,
+   "layer": "Shellfish_Classification_Areas_V3",
+   "sample": [
+    {
+     "AREA_DESC": "Merrimack River Estuary & Northern Plum Island River",
+     "CLASS": "Conditionally Restricted",
+     "COND_DETAIL": "Closed for 5 days after rain >= 0.25\" (any gauge); 7 days after >= 0.83\" (Lawrence gauge); Test to reopen after > 1.50\" (Lawrence); Test to reopen after >= 2.00\" (Newburyport gauges)",
+     "CONTACT": "Ryan Joyce",
+     "GROWING_AR": "N2",
+     "LGL_DESC": "The waters, flats, and tributaries of the Merrimack River estuary in the City of Newburyport and the Towns of Newbury and Salisbury within the following metes and bounds: south of a line drawn due east from the southeast corner of Allen Creek at the confluence with Black Rock Creek, and south of lines drawn across the mouths of Middle and Morrill Creeks; east of a line drawn due north from the lighted beacon No. \"18\" to the bank of the Merrimack River; north of a line running from light No. \"18\" to buoy No. \"15\" then to buoy No. \"8\"; east and south of a line drawn from buoy No. \"8\" to the gunners blind on the northeast corner of Woodbridge Island; east of line drawn from the bus stop on Water Street near Goodwin Avenue in Newburyport to the westernmost point of Woodbridge Island; north of a line drawn across the mouth of the Basin from 53 Harbor Street to the old stone breakwater at the northeast corner of Old Point, and north of a line drawn due east from the northeasternmost corner of Pine Island Creek at the confluence with Plum Island River to the east bank of the Plum Island River.",
+     "NAME": "N2.1"
+    },
+    {
+     "AREA_DESC": "Outer Essex Bay",
+     "CLASS": "Conditionally Approved",
+     "COND_DETAIL": "Closed for 5 days after rain >= 0.60\" June 1 through December 14; Test to reopen after >= 3.00\" year round",
+     "CONTACT": "Ryan Joyce",
+     "GROWING_AR": "N7",
+     "LGL_DESC": "The waters, flats and tributaries of Essex Bay in the City of Gloucester and the Towns of Essex and Ipswich within the following metes and bounds: east of a line drawn due north from the north side of Long Island, through the boulder at 42.67059°, -70.75454°, to a red/orange colored marker on the Castle Neck spit at 42.67395°, -70.75450°; east of a line drawn southeasterly from the southwestern point of the Choate House on Hog Island to a red/orange colored marker on the westernmost point of Corn Island at 42.65710°, -70.75175°; east of line drawn southeasterly from the relic chimney on the southeasternmost point of Cross Island to a red/orange colored marker at 42.65005°, -70.74075°; north and west of line drawn northeasterly from the northern point of the dock at 25 Jebeka Ln. to the green colored No. 3 Spindle; north of a line drawn due east from the green colored No. 3 Spindle to Two Penny Loaf; and south and west of a line drawn southeasterly from the southernmost tip of Crane's Beach to the rock outcropping at the northwest tip of Two Penny Loaf near 149 Wingaersheek Rd. at 42.66346°, -70.71882°; with the exception of Conomo Point East Mooring Area (N7.10).",
+     "NAME": "N7.6"
+    },
+    {
+     "AREA_DESC": "Browns Bank",
+     "CLASS": "Conditionally Approved",
+     "COND_DETAIL": "Closed for 21 days after WWTP performance disruption detailed in CAMP",
+     "CONTACT": "Brooke Dejadon",
+     "GROWING_AR": "CCB41",
+     "LGL_DESC": "The waters and flats of that portion of Cape Cod Bay, in the Town of Plymouth, west of a line drawn from Gurnet Light to the shoreline east of #260 Ryder Way and east of a line drawn from the southwestern point of Saquish Head to the north point of Long Beach.",
+     "NAME": "CCB41.2"
+    }
+   ],
+   "service": "Shellfish_Classification_Areas_V3_view",
+   "typef": "AREA_DESC",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Shellfish_Classification_Areas_V3_view/FeatureServer/0"
+  },
+  {
+   "agency": "American Battlefield Protection Program, National Park Service, Department of th",
+   "area": "",
+   "count": 733,
+   "fields": [
+    "ParcelID",
+    "ABPP_Grant",
+    "County",
+    "State",
+    "Property_N",
+    "Notes",
+    "FAIN",
+    "Owner"
+   ],
+   "known": false,
+   "layer": "Battlefeild Land Acquisition Grant Property",
+   "sample": [
+    {
+     "ABPP_Grant": "51-04-CW-1302",
+     "County": "Louisa",
+     "FAIN": " ",
+     "Notes": " ",
+     "Owner": " ",
+     "ParcelID": "24-1",
+     "Property_N": "RiverOak Timberland Investments, LLC Properties",
+     "State": "VA"
+    },
+    {
+     "ABPP_Grant": "51-04-CW-1302",
+     "County": "Louisa",
+     "FAIN": " ",
+     "Notes": " ",
+     "Owner": " ",
+     "ParcelID": "24-16",
+     "Property_N": "RiverOak Timberland Investments, LLC Properties",
+     "State": "VA"
+    },
+    {
+     "ABPP_Grant": "51-04-CW-1302",
+     "County": "Louisa",
+     "FAIN": " ",
+     "Notes": " ",
+     "Owner": " ",
+     "ParcelID": "24-2",
+     "Property_N": "RiverOak Timberland Investments, LLC Properties",
+     "State": "VA"
+    }
+   ],
+   "service": "Battlefield_Land_Acquisition_Grants_(BLAG)_Data",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Battlefield_Land_Acquisition_Grants_(BLAG)_Data/FeatureServer/0"
+  },
+  {
+   "agency": "Great Smoky Mountains National Park,\nResource Management & Science,\nGeographic R",
+   "area": "",
+   "count": 470,
+   "fields": [],
+   "known": false,
+   "layer": "NON_FORESTED",
+   "sample": [
+    {
+     "GlobalID": "7b4895f9-00ad-4b74-9f5a-0e8c2c494cd4",
+     "OBJECTID": 1,
+     "Shape__Area": 46782.172607421875,
+     "Shape__Length": 12513.041773255796
+    },
+    {
+     "GlobalID": "4aa3e8f3-f9ec-47a9-b213-8ca979e49467",
+     "OBJECTID": 2,
+     "Shape__Area": 34.681884765625,
+     "Shape__Length": 28.669873974634488
+    },
+    {
+     "GlobalID": "aa8ccf89-37e9-4c4a-b75e-7258981dd84e",
+     "OBJECTID": 3,
+     "Shape__Area": 11111.101440429688,
+     "Shape__Length": 3575.471164638896
+    }
+   ],
+   "service": "GRSM_NON_FORESTED",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_NON_FORESTED/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 463,
+   "fields": [
+    "GNIS_Name",
+    "accessible",
+    "fall_restrict",
+    "spring_restrict",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "RIVER_HERRING_SPAWNING_AND_NURSERY_HABITAT_POLY",
+   "sample": [
+    {
+     "Creator": "kevinr",
+     "Editor": "kevinr",
+     "GNIS_Name": "Great Quittacas Pond",
+     "accessible": "Y",
+     "fall_restrict": "1-Sep to 15-Nov",
+     "spring_restrict": "15-Mar to 30-Jun"
+    },
+    {
+     "Creator": "kevinr",
+     "Editor": "kevinr",
+     "GNIS_Name": "Long Pond",
+     "accessible": "Y",
+     "fall_restrict": "1-Sep to 15-Nov",
+     "spring_restrict": "15-Mar to 30-Jun"
+    },
+    {
+     "Creator": "kevinr",
+     "Editor": "kevinr",
+     "GNIS_Name": "Omega Pond",
+     "accessible": "Y",
+     "fall_restrict": "1-Sep to 15-Nov",
+     "spring_restrict": "15-Mar to 15-Jul"
+    }
+   ],
+   "service": "Diadromous_Fish_Layers_v1_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Diadromous_Fish_Layers_v1_view/FeatureServer/4"
+  },
+  {
+   "agency": "Massachusetts Division of Marine Fisheries (DMF), MassGIS",
+   "area": "NAME",
+   "count": 449,
+   "fields": [
+    "NAME",
+    "ACCESSIBLE",
+    "FALL_RESTRICTION",
+    "SPRING_RESTRICTION",
+    "CREATOR",
+    "EDITOR"
+   ],
+   "known": false,
+   "layer": "River Herring Spawning Nursery Habitat",
+   "sample": [
+    {
+     "ACCESSIBLE": "Y",
+     "CREATOR": "kevinr",
+     "EDITOR": "kevinr",
+     "FALL_RESTRICTION": "1-Sep to 15-Nov",
+     "NAME": "Lake Sabbatia",
+     "SPRING_RESTRICTION": "15-Mar to 30-Jun"
+    },
+    {
+     "ACCESSIBLE": "N",
+     "CREATOR": "kevinr",
+     "EDITOR": "kevinr",
+     "NAME": "Muddy Cove Pond"
+    },
+    {
+     "ACCESSIBLE": "Y",
+     "CREATOR": "kevinr",
+     "EDITOR": "kevinr",
+     "FALL_RESTRICTION": "1-Sep to 15-Nov",
+     "SPRING_RESTRICTION": "15-Mar to 15-Jul"
+    }
+   ],
+   "service": "AGOL/DiadromousFish",
+   "typef": "",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/DiadromousFish/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 428,
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "UNIT_TYPE",
+    "PARKNAME"
+   ],
+   "known": false,
+   "layer": "National_Park_Property_Boundaries",
+   "sample": [
+    {
+     "PARKNAME": "Badlands",
+     "REGION": "MW",
+     "STATE": "SD",
+     "UNIT_CODE": "BADL",
+     "UNIT_NAME": "Badlands National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "PARKNAME": "Capitol Reef",
+     "REGION": "IM",
+     "STATE": "UT",
+     "UNIT_CODE": "CARE",
+     "UNIT_NAME": "Capitol Reef National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "PARKNAME": "Lower Saint Croix",
+     "REGION": "MW",
+     "STATE": "MN",
+     "UNIT_CODE": "LOSA",
+     "UNIT_NAME": "Lower Saint Croix National Scenic Riverway",
+     "UNIT_TYPE": "National Wild & Scenic River"
+    }
+   ],
+   "service": "National_Park_Property_Boundaries",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 422,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME"
+   ],
+   "known": false,
+   "layer": "National_Park_Service_Boundaries",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "GIS_Notes": "PRELIMINARY - Data has not completed the entire Lands QA/QC process.",
+     "GNIS_ID": "1879026",
+     "METADATA": "Preliminary data. Contact the Land Resources Program for additional information.",
+     "PARKNAME": "American Memorial Park",
+     "REGION": "PW",
+     "STATE": "MP",
+     "UNIT_CODE": "AMME",
+     "UNIT_NAME": "American Memorial Park",
+     "UNIT_TYPE": "Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/CEBE/Metadata/cebe_metadata.xml",
+     "GNIS_ID": "1985663",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/1048148",
+     "PARKNAME": "Cedar Creek & Belle Grove",
+     "REGION": "NE",
+     "STATE": "VA",
+     "UNIT_CODE": "CEBE",
+     "UNIT_NAME": "Cedar Creek and Belle Grove National Historical Park",
+     "UNIT_TYPE": "National Historical Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/LIBI/Metadata/libi_metadata.xml",
+     "GNIS_ID": "806297",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/1048009",
+     "PARKNAME": "Little Bighorn Battlefield",
+     "REGION": "IM",
+     "STATE": "MT",
+     "UNIT_CODE": "LIBI",
+     "UNIT_NAME": "Little Bighorn Battlefield National Monument",
+     "UNIT_TYPE": "National Monument"
+    }
+   ],
+   "service": "National_Park_Service_Boundaries",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Service_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "MHC, MassGIS",
+   "area": "",
+   "count": 351,
+   "fields": [
+    "TOWN",
+    "COMPLETE",
+    "STATUS",
+    "CODE",
+    "PENDING"
+   ],
+   "known": false,
+   "layer": "MassHistoric Commission Towns",
+   "sample": [
+    {
+     "CODE": "PLY",
+     "COMPLETE": "y",
+     "PENDING": "y",
+     "STATUS": "Confirmed",
+     "TOWN": "Plymouth"
+    },
+    {
+     "CODE": "MAS",
+     "COMPLETE": "y",
+     "PENDING": " ",
+     "STATUS": "Confirmed",
+     "TOWN": "Mashpee"
+    },
+    {
+     "CODE": "BRN",
+     "COMPLETE": "y",
+     "PENDING": " ",
+     "STATUS": "Confirmed",
+     "TOWN": "Barnstable"
+    }
+   ],
+   "service": "AGOL/MHC_Inventory",
+   "typef": "",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MHC_Inventory/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 351,
+   "fields": [
+    "TOWN",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "MunicipalBoundaries_LCMAP2021Stats",
+   "sample": [
+    {
+     "TOWN": "LOWELL",
+     "TYPE": "C"
+    },
+    {
+     "TOWN": "BEVERLY",
+     "TYPE": "C"
+    },
+    {
+     "TOWN": "GLOUCESTER",
+     "TYPE": "C"
+    }
+   ],
+   "service": "Massachusetts_Municipalities_with_2021_LCMAP_Forest_Stats",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Massachusetts_Municipalities_with_2021_LCMAP_Forest_Stats/FeatureServer/0"
+  },
+  {
+   "agency": "Massachusetts Department of Transportation Office of Transportation Planning, De",
+   "area": "",
+   "count": 323,
+   "fields": [
+    "LOCAL_NAME"
+   ],
+   "known": false,
+   "layer": "BIKETRAILS_10m_buffer",
+   "sample": [
+    {
+     "LOCAL_NAME": "Agawam Bikeway Loop"
+    },
+    {
+     "LOCAL_NAME": "Airport Road Path"
+    },
+    {
+     "LOCAL_NAME": "Albany Street Connector"
+    }
+   ],
+   "service": "BIKETRAILS_10m_buffer",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/BIKETRAILS_10m_buffer/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 279,
+   "fields": [
+    "BLDGNAME",
+    "BLDGALTNAME",
+    "MAPLABEL",
+    "BLDGSTATUS",
+    "BLDGCODE",
+    "BLDGTYPE",
+    "FACOWNER",
+    "FACOCCUPANT",
+    "FACMAINTAIN",
+    "FACUSE",
+    "SEASONAL",
+    "ISEXTANT",
+    "POLYGONTYPE",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "UNITCODE",
+    "UNITNAME",
+    "REGIONCODE",
+    "MAPMETHOD",
+    "MAPSOURCE"
+   ],
+   "known": false,
+   "layer": "Park_Structures",
+   "sample": [
+    {
+     "BLDGALTNAME": "P600 Paradise Inn",
+     "BLDGCODE": "35291700",
+     "BLDGNAME": "BLDG P600 Paradise (Inn)",
+     "BLDGSTATUS": "Existing",
+     "BLDGTYPE": "Bldg Lodge/Motel/Hotel",
+     "FACMAINTAIN": "NPS",
+     "FACOCCUPANT": "CONCESSION",
+     "FACOWNER": "NPS",
+     "FACUSE": "Public Use",
+     "ISEXTANT": "True",
+     "SEASONAL": "Y"
+    },
+    {
+     "BLDGALTNAME": "N102 QTRS Nisqually / Rangers Residence",
+     "BLDGCODE": "35300200",
+     "BLDGNAME": "QTRS N102 Nisqually (Rangers Residence)",
+     "BLDGSTATUS": "Existing",
+     "BLDGTYPE": "Bldg Housing Single Family",
+     "FACMAINTAIN": "NPS",
+     "FACOCCUPANT": "NPS",
+     "FACOWNER": "NPS",
+     "FACUSE": "Quarters",
+     "ISEXTANT": "True",
+     "SEASONAL": "Y"
+    },
+    {
+     "BLDGALTNAME": "O302 Ohana Campg. Comfort Station",
+     "BLDGCODE": "35240100",
+     "BLDGNAME": "BLDG O302 Ohana (Comfort Station) Campground B Loop",
+     "BLDGSTATUS": "Existing",
+     "BLDGTYPE": "Bldg Comfort Stations",
+     "FACMAINTAIN": "NPS",
+     "FACOCCUPANT": "NPS",
+     "FACOWNER": "NPS",
+     "FACUSE": "Public Use",
+     "ISEXTANT": "True",
+     "SEASONAL": "Unknown"
+    }
+   ],
+   "service": "MORA_Dev_Park_Structures_V",
+   "typef": "BLDGTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/MORA_Dev_Park_Structures_V/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 230,
+   "fields": [
+    "PropID",
+    "Watershed",
+    "Block",
+    "RepropsedI",
+    "PropType",
+    "PublicUrl",
+    "PrpslStat",
+    "HrvstStat"
+   ],
+   "known": false,
+   "layer": "DCR_DWSP_Forestry_Proposals",
+   "sample": [
+    {
+     "Block": "HA",
+     "HrvstStat": "Untreat",
+     "PropID": "HA-16-12",
+     "PropType": "STD",
+     "PrpslStat": "Canceled",
+     "PublicUrl": "https://www.mass.gov/doc/fy16-quabbin-proposed-forestry-project-details/download",
+     "Watershed": "QR"
+    },
+    {
+     "Block": "HA",
+     "HrvstStat": "Full",
+     "PropID": "HA-16-RP",
+     "PropType": "STD",
+     "PrpslStat": "Approved",
+     "PublicUrl": "https://www.mass.gov/doc/fy16-quabbin-proposed-forestry-project-details/download",
+     "RepropsedI": "HA-23-2",
+     "Watershed": "QR"
+    },
+    {
+     "Block": "HA",
+     "HrvstStat": "Full",
+     "PropID": "HA-17-10",
+     "PropType": "STD",
+     "PrpslStat": "Approved",
+     "PublicUrl": "https://www.mass.gov/doc/fy17-quabbin-proposed-forestry-project-details/download",
+     "Watershed": "QR"
+    }
+   ],
+   "service": "QWWS_Forestry_Proposals_(Public_View)",
+   "typef": "PropType",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/QWWS_Forestry_Proposals_(Public_View)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 225,
+   "fields": [],
+   "known": false,
+   "layer": "Forest Core",
+   "sample": [
+    {
+     "AC_CH_FC": 631.38,
+     "CH_FC_ID": 194,
+     "OBJECTID": 1,
+     "Shape__Area": 2555105.9454627,
+     "Shape__Length": 8871.37235930636
+    },
+    {
+     "AC_CH_FC": 945.81,
+     "CH_FC_ID": 206,
+     "OBJECTID": 2,
+     "Shape__Area": 3827553.69628025,
+     "Shape__Length": 7857.802062452481
+    },
+    {
+     "AC_CH_FC": 1553.02,
+     "CH_FC_ID": 208,
+     "OBJECTID": 3,
+     "Shape__Area": 6284851.60855428,
+     "Shape__Length": 12704.640743062499
+    }
+   ],
+   "service": "AGOL/BioMap_CoreHabitatComponents",
+   "typef": "",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/BioMap_CoreHabitatComponents/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 161,
+   "fields": [
+    "STATE",
+    "REGIONCODE",
+    "GROUPCODE",
+    "GROUPNAME",
+    "UNITCODE",
+    "UNITNAME",
+    "UNITTYPE",
+    "PARKAREA",
+    "MAPLABEL",
+    "LANDS_UNITCODE",
+    "LANDS_UNITNAME",
+    "WEBSITE",
+    "NPGALLERY_ID",
+    "IMG_URL",
+    "IMG_THUMB_URL",
+    "IMG_ALT_TEXT",
+    "IMG_CAPTION",
+    "IMG_TITLE",
+    "IMG_CREDIT",
+    "PHOTO_URL"
+   ],
+   "known": false,
+   "layer": "Park Management Boundaries",
+   "sample": [
+    {
+     "GROUPCODE": "NACE",
+     "GROUPNAME": "National Capital Parks-East",
+     "LANDS_UNITCODE": "NACA",
+     "LANDS_UNITNAME": "National Capital Parks",
+     "PARKAREA": "National Capital Parks-East",
+     "REGIONCODE": "NCR",
+     "STATE": "DC",
+     "UNITCODE": "NACE",
+     "UNITNAME": "National Capital Parks-East",
+     "WEBSITE": "https://www.nps.gov/nace/index.htm"
+    },
+    {
+     "GROUPCODE": "NACE",
+     "GROUPNAME": "National Capital Parks-East",
+     "LANDS_UNITCODE": "NACA",
+     "LANDS_UNITNAME": "National Capital Parks",
+     "PARKAREA": "National Capital Parks-East",
+     "REGIONCODE": "NCR",
+     "STATE": "DC",
+     "UNITCODE": "NACE",
+     "UNITNAME": "National Capital Parks-East",
+     "WEBSITE": "https://www.nps.gov/nace/index.htm"
+    },
+    {
+     "GROUPCODE": "NACE",
+     "GROUPNAME": "National Capital Parks-East",
+     "LANDS_UNITCODE": "PISC",
+     "LANDS_UNITNAME": "Piscataway Park",
+     "PARKAREA": "Piscataway Park",
+     "REGIONCODE": "NCR",
+     "STATE": "MD",
+     "UNITCODE": "PISC",
+     "UNITNAME": "Piscataway Park",
+     "UNITTYPE": "Other Designation",
+     "WEBSITE": "https://www.nps.gov/pisc/index.htm"
+    }
+   ],
+   "service": "NACE_Park_Mgmt_Boundaries_Public",
+   "typef": "UNITTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Park_Mgmt_Boundaries_Public/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 152,
+   "fields": [
+    "HYDROTYPE",
+    "NAME",
+    "LABEL",
+    "DESCRIPTION",
+    "HYDROCOVERED",
+    "LINECOVERAGE",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE",
+    "MAPMETHOD",
+    "MAPSOURCE",
+    "XYACCURACY",
+    "GEOMETRYID",
+    "NOTES",
+    "IN_PARK",
+    "PARKTILES"
+   ],
+   "known": false,
+   "layer": "Rivers and Streams (polygons)",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "GROUPCODE": "MANA",
+     "GROUPNAME": "Manassas National Battlefield Park",
+     "HYDROTYPE": "River",
+     "LABEL": "Bull Run",
+     "PUBLICDISPLAY": "Public Map Display",
+     "UNITCODE": "MANA",
+     "UNITNAME": "Manassas National Battlefield Park"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GROUPCODE": "MANA",
+     "GROUPNAME": "Manassas National Battlefield Park",
+     "HYDROTYPE": "River",
+     "LABEL": "Little Bull Run",
+     "PUBLICDISPLAY": "Public Map Display",
+     "UNITCODE": "MANA",
+     "UNITNAME": "Manassas National Battlefield Park"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GROUPCODE": "MANA",
+     "GROUPNAME": "Manassas National Battlefield Park",
+     "HYDROTYPE": "River",
+     "LABEL": "Little Bull Run (under road)",
+     "PUBLICDISPLAY": "Public Map Display",
+     "UNITCODE": "MANA",
+     "UNITNAME": "Manassas National Battlefield Park"
+    }
+   ],
+   "service": "NCR_Hydrography_ParkTiles",
+   "typef": "HYDROTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCR_Hydrography_ParkTiles/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 127,
+   "fields": [
+    "HYDROTYPE",
+    "NAME",
+    "NAMEALT",
+    "MAPLABEL",
+    "DESCRIPTION",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "ACCESSNOTES",
+    "OPENTOPUBLIC",
+    "POLYGONTYPE",
+    "MAINTAINER",
+    "ISEXTANT",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE",
+    "MAPMETHOD",
+    "MAPSOURCE",
+    "ORIGINATOR"
+   ],
+   "known": false,
+   "layer": "Ponds, Lakes, Fountains, and Pools",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "HYDROTYPE": "Pond or Lake",
+     "ISEXTANT": "True",
+     "MAINTAINER": "Unknown",
+     "OPENTOPUBLIC": "Yes",
+     "POLYGONTYPE": "Perimeter polygon",
+     "PUBLICDISPLAY": "Public Map Display"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "HYDROTYPE": "Pond or Lake",
+     "ISEXTANT": "True",
+     "MAINTAINER": "Unknown",
+     "NAME": "Rosefield Upper Pond",
+     "OPENTOPUBLIC": "Yes",
+     "POLYGONTYPE": "Perimeter polygon",
+     "PUBLICDISPLAY": "Public Map Display"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "HYDROTYPE": "Pond or Lake",
+     "ISEXTANT": "True",
+     "MAINTAINER": "Unknown",
+     "OPENTOPUBLIC": "Yes",
+     "POLYGONTYPE": "Perimeter polygon",
+     "PUBLICDISPLAY": "Public Map Display"
+    }
+   ],
+   "service": "NCR_Hydrography_ParkTiles",
+   "typef": "HYDROTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCR_Hydrography_ParkTiles/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 86,
+   "fields": [
+    "TRLNAME",
+    "TRLALTNAME",
+    "MAPLABEL",
+    "TRAILFEATURE",
+    "TRLFEATTYPE",
+    "TRLSTATUS",
+    "TRLTYPE",
+    "TRLCLASS",
+    "TRLUSE",
+    "TRLSURFACE",
+    "NATLTRAILCODE",
+    "NATLTRAILNAME",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE",
+    "GEOMETRYID",
+    "NOTES",
+    "MAPSYMBOL"
+   ],
+   "known": false,
+   "layer": "Mount Vernon Trail Polygon",
+   "sample": [
+    {
+     "NATLTRAILCODE": "POHE",
+     "NATLTRAILNAME": "Potomac Heritage National Scenic Trail",
+     "TRAILFEATURE": "Surface Trail",
+     "TRLALTNAME": "Potomac Heritage Trail",
+     "TRLCLASS": "Class 5: Fully Developed",
+     "TRLFEATTYPE": "Park Trail",
+     "TRLNAME": "Mount Vernon Trail",
+     "TRLSTATUS": "Existing",
+     "TRLSURFACE": "Asphalt",
+     "TRLTYPE": "Standard Terra Trail",
+     "TRLUSE": "Hiker / Pedestrian | Bicycle"
+    },
+    {
+     "NATLTRAILCODE": "POHE",
+     "NATLTRAILNAME": "Potomac Heritage National Scenic Trail",
+     "TRAILFEATURE": "Surface Trail",
+     "TRLALTNAME": "Potomac Heritage Trail",
+     "TRLCLASS": "Class 5: Fully Developed",
+     "TRLFEATTYPE": "Park Trail",
+     "TRLNAME": "Mount Vernon Trail",
+     "TRLSTATUS": "Existing",
+     "TRLSURFACE": "Asphalt",
+     "TRLTYPE": "Standard Terra Trail",
+     "TRLUSE": "Hiker / Pedestrian | Bicycle"
+    },
+    {
+     "NATLTRAILCODE": "POHE",
+     "NATLTRAILNAME": "Potomac Heritage National Scenic Trail",
+     "TRAILFEATURE": "Bridge, Boardwalk, or Overpass",
+     "TRLALTNAME": "Potomac Heritage Trail",
+     "TRLCLASS": "Class 5: Fully Developed",
+     "TRLFEATTYPE": "Park Trail",
+     "TRLNAME": "Mount Vernon Trail",
+     "TRLSTATUS": "Existing",
+     "TRLSURFACE": "Unknown",
+     "TRLTYPE": "Standard Terra Trail",
+     "TRLUSE": "Hiker / Pedestrian | Bicycle"
+    }
+   ],
+   "service": "GWMP_Mount_Vernon_Trail_Polygon",
+   "typef": "TRAILFEATURE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GWMP_Mount_Vernon_Trail_Polygon/FeatureServer/2"
+  },
+  {
+   "agency": "Anna Tegarden, GIS Specialist",
+   "area": "NAME",
+   "count": 47,
+   "fields": [
+    "TYPE_",
+    "DOCUMENT",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Wilderness",
+   "sample": [
+    {
+     "DOCUMENT": "Back Country Management Plan",
+     "NAME": "Joshua Tree",
+     "TYPE_": "Proposed Wilderness Addition"
+    },
+    {
+     "DOCUMENT": "PL 103-43 (Desert Protection Act)",
+     "NAME": "Joshua Tree",
+     "TYPE_": "Wilderness"
+    },
+    {
+     "DOCUMENT": "PL 94-567 (Wilderness Act)",
+     "NAME": "Joshua Tree",
+     "TYPE_": "Potential Wilderness"
+    }
+   ],
+   "service": "JOTR_CMP_Wilderness_0220110",
+   "typef": "TYPE_",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_CMP_Wilderness_0220110/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 47,
+   "fields": [
+    "TYPE",
+    "DOCUMENT",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Wilderness",
+   "sample": [
+    {
+     "DOCUMENT": "Back Country Management Plan",
+     "NAME": "Joshua Tree",
+     "TYPE": "Proposed Wilderness Addition"
+    },
+    {
+     "DOCUMENT": "PL 103-43 (Desert Protection Act)",
+     "NAME": "Joshua Tree",
+     "TYPE": "Wilderness"
+    },
+    {
+     "DOCUMENT": "PL 94-567 (Wilderness Act)",
+     "NAME": "Joshua Tree",
+     "TYPE": "Potential Wilderness"
+    }
+   ],
+   "service": "JOTR_WildernessPublic_Web_201805",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_WildernessPublic_Web_201805/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 40,
+   "fields": [
+    "Use_Type",
+    "Times",
+    "Duration",
+    "Summary",
+    "Metered_Parking",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Accessible Public Parking Areas",
+   "sample": [
+    {
+     "Duration": "3 Hour",
+     "Metered_Parking": "Metered Car Parking (Disabled Tag Required)",
+     "Times": "7:00AM - 08:00PM All Days;No Parking 1:00AM-6:00AM",
+     "Use_Type": "Accessible Public Parking"
+    },
+    {
+     "Duration": "3 Hour",
+     "Metered_Parking": "Metered Car Parking (Disabled Tag Required)",
+     "Times": "7:00AM - 08:00PM All Days;No Parking 1:00AM-6:00AM",
+     "Use_Type": "Accessible Public Parking"
+    },
+    {
+     "Duration": "2 Hour",
+     "Metered_Parking": "Metered Car Parking (Disabled Tag Required)",
+     "Use_Type": "Accessible Public Parking"
+    }
+   ],
+   "service": "NAMA_Accessible_Public_Parking",
+   "typef": "Use_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NAMA_Accessible_Public_Parking/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Primary_Site_Name",
+   "count": 30,
+   "fields": [
+    "Primary_Site_Name",
+    "Season",
+    "Season_Details",
+    "Fishing_Permit_Type",
+    "Fishing_Allowed",
+    "Fishing_Waders",
+    "NightFishing_Allowed",
+    "IceFishing_Allowed",
+    "Lead_Restrictions",
+    "Fishing_Information",
+    "Fish_URL",
+    "Additional_Information"
+   ],
+   "known": false,
+   "layer": "\nDCR-DWSP Lands by Seasonal Fishing Access",
+   "sample": [
+    {
+     "Additional_Information": "Please help prevent the spread of Aquatic Invasive Species by practicing clean, drain, dry. Please refer to the Important Information > Aquatic Invasive Species page for more information.",
+     "Fishing_Allowed": "Y",
+     "Fishing_Permit_Type": "MA Freshwater",
+     "Fishing_Waders": "Y",
+     "IceFishing_Allowed": "Y",
+     "Lead_Restrictions": "State Guidelines",
+     "NightFishing_Allowed": "N",
+     "Primary_Site_Name": "Barre Falls Flood Control Area (USACE)",
+     "Season": "Open",
+     "Season_Details": "Fishing allowed year round in accordance with MassWildlife regulations, however DCR-DWSP additional rules and restrictions apply. "
+    },
+    {
+     "Additional_Information": "Please help prevent the spread of Aquatic Invasive Species by practicing clean, drain, dry. Please refer to the Important Information > Aquatic Invasive Species page for more information.",
+     "Fishing_Allowed": "Y",
+     "Fishing_Permit_Type": "MA Freshwater",
+     "Fishing_Waders": "Y",
+     "IceFishing_Allowed": "Y",
+     "Lead_Restrictions": "State Guidelines",
+     "NightFishing_Allowed": "N",
+     "Primary_Site_Name": "Barre Falls WMA",
+     "Season": "Open",
+     "Season_Details": "Fishing allowed year round in accordance with MassWildlife regulations, however DCR-DWSP additional rules and restrictions apply. "
+    },
+    {
+     "Additional_Information": "Please help prevent the spread of Aquatic Invasive Species by practicing clean, drain, dry. Please refer to the Important Information > Aquatic Invasive Species page for more information.",
+     "Fishing_Allowed": "Y",
+     "Fishing_Permit_Type": "MA Freshwater",
+     "Fishing_Waders": "Y",
+     "IceFishing_Allowed": "Y",
+     "Lead_Restrictions": "State Guidelines",
+     "NightFishing_Allowed": "N",
+     "Primary_Site_Name": "Hubbardston WMA",
+     "Season": "Open",
+     "Season_Details": "Fishing allowed year round in accordance with MassWildlife regulations, however DCR-DWSP additional rules and restrictions apply. "
+    }
+   ],
+   "service": "DWSP_Lands_by_Seasonal_Fishing_Access_(Public_View)",
+   "typef": "Fishing_Permit_Type",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DWSP_Lands_by_Seasonal_Fishing_Access_(Public_View)/FeatureServer/2"
+  },
+  {
+   "agency": "NPS Alaska Region GIS",
+   "area": "Name",
+   "count": 29,
+   "fields": [
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Descriptn",
+    "UnitCode",
+    "Unit",
+    "Unit_Type",
+    "Group_Code",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restriction",
+    "MetadataID",
+    "GeometryID",
+    "URL",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "AKR_BND_NON-DESIGNATED_WILDERNESS_PY_PUBLIC",
+   "sample": [
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Ineligible wilderness in Alagnak Wild River.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness",
+     "Group_Code": "ALAG",
+     "Name": "Alagnak Ineligible Wilderness",
+     "Notes": "Feature created by Alaska Region GIS Team on 12/1/2011. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Alagnak Wild River",
+     "UnitCode": "ALAG",
+     "Unit_Type": "Wild and Scenic River",
+     "Year": "2011"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Ineligible wilderness in Aniakchak National Monument and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness",
+     "Group_Code": "ANIA",
+     "Name": "Aniakchak Ineligible Wilderness",
+     "Notes": "Feature created by Alaska Region GIS Team on 10/22/2015. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Aniakchak National Monument and Preserve",
+     "UnitCode": "ANIA",
+     "Unit_Type": "National Monument and Preserve",
+     "Year": "2015"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Ineligible wilderness in Bering Land Bridge National Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness",
+     "Group_Code": "BELA",
+     "Name": "Bering Land Bridge Ineligible Wilderness",
+     "Notes": "Feature created by Alaska Region GIS Team on 8/31/2012. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Bering Land Bridge National Preserve",
+     "UnitCode": "BELA",
+     "Unit_Type": "National Preserve",
+     "Year": "2012"
+    }
+   ],
+   "service": "AKR_WILDERNESS_PUBLIC",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AKR_WILDERNESS_PUBLIC/FeatureServer/2"
+  },
+  {
+   "agency": "NPS Alaska Region GIS",
+   "area": "Name",
+   "count": 23,
+   "fields": [
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Descriptn",
+    "UnitCode",
+    "Unit",
+    "Unit_Type",
+    "Group_Code",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restriction",
+    "MetadataID",
+    "GeometryID",
+    "URL",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "AKR_BND_LIMITED_NON-NPS_LAND_INTEREST_PY_PUBLIC",
+   "sample": [
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Limited or non-NPS land interest within ineligible wilderness in Alagnak Wild River.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Group_Code": "ALAG",
+     "Name": "Alagnak Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Notes": "Feature created by Alaska Region GIS Team on 12/1/2011. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Alagnak Wild River",
+     "UnitCode": "ALAG",
+     "Unit_Type": "Wild and Scenic River",
+     "Year": "2011"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Limited or non-NPS land interest within ineligible wilderness in Aniakchak National Monument and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Group_Code": "ANIA",
+     "Name": "Aniakchak Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Notes": "Feature created by Alaska Region GIS Team on 10/22/2015. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Aniakchak National Monument and Preserve",
+     "UnitCode": "ANIA",
+     "Unit_Type": "National Monument and Preserve",
+     "Year": "2015"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Limited or non-NPS land interest within ineligible wilderness in Bering Land Bridge National Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Group_Code": "BELA",
+     "Name": "Bering Land Bridge Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Notes": "Feature created by Alaska Region GIS Team on 8/31/2012. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Bering Land Bridge National Preserve",
+     "UnitCode": "BELA",
+     "Unit_Type": "National Preserve",
+     "Year": "2012"
+    }
+   ],
+   "service": "AKR_WILDERNESS_PUBLIC",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AKR_WILDERNESS_PUBLIC/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 19,
+   "fields": [
+    "Zone",
+    "GeometryID",
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Descriptio",
+    "UnitCode",
+    "GroupCode",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restrictio",
+    "MetadataID",
+    "URL",
+    "GNIS_ID",
+    "Type",
+    "NameofAsso"
+   ],
+   "known": false,
+   "layer": "BND_Management_Zonesv2_py",
+   "sample": [
+    {
+     "CreateName": "Paul Teague",
+     "Descriptio": "Submerged Marine Land Nonwilderness",
+     "EditName": " ",
+     "Feat_Type": "Nonwilderness",
+     "GeometryID": " ",
+     "GroupCode": "SER",
+     "Name": "Marjory Stoneman Douglas Wilderness Area",
+     "Notes": " ",
+     "RegionCode": "SER",
+     "UnitCode": "EVER",
+     "Year": "1989",
+     "Zone": "Developed"
+    },
+    {
+     "CreateName": "Paul Teague",
+     "Descriptio": "Nonwilderness",
+     "EditName": " ",
+     "Feat_Type": "Nonwilderness",
+     "GeometryID": " ",
+     "GroupCode": "SER",
+     "Name": "Marjory Stoneman Douglas Wilderness Area",
+     "Notes": " ",
+     "RegionCode": "SER",
+     "UnitCode": "EVER",
+     "Year": "1989",
+     "Zone": "Frontcountry"
+    },
+    {
+     "CreateName": "Denver Service Center Staff",
+     "Descriptio": "Nonwilderness",
+     "EditName": "Caryl Alarcon",
+     "Feat_Type": "Nonwilderness",
+     "GeometryID": " ",
+     "GroupCode": "SER",
+     "Name": "Marjory Stoneman Douglas Wilderness Area",
+     "Notes": " ",
+     "RegionCode": "SER",
+     "UnitCode": "EVER",
+     "Year": "2016",
+     "Zone": "Frontcountry"
+    }
+   ],
+   "service": "EVER__OWLS_and_Proposed_Paddling_Trails",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER__OWLS_and_Proposed_Paddling_Trails/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "DATAACCESS",
+    "MAPMETHOD",
+    "XYACCURACY",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "BOUNDARY_PY",
+   "sample": [
+    {
+     "DATAACCESS": "Internal NPS Only",
+     "MAPMETHOD": " ",
+     "XYACCURACY": "Unknown",
+     "created_user": "GRSM_GIS",
+     "last_edited_user": "GRSM_GIS"
+    },
+    {
+     "DATAACCESS": "Internal NPS Only",
+     "MAPMETHOD": " ",
+     "XYACCURACY": "Unknown",
+     "created_user": "GRSM_GIS",
+     "last_edited_user": "GRSM_GIS"
+    },
+    {
+     "DATAACCESS": "Internal NPS Only",
+     "MAPMETHOD": " ",
+     "XYACCURACY": "Unknown",
+     "created_user": "GRSM_GIS",
+     "last_edited_user": "GRSM_GIS"
+    }
+   ],
+   "service": "GRSM_PARK_BOUNDARY",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_PARK_BOUNDARY/FeatureServer/1"
+  },
+  {
+   "agency": "MassGIS, Executive Office of Energy and Environmental Affairs",
+   "area": "SITE_NAME",
+   "count": 18,
+   "fields": [
+    "SITE_NAME",
+    "FEE_OWNER",
+    "OWNER_ABRV",
+    "OWNER_TYPE",
+    "MANAGER",
+    "MANAGR_ABRV",
+    "MANAGR_TYPE",
+    "PRIM_PURP",
+    "PUB_ACCESS",
+    "LEV_PROT",
+    "OLI_1_ORG",
+    "OLI_1_ABRV",
+    "OLI_1_TYPE",
+    "OLI_1_INT",
+    "OLI_2_ORG",
+    "OLI_2_ABRV",
+    "OLI_2_TYPE",
+    "OLI_2_INT",
+    "OLI_3_ORG",
+    "OLI_3_ABRV"
+   ],
+   "known": false,
+   "layer": "DWSP Forest Legacy Program WPRs",
+   "sample": [
+    {
+     "FEE_OWNER": "Twohey Craig S and H Jean",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "DCRW",
+     "OLI_1_ORG": "DCR - Division of Water Supply Protection",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Twohey WPR"
+    },
+    {
+     "FEE_OWNER": "Chimney Hill Farm LLC",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "DCRW",
+     "OLI_1_ORG": "DCR - Division of Water Supply Protection",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Chimney Hill Farm LLC WPR"
+    },
+    {
+     "FEE_OWNER": "Chimney Hill Farm LLC",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "DCRW",
+     "OLI_1_ORG": "DCR - Division of Water Supply Protection",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Chimney Hill Farm LLC WPR"
+    }
+   ],
+   "service": "DWSP_Forest_Legacy_Program_WPRs",
+   "typef": "OWNER_TYPE",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DWSP_Forest_Legacy_Program_WPRs/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "DMZ"
+   ],
+   "known": false,
+   "layer": "WMZ_Mass_Poly",
+   "sample": [
+    {
+     "DMZ": "1"
+    },
+    {
+     "DMZ": "2"
+    },
+    {
+     "DMZ": "3"
+    }
+   ],
+   "service": "WildlifeManagementZones",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/WildlifeManagementZones/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14,
+   "fields": [],
+   "known": false,
+   "layer": "High Commerical Fishing Effort and Value",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 3,
+     "Shape__Area": 11437500,
+     "Shape__Length": 19000,
+     "gridcode": 4
+    },
+    {
+     "FID": 2,
+     "Id": 4,
+     "Shape__Area": 543625000.0001831,
+     "Shape__Length": 217000,
+     "gridcode": 4
+    },
+    {
+     "FID": 3,
+     "Id": 5,
+     "Shape__Area": 20999999.999969482,
+     "Shape__Length": 22500,
+     "gridcode": 4
+    }
+   ],
+   "service": "High_Commercial_Fishing_Effort_and_Value",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/High_Commercial_Fishing_Effort_and_Value/FeatureServer/0"
+  },
+  {
+   "agency": "Anna Tegarden, GIS Specialist",
+   "area": "",
+   "count": 14,
+   "fields": [],
+   "known": false,
+   "layer": "JOTR_ParkBoundary",
+   "sample": [
+    {
+     "Acres": 4.99470643816,
+     "GlobalID": "40a5de47-29d6-4014-a0a0-dd75e2c33520",
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "Shape__Area": 29558.6015625,
+     "Shape__Length": 729.7656657497338
+    },
+    {
+     "Acres": 4.99960560814,
+     "GlobalID": "3a27a2c7-73de-4b80-b672-1ee29dc9daf0",
+     "OBJECTID": 2,
+     "OBJECTID_1": 2,
+     "Shape__Area": 29587.55859375,
+     "Shape__Length": 729.5154969508424
+    },
+    {
+     "Acres": 4.99275827585,
+     "GlobalID": "38d05f1c-0759-4f6e-b8d2-d5c2b3a321bb",
+     "OBJECTID": 3,
+     "OBJECTID_1": 3,
+     "Shape__Area": 29548.36328125,
+     "Shape__Length": 729.7301078781132
+    }
+   ],
+   "service": "JOTR_CMP_ParkBnd_0220110",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_CMP_ParkBnd_0220110/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 13,
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME"
+   ],
+   "known": false,
+   "layer": "NCBN_Parks",
+   "sample": [
+    {
+     "UNIT_CODE": "ASIS",
+     "UNIT_NAME": "Assateague Island National Seashore"
+    },
+    {
+     "UNIT_CODE": "FIIS",
+     "UNIT_NAME": "Fire Island National Seashore"
+    },
+    {
+     "UNIT_CODE": "THST",
+     "UNIT_NAME": "Thomas Stone National Historic Site"
+    }
+   ],
+   "service": "NCBN_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCBN_Parks/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "WEBSITE",
+   "count": 13,
+   "fields": [
+    "STATE",
+    "REGIONCODE",
+    "GROUPCODE",
+    "GROUPNAME",
+    "MAPLABEL",
+    "GEOMETRYID",
+    "NOTES",
+    "WEBSITE",
+    "NPGALLERY_ID",
+    "IMG_URL",
+    "IMG_THUMB_URL",
+    "IMG_ALT_TEXT",
+    "IMG_CAPTION",
+    "IMG_TITLE",
+    "IMG_CREDIT",
+    "ABOUTPARK",
+    "Bookmark_ImgID",
+    "Bookmark_ImgURL",
+    "Bookmark_ImgAltText",
+    "AboutPark_Header"
+   ],
+   "known": false,
+   "layer": "Administering Park Units",
+   "sample": [
+    {
+     "GEOMETRYID": "{EFCE2AE5-BFAB-49B9-94B2-126CD54850BB}",
+     "GROUPCODE": "ANTI",
+     "GROUPNAME": "Antietam National Battlefield",
+     "IMG_ALT_TEXT": "A line Civil War cannons and a stone wall at Antietam National Battlefiel",
+     "IMG_THUMB_URL": "https://npgallery.nps.gov/GetAsset/8ECDDB3E-1DD8-B71B-0BB3D58017B9C1C3/proxylores.jpg",
+     "IMG_URL": "https://npgallery.nps.gov/GetAsset/8ECDDB3E-1DD8-B71B-0BB3D58017B9C1C3/proxyhires.jpg",
+     "MAPLABEL": "Antietam National Battlefield",
+     "NPGALLERY_ID": "8ECDDB3E-1DD8-B71B-0BB3D58017B9C1C3",
+     "REGIONCODE": "NCR",
+     "STATE": "MD",
+     "WEBSITE": "https://www.nps.gov/anti/index.htm"
+    },
+    {
+     "GEOMETRYID": "{F5FEADAB-0383-4B3D-A22D-996112166FCF}",
+     "GROUPCODE": "CATO",
+     "GROUPNAME": "Catoctin Mountain Park",
+     "IMG_ALT_TEXT": "View of Chimney Rock Overlook with early spring forest growth",
+     "IMG_THUMB_URL": "https://npgallery.nps.gov/GetAsset/812F5355-1DD8-B71B-0BC2C4DC00A68DED/proxylores.jpg",
+     "IMG_URL": "https://npgallery.nps.gov/GetAsset/812F5355-1DD8-B71B-0BC2C4DC00A68DED/proxyhires.jpg",
+     "MAPLABEL": "Catoctin Mountain Park",
+     "NPGALLERY_ID": "812F5355-1DD8-B71B-0BC2C4DC00A68DED",
+     "REGIONCODE": "NCR",
+     "STATE": "MD",
+     "WEBSITE": "https://www.nps.gov/cato/index.htm"
+    },
+    {
+     "GEOMETRYID": "{F11D1473-83CE-4653-8A9F-BA2260E8FE64}",
+     "GROUPCODE": "CHOH",
+     "GROUPNAME": "Chesapeake & Ohio Canal National Historical Park",
+     "IMG_ALT_TEXT": "The stone aqueduct with one sidewall missing is illuminated by early morning light.",
+     "IMG_THUMB_URL": "https://npgallery.nps.gov/GetAsset/18E8A359-1DD8-B71B-0B3B24DDA32B0338/proxylores.jpg",
+     "IMG_URL": "https://npgallery.nps.gov/GetAsset/18E8A359-1DD8-B71B-0B3B24DDA32B0338/proxyhires.jpg",
+     "MAPLABEL": "Chesapeake & Ohio Canal National Historical Park",
+     "NPGALLERY_ID": "18E8A359-1DD8-B71B-0B3B24DDA32B0338",
+     "REGIONCODE": "NCR",
+     "STATE": "DC, MD",
+     "WEBSITE": "https://www.nps.gov/choh/index.htm"
+    }
+   ],
+   "service": "NCR_Administering_Parks_Extents",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCR_Administering_Parks_Extents/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "DistrictNumber",
+    "Forester",
+    "Email",
+    "Phone",
+    "Phone2",
+    "AdminDistrict",
+    "Comments",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Service Forestry Districts",
+   "sample": [
+    {
+     "AdminDistrict": "East",
+     "Creator": "DCRStateParks",
+     "DistrictNumber": "3",
+     "Editor": "DCRStateParks",
+     "Email": "Chris.Pryor@mass.gov",
+     "Forester": "Chris Pryor",
+     "Phone": "(857) 327-2360"
+    },
+    {
+     "AdminDistrict": "West",
+     "Creator": "DCRStateParks",
+     "DistrictNumber": "9",
+     "Editor": "DCRStateParks",
+     "Email": "sean.libbey@mass.gov",
+     "Forester": "Sean Libbey",
+     "Phone": "(413) 882-5114"
+    },
+    {
+     "AdminDistrict": "East",
+     "Creator": "DCRStateParks",
+     "DistrictNumber": "2",
+     "Editor": "DCRStateParks",
+     "Email": "Michael.Downey@Mass.gov",
+     "Forester": "Mike Downey",
+     "Phone": "(413) 212-3039"
+    }
+   ],
+   "service": "DCR_Service_Forestry_Districts_2026_View_(public)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR_Service_Forestry_Districts_2026_View_(public)/FeatureServer/4"
+  },
+  {
+   "agency": "MassGIS, Executive Office of Energy and Environmental Affairs",
+   "area": "SITE_NAME",
+   "count": 11,
+   "fields": [
+    "SITE_NAME",
+    "FEE_OWNER",
+    "OWNER_ABRV",
+    "OWNER_TYPE",
+    "MANAGER",
+    "MANAGR_ABRV",
+    "MANAGR_TYPE",
+    "PRIM_PURP",
+    "PUB_ACCESS",
+    "LEV_PROT",
+    "OLI_1_ORG",
+    "OLI_1_ABRV",
+    "OLI_1_TYPE",
+    "OLI_1_INT",
+    "OLI_2_ORG",
+    "OLI_2_ABRV",
+    "OLI_2_TYPE",
+    "OLI_2_INT",
+    "OLI_3_ORG",
+    "OLI_3_ABRV"
+   ],
+   "known": false,
+   "layer": "DWSP Forest Legacy Fee-Owned Land",
+   "sample": [
+    {
+     "FEE_OWNER": "DCR - Division of Water Supply Protection",
+     "LEV_PROT": "P",
+     "OWNER_ABRV": "DCRW",
+     "OWNER_TYPE": "S",
+     "PRIM_PURP": "W",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Ware River Watershed"
+    },
+    {
+     "FEE_OWNER": "DCR - Division of Water Supply Protection",
+     "LEV_PROT": "P",
+     "OWNER_ABRV": "DCRW",
+     "OWNER_TYPE": "S",
+     "PRIM_PURP": "W",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Ware River Watershed"
+    },
+    {
+     "FEE_OWNER": "DCR - Division of Water Supply Protection",
+     "LEV_PROT": "P",
+     "OWNER_ABRV": "DCRW",
+     "OWNER_TYPE": "S",
+     "PRIM_PURP": "W",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Ware River Watershed"
+    }
+   ],
+   "service": "DWSP_Forest_Legacy_Fee_Owned_Land",
+   "typef": "OWNER_TYPE",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DWSP_Forest_Legacy_Fee_Owned_Land/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 11,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "BND_Visitor_Use_Areas_py",
+   "sample": [
+    {
+     "name": "Florida Bay"
+    },
+    {
+     "name": "Western Coastal"
+    },
+    {
+     "name": "Taylor Slough and the Pinelands"
+    }
+   ],
+   "service": "EVER__OWLS_and_Proposed_Paddling_Trails",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER__OWLS_and_Proposed_Paddling_Trails/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "FEATURE1",
+    "NAME1",
+    "STATE",
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "National_Forest_Service",
+   "sample": [
+    {
+     "FEATURE1": "National Forest",
+     "LABEL": "Inyo National Forest",
+     "NAME1": "Inyo National Forest",
+     "STATE": "CA"
+    },
+    {
+     "FEATURE1": "National Forest",
+     "LABEL": "Sierra National Forest",
+     "NAME1": "Sierra National Forest",
+     "STATE": "CA"
+    },
+    {
+     "FEATURE1": "National Scenic Area",
+     "LABEL": "Mono Basin National Forest Scenic Area",
+     "NAME1": "Mono Basin National Forest Scenic Area",
+     "STATE": "CA"
+    }
+   ],
+   "service": "National_Forest_Service",
+   "typef": "FEATURE1",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Forest_Service/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 10,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "Feature_So",
+    "Source_Met",
+    "Source_Det",
+    "Website",
+    "CoralWeb"
+   ],
+   "known": false,
+   "layer": "WASO OCRP Coral Reef Parks Boundaries",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "Feature_So": "NPS Land Resources Division",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/BUIS/Metadata/buis_metadata.xml",
+     "GNIS_ID": "1613756",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/BUIS_metadata.xml",
+     "REGION": "SE",
+     "STATE": "VI",
+     "Source_Det": "Lands - http://landsnet.nps.gov/tractsnet/documents/BUIS/Metadata/buis_metadata.xml",
+     "Source_Met": "https://irma.nps.gov/App/Reference/Profile/2194483?lnv=true",
+     "UNIT_CODE": "BUIS",
+     "UNIT_NAME": "Buck Island Reef National Monument",
+     "UNIT_TYPE": "National Monument"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "Feature_So": "NPS Land Resources Division",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/DRTO/Metadata/drto_metadata.xml",
+     "GNIS_ID": "307632",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/DRTO_metadata.xml",
+     "REGION": "SE",
+     "STATE": "FL",
+     "Source_Det": "Lands - http://landsnet.nps.gov/tractsnet/documents/DRTO/Metadata/drto_metadata.xml",
+     "Source_Met": "https://irma.nps.gov/App/Reference/Profile/2194483?lnv=true",
+     "UNIT_CODE": "DRTO",
+     "UNIT_NAME": "Dry Tortugas National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "Feature_So": "NPS Land Resources Division",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/SARI/Metadata/sari_metadata.xml",
+     "GNIS_ID": "1993989",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/SARI_metadata.xml",
+     "REGION": "SE",
+     "STATE": "VI",
+     "Source_Det": "Lands - http://landsnet.nps.gov/tractsnet/documents/SARI/Metadata/sari_metadata.xml",
+     "Source_Met": "https://irma.nps.gov/App/Reference/Profile/2194483?lnv=true",
+     "UNIT_CODE": "SARI",
+     "UNIT_NAME": "Salt River Bay National Historical Park and Ecological Preserve",
+     "UNIT_TYPE": "National Historical Park"
+    }
+   ],
+   "service": "coralParks",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/coralParks/FeatureServer/1"
+  },
+  {
+   "agency": "Great Smoky Mountains National Park,\nFacilities Management Division",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "LOC_TYPE"
+   ],
+   "known": false,
+   "layer": "WILDERNESS",
+   "sample": [
+    {
+     "LOC_TYPE": "Recommended"
+    },
+    {
+     "LOC_TYPE": "Recommended"
+    },
+    {
+     "LOC_TYPE": "Recommended"
+    }
+   ],
+   "service": "GRSM_WILDERNESS",
+   "typef": "LOC_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_WILDERNESS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Name",
+    "DistName",
+    "MgmtForest",
+    "WorkPh",
+    "CellPh",
+    "Email"
+   ],
+   "known": false,
+   "layer": "MgmtForestryDistricts_2016",
+   "sample": [
+    {
+     "CellPh": " ",
+     "DistName": "Northern Berkshire",
+     "Email": "kevin.podkowka@mass.gov",
+     "MgmtForest": "Kevin Podkowka",
+     "Name": "Northern Berkshire",
+     "WorkPh": "(413) 728-9129"
+    },
+    {
+     "CellPh": " ",
+     "DistName": "Western Connecticut Valley",
+     "Email": "nicholas.anzuoni@mass.gov",
+     "MgmtForest": "Nicholas Anzuoni",
+     "Name": "Western Connecticut Valley",
+     "WorkPh": "(413) 442-8928 ext. 129"
+    },
+    {
+     "CellPh": " ",
+     "DistName": "Central Berkshire",
+     "Email": "kris.massini@mass.gov",
+     "MgmtForest": "Kris Massini",
+     "Name": "Central Berkshire",
+     "WorkPh": "(413) 442-8928 ext. 121"
+    }
+   ],
+   "service": "DCR_Management_Forestry_Districts",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/DCR_Management_Forestry_Districts/FeatureServer/0"
+  },
+  {
+   "agency": "NPS Alaska Region GIS",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Public_Law",
+    "Descriptn",
+    "UnitCode",
+    "Unit",
+    "Unit_Type",
+    "Group_Code",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restriction",
+    "MetadataID",
+    "GeometryID",
+    "URL",
+    "GNIS_ID",
+    "GLOBALID"
+   ],
+   "known": false,
+   "layer": "AKR_BND_WILDERNESS_PY_PUBLIC",
+   "sample": [
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Congressionally-designated wilderness in Denali National Park and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Designated Wilderness",
+     "Group_Code": "DENA",
+     "Name": "Denali Wilderness",
+     "Public_Law": "Public Law 96-487, 94 Statute 2371, Title VII, Section 701(1), 1980.",
+     "RegionCode": "AKR",
+     "Unit": "Denali National Park and Preserve",
+     "UnitCode": "DENA",
+     "Unit_Type": "National Park and Preserve",
+     "Year": "1980"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Congressionally-designated wilderness in Gates Of The Arctic National Park and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Designated Wilderness",
+     "Group_Code": "GAAR",
+     "Name": "Gates of the Arctic Wilderness",
+     "Public_Law": "Public Law 96-487, 94 Statute 2371, Title VII, Section 701(2), 1980; Public Law 104-333, 110 Statute 4093, Title III, Section 302, 1996.",
+     "RegionCode": "AKR",
+     "Unit": "Gates Of The Arctic National Park and Preserve",
+     "UnitCode": "GAAR",
+     "Unit_Type": "National Park and Preserve",
+     "Year": "1996"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Congressionally-designated wilderness in Glacier Bay National Park and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Designated Wilderness",
+     "Group_Code": "GLBA",
+     "Name": "Glacier Bay Wilderness",
+     "Public_Law": "Public Law 96-487, 94 Statute 2371, Title VII, Section 701(3), 1980.",
+     "RegionCode": "AKR",
+     "Unit": "Glacier Bay National Park and Preserve",
+     "UnitCode": "GLBA",
+     "Unit_Type": "National Park and Preserve",
+     "Year": "1980"
+    }
+   ],
+   "service": "AKR_WILDERNESS_PUBLIC",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AKR_WILDERNESS_PUBLIC/FeatureServer/1"
+  },
+  {
+   "agency": "Massachusetts Department of Conservation and Recreation (DCR)",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "LONGDISTANCETRAILS_10m_buffer",
+   "sample": [
+    {
+     "NAME": "Appalachian Trail"
+    },
+    {
+     "NAME": "Bay Circuit Trail"
+    },
+    {
+     "NAME": "Mahican Mohawk Trail"
+    }
+   ],
+   "service": "Long_Distance_Trails_10m_buffer",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Long_Distance_Trails_10m_buffer/FeatureServer/3"
+  },
+  {
+   "agency": "National Park Service, PWRO-GIS",
+   "area": "SiteName",
+   "count": 6,
+   "fields": [
+    "SiteName",
+    "UnitCode",
+    "UnitName",
+    "UnitType",
+    "GroupCode",
+    "RegionCode",
+    "Notes",
+    "Restrictions",
+    "MetadataID",
+    "GeometryID"
+   ],
+   "known": false,
+   "layer": "LEWI Park Units",
+   "sample": [
+    {
+     "GeometryID": " ",
+     "GroupCode": " ",
+     "MetadataID": " ",
+     "Notes": " ",
+     "RegionCode": "PWR",
+     "Restrictions": " ",
+     "SiteName": "Yeon",
+     "UnitCode": "LEWI",
+     "UnitName": "Lewis and Clark National Historical Park",
+     "UnitType": "National Historical Park"
+    },
+    {
+     "GeometryID": " ",
+     "GroupCode": " ",
+     "MetadataID": " ",
+     "RegionCode": "PWR",
+     "Restrictions": " ",
+     "SiteName": "Sunset Beach State Recreation Area",
+     "UnitCode": "LEWI",
+     "UnitName": "Lewis and Clark National Historical Park",
+     "UnitType": "National Historical Park"
+    },
+    {
+     "GeometryID": " ",
+     "GroupCode": " ",
+     "MetadataID": " ",
+     "Notes": "POC for this update:  allen_mccoy@nps.gov - http://landsnet.nps.gov/tractsnet/documents/LEWI/Metadata/lewi_metadata.xml",
+     "RegionCode": "PWR",
+     "Restrictions": " ",
+     "SiteName": "Fort Clatsop",
+     "UnitCode": "LEWI",
+     "UnitName": "Lewis and Clark National Historical Park",
+     "UnitType": "National Historical Park"
+    }
+   ],
+   "service": "LEWI_Park_Unit_Boundaries",
+   "typef": "UnitType",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LEWI_Park_Unit_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 5,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "DENA_Wildlife_Closures",
+   "sample": [
+    {
+     "Name": "Sable Pass - Permanent Wildlife Closure"
+    },
+    {
+     "Name": "Sable Pass - Permanent Wildlife Closure"
+    },
+    {
+     "Name": "Sanctuary  Wolf Closure"
+    }
+   ],
+   "service": "DENA_Wildlife_Closures_Public",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/DENA_Wildlife_Closures_Public/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ManagedUnit",
+   "count": 4,
+   "fields": [
+    "Type",
+    "Subtype",
+    "Jurisdiction",
+    "ManagedUnit",
+    "RegulationName",
+    "DateRange",
+    "RestrictionDetails"
+   ],
+   "known": false,
+   "layer": "State Fishing Restrictions",
+   "sample": [
+    {
+     "DateRange": "Feb 1 - May 15 (*can be dynamically lifted or extended)",
+     "Jurisdiction": "State",
+     "ManagedUnit": "Fishing",
+     "RegulationName": "Massachusetts Restricted Area (state waters)",
+     "RestrictionDetails": "All trap gear (lobster, crab, conch, fish)",
+     "Subtype": "Dynamic opening",
+     "Type": "State Fishing Restrictions"
+    },
+    {
+     "DateRange": "Jan 1 - May 15 (*can be dynamically lifted or extended)",
+     "Jurisdiction": "State",
+     "ManagedUnit": "Fishing",
+     "RegulationName": "State waters - commercial gillnet",
+     "RestrictionDetails": "All gillnetting in state waters",
+     "Subtype": "Dynamic opening",
+     "Type": "State Fishing Restrictions"
+    },
+    {
+     "DateRange": "Nov 1 - May 15 (*can be dynamically lifted or extended)",
+     "Jurisdiction": "State",
+     "ManagedUnit": "Fishing",
+     "RegulationName": "State waters - recreational trap/pot",
+     "RestrictionDetails": "Recreational lobster and crab",
+     "Subtype": "Dynamic opening",
+     "Type": "State Fishing Restrictions"
+    }
+   ],
+   "service": "State_Fishing_Restrictions",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/State_Fishing_Restrictions/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "Status",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "EVER Edit Polygons",
+   "sample": [
+    {
+     "Comments": "EE",
+     "Status": "2. Off trail hiking opportunities"
+    },
+    {},
+    {}
+   ],
+   "service": "EVER_Wilderness_Stewardship_Plan_Editable_Features",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER_Wilderness_Stewardship_Plan_Editable_Features/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "ManagedUnit",
+   "count": 3,
+   "fields": [
+    "Type",
+    "Subtype",
+    "Jurisdiction",
+    "ManagedUnit",
+    "RegulationName",
+    "DateRange",
+    "RestrictionDetails"
+   ],
+   "known": false,
+   "layer": "Federal Fishing Restrictions",
+   "sample": [
+    {
+     "DateRange": "Feb 1 - Apr 30",
+     "Jurisdiction": "Federal",
+     "ManagedUnit": "Fishing",
+     "RegulationName": "Massachusetts Restricted Area (federal waters)",
+     "RestrictionDetails": "Commercial trap/pot lobster & crab",
+     "Subtype": "Seasonal",
+     "Type": "Federal Fishing Restrictions"
+    },
+    {
+     "DateRange": "Feb 1 - Apr 30",
+     "Jurisdiction": "Federal",
+     "ManagedUnit": "Fishing",
+     "RegulationName": "South Island Restricted Area",
+     "RestrictionDetails": "Commercial trap/pot lobster & crab",
+     "Subtype": "Seasonal",
+     "Type": "Federal Fishing Restrictions"
+    },
+    {
+     "DateRange": "Apr 1 - Jun 30",
+     "Jurisdiction": "Federal",
+     "ManagedUnit": "Fishing",
+     "RegulationName": "Great South Channel Restricted Area",
+     "RestrictionDetails": "Commercial trap/pot lobster & crab",
+     "Subtype": "Seasonal",
+     "Type": "Federal Fishing Restrictions"
+    }
+   ],
+   "service": "Federal_Fishing_Restrictions",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Federal_Fishing_Restrictions/FeatureServer/1"
+  },
+  {
+   "agency": "Great Smoky Mountains National Park,\nResource Management & Science,\nGeographic R",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "PARK_DISTRICT",
+    "DATAACCESS",
+    "MAPMETHOD",
+    "XYACCURACY",
+    "VALID_RESULT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "PARK_DISTRICT",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "GlobalID": "{0EF99DD6-06DC-4788-8EC1-03C92053C9CE}",
+     "MAPMETHOD": "Feature Extraction",
+     "PARK_DISTRICT": "North District",
+     "VALID_RESULT": "Certified",
+     "XYACCURACY": ">=1m and <5m"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GlobalID": "{2E5EA307-BA33-4258-8B1D-25CAD5729665}",
+     "MAPMETHOD": "Digitized",
+     "PARK_DISTRICT": "Cades Cove",
+     "VALID_RESULT": "Certified"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GlobalID": "{F650938E-D8E7-4C9C-8236-FECE1C0155A2}",
+     "MAPMETHOD": "Feature Extraction",
+     "PARK_DISTRICT": "South District",
+     "VALID_RESULT": "Certified",
+     "XYACCURACY": ">=1m and <5m"
+    }
+   ],
+   "service": "GRSM_PARK_DISTRICTS",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_PARK_DISTRICTS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 3,
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "UNIT_TYPE"
+   ],
+   "known": false,
+   "layer": "National_Parks",
+   "sample": [
+    {
+     "REGION": "PW",
+     "STATE": "CA",
+     "UNIT_CODE": "SEQU",
+     "UNIT_NAME": "Sequoia National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "REGION": "PW",
+     "STATE": "CA",
+     "UNIT_CODE": "KICA",
+     "UNIT_NAME": "Kings Canyon National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "REGION": "PW",
+     "STATE": "CA",
+     "UNIT_CODE": "YOSE",
+     "UNIT_NAME": "Yosemite National Park",
+     "UNIT_TYPE": "National Park"
+    }
+   ],
+   "service": "National_Parks",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "CLOSURE_DATE",
+    "STATUS",
+    "SPECIES",
+    "HUNT_AREA",
+    "COMMENTS",
+    "ACTIVITY",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "GRTE Wildlife Closures",
+   "sample": [
+    {
+     "ACTIVITY": "Active",
+     "CLOSURE_DATE": "April 22 - Until Further Notice",
+     "COMMENTS": "2024",
+     "Creator": "grte_gis",
+     "Editor": "grte_gis",
+     "NAME": "Elk Ranch Reservoir",
+     "SPECIES": "Swans",
+     "STATUS": "Closed"
+    },
+    {
+     "CLOSURE_DATE": "Closed Until Further Notice",
+     "Creator": "grte_gis",
+     "Editor": "grte_gis",
+     "NAME": "Jackson Dry Lakebed",
+     "SPECIES": "Resource Protection"
+    }
+   ],
+   "service": "GRTE_BND_Wildlife_Closures_py_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRTE_BND_Wildlife_Closures_py_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Park Boundary",
+   "sample": [
+    {
+     "Acres": 792456.9736797069,
+     "Feet": 34519287695.92301,
+     "GlobalID": "e4b5523f-3904-44fd-9fbf-06411d0ef97b",
+     "Miles": 1238.214021535176,
+     "OBJECTID": 1,
+     "Shape__Area": 3206959593.4110107,
+     "Shape__Length": 393981.37709454005
+    },
+    {
+     "Acres": 57.64169086037209,
+     "Feet": 2510862.0103996354,
+     "GlobalID": "b807bdab-408c-4c38-9d2a-207390010ca3",
+     "Miles": 0.09006514198101558,
+     "OBJECTID": 2,
+     "Shape__Area": 233267.64599609375,
+     "Shape__Length": 2150.85288037465
+    }
+   ],
+   "service": "JOTR_WildernessPublic_Web_201805",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_WildernessPublic_Web_201805/FeatureServer/3"
+  },
+  {
+   "agency": "MassGIS",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "org4code",
+    "org8code",
+    "district_name",
+    "district_type",
+    "memberlist",
+    "tuition",
+    "tuition_grades",
+    "tuition_to",
+    "superintendency_union",
+    "start_grade",
+    "end_grade"
+   ],
+   "known": false,
+   "layer": "Mohawk Trail Secondary Level",
+   "sample": [
+    {
+     "district_name": "Mohawk Trail Secondary Membership",
+     "tuition": "N"
+    }
+   ],
+   "service": "AGOL/PSD_AWS_NoLabels",
+   "typef": "district_type",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/PSD_AWS_NoLabels/FeatureServer/0"
+  },
+  {
+   "agency": "MassGIS",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ORG4CODE",
+    "ORG8CODE",
+    "DISTRICT_NAME",
+    "DISTRICT_TYPE",
+    "MEMBERLIST",
+    "TUITION",
+    "TUITION_GRADES",
+    "TUITION_TO",
+    "SUPERINTENDENCY_UNION",
+    "START_GRADE",
+    "END_GRADE"
+   ],
+   "known": false,
+   "layer": "Mohawk Trail Secondary Membership",
+   "sample": [
+    {
+     "DISTRICT_NAME": "Mohawk Trail Secondary Membership",
+     "TUITION": "N"
+    }
+   ],
+   "service": "AGOL/Public_School_Districts",
+   "typef": "DISTRICT_TYPE",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/Public_School_Districts/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Concentrated Recreational Boating*",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 8669891571.560612,
+     "Shape__Length": 11178099.521332782
+    }
+   ],
+   "service": "Concentrated_Recreational_Boating",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Concentrated_Recreational_Boating/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "dataset"
+   ],
+   "known": false,
+   "layer": "Concentrated Recreational Fishing",
+   "sample": [
+    {
+     "dataset": "Concentrated Recreational Fishing"
+    }
+   ],
+   "service": "Concentrated_Recreational_Fishing",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Concentrated_Recreational_Fishing/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "DCR_DWSP_Forestry_Proposals",
+   "sample": [
+    {
+     "GlobalID": "bdc3f170-67b0-40fd-aef2-98758c27d4b9",
+     "OBJECTID": 786
+    }
+   ],
+   "service": "Goodnough_Dike_Oak_Woodland_Restoration_Area",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Goodnough_Dike_Oak_Woodland_Restoration_Area/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Important Fish Resources",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 727292969.8027191,
+     "Shape__Length": 925917.7961085694
+    }
+   ],
+   "service": "Important_Fish_Resources",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Important_Fish_Resources/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Project Area",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 8865456602.884888,
+     "Shape__Length": 475311.2370600557
+    }
+   ],
+   "service": "Project_Area_DCR_Parkways_CCVA_2024",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/Project_Area_DCR_Parkways_CCVA_2024/FeatureServer/0"
+  },
+  {
+   "agency": "Ala Kahakai National Historic Trail",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "TrailName",
+    "Agency"
+   ],
+   "known": false,
+   "layer": "Ala Kahakai National Historic Trail Official Corridor",
+   "sample": [
+    {
+     "Agency": "NPS",
+     "TrailName": "Ala Kahakai National Historic Trail"
+    }
+   ],
+   "service": "Ala_Kahakai_National_Historic_Trail_Official_Corridor",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Appalachian_National_Scenic_Trail_500ft_Buffer",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape_Area": 238975.565638,
+     "Shape__Area": 1667691816.6875,
+     "Shape__Length": 7883265.509696727
+    }
+   ],
+   "service": "Appalachian_National_Scenic_Trail_500ft_Buffer",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Appalachian_National_Scenic_Trail_500ft_Buffer/FeatureServer/0"
+  },
+  {
+   "agency": "National Atlas,",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_TYPE",
+    "STATE",
+    "REGION",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "GIS_NOTES",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "ASIS_ParkBoundary",
+   "sample": [
+    {
+     "CREATED_BY": "Legacy",
+     "GIS_NOTES": "Significant differences.",
+     "GNIS_ID": " ",
+     "METADATA": " ",
+     "PARKNAME": " ",
+     "REGION": "NE",
+     "STATE": " ",
+     "UNIT_CODE": "ASIS",
+     "UNIT_NAME": "Assateague Island",
+     "UNIT_TYPE": "National Seashore"
+    }
+   ],
+   "service": "ASIS_Park_Boundary",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ASIS_Park_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "BND_ParkBoundary_py_update",
+   "sample": [
+    {
+     "AREA": 202140253.135,
+     "Acreage": 49949.9442664,
+     "GlobalID": "79e19c2c-4589-4a05-ae1d-8e346f8bee19",
+     "Hectares": 20214.0253135,
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "PERIMETER": 130102.284284,
+     "SHAPE_Area": 309495935.8545742,
+     "SHAPE_Length": 166201.73062293444,
+     "Shape_Leng": 130102.284385
+    }
+   ],
+   "service": "ASIS_Park_Boundary_updated",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ASIS_Park_Boundary_updated/FeatureServer/0"
+  },
+  {
+   "agency": "The National Park Service shall not be held liable for improper or incorrect use",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "closure",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "DENA_Sable_Pass_Wildlife_Closure",
+   "sample": [
+    {
+     "GlobalID": "{8279353a-1d61-4a29-a219-edf83c1aa93b}",
+     "closure": " "
+    }
+   ],
+   "service": "DENA_Sable_Pass_Wildlife_Closure",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/DENA_Sable_Pass_Wildlife_Closure/FeatureServer/0"
+  },
+  {
+   "agency": "National Map, Erica Tefft",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_TYPE",
+    "STATE",
+    "REGION",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "GIS_NOTES",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "BND_ParkBoundary_py",
+   "sample": [
+    {
+     "CREATED_BY": "Legacy",
+     "GIS_NOTES": "Shifted 0.02 miles",
+     "GNIS_ID": " ",
+     "METADATA": " ",
+     "PARKNAME": " ",
+     "REGION": "NE",
+     "STATE": " ",
+     "UNIT_CODE": "FIIS",
+     "UNIT_NAME": "Fire Island",
+     "UNIT_TYPE": "National Seashore"
+    }
+   ],
+   "service": "FIIS_Park_Boundary",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/FIIS_Park_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_TYPE",
+    "STATE",
+    "REGION",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "GIS_NOTES",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "BND_ParkBoundary_py",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "GIS_NOTES": "Lands - http://landsnet.nps.gov/tractsnet/documents/GATE/METADATA/gate_metadata.xml",
+     "GNIS_ID": " ",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/GATE_METADATA.xml",
+     "PARKNAME": "Gateway",
+     "REGION": "NE",
+     "STATE": "NY",
+     "UNIT_CODE": "GATE",
+     "UNIT_NAME": "Gateway National Recreation Area",
+     "UNIT_TYPE": "National Recreation Area"
+    }
+   ],
+   "service": "GATE_Park_Boundary",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GATE_Park_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ALPHA"
+   ],
+   "known": false,
+   "layer": "GRTE JODR Park Boundary",
+   "sample": [
+    {
+     "ALPHA": "JODR"
+    }
+   ],
+   "service": "GRTE_JODR_Park_Boundary_(view)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRTE_JODR_Park_Boundary_(view)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Hopi Trail Region",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 10293428806.667969,
+     "Shape__Length": 485842.171202656
+    }
+   ],
+   "service": "Hopi_Trail_Region",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Hopi_Trail_Region/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "LECL_Lewis_and_Clark_NHT_Trail_Corridor",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape_Area": 1025485596310,
+     "Shape_Leng": 10745470.2109,
+     "Shape__Area": 1992484652301.4922,
+     "Shape__Length": 14861240.702459285
+    }
+   ],
+   "service": "LECL_Lewis_and_Clark_NHT_Trail_Corridor",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Trail_Corridor/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Mask",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 24786567624929.656,
+     "Shape__Length": 20212694.850884758
+    }
+   ],
+   "service": "Mississippi_National_River_and_Recreation_Area_Feature_Mask",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Mississippi_National_River_and_Recreation_Area_Feature_Mask/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.1 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.1 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.25 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.25 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.5 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.5 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.75 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.75 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "1 Mile from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "1 mile",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/4"
+  },
+  {
+   "agency": "MassGIS, EEA",
+   "area": "SITE_NAME",
+   "count": 61486,
+   "fields": [
+    "SITE_NAME",
+    "FEE_OWNER",
+    "OWNER_ABRV",
+    "OWNER_TYPE",
+    "MANAGER",
+    "MANAGR_ABRV",
+    "MANAGR_TYPE",
+    "PRIM_PURP",
+    "PUB_ACCESS",
+    "LEV_PROT",
+    "OLI_1_ORG",
+    "OLI_1_ABRV",
+    "OLI_1_TYPE",
+    "OLI_1_INT",
+    "OLI_2_ORG",
+    "OLI_2_ABRV",
+    "OLI_2_TYPE",
+    "OLI_2_INT",
+    "OLI_3_ORG",
+    "OLI_3_ABRV"
+   ],
+   "known": true,
+   "layer": "Protected and Recreational OpenSpace (Polygons)",
+   "sample": [
+    {
+     "FEE_OWNER": "Almy Barbara Trustee",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "MAS",
+     "OLI_1_ORG": "Massachusetts Audubon Society",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "N",
+     "SITE_NAME": "Almy CR"
+    },
+    {
+     "FEE_OWNER": "Almy Anne T",
+     "LEV_PROT": "P",
+     "OLI_1_ABRV": "MAS",
+     "OLI_1_ORG": "Massachusetts Audubon Society",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "C",
+     "PUB_ACCESS": "N",
+     "SITE_NAME": "Almy CR"
+    },
+    {
+     "FEE_OWNER": "Northampton-Russell Beagle Club",
+     "LEV_PROT": "N",
+     "OWNER_TYPE": "P",
+     "PRIM_PURP": "R",
+     "PUB_ACCESS": "L",
+     "SITE_NAME": "Northampton-Russell Beagle Club"
+    }
+   ],
+   "service": "AGOL/openspace",
+   "typef": "OWNER_TYPE",
+   "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/openspace/FeatureServer/0"
+  },
+  {
+   "agency": "MassGIS, Executive Office of Energy and Environmental Affairs",
+   "area": "SITE_NAME",
+   "count": 484,
+   "fields": [
+    "SITE_NAME",
+    "F_TYPE",
+    "DISTRICT",
+    "Website",
+    "F_TYPE2",
+    "Limitation",
+    "Link",
+    "PHEASANT"
+   ],
+   "known": true,
+   "layer": "MassWildlifeLands",
+   "sample": [
+    {
+     "DISTRICT": "Western District",
+     "F_TYPE": "WCE",
+     "F_TYPE2": "WCE",
+     "SITE_NAME": "Abbott Brook WCE"
+    },
+    {
+     "DISTRICT": "Western District",
+     "F_TYPE": "WMA",
+     "F_TYPE2": "WMA",
+     "SITE_NAME": "Abbott Brook WMA",
+     "Website": "https://www.mass.gov/info-details/abbott-brook-wma"
+    },
+    {
+     "DISTRICT": "Southeast District",
+     "F_TYPE": "WCE",
+     "F_TYPE2": "WCE",
+     "SITE_NAME": "Acushnet River WCE"
+    }
+   ],
+   "service": "MassWildlifeLands",
+   "typef": "F_TYPE",
+   "url": "https://services1.arcgis.com/7iJyYTjCtKsZS1LR/arcgis/rest/services/MassWildlifeLands/FeatureServer/0"
+  }
+ ],
+ "st": "MA"
+}

@@ -1,0 +1,683 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Acknowledgement of the U.S. Fish and Wildlife Service and (or) the National Wetl",
+   "area": "",
+   "count": 93228,
+   "fields": [
+    "ATTRIBUTE",
+    "WETLAND_TY",
+    "TOWN",
+    "COUNTY",
+    "GEOCODE",
+    "LURC",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "SWS_UT_non_forested_wetlands",
+   "sample": [
+    {
+     "ATTRIBUTE": "PEM1/SS1E",
+     "COUNTY": "Oxford",
+     "GEOCODE": "17802",
+     "GlobalID": "{63B1507C-E896-4BB1-8958-59AA2ECC54C1}",
+     "LURC": "y",
+     "TOWN": "Albany Twp",
+     "WETLAND_TY": "Freshwater Emergent Wetland"
+    },
+    {
+     "ATTRIBUTE": "PEM1/SS1E",
+     "COUNTY": "Oxford",
+     "GEOCODE": "17802",
+     "GlobalID": "{63B1507C-E896-4BB1-8958-59AA2ECC54C1}",
+     "LURC": "y",
+     "TOWN": "Albany Twp",
+     "WETLAND_TY": "Freshwater Emergent Wetland"
+    },
+    {
+     "ATTRIBUTE": "PEM1/SS1E",
+     "COUNTY": "Oxford",
+     "GEOCODE": "17818",
+     "GlobalID": "{AE607AD7-895E-44D4-BA0F-4889C3C6B565}",
+     "LURC": "y",
+     "TOWN": "Township C",
+     "WETLAND_TY": "Freshwater Emergent Wetland"
+    }
+   ],
+   "service": "SWS_UT_non_forested_wetlands",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/SWS_UT_non_forested_wetlands/FeatureServer/4"
+  },
+  {
+   "agency": "MaineDMR",
+   "area": "",
+   "count": 2732,
+   "fields": [
+    "TOWN",
+    "COUNTY",
+    "NOAA_CHART",
+    "SPECIES",
+    "SOURCE",
+    "COMMENT_"
+   ],
+   "known": false,
+   "layer": "MaineDMR - Molluscan Shellfish 2010",
+   "sample": [
+    {
+     "COUNTY": "Sagadahoc",
+     "NOAA_CHART": "13290_1",
+     "SOURCE": "Town",
+     "SPECIES": "American Oyster",
+     "TOWN": "West Bath"
+    },
+    {
+     "COUNTY": "Sagadahoc",
+     "NOAA_CHART": "13290_1",
+     "SOURCE": "Town",
+     "SPECIES": "American Oyster",
+     "TOWN": "West Bath"
+    },
+    {
+     "COUNTY": "Sagadahoc",
+     "NOAA_CHART": "13290_1",
+     "SOURCE": "Town",
+     "SPECIES": "American Oyster",
+     "TOWN": "West Bath"
+    }
+   ],
+   "service": "MolluscanShellfish",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MolluscanShellfish/FeatureServer/1"
+  },
+  {
+   "agency": "Maine Department of Inland Fisheries and Wildlife, Department of Agriculture, Co",
+   "area": "",
+   "count": 1343,
+   "fields": [
+    "created_user",
+    "last_edited_user",
+    "PROJECT",
+    "PARCEL_NAME",
+    "DESIGNATION",
+    "CONS1_TYPE",
+    "HOLD1_NAME",
+    "HOLD1_TYPE",
+    "CONS2_TYPE",
+    "HOLD2_NAME",
+    "HOLD2_TYPE",
+    "ECO_RESERVE",
+    "ACQ_YEAR",
+    "PUB_ACCESS",
+    "PURPOSE1",
+    "PURPOSE2",
+    "EDITOR",
+    "BPL_ID",
+    "IFW_ID",
+    "LMF_ID"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "CONS1_TYPE": "Management Transfer Agreement",
+     "CONS2_TYPE": "Other",
+     "DESIGNATION": "State Wildlife Management Area",
+     "HOLD1_NAME": "Maine Department Of Inland Fisheries And Wildlife",
+     "HOLD1_TYPE": "State",
+     "HOLD2_NAME": "Maine Bureau of Parks and Lands",
+     "HOLD2_TYPE": "State",
+     "PARCEL_NAME": "Fog Island Ledge",
+     "PROJECT": "Alan E. Hutchinson WMA"
+    },
+    {
+     "CONS1_TYPE": "Fee",
+     "DESIGNATION": "State Wildlife Management Area",
+     "HOLD1_NAME": "Maine Department Of Inland Fisheries And Wildlife",
+     "HOLD1_TYPE": "State",
+     "PARCEL_NAME": "Daughtery Farm",
+     "PROJECT": "Spring Brook WMA"
+    },
+    {
+     "CONS1_TYPE": "Fee",
+     "DESIGNATION": "State Wildlife Management Area",
+     "HOLD1_NAME": "Maine Department Of Inland Fisheries And Wildlife",
+     "HOLD1_TYPE": "State",
+     "PARCEL_NAME": "Gardner Lot",
+     "PROJECT": "Caesar Pond WMA"
+    }
+   ],
+   "service": "MaineDIFW_WildlifeManagementAreas",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MaineDIFW_WildlifeManagementAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 928,
+   "fields": [
+    "SNAME",
+    "SCOMNAME",
+    "SPROT"
+   ],
+   "known": false,
+   "layer": "Endangered Threatened and Special Concern Wildlife - Summarized",
+   "sample": [
+    {
+     "SCOMNAME": "Barrens Itame",
+     "SNAME": "Speranza exonerata",
+     "SPROT": "Special Concern"
+    },
+    {
+     "SCOMNAME": "Barrens Itame",
+     "SNAME": "Speranza exonerata",
+     "SPROT": "Special Concern"
+    },
+    {
+     "SCOMNAME": "Barrens Itame",
+     "SNAME": "Speranza exonerata",
+     "SPROT": "Special Concern"
+    }
+   ],
+   "service": "Special_Concern_Wildlife_Habitat_-_(Summarized)_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Special_Concern_Wildlife_Habitat_-_(Summarized)_view/FeatureServer/0"
+  },
+  {
+   "agency": "Maine Department of Inland Fisheries and Wildlife (MDIFW).",
+   "area": "",
+   "count": 918,
+   "fields": [
+    "TOWN",
+    "GEOCODE",
+    "GEOCODE_1",
+    "COMMONNAME"
+   ],
+   "known": false,
+   "layer": "BlackBearHistoricbyTown",
+   "sample": [
+    {
+     "COMMONNAME": "Abbot",
+     "GEOCODE": "21010",
+     "GEOCODE_1": "21010",
+     "TOWN": "Abbot"
+    },
+    {
+     "COMMONNAME": "Acton",
+     "GEOCODE": "31010",
+     "GEOCODE_1": "31010",
+     "TOWN": "Acton"
+    },
+    {
+     "COMMONNAME": "Adamstown Twp",
+     "GEOCODE": "17801",
+     "GEOCODE_1": "17801",
+     "TOWN": "Adamstown Twp"
+    }
+   ],
+   "service": "Black_Bear_Harvest_by_Town",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Black_Bear_Harvest_by_Town/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 437,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "DATE_EDIT",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "CreationDa",
+    "Creator",
+    "EditDate",
+    "Editor",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Administrative_Boundaries_of_National_Park_System_Units",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "CreationDa": " ",
+     "DATE_EDIT": "20250113",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/HOCU/Metadata/hocu_metadata.xml",
+     "GNIS_ID": "1888931",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2188826",
+     "PARKNAME": "Hopewell Culture",
+     "REGION": "MW",
+     "STATE": "OH",
+     "UNIT_CODE": "HOCU",
+     "UNIT_NAME": "Hopewell Culture National Historical Park",
+     "UNIT_TYPE": "National Historical Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "CreationDa": " ",
+     "DATE_EDIT": "20250131",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/WICA/Metadata/wica_metadata.xml",
+     "GNIS_ID": "1263056",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2239942",
+     "PARKNAME": "Wind Cave",
+     "REGION": "MW",
+     "STATE": "SD",
+     "UNIT_CODE": "WICA",
+     "UNIT_NAME": "Wind Cave National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "CreationDa": " ",
+     "DATE_EDIT": "20250204",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/VOYA/Metadata/voya_metadata.xml",
+     "GNIS_ID": "660491",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2224529",
+     "PARKNAME": "Voyageurs",
+     "REGION": "MW",
+     "STATE": "MN",
+     "UNIT_CODE": "VOYA",
+     "UNIT_NAME": "Voyageurs National Park",
+     "UNIT_TYPE": "National Park"
+    }
+   ],
+   "service": "Administrative_Boundaries_of_National_Park_System_Units",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Administrative_Boundaries_of_National_Park_System_Units/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 416,
+   "fields": [
+    "midas_name",
+    "sra_status",
+    "updated_by"
+   ],
+   "known": false,
+   "layer": "MaineDMR Sea Run Fisheries - Current and Potential Alewife Spawning Habitat",
+   "sample": [
+    {
+     "midas_name": "Unnamed pond",
+     "sra_status": "Unknown",
+     "updated_by": "G. Wippelhauser"
+    },
+    {
+     "midas_name": "Clark Cove Pond",
+     "sra_status": "Unknown",
+     "updated_by": "G. Wippelhauser"
+    },
+    {
+     "midas_name": "Unnamed pond",
+     "sra_status": "Unknown",
+     "updated_by": "G. Wippelhauser"
+    }
+   ],
+   "service": "MaineDMR_Sea_Run_Fisheries_Alewife_Habitat",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MaineDMR_Sea_Run_Fisheries_Alewife_Habitat/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 238,
+   "fields": [
+    "region",
+    "town",
+    "status",
+    "reachcode",
+    "spp",
+    "confidence",
+    "watername",
+    "midas_labe",
+    "comment",
+    "county"
+   ],
+   "known": false,
+   "layer": "SpecialConcernFishes",
+   "sample": [
+    {
+     "comment": "Wadleigh Pond CHR are doing well following a reclamation in 2012 to preserve this population.  We receive reports from the district warden and anglers that the CHR population is doing well.",
+     "confidence": "High",
+     "county": "Piscataquis",
+     "midas_labe": "2972",
+     "reachcode": "01020001001548",
+     "region": "E",
+     "spp": "CHR",
+     "status": "Healthy",
+     "town": "T8 R15 WELS",
+     "watername": "Wadleigh Pond"
+    },
+    {
+     "comment": "2010 reclamation/restoration project; recent intensive survey work; population estimate obtained in 2022",
+     "confidence": "High",
+     "county": "Piscataquis",
+     "midas_labe": "2842",
+     "reachcode": "01010004001926",
+     "region": "G",
+     "spp": "CHR",
+     "status": "Healthy",
+     "town": "T8 R10 WELS",
+     "watername": "Big Reed Pond"
+    },
+    {
+     "comment": "Rainbow Lake has a healthy CHR population.  CHR are reported in voluntary records annually.  IFW conducted work on Rainbow L in 2018 and collected good numbers of CHR in trapnets.",
+     "confidence": "High",
+     "county": "Piscataquis",
+     "midas_labe": "0614",
+     "reachcode": "01020001001777",
+     "region": "E",
+     "spp": "CHR",
+     "status": "Healthy",
+     "town": "Rainbow Twp",
+     "watername": "Rainbow Lake"
+    }
+   ],
+   "service": "MDIFW_SpecialConcernFishes",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFW_SpecialConcernFishes/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 164,
+   "fields": [
+    "name",
+    "description"
+   ],
+   "known": false,
+   "layer": "Polygon layer",
+   "sample": [
+    {
+     "name": "Peters"
+    },
+    {
+     "description": "Bulkhead Rips, also called The Ripplings. This is a long rocky barrier rising sharply from the deep water about it to depths of from 12 to 20 fathoms. Here are found cod, haddock, hake, and pollock in abundance from June 1 to October 31. Apparently all are feeding on the small herring, so numerous in this vicinity at this season. Virtually no haddock are found on the grounds in the near neighborhood of Grand Manan in winter. The Ripplings were formerly one of the principal fishing grounds of the herring netters but of late years have been less productive.",
+     "name": "Bulkhead Rips"
+    },
+    {
+     "description": "Clarks Ground. This lies SSE. from White head 4 ½ miles (just inside the Bulkhead) and has depths from 6 to 14 fathoms over a rocky bottom. Here are very heavy rips on the ebb tide. This is a good summer ground for pollock, cod, and halibut, and it is a good herring-netting ground in the season.",
+     "name": "Clarks Ground"
+    }
+   ],
+   "service": "Fishing_Grounds_of_the_GOM_Polygon_PUBLIC",
+   "typef": "description",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Fishing_Grounds_of_the_GOM_Polygon_PUBLIC/FeatureServer/0"
+  },
+  {
+   "agency": "Maine Department of Inland Fisheries and Wildlife",
+   "area": "",
+   "count": 108,
+   "fields": [
+    "GNIS_ID",
+    "GNIS_Name",
+    "ReachCode",
+    "Species",
+    "ConsStatus"
+   ],
+   "known": false,
+   "layer": "Maine Endangered and Threatened Fish",
+   "sample": [
+    {
+     "ConsStatus": "Endangered (S)",
+     "GNIS_ID": " ",
+     "GNIS_Name": " ",
+     "ReachCode": "01050003001328",
+     "Species": "Redfin Pickerel"
+    },
+    {
+     "ConsStatus": "Endangered (S)",
+     "GNIS_ID": " ",
+     "GNIS_Name": " ",
+     "ReachCode": "01050003005386",
+     "Species": "Redfin Pickerel"
+    },
+    {
+     "ConsStatus": "Threatened (S)",
+     "GNIS_ID": "00566362",
+     "GNIS_Name": "Folly Pond",
+     "ReachCode": "01060003002278",
+     "Species": "Swamp Darter"
+    }
+   ],
+   "service": "ET_Fish",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/ET_Fish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "PROJECT",
+    "PARCEL_NAME",
+    "DESIGNATION",
+    "CONS1_TYPE",
+    "HOLD1_NAME",
+    "HOLD1_TYPE",
+    "CONS2_TYPE",
+    "HOLD2_NAME",
+    "HOLD2_TYPE",
+    "ECO_RESERVE",
+    "ACQ_YEAR",
+    "PUB_ACCESS",
+    "PURPOSE1",
+    "PURPOSE2",
+    "EDITOR",
+    "BPL_ID",
+    "IFW_ID",
+    "LMF_ID",
+    "DEPT_ID",
+    "FMPROCSS"
+   ],
+   "known": false,
+   "layer": "Maine_Conserved_Lands",
+   "sample": [
+    {
+     "ACQ_YEAR": "1984",
+     "CONS1_TYPE": "Fee",
+     "DESIGNATION": "Public Land",
+     "ECO_RESERVE": "Yes",
+     "HOLD1_NAME": "Maine Bureau of Parks and Lands",
+     "HOLD1_TYPE": "State",
+     "PARCEL_NAME": "Baskahegan Land Co",
+     "PROJECT": "Wassataquoik",
+     "PUB_ACCESS": "Contact landowner for additional information"
+    },
+    {
+     "ACQ_YEAR": "2003",
+     "CONS1_TYPE": "Fee",
+     "DESIGNATION": "Public Land",
+     "ECO_RESERVE": "Yes",
+     "HOLD1_NAME": "Maine Bureau of Parks and Lands",
+     "HOLD1_TYPE": "State",
+     "PARCEL_NAME": "St John Ponds",
+     "PROJECT": "Seboomook",
+     "PUB_ACCESS": "Contact landowner for additional information"
+    },
+    {
+     "ACQ_YEAR": "1978",
+     "CONS1_TYPE": "Fee",
+     "DESIGNATION": "Public Land",
+     "ECO_RESERVE": "Yes",
+     "HOLD1_NAME": "Maine Bureau of Parks and Lands",
+     "HOLD1_TYPE": "State",
+     "PARCEL_NAME": "St Regis Paper Company",
+     "PROJECT": "Duck Lake",
+     "PUB_ACCESS": "Contact landowner for additional information"
+    }
+   ],
+   "service": "Maine_Conserved_Lands_Eco_Reserves",
+   "typef": "CONS1_TYPE",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Maine_Conserved_Lands_Eco_Reserves/FeatureServer/0"
+  },
+  {
+   "agency": "Maine Department of Inland Fisheries and Wildlife",
+   "area": "",
+   "count": 69,
+   "fields": [
+    "PROJECT",
+    "Region",
+    "DeLorme",
+    "Town"
+   ],
+   "known": false,
+   "layer": "WMA_Boundaries",
+   "sample": [
+    {
+     "DeLorme": "13",
+     "PROJECT": "Alonzo H. Garcelon WMA",
+     "Region": "B",
+     "Town": "Augusta, China, Vassalboro, Windsor"
+    },
+    {
+     "DeLorme": "29, 30",
+     "PROJECT": "Black Brook Flowage WMA",
+     "Region": "D",
+     "Town": "Carrying Place Town Twp"
+    },
+    {
+     "DeLorme": "41",
+     "PROJECT": "Blanchard-AuClair (Roach River) WMA",
+     "Region": "E",
+     "Town": "Spencer Bay Twp"
+    }
+   ],
+   "service": "MDIFWWildlifeManagementAreas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MDIFWWildlifeManagementAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30,
+   "fields": [
+    "MapPDF",
+    "DescriptionPDF"
+   ],
+   "known": false,
+   "layer": "WMDRevisionsFinalDissolve",
+   "sample": [
+    {},
+    {
+     "DescriptionPDF": "https://www.maine.gov/ifw/docs/wmd/wmd1_description.pdf",
+     "MapPDF": "https://www.maine.gov/ifw/docs/wmd/wmd1.pdf"
+    },
+    {
+     "DescriptionPDF": "https://www.maine.gov/ifw/docs/wmd/wmd2_description.pdf",
+     "MapPDF": "https://www.maine.gov/ifw/docs/wmd/wmd2.pdf"
+    }
+   ],
+   "service": "Wildlife_Management_Districts_Dissolved",
+   "typef": "DescriptionPDF",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/Wildlife_Management_Districts_Dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "zone",
+    "dist_from_shore",
+    "id"
+   ],
+   "known": false,
+   "layer": "MaineDMR_Lobster_Management_Predicted_Lobster_Fishing_Effort_and_Catch_0",
+   "sample": [
+    {
+     "dist_from_shore": "0 to 3 NM",
+     "id": "A-0",
+     "zone": "A"
+    },
+    {
+     "dist_from_shore": "12+ NM",
+     "id": "A-12",
+     "zone": "A"
+    },
+    {
+     "dist_from_shore": "3 to 12 NM",
+     "id": "A-3",
+     "zone": "A"
+    }
+   ],
+   "service": "MaineDMR_Lobster_Management_Predicted_Lobster_Fishing_Effort_and_Catch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MaineDMR_Lobster_Management_Predicted_Lobster_Fishing_Effort_and_Catch/FeatureServer/0"
+  },
+  {
+   "agency": "MeDMR",
+   "area": "AreaName",
+   "count": 4,
+   "fields": [
+    "AreaName",
+    "Description"
+   ],
+   "known": false,
+   "layer": "MaineDMR Seed Mussel Conservation Areas",
+   "sample": [
+    {
+     "AreaName": "Harrington River, Milbridge/Harrington",
+     "Description": "Except by permit defined above, it shall be unlawful to harvest in any manner or possess mussels taken from the shores, flats, and waters of that area of Harrington River and Flat Bay, in the towns of Harrington and Milbridge, Washington County, lying southwesterly of a line running from the north- westernmost point of land bordering West Carrying Place Cove, northwesterly to the northernmost island of the Five Islands, and continuing westerly to the northernmost point of land bordering Five Islands Cove; and northeasterly of a line running from the southernmost point of land bordering West Carrying Place Cove, northwesterly to Chamberly Island, continuing northwest to the northernmost tip of Blasket Point, thence northeast to the southwesternmost tip Pineo Point."
+    },
+    {
+     "AreaName": "Narraguagus Bay, Milbridge/Harrington",
+     "Description": "Except by permit defined above, it shall be unlawful to harvest in any manner or possess mussels taken from the shores, flats, and waters of that area of Narraguagus Bay, in the towns of Milbridge and Harrington, Washington County, northerly of a line running from the southwesternmost tip of Foster Island, northwesterly to Clam Ledge, and continuing to a point of land on the easternmost tip of Fickett Point, on the east side of Sinclair Cove, so- called; and southerly of a line running from the northernmost tip of Foster Island, northwesterly to the southwesternmost tip of Pinkham Island, continuing northwesterly to the easternmost point of Strout Point."
+    },
+    {
+     "AreaName": "Jordan River, Trenton/Lamoine",
+     "Description": "Except by permit defined above, it shall be unlawful to harvest in any manner or possess mussels taken from the shores, flats, and waters of Jordan River in the towns of Trenton and Lamoine, Hancock County, inside and upstream of a line drawn from the mouth of Crippens Brook, on the western shore, due east to the eastern shore of Jordan River."
+    }
+   ],
+   "service": "MaineDMR_Seed_Mussel_Conservation_Areas",
+   "typef": "Description",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MaineDMR_Seed_Mussel_Conservation_Areas/FeatureServer/1"
+  },
+  {
+   "agency": "MaineDMR",
+   "area": "Consv_Area",
+   "count": 3,
+   "fields": [
+    "Consv_Area",
+    "Area_Descr",
+    "Consv_Type",
+    "Legislation",
+    "URL"
+   ],
+   "known": false,
+   "layer": "MaineDMR Lobster Conservation Areas",
+   "sample": [
+    {
+     "Area_Descr": "Opens Oct 1 for 180 days with 400 trap limit. Closes June 6 or June 7 on leap years.",
+     "Consv_Area": "Monhegan Conservation Zone",
+     "Consv_Type": "<400 trap limit, closed season",
+     "Legislation": "Title 12 §6471",
+     "URL": "http://legislature.maine.gov/statutes/12/title12sec6471.html"
+    },
+    {
+     "Area_Descr": "Max 600 traps. Registrant must have registered in zone B previous season.",
+     "Consv_Area": "Swans Island Conservation Zone",
+     "Consv_Type": "<600 trap limit",
+     "Legislation": "Title 12 §6481; also Chapter 25.94",
+     "URL": "http://legislature.maine.gov/statutes/12/title12sec6481.html"
+    },
+    {
+     "Area_Descr": "600 trap limit for Zone E",
+     "Consv_Area": "Zone E Trap Limits",
+     "Consv_Type": "<600 trap limit",
+     "Legislation": "Chapter 25.10",
+     "URL": "http://www.maine.gov/dmr/laws-regulations/regulations/documents/dmrchapter25_03122017.pdf"
+    }
+   ],
+   "service": "MaineDMR_Lobster_Conservation_Areas",
+   "typef": "Area_Descr",
+   "url": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/arcgis/rest/services/MaineDMR_Lobster_Conservation_Areas/FeatureServer/4"
+  }
+ ],
+ "st": "ME"
+}

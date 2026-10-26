@@ -1,0 +1,949 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 515,
+   "fields": [
+    "ZCTA5CE10",
+    "GEOID10",
+    "CLASSFP10",
+    "MTFCC10",
+    "FUNCSTAT10",
+    "INTPTLAT10",
+    "INTPTLON10",
+    "SCF",
+    "Product_Co",
+    "Product_Na",
+    "ZipCode"
+   ],
+   "known": false,
+   "layer": "basic_fish",
+   "sample": [
+    {
+     "CLASSFP10": "B5",
+     "FUNCSTAT10": "S",
+     "GEOID10": "70464",
+     "INTPTLAT10": "+30.5511949",
+     "INTPTLON10": "-089.9190077",
+     "MTFCC10": "G6350",
+     "Product_Co": "0024",
+     "Product_Na": "RESIDENT BASIC FISH",
+     "SCF": "Hammond",
+     "ZCTA5CE10": "70464",
+     "ZipCode": "70464"
+    },
+    {
+     "CLASSFP10": "B5",
+     "FUNCSTAT10": "S",
+     "GEOID10": "70465",
+     "INTPTLAT10": "+30.8562587",
+     "INTPTLON10": "-090.5239299",
+     "MTFCC10": "G6350",
+     "Product_Co": "0024",
+     "Product_Na": "RESIDENT BASIC FISH",
+     "SCF": "Hammond",
+     "ZCTA5CE10": "70465",
+     "ZipCode": "70465"
+    },
+    {
+     "CLASSFP10": "B5",
+     "FUNCSTAT10": "S",
+     "GEOID10": "70466",
+     "INTPTLAT10": "+30.5687142",
+     "INTPTLON10": "-090.5007611",
+     "MTFCC10": "G6350",
+     "Product_Co": "0024",
+     "Product_Na": "RESIDENT BASIC FISH",
+     "SCF": "Hammond",
+     "ZCTA5CE10": "70466",
+     "ZipCode": "70466"
+    }
+   ],
+   "service": "basic_fish",
+   "typef": "CLASSFP10",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/basic_fish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 515,
+   "fields": [
+    "ZCTA5CE10",
+    "GEOID10",
+    "SCF",
+    "Product_Na",
+    "ZipCode",
+    "ZCTA_Strin"
+   ],
+   "known": false,
+   "layer": "fish_pop",
+   "sample": [
+    {
+     "GEOID10": "70464",
+     "Product_Na": "RESIDENT BASIC FISH",
+     "SCF": "Hammond",
+     "ZCTA5CE10": "70464",
+     "ZCTA_Strin": "70464",
+     "ZipCode": "70464"
+    },
+    {
+     "GEOID10": "70465",
+     "Product_Na": "RESIDENT BASIC FISH",
+     "SCF": "Hammond",
+     "ZCTA5CE10": "70465",
+     "ZCTA_Strin": "70465",
+     "ZipCode": "70465"
+    },
+    {
+     "GEOID10": "70466",
+     "Product_Na": "RESIDENT BASIC FISH",
+     "SCF": "Hammond",
+     "ZCTA5CE10": "70466",
+     "ZCTA_Strin": "70466",
+     "ZipCode": "70466"
+    }
+   ],
+   "service": "fish_pop",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/fish_pop/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 62,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Own_Lease",
+    "Regulation",
+    "Parish",
+    "Contact",
+    "Amenities",
+    "More_Info"
+   ],
+   "known": false,
+   "layer": "LDWF_WMAs_Refuges_Conservation_Areas_04262024",
+   "sample": [
+    {
+     "Amenities": "Hunting (see regulations)\r\nHunting (see regulations)\r\nHunting (see regulations)",
+     "Contact": "sdartez@wlf.la.gov or 337.262.2080",
+     "Date_Estab": "2002",
+     "More_Info": "https://www.wlf.louisiana.gov/page/acadiana-conservation-corridor",
+     "NAME": "Acadiana Conservation Corridor",
+     "Own_Lease": "OWN",
+     "Parish": "St. Landry, Evangeline, Avoyelles, Rapides",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    },
+    {
+     "Amenities": "Hunting including physically challenged wheelchair-confined hunting area and deer season (see regulations), trapping (see regulations), shooting range, fishing (see regulations), boating, camping, education center, fish hatchery",
+     "Contact": "adailey@wlf.la.gov or 318.487.5885",
+     "Date_Estab": "1963",
+     "More_Info": "https://www.wlf.louisiana.gov/page/alexander-state-forest",
+     "NAME": "Alexander State Forest WMA",
+     "Own_Lease": "PARTIAL",
+     "Parish": "Rapides",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    },
+    {
+     "Amenities": "Hunting including youth deer lottery hunt (see regulations), trapping (see regulations), fishing (see regulations), boating, camping, birding",
+     "Contact": "tcrouch@wlf.la.gov or 337-735-8667",
+     "Date_Estab": "1978",
+     "More_Info": "https://www.wlf.louisiana.gov/page/atchafalaya-delta",
+     "NAME": "Atchafalaya Delta WMA",
+     "Own_Lease": "OWN",
+     "Parish": "St. Mary",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    }
+   ],
+   "service": "LDWF_WMAs_Refuges_Conservation_Areas_04262024",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMAs_Refuges_Conservation_Areas_04262024/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 61,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Link",
+    "Lease"
+   ],
+   "known": false,
+   "layer": "wma",
+   "sample": [
+    {
+     "Date_Estab": "2013",
+     "Lease": "WMA",
+     "Link": "https://www.wlf.louisiana.gov/page/bussey-brake",
+     "NAME": "Bussy Brake"
+    },
+    {
+     "Date_Estab": "2002",
+     "Lease": "WMA",
+     "Link": "https://www.wlf.louisiana.gov/page/acadiana-conservation-corridor",
+     "NAME": "Acadiana Conservation Corridor"
+    },
+    {
+     "Date_Estab": "1963",
+     "Lease": "WMA Partial Lease",
+     "Link": "https://www.wlf.louisiana.gov/page/alexander-state-forest",
+     "NAME": "Alexander State Forest WMA"
+    }
+   ],
+   "service": "wma",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/wma/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 58,
+   "fields": [
+    "SITE_CODE",
+    "NO_OF_DOCS",
+    "USE",
+    "SURF_INT",
+    "PARISH_COD",
+    "PLANNING_D",
+    "SEQUENCE_N",
+    "FACILITY_N",
+    "ADDRESS1",
+    "LEASE_OWN_",
+    "ADDRESS2",
+    "CITY",
+    "STATE",
+    "PARISHST",
+    "ZIP_CODE",
+    "SEQUENCES",
+    "SITE_COD_1"
+   ],
+   "known": false,
+   "layer": "StateParks",
+   "sample": [
+    {
+     "ADDRESS1": "EAST END OF GRAND ISLE ON LA 1",
+     "ADDRESS2": "(ADM CRAIK DRIVE)",
+     "CITY": "GRAND ISLE",
+     "FACILITY_N": "GRAND ISLE STATE PARK",
+     "LEASE_OWN_": "S",
+     "NO_OF_DOCS": "10",
+     "PARISH_COD": "26",
+     "PLANNING_D": "1",
+     "SEQUENCE_N": "005",
+     "SITE_CODE": "1-26-005",
+     "SURF_INT": "FULL_INTEREST",
+     "USE": "STATE AGENCY LAND"
+    },
+    {
+     "ADDRESS1": "7777 WESTBANK EXPRESSWAY",
+     "ADDRESS2": "DRAKE AVENUE - U.S. HWY 90",
+     "CITY": "WESTWEGO",
+     "FACILITY_N": "BAYOU SEGNETTE STATE PARK",
+     "LEASE_OWN_": "S",
+     "NO_OF_DOCS": "26",
+     "PARISH_COD": "26",
+     "PLANNING_D": "1",
+     "SEQUENCE_N": "022",
+     "SITE_CODE": "1-26-022",
+     "SURF_INT": "FULL_INTEREST",
+     "USE": "STATE AGENCY LAND"
+    },
+    {
+     "ADDRESS1": "GRAND TERRE ISLAND",
+     "ADDRESS2": "NORTHEAST OF GRAND ISLE",
+     "CITY": "JEFFERSON PARISH",
+     "FACILITY_N": "FORT LIVINGSTON STATE HISTORIC SITE",
+     "LEASE_OWN_": "S",
+     "NO_OF_DOCS": "1",
+     "PARISH_COD": "26",
+     "PLANNING_D": "1",
+     "SEQUENCE_N": "039",
+     "SITE_CODE": "1-26-039",
+     "SURF_INT": "FULL_INTEREST",
+     "USE": "STATE AGENCY LAND"
+    }
+   ],
+   "service": "StateParks",
+   "typef": "USE",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/StateParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 25,
+   "fields": [
+    "CMPXNAME",
+    "ORGNAME",
+    "DIVNAME",
+    "UNITNAME",
+    "SUBUNAME",
+    "IFWS",
+    "LIT",
+    "SWENR",
+    "SGRNR",
+    "INTTYPE1",
+    "INTTYPE2",
+    "TRACTNO",
+    "INTIDNO",
+    "RELICODE",
+    "COMMENTS",
+    "RSL_TYPE",
+    "FWSREGION",
+    "LM_VIEW",
+    "CreatedBy",
+    "ModifiedBy"
+   ],
+   "known": false,
+   "layer": "LA_National_Wildlife_Refuges",
+   "sample": [
+    {
+     "CMPXNAME": "Lower Mississippi River Refuges Complex",
+     "DIVNAME": "Cat Island National Wildlife Refuge",
+     "IFWS": "1289",
+     "INTTYPE1": "O",
+     "INTTYPE2": "N/A",
+     "LIT": "CAT",
+     "ORGNAME": "CAT ISLAND NATIONAL WILDLIFE REFUGE",
+     "SGRNR": " ",
+     "SUBUNAME": " ",
+     "SWENR": " ",
+     "TRACTNO": "10g",
+     "UNITNAME": " "
+    },
+    {
+     "CMPXNAME": "Lower Mississippi River Refuges Complex",
+     "DIVNAME": "Bayou Cocodrie National Wildlife Refuge",
+     "IFWS": "1179",
+     "INTTYPE1": "O",
+     "INTTYPE2": "N/A",
+     "LIT": "BYC",
+     "ORGNAME": "BAYOU COCODRIE NATIONAL WILDLIFE REFUGE",
+     "SGRNR": " ",
+     "SUBUNAME": " ",
+     "SWENR": " ",
+     "TRACTNO": "27b",
+     "UNITNAME": " "
+    },
+    {
+     "CMPXNAME": "Tensas River National Wildlife Refuge Complex",
+     "DIVNAME": "Tensas River National Wildlife Refuge",
+     "IFWS": "1018",
+     "INTTYPE1": "O",
+     "INTTYPE2": "N/A",
+     "LIT": "TNR",
+     "ORGNAME": "TENSAS RIVER NATIONAL WILDLIFE REFUGE",
+     "SGRNR": " ",
+     "SUBUNAME": " ",
+     "SWENR": " ",
+     "TRACTNO": "158c",
+     "UNITNAME": " "
+    }
+   ],
+   "service": "LA_National_Wildlife_Refuges",
+   "typef": "INTTYPE1",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LA_National_Wildlife_Refuges/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Office_Loc",
+   "count": 9,
+   "fields": [
+    "Office_Loc",
+    "Office_Add",
+    "City",
+    "Zip",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "LDWF_Inland_Fish_Districts",
+   "sample": [
+    {
+     "City": "Minden",
+     "Office_Add": "9961 Hwy 80",
+     "Office_Loc": "Minden",
+     "Phone": "(318) 371-5216",
+     "Zip": "71055"
+    },
+    {
+     "City": "Monroe",
+     "Office_Add": "368 Century Tel Drive",
+     "Office_Loc": "Monroe",
+     "Phone": "(318) 343-4044",
+     "Zip": "71203"
+    },
+    {
+     "City": "Natchitoches",
+     "Office_Add": "615 South Drive",
+     "Office_Loc": "Natchitoches",
+     "Phone": "(318) 357-3214",
+     "Zip": "71457"
+    }
+   ],
+   "service": "LDWF_Inland_Fish_Districts",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_Inland_Fish_Districts/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 8,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Own_Lease",
+    "Regulation",
+    "Parish",
+    "Contact",
+    "Amenities",
+    "More_Info",
+    "Map"
+   ],
+   "known": false,
+   "layer": "LOE_WildlifeRefuges02142025",
+   "sample": [
+    {
+     "Amenities": "Fishing (see regulations), birding, research, free shuttle service",
+     "Contact": "jlightner@wlf.la.gov or  504.286.4041",
+     "Date_Estab": "2009",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/Elmers_Island.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/elmers-island",
+     "NAME": "Elmer's Island Wildlife Refuge",
+     "Own_Lease": "OWN",
+     "Parish": "Jefferson",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    },
+    {
+     "Amenities": "Birding, picnicking, fishing, and overnight camping are allowed in the public use area on Trinity Island",
+     "Contact": "tcrouch@wlf.la.gov or 337-735-8667",
+     "Date_Estab": "1992",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/IsleDernieresBarrierIslandsRefuge.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/isle-dernieres-barrier-islands-refuge",
+     "NAME": "Isles Dernieres Barrier Islands Refuge",
+     "Own_Lease": "PARTIAL",
+     "Parish": "Terrebonne",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    },
+    {
+     "Amenities": "Fishing and boating (see regulations)",
+     "Contact": "tcrouch@wlf.la.gov or 337-735-8667",
+     "Date_Estab": "1920",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/Marsh_Island.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/marsh-island-refuge",
+     "NAME": "Marsh Island Wildlife Refuge",
+     "Own_Lease": "OWN",
+     "Parish": "Iberia",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    }
+   ],
+   "service": "LOE_WildlifeRefuges02142025",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_WildlifeRefuges02142025/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Address",
+    "City_1",
+    "Zip_1",
+    "Phone_1"
+   ],
+   "known": false,
+   "layer": "InlandFish_Districts",
+   "sample": [
+    {
+     "Address": "9961 Hwy 80",
+     "City_1": "Minden",
+     "Phone_1": "318-371-5216",
+     "Zip_1": "71055"
+    },
+    {
+     "Address": "368 Century Tel Dr",
+     "City_1": "Monroe",
+     "Phone_1": "318-343-4044",
+     "Zip_1": "71203"
+    },
+    {
+     "Address": "615 South Dr",
+     "City_1": "Natchitoches",
+     "Phone_1": "318-357-3214",
+     "Zip_1": "71457"
+    }
+   ],
+   "service": "GetinTouchwithUs",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/GetinTouchwithUs/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Link",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "LDWF_Wildlife_Refuge",
+   "sample": [
+    {
+     "Date_Estab": "1920",
+     "Link": " ",
+     "NAME": "Rockefeller Wildlife Refuge",
+     "TYPE": "Refuge"
+    },
+    {
+     "Date_Estab": "1958",
+     "Link": " ",
+     "NAME": "Waddill Wildlife Refuge",
+     "TYPE": "Refuge"
+    },
+    {
+     "Date_Estab": "1911",
+     "Link": " ",
+     "NAME": "State Wildlife Refuge",
+     "TYPE": "Refuge"
+    }
+   ],
+   "service": "LDWF_Wildlife_Refuge",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_Wildlife_Refuge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "MarineFish_CSA",
+   "sample": [
+    {
+     "LABEL": "CSA 1"
+    },
+    {
+     "LABEL": "CSA 2"
+    },
+    {
+     "LABEL": "CSA 3"
+    }
+   ],
+   "service": "MarineFish_CSA",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/MarineFish_CSA/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 7,
+   "fields": [
+    "Name",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Owner",
+    "SrcName"
+   ],
+   "known": false,
+   "layer": "WildlifeManagementAreas",
+   "sample": [
+    {
+     "County1": "Orange",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "Name": "Lower Neches WMA-Adams Bayou",
+     "Owner": "TPWD/GSU",
+     "SrcName": "GLO (Map - TPWD)"
+    },
+    {
+     "County1": "Orange",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "Name": "Lower Neches WMA-Bessie Height",
+     "Owner": "TPWD/GSU",
+     "SrcName": "GLO (Deed - GLO)"
+    },
+    {
+     "County1": "Orange",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "Name": "Lower Neches WMA-Old River",
+     "Owner": "TPWD/GSU",
+     "SrcName": "GLO (Map - TPWD)"
+    }
+   ],
+   "service": "WildlifeManagementAreas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "Region",
+    "Adrdress",
+    "State",
+    "Zip",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "LDWF_Wildlife_Regions",
+   "sample": [
+    {
+     "Adrdress": "1995 Shreveport Hwy, Pineville",
+     "Phone": "(318) 487-5885",
+     "Region": "Pineville",
+     "State": "LA",
+     "Zip": "71360"
+    },
+    {
+     "Adrdress": "368 CenturyLink Dr",
+     "Phone": "(318) 343-4044",
+     "Region": "Monroe",
+     "State": "LA",
+     "Zip": "71203"
+    },
+    {
+     "Adrdress": "9961 Hwy 80",
+     "Phone": "(318) 371-3050",
+     "Region": "Minden",
+     "State": "LA",
+     "Zip": "71055"
+    }
+   ],
+   "service": "LDWF_Wildlife_Regions",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_Wildlife_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "Region",
+    "Address",
+    "City",
+    "Phone_1"
+   ],
+   "known": false,
+   "layer": "Wildlife_Regoins",
+   "sample": [
+    {
+     "Address": "765 Maryhill Road",
+     "City": "Pineville",
+     "Phone_1": "318-487-5885",
+     "Region": "Pineville"
+    },
+    {
+     "Address": "368 CenturyLink Dr",
+     "City": "Monroe",
+     "Phone_1": "318-343-4044",
+     "Region": "Monroe"
+    },
+    {
+     "Address": "9961 Hwy 80",
+     "City": "Minden",
+     "Phone_1": "318-371-3050",
+     "Region": "Minden"
+    }
+   ],
+   "service": "GetinTouchwithUs",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/GetinTouchwithUs/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "CSA_Name",
+    "Address",
+    "City",
+    "State",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "LDWF_Marine_Fisheries_Coastal_Study_Areas",
+   "sample": [
+    {
+     "Address": "61384 Fish Hatchery Road",
+     "CSA_Name": "Marine Fisheries Area 1",
+     "City": "Lacombe",
+     "Phone": "985-882-0027",
+     "State": "LA"
+    },
+    {
+     "Address": "2021 Lakeshore Dr.",
+     "CSA_Name": "Marine Fisheries Area 3",
+     "City": "New Orleans",
+     "Phone": "504-284-2035",
+     "State": "LA"
+    },
+    {
+     "Address": "468 Texas Gulf Rd.",
+     "CSA_Name": "Marine Fisheries Area 5",
+     "City": "Bourg",
+     "Phone": "985-594-4139",
+     "State": "LA"
+    }
+   ],
+   "service": "LDWF_Marine_Fisheries_Coastal_Study_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_Marine_Fisheries_Coastal_Study_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Link",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "Conservation_Areas",
+   "sample": [
+    {
+     "Date_Estab": "2005",
+     "Link": "http://www.wlf.louisiana.gov/refuge/white-lake-wetlands-conservations-area",
+     "NAME": "White Lake Wetlands Conservation Area",
+     "TYPE": "Conservation Area"
+    },
+    {
+     "Date_Estab": "2013",
+     "Link": "http://www.wlf.louisiana.gov/wma/37433",
+     "NAME": "Ben Lilly Conservation Area",
+     "TYPE": "Conservation Area"
+    }
+   ],
+   "service": "Conservation_Areas",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Own_Lease",
+    "Regulation",
+    "Parish",
+    "Contact",
+    "Amenities",
+    "More_Info",
+    "Map"
+   ],
+   "known": false,
+   "layer": "LOE_ConservationAreas02142025",
+   "sample": [
+    {
+     "Amenities": "Boating, birding and wildlife viewing, hiking, horseback riding",
+     "Contact": "mmcgee@wlf.la.gov or 318.343.4044",
+     "Date_Estab": "2013",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/Ben_Lilly.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/ben-lilly-conservation-area",
+     "NAME": "Ben Lilly Conservation Area",
+     "Own_Lease": "OWN",
+     "Parish": "Morehouse",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    },
+    {
+     "Amenities": "Hunting (see regulations), fishing and boating (see regulations), birding and wildlife viewing",
+     "Contact": "LArdoin@wlf.la.gov or 337.536.6061",
+     "Date_Estab": "2005",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/white_lake_land_use_map.jpg",
+     "More_Info": "https://www.wlf.louisiana.gov/page/white-lake-wetlands-conservation-area",
+     "NAME": "White Lake Wetlands Conservation Area",
+     "Own_Lease": "OWN",
+     "Parish": "Vermilion",
+     "Regulation": "https://www.wlf.louisiana.gov/page/seasons-and-regulations"
+    }
+   ],
+   "service": "LOE_ConservationAreas02142025",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LOE_ConservationAreas02142025/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "Parish",
+    "Regulations",
+    "Maps",
+    "More_Info",
+    "Contact",
+    "Activites"
+   ],
+   "known": false,
+   "layer": "Conservation_Area",
+   "sample": [
+    {
+     "Activites": "Boating, birding, wildlife viewing, hiking, horseback riding",
+     "Contact": "mmcgee@wlf.la.gov; 318-343-4044; 368 CenturyLink Dr, Monroe, LA 71203",
+     "Maps": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/Ben_Lilly.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/ben-lilly-conservation-area",
+     "NAME": "Ben Lilly Conservation Area",
+     "Parish": "Morehouse",
+     "Regulations": "http://www.wlf.louisiana.gov/regulations"
+    },
+    {
+     "Contact": "wsweeney@wlf.la.gov or 337-536-9400, ext. 1 for information on lottery hunting and fishing, other public access, or mineral resources; sdartez@wlf.la.gov or 337-536-9400, ext. 2 for information on habitat, wildlife, birding and nature trail, alligator harvest, waterfowl harvest, agriculture and hunting leases, or management",
+     "Maps": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/white_lake_land_use_map.jpg",
+     "More_Info": "https://www.wlf.louisiana.gov/page/white-lake-wetlands-conservation-area",
+     "NAME": "White Lake Wetlands Conservation Area",
+     "Parish": "Vermilion",
+     "Regulations": "http://www.wlf.louisiana.gov/regulations"
+    }
+   ],
+   "service": "WhiteLake",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/WhiteLake/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "PARISH",
+    "PRSH_FIPS",
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "GEOID",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT",
+    "INTPTLAT",
+    "INTPTLON"
+   ],
+   "known": false,
+   "layer": "HistoricPrairie_AOI",
+   "sample": [
+    {
+     "CLASSFP": " ",
+     "COUNTYFP": " ",
+     "COUNTYNS": " ",
+     "CSAFP": " ",
+     "GEOID": " ",
+     "LSAD": " ",
+     "MTFCC": " ",
+     "NAME": " ",
+     "NAMELSAD": " ",
+     "PARISH": "Evangeline",
+     "PRSH_FIPS": "039",
+     "STATEFP": " "
+    }
+   ],
+   "service": "HistoricPrairie_AOI",
+   "typef": "CLASSFP",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/HistoricPrairie_AOI/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 59,
+   "fields": [
+    "NAME",
+    "Date_Estab",
+    "Link",
+    "Lease"
+   ],
+   "known": true,
+   "layer": "LDWF_WMA_Refuge",
+   "sample": [
+    {
+     "Date_Estab": "2002",
+     "Lease": "WMA",
+     "Link": "http://www.wlf.louisiana.gov/wma/32625",
+     "NAME": "Acadiana Conservation Corridor"
+    },
+    {
+     "Date_Estab": "1963",
+     "Lease": "WMA Partial Lease",
+     "Link": "http://www.wlf.louisiana.gov/wma/32626",
+     "NAME": "Alexander State Forest WMA"
+    },
+    {
+     "Date_Estab": "1978",
+     "Lease": "WMA",
+     "Link": "http://www.wlf.louisiana.gov/wma/32639",
+     "NAME": "Atchafalaya Delta WMA"
+    }
+   ],
+   "service": "LDWF_WMA_Refuge",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WMA_Refuge/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME",
+    "Contact",
+    "Parish",
+    "Anementies",
+    "Regulations",
+    "More_Info",
+    "Map"
+   ],
+   "known": true,
+   "layer": "WildlfieRefuges",
+   "sample": [
+    {
+     "Anementies": "Trapping (see regulations), fishing (see regulations), boating, birding, wildlife viewing, education, research",
+     "Contact": "337-491-2593; 5476 Grand Chenier Hwy, Grand Chenier, LA 70643; www.rwrefuge.com",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/Rockefeller.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/rockefeller-wildlife-refuge",
+     "NAME": "Rockefeller Wildlife Refuge",
+     "Parish": "Cameron, Vermilion ",
+     "Regulations": "http://www.rwrefuge.com/uploads/4/9/4/2/49423019/rwr_regulations.pdf"
+    },
+    {
+     "Anementies": "Fishing (see regulations), birding",
+     "Contact": "tcrouch@wlf.la.gov; 337-735-8667; 200 Dulles Dr, Lafayette, LA 70506",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/State_Wildlife_Refuge.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/state-wildlife-refuge",
+     "NAME": "State Wildlife Refuge",
+     "Parish": "Vermilion",
+     "Regulations": "http://www.wlf.louisiana.gov/regulations"
+    },
+    {
+     "Anementies": "Fishing (see regulations), boating ",
+     "Contact": "tcrouch@wlf.la.gov; 337-735-8667; 200 Dulles Dr, Lafayette, LA 70506",
+     "Map": "https://www.wlf.louisiana.gov/assets/Conservation/WMAs_Refuges_Conservation_Areas/Files/Marsh_Island.pdf",
+     "More_Info": "https://www.wlf.louisiana.gov/page/marsh-island-refuge",
+     "NAME": "Marsh Island Wildlife Refuge",
+     "Parish": "Iberia",
+     "Regulations": "http://www.wlf.louisiana.gov/regulations"
+    }
+   ],
+   "service": "LDWF_WildlifeRefuge",
+   "typef": "",
+   "url": "https://services1.arcgis.com/6euNCaGPCgCzgAVF/arcgis/rest/services/LDWF_WildlifeRefuge/FeatureServer/0"
+  }
+ ],
+ "st": "LA"
+}

@@ -1,0 +1,876 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "name",
+   "count": 756,
+   "fields": [
+    "name",
+    "ownership",
+    "jurisdict"
+   ],
+   "known": false,
+   "layer": "SCORPRecAreas",
+   "sample": [
+    {
+     "jurisdict": "Federal",
+     "name": "Lake Mead",
+     "ownership": "National Park Service"
+    },
+    {
+     "jurisdict": "Federal",
+     "name": "Death Valley National Park",
+     "ownership": "National Park Service"
+    },
+    {
+     "jurisdict": "Federal",
+     "name": "Ash Springs National Wildlife Refuge",
+     "ownership": "Fish and Wildlife Service"
+    }
+   ],
+   "service": "Hosted/SCORP_Recreation_Areas",
+   "typef": "",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 258,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Distributions",
+   "sample": [
+    {
+     "Common_Name": "Allen's Big-eared Bat",
+     "Major_Group": "Mammal",
+     "Minor_Group": "Bat",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Idionycteris phyllotis"
+    },
+    {
+     "Common_Name": "Allen's chipmunk",
+     "Major_Group": "Mammal",
+     "Minor_Group": "Small Mammal",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Neotamias senex"
+    },
+    {
+     "Common_Name": "Western Water Shrew",
+     "Major_Group": "Mammal",
+     "Minor_Group": "Small Mammal",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Sorex navigator"
+    }
+   ],
+   "service": "Nevada_State_Wildlife_Action_Plan_Species_Distributions_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Nevada_State_Wildlife_Action_Plan_Species_Distributions_Layer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 174,
+   "fields": [
+    "name",
+    "ownership",
+    "jurisdictiontype"
+   ],
+   "known": false,
+   "layer": "Federal Conservation Areas",
+   "sample": [
+    {
+     "jurisdictiontype": "Federal",
+     "name": "DESERT NWR PROPOSED WILDERNESS AREA",
+     "ownership": "Fish and Wildlife Service"
+    },
+    {
+     "jurisdictiontype": "Federal",
+     "name": "SHELDON NATIONAL WILDLIFE REFUGE PROPOSED WILDERNESS AREA",
+     "ownership": "Fish and Wildlife Service"
+    },
+    {
+     "jurisdictiontype": "Federal",
+     "name": "South Pequop Wilderness Study Area",
+     "ownership": "Bureau of Land Management"
+    }
+   ],
+   "service": "Hosted/Federal_Conservation_Areas",
+   "typef": "jurisdictiontype",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/Federal_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 153,
+   "fields": [
+    "NAME",
+    "Source",
+    "Label",
+    "Feature",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "wildlife_management_area_features_polygon",
+   "sample": [
+    {
+     "Feature": "Lake",
+     "Label": "Toulon Lake",
+     "NAME": "Toulon Lake",
+     "Source": "Humboldt"
+    },
+    {
+     "Feature": "Lake",
+     "Label": "Humboldt Lake",
+     "NAME": "Humboldt Lake",
+     "Source": "Humboldt"
+    },
+    {
+     "Feature": "Waterfowl Nesting",
+     "Label": "Area Closed to Public for Waterfowl nesting",
+     "NAME": "Waterfowl Nesting Area",
+     "Source": "Key Pittman"
+    }
+   ],
+   "service": "Wildlife_Management_Area_Polygon_Features",
+   "typef": "Feature",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Area_Polygon_Features/FeatureServer/0"
+  },
+  {
+   "agency": "C. Van Dellen - Nevada Department of Wildlife",
+   "area": "NAME",
+   "count": 129,
+   "fields": [
+    "NAME",
+    "TYPE",
+    "MAP_LABEL",
+    "TOWNSHIP",
+    "RANGE",
+    "COUNTY_NAM",
+    "FISH1",
+    "FISH2",
+    "FISH3",
+    "FISH4_",
+    "FISH5",
+    "FISH6",
+    "FISH7",
+    "FISH8",
+    "FISH9",
+    "STOCK_2010",
+    "STOCK_2011",
+    "FISH10",
+    "FISH11",
+    "FISHREGMP"
+   ],
+   "known": false,
+   "layer": "Fishable Lakes & Reservoirs",
+   "sample": [
+    {
+     "COUNTY_NAM": "Clark",
+     "FISH1": "BB",
+     "FISH2": "LMB",
+     "FISH3": " ",
+     "FISH4_": " ",
+     "FISH5": " ",
+     "FISH6": " ",
+     "MAP_LABEL": "CL-4",
+     "NAME": "Bowman Reservoir",
+     "RANGE": "67E",
+     "TOWNSHIP": "15S",
+     "TYPE": "Minor Reservoir"
+    },
+    {
+     "COUNTY_NAM": "Lincoln",
+     "FISH1": "RB",
+     "FISH2": "LMB",
+     "FISH3": "WCR",
+     "FISH4_": " ",
+     "FISH5": " ",
+     "FISH6": " ",
+     "MAP_LABEL": "LI-5",
+     "NAME": "Echo Canyon Reservoir",
+     "RANGE": "69E",
+     "TOWNSHIP": "1N",
+     "TYPE": "Minor Reservoir"
+    },
+    {
+     "COUNTY_NAM": "Lincoln",
+     "FISH1": "LMB",
+     "FISH2": "BB",
+     "FISH3": "WCR",
+     "FISH4_": "BG",
+     "FISH5": "GS",
+     "FISH6": "CR",
+     "MAP_LABEL": "LI-6",
+     "NAME": "Nesbitt Lake",
+     "RANGE": "60E",
+     "TOWNSHIP": "4S",
+     "TYPE": "Minor Reservoir"
+    }
+   ],
+   "service": "NDOWFishableWaters",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/NDOWFishableWaters/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 70,
+   "fields": [
+    "need_assessed",
+    "description",
+    "created_user",
+    "last_edited_user",
+    "user_comments"
+   ],
+   "known": false,
+   "layer": "State Trails Comments Geometry",
+   "sample": [
+    {
+     "description": "This is city owned land and an ideal place for a bike park for the Damonte Ranch area. Look at what Bentonville, AR has done with bike parks, and at a much newer scale, Incline Village.",
+     "need_assessed": "New Trail"
+    },
+    {
+     "description": "Need a trail connecting south valleys regional park to the south meadows/damonte ranch area.",
+     "need_assessed": "New Trail"
+    },
+    {
+     "description": "We need a trail connecting whites creek to the South Valleys Sports Complex",
+     "need_assessed": "Trail Connection"
+    }
+   ],
+   "service": "Hosted/State_Trails_Comments_Geometry",
+   "typef": "description",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/State_Trails_Comments_Geometry/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 43,
+   "fields": [
+    "wilderness",
+    "gis_acres",
+    "areaid",
+    "boundaryst",
+    "orgname",
+    "nlcs_type"
+   ],
+   "known": false,
+   "layer": "USFSWilderness",
+   "sample": [
+    {
+     "areaid": "377",
+     "boundaryst": "Final",
+     "gis_acres": " ",
+     "nlcs_type": "Wilderness Area",
+     "orgname": "US Forest Service",
+     "wilderness": "Alta Toquima Wilderness"
+    },
+    {
+     "areaid": "021",
+     "boundaryst": "Final",
+     "gis_acres": " ",
+     "nlcs_type": "Wilderness Area",
+     "orgname": "US Forest Service",
+     "wilderness": "Ansel Adams Wilderness"
+    },
+    {
+     "areaid": "378",
+     "boundaryst": "Final",
+     "gis_acres": " ",
+     "nlcs_type": "Wilderness Area",
+     "orgname": "US Forest Service",
+     "wilderness": "Arc Dome Wilderness"
+    }
+   ],
+   "service": "Hosted/USFSWilderness_",
+   "typef": "nlcs_type",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/USFSWilderness_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "landname",
+   "count": 30,
+   "fields": [
+    "dslfile",
+    "landname",
+    "county",
+    "usingagenc",
+    "address",
+    "city",
+    "performing",
+    "meetsagenc",
+    "userestric",
+    "acres_text",
+    "recommenda",
+    "portlandst",
+    "lasttreatm",
+    "reagion"
+   ],
+   "known": false,
+   "layer": "NDSP_State_Park_Bondaries",
+   "sample": [
+    {
+     "acres_text": "3.62650067",
+     "address": "2295 Main Street",
+     "city": "Genoa",
+     "county": "DS",
+     "dslfile": "PARKS-1-0",
+     "landname": "Mormon Station Historic State Monument",
+     "meetsagenc": "Yes",
+     "performing": "Yes",
+     "portlandst": "State-Owned/Fee Title/Escheat",
+     "recommenda": "Retain for agency operations.  Restricted by LWCF Section 6(f)3.",
+     "userestric": "Yes",
+     "usingagenc": "NDSP"
+    },
+    {
+     "acres_text": "1756.86291",
+     "address": "P. O. Box 176",
+     "city": "Cathedral Gorge",
+     "county": "LN",
+     "dslfile": "PARKS-2-0",
+     "landname": "Cathedral Gorge State Park",
+     "meetsagenc": "Yes",
+     "performing": "Yes",
+     "portlandst": "State-Owned/Fee Title/Escheat",
+     "recommenda": "Retain for agency operations. Restricted by LWCF Section 6(f)3.",
+     "userestric": "Yes",
+     "usingagenc": "NDSP"
+    },
+    {
+     "acres_text": "1696.56524",
+     "address": "State Route 317",
+     "city": "Caliente",
+     "county": "LN",
+     "dslfile": "PARKS-3-0",
+     "landname": "Kershaw - Ryan State Park",
+     "meetsagenc": "Yes",
+     "performing": "Yes",
+     "portlandst": "State-Owned/Fee Title/Escheat",
+     "recommenda": "Retain for agency operations.  Restricted by LWCF Section 6(f)3.",
+     "userestric": "Yes",
+     "usingagenc": "NDSP"
+    }
+   ],
+   "service": "Hosted/NDSP_State_Park_Bondaries",
+   "typef": "userestric",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "landname",
+   "count": 26,
+   "fields": [
+    "landname"
+   ],
+   "known": false,
+   "layer": "Park_Boundaries",
+   "sample": [
+    {
+     "landname": "Ice Age Fossils State Park"
+    },
+    {
+     "landname": "Dayton State Park"
+    },
+    {
+     "landname": "Lake Lahontan Recreation Area"
+    }
+   ],
+   "service": "Hosted/Park_Boundaries_gdb",
+   "typef": "",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/Park_Boundaries_gdb/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 17,
+   "fields": [
+    "ST",
+    "CNTYNAME",
+    "COV_NAME",
+    "STATEPLANE",
+    "STATEPLA_1"
+   ],
+   "known": false,
+   "layer": "Counties",
+   "sample": [
+    {
+     "CNTYNAME": "Washoe",
+     "COV_NAME": "WASHOE",
+     "ST": "NV",
+     "STATEPLANE": "4651",
+     "STATEPLA_1": "West Zone"
+    },
+    {
+     "CNTYNAME": "Elko",
+     "COV_NAME": "ELKO",
+     "ST": "NV",
+     "STATEPLANE": "4601",
+     "STATEPLA_1": "East Zone"
+    },
+    {
+     "CNTYNAME": "Humboldt",
+     "COV_NAME": "HUMBOLDT",
+     "ST": "NV",
+     "STATEPLANE": "4651",
+     "STATEPLA_1": "West Zone"
+    }
+   ],
+   "service": "NDOW_Fishable_Streams_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/NDOW_Fishable_Streams_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "U.S. Fish and Wildlife Service, National Wildlife Refuge System, Division of Nat",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "cmpxname",
+    "orgname",
+    "ifws",
+    "lit",
+    "docnum",
+    "desname",
+    "destype",
+    "comments",
+    "rsl_type",
+    "fwsregion",
+    "createdby",
+    "modifiedby"
+   ],
+   "known": false,
+   "layer": "FWSWilderness_2024",
+   "sample": [
+    {
+     "cmpxname": "DESERT NWR COMPLEX",
+     "comments": " ",
+     "createdby": "REGION8",
+     "desname": "DESERT NWR PROPOSED WILDERNESS AREA",
+     "destype": "PROPOSED WILDERNESS AREA",
+     "docnum": "Pending",
+     "fwsregion": "8",
+     "ifws": "200",
+     "lit": "DWR",
+     "modifiedby": "R8",
+     "orgname": "Fish and Wildlife Service",
+     "rsl_type": "NWR"
+    },
+    {
+     "cmpxname": "SHELDON-HART MOUNTAIN NATIONAL WILDLIFE REFUGE",
+     "comments": "GOOCH TABLE",
+     "createdby": " ",
+     "desname": "SHELDON NATIONAL WILDLIFE REFUGE PROPOSED WILDERNESS AREA",
+     "destype": "PROPOSED WILDERNESS AREA",
+     "docnum": " ",
+     "fwsregion": "1",
+     "ifws": "122A",
+     "lit": "SAR",
+     "modifiedby": " ",
+     "orgname": "Fish and Wildlife Service",
+     "rsl_type": "NWR"
+    }
+   ],
+   "service": "Hosted/FWSWilderness_2024",
+   "typef": "destype",
+   "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/FWSWilderness_2024/FeatureServer/0"
+  },
+  {
+   "agency": "C. Van Dellen - Nevada Department of Wildlife, USGS SWReGAP",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "KeyHabitat"
+   ],
+   "known": false,
+   "layer": "Intermountain Coniferous Forest and Woodlands",
+   "sample": [
+    {
+     "KeyHabitat": "Intermountain Coniferous Forest and Woodlands"
+    }
+   ],
+   "service": "NVSWAP_IntermountainConiferousForestandWoodlands",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/NVSWAP_IntermountainConiferousForestandWoodlands/FeatureServer/0"
+  },
+  {
+   "agency": "C. Van Dellen - Nevada Department of Wildlife, USGS SWReGAP",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "KeyHabitat"
+   ],
+   "known": false,
+   "layer": "Sierra Coniferous Forest and Woodlands",
+   "sample": [
+    {
+     "KeyHabitat": "Sierra Coniferous Forest and Woodlands"
+    }
+   ],
+   "service": "NVSWAP_SierraConiferousForestandWoodlands",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/NVSWAP_SierraConiferousForestandWoodlands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Fish_Creek_Springs_Tui_Chub",
+   "sample": [
+    {
+     "Common_Name": "Fish Creek Springs Tui Chub",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Siphateles bicolor euchila"
+    }
+   ],
+   "service": "a09224",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a09224/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Devils_Hole_Pupfish",
+   "sample": [
+    {
+     "Common_Name": "Devils Hole Pupfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Cyprinodon diabolis"
+    }
+   ],
+   "service": "a0b1b6",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a0b1b6/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Moorman_White_River_Springfish",
+   "sample": [
+    {
+     "Common_Name": "Moorman White River Springfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Crenichthys baileyi thermophilus"
+    }
+   ],
+   "service": "a0f4d9",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a0f4d9/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Warm_Springs_Pupfish",
+   "sample": [
+    {
+     "Common_Name": "Warm Springs Pupfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Cyprinodon nevadensis pectoralis"
+    }
+   ],
+   "service": "a1c7cf",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a1c7cf/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Mountain_Whitefish",
+   "sample": [
+    {
+     "Common_Name": "Mountain Whitefish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Prosopium williamsoni"
+    }
+   ],
+   "service": "a243a4",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a243a4/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Little_Fish_Lake_Valley_Tui_Chub",
+   "sample": [
+    {
+     "Common_Name": "Little Fish Lake Valley Tui Chub",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Siphateles bicolor ssp. 6"
+    }
+   ],
+   "service": "a2c5bc",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a2c5bc/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Pahrump_Poolfish",
+   "sample": [
+    {
+     "Common_Name": "Pahrump Poolfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Empetrichthys latos"
+    }
+   ],
+   "service": "a388ef",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a388ef/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Fish_Lake_Valley_Tui_Chub",
+   "sample": [
+    {
+     "Common_Name": "Fish Lake Valley Tui Chub",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Siphateles bicolor ssp. 4"
+    }
+   ],
+   "service": "a56d26",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a56d26/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Preston_White_River_Springfish",
+   "sample": [
+    {
+     "Common_Name": "Preston White River Springfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Crenichthys baileyi albivallis"
+    }
+   ],
+   "service": "a60f2b",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a60f2b/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Hiko_White_River_Springfish",
+   "sample": [
+    {
+     "Common_Name": "Hiko White River Springfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Crenichthys baileyi grandis"
+    }
+   ],
+   "service": "a8441a",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/a8441a/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Scientific_Name",
+    "Common_Name",
+    "Minor_Group",
+    "Major_Group",
+    "Occupancy"
+   ],
+   "known": false,
+   "layer": "Ash_Meadows_Amargosa_Pupfish",
+   "sample": [
+    {
+     "Common_Name": "Ash Meadows Amargosa Pupfish",
+     "Major_Group": "Aquatic",
+     "Minor_Group": "Fish",
+     "Occupancy": "Year-round",
+     "Scientific_Name": "Cyprinodon nevadensis mionectes"
+    }
+   ],
+   "service": "aa77c7",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/aa77c7/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "LandName",
+   "count": 17,
+   "fields": [
+    "DSLFile",
+    "LandName",
+    "County",
+    "UsingAgenc",
+    "Address",
+    "City",
+    "Recommenda",
+    "PortLandSt",
+    "WMA_CODE",
+    "WMA_NAME1",
+    "REMARKS",
+    "STATUS"
+   ],
+   "known": true,
+   "layer": "Wildlife Management Areas Boundaries",
+   "sample": [
+    {
+     "Address": " ",
+     "City": "East of Fallon",
+     "County": "CH",
+     "DSLFile": "WL-5-0",
+     "LandName": "Stillwater",
+     "PortLandSt": "State-Owned/Fee Title/Escheat and Other Lease/Agreement,",
+     "REMARKS": " ",
+     "Recommenda": "Retain for agency operations, lease expires 10/1/2046.",
+     "STATUS": " ",
+     "UsingAgenc": "NDOW",
+     "WMA_CODE": " ",
+     "WMA_NAME1": " "
+    },
+    {
+     "Address": "South of I-80",
+     "City": "West of Lovelock",
+     "County": "PE/CH",
+     "DSLFile": "WL-7-0",
+     "LandName": "Humboldt WMA",
+     "PortLandSt": "State-Owned/Fee Title/Escheat and Other Lease/Agreement,",
+     "REMARKS": "Leased from BOR/State Owned",
+     "Recommenda": "Retain for agency operations, Bureau of Reclamation MOA expires 9/17/2038.",
+     "STATUS": "Designated",
+     "UsingAgenc": "NDOW",
+     "WMA_CODE": "HWMA",
+     "WMA_NAME1": "Humboldt"
+    },
+    {
+     "Address": " ",
+     "City": "Hiko",
+     "County": "LN",
+     "DSLFile": "WL-20-0",
+     "LandName": "Key Pittman WMA",
+     "PortLandSt": "State-Owned/Fee Title/Escheat",
+     "REMARKS": " ",
+     "Recommenda": "Retain for agency operations.  R&PP patent.",
+     "STATUS": "Designated",
+     "UsingAgenc": "NDOW",
+     "WMA_CODE": "KPWMA",
+     "WMA_NAME1": "Key Pittman"
+    }
+   ],
+   "service": "Wildlife_Management_Areas",
+   "typef": "",
+   "url": "https://services.arcgis.com/RyxlXSfFi87rAosq/arcgis/rest/services/Wildlife_Management_Areas/FeatureServer/0"
+  }
+ ],
+ "st": "NV"
+}

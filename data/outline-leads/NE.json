@@ -1,0 +1,724 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 1118,
+   "fields": [
+    "DB_GISID",
+    "AreaName",
+    "Designation",
+    "AreaType",
+    "PreviousOwner",
+    "Status",
+    "LegalType",
+    "AcquiredwithLWCF",
+    "Donated",
+    "County",
+    "District",
+    "Notes",
+    "Creator",
+    "Editor",
+    "Fedral_Aid",
+    "FundingNotes",
+    "TagID",
+    "GIS_Parcel_ID"
+   ],
+   "known": false,
+   "layer": "Properties",
+   "sample": [
+    {
+     "AreaName": "Bowring Ranch SHP",
+     "AreaType": "SHP",
+     "County": "Cherry",
+     "DB_GISID": "276H",
+     "Designation": "H",
+     "District": "NW",
+     "Donated": "Yes",
+     "PreviousOwner": "GPF",
+     "Status": "Lease"
+    },
+    {
+     "AreaName": "Borman Bridge WMA",
+     "AreaType": "WMA",
+     "County": "Cherry",
+     "DB_GISID": "29W",
+     "Designation": "W",
+     "District": "NW",
+     "Donated": "No",
+     "LegalType": "Land Patent",
+     "PreviousOwner": "BLM",
+     "Status": "Owned"
+    },
+    {
+     "AreaName": "Parshall Bridge WMA",
+     "AreaType": "WMA",
+     "County": "Boyd",
+     "DB_GISID": "314W",
+     "Designation": "W",
+     "District": "NE",
+     "Donated": "No",
+     "LegalType": "Warranty Deed",
+     "Notes": "With Accretion: Accretion line is questionable",
+     "PreviousOwner": "ENGELHAUPT",
+     "Status": "Owned"
+    }
+   ],
+   "service": "Realty_Reference_Layers",
+   "typef": "AreaType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Realty_Reference_Layers/FeatureServer/36"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 620,
+   "fields": [
+    "WaterbodyName",
+    "FishingGeometryID",
+    "FishingRegionID",
+    "Label",
+    "OFW",
+    "IceFishing",
+    "OpenWaterFishing",
+    "Creator",
+    "Editor",
+    "DB_GISID",
+    "Show_Label",
+    "Access_Type",
+    "PFA_ID",
+    "Bowfishing"
+   ],
+   "known": false,
+   "layer": "Public Fishing Areas - stand alone layer for editing practice",
+   "sample": [
+    {
+     "Creator": "Trisha.Schlake",
+     "Editor": "TRISHA.SCHLAKE",
+     "FishingGeometryID": "PFA-0526",
+     "FishingRegionID": "PFR-0526",
+     "IceFishing": "Yes",
+     "Label": "Sidney Legion Park Pond",
+     "OFW": "Yes",
+     "OpenWaterFishing": "Yes",
+     "WaterbodyName": "Sidney Legion Park Pond"
+    },
+    {
+     "Creator": "Trisha.Schlake",
+     "Editor": "TRISHA.SCHLAKE",
+     "FishingGeometryID": "PFA-0168",
+     "FishingRegionID": "PFR-0168",
+     "IceFishing": "Yes",
+     "Label": "Lake McConaughy",
+     "OFW": "Yes",
+     "OpenWaterFishing": "Yes",
+     "WaterbodyName": "Lake McConaughy SRA"
+    },
+    {
+     "Creator": "Trisha.Schlake",
+     "Editor": "TRISHA.SCHLAKE",
+     "FishingGeometryID": "PFA-0169",
+     "FishingRegionID": "PFR-0169",
+     "IceFishing": "Yes",
+     "Label": "Lake Ogallala",
+     "OFW": "Yes",
+     "OpenWaterFishing": "Yes",
+     "WaterbodyName": "Lake Ogallala SRA"
+    }
+   ],
+   "service": "Platte_River_Expo_Layers_WFL1",
+   "typef": "Access_Type",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Platte_River_Expo_Layers_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 394,
+   "fields": [
+    "DB_GISID",
+    "AreaName",
+    "AreaType",
+    "Designation",
+    "Status",
+    "County",
+    "District",
+    "Legal",
+    "Notes",
+    "Creator",
+    "Editor",
+    "NGPC_Manager_Code"
+   ],
+   "known": false,
+   "layer": "NGPC Properties",
+   "sample": [
+    {
+     "AreaName": "Alexandria SRA",
+     "AreaType": "SRA",
+     "County": "Jefferson",
+     "Creator": "SDE",
+     "DB_GISID": "1R",
+     "Designation": "R",
+     "District": "SE",
+     "Editor": "MARC.MAREAN",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "NGPC_Manager_Code": "P-17",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "Alexandria WMA",
+     "AreaType": "WMA",
+     "County": "Jefferson",
+     "Creator": "SDE",
+     "DB_GISID": "1W",
+     "Designation": "W",
+     "District": "SE",
+     "Editor": "MARC.MAREAN",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "NGPC_Manager_Code": "G-03",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "American Game Marsh WMA",
+     "AreaType": "WMA",
+     "County": "Brown",
+     "Creator": "trisha.schlake",
+     "DB_GISID": "2W",
+     "Designation": "W",
+     "District": "NE",
+     "Editor": "MARC.MAREAN",
+     "Legal": "002_American_Game_Marsh_WMA.pdf",
+     "NGPC_Manager_Code": "G-01",
+     "Status": "Active"
+    }
+   ],
+   "service": "Smith_Falls_Web_Layers",
+   "typef": "AreaType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Smith_Falls_Web_Layers/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 390,
+   "fields": [
+    "DB_GISID",
+    "AreaName",
+    "AreaType",
+    "Designation",
+    "Status",
+    "County",
+    "District",
+    "Legal",
+    "Notes",
+    "Creator",
+    "Editor",
+    "NGPC_Manager_Code"
+   ],
+   "known": false,
+   "layer": "NGPC Property Areas",
+   "sample": [
+    {
+     "AreaName": "Alexandria SRA",
+     "AreaType": "SRA",
+     "County": "Jefferson",
+     "Creator": "SDE",
+     "DB_GISID": "1R",
+     "Designation": "R",
+     "District": "SE",
+     "Editor": "MARC.MAREAN",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "NGPC_Manager_Code": "P-17",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "Alexandria WMA",
+     "AreaType": "WMA",
+     "County": "Jefferson",
+     "Creator": "SDE",
+     "DB_GISID": "1W",
+     "Designation": "W",
+     "District": "SE",
+     "Editor": "MARC.MAREAN",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "NGPC_Manager_Code": "G-03",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "American Game Marsh WMA",
+     "AreaType": "WMA",
+     "County": "Brown",
+     "Creator": "trisha.schlake",
+     "DB_GISID": "2W",
+     "Designation": "W",
+     "District": "NE",
+     "Editor": "MARC.MAREAN",
+     "Legal": "002_American_Game_Marsh_WMA.pdf",
+     "NGPC_Manager_Code": "G-01",
+     "Status": "Active"
+    }
+   ],
+   "service": "Platte_River_Expo_Layers_WFL1",
+   "typef": "AreaType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Platte_River_Expo_Layers_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 115,
+   "fields": [
+    "AreaName",
+    "AtlasRepresentation",
+    "OwnerAgency",
+    "NGPCDistrict",
+    "County",
+    "Notes",
+    "EditorComments",
+    "KMLSnippet",
+    "MapsheetNumber",
+    "SpeciesLikelyPresent",
+    "OtherNotes",
+    "DistrictManager",
+    "TownshipRange",
+    "LocationInfo",
+    "DistrictManagerPhone",
+    "DistrictManagerEmail",
+    "NontoxicShotOnly",
+    "NoTargetShooting",
+    "NoRiflesOrHandguns",
+    "NoCenterfireOrRimfireRiflesorPi"
+   ],
+   "known": false,
+   "layer": "Other Public Recreation Lands",
+   "sample": [
+    {
+     "AreaName": "Theesen WPA",
+     "AtlasRepresentation": "USFWS Waterfowl Production Areas",
+     "County": "Clay",
+     "DistrictManager": "Lance Hastings",
+     "KMLSnippet": "Theesen WPA",
+     "MapsheetNumber": "31 & 32",
+     "NGPCDistrict": "SW",
+     "OwnerAgency": "U.S. Fish and Wildlife Service",
+     "SpeciesLikelyPresent": "Dove, Pheasant, Waterfowl"
+    },
+    {
+     "AreaName": "Clark WPA",
+     "AtlasRepresentation": "USFWS Waterfowl Production Areas",
+     "County": "Kearney",
+     "DistrictManager": "Lance Hastings",
+     "KMLSnippet": "Clark WPA",
+     "MapsheetNumber": "32",
+     "NGPCDistrict": "SW",
+     "OwnerAgency": "U.S. Fish and Wildlife Service",
+     "SpeciesLikelyPresent": "Dove, Pheasant, Waterfowl"
+    },
+    {
+     "AreaName": "North Platte National Wildlife Refuge",
+     "AtlasRepresentation": "USFWS National Wildlife Refuge",
+     "County": "Scotts Bluff",
+     "DistrictManager": "Micah Ellstrom",
+     "KMLSnippet": "North Platte NWR",
+     "MapsheetNumber": " 2 &  3",
+     "NGPCDistrict": "NW",
+     "OwnerAgency": "US Fish and Wildlife Service",
+     "SpeciesLikelyPresent": "Coyote, Deer, Furbearers, Pheasant, Rabbit, Squirrel"
+    }
+   ],
+   "service": "StateLands",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/StateLands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [],
+   "known": false,
+   "layer": "Walking Direction",
+   "sample": [
+    {
+     "GlobalID": "944daea2-7ea6-4265-bcda-4b6dedab8399",
+     "OBJECTID": 3,
+     "Shape__Area": 13.142333984375,
+     "Shape__Length": 17.507616281517983
+    },
+    {
+     "GlobalID": "b3fe564b-44ce-452a-bff5-1f648f8a1b0f",
+     "OBJECTID": 4,
+     "Shape__Area": 12.953369140625,
+     "Shape__Length": 17.381292071157603
+    },
+    {
+     "GlobalID": "e26491b9-62b8-4679-ab2e-74883baf9ef9",
+     "OBJECTID": 5,
+     "Shape__Area": 12.533203125,
+     "Shape__Length": 17.096786120192284
+    }
+   ],
+   "service": "NOEC_Archery_Trail",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NOEC_Archery_Trail/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [],
+   "known": false,
+   "layer": "Off Limits",
+   "sample": [
+    {
+     "GlobalID": "c276fc95-7586-49f5-bc0e-e198fea03f14",
+     "OBJECTID": 10,
+     "Shape__Area": 4408.85693359375,
+     "Shape__Length": 432.8721655760441
+    },
+    {
+     "GlobalID": "05472130-ae3b-4791-b212-871c4e01f3d3",
+     "OBJECTID": 12,
+     "Shape__Area": 55621.031982421875,
+     "Shape__Length": 3085.5821463091306
+    },
+    {
+     "GlobalID": "ae99604f-5421-41ac-b2a3-8493941a65f8",
+     "OBJECTID": 13,
+     "Shape__Area": 7933.36376953125,
+     "Shape__Length": 850.4699740464282
+    }
+   ],
+   "service": "NOEC_Archery_Trail",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NOEC_Archery_Trail/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [],
+   "known": false,
+   "layer": "Trees",
+   "sample": [
+    {
+     "GlobalID": "0e491764-c9fd-4185-8d46-a1acf2f01264",
+     "OBJECTID": 1,
+     "Shape__Area": 4644.6259765625,
+     "Shape__Length": 415.94301571395107
+    },
+    {
+     "GlobalID": "6ec8eb85-090c-4e55-bc22-1629f5b8c682",
+     "OBJECTID": 2,
+     "Shape__Area": 4493.858154296875,
+     "Shape__Length": 337.4339505033778
+    },
+    {
+     "GlobalID": "0d5e753e-116e-4689-812b-82885843b56c",
+     "OBJECTID": 3,
+     "Shape__Area": 71116.861328125,
+     "Shape__Length": 1583.5446331107885
+    }
+   ],
+   "service": "NOEC_Archery_Trail",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NOEC_Archery_Trail/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [],
+   "known": false,
+   "layer": "everything_else",
+   "sample": [
+    {
+     "GlobalID": "91039d96-c231-487f-a3e4-93ddbd78e52b",
+     "OBJECTID": 3,
+     "Shape__Area": 193562.68481445312,
+     "Shape__Length": 1776.7770707715406
+    },
+    {
+     "GlobalID": "e22def15-f39b-4696-b88d-02aeb2d4dbbe",
+     "OBJECTID": 4,
+     "Shape__Area": 462869.17431640625,
+     "Shape__Length": 2723.8436279296875
+    },
+    {
+     "GlobalID": "4e351d47-9496-4480-9392-e403132424d4",
+     "OBJECTID": 5,
+     "Shape__Area": 23537.036865234375,
+     "Shape__Length": 1441.3158218602257
+    }
+   ],
+   "service": "NOEC_Archery_Trail",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NOEC_Archery_Trail/FeatureServer/18"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "river",
+   "sample": [
+    {
+     "GlobalID": "3026b2ee-ed4f-47e0-9ad7-b2bff472b63d",
+     "OBJECTID": 1,
+     "Shape__Area": 27185.20947265625,
+     "Shape__Length": 1596.9898600023043
+    }
+   ],
+   "service": "NOEC_Archery_Trail",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NOEC_Archery_Trail/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 1,
+   "fields": [
+    "DB_GISID",
+    "AreaName",
+    "AreaType",
+    "Designation",
+    "Status",
+    "County",
+    "District",
+    "Legal",
+    "Notes",
+    "Creator",
+    "Editor",
+    "NGPC_Manager_Code"
+   ],
+   "known": false,
+   "layer": "NGPC Property Areas",
+   "sample": [
+    {
+     "AreaName": "Platte River SP",
+     "AreaType": "SP",
+     "County": "Cass",
+     "Creator": "SDE",
+     "DB_GISID": "224P",
+     "Designation": "P",
+     "District": "SE",
+     "Editor": "SPENCER.TROWBRIDGE",
+     "Legal": "224_Platte_River_SP.pdf",
+     "NGPC_Manager_Code": "P-04",
+     "Status": "Active"
+    }
+   ],
+   "service": "Platte_River_Expo_Layers_WFL1",
+   "typef": "AreaType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Platte_River_Expo_Layers_WFL1/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 366,
+   "fields": [
+    "DB_GISID",
+    "PHA_ID",
+    "AreaName",
+    "AreaType",
+    "Designation",
+    "Status",
+    "County",
+    "District",
+    "OFWAtlasDisplay",
+    "Legal",
+    "Notes",
+    "Creator",
+    "Editor",
+    "PBA_ID",
+    "Park_ID",
+    "NGPC_Manager_Code",
+    "PFA_ID",
+    "Display2Public",
+    "MgtAgreementType",
+    "ManagedAs"
+   ],
+   "known": true,
+   "layer": "NGPC_Property",
+   "sample": [
+    {
+     "AreaName": "Alexandria SRA",
+     "AreaType": "SRA",
+     "County": "Jefferson",
+     "Creator": "SDE",
+     "DB_GISID": "1R",
+     "Designation": "R",
+     "District": "SE",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "OFWAtlasDisplay": "Yes",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "Alexandria WMA",
+     "AreaType": "WMA",
+     "County": "Jefferson",
+     "Creator": "SDE",
+     "DB_GISID": "1W",
+     "Designation": "W",
+     "District": "SE",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "OFWAtlasDisplay": "Yes",
+     "PHA_ID": "PHA-NGPC-0000001",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "American Game Marsh WMA",
+     "AreaType": "WMA",
+     "County": "Brown",
+     "Creator": "trisha.schlake",
+     "DB_GISID": "2W",
+     "Designation": "W",
+     "District": "NE",
+     "Legal": "002_American_Game_Marsh_WMA.pdf",
+     "OFWAtlasDisplay": "Yes",
+     "PHA_ID": "PHA-NGPC-0000002",
+     "Status": "Active"
+    }
+   ],
+   "service": "NPGCProperties2023_2024",
+   "typef": "AreaType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/NPGCProperties2023_2024/FeatureServer/268"
+  },
+  {
+   "agency": "Nebraska Game and Parks Commission",
+   "area": "AreaName",
+   "count": 74,
+   "fields": [
+    "AreaName",
+    "District",
+    "Notes",
+    "DB_GISID",
+    "PHA_ID",
+    "AreaType",
+    "Status",
+    "County",
+    "OFWAtlasDisplay",
+    "Legal",
+    "PBA_ID",
+    "Park_ID",
+    "NGPC_Manager_Code",
+    "PFA_ID",
+    "Display2Public",
+    "MgtAgreementType",
+    "ManagedAs",
+    "FOP_POA",
+    "HuntGuide"
+   ],
+   "known": true,
+   "layer": "Park Areas",
+   "sample": [
+    {
+     "AreaName": "Alexandria SRA",
+     "AreaType": "SRA",
+     "County": "Jefferson",
+     "DB_GISID": "1R",
+     "District": "SE",
+     "Legal": "001_Alexandria_SRA_WMA.pdf",
+     "OFWAtlasDisplay": "Yes",
+     "Park_ID": "PRK-NGPC-0000302",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "Arbor Lodge SHP",
+     "AreaType": "SHP",
+     "County": "Otoe",
+     "DB_GISID": "4H",
+     "District": "SE",
+     "Legal": "004_Arbor_Lodge_SHP.pdf",
+     "OFWAtlasDisplay": "No",
+     "Park_ID": "PRK-NGPC-0000335",
+     "Status": "Active"
+    },
+    {
+     "AreaName": "Ash Hollow SHP",
+     "AreaType": "SHP",
+     "County": "Garden",
+     "DB_GISID": "8H",
+     "District": "NW",
+     "Legal": "008_Ash_Hollow_SHP.pdf",
+     "Notes": "Hunting allowed only in northern portion.",
+     "OFWAtlasDisplay": "Yes",
+     "PHA_ID": "PHA-NGPC-0000303",
+     "Park_ID": "PRK-NGPC-0000336",
+     "Status": "Active"
+    }
+   ],
+   "service": "Park_Areas",
+   "typef": "AreaType",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 68,
+   "fields": [
+    "AreaName",
+    "AtlasRepresentation",
+    "OwnerAgency",
+    "NGPCDistrict",
+    "County",
+    "Notes",
+    "EditorComments",
+    "KMLSnippet",
+    "MapsheetNumber",
+    "SpeciesLikelyPresent",
+    "OtherNotes",
+    "DistrictManager",
+    "TownshipRange",
+    "LocationInfo",
+    "DistrictManagerPhone",
+    "DistrictManagerEmail",
+    "NontoxicShotOnly",
+    "NoTargetShooting",
+    "NoRiflesOrHandguns",
+    "NoCenterfireOrRimfireRiflesorPi"
+   ],
+   "known": true,
+   "layer": "Conservation Partner Lands",
+   "sample": [
+    {
+     "AreaName": "Oxbow Trail Reservior Recreation Area (NRD)",
+     "AtlasRepresentation": "Natural Resources District Recreation Areas",
+     "County": "Butler",
+     "DistrictManager": "Dusty Schelbitzki",
+     "KMLSnippet": "Oxbow Trail Reservior Recreation Area (NRD)",
+     "MapsheetNumber": "42",
+     "NGPCDistrict": "SE",
+     "Notes": " ",
+     "OwnerAgency": "Natural Resources District",
+     "SpeciesLikelyPresent": "Dove, Furbearers, Pheasant, Quail, Rabbit, Squirrel, Waterfowl"
+    },
+    {
+     "AreaName": "Carter Canyon (PRBE)",
+     "AtlasRepresentation": "Other Conservation Partners",
+     "County": "Banner & Scotts Bluff",
+     "DistrictManager": "Micah Ellstrom",
+     "KMLSnippet": "Carter Canyon (PRBE)",
+     "MapsheetNumber": " 3",
+     "NGPCDistrict": "NW",
+     "Notes": "Approval from Jeff Hoffman in Wildlife 2/27/17 for atlas display - deeded property with exception to two small tracts of land in S28 T21 R56W. Next to Enlow",
+     "OwnerAgency": "Platte River Basin Environments",
+     "SpeciesLikelyPresent": "Deer, Dove, Elk, Rabbit, Squirrel, Turkey"
+    },
+    {
+     "AreaName": "Big Indian Recreation Area (NRD)",
+     "AtlasRepresentation": "Natural Resources District Recreation Areas",
+     "County": "Gage",
+     "DistrictManager": "Dusty Schelbitzki",
+     "KMLSnippet": "Big Indian Recreation Area (NRD)",
+     "MapsheetNumber": "44",
+     "NGPCDistrict": "SE",
+     "OtherNotes": "<Null>",
+     "OwnerAgency": "Natural Resources District",
+     "SpeciesLikelyPresent": "Deer, Dove, Pheasant, Quail, Rabbit, Squirrel, Turkey, Waterfowl"
+    }
+   ],
+   "service": "Conservation_Partner_Lands",
+   "typef": "",
+   "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Conservation_Partner_Lands/FeatureServer/0"
+  }
+ ],
+ "st": "NE"
+}
