@@ -13,6 +13,10 @@ on:
       kind:
         description: 'parking (point layers) or outline (park POLYGON layers not used yet: the outline layer explorer)'
         default: 'parking'
+      test_only:
+        description: 'Outline kind: skip the search, only test the leads already found'
+        type: boolean
+        default: false
       deep:
         description: 'Canada deep look: search EVERY folder on the provincial / Parks Canada servers (two jobs, west + east)'
         type: boolean
@@ -31,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: ${{ fromJSON(inputs.deep && '["canada-deep-west","canada-deep-east"]' || '["us-a","us-b","us-c","canada"]') }}
+        part: ${{ fromJSON(inputs.test_only && '["us-a"]' || inputs.deep && '["canada-deep-west","canada-deep-east"]' || '["us-a","us-b","us-c","canada"]') }}
     steps:
       - uses: actions/checkout@v5
       - name: Look for parking layers
@@ -41,7 +45,15 @@ jobs:
           MINUTES: ${{ inputs.minutes || '100' }}
           PART: ${{ matrix.part }}
           KIND: ${{ inputs.kind || 'parking' }}
+        if: ${{ !inputs.test_only }}
         run: python3 .github/scripts/kpc_parking_explorer.py || true
+      - name: Test the outline leads (outline kind, one job only)
+        if: ${{ inputs.kind == 'outline' && (matrix.part == 'us-a' || inputs.test_only) }}
+        continue-on-error: true
+        timeout-minutes: 200
+        env:
+          MINUTES: '180'
+        run: python3 .github/scripts/kpc_outline_lead_test.py || true
       - name: Save
         if: always()
         continue-on-error: true
