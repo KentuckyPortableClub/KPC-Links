@@ -1,0 +1,82 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 829,
+   "fields": [
+    "TYPE",
+    "NAME",
+    "STATUS",
+    "RESTROOM",
+    "DRINK_FTN",
+    "RAMADA",
+    "PICNIC_TBL",
+    "MAINT_ORG",
+    "LOOP",
+    "ACCESS",
+    "PHOTONAME",
+    "PINFUNIQID",
+    "INFRATYPE",
+    "PINFCODE",
+    "GLOBALID",
+    "DATA_SOURC",
+    "NOTES",
+    "Manager",
+    "REC_SITE_N",
+    "SITE_TYPE"
+   ],
+   "known": false,
+   "layer": "Merged_Trailheads_2019830",
+   "sample": [
+    {
+     "ACCESS": "PUBLIC",
+     "DRINK_FTN": "Y",
+     "LOOP": "Y",
+     "MAINT_ORG": "PIMA COUNTY",
+     "NAME": "22ND STREET",
+     "PHOTONAME": " ",
+     "PICNIC_TBL": "N",
+     "PINFUNIQID": "TH1TRAILHDS",
+     "RAMADA": "N",
+     "RESTROOM": "Y",
+     "STATUS": "OPEN",
+     "TYPE": "TRAILHEAD"
+    },
+    {
+     "ACCESS": "PUBLIC",
+     "DRINK_FTN": "N",
+     "LOOP": "N",
+     "MAINT_ORG": "PIMA COUNTY",
+     "NAME": "36TH STREET TRAILHEAD",
+     "PHOTONAME": "36T_0024.JPG",
+     "PICNIC_TBL": "N",
+     "PINFUNIQID": "TH2TRAILHDS",
+     "RAMADA": "N",
+     "RESTROOM": "Y",
+     "STATUS": "OPEN",
+     "TYPE": "TRAILHEAD"
+    },
+    {
+     "ACCESS": "PUBLIC",
+     "DRINK_FTN": "Y",
+     "LOOP": "N",
+     "MAINT_ORG": "PIMA COUNTY",
+     "NAME": "ABREGO",
+     "PHOTONAME": "AbT_0130.JPG",
+     "PICNIC_TBL": "Y",
+     "PINFUNIQID": "TH3TRAILHDS",
+     "RAMADA": "Y",
+     "RESTROOM": "Y",
+     "STATUS": "OPEN",
+     "TYPE": "TRAILHEAD"
+    }
+   ],
+   "service": "TRAZ_Editor_view",
+   "typef": "TYPE",
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/TRAZ_Editor_view/FeatureServer/0"
+  }
+ ],
+ "st": "AZ"
+}

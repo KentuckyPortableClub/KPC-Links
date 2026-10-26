@@ -1,0 +1,54 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 119,
+   "fields": [
+    "asset_type",
+    "AreaName",
+    "Code",
+    "Footprint_SqFt",
+    "ConstrMat",
+    "ADA",
+    "comments",
+    "created_user",
+    "last_edited_user",
+    "Inventory"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "AreaName": "Hunting C 13",
+     "Code": "C-13",
+     "asset_type": "parking",
+     "comments": "Gravel and sign",
+     "created_user": "UOFI\\idnr-lands",
+     "last_edited_user": "UOFI\\idnr-lands"
+    },
+    {
+     "AreaName": "Hunting C 20",
+     "Code": "C-20",
+     "asset_type": "parking",
+     "comments": "Gravel with wood sign",
+     "created_user": "UOFI\\idnr-lands",
+     "last_edited_user": "UOFI\\idnr-lands"
+    },
+    {
+     "AreaName": "Dove field 5",
+     "Code": "D-5",
+     "asset_type": "parking",
+     "comments": "Gravel",
+     "created_user": "UOFI\\idnr-lands",
+     "last_edited_user": "UOFI\\idnr-lands"
+    }
+   ],
+   "service": "FirstResponderParkingAreas",
+   "typef": "asset_type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/FirstResponderParkingAreas/FeatureServer/0"
+  }
+ ],
+ "st": "IL"
+}

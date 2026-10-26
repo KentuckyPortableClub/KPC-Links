@@ -1,0 +1,1148 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 117,
+   "fields": [
+    "LAUNCHNAME",
+    "LAUNCHTYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "DEP Boat Launch",
+   "sample": [
+    {
+     "LAUNCHNAME": "Housatonic River Boat Launch",
+     "LAUNCHTYPE": "Trailered",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Housatonic-River-Boat-Launch"
+    },
+    {
+     "LAUNCHNAME": "Amos Lake Boat Launch",
+     "LAUNCHTYPE": "Trailered",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382792&deepNav_GID=1620"
+    },
+    {
+     "LAUNCHNAME": "Anderson Pond Boat Launch",
+     "LAUNCHTYPE": "Trailered",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382804&deepNav_GID=1620"
+    }
+   ],
+   "service": "Connecticut_DEEP_Boat_Launches",
+   "typef": "LAUNCHTYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 117,
+   "fields": [
+    "LAUNCHNAME",
+    "LAUNCHTYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "DEP Boat Launch",
+   "sample": [
+    {
+     "LAUNCHNAME": "Housatonic River Boat Launch",
+     "LAUNCHTYPE": "Trailered",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Housatonic-River-Boat-Launch"
+    },
+    {
+     "LAUNCHNAME": "Amos Lake Boat Launch",
+     "LAUNCHTYPE": "Trailered",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382792&deepNav_GID=1620"
+    },
+    {
+     "LAUNCHNAME": "Anderson Pond Boat Launch",
+     "LAUNCHTYPE": "Trailered",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382804&deepNav_GID=1620"
+    }
+   ],
+   "service": "Connecticut_DEEP_Boat_Launches",
+   "typef": "LAUNCHTYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "PROPERTY",
+   "count": 116,
+   "fields": [
+    "PROPERTY",
+    "SECTN_NAME",
+    "ACCSS_NAME",
+    "ACCSS_TOWN",
+    "PROP_TYPE",
+    "ACCSS_TYPE",
+    "LINK",
+    "STATUS",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME",
+    "PHYSICAL_ADDRESS",
+    "WATERBODY",
+    "TRAILER",
+    "CARRY_IN",
+    "HANDICAP",
+    "LAKE_POND",
+    "RIVER",
+    "LIS_ACCESS",
+    "AIS_ZEBRA"
+   ],
+   "known": false,
+   "layer": "DEEP Boat Launch",
+   "sample": [
+    {
+     "ACCSS_NAME": "Amos Lake Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Amos Lake Water Access ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382792&deepNav_GID=1620",
+     "PHYSICAL_ADDRESS": "158 Preston Plains Road",
+     "PROPERTY": "Amos Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Amos Lake",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Anderson Pond Boat Launch",
+     "ACCSS_TOWN": "North Stonington",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Blue Lake Water Access",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382804&deepNav_GID=1620",
+     "PHYSICAL_ADDRESS": "441 Cossaduck Hill Road",
+     "PROPERTY": "Blue Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Anderson Pond",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Avery Pond Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Avery Pond Water Access ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382806&deepNav_GID=1620",
+     "PHYSICAL_ADDRESS": "45 Lynn Drive",
+     "PROPERTY": "Avery Pond Water Access ",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Avery Pond ",
+     "STATUS": "Open"
+    }
+   ],
+   "service": "CT_DEEP_Boat_Launches_One_Symbol",
+   "typef": "PROP_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_DEEP_Boat_Launches_One_Symbol/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "PROPERTY",
+   "count": 116,
+   "fields": [
+    "PROPERTY",
+    "SECTN_NAME",
+    "ACCSS_NAME",
+    "ACCSS_TOWN",
+    "PROP_TYPE",
+    "ACCSS_TYPE",
+    "LINK",
+    "STATUS",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME",
+    "PHYSICAL_ADDRESS",
+    "WATERBODY",
+    "TRAILER",
+    "CARRY_IN",
+    "HANDICAP",
+    "LAKE_POND",
+    "RIVER",
+    "LIS_ACCESS",
+    "AIS_ZEBRA"
+   ],
+   "known": false,
+   "layer": "DEEP Boat Launch",
+   "sample": [
+    {
+     "ACCSS_NAME": "Amos Lake Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Amos Lake Water Access ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382792&deepNav_GID=1620",
+     "PHYSICAL_ADDRESS": "158 Preston Plains Road",
+     "PROPERTY": "Amos Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Amos Lake",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Anderson Pond Boat Launch",
+     "ACCSS_TOWN": "North Stonington",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Blue Lake Water Access",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382804&deepNav_GID=1620",
+     "PHYSICAL_ADDRESS": "441 Cossaduck Hill Road",
+     "PROPERTY": "Blue Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Anderson Pond",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Avery Pond Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Avery Pond Water Access ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=382806&deepNav_GID=1620",
+     "PHYSICAL_ADDRESS": "45 Lynn Drive",
+     "PROPERTY": "Avery Pond Water Access ",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Avery Pond ",
+     "STATUS": "Open"
+    }
+   ],
+   "service": "CT_DEEP_Boat_Launches_One_Symbol",
+   "typef": "PROP_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_DEEP_Boat_Launches_One_Symbol/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 97,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park or Reserve Access",
+   "sample": [
+    {
+     "ACCESS": "Bigelow Hollow State Park",
+     "ACCESS_TOWN": "Union",
+     "ACCESS_TYPE": "Park",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325174&deepNav_GID=1650",
+     "PROPERTY": "Bigelow Hollow State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Bluff Point State Park",
+     "ACCESS_TOWN": "Groton",
+     "ACCESS_TYPE": "Park",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325178&deepNav_GID=1650",
+     "PROPERTY": "Bluff Point State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Campbell Falls State Park Reserve",
+     "ACCESS_TOWN": "Norfolk",
+     "ACCESS_TYPE": "Park",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325308&deepNav_GID=1650",
+     "PROPERTY": "Campbell Falls State Park Scenic Reserve",
+     "PROPERTY_TYPE": "Park"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 97,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park or Reserve Access",
+   "sample": [
+    {
+     "ACCESS": "Bigelow Hollow State Park",
+     "ACCESS_TOWN": "Union",
+     "ACCESS_TYPE": "Park",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325174&deepNav_GID=1650",
+     "PROPERTY": "Bigelow Hollow State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Bluff Point State Park",
+     "ACCESS_TOWN": "Groton",
+     "ACCESS_TYPE": "Park",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325178&deepNav_GID=1650",
+     "PROPERTY": "Bluff Point State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Campbell Falls State Park Reserve",
+     "ACCESS_TOWN": "Norfolk",
+     "ACCESS_TYPE": "Park",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325308&deepNav_GID=1650",
+     "PROPERTY": "Campbell Falls State Park Scenic Reserve",
+     "PROPERTY_TYPE": "Park"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 93,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOW",
+    "PROPERTY_T",
+    "ACCESS_TYP",
+    "LINK",
+    "ON_WEB",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME"
+   ],
+   "known": false,
+   "layer": "CT_Trailer_Boat_Launch",
+   "sample": [
+    {
+     "ACCESS": "Howells Pond Boat Launch",
+     "ACCESS_TOW": "Hartland",
+     "ACCESS_TYP": "Trailered",
+     "AGNCT_FN": "State Forest",
+     "AGNCYFN_CD": "EXF",
+     "AGNCY_NAME": "Tunxis State Forest",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384012&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Tunxis State Forest",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Little Pond Boat Launch",
+     "ACCESS_TOW": "Thompson",
+     "ACCESS_TYP": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Little Pond Water Access",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384078&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Little Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Mudge Pond Boat Launch",
+     "ACCESS_TOW": "Sharon",
+     "ACCESS_TYP": "Trailered",
+     "AGNCT_FN": " ",
+     "AGNCYFN_CD": " ",
+     "AGNCY_NAME": " ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384140&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Mudge Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    }
+   ],
+   "service": "CT_Trailer_Boat_Launch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Trailer_Boat_Launch/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 93,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOW",
+    "PROPERTY_T",
+    "ACCESS_TYP",
+    "LINK",
+    "ON_WEB",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME"
+   ],
+   "known": false,
+   "layer": "CT_Trailer_Boat_Launch",
+   "sample": [
+    {
+     "ACCESS": "Howells Pond Boat Launch",
+     "ACCESS_TOW": "Hartland",
+     "ACCESS_TYP": "Trailered",
+     "AGNCT_FN": "State Forest",
+     "AGNCYFN_CD": "EXF",
+     "AGNCY_NAME": "Tunxis State Forest",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384012&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Tunxis State Forest",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Little Pond Boat Launch",
+     "ACCESS_TOW": "Thompson",
+     "ACCESS_TYP": "Trailered",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Little Pond Water Access",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384078&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Little Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Mudge Pond Boat Launch",
+     "ACCESS_TOW": "Sharon",
+     "ACCESS_TYP": "Trailered",
+     "AGNCT_FN": " ",
+     "AGNCYFN_CD": " ",
+     "AGNCY_NAME": " ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384140&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Mudge Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    }
+   ],
+   "service": "CT_Trailer_Boat_Launch",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Trailer_Boat_Launch/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "PROPERTY",
+   "count": 92,
+   "fields": [
+    "PROPERTY",
+    "SECTN_NAME",
+    "ACCSS_NAME",
+    "ACCSS_TOWN",
+    "PROP_TYPE",
+    "ACCSS_TYPE",
+    "LINK",
+    "STATUS",
+    "AGNCY_NAME",
+    "PHYSICAL_ADDRESS",
+    "WATERBODY",
+    "TRAILER",
+    "CARRY_IN",
+    "HANDICAP",
+    "LAKE_POND",
+    "RIVER",
+    "LIS_ACCESS"
+   ],
+   "known": false,
+   "layer": "State Trailered Boat Launch",
+   "sample": [
+    {
+     "ACCSS_NAME": "Amos Lake Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCY_NAME": "Amos Lake Water Access ",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Amos-Lake-Boat-Launch",
+     "PHYSICAL_ADDRESS": "158 Preston Plains Road",
+     "PROPERTY": "Amos Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Amos Lake",
+     "STATUS": "Open",
+     "TRAILER": "Yes",
+     "WATERBODY": "Amos Lake"
+    },
+    {
+     "ACCSS_NAME": "Anderson Pond Boat Launch",
+     "ACCSS_TOWN": "North Stonington",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCY_NAME": "Blue Lake Water Access",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Anderson-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "441 Cossaduck Hill Road",
+     "PROPERTY": "Blue Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Anderson Pond",
+     "STATUS": "Open",
+     "TRAILER": "Yes",
+     "WATERBODY": "Anderson Pond"
+    },
+    {
+     "ACCSS_NAME": "Avery Pond Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCY_NAME": "Avery Pond Water Access ",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Avery-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "45 Lynn Drive",
+     "PROPERTY": "Avery Pond Water Access ",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Avery Pond ",
+     "STATUS": "Open",
+     "TRAILER": "Yes",
+     "WATERBODY": "Avery Pond"
+    }
+   ],
+   "service": "DEEP_State_Trailered_Boat_Launches",
+   "typef": "PROP_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/DEEP_State_Trailered_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "PROPERTY",
+   "count": 92,
+   "fields": [
+    "PROPERTY",
+    "SECTN_NAME",
+    "ACCSS_NAME",
+    "ACCSS_TOWN",
+    "PROP_TYPE",
+    "ACCSS_TYPE",
+    "LINK",
+    "STATUS",
+    "AGNCY_NAME",
+    "PHYSICAL_ADDRESS",
+    "WATERBODY",
+    "TRAILER",
+    "CARRY_IN",
+    "HANDICAP",
+    "LAKE_POND",
+    "RIVER",
+    "LIS_ACCESS"
+   ],
+   "known": false,
+   "layer": "State Trailered Boat Launch",
+   "sample": [
+    {
+     "ACCSS_NAME": "Amos Lake Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCY_NAME": "Amos Lake Water Access ",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Amos-Lake-Boat-Launch",
+     "PHYSICAL_ADDRESS": "158 Preston Plains Road",
+     "PROPERTY": "Amos Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Amos Lake",
+     "STATUS": "Open",
+     "TRAILER": "Yes",
+     "WATERBODY": "Amos Lake"
+    },
+    {
+     "ACCSS_NAME": "Anderson Pond Boat Launch",
+     "ACCSS_TOWN": "North Stonington",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCY_NAME": "Blue Lake Water Access",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Anderson-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "441 Cossaduck Hill Road",
+     "PROPERTY": "Blue Lake Water Access",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Anderson Pond",
+     "STATUS": "Open",
+     "TRAILER": "Yes",
+     "WATERBODY": "Anderson Pond"
+    },
+    {
+     "ACCSS_NAME": "Avery Pond Boat Launch",
+     "ACCSS_TOWN": "Preston",
+     "ACCSS_TYPE": "Trailered",
+     "AGNCY_NAME": "Avery Pond Water Access ",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Avery-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "45 Lynn Drive",
+     "PROPERTY": "Avery Pond Water Access ",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Avery Pond ",
+     "STATUS": "Open",
+     "TRAILER": "Yes",
+     "WATERBODY": "Avery Pond"
+    }
+   ],
+   "service": "DEEP_State_Trailered_Boat_Launches",
+   "typef": "PROP_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_State_Trailered_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 75,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park Trail Detail",
+   "sample": [
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 75,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park Trail Detail",
+   "sample": [
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 30,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOW",
+    "PROPERTY_T",
+    "ACCESS_TYP",
+    "LINK",
+    "ON_WEB",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME"
+   ],
+   "known": false,
+   "layer": "CT_Cartop_Boat_Launches",
+   "sample": [
+    {
+     "ACCESS": "Bolton Notch Pond Boat Launch",
+     "ACCESS_TOW": "Bolton",
+     "ACCESS_TYP": "Car Top/Carry-In",
+     "AGNCT_FN": "State Park Scenic Reserve",
+     "AGNCYFN_CD": "EPS",
+     "AGNCY_NAME": "Bolton Notch State Park Scenic Reserve",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=383780&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Bolton Notch State Park Scenic Reserve",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Hatch Pond Boat Launch",
+     "ACCESS_TOW": "Kent",
+     "ACCESS_TYP": "Car Top/Carry-In",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Hatch Pond Water Access",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=383976&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Hatch Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Leonard Pond Boat Launch",
+     "ACCESS_TOW": "Kent",
+     "ACCESS_TYP": "Car Top/Carry-In",
+     "AGNCT_FN": " ",
+     "AGNCYFN_CD": " ",
+     "AGNCY_NAME": " ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384048&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Leonard Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    }
+   ],
+   "service": "CT_Cartop_Boat_Launches",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Cartop_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 30,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOW",
+    "PROPERTY_T",
+    "ACCESS_TYP",
+    "LINK",
+    "ON_WEB",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME"
+   ],
+   "known": false,
+   "layer": "CT_Cartop_Boat_Launches",
+   "sample": [
+    {
+     "ACCESS": "Bolton Notch Pond Boat Launch",
+     "ACCESS_TOW": "Bolton",
+     "ACCESS_TYP": "Car Top/Carry-In",
+     "AGNCT_FN": "State Park Scenic Reserve",
+     "AGNCYFN_CD": "EPS",
+     "AGNCY_NAME": "Bolton Notch State Park Scenic Reserve",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=383780&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Bolton Notch State Park Scenic Reserve",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Hatch Pond Boat Launch",
+     "ACCESS_TOW": "Kent",
+     "ACCESS_TYP": "Car Top/Carry-In",
+     "AGNCT_FN": "Water Access",
+     "AGNCYFN_CD": "EFA",
+     "AGNCY_NAME": "Hatch Pond Water Access",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=383976&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Hatch Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    },
+    {
+     "ACCESS": "Leonard Pond Boat Launch",
+     "ACCESS_TOW": "Kent",
+     "ACCESS_TYP": "Car Top/Carry-In",
+     "AGNCT_FN": " ",
+     "AGNCYFN_CD": " ",
+     "AGNCY_NAME": " ",
+     "LINK": "http://www.ct.gov/deep/cwp/view.asp?a=2686&q=384048&deepNav_GID=1620",
+     "ON_WEB": "Yes",
+     "PROPERTY": "Leonard Pond Water Access",
+     "PROPERTY_T": "Water Access",
+     "SECTION": " "
+    }
+   ],
+   "service": "CT_Cartop_Boat_Launches",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Cartop_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "PROPERTY",
+   "count": 25,
+   "fields": [
+    "PROPERTY",
+    "SECTN_NAME",
+    "ACCSS_NAME",
+    "ACCSS_TOWN",
+    "PROP_TYPE",
+    "ACCSS_TYPE",
+    "LINK",
+    "STATUS",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME",
+    "PHYSICAL_ADDRESS",
+    "WATERBODY",
+    "TRAILER",
+    "CARRY_IN",
+    "HANDICAP",
+    "LAKE_POND",
+    "RIVER",
+    "LIS_ACCESS",
+    "AIS_ZEBRA"
+   ],
+   "known": false,
+   "layer": "State Cartop/Carry-In Boat Launch",
+   "sample": [
+    {
+     "ACCSS_NAME": "Babcock Pond Boat Launch",
+     "ACCSS_TOWN": "Colchester",
+     "ACCSS_TYPE": "Car Top/Carry-In",
+     "AGNCT_FN": "Wildlife Area",
+     "AGNCYFN_CD": "EW",
+     "AGNCY_NAME": "Babcock Pond Wildlife Management Area",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Babcock-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "669 Middletown Road",
+     "PROPERTY": "Babcock Pond Wildlife Management Area",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Babcock Pond",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Beaver Brook Pond Boat Launch",
+     "ACCSS_TOWN": "Windham",
+     "ACCSS_TYPE": "Car Top/Carry-In",
+     "AGNCT_FN": "State Park Scenic Reserve",
+     "AGNCYFN_CD": "EPS",
+     "AGNCY_NAME": "Beaver Brook State Park Scenic Reserve",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Beaver-Brook-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "483 Back Road",
+     "PROPERTY": "Beaver Brook State Park Scenic Reserve",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Beaver Brook Pond",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Bluff Point Boat Launch",
+     "ACCSS_TOWN": "Groton",
+     "ACCSS_TYPE": "Car Top/Carry-In",
+     "AGNCT_FN": "State Park",
+     "AGNCYFN_CD": "EP",
+     "AGNCY_NAME": "Bluff Point State Park",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Bluff-Point-Boat-Launch",
+     "PHYSICAL_ADDRESS": "44 Depot Road",
+     "PROPERTY": "Bluff Point State Park",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Bluff Point",
+     "STATUS": "Open"
+    }
+   ],
+   "service": "DEEP_State_Cartop_Boat_Launches",
+   "typef": "PROP_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/DEEP_State_Cartop_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "PROPERTY",
+   "count": 25,
+   "fields": [
+    "PROPERTY",
+    "SECTN_NAME",
+    "ACCSS_NAME",
+    "ACCSS_TOWN",
+    "PROP_TYPE",
+    "ACCSS_TYPE",
+    "LINK",
+    "STATUS",
+    "AGNCYFN_CD",
+    "AGNCT_FN",
+    "AGNCY_NAME",
+    "PHYSICAL_ADDRESS",
+    "WATERBODY",
+    "TRAILER",
+    "CARRY_IN",
+    "HANDICAP",
+    "LAKE_POND",
+    "RIVER",
+    "LIS_ACCESS",
+    "AIS_ZEBRA"
+   ],
+   "known": false,
+   "layer": "State Cartop/Carry-In Boat Launch",
+   "sample": [
+    {
+     "ACCSS_NAME": "Babcock Pond Boat Launch",
+     "ACCSS_TOWN": "Colchester",
+     "ACCSS_TYPE": "Car Top/Carry-In",
+     "AGNCT_FN": "Wildlife Area",
+     "AGNCYFN_CD": "EW",
+     "AGNCY_NAME": "Babcock Pond Wildlife Management Area",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Babcock-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "669 Middletown Road",
+     "PROPERTY": "Babcock Pond Wildlife Management Area",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Babcock Pond",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Beaver Brook Pond Boat Launch",
+     "ACCSS_TOWN": "Windham",
+     "ACCSS_TYPE": "Car Top/Carry-In",
+     "AGNCT_FN": "State Park Scenic Reserve",
+     "AGNCYFN_CD": "EPS",
+     "AGNCY_NAME": "Beaver Brook State Park Scenic Reserve",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Beaver-Brook-Pond-Boat-Launch",
+     "PHYSICAL_ADDRESS": "483 Back Road",
+     "PROPERTY": "Beaver Brook State Park Scenic Reserve",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Beaver Brook Pond",
+     "STATUS": "Open"
+    },
+    {
+     "ACCSS_NAME": "Bluff Point Boat Launch",
+     "ACCSS_TOWN": "Groton",
+     "ACCSS_TYPE": "Car Top/Carry-In",
+     "AGNCT_FN": "State Park",
+     "AGNCYFN_CD": "EP",
+     "AGNCY_NAME": "Bluff Point State Park",
+     "LINK": "https://portal.ct.gov/DEEP/Boating/Boat-Launches/Bluff-Point-Boat-Launch",
+     "PHYSICAL_ADDRESS": "44 Depot Road",
+     "PROPERTY": "Bluff Point State Park",
+     "PROP_TYPE": "Water Access",
+     "SECTN_NAME": "Bluff Point",
+     "STATUS": "Open"
+    }
+   ],
+   "service": "DEEP_State_Cartop_Boat_Launches",
+   "typef": "PROP_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/DEEP_State_Cartop_Boat_Launches/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 14,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park Trail Overview",
+   "sample": [
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Putnam",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "Northern Section"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 14,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park Trail Overview",
+   "sample": [
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Thompson",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "North Trail"
+    },
+    {
+     "ACCESS": "Air Line State Park Trail",
+     "ACCESS_TOWN": "Putnam",
+     "ACCESS_TYPE": "Trail",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=479336&deepNav_GID=1650",
+     "PROPERTY": "Airline State Park Trail",
+     "PROPERTY_TYPE": "Park Trail",
+     "SECTION": "Northern Section"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 11,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park Swim Area",
+   "sample": [
+    {
+     "ACCESS": "Black Rock State Park",
+     "ACCESS_TOWN": "Watertown",
+     "ACCESS_TYPE": "Swim Area",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325176&deepNav_GID=1650",
+     "PROPERTY": "Black Rock State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Burr Pond State Park",
+     "ACCESS_TOWN": "Torrington",
+     "ACCESS_TYPE": "Swim Area",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325180&deepNav_GID=1650",
+     "PROPERTY": "Burr Pond State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Hammonasset Beach State Park",
+     "ACCESS_TOWN": "Madison",
+     "ACCESS_TYPE": "Swim Area",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325210&deepNav_GID=1650",
+     "PROPERTY": "Hammonasset Beach State Park",
+     "PROPERTY_TYPE": "Park"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 11,
+   "fields": [
+    "PROPERTY",
+    "SECTION",
+    "ACCESS",
+    "ACCESS_TOWN",
+    "PROPERTY_TYPE",
+    "ACCESS_TYPE",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "State Park Swim Area",
+   "sample": [
+    {
+     "ACCESS": "Black Rock State Park",
+     "ACCESS_TOWN": "Watertown",
+     "ACCESS_TYPE": "Swim Area",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325176&deepNav_GID=1650",
+     "PROPERTY": "Black Rock State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Burr Pond State Park",
+     "ACCESS_TOWN": "Torrington",
+     "ACCESS_TYPE": "Swim Area",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325180&deepNav_GID=1650",
+     "PROPERTY": "Burr Pond State Park",
+     "PROPERTY_TYPE": "Park"
+    },
+    {
+     "ACCESS": "Hammonasset Beach State Park",
+     "ACCESS_TOWN": "Madison",
+     "ACCESS_TYPE": "Swim Area",
+     "LINK": "https://www.ct.gov/deep/cwp/view.asp?a=2716&q=325210&deepNav_GID=1650",
+     "PROPERTY": "Hammonasset Beach State Park",
+     "PROPERTY_TYPE": "Park"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "PROPERTY_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/5"
+  }
+ ],
+ "st": "CT"
+}

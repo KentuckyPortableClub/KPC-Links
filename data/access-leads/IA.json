@@ -1,0 +1,63 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 8245,
+   "fields": [
+    "County",
+    "Name",
+    "Type",
+    "Source",
+    "Fish_id",
+    "WT_id",
+    "WL_id",
+    "WA_id",
+    "FishAC_id",
+    "Edit_by",
+    "RecAssType"
+   ],
+   "known": false,
+   "layer": "Paddling Access Sites",
+   "sample": [
+    {
+     "Fish_id": " ",
+     "Name": "Rest Rooms - Modern",
+     "RecAssType": "Rest Rooms - Modern",
+     "Source": "State Parks Infrastructure",
+     "Type": "Rest Rooms - Modern",
+     "WA_id": " ",
+     "WL_id": " ",
+     "WT_id": " "
+    },
+    {
+     "County": "Clayton",
+     "Fish_id": " ",
+     "Name": "Point of Interest",
+     "RecAssType": "Point of Interest",
+     "Source": "State Parks Infrastructure",
+     "Type": "Point of Interest",
+     "WA_id": " ",
+     "WL_id": " ",
+     "WT_id": " "
+    },
+    {
+     "County": "Clayton",
+     "Fish_id": " ",
+     "Name": "Point of Interest",
+     "RecAssType": "Point of Interest",
+     "Source": "State Parks Infrastructure",
+     "Type": "Point of Interest",
+     "WA_id": " ",
+     "WL_id": " ",
+     "WT_id": " "
+    }
+   ],
+   "service": "Recreation/Recreation",
+   "typef": "Type",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/Recreation/MapServer/4"
+  }
+ ],
+ "st": "IA"
+}

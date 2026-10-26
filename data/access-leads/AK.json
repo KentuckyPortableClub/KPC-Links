@@ -1,0 +1,58 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Alaska Department of Natural Resources",
+   "area": "PARK_NAME",
+   "count": 87,
+   "fields": [
+    "REGION",
+    "URL",
+    "PARK_NAME",
+    "NAME",
+    "PARKTYPEAB",
+    "FACILITYNM",
+    "CRDNTS",
+    "FCLTYTYPE"
+   ],
+   "known": false,
+   "layer": "ASP Park Facility",
+   "sample": [
+    {
+     "CRDNTS": "N 62°44'36.13\" W 150°7'32.06\"",
+     "FACILITYNM": "Byers Lake 1 Cabin",
+     "FCLTYTYPE": "Cabin",
+     "NAME": "Denali",
+     "PARKTYPEAB": "SP",
+     "PARK_NAME": "Denali State Park",
+     "REGION": "Mat-Su",
+     "URL": "http://dnr.alaska.gov/parks/aspcabins/byerslakecabin1.htm"
+    },
+    {
+     "CRDNTS": "N60°48'21.52\"   W148°28'43.01\"",
+     "FACILITYNM": "Squirrel Cove Cabin",
+     "FCLTYTYPE": "Cabin",
+     "NAME": "Decision Point",
+     "PARKTYPEAB": "SMP",
+     "PARK_NAME": "Decision Point State Marine Park",
+     "REGION": "Kenai",
+     "URL": "http://dnr.alaska.gov/parks/aspcabins/squirrelcovecabin.htm"
+    },
+    {
+     "CRDNTS": "N 59°32'43.0795\" W 151°10'3.3594\"",
+     "FACILITYNM": "Moose Valley Cabin",
+     "FCLTYTYPE": "Cabin",
+     "NAME": "Kachemak Bay",
+     "PARKTYPEAB": "SP",
+     "PARK_NAME": "Kachemak Bay State Park",
+     "REGION": "Kenai",
+     "URL": "http://dnr.alaska.gov/parks/aspcabins/moosevalleycabin.htm"
+    }
+   ],
+   "service": "OpenData/Recreational_ParkBoundary",
+   "typef": "PARKTYPEAB",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/0"
+  }
+ ],
+ "st": "AK"
+}

@@ -1,0 +1,276 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "name",
+   "count": 2574,
+   "fields": [
+    "feature_id",
+    "name",
+    "alt_name",
+    "type",
+    "bathrooms",
+    "fee",
+    "water",
+    "winter_activities",
+    "manager"
+   ],
+   "known": false,
+   "layer": "COTREX Trailheads June 2025",
+   "sample": [
+    {
+     "bathrooms": "no",
+     "feature_id": "61258",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Bill Moore Lake/Empire Loop Trailhead",
+     "type": "Trailhead",
+     "water": "no"
+    },
+    {
+     "bathrooms": "no",
+     "feature_id": "61255",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Argentine Central Grade Trailhead",
+     "type": "Trailhead",
+     "water": "no"
+    },
+    {
+     "bathrooms": "no",
+     "feature_id": "61253",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Waldorf Trailhead",
+     "type": "Trailhead",
+     "water": "no"
+    }
+   ],
+   "service": "COTREX_Trailheads_June_2025",
+   "typef": "feature_id",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/COTREX_Trailheads_June_2025/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 2574,
+   "fields": [
+    "feature_id",
+    "name",
+    "alt_name",
+    "type",
+    "bathrooms",
+    "fee",
+    "water",
+    "winter_act",
+    "manager"
+   ],
+   "known": false,
+   "layer": "COTREXTrailheads",
+   "sample": [
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "feature_id": "199801",
+     "fee": "no",
+     "manager": "USFS San Carlos Ranger District",
+     "name": "North Creek Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "feature_id": "202071",
+     "fee": "no",
+     "manager": "USFS San Carlos Ranger District",
+     "name": "Lewis Creek Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "feature_id": "202070",
+     "fee": "no",
+     "manager": "USFS San Carlos Ranger District",
+     "name": "Newlin Creek Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    }
+   ],
+   "service": "COTREXTrailheads",
+   "typef": "feature_id",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/COTREXTrailheads/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 2572,
+   "fields": [
+    "name",
+    "alt_name",
+    "type",
+    "bathrooms",
+    "fee",
+    "water",
+    "manager",
+    "winter_act",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "COTREX_Trailheads",
+   "sample": [
+    {
+     "GlobalID": "7d33618c-8c6a-4a82-835c-180c191d18c0",
+     "alt_name": " ",
+     "bathrooms": "no",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Bill Moore Lake/Empire Loop Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "GlobalID": "45d389fb-c894-4aa5-b0b9-0fd9818b54cf",
+     "alt_name": " ",
+     "bathrooms": "no",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Argentine Central Grade Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "GlobalID": "4b10bfcc-2feb-4c19-a457-8eaf4dc0a50b",
+     "alt_name": " ",
+     "bathrooms": "no",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Waldorf Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    }
+   ],
+   "service": "COTREX_Trailheads",
+   "typef": "type",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/COTREX_Trailheads/FeatureServer/0"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "name",
+   "count": 2547,
+   "fields": [
+    "name",
+    "alt_name",
+    "type",
+    "bathrooms",
+    "fee",
+    "water",
+    "manager",
+    "winter_act"
+   ],
+   "known": false,
+   "layer": "COTREX Trailheads",
+   "sample": [
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Bill Moore Lake/Empire Loop Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Argentine Central Grade Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "fee": "no",
+     "manager": "Clear Creek County",
+     "name": "Waldorf Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "type",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/29"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 167,
+   "fields": [
+    "feature_id",
+    "name",
+    "alt_name",
+    "type",
+    "bathrooms",
+    "fee",
+    "water",
+    "winter_act",
+    "manager"
+   ],
+   "known": false,
+   "layer": "RFTA_Trailheads",
+   "sample": [
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "feature_id": "1823198",
+     "fee": "no",
+     "manager": "USFS Paonia Ranger District",
+     "name": "Clear Fork Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "alt_name": " ",
+     "bathrooms": "no",
+     "feature_id": "1823213",
+     "fee": "no",
+     "manager": "USFS Paonia Ranger District",
+     "name": "Raggeds Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    },
+    {
+     "alt_name": "Jeanne Golay Trailhead",
+     "bathrooms": "no",
+     "feature_id": "3506544",
+     "fee": "no",
+     "manager": "City of Glenwood Springs",
+     "name": "Red Mountain Trailhead",
+     "type": "Trailhead",
+     "water": "no",
+     "winter_act": " "
+    }
+   ],
+   "service": "RFTA_Trailheads",
+   "typef": "feature_id",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/RFTA_Trailheads/FeatureServer/0"
+  }
+ ],
+ "st": "CO"
+}

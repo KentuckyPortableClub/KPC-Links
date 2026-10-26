@@ -1,0 +1,153 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "DNREC",
+   "area": "FACILITY",
+   "count": 193,
+   "fields": [
+    "TIDAL_FISHING_ACCESS_AREAS",
+    "DIVISION",
+    "TIDAL",
+    "COUNTY",
+    "SHORELINE_FISHING",
+    "FISHING_PIER",
+    "GNIS_NAME",
+    "FACILITY",
+    "RAMPS",
+    "RAMPBF",
+    "PIERBF",
+    "PARKINGCAP",
+    "SHOREFISHBF",
+    "RAMPSURFACE",
+    "URL",
+    "PUBLICACCESS",
+    "NOTES"
+   ],
+   "known": false,
+   "layer": "Fishing Access",
+   "sample": [
+    {
+     "COUNTY": "Sussex",
+     "DIVISION": "Fish and Wildlife",
+     "FACILITY": "Fishing Pier",
+     "FISHING_PIER": "Yes",
+     "GNIS_NAME": "Broad Creek",
+     "PARKINGCAP": "13",
+     "PIERBF": "No",
+     "RAMPS": "No",
+     "SHORELINE_FISHING": "No",
+     "TIDAL": "Yes",
+     "TIDAL_FISHING_ACCESS_AREAS": "Broad Creek"
+    },
+    {
+     "COUNTY": "Sussex",
+     "DIVISION": "Fish and Wildlife",
+     "FACILITY": "Shoreline Fishing",
+     "FISHING_PIER": "No",
+     "GNIS_NAME": "Edward R. Koch",
+     "PARKINGCAP": "10",
+     "PIERBF": "No",
+     "RAMPBF": "No",
+     "RAMPS": "No",
+     "SHORELINE_FISHING": "Yes",
+     "TIDAL": "Yes",
+     "TIDAL_FISHING_ACCESS_AREAS": "Edward R. Koch"
+    },
+    {
+     "COUNTY": "Sussex",
+     "DIVISION": "City of Seaford",
+     "FACILITY": "Fishing Pier",
+     "FISHING_PIER": "Yes",
+     "GNIS_NAME": "Seaford Riverwalk",
+     "PARKINGCAP": "18",
+     "PIERBF": "No",
+     "RAMPS": "No",
+     "SHORELINE_FISHING": "No",
+     "TIDAL": "Yes",
+     "TIDAL_FISHING_ACCESS_AREAS": "Seaford Riverwalk"
+    }
+   ],
+   "service": "Society/DE_Fishing_Access",
+   "typef": "FACILITY",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Fishing_Access/FeatureServer/0"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control, Division of ",
+   "area": "AREA_NAME",
+   "count": 191,
+   "fields": [
+    "CAP",
+    "LOT_TYPE",
+    "ADA_PARKIN",
+    "AREA_NAME",
+    "TRACT_NAME"
+   ],
+   "known": true,
+   "layer": "WA Parking",
+   "sample": [
+    {
+     "ADA_PARKIN": "No",
+     "AREA_NAME": "Cedar Swamp Wildlife Area",
+     "CAP": "Yes",
+     "LOT_TYPE": "Stone",
+     "TRACT_NAME": "Main Tract"
+    },
+    {
+     "ADA_PARKIN": "Yes",
+     "AREA_NAME": "Cedar Swamp Wildlife Area",
+     "CAP": "No",
+     "LOT_TYPE": "Paved",
+     "TRACT_NAME": "Main Tract"
+    },
+    {
+     "ADA_PARKIN": "No",
+     "AREA_NAME": "Cedar Swamp Wildlife Area",
+     "CAP": "Yes",
+     "LOT_TYPE": "Stone",
+     "TRACT_NAME": "Main Tract"
+    }
+   ],
+   "service": "Society/DE_Wildlife",
+   "typef": "LOT_TYPE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Wildlife/FeatureServer/3"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control, Division of ",
+   "area": "AREA_NAME",
+   "count": 27,
+   "fields": [
+    "LOCATION",
+    "TYPE",
+    "AREA_NAME",
+    "TRACT_NAME"
+   ],
+   "known": true,
+   "layer": "WA Boat Ramps",
+   "sample": [
+    {
+     "AREA_NAME": "Assawoman Wildlife Area",
+     "LOCATION": "Masseys Landing",
+     "TRACT_NAME": "Okie Preserve Poplar Thicket Farm",
+     "TYPE": "Ramp/Fishing Pier"
+    },
+    {
+     "AREA_NAME": "C&D Canal Conservation Area",
+     "LOCATION": "Fort DuPont",
+     "TRACT_NAME": "East Section",
+     "TYPE": "Ramp"
+    },
+    {
+     "AREA_NAME": "Woodland Beach Wildlife Area",
+     "LOCATION": "Woodland Beach Road",
+     "TRACT_NAME": "Goldsborough/Ennis/Cabin Tracts",
+     "TYPE": "Ramp"
+    }
+   ],
+   "service": "Society/DE_Wildlife",
+   "typef": "TYPE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Wildlife/FeatureServer/1"
+  }
+ ],
+ "st": "DE"
+}

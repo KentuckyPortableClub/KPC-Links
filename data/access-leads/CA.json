@@ -1,0 +1,110 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 22,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo",
+    "Location"
+   ],
+   "known": false,
+   "layer": "Boat Launch (Fee May Apply)",
+   "sample": [
+    {
+     "FolderPath": "SHARP boat launches.kmz/SHARP boat launches",
+     "Location": "Ship Bottom LBI",
+     "Name": "Ship Bottom Municipal Ramp",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "SHARP boat launches.kmz/SHARP boat launches",
+     "Location": "Port Republic-Galloway TWP",
+     "Name": "Chestnut Neck Launch",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "SHARP boat launches.kmz/SHARP boat launches",
+     "Location": "Stafford TWP",
+     "Name": "Cedar Run Dock Road",
+     "PopupInfo": " ",
+     "Snippet": " "
+    }
+   ],
+   "service": "Boat_Launch_(Fee_May_Apply)",
+   "typef": "",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Boat_Launch_(Fee_May_Apply)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Parking Lots",
+   "sample": [
+    {
+     "OBJECTID": 1
+    },
+    {
+     "OBJECTID": 2
+    }
+   ],
+   "service": "Angeles_Points_of_Reference",
+   "typef": "",
+   "url": "https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/Angeles_Points_of_Reference/FeatureServer/1"
+  },
+  {
+   "agency": "California State Parks",
+   "area": "GPS_LOC",
+   "count": 1,
+   "fields": [
+    "FACILITY_NBR",
+    "FACILITY_CLASS",
+    "TYPE",
+    "PLANS_LINK",
+    "DESCRIPTION",
+    "GISID",
+    "Distribution_Scope",
+    "Creator",
+    "Editor",
+    "GPS_LOC",
+    "ADA_ACCESS",
+    "PLANS",
+    "HISTORIC_SIG",
+    "CMMS_MATCH",
+    "ROAD_NAME",
+    "BRIDGE_NAME",
+    "YR_BUILT",
+    "NBI",
+    "Source",
+    "WIDTH"
+   ],
+   "known": false,
+   "layer": "ClearLakeSP_BoatLaunch",
+   "sample": [
+    {
+     "ADA_ACCESS": "Undefined",
+     "Creator": "EGIS",
+     "DESCRIPTION": "boat launch",
+     "Editor": "EGIS",
+     "FACILITY_CLASS": "D",
+     "GISID": "GIS0003674",
+     "GPS_LOC": "Undefined",
+     "PLANS": "Undefined",
+     "TYPE": "Ramp"
+    }
+   ],
+   "service": "ClearLakeSP_BoatLaunch",
+   "typef": "FACILITY_NBR",
+   "url": "https://services2.arcgis.com/AhxrK3F6WM8ECvDi/ArcGIS/rest/services/ClearLakeSP_BoatLaunch/FeatureServer/18"
+  }
+ ],
+ "st": "CA"
+}

@@ -1,0 +1,216 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 7,
+   "fields": [
+    "Name",
+    "PhotoLink",
+    "PageLink",
+    "Reservations"
+   ],
+   "known": false,
+   "layer": "Perdido Canoe Shelters",
+   "sample": [
+    {
+     "Name": "Gravel Landing",
+     "PageLink": "http://www.alabamacanoetrails.com/perdido/gravel-landing",
+     "PhotoLink": "http://conservationgis.alabama.gov/Documents/Photos/Perdido/Gravel Landing C.jpg",
+     "Reservations": "https://www.alabamainteractive.org/campsite/"
+    },
+    {
+     "Name": "Staple Fork Landing",
+     "PageLink": "http://www.alabamacanoetrails.com/perdido/staple-fork-landing",
+     "PhotoLink": "http://conservationgis.alabama.gov/Documents/Photos/Perdido/Staple Fork.jpg",
+     "Reservations": "https://www.alabamainteractive.org/campsite/"
+    },
+    {
+     "Name": "Blue Lake Landing",
+     "PageLink": "http://www.alabamacanoetrails.com/perdido/blue-lake-landing",
+     "PhotoLink": "http://conservationgis.alabama.gov/Documents/Photos/Perdido/Blue Lake.jpg",
+     "Reservations": "https://www.alabamainteractive.org/campsite/"
+    }
+   ],
+   "service": "PerdidoCanoe",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PerdidoCanoe/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [],
+   "known": false,
+   "layer": "Canoeing",
+   "sample": [
+    {
+     "Id": 0,
+     "OBJECTID": 1
+    },
+    {
+     "Id": 0,
+     "OBJECTID": 2
+    },
+    {
+     "Id": 0,
+     "OBJECTID": 3
+    }
+   ],
+   "service": "Activities",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/Activities/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Paved_Park",
+   "count": 134,
+   "fields": [
+    "Access_Are",
+    "Waterbody",
+    "Latitude",
+    "Longitude",
+    "Security_L",
+    "Parking_sp",
+    "Bathrooms",
+    "Paved_Park",
+    "Paved_Road",
+    "Handicap_A",
+    "FlyToLink"
+   ],
+   "known": true,
+   "layer": "DCNR-managed Boat Ramps",
+   "sample": [
+    {
+     "Access_Are": "Anderson Creek",
+     "Bathrooms": "No",
+     "FlyToLink": "https://conservationgis.alabama.gov/dcnr/?extent=-9711955,4139923,-9711579,4140144",
+     "Handicap_A": "No",
+     "Latitude": "N34o 49' 27\"",
+     "Longitude": "W87o 14' 33\"",
+     "Parking_sp": "20 (0)",
+     "Paved_Park": "No",
+     "Paved_Road": "Yes",
+     "Security_L": "No",
+     "Waterbody": "Wheeler"
+    },
+    {
+     "Access_Are": "Arrowhead",
+     "Bathrooms": "No",
+     "FlyToLink": "https://conservationgis.alabama.gov/dcnr/?extent=-9672987,4109827,-9672611,4110048",
+     "Handicap_A": "No",
+     "Latitude": "N34o 36' 06\"",
+     "Longitude": "W86o 53' 29\"",
+     "Parking_sp": "12 (0)",
+     "Paved_Park": "Yes",
+     "Paved_Road": "No",
+     "Security_L": "No",
+     "Waterbody": "Wheeler"
+    },
+    {
+     "Access_Are": "B.B. Comer Bridge",
+     "Bathrooms": "No",
+     "FlyToLink": "https://conservationgis.alabama.gov/dcnr/?extent=-9570555,4113954,-9570179,4114175",
+     "Handicap_A": "No",
+     "Latitude": "N34° 37' 58\"",
+     "Longitude": "W85° 58' 19\"",
+     "Parking_sp": "30 (0)",
+     "Paved_Park": "Yes",
+     "Paved_Road": "Yes",
+     "Security_L": "Yes",
+     "Waterbody": "Guntersville"
+    }
+   ],
+   "service": "DCNRBoatRamps",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/DCNRBoatRamps/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 63,
+   "fields": [
+    "Tract",
+    "Type",
+    "Name"
+   ],
+   "known": true,
+   "layer": "Access Points",
+   "sample": [
+    {
+     "Tract": "Grand Bay Savanna Tract",
+     "Type": "Parking Lot"
+    },
+    {
+     "Tract": "Grand Bay Savanna - Little River Road Addition",
+     "Type": "Parking Lot"
+    },
+    {
+     "Tract": "Grand Bay Savanna Tract",
+     "Type": "Parking Lot"
+    }
+   ],
+   "service": "Access",
+   "typef": "Type",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/Access/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Park",
+   "count": 59,
+   "fields": [
+    "Trailhead",
+    "Park"
+   ],
+   "known": true,
+   "layer": "Trailheads and Parking",
+   "sample": [
+    {
+     "Park": "Lake Lurleen",
+     "Trailhead": "South Trailhead"
+    },
+    {
+     "Park": "Lake Lurleen",
+     "Trailhead": "North Trailhead"
+    },
+    {
+     "Park": "Cathedral Caverns",
+     "Trailhead": "Blue Trail Head"
+    }
+   ],
+   "service": "SPAccess",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/SPAccess/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "Tract",
+    "Type"
+   ],
+   "known": true,
+   "layer": "State Park Entrances",
+   "sample": [
+    {
+     "Tract": "Lake Guntersville State Park",
+     "Type": "Park Entrance"
+    },
+    {
+     "Tract": "Monte Sano State Park",
+     "Type": "Park Entrance"
+    },
+    {
+     "Tract": "DeSoto State Park",
+     "Type": "Park Entrance"
+    }
+   ],
+   "service": "SPEntrances",
+   "typef": "Type",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/SPEntrances/MapServer/0"
+  }
+ ],
+ "st": "AL"
+}

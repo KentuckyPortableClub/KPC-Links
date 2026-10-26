@@ -1,0 +1,63 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "website",
+   "count": 49,
+   "fields": [
+    "title",
+    "description",
+    "image_url",
+    "image_link_url",
+    "type",
+    "tel_number",
+    "address_str",
+    "address_ctystazip",
+    "waterbody",
+    "season",
+    "shuttle",
+    "guided",
+    "website",
+    "times",
+    "note",
+    "amenities"
+   ],
+   "known": false,
+   "layer": "CanoeKayak",
+   "sample": [
+    {
+     "address_ctystazip": "Milltown, IN, 47145",
+     "address_str": "112 Main St",
+     "description": "<Null>",
+     "tel_number": "812-365-2705",
+     "title": "Cave County Canoes",
+     "type": "Water Trail",
+     "waterbody": "Blue River"
+    },
+    {
+     "address_ctystazip": "Fredericksburg, IN, 47120",
+     "address_str": "5 U.S.150",
+     "description": "<Null>",
+     "tel_number": "812-472-3140",
+     "title": "Old Mill Canoe Rental",
+     "type": "Water Trail",
+     "waterbody": "Blue River"
+    },
+    {
+     "address_ctystazip": "Brookville, IN, 47012",
+     "address_str": "7040 Whitewater River Ln",
+     "description": "<Null>",
+     "tel_number": "765-647-4904 or 888-304-4904",
+     "title": "Morgan's Outdoor Adventures, Inc.",
+     "type": "Water Trail",
+     "waterbody": "Whitewater River"
+    }
+   ],
+   "service": "Hosted/Canoe_Kayak_Rental_RO",
+   "typef": "description",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/Canoe_Kayak_Rental_RO/FeatureServer/0"
+  }
+ ],
+ "st": "IN"
+}

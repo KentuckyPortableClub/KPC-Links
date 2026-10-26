@@ -1,0 +1,597 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "FDEP/DRP",
+   "area": "PARK_NAME",
+   "count": 6593,
+   "fields": [
+    "DISTRICT_NAME",
+    "PARK_NAME",
+    "UNIT_ID",
+    "ZONE_ID",
+    "INFESTATION_AREA_ID",
+    "DATUM_ID",
+    "OOIC",
+    "COVER_CLASS_NAME",
+    "SURVEY_SCALE",
+    "POINT_SOURCE",
+    "IN_MAINTENANCE",
+    "INFESTED_AREA",
+    "INFESTATION_GROUP",
+    "SURVEY_NOTES",
+    "SPECIES_OBSERVED",
+    "DOMINANT_SPECIES",
+    "GREATEST_CONCERN",
+    "SPECIES_TREATED"
+   ],
+   "known": false,
+   "layer": "Florida State Park Exotic Plant Infestations",
+   "sample": [
+    {
+     "COVER_CLASS_NAME": "I",
+     "DATUM_ID": "NAD83",
+     "DISTRICT_NAME": "District 3",
+     "INFESTATION_AREA_ID": "AB-01-003",
+     "INFESTED_AREA": "Infested",
+     "IN_MAINTENANCE": "In Maintenance",
+     "OOIC": "PIEP",
+     "PARK_NAME": "Addison Blockhouse Historic State Park",
+     "POINT_SOURCE": "Centroid",
+     "SURVEY_SCALE": "Broad",
+     "UNIT_ID": "S00001",
+     "ZONE_ID": "AB-01"
+    },
+    {
+     "COVER_CLASS_NAME": "I",
+     "DATUM_ID": "NAD83",
+     "DISTRICT_NAME": "District 4",
+     "INFESTATION_AREA_ID": "AK-01-001",
+     "INFESTED_AREA": "Infested",
+     "IN_MAINTENANCE": "Not in Maintenance",
+     "OOIC": "PIEP",
+     "PARK_NAME": "Anclote Key Preserve State Park",
+     "POINT_SOURCE": "Centroid",
+     "SURVEY_SCALE": "Broad",
+     "UNIT_ID": "S00004",
+     "ZONE_ID": "AK-01"
+    },
+    {
+     "COVER_CLASS_NAME": "II",
+     "DATUM_ID": "NAD83",
+     "DISTRICT_NAME": "District 4",
+     "INFESTATION_AREA_ID": "AK-02-002",
+     "INFESTED_AREA": "Infested",
+     "IN_MAINTENANCE": "Not in Maintenance",
+     "OOIC": "PIEP",
+     "PARK_NAME": "Anclote Key Preserve State Park",
+     "POINT_SOURCE": "Centroid",
+     "SURVEY_SCALE": "Broad",
+     "UNIT_ID": "S00004",
+     "ZONE_ID": "AK-02"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "COVER_CLASS_NAME",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/3"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "SITE_NAME",
+   "count": 4146,
+   "fields": [
+    "UNIT_ID",
+    "SITE_ID",
+    "SITE_NAME",
+    "ACCESSIBILITY",
+    "WATER_SERVICE",
+    "SEWER_SERVICE",
+    "SURFACE",
+    "TYPE",
+    "GRILL",
+    "FIRE_PIT",
+    "COMMENTS",
+    "RESERVABLE",
+    "ELEC_SERVICE",
+    "SITE_ACCES",
+    "PICNIC_TAB",
+    "URL",
+    "CAMP_NAME",
+    "EQUIPMENT_TYPE",
+    "RESTRICTED_USE"
+   ],
+   "known": false,
+   "layer": "Florida State Park Camping Sites",
+   "sample": [
+    {
+     "ACCESSIBILITY": "Yes",
+     "COMMENTS": "Ross Prairie Campground",
+     "FIRE_PIT": "Yes",
+     "GRILL": "Yes",
+     "RESERVABLE": "Yes",
+     "SEWER_SERVICE": "No",
+     "SITE_ID": "SCOUTS CAMPSITE",
+     "SITE_NAME": "Marjorie Harris Carr Cross Florida Greenways State Recreation and Conservation Area",
+     "SURFACE": "Gravel",
+     "TYPE": "Equestrian",
+     "UNIT_ID": "S00275",
+     "WATER_SERVICE": "No"
+    },
+    {
+     "ACCESSIBILITY": "No",
+     "FIRE_PIT": "Yes",
+     "GRILL": "Yes",
+     "RESERVABLE": "No",
+     "SEWER_SERVICE": "No",
+     "SITE_ID": "group",
+     "SITE_NAME": "John Pennekamp Coral Reef State Park",
+     "TYPE": "Group",
+     "UNIT_ID": "S00015",
+     "WATER_SERVICE": "No"
+    },
+    {
+     "ACCESSIBILITY": "No",
+     "FIRE_PIT": "Yes",
+     "GRILL": "Yes",
+     "RESERVABLE": "No",
+     "SEWER_SERVICE": "No",
+     "SITE_ID": "V3",
+     "SITE_NAME": "Big Lagoon State Park",
+     "SURFACE": "Natural",
+     "TYPE": "RV/Tent",
+     "UNIT_ID": "S00128",
+     "WATER_SERVICE": "Yes"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "SURFACE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/1"
+  },
+  {
+   "agency": "RCP",
+   "area": "PARK",
+   "count": 2190,
+   "fields": [
+    "COUNTY",
+    "BEACH_OR_CITY_NAME",
+    "ACCESS_NAME",
+    "LOCATION_ADDRESS",
+    "PANHANDLE_GULF_ATLANTIC",
+    "GULF_COAST",
+    "ATLANTIC_COAST",
+    "ACCESS_SIGN",
+    "PARK",
+    "ENTRANCE_FEE",
+    "ENTRANCE_FEE_AMOUNT",
+    "PARKING_FEE",
+    "PARKING_FEE_AMOUNT",
+    "REGULAR_PARKING",
+    "NUMBER_OF_SPACES",
+    "ADA_PARKING",
+    "ADA_SPACES",
+    "RV_PARKING",
+    "RV_SPACES",
+    "LIFEGUARD"
+   ],
+   "known": false,
+   "layer": "Public Beach Access Sites",
+   "sample": [
+    {
+     "ACCESS_NAME": "Beach Park",
+     "ACCESS_SIGN": "Yes",
+     "ATLANTIC_COAST": "No",
+     "BEACH_OR_CITY_NAME": "Treasure Island",
+     "COUNTY": "Pinellas",
+     "ENTRANCE_FEE": " ",
+     "ENTRANCE_FEE_AMOUNT": " ",
+     "GULF_COAST": "Yes",
+     "LOCATION_ADDRESS": "104th Ave. & Gulf Blvd.",
+     "PANHANDLE_GULF_ATLANTIC": "Gulf",
+     "PARK": "County",
+     "PARKING_FEE": " "
+    },
+    {
+     "ACCESS_NAME": "3rd Avenue",
+     "ACCESS_SIGN": "Yes",
+     "ATLANTIC_COAST": "No",
+     "BEACH_OR_CITY_NAME": "Indian Rocks Beach",
+     "COUNTY": "Pinellas",
+     "ENTRANCE_FEE": " ",
+     "ENTRANCE_FEE_AMOUNT": " ",
+     "GULF_COAST": "Yes",
+     "LOCATION_ADDRESS": "3rd Avenue & Gulf Blvd.",
+     "PANHANDLE_GULF_ATLANTIC": "Gulf",
+     "PARK": " ",
+     "PARKING_FEE": " "
+    },
+    {
+     "ACCESS_NAME": "Apalachee Street",
+     "ACCESS_SIGN": "Yes",
+     "ATLANTIC_COAST": "No",
+     "BEACH_OR_CITY_NAME": "Gulf Lagoon Beach",
+     "COUNTY": "Bay",
+     "ENTRANCE_FEE": " ",
+     "ENTRANCE_FEE_AMOUNT": " ",
+     "GULF_COAST": "Yes",
+     "LOCATION_ADDRESS": "30 feet East of Appalachee Street; & Surf Drive",
+     "PANHANDLE_GULF_ATLANTIC": "Panhandle",
+     "PARK": " ",
+     "PARKING_FEE": " "
+    }
+   ],
+   "service": "OpenData/AQUATIC_PRESERVES",
+   "typef": "CAMPING_FULL_FACILITY",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/AQUATIC_PRESERVES/MapServer/1"
+  },
+  {
+   "agency": "Florida Fish and Wildlife Conservation Commission",
+   "area": "NAME_WMA",
+   "count": 343,
+   "fields": [
+    "NAME_WMA",
+    "NAME_ENT",
+    "TYPE_MGT",
+    "TYPE_ENT",
+    "WEBSITE"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Area Entrances Florida",
+   "sample": [
+    {
+     "NAME_ENT": "Gate 2 Entrance",
+     "NAME_WMA": "John C. and Mariana Jones/Hungryland WEA",
+     "TYPE_ENT": "Secondary",
+     "TYPE_MGT": "Lead",
+     "WEBSITE": "http://myfwc.com/viewing/recreation/wmas/lead/jones-hungryland/"
+    },
+    {
+     "NAME_ENT": "Gate 3 Entrance",
+     "NAME_WMA": "John C. and Mariana Jones/Hungryland WEA",
+     "TYPE_ENT": "Secondary",
+     "TYPE_MGT": "Lead",
+     "WEBSITE": "http://myfwc.com/viewing/recreation/wmas/lead/jones-hungryland/"
+    },
+    {
+     "NAME_ENT": "Gate 5 Entrance",
+     "NAME_WMA": "John C. and Mariana Jones/Hungryland WEA",
+     "TYPE_ENT": "Secondary",
+     "TYPE_MGT": "Lead",
+     "WEBSITE": "http://myfwc.com/viewing/recreation/wmas/lead/jones-hungryland/"
+    }
+   ],
+   "service": "Open_Data/Wildlife_Management_Area_Entrances_Florida",
+   "typef": "TYPE_MGT",
+   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Area_Entrances_Florida/MapServer/0"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "SITE_NAME",
+   "count": 4898,
+   "fields": [
+    "POI_NAME",
+    "POI_CLASSIFICATION",
+    "SITE_NAME",
+    "ACCESSIBILITY"
+   ],
+   "known": true,
+   "layer": "Florida State Park Points of Interest",
+   "sample": [
+    {
+     "ACCESSIBILITY": "UnK",
+     "POI_CLASSIFICATION": "Restroom",
+     "POI_NAME": "Restroom (Dot) Nassau Bridge",
+     "SITE_NAME": "Big Talbot Island State Park"
+    },
+    {
+     "ACCESSIBILITY": "UnK",
+     "POI_CLASSIFICATION": "Restroom",
+     "POI_NAME": "Restroom",
+     "SITE_NAME": "Avalon State Park"
+    },
+    {
+     "ACCESSIBILITY": "UnK",
+     "POI_CLASSIFICATION": "Picnic Pavilion",
+     "POI_NAME": "Picnic Pavilion",
+     "SITE_NAME": "Avalon State Park"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "POI_CLASSIFICATION",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/6"
+  },
+  {
+   "agency": "Funded by a grant from the United States Fish and Wildlife Service Federal Aid i",
+   "area": "",
+   "count": 2628,
+   "fields": [
+    "RampID",
+    "RampType",
+    "RampName",
+    "AccessType",
+    "PrimaryAdminEntity",
+    "PartnerAdminEntity",
+    "Status",
+    "Hours",
+    "isFeeRequired",
+    "FeeCollectionType",
+    "RampSurface",
+    "RampCondition",
+    "DockType",
+    "ParkingSurface",
+    "ParkingCondition",
+    "RestroomType",
+    "isRestroomAccessible",
+    "AccessibilityLevel",
+    "Street1",
+    "Street2"
+   ],
+   "known": true,
+   "layer": "FWC Florida Boat Ramp Inventory",
+   "sample": [
+    {
+     "AccessType": "Government Owned for General Public Use",
+     "FeeCollectionType": "None",
+     "Hours": "Daytime Use Only",
+     "PartnerAdminEntity": "Paynes Prairie Preserve State Park",
+     "PrimaryAdminEntity": "Alachua County",
+     "RampCondition": "Unknown",
+     "RampID": "AL00001AA",
+     "RampName": "Prairie Creek - Camps Canal Take Out Point (Potano Paddling Trail)",
+     "RampSurface": "Mud, sand, gravel",
+     "RampType": "Hand Launch Only",
+     "Status": "Open for Business",
+     "isFeeRequired": "No"
+    },
+    {
+     "AccessType": "Government Owned for General Public Use",
+     "FeeCollectionType": "None",
+     "Hours": "24 Hours",
+     "PrimaryAdminEntity": "Alachua County",
+     "RampCondition": "Good to Excellent",
+     "RampID": "AL10001ZL",
+     "RampName": "Lochloosa Park",
+     "RampSurface": "Concrete",
+     "RampType": "Stand Alone Ramp",
+     "Status": "Open for Business",
+     "isFeeRequired": "No"
+    },
+    {
+     "AccessType": "Government Owned for General Public Use",
+     "FeeCollectionType": "None",
+     "Hours": "6:00 AM to 6:30 PM",
+     "PrimaryAdminEntity": "Alachua County",
+     "RampCondition": "Good to Excellent",
+     "RampID": "AL10002SA",
+     "RampName": "Lake Alto Park",
+     "RampSurface": "Concrete",
+     "RampType": "Stand Alone Ramp",
+     "Status": "Open for Business",
+     "isFeeRequired": "No"
+    }
+   ],
+   "service": "Open_Data/FWC_Florida_Boat_Ramp_Inventory",
+   "typef": "RampType",
+   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/FWC_Florida_Boat_Ramp_Inventory/MapServer/4"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "SITE_NAME",
+   "count": 299,
+   "fields": [
+    "UNIT_ID",
+    "SITE_NAME",
+    "TYPE",
+    "COMMENT_"
+   ],
+   "known": true,
+   "layer": "Florida State Park Entrances",
+   "sample": [
+    {
+     "SITE_NAME": "Palatka-to-St. Augustine State Trail",
+     "TYPE": "Main Entrance",
+     "UNIT_ID": "S00283"
+    },
+    {
+     "SITE_NAME": "Withlacoochee State Trail",
+     "TYPE": "Main Entrance",
+     "UNIT_ID": "S00224"
+    },
+    {
+     "SITE_NAME": "Withlacoochee State Trail",
+     "TYPE": "Secondary Entrance",
+     "UNIT_ID": "S00224"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "TYPE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/2"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "NAME",
+   "count": 169,
+   "fields": [
+    "REC_ID",
+    "RIVER",
+    "TYPE",
+    "NAME",
+    "OWNNAME",
+    "BANK",
+    "PARKING",
+    "USE_FEE",
+    "RAMP_STAT",
+    "RAMP_COND",
+    "RAMP_SURF",
+    "ADA_ACCESS",
+    "FT_SET",
+    "OTHER_FAC",
+    "COMMENTS",
+    "PHOTO_NM_1",
+    "PHOTO_NM_2",
+    "PHOTO_NM_3",
+    "PHOTO_NM_4",
+    "LAT_DMS"
+   ],
+   "known": true,
+   "layer": "Land Management Boat Canoe Launch",
+   "sample": [
+    {
+     "ADA_ACCESS": " ",
+     "BANK": "W",
+     "NAME": "JENNINGS BLUFF CANOE LAUNCH",
+     "OWNNAME": "SRWMD",
+     "PARKING": " ",
+     "RAMP_COND": " ",
+     "RAMP_STAT": " ",
+     "RAMP_SURF": "WOOD STEPS",
+     "REC_ID": "70-1",
+     "RIVER": "ALAPAHA",
+     "TYPE": "CANOE LAUNCH",
+     "USE_FEE": " "
+    },
+    {
+     "ADA_ACCESS": " ",
+     "BANK": "E",
+     "NAME": "ALAPAHOOCHEE RAMP",
+     "OWNNAME": "SRWMD_HAMILTON",
+     "PARKING": " ",
+     "RAMP_COND": " ",
+     "RAMP_STAT": " ",
+     "RAMP_SURF": "CONCRETE",
+     "REC_ID": "03-1",
+     "RIVER": "ALAPAHA",
+     "TYPE": "BOAT RAMP",
+     "USE_FEE": " "
+    },
+    {
+     "ADA_ACCESS": " ",
+     "BANK": "E",
+     "NAME": "MANDALAY RAMP",
+     "OWNNAME": "USFWS",
+     "PARKING": " ",
+     "RAMP_COND": "GOOD",
+     "RAMP_STAT": " ",
+     "RAMP_SURF": "CONCRETE",
+     "REC_ID": " ",
+     "RIVER": "AUCILLA",
+     "TYPE": "BOAT RAMP",
+     "USE_FEE": "YES"
+    }
+   ],
+   "service": "Land_Management_Recreation_Boat_Canoe",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Land_Management_Recreation_Boat_Canoe/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "CON_AREA",
+   "count": 169,
+   "fields": [
+    "TRACT_NAME",
+    "CON_AREA",
+    "NAME",
+    "F911_ADDRS",
+    "TYPE",
+    "SUBTYPE",
+    "MAN_FREQ",
+    "COMMENTS",
+    "REGION",
+    "GATE",
+    "KIOSK",
+    "ENT_SIGN",
+    "RULE_SIGN",
+    "MORT_FENCE",
+    "GlobalID",
+    "PRIORITY"
+   ],
+   "known": true,
+   "layer": "Recreation_Parking",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "CON_AREA": "HOLTON CREEK",
+     "ENT_SIGN": " ",
+     "F911_ADDRS": " ",
+     "GATE": " ",
+     "KIOSK": " ",
+     "MAN_FREQ": "BM",
+     "NAME": " ",
+     "REGION": "NE",
+     "SUBTYPE": "EQUESTRIAN",
+     "TRACT_NAME": "HOLTON CREEK",
+     "TYPE": "PARKING"
+    },
+    {
+     "COMMENTS": "MANAGE?",
+     "CON_AREA": "HOLTON CREEK",
+     "ENT_SIGN": " ",
+     "F911_ADDRS": " ",
+     "GATE": "SWING ARM (2)",
+     "KIOSK": " ",
+     "MAN_FREQ": "BM",
+     "NAME": "HOLTON CREEK HUNTER CHECK STATION",
+     "REGION": "NE",
+     "SUBTYPE": "TRAILHEAD",
+     "TRACT_NAME": "HOLTON CREEK",
+     "TYPE": "PARKING"
+    },
+    {
+     "COMMENTS": " ",
+     "CON_AREA": "LOWER STEINHATCHEE",
+     "ENT_SIGN": "ENTRANCE SIGN",
+     "F911_ADDRS": " ",
+     "GATE": "SWING ARM (2)",
+     "KIOSK": "YES",
+     "MAN_FREQ": "BM",
+     "NAME": "TENNILLE TRAILHEAD, PAVILION, & PICNIC AREA",
+     "REGION": "SW",
+     "SUBTYPE": "EQUESTRIAN",
+     "TRACT_NAME": "STEINHATCHEE FALLS",
+     "TYPE": "PARKING"
+    }
+   ],
+   "service": "Recreation_Parking",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/Recreation_Parking/FeatureServer/0"
+  },
+  {
+   "agency": "St Johns River Water Management District (SJRWMD), other agencies where applicab",
+   "area": "CONSERVATION_AREA",
+   "count": 140,
+   "fields": [
+    "CONSERVATION_AREA",
+    "LONGITUDE",
+    "LATITUDE",
+    "MGRS",
+    "ADDRESS_911"
+   ],
+   "known": true,
+   "layer": "Management Area Parking",
+   "sample": [
+    {
+     "CONSERVATION_AREA": "Lake Apopka North Shore",
+     "LATITUDE": "28.6745555430225",
+     "LONGITUDE": "-81.7077002906345",
+     "MGRS": "17R MM 30854 72135"
+    },
+    {
+     "CONSERVATION_AREA": "Lake Apopka North Shore",
+     "LATITUDE": "28.704448148976",
+     "LONGITUDE": "-81.6730862088766",
+     "MGRS": "17R MM 34255 75427"
+    },
+    {
+     "ADDRESS_911": "997 Apopka Loop Trl, Unincorportated, FL 32703",
+     "CONSERVATION_AREA": "Lake Apopka North Shore",
+     "LATITUDE": "28.6686720290002",
+     "LONGITUDE": "-81.5925846296783",
+     "MGRS": "17R MM 42099 71422"
+    }
+   ],
+   "service": "Management_Area_Parking",
+   "typef": "",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Management_Area_Parking/FeatureServer/0"
+  }
+ ],
+ "st": "FL"
+}

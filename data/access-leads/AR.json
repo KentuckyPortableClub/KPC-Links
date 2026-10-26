@@ -1,0 +1,180 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "wma_name",
+   "count": 1062,
+   "fields": [
+    "agfc_id",
+    "official_name",
+    "short_name",
+    "feature_category",
+    "feature_group",
+    "feature_type",
+    "feature_subtype",
+    "primary_use",
+    "public_access",
+    "fee_status",
+    "op_status",
+    "construction_material",
+    "accessibility_standard",
+    "historic_status",
+    "owner",
+    "aasis_id",
+    "cost_center",
+    "project_number",
+    "wma_id",
+    "wma_name"
+   ],
+   "known": false,
+   "layer": "Site Features",
+   "sample": [
+    {
+     "feature_subtype": "Concrete",
+     "feature_type": "Boating Access",
+     "official_name": "Caney Creek Boat Ramp",
+     "short_name": "Caney Creek "
+    },
+    {
+     "feature_subtype": "Stationary",
+     "feature_type": "Courtesy Dock",
+     "official_name": "Lake Conway - Adams Lake Landing Courtesy Dock",
+     "short_name": "Lake Conway Courtesy Dock"
+    },
+    {
+     "feature_subtype": "Dirt",
+     "feature_type": "Boating Access",
+     "official_name": "Harris Brake GTR Boating Access",
+     "short_name": "Harris Brake GTR Access"
+    }
+   ],
+   "service": "AGFC_Water_Access",
+   "typef": "feature_category",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Water_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 907,
+   "fields": [
+    "flabel",
+    "ftype",
+    "fdescrip",
+    "comments",
+    "waterbody",
+    "location",
+    "hyp_1"
+   ],
+   "known": false,
+   "layer": "boatAndKayakAccess",
+   "sample": [
+    {
+     "fdescrip": "Concrete",
+     "flabel": "Caney Creek ",
+     "ftype": "Boating Access",
+     "waterbody": "Conway Lake"
+    },
+    {
+     "comments": "Not true boat ramp users launch from road when flooded",
+     "fdescrip": "Dirt",
+     "flabel": "Harris Brake GTR Access",
+     "ftype": "Boating Access",
+     "location": "Perryville",
+     "waterbody": "Harris Brake Lake"
+    },
+    {
+     "fdescrip": "Dirt",
+     "flabel": "Cypress Point ",
+     "ftype": "Boating Access",
+     "waterbody": "Harris Brake Lake"
+    }
+   ],
+   "service": "boatAndKayakAccess",
+   "typef": "ftype",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/boatAndKayakAccess/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "wma_name",
+   "count": 238,
+   "fields": [
+    "agfc_id",
+    "official_name",
+    "short_name",
+    "feature_category",
+    "feature_group",
+    "feature_type",
+    "feature_subtype",
+    "primary_use",
+    "public_access",
+    "fee_status",
+    "op_status",
+    "construction_material",
+    "accessibility_standard",
+    "historic_status",
+    "owner",
+    "aasis_id",
+    "cost_center",
+    "project_number",
+    "wma_id",
+    "wma_name"
+   ],
+   "known": false,
+   "layer": "Site Features",
+   "sample": [
+    {
+     "feature_type": "Bank Fishing",
+     "official_name": "Conway Lake Bank Fishing Area #6",
+     "short_name": "Lake Conway Bank Fishing Area #6"
+    },
+    {
+     "feature_type": "Bank Fishing",
+     "official_name": "Conway Lake Bank Fishing Area #4",
+     "short_name": "Lake Conway Bank Fishing Area #4"
+    },
+    {
+     "feature_subtype": "Rock - Fishing Jetty",
+     "feature_type": "Fishing Jetty",
+     "official_name": "Adams Lake Fishing Jetty"
+    }
+   ],
+   "service": "AGFC_Fishing_Access",
+   "typef": "feature_category",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Fishing_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 47,
+   "fields": [
+    "draw_id",
+    "qrc_url",
+    "ufd"
+   ],
+   "known": false,
+   "layer": "Parking",
+   "sample": [
+    {
+     "draw_id": "2026 Drew Co. - Baxter A",
+     "qrc_url": "http://maps.google.com/maps?q=33.448123 -91.507857",
+     "ufd": "Yes"
+    },
+    {
+     "draw_id": "2026 Craighead Co. - Jonesboro A",
+     "qrc_url": "http://maps.google.com/maps?q=35.75601 -90.800324",
+     "ufd": "Yes"
+    },
+    {
+     "draw_id": "2026 Craighead Co. - Jonesboro B",
+     "qrc_url": "http://maps.google.com/maps?q=35.756007 -90.80033",
+     "ufd": "Yes"
+    }
+   ],
+   "service": "2026_ARWRice_Parking_-_Public_View",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/2026_ARWRice_Parking_-_Public_View/FeatureServer/0"
+  }
+ ],
+ "st": "AR"
+}
