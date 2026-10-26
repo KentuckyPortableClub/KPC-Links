@@ -53,8 +53,11 @@ REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + C
 CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0}[PASS]   # 4 = access pins only, for candidates that have none
 DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002}[PASS]
 PREC = {1: 5, 2: 5, 3: 6, 4: 6}[PASS]
-SHRINK = 45.72            # 50 yards: what must remain after shrinking the overlap this far = a spot 100 yards across
-STRETCH = 91.44           # 100 yards of a trail / river inside the other park
+# Oct 26 2:11 PM (Brandon, RULE CHANGES): the shared land must hold a spot at least 50 YARDS across (POTA only says the
+# overlap must ENTIRELY contain the activator + station; 50 yd still clears map error); 50-100 yd = 'small overlap'.
+SHRINK = 22.86            # 25 yards in from every edge = a spot 50 yards across
+SMALL_M = 91.44           # under 100 yards across = 'small overlap: tight fit, check carefully'
+STRETCH = 0.0             # trails + rivers: POTA's 100-ft rule only (no KPC 'length along the line')
 # POTA's trail rule (Activator Guide, docs.pota.app): 'Your station must be located entirely within 100 feet (30.5m) of the
 # trail'; KPC's guide applies the same to river parks (within 100 ft of the water). So a trail / river counts with another
 # park where a station spot sits INSIDE that park (5 m in) and within 100 ft of the line (5 m to spare): 25 m.
@@ -147,6 +150,7 @@ def official_parks(PIN):
             if not tr: skip['no outline'] += 1; continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': 'US-KY', 'ids': [f'{t[0]}|{t[1]}' for t in tr], 'names': {f'{t[0]}|{t[1]}': t[1] for t in tr}}
+            if all(t[0] != 'bpad' for t in tr): AGENCY.add(ref)   # Kentucky's agency files (state parks, KDFWR, nature preserves, NPS, FWS)
         # Daniel Boone NF: its KY file is the PROCLAMATION line (private land and towns inside). The Forest Service's own FEE
         # land comes from PAD-US instead (downloaded each run), so only real forest land counts.
         if 'US-4484' in PIN:
@@ -176,6 +180,10 @@ def official_parks(PIN):
                 skip['approximate'] += 1; continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
+            # rule (c): the agency's OWN layer (state parks / WMA / NPS / FWS / river corridor maps), joined by name -> its
+            # outline outranks POTA's pin. PAD-US joins (a national compilation) and BLM planning areas keep the pin test.
+            if all(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() not in ('rst', 'hma', 'rma') and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3):
+                AGENCY.add(ref)
     for f in sorted(pathlib.Path('data/ca-key').glob('CA-*.json')):
         if not re.fullmatch(r'CA-[A-Z]{2}', f.stem): continue
         for ref, p in json.load(open(f))['parks'].items():
@@ -185,6 +193,7 @@ def official_parks(PIN):
             if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
+            if all(isinstance(x[0], str) and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3): AGENCY.add(ref)   # provincial / Parks Canada layer, not CPCAD
     try: skip['Kentucky (own list)'] = len(json.load(open('data/parkinfo/US-KY.json'))['parks'])
     except Exception: skip['Kentucky (own list)'] = 'all (ky-overlaps.geojson)'  # noqa: BLE001
     return parks, skip
@@ -530,8 +539,10 @@ def area_spots(G, refs, box):
             ap = cv2.approxPolyDP(big, 1.5, True).reshape(-1, 2)
             if len(ap) > 300: ap = ap[::int(math.ceil(len(ap) / 300))]
             shape = [F.ll(int(c), int(r)) for c, r in ap]
+            w = round(float(d.max()) * 2)
             out.append({'refs': sorted(refs), 'kind': 'area', 'center': F.ll(int(c0), int(r0))[::-1],
-                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': round(float(d.max()) * 2), 'shape': shape})
+                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape,
+                        **({'small': 'small overlap: tight fit, check carefully'} if w < SMALL_M else {})})
     return merge(out)
 
 
@@ -584,7 +595,7 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
         run, best = [], []
         for i, p in enumerate(pts + [None]):
             if p is not None and ins[i]: run.append(p); continue
-            if len(run) > 1:
+            if run:
                 L = sum(math.hypot((b2[0] - a2[0]) * 111320 * math.cos(math.radians(a2[1])), (b2[1] - a2[1]) * 110574) for a2, b2 in zip(run, run[1:]))
                 if L >= STRETCH:
                     st = run[::max(1, len(run) // 200)]
@@ -666,6 +677,7 @@ def same_outline(parks):
     return out
 
 
+AGENCY = set()
 WILDRIVER = re.compile(r'wild (and|&) scenic|wild river|scenic river|recreational river', re.I)
 
 
@@ -674,6 +686,7 @@ def pin_inside(ref, PIN, G, LN):
     # Brandon Oct 26 2 PM: 'the wild rivers, I have to side with the wild river boundaries being correct and POTA wrong':
     # a river corridor's official boundary wins over POTA's pin (pins sit at a road or bridge outside the corridor)
     if WILDRIVER.search(f'{nm} {PIN[ref][4]}'): return True
+    if ref in AGENCY: return True   # rule (c) Oct 26 2:11 PM: the agency's own boundary outranks POTA's pin
     d = .004
     b = [lo - d, la - d, lo + d, la + d]
     F = Frame(b, CELL, 0)
@@ -797,13 +810,54 @@ def nearest_access(spot, st_of):
 
 
 FILES = r'W-[A-Z]{2}' if REGION == 'world' else r'US-KY' if REGION == 'ky' else r'(?!US-KY)(US|CA)-[A-Z]{2}'
+OWN = {}
+FEDDES = {'wsrc', 'akht', 'wld', 'wsa', 'wbl', 'nca', 'hma', 'rst', 'rma'}   # federal DESIGNATIONS / planning areas, not ownership
+
+
+def owners(parks):
+    """Rule (e), Brandon Oct 26 2:11 PM: {ref: (fee owners {'FED','STAT','LOC'…}, has a designation / management record)}.
+    PAD-US records say it (Own_Type + Category); a state layer of kind 'park' = state-owned; FWS = federal; federal
+    designation layers (wilderness, wild river corridors, NCAs, BLM areas) and WMA / preserve / river layers = designation
+    or management (never flagged). Kentucky: state parks = state, NPS / FWS / Daniel Boone fee land = federal."""
+    pad = {}
+    for f in CACHE_US.glob('US-*.json.gz'):
+        try:
+            with gzip.open(f, 'rt', encoding='utf-8') as fh:
+                for r in json.load(fh).get('recs') or []: pad[r.get('OBJECTID')] = (r.get('Own_Type') or '', r.get('Category') or '')
+        except Exception: pass  # noqa: BLE001
+    kind = {}
+    try:
+        for v in json.load(open('data/state-gis.json'))['states'].values():
+            for e in v: kind[str(e.get('url') or '').rstrip('/') + '/query'] = e.get('kind')
+    except Exception: pass  # noqa: BLE001
+    for ref, p in parks.items():
+        fee, des = set(), False
+        for rid in p.get('ids') or []:
+            if REGION == 'ky':
+                src = str(rid).split('|')[0]
+                if src == 'bstate': fee.add('STAT')
+                elif src in ('bnps', 'bfws', 'padus'): fee.add('FED')
+                else: des = True
+            elif isinstance(rid, int) and not p['st'].startswith(('CA-', 'W-')):
+                o, c = pad.get(rid, ('', ''))
+                if c == 'Fee' and o: fee.add('STAT' if o in ('STAT', 'SDNR', 'SPR', 'SFW', 'SLB') else o)
+                else: des = True
+            else:
+                m = re.fullmatch(r'([a-z]+)\d+', str(rid)); pre = m.group(1) if m else ''
+                if pre == 'fws': fee.add('FED')
+                elif pre in FEDDES or not pre: des = True
+                elif kind.get((LAYERS_US.get(pre) or [''])[0]) == 'park' and 'National Park Service' not in str((LAYERS_US.get(pre) or ['', '', ''])[2]): fee.add('STAT')
+                else: des = True
+        OWN[ref] = (fee, des)
+
+
 def two_owners(refs, parks):
-    """Brandon Oct 26 2 PM ('Cumberland Falls and another state park … one is state one is federal'): two parks whose land
-    is OWNED by two different governments cannot really share ground. Kentucky: a state park (bstate) on the Forest Service's
-    fee land (Daniel Boone from PAD-US)."""
-    if REGION != 'ky': return False
-    kinds = [{i.split('|')[0] for i in parks.get(r, {}).get('ids', [])} for r in refs]
-    return any('bstate' in k for k in kinds) and any('padus' in k for k in kinds)
+    """Two parks whose land is OWNED by different governments (federal fee land + a state-owned park) cannot really share
+    ground: flag 'likely map mistake' unless either one is a designation, lease or management record."""
+    if not OWN: owners(parks)
+    got = [OWN.get(r) for r in refs]
+    if any(g is None or g[1] or not g[0] for g in got): return False
+    return any(not (a[0] & b[0]) for i, a in enumerate(got) for b in got[i + 1:])
 
 
 def file_of(st): return OUT / f'{st}.json'
@@ -816,6 +870,9 @@ def slim(spots):
     """Storage (Oct 26: France alone gave 68,000 spots = 94 MB): the world keeps each spot's box, not its outline; North
     America keeps an outline of at most 80 points."""
     for s in spots:
+        if s.get('kind') == 'area' and s.get('wide_m'):
+            if s['wide_m'] < SMALL_M: s['small'] = 'small overlap: tight fit, check carefully'
+            else: s.pop('small', None)
         if s.get('shape'):
             if not s.get('box'): s['box'] = [round(v, 5) for v in bbox_lines([s['shape']])]
             if REGION == 'world': s.pop('shape', None)
@@ -956,7 +1013,7 @@ def main():
                     s['passes'][PASS - 1] = 0
                     s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else '')
                 if PASS == 3 and m and two_owners(s['refs'], parks):
-                    s['status'] = 'check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)'; continue
+                    s['status'] = 'check: two owners (likely map mistake: two governments cannot own the same ground; a lease would change that)'; continue
                 if PASS == 3 and m:
                     pin_ok = {r: pin_inside(r, PIN, G, LN) for r in s['refs']}
                     s['pins_inside'] = pin_ok
