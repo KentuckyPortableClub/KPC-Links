@@ -1,132 +1,277 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
- "pass2": "2026-10-26",
- "pass3": "2026-10-26",
  "spots": [
   {
-   "access": [
-    43.466483,
-    -95.125181,
-    "Parking (Iowa DNR; one 403 on a query)",
-    "US-5736",
-    181
-   ],
-   "access_pin": {
-    "at": [
-     43.473173,
-     -95.125357
-    ],
-    "from": "road",
-    "name": "public road",
-    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
-    "walk_m": 0
-   },
-   "acres": 39.5,
+   "acres": 9.7,
    "box": [
-    -95.12617,
-    43.46399,
-    -95.12109,
-    43.47782
+    -96.01939,
+    41.48154,
+    -96.01627,
+    41.48895
    ],
    "center": [
-    43.46724,
-    -95.123197
+    41.488589,
+    -96.019392
    ],
    "found": "2026-10-26",
-   "id": "US-10174+US-5736@area@43.467,-95.123",
+   "id": "US-0268+US-3487@area@41.489,-96.019",
    "kind": "area",
-   "maps": [
-    [
-     "US-10174",
-     "https://iowadnr.maps.arcgis.com/apps/webappviewer/index.html?id=63ec8e3d7fbc4f3bb0cf01f232118e68&query=Atlas_Web_Application_4143_1966%2CAREA_NAME%2CMarble%20Beach%20State%20Recreation%20Area"
-    ],
-    [
-     "US-5736",
-     "https://iowastateparks.reserveamerica.com/camping/templar-state-recreation-area/r/campgroundDetails.do?contractCode=IA&parkId=610199"
-    ]
-   ],
-   "names": {
-    "US-10174": "Marble Beach State Recreation Area",
-    "US-5736": "Templar State Recreation Area"
-   },
    "passes": [
     1,
-    1,
-    1
+    0,
+    0
    ],
-   "pins_inside": {
-    "US-10174": true,
-    "US-5736": true
-   },
+   "refs": [
+    "US-0268",
+    "US-3487"
+   ],
+   "shape": [
+    [
+     -96.019392,
+     41.488951
+    ],
+    [
+     -96.018673,
+     41.484791
+    ],
+    [
+     -96.016273,
+     41.481535
+    ],
+    [
+     -96.019152,
+     41.486599
+    ]
+   ],
+   "small": "small overlap: tight fit, check carefully",
+   "status": "pass 1",
+   "wide_m": 80
+  },
+  {
+   "acres": 52.8,
+   "box": [
+    -96.0525,
+    41.50686,
+    -96.02611,
+    41.54068
+   ],
+   "center": [
+    41.535797,
+    -96.02755
+   ],
+   "found": "2026-10-26",
+   "id": "US-0268+US-3487@area@41.536,-96.028",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-0268",
+    "US-3487"
+   ],
+   "shape": [
+    [
+     -96.026111,
+     41.540681
+    ],
+    [
+     -96.02683,
+     41.539777
+    ],
+    [
+     -96.030669,
+     41.523498
+    ],
+    [
+     -96.031389,
+     41.522593
+    ],
+    [
+     -96.034268,
+     41.520966
+    ],
+    [
+     -96.034268,
+     41.512826
+    ],
+    [
+     -96.036428,
+     41.509028
+    ],
+    [
+     -96.040507,
+     41.506857
+    ],
+    [
+     -96.052503,
+     41.508304
+    ],
+    [
+     -96.046745,
+     41.507038
+    ],
+    [
+     -96.040267,
+     41.506857
+    ],
+    [
+     -96.037867,
+     41.507762
+    ],
+    [
+     -96.036428,
+     41.509028
+    ],
+    [
+     -96.034028,
+     41.51355
+    ],
+    [
+     -96.033548,
+     41.517529
+    ],
+    [
+     -96.034268,
+     41.520966
+    ],
+    [
+     -96.031869,
+     41.522051
+    ],
+    [
+     -96.030669,
+     41.523317
+    ],
+    [
+     -96.02731,
+     41.535616
+    ],
+    [
+     -96.02683,
+     41.539596
+    ]
+   ],
+   "small": "small overlap: tight fit, check carefully",
+   "status": "pass 1",
+   "wide_m": 80
+  },
+  {
+   "acres": 47.0,
+   "box": [
+    -95.12591,
+    43.46393,
+    -95.12096,
+    43.47768
+   ],
+   "center": [
+    43.467733,
+    -95.123189
+   ],
+   "found": "2026-10-26",
+   "id": "US-10174+US-5736@area@43.468,-95.123",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
    "refs": [
     "US-10174",
     "US-5736"
    ],
    "shape": [
     [
-     -95.126167,
-     43.477821
+     -95.125912,
+     43.477681
     ],
     [
-     -95.126106,
-     43.476827
+     -95.124179,
+     43.466648
     ],
     [
-     -95.124373,
-     43.466879
+     -95.122694,
+     43.463935
     ],
     [
-     -95.123011,
-     43.463985
+     -95.120961,
+     43.463935
     ],
     [
-     -95.121092,
-     43.463985
+     -95.121951,
+     43.467914
     ],
     [
-     -95.121526,
-     43.465251
-    ],
-    [
-     -95.121773,
-     43.466788
-    ],
-    [
-     -95.122145,
-     43.467919
-    ],
-    [
-     -95.122516,
-     43.468597
-    ],
-    [
-     -95.124001,
-     43.470451
-    ],
-    [
-     -95.124434,
-     43.471446
-    ],
-    [
-     -95.12493,
-     43.473345
-    ],
-    [
-     -95.125301,
-     43.473933
-    ],
-    [
-     -95.12561,
-     43.47538
-    ],
-    [
-     -95.125549,
-     43.477821
+     -95.124427,
+     43.471893
     ]
    ],
-   "status": "candidate",
-   "wide_m": 206
+   "status": "pass 1",
+   "wide_m": 216
+  },
+  {
+   "acres": 12.9,
+   "box": [
+    -93.46226,
+    43.11777,
+    -93.45512,
+    43.12609
+   ],
+   "center": [
+    43.11958,
+    -93.459062
+   ],
+   "found": "2026-10-26",
+   "id": "US-2284+US-2306@area@43.120,-93.459",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-2284",
+    "US-2306"
+   ],
+   "shape": [
+    [
+     -93.462262,
+     43.126091
+    ],
+    [
+     -93.458816,
+     43.121931
+    ],
+    [
+     -93.459554,
+     43.117771
+    ],
+    [
+     -93.45857,
+     43.11958
+    ],
+    [
+     -93.455124,
+     43.121931
+    ],
+    [
+     -93.4566,
+     43.121388
+    ],
+    [
+     -93.45857,
+     43.11976
+    ],
+    [
+     -93.458816,
+     43.121931
+    ]
+   ],
+   "small": "small overlap: tight fit, check carefully",
+   "status": "pass 1",
+   "wide_m": 80
   }
  ],
  "st": "US-IA"

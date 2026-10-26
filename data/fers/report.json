@@ -6,18 +6,24 @@
   "left out": {
    "Kentucky (own list)": "all (ky-overlaps.geojson)",
    "approximate": 414,
-   "no outline": 3810,
+   "no outline": 3731,
    "no pin": 0,
-   "pin well outside": 255
+   "pin well outside": 262
   },
-  "official parks": 14619,
-  "pairs tested": 20318,
-  "pairs whose boxes touch": 20318,
-  "parks done by the box test": 3337,
-  "parks whose outline could not be read": 666,
+  "official parks": 14681,
+  "pairs tested": 20211,
+  "pairs whose boxes touch": 20211,
+  "parks done by the box test": 3303,
+  "parks whose outline could not be read": 728,
   "pass": 1,
-  "problems": [],
-  "with official lines": 234
+  "problems": [
+   "parks/Missouri_State_Parks_Boundaries/FeatureServer/3/query: not read (HTTP Error 500: Internal Server Error)",
+   "parks/Missouri_State_Parks_Boundaries/FeatureServer/0/query: not read (HTTP Error 500: Internal Server Error)",
+   "parks/Missouri_State_Parks_Boundaries/FeatureServer/0/query: not read (HTTP Error 500: Internal Server Error)",
+   "parks/Missouri_State_Parks_Boundaries/FeatureServer/0/query: not read (HTTP Error 500: Internal Server Error)",
+   "ER_Biotics/ER_Biotics_WGS84_Managed_Lands/MapServer/1/query: not read ({'code': 400, 'message': 'Failed to execute query.', 'detail)"
+  ],
+  "with official lines": 240
  },
  "pass2": {
   "agree with the pass before": 166,
@@ -79,76 +85,76 @@
  },
  "per state": {
   "CA-AB": {
-   "candidates": 113,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 268,
-   "pass2": 116,
-   "spots": 268
+   "pass1": 396,
+   "pass2": 0,
+   "spots": 396
   },
   "CA-BC": {
-   "candidates": 25,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 9,
-   "n-fers": 0,
-   "pass1": 178,
-   "pass2": 30,
-   "spots": 178
+   "lines": 13,
+   "n-fers": 2,
+   "pass1": 299,
+   "pass2": 0,
+   "spots": 299
   },
   "CA-MB": {
-   "candidates": 1,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 15,
-   "pass2": 7,
-   "spots": 15
+   "pass1": 18,
+   "pass2": 0,
+   "spots": 18
   },
   "CA-NB": {
-   "candidates": 1,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 17,
-   "pass2": 2,
-   "spots": 17
+   "pass1": 28,
+   "pass2": 0,
+   "spots": 28
   },
   "CA-NL": {
-   "candidates": 48,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 52,
-   "pass2": 48,
-   "spots": 52
+   "pass1": 56,
+   "pass2": 0,
+   "spots": 56
   },
   "CA-NS": {
    "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 26,
+   "pass1": 37,
    "pass2": 0,
-   "spots": 26
+   "spots": 37
   },
   "CA-NU": {
-   "candidates": 23,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 4,
-   "pass1": 64,
-   "pass2": 25,
-   "spots": 64
+   "n-fers": 16,
+   "pass1": 126,
+   "pass2": 0,
+   "spots": 126
   },
   "CA-ON": {
-   "candidates": 126,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 184,
+   "lines": 221,
    "n-fers": 0,
-   "pass1": 318,
-   "pass2": 191,
-   "spots": 318
+   "pass1": 533,
+   "pass2": 0,
+   "spots": 533
   },
   "CA-PE": {
    "candidates": 0,
@@ -160,472 +166,472 @@
    "spots": 1
   },
   "CA-QC": {
-   "candidates": 1,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 1,
-   "pass1": 231,
-   "pass2": 31,
-   "spots": 231
+   "n-fers": 2,
+   "pass1": 322,
+   "pass2": 0,
+   "spots": 322
   },
   "CA-SK": {
-   "candidates": 18,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 9,
+   "lines": 11,
    "n-fers": 0,
-   "pass1": 28,
-   "pass2": 22,
-   "spots": 28
+   "pass1": 32,
+   "pass2": 0,
+   "spots": 32
   },
   "CA-YT": {
-   "candidates": 2,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
    "pass1": 4,
-   "pass2": 2,
+   "pass2": 0,
    "spots": 4
   },
   "US-AK": {
-   "candidates": 39,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 14,
+   "lines": 34,
    "n-fers": 0,
-   "pass1": 82,
-   "pass2": 51,
-   "spots": 82
+   "pass1": 208,
+   "pass2": 0,
+   "spots": 208
   },
   "US-AL": {
-   "candidates": 24,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 2,
-   "pass1": 28,
-   "pass2": 28,
-   "spots": 28
+   "n-fers": 3,
+   "pass1": 33,
+   "pass2": 0,
+   "spots": 33
   },
   "US-AR": {
-   "candidates": 5,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 9,
-   "pass2": 7,
-   "spots": 9
+   "pass1": 19,
+   "pass2": 0,
+   "spots": 19
   },
   "US-AZ": {
-   "candidates": 26,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 21,
+   "lines": 24,
    "n-fers": 0,
-   "pass1": 67,
-   "pass2": 43,
-   "spots": 67
+   "pass1": 168,
+   "pass2": 0,
+   "spots": 168
   },
   "US-CA": {
-   "candidates": 51,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 96,
+   "lines": 86,
    "n-fers": 0,
-   "pass1": 228,
-   "pass2": 138,
-   "spots": 228
+   "pass1": 378,
+   "pass2": 0,
+   "spots": 378
   },
   "US-CO": {
-   "candidates": 9,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 4,
-   "n-fers": 1,
-   "pass1": 69,
-   "pass2": 19,
-   "spots": 69
+   "lines": 9,
+   "n-fers": 3,
+   "pass1": 169,
+   "pass2": 0,
+   "spots": 169
   },
   "US-CT": {
-   "candidates": 21,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 7,
+   "lines": 9,
    "n-fers": 0,
-   "pass1": 29,
-   "pass2": 27,
-   "spots": 29
+   "pass1": 35,
+   "pass2": 0,
+   "spots": 35
   },
   "US-DE": {
-   "candidates": 24,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 17,
+   "lines": 4,
    "n-fers": 0,
-   "pass1": 42,
-   "pass2": 26,
-   "spots": 42
+   "pass1": 39,
+   "pass2": 0,
+   "spots": 39
   },
   "US-FL": {
-   "candidates": 184,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 109,
-   "n-fers": 4,
-   "pass1": 225,
-   "pass2": 190,
-   "spots": 225
+   "lines": 137,
+   "n-fers": 7,
+   "pass1": 332,
+   "pass2": 0,
+   "spots": 332
   },
   "US-GA": {
-   "candidates": 74,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 23,
-   "n-fers": 5,
-   "pass1": 98,
-   "pass2": 77,
-   "spots": 98
+   "lines": 20,
+   "n-fers": 7,
+   "pass1": 129,
+   "pass2": 0,
+   "spots": 129
   },
   "US-HI": {
-   "candidates": 6,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 5,
    "n-fers": 0,
-   "pass1": 8,
-   "pass2": 8,
-   "spots": 8
+   "pass1": 33,
+   "pass2": 0,
+   "spots": 33
   },
   "US-IA": {
-   "candidates": 1,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 1,
-   "pass2": 1,
-   "spots": 1
+   "pass1": 4,
+   "pass2": 0,
+   "spots": 4
   },
   "US-ID": {
-   "candidates": 350,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 539,
-   "n-fers": 1,
-   "pass1": 603,
-   "pass2": 459,
-   "spots": 603
+   "lines": 646,
+   "n-fers": 5,
+   "pass1": 819,
+   "pass2": 0,
+   "spots": 819
   },
   "US-IL": {
-   "candidates": 9,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 34,
-   "pass2": 31,
-   "spots": 34
+   "pass1": 50,
+   "pass2": 0,
+   "spots": 50
   },
   "US-IN": {
-   "candidates": 50,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
-   "n-fers": 0,
-   "pass1": 62,
-   "pass2": 58,
-   "spots": 62
+   "n-fers": 2,
+   "pass1": 85,
+   "pass2": 0,
+   "spots": 85
   },
   "US-KS": {
-   "candidates": 11,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 0,
+   "lines": 1,
    "n-fers": 0,
-   "pass1": 16,
-   "pass2": 15,
-   "spots": 16
+   "pass1": 20,
+   "pass2": 0,
+   "spots": 20
   },
   "US-LA": {
    "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 3,
-   "pass2": 1,
-   "spots": 3
+   "pass1": 7,
+   "pass2": 0,
+   "spots": 7
   },
   "US-MA": {
-   "candidates": 68,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 78,
-   "n-fers": 0,
-   "pass1": 97,
-   "pass2": 85,
-   "spots": 97
+   "lines": 84,
+   "n-fers": 1,
+   "pass1": 127,
+   "pass2": 0,
+   "spots": 127
   },
   "US-MD": {
-   "candidates": 15,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 22,
-   "pass2": 16,
-   "spots": 22
+   "pass1": 31,
+   "pass2": 0,
+   "spots": 31
   },
   "US-ME": {
    "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 3,
-   "pass2": 1,
-   "spots": 3
+   "pass1": 7,
+   "pass2": 0,
+   "spots": 7
   },
   "US-MI": {
-   "candidates": 275,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 335,
+   "lines": 377,
    "n-fers": 0,
-   "pass1": 356,
-   "pass2": 338,
-   "spots": 356
+   "pass1": 401,
+   "pass2": 0,
+   "spots": 401
   },
   "US-MN": {
-   "candidates": 345,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 429,
-   "n-fers": 2,
-   "pass1": 606,
-   "pass2": 593,
-   "spots": 606
+   "lines": 423,
+   "n-fers": 6,
+   "pass1": 667,
+   "pass2": 0,
+   "spots": 667
   },
   "US-MO": {
-   "candidates": 23,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 17,
-   "n-fers": 1,
-   "pass1": 70,
-   "pass2": 46,
-   "spots": 70
+   "lines": 29,
+   "n-fers": 2,
+   "pass1": 98,
+   "pass2": 0,
+   "spots": 98
   },
   "US-MS": {
-   "candidates": 4,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 8,
-   "pass2": 5,
-   "spots": 8
+   "pass1": 16,
+   "pass2": 0,
+   "spots": 16
   },
   "US-MT": {
-   "candidates": 97,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 195,
-   "n-fers": 1,
-   "pass1": 251,
-   "pass2": 184,
-   "spots": 251
+   "lines": 246,
+   "n-fers": 2,
+   "pass1": 365,
+   "pass2": 0,
+   "spots": 365
   },
   "US-NC": {
-   "candidates": 131,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 6,
-   "n-fers": 39,
-   "pass1": 284,
-   "pass2": 208,
-   "spots": 284
+   "n-fers": 66,
+   "pass1": 493,
+   "pass2": 0,
+   "spots": 493
   },
   "US-ND": {
-   "candidates": 18,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 31,
-   "pass2": 29,
-   "spots": 31
+   "pass1": 44,
+   "pass2": 0,
+   "spots": 44
   },
   "US-NE": {
-   "candidates": 4,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 0,
-   "pass1": 6,
-   "pass2": 4,
-   "spots": 6
-  },
-  "US-NH": {
-   "candidates": 3,
-   "candidates (saved outline only)": 0,
-   "lines": 2,
-   "n-fers": 0,
-   "pass1": 10,
-   "pass2": 10,
-   "spots": 10
-  },
-  "US-NJ": {
-   "candidates": 8,
-   "candidates (saved outline only)": 0,
-   "lines": 37,
-   "n-fers": 0,
-   "pass1": 46,
-   "pass2": 9,
-   "spots": 46
-  },
-  "US-NM": {
-   "candidates": 6,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 0,
-   "pass1": 15,
-   "pass2": 7,
-   "spots": 15
-  },
-  "US-NV": {
-   "candidates": 45,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 11,
-   "pass1": 102,
-   "pass2": 84,
-   "spots": 102
-  },
-  "US-NY": {
-   "candidates": 21,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 2,
-   "pass1": 29,
-   "pass2": 26,
-   "spots": 29
-  },
-  "US-OH": {
-   "candidates": 7,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
    "pass1": 11,
-   "pass2": 10,
+   "pass2": 0,
    "spots": 11
   },
-  "US-OK": {
-   "candidates": 61,
-   "candidates (saved outline only)": 0,
-   "lines": 18,
-   "n-fers": 1,
-   "pass1": 85,
-   "pass2": 80,
-   "spots": 85
-  },
-  "US-OR": {
-   "candidates": 122,
-   "candidates (saved outline only)": 0,
-   "lines": 157,
-   "n-fers": 3,
-   "pass1": 250,
-   "pass2": 158,
-   "spots": 250
-  },
-  "US-PA": {
-   "candidates": 79,
-   "candidates (saved outline only)": 0,
-   "lines": 90,
-   "n-fers": 0,
-   "pass1": 149,
-   "pass2": 92,
-   "spots": 149
-  },
-  "US-RI": {
-   "candidates": 1,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 0,
-   "pass1": 3,
-   "pass2": 2,
-   "spots": 3
-  },
-  "US-SC": {
-   "candidates": 51,
-   "candidates (saved outline only)": 0,
-   "lines": 46,
-   "n-fers": 0,
-   "pass1": 73,
-   "pass2": 54,
-   "spots": 73
-  },
-  "US-SD": {
-   "candidates": 19,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 1,
-   "pass1": 27,
-   "pass2": 24,
-   "spots": 27
-  },
-  "US-TN": {
-   "candidates": 12,
-   "candidates (saved outline only)": 0,
-   "lines": 0,
-   "n-fers": 0,
-   "pass1": 84,
-   "pass2": 32,
-   "spots": 84
-  },
-  "US-TX": {
-   "candidates": 53,
-   "candidates (saved outline only)": 0,
-   "lines": 54,
-   "n-fers": 0,
-   "pass1": 70,
-   "pass2": 56,
-   "spots": 70
-  },
-  "US-UT": {
-   "candidates": 114,
-   "candidates (saved outline only)": 0,
-   "lines": 90,
-   "n-fers": 18,
-   "pass1": 223,
-   "pass2": 156,
-   "spots": 223
-  },
-  "US-VA": {
-   "candidates": 7,
+  "US-NH": {
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 4,
    "n-fers": 0,
-   "pass1": 10,
-   "pass2": 10,
-   "spots": 10
+   "pass1": 17,
+   "pass2": 0,
+   "spots": 17
   },
-  "US-VT": {
-   "candidates": 1,
+  "US-NJ": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 3,
+   "n-fers": 2,
+   "pass1": 61,
+   "pass2": 0,
+   "spots": 61
+  },
+  "US-NM": {
+   "candidates": 0,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 0,
-   "pass1": 2,
-   "pass2": 1,
-   "spots": 2
+   "pass1": 36,
+   "pass2": 0,
+   "spots": 36
+  },
+  "US-NV": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 19,
+   "pass1": 161,
+   "pass2": 0,
+   "spots": 161
+  },
+  "US-NY": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 2,
+   "pass1": 63,
+   "pass2": 0,
+   "spots": 63
+  },
+  "US-OH": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 0,
+   "pass1": 27,
+   "pass2": 0,
+   "spots": 27
+  },
+  "US-OK": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 17,
+   "n-fers": 1,
+   "pass1": 91,
+   "pass2": 0,
+   "spots": 91
+  },
+  "US-OR": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 118,
+   "n-fers": 9,
+   "pass1": 303,
+   "pass2": 0,
+   "spots": 303
+  },
+  "US-PA": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 134,
+   "n-fers": 0,
+   "pass1": 276,
+   "pass2": 0,
+   "spots": 276
+  },
+  "US-RI": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 0,
+   "pass1": 5,
+   "pass2": 0,
+   "spots": 5
+  },
+  "US-SC": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 52,
+   "n-fers": 0,
+   "pass1": 95,
+   "pass2": 0,
+   "spots": 95
+  },
+  "US-SD": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 2,
+   "pass1": 34,
+   "pass2": 0,
+   "spots": 34
+  },
+  "US-TN": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 1,
+   "pass1": 180,
+   "pass2": 0,
+   "spots": 180
+  },
+  "US-TX": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 25,
+   "n-fers": 1,
+   "pass1": 65,
+   "pass2": 0,
+   "spots": 65
+  },
+  "US-UT": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 119,
+   "n-fers": 24,
+   "pass1": 329,
+   "pass2": 0,
+   "spots": 329
+  },
+  "US-VA": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 6,
+   "n-fers": 0,
+   "pass1": 21,
+   "pass2": 0,
+   "spots": 21
+  },
+  "US-VT": {
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 0,
+   "n-fers": 0,
+   "pass1": 7,
+   "pass2": 0,
+   "spots": 7
   },
   "US-WA": {
-   "candidates": 64,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 18,
-   "n-fers": 4,
-   "pass1": 121,
-   "pass2": 96,
-   "spots": 121
+   "lines": 24,
+   "n-fers": 6,
+   "pass1": 247,
+   "pass2": 0,
+   "spots": 247
   },
   "US-WI": {
-   "candidates": 44,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 2,
-   "n-fers": 0,
-   "pass1": 50,
-   "pass2": 48,
-   "spots": 50
+   "lines": 8,
+   "n-fers": 3,
+   "pass1": 96,
+   "pass2": 0,
+   "spots": 96
   },
   "US-WV": {
-   "candidates": 38,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 28,
-   "n-fers": 0,
-   "pass1": 54,
-   "pass2": 43,
-   "spots": 54
+   "lines": 40,
+   "n-fers": 1,
+   "pass1": 98,
+   "pass2": 0,
+   "spots": 98
   },
   "US-WY": {
-   "candidates": 20,
+   "candidates": 0,
    "candidates (saved outline only)": 0,
-   "lines": 98,
-   "n-fers": 2,
-   "pass1": 196,
-   "pass2": 48,
-   "spots": 196
+   "lines": 2,
+   "n-fers": 17,
+   "pass1": 274,
+   "pass2": 0,
+   "spots": 274
   }
  }
 }

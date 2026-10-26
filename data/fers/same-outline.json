@@ -34,8 +34,24 @@
    ]
   },
   {
+   "name": "Kachemak Bay State Wilderness Park",
+   "record": "sgake147",
+   "refs": [
+    "US-1638",
+    "US-3392"
+   ]
+  },
+  {
    "name": "Kachemak Bay State Park",
    "record": "sgaka116",
+   "refs": [
+    "US-1638",
+    "US-3392"
+   ]
+  },
+  {
+   "name": "Kachemak Bay State Park",
+   "record": "sgake116",
    "refs": [
     "US-1638",
     "US-3392"
@@ -515,14 +531,6 @@
   },
   {
    "name": "Gunnison SWA",
-   "record": "cow380",
-   "refs": [
-    "US-12682",
-    "US-12683"
-   ]
-  },
-  {
-   "name": "Gunnison SWA",
    "record": "sgcoa140",
    "refs": [
     "US-12682",
@@ -540,14 +548,6 @@
   {
    "name": "Gunnison State Wildlife Area",
    "record": "189147",
-   "refs": [
-    "US-12682",
-    "US-12683"
-   ]
-  },
-  {
-   "name": "Gunnison River SWA",
-   "record": "cow379",
    "refs": [
     "US-12682",
     "US-12683"
@@ -3234,6 +3234,22 @@
    ]
   },
   {
+   "name": "GLACIAL LAKES",
+   "record": "sgmne7549",
+   "refs": [
+    "US-2486",
+    "US-9388"
+   ]
+  },
+  {
+   "name": "GLACIAL LAKES",
+   "record": "sgmne7550",
+   "refs": [
+    "US-2486",
+    "US-9388"
+   ]
+  },
+  {
    "name": "Harry S Truman National Historic Site",
    "record": "3141",
    "refs": [
@@ -3634,8 +3650,48 @@
    ]
   },
   {
+   "name": "Pine River State Forest",
+   "record": "sgnhc986",
+   "refs": [
+    "US-4923",
+    "US-4944"
+   ]
+  },
+  {
+   "name": "Pine River State Forest",
+   "record": "sgnhc734",
+   "refs": [
+    "US-4923",
+    "US-4944"
+   ]
+  },
+  {
+   "name": "Pine River State Forest",
+   "record": "sgnhc682",
+   "refs": [
+    "US-4923",
+    "US-4944"
+   ]
+  },
+  {
    "name": "Little Pine River State Forest",
    "record": "56991",
+   "refs": [
+    "US-4923",
+    "US-4944"
+   ]
+  },
+  {
+   "name": "Little Pine River State Forest",
+   "record": "sgnhc943",
+   "refs": [
+    "US-4923",
+    "US-4944"
+   ]
+  },
+  {
+   "name": "Pine River State Forest",
+   "record": "sgnhc686",
    "refs": [
     "US-4923",
     "US-4944"
@@ -3691,6 +3747,30 @@
   },
   {
    "name": "Russell-Abbott State Forest",
+   "record": "sgnhc2589",
+   "refs": [
+    "US-4952",
+    "US-4953"
+   ]
+  },
+  {
+   "name": "Russell-Abbott State Forest",
+   "record": "sgnhc2488",
+   "refs": [
+    "US-4952",
+    "US-4953"
+   ]
+  },
+  {
+   "name": "Russell-Abbott State Forest",
+   "record": "sgnhc2574",
+   "refs": [
+    "US-4952",
+    "US-4953"
+   ]
+  },
+  {
+   "name": "Russell-Abbott State Forest",
    "record": "57015",
    "refs": [
     "US-4952",
@@ -3700,6 +3780,30 @@
   {
    "name": "Russell State Forest",
    "record": "57016",
+   "refs": [
+    "US-4952",
+    "US-4953"
+   ]
+  },
+  {
+   "name": "Russell State Forest",
+   "record": "sgnhc2578",
+   "refs": [
+    "US-4952",
+    "US-4953"
+   ]
+  },
+  {
+   "name": "Russell-Abbott State Forest",
+   "record": "sgnhc2489",
+   "refs": [
+    "US-4952",
+    "US-4953"
+   ]
+  },
+  {
+   "name": "Russell State Forest",
+   "record": "sgnhc2582",
    "refs": [
     "US-4952",
     "US-4953"
@@ -3780,6 +3884,14 @@
   {
    "name": "Spooner and Backcountry Lake Tahoe-Nevada State Park",
    "record": "sgnvb27",
+   "refs": [
+    "US-2633",
+    "US-3389"
+   ]
+  },
+  {
+   "name": "Spooner and Backcountry Lake Tahoe-Nevada State Park",
+   "record": "sgnvd27",
    "refs": [
     "US-2633",
     "US-3389"
@@ -4658,6 +4770,142 @@
    ]
   },
   {
+   "name": "Riverside",
+   "record": "sgord6123",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord2661",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord5947",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord4850",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord6239",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord627",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord626",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord264",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord2516",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord1379",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord6238",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord2400",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord4848",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord5948",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord1843",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord4851",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
+   "name": "Riverside",
+   "record": "sgord6124",
+   "refs": [
+    "US-10482",
+    "US-12952"
+   ]
+  },
+  {
    "name": "Prineville Reservoir",
    "record": "2364",
    "refs": [
@@ -4698,16 +4946,16 @@
    ]
   },
   {
-   "name": "Lower Deschutes",
-   "record": "sgorc71",
+   "name": "Detroit Lake- Mongold",
+   "record": "sgora189",
    "refs": [
-    "US-12950",
-    "US-9159"
+    "US-9143",
+    "US-9565"
    ]
   },
   {
    "name": "Detroit Lake- Mongold",
-   "record": "sgora189",
+   "record": "sgore21566",
    "refs": [
     "US-9143",
     "US-9565"
@@ -4996,6 +5244,22 @@
   {
    "name": "Hiwassee/Ocoee Scenic River State Park",
    "record": "tnd84",
+   "refs": [
+    "US-12663",
+    "US-2952"
+   ]
+  },
+  {
+   "name": "Hiwassee/Ocoee Scenic River State Park",
+   "record": "sgtnf84",
+   "refs": [
+    "US-12663",
+    "US-2952"
+   ]
+  },
+  {
+   "name": "Hiwassee/Ocoee Scenic River State Park",
+   "record": "sgtng44",
    "refs": [
     "US-12663",
     "US-2952"
@@ -5362,6 +5626,22 @@
    ]
   },
   {
+   "name": "Caddo Lake",
+   "record": "sgtxd137",
+   "refs": [
+    "US-0633",
+    "US-2994"
+   ]
+  },
+  {
+   "name": "Caddo Lake",
+   "record": "sgtxd524",
+   "refs": [
+    "US-0633",
+    "US-2994"
+   ]
+  },
+  {
    "name": "Goliad State Park",
    "record": "263504",
    "refs": [
@@ -5371,7 +5651,111 @@
   },
   {
    "name": "Sam Houston National Forest",
+   "record": "sgtxd1466",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
    "record": "3015",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd191",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd188",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd217",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd216",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd11231",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd214",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd215",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd213",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd211",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd210",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd209",
+   "refs": [
+    "US-10509",
+    "US-4417"
+   ]
+  },
+  {
+   "name": "Sam Houston National Forest",
+   "record": "sgtxd230",
    "refs": [
     "US-10509",
     "US-4417"
@@ -5394,11 +5778,35 @@
    ]
   },
   {
+   "name": "Caddo Lake",
+   "record": "sgtxd137",
+   "refs": [
+    "US-0633",
+    "US-6542"
+   ]
+  },
+  {
+   "name": "Caddo Lake",
+   "record": "sgtxd524",
+   "refs": [
+    "US-0633",
+    "US-6542"
+   ]
+  },
+  {
    "name": "Caddo Lake NWR",
    "record": "sgtxb1693",
    "refs": [
     "US-0633",
     "US-6542"
+   ]
+  },
+  {
+   "name": "Cooper Lake SP - Doctors Creek Unit",
+   "record": "sgtxd9621",
+   "refs": [
+    "US-3000",
+    "US-6550"
    ]
   },
   {
@@ -5764,6 +6172,14 @@
   {
    "name": "Brush Mountain East Wilderness",
    "record": "wld45",
+   "refs": [
+    "US-9940",
+    "US-9941"
+   ]
+  },
+  {
+   "name": "Brush Mountain East NF Wilderness Area",
+   "record": "sgvae500504",
    "refs": [
     "US-9940",
     "US-9941"
@@ -11114,6 +11530,14 @@
    ]
   },
   {
+   "name": "Chignecto National Wildlife Area/Amherst Point Bird Sanctuary",
+   "record": "NS-PPA Nova :156",
+   "refs": [
+    "CA-0016",
+    "CA-1718"
+   ]
+  },
+  {
    "name": "Aylesford Mountain Nature Reserve",
    "record": "Nova Scotia :44",
    "refs": [
@@ -11230,6 +11654,14 @@
    "record": "Nova Scotia :134",
    "refs": [
     "CA-0451",
+    "CA-1741"
+   ]
+  },
+  {
+   "name": "Chimney Corner Nature Reserve",
+   "record": "NS-PPA Nova :134",
+   "refs": [
+    "CA-0899",
     "CA-1741"
    ]
   },
@@ -11708,6 +12140,30 @@
   {
    "name": "North River Wilderness Area",
    "record": "Nova Scotia :171",
+   "refs": [
+    "CA-0470",
+    "CA-1809"
+   ]
+  },
+  {
+   "name": "North River Wilderness Area",
+   "record": "NS-PPA Nova :124",
+   "refs": [
+    "CA-0470",
+    "CA-1809"
+   ]
+  },
+  {
+   "name": "North River Wilderness Area",
+   "record": "NS-PPA Nova :170",
+   "refs": [
+    "CA-0470",
+    "CA-1809"
+   ]
+  },
+  {
+   "name": "North River Wilderness Area",
+   "record": "NS-PPA Nova :171",
    "refs": [
     "CA-0470",
     "CA-1809"
@@ -12514,6 +12970,30 @@
    ]
   },
   {
+   "name": "Tusket River Wilderness Area",
+   "record": "NS-PPA Nova :151",
+   "refs": [
+    "CA-1900",
+    "CA-1901"
+   ]
+  },
+  {
+   "name": "Tusket River Wilderness Area",
+   "record": "NS-PPA Nova :562",
+   "refs": [
+    "CA-1900",
+    "CA-1901"
+   ]
+  },
+  {
+   "name": "Tusket River Wilderness Area",
+   "record": "NS-PPA Nova :580",
+   "refs": [
+    "CA-1900",
+    "CA-1901"
+   ]
+  },
+  {
    "name": "Tusket River Nature Reserve",
    "record": "Nova Scotia :132",
    "refs": [
@@ -12724,6 +13204,22 @@
   {
    "name": "Shelburne River Wilderness Area",
    "record": "Nova Scotia :198",
+   "refs": [
+    "CA-1843",
+    "CA-6136"
+   ]
+  },
+  {
+   "name": "Shelburne River Wilderness Area",
+   "record": "NS-PPA Nova :184",
+   "refs": [
+    "CA-1843",
+    "CA-6136"
+   ]
+  },
+  {
+   "name": "Shelburne River Wilderness Area",
+   "record": "NS-PPA Nova :198",
    "refs": [
     "CA-1843",
     "CA-6136"
@@ -12978,24 +13474,8 @@
    ]
   },
   {
-   "name": "LAKE OF THE WOODS CONSERVATION RESERVE",
-   "record": "Ontario cons:21121",
-   "refs": [
-    "CA-1477",
-    "CA-1478"
-   ]
-  },
-  {
    "name": "McCrae Lake Conservation Reserve",
    "record": "15990",
-   "refs": [
-    "CA-1507",
-    "CA-1508"
-   ]
-  },
-  {
-   "name": "MCCRAE LAKE CONSERVATION RESERVE",
-   "record": "Ontario cons:12321",
    "refs": [
     "CA-1507",
     "CA-1508"

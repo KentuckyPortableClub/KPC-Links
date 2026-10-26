@@ -1,207 +1,111 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
- "pass2": "2026-10-26",
- "pass3": "2026-10-26",
  "spots": [
   {
-   "access": null,
-   "access_pin": {
-    "at": [
-     61.254119,
-     -140.880353
-    ],
-    "from": "none",
-    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
-   },
-   "acres": 8741.4,
+   "acres": 7894.0,
    "box": [
-    -140.99993,
-    61.2321,
-    -139.9986,
-    61.31883
+    -140.99977,
+    61.23295,
+    -140.51754,
+    61.26334
    ],
    "center": [
-    61.254119,
-    -140.880353
+    61.254116,
+    -140.88052
    ],
    "found": "2026-10-26",
-   "id": "CA-0044+CA-0842@area@61.254,-140.887",
+   "id": "CA-0044+CA-0842@area@61.254,-140.881",
    "kind": "area",
-   "maps": [
-    [
-     "CA-0044",
-     "https://en.wikipedia.org/wiki/List_of_protected_areas_of_Yukon#National_parks"
-    ],
-    [
-     "CA-0842",
-     "https://yukon.ca/en/outdoor-recreation-and-wildlife/parks-and-protected-areas/find-park-protected-and-conservation-area"
-    ]
-   ],
-   "names": {
-    "CA-0044": "Kluane National Park",
-    "CA-0842": "Asi Keyi Territorial Park"
-   },
    "passes": [
     1,
-    1,
-    1
+    0,
+    0
    ],
-   "pins_inside": {
-    "CA-0044": true,
-    "CA-0842": true
-   },
    "refs": [
     "CA-0044",
     "CA-0842"
    ],
    "shape": [
     [
-     -139.998603,
-     61.318827
+     -140.999768,
+     61.263341
     ],
     [
-     -140.105465,
-     61.313581
+     -140.999768,
+     61.248871
     ],
     [
-     -140.107522,
-     61.313265
+     -140.517544,
+     61.232954
     ],
     [
-     -140.117058,
-     61.312903
-    ],
-    [
-     -140.253746,
-     61.285048
-    ],
-    [
-     -140.253746,
-     61.284008
-    ],
-    [
-     -140.106681,
-     61.313401
-    ],
-    [
-     -139.99907,
-     61.318691
-    ],
-    [
-     -139.998603,
-     61.318736
+     -140.879025,
+     61.263341
     ]
    ],
-   "status": "candidate",
-   "wide_m": 2060
+   "status": "pass 1",
+   "wide_m": 2079
   },
   {
-   "access": null,
-   "access_pin": {
-    "at": [
-     61.254119,
-     -140.880353
-    ],
-    "from": "none",
-    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
-   },
-   "acres": 8741.4,
+   "acres": 408.0,
    "box": [
-    -140.99993,
-    61.2321,
-    -139.9986,
-    61.31883
+    -140.40016,
+    61.2552,
+    -140.10186,
+    61.31344
    ],
    "center": [
-    61.254119,
-    -140.880353
+    61.312177,
+    -140.116812
    ],
    "found": "2026-10-26",
    "id": "CA-0044+CA-0842@area@61.312,-140.117",
    "kind": "area",
-   "maps": [
-    [
-     "CA-0044",
-     "https://en.wikipedia.org/wiki/List_of_protected_areas_of_Yukon#National_parks"
-    ],
-    [
-     "CA-0842",
-     "https://yukon.ca/en/outdoor-recreation-and-wildlife/parks-and-protected-areas/find-park-protected-and-conservation-area"
-    ]
-   ],
-   "names": {
-    "CA-0044": "Kluane National Park",
-    "CA-0842": "Asi Keyi Territorial Park"
-   },
    "passes": [
     1,
-    1,
-    1
+    0,
+    0
    ],
-   "pins_inside": {
-    "CA-0044": true,
-    "CA-0842": true
-   },
    "refs": [
     "CA-0044",
     "CA-0842"
    ],
    "shape": [
     [
-     -139.998603,
-     61.318827
+     -140.101859,
+     61.313443
     ],
     [
-     -140.105465,
-     61.313581
+     -140.117186,
+     61.3129
     ],
     [
-     -140.107522,
-     61.313265
+     -140.400165,
+     61.255201
     ],
     [
-     -140.117058,
-     61.312903
-    ],
-    [
-     -140.253746,
-     61.285048
-    ],
-    [
-     -140.253746,
-     61.284008
-    ],
-    [
-     -140.106681,
-     61.313401
-    ],
-    [
-     -139.99907,
-     61.318691
-    ],
-    [
-     -139.998603,
-     61.318736
+     -140.109336,
+     61.3129
     ]
    ],
-   "status": "candidate",
-   "wide_m": 2060
+   "status": "pass 1",
+   "wide_m": 176
   },
   {
-   "acres": 906.7,
+   "acres": 914.8,
    "box": [
-    -141.00223,
-    68.18603,
-    -141.00028,
-    68.55592
+    -141.00251,
+    68.18125,
+    -141.00056,
+    68.55584
    ],
    "center": [
-    68.555559,
-    -141.001257
+    68.555481,
+    -141.001535
    ],
    "found": "2026-10-26",
-   "id": "CA-0106+US-0142@area@68.556,-141.001",
+   "id": "CA-0106+US-0142@area@68.555,-141.002",
    "kind": "area",
    "passes": [
     1,
@@ -214,36 +118,36 @@
    ],
    "shape": [
     [
-     -141.002232,
-     68.55592
+     -141.00251,
+     68.555843
     ],
     [
-     -141.002232,
-     68.186756
+     -141.00251,
+     68.186678
     ],
     [
-     -141.000769,
-     68.186032
+     -141.001048,
+     68.186136
     ],
     [
-     -141.000282,
-     68.55592
+     -141.00056,
+     68.555843
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 120
   },
   {
-   "acres": 324.9,
+   "acres": 266.9,
    "box": [
-    -133.79113,
-    59.99987,
-    -133.58236,
-    60.00078
+    -133.79098,
+    59.99998,
+    -133.58256,
+    60.0007
    ],
    "center": [
-    60.000417,
-    -133.717467
+    60.000339,
+    -133.717313
    ],
    "found": "2026-10-26",
    "id": "CA-0841+CA-3622@area@60.000,-133.717",
@@ -259,23 +163,23 @@
    ],
    "shape": [
     [
-     -133.79113,
-     60.000598
+     -133.790976,
+     59.999978
     ],
     [
-     -133.79113,
-     59.999874
+     -133.582923,
+     59.999978
     ],
     [
-     -133.582718,
-     59.999874
+     -133.582564,
+     60.000701
     ],
     [
-     -133.582359,
-     60.000779
+     -133.790976,
+     60.00052
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 120
   }
  ],
