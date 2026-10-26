@@ -129,6 +129,7 @@ NOT the fix: deleting history from the main repo (risky, breaks every chat's cop
 - DECIDED (Brandon Oct 25 12:39 PM: 'No only ky closures'): closure ANNOUNCEMENTS (Discord / Facebook / website posts, chat 5) = Kentucky only. Out-of-state 'uc-' closures show on park cards and tools only, never posted.
 
 ## SITE REORGANIZATION PLAN — DRAFT, NOT APPROVED (HQ with Brandon, Oct 25 9:20 PM). No chat acts on this until Brandon says go.
+TARGET (Brandon Oct 25 9:39 PM): release THU OCT 29, 1:30 AM CDT, IF the club OKs the Activators Lounge release. Prep Mon-Wed WITHOUT publishing (ready, not live); release night one chat at a time: chat 2 Map Room → chat 3 Lounge public → chat 1 menu on every page + kpc-gate.js PUBLIC list → check phone + desktop → announcement via the Discord relay. If the club says no: nothing goes public; the cleanup can still go in (gate keeps hidden pages hidden). HQ gives the per-chat prep pastes when Brandon says 'go'.
 GOAL: every tool has ONE home room; other rooms point to it with doorway buttons; nothing deleted; kpc-gate.js PUBLIC list still decides what guests see (room pages themselves public, locked links hide themselves). Done in ONE release pass with the Activators Lounge going public. Menu = chat 1 only (replaces the earlier 'chat 3 edits the menu at launch' decision).
 MENU (top bar unchanged: Home · Campout · Parks · Events · Photos · Live · search). See More:
  OPERATING: Activators Lounge · Hunters Lounge · Map Room · Campgrounds & Cabins · Weather · Radio Conditions
