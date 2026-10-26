@@ -1050,10 +1050,11 @@ def main():
     for l in LOG[:8]: notice('2-fer bot problem', l)
 
 
-ABOUT = ("Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails "
-         "and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status "
-         "'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries "
-         "yourself before you count it.'")
+ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap (official outlines only; land spots 50 yards across, "
+         "'small' = 50-100 yards; trails and rivers by POTA's 100-ft rule). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
+         "and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. "
+         "We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your "
+         "own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.")
 
 if __name__ == '__main__':
     try: main()
