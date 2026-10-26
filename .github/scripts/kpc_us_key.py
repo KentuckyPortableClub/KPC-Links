@@ -350,7 +350,14 @@ XS = [  # prefix, query url, name field, acres field, kinds
     ('wld', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'wildernessname', 'gis_acres', {'wild'}, 'National Wilderness Preservation System (Forest Service map)'),
     ('hma', 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query', 'HMA_NAME', 'BLM_ACRES', {'hma'}, 'BLM herd management areas'),
     ('rma', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation areas'),
-    ('rst', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation sites'),
+    # Oct 26 (round 11, HQ): this IS the national BLM Recreation Management Area layer (SRMA 1,108 + ERMA 1,782 + campgrounds,
+    # day use, OHV areas); read since Oct 18. Relabelled. A probe of all 3,478 names found only 10 of the 427 BLM 'Recreation
+    # Management Area' POTA parks with no outline in it: POTA's are mostly sites INSIDE an RMA (dams, canyons, trailheads).
+    ('rst', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation management areas · official (BLM planning area)'),
+    # Oct 26 (round 11): NPS official Wild and Scenic River CORRIDOR boundaries (33 rivers, legal corridors; the USFS centre lines
+    # stay the trails bot's for the other rivers) + the Ala Kahakai NHT official corridor (one polygon, Hawaii)
+    ('wsrc', 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/WildScenicRiverBoundaries/FeatureServer/0/query', 'WSR_GNIS_NAME', 'GIS_ACRES', {'wsr'}, 'NPS Wild and Scenic River corridor (official boundary)'),
+    ('akht', 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer/0/query', 'TrailName', '', set(), 'NPS Ala Kahakai National Historic Trail corridor (official)', 'FED', {'HI'}),
     ('nca', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', '', set(), 'BLM national monuments / conservation areas'),
     # Oct 18: layer id + name field looked up at run time ('?' = find it); found by probe 2
     ('wsa', 'svc:https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WLD_WSA/MapServer|study', '?', '?', {'wsa'}, 'BLM wilderness study areas'),
