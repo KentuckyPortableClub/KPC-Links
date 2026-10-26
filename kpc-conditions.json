@@ -2,6 +2,16 @@
  "updated": "2026-10-26",
  "items": [
   {
+   "id": "uc-mo-parks-advisory-the-boat-launch-canoe-launch-and-shelter-day-use-a-US-1776",
+   "ref": "US-1776",
+   "kind": "Closure",
+   "details": "Missouri State Parks: Advisory — The boat launch, canoe launch and shelter day use areas may be closed temporarily throughout the week of October 26, 2026 for debris clean up. Be advised that heavy equipment may be operating in or ar · The boil advisory at Onondaga Cave State Park has been lifted and the water has been deemed safe.",
+   "seen": "2026-10-26",
+   "call": "KPC BOT",
+   "expires": "2026-10-29",
+   "link": "https://mostateparks.com/park/onondaga-cave-state-park"
+  },
+  {
    "id": "uc-mo-parks-advisory-for-future-notice-the-park-will-be-closed-october-US-1753",
    "ref": "US-1753",
    "kind": "Closure",
@@ -1122,16 +1132,6 @@
    "link": "https://mostateparks.com/park/mark-twain-state-park"
   },
   {
-   "id": "uc-mo-parks-advisory-the-boil-advisory-at-onondaga-cave-state-park-has-b-US-1776",
-   "ref": "US-1776",
-   "kind": "Park notice",
-   "details": "Missouri State Parks: Advisory — The boil advisory at Onondaga Cave State Park has been lifted and the water has been deemed safe.",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-29",
-   "link": "https://mostateparks.com/park/onondaga-cave-state-park"
-  },
-  {
    "id": "uc-mo-parks-advisory-the-boat-ramp-is-currently-closed-due-to-low-water-US-1770",
    "ref": "US-1770",
    "kind": "Closure",
@@ -1596,16 +1596,6 @@
    "ref": "US-3444",
    "kind": "Closure",
    "details": "California State Parks: Partial Closure — Current/Anticipated Wildfire · Hungry Valley SVRA is closed to the Ridge Fire. SVRA sustained minor damage. Park will be reopened after assessments have been completed. Sick Lick Trail complex will remain closed until further notice. (until Aug 10)",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-29",
-   "link": "https://www.parks.ca.gov/?page_id=30009"
-  },
-  {
-   "id": "uc-ca-parks-partial-closure-current-anticipated-storm-event-due-to-rec-US-1139",
-   "ref": "US-1139",
-   "kind": "Closure",
-   "details": "California State Parks: Partial Closure — Current/Anticipated Storm Event · Due to recent rainfall, all trails at Chino Hills State Park are temporarily closed for visitor safety and to prevent damage to soft, muddy trail surfaces. Day-use areas, the campground, and all roadways remain open and accessible. Please check for updates as conditions improve before planning any t (until Oct 24)",
    "seen": "2026-10-25",
    "call": "KPC BOT",
    "expires": "2026-10-29",

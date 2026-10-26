@@ -135,17 +135,6 @@
   },
   {
    "call": "KPC BOT",
-   "details": "California State Parks: Partial Closure — Current/Anticipated Storm Event · Due to recent rainfall, all trails at Chino Hills State Park are temporarily closed for visitor safety and to prevent damage to soft, muddy trail surfaces. Day-use areas, the campground, and all roadways remain open and accessible. Please check for updates as conditions improve before planning any t (until Oct 24)",
-   "expires": "2026-10-29",
-   "id": "uc-ca-parks-partial-closure-current-anticipated-storm-event-due-to-rec-US-1139",
-   "kind": "Closure",
-   "link": "https://www.parks.ca.gov/?page_id=30009",
-   "ref": "US-1139",
-   "seen": "2026-10-25",
-   "src": "ca-parks"
-  },
-  {
-   "call": "KPC BOT",
    "details": "California State Parks: Partial Closure — Current/Anticipated Wildfire · Hungry Valley SVRA is closed to the Ridge Fire. SVRA sustained minor damage. Park will be reopened after assessments have been completed. Sick Lick Trail complex will remain closed until further notice. (until Aug 10)",
    "expires": "2026-10-29",
    "id": "uc-ca-parks-partial-closure-current-anticipated-wildfire-hungry-valley-US-3444",
@@ -663,23 +652,23 @@
   },
   {
    "call": "KPC BOT",
+   "details": "Missouri State Parks: Advisory — The boat launch, canoe launch and shelter day use areas may be closed temporarily throughout the week of October 26, 2026 for debris clean up. Be advised that heavy equipment may be operating in or ar · The boil advisory at Onondaga Cave State Park has been lifted and the water has been deemed safe.",
+   "expires": "2026-10-29",
+   "id": "uc-mo-parks-advisory-the-boat-launch-canoe-launch-and-shelter-day-use-a-US-1776",
+   "kind": "Closure",
+   "link": "https://mostateparks.com/park/onondaga-cave-state-park",
+   "ref": "US-1776",
+   "seen": "2026-10-26",
+   "src": "mo-parks"
+  },
+  {
+   "call": "KPC BOT",
    "details": "Missouri State Parks: Advisory — The boat ramp is currently closed due to low water levels. · Due to construction work, the open picnic shelter is closed at this time.",
    "expires": "2026-10-29",
    "id": "uc-mo-parks-advisory-the-boat-ramp-is-currently-closed-due-to-low-water-US-1770",
    "kind": "Closure",
    "link": "https://mostateparks.com/park/lewis-and-clark-state-park",
    "ref": "US-1770",
-   "seen": "2026-10-25",
-   "src": "mo-parks"
-  },
-  {
-   "call": "KPC BOT",
-   "details": "Missouri State Parks: Advisory — The boil advisory at Onondaga Cave State Park has been lifted and the water has been deemed safe.",
-   "expires": "2026-10-29",
-   "id": "uc-mo-parks-advisory-the-boil-advisory-at-onondaga-cave-state-park-has-b-US-1776",
-   "kind": "Park notice",
-   "link": "https://mostateparks.com/park/onondaga-cave-state-park",
-   "ref": "US-1776",
    "seen": "2026-10-25",
    "src": "mo-parks"
   },
@@ -1917,10 +1906,10 @@
   },
   "ca-parks": {
    "agency": "California State Parks",
-   "n": 24,
+   "n": 23,
    "ok": true,
    "page": "https://www.parks.ca.gov/?page_id=30009",
-   "rows": 31,
+   "rows": 30,
    "st": "CA",
    "unmatched": [
     "Governor's Mansion SHP",
@@ -1995,10 +1984,12 @@
   },
   "nc-parks": {
    "agency": "NC State Parks",
-   "ok": false,
+   "n": 0,
+   "ok": true,
    "page": "https://www.ncparks.gov/",
+   "rows": 0,
    "st": "NC",
-   "why": "<urlopen error [Errno -3] Temporary failure in name resolution>"
+   "unmatched": []
   },
   "nj-parks": {
    "agency": "NJ State Park Service",
