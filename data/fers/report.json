@@ -26,7 +26,7 @@
   "with official lines": 240
  },
  "pass2": {
-  "agree with the pass before": 166,
+  "agree with the pass before": 6094,
   "cell_m": 10.0,
   "date": "2026-10-26",
   "left out": {
@@ -36,14 +36,14 @@
    "no pin": 0,
    "pin well outside": 262
   },
-  "new here only (not counted)": 1077,
-  "official parks": 14676,
-  "pairs tested": 280,
-  "parks whose outline could not be read": 86,
+  "new here only (not counted)": 1447,
+  "official parks": 14681,
+  "pairs tested": 2617,
+  "parks whose outline could not be read": 94,
   "parks with a saved copy only (no fresh download possible)": 0,
   "pass": 2,
   "problems": [],
-  "with official lines": 234
+  "with official lines": 240
  },
  "pass3": {
   "agree with the pass before": 4105,
@@ -90,7 +90,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 396,
-   "pass2": 0,
+   "pass2": 210,
    "spots": 396
   },
   "CA-BC": {
@@ -99,7 +99,7 @@
    "lines": 13,
    "n-fers": 2,
    "pass1": 299,
-   "pass2": 0,
+   "pass2": 68,
    "spots": 299
   },
   "CA-MB": {
@@ -108,7 +108,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 18,
-   "pass2": 0,
+   "pass2": 8,
    "spots": 18
   },
   "CA-NB": {
@@ -117,7 +117,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 28,
-   "pass2": 0,
+   "pass2": 10,
    "spots": 28
   },
   "CA-NL": {
@@ -126,7 +126,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 56,
-   "pass2": 0,
+   "pass2": 52,
    "spots": 56
   },
   "CA-NS": {
@@ -135,7 +135,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 37,
-   "pass2": 0,
+   "pass2": 1,
    "spots": 37
   },
   "CA-NU": {
@@ -144,7 +144,7 @@
    "lines": 0,
    "n-fers": 16,
    "pass1": 126,
-   "pass2": 0,
+   "pass2": 66,
    "spots": 126
   },
   "CA-ON": {
@@ -153,7 +153,7 @@
    "lines": 221,
    "n-fers": 0,
    "pass1": 533,
-   "pass2": 0,
+   "pass2": 246,
    "spots": 533
   },
   "CA-PE": {
@@ -171,7 +171,7 @@
    "lines": 0,
    "n-fers": 2,
    "pass1": 322,
-   "pass2": 0,
+   "pass2": 61,
    "spots": 322
   },
   "CA-SK": {
@@ -180,7 +180,7 @@
    "lines": 11,
    "n-fers": 0,
    "pass1": 32,
-   "pass2": 0,
+   "pass2": 25,
    "spots": 32
   },
   "CA-YT": {
@@ -189,7 +189,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 4,
-   "pass2": 0,
+   "pass2": 4,
    "spots": 4
   },
   "US-AK": {
@@ -198,7 +198,7 @@
    "lines": 34,
    "n-fers": 0,
    "pass1": 208,
-   "pass2": 0,
+   "pass2": 119,
    "spots": 208
   },
   "US-AL": {
@@ -207,7 +207,7 @@
    "lines": 0,
    "n-fers": 3,
    "pass1": 33,
-   "pass2": 0,
+   "pass2": 29,
    "spots": 33
   },
   "US-AR": {
@@ -216,7 +216,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 19,
-   "pass2": 0,
+   "pass2": 16,
    "spots": 19
   },
   "US-AZ": {
@@ -225,7 +225,7 @@
    "lines": 24,
    "n-fers": 0,
    "pass1": 168,
-   "pass2": 0,
+   "pass2": 102,
    "spots": 168
   },
   "US-CA": {
@@ -234,7 +234,7 @@
    "lines": 86,
    "n-fers": 0,
    "pass1": 378,
-   "pass2": 0,
+   "pass2": 220,
    "spots": 378
   },
   "US-CO": {
@@ -243,7 +243,7 @@
    "lines": 9,
    "n-fers": 3,
    "pass1": 169,
-   "pass2": 0,
+   "pass2": 54,
    "spots": 169
   },
   "US-CT": {
@@ -252,7 +252,7 @@
    "lines": 9,
    "n-fers": 0,
    "pass1": 35,
-   "pass2": 0,
+   "pass2": 33,
    "spots": 35
   },
   "US-DE": {
@@ -261,7 +261,7 @@
    "lines": 4,
    "n-fers": 0,
    "pass1": 39,
-   "pass2": 0,
+   "pass2": 31,
    "spots": 39
   },
   "US-FL": {
@@ -270,7 +270,7 @@
    "lines": 137,
    "n-fers": 7,
    "pass1": 332,
-   "pass2": 0,
+   "pass2": 262,
    "spots": 332
   },
   "US-GA": {
@@ -279,7 +279,7 @@
    "lines": 20,
    "n-fers": 7,
    "pass1": 129,
-   "pass2": 0,
+   "pass2": 112,
    "spots": 129
   },
   "US-HI": {
@@ -288,7 +288,7 @@
    "lines": 5,
    "n-fers": 0,
    "pass1": 33,
-   "pass2": 0,
+   "pass2": 22,
    "spots": 33
   },
   "US-IA": {
@@ -297,7 +297,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 4,
-   "pass2": 0,
+   "pass2": 2,
    "spots": 4
   },
   "US-ID": {
@@ -306,7 +306,7 @@
    "lines": 646,
    "n-fers": 5,
    "pass1": 819,
-   "pass2": 0,
+   "pass2": 634,
    "spots": 819
   },
   "US-IL": {
@@ -315,7 +315,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 50,
-   "pass2": 0,
+   "pass2": 42,
    "spots": 50
   },
   "US-IN": {
@@ -324,7 +324,7 @@
    "lines": 0,
    "n-fers": 2,
    "pass1": 85,
-   "pass2": 0,
+   "pass2": 65,
    "spots": 85
   },
   "US-KS": {
@@ -333,7 +333,7 @@
    "lines": 1,
    "n-fers": 0,
    "pass1": 20,
-   "pass2": 0,
+   "pass2": 19,
    "spots": 20
   },
   "US-LA": {
@@ -342,7 +342,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 7,
-   "pass2": 0,
+   "pass2": 3,
    "spots": 7
   },
   "US-MA": {
@@ -351,7 +351,7 @@
    "lines": 84,
    "n-fers": 1,
    "pass1": 127,
-   "pass2": 0,
+   "pass2": 107,
    "spots": 127
   },
   "US-MD": {
@@ -360,7 +360,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 31,
-   "pass2": 0,
+   "pass2": 23,
    "spots": 31
   },
   "US-ME": {
@@ -369,7 +369,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 7,
-   "pass2": 0,
+   "pass2": 2,
    "spots": 7
   },
   "US-MI": {
@@ -378,7 +378,7 @@
    "lines": 377,
    "n-fers": 0,
    "pass1": 401,
-   "pass2": 0,
+   "pass2": 385,
    "spots": 401
   },
   "US-MN": {
@@ -387,7 +387,7 @@
    "lines": 423,
    "n-fers": 6,
    "pass1": 667,
-   "pass2": 0,
+   "pass2": 645,
    "spots": 667
   },
   "US-MO": {
@@ -396,7 +396,7 @@
    "lines": 29,
    "n-fers": 2,
    "pass1": 98,
-   "pass2": 0,
+   "pass2": 69,
    "spots": 98
   },
   "US-MS": {
@@ -405,7 +405,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 16,
-   "pass2": 0,
+   "pass2": 9,
    "spots": 16
   },
   "US-MT": {
@@ -414,7 +414,7 @@
    "lines": 246,
    "n-fers": 2,
    "pass1": 365,
-   "pass2": 0,
+   "pass2": 267,
    "spots": 365
   },
   "US-NC": {
@@ -423,7 +423,7 @@
    "lines": 6,
    "n-fers": 66,
    "pass1": 493,
-   "pass2": 0,
+   "pass2": 349,
    "spots": 493
   },
   "US-ND": {
@@ -432,7 +432,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 44,
-   "pass2": 0,
+   "pass2": 43,
    "spots": 44
   },
   "US-NE": {
@@ -441,7 +441,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 11,
-   "pass2": 0,
+   "pass2": 11,
    "spots": 11
   },
   "US-NH": {
@@ -450,7 +450,7 @@
    "lines": 4,
    "n-fers": 0,
    "pass1": 17,
-   "pass2": 0,
+   "pass2": 16,
    "spots": 17
   },
   "US-NJ": {
@@ -459,7 +459,7 @@
    "lines": 3,
    "n-fers": 2,
    "pass1": 61,
-   "pass2": 0,
+   "pass2": 57,
    "spots": 61
   },
   "US-NM": {
@@ -468,7 +468,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 36,
-   "pass2": 0,
+   "pass2": 15,
    "spots": 36
   },
   "US-NV": {
@@ -477,7 +477,7 @@
    "lines": 0,
    "n-fers": 19,
    "pass1": 161,
-   "pass2": 0,
+   "pass2": 113,
    "spots": 161
   },
   "US-NY": {
@@ -486,7 +486,7 @@
    "lines": 0,
    "n-fers": 2,
    "pass1": 63,
-   "pass2": 0,
+   "pass2": 38,
    "spots": 63
   },
   "US-OH": {
@@ -495,7 +495,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 27,
-   "pass2": 0,
+   "pass2": 17,
    "spots": 27
   },
   "US-OK": {
@@ -504,7 +504,7 @@
    "lines": 17,
    "n-fers": 1,
    "pass1": 91,
-   "pass2": 0,
+   "pass2": 90,
    "spots": 91
   },
   "US-OR": {
@@ -513,7 +513,7 @@
    "lines": 118,
    "n-fers": 9,
    "pass1": 303,
-   "pass2": 0,
+   "pass2": 235,
    "spots": 303
   },
   "US-PA": {
@@ -522,7 +522,7 @@
    "lines": 134,
    "n-fers": 0,
    "pass1": 276,
-   "pass2": 0,
+   "pass2": 169,
    "spots": 276
   },
   "US-RI": {
@@ -531,7 +531,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 5,
-   "pass2": 0,
+   "pass2": 5,
    "spots": 5
   },
   "US-SC": {
@@ -540,7 +540,7 @@
    "lines": 52,
    "n-fers": 0,
    "pass1": 95,
-   "pass2": 0,
+   "pass2": 86,
    "spots": 95
   },
   "US-SD": {
@@ -549,7 +549,7 @@
    "lines": 0,
    "n-fers": 2,
    "pass1": 34,
-   "pass2": 0,
+   "pass2": 30,
    "spots": 34
   },
   "US-TN": {
@@ -558,7 +558,7 @@
    "lines": 0,
    "n-fers": 1,
    "pass1": 180,
-   "pass2": 0,
+   "pass2": 58,
    "spots": 180
   },
   "US-TX": {
@@ -567,7 +567,7 @@
    "lines": 25,
    "n-fers": 1,
    "pass1": 65,
-   "pass2": 0,
+   "pass2": 61,
    "spots": 65
   },
   "US-UT": {
@@ -576,7 +576,7 @@
    "lines": 119,
    "n-fers": 24,
    "pass1": 329,
-   "pass2": 0,
+   "pass2": 272,
    "spots": 329
   },
   "US-VA": {
@@ -585,7 +585,7 @@
    "lines": 6,
    "n-fers": 0,
    "pass1": 21,
-   "pass2": 0,
+   "pass2": 18,
    "spots": 21
   },
   "US-VT": {
@@ -594,7 +594,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 7,
-   "pass2": 0,
+   "pass2": 1,
    "spots": 7
   },
   "US-WA": {
@@ -603,7 +603,7 @@
    "lines": 24,
    "n-fers": 6,
    "pass1": 247,
-   "pass2": 0,
+   "pass2": 164,
    "spots": 247
   },
   "US-WI": {
@@ -612,7 +612,7 @@
    "lines": 8,
    "n-fers": 3,
    "pass1": 96,
-   "pass2": 0,
+   "pass2": 65,
    "spots": 96
   },
   "US-WV": {
@@ -621,7 +621,7 @@
    "lines": 40,
    "n-fers": 1,
    "pass1": 98,
-   "pass2": 0,
+   "pass2": 66,
    "spots": 98
   },
   "US-WY": {
@@ -630,7 +630,7 @@
    "lines": 2,
    "n-fers": 17,
    "pass1": 274,
-   "pass2": 0,
+   "pass2": 92,
    "spots": 274
   }
  }

@@ -1,6 +1,7 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
+ "pass2": "2026-10-26",
  "spots": [
   {
    "acres": 8.3,
@@ -48,7 +49,7 @@
      43.904605
     ]
    ],
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 112
   },
   {
@@ -90,7 +91,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 80
   },
   {
@@ -168,7 +169,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 80
   },
   {
@@ -210,7 +211,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 80
   },
   {
@@ -296,7 +297,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 80
   },
   {
@@ -406,27 +407,27 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 80
   },
   {
-   "acres": 23.0,
+   "acres": 22.5,
    "box": [
-    -72.80915,
-    44.06611,
-    -72.8054,
-    44.07298
+    -72.80909,
+    44.06624,
+    -72.80546,
+    44.07302
    ],
    "center": [
-    44.070084,
-    -72.807899
+    44.070581,
+    -72.807711
    ],
    "found": "2026-10-26",
    "id": "US-4527+US-5549@area@44.070,-72.808",
    "kind": "area",
    "passes": [
     1,
-    0,
+    1,
     0
    ],
    "refs": [
@@ -435,36 +436,36 @@
    ],
    "shape": [
     [
-     -72.807148,
-     44.072978
+     -72.807211,
+     44.073023
     ],
     [
-     -72.808899,
-     44.070446
+     -72.809086,
+     44.0704
     ],
     [
-     -72.808399,
-     44.068094
+     -72.808586,
+     44.068411
     ],
     [
-     -72.808899,
-     44.067913
+     -72.809086,
+     44.067868
     ],
     [
-     -72.808649,
-     44.066828
+     -72.808586,
+     44.067145
     ],
     [
-     -72.809149,
-     44.066105
+     -72.809086,
+     44.06624
     ],
     [
-     -72.805398,
-     44.072254
+     -72.80546,
+     44.07239
     ]
    ],
-   "status": "pass 1",
-   "wide_m": 200
+   "status": "pass 2",
+   "wide_m": 188
   }
  ],
  "st": "US-VT"

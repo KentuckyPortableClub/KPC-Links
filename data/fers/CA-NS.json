@@ -1,6 +1,7 @@
 {
  "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
  "pass1": "2026-10-26",
+ "pass2": "2026-10-26",
  "spots": [
   {
    "acres": 42.6,
@@ -65,7 +66,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 80
   },
   {
@@ -131,7 +132,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 80
   },
   {
@@ -177,7 +178,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 88
   },
   {
@@ -219,7 +220,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 80
   },
   {
@@ -372,7 +373,7 @@
      44.766283
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 1079
   },
   {
@@ -441,7 +442,7 @@
      44.809874
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 256
   },
   {
@@ -710,7 +711,7 @@
      44.842612
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 4132
   },
   {
@@ -795,7 +796,7 @@
      44.858891
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 519
   },
   {
@@ -848,7 +849,7 @@
      44.862328
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 392
   },
   {
@@ -913,7 +914,7 @@
      44.872818
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 719
   },
   {
@@ -955,7 +956,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 88
   },
   {
@@ -1020,7 +1021,7 @@
      44.280602
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1085,7 +1086,7 @@
      44.280602
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1154,7 +1155,7 @@
      44.285105
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 168
   },
   {
@@ -1223,7 +1224,7 @@
      44.251824
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -1300,7 +1301,7 @@
      44.268103
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -1365,7 +1366,7 @@
      45.996978
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 280
   },
   {
@@ -1406,7 +1407,7 @@
      46.252792
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1452,7 +1453,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 88
   },
   {
@@ -1493,7 +1494,7 @@
      46.346294
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 120
   },
   {
@@ -1614,7 +1615,7 @@
      45.799112
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 1463
   },
   {
@@ -1656,7 +1657,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "dropped in pass 2",
    "wide_m": 88
   },
   {
@@ -1721,7 +1722,7 @@
      46.060754
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -1806,7 +1807,7 @@
      44.770077
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 1606
   },
   {
@@ -1856,7 +1857,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 80
   },
   {
@@ -1913,7 +1914,7 @@
      46.829878
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 200
   },
   {
@@ -1986,7 +1987,7 @@
      44.285124
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
@@ -2151,7 +2152,7 @@
      44.251843
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -2193,7 +2194,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 80
   },
   {
@@ -2350,7 +2351,7 @@
      44.277889
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   },
   {
@@ -2439,7 +2440,7 @@
      44.289621
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 368
   },
   {
@@ -2484,7 +2485,7 @@
      45.923669
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 112
   },
   {
@@ -2557,27 +2558,27 @@
      44.285124
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 144
   },
   {
-   "acres": 1.5,
+   "acres": 1.6,
    "box": [
-    -60.05475,
-    45.87898,
-    -60.05398,
-    45.87988
+    -60.05527,
+    45.87875,
+    -60.05424,
+    45.87947
    ],
    "center": [
-    45.879159,
-    -60.054491
+    45.879106,
+    -60.054758
    ],
    "found": "2026-10-26",
    "id": "CA-4837+CA-4849@area@45.879,-60.054",
    "kind": "area",
    "passes": [
     1,
-    0,
+    1,
     0
    ],
    "refs": [
@@ -2586,20 +2587,28 @@
    ],
    "shape": [
     [
-     -60.054749,
-     45.879883
+     -60.054242,
+     45.879287
     ],
     [
-     -60.054749,
-     45.878978
+     -60.054629,
+     45.879468
     ],
     [
-     -60.053975,
-     45.878978
+     -60.055274,
+     45.879287
+    ],
+    [
+     -60.055274,
+     45.878745
+    ],
+    [
+     -60.054242,
+     45.878925
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "pass 2",
    "wide_m": 80
   },
   {
@@ -2764,7 +2773,7 @@
      44.251843
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 216
   },
   {
@@ -2806,7 +2815,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 80
   },
   {
@@ -2963,7 +2972,7 @@
      44.277889
     ]
    ],
-   "status": "pass 1",
+   "status": "waiting for pass 2",
    "wide_m": 160
   }
  ],
