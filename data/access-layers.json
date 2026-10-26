@@ -3146,6 +3146,71 @@
    "tested": "yes 2026-10-26 (Parks Canada open data, Facilities - Point + Facilities - Components, probed by chat 2)",
    "licence": "Open Government Licence - Canada",
    "agency": "Parks Canada"
+  },
+  {
+   "prog": "park",
+   "st": "CA-BC",
+   "url": "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_environmental_monitoring/MapServer/9",
+   "what": "points: coastal BC boat launches",
+   "typef": "none (layer = type)",
+   "vals": "by place",
+   "area": "location only",
+   "count": "215",
+   "tested": "yes 2026-10-26 (parking explorer deep look, picked by chat 2)",
+   "licence": "none stated",
+   "agency": "Province of British Columbia"
+  },
+  {
+   "prog": "park",
+   "st": "CA-ON",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Public_Boat_Launch/FeatureServer/0",
+   "what": "points: public boat launches (Toronto and Region Conservation)",
+   "typef": "none (layer = type)",
+   "vals": "by place",
+   "area": "location only",
+   "count": "6",
+   "tested": "yes 2026-10-26 (parking explorer deep look, picked by chat 2)",
+   "licence": "none stated",
+   "agency": "TRCA"
+  },
+  {
+   "prog": "park",
+   "st": "CA-ON",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Hedley_Forest_Entrance/FeatureServer/0",
+   "what": "points: conservation area entrance",
+   "typef": "none (layer = type)",
+   "vals": "by place",
+   "area": "location only",
+   "count": "1",
+   "tested": "yes 2026-10-26 (parking explorer deep look, picked by chat 2)",
+   "licence": "none stated",
+   "agency": "Niagara Peninsula Conservation Authority"
+  },
+  {
+   "prog": "park",
+   "st": "CA-ON",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Wainfleet_Wetlands_Entrance/FeatureServer/0",
+   "what": "points: conservation area entrance",
+   "typef": "none (layer = type)",
+   "vals": "by place",
+   "area": "location only",
+   "count": "1",
+   "tested": "yes 2026-10-26 (parking explorer deep look, picked by chat 2)",
+   "licence": "none stated",
+   "agency": "Niagara Peninsula Conservation Authority"
+  },
+  {
+   "prog": "park",
+   "st": "CA-ON",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Chippawa_Creek_Entrance/FeatureServer/0",
+   "what": "points: conservation area entrance",
+   "typef": "none (layer = type)",
+   "vals": "by place",
+   "area": "location only",
+   "count": "1",
+   "tested": "yes 2026-10-26 (parking explorer deep look, picked by chat 2)",
+   "licence": "none stated",
+   "agency": "Niagara Peninsula Conservation Authority"
   }
  ]
 }
