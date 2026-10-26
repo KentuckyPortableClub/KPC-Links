@@ -96,6 +96,23 @@
    "wide_m": 120
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    10470
+   ],
+   "access_pin": {
+    "at": [
+     37.120935,
+     -91.06308
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 99.1,
    "box": [
     -91.07599,
@@ -219,6 +236,23 @@
    "wide_m": 440
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    5971
+   ],
+   "access_pin": {
+    "at": [
+     37.129025,
+     -91.193798
+    ],
+    "from": "road",
+    "name": "Co Rd Nn-522",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 58.0,
    "box": [
     -91.21696,
@@ -314,6 +348,23 @@
    "wide_m": 230
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    5971
+   ],
+   "access_pin": {
+    "at": [
+     37.129025,
+     -91.193798
+    ],
+    "from": "road",
+    "name": "Co Rd Nn-522",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 58.0,
    "box": [
     -91.21696,
@@ -409,6 +460,23 @@
    "wide_m": 230
   },
   {
+   "access": [
+    37.169158,
+    -91.168592,
+    "Boat ramp / launch (Missouri Department of Conservation)",
+    "US-0788",
+    5971
+   ],
+   "access_pin": {
+    "at": [
+     37.129025,
+     -91.193798
+    ],
+    "from": "road",
+    "name": "Co Rd Nn-522",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 58.0,
    "box": [
     -91.21696,
@@ -504,6 +572,23 @@
    "wide_m": 230
   },
   {
+   "access": [
+    37.185878,
+    -91.176394,
+    "Trailhead: Ozark Trail-Blair Creek Section (n/a)",
+    "US-0788",
+    5650
+   ],
+   "access_pin": {
+    "at": [
+     37.176145,
+     -91.256392
+    ],
+    "from": "road",
+    "name": "Co Rd V-216",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 189.7,
    "box": [
     -91.25151,
@@ -2945,6 +3030,23 @@
    "wide_m": 120
   },
   {
+   "access": [
+    37.452544,
+    -91.68111,
+    "Parking (n/a)",
+    "US-1774",
+    1078
+   ],
+   "access_pin": {
+    "at": [
+     37.450931,
+     -91.670995
+    ],
+    "from": "road",
+    "name": "6670",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 40.4,
    "box": [
     -91.67458,
@@ -5129,6 +5231,23 @@
    "wide_m": 120
   },
   {
+   "access": [
+    37.233806,
+    -91.353936,
+    "Parking (Missouri Department of Conservation)",
+    "US-5696",
+    2895
+   ],
+   "access_pin": {
+    "at": [
+     37.217167,
+     -91.334531
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 86.4,
    "box": [
     -91.33648,

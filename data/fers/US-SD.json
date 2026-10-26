@@ -107,6 +107,17 @@
    "wide_m": 116
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.771217,
+     -97.006291
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 103.0,
    "box": [
     -97.01035,
@@ -190,6 +201,17 @@
    "wide_m": 610
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     43.065318,
+     -98.54079
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 62.1,
    "box": [
     -98.54543,
@@ -437,6 +459,23 @@
    "wide_m": 284
   },
   {
+   "access": [
+    42.7481,
+    -98.061086,
+    "Boat ramp / launch (Nebraska Game and Parks Commission)",
+    "US-9360",
+    769
+   ],
+   "access_pin": {
+    "at": [
+     42.762914,
+     -98.040337
+    ],
+    "from": "parking / access point",
+    "name": "Parking (Nebraska Game and Parks)",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 35
+   },
    "acres": 358.2,
    "box": [
     -98.06201,
@@ -723,6 +762,23 @@
    "wide_m": 751
   },
   {
+   "access": [
+    42.7481,
+    -98.061086,
+    "Boat ramp / launch (Nebraska Game and Parks Commission)",
+    "US-2620",
+    829
+   ],
+   "access_pin": {
+    "at": [
+     42.769353,
+     -98.074271
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 981.4,
    "box": [
     -98.08481,
@@ -1050,6 +1106,23 @@
    "wide_m": 927
   },
   {
+   "access": [
+    42.594158,
+    -96.709395,
+    "Kiosk / information (NGPC; also covers WMAs)",
+    "US-2622",
+    446
+   ],
+   "access_pin": {
+    "at": [
+     42.612974,
+     -96.718074
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 1257.7,
    "box": [
     -96.73252,
@@ -1353,6 +1426,23 @@
    "wide_m": 1297
   },
   {
+   "access": [
+    42.607322,
+    -96.717279,
+    "Trailhead (Nebraska Game and Parks)",
+    "US-2622",
+    6196
+   ],
+   "access_pin": {
+    "at": [
+     42.659768,
+     -96.742044
+    ],
+    "from": "road",
+    "name": "590 Ave",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 32.7,
    "box": [
     -96.75181,
@@ -1508,6 +1598,17 @@
    "wide_m": 196
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.844262,
+     -98.171969
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 4623.2,
    "box": [
     -98.21129,
@@ -1803,6 +1904,17 @@
    "wide_m": 2047
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     42.848916,
+     -97.456389
+    ],
+    "from": "road",
+    "name": "S Deer Blvd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 297.4,
    "box": [
     -97.45974,
@@ -2102,6 +2214,17 @@
    "wide_m": 292
   },
   {
+   "access": null,
+   "access_pin": {
+    "at": [
+     43.056599,
+     -98.555489
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 178.3,
    "box": [
     -98.55859,
@@ -2377,6 +2500,23 @@
    "wide_m": 387
   },
   {
+   "access": [
+    42.761373,
+    -98.055145,
+    "Parking (NGPC; also covers WMAs)",
+    "US-9360",
+    7178
+   ],
+   "access_pin": {
+    "at": [
+     42.82666,
+     -98.136674
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 5800.3,
    "box": [
     -98.21175,
@@ -2716,6 +2856,23 @@
    "wide_m": 1582
   },
   {
+   "access": [
+    42.850058,
+    -97.462703,
+    "Boat ramp / launch (Nebraska Game and Parks Commission)",
+    "US-9360",
+    4767
+   ],
+   "access_pin": {
+    "at": [
+     42.845736,
+     -97.459986
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 620.7,
    "box": [
     -97.46107,

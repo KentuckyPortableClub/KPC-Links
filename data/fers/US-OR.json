@@ -3501,6 +3501,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    42.089404,
+    -122.07242,
+    "Boat ramp / launch: Klamath River (Oregon State Marine Board)",
+    "US-10744",
+    662
+   ],
+   "access_pin": {
+    "at": [
+     42.094087,
+     -122.071337
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 832.2,
    "box": [
     -122.11136,
@@ -3897,6 +3914,23 @@
    "wide_m": 190
   },
   {
+   "access": [
+    42.713948,
+    -123.887847,
+    "Boat ramp / launch: Rogue River (Middle) (Oregon State Marine Board)",
+    "US-10020",
+    701
+   ],
+   "access_pin": {
+    "at": [
+     42.720925,
+     -123.883317
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "acres": 50.3,
    "box": [
     -123.88357,

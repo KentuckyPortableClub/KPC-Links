@@ -9322,6 +9322,23 @@
    "wide_m": 120
   },
   {
+   "access": [
+    37.615248,
+    -80.931247,
+    "Boat ramp / launch (WV Division of Natural Resources; mixed site owners)",
+    "US-1804",
+    5036
+   ],
+   "access_pin": {
+    "at": [
+     37.609592,
+     -80.943132
+    ],
+    "from": "road",
+    "name": "Bluestone Park Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 21
+   },
    "box": [
     -81.00365,
     37.54196,
@@ -9640,6 +9657,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.536772,
+    -80.982821,
+    "Boat ramp / launch (WV Division of Natural Resources; mixed site owners)",
+    "US-1820",
+    3062
+   ],
+   "access_pin": {
+    "at": [
+     37.538219,
+     -81.015568
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
    "box": [
     -81.02835,
     37.52015,
@@ -10050,6 +10084,23 @@
    "status": "dropped in pass 2"
   },
   {
+   "access": [
+    37.615248,
+    -80.931247,
+    "Boat ramp / launch (WV Division of Natural Resources; mixed site owners)",
+    "US-7037",
+    1367
+   ],
+   "access_pin": {
+    "at": [
+     37.608643,
+     -80.943439
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "box": [
     -80.94627,
     37.60132,
@@ -10408,6 +10459,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.615248,
+    -80.931247,
+    "Boat ramp / launch (WV Division of Natural Resources; mixed site owners)",
+    "US-7037",
+    1367
+   ],
+   "access_pin": {
+    "at": [
+     37.608643,
+     -80.943439
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "box": [
     -80.94627,
     37.60132,
@@ -10766,6 +10834,23 @@
    "status": "candidate"
   },
   {
+   "access": [
+    37.615248,
+    -80.931247,
+    "Boat ramp / launch (WV Division of Natural Resources; mixed site owners)",
+    "US-7037",
+    280
+   ],
+   "access_pin": {
+    "at": [
+     37.608652,
+     -80.943449
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 49
+   },
    "box": [
     -80.93341,
     37.61205,

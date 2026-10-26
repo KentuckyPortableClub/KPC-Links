@@ -60,7 +60,7 @@
   "with official lines": 234
  },
  "pass4": {
-  "candidates without a pin": 2889,
+  "candidates without a pin": 109,
   "cell_m": 5.0,
   "date": "2026-10-26",
   "left out": {
@@ -73,7 +73,7 @@
   "official parks": 14675,
   "pairs tested": 0,
   "pass": 4,
-  "pins placed": 2889,
+  "pins placed": 109,
   "problems": [],
   "with official lines": 233
  },
@@ -385,7 +385,7 @@
    "spots": 606
   },
   "US-MO": {
-   "candidates": 16,
+   "candidates": 23,
    "candidates (saved outline only)": 0,
    "lines": 17,
    "n-fers": 1,
@@ -403,7 +403,7 @@
    "spots": 8
   },
   "US-MT": {
-   "candidates": 13,
+   "candidates": 97,
    "candidates (saved outline only)": 0,
    "lines": 195,
    "n-fers": 1,
@@ -502,7 +502,7 @@
    "spots": 85
   },
   "US-OR": {
-   "candidates": 120,
+   "candidates": 122,
    "candidates (saved outline only)": 0,
    "lines": 157,
    "n-fers": 3,
@@ -538,7 +538,7 @@
    "spots": 73
   },
   "US-SD": {
-   "candidates": 8,
+   "candidates": 19,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 1,
@@ -610,7 +610,7 @@
    "spots": 50
   },
   "US-WV": {
-   "candidates": 33,
+   "candidates": 38,
    "candidates (saved outline only)": 0,
    "lines": 28,
    "n-fers": 0,
