@@ -7,7 +7,7 @@ here = os.path.dirname(os.path.abspath(__file__))
 repo = os.path.abspath(os.path.join(here, '..', '..')) + '/'
 mainf, out, title, desc = sys.argv[1:5]
 L = open(repo + 'news.html', encoding='utf-8').read().split('\n')
-head = '\n'.join(L[:105]); nav_css = '\n'.join(L[120:122])
+head = '\n'.join(L[:105]); nav_css = '\n'.join(L[120:123])  # 121 nav CSS, 122 kpc-nav.css, 123 kpc-hero-logo-fix
 hs = next(i for i,l in enumerate(L) if l.lstrip().startswith('<header'))
 he = next(i for i,l in enumerate(L) if i>hs and l.rstrip().endswith('</header>'))
 header = '\n'.join(L[hs:he+1]).replace(' aria-current="page"', '')

@@ -1,4 +1,4 @@
-/* KPC Voice Pileup Practice (BETA): you're the POTA activator on SSB. Stations call you (browser voices),
+/* KPC Call CQ! (Kids Room voice practice): you're the POTA activator on SSB. Stations call you (browser voices),
    you type what you hear into the log, send them a report, copy theirs, and log it. Levels grow the pileup.
    Browser voices speak one at a time, so a "pileup" here is callers stacked back to back with tail-enders. */
 (function () {
@@ -116,7 +116,7 @@ const PROG = {
 const P = () => PROG[S.prog] || PROG.pota;
 const sayRef = ref => String(ref).replace(/[A-Z]/g, c => c + ' ').replace(/\d/g, d => ' ' + ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'][+d] + ' ').replace(/[-/]/g, ' ').replace(/\s+/g, ' ').trim();
 const run = { on: false, callers: [], cur: null, sent: false, last: '', log: [], t0: 0, gen: 0, worked: new Set() };
-const myCall = () => (S.call || '').toUpperCase().trim() || 'K4TEST';
+const myCall = () => (S.call || '').toUpperCase().trim() || 'W4KIDS';
 
 function status(t) { const e = $('vbStatus'); if (e) e.textContent = t; }
 function line(who, text, cls) { const b = $('vbBand'); if (!b) return; const d = document.createElement('div'); d.className = 'vb-line ' + (cls || ''); d.innerHTML = `<b>${esc(who)}</b> ${esc(text)}`; b.appendChild(d); b.scrollTop = b.scrollHeight; while (b.children.length > 120) b.removeChild(b.firstChild); }
@@ -293,7 +293,7 @@ function qslPrint(n) {
   <table><tr><th>DATE</th><th>UTC</th><th>BAND</th><th>MODE</th><th>${hunt ? 'RST RCVD' : 'RST SENT'}</th></tr><tr><td>${date}</td><td>${utc}</td><td>${band}</td><td>SSB</td><td>${esc(hunt ? q.rcvd : q.sent)}</td></tr></table>
   <div class="w">${esc(where)}</div>
   <div class="w" style="margin-top:14px;font-weight:700">☐ PSE QSL &nbsp; ☑ TNX QSL &nbsp;&nbsp; Op: ____________________</div>
-  <div class="ft"><span>Tnx for the QSO, 73!</span><span>Made in KPC Voice Pileup Practice: not a real contact</span></div></div>
+  <div class="ft"><span>Tnx for the QSO, 73!</span><span>Made in KPC Call CQ! practice: not a real contact</span></div></div>
   <div class="tip">Cut on the dashed line. Real hams trade cards like this to confirm a contact!</div></body></html>`);
   f.contentDocument.close();
   const im = f.contentDocument.images[0]; const go = () => { try { f.contentWindow.focus(); f.contentWindow.print(); } catch (e) {} setTimeout(() => f.remove(), 60000); };
@@ -304,7 +304,7 @@ function adif() {
   if (!(hunt ? H.log : run.log).length) return;
   const f = (k, v) => v ? `<${k}:${String(v).length}>${v} ` : '';
   const rows = hunt ? huntAdif() : run.log.map(q => { const d = q.time.toISOString(); return f('CALL', q.call) + f('QSO_DATE', d.slice(0, 10).replace(/-/g, '')) + f('TIME_ON', d.slice(11, 16).replace(':', '')) + f('BAND', (S.band || '20') + 'M') + f('MODE', 'SSB') + f('RST_SENT', q.sent) + f('RST_RCVD', q.rcvd) + f('STATE', q.st) + f('STATION_CALLSIGN', myCall()) + (S.prog === 'sota' ? f('MY_SOTA_REF', S.ref) + f('SOTA_REF', q.ref) : f('MY_SIG', S.ref && S.prog !== 'off' ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('MY_SIG_INFO', S.prog !== 'off' ? S.ref : '') + f('SIG', q.ref ? (S.prog === 'kff' ? 'WWFF' : 'POTA') : '') + f('SIG_INFO', q.ref)) + f('COMMENT', 'KPC PRACTICE - NOT A REAL QSO') + '<EOR>'; });
-  const txt = 'KPC Voice Pileup Practice log (PRACTICE ONLY - do not upload to POTA)\n<ADIF_VER:5>3.1.4 <PROGRAMID:3>KPC <EOH>\n' + rows.join('\n') + '\n';
+  const txt = 'KPC Call CQ! practice log (PRACTICE ONLY - do not upload to POTA)\n<ADIF_VER:5>3.1.4 <PROGRAMID:3>KPC <EOH>\n' + rows.join('\n') + '\n';
   const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([txt], { type: 'text/plain' })); a.download = `KPC-practice-${myCall() || 'log'}.adi`; a.click();
 }
 
