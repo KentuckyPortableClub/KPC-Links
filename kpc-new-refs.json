@@ -1,8 +1,448 @@
 {
- "updated": "2026-10-24T13:16:57+00:00",
+ "updated": "2026-10-26T15:05:02+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-8227",
+   "prog": "pota",
+   "name": "Jemez National Recreation Area",
+   "st": [
+    "NM"
+   ],
+   "la": 35.6802,
+   "lo": -106.737,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "US-13620",
+   "prog": "pota",
+   "name": "Lake Eleanor Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 45.0677,
+   "lo": -94.998,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "US-13619",
+   "prog": "pota",
+   "name": "Whitefield Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 45.0451,
+   "lo": -95.0642,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "US-13618",
+   "prog": "pota",
+   "name": "Dalton Johnson Wildlife Management Area",
+   "st": [
+    "MN"
+   ],
+   "la": 44.9333,
+   "lo": -94.8201,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7553",
+   "prog": "kff",
+   "name": "Sunnyvale",
+   "st": [],
+   "la": 29.514,
+   "lo": -82.9985,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7552",
+   "prog": "kff",
+   "name": "Sugar Creek",
+   "st": [],
+   "la": 30.4005,
+   "lo": -82.9411,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7551",
+   "prog": "kff",
+   "name": "Stephen Foster",
+   "st": [],
+   "la": 30.3243,
+   "lo": -82.7691,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7550",
+   "prog": "kff",
+   "name": "R.V. Griffin Reserve",
+   "st": [],
+   "la": 28.0889,
+   "lo": -82.0097,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7549",
+   "prog": "kff",
+   "name": "Prairie/Shell Creek",
+   "st": [],
+   "la": 26.9936,
+   "lo": -81.9719,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7548",
+   "prog": "kff",
+   "name": "Panasoffkee Outlet",
+   "st": [],
+   "la": 28.8,
+   "lo": -82.1543,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7547",
+   "prog": "kff",
+   "name": "Mud Swamp",
+   "st": [],
+   "la": 29.8534,
+   "lo": -82.3141,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7546",
+   "prog": "kff",
+   "name": "Little Creek-McAlpin Landing",
+   "st": [],
+   "la": 30.3827,
+   "lo": -82.6682,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7545",
+   "prog": "kff",
+   "name": "Lindsey",
+   "st": [],
+   "la": 29.6985,
+   "lo": -82.9442,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7544",
+   "prog": "kff",
+   "name": "Jack Creek",
+   "st": [],
+   "la": 27.3801,
+   "lo": -81.425,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7543",
+   "prog": "kff",
+   "name": "Edward W. Chance Reserve-Coker Prairie",
+   "st": [],
+   "la": 27.499,
+   "lo": -82.312,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7542",
+   "prog": "kff",
+   "name": "Chassahowitzka River and Coastal Swamp",
+   "st": [],
+   "la": 28.7144,
+   "lo": -82.5772,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7541",
+   "prog": "kff",
+   "name": "Annutteliga Hammock",
+   "st": [],
+   "la": 28.615,
+   "lo": -82.544,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7540",
+   "prog": "kff",
+   "name": "Ocoee River",
+   "st": [],
+   "la": 35.0811,
+   "lo": -84.4898,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7539",
+   "prog": "kff",
+   "name": "Clinch River Valley",
+   "st": [],
+   "la": 36.57,
+   "lo": -83.0423,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7538",
+   "prog": "kff",
+   "name": "Treat Mountain",
+   "st": [],
+   "la": 33.902,
+   "lo": -85.3523,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7537",
+   "prog": "kff",
+   "name": "Townsend",
+   "st": [],
+   "la": 31.6176,
+   "lo": -81.6663,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7536",
+   "prog": "kff",
+   "name": "Tallulah Gorge",
+   "st": [],
+   "la": 34.7241,
+   "lo": -83.3809,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7535",
+   "prog": "kff",
+   "name": "Tallapoosa River",
+   "st": [],
+   "la": 33.8952,
+   "lo": -85.1204,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7534",
+   "prog": "kff",
+   "name": "Southern Nantahala (GA)",
+   "st": [],
+   "la": 34.9502,
+   "lo": -83.5441,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7533",
+   "prog": "kff",
+   "name": "Soap Creek",
+   "st": [],
+   "la": 33.8282,
+   "lo": -82.4707,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7532",
+   "prog": "kff",
+   "name": "Sheffield",
+   "st": [],
+   "la": 34.0242,
+   "lo": -84.9062,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7531",
+   "prog": "kff",
+   "name": "Sandhills West",
+   "st": [],
+   "la": 32.5703,
+   "lo": -84.4073,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7530",
+   "prog": "kff",
+   "name": "Rich Mountain-Cartecay Tract",
+   "st": [],
+   "la": 34.6466,
+   "lo": -84.4384,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7529",
+   "prog": "kff",
+   "name": "Morgan Lake",
+   "st": [],
+   "la": 31.6691,
+   "lo": -81.8147,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7528",
+   "prog": "kff",
+   "name": "Moody Forest",
+   "st": [],
+   "la": 31.9067,
+   "lo": -82.3119,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7527",
+   "prog": "kff",
+   "name": "Lower Broad River",
+   "st": [],
+   "la": 33.9985,
+   "lo": -82.6597,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7526",
+   "prog": "kff",
+   "name": "Little River",
+   "st": [],
+   "la": 33.3145,
+   "lo": -83.4584,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7525",
+   "prog": "kff",
+   "name": "Lanahassee Creek",
+   "st": [],
+   "la": 32.0441,
+   "lo": -84.4882,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7524",
+   "prog": "kff",
+   "name": "Lake Seminole",
+   "st": [],
+   "la": 30.847,
+   "lo": -84.662,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7523",
+   "prog": "kff",
+   "name": "Hitchiti",
+   "st": [],
+   "la": 33.05,
+   "lo": -83.7146,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7522",
+   "prog": "kff",
+   "name": "Hiltonia",
+   "st": [],
+   "la": 32.8909,
+   "lo": -81.7151,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7521",
+   "prog": "kff",
+   "name": "Cochrans Creek",
+   "st": [],
+   "la": 34.5376,
+   "lo": -84.2097,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7520",
+   "prog": "kff",
+   "name": "Chattahoochee Fall: Line Hilliard Tract",
+   "st": [],
+   "la": 32.4098,
+   "lo": -84.5838,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7519",
+   "prog": "kff",
+   "name": "Charles Elliot",
+   "st": [],
+   "la": 33.4625,
+   "lo": -83.7367,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7518",
+   "prog": "kff",
+   "name": "Ceylon",
+   "st": [],
+   "la": 30.044,
+   "lo": -81.6712,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7517",
+   "prog": "kff",
+   "name": "Big Dukes Pond",
+   "st": [],
+   "la": 32.8705,
+   "lo": -82.0357,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7516",
+   "prog": "kff",
+   "name": "Ball's Ferry Property",
+   "st": [],
+   "la": 32.783,
+   "lo": -82.9647,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7515",
+   "prog": "kff",
+   "name": "Altama Plantation",
+   "st": [],
+   "la": 31.3031,
+   "lo": -81.4835,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7514",
+   "prog": "kff",
+   "name": "Alexander",
+   "st": [],
+   "la": 33.0086,
+   "lo": -81.8983,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7513",
+   "prog": "kff",
+   "name": "Savage Highlands",
+   "st": [],
+   "la": 39.6548,
+   "lo": -79.0218,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7512",
+   "prog": "kff",
+   "name": "Cathedral Ledge",
+   "st": [],
+   "la": 44.0631,
+   "lo": -71.1674,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7511",
+   "prog": "kff",
+   "name": "Alexandria",
+   "st": [],
+   "la": 40.2295,
+   "lo": -97.3503,
+   "found": "2026-10-26"
+  },
+  {
+   "ref": "KFF-7510",
+   "prog": "kff",
+   "name": "Judith Landing",
+   "st": [],
+   "la": 47.7349,
+   "lo": -109.635,
+   "found": "2026-10-26"
+  },
   {
    "ref": "US-13617",
    "prog": "pota",
