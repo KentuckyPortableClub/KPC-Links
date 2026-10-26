@@ -10,7 +10,7 @@ on:
       only:
         description: 'Test just one of them (leave blank for the normal daily job)'
         type: choice
-        options: ['', park, lonely, weather, contests, wma]
+        options: ['', park, lonely, weather, contests, wma, holiday]
         default: ''
       dry_run:
         description: 'Practice run: print it instead of posting'
