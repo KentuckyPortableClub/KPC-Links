@@ -1,0 +1,29 @@
+name: KPC tmp probe
+on: workflow_dispatch
+permissions: {contents: read}
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - continue-on-error: true
+        run: |
+          python3 - <<'PY' || true
+          import json,urllib.request,urllib.parse
+          def g(u):
+              return json.loads(urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'KPC probe'}),timeout=40).read())
+          def n(t,m): print('::notice title=%s::%s'%(t,str(m).replace('\n',' ')[:950]),flush=True)
+          A='https://open.canada.ca/data/api/3/action/'
+          try:
+              r=g(A+'package_search?'+urllib.parse.urlencode({'q':'Parks Canada facilities OR components OR parking OR trailhead','fq':'organization:pc','rows':40}))['result']
+              for p in r['results']:
+                  n('pkg',p['id']+' | '+p['title']+' | '+p.get('license_id',''))
+                  for res in p.get('resources',[]):
+                      if any(w in (p['title']+res.get('name','')).lower() for w in ('facilit','component','park','trail','access')):
+                          n('res',p['title'][:40]+' | '+res.get('format','')+' | '+res.get('url',''))
+          except Exception as e: n('err',e)
+          for pid in ['3969368d-33b5-47c8-8953-f31b15d8e007']:
+              try:
+                  p=g(A+'package_show?id='+pid)['result']; n('show',p['title']+' '+p.get('license_title',''))
+                  for res in p['resources']: n('res2',res.get('format','')+' | '+res.get('url',''))
+              except Exception as e: n('err2',e)
+          PY
