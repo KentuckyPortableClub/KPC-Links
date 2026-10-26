@@ -3853,7 +3853,7 @@
      45.298902
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -7045,7 +7045,7 @@
      45.40526
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -7317,7 +7317,7 @@
      45.420635
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -7645,7 +7645,7 @@
      45.434235
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -8613,7 +8613,7 @@
      45.466407
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -39889,7 +39889,7 @@
      45.509263
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -41793,7 +41793,7 @@
      45.698393
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -42645,7 +42645,7 @@
      45.714265
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -42985,7 +42985,7 @@
      45.705523
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -56561,7 +56561,7 @@
      46.343001
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -66449,7 +66449,7 @@
      45.528805
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -66745,7 +66745,7 @@
      45.539585
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -67489,7 +67489,7 @@
      45.706882
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -67769,7 +67769,7 @@
      45.715905
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -68053,7 +68053,7 @@
      45.72746
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -68353,7 +68353,7 @@
      46.278655
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -71469,7 +71469,7 @@
      44.505961
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -83909,7 +83909,7 @@
      46.869094
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -84269,7 +84269,7 @@
      46.888484
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -84565,7 +84565,7 @@
      46.902199
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -99449,7 +99449,7 @@
      45.89685
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -99753,7 +99753,7 @@
      46.220617
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -102377,7 +102377,7 @@
      44.787508
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 26791
   },
   {

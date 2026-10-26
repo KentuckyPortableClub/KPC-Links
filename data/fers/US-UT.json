@@ -1198,7 +1198,7 @@
      37.14112
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -1534,7 +1534,7 @@
      37.181847
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -1854,7 +1854,7 @@
      37.293442
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -2154,7 +2154,7 @@
      37.23889
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -2442,7 +2442,7 @@
      37.27017
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -2718,7 +2718,7 @@
      37.300837
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -3038,7 +3038,7 @@
      37.387845
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -4782,7 +4782,7 @@
      37.424007
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -5074,7 +5074,7 @@
      37.45502
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -9990,7 +9990,7 @@
      37.36709
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -10558,7 +10558,7 @@
      37.463635
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -12154,7 +12154,7 @@
      37.413191
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -12798,7 +12798,7 @@
      37.394417
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -13426,7 +13426,7 @@
      37.410532
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -14706,7 +14706,7 @@
      37.413064
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -15262,7 +15262,7 @@
      37.413064
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -16154,7 +16154,7 @@
      37.137858
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -16874,7 +16874,7 @@
      37.463635
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -39247,7 +39247,7 @@
      38.779427
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 4220
   },
   {
@@ -42195,7 +42195,7 @@
      38.637818
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 759
   },
   {

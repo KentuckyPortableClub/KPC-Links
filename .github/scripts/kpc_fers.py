@@ -483,7 +483,7 @@ def merge(spots):
             t['shape'] = t['shape'] if len(t['shape']) >= len(s['shape']) else s['shape']
         else:
             s['_b'] = b; out.append(s)
-    for o in out: o.pop('_b', None)
+    for o in out: o['box'] = [round(v, 5) for v in o.pop('_b')]   # the box of ALL its pieces (the shape is the biggest piece only)
     return out
 
 
@@ -641,7 +641,7 @@ def slim(spots):
     America keeps an outline of at most 80 points."""
     for s in spots:
         if s.get('shape'):
-            b = bbox_lines([s['shape']]); s['box'] = [round(v, 5) for v in b]
+            if not s.get('box'): s['box'] = [round(v, 5) for v in bbox_lines([s['shape']])]
             if REGION == 'world': s.pop('shape', None)
             elif len(s['shape']) > 80: s['shape'] = s['shape'][::int(math.ceil(len(s['shape']) / 80))]
     return spots

@@ -3562,7 +3562,7 @@
      30.801195
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 360
   },
   {
@@ -4362,7 +4362,7 @@
      30.801195
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 360
   },
   {
@@ -13654,7 +13654,7 @@
      34.813803
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -16030,7 +16030,7 @@
      34.925549
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -16298,7 +16298,7 @@
      34.933059
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -16626,7 +16626,7 @@
      34.942605
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -17150,7 +17150,7 @@
      34.980167
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -17434,7 +17434,7 @@
      34.954237
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -17702,7 +17702,7 @@
      34.98686
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -17894,7 +17894,7 @@
      35.000812
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "acres": 304.3,

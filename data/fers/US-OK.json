@@ -1826,7 +1826,7 @@
      34.567688
     ]
    ],
-   "status": "dropped in pass 2"
+   "status": "pass 1"
   },
   {
    "box": [
@@ -8454,7 +8454,7 @@
      35.638972
     ]
    ],
-   "status": "dropped in pass 2",
+   "status": "pass 1",
    "wide_m": 1920
   },
   {
