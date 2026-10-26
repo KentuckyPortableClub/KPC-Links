@@ -10,6 +10,10 @@ on:
       minutes:
         description: 'Minutes to search (default 100; up to 330 for a long catch-up run)'
         default: '100'
+      deep:
+        description: 'Canada deep look: search EVERY folder on the provincial / Parks Canada servers (two jobs, west + east)'
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -24,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        part: [us-a, us-b, us-c, canada]
+        part: ${{ fromJSON(inputs.deep && '["canada-deep-west","canada-deep-east"]' || '["us-a","us-b","us-c","canada"]') }}
     steps:
       - uses: actions/checkout@v5
       - name: Look for parking layers
