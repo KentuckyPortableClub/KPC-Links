@@ -125,7 +125,7 @@ PAGES['kpc-pota-room.html'] = ('POTA Room | KPC', 'Parks on the Air in plain wor
         '<b>Upload an ADIF log</b> when you\'re done, under My Log Uploads on pota.app. Any logging program that makes a proper ADIF file works.',
         '<b>Hunters don\'t send logs.</b> POTA runs on the honor system: hunters get credit from the logs activators upload.',
         '<b>Be a good guest:</b> follow the law and the park\'s rules, listen to rangers, leave no trace, be courteous to other visitors, and follow the DX Code of Conduct.',
-        '<b>Overlapping parks (2-fers):</b> where two POTA parks overlap, one contact can count for both. Parks that only touch at a border are not a 2-fer. A WWFF or SOTA reference on the same ground is a different program, not a 2-fer.',
+        '<b>Two-fers and three-fers.</b> POTA\'s rules say: “Activations of multiple references (‘two-fer,’ ‘three-fer,’ etc.) are permitted with Parks on the Air. Such a multi-park activation requires an overlapped area where all activated parks’ boundaries intersect. The intersection must entirely contain the activator and the station equipment.” (<a href="https://docs.pota.app/docs/rules.html" target="_blank" rel="noopener">POTA rules ↗</a>) Submit a separate log for each park.',
     ], 'Sources: <a href="https://parksontheair.com/rules/" target="_blank" rel="noopener">parksontheair.com/rules</a> and the detailed rules at <a href="https://docs.pota.app/" target="_blank" rel="noopener">docs.pota.app</a>.' + DISCLAIM + AFF['pota']),
     steps('HOW TO START', '🚀 Your First Activation or Hunt', [
         ('📻 Activating', ['Pick a park: <a href="finder.html">KY Park Commander</a> or <a href="kpc-rare.html">Rarely Activated Parks</a>.',
