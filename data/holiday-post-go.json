@@ -1,0 +1,4 @@
+{
+ "about": "Which holidays may post (chat 5, kpc_club_posts.py holiday_post). Add an id from data/holidays.json ONLY when Brandon says GO for that holiday.",
+ "go": ["halloween"]
+}

@@ -224,6 +224,96 @@ def wma_closures(state, today, force=False):
     return ok
 
 
+# ------------------------------------------------------------------ holiday post (HQ Oct 26, Brandon: GO for Halloween only)
+def _rule_date(rule, year):
+    """'MM-DD' is handled by the caller. Rules: easter | 'last monday of 05' | 'second sunday of 05'."""
+    r = str(rule).strip().lower()
+    if r == 'easter':
+        a, b, c = year % 19, year // 100, year % 100
+        d, e = b // 4, b % 4
+        f = (b + 8) // 25
+        g = (b - f + 1) // 3
+        h = (19 * a + b - d - g + 15) % 30
+        i, k = c // 4, c % 4
+        l = (32 + 2 * e + 2 * i - h - k) % 7
+        m = (a + 11 * h + 22 * l) // 451
+        mo, da = divmod(h + l - 7 * m + 114, 31)
+        return datetime.date(year, mo, da + 1)
+    m = re.fullmatch(r'(first|second|third|fourth|last) (monday|tuesday|wednesday|thursday|friday|saturday|sunday) of (\d\d)', r)
+    if not m:
+        return None            # e.g. 'fourth full weekend of 06' (Field Day): not wired yet, never posts
+    n, wd, mo = m.group(1), ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].index(m.group(2)), int(m.group(3))
+    days = [datetime.date(year, mo, 1) + datetime.timedelta(days=i) for i in range(31)]
+    days = [d for d in days if d.month == mo and d.weekday() == wd]
+    return days[-1] if n == 'last' else days[['first', 'second', 'third', 'fourth'].index(n)]
+
+
+def _multipart(fields, fname, data):
+    b = 'kpcb' + os.urandom(8).hex()
+    out = b''
+    for k, v in fields.items():
+        out += f'--{b}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode()
+    out += (f'--{b}\r\nContent-Disposition: form-data; name="file"; filename="{fname}"\r\n'
+            f'Content-Type: image/jpeg\r\n\r\n').encode() + data + f'\r\n--{b}--\r\n'.encode()
+    return out, {'Content-Type': 'multipart/form-data; boundary=' + b}
+
+
+def holiday_post(state, today, force=False):
+    """The morning of a holiday: ONE post, the -post.jpg picture + the text in data/holidays.json, to Discord + the
+    Facebook Page. Behind a switch: only holidays listed in data/holiday-post-go.json ({"go": ["halloween"]}) post.
+    Never emails. Never twice (state 'holidays_done')."""
+    go = {str(x) for x in (load('data/holiday-post-go.json', {}).get('go') or [])}
+    done = state.get('holidays_done') or []
+    for h in (load('data/holidays.json', {}).get('holidays') or []):
+        try:
+            if h.get('date'):
+                mo, da = h['date'].split('-')
+                d = datetime.date(today.year, int(mo), int(da))
+            else:
+                d = _rule_date(h.get('rule'), today.year)
+        except (ValueError, TypeError):
+            d = None
+        if not d or d != today or h['id'] not in go:
+            continue
+        key = f"{h['id']}-{today.year}"
+        if key in done and not force:
+            return False
+        img = pathlib.Path(h.get('post_img') or '')
+        text = str(h.get('post') or '').strip()
+        if not text or not img.is_file():
+            notice(f"{h['id']}: the post text or picture is missing; nothing posted.")
+            return False
+        data = img.read_bytes()
+        title = h.get('name') or h['id']
+        if DRY:
+            print(f'--- {title} ---\n{text}\n(picture {img}, {len(data)//1024} KB)\n')
+            return True
+        ok = False
+        dh = hook('KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK', 'KPC_PARKS_WEBHOOK')
+        if dh:
+            body, hd = _multipart({'payload_json': json.dumps({'username': 'KPC-N4KPC-Bot', 'content': text,
+                                  'allowed_mentions': {'parse': []}})}, img.name, data)
+            c, r = http(dh, body, hd)
+            ok = c < 300
+            if not ok:
+                notice(f'Discord said HTTP {c}: {r[:160]}')
+        else:
+            notice('No webhook for the holiday post; nothing sent to Discord.')
+        if FB_ID and FB_TOKEN:
+            body, hd = _multipart({'access_token': FB_TOKEN, 'caption': text, 'published': 'true'}, img.name, data)
+            body = body.replace(b'name="file"', b'name="source"')
+            c, r = http(f'https://graph.facebook.com/{FB_ID}/photos', body, hd)
+            if c >= 300:
+                notice(f'Facebook said HTTP {c}: {r[:160]}')
+            ok = ok or c < 300
+        else:
+            notice('No Facebook secrets; skipped Facebook.')
+        if ok:
+            state['holidays_done'] = (done + [key])[-30:]
+        return ok
+    return False
+
+
 # ------------------------------------------------------------------ the quiet ones
 def lonely_parks(state):
     rows = (load('kpc-top25.json', {}).get('acts') or [])
@@ -400,7 +490,7 @@ def busy_bands(state, today, force=False):
 
 
 def main():
-    today = datetime.date.today()
+    today = datetime.date.fromisoformat(os.environ['HOLIDAY_DATE']) if os.environ.get('HOLIDAY_DATE') else datetime.date.today()   # HOLIDAY_DATE: tests only
     state = load(STATE_F, {})
     did = []
 
@@ -409,7 +499,7 @@ def main():
     want_lonely = ONLY == 'lonely' or (not ONLY and today.weekday() == LONELY_DAY
                                        and state.get('lonely_on') != today.isoformat())
     want_wx = ONLY == 'weather' or not ONLY
-    if ONLY == 'wma':
+    if ONLY in ('wma', 'holiday'):
         want_wx = False
 
     if want_park and park_of_the_week(state):
@@ -420,6 +510,8 @@ def main():
         did.append('the quiet ones')
     if ONLY in ('contests', 'busy') or (not ONLY and today.weekday() == POST_DAY):
         did += busy_bands(state, today, force=ONLY in ('contests', 'busy'))
+    if holiday_post(state, today, force=ONLY == 'holiday'):
+        did.append('holiday post')
     if wma_closures(state, today, force=ONLY == 'wma'):
         did.append('WMA closure heads-up')
     if want_wx:
