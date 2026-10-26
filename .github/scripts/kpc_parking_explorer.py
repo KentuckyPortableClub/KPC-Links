@@ -80,9 +80,18 @@ def main():
         sg.setdefault('CA-' + k, []).extend(sg.pop(k))   # provinces in state-gis.json share the letters of states (CA = California)
     for k, v in canada_targets().items(): sg.setdefault(k, []).extend(v)
     known = {L['url'].rstrip('/').lower() for L in json.load(open('data/access-layers.json')).get('layers', [])}
-    try: prev = json.load(open('data/access-leads.json'))
-    except Exception: prev = {}  # noqa: E722
-    old, checked = prev.get('states', {}), prev.get('checked', {})
+    # Oct 25 (Brandon: 'split it up between bots'): one file per state / province in data/access-leads/, and PART picks a
+    # share of them, so several runs (the workflow's matrix jobs) can work at the same time without touching each other's files
+    D = pathlib.Path('data/access-leads'); D.mkdir(parents=True, exist_ok=True)
+    checked = {}
+    for f in D.glob('*.json'):
+        try: checked[f.stem] = json.load(open(f)).get('checked', '')
+        except Exception: pass  # noqa: E722
+    us = sorted(s for s in sg if not s.startswith('CA-')); ca = sorted(s for s in sg if s.startswith('CA-'))
+    part = (os.environ.get('PART') or '').strip().lower()
+    n3 = (len(us) + 2) // 3
+    pick = {'us-a': us[:n3], 'us-b': us[n3:2 * n3], 'us-c': us[2 * n3:], 'canada': ca}.get(part, us + ca)
+    sg = {k: v for k, v in sg.items() if k in pick}
     rest = sorted((s for s in sg if s not in FIRST), key=lambda s: (checked.get(s, ''), s))   # never checked / oldest first
     sts = [s for s in FIRST if s in sg and not checked.get(s)] + rest + [s for s in FIRST if s in sg and checked.get(s)]
     today = time.strftime('%Y-%m-%d')
@@ -90,8 +99,6 @@ def main():
     for st in sts:
         if time.time() - T0 > LIMIT:
             log.append(f'stopped for time before {st}; earlier results kept')
-            for s in sts[sts.index(st):]:
-                if s in old: leads[s] = old[s]
             break
         got = []
         pairs = {roots(e.get('url', '')) for e in sg[st] if e.get('url')}
@@ -128,14 +135,10 @@ def main():
                                 'fields': flds[:20], 'sample': [{k: v for k, v in (x.get('attributes') or {}).items() if v not in (None, '')} for x in smp],
                                 'known': lu.rstrip('/').lower() in known, 'agency': (info.get('copyrightText') or '')[:80]})
                 time.sleep(.2)
-        if got: leads[st] = sorted(got, key=lambda x: (x['known'], -x['count']))
-        checked[st] = today
+        leads[st] = sorted(got, key=lambda x: (x['known'], -x['count']))
+        save_json(D / f'{st}.json', {'st': st, 'checked': today, 'leads': leads[st]}, indent=1)
         log.append(f"{st}: {len(got)} point layers ({sum(1 for x in got if not x['known'])} new)")
-    for s_, v_ in old.items(): leads.setdefault(s_, v_)   # states not reached this run keep last results
-    save_json('data/access-leads.json', {'checked': checked, 'about': 'Leads for parking / trailhead / access / ramp / entrance point layers on the state servers in '
-                                         'state-gis.json (kpc_parking_explorer.py, monthly). A person (chat 2) reviews them and adds the good ones '
-                                         'to data/access-layers.json; known = already there.', 'states': leads}, indent=1)
-    L = ['# Parking layer leads', '', 'From kpc_parking_explorer.py (monthly). New = not yet in data/access-layers.json. Review, then add the good ones.', '']
+    L = [f'# Parking layer leads ({part or "all"})', '', 'From kpc_parking_explorer.py. New = not yet in data/access-layers.json. Review, then add the good ones.', '']
     for st, xs in leads.items():
         new = [x for x in xs if not x['known']]
         if not new: continue
@@ -143,7 +146,7 @@ def main():
         for x in new[:25]:
             L.append(f"- **{x['service']} / {x['layer']}** · {x['count']} points · area field `{x['area']}` · type field `{x['typef']}`  \n  {x['url']}")
         L.append('')
-    save_text('data/access-leads.md', '\n'.join(L))
+    if leads: save_text(D / f'leads-{part or "all"}.md', '\n'.join(L))
     for l in log[:40]: notice('Parking explorer', l)
     notice('Parking explorer', f"{sum(len(v) for v in leads.values())} point layers in {len(leads)} states, "
                                f"{sum(1 for v in leads.values() for x in v if not x['known'])} not yet used")
