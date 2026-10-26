@@ -53,8 +53,21 @@
     if (/^\d{1,5}$/.test(q)) return ['US-' + q.padStart(4, '0'), 'KFF-' + q.padStart(4, '0')];
     if (/^(US|K)-?\d+$/.test(q)) return ['US-' + q.replace(/^(US|K)-?/, '').padStart(4, '0')];
     if (/^KFF-?\d+$/.test(q)) return ['KFF-' + q.replace(/^KFF-?/, '').padStart(4, '0')];
+    if (/^(CA|VE)-?\d+$/.test(q)) return ['CA-' + q.replace(/^(CA|VE)-?/, '').padStart(4, '0')];
     if (/^W4K\//.test(q)) return [q];
     return [];
+  }
+  /* Oct 26 (HQ: 'find ANY POTA park number or name in the US and Canada, Kentucky first'): the same park lists the
+     Lounge uses: locations.json (every US POTA park, with GPS) + data/parkinfo/CA.json (Canada). Loaded only when needed. */
+  let USCA = null;
+  function uscaData() {
+    if (!USCA) USCA = Promise.all([jget('locations.json').catch(() => null), jget('data/parkinfo/CA.json').catch(() => null)]).then(([L, C]) => {
+      const out = [];
+      ((L && (L.rows || L)) || []).forEach(r => { if (r[0] === 'POTA' && isFinite(r[3])) out.push({ c: r[1], n: r[2], la: +r[3], lo: +r[4] }); });
+      Object.entries((C && C.parks) || {}).forEach(([ref, a]) => { if (isFinite(a[5])) out.push({ c: ref, n: a[0], la: +a[5], lo: +a[6], pr: a[10] || '' }); });
+      return out;
+    });
+    return USCA;
   }
   async function search(q) {
     q = q.trim(); if (!q) return [];
@@ -64,6 +77,14 @@
       d.parks.forEach(x => { if (refs.includes(x.c) || x.n.toLowerCase().includes(t)) add(x, 'POTA park'); });
       d.summits.forEach(x => { if (refs.includes(x.c.toUpperCase()) || x.n.toLowerCase().includes(t)) add(x, 'SOTA summit'); });
       d.kff.forEach(x => { if (refs.includes(x.c) || x.n.toLowerCase().includes(t)) add(x, 'WWFF (KFF)'); });
+      /* the rest of the US + Canada (Kentucky parks above stay first) */
+      const ky = new Set(d.parks.map(x => x.c)), words = t.split(/\s+/).filter(w => w.length > 1);
+      if ((refs.length && !out.some(o => refs.includes(o.ref))) || (!refs.length && words.length && out.length < 12 && t.length >= 3)) {
+        const A = await uscaData();
+        A.forEach(x => { if (out.length >= 30 || ky.has(x.c)) return;
+          const hit = refs.length ? refs.includes(x.c) : words.every(w => x.n.toLowerCase().includes(w));
+          if (hit) out.push({ name: x.n, ref: x.c, sub: 'POTA park · ' + (/^CA-/.test(x.c) ? 'Canada' + (x.pr ? ' (' + x.pr + ')' : '') : 'United States'), la: x.la, lo: x.lo, kind: 'ref' }); });
+      }
     }
     if (out.length < 8 && !refs.length) {
       try {
