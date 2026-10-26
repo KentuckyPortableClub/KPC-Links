@@ -9336,13 +9336,27 @@
    "id": "US-0697+US-1804@river@37.589,-80.959",
    "kind": "river",
    "len_m": 15260,
+   "maps": [
+    [
+     "US-0697",
+     "https://www.nps.gov/blue/index.htm"
+    ],
+    [
+     "US-1804",
+     "https://wvstateparks.com/park/bluestone-state-park/"
+    ]
+   ],
+   "names": {
+    "US-0697": "Bluestone National Wild and Scenic River",
+    "US-1804": "Bluestone State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0697": false,
+    "US-0697": true,
     "US-1804": true
    },
    "refs": [
@@ -9623,7 +9637,7 @@
      37.542134
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -9640,13 +9654,27 @@
    "id": "US-0697+US-1820@river@37.537,-81.017",
    "kind": "river",
    "len_m": 6431,
+   "maps": [
+    [
+     "US-0697",
+     "https://www.nps.gov/blue/index.htm"
+    ],
+    [
+     "US-1820",
+     "https://wvstateparks.com/park/pipestem-resort-state-park/"
+    ]
+   ],
+   "names": {
+    "US-0697": "Bluestone National Wild and Scenic River",
+    "US-1820": "Pipestem Resort State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0697": false,
+    "US-0697": true,
     "US-1820": true
    },
    "refs": [
@@ -9943,7 +9971,7 @@
      37.524688
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10036,13 +10064,27 @@
    "id": "US-0697+US-7037@river@37.604,-80.943",
    "kind": "river",
    "len_m": 1763,
+   "maps": [
+    [
+     "US-0697",
+     "https://www.nps.gov/blue/index.htm"
+    ],
+    [
+     "US-7037",
+     "https://wvdnr.gov/lands-waters/wildlife-management-areas/"
+    ]
+   ],
+   "names": {
+    "US-0697": "Bluestone National Wild and Scenic River",
+    "US-7037": "Bluestone Lake Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0697": false,
+    "US-0697": true,
     "US-7037": true
    },
    "refs": [
@@ -10363,7 +10405,7 @@
      37.601366
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10380,13 +10422,27 @@
    "id": "US-0697+US-7037@river@37.610,-80.935",
    "kind": "river",
    "len_m": 1763,
+   "maps": [
+    [
+     "US-0697",
+     "https://www.nps.gov/blue/index.htm"
+    ],
+    [
+     "US-7037",
+     "https://wvdnr.gov/lands-waters/wildlife-management-areas/"
+    ]
+   ],
+   "names": {
+    "US-0697": "Bluestone National Wild and Scenic River",
+    "US-7037": "Bluestone Lake Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0697": false,
+    "US-0697": true,
     "US-7037": true
    },
    "refs": [
@@ -10707,7 +10763,7 @@
      37.601366
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "box": [
@@ -10724,13 +10780,27 @@
    "id": "US-0697+US-7037@river@37.614,-80.927",
    "kind": "river",
    "len_m": 990,
+   "maps": [
+    [
+     "US-0697",
+     "https://www.nps.gov/blue/index.htm"
+    ],
+    [
+     "US-7037",
+     "https://wvdnr.gov/lands-waters/wildlife-management-areas/"
+    ]
+   ],
+   "names": {
+    "US-0697": "Bluestone National Wild and Scenic River",
+    "US-7037": "Bluestone Lake Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0697": false,
+    "US-0697": true,
     "US-7037": true
    },
    "refs": [
@@ -11023,7 +11093,7 @@
      37.61307
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate"
   },
   {
    "access": [

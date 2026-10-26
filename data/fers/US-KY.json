@@ -649,6 +649,20 @@
    "fresh": "saved copy only for US-0686, US-10107",
    "id": "US-0686+US-10107@area@36.609,-84.594",
    "kind": "area",
+   "maps": [
+    [
+     "US-0686",
+     "https://www.nps.gov/biso/index.htm"
+    ],
+    [
+     "US-10107",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Big-South-Fork-Wild-River.aspx"
+    ]
+   ],
+   "names": {
+    "US-0686": "Big South Fork National Recreation Area",
+    "US-10107": "Big South Fork National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -656,7 +670,7 @@
    ],
    "pins_inside": {
     "US-0686": true,
-    "US-10107": false
+    "US-10107": true
    },
    "refs": [
     "US-0686",
@@ -936,7 +950,7 @@
      36.670654
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 775
   },
   {
@@ -5604,13 +5618,32 @@
    "fresh": "saved copy only for US-10104, US-3801, US-4484",
    "id": "US-10104+US-3801+US-4484@area@37.821,-83.563",
    "kind": "area",
+   "maps": [
+    [
+     "US-10104",
+     "https://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39548"
+    ],
+    [
+     "US-3801",
+     "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460"
+    ],
+    [
+     "US-4484",
+     "https://www.fs.usda.gov/dbnf/"
+    ]
+   ],
+   "names": {
+    "US-10104": "Red River National Wild and Scenic River",
+    "US-3801": "Clifty Wilderness Area",
+    "US-4484": "Daniel Boone National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10104": false,
+    "US-10104": true,
     "US-3801": true,
     "US-4484": true
    },
@@ -5897,7 +5930,7 @@
      37.830011
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 449
   },
   {
@@ -5916,13 +5949,27 @@
    "fresh": "saved copy only for US-10104, US-3801",
    "id": "US-10104+US-3801@area@37.821,-83.571",
    "kind": "area",
+   "maps": [
+    [
+     "US-10104",
+     "https://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39548"
+    ],
+    [
+     "US-3801",
+     "https://www.fs.usda.gov/recarea/dbnf/recarea/?recid=39460"
+    ]
+   ],
+   "names": {
+    "US-10104": "Red River National Wild and Scenic River",
+    "US-3801": "Clifty Wilderness Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10104": false,
+    "US-10104": true,
     "US-3801": true
    },
    "refs": [
@@ -6215,7 +6262,7 @@
      37.829435
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 448
   },
   {
@@ -6234,13 +6281,27 @@
    "fresh": "saved copy only for US-10104, US-4484",
    "id": "US-10104+US-4484@area@37.821,-83.571",
    "kind": "area",
+   "maps": [
+    [
+     "US-10104",
+     "https://www.fs.usda.gov/recarea/dbnf/recreation/recarea/?recid=39548"
+    ],
+    [
+     "US-4484",
+     "https://www.fs.usda.gov/dbnf/"
+    ]
+   ],
+   "names": {
+    "US-10104": "Red River National Wild and Scenic River",
+    "US-4484": "Daniel Boone National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10104": false,
+    "US-10104": true,
     "US-4484": true
    },
    "refs": [
@@ -6497,7 +6558,7 @@
      37.829138
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 449
   },
   {
@@ -6516,13 +6577,32 @@
    "fresh": "saved copy only for US-10106, US-10121, US-4484",
    "id": "US-10106+US-10121+US-4484@area@37.041,-84.301",
    "kind": "area",
+   "maps": [
+    [
+     "US-10106",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rockcastle-River-Wild-River.aspx"
+    ],
+    [
+     "US-10121",
+     "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
+    ],
+    [
+     "US-4484",
+     "https://www.fs.usda.gov/dbnf/"
+    ]
+   ],
+   "names": {
+    "US-10106": "The Rockcastle National Wild and Scenic River",
+    "US-10121": "Cane Creek Wildlife Management Area",
+    "US-4484": "Daniel Boone National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10106": false,
+    "US-10106": true,
     "US-10121": true,
     "US-4484": true
    },
@@ -6689,7 +6769,7 @@
      37.042873
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 294
   },
   {
@@ -6708,13 +6788,27 @@
    "fresh": "saved copy only for US-10106, US-10121",
    "id": "US-10106+US-10121@area@37.041,-84.302",
    "kind": "area",
+   "maps": [
+    [
+     "US-10106",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rockcastle-River-Wild-River.aspx"
+    ],
+    [
+     "US-10121",
+     "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=38"
+    ]
+   ],
+   "names": {
+    "US-10106": "The Rockcastle National Wild and Scenic River",
+    "US-10121": "Cane Creek Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10106": false,
+    "US-10106": true,
     "US-10121": true
    },
    "refs": [
@@ -6879,7 +6973,7 @@
      37.041077
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 294
   },
   {
@@ -6898,13 +6992,27 @@
    "fresh": "saved copy only for US-10106, US-10160",
    "id": "US-10106+US-10160@area@37.121,-84.298",
    "kind": "area",
+   "maps": [
+    [
+     "US-10106",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rockcastle-River-Wild-River.aspx"
+    ],
+    [
+     "US-10160",
+     "https://app.fw.ky.gov/Public_Lands_Search/detail.aspx?Kdfwr_id=9217"
+    ]
+   ],
+   "names": {
+    "US-10106": "The Rockcastle National Wild and Scenic River",
+    "US-10160": "Rockcastle River Wildlife Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10106": false,
+    "US-10106": true,
     "US-10160": true
    },
    "refs": [
@@ -6977,7 +7085,7 @@
      37.12217
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 240
   },
   {
@@ -6996,13 +7104,27 @@
    "fresh": "saved copy only for US-10106, US-4484",
    "id": "US-10106+US-4484@area@37.088,-84.299",
    "kind": "area",
+   "maps": [
+    [
+     "US-10106",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rockcastle-River-Wild-River.aspx"
+    ],
+    [
+     "US-4484",
+     "https://www.fs.usda.gov/dbnf/"
+    ]
+   ],
+   "names": {
+    "US-10106": "The Rockcastle National Wild and Scenic River",
+    "US-4484": "Daniel Boone National Forest"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10106": false,
+    "US-10106": true,
     "US-4484": true
    },
    "refs": [
@@ -7295,7 +7417,7 @@
      37.161541
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 679
   },
   {
@@ -7456,13 +7578,27 @@
    "id": "US-10107+US-11181@trail@36.624,-84.575",
    "kind": "trail",
    "len_m": 3983,
+   "maps": [
+    [
+     "US-10107",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Big-South-Fork-Wild-River.aspx"
+    ],
+    [
+     "US-11181",
+     "https://www.fs.usda.gov/wildflowers/regions/southern/SheltoweeTrace/index.shtml"
+    ]
+   ],
+   "names": {
+    "US-10107": "Big South Fork National Wild and Scenic River",
+    "US-11181": "Sheltowee Trace National Recreation Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10107": false,
+    "US-10107": true,
     "US-11181": true
    },
    "refs": [
@@ -7775,7 +7911,7 @@
      36.624176
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate (saved outline only)"
   },
   {
    "box": [
@@ -7793,13 +7929,27 @@
    "id": "US-10107+US-11181@trail@36.658,-84.536",
    "kind": "trail",
    "len_m": 1693,
+   "maps": [
+    [
+     "US-10107",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Big-South-Fork-Wild-River.aspx"
+    ],
+    [
+     "US-11181",
+     "https://www.fs.usda.gov/wildflowers/regions/southern/SheltoweeTrace/index.shtml"
+    ]
+   ],
+   "names": {
+    "US-10107": "Big South Fork National Wild and Scenic River",
+    "US-11181": "Sheltowee Trace National Recreation Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10107": false,
+    "US-10107": true,
     "US-11181": true
    },
    "refs": [
@@ -8108,7 +8258,7 @@
      36.655985
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate (saved outline only)"
   },
   {
    "box": [
@@ -8126,13 +8276,27 @@
    "id": "US-10107+US-11181@trail@36.664,-84.545",
    "kind": "trail",
    "len_m": 130,
+   "maps": [
+    [
+     "US-10107",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Big-South-Fork-Wild-River.aspx"
+    ],
+    [
+     "US-11181",
+     "https://www.fs.usda.gov/wildflowers/regions/southern/SheltoweeTrace/index.shtml"
+    ]
+   ],
+   "names": {
+    "US-10107": "Big South Fork National Wild and Scenic River",
+    "US-11181": "Sheltowee Trace National Recreation Trail"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10107": false,
+    "US-10107": true,
     "US-11181": true
    },
    "refs": [
@@ -8349,7 +8513,7 @@
      36.665099
     ]
    ],
-   "status": "dropped: a pin is outside its own outline"
+   "status": "candidate (saved outline only)"
   },
   {
    "access": null,
@@ -9363,13 +9527,27 @@
    "fresh": "saved copy only for US-10112, US-7966",
    "id": "US-10112+US-7966@area@37.089,-82.767",
    "kind": "area",
+   "maps": [
+    [
+     "US-10112",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch-Wild-River.aspx"
+    ],
+    [
+     "US-7966",
+     "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Bad-Branch.aspx"
+    ]
+   ],
+   "names": {
+    "US-10112": "Bad Branch National Wild and Scenic River",
+    "US-7966": "Bad Branch State Nature Preserve"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10112": false,
+    "US-10112": true,
     "US-7966": true
    },
    "refs": [
@@ -9686,7 +9864,7 @@
      37.103716
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate (saved outline only)",
    "wide_m": 1660
   },
   {
@@ -33670,7 +33848,7 @@
      36.826701
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 108
   },
   {
@@ -33749,7 +33927,7 @@
      36.831223
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 116
   },
   {
@@ -33836,7 +34014,7 @@
      36.843794
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 110
   },
   {
@@ -33931,7 +34109,7 @@
      36.847276
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 260
   },
   {
@@ -34010,7 +34188,7 @@
      36.846507
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 114
   },
   {
@@ -34117,7 +34295,7 @@
      36.849175
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 150
   },
   {
@@ -34280,7 +34458,7 @@
      37.778927
     ]
    ],
-   "status": "candidate (saved outline only)",
+   "status": "check: two owners (a state park and Forest Service land cannot own the same ground: a lease or a map error)",
    "wide_m": 124
   },
   {

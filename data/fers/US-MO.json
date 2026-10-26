@@ -110,6 +110,20 @@
    "found": "2026-10-26",
    "id": "US-0788+US-4009@area@37.123,-91.066",
    "kind": "area",
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-4009": "Ozark National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -117,7 +131,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-4009": false
+    "US-4009": true
    },
    "refs": [
     "US-0788",
@@ -201,7 +215,7 @@
      37.129197
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 440
   },
   {
@@ -219,6 +233,20 @@
    "found": "2026-10-26",
    "id": "US-0788+US-4009@area@37.124,-91.174",
    "kind": "area",
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-4009": "Ozark National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -226,7 +254,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-4009": false
+    "US-4009": true
    },
    "refs": [
     "US-0788",
@@ -282,7 +310,7 @@
      37.125806
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 230
   },
   {
@@ -300,6 +328,20 @@
    "found": "2026-10-26",
    "id": "US-0788+US-4009@area@37.125,-91.207",
    "kind": "area",
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-4009": "Ozark National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -307,7 +349,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-4009": false
+    "US-4009": true
    },
    "refs": [
     "US-0788",
@@ -363,7 +405,7 @@
      37.125806
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 230
   },
   {
@@ -381,6 +423,20 @@
    "found": "2026-10-26",
    "id": "US-0788+US-4009@area@37.130,-91.194",
    "kind": "area",
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-4009": "Ozark National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -388,7 +444,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-4009": false
+    "US-4009": true
    },
    "refs": [
     "US-0788",
@@ -444,7 +500,7 @@
      37.125806
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 230
   },
   {
@@ -462,6 +518,20 @@
    "found": "2026-10-26",
    "id": "US-0788+US-4009@area@37.169,-91.236",
    "kind": "area",
+   "maps": [
+    [
+     "US-0788",
+     "https://mdc.mo.gov/discover-nature/places/rocky-creek-conservation-area"
+    ],
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ]
+   ],
+   "names": {
+    "US-0788": "Rocky Creek State Conservation Area",
+    "US-4009": "Ozark National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -469,7 +539,7 @@
    ],
    "pins_inside": {
     "US-0788": true,
-    "US-4009": false
+    "US-4009": true
    },
    "refs": [
     "US-0788",
@@ -565,7 +635,7 @@
      37.178124
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 480
   },
   {
@@ -2889,6 +2959,20 @@
    "found": "2026-10-26",
    "id": "US-1774+US-4009@area@37.452,-91.669",
    "kind": "area",
+   "maps": [
+    [
+     "US-1774",
+     "https://mostateparks.com/park/montauk-state-park"
+    ],
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ]
+   ],
+   "names": {
+    "US-1774": "Montauk State Park",
+    "US-4009": "Ozark National Wild and Scenic River"
+   },
    "passes": [
     1,
     1,
@@ -2896,7 +2980,7 @@
    ],
    "pins_inside": {
     "US-1774": true,
-    "US-4009": false
+    "US-4009": true
    },
    "refs": [
     "US-1774",
@@ -2984,7 +3068,7 @@
      37.450921
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 130
   },
   {
@@ -5059,13 +5143,27 @@
    "found": "2026-10-26",
    "id": "US-4009+US-5696@area@37.214,-91.332",
    "kind": "area",
+   "maps": [
+    [
+     "US-4009",
+     "https://www.nps.gov/ozar/index.htm"
+    ],
+    [
+     "US-5696",
+     "https://mdc.mo.gov/discover-nature/places/angeline-conservation-area"
+    ]
+   ],
+   "names": {
+    "US-4009": "Ozark National Wild and Scenic River",
+    "US-5696": "Angeline State Conservation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-4009": false,
+    "US-4009": true,
     "US-5696": true
    },
    "refs": [
@@ -5142,7 +5240,7 @@
      37.216068
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 430
   },
   {

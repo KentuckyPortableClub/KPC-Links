@@ -3515,13 +3515,27 @@
    "found": "2026-10-26",
    "id": "US-10019+US-10744@area@42.080,-122.080",
    "kind": "area",
+   "maps": [
+    [
+     "US-10019",
+     "https://www.blm.gov/sites/default/files/documents/files/wsr-orwa-klamath-map.pdf"
+    ],
+    [
+     "US-10744",
+     "https://www.blm.gov/programs/wild-horse-and-burro/herd-management/herd-management-areas/oregon-washington/pokegama"
+    ]
+   ],
+   "names": {
+    "US-10019": "Klamath BLM Wild and Scenic River",
+    "US-10744": "Pokegama BLM Herd Management Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10019": false,
+    "US-10019": true,
     "US-10744": true
    },
    "refs": [
@@ -3806,7 +3820,7 @@
      42.093402
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 464
   },
   {
@@ -3897,13 +3911,27 @@
    "found": "2026-10-26",
    "id": "US-10020+US-10761@area@42.717,-123.882",
    "kind": "area",
+   "maps": [
+    [
+     "US-10020",
+     "https://www.blm.gov/programs/national-conservation-lands/oregon-washington/rogue-wsr/camping/hellgate"
+    ],
+    [
+     "US-10761",
+     "https://www.blm.gov/visit/rogue-river-ranch-national-historic-site"
+    ]
+   ],
+   "names": {
+    "US-10020": "Rogue River BLM Wild and Scenic River",
+    "US-10761": "Rogue River Ranch BLM Historic Preservation Site"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-10020": false,
+    "US-10020": true,
     "US-10761": true
    },
    "refs": [
@@ -4000,7 +4028,7 @@
      42.717436
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 278
   },
   {

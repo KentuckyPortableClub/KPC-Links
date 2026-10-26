@@ -121,13 +121,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-10341@area@42.770,-97.007",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-10341",
+     "https://gfp.sd.gov/lakeside-use-areas/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-10341": "Clay County State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-10341": true
    },
    "refs": [
@@ -172,7 +186,7 @@
      42.772792
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 610
   },
   {
@@ -190,13 +204,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-10372@area@43.055,-98.541",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-10372",
+     "https://gfp.sd.gov/lakeside-use-areas/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-10372": "Spillway (Ft. Randall) State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-10372": true
    },
    "refs": [
@@ -405,7 +433,7 @@
      43.065719
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 284
   },
   {
@@ -423,13 +451,32 @@
    "found": "2026-10-26",
    "id": "US-0675+US-2620+US-9360@area@42.743,-98.057",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-2620",
+     "http://outdoornebraska.gov/niobrara/"
+    ],
+    [
+     "US-9360",
+     "http://outdoornebraska.gov/lewisandclark/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-2620": "Niobrara State Park",
+    "US-9360": "Lewis and Clark Lake State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-2620": true,
     "US-9360": true
    },
@@ -672,7 +719,7 @@
      42.768242
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 751
   },
   {
@@ -690,13 +737,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-2620@area@42.752,-98.052",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-2620",
+     "http://outdoornebraska.gov/niobrara/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-2620": "Niobrara State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-2620": true
    },
    "refs": [
@@ -985,7 +1046,7 @@
      42.775579
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 927
   },
   {
@@ -1003,13 +1064,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-2622@area@42.595,-96.715",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-2622",
+     "http://outdoornebraska.gov/ponca/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-2622": "Ponca State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-2622": true
    },
    "refs": [
@@ -1274,7 +1349,7 @@
      42.625486
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 1297
   },
   {
@@ -1292,13 +1367,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-2622@area@42.659,-96.746",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-2622",
+     "http://outdoornebraska.gov/ponca/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-2622": "Ponca State Park"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-2622": true
    },
    "refs": [
@@ -1415,7 +1504,7 @@
      42.6594
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 196
   },
   {
@@ -1433,13 +1522,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-8174@area@42.772,-98.024",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-8174",
+     "https://gfp.sd.gov/parks/detail/lewis-and-clark-recreation-area/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-8174": "Lewis and Clark State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-8174": true
    },
    "refs": [
@@ -1696,7 +1799,7 @@
      42.850213
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 2047
   },
   {
@@ -1714,13 +1817,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-8174@area@42.869,-97.409",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-8174",
+     "https://gfp.sd.gov/parks/detail/lewis-and-clark-recreation-area/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-8174": "Lewis and Clark State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-8174": true
    },
    "refs": [
@@ -1981,7 +2098,7 @@
      42.864231
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 292
   },
   {
@@ -1999,13 +2116,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-8187@area@43.051,-98.553",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-8187",
+     "https://gfp.sd.gov/parks/detail/randall-creek-recreation-area/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-8187": "Randall Creek State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-8187": true
    },
    "refs": [
@@ -2242,7 +2373,7 @@
      43.056226
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 387
   },
   {
@@ -2260,13 +2391,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-9360@area@42.807,-98.118",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-9360",
+     "http://outdoornebraska.gov/lewisandclark/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-9360": "Lewis and Clark Lake State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-9360": true
    },
    "refs": [
@@ -2567,7 +2712,7 @@
      42.772683
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 1582
   },
   {
@@ -2585,13 +2730,27 @@
    "found": "2026-10-26",
    "id": "US-0675+US-9360@area@42.864,-97.407",
    "kind": "area",
+   "maps": [
+    [
+     "US-0675",
+     "https://www.nps.gov/mnrr/index.htm"
+    ],
+    [
+     "US-9360",
+     "http://outdoornebraska.gov/lewisandclark/"
+    ]
+   ],
+   "names": {
+    "US-0675": "Missouri National Recreational River National Wild & Scenic River",
+    "US-9360": "Lewis and Clark Lake State Recreation Area"
+   },
    "passes": [
     1,
     1,
     1
    ],
    "pins_inside": {
-    "US-0675": false,
+    "US-0675": true,
     "US-9360": true
    },
    "refs": [
@@ -2788,7 +2947,7 @@
      42.862863
     ]
    ],
-   "status": "dropped: a pin is outside its own outline",
+   "status": "candidate",
    "wide_m": 880
   },
   {
