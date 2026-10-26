@@ -6,6 +6,10 @@ on:
   schedule:
     - cron: '17 9 3 * *'
   workflow_dispatch:
+    inputs:
+      minutes:
+        description: 'Minutes to search (default 100; up to 330 for a long catch-up run)'
+        default: '100'
 permissions:
   contents: write
 concurrency:
@@ -14,14 +18,14 @@ concurrency:
 jobs:
   explore:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 345
     steps:
       - uses: actions/checkout@v5
       - name: Look for parking layers
         continue-on-error: true
-        timeout-minutes: 110
+        timeout-minutes: 335
         env:
-          MINUTES: '100'
+          MINUTES: ${{ inputs.minutes || '100' }}
         run: python3 .github/scripts/kpc_parking_explorer.py || true
       - name: Save
         if: always()

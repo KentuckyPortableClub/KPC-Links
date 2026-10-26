@@ -58,12 +58,34 @@ def services(base, folder):
     return [(n, t) for n, t in out if t == 'FeatureServer' or n not in names]
 
 
+PROV = [('AB', 'AB-|Alberta'), ('BC', 'BC '), ('MB', 'Manitoba'), ('NB', 'NB-|New Brunswic'), ('NS', 'NS-|Nova Scotia'), ('NU', 'NU-'),
+        ('ON', 'ON-|Ontario'), ('PE', 'PE-'), ('QC', 'Québec'), ('SK', 'SK-|Saskatchewan'), ('YT', 'Yukon'), ('PC', 'Parks Canada')]
+
+
+def canada_targets():
+    """Oct 25 (Brandon: 'hit the easy Canada parks'): the provincial / Parks Canada map servers the Canada key already reads."""
+    try: L = json.load(open('data/ca-key/layers.json'))
+    except Exception: return {}  # noqa: E722
+    out = {}
+    for label, urls in L.items():
+        code = next((c for c, rx in PROV if re.match(rx, label)), None)
+        if not code: continue                       # 'cpcad' = the national database, no facilities
+        for u in urls: out.setdefault('CA-' + code, []).append({'url': u})
+    return out
+
+
 def main():
-    sg = json.load(open('data/state-gis.json'))['states']
+    sg = dict(json.load(open('data/state-gis.json'))['states'])
+    for k in [k for k in sg if k in ('AB', 'BC', 'MB', 'NB', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT')]:
+        sg.setdefault('CA-' + k, []).extend(sg.pop(k))   # provinces in state-gis.json share the letters of states (CA = California)
+    for k, v in canada_targets().items(): sg.setdefault(k, []).extend(v)
     known = {L['url'].rstrip('/').lower() for L in json.load(open('data/access-layers.json')).get('layers', [])}
-    try: old = json.load(open('data/access-leads.json')).get('states', {})
-    except Exception: old = {}  # noqa: E722
-    sts = [s for s in FIRST if s in sg] + sorted(s for s in sg if len(s) == 2 and s not in FIRST)
+    try: prev = json.load(open('data/access-leads.json'))
+    except Exception: prev = {}  # noqa: E722
+    old, checked = prev.get('states', {}), prev.get('checked', {})
+    rest = sorted((s for s in sg if s not in FIRST), key=lambda s: (checked.get(s, ''), s))   # never checked / oldest first
+    sts = [s for s in FIRST if s in sg and not checked.get(s)] + rest + [s for s in FIRST if s in sg and checked.get(s)]
+    today = time.strftime('%Y-%m-%d')
     leads, seen_svc, log = {}, set(), []
     for st in sts:
         if time.time() - T0 > LIMIT:
@@ -107,8 +129,10 @@ def main():
                                 'known': lu.rstrip('/').lower() in known, 'agency': (info.get('copyrightText') or '')[:80]})
                 time.sleep(.2)
         if got: leads[st] = sorted(got, key=lambda x: (x['known'], -x['count']))
+        checked[st] = today
         log.append(f"{st}: {len(got)} point layers ({sum(1 for x in got if not x['known'])} new)")
-    save_json('data/access-leads.json', {'about': 'Leads for parking / trailhead / access / ramp / entrance point layers on the state servers in '
+    for s_, v_ in old.items(): leads.setdefault(s_, v_)   # states not reached this run keep last results
+    save_json('data/access-leads.json', {'checked': checked, 'about': 'Leads for parking / trailhead / access / ramp / entrance point layers on the state servers in '
                                          'state-gis.json (kpc_parking_explorer.py, monthly). A person (chat 2) reviews them and adds the good ones '
                                          'to data/access-layers.json; known = already there.', 'states': leads}, indent=1)
     L = ['# Parking layer leads', '', 'From kpc_parking_explorer.py (monthly). New = not yet in data/access-layers.json. Review, then add the good ones.', '']
