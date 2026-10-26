@@ -1,0 +1,2820 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "TPWD",
+   "area": "",
+   "count": 416814,
+   "fields": [
+    "CommonName",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "TexasUrban",
+   "sample": [
+    {
+     "CommonName": "Urban High Intensity",
+     "GlobalID": "{3BD62B38-F1E8-4866-838F-D7FE925E868F}"
+    },
+    {
+     "CommonName": "Urban High Intensity",
+     "GlobalID": "{53C9BBDE-9D32-4518-B2B9-2DEE05ACDEAD}"
+    },
+    {
+     "CommonName": "Urban High Intensity",
+     "GlobalID": "{F88CE6FC-C8AC-49BB-8CD8-02B7E445FBC5}"
+    }
+   ],
+   "service": "Wildlife/Urban",
+   "typef": "",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/Urban/MapServer/0"
+  },
+  {
+   "agency": "Texas Parks and Wildlife Department Wildlife Division Landscape Ecology Program",
+   "area": "",
+   "count": 180250,
+   "fields": [
+    "Descriptive_Landcover",
+    "Habitat_Name",
+    "HUC12",
+    "Restoration_Intensity",
+    "Fragmentation_Level",
+    "COA_Category",
+    "Observed_Species",
+    "Range_Expected_Species",
+    "Model_Version",
+    "SWAP_System"
+   ],
+   "known": false,
+   "layer": "COA_v2026",
+   "sample": [
+    {
+     "COA_Category": "High Restoration Potential",
+     "Descriptive_Landcover": "Barren",
+     "Fragmentation_Level": "Negligible",
+     "HUC12": "110901010104",
+     "Habitat_Name": "Barren",
+     "Model_Version": "v2026",
+     "Observed_Species": "None",
+     "Range_Expected_Species": "BlackTailedPrairieDog, TexasHornedLizard",
+     "Restoration_Intensity": "Maximum Effort",
+     "SWAP_System": "Barren/Sparse Vegetation"
+    },
+    {
+     "COA_Category": "Moderate Restoration Potential",
+     "Descriptive_Landcover": "Barren",
+     "Fragmentation_Level": "Negligible",
+     "HUC12": "110901010106",
+     "Habitat_Name": "Barren",
+     "Model_Version": "v2026",
+     "Observed_Species": "None",
+     "Range_Expected_Species": "BlackTailedPrairieDog, TexasHornedLizard",
+     "Restoration_Intensity": "Maximum Effort",
+     "SWAP_System": "Barren/Sparse Vegetation"
+    },
+    {
+     "COA_Category": "Moderate Restoration Potential",
+     "Descriptive_Landcover": "Barren",
+     "Fragmentation_Level": "Negligible",
+     "HUC12": "110901010107",
+     "Habitat_Name": "Barren",
+     "Model_Version": "v2026",
+     "Observed_Species": "None",
+     "Range_Expected_Species": "BlackTailedPrairieDog, TexasHornedLizard",
+     "Restoration_Intensity": "Maximum Effort",
+     "SWAP_System": "Barren/Sparse Vegetation"
+    }
+   ],
+   "service": "Wildlife/Conservation_Opportunity_Areas",
+   "typef": "Descriptive_Landcover",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/Conservation_Opportunity_Areas/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "P_Loc_Nm",
+   "count": 11828,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Name",
+    "P_Des_Tp",
+    "P_Loc_Ds",
+    "P_Des_Nm",
+    "P_Loc_Nm",
+    "Status",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_UID",
+    "Source_PAI",
+    "S_Des_Tp",
+    "S_Lc_Ds",
+    "S_Loc_Nm",
+    "Access"
+   ],
+   "known": false,
+   "layer": "Public_ConservationLands",
+   "sample": [
+    {
+     "Agg_Src": "Wilderness.net_Wilderness_Area7.11.12.shp",
+     "Category": "Fee",
+     "Loc_Own": "FS",
+     "Mang_Name": " ",
+     "Own_Name": "0130",
+     "Own_Type": "01",
+     "P_Des_Nm": "Big Slough Wilderness",
+     "P_Des_Tp": "117",
+     "P_Loc_Ds": "Wilderness",
+     "P_Loc_Nm": "Big Slough Wilderness",
+     "State_Nm": "48",
+     "Status": "Designated"
+    },
+    {
+     "Agg_Src": "NOAA_mpa_inventory_2011_public_93.gdb",
+     "Category": "Other",
+     "Loc_Own": "National Marine Fisheries Service",
+     "Mang_Name": "National Marine Fisheries Service",
+     "Own_Name": "0165",
+     "Own_Type": "01",
+     "P_Des_Nm": "Stetson Bank Habitat Area of Particular Concern",
+     "P_Des_Tp": "116",
+     "P_Loc_Ds": "Stetson Bank Habitat Area of Particular Concern",
+     "P_Loc_Nm": "Stetson Bank Habitat Area of Particular Concern",
+     "State_Nm": "Unknown",
+     "Status": "Proposed"
+    },
+    {
+     "Agg_Src": "Wilderness.net_Wilderness_Area7.11.12.shp",
+     "Category": "Fee",
+     "Loc_Own": "FS",
+     "Mang_Name": " ",
+     "Own_Name": "0130",
+     "Own_Type": "01",
+     "P_Des_Nm": "Little Lake Creek Wilderness",
+     "P_Des_Tp": "117",
+     "P_Loc_Ds": "Wilderness",
+     "P_Loc_Nm": "Little Lake Creek Wilderness",
+     "State_Nm": "48",
+     "Status": "Designated"
+    }
+   ],
+   "service": "Public_ConservationLands",
+   "typef": "Category",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Public_ConservationLands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2832,
+   "fields": [
+    "NAME",
+    "CLASS",
+    "SOURCE",
+    "AUTHORITY",
+    "SOURCE_LEV",
+    "DATE_CREAT",
+    "DATE_MOD",
+    "DATE_PUB",
+    "ShortName",
+    "WebSource",
+    "LoName",
+    "BndryType",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "Availabili",
+    "UseType"
+   ],
+   "known": false,
+   "layer": "Other_Parks_Forests_etc",
+   "sample": [
+    {
+     "AUTHORITY": "Unknown",
+     "BndryType": " ",
+     "CLASS": "Unknown Park",
+     "DATE_CREAT": "12/7/2011",
+     "DATE_MOD": "2/15/2012",
+     "DATE_PUB": "4/11/2012",
+     "LoName": " ",
+     "NAME": "Cottonwood Park",
+     "SOURCE": "Texas Department of Transportation",
+     "SOURCE_LEV": "State Government",
+     "ShortName": " ",
+     "WebSource": "http://tnris.org/"
+    },
+    {
+     "AUTHORITY": "Unknown",
+     "BndryType": " ",
+     "CLASS": "Unknown Park",
+     "DATE_CREAT": "12/7/2011",
+     "DATE_MOD": "2/15/2012",
+     "DATE_PUB": "4/11/2012",
+     "LoName": " ",
+     "NAME": "Bratonia Park",
+     "SOURCE": "Texas Department of Transportation",
+     "SOURCE_LEV": "State Government",
+     "ShortName": " ",
+     "WebSource": "http://tnris.org/"
+    },
+    {
+     "AUTHORITY": "Unknown",
+     "BndryType": " ",
+     "CLASS": "Unknown Park",
+     "DATE_CREAT": "12/7/2011",
+     "DATE_MOD": "2/15/2012",
+     "DATE_PUB": "4/11/2012",
+     "LoName": " ",
+     "NAME": "Highland Park",
+     "SOURCE": "Texas Department of Transportation",
+     "SOURCE_LEV": "State Government",
+     "ShortName": " ",
+     "WebSource": "http://tnris.org/"
+    }
+   ],
+   "service": "Other_Parks_Forests_etc",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Other_Parks_Forests_etc/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2291,
+   "fields": [
+    "Name",
+    "HUC12"
+   ],
+   "known": false,
+   "layer": "AST_EMS_Forest_Cover",
+   "sample": [
+    {
+     "HUC12": "120302020402",
+     "Name": "East Caney Creek-Caney Creek"
+    },
+    {
+     "HUC12": "120302020402",
+     "Name": "East Caney Creek-Caney Creek"
+    },
+    {
+     "HUC12": "120302020101",
+     "Name": "Little Keechi Creek-Lower Keechi Creek"
+    }
+   ],
+   "service": "AST_EMS_Forest_Cover",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/AST_EMS_Forest_Cover/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NFCA_Unit",
+   "count": 2201,
+   "fields": [
+    "NFCA_Unit",
+    "HUC12",
+    "Name_HUC12",
+    "SppList",
+    "Version"
+   ],
+   "known": false,
+   "layer": "Native_Fish_Conservation_Areas_(v2026)",
+   "sample": [
+    {
+     "HUC12": "120302030104",
+     "NFCA_Unit": "Trinity - Neches - Lower Sabine",
+     "Name_HUC12": "Beef Head Creek-Trinity River",
+     "SppList": "American eel, Western creek chubsucker, Mississippi silvery minnow, Pallid shiner, Spotted sucker, Blackspot shiner, Silverband shiner, Blackside darter, River darter, Ironcolor shiner, Sabine shiner, Alligator gar, Smalleye shiner, Suckermouth minnow, A",
+     "Version": "v2026"
+    },
+    {
+     "HUC12": "120100050803",
+     "NFCA_Unit": "Trinity - Neches - Lower Sabine",
+     "Name_HUC12": "Red Bank Creek-Cypress Creek",
+     "SppList": "Spotted sucker, Blackspot shiner, Western creek chubsucker, Mississippi silvery minnow, Sabine shiner, Pallid shiner, Silverband shiner, American eel, Alligator gar, Gumbo darter, Ironcolor shiner, Blackside darter, Western sand darter",
+     "Version": "v2026"
+    },
+    {
+     "HUC12": "120200030308",
+     "NFCA_Unit": "Trinity - Neches - Lower Sabine",
+     "Name_HUC12": "Big Marsh-Neches River",
+     "SppList": "Mississippi silvery minnow, Pallid shiner, Spotted sucker, Blackspot shiner, Sabine shiner, American eel, Western creek chubsucker, Western sand darter, Alligator gar, Blue sucker, Gumbo darter, Shoal chub, Ironcolor shiner, Taillight shiner, Silverband",
+     "Version": "v2026"
+    }
+   ],
+   "service": "Native_Fish_Conservation_Areas_(v2026)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Native_Fish_Conservation_Areas_(v2026)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1590,
+   "fields": [
+    "NAME",
+    "OWNERSHIP",
+    "SOURCE",
+    "CLASS",
+    "LEVEL_",
+    "CE_HOLDER",
+    "MEMBERDIST",
+    "PUBLICDIST",
+    "TLTCDISPLA",
+    "ASSISTORG",
+    "LEASEHOLDE",
+    "EDITNOTE_P",
+    "ISSUE",
+    "CONDITION",
+    "ECOREGION",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Private_ConservationLands",
+   "sample": [
+    {
+     "ASSISTORG": "Green Spaces Alliance of South Texas",
+     "CE_HOLDER": "City of San Antonio",
+     "CLASS": "Conservation Easement",
+     "EDITNOTE_P": " ",
+     "LEASEHOLDE": " ",
+     "LEVEL_": "Tier II",
+     "MEMBERDIST": "Polygon",
+     "NAME": "Hammond",
+     "OWNERSHIP": "Private",
+     "PUBLICDIST": "Polygon",
+     "SOURCE": "The Nature Conservancy",
+     "TLTCDISPLA": "Polygon"
+    },
+    {
+     "ASSISTORG": "Green Spaces Alliance of South Texas",
+     "CE_HOLDER": "City of San Antonio",
+     "CLASS": "Conservation Easement",
+     "EDITNOTE_P": " ",
+     "LEASEHOLDE": " ",
+     "LEVEL_": "Tier II",
+     "MEMBERDIST": "Polygon",
+     "NAME": "Livergood",
+     "OWNERSHIP": "Private",
+     "PUBLICDIST": "Polygon",
+     "SOURCE": "The Nature Conservancy",
+     "TLTCDISPLA": "Polygon"
+    },
+    {
+     "ASSISTORG": "The Nature Conservancy",
+     "CE_HOLDER": " ",
+     "CLASS": "County Preserve",
+     "EDITNOTE_P": "CE or Public?",
+     "LEASEHOLDE": " ",
+     "LEVEL_": "Tier I",
+     "MEMBERDIST": " ",
+     "NAME": "Dreiss",
+     "OWNERSHIP": "Private",
+     "PUBLICDIST": " ",
+     "SOURCE": " ",
+     "TLTCDISPLA": " "
+    }
+   ],
+   "service": "Private_ConservationLands",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Private_ConservationLands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "P_Loc_Nm",
+   "count": 392,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Name",
+    "P_Des_Tp",
+    "P_Loc_Ds",
+    "P_Des_Nm",
+    "P_Loc_Nm",
+    "Status",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_UID",
+    "Source_PAI",
+    "S_Des_Tp",
+    "S_Lc_Ds",
+    "S_Loc_Nm",
+    "Access"
+   ],
+   "known": false,
+   "layer": "Public Conservation Lands - Coastal",
+   "sample": [
+    {
+     "Agg_Src": "GAP",
+     "Category": "Fee",
+     "Loc_Own": "National Oceanic and Atmospheric Administration",
+     "Mang_Name": " ",
+     "Own_Name": "0165",
+     "Own_Type": "01",
+     "P_Des_Nm": "Mission-aransas National Estuarine Research Reserve",
+     "P_Des_Tp": "116",
+     "P_Loc_Ds": "National Estuarine Research Reserve",
+     "P_Loc_Nm": "Mission-Aransas National Estuarine Research Reserv",
+     "State_Nm": "48",
+     "Status": "Designated"
+    },
+    {
+     "Agg_Src": "NPS_Lands_nps_tracts.shp",
+     "Category": "Fee",
+     "Loc_Own": "National Park Service",
+     "Mang_Name": " ",
+     "Own_Name": "0145",
+     "Own_Type": "01",
+     "P_Des_Nm": "Padre Island National Seashore",
+     "P_Des_Tp": "116",
+     "P_Loc_Ds": "National Seashore",
+     "P_Loc_Nm": "Padre Island National Seashore",
+     "State_Nm": "48",
+     "Status": "Designated"
+    },
+    {
+     "Agg_Src": "NPS_Lands_nps_tracts.shp",
+     "Category": "Fee",
+     "Loc_Own": "National Park Service",
+     "Mang_Name": " ",
+     "Own_Name": "0145",
+     "Own_Type": "01",
+     "P_Des_Nm": "Padre Island National Seashore",
+     "P_Des_Tp": "116",
+     "P_Loc_Ds": "National Seashore",
+     "P_Loc_Nm": "Padre Island National Seashore",
+     "State_Nm": "48",
+     "Status": "Designated"
+    }
+   ],
+   "service": "REKN_Proposed_CriticalHabitat_TX_WFL1",
+   "typef": "Category",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/REKN_Proposed_CriticalHabitat_TX_WFL1/FeatureServer/10"
+  },
+  {
+   "agency": "Texas Department of State Health Services",
+   "area": "NAME",
+   "count": 290,
+   "fields": [
+    "CLASS",
+    "NAME",
+    "SF_MAP",
+    "SYSTEM",
+    "Name_2014",
+    "Label"
+   ],
+   "known": false,
+   "layer": "HarvestAreas2016",
+   "sample": [
+    {
+     "CLASS": "Restricted Area",
+     "Label": " ",
+     "NAME": "Area 4A",
+     "Name_2014": " ",
+     "SF_MAP": "Galveston Bay",
+     "SYSTEM": "Galveston Bay"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "Label": " ",
+     "NAME": "South Padre Island",
+     "Name_2014": " ",
+     "SF_MAP": "Lower Laguna Madre",
+     "SYSTEM": "Lower Laguna Madre"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "Label": " ",
+     "NAME": "Point Comfort",
+     "Name_2014": " ",
+     "SF_MAP": "Lavaca Bay",
+     "SYSTEM": "Lavaca Bay"
+    }
+   ],
+   "service": "ShellfishClassification_Publish",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/ShellfishClassification_Publish/FeatureServer/7"
+  },
+  {
+   "agency": "Texas Department of State Health Services https://www.dshs.texas.gov/contact-us",
+   "area": "NAME",
+   "count": 289,
+   "fields": [
+    "GlobalID",
+    "CLASS",
+    "NAME",
+    "SF_MAP",
+    "SYSTEM",
+    "Name_2014",
+    "Label",
+    "Name_2017",
+    "Legal_Desc"
+   ],
+   "known": false,
+   "layer": "Texas_Shellfish_Harvest_Areas_2024_25",
+   "sample": [
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{d0b24663-47b2-4010-a257-341425919898}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "Area 4A",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Galveston Bay",
+     "SYSTEM": "Galveston Bay"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{c87a19e2-8855-4d42-b94b-cebd1f046466}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "South Padre Island",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Lower Laguna Madre",
+     "SYSTEM": "Lower Laguna Madre"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{7425d282-db27-493c-b664-5efc0f7be95b}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "Point Comfort",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Lavaca Bay",
+     "SYSTEM": "Lavaca Bay"
+    }
+   ],
+   "service": "Texas_DSHS_Shellfish_Harvest_Areas_2024",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_DSHS_Shellfish_Harvest_Areas_2024/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 288,
+   "fields": [
+    "GlobalID",
+    "CLASS",
+    "NAME",
+    "SF_MAP",
+    "SYSTEM",
+    "Name_2014",
+    "Label",
+    "Name_2017",
+    "Legal_Desc"
+   ],
+   "known": false,
+   "layer": "Shellfish_Harvest_Areas_for_COM_viewer",
+   "sample": [
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{d0b24663-47b2-4010-a257-341425919898}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "Area 4A",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Galveston Bay",
+     "SYSTEM": "Galveston Bay"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{c87a19e2-8855-4d42-b94b-cebd1f046466}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "South Padre Island",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Lower Laguna Madre",
+     "SYSTEM": "Lower Laguna Madre"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{7425d282-db27-493c-b664-5efc0f7be95b}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "Point Comfort",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Lavaca Bay",
+     "SYSTEM": "Lavaca Bay"
+    }
+   ],
+   "service": "Shellfish_Harvest_Areas_for_COM_viewer_view",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Shellfish_Harvest_Areas_for_COM_viewer_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 287,
+   "fields": [
+    "CLASS",
+    "NAME",
+    "SF_MAP",
+    "SYSTEM",
+    "Name_2014",
+    "Label",
+    "Name_2017",
+    "Legal_Desc",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Texas_Shellfish_Harvest_Areas_2022",
+   "sample": [
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{d0b24663-47b2-4010-a257-341425919898}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "Area 4A",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Galveston Bay",
+     "SYSTEM": "Galveston Bay"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{c87a19e2-8855-4d42-b94b-cebd1f046466}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "South Padre Island",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Lower Laguna Madre",
+     "SYSTEM": "Lower Laguna Madre"
+    },
+    {
+     "CLASS": "Restricted Area",
+     "GlobalID": "{7425d282-db27-493c-b664-5efc0f7be95b}",
+     "Label": " ",
+     "Legal_Desc": " ",
+     "NAME": "Point Comfort",
+     "Name_2014": " ",
+     "Name_2017": " ",
+     "SF_MAP": "Lavaca Bay",
+     "SYSTEM": "Lavaca Bay"
+    }
+   ],
+   "service": "Texas_DSHS_Shellfish_Harvest_Areas_and_Markers_2022",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_DSHS_Shellfish_Harvest_Areas_and_Markers_2022/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 254,
+   "fields": [
+    "STATE",
+    "COUNTY",
+    "FIPS",
+    "STATE_FIPS"
+   ],
+   "known": false,
+   "layer": "tx_counties",
+   "sample": [
+    {
+     "COUNTY": "Sherman County",
+     "FIPS": "48421",
+     "STATE": "TX",
+     "STATE_FIPS": "48"
+    },
+    {
+     "COUNTY": "Hansford County",
+     "FIPS": "48195",
+     "STATE": "TX",
+     "STATE_FIPS": "48"
+    },
+    {
+     "COUNTY": "Dallam County",
+     "FIPS": "48111",
+     "STATE": "TX",
+     "STATE_FIPS": "48"
+    }
+   ],
+   "service": "District_5_Wildlife_Management_Associations",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District_5_Wildlife_Management_Associations/FeatureServer/4"
+  },
+  {
+   "agency": "TPWD Wildlife Division: Nancy Heger",
+   "area": "Name",
+   "count": 147,
+   "fields": [
+    "Class",
+    "LEASE_NAME",
+    "REG_NAME",
+    "Active",
+    "MAPBOOK_PG",
+    "AERIAL_MAP",
+    "KMLDESCRIP",
+    "Name",
+    "NAMEACRES",
+    "Comment1",
+    "Comment2",
+    "Unit_Num",
+    "ComplexNameAcres",
+    "COMPLEX",
+    "Complex_Name",
+    "Property"
+   ],
+   "known": false,
+   "layer": "Dove and Small Game Lease Polygons",
+   "sample": [
+    {
+     "AERIAL_MAP": "WolfCreek_2224",
+     "Active": "Yes",
+     "Class": "Property Boundary",
+     "Comment1": " ",
+     "Comment2": " ",
+     "KMLDESCRIP": "<strong>Panhandle</strong><br/>Wolf Creek - 480acres<br/><a href=http://tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/2224.pdf>2026-27 Map Booklet for Public Hunting Lands</a><br/>*Zoom In to see property boundary",
+     "LEASE_NAME": "Wolf Creek",
+     "MAPBOOK_PG": "2224.pdf",
+     "NAMEACRES": "Wolf Creek - 480 acres",
+     "Name": "Wolf Creek",
+     "REG_NAME": "Panhandle",
+     "Unit_Num": "2224"
+    },
+    {
+     "AERIAL_MAP": "CircleTree_2362",
+     "Active": "Yes",
+     "Class": "Property Boundary",
+     "Comment1": " ",
+     "Comment2": " ",
+     "KMLDESCRIP": "<strong>Panhandle</strong><br/>Circle Tree - 381acres<br/><a href=http://tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/2362_2383.pdf>2026-27 Map Booklet for Public Hunting Lands</a><br/>*Zoom In to see property boundary",
+     "LEASE_NAME": "Circle Tree",
+     "MAPBOOK_PG": "FloydCountyComplex1.pdf",
+     "NAMEACRES": "Circle Tree - 381 acres",
+     "Name": "Circle Tree",
+     "REG_NAME": "Panhandle",
+     "Unit_Num": "2362"
+    },
+    {
+     "AERIAL_MAP": "Bluestem_2383",
+     "Active": "Yes",
+     "Class": "Property Boundary",
+     "Comment1": " ",
+     "Comment2": " ",
+     "KMLDESCRIP": "<strong>Panhandle</strong><br/>Bluestem - 80acres<br/><a href=http://tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/2362_2383.pdf>2026-27 Map Booklet for Public Hunting Lands</a><br/>*Zoom In to see property boundary",
+     "LEASE_NAME": "Bluestem",
+     "MAPBOOK_PG": "FloydCountyComplex1.pdf",
+     "NAMEACRES": "Bluestem - 80 acres",
+     "Name": "Bluestem",
+     "REG_NAME": "Panhandle",
+     "Unit_Num": "2383"
+    }
+   ],
+   "service": "Wildlife/TPWD_PublicHuntLocatorMap",
+   "typef": "Class",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/5"
+  },
+  {
+   "agency": "TPWD",
+   "area": "Name",
+   "count": 137,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo"
+   ],
+   "known": false,
+   "layer": "WildlifeManagementAssociations_Poly",
+   "sample": [
+    {
+     "FolderPath": "WildlifeManagementAssociations_Poly/WildlifeManagementAssociations_Poly",
+     "Name": "Cayvea Wildlife Management Association",
+     "PopupInfo": "<html><body><table border=\"1\"><tr><th>Field Name</th><th>Field Value</th></tr><tr><td>LongName</td><td>Cayvea Wildlife Management Association</td></tr></table></body></html>"
+    },
+    {
+     "FolderPath": "WildlifeManagementAssociations_Poly/WildlifeManagementAssociations_Poly",
+     "Name": "Atascosa County Wildlife Management Association",
+     "PopupInfo": "<html><body><table border=\"1\"><tr><th>Field Name</th><th>Field Value</th></tr><tr><td>LongName</td><td>Atascosa County Wildlife Management Association</td></tr></table></body></html>"
+    },
+    {
+     "FolderPath": "WildlifeManagementAssociations_Poly/WildlifeManagementAssociations_Poly",
+     "Name": "Austin County West End Wildlife Management Association",
+     "PopupInfo": "<html><body><table border=\"1\"><tr><th>Field Name</th><th>Field Value</th></tr><tr><td>LongName</td><td>Austin County West End Wildlife Management Association</td></tr></table></body></html>"
+    }
+   ],
+   "service": "WildlifeManagementAssociations",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/WildlifeManagementAssociations/FeatureServer/2"
+  },
+  {
+   "agency": "TPWD Wildlife Divsion, Private Lands Program, David O'Donnell, Nancy Heger",
+   "area": "Website",
+   "count": 134,
+   "fields": [
+    "LongName",
+    "ShortName",
+    "Contact",
+    "Phone",
+    "PW_Contact",
+    "PW_Phone",
+    "PW_Address",
+    "PW_eMail",
+    "PW_URL",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "County5",
+    "Website",
+    "e_Mail",
+    "KMLDESC",
+    "Phone_2",
+    "Website1"
+   ],
+   "known": false,
+   "layer": "WildlifeManagementAssociations_Poly",
+   "sample": [
+    {
+     "Contact": "Larry Battarbee",
+     "County1": "Anderson",
+     "County2": " ",
+     "County3": " ",
+     "LongName": "Cayvea Wildlife Management Association",
+     "PW_Address": " ",
+     "PW_Contact": " ",
+     "PW_Phone": " ",
+     "PW_URL": "areas/?area=1",
+     "Phone": "903-499-2218",
+     "ShortName": "Cayvea"
+    },
+    {
+     "Contact": " ",
+     "County1": "Atascosa",
+     "County2": " ",
+     "County3": " ",
+     "LongName": "Atascosa County Wildlife Management Association",
+     "PW_Address": "426 West Oaklawn, Pleasanton, TX  78064",
+     "PW_Contact": "Matt Reidy",
+     "PW_Phone": "830-569-3358",
+     "PW_URL": "areas/?area=2",
+     "PW_eMail": "Matthew.Reidy@tpwd.texas.gov",
+     "Phone": " ",
+     "ShortName": "Atascosa County"
+    },
+    {
+     "Contact": "John Spies",
+     "County1": "Austin",
+     "County2": " ",
+     "County3": " ",
+     "LongName": "Austin County West End Wildlife Management Association",
+     "PW_Address": "2215-B Walnut Street, Columbus, TX  78934",
+     "PW_Contact": "Royce Jurries",
+     "PW_Phone": "979-732-3611",
+     "PW_URL": "areas/?area=3",
+     "PW_eMail": "Royce.Jurries@tpwd.texas.gov",
+     "Phone": "979-836-8726",
+     "ShortName": "Austin County West End"
+    }
+   ],
+   "service": "Wildlife/WildlifeManagementAssociations",
+   "typef": "KMLDESC",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/WildlifeManagementAssociations/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 114,
+   "fields": [
+    "ParkName",
+    "PropType",
+    "County1",
+    "County2",
+    "Creator",
+    "LastEditor",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Parks_Boundaries",
+   "sample": [
+    {
+     "County1": "Hardeman",
+     "County2": " ",
+     "Creator": "TPWD_StateParks",
+     "GlobalID": "be9bca1c-c7eb-41f8-9073-b9b1548bcdd6",
+     "LastEditor": "TPWD_StateParks",
+     "ParkName": "Copper Breaks",
+     "PropType": "SP"
+    },
+    {
+     "County1": "Mitchell",
+     "County2": " ",
+     "Creator": "TPWD_StateParks",
+     "GlobalID": "96a2db6f-59bb-4502-af9e-131d79059a9d",
+     "LastEditor": "TPWD_StateParks",
+     "ParkName": "Lake Colorado City",
+     "PropType": "SP"
+    },
+    {
+     "County1": "Edwards",
+     "County2": " ",
+     "Creator": "TPWD_StateParks",
+     "GlobalID": "b1d7e60a-e76e-44b2-8af0-ddb81809a99e",
+     "LastEditor": "TPWD_StateParks",
+     "ParkName": "Devil's Sinkhole",
+     "PropType": "SNA"
+    }
+   ],
+   "service": "Parks_Boundaries",
+   "typef": "PropType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Parks_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 101,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Orange",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W728",
+     "LoName": "Lower Neches WMA-Adams Bayou",
+     "SrcName": "GLO (Map - TPWD)",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Galveston",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W737",
+     "LoName": "Atkinson Island WMA",
+     "SrcName": "GLO (Deed - GLO)",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Gonzales",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W724",
+     "LoName": "M. O. Neasloney WMA",
+     "SrcName": "Outline from DOQQ assist from manager",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District7_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District7_proposed/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 94,
+   "fields": [
+    "TPTWaterbody"
+   ],
+   "known": false,
+   "layer": "TPT_Waterbodies",
+   "sample": [
+    {
+     "TPTWaterbody": "B. A. Steinhagen Reservoir"
+    },
+    {
+     "TPTWaterbody": "Lady Bird Lake"
+    },
+    {
+     "TPTWaterbody": "Caddo Lake"
+    }
+   ],
+   "service": "Texas_Paddling_Trails_Waterbodies",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_Paddling_Trails_Waterbodies/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "P_Loc_Nm",
+   "count": 92,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Name",
+    "P_Des_Tp",
+    "P_Loc_Ds",
+    "P_Des_Nm",
+    "P_Loc_Nm",
+    "Status",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_UID",
+    "Source_PAI",
+    "S_Des_Tp",
+    "S_Lc_Ds",
+    "S_Loc_Nm",
+    "Access"
+   ],
+   "known": false,
+   "layer": "Public Conservation Lands in Proposed REKN Critical Habitat",
+   "sample": [
+    {
+     "Agg_Src": "TPWD/GAP",
+     "Category": "Fee",
+     "Loc_Own": "Texas General Land Office",
+     "Mang_Name": "Texas Audubon Society",
+     "Own_Name": "0320",
+     "Own_Type": "03",
+     "P_Des_Nm": "Rollover Island",
+     "P_Des_Tp": "110",
+     "P_Loc_Ds": "Sanctuary",
+     "P_Loc_Nm": "Rollover Island",
+     "State_Nm": "48",
+     "Status": "Designated"
+    },
+    {
+     "Agg_Src": "Texas Parks and Wildlife Department 2017",
+     "Category": "Fee",
+     "Loc_Own": "Texas Parks and Wildlife Department",
+     "Mang_Name": " ",
+     "Own_Name": "0310",
+     "Own_Type": "03",
+     "P_Des_Nm": "Galveston Island State Park",
+     "P_Des_Tp": "300",
+     "P_Loc_Ds": "State Park",
+     "P_Loc_Nm": "Galveston Island SP",
+     "State_Nm": "48",
+     "Status": "Designated"
+    },
+    {
+     "Agg_Src": "TexasParksandWildlifeDepartment2013",
+     "Category": "Fee",
+     "Loc_Own": "Lower Colorado River Authority",
+     "Mang_Name": "<Null>",
+     "Own_Name": "0410",
+     "Own_Type": "04",
+     "P_Des_Nm": "Matagorda Bay Nature Park",
+     "P_Des_Tp": "501",
+     "P_Loc_Ds": "Regional Recreation Area",
+     "P_Loc_Nm": "Matagorda Bay Nature Park",
+     "State_Nm": "48",
+     "Status": "Designated"
+    }
+   ],
+   "service": "REKN_Proposed_CriticalHabitat_TX_WFL1",
+   "typef": "Category",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/REKN_Proposed_CriticalHabitat_TX_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 90,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "FishHabitatStructures_POLYGONS_WGS84WM",
+   "sample": [
+    {
+     "Name": "Canyon Lake"
+    },
+    {
+     "Name": "Lake Austin"
+    },
+    {
+     "Name": "Lake Granbury"
+    }
+   ],
+   "service": "Texas_Fish_Habitat_Structures_Search_Polygons",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_Fish_Habitat_Structures_Search_Polygons/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "STAT_LAND_",
+   "count": 57,
+   "fields": [
+    "PROP_ID",
+    "GEO_ID",
+    "OWNER_NAME",
+    "NAME_CARE",
+    "LGL_AREA_U",
+    "GIS_AREA_U",
+    "LEGAL_DESC",
+    "STAT_LAND_",
+    "LOC_LAND_U",
+    "SITUS_ADDR",
+    "SITUS_NUM",
+    "SITUS_STRE",
+    "SITUS_ST_1",
+    "SITUS_ST_2",
+    "SITUS_CITY",
+    "SITUS_STAT",
+    "SITUS_ZIP",
+    "MAIL_ADDR",
+    "MAIL_LINE1",
+    "MAIL_LINE2"
+   ],
+   "known": false,
+   "layer": "Pineywoods Mitigation Bank addition",
+   "sample": [
+    {
+     "GEO_ID": "10269000100",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "A HENRY ABST 269 TR 1",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": " ",
+     "NAME_CARE": " ",
+     "OWNER_NAME": "PINEYWOODS E TX INVEST PTNS LLC",
+     "PROP_ID": "22607",
+     "SITUS_ADDR": "STRYKER RD",
+     "SITUS_NUM": " ",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": "D1"
+    },
+    {
+     "GEO_ID": "10928000100",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "L HOWELL ABST 928 TR 1",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": " ",
+     "NAME_CARE": " ",
+     "OWNER_NAME": "PINEYWOODS E TX INVEST PTNS LLC",
+     "PROP_ID": "28381",
+     "SITUS_ADDR": "STRYKER RD",
+     "SITUS_NUM": " ",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": "D1"
+    },
+    {
+     "GEO_ID": "10147000100",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "BBB & C RR CO ABST 147 TR 1",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": " ",
+     "NAME_CARE": " ",
+     "OWNER_NAME": "PINEYWOODS E TX INVEST PTNS LLC",
+     "PROP_ID": "19339",
+     "SITUS_ADDR": "STRYKER RD LIVINGSTON, TX 77351",
+     "SITUS_NUM": " ",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": "D1"
+    }
+   ],
+   "service": "District6mapofproposedproperties",
+   "typef": "LEGAL_DESC",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District6mapofproposedproperties/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 47,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "WMA"
+   ],
+   "known": false,
+   "layer": "Wildlife_Management_Associations_Boundaries",
+   "sample": [
+    {
+     "FolderPath": "Document",
+     "Name": "6324",
+     "WMA": "Lucy Creek WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6329",
+     "WMA": "Lucy Creek WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6330",
+     "WMA": "Lucy Creek WMA"
+    }
+   ],
+   "service": "Wildlife_Management_Associations_Boundaries",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Wildlife_Management_Associations_Boundaries/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 38,
+   "fields": [
+    "STATE",
+    "AREANAM",
+    "GAPCAT",
+    "PROTHOLD",
+    "PROTMECH",
+    "SENSDATA"
+   ],
+   "known": false,
+   "layer": "The Nature Conservancy Property",
+   "sample": [
+    {
+     "AREANAM": "Texas City Fee",
+     "GAPCAT": "1",
+     "PROTHOLD": "The Nature Conservancy",
+     "PROTMECH": "Fee Ownership",
+     "SENSDATA": "No",
+     "STATE": "TX"
+    },
+    {
+     "AREANAM": "Texas City Fee",
+     "GAPCAT": "1",
+     "PROTHOLD": "The Nature Conservancy",
+     "PROTMECH": "Fee Ownership",
+     "SENSDATA": "No",
+     "STATE": "TX"
+    },
+    {
+     "AREANAM": "Elm Grove Fee",
+     "GAPCAT": "1",
+     "PROTHOLD": "The Nature Conservancy",
+     "PROTMECH": "Fee Ownership",
+     "SENSDATA": "No",
+     "STATE": "TX"
+    }
+   ],
+   "service": "District7_proposed",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District7_proposed/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "sitename",
+   "count": 30,
+   "fields": [
+    "unique_id",
+    "security",
+    "sitename",
+    "esmthldr",
+    "eholdtype",
+    "owntype",
+    "s_emthd1",
+    "s_emthd2",
+    "purpose",
+    "pubaccess",
+    "duration",
+    "state",
+    "gapcat",
+    "iucncat",
+    "dataagg",
+    "datapvdr",
+    "datasrc",
+    "source_uid",
+    "conflict",
+    "stacked"
+   ],
+   "known": false,
+   "layer": "Conservation Easements (NGO, LOC (local gov. or entity), FED, STAT)",
+   "sample": [
+    {
+     "duration": "PERM",
+     "eholdtype": "FED",
+     "esmthldr": "U.S. Natural Resources Conservation Service",
+     "owntype": "PVT",
+     "pubaccess": "XA",
+     "purpose": "RAN",
+     "s_emthd1": " ",
+     "s_emthd2": " ",
+     "security": "NR",
+     "sitename": "Grasslands Reserve Program (GRP)",
+     "state": "NM",
+     "unique_id": "957002"
+    },
+    {
+     "duration": "PERM",
+     "eholdtype": "FED",
+     "esmthldr": "U.S. Natural Resources Conservation Service",
+     "owntype": "PVT",
+     "pubaccess": "XA",
+     "purpose": "ENV",
+     "s_emthd1": " ",
+     "s_emthd2": " ",
+     "security": "NR",
+     "sitename": "Wetlands Reserve Program (WRP)",
+     "state": "TX",
+     "unique_id": "969947"
+    },
+    {
+     "duration": "PERM",
+     "eholdtype": "FED",
+     "esmthldr": "U.S. Natural Resources Conservation Service",
+     "owntype": "PVT",
+     "pubaccess": "XA",
+     "purpose": "RAN",
+     "s_emthd1": " ",
+     "s_emthd2": " ",
+     "security": "NR",
+     "sitename": "Grasslands Reserve Program (GRP)",
+     "state": "TX",
+     "unique_id": "965494"
+    }
+   ],
+   "service": "District2_proposed",
+   "typef": "eholdtype",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District2_proposed/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 27,
+   "fields": [
+    "CNTY_NM",
+    "DIST_NM",
+    "CNTY_FIPS",
+    "MSA1990",
+    "MSA2000",
+    "MSA2010"
+   ],
+   "known": false,
+   "layer": "District 6 Boundary",
+   "sample": [
+    {
+     "CNTY_FIPS": "48073",
+     "CNTY_NM": "Cherokee",
+     "DIST_NM": "Tyler",
+     "MSA1990": "N",
+     "MSA2000": "N",
+     "MSA2010": "N"
+    },
+    {
+     "CNTY_FIPS": "48401",
+     "CNTY_NM": "Rusk",
+     "DIST_NM": "Tyler",
+     "MSA1990": "Y",
+     "MSA2000": "Y",
+     "MSA2010": "Y"
+    },
+    {
+     "CNTY_FIPS": "48365",
+     "CNTY_NM": "Panola",
+     "DIST_NM": "Atlanta",
+     "MSA1990": "N",
+     "MSA2000": "N",
+     "MSA2010": "N"
+    }
+   ],
+   "service": "District6mapofproposedproperties",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District6mapofproposedproperties/FeatureServer/4"
+  },
+  {
+   "agency": "None. Users are advised to read the data set's metadata thoroughly to understand",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "NFCA"
+   ],
+   "known": false,
+   "layer": "NFCA_Texas_ReProject",
+   "sample": [
+    {
+     "NFCA": "Guadalupe Mountain Streams"
+    },
+    {
+     "NFCA": "Pecos River"
+    },
+    {
+     "NFCA": "Arkansas River"
+    }
+   ],
+   "service": "Native_Fish_Conservation_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Native_Fish_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Nueces",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W735",
+     "LoName": "Redhead Pond WMA",
+     "SrcName": "GLO (Deed - GLO)",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Starr",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W206",
+     "LoName": "Las Palomas WMA-Prieta Unit",
+     "SrcName": "GLO (Map - TPWD)",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Starr",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W204",
+     "LoName": "Las Palomas WMA-LaGrulla Unit",
+     "SrcName": "GLO (Map - TPWD)",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District8_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District8_proposed/FeatureServer/1"
+  },
+  {
+   "agency": "Funding for development of the statewide Environmental Flow Information Toolkit ",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "NFCA_Name",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Native Fish Conservation Areas (NFCA)",
+   "sample": [
+    {
+     "Creator": "jvalente_tpwd",
+     "Editor": "jvalente_tpwd",
+     "NFCA_Name": "Guadalupe Mountain Streams"
+    },
+    {
+     "Creator": "jvalente_tpwd",
+     "Editor": "jvalente_tpwd",
+     "NFCA_Name": "Pecos River"
+    },
+    {
+     "Creator": "jvalente_tpwd",
+     "Editor": "jvalente_tpwd",
+     "NFCA_Name": "Arkansas River"
+    }
+   ],
+   "service": "EFIT_Texas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/EFIT_Texas/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "Zone_Name"
+   ],
+   "known": false,
+   "layer": "CWD_Zones",
+   "sample": [
+    {
+     "Zone_Name": "Bexar CWD Zone - Mandatory Testing"
+    },
+    {
+     "Zone_Name": "Brooks CWD Zone - Mandatory Testing"
+    },
+    {
+     "Zone_Name": "Cherokee CWD Zone - Mandatory Testing"
+    }
+   ],
+   "service": "Wildlife/MTHH_CWD_Zones",
+   "typef": "",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/MTHH_CWD_Zones/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 20,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo"
+   ],
+   "known": false,
+   "layer": "BufferedFeatures",
+   "sample": [
+    {
+     "FolderPath": "Prelim Design Trail Alignments/Prelim Design Trail Alignments",
+     "Name": "200",
+     "PopupInfo": "<html xmlns:fo=\"http://www.w3.org/1999/XSL/Format\" xmlns:msxsl=\"urn:schemas-microsoft-com:xslt\">\n<head>\n<META http-equiv=\"Content-Type\" content=\"text/html\">\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n</head>\n<body style=\"margin:0",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "Prelim Design Trail Alignments/Prelim Design Trail Alignments",
+     "Name": "202",
+     "PopupInfo": "<html xmlns:fo=\"http://www.w3.org/1999/XSL/Format\" xmlns:msxsl=\"urn:schemas-microsoft-com:xslt\">\n<head>\n<META http-equiv=\"Content-Type\" content=\"text/html\">\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n</head>\n<body style=\"margin:0",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "Prelim Design Trail Alignments/Prelim Design Trail Alignments",
+     "Name": "100",
+     "PopupInfo": "<html xmlns:fo=\"http://www.w3.org/1999/XSL/Format\" xmlns:msxsl=\"urn:schemas-microsoft-com:xslt\">\n<head>\n<META http-equiv=\"Content-Type\" content=\"text/html\">\n<meta http-equiv=\"content-type\" content=\"text/html; charset=UTF-8\">\n</head>\n<body style=\"margin:0",
+     "Snippet": " "
+    }
+   ],
+   "service": "ABK_Trails_FlaggingFinalRoutesBUFFE2R_5_2025",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/ABK_Trails_FlaggingFinalRoutesBUFFE2R_5_2025/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "STAT_LAND_",
+   "count": 20,
+   "fields": [
+    "PROP_ID",
+    "GEO_ID",
+    "OWNER_NAME",
+    "NAME_CARE",
+    "LGL_AREA_U",
+    "GIS_AREA_U",
+    "LEGAL_DESC",
+    "STAT_LAND_",
+    "LOC_LAND_U",
+    "SITUS_ADDR",
+    "SITUS_NUM",
+    "SITUS_STRE",
+    "SITUS_ST_1",
+    "SITUS_ST_2",
+    "SITUS_CITY",
+    "SITUS_STAT",
+    "SITUS_ZIP",
+    "MAIL_ADDR",
+    "MAIL_LINE1",
+    "MAIL_LINE2"
+   ],
+   "known": false,
+   "layer": "Alabama Creek WMA addition",
+   "sample": [
+    {
+     "GEO_ID": "00342-00001-01800",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "A0342 I & G N RR CO,TRACT 1,484.281 ACRES",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": " ",
+     "NAME_CARE": " ",
+     "OWNER_NAME": "CROWN PINE REALTY 1 INC",
+     "PROP_ID": "25780",
+     "SITUS_ADDR": "WOMACK RD APPLE SPRINGS TX 75926",
+     "SITUS_NUM": " ",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": " "
+    },
+    {
+     "GEO_ID": "00554-00003-01300",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "A0554 SERVIS, GEORGE,TRACT 3,160.0 ACRES",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": " ",
+     "NAME_CARE": " ",
+     "OWNER_NAME": "CROWN PINE REALTY 1 INC",
+     "PROP_ID": "26644",
+     "SITUS_ADDR": "FOREST SERVICE ROAD #506 APPLE SPRINGS TX 75926",
+     "SITUS_NUM": " ",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": " "
+    },
+    {
+     "GEO_ID": "00341-00001-29200",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "A0341 I & G N RR CO,TRACT 1,514.5975 ACRES",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": " ",
+     "NAME_CARE": " ",
+     "OWNER_NAME": "CROWN PINE REALTY 1 INC",
+     "PROP_ID": "26630",
+     "SITUS_ADDR": "HWY 94 (OFF OF) APPLE SPRINGS TX 75926",
+     "SITUS_NUM": " ",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": " "
+    }
+   ],
+   "service": "District6mapofproposedproperties",
+   "typef": "LEGAL_DESC",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District6mapofproposedproperties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 18,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "WMA"
+   ],
+   "known": false,
+   "layer": "VistaMountains_WMA",
+   "sample": [
+    {
+     "FolderPath": "Document",
+     "Name": "6631",
+     "WMA": "Vista Mountains WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6635",
+     "WMA": "Vista Mountains WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6686",
+     "WMA": "Vista Mountains WMA"
+    }
+   ],
+   "service": "District_5_Wildlife_Management_Associations",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District_5_Wildlife_Management_Associations/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Lamar",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W105",
+     "LoName": "Pat Mayse WMA",
+     "SrcName": "TPWD/USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Kaufman",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W703",
+     "LoName": "Cedar Creek WMA-Big Island Uni",
+     "SrcName": "TPWD/USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Smith",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W021",
+     "LoName": "The Nature Center",
+     "SrcName": "TPWD/USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District5_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District5_proposed/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "LoName",
+    "BndryType",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "Availabili",
+    "UseType"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Availabili": "Open for Public Use",
+     "BndryType": "SHS",
+     "Comments": " ",
+     "County1": "San Patricio",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoName": "Lipantitlan SHS",
+     "UseType": "Day Use Only"
+    },
+    {
+     "Availabili": "Open for Public Use",
+     "BndryType": "SP",
+     "Comments": " ",
+     "County1": "Cameron",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoName": "Boca Chica SP",
+     "UseType": "Overnight"
+    },
+    {
+     "Availabili": "Open for Public Use",
+     "BndryType": "SNA",
+     "Comments": " ",
+     "County1": "Bandera",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoName": "Hill Country SNA - Louise Merrick Unit",
+     "UseType": "Overnight"
+    }
+   ],
+   "service": "District8_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District8_proposed/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 17,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "WMA"
+   ],
+   "known": false,
+   "layer": "PlumCreek_WMA",
+   "sample": [
+    {
+     "FolderPath": "Document",
+     "Name": "6960",
+     "WMA": "Plum Creek WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6961",
+     "WMA": "Plum Creek WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6963",
+     "WMA": "Plum Creek WMA"
+    }
+   ],
+   "service": "District_5_Wildlife_Management_Associations",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District_5_Wildlife_Management_Associations/FeatureServer/1"
+  },
+  {
+   "agency": "Nancy A. Heger, TPWD, Wildlife Division",
+   "area": "NAME",
+   "count": 17,
+   "fields": [
+    "NAME",
+    "NAME_LOCAS"
+   ],
+   "known": false,
+   "layer": "GCWA_Co",
+   "sample": [
+    {
+     "NAME": "BANDERA",
+     "NAME_LOCAS": "Bandera"
+    },
+    {
+     "NAME": "BELL",
+     "NAME_LOCAS": "Bell"
+    },
+    {
+     "NAME": "BEXAR",
+     "NAME_LOCAS": "Bexar"
+    }
+   ],
+   "service": "Wildlife/gcwahabchange_2000sto2016",
+   "typef": "",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/gcwahabchange_2000sto2016/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "STAT_LAND_",
+   "count": 13,
+   "fields": [
+    "PROP_ID",
+    "GEO_ID",
+    "OWNER_NAME",
+    "NAME_CARE",
+    "LGL_AREA_U",
+    "GIS_AREA_U",
+    "LEGAL_DESC",
+    "STAT_LAND_",
+    "LOC_LAND_U",
+    "SITUS_ADDR",
+    "SITUS_NUM",
+    "SITUS_STRE",
+    "SITUS_ST_1",
+    "SITUS_ST_2",
+    "SITUS_CITY",
+    "SITUS_STAT",
+    "SITUS_ZIP",
+    "MAIL_ADDR",
+    "MAIL_LINE1",
+    "MAIL_LINE2"
+   ],
+   "known": false,
+   "layer": "Alazan Bayou WMA addition",
+   "sample": [
+    {
+     "GEO_ID": "0424-003-019-000-00",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "ABS 0424 MARTIN JAS.,TRACT 19,ACRES 81.69",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": "8",
+     "NAME_CARE": "ATTN: THOMPSON NED",
+     "OWNER_NAME": "R T COMPANY",
+     "PROP_ID": " ",
+     "SITUS_ADDR": "0",
+     "SITUS_NUM": "0",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": " "
+    },
+    {
+     "GEO_ID": "0424-003-020-000-00",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "ABS 0424 MARTIN JAS.,TRACT 20,ACRES 22.15",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": "8",
+     "NAME_CARE": "ATTN: THOMPSON NED",
+     "OWNER_NAME": "R T COMPANY",
+     "PROP_ID": " ",
+     "SITUS_ADDR": "0",
+     "SITUS_NUM": "0",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": " "
+    },
+    {
+     "GEO_ID": "0198-003-018-000-00",
+     "GIS_AREA_U": "ACRES",
+     "LEGAL_DESC": "ABS 0198 DURST JAMES,TRACT 18,ACRES 331.074",
+     "LGL_AREA_U": "ACRES",
+     "LOC_LAND_U": "8",
+     "NAME_CARE": "ATTN: THOMPSON NED",
+     "OWNER_NAME": "R T COMPANY",
+     "PROP_ID": " ",
+     "SITUS_ADDR": "0 TX",
+     "SITUS_NUM": "0",
+     "SITUS_STRE": " ",
+     "STAT_LAND_": " "
+    }
+   ],
+   "service": "District6mapofproposedproperties",
+   "typef": "LEGAL_DESC",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District6mapofproposedproperties/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 13,
+   "fields": [
+    "Name",
+    "ForSale",
+    "Friendly",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo",
+    "PROP_ID",
+    "GEO_ID",
+    "OWNER_NAME",
+    "NAME_CARE",
+    "LGL_AREA_U",
+    "GIS_AREA_U",
+    "LEGAL_DESC",
+    "STAT_LAND_",
+    "LOC_LAND_U",
+    "SITUS_ADDR",
+    "SITUS_NUM",
+    "SITUS_STRE",
+    "SITUS_ST_1",
+    "SITUS_ST_2"
+   ],
+   "known": false,
+   "layer": "Region 4 Proposed Properties",
+   "sample": [
+    {
+     "FolderPath": "Brunner.kml",
+     "ForSale": "N",
+     "Friendly": "U",
+     "GEO_ID": " ",
+     "GIS_AREA_U": " ",
+     "LGL_AREA_U": " ",
+     "NAME_CARE": " ",
+     "Name": "Brunner",
+     "OWNER_NAME": " ",
+     "PROP_ID": " ",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "Cockrell.kml",
+     "ForSale": "N",
+     "Friendly": "Y",
+     "GEO_ID": " ",
+     "GIS_AREA_U": " ",
+     "LGL_AREA_U": " ",
+     "NAME_CARE": " ",
+     "Name": "Cockrell",
+     "OWNER_NAME": " ",
+     "PROP_ID": " ",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "Cornelius-Cross.kml",
+     "ForSale": "U",
+     "Friendly": "U",
+     "GEO_ID": " ",
+     "GIS_AREA_U": " ",
+     "LGL_AREA_U": " ",
+     "NAME_CARE": " ",
+     "Name": "Cornelius-Cross",
+     "OWNER_NAME": " ",
+     "PROP_ID": " ",
+     "PopupInfo": " ",
+     "Snippet": " "
+    }
+   ],
+   "service": "Region_4_LAR",
+   "typef": "LEGAL_DESC",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Region_4_LAR/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 12,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "WMA"
+   ],
+   "known": false,
+   "layer": "LuckyCreek_WMA",
+   "sample": [
+    {
+     "FolderPath": "Document",
+     "Name": "6324",
+     "WMA": "Lucky Creek WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6329",
+     "WMA": "Lucky Creek WMA"
+    },
+    {
+     "FolderPath": "Document",
+     "Name": "6330",
+     "WMA": "Lucky Creek WMA"
+    }
+   ],
+   "service": "District_5_Wildlife_Management_Associations",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District_5_Wildlife_Management_Associations/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Trinity",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W715",
+     "LoName": "Alabama Creek WMA",
+     "SrcName": "Facility Map",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Morris",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W727",
+     "LoName": "White Oak Creek WMA",
+     "SrcName": "Park Survey 1997",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "San Augustine",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W718",
+     "LoName": "Bannister WMA",
+     "SrcName": "Steve Lang",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District6mapofproposedproperties",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District6mapofproposedproperties/FeatureServer/3"
+  },
+  {
+   "agency": "Nancy A. Heger, TPWD, Wildlife Division",
+   "area": "",
+   "count": 9,
+   "fields": [],
+   "known": false,
+   "layer": "Hchg0405_2916",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape_Area": 133258465.98360732,
+     "Shape_Length": 2691537.136434141,
+     "gridcode": -4
+    },
+    {
+     "OBJECTID": 2,
+     "Shape_Area": 273080148.9862438,
+     "Shape_Length": 9998346.012881197,
+     "gridcode": -3
+    },
+    {
+     "OBJECTID": 3,
+     "Shape_Area": 667820371.7311302,
+     "Shape_Length": 26651838.178088706,
+     "gridcode": -2
+    }
+   ],
+   "service": "Wildlife/gcwahabchange_2000sto2016",
+   "typef": "",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/gcwahabchange_2000sto2016/MapServer/1"
+  },
+  {
+   "agency": "Texas Department of State Health Services",
+   "area": "",
+   "count": 8,
+   "fields": [],
+   "known": false,
+   "layer": "Islands",
+   "sample": [
+    {
+     "Area": 13164.9,
+     "GlobalID": "7891de6c-46bb-4c14-aa7f-658814fdcd18",
+     "Id": 0,
+     "OBJECTID": 1,
+     "Shape__Area": 17042.2578125,
+     "Shape__Length": 776.7305068543385
+    },
+    {
+     "Area": 3736.39,
+     "GlobalID": "7cbced6d-d6ae-4e27-b50c-619a8ef145f2",
+     "Id": 0,
+     "OBJECTID": 2,
+     "Shape__Area": 4836.76953125,
+     "Shape__Length": 477.6361570269172
+    },
+    {
+     "Area": 6184.92,
+     "GlobalID": "2a93842c-e735-460d-b726-eb48900308d4",
+     "Id": 0,
+     "OBJECTID": 3,
+     "Shape__Area": 8007.125,
+     "Shape__Length": 424.95171648865687
+    }
+   ],
+   "service": "ShellfishClassification_Publish",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/ShellfishClassification_Publish/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [],
+   "known": false,
+   "layer": "TPWD_Wildlife_Districts",
+   "sample": [
+    {
+     "FID": 1,
+     "OBJECTID": 1,
+     "Shape_Area": 9.20053666543,
+     "Shape_Leng": 18.5909650922,
+     "Shape__Area": 132846359118.10547,
+     "Shape__Length": 2193159.595462023,
+     "WL_DIST": 1
+    },
+    {
+     "FID": 2,
+     "OBJECTID": 2,
+     "Shape_Area": 13.6761027069,
+     "Shape_Leng": 15.9945901174,
+     "Shape__Area": 205347060954.30078,
+     "Shape__Length": 1989939.0723919726,
+     "WL_DIST": 2
+    },
+    {
+     "FID": 3,
+     "OBJECTID": 3,
+     "Shape_Area": 9.93830830084,
+     "Shape_Leng": 20.2561239934,
+     "Shape__Area": 145957942677.3047,
+     "Shape__Length": 2459899.5507996473,
+     "WL_DIST": 3
+    }
+   ],
+   "service": "TPWD_Wildlife_Districts",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/TPWD_Wildlife_Districts/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Donley",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W741",
+     "LoName": "Playa Lakes WMA-Taylor Unit",
+     "SrcName": "TPWD\\USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Castro",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W736",
+     "LoName": "Playa Lakes WMA-Dimmit Unit",
+     "SrcName": "TPWD/USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": "Lewis Tract and Fitzgerald Center",
+     "County1": " Cochran",
+     "County2": "Yoakum",
+     "County3": "Terry",
+     "County4": " ",
+     "LoCode": "W752",
+     "LoName": "Yoakum Dunes WMA",
+     "SrcName": " ",
+     "SrcOrigin": "Inserted from ComboLayerPY",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District2_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District2_proposed/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "ShrimpZone",
+    "ShrimpZoneLabels"
+   ],
+   "known": false,
+   "layer": "ShrimpFisheryManagementZones",
+   "sample": [
+    {
+     "ShrimpZone": "Southern Shrimp Zone 1",
+     "ShrimpZoneLabels": "S1"
+    },
+    {
+     "ShrimpZone": "Southern Shrimp Zone 2",
+     "ShrimpZoneLabels": "S2"
+    },
+    {
+     "ShrimpZone": "Southern Shrimp Zone 3",
+     "ShrimpZoneLabels": "S3"
+    }
+   ],
+   "service": "Texas_Gulf_Shrimp_Fishery_Management_Zones_Hosted_Feature_Service",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_Gulf_Shrimp_Fishery_Management_Zones_Hosted_Feature_Service/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 6,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo"
+   ],
+   "known": false,
+   "layer": "Region 1 Proposed Properties",
+   "sample": [
+    {
+     "FolderPath": "Mesa View Ranch.kml",
+     "Name": "Mesa View Ranch",
+     "PopupInfo": "1,625 acres\n$1.9 million\n\n30 minutes from Alpine\n40 minutes from Big Bend NP\nClose to Elephant Mountain (few miles)\n\nLarge well\nConverted ranch to wildlife management area (1D1) 10 years\n\nPartially fenced, improved roads, electricity",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "South Canyon.kml",
+     "Name": "South Canyon",
+     "PopupInfo": "603 acres\n$3.9 million\n\nfull playa\n",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "TimberCreek.kml",
+     "Name": "TimberCreek",
+     "PopupInfo": "652 acres\n$1.9 million\n",
+     "Snippet": " "
+    }
+   ],
+   "service": "Region_1_LAR",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Region_1_LAR/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 4,
+   "fields": [
+    "AreaName"
+   ],
+   "known": false,
+   "layer": "OldSettlersPark_boundary",
+   "sample": [
+    {
+     "AreaName": "Park Boundary"
+    },
+    {
+     "AreaName": "Area 1"
+    },
+    {
+     "AreaName": " Area 2"
+    }
+   ],
+   "service": "Old_Settlers_Park_Survey_Areas_Map",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Old_Settlers_Park_Survey_Areas_Map/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LoName",
+    "BndryType",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "Availabili",
+    "UseType"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Availabili": "Open for Public Use",
+     "BndryType": "SP",
+     "Comments": " ",
+     "County1": "Hall",
+     "County2": "Briscoe",
+     "County3": "Floyd",
+     "County4": " ",
+     "LoName": "Caprock Canyons Trailway",
+     "UseType": "Trailway"
+    },
+    {
+     "Availabili": "Open for Public Use",
+     "BndryType": "SP",
+     "Comments": " ",
+     "County1": "Briscoe",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoName": "Caprock Canyons SP",
+     "UseType": "Overnight"
+    },
+    {
+     "Availabili": "Open for Public Use",
+     "BndryType": "SP",
+     "Comments": " ",
+     "County1": "Hardeman",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoName": "Copper Breaks SP",
+     "UseType": "Overnight"
+    }
+   ],
+   "service": "District2_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District2_proposed/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Brown",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W750",
+     "LoName": "McGillivray and Leona McKie Muse WMA",
+     "SrcName": " ",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Denton",
+     "County2": "Cooke",
+     "County3": "Grayson",
+     "County4": " ",
+     "LoCode": "W704",
+     "LoName": "Ray Roberts",
+     "SrcName": " ",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": "provisional boundary",
+     "County1": "Palo Pinto",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W781",
+     "LoName": "Roger R. Fawcett WMA",
+     "SrcName": " ",
+     "SrcOrigin": "Inserted from ComboLayerPY",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District3_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District3_proposed/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "LoCode",
+    "LoName",
+    "BndryType",
+    "TPWDivisio",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Comments",
+    "SrcType",
+    "SrcName",
+    "SrcOrigin",
+    "SrcScale",
+    "SrcDate",
+    "DataOrigin",
+    "DataDate",
+    "EditDate",
+    "Editor",
+    "GlobalID",
+    "Creator"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Kerr",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W056",
+     "LoName": "Kerr WMA",
+     "SrcName": "TXDOT",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Mason",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W749",
+     "LoName": "Mason Mountain WMA",
+     "SrcName": "TPWD/USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    },
+    {
+     "BndryType": "WMA",
+     "Comments": " ",
+     "County1": "Williamson",
+     "County2": " ",
+     "County3": " ",
+     "County4": " ",
+     "LoCode": "W709",
+     "LoName": "Granger WMA",
+     "SrcName": "TPWD/USGS",
+     "SrcOrigin": " ",
+     "SrcType": " ",
+     "TPWDivisio": "Wildlife"
+    }
+   ],
+   "service": "District4_proposed",
+   "typef": "BndryType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/District4_proposed/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Hunted",
+    "Name"
+   ],
+   "known": false,
+   "layer": "HUR_RedfishImp - Sanctuary",
+   "sample": [
+    {
+     "Hunted": "N",
+     "Name": "Redfish Impoundment"
+    }
+   ],
+   "service": "ARUdeployments_2024_2025_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/ARUdeployments_2024_2025_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "CiboloNaturePreserve",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 3487487.20703125,
+     "Shape__Length": 10235.21366311276
+    }
+   ],
+   "service": "Cibolo_Preserve_Winter_Sparrow_Project_v1_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Cibolo_Preserve_Winter_Sparrow_Project_v1_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "CiboloNaturePreserve",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 3487487.20703125,
+     "Shape__Length": 10235.21366311276
+    }
+   ],
+   "service": "Cibolo_Sparrow_and_Vegetation_Surveys",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Cibolo_Sparrow_and_Vegetation_Surveys/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "CiboloNaturePreserve",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 3487487.20703125,
+     "Shape__Length": 10235.21366311276
+    }
+   ],
+   "service": "Cibolo_Sparrow_and_Vegetation_Surveys_v3_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Cibolo_Sparrow_and_Vegetation_Surveys_v3_WFL1/FeatureServer/24"
+  },
+  {
+   "agency": "TPWD Wildlife Division: Nancy Heger",
+   "area": "LocName",
+   "count": 463,
+   "fields": [
+    "LocName",
+    "Class",
+    "Active",
+    "Name_Acres",
+    "KMLDescrip",
+    "Comments",
+    "Name2",
+    "Name3",
+    "Name",
+    "TB_DDPField",
+    "Class2",
+    "Unit_Num",
+    "FromBPPY",
+    "BPPYExact",
+    "BPPYCommnt",
+    "Compartment",
+    "Label_Special",
+    "Property"
+   ],
+   "known": true,
+   "layer": "Public Hunt Area Polygon Features",
+   "sample": [
+    {
+     "Active": "Yes",
+     "Class": "Property Boundary",
+     "KMLDescrip": "<strong>San Angelo SP - 2,500 acres</strong><br/><a href=http://tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/1166.pdf>2026-27 Map Booklet for Public Hunting Lands</a><br/>*Zoom In to see property boundary",
+     "LocName": "San Angelo SP",
+     "Name": "San Angelo SP",
+     "Name_Acres": "San Angelo SP - 2,500 acres",
+     "Unit_Num": "1166"
+    },
+    {
+     "Active": "Yes",
+     "Class": "Property Boundary",
+     "KMLDescrip": "<strong>Elephant Mountain WMA - 23,147 acres</strong><br/><a href=http://tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/725.pdf>2026-27 Map Booklet for Public Hunting Lands</a><br/>*Zoom In to see property boundary",
+     "LocName": "Elephant Mountain WMA",
+     "Name": "Elephant Mountain WMA",
+     "Name_Acres": "Elephant Mountain WMA - 23,147 acres",
+     "Unit_Num": "725"
+    },
+    {
+     "Active": "Yes",
+     "Class": "Property Boundary",
+     "KMLDescrip": "<strong>Alabama Creek WMA - 14,561 acres</strong><br/><a href=http://tpwd.texas.gov/huntwild/hunt/public/annual_public_hunting/resources/904.pdf>2026-27 Map Booklet for Public Hunting Lands</a><br/>*Zoom In to see property boundary",
+     "LocName": "Alabama Creek WMA",
+     "Name": "Alabama Creek WMA",
+     "Name_Acres": "Alabama Creek WMA - 14,561 acres",
+     "Unit_Num": "904"
+    }
+   ],
+   "service": "Wildlife/TPWD_PublicHuntLocatorMap",
+   "typef": "Class",
+   "url": "https://tpwd.texas.gov/arcgis/rest/services/Wildlife/TPWD_PublicHuntLocatorMap/MapServer/9"
+  },
+  {
+   "agency": "TPWD | SP | NR | PGR",
+   "area": "ParkName",
+   "count": 116,
+   "fields": [
+    "ParkName",
+    "PropType",
+    "County1",
+    "County2",
+    "Creator",
+    "LastEditor"
+   ],
+   "known": true,
+   "layer": "Park Boundary",
+   "sample": [
+    {
+     "County1": "Hardeman",
+     "County2": " ",
+     "Creator": "TPWD_StateParks",
+     "LastEditor": "TPWD_StateParks",
+     "ParkName": "Copper Breaks",
+     "PropType": "SP"
+    },
+    {
+     "County1": "Mitchell",
+     "County2": " ",
+     "Creator": "TPWD_StateParks",
+     "LastEditor": "TPWD_StateParks",
+     "ParkName": "Lake Colorado City",
+     "PropType": "SP"
+    },
+    {
+     "County1": "Edwards",
+     "County2": " ",
+     "Creator": "TPWD_StateParks",
+     "LastEditor": "TPWD_StateParks",
+     "ParkName": "Devil's Sinkhole",
+     "PropType": "SNA"
+    }
+   ],
+   "service": "Texas_State_Parks_Boundaries",
+   "typef": "PropType",
+   "url": "https://services1.arcgis.com/1mtXwieMId59thmg/arcgis/rest/services/Texas_State_Parks_Boundaries/FeatureServer/0"
+  }
+ ],
+ "st": "TX"
+}

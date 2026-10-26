@@ -1,0 +1,1302 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 53038,
+   "fields": [],
+   "known": false,
+   "layer": "Game Lands Defoliation Events 1963 - 2013 ",
+   "sample": [
+    {
+     "Damage_Events": 3,
+     "OBJECTID": 1,
+     "Shape__Area": 8.392333984375e-05,
+     "Shape__Length": 0.04776430068907252
+    },
+    {
+     "Damage_Events": 6,
+     "OBJECTID": 2,
+     "Shape__Area": 0.00064849853515625,
+     "Shape__Length": 0.2037970299766144
+    },
+    {
+     "Damage_Events": 8,
+     "OBJECTID": 3,
+     "Shape__Area": 0.000736236572265625,
+     "Shape__Length": 0.33857174019789343
+    }
+   ],
+   "service": "State_Game_Land_Timber_Damage_History",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Land_Timber_Damage_History/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10485,
+   "fields": [
+    "COUNTY",
+    "AGENT1",
+    "AGENT2",
+    "AGENT3",
+    "SEVERITY1",
+    "SEVERITY2",
+    "SEVERITY3",
+    "DAMAG_TYP1",
+    "DAMAG_TYP2",
+    "DAMAG_TYP3",
+    "PATTERN1",
+    "PATTERN2",
+    "PATTERN3",
+    "HOST1",
+    "HOST2",
+    "HOST3",
+    "TPA"
+   ],
+   "known": false,
+   "layer": "Game Lands Defoliation Events 1963 - 2013 Data",
+   "sample": [
+    {
+     "AGENT1": "Gypsy Moth",
+     "AGENT2": " ",
+     "AGENT3": " ",
+     "COUNTY": "Cumberland",
+     "DAMAG_TYP1": "Defoliation",
+     "DAMAG_TYP2": " ",
+     "DAMAG_TYP3": " ",
+     "PATTERN1": "Contiguous",
+     "PATTERN2": " ",
+     "SEVERITY1": "Moderate",
+     "SEVERITY2": " ",
+     "SEVERITY3": " "
+    },
+    {
+     "AGENT1": "Gypsy Moth",
+     "AGENT2": " ",
+     "AGENT3": " ",
+     "COUNTY": "Cumberland",
+     "DAMAG_TYP1": "Defoliation",
+     "DAMAG_TYP2": " ",
+     "DAMAG_TYP3": " ",
+     "PATTERN1": "Patchy",
+     "PATTERN2": " ",
+     "SEVERITY1": "Moderate",
+     "SEVERITY2": " ",
+     "SEVERITY3": " "
+    },
+    {
+     "AGENT1": "Gypsy Moth",
+     "AGENT2": " ",
+     "AGENT3": " ",
+     "COUNTY": "Cumberland",
+     "DAMAG_TYP1": "Defoliation",
+     "DAMAG_TYP2": " ",
+     "DAMAG_TYP3": " ",
+     "PATTERN1": "Contiguous",
+     "PATTERN2": " ",
+     "SEVERITY1": "Moderate",
+     "SEVERITY2": " ",
+     "SEVERITY3": " "
+    }
+   ],
+   "service": "State_Game_Land_Timber_Damage_History",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Land_Timber_Damage_History/FeatureServer/3"
+  },
+  {
+   "agency": "GIS Data Model developed by the National Recreation & Parks Association (NRPA)",
+   "area": "PARK_NAME",
+   "count": 8448,
+   "fields": [
+    "PARK_NAME",
+    "PARK_TYPE",
+    "LWCF",
+    "PREMISE_CO",
+    "County"
+   ],
+   "known": false,
+   "layer": "Local Parks",
+   "sample": [
+    {
+     "County": "Allegheny",
+     "LWCF": "Yes, click <a href=\"http://www.dcnr.state.pa.us/cs/groups/public/documents/document/dcnr_20030944.pdf\">here</a> for more information",
+     "PARK_NAME": "11th Avenue Playground",
+     "PARK_TYPE": "Neighborhood Parks",
+     "PREMISE_CO": "Allegheny"
+    },
+    {
+     "County": "Allegheny",
+     "LWCF": "Yes, click <a href=\"http://www.dcnr.state.pa.us/cs/groups/public/documents/document/dcnr_20030944.pdf\">here</a> for more information",
+     "PARK_NAME": "Alpine Parklet",
+     "PARK_TYPE": "Mini-Parks",
+     "PREMISE_CO": "Allegheny"
+    },
+    {
+     "County": "Cumberland",
+     "LWCF": "Yes, click <a href=\"http://www.dcnr.state.pa.us/cs/groups/public/documents/document/dcnr_20030944.pdf\">here</a> for more information",
+     "PARK_NAME": "Negley Park",
+     "PARK_TYPE": "Community Parks",
+     "PREMISE_CO": "Cumberland"
+    }
+   ],
+   "service": "PA_Public/LocalParks",
+   "typef": "PARK_TYPE",
+   "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/LocalParks/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "cooperator_property",
+   "count": 3108,
+   "fields": [
+    "pgc_region",
+    "cooperator_property",
+    "treatment",
+    "Treatment_Year"
+   ],
+   "known": false,
+   "layer": "Habitat Treatments - Forestry",
+   "sample": [
+    {
+     "Treatment_Year": "2016",
+     "pgc_region": "Northcentral",
+     "treatment": "Clearcut with Residuals"
+    },
+    {
+     "Treatment_Year": "2012",
+     "pgc_region": "Southcentral",
+     "treatment": "Clearcut with Residuals"
+    },
+    {
+     "Treatment_Year": "2012",
+     "pgc_region": "Southcentral",
+     "treatment": "Clearcut with Residuals"
+    }
+   ],
+   "service": "Habitat_Treatments",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Habitat_Treatments/FeatureServer/900"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2551,
+   "fields": [
+    "COUNTY",
+    "AGENT1",
+    "AGENT2",
+    "AGENT3",
+    "SEVERITY1",
+    "SEVERITY2",
+    "SEVERITY3",
+    "DAMAG_TYP1",
+    "DAMAG_TYP2",
+    "DAMAG_TYP3",
+    "PATTERN1",
+    "PATTERN2",
+    "PATTERN3",
+    "HOST1",
+    "HOST2",
+    "HOST3",
+    "TPA"
+   ],
+   "known": false,
+   "layer": "Game Lands Defoliation Events 2007 - 2016 Data",
+   "sample": [
+    {
+     "AGENT1": "Gypsy Moth",
+     "AGENT2": " ",
+     "AGENT3": " ",
+     "COUNTY": "Monroe",
+     "DAMAG_TYP1": "Defoliation",
+     "DAMAG_TYP2": " ",
+     "DAMAG_TYP3": " ",
+     "PATTERN1": "Contiguous",
+     "PATTERN2": " ",
+     "SEVERITY1": "High",
+     "SEVERITY2": " ",
+     "SEVERITY3": " "
+    },
+    {
+     "AGENT1": "Gypsy Moth",
+     "AGENT2": " ",
+     "AGENT3": " ",
+     "COUNTY": "Monroe",
+     "DAMAG_TYP1": "Defoliation",
+     "DAMAG_TYP2": " ",
+     "DAMAG_TYP3": " ",
+     "PATTERN1": "Contiguous",
+     "PATTERN2": " ",
+     "SEVERITY1": "High",
+     "SEVERITY2": " ",
+     "SEVERITY3": " "
+    },
+    {
+     "AGENT1": "Gypsy Moth",
+     "AGENT2": " ",
+     "AGENT3": " ",
+     "COUNTY": "Monroe",
+     "DAMAG_TYP1": "Defoliation",
+     "DAMAG_TYP2": " ",
+     "DAMAG_TYP3": " ",
+     "PATTERN1": "Contiguous",
+     "PATTERN2": " ",
+     "SEVERITY1": "High",
+     "SEVERITY2": " ",
+     "SEVERITY3": " "
+    }
+   ],
+   "service": "State_Game_Land_Timber_Damage_History",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Land_Timber_Damage_History/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1058,
+   "fields": [
+    "ACCOUNT_CODE",
+    "MAP_VALID",
+    "RES_TYPE"
+   ],
+   "known": false,
+   "layer": "Forest Game Validation",
+   "sample": [
+    {
+     "ACCOUNT_CODE": "50RESV224920",
+     "MAP_VALID": "K",
+     "RES_TYPE": "N"
+    },
+    {
+     "ACCOUNT_CODE": "50LANX118708",
+     "MAP_VALID": "N"
+    },
+    {
+     "ACCOUNT_CODE": "50LANX118708",
+     "MAP_VALID": "N"
+    }
+   ],
+   "service": "FOREST_GAME_(LANDOWNERS)",
+   "typef": "RES_TYPE",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/FOREST_GAME_(LANDOWNERS)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1041,
+   "fields": [
+    "NAME",
+    "Symbol"
+   ],
+   "known": false,
+   "layer": "PGC Managed Lands",
+   "sample": [
+    {
+     "NAME": "024",
+     "Symbol": "State Game Land"
+    },
+    {
+     "NAME": "028",
+     "Symbol": "State Game Land"
+    },
+    {
+     "NAME": "029",
+     "Symbol": "State Game Land"
+    }
+   ],
+   "service": "PGC_Managed_Lands__COA_Tool",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Managed_Lands__COA_Tool/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 980,
+   "fields": [
+    "PARK_NAME"
+   ],
+   "known": false,
+   "layer": "State Park Lakes Depth (Ft)",
+   "sample": [
+    {
+     "PARK_NAME": "Cowans Gap State Park"
+    },
+    {
+     "PARK_NAME": "Laurel Hill State Park"
+    },
+    {
+     "PARK_NAME": "Laurel Hill State Park"
+    }
+   ],
+   "service": "Parks/StateParkLakesBathymetryPolygons",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/StateParkLakesBathymetryPolygons/MapServer/0"
+  },
+  {
+   "agency": "PA Department of Conservation and Natural Resources",
+   "area": "",
+   "count": 691,
+   "fields": [
+    "SF_Name",
+    "LandManage"
+   ],
+   "known": false,
+   "layer": "State Forests",
+   "sample": [
+    {
+     "LandManage": "BOF",
+     "SF_Name": "Tioga"
+    },
+    {
+     "LandManage": "BOF",
+     "SF_Name": "Susquehannock"
+    },
+    {
+     "LandManage": "BOF",
+     "SF_Name": "Tioga"
+    }
+   ],
+   "service": "PA_Public/State_Forests",
+   "typef": "",
+   "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Forests/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 412,
+   "fields": [
+    "COVER_TYPE",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Middle Creek Forest Not Merged",
+   "sample": [
+    {
+     "COVER_TYPE": "AR",
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    },
+    {
+     "COVER_TYPE": "UG",
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    },
+    {
+     "COVER_TYPE": "UG",
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    }
+   ],
+   "service": "Willow_Point_Trail_StoryMap_Data",
+   "typef": "COVER_TYPE",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Willow_Point_Trail_StoryMap_Data/FeatureServer/4"
+  },
+  {
+   "agency": "Pennsylvania Game Commission",
+   "area": "",
+   "count": 378,
+   "fields": [
+    "created_user",
+    "last_edited_user",
+    "WMU_ID",
+    "LicenseYearRange"
+   ],
+   "known": false,
+   "layer": "Big Game Historic Harvests by WMU",
+   "sample": [
+    {
+     "LicenseYearRange": "2009",
+     "WMU_ID": "2B",
+     "created_user": "eclees@PA.LCL_PAGame",
+     "last_edited_user": "eclees@PA.LCL_PAGame"
+    },
+    {
+     "LicenseYearRange": "2009",
+     "WMU_ID": "2D",
+     "created_user": "eclees@PA.LCL_PAGame",
+     "last_edited_user": "eclees@PA.LCL_PAGame"
+    },
+    {
+     "LicenseYearRange": "2009",
+     "WMU_ID": "4D",
+     "created_user": "eclees@PA.LCL_PAGame",
+     "last_edited_user": "eclees@PA.LCL_PAGame"
+    }
+   ],
+   "service": "Historic_Harvest_Data_for_Dashboards",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Historic_Harvest_Data_for_Dashboards/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 345,
+   "fields": [
+    "DISPUTE",
+    "VALIDITY",
+    "EDITOR",
+    "NAME",
+    "CURRENT_",
+    "LAND_RECORD_LINK",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Game lands",
+   "sample": [
+    {
+     "CURRENT_": "N",
+     "DISPUTE": "N",
+     "EDITOR": "tmakibbin",
+     "LAND_RECORD_LINK": "http://gmhbgsrv22/land/realestate/sgl.asp?stgl=308",
+     "NAME": "308",
+     "VALIDITY": "U",
+     "created_user": "mniessner@pa.lcl_PAGame",
+     "last_edited_user": "mniessner@pa.lcl_PAGame"
+    },
+    {
+     "CURRENT_": "N",
+     "DISPUTE": "N",
+     "EDITOR": "tmakibbin",
+     "LAND_RECORD_LINK": "http://gmhbgsrv22/land/realestate/sgl.asp?stgl=240",
+     "NAME": "240",
+     "VALIDITY": "U",
+     "created_user": "mniessner@pa.lcl_PAGame",
+     "last_edited_user": "mniessner@pa.lcl_PAGame"
+    },
+    {
+     "CURRENT_": "N",
+     "DISPUTE": "N",
+     "EDITOR": "tmakibbin",
+     "LAND_RECORD_LINK": "http://gmhbgsrv22/land/realestate/sgl.asp?stgl=177",
+     "NAME": "177",
+     "VALIDITY": "U",
+     "created_user": "mniessner@pa.lcl_PAGame",
+     "last_edited_user": "mniessner@pa.lcl_PAGame"
+    }
+   ],
+   "service": "StatewideTimberBlock_vw",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/StatewideTimberBlock_vw/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 123,
+   "fields": [
+    "NAME",
+    "COMMENT_"
+   ],
+   "known": false,
+   "layer": "State Park Ponds and Lakes",
+   "sample": [
+    {
+     "COMMENT_": " ",
+     "NAME": "POND"
+    },
+    {
+     "COMMENT_": " ",
+     "NAME": "PYMATUNING RESERVOIR"
+    },
+    {
+     "COMMENT_": " ",
+     "NAME": "POND"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/8"
+  },
+  {
+   "agency": "Pennsylvania Game Commission",
+   "area": "",
+   "count": 97,
+   "fields": [
+    "ZONE_NAME",
+    "LicenseYearRange",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Elk Historic Harvests by EHZ",
+   "sample": [
+    {
+     "Creator": "eclees@PA.LCL_PAGame",
+     "Editor": "eclees@PA.LCL_PAGame",
+     "LicenseYearRange": "2022",
+     "ZONE_NAME": "Zone 1"
+    },
+    {
+     "Creator": "eclees@PA.LCL_PAGame",
+     "Editor": "eclees@PA.LCL_PAGame",
+     "LicenseYearRange": "2022",
+     "ZONE_NAME": "Zone 5"
+    },
+    {
+     "Creator": "eclees@PA.LCL_PAGame",
+     "Editor": "eclees@PA.LCL_PAGame",
+     "LicenseYearRange": "2022",
+     "ZONE_NAME": "Zone 2"
+    }
+   ],
+   "service": "Historic_Harvest_Data_for_Dashboards",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Historic_Harvest_Data_for_Dashboards/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 68,
+   "fields": [
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Middle Creek Wetlands",
+   "sample": [
+    {
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    },
+    {
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    },
+    {
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    }
+   ],
+   "service": "Willow_Point_Trail_StoryMap_Data",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Willow_Point_Trail_StoryMap_Data/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "COUNTY_NAM",
+    "COUNTY_NUM",
+    "COUNTY_PROPER"
+   ],
+   "known": false,
+   "layer": "Placeholder1",
+   "sample": [
+    {
+     "COUNTY_NAM": "VENANGO",
+     "COUNTY_NUM": "61",
+     "COUNTY_PROPER": "Venango"
+    },
+    {
+     "COUNTY_NAM": "MERCER",
+     "COUNTY_NUM": "43",
+     "COUNTY_PROPER": "Mercer"
+    },
+    {
+     "COUNTY_NAM": "HUNTINGDON",
+     "COUNTY_NUM": "31",
+     "COUNTY_PROPER": "Huntingdon"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "COUNTY_NAM",
+    "COUNTY_NUM",
+    "COUNTY_PROPER"
+   ],
+   "known": false,
+   "layer": "Placeholder2",
+   "sample": [
+    {
+     "COUNTY_NAM": "VENANGO",
+     "COUNTY_NUM": "61",
+     "COUNTY_PROPER": "Venango"
+    },
+    {
+     "COUNTY_NAM": "MERCER",
+     "COUNTY_NUM": "43",
+     "COUNTY_PROPER": "Mercer"
+    },
+    {
+     "COUNTY_NAM": "HUNTINGDON",
+     "COUNTY_NUM": "31",
+     "COUNTY_PROPER": "Huntingdon"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "COUNTY_NAM",
+    "COUNTY_NUM",
+    "COUNTY_PROPER"
+   ],
+   "known": false,
+   "layer": "County Boundaries",
+   "sample": [
+    {
+     "COUNTY_NAM": "VENANGO",
+     "COUNTY_NUM": "61",
+     "COUNTY_PROPER": "Venango"
+    },
+    {
+     "COUNTY_NAM": "MERCER",
+     "COUNTY_NUM": "43",
+     "COUNTY_PROPER": "Mercer"
+    },
+    {
+     "COUNTY_NAM": "HUNTINGDON",
+     "COUNTY_NUM": "31",
+     "COUNTY_PROPER": "Huntingdon"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/7"
+  },
+  {
+   "agency": "",
+   "area": "cwma_name",
+   "count": 60,
+   "fields": [
+    "pgc_region",
+    "cwma_name",
+    "cooperator",
+    "cwma_status",
+    "restrictions_hunting",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Cooperative Wildlife Management Areas",
+   "sample": [
+    {
+     "cooperator": "Penn State University",
+     "created_user": "PAGameCommissionGIS",
+     "cwma_name": "447 - Hunting Area 6",
+     "cwma_status": "Active",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Northcentral",
+     "restrictions_hunting": "Archery Only"
+    },
+    {
+     "cooperator": "Penn State University",
+     "created_user": "PAGameCommissionGIS",
+     "cwma_name": "447 - Hunting Area 2",
+     "cwma_status": "Active",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Northcentral",
+     "restrictions_hunting": "None"
+    },
+    {
+     "cooperator": "Penn State University",
+     "created_user": "PAGameCommissionGIS",
+     "cwma_name": "447 - Hunting Area 1",
+     "cwma_status": "Active",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Northcentral",
+     "restrictions_hunting": "Archery Only"
+    }
+   ],
+   "service": "Cooperative_Wildlife_Management_Areas",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Cooperative_Wildlife_Management_Areas/FeatureServer/300"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36,
+   "fields": [
+    "wmu_id",
+    "wmu_id_year",
+    "wmu_status",
+    "wmu_antler_restriction",
+    "cwd_detection_status",
+    "wmu_notes",
+    "wmu_description",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "PGC Wildlife Management Units",
+   "sample": [
+    {
+     "created_user": "PAGameCommissionGIS",
+     "cwd_detection_status": "CWD Not Detected",
+     "last_edited_user": "PAGameCommissionGIS",
+     "wmu_antler_restriction": "Three Up",
+     "wmu_description": "From the Ohio/PA state line, US Rt. 6 east to US Rt. 322 at Conneaut Lake. | US Rt. 322 east to PA Rt. 8 at Franklin. | PA Rt. 8 south to PA Rt. 228 near Gibsonia. | PA Rt. 228 west to I-76 (PA Turnpike) to I-376 near New Beaver. | I-376 to Ohio River to Ohio/PA state line.",
+     "wmu_id": "1A",
+     "wmu_id_year": "WMU-1A-2003",
+     "wmu_status": "Active"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "cwd_detection_status": "CWD Not Detected",
+     "last_edited_user": "PAGameCommissionGIS",
+     "wmu_antler_restriction": "Three Up",
+     "wmu_description": "From the New York/PA state line, US Rt. 62 south to US Rt. 6 near Warren. | US Rt. 6 west to PA Rt. 27 at Pittsfield. | PA Rt. 27 south to PA Rt. 8 at Titusville. | PA Rt. 8 south to US Rt. 322 at Franklin. | US Rt. 322 west to US Rt. 6 to Conneaut Lake. | US Rt. 6 west to Ohio/PA state line.",
+     "wmu_id": "1B",
+     "wmu_id_year": "WMU-1B-2003",
+     "wmu_status": "Active"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "cwd_detection_status": "CWD Not Detected",
+     "last_edited_user": "PAGameCommissionGIS",
+     "wmu_antler_restriction": "Three Up",
+     "wmu_description": "From the Ohio/PA state line, Ohio River east to I-376 near Vanport. | I-376 east to US Rt. 22 near Moon Run. | US Rt. 22 west to PA Rt. 980 near Santiago. | PA Rt. 980 south to I-79 to I-70 at Washington. | I-70 east to US Rt. 119 near New Stanton. | US Rt. 119 south to West Virginia/PA state line.",
+     "wmu_id": "2A",
+     "wmu_id_year": "WMU-2A-2003",
+     "wmu_status": "Active"
+    }
+   ],
+   "service": "PGC_Boundaries",
+   "typef": "wmu_description",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/PGC_Boundaries/FeatureServer/301"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "WMU_ID",
+    "HYPERLINK",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Units",
+   "sample": [
+    {
+     "HYPERLINK": "https://experience.arcgis.com/experience/43d73c9cac6345859f9a4c1eb11f43c4/page/Zoom?data_id=dataSource_1-188bf9c2326-layer-4-188bf9c23f4-layer-5%3A24",
+     "WMU_ID": "2C",
+     "created_user": "danieljon@pa.lcl_PAGame",
+     "last_edited_user": "danieljon@pa.lcl_PAGame"
+    },
+    {
+     "HYPERLINK": "https://experience.arcgis.com/experience/43d73c9cac6345859f9a4c1eb11f43c4/page/Zoom?data_id=dataSource_1-188bf9c2326-layer-4-188bf9c23f4-layer-5%3A25",
+     "WMU_ID": "2B",
+     "created_user": "danieljon@pa.lcl_PAGame",
+     "last_edited_user": "danieljon@pa.lcl_PAGame"
+    },
+    {
+     "HYPERLINK": "https://experience.arcgis.com/experience/43d73c9cac6345859f9a4c1eb11f43c4/page/Zoom?data_id=dataSource_1-188bf9c2326-layer-4-188bf9c23f4-layer-5%3A26",
+     "WMU_ID": "2D",
+     "created_user": "danieljon@pa.lcl_PAGame",
+     "last_edited_user": "danieljon@pa.lcl_PAGame"
+    }
+   ],
+   "service": "Wildlife_Management_Units__Vendor_Map",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Wildlife_Management_Units__Vendor_Map/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 20,
+   "fields": [
+    "DistrictName",
+    "SF_Name",
+    "LandManager"
+   ],
+   "known": false,
+   "layer": "State_Forest_Boundary_GPAST_Stats",
+   "sample": [
+    {
+     "DistrictName": "Tioga",
+     "LandManager": "BOF",
+     "SF_Name": "Tioga"
+    },
+    {
+     "DistrictName": "Susquehannock",
+     "LandManager": "BOF",
+     "SF_Name": "Susquehannock"
+    },
+    {
+     "DistrictName": "Loyalsock",
+     "LandManager": "BOF",
+     "SF_Name": "Loyalsock"
+    }
+   ],
+   "service": "BOF_Boundary",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/BOF_Boundary/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "TextString",
+    "FontName"
+   ],
+   "known": false,
+   "layer": "PA Tourism Regions",
+   "sample": [
+    {
+     "FontName": "Arial",
+     "TextString": "Pennsylvania\r\nWilds"
+    },
+    {
+     "FontName": "Arial",
+     "TextString": "Pennsylvania\r\nGreat Lakes\r\nRegion"
+    },
+    {
+     "FontName": "Arial",
+     "TextString": "Pocono\r\nMountains"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [],
+   "known": false,
+   "layer": "Game Lands Defoliation Events 2007 - 2016",
+   "sample": [
+    {
+     "Join_Count": 0,
+     "OBJECTID": 1,
+     "Shape__Area": 20336.472297668457,
+     "Shape__Length": 181572.03494004492
+    },
+    {
+     "Join_Count": 1,
+     "OBJECTID": 2,
+     "Shape__Area": 11506712986.481068,
+     "Shape__Length": 21440777.06593788
+    },
+    {
+     "Join_Count": 2,
+     "OBJECTID": 3,
+     "Shape__Area": 5007255080.625,
+     "Shape__Length": 11976507.387267439
+    }
+   ],
+   "service": "State_Game_Land_Timber_Damage_History",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Land_Timber_Damage_History/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "Region"
+   ],
+   "known": false,
+   "layer": "KIN_Regions",
+   "sample": [
+    {
+     "Region": "Northwest"
+    },
+    {
+     "Region": "Southcentral"
+    },
+    {
+     "Region": "Northcentral"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/14"
+  },
+  {
+   "agency": "",
+   "area": "island",
+   "count": 5,
+   "fields": [
+    "binomial",
+    "compiler",
+    "citation",
+    "source",
+    "dist_comm",
+    "island",
+    "subspecies",
+    "subpop",
+    "legend",
+    "tax_comm",
+    "kingdom",
+    "phylum",
+    "class",
+    "order_",
+    "family",
+    "genus",
+    "code",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "HistoricalMartenRange",
+   "sample": [
+    {
+     "binomial": "Martes americana",
+     "citation": "IUCN (International Union for Conservation of Nature)",
+     "compiler": "IUCN",
+     "dist_comm": " ",
+     "island": "Belle",
+     "kingdom": "ANIMALIA",
+     "legend": "Extant (resident)",
+     "phylum": "CHORDATA",
+     "source": " ",
+     "subpop": " ",
+     "subspecies": " ",
+     "tax_comm": " "
+    },
+    {},
+    {}
+   ],
+   "service": "American_Marten_Historical_Range_Map",
+   "typef": "class",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/American_Marten_Historical_Range_Map/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "island",
+   "count": 5,
+   "fields": [
+    "binomial",
+    "compiler",
+    "citation",
+    "source",
+    "dist_comm",
+    "island",
+    "subspecies",
+    "subpop",
+    "legend",
+    "tax_comm",
+    "kingdom",
+    "phylum",
+    "class",
+    "order_",
+    "family",
+    "genus",
+    "code",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "CurrentMartenRange",
+   "sample": [
+    {
+     "binomial": "Martes americana",
+     "citation": "IUCN (International Union for Conservation of Nature)",
+     "compiler": "IUCN",
+     "dist_comm": " ",
+     "island": "Belle",
+     "kingdom": "ANIMALIA",
+     "legend": "Extant (resident)",
+     "phylum": "CHORDATA",
+     "source": " ",
+     "subpop": " ",
+     "subspecies": " ",
+     "tax_comm": " "
+    },
+    {},
+    {}
+   ],
+   "service": "American_Marten_Historical_Range_Map",
+   "typef": "class",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/American_Marten_Historical_Range_Map/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "State Park Regions",
+   "sample": [
+    {
+     "Name": "Region 2"
+    },
+    {
+     "Name": "Region 3"
+    },
+    {
+     "Name": "Region 4"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/11"
+  },
+  {
+   "agency": "",
+   "area": "ParkName",
+   "count": 2,
+   "fields": [
+    "ParkName",
+    "Accuracy",
+    "Type",
+    "Status",
+    "Comments",
+    "LastEditedBy",
+    "CreatedBy",
+    "Archived",
+    "ArchivedReason",
+    "SubmittedBy",
+    "AssociatedProjectNumber",
+    "Round1QAQCStatus",
+    "Round1QAQCBy",
+    "Round1QAQCComments",
+    "Round2QAQCStatus",
+    "Round2QAQCBy",
+    "Round2QAQCComments"
+   ],
+   "known": false,
+   "layer": "Waste Water Polygon",
+   "sample": [
+    {
+     "Accuracy": "test",
+     "Archived": "No",
+     "CreatedBy": "Esri_Anonymous",
+     "LastEditedBy": "Esri_Anonymous",
+     "ParkName": "Kettle Creek State Park",
+     "Round1QAQCStatus": "Queued",
+     "Status": "Out of Service",
+     "Type": "Absorbtion Area - In Ground"
+    },
+    {
+     "Archived": "No",
+     "CreatedBy": "Esri_Anonymous",
+     "LastEditedBy": "Esri_Anonymous",
+     "ParkName": "No Park Selected",
+     "Round1QAQCStatus": "Queued"
+    }
+   ],
+   "service": "Parks/StateParkWasteWaterMASTER",
+   "typef": "Type",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/StateParkWasteWaterMASTER/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Middle Creek Boundary",
+   "sample": [
+    {
+     "GlobalID": "8c7df989-a788-4524-b528-7e2ea9f82c41",
+     "OBJECTID": 1,
+     "SGL": 46,
+     "Shape__Area": 41157784.74609375,
+     "Shape__Length": 53502.88103140492
+    }
+   ],
+   "service": "Willow_Point_Trail_StoryMap_Data",
+   "typef": "",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Willow_Point_Trail_StoryMap_Data/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Middle Creek Fields",
+   "sample": [
+    {
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    }
+   ],
+   "service": "Willow_Point_Trail_StoryMap_Data",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Willow_Point_Trail_StoryMap_Data/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Middle Creek Forest",
+   "sample": [
+    {
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    }
+   ],
+   "service": "Willow_Point_Trail_StoryMap_Data",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Willow_Point_Trail_StoryMap_Data/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Middle Creek Riparian Areas",
+   "sample": [
+    {
+     "created_user": "KWEISER",
+     "last_edited_user": "kweiser@pa.lcl"
+    }
+   ],
+   "service": "Willow_Point_Trail_StoryMap_Data",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/Willow_Point_Trail_StoryMap_Data/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "State"
+   ],
+   "known": false,
+   "layer": "State Boundary",
+   "sample": [
+    {
+     "State": "PA"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 319,
+   "fields": [
+    "pgc_region",
+    "sgl_name",
+    "sgl_status",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": true,
+   "layer": "State Game Land Boundaries",
+   "sample": [
+    {
+     "created_user": "PAGameCommissionGIS",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Northeast",
+     "sgl_name": "12",
+     "sgl_status": "Active"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Northcentral",
+     "sgl_name": "14",
+     "sgl_status": "Active"
+    },
+    {
+     "created_user": "PAGameCommissionGIS",
+     "last_edited_user": "PAGameCommissionGIS",
+     "pgc_region": "Northwest",
+     "sgl_name": "24",
+     "sgl_status": "Active"
+    }
+   ],
+   "service": "State_Game_Lands_Boundaries",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/k8yxvICm95iIFicb/arcgis/rest/services/State_Game_Lands_Boundaries/FeatureServer/300"
+  },
+  {
+   "agency": "Pennsylvania. Dept. of Conservation and Natural Resources. Bureau of State Parks",
+   "area": "StParkName",
+   "count": 240,
+   "fields": [
+    "StParkName",
+    "LandManage"
+   ],
+   "known": true,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "LandManage": "BSP",
+     "StParkName": "Patterson State Park"
+    },
+    {
+     "LandManage": "BSP",
+     "StParkName": "Prouty Place State Park"
+    },
+    {
+     "LandManage": "BSP",
+     "StParkName": "Ole Bull State Park"
+    }
+   ],
+   "service": "PA_Public/State_Parks",
+   "typef": "",
+   "url": "https://conservationexplorer.dcnr.pa.gov/arcgis/rest/services/PA_Public/State_Parks/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 125,
+   "fields": [
+    "FILE_NAME",
+    "NICKNAMES",
+    "TYPE",
+    "WEBLINK",
+    "PARK_NAME"
+   ],
+   "known": true,
+   "layer": "State Park Boundaries",
+   "sample": [
+    {
+     "FILE_NAME": "GOUL",
+     "NICKNAMES": " ",
+     "PARK_NAME": "Gouldsboro State Park",
+     "TYPE": "STATE PARK",
+     "WEBLINK": "http://www.dcnr.state.pa.us/stateparks/findapark/gouldsboro/index.htm"
+    },
+    {
+     "FILE_NAME": "TOBY",
+     "NICKNAMES": " ",
+     "PARK_NAME": "Tobyhanna State Park",
+     "TYPE": "STATE PARK",
+     "WEBLINK": "http://www.dcnr.state.pa.us/stateparks/findapark/tobyhanna/index.htm"
+    },
+    {
+     "FILE_NAME": "VARD",
+     "NICKNAMES": " ",
+     "PARK_NAME": "Varden Conservation Area",
+     "TYPE": "CONSERVATION AREA",
+     "WEBLINK": "http://www.dcnr.state.pa.us/stateparks/findapark/varden/index.htm"
+    }
+   ],
+   "service": "Parks/State_Parks",
+   "typef": "TYPE",
+   "url": "https://www.gis.dcnr.pa.gov/agsprod/rest/services/Parks/State_Parks/MapServer/9"
+  }
+ ],
+ "st": "PA"
+}

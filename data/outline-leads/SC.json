@@ -1,0 +1,2115 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NombreProp",
+   "count": 1665,
+   "fields": [
+    "YEAR_ESTAB",
+    "NombreProp",
+    "Tipo",
+    "Manejo",
+    "Terr_Mar",
+    "Source",
+    "NAME",
+    "Unit_Nm",
+    "State_Nm",
+    "PUBLIC_NAM",
+    "EXTENT",
+    "HYPERLINK",
+    "COUNTY",
+    "PARK_TYPE",
+    "ADDRESS",
+    "ZIP_CODE",
+    "PHONE_NUMB",
+    "PARK_NAME",
+    "Ext_Funds",
+    "TSP_UID"
+   ],
+   "known": false,
+   "layer": "Merge_Merge_Merge_AL_PR_GA_KY_SC_TN_FL_MS_AR_North_Carolina_State_Parks",
+   "sample": [
+    {
+     "Manejo": "DRNA",
+     "NombreProp": "Reserva Natural Cayo Ratones",
+     "Source": "DRNA",
+     "Terr_Mar": "Terrestre",
+     "Tipo": "Reserva Natural",
+     "YEAR_ESTAB": "1972"
+    },
+    {
+     "Manejo": "DRNA",
+     "NombreProp": "Finca El Pitirre Inc. #16",
+     "Source": "Legacy Program",
+     "Terr_Mar": "Terrestre",
+     "Tipo": "Legacy Program aquisition-DNER state forest land",
+     "YEAR_ESTAB": "2000"
+    },
+    {
+     "Manejo": "Para la Naturaleza",
+     "NombreProp": "Finca Shapiro",
+     "Source": "Para La Naturaleza",
+     "Terr_Mar": "Terrestre",
+     "Tipo": "Non-corpus",
+     "YEAR_ESTAB": "1999"
+    }
+   ],
+   "service": "Merge_Merge_Merge_AL_PR_GA_KY_SC_TN_FL_MS_AR_North_Carolina_State_Parks",
+   "typef": "PARK_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Merge_Merge_Merge_AL_PR_GA_KY_SC_TN_FL_MS_AR_North_Carolina_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "USDA Forest Service, 2019.  Forests to Faucets 2.0 Spatial Dataset",
+   "area": "NAME",
+   "count": 1154,
+   "fields": [
+    "STATES",
+    "HUC12",
+    "NAME",
+    "USDA_NRCS_SW_Priority"
+   ],
+   "known": false,
+   "layer": "TN HUC12 - Watershed Conservation Summary",
+   "sample": [
+    {
+     "HUC12": "060200011204",
+     "NAME": "Lower Nickajack Lake-Tennessee River",
+     "STATES": "AL,GA,TN"
+    },
+    {
+     "HUC12": "060300051203",
+     "NAME": "Dry Creek-Pickwick Lake",
+     "STATES": "AL,MS,TN"
+    },
+    {
+     "HUC12": "060300010201",
+     "NAME": "Jones Creek-Tennessee River",
+     "STATES": "AL,TN"
+    }
+   ],
+   "service": "Watershed_Conservation_Summaries___HUC12_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Watershed_Conservation_Summaries___HUC12_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Park",
+   "count": 908,
+   "fields": [
+    "REF_NO",
+    "COUNTY",
+    "ROUTE",
+    "PARK_NUM",
+    "COLL_DATE",
+    "PAVE_TYPE",
+    "Creator",
+    "Editor",
+    "Asset_Id",
+    "Park",
+    "Status",
+    "Creator_1",
+    "Editor_1",
+    "StateNaturalArea"
+   ],
+   "known": false,
+   "layer": "Parking_Lots",
+   "sample": [
+    {
+     "Asset_Id": "PA-1",
+     "COLL_DATE": "05/19/2016",
+     "COUNTY": "82",
+     "Creator": "andrew.mcdonagh",
+     "Creator_1": "andrew.mcdonagh",
+     "Editor": "Jesus.Ortega-Valenzuela_bose",
+     "PARK_NUM": "56",
+     "PAVE_TYPE": "Asphalt",
+     "Park": "TSP-0291",
+     "REF_NO": "-KOAnE0OFJH0-_98aipGmF",
+     "ROUTE": "PL011",
+     "Status": "1"
+    },
+    {
+     "Asset_Id": "PA-2",
+     "COLL_DATE": "07/09/2016",
+     "COUNTY": "03",
+     "Creator": "andrew.mcdonagh",
+     "Creator_1": "andrew.mcdonagh",
+     "Editor": "Jesus.Ortega-Valenzuela_bose",
+     "PARK_NUM": "34",
+     "PAVE_TYPE": "Asphalt",
+     "Park": "TSP-0180",
+     "REF_NO": "-KR99hYDH1PP7Nmja_Q1Pk",
+     "ROUTE": "PL009",
+     "Status": "1"
+    },
+    {
+     "Asset_Id": "PA-3",
+     "COLL_DATE": "07/12/2016",
+     "COUNTY": "12",
+     "Creator": "andrew.mcdonagh",
+     "Creator_1": "andrew.mcdonagh",
+     "Editor": "Jesus.Ortega-Valenzuela_bose",
+     "PARK_NUM": "09",
+     "PAVE_TYPE": "Asphalt",
+     "Park": "TSP-0055",
+     "REF_NO": "-KRd9mHDF3H6AqSb8sE1iV",
+     "ROUTE": "PL004",
+     "Status": "1"
+    }
+   ],
+   "service": "Parking_Areas_(Public_View)",
+   "typef": "PAVE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Parking_Areas_(Public_View)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SF_AREA",
+   "count": 664,
+   "fields": [
+    "SF_AREA",
+    "C2024",
+    "UP_23_24"
+   ],
+   "known": false,
+   "layer": "DESShellfish24",
+   "sample": [
+    {
+     "C2024": "A",
+     "SF_AREA": "10A",
+     "UP_23_24": "RA"
+    },
+    {
+     "C2024": "R",
+     "SF_AREA": "10A",
+     "UP_23_24": " "
+    },
+    {
+     "C2024": "P",
+     "SF_AREA": "11",
+     "UP_23_24": " "
+    }
+   ],
+   "service": "DESShellfish24_view_survey_wild_culture_planting",
+   "typef": "",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DESShellfish24_view_survey_wild_culture_planting/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PropertyName",
+   "count": 576,
+   "fields": [
+    "PropertyID",
+    "RelatedPropertyID",
+    "PropertyName",
+    "PropertyTract",
+    "PropertyUse",
+    "PropertyType",
+    "PropertyOwner",
+    "PropertyManager",
+    "HeritagePreserve",
+    "WMA_SpecialActivity",
+    "PublicAccess",
+    "Comments",
+    "County",
+    "SCDNR_GameZone",
+    "SCDNR_LE_Subunit",
+    "SCDNR_FocusArea",
+    "Hiking",
+    "Hunting",
+    "Fishing",
+    "Biking"
+   ],
+   "known": false,
+   "layer": "SCDNR Public Properties View",
+   "sample": [
+    {
+     "HeritagePreserve": "No",
+     "PropertyID": "212",
+     "PropertyManager": "South Carolina Department of Natural Resources",
+     "PropertyName": "Santee Cooper WMA",
+     "PropertyOwner": "Santee Cooper",
+     "PropertyTract": "Santee Cooper Waterfowl Management Area",
+     "PropertyType": "Leas",
+     "PropertyUse": "WMA",
+     "PublicAccess": "Open",
+     "RelatedPropertyID": "210",
+     "WMA_SpecialActivity": "WaterfowlCatII"
+    },
+    {
+     "HeritagePreserve": "No",
+     "PropertyID": "012",
+     "PropertyManager": "South Carolina Department of Natural Resources",
+     "PropertyName": "Cliff Pitts WMA",
+     "PropertyOwner": "South Carolina Department of Natural Resources",
+     "PropertyType": "Own",
+     "PropertyUse": "WMA",
+     "PublicAccess": "Open",
+     "RelatedPropertyID": "047, 463",
+     "WMA_SpecialActivity": "None"
+    },
+    {
+     "HeritagePreserve": "No",
+     "PropertyID": "011",
+     "PropertyManager": "South Carolina Department of Natural Resources",
+     "PropertyName": "Calhoun Falls WMA",
+     "PropertyOwner": "US Army Corps of Engineers",
+     "PropertyType": "Leas",
+     "PropertyUse": "WMA",
+     "PublicAccess": "Open",
+     "WMA_SpecialActivity": "None"
+    }
+   ],
+   "service": "DEV_-_SCDNR_Public_Lands_Viewer",
+   "typef": "PropertyUse",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 439,
+   "fields": [
+    "PropertyID",
+    "RelatedPropertyID",
+    "AssetID",
+    "AssetType",
+    "AssetName",
+    "AssetDescription",
+    "Accessible",
+    "PublicAccess",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "Property Asset Polygons",
+   "sample": [
+    {
+     "Accessible": "NA",
+     "AssetID": "PAP00001",
+     "AssetType": "Pond",
+     "PropertyID": "006",
+     "PublicAccess": "Open"
+    },
+    {
+     "Accessible": "NA",
+     "AssetID": "PAP00002",
+     "AssetType": "Pond",
+     "PropertyID": "006",
+     "PublicAccess": "Open"
+    },
+    {
+     "Accessible": "NA",
+     "AssetID": "PAP00003",
+     "AssetType": "Pond",
+     "PropertyID": "006",
+     "PublicAccess": "Open"
+    }
+   ],
+   "service": "DEV_-_SCDNR_Public_Lands_Viewer",
+   "typef": "AssetType",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 269,
+   "fields": [
+    "Descrip",
+    "Paved",
+    "Mobility",
+    "Program",
+    "Creator",
+    "Editor",
+    "Parking_ID"
+   ],
+   "known": false,
+   "layer": "BoatLot",
+   "sample": [
+    {
+     "Creator": "MisuraD_scdnr",
+     "Descrip": "Boat Parking",
+     "Editor": "MisuraD_scdnr",
+     "Mobility": "No",
+     "Parking_ID": "B15",
+     "Paved": "No"
+    },
+    {
+     "Creator": "MisuraD_scdnr",
+     "Descrip": "State Vehicle Parking",
+     "Editor": "MisuraD_scdnr",
+     "Mobility": "No",
+     "Parking_ID": "S14",
+     "Paved": "No"
+    },
+    {
+     "Creator": "MisuraD_scdnr",
+     "Descrip": "Parking Area",
+     "Editor": "MisuraD_scdnr",
+     "Mobility": "No",
+     "Parking_ID": "A14",
+     "Paved": "No"
+    }
+   ],
+   "service": "Fort_Johnson_Parking",
+   "typef": "Descrip",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/Fort_Johnson_Parking/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 182,
+   "fields": [
+    "TSP_UID",
+    "NAME_1",
+    "NAME_2",
+    "MANAGE_1",
+    "USE_TYPE",
+    "DESIG_1",
+    "DESIG_2",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "TDEC Public Lands",
+   "sample": [
+    {
+     "Creator": "Rachel.Schultz",
+     "DESIG_1": "State Historic Site",
+     "DESIG_2": "National Register of Historic Places",
+     "Editor": "Rachel.Schultz",
+     "MANAGE_1": "Private",
+     "NAME_1": "Alex Haley House Museum & Interpretive Center State Hisotirc Site",
+     "TSP_UID": "TSP-0005",
+     "USE_TYPE": "Historic Preservation"
+    },
+    {
+     "Creator": "Rachel.Schultz",
+     "DESIG_1": "Class II Natural Scientific State Natural Area",
+     "Editor": "Rachel.Schultz",
+     "MANAGE_1": "Tennessee Division of Natural Areas",
+     "NAME_1": "Barnett's Woods State Natural Area",
+     "TSP_UID": "TSP-0008",
+     "USE_TYPE": "Conservation"
+    },
+    {
+     "Creator": "Rachel.Schultz",
+     "DESIG_1": "National Register of Historic Places",
+     "Editor": "Rachel.Schultz",
+     "MANAGE_1": "Nonprofit",
+     "NAME_1": "Battle of Franklin",
+     "TSP_UID": "TSP-0009",
+     "USE_TYPE": "Historic Preservation"
+    }
+   ],
+   "service": "TDEC_Public_Lands",
+   "typef": "USE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/TDEC_Public_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "map_dhec_area",
+   "count": 156,
+   "fields": [
+    "PermType",
+    "map_county",
+    "map_dhec_area",
+    "map_title",
+    "map_clam_season",
+    "map_oyster_season",
+    "map_extra_text",
+    "map_name",
+    "Available",
+    "Type"
+   ],
+   "known": false,
+   "layer": "NonStateGrounds",
+   "sample": [
+    {
+     "PermType": "G",
+     "Type": "Grant",
+     "map_county": "Horry",
+     "map_dhec_area": "1",
+     "map_name": "G388",
+     "map_title": "North Myrtle Beach \\nGrant G388"
+    },
+    {
+     "PermType": "C",
+     "Type": "Culture",
+     "map_county": "Georgetown",
+     "map_dhec_area": "4",
+     "map_name": "C372"
+    },
+    {
+     "PermType": "C",
+     "Type": "Culture",
+     "map_county": "Georgetown",
+     "map_dhec_area": "4",
+     "map_name": "C370"
+    }
+   ],
+   "service": "ShellfishUpdateFiles",
+   "typef": "PermType",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/ShellfishUpdateFiles/FeatureServer/2"
+  },
+  {
+   "agency": "SCDNR",
+   "area": "NAME",
+   "count": 150,
+   "fields": [
+    "COUNTY",
+    "NAME",
+    "WMA",
+    "REGION",
+    "HPtype",
+    "Activities"
+   ],
+   "known": false,
+   "layer": "HP Merge",
+   "sample": [
+    {
+     "Activities": "Fishing, scenic views, hiking, and canoeing",
+     "COUNTY": "Lexington",
+     "HPtype": "Cultural",
+     "NAME": "Congaree Creek Heritage Preserve",
+     "REGION": "Central",
+     "WMA": "N"
+    },
+    {
+     "Activities": "Equestrian, fishing, hunting, scenic views, hiking",
+     "COUNTY": "Horry",
+     "HPtype": "Natural",
+     "NAME": "Little Pee Dee River Heritage Preserve",
+     "REGION": "Coastal",
+     "WMA": "Y"
+    },
+    {
+     "Activities": "Equestrian, fishing, hunting, scenic views, hiking",
+     "COUNTY": "Marion",
+     "HPtype": "Natural",
+     "NAME": "Little Pee Dee River Heritage Preserve",
+     "REGION": "Coastal",
+     "WMA": "Y"
+    }
+   ],
+   "service": "HeritagePreserves",
+   "typef": "HPtype",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserves/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PropertyName",
+   "count": 118,
+   "fields": [
+    "PropertyID",
+    "RelatedPropertyID",
+    "PropertyName",
+    "PropertyTract",
+    "PropertyUse",
+    "PropertyType",
+    "PropertyOwner",
+    "PropertyManager",
+    "HeritagePreserve",
+    "WMA_SpecialActivity",
+    "Status",
+    "PublicAccess",
+    "PublicVisible",
+    "Comments",
+    "County",
+    "SCDNR_GameZone",
+    "SCDNR_LE_Subunit",
+    "SCDNR_FocusArea",
+    "BoundarySource",
+    "BoundarySourceNote"
+   ],
+   "known": false,
+   "layer": "Heritage_Preserve_Layer_CopyFeatures",
+   "sample": [
+    {
+     "HeritagePreserve": "YesC",
+     "PropertyID": "050",
+     "PropertyManager": "South Carolina Department of Natural Resources",
+     "PropertyName": "Glassy Mountain Heritage Preserve",
+     "PropertyOwner": "South Carolina Department of Natural Resources",
+     "PropertyType": "Own",
+     "PropertyUse": "NHP",
+     "PublicAccess": "Open",
+     "Status": "Active",
+     "WMA_SpecialActivity": "NA"
+    },
+    {
+     "HeritagePreserve": "YesC",
+     "PropertyID": "053",
+     "PropertyManager": "South Carolina Department of Natural Resources",
+     "PropertyName": "Eva Russell Chandler Heritage Preserve and Wildlife Management Area",
+     "PropertyOwner": "South Carolina Department of Natural Resources",
+     "PropertyType": "Own",
+     "PropertyUse": "WMAHP",
+     "PublicAccess": "Open",
+     "RelatedPropertyID": "010, 051",
+     "Status": "Active",
+     "WMA_SpecialActivity": "None"
+    },
+    {
+     "HeritagePreserve": "YesC",
+     "PropertyID": "052",
+     "PropertyManager": "South Carolina Department of Natural Resources",
+     "PropertyName": "Eva Russell Chandler Heritage Preserve",
+     "PropertyOwner": "South Carolina Department of Natural Resources",
+     "PropertyType": "Own",
+     "PropertyUse": "NHP",
+     "PublicAccess": "Open",
+     "Status": "Active",
+     "WMA_SpecialActivity": "NA"
+    }
+   ],
+   "service": "HeritagePreserve_Map2_WFL1",
+   "typef": "PropertyUse",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "<a href='https://www.tn.gov/' rel='nofollow ugc'>Tennessee Department of Environ",
+   "area": "",
+   "count": 112,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "TSP_UID",
+    "SECONDARY_NAME__LONG_"
+   ],
+   "known": false,
+   "layer": "Oct2023StateParkBoundaries",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park",
+     "TSP_UID": "TSP-0018"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "SECONDARY_NAME__LONG_": "Big Cypress Tree State Natural Area",
+     "TSP_UID": "TSP-0019"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "TSP_UID": "TSP-0020"
+    }
+   ],
+   "service": "State_Park_Boundaries_Sept_2023",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/State_Park_Boundaries_Sept_2023/FeatureServer/18"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "",
+   "count": 108,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "SECONDARY_NAME__LONG_",
+    "TSP_UID"
+   ],
+   "known": false,
+   "layer": "June2023StateParkBoundaries",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park",
+     "TSP_UID": "TSP-0018"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "SECONDARY_NAME__LONG_": "Big Cypress Tree State Natural Area",
+     "TSP_UID": "TSP-0019"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "TSP_UID": "TSP-0020"
+    }
+   ],
+   "service": "Tennessee_State_Park_Boundaries_June_2023",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Tennessee_State_Park_Boundaries_June_2023/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "CountiesSm",
+    "DistressedFY25"
+   ],
+   "known": false,
+   "layer": "Recreation $ %",
+   "sample": [
+    {
+     "CountiesSm": "Benton",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Carroll",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Chester",
+     "DistressedFY25": "Transitional"
+    }
+   ],
+   "service": "Blueways_Water_Access_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Blueways_Water_Access_WFL1/FeatureServer/32"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "CountiesSm",
+    "DistressedFY25"
+   ],
+   "known": false,
+   "layer": "Recreation Spending",
+   "sample": [
+    {
+     "CountiesSm": "Benton",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Carroll",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Chester",
+     "DistressedFY25": "Transitional"
+    }
+   ],
+   "service": "Blueways_Water_Access_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Blueways_Water_Access_WFL1/FeatureServer/33"
+  },
+  {
+   "agency": "Tennessee Department of Environment and Conservation; Tennessee State Parks",
+   "area": "",
+   "count": 94,
+   "fields": [
+    "TSP_UID",
+    "PRIMARY_NAME__LONG_",
+    "SECONDARY_NAME__LONG_",
+    "PRIMARY_MANAGEMENT",
+    "USE_TYPE"
+   ],
+   "known": false,
+   "layer": "TDEC - State Park Boundaries",
+   "sample": [
+    {
+     "PRIMARY_MANAGEMENT": "Tennessee State Parks",
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park",
+     "TSP_UID": "TSP-0018",
+     "USE_TYPE": "Recreation"
+    },
+    {
+     "PRIMARY_MANAGEMENT": "Tennessee State Parks",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "SECONDARY_NAME__LONG_": "Big Cypress Tree State Natural Area",
+     "TSP_UID": "TSP-0019",
+     "USE_TYPE": "Conservation"
+    },
+    {
+     "PRIMARY_MANAGEMENT": "Tennessee State Parks",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "TSP_UID": "TSP-0020",
+     "USE_TYPE": "Recreation"
+    }
+   ],
+   "service": "TNStatePark_boundaries",
+   "typef": "USE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/TNStatePark_boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "map_dhec_area",
+   "count": 84,
+   "fields": [
+    "PermType",
+    "map_county",
+    "map_dhec_area",
+    "map_title",
+    "map_clam_season",
+    "map_oyster_season",
+    "map_extra_text",
+    "map_name",
+    "Available",
+    "Type"
+   ],
+   "known": false,
+   "layer": "StateGrounds",
+   "sample": [
+    {
+     "PermType": "S",
+     "Type": "State Ground",
+     "map_clam_season": "ESCALATOR HARVEST ONLY",
+     "map_county": "Horry",
+     "map_dhec_area": "1",
+     "map_extra_text": "Closed SCDES",
+     "map_name": "S997",
+     "map_oyster_season": "ESCALATOR HARVEST ONLY",
+     "map_title": "Dunn Sound S997"
+    },
+    {
+     "PermType": "S",
+     "Type": "State Ground",
+     "map_clam_season": "Closed SCDES",
+     "map_county": "Horry",
+     "map_dhec_area": "1",
+     "map_extra_text": "Closed SCDES",
+     "map_name": "S392",
+     "map_oyster_season": "Closed SCDES",
+     "map_title": "Eden Saltworks S392"
+    },
+    {
+     "PermType": "S",
+     "Type": "State Ground",
+     "map_clam_season": "01 October 2026 - 04 December 2026",
+     "map_county": "Georgetown",
+     "map_dhec_area": "4",
+     "map_extra_text": "Partially Closed SCDES",
+     "map_name": "S358",
+     "map_oyster_season": "RECREATIONAL HARVESTING ONLY",
+     "map_title": "Murrells Inlet S358"
+    }
+   ],
+   "service": "ShellfishUpdateFiles",
+   "typef": "PermType",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/ShellfishUpdateFiles/FeatureServer/3"
+  },
+  {
+   "agency": "SCDNR OFM",
+   "area": "",
+   "count": 83,
+   "fields": [
+    "map_county",
+    "map_title",
+    "Number_s",
+    "Name_s",
+    "Type_s",
+    "WebList",
+    "Caution",
+    "Link"
+   ],
+   "known": false,
+   "layer": "RecreationalUpdate091826",
+   "sample": [
+    {
+     "Caution": "Partially Closed SCDES",
+     "Link": "https://www.dnr.sc.gov/marine/shellfish/State_Shellfish_Grounds/Georgetown/S358.pdf",
+     "Name_s": "Murrells Inlet",
+     "Number_s": "S358",
+     "Type_s": "State Ground",
+     "WebList": "y",
+     "map_county": "Georgetown",
+     "map_title": "Murrells Inlet S358"
+    },
+    {
+     "Caution": "Partially Closed SCDES",
+     "Link": "https://www.dnr.sc.gov/marine/shellfish/State_Shellfish_Grounds/Georgetown/S357.pdf",
+     "Name_s": "Drunken Jack Island",
+     "Number_s": "S357",
+     "Type_s": "State Ground",
+     "WebList": "y",
+     "map_county": "Georgetown",
+     "map_title": "Drunken Jack Island S357"
+    },
+    {
+     "Caution": "Partially Closed SCDES",
+     "Link": "https://www.dnr.sc.gov/marine/shellfish/Public_Shellfish_Grounds/Georgetown/R355.pdf",
+     "Name_s": "Lachicotte Oyster Factory",
+     "Number_s": "R355",
+     "Type_s": "Recreational",
+     "WebList": "y",
+     "map_county": "Georgetown",
+     "map_title": "Lachicotte Oyster Factory PSG - R355"
+    }
+   ],
+   "service": "RecreationalUpdate092423",
+   "typef": "Type_s",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/RecreationalUpdate092423/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "TRANS_NO",
+    "TRANS_STAT",
+    "TRANS_TYPE",
+    "TSP_UID",
+    "MANAGE_AGENCY",
+    "OWNERS_AGENCY",
+    "ACCESS_",
+    "BNDRY_ORIG",
+    "CREATOR",
+    "EDITOR",
+    "INCLUDE_BOUND",
+    "WARS_COM",
+    "HISTORICCURRENTDATA",
+    "PrimaryName",
+    "Association",
+    "War",
+    "PreviousFANumber",
+    "HowLongHeld"
+   ],
+   "known": false,
+   "layer": "Wars Commission Properties",
+   "sample": [
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Taxmap",
+     "CREATOR": "TDEC_GIS_TSP",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-THC",
+     "OWNERS_AGENCY": "Nonprofit",
+     "TRANS_NO": "19-04-012",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Easement",
+     "TSP_UID": "TSP-0050",
+     "WARS_COM": "Yes"
+    },
+    {
+     "ACCESS_": "Restricted",
+     "BNDRY_ORIG": "Taxmap",
+     "CREATOR": "BG21460",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-THC",
+     "OWNERS_AGENCY": "Nonprofit",
+     "TRANS_NO": "17-09-008",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Easement",
+     "TSP_UID": "TSP-0108",
+     "WARS_COM": "Yes"
+    },
+    {
+     "ACCESS_": "Restricted",
+     "BNDRY_ORIG": "Taxmap",
+     "CREATOR": "BG21460",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-THC",
+     "OWNERS_AGENCY": "Nonprofit",
+     "TRANS_NO": "17-09-008",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Easement",
+     "TSP_UID": "TSP-0108",
+     "WARS_COM": "Yes"
+    }
+   ],
+   "service": "Tennessee_State_and_Federal_Lands_WFL1",
+   "typef": "TRANS_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 69,
+   "fields": [
+    "TSP_UID",
+    "PRIMARY_NAME__LONG_"
+   ],
+   "known": false,
+   "layer": "State Park Boundaries Primary",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Chickasaw State Park",
+     "TSP_UID": "TSP-0055"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Cordell Hull Birthplace State Park",
+     "TSP_UID": "TSP-0065"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Cove Lake State Park",
+     "TSP_UID": "TSP-0066"
+    }
+   ],
+   "service": "State_Park_Boundaries_Primary_March_2024_view2",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 66,
+   "fields": [
+    "Inn",
+    "Cabin",
+    "MtngRm",
+    "GrLodge",
+    "GrCamp",
+    "WranCamp",
+    "RVCamp",
+    "TentCamp",
+    "BackCamp",
+    "Laundry",
+    "VisCentr",
+    "Museum",
+    "Restaura",
+    "GiftShop",
+    "SnackBar",
+    "CampStor",
+    "Marina",
+    "BoatRent",
+    "Fishing",
+    "BoatRamp"
+   ],
+   "known": false,
+   "layer": "ParkFinder_Data",
+   "sample": [
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "F",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "T",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    }
+   ],
+   "service": "ParkFinderAmenities_Website",
+   "typef": "Museum",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/ParkFinderAmenities_Website/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Environment and Conservation",
+   "area": "",
+   "count": 66,
+   "fields": [
+    "Inn",
+    "Cabin",
+    "MtngRm",
+    "GrLodge",
+    "GrCamp",
+    "WranCamp",
+    "RVCamp",
+    "TentCamp",
+    "BackCamp",
+    "Laundry",
+    "VisCentr",
+    "Museum",
+    "Restaura",
+    "GiftShop",
+    "SnackBar",
+    "CampStor",
+    "Marina",
+    "BoatRent",
+    "Fishing",
+    "BoatRamp"
+   ],
+   "known": false,
+   "layer": "ParkFinder_Data_Polys",
+   "sample": [
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "F",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "T",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    }
+   ],
+   "service": "TwoTypes_ParkAmenities",
+   "typef": "Museum",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/TwoTypes_ParkAmenities/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "MAX_TSP_UID"
+   ],
+   "known": false,
+   "layer": "StateParkBoundaries_Dissolved",
+   "sample": [
+    {
+     "MAX_TSP_UID": "TSP-0018",
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0019",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0020",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "Mobile_App_GeoFences_for_State_Parks_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Mobile_App_GeoFences_for_State_Parks_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "MAX_TSP_UID"
+   ],
+   "known": false,
+   "layer": "StateParkBoundBuffer2",
+   "sample": [
+    {
+     "MAX_TSP_UID": "TSP-0018",
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0019",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0020",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "Mobile_App_GeoFences_for_State_Parks_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Mobile_App_GeoFences_for_State_Parks_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "PARK_NAME",
+   "count": 62,
+   "fields": [
+    "TSP_UID",
+    "PRIMARY_NAME__LONG_",
+    "PARK_NAME",
+    "UID",
+    "PARK_NAME_1",
+    "TSP_UID_1",
+    "Park",
+    "Park_ID",
+    "FY_16",
+    "FY_17",
+    "FY_18",
+    "ParkID2"
+   ],
+   "known": false,
+   "layer": "ParkBoundarieswithVisitation",
+   "sample": [
+    {
+     "FY_16": "17489",
+     "FY_17": "14936",
+     "FY_18": "22557",
+     "PARK_NAME": "Big Cypress Tree State Park",
+     "PARK_NAME_1": "Big Cypress Tree State Park",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "Park": "Big Cypress Tree",
+     "ParkID2": "TSP-0314",
+     "Park_ID": "TSP-0314",
+     "TSP_UID": "TSP-0314",
+     "TSP_UID_1": "TSP-0314",
+     "UID": "TSP-0314"
+    },
+    {
+     "FY_16": "224775",
+     "FY_17": "199246",
+     "FY_18": "122748",
+     "PARK_NAME": "Big Hill Pond State Park",
+     "PARK_NAME_1": "Big Hill Pond State Park",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "Park": "Big Hill Pond",
+     "ParkID2": "TSP-0020",
+     "Park_ID": "TSP-0020",
+     "TSP_UID": "TSP-0020",
+     "TSP_UID_1": "TSP-0020",
+     "UID": "TSP-0020"
+    },
+    {
+     "FY_16": "1289431",
+     "FY_17": "1627061",
+     "FY_18": "1288397",
+     "PARK_NAME": "Big Ridge State Park",
+     "PARK_NAME_1": "Big Ridge State Park",
+     "PRIMARY_NAME__LONG_": "Big Ridge State Park",
+     "Park": "Big Ridge",
+     "ParkID2": "TSP-0022",
+     "Park_ID": "TSP-0022",
+     "TSP_UID": "TSP-0022",
+     "TSP_UID_1": "TSP-0022",
+     "UID": "TSP-0022"
+    }
+   ],
+   "service": "Park_Boundaries_with_Visitation",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Park_Boundaries_with_Visitation/FeatureServer/10"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "PRIMARY_NAME__LONG_"
+   ],
+   "known": false,
+   "layer": "Oct2023StateParksPrimary",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "State_Park_Boundaries_by_Primary_Name_Oct_2023",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/State_Park_Boundaries_by_Primary_Name_Oct_2023/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 56,
+   "fields": [
+    "PARK_NAME",
+    "AltName"
+   ],
+   "known": false,
+   "layer": "Dissolve_TN_State_Parks_Boundaries",
+   "sample": [
+    {
+     "AltName": "Bicentennial Capitol Mall SP",
+     "PARK_NAME": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "AltName": "Big Cypress Tree SP",
+     "PARK_NAME": "Big Cypress Tree State Park"
+    },
+    {
+     "AltName": "Big Hill Pond SP",
+     "PARK_NAME": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "Dissolve_TN_State_Parks_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Dissolve_TN_State_Parks_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 56,
+   "fields": [
+    "PARK_NAME"
+   ],
+   "known": false,
+   "layer": "ParkBoundsDissolve",
+   "sample": [
+    {
+     "PARK_NAME": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "PARK_NAME": "Big Cypress Tree State Park"
+    },
+    {
+     "PARK_NAME": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "ParkBoundaries_dissolved",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/ParkBoundaries_dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "Darin Mitchell, GISP\nSenior GIS Analyst - Arkansas State Parks",
+   "area": "name",
+   "count": 53,
+   "fields": [
+    "park_num",
+    "boundary",
+    "name",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Arkansas State Parks",
+   "sample": [
+    {
+     "GlobalID": "{2431156F-7777-490B-BF99-429146314850}",
+     "boundary": "State Park",
+     "name": "Millwood State Park",
+     "park_num": "PT33"
+    },
+    {
+     "GlobalID": "{B1231B3E-E9D7-4AFF-8249-CB8629298CCA}",
+     "boundary": "State Park",
+     "name": "Lake Catherine State Park",
+     "park_num": "PT23"
+    },
+    {
+     "GlobalID": "{6C302F92-3F82-4593-BE9C-90E8F0074963}",
+     "boundary": "State Park",
+     "name": "Parkin Archeological State Park",
+     "park_num": "PT40"
+    }
+   ],
+   "service": "Arkansas_State_Parks",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Arkansas_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 52,
+   "fields": [
+    "PUBLIC_NAM",
+    "EXTENT",
+    "HYPERLINK",
+    "COUNTY",
+    "PARK_TYPE",
+    "ADDRESS",
+    "ZIP_CODE",
+    "PHONE_NUMB",
+    "PARK_NAME"
+   ],
+   "known": false,
+   "layer": "Kentucky_State_Park_Boundaries",
+   "sample": [
+    {
+     "ADDRESS": "3100 US Highway 41 North",
+     "COUNTY": "Henderson",
+     "EXTENT": "http://kygeonet.ky.gov/kyparks/viewer.htm?Box=4389404.1:3845313.39:4413642.38:3854129.43",
+     "HYPERLINK": "http://www.parks.ky.gov/findparks/recparks/au/",
+     "PARK_NAME": "John James Audubon",
+     "PARK_TYPE": "Recreation",
+     "PHONE_NUMB": "270-826-2247",
+     "PUBLIC_NAM": "John James Audubon",
+     "ZIP_CODE": "42419"
+    },
+    {
+     "ADDRESS": "Highway 68 E",
+     "COUNTY": "Todd/Lyon",
+     "EXTENT": "http://kygeonet.ky.gov/kyparks/viewer.htm?Box=4452086.82:3464700.36:4482789.94:3476262.86",
+     "HYPERLINK": "http://www.parks.ky.gov/findparks/histparks/jd/",
+     "PARK_NAME": "Jefferson Davis",
+     "PARK_TYPE": "Historic",
+     "PHONE_NUMB": "270-889-6100",
+     "PUBLIC_NAM": "Jefferson Davis",
+     "ZIP_CODE": "42221"
+    },
+    {
+     "ADDRESS": "94 Green Street",
+     "COUNTY": "Ballard",
+     "EXTENT": "http://kygeonet.ky.gov/kyparks/viewer.htm?Box=3936553.97:3526583.08:3952928.97:3532749.75",
+     "HYPERLINK": "http://www.parks.ky.gov/findparks/histparks/wm/",
+     "PARK_NAME": "Wickliffe Mounds",
+     "PARK_TYPE": "Historic",
+     "PHONE_NUMB": "270-335-3681",
+     "PUBLIC_NAM": "Wickliffe Mounds",
+     "ZIP_CODE": "42087"
+    }
+   ],
+   "service": "Kentucky_State_Park_Boundaries",
+   "typef": "PARK_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Kentucky_State_Park_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "NaturalAreaName",
+   "count": 45,
+   "fields": [
+    "TRANS_NO",
+    "TRANS_STAT",
+    "TRANS_TYPE",
+    "PRIMARY_NAME__LONG_",
+    "TSP_UID",
+    "MANAGE_AGENCY",
+    "OWNERS_AGENCY",
+    "ACCESS_",
+    "BNDRY_ORIG",
+    "CREATOR",
+    "EDITOR",
+    "INCLUDE_BOUND",
+    "SECONDARY_NAME__LONG_",
+    "Notes",
+    "USE_TYPE",
+    "PRIMARY_DESIGNATION",
+    "SECONDARY_DESIGNATION",
+    "NaturalAreaName",
+    "Archival",
+    "NeedFollowup"
+   ],
+   "known": false,
+   "layer": "June2023NonStateParkNaturalAreas",
+   "sample": [
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Unknown",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-DNA",
+     "OWNERS_AGENCY": "TDEC",
+     "PRIMARY_NAME__LONG_": "Hampton Creek Cove State Natural Area",
+     "TRANS_NO": "85-06-013",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Acquisition",
+     "TSP_UID": "TSP-0121"
+    },
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Unknown",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "Tennessee State Parks",
+     "OWNERS_AGENCY": "TDEC",
+     "PRIMARY_NAME__LONG_": "House Mountain State Natural Area",
+     "TRANS_NO": "90-10-012",
+     "TRANS_STAT": "Closed",
+     "TSP_UID": "TSP-0143"
+    },
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Unknown",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "Tennessee State Parks",
+     "OWNERS_AGENCY": "TDEC",
+     "PRIMARY_NAME__LONG_": "Hicks Gap State Natural Area",
+     "TRANS_STAT": "Closed",
+     "TSP_UID": "TSP-0212"
+    }
+   ],
+   "service": "Non_State_Park_Natural_Areas_June_2023",
+   "typef": "TRANS_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 45,
+   "fields": [
+    "DESCRIPTIO",
+    "STATE_FORE",
+    "Collected_",
+    "Hyper_Link",
+    "Number_ID"
+   ],
+   "known": false,
+   "layer": "StateForests",
+   "sample": [
+    {
+     "Collected_": "Survey File",
+     "DESCRIPTIO": "State Forest",
+     "Hyper_Link": "http://www.state.tn.us/agriculture/forestry/stateforest01.shtml",
+     "Number_ID": " ",
+     "STATE_FORE": "CHICKASAW"
+    },
+    {
+     "Collected_": "Survey File",
+     "DESCRIPTIO": "State Forest",
+     "Hyper_Link": "http://www.state.tn.us/agriculture/forestry/stateforest01.shtml",
+     "Number_ID": " ",
+     "STATE_FORE": "CHICKASAW"
+    },
+    {
+     "Collected_": "Survey File",
+     "DESCRIPTIO": "State Forest",
+     "Hyper_Link": "http://www.state.tn.us/agriculture/forestry/stateforest01.shtml",
+     "Number_ID": " ",
+     "STATE_FORE": "CHICKASAW"
+    }
+   ],
+   "service": "StateForests",
+   "typef": "DESCRIPTIO",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/StateForests/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "map_dhec_area",
+   "count": 35,
+   "fields": [
+    "map_name",
+    "map_county",
+    "map_dhec_area"
+   ],
+   "known": false,
+   "layer": "MaricultureGrounds",
+   "sample": [
+    {
+     "map_county": "Charleston",
+     "map_dhec_area": "7",
+     "map_name": "M605B"
+    },
+    {
+     "map_county": "Charleston",
+     "map_dhec_area": "10A",
+     "map_name": "M212"
+    },
+    {
+     "map_county": "Beaufort",
+     "map_dhec_area": "15 and 17",
+     "map_name": "M064"
+    }
+   ],
+   "service": "ShellfishUpdateFiles",
+   "typef": "",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/ShellfishUpdateFiles/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 17,
+   "fields": [
+    "SWAP_2025_",
+    "SWAP_20251",
+    "Ecosystem_",
+    "Primary_Su",
+    "Additional"
+   ],
+   "known": false,
+   "layer": "Greystone_Preserve_Ecosystems",
+   "sample": [
+    {
+     "Additional": "Czako, Csilla A.",
+     "Ecosystem_": "Powerline R.O.W.",
+     "Primary_Su": "Bradley, Keith A.",
+     "SWAP_20251": "Early-Successional Habitats",
+     "SWAP_2025_": "Piedmont"
+    },
+    {
+     "Additional": "Czako, Csilla A.",
+     "Ecosystem_": "Powerline R.O.W.",
+     "Primary_Su": "Bradley, Keith A.",
+     "SWAP_20251": "Early-Successional Habitats",
+     "SWAP_2025_": "Piedmont"
+    },
+    {
+     "Additional": "Czako, Csilla A.",
+     "Ecosystem_": "Floodplain",
+     "Primary_Su": "Bradley, Keith A.",
+     "SWAP_20251": "Basic Mesic Forest",
+     "SWAP_2025_": "Piedmont"
+    }
+   ],
+   "service": "Greystone_Preserve_Ecosystems",
+   "typef": "",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/Greystone_Preserve_Ecosystems/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "MARKETAREA",
+   "count": 12,
+   "fields": [
+    "Priority",
+    "GISLINK",
+    "Label",
+    "GISLINK2",
+    "LAST_UPDATE",
+    "PARCELID",
+    "FILE_TYPE",
+    "CONUM",
+    "CMAP",
+    "GP",
+    "PARCEL",
+    "PI",
+    "SI",
+    "MAP",
+    "TAXYR",
+    "ADDRESS",
+    "CLASS",
+    "CITY",
+    "SSD1",
+    "SSD2"
+   ],
+   "known": false,
+   "layer": "Properties of Interest",
+   "sample": [
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  077",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "Label": "8230 Seven Islands Rd.",
+     "PARCEL": "77",
+     "PARCELID": "113  077",
+     "PI": " ",
+     "Priority": "A"
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  074",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "Label": "8208 Seven Islands Rd.",
+     "PARCEL": "74",
+     "PARCELID": "113  074",
+     "PI": " ",
+     "Priority": "A"
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  073",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "Label": "8200 Seven Islands Rd.",
+     "PARCEL": "73",
+     "PARCELID": "113  073",
+     "PI": " ",
+     "Priority": "A"
+    }
+   ],
+   "service": "Seven_Islands_SLAC_WFL1",
+   "typef": "FILE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Seven_Islands_SLAC_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "MARKETAREA",
+   "count": 11,
+   "fields": [
+    "GISLINK",
+    "GISLINK2",
+    "LAST_UPDATE",
+    "PARCELID",
+    "FILE_TYPE",
+    "CONUM",
+    "CMAP",
+    "GP",
+    "PARCEL",
+    "PI",
+    "SI",
+    "MAP",
+    "TAXYR",
+    "ADDRESS",
+    "CLASS",
+    "CITY",
+    "SSD1",
+    "SSD2",
+    "DISTRICT",
+    "MARKETAREA"
+   ],
+   "known": false,
+   "layer": "SevenIslandsSlacProperties",
+   "sample": [
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  077",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "MAP": " ",
+     "PARCEL": "77",
+     "PARCELID": "113  077",
+     "PI": " ",
+     "SI": " "
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  074",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "MAP": " ",
+     "PARCEL": "74",
+     "PARCELID": "113  074",
+     "PI": " ",
+     "SI": " "
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  073",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "MAP": " ",
+     "PARCEL": "73",
+     "PARCELID": "113  073",
+     "PI": " ",
+     "SI": " "
+    }
+   ],
+   "service": "Seven_Islands_Slac_Properties",
+   "typef": "FILE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Seven_Islands_Slac_Properties/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "map_dhec_area",
+   "count": 4,
+   "fields": [
+    "PermType",
+    "map_county",
+    "map_dhec_area",
+    "map_title",
+    "map_clam_season",
+    "map_oyster_season",
+    "map_extra_text",
+    "map_name",
+    "Available",
+    "Type"
+   ],
+   "known": false,
+   "layer": "AvailableCulture",
+   "sample": [
+    {
+     "Available": "Available",
+     "PermType": "C",
+     "Type": "Culture",
+     "map_county": "Beaufort",
+     "map_dhec_area": "16B",
+     "map_name": "C107"
+    },
+    {
+     "Available": "Available",
+     "PermType": "C",
+     "Type": "Culture",
+     "map_county": "Beaufort",
+     "map_dhec_area": "16B",
+     "map_name": "C108"
+    },
+    {
+     "Available": "Available",
+     "PermType": "C",
+     "Type": "Culture",
+     "map_county": "Beaufort",
+     "map_dhec_area": "16B",
+     "map_name": "C099"
+    }
+   ],
+   "service": "ShellfishUpdateFiles",
+   "typef": "PermType",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/ShellfishUpdateFiles/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Owner"
+   ],
+   "known": false,
+   "layer": "Greystone_Preserve_Property_Boundary",
+   "sample": [
+    {
+     "Name": " ",
+     "Owner": " "
+    }
+   ],
+   "service": "Greystone_Preserve_Property_Boundary",
+   "typef": "",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/Greystone_Preserve_Property_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 45"
+    }
+   ],
+   "service": "45_mins_ExistingStateParksAndUSFSandNPSCleaned",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/45_mins_ExistingStateParksAndUSFSandNPSCleaned/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 45"
+    }
+   ],
+   "service": "45_Mins_State_Parks_Dissolved",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/45_Mins_State_Parks_Dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "STATE_FORE",
+    "Label"
+   ],
+   "known": false,
+   "layer": "State Forest WMA",
+   "sample": [
+    {
+     "Label": "Natchez Trace State Forest & Wildlife Management Area",
+     "STATE_FORE": "NATCHEZ TRACE"
+    }
+   ],
+   "service": "Natchez_State_Forest_WMA",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Natchez_State_Forest_WMA/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "PropertyName",
+   "count": 1,
+   "fields": [
+    "PropertyID",
+    "PropertyName",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Property",
+   "sample": [
+    {}
+   ],
+   "service": "Seven_Islands_Habitat_Management_Units_test",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Seven_Islands_Habitat_Management_Units_test/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Notes",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Polygon",
+   "sample": [
+    {
+     "created_user": "Leah.Fuller_TSP",
+     "last_edited_user": "Leah.Fuller_TSP"
+    }
+   ],
+   "service": "TennesseeParksandRecreation_WFL1",
+   "typef": "created_user",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/TennesseeParksandRecreation_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Notes",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Polygon",
+   "sample": [
+    {
+     "created_user": "Leah.Fuller_TSP",
+     "last_edited_user": "Leah.Fuller_TSP"
+    }
+   ],
+   "service": "TN_ParksRec",
+   "typef": "created_user",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/TN_ParksRec/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 60"
+    }
+   ],
+   "service": "Travel_from_TN_State_Parks_Points_(60_Minutes)",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Travel_from_TN_State_Parks_Points_(60_Minutes)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Field"
+   ],
+   "known": false,
+   "layer": "Property Boundary",
+   "sample": [
+    {
+     "Field": " "
+    }
+   ],
+   "service": "331972_Mark_IV",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/331972_Mark_IV/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Property Boundary",
+   "sample": [
+    {
+     "Name": " "
+    }
+   ],
+   "service": "332185_Residue_Hill",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/332185_Residue_Hill/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 1,
+   "fields": [
+    "TSP_UID",
+    "PARK_NAME",
+    "SATELLITE",
+    "DESIG_1",
+    "DESIG_2"
+   ],
+   "known": false,
+   "layer": "Cummins Falls State Park",
+   "sample": [
+    {
+     "DESIG_1": "State Park",
+     "PARK_NAME": "Cummins Falls State Park",
+     "TSP_UID": "TSP-0078"
+    }
+   ],
+   "service": "Cummins_Falls_Watershed",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/Cummins_Falls_Watershed/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "PropertyName",
+   "count": 211,
+   "fields": [
+    "ParentPropertyID",
+    "app_icon_url",
+    "prop_page_url",
+    "map_pdf_url",
+    "PropertyID",
+    "PropertyName",
+    "PropertyTract",
+    "PropertyUse",
+    "HeritagePreserve",
+    "WildlifeManagementArea",
+    "PublicAccess",
+    "County",
+    "SCDNR_Region",
+    "SCDNR_GameZone",
+    "Biking",
+    "Birding",
+    "Boating_Access",
+    "Camping",
+    "Cultural_Site",
+    "Driving_Tour"
+   ],
+   "known": true,
+   "layer": "SCDNR Properties Public Dissolved",
+   "sample": [
+    {
+     "County": "Berkeley",
+     "HeritagePreserve": "No",
+     "ParentPropertyID": "001",
+     "PropertyID": "001",
+     "PropertyName": "Bonneau Ferry WMA",
+     "PropertyUse": "WMA",
+     "PublicAccess": "Open",
+     "WildlifeManagementArea": "Specific",
+     "app_icon_url": "https://dnr.sc.gov/GIS/Images/publiclands/icons/wma.png",
+     "prop_page_url": "https://public-lands-scdnr.hub.arcgis.com/pages/bonneau-ferry-wma"
+    },
+    {
+     "County": "Lexington",
+     "HeritagePreserve": "YesC",
+     "ParentPropertyID": "002",
+     "PropertyID": "002",
+     "PropertyName": "Congaree Creek HP",
+     "PropertyTract": "NO HUNTING",
+     "PropertyUse": "CHP",
+     "PublicAccess": "Open",
+     "WildlifeManagementArea": "None",
+     "app_icon_url": "https://dnr.sc.gov/GIS/Images/publiclands/icons/chp.png",
+     "prop_page_url": "https://public-lands-scdnr.hub.arcgis.com/pages/congaree-creek-hp"
+    },
+    {
+     "County": "Pickens",
+     "HeritagePreserve": "No",
+     "ParentPropertyID": "003",
+     "PropertyID": "003",
+     "PropertyName": "Jocassee Gorges",
+     "PropertyUse": "WMA",
+     "PublicAccess": "Open",
+     "WildlifeManagementArea": "Other",
+     "app_icon_url": "https://dnr.sc.gov/GIS/Images/publiclands/icons/wma.png",
+     "prop_page_url": "https://public-lands-scdnr.hub.arcgis.com/pages/jocassee-gorges"
+    }
+   ],
+   "service": "DEV_-_SCDNR_Public_Lands_Viewer",
+   "typef": "PropertyUse",
+   "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 66,
+   "fields": [
+    "TSP_UID",
+    "PARK_NAME",
+    "SATELLITE",
+    "DESIG_1",
+    "DESIG_2",
+    "PM_EMAIL",
+    "PM_PHONE",
+    "PM_FIRST_NAME",
+    "PM_LAST_NAME",
+    "AM_FIRST_NAME",
+    "AM_LAST_NAME",
+    "PM_EMAIL_1"
+   ],
+   "known": true,
+   "layer": "TN State Parks Boundaries",
+   "sample": [
+    {
+     "PARK_NAME": "Chickasaw State Park",
+     "TSP_UID": "TSP-0055"
+    },
+    {
+     "PARK_NAME": "Cordell Hull Birthplace State Park",
+     "TSP_UID": "TSP-0065"
+    },
+    {
+     "PARK_NAME": "Cove Lake State Park",
+     "TSP_UID": "TSP-0066"
+    }
+   ],
+   "service": "TN_State_Parks_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/TN_State_Parks_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 55,
+   "fields": [
+    "NAME",
+    "Ext_Funds"
+   ],
+   "known": true,
+   "layer": "South Carolina State Parks",
+   "sample": [
+    {
+     "Ext_Funds": "Partial",
+     "NAME": "Aiken State Park"
+    },
+    {
+     "Ext_Funds": " ",
+     "NAME": "Andrew Jackson State Park"
+    },
+    {
+     "Ext_Funds": "Comprehensive",
+     "NAME": "Baker Creek State Park"
+    }
+   ],
+   "service": "South_Carolina_State_Parks",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/ArcGIS/rest/services/South_Carolina_State_Parks/FeatureServer/0"
+  }
+ ],
+ "st": "SC"
+}

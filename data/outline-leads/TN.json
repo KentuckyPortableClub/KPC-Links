@@ -1,0 +1,2449 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 135454,
+   "fields": [],
+   "known": false,
+   "layer": "Stewardship_Priorities_update",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 1,
+     "Shape__Area": 4491.291259765625,
+     "Shape__Length": 386.7956891693116,
+     "gridcode": 0
+    },
+    {
+     "FID": 2,
+     "Id": 2,
+     "Shape__Area": 2638.632080078125,
+     "Shape__Length": 226.47675613919927,
+     "gridcode": 0
+    },
+    {
+     "FID": 3,
+     "Id": 3,
+     "Shape__Area": 183696.25842285156,
+     "Shape__Length": 4978.683436693843,
+     "gridcode": 0
+    }
+   ],
+   "service": "Tennessee_Forest_Stewardship_Program_Priority_Areas",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forest_Stewardship_Program_Priority_Areas/FeatureServer/9"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 44552,
+   "fields": [
+    "Priority",
+    "NLCD"
+   ],
+   "known": false,
+   "layer": "Priority Area in Forest Cover",
+   "sample": [
+    {
+     "NLCD": "Deciduous Forest",
+     "Priority": "Resilient & Connected; Water; Carbon Storage"
+    },
+    {
+     "NLCD": "Deciduous Forest",
+     "Priority": "Resilient & Connected; Water; Carbon Storage"
+    },
+    {
+     "NLCD": "Mixed Forest",
+     "Priority": "Resilient & Connected; Water; Carbon Storage"
+    }
+   ],
+   "service": "Tennessee_Forest_Action_Plan_Priority_Forestland",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forest_Action_Plan_Priority_Forestland/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "NombreProp",
+   "count": 1665,
+   "fields": [
+    "YEAR_ESTAB",
+    "NombreProp",
+    "Tipo",
+    "Manejo",
+    "Terr_Mar",
+    "Source",
+    "NAME",
+    "Unit_Nm",
+    "State_Nm",
+    "PUBLIC_NAM",
+    "EXTENT",
+    "HYPERLINK",
+    "COUNTY",
+    "PARK_TYPE",
+    "ADDRESS",
+    "ZIP_CODE",
+    "PHONE_NUMB",
+    "PARK_NAME",
+    "Ext_Funds",
+    "TSP_UID"
+   ],
+   "known": false,
+   "layer": "Merge_Merge_Merge_AL_PR_GA_KY_SC_TN_FL_MS_AR_North_Carolina_State_Parks",
+   "sample": [
+    {
+     "Manejo": "DRNA",
+     "NombreProp": "Reserva Natural Cayo Ratones",
+     "Source": "DRNA",
+     "Terr_Mar": "Terrestre",
+     "Tipo": "Reserva Natural",
+     "YEAR_ESTAB": "1972"
+    },
+    {
+     "Manejo": "DRNA",
+     "NombreProp": "Finca El Pitirre Inc. #16",
+     "Source": "Legacy Program",
+     "Terr_Mar": "Terrestre",
+     "Tipo": "Legacy Program aquisition-DNER state forest land",
+     "YEAR_ESTAB": "2000"
+    },
+    {
+     "Manejo": "Para la Naturaleza",
+     "NombreProp": "Finca Shapiro",
+     "Source": "Para La Naturaleza",
+     "Terr_Mar": "Terrestre",
+     "Tipo": "Non-corpus",
+     "YEAR_ESTAB": "1999"
+    }
+   ],
+   "service": "Merge_Merge_Merge_AL_PR_GA_KY_SC_TN_FL_MS_AR_North_Carolina_State_Parks",
+   "typef": "PARK_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Merge_Merge_Merge_AL_PR_GA_KY_SC_TN_FL_MS_AR_North_Carolina_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "USDA Forest Service, 2019.  Forests to Faucets 2.0 Spatial Dataset",
+   "area": "NAME",
+   "count": 1154,
+   "fields": [
+    "STATES",
+    "HUC12",
+    "NAME",
+    "USDA_NRCS_SW_Priority"
+   ],
+   "known": false,
+   "layer": "TN HUC12 - Watershed Conservation Summary",
+   "sample": [
+    {
+     "HUC12": "060200011204",
+     "NAME": "Lower Nickajack Lake-Tennessee River",
+     "STATES": "AL,GA,TN"
+    },
+    {
+     "HUC12": "060300051203",
+     "NAME": "Dry Creek-Pickwick Lake",
+     "STATES": "AL,MS,TN"
+    },
+    {
+     "HUC12": "060300010201",
+     "NAME": "Jones Creek-Tennessee River",
+     "STATES": "AL,TN"
+    }
+   ],
+   "service": "Watershed_Conservation_Summaries___HUC12_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Watershed_Conservation_Summaries___HUC12_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Park",
+   "count": 908,
+   "fields": [
+    "REF_NO",
+    "COUNTY",
+    "ROUTE",
+    "PARK_NUM",
+    "COLL_DATE",
+    "PAVE_TYPE",
+    "Creator",
+    "Editor",
+    "Asset_Id",
+    "Park",
+    "Status",
+    "Creator_1",
+    "Editor_1",
+    "StateNaturalArea"
+   ],
+   "known": false,
+   "layer": "Parking_Lots",
+   "sample": [
+    {
+     "Asset_Id": "PA-1",
+     "COLL_DATE": "05/19/2016",
+     "COUNTY": "82",
+     "Creator": "andrew.mcdonagh",
+     "Creator_1": "andrew.mcdonagh",
+     "Editor": "Jesus.Ortega-Valenzuela_bose",
+     "PARK_NUM": "56",
+     "PAVE_TYPE": "Asphalt",
+     "Park": "TSP-0291",
+     "REF_NO": "-KOAnE0OFJH0-_98aipGmF",
+     "ROUTE": "PL011",
+     "Status": "1"
+    },
+    {
+     "Asset_Id": "PA-2",
+     "COLL_DATE": "07/09/2016",
+     "COUNTY": "03",
+     "Creator": "andrew.mcdonagh",
+     "Creator_1": "andrew.mcdonagh",
+     "Editor": "Jesus.Ortega-Valenzuela_bose",
+     "PARK_NUM": "34",
+     "PAVE_TYPE": "Asphalt",
+     "Park": "TSP-0180",
+     "REF_NO": "-KR99hYDH1PP7Nmja_Q1Pk",
+     "ROUTE": "PL009",
+     "Status": "1"
+    },
+    {
+     "Asset_Id": "PA-3",
+     "COLL_DATE": "07/12/2016",
+     "COUNTY": "12",
+     "Creator": "andrew.mcdonagh",
+     "Creator_1": "andrew.mcdonagh",
+     "Editor": "Jesus.Ortega-Valenzuela_bose",
+     "PARK_NUM": "09",
+     "PAVE_TYPE": "Asphalt",
+     "Park": "TSP-0055",
+     "REF_NO": "-KRd9mHDF3H6AqSb8sE1iV",
+     "ROUTE": "PL004",
+     "Status": "1"
+    }
+   ],
+   "service": "Parking_Areas_(Public_View)",
+   "typef": "PAVE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Parking_Areas_(Public_View)/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture",
+   "area": "",
+   "count": 206,
+   "fields": [
+    "AideName",
+    "CountyName",
+    "Phone",
+    "Email",
+    "Address",
+    "CountyFIPS",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Forestry Aide 2s",
+   "sample": [
+    {
+     "Address": "Montlake Shop",
+     "AideName": "Zachary Hilton",
+     "CountyFIPS": "065",
+     "CountyName": "Hamilton County",
+     "Creator": "colin.stiles_tndof",
+     "Editor": "Daniel.Nielsen_TNDOF",
+     "Email": "Zachary.Hilton@tn.gov",
+     "Phone": "423-332-3228"
+    },
+    {
+     "AideName": "Tanner Fariss",
+     "CountyFIPS": "115",
+     "CountyName": "Marion County",
+     "Creator": "colin.stiles_tndof",
+     "Editor": "Daniel.Nielsen_TNDOF",
+     "Email": "Tanner.Fariss@tn.gov",
+     "Phone": "423-942-3665"
+    },
+    {
+     "Address": "Spencer Shop",
+     "AideName": "Cheyenne Mooneyham",
+     "CountyFIPS": "185",
+     "CountyName": "White County",
+     "Creator": "colin.stiles_tndof",
+     "Editor": "Daniel.Nielsen_TNDOF",
+     "Email": "Cheyenne.Mooneyham@tn.gov",
+     "Phone": "931-946-2401"
+    }
+   ],
+   "service": "Staff_Directory_Tennessee_Department_of_Agriculture",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Staff_Directory_Tennessee_Department_of_Agriculture/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 182,
+   "fields": [
+    "TSP_UID",
+    "NAME_1",
+    "NAME_2",
+    "MANAGE_1",
+    "USE_TYPE",
+    "DESIG_1",
+    "DESIG_2",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "TDEC Public Lands",
+   "sample": [
+    {
+     "Creator": "Rachel.Schultz",
+     "DESIG_1": "State Historic Site",
+     "DESIG_2": "National Register of Historic Places",
+     "Editor": "Rachel.Schultz",
+     "MANAGE_1": "Private",
+     "NAME_1": "Alex Haley House Museum & Interpretive Center State Hisotirc Site",
+     "TSP_UID": "TSP-0005",
+     "USE_TYPE": "Historic Preservation"
+    },
+    {
+     "Creator": "Rachel.Schultz",
+     "DESIG_1": "Class II Natural Scientific State Natural Area",
+     "Editor": "Rachel.Schultz",
+     "MANAGE_1": "Tennessee Division of Natural Areas",
+     "NAME_1": "Barnett's Woods State Natural Area",
+     "TSP_UID": "TSP-0008",
+     "USE_TYPE": "Conservation"
+    },
+    {
+     "Creator": "Rachel.Schultz",
+     "DESIG_1": "National Register of Historic Places",
+     "Editor": "Rachel.Schultz",
+     "MANAGE_1": "Nonprofit",
+     "NAME_1": "Battle of Franklin",
+     "TSP_UID": "TSP-0009",
+     "USE_TYPE": "Historic Preservation"
+    }
+   ],
+   "service": "TDEC_Public_Lands",
+   "typef": "USE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TDEC_Public_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "<a href='https://www.tn.gov/' rel='nofollow ugc'>Tennessee Department of Environ",
+   "area": "",
+   "count": 112,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "TSP_UID",
+    "SECONDARY_NAME__LONG_"
+   ],
+   "known": false,
+   "layer": "Oct2023StateParkBoundaries",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park",
+     "TSP_UID": "TSP-0018"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "SECONDARY_NAME__LONG_": "Big Cypress Tree State Natural Area",
+     "TSP_UID": "TSP-0019"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "TSP_UID": "TSP-0020"
+    }
+   ],
+   "service": "State_Park_Boundaries_Sept_2023",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Sept_2023/FeatureServer/18"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "",
+   "count": 108,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "SECONDARY_NAME__LONG_",
+    "TSP_UID"
+   ],
+   "known": false,
+   "layer": "June2023StateParkBoundaries",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park",
+     "TSP_UID": "TSP-0018"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "SECONDARY_NAME__LONG_": "Big Cypress Tree State Natural Area",
+     "TSP_UID": "TSP-0019"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "TSP_UID": "TSP-0020"
+    }
+   ],
+   "service": "Tennessee_State_Park_Boundaries_June_2023",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_Park_Boundaries_June_2023/FeatureServer/6"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 99,
+   "fields": [
+    "house_district",
+    "source"
+   ],
+   "known": false,
+   "layer": "House District Forested Area",
+   "sample": [
+    {
+     "house_district": "1",
+     "source": "NLCD"
+    },
+    {
+     "house_district": "2",
+     "source": "NLCD"
+    },
+    {
+     "house_district": "3",
+     "source": "NLCD"
+    }
+   ],
+   "service": "Tennessee_Forested_Area_Coverage",
+   "typef": "house_district",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forested_Area_Coverage/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "County",
+    "Perc_D_Forestry_2019",
+    "Perc_T_Forestry_2019",
+    "Perc_D_Forestry_2017",
+    "Perc_T_Forestry_2017"
+   ],
+   "known": false,
+   "layer": "Forest_Econ_Impact_County",
+   "sample": [
+    {
+     "County": "Anderson",
+     "Perc_D_Forestry_2017": "<1",
+     "Perc_D_Forestry_2019": "8",
+     "Perc_T_Forestry_2017": "7",
+     "Perc_T_Forestry_2019": "4"
+    },
+    {
+     "County": "Bedford",
+     "Perc_D_Forestry_2017": "<1",
+     "Perc_D_Forestry_2019": "8",
+     "Perc_T_Forestry_2017": "7",
+     "Perc_T_Forestry_2019": "4"
+    },
+    {
+     "County": "Benton",
+     "Perc_D_Forestry_2017": "<1",
+     "Perc_D_Forestry_2019": "8",
+     "Perc_T_Forestry_2017": "7",
+     "Perc_T_Forestry_2019": "4"
+    }
+   ],
+   "service": "Forestry_County_Impact_2019",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Forestry_County_Impact_2019/FeatureServer/3"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "CountyName",
+    "CountyFIPS",
+    "source"
+   ],
+   "known": false,
+   "layer": "County Forested Area",
+   "sample": [
+    {
+     "CountyFIPS": "065",
+     "CountyName": "Hamilton County",
+     "source": "NLCD"
+    },
+    {
+     "CountyFIPS": "115",
+     "CountyName": "Marion County",
+     "source": "NLCD"
+    },
+    {
+     "CountyFIPS": "185",
+     "CountyName": "White County",
+     "source": "NLCD"
+    }
+   ],
+   "service": "Tennessee_Forested_Area_Coverage",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forested_Area_Coverage/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 95,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "AFFGEOID",
+    "GEOID",
+    "NAME",
+    "LSAD",
+    "State",
+    "County",
+    "EconStatus_2018",
+    "EconStatus_2019",
+    "EconStatus_2020",
+    "EconStatus_2021",
+    "EconStatus_2023",
+    "EconStatus_2022"
+   ],
+   "known": false,
+   "layer": "TN_County_Econ_Status",
+   "sample": [
+    {
+     "AFFGEOID": "0500000US47001",
+     "COUNTYFP": "001",
+     "COUNTYNS": "01639722",
+     "County": "Anderson",
+     "EconStatus_2018": "Transitional",
+     "EconStatus_2019": "Transitional",
+     "EconStatus_2020": "Transitional",
+     "GEOID": "47001",
+     "LSAD": "06",
+     "NAME": "Anderson",
+     "STATEFP": "47",
+     "State": "Tennessee"
+    },
+    {
+     "AFFGEOID": "0500000US47003",
+     "COUNTYFP": "003",
+     "COUNTYNS": "01639723",
+     "County": "Bedford",
+     "EconStatus_2018": "Transitional",
+     "EconStatus_2019": "Transitional",
+     "EconStatus_2020": "Transitional",
+     "GEOID": "47003",
+     "LSAD": "06",
+     "NAME": "Bedford",
+     "STATEFP": "47",
+     "State": "Tennessee"
+    },
+    {
+     "AFFGEOID": "0500000US47005",
+     "COUNTYFP": "005",
+     "COUNTYNS": "01639724",
+     "County": "Benton",
+     "EconStatus_2018": "At Risk",
+     "EconStatus_2019": "At Risk",
+     "EconStatus_2020": "At Risk",
+     "GEOID": "47005",
+     "LSAD": "06",
+     "NAME": "Benton",
+     "STATEFP": "47",
+     "State": "Tennessee"
+    }
+   ],
+   "service": "TN_Forestry_Economic_Impact_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/TN_Forestry_Economic_Impact_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "County",
+    "Perc_Direct_Forestry",
+    "Perc_Total_Forestry"
+   ],
+   "known": false,
+   "layer": "Forest_Econ_Impact_County",
+   "sample": [
+    {
+     "County": "Anderson",
+     "Perc_Direct_Forestry": "<1",
+     "Perc_Total_Forestry": "7"
+    },
+    {
+     "County": "Bedford",
+     "Perc_Direct_Forestry": "<1",
+     "Perc_Total_Forestry": "7"
+    },
+    {
+     "County": "Benton",
+     "Perc_Direct_Forestry": "<1",
+     "Perc_Total_Forestry": "7"
+    }
+   ],
+   "service": "TN_Forestry_Economic_Impact_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/TN_Forestry_Economic_Impact_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 95,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "AFFGEOID",
+    "GEOID",
+    "NAME",
+    "LSAD"
+   ],
+   "known": false,
+   "layer": "cb_2018_TN_county_500k",
+   "sample": [
+    {
+     "AFFGEOID": "0500000US47001",
+     "COUNTYFP": "001",
+     "COUNTYNS": "01639722",
+     "GEOID": "47001",
+     "LSAD": "06",
+     "NAME": "Anderson",
+     "STATEFP": "47"
+    },
+    {
+     "AFFGEOID": "0500000US47003",
+     "COUNTYFP": "003",
+     "COUNTYNS": "01639723",
+     "GEOID": "47003",
+     "LSAD": "06",
+     "NAME": "Bedford",
+     "STATEFP": "47"
+    },
+    {
+     "AFFGEOID": "0500000US47005",
+     "COUNTYFP": "005",
+     "COUNTYNS": "01639724",
+     "GEOID": "47005",
+     "LSAD": "06",
+     "NAME": "Benton",
+     "STATEFP": "47"
+    }
+   ],
+   "service": "TN_Forestry_Economic_Impact_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/TN_Forestry_Economic_Impact_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "AreaForesterName",
+    "CountyName",
+    "Phone",
+    "Email",
+    "Address",
+    "CountyFIPS",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Area Foresters",
+   "sample": [
+    {
+     "Address": "1327 Montlake Rd, Soddy Daisy, TN 37379",
+     "AreaForesterName": "Shannon Hayes Gann",
+     "CountyFIPS": "065",
+     "CountyName": "Hamilton County",
+     "Creator": "colin.stiles_tndof",
+     "Editor": "colin.stiles_tndof",
+     "Email": "shannon.gann@tn.gov",
+     "Phone": "423-332-5335"
+    },
+    {
+     "Address": "1657 Lower Fire Tower Rd, Sequatchie, TN 37374",
+     "AreaForesterName": "Levi Trumbore",
+     "CountyFIPS": "115",
+     "CountyName": "Marion County",
+     "Creator": "colin.stiles_tndof",
+     "Editor": "colin.stiles_tndof",
+     "Email": "levi.trumbore@tn.gov",
+     "Phone": "423-895-4133"
+    },
+    {
+     "Address": "1327 Montlake Rd, Soddy Daisy, TN 37379",
+     "AreaForesterName": "Shannon Hayes Gann",
+     "CountyFIPS": "185",
+     "CountyName": "White County",
+     "Creator": "colin.stiles_tndof",
+     "Editor": "colin.stiles_tndof",
+     "Email": "shannon.gann@tn.gov",
+     "Phone": "423-332-5335"
+    }
+   ],
+   "service": "Staff_Directory_Tennessee_Department_of_Agriculture",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Staff_Directory_Tennessee_Department_of_Agriculture/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "TechName",
+    "CountyName",
+    "Phone",
+    "Email",
+    "Address",
+    "CountyFIPS",
+    "Creator",
+    "Editor",
+    "District"
+   ],
+   "known": false,
+   "layer": "Forestry Technicians",
+   "sample": [
+    {
+     "Address": "Montlake Shop",
+     "CountyFIPS": "065",
+     "CountyName": "Hamilton County",
+     "Creator": "colin.stiles_tndof",
+     "District": "Cumberland District",
+     "Editor": "Daniel.Nielsen_TNDOF",
+     "Email": "Chase.Hall@tn.gov",
+     "Phone": "423-480-4075",
+     "TechName": "Chase Hall"
+    },
+    {
+     "Address": "Jasper Shop",
+     "CountyFIPS": "115",
+     "CountyName": "Marion County",
+     "Creator": "colin.stiles_tndof",
+     "District": "Cumberland District",
+     "Editor": "Daniel.Nielsen_TNDOF",
+     "Email": "Jimmy.D.Long@tn.gov",
+     "Phone": "423-244-5222",
+     "TechName": "Jimmy Long"
+    },
+    {
+     "Address": "Spencer Shop",
+     "CountyFIPS": "185",
+     "CountyName": "White County",
+     "Creator": "colin.stiles_tndof",
+     "District": "Cumberland District",
+     "Editor": "Daniel.Nielsen_TNDOF",
+     "Email": "Floyd.Demps@tn.gov",
+     "Phone": "931-200-4470",
+     "TechName": "Floyd Demps"
+    }
+   ],
+   "service": "Staff_Directory_Tennessee_Department_of_Agriculture",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Staff_Directory_Tennessee_Department_of_Agriculture/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "CountiesSm",
+    "DistressedFY25"
+   ],
+   "known": false,
+   "layer": "Recreation $ %",
+   "sample": [
+    {
+     "CountiesSm": "Benton",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Carroll",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Chester",
+     "DistressedFY25": "Transitional"
+    }
+   ],
+   "service": "Blueways_Water_Access_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Blueways_Water_Access_WFL1/FeatureServer/32"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 95,
+   "fields": [
+    "CountiesSm",
+    "DistressedFY25"
+   ],
+   "known": false,
+   "layer": "Recreation Spending",
+   "sample": [
+    {
+     "CountiesSm": "Benton",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Carroll",
+     "DistressedFY25": "At-Risk"
+    },
+    {
+     "CountiesSm": "Chester",
+     "DistressedFY25": "Transitional"
+    }
+   ],
+   "service": "Blueways_Water_Access_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Blueways_Water_Access_WFL1/FeatureServer/33"
+  },
+  {
+   "agency": "Tennessee Department of Environment and Conservation; Tennessee State Parks",
+   "area": "",
+   "count": 94,
+   "fields": [
+    "TSP_UID",
+    "PRIMARY_NAME__LONG_",
+    "SECONDARY_NAME__LONG_",
+    "PRIMARY_MANAGEMENT",
+    "USE_TYPE"
+   ],
+   "known": false,
+   "layer": "TDEC - State Park Boundaries",
+   "sample": [
+    {
+     "PRIMARY_MANAGEMENT": "Tennessee State Parks",
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park",
+     "TSP_UID": "TSP-0018",
+     "USE_TYPE": "Recreation"
+    },
+    {
+     "PRIMARY_MANAGEMENT": "Tennessee State Parks",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "SECONDARY_NAME__LONG_": "Big Cypress Tree State Natural Area",
+     "TSP_UID": "TSP-0019",
+     "USE_TYPE": "Conservation"
+    },
+    {
+     "PRIMARY_MANAGEMENT": "Tennessee State Parks",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "TSP_UID": "TSP-0020",
+     "USE_TYPE": "Recreation"
+    }
+   ],
+   "service": "TNStatePark_boundaries",
+   "typef": "USE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TNStatePark_boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76,
+   "fields": [
+    "TRANS_NO",
+    "TRANS_STAT",
+    "TRANS_TYPE",
+    "TSP_UID",
+    "MANAGE_AGENCY",
+    "OWNERS_AGENCY",
+    "ACCESS_",
+    "BNDRY_ORIG",
+    "CREATOR",
+    "EDITOR",
+    "INCLUDE_BOUND",
+    "WARS_COM",
+    "HISTORICCURRENTDATA",
+    "PrimaryName",
+    "Association",
+    "War",
+    "PreviousFANumber",
+    "HowLongHeld"
+   ],
+   "known": false,
+   "layer": "Wars Commission Properties",
+   "sample": [
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Taxmap",
+     "CREATOR": "TDEC_GIS_TSP",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-THC",
+     "OWNERS_AGENCY": "Nonprofit",
+     "TRANS_NO": "19-04-012",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Easement",
+     "TSP_UID": "TSP-0050",
+     "WARS_COM": "Yes"
+    },
+    {
+     "ACCESS_": "Restricted",
+     "BNDRY_ORIG": "Taxmap",
+     "CREATOR": "BG21460",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-THC",
+     "OWNERS_AGENCY": "Nonprofit",
+     "TRANS_NO": "17-09-008",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Easement",
+     "TSP_UID": "TSP-0108",
+     "WARS_COM": "Yes"
+    },
+    {
+     "ACCESS_": "Restricted",
+     "BNDRY_ORIG": "Taxmap",
+     "CREATOR": "BG21460",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-THC",
+     "OWNERS_AGENCY": "Nonprofit",
+     "TRANS_NO": "17-09-008",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Easement",
+     "TSP_UID": "TSP-0108",
+     "WARS_COM": "Yes"
+    }
+   ],
+   "service": "Tennessee_State_and_Federal_Lands_WFL1",
+   "typef": "TRANS_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Tennessee_State_and_Federal_Lands_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 69,
+   "fields": [
+    "TSP_UID",
+    "PRIMARY_NAME__LONG_"
+   ],
+   "known": false,
+   "layer": "State Park Boundaries Primary",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Chickasaw State Park",
+     "TSP_UID": "TSP-0055"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Cordell Hull Birthplace State Park",
+     "TSP_UID": "TSP-0065"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Cove Lake State Park",
+     "TSP_UID": "TSP-0066"
+    }
+   ],
+   "service": "State_Park_Boundaries_Primary_March_2024_view2",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_Primary_March_2024_view2/FeatureServer/331"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 66,
+   "fields": [
+    "Inn",
+    "Cabin",
+    "MtngRm",
+    "GrLodge",
+    "GrCamp",
+    "WranCamp",
+    "RVCamp",
+    "TentCamp",
+    "BackCamp",
+    "Laundry",
+    "VisCentr",
+    "Museum",
+    "Restaura",
+    "GiftShop",
+    "SnackBar",
+    "CampStor",
+    "Marina",
+    "BoatRent",
+    "Fishing",
+    "BoatRamp"
+   ],
+   "known": false,
+   "layer": "ParkFinder_Data",
+   "sample": [
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "F",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "T",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    }
+   ],
+   "service": "ParkFinderAmenities_Website",
+   "typef": "Museum",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/ParkFinderAmenities_Website/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Environment and Conservation",
+   "area": "",
+   "count": 66,
+   "fields": [
+    "Inn",
+    "Cabin",
+    "MtngRm",
+    "GrLodge",
+    "GrCamp",
+    "WranCamp",
+    "RVCamp",
+    "TentCamp",
+    "BackCamp",
+    "Laundry",
+    "VisCentr",
+    "Museum",
+    "Restaura",
+    "GiftShop",
+    "SnackBar",
+    "CampStor",
+    "Marina",
+    "BoatRent",
+    "Fishing",
+    "BoatRamp"
+   ],
+   "known": false,
+   "layer": "ParkFinder_Data_Polys",
+   "sample": [
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "F",
+     "TentCamp": "F",
+     "VisCentr": "F",
+     "WranCamp": "F"
+    },
+    {
+     "BackCamp": "F",
+     "Cabin": "F",
+     "GrCamp": "F",
+     "GrLodge": "F",
+     "Inn": "F",
+     "Laundry": "F",
+     "MtngRm": "F",
+     "Museum": "F",
+     "RVCamp": "T",
+     "TentCamp": "F",
+     "VisCentr": "T",
+     "WranCamp": "F"
+    }
+   ],
+   "service": "TwoTypes_ParkAmenities",
+   "typef": "Museum",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TwoTypes_ParkAmenities/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "MAX_TSP_UID"
+   ],
+   "known": false,
+   "layer": "StateParkBoundaries_Dissolved",
+   "sample": [
+    {
+     "MAX_TSP_UID": "TSP-0018",
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0019",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0020",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "Mobile_App_GeoFences_for_State_Parks_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Mobile_App_GeoFences_for_State_Parks_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "PRIMARY_NAME__LONG_",
+    "MAX_TSP_UID"
+   ],
+   "known": false,
+   "layer": "StateParkBoundBuffer2",
+   "sample": [
+    {
+     "MAX_TSP_UID": "TSP-0018",
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0019",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park"
+    },
+    {
+     "MAX_TSP_UID": "TSP-0020",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "Mobile_App_GeoFences_for_State_Parks_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Mobile_App_GeoFences_for_State_Parks_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "PARK_NAME",
+   "count": 62,
+   "fields": [
+    "TSP_UID",
+    "PRIMARY_NAME__LONG_",
+    "PARK_NAME",
+    "UID",
+    "PARK_NAME_1",
+    "TSP_UID_1",
+    "Park",
+    "Park_ID",
+    "FY_16",
+    "FY_17",
+    "FY_18",
+    "ParkID2"
+   ],
+   "known": false,
+   "layer": "ParkBoundarieswithVisitation",
+   "sample": [
+    {
+     "FY_16": "17489",
+     "FY_17": "14936",
+     "FY_18": "22557",
+     "PARK_NAME": "Big Cypress Tree State Park",
+     "PARK_NAME_1": "Big Cypress Tree State Park",
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park",
+     "Park": "Big Cypress Tree",
+     "ParkID2": "TSP-0314",
+     "Park_ID": "TSP-0314",
+     "TSP_UID": "TSP-0314",
+     "TSP_UID_1": "TSP-0314",
+     "UID": "TSP-0314"
+    },
+    {
+     "FY_16": "224775",
+     "FY_17": "199246",
+     "FY_18": "122748",
+     "PARK_NAME": "Big Hill Pond State Park",
+     "PARK_NAME_1": "Big Hill Pond State Park",
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park",
+     "Park": "Big Hill Pond",
+     "ParkID2": "TSP-0020",
+     "Park_ID": "TSP-0020",
+     "TSP_UID": "TSP-0020",
+     "TSP_UID_1": "TSP-0020",
+     "UID": "TSP-0020"
+    },
+    {
+     "FY_16": "1289431",
+     "FY_17": "1627061",
+     "FY_18": "1288397",
+     "PARK_NAME": "Big Ridge State Park",
+     "PARK_NAME_1": "Big Ridge State Park",
+     "PRIMARY_NAME__LONG_": "Big Ridge State Park",
+     "Park": "Big Ridge",
+     "ParkID2": "TSP-0022",
+     "Park_ID": "TSP-0022",
+     "TSP_UID": "TSP-0022",
+     "TSP_UID_1": "TSP-0022",
+     "UID": "TSP-0022"
+    }
+   ],
+   "service": "Park_Boundaries_with_Visitation",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Park_Boundaries_with_Visitation/FeatureServer/10"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "PRIMARY_NAME__LONG_"
+   ],
+   "known": false,
+   "layer": "Oct2023StateParksPrimary",
+   "sample": [
+    {
+     "PRIMARY_NAME__LONG_": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Cypress Tree State Park"
+    },
+    {
+     "PRIMARY_NAME__LONG_": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "State_Park_Boundaries_by_Primary_Name_Oct_2023",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/State_Park_Boundaries_by_Primary_Name_Oct_2023/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 56,
+   "fields": [
+    "PARK_NAME",
+    "AltName"
+   ],
+   "known": false,
+   "layer": "Dissolve_TN_State_Parks_Boundaries",
+   "sample": [
+    {
+     "AltName": "Bicentennial Capitol Mall SP",
+     "PARK_NAME": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "AltName": "Big Cypress Tree SP",
+     "PARK_NAME": "Big Cypress Tree State Park"
+    },
+    {
+     "AltName": "Big Hill Pond SP",
+     "PARK_NAME": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "Dissolve_TN_State_Parks_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Dissolve_TN_State_Parks_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 56,
+   "fields": [
+    "PARK_NAME"
+   ],
+   "known": false,
+   "layer": "ParkBoundsDissolve",
+   "sample": [
+    {
+     "PARK_NAME": "Bicentennial Capitol Mall State Park"
+    },
+    {
+     "PARK_NAME": "Big Cypress Tree State Park"
+    },
+    {
+     "PARK_NAME": "Big Hill Pond State Park"
+    }
+   ],
+   "service": "ParkBoundaries_dissolved",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/ParkBoundaries_dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "Darin Mitchell, GISP\nSenior GIS Analyst - Arkansas State Parks",
+   "area": "name",
+   "count": 53,
+   "fields": [
+    "park_num",
+    "boundary",
+    "name",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Arkansas State Parks",
+   "sample": [
+    {
+     "GlobalID": "{2431156F-7777-490B-BF99-429146314850}",
+     "boundary": "State Park",
+     "name": "Millwood State Park",
+     "park_num": "PT33"
+    },
+    {
+     "GlobalID": "{B1231B3E-E9D7-4AFF-8249-CB8629298CCA}",
+     "boundary": "State Park",
+     "name": "Lake Catherine State Park",
+     "park_num": "PT23"
+    },
+    {
+     "GlobalID": "{6C302F92-3F82-4593-BE9C-90E8F0074963}",
+     "boundary": "State Park",
+     "name": "Parkin Archeological State Park",
+     "park_num": "PT40"
+    }
+   ],
+   "service": "Arkansas_State_Parks",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Arkansas_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 52,
+   "fields": [
+    "PUBLIC_NAM",
+    "EXTENT",
+    "HYPERLINK",
+    "COUNTY",
+    "PARK_TYPE",
+    "ADDRESS",
+    "ZIP_CODE",
+    "PHONE_NUMB",
+    "PARK_NAME"
+   ],
+   "known": false,
+   "layer": "Kentucky_State_Park_Boundaries",
+   "sample": [
+    {
+     "ADDRESS": "3100 US Highway 41 North",
+     "COUNTY": "Henderson",
+     "EXTENT": "http://kygeonet.ky.gov/kyparks/viewer.htm?Box=4389404.1:3845313.39:4413642.38:3854129.43",
+     "HYPERLINK": "http://www.parks.ky.gov/findparks/recparks/au/",
+     "PARK_NAME": "John James Audubon",
+     "PARK_TYPE": "Recreation",
+     "PHONE_NUMB": "270-826-2247",
+     "PUBLIC_NAM": "John James Audubon",
+     "ZIP_CODE": "42419"
+    },
+    {
+     "ADDRESS": "Highway 68 E",
+     "COUNTY": "Todd/Lyon",
+     "EXTENT": "http://kygeonet.ky.gov/kyparks/viewer.htm?Box=4452086.82:3464700.36:4482789.94:3476262.86",
+     "HYPERLINK": "http://www.parks.ky.gov/findparks/histparks/jd/",
+     "PARK_NAME": "Jefferson Davis",
+     "PARK_TYPE": "Historic",
+     "PHONE_NUMB": "270-889-6100",
+     "PUBLIC_NAM": "Jefferson Davis",
+     "ZIP_CODE": "42221"
+    },
+    {
+     "ADDRESS": "94 Green Street",
+     "COUNTY": "Ballard",
+     "EXTENT": "http://kygeonet.ky.gov/kyparks/viewer.htm?Box=3936553.97:3526583.08:3952928.97:3532749.75",
+     "HYPERLINK": "http://www.parks.ky.gov/findparks/histparks/wm/",
+     "PARK_NAME": "Wickliffe Mounds",
+     "PARK_TYPE": "Historic",
+     "PHONE_NUMB": "270-335-3681",
+     "PUBLIC_NAM": "Wickliffe Mounds",
+     "ZIP_CODE": "42087"
+    }
+   ],
+   "service": "Kentucky_State_Park_Boundaries",
+   "typef": "PARK_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Kentucky_State_Park_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "<html><a href=\"https://www.tn.gov/\">Tennessee Department of Environment and Cons",
+   "area": "NaturalAreaName",
+   "count": 45,
+   "fields": [
+    "TRANS_NO",
+    "TRANS_STAT",
+    "TRANS_TYPE",
+    "PRIMARY_NAME__LONG_",
+    "TSP_UID",
+    "MANAGE_AGENCY",
+    "OWNERS_AGENCY",
+    "ACCESS_",
+    "BNDRY_ORIG",
+    "CREATOR",
+    "EDITOR",
+    "INCLUDE_BOUND",
+    "SECONDARY_NAME__LONG_",
+    "Notes",
+    "USE_TYPE",
+    "PRIMARY_DESIGNATION",
+    "SECONDARY_DESIGNATION",
+    "NaturalAreaName",
+    "Archival",
+    "NeedFollowup"
+   ],
+   "known": false,
+   "layer": "June2023NonStateParkNaturalAreas",
+   "sample": [
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Unknown",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "TDEC-DNA",
+     "OWNERS_AGENCY": "TDEC",
+     "PRIMARY_NAME__LONG_": "Hampton Creek Cove State Natural Area",
+     "TRANS_NO": "85-06-013",
+     "TRANS_STAT": "Closed",
+     "TRANS_TYPE": "Acquisition",
+     "TSP_UID": "TSP-0121"
+    },
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Unknown",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "Tennessee State Parks",
+     "OWNERS_AGENCY": "TDEC",
+     "PRIMARY_NAME__LONG_": "House Mountain State Natural Area",
+     "TRANS_NO": "90-10-012",
+     "TRANS_STAT": "Closed",
+     "TSP_UID": "TSP-0143"
+    },
+    {
+     "ACCESS_": "Public",
+     "BNDRY_ORIG": "Unknown",
+     "EDITOR": "TDEC_GIS_TSP",
+     "INCLUDE_BOUND": "Add",
+     "MANAGE_AGENCY": "Tennessee State Parks",
+     "OWNERS_AGENCY": "TDEC",
+     "PRIMARY_NAME__LONG_": "Hicks Gap State Natural Area",
+     "TRANS_STAT": "Closed",
+     "TSP_UID": "TSP-0212"
+    }
+   ],
+   "service": "Non_State_Park_Natural_Areas_June_2023",
+   "typef": "TRANS_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Non_State_Park_Natural_Areas_June_2023/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 45,
+   "fields": [
+    "DESCRIPTIO",
+    "STATE_FORE",
+    "Collected_",
+    "Hyper_Link",
+    "Number_ID"
+   ],
+   "known": false,
+   "layer": "StateForests",
+   "sample": [
+    {
+     "Collected_": "Survey File",
+     "DESCRIPTIO": "State Forest",
+     "Hyper_Link": "http://www.state.tn.us/agriculture/forestry/stateforest01.shtml",
+     "Number_ID": " ",
+     "STATE_FORE": "CHICKASAW"
+    },
+    {
+     "Collected_": "Survey File",
+     "DESCRIPTIO": "State Forest",
+     "Hyper_Link": "http://www.state.tn.us/agriculture/forestry/stateforest01.shtml",
+     "Number_ID": " ",
+     "STATE_FORE": "CHICKASAW"
+    },
+    {
+     "Collected_": "Survey File",
+     "DESCRIPTIO": "State Forest",
+     "Hyper_Link": "http://www.state.tn.us/agriculture/forestry/stateforest01.shtml",
+     "Number_ID": " ",
+     "STATE_FORE": "CHICKASAW"
+    }
+   ],
+   "service": "StateForests",
+   "typef": "DESCRIPTIO",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/StateForests/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "senate_district",
+    "source"
+   ],
+   "known": false,
+   "layer": "Senate District Forested Area",
+   "sample": [
+    {
+     "senate_district": "1",
+     "source": "NLCD"
+    },
+    {
+     "senate_district": "2",
+     "source": "NLCD"
+    },
+    {
+     "senate_district": "3",
+     "source": "NLCD"
+    }
+   ],
+   "service": "Tennessee_Forested_Area_Coverage",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forested_Area_Coverage/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "forest_legacy_area",
+   "count": 31,
+   "fields": [
+    "projectname",
+    "shortname",
+    "tractname",
+    "stateabbr",
+    "state",
+    "regionabbr",
+    "region",
+    "location",
+    "forest_legacy_area",
+    "manager",
+    "purchasetype",
+    "sellertype",
+    "displaystatus",
+    "iscostshare",
+    "interestowner",
+    "federaldesignation",
+    "federaldesignationacronym",
+    "federalareaname",
+    "publicaccesstype",
+    "publicaccessnote"
+   ],
+   "known": false,
+   "layer": "FLP Tracts",
+   "sample": [
+    {
+     "forest_legacy_area": "Wolf River",
+     "location": "Pattersonville",
+     "manager": " ",
+     "projectname": "TN Small Projects",
+     "purchasetype": "Conservation Easement",
+     "region": "Southern Region",
+     "regionabbr": "R-8",
+     "sellertype": "Noncorporate - Individual and Joint",
+     "shortname": "TN Small Projects",
+     "state": "Tennessee",
+     "stateabbr": "TN",
+     "tractname": "McNeill"
+    },
+    {
+     "forest_legacy_area": " ",
+     "location": "Wartburg",
+     "manager": " ",
+     "projectname": "North Cumberland Conservation Area",
+     "purchasetype": "Full Fee Purchase",
+     "region": "Southern Region",
+     "regionabbr": "R-8",
+     "sellertype": "Corporate - Other",
+     "shortname": "North Cumberland",
+     "state": "Tennessee",
+     "stateabbr": "TN",
+     "tractname": "Fiery Gizzard Match Tract"
+    },
+    {
+     "forest_legacy_area": "Lower Hatchie River",
+     "location": "Fayette County",
+     "manager": "TDF / TWRA",
+     "projectname": "Anderson Tully I",
+     "purchasetype": "Full Fee Purchase",
+     "region": "Southern Region",
+     "regionabbr": "R-8",
+     "sellertype": "Corporate - Forest Industry",
+     "shortname": "Anderson Tully I",
+     "state": "Tennessee",
+     "stateabbr": "TN",
+     "tractname": "Anderson Tully"
+    }
+   ],
+   "service": "Tennessee_Forest_Legacy_Program_Tracts_-_Public_View",
+   "typef": "purchasetype",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forest_Legacy_Program_Tracts_-_Public_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 29,
+   "fields": [
+    "COA",
+    "Label",
+    "Sort"
+   ],
+   "known": false,
+   "layer": "TN_SWAP15_Conservation_Opportunity_Areas",
+   "sample": [
+    {
+     "COA": "South Fork of the Forked Deer River",
+     "Label": "SOUTH FORK\r\nOF THE FORKED\r\nDEER RIVER",
+     "Sort": "R1 - South Fork of the Forked Deer River"
+    },
+    {
+     "COA": "Obion River",
+     "Label": "OBION\r\nRIVER",
+     "Sort": "R1 - Obion River"
+    },
+    {
+     "COA": "Middle Fork of the Forked Deer River",
+     "Label": "MIDDLE FORK\r\nOF THE FORKED\r\nDEER RIVER",
+     "Sort": "R1 - Middle Fork of the Forked Deer River"
+    }
+   ],
+   "service": "TN_SWAP15_Conservation_Opportunity_Areas",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TN_SWAP15_Conservation_Opportunity_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 29,
+   "fields": [
+    "COA",
+    "Label",
+    "Sort"
+   ],
+   "known": false,
+   "layer": "TN_SWAP15_Conservation_Opportunity_Areas_(1)",
+   "sample": [
+    {
+     "COA": "South Fork of the Forked Deer River",
+     "Label": "SOUTH FORK\r\nOF THE FORKED\r\nDEER RIVER",
+     "Sort": "R1 - South Fork of the Forked Deer River"
+    },
+    {
+     "COA": "Obion River",
+     "Label": "OBION\r\nRIVER",
+     "Sort": "R1 - Obion River"
+    },
+    {
+     "COA": "Middle Fork of the Forked Deer River",
+     "Label": "MIDDLE FORK\r\nOF THE FORKED\r\nDEER RIVER",
+     "Sort": "R1 - Middle Fork of the Forked Deer River"
+    }
+   ],
+   "service": "TN_SWAP15_Conservation_Opportunity_Areas_(1)",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TN_SWAP15_Conservation_Opportunity_Areas_(1)/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "StateForestForesterName",
+    "SFFEmail",
+    "SFFPhone",
+    "SFSName",
+    "SFSEmail",
+    "SFSPhone",
+    "SFTName",
+    "SFTEmail",
+    "SFTPhone",
+    "StateForestName",
+    "AbbrCode"
+   ],
+   "known": false,
+   "layer": "State Forest Staff",
+   "sample": [
+    {
+     "AbbrCode": "SSSF",
+     "SFSName": "Vacant",
+     "SFTName": "Vacant",
+     "StateForestForesterName": "Vacant",
+     "StateForestName": "Standing Stone State Forest"
+    },
+    {
+     "AbbrCode": "ScSF",
+     "SFFEmail": "Matthew.Aldrovandi@tn.gov",
+     "SFFPhone": "423-566-3715",
+     "SFSName": "Vacant",
+     "SFTName": "Vacant",
+     "StateForestForesterName": "Matt Aldrovandi",
+     "StateForestName": "Scott State Forest"
+    },
+    {
+     "AbbrCode": "PSF",
+     "SFSName": "Vacant",
+     "SFTName": "Vacant",
+     "StateForestForesterName": "Vacant",
+     "StateForestName": "Pickett State Forest"
+    }
+   ],
+   "service": "Staff_Directory_Tennessee_Department_of_Agriculture",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Staff_Directory_Tennessee_Department_of_Agriculture/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "Waterbody",
+    "States",
+    "Reciprocal_Agreement"
+   ],
+   "known": false,
+   "layer": "Reciprocal",
+   "sample": [
+    {
+     "Reciprocal_Agreement": "Pickwick Lake: Applies to anyone with a valid\r\nSport Fishing License from Tennessee, Alabama\r\nor Mississippi. Resident anglers of the three (3)\r\nstates may fish without purchasing a nonresident\r\nlicense anywhere within the boundaries covered\r\nby the agreement. The reciprocal area includes all\r\nimpounded water from Pickwick Dam upstream to\r\nTennessee River Mile 224.8 at the mouth of Bear\r\nCreek but does not include Bear Creek and does\r\nnot include that portion of Yellow Creek south of\r\nHwy. 25 Bridge. Sport fishing license holders shall\r\nabide by the regulations of the state in whose\r\nwaters they are fishing. ",
+     "States": "Alabama, Mississippi",
+     "Waterbody": "Pickwick Lake"
+    },
+    {
+     "Reciprocal_Agreement": "This state agrees to honor either license on the\r\nflowing waters of the Mississippi River, adjacent\r\nsloughs, bayous, and old river runs, which are accessible by boat from the river proper, and the\r\nold river chutes forming a common boundary,\r\nexcluding all wildlife management areas established by either state and the Wolf, Loosahatchie,\r\nHatchie, Forked Deer, and Obion rivers. The following common regulations apply:\r\n• Black Bass: creel limit 10, no length limit.\r\n• Sunfish: creel limit 50, no length limit.\r\n• Crappie: creel limit 50, no length limit.\r\n• Striped Bass and Hybrid Striped Bass: creel\r\nlimit 6, no length limit.\r\n• Sauger: creel limit 6, no length limit.\r\nAll anglers must follow Arkansas regulations\r\ngoverning creel and size limits, trotlines, and\r\nother equipment requirements on Ikes Chute,\r\nHopefield Chute, Mosquito Lake, Mound City\r\nLake, Island 40 Chute and Lake Neark.",
+     "States": "Arkansas",
+     "Waterbody": "Mississippi River"
+    },
+    {
+     "Reciprocal_Agreement": "This state agrees to honor either license on the\r\nflowing waters of the Mississippi River, adjacent\r\nsloughs, bayous, and old river runs, which are accessible by boat from the river proper, and the\r\nold river chutes forming a common boundary,\r\nexcluding all wildlife management areas established by either state and the Wolf, Loosahatchie,\r\nHatchie, Forked Deer, and Obion rivers. The following common regulations apply:\r\n• Black Bass: creel limit 10, no length limit.\r\n• Sunfish: creel limit 50, no length limit.\r\n• Crappie: creel limit 50, no length limit.\r\n• Striped Bass and Hybrid Striped Bass: creel\r\nlimit 6, no length limit.\r\n• Sauger: creel limit 6, no length limit.\r\nAll anglers must follow Arkansas regulations\r\ngoverning creel and size limits, trotlines, and\r\nother equipment requirements on Ikes Chute,\r\nHopefield Chute, Mosquito Lake, Mound City\r\nLake, Island 40 Chute and Lake Neark.",
+     "States": "Arkansas",
+     "Waterbody": "Ikes Chute"
+    }
+   ],
+   "service": "TWRA_Reciprocal_Fishing_Agreement_Areas",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/TWRA_Reciprocal_Fishing_Agreement_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "MARKETAREA",
+   "count": 12,
+   "fields": [
+    "Priority",
+    "GISLINK",
+    "Label",
+    "GISLINK2",
+    "LAST_UPDATE",
+    "PARCELID",
+    "FILE_TYPE",
+    "CONUM",
+    "CMAP",
+    "GP",
+    "PARCEL",
+    "PI",
+    "SI",
+    "MAP",
+    "TAXYR",
+    "ADDRESS",
+    "CLASS",
+    "CITY",
+    "SSD1",
+    "SSD2"
+   ],
+   "known": false,
+   "layer": "Properties of Interest",
+   "sample": [
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  077",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "Label": "8230 Seven Islands Rd.",
+     "PARCEL": "77",
+     "PARCELID": "113  077",
+     "PI": " ",
+     "Priority": "A"
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  074",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "Label": "8208 Seven Islands Rd.",
+     "PARCEL": "74",
+     "PARCELID": "113  074",
+     "PI": " ",
+     "Priority": "A"
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  073",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "Label": "8200 Seven Islands Rd.",
+     "PARCEL": "73",
+     "PARCELID": "113  073",
+     "PI": " ",
+     "Priority": "A"
+    }
+   ],
+   "service": "Seven_Islands_SLAC_WFL1",
+   "typef": "FILE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Seven_Islands_SLAC_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "MARKETAREA",
+   "count": 11,
+   "fields": [
+    "GISLINK",
+    "GISLINK2",
+    "LAST_UPDATE",
+    "PARCELID",
+    "FILE_TYPE",
+    "CONUM",
+    "CMAP",
+    "GP",
+    "PARCEL",
+    "PI",
+    "SI",
+    "MAP",
+    "TAXYR",
+    "ADDRESS",
+    "CLASS",
+    "CITY",
+    "SSD1",
+    "SSD2",
+    "DISTRICT",
+    "MARKETAREA"
+   ],
+   "known": false,
+   "layer": "SevenIslandsSlacProperties",
+   "sample": [
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  077",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "MAP": " ",
+     "PARCEL": "77",
+     "PARCELID": "113  077",
+     "PI": " ",
+     "SI": " "
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  074",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "MAP": " ",
+     "PARCEL": "74",
+     "PARCELID": "113  074",
+     "PI": " ",
+     "SI": " "
+    },
+    {
+     "CMAP": "113",
+     "CONUM": "047",
+     "FILE_TYPE": "0",
+     "GISLINK": "113  073",
+     "GISLINK2": " ",
+     "GP": " ",
+     "LAST_UPDATE": " ",
+     "MAP": " ",
+     "PARCEL": "73",
+     "PARCELID": "113  073",
+     "PI": " ",
+     "SI": " "
+    }
+   ],
+   "service": "Seven_Islands_Slac_Properties",
+   "typef": "FILE_TYPE",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Seven_Islands_Slac_Properties/FeatureServer/7"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "congressional_district",
+    "source"
+   ],
+   "known": false,
+   "layer": "Congressional District Forested Area",
+   "sample": [
+    {
+     "congressional_district": "1",
+     "source": "NLCD"
+    },
+    {
+     "congressional_district": "2",
+     "source": "NLCD"
+    },
+    {
+     "congressional_district": "3",
+     "source": "NLCD"
+    }
+   ],
+   "service": "Tennessee_Forested_Area_Coverage",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forested_Area_Coverage/FeatureServer/4"
+  },
+  {
+   "agency": "Lynn Barrett",
+   "area": "NAME",
+   "count": 6,
+   "fields": [
+    "NAME",
+    "Name2"
+   ],
+   "known": false,
+   "layer": "Bear Reserves",
+   "sample": [
+    {
+     "NAME": "KETTLEFOOT RESERVE",
+     "Name2": "Kettlefoot Bear Reserve"
+    },
+    {
+     "NAME": "LAUREL FORK BEAR RES",
+     "Name2": "Laurel Fork Bear Reserve"
+    },
+    {
+     "NAME": "UNICOI BEAR RESERVE",
+     "Name2": "Unicoi Bear Reserve"
+    }
+   ],
+   "service": "BearReserves",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/BearReserves/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Wildlife Resources Agency - GIS Lab",
+   "area": "NAME",
+   "count": 5,
+   "fields": [
+    "NAME",
+    "MANAGEMENT",
+    "CONAME",
+    "HUNT",
+    "Other",
+    "Name2",
+    "Safety",
+    "Name3",
+    "Label",
+    "PageCode",
+    "Category"
+   ],
+   "known": false,
+   "layer": "PrivateProperty",
+   "sample": [
+    {
+     "CONAME": "CUMBERLAND/MORGAN",
+     "Category": "Private Property - NO HUNTING",
+     "HUNT": "N",
+     "Label": "Private Property",
+     "MANAGEMENT": "TWRA",
+     "NAME": "Catoosa WMA",
+     "Name2": " ",
+     "Name3": " ",
+     "Other": "Private",
+     "PageCode": " ",
+     "Safety": "P"
+    },
+    {
+     "CONAME": "MARION",
+     "Category": "Private Property - NO HUNTING",
+     "HUNT": "N",
+     "Label": "Private Property",
+     "MANAGEMENT": "TWRA",
+     "NAME": "Prentice Cooper WMA",
+     "Name2": " ",
+     "Name3": " ",
+     "Other": "Private",
+     "PageCode": " ",
+     "Safety": "P"
+    },
+    {
+     "CONAME": "DAVIDSON/RUTHERFORD/WILSON",
+     "Category": "Private Property - NO HUNTING",
+     "HUNT": "N",
+     "Label": "Private Property",
+     "MANAGEMENT": "TWRA",
+     "NAME": "Percy Priest WMA",
+     "Name2": "Unit 2",
+     "Name3": " ",
+     "Other": "WMA",
+     "PageCode": " ",
+     "Safety": "P"
+    }
+   ],
+   "service": "PrivateLands",
+   "typef": "Category",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/PrivateLands/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "District",
+    "source"
+   ],
+   "known": false,
+   "layer": "TDF District Forested Area",
+   "sample": [
+    {
+     "District": "West Tennessee",
+     "source": "NLCD"
+    },
+    {
+     "District": "Highland Rim",
+     "source": "NLCD"
+    },
+    {
+     "District": "Cumberland",
+     "source": "NLCD"
+    }
+   ],
+   "service": "Tennessee_Forested_Area_Coverage",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_Forested_Area_Coverage/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "WMA_Name",
+   "count": 2,
+   "fields": [
+    "WMA_ID",
+    "WMA_Name"
+   ],
+   "known": false,
+   "layer": "WMA Boundary",
+   "sample": [
+    {
+     "WMA_ID": "31AA",
+     "WMA_Name": "Catoosa WMA"
+    },
+    {
+     "WMA_ID": "31AF",
+     "WMA_Name": "Mount Roosevelt WMA"
+    }
+   ],
+   "service": "C___L_Timber_Sales_WFL1",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/C___L_Timber_Sales_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "State"
+   ],
+   "known": false,
+   "layer": "TN_AgriForestry_Econ_Impact",
+   "sample": [
+    {
+     "State": "Tennessee"
+    }
+   ],
+   "service": "TN_Forestry_Economic_Impact_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/TN_Forestry_Economic_Impact_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "RCW_BirdLife_historical_TN",
+   "sample": [
+    {
+     "Acres": 6376011.562532286,
+     "Hectares": 2580290.655265344,
+     "OBJECTID": 1,
+     "Shape__Area": 277757782962.9854,
+     "Shape__Length": 2934505.4802502706,
+     "SqKM": 25802.90655265344,
+     "Sqmil": 9962.518066456696
+    }
+   ],
+   "service": "RCW_BirdLife_historical_TN_view",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/RCW_BirdLife_historical_TN_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "RCW_BirdLife_historical",
+   "sample": [
+    {
+     "Acres": 224448536.4465593,
+     "Hectares": 90831463.44719437,
+     "OBJECTID": 1,
+     "Shape__Area": 9821442259285.086,
+     "Shape__Length": 52669129.038212344,
+     "SqKM": 908314.6344719436,
+     "Sqmil": 350700.8381977489
+    }
+   ],
+   "service": "RCW_BirdLife_historical_view",
+   "typef": "",
+   "url": "https://services3.arcgis.com/PWXNAH2YKmZY7lBq/arcgis/rest/services/RCW_BirdLife_historical_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 45"
+    }
+   ],
+   "service": "45_mins_ExistingStateParksAndUSFSandNPSCleaned",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/45_mins_ExistingStateParksAndUSFSandNPSCleaned/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 45"
+    }
+   ],
+   "service": "45_Mins_State_Parks_Dissolved",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/45_Mins_State_Parks_Dissolved/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "STATE_FORE",
+    "Label"
+   ],
+   "known": false,
+   "layer": "State Forest WMA",
+   "sample": [
+    {
+     "Label": "Natchez Trace State Forest & Wildlife Management Area",
+     "STATE_FORE": "NATCHEZ TRACE"
+    }
+   ],
+   "service": "Natchez_State_Forest_WMA",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Natchez_State_Forest_WMA/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "PropertyName",
+   "count": 1,
+   "fields": [
+    "PropertyID",
+    "PropertyName",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Property",
+   "sample": [
+    {}
+   ],
+   "service": "Seven_Islands_Habitat_Management_Units_test",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Seven_Islands_Habitat_Management_Units_test/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Notes",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Polygon",
+   "sample": [
+    {
+     "created_user": "Leah.Fuller_TSP",
+     "last_edited_user": "Leah.Fuller_TSP"
+    }
+   ],
+   "service": "TennesseeParksandRecreation_WFL1",
+   "typef": "created_user",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TennesseeParksandRecreation_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Notes",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Polygon",
+   "sample": [
+    {
+     "created_user": "Leah.Fuller_TSP",
+     "last_edited_user": "Leah.Fuller_TSP"
+    }
+   ],
+   "service": "TN_ParksRec",
+   "typef": "created_user",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_ParksRec/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 60"
+    }
+   ],
+   "service": "Travel_from_TN_State_Parks_Points_(60_Minutes)",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Travel_from_TN_State_Parks_Points_(60_Minutes)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Field"
+   ],
+   "known": false,
+   "layer": "Property Boundary",
+   "sample": [
+    {
+     "Field": " "
+    }
+   ],
+   "service": "331972_Mark_IV",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/331972_Mark_IV/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Property Boundary",
+   "sample": [
+    {
+     "Name": " "
+    }
+   ],
+   "service": "332185_Residue_Hill",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/332185_Residue_Hill/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 1,
+   "fields": [
+    "TSP_UID",
+    "PARK_NAME",
+    "SATELLITE",
+    "DESIG_1",
+    "DESIG_2"
+   ],
+   "known": false,
+   "layer": "Cummins Falls State Park",
+   "sample": [
+    {
+     "DESIG_1": "State Park",
+     "PARK_NAME": "Cummins Falls State Park",
+     "TSP_UID": "TSP-0078"
+    }
+   ],
+   "service": "Cummins_Falls_Watershed",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Cummins_Falls_Watershed/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 66,
+   "fields": [
+    "TSP_UID",
+    "PARK_NAME",
+    "SATELLITE",
+    "DESIG_1",
+    "DESIG_2",
+    "PM_EMAIL",
+    "PM_PHONE",
+    "PM_FIRST_NAME",
+    "PM_LAST_NAME",
+    "AM_FIRST_NAME",
+    "AM_LAST_NAME",
+    "PM_EMAIL_1"
+   ],
+   "known": true,
+   "layer": "TN State Parks Boundaries",
+   "sample": [
+    {
+     "PARK_NAME": "Chickasaw State Park",
+     "TSP_UID": "TSP-0055"
+    },
+    {
+     "PARK_NAME": "Cordell Hull Birthplace State Park",
+     "TSP_UID": "TSP-0065"
+    },
+    {
+     "PARK_NAME": "Cove Lake State Park",
+     "TSP_UID": "TSP-0066"
+    }
+   ],
+   "service": "TN_State_Parks_Boundaries",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_State_Parks_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 55,
+   "fields": [
+    "NAME",
+    "Ext_Funds"
+   ],
+   "known": true,
+   "layer": "South Carolina State Parks",
+   "sample": [
+    {
+     "Ext_Funds": "Partial",
+     "NAME": "Aiken State Park"
+    },
+    {
+     "Ext_Funds": " ",
+     "NAME": "Andrew Jackson State Park"
+    },
+    {
+     "Ext_Funds": "Comprehensive",
+     "NAME": "Baker Creek State Park"
+    }
+   ],
+   "service": "South_Carolina_State_Parks",
+   "typef": "",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/South_Carolina_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "Tennessee Department of Agriculture, Division of Forestry",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "StateForestName",
+    "AbbrCode",
+    "County",
+    "District",
+    "YearEst",
+    "Notes",
+    "CollectionMethod",
+    "Hyperlink"
+   ],
+   "known": true,
+   "layer": "Tennessee State Forest Boundaries",
+   "sample": [
+    {
+     "AbbrCode": "SSSF",
+     "CollectionMethod": "Topographic map",
+     "County": "Overton, Clay",
+     "District": "Cumberland",
+     "Hyperlink": "https://www.tn.gov/agriculture/forests/state-forests/standing-stone.html",
+     "Notes": "Hunting has been a traditional use of the forest. Other recreational uses include hiking and horseback riding.",
+     "StateForestName": "Standing Stone State Forest",
+     "YearEst": "1961"
+    },
+    {
+     "AbbrCode": "ScSF",
+     "CollectionMethod": "Topographic map",
+     "County": "Scott, Fentress",
+     "District": "East, Cumberland",
+     "Hyperlink": "https://www.tn.gov/agriculture/forests/state-forests/scott.html",
+     "Notes": "There are no interior holdings, cemeteries, or natural areas. Recreational activities including hunting, hiking, and horseback riding are popular in this forest.",
+     "StateForestName": "Scott State Forest",
+     "YearEst": "1938"
+    },
+    {
+     "AbbrCode": "PSF",
+     "CollectionMethod": "Unknown",
+     "County": "Pickett, Fentress",
+     "District": "Cumberland",
+     "Hyperlink": "https://www.tn.gov/agriculture/forests/state-forests/pickett.html",
+     "Notes": "An updated Recreation Use map shows a total of 14.5 miles of hiking trails designated for foot traffic only, 18.2 miles of non-motorized use on unpaved roads (hiking, biking, horseback riding), and 34.7 miles of motorized use paved and unpaved roads.",
+     "StateForestName": "Pickett State Forest",
+     "YearEst": "1935"
+    }
+   ],
+   "service": "Tennessee_State_Forest_Boundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/lvPBAGXeSupVUvx2/arcgis/rest/services/Tennessee_State_Forest_Boundaries/FeatureServer/0"
+  }
+ ],
+ "st": "TN"
+}

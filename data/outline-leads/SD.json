@@ -1,0 +1,76 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 882,
+   "fields": [
+    "ClassificationCode",
+    "AreaName",
+    "Division",
+    "Centroid"
+   ],
+   "known": true,
+   "layer": "GFP Managed Lands",
+   "sample": [
+    {
+     "AreaName": "Fish Lake",
+     "ClassificationCode": "G",
+     "Division": "Wildlife"
+    },
+    {
+     "AreaName": "Hanson Lake",
+     "ClassificationCode": "G",
+     "Division": "Wildlife"
+    },
+    {
+     "AreaName": "Humphries Slough",
+     "ClassificationCode": "G",
+     "Division": "Wildlife"
+    }
+   ],
+   "service": "OpenData/SouthDakota_GFPManagedLands",
+   "typef": "ClassificationCode",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/0a01764b6c3b4d13b9af23df1610214b/rest/services/OpenData/SouthDakota_GFPManagedLands/FeatureServer/0"
+  },
+  {
+   "agency": "SD GFP",
+   "area": "AreaName",
+   "count": 133,
+   "fields": [
+    "ClassificationCode",
+    "AreaName",
+    "CreatedBy",
+    "ModifiedBy",
+    "Centroid"
+   ],
+   "known": true,
+   "layer": "Parks and Recreation Areas",
+   "sample": [
+    {
+     "AreaName": "Wall Lake",
+     "ClassificationCode": "LUA",
+     "CreatedBy": " ",
+     "ModifiedBy": "GF116_ADMIN"
+    },
+    {
+     "AreaName": "Fisher Grove",
+     "ClassificationCode": "SP",
+     "CreatedBy": " ",
+     "ModifiedBy": "GF116_ADMIN"
+    },
+    {
+     "AreaName": "Hugh Glass",
+     "ClassificationCode": "LUA",
+     "CreatedBy": " ",
+     "ModifiedBy": "GF116_ADMIN"
+    }
+   ],
+   "service": "OpenData/SouthDakota_ParksAndRecreationAreas",
+   "typef": "ClassificationCode",
+   "url": "https://utility.arcgis.com/usrsvcs/servers/4787d99dcb1f4728b33f89a9eb9ae03e/rest/services/OpenData/SouthDakota_ParksAndRecreationAreas/FeatureServer/0"
+  }
+ ],
+ "st": "SD"
+}

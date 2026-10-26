@@ -1,0 +1,1672 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 459,
+   "fields": [
+    "Name",
+    "Method",
+    "Ownership",
+    "Waterbody",
+    "County1",
+    "County2",
+    "TractName",
+    "Comment",
+    "TaxParId",
+    "DeedID",
+    "TaxMapID",
+    "BoundaryMarked"
+   ],
+   "known": false,
+   "layer": "PASPropertyBoundaries",
+   "sample": [
+    {
+     "BoundaryMarked": "Yes",
+     "County1": "Hampshire",
+     "Method": "GPS",
+     "Name": "Rt 127 Bridge",
+     "Ownership": "WVDNR",
+     "Waterbody": "Cacapon River"
+    },
+    {
+     "BoundaryMarked": "Yes",
+     "County1": "Hampshire",
+     "Method": "GPS",
+     "Name": "Capon Bridge",
+     "Ownership": "WVDNR",
+     "TaxMapID": "4",
+     "TaxParId": "13",
+     "TractName": "CACAPON AND LOST RIVERS LAND TRUST, INC.",
+     "Waterbody": "Cacapon River"
+    },
+    {
+     "BoundaryMarked": "Yes",
+     "County1": "Hampshire",
+     "DeedID": "2077-01",
+     "Method": "GPS",
+     "Name": "Yellow Spring North",
+     "Ownership": "WVDNR",
+     "TaxMapID": "28",
+     "TaxParId": "19.2",
+     "TractName": "DAVID EUGENE HAINES",
+     "Waterbody": "Cacapon River"
+    }
+   ],
+   "service": "PASPropertyBoundaries",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/PASPropertyBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 130,
+   "fields": [
+    "LakeName",
+    "County_1",
+    "County_2",
+    "StockCode",
+    "SpecialRegCodes",
+    "Owner",
+    "Bath_Status",
+    "Boating",
+    "Camping",
+    "NightFishing",
+    "HighResURL",
+    "AvenzaURL"
+   ],
+   "known": false,
+   "layer": "Public Fishing Lakes",
+   "sample": [
+    {
+     "Bath_Status": "No Depth Data",
+     "Boating": "NV",
+     "Camping": "0",
+     "County_1": "McDowell",
+     "LakeName": "Anawalt Lake",
+     "NightFishing": "1",
+     "Owner": "WV Division of Natural Resources",
+     "SpecialRegCodes": "4",
+     "StockCode": "M"
+    },
+    {
+     "AvenzaURL": "https://store.avenza.com/products/anderson-lake-fishing-guide-wv-division-of-natural-resources-map",
+     "Bath_Status": "DNR (2023)",
+     "Boating": "NV",
+     "Camping": "0",
+     "County_1": "Kanawha",
+     "HighResURL": "https://drive.google.com/file/d/1CCNRpq0sW5ysddQtM5On9LS_4Z-uF_7s/view?usp=drive_link",
+     "LakeName": "Anderson Lake",
+     "NightFishing": "1",
+     "Owner": "Natural Resources Conservation Service",
+     "SpecialRegCodes": "4",
+     "StockCode": "NS"
+    },
+    {
+     "Bath_Status": "No Depth Data",
+     "Boating": "NV",
+     "Camping": "0",
+     "County_1": "Ohio",
+     "LakeName": "Baker Lake",
+     "NightFishing": "1",
+     "Owner": "WV Division of Natural Resources",
+     "SpecialRegCodes": "4, 12",
+     "StockCode": "NS"
+    }
+   ],
+   "service": "West_Virginia_Public_Fishing_Lakes",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Public_Fishing_Lakes/FeatureServer/29"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 120,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAI",
+    "Access",
+    "Access_Src",
+    "GAP_Sts",
+    "GAPCdSrc"
+   ],
+   "known": false,
+   "layer": "Wildlife_Management_Areas",
+   "sample": [
+    {
+     "Category": "Fee",
+     "Des_Tp": "SCA",
+     "Loc_Ds": "SCA",
+     "Loc_Mang": "WVDNR",
+     "Loc_Nm": "Cove Creek Wildlife Management Area",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Mang_Name": "SDNR",
+     "Mang_Type": "STAT",
+     "Own_Name": "SDNR",
+     "Own_Type": "STAT",
+     "State_Nm": "West Virginia",
+     "Unit_Nm": "Cove Creek Wildlife Management Area"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NF",
+     "Loc_Ds": "SCA",
+     "Loc_Mang": "WVDNR",
+     "Loc_Nm": "Cranberry Wildlife Management Area",
+     "Loc_Own": "U.S. Forest Service",
+     "Mang_Name": "SDNR",
+     "Mang_Type": "STAT",
+     "Own_Name": "USFS",
+     "Own_Type": "FED",
+     "State_Nm": "West Virginia",
+     "Unit_Nm": "Cranberry Wildlife Management Area"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NF",
+     "Loc_Ds": "SCA",
+     "Loc_Mang": "WVDNR",
+     "Loc_Nm": "Potomac Wildlife Management Area",
+     "Loc_Own": "U.S. Forest Service",
+     "Mang_Name": "SDNR",
+     "Mang_Type": "STAT",
+     "Own_Name": "USFS",
+     "Own_Type": "FED",
+     "State_Nm": "West Virginia",
+     "Unit_Nm": "Potomac Wildlife Management Area"
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "Category",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 112,
+   "fields": [
+    "Method",
+    "Accuracy",
+    "DNRName",
+    "ManagedAs",
+    "AreaType",
+    "Contact",
+    "Address1",
+    "City",
+    "State",
+    "Telephone",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Ownership_1",
+    "ManagedBy",
+    "HighResMapURL",
+    "LowResMapURL",
+    "AvenzaMapURL"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "Accuracy": "High",
+     "Address1": "2006 Robert C. Byrd Dr.",
+     "AreaType": "WMA",
+     "City": "Beckley",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County1": "Fayette",
+     "County2": "-999",
+     "DNRName": "Plum Orchard Lake Wildlife Management Area",
+     "ManagedAs": "WMA",
+     "Method": "GPS",
+     "State": "WV",
+     "Telephone": "(304) 256-6947"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "2311 Ohio Ave.",
+     "AreaType": "WMA",
+     "City": "Parkersburg",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County1": "Jackson",
+     "County2": "-999",
+     "DNRName": "Woodrum Lake Wildlife Management Area",
+     "ManagedAs": "WMA",
+     "Method": "GPS",
+     "State": "WV",
+     "Telephone": "(304) 420-4550"
+    },
+    {
+     "Accuracy": "High",
+     "Address1": "2311 Ohio Ave.",
+     "AreaType": "WMA",
+     "City": "Parkersburg",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County1": "Tyler",
+     "County2": "-999",
+     "DNRName": "Buffalo Run Wildlife Management Area",
+     "ManagedAs": "WMA",
+     "Method": "GPS",
+     "State": "WV",
+     "Telephone": "(304) 420-4550"
+    }
+   ],
+   "service": "WV_Public_Lands",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WV_Public_Lands/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 111,
+   "fields": [
+    "Name",
+    "AreaType",
+    "County_1",
+    "County_2",
+    "County_3",
+    "County_4",
+    "Owner",
+    "Manager",
+    "Method",
+    "Accuracy",
+    "Contact",
+    "Address",
+    "City",
+    "State",
+    "Telephone",
+    "Terrain",
+    "FishingOpportunities",
+    "GameFish",
+    "MapURL",
+    "AvenzaMapURL"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "Accuracy": "High",
+     "Address": "2006 Robert C. Byrd Dr.",
+     "AreaType": "WMA",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County_1": "Fayette",
+     "Manager": "WV Division of Natural Resources, Wildlife Resources Section",
+     "Method": "GPS",
+     "Name": "Plum Orchard Lake Wildlife Management Area",
+     "Owner": "WVDNR"
+    },
+    {
+     "Accuracy": "High",
+     "Address": "76 Conservation Way",
+     "AreaType": "WMA",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County_1": "Jackson",
+     "Manager": "WV Division of Natural Resources, Wildlife Resources Section",
+     "Method": "GPS",
+     "Name": "Woodrum Lake Wildlife Management Area",
+     "Owner": "WVDNR"
+    },
+    {
+     "Accuracy": "High",
+     "Address": "76 Conservation Way",
+     "AreaType": "WMA",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County_1": "Tyler",
+     "Manager": "WV Division of Natural Resources, Wildlife Resources Section",
+     "Method": "GPS",
+     "Name": "Buffalo Run Wildlife Management Area",
+     "Owner": "WVDNR"
+    }
+   ],
+   "service": "West_Virginia_Wildlife_Management_Areas",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Wildlife_Management_Areas/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 107,
+   "fields": [
+    "park_id",
+    "Name",
+    "City",
+    "County",
+    "Interstate",
+    "Commercial",
+    "Railroad",
+    "Navigable_",
+    "Electric_U",
+    "Electric_V",
+    "Electric_P",
+    "Gas_Utilit",
+    "Gas_Main_S",
+    "Gas_Pressu",
+    "Water_Util",
+    "Water_Main",
+    "Water_Stat",
+    "Water_Resi",
+    "Excess_Wat",
+    "Sewer_Util"
+   ],
+   "known": false,
+   "layer": "Industrial  Parks",
+   "sample": [
+    {
+     "City": "Craigsville",
+     "Commercial": "Raleigh County Memorial Airport",
+     "County": "Nicholas",
+     "Electric_P": "3",
+     "Electric_U": "Allegheny Power",
+     "Electric_V": "12 kV",
+     "Gas_Utilit": "Dominion",
+     "Interstate": "I-79",
+     "Name": "Nicholas County Industrial Park",
+     "Navigable_": "None",
+     "Railroad": "None",
+     "park_id": "55"
+    },
+    {
+     "City": "Upper Tract",
+     "Commercial": "Shenandoah Valley Regional Airport",
+     "County": "Pendleton",
+     "Electric_P": "3",
+     "Electric_U": "Allegheny Power",
+     "Electric_V": "12 kV, 240/460",
+     "Gas_Utilit": "None",
+     "Interstate": "I-81",
+     "Name": "Upper Tract Industrial Park",
+     "Navigable_": "None",
+     "Railroad": "None",
+     "park_id": "56"
+    },
+    {
+     "City": "Stouts Mills",
+     "Commercial": "North Central West Virginia Airport",
+     "County": "Gilmer",
+     "Electric_P": "3",
+     "Electric_U": "Allegheny Power",
+     "Electric_V": "12 kV",
+     "Gas_Utilit": "Eastern American Energy",
+     "Interstate": "I-79",
+     "Name": "Gilmer County Industrial Park",
+     "Navigable_": "None",
+     "Railroad": "CSX",
+     "park_id": "57"
+    }
+   ],
+   "service": "Economic",
+   "typef": "",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Economic/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 38,
+   "fields": [
+    "FeatClass",
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAID",
+    "Pub_Access",
+    "Access_Src",
+    "Access_Dt"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Category": "Fee",
+     "Des_Tp": "SP",
+     "FeatClass": "Fee",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blennerhassett Island Historical State Park",
+     "Loc_Own": "Du Pont E I De Nemours & Co",
+     "Mang_Name": "SDNR",
+     "Mang_Type": "STAT",
+     "Own_Name": "PVT",
+     "Own_Type": "PVT",
+     "Unit_Nm": "Blennerhassett Island Historical State Park"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "SP",
+     "FeatClass": "Fee",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Canaan Valley Resort State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Mang_Name": "State Department of Natural Resources",
+     "Mang_Type": "STAT",
+     "Own_Name": "State Department of Natural Resources",
+     "Own_Type": "STAT",
+     "Unit_Nm": "Canaan Valley Resort State Park"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "SP",
+     "FeatClass": "Fee",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Fairfax Stone State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Mang_Name": "State Department of Natural Resources",
+     "Mang_Type": "STAT",
+     "Own_Name": "State Department of Natural Resources",
+     "Own_Type": "STAT",
+     "Unit_Nm": "Fairfax Stone State Park"
+    }
+   ],
+   "service": "West_Virginia_State_Parks",
+   "typef": "FeatClass",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Parks/FeatureServer/18"
+  },
+  {
+   "agency": "",
+   "area": "Loc_Nm",
+   "count": 36,
+   "fields": [
+    "Loc_Own",
+    "Loc_Nm",
+    "Loc_Mang",
+    "Loc_Ds",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAID",
+    "Pub_Access",
+    "Access_Src",
+    "Access_Dt",
+    "GAP_Sts",
+    "GAPCdSrc",
+    "GAPCdDt",
+    "IUCN_Cat",
+    "IUCNCtSrc",
+    "IUCNCtDt",
+    "Date_Est",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "State_Parks",
+   "sample": [
+    {
+     "Access_Dt": "2022",
+     "Access_Src": "GAP - WVDNR",
+     "Agg_Src": "WV Division of Natural Resources",
+     "GIS_Src": "WV Division of Natural Resources",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blennerhassett Island Historical State Park",
+     "Loc_Own": "Du Pont E I De Nemours & Co",
+     "Pub_Access": "OA",
+     "Src_Date": "2022/11/01",
+     "State_Nm": "WV"
+    },
+    {
+     "Access_Dt": "2022",
+     "Access_Src": "GAP - WVDNR",
+     "Agg_Src": "WV Division of Natural Resources",
+     "GIS_Src": "WV Division of Natural Resources",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blackwater Falls State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Pub_Access": "OA",
+     "Src_Date": "2022/11/01",
+     "State_Nm": "WV"
+    },
+    {
+     "Access_Dt": "2022",
+     "Access_Src": "GAP - WVDNR",
+     "Agg_Src": "WV Division of Natural Resources",
+     "GIS_Src": "WV Division of Natural Resources",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Canaan Valley Resort State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Pub_Access": "OA",
+     "Src_Date": "2022/11/01",
+     "State_Nm": "WV"
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 36,
+   "fields": [
+    "FeatClass",
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAID",
+    "Pub_Access",
+    "Access_Src",
+    "Access_Dt"
+   ],
+   "known": false,
+   "layer": "StateParks",
+   "sample": [
+    {
+     "Category": "Fee",
+     "Des_Tp": "SP",
+     "FeatClass": "Fee",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blennerhassett Island Historical State Park",
+     "Loc_Own": "Du Pont E I De Nemours & Co",
+     "Mang_Name": "SDNR",
+     "Mang_Type": "STAT",
+     "Own_Name": "PVT",
+     "Own_Type": "PVT",
+     "Unit_Nm": "Blennerhassett Island Historical State Park"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "SP",
+     "FeatClass": "Fee",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blackwater Falls State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Mang_Name": "State Department of Natural Resources",
+     "Mang_Type": "STAT",
+     "Own_Name": "State Department of Natural Resources",
+     "Own_Type": "STAT",
+     "Unit_Nm": "Blackwater Falls State Park"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "SP",
+     "FeatClass": "Fee",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Canaan Valley Resort State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Mang_Name": "State Department of Natural Resources",
+     "Mang_Type": "STAT",
+     "Own_Name": "State Department of Natural Resources",
+     "Own_Type": "STAT",
+     "Unit_Nm": "Canaan Valley Resort State Park"
+    }
+   ],
+   "service": "StateParks",
+   "typef": "FeatClass",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/StateParks/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Loc_Nm",
+   "count": 36,
+   "fields": [
+    "Loc_Own",
+    "Loc_Mang",
+    "Loc_Ds",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAID",
+    "Pub_Access",
+    "Access_Src",
+    "Access_Dt",
+    "GAP_Sts",
+    "GAPCdSrc",
+    "GAPCdDt",
+    "IUCN_Cat",
+    "IUCNCtSrc",
+    "IUCNCtDt",
+    "Date_Est",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Access_Dt": "2022",
+     "Access_Src": "GAP - WVDNR",
+     "Agg_Src": "WV Division of Natural Resources",
+     "GIS_Src": "WV Division of Natural Resources",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blennerhassett Island Historical State Park",
+     "Loc_Own": "Du Pont E I De Nemours & Co",
+     "Pub_Access": "OA",
+     "Src_Date": "2022/11/01",
+     "State_Nm": "WV"
+    },
+    {
+     "Access_Dt": "2022",
+     "Access_Src": "GAP - WVDNR",
+     "Agg_Src": "WV Division of Natural Resources",
+     "GIS_Src": "WV Division of Natural Resources",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Blackwater Falls State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Pub_Access": "OA",
+     "Src_Date": "2022/11/01",
+     "State_Nm": "WV"
+    },
+    {
+     "Access_Dt": "2022",
+     "Access_Src": "GAP - WVDNR",
+     "Agg_Src": "WV Division of Natural Resources",
+     "GIS_Src": "WV Division of Natural Resources",
+     "Loc_Ds": "State Park",
+     "Loc_Mang": "WV Division of Natural Resources",
+     "Loc_Nm": "Canaan Valley Resort State Park",
+     "Loc_Own": "WV Division of Natural Resources",
+     "Pub_Access": "OA",
+     "Src_Date": "2022/11/01",
+     "State_Nm": "WV"
+    }
+   ],
+   "service": "WV_Public_Lands",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WV_Public_Lands/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 24,
+   "fields": [
+    "FeatClass",
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAID",
+    "Pub_Access",
+    "Access_Src",
+    "Access_Dt"
+   ],
+   "known": false,
+   "layer": "USFWS National Wildlife Refuge",
+   "sample": [
+    {
+     "Category": "Fee",
+     "Des_Tp": "NWR",
+     "FeatClass": "Fee",
+     "Loc_Ds": "NWR",
+     "Loc_Mang": "Canaan Valley National Wildlife Refuge",
+     "Loc_Nm": "Canaan Valley National Wildlife Refuge",
+     "Loc_Own": "Fee",
+     "Mang_Name": "FWS",
+     "Mang_Type": "FED",
+     "Own_Name": "FWS",
+     "Own_Type": "FED",
+     "Unit_Nm": "Canaan Valley National Wildlife Refuge"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NWR",
+     "FeatClass": "Fee",
+     "Loc_Ds": "NWR",
+     "Loc_Mang": "Ohio River Islands National Wildlife Refuge",
+     "Loc_Nm": "Manchester Islands",
+     "Loc_Own": "Fee",
+     "Mang_Name": "FWS",
+     "Mang_Type": "FED",
+     "Own_Name": "FWS",
+     "Own_Type": "FED",
+     "Unit_Nm": "Ohio River Islands National Wildlife Refuge"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NWR",
+     "FeatClass": "Fee",
+     "Loc_Ds": "NWR",
+     "Loc_Mang": "Ohio River Islands National Wildlife Refuge",
+     "Loc_Nm": "Middle Island",
+     "Loc_Own": "Fee",
+     "Mang_Name": "FWS",
+     "Mang_Type": "FED",
+     "Own_Name": "FWS",
+     "Own_Type": "FED",
+     "Unit_Nm": "Ohio River Islands National Wildlife Refuge"
+    }
+   ],
+   "service": "West_Virginia_USFWS_National_Wildlife_Refuges",
+   "typef": "FeatClass",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_USFWS_National_Wildlife_Refuges/FeatureServer/20"
+  },
+  {
+   "agency": "West Virginia Division of Natural Resources, Elkins Operations Center, PO Box 67",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "CFA_Name",
+    "Color_Code"
+   ],
+   "known": false,
+   "layer": "ConservationFocusAreas",
+   "sample": [
+    {
+     "CFA_Name": "General Conservation Area",
+     "Color_Code": "#F0E7DF"
+    },
+    {
+     "CFA_Name": "Northern Panhandle",
+     "Color_Code": "#F8D8B3"
+    },
+    {
+     "CFA_Name": "Ohio River Corridor",
+     "Color_Code": "#DFBD97"
+    }
+   ],
+   "service": "Conservation_Focus_Areas",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Conservation_Focus_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Area_Name",
+   "count": 15,
+   "fields": [
+    "NA_Name",
+    "Area_Name"
+   ],
+   "known": false,
+   "layer": "Natural Areas",
+   "sample": [
+    {
+     "Area_Name": "Canaan Valley Resort State Park",
+     "NA_Name": "Bald Knob"
+    },
+    {
+     "Area_Name": "Carnifex Ferry Battlefield State Park",
+     "NA_Name": "Carnifex Forest"
+    },
+    {
+     "Area_Name": "Canaan Valley Resort State Park",
+     "NA_Name": "Canaan Valley Wetlands"
+    }
+   ],
+   "service": "West_Virginia_Natural_Areas",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Natural_Areas/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 9,
+   "fields": [
+    "Name",
+    "Type",
+    "Website"
+   ],
+   "known": false,
+   "layer": "National Park Service",
+   "sample": [
+    {
+     "Name": "Gauley River National Recreation Area",
+     "Type": "NPS",
+     "Website": "https://www.nps.gov/gari/index.htm"
+    },
+    {
+     "Name": "Bluestone National Scenic River",
+     "Type": "NPS",
+     "Website": "https://www.nps.gov/blue/planyourvisit/hunting.htm"
+    },
+    {
+     "Name": "New River Gorge National Park and Preserve",
+     "Type": "NPS",
+     "Website": "https://www.nps.gov/neri/planyourvisit/hunting.htm"
+    }
+   ],
+   "service": "West_Virginia_National_Park_Service_Lands",
+   "typef": "Type",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_National_Park_Service_Lands/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Method",
+    "Accuracy",
+    "DNRName",
+    "ManagedAs",
+    "AreaType",
+    "Contact",
+    "Address1",
+    "City",
+    "State",
+    "Telephone",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Ownership_1",
+    "ManagedBy",
+    "HighResMapURL",
+    "LowResMapURL",
+    "WebsiteURL",
+    "AvenzaMapURL"
+   ],
+   "known": false,
+   "layer": "State_Forests",
+   "sample": [
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "County1": "Pocahontas",
+     "County2": "-999",
+     "DNRName": "Seneca State Forest",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "County1": "Randolph",
+     "County2": "-999",
+     "DNRName": "Kumbrabow State Forest",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "County1": "Kanawha",
+     "County2": "-999",
+     "DNRName": "Kanawha State Forest",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "AreaType",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 8,
+   "fields": [
+    "Method",
+    "Accuracy",
+    "LocCode",
+    "DNRName",
+    "NAME",
+    "ManagedAs",
+    "AreaType",
+    "Contact",
+    "Address1",
+    "City",
+    "State",
+    "Telephone",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Ownership_1",
+    "ManagedBy",
+    "ClassQHunt",
+    "ClassQFish"
+   ],
+   "known": false,
+   "layer": "StateForests",
+   "sample": [
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "DNRName": "Coopers Rock State Forest",
+     "LocCode": "-999",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "NAME": "Coopers Rock State Forest",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "DNRName": "Greenbrier State Forest",
+     "LocCode": "60",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "NAME": "Greenbrier State Forest",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "DNRName": "Camp Creek State Forest",
+     "LocCode": "58",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "NAME": "Camp Creek State Forest",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    }
+   ],
+   "service": "StateForests",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/StateForests/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Method",
+    "Accuracy",
+    "DNRName",
+    "ManagedAs",
+    "AreaType",
+    "Contact",
+    "Address1",
+    "City",
+    "State",
+    "Telephone",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Ownership_1",
+    "ManagedBy",
+    "HighResMapURL",
+    "LowResMapURL",
+    "WebsiteURL",
+    "AvenzaMapURL"
+   ],
+   "known": false,
+   "layer": "State Forests",
+   "sample": [
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "County1": "Pocahontas",
+     "County2": "-999",
+     "DNRName": "Seneca State Forest",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "County1": "Randolph",
+     "County2": "-999",
+     "DNRName": "Kumbrabow State Forest",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "City": "South Charleston",
+     "Contact": "WV State Parks and Forests",
+     "County1": "Kanawha",
+     "County2": "-999",
+     "DNRName": "Kanawha State Forest",
+     "ManagedAs": "SF",
+     "Method": "From SF Data",
+     "State": "WV",
+     "Telephone": "1-800-CALL WVA"
+    }
+   ],
+   "service": "WV_Public_Lands",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WV_Public_Lands/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "ORGNAME",
+    "WebsiteURL",
+    "Type"
+   ],
+   "known": false,
+   "layer": "National Park Service",
+   "sample": [
+    {
+     "ORGNAME": "Bluestone National Scenic River",
+     "Type": "NPS",
+     "WebsiteURL": "https://www.nps.gov/blue/planyourvisit/hunting.htm"
+    },
+    {
+     "ORGNAME": "New River Gorge National Park and Preserve",
+     "Type": "NPS",
+     "WebsiteURL": "https://www.nps.gov/neri/planyourvisit/hunting.htm"
+    },
+    {
+     "ORGNAME": "Gauley River National Recreation Area",
+     "Type": "NPS",
+     "WebsiteURL": "https://www.nps.gov/gari/index.htm"
+    }
+   ],
+   "service": "WV_Public_Lands",
+   "typef": "Type",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WV_Public_Lands/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 5,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAI",
+    "Pub_Access",
+    "Access_Src",
+    "Access_Dt",
+    "GAP_Sts"
+   ],
+   "known": false,
+   "layer": "National_Parks",
+   "sample": [
+    {
+     "Category": "Fee",
+     "Des_Tp": "HCA",
+     "Loc_Ds": "National Historical Park",
+     "Loc_Mang": "NPS",
+     "Loc_Nm": "CHOH",
+     "Loc_Own": "NPS",
+     "Mang_Name": "NPS",
+     "Mang_Type": "FED",
+     "Own_Name": "NPS",
+     "Own_Type": "FED",
+     "State_Nm": "WV",
+     "Unit_Nm": "Chesapeake and Ohio Canal National Historical Park"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "HCA",
+     "Loc_Ds": "National Historical Park",
+     "Loc_Mang": "NPS",
+     "Loc_Nm": "HAFE",
+     "Loc_Own": "NPS",
+     "Mang_Name": "NPS",
+     "Mang_Type": "FED",
+     "Own_Name": "NPS",
+     "Own_Type": "FED",
+     "State_Nm": "WV",
+     "Unit_Nm": "Harpers Ferry National Historical Park"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NCA",
+     "Loc_Ds": "National Preserve",
+     "Loc_Mang": "NPS",
+     "Loc_Nm": "NERI",
+     "Loc_Own": "NPS",
+     "Mang_Name": "NPS",
+     "Mang_Type": "FED",
+     "Own_Name": "NPS",
+     "Own_Type": "FED",
+     "State_Nm": "WV",
+     "Unit_Nm": "New River Gorge National Park and Preserve"
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "Category",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 4,
+   "fields": [
+    "temp",
+    "Ownership",
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Loc_Own",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAI",
+    "Access",
+    "Access_Src"
+   ],
+   "known": false,
+   "layer": "National_Forests",
+   "sample": [
+    {
+     "Category": "Fee",
+     "Des_Tp": "NF",
+     "Loc_Ds": " ",
+     "Loc_Mang": "Forest Service Region 08 - Southern Region",
+     "Loc_Own": "USDA FOREST SERVICE",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "USFS",
+     "Own_Type": "FED",
+     "Ownership": " ",
+     "Unit_Nm": "George Washington and Jefferson National Forest",
+     "temp": " "
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NF",
+     "Loc_Ds": " ",
+     "Loc_Mang": "Forest Service Region 09 - Eastern Region",
+     "Loc_Own": "USDA FOREST SERVICE",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "USFS",
+     "Own_Type": "FED",
+     "Ownership": "Forest Service",
+     "Unit_Nm": "Monongahela National Forest",
+     "temp": "1"
+    },
+    {
+     "Category": "Fee",
+     "Des_Tp": "NF",
+     "Loc_Ds": " ",
+     "Loc_Mang": "Forest Service Region 08 - Southern Region",
+     "Loc_Own": "USDA FOREST SERVICE",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "USFS",
+     "Own_Type": "FED",
+     "Ownership": " ",
+     "Unit_Nm": "George Washington National Forest",
+     "temp": " "
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "Category",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Boundaries/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "Area_Name",
+   "count": 4,
+   "fields": [
+    "NA_Name",
+    "Area_Name",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "Natural Areas",
+   "sample": [
+    {
+     "Area_Name": "Canaan Valley Resort State Park",
+     "NA_Name": "Bald Knob"
+    },
+    {
+     "Area_Name": "Carnifex Ferry Battlefield State Park",
+     "NA_Name": "Carnifex Forest"
+    },
+    {
+     "Area_Name": "Canaan Valley Resort State Park",
+     "NA_Name": "Canaan Valley Wetlands"
+    }
+   ],
+   "service": "WV_Public_Lands",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WV_Public_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "Name",
+    "AreaType",
+    "County_1",
+    "County_2",
+    "County_3",
+    "County_4",
+    "Owner",
+    "Manager",
+    "Method",
+    "Accuracy",
+    "Contact",
+    "Address",
+    "City",
+    "State",
+    "Telephone",
+    "Terrain",
+    "FishingOpportunities",
+    "GameFish",
+    "MapURL",
+    "AvenzaMapURL"
+   ],
+   "known": false,
+   "layer": "Wildlife Viewing Areas",
+   "sample": [
+    {
+     "Accuracy": "Medium",
+     "Address": "163 Wildlife Road",
+     "AreaType": "WC",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County_1": "Upshur",
+     "Manager": "WV Division of Natural Resources, Wildlife Resources Section",
+     "Method": "Tax Map",
+     "Name": "West Virginia Wildlife Center",
+     "Owner": "WVDNR"
+    },
+    {
+     "Accuracy": "High",
+     "Address": "1 Depot St.",
+     "AreaType": "WS",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "County_1": "Jefferson",
+     "Manager": "WV Division of Natural Resources, Wildlife Resources Section",
+     "Method": "Deed",
+     "Name": "Woodpecker Woods Wildlife Sanctuary",
+     "Owner": "WVDNR"
+    },
+    {
+     "Accuracy": "High",
+     "AreaType": "NA",
+     "County_1": "Kanawha",
+     "Manager": "WV Division of Natural Resources, Wildlife Resources Section",
+     "Method": "Deed",
+     "Name": "Forks of Coal State Natural Area",
+     "Owner": "WVDNR"
+    }
+   ],
+   "service": "West_Virginia_Wildlife_Viewing_Areas",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Wildlife_Viewing_Areas/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "Name",
+    "RegType",
+    "SpecialRegCodes"
+   ],
+   "known": false,
+   "layer": "Special Regulation Areas (Fisheries)",
+   "sample": [
+    {
+     "Name": "Manns Creek",
+     "RegType": "Zero Possession Non-Game Fish",
+     "SpecialRegCodes": "24"
+    },
+    {
+     "Name": "East and West Forks of Greenbrier",
+     "RegType": "Zero Possession Non-Game Fish",
+     "SpecialRegCodes": "24"
+    },
+    {
+     "Name": "Gauley Area",
+     "RegType": "Zero Possession Non-Game Fish",
+     "SpecialRegCodes": "24"
+    }
+   ],
+   "service": "West_Virginia_Special_Fisheries_Regulation_Areas",
+   "typef": "RegType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_Special_Fisheries_Regulation_Areas/FeatureServer/31"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 2,
+   "fields": [
+    "Own_Name",
+    "Mang_Name",
+    "Loc_Ds",
+    "Unit_Nm",
+    "State_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Source_PAID",
+    "Access",
+    "Access_Src",
+    "GAP_Sts",
+    "GAPCdSrc",
+    "GAPCdDt",
+    "IUCN_Cat",
+    "IUCNCtSrc",
+    "IUCNCtDt",
+    "Date_Est",
+    "Comments",
+    "Type"
+   ],
+   "known": false,
+   "layer": "National Wildlife Refuge",
+   "sample": [
+    {
+     "Access": "RA",
+     "Access_Src": "GAP - Default",
+     "Agg_Src": "GAP_PADUS1_4Fee_FWS_FWSInterest_Simplified_preprocess",
+     "GAP_Sts": "2",
+     "GIS_Src": "FWS_FWSInterest_Simplified.shp",
+     "Loc_Ds": "NWR",
+     "Mang_Name": "FWS",
+     "Own_Name": "FWS",
+     "Source_PAID": "CAV",
+     "Src_Date": "2015/05/01",
+     "State_Nm": "WV",
+     "Unit_Nm": "Canaan Valley National Wildlife Refuge"
+    },
+    {
+     "Access": "RA",
+     "Access_Src": "GAP - Default",
+     "Agg_Src": "GAP_PADUS1_4Fee_FWS_FWSInterest_Simplified_preprocess",
+     "GAP_Sts": "2",
+     "GIS_Src": "FWS_FWSInterest_Simplified.shp",
+     "Loc_Ds": "NWR",
+     "Mang_Name": "FWS",
+     "Own_Name": "FWS",
+     "Source_PAID": "ORI",
+     "Src_Date": "2015/05/01",
+     "State_Nm": "WV",
+     "Unit_Nm": "Ohio River Islands National Wildlife Refuge"
+    }
+   ],
+   "service": "WV_Public_Lands",
+   "typef": "Type",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WV_Public_Lands/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Name",
+    "Type",
+    "Website"
+   ],
+   "known": false,
+   "layer": "USACE Recreation Areas",
+   "sample": [
+    {
+     "Name": "R.D. Bailey Lake Recreation Area",
+     "Type": "USACE",
+     "Website": "https://www.lrd.usace.army.mil/Submit-ArticleCS/Recreation/Article/3632879/rd-bailey-lake/"
+    },
+    {
+     "Name": "Summersville Lake Recreation Area",
+     "Type": "USACE",
+     "Website": "https://www.lrd.usace.army.mil/Submit-ArticleCS/Recreation/Article/3632905/summersville-lake/"
+    }
+   ],
+   "service": "West_Virginia_USACE_Recreation_Areas",
+   "typef": "Type",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_USACE_Recreation_Areas/FeatureServer/21"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Historical_distribution"
+   ],
+   "known": false,
+   "layer": "Historical wood bison and plains bison, Aune, Gates et al",
+   "sample": [
+    {
+     "Historical_distribution": "Bison bison athabascae"
+    },
+    {
+     "Historical_distribution": "Bison bison bison"
+    }
+   ],
+   "service": "Historical_wood_bison_and_plains_bison__Aune__Gates_et_al",
+   "typef": "",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/Historical_wood_bison_and_plains_bison__Aune__Gates_et_al/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 118,
+   "fields": [
+    "Method",
+    "Accuracy",
+    "LocCode",
+    "DNRName",
+    "NAME",
+    "ManagedAs",
+    "AreaType",
+    "Contact",
+    "Address1",
+    "City",
+    "State",
+    "Telephone",
+    "County1",
+    "County2",
+    "County3",
+    "County4",
+    "Ownership_1",
+    "ManagedBy",
+    "ClassQHunt",
+    "ClassQFish"
+   ],
+   "known": true,
+   "layer": "WildlifeManagementAreas",
+   "sample": [
+    {
+     "Accuracy": "High",
+     "Address1": "2006 Robert C. Byrd Dr.",
+     "AreaType": "WMA",
+     "City": "Beckley",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "DNRName": "Plum Orchard Lake Wildlife Management Area",
+     "LocCode": "47",
+     "ManagedAs": "WMA",
+     "Method": "GPS",
+     "NAME": "Plum Orchard Lake Wildlife Management Area",
+     "State": "WV",
+     "Telephone": "(304) 256-6947"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address1": "2311 Ohio Ave.",
+     "AreaType": "WMA",
+     "City": "Parkersburg",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "DNRName": "Woodrum Lake Wildlife Management Area",
+     "LocCode": "211",
+     "ManagedAs": "WMA",
+     "Method": "GPS",
+     "NAME": "Woodrum Lake Wildlife Management Area",
+     "State": "WV",
+     "Telephone": "(304) 420-4550"
+    },
+    {
+     "Accuracy": "High",
+     "Address1": "2311 Ohio Ave.",
+     "AreaType": "WMA",
+     "City": "Parkersburg",
+     "Contact": "WVDNR, Wildlife Resources Section",
+     "DNRName": "Buffalo Run Wildlife Management Area",
+     "LocCode": "266",
+     "ManagedAs": "WMA",
+     "Method": "GPS",
+     "NAME": "Buffalo Run Wildlife Management Area",
+     "State": "WV",
+     "Telephone": "(304) 420-4550"
+    }
+   ],
+   "service": "WildlifeManagementAreas",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Name",
+    "AreaType",
+    "County_1",
+    "County_2",
+    "County_3",
+    "County_4",
+    "Owner",
+    "Manager",
+    "Method",
+    "Accuracy",
+    "Contact",
+    "Address",
+    "City",
+    "State",
+    "Telephone",
+    "Terrain",
+    "FishingOpportunities",
+    "GameFish",
+    "MapURL",
+    "AvenzaMapURL"
+   ],
+   "known": true,
+   "layer": "State Forests",
+   "sample": [
+    {
+     "Accuracy": "Medium",
+     "Address": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "Contact": "WV State Parks and Forests",
+     "County_1": "Preston",
+     "County_2": "Monongalia",
+     "Manager": "WV Division of Forestry and WV Division of Natural Resources (Wildlife Resources Section and Parks and Recreation Section)",
+     "Method": "From SF Data",
+     "Name": "Coopers Rock State Forest",
+     "Owner": "WVDNR"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "Contact": "WV State Parks and Forests",
+     "County_1": "Greenbrier",
+     "Manager": "WV Division of Forestry and WV Division of Natural Resources (Wildlife Resources Section and Parks and Recreation Section)",
+     "Method": "From SF Data",
+     "Name": "Greenbrier State Forest",
+     "Owner": "WVDNR"
+    },
+    {
+     "Accuracy": "Medium",
+     "Address": "324 Fourth Ave.",
+     "AreaType": "SF",
+     "Contact": "WV State Parks and Forests",
+     "County_1": "Mercer",
+     "Manager": "WV Division of Forestry and WV Division of Natural Resources (Wildlife Resources Section and Parks and Recreation Section)",
+     "Method": "From SF Data",
+     "Name": "Camp Creek State Forest",
+     "Owner": "WVDNR"
+    }
+   ],
+   "service": "West_Virginia_State_Forests",
+   "typef": "AreaType",
+   "url": "https://services9.arcgis.com/SQbkdxLkuQJuLGtx/arcgis/rest/services/West_Virginia_State_Forests/FeatureServer/16"
+  }
+ ],
+ "st": "WV"
+}

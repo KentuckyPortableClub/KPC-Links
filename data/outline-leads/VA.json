@@ -1,0 +1,4364 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 134213,
+   "fields": [
+    "FireName"
+   ],
+   "known": false,
+   "layer": "RAVG CBI4 Monument/River Complex",
+   "sample": [
+    {
+     "FireName": "River Complex"
+    },
+    {
+     "FireName": "River Complex"
+    },
+    {
+     "FireName": "River Complex"
+    }
+   ],
+   "service": "Monument_River_Complex_Closure_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Monument_River_Complex_Closure_Map_WFL1/FeatureServer/16"
+  },
+  {
+   "agency": "VDCR Natural Heritage",
+   "area": "",
+   "count": 50292,
+   "fields": [
+    "Forest",
+    "Agricultural",
+    "Map_Date",
+    "Deed_Requirements"
+   ],
+   "known": false,
+   "layer": "Agriculture & Forestry Category",
+   "sample": [
+    {
+     "Agricultural": "NO",
+     "Deed_Requirements": "Deed language should reference at least 35 foot vegetated buffers on waterways and forest resources-related easements should also restrict conversion from forest cover",
+     "Forest": "YES",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Agricultural": "NO",
+     "Deed_Requirements": "Deed language should reference at least 35 foot vegetated buffers on waterways and forest resources-related easements should also restrict conversion from forest cover",
+     "Forest": "YES",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Agricultural": "NO",
+     "Deed_Requirements": "Deed language should reference at least 35 foot vegetated buffers on waterways and forest resources-related easements should also restrict conversion from forest cover",
+     "Forest": "YES",
+     "Map_Date": "9/1/2021"
+    }
+   ],
+   "service": "ConserveVirginia_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/ConserveVirginia_v3/FeatureServer/1"
+  },
+  {
+   "agency": "VDCR Natural Heritage",
+   "area": "",
+   "count": 50292,
+   "fields": [
+    "Forest",
+    "Agricultural",
+    "Map_Date",
+    "Deed_Requirements"
+   ],
+   "known": false,
+   "layer": "Agriculture & Forestry Category",
+   "sample": [
+    {
+     "Agricultural": "NO",
+     "Deed_Requirements": "Deed language should reference at least 35 foot vegetated buffers on waterways and forest resources-related easements should also restrict conversion from forest cover",
+     "Forest": "YES",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Agricultural": "NO",
+     "Deed_Requirements": "Deed language should reference at least 35 foot vegetated buffers on waterways and forest resources-related easements should also restrict conversion from forest cover",
+     "Forest": "YES",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Agricultural": "NO",
+     "Deed_Requirements": "Deed language should reference at least 35 foot vegetated buffers on waterways and forest resources-related easements should also restrict conversion from forest cover",
+     "Forest": "YES",
+     "Map_Date": "9/1/2021"
+    }
+   ],
+   "service": "ConserveVirginia_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/ConserveVirginia_v3/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30822,
+   "fields": [
+    "OWNER"
+   ],
+   "known": false,
+   "layer": "Montana Public Lands",
+   "sample": [
+    {
+     "OWNER": "Bureau of Indian Affairs Trust Land"
+    },
+    {
+     "OWNER": "Bureau of Indian Affairs Trust Land"
+    },
+    {
+     "OWNER": "Bureau of Indian Affairs Trust Land"
+    }
+   ],
+   "service": "MHLA_WSR_GIS_Update_052421_MT_Cadastral_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/MHLA_WSR_GIS_Update_052421_MT_Cadastral_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18755,
+   "fields": [
+    "PARCEL_LAB",
+    "PARCEL_NM",
+    "REVERSION_",
+    "OWN_RIGHT_",
+    "SURFACE_RI",
+    "MINERAL_RI",
+    "TIMBER_RIG",
+    "TIMBER_OWN",
+    "COUNTY_PAR",
+    "PARCEL_DES",
+    "EDIT_WHO",
+    "PARCEL_ACQ",
+    "PARCEL_DIS",
+    "GLOBALID"
+   ],
+   "known": false,
+   "layer": "WA DNR-Managed Land",
+   "sample": [
+    {
+     "COUNTY_PAR": " ",
+     "EDIT_WHO": "JDUG490",
+     "MINERAL_RI": "Y",
+     "OWN_RIGHT_": "N",
+     "PARCEL_ACQ": "08-092174",
+     "PARCEL_DES": " ",
+     "PARCEL_LAB": " ",
+     "PARCEL_NM": " ",
+     "REVERSION_": "N",
+     "SURFACE_RI": "N",
+     "TIMBER_OWN": " ",
+     "TIMBER_RIG": "N"
+    },
+    {
+     "COUNTY_PAR": " ",
+     "EDIT_WHO": "JDUG490",
+     "MINERAL_RI": "Y",
+     "OWN_RIGHT_": "N",
+     "PARCEL_ACQ": "08-092174",
+     "PARCEL_DES": " ",
+     "PARCEL_LAB": " ",
+     "PARCEL_NM": " ",
+     "REVERSION_": "N",
+     "SURFACE_RI": "N",
+     "TIMBER_OWN": " ",
+     "TIMBER_RIG": "N"
+    },
+    {
+     "COUNTY_PAR": " ",
+     "EDIT_WHO": "JDUG490",
+     "MINERAL_RI": "Y",
+     "OWN_RIGHT_": "N",
+     "PARCEL_ACQ": "08-092174",
+     "PARCEL_DES": " ",
+     "PARCEL_LAB": " ",
+     "PARCEL_NM": " ",
+     "REVERSION_": "N",
+     "SURFACE_RI": "N",
+     "TIMBER_OWN": " ",
+     "TIMBER_RIG": "N"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_1_WFL1",
+   "typef": "SURFACE_RI",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_1_WFL1/FeatureServer/53"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 18755,
+   "fields": [
+    "PARCEL_LAB",
+    "PARCEL_NM",
+    "REVERSION_",
+    "OWN_RIGHT_",
+    "SURFACE_RI",
+    "MINERAL_RI",
+    "TIMBER_RIG",
+    "TIMBER_OWN",
+    "COUNTY_PAR",
+    "PARCEL_DES",
+    "EDIT_WHO",
+    "PARCEL_ACQ",
+    "PARCEL_DIS",
+    "GLOBALID"
+   ],
+   "known": false,
+   "layer": "WA DNR-Managed Land",
+   "sample": [
+    {
+     "COUNTY_PAR": " ",
+     "EDIT_WHO": "JDUG490",
+     "MINERAL_RI": "Y",
+     "OWN_RIGHT_": "N",
+     "PARCEL_ACQ": "08-092174",
+     "PARCEL_DES": " ",
+     "PARCEL_LAB": " ",
+     "PARCEL_NM": " ",
+     "REVERSION_": "N",
+     "SURFACE_RI": "N",
+     "TIMBER_OWN": " ",
+     "TIMBER_RIG": "N"
+    },
+    {
+     "COUNTY_PAR": " ",
+     "EDIT_WHO": "JDUG490",
+     "MINERAL_RI": "Y",
+     "OWN_RIGHT_": "N",
+     "PARCEL_ACQ": "08-092174",
+     "PARCEL_DES": " ",
+     "PARCEL_LAB": " ",
+     "PARCEL_NM": " ",
+     "REVERSION_": "N",
+     "SURFACE_RI": "N",
+     "TIMBER_OWN": " ",
+     "TIMBER_RIG": "N"
+    },
+    {
+     "COUNTY_PAR": " ",
+     "EDIT_WHO": "JDUG490",
+     "MINERAL_RI": "Y",
+     "OWN_RIGHT_": "N",
+     "PARCEL_ACQ": "08-092174",
+     "PARCEL_DES": " ",
+     "PARCEL_LAB": " ",
+     "PARCEL_NM": " ",
+     "REVERSION_": "N",
+     "SURFACE_RI": "N",
+     "TIMBER_OWN": " ",
+     "TIMBER_RIG": "N"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_2_WFL1",
+   "typef": "SURFACE_RI",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_2_WFL1/FeatureServer/53"
+  },
+  {
+   "agency": "Virginia Department of Conservation and Recreation, Division of Natural Heritage",
+   "area": "",
+   "count": 14666,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER",
+    "BMI",
+    "LPS"
+   ],
+   "known": false,
+   "layer": "Virginia's Conservation Lands",
+   "sample": [
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax map",
+     "LABEL": "Pamunkey Reservation",
+     "LANDLINK": "http://virginiaindians.pwnet.org/today/reservations_pamunkey.php",
+     "LAYER": "FEE-T",
+     "MAAGENCY": "Pamunkey Tribe",
+     "MALEVEL": "Tribal",
+     "MANAME": "Pamunkey Reservation",
+     "MATYPE": "Tribal Land Holding",
+     "OWNER": "Pamunkey Tribe",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax map",
+     "LABEL": "Mattaponi Reservation",
+     "LANDLINK": "http://virginiaindians.pwnet.org/today/reservations_mattaponi.php",
+     "LAYER": "FEE-T",
+     "MAAGENCY": "Mattaponi Tribe",
+     "MALEVEL": "Tribal",
+     "MANAME": "Mattaponi Reservation",
+     "MATYPE": "Tribal Land Holding",
+     "OWNER": "Mattaponi Indian Reservation",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax map",
+     "LABEL": "Mattaponi Reservation",
+     "LANDLINK": "http://virginiaindians.pwnet.org/today/reservations_mattaponi.php",
+     "LAYER": "FEE-T",
+     "MAAGENCY": "Mattaponi Tribe",
+     "MALEVEL": "Tribal",
+     "MANAME": "Mattaponi Reservation",
+     "MATYPE": "Tribal Land Holding",
+     "OWNER": "Mattaponi Indian Reservation",
+     "PUBACCESS": "closed"
+    }
+   ],
+   "service": "VAConservationLands",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/VAConservationLands/FeatureServer/0"
+  },
+  {
+   "agency": "Virginia Department of Conservation and Recreation, Division of Natural Heritage",
+   "area": "",
+   "count": 14666,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER",
+    "BMI",
+    "LPS"
+   ],
+   "known": false,
+   "layer": "Virginia's Conservation Lands",
+   "sample": [
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax map",
+     "LABEL": "Pamunkey Reservation",
+     "LANDLINK": "http://virginiaindians.pwnet.org/today/reservations_pamunkey.php",
+     "LAYER": "FEE-T",
+     "MAAGENCY": "Pamunkey Tribe",
+     "MALEVEL": "Tribal",
+     "MANAME": "Pamunkey Reservation",
+     "MATYPE": "Tribal Land Holding",
+     "OWNER": "Pamunkey Tribe",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax map",
+     "LABEL": "Mattaponi Reservation",
+     "LANDLINK": "http://virginiaindians.pwnet.org/today/reservations_mattaponi.php",
+     "LAYER": "FEE-T",
+     "MAAGENCY": "Mattaponi Tribe",
+     "MALEVEL": "Tribal",
+     "MANAME": "Mattaponi Reservation",
+     "MATYPE": "Tribal Land Holding",
+     "OWNER": "Mattaponi Indian Reservation",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax map",
+     "LABEL": "Mattaponi Reservation",
+     "LANDLINK": "http://virginiaindians.pwnet.org/today/reservations_mattaponi.php",
+     "LAYER": "FEE-T",
+     "MAAGENCY": "Mattaponi Tribe",
+     "MALEVEL": "Tribal",
+     "MANAME": "Mattaponi Reservation",
+     "MATYPE": "Tribal Land Holding",
+     "OWNER": "Mattaponi Indian Reservation",
+     "PUBACCESS": "closed"
+    }
+   ],
+   "service": "VAConservationLands",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands/FeatureServer/0"
+  },
+  {
+   "agency": "VA-DCR Natural Heritage",
+   "area": "p_loc_nm",
+   "count": 13315,
+   "fields": [
+    "LS_provide",
+    "LS_LINK",
+    "state_nm",
+    "p_loc_nm",
+    "own_type",
+    "p_loc_ds",
+    "LS_MANAGER",
+    "own_name",
+    "LS_SYMBOL"
+   ],
+   "known": false,
+   "layer": "VA: Conservation Lands (NHP)",
+   "sample": [
+    {
+     "LS_LINK": "http://www.potomacappalachian.org/",
+     "LS_MANAGER": "Potomac Appalachian Trail Club",
+     "LS_SYMBOL": "N5",
+     "LS_provide": "Virginia Natural Heritage",
+     "own_name": "Potomac Appalachian Trail Club",
+     "own_type": "Non-Profit",
+     "p_loc_ds": "Non-Profit Fee Simple Holding",
+     "p_loc_nm": "Blackburn",
+     "state_nm": "VA"
+    },
+    {
+     "LS_LINK": "http://www.potomacappalachian.org/",
+     "LS_MANAGER": "Potomac Appalachian Trail Club",
+     "LS_SYMBOL": "N4",
+     "LS_provide": "Virginia Natural Heritage",
+     "own_name": "Potomac Appalachian Trail Club",
+     "own_type": "Non-Profit",
+     "p_loc_ds": "Non-Profit Fee Simple Holding",
+     "p_loc_nm": "Blackburn",
+     "state_nm": "VA"
+    },
+    {
+     "LS_LINK": "http://www.suffolk.va.us/parks/",
+     "LS_MANAGER": "City of Suffolk",
+     "LS_SYMBOL": "L5",
+     "LS_provide": "Virginia Natural Heritage",
+     "own_name": "City of Suffolk",
+     "own_type": "Local",
+     "p_loc_ds": "Local Park",
+     "p_loc_nm": "Burnt Mills Lake",
+     "state_nm": "VA"
+    }
+   ],
+   "service": "VAConservationLands_Landscope",
+   "typef": "own_type",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/VAConservationLands_Landscope/FeatureServer/0"
+  },
+  {
+   "agency": "VA-DCR Natural Heritage",
+   "area": "p_loc_nm",
+   "count": 13315,
+   "fields": [
+    "LS_provide",
+    "LS_LINK",
+    "state_nm",
+    "p_loc_nm",
+    "own_type",
+    "p_loc_ds",
+    "LS_MANAGER",
+    "own_name",
+    "LS_SYMBOL"
+   ],
+   "known": false,
+   "layer": "VA: Conservation Lands (NHP)",
+   "sample": [
+    {
+     "LS_LINK": "http://www.potomacappalachian.org/",
+     "LS_MANAGER": "Potomac Appalachian Trail Club",
+     "LS_SYMBOL": "N5",
+     "LS_provide": "Virginia Natural Heritage",
+     "own_name": "Potomac Appalachian Trail Club",
+     "own_type": "Non-Profit",
+     "p_loc_ds": "Non-Profit Fee Simple Holding",
+     "p_loc_nm": "Blackburn",
+     "state_nm": "VA"
+    },
+    {
+     "LS_LINK": "http://www.potomacappalachian.org/",
+     "LS_MANAGER": "Potomac Appalachian Trail Club",
+     "LS_SYMBOL": "N4",
+     "LS_provide": "Virginia Natural Heritage",
+     "own_name": "Potomac Appalachian Trail Club",
+     "own_type": "Non-Profit",
+     "p_loc_ds": "Non-Profit Fee Simple Holding",
+     "p_loc_nm": "Blackburn",
+     "state_nm": "VA"
+    },
+    {
+     "LS_LINK": "http://www.suffolk.va.us/parks/",
+     "LS_MANAGER": "City of Suffolk",
+     "LS_SYMBOL": "L5",
+     "LS_provide": "Virginia Natural Heritage",
+     "own_name": "City of Suffolk",
+     "own_type": "Local",
+     "p_loc_ds": "Local Park",
+     "p_loc_nm": "Burnt Mills Lake",
+     "state_nm": "VA"
+    }
+   ],
+   "service": "VAConservationLands_Landscope",
+   "typef": "own_type",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VAConservationLands_Landscope/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6404,
+   "fields": [
+    "ID",
+    "UA_ID",
+    "PlaceID"
+   ],
+   "known": false,
+   "layer": "Parkserve_ParkPriorityA_Clip3",
+   "sample": [
+    {
+     "ID": "511019503002",
+     "PlaceID": "5184960",
+     "UA_ID": "94456"
+    },
+    {
+     "ID": "510731002031",
+     "PlaceID": "5131608",
+     "UA_ID": "33695"
+    },
+    {
+     "ID": "510731002033",
+     "PlaceID": "5131608",
+     "UA_ID": "33695"
+    }
+   ],
+   "service": "GFA_WebMap_ReUpload_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/GFA_WebMap_ReUpload_WFL1/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6404,
+   "fields": [
+    "ID",
+    "UA_ID",
+    "PlaceID"
+   ],
+   "known": false,
+   "layer": "Parkserve_ParkPriorityA_Clip3",
+   "sample": [
+    {
+     "ID": "511019503002",
+     "PlaceID": "5184960",
+     "UA_ID": "94456"
+    },
+    {
+     "ID": "510731002031",
+     "PlaceID": "5131608",
+     "UA_ID": "33695"
+    },
+    {
+     "ID": "510731002033",
+     "PlaceID": "5131608",
+     "UA_ID": "33695"
+    }
+   ],
+   "service": "GFA_WebMap_ReUpload_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/GFA_WebMap_ReUpload_WFL1/FeatureServer/17"
+  },
+  {
+   "agency": "VDCR Natural Heritage",
+   "area": "",
+   "count": 4850,
+   "fields": [
+    "Cultural",
+    "Map_Date",
+    "Deed_Requirements"
+   ],
+   "known": false,
+   "layer": "Cultural & Historic Preservation Category",
+   "sample": [
+    {
+     "Cultural": "YES",
+     "Deed_Requirements": "Deed language should acknowledge cultural & historic resources and include sufficient restrictions toward preservation of those resources, per the Dept of Historic Resources",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Cultural": "YES",
+     "Deed_Requirements": "Deed language should acknowledge cultural & historic resources and include sufficient restrictions toward preservation of those resources, per the Dept of Historic Resources",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Cultural": "YES",
+     "Deed_Requirements": "Deed language should acknowledge cultural & historic resources and include sufficient restrictions toward preservation of those resources, per the Dept of Historic Resources",
+     "Map_Date": "9/1/2021"
+    }
+   ],
+   "service": "ConserveVirginia_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/ConserveVirginia_v3/FeatureServer/4"
+  },
+  {
+   "agency": "VDCR Natural Heritage",
+   "area": "",
+   "count": 4850,
+   "fields": [
+    "Cultural",
+    "Map_Date",
+    "Deed_Requirements"
+   ],
+   "known": false,
+   "layer": "Cultural & Historic Preservation Category",
+   "sample": [
+    {
+     "Cultural": "YES",
+     "Deed_Requirements": "Deed language should acknowledge cultural & historic resources and include sufficient restrictions toward preservation of those resources, per the Dept of Historic Resources",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Cultural": "YES",
+     "Deed_Requirements": "Deed language should acknowledge cultural & historic resources and include sufficient restrictions toward preservation of those resources, per the Dept of Historic Resources",
+     "Map_Date": "9/1/2021"
+    },
+    {
+     "Cultural": "YES",
+     "Deed_Requirements": "Deed language should acknowledge cultural & historic resources and include sufficient restrictions toward preservation of those resources, per the Dept of Historic Resources",
+     "Map_Date": "9/1/2021"
+    }
+   ],
+   "service": "ConserveVirginia_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/ConserveVirginia_v3/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 4013,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "LPS",
+    "BMI",
+    "MANAME",
+    "TRACT",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ESTABLISHD",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "ORIGFORMAT",
+    "BNDADDDATE",
+    "RELEASE",
+    "LAYER",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Local_Parks_2023",
+   "sample": [
+    {
+     "BMI": "5",
+     "ESTABLISHD": " ",
+     "LABEL": "STRATTON WOODS",
+     "LANDLINK": "http://www.fairfaxcounty.gov/parks/",
+     "LPS": "1",
+     "MAAGENCY": "Fairfax County Park Authority",
+     "MALEVEL": "Local",
+     "MANAME": "Stratton Woods",
+     "MATYPE": "Local Park",
+     "OWNER": "Fairfax County Park Authority",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": " ",
+     "LABEL": "Wayside Spring Park",
+     "LANDLINK": "http://www.richmondgov.com/Parks/index.aspx",
+     "LPS": "1",
+     "MAAGENCY": "City of Richmond",
+     "MALEVEL": "Local",
+     "MANAME": "Wayside Spring Park",
+     "MATYPE": "Local Park",
+     "OWNER": "City of Richmond",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": " ",
+     "LABEL": "Newport News City Park",
+     "LANDLINK": "http://www.nngov.com/parks-and-recreation",
+     "LPS": "1",
+     "MAAGENCY": "City of Newport News",
+     "MALEVEL": "Local",
+     "MANAME": "Newport News Park",
+     "MATYPE": "Local Park",
+     "OWNER": "City of Newport News",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    }
+   ],
+   "service": "Local_Parks_2023",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Local_Parks_2023/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 4013,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "LPS",
+    "BMI",
+    "MANAME",
+    "TRACT",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ESTABLISHD",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "ORIGFORMAT",
+    "BNDADDDATE",
+    "RELEASE",
+    "LAYER",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Local_Parks_2023",
+   "sample": [
+    {
+     "BMI": "5",
+     "ESTABLISHD": " ",
+     "LABEL": "STRATTON WOODS",
+     "LANDLINK": "http://www.fairfaxcounty.gov/parks/",
+     "LPS": "1",
+     "MAAGENCY": "Fairfax County Park Authority",
+     "MALEVEL": "Local",
+     "MANAME": "Stratton Woods",
+     "MATYPE": "Local Park",
+     "OWNER": "Fairfax County Park Authority",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": " ",
+     "LABEL": "Wayside Spring Park",
+     "LANDLINK": "http://www.richmondgov.com/Parks/index.aspx",
+     "LPS": "1",
+     "MAAGENCY": "City of Richmond",
+     "MALEVEL": "Local",
+     "MANAME": "Wayside Spring Park",
+     "MATYPE": "Local Park",
+     "OWNER": "City of Richmond",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": " ",
+     "LABEL": "Newport News City Park",
+     "LANDLINK": "http://www.nngov.com/parks-and-recreation",
+     "LPS": "1",
+     "MAAGENCY": "City of Newport News",
+     "MALEVEL": "Local",
+     "MANAME": "Newport News Park",
+     "MATYPE": "Local Park",
+     "OWNER": "City of Newport News",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    }
+   ],
+   "service": "Local_Parks_2023",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Local_Parks_2023/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2991,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "Local_land",
+   "sample": [
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "manager",
+     "LABEL": "Doyle Way Park",
+     "LANDLINK": "https://www.vbgov.com/government/departments/parks-recreation/Pages/default.aspx",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "City of Virginia Beach",
+     "MALEVEL": "Local",
+     "MANAME": "Doyle Way Park",
+     "MATYPE": "Local Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax parcels",
+     "LABEL": "Doyle Way Park",
+     "LANDLINK": "https://www.vbgov.com/government/departments/parks-recreation/Pages/default.aspx",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "City of Virginia Beach",
+     "MALEVEL": "Local",
+     "MANAME": "Doyle Way Park",
+     "MATYPE": "Local Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "manager",
+     "LABEL": "Mary B. Stratton Park",
+     "LANDLINK": "http://www.chesterfield.gov/parks/",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "Chesterfield County",
+     "MALEVEL": "Local",
+     "MANAME": "Mary B. Stratton Park",
+     "MATYPE": "Local Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2991,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "Local_land",
+   "sample": [
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "manager",
+     "LABEL": "Doyle Way Park",
+     "LANDLINK": "https://www.vbgov.com/government/departments/parks-recreation/Pages/default.aspx",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "City of Virginia Beach",
+     "MALEVEL": "Local",
+     "MANAME": "Doyle Way Park",
+     "MATYPE": "Local Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "tax parcels",
+     "LABEL": "Doyle Way Park",
+     "LANDLINK": "https://www.vbgov.com/government/departments/parks-recreation/Pages/default.aspx",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "City of Virginia Beach",
+     "MALEVEL": "Local",
+     "MANAME": "Doyle Way Park",
+     "MATYPE": "Local Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": " ",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "manager",
+     "LABEL": "Mary B. Stratton Park",
+     "LANDLINK": "http://www.chesterfield.gov/parks/",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "Chesterfield County",
+     "MALEVEL": "Local",
+     "MANAME": "Mary B. Stratton Park",
+     "MATYPE": "Local Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2738,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "Federal_land",
+   "sample": [
+    {
+     "ACQDATE": "2016-06-16",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "Captain John Smith Chesapeake National Heritage Trail",
+     "LANDLINK": "https://www.nps.gov/cajo/index.htm",
+     "LAYER": "FEE-L",
+     "MAAGENCY": "US National Park Service",
+     "MALEVEL": "Federal",
+     "MANAME": "Captain John Smith CHSPK NHT",
+     "MATYPE": "National Park",
+     "OWNER": "US National Park Service",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": "1935-09-30",
+     "BNDACCURAC": " ",
+     "BNDORIGIN": "NPS shapefile",
+     "LABEL": "Fred/Spot National Military Park",
+     "LANDLINK": "http://www.nps.gov/frsp/index.htm",
+     "LAYER": "FEE-F",
+     "MAAGENCY": "US National Park Service",
+     "MALEVEL": "Federal",
+     "MANAME": "Fredericksburg and Spot. National Military Park",
+     "MATYPE": "National Park",
+     "OWNER": "US National Park Service",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": "2014-07-01",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "Parcel Data",
+     "LABEL": "Richmond National Battlefield Park",
+     "LANDLINK": "http://www.nps.gov/rich/index.htm",
+     "LAYER": "FEE-F",
+     "MAAGENCY": "US National Park Service",
+     "MALEVEL": "Federal",
+     "MANAME": "Richmond National Battlefield Park",
+     "MATYPE": "National Park",
+     "OWNER": "US National Park Service",
+     "PUBACCESS": "open"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2738,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "Federal_land",
+   "sample": [
+    {
+     "ACQDATE": "2016-06-16",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "Captain John Smith Chesapeake National Heritage Trail",
+     "LANDLINK": "https://www.nps.gov/cajo/index.htm",
+     "LAYER": "FEE-L",
+     "MAAGENCY": "US National Park Service",
+     "MALEVEL": "Federal",
+     "MANAME": "Captain John Smith CHSPK NHT",
+     "MATYPE": "National Park",
+     "OWNER": "US National Park Service",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": "1935-09-30",
+     "BNDACCURAC": " ",
+     "BNDORIGIN": "NPS shapefile",
+     "LABEL": "Fred/Spot National Military Park",
+     "LANDLINK": "http://www.nps.gov/frsp/index.htm",
+     "LAYER": "FEE-F",
+     "MAAGENCY": "US National Park Service",
+     "MALEVEL": "Federal",
+     "MANAME": "Fredericksburg and Spot. National Military Park",
+     "MATYPE": "National Park",
+     "OWNER": "US National Park Service",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": "2014-07-01",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "Parcel Data",
+     "LABEL": "Richmond National Battlefield Park",
+     "LANDLINK": "http://www.nps.gov/rich/index.htm",
+     "LAYER": "FEE-F",
+     "MAAGENCY": "US National Park Service",
+     "MALEVEL": "Federal",
+     "MANAME": "Richmond National Battlefield Park",
+     "MATYPE": "National Park",
+     "OWNER": "US National Park Service",
+     "PUBACCESS": "open"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2069,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "Private_land",
+   "sample": [
+    {
+     "ACQDATE": "2002-03-28",
+     "BNDACCURAC": "unknown",
+     "BNDORIGIN": "unknown",
+     "LABEL": "TNC Preserve",
+     "LANDLINK": "http://www.nature.org/wherewework/northamerica/states/virginia/preserves/art15030.html",
+     "LAYER": "FEE-P",
+     "MAAGENCY": "The Nature Conservancy",
+     "MALEVEL": "Private",
+     "MANAME": "Cleveland",
+     "MATYPE": "TNC Preserve",
+     "OWNER": "The Nature Conservancy",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2018-08-31",
+     "BNDACCURAC": "unknown",
+     "BNDORIGIN": "owner",
+     "LABEL": "ABT Holding",
+     "LANDLINK": "https://www.battlefields.org/",
+     "LAYER": "FEE-P",
+     "MAAGENCY": "American Battlefield Trust",
+     "MALEVEL": "Private",
+     "MANAME": "ABT Holding",
+     "MATYPE": "Non-Profit Fee Simple Holding",
+     "OWNER": "American Battlefield Trust",
+     "PUBACCESS": "by permission from owner"
+    },
+    {
+     "ACQDATE": "2014-07-01",
+     "BNDACCURAC": "unknown",
+     "BNDORIGIN": "Civil War Trust",
+     "LABEL": "ABT Holding",
+     "LANDLINK": "https://www.battlefields.org/",
+     "LAYER": "FEE-P",
+     "MAAGENCY": "American Battlefield Trust",
+     "MALEVEL": "Private",
+     "MANAME": "Glandale Battlefield",
+     "MATYPE": "Non-Profit Fee Simple Holding",
+     "OWNER": "Civil War Trust",
+     "PUBACCESS": "by arrangement with landowner"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2069,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "Private_land",
+   "sample": [
+    {
+     "ACQDATE": "2002-03-28",
+     "BNDACCURAC": "unknown",
+     "BNDORIGIN": "unknown",
+     "LABEL": "TNC Preserve",
+     "LANDLINK": "http://www.nature.org/wherewework/northamerica/states/virginia/preserves/art15030.html",
+     "LAYER": "FEE-P",
+     "MAAGENCY": "The Nature Conservancy",
+     "MALEVEL": "Private",
+     "MANAME": "Cleveland",
+     "MATYPE": "TNC Preserve",
+     "OWNER": "The Nature Conservancy",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2018-08-31",
+     "BNDACCURAC": "unknown",
+     "BNDORIGIN": "owner",
+     "LABEL": "ABT Holding",
+     "LANDLINK": "https://www.battlefields.org/",
+     "LAYER": "FEE-P",
+     "MAAGENCY": "American Battlefield Trust",
+     "MALEVEL": "Private",
+     "MANAME": "ABT Holding",
+     "MATYPE": "Non-Profit Fee Simple Holding",
+     "OWNER": "American Battlefield Trust",
+     "PUBACCESS": "by permission from owner"
+    },
+    {
+     "ACQDATE": "2014-07-01",
+     "BNDACCURAC": "unknown",
+     "BNDORIGIN": "Civil War Trust",
+     "LABEL": "ABT Holding",
+     "LANDLINK": "https://www.battlefields.org/",
+     "LAYER": "FEE-P",
+     "MAAGENCY": "American Battlefield Trust",
+     "MALEVEL": "Private",
+     "MANAME": "Glandale Battlefield",
+     "MATYPE": "Non-Profit Fee Simple Holding",
+     "OWNER": "Civil War Trust",
+     "PUBACCESS": "by arrangement with landowner"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1841,
+   "fields": [
+    "FireName",
+    "river",
+    "section",
+    "agency",
+    "huc",
+    "class",
+    "photo_id",
+    "AW_URL",
+    "RunName"
+   ],
+   "known": false,
+   "layer": "RAVG CBI4 Whitewater Runs 175-Foot Buffer",
+   "sample": [
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/168/main",
+     "FireName": "River Complex",
+     "RunName": "Coffee Creek",
+     "agency": "Shasta-Trinity NF",
+     "class": "III-IV",
+     "huc": "18010211",
+     "photo_id": " ",
+     "river": "Coffee Creek",
+     "section": "Coffee Creek Road to Trinity River"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/168/main",
+     "FireName": "River Complex",
+     "RunName": "Coffee Creek",
+     "agency": "Shasta-Trinity NF",
+     "class": "III-IV",
+     "huc": "18010211",
+     "photo_id": " ",
+     "river": "Coffee Creek",
+     "section": "Coffee Creek Road to Trinity River"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/168/main",
+     "FireName": "River Complex",
+     "RunName": "Coffee Creek",
+     "agency": "Shasta-Trinity NF",
+     "class": "III-IV",
+     "huc": "18010211",
+     "photo_id": " ",
+     "river": "Coffee Creek",
+     "section": "Coffee Creek Road to Trinity River"
+    }
+   ],
+   "service": "Monument_River_Complex_Closure_Map_WFL1",
+   "typef": "class",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Monument_River_Complex_Closure_Map_WFL1/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1625,
+   "fields": [
+    "BASIN_NAME",
+    "SUBBASIN_N",
+    "WSHD_NAME",
+    "SUBWSHD_NM",
+    "HUC6",
+    "HUC4",
+    "EDU",
+    "FUTURERISK"
+   ],
+   "known": false,
+   "layer": "Washington Freshwater Assessment _ Conservation Reserve Network",
+   "sample": [
+    {
+     "BASIN_NAME": "SPOKANE",
+     "EDU": "CLARK FORK",
+     "FUTURERISK": "L",
+     "HUC4": "17010216",
+     "HUC6": "170102160307",
+     "SUBBASIN_N": "PEND OREILLE",
+     "SUBWSHD_NM": "SOUTH SALMO RIVER",
+     "WSHD_NAME": "LOWER PEND OREILLE"
+    },
+    {
+     "BASIN_NAME": "SPOKANE",
+     "EDU": "CLARK FORK",
+     "FUTURERISK": "L",
+     "HUC4": "17010216",
+     "HUC6": "170102160306",
+     "SUBBASIN_N": "PEND OREILLE",
+     "SUBWSHD_NM": "SLATE CREEK",
+     "WSHD_NAME": "LOWER PEND OREILLE"
+    },
+    {
+     "BASIN_NAME": "SPOKANE",
+     "EDU": "CLARK FORK",
+     "FUTURERISK": "H",
+     "HUC4": "17010216",
+     "HUC6": "170102160308",
+     "SUBBASIN_N": "PEND OREILLE",
+     "SUBWSHD_NM": "FLUME CREEK",
+     "WSHD_NAME": "LOWER PEND OREILLE"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_1_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_1_WFL1/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1625,
+   "fields": [
+    "BASIN_NAME",
+    "SUBBASIN_N",
+    "WSHD_NAME",
+    "SUBWSHD_NM",
+    "HUC6",
+    "HUC4",
+    "EDU",
+    "FUTURERISK"
+   ],
+   "known": false,
+   "layer": "Washington Freshwater Assessment  - Conservation Reserve Network",
+   "sample": [
+    {
+     "BASIN_NAME": "SPOKANE",
+     "EDU": "CLARK FORK",
+     "FUTURERISK": "L",
+     "HUC4": "17010216",
+     "HUC6": "170102160307",
+     "SUBBASIN_N": "PEND OREILLE",
+     "SUBWSHD_NM": "SOUTH SALMO RIVER",
+     "WSHD_NAME": "LOWER PEND OREILLE"
+    },
+    {
+     "BASIN_NAME": "SPOKANE",
+     "EDU": "CLARK FORK",
+     "FUTURERISK": "L",
+     "HUC4": "17010216",
+     "HUC6": "170102160306",
+     "SUBBASIN_N": "PEND OREILLE",
+     "SUBWSHD_NM": "SLATE CREEK",
+     "WSHD_NAME": "LOWER PEND OREILLE"
+    },
+    {
+     "BASIN_NAME": "SPOKANE",
+     "EDU": "CLARK FORK",
+     "FUTURERISK": "H",
+     "HUC4": "17010216",
+     "HUC6": "170102160308",
+     "SUBBASIN_N": "PEND OREILLE",
+     "SUBWSHD_NM": "FLUME CREEK",
+     "WSHD_NAME": "LOWER PEND OREILLE"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_2_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_2_WFL1/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 973,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "LPS",
+    "BMI",
+    "MANAME",
+    "TRACT",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ESTABLISHD",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "ORIGFORMAT",
+    "BNDADDDATE",
+    "RELEASE",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "bclsp_parks2",
+   "sample": [
+    {
+     "BMI": "3",
+     "ESTABLISHD": " ",
+     "LABEL": "Echo Lake Park",
+     "LANDLINK": "http://www.co.henrico.va.us/rec/",
+     "LPS": "1",
+     "MAAGENCY": "Henrico County",
+     "MALEVEL": "Local",
+     "MANAME": "Echo Lake Park",
+     "MATYPE": "Local Park",
+     "OWNER": "Henrico County",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "4",
+     "ESTABLISHD": "2013-12-31",
+     "LABEL": "DOC",
+     "LANDLINK": "http://vadoc.virginia.gov",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Corrections",
+     "MALEVEL": "State",
+     "MANAME": "DOC Goochland",
+     "MATYPE": "DOC fee-simple",
+     "OWNER": "VA Dept. of Corrections",
+     "PUBACCESS": "closed",
+     "TRACT": "DOC Goochland"
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": "1936",
+     "LABEL": "Staunton River Battlefield State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/stb.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "Staunton River Battlefield State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    }
+   ],
+   "service": "bclsp_parks2",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/bclsp_parks2/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 973,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "LPS",
+    "BMI",
+    "MANAME",
+    "TRACT",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ESTABLISHD",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "ORIGFORMAT",
+    "BNDADDDATE",
+    "RELEASE",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "bclsp_parks2",
+   "sample": [
+    {
+     "BMI": "3",
+     "ESTABLISHD": " ",
+     "LABEL": "Echo Lake Park",
+     "LANDLINK": "http://www.co.henrico.va.us/rec/",
+     "LPS": "1",
+     "MAAGENCY": "Henrico County",
+     "MALEVEL": "Local",
+     "MANAME": "Echo Lake Park",
+     "MATYPE": "Local Park",
+     "OWNER": "Henrico County",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "4",
+     "ESTABLISHD": "2013-12-31",
+     "LABEL": "DOC",
+     "LANDLINK": "http://vadoc.virginia.gov",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Corrections",
+     "MALEVEL": "State",
+     "MANAME": "DOC Goochland",
+     "MATYPE": "DOC fee-simple",
+     "OWNER": "VA Dept. of Corrections",
+     "PUBACCESS": "closed",
+     "TRACT": "DOC Goochland"
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": "1936",
+     "LABEL": "Staunton River Battlefield State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/stb.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "Staunton River Battlefield State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    }
+   ],
+   "service": "bclsp_parks2",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_parks2/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 771,
+   "fields": [
+    "PropName",
+    "PropType",
+    "LastUpdate",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "CPW Managed Properties (public access only)",
+   "sample": [
+    {
+     "GlobalID": "{62949989-9D59-4013-B483-EA290E50CD03}",
+     "LastUpdate": "Generated from CPWParcels on 02/04/2020",
+     "PropName": "Dome Rock SWA",
+     "PropType": "SWA"
+    },
+    {
+     "GlobalID": "{76B75055-52D6-4995-AACB-0193096BB7AF}",
+     "LastUpdate": "Generated from CPWParcels on 02/04/2020",
+     "PropName": "Durango SFU",
+     "PropType": "SFU"
+    },
+    {
+     "GlobalID": "{5D8E35DB-7C99-42AA-9BC5-BF1EDD0958A8}",
+     "LastUpdate": "Generated from CPWParcels on 02/04/2020",
+     "PropName": "Glenwood Springs SFU",
+     "PropType": "SFU"
+    }
+   ],
+   "service": "Colorado_Rivers_and_CPW_Managed_Properties_Map_v2_WFL1",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Colorado_Rivers_and_CPW_Managed_Properties_Map_v2_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 753,
+   "fields": [
+    "VAHU5",
+    "VAHU6",
+    "META_ID",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Area Eligible for Forest Legacy Program in Virginia (2017 on)",
+   "sample": [
+    {
+     "META_ID": "VA01",
+     "VAHU5": "PU-E",
+     "VAHU6": "PU08",
+     "notes": " "
+    },
+    {
+     "META_ID": "VA02",
+     "VAHU5": "PL-A",
+     "VAHU6": "PL01",
+     "notes": " "
+    },
+    {
+     "META_ID": "VA01",
+     "VAHU5": "PU-F",
+     "VAHU6": "PU12",
+     "notes": " "
+    }
+   ],
+   "service": "Area_Eligible_for_Forest_Legacy_Program_in_Virginia",
+   "typef": "",
+   "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/Area_Eligible_for_Forest_Legacy_Program_in_Virginia/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 217,
+   "fields": [
+    "Complex",
+    "WLA_Name",
+    "WLAU_Name",
+    "Contact",
+    "AccessTy_1"
+   ],
+   "known": false,
+   "layer": "WDFW Wildlife Areas",
+   "sample": [
+    {
+     "AccessTy_1": "Open",
+     "Complex": "Blue Mountains",
+     "Contact": "Bob Dice, Wildlife Area Manager, Phone # 509-758-3151",
+     "WLAU_Name": "Shumaker",
+     "WLA_Name": "Chief Joseph"
+    },
+    {
+     "AccessTy_1": "Open",
+     "Complex": "Blue Mountains",
+     "Contact": "Bob Dice, Wildlife Area Manager, Phone # 509-758-3151",
+     "WLAU_Name": "Asotin Creek",
+     "WLA_Name": "Asotin Creek"
+    },
+    {
+     "AccessTy_1": "Open",
+     "Complex": "Blue Mountains",
+     "Contact": "Bob Dice, Wildlife Area Manager, Phone # 509-758-3151",
+     "WLAU_Name": "Weatherly",
+     "WLA_Name": "Asotin Creek"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_1_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_1_WFL1/FeatureServer/54"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 217,
+   "fields": [
+    "Complex",
+    "WLA_Name",
+    "WLAU_Name",
+    "Contact",
+    "AccessTy_1"
+   ],
+   "known": false,
+   "layer": "WDFW Wildlife Areas",
+   "sample": [
+    {
+     "AccessTy_1": "Open",
+     "Complex": "Blue Mountains",
+     "Contact": "Bob Dice, Wildlife Area Manager, Phone # 509-758-3151",
+     "WLAU_Name": "Shumaker",
+     "WLA_Name": "Chief Joseph"
+    },
+    {
+     "AccessTy_1": "Open",
+     "Complex": "Blue Mountains",
+     "Contact": "Bob Dice, Wildlife Area Manager, Phone # 509-758-3151",
+     "WLAU_Name": "Asotin Creek",
+     "WLA_Name": "Asotin Creek"
+    },
+    {
+     "AccessTy_1": "Open",
+     "Complex": "Blue Mountains",
+     "Contact": "Bob Dice, Wildlife Area Manager, Phone # 509-758-3151",
+     "WLAU_Name": "Weatherly",
+     "WLA_Name": "Asotin Creek"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_2_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_2_WFL1/FeatureServer/54"
+  },
+  {
+   "agency": "Virginia Department of Game and Inland Fisheries",
+   "area": "NAME",
+   "count": 193,
+   "fields": [
+    "NAME",
+    "Source",
+    "Boat_Motor"
+   ],
+   "known": false,
+   "layer": "Public Fishing Lakes",
+   "sample": [
+    {
+     "Boat_Motor": "Electric Motors Only",
+     "NAME": "Abel Reservoir",
+     "Source": "NHD Waterbodies"
+    },
+    {
+     "Boat_Motor": "Electric Motors Only",
+     "NAME": "Albermarle Lake",
+     "Source": "NHD Waterbodies"
+    },
+    {
+     "Boat_Motor": "Electric Motors Only",
+     "NAME": "Amelia Lake",
+     "Source": "NHD Waterbodies"
+    }
+   ],
+   "service": "PublicFishingLakes",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/PublicFishingLakes/FeatureServer/0"
+  },
+  {
+   "agency": "Virginia Department of Game and Inland Fisheries",
+   "area": "NAME",
+   "count": 193,
+   "fields": [
+    "NAME",
+    "Source",
+    "Boat_Motor"
+   ],
+   "known": false,
+   "layer": "Public Fishing Lakes",
+   "sample": [
+    {
+     "Boat_Motor": "Electric Motors Only",
+     "NAME": "Abel Reservoir",
+     "Source": "NHD Waterbodies"
+    },
+    {
+     "Boat_Motor": "Electric Motors Only",
+     "NAME": "Albermarle Lake",
+     "Source": "NHD Waterbodies"
+    },
+    {
+     "Boat_Motor": "Electric Motors Only",
+     "NAME": "Amelia Lake",
+     "Source": "NHD Waterbodies"
+    }
+   ],
+   "service": "PublicFishingLakes",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/PublicFishingLakes/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Park",
+   "count": 193,
+   "fields": [
+    "Common_Nam",
+    "Notes",
+    "Creator",
+    "Editor",
+    "GlobalID",
+    "Park",
+    "Creator_1",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "State_Parks_Wavyleaf_January_2024",
+   "sample": [
+    {
+     "Common_Nam": "Wavyleaf Basketgrass",
+     "Creator": "Peter.lostritto_vdcr",
+     "Creator_1": "lindsay.caplan_VDOF",
+     "Editor": "Peter.lostritto_vdcr",
+     "Editor_1": "lindsay.caplan_VDOF",
+     "GlobalID": "{4E02F36C-D7BC-45E5-89C5-24010FAEAEF2}",
+     "Notes": " ",
+     "Park": "Powhatan State Park"
+    },
+    {
+     "Common_Nam": "Wavyleaf Basketgrass",
+     "Creator": "Peter.lostritto_vdcr",
+     "Creator_1": "lindsay.caplan_VDOF",
+     "Editor": "Peter.lostritto_vdcr",
+     "Editor_1": "lindsay.caplan_VDOF",
+     "GlobalID": "{602A7AF9-BD1D-40A2-9144-42A409647928}",
+     "Notes": " ",
+     "Park": "Powhatan State Park"
+    },
+    {
+     "Common_Nam": "Wavyleaf Basketgrass",
+     "Creator": "Peter.lostritto_vdcr",
+     "Creator_1": "lindsay.caplan_VDOF",
+     "Editor": "Peter.lostritto_vdcr",
+     "Editor_1": "lindsay.caplan_VDOF",
+     "GlobalID": "{F7A63369-E2D0-4E78-9B81-401E573FEB2B}",
+     "Notes": " ",
+     "Park": "Powhatan State Park"
+    }
+   ],
+   "service": "State_Parks_Wavyleaf_January_2024",
+   "typef": "",
+   "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/State_Parks_Wavyleaf_January_2024/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 169,
+   "fields": [
+    "TRAIL_NO",
+    "TRAIL_NAME",
+    "TRAIL_TYPE",
+    "TRAIL_CN",
+    "ADMIN_ORG",
+    "MANAGING_O",
+    "SECURITY_I",
+    "ATTRIBUTES",
+    "TRAIL_CLAS",
+    "TERRA_BASE",
+    "ACCESSIBIL",
+    "TRAIL_SURF",
+    "SURFACE_FI",
+    "TYPICAL_TR",
+    "TYPICAL__1",
+    "MINIMUM_TR",
+    "TYPICAL__2",
+    "SPECIAL_MG",
+    "ALLOWED_TE",
+    "ALLOWED_SN"
+   ],
+   "known": false,
+   "layer": "USFS Olympic NF Trails 100 ft Buffer",
+   "sample": [
+    {
+     "ACCESSIBIL": "NOT ACCESSIBLE",
+     "ADMIN_ORG": "060901",
+     "ATTRIBUTES": "TrailNFS_MGMT",
+     "MANAGING_O": "060902",
+     "SECURITY_I": "0609",
+     "TERRA_BASE": "TC3",
+     "TRAIL_CLAS": "3",
+     "TRAIL_CN": "114076010602",
+     "TRAIL_NAME": "MT. ELLINOR CONNECTOR",
+     "TRAIL_NO": "827.2",
+     "TRAIL_SURF": "NAT - NATIVE MATERIAL",
+     "TRAIL_TYPE": "TERRA"
+    },
+    {
+     "ACCESSIBIL": "NOT ACCESSIBLE",
+     "ADMIN_ORG": "060901",
+     "ATTRIBUTES": "TrailNFS_MGMT",
+     "MANAGING_O": "060902",
+     "SECURITY_I": "0609",
+     "TERRA_BASE": "TC1-2",
+     "TRAIL_CLAS": "2",
+     "TRAIL_CN": "5978.004571",
+     "TRAIL_NAME": "RANGER HOLE",
+     "TRAIL_NO": "824",
+     "TRAIL_SURF": "NAT - NATIVE MATERIAL",
+     "TRAIL_TYPE": "TERRA"
+    },
+    {
+     "ACCESSIBIL": "NOT ACCESSIBLE",
+     "ADMIN_ORG": "060901",
+     "ATTRIBUTES": "TrailNFS_MGMT",
+     "MANAGING_O": "060902",
+     "SECURITY_I": "0609",
+     "TERRA_BASE": "TC1-2",
+     "TRAIL_CLAS": "2",
+     "TRAIL_CN": "5971.004571",
+     "TRAIL_NAME": "MT. ROSE",
+     "TRAIL_NO": "814",
+     "TRAIL_SURF": "NAT - NATIVE MATERIAL",
+     "TRAIL_TYPE": "TERRA"
+    }
+   ],
+   "service": "USFS_Olympic_NF_Trails_100_ft_Buffer",
+   "typef": "TRAIL_TYPE",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/USFS_Olympic_NF_Trails_100_ft_Buffer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 169,
+   "fields": [
+    "TRAIL_NO",
+    "TRAIL_NAME",
+    "TRAIL_TYPE",
+    "TRAIL_CN",
+    "ADMIN_ORG",
+    "MANAGING_O",
+    "SECURITY_I",
+    "ATTRIBUTES",
+    "TRAIL_CLAS",
+    "TERRA_BASE",
+    "ACCESSIBIL",
+    "TRAIL_SURF",
+    "SURFACE_FI",
+    "TYPICAL_TR",
+    "TYPICAL__1",
+    "MINIMUM_TR",
+    "TYPICAL__2",
+    "SPECIAL_MG",
+    "ALLOWED_TE",
+    "ALLOWED_SN"
+   ],
+   "known": false,
+   "layer": "USFS Olympic NF Trails 200 ft Buffer",
+   "sample": [
+    {
+     "ACCESSIBIL": "NOT ACCESSIBLE",
+     "ADMIN_ORG": "060901",
+     "ATTRIBUTES": "TrailNFS_MGMT",
+     "MANAGING_O": "060902",
+     "SECURITY_I": "0609",
+     "TERRA_BASE": "TC3",
+     "TRAIL_CLAS": "3",
+     "TRAIL_CN": "114076010602",
+     "TRAIL_NAME": "MT. ELLINOR CONNECTOR",
+     "TRAIL_NO": "827.2",
+     "TRAIL_SURF": "NAT - NATIVE MATERIAL",
+     "TRAIL_TYPE": "TERRA"
+    },
+    {
+     "ACCESSIBIL": "NOT ACCESSIBLE",
+     "ADMIN_ORG": "060901",
+     "ATTRIBUTES": "TrailNFS_MGMT",
+     "MANAGING_O": "060902",
+     "SECURITY_I": "0609",
+     "TERRA_BASE": "TC1-2",
+     "TRAIL_CLAS": "2",
+     "TRAIL_CN": "5978.004571",
+     "TRAIL_NAME": "RANGER HOLE",
+     "TRAIL_NO": "824",
+     "TRAIL_SURF": "NAT - NATIVE MATERIAL",
+     "TRAIL_TYPE": "TERRA"
+    },
+    {
+     "ACCESSIBIL": "NOT ACCESSIBLE",
+     "ADMIN_ORG": "060901",
+     "ATTRIBUTES": "TrailNFS_MGMT",
+     "MANAGING_O": "060902",
+     "SECURITY_I": "0609",
+     "TERRA_BASE": "TC1-2",
+     "TRAIL_CLAS": "2",
+     "TRAIL_CN": "5004.005071",
+     "TRAIL_NAME": "MURHUT FALLS",
+     "TRAIL_NO": "828",
+     "TRAIL_SURF": "NAT - NATIVE MATERIAL",
+     "TRAIL_TYPE": "TERRA"
+    }
+   ],
+   "service": "USFS_Olympic_NF_Trails_200_ft_Buffer",
+   "typef": "TRAIL_TYPE",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/USFS_Olympic_NF_Trails_200_ft_Buffer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 154,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "conservation_5mi",
+   "sample": [
+    {
+     "ACQDATE": "2011-05-26",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "ACE Easement",
+     "LANDLINK": "http://www.albemarle.org/department.asp?department=cdd&relpage=3213",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "Albemarle County",
+     "MALEVEL": "Local",
+     "MANAME": "Albemarle ACE Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2007-02-28",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "ACE Easement",
+     "LANDLINK": "http://www.albemarle.org/department.asp?department=cdd&relpage=3213",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "Albemarle County",
+     "MALEVEL": "Local",
+     "MANAME": "Albemarle ACE Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2010-02-02",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "ACE Easement",
+     "LANDLINK": "http://www.albemarle.org/department.asp?department=cdd&relpage=3213",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "Albemarle County",
+     "MALEVEL": "Local",
+     "MANAME": "Albemarle ACE Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    }
+   ],
+   "service": "FluvannaCo_gdb",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/FluvannaCo_gdb/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 154,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "conservation_5mi",
+   "sample": [
+    {
+     "ACQDATE": "2011-05-26",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "ACE Easement",
+     "LANDLINK": "http://www.albemarle.org/department.asp?department=cdd&relpage=3213",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "Albemarle County",
+     "MALEVEL": "Local",
+     "MANAME": "Albemarle ACE Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2007-02-28",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "ACE Easement",
+     "LANDLINK": "http://www.albemarle.org/department.asp?department=cdd&relpage=3213",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "Albemarle County",
+     "MALEVEL": "Local",
+     "MANAME": "Albemarle ACE Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2010-02-02",
+     "BNDACCURAC": "parcelq",
+     "BNDORIGIN": "parcel data",
+     "LABEL": "ACE Easement",
+     "LANDLINK": "http://www.albemarle.org/department.asp?department=cdd&relpage=3213",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "Albemarle County",
+     "MALEVEL": "Local",
+     "MANAME": "Albemarle ACE Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    }
+   ],
+   "service": "FluvannaCo_gdb",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/FluvannaCo_gdb/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 82,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "conservation_5mi",
+   "sample": [
+    {
+     "ACQDATE": "2011-01-04",
+     "BNDACCURAC": "survq",
+     "BNDORIGIN": "Maxey-Hines & Associates, surveyor",
+     "LABEL": "CREP Easement",
+     "LANDLINK": "http://www.dcr.virginia.gov/water_quality/crep.shtml",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "CREP Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2006-12-28",
+     "BNDACCURAC": "digbp",
+     "BNDORIGIN": "DCR-DNH",
+     "LABEL": "High Bridge Trail State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/hig.shtml",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "High Bridge Trail State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": "2008-10-09",
+     "BNDACCURAC": "survq",
+     "BNDORIGIN": "Marsh and Legge Surveyors",
+     "LABEL": "High Bridge Trail State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/hig.shtml",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "High Bridge Trail State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    }
+   ],
+   "service": "CumberlandCo_gdb",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/CumberlandCo_gdb/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 82,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "MANAME",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "LAYER"
+   ],
+   "known": false,
+   "layer": "conservation_5mi",
+   "sample": [
+    {
+     "ACQDATE": "2011-01-04",
+     "BNDACCURAC": "survq",
+     "BNDORIGIN": "Maxey-Hines & Associates, surveyor",
+     "LABEL": "CREP Easement",
+     "LANDLINK": "http://www.dcr.virginia.gov/water_quality/crep.shtml",
+     "LAYER": "EASEMENT",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "CREP Easement",
+     "MATYPE": "Conservation Easement",
+     "OWNER": "Private",
+     "PUBACCESS": "closed"
+    },
+    {
+     "ACQDATE": "2006-12-28",
+     "BNDACCURAC": "digbp",
+     "BNDORIGIN": "DCR-DNH",
+     "LABEL": "High Bridge Trail State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/hig.shtml",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "High Bridge Trail State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    },
+    {
+     "ACQDATE": "2008-10-09",
+     "BNDACCURAC": "survq",
+     "BNDORIGIN": "Marsh and Legge Surveyors",
+     "LABEL": "High Bridge Trail State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/hig.shtml",
+     "LAYER": "FEE-S",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "High Bridge Trail State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open"
+    }
+   ],
+   "service": "CumberlandCo_gdb",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/CumberlandCo_gdb/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "UnitName",
+   "count": 53,
+   "fields": [
+    "GISRevisionEditor",
+    "UnitName",
+    "UnitFullLabel",
+    "Type",
+    "UnitShortLabel",
+    "DifferenceType"
+   ],
+   "known": false,
+   "layer": "Proposed Wilderness Revision Analysis",
+   "sample": [
+    {
+     "DifferenceType": "Subtraction"
+    },
+    {
+     "DifferenceType": "Subtraction"
+    },
+    {
+     "DifferenceType": "Subtraction"
+    }
+   ],
+   "service": "Proposed_Wilderness_Revision_Analysis",
+   "typef": "Type",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Proposed_Wilderness_Revision_Analysis/FeatureServer/52"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 41,
+   "fields": [
+    "MANAME"
+   ],
+   "known": false,
+   "layer": "Virginia_State_Parks",
+   "sample": [
+    {
+     "MANAME": "Bear Creek Lake State Park"
+    },
+    {
+     "MANAME": "Belle Isle State Park"
+    },
+    {
+     "MANAME": "Biscuit Run State Park"
+    }
+   ],
+   "service": "Virginia_State_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Virginia_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 41,
+   "fields": [
+    "MANAME"
+   ],
+   "known": false,
+   "layer": "Virginia_State_Parks",
+   "sample": [
+    {
+     "MANAME": "Bear Creek Lake State Park"
+    },
+    {
+     "MANAME": "Belle Isle State Park"
+    },
+    {
+     "MANAME": "Biscuit Run State Park"
+    }
+   ],
+   "service": "Virginia_State_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Virginia_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 40,
+   "fields": [],
+   "known": false,
+   "layer": "Wild Olympics Potential Wilderness",
+   "sample": [
+    {
+     "Acres": 57.8431398722,
+     "Area": 2519647.17283,
+     "FID": 1,
+     "Hectares": 23.4082882083,
+     "Id": 0,
+     "Perimeter": 8325.36074409,
+     "Pot_Wild": 1,
+     "Shape__Area": 511105.8203125,
+     "Shape__Length": 3751.950641085499
+    },
+    {
+     "Acres": 174.345336381,
+     "Area": 7594482.85278,
+     "FID": 2,
+     "Hectares": 70.5550544251,
+     "Id": 0,
+     "Perimeter": 21261.61335,
+     "Pot_Wild": 1,
+     "Shape__Area": 1540102.953125,
+     "Shape__Length": 9574.83723564098
+    },
+    {
+     "Acres": 47.9168051703,
+     "Area": 2087256.03322,
+     "FID": 3,
+     "Hectares": 19.3912430744,
+     "Id": 0,
+     "Perimeter": 7131.23671539,
+     "Pot_Wild": 1,
+     "Shape__Area": 423507.640625,
+     "Shape__Length": 3211.8475944589704
+    }
+   ],
+   "service": "Wild_Olympics_Wilderness_Map",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Wild_Olympics_Wilderness_Map/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "VA_State_Parks_Without_IDSP_Designation",
+   "sample": [
+    {
+     "LABEL": "Shenandoah River State Park"
+    },
+    {
+     "LABEL": "Bear Creek Lake State Park"
+    },
+    {
+     "LABEL": "Belle Isle State Park"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "VA_State_Parks_Without_IDSP_Designation",
+   "sample": [
+    {
+     "LABEL": "Shenandoah River State Park"
+    },
+    {
+     "LABEL": "Bear Creek Lake State Park"
+    },
+    {
+     "LABEL": "Belle Isle State Park"
+    }
+   ],
+   "service": "VA_State_Parks_Without_IDSP_Designation",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/VA_State_Parks_Without_IDSP_Designation/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "VA_State_Parks_Without_IDSP_Designation",
+   "sample": [
+    {
+     "LABEL": "Shenandoah River State Park"
+    },
+    {
+     "LABEL": "Bear Creek Lake State Park"
+    },
+    {
+     "LABEL": "Belle Isle State Park"
+    }
+   ],
+   "service": "Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Nighttime_Light_Pollution___Federal__Local__Private____Non_IDSP_State_Parks_in_VA_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "VA_State_Parks_Without_IDSP_Designation",
+   "sample": [
+    {
+     "LABEL": "Shenandoah River State Park"
+    },
+    {
+     "LABEL": "Bear Creek Lake State Park"
+    },
+    {
+     "LABEL": "Belle Isle State Park"
+    }
+   ],
+   "service": "VA_State_Parks_Without_IDSP_Designation",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VA_State_Parks_Without_IDSP_Designation/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36,
+   "fields": [
+    "Complex"
+   ],
+   "known": false,
+   "layer": "Wild Olympics Proposed Wilderness",
+   "sample": [
+    {
+     "Complex": "Colonel Bob 2"
+    },
+    {
+     "Complex": "Colonel Bob 2"
+    },
+    {
+     "Complex": "Colonel Bob 2"
+    }
+   ],
+   "service": "Wild_Olympics_Wilderness_Map",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Wild_Olympics_Wilderness_Map/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 34,
+   "fields": [
+    "NAME",
+    "OWNER",
+    "EditorName"
+   ],
+   "known": false,
+   "layer": "Nevada County Parks",
+   "sample": [
+    {
+     "EditorName": "GIS",
+     "NAME": "Martis Creek Lake National Recreation Area",
+     "OWNER": "United States Army Corps of Engineers"
+    },
+    {
+     "EditorName": "GIS",
+     "NAME": "Pioneer Park",
+     "OWNER": "Nevada City, City of"
+    },
+    {
+     "EditorName": "GIS",
+     "NAME": "West End Beach Park",
+     "OWNER": "Truckee-Donner Recreation and Park District"
+    }
+   ],
+   "service": "Nevada_County_CA_Whitewater_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Nevada_County_CA_Whitewater_Map_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "UnitName",
+   "count": 30,
+   "fields": [
+    "GISRevisionEditor",
+    "UnitName",
+    "UnitFullLabel",
+    "Type",
+    "UnitShortLabel"
+   ],
+   "known": false,
+   "layer": "Proposed Wilderess Revised FINAL 20250113",
+   "sample": [
+    {
+     "GISRevisionEditor": "LD",
+     "Type": "Wilderness Addition",
+     "UnitFullLabel": "Buckhorn Wilderness Addition 2",
+     "UnitName": "Buckhorn",
+     "UnitShortLabel": "Buckhorn 2"
+    },
+    {
+     "GISRevisionEditor": "LD",
+     "Type": "Wilderness Addition",
+     "UnitFullLabel": "Colonel Bob Wilderness Addition ",
+     "UnitName": "Colonel Bob",
+     "UnitShortLabel": "Colonel Bob"
+    },
+    {
+     "GISRevisionEditor": "LD",
+     "Type": "Wilderness",
+     "UnitFullLabel": "Rugged Ridge Wilderness",
+     "UnitName": "Rugged Ridge",
+     "UnitShortLabel": "Rugged Ridge"
+    }
+   ],
+   "service": "Proposed_Wilderness_Revised_FINAL_20241210",
+   "typef": "Type",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Proposed_Wilderness_Revised_FINAL_20241210/FeatureServer/62"
+  },
+  {
+   "agency": "",
+   "area": "UnitName",
+   "count": 30,
+   "fields": [
+    "GISRevisionEditor",
+    "UnitName",
+    "UnitFullLabel",
+    "Type",
+    "UnitShortLabel"
+   ],
+   "known": false,
+   "layer": "Proposed Wilderness Revised FINAL 20250221",
+   "sample": [
+    {
+     "GISRevisionEditor": "LD",
+     "Type": "Wilderness Addition",
+     "UnitFullLabel": "Buckhorn Wilderness Addition 2",
+     "UnitName": "Buckhorn",
+     "UnitShortLabel": "Buckhorn 2"
+    },
+    {
+     "GISRevisionEditor": "LD",
+     "Type": "Wilderness Addition",
+     "UnitFullLabel": "Colonel Bob Wilderness Addition ",
+     "UnitName": "Colonel Bob",
+     "UnitShortLabel": "Colonel Bob"
+    },
+    {
+     "GISRevisionEditor": "LD",
+     "Type": "Wilderness",
+     "UnitFullLabel": "Rugged Ridge Wilderness",
+     "UnitName": "Rugged Ridge",
+     "UnitShortLabel": "Rugged Ridge"
+    }
+   ],
+   "service": "Proposed_Wilderness_Revised_FINAL_20250221",
+   "typef": "Type",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Proposed_Wilderness_Revised_FINAL_20250221/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 28,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "AFFGEOID",
+    "GEOID",
+    "NAME",
+    "LSAD"
+   ],
+   "known": false,
+   "layer": "VA_counties_Coserve_Forest_Area",
+   "sample": [
+    {
+     "AFFGEOID": "0500000US51750",
+     "COUNTYFP": "750",
+     "COUNTYNS": "01498438",
+     "GEOID": "51750",
+     "LSAD": "25",
+     "NAME": "Radford",
+     "STATEFP": "51"
+    },
+    {
+     "AFFGEOID": "0500000US51590",
+     "COUNTYFP": "590",
+     "COUNTYNS": "01498421",
+     "GEOID": "51590",
+     "LSAD": "25",
+     "NAME": "Danville",
+     "STATEFP": "51"
+    },
+    {
+     "AFFGEOID": "0500000US51640",
+     "COUNTYFP": "640",
+     "COUNTYNS": "01498426",
+     "GEOID": "51640",
+     "LSAD": "25",
+     "NAME": "Galax",
+     "STATEFP": "51"
+    }
+   ],
+   "service": "DOF_Conserved_Forest_Improvement_Area",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/DOF_Conserved_Forest_Improvement_Area/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 28,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "AFFGEOID",
+    "GEOID",
+    "NAME",
+    "LSAD"
+   ],
+   "known": false,
+   "layer": "VA_counties_Coserve_Forest_Area",
+   "sample": [
+    {
+     "AFFGEOID": "0500000US51750",
+     "COUNTYFP": "750",
+     "COUNTYNS": "01498438",
+     "GEOID": "51750",
+     "LSAD": "25",
+     "NAME": "Radford",
+     "STATEFP": "51"
+    },
+    {
+     "AFFGEOID": "0500000US51590",
+     "COUNTYFP": "590",
+     "COUNTYNS": "01498421",
+     "GEOID": "51590",
+     "LSAD": "25",
+     "NAME": "Danville",
+     "STATEFP": "51"
+    },
+    {
+     "AFFGEOID": "0500000US51640",
+     "COUNTYFP": "640",
+     "COUNTYNS": "01498426",
+     "GEOID": "51640",
+     "LSAD": "25",
+     "NAME": "Galax",
+     "STATEFP": "51"
+    }
+   ],
+   "service": "DOF_Conserved_Forest_Improvement_Area",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/DOF_Conserved_Forest_Improvement_Area/FeatureServer/1"
+  },
+  {
+   "agency": "Thomas Zaebst, Michael Womack",
+   "area": "Name",
+   "count": 26,
+   "fields": [
+    "Name",
+    "Public_Access",
+    "Hiking",
+    "Biking",
+    "Wildlife_Viewing",
+    "Hunting_Trapping",
+    "Horseback_Trails",
+    "Fishing",
+    "Picnicking"
+   ],
+   "known": false,
+   "layer": "VADOF_StateForestBoundary",
+   "sample": [
+    {
+     "Biking": "Yes",
+     "Fishing": "Yes",
+     "Hiking": "Yes",
+     "Horseback_Trails": "Yes",
+     "Hunting_Trapping": "Yes",
+     "Name": "Appomattox-Buckingham State Forest",
+     "Picnicking": "Yes",
+     "Public_Access": "Yes",
+     "Wildlife_Viewing": "Yes"
+    },
+    {
+     "Biking": "Yes",
+     "Fishing": "No",
+     "Hiking": "Yes",
+     "Horseback_Trails": "Yes",
+     "Hunting_Trapping": "Yes",
+     "Name": "Big Woods State Forest",
+     "Picnicking": "No",
+     "Public_Access": "Yes",
+     "Wildlife_Viewing": "Yes"
+    },
+    {
+     "Biking": "No",
+     "Fishing": "No",
+     "Hiking": "No",
+     "Horseback_Trails": "No",
+     "Hunting_Trapping": "No",
+     "Name": "Bourassa State Forest",
+     "Picnicking": "No",
+     "Public_Access": "No",
+     "Wildlife_Viewing": "No"
+    }
+   ],
+   "service": "VADOF_StateForestBoundary",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/VADOF_StateForestBoundary/FeatureServer/6"
+  },
+  {
+   "agency": "Thomas Zaebst, Michael Womack",
+   "area": "Name",
+   "count": 26,
+   "fields": [
+    "Name",
+    "Public_Access",
+    "Hiking",
+    "Biking",
+    "Wildlife_Viewing",
+    "Hunting_Trapping",
+    "Horseback_Trails",
+    "Fishing",
+    "Picnicking"
+   ],
+   "known": false,
+   "layer": "VADOF_StateForestBoundary",
+   "sample": [
+    {
+     "Biking": "Yes",
+     "Fishing": "Yes",
+     "Hiking": "Yes",
+     "Horseback_Trails": "Yes",
+     "Hunting_Trapping": "Yes",
+     "Name": "Appomattox-Buckingham State Forest",
+     "Picnicking": "Yes",
+     "Public_Access": "Yes",
+     "Wildlife_Viewing": "Yes"
+    },
+    {
+     "Biking": "Yes",
+     "Fishing": "No",
+     "Hiking": "Yes",
+     "Horseback_Trails": "Yes",
+     "Hunting_Trapping": "Yes",
+     "Name": "Big Woods State Forest",
+     "Picnicking": "No",
+     "Public_Access": "Yes",
+     "Wildlife_Viewing": "Yes"
+    },
+    {
+     "Biking": "No",
+     "Fishing": "No",
+     "Hiking": "No",
+     "Horseback_Trails": "No",
+     "Hunting_Trapping": "No",
+     "Name": "Bourassa State Forest",
+     "Picnicking": "No",
+     "Public_Access": "No",
+     "Wildlife_Viewing": "No"
+    }
+   ],
+   "service": "VADOF_StateForestBoundary",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/VADOF_StateForestBoundary/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 26,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "VA_State_Forests_2023_03_13_boundaries",
+   "sample": [
+    {
+     "Name": "Appomattox-Buckingham State Forest"
+    },
+    {
+     "Name": "Big Woods"
+    },
+    {
+     "Name": "Bourassa State Forest"
+    }
+   ],
+   "service": "VA_State_Forests_2023_03_13_boundaries",
+   "typef": "",
+   "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VA_State_Forests_2023_03_13_boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "DXF_LAYER",
+    "DXF_TYPE",
+    "DXF_TEXT",
+    "DXF_ATTRIB",
+    "WIDTH_ROW"
+   ],
+   "known": false,
+   "layer": "CreeperTrailROW",
+   "sample": [
+    {
+     "DXF_ATTRIB": " ",
+     "DXF_LAYER": "BUFFER",
+     "DXF_TEXT": "60",
+     "DXF_TYPE": "STANDARD",
+     "WIDTH_ROW": "60"
+    },
+    {
+     "DXF_ATTRIB": " ",
+     "DXF_LAYER": "BUFFER",
+     "DXF_TEXT": "80",
+     "DXF_TYPE": "STANDARD",
+     "WIDTH_ROW": "80"
+    },
+    {
+     "DXF_ATTRIB": " ",
+     "DXF_LAYER": "BUFFER",
+     "DXF_TEXT": "60",
+     "DXF_TYPE": "STANDARD",
+     "WIDTH_ROW": "60"
+    }
+   ],
+   "service": "Washington_County_Supporting_Data",
+   "typef": "DXF_TYPE",
+   "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/Washington_County_Supporting_Data/FeatureServer/0"
+  },
+  {
+   "agency": "Robbie Rhur last updated this layer 2/13/2020",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "PDC_PRIME"
+   ],
+   "known": false,
+   "layer": "Recreation Regions",
+   "sample": [
+    {
+     "PDC_PRIME": "Accomack-Northampton Planning District Commission"
+    },
+    {
+     "PDC_PRIME": "Central Shenandoah Planning District Commission"
+    },
+    {
+     "PDC_PRIME": "Commonwealth Regional Council"
+    }
+   ],
+   "service": "Recreation_Regions",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Recreation_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "Robbie Rhur last updated this layer 2/13/2020",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "PDC_PRIME"
+   ],
+   "known": false,
+   "layer": "Recreation Regions",
+   "sample": [
+    {
+     "PDC_PRIME": "Accomack-Northampton Planning District Commission"
+    },
+    {
+     "PDC_PRIME": "Central Shenandoah Planning District Commission"
+    },
+    {
+     "PDC_PRIME": "Commonwealth Regional Council"
+    }
+   ],
+   "service": "Recreation_Regions",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Recreation_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Website"
+   ],
+   "known": false,
+   "layer": "Virginia Water Trails",
+   "sample": [
+    {
+     "NAME": "Virginia Water Trails",
+     "NAMELSAD": "York County",
+     "Website": "https://virginiawatertrails.org/"
+    },
+    {
+     "NAME": "Virginia Water Trails",
+     "NAMELSAD": "Matthews",
+     "Website": "https://virginiawatertrails.org/"
+    },
+    {
+     "NAME": "Virginia Water Trails",
+     "NAMELSAD": "Northampton",
+     "Website": "https://virginiawatertrails.org/"
+    }
+   ],
+   "service": "Virginia_Water_Trails",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Virginia_Water_Trails/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Website"
+   ],
+   "known": false,
+   "layer": "Virginia Water Trails",
+   "sample": [
+    {
+     "NAME": "Virginia Water Trails",
+     "NAMELSAD": "York County",
+     "Website": "https://virginiawatertrails.org/"
+    },
+    {
+     "NAME": "Virginia Water Trails",
+     "NAMELSAD": "Matthews",
+     "Website": "https://virginiawatertrails.org/"
+    },
+    {
+     "NAME": "Virginia Water Trails",
+     "NAMELSAD": "Northampton",
+     "Website": "https://virginiawatertrails.org/"
+    }
+   ],
+   "service": "Virginia_Water_Trails",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Virginia_Water_Trails/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "Website",
+   "count": 16,
+   "fields": [
+    "COUNTYNAME",
+    "Website",
+    "Region"
+   ],
+   "known": false,
+   "layer": "FishSwimPlay",
+   "sample": [
+    {
+     "COUNTYNAME": "Gloucester",
+     "Region": "Hampton Roads Fish, Swim, Play",
+     "Website": "https://hrpdc-gis.maps.arcgis.com/apps/webappviewer/index.html?id=b345162a215249ccb706d5e091cbdc0e"
+    },
+    {
+     "COUNTYNAME": "Isle of Wight",
+     "Region": "Hampton Roads Fish, Swim, Play",
+     "Website": "https://hrpdc-gis.maps.arcgis.com/apps/webappviewer/index.html?id=b345162a215249ccb706d5e091cbdc0e"
+    },
+    {
+     "COUNTYNAME": "James City",
+     "Region": "Hampton Roads Fish, Swim, Play",
+     "Website": "https://hrpdc-gis.maps.arcgis.com/apps/webappviewer/index.html?id=b345162a215249ccb706d5e091cbdc0e"
+    }
+   ],
+   "service": "Hampton_Roads_FishSwimPlay",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Hampton_Roads_FishSwimPlay/FeatureServer/23"
+  },
+  {
+   "agency": "",
+   "area": "Website",
+   "count": 16,
+   "fields": [
+    "COUNTYNAME",
+    "Website",
+    "Region"
+   ],
+   "known": false,
+   "layer": "FishSwimPlay",
+   "sample": [
+    {
+     "COUNTYNAME": "Gloucester",
+     "Region": "Hampton Roads Fish, Swim, Play",
+     "Website": "https://hrpdc-gis.maps.arcgis.com/apps/webappviewer/index.html?id=b345162a215249ccb706d5e091cbdc0e"
+    },
+    {
+     "COUNTYNAME": "Isle of Wight",
+     "Region": "Hampton Roads Fish, Swim, Play",
+     "Website": "https://hrpdc-gis.maps.arcgis.com/apps/webappviewer/index.html?id=b345162a215249ccb706d5e091cbdc0e"
+    },
+    {
+     "COUNTYNAME": "James City",
+     "Region": "Hampton Roads Fish, Swim, Play",
+     "Website": "https://hrpdc-gis.maps.arcgis.com/apps/webappviewer/index.html?id=b345162a215249ccb706d5e091cbdc0e"
+    }
+   ],
+   "service": "Hampton_Roads_FishSwimPlay",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Hampton_Roads_FishSwimPlay/FeatureServer/23"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 13,
+   "fields": [
+    "TYPE",
+    "Name",
+    "ADM_UNIT_CD",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NCIP BLM Managed Lands",
+   "sample": [
+    {
+     "ADM_UNIT_CD": "CAN06000",
+     "Creator": "scott_AWmaps",
+     "Editor": "scott_AWmaps",
+     "Name": "NCIP decision area, surface",
+     "TYPE": "BLMsurface"
+    },
+    {
+     "ADM_UNIT_CD": "CAN03000",
+     "Creator": "scott_AWmaps",
+     "Editor": "scott_AWmaps",
+     "Name": "NCIP decision area, surface",
+     "TYPE": "BLMsurface"
+    },
+    {
+     "ADM_UNIT_CD": "CAN06000",
+     "Creator": "scott_AWmaps",
+     "Editor": "scott_AWmaps",
+     "Name": "NCIP decision area, split estate",
+     "TYPE": "BLMsplitestate"
+    }
+   ],
+   "service": "BLM_NCIP_Suitable_WSR_Map_WFL1",
+   "typef": "TYPE",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/BLM_NCIP_Suitable_WSR_Map_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 13,
+   "fields": [
+    "TYPE",
+    "Name",
+    "ADM_UNIT_CD",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NCIP BLM Managed Lands",
+   "sample": [
+    {
+     "ADM_UNIT_CD": "CAN06000",
+     "Creator": "scott_AWmaps",
+     "Editor": "scott_AWmaps",
+     "Name": "NCIP decision area, surface",
+     "TYPE": "BLMsurface"
+    },
+    {
+     "ADM_UNIT_CD": "CAN03000",
+     "Creator": "scott_AWmaps",
+     "Editor": "scott_AWmaps",
+     "Name": "NCIP decision area, surface",
+     "TYPE": "BLMsurface"
+    },
+    {
+     "ADM_UNIT_CD": "CAN06000",
+     "Creator": "scott_AWmaps",
+     "Editor": "scott_AWmaps",
+     "Name": "NCIP decision area, split estate",
+     "TYPE": "BLMsplitestate"
+    }
+   ],
+   "service": "BLM_NCIP_WSR_Map_WFL1",
+   "typef": "TYPE",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/BLM_NCIP_WSR_Map_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 12,
+   "fields": [
+    "LUP_CYCLE_ID",
+    "ADMIN_ST",
+    "RSRCE_USE_DET",
+    "CREATE_BY",
+    "MODIFY_BY",
+    "Name",
+    "Comments",
+    "Type",
+    "Source",
+    "FOIA",
+    "Alt_A",
+    "Alt_B",
+    "Alt_C",
+    "Alt_D",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NCIP DEIS Land Wilderness Characteristics",
+   "sample": [
+    {
+     "ADMIN_ST": "CA",
+     "Alt_A": "999",
+     "Alt_B": "999",
+     "CREATE_BY": "RLAVIE",
+     "Comments": "CA-330-07",
+     "FOIA": "999",
+     "LUP_CYCLE_ID": "DOI-BLM-CA-*",
+     "MODIFY_BY": "MRICKEY",
+     "Name": "Brushy Mountain/ English Ridge",
+     "Source": "BLM GIS 2022",
+     "Type": "LWC"
+    },
+    {
+     "ADMIN_ST": "CA",
+     "Alt_A": "999",
+     "Alt_B": "999",
+     "CREATE_BY": "RLAVIE",
+     "Comments": "CA-330-06",
+     "FOIA": "999",
+     "LUP_CYCLE_ID": "DOI-BLM-CA-*",
+     "MODIFY_BY": "MRICKEY",
+     "Name": "Gilham Butte (Subunit 1)",
+     "Source": "BLM GIS 2022",
+     "Type": "LWC"
+    },
+    {
+     "ADMIN_ST": "CA",
+     "Alt_A": "999",
+     "Alt_B": "999",
+     "CREATE_BY": "RLAVIE",
+     "Comments": "CA-330-03",
+     "FOIA": "999",
+     "LUP_CYCLE_ID": "DOI-BLM-CA-*",
+     "MODIFY_BY": "MRICKEY",
+     "Name": "Red Mountain",
+     "Source": "BLM GIS 2022",
+     "Type": "LWC"
+    }
+   ],
+   "service": "BLM_NCIP_Suitable_WSR_Map_WFL1",
+   "typef": "RSRCE_USE_DET",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/BLM_NCIP_Suitable_WSR_Map_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 12,
+   "fields": [
+    "LUP_CYCLE_ID",
+    "ADMIN_ST",
+    "RSRCE_USE_DET",
+    "CREATE_BY",
+    "MODIFY_BY",
+    "Name",
+    "Comments",
+    "Type",
+    "Source",
+    "FOIA",
+    "Alt_A",
+    "Alt_B",
+    "Alt_C",
+    "Alt_D",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NCIP Land Wilderness Characteristics",
+   "sample": [
+    {
+     "ADMIN_ST": "CA",
+     "Alt_A": "999",
+     "Alt_B": "999",
+     "CREATE_BY": "RLAVIE",
+     "Comments": "CA-330-07",
+     "FOIA": "999",
+     "LUP_CYCLE_ID": "DOI-BLM-CA-*",
+     "MODIFY_BY": "MRICKEY",
+     "Name": "Brushy Mountain/ English Ridge",
+     "Source": "BLM GIS 2022",
+     "Type": "LWC"
+    },
+    {
+     "ADMIN_ST": "CA",
+     "Alt_A": "999",
+     "Alt_B": "999",
+     "CREATE_BY": "RLAVIE",
+     "Comments": "CA-330-06",
+     "FOIA": "999",
+     "LUP_CYCLE_ID": "DOI-BLM-CA-*",
+     "MODIFY_BY": "MRICKEY",
+     "Name": "Gilham Butte (Subunit 1)",
+     "Source": "BLM GIS 2022",
+     "Type": "LWC"
+    },
+    {
+     "ADMIN_ST": "CA",
+     "Alt_A": "999",
+     "Alt_B": "999",
+     "CREATE_BY": "RLAVIE",
+     "Comments": "CA-330-03",
+     "FOIA": "999",
+     "LUP_CYCLE_ID": "DOI-BLM-CA-*",
+     "MODIFY_BY": "MRICKEY",
+     "Name": "Red Mountain",
+     "Source": "BLM GIS 2022",
+     "Type": "LWC"
+    }
+   ],
+   "service": "BLM_NCIP_WSR_Map_WFL1",
+   "typef": "RSRCE_USE_DET",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/BLM_NCIP_WSR_Map_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "PropertyNa",
+    "Owner",
+    "River",
+    "County",
+    "Status",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "NM_Stream_Access_Navigability_Properties",
+   "sample": [
+    {
+     "County": "San Miguel",
+     "Notes": "Boundary is approximate and re-drawn from maps submitted with non-navigability application.",
+     "Owner": "The Kenneth A. Hersh Qualified Residence Trust and The Julie K. Hersh Qualified Residence Trust",
+     "PropertyNa": "Rio Dulce Ranch",
+     "River": "Pecos River",
+     "Status": "Certified"
+    },
+    {
+     "County": "Rio Arriba",
+     "Notes": "Boundary is approximate and re-drawn from maps submitted with non-navigability application.",
+     "Owner": "Chama Troutstalkers, LLC",
+     "PropertyNa": "Troutstalker Ranch",
+     "River": "Rio Chama",
+     "Status": "Certified"
+    },
+    {
+     "County": "Rio Arriba",
+     "Notes": "Boundary is approximate and re-drawn from maps submitted with non-navigability application.",
+     "Owner": "Chama III, LLC",
+     "PropertyNa": "Canones Creek Ranch",
+     "River": "Rio Chama",
+     "Status": "Pending"
+    }
+   ],
+   "service": "NM_Stream_Access_Navigability_Properties",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/NM_Stream_Access_Navigability_Properties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "river",
+    "section",
+    "agency",
+    "description",
+    "huc",
+    "class",
+    "photo_id",
+    "AW_URL",
+    "RunName"
+   ],
+   "known": false,
+   "layer": "Whitewater Runs 175-Foot Buffer",
+   "sample": [
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/206/main",
+     "RunName": "Lower Hayfork Creek",
+     "agency": "Shasta-Trinity NF",
+     "class": "IV-V",
+     "description": "This section is an absolute North Coast classic. The only thing that keeps it from being run regularly is its long distance from any population centers. Hayfork Creek is also a simple run logisticly once you are out there. <br> <br>\r\nThe run takes sever",
+     "huc": "18010212",
+     "photo_id": "18992",
+     "river": "Hayfork Creek",
+     "section": "Nine Mile Bridge to Hyampom"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/320/main",
+     "RunName": "NF Trinity",
+     "agency": "Shasta-Trinity NF",
+     "class": "IV-V",
+     "description": "A GUIDE TO THE BEST WHITEWATER IN THE STATE OF CALIFORNIA, HOLBEK & STANLEY, 1988",
+     "huc": "18010211",
+     "photo_id": " ",
+     "river": "North Fork Trinity River",
+     "section": "Hobo Gulch CG to bridge 1 mi. above mouth"
+    },
+    {
+     "AW_URL": "https://www.americanwhitewater.org/content/River/view/river-detail/316/main",
+     "RunName": "Big Flat Run",
+     "agency": "Shasta-Trinity NF",
+     "class": "II-III-",
+     "description": "<div><strong>Other information sources:<br /></strong><a href=\"http://trrp.net/water/index.htm\">Trinity River Restoration Program</a>&nbsp; Lewiston Dam Release schedule<strong>&nbsp;&nbsp;<br /></strong><strong><a target=\"newlink\" href=\"http://www.fs.fe",
+     "huc": "18010211",
+     "photo_id": "41227",
+     "river": "Trinity River",
+     "section": "Big Flat River Access to Hayden Flat CG"
+    }
+   ],
+   "service": "Monument_River_Complex_Closure_Map_WFL1",
+   "typef": "description",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Monument_River_Complex_Closure_Map_WFL1/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "PROCLAIMED",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "National Forests (WA)",
+   "sample": [
+    {
+     "FORESTNAME": "Gifford Pinchot National Forest",
+     "PROCLAIMED": "93007010328"
+    },
+    {
+     "FORESTNAME": "Mt. Baker National Forest",
+     "PROCLAIMED": "106887010328"
+    },
+    {
+     "FORESTNAME": "Olympic National Forest",
+     "PROCLAIMED": "107266010328"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_1_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_1_WFL1/FeatureServer/34"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "PROCLAIMED",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "National Forests (WA)",
+   "sample": [
+    {
+     "FORESTNAME": "Gifford Pinchot National Forest",
+     "PROCLAIMED": "93007010328"
+    },
+    {
+     "FORESTNAME": "Mt. Baker National Forest",
+     "PROCLAIMED": "106887010328"
+    },
+    {
+     "FORESTNAME": "Olympic National Forest",
+     "PROCLAIMED": "107266010328"
+    }
+   ],
+   "service": "Washington_Rivers___Management_Map_v1_2_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Washington_Rivers___Management_Map_v1_2_WFL1/FeatureServer/34"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "Event_ID",
+    "irwinID",
+    "Incid_Name",
+    "Incid_Type",
+    "Map_Prog",
+    "Asmnt_Type",
+    "BurnBndLat",
+    "BurnBndLon",
+    "Pre_ID",
+    "Post_ID",
+    "Perim_ID",
+    "Comment"
+   ],
+   "known": false,
+   "layer": "Monument/River Complex Perimeters",
+   "sample": [
+    {
+     "Asmnt_Type": "Initial",
+     "BurnBndLat": "40.719",
+     "BurnBndLon": "-123.262",
+     "Comment": "Used NIFC perimeter with some edits.",
+     "Event_ID": "CA4075212333720210731",
+     "Incid_Name": "MONUMENT",
+     "Incid_Type": "Wildfire",
+     "Map_Prog": "RAVG",
+     "Perim_ID": " ",
+     "Post_ID": "A10TDL20211009_30m",
+     "Pre_ID": "A10TDL20201014_30m",
+     "irwinID": "9CF3A69A-A888-4BCD-AA7A-703D75D47E78"
+    },
+    {
+     "Asmnt_Type": "Initial",
+     "BurnBndLat": "41.12",
+     "BurnBndLon": "-122.982",
+     "Comment": " ",
+     "Event_ID": "CA4114212301620210731",
+     "Incid_Name": "HAYPRESS",
+     "Incid_Type": "Wildfire",
+     "Map_Prog": "RAVG",
+     "Perim_ID": " ",
+     "Post_ID": "B10TDL20211014_30m",
+     "Pre_ID": "A10TDL20201014_30m",
+     "irwinID": "D6024AFC-A330-404F-ACF1-7A21986EEFEA"
+    },
+    {
+     "Asmnt_Type": "Initial",
+     "BurnBndLat": "41.013",
+     "BurnBndLon": "-122.947",
+     "Comment": " ",
+     "Event_ID": "CA4114212301620210731",
+     "Incid_Name": "HAYPRESS",
+     "Incid_Type": "Wildfire",
+     "Map_Prog": "RAVG",
+     "Perim_ID": " ",
+     "Post_ID": "B10TDL20211014_30m",
+     "Pre_ID": "A10TDL20201014_30m",
+     "irwinID": "D6024AFC-A330-404F-ACF1-7A21986EEFEA"
+    }
+   ],
+   "service": "Monument_River_Complex_Closure_Map_WFL1",
+   "typef": "Incid_Type",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Monument_River_Complex_Closure_Map_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [],
+   "known": false,
+   "layer": "SP_Districts_04_06_2022",
+   "sample": [
+    {
+     "District": 1,
+     "GlobalID": "b4f7bd4d-2c78-4239-b242-7f1bb9c827da",
+     "OBJECTID": 1,
+     "Shape__Area": 168259675344.6328,
+     "Shape__Length": 4853380.330303881
+    },
+    {
+     "District": 2,
+     "GlobalID": "f7798278-58c1-466a-b795-1a075212cb37",
+     "OBJECTID": 2,
+     "Shape__Area": 155925286487.09375,
+     "Shape__Length": 3176618.3014630512
+    },
+    {
+     "District": 3,
+     "GlobalID": "e1221ba7-bae6-4814-8747-fe594116b669",
+     "OBJECTID": 3,
+     "Shape__Area": 266721463167.92188,
+     "Shape__Length": 3712897.0803226065
+    }
+   ],
+   "service": "State_Parks_Districts",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/State_Parks_Districts/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [],
+   "known": false,
+   "layer": "SP_Districts_04_06_2022",
+   "sample": [
+    {
+     "District": 1,
+     "GlobalID": "b4f7bd4d-2c78-4239-b242-7f1bb9c827da",
+     "OBJECTID": 1,
+     "Shape__Area": 168259675344.6328,
+     "Shape__Length": 4853380.330303881
+    },
+    {
+     "District": 2,
+     "GlobalID": "f7798278-58c1-466a-b795-1a075212cb37",
+     "OBJECTID": 2,
+     "Shape__Area": 155925286487.09375,
+     "Shape__Length": 3176618.3014630512
+    },
+    {
+     "District": 3,
+     "GlobalID": "e1221ba7-bae6-4814-8747-fe594116b669",
+     "OBJECTID": 3,
+     "Shape__Area": 266721463167.92188,
+     "Shape__Length": 3712897.0803226065
+    }
+   ],
+   "service": "State_Parks_Districts",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/State_Parks_Districts/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 5,
+   "fields": [
+    "NAME",
+    "HOTLINK",
+    "Region"
+   ],
+   "known": false,
+   "layer": "TweenRiversTrail",
+   "sample": [
+    {
+     "HOTLINK": "https://www.tweenriverstrail.com/",
+     "NAME": "Culpeper"
+    },
+    {
+     "HOTLINK": " https://www.tweenriverstrail.com/",
+     "NAME": "Fauquier"
+    },
+    {
+     "HOTLINK": "https://www.tweenriverstrail.com/",
+     "NAME": "Madsion"
+    }
+   ],
+   "service": "TweenRiversTrail",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/TweenRiversTrail/FeatureServer/25"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 5,
+   "fields": [
+    "Name",
+    "FolderPath",
+    "Snippet",
+    "PopupInfo"
+   ],
+   "known": false,
+   "layer": "ELPC Proposed Wilderness",
+   "sample": [
+    {
+     "FolderPath": " ",
+     "Name": "Trap Hills Wilderness",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "Ehlco",
+     "Name": "Ehlco Wilderness",
+     "PopupInfo": " ",
+     "Snippet": " "
+    },
+    {
+     "FolderPath": "Norwich_Plains",
+     "Name": "Norwich Plains Wilderness",
+     "PopupInfo": " ",
+     "Snippet": " "
+    }
+   ],
+   "service": "Michigan_UP_Wilderness_Proposal_ELPC_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Michigan_UP_Wilderness_Proposal_ELPC_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "WILDERNESS",
+    "GIS_ACRES",
+    "AREAID",
+    "BOUNDARYST"
+   ],
+   "known": false,
+   "layer": "USFS Olympic NF Designated Wilderness Areas",
+   "sample": [
+    {
+     "AREAID": "236",
+     "BOUNDARYST": "Final",
+     "GIS_ACRES": " ",
+     "WILDERNESS": "Mount Skokomish Wilderness"
+    },
+    {
+     "AREAID": "241",
+     "BOUNDARYST": "Final",
+     "GIS_ACRES": " ",
+     "WILDERNESS": "The Brothers Wilderness"
+    },
+    {
+     "AREAID": "244",
+     "BOUNDARYST": "Final",
+     "GIS_ACRES": " ",
+     "WILDERNESS": "Wonder Mountain Wilderness"
+    }
+   ],
+   "service": "Wild_Olympics_Wilderness_Map",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Wild_Olympics_Wilderness_Map/FeatureServer/24"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 5,
+   "fields": [
+    "NAME",
+    "HOTLINK",
+    "Region"
+   ],
+   "known": false,
+   "layer": "TweenRiversTrail",
+   "sample": [
+    {
+     "HOTLINK": "https://www.tweenriverstrail.com/",
+     "NAME": "Culpeper"
+    },
+    {
+     "HOTLINK": " https://www.tweenriverstrail.com/",
+     "NAME": "Fauquier"
+    },
+    {
+     "HOTLINK": "https://www.tweenriverstrail.com/",
+     "NAME": "Madsion"
+    }
+   ],
+   "service": "TweenRiversTrail",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/TweenRiversTrail/FeatureServer/25"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "Four_dark_sky_parks",
+   "sample": [
+    {
+     "LABEL": "James River State Park"
+    },
+    {
+     "LABEL": "Natural Bridge State Park"
+    },
+    {
+     "LABEL": "Sky Meadows State Park"
+    }
+   ],
+   "service": "Dark_Sky_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Dark_Sky_Parks/FeatureServer/25"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "Four_dark_sky_parks",
+   "sample": [
+    {
+     "LABEL": "James River State Park"
+    },
+    {
+     "LABEL": "Natural Bridge State Park"
+    },
+    {
+     "LABEL": "Sky Meadows State Park"
+    }
+   ],
+   "service": "Dark_Sky_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Dark_Sky_Parks/FeatureServer/25"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "COUNTYNAME",
+    "NAME",
+    "Contact"
+   ],
+   "known": false,
+   "layer": "HR Online Trail GUide",
+   "sample": [
+    {
+     "COUNTYNAME": "Rockingham",
+     "Contact": "https://www.visitharrisonburgva.com/area-trails/",
+     "NAME": "Harrisonburg-Rockingham Trail Guide"
+    },
+    {
+     "COUNTYNAME": "Harrisonburg",
+     "Contact": "https://www.visitharrisonburgva.com/area-trails/",
+     "NAME": "Harrisonburg-Rockingham Trail Guide"
+    }
+   ],
+   "service": "HR_Online_Trail_GUide",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/HR_Online_Trail_GUide/FeatureServer/30"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "STATE_ABBR",
+    "STATE_FIPS",
+    "STATE_NAME"
+   ],
+   "known": false,
+   "layer": "Oregon & California",
+   "sample": [
+    {
+     "STATE_ABBR": "CA",
+     "STATE_FIPS": "06",
+     "STATE_NAME": "California"
+    },
+    {
+     "STATE_ABBR": "OR",
+     "STATE_FIPS": "41",
+     "STATE_NAME": "Oregon"
+    }
+   ],
+   "service": "OR_CA_Promoting_Safe___Sustainable_Recreation_on_the_Undammed_Klamath_River_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/OR_CA_Promoting_Safe___Sustainable_Recreation_on_the_Undammed_Klamath_River_WFL1/FeatureServer/110"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Dissolve",
+    "FireName"
+   ],
+   "known": false,
+   "layer": "Monument/River Complex Closure Area",
+   "sample": [
+    {
+     "Dissolve": "YES",
+     "FireName": "Monument Fire"
+    },
+    {
+     "Dissolve": "YES",
+     "FireName": "River Complex"
+    }
+   ],
+   "service": "Monument_River_Complex_Closure_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Monument_River_Complex_Closure_Map_WFL1/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "ADMINFORESTID",
+    "REGION",
+    "FORESTNUMBER",
+    "FORESTORGCODE",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "National Forest",
+   "sample": [
+    {
+     "ADMINFORESTID": "99051500010343",
+     "FORESTNAME": "Sierra National Forest",
+     "FORESTNUMBER": "15",
+     "FORESTORGCODE": "0515",
+     "REGION": "05"
+    },
+    {
+     "ADMINFORESTID": "99051300010343",
+     "FORESTNAME": "Sequoia National Forest",
+     "FORESTNUMBER": "13",
+     "FORESTORGCODE": "0513",
+     "REGION": "05"
+    }
+   ],
+   "service": "Sierra_Sequoia_NFS_2019_vs_2022_WSR_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Sierra_Sequoia_NFS_2019_vs_2022_WSR_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "ADMINFORESTID",
+    "REGION",
+    "FORESTNUMBER",
+    "FORESTORGCODE",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "National Forests",
+   "sample": [
+    {
+     "ADMINFORESTID": "99060500010343",
+     "FORESTNAME": "Mt. Baker-Snoqualmie National Forest",
+     "FORESTNUMBER": "05",
+     "FORESTORGCODE": "0605",
+     "REGION": "06"
+    },
+    {
+     "ADMINFORESTID": "99061700010343",
+     "FORESTNAME": "Okanogan-Wenatchee National Forest",
+     "FORESTNUMBER": "17",
+     "FORESTORGCODE": "0617",
+     "REGION": "06"
+    }
+   ],
+   "service": "WA_North_Cascades_Scenic_Hwy_20_Mineral_Withdrawal_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/WA_North_Cascades_Scenic_Hwy_20_Mineral_Withdrawal_Map_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "COUNTYNAME",
+    "NAME",
+    "Contact"
+   ],
+   "known": false,
+   "layer": "HR Online Trail GUide",
+   "sample": [
+    {
+     "COUNTYNAME": "Rockingham",
+     "Contact": "https://www.visitharrisonburgva.com/area-trails/",
+     "NAME": "Harrisonburg-Rockingham Trail Guide"
+    },
+    {
+     "COUNTYNAME": "Harrisonburg",
+     "Contact": "https://www.visitharrisonburgva.com/area-trails/",
+     "NAME": "Harrisonburg-Rockingham Trail Guide"
+    }
+   ],
+   "service": "HR_Online_Trail_GUide",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/HR_Online_Trail_GUide/FeatureServer/30"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Approximate_Native_Range_of_Rusy_Crayfish",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 284836391673.5742,
+     "Shape__Length": 2265895.8574375873
+    }
+   ],
+   "service": "Approximate_Native_Range_of_Rusy_Crayfish",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Approximate_Native_Range_of_Rusy_Crayfish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "Parking Lot",
+   "sample": [
+    {
+     "Label": "Parking Lot"
+    }
+   ],
+   "service": "Parking_Lot_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/Parking_Lot_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "Lolo National Forest",
+   "sample": [
+    {
+     "FORESTNAME": "Lolo National Forest"
+    }
+   ],
+   "service": "Lolo_NF_Whitewater_WSR_Wildfire_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Lolo_NF_Whitewater_WSR_Wildfire_Map_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ADMINFORES",
+    "DATA_SOURC",
+    "REGION",
+    "FORESTNUMB",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "Ottawa NF Administrative Boundary",
+   "sample": [
+    {
+     "ADMINFORES": "99090700010343",
+     "DATA_SOURC": "09",
+     "FORESTNAME": "Ottawa National Forest",
+     "FORESTNUMB": "07",
+     "REGION": "09"
+    }
+   ],
+   "service": "Michigan_UP_Wilderness_Proposal_ELPC_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Michigan_UP_Wilderness_Proposal_ELPC_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ADMINFORESTID",
+    "REGION",
+    "FORESTNUMBER",
+    "FORESTORGCODE",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "Plumas National Forest",
+   "sample": [
+    {
+     "ADMINFORESTID": "99051100010343",
+     "FORESTNAME": "Plumas National Forest",
+     "FORESTNUMBER": "11",
+     "FORESTORGCODE": "0511",
+     "REGION": "05"
+    }
+   ],
+   "service": "Poe_Hiking_Trail_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Poe_Hiking_Trail_Map_WFL1/FeatureServer/20"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ADMINFORES",
+    "REGION",
+    "FORESTNUMB",
+    "FORESTORGC",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "USFS Olympic NF Admin Boundary",
+   "sample": [
+    {
+     "ADMINFORES": "99060900010343",
+     "FORESTNAME": "Olympic National Forest",
+     "FORESTNUMB": "09",
+     "FORESTORGC": "0609",
+     "REGION": "06"
+    }
+   ],
+   "service": "Wild_Olympics_Wilderness_Map",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Wild_Olympics_Wilderness_Map/FeatureServer/23"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "DATE_EDIT",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "CreationDa",
+    "Creator",
+    "EditDate",
+    "Editor",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "NPS Olympic NP Admin Boundary",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "CreationDa": " ",
+     "DATE_EDIT": "20150422",
+     "GIS_Notes": "Unofficial Boundary of Olympic National Park.",
+     "GNIS_ID": "1530459",
+     "METADATA": "Preliminary data. Contact the Land Resources Program for additional information.",
+     "PARKNAME": "Olympic",
+     "REGION": "PW",
+     "STATE": "WA",
+     "UNIT_CODE": "OLYM",
+     "UNIT_NAME": "Olympic National Park",
+     "UNIT_TYPE": "National Park"
+    }
+   ],
+   "service": "Wild_Olympics_Wilderness_Map",
+   "typef": "UNIT_TYPE",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Wild_Olympics_Wilderness_Map/FeatureServer/22"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "STATEFP",
+    "STATENS",
+    "AFFGEOID",
+    "GEOID",
+    "STUSPS",
+    "NAME",
+    "LSAD"
+   ],
+   "known": false,
+   "layer": "Colorado",
+   "sample": [
+    {
+     "AFFGEOID": "0400000US08",
+     "GEOID": "08",
+     "LSAD": "00",
+     "NAME": "Colorado",
+     "STATEFP": "08",
+     "STATENS": "01779779",
+     "STUSPS": "CO"
+    }
+   ],
+   "service": "Colorado_Rivers_and_CPW_Managed_Properties_Map_v2_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Colorado_Rivers_and_CPW_Managed_Properties_Map_v2_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ADMINFORESTID",
+    "REGION",
+    "FORESTNUMBER",
+    "FORESTORGCODE",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "Administrative Forest Boundary",
+   "sample": [
+    {
+     "ADMINFORESTID": "99051400010343",
+     "FORESTNAME": "Shasta-Trinity National Forest",
+     "FORESTNUMBER": "14",
+     "FORESTORGCODE": "0514",
+     "REGION": "05"
+    }
+   ],
+   "service": "Monument_River_Complex_Closure_Map_WFL1",
+   "typef": "",
+   "url": "https://services5.arcgis.com/lElo6Muu6AKbgOrY/ArcGIS/rest/services/Monument_River_Complex_Closure_Map_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Approximate_Native_Range_of_Rusy_Crayfish",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 284836391673.5742,
+     "Shape__Length": 2265895.8574375873
+    }
+   ],
+   "service": "Approximate_Native_Range_of_Rusy_Crayfish",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Approximate_Native_Range_of_Rusy_Crayfish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "Parking Lot",
+   "sample": [
+    {
+     "Label": "Parking Lot"
+    }
+   ],
+   "service": "Parking_Lot_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/Parking_Lot_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "NATIONAL_F"
+   ],
+   "known": false,
+   "layer": "NationalForest",
+   "sample": [
+    {
+     "NATIONAL_F": "Yes"
+    }
+   ],
+   "service": "Washington_County_Supporting_Data",
+   "typef": "",
+   "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/Washington_County_Supporting_Data/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "LPS",
+    "BMI",
+    "MANAME",
+    "TRACT",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ESTABLISHD",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "ORIGFORMAT",
+    "BNDADDDATE",
+    "RELEASE",
+    "LAYER"
+   ],
+   "known": true,
+   "layer": "bclsp_State_Parks",
+   "sample": [
+    {
+     "BMI": "3",
+     "ESTABLISHD": "1936",
+     "LABEL": "Staunton River Battlefield State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/stb.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "Staunton River Battlefield State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "2",
+     "ESTABLISHD": "1996-06-20",
+     "LABEL": "James River State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/jam.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "James River State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": "Kerr Tract"
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": "1936",
+     "LABEL": "Staunton River Battlefield State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/stb.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "Staunton River Battlefield State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": "Hughes"
+    }
+   ],
+   "service": "bclsp_State_Parks",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/ArcGIS/rest/services/bclsp_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "LANDLINK",
+    "LABEL",
+    "LPS",
+    "BMI",
+    "MANAME",
+    "TRACT",
+    "MATYPE",
+    "MAAGENCY",
+    "MALEVEL",
+    "OWNER",
+    "PUBACCESS",
+    "ESTABLISHD",
+    "ACQDATE",
+    "BNDACCURAC",
+    "BNDORIGIN",
+    "ORIGFORMAT",
+    "BNDADDDATE",
+    "RELEASE",
+    "LAYER"
+   ],
+   "known": true,
+   "layer": "bclsp_State_Parks",
+   "sample": [
+    {
+     "BMI": "3",
+     "ESTABLISHD": "1936",
+     "LABEL": "Staunton River Battlefield State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/stb.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "Staunton River Battlefield State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": " "
+    },
+    {
+     "BMI": "2",
+     "ESTABLISHD": "1996-06-20",
+     "LABEL": "James River State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/jam.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "James River State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": "Kerr Tract"
+    },
+    {
+     "BMI": "3",
+     "ESTABLISHD": "1936",
+     "LABEL": "Staunton River Battlefield State Park",
+     "LANDLINK": "http://www.dcr.virginia.gov/state_parks/stb.shtml",
+     "LPS": "1",
+     "MAAGENCY": "VA Dept of Conservation and Recreation",
+     "MALEVEL": "State",
+     "MANAME": "Staunton River Battlefield State Park",
+     "MATYPE": "State Park",
+     "OWNER": "VA Dept of Conservation and Recreation",
+     "PUBACCESS": "open",
+     "TRACT": "Hughes"
+    }
+   ],
+   "service": "bclsp_State_Parks",
+   "typef": "MATYPE",
+   "url": "https://services1.arcgis.com/PxUNqSbaWFvFgHnJ/arcgis/rest/services/bclsp_State_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "Virginia Department of Forestry",
+   "area": "Name",
+   "count": 26,
+   "fields": [
+    "Name",
+    "public_access",
+    "hiking",
+    "biking",
+    "horseback_riding",
+    "wildlife_viewing",
+    "fishing",
+    "picnicking",
+    "hunting_trapping"
+   ],
+   "known": true,
+   "layer": "DOF_STATE_FORESTS",
+   "sample": [
+    {
+     "Name": "Charlotte State Forest",
+     "biking": "Yes",
+     "fishing": "No",
+     "hiking": "Yes",
+     "horseback_riding": "Yes",
+     "hunting_trapping": "No",
+     "picnicking": "No",
+     "public_access": "Yes",
+     "wildlife_viewing": "Yes"
+    },
+    {
+     "Name": "Appomattox-Buckingham State Forest",
+     "biking": "Yes",
+     "fishing": "Yes",
+     "hiking": "Yes",
+     "horseback_riding": "Yes",
+     "hunting_trapping": "Yes",
+     "picnicking": "Yes",
+     "public_access": "Yes",
+     "wildlife_viewing": "Yes"
+    },
+    {
+     "Name": "Big Woods State Forest",
+     "biking": "Yes",
+     "fishing": "No",
+     "hiking": "Yes",
+     "horseback_riding": "Yes",
+     "hunting_trapping": "Yes",
+     "picnicking": "No",
+     "public_access": "Yes",
+     "wildlife_viewing": "Yes"
+    }
+   ],
+   "service": "VDOF_State_Forests",
+   "typef": "",
+   "url": "https://services1.arcgis.com/zdPnl7ASQIo6PX54/arcgis/rest/services/VDOF_State_Forests/FeatureServer/0"
+  }
+ ],
+ "st": "VA"
+}

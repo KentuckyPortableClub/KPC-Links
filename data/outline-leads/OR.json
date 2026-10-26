@@ -1,0 +1,2047 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 405537,
+   "fields": [
+    "PWCAType",
+    "PWCAName",
+    "HexName",
+    "MajorityLM",
+    "SecondLM",
+    "PrimConsRe",
+    "SecConsRec"
+   ],
+   "known": false,
+   "layer": "Priority Wildlife Connectivity Areas (PWCAs)",
+   "sample": [
+    {
+     "HexName": "BM-C1-H1",
+     "MajorityLM": "Private",
+     "PWCAName": "BM-C1",
+     "PWCAType": "Connector",
+     "PrimConsRe": "Protect",
+     "SecConsRec": "Enhance/Maintain",
+     "SecondLM": "None"
+    },
+    {
+     "HexName": "BM-C1-H2",
+     "MajorityLM": "Private",
+     "PWCAName": "BM-C1",
+     "PWCAType": "Connector",
+     "PrimConsRe": "Protect",
+     "SecConsRec": "Enhance/Maintain",
+     "SecondLM": "None"
+    },
+    {
+     "HexName": "BM-C1-H3",
+     "MajorityLM": "Private",
+     "PWCAName": "BM-C1",
+     "PWCAType": "Connector",
+     "PrimConsRe": "Protect",
+     "SecConsRec": "Enhance/Maintain",
+     "SecondLM": "None"
+    }
+   ],
+   "service": "For_Download_Priority_Wildlife_Connectivity_Areas",
+   "typef": "PWCAType",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/For_Download_Priority_Wildlife_Connectivity_Areas/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 60369,
+   "fields": [
+    "WB_LLID_NR",
+    "WB_HYDR_FT",
+    "WB_GNIS_NM",
+    "WB_PERIOD_",
+    "WRD_ID",
+    "UpdDate",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "Lakes_Reseviors",
+   "sample": [
+    {
+     "WB_GNIS_NM": " ",
+     "WB_HYDR_FT": "LA",
+     "WB_LLID_NR": "1166937454310",
+     "WB_PERIOD_": "per",
+     "WRD_ID": " "
+    },
+    {
+     "WB_GNIS_NM": " ",
+     "WB_HYDR_FT": "LA",
+     "WB_LLID_NR": "1167231453382",
+     "WB_PERIOD_": "per",
+     "WRD_ID": " "
+    },
+    {
+     "WB_GNIS_NM": " ",
+     "WB_HYDR_FT": "LA",
+     "WB_LLID_NR": "1167242453992",
+     "WB_PERIOD_": "per",
+     "WRD_ID": " "
+    }
+   ],
+   "service": "fish_line_recycle_web_map_WFL1_View_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/fish_line_recycle_web_map_WFL1_View_Layer/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30260,
+   "fields": [
+    "FeeTitleHolder",
+    "FeeTitleSource",
+    "LandManager",
+    "LM1Jurisdiction",
+    "LM2Jurisdiction",
+    "LMSource"
+   ],
+   "known": false,
+   "layer": "Public Land Management",
+   "sample": [
+    {
+     "FeeTitleHolder": "Bonneville Power Administration",
+     "FeeTitleSource": "Clack 2011 Taxlots",
+     "LMSource": "Clack 2011 Taxlots",
+     "LandManager": "BPA"
+    },
+    {
+     "FeeTitleHolder": "Bonneville Power Administration",
+     "FeeTitleSource": "Clack 2011 Taxlots",
+     "LMSource": "Clack 2011 Taxlots",
+     "LandManager": "BPA"
+    },
+    {
+     "FeeTitleHolder": "Bonneville Power Administration",
+     "FeeTitleSource": "Clack 2011 Taxlots",
+     "LMSource": "Clack 2011 Taxlots",
+     "LandManager": "BPA"
+    }
+   ],
+   "service": "Land_ownership/ODF_Public_Land_Management",
+   "typef": "",
+   "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/ODF_Public_Land_Management/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Forestland",
+   "count": 26042,
+   "fields": [
+    "MERIDIAN",
+    "TOWNSHIP_CHAR",
+    "RANGE_CHAR",
+    "QTR160",
+    "QTR40",
+    "QQ",
+    "TR",
+    "LOC_INFO",
+    "LOC_QQ",
+    "SOURCE_AGENCY",
+    "Sec_Town_QQ",
+    "Forestland",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "CoosCountyFLC_40",
+   "sample": [
+    {
+     "Forestland": "1",
+     "LOC_INFO": "WM26.00S12.00W36",
+     "LOC_QQ": "WM26.00S12.00W36SWSW",
+     "MERIDIAN": "WM",
+     "QQ": "SWSW",
+     "QTR160": "SW",
+     "QTR40": "SW",
+     "RANGE_CHAR": "W",
+     "SOURCE_AGENCY": "BLM",
+     "Sec_Town_QQ": "SWSW, S36 T26S R12W",
+     "TOWNSHIP_CHAR": "S",
+     "TR": "WM26.00S12.00W"
+    },
+    {
+     "Forestland": "1",
+     "LOC_INFO": "WM26.00S11.00W17",
+     "LOC_QQ": "WM26.00S11.00W17NWNW",
+     "MERIDIAN": "WM",
+     "QQ": "NWNW",
+     "QTR160": "NW",
+     "QTR40": "NW",
+     "RANGE_CHAR": "W",
+     "SOURCE_AGENCY": "BLM",
+     "Sec_Town_QQ": "NWNW, S17 T26S R11W",
+     "TOWNSHIP_CHAR": "S",
+     "TR": "WM26.00S11.00W"
+    },
+    {
+     "Forestland": "1",
+     "LOC_INFO": "WM29.00S14.00W31",
+     "LOC_QQ": "WM29.00S14.00W31NESE",
+     "MERIDIAN": "WM",
+     "QQ": "NESE",
+     "QTR160": "SE",
+     "QTR40": "NE",
+     "RANGE_CHAR": "W",
+     "SOURCE_AGENCY": "BLM",
+     "Sec_Town_QQ": "NESE, S31 T29S R14W",
+     "TOWNSHIP_CHAR": "S",
+     "TR": "WM29.00S14.00W"
+    }
+   ],
+   "service": "Coos_County_Forestland_Classification_40_View",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Coos_County_Forestland_Classification_40_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 10471,
+   "fields": [
+    "SURF_OWNER",
+    "SUB_OWNER",
+    "ST_DEED1",
+    "ST_DEED2",
+    "ST_DEED3",
+    "ST_DEED4",
+    "CO_DEED1",
+    "CO_DEED2",
+    "CO_DEED3",
+    "CO_DEED4",
+    "CO_DEED5",
+    "CO_DEED6",
+    "CO_DEED7",
+    "CO_DEED8",
+    "CO_DEED9",
+    "CO_DEED10",
+    "CO_DEED11",
+    "CO_DEED12",
+    "CO_DEED13",
+    "CO_DEED14"
+   ],
+   "known": false,
+   "layer": "All State Owned & Managed Lands",
+   "sample": [
+    {
+     "SUB_OWNER": "OMD",
+     "SURF_OWNER": "OMD"
+    },
+    {
+     "SUB_OWNER": "OMD",
+     "SURF_OWNER": "OMD"
+    },
+    {
+     "SUB_OWNER": "OMD",
+     "SURF_OWNER": "OMD"
+    }
+   ],
+   "service": "All_State_Owned_and_Managed_Lands",
+   "typef": "CURRENTUSE",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/All_State_Owned_and_Managed_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "Oregon Department of Forestry, State Forests, 2021",
+   "area": "",
+   "count": 8868,
+   "fields": [
+    "burn_severity"
+   ],
+   "known": false,
+   "layer": "BurnSeverity_StateForests_2020",
+   "sample": [
+    {
+     "burn_severity": "Low"
+    },
+    {
+     "burn_severity": "Low"
+    },
+    {
+     "burn_severity": "Low"
+    }
+   ],
+   "service": "BurnSeverity_StateForests_2020",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/BurnSeverity_StateForests_2020/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 6345,
+   "fields": [
+    "PARK_NAME",
+    "CREATOR",
+    "EDITOR",
+    "DATASOURCE",
+    "PARK_PROVIDER",
+    "PARK_CLASS",
+    "GIDtxt",
+    "GIDtxt2",
+    "LOCATION_NOTES",
+    "DATASOURCE_DESC"
+   ],
+   "known": false,
+   "layer": "Oregon Parklands",
+   "sample": [
+    {
+     "CREATOR": "TCONLEY",
+     "DATASOURCE": "Digital Orthophoto",
+     "EDITOR": "TCONLEY",
+     "GIDtxt": "{7F33744D-7AC8-4F23-866D-602DDBC3E88E}",
+     "GIDtxt2": "{7F33744D-7AC8-4F23-866D-602DDBC3E88E}",
+     "PARK_CLASS": "Special Use Park",
+     "PARK_NAME": "Historic Sumpter Valley Rail Road Park",
+     "PARK_PROVIDER": "Baker County"
+    },
+    {
+     "CREATOR": "TCONLEY",
+     "DATASOURCE": "Coordinate Geometry",
+     "EDITOR": "GIS",
+     "GIDtxt": "{B0FF5517-C9A4-48D5-AFC3-9A0501AB4C8A}",
+     "GIDtxt2": "{B0FF5517-C9A4-48D5-AFC3-9A0501AB4C8A}",
+     "PARK_CLASS": "Nature Park",
+     "PARK_NAME": "Fizz Spring",
+     "PARK_PROVIDER": "Baker County"
+    },
+    {
+     "CREATOR": "TCONLEY",
+     "DATASOURCE": "Digital Orthophoto",
+     "EDITOR": "TCONLEY",
+     "GIDtxt": "{78282AFB-F647-45E3-9D34-FC81D0A1D858}",
+     "GIDtxt2": "{78282AFB-F647-45E3-9D34-FC81D0A1D858}",
+     "PARK_CLASS": "Special Use Park",
+     "PARK_NAME": "Harry M Hewitt Memorial Park",
+     "PARK_PROVIDER": "Baker County"
+    }
+   ],
+   "service": "Land_ownership/Oregon_Parklands",
+   "typef": "PARK_CLASS",
+   "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_Parklands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 3134,
+   "fields": [
+    "TNMID",
+    "MetaSource",
+    "SourceData",
+    "SourceOrig",
+    "SourceFeat",
+    "Name",
+    "States",
+    "HUC12",
+    "HUType",
+    "HUMod",
+    "ToHUC",
+    "NAME_1",
+    "REGION",
+    "DistrictFi",
+    "phone",
+    "phone2",
+    "WSDistrict"
+   ],
+   "known": false,
+   "layer": "HUC12_watershedfish",
+   "sample": [
+    {
+     "HUC12": "170501161005",
+     "HUMod": "NM",
+     "HUType": "S",
+     "MetaSource": " ",
+     "NAME_1": "Southeast District",
+     "Name": "Upper Granite Creek",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "OR",
+     "TNMID": "{EFC6D41D-BA00-41B6-87E7-6D05440E52A9}",
+     "ToHUC": "170501161007"
+    },
+    {
+     "HUC12": "170501160903",
+     "HUMod": "NM",
+     "HUType": "S",
+     "MetaSource": " ",
+     "NAME_1": "Southeast District",
+     "Name": "Little Crane Creek",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "OR",
+     "TNMID": "{8CC40890-F7EA-41B7-AD65-EB4EACDF7CAC}",
+     "ToHUC": "170501160904"
+    },
+    {
+     "HUC12": "170501160904",
+     "HUMod": "NM",
+     "HUType": "S",
+     "MetaSource": " ",
+     "NAME_1": "Southeast District",
+     "Name": "Lower Crane Creek",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "OR",
+     "TNMID": "{152E08FF-9070-4F91-9DFB-62D5806B2808}",
+     "ToHUC": "170501161002"
+    }
+   ],
+   "service": "HUC12_watershedfish",
+   "typef": "SourceFeat",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/HUC12_watershedfish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 823,
+   "fields": [
+    "HUC10_Name"
+   ],
+   "known": false,
+   "layer": "Total_Disturbance_Acres_Divided_By_Forested_Acres",
+   "sample": [
+    {
+     "HUC10_Name": "Oregon Canyon Creek"
+    },
+    {
+     "HUC10_Name": "McDermitt Creek"
+    },
+    {
+     "HUC10_Name": "Spirit Lake"
+    }
+   ],
+   "service": "Dry_Type_Forest_Habitats_gdb",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Dry_Type_Forest_Habitats_gdb/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 620,
+   "fields": [
+    "TNMID",
+    "MetaSource",
+    "SourceData",
+    "SourceOrig",
+    "SourceFeat",
+    "Name",
+    "States",
+    "HUC10",
+    "HUType",
+    "HUMod",
+    "NAME_1",
+    "REGION",
+    "DistrictFi",
+    "phone",
+    "phone2",
+    "WSDistrict",
+    "Rank",
+    "Reason",
+    "Rank1",
+    "Rank_Reason"
+   ],
+   "known": false,
+   "layer": "HUC10_watershedfish",
+   "sample": [
+    {
+     "HUC10": "1705010807",
+     "HUMod": " ",
+     "HUType": "S",
+     "MetaSource": " ",
+     "NAME_1": "Southeast District",
+     "Name": "Lower Cow Creek",
+     "REGION": "East Region",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "OR",
+     "TNMID": "{3CF05DAC-18EF-454D-8A99-4A9103DE158C}"
+    },
+    {
+     "HUC10": "1707030602",
+     "HUMod": " ",
+     "HUType": "S",
+     "MetaSource": " ",
+     "NAME_1": "Deschutes District",
+     "Name": "Willow Creek",
+     "REGION": "East Region",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "OR",
+     "TNMID": "{2325F13E-9591-429C-A815-1E0C22BA823E}"
+    },
+    {
+     "HUC10": "1707010309",
+     "HUMod": " ",
+     "HUType": "S",
+     "MetaSource": " ",
+     "NAME_1": "Umatilla District",
+     "Name": "Upper Butter Creek",
+     "REGION": "East Region",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "OR",
+     "TNMID": "{C3E06154-6C22-4068-8EAE-48CBCA5378ED}"
+    }
+   ],
+   "service": "HUC10_watershedfish",
+   "typef": "SourceFeat",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/HUC10_watershedfish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 447,
+   "fields": [
+    "NAME",
+    "COMMENTS",
+    "EDITOR",
+    "CREATOR",
+    "DATASOURCE",
+    "DESIGNATIO",
+    "USE_TYPE",
+    "FULL_NAME",
+    "PUBLIC_DIS",
+    "HUB_PROP_2",
+    "NAME_1",
+    "physical_a",
+    "physical_c",
+    "physical_s",
+    "physical_z",
+    "mailing_na",
+    "mailing_ad",
+    "mailing__1",
+    "mailing_ci",
+    "mailing_st"
+   ],
+   "known": false,
+   "layer": "ApproximateParkBoundary14oct19",
+   "sample": [
+    {
+     "COMMENTS": "Ian Mcleod Property",
+     "CREATOR": "TConley",
+     "DATASOURCE": "Unknown",
+     "DESIGNATIO": "State Scenic Corridor",
+     "EDITOR": "gis",
+     "FULL_NAME": "Umpqua State Scenic Corridor",
+     "HUB_PROP_2": "Ian McLeod",
+     "NAME": "Umpqua",
+     "NAME_1": "Tugman-Umpqua MU",
+     "PUBLIC_DIS": "YES",
+     "USE_TYPE": "Undeveloped",
+     "physical_a": "460 Lighthouse Rd"
+    },
+    {
+     "COMMENTS": "Kleyne",
+     "CREATOR": "TConley",
+     "DATASOURCE": "Unknown",
+     "DESIGNATIO": "State Scenic Waterway",
+     "EDITOR": "gis",
+     "FULL_NAME": "Rogue River State Scenic Waterway",
+     "HUB_PROP_2": "Rogue River State Scenic Waterway",
+     "NAME": "Rogue River",
+     "NAME_1": "Rogue MU",
+     "PUBLIC_DIS": "YES",
+     "USE_TYPE": "Undeveloped",
+     "physical_a": "3792 N River Rd"
+    },
+    {
+     "COMMENTS": " ",
+     "CREATOR": "DQuillin",
+     "DATASOURCE": "Assessors GIS Data",
+     "DESIGNATIO": "State Natural Site",
+     "EDITOR": "gis",
+     "FULL_NAME": "Twin Rocks State Natural Site",
+     "HUB_PROP_2": "Twin Rocks State Natural Site",
+     "NAME": "Twin Rocks",
+     "NAME_1": "Nehalem Bay MU",
+     "PUBLIC_DIS": "YES",
+     "USE_TYPE": "Undeveloped",
+     "physical_a": "9500 Sandpiper Lane"
+    }
+   ],
+   "service": "ApproximateParkBoundary14oct19",
+   "typef": "USE_TYPE",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ApproximateParkBoundary14oct19/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "FIP_Area",
+   "count": 404,
+   "fields": [
+    "HU10",
+    "FIP_Area",
+    "Priority"
+   ],
+   "known": false,
+   "layer": "FIPS_NativeFish_2019",
+   "sample": [
+    {
+     "FIP_Area": "Columbia Estuary",
+     "HU10": " ",
+     "Priority": "Highest"
+    },
+    {
+     "FIP_Area": "Pine, Indian, Whitehorse",
+     "HU10": "1705020106",
+     "Priority": "Highest"
+    },
+    {
+     "FIP_Area": "Powder River",
+     "HU10": "1705020301",
+     "Priority": "Highest"
+    }
+   ],
+   "service": "FIPS_NativeFish_2019",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/FIPS_NativeFish_2019/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 398,
+   "fields": [
+    "HUC10",
+    "States",
+    "Name",
+    "HUC8",
+    "MapZones",
+    "HUC_5"
+   ],
+   "known": false,
+   "layer": "Dry_Type_Forest_Disturbance_Pct",
+   "sample": [
+    {
+     "HUC10": "1701021405",
+     "HUC8": "17010214",
+     "HUC_5": "1701021405",
+     "MapZones": "WNE",
+     "Name": "Spirit Lake",
+     "States": "ID, WA"
+    },
+    {
+     "HUC10": "1701021502",
+     "HUC8": "17010215",
+     "HUC_5": "1701021502",
+     "MapZones": "WNE",
+     "Name": "Granite Creek",
+     "States": "ID, WA"
+    },
+    {
+     "HUC10": "1701021504",
+     "HUC8": "17010215",
+     "HUC_5": "1701021504",
+     "MapZones": "WNE",
+     "Name": "Upper West Branch Priest River",
+     "States": "ID, WA"
+    }
+   ],
+   "service": "Dry_Type_Forest_Disturbance_Pct",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Dry_Type_Forest_Disturbance_Pct/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 398,
+   "fields": [
+    "HUC10",
+    "States",
+    "Name",
+    "HUC8",
+    "MapZones",
+    "HUC_5"
+   ],
+   "known": false,
+   "layer": "DryTypeForestDisturbPct",
+   "sample": [
+    {
+     "HUC10": "1701021405",
+     "HUC8": "17010214",
+     "HUC_5": "1701021405",
+     "MapZones": "WNE",
+     "Name": "Spirit Lake",
+     "States": "ID, WA"
+    },
+    {
+     "HUC10": "1701021502",
+     "HUC8": "17010215",
+     "HUC_5": "1701021502",
+     "MapZones": "WNE",
+     "Name": "Granite Creek",
+     "States": "ID, WA"
+    },
+    {
+     "HUC10": "1701021504",
+     "HUC8": "17010215",
+     "HUC_5": "1701021504",
+     "MapZones": "WNE",
+     "Name": "Upper West Branch Priest River",
+     "States": "ID, WA"
+    }
+   ],
+   "service": "DryTypeForestDisturbPct",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/DryTypeForestDisturbPct/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 287,
+   "fields": [
+    "HUC10_Name"
+   ],
+   "known": false,
+   "layer": "Total_Disturbance_Acres_Divided_By_Forested_Acres_Only_In_Dry_Type_Forest",
+   "sample": [
+    {
+     "HUC10_Name": "Headwaters Malheur River"
+    },
+    {
+     "HUC10_Name": "Wolf Creek"
+    },
+    {
+     "HUC10_Name": "Pine Creek"
+    }
+   ],
+   "service": "Dry_Type_Forest_Habitats_gdb",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Dry_Type_Forest_Habitats_gdb/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 256,
+   "fields": [
+    "Name",
+    "Comments",
+    "HCA_ID",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "HCP_HabitatConservationAreas",
+   "sample": [
+    {
+     "Creator": "State.Forests_ODF",
+     "Editor": "State.Forests_ODF",
+     "HCA_ID": "1",
+     "Name": "1"
+    },
+    {
+     "Creator": "State.Forests_ODF",
+     "Editor": "State.Forests_ODF",
+     "HCA_ID": "2",
+     "Name": "2"
+    },
+    {
+     "Creator": "State.Forests_ODF",
+     "Editor": "State.Forests_ODF",
+     "HCA_ID": "3",
+     "Name": "3"
+    }
+   ],
+   "service": "HCP_HabitatConservationAreas_NonEditView",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/HCP_HabitatConservationAreas_NonEditView/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 204,
+   "fields": [
+    "COA_name",
+    "Centroid_E"
+   ],
+   "known": false,
+   "layer": "COAs_2026",
+   "sample": [
+    {
+     "COA_name": "Little Deschutes River",
+     "Centroid_E": "EC"
+    },
+    {
+     "COA_name": "Upper Deschutes River",
+     "Centroid_E": "EC"
+    },
+    {
+     "COA_name": "Soda Mountain Area",
+     "Centroid_E": "WC"
+    }
+   ],
+   "service": "For_Download_2026_Conservation_Opportunity_Areas_(COAs)",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/For_Download_2026_Conservation_Opportunity_Areas_(COAs)/FeatureServer/168"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 92,
+   "fields": [
+    "states",
+    "huc8",
+    "name"
+   ],
+   "known": false,
+   "layer": "Oregon Subbasins: 8 Digit Hydrologic Units",
+   "sample": [
+    {
+     "huc8": "17100203",
+     "name": "Wilson-Trusk-Nestuccu",
+     "states": "OR"
+    },
+    {
+     "huc8": "17100204",
+     "name": "Siletz-Yaquina",
+     "states": "OR"
+    },
+    {
+     "huc8": "17090003",
+     "name": "Upper Willamette",
+     "states": "OR"
+    }
+   ],
+   "service": "Fish_Districts_and_Oregon_Subbasins",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Fish_Districts_and_Oregon_Subbasins/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 91,
+   "fields": [
+    "TNMID",
+    "MetaSource",
+    "SourceData",
+    "SourceOrig",
+    "SourceFeat",
+    "Name",
+    "States",
+    "HUC8",
+    "NAME_1",
+    "REGION",
+    "DistrictFi",
+    "phone",
+    "phone2",
+    "WSDistrict"
+   ],
+   "known": false,
+   "layer": "HUC8_watershedsfish_(2)",
+   "sample": [
+    {
+     "DistrictFi": "Todd Confer",
+     "HUC8": "17100312",
+     "MetaSource": " ",
+     "NAME_1": "South Coast District",
+     "Name": "Chetco",
+     "REGION": "West Region",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "CA,OR",
+     "TNMID": "{5EA104DB-DDF9-45C2-9679-0CD83FD876E1}",
+     "phone": "541-247-7605"
+    },
+    {
+     "DistrictFi": "Bill Tinniswood",
+     "HUC8": "17120007",
+     "MetaSource": " ",
+     "NAME_1": "Klamath District",
+     "Name": "Warner Lakes",
+     "REGION": "East Region",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "CA,NV,OR",
+     "TNMID": "{AABD2B23-8914-4042-B7C3-15CA653A8325}",
+     "phone": "541-883-5732"
+    },
+    {
+     "DistrictFi": "Dave Banks",
+     "HUC8": "17120008",
+     "MetaSource": " ",
+     "NAME_1": "Southeast District",
+     "Name": "Guano",
+     "REGION": "East Region",
+     "SourceData": " ",
+     "SourceFeat": " ",
+     "SourceOrig": " ",
+     "States": "NV,OR",
+     "TNMID": "{D9054520-071B-4626-8D5D-7BFFEB2D4047}",
+     "phone": "541-573-6582"
+    }
+   ],
+   "service": "HUC8_watershedsfish_(2)",
+   "typef": "SourceFeat",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/HUC8_watershedsfish_(2)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 80,
+   "fields": [
+    "SITENAME_L",
+    "LIFESTAGE",
+    "TYPE",
+    "FMC",
+    "LTTD_TITLE",
+    "LTTD_LINK_",
+    "ZONE",
+    "INSTATEWAT",
+    "DDBOX",
+    "LTTD_TIT_1",
+    "FMC_REPORT",
+    "FMP_REPORT",
+    "DATACAVEAT",
+    "LTTDT_LINK",
+    "LINKTOREGU"
+   ],
+   "known": false,
+   "layer": "Essential_Fish_Habitat_Areas_Protected_from_Fishing_on_the_West_Coast",
+   "sample": [
+    {
+     "DDBOX": "Olympic 2",
+     "FMC": "PFMC",
+     "FMC_REPORT": "Pacific",
+     "FMP_REPORT": "Amendment 28 to the Pacific Coast Groundfish FMP",
+     "INSTATEWAT": " ",
+     "LIFESTAGE": "ALL",
+     "LTTD_LINK_": " ",
+     "LTTD_TITLE": " ",
+     "LTTD_TIT_1": "EFH Areas Protected from Fishing in the Pacific Region",
+     "SITENAME_L": "Olympic 2 EFH Conservation Area",
+     "TYPE": "EFHA",
+     "ZONE": " "
+    },
+    {
+     "DDBOX": "Biogenic 1",
+     "FMC": "PFMC",
+     "FMC_REPORT": "Pacific",
+     "FMP_REPORT": "Amendment 19 to the Pacific Coast Groundfish FMP",
+     "INSTATEWAT": " ",
+     "LIFESTAGE": "ALL",
+     "LTTD_LINK_": " ",
+     "LTTD_TITLE": " ",
+     "LTTD_TIT_1": "EFH Areas Protected from Fishing in the Pacific Region",
+     "SITENAME_L": "Biogenic 1 EFH Conservation Area",
+     "TYPE": "EFHA",
+     "ZONE": " "
+    },
+    {
+     "DDBOX": "Biogenic 2",
+     "FMC": "PFMC",
+     "FMC_REPORT": "Pacific",
+     "FMP_REPORT": "Amendment 19 to the Pacific Coast Groundfish FMP",
+     "INSTATEWAT": " ",
+     "LIFESTAGE": "ALL",
+     "LTTD_LINK_": " ",
+     "LTTD_TITLE": " ",
+     "LTTD_TIT_1": "EFH Areas Protected from Fishing in the Pacific Region",
+     "SITENAME_L": "Biogenic 2 EFH Conservation Area",
+     "TYPE": "EFHA",
+     "ZONE": " "
+    }
+   ],
+   "service": "Essential_Fish_Habitat_Areas_Protected_from_Fishing_on_the_West_Coast",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Essential_Fish_Habitat_Areas_Protected_from_Fishing_on_the_West_Coast/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AreaName",
+   "count": 76,
+   "fields": [
+    "AreaName",
+    "TractName"
+   ],
+   "known": false,
+   "layer": "Wildlife Areas",
+   "sample": [
+    {
+     "AreaName": "Wenaha",
+     "TractName": " "
+    },
+    {
+     "AreaName": "Phillip W. Schneider",
+     "TractName": " "
+    },
+    {
+     "AreaName": "Summer Lake",
+     "TractName": " "
+    }
+   ],
+   "service": "For_Download_ODFW_Wildlife_Areas",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/For_Download_ODFW_Wildlife_Areas/FeatureServer/18"
+  },
+  {
+   "agency": "Oregon Department of Forestry",
+   "area": "SFUnitName",
+   "count": 74,
+   "fields": [
+    "created_user",
+    "last_edited_user",
+    "StewardshipForester",
+    "SFUnitName",
+    "SFDistrictName",
+    "SFUnitCity",
+    "SFDistrictCity",
+    "SFOfficePhone",
+    "SFStreetAddress",
+    "SFCity",
+    "SFZIP",
+    "SFOForester",
+    "SFOUnitName",
+    "SFODistrictName",
+    "SFOUnitCity",
+    "SFODistrictCity",
+    "SFOStreetAddress",
+    "SFOCity",
+    "SFOZIP",
+    "SFOOfficePhone"
+   ],
+   "known": false,
+   "layer": "Boundary FPA Stewardship Forester Area",
+   "sample": [
+    {
+     "SFCity": "Central Point",
+     "SFDistrictCity": "Central Point",
+     "SFDistrictName": "Southwest Oregon",
+     "SFOForester": "Alex Gehrig",
+     "SFOfficePhone": "(541) 664-3328",
+     "SFStreetAddress": "5286 Table Rock Rd",
+     "SFUnitCity": "Central Point",
+     "SFUnitName": "Medford",
+     "SFZIP": "97502",
+     "StewardshipForester": "Kyle Ripberger",
+     "created_user": "Steve.TIMBROOK_ODF",
+     "last_edited_user": "Steve.TIMBROOK_ODF"
+    },
+    {
+     "SFCity": "Klamath Falls",
+     "SFDistrictCity": "Klamath Falls",
+     "SFDistrictName": "Klamath-Lake",
+     "SFOForester": "Andrew Lauer",
+     "SFOfficePhone": "(541) 219-1430",
+     "SFStreetAddress": "3200 DeLap Rd",
+     "SFUnitCity": "Klamath Falls",
+     "SFUnitName": "Klamath Falls",
+     "SFZIP": "97601",
+     "StewardshipForester": "Dominic Patton",
+     "created_user": "Steve.TIMBROOK_ODF",
+     "last_edited_user": "Steve.TIMBROOK_ODF"
+    },
+    {
+     "SFCity": "Central Point",
+     "SFDistrictCity": "Central Point",
+     "SFDistrictName": "Southwest Oregon",
+     "SFOForester": "Alex Gehrig",
+     "SFOfficePhone": "(541) 664-3328",
+     "SFStreetAddress": "5286 Table Rock Rd",
+     "SFUnitCity": "Central Point",
+     "SFUnitName": "Medford",
+     "SFZIP": "97502",
+     "StewardshipForester": "Marcus Havniear",
+     "created_user": "Steve.TIMBROOK_ODF",
+     "last_edited_user": "Steve.TIMBROOK_ODF"
+    }
+   ],
+   "service": "Boundary_FPA_Stewardship_Forester_Area",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Boundary_FPA_Stewardship_Forester_Area/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 69,
+   "fields": [
+    "UNIT_NAME",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Units (WMUs)",
+   "sample": [
+    {
+     "REGION": "WEST",
+     "UNIT_NAME": "CHETCO"
+    },
+    {
+     "REGION": "WEST",
+     "UNIT_NAME": "DIXON"
+    },
+    {
+     "REGION": "WEST",
+     "UNIT_NAME": "EVANS CREEK"
+    }
+   ],
+   "service": "For_Download_Wildlife_Management_Units_(WMUs)",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/For_Download_Wildlife_Management_Units_(WMUs)/FeatureServer/19"
+  },
+  {
+   "agency": "Oregon Department of Fish and Wildlife",
+   "area": "UNIT_NAME",
+   "count": 49,
+   "fields": [
+    "UNIT_NAME",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Units",
+   "sample": [
+    {
+     "REGION": "EAST",
+     "UNIT_NAME": "Beatys Butte"
+    },
+    {
+     "REGION": "EAST",
+     "UNIT_NAME": "Beulah"
+    },
+    {
+     "REGION": "EAST",
+     "UNIT_NAME": "Biggs"
+    }
+   ],
+   "service": "Eastern_OR_Wildlife_Management_Units",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Eastern_OR_Wildlife_Management_Units/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36,
+   "fields": [
+    "CNTY_NAME",
+    "CNTYNAME",
+    "Contact",
+    "Update_"
+   ],
+   "known": false,
+   "layer": "FIRE_FORESTLAND_CLASSIFICATION_STATUS",
+   "sample": [
+    {
+     "CNTYNAME": "CLATSOP",
+     "CNTY_NAME": "CLATSOP",
+     "Contact": "Neal Bond",
+     "Update_": "2016"
+    },
+    {
+     "CNTYNAME": "COLUMBIA",
+     "CNTY_NAME": "COLUMBIA",
+     "Contact": " ",
+     "Update_": "Needs Update"
+    },
+    {
+     "CNTYNAME": "WALLOWA",
+     "CNTY_NAME": "WALLOWA",
+     "Contact": "Tracy Brostrom",
+     "Update_": "2016"
+    }
+   ],
+   "service": "Forestland_Classification_Status_and_Committee_Membership_View",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forestland_Classification_Status_and_Committee_Membership_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SiteName",
+   "count": 32,
+   "fields": [
+    "SiteName"
+   ],
+   "known": false,
+   "layer": "TribalFishingSitesPoly2014_CRITFC",
+   "sample": [
+    {
+     "SiteName": "North Bonneville"
+    },
+    {
+     "SiteName": "Preachers Eddy"
+    },
+    {
+     "SiteName": "Roosevelt Park"
+    }
+   ],
+   "service": "ColRivTribalFishingSites_CRITFC",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/ColRivTribalFishingSites_CRITFC/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 26,
+   "fields": [
+    "DistrictName",
+    "Offices",
+    "Region",
+    "DistrictBio",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "ODFW wildlife biologist districts",
+   "sample": [
+    {
+     "DistrictBio": "Brian Ratliff",
+     "DistrictName": "Baker City",
+     "Offices": "Baker City",
+     "Phone": "541-523-5832",
+     "Region": "East"
+    },
+    {
+     "DistrictBio": "Ryan Torland",
+     "DistrictName": "Grant",
+     "Offices": "John Day",
+     "Phone": "541-575-1167",
+     "Region": "East"
+    },
+    {
+     "DistrictBio": "Steve Cherry",
+     "DistrictName": "Heppner",
+     "Offices": "Heppner",
+     "Phone": "541-676-5230",
+     "Region": "East"
+    }
+   ],
+   "service": "For_Download_ODFW_wildlife_biologist_districts",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/For_Download_ODFW_wildlife_biologist_districts/FeatureServer/20"
+  },
+  {
+   "agency": "Funding for the Watershed Boundary Dataset (WBD) was provided by the USDA-NRCS, ",
+   "area": "Name",
+   "count": 22,
+   "fields": [
+    "TNMID",
+    "MetaSourceID",
+    "SourceDataDesc",
+    "SourceOriginator",
+    "SourceFeatureID",
+    "States",
+    "HUC10",
+    "Name",
+    "HUType",
+    "HUMod",
+    "ESH",
+    "Fish",
+    "HistoricalFish",
+    "DataAvail",
+    "Datanotes",
+    "PriorityCode",
+    "ProjectArea",
+    "Frogs"
+   ],
+   "known": false,
+   "layer": "HUC10_FishPriority",
+   "sample": [
+    {
+     "ESH": "No",
+     "Fish": "Redband",
+     "HUC10": "1707030101",
+     "HUType": "S",
+     "MetaSourceID": "{9EAB9AD2-E598-4EBF-A969-C4D3AD530EC1}",
+     "Name": "Charleton Creek-Deschutes River",
+     "States": "OR",
+     "TNMID": "{2B8F63E2-57BF-41E2-8026-9037CF731EB1}"
+    },
+    {
+     "ESH": "No",
+     "Fish": "Redband, Bull trout spawning and resident",
+     "HUC10": "1707030102",
+     "HUType": "S",
+     "Name": "Browns Creek-Deschutes River",
+     "States": "OR",
+     "TNMID": "{26D5995D-87A4-457E-B2AA-372847C614D0}"
+    },
+    {
+     "ESH": "No",
+     "Fish": "Redband",
+     "HUC10": "1707030103",
+     "HUType": "S",
+     "Name": "Fall River-Deschutes River",
+     "States": "OR",
+     "TNMID": "{1304F449-840B-4E95-BFD0-5B3D567E98B0}"
+    }
+   ],
+   "service": "HUC10_FishPriority",
+   "typef": "SourceDataDesc",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/HUC10_FishPriority/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "REGION",
+    "phone",
+    "DistrictBi"
+   ],
+   "known": false,
+   "layer": "ODFW FIsh Districts",
+   "sample": [
+    {
+     "DistrictBi": "Steve Mazur",
+     "NAME": "South Coast District",
+     "REGION": "West Region",
+     "phone": "541-247-7605"
+    },
+    {
+     "DistrictBi": "Frank Drake",
+     "NAME": "Upper Rogue District",
+     "REGION": "West Region",
+     "phone": "541-857-2412"
+    },
+    {
+     "DistrictBi": "Ben Ramirez",
+     "NAME": "Klamath District",
+     "REGION": "East Region",
+     "phone": "541-883-5732"
+    }
+   ],
+   "service": "Fish_Districts_and_Oregon_Subbasins",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Fish_Districts_and_Oregon_Subbasins/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "REGION",
+    "DistrictFishBio",
+    "phone",
+    "phone2"
+   ],
+   "known": false,
+   "layer": "FishBioDist",
+   "sample": [
+    {
+     "DistrictFishBio": "Dan VanDyke",
+     "NAME": "Upper Rogue District",
+     "REGION": "West Region",
+     "phone": "541-826-8774",
+     "phone2": "541-826-8774"
+    },
+    {
+     "DistrictFishBio": "Mike Gray",
+     "NAME": "Coos-Coquille District",
+     "REGION": "West Region",
+     "phone": "541-888-5515",
+     "phone2": "541-888-5515"
+    },
+    {
+     "DistrictFishBio": "Greg Huchko",
+     "NAME": "Umpqua District",
+     "REGION": "West Region",
+     "phone": "541-440-3353",
+     "phone2": "541-440-3353"
+    }
+   ],
+   "service": "fish_line_recycle_web_map_WFL1_View_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/fish_line_recycle_web_map_WFL1_View_Layer/FeatureServer/3"
+  },
+  {
+   "agency": "ODFW",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "REGION",
+    "phone",
+    "AssistantDB",
+    "DistrictFishBio"
+   ],
+   "known": false,
+   "layer": "FishBioDistricts",
+   "sample": [
+    {
+     "AssistantDB": "Sterling Meus",
+     "DistrictFishBio": "Frank Drake",
+     "NAME": "Upper Rogue District",
+     "REGION": "West Region",
+     "phone": "541-826-8774"
+    },
+    {
+     "AssistantDB": "Jeremy Plass-Johnson",
+     "DistrictFishBio": "Vacant",
+     "NAME": "Coos-Coquille District",
+     "REGION": "West Region",
+     "phone": "541-888-5515"
+    },
+    {
+     "AssistantDB": "Chris Traill",
+     "DistrictFishBio": "Evan Leonetti",
+     "NAME": "Umpqua District",
+     "REGION": "West Region",
+     "phone": "541-440-3353"
+    }
+   ],
+   "service": "FishBioDistricts",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/FishBioDistricts/FeatureServer/0"
+  },
+  {
+   "agency": "ODFW",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "REGION",
+    "DistrictFi",
+    "phone",
+    "phone2"
+   ],
+   "known": false,
+   "layer": "FishBioDistrictst",
+   "sample": [
+    {
+     "DistrictFi": "Dan VanDyke",
+     "NAME": "Upper Rogue District",
+     "REGION": "West Region",
+     "phone": "541-826-8774",
+     "phone2": "541-826-8774"
+    },
+    {
+     "DistrictFi": "Mike Gray",
+     "NAME": "Coos-Coquille District",
+     "REGION": "West Region",
+     "phone": "541-888-5515",
+     "phone2": "541-888-5515"
+    },
+    {
+     "DistrictFi": "Greg Huchko",
+     "NAME": "Umpqua District",
+     "REGION": "West Region",
+     "phone": "541-440-3353",
+     "phone2": "541-440-3353"
+    }
+   ],
+   "service": "FishBioDistrictst",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/FishBioDistrictst/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 18,
+   "fields": [
+    "NAME",
+    "REGION",
+    "DistrictFishBio",
+    "phone",
+    "phone2"
+   ],
+   "known": false,
+   "layer": "ODFW fish biologist districts",
+   "sample": [
+    {
+     "DistrictFishBio": "Steve Mazur",
+     "NAME": "South Coast District",
+     "REGION": "West Region",
+     "phone": "541-247-7605",
+     "phone2": "541-247-7605"
+    },
+    {
+     "DistrictFishBio": "Frank Drake",
+     "NAME": "Upper Rogue District",
+     "REGION": "West Region",
+     "phone": "541-857-2412",
+     "phone2": "541-826-8774"
+    },
+    {
+     "DistrictFishBio": "Ben Ramirez",
+     "NAME": "Klamath District",
+     "REGION": "East Region",
+     "phone": "541-883-5732",
+     "phone2": "541-883-5738"
+    }
+   ],
+   "service": "For_Download_ODFW_fish_biologist_districts",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/For_Download_ODFW_fish_biologist_districts/FeatureServer/120"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 16,
+   "fields": [],
+   "known": false,
+   "layer": "AAMPO_District_Parking",
+   "sample": [
+    {
+     "Avg_GQ_Ave": 1.54166667,
+     "Avg_MF_Ave": 3.45833333,
+     "Avg_SF_Ave": 6.75,
+     "Count_": 4,
+     "District_I": 0,
+     "GlobalID": "af9accd9-2dd7-4372-81a0-1b0c76b1d0d5",
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "SHAPE_Leng": 31354.0271348,
+     "Shape__Area": 43822426.5,
+     "Shape__Length": 31354.02713479377
+    },
+    {
+     "Avg_GQ_Ave": 1.8,
+     "Avg_MF_Ave": 4.23333333,
+     "Avg_SF_Ave": 8.6,
+     "Count_": 5,
+     "District_I": 0,
+     "GlobalID": "68071154-d56e-41bf-b3b0-09e1f7279625",
+     "OBJECTID": 2,
+     "OBJECTID_1": 2,
+     "SHAPE_Leng": 43505.2472308,
+     "Shape__Area": 99151043.00982666,
+     "Shape__Length": 43505.247230843095
+    },
+    {
+     "Avg_GQ_Ave": 1.64583333,
+     "Avg_MF_Ave": 3.77083333,
+     "Avg_SF_Ave": 7.375,
+     "Count_": 16,
+     "District_I": 0,
+     "GlobalID": "4564a09e-ba09-41e2-8d30-7dfab0adb555",
+     "OBJECTID": 3,
+     "OBJECTID_1": 3,
+     "SHAPE_Leng": 41143.6003598,
+     "Shape__Area": 70907261.90863037,
+     "Shape__Length": 41143.600359831245
+    }
+   ],
+   "service": "AAMPO_District_Parking",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/AAMPO_District_Parking/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 15,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "GEOID",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT",
+    "INTPTLAT",
+    "INTPTLON",
+    "Region",
+    "Sector",
+    "California_County",
+    "Fishery",
+    "Type"
+   ],
+   "known": false,
+   "layer": "California_Coastal_Commercial_Fishery_Closures_2023",
+   "sample": [
+    {
+     "CBSAFP": "42200",
+     "CLASSFP": "H1",
+     "COUNTYFP": "083",
+     "COUNTYNS": "00277306",
+     "CSAFP": " ",
+     "GEOID": "06083",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Santa Barbara",
+     "NAMELSAD": "Santa Barbara County",
+     "STATEFP": "06"
+    },
+    {
+     "CBSAFP": "37100",
+     "CLASSFP": "H1",
+     "COUNTYFP": "111",
+     "COUNTYNS": "00277320",
+     "CSAFP": "348",
+     "GEOID": "06111",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Ventura",
+     "NAMELSAD": "Ventura County",
+     "STATEFP": "06"
+    },
+    {
+     "CBSAFP": "42220",
+     "CLASSFP": "H1",
+     "COUNTYFP": "097",
+     "COUNTYNS": "01657246",
+     "CSAFP": "488",
+     "GEOID": "06097",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Sonoma",
+     "NAMELSAD": "Sonoma County",
+     "STATEFP": "06"
+    }
+   ],
+   "service": "CA_Coastal_Com_Fishery_Closures_23",
+   "typef": "CLASSFP",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/CA_Coastal_Com_Fishery_Closures_23/FeatureServer/0"
+  },
+  {
+   "agency": "ODF, Oregon Department of Forestry",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "Classification",
+    "LAST_Editor"
+   ],
+   "known": false,
+   "layer": "Wasco Forestland Classification 2021 Draft",
+   "sample": [
+    {
+     "Classification": "Class 1"
+    },
+    {
+     "Classification": "Class 2"
+    },
+    {
+     "Classification": "Class 3"
+    }
+   ],
+   "service": "DraftDallesForestlandClassification",
+   "typef": "Classification",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/DraftDallesForestlandClassification/FeatureServer/0"
+  },
+  {
+   "agency": "ODF, Oregon Department of Forestry",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "Classification"
+   ],
+   "known": false,
+   "layer": "Hood River Forestland Classification 2021 Draft",
+   "sample": [
+    {
+     "Classification": "Class 1"
+    },
+    {
+     "Classification": "Class 2"
+    },
+    {
+     "Classification": "Class 3"
+    }
+   ],
+   "service": "DraftDallesForestlandClassification",
+   "typef": "Classification",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/DraftDallesForestlandClassification/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Range Map Ruffed Grouse updated July2017",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 189336769264.58984,
+     "Shape__Length": 3404352.97582256
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 93708486516.41406,
+     "Shape__Length": 1483945.4767955977
+    }
+   ],
+   "service": "Forest_Grouse_Range_Map_updated_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grouse_Range_Map_updated_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Range Map Blue Grouse",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 170336855514.33203,
+     "Shape__Length": 4495241.13672505
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 97436486344,
+     "Shape__Length": 1734943.8319747197
+    }
+   ],
+   "service": "Forest_Grouse_Range_Map_updated_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grouse_Range_Map_updated_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Range Map Ruffed Grouse updated July2017",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 189336769264.58984,
+     "Shape__Length": 3404352.97582256
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 93708486516.41406,
+     "Shape__Length": 1483945.4767955977
+    }
+   ],
+   "service": "Forest_Grouse_Range_Map_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grouse_Range_Map_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Range Map Blue Grouse",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 170336855514.33203,
+     "Shape__Length": 4495241.13672505
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 97436486344,
+     "Shape__Length": 1734943.8319747197
+    }
+   ],
+   "service": "Forest_Grouse_Range_Map_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grouse_Range_Map_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "AntelopeReservoir",
+   "sample": [
+    {
+     "WaterbodyName": "Antelope Reservoir"
+    }
+   ],
+   "service": "Antelope_Reservoir_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Antelope_Reservoir_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "ApplegateLake",
+   "sample": [
+    {
+     "WaterbodyName": "Applegate Lake"
+    }
+   ],
+   "service": "Applegate_Lake_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Applegate_Lake_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Site",
+   "count": 1,
+   "fields": [
+    "Site"
+   ],
+   "known": false,
+   "layer": "CentralPark",
+   "sample": [
+    {
+     "Site": "Central Park"
+    }
+   ],
+   "service": "CentralPark",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/CentralPark/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "CooperCreekReservoir",
+   "sample": [
+    {
+     "WaterbodyName": "Cooper Creek Reservoir"
+    }
+   ],
+   "service": "Cooper_Creek_Reservoir_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Cooper_Creek_Reservoir_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "CottageGroveReservoir",
+   "sample": [
+    {
+     "WaterbodyName": "Cottage Grove Reservoir"
+    }
+   ],
+   "service": "Cottage_Grove_Reservoir_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Cottage_Grove_Reservoir_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "DorenaReservoir",
+   "sample": [
+    {
+     "WaterbodyName": "Dorena Reservoir"
+    }
+   ],
+   "service": "Dorena_Reservoir_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Dorena_Reservoir_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "SUBJ_STATE"
+   ],
+   "known": false,
+   "layer": "OR_Boundary_generalized",
+   "sample": [
+    {
+     "SUBJ_STATE": "OREGON"
+    }
+   ],
+   "service": "Dry_Type_Forest_Habitats_gdb",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Dry_Type_Forest_Habitats_gdb/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "EastLake",
+   "sample": [
+    {
+     "WaterbodyName": "East Lake"
+    }
+   ],
+   "service": "East_Lake_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/East_Lake_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "EmigrantLake",
+   "sample": [
+    {
+     "WaterbodyName": "Emigrant Lake"
+    }
+   ],
+   "service": "Emigrant_Lake_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Emigrant_Lake_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "Priority"
+   ],
+   "known": false,
+   "layer": "FIP_Habitat_Restoration_For_Resident_And_Anadromous_Fish_in_the_Deschutes",
+   "sample": [
+    {
+     "Name": "Habitat Restoration for Resident and Anadromous Fish in the Deschutes",
+     "Priority": "Aquatic Habitat for Native Fish Species"
+    }
+   ],
+   "service": "FIP_Habitat_Restoration_For_Resident_And_Anadromous_Fish_in_the_Deschutes",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/FIP_Habitat_Restoration_For_Resident_And_Anadromous_Fish_in_the_Deschutes/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "DuskyGrouseRange",
+   "sample": [
+    {
+     "Id": 0,
+     "OBJECTID": 1,
+     "Shape__Area": 97436486344,
+     "Shape__Length": 1734943.8319747197
+    }
+   ],
+   "service": "Forest_Grouse_Range_Map_updated_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grouse_Range_Map_updated_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "SootyGrouseRange",
+   "sample": [
+    {
+     "Id": 0,
+     "OBJECTID": 1,
+     "Shape__Area": 170336855514.33203,
+     "Shape__Length": 4495241.13672505
+    }
+   ],
+   "service": "Forest_Grouse_Range_Map_updated_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grouse_Range_Map_updated_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Forest Grove Infestation Area",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 85490894.8203125,
+     "Shape__Length": 37887.133512423694
+    }
+   ],
+   "service": "Forest_Grove_Infestation_Area_view",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Forest_Grove_Infestation_Area_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "WaterbodyName"
+   ],
+   "known": false,
+   "layer": "GalesvilleReservoir",
+   "sample": [
+    {
+     "WaterbodyName": "Galesville Reservoir"
+    }
+   ],
+   "service": "Galesville_Reservoir_Fish_Advisory",
+   "typef": "",
+   "url": "https://services.arcgis.com/uUvqNMGPm7axC2dD/arcgis/rest/services/Galesville_Reservoir_Fish_Advisory/FeatureServer/0"
+  },
+  {
+   "agency": "Oregon Parks and Recreation Department",
+   "area": "NAME",
+   "count": 422,
+   "fields": [
+    "NAME",
+    "DATASOURCE",
+    "DESIGNATION",
+    "USE_TYPE",
+    "FULL_NAME"
+   ],
+   "known": true,
+   "layer": "Oregon State Parks",
+   "sample": [
+    {
+     "DATASOURCE": "Survey data",
+     "DESIGNATION": "State Natural Site",
+     "FULL_NAME": "Rough and Ready State Natural Site",
+     "NAME": "Rough and Ready",
+     "USE_TYPE": "Day Use"
+    },
+    {
+     "DATASOURCE": "Scanned engineering drawing or scaled map",
+     "FULL_NAME": "Butteville Store",
+     "NAME": "Butteville Store",
+     "USE_TYPE": "Day Use"
+    },
+    {
+     "DATASOURCE": "Digital Orthophoto",
+     "DESIGNATION": "State Recreation Area",
+     "FULL_NAME": "Government Island State Recreation Area",
+     "NAME": "Government Island",
+     "USE_TYPE": "Day Use"
+    }
+   ],
+   "service": "Land_ownership/Oregon_State_Parks",
+   "typef": "USE_TYPE",
+   "url": "https://maps.prd.state.or.us/arcgis/rest/services/Land_ownership/Oregon_State_Parks/FeatureServer/0"
+  }
+ ],
+ "st": "OR"
+}

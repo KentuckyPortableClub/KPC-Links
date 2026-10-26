@@ -1,0 +1,998 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 67106,
+   "fields": [
+    "CATEGORY"
+   ],
+   "known": false,
+   "layer": "Vermont Conservation Design-Physical Landscape Diversity Blocks",
+   "sample": [
+    {
+     "CATEGORY": "Rare"
+    },
+    {
+     "CATEGORY": "Rare"
+    },
+    {
+     "CATEGORY": "Rare"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1",
+   "typef": "CATEGORY",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/184"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 4055,
+   "fields": [],
+   "known": false,
+   "layer": "Habitat Blocks and Wildlife Corridors",
+   "sample": [
+    {
+     "ACRES": 51.7478946,
+     "F10raw": 15.58695311,
+     "F10rcl": 9,
+     "F11raw": 0.0,
+     "F11rcl": 0,
+     "F1raw": 122.09200286,
+     "F1rcl": 3,
+     "F2raw": 0.31345946,
+     "F2rcl": 4,
+     "F3raw": 0.0,
+     "F3rcl": 0,
+     "F4raw": 0.0,
+     "F4rcl": 0,
+     "F5raw": 51.74789414,
+     "F5rcl": 1,
+     "F6raw": 0.0,
+     "F6rcl": 10,
+     "F7raw": 4.17775454,
+     "F7rcl": 10,
+     "F8raw": 36.01962999,
+     "F8rcl": 10,
+     "F9raw": 0.0,
+     "F9rcl": 0,
+     "Fwght": 3.45,
+     "Fwghtrcl": 4,
+     "OBJECTID": 1,
+     "Shape.area": 209417.13729132,
+     "Shape.len": 3935.144279920629,
+     "ThreatF5": 10,
+     "avg_parcsz": 35.60260009,
+     "bldg_dens": 4.23810005,
+     "cons_pct": 0.0,
+     "pop_chg": 10.61240005,
+     "threat": 6.8,
+     "threatF1": 10,
+     "threatF2": 9,
+     "threatF3": 4,
+     "threatF4": 1,
+     "threatrcl": 7
+    },
+    {
+     "ACRES": 31.2334754,
+     "F10raw": 6.2456061,
+     "F10rcl": 7,
+     "F11raw": 0.0,
+     "F11rcl": 0,
+     "F1raw": 81.27079772,
+     "F1rcl": 4,
+     "F2raw": 0.18919473,
+     "F2rcl": 3,
+     "F3raw": 0.0,
+     "F3rcl": 0,
+     "F4raw": 0.0,
+     "F4rcl": 0,
+     "F5raw": 31.23347785,
+     "F5rcl": 1,
+     "F6raw": 0.70488467,
+     "F6rcl": 3,
+     "F7raw": 0.0,
+     "F7rcl": 0,
+     "F8raw": 11.96152415,
+     "F8rcl": 8,
+     "F9raw": 0.0,
+     "F9rcl": 0,
+     "Fwght": 2.1,
+     "Fwghtrcl": 2,
+     "OBJECTID": 2,
+     "Shape.area": 126397.89613772,
+     "Shape.len": 1695.1316688248307,
+     "ThreatF5": 3,
+     "avg_parcsz": 31.94109916,
+     "bldg_dens": 6.0714302,
+     "cons_pct": 0.0,
+     "pop_chg": 0.14168499,
+     "threat": 6.0,
+     "threatF1": 8,
+     "threatF2": 8,
+     "threatF3": 10,
+     "threatF4": 1,
+     "threatrcl": 6
+    },
+    {
+     "ACRES": 44.79841494,
+     "F10raw": 10.56608891,
+     "F10rcl": 8,
+     "F11raw": 0.0,
+     "F11rcl": 0,
+     "F1raw": 12.0927,
+     "F1rcl": 10,
+     "F2raw": 0.00234817,
+     "F2rcl": 1,
+     "F3raw": 0.0,
+     "F3rcl": 0,
+     "F4raw": 0.0,
+     "F4rcl": 0,
+     "F5raw": 44.79841156,
+     "F5rcl": 1,
+     "F6raw": 0.0,
+     "F6rcl": 10,
+     "F7raw": 0.0352691,
+     "F7rcl": 2,
+     "F8raw": 10.56608891,
+     "F8rcl": 8,
+     "F9raw": 0.0,
+     "F9rcl": 0,
+     "Fwght": 3.65,
+     "Fwghtrcl": 4,
+     "OBJECTID": 3,
+     "Shape.area": 181293.4783922,
+     "Shape.len": 1999.0710430794206,
+     "ThreatF5": 10,
+     "avg_parcsz": 31.94109916,
+     "bldg_dens": 3.0,
+     "cons_pct": 43.78882937,
+     "pop_chg": 0.14168499,
+     "threat": 9.4,
+     "threatF1": 10,
+     "threatF2": 8,
+     "threatF3": 10,
+     "threatF4": 9,
+     "threatrcl": 10
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/169"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 433,
+   "fields": [
+    "biophysreg",
+    "ELU_Gr_Sum",
+    "PRIORITY"
+   ],
+   "known": false,
+   "layer": "Vermont Conservation Design-Highest Priority Connectivity Blocks",
+   "sample": [
+    {
+     "ELU_Gr_Sum": "coarse sediment flats",
+     "PRIORITY": "HIGHEST PRIORITY",
+     "biophysreg": "Northeastern Highlands"
+    },
+    {
+     "ELU_Gr_Sum": "calc/mod calc mid-upper elev steep hills/mtns",
+     "PRIORITY": "HIGHEST PRIORITY",
+     "biophysreg": "Northeastern Highlands"
+    },
+    {
+     "ELU_Gr_Sum": "coarse sediment flats",
+     "PRIORITY": "HIGHEST PRIORITY",
+     "biophysreg": "Northeastern Highlands"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/182"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 307,
+   "fields": [
+    "Permanent_Identifier",
+    "ReachCode",
+    "Feature_Permanent_Identifier",
+    "Source_Originator",
+    "Source_DataDesc",
+    "Source_FeatureID",
+    "FeatureDetailURL"
+   ],
+   "known": false,
+   "layer": "Fishing Regulation Lake/Pond",
+   "sample": [
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegs.aspx?ID=176",
+     "Feature_Permanent_Identifier": "VT12-04L01",
+     "Permanent_Identifier": "ADAMS (WOODFD)",
+     "ReachCode": "01080203000477",
+     "Source_DataDesc": "2022 Special Fishing Regulations",
+     "Source_FeatureID": "176",
+     "Source_Originator": "Vermont Fish & Wildlife Department"
+    },
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegs.aspx?ID=181",
+     "Feature_Permanent_Identifier": "VT02-03L03",
+     "Permanent_Identifier": "AUSTIN",
+     "ReachCode": "04150401002794",
+     "Source_DataDesc": "2022 Special Fishing Regulations",
+     "Source_FeatureID": "181",
+     "Source_Originator": "Vermont Fish & Wildlife Department"
+    },
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegs.aspx?ID=185",
+     "Feature_Permanent_Identifier": "VT15-08L01",
+     "Permanent_Identifier": "BALD HILL",
+     "ReachCode": "01080102000211",
+     "Source_DataDesc": "2022 Special Fishing Regulations",
+     "Source_FeatureID": "185",
+     "Source_Originator": "Vermont Fish & Wildlife Department"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2",
+   "typef": "Feature_Permanent_Identifier",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2/MapServer/169"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 304,
+   "fields": [
+    "LakeID",
+    "FeatureDetailURL",
+    "Type",
+    "StockingUrl"
+   ],
+   "known": false,
+   "layer": "Fish Regulations Cartographic LakePond",
+   "sample": [
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegs.aspx?ID=176",
+     "LakeID": "ADAMS (WOODFD)",
+     "Type": "LakePond"
+    },
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegs.aspx?ID=177",
+     "LakeID": "AMHERST",
+     "Type": "LakePond"
+    },
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegs.aspx?ID=178",
+     "LakeID": "ANSEL",
+     "Type": "LakePond"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2",
+   "typef": "FeatureDetailURL",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2/MapServer/178"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 263,
+   "fields": [
+    "biophysreg",
+    "ELU_Gr_Sum",
+    "PRIORITY",
+    "COMPONENT",
+    "COMPDESC"
+   ],
+   "known": false,
+   "layer": "Vermont Conservation Design-Highest Priority Interior Forest Blocks",
+   "sample": [
+    {
+     "COMPDESC": "HIGHEST PRIORITY INTERIOR FOREST BLOCKS",
+     "COMPONENT": "1A",
+     "ELU_Gr_Sum": "fine sediment flats",
+     "PRIORITY": "HIGHEST PRIORITY",
+     "biophysreg": "Champlain Valley"
+    },
+    {
+     "COMPDESC": "HIGHEST PRIORITY INTERIOR FOREST BLOCKS",
+     "COMPONENT": "1A",
+     "ELU_Gr_Sum": "fine sediment flats",
+     "PRIORITY": "HIGHEST PRIORITY",
+     "biophysreg": "Champlain Valley"
+    },
+    {
+     "COMPDESC": "HIGHEST PRIORITY INTERIOR FOREST BLOCKS",
+     "COMPONENT": "1A",
+     "ELU_Gr_Sum": "fine sediment flats",
+     "PRIORITY": "HIGHEST PRIORITY",
+     "biophysreg": "Champlain Valley"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1",
+   "typef": "COMPDESC",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/183"
+  },
+  {
+   "agency": "ANR",
+   "area": "NAME",
+   "count": 168,
+   "fields": [
+    "SOVInterest",
+    "ANRUnitType",
+    "ANRDept",
+    "GrantorLot",
+    "Encumbrance",
+    "EncumNotes",
+    "Funding",
+    "FundNotes",
+    "SOURCE",
+    "SRCNOTES",
+    "PUBACCESS",
+    "PANOTES",
+    "ParcelCode",
+    "Audience",
+    "POLYID",
+    "NAME",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Forest Legacy Program",
+   "sample": [
+    {
+     "ANRDept": "FWD",
+     "ANRUnitType": "WMA",
+     "EncumNotes": "Grant of Developmemt Rights and Conservation Restrictions held by VHCB",
+     "Encumbrance": "Conservation",
+     "FundNotes": "VHCB Grant Agreement 95-015. Eligible for in-kind match under Forest Legacy Program.",
+     "GrantorLot": "The Nature Conservancy (L6 R15)",
+     "PUBACCESS": "1",
+     "SOURCE": "OTH",
+     "SOVInterest": "Fee",
+     "SRCNOTES": "Executive Order from FPR to FWD (11/29/2010)"
+    },
+    {
+     "ANRDept": "FPR",
+     "ANRUnitType": "FL",
+     "Encumbrance": "AffirmNeg",
+     "FundNotes": "Forest Legacy Program",
+     "GrantorLot": "Prelco Inc.",
+     "PUBACCESS": "1",
+     "SOURCE": "OTH",
+     "SOVInterest": "Easement"
+    },
+    {
+     "ANRDept": "FPR",
+     "ANRUnitType": "SF",
+     "EncumNotes": "Part of FLP's Chittenden Co Uplands Project; Wheeler NE.",
+     "Encumbrance": "AffirmNeg",
+     "FundNotes": "Forest Legacy Program",
+     "GrantorLot": "West Bolton Golf Club, Inc (Parcel 4)",
+     "PUBACCESS": "1",
+     "SOURCE": "OTH",
+     "SOVInterest": "Fee",
+     "SRCNOTES": "School Parcel possibly from original Town of Bolton Lots; acres off."
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2",
+   "typef": "ANRUnitType",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/42"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 87,
+   "fields": [
+    "LakeID",
+    "FeatureDetailURL",
+    "Type",
+    "StockingUrl"
+   ],
+   "known": false,
+   "layer": "Fish Regulations Cartographic StreamRiver",
+   "sample": [
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegulations.aspx?ID=3",
+     "LakeID": " ",
+     "Type": "StreamRiver"
+    },
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegulations.aspx?ID=5",
+     "LakeID": " ",
+     "Type": "StreamRiver"
+    },
+    {
+     "FeatureDetailURL": "https://anrweb.vt.gov/FWD/FW/FishingRegulations.aspx?ID=6",
+     "LakeID": " ",
+     "Type": "StreamRiver"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2",
+   "typef": "FeatureDetailURL",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2/MapServer/177"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 45,
+   "fields": [
+    "ANRDept",
+    "SourceGIS",
+    "SourceNotes",
+    "NaturalAreas"
+   ],
+   "known": false,
+   "layer": "Vermont Designated Natural Areas",
+   "sample": [
+    {
+     "ANRDept": "FPR",
+     "NaturalAreas": "Amity Pond",
+     "SourceGIS": "SCAN",
+     "SourceNotes": "Designation date same as acquisition date"
+    },
+    {
+     "ANRDept": "FPR",
+     "NaturalAreas": "Cambridge",
+     "SourceGIS": "MAP"
+    },
+    {
+     "ANRDept": "FPR",
+     "NaturalAreas": "Mt. Mansfield",
+     "SourceGIS": "MAP",
+     "SourceNotes": "Cadastral Acres = 3850 -95  (MMCo 07/31/2003) -10 (SOV to MMCo 12/17/2003)"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/187"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 45,
+   "fields": [
+    "ANRDept",
+    "SourceGIS",
+    "SourceNotes",
+    "NaturalAreas"
+   ],
+   "known": false,
+   "layer": "Vermont Designated Natural Areas",
+   "sample": [
+    {
+     "ANRDept": "FPR",
+     "NaturalAreas": "Amity Pond",
+     "SourceGIS": "SCAN",
+     "SourceNotes": "Designation date same as acquisition date"
+    },
+    {
+     "ANRDept": "FPR",
+     "NaturalAreas": "Cambridge",
+     "SourceGIS": "MAP"
+    },
+    {
+     "ANRDept": "FPR",
+     "NaturalAreas": "Mt. Mansfield",
+     "SourceGIS": "MAP",
+     "SourceNotes": "Cadastral Acres = 3850 -95  (MMCo 07/31/2003) -10 (SOV to MMCo 12/17/2003)"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ENVIRON_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ENVIRON_SP_NOCACHE_v2/MapServer/187"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "LakeID",
+    "FeatureDetailURL",
+    "Type",
+    "StockingUrl"
+   ],
+   "known": false,
+   "layer": "Fish Regulations Cartographic General",
+   "sample": [
+    {
+     "LakeID": " ",
+     "Type": "General"
+    },
+    {
+     "LakeID": " ",
+     "Type": "General"
+    },
+    {
+     "LakeID": " ",
+     "Type": "General"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2",
+   "typef": "FeatureDetailURL",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_TOURISM_SP_NOCACHE_v2/MapServer/179"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "Name",
+   "count": 36,
+   "fields": [
+    "Name",
+    "Type"
+   ],
+   "known": false,
+   "layer": "Baitfish Rule (Lake/Pond)",
+   "sample": [
+    {
+     "Name": "Lake Bomoseen",
+     "Type": "Restricted Water for Baitfish"
+    },
+    {
+     "Name": "Lake Carmi",
+     "Type": "Restricted Water for Baitfish"
+    },
+    {
+     "Name": "Lake Memphremagog",
+     "Type": "Restricted Water for Baitfish"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_ENVIRON_SP_NOCACHE_v2",
+   "typef": "Type",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ENVIRON_SP_NOCACHE_v2/MapServer/47"
+  },
+  {
+   "agency": "ANR",
+   "area": "Name",
+   "count": 34,
+   "fields": [
+    "Name",
+    "District",
+    "Notes",
+    "Reference"
+   ],
+   "known": false,
+   "layer": "Camel's Hump Forest Reserve",
+   "sample": [
+    {
+     "District": "Multiple-Use Area",
+     "Name": "Camel's Hump Forest Reserve",
+     "Notes": "Other lands from Route 17 north to Winooski River and the Huntington River to the Mad River ",
+     "Reference": "10 V.S.A. § 2353(3). Use Districts"
+    },
+    {
+     "District": "Timber management and wildlife area ",
+     "Name": "Camel's Hump Forest Reserve",
+     "Notes": "1800' to 2,500'",
+     "Reference": "10 V.S.A. § 2353(2). Use Districts"
+    },
+    {
+     "District": "Timber management and wildlife area ",
+     "Name": "Camel's Hump Forest Reserve",
+     "Notes": "1800' to 2,500'",
+     "Reference": "10 V.S.A. § 2353(2). Use Districts"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/182"
+  },
+  {
+   "agency": "ANR",
+   "area": "NAME",
+   "count": 32,
+   "fields": [
+    "SOVInterest",
+    "ANRDept",
+    "GrantorLot",
+    "Encumbrance",
+    "EncumNotes",
+    "Funding",
+    "FundNotes",
+    "SOURCE",
+    "SRCNOTES",
+    "PUBACCESS",
+    "PANOTES",
+    "Audience",
+    "NAME",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Division of Historic Preservation Lands",
+   "sample": [
+    {
+     "ANRDept": "DHCD",
+     "Audience": "Public",
+     "PUBACCESS": "1",
+     "SOURCE": "PARCEL",
+     "SOVInterest": "Fee"
+    },
+    {
+     "ANRDept": "DHCD",
+     "Audience": "Public",
+     "PUBACCESS": "1",
+     "SOURCE": "PARCEL",
+     "SOVInterest": "Fee"
+    },
+    {
+     "ANRDept": "DHCD",
+     "Audience": "Public",
+     "PUBACCESS": "1",
+     "SOURCE": "PARCEL",
+     "SOVInterest": "Fee"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/47"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "ABNAME",
+    "BOUNDARY",
+    "AGENCY",
+    "DEPT",
+    "DIV"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Units",
+   "sample": [
+    {
+     "ABNAME": "WILDLIFE MANAGEMENT UNITS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "B",
+     "DEPT": "FW",
+     "DIV": "FW WL"
+    },
+    {
+     "ABNAME": "WILDLIFE MANAGEMENT UNITS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "F1",
+     "DEPT": "FW",
+     "DIV": "FW WL"
+    },
+    {
+     "ABNAME": "WILDLIFE MANAGEMENT UNITS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "D2",
+     "DEPT": "FW",
+     "DIV": "FW WL"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2/MapServer/164"
+  },
+  {
+   "agency": "ANR",
+   "area": "Name",
+   "count": 13,
+   "fields": [
+    "ANRDept",
+    "SourceNotes",
+    "Type",
+    "Name"
+   ],
+   "known": false,
+   "layer": "State Game Refuges and Controlled Hunting Areas",
+   "sample": [
+    {
+     "ANRDept": "FWD",
+     "Name": "East Creek Refuge",
+     "Type": "Refuge"
+    },
+    {
+     "ANRDept": "FWD",
+     "Name": "Sandbar Refuge",
+     "Type": "Refuge"
+    },
+    {
+     "ANRDept": "FWD",
+     "Name": "Dead Creek Refuge",
+     "Type": "Refuge"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2",
+   "typef": "Type",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_CADASTRAL_SP_NOCACHE_v2/MapServer/181"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "ABNAME",
+    "AGENCY",
+    "DEPT",
+    "DIV",
+    "FirstName",
+    "LastName",
+    "Email",
+    "Phone",
+    "Address",
+    "Office",
+    "Town",
+    "BOUNDARY",
+    "PROGMANAGER",
+    "PROGMANAGEREMAIL",
+    "PROGMANAGERPHONE",
+    "BACKUPCONTACT",
+    "BACKUPCONTACTEMAIL",
+    "BACKUPCONTACTPHONE",
+    "PROGRAMEMAIL",
+    "PROGRAMPHONE"
+   ],
+   "known": false,
+   "layer": "Fisheries Districts",
+   "sample": [
+    {
+     "ABNAME": "FISHERIES ADMIN DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "111 West Street",
+     "BOUNDARY": "4",
+     "DEPT": "FW",
+     "DIV": "FW FSH",
+     "Email": "Lee.Simard@vermont.gov",
+     "FirstName": "Lee",
+     "LastName": "Simard",
+     "Office": "ANR - FWD",
+     "Phone": "+1 8026224017",
+     "Town": "Essex"
+    },
+    {
+     "ABNAME": "FISHERIES ADMIN DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "100 Mineral Street\n",
+     "BOUNDARY": "1",
+     "DEPT": "FW",
+     "DIV": "FW FSH",
+     "Email": "Lael.Will@vermont.gov",
+     "FirstName": "Lael",
+     "LastName": "Will",
+     "Office": "ANR - FWD",
+     "Phone": "+1 8027770827",
+     "Town": "Springfield"
+    },
+    {
+     "ABNAME": "FISHERIES ADMIN DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "271 North Main Street, Suite 215",
+     "BOUNDARY": "2",
+     "DEPT": "FW",
+     "DIV": "FW FSH",
+     "Email": "Shawn.Good@vermont.gov",
+     "FirstName": "Shawn",
+     "LastName": "Good",
+     "Office": "ANR - FWD",
+     "Phone": "+1 8027863863",
+     "Town": "Rutland"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2/MapServer/174"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "DEPT",
+    "DIV",
+    "ABNAME",
+    "AGENCY",
+    "FirstName",
+    "LastName",
+    "Email",
+    "Phone",
+    "Address",
+    "Office",
+    "Town",
+    "BOUNDARY",
+    "PROGMANAGER",
+    "PROGMANAGEREMAIL",
+    "PROGMANAGERPHONE",
+    "BACKUPCONTACT",
+    "BACKUPCONTACTEMAIL",
+    "BACKUPCONTACTPHONE",
+    "PROGRAMEMAIL",
+    "PROGRAMPHONE"
+   ],
+   "known": false,
+   "layer": "Forestry Districts",
+   "sample": [
+    {
+     "ABNAME": "FORESTRY DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "374 Emerson Falls Rd., Suite 4",
+     "BOUNDARY": "5 - Northeast Kingdom",
+     "DEPT": "FPR",
+     "DIV": "FPR FOR",
+     "Email": "Louis.Bushey@vermont.gov",
+     "FirstName": "Louis",
+     "LastName": "Bushey",
+     "Office": "ANR - FPR",
+     "Phone": "+1 8023575100",
+     "Town": "St. Johnsbury"
+    },
+    {
+     "ABNAME": "FORESTRY DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "100 Mineral Street\n",
+     "BOUNDARY": "1 - Connecticut Valley",
+     "DEPT": "FPR",
+     "DIV": "FPR FOR",
+     "Email": "Tim.Morton@vermont.gov",
+     "FirstName": "Tim",
+     "LastName": "Morton",
+     "Office": "ANR - FPR",
+     "Phone": "+1 8027776899",
+     "Town": "Springfield"
+    },
+    {
+     "ABNAME": "FORESTRY DISTRICTS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "4 - Central",
+     "DEPT": "FPR",
+     "DIV": "FPR FOR"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2/MapServer/173"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "DEPT",
+    "DIV",
+    "ABNAME",
+    "AGENCY",
+    "FirstName",
+    "LastName",
+    "Email",
+    "Phone",
+    "Address",
+    "Office",
+    "Town",
+    "BOUNDARY",
+    "PROGMANAGER",
+    "PROGMANAGEREMAIL",
+    "PROGMANAGERPHONE",
+    "BACKUPCONTACT",
+    "BACKUPCONTACTEMAIL",
+    "BACKUPCONTACTPHONE",
+    "PROGRAMEMAIL",
+    "PROGRAMPHONE"
+   ],
+   "known": false,
+   "layer": "Wildlife Districts",
+   "sample": [
+    {
+     "ABNAME": "WILDLIFE DISTRICTS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "2 - Rutland",
+     "DEPT": "FW",
+     "DIV": "FW WL"
+    },
+    {
+     "ABNAME": "WILDLIFE DISTRICTS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "5 - Saint Johnsbury",
+     "DEPT": "FW",
+     "DIV": "FW WL"
+    },
+    {
+     "ABNAME": "WILDLIFE DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "5 Perry Street",
+     "BOUNDARY": "3 - Barre",
+     "DEPT": "FW",
+     "DIV": "FW WL",
+     "Email": "Noel.Dodge@vermont.gov",
+     "FirstName": "Noel",
+     "LastName": "Dodge",
+     "Office": "ANR - FWD",
+     "Phone": "+1 8026890000",
+     "Town": "Barre"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2/MapServer/165"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "DEPT",
+    "DIV",
+    "ABNAME",
+    "AGENCY",
+    "FirstName",
+    "LastName",
+    "Email",
+    "Phone",
+    "Address",
+    "Office",
+    "Town",
+    "BOUNDARY",
+    "PROGMANAGER",
+    "PROGMANAGEREMAIL",
+    "PROGMANAGERPHONE",
+    "BACKUPCONTACT",
+    "BACKUPCONTACTEMAIL",
+    "BACKUPCONTACTPHONE",
+    "PROGRAMEMAIL",
+    "PROGRAMPHONE"
+   ],
+   "known": false,
+   "layer": "Park Districts",
+   "sample": [
+    {
+     "ABNAME": "PARK DISTRICTS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "Northeast Region - IV",
+     "DEPT": "FPR",
+     "DIV": "FPR PKS"
+    },
+    {
+     "ABNAME": "PARK DISTRICTS",
+     "AGENCY": "ANR",
+     "Address": "31 Knights Point ROad",
+     "BOUNDARY": "Northwest Region - III",
+     "DEPT": "FPR",
+     "DIV": "FPR PKS",
+     "Email": "Emily.White@vermont.gov",
+     "FirstName": "Emily",
+     "LastName": "White",
+     "Office": "ANR - FPR",
+     "Phone": "+1 8025951044",
+     "Town": "North Hero"
+    },
+    {
+     "ABNAME": "PARK DISTRICTS",
+     "AGENCY": "ANR",
+     "BOUNDARY": "Southeast Region - I",
+     "DEPT": "FPR",
+     "DIV": "FPR PKS"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2",
+   "typef": "",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2/MapServer/172"
+  },
+  {
+   "agency": "VTANR GIS",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Type",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Baitfish Zones VT",
+   "sample": [
+    {
+     "Name": "Western Baitfish Zone",
+     "Type": "Zone Boundary"
+    },
+    {
+     "Name": "Eaststern Baitfish Zone",
+     "Type": "Zone Boundary"
+    }
+   ],
+   "service": "Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2",
+   "typef": "Type",
+   "url": "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_BOUNDARIES_SP_NOCACHE_v2/MapServer/0"
+  }
+ ],
+ "st": "VT"
+}
