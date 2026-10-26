@@ -12,7 +12,6 @@
     'kpc-harmonics.html': ['🔧', CALC], 'kpc-radials.html': ['🔧', CALC], 'kpc-antenna-model.html': ['🔧', CALC], 'kpc-calc.html': ['🔧', CALC], 'kpc-loaded-verticals.html': ['🔧', CALC],
     'kpc-kids.html': ['👪', '<b>Grown-ups:</b> nothing about your child is saved or sent. <b>Kids:</b> ask a grown-up before using a real radio.'],
     'kpc-maprep.html': ['🧭', '<b>A research start only.</b> POTA (and SOTA and WWFF) make the final call.'],
-    'kpc-suggest.html': ['🧭', '<b>A research start only.</b> POTA (and SOTA and WWFF) make the final call.'],
     'kpc-logger.html': ['💾', '<b>Your log lives only on this device.</b> Download a copy after each outing.'],
     'kpc-hunt.html': ['💾', '<b>Your log lives only on this device.</b> Download a copy after each outing.']
   };
