@@ -24,6 +24,8 @@ Secrets (GitHub -> Settings -> Secrets and variables -> Actions; never in the si
   KPC_CAMPOUT_WEBHOOK (the club's own campout room: campout posts are copied there too),
   RELAY_MAIL_URL + RELAY_MAIL_KEY (Apps Script mailer in kpcwebhost@gmail.com), RELAY_DISCORD_WEBHOOKS (one or more
   webhook links of channels in other servers, separated by spaces or new lines). RELAY_SMTP_USER/PASS = old SMTP way.
+CLUB POST FORM (Oct 25): the Google Form's Apps Script (.claude/build/clubpost/make-club-post-form.gs) posts the same tagged
+message through this channel's webhook under the name 'KPC Club Post Form'; that one name is read, other bots are ignored.
 DRY_RUN=1 prints what would happen and changes nothing.
 """
 import base64, csv, datetime, hashlib, hmac, io, json, os, re, shutil, smtplib, ssl, sys, tempfile, time, uuid
@@ -188,6 +190,11 @@ def parse_when(s, base=None, default_hour=8):
         if datetime.datetime.combine(d, datetime.time(hh, mm), CT) <= base: d += datetime.timedelta(days=7)
     if hh is None or hh > 23 or mm > 59: return datetime.datetime.combine(d, datetime.time(default_hour, 0), CT), False
     return datetime.datetime.combine(d, datetime.time(hh, mm), CT), True
+
+def FORM_POST(m):
+    """The KPC Club Post Form (Google Form -> Apps Script) posts through this channel's webhook under this name.
+    Every other bot / webhook message is still ignored."""
+    return bool(m.get('webhook_id')) and (m.get('author') or {}).get('username') == 'KPC Club Post Form'
 
 def who(u, member=None):
     return ((member or {}).get('nick') or u.get('global_name') or u.get('username') or '').strip()
@@ -653,7 +660,7 @@ last = int(state.get('last_id') or 0)
 for m in window:
     if int(m['id']) <= last: continue
     if not DRY: state['last_id'] = m['id']
-    if m.get('author', {}).get('bot') or m.get('type', 0) not in (0, 19): continue
+    if (m.get('author', {}).get('bot') and not FORM_POST(m)) or m.get('type', 0) not in (0, 19): continue
     p = parse(m)
     if 'skip' in p['flags']: notice(f"Post {m['id']} starts with Skip:, so it was not shared."); continue
     if p['due']:
