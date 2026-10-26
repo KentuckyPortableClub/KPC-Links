@@ -5,6 +5,111 @@
    "d": "2026-10-24",
    "src": "canada"
   },
+  "CN-0296": {
+   "n": "广东汕头东海岸公园 Park",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-0719": {
+   "n": "北京西山国家森林公园 National Forest",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-0824": {
+   "n": "河南郁山国家森林公园 National Forest",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1182": {
+   "n": "辽宁沈北七星国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1208": {
+   "n": "黑龙江太阳岛国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1215": {
+   "n": "黑龙江肇岳山国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1228": {
+   "n": "黑龙江哈尔滨阿勒锦岛国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1242": {
+   "n": "上海吴淞炮台湾国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1255": {
+   "n": "江苏九里湖国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1262": {
+   "n": "江苏溧阳长荡湖国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1268": {
+   "n": "江苏金坛长荡湖国家湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1297": {
+   "n": "宁夏沙坡头国家沙漠公园 National Park",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1536": {
+   "n": "广东南澳青澳湾国家级海洋公园 Marine National Park",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1606": {
+   "n": "江苏南京高淳固城湖城市湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1611": {
+   "n": "浙江湖州吴兴西山漾城市湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1612": {
+   "n": "安徽淮北南湖国家城市湿地公园 Wetland Reserve",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1661": {
+   "n": "山西黄河壶口瀑布国家地质公园 Geopark",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1739": {
+   "n": "山东泰山国家地质公园 Geopark",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1809": {
+   "n": "四川自贡恐龙古生物国家地质公园 Geopark",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1848": {
+   "n": "陕西黄河壶口瀑布国家地质公园 Geopark",
+   "d": "2026-10-26",
+   "src": "world"
+  },
+  "CN-1857": {
+   "n": "甘肃平凉崆峒山国家地质公园 Geopark",
+   "d": "2026-10-26",
+   "src": "world"
+  },
   "DO-0122": {
    "n": "Árbol Anacaguita Natural Monument",
    "d": "2026-10-25",
@@ -327,5 +432,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-10-25"
+ "updated": "2026-10-26"
 }
