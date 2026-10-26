@@ -1,36 +1,6 @@
 {
- "updated": "2026-10-25T11:03:45Z",
+ "updated": "2026-10-26T11:16:45Z",
  "week": [
-  {
-   "name": "CQ Worldwide DX Contest, SSB",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fidks",
-   "when": "0000Z, Oct 24 to 2359Z, Oct 25",
-   "segs": [
-    [
-     "2026-10-24T00:00Z",
-     "2026-10-25T23:59Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "K1USN Slow Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fs8wp",
-   "when": "0000Z-0100Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T00:00Z",
-     "2026-10-26T01:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "QCX Challenge",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fctbo",
@@ -430,27 +400,89 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
+  },
   {
-   "name": "CQ Worldwide DX Contest, SSB",
-   "url": "https://www.cqww.com",
-   "when": "",
+   "name": "North American SSB Sprint Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gebbm",
+   "when": "0000Z-0400Z, Nov 1",
    "segs": [
     [
-     "2026-10-24T00:00Z",
-     "2026-10-26T00:00Z"
+     "2026-11-01T00:00Z",
+     "2026-11-01T04:00Z"
     ]
    ],
    "modes": [
     "PHONE"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28",
-   "exch": "RS, CQ zone"
+   "src": "WA7BNM"
   },
+  {
+   "name": "EANET Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gclty",
+   "when": "0800Z-1200Z, Nov 1",
+   "segs": [
+    [
+     "2026-11-01T08:00Z",
+     "2026-11-01T12:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Classic Exchange, CW",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fhqod",
+   "when": "1400Z, Nov 1 to 0800Z, Nov 2 and 1400Z, Mar 3 to 0800Z, Nov 4",
+   "segs": [
+    [
+     "2026-11-01T14:00Z",
+     "2026-11-02T08:00Z"
+    ],
+    [
+     "2027-03-03T14:00Z",
+     "2026-11-04T08:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "High Speed Club CW Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gd11k",
+   "when": "1400Z-1700Z, Nov 1",
+   "segs": [
+    [
+     "2026-11-01T14:00Z",
+     "2026-11-01T17:00Z"
+    ]
+   ],
+   "modes": [
+    "CW"
+   ],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Real Time Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fnbim",
+   "when": "1600Z-2000Z, Nov 1",
+   "segs": [
+    [
+     "2026-11-01T16:00Z",
+     "2026-11-01T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  }
+ ],
+ "month": [
   {
    "name": "RSGB FT4 Contest",
    "url": "https://www.rsgbcc.org",
@@ -585,26 +617,6 @@
   }
  ],
  "big": [
-  {
-   "name": "CQ World Wide DX Contest (SSB)",
-   "url": "https://cqww.com/rules.htm",
-   "when": "Usual dates (CQ); check the rules",
-   "segs": [
-    [
-     "2026-10-24T00:00Z",
-     "2026-10-26T00:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [
-    "BIG"
-   ],
-   "src": "RULE",
-   "by": "CQ",
-   "exch": "RS(T) + CQ zone 4"
-  },
   {
    "name": "ARRL November Sweepstakes (CW)",
    "url": "https://www.arrl.org/sweepstakes",
@@ -1360,7 +1372,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (29)",
-  "CORRAL": "ok (8)"
+  "WA7BNM": "ok (32)",
+  "CORRAL": "ok (7)"
  }
 }

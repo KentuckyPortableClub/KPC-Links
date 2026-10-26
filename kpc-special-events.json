@@ -1,40 +1,6 @@
 {
- "updated": "2026-10-23T11:09:25Z",
+ "updated": "2026-10-26T11:16:33Z",
  "stations": [
-  {
-   "title": "BEAM, Blind Equality Achievement Month",
-   "start": "2026-10-15",
-   "end": "2026-10-25",
-   "times": "0000Z-2359Z",
-   "call": "K4B",
-   "calls": [
-    "K4B"
-   ],
-   "where": "Lancaster, SC",
-   "st": "SC",
-   "by": "STEM Amateur Radio Club",
-   "freqs": "145.350MHz",
-   "qsl": "QSL",
-   "url": "https://www.stemarc.org",
-   "note": ", Lancaster, SC. STEM Amateur Radio Club. 145.350MHz. QSL. Vicki Carnes/ AD3i, 1093 Outlaw Avenue, Lancaster, SC 29720."
-  },
-  {
-   "title": "United States Coast Guard Auxiliary 87 Birthday",
-   "start": "2026-10-23",
-   "end": "2026-10-25",
-   "times": "1400Z-2300Z",
-   "call": "N2S",
-   "calls": [
-    "N2S"
-   ],
-   "where": "Marlton, NJ",
-   "st": "NJ",
-   "by": "Unitee States Coast Guard Auxiliary",
-   "freqs": "7.250 21.3 14.230 28.350",
-   "qsl": "Certificate",
-   "url": "",
-   "note": ", Marlton, NJ. Unitee States Coast Guard Auxiliary. 7.250 21.3 14.230 28.350. Certificate. Michael Slepian WB2LKO, 12 Continental Ln, Marlton, NJ 08053-4606. Coast Guard Auxiliary radio operators who are also hams will participate from more than a dozen locations throughout the US."
-  },
   {
    "title": "2026 Frankenstein Halloween FunXpedition",
    "start": "2026-10-31",
@@ -679,6 +645,24 @@
    "qsl": "Certificate & QSL",
    "url": "https://www.skccgroup.com/k3y",
    "note": ", Ellicot City. SKCC - Straight Key Century Club. 3.550 7.055 14.050 21.050. Certificate & QSL. SKCC c/o Bill Hunt KJ7GNB, PO Box 731, Shelby, MT 59474."
+  },
+  {
+   "title": "Gray Whale Watch Festival",
+   "start": "2027-01-09",
+   "end": "2027-01-09",
+   "times": "1600Z-2300Z",
+   "call": "K6W",
+   "calls": [
+    "K6W",
+    "K2W"
+   ],
+   "where": "San Diego, CA",
+   "st": "CA",
+   "by": "Wildlife Signals Society",
+   "freqs": "146.52 28.074 14.074",
+   "qsl": "QSL",
+   "url": "https://www.qrz.com/db/K6W",
+   "note": ", San Diego, CA. Wildlife Signals Society. 146.52 28.074 14.074. QSL. K2W Whale Migration Festival SES, c/o Gregory Chapelle WA6YLR, 13309 Trailhead Place, San Diego, CA 92129."
   }
  ],
  "yearly": [
@@ -738,6 +722,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (40)"
+  "ARRL": "ok (39)"
  }
 }
