@@ -1,0 +1,530 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NameUnit",
+   "count": 5439,
+   "fields": [
+    "NameUnit",
+    "MANAGER",
+    "COUNTY",
+    "OWNER",
+    "TYPE",
+    "ACCESS",
+    "PUB_HUNT",
+    "More_Info"
+   ],
+   "known": false,
+   "layer": "Public Area Boundaries",
+   "sample": [
+    {
+     "ACCESS": "Y",
+     "COUNTY": "Johnson",
+     "MANAGER": "City of Coralville",
+     "More_Info": " ",
+     "NameUnit": "Auburn Hills Park",
+     "OWNER": "City of Coralville",
+     "PUB_HUNT": " ",
+     "TYPE": "City Park"
+    },
+    {
+     "ACCESS": "Y",
+     "COUNTY": "Johnson",
+     "MANAGER": "City of Coralville",
+     "More_Info": " ",
+     "NameUnit": "Auburn Hills Park",
+     "OWNER": "City of Coralville",
+     "PUB_HUNT": " ",
+     "TYPE": "City Park"
+    },
+    {
+     "ACCESS": "Y",
+     "COUNTY": "Johnson",
+     "MANAGER": "City of Coralville",
+     "More_Info": " ",
+     "NameUnit": "Brown Deer Golf Course",
+     "OWNER": "City of Coralville",
+     "PUB_HUNT": " ",
+     "TYPE": "Public Golf Course"
+    }
+   ],
+   "service": "Recreation/Recreation",
+   "typef": "TYPE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/Recreation/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "NameUnit",
+   "count": 5439,
+   "fields": [
+    "NameUnit",
+    "MANAGER",
+    "COUNTY",
+    "OWNER",
+    "TYPE",
+    "ACCESS",
+    "PUB_HUNT",
+    "More_Info"
+   ],
+   "known": false,
+   "layer": "Public Areas",
+   "sample": [
+    {
+     "ACCESS": "Y",
+     "COUNTY": "Johnson",
+     "MANAGER": "City of Coralville",
+     "More_Info": " ",
+     "NameUnit": "Auburn Hills Park",
+     "OWNER": "City of Coralville",
+     "PUB_HUNT": " ",
+     "TYPE": "City Park"
+    },
+    {
+     "ACCESS": "Y",
+     "COUNTY": "Johnson",
+     "MANAGER": "City of Coralville",
+     "More_Info": " ",
+     "NameUnit": "Auburn Hills Park",
+     "OWNER": "City of Coralville",
+     "PUB_HUNT": " ",
+     "TYPE": "City Park"
+    },
+    {
+     "ACCESS": "Y",
+     "COUNTY": "Johnson",
+     "MANAGER": "City of Coralville",
+     "More_Info": " ",
+     "NameUnit": "Brown Deer Golf Course",
+     "OWNER": "City of Coralville",
+     "PUB_HUNT": " ",
+     "TYPE": "Public Golf Course"
+    }
+   ],
+   "service": "Recreation/Recreation",
+   "typef": "TYPE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/Recreation/MapServer/11"
+  },
+  {
+   "agency": "",
+   "area": "AREA_NAME",
+   "count": 1843,
+   "fields": [
+    "AREA_NAME",
+    "MANAGE",
+    "HABITAT",
+    "DEER",
+    "TURKEY",
+    "SQUIRREL",
+    "PHEASANT",
+    "GROUSE",
+    "WATERFOWL",
+    "RABBIT",
+    "QUAIL",
+    "OWNER",
+    "DOVE",
+    "Directions",
+    "Non_Toxic",
+    "More_Info",
+    "County",
+    "NOTES",
+    "Contact_Number",
+    "Contact"
+   ],
+   "known": false,
+   "layer": "Public Hunting Areas",
+   "sample": [
+    {
+     "AREA_NAME": "ADAIR WILDLIFE AREA",
+     "DEER": "YES",
+     "GROUSE": " ",
+     "HABITAT": "1/2 Timber, 1/2 Upland",
+     "MANAGE": "DNR - Wildlife",
+     "OWNER": "DNR",
+     "PHEASANT": " ",
+     "QUAIL": " ",
+     "RABBIT": "YES",
+     "SQUIRREL": "YES",
+     "TURKEY": "YES",
+     "WATERFOWL": " "
+    },
+    {
+     "AREA_NAME": "ALDO LEOPOLD WILDLIFE AREA",
+     "DEER": "YES",
+     "GROUSE": " ",
+     "HABITAT": "Marsh, Upland",
+     "MANAGE": "DNR - Wildlife",
+     "OWNER": "DNR",
+     "PHEASANT": "YES",
+     "QUAIL": " ",
+     "RABBIT": " ",
+     "SQUIRREL": " ",
+     "TURKEY": " ",
+     "WATERFOWL": "YES"
+    },
+    {
+     "AREA_NAME": "ANDERSON PRAIRIE COMPLEX",
+     "DEER": "YES",
+     "GROUSE": " ",
+     "HABITAT": "3/4 Upland Grassland & Native Prairie, 1/4 Timber",
+     "MANAGE": "DNR - Wildlife",
+     "OWNER": "DNR",
+     "PHEASANT": "YES",
+     "QUAIL": " ",
+     "RABBIT": " ",
+     "SQUIRREL": " ",
+     "TURKEY": " ",
+     "WATERFOWL": " "
+    }
+   ],
+   "service": "Recreation/Recreation",
+   "typef": "GROUSE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/Recreation/MapServer/9"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 344,
+   "fields": [
+    "NAME",
+    "UNIT",
+    "NameUnit",
+    "OWNER",
+    "MANAGER",
+    "TYPE",
+    "C_R",
+    "ACCESS",
+    "PUB_HUNT",
+    "ease_hold",
+    "ease_typ",
+    "SOURCE",
+    "DIGSOURC",
+    "COUNTY",
+    "ResAm_ID",
+    "Forest_ID",
+    "Lake_ID",
+    "StPark_ID",
+    "CCB_ID",
+    "edit_by"
+   ],
+   "known": false,
+   "layer": "Public Area Boundaries",
+   "sample": [
+    {
+     "ACCESS": "Y",
+     "C_R": "CR",
+     "MANAGER": "DNR - Parks",
+     "NAME": "Lake Macbride State Park",
+     "NameUnit": "Lake Macbride State Park",
+     "OWNER": "ACE",
+     "PUB_HUNT": " ",
+     "SOURCE": "Auditor",
+     "TYPE": "State Park",
+     "UNIT": " ",
+     "ease_hold": " ",
+     "ease_typ": " "
+    },
+    {
+     "ACCESS": "Y",
+     "C_R": "CR",
+     "MANAGER": "DNR - Parks",
+     "NAME": "Gull Point State Park",
+     "NameUnit": "Gull Point State Park - Abbie Gardner Sharp Cabin",
+     "OWNER": "DNR",
+     "PUB_HUNT": " ",
+     "SOURCE": "landdnr3",
+     "TYPE": "State Park",
+     "UNIT": "Abbie Gardner Sharp Cabin",
+     "ease_hold": " ",
+     "ease_typ": " "
+    },
+    {
+     "ACCESS": "Y",
+     "C_R": "CR",
+     "MANAGER": "DNR - Parks",
+     "NAME": "Ambrose A. Call State Park",
+     "NameUnit": "Ambrose A. Call State Park",
+     "OWNER": "DNR",
+     "PUB_HUNT": " ",
+     "SOURCE": "landdnr3",
+     "TYPE": "State Park",
+     "UNIT": " ",
+     "ease_hold": " ",
+     "ease_typ": " "
+    }
+   ],
+   "service": "Recreation/State_Parks_Trails_View",
+   "typef": "TYPE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails_View/MapServer/2"
+  },
+  {
+   "agency": "Iowa Department of Natural Resources",
+   "area": "NameUnit",
+   "count": 326,
+   "fields": [
+    "NameUnit",
+    "MANAGER",
+    "TYPE",
+    "More_Info"
+   ],
+   "known": false,
+   "layer": "Public Area Boundaries",
+   "sample": [
+    {
+     "MANAGER": "DNR - Parks",
+     "More_Info": "http://iowadnr.gov/lakemacbride",
+     "NameUnit": "Lake Macbride State Park",
+     "TYPE": "State Park"
+    },
+    {
+     "MANAGER": "DNR - Parks",
+     "More_Info": "http://iowadnr.gov/gullpoint",
+     "NameUnit": "Gull Point State Park - Abbie Gardner Sharp Cabin",
+     "TYPE": "State Park"
+    },
+    {
+     "MANAGER": "DNR - Parks",
+     "More_Info": "http://iowadnr.gov/ambroseacall",
+     "NameUnit": "Ambrose A. Call State Park",
+     "TYPE": "State Park"
+    }
+   ],
+   "service": "Recreation/State_Parks",
+   "typef": "TYPE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10"
+  },
+  {
+   "agency": "Iowa Department of Natural Resources",
+   "area": "NAME",
+   "count": 215,
+   "fields": [
+    "NAME",
+    "OWNER",
+    "COUNTY",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "Sovereign Meandered Rivers",
+   "sample": [
+    {
+     "COUNTY": "Woodbury",
+     "NAME": "Missouri River",
+     "OWNER": "State of Iowa",
+     "TYPE": "Sovereign River"
+    },
+    {
+     "COUNTY": "Woodbury",
+     "NAME": "Missouri River",
+     "OWNER": "State of Iowa",
+     "TYPE": "Sovereign River"
+    },
+    {
+     "COUNTY": "Woodbury",
+     "NAME": "Missouri River",
+     "OWNER": "State of Iowa",
+     "TYPE": "Sovereign River"
+    }
+   ],
+   "service": "Recreation/fishing",
+   "typef": "TYPE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/fishing/MapServer/13"
+  },
+  {
+   "agency": "Iowa Department of Natural Resources",
+   "area": "",
+   "count": 114,
+   "fields": [
+    "LakeCode",
+    "LakeName",
+    "GNIS_ID",
+    "GNIS_Name",
+    "ALTNAME1",
+    "ALTNAME2"
+   ],
+   "known": false,
+   "layer": "Lakes",
+   "sample": [
+    {
+     "ALTNAME1": "Ahquabi",
+     "ALTNAME2": " ",
+     "GNIS_ID": " ",
+     "GNIS_Name": "Lake Ahquabi",
+     "LakeCode": "AHQ91",
+     "LakeName": "Lake Ahquabi"
+    },
+    {
+     "ALTNAME1": "Anita",
+     "ALTNAME2": " ",
+     "GNIS_ID": " ",
+     "GNIS_Name": "Lake Anita",
+     "LakeCode": "ANI15",
+     "LakeName": "Lake Anita"
+    },
+    {
+     "ALTNAME1": "Arbor",
+     "ALTNAME2": " ",
+     "GNIS_ID": " ",
+     "GNIS_Name": "Arbor Lake",
+     "LakeCode": "ARB79",
+     "LakeName": "Arbor Lake"
+    }
+   ],
+   "service": "Recreation/fishing",
+   "typef": "",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/fishing/MapServer/2"
+  },
+  {
+   "agency": "Iowa Department of Natural Resources",
+   "area": "AREA_NAME",
+   "count": 1843,
+   "fields": [
+    "AREA_NAME",
+    "MANAGE",
+    "HABITAT",
+    "DEER",
+    "TURKEY",
+    "SQUIRREL",
+    "PHEASANT",
+    "GROUSE",
+    "WATERFOWL",
+    "RABBIT",
+    "QUAIL",
+    "OWNER",
+    "DOVE",
+    "Non_Toxic",
+    "More_Info",
+    "NOTES",
+    "Contact_Number",
+    "Contact",
+    "Atlas_Link",
+    "Hunt_Atlas_Link"
+   ],
+   "known": true,
+   "layer": "Public Hunting Areas",
+   "sample": [
+    {
+     "AREA_NAME": "ADAIR WILDLIFE AREA",
+     "DEER": "YES",
+     "GROUSE": " ",
+     "HABITAT": "1/2 Timber, 1/2 Upland",
+     "MANAGE": "DNR - Wildlife",
+     "OWNER": "DNR",
+     "PHEASANT": " ",
+     "QUAIL": " ",
+     "RABBIT": "YES",
+     "SQUIRREL": "YES",
+     "TURKEY": "YES",
+     "WATERFOWL": " "
+    },
+    {
+     "AREA_NAME": "ALDO LEOPOLD WILDLIFE AREA",
+     "DEER": "YES",
+     "GROUSE": " ",
+     "HABITAT": "Marsh, Upland",
+     "MANAGE": "DNR - Wildlife",
+     "OWNER": "DNR",
+     "PHEASANT": "YES",
+     "QUAIL": " ",
+     "RABBIT": " ",
+     "SQUIRREL": " ",
+     "TURKEY": " ",
+     "WATERFOWL": "YES"
+    },
+    {
+     "AREA_NAME": "ANDERSON PRAIRIE COMPLEX",
+     "DEER": "YES",
+     "GROUSE": " ",
+     "HABITAT": "3/4 Upland Grassland & Native Prairie, 1/4 Timber",
+     "MANAGE": "DNR - Wildlife",
+     "OWNER": "DNR",
+     "PHEASANT": "YES",
+     "QUAIL": " ",
+     "RABBIT": " ",
+     "SQUIRREL": " ",
+     "TURKEY": " ",
+     "WATERFOWL": " "
+    }
+   ],
+   "service": "Recreation/State_Parks",
+   "typef": "GROUSE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/9"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 344,
+   "fields": [
+    "NAME",
+    "UNIT",
+    "NameUnit",
+    "OWNER",
+    "MANAGER",
+    "TYPE",
+    "C_R",
+    "ACCESS",
+    "PUB_HUNT",
+    "ease_hold",
+    "ease_typ",
+    "SOURCE",
+    "DIGSOURC",
+    "COUNTY",
+    "ResAm_ID",
+    "Forest_ID",
+    "Lake_ID",
+    "StPark_ID",
+    "CCB_ID",
+    "edit_by"
+   ],
+   "known": true,
+   "layer": "Public Area Boundaries",
+   "sample": [
+    {
+     "ACCESS": "Y",
+     "C_R": "CR",
+     "MANAGER": "DNR - Parks",
+     "NAME": "Lake Macbride State Park",
+     "NameUnit": "Lake Macbride State Park",
+     "OWNER": "ACE",
+     "PUB_HUNT": " ",
+     "SOURCE": "Auditor",
+     "TYPE": "State Park",
+     "UNIT": " ",
+     "ease_hold": " ",
+     "ease_typ": " "
+    },
+    {
+     "ACCESS": "Y",
+     "C_R": "CR",
+     "MANAGER": "DNR - Parks",
+     "NAME": "Gull Point State Park",
+     "NameUnit": "Gull Point State Park - Abbie Gardner Sharp Cabin",
+     "OWNER": "DNR",
+     "PUB_HUNT": " ",
+     "SOURCE": "landdnr3",
+     "TYPE": "State Park",
+     "UNIT": "Abbie Gardner Sharp Cabin",
+     "ease_hold": " ",
+     "ease_typ": " "
+    },
+    {
+     "ACCESS": "Y",
+     "C_R": "CR",
+     "MANAGER": "DNR - Parks",
+     "NAME": "Ambrose A. Call State Park",
+     "NameUnit": "Ambrose A. Call State Park",
+     "OWNER": "DNR",
+     "PUB_HUNT": " ",
+     "SOURCE": "landdnr3",
+     "TYPE": "State Park",
+     "UNIT": " ",
+     "ease_hold": " ",
+     "ease_typ": " "
+    }
+   ],
+   "service": "Recreation/State_Parks_Trails",
+   "typef": "TYPE",
+   "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks_Trails/MapServer/2"
+  }
+ ],
+ "st": "IA"
+}

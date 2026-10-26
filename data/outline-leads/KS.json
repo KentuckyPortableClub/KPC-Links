@@ -1,0 +1,920 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 4796,
+   "fields": [
+    "Region",
+    "Sub_rgn",
+    "Basin",
+    "Sub_bsn",
+    "Species",
+    "Source",
+    "Desgntn",
+    "HucName"
+   ],
+   "known": false,
+   "layer": "KDWPFISHStock",
+   "sample": [
+    {
+     "Basin": "Middle Arkansas",
+     "Desgntn": "Introduced",
+     "HucName": "Upper Walnut Creek",
+     "Region": "Arkansas-White-Red Region",
+     "Source": "Kansas Fishes 2014",
+     "Species": "Largemouth Bass",
+     "Sub_bsn": "Upper Walnut Creek",
+     "Sub_rgn": "Middle Arkansas"
+    },
+    {
+     "Basin": "Verdigris",
+     "Desgntn": " ",
+     "HucName": "Fall",
+     "Region": "Arkansas-White-Red Region",
+     "Source": "KDWPT ADAS",
+     "Species": "Palmetto Bass",
+     "Sub_bsn": "Fall",
+     "Sub_rgn": "Neosho-Verdigris"
+    },
+    {
+     "Basin": "Middle Arkansas",
+     "Desgntn": " ",
+     "HucName": "Coon-Pickerel",
+     "Region": "Arkansas-White-Red Region",
+     "Source": "Kansas Fishes 2014",
+     "Species": "Spotted Bass",
+     "Sub_bsn": "Coon-Pickerel",
+     "Sub_rgn": "Middle Arkansas"
+    }
+   ],
+   "service": "KDWPFISHStock_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPFISHStock_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4570,
+   "fields": [
+    "LEGENDID",
+    "TRACTID",
+    "ACCESS",
+    "AS_ONLY",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "2018_KS_Access_Properties_Oct_Update",
+   "sample": [
+    {
+     "ACCESS": "Sept. 1 - May 31",
+     "AS_ONLY": "No",
+     "LEGENDID": "SMY",
+     "SPECIES": "Deer  Turkey  Quail  Dove  Furbearers",
+     "TRACTID": "10623"
+    },
+    {
+     "ACCESS": "Sept. 1 - May 31",
+     "AS_ONLY": "No",
+     "LEGENDID": "SMY",
+     "SPECIES": "Deer  Turkey  Quail  Dove  Furbearers",
+     "TRACTID": "10624"
+    },
+    {
+     "ACCESS": "Sept. 1 - Jan. 31",
+     "AS_ONLY": "No",
+     "LEGENDID": "SJ",
+     "SPECIES": "Deer  Quail  Dove  Furbearers",
+     "TRACTID": "10626"
+    }
+   ],
+   "service": "2018_KS_Access_Properties_Oct_Update",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/2018_KS_Access_Properties_Oct_Update/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 543,
+   "fields": [
+    "NAME",
+    "OTHER_NAME",
+    "MGT_UNIT",
+    "AUNIT",
+    "COMPLEX",
+    "Label_Names"
+   ],
+   "known": false,
+   "layer": "Kansas Public Land",
+   "sample": [
+    {
+     "AUNIT": " ",
+     "COMPLEX": " ",
+     "Label_Names": "Cimarron National Grasslands",
+     "MGT_UNIT": "National Grasslands",
+     "NAME": "Cimarron National Grasslands",
+     "OTHER_NAME": " "
+    },
+    {
+     "AUNIT": " ",
+     "COMPLEX": " ",
+     "Label_Names": "Cimarron National Grasslands",
+     "MGT_UNIT": "National Grasslands",
+     "NAME": "Cimarron National Grasslands",
+     "OTHER_NAME": " "
+    },
+    {
+     "AUNIT": " ",
+     "COMPLEX": " ",
+     "Label_Names": "Cimarron National Grasslands",
+     "MGT_UNIT": "National Grasslands",
+     "NAME": "Cimarron National Grasslands",
+     "OTHER_NAME": " "
+    }
+   ],
+   "service": "KDWP_Spatial_Directory_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWP_Spatial_Directory_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 274,
+   "fields": [
+    "NAME",
+    "OTHER_NAME",
+    "MGT_UNIT",
+    "AUNIT",
+    "COMPLEX",
+    "Label_Name",
+    "Access_Res",
+    "Hunt_Acc",
+    "Hyperlink",
+    "e_checkin",
+    "Link1",
+    "Link2",
+    "Area_Site"
+   ],
+   "known": false,
+   "layer": "KDWP_Wildlife_Areas_export",
+   "sample": [
+    {
+     "AUNIT": " ",
+     "Access_Res": "No",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Yes",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Hamilton SFL and Wildlife Area",
+     "MGT_UNIT": "State Fishing Lake and Wildlife",
+     "NAME": "Hamilton State Fishing Lake and Wildlife Area",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    },
+    {
+     "AUNIT": " ",
+     "Access_Res": "No",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Yes",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Cottonwood Flats Wildlife Area",
+     "MGT_UNIT": "State Wildlife Area",
+     "NAME": "Cottonwood Flats Wildlife Area",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    },
+    {
+     "AUNIT": " ",
+     "Access_Res": "No",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Yes",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Finney Wildlife Area",
+     "MGT_UNIT": "State Fishing Lake and Wildlife",
+     "NAME": "Finney State Fishing Lake and Wildlife Area",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    }
+   ],
+   "service": "KDWPT_Wildlife_Areas_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 233,
+   "fields": [
+    "Name",
+    "REG_NAME",
+    "MAP_LABEL",
+    "SUB_NAME",
+    "ACC_NAME",
+    "CAT_NAME",
+    "CAT_NUM",
+    "Species",
+    "Status",
+    "Critical_H",
+    "Taxa_Group",
+    "Designated",
+    "Field"
+   ],
+   "known": false,
+   "layer": "KDWPFISH_DCH1",
+   "sample": [
+    {
+     "ACC_NAME": "Missouri-Nishnabotna",
+     "CAT_NAME": "Tarkio-Wolf. Iowa, Kansas, Missouri.",
+     "CAT_NUM": "10240005",
+     "Critical_H": "\"streams, rivers\"",
+     "Designated": "KDWPT",
+     "MAP_LABEL": "102400",
+     "Name": "Flathead Chub",
+     "REG_NAME": "Missouri Region",
+     "SUB_NAME": "Missouri-Nishnabotna",
+     "Species": "Platygobio gracilis",
+     "Status": "State Threatened",
+     "Taxa_Group": "Fish"
+    },
+    {
+     "ACC_NAME": "Missouri-Nishnabotna",
+     "CAT_NAME": "Tarkio-Wolf. Iowa, Kansas, Missouri.",
+     "CAT_NUM": "10240005",
+     "Critical_H": "\"streams, rivers\"",
+     "Designated": "Recovery Plan",
+     "MAP_LABEL": "102400",
+     "Name": "Sturgeon Chub",
+     "REG_NAME": "Missouri Region",
+     "SUB_NAME": "Missouri-Nishnabotna",
+     "Species": "Macrhybopsis gelida",
+     "Status": "State Threatened",
+     "Taxa_Group": "Fish"
+    },
+    {
+     "ACC_NAME": "Missouri-Nishnabotna",
+     "CAT_NAME": "Tarkio-Wolf. Iowa, Kansas, Missouri.",
+     "CAT_NUM": "10240005",
+     "Critical_H": "\"streams, rivers\"",
+     "Designated": "KDWPT",
+     "MAP_LABEL": "102400",
+     "Name": "Shoal Chub",
+     "REG_NAME": "Missouri Region",
+     "SUB_NAME": "Missouri-Nishnabotna",
+     "Species": "Macrhybopsis hyostoma",
+     "Status": "State Threatened",
+     "Taxa_Group": "Fish"
+    }
+   ],
+   "service": "KDWPFISH_DCH1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPFISH_DCH1/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "AREA",
+   "count": 202,
+   "fields": [
+    "CMS_NUM",
+    "CONT_NUM",
+    "COUNTY",
+    "SEC",
+    "TWN",
+    "RNG",
+    "ACRES",
+    "MILES",
+    "ACC_SITES",
+    "BOATS",
+    "OPEN_",
+    "BEGINS",
+    "ENDS",
+    "STATUS",
+    "NOTES",
+    "COMM_SPECI",
+    "ACCESS",
+    "AREA",
+    "BOAT_REST",
+    "ATLAS_LABE"
+   ],
+   "known": false,
+   "layer": "FISH_Tracts_2019",
+   "sample": [
+    {
+     "ACC_SITES": " ",
+     "ACRES": "11.7",
+     "BEGINS": "2018",
+     "BOATS": "A",
+     "CMS_NUM": "11711",
+     "CONT_NUM": " ",
+     "COUNTY": "CHEROKEE",
+     "MILES": " ",
+     "OPEN_": "Mar. 1 - Oct. 31",
+     "RNG": "24E",
+     "SEC": "30",
+     "TWN": "33S"
+    },
+    {
+     "ACC_SITES": " ",
+     "ACRES": "6.7",
+     "BEGINS": "2018",
+     "BOATS": "A",
+     "CMS_NUM": "11711",
+     "CONT_NUM": " ",
+     "COUNTY": "CHEROKEE",
+     "MILES": " ",
+     "OPEN_": "Mar. 1 - Oct. 31",
+     "RNG": "23E",
+     "SEC": "25",
+     "TWN": "33S"
+    },
+    {
+     "ACC_SITES": " ",
+     "ACRES": " ",
+     "BEGINS": "2019",
+     "BOATS": "NB",
+     "CMS_NUM": "9279",
+     "CONT_NUM": " ",
+     "COUNTY": "ATCHISON",
+     "MILES": "0.7",
+     "OPEN_": "Mar. 1 - Oct. 31",
+     "RNG": "17E",
+     "SEC": "8",
+     "TWN": "7S"
+    }
+   ],
+   "service": "FISH_Tracts_2019",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/FISH_Tracts_2019/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREA",
+   "count": 173,
+   "fields": [
+    "CMS_NUM",
+    "CONT_NUM",
+    "COUNTY",
+    "SEC",
+    "TWN",
+    "RNG",
+    "ACRES",
+    "MILES",
+    "ACC_SITES",
+    "BOATS",
+    "OPEN_",
+    "BEGINS",
+    "ENDS",
+    "STATUS",
+    "NOTES",
+    "COMM_SPECI",
+    "ACCESS",
+    "AREA",
+    "BOAT_REST",
+    "ATLAS_LABE"
+   ],
+   "known": false,
+   "layer": "FISH_TRACTS_2023",
+   "sample": [
+    {
+     "ACC_SITES": " ",
+     "ACRES": "11.7",
+     "BEGINS": "2018",
+     "BOATS": "A",
+     "CMS_NUM": "11711",
+     "CONT_NUM": " ",
+     "COUNTY": "CHEROKEE",
+     "MILES": " ",
+     "OPEN_": "Mar. 1 - Oct. 31",
+     "RNG": "24E",
+     "SEC": "30",
+     "TWN": "33S"
+    },
+    {
+     "ACC_SITES": " ",
+     "ACRES": "6.7",
+     "BEGINS": "2018",
+     "BOATS": "A",
+     "CMS_NUM": "11711",
+     "CONT_NUM": " ",
+     "COUNTY": "CHEROKEE",
+     "MILES": " ",
+     "OPEN_": "Mar. 1 - Oct. 31",
+     "RNG": "23E",
+     "SEC": "25",
+     "TWN": "33S"
+    },
+    {
+     "ACC_SITES": " ",
+     "ACRES": " ",
+     "BEGINS": "2019",
+     "BOATS": "NB",
+     "CMS_NUM": "9279",
+     "CONT_NUM": " ",
+     "COUNTY": "ATCHISON",
+     "MILES": "0.7",
+     "OPEN_": "Mar. 1 - Oct. 31",
+     "RNG": "17E",
+     "SEC": "8",
+     "TWN": "7S"
+    }
+   ],
+   "service": "FISH_TRACTS_2022(2)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/FISH_TRACTS_2022(2)/FeatureServer/0"
+  },
+  {
+   "agency": "United States Postal Service",
+   "area": "",
+   "count": 129,
+   "fields": [
+    "ZIP_CODE",
+    "STATE",
+    "PO_NAME"
+   ],
+   "known": false,
+   "layer": "USAZIPCodeArea_fishing_by_zip",
+   "sample": [
+    {
+     "PO_NAME": "Grantville",
+     "STATE": "GA",
+     "ZIP_CODE": "30220"
+    },
+    {
+     "PO_NAME": "Adel",
+     "STATE": "GA",
+     "ZIP_CODE": "31620"
+    },
+    {
+     "PO_NAME": "Georgetown",
+     "STATE": "KY",
+     "ZIP_CODE": "40324"
+    }
+   ],
+   "service": "USAZIPCodeArea_fishing_by_zip",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/USAZIPCodeArea_fishing_by_zip/FeatureServer/260"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 106,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Biologist",
+    "Region"
+   ],
+   "known": false,
+   "layer": "Kansas_Counties",
+   "sample": [
+    {
+     "Biologist": "Carson Cox",
+     "NAME": "Greenwood",
+     "NAMELSAD": "Greenwood County",
+     "Region": "Region 3"
+    },
+    {
+     "Biologist": "Nick Kramer",
+     "NAME": "Doniphan",
+     "NAMELSAD": "Doniphan County",
+     "Region": "Region 2"
+    },
+    {
+     "Biologist": "Paul Stockebrand",
+     "NAME": "Republic",
+     "NAMELSAD": "Republic County",
+     "Region": "Region 1"
+    }
+   ],
+   "service": "Fisheries_Regions__WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Fisheries_Regions__WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Wildlife_Area",
+   "count": 106,
+   "fields": [
+    "Wildlife_Area",
+    "CropType",
+    "Expected_Success",
+    "Comments",
+    "Field_manipulation",
+    "toxicity",
+    "Special_reg",
+    "Active",
+    "specireg2"
+   ],
+   "known": false,
+   "layer": "Public Land Dove Field Database",
+   "sample": [
+    {
+     "Active": "Yes",
+     "CropType": "Sunflowers",
+     "Expected_Success": "Poor",
+     "Special_reg": "Open to public ",
+     "Wildlife_Area": "Cheney Wildlife Area",
+     "toxicity": "Yes"
+    },
+    {
+     "Active": "Yes",
+     "CropType": "Sunflower",
+     "Expected_Success": "Fair",
+     "Field_manipulation": "Mow",
+     "Wildlife_Area": "Tuttle Creek",
+     "toxicity": "Yes"
+    },
+    {
+     "Active": "Yes",
+     "CropType": "Sunflower",
+     "Expected_Success": "Poor",
+     "Field_manipulation": "Mow before season",
+     "Wildlife_Area": "Tuttle Creek",
+     "toxicity": "Yes"
+    }
+   ],
+   "service": "Public_Land_Dove_Field_Database_view",
+   "typef": "CropType",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Public_Land_Dove_Field_Database_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 105,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Biologist",
+    "Region"
+   ],
+   "known": false,
+   "layer": "KDWP Fisheries Regions",
+   "sample": [
+    {
+     "Biologist": "Carson Cox",
+     "NAME": "Greenwood",
+     "NAMELSAD": "Greenwood County",
+     "Region": "Region 3"
+    },
+    {
+     "Biologist": "Nick Kramer",
+     "NAME": "Doniphan",
+     "NAMELSAD": "Doniphan County",
+     "Region": "Region 2"
+    },
+    {
+     "Biologist": "Paul Stockebrand",
+     "NAME": "Republic",
+     "NAMELSAD": "Republic County",
+     "Region": "Region 1"
+    }
+   ],
+   "service": "Fisheries_Regions__WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Fisheries_Regions__WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 105,
+   "fields": [
+    "County",
+    "Region",
+    "Biologist",
+    "B_Phone",
+    "B_Email",
+    "Supervisor",
+    "S_Phone",
+    "S_Email"
+   ],
+   "known": false,
+   "layer": "Wildlife_Bios_By_County",
+   "sample": [
+    {
+     "B_Email": "kurtis.meier@ks.gov",
+     "B_Phone": "785-443-4648",
+     "Biologist": "Kurtis Meier",
+     "County": "Greeley",
+     "Region": "4",
+     "S_Email": "lucas.kramer@ks.gov",
+     "S_Phone": "785-628-8614",
+     "Supervisor": "Lucas Kramer"
+    },
+    {
+     "B_Email": "tim.urban@ks.gov",
+     "B_Phone": "913-422-1314",
+     "Biologist": "Tim Urban",
+     "County": "Franklin",
+     "Region": "2",
+     "S_Email": "brad.rueschhoff@ks.gov",
+     "S_Phone": "785-273-6740",
+     "Supervisor": "Brad Rueschhoff"
+    },
+    {
+     "B_Email": "eric.wiens@ks.gov",
+     "B_Phone": "620-203-8942",
+     "Biologist": "Eric Wiens",
+     "County": "Phillips",
+     "Region": "1",
+     "S_Email": "lucas.kramer@ks.gov",
+     "S_Phone": "785-628-8614",
+     "Supervisor": "Lucas Kramer"
+    }
+   ],
+   "service": "Wildlife_Bios_By_County",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Wildlife_Bios_By_County/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 105,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Biologist",
+    "Region"
+   ],
+   "known": false,
+   "layer": "KDWP Fisheries Regions",
+   "sample": [
+    {
+     "Biologist": "Carson Cox",
+     "NAME": "Greenwood",
+     "NAMELSAD": "Greenwood County",
+     "Region": "Region 3"
+    },
+    {
+     "Biologist": "Nick Kramer",
+     "NAME": "Doniphan",
+     "NAMELSAD": "Doniphan County",
+     "Region": "Region 2"
+    },
+    {
+     "Biologist": "Paul Stockebrand",
+     "NAME": "Republic",
+     "NAMELSAD": "Republic County",
+     "Region": "Region 1"
+    }
+   ],
+   "service": "Wildlife_Bios_County_and_Region_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Wildlife_Bios_County_and_Region_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 105,
+   "fields": [
+    "County",
+    "Region",
+    "Biologist",
+    "B_Phone",
+    "B_Email",
+    "Supervisor",
+    "S_Phone",
+    "S_Email",
+    "Region_1"
+   ],
+   "known": false,
+   "layer": "Wildlife_Bios_By_County_ExportFeatures",
+   "sample": [
+    {
+     "B_Email": "kurtis.meier@ks.gov",
+     "B_Phone": "785-443-4648",
+     "Biologist": "Kurtis Meier",
+     "County": "Greeley",
+     "Region": "1",
+     "Region_1": "Region 4",
+     "S_Email": "lucas.kramer@ks.gov",
+     "S_Phone": "785-628-8614",
+     "Supervisor": "Lucas Kramer"
+    },
+    {
+     "B_Email": "tim.urban@ks.gov",
+     "B_Phone": "913-422-1314",
+     "Biologist": "Tim Urban",
+     "County": "Franklin",
+     "Region": "2",
+     "Region_1": "Region 2",
+     "S_Email": "brad.rueschhoff@ks.gov",
+     "S_Phone": "785-273-6740",
+     "Supervisor": "Brad Rueschhoff"
+    },
+    {
+     "B_Email": "eric.wiens@ks.gov",
+     "B_Phone": "620-203-8942",
+     "Biologist": "Eric Wiens",
+     "County": "Phillips",
+     "Region": "1",
+     "Region_1": "Region 1",
+     "S_Email": "lucas.kramer@ks.gov",
+     "S_Phone": "785-628-8614",
+     "Supervisor": "Lucas Kramer"
+    }
+   ],
+   "service": "Wildlife_Bios_County_and_Region_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/Wildlife_Bios_County_and_Region_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 105,
+   "fields": [
+    "NAME",
+    "County",
+    "Date"
+   ],
+   "known": false,
+   "layer": "HWOL_Historical",
+   "sample": [
+    {
+     "County": "Cherokee",
+     "Date": "Cherokee",
+     "NAME": "Cherokee"
+    },
+    {
+     "County": "Graham",
+     "Date": "Graham",
+     "NAME": "Graham"
+    },
+    {
+     "County": "Brown",
+     "Date": "Brown",
+     "NAME": "Brown"
+    }
+   ],
+   "service": "HWOL_Historical",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/HWOL_Historical/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 5,
+   "fields": [
+    "NAME",
+    "OTHER_NAME",
+    "MGT_UNIT",
+    "AUNIT",
+    "COMPLEX",
+    "Label_Name",
+    "Access_Res",
+    "Hunt_Acc",
+    "Hyperlink",
+    "e_checkin"
+   ],
+   "known": false,
+   "layer": "State_Wildlife_Refuges",
+   "sample": [
+    {
+     "AUNIT": " ",
+     "Access_Res": "Yes",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Restricted",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Sandsage Bison Range Wildlife Area",
+     "MGT_UNIT": "State Wildlife Refuge",
+     "NAME": "Sandsage Bison Range WA",
+     "OTHER_NAME": "Finney County Game Refuge",
+     "e_checkin": "No"
+    },
+    {
+     "AUNIT": " ",
+     "Access_Res": "Yes",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Restricted",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": " ",
+     "MGT_UNIT": "State Wildlife Refuge",
+     "NAME": "Leavenworth Wildlife Refuge",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    },
+    {
+     "AUNIT": " ",
+     "Access_Res": "Yes",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Restricted",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Maxwell Wildlife Refuge",
+     "MGT_UNIT": "State Wildlife Refuge",
+     "NAME": "Maxwell Wildlife Refuge",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    }
+   ],
+   "service": "State_Wildlife_Refuges",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/State_Wildlife_Refuges/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 213,
+   "fields": [
+    "NAME",
+    "OTHER_NAME",
+    "MGT_UNIT",
+    "AUNIT",
+    "COMPLEX",
+    "Label_Name",
+    "Access_Res",
+    "Hunt_Acc",
+    "Hyperlink",
+    "e_checkin"
+   ],
+   "known": true,
+   "layer": "KDWPT_Wildlife_Areas",
+   "sample": [
+    {
+     "AUNIT": " ",
+     "Access_Res": "No",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Yes",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Hamilton SFL and Wildlife Area",
+     "MGT_UNIT": "State Fishing Lake and Wildlife",
+     "NAME": "Hamilton State Fishing Lake and Wildlife Area",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    },
+    {
+     "AUNIT": " ",
+     "Access_Res": "No",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Yes",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Cottonwood Flats Wildlife Area",
+     "MGT_UNIT": "State Wildlife Area",
+     "NAME": "Cottonwood Flats Wildlife Area",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    },
+    {
+     "AUNIT": " ",
+     "Access_Res": "No",
+     "COMPLEX": " ",
+     "Hunt_Acc": "Yes",
+     "Hyperlink": "Click <a href=\"https://ksoutdoors.com/KDWPT-Info/Locations/Wildlife-Areas\" target=\"_top\">HERE</a> to view all wildlife area information and special restrictions.",
+     "Label_Name": "Finney Wildlife Area",
+     "MGT_UNIT": "State Fishing Lake and Wildlife",
+     "NAME": "Finney State Fishing Lake and Wildlife Area",
+     "OTHER_NAME": " ",
+     "e_checkin": "No"
+    }
+   ],
+   "service": "KDWPT_Wildlife_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/q2CglofYX6ACNEeu/arcgis/rest/services/KDWPT_Wildlife_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Kansas Department of Transportation: Bureau of Transportation Planning",
+   "area": "",
+   "count": 88,
+   "fields": [
+    "Description",
+    "AgencyOwnership",
+    "Government",
+    "Type",
+    "CampingIndicator",
+    "Status",
+    "Description2"
+   ],
+   "known": true,
+   "layer": "State Park Area",
+   "sample": [
+    {
+     "AgencyOwnership": "A",
+     "Description": "Outlet Park",
+     "Description2": "Clinton Lake",
+     "Government": "Federal",
+     "Status": "Active",
+     "Type": "Park"
+    },
+    {
+     "AgencyOwnership": "P",
+     "CampingIndicator": "Y",
+     "Description": "El Dorado State Park",
+     "Description2": "El Dorado State Park",
+     "Government": "State",
+     "Status": "Active",
+     "Type": "Park"
+    },
+    {
+     "AgencyOwnership": "P",
+     "CampingIndicator": "Y",
+     "Description": "El Dorado State Park",
+     "Description2": "El Dorado State Park",
+     "Government": "State",
+     "Status": "Active",
+     "Type": "Park"
+    }
+   ],
+   "service": "Boundaries/State_Park_Area",
+   "typef": "Description",
+   "url": "https://kanplan.ksdot.gov/arcgis_web_adaptor/rest/services/Boundaries/State_Park_Area/MapServer/0"
+  }
+ ],
+ "st": "KS"
+}

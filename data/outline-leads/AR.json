@@ -1,0 +1,1045 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 1236,
+   "fields": [
+    "fisheries_name"
+   ],
+   "known": false,
+   "layer": "publicFishingWaterbodies",
+   "sample": [
+    {
+     "fisheries_name": "Madison Co. WMA Pond P101"
+    },
+    {
+     "fisheries_name": "Madison Co. WMA Pond P1004"
+    },
+    {
+     "fisheries_name": "Madison Co. WMA Pond P102"
+    }
+   ],
+   "service": "publicFishingWaterbodies",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/publicFishingWaterbodies/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 323,
+   "fields": [
+    "fisheries_name",
+    "fdescrip",
+    "owner"
+   ],
+   "known": false,
+   "layer": "fishingPonds",
+   "sample": [
+    {
+     "fisheries_name": "Bishop Park Pond (Lake Norma)",
+     "owner": "City"
+    },
+    {
+     "fisheries_name": "McCabe Park Pond 1",
+     "owner": "City"
+    },
+    {
+     "fdescrip": " ",
+     "fisheries_name": "Abundant Life Lake",
+     "owner": "Private"
+    }
+   ],
+   "service": "fishingPonds",
+   "typef": "fdescrip",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/fishingPonds/FeatureServer/10"
+  },
+  {
+   "agency": "AGFC Staff",
+   "area": "wma",
+   "count": 311,
+   "fields": [
+    "fname",
+    "flabel",
+    "ftype",
+    "fdescrip",
+    "owner",
+    "comments",
+    "project_num",
+    "cost_center",
+    "county",
+    "waterbody",
+    "wma",
+    "location",
+    "hyp_1",
+    "data_log",
+    "verified",
+    "official",
+    "data_owner",
+    "steward",
+    "search_field",
+    "created_user"
+   ],
+   "known": false,
+   "layer": "Fisheries_Mgmt",
+   "sample": [
+    {
+     "comments": "Updates based on architectural doc forwarded by Chad Wicker for renovation",
+     "cost_center": "143340",
+     "county": "43",
+     "flabel": "37",
+     "fname": "Joe Hogan Hatchery Pond #37",
+     "ftype": "Hatchery Pond",
+     "location": "Joe Hogan Fish Hatchery",
+     "owner": "AGFC",
+     "project_num": "1563"
+    },
+    {
+     "comments": "Updates based on architectural doc forwarded by Chad Wicker for renovation",
+     "cost_center": "143340",
+     "county": "43",
+     "flabel": "38",
+     "fname": "Joe Hogan Hatchery Pond #38",
+     "ftype": "Hatchery Pond",
+     "location": "Joe Hogan Fish Hatchery",
+     "owner": "AGFC",
+     "project_num": "1563"
+    },
+    {
+     "comments": "Updates based on architectural doc forwarded by Chad Wicker for renovation",
+     "cost_center": "143340",
+     "county": "43",
+     "flabel": "42",
+     "fname": "Joe Hogan Hatchery Pond #42",
+     "ftype": "Hatchery Pond",
+     "location": "Joe Hogan Fish Hatchery",
+     "owner": "AGFC",
+     "project_num": "1563"
+    }
+   ],
+   "service": "VUEWorks",
+   "typef": "ftype",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/VUEWorks/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 232,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "AHPP_HISTORIC_DISTRICTS_POLYGON",
+   "sample": [
+    {
+     "name": "Argenta Historic District"
+    },
+    {
+     "name": "Arkadelphia Commercial Historic District"
+    },
+    {
+     "name": "Arkansas City Commercial Historic District"
+    }
+   ],
+   "service": "FEATURESERVICES/Boundaries",
+   "typef": "",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "wma_name",
+   "count": 192,
+   "fields": [
+    "agfc_id",
+    "official_name",
+    "short_name",
+    "feature_category",
+    "feature_group",
+    "feature_type",
+    "feature_subtype",
+    "primary_use",
+    "public_access",
+    "owner",
+    "cost_center",
+    "project_number",
+    "wma_id",
+    "wma_name",
+    "notes",
+    "search_tags",
+    "legacy_uid",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "cost_center": "142921",
+     "official_name": "River Bend WMA",
+     "owner": "AGFC",
+     "project_number": "0348",
+     "short_name": "River Bend WMA"
+    },
+    {
+     "cost_center": "142974",
+     "official_name": "Bell Slough WMA",
+     "owner": "AGFC",
+     "project_number": "0514",
+     "short_name": "Bell Slough WMA"
+    },
+    {
+     "cost_center": "141571",
+     "official_name": "Bayou Des Arc WMA",
+     "owner": "AGFC",
+     "project_number": "0497",
+     "short_name": "Bayou Des Arc WMA"
+    }
+   ],
+   "service": "AGFC_Wildlife_Management_Areas_WV",
+   "typef": "feature_category",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/AGFC_Wildlife_Management_Areas_WV/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "wma_name",
+   "count": 192,
+   "fields": [
+    "agfc_id",
+    "official_name",
+    "short_name",
+    "feature_category",
+    "feature_group",
+    "feature_type",
+    "feature_subtype",
+    "primary_use",
+    "public_access",
+    "owner",
+    "cost_center",
+    "project_number",
+    "wma_id",
+    "wma_name",
+    "notes",
+    "search_tags",
+    "legacy_uid",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "cost_center": "142921",
+     "official_name": "River Bend WMA",
+     "owner": "AGFC",
+     "project_number": "0348",
+     "short_name": "River Bend WMA"
+    },
+    {
+     "cost_center": "142974",
+     "official_name": "Bell Slough WMA",
+     "owner": "AGFC",
+     "project_number": "0514",
+     "short_name": "Bell Slough WMA"
+    },
+    {
+     "cost_center": "141571",
+     "official_name": "Bayou Des Arc WMA",
+     "owner": "AGFC",
+     "project_number": "0497",
+     "short_name": "Bayou Des Arc WMA"
+    }
+   ],
+   "service": "WMA_VUEWorks",
+   "typef": "feature_category",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/WMA_VUEWorks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "wma",
+   "count": 138,
+   "fields": [
+    "fname",
+    "flabel",
+    "wma"
+   ],
+   "known": false,
+   "layer": "ST_WILDLIFE_MNGMNT_AGFC",
+   "sample": [
+    {
+     "flabel": "Cherokee Prairie Natural Area WMA",
+     "fname": "Cherokee Prairie Natural Area WMA",
+     "wma": "Cherokee Prairie Natural Area WMA"
+    },
+    {
+     "flabel": "Howard Hensley - Searcy Co. WMA",
+     "fname": "Howard Hensley - Searcy Co. WMA",
+     "wma": "Howard Hensley - Searcy Co. WMA"
+    },
+    {
+     "flabel": "Piney Creeks WMA",
+     "fname": "Piney Creeks WMA",
+     "wma": "Piney Creeks WMA"
+    }
+   ],
+   "service": "FEATURESERVICES/Boundaries",
+   "typef": "",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/37"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "L0Arkansas_Counties_EnrichedT_8",
+    "L0Arkansas_Counties_Enriched_16",
+    "L0Arkansas_Counties_Enriched_17",
+    "L0Arkansas_Counties_Enriched_19",
+    "L0Arkansas_Counties_Basic_Dem_4",
+    "L0Arkansas_Counties_Basic_Dem_6",
+    "L0Arkansas_Counties_Basic_Dem_8",
+    "L0Arkansas_Counties_Basic_De_87",
+    "L0Arkansas_Counties_Basic_D_100",
+    "L0Arkansas_Counties_Basic_D_101",
+    "L0Arkansas_Counties_Basic_D_103"
+   ],
+   "known": false,
+   "layer": "Participated in fishing (freshwater) in last 12 months",
+   "sample": [
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_4": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Howard",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_4": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Pulaski",
+     "L0Arkansas_Counties_Enriched_16": "1",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_4": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Lonoke",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    }
+   ],
+   "service": "R3_Market_Potential_Data_Feature_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/R3_Market_Potential_Data_Feature_Layer/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "L0Arkansas_Counties_EnrichedT_8",
+    "L0Arkansas_Counties_Enriched_16",
+    "L0Arkansas_Counties_Enriched_17",
+    "L0Arkansas_Counties_Enriched_19",
+    "L0Arkansas_Counties_Basic_Dem_4",
+    "L0Arkansas_Counties_Basic_Dem_6",
+    "L0Arkansas_Counties_Basic_Dem_8",
+    "L0Arkansas_Counties_Basic_De_87",
+    "L0Arkansas_Counties_Basic_D_100",
+    "L0Arkansas_Counties_Basic_D_101",
+    "L0Arkansas_Counties_Basic_D_103"
+   ],
+   "known": false,
+   "layer": "Participated in fishing (salt water) in last 12 months",
+   "sample": [
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_4": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Howard",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_4": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Pulaski",
+     "L0Arkansas_Counties_Enriched_16": "1",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_4": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Lonoke",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    }
+   ],
+   "service": "R3_Market_Potential_Data_Feature_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/R3_Market_Potential_Data_Feature_Layer/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "L0Arkansas_Counties_EnrichedT_8",
+    "L0Arkansas_Counties_Enriched_16",
+    "L0Arkansas_Counties_Enriched_17",
+    "L0Arkansas_Counties_Enriched_19",
+    "L0Arkansas_Counties_Basic_Dem_4",
+    "L0Arkansas_Counties_Basic_Dem_6",
+    "L0Arkansas_Counties_Basic_Dem_8",
+    "L0Arkansas_Counties_Basic_De_87",
+    "L0Arkansas_Counties_Basic_D_100",
+    "L0Arkansas_Counties_Basic_D_101",
+    "L0Arkansas_Counties_Basic_D_103"
+   ],
+   "known": false,
+   "layer": "Spent $1-99 on sports/recreational equiptment in last 12 months",
+   "sample": [
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_4": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Howard",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_4": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Pulaski",
+     "L0Arkansas_Counties_Enriched_16": "1",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_4": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Lonoke",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    }
+   ],
+   "service": "R3_Market_Potential_Data_Feature_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/R3_Market_Potential_Data_Feature_Layer/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "L0Arkansas_Counties_EnrichedT_8",
+    "L0Arkansas_Counties_Enriched_16",
+    "L0Arkansas_Counties_Enriched_17",
+    "L0Arkansas_Counties_Enriched_19",
+    "L0Arkansas_Counties_Basic_Dem_4",
+    "L0Arkansas_Counties_Basic_Dem_6",
+    "L0Arkansas_Counties_Basic_Dem_8",
+    "L0Arkansas_Counties_Basic_De_87",
+    "L0Arkansas_Counties_Basic_D_100",
+    "L0Arkansas_Counties_Basic_D_101",
+    "L0Arkansas_Counties_Basic_D_103"
+   ],
+   "known": false,
+   "layer": "Spent $100-249 on sports/recreational equiptment in last 12 months",
+   "sample": [
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_4": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Howard",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_4": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Pulaski",
+     "L0Arkansas_Counties_Enriched_16": "1",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_4": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Lonoke",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    }
+   ],
+   "service": "R3_Market_Potential_Data_Feature_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/R3_Market_Potential_Data_Feature_Layer/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "L0Arkansas_Counties_EnrichedT_8",
+    "L0Arkansas_Counties_Enriched_16",
+    "L0Arkansas_Counties_Enriched_17",
+    "L0Arkansas_Counties_Enriched_19",
+    "L0Arkansas_Counties_Basic_Dem_4",
+    "L0Arkansas_Counties_Basic_Dem_6",
+    "L0Arkansas_Counties_Basic_Dem_8",
+    "L0Arkansas_Counties_Basic_De_87",
+    "L0Arkansas_Counties_Basic_D_100",
+    "L0Arkansas_Counties_Basic_D_101",
+    "L0Arkansas_Counties_Basic_D_103"
+   ],
+   "known": false,
+   "layer": "Spent $250+ on sports/recreational equiptment in last 12 months",
+   "sample": [
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_4": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Howard",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_4": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Pulaski",
+     "L0Arkansas_Counties_Enriched_16": "1",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_4": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Lonoke",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    }
+   ],
+   "service": "R3_Market_Potential_Data_Feature_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/R3_Market_Potential_Data_Feature_Layer/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "L0Arkansas_Counties_EnrichedT_8",
+    "L0Arkansas_Counties_Enriched_16",
+    "L0Arkansas_Counties_Enriched_17",
+    "L0Arkansas_Counties_Enriched_19",
+    "L0Arkansas_Counties_Basic_Dem_4",
+    "L0Arkansas_Counties_Basic_Dem_6",
+    "L0Arkansas_Counties_Basic_Dem_8",
+    "L0Arkansas_Counties_Basic_De_87",
+    "L0Arkansas_Counties_Basic_D_100",
+    "L0Arkansas_Counties_Basic_D_101",
+    "L0Arkansas_Counties_Basic_D_103"
+   ],
+   "known": false,
+   "layer": "Watched fishing on TV",
+   "sample": [
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_4": "Howard",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Howard",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_4": "Pulaski",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Pulaski",
+     "L0Arkansas_Counties_Enriched_16": "1",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    },
+    {
+     "L0Arkansas_Counties_Basic_D_100": "0",
+     "L0Arkansas_Counties_Basic_D_101": "US",
+     "L0Arkansas_Counties_Basic_D_103": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_Basic_De_87": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_4": "Lonoke",
+     "L0Arkansas_Counties_Basic_Dem_6": "US",
+     "L0Arkansas_Counties_Basic_Dem_8": "BlockApportionment:US.BlockGroups",
+     "L0Arkansas_Counties_EnrichedT_8": "Lonoke",
+     "L0Arkansas_Counties_Enriched_16": "0",
+     "L0Arkansas_Counties_Enriched_17": "US",
+     "L0Arkansas_Counties_Enriched_19": "BlockApportionment:US.BlockGroups"
+    }
+   ],
+   "service": "R3_Market_Potential_Data_Feature_Layer",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/R3_Market_Potential_Data_Feature_Layer/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 66,
+   "fields": [
+    "property_label",
+    "boundary_change_note2",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "property_repeat2",
+   "sample": [
+    {
+     "property_label": "20260403153034"
+    },
+    {
+     "property_label": "20260407113114"
+    },
+    {
+     "property_label": "20260407113920"
+    }
+   ],
+   "service": "DMAP_App_vs2_FinalView",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/DMAP_App_vs2_FinalView/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "COA_Name",
+    "COA_Type",
+    "Tier"
+   ],
+   "known": false,
+   "layer": "Conservation_Opportunity_Areas_",
+   "sample": [
+    {
+     "COA_Name": "Arkansas Valley Prairies",
+     "COA_Type": "Terrestrial",
+     "Tier": "I"
+    },
+    {
+     "COA_Name": "Central Prairie Savanna Woodland",
+     "COA_Type": "Terrestrial",
+     "Tier": "II"
+    },
+    {
+     "COA_Name": "Big Woods",
+     "COA_Type": "Terrestrial",
+     "Tier": "II"
+    }
+   ],
+   "service": "Conservation_Opportunity_Areas_",
+   "typef": "COA_Type",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/Conservation_Opportunity_Areas_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "COA_Name",
+    "COA_Type",
+    "Tier"
+   ],
+   "known": false,
+   "layer": "Conservation_Opportunity_Areas_",
+   "sample": [
+    {
+     "COA_Name": "Arkansas Valley Prairies",
+     "COA_Type": "Terrestrial",
+     "Tier": "I"
+    },
+    {
+     "COA_Name": "Central Prairie Savanna Woodland",
+     "COA_Type": "Terrestrial",
+     "Tier": "II"
+    },
+    {
+     "COA_Name": "Big Woods",
+     "COA_Type": "Terrestrial",
+     "Tier": "II"
+    }
+   ],
+   "service": "Conservation_Opportunity_Areas__view",
+   "typef": "COA_Type",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/Conservation_Opportunity_Areas__view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 16,
+   "fields": [
+    "property_label",
+    "boundary_change_note2",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "property_repeat",
+   "sample": [
+    {
+     "property_label": "20260403150308"
+    },
+    {
+     "property_label": "20260414073755"
+    },
+    {
+     "property_label": "20260422112148"
+    }
+   ],
+   "service": "DMAP_App_vs2_FinalView",
+   "typef": "",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/DMAP_App_vs2_FinalView/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "wilderness"
+   ],
+   "known": false,
+   "layer": "OZARKNFS_WILDERNESS_AREA_NFS",
+   "sample": [
+    {
+     "wilderness": "Upper Buffalo Wilderness"
+    },
+    {
+     "wilderness": "Private"
+    },
+    {
+     "wilderness": "Private"
+    }
+   ],
+   "service": "FEATURESERVICES/Boundaries",
+   "typef": "",
+   "url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Boundaries/FeatureServer/26"
+  },
+  {
+   "agency": "AGFC Staff",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "fname",
+    "flabel",
+    "district_n",
+    "staff",
+    "mobile_pho",
+    "e_mail",
+    "headquarte",
+    "address",
+    "city",
+    "zip_code",
+    "office_pho",
+    "fax",
+    "comments",
+    "project_nu",
+    "cost_cente",
+    "hyp_1",
+    "data_log",
+    "verified",
+    "official",
+    "data_owner"
+   ],
+   "known": false,
+   "layer": "Fisheries_Districts",
+   "sample": [
+    {
+     "address": "424 Natural Resources Drive",
+     "city": "Mountian Home",
+     "district_n": "02",
+     "e_mail": "jeremy.misley@agfc.ar.gov",
+     "fax": "870-425-5596",
+     "flabel": "2",
+     "fname": "Fisheries Division District 2",
+     "headquarte": "Mountain Home",
+     "mobile_pho": "479-223-1269",
+     "office_pho": "501-404-4916",
+     "staff": "Joe Chilton",
+     "zip_code": "72653"
+    },
+    {
+     "address": "350 Fish Hatchery Road",
+     "city": "Hot Springs",
+     "district_n": "08",
+     "e_mail": "andrew.yung@agfc.ar.gov",
+     "fax": "501-525-2265",
+     "flabel": "8",
+     "fname": "Fisheries Division District 8",
+     "headquarte": "Hot Springs",
+     "mobile_pho": "870-675-1910",
+     "office_pho": "501-255-3470",
+     "staff": "Andy Yung",
+     "zip_code": "71913"
+    },
+    {
+     "address": "600 East Lawson Road",
+     "city": "Jonesboro",
+     "district_n": "03",
+     "e_mail": "brett.timmons@agfc.ar.gov",
+     "fax": "870-972-5834",
+     "flabel": "3",
+     "fname": "Fisheries Division District 3",
+     "headquarte": "Jonseboro",
+     "mobile_pho": "870-552-5817",
+     "office_pho": "833-200-5199",
+     "staff": "Brett Timmons",
+     "zip_code": "72404"
+    }
+   ],
+   "service": "VUEWorks",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/VUEWorks/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 8,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "Historic_Properties",
+   "sample": [
+    {
+     "name": "Wilson Community Club House - NHRP (3MS873)"
+    },
+    {
+     "name": "Wilson HS Gymnasium - NRHP (3MS871)"
+    },
+    {
+     "name": "McFadden Cemetery (3MS635)"
+    }
+   ],
+   "service": "Hosted/Osceola_Env_Constraints_12_2023_WFL1",
+   "typef": "",
+   "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/Osceola_Env_Constraints_12_2023_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "AGFC Staff",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "fname",
+    "flabel",
+    "district_n",
+    "staff",
+    "mobile_pho",
+    "e_mail",
+    "headquarte",
+    "address",
+    "city",
+    "zip_code",
+    "office_pho",
+    "comments",
+    "project_nu",
+    "cost_cente",
+    "hyp_1",
+    "data_log",
+    "verified",
+    "official",
+    "data_owner",
+    "steward"
+   ],
+   "known": false,
+   "layer": "Wildlife_Regions",
+   "sample": [
+    {
+     "address": "601 E Hwy 7",
+     "city": "Jasper",
+     "district_n": "06",
+     "e_mail": "stacey.clark@agfc.ar.gov",
+     "flabel": "6",
+     "fname": "Wildlife Management Division District 6",
+     "headquarte": "Jasper",
+     "mobile_pho": "479.461.5399",
+     "office_pho": "866.253.2506",
+     "staff": "Kevin Lynch",
+     "zip_code": "72916"
+    },
+    {
+     "address": "1201 N Hwy 49",
+     "city": "Brinkley",
+     "comments": "Sandra Garrett",
+     "district_n": "02",
+     "e_mail": "johnny.waldrup@agfc.ar.gov",
+     "flabel": "2",
+     "fname": "Wildlife Management Division District 2",
+     "headquarte": "Brinkley",
+     "mobile_pho": "501.680.2401",
+     "office_pho": "877.734.4581",
+     "staff": "Johnny Waldrup",
+     "zip_code": "72021"
+    },
+    {
+     "address": "7004 Hwy 67 East",
+     "city": "Perrytown",
+     "district_n": "04",
+     "e_mail": "patrick.park@agfc.ar.gov",
+     "flabel": "4",
+     "fname": "Wildlife Management Division District 4",
+     "headquarte": "Perrytown",
+     "mobile_pho": "870.245.7804",
+     "office_pho": "870.777.5580",
+     "staff": "Griffin Park",
+     "zip_code": "71801"
+    }
+   ],
+   "service": "VUEWorks",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/5bMc8SlGDYGINZr5/arcgis/rest/services/VUEWorks/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "Hampson_Archeological_Museum_State_Park",
+   "sample": [
+    {
+     "name": "Hampson Archeological Museum State Park"
+    }
+   ],
+   "service": "Hosted/Osceola_Env_Constraints_12_2023_WFL1",
+   "typef": "",
+   "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/Osceola_Env_Constraints_12_2023_WFL1/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 52,
+   "fields": [
+    "park_num",
+    "boundary",
+    "name",
+    "globalid"
+   ],
+   "known": true,
+   "layer": "StateParks",
+   "sample": [
+    {
+     "boundary": "State Park",
+     "globalid": "{17B79727-168F-4280-BE72-1C1D5241D53E}",
+     "name": "Millwood State Park",
+     "park_num": "PT33"
+    },
+    {
+     "boundary": "State Park",
+     "globalid": "{0C1D14A0-46DE-4072-A2E5-8205411266C9}",
+     "name": "Lake Catherine State Park",
+     "park_num": "PT23"
+    },
+    {
+     "boundary": "State Park",
+     "globalid": "{97B72CC2-EEB3-485F-877C-5876ED8139CC}",
+     "name": "Parkin Archeological State Park",
+     "park_num": "PT40"
+    }
+   ],
+   "service": "Hosted/StateParks",
+   "typef": "",
+   "url": "https://gis.ardot.gov/hosting/rest/services/Hosted/StateParks/FeatureServer/0"
+  }
+ ],
+ "st": "AR"
+}

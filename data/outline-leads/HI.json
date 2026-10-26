@@ -1,0 +1,5218 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "detailed_lc_unit",
+   "count": 66908,
+   "fields": [
+    "detailed_lc_unit",
+    "general_lc_unit_sort",
+    "biome_unit",
+    "biome_unit_sort",
+    "major_lc_unit",
+    "major_lc_unit_sort",
+    "moisture_zone",
+    "habitat_status",
+    "general_lc_unit"
+   ],
+   "known": false,
+   "layer": "Native Lowland Wet Forest",
+   "sample": [
+    {
+     "biome_unit": "Wet Forest",
+     "biome_unit_sort": "1A Wet Forest",
+     "detailed_lc_unit": "Closed ohia wet forest",
+     "general_lc_unit": "Native Wet Forest",
+     "general_lc_unit_sort": "1A Native Wet Forest",
+     "habitat_status": "Native Dominated",
+     "major_lc_unit": "Forest",
+     "major_lc_unit_sort": "1 Forest",
+     "moisture_zone": "Wet"
+    },
+    {
+     "biome_unit": "Wet Forest",
+     "biome_unit_sort": "1A Wet Forest",
+     "detailed_lc_unit": "Open ohia wet forest",
+     "general_lc_unit": "Native Wet Forest",
+     "general_lc_unit_sort": "1A Native Wet Forest",
+     "habitat_status": "Native Dominated",
+     "major_lc_unit": "Forest",
+     "major_lc_unit_sort": "1 Forest",
+     "moisture_zone": "Wet"
+    },
+    {
+     "biome_unit": "Wet Forest",
+     "biome_unit_sort": "1A Wet Forest",
+     "detailed_lc_unit": "Open koa-ohia wet forest",
+     "general_lc_unit": "Native Wet Forest",
+     "general_lc_unit_sort": "1A Native Wet Forest",
+     "habitat_status": "Native Dominated",
+     "major_lc_unit": "Forest",
+     "major_lc_unit_sort": "1 Forest",
+     "moisture_zone": "Wet"
+    }
+   ],
+   "service": "Native_Forest_Protection_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Protection_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 54803,
+   "fields": [
+    "description"
+   ],
+   "known": false,
+   "layer": "Native Dominated Forest",
+   "sample": [
+    {
+     "description": "Native Dominated"
+    },
+    {
+     "description": "Native Dominated"
+    },
+    {
+     "description": "Native Dominated"
+    }
+   ],
+   "service": "Native_Forest_Protection_WFL1",
+   "typef": "description",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Protection_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "detailed_lc_unit",
+   "count": 18611,
+   "fields": [
+    "detailed_lc_unit",
+    "general_lc_unit_sort",
+    "biome_unit",
+    "biome_unit_sort",
+    "major_lc_unit",
+    "major_lc_unit_sort",
+    "moisture_zone",
+    "habitat_status",
+    "general_lc_unit"
+   ],
+   "known": false,
+   "layer": "Native Dry Forest",
+   "sample": [
+    {
+     "biome_unit": "Dry Forest",
+     "biome_unit_sort": "3A Dry Forest",
+     "detailed_lc_unit": "Mixed mamane-naio-native trees dry woodland",
+     "general_lc_unit": "Native Dry Forest",
+     "general_lc_unit_sort": "2B Native Dry Forest",
+     "habitat_status": "Native Dominated",
+     "major_lc_unit": "Forest",
+     "major_lc_unit_sort": "1 Forest",
+     "moisture_zone": "Dry"
+    },
+    {
+     "biome_unit": "Dry Forest",
+     "biome_unit_sort": "3A Dry Forest",
+     "detailed_lc_unit": "Mixed mamane-naio-native trees dry woodland",
+     "general_lc_unit": "Native Dry Forest",
+     "general_lc_unit_sort": "2B Native Dry Forest",
+     "habitat_status": "Native Dominated",
+     "major_lc_unit": "Forest",
+     "major_lc_unit_sort": "1 Forest",
+     "moisture_zone": "Dry"
+    },
+    {
+     "biome_unit": "Dry Forest",
+     "biome_unit_sort": "3A Dry Forest",
+     "detailed_lc_unit": "Mixed mamane-naio-native trees dry woodland",
+     "general_lc_unit": "Native Dry Forest",
+     "general_lc_unit_sort": "2B Native Dry Forest",
+     "habitat_status": "Native Dominated",
+     "major_lc_unit": "Forest",
+     "major_lc_unit_sort": "1 Forest",
+     "moisture_zone": "Dry"
+    }
+   ],
+   "service": "Native_Forest_Protection_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Protection_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "National Park Service, NPS",
+   "area": "NAME",
+   "count": 8706,
+   "fields": [
+    "TRACT1",
+    "TRACT2",
+    "TRACT3",
+    "TRACT4",
+    "TRACT5",
+    "PARCEL",
+    "RELATE_ID",
+    "SOURCE",
+    "COMMENTS",
+    "PROTECTED",
+    "NAME",
+    "OWNER",
+    "INTEREST",
+    "STATUS",
+    "ESTATE",
+    "ES_TYPE",
+    "APPA_LAND",
+    "ADMIN",
+    "LEGEND",
+    "LEGEND2"
+   ],
+   "known": false,
+   "layer": "Appalachian Trail Lands",
+   "sample": [
+    {
+     "COMMENTS": " ",
+     "NAME": "WHITE MOUNTAIN NATIONAL FOREST",
+     "OWNER": "UNITED STATES GOVERNMENT",
+     "PARCEL": " ",
+     "PROTECTED": "YES",
+     "RELATE_ID": "193015",
+     "SOURCE": "NPS Segment Maps + ECBS plat",
+     "TRACT1": "193-15",
+     "TRACT2": " ",
+     "TRACT3": " ",
+     "TRACT4": " ",
+     "TRACT5": " "
+    },
+    {
+     "COMMENTS": " ",
+     "NAME": "WHITE MOUNTAIN NATIONAL FOREST",
+     "OWNER": "UNITED STATES GOVERNMENT",
+     "PARCEL": " ",
+     "PROTECTED": "YES",
+     "RELATE_ID": "193002",
+     "SOURCE": "NPS Segment Maps + ECBS plat",
+     "TRACT1": "193-02",
+     "TRACT2": " ",
+     "TRACT3": " ",
+     "TRACT4": " ",
+     "TRACT5": " "
+    },
+    {
+     "COMMENTS": " ",
+     "NAME": "WHITE MOUNTAIN NATIONAL FOREST",
+     "OWNER": "UNITED STATES GOVERNMENT",
+     "PARCEL": " ",
+     "PROTECTED": "YES",
+     "RELATE_ID": "193014",
+     "SOURCE": "NPS Segment Maps + ECBS plat",
+     "TRACT1": "193-14",
+     "TRACT2": " ",
+     "TRACT3": " ",
+     "TRACT4": " ",
+     "TRACT5": " "
+    }
+   ],
+   "service": "AT_Lands",
+   "typef": "ES_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AT_Lands/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 4926,
+   "fields": [
+    "AREA_A",
+    "TYPE",
+    "CHART",
+    "REEFNAME",
+    "NOTES",
+    "ISLAND",
+    "NAME",
+    "INCLUDE_IN"
+   ],
+   "known": false,
+   "layer": "FishChart_Watershed",
+   "sample": [
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "INCLUDE_IN": " ",
+     "ISLAND": " ",
+     "NAME": " ",
+     "NOTES": "Source: Islets",
+     "REEFNAME": " ",
+     "TYPE": "Islet"
+    },
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "INCLUDE_IN": " ",
+     "ISLAND": " ",
+     "NAME": " ",
+     "NOTES": "Source: Islets",
+     "REEFNAME": " ",
+     "TYPE": "Islet"
+    },
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "INCLUDE_IN": " ",
+     "ISLAND": " ",
+     "NAME": " ",
+     "NOTES": "Source: Islets",
+     "REEFNAME": " ",
+     "TYPE": "Islet"
+    }
+   ],
+   "service": "FishChart_Watershed",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/FishChart_Watershed/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 3755,
+   "fields": [
+    "AREA_A",
+    "TYPE",
+    "CHART",
+    "REEFNAME",
+    "NOTES",
+    "ISLAND"
+   ],
+   "known": false,
+   "layer": "fishchart2008_shp",
+   "sample": [
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "ISLAND": " ",
+     "NOTES": "Source: Islets",
+     "REEFNAME": " ",
+     "TYPE": "Islet"
+    },
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "ISLAND": " ",
+     "NOTES": "Source: Islets",
+     "REEFNAME": " ",
+     "TYPE": "Islet"
+    },
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "ISLAND": " ",
+     "NOTES": "Source: Islets",
+     "REEFNAME": " ",
+     "TYPE": "Islet"
+    }
+   ],
+   "service": "fishchart2008_shp",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/fishchart2008_shp/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1066,
+   "fields": [
+    "species"
+   ],
+   "known": false,
+   "layer": "Historical Koa-Ohia Distribution",
+   "sample": [
+    {
+     "species": "Koa"
+    },
+    {
+     "species": "Koa"
+    },
+    {
+     "species": "Koa"
+    }
+   ],
+   "service": "Native_Forest_Restoration_1_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Restoration_1_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "island",
+   "count": 906,
+   "fields": [
+    "ludcode",
+    "island"
+   ],
+   "known": false,
+   "layer": "State Land Use Districts",
+   "sample": [
+    {
+     "island": "Niihau",
+     "ludcode": "C"
+    },
+    {
+     "island": "Niihau",
+     "ludcode": "A"
+    },
+    {
+     "island": "Niihau",
+     "ludcode": "C"
+    }
+   ],
+   "service": "ParcelsZoning",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/20"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 808,
+   "fields": [
+    "condist",
+    "marine"
+   ],
+   "known": false,
+   "layer": "Conservation District Subzones",
+   "sample": [
+    {
+     "condist": "P",
+     "marine": "0"
+    },
+    {
+     "condist": "P",
+     "marine": "0"
+    },
+    {
+     "condist": "P",
+     "marine": "1"
+    }
+   ],
+   "service": "ParcelsZoning",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/1"
+  },
+  {
+   "agency": "American Battlefield Protection Program, National Park Service, Department of th",
+   "area": "",
+   "count": 733,
+   "fields": [
+    "ParcelID",
+    "ABPP_Grant",
+    "County",
+    "State",
+    "Property_N",
+    "Notes",
+    "FAIN",
+    "Owner"
+   ],
+   "known": false,
+   "layer": "Battlefeild Land Acquisition Grant Property",
+   "sample": [
+    {
+     "ABPP_Grant": "51-04-CW-1302",
+     "County": "Louisa",
+     "FAIN": " ",
+     "Notes": " ",
+     "Owner": " ",
+     "ParcelID": "24-1",
+     "Property_N": "RiverOak Timberland Investments, LLC Properties",
+     "State": "VA"
+    },
+    {
+     "ABPP_Grant": "51-04-CW-1302",
+     "County": "Louisa",
+     "FAIN": " ",
+     "Notes": " ",
+     "Owner": " ",
+     "ParcelID": "24-16",
+     "Property_N": "RiverOak Timberland Investments, LLC Properties",
+     "State": "VA"
+    },
+    {
+     "ABPP_Grant": "51-04-CW-1302",
+     "County": "Louisa",
+     "FAIN": " ",
+     "Notes": " ",
+     "Owner": " ",
+     "ParcelID": "24-2",
+     "Property_N": "RiverOak Timberland Investments, LLC Properties",
+     "State": "VA"
+    }
+   ],
+   "service": "Battlefield_Land_Acquisition_Grants_(BLAG)_Data",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Battlefield_Land_Acquisition_Grants_(BLAG)_Data/FeatureServer/0"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 727,
+   "fields": [
+    "ahupuaa",
+    "moku",
+    "mokupuni",
+    "other",
+    "gisacres"
+   ],
+   "known": false,
+   "layer": "Ahupuaa",
+   "sample": [
+    {
+     "ahupuaa": "Waimea",
+     "gisacres": "271.7854",
+     "moku": "Kona",
+     "mokupuni": "Niʻihau",
+     "other": "Lehua"
+    },
+    {
+     "ahupuaa": "Waimea",
+     "gisacres": "46049.68",
+     "moku": "Kona",
+     "mokupuni": "Niʻihau",
+     "other": " "
+    },
+    {
+     "ahupuaa": "Kīlauea",
+     "gisacres": "3767.269",
+     "moku": "Koʻolau",
+     "mokupuni": "Kauaʻi",
+     "other": " "
+    }
+   ],
+   "service": "HistoricCultural",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/HistoricCultural/MapServer/1"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "name",
+   "count": 715,
+   "fields": [
+    "tmk_txt",
+    "cty_tmk",
+    "county",
+    "name"
+   ],
+   "known": false,
+   "layer": "County Parks (Statewide)",
+   "sample": [
+    {
+     "county": "Honolulu",
+     "cty_tmk": "91016131",
+     "name": "Mehana Neighborhood Park",
+     "tmk_txt": "191016131"
+    },
+    {
+     "county": "Honolulu",
+     "cty_tmk": "91015018",
+     "name": "Kamokila Community Park",
+     "tmk_txt": "191015018"
+    },
+    {
+     "county": "Honolulu",
+     "cty_tmk": " ",
+     "name": "Wahiawa Botanical Garden",
+     "tmk_txt": " "
+    }
+   ],
+   "service": "Infrastructure",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/30"
+  },
+  {
+   "agency": "Great Smoky Mountains National Park,\nResource Management & Science,\nGeographic R",
+   "area": "",
+   "count": 470,
+   "fields": [],
+   "known": false,
+   "layer": "NON_FORESTED",
+   "sample": [
+    {
+     "GlobalID": "7b4895f9-00ad-4b74-9f5a-0e8c2c494cd4",
+     "OBJECTID": 1,
+     "Shape__Area": 46782.172607421875,
+     "Shape__Length": 12513.041773255796
+    },
+    {
+     "GlobalID": "4aa3e8f3-f9ec-47a9-b213-8ca979e49467",
+     "OBJECTID": 2,
+     "Shape__Area": 34.681884765625,
+     "Shape__Length": 28.669873974634488
+    },
+    {
+     "GlobalID": "aa8ccf89-37e9-4c4a-b75e-7258981dd84e",
+     "OBJECTID": 3,
+     "Shape__Area": 11111.101440429688,
+     "Shape__Length": 3575.471164638896
+    }
+   ],
+   "service": "GRSM_NON_FORESTED",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_NON_FORESTED/FeatureServer/0"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "name",
+   "count": 429,
+   "fields": [
+    "tmk",
+    "name"
+   ],
+   "known": false,
+   "layer": "County Parks (Oahu)",
+   "sample": [
+    {
+     "name": "Mehana Neighborhood Park",
+     "tmk": "91016131"
+    },
+    {
+     "name": "Kamokila Community Park",
+     "tmk": "91015018"
+    },
+    {
+     "name": "Wahiawa Botanical Garden",
+     "tmk": " "
+    }
+   ],
+   "service": "Infrastructure",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/15"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 428,
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "UNIT_TYPE",
+    "PARKNAME"
+   ],
+   "known": false,
+   "layer": "National_Park_Property_Boundaries",
+   "sample": [
+    {
+     "PARKNAME": "Badlands",
+     "REGION": "MW",
+     "STATE": "SD",
+     "UNIT_CODE": "BADL",
+     "UNIT_NAME": "Badlands National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "PARKNAME": "Capitol Reef",
+     "REGION": "IM",
+     "STATE": "UT",
+     "UNIT_CODE": "CARE",
+     "UNIT_NAME": "Capitol Reef National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "PARKNAME": "Lower Saint Croix",
+     "REGION": "MW",
+     "STATE": "MN",
+     "UNIT_CODE": "LOSA",
+     "UNIT_NAME": "Lower Saint Croix National Scenic Riverway",
+     "UNIT_TYPE": "National Wild & Scenic River"
+    }
+   ],
+   "service": "National_Park_Property_Boundaries",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Property_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 422,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME"
+   ],
+   "known": false,
+   "layer": "National_Park_Service_Boundaries",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "GIS_Notes": "PRELIMINARY - Data has not completed the entire Lands QA/QC process.",
+     "GNIS_ID": "1879026",
+     "METADATA": "Preliminary data. Contact the Land Resources Program for additional information.",
+     "PARKNAME": "American Memorial Park",
+     "REGION": "PW",
+     "STATE": "MP",
+     "UNIT_CODE": "AMME",
+     "UNIT_NAME": "American Memorial Park",
+     "UNIT_TYPE": "Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/CEBE/Metadata/cebe_metadata.xml",
+     "GNIS_ID": "1985663",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/1048148",
+     "PARKNAME": "Cedar Creek & Belle Grove",
+     "REGION": "NE",
+     "STATE": "VA",
+     "UNIT_CODE": "CEBE",
+     "UNIT_NAME": "Cedar Creek and Belle Grove National Historical Park",
+     "UNIT_TYPE": "National Historical Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/LIBI/Metadata/libi_metadata.xml",
+     "GNIS_ID": "806297",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/1048009",
+     "PARKNAME": "Little Bighorn Battlefield",
+     "REGION": "IM",
+     "STATE": "MT",
+     "UNIT_CODE": "LIBI",
+     "UNIT_NAME": "Little Bighorn Battlefield National Monument",
+     "UNIT_TYPE": "National Monument"
+    }
+   ],
+   "service": "National_Park_Service_Boundaries",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Park_Service_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 386,
+   "fields": [
+    "AREA_A",
+    "TYPE",
+    "CHART",
+    "REEFNAME",
+    "NOTES",
+    "ISLAND"
+   ],
+   "known": false,
+   "layer": "Fishchart2008",
+   "sample": [
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "ISLAND": " ",
+     "NOTES": " ",
+     "REEFNAME": " ",
+     "TYPE": "MHI Offshore"
+    },
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "ISLAND": " ",
+     "NOTES": " ",
+     "REEFNAME": " ",
+     "TYPE": "MHI Offshore"
+    },
+    {
+     "AREA_A": " ",
+     "CHART": "B",
+     "ISLAND": " ",
+     "NOTES": " ",
+     "REEFNAME": " ",
+     "TYPE": "MHI Offshore"
+    }
+   ],
+   "service": "Closed_Bottomfish_Restricted_Areas",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Closed_Bottomfish_Restricted_Areas/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 370,
+   "fields": [
+    "date_num",
+    "poly_name",
+    "taxa_plant",
+    "month_",
+    "work_url"
+   ],
+   "known": false,
+   "layer": "Puu Waawaa",
+   "sample": [
+    {
+     "date_num": "20180710",
+     "month_": "July",
+     "poly_name": "20180710_Hauaina_Orange",
+     "taxa_plant": "2 plant Eragrostis deflexa, 6 plant Metrosideros polymorpha var. polymorpha, 1 plant Myoporum sandwicense, 10 plant Plectranthus parviflorus, 1 plant Plumbago zeylanica, 1 plant Sida fallax, 85 plant Silene lanceolata, 1 plant Wikstroemia phillyreifolia",
+     "work_url": "https://app.nrds.io/works/edit/planting_work/746/"
+    },
+    {
+     "date_num": "20180711",
+     "month_": "July",
+     "poly_name": "Delissea",
+     "taxa_plant": "3 plant Kadua affinis, 2 plant Melicope hawaiensis, 1 plant Metrosideros polymorpha var. polymorpha, 13 plant Nothocestrum breviflorum, 1 plant Pittosporum hosmeri, 11 plant Psychotria hawaiiensis var. scoriacea, 7 plant Sapindus saponaria, 1 plant Streb",
+     "work_url": "https://app.nrds.io/works/edit/planting_work/749/"
+    },
+    {
+     "date_num": "20180712",
+     "month_": "July",
+     "poly_name": "20180710_Hauaina_Orange",
+     "taxa_plant": "1 plant Dodonaea viscosa, 2 plant Metrosideros polymorpha var. polymorpha, 1 plant Osteomeles anthyllidifolia, 6 plant Plectranthus parviflorus, 2 plant Sida fallax, 64 plant Silene lanceolata",
+     "work_url": "https://app.nrds.io/works/edit/planting_work/755/"
+    }
+   ],
+   "service": "Carbon_Forestry_Projects_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Carbon_Forestry_Projects_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "name",
+   "count": 286,
+   "fields": [
+    "tmk_txt",
+    "cty_tmk",
+    "majorowner",
+    "qpub_link",
+    "name",
+    "taxid",
+    "ass_taxid",
+    "notes",
+    "hawaiistgrds.owner.parks_county_haw.area",
+    "county",
+    "island",
+    "date"
+   ],
+   "known": false,
+   "layer": "County Parks (Hawaii County)",
+   "sample": [
+    {
+     "ass_taxid": "9-5-017:007",
+     "county": "County of Hawaii",
+     "cty_tmk": "95017007",
+     "date": "20230316",
+     "hawaiistgrds.owner.parks_county_haw.area": "Kaʻū",
+     "island": "Hawaii",
+     "majorowner": "Govt. County of Hawaii",
+     "name": "Kawa Bay",
+     "notes": " ",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=950170070000",
+     "taxid": "9-5-017:007",
+     "tmk_txt": "395017007"
+    },
+    {
+     "ass_taxid": "8-9-004:001",
+     "county": "County of Hawaii",
+     "cty_tmk": "89004001",
+     "date": "20230316",
+     "hawaiistgrds.owner.parks_county_haw.area": "South Kona",
+     "island": "Hawaii",
+     "majorowner": "Govt. State",
+     "name": "Miloli‘i Beach Park",
+     "notes": " ",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=890040010000",
+     "taxid": "8-9-004:001",
+     "tmk_txt": "389004001"
+    },
+    {
+     "ass_taxid": "9-5-021:023",
+     "county": "County of Hawaii",
+     "cty_tmk": "95021023",
+     "date": "20230316",
+     "hawaiistgrds.owner.parks_county_haw.area": "Kaʻū",
+     "island": "Hawaii",
+     "majorowner": "Govt. County of Hawaii",
+     "name": "Nā‘ālehu Park",
+     "notes": " ",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=950210230000",
+     "taxid": "9-5-021:023",
+     "tmk_txt": "395021023"
+    }
+   ],
+   "service": "Infrastructure",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/17"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 279,
+   "fields": [
+    "BLDGNAME",
+    "BLDGALTNAME",
+    "MAPLABEL",
+    "BLDGSTATUS",
+    "BLDGCODE",
+    "BLDGTYPE",
+    "FACOWNER",
+    "FACOCCUPANT",
+    "FACMAINTAIN",
+    "FACUSE",
+    "SEASONAL",
+    "ISEXTANT",
+    "POLYGONTYPE",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "UNITCODE",
+    "UNITNAME",
+    "REGIONCODE",
+    "MAPMETHOD",
+    "MAPSOURCE"
+   ],
+   "known": false,
+   "layer": "Park_Structures",
+   "sample": [
+    {
+     "BLDGALTNAME": "P600 Paradise Inn",
+     "BLDGCODE": "35291700",
+     "BLDGNAME": "BLDG P600 Paradise (Inn)",
+     "BLDGSTATUS": "Existing",
+     "BLDGTYPE": "Bldg Lodge/Motel/Hotel",
+     "FACMAINTAIN": "NPS",
+     "FACOCCUPANT": "CONCESSION",
+     "FACOWNER": "NPS",
+     "FACUSE": "Public Use",
+     "ISEXTANT": "True",
+     "SEASONAL": "Y"
+    },
+    {
+     "BLDGALTNAME": "N102 QTRS Nisqually / Rangers Residence",
+     "BLDGCODE": "35300200",
+     "BLDGNAME": "QTRS N102 Nisqually (Rangers Residence)",
+     "BLDGSTATUS": "Existing",
+     "BLDGTYPE": "Bldg Housing Single Family",
+     "FACMAINTAIN": "NPS",
+     "FACOCCUPANT": "NPS",
+     "FACOWNER": "NPS",
+     "FACUSE": "Quarters",
+     "ISEXTANT": "True",
+     "SEASONAL": "Y"
+    },
+    {
+     "BLDGALTNAME": "O302 Ohana Campg. Comfort Station",
+     "BLDGCODE": "35240100",
+     "BLDGNAME": "BLDG O302 Ohana (Comfort Station) Campground B Loop",
+     "BLDGSTATUS": "Existing",
+     "BLDGTYPE": "Bldg Comfort Stations",
+     "FACMAINTAIN": "NPS",
+     "FACOCCUPANT": "NPS",
+     "FACOWNER": "NPS",
+     "FACUSE": "Public Use",
+     "ISEXTANT": "True",
+     "SEASONAL": "Unknown"
+    }
+   ],
+   "service": "MORA_Dev_Park_Structures_V",
+   "typef": "BLDGTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/MORA_Dev_Park_Structures_V/FeatureServer/1"
+  },
+  {
+   "agency": "Division of Forestry and Wildlife",
+   "area": "NAME",
+   "count": 231,
+   "fields": [
+    "NAME",
+    "MANAGEDBY",
+    "Island",
+    "Type_Definition",
+    "HIAdminRules",
+    "AddlHIAdminRules"
+   ],
+   "known": false,
+   "layer": "DesignatedReserves",
+   "sample": [
+    {
+     "HIAdminRules": "http://files.hawaii.gov/dlnr/dofaw/rules/Chap126.pdf",
+     "Island": "Hawaii",
+     "MANAGEDBY": "(DOFAW)",
+     "NAME": "MOKUPUKU ISLET SEABIRD SANCTUARY",
+     "Type_Definition": "Wildlife Sanctuary"
+    },
+    {
+     "HIAdminRules": "http://files.hawaii.gov/dlnr/dofaw/rules/Chap126.pdf",
+     "Island": "Hawaii",
+     "MANAGEDBY": "(DOFAW)",
+     "NAME": "PAOKALANI ISLET SEABIRD SANCTUARY",
+     "Type_Definition": "Wildlife Sanctuary"
+    },
+    {
+     "HIAdminRules": "http://dlnr.hawaii.gov/forestry/files/2013/03/Ch-104_2005.pdf",
+     "Island": "Hawaii",
+     "MANAGEDBY": "DOFAW",
+     "NAME": "PUU WAAWAA FOREST RESERVE",
+     "Type_Definition": "Forest Reserve"
+    }
+   ],
+   "service": "DOFAWManagedLandsV2",
+   "typef": "Type_Definition",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/DOFAWManagedLandsV2/FeatureServer/2"
+  },
+  {
+   "agency": "Division of Forestry and Wildlife",
+   "area": "NAME",
+   "count": 230,
+   "fields": [
+    "NAME",
+    "MANAGEDBY",
+    "Island",
+    "Type_Definition"
+   ],
+   "known": false,
+   "layer": "DesignatedReserves",
+   "sample": [
+    {
+     "Island": "Hawaii",
+     "MANAGEDBY": "(DOFAW)",
+     "NAME": "MOKUPUKU ISLET SEABIRD SANCTUARY",
+     "Type_Definition": "Wildlife Sanctuary"
+    },
+    {
+     "Island": "Hawaii",
+     "MANAGEDBY": "(DOFAW)",
+     "NAME": "PAOKALANI ISLET SEABIRD SANCTUARY",
+     "Type_Definition": "Wildlife Sanctuary"
+    },
+    {
+     "Island": "Hawaii",
+     "MANAGEDBY": "DOFAW",
+     "NAME": "PUU WAAWAA FOREST RESERVE",
+     "Type_Definition": "Forest Reserve"
+    }
+   ],
+   "service": "DOFAWManagedLands",
+   "typef": "Type_Definition",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/DOFAWManagedLands/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Island",
+   "count": 211,
+   "fields": [
+    "Island",
+    "Type_Defin",
+    "LinkToWebP",
+    "LinkToAdmi",
+    "LinkToAd_1",
+    "LinkToAd_2",
+    "LinkToAd_3",
+    "Name",
+    "PublicAcce",
+    "PermitAcce",
+    "Notice",
+    "Section_Pe"
+   ],
+   "known": false,
+   "layer": "Forest_Reserve_Permit_Access",
+   "sample": [
+    {
+     "Island": "Hawaii",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "http://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/puuwaawaa/",
+     "Name": "Pu‘u Wa‘awa‘a Forest Reserve",
+     "Notice": "Permits are issued by IPIF - (808) 933-8121",
+     "PermitAcce": " ",
+     "PublicAcce": "Access with Permit",
+     "Section_Pe": " ",
+     "Type_Defin": "Forest Reserve"
+    },
+    {
+     "Island": "Hawaii",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "http://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/",
+     "Name": "Ka‘ū Forest Reserve",
+     "Notice": " ",
+     "PermitAcce": " ",
+     "PublicAcce": "Public Access",
+     "Section_Pe": "Kamilo Sec.",
+     "Type_Defin": "Forest Reserve"
+    },
+    {
+     "Island": "Oahu",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "http://dlnr.hawaii.gov/forestry/frs/reserves/oahu/",
+     "Name": "Hau‘ula Forest Reserve",
+     "Notice": " ",
+     "PermitAcce": " ",
+     "PublicAcce": "Public Access",
+     "Section_Pe": " ",
+     "Type_Defin": "Forest Reserve"
+    }
+   ],
+   "service": "Forest_Reserve_Permit_Access",
+   "typef": "Type_Defin",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Forest_Reserve_Permit_Access/FeatureServer/0"
+  },
+  {
+   "agency": "DHHL; State Office of Planning GIS data",
+   "area": "ISLAND",
+   "count": 200,
+   "fields": [
+    "LUDCODE",
+    "ISLAND"
+   ],
+   "known": false,
+   "layer": "Clip_Govt_State_Conservation",
+   "sample": [
+    {
+     "ISLAND": "Kahoolawe",
+     "LUDCODE": "C"
+    },
+    {
+     "ISLAND": "Kahoolawe",
+     "LUDCODE": "C"
+    },
+    {
+     "ISLAND": "Hawaii",
+     "LUDCODE": "C"
+    }
+   ],
+   "service": "Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 161,
+   "fields": [
+    "STATE",
+    "REGIONCODE",
+    "GROUPCODE",
+    "GROUPNAME",
+    "UNITCODE",
+    "UNITNAME",
+    "UNITTYPE",
+    "PARKAREA",
+    "MAPLABEL",
+    "LANDS_UNITCODE",
+    "LANDS_UNITNAME",
+    "WEBSITE",
+    "NPGALLERY_ID",
+    "IMG_URL",
+    "IMG_THUMB_URL",
+    "IMG_ALT_TEXT",
+    "IMG_CAPTION",
+    "IMG_TITLE",
+    "IMG_CREDIT",
+    "PHOTO_URL"
+   ],
+   "known": false,
+   "layer": "Park Management Boundaries",
+   "sample": [
+    {
+     "GROUPCODE": "NACE",
+     "GROUPNAME": "National Capital Parks-East",
+     "LANDS_UNITCODE": "NACA",
+     "LANDS_UNITNAME": "National Capital Parks",
+     "PARKAREA": "National Capital Parks-East",
+     "REGIONCODE": "NCR",
+     "STATE": "DC",
+     "UNITCODE": "NACE",
+     "UNITNAME": "National Capital Parks-East",
+     "WEBSITE": "https://www.nps.gov/nace/index.htm"
+    },
+    {
+     "GROUPCODE": "NACE",
+     "GROUPNAME": "National Capital Parks-East",
+     "LANDS_UNITCODE": "NACA",
+     "LANDS_UNITNAME": "National Capital Parks",
+     "PARKAREA": "National Capital Parks-East",
+     "REGIONCODE": "NCR",
+     "STATE": "DC",
+     "UNITCODE": "NACE",
+     "UNITNAME": "National Capital Parks-East",
+     "WEBSITE": "https://www.nps.gov/nace/index.htm"
+    },
+    {
+     "GROUPCODE": "NACE",
+     "GROUPNAME": "National Capital Parks-East",
+     "LANDS_UNITCODE": "PISC",
+     "LANDS_UNITNAME": "Piscataway Park",
+     "PARKAREA": "Piscataway Park",
+     "REGIONCODE": "NCR",
+     "STATE": "MD",
+     "UNITCODE": "PISC",
+     "UNITNAME": "Piscataway Park",
+     "UNITTYPE": "Other Designation",
+     "WEBSITE": "https://www.nps.gov/pisc/index.htm"
+    }
+   ],
+   "service": "NACE_Park_Mgmt_Boundaries_Public",
+   "typef": "UNITTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Park_Mgmt_Boundaries_Public/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 154,
+   "fields": [
+    "Name",
+    "PermitArea",
+    "Type",
+    "TypeDef",
+    "Island",
+    "Owner",
+    "ManagedBy",
+    "PubAccess",
+    "LinkWeb",
+    "LinkHAR1",
+    "LinkHAR2",
+    "NameSearch",
+    "PASearch",
+    "Enabled",
+    "NameCombine",
+    "DistrictOffice",
+    "Area_notes"
+   ],
+   "known": false,
+   "layer": "ForestReserveCollectionPermitv3",
+   "sample": [
+    {
+     "Island": "Hawaiʻi",
+     "LinkHAR1": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkHAR2": " ",
+     "LinkWeb": "http://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/puuwaawaa/",
+     "ManagedBy": "DOFAW",
+     "Name": "Pu‘u Wa‘awa‘a Forest Reserve",
+     "NameSearch": "Puu Waawaa Forest Reserve",
+     "Owner": "State DOFAW",
+     "PermitArea": " ",
+     "PubAccess": "Public Access",
+     "Type": "fr",
+     "TypeDef": "Forest Reserve"
+    },
+    {
+     "Island": "Hawaiʻi",
+     "LinkHAR1": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkHAR2": " ",
+     "LinkWeb": "http://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/",
+     "ManagedBy": "DOFAW",
+     "Name": "Ka‘ū Forest Reserve",
+     "NameSearch": "Kau Forest Reserve",
+     "Owner": "State DOFAW",
+     "PermitArea": "Kamilo Section",
+     "PubAccess": "Public Access",
+     "Type": "fr",
+     "TypeDef": "Forest Reserve"
+    },
+    {
+     "Island": "Oʻahu",
+     "LinkHAR1": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkHAR2": " ",
+     "LinkWeb": "http://dlnr.hawaii.gov/forestry/frs/reserves/oahu/",
+     "ManagedBy": "DOFAW",
+     "Name": "Hau‘ula Forest Reserve",
+     "NameSearch": "Hauula Forest Reserve",
+     "Owner": "State DOFAW",
+     "PermitArea": " ",
+     "PubAccess": "Not Publicly Accessible",
+     "Type": "fr",
+     "TypeDef": "Forest Reserve"
+    }
+   ],
+   "service": "ForestReserveCollectionPermitv3",
+   "typef": "Type",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/ForestReserveCollectionPermitv3/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 152,
+   "fields": [
+    "HYDROTYPE",
+    "NAME",
+    "LABEL",
+    "DESCRIPTION",
+    "HYDROCOVERED",
+    "LINECOVERAGE",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE",
+    "MAPMETHOD",
+    "MAPSOURCE",
+    "XYACCURACY",
+    "GEOMETRYID",
+    "NOTES",
+    "IN_PARK",
+    "PARKTILES"
+   ],
+   "known": false,
+   "layer": "Rivers and Streams (polygons)",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "GROUPCODE": "MANA",
+     "GROUPNAME": "Manassas National Battlefield Park",
+     "HYDROTYPE": "River",
+     "LABEL": "Bull Run",
+     "PUBLICDISPLAY": "Public Map Display",
+     "UNITCODE": "MANA",
+     "UNITNAME": "Manassas National Battlefield Park"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GROUPCODE": "MANA",
+     "GROUPNAME": "Manassas National Battlefield Park",
+     "HYDROTYPE": "River",
+     "LABEL": "Little Bull Run",
+     "PUBLICDISPLAY": "Public Map Display",
+     "UNITCODE": "MANA",
+     "UNITNAME": "Manassas National Battlefield Park"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GROUPCODE": "MANA",
+     "GROUPNAME": "Manassas National Battlefield Park",
+     "HYDROTYPE": "River",
+     "LABEL": "Little Bull Run (under road)",
+     "PUBLICDISPLAY": "Public Map Display",
+     "UNITCODE": "MANA",
+     "UNITNAME": "Manassas National Battlefield Park"
+    }
+   ],
+   "service": "NCR_Hydrography_ParkTiles",
+   "typef": "HYDROTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCR_Hydrography_ParkTiles/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 142,
+   "fields": [
+    "TYPE",
+    "NAME",
+    "MANAGEDBY",
+    "Island",
+    "Type_Defin",
+    "LinkToWebP",
+    "LinkToAdmi",
+    "LinkToAd_1",
+    "LinkToAd_2",
+    "LinkToAd_3",
+    "PublicAcce"
+   ],
+   "known": false,
+   "layer": "ForestReserve_Access",
+   "sample": [
+    {
+     "Island": "Hawaii",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "http://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/puuwaawaa/",
+     "MANAGEDBY": "DOFAW",
+     "NAME": "PUU WAAWAA FOREST RESERVE",
+     "PublicAcce": "Public Access",
+     "TYPE": "fr",
+     "Type_Defin": "Forest Reserve"
+    },
+    {
+     "Island": "Hawaii",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "http://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/",
+     "MANAGEDBY": "DOFAW",
+     "NAME": "KAU FOREST RESERVE (KAMILO SECTION)",
+     "PublicAcce": "Public Access",
+     "TYPE": "fr",
+     "Type_Defin": "Forest Reserve"
+    },
+    {
+     "Island": "Oahu",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "http://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "http://dlnr.hawaii.gov/forestry/frs/reserves/oahu/",
+     "MANAGEDBY": "DOFAW",
+     "NAME": "HAUULA FOREST RESERVE",
+     "PublicAcce": "Public Access",
+     "TYPE": "fr",
+     "Type_Defin": "Forest Reserve"
+    }
+   ],
+   "service": "ForestReserve_Access",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/ForestReserve_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 127,
+   "fields": [
+    "HYDROTYPE",
+    "NAME",
+    "NAMEALT",
+    "MAPLABEL",
+    "DESCRIPTION",
+    "PUBLICDISPLAY",
+    "DATAACCESS",
+    "ACCESSNOTES",
+    "OPENTOPUBLIC",
+    "POLYGONTYPE",
+    "MAINTAINER",
+    "ISEXTANT",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE",
+    "MAPMETHOD",
+    "MAPSOURCE",
+    "ORIGINATOR"
+   ],
+   "known": false,
+   "layer": "Ponds, Lakes, Fountains, and Pools",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "HYDROTYPE": "Pond or Lake",
+     "ISEXTANT": "True",
+     "MAINTAINER": "Unknown",
+     "OPENTOPUBLIC": "Yes",
+     "POLYGONTYPE": "Perimeter polygon",
+     "PUBLICDISPLAY": "Public Map Display"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "HYDROTYPE": "Pond or Lake",
+     "ISEXTANT": "True",
+     "MAINTAINER": "Unknown",
+     "NAME": "Rosefield Upper Pond",
+     "OPENTOPUBLIC": "Yes",
+     "POLYGONTYPE": "Perimeter polygon",
+     "PUBLICDISPLAY": "Public Map Display"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "HYDROTYPE": "Pond or Lake",
+     "ISEXTANT": "True",
+     "MAINTAINER": "Unknown",
+     "OPENTOPUBLIC": "Yes",
+     "POLYGONTYPE": "Perimeter polygon",
+     "PUBLICDISPLAY": "Public Map Display"
+    }
+   ],
+   "service": "NCR_Hydrography_ParkTiles",
+   "typef": "HYDROTYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCR_Hydrography_ParkTiles/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 119,
+   "fields": [
+    "TMK",
+    "DCCR_Lot_N",
+    "DCCR_Use",
+    "SQFT"
+   ],
+   "known": false,
+   "layer": "Ag_Park_Lots",
+   "sample": [
+    {
+     "DCCR_Lot_N": "2",
+     "DCCR_Use": "R",
+     "SQFT": "43,561",
+     "TMK": "48010005"
+    },
+    {
+     "DCCR_Lot_N": "111",
+     "DCCR_Use": "A",
+     "SQFT": "0",
+     "TMK": "48008023"
+    },
+    {
+     "DCCR_Lot_N": "1",
+     "DCCR_Use": "A",
+     "SQFT": "0",
+     "TMK": "48010003"
+    }
+   ],
+   "service": "Ag_Park_Lots",
+   "typef": "DCCR_Use",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Ag_Park_Lots/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 111,
+   "fields": [
+    "TMK_txt",
+    "cty_tmk",
+    "MajorOwner",
+    "qpub_link",
+    "Name",
+    "TaxID",
+    "Ass_TaxID",
+    "Notes",
+    "Area",
+    "County",
+    "Island",
+    "Date"
+   ],
+   "known": false,
+   "layer": "HawaiiCountyParks",
+   "sample": [
+    {
+     "Area": "South Hilo",
+     "Ass_TaxID": "2-4-060:001; 2-4-029:028",
+     "County": "County of Hawaii",
+     "Date": "20230316",
+     "Island": "Hawaii",
+     "MajorOwner": "Govt. County of Hawaii",
+     "Name": "Machado Acres Park",
+     "Notes": " ",
+     "TMK_txt": "324029028",
+     "TaxID": "2-4-029:028",
+     "cty_tmk": "24029028",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=240290280000"
+    },
+    {
+     "Area": "South Hilo",
+     "Ass_TaxID": "2-4-060:001; 2-4-029:028",
+     "County": "County of Hawaii",
+     "Date": "20230316",
+     "Island": "Hawaii",
+     "MajorOwner": "Govt. County of Hawaii",
+     "Name": "Machado Acres Park",
+     "Notes": " ",
+     "TMK_txt": "324060001",
+     "TaxID": "2-4-060:001",
+     "cty_tmk": "24060001",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=240600010000"
+    },
+    {
+     "Area": "South Hilo",
+     "Ass_TaxID": "2-4-035:001, 002, 004",
+     "County": "County of Hawaii",
+     "Date": "20230316",
+     "Island": "Hawaii",
+     "MajorOwner": "Govt. County of Hawaii",
+     "Name": "Waiākea ʻUka Park",
+     "Notes": "Stanley Costales Waiākea ʻUka Gym",
+     "TMK_txt": "324035001",
+     "TaxID": "2-4-035:001",
+     "cty_tmk": "24035001",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=240350010000"
+    }
+   ],
+   "service": "DHHL_Kings_Landing_Studies",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/DHHL_Kings_Landing_Studies/FeatureServer/32"
+  },
+  {
+   "agency": "DHHL; State Office of Planning GIS data",
+   "area": "",
+   "count": 100,
+   "fields": [
+    "DESGNATN",
+    "Place",
+    "PlanDate",
+    "REF",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Hawaii_Island_Plan",
+   "sample": [
+    {
+     "DESGNATN": "Commercial",
+     "Place": "Honokohau",
+     "PlanDate": "January 2009"
+    },
+    {
+     "DESGNATN": "Commercial",
+     "Place": "Kalaoa",
+     "PlanDate": "January 2009"
+    },
+    {
+     "DESGNATN": "Commercial",
+     "Place": "Kamaoa-Puueo",
+     "PlanDate": "May 2002"
+    }
+   ],
+   "service": "Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Island",
+   "count": 93,
+   "fields": [
+    "Island",
+    "CONSERVA_2"
+   ],
+   "known": false,
+   "layer": "Conservation Resources",
+   "sample": [
+    {
+     "CONSERVA_2": "C2",
+     "Island": "Oahu"
+    },
+    {
+     "CONSERVA_2": "C1",
+     "Island": "Oahu"
+    },
+    {
+     "CONSERVA_2": "C1",
+     "Island": "Oahu"
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_Evaluation_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_Evaluation_WFL1/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "Island",
+   "count": 93,
+   "fields": [
+    "Island",
+    "CONSERVA_2"
+   ],
+   "known": false,
+   "layer": "Conservation Resources",
+   "sample": [
+    {
+     "CONSERVA_2": "C2",
+     "Island": "Oahu"
+    },
+    {
+     "CONSERVA_2": "C1",
+     "Island": "Oahu"
+    },
+    {
+     "CONSERVA_2": "C1",
+     "Island": "Oahu"
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 86,
+   "fields": [
+    "year"
+   ],
+   "known": false,
+   "layer": "Historical Sugarcane Lands - 1937",
+   "sample": [
+    {
+     "year": "1937"
+    },
+    {
+     "year": "1937"
+    },
+    {
+     "year": "1937"
+    }
+   ],
+   "service": "LandUseLandCover",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/LandUseLandCover/MapServer/25"
+  },
+  {
+   "agency": "",
+   "area": "UNITNAME",
+   "count": 86,
+   "fields": [
+    "TRLNAME",
+    "TRLALTNAME",
+    "MAPLABEL",
+    "TRAILFEATURE",
+    "TRLFEATTYPE",
+    "TRLSTATUS",
+    "TRLTYPE",
+    "TRLCLASS",
+    "TRLUSE",
+    "TRLSURFACE",
+    "NATLTRAILCODE",
+    "NATLTRAILNAME",
+    "UNITCODE",
+    "UNITNAME",
+    "GROUPCODE",
+    "GROUPNAME",
+    "REGIONCODE",
+    "GEOMETRYID",
+    "NOTES",
+    "MAPSYMBOL"
+   ],
+   "known": false,
+   "layer": "Mount Vernon Trail Polygon",
+   "sample": [
+    {
+     "NATLTRAILCODE": "POHE",
+     "NATLTRAILNAME": "Potomac Heritage National Scenic Trail",
+     "TRAILFEATURE": "Surface Trail",
+     "TRLALTNAME": "Potomac Heritage Trail",
+     "TRLCLASS": "Class 5: Fully Developed",
+     "TRLFEATTYPE": "Park Trail",
+     "TRLNAME": "Mount Vernon Trail",
+     "TRLSTATUS": "Existing",
+     "TRLSURFACE": "Asphalt",
+     "TRLTYPE": "Standard Terra Trail",
+     "TRLUSE": "Hiker / Pedestrian | Bicycle"
+    },
+    {
+     "NATLTRAILCODE": "POHE",
+     "NATLTRAILNAME": "Potomac Heritage National Scenic Trail",
+     "TRAILFEATURE": "Surface Trail",
+     "TRLALTNAME": "Potomac Heritage Trail",
+     "TRLCLASS": "Class 5: Fully Developed",
+     "TRLFEATTYPE": "Park Trail",
+     "TRLNAME": "Mount Vernon Trail",
+     "TRLSTATUS": "Existing",
+     "TRLSURFACE": "Asphalt",
+     "TRLTYPE": "Standard Terra Trail",
+     "TRLUSE": "Hiker / Pedestrian | Bicycle"
+    },
+    {
+     "NATLTRAILCODE": "POHE",
+     "NATLTRAILNAME": "Potomac Heritage National Scenic Trail",
+     "TRAILFEATURE": "Bridge, Boardwalk, or Overpass",
+     "TRLALTNAME": "Potomac Heritage Trail",
+     "TRLCLASS": "Class 5: Fully Developed",
+     "TRLFEATTYPE": "Park Trail",
+     "TRLNAME": "Mount Vernon Trail",
+     "TRLSTATUS": "Existing",
+     "TRLSURFACE": "Unknown",
+     "TRLTYPE": "Standard Terra Trail",
+     "TRLUSE": "Hiker / Pedestrian | Bicycle"
+    }
+   ],
+   "service": "GWMP_Mount_Vernon_Trail_Polygon",
+   "typef": "TRAILFEATURE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GWMP_Mount_Vernon_Trail_Polygon/FeatureServer/2"
+  },
+  {
+   "agency": "DHHL; State Office of Planning GIS data",
+   "area": "",
+   "count": 84,
+   "fields": [
+    "LandUseDes",
+    "Place",
+    "PlanDate",
+    "REF",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Oahu_Island_Plan",
+   "sample": [
+    {
+     "LandUseDes": "Commercial",
+     "Place": "Kanehili",
+     "PlanDate": "July 2014"
+    },
+    {
+     "LandUseDes": "Commercial",
+     "Place": "Kapalama",
+     "PlanDate": "July 2014"
+    },
+    {
+     "LandUseDes": "Commercial",
+     "Place": "Kapolei",
+     "PlanDate": "July 2014"
+    }
+   ],
+   "service": "Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map",
+   "typef": "LandUseDes",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map/FeatureServer/4"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 82,
+   "fields": [
+    "year"
+   ],
+   "known": false,
+   "layer": "Historical Sugarcane Lands - 1920",
+   "sample": [
+    {
+     "year": "1920"
+    },
+    {
+     "year": "1920"
+    },
+    {
+     "year": "1920"
+    }
+   ],
+   "service": "LandUseLandCover",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/LandUseLandCover/MapServer/24"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 68,
+   "fields": [],
+   "known": false,
+   "layer": "20180118_Allowed_Parking",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 16331.81640625,
+     "Shape__Length": 828.2096467904257
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 22021.453125,
+     "Shape__Length": 800.3527590285345
+    },
+    {
+     "FID": 3,
+     "Id": 0,
+     "Shape__Area": 3191.05078125,
+     "Shape__Length": 240.84870983913044
+    }
+   ],
+   "service": "20180118_Allowed_Parking",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/20180118_Allowed_Parking/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Island",
+   "count": 68,
+   "fields": [
+    "CLASS",
+    "Island",
+    "LastUpdate"
+   ],
+   "known": false,
+   "layer": "Vegetation Resources",
+   "sample": [
+    {
+     "CLASS": "V2",
+     "Island": "Oahu",
+     "LastUpdate": "03/2009"
+    },
+    {
+     "CLASS": "V2",
+     "Island": "Oahu",
+     "LastUpdate": "03/2009"
+    },
+    {
+     "CLASS": "V1",
+     "Island": "Oahu",
+     "LastUpdate": "03/2009"
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_Evaluation_WFL1",
+   "typef": "CLASS",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_Evaluation_WFL1/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "Island",
+   "count": 68,
+   "fields": [
+    "CLASS",
+    "Island",
+    "LastUpdate"
+   ],
+   "known": false,
+   "layer": "Vegetation Resources",
+   "sample": [
+    {
+     "CLASS": "V2",
+     "Island": "Oahu",
+     "LastUpdate": "03/2009"
+    },
+    {
+     "CLASS": "V2",
+     "Island": "Oahu",
+     "LastUpdate": "03/2009"
+    },
+    {
+     "CLASS": "V1",
+     "Island": "Oahu",
+     "LastUpdate": "03/2009"
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_WFL1",
+   "typef": "CLASS",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 56,
+   "fields": [
+    "year"
+   ],
+   "known": false,
+   "layer": "Historical Pineapple Lands - 1937",
+   "sample": [
+    {
+     "year": "1937"
+    },
+    {
+     "year": "1937"
+    },
+    {
+     "year": "1937"
+    }
+   ],
+   "service": "LandUseLandCover",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/LandUseLandCover/MapServer/22"
+  },
+  {
+   "agency": "DHHL; State Office of Planning GIS data",
+   "area": "",
+   "count": 56,
+   "fields": [
+    "Desgnatn",
+    "Place",
+    "PlanDate",
+    "REF",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Maui_Island_Plan_rev1",
+   "sample": [
+    {
+     "Desgnatn": "Community Use",
+     "Place": "Keanae",
+     "PlanDate": "September 2004"
+    },
+    {
+     "Desgnatn": "Community Use",
+     "Place": "Keanae",
+     "PlanDate": "September 2004"
+    },
+    {
+     "Desgnatn": "Subsistence Agriculture",
+     "Place": "Wailua",
+     "PlanDate": "September 2004"
+    }
+   ],
+   "service": "Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map/FeatureServer/2"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 55,
+   "fields": [
+    "year"
+   ],
+   "known": false,
+   "layer": "Historical Sugarcane Lands - 1900",
+   "sample": [
+    {
+     "year": "1900"
+    },
+    {
+     "year": "1900"
+    },
+    {
+     "year": "1900"
+    }
+   ],
+   "service": "LandUseLandCover",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/LandUseLandCover/MapServer/23"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 52,
+   "fields": [],
+   "known": false,
+   "layer": "20180118_Parking_Access_Street",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 1867.3515625,
+     "Shape__Length": 297.0277141432128
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 5683.17578125,
+     "Shape__Length": 587.4022522816728
+    },
+    {
+     "FID": 3,
+     "Id": 0,
+     "Shape__Area": 9534.9609375,
+     "Shape__Length": 956.1580883915476
+    }
+   ],
+   "service": "20180118_Parking_Access_Street",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/20180118_Parking_Access_Street/FeatureServer/0"
+  },
+  {
+   "agency": "Anna Tegarden, GIS Specialist",
+   "area": "NAME",
+   "count": 47,
+   "fields": [
+    "TYPE_",
+    "DOCUMENT",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Wilderness",
+   "sample": [
+    {
+     "DOCUMENT": "Back Country Management Plan",
+     "NAME": "Joshua Tree",
+     "TYPE_": "Proposed Wilderness Addition"
+    },
+    {
+     "DOCUMENT": "PL 103-43 (Desert Protection Act)",
+     "NAME": "Joshua Tree",
+     "TYPE_": "Wilderness"
+    },
+    {
+     "DOCUMENT": "PL 94-567 (Wilderness Act)",
+     "NAME": "Joshua Tree",
+     "TYPE_": "Potential Wilderness"
+    }
+   ],
+   "service": "JOTR_CMP_Wilderness_0220110",
+   "typef": "TYPE_",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_CMP_Wilderness_0220110/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 47,
+   "fields": [
+    "TYPE",
+    "DOCUMENT",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Wilderness",
+   "sample": [
+    {
+     "DOCUMENT": "Back Country Management Plan",
+     "NAME": "Joshua Tree",
+     "TYPE": "Proposed Wilderness Addition"
+    },
+    {
+     "DOCUMENT": "PL 103-43 (Desert Protection Act)",
+     "NAME": "Joshua Tree",
+     "TYPE": "Wilderness"
+    },
+    {
+     "DOCUMENT": "PL 94-567 (Wilderness Act)",
+     "NAME": "Joshua Tree",
+     "TYPE": "Potential Wilderness"
+    }
+   ],
+   "service": "JOTR_WildernessPublic_Web_201805",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_WildernessPublic_Web_201805/FeatureServer/4"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 44,
+   "fields": [
+    "year"
+   ],
+   "known": false,
+   "layer": "Historical Pineapple Lands - 1920",
+   "sample": [
+    {
+     "year": "1920"
+    },
+    {
+     "year": "1920"
+    },
+    {
+     "year": "1920"
+    }
+   ],
+   "service": "LandUseLandCover",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/LandUseLandCover/MapServer/21"
+  },
+  {
+   "agency": "State of Hawaii Office of Planning Parks layer",
+   "area": "NAME",
+   "count": 44,
+   "fields": [
+    "NAME",
+    "FIRST_FIRST_OWN",
+    "FIRST_FIRST_TYPE",
+    "FIRST_Park_Hours",
+    "FIRST_Name_1",
+    "FIRST_Shoreline_Access",
+    "FIRST_Camping",
+    "FIRST_Tents",
+    "FIRST_Driving_on_Beach",
+    "FIRST_Animals_in_Parks",
+    "FIRST_Link"
+   ],
+   "known": false,
+   "layer": "OahuBeachParks2",
+   "sample": [
+    {
+     "FIRST_Animals_in_Parks": "Section 10.7 - Animals in public parks",
+     "FIRST_Camping": "Section 10.1-2a (13) - Unlawful for any person to camp at any park not designated as a campground",
+     "FIRST_Driving_on_Beach": "Section 10.1-5a - No person shall operate, park, store or otherwise exert control over any unauthorized motor vehicle on any public beach with the exception of areas specifically designed to accommodate motor vehicles such as paved roads for boat launchings.",
+     "FIRST_FIRST_OWN": "City",
+     "FIRST_FIRST_TYPE": "beach",
+     "FIRST_Link": "https://www.honolulu.gov/rep/site/dpr/rules/ROH_Chapter_10.pdf",
+     "FIRST_Name_1": "ʻĀweoweo Beach Park",
+     "FIRST_Park_Hours": "5:00a-10:00p",
+     "FIRST_Shoreline_Access": "Section 10.1-2a (12) - Unlawful for any person to enter or remain in any public park during the night hours that the park is closed, provided that signs are posted indicating the hours that the park is closed, except that a person may traverse a public beach park using the most direct route during park closure hours for the purpose of reaching the shoreline",
+     "FIRST_Tents": "Section 10.1-2b (9) - Unlawful for any person to construct, utilize, place, occupy, leave, or in any other manner situate any tent.",
+     "NAME": "Aweoweo Beach Park"
+    },
+    {
+     "FIRST_Animals_in_Parks": "Section 10.7 - Animals in public parks",
+     "FIRST_Camping": "Section 10.1-2a (13) - Unlawful for any person to camp at any park not designated as a campground",
+     "FIRST_Driving_on_Beach": "Section 10.1-5a - No person shall operate, park, store or otherwise exert control over any unauthorized motor vehicle on any public beach with the exception of areas specifically designed to accommodate motor vehicles such as paved roads for boat launchings.",
+     "FIRST_FIRST_OWN": "City",
+     "FIRST_FIRST_TYPE": "beach",
+     "FIRST_Link": "https://www.honolulu.gov/rep/site/dpr/rules/ROH_Chapter_10.pdf",
+     "FIRST_Name_1": "Banzai Rock Beach Support Park",
+     "FIRST_Park_Hours": "5:00a-10:00p",
+     "FIRST_Shoreline_Access": "Section 10.1-2a (12) - Unlawful for any person to enter or remain in any public park during the night hours that the park is closed, provided that signs are posted indicating the hours that the park is closed, except that a person may traverse a public beach park using the most direct route during park closure hours for the purpose of reaching the shoreline",
+     "FIRST_Tents": "Section 10.1-2b (9) - Unlawful for any person to construct, utilize, place, occupy, leave, or in any other manner situate any tent.",
+     "NAME": "Banzai Rock Beach Support Park"
+    },
+    {
+     "FIRST_Animals_in_Parks": "Section 10.7 - Animals in public parks",
+     "FIRST_Camping": "Section 10.1-2a (13) - Unlawful for any person to camp at any park not designated as a campground",
+     "FIRST_Driving_on_Beach": "Section 10.1-5a - No person shall operate, park, store or otherwise exert control over any unauthorized motor vehicle on any public beach with the exception of areas specifically designed to accommodate motor vehicles such as paved roads for boat launchings.",
+     "FIRST_FIRST_OWN": "City",
+     "FIRST_FIRST_TYPE": "beach",
+     "FIRST_Link": "https://www.honolulu.gov/rep/site/dpr/rules/ROH_Chapter_10.pdf",
+     "FIRST_Name_1": "Barbers Point Beach Park",
+     "FIRST_Park_Hours": "5:00a-10:00p",
+     "FIRST_Shoreline_Access": "Section 10.1-2a (12) - Unlawful for any person to enter or remain in any public park during the night hours that the park is closed, provided that signs are posted indicating the hours that the park is closed, except that a person may traverse a public beach park using the most direct route during park closure hours for the purpose of reaching the shoreline",
+     "FIRST_Tents": "Section 10.1-2b (9) - Unlawful for any person to construct, utilize, place, occupy, leave, or in any other manner situate any tent.",
+     "NAME": "Barbers Point Beach Park"
+    }
+   ],
+   "service": "Oahu_County_Beach_Parks",
+   "typef": "FIRST_FIRST_TYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Oahu_County_Beach_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 40,
+   "fields": [
+    "Use_Type",
+    "Times",
+    "Duration",
+    "Summary",
+    "Metered_Parking",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Accessible Public Parking Areas",
+   "sample": [
+    {
+     "Duration": "3 Hour",
+     "Metered_Parking": "Metered Car Parking (Disabled Tag Required)",
+     "Times": "7:00AM - 08:00PM All Days;No Parking 1:00AM-6:00AM",
+     "Use_Type": "Accessible Public Parking"
+    },
+    {
+     "Duration": "3 Hour",
+     "Metered_Parking": "Metered Car Parking (Disabled Tag Required)",
+     "Times": "7:00AM - 08:00PM All Days;No Parking 1:00AM-6:00AM",
+     "Use_Type": "Accessible Public Parking"
+    },
+    {
+     "Duration": "2 Hour",
+     "Metered_Parking": "Metered Car Parking (Disabled Tag Required)",
+     "Use_Type": "Accessible Public Parking"
+    }
+   ],
+   "service": "NAMA_Accessible_Public_Parking",
+   "typef": "Use_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NAMA_Accessible_Public_Parking/FeatureServer/0"
+  },
+  {
+   "agency": "DHHL; State Office of Planning GIS data",
+   "area": "",
+   "count": 38,
+   "fields": [
+    "Place",
+    "PlanDate",
+    "REF",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Kauai_Island_Plan",
+   "sample": [
+    {
+     "Place": "Anahola",
+     "PlanDate": "May 2004"
+    },
+    {
+     "Place": "Hanapepe",
+     "PlanDate": "May 2004"
+    },
+    {
+     "Place": "Wailua",
+     "PlanDate": "May 2004"
+    }
+   ],
+   "service": "Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map/FeatureServer/1"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "moku",
+    "mokupuni",
+    "other"
+   ],
+   "known": false,
+   "layer": "Moku",
+   "sample": [
+    {
+     "moku": "Kona",
+     "mokupuni": "Ni'ihau",
+     "other": "Ni'ihau"
+    },
+    {
+     "moku": "Koʻolau",
+     "mokupuni": "Kaua'i",
+     "other": "Kaua'i"
+    },
+    {
+     "moku": "Halele'a",
+     "mokupuni": "Kaua'i",
+     "other": "Kaua'i"
+    }
+   ],
+   "service": "HistoricCultural",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/HistoricCultural/MapServer/3"
+  },
+  {
+   "agency": "DHHL; State Office of Planning GIS data",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "Desgnatn",
+    "Place",
+    "PlanDate",
+    "REF",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Molokai_Island_Plan",
+   "sample": [
+    {
+     "Desgnatn": "Commercial",
+     "Place": "Hoolehua-Palaau",
+     "PlanDate": "June 2005"
+    },
+    {
+     "Desgnatn": "Commercial",
+     "Place": "Kalamaula",
+     "PlanDate": "June 2005"
+    },
+    {
+     "Desgnatn": "Community Use",
+     "Place": "Hoolehua-Palaau",
+     "PlanDate": "June 2005"
+    }
+   ],
+   "service": "Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Sen_Hwn_Affairs_08_14_19_Conservation_Land_Map_web_map/FeatureServer/3"
+  },
+  {
+   "agency": "NPS Alaska Region GIS",
+   "area": "Name",
+   "count": 29,
+   "fields": [
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Descriptn",
+    "UnitCode",
+    "Unit",
+    "Unit_Type",
+    "Group_Code",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restriction",
+    "MetadataID",
+    "GeometryID",
+    "URL",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "AKR_BND_NON-DESIGNATED_WILDERNESS_PY_PUBLIC",
+   "sample": [
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Ineligible wilderness in Alagnak Wild River.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness",
+     "Group_Code": "ALAG",
+     "Name": "Alagnak Ineligible Wilderness",
+     "Notes": "Feature created by Alaska Region GIS Team on 12/1/2011. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Alagnak Wild River",
+     "UnitCode": "ALAG",
+     "Unit_Type": "Wild and Scenic River",
+     "Year": "2011"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Ineligible wilderness in Aniakchak National Monument and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness",
+     "Group_Code": "ANIA",
+     "Name": "Aniakchak Ineligible Wilderness",
+     "Notes": "Feature created by Alaska Region GIS Team on 10/22/2015. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Aniakchak National Monument and Preserve",
+     "UnitCode": "ANIA",
+     "Unit_Type": "National Monument and Preserve",
+     "Year": "2015"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Ineligible wilderness in Bering Land Bridge National Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness",
+     "Group_Code": "BELA",
+     "Name": "Bering Land Bridge Ineligible Wilderness",
+     "Notes": "Feature created by Alaska Region GIS Team on 8/31/2012. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Bering Land Bridge National Preserve",
+     "UnitCode": "BELA",
+     "Unit_Type": "National Preserve",
+     "Year": "2012"
+    }
+   ],
+   "service": "AKR_WILDERNESS_PUBLIC",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AKR_WILDERNESS_PUBLIC/FeatureServer/2"
+  },
+  {
+   "agency": "Compiled in 2002 by SOH, DLNR, DOFAW from various sources including the data pro",
+   "area": "NAME",
+   "count": 25,
+   "fields": [
+    "TYPE",
+    "NAME",
+    "MANAGEDBY",
+    "Island",
+    "Type_Defin",
+    "Owner",
+    "MapLabel",
+    "LinkToWebP",
+    "LinkToAdmi",
+    "LinkToAd_1",
+    "LinkToAd_2",
+    "LinkToAd_3",
+    "DOFAW_Desi"
+   ],
+   "known": false,
+   "layer": "DOFAW Managed Lands",
+   "sample": [
+    {
+     "Island": "Oahu",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "https://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "https://dlnr.hawaii.gov/forestry/frs/reserves/oahu/",
+     "MANAGEDBY": "DOFAW",
+     "MapLabel": " ",
+     "NAME": "HAUULA FOREST RESERVE",
+     "Owner": "State DOFAW",
+     "TYPE": "fr",
+     "Type_Defin": "Forest Reserve"
+    },
+    {
+     "Island": "Oahu",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "https://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "https://dlnr.hawaii.gov/forestry/frs/reserves/oahu/",
+     "MANAGEDBY": "DOFAW",
+     "MapLabel": " ",
+     "NAME": "KAIPAPAU FOREST RESERVE",
+     "Owner": "State DOFAW",
+     "TYPE": "fr",
+     "Type_Defin": "Forest Reserve"
+    },
+    {
+     "Island": "Oahu",
+     "LinkToAd_1": " ",
+     "LinkToAd_2": " ",
+     "LinkToAd_3": " ",
+     "LinkToAdmi": "https://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "LinkToWebP": "https://dlnr.hawaii.gov/forestry/frs/reserves/oahu/",
+     "MANAGEDBY": "DOFAW",
+     "MapLabel": " ",
+     "NAME": "KUAOKALA FOREST RESERVE",
+     "Owner": "State DOFAW",
+     "TYPE": "fr",
+     "Type_Defin": "Forest Reserve"
+    }
+   ],
+   "service": "Oahu_Forest_Reserve",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Oahu_Forest_Reserve/FeatureServer/2"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 23,
+   "fields": [
+    "airport"
+   ],
+   "known": false,
+   "layer": "HDOT Airports - Property Boundaries",
+   "sample": [
+    {
+     "airport": "Kalaupapa Airport (LUP)"
+    },
+    {
+     "airport": "Molokai Airport (MKK)"
+    },
+    {
+     "airport": "Kalaeloa Airport (JRF)"
+    }
+   ],
+   "service": "ParcelsZoning",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/31"
+  },
+  {
+   "agency": "NPS Alaska Region GIS",
+   "area": "Name",
+   "count": 23,
+   "fields": [
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Descriptn",
+    "UnitCode",
+    "Unit",
+    "Unit_Type",
+    "Group_Code",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restriction",
+    "MetadataID",
+    "GeometryID",
+    "URL",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "AKR_BND_LIMITED_NON-NPS_LAND_INTEREST_PY_PUBLIC",
+   "sample": [
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Limited or non-NPS land interest within ineligible wilderness in Alagnak Wild River.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Group_Code": "ALAG",
+     "Name": "Alagnak Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Notes": "Feature created by Alaska Region GIS Team on 12/1/2011. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Alagnak Wild River",
+     "UnitCode": "ALAG",
+     "Unit_Type": "Wild and Scenic River",
+     "Year": "2011"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Limited or non-NPS land interest within ineligible wilderness in Aniakchak National Monument and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Group_Code": "ANIA",
+     "Name": "Aniakchak Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Notes": "Feature created by Alaska Region GIS Team on 10/22/2015. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Aniakchak National Monument and Preserve",
+     "UnitCode": "ANIA",
+     "Unit_Type": "National Monument and Preserve",
+     "Year": "2015"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Limited or non-NPS land interest within ineligible wilderness in Bering Land Bridge National Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Group_Code": "BELA",
+     "Name": "Bering Land Bridge Ineligible Wilderness - Limited/Non-NPS Land Interest",
+     "Notes": "Feature created by Alaska Region GIS Team on 8/31/2012. Generated by ArcGIS Model Builder routine refreshed 20190501 using the Alaska Region Boundary geodatabase.",
+     "RegionCode": "AKR",
+     "Unit": "Bering Land Bridge National Preserve",
+     "UnitCode": "BELA",
+     "Unit_Type": "National Preserve",
+     "Year": "2012"
+    }
+   ],
+   "service": "AKR_WILDERNESS_PUBLIC",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AKR_WILDERNESS_PUBLIC/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "island",
+   "count": 22,
+   "fields": [
+    "island",
+    "Species",
+    "Common"
+   ],
+   "known": false,
+   "layer": "hi_forestbird_revised_recoveryplan_areas_2006",
+   "sample": [
+    {
+     "Common": "Akikiki, Kauai creeper",
+     "Species": "Oreomsytis bairdi",
+     "island": "KA"
+    },
+    {
+     "Common": "Akikiki, Kauai creeper",
+     "Species": "Oreomsytis bairdi",
+     "island": "KA"
+    },
+    {
+     "Common": "Akikiki, Kauai creeper",
+     "Species": "Oreomsytis bairdi",
+     "island": "KA"
+    }
+   ],
+   "service": "hi_forestbird_revised_recoveryplan_areas_2006",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/hi_forestbird_revised_recoveryplan_areas_2006/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 20,
+   "fields": [],
+   "known": false,
+   "layer": "20180118_Alternative_Parking_Access_Street",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 15590.890625,
+     "Shape__Length": 1460.8586550458656
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 42270.66015625,
+     "Shape__Length": 3031.805295869096
+    },
+    {
+     "FID": 3,
+     "Id": 0,
+     "Shape__Area": 34632.8515625,
+     "Shape__Length": 2391.2109262488493
+    }
+   ],
+   "service": "20180118_Alternative_Parking_Access_Street",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/20180118_Alternative_Parking_Access_Street/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 19,
+   "fields": [
+    "Zone",
+    "GeometryID",
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Descriptio",
+    "UnitCode",
+    "GroupCode",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restrictio",
+    "MetadataID",
+    "URL",
+    "GNIS_ID",
+    "Type",
+    "NameofAsso"
+   ],
+   "known": false,
+   "layer": "BND_Management_Zonesv2_py",
+   "sample": [
+    {
+     "CreateName": "Paul Teague",
+     "Descriptio": "Submerged Marine Land Nonwilderness",
+     "EditName": " ",
+     "Feat_Type": "Nonwilderness",
+     "GeometryID": " ",
+     "GroupCode": "SER",
+     "Name": "Marjory Stoneman Douglas Wilderness Area",
+     "Notes": " ",
+     "RegionCode": "SER",
+     "UnitCode": "EVER",
+     "Year": "1989",
+     "Zone": "Developed"
+    },
+    {
+     "CreateName": "Paul Teague",
+     "Descriptio": "Nonwilderness",
+     "EditName": " ",
+     "Feat_Type": "Nonwilderness",
+     "GeometryID": " ",
+     "GroupCode": "SER",
+     "Name": "Marjory Stoneman Douglas Wilderness Area",
+     "Notes": " ",
+     "RegionCode": "SER",
+     "UnitCode": "EVER",
+     "Year": "1989",
+     "Zone": "Frontcountry"
+    },
+    {
+     "CreateName": "Denver Service Center Staff",
+     "Descriptio": "Nonwilderness",
+     "EditName": "Caryl Alarcon",
+     "Feat_Type": "Nonwilderness",
+     "GeometryID": " ",
+     "GroupCode": "SER",
+     "Name": "Marjory Stoneman Douglas Wilderness Area",
+     "Notes": " ",
+     "RegionCode": "SER",
+     "UnitCode": "EVER",
+     "Year": "2016",
+     "Zone": "Frontcountry"
+    }
+   ],
+   "service": "EVER__OWLS_and_Proposed_Paddling_Trails",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER__OWLS_and_Proposed_Paddling_Trails/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "DATAACCESS",
+    "MAPMETHOD",
+    "XYACCURACY",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "BOUNDARY_PY",
+   "sample": [
+    {
+     "DATAACCESS": "Internal NPS Only",
+     "MAPMETHOD": " ",
+     "XYACCURACY": "Unknown",
+     "created_user": "GRSM_GIS",
+     "last_edited_user": "GRSM_GIS"
+    },
+    {
+     "DATAACCESS": "Internal NPS Only",
+     "MAPMETHOD": " ",
+     "XYACCURACY": "Unknown",
+     "created_user": "GRSM_GIS",
+     "last_edited_user": "GRSM_GIS"
+    },
+    {
+     "DATAACCESS": "Internal NPS Only",
+     "MAPMETHOD": " ",
+     "XYACCURACY": "Unknown",
+     "created_user": "GRSM_GIS",
+     "last_edited_user": "GRSM_GIS"
+    }
+   ],
+   "service": "GRSM_PARK_BOUNDARY",
+   "typef": "created_user",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_PARK_BOUNDARY/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 18,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "KapuKanawai_Forests",
+   "sample": [
+    {
+     "Name": "Nawele Ka Maka o Hinauluōhiʻa"
+    },
+    {
+     "Name": "Nawele Ka Maka o Hinauluōhiʻa"
+    },
+    {
+     "Name": "Nawele Ka Maka o Hinauluōhiʻa"
+    }
+   ],
+   "service": "DHHL_Kings_Landing_Studies",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/DHHL_Kings_Landing_Studies/FeatureServer/29"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 15,
+   "fields": [
+    "airport",
+    "alp"
+   ],
+   "known": false,
+   "layer": "HDOT Airports - Property Boundary Sources",
+   "sample": [
+    {
+     "airport": "ITO",
+     "alp": "State of Hawaii, Department of Transportation, Hilo International Airport: Draft Airport Layout Plan, September 2018"
+    },
+    {
+     "airport": "KOA",
+     "alp": "State of Hawaii, Department of Transportation, Ellison Onizuka Kona International Airport at Keahole: Draft Airport Layout Plan, October 2022"
+    },
+    {
+     "airport": "MUE",
+     "alp": "State of Hawaii, Department of Transportation, Waimea-Kohala Airport: Federal Aviation Administration Conditionally Approved Airport Layout Plan, June 2017"
+    }
+   ],
+   "service": "ParcelsZoning",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/32"
+  },
+  {
+   "agency": "Anna Tegarden, GIS Specialist",
+   "area": "",
+   "count": 14,
+   "fields": [],
+   "known": false,
+   "layer": "JOTR_ParkBoundary",
+   "sample": [
+    {
+     "Acres": 4.99470643816,
+     "GlobalID": "40a5de47-29d6-4014-a0a0-dd75e2c33520",
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "Shape__Area": 29558.6015625,
+     "Shape__Length": 729.7656657497338
+    },
+    {
+     "Acres": 4.99960560814,
+     "GlobalID": "3a27a2c7-73de-4b80-b672-1ee29dc9daf0",
+     "OBJECTID": 2,
+     "OBJECTID_1": 2,
+     "Shape__Area": 29587.55859375,
+     "Shape__Length": 729.5154969508424
+    },
+    {
+     "Acres": 4.99275827585,
+     "GlobalID": "38d05f1c-0759-4f6e-b8d2-d5c2b3a321bb",
+     "OBJECTID": 3,
+     "OBJECTID_1": 3,
+     "Shape__Area": 29548.36328125,
+     "Shape__Length": 729.7301078781132
+    }
+   ],
+   "service": "JOTR_CMP_ParkBnd_0220110",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_CMP_ParkBnd_0220110/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 13,
+   "fields": [],
+   "known": false,
+   "layer": "20171228_Parks_and_Open_Space_Plan",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 81101.6640625,
+     "Shape__Length": 1383.473096702342
+    },
+    {
+     "FID": 2,
+     "Id": 0,
+     "Shape__Area": 8242.609375,
+     "Shape__Length": 390.28349235990123
+    },
+    {
+     "FID": 3,
+     "Id": 0,
+     "Shape__Area": 6556.203125,
+     "Shape__Length": 497.83446241318126
+    }
+   ],
+   "service": "20171228_Parks_and_Open_Space_Plan",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/20171228_Parks_and_Open_Space_Plan/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 13,
+   "fields": [
+    "BRFA_Let",
+    "MGMTTYPE",
+    "TYPE",
+    "LOCATION",
+    "OPN_CLS",
+    "COMMENTS",
+    "ISLAND",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "BRFA100407",
+   "sample": [
+    {
+     "BRFA_Let": "M",
+     "COMMENTS": "Shallower than bottomfish depth range",
+     "ISLAND": "Hawai'i",
+     "LOCATION": "Inshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Ka Lae (South Point)",
+     "OPN_CLS": "Open",
+     "TYPE": "Navigation"
+    },
+    {
+     "BRFA_Let": "K",
+     "COMMENTS": "Shallower than bottomfish depth range",
+     "ISLAND": "Hawai'i",
+     "LOCATION": "Inshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Upolu Point",
+     "OPN_CLS": "Open",
+     "TYPE": "Navigation"
+    },
+    {
+     "BRFA_Let": "H",
+     "COMMENTS": "Minimum 1.5 nmi of either shore (see coords.)",
+     "ISLAND": "Moloka'i-Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Moku Ho'oniki, Moloka'i - Lipoa Pt., Maui",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective"
+    }
+   ],
+   "service": "Bottomfish_Restricted_Fishing_Areas",
+   "typef": "MGMTTYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Bottomfish_Restricted_Fishing_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 13,
+   "fields": [
+    "BRFA_Let",
+    "MGMTTYPE",
+    "TYPE",
+    "LOCATION",
+    "OPN_CLS",
+    "COMMENTS",
+    "ISLAND",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "BRFA100407",
+   "sample": [
+    {
+     "BRFA_Let": "M",
+     "COMMENTS": "Shallower than bottomfish depth range",
+     "ISLAND": "Hawai'i",
+     "LOCATION": "Inshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Ka Lae (South Point)",
+     "OPN_CLS": "Open",
+     "TYPE": "Navigation"
+    },
+    {
+     "BRFA_Let": "K",
+     "COMMENTS": "Shallower than bottomfish depth range",
+     "ISLAND": "Hawai'i",
+     "LOCATION": "Inshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Upolu Point",
+     "OPN_CLS": "Open",
+     "TYPE": "Navigation"
+    },
+    {
+     "BRFA_Let": "H",
+     "COMMENTS": "Minimum 1.5 nmi of either shore (see coords.)",
+     "ISLAND": "Moloka'i-Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Moku Ho'oniki, Moloka'i - Lipoa Pt., Maui",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective"
+    }
+   ],
+   "service": "Closed_Bottomfish_Restricted_Areas",
+   "typef": "MGMTTYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Closed_Bottomfish_Restricted_Areas/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 13,
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME"
+   ],
+   "known": false,
+   "layer": "NCBN_Parks",
+   "sample": [
+    {
+     "UNIT_CODE": "ASIS",
+     "UNIT_NAME": "Assateague Island National Seashore"
+    },
+    {
+     "UNIT_CODE": "FIIS",
+     "UNIT_NAME": "Fire Island National Seashore"
+    },
+    {
+     "UNIT_CODE": "THST",
+     "UNIT_NAME": "Thomas Stone National Historic Site"
+    }
+   ],
+   "service": "NCBN_Parks",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCBN_Parks/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "WEBSITE",
+   "count": 13,
+   "fields": [
+    "STATE",
+    "REGIONCODE",
+    "GROUPCODE",
+    "GROUPNAME",
+    "MAPLABEL",
+    "GEOMETRYID",
+    "NOTES",
+    "WEBSITE",
+    "NPGALLERY_ID",
+    "IMG_URL",
+    "IMG_THUMB_URL",
+    "IMG_ALT_TEXT",
+    "IMG_CAPTION",
+    "IMG_TITLE",
+    "IMG_CREDIT",
+    "ABOUTPARK",
+    "Bookmark_ImgID",
+    "Bookmark_ImgURL",
+    "Bookmark_ImgAltText",
+    "AboutPark_Header"
+   ],
+   "known": false,
+   "layer": "Administering Park Units",
+   "sample": [
+    {
+     "GEOMETRYID": "{EFCE2AE5-BFAB-49B9-94B2-126CD54850BB}",
+     "GROUPCODE": "ANTI",
+     "GROUPNAME": "Antietam National Battlefield",
+     "IMG_ALT_TEXT": "A line Civil War cannons and a stone wall at Antietam National Battlefiel",
+     "IMG_THUMB_URL": "https://npgallery.nps.gov/GetAsset/8ECDDB3E-1DD8-B71B-0BB3D58017B9C1C3/proxylores.jpg",
+     "IMG_URL": "https://npgallery.nps.gov/GetAsset/8ECDDB3E-1DD8-B71B-0BB3D58017B9C1C3/proxyhires.jpg",
+     "MAPLABEL": "Antietam National Battlefield",
+     "NPGALLERY_ID": "8ECDDB3E-1DD8-B71B-0BB3D58017B9C1C3",
+     "REGIONCODE": "NCR",
+     "STATE": "MD",
+     "WEBSITE": "https://www.nps.gov/anti/index.htm"
+    },
+    {
+     "GEOMETRYID": "{F5FEADAB-0383-4B3D-A22D-996112166FCF}",
+     "GROUPCODE": "CATO",
+     "GROUPNAME": "Catoctin Mountain Park",
+     "IMG_ALT_TEXT": "View of Chimney Rock Overlook with early spring forest growth",
+     "IMG_THUMB_URL": "https://npgallery.nps.gov/GetAsset/812F5355-1DD8-B71B-0BC2C4DC00A68DED/proxylores.jpg",
+     "IMG_URL": "https://npgallery.nps.gov/GetAsset/812F5355-1DD8-B71B-0BC2C4DC00A68DED/proxyhires.jpg",
+     "MAPLABEL": "Catoctin Mountain Park",
+     "NPGALLERY_ID": "812F5355-1DD8-B71B-0BC2C4DC00A68DED",
+     "REGIONCODE": "NCR",
+     "STATE": "MD",
+     "WEBSITE": "https://www.nps.gov/cato/index.htm"
+    },
+    {
+     "GEOMETRYID": "{F11D1473-83CE-4653-8A9F-BA2260E8FE64}",
+     "GROUPCODE": "CHOH",
+     "GROUPNAME": "Chesapeake & Ohio Canal National Historical Park",
+     "IMG_ALT_TEXT": "The stone aqueduct with one sidewall missing is illuminated by early morning light.",
+     "IMG_THUMB_URL": "https://npgallery.nps.gov/GetAsset/18E8A359-1DD8-B71B-0B3B24DDA32B0338/proxylores.jpg",
+     "IMG_URL": "https://npgallery.nps.gov/GetAsset/18E8A359-1DD8-B71B-0B3B24DDA32B0338/proxyhires.jpg",
+     "MAPLABEL": "Chesapeake & Ohio Canal National Historical Park",
+     "NPGALLERY_ID": "18E8A359-1DD8-B71B-0B3B24DDA32B0338",
+     "REGIONCODE": "NCR",
+     "STATE": "DC, MD",
+     "WEBSITE": "https://www.nps.gov/choh/index.htm"
+    }
+   ],
+   "service": "NCR_Administering_Parks_Extents",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NCR_Administering_Parks_Extents/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 11,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "BND_Visitor_Use_Areas_py",
+   "sample": [
+    {
+     "name": "Florida Bay"
+    },
+    {
+     "name": "Western Coastal"
+    },
+    {
+     "name": "Taylor Slough and the Pinelands"
+    }
+   ],
+   "service": "EVER__OWLS_and_Proposed_Paddling_Trails",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER__OWLS_and_Proposed_Paddling_Trails/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "FEATURE1",
+    "NAME1",
+    "STATE",
+    "LABEL"
+   ],
+   "known": false,
+   "layer": "National_Forest_Service",
+   "sample": [
+    {
+     "FEATURE1": "National Forest",
+     "LABEL": "Inyo National Forest",
+     "NAME1": "Inyo National Forest",
+     "STATE": "CA"
+    },
+    {
+     "FEATURE1": "National Forest",
+     "LABEL": "Sierra National Forest",
+     "NAME1": "Sierra National Forest",
+     "STATE": "CA"
+    },
+    {
+     "FEATURE1": "National Scenic Area",
+     "LABEL": "Mono Basin National Forest Scenic Area",
+     "NAME1": "Mono Basin National Forest Scenic Area",
+     "STATE": "CA"
+    }
+   ],
+   "service": "National_Forest_Service",
+   "typef": "FEATURE1",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Forest_Service/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "tmk",
+    "rec_area_s",
+    "zsp",
+    "loaddate",
+    "qpub_link"
+   ],
+   "known": false,
+   "layer": "20171227_Park",
+   "sample": [
+    {
+     "loaddate": "2017-10-02T00:00:00.000Z",
+     "qpub_link": "http://qpublic9.qpublic.net/hi_honolulu_display.php?county=hi_honolulu&KEY=210581360000",
+     "rec_area_s": "19452",
+     "tmk": "21058136",
+     "zsp": "21058"
+    },
+    {
+     "loaddate": "2017-10-02T00:00:00.000Z",
+     "qpub_link": "http://qpublic9.qpublic.net/hi_honolulu_display.php?county=hi_honolulu&KEY=210590240000",
+     "rec_area_s": "12611",
+     "tmk": "21059024",
+     "zsp": "21059"
+    },
+    {
+     "loaddate": "2017-10-02T00:00:00.000Z",
+     "qpub_link": "http://qpublic9.qpublic.net/hi_honolulu_display.php?county=hi_honolulu&KEY=210590230000",
+     "rec_area_s": "9109",
+     "tmk": "21059023",
+     "zsp": "21059"
+    }
+   ],
+   "service": "20171227_Park",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/20171227_Park/FeatureServer/0"
+  },
+  {
+   "agency": "HCRI, NFWF",
+   "area": "Site",
+   "count": 10,
+   "fields": [
+    "qpub_link",
+    "Site",
+    "TMK_1",
+    "Time",
+    "Manager",
+    "Gate",
+    "Hours",
+    "Site_Type",
+    "ADA_Access",
+    "Road_to_Pa",
+    "Parking",
+    "Lot_Substr",
+    "Path_to_Sh",
+    "Signage",
+    "Bulletin",
+    "Lot_Size",
+    "Shore_Type",
+    "Marine_Hab",
+    "Trash",
+    "Cultural_S"
+   ],
+   "known": false,
+   "layer": "HarborSites_JM_web",
+   "sample": [
+    {
+     "ADA_Access": "Y",
+     "Gate": "Y",
+     "Hours": "Authorized vehicles only",
+     "Lot_Substr": "paved",
+     "Manager": "DOBOR",
+     "Parking": "off-street",
+     "Road_to_Pa": "paved",
+     "Site": "Kailua Pier",
+     "Site_Type": "Ramp, Marina, Pier, Beach",
+     "TMK_1": "(3) 7-5-006:039",
+     "Time": "8:00",
+     "qpub_link": "http://qpublic9.qpublic.net/hi_hawaii_display.php?county=hi_hawaii&KEY=750060390000"
+    },
+    {
+     "ADA_Access": "Y",
+     "Gate": "N",
+     "Hours": " ",
+     "Lot_Substr": "paved",
+     "Manager": "DOBOR",
+     "Parking": "off-street",
+     "Road_to_Pa": "paved",
+     "Site": "Honokohau",
+     "Site_Type": "Ramp, Marina, Beach",
+     "TMK_1": "(3) 7-4-008:003",
+     "Time": "9::30",
+     "qpub_link": "http://qpublic9.qpublic.net/hi_hawaii_display.php?county=hi_hawaii&KEY=740080030000"
+    },
+    {
+     "ADA_Access": "Y",
+     "Gate": "N",
+     "Hours": " ",
+     "Lot_Substr": "paved",
+     "Manager": " ",
+     "Parking": "off-street",
+     "Road_to_Pa": "Paved",
+     "Site": "Keauhou",
+     "Site_Type": "Ramp, Marine, Dock, Beach",
+     "TMK_1": "(3) 7-8-012: 055; (3) 7-8-012: 008",
+     "Time": "13:30",
+     "qpub_link": " "
+    }
+   ],
+   "service": "NFWF_FishingInfrastructure_Harbor_JM",
+   "typef": "Site_Type",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/NFWF_FishingInfrastructure_Harbor_JM/FeatureServer/0"
+  },
+  {
+   "agency": "HCRI, NFWF",
+   "area": "Island",
+   "count": 10,
+   "fields": [
+    "Island",
+    "Site_Label",
+    "Site_Name",
+    "TMK",
+    "Day_of_Week",
+    "Time",
+    "Manager",
+    "Gate",
+    "Hours",
+    "Site_Type",
+    "ADA_Access",
+    "Road_to_Parking",
+    "Parking",
+    "Lot_Substrate",
+    "Path_to_Shore",
+    "Signage",
+    "Bulletin",
+    "Lot_Size",
+    "Shore_Type",
+    "Marine_Habitat"
+   ],
+   "known": false,
+   "layer": "NFWF_HarborROSA_web",
+   "sample": [
+    {
+     "ADA_Access": "Y",
+     "Day_of_Week": "Tuesday",
+     "Gate": "Y",
+     "Hours": "Authorized vehicles only",
+     "Island": "Hawaii",
+     "Manager": "DOBOR",
+     "Road_to_Parking": "paved",
+     "Site_Label": "Kailua Pier",
+     "Site_Name": "Kailua Pier",
+     "Site_Type": "Ramp, Marina, Pier, Beach",
+     "TMK": "(3) 7-5-006:039",
+     "Time": "8:00"
+    },
+    {
+     "ADA_Access": "Y",
+     "Day_of_Week": "Tuesday",
+     "Gate": "N",
+     "Island": "Hawaii",
+     "Manager": "DOBOR",
+     "Road_to_Parking": "paved",
+     "Site_Label": "Honokōhau Harbor",
+     "Site_Name": "Honokohau Harbor",
+     "Site_Type": "Ramp, Marina, Beach",
+     "TMK": "(3) 7-4-008:003",
+     "Time": "9:30"
+    },
+    {
+     "ADA_Access": "Y",
+     "Day_of_Week": "Wednesday",
+     "Gate": "N",
+     "Island": "Hawaii",
+     "Manager": "No Data",
+     "Road_to_Parking": "paved",
+     "Site_Label": "Keauhou Harbor",
+     "Site_Name": "Keauhou Harbor",
+     "Site_Type": "Ramp, Marine, Dock, Beach",
+     "TMK": "(3) 7-8-012: 055; (3) 7-8-012: 008",
+     "Time": "13:30"
+    }
+   ],
+   "service": "NFWF_FishingInfrastructure_HarborROSA",
+   "typef": "Site_Type",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/NFWF_FishingInfrastructure_HarborROSA/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 10,
+   "fields": [
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "Feature_So",
+    "Source_Met",
+    "Source_Det",
+    "Website",
+    "CoralWeb"
+   ],
+   "known": false,
+   "layer": "WASO OCRP Coral Reef Parks Boundaries",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "Feature_So": "NPS Land Resources Division",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/BUIS/Metadata/buis_metadata.xml",
+     "GNIS_ID": "1613756",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/BUIS_metadata.xml",
+     "REGION": "SE",
+     "STATE": "VI",
+     "Source_Det": "Lands - http://landsnet.nps.gov/tractsnet/documents/BUIS/Metadata/buis_metadata.xml",
+     "Source_Met": "https://irma.nps.gov/App/Reference/Profile/2194483?lnv=true",
+     "UNIT_CODE": "BUIS",
+     "UNIT_NAME": "Buck Island Reef National Monument",
+     "UNIT_TYPE": "National Monument"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "Feature_So": "NPS Land Resources Division",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/DRTO/Metadata/drto_metadata.xml",
+     "GNIS_ID": "307632",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/DRTO_metadata.xml",
+     "REGION": "SE",
+     "STATE": "FL",
+     "Source_Det": "Lands - http://landsnet.nps.gov/tractsnet/documents/DRTO/Metadata/drto_metadata.xml",
+     "Source_Met": "https://irma.nps.gov/App/Reference/Profile/2194483?lnv=true",
+     "UNIT_CODE": "DRTO",
+     "UNIT_NAME": "Dry Tortugas National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "Feature_So": "NPS Land Resources Division",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/SARI/Metadata/sari_metadata.xml",
+     "GNIS_ID": "1993989",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/SARI_metadata.xml",
+     "REGION": "SE",
+     "STATE": "VI",
+     "Source_Det": "Lands - http://landsnet.nps.gov/tractsnet/documents/SARI/Metadata/sari_metadata.xml",
+     "Source_Met": "https://irma.nps.gov/App/Reference/Profile/2194483?lnv=true",
+     "UNIT_CODE": "SARI",
+     "UNIT_NAME": "Salt River Bay National Historical Park and Ecological Preserve",
+     "UNIT_TYPE": "National Historical Park"
+    }
+   ],
+   "service": "coralParks",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/coralParks/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 9,
+   "fields": [
+    "BRFA_Let",
+    "MGMTTYPE",
+    "TYPE",
+    "LOCATION",
+    "OPN_CLS",
+    "COMMENTS",
+    "ISLAND",
+    "NAME",
+    "AREA_A",
+    "TYPE_1",
+    "CHART"
+   ],
+   "known": false,
+   "layer": "BFRA_repealed_subarea06142019",
+   "sample": [
+    {
+     "AREA_A": "J",
+     "BRFA_Let": "J",
+     "CHART": "B",
+     "COMMENTS": "Pauwalu (Mokumana) to Umalei Pts. (see coords.)",
+     "ISLAND": "Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Mokumana - Umalei Pt.",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Inshore"
+    },
+    {
+     "AREA_A": "J",
+     "BRFA_Let": "J",
+     "CHART": "B",
+     "COMMENTS": "Pauwalu (Mokumana) to Umalei Pts. (see coords.)",
+     "ISLAND": "Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Mokumana - Umalei Pt.",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Coastal"
+    },
+    {
+     "AREA_A": "C",
+     "BRFA_Let": "C",
+     "CHART": "B",
+     "COMMENTS": "Between Makaoakaha'i Pt. and Kipu Kai (see coords)",
+     "ISLAND": "Kauai",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Makahu'ena",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Coastal"
+    }
+   ],
+   "service": "Bottomfish_Restricted_Fishing_Areas",
+   "typef": "MGMTTYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Bottomfish_Restricted_Fishing_Areas/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 9,
+   "fields": [
+    "BRFA_Let",
+    "MGMTTYPE",
+    "TYPE",
+    "LOCATION",
+    "OPN_CLS",
+    "COMMENTS",
+    "ISLAND",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "closedBRFAs",
+   "sample": [
+    {
+     "BRFA_Let": "M",
+     "COMMENTS": "Shallower than bottomfish depth range",
+     "ISLAND": "Hawai'i",
+     "LOCATION": "Inshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Ka Lae (South Point)",
+     "OPN_CLS": "Open",
+     "TYPE": "Navigation"
+    },
+    {
+     "BRFA_Let": "K",
+     "COMMENTS": "Shallower than bottomfish depth range",
+     "ISLAND": "Hawai'i",
+     "LOCATION": "Inshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Upolu Point",
+     "OPN_CLS": "Open",
+     "TYPE": "Navigation"
+    },
+    {
+     "BRFA_Let": "H",
+     "COMMENTS": "Minimum 1.5 nmi of either shore (see coords.)",
+     "ISLAND": "Moloka'i-Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Moku Ho'oniki, Moloka'i - Lipoa Pt., Maui",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective"
+    }
+   ],
+   "service": "Closed_Bottomfish_Restricted_Areas",
+   "typef": "MGMTTYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Closed_Bottomfish_Restricted_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 9,
+   "fields": [
+    "BRFA_Let",
+    "MGMTTYPE",
+    "TYPE",
+    "LOCATION",
+    "OPN_CLS",
+    "COMMENTS",
+    "ISLAND",
+    "NAME",
+    "AREA_A",
+    "TYPE_1",
+    "CHART"
+   ],
+   "known": false,
+   "layer": "BFRA_repealed_subarea06142019",
+   "sample": [
+    {
+     "AREA_A": "J",
+     "BRFA_Let": "J",
+     "CHART": "B",
+     "COMMENTS": "Pauwalu (Mokumana) to Umalei Pts. (see coords.)",
+     "ISLAND": "Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Mokumana - Umalei Pt.",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Inshore"
+    },
+    {
+     "AREA_A": "J",
+     "BRFA_Let": "J",
+     "CHART": "B",
+     "COMMENTS": "Pauwalu (Mokumana) to Umalei Pts. (see coords.)",
+     "ISLAND": "Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Mokumana - Umalei Pt.",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Coastal"
+    },
+    {
+     "AREA_A": "C",
+     "BRFA_Let": "C",
+     "CHART": "B",
+     "COMMENTS": "Between Makaoakaha'i Pt. and Kipu Kai (see coords)",
+     "ISLAND": "Kauai",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Makahu'ena",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Coastal"
+    }
+   ],
+   "service": "Closed_Bottomfish_Restricted_Areas",
+   "typef": "MGMTTYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Closed_Bottomfish_Restricted_Areas/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "ISLAND",
+   "count": 9,
+   "fields": [
+    "BRFA_Let",
+    "MGMTTYPE",
+    "TYPE",
+    "LOCATION",
+    "OPN_CLS",
+    "COMMENTS",
+    "ISLAND",
+    "NAME",
+    "AREA_A",
+    "TYPE_1",
+    "CHART"
+   ],
+   "known": false,
+   "layer": "BFRA_repealed_subarea06142019",
+   "sample": [
+    {
+     "AREA_A": "J",
+     "BRFA_Let": "J",
+     "CHART": "B",
+     "COMMENTS": "Pauwalu (Mokumana) to Umalei Pts. (see coords.)",
+     "ISLAND": "Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Mokumana - Umalei Pt.",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Inshore"
+    },
+    {
+     "AREA_A": "J",
+     "BRFA_Let": "J",
+     "CHART": "B",
+     "COMMENTS": "Pauwalu (Mokumana) to Umalei Pts. (see coords.)",
+     "ISLAND": "Maui",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Mokumana - Umalei Pt.",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Coastal"
+    },
+    {
+     "AREA_A": "C",
+     "BRFA_Let": "C",
+     "CHART": "B",
+     "COMMENTS": "Between Makaoakaha'i Pt. and Kipu Kai (see coords)",
+     "ISLAND": "Kauai",
+     "LOCATION": "Offshore",
+     "MGMTTYPE": "BRFA",
+     "NAME": "Makahu'ena",
+     "OPN_CLS": "Closed",
+     "TYPE": "Effective",
+     "TYPE_1": "MHI Coastal"
+    }
+   ],
+   "service": "Repealed_Bottomfish_Restricted_Fishing_Areas",
+   "typef": "MGMTTYPE",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Repealed_Bottomfish_Restricted_Fishing_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Great Smoky Mountains National Park,\nFacilities Management Division",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "LOC_TYPE"
+   ],
+   "known": false,
+   "layer": "WILDERNESS",
+   "sample": [
+    {
+     "LOC_TYPE": "Recommended"
+    },
+    {
+     "LOC_TYPE": "Recommended"
+    },
+    {
+     "LOC_TYPE": "Recommended"
+    }
+   ],
+   "service": "GRSM_WILDERNESS",
+   "typef": "LOC_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_WILDERNESS/FeatureServer/0"
+  },
+  {
+   "agency": "NPS Alaska Region GIS",
+   "area": "Name",
+   "count": 8,
+   "fields": [
+    "Name",
+    "Feat_Type",
+    "Year",
+    "Public_Law",
+    "Descriptn",
+    "UnitCode",
+    "Unit",
+    "Unit_Type",
+    "Group_Code",
+    "RegionCode",
+    "CreateName",
+    "EditName",
+    "Notes",
+    "Restriction",
+    "MetadataID",
+    "GeometryID",
+    "URL",
+    "GNIS_ID",
+    "GLOBALID"
+   ],
+   "known": false,
+   "layer": "AKR_BND_WILDERNESS_PY_PUBLIC",
+   "sample": [
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Congressionally-designated wilderness in Denali National Park and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Designated Wilderness",
+     "Group_Code": "DENA",
+     "Name": "Denali Wilderness",
+     "Public_Law": "Public Law 96-487, 94 Statute 2371, Title VII, Section 701(1), 1980.",
+     "RegionCode": "AKR",
+     "Unit": "Denali National Park and Preserve",
+     "UnitCode": "DENA",
+     "Unit_Type": "National Park and Preserve",
+     "Year": "1980"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Congressionally-designated wilderness in Gates Of The Arctic National Park and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Designated Wilderness",
+     "Group_Code": "GAAR",
+     "Name": "Gates of the Arctic Wilderness",
+     "Public_Law": "Public Law 96-487, 94 Statute 2371, Title VII, Section 701(2), 1980; Public Law 104-333, 110 Statute 4093, Title III, Section 302, 1996.",
+     "RegionCode": "AKR",
+     "Unit": "Gates Of The Arctic National Park and Preserve",
+     "UnitCode": "GAAR",
+     "Unit_Type": "National Park and Preserve",
+     "Year": "1996"
+    },
+    {
+     "CreateName": "Alaska Region GIS Team",
+     "Descriptn": "Congressionally-designated wilderness in Glacier Bay National Park and Preserve.",
+     "EditName": "Alaska Region GIS Team",
+     "Feat_Type": "Designated Wilderness",
+     "Group_Code": "GLBA",
+     "Name": "Glacier Bay Wilderness",
+     "Public_Law": "Public Law 96-487, 94 Statute 2371, Title VII, Section 701(3), 1980.",
+     "RegionCode": "AKR",
+     "Unit": "Glacier Bay National Park and Preserve",
+     "UnitCode": "GLBA",
+     "Unit_Type": "National Park and Preserve",
+     "Year": "1980"
+    }
+   ],
+   "service": "AKR_WILDERNESS_PUBLIC",
+   "typef": "Feat_Type",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/AKR_WILDERNESS_PUBLIC/FeatureServer/1"
+  },
+  {
+   "agency": "HCRI",
+   "area": "name",
+   "count": 7,
+   "fields": [
+    "name",
+    "type",
+    "type_defin",
+    "managedby",
+    "island"
+   ],
+   "known": false,
+   "layer": "MW_DSP_StateParks_web",
+   "sample": [
+    {
+     "island": "Kauai",
+     "managedby": "DOSP",
+     "name": "HAENA STATE PARK",
+     "type": "sp",
+     "type_defin": "State Park"
+    },
+    {
+     "island": "Kauai",
+     "managedby": "DOSP",
+     "name": "HAENA STATE PARK",
+     "type": "sp",
+     "type_defin": "State Park"
+    },
+    {
+     "island": "Oahu",
+     "managedby": "DOSP",
+     "name": "PUPUKEA-PAUMALU STATE PARK RESERVE",
+     "type": "spr",
+     "type_defin": "Reserve"
+    }
+   ],
+   "service": "MW_Communities_DSP_StateParks",
+   "typef": "type",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/MW_Communities_DSP_StateParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "Label"
+   ],
+   "known": false,
+   "layer": "Wildlife_Coastal_Protection_Zone",
+   "sample": [
+    {
+     "Label": "Coastal Resource Protection Zone"
+    },
+    {
+     "Label": "Coastal Resource Protection Zone"
+    },
+    {
+     "Label": "Coastal Resource Protection Zone"
+    }
+   ],
+   "service": "Kanaio_Forestry_and_Wildlife_Area_Project_Maui_Hawaii",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kanaio_Forestry_and_Wildlife_Area_Project_Maui_Hawaii/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [],
+   "known": false,
+   "layer": "Ecosystem",
+   "sample": [
+    {
+     "Id": 1,
+     "OBJECTID": 1,
+     "Shape__Area": 3598502732.8203125,
+     "Shape__Length": 13202697.290207496,
+     "gridcode": 1
+    },
+    {
+     "Id": 2,
+     "OBJECTID": 2,
+     "Shape__Area": 4534383492.25,
+     "Shape__Length": 10331805.789695786,
+     "gridcode": 2
+    },
+    {
+     "Id": 3,
+     "OBJECTID": 3,
+     "Shape__Area": 520652402.34375,
+     "Shape__Length": 5664351.954647804,
+     "gridcode": 3
+    }
+   ],
+   "service": "Native_Forest_Restoration_1_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Restoration_1_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "National Park Service, PWRO-GIS",
+   "area": "SiteName",
+   "count": 6,
+   "fields": [
+    "SiteName",
+    "UnitCode",
+    "UnitName",
+    "UnitType",
+    "GroupCode",
+    "RegionCode",
+    "Notes",
+    "Restrictions",
+    "MetadataID",
+    "GeometryID"
+   ],
+   "known": false,
+   "layer": "LEWI Park Units",
+   "sample": [
+    {
+     "GeometryID": " ",
+     "GroupCode": " ",
+     "MetadataID": " ",
+     "Notes": " ",
+     "RegionCode": "PWR",
+     "Restrictions": " ",
+     "SiteName": "Yeon",
+     "UnitCode": "LEWI",
+     "UnitName": "Lewis and Clark National Historical Park",
+     "UnitType": "National Historical Park"
+    },
+    {
+     "GeometryID": " ",
+     "GroupCode": " ",
+     "MetadataID": " ",
+     "RegionCode": "PWR",
+     "Restrictions": " ",
+     "SiteName": "Sunset Beach State Recreation Area",
+     "UnitCode": "LEWI",
+     "UnitName": "Lewis and Clark National Historical Park",
+     "UnitType": "National Historical Park"
+    },
+    {
+     "GeometryID": " ",
+     "GroupCode": " ",
+     "MetadataID": " ",
+     "Notes": "POC for this update:  allen_mccoy@nps.gov - http://landsnet.nps.gov/tractsnet/documents/LEWI/Metadata/lewi_metadata.xml",
+     "RegionCode": "PWR",
+     "Restrictions": " ",
+     "SiteName": "Fort Clatsop",
+     "UnitCode": "LEWI",
+     "UnitName": "Lewis and Clark National Historical Park",
+     "UnitType": "National Historical Park"
+    }
+   ],
+   "service": "LEWI_Park_Unit_Boundaries",
+   "typef": "UnitType",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LEWI_Park_Unit_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 5,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "DENA_Wildlife_Closures",
+   "sample": [
+    {
+     "Name": "Sable Pass - Permanent Wildlife Closure"
+    },
+    {
+     "Name": "Sable Pass - Permanent Wildlife Closure"
+    },
+    {
+     "Name": "Sanctuary  Wolf Closure"
+    }
+   ],
+   "service": "DENA_Wildlife_Closures_Public",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/DENA_Wildlife_Closures_Public/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "Status",
+    "Comments"
+   ],
+   "known": false,
+   "layer": "EVER Edit Polygons",
+   "sample": [
+    {
+     "Comments": "EE",
+     "Status": "2. Off trail hiking opportunities"
+    },
+    {},
+    {}
+   ],
+   "service": "EVER_Wilderness_Stewardship_Plan_Editable_Features",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER_Wilderness_Stewardship_Plan_Editable_Features/FeatureServer/2"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "status",
+    "type"
+   ],
+   "known": false,
+   "layer": "MIP 2012 - Agricultural Preserves",
+   "sample": [
+    {
+     "status": "Draft Alignment",
+     "type": "Agricultural Preserve"
+    },
+    {
+     "status": "Draft Alignment",
+     "type": "Agricultural Preserve"
+    },
+    {
+     "status": "Draft Alignment",
+     "type": "Agricultural Preserve"
+    }
+   ],
+   "service": "ParcelsZoning",
+   "typef": "type",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/18"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "TMK",
+    "STREET_PAR",
+    "FLOATING_P",
+    "ZSP",
+    "IN_FILE_NU",
+    "NHOOD_NUM",
+    "TMK_PRELIM",
+    "ANNO_VISIB",
+    "DEVELOPER_",
+    "GLOBALID",
+    "EDITOR_NOT",
+    "CREATED_US",
+    "LAST_EDITE",
+    "TMK8Label",
+    "qpub_link"
+   ],
+   "known": false,
+   "layer": "Hooulu_Aina_Nature_Park",
+   "sample": [
+    {
+     "ANNO_VISIB": " ",
+     "CREATED_US": "mpc",
+     "DEVELOPER_": " ",
+     "EDITOR_NOT": " ",
+     "FLOATING_P": " ",
+     "GLOBALID": "{604719A9-D733-4971-A12F-3513ECDA17B6}",
+     "IN_FILE_NU": " ",
+     "NHOOD_NUM": " ",
+     "STREET_PAR": "N",
+     "TMK": "14016003",
+     "TMK_PRELIM": "N",
+     "ZSP": "14016"
+    },
+    {
+     "ANNO_VISIB": " ",
+     "CREATED_US": "mpc",
+     "DEVELOPER_": " ",
+     "EDITOR_NOT": " ",
+     "FLOATING_P": " ",
+     "GLOBALID": "{A1B09CBD-74F9-496C-BA67-98854FD544E4}",
+     "IN_FILE_NU": " ",
+     "NHOOD_NUM": " ",
+     "STREET_PAR": "N",
+     "TMK": "14014001",
+     "TMK_PRELIM": "N",
+     "ZSP": "14014"
+    },
+    {
+     "ANNO_VISIB": " ",
+     "CREATED_US": "mpc",
+     "DEVELOPER_": " ",
+     "EDITOR_NOT": " ",
+     "FLOATING_P": " ",
+     "GLOBALID": "{1806C53C-7196-454C-AC5C-2D39CE5EF961}",
+     "IN_FILE_NU": " ",
+     "NHOOD_NUM": " ",
+     "STREET_PAR": "N",
+     "TMK": "14014026",
+     "TMK_PRELIM": "N",
+     "ZSP": "14014"
+    }
+   ],
+   "service": "Hooulu_Aina_Nature_Park",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Hooulu_Aina_Nature_Park/FeatureServer/0"
+  },
+  {
+   "agency": "Great Smoky Mountains National Park,\nResource Management & Science,\nGeographic R",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "PARK_DISTRICT",
+    "DATAACCESS",
+    "MAPMETHOD",
+    "XYACCURACY",
+    "VALID_RESULT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "PARK_DISTRICT",
+   "sample": [
+    {
+     "DATAACCESS": "Unrestricted",
+     "GlobalID": "{0EF99DD6-06DC-4788-8EC1-03C92053C9CE}",
+     "MAPMETHOD": "Feature Extraction",
+     "PARK_DISTRICT": "North District",
+     "VALID_RESULT": "Certified",
+     "XYACCURACY": ">=1m and <5m"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GlobalID": "{2E5EA307-BA33-4258-8B1D-25CAD5729665}",
+     "MAPMETHOD": "Digitized",
+     "PARK_DISTRICT": "Cades Cove",
+     "VALID_RESULT": "Certified"
+    },
+    {
+     "DATAACCESS": "Unrestricted",
+     "GlobalID": "{F650938E-D8E7-4C9C-8236-FECE1C0155A2}",
+     "MAPMETHOD": "Feature Extraction",
+     "PARK_DISTRICT": "South District",
+     "VALID_RESULT": "Certified",
+     "XYACCURACY": ">=1m and <5m"
+    }
+   ],
+   "service": "GRSM_PARK_DISTRICTS",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRSM_PARK_DISTRICTS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 3,
+   "fields": [
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "UNIT_TYPE"
+   ],
+   "known": false,
+   "layer": "National_Parks",
+   "sample": [
+    {
+     "REGION": "PW",
+     "STATE": "CA",
+     "UNIT_CODE": "SEQU",
+     "UNIT_NAME": "Sequoia National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "REGION": "PW",
+     "STATE": "CA",
+     "UNIT_CODE": "KICA",
+     "UNIT_NAME": "Kings Canyon National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "REGION": "PW",
+     "STATE": "CA",
+     "UNIT_CODE": "YOSE",
+     "UNIT_NAME": "Yosemite National Park",
+     "UNIT_TYPE": "National Park"
+    }
+   ],
+   "service": "National_Parks",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/National_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Entity",
+    "Handle",
+    "Layer",
+    "LyrHandle",
+    "Linetype",
+    "EntLinetyp",
+    "LyrLnType",
+    "BlkLinetyp",
+    "RefName",
+    "DocName",
+    "DocPath",
+    "DocType",
+    "DocVer",
+    "Tt_Label"
+   ],
+   "known": false,
+   "layer": "Property_Polygon_Merged_20221109",
+   "sample": [
+    {
+     "BlkLinetyp": " ",
+     "DocName": "220048-C-1_SITE PLAN.dwg",
+     "DocPath": "P:\\GIS_PROJECTS\\Kauai_County\\Kekaha_Landfill_Vertical_Expansion\\Data_In\\From_KaylaYost_20221104\\220048-C-1_SITE PLAN.dwg",
+     "DocType": "DWG",
+     "EntLinetyp": "PHANTOM2",
+     "Entity": "LWPolyline",
+     "Handle": "11584",
+     "Layer": "PL-SURV-070615",
+     "Linetype": "PHANTOM2",
+     "LyrHandle": "11565",
+     "LyrLnType": "PHANTOM2",
+     "RefName": " "
+    },
+    {
+     "BlkLinetyp": " ",
+     "DocName": "220048-C-1_SITE PLAN.dwg",
+     "DocPath": "P:\\GIS_PROJECTS\\Kauai_County\\Kekaha_Landfill_Vertical_Expansion\\Data_In\\From_KaylaYost_20221104\\220048-C-1_SITE PLAN.dwg",
+     "DocType": "DWG",
+     "EntLinetyp": "PHANTOM2",
+     "Entity": "LWPolyline",
+     "Handle": "11591",
+     "Layer": "PL-SURV-070615",
+     "Linetype": "PHANTOM2",
+     "LyrHandle": "11565",
+     "LyrLnType": "PHANTOM2",
+     "RefName": " "
+    }
+   ],
+   "service": "Kekaha_Municipal_Landfill_Phase_II_Vertical_Expansion",
+   "typef": "Linetype",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kekaha_Municipal_Landfill_Phase_II_Vertical_Expansion/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Watershed Protection Priority",
+   "sample": [
+    {
+     "Notes": "Oahu"
+    },
+    {
+     "Notes": " "
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_Evaluation_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_Evaluation_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Watershed Protection Priority",
+   "sample": [
+    {
+     "Notes": "Oahu"
+    },
+    {
+     "Notes": " "
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 2,
+   "fields": [
+    "NAME",
+    "CLOSURE_DATE",
+    "STATUS",
+    "SPECIES",
+    "HUNT_AREA",
+    "COMMENTS",
+    "ACTIVITY",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "GRTE Wildlife Closures",
+   "sample": [
+    {
+     "ACTIVITY": "Active",
+     "CLOSURE_DATE": "April 22 - Until Further Notice",
+     "COMMENTS": "2024",
+     "Creator": "grte_gis",
+     "Editor": "grte_gis",
+     "NAME": "Elk Ranch Reservoir",
+     "SPECIES": "Swans",
+     "STATUS": "Closed"
+    },
+    {
+     "CLOSURE_DATE": "Closed Until Further Notice",
+     "Creator": "grte_gis",
+     "Editor": "grte_gis",
+     "NAME": "Jackson Dry Lakebed",
+     "SPECIES": "Resource Protection"
+    }
+   ],
+   "service": "GRTE_BND_Wildlife_Closures_py_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRTE_BND_Wildlife_Closures_py_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "Park Boundary",
+   "sample": [
+    {
+     "Acres": 792456.9736797069,
+     "Feet": 34519287695.92301,
+     "GlobalID": "e4b5523f-3904-44fd-9fbf-06411d0ef97b",
+     "Miles": 1238.214021535176,
+     "OBJECTID": 1,
+     "Shape__Area": 3206959593.4110107,
+     "Shape__Length": 393981.37709454005
+    },
+    {
+     "Acres": 57.64169086037209,
+     "Feet": 2510862.0103996354,
+     "GlobalID": "b807bdab-408c-4c38-9d2a-207390010ca3",
+     "Miles": 0.09006514198101558,
+     "OBJECTID": 2,
+     "Shape__Area": 233267.64599609375,
+     "Shape__Length": 2150.85288037465
+    }
+   ],
+   "service": "JOTR_WildernessPublic_Web_201805",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/JOTR_WildernessPublic_Web_201805/FeatureServer/3"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "year"
+   ],
+   "known": false,
+   "layer": "Historical Pineapple Lands - 1900",
+   "sample": [
+    {
+     "year": "1900"
+    }
+   ],
+   "service": "LandUseLandCover",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/LandUseLandCover/MapServer/20"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "name",
+    "legislation_reference",
+    "defined_area",
+    "restrictions",
+    "additional_information",
+    "short_name",
+    "designation",
+    "har_link"
+   ],
+   "known": false,
+   "layer": "Recreational Thrill Craft Prohibited Areas (ORMAs)",
+   "sample": [
+    {
+     "defined_area": "State waters surrounding the islands of Kahoolawe, Lanai, Molokai and Niihau.",
+     "designation": "Recreational Thrill Craft Operations Prohibited",
+     "har_link": "https://dlnr.hawaii.gov/dobor/files/2019/01/181231-Definitions-Package-Final.pdf",
+     "legislation_reference": "§13-256-17 (b)",
+     "name": "Recreational Thrill Craft Operations Prohibited",
+     "restrictions": "Thrill craft operation shall be prohibited in state waters surrounding the islands of Kahoolawe, Lanai, Molokai and Niihau. In all other non-designated ocean recreation management areas of state waters, recreational thrill craft may operate seaward of five hundred feet from the shoreline or the outer edge of the fringing reef whichever is greater. ",
+     "short_name": "Recreational Thrill Craft Operations Prohibited"
+    }
+   ],
+   "service": "CoastalMarine",
+   "typef": "",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/CoastalMarine/MapServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Ala Mahamoe",
+   "sample": [
+    {
+     "Acres": 5.12887,
+     "FID": 1,
+     "Shape__Area": 24058.9765625,
+     "Shape__Length": 698.1765151665666
+    }
+   ],
+   "service": "Carbon_Forestry_Projects_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Carbon_Forestry_Projects_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "tmk_txt",
+    "cty_tmk",
+    "majorowner",
+    "homeowner",
+    "nhoodcode",
+    "qpub_link"
+   ],
+   "known": false,
+   "layer": "Hawaiian_Paradise_Park_District_Park_",
+   "sample": [
+    {
+     "cty_tmk": "15039267",
+     "homeowner": "N",
+     "majorowner": "Govt. County of Hawaii",
+     "nhoodcode": "1558",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=150392670000",
+     "tmk_txt": "315039267"
+    }
+   ],
+   "service": "Hawaiian_Paradise_Park_District_Park_",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Hawaiian_Paradise_Park_District_Park_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Honolulu_Police_Academy_New_Parking_Lot_and_Master_Plan_Improvements_",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 21440.46484375,
+     "Shape__Length": 716.8576642327699
+    }
+   ],
+   "service": "Honolulu_Police_Academy_New_Parking_Lot_and_Master_Plan_Improvements_",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Honolulu_Police_Academy_New_Parking_Lot_and_Master_Plan_Improvements_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ZSP",
+    "NHOOD_NUM",
+    "WIDTH_",
+    "DOC_NUM",
+    "PLAT_LABEL"
+   ],
+   "known": false,
+   "layer": "Bluestone Easement",
+   "sample": [
+    {
+     "DOC_NUM": " ",
+     "NHOOD_NUM": " ",
+     "PLAT_LABEL": "PUBLIC ACCESS EASEMENT",
+     "WIDTH_": " ",
+     "ZSP": " "
+    }
+   ],
+   "service": "Kaiwa_Ridge_Trail_Improvements_and_Management_Plan",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kaiwa_Ridge_Trail_Improvements_and_Management_Plan/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "EO 3610 Boundary",
+   "sample": [
+    {
+     "FID": 1,
+     "SHAPE_Area": 21699.0424217,
+     "SHAPE_Leng": 4207.57604076,
+     "Shape__Area": 1814.3125,
+     "Shape__Length": 1103.1664735336801
+    }
+   ],
+   "service": "Kaiwa_Ridge_Trail_Improvements_and_Management_Plan",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kaiwa_Ridge_Trail_Improvements_and_Management_Plan/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Kaiwa Ridge Trail Action Location Boundary",
+   "sample": [
+    {
+     "FID": 1,
+     "SHAPE_Area": 288040.782211,
+     "SHAPE_Leng": 5067.67466867,
+     "Shape__Area": 31017.36328125,
+     "Shape__Length": 1664.0061849400247
+    }
+   ],
+   "service": "Kaiwa_Ridge_Trail_Improvements_and_Management_Plan",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kaiwa_Ridge_Trail_Improvements_and_Management_Plan/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Forestry_Wildlife_Area",
+   "sample": [
+    {
+     "Acres": 5512.66,
+     "FID": 1,
+     "OBJECTID_1": 1,
+     "Shape_Area": 22308937.7225,
+     "Shape_Leng": 30985.3976375,
+     "Shape__Area": 25564341.60546875,
+     "Shape__Length": 33148.96215821564
+    }
+   ],
+   "service": "Kanaio_Forestry_and_Wildlife_Area_Project_Maui_Hawaii",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kanaio_Forestry_and_Wildlife_Area_Project_Maui_Hawaii/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Full_TMK",
+    "Owner",
+    "MajorOwner",
+    "BigstOwner"
+   ],
+   "known": false,
+   "layer": "Potential_Cooperating_Landowner",
+   "sample": [
+    {
+     "BigstOwner": "Ulupalakua Ranch",
+     "Full_TMK": "210040060000",
+     "MajorOwner": "Ulupalakua Ranch",
+     "Owner": "ULUPALAKUA RANCH INC."
+    }
+   ],
+   "service": "Kanaio_Forestry_and_Wildlife_Area_Project_Maui_Hawaii",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kanaio_Forestry_and_Wildlife_Area_Project_Maui_Hawaii/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Kau_Forest_Reserve_Fenceline_Access",
+   "sample": [
+    {
+     "Name": "Kau FR Cabin to Duck Egg Path"
+    }
+   ],
+   "service": "Kau_Forest_Reserve_Fenceline_Access",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kau_Forest_Reserve_Fenceline_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Title"
+   ],
+   "known": false,
+   "layer": "Kealakekua_Bay_State_Historical_Park_Master_Plan_Improvements",
+   "sample": [
+    {
+     "Title": "Project Location"
+    }
+   ],
+   "service": "Kealakekua_Bay_State_Historical_Park_Master_Plan_Improvements",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Kealakekua_Bay_State_Historical_Park_Master_Plan_Improvements/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "TMK_txt",
+    "cty_tmk",
+    "Homeowner",
+    "NHoodCode",
+    "qpub_link"
+   ],
+   "known": false,
+   "layer": "Makena_State_Park_Improvements",
+   "sample": [
+    {
+     "Homeowner": "N",
+     "NHoodCode": "2185-6",
+     "TMK_txt": "221006030",
+     "cty_tmk": "21006030",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1029&PageTypeID=4&KeyValue=210060300000"
+    }
+   ],
+   "service": "Makena_State_Park_Improvements",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Makena_State_Park_Improvements/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name",
+    "FenceSec",
+    "Status",
+    "Purpose",
+    "Material",
+    "LineSrc",
+    "MngAgency",
+    "BltAgency",
+    "Apron",
+    "Comment_",
+    "FenRest",
+    "FenceSrc",
+    "SrcNotes",
+    "Editor",
+    "Island",
+    "Location",
+    "GlobalID",
+    "Creator",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "Manuka_Natural_Area_Reserve_Fenceline_Clearing_and_Access",
+   "sample": [
+    {
+     "Apron": " ",
+     "BltAgency": " ",
+     "Comment_": " ",
+     "FenRest": " ",
+     "FenceSec": " ",
+     "FenceSrc": " ",
+     "LineSrc": " ",
+     "Material": " ",
+     "MngAgency": " ",
+     "Name": "Sleepy Dozer",
+     "Purpose": " ",
+     "Status": "Proposed"
+    }
+   ],
+   "service": "Manuka_Natural_Area_Reserve_Fenceline_Clearing_and_Access",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Manuka_Natural_Area_Reserve_Fenceline_Clearing_and_Access/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Milolii_Beach_Park_Accessibility_Improvements_Project",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 1611725.65234375,
+     "Shape__Length": 5858.78917713789
+    }
+   ],
+   "service": "Milolii_Beach_Park_Accessibility_Improvements_Project",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Milolii_Beach_Park_Accessibility_Improvements_Project/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Reserves Buffer",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 13058094870.359375,
+     "Shape__Length": 2963228.4835662683
+    }
+   ],
+   "service": "Native_Forest_Protection_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Protection_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Reserves Buffer",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 13058094128.917969,
+     "Shape__Length": 2963228.3919749786
+    }
+   ],
+   "service": "Native_Forest_Restoration_1_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Native_Forest_Restoration_1_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Type_"
+   ],
+   "known": false,
+   "layer": "NaturalResources",
+   "sample": [
+    {
+     "Type_": "Resource Priority"
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_Evaluation_WFL1",
+   "typef": "Type_",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_Evaluation_WFL1/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "NaturalResources",
+   "sample": [
+    {
+     "Type": "Resource Priority"
+    }
+   ],
+   "service": "Natural_and_Environmental_Conservation_WFL1",
+   "typef": "Type",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Natural_and_Environmental_Conservation_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "tmk_txt",
+    "cty_tmk",
+    "majorowner",
+    "homeowner",
+    "nhoodcode",
+    "qpub_link"
+   ],
+   "known": false,
+   "layer": "Papaaloa_Park_Master_Plan_and_Phase_I_Development_",
+   "sample": [
+    {
+     "cty_tmk": "35003035",
+     "homeowner": "N",
+     "majorowner": "Govt. County of Hawaii",
+     "nhoodcode": "3464-5",
+     "qpub_link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=350030350000",
+     "tmk_txt": "335003035"
+    }
+   ],
+   "service": "Papaaloa_Park_Master_Plan_and_Phase_I_Development_",
+   "typef": "",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Papaaloa_Park_Master_Plan_and_Phase_I_Development_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "island",
+   "count": 1,
+   "fields": [
+    "trail_num",
+    "nah",
+    "island",
+    "quad",
+    "district",
+    "yrcreated",
+    "st_access",
+    "start_pt",
+    "end_pt",
+    "standard",
+    "climate",
+    "tspt_type",
+    "features",
+    "amenities",
+    "use_rest",
+    "hazards",
+    "comments",
+    "trailname"
+   ],
+   "known": false,
+   "layer": "Pololu_Trailhead_Management_Plan",
+   "sample": [
+    {
+     "climate": " ",
+     "district": " ",
+     "end_pt": " ",
+     "island": " ",
+     "nah": " ",
+     "quad": " ",
+     "st_access": " ",
+     "standard": " ",
+     "start_pt": " ",
+     "trail_num": " ",
+     "tspt_type": " ",
+     "yrcreated": " "
+    }
+   ],
+   "service": "Pololu_Trailhead_Management_Plan",
+   "typef": "tspt_type",
+   "url": "https://services.arcgis.com/HQ0xoN0EzDPBOEci/ArcGIS/rest/services/Pololu_Trailhead_Management_Plan/FeatureServer/0"
+  },
+  {
+   "agency": "Ala Kahakai National Historic Trail",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "TrailName",
+    "Agency"
+   ],
+   "known": false,
+   "layer": "Ala Kahakai National Historic Trail Official Corridor",
+   "sample": [
+    {
+     "Agency": "NPS",
+     "TrailName": "Ala Kahakai National Historic Trail"
+    }
+   ],
+   "service": "Ala_Kahakai_National_Historic_Trail_Official_Corridor",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Appalachian_National_Scenic_Trail_500ft_Buffer",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape_Area": 238975.565638,
+     "Shape__Area": 1667691816.6875,
+     "Shape__Length": 7883265.509696727
+    }
+   ],
+   "service": "Appalachian_National_Scenic_Trail_500ft_Buffer",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Appalachian_National_Scenic_Trail_500ft_Buffer/FeatureServer/0"
+  },
+  {
+   "agency": "National Atlas,",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_TYPE",
+    "STATE",
+    "REGION",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "GIS_NOTES",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "ASIS_ParkBoundary",
+   "sample": [
+    {
+     "CREATED_BY": "Legacy",
+     "GIS_NOTES": "Significant differences.",
+     "GNIS_ID": " ",
+     "METADATA": " ",
+     "PARKNAME": " ",
+     "REGION": "NE",
+     "STATE": " ",
+     "UNIT_CODE": "ASIS",
+     "UNIT_NAME": "Assateague Island",
+     "UNIT_TYPE": "National Seashore"
+    }
+   ],
+   "service": "ASIS_Park_Boundary",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ASIS_Park_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "BND_ParkBoundary_py_update",
+   "sample": [
+    {
+     "AREA": 202140253.135,
+     "Acreage": 49949.9442664,
+     "GlobalID": "79e19c2c-4589-4a05-ae1d-8e346f8bee19",
+     "Hectares": 20214.0253135,
+     "OBJECTID": 1,
+     "OBJECTID_1": 1,
+     "PERIMETER": 130102.284284,
+     "SHAPE_Area": 309495935.8545742,
+     "SHAPE_Length": 166201.73062293444,
+     "Shape_Leng": 130102.284385
+    }
+   ],
+   "service": "ASIS_Park_Boundary_updated",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/ASIS_Park_Boundary_updated/FeatureServer/0"
+  },
+  {
+   "agency": "The National Park Service shall not be held liable for improper or incorrect use",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "closure",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "DENA_Sable_Pass_Wildlife_Closure",
+   "sample": [
+    {
+     "GlobalID": "{8279353a-1d61-4a29-a219-edf83c1aa93b}",
+     "closure": " "
+    }
+   ],
+   "service": "DENA_Sable_Pass_Wildlife_Closure",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/DENA_Sable_Pass_Wildlife_Closure/FeatureServer/0"
+  },
+  {
+   "agency": "National Map, Erica Tefft",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_TYPE",
+    "STATE",
+    "REGION",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "GIS_NOTES",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "BND_ParkBoundary_py",
+   "sample": [
+    {
+     "CREATED_BY": "Legacy",
+     "GIS_NOTES": "Shifted 0.02 miles",
+     "GNIS_ID": " ",
+     "METADATA": " ",
+     "PARKNAME": " ",
+     "REGION": "NE",
+     "STATE": " ",
+     "UNIT_CODE": "FIIS",
+     "UNIT_NAME": "Fire Island",
+     "UNIT_TYPE": "National Seashore"
+    }
+   ],
+   "service": "FIIS_Park_Boundary",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/FIIS_Park_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_TYPE",
+    "STATE",
+    "REGION",
+    "UNIT_CODE",
+    "UNIT_NAME",
+    "GIS_NOTES",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME",
+    "GNIS_ID"
+   ],
+   "known": false,
+   "layer": "BND_ParkBoundary_py",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "GIS_NOTES": "Lands - http://landsnet.nps.gov/tractsnet/documents/GATE/METADATA/gate_metadata.xml",
+     "GNIS_ID": " ",
+     "METADATA": "http://nrdata.nps.gov/programs/Lands/GATE_METADATA.xml",
+     "PARKNAME": "Gateway",
+     "REGION": "NE",
+     "STATE": "NY",
+     "UNIT_CODE": "GATE",
+     "UNIT_NAME": "Gateway National Recreation Area",
+     "UNIT_TYPE": "National Recreation Area"
+    }
+   ],
+   "service": "GATE_Park_Boundary",
+   "typef": "UNIT_TYPE",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GATE_Park_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ALPHA"
+   ],
+   "known": false,
+   "layer": "GRTE JODR Park Boundary",
+   "sample": [
+    {
+     "ALPHA": "JODR"
+    }
+   ],
+   "service": "GRTE_JODR_Park_Boundary_(view)",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/GRTE_JODR_Park_Boundary_(view)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Hopi Trail Region",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 10293428806.667969,
+     "Shape__Length": 485842.171202656
+    }
+   ],
+   "service": "Hopi_Trail_Region",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Hopi_Trail_Region/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "LECL_Lewis_and_Clark_NHT_Trail_Corridor",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape_Area": 1025485596310,
+     "Shape_Leng": 10745470.2109,
+     "Shape__Area": 1992484652301.4922,
+     "Shape__Length": 14861240.702459285
+    }
+   ],
+   "service": "LECL_Lewis_and_Clark_NHT_Trail_Corridor",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/LECL_Lewis_and_Clark_NHT_Trail_Corridor/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Mask",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 24786567624929.656,
+     "Shape__Length": 20212694.850884758
+    }
+   ],
+   "service": "Mississippi_National_River_and_Recreation_Area_Feature_Mask",
+   "typef": "",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Mississippi_National_River_and_Recreation_Area_Feature_Mask/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.1 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.1 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.25 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.25 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.5 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.5 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "0.75 Miles from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "0.75 miles",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "Buffer_Label",
+    "Trail_Buffered_Name",
+    "Trail_Buffered_Desc",
+    "Trail_Buffered_Link",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "1 Mile from Proposed Trail",
+   "sample": [
+    {
+     "Buffer_Label": "1 mile",
+     "Trail_Buffered_Desc": "Spans from East Capitol St. SE to South Capitol St. SE, and connects to Anacostia Riverwalk Trail and planned South Capitol St trail",
+     "Trail_Buffered_Link": "https://nps.maps.arcgis.com/home/item.html?id=cc6b9b635b3b4a07a1cd758208766a20",
+     "Trail_Buffered_Name": "Shepherd Branch Trail"
+    }
+   ],
+   "service": "NACE_Proposed_Shepherd_Branch_Trail_Buffers",
+   "typef": "Trail_Buffered_Desc",
+   "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NACE_Proposed_Shepherd_Branch_Trail_Buffers/FeatureServer/4"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "name",
+   "count": 381,
+   "fields": [
+    "type",
+    "name",
+    "managedby",
+    "island",
+    "type_defin",
+    "linktowebp",
+    "linktoadmi",
+    "linktoad_1",
+    "linktoad_2",
+    "linktoad_3",
+    "tlabel",
+    "xname"
+   ],
+   "known": true,
+   "layer": "Reserves",
+   "sample": [
+    {
+     "island": "Hawaii",
+     "linktoad_1": "https://files.hawaii.gov/dlnr/dofaw/rules/Chap126.pdf",
+     "linktoad_2": " ",
+     "linktoad_3": " ",
+     "linktoadmi": "https://files.hawaii.gov/dlnr/dofaw/rules/Chap125a.pdf",
+     "linktowebp": "https://dlnr.hawaii.gov/wildlife/sanctuaries/hawaiioffshoreislets/#mokupuku",
+     "managedby": "(DOFAW)",
+     "name": "MOKUPUKU ISLET SEABIRD SANCTUARY",
+     "tlabel": "Mokupuku Islet Seabird Sanctuary",
+     "type": "ws",
+     "type_defin": "Wildlife Sanctuary",
+     "xname": "Mokupuku Islet Seabird Sanctuary"
+    },
+    {
+     "island": "Hawaii",
+     "linktoad_1": "https://files.hawaii.gov/dlnr/dofaw/rules/Chap126.pdf",
+     "linktoad_2": " ",
+     "linktoad_3": " ",
+     "linktoadmi": "https://files.hawaii.gov/dlnr/dofaw/rules/Chap125a.pdf",
+     "linktowebp": "https://dlnr.hawaii.gov/wildlife/sanctuaries/hawaiioffshoreislets/#paokalani",
+     "managedby": "(DOFAW)",
+     "name": "PAOKALANI ISLET SEABIRD SANCTUARY",
+     "tlabel": "Paokalani Islet Seabird Sanctuary",
+     "type": "ws",
+     "type_defin": "Wildlife Sanctuary",
+     "xname": "Paokalani Islet Seabird Sanctuary"
+    },
+    {
+     "island": "Hawaii",
+     "linktoad_1": " ",
+     "linktoad_2": " ",
+     "linktoad_3": " ",
+     "linktoadmi": "https://dlnr.hawaii.gov/dofaw/files/2013/09/HARChapter13-104.pdf",
+     "linktowebp": "https://dlnr.hawaii.gov/forestry/frs/reserves/hawaii-island/puuwaawaa/",
+     "managedby": "DOFAW",
+     "name": "PUU WAAWAA FOREST RESERVE",
+     "tlabel": "Pu‘u Wa‘awa‘a Forest Reserve",
+     "type": "fr",
+     "type_defin": "Forest Reserve",
+     "xname": "Puu Waawaa Forest Reserve"
+    }
+   ],
+   "service": "Terrestrial",
+   "typef": "type",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1"
+  },
+  {
+   "agency": "DISCLAIMER:  Information contained in these files is derived from public records",
+   "area": "name",
+   "count": 70,
+   "fields": [
+    "name",
+    "type",
+    "type_defin",
+    "managedby",
+    "island"
+   ],
+   "known": true,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "island": "Oahu",
+     "managedby": "DOSP",
+     "name": "MALAEKAHANA STATE RECREATION AREA (KAHUKU SEC.)",
+     "type": "sra",
+     "type_defin": "State Recreation Area"
+    },
+    {
+     "island": "Oahu",
+     "managedby": "DOSP",
+     "name": "MALAEKAHANA STATE RECREATION AREA (LAIE SEC.)",
+     "type": "sra",
+     "type_defin": "State Recreation Area"
+    },
+    {
+     "island": "Oahu",
+     "managedby": "DOSP",
+     "name": "PUU O MAHUKA HEIAU STATE HISTORIC SITE",
+     "type": "shs",
+     "type_defin": "State Historic Site"
+    }
+   ],
+   "service": "Infrastructure",
+   "typef": "type",
+   "url": "https://geodata.hawaii.gov/arcgis/rest/services/Infrastructure/MapServer/16"
+  }
+ ],
+ "st": "HI"
+}

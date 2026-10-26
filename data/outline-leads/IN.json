@@ -1,0 +1,650 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 162927,
+   "fields": [
+    "attribute",
+    "qaqc_code",
+    "wetland_type"
+   ],
+   "known": false,
+   "layer": "NWI Historic Wetlands",
+   "sample": [
+    {
+     "attribute": "Historic",
+     "qaqc_code": "NNNNNN",
+     "wetland_type": "Historic Wetland"
+    },
+    {
+     "attribute": "Historic",
+     "qaqc_code": "NNNNNN",
+     "wetland_type": "Historic Wetland"
+    },
+    {
+     "attribute": "Historic",
+     "qaqc_code": "NNNNNN",
+     "wetland_type": "Historic Wetland"
+    }
+   ],
+   "service": "Hosted/National_Wetlands_Inventory",
+   "typef": "wetland_type",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/National_Wetlands_Inventory/FeatureServer/3721"
+  },
+  {
+   "agency": "",
+   "area": "unit_nm",
+   "count": 1979,
+   "fields": [
+    "featclass",
+    "category",
+    "own_type",
+    "own_name",
+    "loc_own",
+    "mang_type",
+    "mang_name",
+    "loc_mang",
+    "des_tp",
+    "loc_ds",
+    "unit_nm",
+    "loc_nm",
+    "state_nm",
+    "agg_src",
+    "gis_src",
+    "src_date",
+    "source_paid",
+    "pub_access",
+    "access_src",
+    "access_dt"
+   ],
+   "known": false,
+   "layer": "PAD-US Park Boundaries 2022",
+   "sample": [
+    {
+     "category": "Fee",
+     "des_tp": "LP",
+     "featclass": "Fee",
+     "loc_ds": "Park",
+     "loc_mang": "City Water Works Inc of Elkhart",
+     "loc_nm": "Hayden Park",
+     "loc_own": "City Water Works Inc of Elkhart",
+     "mang_name": "RWD",
+     "mang_type": "DIST",
+     "own_name": "RWD",
+     "own_type": "DIST",
+     "unit_nm": "Hayden Park"
+    },
+    {
+     "category": "Fee",
+     "des_tp": "LP",
+     "featclass": "Fee",
+     "loc_ds": "Park",
+     "loc_mang": "Akron Park Board",
+     "loc_nm": "Akron Park",
+     "loc_own": "Akron Park Board",
+     "mang_name": "CITY",
+     "mang_type": "LOC",
+     "own_name": "CITY",
+     "own_type": "LOC",
+     "unit_nm": "Akron Park"
+    },
+    {
+     "category": "Fee",
+     "des_tp": "LP",
+     "featclass": "Fee",
+     "loc_ds": "Park",
+     "loc_mang": "Alexandria Park Board",
+     "loc_nm": "Beulah Park",
+     "loc_own": "Alexandria Park Board",
+     "mang_name": "CITY",
+     "mang_type": "LOC",
+     "own_name": "CITY",
+     "own_type": "LOC",
+     "unit_nm": "Beulah Park"
+    }
+   ],
+   "service": "Hosted/PAD_US_Park_Boundaries_2022",
+   "typef": "featclass",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/PAD_US_Park_Boundaries_2022/FeatureServer/39"
+  },
+  {
+   "agency": "",
+   "area": "unitname",
+   "count": 1600,
+   "fields": [
+    "unitname",
+    "manager",
+    "owner",
+    "dnrpropcod",
+    "subunit",
+    "tract_id",
+    "comp_id2"
+   ],
+   "known": false,
+   "layer": "Tracts",
+   "sample": [
+    {
+     "comp_id2": "63719",
+     "dnrpropcod": "637",
+     "manager": " ",
+     "owner": " ",
+     "subunit": " ",
+     "tract_id": "6371904",
+     "unitname": "RAVINIA STATE FOREST"
+    },
+    {
+     "comp_id2": "63719",
+     "dnrpropcod": "637",
+     "manager": " ",
+     "owner": " ",
+     "subunit": " ",
+     "tract_id": "6371905",
+     "unitname": "RAVINIA STATE FOREST"
+    },
+    {
+     "comp_id2": "63719",
+     "dnrpropcod": "637",
+     "manager": " ",
+     "owner": " ",
+     "subunit": " ",
+     "tract_id": "6371907",
+     "unitname": "RAVINIA STATE FOREST"
+    }
+   ],
+   "service": "Hosted/NextGenerationForestry_IDNR_TRACTS",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/NextGenerationForestry_IDNR_TRACTS/FeatureServer/1"
+  },
+  {
+   "agency": "U.S. Forest Service, Region 9, Hoosier National Forest",
+   "area": "",
+   "count": 396,
+   "fields": [
+    "owner"
+   ],
+   "known": false,
+   "layer": "Hoosier National Forest Ownership 2007",
+   "sample": [
+    {
+     "owner": "Private"
+    },
+    {
+     "owner": "USFS"
+    },
+    {
+     "owner": "USFS"
+    }
+   ],
+   "service": "Hosted/Hoosier_National_Forest_Ownership_2007",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/Hoosier_National_Forest_Ownership_2007/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unitname",
+   "count": 325,
+   "fields": [
+    "unitname",
+    "manager",
+    "owner",
+    "access_",
+    "dedicated_",
+    "subunit",
+    "contact_ph",
+    "mgr_addres",
+    "mgr_city",
+    "mgr_state",
+    "mgr_zip"
+   ],
+   "known": false,
+   "layer": "ManagedLandsAll_DNR_INHD_IN",
+   "sample": [
+    {
+     "access_": "OPEN PER REGULATIONS",
+     "contact_ph": "219-462-5144",
+     "dedicated_": "N",
+     "manager": "VALPARAISO PARKS AND REC. DEPT.",
+     "mgr_addres": "3210 Campbell",
+     "mgr_city": "Valparaiso",
+     "mgr_state": "IN",
+     "mgr_zip": "46385",
+     "owner": "L/VALPARAISO PARKS",
+     "subunit": "200 East Park",
+     "unitname": "200 East Park"
+    },
+    {
+     "access_": "OPEN PER REGULATIONS",
+     "contact_ph": "219-886-7099",
+     "dedicated_": "N",
+     "manager": "GARY DEPARTMENT OF PUBLIC PARKS",
+     "mgr_addres": "455 Massachusetts St.",
+     "mgr_city": "Gary",
+     "mgr_state": "IN",
+     "mgr_zip": "46402",
+     "owner": "L/GARY PARK BOARD",
+     "subunit": "25th Avenue Park",
+     "unitname": "25th Avenue Park"
+    },
+    {
+     "access_": "OPEN PER REGULATIONS",
+     "contact_ph": "219-242-8558",
+     "dedicated_": "N",
+     "manager": "SHIRLEY HEINZE LAND TRUST",
+     "mgr_addres": "109 W 700 N",
+     "mgr_city": "Valparaiso",
+     "mgr_state": "IN",
+     "mgr_zip": "46385",
+     "owner": "P/SHIRLEY HEINZE",
+     "subunit": "34 Acre Wetland Tract Chesterton",
+     "unitname": "34 Acre Wetland Tract"
+    }
+   ],
+   "service": "Hosted/NaturePreservesCoastalArea",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/NaturePreservesCoastalArea/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unitname",
+   "count": 196,
+   "fields": [
+    "unitname",
+    "manager",
+    "owner",
+    "access_",
+    "dedicated_",
+    "subunit",
+    "contact_ph",
+    "mgr_addres",
+    "mgr_city",
+    "mgr_state",
+    "mgr_zip"
+   ],
+   "known": false,
+   "layer": "ManagedLandsAll_DNR_INHD_IN",
+   "sample": [
+    {
+     "access_": "OPEN PER REGULATIONS",
+     "contact_ph": "317-232-4052",
+     "dedicated_": "N",
+     "manager": "DNR NATURE PRESERVES",
+     "mgr_addres": "402 W. Washington St., Rm W267",
+     "mgr_city": "Indianapolis",
+     "mgr_state": "IN",
+     "mgr_zip": "46204",
+     "owner": "P/SHIRLEY HEINZE",
+     "subunit": "Ambler Flatwoods",
+     "unitname": "Ambler Flatwoods"
+    },
+    {
+     "access_": "CLOSED",
+     "contact_ph": "317-232-4052",
+     "dedicated_": "N",
+     "manager": "DNR NATURE PRESERVES",
+     "mgr_addres": "402 W. Washington St., Rm W267",
+     "mgr_city": "Indianapolis",
+     "mgr_state": "IN",
+     "mgr_zip": "46204",
+     "owner": "P/BP PRODUCTS",
+     "subunit": "Amoco Wetlands",
+     "unitname": "Amoco Wetlands"
+    },
+    {
+     "access_": "RESTRICTED",
+     "contact_ph": "317-232-4052",
+     "dedicated_": "Y",
+     "manager": "DNR NATURE PRESERVES",
+     "mgr_addres": "402 W. Washington St., Rm W267",
+     "mgr_city": "Indianapolis",
+     "mgr_state": "IN",
+     "mgr_zip": "46204",
+     "owner": "S/DNR NP",
+     "subunit": "Armstrong Glade Nature Preserve",
+     "unitname": "Armstrong Glade Nature Preserve"
+    }
+   ],
+   "service": "Hosted/ManagedLands_NaturePreserves",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_NaturePreserves/FeatureServer/0"
+  },
+  {
+   "agency": "U.S. Forest Service, Region 9, Hoosier National Forest",
+   "area": "",
+   "count": 163,
+   "fields": [
+    "data",
+    "area_num"
+   ],
+   "known": false,
+   "layer": "Hoosier National Forest Management Areas 2007",
+   "sample": [
+    {
+     "area_num": "2.4",
+     "data": " "
+    },
+    {
+     "area_num": "Monroe",
+     "data": " "
+    },
+    {
+     "area_num": "2.4",
+     "data": " "
+    }
+   ],
+   "service": "Hosted/Hoosier_National_Forest_Management_Areas_2007",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/Hoosier_National_Forest_Management_Areas_2007/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 153,
+   "fields": [
+    "site_id",
+    "permitte",
+    "permit_no",
+    "comments",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "IDEM Land Application Historical Sites",
+   "sample": [
+    {
+     "comments": "SITE DIVIDED INTO SMALL SITES",
+     "created_user": "TRK",
+     "permit_no": "000558",
+     "permitte": "HUNTINGBURG MUNICIPAL WASTEWATER TREATMENT PLANT",
+     "site_id": "HOHL 1"
+    },
+    {
+     "comments": "Permittee asked for redection due to loss of access to much of the acreage.",
+     "created_user": "Thomas Kreke",
+     "permit_no": "000695",
+     "permitte": "FRANCISCO WASTE WATER PLANT",
+     "site_id": "Francisco-1"
+    },
+    {
+     "created_user": "Kreke",
+     "permit_no": "000115",
+     "permitte": "JASPER MUNICIPAL WASTE WATER TREATMENT PLANT",
+     "site_id": "HOF-001"
+    }
+   ],
+   "service": "Hosted/Land_App",
+   "typef": "created_user",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/Land_App/FeatureServer/2190"
+  },
+  {
+   "agency": "",
+   "area": "max_unitname",
+   "count": 146,
+   "fields": [
+    "max_unitname",
+    "max_dnrpropcod"
+   ],
+   "known": false,
+   "layer": "ForestCompartment",
+   "sample": [
+    {
+     "max_dnrpropcod": "616",
+     "max_unitname": "SELMIER STATE FOREST"
+    },
+    {
+     "max_dnrpropcod": "630",
+     "max_unitname": "CLARK STATE FOREST"
+    },
+    {
+     "max_dnrpropcod": "630",
+     "max_unitname": "CLARK STATE FOREST"
+    }
+   ],
+   "service": "Hosted/StateForestUnits_RO",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/StateForestUnits_RO/FeatureServer/1304"
+  },
+  {
+   "agency": "",
+   "area": "max_unitname",
+   "count": 146,
+   "fields": [
+    "max_unitname",
+    "max_dnrpropcod"
+   ],
+   "known": false,
+   "layer": "ForestCompartment",
+   "sample": [
+    {
+     "max_dnrpropcod": "616",
+     "max_unitname": "SELMIER STATE FOREST"
+    },
+    {
+     "max_dnrpropcod": "630",
+     "max_unitname": "CLARK STATE FOREST"
+    },
+    {
+     "max_dnrpropcod": "630",
+     "max_unitname": "CLARK STATE FOREST"
+    }
+   ],
+   "service": "Hosted/StateForestUnits",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/StateForestUnits/FeatureServer/1304"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 92,
+   "fields": [
+    "geoid",
+    "name",
+    "state",
+    "sumlev",
+    "region",
+    "division",
+    "statens",
+    "county",
+    "countycc",
+    "countyns",
+    "funcstat",
+    "classfp",
+    "cbsa",
+    "memi",
+    "csa",
+    "metdiv",
+    "arealand",
+    "areawatr",
+    "intptlat",
+    "intptlon"
+   ],
+   "known": false,
+   "layer": "Trail Miles Per Capita",
+   "sample": [
+    {
+     "classfp": "H1",
+     "county": "129",
+     "countycc": "H1",
+     "countyns": "00450383",
+     "division": "3",
+     "funcstat": "A",
+     "geoid": "18129",
+     "name": "Posey County",
+     "region": "2",
+     "state": "Indiana",
+     "statens": "00448508",
+     "sumlev": "050"
+    },
+    {
+     "classfp": "H1",
+     "county": "163",
+     "countycc": "H1",
+     "countyns": "00450396",
+     "division": "3",
+     "funcstat": "A",
+     "geoid": "18163",
+     "name": "Vanderburgh County",
+     "region": "2",
+     "state": "Indiana",
+     "statens": "00448508",
+     "sumlev": "050"
+    },
+    {
+     "classfp": "H1",
+     "county": "147",
+     "countycc": "H1",
+     "countyns": "00450388",
+     "division": "3",
+     "funcstat": "A",
+     "geoid": "18147",
+     "name": "Spencer County",
+     "region": "2",
+     "state": "Indiana",
+     "statens": "00448508",
+     "sumlev": "050"
+    }
+   ],
+   "service": "Hosted/Trail_Miles_RO",
+   "typef": "classfp",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/Trail_Miles_RO/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30,
+   "fields": [
+    "pdf_name",
+    "pdf_hyperlink"
+   ],
+   "known": false,
+   "layer": "NWI Wetlands Historic Map Info",
+   "sample": [
+    {
+     "pdf_hyperlink": "http://www.fws.gov/wetlands/Data/HisMapRep/vincennes-b.pdf",
+     "pdf_name": "vincennes-b.pdf"
+    },
+    {
+     "pdf_hyperlink": "http://www.fws.gov/wetlands/Data/HisMapRep/vincennes-a.pdf",
+     "pdf_name": "vincennes-a.pdf"
+    },
+    {
+     "pdf_hyperlink": "http://www.fws.gov/wetlands/Data/HisMapRep/vincennes-c.pdf",
+     "pdf_name": "vincennes-c.pdf"
+    }
+   ],
+   "service": "Hosted/National_Wetlands_Inventory",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/National_Wetlands_Inventory/FeatureServer/3723"
+  },
+  {
+   "agency": "",
+   "area": "max_unitname",
+   "count": 18,
+   "fields": [
+    "dnrpropcod",
+    "max_unitname"
+   ],
+   "known": false,
+   "layer": "ForestProperty",
+   "sample": [
+    {
+     "dnrpropcod": "630",
+     "max_unitname": "Clark"
+    },
+    {
+     "dnrpropcod": "632",
+     "max_unitname": "Covered Bridge"
+    },
+    {
+     "dnrpropcod": "631",
+     "max_unitname": "Ferdinand"
+    }
+   ],
+   "service": "Hosted/StateForestUnits_RO",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/StateForestUnits_RO/FeatureServer/1308"
+  },
+  {
+   "agency": "",
+   "area": "max_unitname",
+   "count": 18,
+   "fields": [
+    "dnrpropcod",
+    "max_unitname"
+   ],
+   "known": false,
+   "layer": "ForestProperty",
+   "sample": [
+    {
+     "dnrpropcod": "630",
+     "max_unitname": "Clark"
+    },
+    {
+     "dnrpropcod": "632",
+     "max_unitname": "Covered Bridge"
+    },
+    {
+     "dnrpropcod": "631",
+     "max_unitname": "Ferdinand"
+    }
+   ],
+   "service": "Hosted/StateForestUnits",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/StateForestUnits/FeatureServer/1308"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "project_name",
+    "status",
+    "suppmapinfo",
+    "fgdc_metadata",
+    "data_source",
+    "image_date",
+    "all_scales",
+    "emulsion",
+    "comments",
+    "source_type"
+   ],
+   "known": false,
+   "layer": "NWI Historic Wetlands Project Metadata",
+   "sample": [
+    {
+     "all_scales": "1:58K",
+     "emulsion": "CIR",
+     "fgdc_metadata": "http://www.fws.gov/wetlands/data/metadata/FWS_Historic_Wetland_polygons.xml",
+     "image_date": "xx/80",
+     "project_name": "Indiana Historic",
+     "source_type": "CIR",
+     "status": "Digital",
+     "suppmapinfo": "http://www.fws.gov/wetlands/Data/SupMapInf/R09Y13P29.pdf"
+    }
+   ],
+   "service": "Hosted/National_Wetlands_Inventory",
+   "typef": "source_type",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/National_Wetlands_Inventory/FeatureServer/3724"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Trails_Buffer",
+   "sample": [
+    {
+     "SHAPE__Area": 3916474.954494105,
+     "SHAPE__Length": 41898.35848405254,
+     "objectid": 1
+    }
+   ],
+   "service": "Hosted/Trails_Buffer",
+   "typef": "",
+   "url": "https://gisdata.in.gov/server/rest/services/Hosted/Trails_Buffer/FeatureServer/100"
+  }
+ ],
+ "st": "IN"
+}

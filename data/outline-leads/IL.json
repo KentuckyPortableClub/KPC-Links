@@ -1,0 +1,745 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 6321,
+   "fields": [
+    "District",
+    "Org_Type",
+    "Site_Name",
+    "Owner_Type",
+    "Owner",
+    "Comments",
+    "Source",
+    "County"
+   ],
+   "known": false,
+   "layer": "Municipal_conservation_lands_update_7_18",
+   "sample": [
+    {
+     "County": "Adams",
+     "District": "Quincy Park District",
+     "Org_Type": "Municipal",
+     "Owner": "Quincy Park District",
+     "Owner_Type": "Fee Simple",
+     "Site_Name": "Moorman Park",
+     "Source": "David Holman"
+    },
+    {
+     "County": "Adams",
+     "District": "Quincy Park District",
+     "Org_Type": "Municipal",
+     "Owner": "Quincy Park District",
+     "Owner_Type": "Fee Simple",
+     "Site_Name": "Wavering Park",
+     "Source": "David Holman"
+    },
+    {
+     "County": "Adams",
+     "District": "Quincy Park District",
+     "Org_Type": "Municipal",
+     "Owner": "Quincy Park District",
+     "Owner_Type": "Fee Simple",
+     "Site_Name": "Westview Golf Course",
+     "Source": "David Holman"
+    }
+   ],
+   "service": "DavidHolmanConservationPropertiesUpdate_7_18",
+   "typef": "Org_Type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/DavidHolmanConservationPropertiesUpdate_7_18/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 6145,
+   "fields": [
+    "name",
+    "inai_no",
+    "survey_dat",
+    "NATQUAL_gr",
+    "NatCom_C_1",
+    "NatCom_N_1"
+   ],
+   "known": false,
+   "layer": "NatComms_Historic_Statewide",
+   "sample": [
+    {
+     "NATQUAL_gr": "B",
+     "NatCom_C_1": "Forest",
+     "NatCom_N_1": "Mesic floodplain forest",
+     "inai_no": "1007",
+     "name": "Edward L Ryerson CA",
+     "survey_dat": "6/16/1976"
+    },
+    {
+     "NATQUAL_gr": "C",
+     "NatCom_C_1": "Forest",
+     "NatCom_N_1": "Mesic floodplain forest",
+     "inai_no": "1007",
+     "name": "Edward L Ryerson CA",
+     "survey_dat": "6/16/1976"
+    },
+    {
+     "NATQUAL_gr": "D",
+     "NatCom_C_1": "Forest",
+     "NatCom_N_1": "Mesic floodplain forest",
+     "inai_no": "1007",
+     "name": "Edward L Ryerson CA",
+     "survey_dat": "6/16/1976"
+    }
+   ],
+   "service": "NatComms_Historic_Statewide",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/NatComms_Historic_Statewide/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 2171,
+   "fields": [
+    "Org",
+    "Org_Type",
+    "Site_Name",
+    "Owner_Type",
+    "County",
+    "Comments",
+    "Source"
+   ],
+   "known": false,
+   "layer": "Public_conservation_lands_update_7_18",
+   "sample": [
+    {
+     "Comments": "Document #2962323",
+     "County": "Lake",
+     "Org": "Lake County Forest Preserve District",
+     "Org_Type": "County",
+     "Owner_Type": "Conservation Easement",
+     "Site_Name": "Almond Marsh Forest Preserve",
+     "Source": "David Holman"
+    },
+    {
+     "Comments": "Document #6282158, 6293889",
+     "County": "Lake",
+     "Org": "Lake County Forest Preserve District",
+     "Org_Type": "County",
+     "Owner_Type": "Conservation Easement",
+     "Site_Name": "Almond Marsh Forest Preserve",
+     "Source": "David Holman"
+    },
+    {
+     "Comments": " ",
+     "County": "Lake",
+     "Org": "Lake County Forest Preserve District",
+     "Org_Type": "County",
+     "Owner_Type": "Fee Simple",
+     "Site_Name": "Almond Marsh Forest Preserve",
+     "Source": "David Holman"
+    }
+   ],
+   "service": "DavidHolmanConservationPropertiesUpdate_7_18",
+   "typef": "Org_Type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/DavidHolmanConservationPropertiesUpdate_7_18/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 1038,
+   "fields": [
+    "Org",
+    "Type",
+    "Site_Name",
+    "Grantor",
+    "PINs",
+    "Owner",
+    "Document",
+    "County",
+    "Comments",
+    "Source"
+   ],
+   "known": false,
+   "layer": "Illinois Nature Preserves Commission",
+   "sample": [
+    {
+     "Comments": "Legal description incorrectly fails to omit I-55 ROW. Western border is centerline of Lily Cache Creek. Northwestern border is eastern shore of Creek. Northern parcel specifically stated to include \"the south 58 acres\". Acreage taken from GIS.",
+     "County": "Will",
+     "Document": "R2003-250161",
+     "Grantor": "Forest Preserve District of Will County",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "06-03-14-200-001-0000, 06-03-14-200-004-0000, 06-03-14-400-006-0000",
+     "Site_Name": "Lake Renwick East Land and Water Reserve",
+     "Source": "David Holman",
+     "Type": "Land and Water Reserve"
+    },
+    {
+     "Comments": "Recorded twice. Re-recorded again to correct an error in the legal description. Acreage taken from legal description.",
+     "County": "Will",
+     "Document": "R93-080979, R94-084633, R2013125685",
+     "Grantor": "Forest Preserve District of Will County",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "01-24-14-100-004-0000",
+     "Site_Name": "Sand Ridge Savanna Nature Preserve Buffer",
+     "Source": "David Holman",
+     "Type": "Nature Preserve Buffer"
+    },
+    {
+     "Comments": "Recorded twice. Re-recorded again to correct an error in the legal description. Acreage taken from legal description.",
+     "County": "Will",
+     "Document": "R93-080979, R94-084633, R2013125685",
+     "Grantor": "Forest Preserve District of Will County",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "01-24-14-100-004-0000",
+     "Site_Name": "Sand Ridge Savanna Nature Preserve",
+     "Source": "David Holman",
+     "Type": "Nature Preserve"
+    }
+   ],
+   "service": "DavidHolmanProtectedLandsUpdate_1_3_23",
+   "typef": "Type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/DavidHolmanProtectedLandsUpdate_1_3_23/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 968,
+   "fields": [
+    "Org",
+    "Type",
+    "Site_Name",
+    "Grantor",
+    "Date",
+    "PINs",
+    "Owner",
+    "Document",
+    "County",
+    "NP_Number",
+    "LWR_Number",
+    "Comments",
+    "Source"
+   ],
+   "known": false,
+   "layer": "INPC",
+   "sample": [
+    {
+     "Comments": "Legal description incorrectly fails to omit I-55 ROW. Western border is centerline of Lily Cache Creek. Northwestern border is eastern shore of Creek. Northern parcel specifically stated to include \"the south 58 acres\". Acreage taken from GIS.",
+     "County": "Will",
+     "Date": "09/24/2003",
+     "Document": "R2003-250161",
+     "Grantor": "Forest Preserve District of Will County",
+     "LWR_Number": "98",
+     "NP_Number": "0",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "06-03-14-200-001-0000, 06-03-14-200-004-0000, 06-03-14-400-006-0000",
+     "Site_Name": "Lake Renwick East Land and Water Reserve",
+     "Type": "Land and Water Reserve"
+    },
+    {
+     "Comments": "Recorded twice. Re-recorded again to correct an error in the legal description. Acreage taken from legal description.",
+     "County": "Will",
+     "Date": "09/01/1993",
+     "Document": "R93-080979, R94-084633, R2013125685",
+     "Grantor": "Forest Preserve District of Will County",
+     "LWR_Number": "0",
+     "NP_Number": "231",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "01-24-14-100-004-0000",
+     "Site_Name": "Sand Ridge Savanna Nature Preserve Buffer",
+     "Type": "Nature Preserve Buffer"
+    },
+    {
+     "Comments": "Recorded twice. Re-recorded again to correct an error in the legal description. Acreage taken from legal description.",
+     "County": "Will",
+     "Date": "09/01/1993",
+     "Document": "R93-080979, R94-084633, R2013125685",
+     "Grantor": "Forest Preserve District of Will County",
+     "LWR_Number": "0",
+     "NP_Number": "231",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "01-24-14-100-004-0000",
+     "Site_Name": "Sand Ridge Savanna Nature Preserve",
+     "Type": "Nature Preserve"
+    }
+   ],
+   "service": "DavidHolmanConservationPropertiesUpdate_7_18",
+   "typef": "Type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/DavidHolmanConservationPropertiesUpdate_7_18/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 847,
+   "fields": [
+    "Org",
+    "Org_Type",
+    "Site_Name",
+    "Owner_Type",
+    "Grantor",
+    "Grantee",
+    "Date",
+    "Owner",
+    "Document",
+    "County",
+    "Comments",
+    "Source"
+   ],
+   "known": false,
+   "layer": "Private_conservation_lands_update_7_18",
+   "sample": [
+    {
+     "Comments": "Acreage taken from GIS.",
+     "County": "Cook",
+     "Date": "10/08/2010",
+     "Document": "1029133083",
+     "Grantee": "Barrington Area Conservation Trust",
+     "Grantor": "Grace H. Schurecht Trust",
+     "Org": "Barrington Area Conservation Trust",
+     "Org_Type": "NGO",
+     "Owner": "Barrington Area Conservation Trust",
+     "Owner_Type": "Fee Simple",
+     "Site_Name": "Pederson Preserve",
+     "Source": "David Holman"
+    },
+    {
+     "Comments": "Acreage taken from GIS.",
+     "County": "McHenry",
+     "Date": "04/21/2008",
+     "Document": "2008R0040520",
+     "Grantee": "Barrington Area Conservation Trust",
+     "Grantor": "Jenese Busch",
+     "Org": "Barrington Area Conservation Trust",
+     "Org_Type": "NGO",
+     "Owner": "Barrington Area Conservation Trust",
+     "Owner_Type": "Fee Simple",
+     "Site_Name": "Jack David Mondschine Wildlife Conservation Area",
+     "Source": "David Holman"
+    },
+    {
+     "Comments": "Gross acreage (5.431 acres) taken from legal description; net acreage taken from GIS.",
+     "County": "Cook",
+     "Date": "12/16/2009",
+     "Document": "0936355082",
+     "Grantee": "Barrington Area Conservation Trust",
+     "Grantor": "Mary-Bradford White and Lynn White",
+     "Org": "Barrington Area Conservation Trust",
+     "Org_Type": "NGO",
+     "Owner": "Joel Yashinsky",
+     "Owner_Type": "Conservation Easement",
+     "Site_Name": "Equestrian Property (Yashinsky)",
+     "Source": "David Holman"
+    }
+   ],
+   "service": "DavidHolmanConservationPropertiesUpdate_7_18",
+   "typef": "Org_Type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/DavidHolmanConservationPropertiesUpdate_7_18/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 717,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Nature_Preserves_2026",
+   "sample": [
+    {
+     "Name": "Nature Preserve Site"
+    },
+    {
+     "Name": "Nature Preserve Site"
+    },
+    {
+     "Name": "Nature Preserve Site"
+    }
+   ],
+   "service": "Nature_Preserves_2026",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Nature_Preserves_2026/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 102,
+   "fields": [
+    "COUNTY_NAM",
+    "GISDB_DIR",
+    "COUNTY_N_1",
+    "BIOLOGIST",
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "Wildlife_Districts_Future",
+   "sample": [
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Jo Daviess",
+     "COUNTY_N_1": "JO DAVIESS",
+     "DISTRICT": "1",
+     "GISDB_DIR": "jodavies"
+    },
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Stephenson",
+     "COUNTY_N_1": "STEPHENSON",
+     "DISTRICT": "1",
+     "GISDB_DIR": "stephens"
+    },
+    {
+     "BIOLOGIST": "FITZSIMONS",
+     "COUNTY_NAM": "Lake",
+     "COUNTY_N_1": "LAKE",
+     "DISTRICT": "10",
+     "GISDB_DIR": "lake"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 102,
+   "fields": [
+    "COUNTY_NAM",
+    "COUNTY_N_1",
+    "BIOLOGIST",
+    "NAME",
+    "DISTRICT",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Wildlife_Districts_8_1_26",
+   "sample": [
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Jo Daviess",
+     "COUNTY_N_1": "JO DAVIESS",
+     "DISTRICT": "1"
+    },
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Stephenson",
+     "COUNTY_N_1": "STEPHENSON",
+     "DISTRICT": "1"
+    },
+    {
+     "BIOLOGIST": "FITZSIMONS",
+     "COUNTY_NAM": "Lake",
+     "COUNTY_N_1": "LAKE",
+     "DISTRICT": "10"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 102,
+   "fields": [
+    "COUNTY_NAM",
+    "GISDB_DIR",
+    "COUNTY_N_1",
+    "BIOLOGIST",
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "Wildlife_Districts_4_8_26",
+   "sample": [
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Jo Daviess",
+     "COUNTY_N_1": "JO DAVIESS",
+     "DISTRICT": "1",
+     "GISDB_DIR": "jodavies"
+    },
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Stephenson",
+     "COUNTY_N_1": "STEPHENSON",
+     "DISTRICT": "1",
+     "GISDB_DIR": "stephens"
+    },
+    {
+     "BIOLOGIST": "FITZSIMONS",
+     "COUNTY_NAM": "Lake",
+     "COUNTY_N_1": "LAKE",
+     "DISTRICT": "10",
+     "GISDB_DIR": "lake"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 20,
+   "fields": [
+    "COUNTY_NAM",
+    "GISDB_DIR",
+    "COUNTY_N_1",
+    "BIOLOGIST",
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "District Boundary",
+   "sample": [
+    {
+     "BIOLOGIST": "EDDINGTON",
+     "COUNTY_NAM": "Jo Daviess",
+     "COUNTY_N_1": "JO DAVIESS",
+     "DISTRICT": "1",
+     "GISDB_DIR": "jodavies"
+    },
+    {
+     "BIOLOGIST": "FITZSIMONS",
+     "COUNTY_NAM": "Boone",
+     "COUNTY_N_1": "BOONE",
+     "DISTRICT": "1",
+     "GISDB_DIR": "boone"
+    },
+    {
+     "BIOLOGIST": "WEBER",
+     "COUNTY_NAM": "Carroll",
+     "COUNTY_N_1": "CARROLL",
+     "DISTRICT": "2",
+     "GISDB_DIR": "carroll"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 19,
+   "fields": [
+    "BIOLOGIST",
+    "NAME",
+    "PHONE",
+    "EMAIL"
+   ],
+   "known": false,
+   "layer": "Wildlife_Group_4_8_26",
+   "sample": [
+    {
+     "BIOLOGIST": "ALBERT",
+     "EMAIL": "ross.albert@illinois.gov",
+     "NAME": "Albert, Ross",
+     "PHONE": "618-832-0357"
+    },
+    {
+     "BIOLOGIST": "BUNNELL",
+     "EMAIL": "john.bunnell@illinois.gov",
+     "NAME": "Bunnell, John",
+     "PHONE": "618-302-0252"
+    },
+    {
+     "BIOLOGIST": "CANANIA",
+     "EMAIL": "eric.canania@illinois.gov",
+     "NAME": "Canania, Eric",
+     "PHONE": "618-708-2801"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [],
+   "known": false,
+   "layer": "Regions",
+   "sample": [
+    {
+     "Id": 0,
+     "OBJECTID": 1,
+     "Region": 1,
+     "Shape__Area": 68889075914.42969,
+     "Shape__Length": 1355471.8571601682
+    },
+    {
+     "Id": 0,
+     "OBJECTID": 2,
+     "Region": 2,
+     "Shape__Area": 24125362627.960938,
+     "Shape__Length": 747554.7750249552
+    },
+    {
+     "Id": 0,
+     "OBJECTID": 3,
+     "Region": 3,
+     "Shape__Area": 47373867163.96875,
+     "Shape__Length": 1012047.0842891375
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "REGION",
+    "REGIONAL",
+    "PHONE",
+    "EMAIL"
+   ],
+   "known": false,
+   "layer": "Wildlife Regions",
+   "sample": [
+    {
+     "EMAIL": "roy.domazlicky@illinois.gov",
+     "PHONE": "847-608-3167",
+     "REGION": "North",
+     "REGIONAL": "Roy Domazlicky"
+    },
+    {
+     "EMAIL": "gregory.fretueg@illinois.gov",
+     "PHONE": "309-215-8195",
+     "REGION": "Central",
+     "REGIONAL": "Greg Fretueg"
+    },
+    {
+     "EMAIL": "mitch.oswald@illinois.gov",
+     "PHONE": "217-299-9469",
+     "REGION": "South",
+     "REGIONAL": "Vacancy (Mitch Oswald)"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Region",
+    "REGIONAL",
+    "PHONE",
+    "EMAIL"
+   ],
+   "known": false,
+   "layer": "Regions",
+   "sample": [
+    {
+     "EMAIL": "roy.domazlicky@illinois.gov",
+     "REGIONAL": "Roy Domazlicky",
+     "Region": "North"
+    },
+    {
+     "EMAIL": "gregory.fretueg@illinois.gov",
+     "PHONE": "309-215-8195",
+     "REGIONAL": "Greg Fretueg",
+     "Region": "Central"
+    },
+    {
+     "EMAIL": "mitch.oswald@illinois.gov",
+     "PHONE": "217-299-9469",
+     "REGIONAL": "Vacant (Oswald)",
+     "Region": "South"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "BIOLOGIST"
+   ],
+   "known": false,
+   "layer": "Hunter Heritage Biologist",
+   "sample": [
+    {
+     "BIOLOGIST": "STRAHL"
+    }
+   ],
+   "service": "Wildlife_Districts_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/Wildlife_Districts_WFL1/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Site_Name",
+   "count": 1025,
+   "fields": [
+    "Org",
+    "Type",
+    "Site_Name",
+    "Grantor",
+    "PINs",
+    "Owner",
+    "Document",
+    "County",
+    "Comments",
+    "Source"
+   ],
+   "known": true,
+   "layer": "Illinois Nature Preserves Commission",
+   "sample": [
+    {
+     "Comments": "Legal description incorrectly fails to omit I-55 ROW. Western border is centerline of Lily Cache Creek. Northwestern border is eastern shore of Creek. Northern parcel specifically stated to include \"the south 58 acres\". Acreage taken from GIS.",
+     "County": "Will",
+     "Document": "R2003-250161",
+     "Grantor": "Forest Preserve District of Will County",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "06-03-14-200-001-0000, 06-03-14-200-004-0000, 06-03-14-400-006-0000",
+     "Site_Name": "Lake Renwick East Land and Water Reserve",
+     "Source": "David Holman",
+     "Type": "Land and Water Reserve"
+    },
+    {
+     "Comments": "Recorded twice. Re-recorded again to correct an error in the legal description. Acreage taken from legal description.",
+     "County": "Will",
+     "Document": "R93-080979, R94-084633, R2013125685",
+     "Grantor": "Forest Preserve District of Will County",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "01-24-14-100-004-0000",
+     "Site_Name": "Sand Ridge Savanna Nature Preserve Buffer",
+     "Source": "David Holman",
+     "Type": "Nature Preserve Buffer"
+    },
+    {
+     "Comments": "Recorded twice. Re-recorded again to correct an error in the legal description. Acreage taken from legal description.",
+     "County": "Will",
+     "Document": "R93-080979, R94-084633, R2013125685",
+     "Grantor": "Forest Preserve District of Will County",
+     "Org": "Illinois Nature Preserves Commission",
+     "Owner": "Forest Preserve District of Will County",
+     "PINs": "01-24-14-100-004-0000",
+     "Site_Name": "Sand Ridge Savanna Nature Preserve",
+     "Source": "David Holman",
+     "Type": "Nature Preserve"
+    }
+   ],
+   "service": "IllinoisProtectedLandsDH_1_22",
+   "typef": "Type",
+   "url": "https://services.arcgis.com/b9DHj1BjfdLLFv11/arcgis/rest/services/IllinoisProtectedLandsDH_1_22/FeatureServer/3"
+  }
+ ],
+ "st": "IL"
+}
