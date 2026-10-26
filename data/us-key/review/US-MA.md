@@ -1,11 +1,13 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **406 of 421** parks joined to official land (same name + same kind of place). **2** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **407 of 421** parks joined to official land (same name + same kind of place). **4** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0891** Taunton National Wild and Scenic River (National Wild and Scenic River) → Taunton River CR (~131 ac, similar name)
 - **US-0897** Westfield National Wild and Scenic River (National Wild and Scenic River) → Westfield River Conservation Area (~15 ac, same name, different kind of place)
+- **US-4556** Appalachian Trail National Scenic Trail (National Scenic Trail) → Appalachian National Scenic Trail (~0 ac, similar name)
+- **US-4561** New England Trail National Scenic Trail (National Scenic Trail) → Appalachian National Scenic Trail (~0 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -16,10 +18,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Nothing found in PAD-US
 
 - US-0329 Silvio O Conte National Wildlife Refuge (National Wildlife Refuge)
-- US-0802 Boston African American National Historic Site (National Historic Site)
 - US-2436 Greycourt State Park (State Park)
-- US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
-- US-4561 New England Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
 - US-8385 Farnham-Connolly State Park (State Park)
