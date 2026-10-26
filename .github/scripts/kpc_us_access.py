@@ -162,7 +162,10 @@ def read_layer(L, box):
     if 'Polyline' in geo: return [], 'lines, not points'
     area = [] if re.search(r'location only|^\s*\(?none', L['area'], re.I) else fields_in(L['area'], have)
     typf = fields_in(L['typef'], have)
-    namef = [f for f in have if re.search(r'^(name|.*_name|.*name)$', f, re.I) and f not in area][:2]
+    namef = [f for f in have if re.search(r'^(name|.*_name|.*name)(_e)?$', f, re.I) and f not in area][:2]
+    # Oct 26 (Parks Canada components): a type field holding CODES is read through the layer's own code list
+    dom = {f['name']: {str(c.get('code')): str(c.get('name')) for c in ((f.get('domain') or {}).get('codedValues') or [])}
+           for f in info.get('fields') or []}
     out, off, mx = [], 0, int(info.get('maxRecordCount') or 1000)
     while True:
         q = {'where': '1=1', 'outFields': ','.join(dict.fromkeys(area + typf + namef)) or '*', 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json',
@@ -180,7 +183,9 @@ def read_layer(L, box):
                 pts = [p for r in g['rings'] for p in r]; lo, la = sum(p[0] for p in pts) / len(pts), sum(p[1] for p in pts) / len(pts)
             elif g.get('points'): lo, la = g['points'][0][0], g['points'][0][1]
             else: continue
-            text = ' '.join(str(a.get(x) or '') for x in typf).strip()
+            text = ' '.join(dom.get(x, {}).get(str(a.get(x)), str(a.get(x) or '')) for x in typf).strip()
+            if text and re.fullmatch(r'[\d .]+', text):   # codes with no code list: the point's own name says what it is
+                text = ' '.join(str(a.get(x) or '') for x in namef).strip()
             out.append({'la': la, 'lo': lo, 'k': kind_of(text) if text else None, 'txt': text, 'area': ' '.join(str(a.get(x) or '') for x in area).strip(), 'nm': ' '.join(str(a.get(x) or '') for x in namef).strip()})
         if not fs or (not j.get('exceededTransferLimit') and len(fs) < min(mx, 1000)): break
         off += len(fs); time.sleep(.4)
