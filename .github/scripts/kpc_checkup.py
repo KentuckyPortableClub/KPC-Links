@@ -160,7 +160,7 @@ def answer(url):
     try:
         req = urllib.request.Request(u, headers=UA)
         with urllib.request.urlopen(req, timeout=40) as r:
-            body = r.read(200000 if rest else 4096).decode('utf-8', 'replace')
+            body = r.read(5000000 if rest else 4096).decode('utf-8', 'replace')
             if rest:
                 try:
                     j = json.loads(body)
