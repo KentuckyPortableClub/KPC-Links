@@ -170,6 +170,7 @@ A. MORE OUTLINES (biggest wins first):
 B. MORE ACCURATE:
  1. Fix the 158 US + 97 Canada 'pin outside' parks, busiest first (good-bot rounds, like round 5 which found the Québec bug).
  2. Add NAME + SIZE checks to the nightly check (already on chat 2's to-do) → a worst-first list.
+ 2b. SECOND WITNESS (Brandon Oct 26 6:13 AM: 'our pins are from POTA? could it just be POTA wrong'): yes, the pins are POTA's and are often off (HQ, wrong park, swapped lat/lon). The nightly check gives every outline a CONFIDENCE score from independent evidence: (a) the agency's own location (official page / agency layer point) inside our outline while POTA's pin is not = POTA PIN OFF, keep the outline; (b) name match; (c) size match; (d) state layer and PAD-US agree. High confidence = done; only low-confidence parks go to good-bot rounds. Kentucky 'POTA pin off' parks → a correction list Brandon can send through the POTA mapping-rep channel.
  3. Upgrade 'approximate' joins (120 reviewed-approx, 96 water-outline-only) to official when an agency layer turns up.
  4. QUALITY SAMPLE each quarter: 50 random busy parks checked by hand against the agency map → an honest error rate in the weekly status.
  5. Watch for change: an outline that shifts a lot between runs goes on the review list (lost outlines already go in the bot issue body).
