@@ -9,8 +9,9 @@ Rules (Brandon, Oct 26):
   ('reviewed-approx', a lake surface), never a park whose pin is 'well outside' its land. POTA parks only.
 - A spot counts only when the shared ground holds a spot AT LEAST 100 YARDS ACROSS: shrink the overlap 50 yards inward
   and something must remain (no slivers, no parks that only touch). Holes (inholdings) in an outline stay holes.
-- TRAILS + RIVERS (official lines, data/trails): a stretch AT LEAST 100 YARDS LONG inside the other park (15 m in from its
-  line), or two lines sharing the same tread for 100 yards.
+- TRAILS + RIVERS (official lines, data/trails): POTA's rule = the station entirely within 100 ft of the trail (KPC applies
+  the same to rivers). So a stretch AT LEAST 100 YARDS LONG where a station spot inside the other park (5 m in) is within
+  100 ft of the line; two lines: their 100-ft zones meet along 100 yards.
 - n-fers: a 3-fer is three parks sharing the SAME ground (never a chain); same for 4.
 - Two park numbers joined to the SAME outline record = an answer-key mistake: listed in data/fers/same-outline.json,
   never a spot.
@@ -43,7 +44,11 @@ DET = {1: 0.0005, 2: 0.0002, 3: 0.00002}[PASS]
 PREC = {1: 5, 2: 5, 3: 6}[PASS]
 SHRINK = 45.72            # 50 yards: what must remain after shrinking the overlap this far = a spot 100 yards across
 STRETCH = 91.44           # 100 yards of a trail / river inside the other park
-LINE_IN = 15.0            # a line counts as inside when it is this far in from the other park's line
+# POTA's trail rule (Activator Guide, docs.pota.app): 'Your station must be located entirely within 100 feet (30.5m) of the
+# trail'; KPC's guide applies the same to river parks (within 100 ft of the water). So a trail / river counts with another
+# park where a station spot sits INSIDE that park (5 m in) and within 100 ft of the line (5 m to spare): 25 m.
+ZONE = 30.48 - 5.0
+STATION_IN = 5.0
 MAXPX = 9_000_000         # pixels per raster tile
 OUT = pathlib.Path('data/fers'); OUT.mkdir(parents=True, exist_ok=True)
 CACHE_US = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/us')
@@ -468,8 +473,8 @@ def sample(l, step):
 
 
 def line_spots(lref, ls, oref, other, other_is_line, box, kind):
-    """Stretches of park lref's line(s) at least 100 yards long inside park oref (15 m in from its line), or sharing
-    the other line's tread (within 15 m)."""
+    """Stretches of park lref's line(s) at least 100 yards long where a station can stand within 100 ft of the line AND
+    inside park oref (5 m in from its line); for two lines: within 100 ft of both (the two 100-ft zones meet)."""
     out = []
     for l in ls:
         pts = [p for p in sample(l, CELL / 2) if box[0] <= p[0] <= box[2] and box[1] <= p[1] <= box[3]]
@@ -478,9 +483,11 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
         for b in tiles(bbox_lines([pts]), CELL, 0):
             idx = [i for i, p in enumerate(pts) if b[0] <= p[0] <= b[2] and b[1] <= p[1] <= b[3]]
             if not idx: continue
-            F = Frame(b, CELL, 60)
-            if other_is_line: ok = F.lines(other, LINE_IN)
-            else: ok = (cv2.distanceTransform(F.area(other), cv2.DIST_L2, 5) * CELL >= LINE_IN).astype(np.uint8)
+            F = Frame(b, CELL, 120)
+            if other_is_line: ok = F.lines(other, 2 * ZONE)
+            else:
+                spot_ok = (cv2.distanceTransform(F.area(other), cv2.DIST_L2, 5) * CELL >= STATION_IN).astype(np.uint8)
+                ok = (cv2.distanceTransform(1 - spot_ok, cv2.DIST_L2, 5) * CELL <= ZONE).astype(np.uint8)
             P = F.px([pts[i] for i in idx]).astype(int)
             P[:, 0] = P[:, 0].clip(0, F.W - 1); P[:, 1] = P[:, 1].clip(0, F.H - 1)
             ins[idx] = ok[P[:, 1], P[:, 0]] > 0
@@ -638,7 +645,8 @@ def main():
         counts['parks whose outline could not be read'] = len(bad)
         boxes = {r: bbox_groups(g) for r, g in G.items() if bbox_groups(g)}
         for r in LN:
-            if r in parks and r not in boxes: boxes[r] = bbox_lines(LN[r]['lines'])
+            if r in parks and r not in boxes:
+                b = bbox_lines(LN[r]['lines']); boxes[r] = [b[0] - .0005, b[1] - .0005, b[2] + .0005, b[3] + .0005]   # the 100-ft zone
         pairs = grid_pairs(boxes) - skip_pairs
         touched = {r for p in pairs for r in p}
         counts['parks done by the box test'] = len(boxes) - len(touched)
