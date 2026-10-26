@@ -209,6 +209,10 @@
     if (!P.park && P.us && P.prog === 'POTA' && /^[A-Z]{2}$/.test(P.st || '') && !P.ap) {
       try { const d = await fetch('data/access/US-' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
     }
+    /* Oct 26: Canada too (data/access/CA-XX.json, same bot) */
+    if (!P.park && P.prog === 'POTA' && /^CA-[A-Z]{2}$/.test(P.st || '') && !P.ap) {
+      try { const d = await fetch('data/access/' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
+    }
     const ap = (P.park && P.park.ap) || P.ap || [];
     ap.forEach(a => L.circleMarker([a[0], a[1]], { radius: 7, color: '#fff', weight: 2, fillColor: '#1d5a3a', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(a[2])}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${a[0]},${a[1]}" target="_blank" rel="noopener">Directions ↗</a>`));
     const o = { ref: P.c, name: P.n, la: P.la, lo: P.lo, points: ap };

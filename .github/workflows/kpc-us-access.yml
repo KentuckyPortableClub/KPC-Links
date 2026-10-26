@@ -28,6 +28,8 @@ jobs:
         run: |
           mkdir -p cache/us
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
+          mkdir -p cache/ca
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true   # Oct 26: Canadian outlines
       - name: Build the access points
         continue-on-error: true
         env:
