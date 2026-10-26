@@ -89,3 +89,9 @@ WHAT TO DO: same steps as item 1 (Graph API Explorer, pick the permission from t
 Page token from me/accounts for "Kentucky Portable Club" id 1342190728983628, extend it so it never expires),
 then update the `FB_PAGE_TOKEN` secret. The next hourly run prints 'Everything needed is there.' when it is right.
 STATUS: ON HOLD (Brandon Oct 24 6 PM: 'Not ready for that'). auto is false; suggestions to Discord only. Do not nag.
+
+## CLUB POST FORM: 3 steps for Brandon (Oct 25, chat 5; script is .claude/build/clubpost/make-club-post-form.gs)
+1. script.google.com > New project > paste the whole file into Code.gs > Save > choose makeClubPostForm > Run once (say yes to the permission screens). The Execution log prints the FORM, EDIT and SHEET links. Before running, add the other founders' Google emails to the FOUNDERS list at the top (Brandon's is already there).
+2. Open the EDIT link: (a) add a "File upload" question named exactly  Pictures or files  (Google does not let a script add that one; pick Images/PDF, up to 10 files, 10 MB each); (b) Settings > Responses > Collect email addresses must say VERIFIED (if it says Responder input, change it, or anyone could type a founder's email).
+3. In Discord: the private relay channel > Edit Channel > Integrations > Webhooks > New Webhook > Copy Webhook URL. In the Apps Script project: Project Settings (gear) > Script properties > Add  RELAY_WEBHOOK  = that link. Paste it only there, never in chat or the repo.
+Test: submit a post from your own email (it should show Sent in the sheet's Status column and appear in the relay channel; the relay publishes within 15 min). Then submit from another Google account: Status says "Waiting for approval" until you pick YES in the Approved column.
