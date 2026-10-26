@@ -1,6 +1,6 @@
 {
- "ver": "0.7.0",
- "when": "2026-10-25",
+ "ver": "0.7.2",
+ "when": "2026-10-26",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "CW, RTTY, PSK31, HELL, SSTV and WSPR; voice keyer; decoder fix for the PC; remote sound, meters, radio on/off and band view; POTA files; new spot filters, scan, who heard me, conditions; KPC icon."
+ "notes": "PC FT8 sound fix, remote TX + volume + meters, CW keying (key line, tap-to-key, paddles), My logs + next park + commands, every band and mode, one-line spots + spot me, better CW decoder, the new look."
 }
