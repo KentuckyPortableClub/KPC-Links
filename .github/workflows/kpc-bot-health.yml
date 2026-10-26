@@ -14,6 +14,10 @@ on:
         description: 'Also run the Sunday parts (site test, reference check, link check)'
         type: boolean
         default: false
+      release:
+        description: 'RELEASE NIGHT: guard + site test on the LIVE site, as a guest (phone + desktop) and as a member on every page (about 10 min)'
+        type: boolean
+        default: false
 permissions:
   contents: write
   issues: write
@@ -33,6 +37,7 @@ jobs:
         id: day
         run: |
           if [ "$(date -u +%u)" = "7" ] || [ "${{ inputs.full }}" = "true" ]; then echo "weekly=yes" >> "$GITHUB_OUTPUT"; else echo "weekly=no" >> "$GITHUB_OUTPUT"; fi
+          if [ "${{ inputs.release }}" = "true" ]; then echo "release=yes" >> "$GITHUB_OUTPUT"; else echo "release=no" >> "$GITHUB_OUTPUT"; fi
       - name: Public-list guard (daily)
         continue-on-error: true
         run: python3 .github/scripts/kpc_checkup.py guard || true
@@ -48,17 +53,21 @@ jobs:
           LINK_MINUTES: '18'
         run: python3 .github/scripts/kpc_checkup.py links || true
       - uses: actions/setup-node@v5
-        if: steps.day.outputs.weekly == 'yes'
+        if: steps.day.outputs.weekly == 'yes' || steps.day.outputs.release == 'yes'
         continue-on-error: true
         with:
           node-version: '22'
-      - name: Site test as a guest (Sunday)
-        if: steps.day.outputs.weekly == 'yes'
+      - name: Site test as a guest (Sunday) / guest + member on the live site (release)
+        if: steps.day.outputs.weekly == 'yes' || steps.day.outputs.release == 'yes'
         continue-on-error: true
-        timeout-minutes: 20
+        timeout-minutes: 25
         run: |
           npm install --no-save --no-package-lock playwright@1.56.0 >/dev/null 2>&1 || true
           npx playwright install --with-deps chromium >/dev/null 2>&1 || true
+          if [ "${{ steps.day.outputs.release }}" = "yes" ]; then
+            MEMBER_PASS=1 node .github/scripts/kpc_site_test.js https://kentuckyportableclub.github.io/KPC-Links/ checkup-out/site.json || true
+            exit 0
+          fi
           # served under /KPC-Links/ like GitHub Pages (404.html uses <base href="/KPC-Links/">)
           mkdir -p /tmp/site && ln -sfn "$GITHUB_WORKSPACE" /tmp/site/KPC-Links
           (cd /tmp/site && python3 -m http.server 8765 >/dev/null 2>&1 &)
