@@ -1,6 +1,6 @@
 # PL: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2692 of 2982** joined (same name + same kind), **175** to check, **115** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas, Śląskie ORSIP nature and landscape complexes (GDOŚ register). **2691 of 2982** joined (same name + same kind), **176** to check, **115** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -74,16 +74,17 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **PL-1262** Dolina Grabi Nature and Landscape Complex (Nature and Landscape Complex) → Grabia (EEA Natura 2000, the POTA pin is inside it (different name))
 - **PL-1275** Stok Szyndzielni Nature Reserve (Nature Reserve) → Beskid Śląski (EEA Natura 2000, the POTA pin is inside it (different name)); Stok Szendzielni (EEA nationally designated areas, the POTA pin is inside it (different name)); Park Krajobrazowy Beskidu Śląskiego (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1297** Ryjewski Protected Landscape Area (Protected Landscape Area) → Lasów Ryjewskich (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **PL-1333** Nadwiślański Protected Landscape Area (Protected Landscape Area) → Nadwiślański (woj. pomorskie) (EEA nationally designated areas, same name, more than one kind of area); Nadwiślański Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area); Nadwiślański (woj. kujawsko-pomorskie) (EEA nationally designated areas, same name, more than one kind of area)
+- **PL-1333** Nadwiślański Protected Landscape Area (Protected Landscape Area) → Nadwiślański (woj. pomorskie) (EEA nationally designated areas, same name, more than one kind of area); Nadwiślański Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area)
 - **PL-1348** Uroczysko Zieleń Nature and Landscape Complex (Nature and Landscape Complex) → Dolina Środkowej Warty (EEA Natura 2000, the POTA pin is inside it (different name)); Nadwarciański (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1404** Mostki Nature and Landscape Complex (Nature and Landscape Complex) → Lasy Stobrawsko - Turawskie (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PL-1408** Nadwiślański Landscape Park (Landscape Park) → Nadwiślański Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area)
 - **PL-1410** Kocia Góra Nature and Landscape Complex (Nature and Landscape Complex) → Lasy Stobrawsko - Turawskie (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1415** Jar Rzeki Reknicy Nature Reserve (Nature Reserve) → Jar Reknicy (EEA nationally designated areas, similar name); Dolina Reknicy (EEA Natura 2000, the POTA pin is inside it (different name)); Przywidzki (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1419** Pod Dębami Nature and Landscape Complex (Nature and Landscape Complex) → Lasy Stobrawsko - Turawskie (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1420** Nad Bziniczką Nature and Landscape Complex (Nature and Landscape Complex) → Lasy Stobrawsko - Turawskie (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1423** Piaskowa Góra Nature and Landscape Complex (Nature and Landscape Complex) → Lasy Stobrawsko - Turawskie (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1426** Szczypki Nature and Landscape Complex (Nature and Landscape Complex) → Lasy Stobrawsko - Turawskie (EEA nationally designated areas, the POTA pin is inside it (different name))
-- **PL-1447** Nadwiślański Protected Landscape Area (Protected Landscape Area) → Nadwiślański (woj. pomorskie) (EEA nationally designated areas, same name, more than one kind of area); Nadwiślański Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area); Nadwiślański (woj. kujawsko-pomorskie) (EEA nationally designated areas, same name, more than one kind of area)
+- **PL-1447** Nadwiślański Protected Landscape Area (Protected Landscape Area) → Nadwiślański Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area); Nadwiślański (woj. kujawsko-pomorskie) (EEA nationally designated areas, same name, more than one kind of area)
 - **PL-1453** Wydmy Kotliny Toruńsko-Bydgoskiej Protected Landscape Area (Protected Landscape Area) → Wydm Kotliny Toruńsko-Bydgoskiej część wschodnia i zachodnia (EEA nationally designated areas, similar name)
 - **PL-1461** Dolina Rzeki Ryszki Nature and Landscape Complex (Nature and Landscape Complex) → Bory Tucholskie (EEA Natura 2000, the POTA pin is inside it (different name)); Wdecki Park Krajobrazowy (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PL-1504** Nadmorski Protected Landscape Area (Protected Landscape Area) → Nadmorski Park Krajobrazowy (EEA nationally designated areas, same name, more than one kind of area); Nadmorski (EEA nationally designated areas, same name, more than one kind of area)

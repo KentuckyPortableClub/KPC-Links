@@ -1,6 +1,6 @@
 # RO: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **309 of 1334** joined (same name + same kind), **358** to check, **667** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **305 of 1334** joined (same name + same kind), **361** to check, **668** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -174,6 +174,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **RO-0798** Tineretului Măcin Park (Park) → Dunărea Veche - Brațul Măcin (EEA Natura 2000, the POTA pin is inside it (different name)); Brațul Măcin (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-0810** Costeşti - Sarmizegetusa Regia - Vf. Godeanu National Recreation Trail (National Recreation Trail) → Grădiștea Muncelului - Cioclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Grădiștea Muncelului - Ciclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Grădiștea Muncelului - Cioclovina (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0812** Cetatea Fețele Albe Historic Site (Historic Site) → Grădiștea Muncelului - Cioclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Grădiștea Muncelului - Ciclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Grădiștea Muncelului - Cioclovina (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **RO-0813** Fânațele Pui Protected Area (Protected Area) → Grădiștea Muncelului - Cioclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Grădiștea Muncelului - Ciclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Grădiștea Muncelului - Cioclovina (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0814** Cetatea dacică Blidaru Historic Site (Historic Site) → Grădiștea Muncelului - Cioclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Grădiștea Muncelului - Ciclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Grădiștea Muncelului - Cioclovina (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0815** Cetatea Dacică Costești National Park (National Park) → Grădiștea Muncelului - Cioclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Grădiștea Muncelului - Ciclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Grădiștea Muncelului - Cioclovina (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0816** Castrul roman de la Luncani - Târsa Historic Site (Historic Site) → Grădiștea Muncelului - Cioclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Grădiștea Muncelului - Ciclovina (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Grădiștea Muncelului - Cioclovina (EEA nationally designated areas, the POTA pin is inside it (different name))
@@ -221,6 +222,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **RO-0900** Ohaba de sub Piatră – Nucşoara – Lacul Bucura – Poiana Pelegii – Câmpu lui Neag Trail National Scenic Trail (National Scenic Trail) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0903** Poiana Cârnic Multiple Use Area (Multiple Use Area) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0904** Lacul Ostrov State Fishing Lake (State Fishing Lake) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **RO-0905** Calcarele de la Fața Fetii Protected Area (Protected Area) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0906** Muntele Chiciura Nature and Landscape Complex (Nature and Landscape Complex) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0907** Muntele Clopotiva Nature and Landscape Complex (Nature and Landscape Complex) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-0908** Ulpia Traiana Sarmizegetusa National Historic Site (National Historic Site) → Geoparcul Dinozaurilor Țara Hațegului (EEA nationally designated areas, the POTA pin is inside it (different name))
@@ -267,6 +269,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **RO-1012** Lacul Brateș State Fish and Wildlife Area (State Fish and Wildlife Area) → Lacul Brateș (EEA Natura 2000, similar name)
 - **RO-1013** Balta Vlădești State Fish and Wildlife Area (State Fish and Wildlife Area) → Lunca Joasă a Prutului (EEA Natura 2000, the POTA pin is inside it (different name)); Lunca Prutului - Vlădești - Frumușița (EEA Natura 2000, the POTA pin is inside it (different name)); Parcul Natural Lunca Joasă a Prutului Inferior (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-1014** Balta Sovarca State Fish and Wildlife Area (State Fish and Wildlife Area) → Mața - Cârja - Rădeanu (EEA Natura 2000, the POTA pin is inside it (different name))
+- **RO-1022** Lacul Bălătău National Nature Reserve (National Nature Reserve) → Creasta Nemirei (EEA Natura 2000, the POTA pin is inside it (different name)); Nemira (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **RO-1024** Lacul Galbeni Nature Reserve (Nature Reserve) → Siretul Mijlociu (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-1025** Lacul Lilieci Nature Reserve (Nature Reserve) → Lacurile de acumulare Buhuși - Bacău - Berești (EEA Natura 2000, the POTA pin is inside it (different name))
 - **RO-1027** Lacul Berești Bird Sanctuary (Bird Sanctuary) → Lacurile de acumulare Buhuși - Bacău - Berești (EEA Natura 2000, similar name)
@@ -725,6 +728,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - RO-0608 Cetatea Ardud Historic Site (Historic Site)
 - RO-0609 Castelul Tholdy-Ujfalussy Historic Site (Historic Site)
 - RO-0610 Heleșteele de la Moftinu Mic Protected Area (Protected Area)
+- RO-0612 Tinoavele din Munții Oaș Flora Reserve (Flora Reserve)
 - RO-0615 Conacul Degenfeld Historic Site (Historic Site)
 - RO-0617 Lacul de agrement APA Recreation Park (Recreation Park)
 - RO-0618 Vârful Pietroasa Landscape Park (Landscape Park)

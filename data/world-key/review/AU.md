@@ -1,6 +1,6 @@
 # AU: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW State Forest (Forestry Corporation NSW), QLD State Forest (Queensland Government), VIC DEECA state forests, WA DBCA state forests (legislated lands). **6987 of 10272** joined (same name + same kind), **1060** to check, **2225** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: CAPAD (DCCEEW), NSW State Forest (Forestry Corporation NSW), QLD State Forest (Queensland Government), VIC DEECA state forests, WA DBCA state forests (legislated lands). **6977 of 10272** joined (same name + same kind), **1067** to check, **2228** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -388,7 +388,11 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW
 - **AU-3230** Towra Point Aquatic Reserve (Aquatic Reserve) → Towra Point (CAPAD (DCCEEW), similar name)
 - **AU-3241** Lewin State Forest (State Forest) → South East Nannup State Forest (WA DBCA state forests (legislated lands), the POTA pin is inside it (different name))
 - **AU-3243** Graphite State Forest (State Forest) → Barlee Brook State Forest (WA DBCA state forests (legislated lands), the POTA pin is inside it (different name))
+- **AU-3250** East Yuna Nature Reserve (Nature Reserve) → Indarra Spring (CAPAD (DCCEEW), the POTA pin is inside it (different name))
+- **AU-3251** Flat Rock Nature Reserve (Nature Reserve) → Karlgarin (CAPAD (DCCEEW), the POTA pin is inside it (different name))
+- **AU-3252** Gorge Rock Nature Reserve (Nature Reserve) → Karlgarin (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-3255** Indarra Spring Nature Reserve (Nature Reserve) → Kondinin Lake (CAPAD (DCCEEW), the POTA pin is inside it (different name))
+- **AU-3257** Karlgarin Nature Reserve (Nature Reserve) → Lake Gounter (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-3259** Kondinin Lake Nature Reserve (Nature Reserve) → McGauran (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-3261** Lake Gounter Nature Reserve (Nature Reserve) → Morton (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-3266** Maughan Nature Reserve (Nature Reserve) → Morton (CAPAD (DCCEEW), the POTA pin is inside it (different name))
@@ -554,6 +558,9 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW
 - **AU-4845** Kellalac Streamside Reserve (Reserve) → Kellalac SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4846** Kennedy Gully Streamside Reserve (Reserve) → Kennedy Gully SS.R. (CAPAD (DCCEEW), similar name)
 - **AU-4852** Kergunyah Streamside Reserve (Reserve) → Kergunyah SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
+- **AU-4855** Kia I242 Bushland Reserve (Reserve) → Kia I242 B.R (CAPAD (DCCEEW), similar name)
+- **AU-4857** Kia I31 Bushland Reserve (Reserve) → Kia I31 B.R (CAPAD (DCCEEW), similar name); Kia I242A B.R (CAPAD (DCCEEW), similar name)
+- **AU-4858** Kia I33 Bushland Reserve (Reserve) → Kia I33 B.R (CAPAD (DCCEEW), similar name)
 - **AU-4874** Kinypanial Streamside Reserve (Reserve) → Kinypanial SS.R. (CAPAD (DCCEEW), the POTA pin is inside it (different name))
 - **AU-4885** Koonwarra Fish Beds Geological Reserve (Reserve) → Koonwarra F.R. (CAPAD (DCCEEW), similar name); Koonwarra Fish Beds G.R. (CAPAD (DCCEEW), similar name)
 - **AU-4889** Kororoit Creek K36 Streamside Reserve (Reserve) → Kororoit Creek K36 SS.R. (CAPAD (DCCEEW), similar name)
@@ -2062,6 +2069,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW
 - AU-4469 Doomburrin Bushland Reserve (Reserve)
 - AU-4479 Dromana Bushland Reserve (Reserve)
 - AU-4513 Eddington K25 Streamside Reserve (Reserve)
+- AU-4524 Elmore-Cohuna rail line Bushland Reserve (Reserve)
 - AU-4543 Eurobin Streamside Reserve (Reserve)
 - AU-4566 Franklinford Streamside Reserve (Reserve)
 - AU-4571 Freeburgh Streamside Reserve (Reserve)
@@ -2075,6 +2083,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW
 - AU-5213 Mooree Streamside Reserve (Reserve)
 - AU-5237 Mortimers Paddock Bushland Reserve (Reserve)
 - AU-5459 Perts Streamside Reserve (Reserve)
+- AU-5574 Rushworth - Colbinabbin rail line Bushland Reserve (Reserve)
 - AU-5584 Sandford Streamside Reserve (Reserve)
 - AU-5677 Streatham Streamside Reserve (Reserve)
 - AU-5808 Wahring Streamside Reserve (Reserve)
@@ -2565,6 +2574,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: CAPAD (DCCEEW), NSW
 - AU-8195 Carboor State Forest (State Forest)
 - AU-8225 Delatite Education Area State Forest (State Forest)
 - AU-8236 Eppalock Education Area State Forest (State Forest)
+- AU-8250 Glenalbyn State Forest (State Forest)
 - AU-8289 Koorlong Education Area State Forest (State Forest)
 - AU-8292 Lang Lang Education Area State Forest (State Forest)
 - AU-8295 Lima South Education Area State Forest (State Forest)

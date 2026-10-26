@@ -1,6 +1,6 @@
 # IT: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **1920 of 2167** joined (same name + same kind), **136** to check, **111** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **1919 of 2167** joined (same name + same kind), **136** to check, **112** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -231,6 +231,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - IT-0882 Oasi WWF Bosco Camerine Other Conservation Area (Other Conservation Area)
 - IT-0885 Oasi Parco Nuove Gemme a Spinea Other Conservation Area (Other Conservation Area)
 - IT-0909 Oasi naturale Pian dei Sali Wetland Reserve (Wetland Reserve)
+- IT-1217 Sass Negher Natural Monument (Natural Monument)
 - IT-1225 Il Baluton - La Balota Natural Monument (Natural Monument)
 - IT-1226 Masso erratico Sass de Preja Buia Natural Monument (Natural Monument)
 - IT-1267 Biotopo Confluenza Isarco Wetland Reserve (Wetland Reserve)

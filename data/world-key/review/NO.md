@@ -1,6 +1,6 @@
 # NO: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **3044 of 3337** joined (same name + same kind), **57** to check, **236** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **3044 of 3337** joined (same name + same kind), **57** to check, **236** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -44,7 +44,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **NO-2876** Stad Marine Protected Area (Marine Protected Area) → Stad (EEA nationally designated areas, similar name); Høgfjellet (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **NO-2878** Valberg med Bjørneknuten National Recreation Area (National Recreation Area) → Valberg (EEA nationally designated areas, similar name)
 - **NO-2880** Glomsteinskjær National Wildlife Area (National Wildlife Area) → Glomsteinskjær (EEA nationally designated areas, similar name)
-- **NO-2958** Gåseskjær Biosphere Reserve (Biosphere Reserve) → Gåseskjæra (EEA nationally designated areas, same name, more than one kind of area); Gåseskjær (EEA nationally designated areas, same name, more than one kind of area)
+- **NO-2958** Gåseskjær Biosphere Reserve (Biosphere Reserve) → Gåseskjær (EEA nationally designated areas, same name, more than one kind of area)
 - **NO-2971** Vorma National Wildlife Area (National Wildlife Area) → Vorma (EEA nationally designated areas, similar name)
 - **NO-2985** Trettenstryka National Wildlife Area (National Wildlife Area) → Trettenstryka (EEA nationally designated areas, similar name)
 - **NO-3085** Ringsholmane National Wildlife Area (National Wildlife Area) → Ringsholmane (EEA nationally designated areas, similar name)

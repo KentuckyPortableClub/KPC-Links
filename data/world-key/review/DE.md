@@ -1,6 +1,6 @@
 # DE: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: BfN Nationalparke, BfN Naturparke, BfN Naturschutzgebiete, BfN Biosphaerenreservate, BfN Nationale_Naturmonumente, BfN Fauna_Flora_Habitat_Gebiete, BfN Vogelschutzgebiete, BfN Landschaftsschutzgebiete. **685 of 1265** joined (same name + same kind), **294** to check, **286** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: BfN Nationalparke, BfN Naturparke, BfN Naturschutzgebiete, BfN Biosphaerenreservate, BfN Nationale_Naturmonumente, BfN Fauna_Flora_Habitat_Gebiete, BfN Vogelschutzgebiete, BfN Landschaftsschutzgebiete. **683 of 1265** joined (same name + same kind), **296** to check, **286** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -15,6 +15,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: BfN Nationalparke, 
 - **DE-0134** Falkenstein - Waldpark und Ufer Park (Park) → Altona-Südwest, Ottensen, Othmarschen, Klein Flottbek, Nienstedten, Dockenhuden, Blankenese, Rissen (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
 - **DE-0135** Wasserpark Dove Elbe Park (Park) → Allermöhe (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
 - **DE-0137** Öjendorfer Park Provincial Recreation Area (Provincial Recreation Area) → Öjendorf-Billstedter Geest (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
+- **DE-0148** Rheinpark Recreation Park (Recreation Park) → LSG-Rhein, Rheinauen und Uferbereiche von Flittard bis Rodenkirchen (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
 - **DE-0149** Aachen Kurgarten Park (Park) → LSG-Aachen (BfN Landschaftsschutzgebiete, similar name)
 - **DE-0150** Porta Westfalica & Kaiser-Wilhelm-Denkmal Historic Site (Historic Site) → NSG Vogelschutzgelaende Porta Westfalica (BfN Naturschutzgebiete, similar name); Wälder bei Porta Westfalica (BfN Fauna_Flora_Habitat_Gebiete, similar name); TERRA.vita (BfN Naturparke, the POTA pin is inside it (different name)); LSG-Weser- und Wiehengebirge (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
 - **DE-0151** Deutsch-Franzoesischer Garten Park (Park) → Deutschmühlenweiher mit Mockental, Ehrental und Glockenwäldchen (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
@@ -280,6 +281,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: BfN Nationalparke, 
 - **DE-1133** Salinental Recreation Park (Recreation Park) → Soonwald-Nahe (BfN Naturparke, the POTA pin is inside it (different name)); Nahetal (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
 - **DE-1152** Perlacher Forst Landscape Reserve (Landscape Reserve) → LSG Perlacher und Grünwalder Forst einschließlich des Gleißentalesl (BfN Landschaftsschutzgebiete, similar name)
 - **DE-1153** Grünwalder Forst Landscape Reserve (Landscape Reserve) → LSG Perlacher und Grünwalder Forst einschließlich des Gleißentalesl (BfN Landschaftsschutzgebiete, similar name)
+- **DE-1173** Wiesental Recreation Park (Recreation Park) → LSG-Parkanlage \"Wiesental\" in Bochum-Suedwest, 6, Weitmar (BfN Landschaftsschutzgebiete, similar name)
 - **DE-1201** Walhalla Historic Site (Historic Site) → Verordnung über die Landschaftsschutzgebiete im Landkreis Regensburg (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))
 - **DE-1203** Radweg Berlin-Kopenhagen National Scenic Trail (National Scenic Trail) → Seen, Moore und Wälder des Müritz-Gebietes (BfN Fauna_Flora_Habitat_Gebiete, the POTA pin is inside it (different name))
 - **DE-1204** Berlin-Usedom Radweg National Scenic Trail (National Scenic Trail) → Biosphärenreservat Schorfheide - Chorin (BfN Biosphaerenreservate, the POTA pin is inside it (different name)); Biosphärenreservat Schorfheide - Chorin (BfN Landschaftsschutzgebiete, the POTA pin is inside it (different name))

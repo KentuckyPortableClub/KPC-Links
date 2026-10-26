@@ -1,6 +1,6 @@
 # PT: POTA parks vs official land
 
-Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EEA nationally designated areas. **230 of 410** joined (same name + same kind), **98** to check, **82** nothing found. Nothing below is joined.
+Built by `.github/scripts/kpc_world_key.py` (date: data/status/kpc_world_key.json) from: EEA Natura 2000, EEA nationally designated areas. **223 of 410** joined (same name + same kind), **104** to check, **83** nothing found. Nothing below is joined.
 
 ## To check (not joined)
 
@@ -30,6 +30,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **PT-0191** Area Protegida para a Gestao de Habitats ou Especies da Baia do Cura Protected Area (Protected Area) → Baia do Cura (EEA nationally designated areas, similar name)
 - **PT-0192** Area Protegida para a Gestao de Habitats ou Especies do Pico Alto Protected Area (Protected Area) → Pico Alto (EEA nationally designated areas, similar name)
 - **PT-0197** Area Protegida de Gestao de Recursos da Costa Norte Protected Area (Protected Area) → Costa Norte (Ilha de Santa Maria) (EEA nationally designated areas, similar name); Barreiro da Faneca (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PT-0198** Area Protegida de Gestao de Recursos da Costa Sul Protected Area (Protected Area) → Costa Sul (Ilha de Santa Maria) (EEA nationally designated areas, similar name); Ponta do Castelo - Ilha de Santa Maria (EEA Natura 2000, the POTA pin is inside it (different name))
 - **PT-0202** Parque Natural de Sao Jorge Nature Park (Nature Park) → Costa NE e Ponta do Topo - Ilha de São Jorge (EEA Natura 2000, similar name)
 - **PT-0206** Area Protegida para a Gestao de Habitats ou Especies da Costa das Velas Protected Area (Protected Area) → Costa das Velas (EEA nationally designated areas, similar name); Entre Morros (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0208** Area Protegida para a Gestao de Habitats ou Especies da Faja das Almas Protected Area (Protected Area) → Faja das Almas (EEA nationally designated areas, similar name)
@@ -38,6 +39,8 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **PT-0226** Area Protegida para a Gestao de Habitats ou Especies da Ponta da Restinga Protected Area (Protected Area) → Ponta da Restinga (EEA nationally designated areas, similar name); Ilhéu de Baixo - Restinga Ilha Graciosa (EEA Natura 2000, the POTA pin is inside it (different name)); Costa Sudeste (Ilha Graciosa) (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0227** Area Protegida para a Gestao de Habitats ou Especies da Ponta Branca Protected Area (Protected Area) → Ponta Branca (EEA nationally designated areas, similar name)
 - **PT-0229** Area Protegida de Gestao de Recursos da Costa Sudeste Protected Area (Protected Area) → Costa Sudeste (Ilha Graciosa) (EEA nationally designated areas, similar name)
+- **PT-0230** Area Protegida de Gestao de Recursos da Costa Noroeste Protected Area (Protected Area) → Costa Noroeste (Ilha Graciosa) (EEA nationally designated areas, similar name)
+- **PT-0232** Parque Natural do Pico Nature Park (Nature Park) → Montanha do Pico, Prainha e Caveiro - Ilha do Pico (EEA Natura 2000, similar name); Zona Central do Pico - Ilha do Pico (EEA Natura 2000, similar name); Zona Central (Ilha do Pico) (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0239** Area Protegida para a Gestao de Habitats ou Especies das Lajes do Pico Protected Area (Protected Area) → Lajes do Pico - Ilha do Pico (EEA Natura 2000, similar name); Lajes do Pico - Ilha do Pico (EEA Natura 2000, similar name); Lajes do Pico (EEA nationally designated areas, similar name)
 - **PT-0240** Area Protegida para a Gestao de Habitats ou Especies das Furnas de Santo Antonio Protected Area (Protected Area) → Furnas / Santo António - Ilha do Pico (EEA Natura 2000, similar name); Furnas de Santo Antonio (EEA nationally designated areas, similar name); Furnas de Santo Antonio (EEA nationally designated areas, similar name)
 - **PT-0241** Area Protegida para a Gestao de Habitats ou Especies da Silveira Protected Area (Protected Area) → Silveira (EEA nationally designated areas, similar name)
@@ -47,10 +50,13 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 - **PT-0245** Area Protegida para a Gestao de Habitats ou Especies da Zona do Morro Protected Area (Protected Area) → Zona do Morro (EEA nationally designated areas, similar name)
 - **PT-0253** Area Protegida de Gestao de Recursos da Ponta da Ilha Protected Area (Protected Area) → Ponta da Ilha - Ilha do Pico (EEA Natura 2000, similar name); Ponta da Ilha - Ilha do Pico (EEA Natura 2000, similar name); Ponta da Ilha (EEA nationally designated areas, similar name); Cultura da Vinha-Ponta da Ilha (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0255** Reserva Florestal do Misterio de Sao Joao Forest Reserve (Forest Reserve) → Misterio de S. Joao (EEA nationally designated areas, similar name)
+- **PT-0259** Parque Natural do Faial Nature Park (Nature Park) → Caldeira e Capelinhos - Ilha do Faial (EEA Natura 2000, similar name); Caldeira e Capelinhos - Ilha do Faial (EEA Natura 2000, similar name); Caldeira do Faial (EEA nationally designated areas, similar name); Canal Faial-Pico/Sector Faial (EEA nationally designated areas, similar name); Zona Central (Ilha do Faial) (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0272** Area Protegida de Gestao de Recursos dos Capelinhos Protected Area (Protected Area) → Capelinhos (EEA nationally designated areas, similar name); Caldeira e Capelinhos - Ilha do Faial (EEA Natura 2000, the POTA pin is inside it (different name)); Caldeira e Capelinhos - Ilha do Faial (EEA Natura 2000, the POTA pin is inside it (different name))
 - **PT-0273** Area Protegida de Gestao de Recursos dos Cedros Protected Area (Protected Area) → Cedros (EEA nationally designated areas, similar name)
 - **PT-0276** Reserva Florestal do Capelo Forest Reserve (Forest Reserve) → Zona Central (Ilha do Faial) (EEA nationally designated areas, the POTA pin is inside it (different name))
+- **PT-0284** Area Protegida para a Gestao de Habitats ou Especies da Costa Nordeste Protected Area (Protected Area) → Costa Nordeste (Ilha das Flores) (EEA nationally designated areas, similar name)
 - **PT-0285** Area Protegida para a Gestao de Habitats ou Especies da Ponta da Caveira Protected Area (Protected Area) → Ponta da Caveira (EEA nationally designated areas, similar name)
+- **PT-0286** Area Protegida para a Gestao de Habitats ou Especies da Costa Sul e Sudoeste Protected Area (Protected Area) → Costa Sul e Sudoeste - Ilha das Flores (EEA Natura 2000, similar name); Costa Sul e Sudoeste (Ilha das Flores) (EEA nationally designated areas, similar name)
 - **PT-0288** Area Protegida de Gestao de Recursos da Costa Norte Protected Area (Protected Area) → Costa Norte (Ilha das Flores) (EEA nationally designated areas, similar name); Costa Nordeste (Ilha das Flores) (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0292** PARQUE FLORESTAL DO CHAO DOS LOUROS Forest Reserve (Forest Reserve) → Laurissilva da Madeira (EEA Natura 2000, the POTA pin is inside it (different name)); Parque Natural da Madeira (EEA nationally designated areas, the POTA pin is inside it (different name))
 - **PT-0293** PARQUE FLORESTAL DAS FEITEIRAS Forest Reserve (Forest Reserve) → Maciço Montanhoso Central da Ilha da Madeira (EEA Natura 2000, the POTA pin is inside it (different name)); Maciço Montanhoso Oriental da Ilha da Madeira (EEA Natura 2000, the POTA pin is inside it (different name)); Parque Natural da Madeira (EEA nationally designated areas, the POTA pin is inside it (different name))
@@ -105,6 +111,7 @@ Built 2026-10-25 by `.github/scripts/kpc_world_key.py` from: EEA Natura 2000, EE
 
 ## Nothing found
 
+- PT-0031 Serra do Acor Nature Park (Nature Park)
 - PT-0033 Estuario do Mondego Natura 2000 (Natura 2000)
 - PT-0056 Ribeira do Vascao Natura 2000 (Natura 2000)
 - PT-0087 Polje de Mira Minde Natura 2000 (Natura 2000)
