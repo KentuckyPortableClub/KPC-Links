@@ -1,0 +1,2137 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 148401,
+   "fields": [
+    "CASE_ID",
+    "CSTYPDSCRP",
+    "SPCLCDDSCR",
+    "CSSTTSDSCR",
+    "FILE_TYPE",
+    "FILENUMBER",
+    "CASE_TYPE",
+    "SPCLCD",
+    "CASESTATUS",
+    "SURVEYNAME",
+    "SRVYBLCK",
+    "TRACT",
+    "LOT",
+    "CLAIM_NAME",
+    "MNMNTNM",
+    "NTRYMTHD",
+    "MI_LABEL",
+    "DISPLAY",
+    "INFO_LINK"
+   ],
+   "known": false,
+   "layer": "Survey Boundary - Polygon",
+   "sample": [
+    {
+     "CASESTATUS": "96",
+     "CASE_ID": "USRS S022N011E",
+     "CASE_TYPE": "302",
+     "CSSTTSDSCR": "PLAT FILED/APPROVED (96)",
+     "CSTYPDSCRP": "U.S RECTANGULAR SURVEY (302)",
+     "FILENUMBER": "S022N011E",
+     "FILE_TYPE": "USRS"
+    },
+    {
+     "CASESTATUS": "96",
+     "CASE_ID": "USRS S021N015W",
+     "CASE_TYPE": "302",
+     "CSSTTSDSCR": "PLAT FILED/APPROVED (96)",
+     "CSTYPDSCRP": "U.S RECTANGULAR SURVEY (302)",
+     "FILENUMBER": "S021N015W",
+     "FILE_TYPE": "USRS"
+    },
+    {
+     "CASESTATUS": "96",
+     "CASE_ID": "USRS U011S004E",
+     "CASE_TYPE": "302",
+     "CSSTTSDSCR": "PLAT FILED/APPROVED (96)",
+     "CSTYPDSCRP": "U.S RECTANGULAR SURVEY (302)",
+     "FILENUMBER": "U011S004E",
+     "FILE_TYPE": "USRS"
+    }
+   ],
+   "service": "OpenData/Survey_StateSurveysMonuments",
+   "typef": "FILE_TYPE",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Survey_StateSurveysMonuments/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 113776,
+   "fields": [
+    "VEG_CLASS",
+    "SIZE_CLASS",
+    "DENSITY_CL",
+    "DESCRIPT",
+    "Date_Typed",
+    "VEGTYPE",
+    "OWNER",
+    "UNIT",
+    "STRATUMDES"
+   ],
+   "known": false,
+   "layer": "TV Timber Types",
+   "sample": [
+    {
+     "DENSITY_CL": "Closed",
+     "DESCRIPT": " ",
+     "Date_Typed": "2013",
+     "OWNER": "FCTV",
+     "SIZE_CLASS": "Pole",
+     "STRATUMDES": "Aspen Closed",
+     "UNIT": "FAI",
+     "VEGTYPE": "18PX",
+     "VEG_CLASS": "Aspen"
+    },
+    {
+     "DENSITY_CL": "Closed",
+     "DESCRIPT": " ",
+     "Date_Typed": "2013",
+     "OWNER": "FCTV",
+     "SIZE_CLASS": "Pole",
+     "STRATUMDES": "Aspen Closed",
+     "UNIT": "FAI",
+     "VEGTYPE": "18PX",
+     "VEG_CLASS": "Aspen"
+    },
+    {
+     "DENSITY_CL": "Closed",
+     "DESCRIPT": " ",
+     "Date_Typed": "2013",
+     "OWNER": "FCTV",
+     "SIZE_CLASS": "Pole",
+     "STRATUMDES": "Aspen Closed",
+     "UNIT": "KANT",
+     "VEGTYPE": "18PX",
+     "VEG_CLASS": "Aspen"
+    }
+   ],
+   "service": "Tanana_Valley_Forest_Inventory_with_Tables_Public_View",
+   "typef": "VEG_CLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Tanana_Valley_Forest_Inventory_with_Tables_Public_View/FeatureServer/4"
+  },
+  {
+   "agency": "Alaska Department of Natural Resources",
+   "area": "",
+   "count": 27043,
+   "fields": [
+    "FILE_TYPE",
+    "FILE_NUMBER",
+    "CASE_TYPE",
+    "SPECIAL_CODE",
+    "CASE_STATUS",
+    "CT_SC_LABEL",
+    "CS_LABEL",
+    "DISPLAY",
+    "LAND_STATUS",
+    "PATENT_NUMBER",
+    "LS_LABEL",
+    "DECISION_DATE",
+    "MAPPABLE_OBJECT_ID",
+    "CONVEY_DATE"
+   ],
+   "known": false,
+   "layer": "State Land - Polygon",
+   "sample": [
+    {
+     "CASE_STATUS": "50",
+     "CASE_TYPE": "101",
+     "CS_LABEL": "EFFECTIVE",
+     "DECISION_DATE": "19900209",
+     "DISPLAY": "Y",
+     "FILE_NUMBER": "5339",
+     "FILE_TYPE": "GS",
+     "LAND_STATUS": "SA",
+     "LS_LABEL": "LAND MIN"
+    },
+    {
+     "CASE_STATUS": "50",
+     "CASE_TYPE": "101",
+     "CS_LABEL": "EFFECTIVE",
+     "DECISION_DATE": "19931220",
+     "DISPLAY": "Y",
+     "FILE_NUMBER": "5339",
+     "FILE_TYPE": "GS",
+     "LAND_STATUS": "FA",
+     "LS_LABEL": "ANILCA TOPFILING"
+    },
+    {
+     "CASE_STATUS": "50",
+     "CASE_TYPE": "101",
+     "CS_LABEL": "EFFECTIVE",
+     "DECISION_DATE": "19900208",
+     "DISPLAY": "Y",
+     "FILE_NUMBER": "5340",
+     "FILE_TYPE": "GS",
+     "LAND_STATUS": "SA",
+     "LS_LABEL": "LAND MIN"
+    }
+   ],
+   "service": "OpenData/Alphabetical_All",
+   "typef": "FILE_TYPE",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Alphabetical_All/FeatureServer/42"
+  },
+  {
+   "agency": "Alaska Department of Natural Resources",
+   "area": "",
+   "count": 22348,
+   "fields": [
+    "FILE_TYPE",
+    "CASE_TYPE",
+    "CS_LABEL",
+    "DISPLAY",
+    "LS_LABEL",
+    "CASE_ID",
+    "CSTMRNM",
+    "CSTYPDSCRP",
+    "SPCLCDDSCR",
+    "CSSTTSDSCR",
+    "LNDSTTSDSC",
+    "FILENUMBER",
+    "SPCLCD",
+    "CASESTATUS",
+    "LANDSTATUS",
+    "PTNTNMBR",
+    "CSTMRLSTNM",
+    "CSTMRFRSTN",
+    "CSTMRMDDLN",
+    "CTSCLABEL"
+   ],
+   "known": false,
+   "layer": "State Land - Polygon",
+   "sample": [
+    {
+     "CASE_ID": "GS 5339",
+     "CASE_TYPE": "101",
+     "CSSTTSDSCR": "ACTIVE (50)",
+     "CSTMRNM": "DNR DMLW REALTY SERVICES SELECTION LANDS",
+     "CSTYPDSCRP": "GENERAL GRANT (101)",
+     "CS_LABEL": "EFFECTIVE",
+     "DISPLAY": "Y",
+     "FILENUMBER": "5339",
+     "FILE_TYPE": "GS"
+    },
+    {
+     "CASE_ID": "GS 6361",
+     "CASE_TYPE": "101",
+     "CSSTTSDSCR": "ACTIVE (50)",
+     "CSTMRNM": "DNR DMLW REALTY SERVICES SELECTION LANDS",
+     "CSTYPDSCRP": "GENERAL GRANT (101)",
+     "CS_LABEL": "EFFECTIVE",
+     "DISPLAY": "Y",
+     "FILENUMBER": "6361",
+     "FILE_TYPE": "GS"
+    },
+    {
+     "CASE_ID": "GS 1194",
+     "CASE_TYPE": "101",
+     "CSSTTSDSCR": "ACTIVE (50)",
+     "CSTMRNM": "DNR DMLW REALTY SERVICES SELECTION LANDS",
+     "CSTYPDSCRP": "GENERAL GRANT (101)",
+     "CS_LABEL": "EFFECTIVE",
+     "DISPLAY": "Y",
+     "FILENUMBER": "1194",
+     "FILE_TYPE": "GS"
+    }
+   ],
+   "service": "OpenData/Ownership_StateLandAll",
+   "typef": "FILE_TYPE",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Ownership_StateLandAll/FeatureServer/1"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 11438,
+   "fields": [
+    "DAMAGE_ARE",
+    "DmgAgent",
+    "DmgType",
+    "Intensity",
+    "Host",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2019 Forest Health Damage",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{c989b353-d798-4a7f-aa8a-b7ca421f1a90}",
+     "DmgAgent": "Hemlock Sawfly",
+     "DmgType": "Defoliation",
+     "Editor": "for_admin",
+     "Host": "Western hemlock",
+     "Intensity": "30-50"
+    },
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{58b70e49-4b33-4fb8-af55-1cde1c300fcf}",
+     "DmgAgent": "Unknown Canker",
+     "DmgType": "Crown Dieback",
+     "Editor": "for_admin",
+     "Host": "Willow spp",
+     "Intensity": "11-29"
+    },
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{e7d7d216-0c1d-4279-8c7a-569f82764238}",
+     "DmgAgent": "Northern Spruce Engraver",
+     "DmgType": "Mortality",
+     "Editor": "for_admin",
+     "Host": "White spruce",
+     "Intensity": "4-10"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "DmgType",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9096,
+   "fields": [
+    "CASE_ID",
+    "CSTYPDSCRP",
+    "SPCLCDDSCR",
+    "CSSTTSDSCR",
+    "FILE_TYPE",
+    "FILENUMBER",
+    "CASE_TYPE",
+    "SPCLCD",
+    "CASESTATUS",
+    "SURVEYNAME",
+    "SRVYBLCK",
+    "TRACT",
+    "LOT",
+    "CLAIM_NAME",
+    "MNMNTNM",
+    "NTRYMTHD",
+    "MI_LABEL",
+    "DISPLAY",
+    "INFO_LINK"
+   ],
+   "known": false,
+   "layer": "Unorganized Borough Platting Authority - Survey Boundary - Polygon",
+   "sample": [
+    {
+     "CASESTATUS": "96",
+     "CASE_ID": "USRS F009N016E",
+     "CASE_TYPE": "312",
+     "CSSTTSDSCR": "PLAT FILED/APPROVED (96)",
+     "CSTYPDSCRP": "UNORGANIZED BOROUGH (312)",
+     "FILENUMBER": "F009N016E",
+     "FILE_TYPE": "USRS"
+    },
+    {
+     "CASESTATUS": "96",
+     "CASE_ID": "PA 20140047",
+     "CASE_TYPE": "312",
+     "CSSTTSDSCR": "PLAT FILED/APPROVED (96)",
+     "CSTYPDSCRP": "UNORGANIZED BOROUGH (312)",
+     "FILENUMBER": "20140047",
+     "FILE_TYPE": "PA",
+     "SRVYBLCK": "6",
+     "SURVEYNAME": "TOGIAK HEIGHTS SUB ADDITION 1"
+    },
+    {
+     "CASESTATUS": "96",
+     "CASE_ID": "PA 20110034",
+     "CASE_TYPE": "312",
+     "CSSTTSDSCR": "PLAT FILED/APPROVED (96)",
+     "CSTYPDSCRP": "UNORGANIZED BOROUGH (312)",
+     "FILENUMBER": "20110034",
+     "FILE_TYPE": "PA",
+     "SRVYBLCK": "1",
+     "SURVEYNAME": "AIRPORT TRACTS, PHASE 1"
+    }
+   ],
+   "service": "OpenData/Survey_StateSurveysMonuments",
+   "typef": "FILE_TYPE",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Survey_StateSurveysMonuments/FeatureServer/3"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 8949,
+   "fields": [
+    "DAMAGE_ARE",
+    "DmgAgent",
+    "DmgType",
+    "Intensity",
+    "HOST",
+    "OBSERVAT_2",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2020 Forest Health Damage",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{da3a00f9-7ad0-4577-be64-e62e1db7022e}",
+     "DmgAgent": "Spruce Beetle",
+     "DmgType": "Mortality",
+     "Editor": "for_admin",
+     "HOST": "white spruce",
+     "Intensity": "4-10",
+     "OBSERVAT_2": "{5ab1f21a-ad9d-4f25-9d8f-573e503120da}"
+    },
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{ddf693ca-736b-4a64-8ce6-22340dc52908}",
+     "DmgAgent": "Spruce Beetle",
+     "DmgType": "Mortality",
+     "Editor": "for_admin",
+     "HOST": "white spruce",
+     "Intensity": "1-3",
+     "OBSERVAT_2": "{3190830f-2f87-4ded-98fe-5f3263ef6862}"
+    },
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{189f40a0-5674-48e1-9929-4ecac57aad0b}",
+     "DmgAgent": "Aspen Leafminer",
+     "DmgType": "Defoliation",
+     "Editor": "for_admin",
+     "HOST": "quaking aspen",
+     "Intensity": ">50",
+     "OBSERVAT_2": "{db64f50f-bf79-4eee-aa5c-20809744b487}"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "DmgType",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/12"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 8184,
+   "fields": [
+    "DAMAGE_ARE",
+    "DmgAgent",
+    "DmgType",
+    "Intensity",
+    "Host",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2018 Forest Health Damage",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{0e3e11c9-50c6-4fb2-b2c1-ef291d4fa429}",
+     "DmgAgent": "Spruce Beetle",
+     "DmgType": "Mortality",
+     "Editor": "for_admin",
+     "Host": "White Spruce",
+     "Intensity": "4-10"
+    },
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{cfe94d7c-3d82-489a-850c-5f042417ba67}",
+     "DmgAgent": "Spruce Beetle",
+     "DmgType": "Mortality",
+     "Editor": "for_admin",
+     "Host": "White Spruce",
+     "Intensity": "1-3"
+    },
+    {
+     "Creator": "for_admin",
+     "DAMAGE_ARE": "{889de555-8e55-4598-9424-658de1312952}",
+     "DmgAgent": "Yellow-Cedar Decline",
+     "DmgType": "Mortality",
+     "Editor": "for_admin",
+     "Host": "Alaska Yellow-Cedar",
+     "Intensity": "4-10"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "DmgType",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/16"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 8130,
+   "fields": [
+    "LABEL",
+    "HOST",
+    "DCA",
+    "DAMAGE_TYPE",
+    "NUMBER_OF_TREES",
+    "COLLECTION",
+    "AREA_TYPE",
+    "Damage3",
+    "PCT_AFFECT",
+    "DAMAGE_ID",
+    "COMMON_NAME",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2022 Forest Health Damage",
+   "sample": [
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAME": "spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE_ID": "{4c02c27b-2b97-438c-adac-1e43e6258f34}",
+     "DAMAGE_TYPE": "Branch flagging - 8",
+     "DCA": "Spruce Broom Rust - 26029",
+     "Damage3": "SBR",
+     "HOST": "white spruce - 94",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15",
+     "PCT_AFFECT": "NA"
+    },
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAME": "spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE_ID": "{adca9ea3-17ef-4755-b3eb-99f21c3dd67b}",
+     "DAMAGE_TYPE": "Branch flagging - 8",
+     "DCA": "Spruce Broom Rust - 26029",
+     "Damage3": "SBR",
+     "HOST": "white spruce - 94",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15",
+     "PCT_AFFECT": "NA"
+    },
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAME": "spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE_ID": "{1fa00662-41ca-45db-8b7f-09fe478d9e62}",
+     "DAMAGE_TYPE": "Branch flagging - 8",
+     "DCA": "Spruce Broom Rust - 26029",
+     "Damage3": "SBR",
+     "HOST": "white spruce - 94",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15",
+     "PCT_AFFECT": "NA"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "DAMAGE_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/7"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 7632,
+   "fields": [
+    "COLLECTION",
+    "AREA_TYPE",
+    "DAMAGE_ID",
+    "LABEL",
+    "DCA",
+    "HOST",
+    "DAMAGE_TYPE",
+    "PCT_AFFECTED",
+    "NUMBER_OF_TREES",
+    "DAMAGE3_CODE",
+    "Common_Name",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2021 Forest Health Damage",
+   "sample": [
+    {
+     "AREA_TYPE": "Point",
+     "COLLECTION": "Aerial_Survey",
+     "Common_Name": "spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE3_CODE": "SBR",
+     "DAMAGE_ID": "{c64c9087-bf84-41e3-aeea-9aca3ff34a41}",
+     "DAMAGE_TYPE": "Branch flagging - 8",
+     "DCA": "Spruce Broom Rust - 26029",
+     "HOST": "white spruce - 94",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15",
+     "PCT_AFFECTED": "NA"
+    },
+    {
+     "AREA_TYPE": "Point",
+     "COLLECTION": "Aerial_Survey",
+     "Common_Name": "spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE3_CODE": "SBR",
+     "DAMAGE_ID": "{39a6e5ae-2e1b-453f-8a1d-87b95f97e5e6}",
+     "DAMAGE_TYPE": "Branch flagging - 8",
+     "DCA": "Spruce Broom Rust - 26029",
+     "HOST": "white spruce - 94",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15",
+     "PCT_AFFECTED": "NA"
+    },
+    {
+     "AREA_TYPE": "Point",
+     "COLLECTION": "Aerial_Survey",
+     "Common_Name": "spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE3_CODE": "SBR",
+     "DAMAGE_ID": "{673c7351-d0b3-4336-9967-7800d82d4d3b}",
+     "DAMAGE_TYPE": "Branch flagging - 8",
+     "DCA": "Spruce Broom Rust - 26029",
+     "HOST": "white spruce - 94",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15",
+     "PCT_AFFECTED": "NA"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "AREA_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/9"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 7377,
+   "fields": [
+    "dmgagent",
+    "dmgtype",
+    "host",
+    "created_user",
+    "last_edited_user",
+    "Creator",
+    "Editor",
+    "scientific"
+   ],
+   "known": false,
+   "layer": "Alaska 2016 Forest Health Damage",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "dmgagent": "Spruce Aphid",
+     "dmgtype": "defoliation",
+     "host": "Sitka Spruce",
+     "scientific": "Elatobium abietinum"
+    },
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "dmgagent": "Spruce Aphid",
+     "dmgtype": "defoliation",
+     "host": "Sitka Spruce",
+     "scientific": "Elatobium abietinum"
+    },
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "dmgagent": "Willow Leaf Blotchminer",
+     "dmgtype": "defoliation",
+     "host": "Willow spp",
+     "scientific": "Micrurapteryx salicifoliella"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "dmgtype",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/20"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 7040,
+   "fields": [
+    "intensity",
+    "ld",
+    "dmgagent",
+    "dmgtype",
+    "host",
+    "created_user",
+    "last_edited_user",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2015 Forest Health Damage",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "dmgagent": "Spruce Beetle",
+     "dmgtype": "mortality",
+     "host": "Spruce spp",
+     "intensity": ">50",
+     "ld": " "
+    },
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "dmgagent": "Spruce Beetle",
+     "dmgtype": "mortality",
+     "host": "Spruce spp",
+     "intensity": "11-29",
+     "ld": " "
+    },
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "dmgagent": "Alder Dieback",
+     "dmgtype": "crown dieback",
+     "host": "Alder spp",
+     "intensity": ">50",
+     "ld": "B3"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "dmgtype",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/22"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6861,
+   "fields": [
+    "VEG_CLASS",
+    "SIZE_CLASS",
+    "DENSITY_CL",
+    "DESCRIPT",
+    "VEG_CODE",
+    "STATUS"
+   ],
+   "known": false,
+   "layer": "McGrath Timber Types",
+   "sample": [
+    {
+     "DENSITY_CL": "Closed",
+     "DESCRIPT": " ",
+     "SIZE_CLASS": "Sawtimber",
+     "STATUS": " ",
+     "VEG_CLASS": "White Spruce",
+     "VEG_CODE": "2SX"
+    },
+    {
+     "DENSITY_CL": "Closed",
+     "DESCRIPT": " ",
+     "SIZE_CLASS": "Reproduction",
+     "STATUS": " ",
+     "VEG_CLASS": "Balsam Poplar",
+     "VEG_CODE": "16RX"
+    },
+    {
+     "DENSITY_CL": "Closed",
+     "DESCRIPT": " ",
+     "SIZE_CLASS": "Sawtimber",
+     "STATUS": " ",
+     "VEG_CLASS": "Balsam Poplar",
+     "VEG_CODE": "16SX"
+    }
+   ],
+   "service": "McGrath_Forest_Inventory_with_Tables_Public_View",
+   "typef": "VEG_CLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/McGrath_Forest_Inventory_with_Tables_Public_View/FeatureServer/0"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 6746,
+   "fields": [
+    "COLLECTION",
+    "AREA_TYPE",
+    "DAMAGE_POINT_ID",
+    "DAMAGE_AREA_ID",
+    "LABEL",
+    "DCA",
+    "HOST",
+    "DAMAGE_TYPE",
+    "PCT_AFFECTED",
+    "NUMBER_OF_TREES",
+    "DAMAGE_CODE",
+    "COMMON_NAME",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2023 Forest Health Damage",
+   "sample": [
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial Survey",
+     "COMMON_NAME": "spruce broom rust",
+     "DAMAGE_CODE": "SBR",
+     "DAMAGE_POINT_ID": "{34882aeb-8957-4b70-94a5-8215ad467711}",
+     "DAMAGE_TYPE": "Branch flagging",
+     "DCA": "spruce broom rust",
+     "HOST": "white spruce",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15"
+    },
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial Survey",
+     "COMMON_NAME": "spruce broom rust",
+     "DAMAGE_CODE": "SBR",
+     "DAMAGE_POINT_ID": "{4e0e7c73-f831-4337-9c44-cf96e7182ab3}",
+     "DAMAGE_TYPE": "Branch flagging",
+     "DCA": "spruce broom rust",
+     "HOST": "white spruce",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15"
+    },
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial Survey",
+     "COMMON_NAME": "spruce broom rust",
+     "DAMAGE_CODE": "SBR",
+     "DAMAGE_POINT_ID": "{610158aa-2782-467e-ae6b-ddf055693d60}",
+     "DAMAGE_TYPE": "Branch flagging",
+     "DCA": "spruce broom rust",
+     "HOST": "white spruce",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_TREES": "6-15"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "AREA_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/5"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 6408,
+   "fields": [
+    "damage_are",
+    "dmgagent",
+    "dmgtype",
+    "host",
+    "intensity",
+    "created_user",
+    "last_edited_user",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2017 Forest Health Damage",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "damage_are": "{e38d5c99-8aed-4ae3-8ca1-56b372f233cf}",
+     "dmgagent": "Aspen Leafminer",
+     "dmgtype": "defoliation",
+     "host": "Quaking Aspen",
+     "intensity": "11-29"
+    },
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "damage_are": "{4c0140d9-54cd-4ed3-8263-7e63f0c2d75f}",
+     "dmgagent": "Willow Leaf Blotchminer",
+     "dmgtype": "defoliation",
+     "host": "Willow spp",
+     "intensity": "30-50"
+    },
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "damage_are": "{71801344-3f45-4f48-bce3-cd58465000df}",
+     "dmgagent": "Willow Leaf Blotchminer",
+     "dmgtype": "defoliation",
+     "host": "Willow spp",
+     "intensity": ">50"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "dmgtype",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/18"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 5256,
+   "fields": [
+    "COLLECTION",
+    "AREA_TYPE",
+    "DAMAGE_ID",
+    "LABEL",
+    "DCA",
+    "HOST",
+    "DAMAGE_TYP",
+    "PCT_AFFECT",
+    "NUMBER_OF_",
+    "DAMAGE_COD",
+    "COMMON_NAM",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2024 Forest Health Damage",
+   "sample": [
+    {
+     "AREA_TYPE": "POLYGON",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAM": "Yellow-Cedar Decline",
+     "Creator": "for_admin",
+     "DAMAGE_COD": "CDL",
+     "DAMAGE_ID": "{c9c5ac0e-3c87-4428-ad63-fe8bfbc4ed60}",
+     "DAMAGE_TYP": "Mortality",
+     "DCA": "yellow-cedar decline",
+     "HOST": "Alaska yellow-cedar",
+     "LABEL": "CDL-1",
+     "NUMBER_OF_": "null",
+     "PCT_AFFECT": "Very Light (1-3%)"
+    },
+    {
+     "AREA_TYPE": "POLYGON",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAM": "Hemlock Mortality Previously Undocumented",
+     "Creator": "for_admin",
+     "DAMAGE_COD": "HMO",
+     "DAMAGE_ID": "{4d98e282-72e2-42d8-87aa-776df0577637}",
+     "DAMAGE_TYP": "Mortality - Previously Undocumented",
+     "DCA": "unknown",
+     "HOST": "western hemlock",
+     "LABEL": "HMO-WH-1",
+     "NUMBER_OF_": "null",
+     "PCT_AFFECT": "Very Light (1-3%)"
+    },
+    {
+     "AREA_TYPE": "POLYGON",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAM": "Yellow-Cedar Decline",
+     "Creator": "for_admin",
+     "DAMAGE_COD": "CDL",
+     "DAMAGE_ID": "{1206d4ab-8d6d-47ce-a8fe-8ac05c42cba1}",
+     "DAMAGE_TYP": "Mortality",
+     "DCA": "yellow-cedar decline",
+     "HOST": "Alaska yellow-cedar",
+     "LABEL": "CDL-1",
+     "NUMBER_OF_": "null",
+     "PCT_AFFECT": "Very Light (1-3%)"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "AREA_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3677,
+   "fields": [
+    "StratumDesc",
+    "VegType"
+   ],
+   "known": false,
+   "layer": "MSBTimberType",
+   "sample": [
+    {
+     "StratumDesc": "Mixed Dwarf",
+     "VegType": "Hd3W-G"
+    },
+    {
+     "StratumDesc": "Hardwood Sawtimber Closed",
+     "VegType": "Hd3C-G"
+    },
+    {
+     "StratumDesc": "Hardwood Sawtimber Open",
+     "VegType": "Hd3O"
+    }
+   ],
+   "service": "MatSu_Borough_Forest_Inventory",
+   "typef": "StratumDesc",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/MatSu_Borough_Forest_Inventory/FeatureServer/0"
+  },
+  {
+   "agency": "Alaska Division of Forestry and USDA Forest Service - Forest Health Protection",
+   "area": "",
+   "count": 2834,
+   "fields": [
+    "COLLECTION",
+    "AREA_TYPE",
+    "LABEL",
+    "DCA",
+    "HOST",
+    "DAMAGE_ID",
+    "DAMAGE_TYP",
+    "PCT_AFFECT",
+    "NUMBER_OF_",
+    "DAMAGE_COD",
+    "COMMON_NAM",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Alaska 2025 Forest Health Damage",
+   "sample": [
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAM": "Spruce broom rust",
+     "Creator": "for_admin",
+     "DAMAGE_COD": "SBR",
+     "DAMAGE_ID": "{381cbe19-c035-4407-afe3-0780a83f68b0}",
+     "DAMAGE_TYP": "Branch flagging",
+     "DCA": "spruce broom rust",
+     "HOST": "white spruce",
+     "LABEL": "SBR-WS-3",
+     "NUMBER_OF_": "6-15",
+     "PCT_AFFECT": "<NULL>"
+    },
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAM": "Western gall rust on pine",
+     "Creator": "for_admin",
+     "DAMAGE_COD": "PGR",
+     "DAMAGE_ID": "{48ae6dac-b400-4c08-8c29-103f73ad90c6}",
+     "DAMAGE_TYP": "Branch flagging",
+     "DCA": "western gall rust",
+     "HOST": "shore pine / beach pine",
+     "LABEL": "PGR-SE-2",
+     "NUMBER_OF_": "2-5",
+     "PCT_AFFECT": "<NULL>"
+    },
+    {
+     "AREA_TYPE": "POINT",
+     "COLLECTION": "Aerial_Survey",
+     "COMMON_NAM": "Western gall rust on pine",
+     "Creator": "for_admin",
+     "DAMAGE_COD": "PGR",
+     "DAMAGE_ID": "{dbfae1f3-9acc-46d2-8477-8a876254b028}",
+     "DAMAGE_TYP": "Branch flagging",
+     "DCA": "western gall rust",
+     "HOST": "shore pine / beach pine",
+     "LABEL": "PGR-SE-2",
+     "NUMBER_OF_": "2-5",
+     "PCT_AFFECT": "<NULL>"
+    }
+   ],
+   "service": "Alaska_Forest_Health_Aerial_Survey",
+   "typef": "AREA_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Health_Aerial_Survey/FeatureServer/1"
+  },
+  {
+   "agency": "State of Alaska Division of Parks and Outdoor Recreation, Alaska Map Company, LL",
+   "area": "ParkName",
+   "count": 2506,
+   "fields": [
+    "ParkID",
+    "ParkName",
+    "District",
+    "ParkUnit",
+    "ParkType",
+    "Organization",
+    "ParkWebsite",
+    "SCORPRegion",
+    "Category",
+    "BoroughCensusArea",
+    "BoroughCensusAreaGEOID",
+    "SourceURL"
+   ],
+   "known": false,
+   "layer": "SCORP Parks",
+   "sample": [
+    {
+     "BoroughCensusArea": "Anchorage Municipality",
+     "BoroughCensusAreaGEOID": "02020",
+     "Category": "State",
+     "Organization": "Municipality of Anchorage",
+     "ParkID": "Furrow Creek Park",
+     "ParkName": "Furrow Creek Park",
+     "ParkType": "Natural Resource Use",
+     "ParkWebsite": "https://www.muni.org/Departments/parks/Pages/default.aspx",
+     "SCORPRegion": "Southcentral",
+     "SourceURL": "https://data-muniorg.hub.arcgis.com/datasets/muniorg::park-land-hosted/about"
+    },
+    {
+     "BoroughCensusArea": "Juneau City and Borough",
+     "BoroughCensusAreaGEOID": "02110",
+     "Category": "State",
+     "Organization": "State of Alaska (MHT)",
+     "ParkID": "Mental Health Parcel C1004",
+     "ParkName": "Mental Health Parcel C1004",
+     "ParkType": "Mental Health Trust Land (921)",
+     "ParkWebsite": "https://alaskamentalhealthtrust.org/alaska-mental-health-trust-authority/",
+     "SCORPRegion": "Southeast",
+     "SourceURL": "https://alaskamentalhealthtrust.org/trust-land-office/land-sales/maps-and-data/"
+    },
+    {
+     "BoroughCensusArea": "Juneau City and Borough",
+     "BoroughCensusAreaGEOID": "02110",
+     "Category": "State",
+     "Organization": "State of Alaska (MHT)",
+     "ParkID": "Mental Health Parcel C1005",
+     "ParkName": "Mental Health Parcel C1005",
+     "ParkType": "Mental Health Trust Land (921)",
+     "ParkWebsite": "https://alaskamentalhealthtrust.org/alaska-mental-health-trust-authority/",
+     "SCORPRegion": "Southeast",
+     "SourceURL": "https://alaskamentalhealthtrust.org/trust-land-office/land-sales/maps-and-data/"
+    }
+   ],
+   "service": "SCORP_Parks",
+   "typef": "ParkType",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SCORP_Parks/FeatureServer/11"
+  },
+  {
+   "agency": "State of Alaska Division of Parks and Outdoor Recreation",
+   "area": "ParkWebsite",
+   "count": 2506,
+   "fields": [
+    "ParkID",
+    "ParkType",
+    "Organization",
+    "ParkWebsite",
+    "SCORPRegion",
+    "Category",
+    "BoroughCensusArea",
+    "SourceURL",
+    "BoroughCensusAreaGEOID",
+    "ParkUnit",
+    "District",
+    "ParkName"
+   ],
+   "known": false,
+   "layer": "SCORP_Parks_Simplify",
+   "sample": [
+    {
+     "BoroughCensusArea": "Anchorage Municipality",
+     "BoroughCensusAreaGEOID": "02020",
+     "Category": "State",
+     "Organization": "Municipality of Anchorage",
+     "ParkID": "Furrow Creek Park",
+     "ParkName": "Furrow Creek Park",
+     "ParkType": "Natural Resource Use",
+     "ParkWebsite": "https://www.muni.org/Departments/parks/Pages/default.aspx",
+     "SCORPRegion": "Southcentral",
+     "SourceURL": "https://data-muniorg.hub.arcgis.com/datasets/muniorg::park-land-hosted/about"
+    },
+    {
+     "BoroughCensusArea": "Juneau City and Borough",
+     "BoroughCensusAreaGEOID": "02110",
+     "Category": "State",
+     "Organization": "State of Alaska (MHT)",
+     "ParkID": "Mental Health Parcel C1004",
+     "ParkName": "Mental Health Parcel C1004",
+     "ParkType": "Mental Health Trust Land (921)",
+     "ParkWebsite": "https://alaskamentalhealthtrust.org/alaska-mental-health-trust-authority/",
+     "SCORPRegion": "Southeast",
+     "SourceURL": "https://alaskamentalhealthtrust.org/trust-land-office/land-sales/maps-and-data/"
+    },
+    {
+     "BoroughCensusArea": "Juneau City and Borough",
+     "BoroughCensusAreaGEOID": "02110",
+     "Category": "State",
+     "Organization": "State of Alaska (MHT)",
+     "ParkID": "Mental Health Parcel C1005",
+     "ParkName": "Mental Health Parcel C1005",
+     "ParkType": "Mental Health Trust Land (921)",
+     "ParkWebsite": "https://alaskamentalhealthtrust.org/alaska-mental-health-trust-authority/",
+     "SCORPRegion": "Southeast",
+     "SourceURL": "https://alaskamentalhealthtrust.org/trust-land-office/land-sales/maps-and-data/"
+    }
+   ],
+   "service": "SCORP_Parks_Simplify",
+   "typef": "ParkType",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SCORP_Parks_Simplify/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SALE_UNIT",
+   "count": 2500,
+   "fields": [
+    "AREA_OFFICE",
+    "TRTMNT_SUB",
+    "SALE_NUMBER",
+    "SALE_UNIT",
+    "SALE_NAME",
+    "STATUS",
+    "HARVEST_TYPE",
+    "SITE_PREP_METHOD",
+    "RF_METHOD",
+    "RF_SPECIES_1",
+    "RF_SPECIES_2",
+    "RF_SPECIES_3",
+    "SURVEY_METHOD"
+   ],
+   "known": false,
+   "layer": "Reforestation Public View",
+   "sample": [
+    {
+     "AREA_OFFICE": "Delta",
+     "HARVEST_TYPE": "FireSalvage",
+     "SALE_NAME": "Rainbow 2 Fire Salvage #3",
+     "SALE_NUMBER": "NC-1884-D",
+     "SALE_UNIT": "1",
+     "STATUS": "Terminated"
+    },
+    {
+     "AREA_OFFICE": "Fairbanks",
+     "HARVEST_TYPE": "ClearCut",
+     "RF_METHOD": "Planting",
+     "RF_SPECIES_1": "White Spruce",
+     "SALE_NAME": "LITTLE CHENA #1",
+     "SALE_NUMBER": "NC-0412-F",
+     "SALE_UNIT": "2",
+     "STATUS": "Terminated"
+    },
+    {
+     "AREA_OFFICE": "Fairbanks",
+     "HARVEST_TYPE": "Partial Cut",
+     "SALE_NAME": "Little Chena Spruce #3",
+     "SALE_NUMBER": "NC-0760-F",
+     "SALE_UNIT": "7",
+     "STATUS": "Terminated"
+    }
+   ],
+   "service": "Silviculture_v2_3_Reforestation_Public_view",
+   "typef": "HARVEST_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Silviculture_v2_3_Reforestation_Public_view/FeatureServer/0"
+  },
+  {
+   "agency": "State of Alaska Division of Parks and Outdoor Recreation",
+   "area": "ParkUnit",
+   "count": 2355,
+   "fields": [
+    "ParkUnit",
+    "District",
+    "ParkName",
+    "SourceURL",
+    "Category",
+    "ParkWebsite",
+    "Organization",
+    "ParkType",
+    "ParkID"
+   ],
+   "known": false,
+   "layer": "SCORP_Parks_Dissolve_Simplify",
+   "sample": [
+    {
+     "Category": "Other",
+     "Organization": "City of Valdez",
+     "ParkID": "10 Mile Park    ",
+     "ParkName": "10 Mile Park  ",
+     "ParkType": "City of Valdez Park",
+     "ParkWebsite": "http://www.valdezak.gov/640/Parks-Recreation",
+     "SourceURL": "https://www.valdezak.gov/Facilities"
+    },
+    {
+     "Category": "Other",
+     "Organization": "Municipality of Anchorage",
+     "ParkID": "5Th Avenue (Glenn Hwy.) Buffer Park    ",
+     "ParkName": "5Th Avenue (Glenn Hwy.) Buffer Park  ",
+     "ParkType": "Natural Resource Use",
+     "ParkWebsite": "https://www.muni.org/Departments/parks/Pages/default.aspx",
+     "SourceURL": "https://data-muniorg.hub.arcgis.com/datasets/muniorg::park-land-hosted/about"
+    },
+    {
+     "Category": "Other",
+     "Organization": "Mat-Su Borough",
+     "ParkID": "A-Moosement Park    ",
+     "ParkName": "A-Moosement Park  ",
+     "ParkType": "Park/Playground",
+     "ParkWebsite": "https://matsugov.us/parks",
+     "SourceURL": "https://data1-msb.opendata.arcgis.com/datasets/MSB::recreational-local-parks/about"
+    }
+   ],
+   "service": "SCORP_Parks_Dissolve_Simplify",
+   "typef": "Category",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SCORP_Parks_Dissolve_Simplify/FeatureServer/0"
+  },
+  {
+   "agency": "AK Div. of Forestry GIS",
+   "area": "",
+   "count": 2207,
+   "fields": [
+    "VEG_CLASS",
+    "SIZE_CLASS",
+    "DENSITY_CL",
+    "DESCRIPT",
+    "Veg_Code",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Lower Kuskokwim Forest Inventory",
+   "sample": [
+    {
+     "Creator": "for_admin",
+     "Editor": "for_admin",
+     "VEG_CLASS": "Rivers-Flowing water",
+     "Veg_Code": "88"
+    },
+    {
+     "Creator": "for_admin",
+     "DENSITY_CL": "Open",
+     "Editor": "for_admin",
+     "SIZE_CLASS": "Dwarf",
+     "VEG_CLASS": "Black Spruce",
+     "Veg_Code": "1DY"
+    },
+    {
+     "Creator": "for_admin",
+     "DENSITY_CL": "Open",
+     "Editor": "for_admin",
+     "SIZE_CLASS": "Poletimber",
+     "VEG_CLASS": "White Spruce",
+     "Veg_Code": "2PY"
+    }
+   ],
+   "service": "Lower_Kuskokwim_Forest_Inventory",
+   "typef": "VEG_CLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Lower_Kuskokwim_Forest_Inventory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1421,
+   "fields": [
+    "CASE_ID",
+    "CSTMRNM",
+    "CSTYPDSCRP",
+    "SPCLCDDSCR",
+    "CSSTTSDSCR",
+    "FILE_TYPE",
+    "FILENUMBER",
+    "CASE_TYPE",
+    "SPCLCD",
+    "CASESTATUS",
+    "CSTMRLSTNM",
+    "CSTMRFRSTN",
+    "CSTMRMDDLN",
+    "CTSCLABEL",
+    "CS_LABEL",
+    "MI_LABEL",
+    "DISPLAY",
+    "INFO_LINK",
+    "OPR"
+   ],
+   "known": false,
+   "layer": "Shore Fishery Lease",
+   "sample": [
+    {
+     "CASESTATUS": "35",
+     "CASE_ID": "ADL 224981",
+     "CASE_TYPE": "558",
+     "CSSTTSDSCR": "ISSUED (35)",
+     "CSTMRFRSTN": "NICOLE",
+     "CSTMRLSTNM": "RIGA",
+     "CSTMRNM": "RIGA, NICOLE ",
+     "CSTYPDSCRP": "SHORE FISHERY LEASE (558)",
+     "FILENUMBER": "224981",
+     "FILE_TYPE": "ADL"
+    },
+    {
+     "CASESTATUS": "35",
+     "CASE_ID": "ADL 224522",
+     "CASE_TYPE": "558",
+     "CSSTTSDSCR": "ISSUED (35)",
+     "CSTMRFRSTN": "SEAN",
+     "CSTMRLSTNM": "BRAMAN",
+     "CSTMRNM": "BRAMAN, SEAN ",
+     "CSTYPDSCRP": "SHORE FISHERY LEASE (558)",
+     "FILENUMBER": "224522",
+     "FILE_TYPE": "ADL"
+    },
+    {
+     "CASESTATUS": "35",
+     "CASE_ID": "ADL 222032",
+     "CASE_TYPE": "558",
+     "CSSTTSDSCR": "ISSUED (35)",
+     "CSTMRFRSTN": "TAMMY",
+     "CSTMRLSTNM": "BRAMAN",
+     "CSTMRNM": "BRAMAN, TAMMY G.",
+     "CSTYPDSCRP": "SHORE FISHERY LEASE (558)",
+     "FILENUMBER": "222032",
+     "FILE_TYPE": "ADL"
+    }
+   ],
+   "service": "OpenData/NaturalResource_Aquaculture",
+   "typef": "FILE_TYPE",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/NaturalResource_Aquaculture/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 373,
+   "fields": [
+    "VEG_CLASS",
+    "SIZE_CLASS",
+    "DENSITY_CL",
+    "Date_Typed",
+    "Photo_Call",
+    "Ground_Call",
+    "StandID"
+   ],
+   "known": false,
+   "layer": "Kantishna, Fairbanks, & Delta Sample Stands",
+   "sample": [
+    {
+     "DENSITY_CL": "Y",
+     "Date_Typed": "2007",
+     "Ground_Call": "2PY",
+     "Photo_Call": "3PY",
+     "SIZE_CLASS": "P",
+     "StandID": "171",
+     "VEG_CLASS": "3"
+    },
+    {
+     "DENSITY_CL": "Y",
+     "Date_Typed": "2007",
+     "Ground_Call": "2PY",
+     "Photo_Call": "3PY",
+     "SIZE_CLASS": "P",
+     "StandID": "172",
+     "VEG_CLASS": "3"
+    },
+    {
+     "DENSITY_CL": "X",
+     "Date_Typed": "2007",
+     "Ground_Call": "2SX",
+     "Photo_Call": "3PX",
+     "SIZE_CLASS": "P",
+     "StandID": "174",
+     "VEG_CLASS": "3"
+    }
+   ],
+   "service": "Tanana_Valley_Forest_Inventory_with_Tables_Public_View",
+   "typef": "VEG_CLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Tanana_Valley_Forest_Inventory_with_Tables_Public_View/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 234,
+   "fields": [
+    "lud",
+    "ludtype",
+    "ludcat",
+    "ludold",
+    "fpname1",
+    "fpname2",
+    "fpname3",
+    "off_og_siz",
+    "func_sizec",
+    "origin",
+    "source",
+    "ludmap",
+    "globalid",
+    "editorname",
+    "editornote",
+    "created_us",
+    "last_edite"
+   ],
+   "known": false,
+   "layer": "Tongass_National_Forest_TimberProductionAreas",
+   "sample": [
+    {
+     "fpname1": "Timber Production Area",
+     "fpname2": "NA",
+     "fpname3": "NA",
+     "func_sizec": "D",
+     "lud": "TM",
+     "ludcat": "3",
+     "ludmap": "TM",
+     "ludold": "TM",
+     "ludtype": "TM",
+     "off_og_siz": " ",
+     "origin": "UNK",
+     "source": " "
+    },
+    {
+     "fpname1": "Timber Production Area",
+     "fpname2": "NA",
+     "fpname3": "NA",
+     "func_sizec": "D",
+     "lud": "TM",
+     "ludcat": "3",
+     "ludmap": "TM",
+     "ludold": "TM",
+     "ludtype": "TM",
+     "off_og_siz": " ",
+     "origin": "UNK",
+     "source": " "
+    },
+    {
+     "fpname1": "Timber Production Area",
+     "fpname2": "NA",
+     "fpname3": "NA",
+     "func_sizec": "D",
+     "lud": "TM",
+     "ludcat": "3",
+     "ludmap": "TM",
+     "ludold": "TM",
+     "ludtype": "TM",
+     "off_og_siz": " ",
+     "origin": "UNK",
+     "source": " "
+    }
+   ],
+   "service": "Tongass_National_Forest_TimberProductionAreas",
+   "typef": "ludtype",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Tongass_National_Forest_TimberProductionAreas/FeatureServer/3"
+  },
+  {
+   "agency": "Alaska Department of Natural Resources",
+   "area": "PARKNAME",
+   "count": 157,
+   "fields": [
+    "PARKNAME",
+    "REGION",
+    "NAME",
+    "LWCF",
+    "DEV_GRANTS",
+    "PRKTYPABRV",
+    "PRMRYLASFL",
+    "MI_LABEL",
+    "UID_"
+   ],
+   "known": false,
+   "layer": "ASP Park Boundary",
+   "sample": [
+    {
+     "DEV_GRANTS": "No",
+     "LWCF": "All",
+     "MI_LABEL": "Mosquito Lake State Recreation Site",
+     "NAME": "Mosquito Lake",
+     "PARKNAME": "Mosquito Lake State Recreation Site",
+     "PRKTYPABRV": "SRS",
+     "PRMRYLASFL": "ADL 50070",
+     "REGION": "Southeast",
+     "UID_": "1101"
+    },
+    {
+     "DEV_GRANTS": "No",
+     "LWCF": "No",
+     "MI_LABEL": "Centennial Lake Trail",
+     "NAME": "Centennial Lake",
+     "PARKNAME": "Centennial Lake Trail",
+     "PRKTYPABRV": "Trail",
+     "PRMRYLASFL": "ADL 230843",
+     "REGION": "Kenai/Prince William Sound",
+     "UID_": "1024"
+    },
+    {
+     "DEV_GRANTS": "No",
+     "LWCF": "All",
+     "MI_LABEL": "Juneau Trail System",
+     "NAME": "Juneau",
+     "PARKNAME": "Juneau Trail System",
+     "PRKTYPABRV": "TS",
+     "PRMRYLASFL": "ADL 65585",
+     "REGION": "Southeast",
+     "UID_": "1078"
+    }
+   ],
+   "service": "OpenData/Recreational_ParkBoundary",
+   "typef": "",
+   "url": "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 114,
+   "fields": [
+    "VEG_CLASS",
+    "SIZE_CLASS",
+    "DENSITY_CL",
+    "Photo_Call",
+    "Ground_Call",
+    "Date_Typed",
+    "StandID"
+   ],
+   "known": false,
+   "layer": "Tok Sample Stand",
+   "sample": [
+    {
+     "DENSITY_CL": "X",
+     "Date_Typed": "2007",
+     "Ground_Call": "16SY",
+     "Photo_Call": "16PX",
+     "SIZE_CLASS": "P",
+     "StandID": "600",
+     "VEG_CLASS": "16"
+    },
+    {
+     "DENSITY_CL": "X",
+     "Date_Typed": "2007",
+     "Ground_Call": "16SX",
+     "Photo_Call": "16PX",
+     "SIZE_CLASS": "P",
+     "StandID": "602",
+     "VEG_CLASS": "16"
+    },
+    {
+     "DENSITY_CL": "X",
+     "Date_Typed": "2007",
+     "Ground_Call": "16SX",
+     "Photo_Call": "16SX",
+     "SIZE_CLASS": "S",
+     "StandID": "604",
+     "VEG_CLASS": "16"
+    }
+   ],
+   "service": "Tanana_Valley_Forest_Inventory_with_Tables_Public_View",
+   "typef": "VEG_CLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Tanana_Valley_Forest_Inventory_with_Tables_Public_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 73,
+   "fields": [
+    "UNIT_CODE",
+    "LS_LABEL",
+    "PLAN_CODE",
+    "Comment"
+   ],
+   "known": false,
+   "layer": "SSE_GU_Forestry",
+   "sample": [
+    {
+     "LS_LABEL": "RMG",
+     "PLAN_CODE": "POWP",
+     "UNIT_CODE": "12 C"
+    },
+    {
+     "LS_LABEL": "RMG",
+     "PLAN_CODE": "CSAP",
+     "UNIT_CODE": "K-24"
+    },
+    {
+     "LS_LABEL": "RMG",
+     "PLAN_CODE": "CSAP",
+     "UNIT_CODE": "K-21"
+    }
+   ],
+   "service": "SSE_GU_Forestry_Public_View",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/SSE_GU_Forestry_Public_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 58,
+   "fields": [
+    "VEG_CLASS",
+    "SIZE_CLASS",
+    "DENSITY_CL",
+    "DESCRIPT",
+    "Date_Typed",
+    "Photo_Call",
+    "Ground_Call",
+    "StandID"
+   ],
+   "known": false,
+   "layer": "McGrath Sample Stands",
+   "sample": [
+    {
+     "DENSITY_CL": "X",
+     "DESCRIPT": " ",
+     "Date_Typed": "2015",
+     "Ground_Call": "16SX",
+     "Photo_Call": "16SX",
+     "SIZE_CLASS": "S",
+     "StandID": "32",
+     "VEG_CLASS": "16"
+    },
+    {
+     "DENSITY_CL": "X",
+     "DESCRIPT": " ",
+     "Date_Typed": "2015",
+     "Ground_Call": "31SX",
+     "Photo_Call": "31SX",
+     "SIZE_CLASS": "S",
+     "StandID": "1",
+     "VEG_CLASS": "31"
+    },
+    {
+     "DENSITY_CL": "Y",
+     "DESCRIPT": " ",
+     "Date_Typed": "2015",
+     "Ground_Call": "32PY",
+     "Photo_Call": "32PY",
+     "SIZE_CLASS": "P",
+     "StandID": "2",
+     "VEG_CLASS": "32"
+    }
+   ],
+   "service": "McGrath_Forest_Inventory_with_Tables_Public_View",
+   "typef": "VEG_CLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/McGrath_Forest_Inventory_with_Tables_Public_View/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 55,
+   "fields": [],
+   "known": false,
+   "layer": "Subsistence Use Areas - Fish",
+   "sample": [
+    {
+     "GlobalID": "1cea89c0-8b43-4c3b-8a6a-dade90054f45",
+     "OBJECTID": 1,
+     "Shape__Area": 412770217.765625,
+     "Shape__Length": 94113.72831083811
+    },
+    {
+     "GlobalID": "739b9405-6399-4217-8b30-dbb8f74c5356",
+     "OBJECTID": 2,
+     "Shape__Area": 524439285.390625,
+     "Shape__Length": 171438.24626567503
+    },
+    {
+     "GlobalID": "0af53fe9-dc69-4d5b-8ad3-016ac16b4e82",
+     "OBJECTID": 3,
+     "Shape__Area": 156615904.53125,
+     "Shape__Length": 64476.80222149202
+    }
+   ],
+   "service": "Biology",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Biology/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 23,
+   "fields": [],
+   "known": false,
+   "layer": "MSBBoundary",
+   "sample": [
+    {
+     "Acreage": 13117.611706552756,
+     "GlobalID": "10c15554-4821-484d-a555-487d24ee7ea0",
+     "OBJECTID": 1,
+     "Shape__Area": 230503166.515625,
+     "Shape__Length": 117480.24349815435
+    },
+    {
+     "Acreage": 21310.558613693127,
+     "GlobalID": "29823ba1-5d80-4ffd-ac7f-e5c99c472a11",
+     "OBJECTID": 2,
+     "Shape__Area": 377274906.4375,
+     "Shape__Length": 147811.3522039794
+    },
+    {
+     "Acreage": 135383.16531906673,
+     "GlobalID": "d1d1ca32-1c35-4791-a5b4-5e44b1765fb2",
+     "OBJECTID": 3,
+     "Shape__Area": 2409337810.078125,
+     "Shape__Length": 620841.5476915102
+    }
+   ],
+   "service": "MatSu_Borough_Forest_Inventory",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/MatSu_Borough_Forest_Inventory/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 22,
+   "fields": [
+    "Name",
+    "PrecautionLevel",
+    "GeneralPublicNotification",
+    "Felling",
+    "YardingOrSkidding",
+    "HaulingOrTransportation",
+    "LandingOperations"
+   ],
+   "known": false,
+   "layer": "Forest Operations Precaution Levels",
+   "sample": [
+    {
+     "Felling": "Open",
+     "GeneralPublicNotification": "No Restrictions At This Time",
+     "HaulingOrTransportation": "Open",
+     "LandingOperations": "Open",
+     "Name": "MatSu East",
+     "PrecautionLevel": "Level 1",
+     "YardingOrSkidding": "Open"
+    },
+    {
+     "Felling": "Open",
+     "GeneralPublicNotification": "No Restrictions At This Time",
+     "HaulingOrTransportation": "Open",
+     "LandingOperations": "Open",
+     "Name": "MatSu Core",
+     "PrecautionLevel": "Level 1",
+     "YardingOrSkidding": "Open"
+    },
+    {
+     "Felling": "Open",
+     "GeneralPublicNotification": "No Restrictions At This Time",
+     "HaulingOrTransportation": "Open",
+     "LandingOperations": "Open",
+     "Name": "MatSu North",
+     "PrecautionLevel": "Level 1",
+     "YardingOrSkidding": "Open"
+    }
+   ],
+   "service": "Forest_Operations_Precaution_Levels_PublicView",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Forest_Operations_Precaution_Levels_PublicView/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 12,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "TRACTCE",
+    "GEOID",
+    "NAME",
+    "NAMELSAD",
+    "MTFCC",
+    "FUNCSTAT",
+    "INTPTLAT",
+    "INTPTLON",
+    "layer",
+    "path",
+    "F20230701_q",
+    "F20230701_1",
+    "F20230701_2",
+    "F20230701_3"
+   ],
+   "known": false,
+   "layer": "Qualified Historically Underutilized Business Zones (HUBZones) that also overlap EOZ Tracts",
+   "sample": [
+    {
+     "COUNTYFP": "020",
+     "FUNCSTAT": "S",
+     "GEOID": "02020000901",
+     "INTPTLAT": "+61.2150668",
+     "INTPTLON": "-149.8362710",
+     "MTFCC": "G5020",
+     "NAME": "9.01",
+     "NAMELSAD": "Census Tract 9.01",
+     "STATEFP": "02",
+     "TRACTCE": "000901",
+     "layer": "tl_2020_02_tract.shp",
+     "path": "/vsizip//Users/emily/SBACapitalAccess/2020_tracts/tl_2020_02_tract.zip/tl_2020_02_tract.shp|layername=tl_2020_02_tract"
+    },
+    {
+     "COUNTYFP": "020",
+     "FUNCSTAT": "S",
+     "GEOID": "02020000601",
+     "INTPTLAT": "+61.2245876",
+     "INTPTLON": "-149.8444253",
+     "MTFCC": "G5020",
+     "NAME": "6.01",
+     "NAMELSAD": "Census Tract 6.01",
+     "STATEFP": "02",
+     "TRACTCE": "000601",
+     "layer": "tl_2020_02_tract.shp",
+     "path": "/vsizip//Users/emily/SBACapitalAccess/2020_tracts/tl_2020_02_tract.zip/tl_2020_02_tract.shp|layername=tl_2020_02_tract"
+    },
+    {
+     "COUNTYFP": "020",
+     "FUNCSTAT": "S",
+     "GEOID": "02020000602",
+     "INTPTLAT": "+61.2262593",
+     "INTPTLON": "-149.8002629",
+     "MTFCC": "G5020",
+     "NAME": "6.02",
+     "NAMELSAD": "Census Tract 6.02",
+     "STATEFP": "02",
+     "TRACTCE": "000602",
+     "layer": "tl_2020_02_tract.shp",
+     "path": "/vsizip//Users/emily/SBACapitalAccess/2020_tracts/tl_2020_02_tract.zip/tl_2020_02_tract.shp|layername=tl_2020_02_tract"
+    }
+   ],
+   "service": "Eligible_Opportunity_Zones_Web_Map_WFL1",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Eligible_Opportunity_Zones_Web_Map_WFL1/FeatureServer/49"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 11,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "AKForestInventoryAreas",
+   "sample": [
+    {
+     "Name": "Cordova"
+    },
+    {
+     "Name": "South East"
+    },
+    {
+     "Name": "Kenai"
+    }
+   ],
+   "service": "Alaska_Forest_Inventory_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Alaska_Forest_Inventory_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SALE_UNIT",
+   "count": 4,
+   "fields": [
+    "SUBCLASS",
+    "SALE_NUMBE",
+    "SALE_UNIT",
+    "Unit",
+    "PLANT_UNIT",
+    "SITE_PREP",
+    "REGEN_METH",
+    "YEAR_REGEN",
+    "REGEN_SPEC",
+    "REGEN_SP_1",
+    "REGEN_SP_2",
+    "SEEDLOT",
+    "SEEDLOT2",
+    "SEEDLOT3",
+    "CONTRACTOR",
+    "CONTRACT_A",
+    "PLUG_TYPE",
+    "TREE_AGE",
+    "TREE_SOURC",
+    "COLD_STORA"
+   ],
+   "known": false,
+   "layer": "Rosie Creek Exotic Species Plantations",
+   "sample": [
+    {
+     "PLANT_UNIT": "NC-571-1",
+     "REGEN_METH": "PLANT",
+     "REGEN_SPEC": "S. LARCH",
+     "REGEN_SP_1": " ",
+     "REGEN_SP_2": " ",
+     "SALE_NUMBE": "NC-571",
+     "SALE_UNIT": "NC-571-1",
+     "SEEDLOT": "F83430",
+     "SITE_PREP": "SHEAR BLADE",
+     "SUBCLASS": "POLY",
+     "Unit": "1",
+     "YEAR_REGEN": "1989"
+    },
+    {
+     "PLANT_UNIT": "NC-572-1",
+     "REGEN_METH": "PLANT",
+     "REGEN_SPEC": "LODGEPOLE",
+     "REGEN_SP_1": "LARCH",
+     "REGEN_SP_2": " ",
+     "SALE_NUMBE": "NC-572",
+     "SALE_UNIT": "NC-572-1",
+     "SEEDLOT": "F89003",
+     "SITE_PREP": "SHEAR BLADE",
+     "SUBCLASS": "POLY",
+     "Unit": "1",
+     "YEAR_REGEN": "1989"
+    },
+    {
+     "PLANT_UNIT": "NC-477-1",
+     "REGEN_METH": "PLANT",
+     "REGEN_SPEC": "SPRUCE",
+     "REGEN_SP_1": "LODGEPOLE",
+     "REGEN_SP_2": "LARCH",
+     "SALE_NUMBE": "NC-477",
+     "SALE_UNIT": "NC-477-1",
+     "SEEDLOT": "F83006",
+     "SITE_PREP": "SHEAR BLADE",
+     "SUBCLASS": "POLY",
+     "Unit": "1",
+     "YEAR_REGEN": "1989"
+    }
+   ],
+   "service": "Rosie_Creek_Proposed_Trails_WFL1",
+   "typef": "SUBCLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Rosie_Creek_Proposed_Trails_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "SALE_UNIT",
+   "count": 1,
+   "fields": [
+    "SUBCLASS",
+    "SALE_NUMBE",
+    "SALE_UNIT",
+    "Unit",
+    "PLANT_UNIT",
+    "SITE_PREP",
+    "REGEN_METH",
+    "YEAR_REGEN",
+    "REGEN_SPEC",
+    "REGEN_SP_1",
+    "REGEN_SP_2",
+    "SEEDLOT",
+    "SEEDLOT2",
+    "SEEDLOT3",
+    "CONTRACTOR",
+    "CONTRACT_A",
+    "PLUG_TYPE",
+    "TREE_AGE",
+    "TREE_SOURC",
+    "COLD_STORA"
+   ],
+   "known": false,
+   "layer": "Rosie Creek Native Species Plantations",
+   "sample": [
+    {
+     "PLANT_UNIT": "NC-837-1",
+     "REGEN_METH": "NATURAL SEED",
+     "REGEN_SPEC": "White Spruce",
+     "REGEN_SP_1": " ",
+     "REGEN_SP_2": " ",
+     "SALE_NUMBE": "NC-837",
+     "SALE_UNIT": "NC-837-1",
+     "SEEDLOT": "      0",
+     "SITE_PREP": " ",
+     "SUBCLASS": "POLY",
+     "Unit": "1",
+     "YEAR_REGEN": "1995"
+    }
+   ],
+   "service": "Rosie_Creek_Proposed_Trails_WFL1",
+   "typef": "SUBCLASS",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/Rosie_Creek_Proposed_Trails_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "MTR",
+    "MTRS",
+    "MER",
+    "GLOBALID",
+    "CREATED_US",
+    "LAST_EDITE",
+    "Descp",
+    "name"
+   ],
+   "known": false,
+   "layer": "Boundary_FishLake",
+   "sample": [
+    {
+     "CREATED_US": "GIS_BASE",
+     "Descp": "PTN of Tract A excluding USS 11525, USS 5229, and Fish Lake",
+     "GLOBALID": "{C4ABE9AA-5235-4AD8-BE76-D9B50EC0F1E2}",
+     "LAST_EDITE": "GIS_BASE",
+     "MER": "C",
+     "MTR": "C009N004W",
+     "MTRS": "C009N004W13",
+     "name": "Fish Lake"
+    }
+   ],
+   "service": "UA_Land_Grant_Statewide_Map_WFL1",
+   "typef": "Descp",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/UA_Land_Grant_Statewide_Map_WFL1/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CASE_ID",
+    "LDA_NAME_1",
+    "LDA_NAME_2",
+    "CSTYPDSCRP",
+    "SPCLCDDSCR",
+    "CSSTTSDSCR",
+    "FILE_TYPE",
+    "FILENUMBER",
+    "CASE_TYPE",
+    "SPCLCD",
+    "CASESTATUS",
+    "CTSCLABEL",
+    "CS_LABEL",
+    "MI_LABEL",
+    "DISPLAY",
+    "INFO_LINK",
+    "MV_OID",
+    "LASTEDIT"
+   ],
+   "known": false,
+   "layer": "ChilkatBaldEaglePreserve",
+   "sample": [
+    {
+     "CASESTATUS": "50",
+     "CASE_ID": "AS 41.21.610",
+     "CASE_TYPE": "206",
+     "CSSTTSDSCR": "Active (50)",
+     "CSTYPDSCRP": "Parks Legislative Desig (206)",
+     "FILENUMBER": "41.21.610",
+     "FILE_TYPE": "AS",
+     "LDA_NAME_1": "Alaska Chilkat",
+     "LDA_NAME_2": "Bald Eagle Preserve",
+     "SPCLCD": "2604",
+     "SPCLCDDSCR": "State Preserve (2604)"
+    }
+   ],
+   "service": "HSF_gdb",
+   "typef": "FILE_TYPE",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/HSF_gdb/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unit",
+   "count": 149,
+   "fields": [
+    "mgmt",
+    "unit",
+    "landuse",
+    "status",
+    "forestname",
+    "created_user",
+    "last_edited_user",
+    "Management_Unit_Name",
+    "SubUnitName",
+    "case_id",
+    "managementplanURL"
+   ],
+   "known": true,
+   "layer": "State Forest Boundary",
+   "sample": [
+    {
+     "Management_Unit_Name": "Tatalina River",
+     "case_id": "AS 41.17.400",
+     "created_user": "taruszkowski_for",
+     "forestname": "Tanana Valley State Forest",
+     "last_edited_user": "for_admin",
+     "managementplanURL": "https://forestry.alaska.gov/management/tvsf_final_plan",
+     "mgmt": "FA",
+     "status": "Current",
+     "unit": "3A"
+    },
+    {
+     "Management_Unit_Name": "Healy River",
+     "case_id": "AS 41.17.400",
+     "created_user": "taruszkowski_for",
+     "forestname": "Tanana Valley State Forest",
+     "last_edited_user": "for_admin",
+     "managementplanURL": "https://forestry.alaska.gov/management/tvsf_final_plan",
+     "mgmt": "DA",
+     "status": "Current",
+     "unit": "11"
+    },
+    {
+     "Management_Unit_Name": "Porcupine Creek",
+     "case_id": "AS 41.17.400",
+     "created_user": "taruszkowski_for",
+     "forestname": "Tanana Valley State Forest",
+     "last_edited_user": "for_admin",
+     "managementplanURL": "https://forestry.alaska.gov/management/tvsf_final_plan",
+     "mgmt": "TA",
+     "status": "Current",
+     "unit": "13A"
+    }
+   ],
+   "service": "State_Forest_Boundary_Public_View_2",
+   "typef": "landuse",
+   "url": "https://services1.arcgis.com/7HDiw78fcUiM2BWn/arcgis/rest/services/State_Forest_Boundary_Public_View_2/FeatureServer/0"
+  }
+ ],
+ "st": "AK"
+}

@@ -1,0 +1,1045 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Colorado Parks and Wildlife & Colorado Energy and Carbon Management Commission",
+   "area": "",
+   "count": 2351,
+   "fields": [
+    "Activity_C",
+    "UpdateComm",
+    "BufferDist",
+    "Species_Ac"
+   ],
+   "known": false,
+   "layer": "Aquatic Sportsfish Management Waters SB181C",
+   "sample": [
+    {
+     "Activity_C": "ASMW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Sportfish Management Waters",
+     "UpdateComm": "Captured on 12/03/2024"
+    },
+    {
+     "Activity_C": "ASMW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Sportfish Management Waters",
+     "UpdateComm": "Captured on 12/03/2024"
+    },
+    {
+     "Activity_C": "ASMW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Sportfish Management Waters",
+     "UpdateComm": "Captured on 12/03/2024"
+    }
+   ],
+   "service": "CPWSB181AquaticData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSB181AquaticData/FeatureServer/3"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife & Colorado Energy & Carbon Management Commission",
+   "area": "",
+   "count": 2350,
+   "fields": [
+    "Activity_C",
+    "UpdateComm",
+    "BufferDist",
+    "Species_Ac"
+   ],
+   "known": false,
+   "layer": "Aquatic Sportsfish Management Waters HPHC",
+   "sample": [
+    {
+     "Activity_C": "ASMW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Sportfish Management Waters",
+     "UpdateComm": "Captured on 12/10/2025"
+    },
+    {
+     "Activity_C": "ASMW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Sportfish Management Waters",
+     "UpdateComm": "Captured on 12/10/2025"
+    },
+    {
+     "Activity_C": "ASMW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Sportfish Management Waters",
+     "UpdateComm": "Captured on 12/10/2025"
+    }
+   ],
+   "service": "CPWHPHAquaticData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHAquaticData/FeatureServer/3"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife & Colorado Energy & Carbon Management Commission",
+   "area": "",
+   "count": 1786,
+   "fields": [
+    "Activity_C",
+    "UpdateComm",
+    "BufferDist",
+    "Species_Ac"
+   ],
+   "known": false,
+   "layer": "Aquatic Native Species Conservation Waters HPHC",
+   "sample": [
+    {
+     "Activity_C": "ANSCW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Native Species Conservation Waters",
+     "UpdateComm": "Captured on 12/10/2025"
+    },
+    {
+     "Activity_C": "ANSCW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Native Species Conservation Waters",
+     "UpdateComm": "Captured on 12/10/2025"
+    },
+    {
+     "Activity_C": "ANSCW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Native Species Conservation Waters",
+     "UpdateComm": "Captured on 12/10/2025"
+    }
+   ],
+   "service": "CPWHPHAquaticData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHAquaticData/FeatureServer/2"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife & Colorado Energy and Carbon Management Commission",
+   "area": "",
+   "count": 1779,
+   "fields": [
+    "Activity_C",
+    "UpdateComm",
+    "BufferDist",
+    "Species_Ac"
+   ],
+   "known": false,
+   "layer": "Aquatic Native Species Conservation Waters SB181C",
+   "sample": [
+    {
+     "Activity_C": "ANSCW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Native Species Conservation Waters",
+     "UpdateComm": "Captured on 12/03/2024"
+    },
+    {
+     "Activity_C": "ANSCW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Native Species Conservation Waters",
+     "UpdateComm": "Captured on 12/03/2024"
+    },
+    {
+     "Activity_C": "ANSCW",
+     "BufferDist": "500 feet",
+     "Species_Ac": "Aquatic Native Species Conservation Waters",
+     "UpdateComm": "Captured on 12/03/2024"
+    }
+   ],
+   "service": "CPWSB181AquaticData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSB181AquaticData/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 946,
+   "fields": [
+    "PropName",
+    "PropType",
+    "LastUpdated",
+    "PropertyTech"
+   ],
+   "known": false,
+   "layer": "CPW Public Access Properties",
+   "sample": [
+    {
+     "LastUpdated": "Generated from CPWParcels on 07/05/2022",
+     "PropName": "63 Ranch STL",
+     "PropType": "STL"
+    },
+    {
+     "LastUpdated": "Generated from CPWParcels on 07/05/2022",
+     "PropName": "63 Ranch SWA",
+     "PropType": "SWA",
+     "PropertyTech": "Bill Rivale"
+    },
+    {
+     "LastUpdated": "Generated from CPWParcels on 07/05/2022",
+     "PropName": "Adams SWA",
+     "PropType": "SWA",
+     "PropertyTech": "Tyler Jacox"
+    }
+   ],
+   "service": "HeadShed_LandOwnership",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/HeadShed_LandOwnership/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 548,
+   "fields": [
+    "PropName",
+    "PropType",
+    "LastUpdated",
+    "PropertyTech"
+   ],
+   "known": false,
+   "layer": "CPWPublicAccessProperties",
+   "sample": [
+    {
+     "LastUpdated": "Generated from CPWParcels on 04/02/2019",
+     "PropName": "Arkansas Headwaters RA - Texas Creek",
+     "PropType": "Recreation Area"
+    },
+    {
+     "LastUpdated": "Generated from CPWParcels on 04/02/2019",
+     "PropName": "Durango SFU",
+     "PropType": "SFU",
+     "PropertyTech": "Toby Mourning (Hatchery Manager)"
+    },
+    {
+     "LastUpdated": "Generated from CPWParcels on 04/02/2019",
+     "PropName": "Glenwood Springs SFU",
+     "PropType": "SFU",
+     "PropertyTech": "David Davis (Hatchery Manager)"
+    }
+   ],
+   "service": "SLB_PAP_map",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/SLB_PAP_map/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 474,
+   "fields": [
+    "UNIT_ID",
+    "PARK_NAME",
+    "NOTES",
+    "Completed",
+    "PROJECT_ID",
+    "SOURCE",
+    "INPUT_ID",
+    "EDITOR_NAME",
+    "SHP_SRCE",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "FM_Projects_Complete",
+   "sample": [
+    {
+     "Completed": "2010",
+     "Creator": "Matt.Schulz_CPW",
+     "EDITOR_NAME": "AJ",
+     "Editor": "Matt.Schulz_CPW",
+     "INPUT_ID": "No data",
+     "NOTES": "Homestead Fuels Mitigation (2010); Homestead C Unit (merged three polys together Feb. 2015)",
+     "PARK_NAME": "CHM",
+     "PROJECT_ID": "CHM03",
+     "SOURCE": "CSFS (Dave Root) ",
+     "UNIT_ID": "CHM03_03"
+    },
+    {
+     "Completed": "2010",
+     "Creator": "Matt.Schulz_CPW",
+     "EDITOR_NAME": "AJ",
+     "Editor": "Matt.Schulz_CPW",
+     "INPUT_ID": "No data",
+     "NOTES": "Homestead D (Youth Corps) (2010); approx. 3 acres completed; Homestead D Unit",
+     "PARK_NAME": "CHM",
+     "PROJECT_ID": "CHM04",
+     "SOURCE": "No data",
+     "UNIT_ID": "CHM04_01"
+    },
+    {
+     "Completed": "2008",
+     "Creator": "Matt.Schulz_CPW",
+     "EDITOR_NAME": "AJ",
+     "Editor": "Matt.Schulz_CPW",
+     "INPUT_ID": "No data ",
+     "NOTES": "Campground/Pine Oaks Fuels Reduction (2008); Campground Middle Unit",
+     "PARK_NAME": "CHM",
+     "PROJECT_ID": "CHM02",
+     "SOURCE": "Colorado Forest Management, LLC; Garmin GPSmap 76S",
+     "UNIT_ID": "CHM02_01"
+    }
+   ],
+   "service": "ForestryBasemap",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/ForestryBasemap/FeatureServer/23"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife & Colorado Energy & Carbon Management Commission",
+   "area": "PropName",
+   "count": 386,
+   "fields": [
+    "PropName",
+    "PropType",
+    "UpdateComm",
+    "BufferDist",
+    "Species_Ac"
+   ],
+   "known": false,
+   "layer": "CPW State Wildlife Areas And State Parks HPHC",
+   "sample": [
+    {
+     "BufferDist": "No buffer",
+     "PropName": "63 Ranch SWA",
+     "PropType": "SWA",
+     "Species_Ac": "CPW State Wildlife Areas and Parks",
+     "UpdateComm": "Captured on 12/10/2025"
+    },
+    {
+     "BufferDist": "No buffer",
+     "PropName": "Adams SWA",
+     "PropType": "SWA",
+     "Species_Ac": "CPW State Wildlife Areas and Parks",
+     "UpdateComm": "Captured on 12/10/2025"
+    },
+    {
+     "BufferDist": "No buffer",
+     "PropName": "Adobe Creek Reservoir SWA",
+     "PropType": "SWA",
+     "Species_Ac": "CPW State Wildlife Areas and Parks",
+     "UpdateComm": "Captured on 12/10/2025"
+    }
+   ],
+   "service": "CPWHPHTerrestrialData",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWHPHTerrestrialData/FeatureServer/4"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife & Colorado Energy & Carbon Management Commission",
+   "area": "PropName",
+   "count": 385,
+   "fields": [
+    "PropName",
+    "PropType",
+    "UpdateComm",
+    "BufferDist",
+    "Species_Ac"
+   ],
+   "known": false,
+   "layer": "CPW State Wildlife Areas And State Parks SB181C",
+   "sample": [
+    {
+     "BufferDist": "No buffer",
+     "PropName": "63 Ranch SWA",
+     "PropType": "SWA",
+     "Species_Ac": "CPW State Wildlife Areas and Parks",
+     "UpdateComm": "Captured on 12/03/2024"
+    },
+    {
+     "BufferDist": "No buffer",
+     "PropName": "Adams SWA",
+     "PropType": "SWA",
+     "Species_Ac": "CPW State Wildlife Areas and Parks",
+     "UpdateComm": "Captured on 12/03/2024"
+    },
+    {
+     "BufferDist": "No buffer",
+     "PropName": "Adobe Creek Reservoir SWA",
+     "PropType": "SWA",
+     "Species_Ac": "CPW State Wildlife Areas and Parks",
+     "UpdateComm": "Captured on 12/03/2024"
+    }
+   ],
+   "service": "CPWSB181TerrestrialData",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSB181TerrestrialData/FeatureServer/4"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "",
+   "count": 367,
+   "fields": [
+    "LOCATION",
+    "FORMAL_NAME",
+    "LOC_CODE",
+    "PARK_TYPE",
+    "PARK_CLASS",
+    "DESIGNATED",
+    "FIRST_AQ_DATE",
+    "MASTER_PLAN",
+    "MAINT_DIST",
+    "COUNCIL_DIST",
+    "POLICE_DIST",
+    "CROSS_STREETS",
+    "ADDRESS_LINE1",
+    "ADDRESS_LINE2",
+    "CITY",
+    "STATE",
+    "ZIP",
+    "MARKETING_CODE",
+    "FACILITIES",
+    "DIAGRAM"
+   ],
+   "known": false,
+   "layer": "Denver Parks",
+   "sample": [
+    {
+     "COUNCIL_DIST": "8",
+     "CROSS_STREETS": "MLK Blvd & Elmira St",
+     "DESIGNATED": "Yes - 2014",
+     "FIRST_AQ_DATE": "2010",
+     "FORMAL_NAME": "Central Park Rec Center",
+     "LOCATION": "Central Park Rec Center",
+     "LOC_CODE": "567",
+     "MAINT_DIST": "NE",
+     "MASTER_PLAN": "2010",
+     "PARK_CLASS": "Recreation Center",
+     "PARK_TYPE": "Grounds",
+     "POLICE_DIST": "2"
+    },
+    {
+     "COUNCIL_DIST": "9",
+     "CROSS_STREETS": "20th Av & Logan St",
+     "DESIGNATED": "Yes - 1956",
+     "FIRST_AQ_DATE": "1924",
+     "FORMAL_NAME": "Benedict Fountain Park",
+     "LOCATION": "Benedict Fountain",
+     "LOC_CODE": "310",
+     "MAINT_DIST": "Downtown",
+     "MASTER_PLAN": "2009",
+     "PARK_CLASS": "Neighborhood",
+     "PARK_TYPE": "Park",
+     "POLICE_DIST": "6"
+    },
+    {
+     "COUNCIL_DIST": "3",
+     "CROSS_STREETS": "Speer Blvd & Elitch Cir",
+     "DESIGNATED": "Yes - 2014",
+     "FIRST_AQ_DATE": "1976",
+     "FORMAL_NAME": "Centennial Gardens",
+     "LOCATION": "Centennial",
+     "LOC_CODE": "901",
+     "MAINT_DIST": "Downtown",
+     "MASTER_PLAN": "None",
+     "PARK_CLASS": "Special Use",
+     "PARK_TYPE": "Park",
+     "POLICE_DIST": "6"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "PARK_TYPE",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/42"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 235,
+   "fields": [
+    "PropName",
+    "PropType",
+    "LastUpdated",
+    "PropertyTech"
+   ],
+   "known": false,
+   "layer": "CPWPublicAccessProperties_STL",
+   "sample": [
+    {
+     "LastUpdated": "Generated from CPWParcels on 04/02/2019",
+     "PropName": "63 Ranch STL",
+     "PropType": "STL"
+    },
+    {
+     "LastUpdated": "Generated from CPWParcels on 04/02/2019",
+     "PropName": "Agate Mountain STL",
+     "PropType": "STL"
+    },
+    {
+     "LastUpdated": "Generated from CPWParcels on 04/02/2019",
+     "PropName": "Aguilar TV Hill STL",
+     "PropType": "STL"
+    }
+   ],
+   "service": "SLB_PAP_map",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/SLB_PAP_map/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 138,
+   "fields": [
+    "AWM",
+    "AREAPHONE",
+    "DWM",
+    "DISTRICTNAME",
+    "DWMPHONE",
+    "INPUT_ID",
+    "EDITOR_NAME",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "CPW Districts",
+   "sample": [
+    {
+     "AREAPHONE": "970-878-6090",
+     "AWM": "Johnathan Lambert",
+     "DISTRICTNAME": "Maybell",
+     "DWM": "Jeff Goncalves",
+     "DWMPHONE": "970-878-6067",
+     "EDITOR_NAME": "JOHNSONC",
+     "INPUT_ID": "WILCOXG",
+     "REGION": "Northwest"
+    },
+    {
+     "AREAPHONE": "970-472-4300",
+     "AWM": "Jason Surface",
+     "DISTRICTNAME": "Eaton/Pawnee NG",
+     "DWM": "Troy Florian",
+     "DWMPHONE": "970-443-1993",
+     "EDITOR_NAME": "KANODEM",
+     "INPUT_ID": "WILCOXG",
+     "REGION": "Northeast"
+    },
+    {
+     "AREAPHONE": "970-472-4300",
+     "AWM": "Jason Surface",
+     "DISTRICTNAME": "Red Feather/Livermore",
+     "DWM": "Brock McArdle",
+     "DWMPHONE": "970-218-4941",
+     "EDITOR_NAME": "JOHNSONC",
+     "INPUT_ID": "WILCOXG",
+     "REGION": "Northeast"
+    }
+   ],
+   "service": "FishingClinicMap_Districts",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/FishingClinicMap_Districts/FeatureServer/0"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife",
+   "area": "PropName",
+   "count": 133,
+   "fields": [
+    "PropName",
+    "PropType",
+    "ManagedPublicAccess",
+    "LastUpdated",
+    "PropertyTech",
+    "CPW_URL"
+   ],
+   "known": false,
+   "layer": "State_Park_Boundaries_Populated_2026",
+   "sample": [
+    {
+     "CPW_URL": "https://cpw.state.co.us/state-parks/arkansas-headwaters-recreation-area",
+     "LastUpdated": "Generated from CPWParcels on 01/06/2026",
+     "ManagedPublicAccess": "Yes",
+     "PropName": "Arkansas Headwaters RA",
+     "PropType": "Recreation Area",
+     "PropertyTech": "Will Taliaferro, Steven Wyatt"
+    },
+    {
+     "CPW_URL": "https://cpw.state.co.us/state-parks/arkansas-headwaters-recreation-area",
+     "LastUpdated": "Generated from CPWParcels on 01/06/2026",
+     "ManagedPublicAccess": "Yes",
+     "PropName": "Arkansas Headwaters RA - Arkansas River Placer",
+     "PropType": "Recreation Area",
+     "PropertyTech": "Will Taliaferro, Steven Wyatt"
+    },
+    {
+     "CPW_URL": "https://cpw.state.co.us/state-parks/arkansas-headwaters-recreation-area",
+     "LastUpdated": "Generated from CPWParcels on 01/06/2026",
+     "ManagedPublicAccess": "Yes",
+     "PropName": "Arkansas Headwaters RA - Arkansas River Ranch",
+     "PropType": "Recreation Area",
+     "PropertyTech": "Will Taliaferro, Steven Wyatt"
+    }
+   ],
+   "service": "State_Park_Boundaries_Populated_2026",
+   "typef": "PropType",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/State_Park_Boundaries_Populated_2026/FeatureServer/5"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "",
+   "count": 72,
+   "fields": [
+    "NLCS_NAME",
+    "ADMIN_ST",
+    "NLCS_ID",
+    "CASEFILE_NO"
+   ],
+   "known": false,
+   "layer": "BLM Wilderness Study Areas",
+   "sample": [
+    {
+     "ADMIN_ST": "CO",
+     "CASEFILE_NO": "CO-050-141",
+     "NLCS_ID": "NLCS000375",
+     "NLCS_NAME": "San Luis Hills"
+    },
+    {
+     "ADMIN_ST": "CO",
+     "CASEFILE_NO": "CO-030-252",
+     "NLCS_ID": "NLCS000385",
+     "NLCS_NAME": "Weber Mountain"
+    },
+    {
+     "ADMIN_ST": "CO",
+     "CASEFILE_NO": "CO-030-251",
+     "NLCS_ID": "NLCS000365",
+     "NLCS_NAME": "Menefee Mountain"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/68"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 68,
+   "fields": [
+    "HU_12_NAME",
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Orange-spotted Sunfish HUC 12 Presence",
+   "sample": [
+    {
+     "ACTIVITYCO": "OSSHUC12",
+     "HU_12_NAME": "110200090206"
+    },
+    {
+     "ACTIVITYCO": "OSSHUC12",
+     "HU_12_NAME": "Atwood-South Platte River"
+    },
+    {
+     "ACTIVITYCO": "OSSHUC12",
+     "HU_12_NAME": "Outlet Clear Creek"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/278"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 62,
+   "fields": [
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Great Blue Heron Historic Nest Area",
+   "sample": [
+    {
+     "ACTIVITYCO": "BHHNA"
+    },
+    {
+     "ACTIVITYCO": "BHHNA"
+    },
+    {
+     "ACTIVITYCO": "BHHNA"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/54"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "",
+   "count": 37,
+   "fields": [
+    "WILDERNESSNAME",
+    "AREAID",
+    "BOUNDARYSTATUS"
+   ],
+   "known": false,
+   "layer": "National Wilderness Areas",
+   "sample": [
+    {
+     "AREAID": "037",
+     "BOUNDARYSTATUS": "Final",
+     "WILDERNESSNAME": "Uncompahgre Wilderness"
+    },
+    {
+     "AREAID": "036",
+     "BOUNDARYSTATUS": "Final",
+     "WILDERNESSNAME": "Weminuche Wilderness"
+    },
+    {
+     "AREAID": "039",
+     "BOUNDARYSTATUS": "Final",
+     "WILDERNESSNAME": "West Elk Wilderness"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/50"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "",
+   "count": 31,
+   "fields": [
+    "adm_code",
+    "adm_manage",
+    "adm_name",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "US Fish and Wildlife Lands",
+   "sample": [
+    {
+     "GlobalID": "{7A8FDDF1-BF59-46AA-A681-5127217566B3}",
+     "adm_code": "USFS",
+     "adm_manage": "USFW"
+    },
+    {
+     "GlobalID": "{661AF1EB-F285-4F0B-B719-4EC6FA30CEA7}",
+     "adm_code": "USFS",
+     "adm_manage": "USFW"
+    },
+    {
+     "GlobalID": "{5814397C-82A6-4B11-92B2-1189532D4BAC}",
+     "adm_code": "USFS",
+     "adm_manage": "USFW"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/63"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 24,
+   "fields": [
+    "PROJECT_ID",
+    "UNIT_ID",
+    "PARK_NAME",
+    "SOURCE",
+    "NOTES",
+    "INPUT_ID",
+    "EDITOR_NAME",
+    "SHP_SRCE",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "RX Fire Area",
+   "sample": [
+    {
+     "Creator": "Matt.Schulz_CPW",
+     "EDITOR_NAME": "AJ",
+     "Editor": "Matt.Schulz_CPW",
+     "INPUT_ID": "No data",
+     "NOTES": "Crescent Meadows RX Fire (2007); 47 acre broadcast burn on March 21-22, 2007",
+     "PARK_NAME": "ELD",
+     "PROJECT_ID": "ELD_PF01",
+     "SOURCE": "No data ",
+     "UNIT_ID": "ELD_PF01"
+    },
+    {
+     "Creator": "Matt.Schulz_CPW",
+     "EDITOR_NAME": "AJ",
+     "Editor": "Matt.Schulz_CPW",
+     "NOTES": "Nott Creek Broadcast Burn Unit N1 (2007); Unit N1 (burned Oct. 11, 2007)",
+     "PARK_NAME": "GOG",
+     "PROJECT_ID": "GOG_PF01",
+     "SOURCE": "Garmin GPSmap 76S.",
+     "UNIT_ID": "GOG_PF01"
+    },
+    {
+     "Creator": "Matt.Schulz_CPW",
+     "EDITOR_NAME": "AJ",
+     "Editor": "Matt.Schulz_CPW",
+     "NOTES": "Nott Creek Broadbast Burn Unit N2 (2007); Unit N2 (burned Oct. 10, 2007)",
+     "PARK_NAME": "GOG",
+     "PROJECT_ID": "GOG_PF02",
+     "SOURCE": "Garmin GPSmap 76S.",
+     "UNIT_ID": "GOG_PF02"
+    }
+   ],
+   "service": "ForestryBasemap",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/ForestryBasemap/FeatureServer/15"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "UNIT_NAME",
+   "count": 14,
+   "fields": [
+    "Creator",
+    "Editor",
+    "GlobalID",
+    "UNIT_CODE",
+    "GIS_Notes",
+    "UNIT_NAME",
+    "STATE",
+    "REGION",
+    "GNIS_ID",
+    "UNIT_TYPE",
+    "CREATED_BY",
+    "METADATA",
+    "PARKNAME"
+   ],
+   "known": false,
+   "layer": "National Parks",
+   "sample": [
+    {
+     "CREATED_BY": "Lands",
+     "Creator": "NPS_WASO_LANDS",
+     "Editor": "NPS_WASO_LANDS",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/BLCA/Metadata/blca_metadata.xml",
+     "GNIS_ID": "203271",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/1047909",
+     "REGION": "IM",
+     "STATE": "CO",
+     "UNIT_CODE": "BLCA",
+     "UNIT_NAME": "Black Canyon of the Gunnison National Park",
+     "UNIT_TYPE": "National Park"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "Creator": "NPS_WASO_LANDS",
+     "Editor": "NPS_WASO_LANDS",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/COLM/Metadata/colm_metadata.xml",
+     "GNIS_ID": "202252",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2203268",
+     "REGION": "IM",
+     "STATE": "CO",
+     "UNIT_CODE": "COLM",
+     "UNIT_NAME": "Colorado National Monument",
+     "UNIT_TYPE": "National Monument"
+    },
+    {
+     "CREATED_BY": "Lands",
+     "Creator": "NPS_WASO_LANDS",
+     "Editor": "NPS_WASO_LANDS",
+     "GIS_Notes": "Lands - http://landsnet.nps.gov/tractsnet/documents/CURE/Metadata/cure_metadata.xml",
+     "GNIS_ID": "196412",
+     "METADATA": "https://irma.nps.gov/DataStore/Reference/Profile/2210701",
+     "REGION": "IM",
+     "STATE": "CO",
+     "UNIT_CODE": "CURE",
+     "UNIT_NAME": "Curecanti National Recreation Area",
+     "UNIT_TYPE": "National Recreation Area"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "UNIT_TYPE",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/57"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "PROCLAIMEDFORESTID",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "National Forests",
+   "sample": [
+    {
+     "FORESTNAME": "Arapaho National Forest",
+     "PROCLAIMEDFORESTID": "295502010328"
+    },
+    {
+     "FORESTNAME": "Grand Mesa National Forest",
+     "PROCLAIMEDFORESTID": "295501010328"
+    },
+    {
+     "FORESTNAME": "Gunnison National Forest",
+     "PROCLAIMEDFORESTID": "295500010328"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/46"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Kit Fox Historic Overall Range",
+   "sample": [
+    {
+     "ACTIVITYCO": "KFHOV"
+    },
+    {
+     "ACTIVITYCO": "KFHOV"
+    },
+    {
+     "ACTIVITYCO": "KFHOV"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/73"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Gunnison's Sage Grouse Historic Habitat",
+   "sample": [
+    {
+     "ACTIVITYCO": "GSGHH"
+    },
+    {
+     "ACTIVITYCO": "GSGHH"
+    },
+    {
+     "ACTIVITYCO": "GSGHH"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/67"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Greater Sage Grouse Historic Habitat",
+   "sample": [
+    {
+     "ACTIVITYCO": "SGHH"
+    },
+    {
+     "ACTIVITYCO": "SGHH"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/58"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Greater Prairie Chicken Historic Range",
+   "sample": [
+    {
+     "ACTIVITYCO": "GPCHR"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/57"
+  },
+  {
+   "agency": "Colorado Parks and Wildlife Biologists, District Wildlife Managers, and Research",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ACTIVITYCO"
+   ],
+   "known": false,
+   "layer": "Lesser Prairie Chicken Historic Range",
+   "sample": [
+    {
+     "ACTIVITYCO": "LPCHR"
+    }
+   ],
+   "service": "CPWSpeciesData",
+   "typef": "",
+   "url": "https://services5.arcgis.com/ttNGmDvKQA7oeDQ3/arcgis/rest/services/CPWSpeciesData/FeatureServer/78"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "PropName",
+   "count": 324,
+   "fields": [
+    "PropName",
+    "PropType",
+    "LastUpdate",
+    "GlobalID"
+   ],
+   "known": true,
+   "layer": "State Wildlife Areas",
+   "sample": [
+    {
+     "GlobalID": "{03C4F78A-C028-4026-B438-4365769350C7}",
+     "LastUpdate": "Generated from CPWParcels on 02/06/2024",
+     "PropName": "63 Ranch SWA",
+     "PropType": "SWA"
+    },
+    {
+     "GlobalID": "{858B139A-721F-4A41-BE9B-221DECA30B39}",
+     "LastUpdate": "Generated from CPWParcels on 02/06/2024",
+     "PropName": "Adams SWA",
+     "PropType": "SWA"
+    },
+    {
+     "GlobalID": "{4CBA98BC-253C-4593-8D60-A2D14A40453A}",
+     "LastUpdate": "Generated from CPWParcels on 02/06/2024",
+     "PropName": "Adobe Creek Reservoir SWA",
+     "PropType": "SWA"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "PropType",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/30"
+  },
+  {
+   "agency": "The data made available here has been modified for use from its original source,",
+   "area": "PropName",
+   "count": 48,
+   "fields": [
+    "PropName",
+    "PropType",
+    "LastUpdate",
+    "GlobalID"
+   ],
+   "known": true,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "GlobalID": "{3A120992-9F41-47D0-A3B1-77B7EA6A3E89}",
+     "LastUpdate": "Generated from CPWParcels on 02/06/2024",
+     "PropName": "Barr Lake State Park",
+     "PropType": "SP"
+    },
+    {
+     "GlobalID": "{184F2261-9FA3-4F8E-8D0F-FE8A3CCE5E08}",
+     "LastUpdate": "Generated from CPWParcels on 02/06/2024",
+     "PropName": "Boyd Lake State Park",
+     "PropType": "SP"
+    },
+    {
+     "GlobalID": "{40DFD0F6-9182-4C39-9811-1060E60CE315}",
+     "LastUpdate": "Generated from CPWParcels on 02/06/2024",
+     "PropName": "Castlewood Canyon State Park",
+     "PropType": "SP"
+    }
+   ],
+   "service": "OIT/Colorado_State_Basemap",
+   "typef": "PropType",
+   "url": "https://gis.colorado.gov/public/rest/services/OIT/Colorado_State_Basemap/MapServer/41"
+  }
+ ],
+ "st": "CO"
+}

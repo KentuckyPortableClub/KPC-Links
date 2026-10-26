@@ -1,0 +1,1505 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 23776,
+   "fields": [
+    "agency",
+    "comments",
+    "mapmethod",
+    "uniquefire",
+    "incidentna",
+    "pooownerun",
+    "complexnam",
+    "firecode",
+    "complexpar",
+    "poorespons",
+    "state",
+    "inciwebid",
+    "localincid",
+    "irwinid",
+    "incomplex",
+    "complexfir"
+   ],
+   "known": false,
+   "layer": "Historic_Geomac_Perimeters_Combined_2000_2018__6264139174801587955",
+   "sample": [
+    {
+     "agency": "USFS",
+     "comments": "WFDSS",
+     "complexnam": " ",
+     "complexpar": " ",
+     "firecode": "LK58",
+     "incidentna": "BOX",
+     "inciwebid": " ",
+     "mapmethod": "GPS-Walked/ Driven",
+     "pooownerun": "AZCNF",
+     "poorespons": "AZCNF",
+     "state": "AZ",
+     "uniquefire": "2018-AZCNF-000059"
+    },
+    {
+     "agency": "USFS",
+     "comments": "WFDSS",
+     "complexnam": " ",
+     "complexpar": " ",
+     "firecode": "LMT8",
+     "incidentna": "Zoe",
+     "inciwebid": " ",
+     "mapmethod": "GPS-Walked/ Driven",
+     "pooownerun": "AROUF",
+     "poorespons": "AROUF",
+     "state": "OK",
+     "uniquefire": "2018-AROUF-000688"
+    },
+    {
+     "agency": "C&L",
+     "comments": "WFDSS",
+     "complexnam": " ",
+     "complexpar": " ",
+     "firecode": " ",
+     "incidentna": "Milemarker 24",
+     "inciwebid": " ",
+     "mapmethod": "Hand Sketch",
+     "pooownerun": " ",
+     "poorespons": "CORBX",
+     "state": "CO",
+     "uniquefire": "2017-CORBX-000061"
+    }
+   ],
+   "service": "Historic_Geomac_Perimeters_Combined_2000_2018__6264139174801587955",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Historic_Geomac_Perimeters_Combined_2000_2018__6264139174801587955/FeatureServer/0"
+  },
+  {
+   "agency": "USGS, EPA, USDA, NIFC, IDWR, RDW",
+   "area": "",
+   "count": 10758,
+   "fields": [
+    "MAP_METHOD",
+    "DATE_CUR",
+    "COMMENTS",
+    "GEO_ID",
+    "IRWINID",
+    "UNQE_FIRE_",
+    "FIRE_YEAR",
+    "LOCAL_NUM",
+    "INCIDENT",
+    "UNIT_ID",
+    "POO_RESP_I",
+    "FEATURE_CA",
+    "USER_NAME",
+    "SOURCE",
+    "AGENCY"
+   ],
+   "known": false,
+   "layer": "Historic Fire Perimeters",
+   "sample": [
+    {
+     "COMMENTS": "Fire ignited by downed powerline on private and then spread to FWS. Natural barriers helped contain fire (Snake River and ag fields). O'Donnell and all resources arrived on scene and began putting containment lines in. Private landowner was scraping line",
+     "DATE_CUR": "202109271800",
+     "FEATURE_CA": "Wildfire",
+     "FIRE_YEAR": "2021",
+     "GEO_ID": "77",
+     "INCIDENT": "Coldwater",
+     "IRWINID": " ",
+     "LOCAL_NUM": "N93L",
+     "MAP_METHOD": " ",
+     "POO_RESP_I": " ",
+     "UNIT_ID": "IDMNR",
+     "UNQE_FIRE_": "2021-IDMNR-N93L"
+    },
+    {
+     "COMMENTS": "*See attached dispatch log*",
+     "DATE_CUR": "202106231430",
+     "FEATURE_CA": "Wildfire",
+     "FIRE_YEAR": "2021",
+     "GEO_ID": "113",
+     "INCIDENT": "Coyote",
+     "IRWINID": " ",
+     "LOCAL_NUM": "N105",
+     "MAP_METHOD": " ",
+     "POO_RESP_I": " ",
+     "UNIT_ID": "IDDFR",
+     "UNQE_FIRE_": "2021-IDDFR-N105"
+    },
+    {
+     "COMMENTS": "Please see narrative and Boise Dispatch log (attached)",
+     "DATE_CUR": "202107051830",
+     "FEATURE_CA": "Wildfire",
+     "FIRE_YEAR": "2021",
+     "GEO_ID": "138",
+     "INCIDENT": "Midway",
+     "IRWINID": " ",
+     "LOCAL_NUM": "N32T",
+     "MAP_METHOD": " ",
+     "POO_RESP_I": " ",
+     "UNIT_ID": "IDDFR",
+     "UNQE_FIRE_": "2021-IDDFR-N32T"
+    }
+   ],
+   "service": "Wetland_Data_Viewer_Reference",
+   "typef": "FEATURE_CA",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Wetland_Data_Viewer_Reference/FeatureServer/3"
+  },
+  {
+   "agency": "This dataset was created by Idaho Fish and Game.",
+   "area": "SITE_NAME",
+   "count": 759,
+   "fields": [
+    "SITECODE_B",
+    "SITE_NAME",
+    "SITE_CLASS",
+    "BIODIV_SIG",
+    "OTHER_VALU",
+    "PROTECTION",
+    "MANAGEMENT",
+    "HUC_8",
+    "HUC_12",
+    "HU_10_NAME",
+    "HU_12_NAME",
+    "WETLAND_ID",
+    "NAME_OF_MA",
+    "ConsPrior",
+    "url",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Conservation Sites",
+   "sample": [
+    {
+     "BIODIV_SIG": " ",
+     "HUC_12": " ",
+     "HUC_8": " ",
+     "HU_10_NAME": " ",
+     "HU_12_NAME": " ",
+     "MANAGEMENT": " ",
+     "OTHER_VALU": " ",
+     "PROTECTION": " ",
+     "SITECODE_B": "tst",
+     "SITE_CLASS": " ",
+     "SITE_NAME": "UPPER BEAVER CREEK",
+     "WETLAND_ID": " "
+    },
+    {
+     "BIODIV_SIG": " ",
+     "HUC_12": " ",
+     "HUC_8": " ",
+     "HU_10_NAME": " ",
+     "HU_12_NAME": " ",
+     "MANAGEMENT": " ",
+     "OTHER_VALU": " ",
+     "PROTECTION": " ",
+     "SITECODE_B": " ",
+     "SITE_CLASS": " ",
+     "SITE_NAME": "KILGORE-CAMAS CREEK MEADOWS",
+     "WETLAND_ID": " "
+    },
+    {
+     "BIODIV_SIG": " ",
+     "HUC_12": " ",
+     "HUC_8": " ",
+     "HU_10_NAME": " ",
+     "HU_12_NAME": " ",
+     "MANAGEMENT": " ",
+     "OTHER_VALU": " ",
+     "PROTECTION": " ",
+     "SITECODE_B": " ",
+     "SITE_CLASS": " ",
+     "SITE_NAME": "MEDICINE LODGE CREEK",
+     "WETLAND_ID": " "
+    }
+   ],
+   "service": "Conservation_Sites",
+   "typef": "SITE_CLASS",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Conservation_Sites/FeatureServer/0"
+  },
+  {
+   "agency": "Idaho Department of Fish and Game, StreamNet, The Cornell Lab of Ornithology, US",
+   "area": "",
+   "count": 101,
+   "fields": [
+    "Common_Name",
+    "Scientific_Name",
+    "Taxa_Order",
+    "Category",
+    "Season",
+    "Data_Source"
+   ],
+   "known": false,
+   "layer": "Species Ranges - Fish",
+   "sample": [
+    {
+     "Category": "Fish",
+     "Common_Name": "Green Sucker",
+     "Data_Source": "Evan Brown, Native Fishes of Idaho 2017",
+     "Scientific_Name": "Pantosteus virescens",
+     "Season": "Year-round",
+     "Taxa_Order": "Cypriniformes"
+    },
+    {
+     "Category": "Fish",
+     "Common_Name": "Bonneville Cutthroat Trout",
+     "Data_Source": "Evan Brown, Native Fishes of Idaho 2017",
+     "Scientific_Name": "Oncorhynchus clarkii utah",
+     "Season": "Year-round",
+     "Taxa_Order": "Salmoniformes"
+    },
+    {
+     "Category": "Fish",
+     "Common_Name": "Bridgelip Sucker",
+     "Data_Source": "Evan Brown, Native Fishes of Idaho 2017",
+     "Scientific_Name": "Catostomus columbianus",
+     "Season": "Year-round",
+     "Taxa_Order": "Cypriniformes"
+    }
+   ],
+   "service": "Species_Ranges",
+   "typef": "Category",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Species_Ranges/FeatureServer/2"
+  },
+  {
+   "agency": "This dataset was compiled by Chris Murphy, Idaho Department of Fish and Game, we",
+   "area": "Name",
+   "count": 66,
+   "fields": [
+    "HUC6",
+    "SUBBAS_NAM",
+    "HUC4",
+    "Name",
+    "Priority",
+    "HUC_12",
+    "INV_PROJ"
+   ],
+   "known": false,
+   "layer": "Watershed Conservation Prioritization",
+   "sample": [
+    {
+     "HUC4": "17060108",
+     "HUC6": "170601082001",
+     "HUC_12": " ",
+     "INV_PROJ": "Palouse-Lower Clearwater EPA 2006",
+     "Name": "Strychnine Creek",
+     "Priority": "medium",
+     "SUBBAS_NAM": " PALOUSE"
+    },
+    {
+     "HUC4": "17060108",
+     "HUC6": "170601081901",
+     "HUC_12": " ",
+     "INV_PROJ": "Palouse-Lower Clearwater EPA 2006",
+     "Name": "Palouse River",
+     "Priority": "medium",
+     "SUBBAS_NAM": " PALOUSE"
+    },
+    {
+     "HUC4": "17060306",
+     "HUC6": "170603060705",
+     "HUC_12": " ",
+     "INV_PROJ": "Palouse-Lower Clearwater EPA 2006",
+     "Name": "West Fork Potlatch RIver",
+     "Priority": "medium",
+     "SUBBAS_NAM": " CLEARWATER"
+    }
+   ],
+   "service": "Watershed_Conservation_Prioritization",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Watershed_Conservation_Prioritization/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 65,
+   "fields": [
+    "Chemical"
+   ],
+   "known": false,
+   "layer": "FY24 Cheatgrass Treatment",
+   "sample": [
+    {
+     "Chemical": "Rejuvra/Plateau mix"
+    },
+    {
+     "Chemical": "Rejuvra/Plateau mix"
+    },
+    {
+     "Chemical": "Rejuvra/Plateau mix"
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 55,
+   "fields": [
+    "ExtentName",
+    "Name",
+    "GMU"
+   ],
+   "known": false,
+   "layer": "Extents - Access Agreements with Idaho Fish and Game",
+   "sample": [
+    {
+     "ExtentName": "Section 1-LT01",
+     "GMU": "1",
+     "Name": "1-LT01"
+    },
+    {
+     "ExtentName": "Section 1-LT02",
+     "GMU": "1",
+     "Name": "1-LT02"
+    },
+    {
+     "ExtentName": "Section 1-LT05",
+     "GMU": "1",
+     "Name": "1-LT05"
+    }
+   ],
+   "service": "IDFG_Access_Agreements_Extent",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IDFG_Access_Agreements_Extent/FeatureServer/0"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "NAME",
+   "count": 44,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "County Boundaries",
+   "sample": [
+    {
+     "NAME": "Boundary"
+    },
+    {
+     "NAME": "Bonner"
+    },
+    {
+     "NAME": "Shoshone"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 43,
+   "fields": [],
+   "known": false,
+   "layer": "FY24 Hand Treatment",
+   "sample": [
+    {
+     "Acres": 54.29322179,
+     "FID": 1,
+     "Shape__Area": 399883.37109375,
+     "Shape__Length": 2740.723577131693
+    },
+    {
+     "Acres": 89.8047562819,
+     "FID": 2,
+     "Shape__Area": 661499.18359375,
+     "Shape__Length": 3335.8815644627302
+    },
+    {
+     "Acres": 24.3693009275,
+     "FID": 3,
+     "Shape__Area": 179468.0234375,
+     "Shape__Length": 3852.1074985248547
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "",
+   "count": 42,
+   "fields": [
+    "RANGERDISTRICTID",
+    "FORESTNUMBER",
+    "DISTRICTNUMBER",
+    "DISTRICTORGCODE",
+    "FORESTNAME",
+    "DISTRICTNAME",
+    "Region_Num",
+    "Region",
+    "DISTRICT",
+    "Forest"
+   ],
+   "known": false,
+   "layer": "National Forest District",
+   "sample": [
+    {
+     "DISTRICT": "Cabinet RD",
+     "DISTRICTNAME": "Cabinet Ranger District",
+     "DISTRICTNUMBER": "07",
+     "DISTRICTORGCODE": "011407",
+     "FORESTNAME": "Kootenai National Forest",
+     "FORESTNUMBER": "14",
+     "Forest": "Kootenai NF",
+     "RANGERDISTRICTID": "99011407010343",
+     "Region": "Northern",
+     "Region_Num": "01"
+    },
+    {
+     "DISTRICT": "Weiser RD",
+     "DISTRICTNAME": "Weiser Ranger District",
+     "DISTRICTNUMBER": "02",
+     "DISTRICTORGCODE": "041202",
+     "FORESTNAME": "Payette National Forest",
+     "FORESTNUMBER": "12",
+     "Forest": "Payette NF",
+     "RANGERDISTRICTID": "99041202010343",
+     "Region": "Intermountain",
+     "Region_Num": "04"
+    },
+    {
+     "DISTRICT": "Palouse RD",
+     "DISTRICTNAME": "Palouse Ranger District",
+     "DISTRICTNUMBER": "52",
+     "DISTRICTORGCODE": "011752",
+     "FORESTNAME": "Nez Perce-Clearwater National Forest",
+     "FORESTNUMBER": "17",
+     "Forest": "Nez Perce-Clearwater NF",
+     "RANGERDISTRICTID": "99010502010343",
+     "Region": "Northern",
+     "Region_Num": "01"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30,
+   "fields": [],
+   "known": false,
+   "layer": "FY25 Hand Treatment",
+   "sample": [
+    {
+     "Acres": 2.277768920330256,
+     "OBJECTID": 1,
+     "Shape__Area": 16716.1484375,
+     "Shape__Length": 1396.2244340521463
+    },
+    {
+     "Acres": 2.3827651218819392,
+     "OBJECTID": 2,
+     "Shape__Area": 17512.6640625,
+     "Shape__Length": 850.8243201607556
+    },
+    {
+     "Acres": 31.770937306378137,
+     "OBJECTID": 3,
+     "Shape__Area": 233505.87109375,
+     "Shape__Length": 3746.3882848827643
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 27,
+   "fields": [],
+   "known": false,
+   "layer": "FY22 Hand Treatment ",
+   "sample": [
+    {
+     "Acres": 285.900188776,
+     "FID": 1,
+     "Shape__Area": 2100646.26953125,
+     "Shape__Length": 12894.084995056828
+    },
+    {
+     "Acres": 91.9805041934,
+     "FID": 2,
+     "Shape__Area": 677077.64453125,
+     "Shape__Length": 5862.573942200097
+    },
+    {
+     "Acres": 25.6514493415,
+     "FID": 3,
+     "Shape__Area": 188704.1484375,
+     "Shape__Length": 2505.5667855149673
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 26,
+   "fields": [
+    "WILDERNESSID",
+    "BOUNDARYSTATUS",
+    "AGENCY",
+    "NAME",
+    "STATE",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Wilderness Areas",
+   "sample": [
+    {
+     "AGENCY": "USFS",
+     "BOUNDARYSTATUS": "Final",
+     "NAME": "Sawtooth Wilderness",
+     "STATE": "ID",
+     "WILDERNESSID": "10474010343",
+     "created_user": "MBOONE",
+     "last_edited_user": "MBOONE"
+    },
+    {
+     "AGENCY": "USFS",
+     "BOUNDARYSTATUS": "Final",
+     "NAME": "Frank Church-River of No Return Wilderness",
+     "STATE": "ID",
+     "WILDERNESSID": "10582010343",
+     "created_user": "MBOONE",
+     "last_edited_user": "MBOONE"
+    },
+    {
+     "AGENCY": "USFS",
+     "BOUNDARYSTATUS": "Final",
+     "NAME": "Gospel-Hump Wilderness",
+     "STATE": "ID",
+     "WILDERNESSID": "10524010343",
+     "created_user": "MBOONE",
+     "last_edited_user": "MBOONE"
+    }
+   ],
+   "service": "Hunt_Planner_2",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Hunt_Planner_2/FeatureServer/7"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "NAME",
+   "count": 24,
+   "fields": [
+    "BOUNDARYSTATUS",
+    "AGENCY",
+    "NAME",
+    "STATE"
+   ],
+   "known": false,
+   "layer": "Wilderness Areas",
+   "sample": [
+    {
+     "AGENCY": "BLM",
+     "BOUNDARYSTATUS": "Final, 3/30/2009",
+     "NAME": "Bruneau-Jarbidge Rivers Wilderness",
+     "STATE": "ID"
+    },
+    {
+     "AGENCY": "NPS",
+     "BOUNDARYSTATUS": "Final",
+     "NAME": "Craters of the Moon National Wilderness Area",
+     "STATE": "ID"
+    },
+    {
+     "AGENCY": "BLM",
+     "BOUNDARYSTATUS": "Final, 3/30/2009",
+     "NAME": "Owyhee River Wilderness",
+     "STATE": "ID"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 22,
+   "fields": [],
+   "known": false,
+   "layer": "FY20 Hand Treatment",
+   "sample": [
+    {
+     "Acres": 47,
+     "FID": 1,
+     "Shape__Area": 344148.65234375,
+     "Shape__Length": 5983.198286630041
+    },
+    {
+     "Acres": 74,
+     "FID": 2,
+     "Shape__Area": 544088.03515625,
+     "Shape__Length": 3468.089038518694
+    },
+    {
+     "Acres": 14,
+     "FID": 3,
+     "Shape__Area": 103620.0625,
+     "Shape__Length": 1698.1487403136928
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/6"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "HUC_8_Name",
+    "State",
+    "ChinookEFH",
+    "Coho_EFH",
+    "Pink_EFH"
+   ],
+   "known": false,
+   "layer": " Chinook Salmon (NOAA)",
+   "sample": [
+    {
+     "ChinookEFH": "Yes",
+     "Coho_EFH": " ",
+     "HUC_8_Name": " Hells Canyon",
+     "Pink_EFH": " ",
+     "State": "OR ID"
+    },
+    {
+     "ChinookEFH": "Yes",
+     "Coho_EFH": "Yes",
+     "HUC_8_Name": " Lower Snake-Asotin",
+     "Pink_EFH": " ",
+     "State": "OR ID WA"
+    },
+    {
+     "ChinookEFH": "Yes",
+     "Coho_EFH": "Yes",
+     "HUC_8_Name": "Lower Snake-Tucannon",
+     "Pink_EFH": " ",
+     "State": "WA"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 20,
+   "fields": [],
+   "known": false,
+   "layer": "FY22 CheatgrassTreatment",
+   "sample": [
+    {
+     "Acres": 378,
+     "FID": 1,
+     "Shape__Area": 2795277.4921875,
+     "Shape__Length": 18920.70238948646
+    },
+    {
+     "Acres": 107,
+     "FID": 2,
+     "Shape__Area": 790350.19921875,
+     "Shape__Length": 4931.801753699109
+    },
+    {
+     "Acres": 105,
+     "FID": 3,
+     "Shape__Area": 777666.65234375,
+     "Shape__Length": 8703.280668914154
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 17,
+   "fields": [],
+   "known": false,
+   "layer": "FY21 Hand Treatment",
+   "sample": [
+    {
+     "Acres": 4,
+     "FID": 1,
+     "Shape__Area": 29814.41796875,
+     "Shape__Length": 1128.0903302453282
+    },
+    {
+     "Acres": 20,
+     "FID": 2,
+     "Shape__Area": 144281.42578125,
+     "Shape__Length": 3518.046160087565
+    },
+    {
+     "Acres": 0,
+     "FID": 3,
+     "Shape__Area": 434.3203125,
+     "Shape__Length": 241.32424445522201
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/5"
+  },
+  {
+   "agency": "Idaho Fish and Game",
+   "area": "",
+   "count": 14,
+   "fields": [
+    "CoreZones"
+   ],
+   "known": false,
+   "layer": "Idaho_Sage_Grouse_Task_Force_Conservation_Areas",
+   "sample": [
+    {
+     "CoreZones": "Southern"
+    },
+    {
+     "CoreZones": "Mountain Valleys"
+    },
+    {
+     "CoreZones": "Mountain Valleys"
+    }
+   ],
+   "service": "Idaho_Sage_Grouse_Task_Force_Conservation_Areas",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Idaho_Sage_Grouse_Task_Force_Conservation_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "PROCLAIMEDFORESTID",
+    "FORESTNAME",
+    "Forest",
+    "Region"
+   ],
+   "known": false,
+   "layer": "National Forest Legislative Boundaries",
+   "sample": [
+    {
+     "FORESTNAME": "Clearwater National Forest",
+     "Forest": "Clearwater NF",
+     "PROCLAIMEDFORESTID": "295490010328",
+     "Region": "Northern"
+    },
+    {
+     "FORESTNAME": "Targhee National Forest",
+     "Forest": "Targhee NF",
+     "PROCLAIMEDFORESTID": "295407010328",
+     "Region": "Intermountain"
+    },
+    {
+     "FORESTNAME": "Salmon National Forest",
+     "Forest": "Salmon-Challis NF",
+     "PROCLAIMEDFORESTID": "295410010328",
+     "Region": "Intermountain"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/6"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "NAME",
+   "count": 12,
+   "fields": [
+    "DIST_CODE",
+    "FO_CODE",
+    "DISTRICT",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "BLM Field Office",
+   "sample": [
+    {
+     "DISTRICT": "Coeur d'Alene",
+     "DIST_CODE": "ID40000",
+     "FO_CODE": "ID41000",
+     "NAME": "Coeur d'Alene"
+    },
+    {
+     "DISTRICT": "Coeur d'Alene",
+     "DIST_CODE": "ID40000",
+     "FO_CODE": "ID42000",
+     "NAME": "Cottonwood"
+    },
+    {
+     "DISTRICT": "Idaho Falls",
+     "DIST_CODE": "ID30000",
+     "FO_CODE": "ID34000",
+     "NAME": "Salmon"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12,
+   "fields": [],
+   "known": false,
+   "layer": "FY21 CheatgrassTreatment",
+   "sample": [
+    {
+     "Acres": 277,
+     "FID": 1,
+     "Shape__Area": 2044539.1328125,
+     "Shape__Length": 8720.338304499268
+    },
+    {
+     "Acres": 99,
+     "FID": 2,
+     "Shape__Area": 729466.37109375,
+     "Shape__Length": 4481.837881742077
+    },
+    {
+     "Acres": 69,
+     "FID": 3,
+     "Shape__Area": 507254.84765625,
+     "Shape__Length": 2985.554472336529
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/14"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "",
+   "count": 10,
+   "fields": [
+    "ADMINFORESTID",
+    "FORESTNUMBER",
+    "FORESTORGCODE",
+    "FORESTNAME",
+    "FOREST",
+    "REGION_NUM",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "National Forest Administrative Boundaries",
+   "sample": [
+    {
+     "ADMINFORESTID": "99010300010343",
+     "FOREST": "Bitterroot NF",
+     "FORESTNAME": "Bitterroot National Forest",
+     "FORESTNUMBER": "03",
+     "FORESTORGCODE": "0103",
+     "REGION": "Northern",
+     "REGION_NUM": "01"
+    },
+    {
+     "ADMINFORESTID": "99061600010343",
+     "FOREST": "Wallowa-Whitman NF",
+     "FORESTNAME": "Wallowa-Whitman National Forest",
+     "FORESTNUMBER": "16",
+     "FORESTORGCODE": "0616",
+     "REGION": "Pacific Northwest",
+     "REGION_NUM": "06"
+    },
+    {
+     "ADMINFORESTID": "99041200010343",
+     "FOREST": "Payette NF",
+     "FORESTNAME": "Payette National Forest",
+     "FORESTNUMBER": "12",
+     "FORESTORGCODE": "0412",
+     "REGION": "Intermountain",
+     "REGION_NUM": "04"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 8,
+   "fields": [
+    "NAME",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Fish Regions",
+   "sample": [
+    {
+     "NAME": "Panhandle Region",
+     "created_user": "SDEADMIN",
+     "last_edited_user": "SDEADMIN"
+    },
+    {
+     "NAME": "Upper Snake Region",
+     "created_user": "SDEADMIN",
+     "last_edited_user": "SDEADMIN"
+    },
+    {
+     "NAME": "Southeast Region",
+     "created_user": "SDEADMIN",
+     "last_edited_user": "SDEADMIN"
+    }
+   ],
+   "service": "Fish_Regions",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Fish_Regions/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 8,
+   "fields": [
+    "NAME",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Regions  Fish ",
+   "sample": [
+    {
+     "NAME": "Panhandle Region",
+     "created_user": "SDEADMIN",
+     "last_edited_user": "SDEADMIN"
+    },
+    {
+     "NAME": "Upper Snake Region",
+     "created_user": "SDEADMIN",
+     "last_edited_user": "SDEADMIN"
+    },
+    {
+     "NAME": "Southeast Region",
+     "created_user": "SDEADMIN",
+     "last_edited_user": "SDEADMIN"
+    }
+   ],
+   "service": "Regions__Fish_",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Regions__Fish_/FeatureServer/4"
+  },
+  {
+   "agency": "Idaho Fish and Game",
+   "area": "NAME",
+   "count": 8,
+   "fields": [
+    "NAME",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Fisheries Regions",
+   "sample": [
+    {
+     "NAME": "Panhandle Region"
+    },
+    {
+     "NAME": "Upper Snake Region"
+    },
+    {
+     "NAME": "Southeast Region"
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Boundaries/FeatureServer/2"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "HUC_8_Name",
+    "State",
+    "ChinookEFH",
+    "Coho_EFH",
+    "Pink_EFH"
+   ],
+   "known": false,
+   "layer": "Coho Salmon (NOAA)",
+   "sample": [
+    {
+     "ChinookEFH": "Yes",
+     "Coho_EFH": "Yes",
+     "HUC_8_Name": " Lower Snake-Asotin",
+     "Pink_EFH": " ",
+     "State": "OR ID WA"
+    },
+    {
+     "ChinookEFH": "Yes",
+     "Coho_EFH": "Yes",
+     "HUC_8_Name": "Lower Snake-Tucannon",
+     "Pink_EFH": " ",
+     "State": "WA"
+    },
+    {
+     "ChinookEFH": "Yes",
+     "Coho_EFH": "Yes",
+     "HUC_8_Name": " Clearwater",
+     "Pink_EFH": " ",
+     "State": "WA ID"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/8"
+  },
+  {
+   "agency": "Idaho Fish and Game,BLM,USFS",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Fish and Game Regions",
+   "sample": [
+    {
+     "NAME": "Panhandle Region"
+    },
+    {
+     "NAME": "Clearwater Region"
+    },
+    {
+     "NAME": "Salmon Region"
+    }
+   ],
+   "service": "IdahoConservationPlannerAdministrativeBoundaries",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/IdahoConservationPlannerAdministrativeBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "Idaho Fish and Game",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Wildlife Regions",
+   "sample": [
+    {
+     "NAME": "Panhandle Region"
+    },
+    {
+     "NAME": "Clearwater Region"
+    },
+    {
+     "NAME": "Salmon Region"
+    }
+   ],
+   "service": "Boundaries",
+   "typef": "created_user",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/Boundaries/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Chemical"
+   ],
+   "known": false,
+   "layer": "FY25 Cheatgrass Treatment",
+   "sample": [
+    {
+     "Chemical": "Rejuvra/Plateau"
+    },
+    {
+     "Chemical": "Rejuvra/Plateau"
+    },
+    {
+     "Chemical": "Rejuvra/Plateau"
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [],
+   "known": false,
+   "layer": "FY19 Hand Treatment 4-mile",
+   "sample": [
+    {
+     "Acres": 2442.60008041,
+     "FID": 1,
+     "Shape__Area": 18017728.2890625,
+     "Shape__Length": 87245.91869803701
+    },
+    {
+     "Acres": 555.099688668,
+     "FID": 2,
+     "Shape__Area": 4096737.859375,
+     "Shape__Length": 13597.425020167939
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "unit",
+   "count": 1,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Canada Lynx (USFWS)",
+   "sample": [
+    {
+     "comname": "Canada Lynx",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Lynx canadensis",
+     "singlmulti": "SINGLE",
+     "spcode": "A073",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/0"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "UNIT",
+   "count": 1,
+   "fields": [
+    "COMNAME",
+    "SCINAME",
+    "SPCODE",
+    "VIPCODE",
+    "UNIT",
+    "SUBUNIT",
+    "UNITNAME",
+    "SUBUNITNAM",
+    "STATUS",
+    "LEADOFFICE",
+    "COOPOFFICE",
+    "COOPOFMORE",
+    "FEDREG",
+    "PUBDATE",
+    "EFFECTDATE",
+    "VACATEDATE",
+    "ACCURACY"
+   ],
+   "known": false,
+   "layer": "Woodland Caribou (USFWS)",
+   "sample": [
+    {
+     "COMNAME": "Southern Selkirk Mountains Population of Woodland Caribou",
+     "COOPOFFICE": " ",
+     "COOPOFMORE": " ",
+     "LEADOFFICE": "14420",
+     "SCINAME": "Rangifer tarandus caribou",
+     "SPCODE": "A088",
+     "STATUS": "FINAL",
+     "SUBUNIT": "1",
+     "SUBUNITNAM": "Boundary County, Idaho",
+     "UNIT": "1",
+     "UNITNAME": "Selkirk Mountains Critical Habitat Unit",
+     "VIPCODE": "V01"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/1"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "unit",
+   "count": 1,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "White Sturgeon (USFWS)",
+   "sample": [
+    {
+     "comname": "White sturgeon",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Acipenser transmontanus",
+     "singlmulti": "SINGLE",
+     "spcode": "E087",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V01"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/2"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "unit",
+   "count": 1,
+   "fields": [
+    "singlmulti",
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Bull Trout lakes (USFWS)",
+   "sample": [
+    {
+     "comname": "Bull Trout",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "sciname": "Salvelinus confluentus",
+     "singlmulti": "SINGLE",
+     "spcode": "E065",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "V06"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/3"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "unitname",
+   "count": 1,
+   "fields": [
+    "comname",
+    "sciname",
+    "spcode",
+    "unitname",
+    "unit",
+    "subunit",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "coopofmore",
+    "singlmulti",
+    "vipcode",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Yellow-billed Cuckoo (USFWS)",
+   "sample": [
+    {
+     "comname": "Yellow-billed Cuckoo",
+     "coopoffice": "Please check current species specific shapefile",
+     "effectdate": "Please check current species specific shapefile",
+     "fedreg": "86FR20798 21005",
+     "pubdate": "20210421",
+     "sciname": "Coccyzus americanus",
+     "spcode": "B06R",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/6"
+  },
+  {
+   "agency": "USFWS, Idaho Field Office and http://ecos.fws.gov/ecp/report/table/critical-habi",
+   "area": "unit",
+   "count": 1,
+   "fields": [
+    "comname",
+    "sciname",
+    "spcode",
+    "vipcode",
+    "unit",
+    "subunit",
+    "unitname",
+    "subunitnam",
+    "status",
+    "coopoffice",
+    "coopofmore",
+    "fedreg",
+    "pubdate",
+    "effectdate",
+    "vacatedate",
+    "accuracy",
+    "singlmulti",
+    "listing_st"
+   ],
+   "known": false,
+   "layer": "Slickspot Peppergrass (USFWS)",
+   "sample": [
+    {
+     "comname": "Slickspot peppergrass",
+     "coopoffice": "Please check current species specific shapefile",
+     "coopofmore": "Please check current species specific shapefile",
+     "fedreg": "88FR28874 28916",
+     "sciname": "Lepidium papilliferum",
+     "spcode": "Q34X",
+     "status": "Final",
+     "subunit": "Please check current species specific shapefile",
+     "subunitnam": "Please check current species specific shapefile",
+     "unit": "Please check current species specific shapefile",
+     "unitname": "Please check current species specific shapefile",
+     "vipcode": "P01"
+    }
+   ],
+   "service": "FedCriticalHabitatANDEssentialFishHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/FedCriticalHabitatANDEssentialFishHabitat/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "FY21 Trapper Ck Seed and Mastication",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape__Area": 6805480.375,
+     "Shape__Length": 59767.91921055246,
+     "acres": 924
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "FY19 Hand Treatment",
+   "sample": [
+    {
+     "Acres": 218,
+     "FID": 1,
+     "Shape__Area": 1611314.02734375,
+     "Shape__Length": 5876.54688697397
+    }
+   ],
+   "service": "SawtoothForest_Treatments_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/SawtoothForest_Treatments_WFL1/FeatureServer/9"
+  },
+  {
+   "agency": "Idaho Department of Fish and Game",
+   "area": "Name",
+   "count": 31,
+   "fields": [
+    "Name"
+   ],
+   "known": true,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "Name": "BIG COTTONWOOD WMA"
+    },
+    {
+     "Name": "BILLINGSLEY CREEK WMA"
+    },
+    {
+     "Name": "BOUNDARY-SMITH CREEK WMA"
+    }
+   ],
+   "service": "WildlifeManagementAreas",
+   "typef": "",
+   "url": "https://services.arcgis.com/FjJI5xHF2dUPVrgK/arcgis/rest/services/WildlifeManagementAreas/FeatureServer/0"
+  }
+ ],
+ "st": "ID"
+}

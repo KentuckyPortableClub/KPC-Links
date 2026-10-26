@@ -1,0 +1,828 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Delaware Department of Agriculture",
+   "area": "",
+   "count": 36276,
+   "fields": [
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "Forest Cover 2007",
+   "sample": [
+    {
+     "TYPE": " "
+    },
+    {
+     "TYPE": " "
+    },
+    {
+     "TYPE": " "
+    }
+   ],
+   "service": "Biota/DE_Forestry",
+   "typef": "TYPE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/3"
+  },
+  {
+   "agency": "Delaware Department of Agriculture",
+   "area": "NAME",
+   "count": 4036,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Urban Tree Canopy Estimates",
+   "sample": [
+    {
+     "NAME": "Canby Park West"
+    },
+    {
+     "NAME": "Cape Henlopen State Park"
+    },
+    {
+     "NAME": "Capital Park"
+    }
+   ],
+   "service": "Biota/DE_Forestry",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/2"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "NAME",
+   "count": 2283,
+   "fields": [
+    "TRACT",
+    "NAME",
+    "USE_",
+    "PUBLIC_ACESS",
+    "COUNTY",
+    "MANAGING_AGENCY"
+   ],
+   "known": false,
+   "layer": "Outdoor Recreation Areas",
+   "sample": [
+    {
+     "COUNTY": "New Castle",
+     "MANAGING_AGENCY": "DPR",
+     "NAME": "Auburn Valley State Park",
+     "PUBLIC_ACESS": "Yes",
+     "TRACT": "Delaware Nature Society",
+     "USE_": "Natural Area"
+    },
+    {
+     "COUNTY": "New Castle",
+     "MANAGING_AGENCY": "DPR",
+     "NAME": "Auburn Valley State Park",
+     "PUBLIC_ACESS": "Yes",
+     "TRACT": "NVF Company 1",
+     "USE_": "Park"
+    },
+    {
+     "COUNTY": "New Castle",
+     "MANAGING_AGENCY": "Federal",
+     "NAME": "First State National Monument",
+     "PUBLIC_ACESS": "Yes",
+     "TRACT": "Woodlawn",
+     "USE_": "Natural Area"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "USE_",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/9"
+  },
+  {
+   "agency": "Delaware Department of Agriculture",
+   "area": "",
+   "count": 686,
+   "fields": [],
+   "known": false,
+   "layer": "Pine Plantations",
+   "sample": [
+    {
+     "ACRES": 210.62036227,
+     "OBJECTID": 1,
+     "SHAPE_LENG": 139.39500213,
+     "Shape__Area": 1403254.2525536,
+     "Shape__Length": 6688.031204231221
+    },
+    {
+     "ACRES": 55.35808462,
+     "OBJECTID": 2,
+     "SHAPE_LENG": 1981.53478089,
+     "Shape__Area": 366902.76509859,
+     "Shape__Length": 2481.86043545437
+    },
+    {
+     "ACRES": 40.80438142,
+     "OBJECTID": 3,
+     "SHAPE_LENG": 2114.51416575,
+     "Shape__Area": 271386.301001595,
+     "Shape__Length": 2169.6535455438498
+    }
+   ],
+   "service": "Biota/DE_Forestry",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/1"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "NAME",
+   "count": 521,
+   "fields": [
+    "NAME",
+    "COUNTY",
+    "TYPE",
+    "PROJ_NUM",
+    "PROJ_NAME",
+    "STATUS",
+    "DESCRIP",
+    "ALIAS",
+    "PROJ_DATE",
+    "REPLACEMENT"
+   ],
+   "known": false,
+   "layer": "Outdoor Recreation, Parks and Trails Program Lands",
+   "sample": [
+    {
+     "ALIAS": " ",
+     "COUNTY": "New Castle",
+     "DESCRIP": "City of Newark will replace play structures",
+     "NAME": "Rahway Park",
+     "PROJ_DATE": "October 15, 2002 through December 31, 2003",
+     "PROJ_NAME": "Playground Improvements",
+     "PROJ_NUM": "02-008",
+     "REPLACEMENT": "No",
+     "STATUS": "Complete",
+     "TYPE": "City of Newark"
+    },
+    {
+     "ALIAS": " ",
+     "COUNTY": "New Castle",
+     "DESCRIP": "City of Wilmington will provide new play structure and development of a skateboard park",
+     "NAME": "Johnston Playground",
+     "PROJ_DATE": "October 15, 2002 through December 31, 2003",
+     "PROJ_NAME": "Wilmington Playground Improvements and Skateboard Park",
+     "PROJ_NUM": "02-011",
+     "REPLACEMENT": " ",
+     "STATUS": "Complete",
+     "TYPE": "City of Wilmington"
+    },
+    {
+     "ALIAS": " ",
+     "COUNTY": "New Castle",
+     "DESCRIP": "City of Wilmington will provide new play structure and development of a skateboard park",
+     "NAME": "Stapler Park",
+     "PROJ_DATE": "October 15, 2002 through December 31, 2003",
+     "PROJ_NAME": "Wilmington Playground Improvements and Skateboard Park",
+     "PROJ_NUM": "02-011",
+     "REPLACEMENT": " ",
+     "STATUS": "Complete",
+     "TYPE": "City of Wilmington"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "TYPE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/6"
+  },
+  {
+   "agency": "DNREC, Division of Fish and Wildlife, Fisheries",
+   "area": "HARVESTAREA",
+   "count": 343,
+   "fields": [
+    "HARVESTAREA",
+    "AVAILABILITY",
+    "LOCATOR",
+    "LESSEENAME",
+    "STATUS"
+   ],
+   "known": false,
+   "layer": "Shellfish Aquaculture Acres",
+   "sample": [
+    {
+     "AVAILABILITY": "Available",
+     "HARVESTAREA": "LA-D",
+     "LOCATOR": "LA-D_A5",
+     "STATUS": "A"
+    },
+    {
+     "AVAILABILITY": "Available",
+     "HARVESTAREA": "LA-D",
+     "LOCATOR": "LA-D_B5",
+     "STATUS": "A"
+    },
+    {
+     "AVAILABILITY": "Available",
+     "HARVESTAREA": "LA-D",
+     "LOCATOR": "LA-D_C5",
+     "STATUS": "A"
+    }
+   ],
+   "service": "Environmental/DE_Shellfish_Aquaculture_Areas",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Shellfish_Aquaculture_Areas/FeatureServer/1"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "NAME",
+   "count": 236,
+   "fields": [
+    "NAME",
+    "COUNTY",
+    "TYPE",
+    "PROJ_NUM",
+    "PROJ_NAME",
+    "STATUS",
+    "DESCRIP",
+    "PROJ_TYPE",
+    "ALIAS",
+    "PROJ_DATE",
+    "REPLACEMENT",
+    "PROJ_SUB_TYPE"
+   ],
+   "known": false,
+   "layer": "Land and Water Conservation Fund",
+   "sample": [
+    {
+     "ALIAS": " ",
+     "COUNTY": "New Castle",
+     "DESCRIP": "Acquisition of Forward Lands Tract (9.71 acres, $20,000) and Baker Tract (1.029 acres, $30,870)",
+     "NAME": "Brandywine Creek State Park",
+     "PROJ_DATE": "1/1/1990",
+     "PROJ_NAME": "Baker-Forward Lands Acquistion",
+     "PROJ_NUM": "10-00167",
+     "PROJ_SUB_TYPE": "Duplicate",
+     "PROJ_TYPE": "Acquisition",
+     "REPLACEMENT": "No",
+     "STATUS": "Completed",
+     "TYPE": "Parks & Recreation"
+    },
+    {
+     "ALIAS": " ",
+     "COUNTY": "Sussex",
+     "DESCRIP": " 239.6 acre acquisition",
+     "NAME": "Delaware Seashore State Park",
+     "PROJ_DATE": "10/1/1971",
+     "PROJ_NAME": "Burton Island Addition to DSSP",
+     "PROJ_NUM": "10-00045",
+     "PROJ_SUB_TYPE": "Duplicate",
+     "PROJ_TYPE": "Acquisition",
+     "REPLACEMENT": "No",
+     "STATUS": "Completed",
+     "TYPE": "Parks & Recreation"
+    },
+    {
+     "ALIAS": " ",
+     "COUNTY": "Sussex",
+     "DESCRIP": "picnic area, boat and fishing facilities, support facilities",
+     "NAME": "Delaware Seashore State Park",
+     "PROJ_DATE": "1/1/1985",
+     "PROJ_NAME": "Indian River Marina",
+     "PROJ_NUM": "10-00111G",
+     "PROJ_SUB_TYPE": "Duplicate",
+     "PROJ_TYPE": "Development",
+     "REPLACEMENT": "No",
+     "STATUS": "Completed",
+     "TYPE": "Parks & Recreation"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "TYPE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/7"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "",
+   "count": 197,
+   "fields": [
+    "GRANTOR",
+    "HELDBY",
+    "FILE_"
+   ],
+   "known": false,
+   "layer": "Conservation Easements",
+   "sample": [
+    {
+     "FILE_": "2012-03",
+     "GRANTOR": "Delaware Wild Lands",
+     "HELDBY": "Parks"
+    },
+    {
+     "FILE_": "2012-04",
+     "GRANTOR": "Barbara Badger",
+     "HELDBY": "Parks"
+    },
+    {
+     "FILE_": "2015-03",
+     "GRANTOR": "Marital Trust of Ahmad Amer, Nadia Belkadi",
+     "HELDBY": "Parks"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/12"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "NAME",
+   "count": 129,
+   "fields": [
+    "NAME",
+    "TRACT",
+    "OWNERSHIP"
+   ],
+   "known": false,
+   "layer": "Nature Preserves",
+   "sample": [
+    {
+     "NAME": "Cedar Creek Nature Preserve",
+     "OWNERSHIP": "Private",
+     "TRACT": "Bailey"
+    },
+    {
+     "NAME": "Cedar Creek Nature Preserve",
+     "OWNERSHIP": "Private",
+     "TRACT": "Horner"
+    },
+    {
+     "NAME": "Cedar Creek Nature Preserve",
+     "OWNERSHIP": "DNREC (PR)",
+     "TRACT": "Geiger"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "ACTIVEAREA",
+   "count": 117,
+   "fields": [
+    "ACTIVEAREA"
+   ],
+   "known": false,
+   "layer": "Shellfish Advisory",
+   "sample": [
+    {
+     "ACTIVEAREA": "Prohibited"
+    },
+    {
+     "ACTIVEAREA": "Prohibited/Unclassified Growing Area"
+    },
+    {
+     "ACTIVEAREA": "Prohibited"
+    }
+   ],
+   "service": "Biota/DE_Shellfish_Advisory",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Shellfish_Advisory/MapServer/0"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "MANAGEMENT_AREA",
+   "count": 110,
+   "fields": [
+    "AGENCY",
+    "COUNTY",
+    "MANAGEMENT_AREA"
+   ],
+   "known": false,
+   "layer": "Outdoor Recreation, Parks and Trails Program Open Space",
+   "sample": [
+    {
+     "AGENCY": "Parks",
+     "COUNTY": "NewCastle",
+     "MANAGEMENT_AREA": "Lums Pond State Park"
+    },
+    {
+     "AGENCY": "Forestry",
+     "COUNTY": "Kent",
+     "MANAGEMENT_AREA": "Blackbird State Forest"
+    },
+    {
+     "AGENCY": "Forestry",
+     "COUNTY": "Kent",
+     "MANAGEMENT_AREA": "Blackbird State Forest"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/10"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control",
+   "area": "AREA_NAME",
+   "count": 83,
+   "fields": [
+    "AREA_NAME",
+    "TRACT_NAME",
+    "OWNER",
+    "PUB_ENTRY",
+    "SUN_HUNT",
+    "STORYSTOP"
+   ],
+   "known": false,
+   "layer": "Wildlife Area Boundaries",
+   "sample": [
+    {
+     "AREA_NAME": "Ted Harvey Conservation Area",
+     "OWNER": "Division of Fish and Wildlife",
+     "PUB_ENTRY": "Yes",
+     "STORYSTOP": "0",
+     "SUN_HUNT": "Sunday Firearm Hunting OPEN except Oct. Antlerless",
+     "TRACT_NAME": "Buckaloo Tract"
+    },
+    {
+     "AREA_NAME": "Norman G. Wilder Wildlife Area",
+     "OWNER": "Division of Fish and Wildlife",
+     "PUB_ENTRY": "Yes",
+     "STORYSTOP": "0",
+     "SUN_HUNT": "Sunday Firearm Hunting OPEN except Oct. Antlerless",
+     "TRACT_NAME": "Willow Grove Tract"
+    },
+    {
+     "AREA_NAME": "Ted Harvey Conservation Area",
+     "OWNER": "Division of Fish and Wildlife",
+     "PUB_ENTRY": "Yes",
+     "STORYSTOP": "0",
+     "SUN_HUNT": "Sunday Firearm Hunting CLOSED",
+     "TRACT_NAME": "Logan Lane Tract"
+    }
+   ],
+   "service": "Environmental/DE_Protected_Natural_Resources",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Protected_Natural_Resources/FeatureServer/17"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources",
+   "area": "NAME",
+   "count": 69,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Natural Areas",
+   "sample": [
+    {
+     "NAME": "Sellers Park Natural Area"
+    },
+    {
+     "NAME": "South Branch Naamans Creek"
+    },
+    {
+     "NAME": "Sowbridge Branch Natural Area"
+    }
+   ],
+   "service": "Environmental/DE_Natural_Resources",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/DE_Natural_Resources/FeatureServer/0"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control, Division of ",
+   "area": "AREA_NAME",
+   "count": 62,
+   "fields": [
+    "ZONEFUNCTI",
+    "AREA_NAME",
+    "TRACT_NAME"
+   ],
+   "known": false,
+   "layer": "WA Safety Zones",
+   "sample": [
+    {
+     "AREA_NAME": "Assawoman Wildlife Area",
+     "TRACT_NAME": "Miller Neck Refuge",
+     "ZONEFUNCTI": "Refuge"
+    },
+    {
+     "AREA_NAME": "Cedar Swamp Wildlife Area",
+     "TRACT_NAME": "Cedar Swamp Refuge",
+     "ZONEFUNCTI": "Refuge"
+    },
+    {
+     "AREA_NAME": "Little Creek Wildlife Area",
+     "TRACT_NAME": "Main Tract",
+     "ZONEFUNCTI": "Refuge"
+    }
+   ],
+   "service": "Society/DE_Wildlife",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Wildlife/FeatureServer/5"
+  },
+  {
+   "agency": "Delaware Department of Agriculture\n\nDelaware Department of Natural Resources and",
+   "area": "",
+   "count": 47,
+   "fields": [
+    "TAX_PARCEL",
+    "TRACT_NAME",
+    "OWNER",
+    "DEED",
+    "LEGACY",
+    "HUNT",
+    "HOUSE",
+    "CABIN",
+    "FSFASSETID"
+   ],
+   "known": false,
+   "layer": "Forest Conservation Easements",
+   "sample": [
+    {
+     "CABIN": "NO",
+     "DEED": "2975 190",
+     "FSFASSETID": "000000004196",
+     "HOUSE": "NO",
+     "HUNT": "NO",
+     "LEGACY": "YES",
+     "OWNER": "THE NATURE CONSERVANCY",
+     "TAX_PARCEL": "235-6.00-29.00",
+     "TRACT_NAME": "Ponders"
+    },
+    {
+     "CABIN": "NO",
+     "DEED": "2975 190",
+     "FSFASSETID": "000000004196",
+     "HOUSE": "NO",
+     "HUNT": "NO",
+     "LEGACY": "YES",
+     "OWNER": "THE NATURE CONSERVANCY",
+     "TAX_PARCEL": "235-6.00-22.00",
+     "TRACT_NAME": "Ponders"
+    },
+    {
+     "CABIN": "NO",
+     "DEED": "3073 210",
+     "FSFASSETID": "000000004566",
+     "HOUSE": "YES",
+     "HUNT": "NO",
+     "LEGACY": "NO",
+     "OWNER": "FORESTLAND GROUP",
+     "TAX_PARCEL": "135-17.00-5.00",
+     "TRACT_NAME": "Dodd"
+    }
+   ],
+   "service": "Society/DE_Agriculture",
+   "typef": "HOUSE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Agriculture/FeatureServer/3"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control Division of F",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "DEWAP",
+    "HABITAT",
+    "EC_SYS",
+    "PH_CRED",
+    "DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "DE Wildlife Action Plan Habitats 2025",
+   "sample": [
+    {
+     "DESCRIPTION": "Aquatic vegetation of Delaware’s freshwater tidal and non-tidal rivers and streams consists of rooted-submergent plants, and floating-leaved plants. These species – collectively known as SAV (submerged aquatic vegetation) – vary in composition from waterbody-to-waterbody. The most extensive beds of freshwater SAV are found in the Brandywine Creek of New Castle Co., and in the upper reaches of the Nanticoke River and Deep Creek in Sussex County. SAV are typically found in shallow water where sufficient light for photosynthesis can penetrate, and in slow-flowing, sandy or gravelly streams in both the Piedmont and Coastal Plain.  \n\nSAV performs many important ecological functions in the aquatic environments. It provides food and habitat for a variety of wildlife, including  vertebrate and non-vertebrate species; produces oxygen in the water during photosynthesis; filters and traps sediment that can cloud the water and smother bottom-dwelling organisms such as mussels; helps protect shorelines from erosion by dampening wave action and binding the substrate; and removes excess nutrients, such as nitrogen and phosphorus, that could fuel the growth of algae in the surrounding waters. These ecological services and values not only support aquatic life, but indicate that the presence of SAV within an aquatic system serves as an important environmental indicator of water quality. The presence of SAV has been linked to increased macroinvertebrate abundance, and it provides critical habitat for fish. Several SGCN are associated with freshwater non-tidal SAV, including bridle shiner, swamp darter, and banded and blackbanded sunfish. \n\nThe majority of Delaware’s SAV are found in freshwater systems, where species richness tends to be highest due to lower salinity levels. Common freshwater species include large water-starwort (Callitriche heterophylla), water stargrass (Heteranthera dubia), coontail (Ceratophyllum demersum), broad-leaved waterweed (Elodea canadensis), longleaf pondweed (Potamogeton nodosus), greater bladderwort (Utricularia macrorhiza), and tape-grass (Vallisneria americana). As salinity increases, SAV diversity generally decreases, but several species are adapted to brackish and marine conditions. These estuarine SAV species (see Estuarine Submerged Aquatic Vegetation below) include widgeon-grass (Ruppia maritima), and Sago pondweed (Stuckenia pectinata) which play important ecological roles in transitional and coastal habitats.   \n\nThe presence of SAV has been linked to increased macroinvertebrate abundance, and it provides critical habitat for fish. Several SGCN are associated with freshwater non-tidal SAV, including bridle shiner, swamp darter, and banded and blackbanded sunfish.  ",
+     "DEWAP": "Freshwater Submerged Aquatic Vegetation",
+     "EC_SYS": "Coastal and Marine Ecological Classification Standard (CMECS): Biotic Group: Freshwater and Brackish Tidal Aquatic Vegetation",
+     "HABITAT": "Habitat of Conservation Concern"
+    },
+    {
+     "DESCRIPTION": "Coastal impoundments are human-modified and managed wetland habitats where low-level dikes and water-control structures have been constructed to restrict, retain, or exclude water over a selected area. Delaware has an extensive complex of coastal impoundments along the Delaware Bay, Atlantic Ocean (Gordons Pond), and Little Assawoman Bay. Impoundment habitats vary from fresh to brackish, depending on how the water depths and flows are controlled. Water-level management often varies seasonally to benefit particular species or meet specific conservation goals. For example, water levels may be kept high in winter and drawn down slowly to support invertebrate populations, an important food source for migratory waterfowl and shorebirds in spring. In summer, water levels are often kept low to allow vegetation to grow; the impoundments are then flooded to provide food and habitat for waterfowl on their return migration in fall. \n\nThe first documented active management of tidal marshes using dikes to control water levels occurred in Delaware in the mid-seventeenth century, with the construction of what is now known as the Broad Marsh Dike at New Castle sometime prior to 1675 (Catts and Mancl 2013). Impounding of estuarine marshlands for production of salt hay was a common early practice that continued through the 19th century. Then, in the 20th century, wildlife managers initiated the practice of impoundment construction to create habitat for migratory waterfowl and to help control populations of saltmarsh mosquito (Meredith 2000). As of 2007, there were 5,366 acres of estuarine tidal wetlands in Delaware that were cut off from full tidal connection in some way by a road, dike, or other structure (Tiner et al. 2011).  \n\nThe large impoundments at Bombay Hook National Wildlife Refuge were constructed between 1939 and 1961 and total 1,135 acres (Meredith 2000). An even larger impounded area occurs at Prime Hook National Wildlife Refuge, where approximately 4,000 acres were created or restored between 1981 and 1988. This series of impoundments was breached near its northern end by coastal storms, beginning in 2008. A current restoration plan calls for the creation of tidal saltmarsh and brackish marsh in place of the damaged impoundments (USFWS 2013). \n\nThe system of State Wildlife Areas managed by Delaware DFW contains 14 coastal impoundments, totaling approximately 2,400 acres. DFW continues to refine management of these impoundments and has created a structured decision-making model to assist with water level management of state-owned impoundments to maximize benefits for wildlife, including juvenile fish, migratory shorebirds, and migrating and wintering waterfowl. Multiple restoration projects are planned for state-owned impoundments in response to aging infrastructure (dikes and water control structures) and projected sea level rise. \n\nEstimates of privately owned and managed impoundments in the state indicate that around 70 impoundments total some 2,500 acres (Meredith 2000). Delaware’s coastal impoundments are heavily used by wading birds (Parsons 2002) and others, like the King rail, least bittern, marsh wren, and northern pintail. The primary threat to these habitats is sea level rise. With only half a meter of sea level rise, 81% of Impoundments in Delaware will be inundated, and 99% will be inundated with 1.5 meters of rise (Love et al. 2013). ",
+     "DEWAP": "Impoundment",
+     "EC_SYS": "Northeast Terrestrial Wildlife Habitat Classification: Macrogroup: Modified/Managed Marsh",
+     "HABITAT": "Habitat of Conservation Concern",
+     "PH_CRED": "Impoundment - Muddy Neck Pond, Assawoman Wildlife Refuge. Photo: Rob Gano"
+    },
+    {
+     "DESCRIPTION": "These intertidal flats are best developed in shallow protected estuarine bays, pools, and along small tidal creeks and guts. The depth and frequency of tidal flooding is variable depending on the landscape setting, but most flats are exposed twice daily during low tide cycles. Intertidal mud flats are critically important feeding areas for many SGCN waterbird species, especially migratory shorebirds. Some SGCN using this habitat include: American black duck, black skimmer, common tern, horseshoe crab, least tern, piping plover, red knot, sanderling, and semipalmated sandpiper. Intertidal flats face threats from sea level rise, rip-rapping, bulkheading, and associated development issues. ",
+     "DEWAP": "Intertidal Mud Flat",
+     "EC_SYS": "Northern Atlantic Intertidal Mudflat (CES201.050) Coastal and Marine Ecological Classification Standard (CMECS): Geoform: Tidal Flat"
+    }
+   ],
+   "service": "Biota/DE_Wildlife_Action_Plan",
+   "typef": "DESCRIPTION",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Wildlife_Action_Plan/MapServer/0"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control, Division of ",
+   "area": "",
+   "count": 18,
+   "fields": [
+    "ZONE",
+    "DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Zones",
+   "sample": [
+    {
+     "DESCRIPTION": "Land bordered north by the C&D Canal, south by Route 6, east by the Delaware River, and west by Route 13.",
+     "ZONE": "3"
+    },
+    {
+     "DESCRIPTION": "Land bordered north by C&D Canal, south by Route 6, east by Route 13, and west by the Maryland State Line.",
+     "ZONE": "2"
+    },
+    {
+     "DESCRIPTION": "Land bordered north by Route 6, south by Route 8, east by Route 13, and west by the Maryland State Line.",
+     "ZONE": "4"
+    }
+   ],
+   "service": "Society/DE_Wildlife",
+   "typef": "DESCRIPTION",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Wildlife/FeatureServer/6"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control Division of F",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "MAJORBASIN",
+    "REGION",
+    "COUNTY"
+   ],
+   "known": false,
+   "layer": "DE Wildlife Action Plan Regions 2025",
+   "sample": [
+    {
+     "COUNTY": "Kent",
+     "MAJORBASIN": "Chesapeake Bay",
+     "REGION": "5"
+    },
+    {
+     "COUNTY": "Kent",
+     "MAJORBASIN": "Delaware Bay",
+     "REGION": "6"
+    },
+    {
+     "COUNTY": "New Castle",
+     "MAJORBASIN": "Chesapeake Bay",
+     "REGION": "3"
+    }
+   ],
+   "service": "Biota/DE_Wildlife_Action_Plan",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Wildlife_Action_Plan/MapServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "STATE",
+    "JURISDICTION",
+    "PURPOSE",
+    "FEDERALCONSISTENCYAUTHORITY",
+    "GEOGRAPHICLOCATIONDESCRIPTION"
+   ],
+   "known": false,
+   "layer": "non-native shelfish",
+   "sample": [
+    {
+     "FEDERALCONSISTENCYAUTHORITY": "Army Corps of Engineers",
+     "GEOGRAPHICLOCATIONDESCRIPTION": "Maryland and Virginia – within the Chesapeake Bay.",
+     "JURISDICTION": "state waters",
+     "PURPOSE": "non-native shellfish",
+     "STATE": "Delaware"
+    },
+    {
+     "FEDERALCONSISTENCYAUTHORITY": "Army Corps of Engineers",
+     "GEOGRAPHICLOCATIONDESCRIPTION": "New Jersey – within the Delaware River and Bay from Artificial Island to Cape May.",
+     "JURISDICTION": "state waters",
+     "PURPOSE": "non-native shellfish",
+     "STATE": "Delaware"
+    }
+   ],
+   "service": "Environmental/Federal_Consistency_Coastal_Zone_Management_Authority",
+   "typef": "GEOGRAPHICLOCATIONDESCRIPTION",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Environmental/Federal_Consistency_Coastal_Zone_Management_Authority/FeatureServer/8"
+  },
+  {
+   "agency": "Delaware Department of Natural Resources and Environmental Control, Division of ",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ZONE",
+    "DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "Teal Season Hunting Zone",
+   "sample": [
+    {
+     "DESCRIPTION": "This area is the coastal area from south of the C&D Canal to north of Route 9 in Lewes, and east of Routes 13, 113/113A, and 1.",
+     "ZONE": "Special September Teal Hunting Zone"
+    }
+   ],
+   "service": "Society/DE_Wildlife",
+   "typef": "DESCRIPTION",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_Wildlife/FeatureServer/7"
+  },
+  {
+   "agency": "State of Delaware",
+   "area": "NAME",
+   "count": 1329,
+   "fields": [
+    "TRACT",
+    "NAME",
+    "MANAGEMENT_UNIT",
+    "ALIAS",
+    "OWNERSHIP",
+    "MANAGEMENT",
+    "MANAGING_AGENCY",
+    "PROPERTY_INTEREST",
+    "PUBLIC_ACESS",
+    "COUNTY",
+    "USE",
+    "DESCRIP",
+    "PARCEL",
+    "PUBLIC_DOMAIN",
+    "WEBSITE",
+    "PROTECTED",
+    "LWCF",
+    "PROTECTION",
+    "WEB_ADDRESSES",
+    "FSFASSETID"
+   ],
+   "known": true,
+   "layer": "DNREC Managed Lands",
+   "sample": [
+    {
+     "COUNTY": "Kent",
+     "MANAGEMENT": "Delaware State Parks",
+     "MANAGING_AGENCY": "DPR",
+     "NAME": "Fork Branch Nature Preserve",
+     "OWNERSHIP": "State of Delaware",
+     "PROPERTY_INTEREST": "Fee Simple",
+     "PUBLIC_ACESS": "Yes",
+     "TRACT": "Fork Branch Nature Preserve",
+     "USE": "Nature Preserve"
+    },
+    {
+     "COUNTY": "Kent",
+     "MANAGEMENT": "Delaware State Parks",
+     "MANAGING_AGENCY": "DPR",
+     "NAME": "Fork Branch Nature Preserve",
+     "OWNERSHIP": "State of Delaware",
+     "PROPERTY_INTEREST": "Fee Simple",
+     "PUBLIC_ACESS": "Yes",
+     "TRACT": "Fork Branch Nature Preserve",
+     "USE": "Nature Preserve"
+    },
+    {
+     "COUNTY": "Kent",
+     "DESCRIP": "Future Transportation Connector",
+     "MANAGEMENT": "DelDOT",
+     "MANAGEMENT_UNIT": "<Null>",
+     "MANAGING_AGENCY": "DelDOT",
+     "NAME": "Kesselring Property",
+     "OWNERSHIP": "State of Delaware",
+     "PROPERTY_INTEREST": "Fee Simple",
+     "PUBLIC_ACESS": "No",
+     "TRACT": "Lot 1",
+     "USE": "Open Space"
+    }
+   ],
+   "service": "Society/DE_State_Lands",
+   "typef": "USE",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Society/DE_State_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "Delaware Department of Agriculture",
+   "area": "",
+   "count": 31,
+   "fields": [
+    "COUNTY",
+    "TRACT",
+    "FOREST",
+    "LABEL"
+   ],
+   "known": true,
+   "layer": "State Forest",
+   "sample": [
+    {
+     "COUNTY": "NC",
+     "FOREST": "Blackbird",
+     "LABEL": "Blackbird State Forest",
+     "TRACT": "Ennis"
+    },
+    {
+     "COUNTY": "S",
+     "FOREST": "Redden",
+     "LABEL": "Redden State Forest",
+     "TRACT": "Ellendale"
+    },
+    {
+     "COUNTY": "S",
+     "FOREST": "Redden",
+     "LABEL": "Redden State Forest",
+     "TRACT": "Appenzellar"
+    }
+   ],
+   "service": "Biota/DE_Forestry",
+   "typef": "",
+   "url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/Biota/DE_Forestry/FeatureServer/0"
+  }
+ ],
+ "st": "DE"
+}

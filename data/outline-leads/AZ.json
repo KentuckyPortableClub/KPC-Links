@@ -1,0 +1,1401 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "AZGFD, TRCP",
+   "area": "",
+   "count": 18898,
+   "fields": [
+    "FISH_GROUP"
+   ],
+   "known": false,
+   "layer": "WarmWater FIN COUNTUNIQUEID",
+   "sample": [
+    {
+     "FISH_GROUP": "WARMWATER"
+    },
+    {
+     "FISH_GROUP": "WARMWATER"
+    },
+    {
+     "FISH_GROUP": "WARMWATER"
+    }
+   ],
+   "service": "SVM_WARMWATER_FISHPOLY",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/SVM_WARMWATER_FISHPOLY/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15640,
+   "fields": [
+    "CATEGORY",
+    "DESC_",
+    "last_edite",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Public Land Ownership (BLM Surface Management)",
+   "sample": [
+    {
+     "CATEGORY": "Indian Lands",
+     "Creator": "jschmidt_azstateparks",
+     "DESC_": "Fort McDowell Indian Res.",
+     "Editor": "jschmidt_azstateparks",
+     "last_edite": "G2SMITH"
+    },
+    {
+     "CATEGORY": "Indian Lands",
+     "Creator": "jschmidt_azstateparks",
+     "DESC_": "Kaibab Indian Res.",
+     "Editor": "jschmidt_azstateparks",
+     "last_edite": "G2SMITH"
+    },
+    {
+     "CATEGORY": "Indian Lands",
+     "Creator": "jschmidt_azstateparks",
+     "DESC_": "White Mtn Apache Indian Res.",
+     "Editor": "jschmidt_azstateparks",
+     "last_edite": "G2SMITH"
+    }
+   ],
+   "service": "Arizona_Land_Ownership",
+   "typef": "CATEGORY",
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/Arizona_Land_Ownership/FeatureServer/0"
+  },
+  {
+   "agency": "AZGFD, TRCP",
+   "area": "",
+   "count": 14542,
+   "fields": [
+    "FISH_GROUP"
+   ],
+   "known": false,
+   "layer": "Coldwater FIN COUNTUNIQUEID",
+   "sample": [
+    {
+     "FISH_GROUP": "COLDWATER"
+    },
+    {
+     "FISH_GROUP": "COLDWATER"
+    },
+    {
+     "FISH_GROUP": "COLDWATER"
+    }
+   ],
+   "service": "SVM_COLDWATER_FISHPOLY",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/SVM_COLDWATER_FISHPOLY/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3293,
+   "fields": [
+    "APN",
+    "BOOK",
+    "MAP",
+    "ITEM",
+    "OWNER_NAME",
+    "MAIL_ADDR1",
+    "MAIL_ADDR2",
+    "MAIL_CITY",
+    "MAIL_STATE",
+    "MAIL_ZIP",
+    "PHYSICAL_STREET_NUM",
+    "PHYSICAL_STREET_DIR",
+    "PHYSICAL_STREET_NAME",
+    "PHYSICAL_STREET_TYPE",
+    "PHYSICAL_SUITE",
+    "PHYSICAL_CITY",
+    "PHYSICAL_ZIP",
+    "APN_DASH",
+    "PHYSICAL_ADDRESS",
+    "MAIL_ADDRESS"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_LandUse",
+   "sample": [
+    {
+     "APN": "50170194",
+     "BOOK": "501",
+     "ITEM": "194",
+     "MAIL_ADDR1": "270 W MAYA DR",
+     "MAIL_CITY": "LITCHFIELD PARK",
+     "MAIL_STATE": "AZ",
+     "MAIL_ZIP": "85340",
+     "MAP": "70",
+     "OWNER_NAME": "GW EGGEBRECHT LIVING TRUST",
+     "PHYSICAL_STREET_DIR": "W",
+     "PHYSICAL_STREET_NUM": "270"
+    },
+    {
+     "APN": "50170211",
+     "BOOK": "501",
+     "ITEM": "211",
+     "MAIL_ADDR1": "47 S INCA DR",
+     "MAIL_CITY": "LITCHFIELD PARK",
+     "MAIL_STATE": "AZ",
+     "MAIL_ZIP": "85340",
+     "MAP": "70",
+     "OWNER_NAME": "COSTA EDITH J",
+     "PHYSICAL_STREET_DIR": "S",
+     "PHYSICAL_STREET_NUM": "47"
+    },
+    {
+     "APN": "50170191",
+     "BOOK": "501",
+     "ITEM": "191",
+     "MAIL_ADDR1": "288 W MAYA DR",
+     "MAIL_CITY": "LITCHFIELD PARK",
+     "MAIL_STATE": "AZ",
+     "MAIL_ZIP": "85340",
+     "MAP": "70",
+     "OWNER_NAME": "SOLARES ASHLEY",
+     "PHYSICAL_STREET_DIR": "W",
+     "PHYSICAL_STREET_NUM": "288"
+    }
+   ],
+   "service": "LitchfieldPark_LandUse_03232026",
+   "typef": "PHYSICAL_STREET_TYPE",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_LandUse_03232026/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3293,
+   "fields": [
+    "APN",
+    "BOOK",
+    "MAP",
+    "ITEM",
+    "OWNER_NAME",
+    "MAIL_ADDR1",
+    "MAIL_ADDR2",
+    "MAIL_CITY",
+    "MAIL_STATE",
+    "MAIL_ZIP",
+    "PHYSICAL_STREET_NUM",
+    "PHYSICAL_STREET_DIR",
+    "PHYSICAL_STREET_NAME",
+    "PHYSICAL_STREET_TYPE",
+    "PHYSICAL_SUITE",
+    "PHYSICAL_CITY",
+    "PHYSICAL_ZIP",
+    "APN_DASH",
+    "PHYSICAL_ADDRESS",
+    "MAIL_ADDRESS"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_Annexation",
+   "sample": [
+    {
+     "APN": "50170194",
+     "BOOK": "501",
+     "ITEM": "194",
+     "MAIL_ADDR1": "270 W MAYA DR",
+     "MAIL_CITY": "LITCHFIELD PARK",
+     "MAIL_STATE": "AZ",
+     "MAIL_ZIP": "85340",
+     "MAP": "70",
+     "OWNER_NAME": "GW EGGEBRECHT LIVING TRUST",
+     "PHYSICAL_STREET_DIR": "W",
+     "PHYSICAL_STREET_NUM": "270"
+    },
+    {
+     "APN": "50170211",
+     "BOOK": "501",
+     "ITEM": "211",
+     "MAIL_ADDR1": "47 S INCA DR",
+     "MAIL_CITY": "LITCHFIELD PARK",
+     "MAIL_STATE": "AZ",
+     "MAIL_ZIP": "85340",
+     "MAP": "70",
+     "OWNER_NAME": "COSTA EDITH J",
+     "PHYSICAL_STREET_DIR": "S",
+     "PHYSICAL_STREET_NUM": "47"
+    },
+    {
+     "APN": "50170191",
+     "BOOK": "501",
+     "ITEM": "191",
+     "MAIL_ADDR1": "288 W MAYA DR",
+     "MAIL_CITY": "LITCHFIELD PARK",
+     "MAIL_STATE": "AZ",
+     "MAIL_ZIP": "85340",
+     "MAP": "70",
+     "OWNER_NAME": "SOLARES ASHLEY",
+     "PHYSICAL_STREET_DIR": "W",
+     "PHYSICAL_STREET_NUM": "288"
+    }
+   ],
+   "service": "Parcels_LitchfieldPark_Annexation",
+   "typef": "PHYSICAL_STREET_TYPE",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/Parcels_LitchfieldPark_Annexation/FeatureServer/0"
+  },
+  {
+   "agency": "Arizona State Parks & Trails GIS Team",
+   "area": "",
+   "count": 2052,
+   "fields": [
+    "SITEGLOBALID"
+   ],
+   "known": false,
+   "layer": "Parks in Arizona - Boundaries",
+   "sample": [
+    {
+     "SITEGLOBALID": "{25FD96AD-BD04-49F1-8A74-56E998B33423}"
+    },
+    {
+     "SITEGLOBALID": "{A7E2A0A1-09A1-4A58-99E9-880CD6C47774}"
+    },
+    {
+     "SITEGLOBALID": "{27936E21-8E4F-431D-B72E-4EED3826F786}"
+    }
+   ],
+   "service": "ParksInArizona",
+   "typef": "",
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/ParksInArizona/FeatureServer/1"
+  },
+  {
+   "agency": "Lisa Ronald, Wilderness Institute, University of Montana",
+   "area": "NAME",
+   "count": 823,
+   "fields": [
+    "URL",
+    "NAME",
+    "STATE",
+    "Comment",
+    "NAME_ABBREV",
+    "ImagePath",
+    "Description",
+    "Agency",
+    "joinerID",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "National Wilderness Preservation System",
+   "sample": [
+    {
+     "Agency": "NPS",
+     "Creator": "data_azgeo",
+     "Description": "The Beaver Basin Wilderness includes 13 miles of stunning Lake Superior shoreline from Spray Falls on the west to Sevenmile Creek on the east. The wilderness is some 3.5 miles deep and contains three beautifully...",
+     "Editor": "data_azgeo",
+     "ImagePath": "https://wilderness.net/images/NWPS/BeaverBasin.jpg",
+     "NAME": "Beaver Basin Wilderness",
+     "NAME_ABBREV": "Beaver_Basin",
+     "STATE": "MI",
+     "URL": "https://wilderness.net/visit-wilderness/?ID=707",
+     "joinerID": "707NPS"
+    },
+    {
+     "Agency": "NPS",
+     "Creator": "data_azgeo",
+     "Description": "About 38 million years ago this region was a marshy jungle filled with saber-toothed cats, camels no bigger than dogs, turtles the size of Volkswagens, and other long-extinct life-forms. Their bones were...",
+     "Editor": "data_azgeo",
+     "ImagePath": "https://wilderness.net/images/NWPS/BadlandsSD.jpg",
+     "NAME": "Badlands Wilderness",
+     "NAME_ABBREV": "Badlands",
+     "STATE": "SD",
+     "URL": "https://wilderness.net/visit-wilderness/?ID=24",
+     "joinerID": "24NPS"
+    },
+    {
+     "Agency": "NPS",
+     "Comment": "Has adjacent polygons",
+     "Creator": "data_azgeo",
+     "Description": "Mount Rainier Wilderness is located on the west-side of the Cascade Range, approximately 50 miles southeast of the Seattle-Tacoma metropolitan area. At 14,410 feet, Mount Rainier is the most prominent...",
+     "Editor": "data_azgeo",
+     "ImagePath": "https://wilderness.net/images/NWPS/MountRainier.jpg",
+     "NAME": "Mount Rainier Wilderness",
+     "NAME_ABBREV": "Mount_Rainier",
+     "STATE": "WA",
+     "URL": "https://wilderness.net/visit-wilderness/?ID=382",
+     "joinerID": "382NPS"
+    }
+   ],
+   "service": "Wilderness_Areas_in_the_United_States_57445",
+   "typef": "Description",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/Wilderness_Areas_in_the_United_States_57445/FeatureServer/0"
+  },
+  {
+   "agency": "Lisa Ronald, Wilderness Institute, University of Montana",
+   "area": "NAME",
+   "count": 484,
+   "fields": [
+    "NAME",
+    "Land_Type",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "Non-Federal Lands within Wilderness",
+   "sample": [
+    {
+     "Creator": "data_azgeo",
+     "Editor": "data_azgeo",
+     "Land_Type": "State Government Land",
+     "NAME": "Lee Metcalf Wilderness"
+    },
+    {
+     "Creator": "data_azgeo",
+     "Editor": "data_azgeo",
+     "Land_Type": "State Government Land",
+     "NAME": "Turtle Canyon Wilderness"
+    },
+    {
+     "Creator": "data_azgeo",
+     "Editor": "data_azgeo",
+     "Land_Type": "State Government Land",
+     "NAME": "Mexican Mountain Wilderness"
+    }
+   ],
+   "service": "Wilderness_Areas_in_the_United_States_57445",
+   "typef": "Land_Type",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/Wilderness_Areas_in_the_United_States_57445/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 206,
+   "fields": [
+    "LandUse",
+    "TrailName",
+    "Creator",
+    "Editor",
+    "Notes",
+    "Zone_Section"
+   ],
+   "known": false,
+   "layer": "Land Use",
+   "sample": [
+    {
+     "Creator": "alangford_azgeo",
+     "Editor": "alangford_azgeo",
+     "LandUse": "Walks/Hardscape",
+     "TrailName": "Heritage Trail"
+    },
+    {
+     "Creator": "alangford_azgeo",
+     "Editor": "alangford_azgeo",
+     "LandUse": "Decomposed Granite",
+     "TrailName": "Heritage Trail"
+    },
+    {
+     "Creator": "alangford_azgeo",
+     "Editor": "alangford_azgeo",
+     "LandUse": "Decomposed Granite",
+     "TrailName": "Heritage Trail"
+    }
+   ],
+   "service": "Gilbert_Trails",
+   "typef": "LandUse",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/Gilbert_Trails/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 83,
+   "fields": [],
+   "known": false,
+   "layer": "WildlifeManagerDistrict",
+   "sample": [
+    {
+     "FID": 1,
+     "OBJECTID": 1,
+     "REGION": 2,
+     "SECTOR": 27,
+     "Shape_Area": 4597709757.1,
+     "Shape_Leng": 379771.310945,
+     "Shape__Area": 7148953772.441406,
+     "Shape__Length": 473573.6602572461,
+     "WMD_NO": 272
+    },
+    {
+     "FID": 2,
+     "OBJECTID": 2,
+     "REGION": 9,
+     "SECTOR": 99,
+     "Shape_Area": 487973119.716,
+     "Shape_Leng": 98204.0559127,
+     "Shape__Area": 765078108.1640625,
+     "Shape__Length": 122893.89903378516,
+     "WMD_NO": 999
+    },
+    {
+     "FID": 3,
+     "OBJECTID": 3,
+     "REGION": 2,
+     "SECTOR": 27,
+     "Shape_Area": 4857220724.78,
+     "Shape_Leng": 427405.265608,
+     "Shape__Area": 7533999324.265625,
+     "Shape__Length": 532525.636869382,
+     "WMD_NO": 273
+    }
+   ],
+   "service": "WildlifeManagerDistrict",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/WildlifeManagerDistrict/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 55,
+   "fields": [
+    "MasterName",
+    "PropertyType",
+    "AGFDRegion",
+    "NearbyCity",
+    "NearbyCounty",
+    "Description",
+    "Access_Description",
+    "More_Information"
+   ],
+   "known": false,
+   "layer": "OtherProperties2016",
+   "sample": [
+    {
+     "AGFDRegion": "Mesa (6)",
+     "MasterName": "Adobe Mountain Rehabilitation Center",
+     "NearbyCity": "Phoenix",
+     "NearbyCounty": "Maricopa",
+     "PropertyType": "Other AGFD Property Type"
+    },
+    {
+     "AGFDRegion": "Tucson (5)",
+     "MasterName": "Agua Caliente Road",
+     "NearbyCity": "Sahuarita",
+     "NearbyCounty": "Santa Cruz",
+     "PropertyType": "Other AGFD Property Type"
+    },
+    {
+     "AGFDRegion": "Tucson (5)",
+     "MasterName": "Arivaca Lake and Land",
+     "NearbyCity": "Nogales",
+     "NearbyCounty": "Pima",
+     "PropertyType": "Other AGFD Property Type"
+    }
+   ],
+   "service": "AGFDLands",
+   "typef": "PropertyType",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/AGFDLands/FeatureServer/5"
+  },
+  {
+   "agency": "Maricopa County Recorder GIS Department \nhttp://www.recorder.maricopa.gov",
+   "area": "",
+   "count": 54,
+   "fields": [
+    "ElemDist",
+    "HSDist",
+    "HSWard",
+    "BdName"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_Elementary",
+   "sample": [
+    {
+     "BdName": "GLENDALE #40 in GLENDALE UNION HS #205",
+     "ElemDist": "GLENDALE #40",
+     "HSDist": "GLENDALE UNION",
+     "HSWard": " "
+    },
+    {
+     "BdName": "AVONDALE #44 in AGUA FRIA UNION HS #216",
+     "ElemDist": "AVONDALE #44",
+     "HSDist": "AGUA FRIA UNION",
+     "HSWard": " "
+    },
+    {
+     "BdName": "WICKENBURG UNIFIED #9",
+     "ElemDist": "WICKENBURG #9",
+     "HSDist": "WICKENBURG UNIFIED",
+     "HSWard": " "
+    }
+   ],
+   "service": "LitchfieldPark_Elementary",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_Elementary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 53,
+   "fields": [
+    "PARK_NAME",
+    "Name",
+    "GBA_ID",
+    "DONATED",
+    "YEAR_",
+    "PARKING",
+    "DESCRIPTIO",
+    "AMENITIES",
+    "PARK_OS",
+    "SYSTEM",
+    "GBA_CAT"
+   ],
+   "known": false,
+   "layer": "City_of_Prescott_Parks_and_Open_Space_Areas",
+   "sample": [
+    {
+     "AMENITIES": " ",
+     "DESCRIPTIO": " ",
+     "DONATED": " ",
+     "GBA_CAT": " ",
+     "GBA_ID": "PK_1",
+     "Name": "WILLOW CREEK DOG PARK",
+     "PARKING": " ",
+     "PARK_NAME": "WILLOW CREEK DOG PARK",
+     "PARK_OS": "Park",
+     "SYSTEM": " ",
+     "YEAR_": " "
+    },
+    {
+     "AMENITIES": " ",
+     "DESCRIPTIO": " ",
+     "DONATED": " ",
+     "GBA_CAT": " ",
+     "GBA_ID": "PK_2",
+     "Name": "PEPPERTREE PARK",
+     "PARKING": " ",
+     "PARK_NAME": "PEPPERTREE PARK",
+     "PARK_OS": "Park",
+     "SYSTEM": " ",
+     "YEAR_": " "
+    },
+    {
+     "AMENITIES": " ",
+     "DESCRIPTIO": " ",
+     "DONATED": " ",
+     "GBA_CAT": " ",
+     "GBA_ID": "PK_6",
+     "Name": "ROUGHRIDER PARK COMPLEX",
+     "PARKING": " ",
+     "PARK_NAME": "ROUGHRIDER PARK COMPLEX",
+     "PARK_OS": "Park",
+     "SYSTEM": " ",
+     "YEAR_": " "
+    }
+   ],
+   "service": "City_of_Prescott_Parks_and_Open_Space_Areas",
+   "typef": "DESCRIPTIO",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/City_of_Prescott_Parks_and_Open_Space_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "Town of Prescott Valley Public Works / GIS Division, Town of Prescott Valley Par",
+   "area": "Name",
+   "count": 47,
+   "fields": [
+    "ParkID",
+    "Park_ID",
+    "Name",
+    "Address",
+    "CityMuni",
+    "County",
+    "State",
+    "StreetNumb",
+    "StreetName",
+    "StreetType",
+    "Zip",
+    "Latitude",
+    "Longitude",
+    "Reference",
+    "ReferenceC",
+    "Acreage",
+    "AcreSource",
+    "YearOpen",
+    "YearBuilt",
+    "ParkStatus"
+   ],
+   "known": false,
+   "layer": "TOPV_PARKS",
+   "sample": [
+    {
+     "Address": "1030 PRESCOTT COUNTRY CLUB BLVD",
+     "CityMuni": "DEWEY",
+     "County": "YAVAPAI",
+     "Latitude": "1294580*",
+     "Name": "PRESCOTT COUNTRY CLUB GOLF COURSE",
+     "ParkID": "1",
+     "Park_ID": "2",
+     "State": "AZ",
+     "StreetName": "PRESCOTT COUNTRY CLUB",
+     "StreetNumb": "1030",
+     "StreetType": "BLVD",
+     "Zip": "86327"
+    },
+    {
+     "Address": " ",
+     "CityMuni": "PRESCOTT VALLEY",
+     "County": "YAVAPAI",
+     "Latitude": "1294812*",
+     "Name": "PROPOSED STONERIDGE REGIONAL PARK",
+     "ParkID": "2",
+     "Park_ID": "3",
+     "State": "AZ",
+     "StreetName": " ",
+     "StreetNumb": " ",
+     "StreetType": " ",
+     "Zip": "86314"
+    },
+    {
+     "Address": "1030 PRESCOTT COUNTRY CLUB BLVD",
+     "CityMuni": "DEWEY",
+     "County": "YAVAPAI",
+     "Latitude": "1294103*",
+     "Name": "PRESCOTT COUNTRY CLUB GOLF COURSE",
+     "ParkID": "3",
+     "Park_ID": "4",
+     "State": "AZ",
+     "StreetName": "PRESCOTT COUNTRY CLUB",
+     "StreetNumb": "1030",
+     "StreetType": "BLVD",
+     "Zip": "86327"
+    }
+   ],
+   "service": "TOPV_PARKS",
+   "typef": "StreetType",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/TOPV_PARKS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36,
+   "fields": [
+    "MasterName",
+    "PropertyType",
+    "AGFDRegion",
+    "NearbyCity",
+    "NearbyCounty",
+    "Description",
+    "Ownership",
+    "Management",
+    "Directions",
+    "Access_Description",
+    "Fires",
+    "Firewood",
+    "Firearms",
+    "Target_Clays",
+    "Motorized_Vehicle",
+    "Camping",
+    "Hunting",
+    "Parking",
+    "Additional_Restrictions",
+    "Map_URL"
+   ],
+   "known": false,
+   "layer": "WildlifeAreas2016",
+   "sample": [
+    {
+     "AGFDRegion": "Kingman (3), Yuma (4)",
+     "Firewood": "Wood collecting limited to dead and down material, for onsite noncommercial use only.",
+     "Management": "AGF",
+     "MasterName": "Alamo Wildlife Area",
+     "NearbyCity": "Parker",
+     "NearbyCounty": "La Paz, Mohave",
+     "Ownership": "AGF",
+     "PropertyType": "Wildlife Area"
+    },
+    {
+     "AGFDRegion": "Pinetop (1)",
+     "Description": "The Allen Severson Memorial Wildlife Area was created in cooperation with the Forest Service, City of Show Low and the Department. Allen Severson consists of two small artificial marshes including Pintail Lake and South Marsh. Pintail consists of 3 ponds",
+     "Fires": "No open fires.",
+     "Firewood": "No firewood cutting or gathering.",
+     "Management": "AGF",
+     "MasterName": "Allen Severson Memorial Wildlife Area",
+     "NearbyCity": "Show Low",
+     "NearbyCounty": "Navajo",
+     "Ownership": "AGF",
+     "PropertyType": "Wildlife Area"
+    },
+    {
+     "AGFDRegion": "Tucson (5)",
+     "Access_Description": "Access to Aravaipa Canyon Wilderness Area is by permit only, available through the Safford Office of the Bureau of Land Management.",
+     "Management": "AGF",
+     "MasterName": "Aravaipa Canyon Wildlife Area",
+     "NearbyCity": "Winkelman",
+     "NearbyCounty": "Graham, Pinal",
+     "Ownership": "AGF",
+     "PropertyType": "Wildlife Area"
+    }
+   ],
+   "service": "AGFDLands",
+   "typef": "PropertyType",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/AGFDLands/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36,
+   "fields": [
+    "WLDLF_NAME",
+    "COUNTY",
+    "Restrict_1",
+    "Restrict_2",
+    "Restrict_3",
+    "Restrict_4",
+    "Restrict_5",
+    "Restrict_6",
+    "Restrict_7",
+    "Restrict_8",
+    "Restrict_9"
+   ],
+   "known": false,
+   "layer": "AZGFDWildlifeAreas",
+   "sample": [
+    {
+     "COUNTY": "Navajo",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Posted portions closed to discharge of all firearms from April 1 to July 31 annually.",
+     "Restrict_5": " ",
+     "Restrict_6": " ",
+     "Restrict_7": " ",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Allen Severson Memorial Wildlife Area"
+    },
+    {
+     "COUNTY": "Pinal, Graham",
+     "Restrict_1": "Access to Aravaipa Canyon Wilderness Area is by permit only, available through the Safford Office of the Bureau of Land Management.",
+     "Restrict_2": "Closed to discharge of all firearms.",
+     "Restrict_3": "Open to all hunting as permitted under R12-4-304 and R12-4-318.",
+     "Restrict_4": " ",
+     "Restrict_5": " ",
+     "Restrict_6": " ",
+     "Restrict_7": " ",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Aravaipa Canyon Wildlife Area"
+    },
+    {
+     "COUNTY": "Maricopa",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Motorized vehicle travel permitted on designated roads, trails, or areas only.",
+     "Restrict_5": "Closed to discharge of rifled firearms.",
+     "Restrict_6": "No target or clay bird shooting.",
+     "Restrict_7": "Open to all hunting in season as permitted under R12-4-304 and R12-4-318.",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Base and Meridian Wildlife Area"
+    }
+   ],
+   "service": "Buckeye_Dove_Hunt_Map_WFL1",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Buckeye_Dove_Hunt_Map_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 35,
+   "fields": [
+    "WLDLF_NAME",
+    "COUNTY",
+    "Restrict_1",
+    "Restrict_2",
+    "Restrict_3",
+    "Restrict_4",
+    "Restrict_5",
+    "Restrict_6",
+    "Restrict_7",
+    "Restrict_8",
+    "Restrict_9"
+   ],
+   "known": false,
+   "layer": "AGFD_Wildlife_Areas",
+   "sample": [
+    {
+     "COUNTY": "Navajo",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Posted portions closed to discharge of all firearms from April 1 to July 31 annually.",
+     "Restrict_5": " ",
+     "Restrict_6": " ",
+     "Restrict_7": " ",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Allen Severson Memorial"
+    },
+    {
+     "COUNTY": "Pinal, Graham",
+     "Restrict_1": "Access to Aravaipa Canyon Wilderness Area is by permit only, available through the Safford Office of the Bureau of Land Management.",
+     "Restrict_2": "Closed to discharge of all firearms.",
+     "Restrict_3": "Open to all hunting as permitted under R12-4-304 and R12-4-318.",
+     "Restrict_4": " ",
+     "Restrict_5": " ",
+     "Restrict_6": " ",
+     "Restrict_7": " ",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Aravaipa Canyon"
+    },
+    {
+     "COUNTY": "Maricopa",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Motorized vehicle travel permitted on designated roads, trails, or areas only.",
+     "Restrict_5": "Closed to discharge of rifled firearms.",
+     "Restrict_6": "No target or clay bird shooting.",
+     "Restrict_7": "Open to all hunting in season as permitted under R12-4-304 and R12-4-318.",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Base and Meridian"
+    }
+   ],
+   "service": "AGFD_Wildlife_Areas",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/AGFD_Wildlife_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 32,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "ASPT_Cartographic_Boundaries",
+   "sample": [
+    {
+     "NAME": "Fort Verde State Historic Park"
+    },
+    {
+     "NAME": "Boyce Thompson Arboretum State Park"
+    },
+    {
+     "NAME": "Buckskin Mountain State Park"
+    }
+   ],
+   "service": "Arizona_State_Park_Boundaries",
+   "typef": "",
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/Arizona_State_Park_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 26,
+   "fields": [
+    "HSDist",
+    "HSWard",
+    "BdName"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_High",
+   "sample": [
+    {
+     "BdName": "AGUA FRIA UNION HS #216",
+     "HSDist": "AGUA FRIA UNION",
+     "HSWard": " "
+    },
+    {
+     "BdName": "BUCKEYE UNION HS #201",
+     "HSDist": "BUCKEYE UNION",
+     "HSWard": " "
+    },
+    {
+     "BdName": "CAVE CREEK UNIFIED #93",
+     "HSDist": "CAVE CREEK UNIFIED",
+     "HSWard": " "
+    }
+   ],
+   "service": "LitchfieldPark_High",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_High/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12,
+   "fields": [
+    "MANAGER",
+    "COMMENTS",
+    "CATEGORY",
+    "DESC_",
+    "Creator",
+    "Editor"
+   ],
+   "known": false,
+   "layer": "NationalForests",
+   "sample": [
+    {
+     "CATEGORY": "Forest",
+     "COMMENTS": " ",
+     "Creator": "wkilgore_azstateparks",
+     "DESC_": "PRESCOTT NATIONAL FOREST",
+     "Editor": "wkilgore_azstateparks",
+     "MANAGER": " "
+    },
+    {
+     "CATEGORY": "Forest",
+     "COMMENTS": " ",
+     "Creator": "wkilgore_azstateparks",
+     "DESC_": "APACHE-SITGREAVES NATIONAL FOREST",
+     "Editor": "wkilgore_azstateparks",
+     "MANAGER": " "
+    },
+    {
+     "CATEGORY": "Forest",
+     "COMMENTS": " ",
+     "Creator": "wkilgore_azstateparks",
+     "DESC_": "KAIBAB NATIONAL FOREST",
+     "Editor": "wkilgore_azstateparks",
+     "MANAGER": " "
+    }
+   ],
+   "service": "TRAZ_Editor_view",
+   "typef": "CATEGORY",
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/TRAZ_Editor_view/FeatureServer/2"
+  },
+  {
+   "agency": "AZ Game and Fish Department GIS Program",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "MasterName",
+    "PHOTO",
+    "PHOTO_THUMB",
+    "URL"
+   ],
+   "known": false,
+   "layer": "AZGFD Wildlife Areas",
+   "sample": [
+    {
+     "MasterName": "Base and Meridian Wildlife Area",
+     "PHOTO": "https://c1.staticflickr.com/5/4788/39154825880_62530028fd.jpg",
+     "PHOTO_THUMB": "https://c1.staticflickr.com/1/807/40070965935_8ab17daa49_m.jpg",
+     "URL": "http://azgfd.maps.arcgis.com/sharing/rest/content/items/6398618a90a04de8bbeab72306a1d3e8/data"
+    },
+    {
+     "MasterName": "Powers Butte Wildlife Area",
+     "PHOTO": "https://c1.staticflickr.com/5/4783/26092148117_7d0dc89938.jpg",
+     "PHOTO_THUMB": "https://c1.staticflickr.com/5/4778/26092470367_300cc18a80_m.jpg",
+     "URL": "http://azgfd.maps.arcgis.com/sharing/rest/content/items/c6090f40f5564b83ad7777be5fa7b131/data"
+    },
+    {
+     "MasterName": "Robbins Butte Wildlife Area",
+     "PHOTO": "https://c1.staticflickr.com/5/4795/40964176411_93b28e6cee.jpg",
+     "PHOTO_THUMB": "https://c1.staticflickr.com/1/787/40964565051_3280a24d6c_m.jpg",
+     "URL": "http://azgfd.maps.arcgis.com/sharing/rest/content/items/4a0432ebef3d410b9bfa4f961a783cae/data"
+    }
+   ],
+   "service": "AZGFDLands_LGRRC",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/AZGFDLands_LGRRC/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "ZONE"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_LukeAFBAPZ",
+   "sample": [
+    {
+     "ZONE": "CLEAR ZONE"
+    },
+    {
+     "ZONE": "APZ 1"
+    },
+    {
+     "ZONE": "APZ 2"
+    }
+   ],
+   "service": "LitchfieldPark_LukeAFBAPZ",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_LukeAFBAPZ/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "MasterName",
+    "PropertyType",
+    "AGFDRegion",
+    "NearbyCity",
+    "NearbyCounty",
+    "Description",
+    "Access_Description",
+    "More_Information"
+   ],
+   "known": false,
+   "layer": "Hatcheries2016",
+   "sample": [
+    {
+     "AGFDRegion": "Flagstaff (2)",
+     "MasterName": "Bubbling Ponds Hatchery",
+     "NearbyCity": "Cottonwood",
+     "NearbyCounty": "Yavapai",
+     "PropertyType": "Hatchery"
+    },
+    {
+     "AGFDRegion": "Mesa (6)",
+     "MasterName": "Canyon Creek Hatchery",
+     "NearbyCity": "Star Valley",
+     "NearbyCounty": "Gila",
+     "PropertyType": "Hatchery"
+    },
+    {
+     "AGFDRegion": "Flagstaff (2)",
+     "MasterName": "Page Springs Hatchery",
+     "NearbyCity": "Cottonwood",
+     "NearbyCounty": "Yavapai",
+     "PropertyType": "Hatchery"
+    }
+   ],
+   "service": "AGFDLands",
+   "typef": "PropertyType",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/AGFDLands/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "RegionName",
+    "wildlifeAreas"
+   ],
+   "known": false,
+   "layer": "Regions",
+   "sample": [
+    {
+     "RegionName": "Flagstaff",
+     "wildlifeAreas": "House Rock Wildlife Area, Lamar Haines Wildlife Area, Raymond Wildlife Area, Sunflower Flat Wildlife Area"
+    },
+    {
+     "RegionName": "Kingman",
+     "wildlifeAreas": "Colorado River Nature Center Wildlife Area"
+    },
+    {
+     "RegionName": "Yuma",
+     "wildlifeAreas": "Cibola Valley Conservation and Wildlife Area, Quigley-Achee Wildlife Area"
+    }
+   ],
+   "service": "Regions_WildlifeAreas",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Regions_WildlifeAreas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "GDCArea",
+   "count": 6,
+   "fields": [
+    "GDCArea",
+    "DuPerAcre"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_LukeAFBContours",
+   "sample": [
+    {
+     "DuPerAcre": "0-2 du/ac",
+     "GDCArea": "65 LDN to 0.5 Mile"
+    },
+    {
+     "DuPerAcre": "0-4 du/ac",
+     "GDCArea": "0.5 - 1 Mile"
+    },
+    {
+     "DuPerAcre": "0-6 du/ac",
+     "GDCArea": "1 - 3 Miles"
+    }
+   ],
+   "service": "LitchfieldPark_LukeAFBContours",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_LukeAFBContours/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "NLCS_NAME"
+   ],
+   "known": false,
+   "layer": "NationalConservationAreas",
+   "sample": [
+    {
+     "NLCS_NAME": "SAN PEDRO RIPARIAN NCA"
+    },
+    {
+     "NLCS_NAME": "LAS CIENEGAS NCA"
+    },
+    {
+     "NLCS_NAME": "SAN PEDRO RIPARIAN NCA"
+    }
+   ],
+   "service": "More_layers_718",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/More_layers_718/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "LDN"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_LukeAFBNoise",
+   "sample": [
+    {
+     "LDN": "65"
+    },
+    {
+     "LDN": "70"
+    },
+    {
+     "LDN": "75"
+    }
+   ],
+   "service": "LitchfieldPark_LukeAFBNoise",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_LukeAFBNoise/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "WLDLF_NAME",
+    "COUNTY",
+    "Restrict_1",
+    "Restrict_2",
+    "Restrict_3",
+    "Restrict_4",
+    "Restrict_5",
+    "Restrict_6",
+    "Restrict_7",
+    "Restrict_8",
+    "Restrict_9"
+   ],
+   "known": false,
+   "layer": "WildlifeAreas",
+   "sample": [
+    {
+     "COUNTY": "Maricopa",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Motorized vehicle travel permitted on posted designated roads, trails, or areas only.",
+     "Restrict_5": "Closed to discharge of centerfire rifled firearms.",
+     "Restrict_6": "If conducted during an event approved under R12-4-804, target or clay bird shooting in permitted designated areas only.",
+     "Restrict_7": "Open to all hunting in season as permitted under R12-4-304 and R12-4-318.",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Powers Butte (Mumme Farm) Wildlife Area"
+    },
+    {
+     "COUNTY": "Maricopa",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Motorized vehicle travel permitted on designated roads, trails, or areas only from one hour before sunrise to one hour after sunset daily.",
+     "Restrict_5": "Parking in designated areas only.",
+     "Restrict_6": "If conducted during an event approved under R12-4-804, target or clay bird shooting permitted in designated areas only.",
+     "Restrict_7": "Posted portions around Department housing closed to discharge of all firearms.",
+     "Restrict_8": "Closed to discharge of centerfire rifled firearms.",
+     "Restrict_9": "Open to all hunting in season as permitted under R12-4-304 and R12-4-318.",
+     "WLDLF_NAME": "Robbins Butte Wildlife Area"
+    },
+    {
+     "COUNTY": "Maricopa",
+     "Restrict_1": "No open fires.",
+     "Restrict_2": "No firewood cutting or gathering.",
+     "Restrict_3": "No overnight public camping.",
+     "Restrict_4": "Motorized vehicle travel permitted on designated roads, trails, or areas only. This subsection does not apply to Department authorized vehicles or law enforcement, fire response, or other emergency vehicles.",
+     "Restrict_5": "Target or clay bird shooting permitted in designated areas only.",
+     "Restrict_6": "Closed to discharge of rifled firearms.",
+     "Restrict_7": "Open to all hunting as permitted under R12-4-304 and R12-4-318.",
+     "Restrict_8": " ",
+     "Restrict_9": " ",
+     "WLDLF_NAME": "Arlington Wildlife Area"
+    }
+   ],
+   "service": "BuckeyeHunting",
+   "typef": "",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/BuckeyeHunting/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "Catalina3DParkBound_1-12-15",
+   "sample": [
+    {
+     "NAME": "Catalina State Park"
+    }
+   ],
+   "service": "Catalina3DParkBound_1-12-15",
+   "typef": "",
+   "url": "https://services2.arcgis.com/gdcQ6sUWKP8qwBmV/ArcGIS/rest/services/Catalina3DParkBound_1-12-15/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "LitchfieldPark_LukeAFBVicinity",
+   "sample": [
+    {
+     "NAME": "Luke Air Force Base Vicinity"
+    }
+   ],
+   "service": "LitchfieldPark_LukeAFBVicinity",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/LitchfieldPark_LukeAFBVicinity/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Bird_Area",
+   "count": 37,
+   "fields": [
+    "MasterName",
+    "PropertyType",
+    "Description",
+    "Directions",
+    "Access_Description",
+    "Map_URL",
+    "Bird_Area",
+    "Boating",
+    "Fishing",
+    "Hiking",
+    "Amphibians",
+    "Reptiles",
+    "Mammals",
+    "Fish",
+    "Fires",
+    "Firewood",
+    "Camping",
+    "date_updated",
+    "hunting"
+   ],
+   "known": true,
+   "layer": "Wildlife Areas",
+   "sample": [
+    {
+     "Bird_Area": "No",
+     "Boating": "Yes",
+     "Fishing": "Yes",
+     "Hiking": "Yes",
+     "MasterName": "Alamo Wildlife Area",
+     "PropertyType": "WA"
+    },
+    {
+     "Amphibians": "No",
+     "Boating": "No",
+     "Description": "The Allen Severson Memorial Wildlife Area was created in cooperation with the Forest Service, City of Show Low and the Department. Allen Severson consists of two small artificial marshes including Pintail Lake and South Marsh. Pintail consists of 3 ponds",
+     "Fishing": "No",
+     "Hiking": "Yes",
+     "MasterName": "Allen Severson Memorial Wildlife Area",
+     "PropertyType": "Wildlife Area",
+     "Reptiles": "Yes"
+    },
+    {
+     "Access_Description": "Access to Aravaipa Canyon Wilderness Area is by permit only, available through the Safford Office of the Bureau of Land Management.",
+     "Bird_Area": "No",
+     "Hiking": "Yes",
+     "MasterName": "Aravaipa Canyon Wildlife Area",
+     "PropertyType": "WA"
+    }
+   ],
+   "service": "Wildlife_Areas",
+   "typef": "PropertyType",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Wildlife_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AFFIL_PARK",
+   "count": 31,
+   "fields": [
+    "AFFIL_PARK",
+    "FIRST_BOUN",
+    "OWN",
+    "NAME"
+   ],
+   "known": true,
+   "layer": "AZ_State_Parks_Boundary",
+   "sample": [
+    {
+     "AFFIL_PARK": "Alamo Lake State Park",
+     "FIRST_BOUN": "PLSS description snapped onto BLM GCDB Framework",
+     "NAME": "Alamo Lake SP",
+     "OWN": "N"
+    },
+    {
+     "AFFIL_PARK": "Boyce Thompson Arboretum State Park",
+     "FIRST_BOUN": " ",
+     "NAME": "Boyce Thompson Arboretum SP",
+     "OWN": "N"
+    },
+    {
+     "AFFIL_PARK": "Buckskin Mountain State Park",
+     "FIRST_BOUN": "PLSS description snapped onto BLM GCDB Framework",
+     "NAME": "Buckskin Mountain SP",
+     "OWN": "N"
+    }
+   ],
+   "service": "AZ_State_Parks_Boundary",
+   "typef": "",
+   "url": "https://services6.arcgis.com/clPWQMwZfdWn4MQZ/ArcGIS/rest/services/AZ_State_Parks_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Prop_name",
+   "count": 6,
+   "fields": [
+    "Prop_name",
+    "Prop_type",
+    "city",
+    "hours",
+    "hiking",
+    "url"
+   ],
+   "known": true,
+   "layer": "Hatcheries_Poly",
+   "sample": [
+    {
+     "Prop_name": "Bubbling Ponds Hatchery",
+     "Prop_type": "Hatchery",
+     "city": "Cottonwood",
+     "hours": "7:30 a.m. - 3:30 p.m.",
+     "url": "https://www.azgfd.com/fishing/hatcheries/bubblingponds/"
+    },
+    {
+     "Prop_name": "Canyon Creek Hatchery",
+     "Prop_type": "Hatchery",
+     "city": "Star Valley",
+     "hours": "7:30 a.m. - 3:30 p.m.",
+     "url": "https://www.azgfd.com/fishing/hatcheries/canyoncreek/"
+    },
+    {
+     "Prop_name": "Page Springs Hatchery",
+     "Prop_type": "Hatchery",
+     "city": "Cottonwood",
+     "hours": "8 a.m. - 4 p.m.",
+     "url": "https://www.azgfd.com/wildlife/viewing/wheretogo/pagesprings/"
+    }
+   ],
+   "service": "Hatchery_Polys",
+   "typef": "Prop_type",
+   "url": "https://services2.arcgis.com/os1CphwIyxBDDUGn/arcgis/rest/services/Hatchery_Polys/FeatureServer/0"
+  }
+ ],
+ "st": "AZ"
+}

@@ -1,0 +1,2224 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 56659,
+   "fields": [
+    "MAPDATE",
+    "AV_LEGEND",
+    "NDDB_FLG",
+    "Type"
+   ],
+   "known": false,
+   "layer": "Forested_NDDB_areas",
+   "sample": [
+    {
+     "AV_LEGEND": "NDDB Area",
+     "MAPDATE": "June 2020",
+     "NDDB_FLG": "Y",
+     "Type": "Deciduous Forest"
+    },
+    {
+     "AV_LEGEND": "NDDB Area",
+     "MAPDATE": "June 2020",
+     "NDDB_FLG": "Y",
+     "Type": "Deciduous Forest"
+    },
+    {
+     "AV_LEGEND": "NDDB Area",
+     "MAPDATE": "June 2020",
+     "NDDB_FLG": "Y",
+     "Type": "Deciduous Forest"
+    }
+   ],
+   "service": "Forested_NDDB_areas",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Forested_NDDB_areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 56659,
+   "fields": [
+    "MAPDATE",
+    "AV_LEGEND",
+    "NDDB_FLG",
+    "Type"
+   ],
+   "known": false,
+   "layer": "Forested_NDDB_areas",
+   "sample": [
+    {
+     "AV_LEGEND": "NDDB Area",
+     "MAPDATE": "June 2020",
+     "NDDB_FLG": "Y",
+     "Type": "Deciduous Forest"
+    },
+    {
+     "AV_LEGEND": "NDDB Area",
+     "MAPDATE": "June 2020",
+     "NDDB_FLG": "Y",
+     "Type": "Deciduous Forest"
+    },
+    {
+     "AV_LEGEND": "NDDB Area",
+     "MAPDATE": "June 2020",
+     "NDDB_FLG": "Y",
+     "Type": "Deciduous Forest"
+    }
+   ],
+   "service": "Forested_NDDB_areas",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Forested_NDDB_areas/FeatureServer/0"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 23595,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Restore Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Restore"
+    },
+    {
+     "COA": "Restore"
+    },
+    {
+     "COA": "Restore"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/7"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 23595,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Restore Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Restore"
+    },
+    {
+     "COA": "Restore"
+    },
+    {
+     "COA": "Restore"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/7"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 21176,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Protect Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Protect"
+    },
+    {
+     "COA": "Protect"
+    },
+    {
+     "COA": "Protect"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/1"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 21176,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Protect Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Protect"
+    },
+    {
+     "COA": "Protect"
+    },
+    {
+     "COA": "Protect"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/1"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 19882,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Manage Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Manage"
+    },
+    {
+     "COA": "Manage"
+    },
+    {
+     "COA": "Manage"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/3"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 19882,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Manage Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Manage"
+    },
+    {
+     "COA": "Manage"
+    },
+    {
+     "COA": "Manage"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/3"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 12663,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Connect Conversation Oppotunity 2025",
+   "sample": [
+    {
+     "COA": "Connect"
+    },
+    {
+     "COA": "Connect"
+    },
+    {
+     "COA": "Connect"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/5"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 12663,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Connect Conversation Oppotunity 2025",
+   "sample": [
+    {
+     "COA": "Connect"
+    },
+    {
+     "COA": "Connect"
+    },
+    {
+     "COA": "Connect"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/5"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 11979,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Research Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Research and Monitor"
+    },
+    {
+     "COA": "Research and Monitor"
+    },
+    {
+     "COA": "Research and Monitor"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/6"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 11979,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Research Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Research and Monitor"
+    },
+    {
+     "COA": "Research and Monitor"
+    },
+    {
+     "COA": "Research and Monitor"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/6"
+  },
+  {
+   "agency": "CT Department of Energy & Environmental Protection",
+   "area": "",
+   "count": 9702,
+   "fields": [],
+   "known": false,
+   "layer": "Forestland_Habitat",
+   "sample": [
+    {
+     "Id": 1,
+     "OBJECTID": 1,
+     "Shape_Leng": 842.952753258,
+     "Shape__Area": 24946.14923095703,
+     "Shape__Length": 842.9528218195803,
+     "gridcode": 1
+    },
+    {
+     "Id": 2,
+     "OBJECTID": 2,
+     "Shape_Leng": 377.287571943,
+     "Shape__Area": 6846.634216308594,
+     "Shape__Length": 377.2872038788701,
+     "gridcode": 1
+    },
+    {
+     "Id": 3,
+     "OBJECTID": 3,
+     "Shape_Leng": 565.885467732,
+     "Shape__Area": 13654.0068359375,
+     "Shape__Length": 565.8852894572843,
+     "gridcode": 1
+    }
+   ],
+   "service": "Forestland_Habitat",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Forestland_Habitat/FeatureServer/0"
+  },
+  {
+   "agency": "CT Department of Energy & Environmental Protection",
+   "area": "",
+   "count": 9702,
+   "fields": [],
+   "known": false,
+   "layer": "Forestland_Habitat",
+   "sample": [
+    {
+     "Id": 1,
+     "OBJECTID": 1,
+     "Shape_Leng": 842.952753258,
+     "Shape__Area": 24946.14923095703,
+     "Shape__Length": 842.9528218195803,
+     "gridcode": 1
+    },
+    {
+     "Id": 2,
+     "OBJECTID": 2,
+     "Shape_Leng": 377.287571943,
+     "Shape__Area": 6846.634216308594,
+     "Shape__Length": 377.2872038788701,
+     "gridcode": 1
+    },
+    {
+     "Id": 3,
+     "OBJECTID": 3,
+     "Shape_Leng": 565.885467732,
+     "Shape__Area": 13654.0068359375,
+     "Shape__Length": 565.8852894572843,
+     "gridcode": 1
+    }
+   ],
+   "service": "Forestland_Habitat",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Forestland_Habitat/FeatureServer/0"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 2289,
+   "fields": [
+    "DECODE",
+    "AV_LEGEND",
+    "IMS_LEGEND",
+    "SHEET_NO",
+    "SHEET_NAME",
+    "SHEET_DATE",
+    "SCALE",
+    "STATE"
+   ],
+   "known": false,
+   "layer": "Topo Survey Sheet 1880s Wetland",
+   "sample": [
+    {
+     "AV_LEGEND": "marsh/wetlands",
+     "DECODE": "marsh/wetlands",
+     "IMS_LEGEND": "marsh/wetlands",
+     "SCALE": "10000",
+     "SHEET_DATE": "1885-1886",
+     "SHEET_NAME": "Norwalk River to Holly's Point",
+     "SHEET_NO": "1737",
+     "STATE": "CT"
+    },
+    {
+     "AV_LEGEND": "marsh/wetlands",
+     "DECODE": "marsh/wetlands",
+     "IMS_LEGEND": "marsh/wetlands",
+     "SCALE": "10000",
+     "SHEET_DATE": "1885-1886",
+     "SHEET_NAME": "Norwalk River to Holly's Point",
+     "SHEET_NO": "1737",
+     "STATE": "CT"
+    },
+    {
+     "AV_LEGEND": "marsh/wetlands",
+     "DECODE": "marsh/wetlands",
+     "IMS_LEGEND": "marsh/wetlands",
+     "SCALE": "10000",
+     "SHEET_DATE": "1885-1886",
+     "SHEET_NAME": "Norwalk River to Holly's Point",
+     "SHEET_NO": "1737",
+     "STATE": "CT"
+    }
+   ],
+   "service": "Connecticut_Historic_ShoreLine_Wetlands",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_Historic_ShoreLine_Wetlands/FeatureServer/1"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 2289,
+   "fields": [
+    "DECODE",
+    "AV_LEGEND",
+    "IMS_LEGEND",
+    "SHEET_NO",
+    "SHEET_NAME",
+    "SHEET_DATE",
+    "SCALE",
+    "STATE"
+   ],
+   "known": false,
+   "layer": "Topo Survey Sheet 1880s Wetland",
+   "sample": [
+    {
+     "AV_LEGEND": "marsh/wetlands",
+     "DECODE": "marsh/wetlands",
+     "IMS_LEGEND": "marsh/wetlands",
+     "SCALE": "10000",
+     "SHEET_DATE": "1885-1886",
+     "SHEET_NAME": "Norwalk River to Holly's Point",
+     "SHEET_NO": "1737",
+     "STATE": "CT"
+    },
+    {
+     "AV_LEGEND": "marsh/wetlands",
+     "DECODE": "marsh/wetlands",
+     "IMS_LEGEND": "marsh/wetlands",
+     "SCALE": "10000",
+     "SHEET_DATE": "1885-1886",
+     "SHEET_NAME": "Norwalk River to Holly's Point",
+     "SHEET_NO": "1737",
+     "STATE": "CT"
+    },
+    {
+     "AV_LEGEND": "marsh/wetlands",
+     "DECODE": "marsh/wetlands",
+     "IMS_LEGEND": "marsh/wetlands",
+     "SCALE": "10000",
+     "SHEET_DATE": "1885-1886",
+     "SHEET_NAME": "Norwalk River to Holly's Point",
+     "SHEET_NO": "1737",
+     "STATE": "CT"
+    }
+   ],
+   "service": "Connecticut_Historic_ShoreLine_Wetlands",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_Historic_ShoreLine_Wetlands/FeatureServer/1"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 1743,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Partner Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Partner"
+    },
+    {
+     "COA": "Partner"
+    },
+    {
+     "COA": "Partner"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/2"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 1743,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Partner Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Partner"
+    },
+    {
+     "COA": "Partner"
+    },
+    {
+     "COA": "Partner"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/2"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 1612,
+   "fields": [
+    "JURISDICTION",
+    "BED_NAME"
+   ],
+   "known": false,
+   "layer": "Shellfish Bed Managed Polygon",
+   "sample": [
+    {
+     "BED_NAME": "Fairfield Natural Bed (State)",
+     "JURISDICTION": "State of Connecticut"
+    },
+    {
+     "BED_NAME": "Bridgeport Natural Bed (State)",
+     "JURISDICTION": "State of Connecticut"
+    },
+    {
+     "BED_NAME": "Fish Island Natural Bed (State)",
+     "JURISDICTION": "State of Connecticut"
+    }
+   ],
+   "service": "Shellfish_Beds_Managed_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Shellfish_Beds_Managed_Set/FeatureServer/1"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 1612,
+   "fields": [
+    "JURISDICTION",
+    "BED_NAME"
+   ],
+   "known": false,
+   "layer": "Shellfish Bed Managed Polygon",
+   "sample": [
+    {
+     "BED_NAME": "Fairfield Natural Bed (State)",
+     "JURISDICTION": "State of Connecticut"
+    },
+    {
+     "BED_NAME": "Bridgeport Natural Bed (State)",
+     "JURISDICTION": "State of Connecticut"
+    },
+    {
+     "BED_NAME": "Fish Island Natural Bed (State)",
+     "JURISDICTION": "State of Connecticut"
+    }
+   ],
+   "service": "Shellfish_Beds_Managed_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Shellfish_Beds_Managed_Set/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 908,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "TRACTCE",
+    "BLKGRPCE",
+    "GEOID",
+    "GEOIDFQ",
+    "NAMELSAD",
+    "MTFCC",
+    "FUNCSTAT",
+    "INTPTLAT",
+    "INTPTLON"
+   ],
+   "known": false,
+   "layer": "BGsselection_ExportFeatures",
+   "sample": [
+    {
+     "BLKGRPCE": "2",
+     "COUNTYFP": "140",
+     "FUNCSTAT": "S",
+     "GEOID": "091403528002",
+     "GEOIDFQ": "1500000US091403528002",
+     "INTPTLAT": "+41.5259813",
+     "INTPTLON": "-073.0165540",
+     "MTFCC": "G5030",
+     "NAMELSAD": "Block Group 2",
+     "STATEFP": "09",
+     "TRACTCE": "352800"
+    },
+    {
+     "BLKGRPCE": "3",
+     "COUNTYFP": "170",
+     "FUNCSTAT": "S",
+     "GEOID": "091701754003",
+     "GEOIDFQ": "1500000US091701754003",
+     "INTPTLAT": "+41.4578852",
+     "INTPTLON": "-072.8294428",
+     "MTFCC": "G5030",
+     "NAMELSAD": "Block Group 3",
+     "STATEFP": "09",
+     "TRACTCE": "175400"
+    },
+    {
+     "BLKGRPCE": "3",
+     "COUNTYFP": "110",
+     "FUNCSTAT": "S",
+     "GEOID": "091104165003",
+     "GEOIDFQ": "1500000US091104165003",
+     "INTPTLAT": "+41.6818273",
+     "INTPTLON": "-072.8148333",
+     "MTFCC": "G5030",
+     "NAMELSAD": "Block Group 3",
+     "STATEFP": "09",
+     "TRACTCE": "416500"
+    }
+   ],
+   "service": "EligibleBlocks_Forestry_20241108",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/EligibleBlocks_Forestry_20241108/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 908,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "TRACTCE",
+    "BLKGRPCE",
+    "GEOID",
+    "GEOIDFQ",
+    "NAMELSAD",
+    "MTFCC",
+    "FUNCSTAT",
+    "INTPTLAT",
+    "INTPTLON"
+   ],
+   "known": false,
+   "layer": "BGsselection_ExportFeatures",
+   "sample": [
+    {
+     "BLKGRPCE": "2",
+     "COUNTYFP": "140",
+     "FUNCSTAT": "S",
+     "GEOID": "091403528002",
+     "GEOIDFQ": "1500000US091403528002",
+     "INTPTLAT": "+41.5259813",
+     "INTPTLON": "-073.0165540",
+     "MTFCC": "G5030",
+     "NAMELSAD": "Block Group 2",
+     "STATEFP": "09",
+     "TRACTCE": "352800"
+    },
+    {
+     "BLKGRPCE": "3",
+     "COUNTYFP": "170",
+     "FUNCSTAT": "S",
+     "GEOID": "091701754003",
+     "GEOIDFQ": "1500000US091701754003",
+     "INTPTLAT": "+41.4578852",
+     "INTPTLON": "-072.8294428",
+     "MTFCC": "G5030",
+     "NAMELSAD": "Block Group 3",
+     "STATEFP": "09",
+     "TRACTCE": "175400"
+    },
+    {
+     "BLKGRPCE": "3",
+     "COUNTYFP": "110",
+     "FUNCSTAT": "S",
+     "GEOID": "091104165003",
+     "GEOIDFQ": "1500000US091104165003",
+     "INTPTLAT": "+41.6818273",
+     "INTPTLON": "-072.8148333",
+     "MTFCC": "G5030",
+     "NAMELSAD": "Block Group 3",
+     "STATEFP": "09",
+     "TRACTCE": "416500"
+    }
+   ],
+   "service": "EligibleBlocks_Forestry_20241108",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/EligibleBlocks_Forestry_20241108/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 691,
+   "fields": [
+    "AV_LEGEND",
+    "PROPERTY"
+   ],
+   "known": false,
+   "layer": "State Forest",
+   "sample": [
+    {
+     "AV_LEGEND": "State Forest",
+     "PROPERTY": "Algonquin State Forest"
+    },
+    {
+     "AV_LEGEND": "State Forest",
+     "PROPERTY": "Algonquin State Forest"
+    },
+    {
+     "AV_LEGEND": "State Forest",
+     "PROPERTY": "Algonquin State Forest"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 691,
+   "fields": [
+    "AV_LEGEND",
+    "PROPERTY"
+   ],
+   "known": false,
+   "layer": "State Forest",
+   "sample": [
+    {
+     "AV_LEGEND": "State Forest",
+     "PROPERTY": "Algonquin State Forest"
+    },
+    {
+     "AV_LEGEND": "State Forest",
+     "PROPERTY": "Algonquin State Forest"
+    },
+    {
+     "AV_LEGEND": "State Forest",
+     "PROPERTY": "Algonquin State Forest"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 599,
+   "fields": [
+    "TOWN",
+    "select_species",
+    "if_present_describe_damage"
+   ],
+   "known": false,
+   "layer": "Wildlife Public Species Damages per Town",
+   "sample": [
+    {
+     "TOWN": "ashford",
+     "if_present_describe_damage": "birdfeeder",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "ashford",
+     "if_present_describe_damage": "Poultry",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "ashford",
+     "if_present_describe_damage": "vehicle",
+     "select_species": "Bear"
+    }
+   ],
+   "service": "Wildlife_Public_Species_Damages_per_Town",
+   "typef": "if_present_describe_damage",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Public_Species_Damages_per_Town/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 599,
+   "fields": [
+    "TOWN",
+    "select_species",
+    "if_present_describe_damage"
+   ],
+   "known": false,
+   "layer": "Wildlife Public Species Damages per Town",
+   "sample": [
+    {
+     "TOWN": "ashford",
+     "if_present_describe_damage": "birdfeeder",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "ashford",
+     "if_present_describe_damage": "Poultry",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "ashford",
+     "if_present_describe_damage": "vehicle",
+     "select_species": "Bear"
+    }
+   ],
+   "service": "Wildlife_Public_Species_Damages_per_Town",
+   "typef": "if_present_describe_damage",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Public_Species_Damages_per_Town/FeatureServer/0"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "MGMT_AREA",
+   "count": 552,
+   "fields": [
+    "FISH_TYPE",
+    "MGMT_AREA",
+    "COMMENT",
+    "STREAM",
+    "LAKE"
+   ],
+   "known": false,
+   "layer": "Fisheries Management Area Polygon",
+   "sample": [
+    {
+     "COMMENT": "Colebrook River Lake",
+     "FISH_TYPE": "Bass",
+     "LAKE": "Colebrook River Lake",
+     "MGMT_AREA": "Bass Management Lake",
+     "STREAM": "West Branch Farmington River"
+    },
+    {
+     "COMMENT": "Washining Lake",
+     "FISH_TYPE": "Trout",
+     "LAKE": "Washining Lake",
+     "MGMT_AREA": "Trophy Trout Lake",
+     "STREAM": " "
+    },
+    {
+     "COMMENT": "From Whiting River to confluence with Housatonic River.",
+     "FISH_TYPE": "Trout",
+     "LAKE": " ",
+     "MGMT_AREA": "Wild Trout Management Area (Class 3)",
+     "STREAM": "Blackberry River"
+    }
+   ],
+   "service": "Fisheries_management_Areas",
+   "typef": "FISH_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Fisheries_management_Areas/FeatureServer/1"
+  },
+  {
+   "agency": "CT DEEP",
+   "area": "MGMT_AREA",
+   "count": 552,
+   "fields": [
+    "FISH_TYPE",
+    "MGMT_AREA",
+    "COMMENT",
+    "STREAM",
+    "LAKE"
+   ],
+   "known": false,
+   "layer": "Fisheries Management Area Polygon",
+   "sample": [
+    {
+     "COMMENT": "Colebrook River Lake",
+     "FISH_TYPE": "Bass",
+     "LAKE": "Colebrook River Lake",
+     "MGMT_AREA": "Bass Management Lake",
+     "STREAM": "West Branch Farmington River"
+    },
+    {
+     "COMMENT": "Washining Lake",
+     "FISH_TYPE": "Trout",
+     "LAKE": "Washining Lake",
+     "MGMT_AREA": "Trophy Trout Lake",
+     "STREAM": " "
+    },
+    {
+     "COMMENT": "From Whiting River to confluence with Housatonic River.",
+     "FISH_TYPE": "Trout",
+     "LAKE": " ",
+     "MGMT_AREA": "Wild Trout Management Area (Class 3)",
+     "STREAM": "Blackberry River"
+    }
+   ],
+   "service": "Fisheries_management_Areas",
+   "typef": "FISH_TYPE",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Fisheries_management_Areas/FeatureServer/1"
+  },
+  {
+   "agency": "CTDEEP, Department of Agriculture/Bureau of Aquaculture",
+   "area": "AREANAME",
+   "count": 432,
+   "fields": [
+    "AV_LEGEND",
+    "CLASS",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "Shellfish Area Class Poly",
+   "sample": [
+    {
+     "AREANAME": " ",
+     "AV_LEGEND": "P",
+     "CLASS": "Prohibited"
+    },
+    {
+     "AREANAME": " ",
+     "AV_LEGEND": "P",
+     "CLASS": "Prohibited"
+    },
+    {
+     "AREANAME": " ",
+     "AV_LEGEND": "P",
+     "CLASS": "Prohibited"
+    }
+   ],
+   "service": "Shellfish_Area_Classification_Set",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Shellfish_Area_Classification_Set/FeatureServer/4"
+  },
+  {
+   "agency": "CTDEEP, Department of Agriculture/Bureau of Aquaculture",
+   "area": "AREANAME",
+   "count": 432,
+   "fields": [
+    "AV_LEGEND",
+    "CLASS",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "Shellfish Area Class Poly",
+   "sample": [
+    {
+     "AREANAME": " ",
+     "AV_LEGEND": "P",
+     "CLASS": "Prohibited"
+    },
+    {
+     "AREANAME": " ",
+     "AV_LEGEND": "P",
+     "CLASS": "Prohibited"
+    },
+    {
+     "AREANAME": " ",
+     "AV_LEGEND": "P",
+     "CLASS": "Prohibited"
+    }
+   ],
+   "service": "Shellfish_Area_Classification_Set",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Shellfish_Area_Classification_Set/FeatureServer/4"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 424,
+   "fields": [
+    "SHELLFISH",
+    "OYSTER",
+    "HARDCLAM",
+    "SOFTCLAM"
+   ],
+   "known": false,
+   "layer": "Shellfish",
+   "sample": [
+    {
+     "HARDCLAM": "False",
+     "OYSTER": "True",
+     "SHELLFISH": "Oyster",
+     "SOFTCLAM": "False"
+    },
+    {
+     "HARDCLAM": "False",
+     "OYSTER": "True",
+     "SHELLFISH": "Oyster",
+     "SOFTCLAM": "False"
+    },
+    {
+     "HARDCLAM": "False",
+     "OYSTER": "True",
+     "SHELLFISH": "Oyster",
+     "SOFTCLAM": "False"
+    }
+   ],
+   "service": "Shellfish_Hardclam_Softclam_Oysters",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Shellfish_Hardclam_Softclam_Oysters/FeatureServer/0"
+  },
+  {
+   "agency": "CTDEEP",
+   "area": "",
+   "count": 424,
+   "fields": [
+    "SHELLFISH",
+    "OYSTER",
+    "HARDCLAM",
+    "SOFTCLAM"
+   ],
+   "known": false,
+   "layer": "Shellfish",
+   "sample": [
+    {
+     "HARDCLAM": "False",
+     "OYSTER": "True",
+     "SHELLFISH": "Oyster",
+     "SOFTCLAM": "False"
+    },
+    {
+     "HARDCLAM": "False",
+     "OYSTER": "True",
+     "SHELLFISH": "Oyster",
+     "SOFTCLAM": "False"
+    },
+    {
+     "HARDCLAM": "False",
+     "OYSTER": "True",
+     "SHELLFISH": "Oyster",
+     "SOFTCLAM": "False"
+    }
+   ],
+   "service": "Shellfish_Hardclam_Softclam_Oysters",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Shellfish_Hardclam_Softclam_Oysters/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 343,
+   "fields": [
+    "TOWN",
+    "select_species"
+   ],
+   "known": false,
+   "layer": "Wildlife Public Sightings per Town",
+   "sample": [
+    {
+     "TOWN": "Andover",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "Ansonia",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "Ashford",
+     "select_species": "Bear"
+    }
+   ],
+   "service": "Wildlife_Public_Sightings_per_Town",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Public_Sightings_per_Town/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 343,
+   "fields": [
+    "TOWN",
+    "select_species"
+   ],
+   "known": false,
+   "layer": "Wildlife Public Sightings per Town",
+   "sample": [
+    {
+     "TOWN": "Andover",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "Ansonia",
+     "select_species": "Bear"
+    },
+    {
+     "TOWN": "Ashford",
+     "select_species": "Bear"
+    }
+   ],
+   "service": "Wildlife_Public_Sightings_per_Town",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Public_Sightings_per_Town/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 314,
+   "fields": [
+    "TYPE_",
+    "FISH_NAMES",
+    "BKF",
+    "PGY",
+    "STB",
+    "BLF",
+    "WFL",
+    "WKF",
+    "HSH",
+    "SFL",
+    "BON",
+    "BSB",
+    "VERSION",
+    "ALB",
+    "GeoProcess",
+    "Creator",
+    "SEASON",
+    "SPRING",
+    "SUMMER",
+    "FALL"
+   ],
+   "known": false,
+   "layer": "Fishing_Areas",
+   "sample": [
+    {
+     "BKF": "N",
+     "BLF": "N",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Summer Flounder (Fluke)",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "Y",
+     "STB": "N",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "N",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Bluefish, Striped Bass",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "N",
+     "STB": "Y",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "Y",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "Y",
+     "FISH_NAMES": "Bluefish, Blackfish (Tautog), Porgy (Scup), Black Sea Bass",
+     "HSH": "N",
+     "PGY": "Y",
+     "SFL": "N",
+     "STB": "N",
+     "WFL": "N",
+     "WKF": "N"
+    }
+   ],
+   "service": "Fishing_Areas_App",
+   "typef": "TYPE_",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Fishing_Areas_App/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 314,
+   "fields": [
+    "FISH_NAMES",
+    "SEASON",
+    "SPRING",
+    "SUMMER",
+    "FALL",
+    "WINTER"
+   ],
+   "known": false,
+   "layer": "Fishing_Areas",
+   "sample": [
+    {
+     "FALL": "N",
+     "FISH_NAMES": "Summer Flounder (Fluke)",
+     "SPRING": "N",
+     "SUMMER": "N",
+     "WINTER": "N"
+    },
+    {
+     "FALL": "Y",
+     "FISH_NAMES": "Bluefish, Striped Bass",
+     "SEASON": "Fall",
+     "SPRING": "N",
+     "SUMMER": "N",
+     "WINTER": "N"
+    },
+    {
+     "FALL": "N",
+     "FISH_NAMES": "Bluefish, Blackfish (Tautog), Porgy (Scup), Black Sea Bass",
+     "SPRING": "N",
+     "SUMMER": "N",
+     "WINTER": "N"
+    }
+   ],
+   "service": "Fishing_Areas_App_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Fishing_Areas_App_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 314,
+   "fields": [
+    "TYPE_",
+    "FISH_NAMES",
+    "BKF",
+    "PGY",
+    "STB",
+    "BLF",
+    "WFL",
+    "WKF",
+    "HSH",
+    "SFL",
+    "BON",
+    "BSB",
+    "ALB",
+    "SEASON",
+    "SPRING",
+    "SUMMER",
+    "FALL",
+    "WINTER",
+    "MODE",
+    "TIME_PERIO"
+   ],
+   "known": false,
+   "layer": "RecreationalFishingActivity",
+   "sample": [
+    {
+     "BKF": "N",
+     "BLF": "N",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Summer Flounder (Fluke)",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "Y",
+     "STB": "N",
+     "TYPE_": " ",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "N",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Bluefish, Striped Bass",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "N",
+     "STB": "Y",
+     "TYPE_": " ",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "Y",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "Y",
+     "FISH_NAMES": "Bluefish, Blackfish (Tautog), Porgy (Scup), Black Sea Bass",
+     "HSH": "N",
+     "PGY": "Y",
+     "SFL": "N",
+     "STB": "N",
+     "TYPE_": " ",
+     "WFL": "N",
+     "WKF": "N"
+    }
+   ],
+   "service": "RecreationalFishingActivity",
+   "typef": "TYPE_",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/RecreationalFishingActivity/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 314,
+   "fields": [
+    "TYPE_",
+    "FISH_NAMES",
+    "BKF",
+    "PGY",
+    "STB",
+    "BLF",
+    "WFL",
+    "WKF",
+    "HSH",
+    "SFL",
+    "BON",
+    "BSB",
+    "VERSION",
+    "ALB",
+    "GeoProcess",
+    "Creator",
+    "SEASON",
+    "SPRING",
+    "SUMMER",
+    "FALL"
+   ],
+   "known": false,
+   "layer": "Fishing_Areas",
+   "sample": [
+    {
+     "BKF": "N",
+     "BLF": "N",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Summer Flounder (Fluke)",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "Y",
+     "STB": "N",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "N",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Bluefish, Striped Bass",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "N",
+     "STB": "Y",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "Y",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "Y",
+     "FISH_NAMES": "Bluefish, Blackfish (Tautog), Porgy (Scup), Black Sea Bass",
+     "HSH": "N",
+     "PGY": "Y",
+     "SFL": "N",
+     "STB": "N",
+     "WFL": "N",
+     "WKF": "N"
+    }
+   ],
+   "service": "Fishing_Areas_App",
+   "typef": "TYPE_",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Fishing_Areas_App/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 314,
+   "fields": [
+    "FISH_NAMES",
+    "SEASON",
+    "SPRING",
+    "SUMMER",
+    "FALL",
+    "WINTER"
+   ],
+   "known": false,
+   "layer": "Fishing_Areas",
+   "sample": [
+    {
+     "FALL": "N",
+     "FISH_NAMES": "Summer Flounder (Fluke)",
+     "SPRING": "N",
+     "SUMMER": "N",
+     "WINTER": "N"
+    },
+    {
+     "FALL": "Y",
+     "FISH_NAMES": "Bluefish, Striped Bass",
+     "SEASON": "Fall",
+     "SPRING": "N",
+     "SUMMER": "N",
+     "WINTER": "N"
+    },
+    {
+     "FALL": "N",
+     "FISH_NAMES": "Bluefish, Blackfish (Tautog), Porgy (Scup), Black Sea Bass",
+     "SPRING": "N",
+     "SUMMER": "N",
+     "WINTER": "N"
+    }
+   ],
+   "service": "Fishing_Areas_App_view",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Fishing_Areas_App_view/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 314,
+   "fields": [
+    "TYPE_",
+    "FISH_NAMES",
+    "BKF",
+    "PGY",
+    "STB",
+    "BLF",
+    "WFL",
+    "WKF",
+    "HSH",
+    "SFL",
+    "BON",
+    "BSB",
+    "ALB",
+    "SEASON",
+    "SPRING",
+    "SUMMER",
+    "FALL",
+    "WINTER",
+    "MODE",
+    "TIME_PERIO"
+   ],
+   "known": false,
+   "layer": "RecreationalFishingActivity",
+   "sample": [
+    {
+     "BKF": "N",
+     "BLF": "N",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Summer Flounder (Fluke)",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "Y",
+     "STB": "N",
+     "TYPE_": " ",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "N",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "N",
+     "FISH_NAMES": "Bluefish, Striped Bass",
+     "HSH": "N",
+     "PGY": "N",
+     "SFL": "N",
+     "STB": "Y",
+     "TYPE_": " ",
+     "WFL": "N",
+     "WKF": "N"
+    },
+    {
+     "BKF": "Y",
+     "BLF": "Y",
+     "BON": "N",
+     "BSB": "Y",
+     "FISH_NAMES": "Bluefish, Blackfish (Tautog), Porgy (Scup), Black Sea Bass",
+     "HSH": "N",
+     "PGY": "Y",
+     "SFL": "N",
+     "STB": "N",
+     "TYPE_": " ",
+     "WFL": "N",
+     "WKF": "N"
+    }
+   ],
+   "service": "RecreationalFishingActivity",
+   "typef": "TYPE_",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/RecreationalFishingActivity/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 197,
+   "fields": [
+    "AV_LEGEND",
+    "PROPERTY"
+   ],
+   "known": false,
+   "layer": "State Park",
+   "sample": [
+    {
+     "AV_LEGEND": "State Park Scenic Reserve",
+     "PROPERTY": "Above All State Park Scenic Reserve"
+    },
+    {
+     "AV_LEGEND": "State Park Scenic Reserve",
+     "PROPERTY": "Beaver Brook State Park Scenic Reserve"
+    },
+    {
+     "AV_LEGEND": "State Park Scenic Reserve",
+     "PROPERTY": "Beckett Hill State Park Scenic Reserve"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 197,
+   "fields": [
+    "AV_LEGEND",
+    "PROPERTY"
+   ],
+   "known": false,
+   "layer": "State Park",
+   "sample": [
+    {
+     "AV_LEGEND": "State Park Scenic Reserve",
+     "PROPERTY": "Above All State Park Scenic Reserve"
+    },
+    {
+     "AV_LEGEND": "State Park Scenic Reserve",
+     "PROPERTY": "Beaver Brook State Park Scenic Reserve"
+    },
+    {
+     "AV_LEGEND": "State Park Scenic Reserve",
+     "PROPERTY": "Beckett Hill State Park Scenic Reserve"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/8"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 82,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Inform Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Inform"
+    },
+    {
+     "COA": "Inform"
+    },
+    {
+     "COA": "Inform"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/4"
+  },
+  {
+   "agency": "CTDEEP, UCONN",
+   "area": "",
+   "count": 82,
+   "fields": [
+    "COA"
+   ],
+   "known": false,
+   "layer": "Wildlife Action Plan Inform Conservation Opportunity 2025",
+   "sample": [
+    {
+     "COA": "Inform"
+    },
+    {
+     "COA": "Inform"
+    },
+    {
+     "COA": "Inform"
+    }
+   ],
+   "service": "Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Wildlife_Action_Plan_Conservation_Opportunity_Areas_Set/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 28,
+   "fields": [
+    "AV_LEGEND",
+    "PROPERTY"
+   ],
+   "known": false,
+   "layer": "State Park Trail",
+   "sample": [
+    {
+     "AV_LEGEND": "State Park Trail",
+     "PROPERTY": "Airline State Park Trail (North Trail)"
+    },
+    {
+     "AV_LEGEND": "State Park Trail",
+     "PROPERTY": "Airline State Park Trail (Northern Section)"
+    },
+    {
+     "AV_LEGEND": "State Park Trail",
+     "PROPERTY": "Airline State Park Trail (Southern Section)"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "PROPERTY",
+   "count": 28,
+   "fields": [
+    "AV_LEGEND",
+    "PROPERTY"
+   ],
+   "known": false,
+   "layer": "State Park Trail",
+   "sample": [
+    {
+     "AV_LEGEND": "State Park Trail",
+     "PROPERTY": "Airline State Park Trail (North Trail)"
+    },
+    {
+     "AV_LEGEND": "State Park Trail",
+     "PROPERTY": "Airline State Park Trail (Northern Section)"
+    },
+    {
+     "AV_LEGEND": "State Park Trail",
+     "PROPERTY": "Airline State Park Trail (Southern Section)"
+    }
+   ],
+   "service": "CT_Outdoor_Recreation_20160209",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Outdoor_Recreation_20160209/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "COMPART_NO",
+    "STAND_NO",
+    "AGE_CLASS",
+    "SILVICUL_1",
+    "COMMENT"
+   ],
+   "known": false,
+   "layer": "Pachaug_SF_Stands___Recreation_Status",
+   "sample": [
+    {
+     "AGE_CLASS": " ",
+     "COMMENT": "Hodge Pond",
+     "COMPART_NO": "3",
+     "SILVICUL_1": " ",
+     "STAND_NO": " "
+    },
+    {
+     "AGE_CLASS": " ",
+     "COMMENT": "Green Falls Pond",
+     "COMPART_NO": "12",
+     "SILVICUL_1": " ",
+     "STAND_NO": "0"
+    },
+    {
+     "AGE_CLASS": " ",
+     "COMMENT": "Glasgo Pond",
+     "COMPART_NO": " ",
+     "SILVICUL_1": " ",
+     "STAND_NO": " "
+    }
+   ],
+   "service": "Pachaug_SF_Stands___Recreation_Status",
+   "typef": "AGE_CLASS",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Pachaug_SF_Stands___Recreation_Status/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 21,
+   "fields": [
+    "COMPART_NO",
+    "STAND_NO",
+    "AGE_CLASS",
+    "SILVICUL_1",
+    "COMMENT"
+   ],
+   "known": false,
+   "layer": "Pachaug_SF_Stands___Recreation_Status",
+   "sample": [
+    {
+     "AGE_CLASS": " ",
+     "COMMENT": "Hodge Pond",
+     "COMPART_NO": "3",
+     "SILVICUL_1": " ",
+     "STAND_NO": " "
+    },
+    {
+     "AGE_CLASS": " ",
+     "COMMENT": "Green Falls Pond",
+     "COMPART_NO": "12",
+     "SILVICUL_1": " ",
+     "STAND_NO": "0"
+    },
+    {
+     "AGE_CLASS": " ",
+     "COMMENT": "Glasgo Pond",
+     "COMPART_NO": " ",
+     "SILVICUL_1": " ",
+     "STAND_NO": " "
+    }
+   ],
+   "service": "Pachaug_SF_Stands___Recreation_Status",
+   "typef": "AGE_CLASS",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Pachaug_SF_Stands___Recreation_Status/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [],
+   "known": false,
+   "layer": "1985_Forest_Fragmentation",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape__Area": 11530514212.730469,
+     "Shape__Length": 109539975.16730797,
+     "gridcode": 0
+    },
+    {
+     "FID": 2,
+     "Shape__Area": 819600411.7734375,
+     "Shape__Length": 39128837.86760194,
+     "gridcode": 1
+    },
+    {
+     "FID": 3,
+     "Shape__Area": 4761280262.3984375,
+     "Shape__Length": 95169031.05505875,
+     "gridcode": 2
+    }
+   ],
+   "service": "1985_Forest_Fragmentation",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/1985_Forest_Fragmentation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "Class_Name"
+   ],
+   "known": false,
+   "layer": "2015_Forest_Fragmentation",
+   "sample": [
+    {
+     "Class_Name": "Non-forest"
+    },
+    {
+     "Class_Name": "Patch Forest"
+    },
+    {
+     "Class_Name": "Edge Forest"
+    }
+   ],
+   "service": "2015_Forest_Fragmentation",
+   "typef": "Class_Name",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/2015_Forest_Fragmentation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [],
+   "known": false,
+   "layer": "2020_Forest_Action_Plan_Priority_Areas_layered",
+   "sample": [
+    {
+     "Acreage": 490807,
+     "FID": 1,
+     "Shape__Area": 3558378144.5390625,
+     "Shape__Length": 75647563.12280352,
+     "gridcode": 10
+    },
+    {
+     "Acreage": 257037,
+     "FID": 2,
+     "Shape__Area": 1865508253.1640625,
+     "Shape__Length": 32802986.18144623,
+     "gridcode": 20
+    },
+    {
+     "Acreage": 231706,
+     "FID": 3,
+     "Shape__Area": 1682907355.3867188,
+     "Shape__Length": 19086197.55445249,
+     "gridcode": 30
+    }
+   ],
+   "service": "2020_Forest_Action_Plan_Priority_Areas_layered",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/2020_Forest_Action_Plan_Priority_Areas_layered/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [],
+   "known": false,
+   "layer": "1985_Forest_Fragmentation",
+   "sample": [
+    {
+     "FID": 1,
+     "Shape__Area": 11530514212.730469,
+     "Shape__Length": 109539975.16730797,
+     "gridcode": 0
+    },
+    {
+     "FID": 2,
+     "Shape__Area": 819600411.7734375,
+     "Shape__Length": 39128837.86760194,
+     "gridcode": 1
+    },
+    {
+     "FID": 3,
+     "Shape__Area": 4761280262.3984375,
+     "Shape__Length": 95169031.05505875,
+     "gridcode": 2
+    }
+   ],
+   "service": "1985_Forest_Fragmentation",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/1985_Forest_Fragmentation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "Class_Name"
+   ],
+   "known": false,
+   "layer": "2015_Forest_Fragmentation",
+   "sample": [
+    {
+     "Class_Name": "Non-forest"
+    },
+    {
+     "Class_Name": "Patch Forest"
+    },
+    {
+     "Class_Name": "Edge Forest"
+    }
+   ],
+   "service": "2015_Forest_Fragmentation",
+   "typef": "Class_Name",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2015_Forest_Fragmentation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [],
+   "known": false,
+   "layer": "2020_Forest_Action_Plan_Priority_Areas_layered",
+   "sample": [
+    {
+     "Acreage": 490807,
+     "FID": 1,
+     "Shape__Area": 3558378144.5390625,
+     "Shape__Length": 75647563.12280352,
+     "gridcode": 10
+    },
+    {
+     "Acreage": 257037,
+     "FID": 2,
+     "Shape__Area": 1865508253.1640625,
+     "Shape__Length": 32802986.18144623,
+     "gridcode": 20
+    },
+    {
+     "Acreage": 231706,
+     "FID": 3,
+     "Shape__Area": 1682907355.3867188,
+     "Shape__Length": 19086197.55445249,
+     "gridcode": 30
+    }
+   ],
+   "service": "2020_Forest_Action_Plan_Priority_Areas_layered",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2020_Forest_Action_Plan_Priority_Areas_layered/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Class_Name"
+   ],
+   "known": false,
+   "layer": "2015_core_forest",
+   "sample": [
+    {
+     "Class_Name": "Small Core Forest"
+    },
+    {
+     "Class_Name": "Medium Core Forest"
+    },
+    {
+     "Class_Name": "Large Core Forest"
+    }
+   ],
+   "service": "2015_core_forest",
+   "typef": "Class_Name",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/2015_core_forest/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "2015_Forest_Cover",
+   "sample": [
+    {
+     "Type": "Deciduous Forest"
+    },
+    {
+     "Type": "Coniferous Forest"
+    },
+    {
+     "Type": "Forested Wetland"
+    }
+   ],
+   "service": "2015_Forest_Cover",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/2015_Forest_Cover/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "ST",
+    "STATE_NAME",
+    "STATUS",
+    "UPDATED",
+    "FLANAME",
+    "Region"
+   ],
+   "known": false,
+   "layer": "CT_Forest_Legacy_Areas",
+   "sample": [
+    {
+     "FLANAME": "Western Forest Legacy Area",
+     "Region": "NA",
+     "ST": "CT",
+     "STATE_NAME": "Connecticut",
+     "STATUS": "Completed",
+     "UPDATED": "2006"
+    },
+    {
+     "FLANAME": "Eastern Forest Legacy Area",
+     "Region": "NA",
+     "ST": "CT",
+     "STATE_NAME": "Connecticut",
+     "STATUS": "Completed",
+     "UPDATED": "2006"
+    },
+    {
+     "FLANAME": "Eastern Forest Legacy Area",
+     "Region": "NA",
+     "ST": "CT",
+     "STATE_NAME": "Connecticut",
+     "STATUS": "Completed",
+     "UPDATED": "2006"
+    }
+   ],
+   "service": "CT_Forest_Legacy_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/CT_Forest_Legacy_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "Private_forest_in_public_drinking_water_supplies",
+   "sample": [
+    {
+     "Type": "Deciduous Forest"
+    },
+    {
+     "Type": "Coniferous Forest"
+    },
+    {
+     "Type": "Forested Wetland"
+    }
+   ],
+   "service": "Private_forest_in_public_drinking_water_supplies",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Private_forest_in_public_drinking_water_supplies/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Class_Name"
+   ],
+   "known": false,
+   "layer": "2015_core_forest",
+   "sample": [
+    {
+     "Class_Name": "Small Core Forest"
+    },
+    {
+     "Class_Name": "Medium Core Forest"
+    },
+    {
+     "Class_Name": "Large Core Forest"
+    }
+   ],
+   "service": "2015_core_forest",
+   "typef": "Class_Name",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2015_core_forest/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "2015_Forest_Cover",
+   "sample": [
+    {
+     "Type": "Deciduous Forest"
+    },
+    {
+     "Type": "Coniferous Forest"
+    },
+    {
+     "Type": "Forested Wetland"
+    }
+   ],
+   "service": "2015_Forest_Cover",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/2015_Forest_Cover/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "ST",
+    "STATE_NAME",
+    "STATUS",
+    "UPDATED",
+    "FLANAME",
+    "Region"
+   ],
+   "known": false,
+   "layer": "CT_Forest_Legacy_Areas",
+   "sample": [
+    {
+     "FLANAME": "Western Forest Legacy Area",
+     "Region": "NA",
+     "ST": "CT",
+     "STATE_NAME": "Connecticut",
+     "STATUS": "Completed",
+     "UPDATED": "2006"
+    },
+    {
+     "FLANAME": "Eastern Forest Legacy Area",
+     "Region": "NA",
+     "ST": "CT",
+     "STATE_NAME": "Connecticut",
+     "STATUS": "Completed",
+     "UPDATED": "2006"
+    },
+    {
+     "FLANAME": "Eastern Forest Legacy Area",
+     "Region": "NA",
+     "ST": "CT",
+     "STATE_NAME": "Connecticut",
+     "STATUS": "Completed",
+     "UPDATED": "2006"
+    }
+   ],
+   "service": "CT_Forest_Legacy_Areas",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/CT_Forest_Legacy_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "Private_forest_in_public_drinking_water_supplies",
+   "sample": [
+    {
+     "Type": "Deciduous Forest"
+    },
+    {
+     "Type": "Coniferous Forest"
+    },
+    {
+     "Type": "Forested Wetland"
+    }
+   ],
+   "service": "Private_forest_in_public_drinking_water_supplies",
+   "typef": "Type",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Private_forest_in_public_drinking_water_supplies/FeatureServer/0"
+  },
+  {
+   "agency": "USDA, NRCS",
+   "area": "PROPERTY",
+   "count": 491,
+   "fields": [
+    "AV_LEGEND",
+    "IMS_LEGEND",
+    "PROPERTY",
+    "AGNCYFN_CD"
+   ],
+   "known": true,
+   "layer": "DEEP Property",
+   "sample": [
+    {
+     "AGNCYFN_CD": "EFW",
+     "AV_LEGEND": "DEP Owned Waterbody",
+     "IMS_LEGEND": "Other DEP Property",
+     "PROPERTY": "Bashan Lake"
+    },
+    {
+     "AGNCYFN_CD": "EFW",
+     "AV_LEGEND": "DEP Owned Waterbody",
+     "IMS_LEGEND": "Other DEP Property",
+     "PROPERTY": "Beach Pond"
+    },
+    {
+     "AGNCYFN_CD": "EFW",
+     "AV_LEGEND": "DEP Owned Waterbody",
+     "IMS_LEGEND": "Other DEP Property",
+     "PROPERTY": "Beachdale Pond"
+    }
+   ],
+   "service": "Connecticut_DEEP_Property",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/ArcGIS/rest/services/Connecticut_DEEP_Property/FeatureServer/0"
+  },
+  {
+   "agency": "USDA, NRCS",
+   "area": "PROPERTY",
+   "count": 491,
+   "fields": [
+    "AV_LEGEND",
+    "IMS_LEGEND",
+    "PROPERTY",
+    "AGNCYFN_CD"
+   ],
+   "known": true,
+   "layer": "DEEP Property",
+   "sample": [
+    {
+     "AGNCYFN_CD": "EFW",
+     "AV_LEGEND": "DEP Owned Waterbody",
+     "IMS_LEGEND": "Other DEP Property",
+     "PROPERTY": "Bashan Lake"
+    },
+    {
+     "AGNCYFN_CD": "EFW",
+     "AV_LEGEND": "DEP Owned Waterbody",
+     "IMS_LEGEND": "Other DEP Property",
+     "PROPERTY": "Beach Pond"
+    },
+    {
+     "AGNCYFN_CD": "EFW",
+     "AV_LEGEND": "DEP Owned Waterbody",
+     "IMS_LEGEND": "Other DEP Property",
+     "PROPERTY": "Beachdale Pond"
+    }
+   ],
+   "service": "Connecticut_DEEP_Property",
+   "typef": "",
+   "url": "https://services1.arcgis.com/FjPcSmEFuDYlIdKC/arcgis/rest/services/Connecticut_DEEP_Property/FeatureServer/0"
+  }
+ ],
+ "st": "CT"
+}

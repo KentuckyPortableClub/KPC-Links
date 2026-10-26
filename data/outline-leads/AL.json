@@ -1,0 +1,263 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 60,
+   "fields": [
+    "Name",
+    "Ownership",
+    "Source",
+    "Grant",
+    "Comments",
+    "DeedLink",
+    "ShortAcres",
+    "Rec"
+   ],
+   "known": false,
+   "layer": "State Lands Division Tracts",
+   "sample": [
+    {
+     "Comments": "Drawn from ADECA Deed",
+     "DeedLink": "https://conservationgis.alabama.gov/Documents/Deeds/SLD/WeeksBayFoley.pdf",
+     "Grant": " ",
+     "Name": "Weeks Bay Reserve SLD Tract - Foley",
+     "Ownership": "SLD",
+     "ShortAcres": "188",
+     "Source": "Deed"
+    },
+    {
+     "Comments": "Drawn from ADECA Deed",
+     "DeedLink": "https://conservationgis.alabama.gov/Documents/Deeds/SLD/WeeksBaySwift.pdf",
+     "Grant": " ",
+     "Name": "Weeks Bay Reserve SLD Tract - Swift",
+     "Ownership": "SLD",
+     "ShortAcres": "538",
+     "Source": "Deed"
+    },
+    {
+     "Comments": "Drawn from ADECA Deed",
+     "DeedLink": "https://conservationgis.alabama.gov/Documents/Deeds/SLD/WeeksBayDamson.pdf",
+     "Grant": " ",
+     "Name": "Weeks Bay Reserve SLD Tract - Damson",
+     "Ownership": "SLD",
+     "ShortAcres": "373",
+     "Source": "Deed"
+    }
+   ],
+   "service": "StateLands",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateLands/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 53,
+   "fields": [
+    "Name",
+    "Park"
+   ],
+   "known": false,
+   "layer": "Burn_Unit_UTM_06_26_2023",
+   "sample": [
+    {
+     "Name": "1",
+     "Park": "Chewacla"
+    },
+    {
+     "Name": "3",
+     "Park": "DeSoto"
+    },
+    {
+     "Name": "4",
+     "Park": "DeSoto"
+    }
+   ],
+   "service": "State_Park_Burn_Units_UTM_06_26_2023",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/State_Park_Burn_Units_UTM_06_26_2023/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 41,
+   "fields": [
+    "Name",
+    "MapYear",
+    "DrawnBy",
+    "Link",
+    "Link2"
+   ],
+   "known": false,
+   "layer": "Perdido River WMA",
+   "sample": [
+    {
+     "DrawnBy": "ASP",
+     "Link": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2021-2022/2021-2022%20-%20D4-BarbourAPP.pdf",
+     "Link2": "http://www.outdooralabama.com/hunting",
+     "MapYear": "2021-22",
+     "Name": "Barbour County Wildlife Management Area"
+    },
+    {
+     "DrawnBy": "ASP",
+     "Link": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2021-2022/2021-2022%20-%20D1-Black%20WarriorAPP.pdf",
+     "Link2": "http://www.outdooralabama.com/hunting",
+     "MapYear": "2021-22",
+     "Name": "Black Warrior Wildlife Management Area"
+    },
+    {
+     "DrawnBy": "ASP",
+     "Link": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2021-2022/2021-2022%20-%20D4-Blue%20SpringsAPP.pdf",
+     "Link2": "http://www.outdooralabama.com/hunting",
+     "MapYear": "2021-22",
+     "Name": "Blue Spring Wildlife Management Area"
+    }
+   ],
+   "service": "PerdidoCanoe",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PerdidoCanoe/MapServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 5,
+   "fields": [
+    "Name",
+    "Address",
+    "CitySt",
+    "Zip",
+    "PhoneNo"
+   ],
+   "known": false,
+   "layer": "Wildlife and Freshwater Fisheries Division Districts",
+   "sample": [
+    {
+     "Address": "Swan Creek Mgmt. Area, 21453 Harris Station Road",
+     "CitySt": "Tanner, AL",
+     "Name": "DWFF District 1",
+     "PhoneNo": "256-353-2634",
+     "Zip": "35671-3308"
+    },
+    {
+     "Address": "4101 Hwy 21 North",
+     "CitySt": "Jacksonville, AL",
+     "Name": "DWFF District 2",
+     "PhoneNo": "256-435-5422",
+     "Zip": "36265"
+    },
+    {
+     "Address": "P.O. Box 305",
+     "CitySt": "Northport, AL",
+     "Name": "DWFF District 3",
+     "PhoneNo": "205-339-5716",
+     "Zip": "35476-0305"
+    }
+   ],
+   "service": "WFFDistricts",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WFFDistricts/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 42,
+   "fields": [
+    "Name",
+    "MapYear",
+    "DrawnBy",
+    "Link",
+    "Link2"
+   ],
+   "known": true,
+   "layer": "Wildlife Management Area",
+   "sample": [
+    {
+     "DrawnBy": "ASP",
+     "Link": "https://outdooralabama.com/sites/default/files/PDF%20documents/WMA%20Mamps/2026-2027/2026_27D4-Barbour%20WMA%20ADA.pdf",
+     "Link2": "http://www.outdooralabama.com/hunting",
+     "MapYear": "2026-27",
+     "Name": "Barbour Wildlife Management Area"
+    },
+    {
+     "DrawnBy": "ASP",
+     "Link": "https://outdooralabama.com/sites/default/files/PDF%20documents/WMA%20Mamps/2026-2027/2026_27_D1%20Black%20Warrior%20WMA%20ADA.pdf",
+     "Link2": "http://www.outdooralabama.com/hunting",
+     "MapYear": "2026-27",
+     "Name": "Black Warrior Wildlife Management Area"
+    },
+    {
+     "DrawnBy": "ASP",
+     "Link": "https://outdooralabama.com/sites/default/files/PDF%20documents/WMA%20Mamps/2026-2027/2026_27D4-Blue%20Spring%20WMA%20ADA.pdf",
+     "Link2": "http://www.outdooralabama.com/hunting",
+     "MapYear": "2026-27",
+     "Name": "Blue Spring Wildlife Management Area"
+    }
+   ],
+   "service": "WildlifeManagementAreas",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/WildlifeManagementAreas/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 21,
+   "fields": [
+    "NAME",
+    "Link"
+   ],
+   "known": true,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "Link": "https://www.alapark.com/parks/blue-springs-state-park",
+     "NAME": "Blue Springs State Park"
+    },
+    {
+     "Link": "https://www.alapark.com/parks/bucks-pocket-state-park",
+     "NAME": "Buck's Pocket State Park"
+    },
+    {
+     "Link": "https://www.alapark.com/parks/cathedral-caverns-state-park",
+     "NAME": "Cathedral Caverns State Park"
+    }
+   ],
+   "service": "StateParks",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/StateParks/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 20,
+   "fields": [
+    "Name",
+    "Link",
+    "Link2"
+   ],
+   "known": true,
+   "layer": "Public Fishing Lake",
+   "sample": [
+    {
+     "Link": "http://www.outdooralabama.com/alabama-public-fishing-lakes-pfls/madison-county-pfl",
+     "Link2": "https://www.outdooralabama.com/fishing",
+     "Name": "Madison County Public Fishing Lake"
+    },
+    {
+     "Link": "http://www.outdooralabama.com/alabama-public-fishing-lakes-pfls/dekalb-county-pfl",
+     "Link2": "https://www.outdooralabama.com/fishing",
+     "Name": "DeKalb County Public Fishing Lake"
+    },
+    {
+     "Link": "http://www.outdooralabama.com/alabama-public-fishing-lakes-pfls/marion-county-pfl",
+     "Link2": "https://www.outdooralabama.com/fishing",
+     "Name": "Marion County Public Fishing Lake"
+    }
+   ],
+   "service": "PublicFishingLakes",
+   "typef": "",
+   "url": "https://conservationgis.alabama.gov/adcnrweb/rest/services/PublicFishingLakes/MapServer/1"
+  }
+ ],
+ "st": "AL"
+}

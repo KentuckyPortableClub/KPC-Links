@@ -1,0 +1,2774 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "Georgia Department of Natural Resources - Wildlife Resources Division",
+   "area": "Unit_Nm",
+   "count": 6194,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Pub_Access",
+    "Access_Src",
+    "GAP_Sts",
+    "IUCN_Cat",
+    "Date_Est",
+    "Comments",
+    "EsmtHldr"
+   ],
+   "known": false,
+   "layer": "GA_ConLands",
+   "sample": [
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "REA",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "Research and Experimental Area",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": " ",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Forestry Sci. GA. Lab. Experimental Area"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Chattahoochee Purchase Unit"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Ocmulgee Purchase Unit"
+    }
+   ],
+   "service": "Georgia_Conservation_Lands_23_proof_v2",
+   "typef": "Category",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Georgia_Conservation_Lands_23_proof_v2/FeatureServer/134"
+  },
+  {
+   "agency": "Georgia Department of Natural Resources - Wildlife Resources Division",
+   "area": "Unit_Nm",
+   "count": 6194,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Pub_Access",
+    "Access_Src",
+    "GAP_Sts",
+    "IUCN_Cat",
+    "Date_Est",
+    "Comments",
+    "EsmtHldr"
+   ],
+   "known": false,
+   "layer": "GA_ConLands",
+   "sample": [
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "REA",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "Research and Experimental Area",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": " ",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Forestry Sci. GA. Lab. Experimental Area"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Chattahoochee Purchase Unit"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Ocmulgee Purchase Unit"
+    }
+   ],
+   "service": "Georgia_Conservation_Lands_23_proof_v2",
+   "typef": "Category",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Conservation_Lands_23_proof_v2/FeatureServer/134"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 4632,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Pub_Access",
+    "Access_Src",
+    "GAP_Sts",
+    "IUCN_Cat",
+    "Date_Est",
+    "Comments",
+    "EsmtHldr"
+   ],
+   "known": false,
+   "layer": "GA_ConLands_24",
+   "sample": [
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "REA",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "Research and Experimental Area",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": " ",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Forestry Sci. GA. Lab. Experimental Area"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Chattahoochee Purchase Unit"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Ocmulgee Purchase Unit"
+    }
+   ],
+   "service": "Georgia_Conservation_Lands_GNAHRGIS_View",
+   "typef": "Category",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Georgia_Conservation_Lands_GNAHRGIS_View/FeatureServer/134"
+  },
+  {
+   "agency": "",
+   "area": "Unit_Nm",
+   "count": 4632,
+   "fields": [
+    "Category",
+    "Own_Type",
+    "Own_Name",
+    "Mang_Type",
+    "Mang_Name",
+    "Loc_Mang",
+    "Des_Tp",
+    "Loc_Ds",
+    "Unit_Nm",
+    "Loc_Nm",
+    "Agg_Src",
+    "GIS_Src",
+    "Src_Date",
+    "Pub_Access",
+    "Access_Src",
+    "GAP_Sts",
+    "IUCN_Cat",
+    "Date_Est",
+    "Comments",
+    "EsmtHldr"
+   ],
+   "known": false,
+   "layer": "GA_ConLands_24",
+   "sample": [
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "REA",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "Research and Experimental Area",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": " ",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Forestry Sci. GA. Lab. Experimental Area"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Chattahoochee Purchase Unit"
+    },
+    {
+     "Agg_Src": "USFS_ALP_PADUS3_0Fee_S_USA.PADUS_Fee2023",
+     "Category": "Fee",
+     "Des_Tp": "FOTH",
+     "GIS_Src": "USFS_ALP_S_USA.SurfaceOwnership",
+     "Loc_Ds": "National Forest",
+     "Loc_Mang": "US Forest Service",
+     "Loc_Nm": "Chattahoochee-Oconee National Forests",
+     "Mang_Name": "USFS",
+     "Mang_Type": "FED",
+     "Own_Name": "US Forest Service",
+     "Own_Type": "FED",
+     "Unit_Nm": "Ocmulgee Purchase Unit"
+    }
+   ],
+   "service": "Georgia_Conservation_Lands_GNAHRGIS_View",
+   "typef": "Category",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Conservation_Lands_GNAHRGIS_View/FeatureServer/134"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 720,
+   "fields": [
+    "DISTRICT",
+    "Chamber",
+    "City",
+    "District_name"
+   ],
+   "known": false,
+   "layer": "Georgia House Districts Fishing",
+   "sample": [
+    {
+     "Chamber": "House",
+     "City": "Trenton",
+     "DISTRICT": "001",
+     "District_name": "1 - Mike Cameron"
+    },
+    {
+     "Chamber": "House",
+     "City": "Chickamauga",
+     "DISTRICT": "002",
+     "District_name": "2 - Steve Tarvin"
+    },
+    {
+     "Chamber": "House",
+     "City": "Ringgold",
+     "DISTRICT": "003",
+     "District_name": "3 - Mitchell Horner"
+    }
+   ],
+   "service": "Georgia_Licenses_by_District",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Georgia_Licenses_by_District/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 720,
+   "fields": [
+    "DISTRICT",
+    "Chamber",
+    "City",
+    "District_name"
+   ],
+   "known": false,
+   "layer": "Georgia House Districts Fishing",
+   "sample": [
+    {
+     "Chamber": "House",
+     "City": "Trenton",
+     "DISTRICT": "001",
+     "District_name": "1 - Mike Cameron"
+    },
+    {
+     "Chamber": "House",
+     "City": "Chickamauga",
+     "DISTRICT": "002",
+     "District_name": "2 - Steve Tarvin"
+    },
+    {
+     "Chamber": "House",
+     "City": "Ringgold",
+     "DISTRICT": "003",
+     "District_name": "3 - Mitchell Horner"
+    }
+   ],
+   "service": "Georgia_Licenses_by_District",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 686,
+   "fields": [
+    "MANAGING_A",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "GADNR Managed Lands ",
+   "sample": [
+    {
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "COHUTTA WMA"
+    },
+    {
+     "MANAGING_A": " ",
+     "NAME": " "
+    },
+    {
+     "MANAGING_A": " ",
+     "NAME": " "
+    }
+   ],
+   "service": "GADNR_Managed_Lands",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/GADNR_Managed_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 686,
+   "fields": [
+    "MANAGING_A",
+    "NAME"
+   ],
+   "known": false,
+   "layer": "GADNR Managed Lands ",
+   "sample": [
+    {
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "COHUTTA WMA"
+    },
+    {
+     "MANAGING_A": " ",
+     "NAME": " "
+    },
+    {
+     "MANAGING_A": " ",
+     "NAME": " "
+    }
+   ],
+   "service": "GADNR_Managed_Lands",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/GADNR_Managed_Lands/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 413,
+   "fields": [
+    "Contract",
+    "County",
+    "Status"
+   ],
+   "known": false,
+   "layer": "Merged_DMAP_Properties",
+   "sample": [
+    {
+     "Contract": "DMAP-19-EB-06",
+     "County": "Grady",
+     "Status": "Inactive"
+    },
+    {
+     "Contract": "DMAP-20-EB-04",
+     "County": "Worth",
+     "Status": "Inactive"
+    },
+    {
+     "Contract": "DMAP-20-EB-05",
+     "County": "Lanier",
+     "Status": "Active"
+    }
+   ],
+   "service": "DMAP_Properties_LE_View",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/DMAP_Properties_LE_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 413,
+   "fields": [
+    "Contract",
+    "County",
+    "Status"
+   ],
+   "known": false,
+   "layer": "Merged_DMAP_Properties",
+   "sample": [
+    {
+     "Contract": "DMAP-19-EB-06",
+     "County": "Grady",
+     "Status": "Inactive"
+    },
+    {
+     "Contract": "DMAP-20-EB-04",
+     "County": "Worth",
+     "Status": "Inactive"
+    },
+    {
+     "Contract": "DMAP-20-EB-05",
+     "County": "Lanier",
+     "Status": "Active"
+    }
+   ],
+   "service": "DMAP_Properties_LE_View",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/DMAP_Properties_LE_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 384,
+   "fields": [
+    "GNIS_Name",
+    "Regs",
+    "URL"
+   ],
+   "known": false,
+   "layer": "Waterbodies",
+   "sample": [
+    {
+     "GNIS_Name": "Private Pond",
+     "Regs": "None",
+     "URL": " "
+    },
+    {
+     "GNIS_Name": "Private Pond",
+     "Regs": "None",
+     "URL": " "
+    },
+    {
+     "GNIS_Name": "Lake Burton",
+     "Regs": "None",
+     "URL": "https://gadnrwrd.maps.arcgis.com/apps/MapJournal/index.html?appid=46622e33382f40228b5d0d5240a235c3"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Trout_Fishing/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 384,
+   "fields": [
+    "GNIS_Name",
+    "Regs",
+    "URL"
+   ],
+   "known": false,
+   "layer": "Waterbodies",
+   "sample": [
+    {
+     "GNIS_Name": "Private Pond",
+     "Regs": "None",
+     "URL": " "
+    },
+    {
+     "GNIS_Name": "Private Pond",
+     "Regs": "None",
+     "URL": " "
+    },
+    {
+     "GNIS_Name": "Lake Burton",
+     "Regs": "None",
+     "URL": "https://gadnrwrd.maps.arcgis.com/apps/MapJournal/index.html?appid=46622e33382f40228b5d0d5240a235c3"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Trout_Fishing/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 330,
+   "fields": [
+    "source",
+    "managing_a",
+    "mgr_categ",
+    "ownr_categ",
+    "name",
+    "Label",
+    "Website",
+    "District_Name"
+   ],
+   "known": false,
+   "layer": "State_Parks_Intersect_House",
+   "sample": [
+    {
+     "District_Name": "180 - Steven Sainz",
+     "Label": "stephen c. foster sp",
+     "Website": "gastateparks.org/StephenCFoster",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "STEPHEN C. FOSTER SP",
+     "ownr_categ": "US Fish and Wildlife Service",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "33 - Alan Powell",
+     "Label": "bobby brown ora",
+     "Website": "www.bobbybrownpark.com/index.html",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "BOBBY BROWN ORA",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "33 - Alan Powell",
+     "Label": "elijah clarke sp",
+     "Website": "gastateparks.org/ElijahClark",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "ELIJAH CLARKE SP",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    }
+   ],
+   "service": "State_Parks_Intersect_House",
+   "typef": "mgr_categ",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Intersect_House/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 330,
+   "fields": [
+    "source",
+    "managing_a",
+    "mgr_categ",
+    "ownr_categ",
+    "name",
+    "Label",
+    "Website",
+    "District_Name"
+   ],
+   "known": false,
+   "layer": "State_Parks_Intersect_House",
+   "sample": [
+    {
+     "District_Name": "180 - Steven Sainz",
+     "Label": "stephen c. foster sp",
+     "Website": "gastateparks.org/StephenCFoster",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "STEPHEN C. FOSTER SP",
+     "ownr_categ": "US Fish and Wildlife Service",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "33 - Alan Powell",
+     "Label": "bobby brown ora",
+     "Website": "www.bobbybrownpark.com/index.html",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "BOBBY BROWN ORA",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "33 - Alan Powell",
+     "Label": "elijah clarke sp",
+     "Website": "gastateparks.org/ElijahClark",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "ELIJAH CLARKE SP",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    }
+   ],
+   "service": "State_Parks_Intersect_House",
+   "typef": "mgr_categ",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/State_Parks_Intersect_House/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 320,
+   "fields": [
+    "source",
+    "managing_a",
+    "mgr_categ",
+    "ownr_categ",
+    "name",
+    "Label",
+    "Website",
+    "District_Name"
+   ],
+   "known": false,
+   "layer": "State_Parks_Intersect_Senate",
+   "sample": [
+    {
+     "District_Name": "7 - Nabilah Islam",
+     "Label": "stephen c. foster sp",
+     "Website": "gastateparks.org/StephenCFoster",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "STEPHEN C. FOSTER SP",
+     "ownr_categ": "US Fish and Wildlife Service",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "24 - Lee Anderson ",
+     "Label": "bobby brown ora",
+     "Website": "www.bobbybrownpark.com/index.html",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "BOBBY BROWN ORA",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "24 - Lee Anderson ",
+     "Label": "elijah clarke sp",
+     "Website": "gastateparks.org/ElijahClark",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "ELIJAH CLARKE SP",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    }
+   ],
+   "service": "State_Parks_Intersect_Senate",
+   "typef": "mgr_categ",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Intersect_Senate/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 320,
+   "fields": [
+    "source",
+    "managing_a",
+    "mgr_categ",
+    "ownr_categ",
+    "name",
+    "Label",
+    "Website",
+    "District_Name"
+   ],
+   "known": false,
+   "layer": "State_Parks_Intersect_Senate",
+   "sample": [
+    {
+     "District_Name": "7 - Nabilah Islam",
+     "Label": "stephen c. foster sp",
+     "Website": "gastateparks.org/StephenCFoster",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "STEPHEN C. FOSTER SP",
+     "ownr_categ": "US Fish and Wildlife Service",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "24 - Lee Anderson ",
+     "Label": "bobby brown ora",
+     "Website": "www.bobbybrownpark.com/index.html",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "BOBBY BROWN ORA",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    },
+    {
+     "District_Name": "24 - Lee Anderson ",
+     "Label": "elijah clarke sp",
+     "Website": "gastateparks.org/ElijahClark",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "ELIJAH CLARKE SP",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    }
+   ],
+   "service": "State_Parks_Intersect_Senate",
+   "typef": "mgr_categ",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/State_Parks_Intersect_Senate/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 224,
+   "fields": [
+    "DISTRICT",
+    "LOCKED",
+    "NAME",
+    "Name_1",
+    "Party",
+    "District_name"
+   ],
+   "known": false,
+   "layer": "Georgia Senate Districts Fishing",
+   "sample": [
+    {
+     "DISTRICT": "001",
+     "District_name": "1 - Ben Watson",
+     "LOCKED": " ",
+     "NAME": " ",
+     "Name_1": "Ben Watson",
+     "Party": "R"
+    },
+    {
+     "DISTRICT": "002",
+     "District_name": "2 - Derek Mallow",
+     "LOCKED": " ",
+     "NAME": " ",
+     "Name_1": "Derek Mallow",
+     "Party": "D"
+    },
+    {
+     "DISTRICT": "003",
+     "District_name": "3 - Mike Hodges",
+     "LOCKED": " ",
+     "NAME": " ",
+     "Name_1": "Mike Hodges",
+     "Party": "R"
+    }
+   ],
+   "service": "Georgia_Licenses_by_District",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Georgia_Licenses_by_District/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 224,
+   "fields": [
+    "DISTRICT",
+    "LOCKED",
+    "NAME",
+    "Name_1",
+    "Party",
+    "District_name"
+   ],
+   "known": false,
+   "layer": "Georgia Senate Districts Fishing",
+   "sample": [
+    {
+     "DISTRICT": "001",
+     "District_name": "1 - Ben Watson",
+     "LOCKED": " ",
+     "NAME": " ",
+     "Name_1": "Ben Watson",
+     "Party": "R"
+    },
+    {
+     "DISTRICT": "002",
+     "District_name": "2 - Derek Mallow",
+     "LOCKED": " ",
+     "NAME": " ",
+     "Name_1": "Derek Mallow",
+     "Party": "D"
+    },
+    {
+     "DISTRICT": "003",
+     "District_name": "3 - Mike Hodges",
+     "LOCKED": " ",
+     "NAME": " ",
+     "Name_1": "Mike Hodges",
+     "Party": "R"
+    }
+   ],
+   "service": "Georgia_Licenses_by_District",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Licenses_by_District/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 168,
+   "fields": [
+    "MANAGING_A",
+    "NAME",
+    "Link"
+   ],
+   "known": false,
+   "layer": "National_Forest",
+   "sample": [
+    {
+     "Link": "https://www.fs.usda.gov/conf",
+     "MANAGING_A": "United States Forest Service",
+     "NAME": "Chattahoochee"
+    },
+    {
+     "Link": "https://www.fs.usda.gov/conf",
+     "MANAGING_A": "United States Forest Service",
+     "NAME": "Chattahoochee"
+    },
+    {
+     "Link": "https://www.fs.usda.gov/conf",
+     "MANAGING_A": "United States Forest Service",
+     "NAME": "Chattahoochee"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Trout_Fishing/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 168,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "National_Forest",
+   "sample": [
+    {
+     "NAME": "Chattahoochee"
+    },
+    {
+     "NAME": "Chattahoochee"
+    },
+    {
+     "NAME": "Chattahoochee"
+    }
+   ],
+   "service": "Georgia_Trout_Streams_Public_Download_All_Layers",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Georgia_Trout_Streams_Public_Download_All_Layers/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 168,
+   "fields": [
+    "MANAGING_A",
+    "NAME",
+    "Link"
+   ],
+   "known": false,
+   "layer": "National_Forest",
+   "sample": [
+    {
+     "Link": "https://www.fs.usda.gov/conf",
+     "MANAGING_A": "United States Forest Service",
+     "NAME": "Chattahoochee"
+    },
+    {
+     "Link": "https://www.fs.usda.gov/conf",
+     "MANAGING_A": "United States Forest Service",
+     "NAME": "Chattahoochee"
+    },
+    {
+     "Link": "https://www.fs.usda.gov/conf",
+     "MANAGING_A": "United States Forest Service",
+     "NAME": "Chattahoochee"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Trout_Fishing/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 168,
+   "fields": [
+    "NAME"
+   ],
+   "known": false,
+   "layer": "National_Forest",
+   "sample": [
+    {
+     "NAME": "Chattahoochee"
+    },
+    {
+     "NAME": "Chattahoochee"
+    },
+    {
+     "NAME": "Chattahoochee"
+    }
+   ],
+   "service": "Georgia_Trout_Streams_Public_Download_All_Layers",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Georgia_Trout_Streams_Public_Download_All_Layers/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 159,
+   "fields": [
+    "NAME",
+    "NAMELSAD"
+   ],
+   "known": false,
+   "layer": "Counties",
+   "sample": [
+    {
+     "NAME": "Wayne",
+     "NAMELSAD": "Wayne County"
+    },
+    {
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County"
+    },
+    {
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County"
+    }
+   ],
+   "service": "Wildlife_Trappers",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Wildlife_Trappers/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 159,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Active_Rehabilitator"
+   ],
+   "known": false,
+   "layer": "Wildlife_Rehabilitator_Counties",
+   "sample": [
+    {
+     "Active_Rehabilitator": "No",
+     "NAME": "Wayne",
+     "NAMELSAD": "Wayne County"
+    },
+    {
+     "Active_Rehabilitator": "Yes",
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County"
+    },
+    {
+     "Active_Rehabilitator": "No",
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County"
+    }
+   ],
+   "service": "Wildlife_Rehabilitator_Counties",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Wildlife_Rehabilitator_Counties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 159,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "CNTYIDFP",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT",
+    "MSA"
+   ],
+   "known": false,
+   "layer": "GA_counties_mod_coast",
+   "sample": [
+    {
+     "CBSAFP": "27700",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13305",
+     "COUNTYFP": "305",
+     "COUNTYNS": "00350608",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Wayne",
+     "NAMELSAD": "Wayne County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": "12060",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13223",
+     "COUNTYFP": "223",
+     "COUNTYNS": "00349912",
+     "CSAFP": "122",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": " ",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13241",
+     "COUNTYFP": "241",
+     "COUNTYNS": "00351489",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County",
+     "STATEFP": "13"
+    }
+   ],
+   "service": "Historical_Marker_Map_WFL1",
+   "typef": "CLASSFP",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Historical_Marker_Map_WFL1/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 159,
+   "fields": [
+    "NAME",
+    "NAMELSAD"
+   ],
+   "known": false,
+   "layer": "Counties",
+   "sample": [
+    {
+     "NAME": "Wayne",
+     "NAMELSAD": "Wayne County"
+    },
+    {
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County"
+    },
+    {
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County"
+    }
+   ],
+   "service": "Wildlife_Trappers",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Wildlife_Trappers/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 159,
+   "fields": [
+    "NAME",
+    "NAMELSAD",
+    "Active_Rehabilitator"
+   ],
+   "known": false,
+   "layer": "Wildlife_Rehabilitator_Counties",
+   "sample": [
+    {
+     "Active_Rehabilitator": "No",
+     "NAME": "Wayne",
+     "NAMELSAD": "Wayne County"
+    },
+    {
+     "Active_Rehabilitator": "Yes",
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County"
+    },
+    {
+     "Active_Rehabilitator": "No",
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County"
+    }
+   ],
+   "service": "Wildlife_Rehabilitator_Counties",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Wildlife_Rehabilitator_Counties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 159,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "CNTYIDFP",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT",
+    "MSA"
+   ],
+   "known": false,
+   "layer": "GA_counties_mod_coast",
+   "sample": [
+    {
+     "CBSAFP": "27700",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13305",
+     "COUNTYFP": "305",
+     "COUNTYNS": "00350608",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Wayne",
+     "NAMELSAD": "Wayne County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": "12060",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13223",
+     "COUNTYFP": "223",
+     "COUNTYNS": "00349912",
+     "CSAFP": "122",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": " ",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13241",
+     "COUNTYFP": "241",
+     "COUNTYNS": "00351489",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County",
+     "STATEFP": "13"
+    }
+   ],
+   "service": "Historical_Marker_Map_WFL1",
+   "typef": "CLASSFP",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Historical_Marker_Map_WFL1/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 130,
+   "fields": [
+    "Action_Number",
+    "Short_Title",
+    "Description",
+    "Potential_Partners",
+    "Benefit_Category",
+    "Benefit_Comments",
+    "Overall_Priority",
+    "Action_Status",
+    "CMP_LVL_1",
+    "CMP_LVL_2",
+    "Statewide_Action",
+    "Implementation_Comments",
+    "CCA_Funding",
+    "Action_Category",
+    "Creator_1",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "ComprehensiveActions",
+   "sample": [
+    {
+     "Action_Number": "ALL_01",
+     "Action_Status": "Ongoing Action to Continue",
+     "Benefit_Category": "Very High Benefit",
+     "Benefit_Comments": "Acquisition can protect viable populations from development and also allows for habitat to be managed or restored.  For many SGCN, this may be the single most important conservation action. Easements can secure long term protection on private lands.  This action mitigates climate change impacts by managing for intact dispersal corridors for wildlife.",
+     "CMP_LVL_1": "6. Conservation Designation & Planning",
+     "CMP_LVL_2": "6.1 Protected Area Designation &/or Acquisition",
+     "Description": "Protect SWAP priority habitats and SGCN populations through land acquistion and easements in SWAP priority watersheds, SWAP conservation opportunity areas (hubs and corridors) and other habitats supporting viable populations of SGCN. Utilize SWAP priorization to identify highest priorities (e.g, highest priority watersheds and COAs should be targeted first).",
+     "Implementation_Comments": "This actions depends on willing sellers or private land owners that want to do easements. Resources are also needed to manage lands once acquired. Action #56 in 2015 SWAP.  Funding mechanims include private foundations, conservation organizations, Georgia Outdoor Stewardship Act, P-R funds, farmland conservation program, Recoverly Land Acquistion, Land and Water Conservation funds (USFS these funds), grants and other sources.  Current and Potential Projects: 1. Raccoon Creek (in process)  2. Dawson Forest Headwaters (in process)  3. Altamaha River Corridor (in process)  4.  Dugdown Corridor (in process)  5. Ocmulgee and Oconee Priority Corridor (TNC) Protecting Corridor 6. Support development of new land trusts where needed to increase conservation of SWAP priority habitats.  7.  Identify and protect priority areas based on known and predicted (modeled) distribution of mammal SGCN habitat quality, and habitat connectivity.  8. Identification of high priority conservation areas  at a fine scale (e.g, Athens-Clarke Legacy Forest Project).  9.  Increase and support dedicated funding sources for land conservation at the state level.  For example, increase share of sales tax collected for GOSA.  10.  Integrate new SWAP priorties into GOSA and NRCS scoring process.  11.  Focused effort with large land owners and forestry companies to meet land conservation goals. 12.  Identify important areas for conservation easements or other land preservation mechanisms in priority watersheds with the Upper Coosa River Basin.  13.  Assess the need for additional land protection efforts in Trail Ridge",
+     "Overall_Priority": "Very High",
+     "Potential_Partners": "GADNR, USFS, NRCS, USFWS, DOD, TNC, The Pew Charitable Trusts, South Atlantic Salt Marsh Initiative,  Land Trusts, SE-PCA, Watershed Alliances, Private Foundations,  Local Governments, Georgia Conservancy, Forestry Landowners, Weyerhaeuser, ",
+     "Short_Title": "Protect SWAP priority habitats and SGCN populations through land acquisition and easements",
+     "Statewide_Action": "TRUE"
+    },
+    {
+     "Action_Number": "ALL_02",
+     "Action_Status": "Ongoing Action to Continue",
+     "Benefit_Category": "Very High Benefit",
+     "Benefit_Comments": "The USFS holds the largest acreage of conservation land in Georgia which provides habitat for a large number of aquatic and terrestrial SGCN. Providing tech. assistance to forest planning can be a high impact conservation action and contributes to science-based stewardship of public resources.",
+     "CMP_LVL_1": "6. Conservation Designation & Planning",
+     "CMP_LVL_2": "6.4 Conservation Planning",
+     "Description": "Work with USFS to ensure that Forest Plan and other conservation planning documents include specific conservation measures for SGCN and their habitats.",
+     "Implementation_Comments": "Regional Forest Sensitive Species includes most SGCN, but can be amended to include new SGCN species. Forest Plan will probably not be updated for at least a decade--maybe at same time as next SWAP revision. Forest Service can work with private funding (keystone agreements).  GA-AL Trust In-lieu funds could potentially be used to support aquatic stream and wetland restoration on private lands. \n\nThis action does not require large amounts of funding, but does require coordination, outreach, and consistent effort. Revison of Forest Plan should incorporate SGCNs, high-priority threats, and high-priority conservation actions.\n\n1.  Continue  good neighbor authority agreement to manage for SGCN and habitats.\n2.  Continue and expand use of private funds and partnerships (e.g, Jointly funded TNC fire and habitat crew)\n3. Support Foothills collaborative group to identify new implementation projects.  That will benefit SGCN and habitats. Meets quarterly.\n4.  South-appalach subregion increase in funds for aquatic restoration (BIL funds), e.g, Holly Creek\n5.  Continue working with district rangers to improve habitat on Wildlife Management Areas.\n6.  Continue to address sedimentation issues from public access and roads through paving, road closures and other bmps.\n7.  Increase collaboration with USFS to monitor and improve habitat for small mammal SGCN on forest lands.",
+     "Overall_Priority": "Very High",
+     "Potential_Partners": "USFS, GADNR-WRD, GPCA, ABG",
+     "Short_Title": "Support habitat restoration on the Chattahoochee-Oconee National Forest for SGCN and their habitats",
+     "Statewide_Action": "FALSE"
+    },
+    {
+     "Action_Number": "ALL_03",
+     "Action_Status": "Ongoing Action to Continue",
+     "Benefit_Category": "High Benefit",
+     "Benefit_Comments": "Targeted research on habitat, life history needs and threats is needed to ensure that conservation needs for SGCN are accurately identified.",
+     "CMP_LVL_1": "8. Research & Monitoring",
+     "CMP_LVL_2": "8.1 Basic Research & Status Monitoring",
+     "Description": "Research to improve knowledge of SGCN natural history, habitat and diet requirements, management response, movements, population health, productivity, demographics (population size, survival, and recruitment), and response to stressors and threats. ",
+     "Implementation_Comments": "Potential Projects:1. Migration patterns of endemic SGCN basses (e.g, Altamaha Bass, Chattahoochee Bass). 2.  Assess macroinvertebrate communities in rivers supporting SGCN insectivorous fishes (e.g, Conasauga River system). 3.  Assess life history and habitat requirements for SGCN crayfishes.  4. Assess tolerance of native crayfish to env. parameters, such as oxygen, nutrients, pH, and temperature and how they affect survival and growth of different life history stages.  5.  Assess  the value of beavers in creating habitats utilized by SGCN.  6. Assess the distribution and management techniques to increase the population size of Barn Owls 7. Assess population status and winter habitat use of Rusty Blackbird. 8. Assess distribution and reproductive success of Loggerhead Shrikes, and where the wintering subspecies breeds in summer. 9. Estimate the population size of Florida Sandhill Cranes in the Okefenokee NWR and assess breeding productivity. ",
+     "Overall_Priority": "High",
+     "Potential_Partners": "Academic Partners, GADNR-WRD",
+     "Short_Title": "Assess life history, habitat requirements, dispersal, population size, genetic health, threats and response to management for SGCN",
+     "Statewide_Action": "TRUE"
+    }
+   ],
+   "service": "ConservationActionTracker",
+   "typef": "Description",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/ConservationActionTracker/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 130,
+   "fields": [
+    "Action_Number",
+    "Short_Title",
+    "Description",
+    "Potential_Partners",
+    "Benefit_Category",
+    "Benefit_Comments",
+    "Overall_Priority",
+    "Action_Status",
+    "CMP_LVL_1",
+    "CMP_LVL_2",
+    "Statewide_Action",
+    "Implementation_Comments",
+    "CCA_Funding",
+    "Action_Category",
+    "Creator_1",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "ComprehensiveActions",
+   "sample": [
+    {
+     "Action_Number": "ALL_01",
+     "Action_Status": "Ongoing Action to Continue",
+     "Benefit_Category": "Very High Benefit",
+     "Benefit_Comments": "Acquisition can protect viable populations from development and also allows for habitat to be managed or restored.  For many SGCN, this may be the single most important conservation action. Easements can secure long term protection on private lands.  This action mitigates climate change impacts by managing for intact dispersal corridors for wildlife.",
+     "CMP_LVL_1": "6. Conservation Designation & Planning",
+     "CMP_LVL_2": "6.1 Protected Area Designation &/or Acquisition",
+     "Description": "Protect SWAP priority habitats and SGCN populations through land acquistion and easements in SWAP priority watersheds, SWAP conservation opportunity areas (hubs and corridors) and other habitats supporting viable populations of SGCN. Utilize SWAP priorization to identify highest priorities (e.g, highest priority watersheds and COAs should be targeted first).",
+     "Implementation_Comments": "This actions depends on willing sellers or private land owners that want to do easements. Resources are also needed to manage lands once acquired. Action #56 in 2015 SWAP.  Funding mechanims include private foundations, conservation organizations, Georgia Outdoor Stewardship Act, P-R funds, farmland conservation program, Recoverly Land Acquistion, Land and Water Conservation funds (USFS these funds), grants and other sources.  Current and Potential Projects: 1. Raccoon Creek (in process)  2. Dawson Forest Headwaters (in process)  3. Altamaha River Corridor (in process)  4.  Dugdown Corridor (in process)  5. Ocmulgee and Oconee Priority Corridor (TNC) Protecting Corridor 6. Support development of new land trusts where needed to increase conservation of SWAP priority habitats.  7.  Identify and protect priority areas based on known and predicted (modeled) distribution of mammal SGCN habitat quality, and habitat connectivity.  8. Identification of high priority conservation areas  at a fine scale (e.g, Athens-Clarke Legacy Forest Project).  9.  Increase and support dedicated funding sources for land conservation at the state level.  For example, increase share of sales tax collected for GOSA.  10.  Integrate new SWAP priorties into GOSA and NRCS scoring process.  11.  Focused effort with large land owners and forestry companies to meet land conservation goals. 12.  Identify important areas for conservation easements or other land preservation mechanisms in priority watersheds with the Upper Coosa River Basin.  13.  Assess the need for additional land protection efforts in Trail Ridge",
+     "Overall_Priority": "Very High",
+     "Potential_Partners": "GADNR, USFS, NRCS, USFWS, DOD, TNC, The Pew Charitable Trusts, South Atlantic Salt Marsh Initiative,  Land Trusts, SE-PCA, Watershed Alliances, Private Foundations,  Local Governments, Georgia Conservancy, Forestry Landowners, Weyerhaeuser, ",
+     "Short_Title": "Protect SWAP priority habitats and SGCN populations through land acquisition and easements",
+     "Statewide_Action": "TRUE"
+    },
+    {
+     "Action_Number": "ALL_02",
+     "Action_Status": "Ongoing Action to Continue",
+     "Benefit_Category": "Very High Benefit",
+     "Benefit_Comments": "The USFS holds the largest acreage of conservation land in Georgia which provides habitat for a large number of aquatic and terrestrial SGCN. Providing tech. assistance to forest planning can be a high impact conservation action and contributes to science-based stewardship of public resources.",
+     "CMP_LVL_1": "6. Conservation Designation & Planning",
+     "CMP_LVL_2": "6.4 Conservation Planning",
+     "Description": "Work with USFS to ensure that Forest Plan and other conservation planning documents include specific conservation measures for SGCN and their habitats.",
+     "Implementation_Comments": "Regional Forest Sensitive Species includes most SGCN, but can be amended to include new SGCN species. Forest Plan will probably not be updated for at least a decade--maybe at same time as next SWAP revision. Forest Service can work with private funding (keystone agreements).  GA-AL Trust In-lieu funds could potentially be used to support aquatic stream and wetland restoration on private lands. \n\nThis action does not require large amounts of funding, but does require coordination, outreach, and consistent effort. Revison of Forest Plan should incorporate SGCNs, high-priority threats, and high-priority conservation actions.\n\n1.  Continue  good neighbor authority agreement to manage for SGCN and habitats.\n2.  Continue and expand use of private funds and partnerships (e.g, Jointly funded TNC fire and habitat crew)\n3. Support Foothills collaborative group to identify new implementation projects.  That will benefit SGCN and habitats. Meets quarterly.\n4.  South-appalach subregion increase in funds for aquatic restoration (BIL funds), e.g, Holly Creek\n5.  Continue working with district rangers to improve habitat on Wildlife Management Areas.\n6.  Continue to address sedimentation issues from public access and roads through paving, road closures and other bmps.\n7.  Increase collaboration with USFS to monitor and improve habitat for small mammal SGCN on forest lands.",
+     "Overall_Priority": "Very High",
+     "Potential_Partners": "USFS, GADNR-WRD, GPCA, ABG",
+     "Short_Title": "Support habitat restoration on the Chattahoochee-Oconee National Forest for SGCN and their habitats",
+     "Statewide_Action": "FALSE"
+    },
+    {
+     "Action_Number": "ALL_03",
+     "Action_Status": "Ongoing Action to Continue",
+     "Benefit_Category": "High Benefit",
+     "Benefit_Comments": "Targeted research on habitat, life history needs and threats is needed to ensure that conservation needs for SGCN are accurately identified.",
+     "CMP_LVL_1": "8. Research & Monitoring",
+     "CMP_LVL_2": "8.1 Basic Research & Status Monitoring",
+     "Description": "Research to improve knowledge of SGCN natural history, habitat and diet requirements, management response, movements, population health, productivity, demographics (population size, survival, and recruitment), and response to stressors and threats. ",
+     "Implementation_Comments": "Potential Projects:1. Migration patterns of endemic SGCN basses (e.g, Altamaha Bass, Chattahoochee Bass). 2.  Assess macroinvertebrate communities in rivers supporting SGCN insectivorous fishes (e.g, Conasauga River system). 3.  Assess life history and habitat requirements for SGCN crayfishes.  4. Assess tolerance of native crayfish to env. parameters, such as oxygen, nutrients, pH, and temperature and how they affect survival and growth of different life history stages.  5.  Assess  the value of beavers in creating habitats utilized by SGCN.  6. Assess the distribution and management techniques to increase the population size of Barn Owls 7. Assess population status and winter habitat use of Rusty Blackbird. 8. Assess distribution and reproductive success of Loggerhead Shrikes, and where the wintering subspecies breeds in summer. 9. Estimate the population size of Florida Sandhill Cranes in the Okefenokee NWR and assess breeding productivity. ",
+     "Overall_Priority": "High",
+     "Potential_Partners": "Academic Partners, GADNR-WRD",
+     "Short_Title": "Assess life history, habitat requirements, dispersal, population size, genetic health, threats and response to management for SGCN",
+     "Statewide_Action": "TRUE"
+    }
+   ],
+   "service": "ConservationActionTracker",
+   "typef": "Description",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/ConservationActionTracker/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 110,
+   "fields": [
+    "GNIS_Name",
+    "d_FType",
+    "WATER_CODE",
+    "Biologist",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "WRD_Waterbodies_ExportFeatures",
+   "sample": [
+    {
+     "Biologist": "Aaron Gray",
+     "GNIS_Name": "Clarks Hill Lake",
+     "Phone": "(706) 319-4702",
+     "WATER_CODE": "CLA",
+     "d_FType": "Reservoir"
+    },
+    {
+     "Biologist": "Kyle Rempe",
+     "GNIS_Name": "Lake Burton",
+     "Phone": "(706) 339-7449",
+     "WATER_CODE": "BUR",
+     "d_FType": "LakePond"
+    },
+    {
+     "Biologist": "Kyle Rempe",
+     "GNIS_Name": "Lake Hartwell",
+     "Phone": "(706) 339-7449",
+     "WATER_CODE": "HAR",
+     "d_FType": "LakePond"
+    }
+   ],
+   "service": "Fisheries_Resource_Directory_WFL1",
+   "typef": "d_FType",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Fisheries_Resource_Directory_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 110,
+   "fields": [
+    "GNIS_Name",
+    "d_FType",
+    "WATER_CODE",
+    "Biologist",
+    "Phone"
+   ],
+   "known": false,
+   "layer": "WRD_Waterbodies_ExportFeatures",
+   "sample": [
+    {
+     "Biologist": "Aaron Gray",
+     "GNIS_Name": "Clarks Hill Lake",
+     "Phone": "(706) 319-4702",
+     "WATER_CODE": "CLA",
+     "d_FType": "Reservoir"
+    },
+    {
+     "Biologist": "Kyle Rempe",
+     "GNIS_Name": "Lake Burton",
+     "Phone": "(706) 339-7449",
+     "WATER_CODE": "BUR",
+     "d_FType": "LakePond"
+    },
+    {
+     "Biologist": "Kyle Rempe",
+     "GNIS_Name": "Lake Hartwell",
+     "Phone": "(706) 339-7449",
+     "WATER_CODE": "HAR",
+     "d_FType": "LakePond"
+    }
+   ],
+   "service": "Fisheries_Resource_Directory_WFL1",
+   "typef": "d_FType",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Fisheries_Resource_Directory_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 73,
+   "fields": [
+    "source",
+    "managing_a",
+    "mgr_categ",
+    "ownr_categ",
+    "name",
+    "Label",
+    "Website"
+   ],
+   "known": false,
+   "layer": "State_Parks_Polygon",
+   "sample": [
+    {
+     "Label": "stephen c. foster sp",
+     "Website": "gastateparks.org/StephenCFoster",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "STEPHEN C. FOSTER SP",
+     "ownr_categ": "US Fish and Wildlife Service",
+     "source": "dnr20a"
+    },
+    {
+     "Label": "bobby brown ora",
+     "Website": "www.bobbybrownpark.com/index.html",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "BOBBY BROWN ORA",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    },
+    {
+     "Label": "elijah clarke sp",
+     "Website": "gastateparks.org/ElijahClark",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "ELIJAH CLARKE SP",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    }
+   ],
+   "service": "State_Parks_Polygon",
+   "typef": "mgr_categ",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Polygon/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 73,
+   "fields": [
+    "source",
+    "managing_a",
+    "mgr_categ",
+    "ownr_categ",
+    "name",
+    "Label",
+    "Website"
+   ],
+   "known": false,
+   "layer": "State_Parks_Polygon",
+   "sample": [
+    {
+     "Label": "stephen c. foster sp",
+     "Website": "gastateparks.org/StephenCFoster",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "STEPHEN C. FOSTER SP",
+     "ownr_categ": "US Fish and Wildlife Service",
+     "source": "dnr20a"
+    },
+    {
+     "Label": "bobby brown ora",
+     "Website": "www.bobbybrownpark.com/index.html",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "BOBBY BROWN ORA",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    },
+    {
+     "Label": "elijah clarke sp",
+     "Website": "gastateparks.org/ElijahClark",
+     "managing_a": "Georgia Department of Natural Resources",
+     "mgr_categ": "Georgia Department of Natural Resources",
+     "name": "ELIJAH CLARKE SP",
+     "ownr_categ": "Department of Defense/Corps of Engineers",
+     "source": "dnr20a"
+    }
+   ],
+   "service": "State_Parks_Polygon",
+   "typef": "mgr_categ",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/State_Parks_Polygon/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 68,
+   "fields": [
+    "MANAGING_A",
+    "NAME",
+    "Type",
+    "Link"
+   ],
+   "known": false,
+   "layer": "DNR_Lands",
+   "sample": [
+    {
+     "Link": "http://georgiawildlife.com/cohutta-wma",
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "COHUTTA WMA",
+     "Type": "Wildlife Management Area"
+    },
+    {
+     "Link": "http://www.brasstownvalley.com/",
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "BRASSTOWN VALLEY RESORT",
+     "Type": "Other"
+    },
+    {
+     "Link": "http://www.gastateparks.org/blackrockmountain",
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "BLACK ROCK MOUNTAIN SP",
+     "Type": "State Park"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "Type",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Trout_Fishing/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 68,
+   "fields": [
+    "MANAGING_A",
+    "NAME",
+    "Type",
+    "Link"
+   ],
+   "known": false,
+   "layer": "DNR_Lands",
+   "sample": [
+    {
+     "Link": "http://georgiawildlife.com/cohutta-wma",
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "COHUTTA WMA",
+     "Type": "Wildlife Management Area"
+    },
+    {
+     "Link": "http://www.brasstownvalley.com/",
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "BRASSTOWN VALLEY RESORT",
+     "Type": "Other"
+    },
+    {
+     "Link": "http://www.gastateparks.org/blackrockmountain",
+     "MANAGING_A": "Georgia Department of Natural Resources",
+     "NAME": "BLACK ROCK MOUNTAIN SP",
+     "Type": "State Park"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "Type",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Trout_Fishing/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 42,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "White Catfish",
+   "sample": [
+    {
+     "Name": "Broad",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Little",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Brier",
+     "Native": "Yes"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Aquatic_Nuisance_Species/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 42,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "White Catfish",
+   "sample": [
+    {
+     "Name": "Broad",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Little",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Brier",
+     "Native": "Yes"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Aquatic_Nuisance_Species/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 36,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Channel Catfish",
+   "sample": [
+    {
+     "Name": "Guntersville Lake",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Upper Oconee",
+     "Native": "No"
+    },
+    {
+     "Name": "Upper Chattahoochee",
+     "Native": "Yes"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Aquatic_Nuisance_Species/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 36,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Channel Catfish",
+   "sample": [
+    {
+     "Name": "Guntersville Lake",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Upper Oconee",
+     "Native": "No"
+    },
+    {
+     "Name": "Upper Chattahoochee",
+     "Native": "Yes"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Aquatic_Nuisance_Species/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 35,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "CNTYIDFP",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT"
+   ],
+   "known": false,
+   "layer": "Counties",
+   "sample": [
+    {
+     "CBSAFP": "12060",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13223",
+     "COUNTYFP": "223",
+     "COUNTYNS": "00349912",
+     "CSAFP": "122",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": " ",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13241",
+     "COUNTYFP": "241",
+     "COUNTYNS": "00351489",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": "40660",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13115",
+     "COUNTYFP": "115",
+     "COUNTYNS": "00353665",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Floyd",
+     "NAMELSAD": "Floyd County",
+     "STATEFP": "13"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "CLASSFP",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Trout_Fishing/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 35,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "CNTYIDFP",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT"
+   ],
+   "known": false,
+   "layer": "Counties",
+   "sample": [
+    {
+     "CBSAFP": "12060",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13223",
+     "COUNTYFP": "223",
+     "COUNTYNS": "00349912",
+     "CSAFP": "122",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Paulding",
+     "NAMELSAD": "Paulding County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": " ",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13241",
+     "COUNTYFP": "241",
+     "COUNTYNS": "00351489",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Rabun",
+     "NAMELSAD": "Rabun County",
+     "STATEFP": "13"
+    },
+    {
+     "CBSAFP": "40660",
+     "CLASSFP": "H1",
+     "CNTYIDFP": "13115",
+     "COUNTYFP": "115",
+     "COUNTYNS": "00353665",
+     "CSAFP": " ",
+     "LSAD": "06",
+     "METDIVFP": " ",
+     "MTFCC": "G4020",
+     "NAME": "Floyd",
+     "NAMELSAD": "Floyd County",
+     "STATEFP": "13"
+    }
+   ],
+   "service": "Trout_Fishing",
+   "typef": "CLASSFP",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Trout_Fishing/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 34,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Flathead Catfish",
+   "sample": [
+    {
+     "Name": "Guntersville Lake",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Little",
+     "Native": "No"
+    },
+    {
+     "Name": "Upper Oconee",
+     "Native": "No"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Aquatic_Nuisance_Species/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 34,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Flathead Catfish",
+   "sample": [
+    {
+     "Name": "Guntersville Lake",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Little",
+     "Native": "No"
+    },
+    {
+     "Name": "Upper Oconee",
+     "Native": "No"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Aquatic_Nuisance_Species/FeatureServer/16"
+  },
+  {
+   "agency": "",
+   "area": "Area",
+   "count": 28,
+   "fields": [
+    "GNIS_Name",
+    "Area"
+   ],
+   "known": false,
+   "layer": "Lakes",
+   "sample": [
+    {
+     "Area": "Indian Springs State Park",
+     "GNIS_Name": "Chief McIntosh Lake"
+    },
+    {
+     "Area": "Sandy Creek Park",
+     "GNIS_Name": "Lake Chapman"
+    },
+    {
+     "Area": "High Falls State Park",
+     "GNIS_Name": "High Falls Lake"
+    }
+   ],
+   "service": "Gateway_to_Fishing_Lakes",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Gateway_to_Fishing_Lakes/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 28,
+   "fields": [
+    "ID",
+    "Type",
+    "Tract",
+    "Cmpt",
+    "Stand",
+    "ID_1",
+    "Origin",
+    "Tract_1"
+   ],
+   "known": false,
+   "layer": "Reforestation",
+   "sample": [
+    {
+     "Cmpt": "04",
+     "ID": "SLak0415",
+     "ID_1": "SLak0415",
+     "Origin": "Natural",
+     "Stand": "15",
+     "Tract": "SLak",
+     "Tract_1": "1",
+     "Type": "Longleaf Pine"
+    },
+    {
+     "Cmpt": "04",
+     "ID": "SLak0412",
+     "ID_1": "SLak0412",
+     "Origin": "Natural",
+     "Stand": "12",
+     "Tract": "SLak",
+     "Tract_1": "3",
+     "Type": "Loblolly Pine"
+    },
+    {
+     "Cmpt": "04",
+     "ID": "SLak0401",
+     "ID_1": "SLak0401",
+     "Origin": "Natural",
+     "Stand": "01",
+     "Tract": "SLak",
+     "Tract_1": "3",
+     "Type": "Longleaf Pine"
+    }
+   ],
+   "service": "NFWF_Reforestation",
+   "typef": "Type",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/NFWF_Reforestation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Area",
+   "count": 28,
+   "fields": [
+    "GNIS_Name",
+    "Area"
+   ],
+   "known": false,
+   "layer": "Lakes",
+   "sample": [
+    {
+     "Area": "Indian Springs State Park",
+     "GNIS_Name": "Chief McIntosh Lake"
+    },
+    {
+     "Area": "Sandy Creek Park",
+     "GNIS_Name": "Lake Chapman"
+    },
+    {
+     "Area": "High Falls State Park",
+     "GNIS_Name": "High Falls Lake"
+    }
+   ],
+   "service": "Gateway_to_Fishing_Lakes",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Gateway_to_Fishing_Lakes/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 28,
+   "fields": [
+    "ID",
+    "Type",
+    "Tract",
+    "Cmpt",
+    "Stand",
+    "ID_1",
+    "Origin",
+    "Tract_1"
+   ],
+   "known": false,
+   "layer": "Reforestation",
+   "sample": [
+    {
+     "Cmpt": "04",
+     "ID": "SLak0415",
+     "ID_1": "SLak0415",
+     "Origin": "Natural",
+     "Stand": "15",
+     "Tract": "SLak",
+     "Tract_1": "1",
+     "Type": "Longleaf Pine"
+    },
+    {
+     "Cmpt": "04",
+     "ID": "SLak0412",
+     "ID_1": "SLak0412",
+     "Origin": "Natural",
+     "Stand": "12",
+     "Tract": "SLak",
+     "Tract_1": "3",
+     "Type": "Loblolly Pine"
+    },
+    {
+     "Cmpt": "04",
+     "ID": "SLak0401",
+     "ID_1": "SLak0401",
+     "Origin": "Natural",
+     "Stand": "01",
+     "Tract": "SLak",
+     "Tract_1": "3",
+     "Type": "Longleaf Pine"
+    }
+   ],
+   "service": "NFWF_Reforestation",
+   "typef": "Type",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/NFWF_Reforestation/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 19,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Blue Catfish",
+   "sample": [
+    {
+     "Name": "Upper Oconee",
+     "Native": "No"
+    },
+    {
+     "Name": "Middle Tennessee-Chickamauga",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Hiwassee",
+     "Native": "No"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Aquatic_Nuisance_Species/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 19,
+   "fields": [
+    "Native",
+    "Name"
+   ],
+   "known": false,
+   "layer": "Blue Catfish",
+   "sample": [
+    {
+     "Name": "Upper Oconee",
+     "Native": "No"
+    },
+    {
+     "Name": "Middle Tennessee-Chickamauga",
+     "Native": "Yes"
+    },
+    {
+     "Name": "Hiwassee",
+     "Native": "No"
+    }
+   ],
+   "service": "Aquatic_Nuisance_Species",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Aquatic_Nuisance_Species/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "Project_Action_Area",
+   "count": 8,
+   "fields": [
+    "Action_Number",
+    "Subaction_Number",
+    "Project_Name",
+    "Project_Desc",
+    "Lead_Organization",
+    "Supporting_Partners",
+    "Target_SGCN",
+    "Target_TaxaGroup",
+    "Course_Habitat",
+    "Fine_Habitat",
+    "Project_Metric",
+    "Project_Action_Area",
+    "Target_EcoRegion",
+    "Target_Watersheds",
+    "Project_Citation",
+    "Project_Link",
+    "Primary_Funding",
+    "Secondary_Funding",
+    "Creator_1",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "SubActions",
+   "sample": [
+    {
+     "Action_Number": "ALL_13",
+     "Course_Habitat": "Rivers and Streams",
+     "Fine_Habitat": "Not Applicable",
+     "Lead_Organization": "GADNR-WRD",
+     "Project_Action_Area": "Watersheds",
+     "Project_Desc": "We compared occurrence data before (1996–2000) and after (2009–2011) a period of rapid development and population growth within the watershed. Single-season occupancy models were built to account for imperfect species detection and to identify habitat covariates. MaxEnt was used to identify important stream reaches for conservation and to understand landscape scale factors correlated with the distribution of goldline darters. Our results indicate a high proportion of sites occupied upstream of Carters Lake during the historic and recent time periods, with no evidence of decline. However, occurrences of goldline darters for sites in Talking Rock Creek and the lower Coosawattee River were sparse in the historic period and absent during the recent period. The probability of detecting goldline darters is low and was positively associated with the occurrence of small substrate. Species distribution models were strongly influenced by watershed area and elevation and indicated a high probability of suitable habitat within the Coosawattee River and large tributaries upstream of Carters Lake. While goldline darter occupancy is currently stable upstream of Carters Lake, continued urbanisation is a threat to long-term persistence. We recommend additional monitoring and describe a protocol that allows for precise estimates of species occupancy while minimising the risk of sampling-related mortality.",
+     "Project_Metric": "Number of sites monitored for SGCN or their habitats",
+     "Project_Name": "Status survey for the Goldline Darter (Percina aurolineata)",
+     "Subaction_Number": "1",
+     "Supporting_Partners": "UGA",
+     "Target_SGCN": "Goldline Darter (Percina aurolineata)",
+     "Target_TaxaGroup": "Freshwater and Diadromous Fishes"
+    },
+    {
+     "Action_Number": "ALL_13",
+     "Course_Habitat": "Rivers and Streams, Natural Lentic Waterbodies",
+     "Fine_Habitat": "Not Applicable",
+     "Lead_Organization": "SCDNR",
+     "Project_Action_Area": "Watersheds",
+     "Project_Desc": "This project represents a rigorous assessment of the current distribution, relative abundance, and population health of E. chaetodon throughout the southern portion of its range, providing critical baseline data for this species. The developed eDNA tool provides a time and cost-effective means for E. chaetodon monitoring in the remainder of its range as well as future monitoring in South Carolina and Georgia. Overall, project results have provided substantially improved distribution and relative abundance data necessary for managers to protect E. chaetodon populations and their habitats. Additionally, genetic characterization of current populations throughout the range of E. chaetodon provides excellent baseline metrics of their genetic health as well as important information about population connectivity for guiding conservation priorities and actions. The data collected during our project has provided guidance for the development of recommendations for additional conservation measures for E. chaetodon at both state and site-specific levels. We also updated E. chaetodon accounts for each state’s SWAP, updated online resources with E. chaetodon data, and produced an information brochure for private landowners to promote conservation of E. chaetodon and their habitats. Data obtained will lead to better informed adaptive management of E. chaetodon and will be useful in monitoring current and future population impacts. While application of the direct project products will be restricted to management within the southeastern US, results of the research will also be relevant to management agencies in the northern portion of E. chaetodon’s range. Additionally, due to the frequent impacting of freshwater wetland habitats, E. chaetodon represents a valuable indicator species for these habitats; increased knowledge of distribution, connectivity, and population health of E. chaetodon within these systems is a valuable resource for effective conservation for these ecosystems.",
+     "Project_Metric": "Number of sites surveyed for SGCN",
+     "Project_Name": "Development and implementation of an environmental DNA (eDNA) monitoring tool for Blackbanded Sunfish (Enneacanthus chaetodon) populations in South Carolina and Georgia with determination of relative abundance, genetic health, and connectivity of extant populations",
+     "Subaction_Number": "2",
+     "Supporting_Partners": "GADNR-WRD",
+     "Target_SGCN": "Blackbanded Sunfish (Enneacanthus chaetodon)",
+     "Target_TaxaGroup": "Freshwater and Diadromous Fishes"
+    },
+    {
+     "Action_Number": "HAB_08",
+     "Fine_Habitat": "Xeric Aeolian Dunes (sand ridges and dunes along rivers), Longleaf Pine-Scrub Oak Woodlands (Fall Line sandhills)",
+     "Lead_Organization": "GADNR-WRD",
+     "Project_Action_Area": "Individual Site",
+     "Project_Desc": "The primary goal of this project is to restore the natural vegetation structure and ecological processes of sandhills communities to improve wildlife habitat. By restoring habitat, this project also aims to increase gopher tortoise populations and breeding bird occupancy. Habitat restoration efforts for this project include returning fire to the landscape in appropriate intervals using prescribed fire, removing/thinning hardwoods, removing invasive species, and planting longleaf pine. These habitat restoration efforts additionally allow for the management of rare plants, most of which are fire adapted and rely on open habitat. Vegetation monitoring is used to track changes in the vegetation structure and ultimately to inform land managers of the progress of their restoration activities, determine which goals have been achieved, and where additional management may be required. Target vegetation metrics are based on sandhill habitat characteristics outlined in the Gopher Tortoise Management Plan (FWCC 2012).  This adaptive management strategy, adjusting based on the habitat response, helps conserve resources, and provides information as to which restoration tools are most effective at achieving target restoration metrics.",
+     "Project_Metric": "Number of sites monitored for SGCN or their habitats",
+     "Project_Name": "Sandhills Habitat Ecological Restoration",
+     "Subaction_Number": "3",
+     "Supporting_Partners": "The Nature Conservancy, The Orianne Society, The Jones Center at Ichauway",
+     "Target_SGCN": "Gopher Tortoise (Gopherus polyphemus), Henslow’s Sparrow (Ammodramus henslowii), Sandhill Rosemary (Ceratiola ericoides)",
+     "Target_TaxaGroup": "Natural Communities"
+    }
+   ],
+   "service": "ConservationActionTracker",
+   "typef": "Project_Desc",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/ConservationActionTracker/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Project_Action_Area",
+   "count": 8,
+   "fields": [
+    "Action_Number",
+    "Subaction_Number",
+    "Project_Name",
+    "Project_Desc",
+    "Lead_Organization",
+    "Supporting_Partners",
+    "Target_SGCN",
+    "Target_TaxaGroup",
+    "Course_Habitat",
+    "Fine_Habitat",
+    "Project_Metric",
+    "Project_Action_Area",
+    "Target_EcoRegion",
+    "Target_Watersheds",
+    "Project_Citation",
+    "Project_Link",
+    "Primary_Funding",
+    "Secondary_Funding",
+    "Creator_1",
+    "Editor_1"
+   ],
+   "known": false,
+   "layer": "SubActions",
+   "sample": [
+    {
+     "Action_Number": "ALL_13",
+     "Course_Habitat": "Rivers and Streams",
+     "Fine_Habitat": "Not Applicable",
+     "Lead_Organization": "GADNR-WRD",
+     "Project_Action_Area": "Watersheds",
+     "Project_Desc": "We compared occurrence data before (1996–2000) and after (2009–2011) a period of rapid development and population growth within the watershed. Single-season occupancy models were built to account for imperfect species detection and to identify habitat covariates. MaxEnt was used to identify important stream reaches for conservation and to understand landscape scale factors correlated with the distribution of goldline darters. Our results indicate a high proportion of sites occupied upstream of Carters Lake during the historic and recent time periods, with no evidence of decline. However, occurrences of goldline darters for sites in Talking Rock Creek and the lower Coosawattee River were sparse in the historic period and absent during the recent period. The probability of detecting goldline darters is low and was positively associated with the occurrence of small substrate. Species distribution models were strongly influenced by watershed area and elevation and indicated a high probability of suitable habitat within the Coosawattee River and large tributaries upstream of Carters Lake. While goldline darter occupancy is currently stable upstream of Carters Lake, continued urbanisation is a threat to long-term persistence. We recommend additional monitoring and describe a protocol that allows for precise estimates of species occupancy while minimising the risk of sampling-related mortality.",
+     "Project_Metric": "Number of sites monitored for SGCN or their habitats",
+     "Project_Name": "Status survey for the Goldline Darter (Percina aurolineata)",
+     "Subaction_Number": "1",
+     "Supporting_Partners": "UGA",
+     "Target_SGCN": "Goldline Darter (Percina aurolineata)",
+     "Target_TaxaGroup": "Freshwater and Diadromous Fishes"
+    },
+    {
+     "Action_Number": "ALL_13",
+     "Course_Habitat": "Rivers and Streams, Natural Lentic Waterbodies",
+     "Fine_Habitat": "Not Applicable",
+     "Lead_Organization": "SCDNR",
+     "Project_Action_Area": "Watersheds",
+     "Project_Desc": "This project represents a rigorous assessment of the current distribution, relative abundance, and population health of E. chaetodon throughout the southern portion of its range, providing critical baseline data for this species. The developed eDNA tool provides a time and cost-effective means for E. chaetodon monitoring in the remainder of its range as well as future monitoring in South Carolina and Georgia. Overall, project results have provided substantially improved distribution and relative abundance data necessary for managers to protect E. chaetodon populations and their habitats. Additionally, genetic characterization of current populations throughout the range of E. chaetodon provides excellent baseline metrics of their genetic health as well as important information about population connectivity for guiding conservation priorities and actions. The data collected during our project has provided guidance for the development of recommendations for additional conservation measures for E. chaetodon at both state and site-specific levels. We also updated E. chaetodon accounts for each state’s SWAP, updated online resources with E. chaetodon data, and produced an information brochure for private landowners to promote conservation of E. chaetodon and their habitats. Data obtained will lead to better informed adaptive management of E. chaetodon and will be useful in monitoring current and future population impacts. While application of the direct project products will be restricted to management within the southeastern US, results of the research will also be relevant to management agencies in the northern portion of E. chaetodon’s range. Additionally, due to the frequent impacting of freshwater wetland habitats, E. chaetodon represents a valuable indicator species for these habitats; increased knowledge of distribution, connectivity, and population health of E. chaetodon within these systems is a valuable resource for effective conservation for these ecosystems.",
+     "Project_Metric": "Number of sites surveyed for SGCN",
+     "Project_Name": "Development and implementation of an environmental DNA (eDNA) monitoring tool for Blackbanded Sunfish (Enneacanthus chaetodon) populations in South Carolina and Georgia with determination of relative abundance, genetic health, and connectivity of extant populations",
+     "Subaction_Number": "2",
+     "Supporting_Partners": "GADNR-WRD",
+     "Target_SGCN": "Blackbanded Sunfish (Enneacanthus chaetodon)",
+     "Target_TaxaGroup": "Freshwater and Diadromous Fishes"
+    },
+    {
+     "Action_Number": "HAB_08",
+     "Fine_Habitat": "Xeric Aeolian Dunes (sand ridges and dunes along rivers), Longleaf Pine-Scrub Oak Woodlands (Fall Line sandhills)",
+     "Lead_Organization": "GADNR-WRD",
+     "Project_Action_Area": "Individual Site",
+     "Project_Desc": "The primary goal of this project is to restore the natural vegetation structure and ecological processes of sandhills communities to improve wildlife habitat. By restoring habitat, this project also aims to increase gopher tortoise populations and breeding bird occupancy. Habitat restoration efforts for this project include returning fire to the landscape in appropriate intervals using prescribed fire, removing/thinning hardwoods, removing invasive species, and planting longleaf pine. These habitat restoration efforts additionally allow for the management of rare plants, most of which are fire adapted and rely on open habitat. Vegetation monitoring is used to track changes in the vegetation structure and ultimately to inform land managers of the progress of their restoration activities, determine which goals have been achieved, and where additional management may be required. Target vegetation metrics are based on sandhill habitat characteristics outlined in the Gopher Tortoise Management Plan (FWCC 2012).  This adaptive management strategy, adjusting based on the habitat response, helps conserve resources, and provides information as to which restoration tools are most effective at achieving target restoration metrics.",
+     "Project_Metric": "Number of sites monitored for SGCN or their habitats",
+     "Project_Name": "Sandhills Habitat Ecological Restoration",
+     "Subaction_Number": "3",
+     "Supporting_Partners": "The Nature Conservancy, The Orianne Society, The Jones Center at Ichauway",
+     "Target_SGCN": "Gopher Tortoise (Gopherus polyphemus), Henslow’s Sparrow (Ammodramus henslowii), Sandhill Rosemary (Ceratiola ericoides)",
+     "Target_TaxaGroup": "Natural Communities"
+    }
+   ],
+   "service": "ConservationActionTracker",
+   "typef": "Project_Desc",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/ConservationActionTracker/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "STATEFP",
+    "OfficeNumber",
+    "LE_OfficeNum",
+    "LE_OfficeName",
+    "Region_String",
+    "Fish_Super",
+    "Fish_Number"
+   ],
+   "known": false,
+   "layer": "WRD_RegionsSHP_ExportFeatures",
+   "sample": [
+    {
+     "Fish_Number": "912-285-6094\r\n",
+     "Fish_Super": "Don Harrison",
+     "LE_OfficeName": "Metter",
+     "LE_OfficeNum": "(912) 685-2145 ",
+     "OfficeNumber": "(229) 426-5267",
+     "Region_String": "4",
+     "STATEFP": "13"
+    },
+    {
+     "Fish_Number": "912-727-2112\r\n",
+     "Fish_Super": "Joel Fleming",
+     "LE_OfficeName": "Brunswick",
+     "LE_OfficeNum": "(912) 264-7237",
+     "OfficeNumber": "(912) 262-3173",
+     "Region_String": "6",
+     "STATEFP": "13"
+    },
+    {
+     "Fish_Number": "478-825-6151\r\n",
+     "Fish_Super": "Hunter Roop",
+     "LE_OfficeName": "Thomson",
+     "LE_OfficeNum": "(706) 595-4211 ",
+     "OfficeNumber": "(706) 595-4222",
+     "Region_String": "3",
+     "STATEFP": "13"
+    }
+   ],
+   "service": "Fisheries_Resource_Directory_WFL1",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Fisheries_Resource_Directory_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "STATEFP",
+    "OfficeNumber",
+    "LE_OfficeNum",
+    "LE_OfficeName",
+    "Region_String",
+    "Fish_Super",
+    "Fish_Number"
+   ],
+   "known": false,
+   "layer": "WRD_RegionsSHP_ExportFeatures",
+   "sample": [
+    {
+     "Fish_Number": "912-285-6094\r\n",
+     "Fish_Super": "Don Harrison",
+     "LE_OfficeName": "Metter",
+     "LE_OfficeNum": "(912) 685-2145 ",
+     "OfficeNumber": "(229) 426-5267",
+     "Region_String": "4",
+     "STATEFP": "13"
+    },
+    {
+     "Fish_Number": "912-727-2112\r\n",
+     "Fish_Super": "Joel Fleming",
+     "LE_OfficeName": "Brunswick",
+     "LE_OfficeNum": "(912) 264-7237",
+     "OfficeNumber": "(912) 262-3173",
+     "Region_String": "6",
+     "STATEFP": "13"
+    },
+    {
+     "Fish_Number": "478-825-6151\r\n",
+     "Fish_Super": "Hunter Roop",
+     "LE_OfficeName": "Thomson",
+     "LE_OfficeNum": "(706) 595-4211 ",
+     "OfficeNumber": "(706) 595-4222",
+     "Region_String": "3",
+     "STATEFP": "13"
+    }
+   ],
+   "service": "Fisheries_Resource_Directory_WFL1",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Fisheries_Resource_Directory_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "Name",
+    "Icon",
+    "Ext",
+    "Desc_",
+    "Img"
+   ],
+   "known": false,
+   "layer": "ParkMarkersBounded",
+   "sample": [
+    {
+     "Desc_": "Divided by the winding South Fork River, Watson Mill Bridge State Park boasts Georgia’s longest covered bridge still in use, preserving a link to the culture of a bygone era and opening passageways to outdoor activities, rustic overnight experiences and equestrian adventures.",
+     "Ext": "https://gastateparks.org/WatsonMillBridge",
+     "Icon": "ForestRiver",
+     "Img": "https://gastateparks.org/sites/default/files/styles/locationslidestyle/public/parks/locationslideshow/WatsonMillBridge.jpg",
+     "Name": "Watson Mill Bridge"
+    },
+    {
+     "Desc_": "Hard Labor Creek State Park’s many beautiful Piedmont habitats intertwine with the historic landscape transformed by the Civilian Conservation Corps, providing solace and solitude for recreation and reflection.",
+     "Ext": "https://gastateparks.org/HardLaborCreek",
+     "Icon": "ForestLake",
+     "Img": "https://gastateparks.org/sites/default/files/styles/locationslidestyle/public/parks/locationslideshow/hlc-slider1.jpg",
+     "Name": "Hard Labor Creek"
+    },
+    {
+     "Desc_": "Rediscover nature's role through the ages by exploring Cloudland Canyon State Park’s water-carved canyons and caves surrounded by the breathtaking views and rugged geology of the Cumberland Plateau.",
+     "Ext": "https://gastateparks.org/CloudlandCanyon",
+     "Icon": "Mountain",
+     "Img": "https://gastateparks.org/sites/default/files/styles/locationslidestyle/public/parks/locationslideshow/CloudandCanyon2.jpg",
+     "Name": "Cloudland Canyon"
+    }
+   ],
+   "service": "ParkMarkersBounded",
+   "typef": "Desc_",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/ParkMarkersBounded/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "Name",
+    "Icon",
+    "Ext",
+    "Desc_",
+    "Img"
+   ],
+   "known": false,
+   "layer": "ParkMarkersBounded",
+   "sample": [
+    {
+     "Desc_": "Divided by the winding South Fork River, Watson Mill Bridge State Park boasts Georgia’s longest covered bridge still in use, preserving a link to the culture of a bygone era and opening passageways to outdoor activities, rustic overnight experiences and equestrian adventures.",
+     "Ext": "https://gastateparks.org/WatsonMillBridge",
+     "Icon": "ForestRiver",
+     "Img": "https://gastateparks.org/sites/default/files/styles/locationslidestyle/public/parks/locationslideshow/WatsonMillBridge.jpg",
+     "Name": "Watson Mill Bridge"
+    },
+    {
+     "Desc_": "Hard Labor Creek State Park’s many beautiful Piedmont habitats intertwine with the historic landscape transformed by the Civilian Conservation Corps, providing solace and solitude for recreation and reflection.",
+     "Ext": "https://gastateparks.org/HardLaborCreek",
+     "Icon": "ForestLake",
+     "Img": "https://gastateparks.org/sites/default/files/styles/locationslidestyle/public/parks/locationslideshow/hlc-slider1.jpg",
+     "Name": "Hard Labor Creek"
+    },
+    {
+     "Desc_": "Rediscover nature's role through the ages by exploring Cloudland Canyon State Park’s water-carved canyons and caves surrounded by the breathtaking views and rugged geology of the Cumberland Plateau.",
+     "Ext": "https://gastateparks.org/CloudlandCanyon",
+     "Icon": "Mountain",
+     "Img": "https://gastateparks.org/sites/default/files/styles/locationslidestyle/public/parks/locationslideshow/CloudandCanyon2.jpg",
+     "Name": "Cloudland Canyon"
+    }
+   ],
+   "service": "ParkMarkersBounded",
+   "typef": "Desc_",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/ParkMarkersBounded/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 3,
+   "fields": [
+    "PropName",
+    "Owner",
+    "FM_Region",
+    "WRD_manage",
+    "GlobalID",
+    "Tract_Name",
+    "GM_Region",
+    "Public_Map",
+    "BuffType"
+   ],
+   "known": false,
+   "layer": "Moody_Forest_WMA_Buffers",
+   "sample": [
+    {
+     "BuffType": "5 Mile",
+     "FM_Region": "4",
+     "GM_Region": "4",
+     "GlobalID": "ebfe84a6-84f9-4d77-8b0e-d6b5d07f78a0",
+     "Owner": "DNR",
+     "PropName": "MOODY FOREST WMA",
+     "Public_Map": "Yes",
+     "Tract_Name": " ",
+     "WRD_manage": "OTH"
+    },
+    {
+     "BuffType": "3 Mile",
+     "FM_Region": "4",
+     "GM_Region": "4",
+     "GlobalID": "ebfe84a6-84f9-4d77-8b0e-d6b5d07f78a0",
+     "Owner": "DNR",
+     "PropName": "MOODY FOREST WMA",
+     "Public_Map": "Yes",
+     "Tract_Name": " ",
+     "WRD_manage": "OTH"
+    },
+    {
+     "BuffType": "1 Mile",
+     "FM_Region": "4",
+     "GM_Region": "4",
+     "GlobalID": "ebfe84a6-84f9-4d77-8b0e-d6b5d07f78a0",
+     "Owner": "DNR",
+     "PropName": "MOODY FOREST WMA",
+     "Public_Map": "Yes",
+     "Tract_Name": " ",
+     "WRD_manage": "OTH"
+    }
+   ],
+   "service": "Moody_Forest_WMA_Buffers",
+   "typef": "BuffType",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Moody_Forest_WMA_Buffers/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 3,
+   "fields": [
+    "PropName",
+    "Owner",
+    "FM_Region",
+    "WRD_manage",
+    "GlobalID",
+    "Tract_Name",
+    "GM_Region",
+    "Public_Map",
+    "BuffType"
+   ],
+   "known": false,
+   "layer": "Moody_Forest_WMA_Buffers",
+   "sample": [
+    {
+     "BuffType": "5 Mile",
+     "FM_Region": "4",
+     "GM_Region": "4",
+     "GlobalID": "ebfe84a6-84f9-4d77-8b0e-d6b5d07f78a0",
+     "Owner": "DNR",
+     "PropName": "MOODY FOREST WMA",
+     "Public_Map": "Yes",
+     "Tract_Name": " ",
+     "WRD_manage": "OTH"
+    },
+    {
+     "BuffType": "3 Mile",
+     "FM_Region": "4",
+     "GM_Region": "4",
+     "GlobalID": "ebfe84a6-84f9-4d77-8b0e-d6b5d07f78a0",
+     "Owner": "DNR",
+     "PropName": "MOODY FOREST WMA",
+     "Public_Map": "Yes",
+     "Tract_Name": " ",
+     "WRD_manage": "OTH"
+    },
+    {
+     "BuffType": "1 Mile",
+     "FM_Region": "4",
+     "GM_Region": "4",
+     "GlobalID": "ebfe84a6-84f9-4d77-8b0e-d6b5d07f78a0",
+     "Owner": "DNR",
+     "PropName": "MOODY FOREST WMA",
+     "Public_Map": "Yes",
+     "Tract_Name": " ",
+     "WRD_manage": "OTH"
+    }
+   ],
+   "service": "Moody_Forest_WMA_Buffers",
+   "typef": "BuffType",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Moody_Forest_WMA_Buffers/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Red_hills_properties",
+   "sample": [
+    {
+     "Name": "River Creek, the Rolf and Alexandra Kauka WMA"
+    },
+    {
+     "Name": "Apalachicola National Forest"
+    }
+   ],
+   "service": "Red_hills_properties",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Red_hills_properties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "Red_hills_properties",
+   "sample": [
+    {
+     "Name": "River Creek, the Rolf and Alexandra Kauka WMA"
+    },
+    {
+     "Name": "Apalachicola National Forest"
+    }
+   ],
+   "service": "Red_hills_properties",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Red_hills_properties/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "CNTYIDFP",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT"
+   ],
+   "known": false,
+   "layer": "GA_mod_coast",
+   "sample": [
+    {
+     "CBSAFP": " ",
+     "CLASSFP": " ",
+     "CNTYIDFP": " ",
+     "COUNTYFP": " ",
+     "COUNTYNS": " ",
+     "CSAFP": " ",
+     "LSAD": " ",
+     "METDIVFP": " ",
+     "MTFCC": " ",
+     "NAME": " ",
+     "NAMELSAD": " ",
+     "STATEFP": " "
+    }
+   ],
+   "service": "Historical_Marker_Map_WFL1",
+   "typef": "CLASSFP",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/Historical_Marker_Map_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "STATEFP",
+    "COUNTYFP",
+    "COUNTYNS",
+    "CNTYIDFP",
+    "NAME",
+    "NAMELSAD",
+    "LSAD",
+    "CLASSFP",
+    "MTFCC",
+    "CSAFP",
+    "CBSAFP",
+    "METDIVFP",
+    "FUNCSTAT"
+   ],
+   "known": false,
+   "layer": "GA_mod_coast",
+   "sample": [
+    {
+     "CBSAFP": " ",
+     "CLASSFP": " ",
+     "CNTYIDFP": " ",
+     "COUNTYFP": " ",
+     "COUNTYNS": " ",
+     "CSAFP": " ",
+     "LSAD": " ",
+     "METDIVFP": " ",
+     "MTFCC": " ",
+     "NAME": " ",
+     "NAMELSAD": " ",
+     "STATEFP": " "
+    }
+   ],
+   "service": "Historical_Marker_Map_WFL1",
+   "typef": "CLASSFP",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/Historical_Marker_Map_WFL1/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 60,
+   "fields": [
+    "PropName",
+    "Region",
+    "NR_Manager"
+   ],
+   "known": true,
+   "layer": "StateParks_GeneralBoundaries",
+   "sample": [
+    {
+     "NR_Manager": "Tyler Gravely",
+     "PropName": "Balls Ferry State Park",
+     "Region": "3"
+    },
+    {
+     "NR_Manager": "Phil Delestrez",
+     "PropName": "Chattahoochee Bend State Park",
+     "Region": "1"
+    },
+    {
+     "NR_Manager": "Phil Delestrez",
+     "PropName": "Dukes Creek - Smithgall Woods State Park",
+     "Region": "2"
+    }
+   ],
+   "service": "State_Parks_Boundary",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/ArcGIS/rest/services/State_Parks_Boundary/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PropName",
+   "count": 60,
+   "fields": [
+    "PropName",
+    "Region",
+    "NR_Manager"
+   ],
+   "known": true,
+   "layer": "StateParks_GeneralBoundaries",
+   "sample": [
+    {
+     "NR_Manager": "Tyler Gravely",
+     "PropName": "Balls Ferry State Park",
+     "Region": "3"
+    },
+    {
+     "NR_Manager": "Phil Delestrez",
+     "PropName": "Chattahoochee Bend State Park",
+     "Region": "1"
+    },
+    {
+     "NR_Manager": "Phil Delestrez",
+     "PropName": "Dukes Creek - Smithgall Woods State Park",
+     "Region": "2"
+    }
+   ],
+   "service": "State_Parks_Boundary",
+   "typef": "",
+   "url": "https://services6.arcgis.com/9QlSLDqa0P1cHLhu/arcgis/rest/services/State_Parks_Boundary/FeatureServer/0"
+  }
+ ],
+ "st": "GA"
+}

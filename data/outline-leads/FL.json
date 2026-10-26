@@ -1,0 +1,1828 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": " FL-DEP-DSL - GIS Land Records Mapping Project staff",
+   "area": "FACILITY_NAME",
+   "count": 247605,
+   "fields": [
+    "DOC_LOCATOR_TEXT",
+    "LEGACY_FACILITY_CODE_TEXT",
+    "FACILITY_NAME",
+    "LEASE_NBR",
+    "RESERVATION_IND_TEXT",
+    "REVERTER_IND_TEXT",
+    "SUBMERGED_LAND_IND_TEXT",
+    "STATE_PLANE_TEXT",
+    "DOC_TYPE_CODE_TEXT",
+    "LAND_CATEGORY_NAME",
+    "MAP_NOTE_TEXT",
+    "BOOK_TYPE_TEXT",
+    "BOOK_NBR",
+    "BOOK_PAGE_NBR",
+    "CONFIDENCE_TEXT",
+    "DRAWN_BY_NAME",
+    "BASE_MAP_TEXT",
+    "COUNTY_NAME",
+    "DEED_NBR",
+    "INSTRUMENT_NBR"
+   ],
+   "known": false,
+   "layer": "State Land Records",
+   "sample": [
+    {
+     "DOC_TYPE_CODE_TEXT": "ADF",
+     "FACILITY_NAME": "FLORIDA KEYS ECOSYSTEM",
+     "LAND_CATEGORY_NAME": "ACQUISITION",
+     "LEGACY_FACILITY_CODE_TEXT": "844",
+     "MAP_NOTE_TEXT": "WARRANTY DEED FROM KARP ASSOCIATES, OR BK 1660, PG 2345, LOT 3, BLK 5, LESS PORTION ON WEST SIDE.  NORTH CAROLINA BEACH FISHING CLUB CORP. PLT BK 1, PG 93.",
+     "RESERVATION_IND_TEXT": "N",
+     "REVERTER_IND_TEXT": "N",
+     "STATE_PLANE_TEXT": "E"
+    },
+    {
+     "DOC_TYPE_CODE_TEXT": "ADF",
+     "FACILITY_NAME": "LAKE WALES RIDGE ECOSYSTEM",
+     "LAND_CATEGORY_NAME": "ACQUISITION",
+     "LEGACY_FACILITY_CODE_TEXT": "428",
+     "MAP_NOTE_TEXT": "WARRANTY DEED BTW MARIA CAPRIO AND TIITF. OR BK 1789 PG 1317, PID C-21-36-29-180-5350-0130, ALL OF LOT 13  BLOCK 535 LEISURE LAKES SECT 18, PB 6, PG 55.",
+     "RESERVATION_IND_TEXT": "N",
+     "REVERTER_IND_TEXT": "N",
+     "STATE_PLANE_TEXT": "E"
+    },
+    {
+     "DOC_TYPE_CODE_TEXT": "ADF",
+     "FACILITY_NAME": "LAKE WALES RIDGE ECOSYSTEM",
+     "LAND_CATEGORY_NAME": "ACQUISITION",
+     "LEGACY_FACILITY_CODE_TEXT": "428",
+     "MAP_NOTE_TEXT": "WARRANTY DEED BTW ZENEN MOCTEZUMA SANABRIA ETAL AND TIITF. PAPID NO C-22-37-330-250-3310-0170. OR BK 1805 PG 1625. LOT 17, BLK 331, SUN N LAKE ESTATES, SECT. 25  PLAT BK 9, PAGE 29.",
+     "RESERVATION_IND_TEXT": "N",
+     "REVERTER_IND_TEXT": "N",
+     "STATE_PLANE_TEXT": "E"
+    }
+   ],
+   "service": "OpenData/DSL_PARCEL_COMP",
+   "typef": "LEGACY_FACILITY_CODE_TEXT",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/DSL_PARCEL_COMP/MapServer/0"
+  },
+  {
+   "agency": "FDEP-DSL",
+   "area": "",
+   "count": 190565,
+   "fields": [
+    "FL_SOLARIS_LAND_ID",
+    "INTERNAL_AGENCY_ID",
+    "PROJECT_NAME",
+    "OWNER_TYPE_NAME",
+    "AGENCY_NAME",
+    "PUBLIC_ACCESSIBLE_IND_TEXT",
+    "PUBLIC_RESTRICTION_TEXT",
+    "LEGAL_DESCRIPTION_TEXT"
+   ],
+   "known": false,
+   "layer": "FL-SOLARIS/CLEAR Conservation Owned Lands",
+   "sample": [
+    {
+     "AGENCY_NAME": "Department of Environmental Protection",
+     "FL_SOLARIS_LAND_ID": "A7",
+     "INTERNAL_AGENCY_ID": "8",
+     "OWNER_TYPE_NAME": "Agency",
+     "PROJECT_NAME": "Lake Jackson Mounds",
+     "PUBLIC_ACCESSIBLE_IND_TEXT": "U"
+    },
+    {
+     "AGENCY_NAME": "Department of Environmental Protection",
+     "FL_SOLARIS_LAND_ID": "A8",
+     "INTERNAL_AGENCY_ID": "9",
+     "OWNER_TYPE_NAME": "Agency",
+     "PROJECT_NAME": "Lake Jackson Mounds",
+     "PUBLIC_ACCESSIBLE_IND_TEXT": "U"
+    },
+    {
+     "AGENCY_NAME": "Department of Environmental Protection",
+     "FL_SOLARIS_LAND_ID": "A8",
+     "INTERNAL_AGENCY_ID": "9",
+     "OWNER_TYPE_NAME": "Agency",
+     "PROJECT_NAME": "Lake Jackson Mounds",
+     "PUBLIC_ACCESSIBLE_IND_TEXT": "U"
+    }
+   ],
+   "service": "OpenData/STATE_OWNED_LANDS",
+   "typef": "OWNER_TYPE_NAME",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/2"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "SITE_NAME",
+   "count": 40963,
+   "fields": [
+    "UNIT_ID",
+    "SITE_NAME",
+    "EC_TYPE",
+    "EC_CODE",
+    "DFC_CODE",
+    "DFC_TYPE"
+   ],
+   "known": false,
+   "layer": "Florida State Park Natural Communities",
+   "sample": [
+    {
+     "DFC_CODE": "SAM",
+     "DFC_TYPE": "Salt Marsh",
+     "EC_CODE": "SAM",
+     "EC_TYPE": "Salt Marsh",
+     "SITE_NAME": "Anastasia State Park",
+     "UNIT_ID": "S00003"
+    },
+    {
+     "DFC_CODE": "SAM",
+     "DFC_TYPE": "Salt Marsh",
+     "EC_CODE": "SAM",
+     "EC_TYPE": "Salt Marsh",
+     "SITE_NAME": "Anastasia State Park",
+     "UNIT_ID": "S00003"
+    },
+    {
+     "DFC_CODE": "CG",
+     "DFC_TYPE": "Coastal Grassland",
+     "EC_CODE": "CG",
+     "EC_TYPE": "Coastal Grassland",
+     "SITE_NAME": "Anastasia State Park",
+     "UNIT_ID": "S00003"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "EC_TYPE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/5"
+  },
+  {
+   "agency": "SJRWMD, other agencies where applicable.",
+   "area": "",
+   "count": 13304,
+   "fields": [
+    "COUNTY",
+    "ORB",
+    "EXHIBIT",
+    "GRANTOR",
+    "GRANTEE",
+    "DEED_TYPE",
+    "EASE_TYPE",
+    "STATUS",
+    "COMMENTS",
+    "QUALITY_CODE",
+    "EASEMENT_ID2",
+    "MITIGATION_DETAIL",
+    "PRMT_NO",
+    "MIT_BNK_NM",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "Regulatory Conservation Easement",
+   "sample": [
+    {
+     "COUNTY": "ORANGE",
+     "DEED_TYPE": "Grant or Dedication of Easement",
+     "EASEMENT_ID2": "095-65966097",
+     "EASE_TYPE": "Cons",
+     "EXHIBIT": "A",
+     "GRANTEE": "St. Johns River Water Management District",
+     "GRANTOR": "Chickasaw Trail Estates LLC",
+     "MITIGATION_DETAIL": "Regulatory Conservation Easement",
+     "ORB": "6596",
+     "QUALITY_CODE": "COGO",
+     "STATUS": "Active"
+    },
+    {
+     "COMMENTS": "1 Release Parcel/3 Replacement Parcels",
+     "COUNTY": "LAKE",
+     "DEED_TYPE": "Partial Release and Amendment",
+     "EASEMENT_ID2": "069-032850569",
+     "EASE_TYPE": "Cons",
+     "EXHIBIT": "B Conservation Easement #2",
+     "GRANTEE": "St. Johns River Water Management District",
+     "GRANTOR": "M/I Homes of Lake County, LLC",
+     "MITIGATION_DETAIL": "Regulatory Conservation Easement",
+     "ORB": "3285",
+     "QUALITY_CODE": "COGO",
+     "STATUS": "Active"
+    },
+    {
+     "COMMENTS": "5 Parcels",
+     "COUNTY": "NASSAU",
+     "DEED_TYPE": "Grant or Dedication of Easement",
+     "EASEMENT_ID2": "089-10600159",
+     "EASE_TYPE": "Cons",
+     "EXHIBIT": "A Parcel 4",
+     "GRANTEE": "St. Johns River Water Management District",
+     "GRANTOR": "RCG Holdings Inc",
+     "MITIGATION_DETAIL": "Regulatory Conservation Easement",
+     "ORB": "1060",
+     "QUALITY_CODE": "COGO",
+     "STATUS": "Active"
+    }
+   ],
+   "service": "Regulatory_Conservation_Easement",
+   "typef": "DEED_TYPE",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Regulatory_Conservation_Easement/FeatureServer/0"
+  },
+  {
+   "agency": "FDEP-DSL",
+   "area": "",
+   "count": 10043,
+   "fields": [
+    "FL_SOLARIS_LAND_ID",
+    "INTERNAL_AGENCY_ID",
+    "LOCATION_NAME",
+    "GRANTEE_TYPE_NAME",
+    "AGENCY_NAME",
+    "PUBLIC_ACCESSIBLE_IND_TEXT",
+    "PUBLIC_RESTRICTION_TEXT"
+   ],
+   "known": false,
+   "layer": "FL-SOLARIS/CLEAR Conservation Easements",
+   "sample": [
+    {
+     "AGENCY_NAME": "Alachua County",
+     "FL_SOLARIS_LAND_ID": "CE19",
+     "GRANTEE_TYPE_NAME": "County",
+     "INTERNAL_AGENCY_ID": "05769-002-000",
+     "LOCATION_NAME": "MAYHEM",
+     "PUBLIC_ACCESSIBLE_IND_TEXT": "U",
+     "PUBLIC_RESTRICTION_TEXT": "U"
+    },
+    {
+     "AGENCY_NAME": "Alachua County",
+     "FL_SOLARIS_LAND_ID": "CE42",
+     "GRANTEE_TYPE_NAME": "County",
+     "INTERNAL_AGENCY_ID": "20107-001-001",
+     "LOCATION_NAME": "MAYHEM",
+     "PUBLIC_ACCESSIBLE_IND_TEXT": "U",
+     "PUBLIC_RESTRICTION_TEXT": "U"
+    },
+    {
+     "AGENCY_NAME": "Alachua County",
+     "FL_SOLARIS_LAND_ID": "CE20",
+     "GRANTEE_TYPE_NAME": "County",
+     "INTERNAL_AGENCY_ID": "05876-005-001",
+     "LOCATION_NAME": "MAYHEM",
+     "PUBLIC_ACCESSIBLE_IND_TEXT": "U",
+     "PUBLIC_RESTRICTION_TEXT": "U"
+    }
+   ],
+   "service": "OpenData/STATE_OWNED_LANDS",
+   "typef": "GRANTEE_TYPE_NAME",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/STATE_OWNED_LANDS/MapServer/1"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "PARK_NAME",
+   "count": 5015,
+   "fields": [
+    "ZONE_ID",
+    "UNIT_ID",
+    "PARK_NAME",
+    "MANAGEMENT_TYPE",
+    "OOIC"
+   ],
+   "known": false,
+   "layer": "Florida State Park Management Zones",
+   "sample": [
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Addison Blockhouse Historic State Park",
+     "UNIT_ID": "S00001",
+     "ZONE_ID": "AB-01"
+    },
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Alfred B. Maclay Gardens State Park",
+     "UNIT_ID": "S00002",
+     "ZONE_ID": "MG-A"
+    },
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Alfred B. Maclay Gardens State Park",
+     "UNIT_ID": "S00002",
+     "ZONE_ID": "MG-B"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "MANAGEMENT_TYPE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/4"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "SITE_NAME",
+   "count": 2180,
+   "fields": [
+    "UNIT_ID",
+    "SITE_NAME",
+    "NAME",
+    "FUNCTION",
+    "FOUNDATION",
+    "DATE_CONST",
+    "ROOF_MATERIAL",
+    "FACADE",
+    "MATERIAL",
+    "E_SUPPLY",
+    "ACCESSIBILITY",
+    "COMMENTS",
+    "USE",
+    "NUMBER_STRUCTURES"
+   ],
+   "known": false,
+   "layer": "Florida State Park Structures",
+   "sample": [
+    {
+     "ACCESSIBILITY": "ADA",
+     "COMMENTS": "HISTORIC",
+     "DATE_CONST": "01/1962",
+     "E_SUPPLY": "YES",
+     "FACADE": "Wood",
+     "FOUNDATION": "Slab On-Grade",
+     "FUNCTION": "Public",
+     "MATERIAL": "Wood Frame",
+     "NAME": "Garden Welcome Center",
+     "ROOF_MATERIAL": "Asph/Fibrgls Shingle",
+     "SITE_NAME": "Alfred B. Maclay Gardens State Park",
+     "UNIT_ID": "S00002"
+    },
+    {
+     "ACCESSIBILITY": "ADA",
+     "COMMENTS": "Lake Observatory ;; HISTORIC",
+     "DATE_CONST": "01/1962",
+     "E_SUPPLY": "NO",
+     "FACADE": "Wood",
+     "FOUNDATION": "Slab On-Grade",
+     "FUNCTION": "Public",
+     "MATERIAL": "Wood Frame",
+     "NAME": "Lakeside Pavilion",
+     "ROOF_MATERIAL": "Asph/Fibrgls Shingle",
+     "SITE_NAME": "Alfred B. Maclay Gardens State Park",
+     "UNIT_ID": "S00002"
+    },
+    {
+     "ACCESSIBILITY": "No",
+     "COMMENTS": "HISTORIC",
+     "DATE_CONST": "01/1962",
+     "E_SUPPLY": "YES",
+     "FACADE": "Wood",
+     "FOUNDATION": "Slab On-Grade",
+     "FUNCTION": "Public",
+     "MATERIAL": "Wood Frame",
+     "NAME": "Entrance Station",
+     "ROOF_MATERIAL": "Asph/Fibrgls Shingle",
+     "SITE_NAME": "Alfred B. Maclay Gardens State Park",
+     "UNIT_ID": "S00002"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "FACADE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/7"
+  },
+  {
+   "agency": "Florida Forest Service",
+   "area": "DOF_UNIT",
+   "count": 1703,
+   "fields": [
+    "DOF_NAME",
+    "DOF_UNIT",
+    "DOF_PARCEL",
+    "FUND",
+    "LINEAGE",
+    "LABEL",
+    "FOREST",
+    "UPDATE_",
+    "VERSION",
+    "MANAGED",
+    "ALT_LABEL",
+    "FUNCTION_",
+    "PUBLIC_ACC"
+   ],
+   "known": false,
+   "layer": "FFS_Current",
+   "sample": [
+    {
+     "ALT_LABEL": "1",
+     "DOF_NAME": "BLACKWATER RIVER",
+     "DOF_PARCEL": " ",
+     "DOF_UNIT": " ",
+     "FOREST": "YES",
+     "FUNCTION_": "FOREST",
+     "FUND": " ",
+     "LABEL": "4",
+     "LINEAGE": "EXTRACTED FROM SANTA ROSA PARCELS WITH DOF INPUT",
+     "MANAGED": "YES",
+     "UPDATE_": "24 NOV 08",
+     "VERSION": "JUN 2026"
+    },
+    {
+     "ALT_LABEL": "1",
+     "DOF_NAME": "BLACKWATER RIVER",
+     "DOF_PARCEL": " ",
+     "DOF_UNIT": " ",
+     "FOREST": "YES",
+     "FUNCTION_": "FOREST",
+     "FUND": " ",
+     "LABEL": "4",
+     "LINEAGE": "EXTRACTED FROM SANTA ROSA PARCELS WITH DOF INPUT",
+     "MANAGED": "YES",
+     "UPDATE_": "24 NOV 08",
+     "VERSION": "JUN 2026"
+    },
+    {
+     "ALT_LABEL": "1",
+     "DOF_NAME": "BLACKWATER RIVER",
+     "DOF_PARCEL": " ",
+     "DOF_UNIT": " ",
+     "FOREST": "YES",
+     "FUNCTION_": "FOREST",
+     "FUND": " ",
+     "LABEL": "4",
+     "LINEAGE": "EXTRACTED FROM FNAI COVERAGE FLMA9810",
+     "MANAGED": "YES",
+     "UPDATE_": "23 SEP 05",
+     "VERSION": "JUN 2026"
+    }
+   ],
+   "service": "FFS_State_Forest_Boundaries",
+   "typef": "",
+   "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/FFS_State_Forest_Boundaries/FeatureServer/0"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "PARK_NAME",
+   "count": 797,
+   "fields": [
+    "ZONE_ID",
+    "UNIT_ID",
+    "PARK_NAME",
+    "MANAGEMENT_TYPE",
+    "PRIORITY_NAME",
+    "SEASON_NAME",
+    "OOIC"
+   ],
+   "known": false,
+   "layer": "Florida State Park Burn Goals (Current Year)",
+   "sample": [
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Anclote Key Preserve State Park",
+     "PRIORITY_NAME": "High",
+     "SEASON_NAME": "Any",
+     "UNIT_ID": "S00004",
+     "ZONE_ID": "AK-01"
+    },
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Yellow River Marsh Preserve State Park",
+     "PRIORITY_NAME": "Medium",
+     "SEASON_NAME": "Any",
+     "UNIT_ID": "S00007",
+     "ZONE_ID": "YR-06A"
+    },
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Yellow River Marsh Preserve State Park",
+     "PRIORITY_NAME": "High",
+     "SEASON_NAME": "Any",
+     "UNIT_ID": "S00007",
+     "ZONE_ID": "YR-07A"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "MANAGEMENT_TYPE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/9"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "PARK_NAME",
+   "count": 740,
+   "fields": [
+    "ZONE_ID",
+    "UNIT_ID",
+    "PARK_NAME",
+    "MANAGEMENT_TYPE",
+    "PRIORITY_NAME",
+    "SEASON_NAME",
+    "OOIC"
+   ],
+   "known": false,
+   "layer": "Florida State Park Burn Goals (Previous Year)",
+   "sample": [
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Anclote Key Preserve State Park",
+     "PRIORITY_NAME": "High",
+     "SEASON_NAME": "Growing",
+     "UNIT_ID": "S00004",
+     "ZONE_ID": "AK-01"
+    },
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Yellow River Marsh Preserve State Park",
+     "PRIORITY_NAME": "High",
+     "SEASON_NAME": "Dormant",
+     "UNIT_ID": "S00007",
+     "ZONE_ID": "YR-07A"
+    },
+    {
+     "MANAGEMENT_TYPE": "N",
+     "OOIC": "PBGZ",
+     "PARK_NAME": "Yellow River Marsh Preserve State Park",
+     "PRIORITY_NAME": "High",
+     "SEASON_NAME": "Dormant",
+     "UNIT_ID": "S00007",
+     "ZONE_ID": "YR-07B"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "MANAGEMENT_TYPE",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/10"
+  },
+  {
+   "agency": "",
+   "area": "parkname",
+   "count": 280,
+   "fields": [
+    "facilityid",
+    "pnl_id",
+    "parktype",
+    "tierdescription",
+    "parkname",
+    "address",
+    "city",
+    "zipcode",
+    "ownership",
+    "brochuregrid",
+    "amenities",
+    "Assessment",
+    "Imagery"
+   ],
+   "known": false,
+   "layer": "ParkBoundary",
+   "sample": [
+    {
+     "address": "303 E Venice Ave.",
+     "amenities": "Dog-Friendly (leash required), Historical/Cultural Resource, Indoor Rental, Picnicking, Restroom",
+     "brochuregrid": "E8",
+     "city": "Sarasota",
+     "facilityid": "PK_05252016_000342",
+     "ownership": "SC",
+     "parkname": "Venice Train Depot and Rollins W. Coakley Railroad Park",
+     "parktype": "Parks",
+     "pnl_id": "PNL_297",
+     "tierdescription": "Community",
+     "zipcode": "34230"
+    },
+    {
+     "address": "1845 34th St",
+     "amenities": "Picnicking, Playground, Restroom",
+     "city": "Sarasota",
+     "facilityid": "PK_05252016_000344",
+     "ownership": "CS",
+     "parkname": "Robert L. Taylor Community Complex",
+     "parktype": "City Park",
+     "pnl_id": "PNL_198",
+     "tierdescription": "Not Applicable",
+     "zipcode": "34234"
+    },
+    {
+     "address": "300 Bay St",
+     "amenities": "Dog Park (off leash), Dog-Friendly (leash required), Picnic Shelter/Pavilion, Picnicking, Playground, Restroom, Trails-Unpaved/Nature",
+     "brochuregrid": "D6",
+     "city": "Osprey",
+     "facilityid": "PK_05252016_000345",
+     "ownership": "SC",
+     "parkname": "Bay Street Park",
+     "parktype": "Parks",
+     "pnl_id": "PNL_016",
+     "tierdescription": "Neighborhood",
+     "zipcode": "34229"
+    }
+   ],
+   "service": "Sarasota_Natural_Areas",
+   "typef": "facilityid",
+   "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Sarasota_Natural_Areas/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "parkname",
+   "count": 233,
+   "fields": [
+    "facilityid",
+    "pnl_id",
+    "parktype",
+    "tierdescription",
+    "parkname",
+    "address",
+    "city",
+    "zipcode",
+    "ownership",
+    "brochuregrid",
+    "amenities"
+   ],
+   "known": false,
+   "layer": "ParkBoundary_Geo",
+   "sample": [
+    {
+     "address": "303 E Venice Ave.",
+     "amenities": "Dog-Friendly (leash required), Historical/Cultural Resource, Indoor Rental, Picnicking, Restroom",
+     "brochuregrid": "E8",
+     "city": "Sarasota",
+     "facilityid": "PK_05252016_000342",
+     "ownership": "SC",
+     "parkname": "Venice Train Depot and Rollins W. Coakley Railroad Park",
+     "parktype": "Parks",
+     "pnl_id": "PNL_297",
+     "tierdescription": "Community",
+     "zipcode": "34230"
+    },
+    {
+     "address": "1845 34th St",
+     "amenities": "Picnicking, Playground, Restroom",
+     "city": "Sarasota",
+     "facilityid": "PK_05252016_000344",
+     "ownership": "CS",
+     "parkname": "Robert L. Taylor Community Complex",
+     "parktype": "City Park",
+     "pnl_id": "PNL_198",
+     "tierdescription": "Not Applicable",
+     "zipcode": "34234"
+    },
+    {
+     "address": "300 Bay St",
+     "amenities": "Dog Park (off leash), Dog-Friendly (leash required), Picnic Shelter/Pavilion, Picnicking, Playground, Restroom, Trails-Unpaved/Nature",
+     "brochuregrid": "D6",
+     "city": "Osprey",
+     "facilityid": "PK_05252016_000345",
+     "ownership": "SC",
+     "parkname": "Bay Street Park",
+     "parktype": "Parks",
+     "pnl_id": "PNL_016",
+     "tierdescription": "Neighborhood",
+     "zipcode": "34229"
+    }
+   ],
+   "service": "Sarasota_Parks",
+   "typef": "facilityid",
+   "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Sarasota_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "St Johns River Water Management District (SJRWMD), other agencies where applicab",
+   "area": "CONSERVATION_AREA",
+   "count": 157,
+   "fields": [
+    "TRACT_ID",
+    "QUALITY_CODE",
+    "DEED_ACRES",
+    "MAPPED_BY",
+    "DEED_TYPE",
+    "COUNTY",
+    "GRANTOR",
+    "GRANTEE",
+    "ORB",
+    "PAGE",
+    "COMMENTS",
+    "CONSERVATION_AREA",
+    "CE_NUMBER",
+    "EASEMENT_TYPE"
+   ],
+   "known": false,
+   "layer": "SJRWMD-owned Conservation Easement",
+   "sample": [
+    {
+     "COMMENTS": "Exhibit B of Conservation Easement dedicated by deed; included in GP - Lochloosa CE; Grove Park WMA",
+     "CONSERVATION_AREA": "Georgia Pacific - Lochloosa Conservation Easement",
+     "COUNTY": "Alachua",
+     "DEED_ACRES": "16610",
+     "DEED_TYPE": "05",
+     "GRANTEE": "SJRWMD",
+     "GRANTOR": "Nekoosa Packaging Corporation",
+     "MAPPED_BY": "JTC",
+     "ORB": "2043",
+     "PAGE": "2741",
+     "QUALITY_CODE": "Digitized",
+     "TRACT_ID": "1994-045-P1"
+    },
+    {
+     "COMMENTS": "Exhibit B of Conservation Easement dedicated by deed; included in GP - Lochloosa CE: Grove Park WMA ",
+     "CONSERVATION_AREA": "Georgia Pacific - Lochloosa Conservation Easement",
+     "COUNTY": "Alachua",
+     "DEED_ACRES": "16610",
+     "DEED_TYPE": "05",
+     "GRANTEE": "SJRWMD",
+     "GRANTOR": "Nekoosa Packaging Corporation",
+     "MAPPED_BY": "JTC",
+     "ORB": "2043",
+     "PAGE": "2741",
+     "QUALITY_CODE": "Digitized",
+     "TRACT_ID": "1994-045-P1"
+    },
+    {
+     "COMMENTS": "Exhibit B of Conservation Easement dedicated by deed; included in GP - Lochloosa CE; Grove Park WMA",
+     "CONSERVATION_AREA": "Georgia Pacific - Lochloosa Conservation Easement",
+     "COUNTY": "Alachua",
+     "DEED_ACRES": "16610",
+     "DEED_TYPE": "05",
+     "GRANTEE": "SJRWMD",
+     "GRANTOR": "Nekoosa Packaging Corporation",
+     "MAPPED_BY": "JTC",
+     "ORB": "2043",
+     "PAGE": "2741",
+     "QUALITY_CODE": "Digitized",
+     "TRACT_ID": "1994-045-P1"
+    }
+   ],
+   "service": "SJRWMD_owned_Conservation_Easement",
+   "typef": "DEED_TYPE",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_owned_Conservation_Easement/FeatureServer/0"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 75,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Northeast_Region_Tracts",
+   "sample": [
+    {
+     "CA_ID": "10",
+     "CA_NAME": "UPPER ALAPAHA",
+     "GlobalID": "{93DE7F33-2F3D-4054-85F2-7E567F961FE6}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "167",
+     "TRACT_NAME": "6 BRIDGE"
+    },
+    {
+     "CA_ID": "35",
+     "CA_NAME": "TROY SPRING",
+     "GlobalID": "{0C00DC43-FAF5-4024-8C0A-17B3751F8390}",
+     "MAN_BY": " ",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "2",
+     "TRACT_NAME": "ADAMS"
+    },
+    {
+     "CA_ID": "35",
+     "CA_NAME": "TROY SPRING",
+     "GlobalID": "{D8DE5E95-0E5F-41F3-9266-9FFF4A0E4585}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "2",
+     "TRACT_NAME": "ADAMS"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Property",
+   "count": 55,
+   "fields": [
+    "MowingType",
+    "Property",
+    "Region"
+   ],
+   "known": false,
+   "layer": "Mowing_Property_Extent",
+   "sample": [
+    {
+     "MowingType": "Large Machine",
+     "Property": "9A Mitigation Parcels",
+     "Region": "North"
+    },
+    {
+     "MowingType": "Large Machine",
+     "Property": "Bayard Conservation Area",
+     "Region": "North"
+    },
+    {
+     "MowingType": "Large Machine",
+     "Property": "Black Creek Ravines Conservation Area",
+     "Region": "North"
+    }
+   ],
+   "service": "Mowing_Property_Extent",
+   "typef": "MowingType",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Mowing_Property_Extent/FeatureServer/0"
+  },
+  {
+   "agency": "RCP",
+   "area": "NAME",
+   "count": 43,
+   "fields": [
+    "NAME",
+    "COUNTIES",
+    "REGION",
+    "PRESERVE_MANAGER",
+    "EMAIL",
+    "PHONE",
+    "PRESERVE_DESCRIPTION_SUMMARY",
+    "STATE_WEBPAGE_LINK",
+    "SHORT_DESCRIPTION_SUMMARY"
+   ],
+   "known": false,
+   "layer": "Aquatic Preserves",
+   "sample": [
+    {
+     "COUNTIES": "Dixie, Jefferson, Levy, Taylor, Wakulla",
+     "EMAIL": "Sandra.Chupinsky@FloridaDEP.gov",
+     "NAME": "Big Bend Seagrasses",
+     "PHONE": "352-228-6035",
+     "PRESERVE_DESCRIPTION_SUMMARY": "The Big Bend Seagrasses Aquatic Preserve, established in 1985, covers over 984,000 acres of Florida’s Gulf Coast along the Big Bend Region, making it the largest of the aquatic preserves. Located within Florida’s “Nature Coast”, the Big Bend Seagrasses Aquatic Preserve is considered to be one of the most pristine coastal areas in all of Florida. The preserve encompasses a large complex of estuaries and bays and includes large stretches of coastline that remain largely undeveloped, being described as one of the least polluted coastal regions in the continental United States. This portion of the coast is unique in that it is an extensive area with no offshore barrier islands, where a number of rivers, creeks, and marshes discharge directly into the Gulf of Mexico. \r\nAptly named, the Big Bend Seagrasses Aquatic Preserve is primarily composed of extensive seagrass beds and saltwater marshes. These areas are extremely productive and biologically rich, with nearly 2,000 native species documented within, including more than 800 species of plants and more than 1,000 species of animals. The dense seagrasses and extensive salt marshes found here support a wide variety of species, many of which are commercially and recreationally important or of special concern. The extensive area of this preserve supports a wide range of recreational activities and intersects multiple state parks and wildlife management areas. Visitors often engage in fishing, boating, kayaking, and wildlife watching, all of which offer excellent opportunities to observe and appreciate the untouched scenic beauty and diversity of wildlife found within.\r\n",
+     "PRESERVE_MANAGER": "Sandra Chupinsky",
+     "REGION": "Big Bend",
+     "SHORT_DESCRIPTION_SUMMARY": "Big Bend Seagrasses Aquatic Preserve is located on Florida's Gulf Coast and spans over 150 miles of coastline, extending from Apalachee Bay southward to the Withlacoochee River. The main communities located along the coastline of the aquatic preserve include Keaton Beach, Steinhatchee, Horseshoe Beach, Suwannee and Cedar Key.",
+     "STATE_WEBPAGE_LINK": "https://floridadep.gov/rcp/aquatic-preserve/locations/big-bend-seagrasses-aquatic-preserve"
+    },
+    {
+     "COUNTIES": "Flagler, Volusia",
+     "EMAIL": "Bilal.Ansari@FloridaDEP.gov",
+     "NAME": "Tomoka Marsh",
+     "PHONE": "407-417-6201",
+     "PRESERVE_DESCRIPTION_SUMMARY": "The Tomoka Marsh Aquatic Preserve, established in 1969, covers 2,800 acres of Florida’s East Coast, between Ormond Beach and Flagler Beach. The preserve is an estuarine system composed of five distinct areas that include portions of the Halifax River, Smith Creek, Bulow Creek, the Tomoka River, and the Tomoka Basin, and has two Atlantic Ocean connections via the Halifax River: the Ponce DeLeon Inlet, 24 miles to the south, and Matanzas Inlet, approximately 28 miles to the north.\r\nThe aquatic preserve supports a number of community types but is most notably characterized by the extensive salt marsh, which provides habitat for a wide range of animals, including birds, mammals, reptiles, insects, fish, and shellfish. More than 175 bird species have been observed within the preserve, foraging and nesting within the marsh. The Halifax Islands, a 12-island archipelago created by the dredging of the river in the 1930s, have also become important bird habitats and serve as rookery sites for a number of species. Several listed species can also be found within the preserve, including the Florida manatee. The waters of the Halifax River serve as an important summer refuge for these animals, leading to the establishment of the Halifax and Tomoka Rivers Manatee Refuge in 2003, to better enhance their protection.\r\nFor over a hundred years, visitors and residents have enjoyed the extraordinary views of open water and vibrant birdlife provided by the Tomoka River and its extensive natural communities. Today, visitors to the preserve enjoy a variety of recreational activities, including fishing, kayaking, canoeing, boating, and nature watching, all of which offer excellent opportunities to explore the unique wildlife and scenic beauty of this remarkable estuarine area.\r\n",
+     "PRESERVE_MANAGER": "Bilal Ansari",
+     "REGION": "Northeast",
+     "SHORT_DESCRIPTION_SUMMARY": "Tomoka Marsh Aquatic Preserve is situated on the northeast coast of Florida. It is positioned along the Tomoka River and portions of the Halifax River. The preserve sits between the towns of Ormond Beach and Flagler Beach.",
+     "STATE_WEBPAGE_LINK": "https://floridadep.gov/TomokaMarshAP"
+    },
+    {
+     "COUNTIES": "Volusia",
+     "EMAIL": "Matthew.R.Anderson@FloridaDEP.gov",
+     "NAME": "Mosquito Lagoon",
+     "PHONE": "772-448-5930",
+     "PRESERVE_DESCRIPTION_SUMMARY": "The Mosquito Lagoon Aquatic Preserve, established in 1970, is a 3,500-acre expanse of the Indian River Lagoon in southern Volusia County. Unique among the inland waters of Florida’s Atlantic coast, the preserve offers visitors a feeling of isolation and wilderness, despite its relatively short distance from homes and development. Full of maze-like waterways, winding channels, and spoil islands, Mosquito Lagoon’s distinctive landscape can be attributed to dragline ditches, dug in the 1940s to control mosquito populations. \r\nOyster reefs, seagrass beds, and mangrove forests dominate this unique lagoonal ecosystem, which supports a wide diversity of marine life. Salinity levels in the lagoon are comparable to that of the ocean, and several species of sea fish regularly spawn within. The lagoon hosts a resident population of bottlenose dolphins and provides habitat for nine federally protected species. Commercially important to the region, the lagoon supports a multi-million-dollar fishing industry. Visitors to the preserve often enjoy fishing and boating while exploring the many winding waterways of this uniquely wild ecosystem.\r\n",
+     "PRESERVE_MANAGER": "Matthew Anderson",
+     "REGION": "Northeast",
+     "SHORT_DESCRIPTION_SUMMARY": "Mosquito Lagoon Aquatic Preserve is in east-central Florida in southern Volusia County south of Ponce de Leon Inlet. It is adjacent to two incorporated municipalities — New Smyrna Beach and Edgewater — and 50 miles northeast of Orlando. It is bounded on the west by the Florida mainland and on the east by a chain of barrier islands.",
+     "STATE_WEBPAGE_LINK": "https://floridadep.gov/rcp/aquatic-preserve/locations/mosquito-lagoon-aquatic-preserve"
+    }
+   ],
+   "service": "OpenData/AQUATIC_PRESERVES",
+   "typef": "PRESERVE_DESCRIPTION_SUMMARY",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/AQUATIC_PRESERVES/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39,
+   "fields": [
+    "FOREST",
+    "COMMENTS",
+    "Label"
+   ],
+   "known": false,
+   "layer": "State Forest Boundaries 2021",
+   "sample": [
+    {
+     "FOREST": "BSF",
+     "Label": "Belmore State Forest"
+    },
+    {
+     "FOREST": "CDMSF",
+     "Label": "Carl Duval Moore State Forest"
+    },
+    {
+     "FOREST": "CSF",
+     "Label": "Cary State Forest"
+    }
+   ],
+   "service": "Florida_State_Forests_2021_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests_2021_View/FeatureServer/23"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 25,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Northwest_Region_Tracts",
+   "sample": [
+    {
+     "CA_ID": "7",
+     "CA_NAME": "LOWER ECONFINA",
+     "GlobalID": "{8771269F-BC65-46AE-9D6D-7CE8DBDE2D62}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "23",
+     "TRACT_NAME": "CABBAGE CREEK"
+    },
+    {
+     "CA_ID": "7",
+     "CA_NAME": "LOWER ECONFINA",
+     "GlobalID": "{A2F3A8D8-832D-4B68-B0D7-DE5F438CC3B0}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": "WMA",
+     "TRACT_ID": "23",
+     "TRACT_NAME": "CABBAGE CREEK"
+    },
+    {
+     "CA_ID": "3",
+     "CA_NAME": "MIDDLE AUCILLA",
+     "GlobalID": "{C965962A-3EDD-4737-AD85-B312770D4275}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "24",
+     "TRACT_NAME": "CABBAGE GROVE"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/12"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Southeast_Region_Tracts",
+   "sample": [
+    {
+     "CA_ID": "53",
+     "CA_NAME": "FOWLERS BLUFF",
+     "GlobalID": "{D7B29E6A-67E0-4006-ABDD-9C3FD48C23E6}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "93",
+     "TRACT_NAME": "MANATEE SPRINGS SOUTH"
+    },
+    {
+     "CA_ID": "54",
+     "CA_NAME": "YELLOW JACKET",
+     "GlobalID": "{32A6E982-FB0B-4D63-9D2C-C004E4A02BB7}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "175",
+     "TRACT_NAME": "SUNNYVALE"
+    },
+    {
+     "CA_ID": "54",
+     "CA_NAME": "YELLOW JACKET",
+     "GlobalID": "{036BF22F-713E-47FA-B2C7-5578ABAFCE86}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": "WMA",
+     "TRACT_ID": "175",
+     "TRACT_NAME": "SUNNYVALE"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/18"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 22,
+   "fields": [
+    "OWNER",
+    "TRACT_NM",
+    "PID__1",
+    "County",
+    "TERMS",
+    "RESTRIC",
+    "PA_Link"
+   ],
+   "known": false,
+   "layer": "Surplus_Lands_For_Web",
+   "sample": [
+    {
+     "County": "Gilchrist",
+     "OWNER": "SRWMD",
+     "PA_Link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=820&LayerID=15174&PageTypeID=4&PageID=6883&Q=1763165594&KeyValue=32-08-14-0083-0000-0370",
+     "PID__1": "320814008300000370",
+     "TRACT_NM": "Forest Woodlands"
+    },
+    {
+     "County": "Gilchrist",
+     "OWNER": "SRWMD",
+     "PA_Link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=820&LayerID=15174&PageTypeID=4&PageID=6883&Q=910622544&KeyValue=32-08-14-0083-0000-0380",
+     "PID__1": "320814008300000380",
+     "TRACT_NM": "Forest Woodlands"
+    },
+    {
+     "County": "Gilchrist",
+     "OWNER": "SRWMD",
+     "PA_Link": "https://qpublic.schneidercorp.com/Application.aspx?AppID=820&LayerID=15174&PageTypeID=4&PageID=6883&Q=963325593&KeyValue=36-06-15-0086-000F-0080",
+     "PID__1": "3606150086000F0080",
+     "TRACT_NM": "Santa Fe Oasis"
+    }
+   ],
+   "service": "LM__Ownership__Surplus_Properties__Currently_Listed_View",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM__Ownership__Surplus_Properties__Currently_Listed_View/FeatureServer/0"
+  },
+  {
+   "agency": "SJRWMD, other agencies where applicable.",
+   "area": "",
+   "count": 17,
+   "fields": [
+    "COUNTY",
+    "ORB",
+    "EXHIBIT",
+    "GRANTOR",
+    "GRANTEE",
+    "DEED_TYPE",
+    "EASE_TYPE",
+    "STATUS",
+    "COMMENTS",
+    "QUALITY_CODE",
+    "EASEMENT_ID2",
+    "MITIGATION_DETAIL",
+    "PRMT_NO",
+    "MIT_BNK_NM",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "Mitigation without Conservation",
+   "sample": [
+    {
+     "COMMENTS": "Offsite Mitigation without conservation - Impoundment T-19.  Within Merritt Island National Wildlife Refuge",
+     "COUNTY": "BREVARD",
+     "EXHIBIT": "NO CE - Mitigation without Conservation",
+     "GRANTEE": "N/A",
+     "GRANTOR": "N/A",
+     "MITIGATION_DETAIL": "Mitigation without Conservation",
+     "ORB": "0",
+     "QUALITY_CODE": "Digitized"
+    },
+    {
+     "COMMENTS": "PAFB Air Force Technical Applications Center (AFTAC) Phase 1, Mass Grading & Wetland Mitigation (no conservation easement required)",
+     "COUNTY": "BREVARD",
+     "MITIGATION_DETAIL": "Mitigation without Conservation"
+    },
+    {
+     "COMMENTS": "Offsite Mitigation without conservation - Impoundment C-15.  Within Merritt Island National Wildlife Refuge",
+     "COUNTY": "BREVARD",
+     "EXHIBIT": "NO CE - Mitigation without Conservation",
+     "GRANTEE": "N/A",
+     "GRANTOR": "N/A",
+     "MITIGATION_DETAIL": "Mitigation without Conservation",
+     "ORB": "0",
+     "QUALITY_CODE": "Digitized"
+    }
+   ],
+   "service": "Mitigation_without_Conservation",
+   "typef": "DEED_TYPE",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Mitigation_without_Conservation/FeatureServer/0"
+  },
+  {
+   "agency": "DRP",
+   "area": "",
+   "count": 8,
+   "fields": [
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Florida State Park - Visit Florida Regions",
+   "sample": [
+    {
+     "REGION": "North Central"
+    },
+    {
+     "REGION": "South East"
+    },
+    {
+     "REGION": "South West"
+    }
+   ],
+   "service": "OpenData/PARKS_FORI",
+   "typef": "",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_FORI/MapServer/1"
+  },
+  {
+   "agency": "DRP",
+   "area": "",
+   "count": 5,
+   "fields": [],
+   "known": false,
+   "layer": "Florida State Park Districts",
+   "sample": [
+    {
+     "DISTRICT": 5,
+     "OBJECTID": 1,
+     "SHAPE.AREA": 26728117290.5412,
+     "SHAPE.LEN": 1127324.67206721
+    },
+    {
+     "DISTRICT": 3,
+     "OBJECTID": 2,
+     "SHAPE.AREA": 34487152102.4578,
+     "SHAPE.LEN": 962802.866255351
+    },
+    {
+     "DISTRICT": 1,
+     "OBJECTID": 3,
+     "SHAPE.AREA": 34732605671.8716,
+     "SHAPE.LEN": 1101449.71298413
+    }
+   ],
+   "service": "OpenData/PARKS_FORI",
+   "typef": "",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_FORI/MapServer/2"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Southwest_Region_Tracts",
+   "sample": [
+    {
+     "CA_ID": "55",
+     "CA_NAME": "UPPER STEINHATCHEE",
+     "GlobalID": "{96324B75-EE91-4803-BC2C-C67960C71547}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "134",
+     "TRACT_NAME": "STEINHATCHEE SPRINGS"
+    },
+    {
+     "CA_ID": "55",
+     "CA_NAME": "UPPER STEINHATCHEE",
+     "GlobalID": "{710640E2-A2FB-4F79-B4D6-1138092BBB8E}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": "WMA",
+     "TRACT_ID": "134",
+     "TRACT_NAME": "STEINHATCHEE SPRINGS"
+    },
+    {
+     "CA_ID": "56",
+     "CA_NAME": "LOWER STEINHATCHEE",
+     "GlobalID": "{9FDB748C-76DA-42D2-8563-D00349C8DD5B}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "132",
+     "TRACT_NAME": "STEINHATCHEE FALLS"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/22"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "REGION",
+    "DATA_ORIGI"
+   ],
+   "known": false,
+   "layer": "District Land Management  Regions",
+   "sample": [
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "NORTH WEST"
+    },
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "NORTH EAST"
+    },
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "SOUTH EAST"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/30"
+  },
+  {
+   "agency": "RCP",
+   "area": "SITE_NAME",
+   "count": 3,
+   "fields": [
+    "SITE_ID",
+    "SITE_NAME",
+    "GOV_LEVEL",
+    "NS_FULL",
+    "PROT_LVL",
+    "MGMT_PLAN",
+    "MGMT_AGEN",
+    "FISH_RSTR",
+    "PRI_CON_FO",
+    "PROT_FOCUS",
+    "PERMANENCE",
+    "CONSTANCY",
+    "ESTAB_YR",
+    "URL",
+    "SITE_LABEL",
+    "VESSEL",
+    "ANCHOR"
+   ],
+   "known": false,
+   "layer": "National Estuarine Research Reserve (NERR) Boundaries",
+   "sample": [
+    {
+     "CONSTANCY": "Year-round",
+     "FISH_RSTR": "No Site Restrictions",
+     "GOV_LEVEL": "Partnership",
+     "MGMT_AGEN": "Florida Department of Environmental Protection & National Oceanic and Atmospheric Administration",
+     "MGMT_PLAN": "Site-Specific Management Plan",
+     "NS_FULL": "Member",
+     "PERMANENCE": "Permanent",
+     "PRI_CON_FO": "Natural Heritage",
+     "PROT_FOCUS": "Ecosystem",
+     "PROT_LVL": "Uniform Multiple Use",
+     "SITE_ID": "NER19",
+     "SITE_NAME": "Rookery Bay National Estuarine Research Reserve"
+    },
+    {
+     "CONSTANCY": "Year-round",
+     "FISH_RSTR": "Commercial and Recreational Fishing Restricted",
+     "GOV_LEVEL": "Partnership",
+     "MGMT_AGEN": "Florida Department of Environmental Protection & National Oceanic and Atmospheric Administration",
+     "MGMT_PLAN": "Site-Specific Management Plan",
+     "NS_FULL": "Eligible",
+     "PERMANENCE": "Permanent",
+     "PRI_CON_FO": "Natural Heritage",
+     "PROT_FOCUS": "Ecosystem",
+     "PROT_LVL": "Uniform Multiple Use",
+     "SITE_ID": "NER1",
+     "SITE_NAME": "Apalachicola National Estuarine Research Reserve"
+    },
+    {
+     "CONSTANCY": "Year-round",
+     "FISH_RSTR": "Commercial Fishing Prohibited",
+     "GOV_LEVEL": "Partnership",
+     "MGMT_AGEN": "Florida Department of Environmental Protection & National Oceanic and Atmospheric Administration",
+     "MGMT_PLAN": "Site-Specific Management Plan",
+     "NS_FULL": "Member",
+     "PERMANENCE": "Permanent",
+     "PRI_CON_FO": "Natural Heritage",
+     "PROT_FOCUS": "Ecosystem",
+     "PROT_LVL": "Uniform Multiple Use",
+     "SITE_ID": "NER9",
+     "SITE_NAME": "Guana Tolomato Matanzas National Estuarine Research Reserve"
+    }
+   ],
+   "service": "OpenData/AQUATIC_PRESERVES",
+   "typef": "",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/AQUATIC_PRESERVES/MapServer/2"
+  },
+  {
+   "agency": "SJRWMD, other agencies where applicable.",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "COUNTY",
+    "ORB",
+    "EXHIBIT",
+    "GRANTOR",
+    "GRANTEE",
+    "DEED_TYPE",
+    "EASE_TYPE",
+    "STATUS",
+    "COMMENTS",
+    "QUALITY_CODE",
+    "EASEMENT_ID2",
+    "MITIGATION_DETAIL",
+    "PRMT_NO",
+    "MIT_BNK_NM",
+    "LINK"
+   ],
+   "known": false,
+   "layer": "Consent Order with Conservation",
+   "sample": [
+    {
+     "COMMENTS": "Parcel data used for POB. Not related to permit. Consent Order No. 96-1699",
+     "COUNTY": "ST JOHNS",
+     "DEED_TYPE": "CONSERVATION EASEMENT",
+     "EASE_TYPE": "Cons",
+     "EXHIBIT": "A",
+     "GRANTEE": "St. Johns River Water Management District",
+     "GRANTOR": "David Blocker",
+     "MITIGATION_DETAIL": "Consent Order with Conservation",
+     "ORB": "1209",
+     "QUALITY_CODE": "COGO",
+     "STATUS": "Active"
+    },
+    {
+     "COMMENTS": "Parcel data used for POC. ",
+     "COUNTY": "ST JOHNS",
+     "DEED_TYPE": "CONSERVATION EASEMENT",
+     "EASE_TYPE": "Cons",
+     "EXHIBIT": "A",
+     "GRANTEE": "St. Johns River Water Management District",
+     "GRANTOR": "William Raymond King, Jr. and Rosschelle Hannon King",
+     "MITIGATION_DETAIL": "Consent Order with Conservation",
+     "ORB": "4010",
+     "QUALITY_CODE": "COGO",
+     "STATUS": "Active"
+    }
+   ],
+   "service": "Consent_Order_with_Conservation",
+   "typef": "DEED_TYPE",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Consent_Order_with_Conservation/FeatureServer/0"
+  },
+  {
+   "agency": "USFWS-NFESO or USACE are the originator, SJRWMD uses this data for Permit Review",
+   "area": "CH_UNIT",
+   "count": 2,
+   "fields": [
+    "CH_UNIT"
+   ],
+   "known": false,
+   "layer": "Smalltooth Sawfish Critical Habitat",
+   "sample": [
+    {
+     "CH_UNIT": "Ten Thousand Islands/Everglades Unit"
+    },
+    {
+     "CH_UNIT": "Charlotte Harbor Estuary Unit"
+    }
+   ],
+   "service": "OpenData_SPGP_VR1",
+   "typef": "",
+   "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/OpenData_SPGP_VR1/FeatureServer/479"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Northwest_Region_Goose_Pasture_Campground_Tracts",
+   "sample": [
+    {
+     "CA_ID": "4",
+     "CA_NAME": "WACISSA",
+     "GlobalID": "{797BF4BB-C423-49A8-89EA-9877CDFC0D26}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": "WMA",
+     "TRACT_ID": "55",
+     "TRACT_NAME": "GOOSE PASTURE"
+    },
+    {
+     "CA_ID": "4",
+     "CA_NAME": "WACISSA",
+     "GlobalID": "{1C84B119-A589-4D15-94E3-5283552F2951}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": "WMA",
+     "TRACT_ID": "55",
+     "TRACT_NAME": "GOOSE PASTURE CAMPGROUND"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/15"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Southwest_Region_Mallory_Swamp_Tract",
+   "sample": [
+    {
+     "CA_ID": "55",
+     "CA_NAME": "UPPER STEINHATCHEE",
+     "GlobalID": "{062777DB-B80B-4907-A3D1-3B06B8204822}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "92",
+     "TRACT_NAME": "MALLORY SWAMP"
+    },
+    {
+     "CA_ID": "55",
+     "CA_NAME": "UPPER STEINHATCHEE",
+     "GlobalID": "{79E1B5CF-3E1B-4962-B66D-0BBE203E3032}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": "WMA",
+     "TRACT_ID": "92",
+     "TRACT_NAME": "MALLORY SWAMP"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/28"
+  },
+  {
+   "agency": "RCP",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "COUNTIES",
+    "REGION",
+    "PRESERVE_M",
+    "EMAIL",
+    "PHONE",
+    "PRESERVE_D",
+    "CSO",
+    "CSO_WEBPAG",
+    "STATE_WEBP"
+   ],
+   "known": false,
+   "layer": "State Buffer Preserves",
+   "sample": [
+    {
+     "COUNTIES": "Gulf",
+     "CSO": "The Friends of St. Joseph Bay Preserves, Inc.",
+     "CSO_WEBPAG": "http://www.stjosephbaypreserve.org/",
+     "EMAIL": "Dylan.Shoemaker@FloridaDEP.gov",
+     "NAME": "St. Joseph Bay State Buffer Preserve",
+     "PHONE": "850-670-7728",
+     "PRESERVE_D": "The St. Joseph Bay State Buffer Preserve is located in Port. St. Joe, Florida. St. Joseph Bay State Buffer Preserve provides an essential buffer to St. Joseph Bay Aquatic Preserve that helps protect the bay's water quality, natural productivity and critical habitats.\r\n\r\nThe dune/swale system formed by sand dunes in St. Joseph Bay State Buffer Preserve, created during ancient changes in sea level, is one of the most stable and clearly defined of such topographic features found anywhere. The buffer preserve also includes Money Bayou - an unusual tidal creek that flows directly into the Gulf of America instead of an intervening bay or sound.\r\n\r\nSt. Joseph Preserve State Buffer Preserve protects an intact natural coastal landscape with one of the highest concentrations of rare plants in the southeastern United States, including globally imperiled species such as Chapman's rhododendron (Rhododendron chapmannii), Telephus spurge (Euphorbia telephioides) and pinewoods aster (Aster spinulosus).\r\n\r\nThis feature class shows the boundary of the St. Joseph Bay State Buffer Preserve as of June 2025.\r\n\r\nThis feature class shows the boundary of the St. Joseph Bay State Buffer Preserve by parcel as of June 2025.",
+     "PRESERVE_M": "Dylan Shoemaker",
+     "REGION": "Northwest",
+     "STATE_WEBP": "https://floridadep.gov/rcp/state-buffer-preserve/locations/st-joseph-bay-state-buffer-preserve"
+    }
+   ],
+   "service": "OpenData/AQUATIC_PRESERVES",
+   "typef": "",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/AQUATIC_PRESERVES/MapServer/3"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGION",
+    "DATA_ORIGI"
+   ],
+   "known": false,
+   "layer": "Northeast_Region",
+   "sample": [
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "NORTH EAST"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/3"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Northeast_REgion_Falmouth_Springs_Park_Tract",
+   "sample": [
+    {
+     "CA_ID": "27",
+     "CA_NAME": "FALMOUTH SPRING",
+     "GlobalID": "{5D3C8D99-3853-42DE-8469-CC9D80ADDF6C}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "48",
+     "TRACT_NAME": "FALMOUTH SPRING PARK"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/6"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Northeast_Region_Suwannee_Springs_Park_Tract",
+   "sample": [
+    {
+     "CA_ID": "24",
+     "CA_NAME": "WOODS FERRY",
+     "GlobalID": "{F6205E27-5D41-4564-98B1-54B74E17D7DA}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "151",
+     "TRACT_NAME": "SUWANNEE SPRINGS PARK"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/9"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGION",
+    "DATA_ORIGI"
+   ],
+   "known": false,
+   "layer": "Northwest_Region",
+   "sample": [
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "NORTH WEST"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/13"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGION",
+    "DATA_ORIGI"
+   ],
+   "known": false,
+   "layer": "Southeast_Region",
+   "sample": [
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "SOUTH EAST"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/19"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGION",
+    "DATA_ORIGI"
+   ],
+   "known": false,
+   "layer": "Southwest_Region",
+   "sample": [
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "SOUTH WEST"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/23"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "CA_NAME",
+    "CA_ID",
+    "TRACT_NAME",
+    "TRACT_ID",
+    "MAN_BY",
+    "PUB_HUNT",
+    "GlobalID"
+   ],
+   "known": false,
+   "layer": "Southwest_Region_Steinhatchee_Falls_Park_Tract",
+   "sample": [
+    {
+     "CA_ID": "56",
+     "CA_NAME": "LOWER STEINHATCHEE",
+     "GlobalID": "{FC8EE526-5DF2-4FA8-891B-D09AF81BB244}",
+     "MAN_BY": "SRWMD",
+     "PUB_HUNT": " ",
+     "TRACT_ID": "132",
+     "TRACT_NAME": "STEINHATCHEE FALLS PARK"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/25"
+  },
+  {
+   "agency": "Suwannee River Water Management District",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "REGION",
+    "DATA_ORIGI"
+   ],
+   "known": false,
+   "layer": "Southwest_Region_Mallory_Swamp",
+   "sample": [
+    {
+     "DATA_ORIGI": "MAJOR BASINS",
+     "REGION": "SOUTH WEST"
+    }
+   ],
+   "service": "LM_Recreation_Maintenance_FY23_App_v3",
+   "typef": "",
+   "url": "https://services1.arcgis.com/59dBAbzYnRk8johU/arcgis/rest/services/LM_Recreation_Maintenance_FY23_App_v3/FeatureServer/29"
+  },
+  {
+   "agency": "Florida Fish and Wildlife Conservation Commission",
+   "area": "NAME",
+   "count": 284,
+   "fields": [
+    "NAME",
+    "NAME_SHORT",
+    "TYPE",
+    "TYPE_SHORT",
+    "UNIT",
+    "FWC_REGION",
+    "MGT_TYPE",
+    "WEBSITE"
+   ],
+   "known": true,
+   "layer": "Wildlife Management Areas Florida",
+   "sample": [
+    {
+     "FWC_REGION": "North Central",
+     "MGT_TYPE": "Cooperative",
+     "NAME": "Twin Rivers Wildlife Management Area",
+     "NAME_SHORT": "Twin Rivers WMA",
+     "TYPE": "Wildlife Management Area",
+     "TYPE_SHORT": "WMA",
+     "UNIT": "South Mill Creek Tract",
+     "WEBSITE": "http://myfwc.com/viewing/recreation/wmas/cooperative/twin-rivers/"
+    },
+    {
+     "FWC_REGION": "North Central",
+     "MGT_TYPE": "Cooperative",
+     "NAME": "Twin Rivers Wildlife Management Area",
+     "NAME_SHORT": "Twin Rivers WMA",
+     "TYPE": "Wildlife Management Area",
+     "TYPE_SHORT": "WMA",
+     "UNIT": "North Mill Creek Tract",
+     "WEBSITE": "http://myfwc.com/viewing/recreation/wmas/cooperative/twin-rivers/"
+    },
+    {
+     "FWC_REGION": "North Central",
+     "MGT_TYPE": "Cooperative",
+     "NAME": "Twin Rivers Wildlife Management Area",
+     "NAME_SHORT": "Twin Rivers WMA",
+     "TYPE": "Wildlife Management Area",
+     "TYPE_SHORT": "WMA",
+     "UNIT": "Ellaville Tract",
+     "WEBSITE": "http://myfwc.com/viewing/recreation/wmas/cooperative/twin-rivers/"
+    }
+   ],
+   "service": "Open_Data/Wildlife_Management_Areas_Florida",
+   "typef": "TYPE",
+   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1"
+  },
+  {
+   "agency": "FDEP/DRP",
+   "area": "SITE_NAME",
+   "count": 179,
+   "fields": [
+    "UNIT_ID",
+    "SITE_NAME",
+    "PUBLIC_ACC",
+    "COUNTY",
+    "URL",
+    "ADDRESS",
+    "WEB_ALIAS",
+    "ABBREVIATION"
+   ],
+   "known": true,
+   "layer": "Florida State Park Boundaries",
+   "sample": [
+    {
+     "ABBREVIATION": "WDK",
+     "ADDRESS": "84900 Overseas Highway, Islamorada, FL 33036",
+     "COUNTY": "Monroe",
+     "PUBLIC_ACC": "Open-Fee Required",
+     "SITE_NAME": "Windley Key Fossil Reef Geological State Park",
+     "UNIT_ID": "S00206",
+     "URL": "https://www.floridastateparks.org/parks-and-trails/windley-key-fossil-reef-geological-state-park",
+     "WEB_ALIAS": "Windley-Key"
+    },
+    {
+     "ABBREVIATION": "BC",
+     "ADDRESS": "3335 Old Dixie Hwy., Ormond Beach, FL 32174",
+     "COUNTY": "Flagler, Volusia",
+     "PUBLIC_ACC": "Open-No Fee Required",
+     "SITE_NAME": "Bulow Creek State Park",
+     "UNIT_ID": "S00139",
+     "URL": "https://www.floridastateparks.org/parks-and-trails/bulow-creek-state-park",
+     "WEB_ALIAS": "Bulow-Creek"
+    },
+    {
+     "ABBREVIATION": "FN",
+     "ADDRESS": "11650 NW 115th Street, Chiefland, FL 32034",
+     "COUNTY": "Levy",
+     "PUBLIC_ACC": "Open-Fee Required",
+     "SITE_NAME": "Fanning Springs State Park",
+     "UNIT_ID": "S00241",
+     "URL": "https://www.floridastateparks.org/parks-and-trails/fanning-springs-state-park",
+     "WEB_ALIAS": "Fanning-Springs"
+    }
+   ],
+   "service": "OpenData/PARKS_BOUNDARIES",
+   "typef": "",
+   "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/PARKS_BOUNDARIES/MapServer/0"
+  },
+  {
+   "agency": "",
+   "area": "WEBSITE",
+   "count": 39,
+   "fields": [
+    "FOREST",
+    "LABEL",
+    "WEBSITE"
+   ],
+   "known": true,
+   "layer": "FFS_Boundaries_Dissolved_2024",
+   "sample": [
+    {
+     "FOREST": "Babcock",
+     "LABEL": "Babcock State Forest",
+     "WEBSITE": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Babcock-Ranch-Preserve"
+    },
+    {
+     "FOREST": "Belmore",
+     "LABEL": "Belmore State Forest",
+     "WEBSITE": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Belmore-State-Forest"
+    },
+    {
+     "FOREST": "Big Shoals",
+     "LABEL": "Big Shoals State Forest",
+     "WEBSITE": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Big-Shoals-State-Forest"
+    }
+   ],
+   "service": "Florida_State_Forests",
+   "typef": "",
+   "url": "https://services3.arcgis.com/XYg2eF8UuxZVuVmF/arcgis/rest/services/Florida_State_Forests/FeatureServer/0"
+  }
+ ],
+ "st": "FL"
+}
