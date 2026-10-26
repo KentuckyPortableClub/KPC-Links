@@ -1,0 +1,49 @@
+name: KPC Watcher
+# Chat 5, Oct 26 2026 (Brandon GO 11:50 AM). Once a week, read-only: what changed out there, routed by chat
+# (KY park pages + POTA/SOTA/WWFF rules -> chat 8; closure sources that now answer -> chat 2; ARRL hamfests +
+# special events for KY and neighbours -> chat 6). Never fails, never posts, never emails (no issue comments).
+# Memory + report live on the 'bot-state' branch (one commit, replaced weekly): nothing on main changes, so the
+# site is not rebuilt. Read it:  git fetch origin bot-state && git show origin/bot-state:watcher-report.md
+on:
+  schedule:
+    - cron: '29 4 * * 2'    # Monday 11:29 PM Central (10:29 in winter): a quiet hour, report ready Tuesday morning
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-watcher
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+      - name: Last week's memory (bot-state branch)
+        continue-on-error: true
+        run: |
+          git fetch -q --depth=1 origin bot-state 2>/dev/null && git show FETCH_HEAD:watcher-state.json > /tmp/old-state.json 2>/dev/null || echo '{}' > /tmp/old-state.json
+          echo "memory: $(wc -c < /tmp/old-state.json) bytes"
+      - name: Watch
+        continue-on-error: true
+        timeout-minutes: 40
+        env:
+          WATCH_MINUTES: '35'
+        run: |
+          python3 .github/scripts/kpc_watcher.py /tmp/old-state.json /tmp/watcher-state.json /tmp/watcher-report.md || true
+          if [ -s /tmp/watcher-report.md ]; then cat /tmp/watcher-report.md >> "$GITHUB_STEP_SUMMARY"; fi
+      - name: Save memory + report to the bot-state branch (replaces last week's, no history kept)
+        continue-on-error: true
+        run: |
+          [ -s /tmp/watcher-state.json ] || exit 0
+          python3 -c "import json;json.load(open('/tmp/watcher-state.json'))" || exit 0
+          AUTH="$(git config --get http.https://github.com/.extraheader || true)"
+          mkdir -p /tmp/bs && cd /tmp/bs && git init -q && git checkout -q -b bot-state
+          cp /tmp/watcher-state.json /tmp/watcher-report.md .
+          printf 'Bot memory that the website never reads (KPC storage plan, Oct 25-26 2026). One commit, replaced by each run.\n' > README.md
+          git add -A
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -q -m 'KPC Watcher memory + report'
+          for i in 1 2 3; do git -c http.https://github.com/.extraheader="$AUTH" push -q -f "https://github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/bot-state && exit 0; sleep $((i*10)); done
+          exit 0

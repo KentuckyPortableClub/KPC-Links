@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Daily bot check (Opus, Oct 23 2026; Brandon: 'I do want daily checks on bots'). Runs on GitHub, no Claude needed.
+"""KPC CHECK-UP report (was the daily bot check: Opus, Oct 23 2026; grown into the nightly check-up by chat 5, Oct 26 2026,
+Brandon GO 11:50 AM). Runs on GitHub, no Claude needed.
+
+The other parts (kpc_checkup.py guard / refs / links, kpc_site_test.js) run first as their own steps and leave
+checkup-out/<part>.json; this script adds the bot check and writes ONE issue body, GROUPED BY CHAT. The Sunday parts
+(site, refs, links) are kept in data/bot-health.json and shown all week, so a problem does not vanish on Monday and
+come back 'new' next Sunday. A link that fails is only a problem when it also failed the Sunday before.
 
 For every workflow that runs on a timer: did its last run fail, and has it run as often as its timer says it should?
 Also checks that the files the bots keep fresh really are fresh (spots counts, park lists, search list, events).
@@ -20,6 +26,20 @@ STATE = pathlib.Path('data/bot-health.json')
 # files a bot keeps fresh: (file, most hours old before it is a problem, who keeps it)
 FRESH = [('data/hunters/buckets.json', 4, 'KPC Hunters (saves once an hour)')]   # most bot files only change when the news does
 SKIP = {'kpc-go-live.yml', 'kpc-chain.yml'}   # one-time jobs that are done
+CHATS = {1: 'Chat 1 · Website', 2: 'Chat 2 · Maps & park data', 3: 'Chat 3 · Lounges & Logger', 4: 'Chat 4 · App',
+         5: 'Chat 5 · Bots (posting, schedule)', 6: 'Chat 6 · Campout & events'}
+OWNER = [(2, r'key|boundary|canada|state-|trail|access|fers|world|nwr|new-lands|ky-|sota-land|wwff|closures|camps|geo-|outline|official|new-refs|ref-check|top25|land|usace|parkinfo|map-'),
+         (3, r'hunters|campground|park-notes|activation'), (6, r'ses\.yml|events|contests|youtube'), (4, r'app'),
+         (1, r'guide|approvals|boards|reports|community|whats-new')]
+PARTS = ('guard', 'site', 'refs', 'links')
+WEEKLY = ('site', 'refs', 'links')
+
+
+def owner(wf):
+    for c, rx in OWNER:
+        if re.search(rx, wf):
+            return c
+    return 5
 
 
 def gh(*a):
@@ -83,19 +103,56 @@ def main():
         st = json.loads(STATE.read_text(encoding='utf-8'))
     except (OSError, ValueError):
         st = {'open': []}
-    keys = sorted({k for k, _ in problems})
+    items = [{'key': k, 'chat': owner(k), 'msg': m} for k, m in problems]      # bot check
+    notes, oks = [], ['Bot check: %d timed bots fine' % len(ok)]
+    weekly = st.setdefault('weekly', {})
+    for part in PARTS:
+        f = pathlib.Path('checkup-out') / f'{part}.json'
+        try:
+            d = json.loads(f.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            d = weekly.get(part) if part in WEEKLY else None        # not run today: last Sunday's result
+            if not d: continue
+        else:
+            if part in WEEKLY: weekly[part] = d
+        if part == 'links' and f.is_file():
+            prev = set(st.get('link_fail_prev') or [])
+            st['link_fail_prev'] = [x['key'] for x in d.get('problems', []) if x.get('twice')]
+            for x in d.get('problems', []):
+                if x.get('twice'): x['confirmed'] = x['key'] in prev
+        for x in d.get('problems', []):
+            if x.get('twice') and not x.get('confirmed'):
+                notes.append({'chat': x['chat'], 'msg': x['msg'] + ' (first time; a problem if it fails again next Sunday)'})
+            else:
+                items.append(x)
+        notes += d.get('notes', [])
+        oks += [f"{part} ({d.get('date', '')}): {o}" for o in d.get('ok', [])]
+    keys = sorted({x['key'] for x in items})
     new = [k for k in keys if k not in st.get('open', [])]
     st['open'] = keys; st['checked'] = NOW.isoformat(timespec='minutes')
-    STATE.write_text(json.dumps(st, indent=1) + '\n', encoding='utf-8')
+    STATE.write_text(json.dumps(st, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     when = NOW.strftime('%b %d, %Y %H:%M UTC')
-    body = (f'_Checked {when} by the daily bot check (.github/scripts/kpc_bot_health.py)._\n\n' +
-            (('## ⚠ Needs a look (%d)\n' % len(problems)) + '\n'.join(f'- {m}' for _, m in problems) + '\n\n' if problems else '## ✅ Every bot ran on time and its last run worked.\n\n') +
-            '<details><summary>Bots that are fine (%d)</summary>\n\n' % len(ok) + '\n'.join(f'- {x}' for x in ok) + '\n\n</details>\n')
+    body = (f'_Checked {when} by the KPC check-up (.github/workflows/kpc-bot-health.yml). Daily: bot check + public-list guard. '
+            'Sundays: site test as a guest (390 px + desktop), reference check for every state, data link check. '
+            'Each chat fixes what is under its name. Only a NEW problem emails._\n\n')
+    body += (f'## ⚠ {len(items)} to look at\n\n' if items else '## ✅ Nothing to fix.\n\n')
+    for c in sorted({x['chat'] for x in items} | {x['chat'] for x in notes}):
+        pi = [x for x in items if x['chat'] == c]
+        ni = [x for x in notes if x['chat'] == c]
+        body += f"### {CHATS.get(c, f'Chat {c}')}\n"
+        body += ''.join(f"- {'🆕 ' if x['key'] in new else ''}{x['msg']}\n" for x in pi[:60])
+        if len(pi) > 60: body += f'- … and {len(pi) - 60} more\n'
+        if ni:
+            body += f'<details><summary>{len(ni)} note(s), nothing to fix yet</summary>\n\n' + ''.join(f"- {x['msg']}\n" for x in ni[:60]) + '\n</details>\n'
+        body += '\n'
+    body += '<details><summary>What was checked</summary>\n\n' + '\n'.join(f'- {x}' for x in oks) + '\n\n' + '\n'.join(f'- {x}' for x in ok) + '\n\n</details>\n'
+    problems = [(x['key'], x['msg']) for x in items]
+    body = body[:60000]
     print(body)
-    print(f'::notice title=Bot check::{len(problems)} problem(s), {len(new)} new, {len(ok)} bots fine', flush=True)
+    print(f'::notice title=Check-up::{len(problems)} problem(s), {len(new)} new, {len(notes)} note(s)', flush=True)
     if not os.environ.get('GITHUB_ACTIONS'): return
     iss = gh(f'repos/{REPO}/issues?labels=bot-health&state=all&per_page=1') or []
-    title = ('⚠ Bot check: %d to look at' % len(problems)) if problems else '✅ Bot check: all bots fine'
+    title = ('⚠ KPC check-up: %d to look at' % len(problems)) if problems else '✅ KPC check-up: all fine'
     if iss:
         n = iss[0]['number']
         gh('-X', 'PATCH', f'repos/{REPO}/issues/{n}', '-f', f'title={title}', '-f', f'body={body}', '-f', 'state=' + ('open' if problems else 'closed'))
@@ -112,5 +169,5 @@ if __name__ == '__main__':
     try:
         main()
     except Exception as e:  # noqa: BLE001
-        print(f'::notice title=Bot check::stopped early: {e}')
+        print(f'::notice title=Check-up::stopped early: {e}')
     sys.exit(0)

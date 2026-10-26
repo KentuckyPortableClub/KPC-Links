@@ -1,11 +1,19 @@
-name: KPC bot check
-# Oct 23 2026 (Brandon: 'I do want daily checks on bots'): once a day, every timed bot is checked (did its last run
-# fail? has it run as often as its timer says?) and the picture goes into ONE issue labelled bot-health. Only a NEW
-# problem adds a comment (= one email). No Claude needed. Never fails.
+name: KPC check-up
+# Oct 23 2026 (Brandon: 'I do want daily checks on bots'); grown into the nightly KPC CHECK-UP by chat 5 on Oct 26
+# (Brandon GO 11:50 AM). ONE issue (label bot-health), grouped by chat; only a NEW real problem adds a comment
+# (= one email). Every part is its own step and never fails the job.
+#   DAILY : bot check (did each timed bot run, did it work) + public-list guard (kpc-gate.js PUBLIC list vs the pages).
+#   SUNDAY: site test as a guest (390 px + desktop), reference check for every state, data link check.
+# Run it by hand with 'full' ticked to do the Sunday parts on any day.
 on:
   schedule:
-    - cron: '53 12 * * *'   # 7:53 AM Central, after the morning bots
+    - cron: '47 9 * * *'    # 4:47 AM Central (3:47 in winter), after the night's data bots
   workflow_dispatch:
+    inputs:
+      full:
+        description: 'Also run the Sunday parts (site test, reference check, link check)'
+        type: boolean
+        default: false
 permissions:
   contents: write
   issues: write
@@ -16,12 +24,48 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 300
-      - name: Check every bot
+      - name: Which parts today
+        id: day
+        run: |
+          if [ "$(date -u +%u)" = "7" ] || [ "${{ inputs.full }}" = "true" ]; then echo "weekly=yes" >> "$GITHUB_OUTPUT"; else echo "weekly=no" >> "$GITHUB_OUTPUT"; fi
+      - name: Public-list guard (daily)
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_checkup.py guard || true
+      - name: Reference check, every state (Sunday)
+        if: steps.day.outputs.weekly == 'yes'
+        continue-on-error: true
+        run: python3 .github/scripts/kpc_checkup.py refs || true
+      - name: Data link check (Sunday)
+        if: steps.day.outputs.weekly == 'yes'
+        continue-on-error: true
+        timeout-minutes: 25
+        env:
+          LINK_MINUTES: '18'
+        run: python3 .github/scripts/kpc_checkup.py links || true
+      - uses: actions/setup-node@v5
+        if: steps.day.outputs.weekly == 'yes'
+        continue-on-error: true
+        with:
+          node-version: '22'
+      - name: Site test as a guest (Sunday)
+        if: steps.day.outputs.weekly == 'yes'
+        continue-on-error: true
+        timeout-minutes: 20
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.0 >/dev/null 2>&1 || true
+          npx playwright install --with-deps chromium >/dev/null 2>&1 || true
+          # served under /KPC-Links/ like GitHub Pages (404.html uses <base href="/KPC-Links/">)
+          mkdir -p /tmp/site && ln -sfn "$GITHUB_WORKSPACE" /tmp/site/KPC-Links
+          (cd /tmp/site && python3 -m http.server 8765 >/dev/null 2>&1 &)
+          sleep 2
+          node .github/scripts/kpc_site_test.js http://127.0.0.1:8765/KPC-Links/ checkup-out/site.json || true
+      - name: Bot check + one report grouped by chat
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_bot_health.py || true
@@ -30,7 +74,8 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 .github/scripts/kpc_save_filter.py data/bot-health.json || true
           git add data/bot-health.json
           if git diff --cached --quiet; then exit 0; fi
-          git commit -q -m 'Bot check'
+          git commit -q -m 'KPC check-up'
           for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 0
