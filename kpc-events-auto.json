@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-23T18:09:33Z",
+ "updated": "2026-10-26T12:35:42Z",
  "recurring": [
   {
    "name": "POTA Support Your Parks Weekend",
@@ -50,6 +50,19 @@
    "rule": "Third full weekend of Jan, Apr, Jul and Oct"
   },
   {
+   "name": "POTA New Year’s Week",
+   "tags": [
+    "POTA"
+   ],
+   "start": "2027-01-01",
+   "end": "2027-01-07",
+   "time": "Runs on UTC days: 7 PM Eastern Dec. 31 to 6:59 PM Eastern Jan. 7",
+   "where": "Any Kentucky park. A week of casual activations to start the year.",
+   "by": "Parks on the Air",
+   "url": "https://docs.pota.app/docs/events.html",
+   "rule": "January 1-7"
+  },
+  {
    "name": "ARRL Field Day",
    "tags": [
     "ONAIR"
@@ -73,20 +86,6 @@
    "by": "Winter Field Day Association",
    "url": "https://winterfieldday.org/",
    "rule": "Last full weekend of January"
-  },
-  {
-   "name": "CQ World Wide DX Contest (SSB)",
-   "tags": [
-    "ONAIR",
-    "CONTEST"
-   ],
-   "start": "2026-10-24",
-   "end": "2026-10-25",
-   "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
-   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + CQ zone 4. The WARC bands (30, 17, 12 m) never have contests.",
-   "by": "CQ",
-   "url": "https://cqww.com/rules.htm",
-   "rule": "Usual dates (CQ); check the rules"
   },
   {
    "name": "ARRL November Sweepstakes (CW)",
@@ -211,7 +210,7 @@
    "time": "Starts 2200 UTC Fri (Fri 4 PM Central)",
    "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "CQ",
-   "url": "https://www.cq160.com/rules.htm",
+   "url": "https://cq160.com/rules/",
    "rule": "Usual dates (CQ); check the rules"
   },
   {
@@ -223,7 +222,7 @@
    "start": "2027-02-20",
    "end": "2027-02-21",
    "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
-   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY); work DX stations only. The WARC bands (30, 17, 12 m) never have contests.",
+   "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY); work DX stations only, they send RS(T) + power. The WARC bands (30, 17, 12 m) never have contests.",
    "by": "ARRL",
    "url": "https://www.arrl.org/arrl-dx",
    "rule": "Usual dates (ARRL); check the rules"
@@ -239,7 +238,7 @@
    "time": "Starts 2200 UTC Fri (Fri 4 PM Central)",
    "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "CQ",
-   "url": "https://www.cq160.com/rules.htm",
+   "url": "https://cq160.com/rules/",
    "rule": "Usual dates (CQ); check the rules"
   },
   {
@@ -265,7 +264,7 @@
    "start": "2027-03-06",
    "end": "2027-03-07",
    "time": "Starts 0000 UTC Sat (Fri 6 PM Central)",
-   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY); work DX stations only. The WARC bands (30, 17, 12 m) never have contests.",
+   "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY); work DX stations only, they send RS(T) + power. The WARC bands (30, 17, 12 m) never have contests.",
    "by": "ARRL",
    "url": "https://www.arrl.org/arrl-dx",
    "rule": "Usual dates (ARRL); check the rules"
@@ -281,7 +280,7 @@
    "time": "Starts 1400 UTC Sat (Sat 9 AM Central)",
    "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "Sterling Park ARC",
-   "url": "https://www.contestcalendar.com/contestcal.php",
+   "url": "https://www.qsl.net/sterling/home.htm",
    "rule": "Usual dates (Sterling Park ARC); check the rules"
   },
   {
@@ -295,7 +294,7 @@
    "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
    "where": "Contest (SSB). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + serial number (001, 002...). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "CQ",
-   "url": "https://www.cqwpx.com/rules.htm",
+   "url": "https://cqwpx.com/rules/",
    "rule": "Usual dates (CQ); check the rules"
   },
   {
@@ -320,10 +319,10 @@
    ],
    "start": "2027-05-01",
    "end": "2027-05-02",
-   "time": "Starts 1600 UTC Sat (Sat 11 AM Central)",
+   "time": "Starts 1500 UTC Sat (Sat 10 AM Central)",
    "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "Hoosier DX and Contest Club",
-   "url": "https://www.contestcalendar.com/contestcal.php",
+   "url": "http://www.hdxcc.org/inqp/rules.html",
    "rule": "Usual dates (Hoosier DX and Contest Club); check the rules"
   },
   {
@@ -337,7 +336,7 @@
    "time": "Starts 0000 UTC Sat (Fri 7 PM Central)",
    "where": "Contest (CW). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + serial number (001, 002...). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "CQ",
-   "url": "https://www.cqwpx.com/rules.htm",
+   "url": "https://cqwpx.com/rules/",
    "rule": "Usual dates (CQ); check the rules"
   },
   {
@@ -351,8 +350,8 @@
    "time": "Starts 1300 UTC Sat (Sat 8 AM Central)",
    "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + your Kentucky county (out of state: RS(T) + state). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "Kentucky QSO Party",
-   "url": "https://www.contestcalendar.com/contestcal.php",
-   "rule": "Usual dates (Kentucky QSO Party); check the rules"
+   "url": "https://kyqsoparty.org/rules/",
+   "rule": "Usual dates (Kentucky QSO Party); the 2027 rules are still marked DRAFT and the start time may change"
   },
   {
    "name": "ARRL International Digital Contest",
@@ -435,7 +434,7 @@
    "time": "Starts 1600 UTC Sat (Sat 11 AM Central)",
    "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "Ohio Contest Club",
-   "url": "https://contestcalendar.com/stateparties.php",
+   "url": "https://www.ohqp.org/index.php/rules/",
    "rule": "Usual dates (Ohio Contest Club); check the rules"
   },
   {
@@ -449,7 +448,7 @@
    "time": "Starts 1700 UTC Sun (Sun 12 PM Central)",
    "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "Tennessee Contest Group",
-   "url": "https://contestcalendar.com/stateparties.php",
+   "url": "https://tnqp.org/",
    "rule": "Usual dates (Tennessee Contest Group); check the rules"
   },
   {
@@ -463,7 +462,7 @@
    "time": "Starts 1700 UTC Sun (Sun 12 PM Central)",
    "where": "Contest (CW, SSB, DIGITAL). Busy bands: lots of fast contacts for a park activation, so find a clear frequency first. If you work them, give: RS(T) + state (KY). The WARC bands (30, 17, 12 m) never have contests.",
    "by": "Western Illinois ARC",
-   "url": "https://www.contestcalendar.com/contestcal.php",
+   "url": "https://w9awe.org/ilqp/",
    "rule": "Usual dates (Western Illinois ARC); check the rules"
   },
   {
