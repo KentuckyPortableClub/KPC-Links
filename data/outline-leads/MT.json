@@ -1,0 +1,1319 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 38956,
+   "fields": [
+    "NAME",
+    "HABITAT",
+    "TIERCHANGEREASON",
+    "LLID",
+    "FORM_TYPE"
+   ],
+   "known": false,
+   "layer": "2015 Montana Aquatic Communities for the State Wildlife Action Plan - Lakes",
+   "sample": [
+    {
+     "HABITAT": "LL",
+     "LLID": "1040545489178"
+    },
+    {
+     "HABITAT": "LL",
+     "LLID": "1040547460037"
+    },
+    {
+     "HABITAT": "LL",
+     "LLID": "1040550486741"
+    }
+   ],
+   "service": "CNSVTN_SWAP_COM_AQ_LAKESRES",
+   "typef": "FORM_TYPE",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/CNSVTN_SWAP_COM_AQ_LAKESRES/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5642,
+   "fields": [
+    "ELCODE",
+    "SOC",
+    "SCINAME",
+    "ATTRIBUTE",
+    "WATERNAME",
+    "LLID",
+    "MODDATE",
+    "FAMILY",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "Montana Fish Distribution (Presence) - Lakes",
+   "sample": [
+    {
+     "ATTRIBUTE": "Presence",
+     "ELCODE": "AFCHA02090",
+     "FAMILY": "Trout",
+     "LLID": "1046677468237",
+     "MODDATE": "20180418",
+     "SCINAME": "Oncorhynchus mykiss",
+     "SPECIES": "Rainbow Trout",
+     "WATERNAME": "Oil Pump Reservoir"
+    },
+    {
+     "ATTRIBUTE": "Presence",
+     "ELCODE": "AFCHA02090",
+     "FAMILY": "Trout",
+     "LLID": "1047294471279",
+     "MODDATE": "20180418",
+     "SCINAME": "Oncorhynchus mykiss",
+     "SPECIES": "Rainbow Trout",
+     "WATERNAME": "Hollecker Lake"
+    },
+    {
+     "ATTRIBUTE": "Presence",
+     "ELCODE": "AFCHA02090",
+     "FAMILY": "Trout",
+     "LLID": "1049338479973",
+     "MODDATE": "20180418",
+     "SCINAME": "Oncorhynchus mykiss",
+     "SPECIES": "Rainbow Trout",
+     "WATERNAME": "Bayers Pond Upper"
+    }
+   ],
+   "service": "Montana_Fish_Distribution_(Presence)_-_Lakes_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_Fish_Distribution_(Presence)_-_Lakes_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2627,
+   "fields": [
+    "ELCODE",
+    "ATTRIBUTE",
+    "WATERNAME",
+    "LLID",
+    "MODDATE",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "tempRp",
+   "sample": [
+    {
+     "ATTRIBUTE": "Rare",
+     "ELCODE": "AFCHA02090",
+     "LLID": "1120556476651",
+     "MODDATE": "20180418",
+     "SPECIES": "Rainbow Trout",
+     "WATERNAME": "Freezeout Lake"
+    },
+    {
+     "ATTRIBUTE": "Rare",
+     "ELCODE": "AFCHA02090",
+     "LLID": "1131215461028",
+     "MODDATE": "20180418",
+     "SPECIES": "Rainbow Trout",
+     "WATERNAME": "Barker Lake, Lower"
+    },
+    {
+     "ATTRIBUTE": "Rare",
+     "ELCODE": "AFCHA02090",
+     "LLID": "1132645460712",
+     "MODDATE": "20180418",
+     "SPECIES": "Rainbow Trout",
+     "WATERNAME": "Storm Lake"
+    }
+   ],
+   "service": "Montana_Fish_Distribution_(Abundance)_-_Lakes_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_Fish_Distribution_(Abundance)_-_Lakes_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1912,
+   "fields": [
+    "ELCODE",
+    "ATTRIBUTE",
+    "WATERNAME",
+    "LLID",
+    "MODDATE",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "tempRp",
+   "sample": [
+    {
+     "ATTRIBUTE": "Native (reintroduced)",
+     "ELCODE": "AFCHA02088",
+     "LLID": "1121152458439",
+     "MODDATE": "20180418",
+     "SPECIES": "Westslope Cutthroat Trout",
+     "WATERNAME": "Piedmont Pond"
+    },
+    {
+     "ATTRIBUTE": "Native (reintroduced)",
+     "ELCODE": "AFCHA02088",
+     "LLID": "1121155447629",
+     "MODDATE": "20180418",
+     "SPECIES": "Westslope Cutthroat Trout",
+     "WATERNAME": "Peterson Lake, Lower"
+    },
+    {
+     "ATTRIBUTE": "Native (reintroduced)",
+     "ELCODE": "AFCHA02088",
+     "LLID": "1121187456006",
+     "MODDATE": "20180418",
+     "SPECIES": "Westslope Cutthroat Trout",
+     "WATERNAME": "Upper Boulder Lake"
+    }
+   ],
+   "service": "Montana_Fish_Distribution_(Origin)_-_Lakes_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_Fish_Distribution_(Origin)_-_Lakes_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1462,
+   "fields": [
+    "QQLL",
+    "QUAD_QQLL_NAME",
+    "RECENT_DATE",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "tmpQQQ",
+   "sample": [
+    {
+     "QQLL": "13A4",
+     "QUAD_QQLL_NAME": "Thompson Falls - 13A4",
+     "SPECIES": "Grizzly Bear"
+    },
+    {
+     "QQLL": "13B1",
+     "QUAD_QQLL_NAME": "Thompson Falls - 13B1",
+     "SPECIES": "Grizzly Bear"
+    },
+    {
+     "QQLL": "13B2",
+     "QUAD_QQLL_NAME": "Thompson Falls - 13B2",
+     "SPECIES": "Grizzly Bear"
+    }
+   ],
+   "service": "Wildlife_Relocation_Locations_for_Current_Year_in_Montana_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Wildlife_Relocation_Locations_for_Current_Year_in_Montana_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1462,
+   "fields": [
+    "QQLL",
+    "QUAD_QQLL_NAME",
+    "RECENT_DATE",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "tmpQQQ",
+   "sample": [
+    {
+     "QQLL": "13A4",
+     "QUAD_QQLL_NAME": "Thompson Falls - 13A4",
+     "SPECIES": "Grizzly Bear"
+    },
+    {
+     "QQLL": "13B1",
+     "QUAD_QQLL_NAME": "Thompson Falls - 13B1",
+     "SPECIES": "Grizzly Bear"
+    },
+    {
+     "QQLL": "13B2",
+     "QUAD_QQLL_NAME": "Thompson Falls - 13B2",
+     "SPECIES": "Grizzly Bear"
+    }
+   ],
+   "service": "WildlifeRelocationsQQLL",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/WildlifeRelocationsQQLL/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1143,
+   "fields": [],
+   "known": false,
+   "layer": "tempRp",
+   "sample": [
+    {
+     "CELL_ID": 1105,
+     "OBJECTID": 1,
+     "PSI_EST": 0.100505665806658,
+     "Shape__Area": 113239212.765625,
+     "Shape__Length": 42565.583621895574
+    },
+    {
+     "CELL_ID": 692,
+     "OBJECTID": 2,
+     "PSI_EST": 0.096549343921676,
+     "Shape__Area": 112973520.5390625,
+     "Shape__Length": 42515.61317652509
+    },
+    {
+     "CELL_ID": 232,
+     "OBJECTID": 3,
+     "PSI_EST": 0.071311109221151,
+     "Shape__Area": 113248193.875,
+     "Shape__Length": 42567.27175255913
+    }
+   ],
+   "service": "WILD_FISHER_OCCUPANCY",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/WILD_FISHER_OCCUPANCY/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 883,
+   "fields": [
+    "ELCODE",
+    "ATTRIBUTE",
+    "WATERNAME",
+    "LLID",
+    "MODDATE",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "Montana Fish Distribution (Genetics) - Lakes",
+   "sample": [
+    {
+     "ATTRIBUTE": "Non-hybridized - tested via electrophoresis or DNA",
+     "ELCODE": "AFCHA02087",
+     "LLID": "1103653453868",
+     "MODDATE": "20180418",
+     "SPECIES": "Yellowstone Cutthroat Trout",
+     "WATERNAME": "Kaufman Lake (Falls Creek Lake)"
+    },
+    {
+     "ATTRIBUTE": "Non-hybridized - tested via electrophoresis or DNA",
+     "ELCODE": "AFCHA02087",
+     "LLID": "1100451451614",
+     "MODDATE": "20180418",
+     "SPECIES": "Yellowstone Cutthroat Trout",
+     "WATERNAME": "Lake Of The Woods"
+    },
+    {
+     "ATTRIBUTE": "Non-hybridized - tested via electrophoresis or DNA",
+     "ELCODE": "AFCHA02087",
+     "LLID": "1100720451748",
+     "MODDATE": "20180418",
+     "SPECIES": "Yellowstone Cutthroat Trout",
+     "WATERNAME": "Heather Lake"
+    }
+   ],
+   "service": "Montana_Fish_Distribution_(Genetics)_-_Lakes_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_Fish_Distribution_(Genetics)_-_Lakes_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 539,
+   "fields": [
+    "LLID",
+    "NAME",
+    "FINALDESIG"
+   ],
+   "known": false,
+   "layer": "tempRp",
+   "sample": [
+    {
+     "FINALDESIG": "5",
+     "LLID": "1143559481653",
+     "NAME": "Foy Lake"
+    },
+    {
+     "FINALDESIG": "6",
+     "LLID": "1122656482913",
+     "NAME": "Lake Frances"
+    },
+    {
+     "FINALDESIG": "2",
+     "LLID": "1146191482033",
+     "NAME": "Ashley Lake"
+    }
+   ],
+   "service": "FISH_AIS_INVASION_POTENTIAL_LK",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FISH_AIS_INVASION_POTENTIAL_LK/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 395,
+   "fields": [
+    "WATERBODY",
+    "TITLE",
+    "LOCATION",
+    "DESCRIPTION",
+    "PRESSRELEASE",
+    "RESTRICTIONTYPE"
+   ],
+   "known": false,
+   "layer": "Montana Waterbody Closures and Restrictions ",
+   "sample": [
+    {
+     "DESCRIPTION": "Holter Reservoir from the point of Oxbow Bend to Holter Reservoir Dam in Lewis and Clark County is being closed to all public occupation and recreation including, but not limited to, floating, swimming, wading, and boating until further notice. The closure is necessary so helicopter and airplane crews can safely operate and maneuver without potential collisions with recreationists on the lake.",
+     "LOCATION": "Oxbow Bend to Holter Reservoir Dam",
+     "RESTRICTIONTYPE": "Unknown",
+     "TITLE": "<span style=\"color:red\">Emergency Closure on Holter Reservoir</span>",
+     "WATERBODY": "Holter Reservoir"
+    },
+    {
+     "DESCRIPTION": "Emergency restrictions on the launch or removal of all boats, docks and other structures for Tiber and Canyon Ferry reservoirs.",
+     "LOCATION": "Tiber and Canyon Ferry Reservoirs",
+     "PRESSRELEASE": "<a target=\"_blank\" href=\"https://www.greatfallstribune.com/story/news/local/2016/11/30/governor-declares-invasive-species-emergency/94700822/\">Official Press Release</a>",
+     "RESTRICTIONTYPE": "Closure",
+     "TITLE": "<span style=\"color:red\">EMERGENCY RESTRICTIONS on Tiber and Canyon Ferry Reservoirs</span>",
+     "WATERBODY": "Canyon Ferry Lake"
+    },
+    {
+     "DESCRIPTION": "Emergency restrictions on the launch or removal of all boats, docks and other structures for Tiber and Canyon Ferry reservoirs.",
+     "LOCATION": "Tiber and Canyon Ferry Reservoirs",
+     "PRESSRELEASE": "<a target=\"_blank\" href=\"https://www.greatfallstribune.com/story/news/local/2016/11/30/governor-declares-invasive-species-emergency/94700822/\">Official Press Release</a>",
+     "RESTRICTIONTYPE": "Closure",
+     "TITLE": "<span style=\"color:red\">EMERGENCY RESTRICTIONS on Tiber and Canyon Ferry Reservoirs</span>",
+     "WATERBODY": "Tiber Reservoir"
+    }
+   ],
+   "service": "FISH_WATERBODY_RESTRICTIONS",
+   "typef": "DESCRIPTION",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FISH_WATERBODY_RESTRICTIONS/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "FOCALAREANAME",
+   "count": 250,
+   "fields": [
+    "FOCALAREANAME",
+    "TIER",
+    "WEBLINK"
+   ],
+   "known": false,
+   "layer": "2015 Montana State Wildlife Action Plan (SWAP) - Aquatic Focal Areas (Watersheds)",
+   "sample": [
+    {
+     "FOCALAREANAME": "Rock Creek - Mallard Creek",
+     "TIER": "2",
+     "WEBLINK": "https://myfwp.mt.gov/getRepositoryFile?objectID=70172"
+    },
+    {
+     "FOCALAREANAME": "Alder Creek",
+     "TIER": "2",
+     "WEBLINK": "https://myfwp.mt.gov/getRepositoryFile?objectID=70172"
+    },
+    {
+     "FOCALAREANAME": "Cramer Creek",
+     "TIER": "2",
+     "WEBLINK": "https://myfwp.mt.gov/getRepositoryFile?objectID=70172"
+    }
+   ],
+   "service": "CNSVTN_SWAP_AQ_FOCAL_AREAS_POLY",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/CNSVTN_SWAP_AQ_FOCAL_AREAS_POLY/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "FOCALAREANAME",
+   "count": 116,
+   "fields": [
+    "FOCALAREANAME",
+    "TIER",
+    "WEBLINK"
+   ],
+   "known": false,
+   "layer": "2015 Montana State Wildlife Action Plan (SWAP) - Terrestrial Focal Areas",
+   "sample": [
+    {
+     "FOCALAREANAME": "Elliston Area Connectivity",
+     "TIER": "2",
+     "WEBLINK": "https://myfwp.mt.gov/getRepositoryFile?objectID=70173"
+    },
+    {
+     "FOCALAREANAME": "Ninemile",
+     "TIER": "2",
+     "WEBLINK": "https://myfwp.mt.gov/getRepositoryFile?objectID=70173"
+    },
+    {
+     "FOCALAREANAME": "East Fork Bitterroot",
+     "TIER": "2",
+     "WEBLINK": "https://myfwp.mt.gov/getRepositoryFile?objectID=70173"
+    }
+   ],
+   "service": "CNSVTN_SWAP_TERR_FOCAL_AREAS",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/CNSVTN_SWAP_TERR_FOCAL_AREAS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "SITENAME",
+   "count": 100,
+   "fields": [
+    "SITENAME",
+    "SITETYPE",
+    "FWPREG",
+    "HUNTING",
+    "HUNT_ACCESS"
+   ],
+   "known": false,
+   "layer": "Montana FWP Conservation Easements",
+   "sample": [
+    {
+     "FWPREG": "6",
+     "HUNTING": "HUNTING ALLOWED",
+     "HUNT_ACCESS": "Hunting access is managed through the Block Management Program. Please refer to the Block Management rules specific to this property.",
+     "SITENAME": "Buffalo Coulee CE",
+     "SITETYPE": "WCE"
+    },
+    {
+     "FWPREG": "6",
+     "HUNTING": "HUNTING ALLOWED",
+     "HUNT_ACCESS": "Hunting access is managed through the Block Management Program. Please refer to the Block Management rules specific to this property.",
+     "SITENAME": "Pintail Flat CE",
+     "SITETYPE": "WCE"
+    },
+    {
+     "FWPREG": "4",
+     "HUNTING": "HUNTING ALLOWED",
+     "HUNT_ACCESS": "Please contact the regional office for more information.",
+     "SITENAME": "Fargo Coulee CE",
+     "SITETYPE": "WCE"
+    }
+   ],
+   "service": "FWPLND_FWPLANDS_CE",
+   "typef": "SITETYPE",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FWPLANDS_CE/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 78,
+   "fields": [
+    "REGION",
+    "AREANAME",
+    "TITLE",
+    "DISPLAYNAME",
+    "CONTACT",
+    "EDITDATE",
+    "CREATEDATE",
+    "EMAIL_ADDR",
+    "PHONE",
+    "SOR_ID"
+   ],
+   "known": false,
+   "layer": "Wildlife Division Responsibility Areas",
+   "sample": [
+    {
+     "AREANAME": "Crow Indian Reservation",
+     "CONTACT": "Crow Indian Reservation",
+     "CREATEDATE": "20211122",
+     "EDITDATE": "20211122",
+     "REGION": "5",
+     "SOR_ID": "{75DC70C1-6EC4-3F6F-E053-F086C00AD073}"
+    },
+    {
+     "AREANAME": "Havre",
+     "CONTACT": "Scott Hemmer",
+     "CREATEDATE": "20211122",
+     "DISPLAYNAME": "Hemmer",
+     "EDITDATE": "20231204",
+     "EMAIL_ADDR": "shemmer@mt.gov",
+     "PHONE": "808-7274",
+     "REGION": "6",
+     "SOR_ID": "{75DC70C1-6EA2-3F6F-E053-F086C00AD073}\r\n",
+     "TITLE": "Area Biologist"
+    },
+    {
+     "AREANAME": "Libby",
+     "CONTACT": "Contract Regional Wildlife Manager",
+     "CREATEDATE": "20211122",
+     "DISPLAYNAME": "Vacant",
+     "EDITDATE": "20260722",
+     "EMAIL_ADDR": "Contract Regional Wildlife Manager",
+     "REGION": "1",
+     "SOR_ID": "{75DC70C1-6E9F-3F6F-E053-F086C00AD073}\r\n",
+     "TITLE": "Area Biologist"
+    }
+   ],
+   "service": "ADMBND_RESPAREA_WILD",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_RESPAREA_WILD/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 77,
+   "fields": [
+    "ELCODE",
+    "ATTRIBUTE",
+    "WATERNAME",
+    "LLID",
+    "MODDATE",
+    "SPECIES"
+   ],
+   "known": false,
+   "layer": "tempRp",
+   "sample": [
+    {
+     "ATTRIBUTE": "Year-round resident",
+     "ELCODE": "AFCHA05020",
+     "LLID": "1141710488068",
+     "MODDATE": "20181203",
+     "SPECIES": "Bull Trout",
+     "WATERNAME": "Lower Quartz Lake"
+    },
+    {
+     "ATTRIBUTE": "Year-round resident",
+     "ELCODE": "AFCHA05020",
+     "LLID": "1141411488224",
+     "MODDATE": "20181203",
+     "SPECIES": "Bull Trout",
+     "WATERNAME": "Middle Quartz Lake"
+    },
+    {
+     "ATTRIBUTE": "Year-round resident",
+     "ELCODE": "AFCHA05020",
+     "LLID": "1135929473398",
+     "MODDATE": "20181203",
+     "SPECIES": "Bull Trout",
+     "WATERNAME": "Rainy Lake"
+    }
+   ],
+   "service": "Montana_Fish_Distribution_(Life_History)_-_Lakes_View",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/Montana_Fish_Distribution_(Life_History)_-_Lakes_View/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 67,
+   "fields": [
+    "REGION",
+    "AREANAME",
+    "EDITDATE",
+    "CREATEDATE",
+    "DISPLAYNAME",
+    "BADGENUM",
+    "PHONE",
+    "EMAIL_ADDR",
+    "CONTACT",
+    "TITLE",
+    "STAFF_INFO",
+    "SOR_ID"
+   ],
+   "known": false,
+   "layer": "Montana Fish, Wildlife & Parks Warden Districts",
+   "sample": [
+    {
+     "AREANAME": "Glacier National Park",
+     "BADGENUM": " ",
+     "CONTACT": "Glacier National Park",
+     "CREATEDATE": "20200708",
+     "DISPLAYNAME": " ",
+     "EDITDATE": "20200706",
+     "REGION": "1",
+     "SOR_ID": "{95BF62C9-A1EE-0FD0-E053-F086C00A8AC1}",
+     "STAFF_INFO": "Not Administered by FWP"
+    },
+    {
+     "AREANAME": "Fort Benton",
+     "BADGENUM": "FG45",
+     "CONTACT": "Seth Sanguins",
+     "CREATEDATE": "20200708",
+     "DISPLAYNAME": "Sanguins",
+     "EDITDATE": "20261023",
+     "EMAIL_ADDR": "Seth.Sanguins@mt.gov",
+     "PHONE": "406-438-1025",
+     "REGION": "4",
+     "SOR_ID": "{95BF62C9-A1F1-0FD0-E053-F086C00A8AC1}",
+     "STAFF_INFO": "406-438-1025",
+     "TITLE": "Warden"
+    },
+    {
+     "AREANAME": "Chester",
+     "BADGENUM": "FG614",
+     "CONTACT": "Willie Miller",
+     "CREATEDATE": "20200708",
+     "DISPLAYNAME": "Miller",
+     "EDITDATE": "20261023",
+     "EMAIL_ADDR": "Willie.Miller@mt.gov",
+     "PHONE": "406-468-8502",
+     "REGION": "4",
+     "SOR_ID": "{95BF62C9-A1F2-0FD0-E053-F086C00A8AC1}",
+     "STAFF_INFO": "406-468-8502",
+     "TITLE": "Warden"
+    }
+   ],
+   "service": "ADMBND_RESPAREA_WARDEN",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_RESPAREA_WARDEN/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 52,
+   "fields": [
+    "REG",
+    "DISTRICT",
+    "NAME",
+    "HARVTYPE",
+    "WEBPAGE"
+   ],
+   "known": false,
+   "layer": "tempRp",
+   "sample": [
+    {
+     "DISTRICT": "4",
+     "HARVTYPE": "Quota",
+     "NAME": "Continental Divide",
+     "REG": "1,2,3",
+     "WEBPAGE": "http://fwp.mt.gov/hunting/planahunt/huntingGuides/furbearer/"
+    },
+    {
+     "DISTRICT": "3",
+     "HARVTYPE": "Quota",
+     "NAME": "Cabinet",
+     "REG": "1",
+     "WEBPAGE": "http://fwp.mt.gov/hunting/planahunt/huntingGuides/furbearer/"
+    },
+    {
+     "DISTRICT": "2",
+     "HARVTYPE": "Quota",
+     "NAME": "Yaak",
+     "REG": "1",
+     "WEBPAGE": "http://fwp.mt.gov/hunting/planahunt/huntingGuides/furbearer/"
+    }
+   ],
+   "service": "ADMBND_HD_FISHER_MANAGEUNITS_ALL",
+   "typef": "HARVTYPE",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_HD_FISHER_MANAGEUNITS_ALL/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 50,
+   "fields": [
+    "REGION",
+    "AREANAME",
+    "SOR_ID",
+    "EDITDATE",
+    "CREATEDATE",
+    "EMAIL_ADDR",
+    "PHONE",
+    "TITLE",
+    "DISPLAYNAME",
+    "CONTACT"
+   ],
+   "known": false,
+   "layer": "Fisheries Division Responsibility Areas",
+   "sample": [
+    {
+     "AREANAME": "Rock Creek",
+     "CONTACT": "Bradley Liermann",
+     "CREATEDATE": "20211116",
+     "DISPLAYNAME": "Liermann",
+     "EDITDATE": "20241223",
+     "EMAIL_ADDR": "Bradley.Liermann@mt.gov",
+     "PHONE": "406-825-5225",
+     "REGION": "2",
+     "SOR_ID": "{78607267-D41F-202B-E053-F086C00AC89C}",
+     "TITLE": "Fisheries Biologist"
+    },
+    {
+     "AREANAME": "Region 1",
+     "CONTACT": "Leo Rosenthal",
+     "CREATEDATE": "20211116",
+     "DISPLAYNAME": "Rosenthal",
+     "EDITDATE": "20260828",
+     "EMAIL_ADDR": "lrosenthal@mt.gov",
+     "PHONE": "406-751-4548",
+     "REGION": "1",
+     "SOR_ID": "{78607267-D3AB-202B-E053-F086C00AC89C}",
+     "TITLE": "Fisheries Regional Manager"
+    },
+    {
+     "AREANAME": "Region 2",
+     "CONTACT": "Patrick Saffel",
+     "CREATEDATE": "20211116",
+     "DISPLAYNAME": "Saffel",
+     "EDITDATE": "20231017",
+     "EMAIL_ADDR": "psaffel@mt.gov",
+     "PHONE": "406-542-5507",
+     "REGION": "2",
+     "SOR_ID": "{78607267-D3AC-202B-E053-F086C00AC89C}",
+     "TITLE": "Fisheries Regional Manager"
+    }
+   ],
+   "service": "ADMBND_RESPAREA_FISH",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_RESPAREA_FISH/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "LLID",
+    "WATERNAME",
+    "SPECIES",
+    "FAMILY"
+   ],
+   "known": false,
+   "layer": "Montana Non-Fish Aquatic Organism Distribution - Lakes",
+   "sample": [
+    {
+     "FAMILY": "Crayfish",
+     "LLID": "1145551484018",
+     "SPECIES": "Virile Crayfish",
+     "WATERNAME": "Tally Lake"
+    },
+    {
+     "FAMILY": "Crayfish",
+     "LLID": "1157058478916",
+     "SPECIES": "Virile Crayfish",
+     "WATERNAME": "Noxon Rapids Reservoir"
+    },
+    {
+     "FAMILY": "Crayfish",
+     "LLID": "1150310480194",
+     "SPECIES": "Virile Crayfish",
+     "WATERNAME": "Lower Thompson Lake"
+    }
+   ],
+   "service": "FISH_DISTRIBUTION_OTHER_AQUATIC_LK",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FISH_DISTRIBUTION_OTHER_AQUATIC_LK/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "HISTORIC",
+    "BIOLOGIST",
+    "EDITDATE"
+   ],
+   "known": false,
+   "layer": "Sage-grouse Historic Distribution",
+   "sample": [
+    {
+     "BIOLOGIST": "Graham Taylor and Tom Stivers",
+     "EDITDATE": "08/08/2001",
+     "HISTORIC": "N"
+    },
+    {
+     "BIOLOGIST": "Charlie Eustace",
+     "EDITDATE": "07/02/2001",
+     "HISTORIC": "N"
+    },
+    {
+     "BIOLOGIST": "Graham Taylor and Tom Stivers",
+     "EDITDATE": "08/08/2001",
+     "HISTORIC": "N"
+    }
+   ],
+   "service": "WILD_SAGEGROUSE_HISTORICRANGE",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/WILD_SAGEGROUSE_HISTORICRANGE/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "NAME",
+   "count": 9,
+   "fields": [
+    "REG",
+    "DISTRICT",
+    "NAME",
+    "HARVTYPE",
+    "WEBPAGE"
+   ],
+   "known": false,
+   "layer": "Fisher Management Units (2026 and 2027 Seasons)",
+   "sample": [
+    {
+     "HARVTYPE": "No Hunting Allowed",
+     "NAME": "YELLOWSTONE NATIONAL PARK",
+     "REG": "3",
+     "WEBPAGE": "Hunting not allowed in this area or hunting in this area is not administered by FWP."
+    },
+    {
+     "HARVTYPE": "No Hunting Allowed",
+     "NAME": "SUN RIVER GAME PRESERVE",
+     "REG": "4",
+     "WEBPAGE": "Hunting not allowed in this area or hunting in this area is not administered by FWP."
+    },
+    {
+     "HARVTYPE": "No Hunting Allowed",
+     "NAME": "GLACIER NATIONAL PARK",
+     "REG": "4",
+     "WEBPAGE": "Hunting not allowed in this area or hunting in this area is not administered by FWP."
+    }
+   ],
+   "service": "ADMBND_HD_FISHER_MANAGEUNITS",
+   "typef": "HARVTYPE",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_HD_FISHER_MANAGEUNITS/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Montana Fish, Wildlife & Parks - Fisheries Administrative Regions",
+   "sample": [
+    {
+     "REGION": "1"
+    },
+    {
+     "REGION": "2"
+    },
+    {
+     "REGION": "3"
+    }
+   ],
+   "service": "ADMBND_REGIONS_FISHERIES",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_REGIONS_FISHERIES/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "REG",
+    "PHONE",
+    "ADDRESS",
+    "CITY",
+    "ZIP",
+    "EMAIL",
+    "WEB_PAGE"
+   ],
+   "known": false,
+   "layer": "Montana State Parks Administrative Regions",
+   "sample": [
+    {
+     "ADDRESS": "490 N MERIDIAN RD",
+     "CITY": "KALISPELL",
+     "EMAIL": "fwprg12@mt.gov",
+     "PHONE": "406-752-5501",
+     "REG": "1",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region1",
+     "ZIP": "59901"
+    },
+    {
+     "ADDRESS": "4600 GIANT SPRINGS RD",
+     "CITY": "GREAT FALLS",
+     "EMAIL": "fwprg42@mt.gov",
+     "PHONE": "406-454-5840",
+     "REG": "4",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region4",
+     "ZIP": "59405"
+    },
+    {
+     "ADDRESS": "1 AIRPORT RD",
+     "CITY": "GLASGOW",
+     "EMAIL": "fwprg62@mt.gov",
+     "PHONE": "406-228-3700",
+     "REG": "6",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region6",
+     "ZIP": "59230"
+    }
+   ],
+   "service": "ADMBND_REGIONS_PARKS",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_REGIONS_PARKS/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "REG",
+    "PHONE",
+    "ADDRESS",
+    "CITY",
+    "ZIP",
+    "EMAIL",
+    "WEB_PAGE"
+   ],
+   "known": false,
+   "layer": "Montana Fish, Wildlife & Parks - Wildlife Administrative Regions",
+   "sample": [
+    {
+     "ADDRESS": "490 N MERIDIAN RD",
+     "CITY": "KALISPELL",
+     "EMAIL": "fwprg12@mt.gov",
+     "PHONE": "406-752-5501",
+     "REG": "1",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region1",
+     "ZIP": "59901"
+    },
+    {
+     "ADDRESS": "4600 GIANT SPRINGS RD",
+     "CITY": "GREAT FALLS",
+     "EMAIL": "fwprg42@mt.gov",
+     "PHONE": "406-454-5840",
+     "REG": "4",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region4",
+     "ZIP": "59405"
+    },
+    {
+     "ADDRESS": "1 AIRPORT RD",
+     "CITY": "GLASGOW",
+     "EMAIL": "fwprg62@mt.gov",
+     "PHONE": "406-228-3700",
+     "REG": "6",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region6",
+     "ZIP": "59230"
+    }
+   ],
+   "service": "ADMBND_REGIONS_WILDLIFE",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_REGIONS_WILDLIFE/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME",
+    "FWPREG",
+    "WEB_PAGE",
+    "BOAT_FAC",
+    "HUNTING",
+    "HUNT_RESTR",
+    "CAMPING"
+   ],
+   "known": false,
+   "layer": "Milltown State Park",
+   "sample": [
+    {
+     "BOAT_FAC": "No Boat Facilities",
+     "CAMPING": "No",
+     "FWPREG": "2",
+     "HUNTING": "NO HUNTING",
+     "HUNT_RESTR": "NO HUNTING",
+     "NAME": "Milltown",
+     "WEB_PAGE": "http://stateparks.mt.gov/milltown/"
+    },
+    {
+     "BOAT_FAC": "No Boat Facilities",
+     "CAMPING": "No",
+     "FWPREG": "2",
+     "HUNTING": "NO HUNTING",
+     "HUNT_RESTR": "NO HUNTING",
+     "NAME": "Milltown",
+     "WEB_PAGE": "http://stateparks.mt.gov/milltown/"
+    },
+    {
+     "BOAT_FAC": "No Boat Facilities",
+     "CAMPING": "No",
+     "FWPREG": "2",
+     "HUNTING": "NO HUNTING",
+     "HUNT_RESTR": "NO HUNTING",
+     "NAME": "Milltown",
+     "WEB_PAGE": "http://stateparks.mt.gov/milltown/"
+    }
+   ],
+   "service": "FWPLND_MILLTOWN_STATE_PARK",
+   "typef": "BOAT_FAC",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_MILLTOWN_STATE_PARK/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "REG",
+    "PHONE",
+    "ADDRESS",
+    "CITY",
+    "ZIP",
+    "EMAIL",
+    "WEB_PAGE"
+   ],
+   "known": false,
+   "layer": "Montana Fish, Wildlife & Parks - Administrative Regions",
+   "sample": [
+    {
+     "ADDRESS": "490 N MERIDIAN RD",
+     "CITY": "KALISPELL",
+     "EMAIL": "fwprg12@mt.gov",
+     "PHONE": "406-752-5501",
+     "REG": "1",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region1",
+     "ZIP": "59901"
+    },
+    {
+     "ADDRESS": "4600 GIANT SPRINGS RD",
+     "CITY": "GREAT FALLS",
+     "EMAIL": "fwprg42@mt.gov",
+     "PHONE": "406-454-5840",
+     "REG": "4",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region4",
+     "ZIP": "59405"
+    },
+    {
+     "ADDRESS": "1 AIRPORT RD",
+     "CITY": "GLASGOW",
+     "EMAIL": "fwprg62@mt.gov",
+     "PHONE": "406-228-3700",
+     "REG": "6",
+     "WEB_PAGE": "https://fwp.mt.gov/aboutfwp/regions/region6",
+     "ZIP": "59230"
+    }
+   ],
+   "service": "ADMBND_REGIONS_ADMINISTRATIVE",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_REGIONS_ADMINISTRATIVE/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 7,
+   "fields": [
+    "NAME",
+    "FIRSTNAME",
+    "LASTNAME",
+    "CITY",
+    "TERM"
+   ],
+   "known": false,
+   "layer": "Montana FWP Fish and Wildlife Commissioner Regions",
+   "sample": [
+    {
+     "CITY": "Hamilton",
+     "FIRSTNAME": "Jeff",
+     "LASTNAME": "Burrows",
+     "NAME": "Jeff Burrows",
+     "TERM": "1/1/2027"
+    },
+    {
+     "CITY": "Martinsdale",
+     "FIRSTNAME": "KC",
+     "LASTNAME": "Walsh",
+     "NAME": "KC Walsh",
+     "TERM": "1/1/2029"
+    },
+    {
+     "CITY": "Dodson",
+     "FIRSTNAME": "Lesley",
+     "LASTNAME": "Robinson",
+     "NAME": "Lesley Robinson",
+     "TERM": "1/1/2027"
+    }
+   ],
+   "service": "ADMBND_REGIONS_COMMISSION",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_REGIONS_COMMISSION/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "",
+   "count": 7,
+   "fields": [
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Montana Fish, Wildlife & Parks' Enforcement Administrative Regions",
+   "sample": [
+    {
+     "REGION": "5"
+    },
+    {
+     "REGION": "3"
+    },
+    {
+     "REGION": "2"
+    }
+   ],
+   "service": "ADMBND_REGIONS_ENFORCEMENT",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_REGIONS_ENFORCEMENT/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife and Parks",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "DISTRICT"
+   ],
+   "known": false,
+   "layer": "Montana Fishing Districts",
+   "sample": [
+    {
+     "DISTRICT": "WESTERN"
+    },
+    {
+     "DISTRICT": "EASTERN"
+    },
+    {
+     "DISTRICT": "NPS"
+    }
+   ],
+   "service": "ADMBND_DISTRICTS_FISHING",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_DISTRICTS_FISHING/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 5,
+   "fields": [
+    "FIRSTNAME",
+    "LASTNAME",
+    "CITY",
+    "NAME",
+    "TERM"
+   ],
+   "known": false,
+   "layer": "Montana FWP State Parks and Recreation Board Districts",
+   "sample": [
+    {
+     "CITY": "Helena",
+     "FIRSTNAME": "Jody",
+     "LASTNAME": "Loomis",
+     "NAME": "Jody Loomis",
+     "TERM": "1/5/2025"
+    },
+    {
+     "CITY": "Polaris",
+     "FIRSTNAME": "Russ",
+     "LASTNAME": "Kipp",
+     "NAME": "Russ Kipp",
+     "TERM": "1/5/2025"
+    },
+    {
+     "CITY": "Great Falls",
+     "FIRSTNAME": "Liz",
+     "LASTNAME": "Whiting",
+     "NAME": "Liz Whiting",
+     "TERM": "1/1/2027"
+    }
+   ],
+   "service": "ADMBND_DISTRICTS_STATE_PARKS_BOARD",
+   "typef": "",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/ADMBND_DISTRICTS_STATE_PARKS_BOARD/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "NAME",
+   "count": 333,
+   "fields": [
+    "NAME",
+    "FWPREG",
+    "WEB_PAGE",
+    "CAMPING",
+    "BOAT_FAC",
+    "HUNTING",
+    "PDFMAP",
+    "HUNT_ACCESS",
+    "ACQDATE"
+   ],
+   "known": true,
+   "layer": "Fishing Access Sites - Polygons",
+   "sample": [
+    {
+     "ACQDATE": "7/2/1967",
+     "BOAT_FAC": "Ramp (Concrete), Dock",
+     "CAMPING": "No",
+     "FWPREG": "1",
+     "HUNTING": "NO HUNTING",
+     "HUNT_ACCESS": "Refer to current hunting regulations for hunting and weapons restrictions.",
+     "NAME": "Walstad",
+     "PDFMAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/39754043.pdf",
+     "WEB_PAGE": "https://myfwp.mt.gov/fishMT/fas/39754043"
+    },
+    {
+     "ACQDATE": "4/28/1987",
+     "BOAT_FAC": "Ramp (Concrete), Dock",
+     "CAMPING": "No",
+     "FWPREG": "1",
+     "HUNTING": "NO HUNTING",
+     "NAME": "Somers",
+     "PDFMAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/39754047.pdf",
+     "WEB_PAGE": "https://myfwp.mt.gov/fishMT/fas/39754047"
+    },
+    {
+     "ACQDATE": "6/5/1958",
+     "BOAT_FAC": "Ramp (Gravel)",
+     "CAMPING": "No",
+     "FWPREG": "1",
+     "HUNTING": "NO HUNTING",
+     "NAME": "Sophie Lake",
+     "PDFMAP": "https://fwp.mt.gov/binaries/content/assets/fwp/gisresources/visitmaps/fas/39754051.pdf",
+     "WEB_PAGE": "https://myfwp.mt.gov/fishMT/fas/39754051"
+    }
+   ],
+   "service": "FWPLND_FAS",
+   "typef": "BOAT_FAC",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_FAS/FeatureServer/0"
+  },
+  {
+   "agency": "Montana Fish, Wildlife & Parks",
+   "area": "NAME",
+   "count": 55,
+   "fields": [
+    "NAME",
+    "FWPREG",
+    "WEB_PAGE",
+    "CAMPING",
+    "BOAT_FAC",
+    "HUNTING",
+    "PDFMAP",
+    "HUNT_ACCESS",
+    "ACQDATE"
+   ],
+   "known": true,
+   "layer": "Montana State Parks - Polygons",
+   "sample": [
+    {
+     "ACQDATE": "3/16/1959",
+     "BOAT_FAC": "Boat Facilities Present - Many Types",
+     "CAMPING": "Yes",
+     "FWPREG": "1",
+     "HUNTING": "HUNTING ALLOWED",
+     "HUNT_ACCESS": "Refer to current hunting regulations for hunting and weapons restrictions.",
+     "NAME": "Thompson Chain-of-Lakes",
+     "WEB_PAGE": "https://fwp.mt.gov/stateparks/thompson-chain-of-lakes"
+    },
+    {
+     "ACQDATE": "7/12/1965",
+     "BOAT_FAC": "Dock, Hookup, Marina, Ramp (Concrete)",
+     "CAMPING": "Yes",
+     "FWPREG": "1",
+     "HUNTING": "NO HUNTING/NO TRAPPING",
+     "NAME": "Finley Point",
+     "WEB_PAGE": "https://fwp.mt.gov/stateparks/finley-point"
+    },
+    {
+     "ACQDATE": "11/1/1978",
+     "BOAT_FAC": "Ramp (Concrete), Dock",
+     "CAMPING": "Yes",
+     "FWPREG": "1",
+     "HUNTING": "NO HUNTING/NO TRAPPING",
+     "NAME": "Big Arm",
+     "WEB_PAGE": "https://fwp.mt.gov/stateparks/big-arm"
+    }
+   ],
+   "service": "FWPLND_STATEPARKS",
+   "typef": "BOAT_FAC",
+   "url": "https://services3.arcgis.com/Cdxz8r11hT0MGzg1/arcgis/rest/services/FWPLND_STATEPARKS/FeatureServer/0"
+  }
+ ],
+ "st": "MT"
+}

@@ -1,0 +1,6336 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "",
+   "count": 428903,
+   "fields": [
+    "species_desc"
+   ],
+   "known": false,
+   "layer": "Dnr Forest Inventory Species",
+   "sample": [
+    {
+     "species_desc": "Basswood"
+    },
+    {
+     "species_desc": "Maple, Sugar"
+    },
+    {
+     "species_desc": "Oak, Bur"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_inv_species",
+   "typef": "species_desc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_inv_species/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 377169,
+   "fields": [
+    "species_desc"
+   ],
+   "known": false,
+   "layer": "Dnr Forest Inventory Nmerch",
+   "sample": [
+    {
+     "species_desc": "Aspen, Trembling"
+    },
+    {
+     "species_desc": "Aspen, Trembling"
+    },
+    {
+     "species_desc": "Misc Species 1"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_inv_nmerch",
+   "typef": "species_desc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_inv_nmerch/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 309622,
+   "fields": [
+    "npc_class",
+    "c_alpha",
+    "c_text",
+    "fld_date",
+    "img_type",
+    "c_npc",
+    "new_c_alpha",
+    "new_c_text",
+    "c_alpha_1",
+    "c_text_1",
+    "c_npc_1",
+    "native_altered_planted"
+   ],
+   "known": false,
+   "layer": "Predict Mlccs Natural Areas",
+   "sample": [
+    {
+     "c_alpha": "3.de.UP.nOA.",
+     "c_alpha_1": "3.1.MHs38",
+     "c_npc": "MHs38",
+     "c_npc_1": "MHs38",
+     "c_text": "Oak forest",
+     "c_text_1": "Southern Mesic Oak-Basswood Forest",
+     "fld_date": "20050504",
+     "img_type": "2003 FSA Color DOQ",
+     "native_altered_planted": "native",
+     "new_c_alpha": "3.1.MHs38",
+     "new_c_text": "Southern Mesic Oak-Basswood Forest",
+     "npc_class": "MHs38 - Southern Mesic Oak-Basswood Forest"
+    },
+    {
+     "c_alpha": "6.ge.WC.nAT.",
+     "c_alpha_1": "3.1.MHs38",
+     "c_npc": "MHs38",
+     "c_npc_1": "MHs38",
+     "c_text": "Seasonally flooded altered/non-native dominated emergent vegetation",
+     "c_text_1": "Southern Mesic Oak-Basswood Forest",
+     "fld_date": "20050504",
+     "img_type": "2003 FSA Color DOQ",
+     "native_altered_planted": "native",
+     "new_c_alpha": "3.1.MHs38",
+     "new_c_text": "Southern Mesic Oak-Basswood Forest",
+     "npc_class": "MHs38 - Southern Mesic Oak-Basswood Forest"
+    },
+    {
+     "c_alpha": "3.de.UP.nOA.",
+     "c_alpha_1": "3.1.FDs37",
+     "c_npc": "FDs37",
+     "c_npc_1": "FDs37",
+     "c_text": "Oak forest",
+     "c_text_1": "Southern Dry-Mesic Oak (Maple) Woodland",
+     "fld_date": "01",
+     "img_type": "2003 FSA DOQ | 2000 Met Council BW DOQ | 1994 DNR CIR",
+     "native_altered_planted": "native",
+     "new_c_alpha": "3.1.FDs37",
+     "new_c_text": "Southern Dry-Mesic Oak (Maple) Woodland",
+     "npc_class": "FDs37 - Southern Dry-Mesic Oak (Maple) Woodland"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_mlccs_npc_model_results",
+   "typef": "npc_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_mlccs_npc_model_results/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 249642,
+   "fields": [
+    "polyid"
+   ],
+   "known": false,
+   "layer": "Most Recent Fast Forest Disturbances",
+   "sample": [
+    {
+     "polyid": "1_100021"
+    },
+    {
+     "polyid": "1_100030"
+    },
+    {
+     "polyid": "1_1000399"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_fast_forest_disturbances",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_fast_forest_disturbances/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 193051,
+   "fields": [
+    "location",
+    "slabel",
+    "admin1",
+    "admin2",
+    "admin3",
+    "dev_stat",
+    "mn_spp_uom",
+    "shrub1_spp",
+    "shrub2_spp",
+    "shrub3_spp",
+    "grcov1_spp",
+    "grcov2_spp",
+    "grcov3_spp",
+    "mgmt1",
+    "mgmt2",
+    "mgmt3",
+    "mgmt4",
+    "og1_id",
+    "og1_type",
+    "og1_stat"
+   ],
+   "known": false,
+   "layer": "Dnr Forest Stand Inventory",
+   "sample": [
+    {
+     "admin1": "DNR",
+     "dev_stat": "N/A",
+     "location": "t15833w1010091",
+     "mn_spp_uom": "N/A",
+     "shrub1_spp": "Lowland Willow",
+     "slabel": "91 LB"
+    },
+    {
+     "admin1": "Forestry",
+     "dev_stat": "N/A",
+     "location": "t06818w1210037",
+     "mn_spp_uom": "Cords",
+     "shrub1_spp": "Lab Tea-Leathleaf",
+     "slabel": "37 BSL44"
+    },
+    {
+     "admin1": "DNR",
+     "dev_stat": "N/A",
+     "location": "t15833w1100144",
+     "mn_spp_uom": "Cords",
+     "slabel": "144 BSL 43"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_stand_inventory",
+   "typef": "og1_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_stand_inventory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 191075,
+   "fields": [
+    "area_ran",
+    "county_num",
+    "location",
+    "stand_orig_desc",
+    "label",
+    "pls",
+    "range",
+    "east_west_id",
+    "section",
+    "isgislocked",
+    "cover_tp_desc",
+    "cover_sz_desc",
+    "main_sp_desc",
+    "main_dam_desc",
+    "main_dam_pct_aff_desc",
+    "oldgrowth_status",
+    "oldgrowthid",
+    "og_comment"
+   ],
+   "known": false,
+   "layer": "Dnr Stand Inventory Summary",
+   "sample": [
+    {
+     "area_ran": "232",
+     "county_num": "1",
+     "cover_sz_desc": "3-4.9",
+     "cover_tp_desc": "Aspen",
+     "east_west_id": "W",
+     "label": "84075 A37",
+     "location": "t04926w0284075",
+     "pls": "t04926w02",
+     "range": "26",
+     "stand_orig_desc": "Natural"
+    },
+    {
+     "area_ran": "232",
+     "county_num": "1",
+     "cover_sz_desc": "9-14.9",
+     "cover_tp_desc": "Aspen",
+     "east_west_id": "W",
+     "label": "84076 A58",
+     "location": "t04925w0484076",
+     "pls": "t04925w04",
+     "range": "25",
+     "stand_orig_desc": "Natural"
+    },
+    {
+     "area_ran": "232",
+     "county_num": "1",
+     "cover_sz_desc": "5-8.9",
+     "cover_tp_desc": "Ash",
+     "east_west_id": "W",
+     "label": "84077 Ash43",
+     "location": "t04925w0484077",
+     "pls": "t04925w04",
+     "range": "25",
+     "stand_orig_desc": "Natural"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_inventory",
+   "typef": "stand_orig_desc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_inventory/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 135821,
+   "fields": [
+    "su_suid",
+    "dnrregion",
+    "countyname",
+    "gm_ch",
+    "gs_ch",
+    "fortdesc",
+    "plsmatch",
+    "int_type",
+    "int_status",
+    "landtype",
+    "meansacq",
+    "landtypecode",
+    "meansacqcode",
+    "administrator",
+    "mgtprgprj",
+    "mgtprjname",
+    "mgtprgcode",
+    "mgtprgname",
+    "admprgprjaddl",
+    "dnrtrnxnum"
+   ],
+   "known": false,
+   "layer": "Stateland Admin Dnrforestry",
+   "sample": [
+    {
+     "countyname": "Cass                ",
+     "dnrregion": "Northwest",
+     "fortdesc": "SWSW                                                   ",
+     "gm_ch": "11141029173300",
+     "gs_ch": "1114102917",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "TRUST FUND: SWAMP",
+     "landtypecode": "3",
+     "meansacq": "US: Congressional Grant, Patent, Deed, Etc.",
+     "plsmatch": "section-level",
+     "su_suid": "62631     "
+    },
+    {
+     "countyname": "Cass                ",
+     "dnrregion": "Northwest",
+     "fortdesc": "NENW                                                   ",
+     "gm_ch": "11141029060007",
+     "gs_ch": "1114102906",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "TRUST FUND: SWAMP",
+     "landtypecode": "3",
+     "meansacq": "US: Congressional Grant, Patent, Deed, Etc.",
+     "plsmatch": "section-level",
+     "su_suid": "62557     "
+    },
+    {
+     "countyname": "Cass                ",
+     "dnrregion": "Northwest",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "11143028010000",
+     "gs_ch": "1114302801",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "TRUST FUND: SWAMP",
+     "landtypecode": "3",
+     "meansacq": "Other",
+     "plsmatch": "section-level",
+     "su_suid": "343977    "
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_stateland_dnr",
+   "typef": "fortdesc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 133283,
+   "fields": [
+    "rank_text"
+   ],
+   "known": false,
+   "layer": "Env Mnwap Wildlife Action Network",
+   "sample": [
+    {
+     "rank_text": "Low-Medium"
+    },
+    {
+     "rank_text": "Medium"
+    },
+    {
+     "rank_text": "Low-Medium"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_mnwap_wildlife_action_netwrk",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_mnwap_wildlife_action_netwrk/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "habitat_mgmt_unit_name",
+   "count": 48649,
+   "fields": [
+    "lam_program_project_code",
+    "bduniqueid",
+    "habitat_mgmt_unit_name",
+    "current_cover_type_code",
+    "current_cover_type_name",
+    "current_cover_webclass_code",
+    "current_cover_webclass_name",
+    "current_cover_group_code",
+    "current_cover_group_name",
+    "main_historical_cover_type_code",
+    "main_historical_cover_type_name",
+    "main_future_cover_type_code",
+    "main_future_cover_type_name",
+    "comments"
+   ],
+   "known": false,
+   "layer": "Dnr Wma Landcover",
+   "sample": [
+    {
+     "bduniqueid": "WMA0078506",
+     "current_cover_group_code": "50000",
+     "current_cover_group_name": "Shrubland",
+     "current_cover_type_code": "52400",
+     "current_cover_type_name": "Seasonally flooded deciduous shrubland [pss1c]",
+     "current_cover_webclass_code": "4",
+     "current_cover_webclass_name": "Lowland brush",
+     "habitat_mgmt_unit_name": "Beaches Lake WMA: Main Unit",
+     "lam_program_project_code": "WMA00785"
+    },
+    {
+     "bduniqueid": "WMA0031900",
+     "current_cover_group_code": "60000",
+     "current_cover_group_name": "Herbaceous",
+     "current_cover_type_code": "63300",
+     "current_cover_type_name": "Saturated grassland with sparse shrubs [pemb]",
+     "current_cover_webclass_code": "2",
+     "current_cover_webclass_name": "Emergent wetlands",
+     "habitat_mgmt_unit_name": "Elm Lake WMA",
+     "lam_program_project_code": "WMA00319"
+    },
+    {
+     "bduniqueid": "WMA0038500",
+     "current_cover_group_code": "90000",
+     "current_cover_group_name": "Open water",
+     "current_cover_type_code": "92000",
+     "current_cover_type_name": "Lake ",
+     "current_cover_webclass_code": "9",
+     "current_cover_webclass_name": "Open water",
+     "habitat_mgmt_unit_name": "Victory WMA",
+     "lam_program_project_code": "WMA00385",
+     "main_historical_cover_type_code": "61110",
+     "main_historical_cover_type_name": "Mesic prairie"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_wma_landcover_pub",
+   "typef": "current_cover_type_code",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_wma_landcover_pub/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 40832,
+   "fields": [
+    "su_suid",
+    "dnrregion",
+    "countyname",
+    "gm_ch",
+    "gs_ch",
+    "fortdesc",
+    "plsmatch",
+    "int_type",
+    "int_status",
+    "landtype",
+    "meansacq",
+    "landtypecode",
+    "meansacqcode",
+    "administrator",
+    "mgtprgprj",
+    "mgtprjname",
+    "mgtprgcode",
+    "mgtprgname",
+    "admprgprjaddl",
+    "dnrtrnxnum"
+   ],
+   "known": false,
+   "layer": "Stateland Admin Dnrwildlife",
+   "sample": [
+    {
+     "countyname": "Chippewa            ",
+     "dnrregion": "Southern",
+     "fortdesc": "SENE                                                   ",
+     "gm_ch": "12118042041400",
+     "gs_ch": "1211804204",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Condemnation",
+     "plsmatch": "section-level",
+     "su_suid": "69830     "
+    },
+    {
+     "countyname": "Chippewa            ",
+     "dnrregion": "Southern",
+     "fortdesc": "NENW                                                   ",
+     "gm_ch": "12118042042100",
+     "gs_ch": "1211804204",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Condemnation",
+     "plsmatch": "section-level",
+     "su_suid": "69831     "
+    },
+    {
+     "countyname": "Chippewa            ",
+     "dnrregion": "Southern",
+     "fortdesc": "NWNW                                                   ",
+     "gm_ch": "12118042042200",
+     "gs_ch": "1211804204",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Condemnation",
+     "plsmatch": "section-level",
+     "su_suid": "69832     "
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_stateland_dnr",
+   "typef": "fortdesc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/9"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 39237,
+   "fields": [
+    "su_suid",
+    "dnrregion",
+    "countyname",
+    "gm_ch",
+    "gs_ch",
+    "fortdesc",
+    "plsmatch",
+    "int_type",
+    "int_status",
+    "landtype",
+    "meansacq",
+    "landtypecode",
+    "meansacqcode",
+    "administrator",
+    "mgtprgprj",
+    "mgtprjname",
+    "mgtprgcode",
+    "mgtprgname",
+    "admprgprjaddl",
+    "dnrtrnxnum"
+   ],
+   "known": false,
+   "layer": "Stateland Type Consolidatedconservation",
+   "sample": [
+    {
+     "countyname": "Aitkin              ",
+     "dnrregion": "Northeast",
+     "fortdesc": "SESE                                                   ",
+     "gm_ch": "1044022184400",
+     "gs_ch": "104402218",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "CONSOLIDATED CONS AREA",
+     "landtypecode": "C",
+     "meansacq": "Forfeited: General property tax",
+     "plsmatch": "forty/glot-level",
+     "su_suid": "545       "
+    },
+    {
+     "countyname": "Aitkin              ",
+     "dnrregion": "Northeast",
+     "fortdesc": "NENE                                                   ",
+     "gm_ch": "1044022191100",
+     "gs_ch": "104402219",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "CONSOLIDATED CONS AREA",
+     "landtypecode": "C",
+     "meansacq": "Forfeited: General property tax",
+     "plsmatch": "forty/glot-level",
+     "su_suid": "546       "
+    },
+    {
+     "countyname": "Aitkin              ",
+     "dnrregion": "Northeast",
+     "fortdesc": "NWNE                                                   ",
+     "gm_ch": "1044022191200",
+     "gs_ch": "104402219",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "CONSOLIDATED CONS AREA",
+     "landtypecode": "C",
+     "meansacq": "Forfeited: General property tax",
+     "plsmatch": "forty/glot-level",
+     "su_suid": "547       "
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_stateland_dnr",
+   "typef": "fortdesc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 36064,
+   "fields": [
+    "species_desc"
+   ],
+   "known": false,
+   "layer": "Dnr Forest Inventory Diameter",
+   "sample": [
+    {},
+    {},
+    {}
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_inv_diameter",
+   "typef": "species_desc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_inv_diameter/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "admin_dnr_unit",
+   "count": 22911,
+   "fields": [
+    "program_project_name",
+    "land_cover_code",
+    "land_cover_description",
+    "community_origin",
+    "system_group",
+    "system_code",
+    "system_description",
+    "class_code",
+    "class_description",
+    "floristic_region_code",
+    "floristic_region_description",
+    "non_npc_type",
+    "biodiversity_significance_rank",
+    "condition_rank",
+    "quality_rank",
+    "management_categories",
+    "desired_future_condition_npc",
+    "desired_future_condition_non_npc",
+    "desired_future_condition_npc_complex",
+    "observer_1"
+   ],
+   "known": false,
+   "layer": "DNR NPC and Land Cover - Parks and Trails",
+   "sample": [
+    {
+     "class_code": "3.0",
+     "class_description": "Planted Stands of Trees",
+     "community_origin": "Restoration",
+     "land_cover_code": "3.2",
+     "land_cover_description": "Planted (coniferous)",
+     "non_npc_type": "3.2 - Planted (coniferous)",
+     "program_project_name": "Savanna Portage State Park",
+     "system_code": "NNS",
+     "system_description": "Non-Natural System",
+     "system_group": "Non-Natural Communities"
+    },
+    {
+     "class_code": "FFs68",
+     "class_description": "Southern Floodplain Forest",
+     "community_origin": "Remnant",
+     "floristic_region_code": "FFs",
+     "floristic_region_description": "Floodplain Forest System, Southern Floristic Region",
+     "land_cover_code": "FFs68a",
+     "land_cover_description": "Silver Maple - (Virginia Creeper) Floodplain Forest ",
+     "system_code": "FF",
+     "system_description": "Floodplain Forest System",
+     "system_group": "Wetland Forests"
+    },
+    {
+     "class_code": "MHn44",
+     "class_description": "Northern Wet-Mesic Boreal Hardwood-Conifer Forest",
+     "community_origin": "Remnant",
+     "floristic_region_code": "MHn",
+     "floristic_region_description": "Mesic Hardwood Forest System, Northern Floristic Region",
+     "land_cover_code": "MHn44",
+     "land_cover_description": "Northern Wet-Mesic Boreal Hardwood-Conifer Forest ",
+     "program_project_name": "Big Bog State Recreation Area",
+     "system_code": "MH",
+     "system_description": "Mesic Hardwood Forest System",
+     "system_group": "Upland Forests and Woodlands"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_native_plant_comm",
+   "typef": "land_cover_description",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_native_plant_comm/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 14966,
+   "fields": [
+    "lam_progra",
+    "bduniqueid",
+    "habitat_mg",
+    "current_co",
+    "current__1",
+    "current__2",
+    "current__3",
+    "current__4",
+    "current__5",
+    "main_histo",
+    "main_his_1",
+    "main_futur",
+    "main_fut_1",
+    "comments"
+   ],
+   "known": false,
+   "layer": "dnr_wildlife_turkeyLandcover",
+   "sample": [
+    {
+     "bduniqueid": "WMA0119700",
+     "current__1": "Upland deciduous forest",
+     "current__2": "12",
+     "current__3": "Upland deciduous trees",
+     "current__4": "30000",
+     "current__5": "Forests - trees with their crowns overlapping",
+     "current_co": "32100",
+     "habitat_mg": "Vale WMA",
+     "lam_progra": "WMA01197",
+     "main_futur": " ",
+     "main_his_1": " ",
+     "main_histo": " "
+    },
+    {
+     "bduniqueid": "WMA0069601",
+     "current__1": "Unmowed grasses and forbes on hydric soils",
+     "current__2": "3",
+     "current__3": "Grass/Open land",
+     "current__4": "20000",
+     "current__5": "Planted or cultivated vegetation",
+     "current_co": "23322",
+     "habitat_mg": "Boyd Sartell WMA: Main Unit",
+     "lam_progra": "WMA00696",
+     "main_futur": " ",
+     "main_his_1": " ",
+     "main_histo": " "
+    },
+    {
+     "bduniqueid": "WMA0149400",
+     "current__1": "Wet meadow",
+     "current__2": "2",
+     "current__3": "Emergent wetlands",
+     "current__4": "60000",
+     "current__5": "Herbaceous",
+     "current_co": "61420",
+     "habitat_mg": "Prairie Rose WMA",
+     "lam_progra": "WMA01494",
+     "main_futur": " ",
+     "main_his_1": " ",
+     "main_histo": " "
+    }
+   ],
+   "service": "dnr_wildlife_turkeyLandcover",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/dnr_wildlife_turkeyLandcover/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 13490,
+   "fields": [
+    "su_suid",
+    "dnrregion",
+    "countyname",
+    "gm_ch",
+    "gs_ch",
+    "fortdesc",
+    "plsmatch",
+    "int_type",
+    "int_status",
+    "landtype",
+    "meansacq",
+    "landtypecode",
+    "meansacqcode",
+    "administrator",
+    "mgtprgprj",
+    "mgtprjname",
+    "mgtprgcode",
+    "mgtprgname",
+    "admprgprjaddl",
+    "dnrtrnxnum"
+   ],
+   "known": false,
+   "layer": "Stateland Admin Dnrparkstrails",
+   "sample": [
+    {
+     "countyname": "Carver              ",
+     "dnrregion": "Central",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "10116025300000",
+     "gs_ch": "1011602530",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Purchase",
+     "plsmatch": "section-level",
+     "su_suid": "332589    "
+    },
+    {
+     "countyname": "Chisago             ",
+     "dnrregion": "Central",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "13034019360000",
+     "gs_ch": "1303401936",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Purchase",
+     "plsmatch": "section-level",
+     "su_suid": "333195    "
+    },
+    {
+     "countyname": "Chisago             ",
+     "dnrregion": "Central",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "13034019360000",
+     "gs_ch": "1303401936",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Purchase",
+     "plsmatch": "section-level",
+     "su_suid": "333196    "
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_stateland_dnr",
+   "typef": "fortdesc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 12629,
+   "fields": [
+    "su_suid",
+    "dnrregion",
+    "countyname",
+    "gm_ch",
+    "gs_ch",
+    "fortdesc",
+    "plsmatch",
+    "int_type",
+    "int_status",
+    "ceaseflag",
+    "easetype",
+    "ease_duration",
+    "ease_expdate",
+    "landtype",
+    "meansacq",
+    "landtypecode",
+    "meansacqcode",
+    "administrator",
+    "mgtprgprj",
+    "mgtprjname"
+   ],
+   "known": false,
+   "layer": "Stateland Interest Conservationeasement",
+   "sample": [
+    {
+     "ceaseflag": "Yes",
+     "countyname": "Le Sueur            ",
+     "dnrregion": "Southern",
+     "ease_duration": "Permanent",
+     "easetype": "Water Bank",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "40110026250000",
+     "gs_ch": "4011002625",
+     "int_status": "Finalized",
+     "int_type": "Easement In",
+     "plsmatch": "section-level",
+     "su_suid": "340851    "
+    },
+    {
+     "ceaseflag": "Yes",
+     "countyname": "Le Sueur            ",
+     "dnrregion": "Southern",
+     "ease_duration": "Permanent",
+     "easetype": "Water Bank",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "40110026260000",
+     "gs_ch": "4011002626",
+     "int_status": "Finalized",
+     "int_type": "Easement In",
+     "plsmatch": "section-level",
+     "su_suid": "340856    "
+    },
+    {
+     "ceaseflag": "Yes",
+     "countyname": "Le Sueur            ",
+     "dnrregion": "Southern",
+     "ease_duration": "Permanent",
+     "easetype": "Water Bank",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "40110026360000",
+     "gs_ch": "4011002636",
+     "int_status": "Finalized",
+     "int_type": "Easement In",
+     "plsmatch": "section-level",
+     "su_suid": "340859    "
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_stateland_dnr",
+   "typef": "fortdesc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11605,
+   "fields": [
+    "priority_level"
+   ],
+   "known": false,
+   "layer": "Marxan Aspen Parkland",
+   "sample": [
+    {
+     "priority_level": "Very Low"
+    },
+    {
+     "priority_level": "Very Low"
+    },
+    {
+     "priority_level": "Very Low"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_sna_conserv_opportunity_area",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_sna_conserv_opportunity_area/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10838,
+   "fields": [
+    "STATEFP10",
+    "COUNTYFP10",
+    "TRACTCE10",
+    "BLOCKCE10",
+    "GEOID10",
+    "NAME10",
+    "MTFCC10",
+    "UR10",
+    "UACE10",
+    "UATYP10",
+    "FUNCSTAT10",
+    "INTPTLAT10",
+    "INTPTLON10",
+    "GISJOIN",
+    "NWRAT",
+    "NWRATPERC"
+   ],
+   "known": false,
+   "layer": "MN_block_2010_Clip",
+   "sample": [
+    {
+     "BLOCKCE10": "2032",
+     "COUNTYFP10": "003",
+     "FUNCSTAT10": "S",
+     "GEOID10": "270030512062032",
+     "INTPTLAT10": "+45.0369971",
+     "MTFCC10": "G5040",
+     "NAME10": "Block 2032",
+     "STATEFP10": "27",
+     "TRACTCE10": "051206",
+     "UACE10": "57628",
+     "UATYP10": "U",
+     "UR10": "U"
+    },
+    {
+     "BLOCKCE10": "2086",
+     "COUNTYFP10": "003",
+     "FUNCSTAT10": "S",
+     "GEOID10": "270030512062086",
+     "INTPTLAT10": "+45.0354887",
+     "MTFCC10": "G5040",
+     "NAME10": "Block 2086",
+     "STATEFP10": "27",
+     "TRACTCE10": "051206",
+     "UACE10": "57628",
+     "UATYP10": "U",
+     "UR10": "U"
+    },
+    {
+     "BLOCKCE10": "2049",
+     "COUNTYFP10": "003",
+     "FUNCSTAT10": "S",
+     "GEOID10": "270030512062049",
+     "INTPTLAT10": "+45.0388517",
+     "MTFCC10": "G5040",
+     "NAME10": "Block 2049",
+     "STATEFP10": "27",
+     "TRACTCE10": "051206",
+     "UACE10": "57628",
+     "UATYP10": "U",
+     "UR10": "U"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10540,
+   "fields": [
+    "FIPSSTCO",
+    "TRACT",
+    "BLOCK",
+    "STFID",
+    "GISJOIN"
+   ],
+   "known": false,
+   "layer": "MN_block_1990_Clip",
+   "sample": [
+    {
+     "BLOCK": "202",
+     "FIPSSTCO": "27003",
+     "GISJOIN": "G2700030051204202",
+     "STFID": "27003051204202",
+     "TRACT": "051204"
+    },
+    {
+     "BLOCK": "204",
+     "FIPSSTCO": "27003",
+     "GISJOIN": "G2700030051204204",
+     "STFID": "27003051204204",
+     "TRACT": "051204"
+    },
+    {
+     "BLOCK": "299",
+     "FIPSSTCO": "27003",
+     "GISJOIN": "G2700030051204299",
+     "STFID": "27003051204299",
+     "TRACT": "051204"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10528,
+   "fields": [
+    "GISJOIN",
+    "STATEFP00",
+    "COUNTYFP00",
+    "TRACTCE00",
+    "BLOCKCE00",
+    "BLKIDFP00",
+    "NAME00",
+    "MTFCC00",
+    "UR00",
+    "UACE00",
+    "FUNCSTAT00",
+    "INTPTLAT00",
+    "INTPTLON00",
+    "NWRAT",
+    "NWRATPERC"
+   ],
+   "known": false,
+   "layer": "MN_block_2000_Clip",
+   "sample": [
+    {
+     "BLKIDFP00": "270030512062033",
+     "BLOCKCE00": "2033",
+     "COUNTYFP00": "003",
+     "FUNCSTAT00": "S",
+     "GISJOIN": "G27000300512062033",
+     "INTPTLAT00": "+45.0392019",
+     "MTFCC00": "G5040",
+     "NAME00": "Block 2033",
+     "STATEFP00": "27",
+     "TRACTCE00": "051206",
+     "UACE00": "57628",
+     "UR00": "U"
+    },
+    {
+     "BLKIDFP00": "270030512062034",
+     "BLOCKCE00": "2034",
+     "COUNTYFP00": "003",
+     "FUNCSTAT00": "S",
+     "GISJOIN": "G27000300512062034",
+     "INTPTLAT00": "+45.0467682",
+     "MTFCC00": "G5040",
+     "NAME00": "Block 2034",
+     "STATEFP00": "27",
+     "TRACTCE00": "051206",
+     "UACE00": "57628",
+     "UR00": "U"
+    },
+    {
+     "BLKIDFP00": "270030512062998",
+     "BLOCKCE00": "2998",
+     "COUNTYFP00": "003",
+     "FUNCSTAT00": "S",
+     "GISJOIN": "G27000300512062998",
+     "INTPTLAT00": "+45.0501158",
+     "MTFCC00": "G5040",
+     "NAME00": "Block 2998",
+     "STATEFP00": "27",
+     "TRACTCE00": "051206",
+     "UACE00": " ",
+     "UR00": "R"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10508,
+   "fields": [
+    "GISJOIN",
+    "STATEFP20",
+    "COUNTYFP20",
+    "TRACTCE20",
+    "BLOCKCE20",
+    "GEOID20",
+    "NAME20",
+    "MTFCC20",
+    "UR20",
+    "UACE20",
+    "UATYPE20",
+    "FUNCSTAT20",
+    "INTPTLAT20",
+    "INTPTLON20",
+    "NWRAT",
+    "NWRATPERC"
+   ],
+   "known": false,
+   "layer": "MN_block_2020_Clip",
+   "sample": [
+    {
+     "BLOCKCE20": "1014",
+     "COUNTYFP20": "003",
+     "FUNCSTAT20": "S",
+     "GEOID20": "270030512061014",
+     "GISJOIN": "G27000300512061014",
+     "MTFCC20": "G5040",
+     "NAME20": "Block 1014",
+     "STATEFP20": "27",
+     "TRACTCE20": "051206",
+     "UACE20": " ",
+     "UATYPE20": " ",
+     "UR20": " "
+    },
+    {
+     "BLOCKCE20": "1017",
+     "COUNTYFP20": "003",
+     "FUNCSTAT20": "S",
+     "GEOID20": "270030512061017",
+     "GISJOIN": "G27000300512061017",
+     "MTFCC20": "G5040",
+     "NAME20": "Block 1017",
+     "STATEFP20": "27",
+     "TRACTCE20": "051206",
+     "UACE20": " ",
+     "UATYPE20": " ",
+     "UR20": " "
+    },
+    {
+     "BLOCKCE20": "1018",
+     "COUNTYFP20": "003",
+     "FUNCSTAT20": "S",
+     "GEOID20": "270030512061018",
+     "GISJOIN": "G27000300512061018",
+     "MTFCC20": "G5040",
+     "NAME20": "Block 1018",
+     "STATEFP20": "27",
+     "TRACTCE20": "051206",
+     "UACE20": " ",
+     "UATYPE20": " ",
+     "UR20": " "
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "UATYPE20",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6946,
+   "fields": [
+    "su_suid",
+    "dnrregion",
+    "countyname",
+    "gm_ch",
+    "gs_ch",
+    "fortdesc",
+    "plsmatch",
+    "int_type",
+    "int_status",
+    "landtype",
+    "meansacq",
+    "landtypecode",
+    "meansacqcode",
+    "administrator",
+    "mgtprgprj",
+    "mgtprjname",
+    "mgtprgcode",
+    "mgtprgname",
+    "admprgprjaddl",
+    "dnrtrnxnum"
+   ],
+   "known": false,
+   "layer": "Stateland Admin Dnrfisheries",
+   "sample": [
+    {
+     "countyname": "Hennepin            ",
+     "dnrregion": "Central",
+     "fortdesc": "Meandered water or section level or BLM tract record   ",
+     "gm_ch": "27117023270000",
+     "gs_ch": "2711702327",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "Condemnation",
+     "plsmatch": "section-level",
+     "su_suid": "97521     "
+    },
+    {
+     "countyname": "Morrison            ",
+     "dnrregion": "Central",
+     "fortdesc": "SWSE                                                   ",
+     "gm_ch": "49130029094300",
+     "gs_ch": "4913002909",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "US: Congressional Grant, Patent, Deed, Etc.",
+     "plsmatch": "section-level",
+     "su_suid": "555008    "
+    },
+    {
+     "countyname": "Morrison            ",
+     "dnrregion": "Central",
+     "fortdesc": "NENW                                                   ",
+     "gm_ch": "49130029162100",
+     "gs_ch": "4913002916",
+     "int_status": "Finalized",
+     "int_type": "Fee Surface",
+     "landtype": "ACQUIRED",
+     "landtypecode": "A",
+     "meansacq": "US: Congressional Grant, Patent, Deed, Etc.",
+     "plsmatch": "section-level",
+     "su_suid": "555009    "
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_stateland_dnr",
+   "typef": "fortdesc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_stateland_dnr/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4383,
+   "fields": [
+    "dowlknum",
+    "pw_basin_name",
+    "pw_parent_name",
+    "pw_sub_name",
+    "sub_flag",
+    "wb_class",
+    "cty_name",
+    "fsh_office",
+    "outside_mn",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "approved_by",
+    "approval_notes",
+    "has_data",
+    "survey_url"
+   ],
+   "known": false,
+   "layer": "Dnr Hydrography Fisheries Surveyed Lakes Surveys",
+   "sample": [
+    {
+     "cty_name": "Lake",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "38069900",
+     "fsh_office": "Finland",
+     "outside_mn": "N",
+     "pw_basin_name": "Bogberry",
+     "pw_parent_name": "Bogberry",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Blue Earth",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "07015900",
+     "fsh_office": "Waterville",
+     "outside_mn": "N",
+     "pw_basin_name": "Lions",
+     "pw_parent_name": "Lions",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Hennepin",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2010 FSA",
+     "dowlknum": "27004800",
+     "fsh_office": "Metro West",
+     "outside_mn": "N",
+     "pw_basin_name": "Hyland",
+     "pw_parent_name": "Hyland",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_lakes_surveyed_by_mndnr",
+   "typef": "wb_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_lakes_surveyed_by_mndnr/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4063,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2023",
+   "sample": [
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation 50-75% of leaves defoliated plus mortality",
+     "host_group": "spruce - fir",
+     "percent_affected": "Severe (30-50%)"
+    },
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation >75% of leaves defoliated plus mortality",
+     "host_group": "spruce - fir",
+     "percent_affected": "Moderate (11-29%)"
+    },
+    {
+     "cause_of_damage": "Snow-Ice - 50011",
+     "damage_type": "Main stem Broken or Uprooted - 7",
+     "host": "quaking aspen - 746",
+     "percent_affected": "Severe (30-50%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2023",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2023/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unit_name",
+   "count": 4037,
+   "fields": [
+    "unit_name",
+    "unit_type",
+    "administrating_division",
+    "puadmin",
+    "administrator",
+    "mgmt_program",
+    "pgrm_project",
+    "access_wo_trespass",
+    "point_of_contact",
+    "web_link1",
+    "web_link2",
+    "create_author",
+    "spatial_update_editor",
+    "tabular_update_editor",
+    "editor_notes",
+    "editor_approval",
+    "planning_acres_src",
+    "spat_acc_conf"
+   ],
+   "known": false,
+   "layer": "State Forest Other Lands",
+   "sample": [
+    {
+     "administrating_division": "Forestry",
+     "administrator": "Forestry",
+     "mgmt_program": "FOR",
+     "puadmin": "41",
+     "unit_name": "Miscellaneous",
+     "unit_type": "Other Forest Land"
+    },
+    {
+     "administrating_division": "Forestry",
+     "administrator": "Forestry",
+     "mgmt_program": "FOR",
+     "puadmin": "41",
+     "unit_name": "Miscellaneous",
+     "unit_type": "Other Forest Land"
+    },
+    {
+     "administrating_division": "Forestry",
+     "administrator": "Forestry",
+     "mgmt_program": "FOR",
+     "puadmin": "41",
+     "unit_name": "Miscellaneous",
+     "unit_type": "Other Forest Land"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_state_forest",
+   "typef": "unit_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3961,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2017",
+   "sample": [
+    {
+     "cause_of_damage": "Flooding-High Water - 50004",
+     "damage_type": "Crown Discoloration - 3",
+     "host": "All tree species - 9998",
+     "host_group": " ",
+     "notes": " ",
+     "percent_affected": "Severe (30-50%)"
+    },
+    {
+     "cause_of_damage": "Forest Tent Caterpillar - 12096",
+     "damage_type": "Defoliation 50-75% of leaves defoliated - 13",
+     "host": " ",
+     "host_group": "basswood, oak, birch, and/or aspen",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    },
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation 50-75% of leaves defoliated - 13",
+     "host": " ",
+     "host_group": "white spruce - balsam fir",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2017",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2017/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2995,
+   "fields": [
+    "LOCATION",
+    "SLABEL",
+    "ADMIN1",
+    "OG1_ID",
+    "OG1_TYPE",
+    "REMARK1",
+    "REMARK2",
+    "OG_STAT_NA"
+   ],
+   "known": false,
+   "layer": "dnr_old_growth_forest",
+   "sample": [
+    {
+     "ADMIN1": "Parks",
+     "LOCATION": "t10114w1280110",
+     "OG1_ID": "O-01072",
+     "OG1_TYPE": "O",
+     "OG_STAT_NA": "Designated Old Growth",
+     "REMARK1": " ",
+     "REMARK2": " ",
+     "SLABEL": "110 NH64"
+    },
+    {
+     "ADMIN1": "Parks",
+     "LOCATION": "t10114w1200048",
+     "OG1_ID": "O-01070",
+     "OG1_TYPE": "O",
+     "OG_STAT_NA": "Designated Old Growth",
+     "REMARK1": " ",
+     "REMARK2": " ",
+     "SLABEL": "48 O57"
+    },
+    {
+     "ADMIN1": "Parks",
+     "LOCATION": "t10212w1250137",
+     "OG1_ID": "FSTOGCH02",
+     "OG1_TYPE": "Oak",
+     "OG_STAT_NA": "Designated Old Growth",
+     "REMARK1": " ",
+     "REMARK2": " ",
+     "SLABEL": "137 O55"
+    }
+   ],
+   "service": "dnr_old_growth_forest",
+   "typef": "OG1_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/dnr_old_growth_forest/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2990,
+   "fields": [
+    "area_ran",
+    "county_num",
+    "location",
+    "label",
+    "pls",
+    "main_sp_desc",
+    "oldgrowth_status",
+    "oldgrowthid",
+    "og_comment"
+   ],
+   "known": false,
+   "layer": "Dnr Forest Inventory Old Growth",
+   "sample": [
+    {
+     "area_ran": "232",
+     "county_num": "1",
+     "label": "84194 NH53",
+     "location": "t04926w1084194",
+     "main_sp_desc": "Basswood",
+     "oldgrowth_status": "Designated Old Growth",
+     "oldgrowthid": "OG5-41",
+     "pls": "t04926w10"
+    },
+    {
+     "area_ran": "232",
+     "county_num": "1",
+     "label": "84307 LH56",
+     "location": "t04926w1384307",
+     "main_sp_desc": "Elm, American",
+     "oldgrowth_status": "Designated Old Growth",
+     "oldgrowthid": "OG5-42",
+     "pls": "t04926w13"
+    },
+    {
+     "area_ran": "232",
+     "county_num": "1",
+     "label": "84468 NH58",
+     "location": "t04927w3684468",
+     "main_sp_desc": "Basswood",
+     "oldgrowth_status": "Designated Old Growth",
+     "oldgrowthid": "OG5-43",
+     "pls": "t04927w36"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_inv_old_growth",
+   "typef": "main_sp_desc",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_inv_old_growth/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "mapunit",
+   "count": 2895,
+   "fields": [
+    "field_sta",
+    "rk_name1",
+    "rk_name2",
+    "rk_name3",
+    "descriptn",
+    "geol_1",
+    "geol_2",
+    "oc_photos",
+    "oc_samples",
+    "mapunit",
+    "maplabel",
+    "reference",
+    "maplabelre",
+    "prevclass",
+    "created_us",
+    "last_edite"
+   ],
+   "known": false,
+   "layer": "Blue Mounds State Park Outcrop",
+   "sample": [
+    {
+     "descriptn": " ",
+     "field_sta": " ",
+     "geol_1": "MAJ",
+     "geol_2": " ",
+     "maplabel": " ",
+     "mapunit": "Sioux Quartzite",
+     "oc_photos": " ",
+     "oc_samples": " ",
+     "reference": " ",
+     "rk_name1": "quartzite",
+     "rk_name2": " ",
+     "rk_name3": " "
+    },
+    {
+     "descriptn": " ",
+     "field_sta": " ",
+     "geol_1": "MAJ",
+     "geol_2": " ",
+     "maplabel": " ",
+     "mapunit": "Sioux Quartzite",
+     "oc_photos": " ",
+     "oc_samples": " ",
+     "reference": " ",
+     "rk_name1": "quartzite",
+     "rk_name2": " ",
+     "rk_name3": " "
+    },
+    {
+     "descriptn": " ",
+     "field_sta": " ",
+     "geol_1": "MAJ",
+     "geol_2": " ",
+     "maplabel": " ",
+     "mapunit": "Sioux Quartzite",
+     "oc_photos": " ",
+     "oc_samples": " ",
+     "reference": " ",
+     "rk_name1": "Quartzite",
+     "rk_name2": " ",
+     "rk_name3": " "
+    }
+   ],
+   "service": "us_mn_state_dnr/geos_blue_mounds_state_park",
+   "typef": "descriptn",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/geos_blue_mounds_state_park/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2825,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2022",
+   "sample": [
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation >75% of leaves defoliated - 14",
+     "host": " ",
+     "host_group": "spruce - fir",
+     "notes": " ",
+     "percent_affected": "Severe (30-50%)"
+    },
+    {
+     "cause_of_damage": "Eastern Larch Beetle - 11010",
+     "damage_type": "Mortality - 2",
+     "host": "tamarack",
+     "host_group": " ",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    },
+    {
+     "cause_of_damage": "Eastern Larch Beetle - 11010",
+     "damage_type": "Mortality - 2",
+     "host": "tamarack",
+     "host_group": " ",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2022",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2022/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2496,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "pct_affected",
+    "notes",
+    "d_type"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2024",
+   "sample": [
+    {
+     "cause_of_damage": "larch casebearer",
+     "d_type": "Defoliation: moderate percentage impacted",
+     "damage_type": "Defoliation 50-75% of leaves defoliated",
+     "host": "Tamarack",
+     "pct_affected": "Moderate (11-29%)"
+    },
+    {
+     "cause_of_damage": "forest tent caterpillar",
+     "d_type": "Defoliation: moderate percentage impacted",
+     "damage_type": "Defoliation 50-75% of leaves defoliated",
+     "host_group": "aspen-birch",
+     "pct_affected": "Moderate (11-29%)"
+    },
+    {
+     "cause_of_damage": "larch casebearer",
+     "d_type": "Defoliation: high percentage impacted",
+     "damage_type": "Defoliation >75% of leaves defoliated",
+     "host": "Tamarack",
+     "pct_affected": "Severe (30-50%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2024",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2024/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2155,
+   "fields": [
+    "host",
+    "dca",
+    "damage_t_1",
+    "notes",
+    "collection",
+    "pct_affect",
+    "category"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2025",
+   "sample": [
+    {
+     "category": "1",
+     "collection": "Aerial_Survey",
+     "damage_t_1": "Crown Dieback",
+     "dca": "twolined chestnut borer",
+     "host": "white, black, bur, n. red oak & n. pin oak",
+     "notes": " ",
+     "pct_affect": " "
+    },
+    {
+     "collection": "Aerial_Survey",
+     "damage_t_1": "Mortality",
+     "dca": "unknown bark beetle",
+     "host": "pine species",
+     "notes": " ",
+     "pct_affect": " "
+    },
+    {
+     "collection": "Aerial_Survey",
+     "damage_t_1": "Mortality",
+     "dca": "flooding-high water",
+     "host": "pine species",
+     "notes": " ",
+     "pct_affect": " "
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2025",
+   "typef": "category",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2025/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "fisheries_area",
+   "count": 2145,
+   "fields": [
+    "dow",
+    "lake_name",
+    "watershed_name",
+    "fisheries_area",
+    "status",
+    "ibi_model_used",
+    "model_description",
+    "anchor",
+    "general_use_confidence_interval",
+    "display"
+   ],
+   "known": false,
+   "layer": "Env Ibi Lakes Fisheries",
+   "sample": [
+    {
+     "anchor": "Yes",
+     "display": "Yes",
+     "dow": "13008300",
+     "fisheries_area": "Hinckley",
+     "general_use_confidence_interval": "36-54",
+     "ibi_model_used": "2 shallow",
+     "lake_name": "Goose",
+     "model_description": "Deep Complex Warm",
+     "status": "Below General Use Impairment Threshold",
+     "watershed_name": "Lower St. Croix River"
+    },
+    {
+     "anchor": "No",
+     "display": "Yes",
+     "dow": "13003300",
+     "fisheries_area": "Hinckley",
+     "general_use_confidence_interval": "30-46",
+     "ibi_model_used": "4 shallow",
+     "lake_name": "Little",
+     "model_description": "Deep Simple Warm",
+     "status": "Below General Use Impairment Threshold",
+     "watershed_name": "Lower St. Croix River"
+    },
+    {
+     "anchor": "No",
+     "display": "Yes",
+     "dow": "18000100",
+     "fisheries_area": "Brainerd",
+     "general_use_confidence_interval": "36-54",
+     "ibi_model_used": "2 deep",
+     "lake_name": "Whitefish",
+     "model_description": "Deep Complex Cold",
+     "status": "At or Above General Use Impairment Threshold",
+     "watershed_name": "Rum River"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_ibi_lakes_fisheries",
+   "typef": "ibi_model_used",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_ibi_lakes_fisheries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2124,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Forest Health2019Geocommons",
+   "sample": [
+    {
+     "cause_of_damage": "Flooding-High Water - 50004",
+     "damage_type": "Mortality - 2",
+     "host": "All tree species - 9998",
+     "host_group": " ",
+     "notes": " ",
+     "percent_affected": "Very Severe (>50%)"
+    },
+    {
+     "cause_of_damage": "Eastern Larch Beetle - 11010",
+     "damage_type": "Mortality - 2",
+     "host": "tamarack",
+     "host_group": " ",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    },
+    {
+     "cause_of_damage": "Eastern Larch Beetle - 11010",
+     "damage_type": "Mortality - 2",
+     "host": "tamarack",
+     "host_group": " ",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2019",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2019/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2112,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2016",
+   "sample": [
+    {
+     "cause_of_damage": "Twolined Chestnut Borer - 15005",
+     "damage_type": "Mortality - 2",
+     "host": "northern red oak - 833",
+     "host_group": " ",
+     "percent_affected": "Very Light (1-3%)"
+    },
+    {
+     "cause_of_damage": "Twolined Chestnut Borer - 15005",
+     "damage_type": "Mortality - Previously Undocumented - 11",
+     "host": "northern red oak - 833",
+     "host_group": " ",
+     "percent_affected": "Light (4-10%)"
+    },
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation - Moderate (1/3 - 2/3 foliage) - 13",
+     "host": " ",
+     "host_group": "white spruce-balsam fir",
+     "percent_affected": "Moderate (11-29%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2016",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2016/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2106,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2021",
+   "sample": [
+    {
+     "cause_of_damage": "Unknown Bark Beetle - 11900",
+     "damage_type": "Mortality - 2",
+     "host_group": "pine species",
+     "percent_affected": "Very Light (1-3%)"
+    },
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation 50-75% of leaves defoliated - 13",
+     "host_group": "spruce - fir",
+     "percent_affected": "Severe (30-50%)"
+    },
+    {
+     "cause_of_damage": "Emerald Ash Borer - 15087",
+     "damage_type": "Mortality - 2",
+     "host_group": "black, white, or green ash",
+     "notes": "within zone Minn. Dept. of Ag. considers generally infested by EAB",
+     "percent_affected": "Light (4-10%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2021",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2021/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2085,
+   "fields": [
+    "host",
+    "host_group",
+    "cause_of_damage",
+    "damage_type",
+    "percent_affected",
+    "notes"
+   ],
+   "known": false,
+   "layer": "Forest Health Survey 2018",
+   "sample": [
+    {
+     "cause_of_damage": "Spruce Budworm - 12038",
+     "damage_type": "Defoliation >75% of leaves defoliated - 14",
+     "host": " ",
+     "host_group": "white spruce - balsam fir",
+     "notes": " ",
+     "percent_affected": "Severe (30-50%)"
+    },
+    {
+     "cause_of_damage": "Emerald Ash Borer - 15087",
+     "damage_type": "Crown Dieback - 4",
+     "host": "green ash - 544",
+     "host_group": " ",
+     "notes": "ground truthed 8.31.18, over 50 percent affected",
+     "percent_affected": "Very Severe (>50%)"
+    },
+    {
+     "cause_of_damage": "Forest Tent Caterpillar - 12096",
+     "damage_type": "Defoliation 50-75% of leaves defoliated - 13",
+     "host": " ",
+     "host_group": "basswood, oak, birch, and/or aspen",
+     "notes": " ",
+     "percent_affected": "Moderate (11-29%)"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_forest_health_survey_2018",
+   "typef": "cause_of_damage",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_forest_health_survey_2018/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unit_name",
+   "count": 1587,
+   "fields": [
+    "unit_name",
+    "unit_type",
+    "prgm_prj",
+    "admin_unit",
+    "use_reg",
+    "plan_src",
+    "web_link1",
+    "parcel_num",
+    "int_type",
+    "acq_type",
+    "means_acq",
+    "trout_strm",
+    "cty_name",
+    "qsec",
+    "drainage",
+    "secname",
+    "subsecname",
+    "dowlknum",
+    "lake_name",
+    "kittle_no"
+   ],
+   "known": false,
+   "layer": "Mndnr Fisheries Acquisition",
+   "sample": [
+    {
+     "acq_type": "S",
+     "admin_unit": "Fisheries",
+     "int_type": "E",
+     "means_acq": "P",
+     "parcel_num": "31",
+     "plan_src": "County Doc# 156577",
+     "prgm_prj": "AMA00333",
+     "trout_strm": "Y",
+     "unit_name": "Kabekona River AMA",
+     "unit_type": "AMA",
+     "use_reg": "Angling Only",
+     "web_link1": "http://files.dnr.state.mn.us/documents/fisheries/deeds/156577.pdf"
+    },
+    {
+     "acq_type": "L",
+     "admin_unit": "Fisheries",
+     "int_type": "F",
+     "means_acq": "P",
+     "parcel_num": "1",
+     "plan_src": "County Doc# 89727",
+     "prgm_prj": "AMA00282",
+     "trout_strm": "N",
+     "unit_name": "Ida Lake AMA",
+     "unit_type": "AMA",
+     "use_reg": "General Use",
+     "web_link1": "http://files.dnr.state.mn.us/documents/fisheries/deeds/89727.pdf"
+    },
+    {
+     "acq_type": "L",
+     "admin_unit": "Fisheries",
+     "int_type": "F",
+     "means_acq": "P",
+     "parcel_num": "6",
+     "plan_src": "County Doc# 46939",
+     "prgm_prj": "AMA00282",
+     "trout_strm": "N",
+     "unit_name": "Ida Lake AMA",
+     "unit_type": "AMA",
+     "use_reg": "Restricted Use",
+     "web_link1": "http://files.dnr.state.mn.us/documents/fisheries/deeds/46939.pdf"
+    }
+   ],
+   "service": "us_mn_state_dnr/plan_mndnr_fisheries_acquisition",
+   "typef": "unit_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/plan_mndnr_fisheries_acquisition/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1184,
+   "fields": [
+    "dowlknum",
+    "gnis_name",
+    "pw_basin_name",
+    "pw_parent_name",
+    "pw_sub_name",
+    "sub_flag",
+    "pwi_class",
+    "pwi_label",
+    "shore_class",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "dow_main",
+    "source",
+    "flag_type"
+   ],
+   "known": false,
+   "layer": "Wild Rice Lakes Identified By Dnr Wildlife",
+   "sample": [
+    {
+     "delineated_by": "Waters",
+     "delineation_notes": "Staff delineation effort 2008",
+     "delineation_src": "Source not recorded",
+     "dowlknum": "31020600",
+     "gnis_name": "Mud Lake",
+     "pw_basin_name": "Mud",
+     "pw_parent_name": "Mud",
+     "pw_sub_name": " ",
+     "pwi_class": "P",
+     "pwi_label": "Public Water Basin",
+     "sub_flag": "N"
+    },
+    {
+     "delineated_by": "Waters",
+     "delineation_notes": "Staff delineation effort 2008",
+     "delineation_src": "Source not recorded",
+     "dowlknum": "31027100",
+     "gnis_name": "Marble Lake",
+     "pw_basin_name": "Marble",
+     "pw_parent_name": "Marble",
+     "pw_sub_name": " ",
+     "pwi_class": "P",
+     "pwi_label": "Public Water Basin",
+     "sub_flag": "N"
+    },
+    {
+     "delineated_by": "Waters",
+     "delineation_notes": "Staff delineation effort 2008",
+     "delineation_src": "Source not recorded",
+     "dowlknum": "31087800",
+     "gnis_name": " ",
+     "pw_basin_name": "Irene",
+     "pw_parent_name": "Irene",
+     "pw_sub_name": " ",
+     "pwi_class": "P",
+     "pwi_label": "Public Water Basin",
+     "sub_flag": "N"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_wild_rice_lakes_dnr_wld",
+   "typef": "pwi_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_wild_rice_lakes_dnr_wld/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 569,
+   "fields": [
+    "sht_type"
+   ],
+   "known": false,
+   "layer": "1_Mile_Buffer_of_shp_trans_superior_hiking_trail",
+   "sample": [
+    {
+     "sht_type": " "
+    },
+    {
+     "sht_type": " "
+    },
+    {
+     "sht_type": " "
+    }
+   ],
+   "service": "1_Mile_Buffer_of_shp_trans_superior_hiking_trail",
+   "typef": "sht_type",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/1_Mile_Buffer_of_shp_trans_superior_hiking_trail/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 525,
+   "fields": [],
+   "known": false,
+   "layer": "forest_health__ELB",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 450485.60974121094,
+     "Shape__Length": 2937.0795886098176
+    },
+    {
+     "OBJECTID": 2,
+     "Shape__Area": 29605.091552734375,
+     "Shape__Length": 654.536525784047
+    },
+    {
+     "OBJECTID": 3,
+     "Shape__Area": 518048.1455078125,
+     "Shape__Length": 2858.2479308538336
+    }
+   ],
+   "service": "2021_forest_health__ELB",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/2021_forest_health__ELB/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 525,
+   "fields": [
+    "Feature"
+   ],
+   "known": false,
+   "layer": "lake_superior_basin",
+   "sample": [
+    {
+     "Feature": "Land"
+    },
+    {
+     "Feature": "Land"
+    },
+    {
+     "Feature": "Land"
+    }
+   ],
+   "service": "digital_shoreline_analysis_of_Park_Point_WFL1",
+   "typef": "Feature",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/digital_shoreline_analysis_of_Park_Point_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 488,
+   "fields": [
+    "name",
+    "unit_name",
+    "subunit_na",
+    "lam_progra",
+    "subunit_nb",
+    "uniqueid",
+    "managing_a",
+    "nearest_to",
+    "directions",
+    "special_re",
+    "ada_access",
+    "header",
+    "comments",
+    "data_mgmt_",
+    "special__1",
+    "ada_acce_1",
+    "general_ac",
+    "federal__1",
+    "writeup_lo",
+    "writeup_pd"
+   ],
+   "known": false,
+   "layer": "dnr_wildlife_TurkeyHabitat",
+   "sample": [
+    {
+     "ada_access": " ",
+     "directions": "From the junction of MN 9 and MN 23  travel NE on MN 23  for 1.5 miles, then turn south on dead -end gravel  for .5 mi.  Access from the road at the NW corner of unit.",
+     "header": "Primarily woods and water with a small amount of old pasture.  This unit is actually a State Trust parcel which the DNR, Wildlife posts as a WMA.  Other than posting the area, very little in the way of management has been done or is possible.",
+     "lam_progra": "WMA00389",
+     "managing_a": "New London",
+     "name": "New London WMA",
+     "nearest_to": "New London",
+     "special_re": " ",
+     "subunit_na": " ",
+     "subunit_nb": "00",
+     "uniqueid": "WMA0038900",
+     "unit_name": "New London WMA"
+    },
+    {
+     "ada_access": " ",
+     "directions": "1 1/2 miles east of Scandia on Hwy 97, then south 1/4 mile south on Hwy 95, then 1/2 mile southeast on Co Rd 53, then 1/4 mile east on 205th St N to the St. Croix River, then 1 mile north by boat.",
+     "header": "Rustrum WMA is a 24 acre area located along the St. Croix River.  It consists of about 83% open water and emergent vegetation marsh and about 17% flood plain forest.",
+     "lam_progra": "WMA00298",
+     "managing_a": "Forest Lake",
+     "name": "Rutstrum WMA",
+     "nearest_to": "Scandia",
+     "special_re": "Accessible only by water, this area offers unique boat access hunting opportunities.  Flood plain forest wildlife viewing is also available.",
+     "subunit_na": " ",
+     "subunit_nb": "00",
+     "uniqueid": "WMA0029800",
+     "unit_name": "Rutstrum WMA"
+    },
+    {
+     "ada_access": " ",
+     "directions": "From New Auburn, go 2 1/2 miles N on SH 22 then 1 mile W on township rd",
+     "header": "This WMA is mainly comprised of:\r\nA restored prairie wetland complex with a lowland/brush-land forest component.  This WMA consists of two separate parcels.",
+     "lam_progra": "WMA01496",
+     "managing_a": "Nicollet",
+     "name": "Bob Gehlen WMA",
+     "nearest_to": "New Auburn",
+     "special_re": " ",
+     "subunit_na": " ",
+     "subunit_nb": "00",
+     "uniqueid": "WMA0149600",
+     "unit_name": "Bob Gehlen WMA"
+    }
+   ],
+   "service": "dnr_wildlife_TurkeyHabitat",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/dnr_wildlife_TurkeyHabitat/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 473,
+   "fields": [
+    "C_TYPE",
+    "SIZE_CL",
+    "DENS_CL",
+    "ORIGIN",
+    "LABEL",
+    "NOTES",
+    "NPC",
+    "SPP_2",
+    "SPP_1",
+    "SPP_3",
+    "SI_SPP",
+    "REGSPP_1",
+    "REGSPP_2",
+    "REGSPP_3",
+    "COMM_C_TYP"
+   ],
+   "known": false,
+   "layer": "Landcover 2014",
+   "sample": [
+    {
+     "C_TYPE": "W",
+     "DENS_CL": "1",
+     "LABEL": "Wd1",
+     "NOTES": " ",
+     "NPC": " ",
+     "ORIGIN": "1920",
+     "REGSPP_1": " ",
+     "SIZE_CL": "d",
+     "SI_SPP": " ",
+     "SPP_1": " ",
+     "SPP_2": " ",
+     "SPP_3": " "
+    },
+    {
+     "C_TYPE": "J",
+     "DENS_CL": "2",
+     "LABEL": "Jb2",
+     "NOTES": " ",
+     "NPC": " ",
+     "ORIGIN": "2000",
+     "REGSPP_1": " ",
+     "SIZE_CL": "b",
+     "SI_SPP": " ",
+     "SPP_1": " ",
+     "SPP_2": " ",
+     "SPP_3": " "
+    },
+    {
+     "C_TYPE": "J",
+     "DENS_CL": "1",
+     "LABEL": "Jb1",
+     "NOTES": " ",
+     "NPC": " ",
+     "ORIGIN": "2000",
+     "REGSPP_1": " ",
+     "SIZE_CL": "b",
+     "SI_SPP": " ",
+     "SPP_1": " ",
+     "SPP_2": " ",
+     "SPP_3": " "
+    }
+   ],
+   "service": "Cloquet_Forestry_Center_Digitization_Project_WFL1",
+   "typef": "C_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cloquet_Forestry_Center_Digitization_Project_WFL1/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "Parks history",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/45"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "Before 1940",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/33"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "2023 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/44"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "2020 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/43"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "2010 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/42"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "2000 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/41"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "1990 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/40"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "1980 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/39"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "1970 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/38"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "1960 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/37"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "1950 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/36"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 405,
+   "fields": [
+    "FeatureNam",
+    "PARK_NAME1",
+    "Name",
+    "ShpName",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Exact_Boundaries",
+    "ExactDate",
+    "AcquisitionType",
+    "AcquisitionDetail",
+    "Researcher",
+    "notes",
+    "Source",
+    "Field18"
+   ],
+   "known": false,
+   "layer": "1940 Parks",
+   "sample": [
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "date not known",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Hamline Park",
+     "Jurisdiction": "City",
+     "Name": "Hamline Park",
+     "Researcher": "Harper",
+     "ShpName": "Hamline Park"
+    },
+    {
+     "AcquisitionType": "unknown",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Dawson Park",
+     "Jurisdiction": "City",
+     "Name": "Dawson Park",
+     "Researcher": "Jennings",
+     "ShpName": "Dawson Park"
+    },
+    {
+     "AcquisitionDetail": "purchased from school district",
+     "AcquisitionType": "purchase",
+     "Agency": "St. Paul",
+     "County": "Ramsey",
+     "ExactDate": "exact",
+     "Exact_Boundaries": "Yes",
+     "FeatureNam": "Tilden Park",
+     "Jurisdiction": "City",
+     "Name": "Tilden Park",
+     "Researcher": "gail",
+     "ShpName": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/35"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 402,
+   "fields": [
+    "LUSE2010",
+    "LUSE_DESC"
+   ],
+   "known": false,
+   "layer": "land_use",
+   "sample": [
+    {
+     "LUSE2010": "151",
+     "LUSE_DESC": "Industrial and Utility"
+    },
+    {
+     "LUSE2010": "151",
+     "LUSE_DESC": "Industrial and Utility"
+    },
+    {
+     "LUSE2010": "151",
+     "LUSE_DESC": "Industrial and Utility"
+    }
+   ],
+   "service": "CEED_LandUse_Parks",
+   "typef": "LUSE2010",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/CEED_LandUse_Parks/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Park_Name",
+   "count": 366,
+   "fields": [
+    "PARK_NAME1",
+    "Park_Name",
+    "ShpName",
+    "Field4",
+    "Jurisdiction",
+    "Agency",
+    "County",
+    "Created",
+    "Acquisition_type",
+    "Field11",
+    "notes",
+    "Field13",
+    "Field14",
+    "Created_1",
+    "Park_Name_1",
+    "ShpName_1",
+    "Field5_1"
+   ],
+   "known": false,
+   "layer": "MPLS_Merge V1",
+   "sample": [
+    {
+     "Acquisition_type": "purchase",
+     "Agency": "MPRB",
+     "County": "Hennepin",
+     "Created": "1973",
+     "Field11": "Harper",
+     "Jurisdiction": "City",
+     "PARK_NAME1": "WILLARD",
+     "Park_Name": "Willard park",
+     "ShpName": "WILLARD",
+     "notes": "funding via federal Parks in the Cities program"
+    },
+    {
+     "Acquisition_type": "unclear",
+     "Agency": "MPRB",
+     "County": "Hennepin",
+     "Created": "1910",
+     "Field11": "Johnnie",
+     "Jurisdiction": "City",
+     "PARK_NAME1": "FARWELL",
+     "Park_Name": "Farwell Park",
+     "ShpName": "FARWELL",
+     "notes": "\"Park board records indicate that the land was platted as a park in the Oak Park Supplement on June 4, 1889. However the first mention of the park in park board proceedings is in a request from the David C. Bell Investment Company on February 7, 1910 asking the board to formally accept the land as a park and to make modest improvements.\" "
+    },
+    {
+     "Acquisition_type": "purchased",
+     "Agency": "MPRB",
+     "County": "Hennepin",
+     "Created": "1896-1899",
+     "Field11": "Johnnie",
+     "Jurisdiction": "City",
+     "PARK_NAME1": "LYNDALE",
+     "Park_Name": "Lyndale Farmstead Park",
+     "ShpName": "LYNDALE"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "Acquisition_type",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/31"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 364,
+   "fields": [
+    "dowlknum",
+    "pw_basin_name",
+    "sub_flag",
+    "wb_class",
+    "cty_name",
+    "fsh_office",
+    "outside_mn",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "approved_by",
+    "approval_notes",
+    "reclaimed_lake"
+   ],
+   "known": false,
+   "layer": "Fisheries Reclamation Events",
+   "sample": [
+    {
+     "cty_name": "Lake",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "38072000",
+     "fsh_office": "Tower",
+     "outside_mn": "N",
+     "pw_basin_name": "Conchu",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Le Sueur",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "40003300",
+     "fsh_office": "Waterville",
+     "outside_mn": "N",
+     "pw_basin_name": "Volney",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Lake",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "38071900",
+     "fsh_office": "Tower",
+     "outside_mn": "N",
+     "pw_basin_name": "Uranus",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    }
+   ],
+   "service": "us_mn_state_dnr/water_fisheries_reclamations",
+   "typef": "wb_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/water_fisheries_reclamations/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 349,
+   "fields": [
+    "Gi_Text"
+   ],
+   "known": false,
+   "layer": "HotSpotsOutput",
+   "sample": [
+    {
+     "Gi_Text": "Not Significant"
+    },
+    {
+     "Gi_Text": "Not Significant"
+    },
+    {
+     "Gi_Text": "Not Significant"
+    }
+   ],
+   "service": "ElliotPark_HS",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/ElliotPark_HS/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 327,
+   "fields": [
+    "LUSE2010",
+    "LUSE_DESC"
+   ],
+   "known": false,
+   "layer": "parks",
+   "sample": [
+    {
+     "LUSE2010": "170",
+     "LUSE_DESC": "Park, Recreational, or Preserve"
+    },
+    {
+     "LUSE2010": "170",
+     "LUSE_DESC": "Park, Recreational, or Preserve"
+    },
+    {
+     "LUSE2010": "170",
+     "LUSE_DESC": "Park, Recreational, or Preserve"
+    }
+   ],
+   "service": "CEED_LandUse_Parks",
+   "typef": "LUSE2010",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/CEED_LandUse_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 249,
+   "fields": [
+    "NHGISST",
+    "NHGISCTY",
+    "GISJOIN",
+    "GISJOIN2",
+    "GISJOIN_1",
+    "STATE",
+    "COUNTY",
+    "CTY_SUBA",
+    "PLACEA",
+    "ELECPRCTA",
+    "BLOCKA",
+    "BLCK_GRPA",
+    "ENUMDISTA",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "US_tract_1980_Clip",
+   "sample": [
+    {
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G27005300010",
+     "GISJOIN2": "27005300010",
+     "GISJOIN_1": "G27005300010",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G27005300214",
+     "GISJOIN2": "27005300214",
+     "GISJOIN_1": "G27005300214",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G27005300007",
+     "GISJOIN2": "27005300007",
+     "GISJOIN_1": "G27005300007",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 244,
+   "fields": [
+    "NHGISST",
+    "NHGISCTY",
+    "GISJOIN",
+    "GISJOIN2",
+    "GISJOIN_1",
+    "STATE",
+    "COUNTY",
+    "CTY_SUBA",
+    "PLACEA",
+    "SCSAA",
+    "URB_AREAA",
+    "BLOCKA",
+    "CDA",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "US_tract_1970_Clip",
+   "sample": [
+    {
+     "COUNTY": "Ramsey",
+     "GISJOIN": "G27012300324",
+     "GISJOIN2": "27012300324",
+     "GISJOIN_1": "G27012300324",
+     "NHGISCTY": "1230",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "COUNTY": "Ramsey",
+     "GISJOIN": "G27012300325",
+     "GISJOIN2": "27012300325",
+     "GISJOIN_1": "G27012300325",
+     "NHGISCTY": "1230",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "COUNTY": "Ramsey",
+     "GISJOIN": "G27012300331",
+     "GISJOIN2": "27012300331",
+     "GISJOIN_1": "G27012300331",
+     "NHGISCTY": "1230",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/12"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 237,
+   "fields": [
+    "NHGISST",
+    "NHGISCTY",
+    "GISJOIN",
+    "GISJOIN2",
+    "GISJOIN_1",
+    "STATE",
+    "COUNTY",
+    "PRETRACTA",
+    "POSTTRCTA",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "US_tract_1960_Clip",
+   "sample": [
+    {
+     "AREANAME": "TRACT M-43 MINNEAPOLIS CITY",
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G2700530M0043",
+     "GISJOIN2": "2700530M0043",
+     "GISJOIN_1": "G2700530M0043",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "PRETRACTA": "M",
+     "STATE": "Minnesota"
+    },
+    {
+     "AREANAME": "TRACT M-93 MINNEAPOLIS CITY",
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G2700530M0093",
+     "GISJOIN2": "2700530M0093",
+     "GISJOIN_1": "G2700530M0093",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "PRETRACTA": "M",
+     "STATE": "Minnesota"
+    },
+    {
+     "AREANAME": "TRACT M-95 MINNEAPOLIS CITY",
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G2700530M0095",
+     "GISJOIN2": "2700530M0095",
+     "GISJOIN_1": "G2700530M0095",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "PRETRACTA": "M",
+     "STATE": "Minnesota"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/13"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 209,
+   "fields": [
+    "NHGISST",
+    "NHGISCTY",
+    "GISJOIN",
+    "GISJOIN2",
+    "GISJOIN_1",
+    "STATE",
+    "COUNTY",
+    "PRETRACTA",
+    "POSTTRCTA",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "US_tract_1950_Clip",
+   "sample": [
+    {
+     "AREANAME": "STCTY-27123 TRACT-    0048     IN ST PAUL MN",
+     "COUNTY": "Ramsey",
+     "GISJOIN": "G27012300048",
+     "GISJOIN2": "27012300048",
+     "GISJOIN_1": "G27012300048",
+     "NHGISCTY": "1230",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "AREANAME": "STCTY-27123 TRACT-    0001     IN ST PAUL MN",
+     "COUNTY": "Ramsey",
+     "GISJOIN": "G27012300001",
+     "GISJOIN2": "27012300001",
+     "GISJOIN_1": "G27012300001",
+     "NHGISCTY": "1230",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "AREANAME": "STCTY-27123 TRACT-    0042     IN ST PAUL MN",
+     "COUNTY": "Ramsey",
+     "GISJOIN": "G27012300042",
+     "GISJOIN2": "27012300042",
+     "GISJOIN_1": "G27012300042",
+     "NHGISCTY": "1230",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/14"
+  },
+  {
+   "agency": "",
+   "area": "AREANAME",
+   "count": 209,
+   "fields": [
+    "NHGISST",
+    "NHGISCTY",
+    "GISJOIN",
+    "GISJOIN2",
+    "GISJOIN_1",
+    "GISJOIN_12",
+    "STATE",
+    "COUNTY",
+    "PRETRACTA",
+    "POSTTRCTA",
+    "AREANAME"
+   ],
+   "known": false,
+   "layer": "US_tract_1940_Clip",
+   "sample": [
+    {
+     "AREANAME": "STCTY-27053 TRACT-    0079     IN MINNEAPOLIS MN",
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G27005300079",
+     "GISJOIN2": "27005300079",
+     "GISJOIN_1": "G27005300079",
+     "GISJOIN_12": "G27005300079",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "AREANAME": "STCTY-27053 TRACT-    0078     IN MINNEAPOLIS MN",
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G27005300078",
+     "GISJOIN2": "27005300078",
+     "GISJOIN_1": "G27005300078",
+     "GISJOIN_12": "G27005300078",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    },
+    {
+     "AREANAME": "STCTY-27053 TRACT-    0077     IN MINNEAPOLIS MN",
+     "COUNTY": "Hennepin",
+     "GISJOIN": "G27005300077",
+     "GISJOIN2": "27005300077",
+     "GISJOIN_1": "G27005300077",
+     "GISJOIN_12": "G27005300077",
+     "NHGISCTY": "0530",
+     "NHGISST": "270",
+     "STATE": "Minnesota"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/15"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 205,
+   "fields": [
+    "PARK_NAME1"
+   ],
+   "known": false,
+   "layer": "MPLS",
+   "sample": [
+    {
+     "PARK_NAME1": "WILLARD"
+    },
+    {
+     "PARK_NAME1": "FARWELL"
+    },
+    {
+     "PARK_NAME1": "LYNDALE"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/29"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 205,
+   "fields": [
+    "PARK_NAME1"
+   ],
+   "known": false,
+   "layer": "MPLS outdated",
+   "sample": [
+    {
+     "PARK_NAME1": "WILLARD"
+    },
+    {
+     "PARK_NAME1": "FARWELL"
+    },
+    {
+     "PARK_NAME1": "LYNDALE"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 200,
+   "fields": [
+    "FeatureNam"
+   ],
+   "known": false,
+   "layer": "STPAUL",
+   "sample": [
+    {
+     "FeatureNam": "Hamline Park"
+    },
+    {
+     "FeatureNam": "Dawson Park"
+    },
+    {
+     "FeatureNam": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/28"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 200,
+   "fields": [
+    "FeatureNam"
+   ],
+   "known": false,
+   "layer": "STPAUL outdated",
+   "sample": [
+    {
+     "FeatureNam": "Hamline Park"
+    },
+    {
+     "FeatureNam": "Dawson Park"
+    },
+    {
+     "FeatureNam": "Tilden Park"
+    }
+   ],
+   "service": "8001_Parks_Draft_2_WFL1",
+   "typef": "FeatureNam",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/8001_Parks_Draft_2_WFL1/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 186,
+   "fields": [
+    "DISTRICT",
+    "PARK_NAME",
+    "PARK_TYPE",
+    "MAP_NAME",
+    "DESCRIPTIO",
+    "GlobalID",
+    "created_us",
+    "last_edite",
+    "SymbolID"
+   ],
+   "known": false,
+   "layer": "DuluthParks_ExportFeatures",
+   "sample": [
+    {
+     "DESCRIPTIO": "Preservation",
+     "DISTRICT": "8",
+     "GlobalID": "{A033E519-C752-48A0-A0DF-41610DB409CA}",
+     "MAP_NAME": "Hawk Ridge",
+     "PARK_NAME": "Hawk Ridge",
+     "PARK_TYPE": "Regional",
+     "created_us": " ",
+     "last_edite": " "
+    },
+    {
+     "DESCRIPTIO": "Preservation",
+     "DISTRICT": "1",
+     "GlobalID": "{830D9412-2023-4504-AB4C-4E4F27047754}",
+     "MAP_NAME": "N.B. Merritt Memorial Park",
+     "PARK_NAME": "N.B. Merritt Memorial Park",
+     "PARK_TYPE": "Regional",
+     "created_us": " ",
+     "last_edite": " "
+    },
+    {
+     "DESCRIPTIO": "Recreation",
+     "DISTRICT": "1",
+     "GlobalID": "{C553ED82-83FE-4810-BE60-8CDDDCA0FCDA}",
+     "MAP_NAME": "Blackmer Park",
+     "PARK_NAME": "Blackmer Park",
+     "PARK_TYPE": "Neighborhood",
+     "created_us": " ",
+     "last_edite": " "
+    }
+   ],
+   "service": "Duluth_Parks_and_Trails",
+   "typef": "PARK_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Duluth_Parks_and_Trails/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "PARK_NAME",
+   "count": 186,
+   "fields": [
+    "DISTRICT",
+    "PARK_NAME",
+    "PARK_TYPE",
+    "MAP_NAME",
+    "DESCRIPTIO",
+    "GlobalID",
+    "created_us",
+    "created_da",
+    "last_edite",
+    "last_edi_1",
+    "SymbolID"
+   ],
+   "known": false,
+   "layer": "DuluthParks_AJ",
+   "sample": [
+    {
+     "DESCRIPTIO": "Preservation",
+     "DISTRICT": "8",
+     "GlobalID": "{A033E519-C752-48A0-A0DF-41610DB409CA}",
+     "MAP_NAME": "Hawk Ridge",
+     "PARK_NAME": "Hawk Ridge",
+     "PARK_TYPE": "Regional",
+     "SymbolID": " ",
+     "created_da": " ",
+     "created_us": " ",
+     "last_edi_1": " ",
+     "last_edite": " "
+    },
+    {
+     "DESCRIPTIO": "Preservation",
+     "DISTRICT": "1",
+     "GlobalID": "{830D9412-2023-4504-AB4C-4E4F27047754}",
+     "MAP_NAME": "N.B. Merritt Memorial Park",
+     "PARK_NAME": "N.B. Merritt Memorial Park",
+     "PARK_TYPE": "Regional",
+     "SymbolID": " ",
+     "created_da": " ",
+     "created_us": " ",
+     "last_edi_1": " ",
+     "last_edite": " "
+    },
+    {
+     "DESCRIPTIO": "Recreation",
+     "DISTRICT": "1",
+     "GlobalID": "{C553ED82-83FE-4810-BE60-8CDDDCA0FCDA}",
+     "MAP_NAME": "Blackmer Park",
+     "PARK_NAME": "Blackmer Park",
+     "PARK_TYPE": "Neighborhood",
+     "SymbolID": " ",
+     "created_da": " ",
+     "created_us": " ",
+     "last_edi_1": " ",
+     "last_edite": " "
+    }
+   ],
+   "service": "DuluthParks_AJ",
+   "typef": "PARK_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/DuluthParks_AJ/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "buffer__MinneapolisCoffeeShops_Address_within_Buffer_of_Parksss",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "buffer__MinneapolisCoffeeShops_Address_within_Buffer_of_Parksss",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/buffer__MinneapolisCoffeeShops_Address_within_Buffer_of_Parksss/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "BufferedFeatures",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Buffer_of_0_25mi_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_0_25mi_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "Buffer_of_Parks_Minneapolis",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Buffer_of_Parks_Minneapolis",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Parks_Minneapolis/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "Buffer_of_Parks_Moucha",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Buffer_of_Parks_Moucha",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Parks_Moucha/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "Buffer_of_Parksss",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Buffer_of_Parksss",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Parksss/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "resultLayer",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Cafes_within_0_25mi_of_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cafes_within_0_25mi_of_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "resultLayer",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Cafes_within_Park_buffer",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cafes_within_Park_buffer/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "Coffee_Shops_0_25_miles_of_park",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "Coffee_Shops_0_25_miles_of_park",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Coffee_Shops_0_25_miles_of_park/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 185,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "CoffeeShopsNearParks",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "WILLARD",
+     "PARK_NAME2": "WILLARD",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.27",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.27"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "FARWELL",
+     "PARK_NAME2": "FARWELL",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.28",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.28"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "LYNDALE",
+     "PARK_NAME2": "LYNDALE",
+     "PARK_PARK3": "FARMSTEAD",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.35",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.35"
+    }
+   ],
+   "service": "CoffeeShopsNearParks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/CoffeeShopsNearParks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 178,
+   "fields": [
+    "dowlknum",
+    "pw_basin_name",
+    "pw_parent_name",
+    "pw_sub_name",
+    "sub_flag",
+    "wb_class",
+    "cty_name",
+    "fsh_office",
+    "outside_mn",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "approved_by",
+    "approval_notes",
+    "has_flag",
+    "flag_type",
+    "has_wld_flag",
+    "wld_flag_type",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Biota Cisco Refuge Lakes",
+   "sample": [
+    {
+     "cty_name": "Lake",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "38081700",
+     "fsh_office": "Tower",
+     "outside_mn": "N",
+     "pw_basin_name": "Crooked",
+     "pw_parent_name": "Crooked",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Lake",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2004 FSA",
+     "dowlknum": "38050200",
+     "fsh_office": "Tower",
+     "outside_mn": "N",
+     "pw_basin_name": "Ashigan",
+     "pw_parent_name": "Ashigan",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Itasca",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2010 FSA",
+     "dowlknum": "31078100",
+     "fsh_office": "Grand Rapids",
+     "outside_mn": "N",
+     "pw_basin_name": "Long",
+     "pw_parent_name": "Long",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_cisco_refuge_lakes",
+   "typef": "wb_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_cisco_refuge_lakes/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 149,
+   "fields": [
+    "Name_Primary",
+    "Name_Secondary",
+    "Regional_Status",
+    "Name_Other",
+    "Public_Address",
+    "City",
+    "Public_Status",
+    "ParkStatus",
+    "MasterPlanLink",
+    "Commissioner",
+    "ASMParkKeeper",
+    "ASMParkKeeperEmail",
+    "ASMParkKeeperPhone"
+   ],
+   "known": false,
+   "layer": "Nearest Features",
+   "sample": [
+    {
+     "City": "Minneapolis",
+     "Commissioner": "Billy Menz",
+     "Name_Other": "Columbia Parkway",
+     "Name_Primary": "Columbia Parkway Regional Trail",
+     "Name_Secondary": "Columbia Parkway Regional Trail",
+     "ParkStatus": "TRAIL",
+     "Public_Address": " ",
+     "Public_Status": "Public",
+     "Regional_Status": "Regional"
+    },
+    {
+     "City": "Minneapolis",
+     "Commissioner": "Billy Menz",
+     "Name_Other": " ",
+     "Name_Primary": "East River Parkway",
+     "Name_Secondary": "Mississippi Gorge Regional Park",
+     "ParkStatus": "PARK",
+     "Public_Address": " ",
+     "Public_Status": "Public",
+     "Regional_Status": "Regional"
+    },
+    {
+     "City": "Minneapolis",
+     "Commissioner": "Billy Menz",
+     "Name_Other": " ",
+     "Name_Primary": "St Anthony Parkway Regional Trail",
+     "Name_Secondary": "St Anthony Parkway Regional Trail",
+     "ParkStatus": "TRAIL",
+     "Public_Address": " ",
+     "Public_Status": "Public",
+     "Regional_Status": "Regional"
+    }
+   ],
+   "service": "Blk_grp_dist_to_park",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Blk_grp_dist_to_park/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 112,
+   "fields": [
+    "provname"
+   ],
+   "known": false,
+   "layer": "Conservation Opportunity Areas",
+   "sample": [
+    {
+     "provname": "Des Moines River Valley"
+    },
+    {
+     "provname": "Coteau Escarpment Buffalo Ridge"
+    },
+    {
+     "provname": "Red Rock Ridge"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_sna_conserv_opportunity_area",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_sna_conserv_opportunity_area/FeatureServer/22"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 87,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "BDNAME",
+    "BDNUM",
+    "TEXT_NBR"
+   ],
+   "known": false,
+   "layer": "Neighborhoods",
+   "sample": [
+    {
+     "BDNAME": "Phillips West",
+     "BDNUM": "90",
+     "PREFIX": "REFNO",
+     "SYMBOL_NAM": "WARDAREA",
+     "TEXT_NBR": "90",
+     "UDI": "23152.00"
+    },
+    {
+     "BDNAME": "Downtown West",
+     "BDNUM": "87",
+     "PREFIX": "REFNO",
+     "SYMBOL_NAM": "WARDAREA",
+     "TEXT_NBR": "87",
+     "UDI": "23187.00"
+    },
+    {
+     "BDNAME": "Downtown East",
+     "BDNUM": "88",
+     "PREFIX": "REFNO",
+     "SYMBOL_NAM": "WARDAREA",
+     "TEXT_NBR": "88",
+     "UDI": "23188.00"
+    }
+   ],
+   "service": "Elliot_Park_Asset_Map_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Elliot_Park_Asset_Map_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "AREA_NAME",
+   "count": 84,
+   "fields": [
+    "AREA_NAME",
+    "AREA_TYPE",
+    "PGRM_PROJE",
+    "LEGISLATIV"
+   ],
+   "known": false,
+   "layer": "BufferPark",
+   "sample": [
+    {
+     "AREA_NAME": "George H. Crosby-Manitou",
+     "AREA_TYPE": "State Park",
+     "LEGISLATIV": "George H. Crosby Manitou State Park",
+     "PGRM_PROJE": "SPK00163"
+    },
+    {
+     "AREA_NAME": "Kodonce River",
+     "AREA_TYPE": "State Wayside",
+     "LEGISLATIV": "Kodonce River State Wayside",
+     "PGRM_PROJE": "SWS00524"
+    },
+    {
+     "AREA_NAME": "Carley",
+     "AREA_TYPE": "State Park",
+     "LEGISLATIV": "Carley State Park",
+     "PGRM_PROJE": "SPK00130"
+    }
+   ],
+   "service": "BufferPark",
+   "typef": "AREA_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/BufferPark/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 84,
+   "fields": [
+    "COMP_",
+    "PARCELID",
+    "OWNAME",
+    "PLDESC",
+    "LEGAL",
+    "PREOWNNAME",
+    "OWNTYPE",
+    "FDL_Allott"
+   ],
+   "known": false,
+   "layer": "2014 Compartments",
+   "sample": [
+    {
+     "COMP_": "1C",
+     "FDL_Allott": "Ga-da-i-gan-e-kwe",
+     "LEGAL": "NW1/4 NW1/4 Section 28",
+     "OWNAME": "REGENTS OF UNIVERSITY OF MN",
+     "OWNTYPE": "Private",
+     "PARCELID": "06-510-6540",
+     "PLDESC": "CITY OF CLOQUET",
+     "PREOWNNAME": "Phyllis M. and Kenneth R. Olson"
+    },
+    {
+     "COMP_": "1B",
+     "FDL_Allott": "Joseph Houle Jr.",
+     "LEGAL": "NE1/4 NE1/4 Section 29",
+     "OWNAME": "UNIVERSITY OF MN",
+     "OWNTYPE": "Private",
+     "PARCELID": "06-510-6670",
+     "PLDESC": "CITY OF CLOQUET",
+     "PREOWNNAME": "Nellie Mcsweeny Page"
+    },
+    {
+     "COMP_": "1A",
+     "FDL_Allott": "Naney Smith",
+     "LEGAL": "NW1/4 NE1/4 Section 29",
+     "OWNAME": "UNIVERSITY OF MN",
+     "OWNTYPE": "Private",
+     "PARCELID": "06-510-6680",
+     "PLDESC": "CITY OF CLOQUET",
+     "PREOWNNAME": "Margaret Melville"
+    }
+   ],
+   "service": "Cloquet_Forestry_Center_Digitization_Project_WFL1",
+   "typef": "PLDESC",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cloquet_Forestry_Center_Digitization_Project_WFL1/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 67,
+   "fields": [
+    "dowlknum",
+    "pw_basin_name",
+    "sub_flag",
+    "wb_class",
+    "cty_name",
+    "fsh_office",
+    "outside_mn",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "approved_by",
+    "approval_notes",
+    "fin_pond",
+    "hc_access",
+    "blb",
+    "blc",
+    "blg",
+    "cap",
+    "ccf",
+    "lmb"
+   ],
+   "known": false,
+   "layer": "Dnr Hydrography Fishing In The Neighborhood Ponds",
+   "sample": [
+    {
+     "cty_name": "Anoka",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2010 FSA",
+     "dowlknum": "02076400",
+     "fsh_office": "Metro East",
+     "outside_mn": "N",
+     "pw_basin_name": "Club West",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Anoka",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2010 FSA",
+     "dowlknum": "02058500",
+     "fsh_office": "Metro East",
+     "outside_mn": "N",
+     "pw_basin_name": "Loch Ness",
+     "sub_flag": "N",
+     "wb_class": "Lake or Pond"
+    },
+    {
+     "cty_name": "Anoka",
+     "delineated_by": "Fsh",
+     "delineation_notes": "Re-delineation by DNR Fisheries staff",
+     "delineation_src": "2010 FSA",
+     "dowlknum": "02007501",
+     "fsh_office": "Metro East",
+     "outside_mn": "N",
+     "pw_basin_name": "East Moore",
+     "sub_flag": "Y",
+     "wb_class": "Lake or Pond"
+    }
+   ],
+   "service": "us_mn_state_dnr/water_fishing_in_neighborhood",
+   "typef": "wb_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/water_fishing_in_neighborhood/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "site_name",
+   "count": 66,
+   "fields": [
+    "site_name",
+    "sub_unit"
+   ],
+   "known": false,
+   "layer": "Natural Area Registry Boundaries",
+   "sample": [
+    {
+     "site_name": "Sand Prairie WMA/WMEEA",
+     "sub_unit": " Sand Prairie RSA/NAR"
+    },
+    {
+     "site_name": "Beaver Creek WMA",
+     "sub_unit": "Beaver Creek RSA/NAR"
+    },
+    {
+     "site_name": " ",
+     "sub_unit": " "
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_natural_area_registry",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_natural_area_registry/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 65,
+   "fields": [
+    "dowlknum",
+    "gnis_name",
+    "pw_basin_name",
+    "pw_parent_name",
+    "pw_sub_name",
+    "sub_flag",
+    "pwi_class",
+    "pwi_label",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "dow_main",
+    "order_number",
+    "lake_name"
+   ],
+   "known": false,
+   "layer": "Designated Wildlife Lakes",
+   "sample": [
+    {
+     "delineated_by": "Waters",
+     "delineation_notes": "Staff delineation effort 2008",
+     "delineation_src": "Source not recorded",
+     "dow_main": "26029400",
+     "dowlknum": "26029400",
+     "gnis_name": "Ash Lake",
+     "pw_basin_name": "Ash",
+     "pw_parent_name": "Ash",
+     "pw_sub_name": " ",
+     "pwi_class": "P",
+     "pwi_label": "Public Water Basin",
+     "sub_flag": "N"
+    },
+    {
+     "delineated_by": "Waters",
+     "delineation_notes": "Staff delineation effort 2008",
+     "delineation_src": "Source not recorded",
+     "dow_main": "21037500",
+     "dowlknum": "21037500",
+     "gnis_name": "Lake Christina",
+     "pw_basin_name": "Christina",
+     "pw_parent_name": "Christina",
+     "pw_sub_name": " ",
+     "pwi_class": "P",
+     "pwi_label": "Public Water Basin",
+     "sub_flag": "N"
+    },
+    {
+     "delineated_by": "Waters",
+     "delineation_notes": "Staff delineation effort 2008",
+     "delineation_src": "Source not recorded",
+     "dow_main": "07002400",
+     "dowlknum": "07002400",
+     "gnis_name": "Cottonwood Lake",
+     "pw_basin_name": "Cottonwood",
+     "pw_parent_name": "Cottonwood",
+     "pw_sub_name": " ",
+     "pwi_class": "P",
+     "pwi_label": "Public Water Basin",
+     "sub_flag": "N"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_designated_wildlife_lakes",
+   "typef": "pwi_class",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_designated_wildlife_lakes/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "unit_name",
+   "count": 60,
+   "fields": [
+    "unit_name",
+    "unit_type",
+    "administrating_division",
+    "puadmin",
+    "administrator",
+    "mgmt_program",
+    "pgrm_project",
+    "access_wo_trespass",
+    "point_of_contact",
+    "web_link1",
+    "web_link2",
+    "create_author",
+    "spatial_update_editor",
+    "tabular_update_editor",
+    "editor_notes",
+    "editor_approval",
+    "planning_acres_src",
+    "spat_acc_conf"
+   ],
+   "known": false,
+   "layer": "State Forest Management Units",
+   "sample": [
+    {
+     "administrating_division": "Forestry",
+     "administrator": "Forestry",
+     "create_author": "kcaputa",
+     "mgmt_program": "FOR",
+     "pgrm_project": "SFT00039",
+     "point_of_contact": "Backus 218-947-3232",
+     "puadmin": "41",
+     "unit_name": "Pillsbury",
+     "unit_type": "State Forest",
+     "web_link1": "http://www.dnr.state.mn.us/state_forests/sft00039/index.html"
+    },
+    {
+     "administrating_division": "Forestry",
+     "administrator": "Forestry",
+     "create_author": "kcaputa",
+     "mgmt_program": "FOR",
+     "pgrm_project": "SFT00014",
+     "point_of_contact": "Aitkin 218-927-4040",
+     "puadmin": "41",
+     "unit_name": "Crow Wing",
+     "unit_type": "State Forest",
+     "web_link1": "http://www.dnr.state.mn.us/state_forests/sft00014/index.html"
+    },
+    {
+     "administrating_division": "Forestry",
+     "administrator": "Forestry",
+     "create_author": "kcaputa",
+     "mgmt_program": "FOR",
+     "pgrm_project": "SFT00059",
+     "point_of_contact": "Aitkin 218-927-4040",
+     "puadmin": "41",
+     "unit_name": "Waukenabo",
+     "unit_type": "State Forest",
+     "web_link1": "http://www.dnr.state.mn.us/state_forests/sft00059/index.html"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_state_forest",
+   "typef": "unit_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "AREA_NAME",
+   "count": 59,
+   "fields": [
+    "AREA_NAME",
+    "AREA_TYPE",
+    "PGRM_PROJE",
+    "PLANNING_1",
+    "DELINEATIO",
+    "SPAT_ACC_C",
+    "EDITOR_NAM",
+    "EDITOR_NOT",
+    "EDITOR_APP",
+    "CREATE_AUT",
+    "SPATIAL__1",
+    "TABULAR__1"
+   ],
+   "known": false,
+   "layer": "dnr_stat_plan__MNstateForests",
+   "sample": [
+    {
+     "AREA_NAME": "Golden Anniversary",
+     "AREA_TYPE": "State Forest",
+     "CREATE_AUT": " ",
+     "DELINEATIO": " ",
+     "EDITOR_APP": " ",
+     "EDITOR_NAM": " ",
+     "EDITOR_NOT": " ",
+     "PGRM_PROJE": "SFT00022",
+     "PLANNING_1": " ",
+     "SPATIAL__1": " ",
+     "SPAT_ACC_C": " ",
+     "TABULAR__1": " "
+    },
+    {
+     "AREA_NAME": "Cloquet Valley",
+     "AREA_TYPE": "State Forest",
+     "CREATE_AUT": " ",
+     "DELINEATIO": " ",
+     "EDITOR_APP": " ",
+     "EDITOR_NAM": "Bob Milne",
+     "EDITOR_NOT": "snap to parcel data",
+     "PGRM_PROJE": "SFT00013",
+     "PLANNING_1": " ",
+     "SPATIAL__1": "Bonnie J DeLare",
+     "SPAT_ACC_C": " ",
+     "TABULAR__1": " "
+    },
+    {
+     "AREA_NAME": "Nemadji",
+     "AREA_TYPE": "State Forest",
+     "CREATE_AUT": " ",
+     "DELINEATIO": " ",
+     "EDITOR_APP": " ",
+     "EDITOR_NAM": " ",
+     "EDITOR_NOT": " ",
+     "PGRM_PROJE": "SFT00035",
+     "PLANNING_1": " ",
+     "SPATIAL__1": "Bonnie J DeLare",
+     "SPAT_ACC_C": " ",
+     "TABULAR__1": " "
+    }
+   ],
+   "service": "dnr_stat_plan__MNstateForests",
+   "typef": "AREA_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/dnr_stat_plan__MNstateForests/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 49,
+   "fields": [
+    "STATEFP",
+    "STATENS",
+    "AFFGEOID",
+    "GEOID",
+    "STUSPS",
+    "NAME",
+    "LSAD"
+   ],
+   "known": false,
+   "layer": "State Outlines",
+   "sample": [
+    {
+     "AFFGEOID": "0400000US31",
+     "GEOID": "31",
+     "LSAD": "00",
+     "NAME": "Nebraska",
+     "STATEFP": "31",
+     "STATENS": "01779792",
+     "STUSPS": "NE"
+    },
+    {
+     "AFFGEOID": "0400000US53",
+     "GEOID": "53",
+     "LSAD": "00",
+     "NAME": "Washington",
+     "STATEFP": "53",
+     "STATENS": "01779804",
+     "STUSPS": "WA"
+    },
+    {
+     "AFFGEOID": "0400000US35",
+     "GEOID": "35",
+     "LSAD": "00",
+     "NAME": "New Mexico",
+     "STATEFP": "35",
+     "STATENS": "00897535",
+     "STUSPS": "NM"
+    }
+   ],
+   "service": "Blue_slide_park_data",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Blue_slide_park_data/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 49,
+   "fields": [
+    "PREFIX",
+    "UDI",
+    "SYMBOL_NAM",
+    "REFNO",
+    "PARENT",
+    "PARK_NAME1",
+    "PARK_NAME2",
+    "PARK_PARK3",
+    "REGIONAL"
+   ],
+   "known": false,
+   "layer": "Buffer_of_parksmn",
+   "sample": [
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "BRYN MAWR",
+     "PARK_NAME2": "BRYN MAWR",
+     "PARK_PARK3": "MEADOWS",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.43",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.43"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "HARRISON",
+     "PARK_NAME2": "HARRISON",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1195.44",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1195.44"
+    },
+    {
+     "PARENT": "PBSHADE",
+     "PARK_NAME1": "ELLIOT",
+     "PARK_NAME2": "ELLOIT",
+     "PARK_PARK3": "PARK",
+     "PREFIX": "REFNO",
+     "REFNO": "1196.08",
+     "REGIONAL": " ",
+     "SYMBOL_NAM": "PARKAREA",
+     "UDI": "1196.08"
+    }
+   ],
+   "service": "Buffer_of_parksmn",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_parksmn/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "PARKNAME",
+   "count": 47,
+   "fields": [
+    "PARKID",
+    "PARKNAME",
+    "PARK_ADDR",
+    "CITY_MUNI",
+    "AGENCYNAME",
+    "OLDNEW"
+   ],
+   "known": false,
+   "layer": "buffer_coveraparks",
+   "sample": [
+    {
+     "AGENCYNAME": "Minneapolis Park & Recreation Board",
+     "CITY_MUNI": "Minneapolis",
+     "OLDNEW": "Post-1900",
+     "PARKID": "27053-05-0001006",
+     "PARKNAME": "Bryn Mawr Meadows",
+     "PARK_ADDR": "1905 Mt. View Ave."
+    },
+    {
+     "AGENCYNAME": "Minneapolis Park & Recreation Board",
+     "CITY_MUNI": "Minneapolis",
+     "OLDNEW": "Post-1900",
+     "PARKID": "27053-05-0001007",
+     "PARKNAME": "Audubon Park",
+     "PARK_ADDR": "1320 29th Ave. NE"
+    },
+    {
+     "AGENCYNAME": "Minneapolis Park & Recreation Board",
+     "CITY_MUNI": "Minneapolis",
+     "OLDNEW": "Post-1900",
+     "PARKID": "27053-05-0001012",
+     "PARKNAME": "Sumner Field",
+     "PARK_ADDR": "10th Ave N & Aldrich Ave N"
+    }
+   ],
+   "service": "buffer_coveraparks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/buffer_coveraparks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "area_name",
+   "count": 33,
+   "fields": [
+    "areaid",
+    "phone",
+    "area_name",
+    "city",
+    "address",
+    "zip",
+    "fax",
+    "contact_na",
+    "state",
+    "email",
+    "contact2",
+    "contact3",
+    "phone2",
+    "phone3",
+    "satoffice",
+    "satcont1",
+    "satphone1",
+    "satcont2",
+    "satphone2",
+    "org"
+   ],
+   "known": false,
+   "layer": "Dnr Wildlife Admin",
+   "sample": [
+    {
+     "address": "29172 100th Avenue",
+     "area_name": "Mille Lacs WMA",
+     "areaid": "D3H",
+     "city": "Onamia",
+     "contact2": "Bart Bly",
+     "contact3": "Jeremy Abel",
+     "contact_na": "Steve Piepgras",
+     "email": "millelacs.wildlife@state.mn.us",
+     "fax": "320-532-3514",
+     "phone": "320-532-3537",
+     "state": "MN",
+     "zip": "56359"
+    },
+    {
+     "address": " ",
+     "area_name": " ",
+     "areaid": " ",
+     "city": " ",
+     "contact2": " ",
+     "contact3": " ",
+     "contact_na": " ",
+     "email": " ",
+     "fax": " ",
+     "phone": " ",
+     "state": " ",
+     "zip": " "
+    },
+    {
+     "address": "14583 County Highway 19",
+     "area_name": "Detroit Lakes",
+     "areaid": "D1T",
+     "city": "Detroit Lakes",
+     "contact2": "Greg Henderson",
+     "contact3": "Vacant",
+     "contact_na": "Rob Baden",
+     "email": "detroitlakes.wildlife@state.mn.us",
+     "fax": "218-847-8397",
+     "phone": "218-846-8476",
+     "state": "MN",
+     "zip": "56501"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_wildlife_admin",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_admin/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 33,
+   "fields": [
+    "contact",
+    "contact_ph"
+   ],
+   "known": false,
+   "layer": "ICFA Areas",
+   "sample": [
+    {
+     "contact": "David Leclaire",
+     "contact_ph": "(507)763-3873"
+    },
+    {
+     "contact": "Scott Deslauriers",
+     "contact_ph": "(507)317-1960"
+    },
+    {
+     "contact": "James Hand",
+     "contact_ph": "(507)235-9867"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_inland_commercial_fishing",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_inland_commercial_fishing/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "area_name",
+   "count": 29,
+   "fields": [
+    "area_id",
+    "area_name",
+    "city",
+    "address",
+    "state",
+    "zip",
+    "fax",
+    "contact_na",
+    "org",
+    "area_web",
+    "email",
+    "phone",
+    "comments"
+   ],
+   "known": false,
+   "layer": "Dnr Fisheries Admin",
+   "sample": [
+    {
+     "address": "5351 North Shore Dr",
+     "area_id": "270",
+     "area_name": "Lake Superior Area",
+     "area_web": "http://www.dnr.state.mn.us/areas/fisheries/superior/index.html",
+     "city": "Duluth",
+     "contact_na": "Cory Goldsworthy",
+     "email": "superior.fisheries@state.mn.us",
+     "org": "F219",
+     "phone": "218-302-3264",
+     "state": "MN",
+     "zip": "55804"
+    },
+    {
+     "address": "1035 South Benton Dr",
+     "area_id": "340",
+     "area_name": "Sauk Rapids Area",
+     "area_web": "http://www.dnr.state.mn.us/areas/fisheries/saukrapids/index.html",
+     "city": "Sauk Rapids",
+     "contact_na": "Joe Stewig",
+     "email": "saukrapids.fisheries@state.mn.us",
+     "fax": "320-255-3999",
+     "org": "F315",
+     "phone": "320-223-7878",
+     "state": "MN",
+     "zip": "56379-1209"
+    },
+    {
+     "address": "890 Pine Ave",
+     "area_id": "420",
+     "area_name": "Ortonville Area",
+     "area_web": "http://www.dnr.state.mn.us/areas/fisheries/ortonville/index.html",
+     "city": "Ortonville",
+     "contact_na": "Chris Domeier",
+     "email": "ortonville.fisheries@state.mn.us",
+     "fax": "320-839-3823",
+     "org": "F415",
+     "phone": "320-839-2656",
+     "state": "MN",
+     "zip": "56278"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_fisheries_admin",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_fisheries_admin/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 16,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "Dnr Forestry Admin",
+   "sample": [
+    {
+     "name": "Sandstone Area"
+    },
+    {
+     "name": "Bemidji Area"
+    },
+    {
+     "name": "Two Harbors Area"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_forestry_admin",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_forestry_admin/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "admin_unit",
+   "count": 16,
+   "fields": [
+    "altd_name",
+    "version",
+    "admin_unit",
+    "sup_location",
+    "first_name",
+    "last_name",
+    "title",
+    "area_sup_name",
+    "email_addr",
+    "phone_numb"
+   ],
+   "known": false,
+   "layer": "Dnr Parks And Trails Areas",
+   "sample": [
+    {
+     "admin_unit": "Area 1A – housed at Lake Bemidji State Park",
+     "altd_name": "1A",
+     "area_sup_name": "Dave Schotzko",
+     "email_addr": "David.schotzko@state.mn.us",
+     "first_name": "Dave",
+     "last_name": "Schotzko",
+     "phone_numb": "218-308-2367",
+     "sup_location": "Lake Bemidji State Park",
+     "title": "1A Area Supervisor",
+     "version": "4/27/2020"
+    },
+    {
+     "admin_unit": "Area 1B – housed in Fergus Falls",
+     "altd_name": "1B",
+     "area_sup_name": "Jeff Fjestad",
+     "email_addr": "Jeffrey.fjestad@state.mn.us",
+     "first_name": "Jeff",
+     "last_name": "Fjestad",
+     "phone_numb": "218-671-7964",
+     "sup_location": "Fergus Falls",
+     "title": "1B Area Supervisor",
+     "version": "4/27/2020"
+    },
+    {
+     "admin_unit": "Area 4D – housed at Rice Lake State Park",
+     "altd_name": "4D",
+     "area_sup_name": "Tom Mathews",
+     "email_addr": "Tom.Matthews@state.mn.us",
+     "first_name": "Tom",
+     "last_name": "Mathews",
+     "phone_numb": "507-696-4957",
+     "sup_location": "Rice Lake State Park",
+     "title": "4D Area Supervisor",
+     "version": "9/8/2021"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_parks_and_trails_admin",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_parks_and_trails_admin/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 13,
+   "fields": [
+    "Type"
+   ],
+   "known": false,
+   "layer": "WaterFeatures",
+   "sample": [
+    {
+     "Type": "Pond"
+    },
+    {
+     "Type": "Creek"
+    },
+    {
+     "Type": "Creek"
+    }
+   ],
+   "service": "Elevation_Depressions_in_Hartley_Park",
+   "typef": "Type",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Elevation_Depressions_in_Hartley_Park/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11,
+   "fields": [
+    "version",
+    "pat_dst_name"
+   ],
+   "known": false,
+   "layer": "Dnr Parks And Trails Districts",
+   "sample": [
+    {
+     "pat_dst_name": "1",
+     "version": "01-05-2010"
+    },
+    {
+     "pat_dst_name": "2",
+     "version": "01-05-2010"
+    },
+    {
+     "pat_dst_name": "3",
+     "version": "01-05-2010"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_parks_and_trails_admin",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_parks_and_trails_admin/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unit_name",
+   "count": 10,
+   "fields": [
+    "unit_name",
+    "unit_type",
+    "method"
+   ],
+   "known": false,
+   "layer": "ParkHuntAreasOpenbyLegislation",
+   "sample": [
+    {
+     "method": "Open to public hunting",
+     "unit_name": "Garden Island State Recreation Area",
+     "unit_type": "State Recreation Area"
+    },
+    {
+     "method": "Open to public hunting and trapping",
+     "unit_name": "Big Bog State Recreation Area",
+     "unit_type": "State Recreation Area"
+    },
+    {
+     "method": "Open to public hunting",
+     "unit_name": "George Crosby Manitou State Park",
+     "unit_type": "State Park"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_leg_hunting_prk_pub",
+   "typef": "unit_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_leg_hunting_prk_pub/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 6,
+   "fields": [
+    "dowlknum",
+    "pw_basin_name",
+    "pw_parent_name",
+    "pw_sub_name",
+    "sub_flag",
+    "wb_class",
+    "cty_name",
+    "fsh_office",
+    "outside_mn",
+    "delineated_by",
+    "delineation_src",
+    "delineation_notes",
+    "approved_by",
+    "approval_notes",
+    "has_flag",
+    "flag_type",
+    "has_wld_flag",
+    "wld_flag_type",
+    "created_user",
+    "last_edited_user"
+   ],
+   "known": false,
+   "layer": "Rivers",
+   "sample": [
+    {
+     "delineation_src": "DNR 24k POLYS",
+     "outside_mn": "N",
+     "sub_flag": "X",
+     "wb_class": "Riverine polygon"
+    },
+    {
+     "delineation_src": "DNR 24k POLYS",
+     "outside_mn": "N",
+     "sub_flag": "X",
+     "wb_class": "Riverine polygon"
+    },
+    {
+     "delineation_src": "DNR 24k POLYS",
+     "outside_mn": "N",
+     "sub_flag": "X",
+     "wb_class": "Riverine polygon"
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "wb_class",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/77"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 5,
+   "fields": [
+    "description"
+   ],
+   "known": false,
+   "layer": "Kittson Historic Zones",
+   "sample": [
+    {
+     "description": "Kittson Elk Hunt Zone 2008"
+    },
+    {
+     "description": "Kittson Elk Hunt Zone 2009 North"
+    },
+    {
+     "description": "Kittson Elk Hunt Zone 2009 South"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_elk_zones",
+   "typef": "description",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_elk_zones/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4,
+   "fields": [
+    "mecc"
+   ],
+   "known": false,
+   "layer": "Conservation Corridors",
+   "sample": [
+    {
+     "mecc": "yes"
+    },
+    {
+     "mecc": "yes"
+    },
+    {
+     "mecc": "yes"
+    }
+   ],
+   "service": "us_mn_state_dnr/env_conservation_corridors",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/env_conservation_corridors/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "bwca_unit",
+   "count": 3,
+   "fields": [
+    "bwca_unit"
+   ],
+   "known": false,
+   "layer": "Boundary Waters Canoe Area Wilderness",
+   "sample": [
+    {
+     "bwca_unit": "Central"
+    },
+    {
+     "bwca_unit": "Eastern"
+    },
+    {
+     "bwca_unit": "Southwest"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_boundary_waters_canoe_area",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_boundary_waters_canoe_area/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "BWCA_UNIT",
+   "count": 3,
+   "fields": [
+    "BWCA_UNIT"
+   ],
+   "known": false,
+   "layer": "boundary_waters_canoe_area_wilderness",
+   "sample": [
+    {
+     "BWCA_UNIT": "Central"
+    },
+    {
+     "BWCA_UNIT": "Eastern"
+    },
+    {
+     "BWCA_UNIT": "Southwest"
+    }
+   ],
+   "service": "boundary_waters_canoe_area_wilderness",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/boundary_waters_canoe_area_wilderness/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 2,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "Farmland Forest Zones",
+   "sample": [
+    {
+     "name": "Farmland Furbearer Zone"
+    },
+    {
+     "name": "Forest Furbearer Zone"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_farmland_forest_zones",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_farmland_forest_zones/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2,
+   "fields": [
+    "description"
+   ],
+   "known": false,
+   "layer": "Grygla Historic Zones",
+   "sample": [
+    {
+     "description": "Grygla Elk Hunt Zone 1987-1996"
+    },
+    {
+     "description": "Grygla Elk Hunt Zone 1997-2007"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_elk_zones",
+   "typef": "description",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_elk_zones/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1,
+   "fields": [
+    "name"
+   ],
+   "known": false,
+   "layer": "Fisher Marten Bobcat Zones",
+   "sample": [
+    {
+     "name": "Fisher/Marten/Bobcat Zone"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_fisher_marten_bobcat_zones",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_fisher_marten_bobcat_zones/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Old Growth Smz 330Ft Buffer",
+   "sample": [
+    {
+     "Shape__Area": 862228735.0904032,
+     "Shape__Length": 4712325.540273487,
+     "objectid": 1
+    }
+   ],
+   "service": "us_mn_state_dnr/biota_dnr_forest_inv_old_growth",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_forest_inv_old_growth/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": ".25milesBufferZone_Parks",
+   "sample": [
+    {
+     "AnalysisArea": 51.29253107,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": ".25milesBufferZone_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/.25milesBufferZone_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "_25_Mile_buffer_of_parks",
+   "sample": [
+    {
+     "AnalysisArea": 51.27002508,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "_25_Mile_buffer_of_parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/_25_Mile_buffer_of_parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 1,
+   "fields": [
+    "Name"
+   ],
+   "known": false,
+   "layer": "travelareas",
+   "sample": [
+    {
+     "Name": "0 - 10"
+    }
+   ],
+   "service": "10_Minute_Walk_Time_of_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/10_Minute_Walk_Time_of_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Aggregation_of_Minneapolis_Coffee_Shops_to_Buffer_of_Minneapolis_Parks",
+   "sample": [
+    {
+     "AnalysisArea": 51.22678278,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 56
+    }
+   ],
+   "service": "Aggregation_of_Minneapolis_Coffee_Shops_to_Buffer_of_Minneapolis_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Aggregation_of_Minneapolis_Coffee_Shops_to_Buffer_of_Minneapolis_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "STATE_ABBR",
+    "STATE_FIPS",
+    "MONTH_ADM",
+    "TYPE"
+   ],
+   "known": false,
+   "layer": "US_State_Boundaries_ExportFeatures",
+   "sample": [
+    {
+     "MONTH_ADM": "May",
+     "NAME": "Minnesota",
+     "STATE_ABBR": "MN",
+     "STATE_FIPS": "27",
+     "TYPE": "Land"
+    }
+   ],
+   "service": "All_forest_types_WFL1",
+   "typef": "TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/All_forest_types_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Buffer_of_Minneapolis_MN_Parks",
+   "sample": [
+    {
+     "AnalysisArea": 51.22678278,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "Buffer_of_Minneapolis_MN_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Minneapolis_MN_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Buffer_of_Minneapolis_Parks",
+   "sample": [
+    {
+     "AnalysisArea": 51.22678278,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "Buffer_of_Minneapolis_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Minneapolis_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "BufferedFeatures",
+   "sample": [
+    {
+     "AnalysisArea": 51.27002735,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "Buffer_of_Minneapolis_Parks_0_25_miles_Ryerson_2023",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Minneapolis_Parks_0_25_miles_Ryerson_2023/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Buffer_of_Parks_Dissolve_LJ_2021",
+   "sample": [
+    {
+     "AnalysisArea": 51.22678383,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "Buffer_of_Parks_Dissolve_LJ_2021",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Parks_Dissolve_LJ_2021/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Buffer_of_Parks_Moucha2",
+   "sample": [
+    {
+     "AnalysisArea": 51.22678278,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "Buffer_of_Parks_Moucha2",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Buffer_of_Parks_Moucha2/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "BufferedFeatures",
+   "sample": [
+    {
+     "AnalysisArea": 51.27002613,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1
+    }
+   ],
+   "service": "Cambray_0_25mile_Dissolved_Buffer_of_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cambray_0_25mile_Dissolved_Buffer_of_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "resultLayer",
+   "sample": [
+    {
+     "AnalysisArea": 51.27002613,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 55
+    }
+   ],
+   "service": "Cambray_Coffee_Shops_within_0_25mile_Dissolved_Buffer_of_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cambray_Coffee_Shops_within_0_25mile_Dissolved_Buffer_of_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "FEATURE_NAME",
+    "COUNTY_NAME"
+   ],
+   "known": false,
+   "layer": "MN City Boundaries",
+   "sample": [
+    {
+     "COUNTY_NAME": "Fillmore",
+     "FEATURE_NAME": "Preston"
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "FEATURE_NAME",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/70"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "National Register of Historic Places",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 3323072.71875,
+     "Shape__Length": 8261.535300072379
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/20"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "State Historic Site",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 238174.171875,
+     "Shape__Length": 2337.7081720217984
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Preston-Carimona Trail Boundary",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 471770.97265625,
+     "Shape__Length": 21331.891919749683
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "UNIT_NAME",
+   "count": 1,
+   "fields": [
+    "UNIT_NAME",
+    "UNIT_TYPE",
+    "PGRM_PROJECT",
+    "LEGISLATIVE_NAME"
+   ],
+   "known": false,
+   "layer": "State Parks",
+   "sample": [
+    {
+     "LEGISLATIVE_NAME": "Forestville Mystery Cave State Park",
+     "PGRM_PROJECT": "SPK00148",
+     "UNIT_NAME": "Forestville/Mystery Cave",
+     "UNIT_TYPE": "State Park"
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "UNIT_TYPE",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/76"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "to clip",
+   "sample": [
+    {
+     "FID": 1,
+     "Id": 0,
+     "Shape__Area": 848838729.9492188,
+     "Shape__Length": 118307.10137186476
+    }
+   ],
+   "service": "Carimona_Forestville_Layers",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Carimona_Forestville_Layers/FeatureServer/71"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "ADMINFORES",
+    "REGION",
+    "FORESTNUMB",
+    "FORESTORGC",
+    "FORESTNAME"
+   ],
+   "known": false,
+   "layer": "CNF_boundary_JSONToFeatures",
+   "sample": [
+    {
+     "ADMINFORES": "99090300010343",
+     "FORESTNAME": "Chippewa National Forest",
+     "FORESTNUMB": "03",
+     "FORESTORGC": "0903",
+     "REGION": "09"
+    }
+   ],
+   "service": "ChippewaNationalForest_Boundary",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/ChippewaNationalForest_Boundary/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "CFC 2014 Boundary",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 29589603.80859375,
+     "Shape__Length": 27309.49865982175
+    }
+   ],
+   "service": "Cloquet_Forestry_Center_Digitization_Project_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cloquet_Forestry_Center_Digitization_Project_WFL1/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Camp 8",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 389741.703125,
+     "Shape__Length": 2853.7808635696038
+    }
+   ],
+   "service": "Cloquet_Forestry_Center_Digitization_Project_WFL1",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Cloquet_Forestry_Center_Digitization_Project_WFL1/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Coffee_Shop_within__25_Mile_Buffer_of_Minneapolis_Parks",
+   "sample": [
+    {
+     "AnalysisArea": 132.67675832,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 53
+    }
+   ],
+   "service": "Coffee_Shop_within__25_Mile_Buffer_of_Minneapolis_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Coffee_Shop_within__25_Mile_Buffer_of_Minneapolis_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Coffee_Shops_near_to_Parks_in_Minneapolis",
+   "sample": [
+    {
+     "AnalysisArea": 132.67675832,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 55
+    }
+   ],
+   "service": "Coffee_Shops_near_to_Parks_in_Minneapolis",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Coffee_Shops_near_to_Parks_in_Minneapolis/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "resultLayer",
+   "sample": [
+    {
+     "AnalysisArea": 51.27002735,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 55
+    }
+   ],
+   "service": "Coffee_Shops_within_0_25_miles_of_Parks_Ryerson_2023",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Coffee_Shops_within_0_25_miles_of_Parks_Ryerson_2023/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Coffeeshops_per_.25mileBufferZone_of_Parks",
+   "sample": [
+    {
+     "AnalysisArea": 51.29253107,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 56
+    }
+   ],
+   "service": "Coffeeshops_per_.25mileBufferZone_of_Parks",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Coffeeshops_per_.25mileBufferZone_of_Parks/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "CountsCoShPark",
+   "sample": [
+    {
+     "AnalysisArea": 132.84704561,
+     "BUFF_DIST": 0.25,
+     "OBJECTID": 1,
+     "Point_Count": 56,
+     "SUM_DUNS_Number": 20768671070
+    }
+   ],
+   "service": "CountsCoShPark",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/CountsCoShPark/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "ParkBoundary",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 5926222.5546875,
+     "Shape__Length": 15297.072955725373
+    }
+   ],
+   "service": "Elevation_Depressions_in_Hartley_Park",
+   "typef": "",
+   "url": "https://services.arcgis.com/8df8p0NlLFEShl0r/ArcGIS/rest/services/Elevation_Depressions_in_Hartley_Park/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 1752,
+   "fields": [
+    "name",
+    "unit_name",
+    "subunit_name",
+    "lam_program_project_code",
+    "subunit_nbr",
+    "uniqueid",
+    "managing_admin_office",
+    "nearest_town",
+    "directions_from_nearest_town",
+    "special_rec_opportunities",
+    "ada_accessibility_notes",
+    "header",
+    "comments",
+    "data_mgmt_notes",
+    "special_restrictions",
+    "ada_accessibility_pdf_name",
+    "general_access_notes",
+    "federal_aid_acquisition_program",
+    "writeup_location",
+    "writeup_pdf_name"
+   ],
+   "known": true,
+   "layer": "Dnr Wildlife Management Area Boundaries Publicly Accessible",
+   "sample": [
+    {
+     "directions_from_nearest_town": "From Fergus Falls, 10 miles South on County  1, then 1 mile East on County 110.",
+     "header": "For more information on this unit, contact the Area Wildlife office at the phone number listed on the bottom of this page.",
+     "lam_program_project_code": "WMA00382",
+     "managing_admin_office": "Fergus Falls",
+     "name": "Aastad WMA",
+     "nearest_town": "Fergus Falls",
+     "subunit_nbr": "00",
+     "uniqueid": "WMA0038200",
+     "unit_name": "Aastad WMA"
+    },
+    {
+     "directions_from_nearest_town": "From Clarkfield, go 2 miles N on SH 59 then 1/2 mile W on Twp Rd",
+     "header": "For more information on this unit, contact the Area Wildlife office at the phone number listed on the bottom of this page.",
+     "lam_program_project_code": "WMA00129",
+     "managing_admin_office": "Marshall",
+     "name": "Stoney Run WMA",
+     "nearest_town": "Clarkfield",
+     "subunit_nbr": "00",
+     "uniqueid": "WMA0012900",
+     "unit_name": "Stoney Run WMA"
+    },
+    {
+     "directions_from_nearest_town": "From Taconite, go 15 miles north on CSAH 7, then 1.5 miles west on CSAH 51 to the Balsam Lake access.",
+     "header": "This WMA is a tiny 0.54-acre island, it is the only publicly owned shoreline on Balsam Lake.",
+     "lam_program_project_code": "WMA01725",
+     "managing_admin_office": "Grand Rapids",
+     "name": "Balsam Island WMA",
+     "nearest_town": "Taconite",
+     "special_rec_opportunities": "Opportunities exist for viewing forest songbirds and spring wildflowers on this unit.",
+     "subunit_nbr": "00",
+     "uniqueid": "WMA0172500",
+     "unit_name": "Balsam Island WMA"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "unit_name",
+   "count": 239,
+   "fields": [
+    "unit_name",
+    "unit_type",
+    "pgrm_project",
+    "name",
+    "designated",
+    "own_code",
+    "own_desc",
+    "point_of_contact"
+   ],
+   "known": true,
+   "layer": "Scientific And Natural Area Boundaries",
+   "sample": [
+    {
+     "designated": "Designated",
+     "name": "Wild Indigo SNA",
+     "own_code": "41",
+     "own_desc": "MN DNR Ecological & Water Resources (Scientific & Natural Areas)",
+     "pgrm_project": "SNA01051",
+     "point_of_contact": "Region 4 SNA Manager - sna.dnr@state.mn.us",
+     "unit_name": "Wild Indigo",
+     "unit_type": "Scientific and Natural Area"
+    },
+    {
+     "designated": "Designated",
+     "name": "Ladies Tresses Swamp SNA",
+     "own_code": "41",
+     "own_desc": "MN DNR Ecological & Water Resources (Scientific & Natural Areas)",
+     "pgrm_project": "SNA01023",
+     "point_of_contact": "Region 2 SNA Manager - sna.dnr@state.mn.us",
+     "unit_name": "Ladies Tresses Swamp",
+     "unit_type": "Scientific and Natural Area"
+    },
+    {
+     "designated": "Designated",
+     "name": "King's and Queen's Bluffs SNA",
+     "own_code": "40",
+     "own_desc": "MN DNR Parks and Recreation",
+     "pgrm_project": "SNA01037",
+     "point_of_contact": "Region 3 SNA Manager - sna.dnr@state.mn.us",
+     "unit_name": "King's Bluff",
+     "unit_type": "Scientific and Natural Area"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_scientific_and_nat_areas",
+   "typef": "unit_type",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_scientific_and_nat_areas/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 60,
+   "fields": [
+    "name",
+    "sft"
+   ],
+   "known": true,
+   "layer": "State Forest Boundaries",
+   "sample": [
+    {
+     "name": "Birch Lakes",
+     "sft": "SFT00007"
+    },
+    {
+     "name": "Land O'Lakes",
+     "sft": "SFT00031"
+    },
+    {
+     "name": "Lake Isabella",
+     "sft": "SFT00029"
+    }
+   ],
+   "service": "us_mn_state_dnr/bdry_state_forest",
+   "typef": "",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_state_forest/FeatureServer/4"
+  }
+ ],
+ "st": "MN"
+}

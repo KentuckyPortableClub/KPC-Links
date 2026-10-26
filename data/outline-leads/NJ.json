@@ -1,0 +1,1235 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "NJDEP Bureau of GIS, Edition 20241101",
+   "area": "",
+   "count": 193915,
+   "fields": [
+    "LABEL20",
+    "TYPE20",
+    "LABEL15",
+    "TYPE15",
+    "HU8",
+    "STATUS",
+    "APPROVED",
+    "NHD_FEATURECLASS",
+    "PERMANENT_IDENTIFIER",
+    "GNIS_ID",
+    "GNIS_NAME",
+    "REACHCODE",
+    "FTYPE_DESCRIPTION",
+    "FCODE_DESCRIPTION",
+    "FTYPE_DISPLAY",
+    "WATERBODY_NAME",
+    "FEATURE_NAME",
+    "FEATURE_CLASS",
+    "TIDAL_WATER",
+    "TIDAL_COASTLINE"
+   ],
+   "known": false,
+   "layer": "Forests 2020",
+   "sample": [
+    {
+     "APPROVED": "11/1/24",
+     "HU8": "02040201",
+     "LABEL15": "OLD FIELD (< 25% BRUSH COVERED)",
+     "LABEL20": "OLD FIELD (< 25% BRUSH COVERED)",
+     "STATUS": "FINAL",
+     "TYPE15": "FOREST",
+     "TYPE20": "FOREST"
+    },
+    {
+     "APPROVED": "11/1/24",
+     "HU8": "02040201",
+     "LABEL15": "OLD FIELD (< 25% BRUSH COVERED)",
+     "LABEL20": "OLD FIELD (< 25% BRUSH COVERED)",
+     "STATUS": "FINAL",
+     "TYPE15": "FOREST",
+     "TYPE20": "FOREST"
+    },
+    {
+     "APPROVED": "11/1/24",
+     "HU8": "02040201",
+     "LABEL15": "TRANSITIONAL AREAS",
+     "LABEL20": "OLD FIELD (< 25% BRUSH COVERED)",
+     "STATUS": "FINAL",
+     "TYPE15": "BARREN LAND",
+     "TYPE20": "FOREST"
+    }
+   ],
+   "service": "Forests_2020",
+   "typef": "TYPE20",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Forests_2020/FeatureServer/13"
+  },
+  {
+   "agency": "New Jersey Department of Environmental Protection (NJDEP), Fish and Wildlife (FW",
+   "area": "",
+   "count": 38842,
+   "fields": [
+    "WATERBODY",
+    "GNIS_NAME",
+    "WBREG_ID_LIST",
+    "WBREG_URL",
+    "FISHREG_ID_LIST",
+    "FISHREG_URL",
+    "CLASS"
+   ],
+   "known": false,
+   "layer": "Freshwater Fishing Regulation Waterbodies",
+   "sample": [
+    {
+     "FISHREG_ID_LIST": "1,2,4,9,12,13,14,15,18,22,24,27,30,32,33,34,35,37,43,57,67,71,81,85",
+     "FISHREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/species-regs-05.pdf",
+     "GNIS_NAME": "Wallkill River",
+     "WATERBODY": "Wallkill River",
+     "WBREG_ID_LIST": "1,12",
+     "WBREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/wb-regs-04.pdf"
+    },
+    {
+     "FISHREG_ID_LIST": "1,2,4,9,12,13,14,15,18,22,24,27,30,32,33,34,35,37,43,57,67,71,81,85",
+     "FISHREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/species-regs-05.pdf",
+     "GNIS_NAME": "Wallkill River",
+     "WATERBODY": "Wallkill River",
+     "WBREG_ID_LIST": "1,12",
+     "WBREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/wb-regs-04.pdf"
+    },
+    {
+     "FISHREG_ID_LIST": "1,2,4,9,12,13,14,15,18,22,24,27,30,32,33,34,35,37,43,57,67,71,81,85",
+     "FISHREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/species-regs-05.pdf",
+     "GNIS_NAME": "Wallkill River",
+     "WATERBODY": "Wallkill River",
+     "WBREG_ID_LIST": "1,12",
+     "WBREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/wb-regs-04.pdf"
+    }
+   ],
+   "service": "Freshwater_Fishing_Regulation_Waterbodies",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Freshwater_Fishing_Regulation_Waterbodies/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 7070,
+   "fields": [
+    "CONFIRMED_SPECIES",
+    "POTENTIAL_SPECIES",
+    "DISPLAY_TYPE",
+    "TYPE",
+    "REGION",
+    "MAP_DISPLAY",
+    "PERMANENT_IDENTIFIER",
+    "GNIS_ID",
+    "GNIS_NAME",
+    "REACH_CODE",
+    "FTYPE_DESCRIPTION",
+    "FCODE_DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "Anadromous Fish Waterbodies in New Jersey",
+   "sample": [
+    {
+     "CONFIRMED_SPECIES": "None",
+     "DISPLAY_TYPE": "Potential",
+     "FCODE_DESCRIPTION": "Lake/Pond: Hydrographic Category = Perennial",
+     "FTYPE_DESCRIPTION": "Lake/Pond",
+     "MAP_DISPLAY": "Y",
+     "PERMANENT_IDENTIFIER": "{9142CC96-B580-41BD-A569-93EEA1B23133}",
+     "POTENTIAL_SPECIES": "All",
+     "REACH_CODE": "02040301049111",
+     "REGION": "Shark River",
+     "TYPE": "Suitable"
+    },
+    {
+     "CONFIRMED_SPECIES": "None",
+     "DISPLAY_TYPE": "Potential",
+     "FCODE_DESCRIPTION": "Lake/Pond: Hydrographic Category = Perennial",
+     "FTYPE_DESCRIPTION": "Lake/Pond",
+     "MAP_DISPLAY": "Y",
+     "PERMANENT_IDENTIFIER": "{9142CC96-B580-41BD-A569-93EEA1B23133}",
+     "POTENTIAL_SPECIES": "All",
+     "REACH_CODE": "02040301049111",
+     "REGION": "Shark River",
+     "TYPE": "Suitable"
+    },
+    {
+     "CONFIRMED_SPECIES": "None",
+     "DISPLAY_TYPE": "Potential",
+     "FCODE_DESCRIPTION": "Lake/Pond: Hydrographic Category = Perennial",
+     "FTYPE_DESCRIPTION": "Lake/Pond",
+     "MAP_DISPLAY": "Y",
+     "PERMANENT_IDENTIFIER": "{2BCA85CD-0280-43DE-BF3F-ACAE2AD1AD02}",
+     "POTENTIAL_SPECIES": "All",
+     "REACH_CODE": "02040301048756",
+     "REGION": "Shark River",
+     "TYPE": "Suitable"
+    }
+   ],
+   "service": "Anadromous_Fish_Streams_in_New_Jersey",
+   "typef": "DISPLAY_TYPE",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Anadromous_Fish_Streams_in_New_Jersey/FeatureServer/100006"
+  },
+  {
+   "agency": "NJDEP,  DWMS/BWQSA  Edition 20230707",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "AU_NUMBER",
+    "AU_NAME",
+    "HUC14",
+    "WMA",
+    "WMA_NAME",
+    "REGION_NAME",
+    "WSHED_NAME",
+    "FISH_CONSUMPTION",
+    "FISH_MERCURY",
+    "FISH_PCB",
+    "FISH_DDX",
+    "FISH_CHLORDANE",
+    "FISH_DIOXIN",
+    "FISH_ARSENIC",
+    "FISH_CADMIUM",
+    "FISH_CHLORPYRIFOS",
+    "FISH_DIELDRIN",
+    "FISH_ENDOSULFAN",
+    "FISH_ENDRIN",
+    "FISH_HEPTACHLOR"
+   ],
+   "known": false,
+   "layer": "2022 Fish Consumption Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "02020007010050-01",
+     "FISH_CHLORDANE": "Insufficient Data",
+     "FISH_CONSUMPTION": "Insufficient Data",
+     "FISH_DDX": "Insufficient Data",
+     "FISH_MERCURY": "Insufficient Data",
+     "FISH_PCB": "Insufficient Data",
+     "HUC14": "HUC02020007010050",
+     "REGION_NAME": "Northwest",
+     "WMA": "02",
+     "WMA_NAME": "Wallkill",
+     "WSHED_NAME": "Wallkill River (above road to Martins)"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "02030103050050-01",
+     "FISH_CHLORDANE": "Insufficient Data",
+     "FISH_CONSUMPTION": "Insufficient Data",
+     "FISH_DDX": "Insufficient Data",
+     "FISH_MERCURY": "Insufficient Data",
+     "FISH_PCB": "Insufficient Data",
+     "HUC14": "HUC02030103050050",
+     "REGION_NAME": "Northeast",
+     "WMA": "03",
+     "WMA_NAME": "Pompton, Pequannock, Wanaque, Ramapo",
+     "WSHED_NAME": "Pequannock River"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "02040105040050-01",
+     "FISH_CHLORDANE": "Insufficient Data",
+     "FISH_CONSUMPTION": "Insufficient Data",
+     "FISH_DDX": "Insufficient Data",
+     "FISH_MERCURY": "Insufficient Data",
+     "FISH_PCB": "Insufficient Data",
+     "HUC14": "HUC02040105040050",
+     "REGION_NAME": "Northwest",
+     "WMA": "01",
+     "WMA_NAME": "Upper Delaware",
+     "WSHED_NAME": "Paulins Kill (above Stillwater Village)"
+    }
+   ],
+   "service": "2022_Fish_Consumption_Unit_Assessment",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2022_Fish_Consumption_Unit_Assessment/FeatureServer/73"
+  },
+  {
+   "agency": "NJDEP,  DWMS/BWQSA  Edition 20230707",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "HUC14",
+    "WMA",
+    "WMA_NAME",
+    "REGION_NAME",
+    "WSHED_NAME",
+    "E_COLI",
+    "ENTEROCOCCUS",
+    "BEACH_CLOSURES",
+    "AU_NUMBER",
+    "AU_NAME",
+    "PRIMARY_RECREATION"
+   ],
+   "known": false,
+   "layer": "2022 Primary Recreation Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "02020007010050-01",
+     "BEACH_CLOSURES": "Insufficient Data",
+     "ENTEROCOCCUS": " ",
+     "E_COLI": "Non Attain",
+     "HUC14": "HUC02020007010050",
+     "PRIMARY_RECREATION": "Non Attain",
+     "REGION_NAME": "Northwest",
+     "WMA": "02",
+     "WMA_NAME": "Wallkill",
+     "WSHED_NAME": "Wallkill River (above road to Martins)"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "02030103050050-01",
+     "BEACH_CLOSURES": "Insufficient Data",
+     "ENTEROCOCCUS": " ",
+     "E_COLI": "Insufficient Data",
+     "HUC14": "HUC02030103050050",
+     "PRIMARY_RECREATION": "Insufficient Data",
+     "REGION_NAME": "Northeast",
+     "WMA": "03",
+     "WMA_NAME": "Pompton, Pequannock, Wanaque, Ramapo",
+     "WSHED_NAME": "Pequannock River"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "02040105040050-01",
+     "BEACH_CLOSURES": "Insufficient Data",
+     "ENTEROCOCCUS": " ",
+     "E_COLI": "Non Attain",
+     "HUC14": "HUC02040105040050",
+     "PRIMARY_RECREATION": "Non Attain",
+     "REGION_NAME": "Northwest",
+     "WMA": "01",
+     "WMA_NAME": "Upper Delaware",
+     "WSHED_NAME": "Paulins Kill (above Stillwater Village)"
+    }
+   ],
+   "service": "2022_Primary_Recreation_Unit_Assessment",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2022_Primary_Recreation_Unit_Assessment/FeatureServer/74"
+  },
+  {
+   "agency": "NJDEP,  DWMS/BWQSA  Edition 20230707",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "HUC14",
+    "WMA",
+    "WMA_NAME",
+    "REGION_NAME",
+    "WSHED_NAME",
+    "SECONDARY_RECREATION",
+    "FECAL_COLIFORM",
+    "AU_NUMBER",
+    "AU_NAME"
+   ],
+   "known": false,
+   "layer": "2022 Secondary Recreation Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "02020007010050-01",
+     "FECAL_COLIFORM": " ",
+     "HUC14": "HUC02020007010050",
+     "REGION_NAME": "Northwest",
+     "SECONDARY_RECREATION": " ",
+     "WMA": "02",
+     "WMA_NAME": "Wallkill",
+     "WSHED_NAME": "Wallkill River (above road to Martins)"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "02030103050050-01",
+     "FECAL_COLIFORM": " ",
+     "HUC14": "HUC02030103050050",
+     "REGION_NAME": "Northeast",
+     "SECONDARY_RECREATION": " ",
+     "WMA": "03",
+     "WMA_NAME": "Pompton, Pequannock, Wanaque, Ramapo",
+     "WSHED_NAME": "Pequannock River"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "02040105040050-01",
+     "FECAL_COLIFORM": " ",
+     "HUC14": "HUC02040105040050",
+     "REGION_NAME": "Northwest",
+     "SECONDARY_RECREATION": " ",
+     "WMA": "01",
+     "WMA_NAME": "Upper Delaware",
+     "WSHED_NAME": "Paulins Kill (above Stillwater Village)"
+    }
+   ],
+   "service": "2022_Secondary_Recreation_Unit_Assessment",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2022_Secondary_Recreation_Unit_Assessment/FeatureServer/75"
+  },
+  {
+   "agency": "",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "HUC14",
+    "WMA",
+    "WMA_NAME",
+    "REGION_NAME",
+    "WSHED_NAME",
+    "SHELLFISH_DESIGNATED_USE",
+    "AU_NUMBER",
+    "AU_NAME"
+   ],
+   "known": false,
+   "layer": "2022 Shellfish Harvesting Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "02020007010050-01",
+     "HUC14": "HUC02020007010050",
+     "REGION_NAME": "Northwest",
+     "SHELLFISH_DESIGNATED_USE": "NA",
+     "WMA": "02",
+     "WMA_NAME": "Wallkill",
+     "WSHED_NAME": "Wallkill River (above road to Martins)"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "02030103050050-01",
+     "HUC14": "HUC02030103050050",
+     "REGION_NAME": "Northeast",
+     "SHELLFISH_DESIGNATED_USE": "NA",
+     "WMA": "03",
+     "WMA_NAME": "Pompton, Pequannock, Wanaque, Ramapo",
+     "WSHED_NAME": "Pequannock River"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "02040105040050-01",
+     "HUC14": "HUC02040105040050",
+     "REGION_NAME": "Northwest",
+     "SHELLFISH_DESIGNATED_USE": "NA",
+     "WMA": "01",
+     "WMA_NAME": "Upper Delaware",
+     "WSHED_NAME": "Paulins Kill (above Stillwater Village)"
+    }
+   ],
+   "service": "2022_Shellfish_Harvesting_Unit_Assessment",
+   "typef": "SHELLFISH_DESIGNATED_USE",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2022_Shellfish_Harvesting_Unit_Assessment/FeatureServer/76"
+  },
+  {
+   "agency": "NJDEP,  DWMS/BWQSA  Edition 20230707",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "AU_NUMBER",
+    "AU_NAME",
+    "WMA",
+    "REGION_NAME",
+    "FISH_CONSUMPTION",
+    "FISH_MERCURY",
+    "FISH_PCB",
+    "FISH_DDX",
+    "FISH_CHLORDANE",
+    "FISH_DIOXIN",
+    "FISH_ARSENIC",
+    "FISH_CADMIUM",
+    "FISH_CHLORPYRIFOS",
+    "FISH_DIELDRIN",
+    "FISH_ENDOSULFAN",
+    "FISH_ENDRIN",
+    "FISH_HEPTACHLOR",
+    "FISH_HEXACHLOROBENZENE",
+    "FISH_BENZOAPYRENE",
+    "FISH_LINDANE"
+   ],
+   "known": false,
+   "layer": "2024 Fish Consumption Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "HUC02020007010050",
+     "FISH_ARSENIC": "Insufficient Data",
+     "FISH_CADMIUM": "Insufficient Data",
+     "FISH_CHLORDANE": "Insufficient Data",
+     "FISH_CONSUMPTION": "Insufficient Data",
+     "FISH_DDX": "Insufficient Data",
+     "FISH_DIOXIN": "Insufficient Data",
+     "FISH_MERCURY": "Insufficient Data",
+     "FISH_PCB": "Insufficient Data",
+     "REGION_NAME": "Northwest",
+     "WMA": "02"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "HUC02030103050050",
+     "FISH_ARSENIC": "Insufficient Data",
+     "FISH_CADMIUM": "Insufficient Data",
+     "FISH_CHLORDANE": "Insufficient Data",
+     "FISH_CONSUMPTION": "Insufficient Data",
+     "FISH_DDX": "Insufficient Data",
+     "FISH_DIOXIN": "Insufficient Data",
+     "FISH_MERCURY": "Insufficient Data",
+     "FISH_PCB": "Insufficient Data",
+     "REGION_NAME": "Northeast",
+     "WMA": "03"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "HUC02040105040050",
+     "FISH_ARSENIC": "Insufficient Data",
+     "FISH_CADMIUM": "Insufficient Data",
+     "FISH_CHLORDANE": "Insufficient Data",
+     "FISH_CONSUMPTION": "Insufficient Data",
+     "FISH_DDX": "Insufficient Data",
+     "FISH_DIOXIN": "Insufficient Data",
+     "FISH_MERCURY": "Insufficient Data",
+     "FISH_PCB": "Insufficient Data",
+     "REGION_NAME": "Northwest",
+     "WMA": "01"
+    }
+   ],
+   "service": "2024_Fish_Consumption_Unit_Assessment_h",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2024_Fish_Consumption_Unit_Assessment_h/FeatureServer/73"
+  },
+  {
+   "agency": "NJDEP,  DWMS/BWQSA  Edition 20230707",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "AU_NUMBER",
+    "AU_NAME",
+    "WMA",
+    "REGION_NAME",
+    "PRIMARY_RECREATION",
+    "E_COLI",
+    "ENTEROCOCCUS",
+    "BEACH_CLOSURES"
+   ],
+   "known": false,
+   "layer": "2024 Primary Recreation Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "HUC02020007010050",
+     "E_COLI": "Non Attain",
+     "PRIMARY_RECREATION": "Non Attain",
+     "REGION_NAME": "Northwest",
+     "WMA": "02"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "HUC02030103050050",
+     "E_COLI": "Insufficient Data",
+     "PRIMARY_RECREATION": "Insufficient Data",
+     "REGION_NAME": "Northeast",
+     "WMA": "03"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "HUC02040105040050",
+     "E_COLI": "Non Attain",
+     "PRIMARY_RECREATION": "Non Attain",
+     "REGION_NAME": "Northwest",
+     "WMA": "01"
+    }
+   ],
+   "service": "2024_Primary_Recreation_Unit_Assessment_h",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2024_Primary_Recreation_Unit_Assessment_h/FeatureServer/74"
+  },
+  {
+   "agency": "NJDEP,  DWMS/BWQSA  Edition 20230707",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "AU_NUMBER",
+    "AU_NAME",
+    "WMA",
+    "REGION_NAME",
+    "SECONDARY_RECREATION",
+    "FECAL_COLIFORM"
+   ],
+   "known": false,
+   "layer": "2024 Secondary Recreation Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "HUC02020007010050",
+     "REGION_NAME": "Northwest",
+     "WMA": "02"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "HUC02030103050050",
+     "REGION_NAME": "Northeast",
+     "WMA": "03"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "HUC02040105040050",
+     "REGION_NAME": "Northwest",
+     "WMA": "01"
+    }
+   ],
+   "service": "2024_Secondary_Recreation_Unit_Assessment_h",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2024_Secondary_Recreation_Unit_Assessment_h/FeatureServer/75"
+  },
+  {
+   "agency": "",
+   "area": "WMA",
+   "count": 958,
+   "fields": [
+    "AU_NUMBER",
+    "AU_NAME",
+    "WMA",
+    "REGION_NAME",
+    "SHELLFISH_DESIGNATED_USE"
+   ],
+   "known": false,
+   "layer": "2024 Shellfish Harvesting Unit Assessment",
+   "sample": [
+    {
+     "AU_NAME": "Hardistonville tribs",
+     "AU_NUMBER": "HUC02020007010050",
+     "REGION_NAME": "Northwest",
+     "WMA": "02"
+    },
+    {
+     "AU_NAME": "Pequannock R (Charlotteburg to OakRidge)",
+     "AU_NUMBER": "HUC02030103050050",
+     "REGION_NAME": "Northeast",
+     "WMA": "03"
+    },
+    {
+     "AU_NAME": "Sparta Junction tribs",
+     "AU_NUMBER": "HUC02040105040050",
+     "REGION_NAME": "Northwest",
+     "WMA": "01"
+    }
+   ],
+   "service": "2024_Shellfish_Harvesting_Unit_Assessment_h",
+   "typef": "SHELLFISH_DESIGNATED_USE",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/2024_Shellfish_Harvesting_Unit_Assessment_h/FeatureServer/76"
+  },
+  {
+   "agency": "",
+   "area": "WMA",
+   "count": 443,
+   "fields": [
+    "WR_NAME",
+    "WMA",
+    "TMDL_TITLE",
+    "TMDL_DATE",
+    "PARAMETER",
+    "SITE_NAME",
+    "TMDL_GROUP",
+    "NJDEPLINK",
+    "STATUS",
+    "EPALINK",
+    "PS_PRESENT"
+   ],
+   "known": false,
+   "layer": "Total Maximum Daily Loads (TMDL) for Shellfish-Impaired Waters in New Jersey",
+   "sample": [
+    {
+     "EPALINK": "https://ofmpub.epa.gov/waters10/attains_impaired_waters.show_tmdl_document?p_tmdl_doc_blobs_id=74592",
+     "NJDEPLINK": "https://www.nj.gov/dep/wms/bears/docs/coastal_pathogen_tmdls_wma12%20for%20adoption.pdf",
+     "PARAMETER": "Total coliform",
+     "PS_PRESENT": "N",
+     "SITE_NAME": "Atlantic Coast (Navesink R to WhalePond)",
+     "STATUS": "Adopted",
+     "TMDL_DATE": "2006",
+     "TMDL_GROUP": "atlantic ocean-a",
+     "TMDL_TITLE": "Five Total Maximum Daily Loads for Total Coliform to Address Shellfish-Impaired Waters in Watershed Management Area 12",
+     "WMA": "12",
+     "WR_NAME": "Atlantic Coast"
+    },
+    {
+     "EPALINK": "https://ofmpub.epa.gov/waters10/attains_impaired_waters.show_tmdl_document?p_tmdl_doc_blobs_id=74592",
+     "NJDEPLINK": "https://www.nj.gov/dep/wms/bears/docs/coastal_pathogen_tmdls_wma12%20for%20adoption.pdf",
+     "PARAMETER": "Total coliform",
+     "PS_PRESENT": "N",
+     "SITE_NAME": "Atlantic Coast (Sandy Hk to Navesink R)",
+     "STATUS": "Adopted",
+     "TMDL_DATE": "2006",
+     "TMDL_GROUP": "atlantic ocean-a",
+     "TMDL_TITLE": "Five Total Maximum Daily Loads for Total Coliform to Address Shellfish-Impaired Waters in Watershed Management Area 12",
+     "WMA": "12",
+     "WR_NAME": "Atlantic Coast"
+    },
+    {
+     "EPALINK": "https://ofmpub.epa.gov/waters10/attains_impaired_waters.show_tmdl_document?p_tmdl_doc_blobs_id=74592",
+     "NJDEPLINK": "https://www.nj.gov/dep/wms/bears/docs/coastal_pathogen_tmdls_wma12%20for%20adoption.pdf",
+     "PARAMETER": "Total coliform",
+     "PS_PRESENT": "N",
+     "SITE_NAME": "Big Brook",
+     "STATUS": "Adopted",
+     "TMDL_DATE": "2006",
+     "TMDL_GROUP": "navesink estuary-a, navesink estuary-b, shrewsbury estuary-a",
+     "TMDL_TITLE": "Five Total Maximum Daily Loads for Total Coliform to Address Shellfish-Impaired Waters in Watershed Management Area 12",
+     "WMA": "12",
+     "WR_NAME": "Atlantic Coast"
+    }
+   ],
+   "service": "Total_Maximum_Daily_Loads_TMDL_for_Shellfish_Impaired_Waters_in_New_Jersey",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Total_Maximum_Daily_Loads_TMDL_for_Shellfish_Impaired_Waters_in_New_Jersey/FeatureServer/113"
+  },
+  {
+   "agency": "",
+   "area": "SWIMMING_AREA",
+   "count": 290,
+   "fields": [
+    "WATERBODY",
+    "NEAREST_TOWN",
+    "OWNER",
+    "OUTBOARD_ALLOWED",
+    "CAR_TOP_LAUNCH",
+    "BOAT_RAMP",
+    "SWIMMING_AREA",
+    "PICNICING",
+    "CABINS_CAMPSITES",
+    "PERMIT_REQ",
+    "CONTACT",
+    "ADDRESS",
+    "GNIS_NAME"
+   ],
+   "known": false,
+   "layer": "Great Fishing Close to Home (Waterbodies) in New Jersey",
+   "sample": [
+    {
+     "NEAREST_TOWN": "Villas",
+     "OUTBOARD_ALLOWED": "E",
+     "OWNER": "State",
+     "PERMIT_REQ": "N",
+     "WATERBODY": "Ponderlodge Pond"
+    },
+    {
+     "CAR_TOP_LAUNCH": "Y",
+     "NEAREST_TOWN": "Dennisville",
+     "OUTBOARD_ALLOWED": "E",
+     "OWNER": "Municipal",
+     "PERMIT_REQ": "N",
+     "WATERBODY": "Dennisville Lake"
+    },
+    {
+     "BOAT_RAMP": "Y",
+     "CABINS_CAMPSITES": "Y",
+     "CAR_TOP_LAUNCH": "Y",
+     "NEAREST_TOWN": "Eldora ",
+     "OUTBOARD_ALLOWED": "E",
+     "OWNER": "State",
+     "PERMIT_REQ": "N",
+     "PICNICING": "Y",
+     "WATERBODY": "East Creek Pond"
+    }
+   ],
+   "service": "Envr_admin_DFW_places_to_fish_wb",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Envr_admin_DFW_places_to_fish_wb/FeatureServer/0"
+  },
+  {
+   "agency": "New Jersey Department of Environmental Protection (NJDEP), Fish and Wildlife (FW",
+   "area": "WMA",
+   "count": 206,
+   "fields": [
+    "WMA",
+    "TYPE",
+    "CATEGORY",
+    "DESCRIPT"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Area (WMA) Restrictions in New Jersey",
+   "sample": [
+    {
+     "CATEGORY": "Law Enforcement",
+     "DESCRIPT": "The posted area along Splitrock Reservoir (commonly referred to as the cliffs) closed to public.",
+     "TYPE": "Closed",
+     "WMA": "Wildcat Ridge WMA"
+    },
+    {
+     "CATEGORY": "Law Enforcement",
+     "DESCRIPT": "The posted area commonly referred to as Parkers Pit within Greenwood Forest WMA closed to public.",
+     "TYPE": "Closed",
+     "WMA": "Greenwood Forest WMA"
+    },
+    {
+     "CATEGORY": "Law Enforcement",
+     "DESCRIPT": "The posted area commonly referred to as the Clay Holes within Greenwood Forest WMA closed to public.",
+     "TYPE": "Closed",
+     "WMA": "Greenwood Forest WMA"
+    }
+   ],
+   "service": "Wildlife_Management_Area_WMA_Restrictions_in_New_Jersey",
+   "typef": "TYPE",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Wildlife_Management_Area_WMA_Restrictions_in_New_Jersey/FeatureServer/41"
+  },
+  {
+   "agency": "NJDEP State Park Service",
+   "area": "LAND_FACILITY_NAME",
+   "count": 107,
+   "fields": [
+    "FEATURE_NAME",
+    "FEATURE_CLASS",
+    "OWNERSHIP",
+    "USE_DESIGNATION",
+    "OWNERSHIP_USE",
+    "LAND_MANAGER",
+    "LAND_MANAGER_AGENCY",
+    "FACILITY_MANAGER",
+    "FACILITY_USE",
+    "AGENCY_URL",
+    "FACILITY_URL",
+    "FACILITY_MAP_URL",
+    "MAP_DISPLAY",
+    "EASEMENT",
+    "PUBLIC_ACCESS",
+    "PARKING",
+    "HUNTING_PERMITTED",
+    "HUNTING_URL",
+    "NAME_CONTACT",
+    "ADDRESS"
+   ],
+   "known": false,
+   "layer": "NJ State Open Space (Outline)",
+   "sample": [
+    {
+     "AGENCY_URL": "https://www.state.nj.us/dep/parksandforests/index.html",
+     "FACILITY_MANAGER": "State Park Service",
+     "FACILITY_URL": "https://www.state.nj.us/dep/parksandforests/historic/steuben/steuben-index.htm",
+     "FACILITY_USE": "State Historic Site",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Steuben House Historic Site",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Historic Preservation Office",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Historic Site",
+     "USE_DESIGNATION": "Historic Site"
+    },
+    {
+     "AGENCY_URL": "https://www.state.nj.us/dep/parksandforests/historic/index.html",
+     "FACILITY_MANAGER": "State Park Service",
+     "FACILITY_URL": "https://www.abseconlighthouse.org/",
+     "FACILITY_USE": "State Historic Site",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Absecon Lighthouse Historic Site",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Historic Preservation Office",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Historic Site",
+     "USE_DESIGNATION": "Historic Site"
+    },
+    {
+     "AGENCY_URL": "https://www.state.nj.us/dep/parksandforests/historic/index.html",
+     "FACILITY_MANAGER": "State Park Service",
+     "FACILITY_URL": "https://www.thehermitage.org/",
+     "FACILITY_USE": "State Historic Site",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Hermitage House Historic Site",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Historic Preservation Office",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Historic Site",
+     "USE_DESIGNATION": "Historic Site"
+    }
+   ],
+   "service": "Applications/DEP_Trails",
+   "typef": "FEATURE_NAME",
+   "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_Trails/MapServer/19"
+  },
+  {
+   "agency": "NJDEP State Park Service",
+   "area": "LAND_FACILITY_NAME",
+   "count": 107,
+   "fields": [
+    "FEATURE_NAME",
+    "FEATURE_CLASS",
+    "OWNERSHIP",
+    "USE_DESIGNATION",
+    "OWNERSHIP_USE",
+    "LAND_MANAGER",
+    "LAND_MANAGER_AGENCY",
+    "FACILITY_MANAGER",
+    "FACILITY_USE",
+    "AGENCY_URL",
+    "FACILITY_URL",
+    "FACILITY_MAP_URL",
+    "MAP_DISPLAY",
+    "EASEMENT",
+    "PUBLIC_ACCESS",
+    "PARKING",
+    "HUNTING_PERMITTED",
+    "HUNTING_URL",
+    "NAME_CONTACT",
+    "ADDRESS"
+   ],
+   "known": false,
+   "layer": "NJ State Open Space (Generalized)",
+   "sample": [
+    {
+     "AGENCY_URL": "https://www.state.nj.us/dep/parksandforests/index.html",
+     "FACILITY_MANAGER": "State Park Service",
+     "FACILITY_URL": "https://www.state.nj.us/dep/parksandforests/historic/steuben/steuben-index.htm",
+     "FACILITY_USE": "State Historic Site",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Steuben House Historic Site",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Historic Preservation Office",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Historic Site",
+     "USE_DESIGNATION": "Historic Site"
+    },
+    {
+     "AGENCY_URL": "https://www.state.nj.us/dep/parksandforests/historic/index.html",
+     "FACILITY_MANAGER": "State Park Service",
+     "FACILITY_URL": "https://www.abseconlighthouse.org/",
+     "FACILITY_USE": "State Historic Site",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Absecon Lighthouse Historic Site",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Historic Preservation Office",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Historic Site",
+     "USE_DESIGNATION": "Historic Site"
+    },
+    {
+     "AGENCY_URL": "https://www.state.nj.us/dep/parksandforests/historic/index.html",
+     "FACILITY_MANAGER": "State Park Service",
+     "FACILITY_URL": "https://www.thehermitage.org/",
+     "FACILITY_USE": "State Historic Site",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Hermitage House Historic Site",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Historic Preservation Office",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Historic Site",
+     "USE_DESIGNATION": "Historic Site"
+    }
+   ],
+   "service": "Applications/DEP_Trails",
+   "typef": "FEATURE_NAME",
+   "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_Trails/MapServer/18"
+  },
+  {
+   "agency": "",
+   "area": "WMA",
+   "count": 54,
+   "fields": [
+    "LABEL",
+    "WMA",
+    "REGION",
+    "MANAGEMENT",
+    "MAIN_ACT",
+    "ACTION",
+    "TRGT_SPP",
+    "FEATURE_NAME",
+    "MANAGER",
+    "LEASE",
+    "STOCKABLE",
+    "RIP_WET",
+    "NOTES",
+    "OPATCH_ID",
+    "OLABEL",
+    "MAP_DISPLAY",
+    "CREATED_USER",
+    "LAST_EDITED_USER"
+   ],
+   "known": false,
+   "layer": "NJ Fish and Wildlife Habitat Patches Within Wildlife Management Areas",
+   "sample": [
+    {
+     "FEATURE_NAME": "Assunpink Range - Archery",
+     "LABEL": "2001-2081",
+     "LEASE": "NA",
+     "MAIN_ACT": "Mow",
+     "MANAGEMENT": "Range",
+     "REGION": "Central",
+     "STOCKABLE": "No",
+     "TRGT_SPP": "Range - Archery",
+     "WMA": "Assunpink"
+    },
+    {
+     "FEATURE_NAME": "Assunpink Range - Shotgun",
+     "LABEL": "2001-2082",
+     "LEASE": "NA",
+     "MAIN_ACT": "Mow",
+     "MANAGEMENT": "Range",
+     "REGION": "Central",
+     "STOCKABLE": "No",
+     "TRGT_SPP": "Range - Shotgun",
+     "WMA": "Assunpink"
+    },
+    {
+     "FEATURE_NAME": "Assunpink Dog Training - Upland",
+     "LABEL": "2001-3115",
+     "LEASE": "NA",
+     "MAIN_ACT": "Mow",
+     "MANAGEMENT": "Dog Training Area",
+     "REGION": "Central",
+     "STOCKABLE": "Yes",
+     "TRGT_SPP": "Dog Training - Upland",
+     "WMA": "Assunpink"
+    }
+   ],
+   "service": "NJ_Fish_and_Wildlife_Habitat_Patches_Within_Wildlife_Management_Areas_in_New_Jersey_(View)",
+   "typef": "FEATURE_NAME",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/NJ_Fish_and_Wildlife_Habitat_Patches_Within_Wildlife_Management_Areas_in_New_Jersey_(View)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 19,
+   "fields": [
+    "WATERBODY",
+    "GNIS_NAME",
+    "WBREG_ID_LIST",
+    "WBREG_URL",
+    "FISHREG_ID_LIST",
+    "FISHREG_URL",
+    "CLASS"
+   ],
+   "known": false,
+   "layer": "Envr_admin_DFW_regfish_waterbody_gen",
+   "sample": [
+    {
+     "CLASS": "Trophy Musky Water",
+     "FISHREG_ID_LIST": "1,2,4,9,12,13,14,16,19,23,24,27,30,32,33,34,35,37,67,81,85,89,91,93",
+     "FISHREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/species-regs-24.pdf",
+     "GNIS_NAME": "Monksville Reservoir",
+     "WATERBODY": "Monksville Reservoir",
+     "WBREG_ID_LIST": "1,3,14",
+     "WBREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/wb-regs-37.pdf"
+    },
+    {
+     "CLASS": "Holdover Trout Lake",
+     "FISHREG_ID_LIST": "1,2,4,9,12,13,14,16,18,22,24,27,30,32,33,34,35,37,52,63,67,77,81,85",
+     "FISHREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/species-regs-23.pdf",
+     "GNIS_NAME": "Sheppard Pond",
+     "WATERBODY": "Sheppards Lake (Shephard Lake)",
+     "WBREG_ID_LIST": "1,3,5",
+     "WBREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/wb-regs-58.pdf"
+    },
+    {
+     "CLASS": "Holdover Trout Lake",
+     "FISHREG_ID_LIST": "1,2,4,9,12,13,14,16,18,22,24,27,30,32,33,34,35,37,52,63,67,77,81,85",
+     "FISHREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/species-regs-23.pdf",
+     "GNIS_NAME": "White Lake",
+     "WATERBODY": "White Lake",
+     "WBREG_ID_LIST": "1,3,5",
+     "WBREG_URL": "https://dep.nj.gov/wp-content/uploads/njfw/wb-regs-58.pdf"
+    }
+   ],
+   "service": "Envr_admin_DFW_regfish_waterbody_gen",
+   "typef": "CLASS",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Envr_admin_DFW_regfish_waterbody_gen/FeatureServer/16"
+  },
+  {
+   "agency": "New Jersey Department of Environmental Protection (NJDEP), Fish and Wildlife (FW",
+   "area": "FACILITY_NAME",
+   "count": 19,
+   "fields": [
+    "FACILITY_NAME",
+    "TOWN",
+    "STATE",
+    "COUNTY",
+    "COUNTY_LABEL",
+    "MUN_LABEL",
+    "WEBSITE",
+    "PHONE",
+    "PHONE_PREFERENCE",
+    "SPECIES_CLASS",
+    "SPECIES_ACCEPTED"
+   ],
+   "known": false,
+   "layer": "Licensed Wildlife Rehabilitator Facility Areas in New Jersey",
+   "sample": [
+    {
+     "COUNTY": "ATLANTIC",
+     "COUNTY_LABEL": "Atlantic County",
+     "FACILITY_NAME": "Vicky Schmidt (Vineland)",
+     "MUN_LABEL": "Buena Vista Township",
+     "PHONE": "856-207-7026",
+     "SPECIES_ACCEPTED": "waterfowl, rabbit, opossum, raccoon, chipmunk, woodchuck, squirrel, flying squirrel, rat, mouse, wood rat, vole, muskrat, lemming, porcupine, shrew, mole, ermine, weasel, mink, skunk",
+     "SPECIES_CLASS": "Birds, Mammals",
+     "STATE": "NJ",
+     "TOWN": "Vineland"
+    },
+    {
+     "COUNTY": "ATLANTIC",
+     "COUNTY_LABEL": "Atlantic County",
+     "FACILITY_NAME": "Wildlife Aid",
+     "MUN_LABEL": "Egg Harbor Township",
+     "PHONE": "609-927-0538",
+     "SPECIES_ACCEPTED": "fox, coyote, rabbit, opossum, raccoon, chipmunk, woodchuck, squirrel, flying squirrel, rat, mouse, wood rat, vole, muskrat, lemming, porcupine, shrew, mole, ermine, weasel, mink, skunk",
+     "SPECIES_CLASS": "Mammals",
+     "STATE": "NJ",
+     "TOWN": "Egg Harbor",
+     "WEBSITE": "https://www.facebook.com/wildlifeaidnewjersey/"
+    },
+    {
+     "COUNTY": "BURLINGTON",
+     "COUNTY_LABEL": "Burlington County",
+     "FACILITY_NAME": "Woodford Cedar Run Wildlife Refuge",
+     "MUN_LABEL": "Medford Township",
+     "PHONE": "856-983-3329",
+     "SPECIES_ACCEPTED": "swift, swallow, flycatcher, nightjar, gull, tern, skimmer, songbird, bird of prey, seabird, shorebird, upland gamebird, wader, waterfowl, deer, fox, coyote, rabbit, opossum, raccoon, chipmunk, woodchuck, squirrel, flying squirrel, rat, mouse, wood rat, vole, muskrat, lemming, porcupine, shrew, mole, ermine, weasel, mink, skunk",
+     "SPECIES_CLASS": "Birds, Mammals",
+     "STATE": "NJ",
+     "TOWN": "Medford",
+     "WEBSITE": "https://www.cedarrun.org/"
+    }
+   ],
+   "service": "Licensed_Wildlife_Rehabilitator_Facilities_in_New_Jersey",
+   "typef": "FACILITY_NAME",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Licensed_Wildlife_Rehabilitator_Facilities_in_New_Jersey/FeatureServer/168"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "REGION_ID",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "State Wildlife Action Plan (SWAP) Landscape Regions",
+   "sample": [
+    {
+     "REGION": "Atlantic Coast",
+     "REGION_ID": "1"
+    },
+    {
+     "REGION": "Delaware Bay",
+     "REGION_ID": "2"
+    },
+    {
+     "REGION": "Highlands",
+     "REGION_ID": "3"
+    }
+   ],
+   "service": "State_Wildlife_Action_Plan_Landscape_Regions",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/State_Wildlife_Action_Plan_Landscape_Regions/FeatureServer/0"
+  },
+  {
+   "agency": "New Jersey Department of Environmental Protection (NJDEP), Fish and Wildlife (FW",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "Brook Trout Conservation Zone",
+   "sample": [
+    {
+     "DESCRIPTION": "The Brook Trout Conservation Zone is defined as all waters within the northwest region of the State, delineated by Interstate 287 to the east, Route 202 to the south, the New York/New Jersey border to the north, and extending to, but not including the Delaware River to the west (N.J.A.C. 7:25-6.2). All Brook Trout caught within the Brook Trout Conservation Zone, regardless of size, must be immediately released unharmed.",
+     "NAME": "Brook Trout Conservation Zone"
+    }
+   ],
+   "service": "Brook_Trout_Conservation_Zone",
+   "typef": "DESCRIPTION",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/Brook_Trout_Conservation_Zone/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 1,
+   "fields": [
+    "NAME",
+    "WEB_LINK"
+   ],
+   "known": false,
+   "layer": "Conservation Zone",
+   "sample": [
+    {
+     "NAME": "Sedge Island Marine Conservation Zone",
+     "WEB_LINK": "http://www.state.nj.us/dep/fgw/sedge.htm"
+    }
+   ],
+   "service": "ConservationZone",
+   "typef": "",
+   "url": "https://services1.arcgis.com/QWdNfRs7lkPq4g4Q/ArcGIS/rest/services/ConservationZone/FeatureServer/0"
+  },
+  {
+   "agency": "NJDEP",
+   "area": "LAND_FACILITY_NAME",
+   "count": 118,
+   "fields": [
+    "FEATURE_NAME",
+    "FEATURE_CLASS",
+    "OWNERSHIP",
+    "USE_DESIGNATION",
+    "OWNERSHIP_USE",
+    "LAND_MANAGER",
+    "LAND_MANAGER_AGENCY",
+    "FACILITY_MANAGER",
+    "FACILITY_USE",
+    "AGENCY_URL",
+    "FACILITY_URL",
+    "FACILITY_MAP_URL",
+    "FACILITY_TRAILMAP_URL",
+    "MAP_DISPLAY",
+    "EASEMENT",
+    "PUBLIC_ACCESS",
+    "PARKING",
+    "HUNTING_PERMITTED",
+    "HUNTING_URL",
+    "NAME_CONTACT"
+   ],
+   "known": true,
+   "layer": "Preserve Boundaries",
+   "sample": [
+    {
+     "AGENCY_URL": "https://dep.nj.gov/njnlt/",
+     "FACILITY_MANAGER": "Natural Lands Trust",
+     "FACILITY_MAP_URL": "https://dep.nj.gov/wp-content/uploads/njnlt/shorebirds_reeds_beach_douglas.pdf",
+     "FACILITY_URL": "https://dep.nj.gov/njnlt/njnlt-preserves/",
+     "FACILITY_USE": "Natural Lands Trust Preserve",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Shorebirds Reeds Beach Douglas Preserve",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Natural Lands Trust",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Preserve",
+     "USE_DESIGNATION": "Preserve"
+    },
+    {
+     "AGENCY_URL": "https://dep.nj.gov/njnlt/",
+     "FACILITY_MANAGER": "Natural Lands Trust",
+     "FACILITY_MAP_URL": "https://dep.nj.gov/wp-content/uploads/njnlt/milford_bluffs.pdf",
+     "FACILITY_URL": "https://dep.nj.gov/njnlt/thomas-f-breden-preserve-at-milford-bluffs/",
+     "FACILITY_USE": "Natural Lands Trust Preserve",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Thomas F. Breden Preserve at Milford Bluffs",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Natural Lands Trust",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Preserve",
+     "USE_DESIGNATION": "Preserve"
+    },
+    {
+     "AGENCY_URL": "https://dep.nj.gov/njnlt/",
+     "FACILITY_MANAGER": "Natural Lands Trust",
+     "FACILITY_MAP_URL": "https://dep.nj.gov/wp-content/uploads/njnlt/babcock_creek.pdf",
+     "FACILITY_URL": "https://dep.nj.gov/njnlt/babcock-creek-preserve/",
+     "FACILITY_USE": "Natural Lands Trust Preserve",
+     "FEATURE_CLASS": "Open Space",
+     "FEATURE_NAME": "Babcock Creek Preserve",
+     "LAND_MANAGER": "Division of Parks and Forestry",
+     "LAND_MANAGER_AGENCY": "Natural Lands Trust",
+     "OWNERSHIP": "State",
+     "OWNERSHIP_USE": "State Preserve",
+     "USE_DESIGNATION": "Preserve"
+    }
+   ],
+   "service": "Applications/DEP_NLT",
+   "typef": "FEATURE_NAME",
+   "url": "https://mapsdep.nj.gov/arcgis/rest/services/Applications/DEP_NLT/MapServer/1"
+  }
+ ],
+ "st": "NJ"
+}

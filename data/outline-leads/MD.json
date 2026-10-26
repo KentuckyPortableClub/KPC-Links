@@ -1,0 +1,248 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "MD iMAP, DNR, MDP, MDA",
+   "area": "Name",
+   "count": 26334,
+   "fields": [
+    "Name",
+    "FileNum",
+    "Type",
+    "Jurisdict",
+    "ANSICode"
+   ],
+   "known": false,
+   "layer": "Forest Conservation Act Easements",
+   "sample": [
+    {
+     "ANSICode": "24033H1",
+     "FileNum": "TCP2-009-01",
+     "Jurisdict": "Prince George's County",
+     "Name": "ACCOKEEK ROAD SURFACE MINING",
+     "Type": "Retained"
+    },
+    {
+     "ANSICode": "24033H1",
+     "FileNum": "TCP2-197-03",
+     "Jurisdict": "Prince George's County",
+     "Name": "DOBSON PROPERTY",
+     "Type": "Retained"
+    },
+    {
+     "ANSICode": "24017H1",
+     "FileNum": "00-0207",
+     "Jurisdict": "Charles County",
+     "Name": "Edelen Estates",
+     "Type": "unknown"
+    }
+   ],
+   "service": "Environment/MD_ProtectedLands",
+   "typef": "Type",
+   "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/3"
+  },
+  {
+   "agency": "MD iMAP, DNR, MDP, MDA",
+   "area": "RLArea",
+   "count": 1451,
+   "fields": [
+    "RLArea",
+    "County",
+    "RLNum",
+    "WebLink"
+   ],
+   "known": false,
+   "layer": "Rural Legacy Properties",
+   "sample": [
+    {
+     "County": "Frederick",
+     "RLArea": "Carrollton Manor",
+     "RLNum": "RL-0386",
+     "WebLink": "https://dnr.maryland.gov/land/Pages/RuralLegacy/home.aspx"
+    },
+    {
+     "County": "St. Mary's",
+     "RLArea": "Huntersville",
+     "RLNum": "RL-0311",
+     "WebLink": "https://dnr.maryland.gov/land/Pages/RuralLegacy/home.aspx"
+    },
+    {
+     "County": "Prince George's",
+     "RLArea": "Patuxent",
+     "RLNum": "RL-0252",
+     "WebLink": "https://dnr.maryland.gov/land/Pages/RuralLegacy/home.aspx"
+    }
+   ],
+   "service": "Environment/MD_ProtectedLands",
+   "typef": "",
+   "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/1"
+  },
+  {
+   "agency": "MD iMAP, DNR, MDP, MDA",
+   "area": "AREA_NAME",
+   "count": 604,
+   "fields": [
+    "PRI_CON_GP",
+    "OWNER",
+    "AREA_NAME",
+    "COUNTY",
+    "WebLink"
+   ],
+   "known": false,
+   "layer": "Private Conservation Lands",
+   "sample": [
+    {
+     "AREA_NAME": "Unknown",
+     "COUNTY": "Washington",
+     "OWNER": "Civil War Preservation Trust",
+     "PRI_CON_GP": "The Nature Conservancy",
+     "WebLink": " "
+    },
+    {
+     "AREA_NAME": "Savage River area",
+     "COUNTY": "Garrett",
+     "OWNER": "MD Ornithological Society",
+     "PRI_CON_GP": "MD Ornithological Society",
+     "WebLink": "http://www.mdbirds.org/"
+    },
+    {
+     "AREA_NAME": "Seymor B. Cooper Wildlife area",
+     "COUNTY": "Frederick",
+     "OWNER": "MD Ornithological Society",
+     "PRI_CON_GP": "MD Ornithological Society",
+     "WebLink": "http://www.mdbirds.org/"
+    }
+   ],
+   "service": "Environment/MD_ProtectedLands",
+   "typef": "",
+   "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/7"
+  },
+  {
+   "agency": "MD iMAP, DNR",
+   "area": "NERR_Site",
+   "count": 19,
+   "fields": [
+    "NERR_Site",
+    "Core",
+    "Descript",
+    "County",
+    "WebLink"
+   ],
+   "known": false,
+   "layer": "Chesapeake Bay National Estuarine Research Reserves",
+   "sample": [
+    {
+     "Core": "BUFFER",
+     "County": "Anne Arundel & Prince George's",
+     "Descript": "Woodland and Nontidal Wetlands",
+     "NERR_Site": "Jug Bay",
+     "WebLink": "http://www.dnr.state.md.us/bay/cbnerr/"
+    },
+    {
+     "Core": "CORE",
+     "County": "Harford",
+     "Descript": "Tidal Wetlands and Open Water",
+     "NERR_Site": "Otter Point Creek",
+     "WebLink": "http://www.dnr.state.md.us/bay/cbnerr/"
+    },
+    {
+     "Core": "CORE",
+     "County": "Somerset",
+     "Descript": "Tidal Wetlands and Open Water",
+     "NERR_Site": "Monie Bay",
+     "WebLink": "http://www.dnr.state.md.us/bay/cbnerr/"
+    }
+   ],
+   "service": "Environment/MD_ResearchReserves",
+   "typef": "Descript",
+   "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ResearchReserves/FeatureServer/0"
+  },
+  {
+   "agency": "MD iMAP, DNR, MDP, MDA",
+   "area": "PropName",
+   "count": 13,
+   "fields": [
+    "PropName",
+    "County",
+    "ProjType",
+    "CELCPyear",
+    "WebLink"
+   ],
+   "known": false,
+   "layer": "Coastal and Estuarine Land Conservation Program",
+   "sample": [
+    {
+     "CELCPyear": "FY 2004-2005",
+     "County": "Charles",
+     "ProjType": "Acquisition",
+     "PropName": "Grove Farm",
+     "WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+    },
+    {
+     "CELCPyear": " ",
+     "County": "Queen Anne's",
+     "ProjType": "Acquisition",
+     "PropName": "Downey",
+     "WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+    },
+    {
+     "CELCPyear": " ",
+     "County": "Anne Arundel",
+     "ProjType": "Acquisition",
+     "PropName": "Petrie-Chaney (Wayson's Corner)",
+     "WebLink": "http://dnr.maryland.gov/ccs/celcp.asp"
+    }
+   ],
+   "service": "Environment/MD_ProtectedLands",
+   "typef": "ProjType",
+   "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/6"
+  },
+  {
+   "agency": "MD iMAP, DNR, MDP, MDA",
+   "area": "",
+   "count": 580,
+   "fields": [
+    "DNRType",
+    "DNRName",
+    "ManagedBy",
+    "County",
+    "WebLink",
+    "DESIG",
+    "LandIntere"
+   ],
+   "known": true,
+   "layer": "DNR Owned Lands and Conservation Easements",
+   "sample": [
+    {
+     "County": "Cecil",
+     "DESIG": " SP",
+     "DNRName": "BOHEMIA RIVER SP",
+     "DNRType": "DNR Owned Property",
+     "LandIntere": "OWN",
+     "ManagedBy": "Maryland Park Service",
+     "WebLink": " "
+    },
+    {
+     "County": "Multiple",
+     "DESIG": "CEDNR",
+     "DNRName": "DNR Held Conservation Easements - Central",
+     "DNRType": "DNR Conservation Easement - Other",
+     "LandIntere": "CE",
+     "WebLink": " "
+    },
+    {
+     "County": "Multiple",
+     "DESIG": "CEDNR",
+     "DNRName": "DNR Held Conservation Easements - Central",
+     "DNRType": "DNR Conservation Easement - Other",
+     "LandIntere": "CE",
+     "WebLink": " "
+    }
+   ],
+   "service": "Environment/MD_ProtectedLands",
+   "typef": "DNRType",
+   "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0"
+  }
+ ],
+ "st": "MD"
+}

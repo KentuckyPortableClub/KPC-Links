@@ -1,0 +1,1161 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 55962,
+   "fields": [
+    "UNIT",
+    "FACILITY",
+    "FACILITY_N",
+    "DESCRIP",
+    "PHOTO_LINK",
+    "TREATMENT_",
+    "FINAL_HARV",
+    "TREE_TYPE1",
+    "TREE_TYPE2",
+    "TREE_TYPE3",
+    "CALC_FT",
+    "OBSERVED_F",
+    "MGT_CLASS",
+    "STATUS",
+    "STAND_DIA",
+    "SIZE_CLASS",
+    "TOPO",
+    "DRAINAGE",
+    "LAST_INVEN",
+    "AGE_ARRANG"
+   ],
+   "known": false,
+   "layer": "State Land Forest Stands",
+   "sample": [
+    {
+     "CALC_FT": "Other",
+     "DESCRIP": " ",
+     "FACILITY": "Mallet Pond State Forest",
+     "FACILITY_N": "1744",
+     "FINAL_HARV": "N",
+     "OBSERVED_F": "Northern Hardwood",
+     "PHOTO_LINK": " ",
+     "TREATMENT_": " ",
+     "TREE_TYPE1": "Ash, White",
+     "TREE_TYPE2": "Cedar, White",
+     "TREE_TYPE3": "Maple, Sugar",
+     "UNIT": "Schoharie 07"
+    },
+    {
+     "CALC_FT": "Northern Hardwood",
+     "DESCRIP": " ",
+     "FACILITY": "Lesser Wilderness State Forest",
+     "FACILITY_N": "1568",
+     "FINAL_HARV": "N",
+     "OBSERVED_F": "Northern Hardwood",
+     "PHOTO_LINK": " ",
+     "TREATMENT_": " ",
+     "TREE_TYPE1": "Maple, Sugar",
+     "TREE_TYPE2": "Cherry, Black",
+     "TREE_TYPE3": "Ash, White",
+     "UNIT": "Lewis 23"
+    },
+    {
+     "CALC_FT": "Norway Spruce",
+     "DESCRIP": " ",
+     "FACILITY": "Danby State Forest",
+     "FACILITY_N": "1799",
+     "FINAL_HARV": "N",
+     "OBSERVED_F": "Norway Spruce",
+     "PHOTO_LINK": " ",
+     "TREATMENT_": " ",
+     "TREE_TYPE1": "Spruce, Norway",
+     "TREE_TYPE2": "Maple, Red",
+     "TREE_TYPE3": "Null",
+     "UNIT": "Tompkins 01"
+    }
+   ],
+   "service": "State_Land_Forest_Stands",
+   "typef": "FACILITY",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/State_Land_Forest_Stands/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 54269,
+   "fields": [
+    "UNIT",
+    "FACILITY",
+    "FACILITY_N",
+    "DESCRIP",
+    "PHOTO_LINK",
+    "TREATMENT_",
+    "FINAL_HARV",
+    "TREE_TYPE1",
+    "TREE_TYPE2",
+    "TREE_TYPE3",
+    "CALC_FT",
+    "OBSERVED_F",
+    "MGT_CLASS",
+    "STATUS",
+    "STAND_DIA",
+    "SIZE_CLASS",
+    "TOPO",
+    "DRAINAGE",
+    "LAST_INVEN",
+    "AGE_ARRANG"
+   ],
+   "known": false,
+   "layer": "DEC Forest Stands",
+   "sample": [
+    {
+     "CALC_FT": "Scotch Pine",
+     "DESCRIP": "Previously stand  34.2",
+     "FACILITY": "BUSH HILL STATE FOREST",
+     "FACILITY_N": "1411",
+     "FINAL_HARV": "N",
+     "OBSERVED_F": "Misc Species (Pure)",
+     "PHOTO_LINK": " ",
+     "TREATMENT_": " ",
+     "TREE_TYPE1": "Pine, Scotch",
+     "TREE_TYPE2": "Spruce, Norway",
+     "TREE_TYPE3": "Pine, Red",
+     "UNIT": "CATTARAUGUS 07"
+    },
+    {
+     "CALC_FT": "White Spruce",
+     "DESCRIP": "Previously stand  34",
+     "FACILITY": "BUSH HILL STATE FOREST",
+     "FACILITY_N": "1411",
+     "FINAL_HARV": "N",
+     "OBSERVED_F": "White Spruce",
+     "PHOTO_LINK": " ",
+     "TREATMENT_": " ",
+     "TREE_TYPE1": "Spruce, White",
+     "TREE_TYPE2": "Cherry, Black",
+     "TREE_TYPE3": "Maple, Sugar",
+     "UNIT": "CATTARAUGUS 07"
+    },
+    {
+     "CALC_FT": "Norway Spruce",
+     "DESCRIP": "Previously stand 36",
+     "FACILITY": "BUSH HILL STATE FOREST",
+     "FACILITY_N": "1411",
+     "FINAL_HARV": "N",
+     "OBSERVED_F": "Norway Spruce",
+     "PHOTO_LINK": " ",
+     "TREATMENT_": " ",
+     "TREE_TYPE1": "Spruce, Norway",
+     "TREE_TYPE2": "Pine, Red",
+     "TREE_TYPE3": "Pine, Scotch",
+     "UNIT": "CATTARAUGUS 07"
+    }
+   ],
+   "service": "baseLayers_AdminBoundaries",
+   "typef": "FACILITY",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/baseLayers_AdminBoundaries/FeatureServer/2"
+  },
+  {
+   "agency": "New York Natural Heritage Program, Hudson River Estuary Program",
+   "area": "",
+   "count": 14904,
+   "fields": [
+    "FB_ID",
+    "CLASSIFICATION",
+    "CLASS_DESCRIPTION"
+   ],
+   "known": false,
+   "layer": "Hudson Valley Core Forests",
+   "sample": [
+    {
+     "CLASSIFICATION": "core",
+     "CLASS_DESCRIPTION": "A forested area that is at least 100 meters from the boundary with non-forested areas.",
+     "FB_ID": "FB_0001"
+    },
+    {
+     "CLASSIFICATION": "core",
+     "CLASS_DESCRIPTION": "A forested area that is at least 100 meters from the boundary with non-forested areas.",
+     "FB_ID": "FB_0001"
+    },
+    {
+     "CLASSIFICATION": "core",
+     "CLASS_DESCRIPTION": "A forested area that is at least 100 meters from the boundary with non-forested areas.",
+     "FB_ID": "FB_0002"
+    }
+   ],
+   "service": "Hudson_Valley_Core_Forests",
+   "typef": "CLASSIFICATION",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Hudson_Valley_Core_Forests/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 3811,
+   "fields": [
+    "WATER",
+    "AGENCY",
+    "COMMENTS"
+   ],
+   "known": false,
+   "layer": "Trout Stream Fishing Access",
+   "sample": [
+    {
+     "AGENCY": "NYS DEC - Public Fishing Rights",
+     "WATER": "North Branch Great Chazy"
+    },
+    {
+     "AGENCY": "NYS DEC - Public Fishing Rights",
+     "WATER": "North Branch Great Chazy"
+    },
+    {
+     "AGENCY": "NYS DEC - Public Fishing Rights",
+     "WATER": "North Branch Great Chazy"
+    }
+   ],
+   "service": "Trout_Stream_Fishing_Access",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Trout_Stream_Fishing_Access/FeatureServer/1"
+  },
+  {
+   "agency": "NYSDEC DMR",
+   "area": "SGAREA",
+   "count": 377,
+   "fields": [
+    "SGAREA",
+    "STATUS",
+    "CLOSED",
+    "NAME",
+    "Jump1",
+    "href_1",
+    "F_6_CRR_NY_I_F",
+    "Regulation",
+    "Regulations_Link",
+    "NSSP_Classifications"
+   ],
+   "known": false,
+   "layer": "Shellfish Closures",
+   "sample": [
+    {
+     "CLOSED": "1/1 - 12/31",
+     "F_6_CRR_NY_I_F": "41.3(b)(8)(iv)(b)",
+     "Jump1": "#Baiting_Hollow_Creek8",
+     "NAME": "Baiting Hollow Creek",
+     "NSSP_Classifications": "P",
+     "Regulation": "41.3(b)(8)(iv)(b)",
+     "Regulations_Link": "https://www.dec.ny.gov/outdoor/103483.html#Baiting_Hollow_Creek8",
+     "SGAREA": "Central Long Island Sound",
+     "STATUS": "Closed",
+     "href_1": "http://www.dec.ny.gov/outdoor/103483.html#Baiting_Hollow_Creek8"
+    },
+    {
+     "CLOSED": "1/1 - 12/31",
+     "F_6_CRR_NY_I_F": "41.3 (b) (4) (v) (a)",
+     "Jump1": "#Mecox_Bay4",
+     "NAME": "Channel Pond",
+     "NSSP_Classifications": "P",
+     "Regulation": "41.3(b)(4)(v)(a)",
+     "Regulations_Link": "https://www.dec.ny.gov/outdoor/103483.html#Mecox_Bay4",
+     "SGAREA": "Mecox Bay",
+     "STATUS": "Closed",
+     "href_1": "http://www.dec.ny.gov/outdoor/103483.html#Mecox_Bay4"
+    },
+    {
+     "CLOSED": "1/1 - 12/31",
+     "F_6_CRR_NY_I_F": "41.3 (b) (4) (v) (a)",
+     "Jump1": "#Mecox_Bay4",
+     "NAME": "Flying Point Creek",
+     "NSSP_Classifications": "P",
+     "Regulation": "41.3(b)(4)(v)(a)",
+     "Regulations_Link": "https://www.dec.ny.gov/outdoor/103483.html#Mecox_Bay4",
+     "SGAREA": "Mecox Bay",
+     "STATUS": "Closed",
+     "href_1": "http://www.dec.ny.gov/outdoor/103483.html#Mecox_Bay4"
+    }
+   ],
+   "service": "Shellfish",
+   "typef": "NSSP_Classifications",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Shellfish/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 312,
+   "fields": [
+    "Park_Polygon_Export_09222025_Di",
+    "Park_Polygon_Export_09222025__1",
+    "Park_Polygon_Export_09222025__2",
+    "Park_Polygon_Export_09222025__3",
+    "Park_Polygon_Export_09222025__4",
+    "Park_Polygon_Export_09222025__5",
+    "Park_Polygon_Export_09222025__6",
+    "L0Points_URL",
+    "L0Points_AltURL",
+    "L0Points_ImageURL",
+    "L0Points_Notes",
+    "L0Points_UID",
+    "L0Points_Historic",
+    "L0Points_Golf",
+    "L0Points_Camp",
+    "L0Points_Trails",
+    "L0Points_Playground",
+    "L0Points_PlayFields",
+    "L0Points_Beach",
+    "L0Points_Pool"
+   ],
+   "known": false,
+   "layer": "NY_StatePark_PropertiesByCounty",
+   "sample": [
+    {
+     "L0Points_AltURL": " ",
+     "L0Points_ImageURL": "https://parks.ny.gov/sites/default/files/styles/scale_width_450/public/2025-10/Hempstead%20Lake%20State%20Park_HLSP-1718.JPG.webp?itok=TZdEuil2",
+     "L0Points_Notes": " ",
+     "L0Points_UID": " ",
+     "L0Points_URL": "https://parks.ny.gov",
+     "Park_Polygon_Export_09222025_Di": "Crab Island",
+     "Park_Polygon_Export_09222025__1": "State Park",
+     "Park_Polygon_Export_09222025__2": "Crab Island State Park",
+     "Park_Polygon_Export_09222025__3": "within the Plattsburgh Bay National Register listing (90NR00172)",
+     "Park_Polygon_Export_09222025__4": "N",
+     "Park_Polygon_Export_09222025__5": "10",
+     "Park_Polygon_Export_09222025__6": "Clinton"
+    },
+    {
+     "L0Points_AltURL": " ",
+     "L0Points_ImageURL": "https://nysparks.maps.arcgis.com/sharing/rest/content/items/554455026e1f4e70b67e97f56612c267/data",
+     "L0Points_Notes": " ",
+     "L0Points_UID": "R117",
+     "L0Points_URL": "https://parks.ny.gov/visit/state-parks/point-au-roche-state-park",
+     "Park_Polygon_Export_09222025_Di": "Point Au Roche",
+     "Park_Polygon_Export_09222025__1": "State Park",
+     "Park_Polygon_Export_09222025__2": "Point Au Roche State Park",
+     "Park_Polygon_Export_09222025__4": "Y",
+     "Park_Polygon_Export_09222025__5": "10",
+     "Park_Polygon_Export_09222025__6": "Clinton"
+    },
+    {
+     "L0Points_AltURL": " ",
+     "L0Points_ImageURL": "https://parks.ny.gov/sites/default/files/styles/4x3_720/public/2025-10/Cumberland%20Bay%20State%20Park.jpg.webp?itok=ozhQ2tIg",
+     "L0Points_Notes": " ",
+     "L0Points_UID": "R037",
+     "L0Points_URL": "https://parks.ny.gov/visit/state-parks/cumberland-bay-state-park",
+     "Park_Polygon_Export_09222025_Di": "Cumberland Bay",
+     "Park_Polygon_Export_09222025__1": "State Park",
+     "Park_Polygon_Export_09222025__2": "Cumberland Bay State Park",
+     "Park_Polygon_Export_09222025__4": "Y",
+     "Park_Polygon_Export_09222025__5": "10",
+     "Park_Polygon_Export_09222025__6": "Clinton"
+    }
+   ],
+   "service": "NY_State_Park_Properties_by_County_(public_view)",
+   "typef": "BoatAccessType",
+   "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NY_State_Park_Properties_by_County_(public_view)/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "Unit",
+   "count": 222,
+   "fields": [
+    "Unit",
+    "Facility",
+    "WMU",
+    "Name",
+    "Description",
+    "BG_Deer",
+    "BG_Deer_Imp",
+    "BG_Bear",
+    "BG_Bear_Imp",
+    "F_Turkey",
+    "FallTurkey_Imp",
+    "S_Turkey",
+    "SpringTurkey_Imp",
+    "W_CanadaGeese",
+    "W_DCM",
+    "W_SeaDucks",
+    "W_SnowGeese",
+    "W_Brant",
+    "Waterfowl_Imp",
+    "MGB_Woodcock"
+   ],
+   "known": false,
+   "layer": "NYSHuntingBoundaries",
+   "sample": [
+    {
+     "BG_Bear": "N",
+     "BG_Bear_Imp": "N",
+     "BG_Deer": "N",
+     "BG_Deer_Imp": "N",
+     "Description": "Restricted Area/Safety Zone",
+     "F_Turkey": "N",
+     "Facility": "Allegany State Park",
+     "FallTurkey_Imp": "N",
+     "S_Turkey": "N",
+     "Unit": "Allegany",
+     "WMU": "9S"
+    },
+    {
+     "BG_Bear": "Y",
+     "BG_Bear_Imp": "Y",
+     "BG_Deer": "Y",
+     "BG_Deer_Imp": "Y",
+     "Description": "Big and small game hunting area.",
+     "F_Turkey": "Y",
+     "Facility": "Allegany State Park",
+     "FallTurkey_Imp": "Y",
+     "S_Turkey": "Y",
+     "Unit": "Allegany",
+     "WMU": "9S"
+    },
+    {
+     "BG_Bear": "Y",
+     "BG_Bear_Imp": "Y",
+     "BG_Deer": "Y",
+     "BG_Deer_Imp": "Y",
+     "Description": "Big and small game hunting area.",
+     "F_Turkey": "Y",
+     "Facility": "Allegany State Park",
+     "FallTurkey_Imp": "Y",
+     "S_Turkey": "Y",
+     "Unit": "Allegany",
+     "WMU": "9S"
+    }
+   ],
+   "service": "NY_State_Parks_Hunting_Areas_2_view",
+   "typef": "Facility",
+   "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NY_State_Parks_Hunting_Areas_2_view/FeatureServer/1"
+  },
+  {
+   "agency": "NYSDEC DFW, Bureau of Wildlife",
+   "area": "WMA",
+   "count": 132,
+   "fields": [
+    "WMA",
+    "WILDAREA",
+    "COMMENTS",
+    "CATEGORY",
+    "URL",
+    "WMU"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Areas",
+   "sample": [
+    {
+     "CATEGORY": "WILDLIFE MANAGEMENT AREA",
+     "COMMENTS": " ",
+     "URL": "https://dec.ny.gov/places/indian-river-wildlife-management-area",
+     "WILDAREA": "INDIAN RIVER",
+     "WMA": "INDIAN RIVER",
+     "WMU": "6A"
+    },
+    {
+     "CATEGORY": "WILDLIFE MANAGEMENT AREA",
+     "COMMENTS": " ",
+     "URL": "https://dec.ny.gov/places/jacquins-pond-wildlife-management-area",
+     "WILDAREA": "JACQUINS POND",
+     "WMA": "JACQUINS POND",
+     "WMU": "9J"
+    },
+    {
+     "CATEGORY": "WILDLIFE MANAGEMENT AREA",
+     "COMMENTS": " ",
+     "URL": "https://dec.ny.gov/places/point-peninsula-wildlife-management-area",
+     "WILDAREA": "POINT PENINSULA",
+     "WMA": "POINT PENINSULA",
+     "WMU": "6G"
+    }
+   ],
+   "service": "Wildlife_Management_Areas",
+   "typef": "CATEGORY",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Wildlife_Management_Areas/FeatureServer/17"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 127,
+   "fields": [
+    "RANGER",
+    "PHONE_CELL",
+    "PHONE_ALT",
+    "EMAIL",
+    "SUPERVISOR",
+    "SUPERVIS_1",
+    "REGION"
+   ],
+   "known": false,
+   "layer": "Forest Ranger Contact",
+   "sample": [
+    {
+     "PHONE_ALT": " ",
+     "PHONE_CELL": "315-730-2764",
+     "RANGER": "D. Vaile",
+     "REGION": "7",
+     "SUPERVISOR": "PENDING",
+     "SUPERVIS_1": "833-697-7264"
+    },
+    {
+     "PHONE_ALT": " ",
+     "PHONE_CELL": "315- 382-1159",
+     "RANGER": "M. Chappell",
+     "REGION": "7",
+     "SUPERVISOR": "PENDING",
+     "SUPERVIS_1": "833-697-7264"
+    },
+    {
+     "PHONE_ALT": " ",
+     "PHONE_CELL": "315-679-3208",
+     "RANGER": "W. Roberts",
+     "REGION": "7",
+     "SUPERVISOR": "PENDING",
+     "SUPERVIS_1": "833-697-7264"
+    }
+   ],
+   "service": "Forest_Ranger_Contact",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Forest_Ranger_Contact/FeatureServer/0"
+  },
+  {
+   "agency": "The Nature Conservancy (TNC)",
+   "area": "NAME",
+   "count": 114,
+   "fields": [
+    "NAME",
+    "ECOREG",
+    "STATEPROV1",
+    "STATEPROV2",
+    "STATEPROV3",
+    "SRC_DATE",
+    "ELU_GRP",
+    "ELU_SUBGRP",
+    "ELU_SUBSUB",
+    "ELUGRP_TXT"
+   ],
+   "known": false,
+   "layer": "Matrix Forest Blocks",
+   "sample": [
+    {
+     "ECOREG": "STL",
+     "ELUGRP_TXT": " ",
+     "ELU_GRP": "4",
+     "ELU_SUBGRP": "4a",
+     "ELU_SUBSUB": " ",
+     "NAME": "Coles Creek",
+     "SRC_DATE": "11/02",
+     "STATEPROV1": "NY",
+     "STATEPROV2": " ",
+     "STATEPROV3": " "
+    },
+    {
+     "ECOREG": "STL",
+     "ELUGRP_TXT": " ",
+     "ELU_GRP": "1",
+     "ELU_SUBGRP": "1b",
+     "ELU_SUBSUB": " ",
+     "NAME": "Lyonsdale",
+     "SRC_DATE": "11/02",
+     "STATEPROV1": "NY",
+     "STATEPROV2": " ",
+     "STATEPROV3": " "
+    },
+    {
+     "ECOREG": "NAP",
+     "ELUGRP_TXT": " ",
+     "ELU_GRP": "A1",
+     "ELU_SUBGRP": "A1a",
+     "ELU_SUBSUB": "A1a4",
+     "NAME": "White Face",
+     "SRC_DATE": "6/05",
+     "STATEPROV1": "NY",
+     "STATEPROV2": " ",
+     "STATEPROV3": " "
+    }
+   ],
+   "service": "Forest_Blocks_and_Linkages",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Forest_Blocks_and_Linkages/FeatureServer/3"
+  },
+  {
+   "agency": "NYSDEC DMR",
+   "area": "",
+   "count": 94,
+   "fields": [
+    "OBC_PermitNumber",
+    "Parcel_Number"
+   ],
+   "known": false,
+   "layer": "Aquaculture Lease Sites",
+   "sample": [
+    {
+     "OBC_PermitNumber": "36-P",
+     "Parcel_Number": "Oyster Grant Lot No. 150"
+    },
+    {
+     "OBC_PermitNumber": "36-P",
+     "Parcel_Number": "Oyster Grant Lot No. 529 (GR43)"
+    },
+    {
+     "OBC_PermitNumber": "36-P",
+     "Parcel_Number": "Oyster Grant Lot No. 153 (GR 10)"
+    }
+   ],
+   "service": "Shellfish",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Shellfish/FeatureServer/8"
+  },
+  {
+   "agency": "NYSDEC Lands and Forests",
+   "area": "FACILITY",
+   "count": 93,
+   "fields": [
+    "FACILITY",
+    "URL",
+    "RMP_URL"
+   ],
+   "known": false,
+   "layer": "Conservation Easements",
+   "sample": [
+    {
+     "FACILITY": "Santa Clara Conservation Easement",
+     "RMP_URL": "https://dec.ny.gov/places/santa-clara-conservation-easement-tract#Planning",
+     "URL": "https://dec.ny.gov/places/santa-clara-conservation-easement-tract"
+    },
+    {
+     "FACILITY": "Cedarlands Conservation Easement - Long Lake Area",
+     "RMP_URL": "https://dec.ny.gov/places/cedarlands-conservation-easement-tract#Planning",
+     "URL": "https://dec.ny.gov/places/cedarlands-conservation-easement-tract"
+    },
+    {
+     "FACILITY": "Conifer-Emporium Conservation Easement",
+     "RMP_URL": "https://dec.ny.gov/places/cranberry-lake-complex#Planning",
+     "URL": "https://dec.ny.gov/places/cranberry-lake-complex"
+    }
+   ],
+   "service": "Conservation_Easements",
+   "typef": "FACILITY",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Conservation_Easements/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 92,
+   "fields": [
+    "UNIT",
+    "martestrap",
+    "martenbag",
+    "fisherbag",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "Fisher_and_Marten_Trapping_Seasons",
+   "sample": [
+    {
+     "Notes": "If you take a fisher or marten, you must complete a furbearer possession tag AND get the pelt or unskinned animal sealed by a DEC representative.",
+     "UNIT": "4L",
+     "fisherbag": "No Limit",
+     "martenbag": "No Open Season for Marten",
+     "martestrap": "Nov. 15 - Dec. 31"
+    },
+    {
+     "Notes": "If you take a fisher or marten, you must complete a furbearer possession tag AND get the pelt or unskinned animal sealed by a DEC representative.",
+     "UNIT": "4U",
+     "fisherbag": "No Limit",
+     "martenbag": "No Open Season for Marten",
+     "martestrap": "Nov. 15 - Dec. 31"
+    },
+    {
+     "Notes": "A free, special permit from a Regional Wildlife Office is required to trap marten. If you take a fisher or marten, you must complete a furbearer possession tag AND get the pelt or unskinned animal sealed by a DEC representative.",
+     "UNIT": "5C",
+     "fisherbag": "No Limit",
+     "martenbag": "Season Limit of 6",
+     "martestrap": "Dec. 1 - Dec. 31"
+    }
+   ],
+   "service": "Fisher_and_Marten_Trapping_Seasons",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Fisher_and_Marten_Trapping_Seasons/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 92,
+   "fields": [
+    "UNIT",
+    "coontrap",
+    "rabbithunt",
+    "rabbitbag",
+    "harehunt",
+    "harebag",
+    "squirhunt",
+    "squirlbag",
+    "coyotehunt",
+    "coyotebag",
+    "coonhunt",
+    "coonbag",
+    "cathunt",
+    "catbag",
+    "fishertrap",
+    "pheas_reg",
+    "pheasyouth",
+    "RUGRhunt",
+    "turkeyfall",
+    "turfallbag"
+   ],
+   "known": false,
+   "layer": "Season Dates",
+   "sample": [
+    {
+     "UNIT": "4L",
+     "coonbag": "No bag limits for these species",
+     "coonhunt": "Oct. 25 - Feb. 15",
+     "coontrap": "Oct. 25 - Feb. 15",
+     "coyotebag": "No Limit",
+     "coyotehunt": "Oct. 1 - Mar. 26",
+     "harebag": "2",
+     "harehunt": "Dec. 12 - Feb. 28",
+     "rabbitbag": "6",
+     "rabbithunt": "Oct. 1 - Feb. 28",
+     "squirhunt": "Sept. 1 - Feb. 28",
+     "squirlbag": "6 total, regardless of species"
+    },
+    {
+     "UNIT": "4U",
+     "coonbag": "No bag limits for these species",
+     "coonhunt": "Oct. 25 - Feb. 15",
+     "coontrap": "Oct. 25 - Feb. 15",
+     "coyotebag": "No Limit",
+     "coyotehunt": "Oct. 1 - Mar. 26",
+     "harebag": "2",
+     "harehunt": "Dec. 12 - Feb. 28",
+     "rabbitbag": "6",
+     "rabbithunt": "Oct. 1 - Feb. 28",
+     "squirhunt": "Sept. 1 - Feb. 28",
+     "squirlbag": "6 total, regardless of species"
+    },
+    {
+     "UNIT": "5C",
+     "coonbag": "No bag limits for these species",
+     "coonhunt": "Oct. 25 - Feb. 15",
+     "coontrap": "Oct. 25 - Feb. 15*",
+     "coyotebag": "No Limit",
+     "coyotehunt": "Oct. 1 - Mar. 26",
+     "harebag": "6",
+     "harehunt": "Oct. 1 - Mar. 19",
+     "rabbitbag": "6",
+     "rabbithunt": "Oct. 1 - Mar. 19",
+     "squirhunt": "Sept. 1 - Feb. 28",
+     "squirlbag": "6 total, regardless of species"
+    }
+   ],
+   "service": "fisher_marten_trapping_WFL1",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/fisher_marten_trapping_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "UNIT",
+   "count": 92,
+   "fields": [
+    "UNIT",
+    "MOREINFO"
+   ],
+   "known": false,
+   "layer": "Wildlife Management Units",
+   "sample": [
+    {
+     "MOREINFO": "https://www.dec.ny.gov/outdoor/8302.html",
+     "UNIT": "4L"
+    },
+    {
+     "MOREINFO": "https://www.dec.ny.gov/outdoor/8302.html",
+     "UNIT": "4U"
+    },
+    {
+     "MOREINFO": "https://www.dec.ny.gov/outdoor/8302.html",
+     "UNIT": "5C"
+    }
+   ],
+   "service": "Wildlife_Management_Units",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Wildlife_Management_Units/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 85,
+   "fields": [
+    "Prop_Nam_1",
+    "Prop_Own_1",
+    "Prop_Type",
+    "Spec_Reg_1",
+    "Webpage_1",
+    "Notes_1"
+   ],
+   "known": false,
+   "layer": "NY State Properties",
+   "sample": [
+    {
+     "Notes_1": "Not all units open to hunting. See WMA webpage for details.",
+     "Prop_Nam_1": "Tivoli Bays WMA",
+     "Prop_Own_1": "NYSDEC",
+     "Prop_Type": "WMA",
+     "Spec_Reg_1": "Yes",
+     "Webpage_1": " https://dec.ny.gov/places/tivoli-bays-wildlife-management-area-and-research-reserve"
+    },
+    {
+     "Notes_1": " ",
+     "Prop_Nam_1": "Great Vly WMA",
+     "Prop_Own_1": "NYSDEC",
+     "Prop_Type": "WMA",
+     "Spec_Reg_1": "No",
+     "Webpage_1": " https://dec.ny.gov/places/great-vly-wildlife-management-area"
+    },
+    {
+     "Notes_1": "Public access by boat only. See WMA webpage for details.",
+     "Prop_Nam_1": "Rogers Island WMA",
+     "Prop_Own_1": "NYSDEC",
+     "Prop_Type": "WMA",
+     "Spec_Reg_1": "No",
+     "Webpage_1": "https://dec.ny.gov/places/rogers-island-wildlife-management-area"
+    }
+   ],
+   "service": "Waterfowl_Places_to_Hunt___Working_WFL1",
+   "typef": "Prop_Type",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Waterfowl_Places_to_Hunt___Working_WFL1/FeatureServer/0"
+  },
+  {
+   "agency": "NYSDEC DMR",
+   "area": "NAME",
+   "count": 78,
+   "fields": [
+    "NAME",
+    "Assigned_T"
+   ],
+   "known": false,
+   "layer": "Shellfish Growing Areas",
+   "sample": [
+    {
+     "Assigned_T": "KR",
+     "NAME": "Eastchester Bay"
+    },
+    {
+     "Assigned_T": "KR",
+     "NAME": "Long Island Sound NYC"
+    },
+    {
+     "Assigned_T": "KR",
+     "NAME": "Little Neck Bay"
+    }
+   ],
+   "service": "Shellfish",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Shellfish/FeatureServer/5"
+  },
+  {
+   "agency": "The Nature Conservancy (TNC)",
+   "area": "",
+   "count": 74,
+   "fields": [],
+   "known": false,
+   "layer": "Linkage Zones",
+   "sample": [
+    {
+     "EXTENDS": 0,
+     "OBJECTID": 1,
+     "Shape__Area": 631902.1389160156,
+     "Shape__Length": 3207.9811430800455
+    },
+    {
+     "EXTENDS": 0,
+     "OBJECTID": 2,
+     "Shape__Area": 322161487.4658203,
+     "Shape__Length": 157650.09461375957
+    },
+    {
+     "EXTENDS": 0,
+     "OBJECTID": 3,
+     "Shape__Area": 1863538.9458007812,
+     "Shape__Length": 5578.141653491378
+    }
+   ],
+   "service": "Forest_Blocks_and_Linkages",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Forest_Blocks_and_Linkages/FeatureServer/2"
+  },
+  {
+   "agency": "NYSDEC DMR",
+   "area": "HarvestArea",
+   "count": 66,
+   "fields": [
+    "Vibrio",
+    "HarvestArea",
+    "Description",
+    "Area_Description",
+    "More_Information",
+    "Regulations_Reference",
+    "Shellfish_Mapper",
+    "NAME",
+    "CODE"
+   ],
+   "known": false,
+   "layer": "Commercial Harvest Zones",
+   "sample": [
+    {
+     "Area_Description": "Area A2 – All shellfish lands of the Atlantic Ocean lying east of a line extending due south from the southernmost point of the jetty located on the east side of the Jones Inlet (Hempstead) and west of a line extending due south from Democrat Point on Fire Island (Babylon).",
+     "CODE": "A2",
+     "Description": "Atlantic Ocean: Jones to Fire Island",
+     "HarvestArea": "A2",
+     "More_Information": "https://dec.ny.gov/outdoor/345.html",
+     "NAME": "Atlantic Ocean: Jones to Fire Island",
+     "Regulations_Reference": "6 NYCRR 42.14 (c) (1) (ii)",
+     "Shellfish_Mapper": "https://nysdec.maps.arcgis.com/apps/webappviewer/index.html?id=d98abc91849f4ccf8c38dbb70f8a0042&center=631620.695277223,4493250.30074159,26918&level=12",
+     "Vibrio": "N"
+    },
+    {
+     "Area_Description": "Area B – Block Island Sound. All shellfish lands of Block Island Sound and tributaries lying west of a line extending northerly from Botswick Point on Gardiners Island (East Hampton) to East Point on Plum Island (Southold), and lying south of a line extending northeasterly from East Point on Plum Island to Race Point on Fishers Island (Southold), excluding all that area within one mile of Fishers Island. (‘Note’: That area within one mile of Fishers Island has its own harvest area designation referenced in paragraph (17) of this subdivision.); and lying north of a line extending southeasterly from Eastern Plain Point on Gardiners Island to Shagwong Point (East Hampton) then following the shoreline to Montauk Point (East Hampton), and lying north of a line extending due east from Montauk Point (East Hampton).",
+     "CODE": "B",
+     "Description": "Block Island Sound",
+     "HarvestArea": "B",
+     "More_Information": "https://dec.ny.gov/outdoor/345.html",
+     "NAME": "Block Island Sound",
+     "Regulations_Reference": "6 NYCRR 42.14 (c) (2)",
+     "Shellfish_Mapper": "https://nysdec.maps.arcgis.com/apps/webappviewer/index.html?id=d98abc91849f4ccf8c38dbb70f8a0042&center=756113.213747458,4562110.80862946,26918&level=12",
+     "Vibrio": "N"
+    },
+    {
+     "Area_Description": "Area A4 – All shellfish lands of the Atlantic Ocean lying east of a line extending due south from the southernmost point of the jetty located on the east side of Moriches Inlet (Brookhaven) and south of a line extending due east from Montauk Point (East Hampton).",
+     "CODE": "A4",
+     "Description": "Atlantic Ocean: Moriches to Montauk",
+     "HarvestArea": "A4",
+     "More_Information": "https://dec.ny.gov/outdoor/345.html",
+     "NAME": "Atlantic Ocean: Moriches to Montauk",
+     "Regulations_Reference": "6 NYCRR 42.14 (c) (1) (iv)",
+     "Shellfish_Mapper": "https://nysdec.maps.arcgis.com/apps/webappviewer/index.html?id=d98abc91849f4ccf8c38dbb70f8a0042&center=730148.535423125,4530252.10672681,26918&level=10",
+     "Vibrio": "N"
+    }
+   ],
+   "service": "Shellfish",
+   "typef": "Description",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Shellfish/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 4,
+   "fields": [
+    "UID",
+    "Name",
+    "Category",
+    "Descript",
+    "Region",
+    "County",
+    "Source",
+    "Orig",
+    "Update_",
+    "URL"
+   ],
+   "known": false,
+   "layer": "NYStateParksTemporaryTrailClosures",
+   "sample": [
+    {
+     "Descript": "Bear Mtn./Harriman",
+     "Name": "Area Closed - No Entry due to extreme rainfall event in 2023",
+     "Region": "08"
+    },
+    {
+     "Descript": "Hudson Highlands",
+     "Name": "Closed Until 2027 due to construction",
+     "Region": "07"
+    },
+    {
+     "Descript": "Bear Mtn./Harriman",
+     "Name": "Area Closed - No Entry due to extreme rainfall event in 2023",
+     "Region": "08"
+    }
+   ],
+   "service": "NY_State_Parks_Temporary_Trail_Closure",
+   "typef": "Category",
+   "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NY_State_Parks_Temporary_Trail_Closure/FeatureServer/0"
+  },
+  {
+   "agency": "NYSDEC DMR",
+   "area": "Name",
+   "count": 3,
+   "fields": [
+    "Name",
+    "More_Info",
+    "NSSP_Classification"
+   ],
+   "known": false,
+   "layer": "Conditional Programs",
+   "sample": [
+    {
+     "More_Info": "http://www.dec.ny.gov/outdoor/40442.html",
+     "NSSP_Classification": "CA",
+     "Name": "2025-26 Dering Harbor"
+    },
+    {
+     "More_Info": "http://www.dec.ny.gov/outdoor/40442.html",
+     "NSSP_Classification": "CA",
+     "Name": "2025-26 Port Jeff Harbor"
+    },
+    {
+     "More_Info": "http://www.dec.ny.gov/outdoor/40442.html",
+     "NSSP_Classification": "CA",
+     "Name": "2025-26 Middle Bay"
+    }
+   ],
+   "service": "Shellfish",
+   "typef": "NSSP_Classification",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Shellfish/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 2,
+   "fields": [
+    "Name",
+    "Owner",
+    "Sp_Regs",
+    "Webpage",
+    "Notes"
+   ],
+   "known": false,
+   "layer": "National Wildlife Refuges",
+   "sample": [
+    {
+     "Name": "Montezuma National Wildlife Refuge",
+     "Notes": "Proof of completion of NYS Waterfowl ID course or equivalent is required. Not all units are open for hunting. Pre-registration is required. See property webpage for details.",
+     "Owner": "USFWS",
+     "Sp_Regs": "Yes",
+     "Webpage": "https://www.fws.gov/refuge/montezuma"
+    },
+    {
+     "Name": "Iroquois National Wildlife Refuge",
+     "Notes": "Proof of completion of NYS Waterfowl ID course or equivalent is required. Not all units are open for hunting. Pre-registration is required. See property webpage for details.",
+     "Owner": "USFWS",
+     "Sp_Regs": "Yes",
+     "Webpage": "https://www.fws.gov/refuge/iroquois"
+    }
+   ],
+   "service": "Waterfowl_Places_to_Hunt___Working_WFL1",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Waterfowl_Places_to_Hunt___Working_WFL1/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [
+    "MOREINFO"
+   ],
+   "known": false,
+   "layer": "Catskill Park Boundary",
+   "sample": [
+    {
+     "MOREINFO": "https://www.dec.ny.gov/pubs/117231.html"
+    }
+   ],
+   "service": "Catskill_Park_Boundary",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/Catskill_Park_Boundary/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Catskill_Park",
+   "sample": [
+    {
+     "GlobalID": "26bdd5dc-20d7-4053-b101-1c750cc104ec",
+     "OBJECTID": 1,
+     "Shape__Area": 0.3066123561193308,
+     "Shape__Length": 3.5240736954826954
+    }
+   ],
+   "service": "baseLayers_AdminBoundaries",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/baseLayers_AdminBoundaries/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Adirondack Park",
+   "sample": [
+    {
+     "GlobalID": "b7a7adcb-0d66-4021-bc02-68acaf64217c",
+     "OBJECTID": 1,
+     "Shape__Area": 2.6432976469097866,
+     "Shape__Length": 8.090937513930996
+    }
+   ],
+   "service": "baseLayers_AdminBoundaries",
+   "typef": "",
+   "url": "https://services6.arcgis.com/DZHaqZm9cxOD4CWM/ArcGIS/rest/services/baseLayers_AdminBoundaries/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "Name",
+   "count": 857,
+   "fields": [
+    "UID",
+    "Name",
+    "Category",
+    "Label",
+    "Description",
+    "Region",
+    "County",
+    "Source",
+    "Original",
+    "Updated",
+    "MID",
+    "created_user",
+    "last_edited_user",
+    "FacilityAbbrev",
+    "RegionLabel",
+    "DrupalID"
+   ],
+   "known": true,
+   "layer": "NYS_Park_Polygon",
+   "sample": [
+    {
+     "Category": "State Park",
+     "County": "St. Lawrence",
+     "Label": "Robert Moses State Park",
+     "Name": "Robert Moses",
+     "Original": "1978",
+     "Region": "10",
+     "UID": "R120",
+     "Updated": " ",
+     "created_user": "NYS.Parks.Admin"
+    },
+    {
+     "Category": "State Park",
+     "County": "St. Lawrence",
+     "Label": "Robert Moses State Park",
+     "Name": "Robert Moses",
+     "Original": "1978",
+     "Region": "10",
+     "UID": "R120",
+     "Updated": " ",
+     "created_user": "NYS.Parks.Admin"
+    },
+    {
+     "Category": "State Park",
+     "County": "St. Lawrence",
+     "Label": "Robert Moses State Park",
+     "Name": "Robert Moses",
+     "Original": "1978",
+     "Region": "10",
+     "UID": "R120",
+     "Updated": " ",
+     "created_user": "NYS.Parks.Admin"
+    }
+   ],
+   "service": "NYS_Park_Polygons",
+   "typef": "Category",
+   "url": "https://services.arcgis.com/1xFZPtKn1wKC6POA/ArcGIS/rest/services/NYS_Park_Polygons/FeatureServer/0"
+  }
+ ],
+ "st": "NY"
+}

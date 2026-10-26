@@ -1,0 +1,2373 @@
+{
+ "checked": "2026-10-26",
+ "leads": [
+  {
+   "agency": "NH Fish and Game Department and its conservation partners, 2025.",
+   "area": "",
+   "count": 733921,
+   "fields": [
+    "reasonrank"
+   ],
+   "known": false,
+   "layer": "HighestRankedWildlifeHabitat",
+   "sample": [
+    {
+     "reasonrank": "TNC Climate Resilience"
+    },
+    {
+     "reasonrank": "TNC Climate Resilience"
+    },
+    {
+     "reasonrank": "Matrix Forest"
+    }
+   ],
+   "service": "Hosted/EC_NHWAP",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_NHWAP/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 184409,
+   "fields": [
+    "areasymbol",
+    "musym",
+    "mukey",
+    "muname",
+    "drclassdcd",
+    "hydgrpdcd",
+    "hydclprs",
+    "farmlndcl",
+    "nhiforsoig"
+   ],
+   "known": false,
+   "layer": "Forest Group",
+   "sample": [
+    {
+     "areasymbol": "NH607",
+     "drclassdcd": "Well drained",
+     "farmlndcl": "Not prime farmland",
+     "hydclprs": "4",
+     "hydgrpdcd": "C",
+     "mukey": "280539",
+     "muname": "Tunbridge-Lyman-Rock outcrop complex, 15 to 25 percent slopes",
+     "musym": "61D",
+     "nhiforsoig": "Group IIA"
+    },
+    {
+     "areasymbol": "NH607",
+     "drclassdcd": "Well drained",
+     "farmlndcl": "Not prime farmland",
+     "hydclprs": "4",
+     "hydgrpdcd": "B",
+     "mukey": "280562",
+     "muname": "Monadnock-Hermon association, 0 to 8 percent slopes, very stony",
+     "musym": "711B",
+     "nhiforsoig": "Group IB"
+    },
+    {
+     "areasymbol": "NH607",
+     "drclassdcd": "Poorly drained",
+     "farmlndcl": "Not prime farmland",
+     "hydclprs": "95",
+     "hydgrpdcd": "A/D",
+     "mukey": "280441",
+     "muname": "Moosilauke loam, 3 to 8 percent slopes, very stony",
+     "musym": "415B",
+     "nhiforsoig": "Group IIB"
+    }
+   ],
+   "service": "Hosted/GG_SoilsResources",
+   "typef": "drclassdcd",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/GG_SoilsResources/FeatureServer/3"
+  },
+  {
+   "agency": "NH Fish and Game Department, December 2025",
+   "area": "",
+   "count": 157237,
+   "fields": [],
+   "known": false,
+   "layer": "ForestDisturbance1to10years_clippedto_LFSClass",
+   "sample": [
+    {
+     "Forage": 1,
+     "GlobalID": "2acd48c0-be78-46f6-b184-410329563cc2",
+     "OBJECTID": 1,
+     "Shape__Area": 1751.8671875,
+     "Shape__Length": 163.3128807881215,
+     "SqMeters": 1752
+    },
+    {
+     "Forage": 1,
+     "GlobalID": "943a1892-ee3c-4798-8ead-eb7fad82ee70",
+     "OBJECTID": 2,
+     "Shape__Area": 1816.4140625,
+     "Shape__Length": 170.47790272585067,
+     "SqMeters": 1816
+    },
+    {
+     "Forage": 1,
+     "GlobalID": "2d478d7c-93e8-4503-b929-885d833913fa",
+     "OBJECTID": 3,
+     "Shape__Area": 868.7109375,
+     "Shape__Length": 125.96576734469654,
+     "SqMeters": 869
+    }
+   ],
+   "service": "ForestDisturbance1to10years",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/ForestDisturbance1to10years/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 128723,
+   "fields": [],
+   "known": false,
+   "layer": "HighestRankedWildlifeHabitat",
+   "sample": [
+    {
+     "SHAPE__Area": 3229.160208623123,
+     "SHAPE__Length": 262.46666669301607,
+     "acres": 0.07413161,
+     "hectares": 0.03,
+     "objectid": 30,
+     "waptier": 2
+    },
+    {
+     "SHAPE__Area": 1076.3867357296124,
+     "SHAPE__Length": 131.23333331007714,
+     "acres": 0.02471054,
+     "hectares": 0.01,
+     "objectid": 33,
+     "waptier": 2
+    },
+    {
+     "SHAPE__Area": 1076.3867362077076,
+     "SHAPE__Length": 131.23333333922187,
+     "acres": 0.02471054,
+     "hectares": 0.01,
+     "objectid": 34,
+     "waptier": 2
+    }
+   ],
+   "service": "Hosted/EC__NHWAP_2020",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC__NHWAP_2020/FeatureServer/2"
+  },
+  {
+   "agency": "NH Fish and Game Department, Oct. 2021",
+   "area": "",
+   "count": 76118,
+   "fields": [],
+   "known": false,
+   "layer": "Wildlife Secondary Corridors",
+   "sample": [
+    {
+     "Id": 1,
+     "OBJECTID": 1,
+     "Shape__Area": 339.04296875,
+     "Shape__Length": 78.08944680981278,
+     "gridcode": 5
+    },
+    {
+     "Id": 2,
+     "OBJECTID": 2,
+     "Shape__Area": 847.36328125,
+     "Shape__Length": 130.15180956342945,
+     "gridcode": 5
+    },
+    {
+     "Id": 3,
+     "OBJECTID": 3,
+     "Shape__Area": 2033.65234375,
+     "Shape__Length": 182.28390882385386,
+     "gridcode": 5
+    }
+   ],
+   "service": "NHWildlifeCorridors",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHWildlifeCorridors/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 76116,
+   "fields": [],
+   "known": false,
+   "layer": "Wildlife Secondary Corridors",
+   "sample": [
+    {
+     "SHAPE__Area": 1799.964176219408,
+     "SHAPE__Length": 180.01372778033684,
+     "gridcode": 5,
+     "id": 1,
+     "objectid": 1
+    },
+    {
+     "SHAPE__Area": 4499.8837832724985,
+     "SHAPE__Length": 300.01275860038487,
+     "gridcode": 5,
+     "id": 2,
+     "objectid": 2
+    },
+    {
+     "SHAPE__Area": 10799.798977011931,
+     "SHAPE__Length": 419.97943452944133,
+     "gridcode": 5,
+     "id": 3,
+     "objectid": 3
+    }
+   ],
+   "service": "Hosted/EC_WildlifeCorridors",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_WildlifeCorridors/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 68468,
+   "fields": [
+    "ctc_phb",
+    "poll_atten",
+    "flood_risk",
+    "pws",
+    "wap_tier1",
+    "nhwaptier2",
+    "me_bwh",
+    "rcn_2020",
+    "sm_addins",
+    "ctc_cor"
+   ],
+   "known": false,
+   "layer": "Coastal Conservation Focus Areas",
+   "sample": [
+    {
+     "ctc_cor": " ",
+     "ctc_phb": "Yes",
+     "flood_risk": " ",
+     "me_bwh": " ",
+     "nhwaptier2": " ",
+     "poll_atten": " ",
+     "pws": " ",
+     "rcn_2020": " ",
+     "sm_addins": " ",
+     "wap_tier1": " "
+    },
+    {
+     "ctc_cor": " ",
+     "ctc_phb": "Yes",
+     "flood_risk": " ",
+     "me_bwh": " ",
+     "nhwaptier2": " ",
+     "poll_atten": " ",
+     "pws": " ",
+     "rcn_2020": " ",
+     "sm_addins": " ",
+     "wap_tier1": " "
+    },
+    {
+     "ctc_cor": " ",
+     "ctc_phb": "Yes",
+     "flood_risk": " ",
+     "me_bwh": " ",
+     "nhwaptier2": " ",
+     "poll_atten": " ",
+     "pws": " ",
+     "rcn_2020": " ",
+     "sm_addins": " ",
+     "wap_tier1": " "
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/28"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 61808,
+   "fields": [
+    "rpa",
+    "landuse_description",
+    "rpc_description"
+   ],
+   "known": false,
+   "layer": "2015 Southeast Region",
+   "sample": [
+    {
+     "landuse_description": "Multi-family, low rise apartments and townhouses,",
+     "rpa": "9",
+     "rpc_description": "Residential"
+    },
+    {
+     "landuse_description": "Multi-family, low rise apartments and townhouses,",
+     "rpa": "9",
+     "rpc_description": "Residential"
+    },
+    {
+     "landuse_description": "Multi-family, low rise apartments and townhouses,",
+     "rpa": "9",
+     "rpc_description": "Residential"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "landuse_description",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/33"
+  },
+  {
+   "agency": "NH Fish and Game Department, Oct. 2021",
+   "area": "",
+   "count": 32903,
+   "fields": [
+    "CorrType"
+   ],
+   "known": false,
+   "layer": "Wildlife Corridors",
+   "sample": [
+    {
+     "CorrType": "Corridor"
+    },
+    {
+     "CorrType": "Corridor"
+    },
+    {
+     "CorrType": "Corridor"
+    }
+   ],
+   "service": "NHWildlifeCorridors",
+   "typef": "CorrType",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHWildlifeCorridors/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 30372,
+   "fields": [],
+   "known": false,
+   "layer": "Wildlife Corridors",
+   "sample": [
+    {
+     "SHAPE__Area": 8100.339342191582,
+     "SHAPE__Length": 360.01581769262174,
+     "gridcode": 1,
+     "objectid": 1
+    },
+    {
+     "SHAPE__Area": 70202.58946517436,
+     "SHAPE__Length": 1745.5739225522489,
+     "gridcode": 1,
+     "objectid": 2
+    },
+    {
+     "SHAPE__Area": 14400.561315399624,
+     "SHAPE__Length": 480.020406898556,
+     "gridcode": 1,
+     "objectid": 3
+    }
+   ],
+   "service": "Hosted/EC_WildlifeCorridors",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_WildlifeCorridors/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 22865,
+   "fields": [],
+   "known": false,
+   "layer": "1962 Rockingham County",
+   "sample": [
+    {
+     "SHAPE__Area": 7833739.560412849,
+     "SHAPE__Length": 15102.4698688319,
+     "granitid": 1500001,
+     "lu": 40,
+     "lu62015_": 2,
+     "lu62015_id": 1,
+     "nh_lu62015_area": 7833739.83617969,
+     "objectid": 1,
+     "perimeter": 15102.47006773
+    },
+    {
+     "SHAPE__Area": 219249441.08815697,
+     "SHAPE__Length": 19515983.925339654,
+     "granitid": 1500002,
+     "lu": 14,
+     "lu62015_": 3,
+     "lu62015_id": 2,
+     "nh_lu62015_area": 219249439.979161,
+     "objectid": 2,
+     "perimeter": 19515983.8863601
+    },
+    {
+     "SHAPE__Area": 99312037.88001418,
+     "SHAPE__Length": 120633.02161929509,
+     "granitid": 1500003,
+     "lu": 40,
+     "lu62015_": 4,
+     "lu62015_id": 3,
+     "nh_lu62015_area": 99312037.0022664,
+     "objectid": 3,
+     "perimeter": 120633.02345463
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/10"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 15650,
+   "fields": [
+    "permanent_",
+    "gnis_id",
+    "gnis_name",
+    "reachcode",
+    "nhfishery",
+    "nhfishnote",
+    "depthsrc",
+    "type",
+    "depth_cl",
+    "override",
+    "hab_guide",
+    "nhlakeclass",
+    "sppconcern",
+    "herringstock",
+    "wapspecies",
+    "bridleshiner",
+    "ebt",
+    "nhfginterest",
+    "huc12",
+    "armname"
+   ],
+   "known": false,
+   "layer": "Lakes and Ponds",
+   "sample": [
+    {
+     "depth_cl": "Lake",
+     "depthsrc": "NH DES 2014 & 2004",
+     "gnis_id": "00865984",
+     "gnis_name": "Canobie Lake",
+     "hab_guide": "https://easterndivision.s3.amazonaws.com/Freshwater/Lakes/lake_type_14.pdf",
+     "nhfishery": "Warm/Cool",
+     "nhfishnote": " ",
+     "nhlakeclass": "Warm/Cool Lake",
+     "override": " ",
+     "permanent_": "135911428",
+     "reachcode": "01070006001700",
+     "type": "14. Warm to Cool, Oligo-Mesotrophic, Circumneutral"
+    },
+    {
+     "depth_cl": "Lake",
+     "depthsrc": "NH DES 2014 & 2004",
+     "gnis_id": "00867486",
+     "gnis_name": "Highland Lake",
+     "hab_guide": "https://easterndivision.s3.amazonaws.com/Freshwater/Lakes/lake_type_15.pdf",
+     "nhfishery": "Warm/Cool",
+     "nhfishnote": " ",
+     "nhlakeclass": "Warm/Cool Lake",
+     "override": " ",
+     "permanent_": "135999029",
+     "reachcode": "01070003001395",
+     "type": "15. Warm to Cool, Oligo-Mesotrophic, Acidic"
+    },
+    {
+     "depth_cl": "Lake",
+     "depthsrc": "NH DES 2014 & 2004",
+     "gnis_id": "00871403",
+     "gnis_name": "Armington, Lake",
+     "hab_guide": "https://easterndivision.s3.amazonaws.com/Freshwater/Lakes/lake_type_15.pdf",
+     "nhfishery": "Warm/Cool",
+     "nhfishnote": " ",
+     "nhlakeclass": "Warm/Cool Lake",
+     "override": " ",
+     "permanent_": "76910235",
+     "reachcode": "01080104002175",
+     "type": "15. Warm to Cool, Oligo-Mesotrophic, Acidic"
+    }
+   ],
+   "service": "Hosted/EC_WildlifeResources",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_WildlifeResources/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "NAME",
+   "count": 13896,
+   "fields": [
+    "TID",
+    "NAME",
+    "NAMEALT",
+    "P_NAME",
+    "P_NAMEALT",
+    "PPTYPE",
+    "PPTERMTYPE",
+    "SPTYPE1",
+    "SPTYPE2",
+    "LEVEL_",
+    "SOURCE",
+    "COBKPG",
+    "DATEREC1",
+    "DATEREC2",
+    "DATEADDED",
+    "DATEALTER",
+    "NOTES1",
+    "NOTES2",
+    "NOTES3",
+    "NOTES4"
+   ],
+   "known": false,
+   "layer": "ConsNH",
+   "sample": [
+    {
+     "COBKPG": "07/1018/197",
+     "LEVEL_": "1",
+     "NAME": "Connecticut Lakes WMA North (West)",
+     "NAMEALT": " ",
+     "PPTERMTYPE": "P",
+     "PPTYPE": "FO",
+     "P_NAME": "Connecticut Lakes Natural Area",
+     "P_NAMEALT": "Connecticut Lakes Headwaters",
+     "SOURCE": "NH DRED/SURVEY",
+     "SPTYPE1": "CE",
+     "SPTYPE2": "CE",
+     "TID": "006-004  -002"
+    },
+    {
+     "COBKPG": "07/1018/197",
+     "LEVEL_": "1",
+     "NAME": "Connecticut Lakes WMA North (East)",
+     "NAMEALT": " ",
+     "PPTERMTYPE": "P",
+     "PPTYPE": "FO",
+     "P_NAME": "Connecticut Lakes Natural Area",
+     "P_NAMEALT": "Connecticut Lakes Headwaters",
+     "SOURCE": "NH DRED/SURVEY",
+     "SPTYPE1": "CE",
+     "SPTYPE2": "CE",
+     "TID": "006-004  -003"
+    },
+    {
+     "COBKPG": "07/284/376",
+     "LEVEL_": "1",
+     "NAME": "Connecticut Lakes State Forest",
+     "NAMEALT": " ",
+     "PPTERMTYPE": "U",
+     "PPTYPE": "FO",
+     "P_NAME": "Connecticut Lakes State Forest",
+     "P_NAMEALT": " ",
+     "SOURCE": "USGS",
+     "SPTYPE1": " ",
+     "SPTYPE2": " ",
+     "TID": "006-001  -004"
+    }
+   ],
+   "service": "NH_Conservation_and_Public_Lands_view",
+   "typef": "PPTYPE",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NH_Conservation_and_Public_Lands_view/FeatureServer/0"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": false,
+   "layer": "CL: Agency Type",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/1"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": false,
+   "layer": "CL: Primary Protection Type",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/2"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": false,
+   "layer": "CL: Protection Level",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/3"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": false,
+   "layer": "CL: Gap Status",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/4"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": false,
+   "layer": "CL: Diagonal",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 12899,
+   "fields": [
+    "name",
+    "dateadded",
+    "daterec1",
+    "pptype",
+    "level_"
+   ],
+   "known": false,
+   "layer": "Conservation and Public Lands",
+   "sample": [
+    {
+     "dateadded": "20050117",
+     "daterec1": "20021230",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "pptype": "FO"
+    },
+    {
+     "dateadded": "20050117",
+     "daterec1": "20021230",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "pptype": "FO"
+    },
+    {
+     "dateadded": " ",
+     "daterec1": "19351104",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "pptype": "FO"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 11102,
+   "fields": [],
+   "known": false,
+   "layer": "1962 Strafford County",
+   "sample": [
+    {
+     "SHAPE__Area": 72966883.14094746,
+     "SHAPE__Length": 88589.43119803062,
+     "granitid": 1700001,
+     "lu": 40,
+     "lu62017_": 2,
+     "lu62017_id": 1,
+     "nh_lu62017_area": 72966883.811702,
+     "objectid": 1,
+     "perimeter": 88589.43287707
+    },
+    {
+     "SHAPE__Area": 36185.39710472422,
+     "SHAPE__Length": 852.4004757637715,
+     "granitid": 1700002,
+     "lu": 70,
+     "lu62017_": 3,
+     "lu62017_id": 2,
+     "nh_lu62017_area": 36185.40663885,
+     "objectid": 2,
+     "perimeter": 852.40043451
+    },
+    {
+     "SHAPE__Area": 185329179.48013714,
+     "SHAPE__Length": 9516534.010931473,
+     "granitid": 1700003,
+     "lu": 14,
+     "lu62017_": 4,
+     "lu62017_id": 3,
+     "nh_lu62017_area": 185329181.516628,
+     "objectid": 3,
+     "perimeter": 9516534.0270453
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/11"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 10415,
+   "fields": [
+    "type",
+    "type_1",
+    "type_12"
+   ],
+   "known": false,
+   "layer": "WaterResource_Overlays",
+   "sample": [
+    {
+     "type": "Pollutant"
+    },
+    {
+     "type": "Pollutant"
+    },
+    {
+     "type": "Pollutant"
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/4"
+  },
+  {
+   "agency": "NH Fish and Game Department, Oct. 2021",
+   "area": "",
+   "count": 9355,
+   "fields": [],
+   "known": false,
+   "layer": "Wildlife Riparian Corridors",
+   "sample": [
+    {
+     "OBJECTID": 1,
+     "Shape__Area": 813970.39453125,
+     "Shape__Length": 7993.548874646227
+    },
+    {
+     "OBJECTID": 2,
+     "Shape__Area": 727475.0390625,
+     "Shape__Length": 6363.749445944707
+    },
+    {
+     "OBJECTID": 3,
+     "Shape__Area": 1665.6171875,
+     "Shape__Length": 163.24954044763973
+    }
+   ],
+   "service": "NHWildlifeCorridors",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHWildlifeCorridors/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 4943,
+   "fields": [
+    "zone"
+   ],
+   "known": false,
+   "layer": "lcp_forest_ecosystems_model",
+   "sample": [
+    {
+     "zone": " "
+    },
+    {
+     "zone": " "
+    },
+    {
+     "zone": " "
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 2874,
+   "fields": [
+    "attribute",
+    "wetland_type",
+    "habitat"
+   ],
+   "known": false,
+   "layer": "Estuarine and Marine",
+   "sample": [
+    {
+     "attribute": "M1UBL",
+     "habitat": "Marine Offshore",
+     "wetland_type": "Estuarine and Marine Deepwater"
+    },
+    {
+     "attribute": "E2US3N",
+     "habitat": "Estuarine, other",
+     "wetland_type": "Estuarine and Marine Wetland"
+    },
+    {
+     "attribute": "E2US3N",
+     "habitat": "Estuarine, other",
+     "wetland_type": "Estuarine and Marine Wetland"
+    }
+   ],
+   "service": "Hosted/EC_WildlifeResources",
+   "typef": "wetland_type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_WildlifeResources/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "site",
+   "count": 2718,
+   "fields": [
+    "pid",
+    "site_id",
+    "siteuniq",
+    "county",
+    "town",
+    "site",
+    "operator",
+    "own_typ",
+    "sub_own",
+    "prim_use",
+    "prk_fee",
+    "hnd_acc",
+    "lwcf",
+    "activ_1",
+    "activ_2",
+    "activ_3",
+    "activ_4",
+    "activ_5",
+    "activ_6",
+    "activ_7"
+   ],
+   "known": false,
+   "layer": "Recreation Inventory: Areas",
+   "sample": [
+    {
+     "county": "Coos",
+     "hnd_acc": " ",
+     "operator": "Town of Lancaster",
+     "own_typ": "Municipal",
+     "pid": "029-04",
+     "prim_use": "Natural Area",
+     "prk_fee": " ",
+     "site": "Lancaster Town Forest",
+     "site_id": "0704",
+     "siteuniq": "071200704",
+     "sub_own": "N/A",
+     "town": "Lancaster"
+    },
+    {
+     "county": "Coos",
+     "hnd_acc": " ",
+     "operator": "City of Berlin",
+     "own_typ": "Municipal",
+     "pid": "038-02",
+     "prim_use": "Park",
+     "prk_fee": " ",
+     "site": "Jericho Lake Park",
+     "site_id": "1903",
+     "siteuniq": "070201903",
+     "sub_own": "N/A",
+     "town": "Berlin"
+    },
+    {
+     "county": " ",
+     "hnd_acc": " ",
+     "operator": " ",
+     "own_typ": " ",
+     "pid": "040-04",
+     "prim_use": " ",
+     "prk_fee": " ",
+     "site": " ",
+     "site_id": "1501",
+     "siteuniq": "072001501",
+     "sub_own": " ",
+     "town": " "
+    }
+   ],
+   "service": "Hosted/CSD_RecreationResources",
+   "typef": "prim_use",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CSD_RecreationResources/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "site",
+   "count": 2718,
+   "fields": [
+    "pid",
+    "site_id",
+    "siteuniq",
+    "county",
+    "town",
+    "site",
+    "operator",
+    "own_typ",
+    "sub_own",
+    "prim_use",
+    "prk_fee",
+    "hnd_acc",
+    "lwcf",
+    "activ_1",
+    "activ_2",
+    "activ_3",
+    "activ_4",
+    "activ_5",
+    "activ_6",
+    "activ_7"
+   ],
+   "known": false,
+   "layer": "Recreational Areas",
+   "sample": [
+    {
+     "county": "Coos",
+     "hnd_acc": " ",
+     "operator": "Town of Lancaster",
+     "own_typ": "Municipal",
+     "pid": "029-04",
+     "prim_use": "Natural Area",
+     "prk_fee": " ",
+     "site": "Lancaster Town Forest",
+     "site_id": "0704",
+     "siteuniq": "071200704",
+     "sub_own": "N/A",
+     "town": "Lancaster"
+    },
+    {
+     "county": "Coos",
+     "hnd_acc": " ",
+     "operator": "City of Berlin",
+     "own_typ": "Municipal",
+     "pid": "038-02",
+     "prim_use": "Park",
+     "prk_fee": " ",
+     "site": "Jericho Lake Park",
+     "site_id": "1903",
+     "siteuniq": "070201903",
+     "sub_own": "N/A",
+     "town": "Berlin"
+    },
+    {
+     "county": " ",
+     "hnd_acc": " ",
+     "operator": " ",
+     "own_typ": " ",
+     "pid": "040-04",
+     "prim_use": " ",
+     "prk_fee": " ",
+     "site": " ",
+     "site_id": "1501",
+     "siteuniq": "072001501",
+     "sub_own": " ",
+     "town": " "
+    }
+   ],
+   "service": "Hosted/CV_CulturalSocietyAndDemographic",
+   "typef": "prim_use",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_CulturalSocietyAndDemographic/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 2531,
+   "fields": [
+    "habitat",
+    "name",
+    "nhwap"
+   ],
+   "known": false,
+   "layer": "Prioritized Habitat Blocks",
+   "sample": [
+    {
+     "habitat": "Mass. BioMap2 Block",
+     "name": "Mass. BioMap2 Block"
+    },
+    {
+     "habitat": "Mass. BioMap2 Block",
+     "name": "Mass. BioMap2 Block"
+    },
+    {
+     "habitat": "Mass. BioMap2 Block",
+     "name": "Mass. BioMap2 Block"
+    }
+   ],
+   "service": "Hosted/EC_WildlifeCorridors",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_WildlifeCorridors/FeatureServer/1"
+  },
+  {
+   "agency": "NH Fish and Game Department, Oct. 2021",
+   "area": "NAME",
+   "count": 2531,
+   "fields": [
+    "HABITAT",
+    "NAME",
+    "NHWAP"
+   ],
+   "known": false,
+   "layer": "Prioritized Habitat Blocks",
+   "sample": [
+    {
+     "HABITAT": "Mass. BioMap2 Block",
+     "NAME": "Mass. BioMap2 Block"
+    },
+    {
+     "HABITAT": "Mass. BioMap2 Block",
+     "NAME": "Mass. BioMap2 Block"
+    },
+    {
+     "HABITAT": "Mass. BioMap2 Block",
+     "NAME": "Mass. BioMap2 Block"
+    }
+   ],
+   "service": "NHWildlifeCorridors",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHWildlifeCorridors/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1706,
+   "fields": [
+    "type"
+   ],
+   "known": false,
+   "layer": "Coastal Priority Agricultural Resources",
+   "sample": [
+    {
+     "type": "Priority Agricultural Resource"
+    },
+    {
+     "type": "Priority Agricultural Resource"
+    },
+    {
+     "type": "Priority Agricultural Resource"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/27"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1325,
+   "fields": [
+    "type"
+   ],
+   "known": false,
+   "layer": "Public Water Supply",
+   "sample": [
+    {
+     "type": "Public Water Supply"
+    },
+    {
+     "type": "Public Water Supply"
+    },
+    {
+     "type": "Public Water Supply"
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/3"
+  },
+  {
+   "agency": "NH Fish and Game Department, Inland Fisheries Division, 2026.",
+   "area": "",
+   "count": 1162,
+   "fields": [
+    "WB_ID",
+    "WB_NAME",
+    "ALT_NAME",
+    "TOWN",
+    "TROPHIC",
+    "FISHERY",
+    "SPECIES",
+    "ACCESS",
+    "NOTES1",
+    "DIRECTNS",
+    "REGION",
+    "CONTACT",
+    "DRAWDOWN",
+    "WATERTWN",
+    "NHDPermId",
+    "ReachCode",
+    "BATHYMAP",
+    "BOW_TOWN"
+   ],
+   "known": false,
+   "layer": "NH_FreshwaterFishing_Guide",
+   "sample": [
+    {
+     "ACCESS": "Marsh Lane",
+     "ALT_NAME": "NORTH MILL POND",
+     "CONTACT": "fish@wildlife.nh.gov Phone: 603-271-2501",
+     "DIRECTNS": "Off Maplewood Ave, E of Rt 1 bypass",
+     "FISHERY": " ",
+     "NOTES1": "restrictions, contact NH Dept Environmental Services",
+     "REGION": "NHFGD Inland Fisheries Division, Concord",
+     "SPECIES": " ",
+     "TOWN": "Portsmouth",
+     "TROPHIC": " ",
+     "WB_ID": "NHEST600031001-10",
+     "WB_NAME": "NORTH MILL POND"
+    },
+    {
+     "ACCESS": "Godfrey Dam",
+     "ALT_NAME": " ",
+     "CONTACT": "reg1@wildlife.nh.gov Phone: 603-788-3164",
+     "DIRECTNS": " ",
+     "FISHERY": " ",
+     "NOTES1": "no motors",
+     "REGION": "NHFGD Region 1 (North Country), Lancaster",
+     "SPECIES": " ",
+     "TOWN": "Success",
+     "TROPHIC": " ",
+     "WB_ID": "NHIMP400010605-04",
+     "WB_NAME": "BERLIN RESERVOIR"
+    },
+    {
+     "ACCESS": "NHDOT cartop access",
+     "ALT_NAME": "Reflection Pond",
+     "CONTACT": "reg1@wildlife.nh.gov Phone: 603-788-3164",
+     "DIRECTNS": " ",
+     "FISHERY": "Cold/Warm",
+     "NOTES1": "roadside",
+     "REGION": "NHFGD Region 1 (North Country), Lancaster",
+     "SPECIES": "EBT,RT,BT,LLS,SMB, ECP,BBH",
+     "TOWN": "Shelburne",
+     "TROPHIC": " ",
+     "WB_ID": "NHIMP400020103-01",
+     "WB_NAME": "REFLECTION POND"
+    }
+   ],
+   "service": "NH_Freshwater_Fishing_Guide",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NH_Freshwater_Fishing_Guide/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 803,
+   "fields": [
+    "pollutant_tier_explanation"
+   ],
+   "known": false,
+   "layer": "Pollutant Attenuation",
+   "sample": [
+    {
+     "pollutant_tier_explanation": "Catchment meets KD threshold"
+    },
+    {
+     "pollutant_tier_explanation": "WL Tier 1"
+    },
+    {
+     "pollutant_tier_explanation": "WL Tier 1"
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 707,
+   "fields": [
+    "NH_GIS_ID",
+    "PID",
+    "TownID",
+    "Town",
+    "U_ID",
+    "DisplayId",
+    "CountyId",
+    "SLU",
+    "SLUC",
+    "SLUM",
+    "StreetAddr",
+    "LandUseCod"
+   ],
+   "known": false,
+   "layer": "NHFandGfish",
+   "sample": [
+    {
+     "CountyId": "9",
+     "DisplayId": "I-27-0-0",
+     "LandUseCod": "101-SINGLE FAMILY RES",
+     "NH_GIS_ID": "09058-I0027-000000",
+     "PID": "I0027-000000",
+     "SLU": "19",
+     "SLUC": "19",
+     "SLUM": " ",
+     "StreetAddr": "33 MESERVE RD",
+     "Town": "Dover",
+     "TownID": "058",
+     "U_ID": "058-43627"
+    },
+    {
+     "CountyId": "9",
+     "DisplayId": "I-122-0-0",
+     "LandUseCod": "353-FRATERNAL ORGANIZATIONS",
+     "NH_GIS_ID": "09058-I0122-000000",
+     "PID": "I0122-000000",
+     "SLU": "19",
+     "SLUC": "19",
+     "SLUM": " ",
+     "StreetAddr": "282 DURHAM RD",
+     "Town": "Dover",
+     "TownID": "058",
+     "U_ID": "058-46964"
+    },
+    {
+     "CountyId": "9",
+     "DisplayId": "10-12-0000",
+     "LandUseCod": "COM/IND",
+     "NH_GIS_ID": "09132-000010000012000000",
+     "PID": "000010000012000000",
+     "SLU": "19",
+     "SLUC": "19",
+     "SLUM": " ",
+     "StreetAddr": "60-62 FRESHET RD",
+     "Town": "Madbury",
+     "TownID": "132",
+     "U_ID": "132-000010000012000000"
+    }
+   ],
+   "service": "NHFandGfish",
+   "typef": "LandUseCod",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/NHFandGfish/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 316,
+   "fields": [
+    "GNIS_Name",
+    "NHFISHERY",
+    "NHFISHNOTE",
+    "BOW_TOWN",
+    "STOCKED",
+    "BOW_TYPE",
+    "WILD_EBT",
+    "KIDSPOND",
+    "LLS",
+    "BOW",
+    "TOWN"
+   ],
+   "known": false,
+   "layer": "StockedLakes",
+   "sample": [
+    {
+     "BOW": "ARMINGTON LAKE",
+     "BOW_TOWN": "ARMINGTON LAKE_PIERMONT",
+     "BOW_TYPE": "L",
+     "GNIS_Name": "Armington, Lake",
+     "KIDSPOND": "N",
+     "LLS": "N",
+     "NHFISHERY": "warm/cool",
+     "STOCKED": "Y",
+     "TOWN": "PIERMONT",
+     "WILD_EBT": "A"
+    },
+    {
+     "BOW": "PLEASANT LAKE",
+     "BOW_TOWN": "PLEASANT LAKE_DEERFIELD",
+     "BOW_TYPE": "L",
+     "GNIS_Name": "Pleasant Lake",
+     "KIDSPOND": "N",
+     "LLS": "N",
+     "NHFISHERY": "warm/cool",
+     "STOCKED": "Y",
+     "TOWN": "DEERFIELD",
+     "WILD_EBT": "A"
+    },
+    {
+     "BOW": "BOW LAKE",
+     "BOW_TOWN": "BOW LAKE_STRAFFORD",
+     "BOW_TYPE": "L",
+     "GNIS_Name": "Bow Lake",
+     "KIDSPOND": "N",
+     "LLS": "N",
+     "NHFISHERY": "coldwater",
+     "NHFISHNOTE": "Holdover Trout",
+     "STOCKED": "Y",
+     "TOWN": "STRAFFORD",
+     "WILD_EBT": "A"
+    }
+   ],
+   "service": "FishStocking_view",
+   "typef": "BOW_TYPE",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/FishStocking_view/FeatureServer/3"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 238,
+   "fields": [
+    "type"
+   ],
+   "known": false,
+   "layer": "Public Water Supply",
+   "sample": [
+    {
+     "type": "Public Water Supply"
+    },
+    {
+     "type": "Public Water Supply"
+    },
+    {
+     "type": "Public Water Supply"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/23"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 220,
+   "fields": [
+    "TOWN",
+    "PID",
+    "StreetAddr",
+    "GBRPP1",
+    "GBRPP2",
+    "Priority1",
+    "Prioirty2"
+   ],
+   "known": false,
+   "layer": "ALL_Prospective_Properties_14Sept2023",
+   "sample": [
+    {
+     "GBRPP1": "GBNWR",
+     "GBRPP2": "SPNHF",
+     "PID": "01-002-0000",
+     "Prioirty2": " ",
+     "Priority1": " ",
+     "StreetAddr": " ",
+     "TOWN": "LEE"
+    },
+    {
+     "GBRPP1": "GBNWR",
+     "GBRPP2": "SELT",
+     "PID": "000003000045000000",
+     "Prioirty2": " ",
+     "Priority1": " ",
+     "StreetAddr": " ",
+     "TOWN": "MADBURY"
+    },
+    {
+     "GBRPP1": "GBNWR",
+     "GBRPP2": "SPNHF",
+     "PID": "0000040000140000A0",
+     "Prioirty2": " ",
+     "Priority1": "Yes",
+     "StreetAddr": " ",
+     "TOWN": "MADBURY"
+    }
+   ],
+   "service": "ALL_Prospective_Properties_14Sept2023",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/ALL_Prospective_Properties_14Sept2023/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 207,
+   "fields": [
+    "type"
+   ],
+   "known": false,
+   "layer": "Wildlife Corridor",
+   "sample": [
+    {
+     "type": "Wildlife Corridor"
+    },
+    {
+     "type": "Wildlife Corridor"
+    },
+    {
+     "type": "Wildlife Corridor"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/6"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 193,
+   "fields": [
+    "tier"
+   ],
+   "known": false,
+   "layer": "lcp_high_quality_watersheds",
+   "sample": [
+    {
+     "tier": "3"
+    },
+    {
+     "tier": "3"
+    },
+    {
+     "tier": "3"
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 153,
+   "fields": [
+    "name",
+    "source"
+   ],
+   "known": false,
+   "layer": "Prioritized Habitat Block",
+   "sample": [
+    {
+     "name": "BioMap 2 Block",
+     "source": "BioMap2_edit"
+    },
+    {
+     "name": "BioMap 2 Block",
+     "source": "BioMap2"
+    },
+    {
+     "name": "BioMap 2 Block",
+     "source": "BioMap2"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/7"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 118,
+   "fields": [
+    "type",
+    "name"
+   ],
+   "known": false,
+   "layer": "Conservation Focus Areas - 2006 (NH)",
+   "sample": [
+    {
+     "name": "Pike Brook",
+     "type": "Core Area"
+    },
+    {
+     "name": "Davis and Oak Hill",
+     "type": "Core Area"
+    },
+    {
+     "name": "Union Meadows",
+     "type": "Core Area"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/18"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 118,
+   "fields": [
+    "type",
+    "name"
+   ],
+   "known": false,
+   "layer": "lcp_conservation_focus_areas",
+   "sample": [
+    {
+     "name": "Pike Brook",
+     "type": "Core Area"
+    },
+    {
+     "name": "Davis and Oak Hill",
+     "type": "Core Area"
+    },
+    {
+     "name": "Union Meadows",
+     "type": "Core Area"
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/8"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 96,
+   "fields": [
+    "name",
+    "classcurr",
+    "growarea",
+    "safetyzone",
+    "rec_catego",
+    "hh_trib",
+    "state",
+    "atlas_grow",
+    "atlas_key"
+   ],
+   "known": false,
+   "layer": "Shellfish Water Classification",
+   "sample": [
+    {
+     "atlas_grow": "PRN",
+     "atlas_key": "Cocheco, Salmon Falls, and Upper Piscataqua Rivers",
+     "classcurr": "Prohibited",
+     "growarea": "PRN",
+     "hh_trib": " ",
+     "name": "Salmon Falls River Prohib Area-NH",
+     "rec_catego": "CLOSED",
+     "safetyzone": " ",
+     "state": "NH"
+    },
+    {
+     "atlas_grow": "LMP",
+     "atlas_key": "Lamprey River",
+     "classcurr": "Prohibited/Safety Zone",
+     "growarea": "LMP",
+     "hh_trib": " ",
+     "name": "Lamprey River",
+     "rec_catego": "CLOSED",
+     "safetyzone": "WWTF",
+     "state": "NH"
+    },
+    {
+     "atlas_grow": "GB",
+     "atlas_key": "Great Bay",
+     "classcurr": "Prohibited/Safety Zone",
+     "growarea": "GB",
+     "hh_trib": " ",
+     "name": "Great Bay Prohib SZ1",
+     "rec_catego": "CLOSED",
+     "safetyzone": "WWTF",
+     "state": "NH"
+    }
+   ],
+   "service": "Hosted/CV_BiologyAndEcology",
+   "typef": "classcurr",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_BiologyAndEcology/FeatureServer/24"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 75,
+   "fields": [
+    "name",
+    "towns",
+    "state",
+    "type",
+    "huc12_name",
+    "huc8_name"
+   ],
+   "known": false,
+   "layer": "Q2C_Conservation_Focus_Areas",
+   "sample": [
+    {
+     "huc12_name": "Canaan Street Lake, South Branch, Goose Pond Brook, Jacobs Brook, Mascoma Lake, Clay Brook, Indian River, Grant Brook, Pond Brook/Tural Brook, Hanover Tributaries, Mink Brook, Crystal Lake Brook",
+     "huc8_name": "Pemigewasset River, Connecticut-Waites River to White River, Connecticut River-White River to Cold River",
+     "name": "Dorchester Highlands",
+     "state": "New Hampshire",
+     "towns": "Wentworth, Lyme, Dorchester, Hanover, Canaan",
+     "type": "Core Area"
+    },
+    {
+     "huc12_name": "Hinsdale-Winchester Tribs, Winchester - Swanzey Tribs, Chesterfield Tribs,",
+     "huc8_name": "Connecticut-Ashuelot River-Vernon Dam to Millers River, Connecticut-Bellows Falls to Vernon Dam",
+     "name": "Pisgah Brook",
+     "state": "New Hampshire",
+     "towns": "Chesterfield, Hinsdale, Winchester",
+     "type": "Core Area"
+    },
+    {
+     "huc12_name": "irey Brook - Sunny Vallet, Winchester - Swanzey Tribs, Perry Brook",
+     "huc8_name": "Middle Connecticut, Connecticut-Ashuelot River-Vernon Dam to Millers River",
+     "name": "Perry Brook",
+     "state": "New Hampshire",
+     "towns": "Swanzey, Winchester, Richmond",
+     "type": "Core Area"
+    }
+   ],
+   "service": "Hosted/EC_OpenData_MiscVectorData",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_OpenData_MiscVectorData/FeatureServer/2"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 61,
+   "fields": [
+    "datasource",
+    "bedname",
+    "citation",
+    "resource_",
+    "resource_symbol"
+   ],
+   "known": false,
+   "layer": "Current Shellfish Beds",
+   "sample": [
+    {
+     "bedname": "Nannie Island Bed",
+     "citation": "Grizzle, R. and K. Ward (2013)",
+     "datasource": "UNH",
+     "resource_": "Oyster"
+    },
+    {
+     "bedname": "Oyster River Bed",
+     "citation": "Grizzle, R. and K. Ward (2013)",
+     "datasource": "UNH",
+     "resource_": "Oyster"
+    },
+    {
+     "bedname": "Piscataqua River Bed - North",
+     "citation": "Grizzle, R. and K. Ward (2013)",
+     "datasource": "UNH",
+     "resource_": "Oyster"
+    }
+   ],
+   "service": "Hosted/CV_BiologyAndEcology",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_BiologyAndEcology/FeatureServer/4"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 50,
+   "fields": [
+    "rank",
+    "name",
+    "type"
+   ],
+   "known": false,
+   "layer": "Conservation Focus Areas - 2010 (ME)",
+   "sample": [
+    {
+     "name": "Gerrish Mountain",
+     "rank": "T2",
+     "type": "S"
+    },
+    {
+     "name": "West Sanford Swamps",
+     "rank": "T2",
+     "type": "S"
+    },
+    {
+     "name": "Little River East",
+     "rank": "T2",
+     "type": "S"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "type",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/19"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 49,
+   "fields": [
+    "zone"
+   ],
+   "known": false,
+   "layer": "lcp_forest_ecosystems_zones",
+   "sample": [
+    {
+     "zone": "East"
+    },
+    {
+     "zone": "East"
+    },
+    {
+     "zone": "East"
+    }
+   ],
+   "service": "Hosted/EC_LandConservationPlanDatasets",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_LandConservationPlanDatasets/FeatureServer/5"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 40,
+   "fields": [
+    "license_no",
+    "name",
+    "species",
+    "shellfish",
+    "finfish",
+    "other_spec",
+    "licensee",
+    "alt_licens",
+    "phone",
+    "cell_phone",
+    "email",
+    "yearsofop",
+    "comments"
+   ],
+   "known": false,
+   "layer": "Shellfish Aquaculture",
+   "sample": [
+    {
+     "alt_licens": "N/A",
+     "cell_phone": "603-502-1914",
+     "email": "nhoysters@gmail.com",
+     "finfish": "No",
+     "license_no": "2020-08",
+     "licensee": "Stephen Weglarz",
+     "name": "Cedar Point Shellfish Farm",
+     "other_spec": "No",
+     "phone": "N/A",
+     "shellfish": "Yes",
+     "species": "American Oyster, Soft Shell Clam",
+     "yearsofop": "Since 2011"
+    },
+    {
+     "alt_licens": "N/A",
+     "cell_phone": "603-918-4537",
+     "email": "timothy.henry@comcast.net",
+     "finfish": "No",
+     "license_no": "2020-04",
+     "licensee": "Tim Henry",
+     "name": "Bay Point Oyster Company LLC",
+     "other_spec": "No",
+     "phone": "N/A",
+     "shellfish": "Yes",
+     "species": "American Oyster",
+     "yearsofop": "Since 2013"
+    },
+    {
+     "alt_licens": "N/A",
+     "cell_phone": "978-979-0450",
+     "email": "jbaker@fatdogshellfish.com",
+     "finfish": "No",
+     "license_no": "2020-13",
+     "licensee": "Jay Baker",
+     "name": "Fat Dog Shellfish Co. LLC",
+     "other_spec": "No",
+     "phone": "978-500-2337",
+     "shellfish": "Yes",
+     "species": "American Oyster",
+     "yearsofop": "Since 2011"
+    }
+   ],
+   "service": "Hosted/CV_BiologyAndEcology",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_BiologyAndEcology/FeatureServer/23"
+  },
+  {
+   "agency": "NH Fish and Game Department, Dec. 18, 2025.",
+   "area": "",
+   "count": 24,
+   "fields": [
+    "WMU",
+    "MOOSEMGT",
+    "BEARMGT",
+    "WMUMOOSE",
+    "WMUDEER",
+    "WMUBEAR"
+   ],
+   "known": false,
+   "layer": "NH_Wildlife_Management_Units",
+   "sample": [
+    {
+     "BEARMGT": "North Region",
+     "MOOSEMGT": "CT Lakes Region",
+     "WMU": "A2",
+     "WMUBEAR": "A",
+     "WMUDEER": "A2",
+     "WMUMOOSE": "A2"
+    },
+    {
+     "BEARMGT": "North Region",
+     "MOOSEMGT": "CT Lakes Region",
+     "WMU": "A1",
+     "WMUBEAR": "A",
+     "WMUDEER": "A1",
+     "WMUMOOSE": "A1"
+    },
+    {
+     "BEARMGT": "North Region",
+     "MOOSEMGT": "North Region",
+     "WMU": "B",
+     "WMUBEAR": "B",
+     "WMUDEER": "B",
+     "WMUMOOSE": "B"
+    }
+   ],
+   "service": "WMU",
+   "typef": "",
+   "url": "https://services8.arcgis.com/hg1B9Egwk1I5p300/arcgis/rest/services/WMU/FeatureServer/0"
+  },
+  {
+   "agency": "",
+   "area": "name",
+   "count": 17,
+   "fields": [
+    "name",
+    "lip"
+   ],
+   "known": false,
+   "layer": "ME Beginning with Habitat - Focus Areas",
+   "sample": [
+    {
+     "lip": "N",
+     "name": "Wells and Ogunquit Marsh"
+    },
+    {
+     "lip": "Y",
+     "name": "Brave Boat Harbor and Gerrish Island"
+    },
+    {
+     "lip": "N",
+     "name": "York River Headwaters"
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/30"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 9,
+   "fields": [
+    "arm"
+   ],
+   "known": false,
+   "layer": "Watershed Groupings",
+   "sample": [
+    {
+     "arm": "Androscoggin River"
+    },
+    {
+     "arm": "Saco River"
+    },
+    {
+     "arm": "Pemigewasset - Winnipesaukee River"
+    }
+   ],
+   "service": "Hosted/EC_WildlifeResources",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_WildlifeResources/FeatureServer/1"
+  },
+  {
+   "agency": "",
+   "area": "",
+   "count": 1,
+   "fields": [],
+   "known": false,
+   "layer": "Study Area Boundary",
+   "sample": [
+    {
+     "SHAPE__Area": 30270039807.3864,
+     "SHAPE__Length": 1301783.1061711886,
+     "acres": 694976.28173628,
+     "area": 4359336023870,
+     "hectares": 281246.92291601,
+     "id": 0,
+     "objectid": 1,
+     "perimeter": 15802207.0821,
+     "sq_miles": 1085.78827363
+    }
+   ],
+   "service": "Hosted/CV_EnvironmentAndConservation_",
+   "typef": "",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/CV_EnvironmentAndConservation_/FeatureServer/17"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": true,
+   "layer": "CL: Management Status",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/0"
+  },
+  {
+   "agency": "GRANIT",
+   "area": "name",
+   "count": 13502,
+   "fields": [
+    "tid",
+    "name",
+    "namealt",
+    "p_name",
+    "p_namealt",
+    "pptype",
+    "pptermtype",
+    "sptype1",
+    "sptype2",
+    "level_",
+    "source",
+    "cobkpg",
+    "daterec1",
+    "daterec2",
+    "dateadded",
+    "datealter",
+    "notes1",
+    "notes2",
+    "notes3",
+    "notes4"
+   ],
+   "known": true,
+   "layer": "CL: Solid",
+   "sample": [
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (West)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -002"
+    },
+    {
+     "cobkpg": "07/1018/197",
+     "level_": "1",
+     "name": "Connecticut Lakes WMA North (East)",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes Natural Area",
+     "p_namealt": "Connecticut Lakes Headwaters",
+     "pptermtype": "P",
+     "pptype": "FO",
+     "source": "NH DRED/SURVEY",
+     "sptype1": "CE",
+     "sptype2": "CE",
+     "tid": "006-004  -003"
+    },
+    {
+     "cobkpg": "07/284/376",
+     "level_": "1",
+     "name": "Connecticut Lakes State Forest",
+     "namealt": " ",
+     "p_name": "Connecticut Lakes State Forest",
+     "p_namealt": " ",
+     "pptermtype": "U",
+     "pptype": "FO",
+     "source": "USGS",
+     "sptype1": " ",
+     "sptype2": " ",
+     "tid": "006-001  -004"
+    }
+   ],
+   "service": "Hosted/EC_Conservation",
+   "typef": "pptype",
+   "url": "https://nhgeodata.unh.edu/hosting/rest/services/Hosted/EC_Conservation/FeatureServer/6"
+  }
+ ],
+ "st": "NH"
+}
