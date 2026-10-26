@@ -21,7 +21,7 @@
   "with official lines": 0
  },
  "pass2": {
-  "agree with the pass before": 75101,
+  "agree with the pass before": 114,
   "cell_m": 10.0,
   "date": "2026-10-26",
   "left out": {
@@ -30,53 +30,16 @@
    "no pin": 0,
    "pin well outside": 927
   },
-  "new here only (not counted)": 2152,
+  "new here only (not counted)": 3735,
   "official parks": 38822,
-  "pairs tested": 30458,
+  "pairs tested": 608,
   "parks whose outline could not be read": 0,
-  "parks with a saved copy only (no fresh download possible)": 16112,
+  "parks with a saved copy only (no fresh download possible)": 372,
   "pass": 2,
   "problems": [
    "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)"
+   "ProtectedSites/Natura2000Sites/MapServer/2/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/Natura2000Sites/MapServer/2/query: not read (HTTP Error 502: Bad Gateway)"
   ],
   "with official lines": 0
  },
@@ -177,7 +140,7 @@
    "lines": 0,
    "n-fers": 34591,
    "pass1": 68190,
-   "pass2": 60670,
+   "pass2": 60759,
    "spots": 68190
   },
   "W-GB": {
@@ -186,7 +149,7 @@
    "lines": 0,
    "n-fers": 210,
    "pass1": 1433,
-   "pass2": 1254,
+   "pass2": 1274,
    "spots": 1433
   },
   "W-HR": {
@@ -267,7 +230,7 @@
    "lines": 0,
    "n-fers": 2219,
    "pass1": 6941,
-   "pass2": 6460,
+   "pass2": 6464,
    "spots": 6941
   },
   "W-PT": {
@@ -276,7 +239,7 @@
    "lines": 0,
    "n-fers": 26,
    "pass1": 140,
-   "pass2": 134,
+   "pass2": 135,
    "spots": 140
   },
   "W-RO": {
