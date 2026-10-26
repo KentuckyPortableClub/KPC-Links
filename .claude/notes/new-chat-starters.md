@@ -158,7 +158,7 @@ DECIDED (Brandon Oct 26 2:55 PM): the Beta Test Room (kpc-beta-room / -cat / -ne
 ## SITE REORGANIZATION PLAN — DRAFT, NOT APPROVED (HQ with Brandon, Oct 25 9:20 PM). No chat acts on this until Brandon says go.
 TARGET (Brandon Oct 25 9:39 PM): release THU OCT 29, 1:30 AM CDT, IF the club OKs the Activators Lounge release. Prep Mon-Wed WITHOUT publishing (ready, not live); release night one chat at a time: chat 2 Map Room → chat 3 Lounge public → chat 1 menu on every page + kpc-gate.js PUBLIC list → check phone + desktop → announcement via the Discord relay. If the club says no: nothing goes public; the cleanup can still go in (gate keeps hidden pages hidden). HQ gives the per-chat prep pastes when Brandon says 'go'.
 GOAL: every tool has ONE home room; other rooms point to it with doorway buttons; nothing deleted; kpc-gate.js PUBLIC list still decides what guests see (room pages themselves public, locked links hide themselves). Done in ONE release pass with the Activators Lounge going public. Menu = chat 1 only (replaces the earlier 'chat 3 edits the menu at launch' decision).
-MENU (top bar unchanged: Home · Campout · Parks · Events · Photos · Live · search). See More:
+MENU (top bar: Home · Campout · KY Parks · Events · Photos · Live · search; Brandon Oct 26 3:25 PM: the 'Parks' label becomes 'KY Parks' so people know it is Kentucky; the page title stays 'Kentucky Parks'; guests' swap to kentucky-parks.html keeps the same label). See More:
  OPERATING: Activators Lounge · Hunters Lounge · Map Room · Campgrounds & Cabins · Weather · Radio Conditions
  LEARNING: Antenna & Power Room · POTA / WWFF / SOTA Rooms (one line) · Learning Room · Kids Room · Library · Videos
  CLUB: News · Community · Guestbook / Members · About · Join · Contact
