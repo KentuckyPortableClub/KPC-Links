@@ -43,10 +43,70 @@
   ],
   "with official lines": 0
  },
+ "pass3": {
+  "agree with the pass before": 71911,
+  "cell_m": 5.0,
+  "date": "2026-10-26",
+  "left out": {
+   "approximate": 0,
+   "no outline": 16127,
+   "no pin": 0,
+   "pin well outside": 927
+  },
+  "new here only (not counted)": 5031,
+  "official parks": 38822,
+  "pairs tested": 28539,
+  "parks whose outline could not be read": 0,
+  "parks with a saved copy only (no fresh download possible)": 15747,
+  "pass": 3,
+  "problems": [
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/Natura2000Sites/MapServer/2/query: not read (HTTP Error 502: Bad Gateway)"
+  ],
+  "with official lines": 0
+ },
  "per state": {
   "W-AT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 91,
    "lines": 0,
    "n-fers": 16,
    "pass1": 148,
@@ -54,7 +114,7 @@
    "spots": 148
   },
   "W-AU": {
-   "candidates": 0,
+   "candidates": 460,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 282,
@@ -64,7 +124,7 @@
   },
   "W-BE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 6,
    "lines": 0,
    "n-fers": 0,
    "pass1": 8,
@@ -73,7 +133,7 @@
   },
   "W-CH": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 58,
    "lines": 0,
    "n-fers": 11,
    "pass1": 88,
@@ -82,7 +142,7 @@
   },
   "W-CZ": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 121,
    "lines": 0,
    "n-fers": 30,
    "pass1": 147,
@@ -91,7 +151,7 @@
   },
   "W-DE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 12,
    "lines": 0,
    "n-fers": 0,
    "pass1": 15,
@@ -100,7 +160,7 @@
   },
   "W-DK": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 12,
    "lines": 0,
    "n-fers": 0,
    "pass1": 15,
@@ -109,7 +169,7 @@
   },
   "W-EE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 6,
    "lines": 0,
    "n-fers": 0,
    "pass1": 6,
@@ -118,7 +178,7 @@
   },
   "W-ES": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 2159,
    "lines": 0,
    "n-fers": 1060,
    "pass1": 3543,
@@ -127,7 +187,7 @@
   },
   "W-FI": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 395,
    "lines": 0,
    "n-fers": 4,
    "pass1": 690,
@@ -136,7 +196,7 @@
   },
   "W-FR": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 35564,
    "lines": 0,
    "n-fers": 34591,
    "pass1": 68190,
@@ -144,8 +204,8 @@
    "spots": 68190
   },
   "W-GB": {
-   "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates": 473,
+   "candidates (saved outline only)": 276,
    "lines": 0,
    "n-fers": 210,
    "pass1": 1433,
@@ -154,7 +214,7 @@
   },
   "W-HR": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 244,
    "lines": 0,
    "n-fers": 34,
    "pass1": 365,
@@ -172,7 +232,7 @@
   },
   "W-IE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 1,
    "lines": 0,
    "n-fers": 0,
    "pass1": 12,
@@ -181,7 +241,7 @@
   },
   "W-IT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 339,
    "lines": 0,
    "n-fers": 29,
    "pass1": 486,
@@ -190,7 +250,7 @@
   },
   "W-LT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 2,
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
@@ -199,7 +259,7 @@
   },
   "W-LU": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 4,
    "lines": 0,
    "n-fers": 0,
    "pass1": 5,
@@ -208,7 +268,7 @@
   },
   "W-NL": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 14,
    "lines": 0,
    "n-fers": 0,
    "pass1": 18,
@@ -217,7 +277,7 @@
   },
   "W-NO": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 67,
    "lines": 0,
    "n-fers": 1,
    "pass1": 109,
@@ -226,7 +286,7 @@
   },
   "W-PL": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 6049,
    "lines": 0,
    "n-fers": 2219,
    "pass1": 6941,
@@ -235,7 +295,7 @@
   },
   "W-PT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 77,
    "lines": 0,
    "n-fers": 26,
    "pass1": 140,
@@ -244,7 +304,7 @@
   },
   "W-RO": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 112,
    "lines": 0,
    "n-fers": 14,
    "pass1": 167,
@@ -253,7 +313,7 @@
   },
   "W-SE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 603,
    "lines": 0,
    "n-fers": 100,
    "pass1": 915,
@@ -262,7 +322,7 @@
   },
   "W-SI": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 72,
    "lines": 0,
    "n-fers": 17,
    "pass1": 91,
@@ -271,7 +331,7 @@
   },
   "W-SK": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 2,
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
