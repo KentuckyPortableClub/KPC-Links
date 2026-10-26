@@ -8,6 +8,12 @@
  "BC recreatio": [
   "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_forest_tenure/MapServer/5"
  ],
+ "BC-HCA Gover": [
+  "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/46"
+ ],
+ "BC-HP Govern": [
+  "https://maps.gov.bc.ca/arcgis/rest/services/whse/bcgw_pub_whse_human_cultural_economic/MapServer/82"
+ ],
  "Manitoba Par": [
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Parks/FeatureServer/0"
  ],
@@ -25,6 +31,9 @@
  ],
  "NS-NHS Nova ": [
   "https://novarocmaps.novascotia.ca/arcgis/rest/services/NovaRoc/MapServer/29"
+ ],
+ "NS-PPA Nova ": [
+  "https://services1.arcgis.com/qpxtVXh93G601MmT/arcgis/rest/services/Nova_Scotia_Parks_and_Protected_Areas_System/FeatureServer/1"
  ],
  "NU-TP Crown-": [
   "https://services.aadnc-aandc.gc.ca/arcgis/rest/services/nms20/nms/MapServer/21"
@@ -137,6 +146,9 @@
  ],
  "SK-ALL Gover": [
   "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/4"
+ ],
+ "SK-PT Govern": [
+  "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsTitled/MapServer/0"
  ],
  "Saskatchewan": [
   "https://gis.saskatchewan.ca/arcgis/rest/services/ParksAsLegislated/FeatureServer/0",

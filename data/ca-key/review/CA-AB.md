@@ -1,9 +1,10 @@
 # Canada AB: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **392 of 459** joined (same name + same kind). **2** to check, **43** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **392 of 459** joined (same name + same kind). **3** to check, **43** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
+- **CA-4772** Athabasca Pass National Historic Site (National Historic Site) → Athabasca Pass Trail (~0 ac, same name, different kind of place); Jasper National Park Of Canada (~2,688,008 ac, the POTA pin is inside it (different name))
 - **CA-6125** Porcupine Hills Public Land Use Zone Other Conservation Area (Other Conservation Area) → Porcupine Hills (~0 ac, similar name)
 - **CA-6134** Athabasca Ranch Public Land Use Zone Recreation Park (Recreation Park) → Athabasca Ranch (~0 ac, similar name)
 
@@ -16,7 +17,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-3076 McLean Pond Natural Area (Natural Area) → on McLean Creek (~0 ac); McLean Creek Off-Highway Vehicle (~0 ac)
 - CA-3157 Waterton-Glacier International Peace Park (Park) → on Waterton Lakes (~0 ac); Waterton Lakes National Park Of Canada (~124,788 ac)
 - CA-4771 Abbot Pass Refuge Cabin National Historic Site (National Historic Site) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
-- CA-4772 Athabasca Pass National Historic Site (National Historic Site) → on Jasper National Park Of Canada (~2,688,008 ac)
 - CA-4775 Cave and Basin National Historic Site (National Historic Site) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)
 - CA-4776 First Oil Well in Western Canada National Historic Site (National Historic Site) → on Waterton Lakes (~0 ac); Waterton Lakes National Park Of Canada (~124,788 ac)
 - CA-4778 Howse Pass National Historic Site (National Historic Site) → on Banff (~0 ac); Banff National Park Of Canada (~1,641,024 ac)

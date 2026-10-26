@@ -8,19 +8,19 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~0 ac, same name, different kind of place)
 - **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name)
 - **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~0 ac, similar name)
-- **CA-6111** Swiss Air Memorial Peggys Cove Provincial Park (Provincial Park) → Swiss Air Memorial (~0 ac, same name, different kind of place); West Dover Provincial Park (~2,563 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name))
+- **CA-6111** Swiss Air Memorial Peggys Cove Provincial Park (Provincial Park) → Swiss Air Memorial (~0 ac, same name, different kind of place); West Dover Provincial Park (~2,563 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~1,835 ac)
-- CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac)
+- CA-0465 Lawrencetown Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~0 ac)
+- CA-0941 Rainbow Haven Beach Provincial Park (Provincial Park) → on Cole Harbour - Lawrencetown Provincial Park (~0 ac); Cole Harbour - Lawrencetown Provincial Park (~0 ac)
 - CA-1851 Shut-in Island Nature Reserve (Nature Reserve) → on St. Margarets Bay Islands Nature Reserve (~0 ac); St. Margarets Bay Islands Nature Reserve (~0 ac)
 - CA-4830 Charles Fort National Historic Site (National Historic Site) → on Fort Anne (~0 ac)
 - CA-5798 Annapolis County Court House National Historic Site (National Historic Site) → on Fort Anne (~0 ac)
 - CA-5808 Enragée Point Lighthouse National Heritage Site (National Heritage Site) → on Cape Breton Highlands National Park Of Canada (~0 ac); Cape Breton Highlands National Park Of Canada (~0 ac)
 - CA-5819 Halifax WWII Coastal Defences National Historic Site (National Historic Site) → on York Redoubt (~0 ac)
 - CA-6189 Peter Island Lighthouse National Heritage Site (National Heritage Site) → on Peter's Island Conservation Lands (~0 ac); Peter's Island Conservation Lands (~0 ac)
-- CA-6567 Roseway Beach Provincial Park (Provincial Park) → on Bowers Meadows Wilderness Area (~0 ac); Bowers Meadows Wilderness Area (~118 ac)
+- CA-6567 Roseway Beach Provincial Park (Provincial Park) → on Bowers Meadows Wilderness Area (~0 ac); Bowers Meadows Wilderness Area (~0 ac)
 
 ## Nothing found in CPCAD
 
