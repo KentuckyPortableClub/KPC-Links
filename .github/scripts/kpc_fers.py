@@ -23,9 +23,12 @@ KPC's extra rules (Brandon, Oct 26):
 - TRAILS + RIVERS (official lines, data/trails): POTA's rule = the station entirely within 100 ft of the trail (KPC applies
   the same to rivers). So a stretch AT LEAST 100 YARDS LONG where a station spot inside the other park (5 m in) is within
   100 ft of the line; two lines: their 100-ft zones meet along 100 yards.
-- n-fers: a 3-fer is three parks whose boundaries may overlap at the SAME place (never a chain); same for 4.
-- Two park numbers joined to the SAME outline record = an answer-key mistake: listed in data/fers/same-outline.json,
-  never a spot.
+- n-fers: a 3-fer is three parks whose boundaries may overlap at the SAME place (never a chain); same up to 9 (Oct 27).
+- Two park numbers joined to the SAME outline record (Oct 27 10:35 AM, HQ: the 'never a 2-fer' rule is retired): SHOWN as
+  'Same land, two park numbers' everywhere (US, Canada, Kentucky); also listed in data/fers/same-outline.json.
+- Oct 27 (Fable's design review, HQ GO): passes 1-2 only SCREEN (any overlap pixel goes on), pass 3 decides the 25/50/100-yard
+  tiers; ownership sampled at up to 5 points of the patch; no public fee owner at the spot = NOT SURE; an owned-land mask that
+  empties the overlap = a NOT SURE row (never silence); tile caches kept small; Canada: water + roads not checked yet = NOT SURE.
 - Oct 27: THE 2-FER RULES FOR THE WHOLE WORLD (notes/mapping.md) are built in (see the block above 'rasters'): agency-land parks
   = owned land only, public + open, ownership step, river edges, water-only + missing-boundary lists, pins never count.
 
@@ -82,7 +85,9 @@ LOG = []
 
 
 def notice(t, m): print('::notice title=%s::%s' % (t, str(m).replace('%', '%25').replace('\n', ' ')[:900]), flush=True)
-def late(): return time.time() - T0 > LIMIT
+def late(screen=False):
+    """Out of time? Pass 3 stops LOOKING at 70% of its time, so deciding the spots it found (ownership, water, pins) fits."""
+    return time.time() - T0 > LIMIT * (.7 if screen else 1)
 def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower()).split())
 
 
@@ -695,6 +700,9 @@ def fs_owned(box):
 OWNER_KEY = {'usfs': 'FED:USFS', 'blm': 'FED:BLM', 'nps': 'FED:NPS', 'usace': 'FED:USACE', 'fws': 'FED:FWS', 'state': 'STATE'}
 PADQ = {'nps': "Category = 'Fee' AND Mang_Name = 'NPS'", 'usace': "Category = 'Fee' AND Mang_Name = 'USACE'",
         'fws': "Category = 'Fee' AND Mang_Name = 'FWS'", 'state': "Category = 'Fee' AND Own_Type = 'STAT'"}
+OWNMAP = {'usfs': 'Forest Service ownership map (Basic Ownership, 2015 data)', 'blm': 'BLM surface management map',
+          'nps': 'PAD-US Park Service fee records', 'usace': 'PAD-US Corps of Engineers fee records', 'fws': 'PAD-US Fish and Wildlife fee records',
+          'state': 'PAD-US state fee records'}
 BLMSMA = 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_LimitedScale/MapServer'
 OWN_T = {}     # (kind, tile) -> groups
 
@@ -745,6 +753,23 @@ def pmask(F, r, G):
 
 
 OWNED_FAIL = set()
+CA_WATER = None     # Fable #9: an official Canadian water service (NRCan National Hydro Network) once the probe finds one
+CACHE_TILES = 600   # Oct 27 (Fable #8): tiles kept in memory before the far ones are dropped
+
+
+def evict(box):
+    """Keep the cached ownership / water tiles near box (1 degree around); drop the rest when the caches grow big."""
+    if not box: return
+    n = len(FSO['tile']) + sum(1 for k in OWN_T if isinstance(k, tuple)) + len(NHDC)
+    if n <= CACHE_TILES: return
+    near = lambda x0, y0, sz: inter(box, [x0 * sz, y0 * sz, (x0 + 1) * sz, (y0 + 1) * sz], 1.0) is not None
+    for k in [k for k in FSO['tile'] if not near(k[0], k[1], .25)]: del FSO['tile'][k]
+    keep = {o for ids in FSO['tile'].values() for o in ids}
+    for o in [o for o in FSO['feat'] if o not in keep]: del FSO['feat'][o]
+    for k in [k for k in OWN_T if isinstance(k, tuple) and not near(k[1], k[2], .25)]: del OWN_T[k]
+    for k in [k for k in NHDC if not near(k[0], k[1], .1)]: del NHDC[k]
+
+
 NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer'
 NHDL = {}
 NHDC = {}
@@ -897,22 +922,32 @@ def ownership_step(s, parks, PIN):
     priv = [r for r, o in owners.items() if o == 'PRIVATE']
     if priv: return 'drop', 'private land (leased / open by agreement) counts only for its own park number: ' + ', '.join(PIN.get(r, [r])[0] for r in priv)
     real = {r: o for r, o in owners.items() if o not in ('', '?')}
-    if len(set(real.values())) <= 1 and '?' not in owners.values() and not any(r in OWNED for r in refs):
+    if real and len(set(real.values())) <= 1 and '?' not in owners.values() and not any(r in OWNED for r in refs):
         return 'ok', 'one owner (or designations on it): layered'
-    if REGION == 'world': return 'not sure', 'owners differ; no land register read for this country yet'
-    la, lo = s['center']
-    try: recs = cpcad_at(lo, la) if refs[0].startswith('CA-') else pad_at(lo, la)
-    except Exception as e: return 'not sure', f'ownership map did not answer ({str(e)[:40]})'  # noqa: BLE001
-    if refs[0].startswith('CA-'):
-        here = {owner_of_text(' '.join(str(v) for k, v in a.items() if re.search(r'owner', k, re.I))) for a in recs} - {''}
-    else:
-        here = {owner_of_pad(a) for a in recs if a.get('Category') == 'Fee'}
-    here -= {'JOINT'}   # PAD-US 'joint' records are mixed-owner corridors (Kentucky wild rivers): a designation, not an owner
+    if REGION == 'world':
+        return 'not sure', ('owners differ' if real else 'no park here owns land (designations only)') + '; no land register read for this country yet'
+    # Oct 27 (Fable #3): the owner is read at up to 5 points of the patch (its middle + the farthest inside point each way),
+    # never one; every point must show the SAME public owner
+    canada = refs[0].startswith('CA-')
+    recs, seen = [], []
+    for lo, la in patch_points(s):
+        try: rr = cpcad_at(lo, la) if canada else pad_at(lo, la)
+        except Exception as e: return 'not sure', f'ownership map did not answer ({str(e)[:40]})'  # noqa: BLE001
+        recs += rr
+        if canada: h = {owner_of_text(' '.join(str(v) for k, v in a.items() if re.search(r'owner', k, re.I))) for a in rr} - {''}
+        else: h = {owner_of_pad(a) for a in rr if a.get('Category') == 'Fee'}
+        seen.append(h - {'JOINT'})   # PAD-US 'joint' records are mixed-owner corridors (Kentucky wild rivers): a designation, not an owner
+    here = set().union(*seen) if seen else set()
     if any(r in OWNED for r in refs):
         # an agency-land park's mask IS the agency's own ownership map (rule B2: the agency beats PAD-US): the ground is its land
         ground = OWNER_KEY.get(OWNED[next(r for r in refs if r in OWNED)], 'FED:USFS')
     else:
-        if len(here) > 1: return 'not sure', 'the ownership map shows two owners at the spot: ' + ', '.join(sorted(here))
+        # Oct 27 (Fable #2): no public fee owner at the spot = NOT SURE (designations stacked over private land must never pass)
+        if not seen or any(not h for h in seen):
+            return 'not sure', ('no public owner on the ownership map (' + ('CPCAD' if canada else 'PAD-US fee records')
+                                + ') at ' + ('the spot' if len(seen) < 2 else 'every part of the spot') + ': could be private land under the designations')
+        if 'PRIVATE' in here: return 'drop', 'private land at the spot (ownership map): counts only for its own park number, never a 2-fer'
+        if len(here) > 1: return 'not sure', 'the ownership map shows more than one owner across the spot: ' + ', '.join(sorted(here))
         ground = next(iter(here), '')
     bad, unk = [], []
     for r in refs:
@@ -925,6 +960,33 @@ def ownership_step(s, parks, PIN):
     if bad: return 'drop', 'side by side, not layered: ' + '; '.join(bad[:2])
     if unk: return 'not sure', 'owner not known for ' + ', '.join(PIN.get(r, [r])[0] for r in unk)
     return 'ok', f'layered on {ground.split(":")[-1].lower() or "one owner"} land'
+
+
+def patch_points(s):
+    """[(lon, lat)] where the owner is read: the spot's middle + the farthest point inside its shape in each quarter (NE, NW,
+    SE, SW), at least 12.5 yards in from its edge; line spots and tiny patches = the middle only."""
+    la, lo = s['center']
+    out = [(lo, la)]
+    shape = s.get('shape')
+    if s.get('kind') != 'area' or not shape or len(shape) < 3: return out
+    try:
+        b = bbox_lines([shape]); cell = 5.0
+        F = Frame(b, cell, 20)
+        while F.W * F.H > 4_000_000: cell *= 1.5; F = Frame(b, cell, 20)
+        m = F.area([[shape]])
+        dd = dt(m) * cell
+        rows, cols = np.nonzero(dd >= TIGHT_SHRINK + cell * .5)
+        if not len(rows): rows, cols = np.nonzero(dd >= cell * 1.5)
+        if not len(rows): return out
+        c0, r0 = F.px([[lo, la]])[0]
+        dx, dy = cols - c0, r0 - rows
+        for qx, qy in ((1, 1), (-1, 1), (1, -1), (-1, -1)):
+            sel = (dx * qx > 0) & (dy * qy > 0)
+            if not sel.any(): continue
+            i = np.argmax(np.where(sel, dx * dx + dy * dy, -1))
+            out.append(tuple(F.ll(int(cols[i]), int(rows[i]))))
+    except Exception as e: LOG.append(f'patch points: {str(e)[:60]}')  # noqa: BLE001
+    return out[:5]
 
 
 # Kentucky rulings (Brandon + HQ Oct 27; chat 8's KPC_KY2fer_VERDICT_desk.md): decided pairs, applied after the tests
@@ -1063,8 +1125,11 @@ def area_spots(G, refs, box):
     f = Frame(box, max(CELL, math.sqrt(max(1.0, (box[2] - box[0]) * 111320 * math.cos(math.radians(box[1])) * (box[3] - box[1]) * 110574) / 1e6)), 0)
     k = np.ones((3, 3), np.uint8)
     ov = None
+    owned = any(r in OWNED for r in refs)
     for r in refs:
-        m = cv2.dilate(pmask(f, r, G), k)
+        # Oct 27 (Fable #4): the coarse look uses the WHOLE outlines, so a pair whose agency-owned land does not overlap still
+        # reaches the fine look and becomes a NOT SURE row (never a silent drop)
+        m = cv2.dilate(f.area(G[r]), k)
         ov = m if ov is None else ov & m
         if not ov.any(): return []
     rows, cols = np.nonzero(ov)
@@ -1083,11 +1148,21 @@ def area_spots(G, refs, box):
         F = Frame(b, CELL, SHRINK * 3)
         ovf = None
         for r in refs:
-            m = pmask(F, r, G); ovf = m if ovf is None else ovf & m
+            m = F.area(G[r]); ovf = m if ovf is None else ovf & m
             if not ovf.any(): break
         if ovf is None or not ovf.any(): continue
+        masked_out = False
+        if owned:
+            raw = ovf.copy()
+            for r in refs:
+                if r in OWNED: ovf &= pmask(F, r, G)
+            if not (dt(ovf) * CELL >= TIGHT_SHRINK + CELL * .5 if PASS == 3 else ovf > 0).any():
+                ovf, masked_out = raw, True   # the outlines overlap, the agency's ownership map shows none of it as its land
         dist = dt(ovf) * CELL
-        core = (dist >= TIGHT_SHRINK + CELL * (1.0 if PASS == 3 else .5)).astype(np.uint8)   # pass 3 strict, 1-2 a little lenient (screens); 25-yard floor (rule 4)
+        # Oct 27 (Fable #5): passes 1-2 only SCREEN (any overlap pixel: a 25-yard patch can be one 20-m cell wide there);
+        # pass 3 (5-m cells, finest lines) decides: a 25-yard circle must fit (rule 4 floor; the distance map runs to the
+        # middle of the next cell, so half a cell more), wide_m sets the tier
+        core = (dist >= TIGHT_SHRINK + CELL * .5).astype(np.uint8) if PASS == 3 else (dist > 0).astype(np.uint8)
         if not core.any(): continue
         n, lab = cv2.connectedComponents(ovf, connectivity=8)
         for L in sorted(set(lab[core > 0].tolist())):
@@ -1098,9 +1173,10 @@ def area_spots(G, refs, box):
             ap = cv2.approxPolyDP(big, 1.5, True).reshape(-1, 2)
             if len(ap) > 300: ap = ap[::int(math.ceil(len(ap) / 300))]
             shape = [F.ll(int(c), int(r)) for c, r in ap]
-            w = round(float(d.max()) * 2)
+            w = round(max(0.0, float(d.max()) - CELL * .5) * 2)   # the distance map counts to the next cell's middle: half a cell less = the real width
             out.append({'refs': sorted(refs), 'kind': 'area', 'center': F.ll(int(c0), int(r0))[::-1],
-                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape})
+                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape,
+                        **({'masked_out': sorted({OWNED[r] for r in refs if r in OWNED})} if masked_out else {})})
     return merge(out)
 
 
@@ -1111,6 +1187,7 @@ def merge(spots):
         b = bbox_lines([s['shape']])
         t = next((o for o in out if o['refs'] == s['refs'] and o['kind'] == s['kind'] and inter(o['_b'], b, 0.0005)), None)
         if t:
+            if not s.get('masked_out'): t.pop('masked_out', None)   # one piece on agency-owned land = a real spot
             if 'acres' in t or 'acres' in s: t['acres'] = round(t.get('acres', 0) + s.get('acres', 0), 1)   # line spots have none
             if s.get('wide_m', 0) > t.get('wide_m', 0): t['center'], t['wide_m'] = s['center'], s['wide_m']
             if s.get('len_m'): t['len_m'] = round(t.get('len_m', 0) + s['len_m'])
@@ -1195,8 +1272,13 @@ TESTED = set()
 def find_spots(G, LN, pairs, counts):
     CURG.clear(); CURG.update(G)
     spots = []
-    for a, b in sorted(pairs):
-        if late(): counts['stopped for time'] = True; break
+    # Oct 27 (Fable #8): pairs in map order (1-degree cells), so the ownership / water tiles in memory are the ones in use
+    def cell_of(p):
+        bx = [bbox_groups(G[r]) if r in G else bbox_lines(LN[r]['lines']) for r in p if r in G or r in LN]
+        bx = [x for x in bx if x]
+        return (math.floor(bx[0][0]), math.floor(bx[0][1]), p) if bx else (999, 999, p)
+    for a, b in sorted(pairs, key=cell_of):
+        if late(screen=PASS == 3): counts['stopped for time'] = True; break
         counts['pairs tested'] += 1
         TESTED.add((a, b))
         ba = bbox_groups(G[a]) if a in G else bbox_lines(LN[a]['lines'])
@@ -1215,11 +1297,13 @@ def find_spots(G, LN, pairs, counts):
             spots += got
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
+        evict(box)
     # n-fers: a third park whose boundary may overlap the SAME place as an area spot (50 yards across, all three)
     nb = {}
     for a, b in pairs: nb.setdefault(a, set()).add(b); nb.setdefault(b, set()).add(a)
-    level = [s for s in spots if s['kind'] == 'area']
-    for n in (3, 4):
+    level = [s for s in spots if s['kind'] == 'area' and not s.get('masked_out')]
+    for n in range(3, 10):   # Oct 27 (Fable #6, rule 11): up to 9-fers; a level that adds nothing ends it
+        if not level: break
         nxt = []
         for s in level:
             if late(): break
@@ -1231,7 +1315,7 @@ def find_spots(G, LN, pairs, counts):
                 if not box: continue
                 try: nxt += area_spots(G, s['refs'] + [c], [box[0] - .001, box[1] - .001, box[2] + .001, box[3] + .001])
                 except Exception as e: LOG.append(f"{'+'.join(s['refs'])} + {c}: {str(e)[:60]}")  # noqa: BLE001
-        spots += nxt; level = nxt
+        spots += nxt; level = [x for x in nxt if not x.get('masked_out')]
     return spots
 
 
@@ -1350,6 +1434,8 @@ def access_pin(s, G, LN, st_of):
         i = np.unravel_index(np.argmin(d), d.shape)
         if np.isfinite(d[i]) and (best is None or d[i] < best[0]): best = (float(d[i]), kind, i)
     if not best:
+        if not s['refs'][0].startswith('US-'):
+            return {'at': s['center'], 'from': 'none (no road source yet)', 'note': 'no road map read for this country yet: the pin is the middle of the spot'}
         return {'at': s['center'], 'from': 'none', 'note': 'no public road, parking or path within about 1.5 km: the pin is the middle of the spot'}
     dist, kind, (r, c) = best
     lon, lat = F.ll(int(c), int(r))
@@ -1515,6 +1601,10 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
             for b in range(a + 1, len(refs)):
                 if (refs[a], refs[b]) in KY_DROP: s['status'] = 'dropped: ' + KY_DROP[(refs[a], refs[b])]; return
     if any(r in OWNED_FAIL for r in refs): s['status'] = 'not sure: the agency ownership map did not answer'; return
+    if s.get('masked_out'):   # Oct 27 (Fable #4, HQ 10:35 AM: contradiction A): the mask decides the SHAPE; no owned patch = NOT SURE, never silence
+        s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
+                       + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
+        s['names'] = {r: PIN[r][0] for r in refs}; s['maps'] = [[r, map_link(r, PIN)] for r in refs]; return
     if any(r in LOWCONF for r in refs):   # pre-flight fix 9: a LOW-confidence outline (second witness) may be the wrong land
         s['status'] = 'not sure: low-confidence outline for ' + ', '.join(PIN[r][0] for r in refs if r in LOWCONF) + ' (check the join)'; return
     if s['kind'] == 'area' and refs[0].startswith('US-'):
@@ -1522,6 +1612,9 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         except Exception as e: lc = 'ok'; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
         if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
         if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
+    if s['kind'] == 'area' and refs[0].startswith('CA-') and not CA_WATER:
+        # Oct 27 (Fable #9, pre-flight 6): no Canadian water map read yet = never guess that the patch is land
+        s['status'] = 'not sure: water not checked (no Canadian water map read yet)'; s['names'] = {r: PIN[r][0] for r in refs}; return
     v, why = ownership_step(s, parks, PIN)
     s['ownership'] = why
     if v == 'drop': s['status'] = 'dropped: ' + why; return
@@ -1680,7 +1773,7 @@ def main():
         counts.update({'candidates without a pin': len(cand), 'pins placed': n})
     elif PASS == 1:
         same = same_outline(parks)
-        save_json(OUT / {'world': 'same-outline-world.json', 'ky': 'same-outline-ky.json'}.get(REGION, 'same-outline.json'), {'about': 'Two park numbers joined to the SAME outline record: an answer-key mistake to fix, never a 2-fer.', 'pairs': same}, indent=1)
+        save_json(OUT / {'world': 'same-outline-world.json', 'ky': 'same-outline-ky.json'}.get(REGION, 'same-outline.json'), {'about': "Two park numbers joined to the SAME outline record. Shown in the spot files as 'Same land, two park numbers' (HQ Oct 27 10:35 AM: the old 'never a 2-fer' rule is retired); a wrong join is still worth fixing in the answer key.", 'pairs': same}, indent=1)
         skip_pairs = {tuple(x['refs']) for x in same}
         # saved outlines: PAD-US from the cache, Canada from the saved files; the rest from the state layers at the key's detail
         pad = saved_us(parks) if REGION == 'na' else {}
@@ -1723,13 +1816,13 @@ def main():
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
             by.setdefault(st_of(s['refs'][0]), []).append(s)
-        if REGION == 'ky':
+        if REGION != 'world':
             # Brandon Oct 26 2:03 PM ('Fort Heiman and Donelson, it is what it is: both'): two park numbers on ONE official outline
             # (the NPS folded Fort Heiman into Fort Donelson National Battlefield) are both valid there: a 'same land' spot on
-            # the piece nearest the second park's pin. (Outside Kentucky the same-outline list stays an answer-key question.)
+            # the piece nearest the second park's pin. Oct 27 10:35 AM (HQ, Fable #7): the same for US + Canada.
             for x in same:
                 a, b = x['refs']
-                if a not in G or b not in G: continue
+                if a not in G or b not in G or a not in PIN or b not in PIN: continue
                 la, lo = PIN[b][1], PIN[b][2]
                 best = min(G[b], key=lambda poly: min(math.hypot(q[0] - lo, q[1] - la) for q in poly[0]) if poly and poly[0] else 1e9)
                 ring = best[0]; xs = [q[0] for q in ring]; ys = [q[1] for q in ring]
@@ -1740,7 +1833,8 @@ def main():
                       'note': f"both park numbers are joined to the same official outline ({x['name']}); POTA lists them separately: check POTA's current list",
                       'maps': [[r, map_link(r, PIN)] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
-                by.setdefault('US-KY', []).append(sp)
+                if any(r in LOWCONF for r in (a, b)): sp['status'] = 'not sure: low-confidence outline (check the join)'
+                by.setdefault(st_of(a), []).append(sp)
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st not in by and st in old: continue
             save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(by.get(st, []), key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
@@ -1787,6 +1881,8 @@ def main():
                     s['passes'][PASS - 1] = 1; agree += 1
                     for k in ('center', 'shape', 'box', 'acres', 'wide_m', 'len_m'):
                         if k in m: s[k] = m[k]
+                    if m.get('masked_out'): s['masked_out'] = m['masked_out']
+                    else: s.pop('masked_out', None)
                     m['_used'] = 1
                     s['status'] = f'pass {PASS}'
                 else:
@@ -1794,7 +1890,11 @@ def main():
                     s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else '')
                 if REGION == 'ky' and 'US-4484' in s['refs'] and set(s['refs']) & KY_FS_MANAGED:
                     s['label'] = 'Forest Service land managed by KDFWR'   # Oct 27 (HQ ruling 2): one agency owns, another manages = a real 2-fer
-                if PASS == 3 and m: decide(s, parks, G, LN, PIN, today, saved_only, st_of)
+                if PASS == 3 and m:
+                    if late():   # Fable #1: out of time = carried on by the next run, never a half-decided row
+                        s['passes'][2] = 0; s['status'] = 'waiting for pass 3'; continue
+                    evict(sbox(s))
+                    decide(s, parks, G, LN, PIN, today, saved_only, st_of)
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN)
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
@@ -1826,9 +1926,9 @@ def main():
 ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, "
          "notes/mapping.md): the park = where its designation legally applies (national forests + grasslands = Forest Service-OWNED land only, "
          "never proclamation lines); public land open to the public; layered = real, side by side = not (ownership step: PAD-US / CPCAD at the "
-         "spot); a patch 50 yards across in every park ('small' = 50-100 yards; 25-50 yards = the separate 'very tight' list, members only; under 25 = not kept); line-only trails / rivers by POTA's 100-ft rule from the line "
+         "spot, read at up to 5 points of the patch; no public owner there = not sure); a patch 50 yards across in every park ('small' = 50-100 yards; 25-50 yards = the separate 'very tight' list, members only; under 25 = not kept); line-only trails / rivers by POTA's 100-ft rule from the line "
          "or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or "
-         "kayak' are separate lists, never the main one; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with "
+         "kayak' are separate lists, never the main one; n-fers up to 9; 'Same land, two park numbers' (two numbers on one official outline) is shown with that label; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with "
          "no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
          "and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. "
          "We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your "
