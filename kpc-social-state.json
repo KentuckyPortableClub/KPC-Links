@@ -1165,7 +1165,9 @@
   "resources.html",
   "toolbox.html",
   "videos.html",
-  "kpc-hunters-need.html"
+  "kpc-hunters-need.html",
+  "kpc-about-info.html",
+  "kpc-activators-lounge.html"
  ],
  "bandtimes": [
   "2026-10-23"
