@@ -129,6 +129,7 @@ def expand(urls, per_service=12):
             if not ok(lj) or (lj.get('geometryType') or '') not in ('esriGeometryPoint', 'esriGeometryPolygon'): continue
             nm = lj.get('name') or ''
             if LAYER_BAD.search(nm) and not STRONG.search(nm): continue
+            if NOT_CAMP.search(nm + ' ' + svc): continue   # Oct 27: never Army camps, bases, buildings
             out.append({'url': lu, 'name': nm, 'fields': [(f.get('name'), f.get('type')) for f in lj.get('fields', [])], 'geo': lj['geometryType'],
                         'strong': bool(STRONG.search(nm + ' ' + svc.rsplit('/', 2)[-2])), 'max': int(lj.get('maxRecordCount') or 1000), 'svc': svc,
                         'lodging': bool(re.search(r'lodg|resort|cabin', nm + ' ' + svc, re.I))})
@@ -137,7 +138,8 @@ def expand(urls, per_service=12):
 
 NOT_OFFICIAL = re.compile(r'county|city of|town of|village|township|borough|parish|district|universit|college|school|foundation|club|association|\bllc\b|\binc\b|'
                           r'consult|engineering|esri|conservancy|\btrust\b|society|\bcorp\b|united states|u\.s\.|\busfs\b|\busda\b|\busgs\b|noaa|national park service|'
-                          r'army corps|bureau of land|\bblm\b|national forest|tribe|nation\b|hospital|church', re.I)
+                          r'army corps|bureau of land|\bblm\b|national forest|tribe|nation\b|hospital|church|\barmy\b|military|national guard|'
+                          r'department of defense|air force|\bnavy\b|national parks?\b', re.I)
 OFFICIAL_ORG = re.compile(r'department|dept|division|\bdnr\b|\bdcr\b|\bdep\b|\bdec\b|state parks?|parks (?:and|&) (?:recreation|wildlife|tourism)|natural resources|'
                           r'conservation|fish|wildlife|\bgame\b|forestry|forest service|environment|commission|office of|geospatial|\bgis\b|state of|commonwealth|'
                           r'bureau|recreation|tourism|\bgeo\b', re.I)
@@ -154,6 +156,26 @@ def official_org(name, st):
     if not n or NOT_OFFICIAL.search(n): return False
     sn = STATE_NAMES.get(st, st)
     return bool((re.search(re.escape(sn), n, re.I) or re.search(r'\b%s\b' % st, n)) and OFFICIAL_ORG.search(n))
+
+
+# Oct 27 (Fable's research-bots review #1, HQ URGENT): a campground layer counts ONLY when its publisher is the state's own park /
+# wildlife / forestry agency. ArcGIS Online holds anyone's data: the Arizona list was Army border camps, Colorado's Rocky Mountain
+# NP backcountry sites (the Park Service's account listed for its boundary layers), California's / Florida's military bases.
+NOT_CAMP = re.compile(r'\barmy\b|military|national guard|\bbase\b|blanding|border camp|bldgs|buildings?\b|barracks|backcountry|back ?camps|'
+                      r'dev ?camps|urban camps|homeless|encampment|goose pasture', re.I)
+ORGCHK = {}
+
+
+def owner_ok(root, st):
+    """A server root on the shared ArcGIS Online cloud (services*.arcgis.com/<org id>/…) counts only when that org's NAME is the
+    state's own agency (official_org); a state's own server (.gov / .us host) passes."""
+    m = re.match(r'https?://services\d*\.arcgis\.com/([A-Za-z0-9]+)/', root or '')
+    if not m: return True
+    oid = m.group(1)
+    if oid not in ORGCHK:
+        pj = get_json(f'https://www.arcgis.com/sharing/rest/portals/{oid}')
+        ORGCHK[oid] = (pj.get('name') or '') if ok(pj) else ''
+    return official_org(ORGCHK[oid], st)
 
 
 def org_search(st):
@@ -292,6 +314,7 @@ def discover(st):
     DIAG[st] = {'roots': []}
     for root in roots[:6]:
         if time.time() > DEADLINE: break
+        if not owner_ok(root, st): DIAG[st].setdefault('not_agency', []).append(root); continue   # Oct 27: the PUBLISHER test
         top = get_json(root)
         dg = {'root': root, 'ok': ok(top), 'services': 0, 'candidates': 0, 'layers': 0}
         DIAG[st]['roots'].append(dg)
@@ -321,6 +344,7 @@ def discover(st):
                 if (st_ or gen) and not (LAYER_BAD.search(ln) and not st_):
                     cand.append((l['id'], ln, st_ or bool(STRONG.search(name))))
             for lid, ln, strong in cand[:12]:
+                if NOT_CAMP.search(ln + ' ' + name): continue   # Oct 27: Army border camps, military bases, buildings
                 lu = f'{su}/{lid}'
                 if lu in seen: continue
                 seen.add(lu)
