@@ -20,6 +20,8 @@ matching a park within 15 miles. Every step is safe: a failure keeps last week's
 Env: STATES (blank = every state but KY), DRY_RUN=1 (print, write nothing), SPEED (workers, default 6)."""
 import ast, datetime, hashlib, json, math, os, pathlib, re, subprocess, sys, time, urllib.error, urllib.parse, urllib.request
 import concurrent.futures as cf
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kpc_save import read_dates  # noqa: E402  (Oct 27: one date helper for every fact)
 
 ORG_SEARCH = os.environ.get('ORG_SEARCH', '1') != '0'      # pass 2 for states with no list
 DIAG = {}                                   # per state: what was crawled and what each layer held (data/campstate/layers.json)
@@ -674,6 +676,10 @@ def main():
         f = OUT / f'US-{st}.json'
         if r['camps']:
             data = {'state': st, 'updated': TODAY, 'source': r['source'], 'camps': [row_of(st, c) for c in r['camps']]}
+            try: was = json.loads(f.read_text(encoding='utf-8'))
+            except Exception: was = {}  # noqa: E722
+            # research-bots review #2: the day each camp was read from its agency (unchanged camps keep their date for a month)
+            data['read'] = read_dates({c[0]: c for c in was.get('camps') or []}, {c[0]: c for c in data['camps']}, was.get('read'))
             if not DRY: f.write_text(json.dumps(data, separators=(',', ':'), ensure_ascii=False) + '\n', encoding='utf-8')
             states[st] = {'n': len(data['camps']), 'source': r['source'], 'updated': TODAY}; wrote += 1
         elif st in states and f.exists():

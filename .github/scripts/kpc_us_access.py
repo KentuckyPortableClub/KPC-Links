@@ -12,7 +12,7 @@ A statewide layer (every boat ramp in the state) only ever counts by PLACE. Noth
 Writes data/access/US-XX.json {updated, st, parks:{ref:[[lat, lon, label]]}} (Kentucky's 'ap' shape) + data/access/index.json.
 STATES='MO PA' picks states (default: every state in the layer list). Never fails."""
 import gzip, json, math, os, pathlib, re, sys, time, types, urllib.parse, urllib.request
-from kpc_save import save_json  # Oct 25 storage plan: write only when the content changed
+from kpc_save import save_json, read_dates  # Oct 25 storage plan: write only when the content changed
 
 UA = {'User-Agent': 'KPC access points (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/access'); OUT.mkdir(parents=True, exist_ok=True)
@@ -260,13 +260,16 @@ def run(st, layers):
                 for ref, (name, typ, la, lo) in parks.items():
                     if km(la, lo, p['la'], p['lo']) > NAME_KM: continue
                     if K.name_ok(name, p['area'], K.kinds(name) | K.kinds(typ), K.kinds(p['area'])): hit.add(ref)
+            byname = set(hit)
             for ref, rings in OL.items():
                 if ref in parks and ref not in hit:
                     name, typ, la, lo = parks[ref]
                     b = OLB.get(ref)
                     if b and b[0] <= p['lo'] <= b[2] and b[1] <= p['la'] <= b[3] and on_land(p['la'], p['lo'], rings): hit.add(ref)
             for ref in hit:
-                got.setdefault(ref, []).append([round(p['la'], 6), round(p['lo'], 6), f"{p['k']}{(': ' + p['nm'])[:60] if p['nm'] and p['nm'] != p['area'] else ''} ({src})"])
+                # Oct 27 (research-bots review #9): how the point was tied: 'name' (the layer names the park) or 'place' (it sits
+                # on the park's official land); tools word a place-only point as 'nearby public access, not the park's own'
+                got.setdefault(ref, []).append([round(p['la'], 6), round(p['lo'], 6), f"{p['k']}{(': ' + p['nm'])[:60] if p['nm'] and p['nm'] != p['area'] else ''} ({src})", 'name' if ref in byname else 'place'])
                 n += 1
         log.append(f"{L['url'].split('/services/')[-1][:50]}: {how}; {n} tied to parks")
     # tidy: one point per ~60 m, parking first, at most CAP per park
@@ -280,7 +283,11 @@ def run(st, layers):
             keep.append(q)
             if len(keep) >= CAP: break
         out[ref] = keep
-    save_json(OUT / (f'{st}.json' if ca else f'US-{st}.json'), {'st': st, 'note': 'Official parking / entrance / gate / kiosk / boat ramp / trailhead points from the state agencies (data/access-layers.json), tied to POTA parks by the layer\'s area name or by sitting on the park\'s official land. Built by .github/scripts/kpc_us_access.py.',
+    fn = OUT / (f'{st}.json' if ca else f'US-{st}.json')
+    try: was = json.load(open(fn))
+    except Exception: was = {}  # noqa: BLE001
+    rd = read_dates(was.get('parks'), out, was.get('read'))   # research-bots review #2: the day each park's points were read
+    save_json(fn, {'st': st, 'read': rd, 'src': 'the state agencies\' own point layers (data/access-layers.json)', 'note': 'Official parking / entrance / gate / kiosk / boat ramp / trailhead points from the state agencies (data/access-layers.json), tied to POTA parks by the layer\'s area name or by sitting on the park\'s official land. Built by .github/scripts/kpc_us_access.py.',
                                                    'parks': out})
     c = {'parks_with_points': len(out), 'points': sum(len(v) for v in out.values()), 'wildlife_parks': sum(1 for r, x in parks.items() if WILD.search(x[1])), 'outlines': len(OL)}
     notice(f'Access {st}', f"{c['parks_with_points']} parks got {c['points']} points; " + ' | '.join(log)[:700])

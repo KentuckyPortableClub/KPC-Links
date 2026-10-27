@@ -63,5 +63,36 @@ def flush_status():
     _changed.clear()
 
 
+# ------------------------------------------------------------------ dates on every fact (Oct 27: Fable's research-bots review #2 +
+# boundary review B2, HQ 12:20 PM: ONE helper). 'read' = the day a fact was last read from its agency. A fact that did not change
+# keeps its date until it is REFRESH_DAYS old, so an unchanged nightly run does not rewrite the file.
+REFRESH_DAYS = 30
+
+
+def today(): return time.strftime('%Y-%m-%d')
+
+
+def read_dates(old_items, new_items, old_read, refresh_days=REFRESH_DAYS):
+    """{key: 'YYYY-MM-DD'} for every key in new_items (dicts of key -> content). Same content + a date younger than refresh_days
+    = the old date; anything new, changed or older = today. Keys that are gone drop out."""
+    t = today()
+    cut = time.strftime('%Y-%m-%d', time.localtime(time.time() - refresh_days * 86400))
+    out = {}
+    for k, v in (new_items or {}).items():
+        d = (old_read or {}).get(k)
+        out[k] = d if d and d >= cut and canon((old_items or {}).get(k)) == canon(v) else t
+    return out
+
+
+def source_clock(old_meta, ok, n):
+    """Change detection for one SOURCE (a feed, a layer): keeps 'kept_since' (the day reads started failing: the last good copy
+    has been shown since then) and 'n_prev' (the last good count), so 'went from N to 0' and 'kept for weeks' can be seen."""
+    old_meta = old_meta or {}
+    prev = old_meta.get('n') if old_meta.get('ok', True) and old_meta.get('n') is not None else old_meta.get('n_prev')
+    m = {} if prev is None else {'n_prev': prev}
+    if not ok: m['kept_since'] = old_meta.get('kept_since') or today()
+    return m
+
+
 import atexit  # noqa: E402
 atexit.register(flush_status)

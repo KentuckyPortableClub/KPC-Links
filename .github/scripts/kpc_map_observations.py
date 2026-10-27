@@ -12,11 +12,11 @@ and appends what is worth a human look to data/map-observations.json:
 Each item {kind, ref, name, place, what, first, last}; an item seen again only moves 'last'; items not seen for 90 days
 drop off. 'last_run' holds this run's counts (the boundary-check issue shows them). Changes nothing else. Chat 8 reviews.
 Never fails."""
-import glob, json, os, pathlib, re, subprocess, sys, time
+import glob, json, os, pathlib, re, subprocess, sys, time  # noqa: F401
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
 
-OUT = pathlib.Path('data/map-observations.json')
+OUT = pathlib.Path(os.environ.get('OBS_FILE') or 'data/map-observations.json')   # Oct 27: each data bot writes its own file (no push clashes)
 RUN = os.environ.get('OBS_RUN') or 'run'
 TODAY = time.strftime('%Y-%m-%d')
 KEEP_DAYS = 90
@@ -94,6 +94,55 @@ def layers(found):
             found.append(('layer problem', '', msg[:80], pathlib.Path(f).stem, msg))
 
 
+def old_days(d, n):
+    return bool(d) and d < time.strftime('%Y-%m-%d', time.localtime(time.time() - n * 86400))
+
+
+# Oct 27 (Fable's research-bots review #3, HQ 12:20 PM: ONE change-detection helper, shared with boundary B6): the data bots'
+# files compared with the last saved version the same way as the outlines
+def closures(found):
+    new, old = now('data/alerts/us-parks.json'), head('data/alerts/us-parks.json') or {}
+    if not new: return
+    for sid, m in (new.get('sources') or {}).items():
+        o = (old.get('sources') or {}).get(sid) or {}
+        if m.get('ok') and m.get('n') == 0 and (o.get('n') or m.get('n_prev') or 0) > 0:
+            found.append(('feed went to zero', sid, m.get('agency') or sid, m.get('st') or '', f"closures feed answered with 0 park items (was {o.get('n') or m.get('n_prev')}): really nothing closed, or a changed feed? {m.get('page', '')}"))
+        if old_days(m.get('kept_since'), 60):
+            found.append(('feed stale', sid, m.get('agency') or sid, m.get('st') or '', f"feed not read since {m['kept_since']}: its last closures are still shown"))
+
+
+def access(found):
+    for f in sorted(glob.glob('data/access/*.json')):
+        if f.endswith('index.json'): continue
+        new, old = now(f), head(f)
+        if not new or not old: continue
+        place = pathlib.Path(f).stem
+        a = sum(len(v) for v in (old.get('parks') or {}).values()); b = sum(len(v) for v in (new.get('parks') or {}).values())
+        if a >= 20 and abs(b - a) >= .25 * a:
+            found.append(('access points', '', place, place, f'{a:,} → {b:,} parking / access points (a layer gone, renamed or added?)'))
+
+
+def camps(found):
+    for f in sorted(glob.glob('data/campstate/US-??.json')):
+        new, old = now(f), head(f)
+        if not new or not old: continue
+        a, b = len(old.get('camps') or []), len(new.get('camps') or [])
+        if a and (b == 0 or abs(b - a) >= max(5, .25 * a)):
+            found.append(('campgrounds', '', pathlib.Path(f).stem, pathlib.Path(f).stem, f'{a} → {b} state campgrounds ({str(new.get("source", ""))[:90]})'))
+
+
+def links(found):
+    new, old = now('data/parkinfo-web.json'), head('data/parkinfo-web.json') or {}
+    if not new: return
+    for ref, e in (new.get('parks') or {}).items():
+        o = (old.get('parks') or {}).get(ref) or {}
+        for k in ('map', 'web'):
+            if o.get(k) and not e.get(k): found.append(('link lost', ref, ref, '', f"official {k} link removed: {o[k][:100]}"))
+        mc, oc = (e.get('map_check') or {}).get('map'), (o.get('map_check') or {}).get('map')
+        if e.get('map') and oc == 'ok' and mc and mc != 'ok':
+            found.append(('link broken', ref, ref, '', f"map link stopped loading ({mc}): {e['map'][:100]} (re-find on the agency page)"))
+
+
 def near(found):
     new, old = now('data/outline-leads/near-miss.json'), head('data/outline-leads/near-miss.json') or {}
     if not new: return
@@ -106,7 +155,7 @@ def near(found):
 
 def main():
     found = []
-    for f in (keys, fers, layers, near):
+    for f in (keys, fers, layers, near, closures, access, camps, links):
         try: f(found)
         except Exception as e: found.append(('layer problem', '', f'observations: {f.__name__} stopped', '', str(e)[:120]))  # noqa: BLE001
     d = now(OUT) or {}
