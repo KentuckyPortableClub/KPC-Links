@@ -75,6 +75,9 @@ def guard():
         gate = re.search(r'<script[^>]+src="kpc-gate\.js', head) is not None
         noindex = re.search(r'<meta[^>]+name=["\']robots["\'][^>]*noindex', head, re.I) is not None
         own_lock = 'data-lock=' in t and 'kpc-vip.js' in t        # beta rooms: their own password on top
+        if len(t) < 3000 and re.search(r'http-equiv=["\']refresh', t, re.I) and 'location.replace' in t:
+            notes.append({'chat': 1, 'msg': f'{p}: a "this page has moved" pointer (no content to protect)'})
+            continue
         if not gate:
             problems.append({'key': f'guard:nogate:{p}', 'chat': 1,
                              'msg': f'{p}: does not load kpc-gate.js in its head, so ' + ('guests are not handled' if p in pub else 'it is OPEN to the public')})

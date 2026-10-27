@@ -23,7 +23,9 @@ const ORIGIN = new URL(BASE).origin;
 // the code libraries the pages load (Leaflet etc.) are part of the page; outside DATA services are not tested here
 const LIBS = /^(cdnjs\.cloudflare\.com|unpkg\.com|cdn\.jsdelivr\.net|code\.jquery\.com|fonts\.googleapis\.com|fonts\.gstatic\.com)$/;
 const OUTSIDE = u => { const x = new URL(u); return x.origin !== ORIGIN && !LIBS.test(x.hostname); };
-const LOCKED_SAMPLE = ['parks.html', 'toolbox.html', 'find.html', 'kpc-kit.html'].filter(f => fs.existsSync(f));
+// a few members-only pages (never public, real pages, not 'moved' pointers) to prove the door still shows
+const LOCKED_SAMPLE = ['toolbox.html', 'kpc-club.html', 'kpc-logger.html', 'kpc-spot-me.html', 'kpc-top50.html', 'kpc-recap.html']
+  .filter(f => fs.existsSync(f) && !PUBLIC.includes(f) && fs.statSync(f).size > 3000).slice(0, 4);
 
 function chatOf(page) {
   if (/^(kpc-hunters|kpc-beta-|kpc-spots|kpc-spot-me|kpc-campgrounds|kpc-park-notes|kpc-activat|kpc-logger|kpc-tracker|kpc-top25|kpc-rare|kpc-park-sheet)/.test(page)) return 3;
