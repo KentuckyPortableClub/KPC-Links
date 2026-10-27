@@ -1,7 +1,6 @@
 """Refreshes the 2-Fers & 3-Fers index pages and every park card's 2-fer line in the two
 Kentucky POTA Resource PDFs, from fers.json. Needs poppler (pdftotext) and pypdf + reportlab.
-usage (repo root): python3 .claude/build/fers/resource_patch.py
-NOTE (storage plan, Oct 27): these two PDFs live on the 'site-pdfs' release now, not the repo root. Download with `gh release download site-pdfs -p '<name>.pdf'` before running this, and `gh release upload site-pdfs '<name>.pdf' --clobber` after."""
+usage (repo root): python3 .claude/build/fers/resource_patch.py"""
 import json,os,re,subprocess,io,tempfile,html
 import pypdf
 from pypdf.generic import NameObject,ArrayObject

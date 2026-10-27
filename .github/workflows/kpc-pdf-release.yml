@@ -27,24 +27,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          # Only the big static PDFs the guide bot never touches. The guide bot's own PDFs (alphabetical/
+          # numerical resource, SOTA, WWFF, Beginner's Guide, Antenna Efficiency, Top 25) and the two
+          # members-only/still-being-fixed PDFs (2-fers guide, Park Candidates) stay in the repo: a public
+          # release asset list would expose the members-only one, and the bot would just make the release
+          # copy stale every time it reprints. (HQ correction, Oct 27)
           FILES=(
             "KPC_2026_Event_Archive_Photo_Archive.pdf"
             "KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf"
             "KPC_2027_Kentucky_Adventure_Guide.pdf"
             "KPC_2027_Kentucky_Local_Guide.pdf"
             "KPC_2027_KYPOTA_Campout_Flyer.pdf"
-            "KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf"
-            "KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf"
-            "KPC_Kentucky_SOTA_W4K_Resource.pdf"
-            "KPC_Kentucky_WWFF_KFF_Resource.pdf"
             "KPC_Meet_the_Founders_Brent_Wells_Revised.pdf"
             "KPC_Meet_the_Founders_Brandon_White_KZ4CP_Final_Readable.pdf"
-            "KPC_Kentucky_POTA_2fers_3fers_Guide.pdf"
             "KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf"
-            "KPC_Kentucky_POTA_Park_Candidates.pdf"
-            "KPC_Beginners_Guide_to_Portable_Operations_261005_092000.pdf"
-            "KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf"
-            "KPC_Top_25_Lowest_QSO_and_Activations_October_2026_261005_084249.pdf"
           )
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
