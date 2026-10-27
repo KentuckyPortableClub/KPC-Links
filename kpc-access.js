@@ -32,6 +32,10 @@
     ['trailhead', '🥾', 'Trailheads', /trail/i], ['ramp', '🛶', 'Boat ramps', /boat|ramp|launch|carry|canoe|kayak|slipway|paddl/i], ['other', '📍', 'Other', /./]];
   const kindOf = t => (KINDS.find(k => k[3].test(t || '')) || KINDS[5])[0];
   const KI = Object.fromEntries(KINDS.map(k => [k[0], k]));
+  /* HQ Oct 27 5:33 PM: chat 2's points carry HOW they were tied to the park (4th field 'name' = the agency's layer names the park,
+     'place' = it only sits on/near the park's land). A place-only point is 'Nearby public access, not the park's own', never a park entrance. */
+  const NEARTXT = 'Nearby public access, not the park\u2019s own';
+  const nearLab = l => NEARTXT + ': ' + String(l || 'access point').replace(/\b(park\s+)?entrances?\b/ig, 'access').replace(/^\w/, c => c.toLowerCase());
   /* who the point came from: '(Tennessee Wildlife Resources Agency)' / '(TWRA; all managers)' / 'KDFWR boat ramp: …' / 'NPS parking lot' */
   function srcOf(label, ky) {
     const m = /\(([^()]+)\)\s*$/.exec(label || ''), part = m ? m[1].split(';')[0].replace(/\s+(asset (inventory|management data)|EGIS.*|GIS Bureau|Facilities Parking Area)$/i, '').trim() : '';
@@ -70,7 +74,7 @@
 
   /* ---------- official points for one park ---------- */
   async function officialPoints(p) {
-    const out = [], add = (la, lo, label, src, kind) => { if (!isFinite(la) || !isFinite(lo)) return; if (out.some(x => mi(x.la, x.lo, la, lo) < 0.02)) return; out.push({ la: +la, lo: +lo, label, src, kind: kind || kindOf(label), osm: false }); };
+    const out = [], add = (la, lo, label, src, kind, how) => { if (!isFinite(la) || !isFinite(lo)) return; if (out.some(x => mi(x.la, x.lo, la, lo) < 0.02)) return; let k = kind || kindOf(label); const near = how === 'place'; if (near && k === 'entrance') k = 'other'; out.push({ la: +la, lo: +lo, label: near ? nearLab(label) : label, src, kind: k, near, osm: false }); };
     if (p.st === 'KY') {
       D = D || await j('kpc-ky-data.json'); KYX = KYX || await j('official-park-access.json'); KYF = KYF || await j('kpc-ky-facilities.json');
       const k = ((D && D.parks) || []).find(x => x.c === p.ref);
@@ -79,7 +83,7 @@
       const f = KYF && KYF.parks && KYF.parks[p.ref]; ((f && f.th) || []).filter(t => t[4]).forEach(t => add(t[0], t[1], 'Trailhead: ' + (t[3] || t[2]) + (t[5] ? ' (restrooms)' : ''), 'Kentucky State Parks', 'trailhead'));
     } else {
       const A = await (ACC[p.st] || (ACC[p.st] = j(accUrl(p.st))));
-      ((A && A.parks && A.parks[p.ref]) || []).forEach(a => add(a[0], a[1], clean(a[2]), srcOf(a[2], false)));
+      ((A && A.parks && A.parks[p.ref]) || []).forEach(a => add(a[0], a[1], clean(a[2]), srcOf(a[2], false), null, a[3]));
     }
     return out;
   }
