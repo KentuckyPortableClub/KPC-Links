@@ -271,16 +271,22 @@
       gAll.addLayer(L.polygon(ll, { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: 0.3, fillRule: 'evenodd', className: cls, interactive: act }).bindPopup(parkPop(p)));
     });
   }
+  function liveLines() { var o = []; if (cur) visiblePatches(cur).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (x.lines && typeof x.lines === 'object') o.push(x.lines); }); }); return o; }
   function draw() {
     if (!map || !cur) return; gAll.clearLayers();
     var act = !mode;   /* in pin / measure mode the shapes let the tap through to the map */
+    var hasLines = liveLines().length > 0;
     if (shade && step > 0 && (look === 1 || look === 4)) parks.forEach(function (p, i) { if (!p.on || i >= step) return; var v = veil(p); if (v) gAll.addLayer(v); });
     parks.forEach(function (p, i) {
       if (!p.on || i >= step) return;
       var cls = fading && i === step - 1 ? 'ov-in' : '';
       (p.fs || []).forEach(function (f) {
         if (look === 2 || look === 3) { tint(p, f, cls, act); return; }
-        gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p))); });
+        gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, opacity: hasLines ? 0.35 : 1, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p))); });
+      /* Brandon Oct 27 5:29 PM ('the overlap lines … do not look like they follow the boundary lines'): the gold border is cut from the agency's
+         LIVE full-detail map, the park lines above are our saved copy (a few yards different, up to ~20). When the data carries the live
+         edges near the spot (s.lines {ref: [[[lon,lat]…]…]}, chat 2), they are drawn bold and the saved copy goes faint. */
+      liveLines().forEach(function (x) { (x[p.ref] || []).forEach(function (ln) { gAll.addLayer(L.polyline(ln.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls, interactive: false })); }); });
       if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls, interactive: act }).bindPopup(parkPop(p)));
         gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
     });
