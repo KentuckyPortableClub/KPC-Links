@@ -188,7 +188,7 @@
       if (accM > edge) { cls = 'edge'; t = '⚠️ TOO CLOSE TO THE EDGE TO TELL'; body = 'GPS is good to about ±' + Math.round(acc) + ' yards and the edge is ' + yd(edge) + ' yards away. Step farther in; we never guess.'; }
       else { cls = 'in'; t = '✅ By our maps ' + who + (isPin ? ' looks' : ' look') + ' inside ' + (n === 2 ? 'both outlines' : 'all ' + n + ' outlines');
         body = 'About ' + yd(edge) + ' yards to the nearest edge. Spot ' + Math.round(s.across) + ' yards across, ' + s.acres.toFixed(1) + ' acres · ' + CONF[s.conf][1].toLowerCase() + ' · last checked ' + s.checked + '.' + (s.water ? ' 🚤 Water only: by boat or kayak.' : '') +
-          '<br><b>Keep your whole station inside the lit patch: radio, antenna, operator.</b> POTA decides, not KPC.'; }
+          '<br><b>Keep your whole station inside the lit patch: radio, antenna, operator.</b> POTA sets the rules; it is up to you to follow them.'; }
       lastIn = !isPin; leftUntil = 0;
     } else {
       if (!isPin && Date.now() < leftUntil) { cls = 'left'; t = '🚨 You left the overlap'; body = 'By our maps you are outside ' + (n - k) + ' of the outlines now. Step back into the lit patch.'; }
