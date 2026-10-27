@@ -24,7 +24,7 @@ REPO = os.environ.get('GITHUB_REPOSITORY', 'KentuckyPortableClub/KPC-Links')
 NOW = dt.datetime.now(dt.timezone.utc)
 STATE = pathlib.Path('data/bot-health.json')
 # files a bot keeps fresh: (file, most hours old before it is a problem, who keeps it)
-FRESH = [('data/hunters/buckets.json', 4, 'KPC Hunters (saves once an hour)')]   # most bot files only change when the news does
+FRESH = [('kpc-hunters.json', 7, 'KPC Hunters (saves every ~3 hours)')]   # most bot files only change when the news does
 SKIP = {'kpc-go-live.yml', 'kpc-chain.yml'}   # one-time jobs that are done
 CHATS = {1: 'Chat 1 · Website', 2: 'Chat 2 · Maps & park data', 3: 'Chat 3 · Lounges & Logger', 4: 'Chat 4 · App',
          5: 'Chat 5 · Bots (posting, schedule)', 6: 'Chat 6 · Campout & events'}

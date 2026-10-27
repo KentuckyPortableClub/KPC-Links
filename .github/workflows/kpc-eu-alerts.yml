@@ -3,7 +3,7 @@ name: KPC Europe weather warnings
 # data/alerts/eu.json for the Field Weather page. Commits only when something changed. Never fails.
 on:
   schedule:
-    - cron: '41 */3 * * *'
+    - cron: '41 */6 * * *'    # every 6 h (HQ Oct 27 limits plan: fewer site rebuilds)
   workflow_dispatch:
 permissions:
   contents: write
