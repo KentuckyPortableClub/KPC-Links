@@ -1066,7 +1066,7 @@ ${have ? `<details class="mr-rec"><summary>ALREADY POTA PARKS (${have})</summary
     if (P.get('name')) { $('mrName').value = P.get('name'); if (P.get('town')) $('mrTown').value = P.get('town'); if (P.get('state')) { $('mrState').value = P.get('state').toUpperCase(); agencies($('mrState').value); } search(); }
   }
   let ok = !!$('mrPublic'); /* the public Suggest page uses the same engine with no password */
-  if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH || localStorage.getItem('kpcMember') === '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540'; } catch (e) {} /* one member sign-in opens it too */
+  if (!ok) try { ok = localStorage.getItem('kpcMrOK') === HASH || localStorage.getItem('kpcMember') === 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61'; } catch (e) {} /* one member sign-in opens it too */
   if (ok) start();
   else $('mrLockForm').addEventListener('submit', async e => {
     e.preventDefault();

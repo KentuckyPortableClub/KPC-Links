@@ -5,11 +5,12 @@
      name to PUBLIC (one line).
    - On public pages, guests never see links to members-only pages (menu items, cards, buttons, search results are hidden); SWAP sends
      guests to the public version instead (Parks → Kentucky Parks, the map tools → Kentucky Park Control).
-   - Only the SHA-256 of 'kpc-member:' + the lowercase password is here, never the password. Client-side only: it keeps the public
-     out, it is not real security (the files are in a public GitHub repo).
+   - Only the PBKDF2-SHA256 (200,000 rounds) of 'kpc-member:' + the lowercase password is here, never the password (hardened Oct 27
+     2026; was a single SHA-256 pass, per Fable's review). Client-side only: it keeps the public out, it is not real security
+     (the files are in a public GitHub repo).
    - The PDF printer (Playwright on GitHub Actions) passes through so the guide PDFs keep printing. */
 (function () {
-  var MH = '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540', KEY = 'kpcMember';
+  var MH = 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61', KEY = 'kpcMember';
   var PUBLIC = ['index.html', 'videos.html', 'campout.html', 'events.html', 'news.html', 'photos.html', 'kpc-guestbook.html', 'join.html', 'about.html',
     'contact.html', 'contact-card.html', 'kpc-privacy.html', 'kentucky-parks.html', 'kpc-park-control.html', 'kpc-guide-pota.html',
     'kpc-guide-wwff.html', 'kpc-guide-sota.html', 'kpc-park-notes.html', 'kpc-park-notes-us.html', 'kpc-campgrounds.html',
@@ -45,7 +46,7 @@
     '#kpcOut .yes{background:#d5a63a;color:#111;border:0}#kpcOut .no{background:transparent;color:#f6d58a;border:1px solid rgba(240,201,107,.6)}' +
     '.nav-dropdown a.kpc-signout{color:#f6d58a!important}';
   var st = document.createElement('style'); st.textContent = css; (document.head || de).appendChild(st);
-  async function sha(t) { var b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
+  async function sha(t) { var enc = new TextEncoder(); var km = await crypto.subtle.importKey('raw', enc.encode(t), { name: 'PBKDF2' }, false, ['deriveBits']); var b = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: enc.encode('kpc-member-pbkdf2-salt-v1'), iterations: 200000, hash: 'SHA-256' }, km, 256); return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
   function door(closable) {
     if (document.getElementById('kpcDoor')) return; de.classList.add('kpc-door');
     var d = document.createElement('div'); d.id = 'kpcDoor'; d.setAttribute('data-keep-light', ''); d.setAttribute('role', 'dialog'); d.setAttribute('aria-label', 'Members sign in');

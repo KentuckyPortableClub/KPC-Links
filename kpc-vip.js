@@ -9,7 +9,7 @@
   var LOCK = document.currentScript && document.currentScript.getAttribute('data-lock'), BETA = LOCK === 'beta', ROOM = LOCK === 'room';
   /* ROOM (Brandon Oct 18: 'beta test room with no way out with hunters lounge vip'): kpc-beta-room / -need / -cat pages, own password
      (SHA-256 of 'kpc-room:' + password, localStorage kpcRoomOK); a VIP or member unlock opens it too. */
-  var VIPH = '2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2', MEMH = '2925a56a5048f6d5dabbe552f8abb71e7c8b4dfc8b42b29cd76f9083c226a540'; /* Oct 17: one member password for every lock */
+  var VIPH = '2053c7c0ae91be40fd2816d87b55adca15e478c076973648e9e0bb42ffedf8b2', MEMH = 'ed00a12021b4460be189b4120e93d5f740408d2f769e108d332dcc4aa528ca61'; /* Oct 17: one member password for every lock; MEMH hardened to PBKDF2-SHA256 200k rounds Oct 27 (matches kpc-gate.js) */
   var HASH = ROOM ? 'bfc24f12653003854862bb45bc42afc2e0c1ad2ef30ab42011e3d8e37682c4b7' : BETA ? '754c4f28bd19b9a46d2e23ee7126a19d08f13054ef7b03e78f48ac4373d6e121' : VIPH, KEY = ROOM ? 'kpcRoomOK' : BETA ? 'kpcBetaOK' : 'kpcVipOK', SALT = ROOM ? 'kpc-room:' : BETA ? 'kpc-beta:' : 'kpc-vip:';
   var ok = false; try { ok = localStorage.getItem(KEY) === HASH || ((BETA || ROOM) && localStorage.getItem('kpcVipOK') === VIPH) || localStorage.getItem('kpcMember') === MEMH; } catch (e) {}
   var done; var ready = new Promise(function (r) { done = r; });
