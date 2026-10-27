@@ -1,73 +1,73 @@
 {
  "United States": {
   "totals": {
-   "matched": 11036,
-   "far": 3727,
+   "matched": 11144,
+   "far": 3862,
    "noshape": 0,
-   "edge": 3569,
-   "out": 158,
+   "edge": 3702,
+   "out": 160,
    "swap": 0
   },
   "states": [
    {
     "st": "AK",
     "matched": 131,
-    "far": 41,
-    "noshape": 0,
-    "out": 6,
-    "swap": 0,
-    "stale": false,
-    "detail": "~110 m",
-    "thin": null,
-    "edge": 35
-   },
-   {
-    "st": "AL",
-    "matched": 126,
-    "far": 41,
+    "far": 56,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 36
+    "edge": 51
+   },
+   {
+    "st": "AL",
+    "matched": 126,
+    "far": 51,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~1.1 km",
+    "thin": null,
+    "edge": 46
    },
    {
     "st": "AR",
     "matched": 249,
-    "far": 96,
+    "far": 117,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 94
+    "edge": 115
    },
    {
     "st": "AZ",
-    "matched": 99,
-    "far": 21,
+    "matched": 101,
+    "far": 34,
     "noshape": 0,
-    "out": 3,
+    "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 18
+    "edge": 32
    },
    {
     "st": "CA",
-    "matched": 373,
-    "far": 93,
+    "matched": 376,
+    "far": 130,
     "noshape": 0,
-    "out": 3,
+    "out": 6,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 90
+    "edge": 124
    },
    {
     "st": "CO",
@@ -84,90 +84,90 @@
    {
     "st": "CT",
     "matched": 145,
-    "far": 30,
+    "far": 63,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 28
+    "edge": 61
    },
    {
     "st": "DC",
     "matched": 24,
-    "far": 9,
+    "far": 14,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 8
+    "edge": 13
    },
    {
     "st": "DE",
-    "matched": 76,
-    "far": 14,
+    "matched": 77,
+    "far": 27,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 14
+    "edge": 27
    },
    {
     "st": "FL",
     "matched": 440,
-    "far": 66,
+    "far": 196,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 65
+    "edge": 195
    },
    {
     "st": "GA",
     "matched": 220,
-    "far": 28,
+    "far": 63,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 28
+    "edge": 63
    },
    {
     "st": "HI",
-    "matched": 84,
-    "far": 21,
+    "matched": 85,
+    "far": 32,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 21
+    "edge": 32
    },
    {
     "st": "IA",
     "matched": 172,
-    "far": 30,
+    "far": 70,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~110 m",
+    "detail": "~1.1 km",
     "thin": null,
-    "edge": 29
+    "edge": 69
    },
    {
     "st": "ID",
-    "matched": 202,
+    "matched": 206,
     "far": 36,
     "noshape": 0,
     "out": 6,
@@ -215,7 +215,7 @@
    },
    {
     "st": "LA",
-    "matched": 112,
+    "matched": 115,
     "far": 30,
     "noshape": 0,
     "out": 1,
@@ -227,27 +227,27 @@
    },
    {
     "st": "MA",
-    "matched": 406,
-    "far": 177,
+    "matched": 407,
+    "far": 175,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 175
+    "edge": 173
    },
    {
     "st": "MD",
-    "matched": 152,
-    "far": 55,
+    "matched": 167,
+    "far": 29,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 53
+    "edge": 27
    },
    {
     "st": "ME",
@@ -263,27 +263,27 @@
    },
    {
     "st": "MI",
-    "matched": 310,
-    "far": 107,
+    "matched": 327,
+    "far": 38,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 106
+    "edge": 37
    },
    {
     "st": "MN",
-    "matched": 249,
-    "far": 68,
+    "matched": 258,
+    "far": 66,
     "noshape": 0,
     "out": 5,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 63
+    "edge": 61
    },
    {
     "st": "MO",
@@ -311,10 +311,10 @@
    },
    {
     "st": "MT",
-    "matched": 226,
-    "far": 75,
+    "matched": 227,
+    "far": 76,
     "noshape": 0,
-    "out": 1,
+    "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
@@ -348,30 +348,30 @@
    {
     "st": "NE",
     "matched": 175,
-    "far": 65,
+    "far": 64,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 64
+    "edge": 63
    },
    {
     "st": "NH",
-    "matched": 190,
-    "far": 116,
+    "matched": 191,
+    "far": 103,
     "noshape": 0,
     "out": 8,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 108
+    "edge": 95
    },
    {
     "st": "NJ",
-    "matched": 122,
+    "matched": 125,
     "far": 44,
     "noshape": 0,
     "out": 1,
@@ -395,15 +395,15 @@
    },
    {
     "st": "NV",
-    "matched": 213,
-    "far": 86,
+    "matched": 214,
+    "far": 78,
     "noshape": 0,
     "out": 20,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 66
+    "edge": 58
    },
    {
     "st": "NY",
@@ -443,19 +443,19 @@
    },
    {
     "st": "OR",
-    "matched": 353,
-    "far": 125,
+    "matched": 366,
+    "far": 74,
     "noshape": 0,
-    "out": 2,
+    "out": 3,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 123
+    "edge": 71
    },
    {
     "st": "PA",
-    "matched": 478,
+    "matched": 479,
     "far": 85,
     "noshape": 0,
     "out": 1,
@@ -479,15 +479,15 @@
    },
    {
     "st": "SC",
-    "matched": 156,
-    "far": 86,
+    "matched": 159,
+    "far": 85,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 86
+    "edge": 85
    },
    {
     "st": "SD",
@@ -503,51 +503,51 @@
    },
    {
     "st": "TN",
-    "matched": 247,
-    "far": 111,
+    "matched": 252,
+    "far": 109,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 108
+    "edge": 106
    },
    {
     "st": "TX",
-    "matched": 197,
-    "far": 60,
+    "matched": 202,
+    "far": 53,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 59
+    "edge": 52
    },
    {
     "st": "UT",
-    "matched": 350,
-    "far": 117,
+    "matched": 359,
+    "far": 80,
     "noshape": 0,
-    "out": 17,
+    "out": 16,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 100
+    "edge": 64
    },
    {
     "st": "VA",
-    "matched": 151,
-    "far": 50,
+    "matched": 155,
+    "far": 44,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 47
+    "edge": 41
    },
    {
     "st": "VT",
@@ -576,14 +576,14 @@
    {
     "st": "WI",
     "matched": 326,
-    "far": 115,
+    "far": 114,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 113
+    "edge": 112
    },
    {
     "st": "WV",
@@ -599,15 +599,15 @@
    },
    {
     "st": "WY",
-    "matched": 192,
-    "far": 69,
+    "matched": 198,
+    "far": 66,
     "noshape": 0,
     "out": 13,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 56
+    "edge": 53
    }
   ],
   "swaps": [],
@@ -629,6 +629,24 @@
     "US-12996",
     "Fowl River Access Site BLM Recreation Management Area",
     "Fowl River"
+   ],
+   [
+    "CA",
+    "US-0197",
+    "Kern National Wild and Scenic River",
+    "Kern Wild and Scenic River"
+   ],
+   [
+    "CA",
+    "US-0201",
+    "Merced National Wild and Scenic River",
+    "Merced Wild and Scenic River"
+   ],
+   [
+    "CA",
+    "US-0894",
+    "Tuolumne National Wild and Scenic River",
+    "Tuolumne Wild and Scenic River"
    ],
    [
     "CA",
@@ -679,6 +697,12 @@
     "Pelican Lake WMA"
    ],
    [
+    "MT",
+    "US-0883",
+    "Flathead National Wild and Scenic River",
+    "Flathead Wild and Scenic River"
+   ],
+   [
     "NC",
     "US-9758",
     "Chattooga National Wild and Scenic River",
@@ -695,6 +719,12 @@
     "US-4886",
     "Connecticut Lakes State Forest",
     "Connecticut Lakes State Forest"
+   ],
+   [
+    "NV",
+    "US-9246",
+    "East Fork High Rock Canyon Wilderness Area",
+    "East Fork High Rock Canyon"
    ],
    [
     "NY",
@@ -721,10 +751,22 @@
     "JckyHllwWA"
    ],
    [
+    "OR",
+    "US-9159",
+    "Lower Deschutes National Wild and Scenic River",
+    "Lower Deschutes"
+   ],
+   [
     "RI",
     "US-5484",
     "George Washington Memorial State Forest",
     "George Washington"
+   ],
+   [
+    "TN",
+    "US-6275",
+    "Walls of Jericho State Natural Area",
+    "Walls of Jericho State Natural Area"
    ],
    [
     "UT",
@@ -760,11 +802,11 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4125,
-   "far": 1609,
+   "matched": 4146,
+   "far": 1625,
    "noshape": 0,
-   "edge": 1512,
-   "out": 97,
+   "edge": 1525,
+   "out": 100,
    "swap": 1
   },
   "states": [
@@ -782,15 +824,15 @@
    },
    {
     "st": "CA-BC",
-    "matched": 1106,
-    "far": 390,
+    "matched": 1125,
+    "far": 403,
     "noshape": 0,
-    "out": 8,
+    "out": 11,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 382
+    "edge": 392
    },
    {
     "st": "CA-MB",
@@ -867,14 +909,14 @@
    {
     "st": "CA-ON",
     "matched": 903,
-    "far": 354,
+    "far": 356,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 350
+    "edge": 352
    },
    {
     "st": "CA-PE",
@@ -914,15 +956,15 @@
    },
    {
     "st": "CA-SK",
-    "matched": 299,
-    "far": 148,
+    "matched": 301,
+    "far": 149,
     "noshape": 0,
     "out": 17,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 131
+    "edge": 132
    },
    {
     "st": "CA-SP",
@@ -964,6 +1006,24 @@
     "CA-6112",
     "Kananaskis Country Provincial Park",
     "The Kananaskis Country"
+   ],
+   [
+    "CA-BC",
+    "CA-3666",
+    "Kensington Park",
+    "Kensington Place"
+   ],
+   [
+    "CA-BC",
+    "CA-4002",
+    "Queen Elizabeth Park",
+    "Queen Elizabeth Theatre"
+   ],
+   [
+    "CA-BC",
+    "CA-4189",
+    "Telegraph Trail Park",
+    "Telegraph Trail"
    ],
    [
     "CA-BC",
