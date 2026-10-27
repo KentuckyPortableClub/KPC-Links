@@ -21,6 +21,13 @@
     MI: 'Michigan', MN: 'Minnesota', MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York',
     NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota', TN: 'Tennessee',
     TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming' };
+  /* Oct 27 (HQ: 'US + CANADA · KENTUCKY MOST COMPLETE'): Canada's provinces too, keyed CA-XX (California stays CA):
+     parks from data/parkinfo/CA.json (province in field 10), official points from data/access/CA-XX.json. */
+  const PROV = { AB: 'Alberta', BC: 'British Columbia', MB: 'Manitoba', NB: 'New Brunswick', NL: 'Newfoundland and Labrador', NS: 'Nova Scotia', NT: 'Northwest Territories', NU: 'Nunavut', ON: 'Ontario', PE: 'Prince Edward Island', QC: 'Quebec', SK: 'Saskatchewan', YT: 'Yukon' };
+  Object.keys(PROV).forEach(k => { ST['CA-' + k] = PROV[k]; });
+  const isCA = st => /^CA-/.test(st || '');
+  const accUrl = st => 'data/access/' + (isCA(st) ? st : 'US-' + st) + '.json';
+  let CAJ = null; const caInfo = () => CAJ || (CAJ = j('data/parkinfo/CA.json'));
   const KINDS = [['parking', '🅿', 'Parking', /parking|\blot\b|pull-?off|lay-?by/i], ['entrance', '🚪', 'Entrances', /entrance|entry|\baccess point\b/i], ['gate', '🚧', 'Gates', /\bgate/i],
     ['trailhead', '🥾', 'Trailheads', /trail/i], ['ramp', '🛶', 'Boat ramps', /boat|ramp|launch|carry|canoe|kayak|slipway|paddl/i], ['other', '📍', 'Other', /./]];
   const kindOf = t => (KINDS.find(k => k[3].test(t || '')) || KINDS[5])[0];
@@ -46,9 +53,9 @@
       D = D || await j('kpc-ky-data.json');
       LIST = ((D && D.parks) || []).map(p => ({ ref: p.c, n: p.n, la: p.la, lo: p.lo, n_ap: (p.ap || []).length, st: 'KY' }));
     } else {
-      const [I, A] = await Promise.all([j('data/parkinfo/US-' + st + '.json'), ACC[st] || (ACC[st] = j('data/access/US-' + st + '.json'))]);
+      const [I, A] = await Promise.all([isCA(st) ? caInfo() : j('data/parkinfo/US-' + st + '.json'), ACC[st] || (ACC[st] = j(accUrl(st)))]);
       const ap = (A && A.parks) || {};
-      LIST = Object.entries((I && I.parks) || {}).map(([ref, a]) => ({ ref, n: a[0], web: a[1], type: a[2], la: a[5], lo: a[6], n_ap: (ap[ref] || []).length, st }));
+      LIST = Object.entries((I && I.parks) || {}).filter(([ref, a]) => !isCA(st) || a[10] === st.slice(3)).map(([ref, a]) => ({ ref, n: a[0], web: a[1], type: a[2], la: a[5], lo: a[6], n_ap: (ap[ref] || []).length, st }));
     }
     LIST.sort((a, b) => a.n < b.n ? -1 : 1);
     const withP = LIST.filter(p => p.n_ap), name = ST[st];
@@ -71,7 +78,7 @@
       const x = KYX && KYX[p.ref]; ((x && x.trailheads) || []).forEach(t => add(t.lat, t.lon, 'Trailhead: ' + t.name, 'Kentucky State Parks', 'trailhead'));
       const f = KYF && KYF.parks && KYF.parks[p.ref]; ((f && f.th) || []).filter(t => t[4]).forEach(t => add(t[0], t[1], 'Trailhead: ' + (t[3] || t[2]) + (t[5] ? ' (restrooms)' : ''), 'Kentucky State Parks', 'trailhead'));
     } else {
-      const A = await (ACC[p.st] || (ACC[p.st] = j('data/access/US-' + p.st + '.json')));
+      const A = await (ACC[p.st] || (ACC[p.st] = j(accUrl(p.st))));
       ((A && A.parks && A.parks[p.ref]) || []).forEach(a => add(a[0], a[1], clean(a[2]), srcOf(a[2], false)));
     }
     return out;
@@ -82,6 +89,7 @@
     const b = B(); if (!b) return { fs: [], label: 'none' };
     try {
       if (p.st === 'KY') { const fs = await b.kyFor(p.ref); if (fs && fs.length) return { fs, label: 'official', src: 'Kentucky official maps' }; }
+      if (isCA(p.st) || /^CA-\d/.test(p.ref)) { const fs = b.canada ? await b.canada(p.ref) : []; return fs.length ? { fs, label: fs.some(f => f._approx) ? 'approx' : 'official', why: (fs.find(f => f._why) || {})._why || '', src: [...new Set(fs.map(f => f._src))].join(' + ') } : { fs: [], label: 'none' }; }
       if (b.usOutline) return await b.usOutline(p.ref, p.short || p.n, p.la, p.lo, [p.st].filter(Boolean));
     } catch (e) {}
     return { fs: [], label: 'none' };
@@ -102,8 +110,10 @@
       let o = null; try { o = B() && await B().lookup(ref); } catch (e) {}
       if (!o && !p) { $('afMsg').textContent = 'Could not find ' + ref + '. Check the number (the lookup needs a signal).'; return; }
       if (o) {
-        if (o.prog !== 'POTA' || !o.us) { $('afMsg').textContent = 'This finder covers US parks for now. Try the Activation Kit for ' + o.ref + '.'; return; }
-        const st = /^(US|K)-/.test(o.ref) && (o.ky || o.st === 'KY') ? 'KY' : (o.st || (p && p.st) || '');
+        let cst = '';
+        if (o.prog === 'POTA' && /^CA-\d/.test(o.ref)) { const C = await caInfo(), c = C && C.parks && C.parks[o.ref]; if (c && c[10]) cst = 'CA-' + c[10]; }
+        if (o.prog !== 'POTA' || (!o.us && !cst)) { $('afMsg').textContent = 'This finder covers US and Canada parks for now. Try the Activation Kit for ' + o.ref + '.'; return; }
+        const st = cst || (/^(US|K)-/.test(o.ref) && (o.ky || o.st === 'KY') ? 'KY' : (o.st || (p && p.st) || ''));
         p = Object.assign({}, p || {}, { ref: o.ref, n: o.name, short: o.short, la: o.la, lo: o.lo, web: o.web || (p && p.web), type: o.type, st });
         if (st && ST[st] && $('afSt').value !== st) { $('afSt').value = st; await loadState(st); }
       }
@@ -194,7 +204,8 @@
   }
 
   /* ---------- wiring ---------- */
-  $('afSt').innerHTML = Object.keys(ST).sort((a, b) => ST[a] < ST[b] ? -1 : 1).map(k => '<option value="' + k + '">' + ST[k] + '</option>').join('');
+  const opt = k => '<option value="' + k + '">' + ST[k] + '</option>', byName = (a, b) => ST[a] < ST[b] ? -1 : 1;
+  $('afSt').innerHTML = '<optgroup label="United States">' + Object.keys(ST).filter(k => !isCA(k)).sort(byName).map(opt).join('') + '</optgroup><optgroup label="Canada">' + Object.keys(ST).filter(isCA).sort(byName).map(opt).join('') + '</optgroup>';
   $('afSt').addEventListener('change', () => loadState($('afSt').value));
   $('afPk').addEventListener('change', () => { if ($('afPk').value) open($('afPk').value); });
   $('afNear').addEventListener('click', nearMe);
