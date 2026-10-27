@@ -57,9 +57,9 @@ PASS = int(os.environ.get('PASS') or 1)
 ONLY = set((os.environ.get('STATES') or '').upper().replace(',', ' ').split())
 RUN_TAG = re.sub(r'[^a-z0-9-]', '', (os.environ.get('RUN_TAG') or '').lower())  # Oct 27 (HQ 5:11 PM): parallel region jobs keep their shared files apart
 REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + Canada, 'world' = the other countries (Brandon Oct 26: 'do the world')
-CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0, 5: 5.0}[PASS]   # 4 = access pins only, for candidates that have none; 5 = re-check water + tidy the rows
-DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002, 5: 0.00002}[PASS]
-PREC = {1: 5, 2: 5, 3: 6, 4: 6, 5: 6}[PASS]
+CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0, 5: 5.0, 6: 5.0}[PASS]   # 4 = access pins only, for candidates that have none; 5 = re-check water + tidy the rows
+DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002, 5: 0.00002, 6: 0.00002}[PASS]
+PREC = {1: 5, 2: 5, 3: 6, 4: 6, 5: 6, 6: 6}[PASS]
 # Oct 26 2:11 PM (Brandon, RULE CHANGES): the overlap must hold a spot at least 50 YARDS across (POTA only says the
 # overlap must ENTIRELY contain the activator + station; 50 yd still clears map error); 50-100 yd = 'small overlap'.
 SHRINK = 22.86            # 25 yards in from every edge = a spot 50 yards across
@@ -1584,6 +1584,121 @@ def two_owners(refs, parks):
     return any(not (a[0] & b[0]) for i, a in enumerate(got) for b in got[i + 1:])
 
 
+
+LINE_PAD_M = 150.0
+def clip_ring(ring, b):
+    """The parts of one ring inside box b, as polylines (one point past each end kept, so a line reaches the box edge)."""
+    out, cur = [], []
+    inside = [b[0] <= p[0] <= b[2] and b[1] <= p[1] <= b[3] for p in ring]
+    for i, p in enumerate(ring):
+        if inside[i]:
+            if not cur and i > 0: cur.append(ring[i - 1])
+            cur.append(p)
+        elif cur:
+            cur.append(p); out.append(cur); cur = []
+    if cur: out.append(cur)
+    return [[[round(q[0], 6), round(q[1], 6)] for q in l] for l in out if len(l) > 1]
+
+
+def spot_lines(x, G):
+    """Oct 27 (chat 3 -> HQ 5:36 PM): each park's boundary edges from the SAME read the patch was cut from (pass 3+ detail,
+    Kentucky = the live layers, agency-land parks = the owned land the patch used), clipped to the spot's box + 150 m.
+    The Overlap Finder draws these bold, so the patch and the lines agree."""
+    b = x.get('box') or sbox(x)
+    if not b: return None
+    la = (b[1] + b[3]) / 2
+    dx, dy = LINE_PAD_M / (111320 * math.cos(math.radians(la))), LINE_PAD_M / 110574
+    bb = [b[0] - dx, b[1] - dy, b[2] + dx, b[3] + dy]
+    out = {}
+    for r in x.get('refs') or []:
+        gs = G.get(r)
+        if not gs: continue
+        if r in OWNED:
+            own = owned_land(OWNED[r], bb)
+            if own: gs = own
+        ls, n = [], 0
+        for g in gs:
+            for ring in g:
+                if not inter(bbox_lines([ring]), bb): continue
+                for l in clip_ring(ring, bb):
+                    ls.append(l); n += len(l)
+                if n > 6000: break
+        if ls: out[r] = ls
+    return out or None
+
+
+def add_lines(files, G, today):
+    n = 0
+    for d in files.values():
+        for x in d.get('spots', []):
+            if x.get('kind') != 'area' or str(x.get('status', '')).startswith('dropped') or late(): continue
+            if any(r not in G for r in x.get('refs', [])): continue
+            try:
+                L = spot_lines(x, G)
+                if L: x['lines'] = L; x['lines_read'] = today; n += 1
+            except Exception as e: LOG.append(f"lines {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+    return n
+
+
+def _seg_dist(pts, rings, kx, ky):
+    """Metres from each point to the nearest edge of rings (numpy, flat-earth near the park)."""
+    segs = [np.asarray(r, dtype=np.float64)[:, :2] for r in rings if len(r) > 1]
+    if not segs or not len(pts): return np.array([])
+    A = np.concatenate([g[:-1] for g in segs]); B = np.concatenate([g[1:] for g in segs])
+    A = A * [kx, ky]; B = B * [kx, ky]; P = np.asarray(pts, dtype=np.float64)[:, :2] * [kx, ky]
+    out = np.empty(len(P))
+    AB = B - A; L2 = np.maximum((AB ** 2).sum(1), 1e-9)
+    for i in range(0, len(P), 64):
+        q = P[i:i + 64, None, :]
+        t = np.clip(((q - A) * AB).sum(2) / L2, 0, 1)
+        d = np.sqrt((((A + t[..., None] * AB) - q) ** 2).sum(2))
+        out[i:i + 64] = d.min(1)
+    return out
+
+
+def ky_drift(parks, spots_boxes):
+    """Oct 27 (HQ 5:36 PM, item 3; measure only, nothing refreshed): how far the SAVED Kentucky outlines (ky-*.geojson, used by
+    Am I in the Park and the maps) sit from the LIVE agency layer, park by park: points every ~sample along the saved edge ->
+    distance to the live edge. Daniel Boone: the saved owned-land file vs the live Forest Service ownership map in the spot boxes."""
+    rows = []
+    ky_geom(parks, [])   # fills KYIDX
+    for ref in sorted(parks):
+        for rid in parks[ref].get('ids') or []:
+            src, nm = str(rid).split('|', 1) if '|' in str(rid) else ('', '')
+            if src not in KYLIVE: continue
+            saved = [ring for pp in KYIDX.get((src, nm), []) for ring in pp]
+            live = [ring for g in ky_live(src, nm) for ring in g]
+            if not saved or not live: rows.append({'ref': ref, 'layer': src, 'name': nm, 'note': 'no live copy' if saved else 'no saved copy'}); continue
+            pts = [p for r in saved for p in r]
+            pts = pts[::max(1, len(pts) // 600)]
+            la = pts[0][1]; kx, ky = 111320 * math.cos(math.radians(la)), 110574
+            d = _seg_dist(pts, live, kx, ky)
+            if not len(d): continue
+            rows.append({'ref': ref, 'layer': src, 'name': nm, 'median_m': round(float(np.median(d)), 1), 'p95_m': round(float(np.percentile(d, 95)), 1),
+                         'max_m': round(float(d.max()), 1), 'points': int(len(d))})
+    try:
+        fs = json.load(open('ky-dbnf-owned.geojson')).get('features') or []
+        own_saved = []
+        for f in fs:
+            g = f.get('geometry') or {}; c = g.get('coordinates') or []
+            for pp in (c if g.get('type') == 'MultiPolygon' else [c]): own_saved += pp
+        for sid, b in spots_boxes:
+            live = owned_land('usfs', b)
+            if not live: continue
+            lr = [ring for g in live for ring in g]
+            pts = [p for r in own_saved for p in r if b[0] <= p[0] <= b[2] and b[1] <= p[1] <= b[3]]
+            if not pts: continue
+            kx, ky = 111320 * math.cos(math.radians(pts[0][1])), 110574
+            d = _seg_dist(pts[::max(1, len(pts) // 600)], lr, kx, ky)
+            if len(d): rows.append({'ref': 'US-4484', 'layer': 'owned land (ky-dbnf-owned.geojson)', 'name': f'around spot {sid}',
+                                    'median_m': round(float(np.median(d)), 1), 'p95_m': round(float(np.percentile(d, 95)), 1), 'max_m': round(float(d.max()), 1), 'points': int(len(d))})
+    except Exception as e: LOG.append(f'drift dbnf: {str(e)[:60]}')  # noqa: BLE001
+    off = [r for r in rows if (r.get('p95_m') or 0) > 9.144]
+    save_json(OUT / 'ky-outline-drift.json', {'about': 'Saved Kentucky outlines vs the live agency layers (measured only, nothing refreshed; HQ + Brandon decide). '
+              'p95 = 95 of 100 points on the saved edge are within this distance of the live edge. Off = p95 over 10 yards (9.1 m).',
+              'date': time.strftime('%Y-%m-%d'), 'off_over_10_yards': len(off), 'parks': sorted(rows, key=lambda r: -(r.get('p95_m') or 0))}, indent=1)
+    notice('2-fer bot', f'Kentucky outline drift: {len(rows)} outlines measured, {len(off)} off by more than 10 yards (p95)')
+
 def file_of(st): return OUT / f'{st}.json'
 
 
@@ -1868,7 +1983,19 @@ def main():
             try: old[f.stem] = json.load(open(f))
             except Exception: pass  # noqa: BLE001
 
-    if PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
+    if PASS == 6:   # Oct 27 (HQ 5:36 PM): ONLY the live boundary lines around each area spot (Kentucky after its run; later runs do it in pass 5)
+        files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
+        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
+        refs = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids']})
+        G, bad = ky_geom(parks, refs) if REGION == 'ky' else download(parks, refs, DET, PREC)
+        counts['spots given their boundary lines'] = add_lines(files, G, today)
+        if REGION == 'ky':
+            try: ky_drift(parks, [(x.get('id'), x.get('box')) for x in lw if 'US-4484' in x['refs'] and x.get('box')])
+            except Exception as e: LOG.append(f'drift: {str(e)[:80]}')  # noqa: BLE001
+        for st, d in files.items():
+            d['spots'] = slim(d.get('spots', []))
+            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+    elif PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith('US-') and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
         cand = [x for d in files.values() for x in d.get('spots', []) if want(x)]
@@ -1897,6 +2024,12 @@ def main():
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
                 try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
                 except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
+        more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+        if more:
+            g2, _ = ky_geom(parks, more) if REGION == 'ky' else download(parks, more, DET, PREC)
+            G.update(g2)
+        n['spots given their boundary lines'] = add_lines(files, G, today)
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
