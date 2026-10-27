@@ -23,9 +23,6 @@
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/2",
   "https://services.arcgis.com/mMUesHYPkXjaFGfS/arcgis/rest/services/Manitoba_Wildlife_Lands/FeatureServer/0"
  ],
- "NB WMZ": [
-  "https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0"
- ],
  "NB-PP Govern": [
   "https://geonb.snb.ca/arcgis/rest/services/GeoNB_DNR_ProvincialParks/MapServer/0"
  ],
