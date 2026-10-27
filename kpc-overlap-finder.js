@@ -52,7 +52,7 @@
       if (noAcc && !MEMBER) return;                                      // A9: members only
       var rev = reviewed(s); if (!rev) WAITN++;
       var key = s.refs.slice().sort().join('+');
-      var g = groups[key] || (groups[key] = { key: key, refs: s.refs.slice(), names: {}, patches: [], st: s._st, trail: false });
+      var g = groups[key] || (groups[key] = { key: key, refs: s.refs.slice().sort(function (x, y) { return +(/(\d+)$/.exec(x) || [0, 0])[1] - +(/(\d+)$/.exec(y) || [0, 0])[1]; }), names: {}, patches: [], st: s._st, trail: false });
       Object.assign(g.names, s.names || {}); s._kids = kids[s.id] || []; s._rev = rev; s._noAcc = noAcc;
       if (s.kind === 'trail') g.trail = true; g.patches.push(s);
     });
@@ -92,13 +92,18 @@
     return '<div class="ov-row" data-row="' + esc(g.key) + '">' + tagOf(g) + (small ? '<span class="ov-badge bg-small">SMALL OVERLAP: TIGHT FIT, CHECK CAREFULLY</span>' : '') + (wait ? '<span class="ov-badge bg-wait">WAITING FOR REVIEW</span>' : '') +
       (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
-      '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' + (ps.length > 1 ? placesHtml(g, ps) : accLine(s)) +
+      '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
+      '<p class="ov-note">Last checked ' + esc(s.checked || s.found || '') + '</p>' +
+      '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +
+      /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
+      '<details class="ov-more"><summary>▸ SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : accLine(s)) +
       (s.note ? '<p class="ov-note">ℹ️ ' + esc(s.note) + '</p>' : '') +
-      '<p class="ov-note">Last checked ' + esc(s.checked || s.found || '') + ' · maps: ' + esc(Object.keys(s.map_dates || {}).map(function (r) { return r + ' ' + s.map_dates[r]; }).join('; ') || 'see the official maps') + '</p>' +
+      '<p class="ov-note">Maps used: ' + esc(Object.keys(s.map_dates || {}).map(function (r) { return r + ' ' + s.map_dates[r]; }).join('; ') || 'see the official maps') + '</p>' +
       (MEMBER && (s.how_checked || s.ownership) ? '<p class="ov-how2">How we checked (members): ' + esc([s.how_checked, s.ownership, s.owner_here ? 'owner: ' + s.owner_here : ''].filter(Boolean).join(' · ')) + '</p>' : '') +
-      '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button>' + (s.maps || []).map(function (m) { return '<a class="b" target="_blank" rel="noopener" href="' + esc(m[1]) + '">OFFICIAL MAP: ' + esc(m[0]) + '</a>'; }).join('') + '</div>' +
+      '<div class="acts">' + (s.maps || []).map(function (m) { return '<a class="b" target="_blank" rel="noopener" href="' + esc(m[1]) + '">OFFICIAL MAP: ' + esc(m[0]) + '</a>'; }).join('') + '</div></details>' +
       '<span class="ov-short">' + SHORT + '</span></div>';
   }
+  function numKey(g, k) { var n = g.refs.map(function (r) { return +(/(\d+)$/.exec(r) || [0, 0])[1]; }).sort(function (x, y) { return x - y; }); return n[k || 0] || 0; }
   function list() {
     var q = ($('ovQ').value || '').trim().toLowerCase(), out = [];
     ROWS.forEach(function (g) {
@@ -108,7 +113,8 @@
       g._mi = here && ps[0].center ? miles(here[0], here[1], ps[0].center[0], ps[0].center[1]) : null;
       out.push([g, ps]);
     });
-    out.sort(F.near && here ? function (a, b) { return a[0]._mi - b[0]._mi; } : function (a, b) { return (a[0].st < b[0].st ? -1 : a[0].st > b[0].st ? 1 : 0) || b[0].n - a[0].n || (a[0].trail - b[0].trail) || size(b[1][0]) - size(a[1][0]); });
+    /* Brandon Oct 27 2:48 PM: 'have list in order numerically' = by the lowest park number in each row (then the next one) */
+    out.sort(F.near && here ? function (a, b) { return a[0]._mi - b[0]._mi; } : function (a, b) { return (a[0].st < b[0].st ? -1 : a[0].st > b[0].st ? 1 : 0) || numKey(a[0]) - numKey(b[0]) || numKey(a[0], 1) - numKey(b[0], 1); });
     var empty = '<div class="ov-empty"><b>We are still checking ' + esc(REG ? REG.label : 'these') + '\'s parks.</b> Nothing is listed yet. This does not mean there are no overlaps.' + (MEMBER && WAITN && !$('ovWait').checked ? '<br><br>Members: ' + WAITN + ' result' + (WAITN > 1 ? 's are' : ' is') + ' waiting for review. Tick the box below to see them (marked WAITING FOR REVIEW).' : '') + '</div>';
     $('ovList').innerHTML = out.length ? '<p class="ov-note">' + out.length + ' result' + (out.length > 1 ? 's' : '') + ' in ' + esc(REG.label) + '.</p>' + out.map(function (x) { return rowHtml(x[0], x[1]); }).join('') : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
     $('ovWaitW').hidden = !(MEMBER && WAITN);
@@ -123,10 +129,11 @@
     map = L.map('ovMap', { zoomControl: true }).setView([37.5, -85.3], 7);
     /* Oct 27 (Brandon: 'add the map layers'): the site's usual layer menu (Street, Satellite, Satellite + streets, USGS Topo, Terrain,
        Hillshade, official PAD-US boundaries) from kpc-map-tools.js, top right of the map; the STREET / SATELLITE / TOPO buttons stay as shortcuts */
-    if (window.KPCLayers) { try { KPCLayers(map, 'Street'); } catch (e) {} }
+    if (window.KPCLayers) { try { KPCLayers(map, 'Satellite + streets'); } catch (e) {} }   /* Brandon: default = satellite + streets */
     base.street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
     base.sat = L.layerGroup([L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 })]);
     base.topo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' });
+    map.on('baselayerchange', function (e) { baseNow = e.name || ''; draw(); });
     if (!window.KPCLayers) base.street.addTo(map); gAll = L.layerGroup().addTo(map);
     if (window.KPCLocate) { try { KPCLocate(map); } catch (e) {} } if (window.KPCFull) { try { KPCFull(map); } catch (e) {} }
     map.on('click', function (e) { if (mode === 'pin') { if (pinM) map.removeLayer(pinM); status([e.latlng.lat, e.latlng.lng], 0, true);
@@ -144,7 +151,9 @@
     cur.rings = patchRings(g); parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: COL[i], dash: DASH[i], on: true, fs: null }; });
     spotPanel(); legend(); mapKey(); step = 0; clearTimeout(timer);
     var b = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
-    if (b.isValid()) map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false });   /* Brandon: 'start zoomed into the overlap' */
+    /* the map was hidden in the LIST tab (size 0), so Leaflet fitted to nothing and showed the whole world: size it first, fit again once shown */
+    cur.fit = b;
+    if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false }); } }, 120); }
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
     $('ovReport').href = reportUrl(g);
     loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
@@ -174,13 +183,16 @@
      veil per park over everything that is NOT that park (holes = the park's own land, inholdings stay grey). Outside both = darker,
      inside one park = lighter, inside both = clear (+ gold). Daniel Boone's outline is Forest Service-OWNED land, so private land shows grey. */
   var shade = true;
+  /* Brandon Oct 27 2:48 PM ('shading good on open source but no private shading on other layers'): stronger on satellite / topo */
+  var baseNow = 'Satellite + streets';
+  function veilOp() { return /satellite|topo|terrain/i.test(baseNow) ? 0.38 : 0.2; }
   function veil(p) {
     var B = window.KPCB, rings = [];
     if (p.line) cur.rings.forEach(function (x) { if (x.line) rings.push(x.ring); });
     else (p.fs || []).forEach(function (f) { try { (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) { poly.forEach(function (r) { rings.push(r); }); }); } catch (e) {} });
     if (!rings.length) return null;
     var c = map.getCenter(), box = [[c.lat - 3, c.lng - 4], [c.lat - 3, c.lng + 4], [c.lat + 3, c.lng + 4], [c.lat + 3, c.lng - 4]];
-    return L.polygon([box].concat(rings.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); })), { stroke: false, fillColor: '#2b2b2b', fillOpacity: 0.2, interactive: false, fillRule: 'evenodd' });
+    return L.polygon([box].concat(rings.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); })), { stroke: false, fillColor: '#000', fillOpacity: veilOp(), interactive: false, fillRule: 'evenodd' });
   }
   function draw() {
     if (!map || !cur) return; gAll.clearLayers();
