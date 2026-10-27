@@ -98,56 +98,48 @@ def step(name, f, *a, **k):
     print(f'::notice title=probe {name}::{round(time.time() - t)} s {json.dumps(OUT[name])[:300]}', flush=True)
 
 
-# ROUND 2
-G = 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData/'
-for s in ('WMZ', 'Parks', 'Unique_Areas', 'Candidate_Conserved_Areas'):
-    step('nb ' + s, layers, G + s + '/MapServer')
-    for l in (OUT['nb ' + s] if isinstance(OUT['nb ' + s], list) else [])[:3]:
-        step(f'nb {s} {l["id"]} rows', sample, G + s + '/MapServer/' + str(l['id']), 60 if s == 'WMZ' else 8)
-        if s != 'WMZ': step(f'nb {s} {l["id"]} test', test, G + s + '/MapServer/' + str(l['id']), ['CA-NB'])
-
-
-def names(url, flds, where='1=1'):
-    out, off = [], 0
-    while off < 40000:
-        j = get(url + '/query', {'where': where, 'outFields': ','.join(flds), 'returnGeometry': 'false', 'resultOffset': off, 'resultRecordCount': 2000, 'f': 'json'})
-        fs = j.get('features') or []
-        out += [f.get('attributes') for f in fs]; off += len(fs)
-        if not fs or not j.get('exceededTransferLimit'): break
-    return out
-
-
-def trca():
-    rows = names('https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250', ['PROP_NAME', 'OWNER', 'MNGD_BY', 'L_MUNPALTY'])
-    nm = sorted({str(r.get('PROP_NAME')) for r in rows if r.get('PROP_NAME')})
-    return {'rows': len(rows), 'distinct names': len(nm), 'hits': [n for n in nm if re.search(r'bond|glassco|duffin|headwater|bathurst|golf', n, re.I)], 'all': nm[:400]}
-step('trca names', trca)
-step('npca names', lambda: sorted({str(list(r.values())) for r in names('https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2', ['*'])})[:200])
-step('crd hits', lambda: names('https://services2.arcgis.com/qRqOFxxnwUHOSocZ/ArcGIS/rest/services/CRD_Parks/FeatureServer/3', ['Name', 'Jurisdic', 'Type', 'RegionalParkStatus', 'AdministrativeArea'],
-                               "Name in ('Mount Tolmie Park','Mount Douglas Park','Hatley Park National Historic Site','Uplands Park','Beacon Hill Park')"))
-
-
-def maris():
+# ROUND 3
+import pathlib
+def nbzones():
+    P = json.load(open('data/parkinfo/CA.json'))['parks']
+    j = get('https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0/query', {'where': '1=1', 'outFields': 'WMZ', 'returnGeometry': 'true', 'outSR': 4326,
+             'maxAllowableOffset': 0.002, 'f': 'json'}, timeout=180)
+    Z = {int(f['attributes']['WMZ']): (f.get('geometry') or {}).get('rings') or [] for f in j.get('features') or []}
+    def inside(lo, la, rings):
+        n = 0
+        for r in rings:
+            for k in range(len(r)):
+                (x1, y1), (x2, y2) = r[k - 1], r[k]
+                if (y1 > la) != (y2 > la) and lo < (x2 - x1) * (la - y1) / (y2 - y1) + x1: n += 1
+        return n % 2 == 1
     out = {}
-    for u in ('https://maris.mississippi.edu/HTML/Maps/RestMapServices.html', 'https://www.maris.state.ms.us/', 'https://maris.mississippi.edu/'):
-        try:
-            req = urllib.request.Request(u, headers=UA)
-            with urllib.request.urlopen(req, timeout=60) as r: t = r.read(400000).decode('utf-8', 'replace')
-            out[u] = sorted(set(re.findall(r'https?://[^"\' <>]+/rest/services[^"\' <>]*', t)))[:80]
-        except Exception as e: out[u] = str(e)[:120]  # noqa: BLE001
-    hosts = sorted({re.match(r'https?://[^/]+/[^/]+/rest/services|https?://[^/]+/rest/services', x).group(0) for v in out.values() if isinstance(v, list) for x in v if re.match(r'https?://[^/]+/([^/]+/)?rest/services', x)})
-    for h in hosts[:4]:
-        out['dir ' + h] = safe(lambda: [x['name'] for x in get(h, {'f': 'json'}).get('folders', [])] + [x['name'] for x in get(h, {'f': 'json'}).get('services', [])])
-    return out
-step('maris', maris)
-mr = OUT.get('maris') if isinstance(OUT.get('maris'), dict) else {}
-cand = sorted({x for v in mr.values() if isinstance(v, list) for x in v if isinstance(x, str) and re.search(r'wild|park', x, re.I) and re.search(r'(Map|Feature)Server', x)})
-for u in cand[:6]:
-    u = re.sub(r'(Server)/.*$', r'\1', u)
-    step('ms ' + u, layers, u)
-    for l in (OUT['ms ' + u] if isinstance(OUT['ms ' + u], list) else [])[:3]:
-        step(f'ms {u} {l["id"]} sample', sample, u + '/' + str(l['id']), 10)
-        step(f'ms {u} {l["id"]} test', test, u + '/' + str(l['id']), ['MS'])
+    for ref, v in P.items():
+        m = re.search(r'New Brunswick #(\d+)', v[0])
+        if not m or v[5] is None: continue
+        n = int(m.group(1))
+        inz = [z for z, rr in Z.items() if inside(v[6], v[5], rr)]
+        out[ref] = {'name': v[0], 'num': n, 'pin in zone': inz, 'match': n in inz}
+    return {'zones': sorted(Z), 'parks': out, 'matched': sum(x['match'] for x in out.values()), 'of': len(out)}
+step('nb zones', nbzones)
+
+
+def agol(q):
+    j = get('https://www.arcgis.com/sharing/rest/search', {'q': q + ' type:"Feature Service"', 'num': 25, 'f': 'json'})
+    return [{'title': r.get('title'), 'owner': r.get('owner'), 'url': r.get('url')} for r in j.get('results') or []]
+found = []
+for q in ('Mississippi wildlife management areas', 'MDWFP wildlife management area', 'Mississippi state parks boundaries', 'MDWFP state parks'):
+    r = safe(agol, q)
+    if isinstance(r, list): found += [x for x in r if x not in found]
+OUT['ms agol'] = found
+print('::notice title=probe ms agol::' + json.dumps(found)[:900], flush=True)
+done = 0
+for x in found:
+    u = str(x.get('url') or '')
+    if done >= 8 or not re.search(r'(Feature|Map)Server', u) or not re.search(r'wma|wildlife|park|mdwfp|manage', str(x.get('title')) + ' ' + str(x.get('owner')), re.I): continue
+    ls = safe(layers, re.sub(r'/\d+$', '', u))
+    for l in (ls if isinstance(ls, list) else [])[:3]:
+        if l.get('geom') != 'esriGeometryPolygon': continue
+        step(f'ms test {x.get("title")} / {l.get("name")}', test, re.sub(r'/\d+$', '', u) + '/' + str(l['id']), ['MS']); done += 1
 
 os.makedirs('.claude/build/research', exist_ok=True)
 json.dump(OUT, open('.claude/build/research/gap-probe.json', 'w'), indent=1, default=str)
