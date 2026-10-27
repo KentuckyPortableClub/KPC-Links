@@ -1,10 +1,10 @@
 {
  "United States": {
   "totals": {
-   "matched": 11144,
-   "far": 3862,
+   "matched": 11151,
+   "far": 3444,
    "noshape": 0,
-   "edge": 3702,
+   "edge": 3284,
    "out": 160,
    "swap": 0
   },
@@ -12,62 +12,62 @@
    {
     "st": "AK",
     "matched": 131,
-    "far": 56,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 51
-   },
-   {
-    "st": "AL",
-    "matched": 126,
-    "far": 51,
-    "noshape": 0,
-    "out": 5,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 46
-   },
-   {
-    "st": "AR",
-    "matched": 249,
-    "far": 117,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 115
-   },
-   {
-    "st": "AZ",
-    "matched": 101,
-    "far": 34,
-    "noshape": 0,
-    "out": 2,
-    "swap": 0,
-    "stale": false,
-    "detail": "~1.1 km",
-    "thin": null,
-    "edge": 32
-   },
-   {
-    "st": "CA",
-    "matched": 376,
-    "far": 130,
+    "far": 41,
     "noshape": 0,
     "out": 6,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 124
+    "edge": 35
+   },
+   {
+    "st": "AL",
+    "matched": 126,
+    "far": 41,
+    "noshape": 0,
+    "out": 5,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 36
+   },
+   {
+    "st": "AR",
+    "matched": 250,
+    "far": 97,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 95
+   },
+   {
+    "st": "AZ",
+    "matched": 101,
+    "far": 22,
+    "noshape": 0,
+    "out": 2,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 20
+   },
+   {
+    "st": "CA",
+    "matched": 376,
+    "far": 96,
+    "noshape": 0,
+    "out": 6,
+    "swap": 0,
+    "stale": false,
+    "detail": "~110 m",
+    "thin": null,
+    "edge": 90
    },
    {
     "st": "CO",
@@ -84,86 +84,86 @@
    {
     "st": "CT",
     "matched": 145,
-    "far": 63,
+    "far": 30,
     "noshape": 0,
-    "out": 2,
+    "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 61
+    "edge": 29
    },
    {
     "st": "DC",
     "matched": 24,
-    "far": 14,
+    "far": 9,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 13
+    "edge": 8
    },
    {
     "st": "DE",
-    "matched": 77,
-    "far": 27,
+    "matched": 78,
+    "far": 15,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 27
+    "edge": 15
    },
    {
     "st": "FL",
     "matched": 440,
-    "far": 196,
+    "far": 66,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 195
+    "edge": 65
    },
    {
     "st": "GA",
     "matched": 220,
-    "far": 63,
+    "far": 28,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 63
+    "edge": 28
    },
    {
     "st": "HI",
     "matched": 85,
-    "far": 32,
+    "far": 21,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 32
+    "edge": 21
    },
    {
     "st": "IA",
-    "matched": 172,
-    "far": 70,
+    "matched": 174,
+    "far": 31,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 69
+    "edge": 30
    },
    {
     "st": "ID",
@@ -179,27 +179,27 @@
    },
    {
     "st": "IL",
-    "matched": 203,
-    "far": 75,
+    "matched": 204,
+    "far": 45,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 72
+    "edge": 42
    },
    {
     "st": "IN",
-    "matched": 205,
-    "far": 67,
+    "matched": 207,
+    "far": 35,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 65
+    "edge": 33
    },
    {
     "st": "KS",
@@ -661,12 +661,6 @@
     "Mianus River State Park Scenic Reserve"
    ],
    [
-    "CT",
-    "US-7528",
-    "Air Line State Trail",
-    "Air Line State Park Trail"
-   ],
-   [
     "IA",
     "US-4236",
     "Upper Mississippi River National Wildlife Refuge",
@@ -802,11 +796,11 @@
  },
  "Canada": {
   "totals": {
-   "matched": 4146,
+   "matched": 4170,
    "far": 1625,
    "noshape": 0,
-   "edge": 1525,
-   "out": 100,
+   "edge": 1523,
+   "out": 102,
    "swap": 1
   },
   "states": [
@@ -848,10 +842,10 @@
    },
    {
     "st": "CA-NB",
-    "matched": 282,
-    "far": 155,
+    "matched": 306,
+    "far": 157,
     "noshape": 0,
-    "out": 28,
+    "out": 30,
     "swap": 1,
     "stale": false,
     "detail": "~2.2 km",
@@ -909,14 +903,14 @@
    {
     "st": "CA-ON",
     "matched": 903,
-    "far": 356,
+    "far": 354,
     "noshape": 0,
     "out": 4,
     "swap": 0,
     "stale": false,
     "detail": "~2.2 km",
     "thin": null,
-    "edge": 352
+    "edge": 350
    },
    {
     "st": "CA-PE",
@@ -1114,6 +1108,18 @@
     "CA-5204",
     "Nashwaaksis Stream Nature Park",
     "Nashwaaksis Stream"
+   ],
+   [
+    "CA-NB",
+    "CA-6544",
+    "New Brunswick #5 Wildlife Management Area",
+    "New Brunswick #5 Wildlife Management Area"
+   ],
+   [
+    "CA-NB",
+    "CA-6549",
+    "New Brunswick #6 Wildlife Management Area",
+    "New Brunswick #6 Wildlife Management Area"
    ],
    [
     "CA-NS",
