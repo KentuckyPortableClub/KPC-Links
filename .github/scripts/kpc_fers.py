@@ -708,8 +708,10 @@ NHDL = {}
 NHDC = {}
 
 
+NHD_DOWN = {'until': 0.0, 'fails': 0, 'pauses': 0}
 def nhd_water(box, rivers_only=False):
     """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries)."""
+    if time.time() < NHD_DOWN['until']: return None   # Oct 27: the map is down (502/504): answer 'not checked' at once for 10 min
     try:
         if not NHDL:
             for L in get(NHD, {'f': 'json'}).get('layers') or []:
@@ -728,13 +730,18 @@ def nhd_water(box, rivers_only=False):
                         if lay not in NHDL or (rivers_only and lay == 'wb'): continue
                         j = get(f'{NHD}/{NHDL[lay]}/query', {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
                                                              'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
-                                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, timeout=180)
+                                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=2, timeout=90)
                         got += [esri_rings(f.get('geometry')) for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
                     NHDC[k] = got
                 out += NHDC[k]
+        NHD_DOWN['fails'] = 0
         return out
     except Exception as e:  # noqa: BLE001
-        LOG.append(f'NHD water: {str(e)[:80]}'); return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
+        NHD_DOWN['fails'] += 1
+        if NHD_DOWN['fails'] >= 2:   # Oct 27 KY run: 504s cost ~9 min a tile and pass 1 ran out of time after 28 pairs
+            NHD_DOWN['until'] = time.time() + 600; NHD_DOWN['fails'] = 0; NHD_DOWN['pauses'] += 1
+        if NHD_DOWN['pauses'] <= 3: LOG.append(f'NHD water: {str(e)[:80]}')
+        return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
 
 
 def pad_use(a, ref=None):
@@ -2291,7 +2298,7 @@ def main():
     save_json(RF, rep, indent=1)
     if HC.report(): notice('2-fer bot', f'pass {PASS}: ' + HC.report())
     notice('2-fer bot', json.dumps({k: v for k, v in counts.items() if k != 'left out'})[:800])
-    for l in LOG[:8]: notice('2-fer bot problem', l)
+    if LOG: notice('2-fer bot problems', f'pass {PASS}: {len(LOG)} · ' + ' | '.join(dict.fromkeys(l[:90] for l in LOG))[:700])   # ONE line: GitHub keeps only 10 notes a step
 
 
 ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, "
