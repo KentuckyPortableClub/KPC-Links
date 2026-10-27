@@ -154,6 +154,10 @@ def main():
             for ref, n, st, j, acts, why in sc['low_busiest_first'][:40]: L.append(f"- {ref} {n} ({st}, {acts} activations) → {j}: {why}")
             L += ['', '</details>', '']
     except Exception: pass  # noqa: BLE001
+    # Oct 27 (storage plan Stage 2 step A): the near-miss list and the observations log now live in KentuckyPortableClub/KPC-Data
+    # (data/outline-leads/near-miss.json, data/map-observations.json), written by its daily kpc-watch workflow
+    L += ['## Near misses + observations log', '', 'Moved to **KentuckyPortableClub/KPC-Data** (Oct 27): `data/outline-leads/near-miss.json` and '
+          '`data/map-observations.json`, refreshed daily by its kpc-watch workflow. Chat 8 reviews them there.', '']
     try:   # Oct 26 (HQ): NEAR MISSES, parks with no outline + official areas around their pin (chat 8 reviews; no email)
         nm = json.loads(pathlib.Path('data/outline-leads/near-miss.json').read_text(encoding='utf-8'))
         t = nm.get('totals') or {}

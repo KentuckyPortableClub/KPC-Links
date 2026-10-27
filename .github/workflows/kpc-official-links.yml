@@ -86,14 +86,13 @@ jobs:
         run: |
           git pull -q || true
           python3 .github/scripts/kpc_map_linkcheck.py || true
-          OBS_FILE=data/observations/official-links.json OBS_RUN='official-links' python3 .github/scripts/kpc_map_observations.py || true   # Oct 27: one change-detection helper (research-bots review #3)
       - name: Save
         if: always()
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/parkinfo-web.json 2>/dev/null || true; git add data/observations 2>/dev/null || true
+          git add data/parkinfo-web.json 2>/dev/null || true
           git diff --cached --quiet && exit 0
           git commit -qm 'Map links: checked that they load' || exit 0
           for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done

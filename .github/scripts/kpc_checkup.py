@@ -143,7 +143,7 @@ def refs():
         st = pathlib.Path(f).stem
         for ref in ((load(f, {}) or {}).get('parks') or {}):
             chk('access points', st, ref)
-    for f in glob.glob('data/fers/*.json'):
+    for f in glob.glob('data/fers/*.json'):   # Oct 27: the 2-fer files moved to KPC-Data (this finds none in KPC-Links now)
         st = pathlib.Path(f).stem
         for s in ((load(f, {}) or {}).get('spots') or []):
             for ref in (s or {}).get('refs') or []:

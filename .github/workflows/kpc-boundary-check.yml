@@ -119,21 +119,6 @@ jobs:
           mkdir -p cache/us
           ls cache/us/US-*.json.gz >/dev/null 2>&1 || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
           python3 .github/scripts/kpc_outline_score.py || true
-      - name: Near misses (parks with no outline + official areas around their pin)
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # Oct 26 (HQ: 'do we need a bot for name mismatch?' -> no, a list): data/outline-leads/near-miss.json, chat 8 reviews
-          mkdir -p cache/us cache/ca
-          ls cache/us/US-*.json.gz >/dev/null 2>&1 || gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
-          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true
-          python3 .github/scripts/kpc_near_miss.py || true
-      - name: Observations log (what is worth a human look)
-        continue-on-error: true
-        env:
-          OBS_RUN: nightly boundary check
-        run: python3 .github/scripts/kpc_map_observations.py || true
       - name: Write up what it found
         continue-on-error: true
         env:
@@ -144,7 +129,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/us-key data/boundary-report.json data/boundary-score.json data/outline-leads/near-miss.json data/map-observations.json 2>/dev/null || true
+          git add data/us-key data/boundary-report.json data/boundary-score.json 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           if ! git diff --cached --quiet; then
             git commit -m 'Boundary check: are the joins in the right place?'

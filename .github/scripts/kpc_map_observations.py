@@ -22,9 +22,15 @@ TODAY = time.strftime('%Y-%m-%d')
 KEEP_DAYS = 90
 
 
+BASE = os.environ.get('OBS_BASE') or 'HEAD'      # Oct 27 (storage Stage 2): the KPC-Links commit to compare with (the daily watch: ~25 h ago)
+DATA_DIR = os.environ.get('OBS_DATA_DIR') or ''   # the KPC-Data clone: the hidden files (2-fers, leads) are compared with ITS last save
+DATA_PATHS = ('data/fers/', 'data/outline-leads/', 'data/access-leads/')
+
+
 def head(path):
     try:
-        r = subprocess.run(['git', 'show', f'HEAD:{path}'], capture_output=True, text=True, timeout=60)
+        cmd = ['git', '-C', DATA_DIR, 'show', f'HEAD:{path}'] if DATA_DIR and path.startswith(DATA_PATHS) else ['git', 'show', f'{BASE}:{path}']
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
         return json.loads(r.stdout) if r.returncode == 0 and r.stdout.strip() else None
     except Exception: return None  # noqa: BLE001
 
