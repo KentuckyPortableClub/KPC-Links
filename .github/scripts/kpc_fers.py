@@ -1146,6 +1146,78 @@ def sample(l, step):
     out.append(tuple(l[-1][:2])); return out
 
 
+# Oct 27 (chat 8's KPC_KY_RiverTrails_desk.md, HQ 3:21 PM; rule 5 applied right): a WATER-ROUTE national historic trail (Lewis and
+# Clark; the Trail of Tears water routes on the Ohio / Mississippi / Tennessee / Cumberland; Captain John Smith Chesapeake;
+# Star-Spangled Banner) follows a RIVER. Its Park Service line is ~1:100,000 and runs 0.2-3 km from the real river, so it only
+# tells WHICH water the route is: the 100 ft is measured from that water's BANK (USGS NHD High Resolution) onto the other park's
+# own public land. Overland stretches stay ordinary trail lines.
+WATER_NHT = re.compile(r'lewis (and|&) clark|trail of tears|captain john smith|star.spangled banner', re.I)
+ROUTE_KM = 3.0          # water within this distance of the route line is the route's water
+BANK = 30.48            # 100 ft from the bank
+WATER_FAIL = []
+ROUTE_PTS = {}
+
+
+def water_route(ref, LN, PIN):
+    return ref in LN and LN[ref].get('type') in ('NHT', 'National Historic Trail') and bool(WATER_NHT.search((PIN.get(ref) or [''])[0] + ' ' + str(LN[ref].get('by'))))
+
+
+def water_route_spots(lref, ls, oref, obox):
+    """Stretches of park oref's own land (5 m in from its line) within 100 ft of the bank of the water the route lref follows."""
+    out = []
+    lbox = bbox_lines(ls)
+    box = inter(lbox, [obox[0] - .003, obox[1] - .003, obox[2] + .003, obox[3] + .003], ROUTE_KM / 90)
+    if not box: return out
+    if lref not in ROUTE_PTS:
+        ROUTE_PTS[lref] = np.asarray([p for l in ls for p in sample(l, 50)])
+    A = ROUTE_PTS[lref]
+    P = A[(A[:, 0] >= box[0] - .05) & (A[:, 0] <= box[2] + .05) & (A[:, 1] >= box[1] - .05) & (A[:, 1] <= box[3] + .05)]
+    if not len(P): return out
+    for b in tiles(box, CELL, 0):
+        F = Frame(b, CELL, 60)
+        bb = F.bounds()
+        near = P[(P[:, 0] >= bb[0] - ROUTE_KM / 80) & (P[:, 0] <= bb[2] + ROUTE_KM / 80) & (P[:, 1] >= bb[1] - ROUTE_KM / 110) & (P[:, 1] <= bb[3] + ROUTE_KM / 110)]
+        if len(near) < 4: continue                                    # the route does not pass near this tile
+        land = pmask(F, oref, CURG)
+        if not land.any(): continue
+        wg = nhd_water(bb)
+        if wg is None:   # never silent: the pair becomes a NOT SURE row
+            WATER_FAIL.append((lref, oref))
+            c = F.ll(F.W // 2, F.H // 2)
+            out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': 0, 'shape': [[bb[0], bb[1]], [bb[2], bb[3]]],
+                        'water_route': True, 'water_unchecked': True}); continue
+        water = F.area(wg)
+        if not water.any(): continue
+        n, lab = cv2.connectedComponents(water, connectivity=8)
+        route = np.zeros_like(water)
+        kx, ky = F.kx, F.ky
+        for L in range(1, n):
+            rr, cc = np.nonzero(lab == L)
+            if len(rr) < 4: continue
+            lo0, la1 = F.ll(int(cc.min()), int(rr.min())); lo1, la0 = F.ll(int(cc.max()), int(rr.max()))
+            dx = np.maximum(0, np.maximum(lo0 - near[:, 0], near[:, 0] - lo1)) * kx
+            dy = np.maximum(0, np.maximum(la0 - near[:, 1], near[:, 1] - la1)) * ky
+            d = np.hypot(dx, dy)
+            if (d <= ROUTE_KM * 1000).sum() >= 4 and d.min() <= 1000: route |= (lab == L).astype(np.uint8)   # the route runs along it
+        if not route.any(): continue
+        wd = dt(1 - route, outside=1) * CELL
+        ok = ((dt(land) * CELL >= STATION_IN) & (wd <= BANK + (CELL * .5 if PASS == 3 else CELL)) & (route == 0)).astype(np.uint8)
+        if not ok.any(): continue
+        m2, lab2 = cv2.connectedComponents(ok, connectivity=8)
+        for L in range(1, m2):
+            comp = lab2 == L
+            k = int(comp.sum())
+            if k < (2 if PASS == 3 else 1): continue
+            rr, cc = np.nonzero(comp); i = len(rr) // 2
+            c = F.ll(int(cc[i]), int(rr[i]))
+            cs, _ = cv2.findContours(comp.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            ap = cv2.approxPolyDP(max(cs, key=cv2.contourArea), 1.5, True).reshape(-1, 2)
+            if len(ap) > 120: ap = ap[::int(math.ceil(len(ap) / 120))]
+            out.append({'refs': sorted([lref, oref]), 'kind': 'river', 'center': [c[1], c[0]], 'len_m': round(k * CELL * CELL / max(CELL, BANK - STATION_IN)),
+                        'shape': [F.ll(int(x), int(y)) for x, y in ap], 'water_route': True})
+    return merge(out)
+
+
 def line_spots(lref, ls, oref, other, other_is_line, box, kind):
     """Stretches of park lref's line(s) at least 100 yards long where a station can stand within 100 ft of the line AND
     inside park oref (5 m in from its line); for two lines: within 100 ft of both (the two 100-ft zones meet)."""
@@ -1221,7 +1293,7 @@ def find_spots(G, LN, pairs, counts):
         TESTED.add((a, b))
         ba = bbox_groups(G[a]) if a in G else bbox_lines(LN[a]['lines'])
         bb = bbox_groups(G[b]) if b in G else bbox_lines(LN[b]['lines'])
-        box = inter(ba, bb, 0.0008)
+        box = inter(ba, bb, ROUTE_KM / 90 if (water_route(a, LN, PINS) or water_route(b, LN, PINS)) else 0.0008)
         if not box or not all(math.isfinite(v) for v in box): continue
         if box[2] - box[0] > 40 or box[3] - box[1] > 40: LOG.append(f'{a} + {b}: shared box too big (an outline crossing the date line?)'); continue
         try:
@@ -1229,6 +1301,8 @@ def find_spots(G, LN, pairs, counts):
             else:
                 got = []
                 for l_ref, o_ref in ((a, b), (b, a)):
+                    if l_ref in LN and l_ref not in G and o_ref in G and water_route(l_ref, LN, PINS):
+                        got += water_route_spots(l_ref, LN[l_ref]['lines'], o_ref, bbox_groups(G[o_ref]))   # the river bank, not the drawn line
                     if l_ref in LN and l_ref not in G:
                         if o_ref in G: got += line_spots(l_ref, LN[l_ref]['lines'], o_ref, G[o_ref], False, box, LN[l_ref]['kind'])
                         elif o_ref in LN: got += line_spots(l_ref, LN[l_ref]['lines'], o_ref, LN[o_ref]['lines'], True, box, LN[l_ref]['kind']); break
@@ -1236,6 +1310,18 @@ def find_spots(G, LN, pairs, counts):
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
         evict(box)
+    # Oct 27 (chat 8): two water routes on the same bank of one park (Lewis and Clark + Trail of Tears at Ballard WMA) = a 3-fer
+    wr = [x for x in spots if x.get('water_route') and not x.get('water_unchecked')]
+    for i, x in enumerate(wr):
+        for y in wr[i + 1:]:
+            if x is y: continue
+            lx = [r for r in x['refs'] if r in LN and r not in G]; ly = [r for r in y['refs'] if r in LN and r not in G]
+            ox = [r for r in x['refs'] if r in G]; oy = [r for r in y['refs'] if r in G]
+            if ox != oy or not lx or not ly or lx == ly or not inter(sbox(x), sbox(y), 0.0003): continue
+            refs3 = sorted(set(x['refs']) | set(y['refs']))
+            if any(z['refs'] == refs3 and inter(sbox(z), sbox(x), 0.0003) for z in spots): continue
+            spots.append({'refs': refs3, 'kind': 'river', 'center': x['center'], 'len_m': min(x.get('len_m') or 0, y.get('len_m') or 0),
+                          'shape': x['shape'], 'box': sbox(x), 'water_route': True})
     # n-fers: a third park whose boundary may overlap the SAME place as an area spot (50 yards across, all three)
     nb = {}
     for a, b in pairs: nb.setdefault(a, set()).add(b); nb.setdefault(b, set()).add(a)
@@ -1353,7 +1439,13 @@ def access_pin(s, G, LN, st_of):
         ok = m if ok is None else ok & m
     for r in s['refs']:
         if r in LN and r not in G:
-            z = (dt(1 - F.lines(LN[r]['lines'], 1), outside=1) * cell <= ZONE).astype(np.uint8)
+            if s.get('water_route') and water_route(r, LN, PINS):   # within 100 ft of the water's bank, not of the drawn route line
+                wg = nhd_water(F.bounds())
+                if not wg: continue
+                w = F.area(wg)
+                z = ((dt(1 - w, outside=1) * cell <= BANK) & (w == 0)).astype(np.uint8)
+            else:
+                z = (dt(1 - F.lines(LN[r]['lines'], 1), outside=1) * cell <= ZONE).astype(np.uint8)
             ok = z if ok is None else ok & z
     if ok is None or not ok.any(): return None
     feats = {'road': np.zeros_like(ok), 'parking / access point': np.zeros_like(ok), 'trail': np.zeros_like(ok)}
@@ -1543,6 +1635,8 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
             for b in range(a + 1, len(refs)):
                 if (refs[a], refs[b]) in KY_DROP: s['status'] = 'dropped: ' + KY_DROP[(refs[a], refs[b])]; return
     if any(r in OWNED_FAIL for r in refs): s['status'] = 'not sure: the agency ownership map did not answer'; return
+    if s.get('water_unchecked'):
+        s['status'] = 'not sure: water not checked (the USGS water map did not answer for this river bank): run again'; s['names'] = {r: PIN[r][0] for r in refs}; return
     if s.get('masked_out'):   # Oct 27 (Fable #4, HQ 10:35 AM: contradiction A): the mask decides the SHAPE; no owned patch = NOT SURE, never silence
         s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
                        + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
@@ -1706,8 +1800,23 @@ def ca_owners(parks):
 
 
 
+PINS = {}
+
+
+def known_ok():
+    """HQ Oct 27 3:21 PM: no all-US / Canada run until Kentucky's known river + trail pairs come out (kpc_fers_known.py)."""
+    try: k = json.load(open(OUT / 'known-answers.json'))
+    except Exception: return False, 'no known-answers check yet (run Kentucky first)'  # noqa: BLE001
+    fresh = k.get('date', '') >= time.strftime('%Y-%m-%d', time.localtime(time.time() - 7 * 86400))
+    return bool(k.get('pass')) and fresh, f"known answers {'PASS' if k.get('pass') else 'FAIL'} on {k.get('date')}: {k.get('found')} of {k.get('required')}"
+
+
 def main():
     PIN = pins()
+    PINS.update(PIN)
+    if REGION == 'na' and not ONLY and PASS == 1:
+        ok, why = known_ok()
+        if not ok: notice('2-fer bot', f'STOPPED before the all-US / Canada run: {why}. Fix and rerun Kentucky first.'); return
     parks, skip = official_parks(PIN)
     RET = retired()   # rule 13: retired POTA numbers drop out
     parks = {r: p for r, p in parks.items() if r not in RET}
