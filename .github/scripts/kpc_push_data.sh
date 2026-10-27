@@ -2,6 +2,7 @@
 # Oct 27 (chat 2): ONE safe save for the KPC-Data bots. The Kentucky river-bank run lost its whole result: its 'pull --rebase'
 # save failed 5 times while other bots pushed. This keeps ONLY the files this job changed, puts them on top of a fresh copy of
 # main (no rebase, no conflicts) and pushes; a failure prints the git error as a notice. Never fails.
+# STRICT=1 = exit 1 when the save failed (the run goes red and emails: the assembly line). Otherwise never fails.
 # usage: kpc_push_data.sh <repo dir> "<commit message>" <path> [path…]   (paths to look for changes in, e.g. data)
 cd "$1" || exit 0; shift; MSG="$1"; shift
 git config user.name 'github-actions[bot]'; git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -22,4 +23,5 @@ for i in 1 2 3 4 5 6; do
   echo "::notice title=Save try $i::${ERR:0:300}"; sleep $((i * 10))
 done
 echo "::notice title=Save FAILED::$(echo $CH | wc -w) files not saved"
+[ "$STRICT" = 1 ] && exit 1   # the assembly line: a failed save = a red run (HQ Oct 27)
 exit 0

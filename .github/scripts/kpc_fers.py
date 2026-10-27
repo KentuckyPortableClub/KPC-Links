@@ -1786,6 +1786,18 @@ def file_of(st): return OUT / f'{st}.json'
 def sbox(s): return s.get('box') or bbox_lines([s['shape']])
 
 
+
+PATCH_PTS, PATCH_EPS_M = 400, 1.5
+def sharp_shape(pts):
+    """Oct 27 (HQ 6:46 PM, chat 3's Finder: an 80-point patch cut corners by 10-20 m on big Daniel Boone patches): keep the patch
+    within 1.5 m of its 5 m-grid edge (Douglas-Peucker in metres), at most 400 points (the 20 MB file rule: small patches stay small)."""
+    if len(pts) <= 3: return pts
+    la = sum(p[1] for p in pts) / len(pts); kx, ky = 111320 * math.cos(math.radians(la)), 110574
+    P = np.asarray(pts, dtype=np.float64)[:, :2] * [kx, ky]
+    c = cv2.approxPolyDP(P.astype(np.float32).reshape(-1, 1, 2), PATCH_EPS_M, True).reshape(-1, 2)
+    if len(c) > PATCH_PTS: c = c[::int(math.ceil(len(c) / PATCH_PTS))]
+    return [[round(float(x) / kx, 6), round(float(y) / ky, 6)] for x, y in c]
+
 def slim(spots):
     """Storage (Oct 26: France alone gave 68,000 spots = 94 MB): the world keeps each spot's box, not its outline; North
     America keeps an outline of at most 80 points."""
@@ -1797,7 +1809,7 @@ def slim(spots):
         if s.get('shape'):
             if not s.get('box'): s['box'] = [round(v, 5) for v in bbox_lines([s['shape']])]
             if REGION == 'world': s.pop('shape', None)
-            elif len(s['shape']) > 80: s['shape'] = s['shape'][::int(math.ceil(len(s['shape']) / 80))]
+            elif len(s['shape']) > 80: s['shape'] = sharp_shape(s['shape'])
     return spots
 
 
