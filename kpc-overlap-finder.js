@@ -223,7 +223,7 @@
   /* Brandon Oct 27 3:37 PM ('Drop a pin … options to open in KPC Trip Planner'): the US Trip Planner's shared-trip link = the dropped pin */
   function tripLink(lat, lon) {
     var t = 'pin:' + lat.toFixed(5) + ',' + lon.toFixed(5) + ',' + encodeURIComponent('Dropped pin');   /* Brandon 3:41 PM: open with just the dropped pin */
-    return '<p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="kpc-planner-us.html?t=' + encodeURIComponent(t) + '">🧭 OPEN IN KPC TRIP PLANNER</a> · <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '">DIRECTIONS</a></p>';
+    return '<p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="kpc-planner-us.html?t=' + encodeURIComponent(t) + '">🧭 OPEN IN KPC TRIP PLANNER</a> · <a href="#" onclick="var t=\'' + lat.toFixed(6) + ', ' + lon.toFixed(6) + '\';try{navigator.clipboard.writeText(t);this.textContent=\'COPIED: \'+t}catch(e){prompt(\'Copy the GPS:\',t)}return false">📋 COPY GPS</a> · <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '">DIRECTIONS</a></p>';
   }
   function landAt(lat, lon) {
     var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
@@ -265,7 +265,7 @@
     if (inPatch) {
       if (accM > dPatch) { cls = 'edge'; t = '⚠️ TOO CLOSE TO THE EDGE TO TELL'; body = 'GPS is good to about ±' + Math.round(acc) + ' yards and the edge of the lit patch is ' + Math.round(dPatch * YD) + ' yards away. Step farther in; we never guess.'; }
       else { cls = 'in'; t = '✅ By our maps ' + who + look + ' inside ' + (n === 2 ? 'both outlines' : 'all ' + n + ' outlines'); var s = inPatch.s;
-        body = 'About ' + Math.round(dPatch * YD) + ' yards to the edge of the lit patch.' + (s.wide_m ? ' Patch ' + Math.round(s.wide_m * YD) + ' yards across.' : '') + ' Last checked ' + esc(s.checked || '') + '.<br><b>Keep your whole station inside the lit patch: radio, antenna, operator.</b> POTA decides, not KPC.'; }
+        body = 'About ' + Math.round(dPatch * YD) + ' yards to the edge of the lit patch.' + (s.wide_m ? ' Patch ' + Math.round(s.wide_m * YD) + ' yards across.' : '') + ' Last checked ' + esc(s.checked || '') + '.<br><b>Keep your whole station inside the lit patch: radio, antenna, operator.</b>'; }
       if (!isPin) { lastIn = true; leftUntil = 0; }
     } else {
       if (!isPin && (lastIn || Date.now() < leftUntil)) { if (lastIn) { leftUntil = Date.now() + 4000; try { navigator.vibrate && navigator.vibrate([200, 100, 200]); } catch (e) {} } lastIn = false; cls = 'left'; t = '🚨 You left the overlap'; body = 'By our maps you are outside the lit patch now (about ' + Math.round(dPatch * YD) + ' yards from it). Step back in.'; }
