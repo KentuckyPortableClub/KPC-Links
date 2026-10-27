@@ -70,7 +70,11 @@
   function tagOf(g) { return g.trail ? '<span class="ov-badge bg-trail">POSSIBLE TRAIL OVERLAP: WITHIN 100 FT OF THE TRAIL LINE</span>' : '<span class="ov-badge bg-n">POSSIBLE ' + g.n + '-FER</span>'; }
   function nm(g, r) { return (g.names && g.names[r]) || r; }
   function accLine(s) {
-    var a = s.access_pin; if (!a || !a.at) return '<p class="ov-note">🅿️ <b>No public road or parking found within about a mile.</b> Plan your walk on the official map.</p>';
+    var a = s.access_pin;
+    /* Brandon Oct 27 4:31 PM ('Fort Donelson say no public road for a mile it has a road in the middle of it'): a row the access step never ran on
+       (no access_pin at all, e.g. 'same land' rows) is NOT 'no road': only an access_pin that says none is */
+    if (!a) return '<p class="ov-note">🅿️ Closest public access not worked out for this one yet: use the official map and the roads on the map.</p>';
+    if (!a.at || a.from === 'none') return '<p class="ov-note">🅿️ <b>No public road or parking found within about a mile.</b> Plan your walk on the official map.</p>';
     var acc = s.access && s.access.name ? ' Nearest official access point: ' + esc(s.access.name) + '.' : '';
     var generic = !a.name || /^public (road|path)$/i.test(a.name), yd = Math.round((a.walk_m || 0) * YD), what = a.from === 'road' ? (generic ? 'an unnamed public road' : esc(a.name) + ' (public road)') : a.from === 'path' ? (generic ? 'a public path' : esc(a.name) + ' (public path)') : esc(a.name || a.from) + ' (' + esc(a.from) + ')';
     return '<p class="ov-note">📍 Closest spot to public access: ' + (yd < 15 ? 'right beside <b>' + what + '</b>.' : 'about ' + yd + ' yards from <b>' + what + '</b>.') + acc +

@@ -248,3 +248,5 @@ SCOREBOARD RULE (Oct 26): count POINT PARKS (POTA spots with no official outline
 
 
 - **FOR CHAT 8 (HQ via chat 3, Oct 27 5 AM, RULES FIRST):** review chat 3's two RULE SHEETS in .claude/notes/logger-lounge-digi.md ('RULE SHEETS'): A = Park Overlap Finder display, B = When Is POTA Busiest + app/hunters.json. Try to break them with edge cases, add GREY AREAS to the lists there (A1-A10, B1-B8), then Brandon rules. Chat 3 builds nothing until then.
+
+- **FOR CHAT 2 FROM CHAT 3 (Oct 27 4:40 PM, Brandon found it):** the Overlap Finder's 'same land' rows (Fort Donelson + Fort Heiman US-0703/US-3790; Jefferson NF WMA + GW&J NF US-10139/US-4526) have no access_pin, so no closest public access (Fort Donelson has a road through it). Please run the access step on 'same land' rows in the river-bank rerun.
