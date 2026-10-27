@@ -1,6 +1,6 @@
 {
- "ver": "0.7.2",
- "when": "2026-10-26",
+ "ver": "0.7.5",
+ "when": "2026-10-27",
  "where": "https://github.com/KentuckyPortableClub/KPC-App/releases/tag/test-build",
- "notes": "PC FT8 sound fix, remote TX + volume + meters, CW keying (key line, tap-to-key, paddles), My logs + next park + commands, every band and mode, one-line spots + spot me, better CW decoder, the new look."
+ "notes": "My logs page + longer opening, the Hunters Lounge cabin look, QSO MAP tab, S meter + analog/digital meters, antenna tuner button, spots with state + half kHz, FT8 typed RX/TX + waterfall zoom, help + hold to talk on every digi mode, CW paddle options, voice goes out in DATA (SSB power fix), sound restarts itself, bigger remote volume."
 }
