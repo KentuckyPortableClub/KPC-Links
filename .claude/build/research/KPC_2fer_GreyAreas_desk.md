@@ -19,3 +19,6 @@ Pine Mountain State Scenic Trail = a LINE park, no official line, stays NOT SURE
 
 ## How the desk keeps this list
 One row per case, newest last. When chat 2's Kentucky rerun or a later check turns up a case no rule covers, a row is added the same day with the sources opened. A row is only marked RULED when HQ passes down Brandon's answer.
+
+## RULED (Brandon via HQ, Oct 27 8:10 AM, see mapping.md / website.md 'FINAL (HQ Oct 27 8:10 AM)')
+Grey 4 (same land, two park numbers): RULED, shown openly with that label. Grey 6 (trail x trail on one river): RULED, listed as possible, 'both trail lines are approximate'. KR-1..KR-4 RULED as in KPC_KY2fer_Recheck_desk.md. Grey 2 was ruled earlier by B-G2.
