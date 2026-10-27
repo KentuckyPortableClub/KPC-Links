@@ -27,11 +27,24 @@ def status(url):
                 return 'ok' if code < 400 else f'HTTP {code}'
         except urllib.error.HTTPError as e:
             if method == 'HEAD' and e.code in (403, 405, 400, 404, 500, 501): continue   # many servers refuse HEAD: try GET
+            if e.code == 403: return browser_like(url)
             return f'HTTP {e.code}'
         except Exception as e:  # noqa: BLE001
             if method == 'HEAD': continue
             return 'no answer (' + str(e)[:40] + ')'
     return 'no answer'
+
+
+def browser_like(url):
+    """Oct 27 (research-bots review #8): many agency PDFs refuse robots (403) but open in any browser. One honest retry with
+    browser-like Accept headers (same User-Agent, never pretending to be a person); still 403 = 'blocked (opens in a browser)'."""
+    try:
+        req = urllib.request.Request(url, headers=dict(UA, **{'Accept': 'text/html,application/pdf,*/*;q=0.8', 'Accept-Language': 'en-US,en;q=0.9', 'Range': 'bytes=0-2047'}))
+        with urllib.request.urlopen(req, timeout=40) as r: return 'ok' if r.status < 400 else f'HTTP {r.status}'
+    except urllib.error.HTTPError as e:
+        return 'blocked (opens in a browser)' if e.code == 403 else f'HTTP {e.code}'
+    except Exception as e:  # noqa: BLE001
+        return 'no answer (' + str(e)[:40] + ')'
 
 
 def main():
@@ -51,6 +64,10 @@ def main():
             chk[k] = cache[u]
             n += 1; ok += cache[u] == 'ok'; bad += cache[u] != 'ok'
         e['map_check'] = chk
+        # research-bots review #8: a map link gone (404 / page says not found) is looked for again on the park's own page by the
+        # map finder (its next run takes these parks first); the link stays hidden until found or a person checks it
+        if any(str(chk.get(k, '')).startswith(('HTTP 404', 'gone')) for k in links): e['map_refind'] = e.get('map_refind') or today
+        elif e.get('map_refind') and all(chk[k] == 'ok' for k in links): e.pop('map_refind')
         if e.get('map_hold') and all(chk[k] == 'ok' for k in links):
             e['map_hold_cleared'] = f"{today}: every link loads ({e.pop('map_hold')})"; cleared += 1
     save_json(P, d, indent=1)

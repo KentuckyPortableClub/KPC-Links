@@ -1,0 +1,250 @@
+{
+ "about": "Official closure / alert PAGES (no machine-readable feed) from research round 4 (KPC_Round4_results.xlsx). The KPC Watcher hashes their closure lines weekly and tells chat 2 when one changes (research-bots review #6); the closure FEEDS stay in kpc_us_closures.py. Blocked sites are never worked around.",
+ "pages": [
+  {
+   "st": "PA",
+   "agency": "Pennsylvania Game Commission",
+   "page": "https://www.pa.gov/agencies/pgc/alertsandnotices"
+  },
+  {
+   "st": "WA",
+   "agency": "Washington Dept. of Fish & Wildlife (WDFW)",
+   "page": "https://wdfw.wa.gov/places-to-go/alerts"
+  },
+  {
+   "st": "FL",
+   "agency": "Florida Fish and Wildlife Conservation Commission (FWC)",
+   "page": "https://myfwc.com/recreation/notices/"
+  },
+  {
+   "st": "MI",
+   "agency": "Michigan DNR - Wildlife Division (state game areas; same DNR)",
+   "page": "https://www.michigan.gov/dnr/about/newsroom/closures"
+  },
+  {
+   "st": "WA",
+   "agency": "Washington State Parks and Recreation Commission",
+   "page": "https://parks.wa.gov/about/news-announcements/alerts"
+  },
+  {
+   "st": "OR",
+   "agency": "Oregon Parks and Recreation Dept. (OPRD)",
+   "page": "https://stateparks.oregon.gov/index.cfm?do=v.notices"
+  },
+  {
+   "st": "GA",
+   "agency": "Georgia DNR Wildlife Resources Division (WRD)",
+   "page": "https://georgiawildlife.com/closures"
+  },
+  {
+   "st": "TX",
+   "agency": "Texas Parks & Wildlife Dept - State Parks",
+   "page": "https://tpwd.texas.gov/state-parks/parks-map"
+  },
+  {
+   "st": "ID",
+   "agency": "Idaho Department of Fish and Game (IDFG)",
+   "page": "https://idfg.idaho.gov/fire"
+  },
+  {
+   "st": "NC",
+   "agency": "NC Wildlife Resources Commission (NCWRC)",
+   "page": "https://www.ncwildlife.gov/connect/ncwrc-operations-closings-and-alerts"
+  },
+  {
+   "st": "IL",
+   "agency": "Illinois DNR (parks, wildlife areas, state forests)",
+   "page": "https://dnr.illinois.gov/closures/currentclosuresofdnrsitesandareas.html"
+  },
+  {
+   "st": "AK",
+   "agency": "Alaska DNR - Division of Parks & Outdoor Recreation",
+   "page": "https://dnr.alaska.gov/parks/asp/open.htm"
+  },
+  {
+   "st": "MN",
+   "agency": "Minnesota DNR - Fish & Wildlife (WMAs)",
+   "page": "https://www.dnr.state.mn.us/trailconditions/index.html"
+  },
+  {
+   "st": "IN",
+   "agency": "Indiana DNR - State Parks",
+   "page": "https://www.in.gov/dnr/state-parks/parks-lakes/advisories-and-closings/"
+  },
+  {
+   "st": "GA",
+   "agency": "Georgia DNR - State Parks & Historic Sites",
+   "page": "https://gastateparks.org/Alerts"
+  },
+  {
+   "st": "LA",
+   "agency": "Louisiana Dept of Wildlife & Fisheries (LDWF)",
+   "page": "https://www.wlf.louisiana.gov/news"
+  },
+  {
+   "st": "SC",
+   "agency": "SC Department of Natural Resources (SCDNR)",
+   "page": "https://dnr.sc.gov/admin/offices.html#closures"
+  },
+  {
+   "st": "ME",
+   "agency": "Maine Dept of Inland Fisheries & Wildlife",
+   "page": "https://www.maine.gov/ifw/"
+  },
+  {
+   "st": "ND",
+   "agency": "North Dakota Game and Fish Department",
+   "page": "https://gf.nd.gov/news"
+  },
+  {
+   "st": "VT",
+   "agency": "Vermont Dept of Forests, Parks & Recreation - State Parks",
+   "page": "https://www.vtstateparks.com/park-alerts"
+  },
+  {
+   "st": "MN",
+   "agency": "Minnesota DNR - Forestry",
+   "page": "https://www.dnr.state.mn.us/trailconditions/listing.html"
+  },
+  {
+   "st": "MD",
+   "agency": "Maryland DNR - Maryland Park Service",
+   "page": "https://dnr.maryland.gov/Pages/park-status-dashboard.aspx"
+  },
+  {
+   "st": "OK",
+   "agency": "Oklahoma Tourism & Recreation Dept - State Parks",
+   "page": "https://www.travelok.com/state-parks/updates"
+  },
+  {
+   "st": "ND",
+   "agency": "North Dakota Parks & Recreation Dept",
+   "page": "https://www.parkrec.nd.gov/limited-service-season"
+  },
+  {
+   "st": "WY",
+   "agency": "Wyoming Game and Fish Department",
+   "page": "https://wgfd.wyo.gov/Public-Access/WHMA"
+  },
+  {
+   "st": "DE",
+   "agency": "Delaware DNREC - Division of Fish & Wildlife",
+   "page": "https://dnrec.delaware.gov/fish-wildlife/wildlife-areas/"
+  },
+  {
+   "st": "ME",
+   "agency": "Maine DACF - Bureau of Parks and Lands",
+   "page": "https://www.maine.gov/dacf/parks/"
+  },
+  {
+   "st": "HI",
+   "agency": "Hawaii DLNR - Division of State Parks",
+   "page": "https://dlnr.hawaii.gov/dsp/important-park-notices/"
+  },
+  {
+   "st": "WY",
+   "agency": "Wyoming State Parks, Historic Sites & Trails",
+   "page": "https://wyoparks.wyo.gov/index.php/news-updates-buffalo"
+  },
+  {
+   "st": "IN",
+   "agency": "Indiana DNR - Division of Fish & Wildlife",
+   "page": "https://www.in.gov/dnr/fish-and-wildlife/properties/advisories"
+  },
+  {
+   "st": "WV",
+   "agency": "WV DNR - West Virginia State Parks",
+   "page": "https://wvstateparks.com/parks/kanawha-state-forest/additional-information/"
+  },
+  {
+   "st": "NM",
+   "agency": "New Mexico EMNRD - State Parks Division",
+   "page": "https://wwwapps.emnrd.nm.gov/SPD/ParksReportingPublicDisplay/Closure"
+  },
+  {
+   "st": "RI",
+   "agency": "Rhode Island DEM - Division of Parks & Recreation",
+   "page": "https://riparks.ri.gov/latest-news-and-updates"
+  },
+  {
+   "st": "AZ",
+   "agency": "Arizona State Parks & Trails",
+   "page": "https://azstateparks.com/catalina"
+  },
+  {
+   "st": "CA",
+   "agency": "California Dept of Fish and Wildlife (CDFW)",
+   "page": "https://wildlife.ca.gov/Closures"
+  },
+  {
+   "st": "OR",
+   "agency": "Oregon Dept of Fish & Wildlife (ODFW)",
+   "page": "https://myodfw.com/news-releases"
+  },
+  {
+   "st": "RI",
+   "agency": "Rhode Island DEM - Division of Fish & Wildlife",
+   "page": "https://dem.ri.gov/fishwildlife"
+  },
+  {
+   "st": "WA",
+   "agency": "Washington DNR (state trust forests)",
+   "page": "https://dnr.wa.gov/forest-and-trust-lands/capitol-state-forest"
+  },
+  {
+   "st": "IA",
+   "agency": "Iowa DNR - State Forests (same list as IA State parks row)",
+   "page": "https://programs.iowadnr.gov/parkforms/pages/ViewParkAlerts"
+  },
+  {
+   "st": "OR",
+   "agency": "Oregon Department of Forestry (ODF) - State Forests",
+   "page": "https://www.oregon.gov/odf/recreation/pages/default.aspx"
+  },
+  {
+   "st": "AK",
+   "agency": "Alaska Dept of Fish & Game (ADF&G)",
+   "page": "https://www.adfg.alaska.gov/index.cfm?adfg=wcnews.main"
+  },
+  {
+   "st": "MT",
+   "agency": "Montana DNRC - Trust Lands (state forests)",
+   "page": "https://dnrc.mt.gov/"
+  },
+  {
+   "st": "ND",
+   "agency": "North Dakota Forest Service (NDSU)",
+   "page": "https://www.ndsu.edu/ndfs/stateforests"
+  },
+  {
+   "st": "TX",
+   "agency": "Texas A&M Forest Service",
+   "page": "https://tfsweb.tamu.edu/"
+  },
+  {
+   "st": "GA",
+   "agency": "Georgia Forestry Commission",
+   "page": "https://gatrees.org/"
+  },
+  {
+   "st": "DE",
+   "agency": "Delaware Dept of Agriculture - Delaware Forest Service",
+   "page": "https://agriculture.delaware.gov/forest-service/"
+  },
+  {
+   "st": "ID",
+   "agency": "Idaho Department of Lands (IDL) - endowment lands / state forests",
+   "page": "https://www.idl.idaho.gov/endowment-land-and-recreation/"
+  },
+  {
+   "st": "HI",
+   "agency": "Hawaii DLNR - Division of Forestry & Wildlife (DOFAW)",
+   "page": "https://hawaiitrails.ehawaii.gov/trails/"
+  },
+  {
+   "st": "NM",
+   "agency": "New Mexico Department of Wildlife (NMDOW)",
+   "page": "https://wildlife.dgf.nm.gov/"
+  }
+ ]
+}

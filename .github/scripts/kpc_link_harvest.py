@@ -99,11 +99,14 @@ def from_layers(P, found):
     return n
 
 
+FACTS = {}
+
+
 def from_nps(P, found):
     if not NPS_KEY: LOG.append('NPS_API_KEY not set'); return 0
     units, start = [], 0
     while not late():
-        try: j = get('https://developer.nps.gov/api/v1/parks', {'limit': 200, 'start': start, 'fields': 'url'}, headers={'X-Api-Key': NPS_KEY})
+        try: j = get('https://developer.nps.gov/api/v1/parks', {'limit': 200, 'start': start, 'fields': 'url,operatingHours,entranceFees'}, headers={'X-Api-Key': NPS_KEY})
         except Exception as e:  # noqa: BLE001
             LOG.append(f'NPS API: {str(e)[:80]}'); break
         d = j.get('data') or []
@@ -120,6 +123,11 @@ def from_nps(P, found):
         if len(cand) != 1: continue
         u = cand[0]
         if u.get('url'): found.setdefault(ref, {}).setdefault('web', (u['url'], 'bot: National Park Service API'))
+        # Oct 27 (research-bots review #4, HQ GO): hours + entrance fees as the Park Service publishes them (dated, never guessed)
+        hrs = [{'name': str(h.get('name') or '')[:60], 'desc': str(h.get('description') or '')[:300],
+                'std': {k: str(v)[:40] for k, v in (h.get('standardHours') or {}).items() if v}} for h in (u.get('operatingHours') or [])[:3]]
+        fees = [{'title': str(f.get('title') or '')[:80], 'cost': str(f.get('cost') or '')} for f in (u.get('entranceFees') or [])[:6]]
+        FACTS[ref] = {'hours': hrs, 'fees': fees if fees else 'none listed by the Park Service', 'src': 'National Park Service API', 'page': u.get('url') or ''}
         mp = f"https://www.nps.gov/{u.get('parkCode')}/planyourvisit/maps.htm"
         if u.get('parkCode') and alive(mp): found.setdefault(ref, {}).setdefault('map', (mp, 'bot: National Park Service (maps page answered)')); n += 1
         time.sleep(.2)
@@ -251,6 +259,11 @@ def main():
             e[kind + '_read'] = read_dates({kind: e.get(kind)}, {kind: url}, {kind: e.get(kind + '_read')})[kind]
             e[kind] = url; e[kind + '_by'] = by
         if not e: d['parks'].pop(ref, None)
+    for ref, f in FACTS.items():   # research-bots review #4: hours + fees with the day they were read (unchanged = kept a month)
+        e = d['parks'].setdefault(ref, {})
+        old = e.get('nps_facts') or {}
+        f = dict(f, read=read_dates({'x': {k: v for k, v in old.items() if k != 'read'}}, {'x': f}, {'x': old.get('read')})['x'])
+        e['nps_facts'] = f
     if 'link harvester' not in d.get('about', ''):
         d['about'] += " Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed."
     save_json(WEB, d, indent=1)

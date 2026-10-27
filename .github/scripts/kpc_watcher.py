@@ -153,11 +153,17 @@ def watch_ky(old, new, rep):
     except Exception:  # noqa: BLE001
         parks = []
     seen = {}
+    try: HRS = json.load(open('kpc-ky-hours.json', encoding='utf-8')).get('parks') or {}
+    except Exception: HRS = {}  # noqa: BLE001
+    ours = {}   # Oct 27 (research-bots review #7): next to a changed page, the park number + what WE show today, so the fix is one line
     for p in parks:
         u = str(p.get('web') or '')
         if not u.startswith('http') or 'pota.app' in u:
             continue
         seen.setdefault(u, []).append(f"{p.get('c')} {p.get('n')}")
+        hv = HRS.get(p.get('c')) or {}
+        mine = '; '.join(f'{k}: {v}' for k, v in hv.items() if k != 'link' and v)
+        if mine: ours.setdefault(u, []).append(f"{p.get('c')} (kpc-ky-hours.json) {mine[:200]}")
     for u, names in sorted(seen.items()):
         c, t, _ = fetch(u)
         prev = old.get(u) or {}
@@ -173,7 +179,8 @@ def watch_ky(old, new, rep):
         if prev.get('hash') and prev['hash'] != new[u]['hash']:
             d = diff(prev.get('lines') or [], lines)
             if d:
-                rep[8].append(f"{', '.join(names[:2])}: hours / fees / rules text changed on {u} —{d}")
+                rep[8].append(f"{', '.join(names[:2])}: hours / fees / rules text changed on {u} —{d}"
+                              + (' · WE SHOW: ' + ' | '.join(ours[u][:2]) if ours.get(u) else ' · we show no hours / fees for it'))
 
 
 def watch_rules(old, new, rep):
@@ -227,6 +234,24 @@ def watch_closures(old, new, rep):
             rep[2].append(f'{st} {what}: now answers a plain request ({u}); worth a look for kpc_us_closures.py')
         elif not answers and was is True:
             rep[2].append(f'{st} {what}: blocked again (HTTP {c}) {u}')
+
+
+def watch_closure_pages(old, new, rep):
+    """Oct 27 (research-bots review #6, HQ GO): the agencies' closure / alert PAGES that have no feed (data/closure-pages.json,
+    research round 4): only their closure lines are hashed; a change goes to chat 2 with the link. Robots rules obeyed."""
+    try: pages = json.load(open('data/closure-pages.json', encoding='utf-8')).get('pages') or []
+    except Exception: pages = []  # noqa: BLE001
+    for p in pages:
+        u = p['page']; key = 'cp:' + u
+        c, t, _ = fetch(u)
+        prev = old.get(key) or {}
+        if c < 0: new[key] = prev; continue
+        if c != 200: new[key] = dict(prev, last_error=f'HTTP {c}' if c else 'no answer'); continue
+        lines = [x for x in text_lines(t) if re.search(r'clos|restrict|reopen|open(ed|s)? again|fire|flood|hunt|quota|construction|alert', x, re.I)][:150]
+        new[key] = {'hash': h('\n'.join(lines)), 'lines': lines, 'date': TODAY}
+        if prev.get('hash') and prev['hash'] != new[key]['hash']:
+            d = diff(prev.get('lines') or [], lines)
+            if d: rep[2].append(f"{p['st']} {p['agency']}: closure page changed {u} —{d}")
 
 
 def arrl_search(page_url, state_name):
@@ -315,7 +340,7 @@ def main():
     first = not old
     new = {'ky': {}, 'rules': {}, 'closures': {}, 'arrl': {}}
     rep = {8: [], 2: [], 6: []}
-    for part, fn in (('closures', watch_closures), ('rules', watch_rules), ('arrl', watch_arrl), ('ky', watch_ky)):
+    for part, fn in (('closures', watch_closures), ('closure pages', watch_closure_pages), ('rules', watch_rules), ('arrl', watch_arrl), ('ky', watch_ky)):
         try:
             fn(old.get(part) or {}, new[part], rep)
         except Exception as e:  # noqa: BLE001

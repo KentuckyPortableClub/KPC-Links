@@ -54,10 +54,11 @@ def main():
     leads = old.get('parks', {})
     todo = []
     for ref, v in P.items():
-        if (W.get(ref) or {}).get('map'): continue                    # has an official map link already
+        refind = bool((W.get(ref) or {}).get('map_refind'))         # Oct 27 (research-bots review #8): its map link is gone: look again, first
+        if (W.get(ref) or {}).get('map') and not refind: continue     # has an official map link already
         page = v[1] or (W.get(ref) or {}).get('web')
         if not page or not page.startswith('http'): continue
-        todo.append((leads.get(ref, {}).get('checked', ''), -(v[7] or 0) if len(v) > 7 and isinstance(v[7], int) else 0, ref, page))
+        todo.append(('' if refind else leads.get(ref, {}).get('checked', '') or '0', -(v[7] or 0) if len(v) > 7 and isinstance(v[7], int) else 0, ref, page))
     todo.sort()
     n = got = 0
     for checked, _, ref, page in todo:
