@@ -103,9 +103,9 @@ footer.kpc-about-footer .footer-actions a:hover,footer.kpc-about-footer .footer-
 body.field .page-jump-nav{display:none!important}
 
 .lg-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px 16px;background:#0b0805;border-bottom:1px solid rgba(240,201,107,.35)}
-.lg-tabs button{min-height:38px;padding:7px 16px;border-radius:999px;border:1px solid rgba(240,201,107,.6);background:transparent;color:#f0c96b;font:900 12px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
+.lg-tabs a{display:inline-flex;align-items:center;min-height:38px;padding:7px 16px;border-radius:999px;border:1px solid rgba(240,201,107,.6);background:transparent;color:#f0c96b;font:900 12px Arial,sans-serif;letter-spacing:1.2px;text-decoration:none;box-sizing:border-box}.lg-tabs button{min-height:38px;padding:7px 16px;border-radius:999px;border:1px solid rgba(240,201,107,.6);background:transparent;color:#f0c96b;font:900 12px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}
 .lg-tabs button[aria-pressed=true]{background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;border-color:#d5a63a}
-#lgLive{max-width:1240px;margin:0 auto;padding:0 8px 20px}#lgLive iframe{display:block;width:100%;min-height:80vh;border:0;border-radius:12px;background:#111}
+.kpc-lback{padding:8px 4px}.kpc-lback button{min-height:36px;padding:6px 16px;border-radius:999px;border:0;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;font:900 12px Arial,sans-serif;letter-spacing:1.2px;cursor:pointer}#lgLive{max-width:1240px;margin:0 auto;padding:0 8px 20px}#lgLive iframe{display:block;width:100%;min-height:80vh;border:0;border-radius:12px;background:#111}
 .lg-feat{display:flex;gap:14px;align-items:center;margin:16px 0;padding:16px 18px;border-radius:14px;border:1px solid rgba(240,201,107,.7);background:linear-gradient(90deg,rgba(213,166,58,.22),rgba(0,0,0,.35));color:#f3ebd8;text-decoration:none;box-shadow:0 0 22px rgba(240,201,107,.18)}
 .lg-feat.lg-ky{border-color:rgba(120,190,140,.7);background:linear-gradient(90deg,rgba(40,110,70,.3),rgba(0,0,0,.35))}.lg-feat i{font-style:normal;font-size:34px}.lg-feat b{display:block;color:#fff;font:700 21px Georgia,serif}.lg-feat small{display:block;color:#f0c96b;font:900 10.5px Arial,sans-serif;letter-spacing:1.6px;margin-bottom:2px}.lg-feat span{font-size:14.5px}
 .lg-tool.lg-soon{cursor:default;opacity:.95;border-style:dashed}.lg-tool .lg-warn{display:block;margin-top:6px;font-size:12px;line-height:1.35;color:#ffd7a8}
@@ -253,7 +253,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <h1>Activators Lounge</h1>
 <p class="lg-sub">Every tool an activator needs, in one room: find any park, WWFF area or summit in the world, open the right tool in one tap, and see how the bands look today.</p>
 </section>
-<nav class="lg-tabs" aria-label="Lounge sections"><button type="button" data-lt="tools" aria-pressed="true">🧰 TOOLS</button><button type="button" data-lt="live" aria-pressed="false">📡 HAPPENING NOW</button></nav>
+<nav class="lg-tabs" aria-label="Lounge sections"><button type="button" data-lt="tools" aria-pressed="true">🧰 TOOLS</button><a href="kpc-activations.html?from=activators">📝 ACTIVATION BOARD</a><a href="kpc-weather.html?from=activators">🌦 WEATHER</a><a href="kpc-space-weather.html?from=activators">☀️ RADIO CONDITIONS</a><button type="button" data-lt="live" aria-pressed="false">📡 HAPPENING NOW</button></nav>
 <section id="lgLive" hidden></section>
 <div id="lgTools">
 <div id="kpc-cx"></div>
@@ -338,11 +338,11 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <script>
 /* Oct 26 (release prep): Happening Now as a tab = the shared Happening Now page (kpc-live.html?embed=1) inside the Lounge;
    it follows the viewer's location (Kentucky until a location is set). Tab remembered: localStorage kpcLgTab. */
-(function(){var T=document.querySelectorAll('.lg-tabs [data-lt]'),L=document.getElementById('lgLive'),O=document.getElementById('lgTools');
+(function(){var T=document.querySelectorAll('.lg-tabs button[data-lt]'),L=document.getElementById('lgLive'),O=document.getElementById('lgTools');
  function go(t,save){T.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lt===t))});var live=t==='live';L.hidden=!live;O.hidden=live;
-  if(live&&!L.firstChild)L.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now" loading="lazy"></iframe>';if(save)try{localStorage.setItem('kpcLgTab',t)}catch(e){}}
+  if(live&&!L.firstChild){L.innerHTML='<div class="kpc-lback"><button type="button" data-lt="tools">← ACTIVATORS LOUNGE</button></div><iframe src="kpc-live.html?embed=1" title="Happening Now" loading="lazy"></iframe>';L.querySelector('[data-lt]').onclick=function(){go('tools',1);scrollTo(0,0)}}if(save)try{localStorage.setItem('kpcLgTab',t)}catch(e){}}
  T.forEach(function(b){b.addEventListener('click',function(){go(b.dataset.lt,1)})});
- window.addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&L.firstChild)L.firstChild.style.height=Math.max(600,d.kpcLiveH)+'px'});
+ window.addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&L.querySelector('iframe'))L.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});
  var t='tools';try{t=localStorage.getItem('kpcLgTab')||'tools'}catch(e){}if(location.hash==='#live')t='live';go(t,0);})();
 </script>
 </main>
