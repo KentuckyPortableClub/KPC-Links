@@ -69,6 +69,7 @@
 #ov .ov-how2{font-size:12.5px;color:#a8a18f;margin:6px 0 0}
 #ov .ov-mem{display:flex;gap:8px;align-items:center;font-size:13.5px;margin:8px 0 0}#ov .ov-mem input{width:18px;height:18px}
 #ov .ov-sel{margin:0 0 14px}
+@keyframes ovIn{from{opacity:0}to{opacity:1}}#ov path.ov-in{animation:ovIn 1.6s ease-out}#ov path.ov-in-patch{animation:ovIn 2.2s ease-out}
 </style>
 @@HEADER@@
 <main id="ov" data-keep-light>
@@ -137,4 +138,6 @@
 @@FOOTER@@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="kpc-bounds.js?v=20261027p"></script>
-<script src="kpc-overlap-finder.js?v=20261027b"></script>
+<script src="kpc-padus-layer.js?v=20261019g"></script>
+<script src="kpc-map-tools.js?v=20261018u"></script>
+<script src="kpc-overlap-finder.js?v=20261027c"></script>

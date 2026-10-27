@@ -114,15 +114,19 @@
   function mkMap() {
     if (map || !window.L) return !!map;
     map = L.map('ovMap', { zoomControl: true }).setView([37.5, -85.3], 7);
+    /* Oct 27 (Brandon: 'add the map layers'): the site's usual layer menu (Street, Satellite, Satellite + streets, USGS Topo, Terrain,
+       Hillshade, official PAD-US boundaries) from kpc-map-tools.js, top right of the map; the STREET / SATELLITE / TOPO buttons stay as shortcuts */
+    if (window.KPCLayers) { try { KPCLayers(map, 'Street'); } catch (e) {} }
     base.street = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '© OpenStreetMap' });
     base.sat = L.layerGroup([L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 })]);
     base.topo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' });
-    base.street.addTo(map); gAll = L.layerGroup().addTo(map);
+    if (!window.KPCLayers) base.street.addTo(map); gAll = L.layerGroup().addTo(map);
+    if (window.KPCLocate) { try { KPCLocate(map); } catch (e) {} } if (window.KPCFull) { try { KPCFull(map); } catch (e) {} }
     map.on('click', function (e) { if (mode === 'pin') { if (pinM) map.removeLayer(pinM); pinM = L.marker(e.latlng).addTo(map); status([e.latlng.lat, e.latlng.lng], 0, true); }
       else if (mode === 'measure') { meas.push(e.latlng); if (meas.length > 2) meas = [e.latlng]; draw(); if (meas.length === 2) { var d = map.distance(meas[0], meas[1]); L.popup().setLatLng(meas[1]).setContent('<b>📏 ' + Math.round(d * YD) + ' yards</b> (' + Math.round(d * 3.28084) + ' ft) in a straight line').openOn(map); } } });
     return true;
   }
-  function setBase(n) { if (!map) return; Object.keys(base).forEach(function (k) { if (map.hasLayer(base[k])) map.removeLayer(base[k]); }); base[n].addTo(map); layerName = n; tools(); }
+  function setBase(n) { if (!map) return; map.eachLayer(function (l) { if (l instanceof L.TileLayer && !gAll.hasLayer(l)) map.removeLayer(l); }); Object.keys(base).forEach(function (k) { if (map.hasLayer(base[k])) map.removeLayer(base[k]); }); base[n].addTo(map); layerName = n; tools(); }
   function patchRings(g) { var out = []; visiblePatches(g).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (x.shape && x.shape.length > 1) out.push({ s: x, ring: x.kind === 'trail' ? bandRing(x.shape) : x.shape, line: x.kind === 'trail' ? x.shape : null }); }); }); return out; }
   function openRow(key) {
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
@@ -131,7 +135,7 @@
     cur.rings = patchRings(g); parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: COL[i], dash: DASH[i], on: true, fs: null }; });
     spotPanel(); legend(); step = 0; clearTimeout(timer);
     var b = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
-    if (b.isValid()) map.fitBounds(b.pad(0.6));
+    if (b.isValid()) map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false });   /* Brandon: 'start zoomed into the overlap' */
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
     $('ovReport').href = reportUrl(g);
     loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
@@ -147,17 +151,20 @@
       return Promise.resolve(pr).then(function (fs) { p.fs = (fs || []).filter(function (f) { return f && f.geometry; }); }).catch(function () { p.fs = []; });
     }));
   }
-  function animate() { step = 0; draw(); (function next() { timer = setTimeout(function () { step++; draw(); if (step <= parks.length) next(); }, step ? 1500 : 300); })(); }
+  /* Brandon Oct 27 2:22 PM: 'slow down the animation': each park fades in over ~1.6 s, 3 s apart, then the overlap patch fades in */
+  var fading = false;
+  function animate() { step = 0; draw(); (function next() { timer = setTimeout(function () { step++; fading = true; draw(); setTimeout(function () { fading = false; }, 2000); if (step <= parks.length) next(); }, step ? 3000 : 900); })(); }
   function draw() {
     if (!map || !cur) return; gAll.clearLayers();
     parks.forEach(function (p, i) {
       if (!p.on || i >= step) return;
-      (p.fs || []).forEach(function (f) { gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: 0.08 } }).bindPopup(parkPop(p))); });
-      if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4' }).bindPopup(parkPop(p)));
-        gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash })); } });
+      var cls = fading && i === step - 1 ? 'ov-in' : '';
+      (p.fs || []).forEach(function (f) { gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: 0.08, className: cls } }).bindPopup(parkPop(p))); });
+      if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls }).bindPopup(parkPop(p)));
+        gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
     });
-    if (step > parks.length || step >= parks.length && parks.length) cur.rings.forEach(function (x) {
-      gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6 }).bindPopup(patchPop(x.s)));
+    if (step > parks.length) cur.rings.forEach(function (x) {
+      gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fading ? 'ov-in-patch' : '' }).bindPopup(patchPop(x.s)));
     });
     parks.forEach(function (p, i) { if (i >= step || !p.on) return; var c = (p.fs && p.fs[0] && L.geoJSON(p.fs[0]).getBounds().getCenter()) || (cur.rings[0] && L.latLng(cur.rings[0].ring[0][1], cur.rings[0].ring[0][0]));
       if (c) gAll.addLayer(L.marker(c, { icon: L.divIcon({ className: '', html: '<span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) }).bindPopup(parkPop(p))); });
