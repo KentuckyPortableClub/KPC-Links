@@ -53,6 +53,8 @@ def keys(found):
                     a, b = acres(om), acres(nm)
                     if a > 0 and b > 0 and (b >= 2 * a or b <= a / 2):
                         found.append(('outline size', ref, name, place, f'{round(a):,} → {round(b):,} acres'))
+                if p.get('kept') and p.get('read') and p['read'] < time.strftime('%Y-%m-%d', time.localtime(time.time() - 90 * 86400)):
+                    found.append(('outline lost', ref, name, place, f"kept from an old read only: last read {p['read']} (renamed or removed by the agency?)"))   # boundary review #3.2
                 if p.get('far_place') and p.get('far_place') != o.get('far_place'):   # boundary review #4: a same-name place far from the rest, kept joined
                     found.append(('far place', ref, name, place, 'joined land far from the rest: ' + '; '.join(p['far_place'])[:120] + ' (same park, or another place?)'))
                 if p.get('far') == 'well outside' and o.get('far') != 'well outside' and nm:
