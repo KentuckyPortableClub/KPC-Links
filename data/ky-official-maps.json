@@ -315,7 +315,7 @@
    "agency": "Kentucky State Parks",
    "maps": [
     [
-     "Campground Map (PDF)",
+     "Park Map (PDF)",
      "https://www.kentuckytourism.com/media/docs/default-source/listing-documents/map58f2dd46-f51b-47b9-a327-fa37a6a36d88.pdf?sfvrsn=82d241d4_0"
     ]
    ],
@@ -2795,5 +2795,5 @@
   }
  },
  "source": "Map links found on each agency page (KDFWR, Kentucky State Parks, Office of Kentucky Nature Preserves)",
- "updated": "2026-10-20 09:46 UTC"
+ "updated": "2026-10-27 09:52 UTC"
 }
