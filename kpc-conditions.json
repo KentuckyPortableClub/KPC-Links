@@ -242,16 +242,6 @@
    "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
   },
   {
-   "id": "uc-wi-dnr-peninsula-sp-park-roads-and-parking-lots-closed-safety-conce-US-1470",
-   "ref": "US-1470",
-   "kind": "Closure",
-   "details": "Wisconsin DNR: Peninsula SP Park Roads and Parking Lots closed — safety concerns",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
-  },
-  {
    "id": "uc-wi-dnr-pattison-sp-construction-projects-2026-2027-maintenance-US-1469",
    "ref": "US-1469",
    "kind": "Park notice",
@@ -336,16 +326,6 @@
    "ref": "US-9804",
    "kind": "Closure",
    "details": "Wisconsin DNR: Military Ridge ST Verona Bridge Closed (Sept.-Nov. 2026) — maintenance",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
-  },
-  {
-   "id": "uc-wi-dnr-military-ridge-st-hwy-j-to-hwy-pd-closed-oct-19-23-2026-US-9804",
-   "ref": "US-9804",
-   "kind": "Closure",
-   "details": "Wisconsin DNR: Military Ridge ST Hwy. J to Hwy PD Closed (Oct. 19-23. 2026) — maintenance",
    "seen": "2026-10-25",
    "call": "KPC BOT",
    "expires": "2026-10-30",
@@ -542,16 +522,6 @@
    "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
   },
   {
-   "id": "uc-wi-dnr-glacial-drumlin-st-cottage-grove-parking-lot-closed-maintena-US-9792",
-   "ref": "US-9792",
-   "kind": "Closure",
-   "details": "Wisconsin DNR: Glacial Drumlin ST Cottage Grove Parking Lot Closed — maintenance",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
-  },
-  {
    "id": "uc-wi-dnr-elroy-sparta-st-tunnels-closed-nov-2026-to-april-2027-wea-US-9783",
    "ref": "US-9783",
    "kind": "Closure",
@@ -606,16 +576,6 @@
    "ref": "US-1447",
    "kind": "Closure",
    "details": "Wisconsin DNR: Council Grounds SP Log Shelter Closed — maintenance",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
-  },
-  {
-   "id": "uc-wi-dnr-coulee-experimental-sf-trails-notice-oct-20-22-2026-main-US-5578",
-   "ref": "US-5578",
-   "kind": "Park notice",
-   "details": "Wisconsin DNR: Coulee Experimental SF Trails Notice (Oct. 20-22, 2026) — maintenance",
    "seen": "2026-10-25",
    "call": "KPC BOT",
    "expires": "2026-10-30",
