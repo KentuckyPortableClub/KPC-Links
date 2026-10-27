@@ -50,13 +50,23 @@ jobs:
                   if ((d.get('counts') or {}).get('detail') or 1) >= 0.01:
                       todo.append((d.get('st') or f.stem).replace('US-', ''))
               want = todo[:14]         # ~11 min a state, 300 min limit: all 50 states in four nights
+          # Oct 27 (Fable's boundary review #7, HQ GO): the saved copies are re-read from the agencies in rotation, two
+          # states a night (all 50 in about a month), oldest first (data/us-key/refresh.json); the old copy is kept as
+          # prev-US-XX.json.gz and the observations log lists every outline that changed (25% / 500 acres / pieces)
+          refresh = []
+          if not os.environ.get('WANT') and len(want) <= 12:
+              try: R = json.loads(pathlib.Path('data/us-key/refresh.json').read_text(encoding='utf-8')).get('states', {})
+              except Exception: R = {}
+              allst = sorted({(json.loads(f.read_text(encoding='utf-8')).get('st') or f.stem).replace('US-', '') for f in pathlib.Path('data/us-key').glob('US-??.json')})
+              refresh = sorted(allst, key=lambda s: R.get(s, ''))[:2]
           print('states=' + ' '.join(want))
+          print('refresh=' + ' '.join(refresh))
           print('left=%d' % len(want))
           PY
         env:
           WANT: ${{ inputs.states }}
       - name: Fetch the saved outlines
-        if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -64,20 +74,35 @@ jobs:
           mkdir -p cache/us
           gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
       - name: Rebuild those keys with the check
-        if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') }}
         continue-on-error: true
         env:
           # Oct 22: the states MUST go in the STATES setting. Passing them as words after the script name (as the
           # first version did) is ignored, so it quietly worked through every state in alphabetical order.
           STATES: ${{ steps.pick.outputs.states }}
+          REFRESH: ${{ steps.pick.outputs.refresh }}
           GEO_CACHE_MODE: use          # saved outline if there is one, else fetch it once at ~110 m and save it
           GEO_DETAIL: '0.001'
           GEO_PAGE: '200'
         run: |
-          echo "::notice title=Boundary check::rebuilding $STATES"
-          python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log || true
+          if [ -n "$STATES" ]; then echo "::notice title=Boundary check::rebuilding $STATES"; python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key.log || true; fi
+          if [ -n "$REFRESH" ]; then
+            echo "::notice title=Boundary check::re-reading the saved outlines of $REFRESH from the agencies (monthly rotation)"
+            for s in $REFRESH; do [ -f cache/us/US-$s.json.gz ] && cp cache/us/US-$s.json.gz cache/us/prev-US-$s.json.gz; done
+            STATES="$REFRESH" GEO_CACHE_MODE=refresh python3 .github/scripts/kpc_us_key.py 2>&1 | tee -a us-key.log || true
+            python3 - <<'PY' || true
+          import json, os, pathlib, time
+          p = pathlib.Path('data/us-key/refresh.json')
+          try: d = json.loads(p.read_text(encoding='utf-8'))
+          except Exception: d = {}
+          st = d.setdefault('states', {})
+          for s in os.environ['REFRESH'].split(): st[s] = time.strftime('%Y-%m-%d')
+          d['about'] = 'When each state\'s saved outlines were last re-read from the agencies (kpc-boundary-check.yml, two states a night, oldest first; old copy kept as prev-US-XX.json.gz on the boundary-cache release).'
+          p.write_text(json.dumps(d, indent=1, sort_keys=True) + '\n', encoding='utf-8')
+          PY
+          fi
       - name: Keep any newly saved outlines
-        if: ${{ !inputs.report_only && steps.pick.outputs.states != '' }}
+        if: ${{ !inputs.report_only && (steps.pick.outputs.states != '' || steps.pick.outputs.refresh != '') }}
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}

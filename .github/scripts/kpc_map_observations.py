@@ -3,7 +3,7 @@
 nightly run, BEFORE its save step: compares the data files as this run left them with the last saved version (git HEAD)
 and appends what is worth a human look to data/map-observations.json:
   possible overlap     a 2-fer spot newly decided (candidate / very tight / not sure / water only)
-  outline size         a park's joined outline became half or double its size
+  outline size         a park's joined outline changed by 25% or 500 acres, or its number of pieces changed (G-M5)
   outline lost         a park had an outline and now has none
   pin outside          a park's POTA pin is newly WELL outside its outline
   layer problem        a map that did not answer / was not found (from this run's *.log files)
@@ -51,8 +51,11 @@ def keys(found):
                 if om and not nm: found.append(('outline lost', ref, name, place, 'had an official outline, now none'))
                 elif om and nm:
                     a, b = acres(om), acres(nm)
-                    if a > 0 and b > 0 and (b >= 2 * a or b <= a / 2):
+                    # G-M5 (Brandon Oct 27 6:45 AM, boundary review #6): a change of 25% or 500 acres, or a different number of pieces
+                    if a > 0 and b > 0 and (abs(b - a) >= .25 * a or abs(b - a) >= 500):
                         found.append(('outline size', ref, name, place, f'{round(a):,} → {round(b):,} acres'))
+                    elif len(om) != len(nm):
+                        found.append(('outline size', ref, name, place, f'{len(om)} → {len(nm)} pieces'))
                 if p.get('kept') and p.get('read') and p['read'] < time.strftime('%Y-%m-%d', time.localtime(time.time() - 90 * 86400)):
                     found.append(('outline lost', ref, name, place, f"kept from an old read only: last read {p['read']} (renamed or removed by the agency?)"))   # boundary review #3.2
                 if p.get('far_place') and p.get('far_place') != o.get('far_place'):   # boundary review #4: a same-name place far from the rest, kept joined
