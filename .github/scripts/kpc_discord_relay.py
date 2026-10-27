@@ -509,6 +509,59 @@ if not state.get('last_id'):
 
 def visible(mid): return full or int(mid) >= oldest
 
+# ---------------------------------------------------------------- HOLD + ASK (Brandon Oct 27, rulings G1 + G2)
+# A post that mentions 2-fers / overlaps WITHOUT the overlap notice, or whose tag can't be read, is never published on a
+# guess: it gets 🛑, the staff room is asked, and it waits. 👍 on the post = send it (2-fers: with the short notice
+# added); editing the post so it is fine = it goes out on the next check; deleting it = gone. No email.
+held = state.setdefault('held', {})          # mid -> {'why', 'at'}
+withnotice = state.setdefault('notice_add', [])   # mids published with the overlap notice added by the relay
+TWOFER = re.compile(r'(?i)\b(?:2|3|4|two|three)\s*-?\s*fers?\b|\bmulti[- ]park\b|\bpark overlap|\boverlapping (?:parks|boundar)|\bparks?\b[^.\n]{0,40}\boverlap')
+NOTICE_OK = re.compile(r'(?i)possible POTA overlap only|research aid, not a ruling')
+SHORT_NOTICE = ("⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. "
+                "Check both official boundary maps and make your own call before you count it.")
+PLACEWORD = re.compile(r'(?i)web ?site|face ?b|\bfb\b|discord|groups?|subscri|e-?mail|camp ?out|event|condition|announce|schedul|activation')
+STAFF_HOOK = ((ENV('KPC_ADMIN_WEBHOOK') or '').split() or [''])[0]
+GUILD = str((load('data/discord-watch.json', {}) or {}).get('guild') or '')
+
+def hold_reason(m, p):
+    raw = m.get('content') or ''
+    if 'skip' in p['flags']: return None
+    if TWOFER.search(raw) and not NOTICE_OK.search(raw): return '2fer'
+    if re.search(r'(?i)kpc-maprep|map ?rep tool ?box', raw): return 'maprep'    # Map Rep lives in the Club Room only, never in a post
+    if not p['flags']:
+        mt = re.match(r'\s*([^\n:]{1,60}):(?!\d|//)', raw)
+        if mt and (PLACEWORD.search(mt.group(1)) or ('+' in mt.group(1) and re.search(r'(?i)\b(post|all|now|send|schedule)\b', mt.group(1)))):
+            return 'tag'
+    if p.get('bad_when'): return 'when'
+    return None
+
+def with_notice(m):
+    if NOTICE_OK.search(m.get('content') or ''): return m
+    mm = dict(m); mm['content'] = (m.get('content') or '').rstrip() + '\n\n' + SHORT_NOTICE
+    return mm
+
+def thumbs(m):
+    return any((r.get('emoji') or {}).get('name') == '👍' and int(r.get('count', 0)) > (1 if r.get('me') else 0)
+               for r in m.get('reactions') or [])
+
+def ask_staff(mid, why, raw):
+    link = f'https://discord.com/channels/{GUILD}/{CHAN}/{mid}' if GUILD else f'message {mid}'
+    head = (raw or '').strip().split('\n')[0][:120]
+    text = {'2fer': 'mentions 2-fers / overlapping parks but has no overlap notice. React 👍 on the post to send it WITH the '
+                    'short overlap notice added, or edit the post to add the notice yourself, or delete it.',
+            'tag': "starts like a tag but I can't read it. Edit the post to fix the tag (it goes out on the next check), "
+                   'or react 👍 to send it to the usual places (Website + Facebook + the other Discord server).',
+            'when': "has a date/time in its tag that I can't read. Edit the post to fix it, or react 👍 to send it now.",
+            'maprep': 'mentions the Map Rep Tool Box, which stays in the Club Room and is never posted. Edit it out (it goes '
+                      'out on the next check) or delete the post. 👍 does not send this one.'}[why]
+    msg = f'🛑 Held a relay post: it {text}\n> {head}\n{link}'
+    if DRY or not STAFF_HOOK.startswith('https://'):
+        notice(('[dry run] ' if DRY else 'No staff-room webhook; ') + msg.replace('\n', ' '))
+        return
+    c, r = http(STAFF_HOOK, json.dumps({'username': 'KPC Relay', 'allowed_mentions': {'parse': []}, 'content': msg[:1900]}).encode(),
+                {'Content-Type': 'application/json'})
+    if c >= 300: notice(f'Staff room said HTTP {c}')
+
 def feed_remove(mid):
     feed['items'] = [it for it in feed.get('items', []) if it.get('id') != mid]
     for f in os.listdir(PHOTOS) if os.path.isdir(PHOTOS) else []:
@@ -640,7 +693,8 @@ for mid in list(posts):
     if not visible(mid): continue
     m = byid.get(mid)
     if m is None or 'skip' in parse(m)['flags']: unpublish(mid); done += 1   # deleted, or edited to start with Skip:
-    elif (m.get('edited_timestamp') or '') + '|' + str(len(m.get('attachments', []))) != posts[mid].get('sig'): sync(m, False); done += 1
+    elif (m.get('edited_timestamp') or '') + '|' + str(len(m.get('attachments', []))) != posts[mid].get('sig'):
+        sync(with_notice(m) if mid in withnotice else m, False); done += 1
 # 2) waiting (scheduled) posts: deleted, edited to a new time, or due now
 for mid, due in list(sched.items()):
     m = byid.get(mid)
@@ -655,6 +709,27 @@ for mid, due in list(sched.items()):
     if not p['when'] or datetime.datetime.fromisoformat(due) <= NOW:
         if not DRY: sched.pop(mid); react(mid, '⏰', 'DELETE')
         sync(m, True); done += 1
+# 2b) held posts: 👍 = send, fixed by an edit = send, deleted = forget
+for mid in list(held):
+    m = byid.get(mid)
+    if m is None:
+        c, r = dc(f'/channels/{CHAN}/messages/{mid}')
+        if c == 404: held.pop(mid, None); continue
+        m = json.loads(r) if c == 200 else None
+    if not m: continue
+    p = parse(m)
+    why = hold_reason(m, p)
+    ok = thumbs(m) and why != 'maprep'
+    if why and not ok: continue
+    if ok and why == '2fer':
+        m = with_notice(m)
+        if not DRY: withnotice.append(mid); del withnotice[:-300]
+    if not DRY: held.pop(mid, None); react(mid, '🛑', 'DELETE')
+    p = parse(m)
+    if p['due'] and not DRY:
+        sched[mid] = p['due'].isoformat(); react(mid, '⏰'); notice(f'Held post {mid} released; it waits for its time.'); continue
+    notice(f'Held post {mid} released ({"👍" if ok else "fixed by an edit"}).')
+    sync(m, True); done += 1
 # 3) new posts
 last = int(state.get('last_id') or 0)
 for m in window:
@@ -663,6 +738,11 @@ for m in window:
     if (m.get('author', {}).get('bot') and not FORM_POST(m)) or m.get('type', 0) not in (0, 19): continue
     p = parse(m)
     if 'skip' in p['flags']: notice(f"Post {m['id']} starts with Skip:, so it was not shared."); continue
+    why = hold_reason(m, p)
+    if why:
+        if not DRY: held[m['id']] = {'why': why, 'at': NOW.isoformat(timespec='minutes')}; react(m['id'], '🛑')
+        ask_staff(m['id'], why, m.get('content'))
+        notice(f"Post {m['id']} held ({why}); the staff room was asked."); continue
     if p['due']:
         if DRY: notice(f"[dry run] post {m['id']} waits until {p['due']:%a %b %-d %-I:%M %p} Central"); continue
         sched[m['id']] = p['due'].isoformat(); react(m['id'], '⏰')
