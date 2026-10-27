@@ -13,7 +13,7 @@ Never fails (exit 0). Run by .github/workflows/kpc-us-closures.yml every 6 hours
 kpc-conditions.json merge from data/alerts/us-parks.json (the workflow uses it when a push has to be retried)."""
 import csv, datetime as dt, email.utils, html, io, json, pathlib, re, sys, time, types, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
-from kpc_save import save_json
+from kpc_save import save_json, source_clock
 
 UA = {'User-Agent': 'KPC park closures (kentuckyportableclub.github.io)'}
 OUT = pathlib.Path('data/alerts/us-parks.json')
@@ -327,7 +327,7 @@ def main():
         try:
             rows = fn()
         except Exception as e:  # noqa: BLE001
-            srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': False, 'why': str(e)[:160]}
+            srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': False, 'why': str(e)[:160], **source_clock((was.get('sources') or {}).get(sid), False, None)}
             items += old.get(sid, [])                  # keep the last list: a failed read is not a reopening
             lines.append(f'{sid}: NOT READ ({str(e)[:80]}), kept {len(old.get(sid, []))}')
             continue
@@ -349,7 +349,7 @@ def main():
                               'expires': exp.isoformat(), 'link': r.get('link') or page})
                 n += 1
         srcs[sid] = {'agency': agency, 'st': st, 'page': page, 'ok': True, 'rows': len(rows), 'n': n,
-                     'unmatched': nomatch[:15]}
+                     'unmatched': nomatch[:15], **source_clock((was.get('sources') or {}).get(sid), True, n)}
         lines.append(f'{sid}: {len(rows)} notices, {n} park entries' + (f'; no park for: {"; ".join(nomatch[:6])}' if nomatch else ''))
     seen_ids, uniq = set(), []
     for it in sorted(items, key=lambda x: x['id']):

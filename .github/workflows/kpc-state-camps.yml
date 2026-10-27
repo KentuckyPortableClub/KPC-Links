@@ -34,12 +34,13 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_state_camps.py || true
+          OBS_FILE=data/observations/state-camps.json OBS_RUN='state-camps' python3 .github/scripts/kpc_map_observations.py || true   # Oct 27: one change-detection helper (research-bots review #3)
       - name: Save
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          mkdir -p data/campstate; git add data/campstate 2>/dev/null || true
+          mkdir -p data/campstate; git add data/campstate 2>/dev/null || true; git add data/observations 2>/dev/null || true
           if ! git diff --cached --quiet; then
             git commit -m 'State park camping: weekly update'
             for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done

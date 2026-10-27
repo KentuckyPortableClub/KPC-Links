@@ -21,6 +21,7 @@ jobs:
         continue-on-error: true
         timeout-minutes: 20
         run: python3 .github/scripts/kpc_us_closures.py || true
+          OBS_FILE=data/observations/us-closures.json OBS_RUN='us-closures' python3 .github/scripts/kpc_map_observations.py || true   # Oct 27: one change-detection helper (research-bots review #3)
       - name: Save
         if: always()
         continue-on-error: true
@@ -30,7 +31,7 @@ jobs:
           cp data/alerts/us-parks.json /tmp/us-parks.json 2>/dev/null || exit 0
           cp data/status/kpc_us_closures.json /tmp/st.json 2>/dev/null || true
           for i in 1 2 3 4; do
-            for f in data/alerts/us-parks.json kpc-conditions.json data/status/kpc_us_closures.json; do [ -f "$f" ] && git add "$f"; done
+            for f in data/alerts/us-parks.json kpc-conditions.json data/status/kpc_us_closures.json; do [ -f "$f" ] && git add "$f"; done; git add data/observations 2>/dev/null || true
             git diff --cached --quiet && exit 0
             git commit -qm 'US park closures' || exit 0
             git push -q origin HEAD:main && exit 0

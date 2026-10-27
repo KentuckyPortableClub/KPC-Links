@@ -13,7 +13,7 @@ A bot value is written as {'web' or 'map': url, 'by': 'bot: <source>'}; a value 
 bot) is never changed. Data only (hidden until used). Monthly, time-limited, never fails. Keys are never printed."""
 import json, math, os, pathlib, re, sys, time, urllib.error, urllib.parse, urllib.request
 sys.path.insert(0, os.path.dirname(__file__))
-from kpc_save import save_json
+from kpc_save import save_json, read_dates
 
 T0, LIMIT = time.time(), float(os.environ.get('MINUTES') or 150) * 60
 UA = {'User-Agent': 'KPC park links (kentuckyportableclub.github.io)'}
@@ -62,7 +62,7 @@ def parks():
 
 
 URLF = re.compile(r'web|url|link|site|page|href|info', re.I)
-NOTF = re.compile(r'photo|image|img|thumb|icon|logo|shape|globalid|editor', re.I)
+NOTF = re.compile(r'photo|image|img|thumb|icon|logo|shape|globalid|editor|contact|e_?mail|mailto|phone|owner|creator|manager_?name', re.I)   # Oct 27 (limits plan L-d): never a person's contact field
 
 
 def from_layers(P, found):
@@ -90,7 +90,7 @@ def from_layers(P, found):
                 a = ft.get('attributes') or {}
                 o = a.get(oidf) if a.get(oidf) is not None else a.get('OBJECTID') or a.get('objectid')
                 for fld, v in a.items():
-                    if not isinstance(v, str) or not re.match(r'https?://', v.strip()) or NOTF.search(fld) or not URLF.search(fld): continue
+                    if not isinstance(v, str) or not re.match(r'https?://', v.strip()) or NOTF.search(fld) or not URLF.search(fld) or re.search(r'@|mailto:', v): continue
                     v = v.strip().split()[0]
                     kind = 'map' if re.search(r'map|brochure', fld + ' ' + v, re.I) else 'web'
                     for ref in ids.get(int(o) if o is not None else -1, []):
@@ -247,6 +247,8 @@ def main():
             if kind == 'web' and P.get(ref) and P[ref][1]: continue          # the park already has its page
             if e.get(kind) and not str(e.get(kind + '_by', '')).startswith('bot:'): continue   # a person's value wins
             if e.get(kind) != url: added[kind] += 1
+            # research-bots review #2: the day this link was last read from its source (same link = kept for a month)
+            e[kind + '_read'] = read_dates({kind: e.get(kind)}, {kind: url}, {kind: e.get(kind + '_read')})[kind]
             e[kind] = url; e[kind + '_by'] = by
         if not e: d['parks'].pop(ref, None)
     if 'link harvester' not in d.get('about', ''):
