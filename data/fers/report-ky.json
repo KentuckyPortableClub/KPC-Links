@@ -87,15 +87,15 @@
  },
  "per state": {
   "US-KY": {
-   "candidates": 23,
-   "candidates (saved outline only)": 37,
-   "lines": 59,
-   "n-fers": 0,
-   "not sure": 7,
-   "pass1": 78,
-   "pass2": 72,
-   "spots": 78,
-   "very tight": 1,
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 80,
+   "n-fers": 5,
+   "not sure": 0,
+   "pass1": 156,
+   "pass2": 2,
+   "spots": 156,
+   "very tight": 0,
    "water only": 0
   }
  }
