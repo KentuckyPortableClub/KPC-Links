@@ -1,0 +1,453 @@
+diff --git a/finder.html b/finder.html
+index 4728d76d..7f67a74d 100644
+--- a/finder.html
++++ b/finder.html
+@@ -104,7 +104,7 @@ header:not(.site-nav) p{text-shadow:0 2px 10px rgba(0,0,0,.8)}
+ <section class="panel" id="finder-search" aria-label="Search options"><h2>Find your next activation</h2><div class="searchline"><label for="place">Town, city, state, ZIP or reference number</label><div class="inputrow"><input id="place" placeholder="e.g. Glasgow, KY or W4K/EC-001" autocomplete="off"><button id="town" class="primary">Search</button><button id="gps" class="secondary">◎ Use GPS</button></div></div><p class="meta searchtip">Tip: search a <b>town, city or ZIP</b> to see many parks nearby. Search a <b>reference number</b> (like US-1234 or W4K/EC-001) to see just that one park, then use “Show nearby parks” to widen it.</p><div class="filters"><fieldset><legend>Programs</legend><label><input id="sota" type="checkbox" checked> SOTA</label><label><input id="pota" type="checkbox" checked> POTA</label><label><input id="wwff" type="checkbox" checked> WWFF</label></fieldset><label class="radius">Search radius<select id="radius"><option value="25">25 miles</option><option value="50" selected>50 miles</option><option value="100">100 miles</option><option value="200">200 miles</option><option value="500">500 miles</option></select></label></div><p id="status" role="status" aria-live="polite">Loading location records…</p><div id="km-bar" style="margin-top:12px"></div><details class="layerdrop"><summary><span>🗺️ Park boundaries</span><span class="drophint">tap to show/hide layers</span></summary><div class="gis-group"><strong>Official park boundaries (Kentucky)</strong><div class="gis-row"><label class="gis-cb"><input id="gis-bstate" type="checkbox" checked><i style="background:#2fa84f"></i>State Parks</label><label class="gis-cb"><input id="gis-bwma" type="checkbox" checked><i style="background:#f08a1c"></i>WMAs &amp; hunting areas</label><label class="gis-cb"><input id="gis-bsnp" type="checkbox" checked><i style="background:#a25ee0"></i>Nature preserves</label><label class="gis-cb"><input id="gis-bsna" type="checkbox" checked><i style="background:#e2559f"></i>Natural areas</label><label class="gis-cb"><input id="gis-bdbnf" type="checkbox" checked><i style="background:#2f7fd6"></i>Daniel Boone NF</label><label class="gis-cb"><input id="gis-bnps" type="checkbox" checked><i style="background:#9b6a3c"></i>National Park Service</label><label class="gis-cb"><input id="gis-bwild" type="checkbox" checked><i style="background:#16b3c0"></i>Wild River corridors</label><label class="gis-cb"><input id="gis-bwilder" type="checkbox" checked><i style="background:#c6e03a"></i>Wilderness areas (Clifty)</label><label class="gis-cb"><input id="gis-bfws" type="checkbox" checked><i style="background:#5ab0ff"></i>Wildlife refuges &amp; fish hatcheries</label><p class="gis-note" style="flex-basis:100%;margin:2px 0 6px;font-weight:700"><span style="display:inline-block;width:22px;border-top:3px dotted #ff2a2a;vertical-align:middle;margin-right:6px"></span>Red dotted outline = other government land (tap it to see what it is).</p><label class="gis-cb"><input id="gis-busace" type="checkbox" checked><i style="background:transparent;border:2px solid #ff8c38"></i>Army Corps of Engineers land (orange outline, usually not POTA)</label><label class="gis-cb"><input id="gis-bpad" type="checkbox" checked><i style="background:#e8b04a"></i>More official outlines (USGS PAD-US)</label><label class="gis-cb"><input id="gis-bkpc" type="checkbox" checked><i style="background:#ffd400"></i>OpenStreetMap outlines (unofficial)</label><label class="gis-cb"><input id="gis-ntrails" type="checkbox" checked><i style="background:linear-gradient(90deg,#ff5fa2 50%,#ffb347 50%)"></i>Other states: national trails (POTA): pink = scenic, orange dashes = historic. Kentucky uses the trail layers below.</label><label class="gis-cb"><input id="gis-padus" type="checkbox" checked><i style="background:linear-gradient(90deg,#ffd633 50%,#38e8ff 50%)"></i>Other states: official land (USGS PAD-US): gold = federal, blue = state, orange = Army Corps (usually not POTA). Zoom in to county level. Kentucky uses the layers above.</label></div><p id="gis-bstatus" class="gis-note" aria-live="polite">Choose a boundary layer to show official park boundaries. Tap a boundary for its POTA reference and official map.</p></div></details><details class="layerdrop"><summary><span>🥾 Trails · campgrounds · lodges</span><span class="drophint">tap to show/hide layers</span></summary><div class="gis-group"><strong>Official GIS trails</strong><div class="gis-row"><label class="gis-cb"><input id="gis-tears" type="checkbox" checked><i style="background:#ef8a98"></i>Trail of Tears (NPS)</label><label class="gis-cb"><input id="gis-lewis" type="checkbox" checked><i style="background:#5bd5ec"></i>Lewis &amp; Clark (NPS)</label><label class="gis-cb"><input id="gis-lewisauto" type="checkbox"><i style="background:#2f9fb8"></i>Lewis &amp; Clark auto tour route (signed roads)</label><label class="gis-cb"><input id="gis-pine" type="checkbox" checked><i style="background:#ffc36b"></i>Pine Mountain Trail (full)</label><label class="gis-cb"><input id="gis-dawkins" type="checkbox" checked><i style="background:#c7a5ff"></i>Dawkins Line (full)</label><label class="gis-cb"><input id="gis-sheltowee" type="checkbox" checked><i style="background:#6cdb97"></i>Sheltowee Trace (full trail)</label><label class="gis-cb"><input id="gis-stateparks" type="checkbox"><i style="background:#e2c76b"></i>State park trails</label><label class="gis-cb"><input id="gis-trailheads" type="checkbox"><i style="background:#f5b45d"></i>Trailheads</label><label class="gis-cb"><input id="gis-camping" type="checkbox"><i style="background:#a5de9b"></i>Campgrounds</label><label class="gis-cb"><input id="gis-campsites" type="checkbox"><i style="background:#7fd3c4"></i>Campsites (zoom in)</label><label class="gis-cb"><input id="gis-lodges" type="checkbox"><i style="background:#ff9f7a"></i>Lodges</label><label class="gis-cb"><input id="gis-cottages" type="checkbox"><i style="background:#f2a6c8"></i>Cottages</label><label class="gis-cb"><input id="gis-infosites" type="checkbox"><i style="background:#f4f1e8"></i>Park offices &amp; info</label></div><p id="gis-status" class="gis-note" aria-live="polite">Choose a trail. Sheltowee, Pine Mountain and Dawkins show the full official trail statewide; the others load for the area on the map (zoom level 8+) and update as you move.</p><button id="gis-load" type="button" class="gis-btn">Reload trails</button><p class="gis-note">POTA-to-trail proximity results use distances from POTA reference coordinates to the mapped route, <strong>not official park-boundary intersections</strong>. A historic trail line may be approximate, on water, inaccessible, or on private land. Verify program rules, access and boundaries independently.</p><div id="gis-candidates" style="max-height:240px;overflow:auto;font-size:.87rem"></div></details></section><div class="mapgrid"><section class="panel mapwrap" id="finder-map" aria-label="Map"><div class="map-legend" role="group" aria-label="Map marker color legend"><strong>Map Pin Legend</strong><div class="map-legend-items"><span><i class="legend-dot legend-pota" aria-hidden="true"></i> POTA Parks</span><span><i class="legend-dot legend-sota" aria-hidden="true"></i> SOTA Summits</span><span><i class="legend-dot legend-wwff" aria-hidden="true"></i> WWFF / KFF</span></div></div><div id="map" aria-label="Interactive location map"></div><button id="gis-inside-btn" type="button" class="gis-btn gis-btn-big">📍 Am I inside a park?</button><div id="gis-inside" aria-live="polite" class="gis-inside"></div><p data-gis="bstatus" class="gis-note" aria-live="polite">Turn on a boundary layer under 🗂️ Map layers above the map to show official park boundaries. Tap a boundary for its POTA reference and official map.</p><p data-gis="status" class="gis-note" aria-live="polite">Turn on a trail layer under 🗂️ Map layers above the map. Sheltowee, Pine Mountain and Dawkins show the full official trail statewide; others load for the area on the map (zoom level 8+) and update as you move.</p><div data-gis="candidates" style="max-height:240px;overflow:auto;font-size:.87rem"></div><p class="footnote">Map markers show supplied reference coordinates, not official activation boundaries. Always verify eligibility, access, and safety before operating.</p></section><section class="panel resultssec" id="finder-results" aria-label="Nearby locations"><div class="resultshead"><h2>Nearby locations</h2><span id="count">—</span></div><p class="meta listnote">Tap a pin for park info. Official map links appear on selected POTA parks; they don’t confirm POTA eligibility.</p><div id="items"><p class="empty">Choose GPS or search for a town to begin.</p></div></section></div><section id="finder-planner" class="planner panel" aria-label="Saved activation locations"><div class="plannerhead"><h2>Activation planner</h2><button id="clearplan" class="secondary" type="button">Clear trip</button></div><p class="meta">Save parks or summits from your search results. Favorites and trip stops stay in this browser.</p><div class="plannercols"><div><h3>Favorites <span id="favcount">0</span></h3><div id="favorites"></div></div><div><h3>Trip stops <span id="tripcount">0</span></h3><div id="tripstops"></div><a id="triproute" class="routebtn" href="#" target="_blank" rel="noopener noreferrer" hidden>Open trip in Google Maps</a></div></div></section><section class="panel" aria-label="Cross-program planning"><h2>Cross-program activation opportunities</h2><p class="meta">Some POTA results show WWFF reference matches from a January 2025 cross-reference. These are <strong>historical reference matches only</strong>; they do not confirm that you can activate more than one program at the same time. Being near a summit or park does not confirm SOTA/POTA/WWFF eligibility. Before activating, check current official boundaries, access, and each program’s rules.</p></section><section class="panel" id="finder-about" aria-label="About this map and offline notes"><h2>About this map &amp; offline use</h2><div class="gis-notice panel-notice" role="note"><b>Built for Kentucky.</b> The park boundaries, trails and “Am I inside a park?” check cover Kentucky only for now. Searching and park pins work nationwide, and overlays for other states may be added later.<br><b>A planning tool, not the final word.</b> GIS lines can be simplified, out of date or different from what POTA uses, and a boundary on this map doesn’t confirm POTA eligibility, public access or current rules. Before you activate, check the managing agency’s official map, the park’s POTA page, posted rules and closures, and hunting seasons. When in doubt, ask the land manager.<details class="gis-missing"><summary>Parks with an OpenStreetMap outline (unofficial) or no boundary</summary><p><b>OpenStreetMap outlines (unofficial)</b> (yellow dash-dot, no shading, under <i>OpenStreetMap outlines (unofficial)</i>): no official boundary file exists for these, so the outline is traced from OpenStreetMap. Check the park’s own map before you set up.</p><ul><li><a href="https://pota.app/#/park/US-3802" target="_blank" rel="noopener">US-3802</a> Clyde E. Buckley Sanctuary</li><li><a href="https://pota.app/#/park/US-10173" target="_blank" rel="noopener">US-10173</a> Kentucky Horse Park</li><li><a href="https://pota.app/#/park/US-1264" target="_blank" rel="noopener">US-1264</a> Levi Jackson Wilderness Road Park</li><li><a href="https://pota.app/#/park/US-3787" target="_blank" rel="noopener">US-3787</a> White Hall State Historic Site</li><li><a href="https://pota.app/#/park/US-3789" target="_blank" rel="noopener">US-3789</a> William Whitley House State Historic Site</li></ul><p><b>Pin only, no outline yet:</b></p><ul><li><a href="https://pota.app/#/park/US-10172" target="_blank" rel="noopener">US-10172</a> Salato Wildlife Refuge</li></ul><p><b>Official U.S. Fish &amp; Wildlife land</b> (light blue, under <i>Wildlife refuges &amp; fish hatcheries</i>): Green River NWR, Clarks River NWR, Reelfoot NWR, Ohio River Islands NWR and Wolf Creek National Fish Hatchery.</p><p><b>Shown as trail lines, not boundaries:</b> Sheltowee Trace (US-11181), Pine Mountain State Scenic Trail (US-10102), Dawkins Line (US-1253), Trail of Tears (US-3791) and Lewis &amp; Clark (US-4572). For trail parks you must be on the trail itself.</p><p><b>Inside a larger boundary:</b> Clifty Wilderness (US-3801) sits within Daniel Boone National Forest — turn on <i>Wilderness areas</i> to see its own boundary in lime green.</p></details></div></section><section id="finder-tools" class="panel tools" aria-label="Export and sharing"><h2>Field tools</h2><p class="meta">Download a CSV of your search results for offline reference, or share the current location search. Saved trip stops can also be exported.</p><div class="toolbuttons"><button id="exportresults" class="secondary" type="button">Download search results (CSV)</button><button id="exporttrip" class="secondary" type="button">Download trip (CSV)</button><button id="sharesearch" class="secondary" type="button">Share search</button></div><p class="meta">CSV files contain reference coordinates, not park boundaries or access permission.</p></section><section class="panel" id="trailfinder" aria-label="Historic and recreation trail planning"><h2>Trails &amp; Nearby Activations</h2><p class="meta">Explore five major Kentucky trails and search for SOTA, POTA and WWFF locations near a trail town or access point. Historic route lines are not necessarily walkable trails or eligible activation areas.</p><aside class="trailnotice" role="note" aria-label="Trail information notice"><strong>Trail Information Notice:</strong> Trail information is currently limited and does not include every hiking, recreational, or historic trail in the United States. Additional trails and mapping data may be added as they become available. Always verify trail routes, access, closures, and activation eligibility with official sources before traveling.</aside><aside class="notice kpc-overlap-notice" role="note">Please read: this is a research aid, not a ruling. The Park Overlap Finder shows places where our maps suggest the boundaries of two or more POTA parks may overlap. It is a starting point for your own research only. The Kentucky Portable Club cannot confirm or deny that any location listed here is a valid multi-park activation site. Park boundaries change, maps can be out of date or imprecise, and private land, closures and local rules may apply even inside a boundary. Before you count an activation, check each park&#39;s official boundary map from the managing agency, make sure you are on public land that is open to the public, and follow POTA&#39;s activation rules. POTA makes the final decision on every activation, not KPC. You are responsible for confirming your own location. KPC is an independent ham radio club, not part of Parks on the Air®.</aside><div class="trailgrid"><article class="trailcard"><h3>Sheltowee Trace</h3><p>Kentucky and Tennessee recreation trail. Check current trail conditions and reroutes before hiking.</p><div class="links"><a href="https://sheltoweetrace.org/maps" target="_blank" rel="noopener noreferrer">Trail maps &amp; updates ↗</a></div><button type="button" class="secondary trailsearch" data-town="Morehead, KY">Search near Morehead, KY</button><button type="button" class="secondary trailsearch" data-town="Stearns, KY">Search near Stearns, KY</button></article><article class="trailcard"><h3>Trail of Tears</h3><p>National historic trail: multiple historical routes and visitor sites, not one continuous hiking path.</p><div class="links"><a href="https://www.nps.gov/trte/planyourvisit/maps.htm" target="_blank" rel="noopener noreferrer">NPS visitor map ↗</a><a href="https://irmadev.nps.gov/DataStore/Reference/Profile/2238914" target="_blank" rel="noopener noreferrer">NPS route GIS ↗</a></div><button type="button" class="secondary trailsearch" data-town="Hopkinsville, KY">Search near Hopkinsville, KY</button></article><article class="trailcard"><h3>Lewis &amp; Clark</h3><p>National historic trail with river and historic alignments; separate from the visitor driving route.</p><div class="links"><a href="https://www.nps.gov/lecl/planyourvisit/maps.htm" target="_blank" rel="noopener noreferrer">NPS trail maps ↗</a><a href="https://www.lewisclarkcorridors.org/maps/" target="_blank" rel="noopener noreferrer">Route GeoJSON source ↗</a></div><button type="button" class="secondary trailsearch" data-town="Paducah, KY">Search near Paducah, KY</button></article><article class="trailcard"><h3>Pine Mountain State Scenic Trail</h3><p>State-managed trail with distinct hiking sections; verify the open section and access before visiting.</p><div class="links"><a href="https://parks.ky.gov/parks/find-a-park/pine-mountain-state-scenic-trail-7826" target="_blank" rel="noopener noreferrer">Kentucky State Parks section maps, shelters &amp; access ↗</a></div><button type="button" class="secondary trailsearch" data-town="Whitesburg, KY">Search near Whitesburg, KY</button></article><article class="trailcard"><h3>Dawkins Line Rail Trail</h3><p>State rail trail with designated parking and current access advisories.</p><div class="links"><a href="https://parks.ky.gov/explore/dawkins-line-rail-trail-7831" target="_blank" rel="noopener noreferrer">Official map, trailheads &amp; access alerts ↗</a></div><button type="button" class="secondary trailsearch" data-town="Swamp Branch, KY">Search near Swamp Branch, KY</button></article></div><p class="meta">Town buttons use the regular activation search radius. They do not search along the entire trail route. Official GIS overlays for selected Kentucky routes, park trails, trailheads and campgrounds are available below; nationwide coverage remains incomplete. Official trailhead links are available for selected Kentucky trails.</p></section><div class="finder-footer"><div class="finder-footer-info"><div class="finder-footer-kicker">KENTUCKY PORTABLE CLUB</div><div class="finder-footer-tag">Get Outside. Get On The Air.</div><p>KPC Find a Park • Provided by KZ4CP</p></div><nav class="finder-footer-actions" aria-label="Quick links"><a href="parks.html">KPC Parks →</a><a href="#finder-search">Find a Park ↑</a><a href="#finder-planner">Trip Planner ↑</a><a href="resources.html">Library →</a><a href="index.html">KPC Home →</a><a href="kpc-privacy.html">Privacy</a></nav></div><footer class="finder-source">Source data: user-provided SOTA/POTA GPX and WWFF KFF–POTA cross-reference dated January 10, 2025. WWFF mapped points are inherited from linked POTA references; verify current program eligibility and boundaries. Cross-reference opportunities are marked as unverified; no confirmed double/triple activation claims are made. Distances are straight-line estimates, not driving distances. Town lookup uses OpenStreetMap Nominatim. GPS is requested only with permission; sharing a search link can include the selected coordinates.<div style="text-align:center;padding:8px 0 14px"><a href="find.html" style="color:inherit;font-weight:700">FIND IT →</a> &nbsp;·&nbsp; <a href="kpc-about-info.html" style="color:inherit;font-weight:700">ABOUT OUR INFORMATION</a> &nbsp;·&nbsp; <a href="kpc-privacy.html" style="color:inherit;font-weight:700">PRIVACY</a></div><div style="margin-top:8px;font-weight:700">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div></footer><div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
+ <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
+ </main><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script><script src="kpc-map-extras.js?v=20261019q"></script>
+-<script src="kpc-my-parks.js?v=20261024a"></script><script src="finder.js?v=20261027k"></script><script src="gis-overlays.js?v=20261027k"></script><script src="kpc-trails-layer.js?v=20261025a"></script><script src="kpc-padus-layer.js?v=20261019g"></script>
++<script src="kpc-my-parks.js?v=20261024a"></script><script src="finder.js?v=20261027k"></script><script src="gis-overlays.js?v=20261027m"></script><script src="kpc-trails-layer.js?v=20261025a"></script><script src="kpc-padus-layer.js?v=20261019g"></script>
+ <script id="kpc-pc-padus">/* Park Commander: official boundaries for every state EXCEPT Kentucky (Brandon Oct 16: 'add the other states, leave KY alone') */
+ (function(){let pad=null;function go(){if(typeof map==='undefined'||!map||!window.KPCPad)return setTimeout(go,300);const cb=document.getElementById('gis-padus');pad=KPCPad(map,{skipKY:true,legend:false});
+  let on=true;try{on=localStorage.getItem('kpcPcPadus')!=='0'}catch(e){}cb.checked=on;if(on)pad.layer.addTo(map);
+@@ -113,7 +113,7 @@ header:not(.site-nav) p{text-shadow:0 2px 10px rgba(0,0,0,.8)}
+  const tb=document.getElementById('gis-ntrails');if(window.KPCTrails&&tb){const tr=KPCTrails(map,{skipKY:true});let ton=true;try{ton=localStorage.getItem('kpcPcTrails')!=='0'}catch(e){}tb.checked=ton;if(ton)tr.addTo(map);
+   tb.addEventListener('change',()=>{if(tb.checked)tr.addTo(map);else tr.remove();try{localStorage.setItem('kpcPcTrails',tb.checked?'1':'0')}catch(e){}})}}
+  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',go):go()})();</script>
+-<script src="kpc-offline.js?v=20261013a"></script><script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
++<script src="kpc-offline.js?v=20261027m"></script><script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+ (function(){
+   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+   if(t&&n){t.addEventListener('click',function(){var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);t.textContent=o?'✕':'☰';});n.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false');t.textContent='☰';});});}
+diff --git a/gis-overlays.js b/gis-overlays.js
+index 8e86e852..f6f56bec 100644
+--- a/gis-overlays.js
++++ b/gis-overlays.js
+@@ -28,7 +28,9 @@
+   bwma:{name:'WMAs & Public Hunting Areas',agency:'Kentucky Fish & Wildlife',file:'ky-hunting-areas.geojson',live:live('Ky_Public_Hunting_Areas_WGS84WM',1),color:'#f08a1c',info:'https://fw.ky.gov/hunt/pages/public-land-hunting.aspx'},
+   bsnp:{name:'State Nature Preserves',agency:'Kentucky Office of Nature Preserves',file:'ky-nature-preserves.geojson',live:live('Ky_KNP_State_Nature_Preserves_WGS84WM',0),color:'#a25ee0',info:'https://eec.ky.gov/Nature-Preserves/Locations/Pages/default.aspx'},
+   bsna:{name:'State Natural Areas',agency:'Kentucky Office of Nature Preserves',file:'ky-natural-areas.geojson',live:live('Ky_KNP_Natural_Areas_WGS84WM',0),color:'#e2559f',info:'https://eec.ky.gov/Nature-Preserves/Locations/Pages/default.aspx'},
+-  bdbnf:{name:'Daniel Boone National Forest',agency:'U.S. Forest Service',file:'ky-dbnf.geojson',live:live('Ky_DBNF_Boundary_Polygon_WGS84WM',0),color:'#2f7fd6',info:'https://www.fs.usda.gov/r08/danielboone',note:'This is the forest’s outer (proclamation) boundary — it includes private land, towns and other parks. Check land ownership on the Forest Service map before activating.'},
++  bdbnf:{name:'Daniel Boone National Forest',agency:'U.S. Forest Service',file:'ky-dbnf.geojson',live:live('Ky_DBNF_Boundary_Polygon_WGS84WM',0),color:'#2f7fd6',proc:true,info:'https://www.fs.usda.gov/r08/danielboone',note:'Forest boundary line: not all land inside is public. Only the shaded Forest Service land is the park.'},
++  /* Oct 27 (rule B1 + B-G1): the forest = the land the Forest Service OWNS (shaded); drawn with the forest's checkbox, no box of its own */
++  bdbnfo:{name:'Daniel Boone National Forest (Forest Service land)',agency:'U.S. Forest Service (ownership map, 2015 data)',file:'ky-dbnf-owned.geojson',live:'ky-dbnf-owned.geojson',color:'#2f7fd6',own:true,info:'https://www.fs.usda.gov/r08/danielboone',note:'Forest Service-owned land from its ownership map (2015 data): land bought since may be missing, so check the official map.'},
+   bnps:{name:'National Park Service',agency:'National Park Service',file:'ky-nps.geojson',live:'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query?where=STATE%3D%27KY%27&outFields=UNIT_NAME&outSR=4326&f=geojson',color:'#9b6a3c',info:'https://www.nps.gov/state/ky/index.htm'},
+   bwild:{name:'Wild River Corridors',agency:'Kentucky Office of Nature Preserves',file:'ky-wild-rivers.geojson',live:live('Ky_KNP_Wild_River_Corridors_WGS84WM',0),color:'#16b3c0',info:'https://eec.ky.gov/Nature-Preserves/conserving_natural_areas/wild-rivers/Pages/default.aspx'},
+   bwilder:{name:'Wilderness Areas',agency:'U.S. Forest Service',file:'ky-wilderness.geojson',live:'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_01/MapServer/0/query?where=1%3D1&geometry=-84.9%2C36.5%2C-83.2%2C38.4&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=4326&geometryPrecision=5&f=geojson',color:'#c6e03a',info:'https://www.fs.usda.gov/r08/danielboone',note:'Federally designated wilderness inside Daniel Boone National Forest — no motorized equipment, and group size limits apply. Check Forest Service rules before setting up.'},
+@@ -87,12 +89,12 @@
+   j.features=(j.features||[]).filter(f=>f.geometry&&ringsOf(f.geometry).length);j._src=src;bData[k]=j;return j}
+  /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
+  const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
+- function drawBoundary(k,j){const s=bounds[k];const has=f=>(f._pota!==undefined?f._pota:(f._pota=matchPota(f).some(x=>x.why.startsWith('name'))||otherRefs(f,KYD,getName(f),inside).kn.length>0));const st=s.corps?(()=>({color:s.color,weight:LW(coarse?3:2.6),opacity:1,fill:true,fillOpacity:0,dashArray:null,className:'kpc-bnd'})):s.kpc?(()=>({color:s.color,weight:LW(coarse?4:3.5),opacity:1,fill:true,fillOpacity:0,dashArray:'12 5 2 5',lineCap:'butt',className:'kpc-bnd'})):f=>!has(f)?{color:'#ff2a2a',weight:LW(coarse?3:2.5),opacity:1,fill:true,fillOpacity:0,dashArray:'2 6',className:'kpc-bnd'}:has(f)?{color:s.color,weight:LW(coarse?4.5:4),opacity:1,fillColor:s.color,fillOpacity:FO(.3),dashArray:null,className:'kpc-bnd'}:{color:s.color,weight:LW(coarse?3:2.5),opacity:1,fillColor:s.color,fillOpacity:FO(.1),dashArray:'6 6',className:'kpc-bnd'};
++ function drawBoundary(k,j){const s=bounds[k];if(s.own)(j.features||[]).forEach(f=>{f._pota=true});if(s.proc)return L.geoJSON(j,{style:()=>({color:s.color,weight:LW(coarse?2:1.6),opacity:.75,fill:false,dashArray:'6 8',className:'kpc-bnd'}),onEachFeature:(f,l)=>{l.bindPopup(()=>`<strong>Forest boundary line</strong><br><span style="font-size:13px">${safe(s.note)}</span>`,{maxWidth:280})}});const has=f=>(f._pota!==undefined?f._pota:(f._pota=matchPota(f).some(x=>x.why.startsWith('name'))||otherRefs(f,KYD,getName(f),inside).kn.length>0));const st=s.corps?(()=>({color:s.color,weight:LW(coarse?3:2.6),opacity:1,fill:true,fillOpacity:0,dashArray:null,className:'kpc-bnd'})):s.kpc?(()=>({color:s.color,weight:LW(coarse?4:3.5),opacity:1,fill:true,fillOpacity:0,dashArray:'12 5 2 5',lineCap:'butt',className:'kpc-bnd'})):f=>!has(f)?{color:'#ff2a2a',weight:LW(coarse?3:2.5),opacity:1,fill:true,fillOpacity:0,dashArray:'2 6',className:'kpc-bnd'}:has(f)?{color:s.color,weight:LW(coarse?4.5:4),opacity:1,fillColor:s.color,fillOpacity:FO(.3),dashArray:null,className:'kpc-bnd'}:{color:s.color,weight:LW(coarse?3:2.5),opacity:1,fillColor:s.color,fillOpacity:FO(.1),dashArray:'6 6',className:'kpc-bnd'};
+  const lay=L.geoJSON(j,{style:st,
+    onEachFeature:(f,l)=>{if(!coarse)l.bindTooltip(safe(getName(f)||s.name),{sticky:true,direction:'top',opacity:1,className:'kpc-gis-tooltip'});l.bindPopup(()=>boundaryPopup(f,s),{maxWidth:280});l.on('popupopen',()=>{try{l.closeTooltip()}catch(_){}});l.on('mouseover',function(){this.setStyle(s.kpc||s.corps?{weight:LW(5)}:{fillOpacity:FO(.34),weight:LW(4.5)})});l.on('mouseout',function(){this.setStyle(st(f))})}});lay._kst=st;return lay}
+  async function toggleBoundary(k){const on=$('gis-'+k)?.checked;
+   if(!on){if(bLayers[k]){map.removeLayer(bLayers[k]);delete bLayers[k]}bStatus();return}
+-  setB(`Loading ${bounds[k].name}…`);try{await guideReady;const j=await getBoundary(k);if(!$('gis-'+k).checked)return;if(bLayers[k])map.removeLayer(bLayers[k]);bLayers[k]=drawBoundary(k,j).addTo(map);bLayers[k].bringToBack();if(k!=='bdbnf'&&bLayers.bdbnf)bLayers.bdbnf.bringToBack();if(k!=='bwilder'&&bLayers.bwilder)bLayers.bwilder.bringToFront();bStatus()}
++  setB(`Loading ${bounds[k].name}…`);try{await guideReady;const j=await getBoundary(k);if(!$('gis-'+k).checked)return;if(bLayers[k])map.removeLayer(bLayers[k]);bLayers[k]=drawBoundary(k,j).addTo(map);if(k==='bdbnf'){try{const o=await getBoundary('bdbnfo');if($('gis-'+k).checked&&bLayers[k])drawBoundary('bdbnfo',o).eachLayer(l=>bLayers[k].addLayer(l))}catch(_){}}bLayers[k].bringToBack();if(k!=='bdbnf'&&bLayers.bdbnf)bLayers.bdbnf.bringToBack();if(k!=='bwilder'&&bLayers.bwilder)bLayers.bwilder.bringToFront();bStatus()}
+   catch(e){setB(`${bounds[k].name}: unavailable right now (${e.message||'network'}). Try again later.`);$('gis-'+k).checked=false}}
+ 
+  /* ---------- map legend for active boundary layers ---------- */
+@@ -118,8 +120,13 @@
+   if(hereMark)map.removeLayer(hereMark);hereMark=L.circleMarker([lat,lon],{radius:9,color:'#fff',weight:3,fillColor:'#1378ff',fillOpacity:1}).addTo(map);map.setView([lat,lon],Math.max(map.getZoom(),13));
+   const accNote=acc?` GPS accuracy about ${fmtMi(acc/1000)}.`:'';
+   hits.sort((a,b)=>{const ar=x=>(x.f._bb[2]-x.f._bb[0])*(x.f._bb[3]-x.f._bb[1]);return ar(a)-ar(b)}); /* smallest (most specific) boundary first */
+-  if(hits.length){out.innerHTML=hits.map(h=>{const s=bounds[h.k],all=matchPota(h.f),nm=all.filter(x=>x.why.startsWith('name')),km=(d)=>Math.hypot((d[3]-lat)*111,(d[4]-lon)*89),m=nm.concat(all.filter(x=>!x.why.startsWith('name')).sort((a,b)=>km(a.d)-km(b.d)).slice(0,nm.length?2:3)).map((x,i)=>i>=nm.length&&nm.length?{...x,why:'also inside this boundary'}:x);
++  const procIn=hits.filter(h=>bounds[h.k].proc);for(let i=hits.length-1;i>=0;i--)if(bounds[hits[i].k].proc)hits.splice(i,1);
++  const ownNear=near.filter(n=>bounds[n.k].own).sort((a,b)=>a.d-b.d)[0];
++  const procBox=procIn.length&&!hits.some(h=>bounds[h.k].own)?`<div style="padding:10px 12px;margin:6px 0;background:#3a2c10;border-left:4px solid #e8b04a;border-radius:6px"><b style="color:#ffd27a">NOT FOREST SERVICE LAND ON ITS MAP</b><br><span style="font-size:13px">You are inside the outer boundary of Daniel Boone National Forest, but this spot is not Forest Service land (private or another owner). POTA needs public land inside the park: move onto Forest Service land.${ownNear?` Nearest Forest Service land: about ${fmtMi(ownNear.d)} away.`:''}<br>Forest Service ownership map, 2015 data: land bought since may be missing, so check the official map.</span></div>`:'';
++  if(procBox&&!hits.length){out.innerHTML=procBox+`<p style="font-size:12px;margin:6px 0 0">${accNote}</p>`;return}
++  if(hits.length){out.innerHTML=procBox+hits.map(h=>{const s=bounds[h.k],all=matchPota(h.f),nm=all.filter(x=>x.why.startsWith('name')),km=(d)=>Math.hypot((d[3]-lat)*111,(d[4]-lon)*89),m=nm.concat(all.filter(x=>!x.why.startsWith('name')).sort((a,b)=>km(a.d)-km(b.d)).slice(0,nm.length?2:3)).map((x,i)=>i>=nm.length&&nm.length?{...x,why:'also inside this boundary'}:x);
+     return `<div style="padding:10px 12px;margin:6px 0;background:#123b28;border-left:4px solid #3ecf6e;border-radius:6px"><b style="color:#7ff0a6">✓ INSIDE</b> ${safe(getName(h.f)||s.name)} <span style="opacity:.8">(${safe(s.name)})</span><br><span style="font-size:13px">About ${fmtMi(h.edge)} from the nearest boundary line.${h.edge<0.05?' <b>You are very close to the edge — move further in.</b>':''}${s.note?'<br><b>⚠ '+safe(s.note)+'</b>':''}</span>${m.length?refLinks(m).replace(/color:#68635a/g,'color:#cfcabf'):''}</div>`}).join('')+`<p style="font-size:12px;margin:6px 0 0">${accNote} Boundaries come from official state/federal GIS and may not match POTA’s or the agency’s current map exactly — confirm before you count it.</p>`;
++   if(hits.some(h=>bounds[h.k].own)&&!bLayers.bdbnf&&$('gis-bdbnf')){$('gis-bdbnf').checked=true;toggleBoundary('bdbnf')}   /* the forest's land + its faint outer line */
+    Object.keys(bounds).forEach(k=>{if(hits.some(h=>h.k===k)&&!bLayers[k]&&$('gis-'+k)){$('gis-'+k).checked=true;bLayers[k]=drawBoundary(k,bData[k]).addTo(map);bLayers[k].bringToBack()}});bStatus()}
+   else{near.sort((a,b)=>a.d-b.d);const n=near[0];
+    out.innerHTML=`<div style="padding:10px 12px;margin:6px 0;background:#3a1610;border-left:4px solid #e8734a;border-radius:6px"><b style="color:#ffb59a">✕ NOT INSIDE</b> any official boundary on these layers.${n?`<br>Nearest: <b>${safe(getName(n.f)||bounds[n.k].name)}</b> (${safe(bounds[n.k].name)}) — about ${fmtMi(n.d)} away.`:''}</div><p style="font-size:12px;margin:6px 0 0">${accNote} Some POTA parks (federal sites, historic sites, trails, Corps lakes) aren’t in these layers — check the park’s official map.${fails.length?' Could not load: '+safe(fails.join(', '))+'.':''}</p>`}}
+diff --git a/kpc-access-finder-classic.html b/kpc-access-finder-classic.html
+index 623d937e..a406b757 100644
+--- a/kpc-access-finder-classic.html
++++ b/kpc-access-finder-classic.html
+@@ -295,7 +295,7 @@ $('copy-gps').onclick=()=>{if(!lastCoords)return status('Click the map first to
+ map.on('click',e=>{lastCoords=e.latlng.lat.toFixed(6)+', '+e.latlng.lng.toFixed(6);$('gps-readout').textContent='GPS: '+lastCoords+' (latitude, longitude)';if(!marking||!selected)return;manual.push({category:$('type').value,property:name(selected),kind:$('markkind').value,lat:+e.latlng.lat.toFixed(6),lon:+e.latlng.lng.toFixed(6),status:'unverified candidate',source:'manual satellite/map review'});render();updateLayers();status(manual.length+' unverified candidate(s) saved in this page session. Export to keep them.')});$('export').onclick=()=>{const blob=new Blob([JSON.stringify({schema:'kpc-access-candidates-v1',points:manual},null,2)],{type:'application/json'}),u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download='kpc-access-points.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};$('import').onchange=async e=>{try{const j=JSON.parse(await e.target.files[0].text());if(j.schema!=='kpc-access-candidates-v1'||!Array.isArray(j.points))throw Error('Wrong format');manual=j.points.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&typeof p.property==='string'&&typeof p.kind==='string');render();status('Imported '+manual.length+' unverified candidates.')}catch(e){status('Import failed: '+e.message)}};fetch('kpc-access-points.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.schema==='kpc-access-candidates-v1'&&Array.isArray(j.points)){manual=j.points.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lon)&&typeof p.property==='string'&&typeof p.kind==='string');render();status('Loaded '+manual.length+' saved access candidate(s) from kpc-access-points.json.')}}).catch(()=>{});document.querySelectorAll('[data-base]').forEach(btn=>btn.onclick=()=>{$('basemap').value=btn.dataset.base;$('basemap').dispatchEvent(new Event('change'))});const setBaseButtons=()=>document.querySelectorAll('[data-base]').forEach(btn=>btn.classList.toggle('selected',btn.dataset.base===$('basemap').value));$('basemap').addEventListener('change',setBaseButtons);map.on('baselayerchange',setBaseButtons);setBaseButtons();$('type').onchange=loadType;$('go').onclick=()=>{customMode=false;run()};window.__afRun=f=>{customMode=true;return run(f)};$('filters').onchange=render;$('reviewonly').onchange=render;$('clear').onclick=()=>{if(!confirm('Clear unsaved candidate pins from this session? This will not modify GitHub.'))return;manual=[];render();status('Session candidates cleared. GitHub files unchanged.')};loadType();
+ }else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#ccc">The map could not load. Check your connection or try refreshing.</p>';}
+ </script>
+-<script src="kpc-bounds.js?v=20261026o"></script>
++<script src="kpc-bounds.js?v=20261027m"></script>
+ <script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261018u"></script>
+ <script>
+ /* Any-state search (Oct 16): POTA park anywhere -> Kentucky file / USGS PAD-US outline (else ~1 mile box around the pin) -> the same parking search */
+diff --git a/kpc-access-finder.html b/kpc-access-finder.html
+index 790a0b1b..b7d62a57 100644
+--- a/kpc-access-finder.html
++++ b/kpc-access-finder.html
+@@ -235,7 +235,7 @@ body.field .page-jump-nav{display:none!important}
+ </main>
+ <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+ <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+-<script src="kpc-bounds.js?v=20261026o"></script>
++<script src="kpc-bounds.js?v=20261027m"></script>
+ <script src="kpc-map-tools.js?v=20261018u"></script>
+ <script src="kpc-closures.js?v=20261025a"></script>
+ <script src="kpc-access.js?v=20261027a"></script>
+diff --git a/kpc-activators-lounge.html b/kpc-activators-lounge.html
+index 458e0ba6..bcc4d83e 100644
+--- a/kpc-activators-lounge.html
++++ b/kpc-activators-lounge.html
+@@ -352,7 +352,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
+ </script>
+ </main>
+ <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+-<script src="kpc-bounds.js?v=20261026o" defer></script>
++<script src="kpc-bounds.js?v=20261027m" defer></script>
+ <script src="kpc-my-parks.js?v=20261024a" defer></script>
+ <script src="kpc-closures.js?v=20261025a" defer></script>
+ <script src="kpc-facilities.js?v=20261025b" defer></script>
+diff --git a/kpc-bounds.js b/kpc-bounds.js
+index 92b9cfc5..d86d18cf 100644
+--- a/kpc-bounds.js
++++ b/kpc-bounds.js
+@@ -47,14 +47,17 @@
+     ['bwma', 'WMAs & Public Hunting Areas', 'Kentucky Fish & Wildlife', 'ky-hunting-areas.geojson'],
+     ['bsnp', 'State Nature Preserves', 'Kentucky Office of Nature Preserves', 'ky-nature-preserves.geojson'],
+     ['bsna', 'State Natural Areas', 'Kentucky Office of Nature Preserves', 'ky-natural-areas.geojson'],
+-    ['bdbnf', 'Daniel Boone National Forest', 'U.S. Forest Service', 'ky-dbnf.geojson', 'This is the forest’s outer (proclamation) line. It includes private land and towns, so it does not prove the spot is Forest Service land.'],
++    ['bdbnfo', 'Daniel Boone National Forest (Forest Service land)', 'U.S. Forest Service', 'ky-dbnf-owned.geojson', 'Forest Service-owned land from its ownership map (2015 data): land bought since may be missing, so check the official map.'],
++    ['bdbnf', 'Forest boundary line', 'U.S. Forest Service', 'ky-dbnf.geojson', 'Forest boundary line: not all land inside is public. Only the shaded Forest Service land is the park.'],
+     ['bnps', 'National Park Service', 'National Park Service', 'ky-nps.geojson'],
+     ['bwild', 'Wild River Corridors', 'Kentucky Office of Nature Preserves', 'ky-wild-rivers.geojson'],
+     ['bwilder', 'Wilderness Areas', 'U.S. Forest Service', 'ky-wilderness.geojson', 'Federal wilderness: no motorized equipment (generators), group size limits.'],
+     ['bfws', 'Wildlife Refuges & Fish Hatcheries', 'U.S. Fish & Wildlife Service', 'ky-fws.geojson', 'Some refuge areas close by season. Check the refuge page.'],
+     ['bpad', 'Official outline (USGS PAD-US)', 'USGS PAD-US (official land records)', 'ky-padus-parks.geojson'],
+     ['bkpc', 'OpenStreetMap outline (unofficial)', 'OpenStreetMap (traced, not official)', 'ky-kpc-drawn.geojson', 'Outline traced from OpenStreetMap because this park has no official map file. Not official.']
+-  ].map(([k, name, agency, file, note]) => ({ k, name, agency, file, note, kpc: k === 'bkpc', proc: k === 'bdbnf' }));
++  ].map(([k, name, agency, file, note]) => ({ k, name, agency, file, note, kpc: k === 'bkpc', proc: k === 'bdbnf', own: k === 'bdbnfo' }));
++  /* Oct 27 (MAP DATA RULE SHEET B1 + B-G1, Fable's boundary review #1): for an agency-land park the park is the land the agency
++     OWNS (shaded); its outer line is only a faint dashed 'Forest boundary line: not all land inside is public' and never says 'inside'. */
+   const ALIAS = {"Ohio River Islands National Wildlife Refuge": ["US-0608"], "Livingston County Wildlife Management Area and State Nature Preserve (Bissell Bluff SNP)": ["US-3823"], "Livingston County Wildlife Management Area and State Nature Preserve (Newman's Bluff SNP)": ["US-3823"], "Blue Licks State Park State Nature Preserve": ["US-1274"], "Knobs State Forest and WMA": ["US-4690"], "Little South Fork State Natural Area (Steele Hollow SNA)": ["US-7962"], "Clifty Wilderness": ["US-3801"], "Big South Fork National River and Recreation Area": ["US-0686"], "Bad Branch Wild River": ["US-10112"], "Big South Fork Wild River": ["US-10107"], "Cumberland River Wild River": ["US-10103"], "Green River Wild River": ["US-10105"], "Rock Creek Wild River": ["US-10111"], "Red River Wild River": ["US-10104"], "Rockcastle River Wild River": ["US-10106"], "Mammoth Cave National Park": ["US-0050"], "Abraham Lincoln Birthplace National Historical Park": ["US-0724"], "Camp Nelson National Monument": ["US-7950"], "Mill Springs Battlefield National Monument": ["US-7708"], "Cumberland Gap National Historical Park": ["US-0019"], "Fort Donelson National Battlefield": ["US-0703", "US-3790"], "Jefferson National Forest": ["US-4526", "US-10139"], "Pine Mountain State Scenic Trail": ["US-10102"], "Clay WMA": ["US-10124"], "Horsemill Branch WMA": ["US-11274"], "Little Sexton Creek WMA": ["US-12079"], "General Burnside Island State Park": ["US-1257"], "Green River State Natural Area (Rush Island Bottoms)": ["US-12752"], "Green River State Natural Area (Davis Bend)": ["US-12752"], "Dale Hollow Lake State Resort Park": ["US-1278"], "Big Rivers WMA and State Forest": ["US-3796"], "Marion County WMA and State Forest": ["US-3824"], "Miller Welch-Central Kentucky WMA": ["US-3825"], "Vernon-Douglas State Nature Preserve": ["US-7957"], "Dr. William H. Martin State Natural Area": ["US-7964"], "Otter Creek Outdoor Recreation Area": ["US-8144"], "Kentucky Ridge Forest WMA": ["US-10141"], "Tom Dorman State Nature Preserve": ["US-7958"]};
+   const inKY = (la, lo) => la > 36.45 && la < 39.2 && lo > -89.6 && lo < -81.9;
+   let kyFeat = null, kyData = null;
+@@ -74,6 +77,7 @@
+     for (const f of kyFeat || []) {
+       const p = f.properties || {}, b = f._bb, m = new Set();
+       if (p.ref) m.add(p.ref);
++      if (f._L.own) { f._names = m; m.forEach(r => byName.set(r, (byName.get(r) || []).concat(f))); continue; }   // owned parcels carry their park number
+       (ALIAS[f._nm] || []).forEach(r => m.add(r));
+       /* Oct 17 (Brandon: Yatesville Lake SP was taking Yatesville Lake WMA; Little South Fork SNA took the Wild River): a name match also needs the same KIND
+          of place, and a Wild River corridor only matches a wild / scenic river park */
+@@ -85,7 +89,7 @@
+   function kyRefs(f) {
+     const N = nameIndex(), P = kyData && kyData.parks || [], out = new Map(), b = f._bb;
+     (f._names || []).forEach(r => { const x = P.find(q => q.c === r); if (x) out.set(r, x); });
+-    if (!f._L.proc && f._L.k !== 'bwilder') for (const x of P) {
++    if (!f._L.proc && !f._L.own && f._L.k !== 'bwilder') for (const x of P) {
+       if (out.has(x.c) || N.has(x.c)) continue;
+       if (x.lo >= b[0] - .02 && x.lo <= b[2] + .02 && x.la >= b[1] - .02 && x.la <= b[3] + .02 && inside(x.la, x.lo, f.geometry)) out.set(x.c, x);
+     }
+diff --git a/kpc-in-park.html b/kpc-in-park.html
+index cf3b0dba..e0da54ed 100644
+--- a/kpc-in-park.html
++++ b/kpc-in-park.html
+@@ -229,9 +229,9 @@ body.field .page-jump-nav{display:none!important}
+ <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
+ </main>
+ <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+-<script src="kpc-bounds.js?v=20261026o" defer></script>
++<script src="kpc-bounds.js?v=20261027m" defer></script>
+ <script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261018u" defer></script>
+-<script src="kpc-in-park.js?v=20261026o" defer></script>
++<script src="kpc-in-park.js?v=20261027m" defer></script>
+ <script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script>
+ (function(){
+   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+diff --git a/kpc-in-park.js b/kpc-in-park.js
+index c997a091..27d608a6 100644
+--- a/kpc-in-park.js
++++ b/kpc-in-park.js
+@@ -46,7 +46,7 @@
+     const p = x.f.properties || {};
+     if (x.src === 'padus') return { name: x.f._nm, what: (p.Loc_Mang || p.Mang_Name || 'public land') + (p.Des_Tp ? ' · ' + p.Des_Tp : '') + acres(p), src: 'Official (USGS PAD-US)', access: p.Pub_Access, ease: p.Category === 'Easement' };
+     if (x.src === 'osm') return { name: x.f._nm, what: x.f._op || 'OpenStreetMap outline', src: 'OpenStreetMap (NOT official)' };
+-    return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc };
++    return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc, own: x.f._L.own };
+   }
+ 
+   /* ---------- judge ---------- */
+@@ -62,16 +62,27 @@
+     judge();
+   }
+   function judge() {
+-    const { la, lo, acc, how } = st.here, A = st.area, accKm = (acc || 0) / 1000, margin = Math.max(accKm, 0.012);
++    const { la, lo, acc, how } = st.here, A = st.area, accKm = (acc || 0) / 1000, margin = Math.max(accKm, 0.015);   // G-M3: within 15 m of a line = near the edge
+     let rows = A.feats.map(x => Object.assign({}, x, { in: B.inside(la, lo, x.f.geometry), e: B.edge(la, lo, x.f.geometry) }));
+     const T = st.target;
+     if (T && T.feats) rows = rows.concat(T.feats.filter(f => !A.feats.some(x => x.f === f)).map(f => ({ src: f._L ? (f._L.kpc ? 'kpc' : 'ky') : 'padus', f, tgt: true, in: B.inside(la, lo, f.geometry), e: B.edge(la, lo, f.geometry) })));
+     rows.forEach(r => { r.L = label(r); r.refs = refsOf(r); });
+     const hits = rows.filter(r => r.in).sort((a, b) => (b.refs.length > 0) - (a.refs.length > 0) || ((a.f._bb[2] - a.f._bb[0]) * (a.f._bb[3] - a.f._bb[1])) - ((b.f._bb[2] - b.f._bb[0]) * (b.f._bb[3] - b.f._bb[1])));
+-    const near = rows.filter(r => !r.in && r.e.km < 8).sort((a, b) => a.e.km - b.e.km);
+-    const good = r => !r.L.proc && !r.L.ease && r.L.access !== 'XA';
++    const seenN = new Set(), near = rows.filter(r => !r.in && r.e.km < 8).sort((a, b) => a.e.km - b.e.km).filter(r => { const k = r.L.name + '|' + r.src; if (seenN.has(k)) return false; seenN.add(k); return true; });   // one line per place (owned land comes in many parcels)
++    /* Oct 27 (rule B1 + B-G1): an agency-land park counts only on the land the agency OWNS (Kentucky: Daniel Boone = the Forest
++       Service ownership map); its outer line never says 'inside'. Inside that line, PAD-US Forest Service records are only a cross-check. */
++    const isFs = r => r.src === 'padus' && /Forest Service|USFS/i.test((r.f.properties.Loc_Mang || '') + (r.f.properties.Mang_Name || '')) && !r.L.ease;
++    const ownOn = A.feats.some(x => x.f._L && x.f._L.own), inProc = hits.filter(r => r.L.proc);
++    const good = r => !r.L.proc && !r.L.ease && r.L.access !== 'XA' && !(ownOn && inProc.length && isFs(r));
+     const progHits = hits.filter(r => r.refs.length && good(r));
+-    const fsLand = hits.some(r => r.src === 'padus' && /Forest Service|USFS/i.test((r.f.properties.Loc_Mang || '') + (r.f.properties.Mang_Name || '')) && !r.L.ease);
++    const fsLand = hits.some(isFs);
++    const outerMsg = (pk, head) => {   // the ruled message (HQ + Brandon Oct 27 5:16 AM, B1): never 'you are in the park' on land the agency does not own
++      const own = rows.filter(r => !r.in && r.L.own).sort((a, b) => a.e.km - b.e.km)[0], nm = esc(pk || 'Daniel Boone National Forest');
++      return (head || '') + (fsLand ? `<h2>CHECK THE LAND OWNER: THE MAPS DISAGREE</h2><p>You're inside the outer boundary of ${nm}. The national land database (PAD-US) shows Forest Service land here, but the Forest Service's own ownership map (2015 data) does not. Check the Forest Service map before you count it.</p>`
++        : `<h2>NOT FOREST SERVICE LAND ON ITS MAP</h2><p>You are inside the outer boundary of ${nm}, but this spot is not Forest Service land (private or another owner). POTA needs public land inside the park: move onto Forest Service land.</p>`)
++        + (own ? `<p>Nearest Forest Service land: about <b>${B.dist(own.e.km)}</b> to the <b>${B.dir(la, lo, own.e.lat, own.e.lon)}</b>.</p>` : '')
++        + `<p class="ip-small">Forest Service ownership map, 2015 data: land bought since may be missing, so check the official map.${A.padusOk ? '' : ' (We could not reach the national land database just now.)'}</p>`;
++    };
+     const accTxt = (how === 'map' ? 'Spot you tapped on the map: ' : 'You: ') + `<b>${la.toFixed(6)}, ${lo.toFixed(6)}</b>.` + (how !== 'map' && acc ? ` GPS good to about ±${B.dist(accKm)}.` : '');
+     const btns = refs => refs.map(r => `<div class="ip-ref"><b>${esc(r.ref)}</b> ${esc(r.name)}<span><a href="kpc-spot-me.html?pota=${encodeURIComponent(r.ref)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(r.ref)}">PARK INFO ›</a></span></div>`).join('');
+     const uniq = list => { const m = new Map(); list.forEach(r => r.refs.forEach(x => m.set(x.ref, x))); return [...m.values()]; };
+@@ -79,9 +90,11 @@
+     if (T && T.prog === 'SOTA') {
+       v = ['wait', `<div class="ip-t">Checking: <b>${esc(T.ref)} ${esc(T.name)}</b></div><h2>CHECKING YOUR HEIGHT…</h2>`];
+     } else if (T) {
+-      const th = rows.filter(r => r.in && (r.tgt || r.refs.some(x => x.ref === T.ref))), tn = rows.filter(r => !r.in && (r.tgt || r.refs.some(x => x.ref === T.ref))).sort((a, b) => a.e.km - b.e.km);
++      const mine = r => !r.L.proc && (r.tgt || r.refs.some(x => x.ref === T.ref));   // the outer line is never the park (B1)
++      const th = rows.filter(r => r.in && mine(r)), tn = rows.filter(r => !r.in && mine(r)).sort((a, b) => a.e.km - b.e.km);
+       const head = `<div class="ip-t">Checking: <b>${esc(T.ref)} ${esc(T.name)}</b></div>`;
+-      if (!th.length && !tn.length) v = ['maybe', head + `<h2>NO OFFICIAL BOUNDARY FOUND</h2><p>We could not find a boundary file for ${esc(T.ref)}. Use the park's own map. ${T.la ? `Its ${esc(T.prog)} pin is about <b>${B.dist(B.km(la, lo, T.la, T.lo))}</b> ${B.dir(la, lo, T.la, T.lo)} of you.` : ''}</p>`];
++      if (!th.length && inProc.some(r => r.tgt || r.refs.some(x => x.ref === T.ref))) v = ['maybe', outerMsg(T.name, head)];
++      else if (!th.length && !tn.length) v = ['maybe', head + `<h2>NO OFFICIAL BOUNDARY FOUND</h2><p>We could not find a boundary file for ${esc(T.ref)}. Use the park's own map. ${T.la ? `Its ${esc(T.prog)} pin is about <b>${B.dist(B.km(la, lo, T.la, T.lo))}</b> ${B.dir(la, lo, T.la, T.lo)} of you.` : ''}</p>`];
+       else if (th.length) { const best = th.sort((a, b) => b.e.km - a.e.km)[0]; v = best.e.km > margin && good(best) ? ['yes', head + `<h2>✓ YOU'RE INSIDE</h2><p>About <b>${B.dist(best.e.km)}</b> from the nearest boundary line (${esc(best.L.src)}).</p>`] : ['edge', head + `<h2>ON THE EDGE</h2><p>You're inside, but only about <b>${B.dist(best.e.km)}</b> from the line${best.e.km <= accKm ? ', closer than your GPS can tell' : ''}. Move farther in to be sure.</p>`]; }
+       else { const n = tn[0]; v = ['no', head + `<h2>✕ NOT INSIDE</h2><p>The boundary is about <b>${B.dist(n.e.km)}</b> to the <b>${B.dir(la, lo, n.e.lat, n.e.lon)}</b>.${n.e.km <= accKm ? ' That is within your GPS error, so move a bit and check again.' : ''}</p>`]; }
+     } else if (progHits.length) {
+@@ -90,8 +103,8 @@
+       const rows2 = P.map(o => `<div class="ip-ref"><b>${esc(o.x.ref)}</b> ${esc(o.x.name)} <i class="ip-p">${esc(o.x.prog)}</i> <em>${o.km <= margin ? '⚠ only ' + B.dist(o.km) + ' from its edge' : B.dist(o.km) + ' from its edge'}${o.kpc ? ' (OpenStreetMap outline, unofficial)' : ''}</em><span><a href="kpc-spot-me.html?${spotQ(o.x)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(o.x.ref)}">INFO ›</a></span></div>`).join('');
+       v = edgy.length === P.length ? ['edge', `<h2>ON THE EDGE</h2><p>You look inside, but you're very close to the line${accKm && edgy.some(o => o.km <= accKm) ? ', closer than your GPS can tell' : ''}. Move farther in to be sure.</p>${rows2}`]
+         : ['yes', `<h2>✓ YOU'RE INSIDE</h2><p>${P.length > 1 ? 'These references all count from this spot:' : 'This reference counts from this spot:'}</p>${edgy.length ? '<p>⚠ You are right on the edge of ' + edgy.map(o => esc(o.x.ref)).join(', ') + ', so that one may not count from here.</p>' : ''}${rows2}`];
+-    } else if (hits.some(r => r.L.proc) && !fsLand) {
+-      v = ['maybe', `<h2>CHECK THE LAND OWNER</h2><p>You're inside Daniel Boone National Forest's outer line, but the national land database does not show this exact spot as Forest Service land. It may be private land inside the forest. Check the Forest Service map.${A.padusOk ? '' : ' (We could not reach the national land database just now, so try again with signal.)'}</p>`];
++    } else if (inProc.length && (ownOn || !fsLand)) {
++      v = ['maybe', ownOn ? outerMsg(inProc[0].f._nm) : `<h2>CHECK THE LAND OWNER</h2><p>You're inside Daniel Boone National Forest's outer line, but the national land database does not show this exact spot as Forest Service land. It may be private land inside the forest. Check the Forest Service map.${A.padusOk ? '' : ' (We could not reach the national land database just now, so try again with signal.)'}</p>`];
+     } else if (hits.length) {
+       const h = hits[0];
+       v = ['maybe', `<h2>PUBLIC LAND, BUT NO PARK REFERENCE MATCHED</h2><p>You're inside <b>${esc(h.L.name)}</b> (${esc(h.L.what)}), but we could not match it to a POTA or WWFF reference. Look it up on pota.app or wwff.co before you count it.${h.L.access === 'XA' ? ' <b>The database lists this land as closed to the public.</b>' : ''}</p>`];
+@@ -159,10 +172,10 @@
+     if (!map) return;
+     const { la, lo, acc } = st.here;
+     if (lay) lay.remove(); lay = L.layerGroup().addTo(map);
+-    const show = new Set(hits.concat(near.slice(0, 6)));
++    const show = new Set(hits.concat(near.slice(0, 6), rows.filter(r => r.L.own && r.e.km < 3)));   // the forest's own land around you, shaded
+     rows.filter(r => show.has(r)).forEach(r => {
+       const kpc = r.src === 'kpc';
+-      L.geoJSON(r.f.geometry, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : r.in ? { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: r.L.proc ? .04 : .14 } : { color: '#c98a00', weight: 2, dashArray: '6 6', fillOpacity: .03 }, interactive: false }).addTo(lay);
++      L.geoJSON(r.f.geometry, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : r.L.proc ? { color: '#2f7fd6', weight: 1.5, opacity: .7, dashArray: '6 8', fill: false } : r.in ? { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: .14 } : { color: '#c98a00', weight: 2, dashArray: '6 6', fillOpacity: .03 }, interactive: false }).addTo(lay);
+     });
+     if (me) me.remove(); if (accC) accC.remove(); if (line) line.remove();
+     if (acc) accC = L.circle([la, lo], { radius: acc, color: '#1378ff', weight: 1, fillOpacity: .08, interactive: false }).addTo(map);
+diff --git a/kpc-kit.html b/kpc-kit.html
+index 23d49ce1..bf53f09b 100644
+--- a/kpc-kit.html
++++ b/kpc-kit.html
+@@ -216,9 +216,9 @@ body.field .page-jump-nav{display:none!important}
+ <p class="kpc-infoline" style="max-width:1100px;margin:8px auto 18px;padding:0 16px;font-size:13px;line-height:1.5;text-align:center;color:#6b4a10">⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.</p>
+ </main>
+ <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+-<script src="kpc-bounds.js?v=20261026o" defer></script>
++<script src="kpc-bounds.js?v=20261027m" defer></script>
+ <script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261018u" defer></script>
+-<script src="kpc-kit.js?v=20261026o" defer></script>
++<script src="kpc-kit.js?v=20261027m" defer></script>
+ <script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+ (function(){
+   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+diff --git a/kpc-kit.js b/kpc-kit.js
+index 81c5b33f..d37a1a38 100644
+--- a/kpc-kit.js
++++ b/kpc-kit.js
+@@ -231,13 +231,14 @@
+     let wsrc = '';
+     if (!feats.length && !P.us && !P.ky && B.worldByName) { try { feats = await B.worldByName(P.ref || P.c || '', P.prog === 'SOTA' ? '' : (P.short || P.n || ''), P.la, P.lo, { small: P.prog === 'SOTA', type: P.t }); wsrc = feats.length ? feats[0]._src : ''; } catch (e) {} }
+     if (cur !== P) return;
+-    const fc = { type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { NAME: f._nm }, geometry: f.geometry })) };
++    const own = feats.some(f => f._L && f._L.own);   // Oct 27 (rule B1 + B-G1): the forest's own land is the park, its outer line only a faint dashed line
++    const fc = { type: 'FeatureCollection', features: feats.map(f => ({ type: 'Feature', properties: { NAME: f._nm, _proc: !!(f._L && f._L.proc), _own: !!(f._L && f._L.own) }, geometry: f.geometry })) };
+     geo = feats.length ? fc : null;
+     if (feats.length) {
+       const ap2 = (us && us.label === 'approx') || (!!wsrc && P.prog !== 'SOTA' && !!feats[0]._approx); if (ap2 && !us) us = { why: feats[0]._why };
+-      const lay = L.geoJSON(fc, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, dashArray: ap2 ? '10 6' : null, fillColor: '#ffb000', fillOpacity: 0 } }).addTo(map);
+-      if (!proc) try { map.fitBounds(lay.getBounds(), { padding: [16, 16], maxZoom: 15 }); } catch (e) {}
+-      $('kitBnd').innerHTML = ap2 ? '<b>Approximate outline, not official:</b> ' + esc(feats[0]._nm || '') + '. We are not sure this is the park: ' + esc(us.why) + '. Check the park\'s own map.' + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '') : (kpc ? '<b>OpenStreetMap outline (unofficial)</b>: this park has no official map file. OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : feats[0]._src && feats[0]._src !== 'USGS PAD-US' ? ' from ' + [...new Set(feats.map(f => f._src).filter(Boolean))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (us && us.note && !ap2 ? ' <b>' + esc(us.note) + '</b>' : '') + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
++      const lay = L.geoJSON(fc, { style: f => f.properties._proc ? { color: '#2f7fd6', weight: 1.5, opacity: .75, dashArray: '6 8', fill: false } : f.properties._own ? { color: '#ffb000', weight: 2, fillColor: '#ffb000', fillOpacity: .15 } : kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : { color: '#ffb000', weight: 3, dashArray: ap2 ? '10 6' : null, fillColor: '#ffb000', fillOpacity: 0 } }).addTo(map);
++      if (!proc || own) try { map.fitBounds(lay.getBounds(), { padding: [16, 16], maxZoom: 15 }); } catch (e) {}
++      $('kitBnd').innerHTML = ap2 ? '<b>Approximate outline, not official:</b> ' + esc(feats[0]._nm || '') + '. We are not sure this is the park: ' + esc(us.why) + '. Check the park\'s own map.' + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '') : (kpc ? '<b>OpenStreetMap outline (unofficial)</b>: this park has no official map file. OpenStreetMap is drawn by volunteers, so it can be off; check the park\'s own map.' : own ? '<b>Shaded = Forest Service-owned land</b> (its ownership map, 2015 data: land bought since may be missing, so check the official map). The faint dashed line is the forest boundary line: not all land inside is public.' : proc ? 'Daniel Boone National Forest outer line (it includes private land).' : (wsrc ? '<b>' + esc(feats[0]._nm) + '</b>' + (feats[0]._info ? ' · ' + esc(feats[0]._info) : '') + '. Official outline from ' + esc(wsrc) + (/^EEA/.test(wsrc) ? ' (matched by name at the POTA pin)' : '') + '.' : 'Official boundary' + (feats[0]._L ? ' from ' + [...new Set(feats.map(f => f._L.agency))].map(esc).join(' and ') : feats[0]._src && feats[0]._src !== 'USGS PAD-US' ? ' from ' + [...new Set(feats.map(f => f._src).filter(Boolean))].map(esc).join(' and ') : ' (USGS PAD-US)') + '.')) + (us && us.note && !ap2 ? ' <b>' + esc(us.note) + '</b>' : '') + (ap.length ? ` Green dots: ${ap.length} parking / trailhead / entrance point${ap.length > 1 ? 's' : ''} (tap for directions).` : '');
+       files(fc);
+     } else $('kitBnd').innerHTML = 'No boundary file found. Use the official map.' + (ap.length ? ' Green dots: parking / trailhead points.' : '');
+   }
+diff --git a/kpc-maprep.html b/kpc-maprep.html
+index 65979337..7358c541 100644
+--- a/kpc-maprep.html
++++ b/kpc-maprep.html
+@@ -218,7 +218,7 @@ body.field .page-jump-nav{display:none!important}
+ </div>
+ </main>
+ <footer class="kpc-about-footer mr-foot"><div><div class="kpc-footer-brand">MAPPING REP TOOL BOX</div><div class="kpc-footer-tag">A private research helper from the Kentucky Portable Club</div></div><div class="footer-actions"><a href="https://docs.pota.app/docs/volunteer_reference/park_additions_edits.html" target="_blank" rel="noopener">POTA KNOWLEDGE BANK ↗</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html" target="_blank" rel="noopener">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">A research helper, not an official source. We make mistakes: do your own research and check the agency's own pages and maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;.</div>
+-<script src="kpc-bounds.js?v=20261026o" defer></script>
++<script src="kpc-bounds.js?v=20261027m" defer></script>
+ <script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261018u" defer></script>
+ <script src="kpc-maprep.js?v=20261026o" defer></script>
+ </body></html>
+diff --git a/kpc-offline.js b/kpc-offline.js
+index 80cf8572..7df9d86c 100644
+--- a/kpc-offline.js
++++ b/kpc-offline.js
+@@ -5,7 +5,7 @@
+   const FILES = ['finder.html', 'finder.css', 'finder.js', 'gis-overlays.js', 'kpc-offline.js', 'kpc-map-extras.js', 'kpc-my-parks.js', 'kpc-us-states.json', 'ky-overlaps.geojson',
+     'locations-ky.json', 'locations.json', 'official-2fer-evidence.json', 'official-park-access.json', 'official-trail-maps.json', 'wwff-unmapped.json',
+     'kpc-ky-data.json', 'ky-trail-parks.json',
+-    'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson',
++    'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
+     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
+     'KPC-logo.png', 'kpc-icon-32.png'];
+   const LF = 'https://unpkg.com/leaflet@1.9.4/dist/';
+diff --git a/kpc-park-control.html b/kpc-park-control.html
+index 5aeb803a..6552e16c 100644
+--- a/kpc-park-control.html
++++ b/kpc-park-control.html
+@@ -240,14 +240,14 @@ html[data-theme=dark] main#pc .km-chip:not([aria-pressed=true]){background:#221b
+ </div></section>
+ <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
+ </main>
+-<script src="kpc-bounds.js?v=20261026o" defer></script>
++<script src="kpc-bounds.js?v=20261027m" defer></script>
+ <script src="kpc-padus-layer.js?v=20261019g" defer></script>
+ <script src="kpc-map-tools.js?v=20261018u" defer></script>
+ <style id="pc-mine-css">main#pc .pc-mineb{margin:2px 0 4px}main#pc .pc-mine .km-bar{margin:0;padding:0;background:none;border:0;box-shadow:none}main#pc .pc-more{margin-top:6px;border:1px solid #c9a24a;border-radius:999px;padding:5px 12px;background:#fff6dd;font:800 11px Arial;cursor:pointer}</style>
+ <style id="pc-rules-css">main#pc .pc-rules summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:8px;cursor:pointer}main#pc .pc-rules summary::-webkit-details-marker{display:none}main#pc .pc-rtog{font:800 11px Arial;letter-spacing:.06em;border:1px solid #c9a24a;border-radius:999px;padding:3px 10px;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;white-space:nowrap}main#pc .pc-rules[open] .pc-rtog::before{content:"CLOSE ▴"}main#pc .pc-rules[open] .pc-rtog{font-size:0}main#pc .pc-rules[open] .pc-rtog::before{font-size:11px}main#pc .pc-r{margin-top:10px;font-size:.88rem;line-height:1.45}main#pc .pc-r ul{margin:4px 0 0;padding-left:18px}main#pc .pc-r li{margin:2px 0}</style>
+ <style id="pc-apmore">.pc-more{margin:6px 0 2px;font:inherit;font-size:.78rem;font-weight:800;letter-spacing:.06em;border:1px solid #c9a24a;border-radius:999px;padding:5px 12px;background:#fff6dc;color:#2a1a05;cursor:pointer}</style>
+ <script src="kpc-my-parks.js?v=20261024a" defer></script>
+-<script src="kpc-park-control.js?v=20261026o" defer></script>
++<script src="kpc-park-control.js?v=20261027m" defer></script>
+ <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+ <script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
+ (function(){
+diff --git a/kpc-park-control.js b/kpc-park-control.js
+index 00af97ef..b40fd156 100644
+--- a/kpc-park-control.js
++++ b/kpc-park-control.js
+@@ -32,7 +32,7 @@
+     if (k !== 'bkpc' && /state (resort )?park/i.test(nm)) return { color: '#f0c96b', who: 'State park land' };   // a state park piece kept in another layer (e.g. the WMA file) is still the park
+     return k === 'bwma' ? { color: '#4ade80', who: 'Fish & Wildlife (WMA) land' } : k === 'bsnp' || k === 'bsna' ? { color: '#2dd4bf', who: 'Nature preserve land' }
+       : k === 'bnps' ? { color: '#60a5fa', who: 'National Park Service' } : k === 'bfws' ? { color: '#5ab0ff', who: 'U.S. Fish & Wildlife' }
+-      : k === 'bdbnf' ? { color: '#a3e635', dashArray: '3 5', who: 'National Forest outer line' } : k === 'bwild' ? { color: '#16b3c0', who: 'Wild River corridor' }
++      : k === 'bdbnf' ? { color: '#a3e635', dashArray: '3 5', weight: 1.5, who: 'Forest boundary line: not all land inside is public' } : k === 'bdbnfo' ? { color: '#a3e635', fill: true, fillOpacity: .15, who: 'Forest Service-owned land (ownership map, 2015 data)' } : k === 'bwild' ? { color: '#16b3c0', who: 'Wild River corridor' }
+       : k === 'bwilder' ? { color: '#c6e03a', who: 'Wilderness area' } : k === 'bpad' ? { color: '#e8b04a', who: 'Official outline (USGS PAD-US)' } : k === 'bkpc' ? { color: '#ffd400', dashArray: '12 5 2 5', who: 'OpenStreetMap outline (unofficial)' } : { color: '#f0c96b', who: 'State park land' }; };
+   function kindOf(x) { return /^US-/.test(x.c) ? 'pota' : /^KFF-/.test(x.c) ? 'kff' : 'sota'; }
+   function init() {
+diff --git a/kpc-park-info.html b/kpc-park-info.html
+index f14fd04a..dfe6f07c 100644
+--- a/kpc-park-info.html
++++ b/kpc-park-info.html
+@@ -215,7 +215,7 @@ body.field .page-jump-nav{display:none!important}
+ </main>
+ <footer class="kpc-about-footer"><div><div class="kpc-footer-brand">KENTUCKY PORTABLE CLUB</div><div class="kpc-footer-tag">Get Outside. Get On The Air.</div></div><div class="footer-actions"><a href="parks.html">EXPLORE KENTUCKY →</a><a href="events.html">VIEW EVENTS →</a><a href="join.html">JOIN KPC →</a><a href="find.html">FIND IT →</a><a href="kpc-about-info.html">ABOUT OUR INFORMATION</a><a href="kpc-privacy.html">PRIVACY</a></div></footer><div class="kpc-disc" style="background:#070707;color:#bcb8ae;text-align:center;font:12px/1.5 Arial,Helvetica,sans-serif;padding:0 24px 22px">KPC tools and guides are planning aids, not official sources. We make mistakes. Do your own research and check official maps. KPC is an independent ham radio club, not part of Parks on the Air&reg;, SOTA or WWFF.</div>
+ <script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-map-tools.js?v=20261018u" defer></script>
+-<script src="kpc-bounds.js?v=20261026o" defer></script><script src="kpc-park-info.js?v=20261025n" defer></script>
++<script src="kpc-bounds.js?v=20261027m" defer></script><script src="kpc-park-info.js?v=20261025n" defer></script>
+ <script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script>
+ (function(){
+   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
+diff --git a/kpc-park-sheet.html b/kpc-park-sheet.html
+index 5d0f3636..95fbf2c1 100644
+--- a/kpc-park-sheet.html
++++ b/kpc-park-sheet.html
+@@ -20,7 +20,7 @@
+ <meta name="description" content="A printable field sheet for a park, WWFF area or summit, with QR codes and a log sheet of 28 to 200 lines.">
+ <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
+ <script src="kpc-tools.js?v=20261023a"></script>
+-<script src="kpc-bounds.js?v=20261026o"></script>
++<script src="kpc-bounds.js?v=20261027m"></script>
+ <script src="kpc-map-tools.js?v=20261018u"></script>
+ <script src="kpc-closures.js?v=20261025a"></script>
+ <script src="kpc-facilities.js?v=20261025b"></script>
+diff --git a/kpc-planner-us.html b/kpc-planner-us.html
+index 38330a91..85888e2b 100644
+--- a/kpc-planner-us.html
++++ b/kpc-planner-us.html
+@@ -277,7 +277,7 @@ body.usp .usp-about .kpc-disclaim{max-width:none!important;margin:14px 0 0!impor
+ </section>
+ </div>
+ <script src="kpc-my-parks.js?v=20261024a"></script>
+-<script src="kpc-bounds.js?v=20261026o"></script><script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trails-layer.js?v=20261025a"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-us-planner.js?v=20261026o"></script>
++<script src="kpc-bounds.js?v=20261027m"></script><script src="kpc-padus-layer.js?v=20261019g"></script><script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trails-layer.js?v=20261025a"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-us-planner.js?v=20261026o"></script>
+ <div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
+ <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
+ </main>
+diff --git a/kpc-planner.html b/kpc-planner.html
+index 7a7e8991..eaeab8ff 100644
+--- a/kpc-planner.html
++++ b/kpc-planner.html
+@@ -191,7 +191,7 @@ html.pl-noscroll,html.pl-noscroll body{overflow:hidden}
+ </div></section>
+ <script src="kpc-map-extras.js?v=20261019q"></script>
+ <script src="kpc-my-parks.js?v=20261024a"></script>
+-<script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-planner.js?v=20261027k"></script>
++<script src="kpc-place-suggest.js?v=20261019g"></script><script src="kpc-trip-offline.js?v=20261016a"></script><script src="kpc-planner.js?v=20261027m"></script>
+ 
+ <div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
+ <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
+diff --git a/kpc-planner.js b/kpc-planner.js
+index c268b6e1..f7e5d007 100644
+--- a/kpc-planner.js
++++ b/kpc-planner.js
+@@ -35,7 +35,8 @@ const B = {
+  bwma:{name:'WMAs & public hunting areas', file:'ky-hunting-areas.geojson', color:'#f08a1c', note:'Public hunting land: check season dates and wear blaze orange during gun seasons.'},
+  bsnp:{name:'State nature preserves', file:'ky-nature-preserves.geojson', color:'#a25ee0'},
+  bsna:{name:'State natural areas', file:'ky-natural-areas.geojson', color:'#e2559f'},
+- bdbnf:{name:'Daniel Boone National Forest', file:'ky-dbnf.geojson', color:'#2f7fd6', note:'This is the outer forest boundary. It includes private land and towns, so check land ownership on the Forest Service map.'},
++ bdbnfo:{name:'Daniel Boone National Forest (Forest Service land)', file:'ky-dbnf-owned.geojson', color:'#2f7fd6', own:true, note:'Forest Service-owned land from its ownership map (2015 data): land bought since may be missing, so check the official map.'},
++ bdbnf:{name:'Forest boundary line (Daniel Boone)', file:'ky-dbnf.geojson', color:'#2f7fd6', proc:true, note:'Forest boundary line: not all land inside is public. Only the shaded Forest Service land is the park.'},
+  bnps:{name:'National Park Service', file:'ky-nps.geojson', color:'#9b6a3c'},
+  bwild:{name:'Wild river corridors', file:'ky-wild-rivers.geojson', color:'#16b3c0', note:'Much of the land along wild rivers is private. Check access first.'},
+  bwilder:{name:'Wilderness areas', file:'ky-wilderness.geojson', color:'#c6e03a', note:'Designated wilderness: no motorized equipment, and group size limits apply.'},
+@@ -80,7 +81,9 @@ function noNumBox(o,esc){const L=a=>a.slice(0,6).map(x=>esc(x.c)+' '+esc(x.n||''
+ const kOf=s=>{s=String(s||'').toLowerCase();const k=[];if(/wildlife management area|\bwma\b|hunting area/.test(s))k.push('wma');if(/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s))k.push('snp');if(/state (resort )?park|recreation(al)? area/.test(s))k.push('sp');if(/state forest/.test(s))k.push('sf');if(/wild river|scenic river/.test(s))k.push('wr');return k},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x.length||!y.length||x.some(v=>y.includes(v))};
+ const NOTPARK={color:'#ff2a2a',dashArray:'2 6'};
+ function potaFor(f){ // POTA parks matched to a boundary: alias, reference point inside, or name match
+- if(f._pota)return f._pota;const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map(),NM=new Set();
++ if(f._pota)return f._pota;
++ const pr=(f.properties||{}).ref;if(pr&&(f.properties||{}).owner){f._named=true;return (f._pota=D.parks.filter(p=>p.c===pr))}   /* Oct 27: owned-land parcels carry their park number */
++ const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map(),NM=new Set();
+  (ALIAS[fName(f)]||[]).forEach(r=>{const p=D.parks.find(x=>x.c===r);if(p)out.set(r,p)});
+  for(const p of D.parks){if(out.has(p.c))continue;
+   if(p.lo>=b[0]-.02&&p.lo<=b[2]+.02&&p.la>=b[1]-.02&&p.la<=b[3]+.02&&inside(p.la,p.lo,f.geometry)){out.set(p.c,p);continue}
+@@ -93,7 +96,8 @@ function whereIs(lat,lon){
+  const hits=[],trails=[];let near=null;
+  for(const k of Object.keys(bData)){if(B[k]&&B[k].corps)continue;for(const f of bData[k].features){const b=f._bb||(f._bb=bbox(f.geometry));
+   const rough=Math.max(0,(b[0]-lon)*89,(lon-b[2])*89,(b[1]-lat)*111,(lat-b[3])*111);if(rough>40)continue;
+-  if(inside(lat,lon,f.geometry))hits.push({k,f,name:fName(f)||B[k].name,refs:potaFor(f)});
++  if(inside(lat,lon,f.geometry))hits.push({k,f,name:fName(f)||B[k].name,refs:B[k].proc?[]:potaFor(f)});
++  else if(B[k].proc)continue;
+   else{const d=edgeKm(lat,lon,f.geometry);if(!near||d<near.d)near={k,f,d,name:fName(f)||B[k].name,refs:potaFor(f)}}}}
+  for(const k of Object.keys(tData)){let best=Infinity;for(const f of tData[k].features){const b=f._bb||(f._bb=bbox(f.geometry));
+   if(Math.max(0,(b[0]-lon)*89,(lon-b[2])*89,(b[1]-lat)*111,(lat-b[3])*111)>1)continue;best=Math.min(best,edgeKm(lat,lon,f.geometry))}
+@@ -103,7 +107,11 @@ function whereIs(lat,lon){
+ function whereHtml(w){
+  if(!bReady)return '<span class="pw-muted">Loading boundaries… the check appears in a moment.</span>';
+  let h='';
++ /* Oct 27 (rule B1 + B-G1): the forest's outer line never says 'inside'; only the Forest Service's own land is the park */
++ const outer=w.hits.some(x=>B[x.k].proc),own=w.hits.some(x=>B[x.k].own);w={...w,hits:w.hits.filter(x=>!B[x.k].proc)};
++ if(outer&&!own&&bData.bdbnfo)h+='<div class="pw-out">✗ Not Forest Service land on its map. You are inside the outer boundary of Daniel Boone National Forest, but this spot is not Forest Service land (private or another owner). POTA needs public land inside the park: move onto Forest Service land.</div><div class="pw-note">Forest Service ownership map, 2015 data: land bought since may be missing, so check the official map.</div>';
+  if(w.hits.length)h+=w.hits.slice(0,4).map(x=>`<div class="pw-in">✓ Inside <b>${esc(x.name)}</b>${x.refs.length?` · POTA <b>${esc(refTxt(x.refs))}</b>`:' · <i>no POTA ref matched</i>'}</div>${B[x.k].note?`<div class="pw-note">${esc(B[x.k].note)}</div>`:''}`).join('');
++ else if(outer&&!own&&bData.bdbnfo){if(w.near&&B[w.near.k].own)h+=`<div class="pw-note">Nearest Forest Service land: ${fmtMi(w.near.d)} away.</div>`}
+  else if(w.near)h+=`<div class="pw-out">✗ Not inside a mapped boundary. Nearest: <b>${esc(w.near.name)}</b>${w.near.refs.length?` (${esc(refTxt(w.near.refs))})`:''}, ${fmtMi(w.near.d)} away.</div>`;
+  else h+='<div class="pw-out">✗ Not inside a mapped boundary.</div>';
+  if(w.trails.length)h+=w.trails.map(t=>`<div class="pw-in">🥾 ${t.d<0.03?'On':'Near'} <b>${esc(t.name)}</b> · POTA <b>${t.ref}</b> · ${fmtMi(t.d)} from the trail</div>`).join('');
+@@ -122,7 +130,7 @@ function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayer
+ /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
+ const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
+ function drawB(k){const s=B[k];canvasR=canvasR||bRend();
+- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.03:(has?.07:.04))   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
++ bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
+   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
+  if(shown(k))bLay[k].addTo(map);order()}
+ function drawT(k){const s=T[k];
