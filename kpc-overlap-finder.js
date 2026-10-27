@@ -266,7 +266,9 @@
         if (sv && sv.until > Date.now() && sv.files) { files = sv.files; toast('Offline: showing your saved copy (good until ' + new Date(sv.until).toDateString() + ').'); }
         else { $('ovList').innerHTML = '<div class="ov-empty"><b>Could not load the overlap list right now.</b> Nothing is shown rather than an old or guessed list. Try again with a signal.</div>'; return; }
       }
-      SAVED[REG.id] = files; build(files, miss); list();
+      SAVED[REG.id] = files; build(files, miss);
+      if (MEMBER && REG.showWaiting) $('ovWait').checked = true;   // Brandon Oct 27 2:15 PM: 'members only … good with putting KY list on there for now to test it'
+      list();
       var q = new URLSearchParams(location.search).get('id'); if (q && ROWS.some(function (r) { return r.key === q; })) openRow(q);
     });
   }

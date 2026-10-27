@@ -1,7 +1,16 @@
 {
- "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final.",
+ "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky.",
  "base": "../KPC-Data/data/fers/",
  "regions": [
-  { "id": "KY", "label": "Kentucky", "files": ["US-KY"], "missing": "missing-ky", "public": false }
+  {
+   "id": "KY",
+   "label": "Kentucky",
+   "files": [
+    "US-KY"
+   ],
+   "missing": "missing-ky",
+   "public": false,
+   "showWaiting": true
+  }
  ]
 }
