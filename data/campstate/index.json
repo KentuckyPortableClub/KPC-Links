@@ -1,40 +1,121 @@
 {
- "updated": "2026-10-26",
+ "updated": "2026-10-27",
  "states": {
+  "AK": {
+   "n": 71,
+   "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); services1.arcgis.com \u00b7 PARK_FACILITY_PT (85)",
+   "updated": "2026-10-27"
+  },
+  "CA": {
+   "n": 356,
+   "source": "gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
+   "updated": "2026-10-27"
+  },
+  "FL": {
+   "n": 149,
+   "source": "services3.arcgis.com \u00b7 Recreation_Points_Website_Staging (170)",
+   "updated": "2026-10-27"
+  },
+  "HI": {
+   "n": 8,
+   "source": "geodata.hawaii.gov \u00b7 Campsites - Hawaii State Parks (11)",
+   "updated": "2026-10-27"
+  },
   "IA": {
    "n": 94,
    "source": "programs.iowadnr.gov \u00b7 Recreation Amenities (185); programs.iowadnr.gov \u00b7 Recreation Amenities (176); programs.iowadnr.gov \u00b7 Recreation Amenities (176)",
-   "updated": "2026-10-26"
+   "updated": "2026-10-27"
   },
   "IN": {
    "n": 17,
    "source": "gisdata.in.gov \u00b7 Camping (17)",
-   "updated": "2026-10-26"
+   "updated": "2026-10-27"
+  },
+  "MI": {
+   "n": 377,
+   "source": "services3.arcgis.com \u00b7 Michigan State Park Campgrounds (260); services3.arcgis.com \u00b7 Campgrounds on Michigan State Forest Land (144); services3.arcgis.com \u00b7 ParksAndTrails_Camping_Join (105)",
+   "updated": "2026-10-27"
+  },
+  "MN": {
+   "n": 53,
+   "source": "enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54) (+1 more)",
+   "updated": "2026-10-27"
+  },
+  "NE": {
+   "n": 6,
+   "source": "services5.arcgis.com \u00b7 CAMS_Camping_Facility (90); services5.arcgis.com \u00b7 CAMS_Camping_Facility (2)",
+   "updated": "2026-10-27"
   },
   "NH": {
    "n": 12,
    "source": "nhgeodata.unh.edu \u00b7 Recreation Inventory: Points (12)",
-   "updated": "2026-10-26"
+   "updated": "2026-10-27"
+  },
+  "NY": {
+   "n": 140,
+   "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services6.arcgis.com \u00b7 DEC_OPRHP_camground_centriods (112); services.arcgis.com \u00b7 Point (59)",
+   "updated": "2026-10-27"
+  },
+  "OH": {
+   "n": 62,
+   "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56); gis.ohiodnr.gov \u00b7 Lodges (9)",
+   "updated": "2026-10-27"
+  },
+  "OK": {
+   "n": 14,
+   "source": "services1.arcgis.com \u00b7 Camps (16)",
+   "updated": "2026-10-27"
+  },
+  "PA": {
+   "n": 81,
+   "source": "www.gis.dcnr.pa.gov \u00b7 Campground Entrances (65); www.gis.dcnr.pa.gov \u00b7 State Parks (19); www.gis.dcnr.state.pa.us \u00b7 Campground Entrances (65) (+1 more)",
+   "updated": "2026-10-27"
+  },
+  "TN": {
+   "n": 267,
+   "source": "services5.arcgis.com \u00b7 Park Assets (214); services5.arcgis.com \u00b7 TDEC_GIS_TSP.TSP_Cabins (380); services5.arcgis.com \u00b7 TSP_Campground_Point (120) (+3 more)",
+   "updated": "2026-10-27"
+  },
+  "TX": {
+   "n": 329,
+   "source": "services1.arcgis.com \u00b7 Campground Area (439)",
+   "updated": "2026-10-27"
+  },
+  "UT": {
+   "n": 350,
+   "source": "services.arcgis.com \u00b7 Campgrounds (14); services.arcgis.com \u00b7 Campgrounds (20); services.arcgis.com \u00b7 DWR_Cabins (13) (+4 more)",
+   "updated": "2026-10-27"
+  },
+  "VA": {
+   "n": 40,
+   "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (70)",
+   "updated": "2026-10-27"
   },
   "VT": {
    "n": 147,
    "source": "anrmaps.vermont.gov \u00b7 Outdoor Recreation Sites Inventory (155)",
-   "updated": "2026-10-26"
+   "updated": "2026-10-27"
+  },
+  "WA": {
+   "n": 66,
+   "source": "services5.arcgis.com \u00b7 Campsites (77)",
+   "updated": "2026-10-27"
+  },
+  "WY": {
+   "n": 90,
+   "source": "services1.arcgis.com \u00b7 Campsites_0926 (19); services1.arcgis.com \u00b7 Campgrounds_Statewide (98)",
+   "updated": "2026-10-27"
   }
  },
  "none": [
-  "AK",
   "AL",
   "AR",
   "AZ",
-  "CA",
   "CO",
   "CT",
   "DC",
   "DE",
-  "FL",
   "GA",
-  "HI",
   "ID",
   "IL",
   "KS",
@@ -42,55 +123,50 @@
   "MA",
   "MD",
   "ME",
-  "MI",
-  "MN",
   "MO",
   "MS",
   "MT",
   "NC",
   "ND",
-  "NE",
   "NJ",
   "NM",
   "NV",
-  "NY",
-  "OH",
-  "OK",
   "OR",
-  "PA",
   "RI",
   "SC",
   "SD",
-  "TN",
-  "TX",
-  "UT",
-  "VA",
-  "WA",
   "WI",
-  "WV",
-  "WY"
+  "WV"
  ],
  "none_why": {
   "AL": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "AR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "AZ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "CO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "CT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "DC": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "DE": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "GA": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "GA": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "ID": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "IL": "1 layer(s) looked promising but held no camp / cabin / lodge records",
   "KS": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "LA": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "MA": "1 layer(s) looked promising but held no camp / cabin / lodge records",
   "MD": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "ME": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "MO": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "MS": "no official state GIS server known yet; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "MT": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "ND": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NJ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NM": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
-  "SC": "6 layer(s) looked promising but held no camp / cabin / lodge records",
-  "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
+  "OR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "RI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "SC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "SD": "the state GIS server did not answer from GitHub (Expecting value: line 1 column 1 (char 0); Expecting value: line 1 column 1 (char 0); <url); ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "WV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
  }
 }
