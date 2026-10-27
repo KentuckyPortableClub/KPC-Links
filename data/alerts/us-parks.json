@@ -564,13 +564,13 @@
   },
   {
    "call": "KPC BOT",
-   "details": "Missouri State Parks: Advisory — On Thursday, October 22nd, we will only be offering guided house tours at 12:30pm & 2:30pm due to a school group. · The site will be closed Tuesday, October 20.",
+   "details": "Missouri State Parks: Advisory — On Thursday, October 29th, we will only be offering guided house tours at 12:30pm & 2:30pm due to a large group. · On Friday, October 30th, we will only offer guided house tours at 10am and 12:30pm due to a large group.",
    "expires": "2026-10-30",
-   "id": "uc-mo-parks-advisory-on-thursday-october-22nd-we-will-only-be-offering-US-3346",
-   "kind": "Closure",
+   "id": "uc-mo-parks-advisory-on-thursday-october-29th-we-will-only-be-offering-US-3346",
+   "kind": "Park notice",
    "link": "https://www.mostateparks.com/historic-site/deutschheim-state-historic-site",
    "ref": "US-3346",
-   "seen": "2026-10-25",
+   "seen": "2026-10-27",
    "src": "mo-parks"
   },
   {
@@ -773,6 +773,17 @@
   },
   {
    "call": "KPC BOT",
+   "details": "Missouri State Parks: Advisory — The site is located at the end of a narrow residential road. There is not enough room for large vehicles to turn around. The cul-de-sac on some maps is on private property behind a gate.",
+   "expires": "2026-10-30",
+   "id": "uc-mo-parks-advisory-the-site-is-located-at-the-end-of-a-narrow-resident-US-3351",
+   "kind": "Park notice",
+   "link": "https://www.mostateparks.com/historic-site/gov-daniel-dunklins-grave-state-historic-site",
+   "ref": "US-3351",
+   "seen": "2026-10-27",
+   "src": "mo-parks"
+  },
+  {
+   "call": "KPC BOT",
    "details": "Missouri State Parks: Advisory — Trail Closure: Portions of White River Valley Trail will be closed during the dates below to allow for hunting seasons on Corps of Engineers property. Closed sections: Trailhead 2; Trailhead 3; on the",
    "expires": "2026-10-30",
    "id": "uc-mo-parks-advisory-trail-closure-portions-of-white-river-valley-trail-US-1787",
@@ -790,17 +801,6 @@
    "kind": "Closure",
    "link": "https://www.mostateparks.com/historic-site/locust-creek-covered-bridge-state-historic-site",
    "ref": "US-3355",
-   "seen": "2026-10-25",
-   "src": "mo-parks"
-  },
-  {
-   "call": "KPC BOT",
-   "details": "Missouri State Parks: Closed — The site is located at the end of a narrow residential road. There is not enough room for large vehicles to turn around. The cul-de-sac on some maps is on private property behind a gate. · The site is closed as we replace the trail surface. We are putting permeable pavers down, replacing the wayside panel, and trimming the overgrowth down at the overlook. Projected o",
-   "expires": "2026-10-30",
-   "id": "uc-mo-parks-closed-the-site-is-located-at-the-end-of-a-narrow-residentia-US-3351",
-   "kind": "Closure",
-   "link": "https://www.mostateparks.com/historic-site/gov-daniel-dunklins-grave-state-historic-site",
-   "ref": "US-3351",
    "seen": "2026-10-25",
    "src": "mo-parks"
   },
@@ -878,17 +878,6 @@
    "kind": "Closure",
    "link": "https://mostateparks.com/park/wakonda-state-park",
    "ref": "US-1792",
-   "seen": "2026-10-25",
-   "src": "mo-parks"
-  },
-  {
-   "call": "KPC BOT",
-   "details": "Missouri State Parks: Partial Closure — Construction is occurring in the campground Monday thru Friday due to an infrastructure project. · The public is advised to not eat largemouth or smallmouth bass 12 inches or larger in size, due to elevated mercury levels. For more information, visit www.health.mo.gov/fishadvisory · Due to the wet conditions, the following advisories are in effect: --Opossum",
-   "expires": "2026-10-30",
-   "id": "uc-mo-parks-partial-closure-construction-is-occurring-in-the-campground-US-1767",
-   "kind": "Closure",
-   "link": "https://mostateparks.com/park/knob-noster-state-park",
-   "ref": "US-1767",
    "seen": "2026-10-25",
    "src": "mo-parks"
   },
@@ -1026,6 +1015,17 @@
   },
   {
    "call": "KPC BOT",
+   "details": "Missouri State Parks: Partial Closure — The park will be closed to the public Thursday, December 3, 2026 thru Sunday, December 6, 2026 due to a Managed Deer Hunt. The park will open to visitors for normal operations on Monday, December 7, 2 · Friendly Reminder: The Park's off season begins November 1st thru April 15, 2026. All water services and flushable restrooms and shower houses will be closed",
+   "expires": "2026-10-30",
+   "id": "uc-mo-parks-partial-closure-the-park-will-be-closed-to-the-public-thursd-US-1767",
+   "kind": "Closure",
+   "link": "https://mostateparks.com/park/knob-noster-state-park",
+   "ref": "US-1767",
+   "seen": "2026-10-27",
+   "src": "mo-parks"
+  },
+  {
+   "call": "KPC BOT",
    "details": "Missouri State Parks: Partial Closure — The road into Current River State Park will be closed, just past the vault toilet, until further notice due to construction. · The Centennial Bluff Trail, Ninebark Trail, and the White Connector 1 that connects Jones Hollow Trail are closed. Also where the Jones Hollow Trail meets the Current River Trail leading into Current ",
    "expires": "2026-10-30",
    "id": "uc-mo-parks-partial-closure-the-road-into-current-river-state-park-will-US-1754",
@@ -1121,6 +1121,17 @@
    "link": "https://myfwp.mt.gov/fishMT/fas/39754323",
    "ref": "US-11218",
    "seen": "2026-10-25",
+   "src": "mt-fwp"
+  },
+  {
+   "call": "KPC BOT",
+   "details": "Montana FWP: Site Closure - Partial — Work is beginning for the Thompson Chain of Lakes State Park Fuels Reduction Project, a thinning effort aimed at reducing hazardous fuels in the wildland urban interface. Foresters are on site at Thompson Chain...see website for more details",
+   "expires": "2026-10-30",
+   "id": "uc-mt-fwp-site-closure-partial-work-is-beginning-for-the-thompson-ch-US-3387",
+   "kind": "Closure",
+   "link": "https://fwp.mt.gov/stateparks/thompson-chain-of-lakes",
+   "ref": "US-3387",
+   "seen": "2026-10-27",
    "src": "mt-fwp"
   },
   {
@@ -1898,6 +1909,7 @@
   "ar-agfc": {
    "agency": "Arkansas Game & Fish",
    "n": 0,
+   "n_prev": 0,
    "ok": true,
    "page": "https://www.agfc.com/category/wma-closure/",
    "rows": 0,
@@ -1907,6 +1919,7 @@
   "ca-parks": {
    "agency": "California State Parks",
    "n": 23,
+   "n_prev": 23,
    "ok": true,
    "page": "https://www.parks.ca.gov/?page_id=30009",
    "rows": 30,
@@ -1924,6 +1937,7 @@
   "co-cpw": {
    "agency": "Colorado Parks & Wildlife",
    "n": 20,
+   "n_prev": 20,
    "ok": true,
    "page": "https://cpw.state.co.us/",
    "rows": 31,
@@ -1945,6 +1959,7 @@
   "fl-parks": {
    "agency": "Florida State Parks",
    "n": 2,
+   "n_prev": 2,
    "ok": true,
    "page": "https://www.floridastateparks.org/",
    "rows": 2,
@@ -1954,6 +1969,7 @@
   "mo-parks": {
    "agency": "Missouri State Parks",
    "n": 52,
+   "n_prev": 52,
    "ok": true,
    "page": "https://mostateparks.com/basic-page/active-advisories",
    "rows": 53,
@@ -1964,10 +1980,11 @@
   },
   "mt-fwp": {
    "agency": "Montana FWP",
-   "n": 12,
+   "n": 13,
+   "n_prev": 12,
    "ok": true,
    "page": "https://fwp.mt.gov/news/current-closures-restrictions",
-   "rows": 20,
+   "rows": 21,
    "st": "MT",
    "unmatched": [
     "Brogan's Landing",
@@ -1985,6 +2002,7 @@
   "nc-parks": {
    "agency": "NC State Parks",
    "n": 0,
+   "n_prev": 0,
    "ok": true,
    "page": "https://www.ncparks.gov/",
    "rows": 0,
@@ -1994,6 +2012,7 @@
   "nj-parks": {
    "agency": "NJ State Park Service",
    "n": 0,
+   "n_prev": 0,
    "ok": true,
    "page": "https://dep.nj.gov/parksandforests/",
    "rows": 2,
@@ -2006,6 +2025,7 @@
   "or-odfw": {
    "agency": "Oregon Dept. of Fish & Wildlife",
    "n": 0,
+   "n_prev": 0,
    "ok": true,
    "page": "https://myodfw.com/",
    "rows": 1,
@@ -2017,16 +2037,16 @@
   "wi-dnr": {
    "agency": "Wisconsin DNR",
    "n": 66,
+   "n_prev": 66,
    "ok": true,
    "page": "https://dnr.wisconsin.gov/topic/parks/propertynotices",
-   "rows": 79,
+   "rows": 78,
    "st": "WI",
    "unmatched": [
     "Turtle-Flambeau Scenic Waters Area",
     "Southern Unit - Kettle Moraine State For",
     "White River State Trail",
     "Boat access site - enter name below",
-    "Southern Unit - Kettle Moraine State For",
     "Pike Lake Unit - Kettle Moraine State Fo",
     "Pike Lake Unit - Kettle Moraine State Fo",
     "Lower Wisconsin State Riverway (all unit",

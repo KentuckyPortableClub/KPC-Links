@@ -12,6 +12,46 @@
    "link": "https://dnr.wisconsin.gov/topic/parks/propertynotices"
   },
   {
+   "id": "uc-mt-fwp-site-closure-partial-work-is-beginning-for-the-thompson-ch-US-3387",
+   "ref": "US-3387",
+   "kind": "Closure",
+   "details": "Montana FWP: Site Closure - Partial — Work is beginning for the Thompson Chain of Lakes State Park Fuels Reduction Project, a thinning effort aimed at reducing hazardous fuels in the wildland urban interface. Foresters are on site at Thompson Chain...see website for more details",
+   "seen": "2026-10-27",
+   "call": "KPC BOT",
+   "expires": "2026-10-30",
+   "link": "https://fwp.mt.gov/stateparks/thompson-chain-of-lakes"
+  },
+  {
+   "id": "uc-mo-parks-partial-closure-the-park-will-be-closed-to-the-public-thursd-US-1767",
+   "ref": "US-1767",
+   "kind": "Closure",
+   "details": "Missouri State Parks: Partial Closure — The park will be closed to the public Thursday, December 3, 2026 thru Sunday, December 6, 2026 due to a Managed Deer Hunt. The park will open to visitors for normal operations on Monday, December 7, 2 · Friendly Reminder: The Park's off season begins November 1st thru April 15, 2026. All water services and flushable restrooms and shower houses will be closed",
+   "seen": "2026-10-27",
+   "call": "KPC BOT",
+   "expires": "2026-10-30",
+   "link": "https://mostateparks.com/park/knob-noster-state-park"
+  },
+  {
+   "id": "uc-mo-parks-advisory-the-site-is-located-at-the-end-of-a-narrow-resident-US-3351",
+   "ref": "US-3351",
+   "kind": "Park notice",
+   "details": "Missouri State Parks: Advisory — The site is located at the end of a narrow residential road. There is not enough room for large vehicles to turn around. The cul-de-sac on some maps is on private property behind a gate.",
+   "seen": "2026-10-27",
+   "call": "KPC BOT",
+   "expires": "2026-10-30",
+   "link": "https://www.mostateparks.com/historic-site/gov-daniel-dunklins-grave-state-historic-site"
+  },
+  {
+   "id": "uc-mo-parks-advisory-on-thursday-october-29th-we-will-only-be-offering-US-3346",
+   "ref": "US-3346",
+   "kind": "Park notice",
+   "details": "Missouri State Parks: Advisory — On Thursday, October 29th, we will only be offering guided house tours at 12:30pm & 2:30pm due to a large group. · On Friday, October 30th, we will only offer guided house tours at 10am and 12:30pm due to a large group.",
+   "seen": "2026-10-27",
+   "call": "KPC BOT",
+   "expires": "2026-10-30",
+   "link": "https://www.mostateparks.com/historic-site/deutschheim-state-historic-site"
+  },
+  {
    "id": "uc-mo-parks-advisory-the-boat-launch-canoe-launch-and-shelter-day-use-a-US-1776",
    "ref": "US-1776",
    "kind": "Closure",
@@ -932,16 +972,6 @@
    "link": "https://mostateparks.com/park/crowder-state-park"
   },
   {
-   "id": "uc-mo-parks-partial-closure-construction-is-occurring-in-the-campground-US-1767",
-   "ref": "US-1767",
-   "kind": "Closure",
-   "details": "Missouri State Parks: Partial Closure — Construction is occurring in the campground Monday thru Friday due to an infrastructure project. · The public is advised to not eat largemouth or smallmouth bass 12 inches or larger in size, due to elevated mercury levels. For more information, visit www.health.mo.gov/fishadvisory · Due to the wet conditions, the following advisories are in effect: --Opossum",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://mostateparks.com/park/knob-noster-state-park"
-  },
-  {
    "id": "uc-mo-parks-partial-closure-campground-trail-will-be-closed-due-to-const-US-1792",
    "ref": "US-1792",
    "kind": "Closure",
@@ -1010,16 +1040,6 @@
    "call": "KPC BOT",
    "expires": "2026-10-30",
    "link": "https://mostateparks.com/park/eleven-point-state-park"
-  },
-  {
-   "id": "uc-mo-parks-closed-the-site-is-located-at-the-end-of-a-narrow-residentia-US-3351",
-   "ref": "US-3351",
-   "kind": "Closure",
-   "details": "Missouri State Parks: Closed — The site is located at the end of a narrow residential road. There is not enough room for large vehicles to turn around. The cul-de-sac on some maps is on private property behind a gate. · The site is closed as we replace the trail surface. We are putting permeable pavers down, replacing the wayside panel, and trimming the overgrowth down at the overlook. Projected o",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://www.mostateparks.com/historic-site/gov-daniel-dunklins-grave-state-historic-site"
   },
   {
    "id": "uc-mo-parks-closed-locust-creek-covered-bridge-state-historic-site-has-b-US-3355",
@@ -1210,16 +1230,6 @@
    "call": "KPC BOT",
    "expires": "2026-10-30",
    "link": "https://mostateparks.com/park/lake-ozarks-state-park"
-  },
-  {
-   "id": "uc-mo-parks-advisory-on-thursday-october-22nd-we-will-only-be-offering-US-3346",
-   "ref": "US-3346",
-   "kind": "Closure",
-   "details": "Missouri State Parks: Advisory — On Thursday, October 22nd, we will only be offering guided house tours at 12:30pm & 2:30pm due to a school group. · The site will be closed Tuesday, October 20.",
-   "seen": "2026-10-25",
-   "call": "KPC BOT",
-   "expires": "2026-10-30",
-   "link": "https://www.mostateparks.com/historic-site/deutschheim-state-historic-site"
   },
   {
    "id": "uc-mo-parks-advisory-loop-5-is-closed-to-public-use-area-clearly-marked-US-1774",
