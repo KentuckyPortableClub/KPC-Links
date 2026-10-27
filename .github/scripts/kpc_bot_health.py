@@ -35,6 +35,30 @@ PARTS = ('guard', 'site', 'refs', 'links')
 WEEKLY = ('site', 'refs', 'links')
 
 
+# G22 (Brandon Oct 27): issue #17 and data/bot-health.json are PUBLIC, so members-only pages are never named there:
+# each gets a short code (M-1a2b); the code list goes to the private staff room only, and only with a NEW problem.
+def _public():
+    try:
+        g = pathlib.Path('kpc-gate.js').read_text(encoding='utf-8')
+        return set(re.findall(r"'([\w.-]+\.html)'", re.search(r'var PUBLIC = \[(.*?)\];', g, re.S).group(1)))
+    except Exception:  # noqa: BLE001
+        return set()
+PUB = _public()
+CODES = {}
+
+
+def mask(text):
+    import hashlib
+    def sub(mt):
+        f = mt.group(0)
+        if f in PUB or not pathlib.Path(f).is_file():
+            return f
+        c = 'M-' + hashlib.sha1(f.encode()).hexdigest()[:4]
+        CODES[c] = f
+        return f'{c} (members page)'
+    return re.sub(r'(?<![\w/.-])[\w-]+\.html\b', sub, text) if PUB else text
+
+
 def owner(wf):
     for c, rx in OWNER:
         if re.search(rx, wf):
@@ -109,10 +133,11 @@ def main():
     for part in PARTS:
         f = pathlib.Path('checkup-out') / f'{part}.json'
         try:
-            d = json.loads(f.read_text(encoding='utf-8'))
+            d = json.loads(mask(f.read_text(encoding='utf-8')))
         except (OSError, ValueError):
             d = weekly.get(part) if part in WEEKLY else None        # not run today: last Sunday's result
             if not d: continue
+            d = json.loads(mask(json.dumps(d)))                   # older saves may still name pages
         else:
             if part in WEEKLY: weekly[part] = d
         if part == 'links' and f.is_file():
@@ -163,6 +188,16 @@ def main():
         return
     if new and n:
         gh('-X', 'POST', f'repos/{REPO}/issues/{n}/comments', '-f', 'body=New problem(s) today:\n' + '\n'.join(f'- {m}' for k, m in problems if k in new))
+        used = sorted({c for k, m in problems if k in new for c in re.findall(r'M-[0-9a-f]{4}', m) if c in CODES})
+        hook = (os.environ.get('KPC_ADMIN_WEBHOOK') or '').strip().split()
+        if used and hook and hook[0].startswith('https://'):
+            import urllib.request
+            msg = 'KPC check-up: members-only page codes in the new problem(s) on issue #17: ' + ', '.join(f'{c} = {CODES[c]}' for c in used)
+            try:
+                urllib.request.urlopen(urllib.request.Request(hook[0], data=json.dumps({'username': 'KPC Check-up', 'content': msg[:1900],
+                                       'allowed_mentions': {'parse': []}}).encode(), headers={'Content-Type': 'application/json'}), timeout=30)
+            except Exception as e:  # noqa: BLE001
+                print(f'::notice title=Check-up::staff room not reached ({e})')
 
 
 if __name__ == '__main__':

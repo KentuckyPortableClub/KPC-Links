@@ -62,6 +62,10 @@ ROUTINE = re.compile(r'(?i)prescribed burn|controlled burn|pile burn|burn unit|b
 ROUTINE_DAYS = 14
 BURN_DIGEST_HOUR = 17     # burns reach Facebook once a day, in the late-afternoon check, all in one post
 CONFIRM = 2                            # a change must be seen this many checks in a row
+# G10 (Brandon Oct 27): safety alerts skip the second check (still never posted at night)
+SAFETY = re.compile(r'(?i)wild ?fire|forest fire|\bfire\b|flood|flash flood|tornado|severe (weather|storm)|storm damage|'
+                    r'evacuat|hazmat|chemical spill|gas leak|boil water|bridge (collapse|out)|landslide|rock ?slide')
+MASS = 5                               # G11: this many closures at once = one message, after a person OKs it
 
 
 def notice(title, msg):
@@ -565,9 +569,12 @@ def main():
     for aid, a in live.items():
         rec = seen.get(aid)
         if not rec:
-            seen[aid] = {**a, 'first': today, 'runs': 1, 'missing': 0, 'announced': False,
-                         'routine': bool(a.get('routine')) or bool(ROUTINE.search(a['title'] + ' ' + a['text'])),
-                         'refs': match_parks(a, parks)}
+            seen[aid] = rec = {**a, 'first': today, 'runs': 1, 'missing': 0, 'announced': False,
+                               'routine': bool(a.get('routine')) or bool(ROUTINE.search(a['title'] + ' ' + a['text'])),
+                               'refs': match_parks(a, parks)}
+            if not rec['routine'] and SAFETY.search(a['title'] + ' ' + a['text']):
+                rec['announced'] = True          # safety: no second check
+                closed.append((aid, rec))
             continue
         rec.update({k: a[k] for k in ('title', 'text', 'link', 'who') if k in a})
         rec['runs'] = int(rec.get('runs', 0)) + 1
@@ -636,6 +643,18 @@ def main():
         else:
             post_staff('Park alert: which park is this?', '\n'.join(L))
         notice('Park alerts', f'{len(ask)} notice(s) not tied to one park: asked in the staff room, not posted')
+    big = [p for p in pending if p['kind'] == 'closed' and not p.get('routine')]
+    if len(big) >= MASS and not quiet:
+        # G11: a mass closure (shutdown, ice storm, emergency) = one plain message, only after a person OKs it
+        pending = [p for p in pending if p not in big]
+        L = [f'{len(big)} Kentucky park closures showed up at once (a shutdown, storm or emergency?). Nothing was posted. '
+             'If it is real, post ONE plain message through the relay channel with the agency link. The list:', '']
+        L += [f"• {', '.join(p['refs'])} · {p['title']} ({p['who']}) {p.get('link', '')}" for p in big[:30]]
+        if DRY:
+            print('WOULD ASK (staff room, mass closure):\n' + '\n'.join(L))
+        else:
+            post_staff('Many park closures at once: please check', '\n'.join(L))
+        notice('Park alerts', f'{len(big)} closures at once: asked in the staff room, not posted')
     if pending and not quiet:
         shut = [p for p in pending if p['kind'] == 'closed' and not p.get('routine')]
         burns = [p for p in pending if p['kind'] == 'closed' and p.get('routine')]
