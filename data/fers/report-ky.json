@@ -38,7 +38,7 @@
   "with official lines": 10
  },
  "pass3": {
-  "agree with the pass before": 145,
+  "agree with the pass before": 158,
   "cell_m": 5.0,
   "date": "2026-10-27",
   "left out": {
@@ -47,14 +47,14 @@
    "no pin": 0,
    "pin well outside": 0
   },
-  "new here only (not counted)": 24,
-  "official parks": 192,
-  "pairs tested": 49,
+  "new here only (not counted)": 25,
+  "official parks": 199,
+  "pairs tested": 57,
   "parks whose outline could not be read": 0,
   "parks with a saved copy only (no fresh download possible)": 39,
   "pass": 3,
   "problems": [],
-  "with official lines": 3
+  "with official lines": 10
  },
  "pass4": {
   "candidates without a pin": 14,
@@ -75,8 +75,8 @@
  },
  "per state": {
   "US-KY": {
-   "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates": 23,
+   "candidates (saved outline only)": 124,
    "lines": 122,
    "n-fers": 6,
    "pass1": 196,
