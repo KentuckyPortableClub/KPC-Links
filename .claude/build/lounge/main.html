@@ -97,8 +97,7 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 <h1>Activators Lounge</h1>
 <p class="lg-sub">Every tool an activator needs, in one room: find any park, WWFF area or summit in the world, open the right tool in one tap, and see how the bands look today.</p>
 </section>
-<nav class="lg-tabs" aria-label="Lounge sections"><button type="button" data-lt="tools" aria-pressed="true">🧰 TOOLS</button><a href="kpc-activations.html?from=activators">📝 ACTIVATION BOARD</a><a href="kpc-weather.html?from=activators">🌦 WEATHER</a><a href="kpc-space-weather.html?from=activators">☀️ RADIO CONDITIONS</a><button type="button" data-lt="live" aria-pressed="false">📡 HAPPENING NOW</button></nav>
-<section id="lgLive" hidden></section>
+<section id="lgLive" hidden></section><script src="kpc-lounge-tabs.js?v=20261026a"></script>
 <div id="lgTools">
 <div id="kpc-cx"></div>
 <div class="lg-band"><div class="lg-wrap">
@@ -180,14 +179,14 @@ main.lg .lg-sb{background:rgba(255,255,255,.12);color:#fff}main.lg .lg-sb.good{b
 </div>
 <div id="kpc-rules"></div><script src="kpc-rules-card.js?v=20261018a"></script>
 <script>
-/* Oct 26 (release prep): Happening Now as a tab = the shared Happening Now page (kpc-live.html?embed=1) inside the Lounge;
-   it follows the viewer's location (Kentucky until a location is set). Tab remembered: localStorage kpcLgTab. */
-(function(){var T=document.querySelectorAll('.lg-tabs button[data-lt]'),L=document.getElementById('lgLive'),O=document.getElementById('lgTools');
- function go(t,save){T.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lt===t))});var live=t==='live';L.hidden=!live;O.hidden=live;
-  if(live&&!L.firstChild){L.innerHTML='<div class="kpc-lback"><button type="button" data-lt="tools">← ACTIVATORS LOUNGE</button></div><iframe src="kpc-live.html?embed=1" title="Happening Now" loading="lazy"></iframe>';L.querySelector('[data-lt]').onclick=function(){go('tools',1);scrollTo(0,0)}}if(save)try{localStorage.setItem('kpcLgTab',t)}catch(e){}}
- T.forEach(function(b){b.addEventListener('click',function(){go(b.dataset.lt,1)})});
+/* Oct 26: Happening Now = the shared Happening Now page (kpc-live.html?embed=1) under the Lounge tab strip (kpc-lounge-tabs.js);
+   #live shows it, no hash shows the TOOLS. It follows the viewer's location (Kentucky until a location is set). */
+(function(){var L=document.getElementById('lgLive'),O=document.getElementById('lgTools');
+ function go(){var live=location.hash==='#live';L.hidden=!live;O.hidden=live;
+  if(live&&!L.firstChild)L.innerHTML='<iframe src="kpc-live.html?embed=1" title="Happening Now" loading="lazy"></iframe>';}
+ addEventListener('hashchange',go);
  window.addEventListener('message',function(e){var d=e.data||{};if(d.kpcLiveH&&L.querySelector('iframe'))L.querySelector('iframe').style.height=Math.max(600,d.kpcLiveH)+'px'});
- var t='tools';try{t=localStorage.getItem('kpcLgTab')||'tools'}catch(e){}if(location.hash==='#live')t='live';go(t,0);})();
+ go();})();
 </script>
 </main>
 @@FOOTER@@
