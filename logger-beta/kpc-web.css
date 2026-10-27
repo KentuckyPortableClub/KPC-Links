@@ -7,3 +7,6 @@ section.card[data-grp^="remote "],#scrRemote,[data-go="remote"],.updbar{display:
 .kw-info{margin:14px 4px 4px;font-size:13px;line-height:1.5;opacity:.85}.kw-info a{color:var(--gold,#d5a63a);font-weight:700}
 .kw-web{margin:10px 0 0;font-size:13px;line-height:1.5;opacity:.85}
 @media(max-width:420px){.kw-site span{display:none}}
+a.b[href="radio-check.html"]{display:none!important}
+.kw-name{display:flex;gap:8px;flex:1 1 100%;align-items:center}.kw-name input{flex:1;min-width:0}
+.kw-ph{flex:1 1 100%;margin:4px 0 0}
