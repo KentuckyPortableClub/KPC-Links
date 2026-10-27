@@ -762,6 +762,12 @@ def run(st):
             no = {str(x) for x in ov.get('no', [])}
             m = [x for x in m if str(x[0]) not in no and _nf(x[1]) not in {_nf(y) for y in no}]
             for want in ov.get('join', []):
+                # Oct 27 (boundary review #3): PAD-US gives its records NEW ids in each version. A hand join by id whose id is gone
+                # is found again by its fingerprint (name + acres within 10%, near the pin), saved with it in overrides.json 'fp'
+                if not any(_oid(a) == str(want) for a in recs) and str(want) in (ov.get('fp') or {}):
+                    fn, fa = ov['fp'][str(want)][:2]
+                    want = next((_oid(a) for a in recs if _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(fn) and (la is None or near(la, lo, a['_bb'], .6))
+                                 and abs((a.get('GIS_Acres') or 0) - (fa or 0)) <= max(20, .1 * (fa or 0))), want)
                 for a in recs:
                     nm = a.get('Unit_Nm') or a.get('Loc_Nm') or ''
                     if (_oid(a) == str(want) or _nf(nm) == _nf(want)) and _oid(a) not in no and (la is None or near(la, lo, a['_bb'], .6)) and not any(str(x[0]) == _oid(a) for x in m):   # Oct 25: an id in 'no' is never re-added by a same-name join
@@ -883,6 +889,16 @@ def run(st):
             no = {str(x) for x in (OVR.get(ref) or {}).get('no', [])}
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
             if om and not any(str(x[0]) in ids_here for x in om):
+                # boundary review #3: the same land under a new PAD-US id (a new PAD-US version) = found by name + acres
+                fp = []
+                for x in om:
+                    if not isinstance(x[0], int): continue
+                    hit = next((a for a in recs if isinstance(a.get('OBJECTID'), int) and _nf(a.get('Unit_Nm') or a.get('Loc_Nm') or '') == _nf(x[1])
+                                and abs((a.get('GIS_Acres') or 0) - (x[2] or 0)) <= max(20, .1 * (x[2] or 0))), None)
+                    if hit: fp.append([hit['OBJECTID'], x[1], round(hit.get('GIS_Acres') or 0), (str(x[3]) if str(x[3]).startswith('reviewed') else 'same land, new PAD-US id (name + acres)')])
+                if fp and len(fp) == sum(1 for x in om if isinstance(x[0], int)):
+                    np_['m'] = fp + [x for x in om if not isinstance(x[0], int) and str(x[0]) in ids_here]; np_['c'] = []; np_['refound'] = PADVER[0]; kept += 1
+                    continue
                 np_['m'] = om; np_['c'] = []; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
                 for k in ('read', 'src'):
                     if op.get(k): np_[k] = op[k]   # rule B7: a kept outline keeps the day it was last read (the clock keeps running)
