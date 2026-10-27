@@ -882,11 +882,22 @@ def ownership_step(s, parks, PIN):
         if o == '': continue                                             # a designation layers on the ground's owner
         if covered(r, recs, parks, PIN) and not any(x in OWNED for x in refs): continue   # its own record at the spot (a lease / agreement); not against the agency's own ownership map
         if o == '?': unk.append(r); continue
-        if ground and o != ground: bad.append(f"{PIN.get(r, [r])[0]} is {o.split(':')[-1].lower()} land, the ground here is {ground.split(':')[-1].lower()}")
+        if ground and o != ground: bad.append(f"{PIN.get(r, [r])[0]} is {owner_word(o)} land, the ground here is {owner_word(ground)}")
         if not ground and len(set(real.values())) > 1: bad.append('two owners side by side')
     if bad: return 'drop', 'side by side, not layered: ' + '; '.join(bad[:2])
     if unk: return 'not sure', 'owner not known for ' + ', '.join(PIN.get(r, [r])[0] for r in unk)
-    return 'ok', f'layered on {ground.split(":")[-1].lower() or "one owner"} land'
+    return 'ok', f'layered on {owner_word(ground) or "one owner"} land'
+
+
+OWNWORD = {'STAT': 'state', 'STATE': 'state', 'LOC': 'local', 'LOCAL': 'local', 'PVT': 'private', 'PRIVATE': 'private', 'TRIB': 'tribal',
+           'TRIBAL': 'tribal', 'USFS': 'Forest Service', 'NPS': 'Park Service', 'FWS': 'Fish and Wildlife Service', 'USACE': 'Corps of Engineers',
+           'BLM': 'BLM', 'TVA': 'TVA', 'DOD': 'military', 'FED': 'federal', 'DIST': 'special district', 'UNIVERSITY': 'university'}
+
+
+def owner_word(k):
+    """Oct 27 (chat 8 Ohio note 2: 'stat land'): an owner key in plain words."""
+    k = str(k or '').split(':')[-1].upper()
+    return OWNWORD.get(k, k.lower())
 
 
 def patch_points(s):
@@ -1725,7 +1736,8 @@ def main():
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith('US-') and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
         cand = [x for d in files.values() for x in d.get('spots', []) if want(x)]
-        refs = sorted({r for x in cand for r in x['refs'] if r in parks and parks[r]['ids']})
+        same = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'same land' and str(x.get('status', '')).startswith('candidate')]
+        refs = sorted({r for x in cand + same for r in x['refs'] if r in parks and parks[r]['ids']})
         if REGION == 'ky': G, bad = ky_geom(parks, refs)
         else: G, bad = download(parks, refs, DET, PREC)
         n = {'checked': 0, 'water only': 0, 'still not checked': 0}
@@ -1741,6 +1753,14 @@ def main():
                 x['status'] = 'candidate' if not x.get('fresh') else 'candidate (saved outline only)'
                 if (x.get('wide_m') or 0) < TIGHT_M: x['status'] = VERY_TIGHT; x['list'] = 'Very tight (members only)'
             x['water_checked'] = today
+        for x in same:   # chat 8 Ohio note 3 / KY note 2: 'same land' rows get the checked date, an owner line and a pin like the others
+            if late(): break
+            x['checked'] = today
+            ow = {owner_word(park_owner(r, parks)) for r in x['refs']} - {'', '?'}
+            x['owner_here'] = (' / '.join(sorted(ow)) + ' land (from the outline both numbers are joined to)') if ow else 'owner not published'
+            if all(r in G for r in x['refs']) and not x.get('access_pin'):
+                try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
+                except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
