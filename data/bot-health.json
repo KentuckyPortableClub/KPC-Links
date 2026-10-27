@@ -1,41 +1,20 @@
 {
  "open": [
-  "guard:nogate:kentucky-parks.html",
-  "guard:nogate:members.html",
   "refs:gone:CA-QC:CA-2156",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
-  "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153",
-  "site:nodoor:find.html",
-  "site:nodoor:kpc-kit.html",
-  "site:nodoor:parks.html"
+  "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
  ],
- "checked": "2026-10-27T00:31+00:00",
+ "checked": "2026-10-27T00:43+00:00",
  "weekly": {
   "site": {
    "part": "site",
    "date": "2026-10-27",
-   "problems": [
-    {
-     "key": "site:nodoor:parks.html",
-     "chat": 1,
-     "msg": "parks.html: members-only page opened for a guest with NO members door"
-    },
-    {
-     "key": "site:nodoor:find.html",
-     "chat": 1,
-     "msg": "find.html: members-only page opened for a guest with NO members door"
-    },
-    {
-     "key": "site:nodoor:kpc-kit.html",
-     "chat": 1,
-     "msg": "kpc-kit.html: members-only page opened for a guest with NO members door"
-    }
-   ],
+   "problems": [],
    "notes": [],
    "ok": [
     "60 public pages opened as a guest at phone width (390px)",
-    "members door checked on parks.html, toolbox.html, find.html, kpc-kit.html",
+    "members door checked on toolbox.html, kpc-club.html, kpc-logger.html, kpc-spot-me.html",
     "60 public pages opened as a guest at desktop width (1280px)",
     "117 pages opened as a signed-in member at phone width"
    ]
