@@ -211,12 +211,17 @@
   function setBase(n) { if (!map) return; map.eachLayer(function (l) { if (l instanceof L.TileLayer && !gAll.hasLayer(l)) map.removeLayer(l); }); Object.keys(base).forEach(function (k) { if (map.hasLayer(base[k])) map.removeLayer(base[k]); }); base[n].addTo(map); layerName = n; tools(); }
   function patchRings(g) { var out = []; visiblePatches(g).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (x.shape && x.shape.length > 1) out.push({ s: x, ring: x.kind === 'trail' ? bandRing(x.shape) : x.shape, line: x.kind === 'trail' ? x.shape : null }); }); }); return out; }
   function openRow(key) {
+    if (!window.L && (openRow.tries = (openRow.tries || 0) + 1) < 40) { setTimeout(function () { openRow(key); }, 250); return; }   // the map library is still loading
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
     showTab('map'); if (!mkMap()) { $('ovSpot').innerHTML = '<p class="ov-note">The map could not load (no signal?). The list still works.</p>'; return; }
     cur = g; stopGps(); meas = []; lastIn = false; leftUntil = 0; if (pinM) { map.removeLayer(pinM); pinM = null; }
     cur.rings = patchRings(g); parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: COL[i], dash: DASH[i], on: true, fs: null }; });
     spotPanel(); legend(); mapKey(); step = 0; clearTimeout(timer);
-    var b = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
+    /* Brandon Oct 27 5:59 PM (Pine Mountain trail + Jefferson NF WMA opened zoomed out with the overlap in a corner): fit to the MAIN
+       place only (the biggest, first in the list), so it sits zoomed in, in the middle; the other stretches/places are still drawn */
+    var main = visiblePatches(g)[0], b = L.latLngBounds([]);
+    cur.rings.forEach(function (x) { if (x.s === main) x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
+    if (!b.isValid()) cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
     /* the map was hidden in the LIST tab (size 0), so Leaflet fitted to nothing and showed the whole world: size it first, fit again once shown */
     cur.fit = b;
     if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); } }, 120); }
@@ -457,7 +462,7 @@
       nb.hidden = !REG.note; nb.innerHTML = REG.note ? '🔄 <b>' + esc(REG.note) + '</b>' : '';
       if (MEMBER && REG.showWaiting) $('ovWait').checked = true;   // Brandon Oct 27 2:15 PM: 'members only … good with putting KY list on there for now to test it'
       list();
-      var q = new URLSearchParams(location.search).get('id'); if (q && ROWS.some(function (r) { return r.key === q; })) openRow(q);
+      var q = new URLSearchParams(location.search).get('id'); if (q && ROWS.some(function (r) { return r.key === q; })) { openRow(q); setTimeout(function () { scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 400); }   // a shared link lands on the map
     });
   }
   Promise.all([j('kpc-fers-regions.json'), j('kpc-fers-reviewed.json')]).then(function (a) {
@@ -468,5 +473,5 @@
     var q = new URLSearchParams(location.search).get('region'), want = q || store('kpcOvRegion');
     loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
   });
-  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status };
+  window.KPCOverlap = { rows: function () { return ROWS; }, openRow: openRow, status: status, map: function () { return map; } };
 })();
