@@ -208,6 +208,7 @@ main#hl .ct-card a{color:#ffcf7a}
   <button type="button" class="ct-btn ghost" id="ctRead">🔎 TEST: READ MY DIAL</button>
   <button type="button" class="ct-btn ghost" id="ctDrop" hidden>✕ DISCONNECT</button>
   <button type="button" class="ct-btn ghost" id="ctPortBtn" aria-expanded="false">🔁 CHANGE PORT</button>
+  <button type="button" class="ct-btn" data-cat-pick hidden>🔌 PICK THE RADIO'S PORT</button><button type="button" class="ct-btn ghost" data-cat-pick="all" hidden>SHOW EVERY PORT</button>
   <button type="button" class="ct-btn ghost" data-meters-open>📟 METERS</button>
  </div>
  <div class="ct-ports" id="ctPorts" hidden>
@@ -255,7 +256,7 @@ main#hl .ct-card a{color:#ffcf7a}
  </ul>
 </section>
 </main>
-<script src="kpc-cat.js?v=20261026b"></script><script src="kpc-meters.js?v=20261026a" defer></script>
+<script src="kpc-cat.js?v=20261026c"></script><script src="kpc-meters.js?v=20261026a" defer></script>
 <script id="cat-page">
 (function(){
  const $=id=>document.getElementById(id);
