@@ -6,6 +6,32 @@ How to read: **KEEP** = official sources support it. **DROP** = official sources
 
 **Limit, said plainly:** this session cannot query a map service. The one test that would settle most "NOT SURE" lines is a point-in-polygon test of each spot against the Forest Service's **Basic Ownership** layer (`OWNERCLASSIFICATION = USDA FOREST SERVICE`, Daniel Boone). Only chat 2's bot can run it (section 6).
 
+## 0. HQ RULINGS (Oct 27 4:30 AM, Brandon) AND WHAT THEY CHANGE
+Rulings: (1) Daniel Boone = Forest Service-OWNED land only (Basic Ownership layer), never the proclamation line. (2) Owned by one agency, managed by another (the 7 Forest Service WMAs) = real 2-fer, KEEP. (3) Different owners side by side = touching, not a 2-fer, DROP. (4) River/trail parks: POTA item 5, public land within 100 ft of the river edge or trail line; corridor ownership does not matter; the test is whether the OTHER park's public land lies within 100 ft of that edge/line. (5) Water-route historic trails: test against the river's edge (official shoreline). (6) NOT SURE = kept out of the guide until chat 2's ownership / 100-ft test, then desk re-checks; never a "no".
+
+**Final status after the rulings** (this table overrides any wording below that differs):
+| Item | Status | Note |
+|---|---|---|
+| Redbird, Beaver Creek, Cane Creek, Mill Creek, Pioneer Weapons, Twin Knobs, Zilpo x Daniel Boone (the 7 Forest Service WMAs) | **KEEP** | KDFWR says Forest Service owns; managed by KDFWR |
+| Burchell-Beech, Cumberland Falls, Natural Bridge, Big South Fork, W.H. Martin SNA x Daniel Boone; University of the Cumberlands, Cumberland Forest, Boone Forestlands WMAs x Daniel Boone | **DROP** (different owners, touching) | Big South Fork is NPS-owned; the others state or private |
+| Sunny Brook, Hoskins, Rockcastle River WMA x Daniel Boone | **NOT SURE, out of the guide** | Needs the ownership test; KDFWR pages state no owner |
+| Wild rivers (Red River, Rockcastle, Rock Creek, Cumberland, Big South Fork) x Daniel Boone | **NOT SURE, out of the guide until tested** | Test: Forest Service-owned land within 100 ft of the river edge. Example Red River x Daniel Boone = Forest Service land within 100 ft of the Red River. Corridor ownership ("varies by tract") is irrelevant. My earlier "ownership unknown" worry no longer decides it |
+| Cumberland River wild river x Cumberland Falls | **NOT SURE, likely KEEP** | The falls park is public state land on the river; test whether its land lies within 100 ft of the river edge. The Daniel Boone member of the old 3-fer still fails (state land) |
+| Pioneer Weapons x Sheltowee Trace | **NOT SURE, likely KEEP** | Pioneer Weapons is Forest Service land; the Forest Service trail line inside it, within 100 ft of the line. Needs the Forest Service trail line |
+| Big South Fork wild river x Sheltowee Trace; W.H. Martin SNA x Rockcastle wild river; Sinking Creek x Daniel Boone | **NOT SURE** | Geometry / owner not settled |
+| Pine Mountain State Trail (5 pairs) | **NOT SURE** | No official line published; cannot test until one is found. State Parks owns it (Nature Preserves page) |
+| Water-route Trail of Tears and Lewis & Clark pairs | **NOT SURE, testable** | Test the other park's public shore land within 100 ft of the official shoreline. Needs chat 2 to confirm its river-route files cover the Kentucky Ohio River stretch |
+| Land-route Trail of Tears segments / Lewis & Clark auto route | **NOT SURE, out of the guide** | NPS lines are approximate (1:100,000) |
+| Cumberland Gap NHP x Wilson Cumberland Trail SP (TN) | **NOT SURE; outside Kentucky guide** | |
+
+**Doubts left (for HQ):**
+1. **Shoreline source.** For the water-route trails and the big rivers I need an official river-edge line (Kentucky's own hydrography or USGS National Hydrography). I have not opened one. Chat 2 should say which shoreline file the test will use. On the Ohio, the Kentucky state line is the north bank, so the Kentucky shore is Kentucky land.
+2. **Narrow wild rivers.** For creek-size rivers (Rock Creek, Red River) the "edge" and the line are nearly the same; a polygon for the water edge may not exist. A line plus 100 ft each side is the fair test.
+3. **Public vs private within the 100-ft strip.** The ruling says the other park's public land counts; for state or private tracts along a wild river corridor, the strip must still be public land. Forest Service parcels pass by the Basic Ownership layer; state tracts need a state ownership source.
+4. **Sunny Brook and Hoskins** owners (KDFWR gives none).
+5. **Pine Mountain** has no official line.
+6. **The 40 matched pairs and 56 bot candidates outside Daniel Boone** were not opened pair by pair (section 7).
+
 ## 1. The four WMAs (HQ question c)
 | WMA | Verdict | Why (official source) | Strength |
 |---|---|---|---|
