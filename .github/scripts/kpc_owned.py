@@ -197,8 +197,8 @@ def ky_dbnf(out='ky-dbnf-owned.geojson'):
         feats.append({'type': 'Feature', 'properties': {'NAME': 'Daniel Boone National Forest', 'ref': 'US-4484', 'owner': 'USDA Forest Service',
                                                         'src': 'Forest Service Basic Ownership (content 2015)'},
                       'geometry': {'type': 'MultiPolygon', 'coordinates': keep}})
-    if len(feats) < 50:
-        print(f'::notice title=Owned land::Kentucky: only {len(feats)} pieces read (expected thousands); the last file stays', flush=True)
+    if acres < 200000:   # Daniel Boone owns about 700,000 acres; a short read never replaces the file
+        print(f'::notice title=Owned land::Kentucky: only {len(feats)} parcels, about {round(acres):,} acres read (expected ~700,000); the last file stays', flush=True)
         return False
     doc = {'type': 'FeatureCollection', 'name': 'Daniel Boone National Forest: Forest Service-owned land',
            'about': ("Forest Service-OWNED land inside Daniel Boone National Forest's outer line, from the Forest Service's own ownership map "
