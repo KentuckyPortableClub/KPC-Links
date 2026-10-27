@@ -1,0 +1,126 @@
+<style id="ov-css">
+#ov{background:#0e100e;color:#efe9da;font:15px/1.5 Arial,Helvetica,sans-serif}
+#ov *{box-sizing:border-box}
+#ov .ov-hero{position:relative;background:linear-gradient(90deg,rgba(7,7,7,.9),rgba(7,7,7,.55) 55%,rgba(7,7,7,.2)),url("hero-map.jpg") center 55%/cover no-repeat #070707;border-bottom:2px solid #d5a63a}
+@media(max-width:760px){#ov .ov-hero{background:linear-gradient(180deg,rgba(7,7,7,.4),rgba(7,7,7,.85) 60%),url("hero-map-mobile.jpg") center/cover no-repeat #070707}}
+#ov .ov-hin{max-width:1180px;margin:auto;padding:56px 18px 34px}
+#ov .ov-eye{margin:0 0 8px;color:#f0c96b;font:900 12px Arial;letter-spacing:2.4px}
+#ov h1{margin:0;font:700 clamp(32px,5.5vw,52px)/1.05 Georgia,serif;color:#fff}#ov h1 span{color:#f0c96b}
+#ov .ov-sub{max-width:720px;margin:12px 0 0;color:#e6dfcf;font-size:16px}
+#ov .ov-banner{position:relative;z-index:1;margin:0;padding:14px 18px;background:repeating-linear-gradient(135deg,#7a1d0e 0 18px,#8f2412 18px 36px);color:#fff;text-align:center;font:900 clamp(16px,3.4vw,22px)/1.3 Arial;letter-spacing:1px;border-bottom:2px solid #f0c96b}
+#ov .ov-banner small{display:block;font:700 13px Arial;letter-spacing:.3px;opacity:.95;margin-top:3px}
+#ov .ov-wrap{max-width:1240px;margin:auto;padding:16px}
+#ov .ov-full{background:#fff8e6;color:#1c1c1c;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:10px;padding:12px 16px;font-size:14px;line-height:1.55;margin:0 0 14px}
+#ov .ov-short{display:block;margin:8px 0 0;padding:7px 10px;border-radius:8px;background:rgba(240,150,40,.12);border:1px solid rgba(240,150,40,.45);color:#ffd9a8;font-size:12.5px;line-height:1.45}
+#ov .ov-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+#ov button,#ov .b{min-height:40px;padding:7px 14px;border-radius:999px;border:1px solid rgba(240,201,107,.6);background:transparent;color:#f0c96b;font:900 12px Arial;letter-spacing:.9px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+#ov button.on,#ov button[aria-pressed=true]{background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;border-color:#d5a63a}
+#ov button:disabled{opacity:.45;cursor:default}
+#ov input[type=search]{flex:1 1 220px;min-width:0;min-height:42px;border:1px solid #8a8270;border-radius:10px;padding:8px 12px;font:15px Arial;background:#fff;color:#111}
+#ov .ov-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:14px;align-items:start}
+@media(max-width:900px){#ov .ov-grid{grid-template-columns:1fr}}
+#ov .ov-box{background:#161a16;border:1px solid #33372f;border-radius:14px;padding:14px;margin:0 0 14px}
+#ov .ov-box h2{margin:0 0 6px;font:700 22px Georgia,serif;color:#fff}
+#ov .ov-box h3{margin:12px 0 6px;font:900 12px Arial;letter-spacing:1.6px;color:#f0c96b}
+#ov .ov-mapw{position:relative;border-radius:14px;overflow:hidden;border:1px solid #3a3a33;background:#d9d4c7;touch-action:none}
+#ov svg.ov-map{display:block;width:100%;height:min(62vh,560px);cursor:grab}
+#ov .ov-mapbn{position:absolute;left:8px;top:8px;z-index:2;padding:4px 10px;border-radius:6px;background:#8f2412;color:#fff;font:900 11px Arial;letter-spacing:1px;pointer-events:none}
+#ov .ov-tools{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+#ov .ov-tools button{min-height:36px;padding:5px 11px;font-size:11px}
+#ov .ov-legend{list-style:none;margin:0;padding:0}
+#ov .ov-legend li{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid #2a2e28}
+#ov .ov-legend li:first-child{border-top:0}
+#ov .ov-num{flex:0 0 auto;display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;color:#111;font:900 12px Arial;border:2px solid #fff}
+#ov .ov-legend svg{flex:0 0 auto}
+#ov .ov-legend label{flex:1;min-width:0;font-size:13.5px;cursor:pointer}
+#ov .ov-legend input{width:18px;height:18px}
+#ov .ov-badge{display:inline-block;margin:2px 6px 2px 0;padding:3px 8px;border-radius:6px;font:900 10.5px Arial;letter-spacing:.8px}
+#ov .bg-off{background:#1d5a3a;color:#fff}#ov .bg-nat{background:#6b5a1d;color:#fff}#ov .bg-wld{background:#5a2a1d;color:#fff}
+#ov .bg-small{background:#8a6d1d;color:#fff}#ov .bg-tight{background:#7a1d0e;color:#fff}#ov .bg-water{background:#1d4d7a;color:#fff}#ov .bg-n{background:#f0c96b;color:#2a1a05}#ov .bg-mem{background:#3a2a5a;color:#fff}
+#ov .ov-gps{border:2px solid #d5a63a;border-radius:12px;padding:12px;background:#11140f}
+#ov .ov-gps b.st{display:block;font:900 15px Arial;letter-spacing:.6px;color:#fff;margin-bottom:4px}
+#ov .ov-gps.out b.st{color:#cfc8b8}#ov .ov-gps.one b.st{color:#f0c96b}#ov .ov-gps.edge b.st{color:#ff9a7a}#ov .ov-gps.in b.st{color:#7ff0b0}#ov .ov-gps.left b.st{color:#ff6b5a}
+#ov .ov-row{padding:12px 0;border-top:1px solid #2a2e28;cursor:pointer}
+#ov .ov-row:first-child{border-top:0}
+#ov .ov-row b.t{display:block;color:#fff;font-size:15px}
+#ov .ov-row .m{font-size:13px;color:#cfc8b8}
+#ov .ov-row.sel{background:rgba(240,201,107,.07);margin:0 -14px;padding:12px 14px}
+#ov .ov-st{margin:16px 0 6px;font:900 12px Arial;letter-spacing:1.6px;color:#f0c96b}
+#ov .ov-pop{position:absolute;z-index:3;left:8px;right:8px;bottom:8px;max-height:60%;overflow:auto;background:#fffaf0;color:#1c1c1c;border-radius:12px;border:1px solid #d5a63a;padding:12px 14px;font-size:14px;box-shadow:0 10px 30px #0008}
+#ov .ov-pop[hidden]{display:none}#ov .ov-pop b{color:#111}#ov .ov-pop .ov-short{background:#fff1dc;color:#5a2a00;border-color:#e0a050}
+#ov .ov-pop .x{float:right;min-height:30px;padding:2px 10px;color:#5a3a00;border-color:#b08a3a}
+#ov .ov-pop a{color:#1d5a3a;font-weight:700}
+#ov details.ov-how summary{cursor:pointer;font:900 12px Arial;letter-spacing:1.4px;color:#f0c96b;list-style:none}
+#ov .ov-note{font-size:13px;color:#bdb6a5;margin:6px 0 0}
+#ov .ov-filt{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+#ov .ov-filt button{min-height:34px;font-size:11px;padding:4px 10px}
+#ov .ov-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:4000;max-width:min(520px,92vw);padding:10px 16px;border-radius:12px;background:#1d2620;border:1px solid #d5a63a;color:#efe9da;font-size:14px;box-shadow:0 10px 30px #0009}
+#ov .ov-toast[hidden]{display:none}
+#ov textarea{width:100%;min-height:80px;border-radius:8px;border:1px solid #b08a3a;padding:8px;font:14px Arial}
+</style>
+@@HEADER@@
+<main id="ov" data-keep-light>
+<section class="ov-hero"><div class="ov-hin">
+ <p class="ov-eye">KPC MEMBERS • PREVIEW OF A TOOL IN THE WORKS</p>
+ <h1>PARK OVERLAP <span>FINDER</span></h1>
+ <p class="ov-sub">How the finder will work: watch two (or up to nine) park outlines draw in, see where our maps suggest they may overlap, and walk in with your GPS. Everything on this page is made up.</p>
+</div></section>
+<p class="ov-banner" role="note">PREVIEW: made-up example, not real data<small>Fake parks (XX-0001 …) on a made-up map. Nothing here is a real park, place or overlap.</small></p>
+<div class="ov-wrap">
+ <aside class="ov-full" role="note"><b>Please read: this is a research aid, not a ruling.</b> The Park Overlap Finder shows places where our maps suggest the boundaries of two or more POTA parks may overlap. It is a starting point for your own research only. The Kentucky Portable Club cannot confirm or deny that any location listed here is a valid multi-park activation site. Park boundaries change, maps can be out of date or imprecise, and private land, closures and local rules may apply even inside a boundary. Before you count an activation, check each park's official boundary map from the managing agency, make sure you are on public land that is open to the public, and follow POTA's activation rules. POTA makes the final decision on every activation, not KPC. You are responsible for confirming your own location. KPC is an independent ham radio club, not part of Parks on the Air®.</aside>
+ <div class="ov-tabs" role="tablist">
+  <button type="button" class="on" data-tab="map" role="tab" aria-selected="true">🗺 MAP</button>
+  <button type="button" data-tab="list" role="tab" aria-selected="false">📋 LIST</button>
+  <input type="search" id="ovQ" placeholder="Park number, name or town (try XX-0005)" aria-label="Search the example spots">
+ </div>
+ <div id="ovMapTab">
+  <div class="ov-grid">
+   <div>
+    <div class="ov-mapw" id="ovMapW"><span class="ov-mapbn">PREVIEW · MADE-UP MAP</span><svg class="ov-map" id="ovMap" role="img" aria-label="Example map"></svg><div class="ov-pop" id="ovPop" hidden></div></div>
+    <div class="ov-tools" id="ovTools">
+     <button type="button" data-t="replay">▶ REPLAY</button><button type="button" data-t="all">⚡ SHOW ALL AT ONCE</button>
+     <button type="button" data-t="street" class="on">STREET</button><button type="button" data-t="sat">SATELLITE</button><button type="button" data-t="topo">TOPO</button>
+     <button type="button" data-t="zin" aria-label="Zoom in">＋</button><button type="button" data-t="zout" aria-label="Zoom out">－</button>
+     <button type="button" data-t="pin">📌 DROP A PIN</button><button type="button" data-t="measure">📏 MEASURE</button>
+     <button type="button" data-t="walk">🚶 SIMULATE A GPS WALK-IN</button>
+     <button type="button" data-t="sv">STREET VIEW</button><button type="button" data-t="share">🔗 SHARE</button><button type="button" data-t="gpx">⬇ GPX / KML</button>
+     <button type="button" data-t="save">💾 SAVE FOR OFFLINE</button><button type="button" data-t="report">⚑ REPORT A MISTAKE</button>
+    </div>
+    <p class="ov-note">🔒 Your location stays on your phone: the finder works it out on your device and sends it nowhere.</p>
+   </div>
+   <div>
+    <div class="ov-box" id="ovSpot"></div>
+    <div class="ov-box"><h3>THE PARKS (tap to switch an outline on or off)</h3><div class="ov-filt"><button type="button" id="ovAllOn">ALL ON</button><button type="button" id="ovAllOff">ALL OFF</button></div><ul class="ov-legend" id="ovLeg"></ul></div>
+    <div class="ov-gps out" id="ovGps"><b class="st">📍 GPS walk-in</b><span>Tap 🚶 SIMULATE A GPS WALK-IN to see how the card changes as you walk in, or 📌 DROP A PIN and tap the map.</span></div>
+   </div>
+  </div>
+ </div>
+ <div id="ovListTab" hidden>
+  <div class="ov-box">
+   <div class="ov-filt" id="ovFilt">
+    <button type="button" data-f="near">📍 NEAR ME</button>
+    <button type="button" data-f="big" aria-pressed="true">100+ YARDS</button><button type="button" data-f="small" aria-pressed="true">SMALL 50–100</button><button type="button" data-f="tight" aria-pressed="true">VERY TIGHT 25–50 (MEMBERS)</button>
+    <button type="button" data-f="water" aria-pressed="true">🚤 WATER ONLY</button><button type="button" data-f="multi" aria-pressed="false">3-FERS AND UP ONLY</button>
+    <button type="button" data-f="off" aria-pressed="false">OFFICIAL MAPS BOTH ONLY</button>
+   </div>
+   <div id="ovList"></div>
+  </div>
+  <div class="ov-box"><h2>Missing boundary: check the official map</h2><p class="ov-note">Not every 2-fer is here: some parks have no official boundary, so we cannot test them. These pairs are NOT confirmed (members first).</p><div id="ovMiss"></div></div>
+ </div>
+ <div class="ov-box">
+  <details class="ov-how" open><summary>▸ HOW WE CHECK (in plain words)</summary>
+  <ul class="ov-note" style="padding-left:18px">
+   <li>Official maps only: each park's own agency boundary first; national databases next; volunteer maps never confirm a spot.</li>
+   <li>A spot must fit a 50-yard circle inside every park (100+ yards = the main list; 50–100 = "small overlap: tight fit"; 25–50 = members only, "could be map error").</li>
+   <li>Only land the park really owns or manages counts, never private land inside a park line and never an outer "purchase" line.</li>
+   <li>A trail or river that is only a line uses POTA's 100-ft rule: the light band along the line IS the zone.</li>
+   <li>Water-only spots are listed apart (boat or kayak). Closures, seasons and hunting are noted.</li>
+   <li>We try hard, and we can still be wrong. POTA decides, not KPC.</li>
+  </ul></details>
+ </div>
+ <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
+ <div class="ov-toast" id="ovToast" hidden role="status"></div>
+</div>
+</main>
+@@FOOTER@@
+<script src="kpc-overlap-preview.js?v=20261027a"></script>
