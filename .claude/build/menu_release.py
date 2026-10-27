@@ -9,6 +9,7 @@ What it does to each page:
   1. HEADER = news.html's header with: top bar 'Parks' -> 'KY Parks' (parks.html), the new See More menu below, aria-current on the
      page's own link. The 3 beta-room pages keep their Hunters Lounge link pointing at kpc-beta-room.html.
   2. FOOTER: 'ABOUT OUR INFORMATION' (kpc-about-info.html) before PRIVACY in the footer link row.
+  3. MAP ROOM entries out of kpc-search.js, find.html and toolbox.html (+ kpc-search.js?v=20261029a everywhere).
 Pages without the standard header/footer (contact-card.html, kpc-maprep.html, finder.html footer) are listed for a hand check.
 Map Rep is never in the menu (Brandon Oct 26 4:40 PM: it lives only in the Club Room).
 Brandon Oct 26 6:35 PM: top-bar Photos keeps its Google Photos link (the header is copied from news.html, untouched); Videos is in Club;
@@ -99,5 +100,22 @@ for f in sorted(glob.glob('*.html')):
     if t != s:
         nf += 1
         if APPLY: open(f, 'w', encoding='utf-8').write(t)
+# 3. MAP ROOM out of search, Find It and the Tool Box (Brandon Oct 26 7:07 PM, same push as the menu); its pointer page stays for old links.
+mr = []
+t0 = open('kpc-search.js', encoding='utf-8').read()
+t1 = re.sub(r'\["kpc-map-room\.html", [^\]]*\], ?', '', t0)
+if t1 != t0:
+    mr.append('kpc-search.js')
+    if APPLY: open('kpc-search.js', 'w', encoding='utf-8').write(t1)
+for f, pat in [('find.html', r'<a class="fi-item" href="kpc-map-room\.html"[^>]*>.*?</a>'), ('toolbox.html', r'<a class="card" href="kpc-map-room\.html">.*?</a>')]:
+    t0 = open(f, encoding='utf-8').read(); t1 = re.sub(pat, '', t0, count=1, flags=re.S)
+    if t1 != t0:
+        mr.append(f)
+        if APPLY: open(f, 'w', encoding='utf-8').write(t1)
+if mr:   # new search file -> new ?v= on every page
+    for f in glob.glob('*.html'):
+        t0 = open(f, encoding='utf-8').read(); t1 = re.sub(r'kpc-search\.js\?v=\w+', 'kpc-search.js?v=20261029a', t0)
+        if t1 != t0 and APPLY: open(f, 'w', encoding='utf-8').write(t1)
+print('Map Room taken out of: ' + (', '.join(mr) or 'nothing (already out)'))
 print(('APPLIED' if APPLY else 'DRY RUN') + f': {nf} pages changed. No standard header (check by hand): {", ".join(no_h) or "none"}. '
       f'No footer link row (check by hand): {", ".join(no_f) or "none"}.')
