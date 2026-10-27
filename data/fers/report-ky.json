@@ -5,13 +5,14 @@
   "date": "2026-10-27",
   "left out": {
    "approximate": 0,
-   "no outline": 4,
+   "no outline": 5,
    "no pin": 0,
    "pin well outside": 0
   },
-  "official parks": 199,
-  "pairs tested": 531,
-  "pairs whose boxes touch": 531,
+  "missing boundary": 1,
+  "official parks": 198,
+  "pairs tested": 523,
+  "pairs whose boxes touch": 523,
   "parks done by the box test": 0,
   "parks whose outline could not be read": 0,
   "pass": 1,
@@ -75,13 +76,13 @@
  },
  "per state": {
   "US-KY": {
-   "candidates": 23,
-   "candidates (saved outline only)": 124,
-   "lines": 122,
-   "n-fers": 6,
-   "pass1": 196,
-   "pass2": 173,
-   "spots": 196
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 59,
+   "n-fers": 0,
+   "pass1": 75,
+   "pass2": 2,
+   "spots": 75
   }
  }
 }

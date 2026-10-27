@@ -1,0 +1,14 @@
+{
+ "about": "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.",
+ "parks": [
+  {
+   "checked": "2026-10-27",
+   "name": "Pine Mountain State Trail",
+   "note": "Missing boundary: check the official map",
+   "pin inside": [],
+   "ref": "US-10102",
+   "st": "KY",
+   "why": "Pine Mountain State Scenic Trail is a line park: no official trail line yet"
+  }
+ ]
+}
