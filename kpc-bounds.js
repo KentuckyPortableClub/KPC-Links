@@ -47,14 +47,17 @@
     ['bwma', 'WMAs & Public Hunting Areas', 'Kentucky Fish & Wildlife', 'ky-hunting-areas.geojson'],
     ['bsnp', 'State Nature Preserves', 'Kentucky Office of Nature Preserves', 'ky-nature-preserves.geojson'],
     ['bsna', 'State Natural Areas', 'Kentucky Office of Nature Preserves', 'ky-natural-areas.geojson'],
-    ['bdbnf', 'Daniel Boone National Forest', 'U.S. Forest Service', 'ky-dbnf.geojson', 'This is the forest’s outer (proclamation) line. It includes private land and towns, so it does not prove the spot is Forest Service land.'],
+    ['bdbnfo', 'Daniel Boone National Forest (Forest Service land)', 'U.S. Forest Service', 'ky-dbnf-owned.geojson', 'Forest Service-owned land from its ownership map (2015 data): land bought since may be missing, so check the official map.'],
+    ['bdbnf', 'Forest boundary line', 'U.S. Forest Service', 'ky-dbnf.geojson', 'Forest boundary line: not all land inside is public. Only the shaded Forest Service land is the park.'],
     ['bnps', 'National Park Service', 'National Park Service', 'ky-nps.geojson'],
     ['bwild', 'Wild River Corridors', 'Kentucky Office of Nature Preserves', 'ky-wild-rivers.geojson'],
     ['bwilder', 'Wilderness Areas', 'U.S. Forest Service', 'ky-wilderness.geojson', 'Federal wilderness: no motorized equipment (generators), group size limits.'],
     ['bfws', 'Wildlife Refuges & Fish Hatcheries', 'U.S. Fish & Wildlife Service', 'ky-fws.geojson', 'Some refuge areas close by season. Check the refuge page.'],
     ['bpad', 'Official outline (USGS PAD-US)', 'USGS PAD-US (official land records)', 'ky-padus-parks.geojson'],
     ['bkpc', 'OpenStreetMap outline (unofficial)', 'OpenStreetMap (traced, not official)', 'ky-kpc-drawn.geojson', 'Outline traced from OpenStreetMap because this park has no official map file. Not official.']
-  ].map(([k, name, agency, file, note]) => ({ k, name, agency, file, note, kpc: k === 'bkpc', proc: k === 'bdbnf' }));
+  ].map(([k, name, agency, file, note]) => ({ k, name, agency, file, note, kpc: k === 'bkpc', proc: k === 'bdbnf', own: k === 'bdbnfo' }));
+  /* Oct 27 (MAP DATA RULE SHEET B1 + B-G1, Fable's boundary review #1): for an agency-land park the park is the land the agency
+     OWNS (shaded); its outer line is only a faint dashed 'Forest boundary line: not all land inside is public' and never says 'inside'. */
   const ALIAS = {"Ohio River Islands National Wildlife Refuge": ["US-0608"], "Livingston County Wildlife Management Area and State Nature Preserve (Bissell Bluff SNP)": ["US-3823"], "Livingston County Wildlife Management Area and State Nature Preserve (Newman's Bluff SNP)": ["US-3823"], "Blue Licks State Park State Nature Preserve": ["US-1274"], "Knobs State Forest and WMA": ["US-4690"], "Little South Fork State Natural Area (Steele Hollow SNA)": ["US-7962"], "Clifty Wilderness": ["US-3801"], "Big South Fork National River and Recreation Area": ["US-0686"], "Bad Branch Wild River": ["US-10112"], "Big South Fork Wild River": ["US-10107"], "Cumberland River Wild River": ["US-10103"], "Green River Wild River": ["US-10105"], "Rock Creek Wild River": ["US-10111"], "Red River Wild River": ["US-10104"], "Rockcastle River Wild River": ["US-10106"], "Mammoth Cave National Park": ["US-0050"], "Abraham Lincoln Birthplace National Historical Park": ["US-0724"], "Camp Nelson National Monument": ["US-7950"], "Mill Springs Battlefield National Monument": ["US-7708"], "Cumberland Gap National Historical Park": ["US-0019"], "Fort Donelson National Battlefield": ["US-0703", "US-3790"], "Jefferson National Forest": ["US-4526", "US-10139"], "Pine Mountain State Scenic Trail": ["US-10102"], "Clay WMA": ["US-10124"], "Horsemill Branch WMA": ["US-11274"], "Little Sexton Creek WMA": ["US-12079"], "General Burnside Island State Park": ["US-1257"], "Green River State Natural Area (Rush Island Bottoms)": ["US-12752"], "Green River State Natural Area (Davis Bend)": ["US-12752"], "Dale Hollow Lake State Resort Park": ["US-1278"], "Big Rivers WMA and State Forest": ["US-3796"], "Marion County WMA and State Forest": ["US-3824"], "Miller Welch-Central Kentucky WMA": ["US-3825"], "Vernon-Douglas State Nature Preserve": ["US-7957"], "Dr. William H. Martin State Natural Area": ["US-7964"], "Otter Creek Outdoor Recreation Area": ["US-8144"], "Kentucky Ridge Forest WMA": ["US-10141"], "Tom Dorman State Nature Preserve": ["US-7958"]};
   const inKY = (la, lo) => la > 36.45 && la < 39.2 && lo > -89.6 && lo < -81.9;
   let kyFeat = null, kyData = null;
@@ -74,6 +77,7 @@
     for (const f of kyFeat || []) {
       const p = f.properties || {}, b = f._bb, m = new Set();
       if (p.ref) m.add(p.ref);
+      if (f._L.own) { f._names = m; m.forEach(r => byName.set(r, (byName.get(r) || []).concat(f))); continue; }   // owned parcels carry their park number
       (ALIAS[f._nm] || []).forEach(r => m.add(r));
       /* Oct 17 (Brandon: Yatesville Lake SP was taking Yatesville Lake WMA; Little South Fork SNA took the Wild River): a name match also needs the same KIND
          of place, and a Wild River corridor only matches a wild / scenic river park */
@@ -85,7 +89,7 @@
   function kyRefs(f) {
     const N = nameIndex(), P = kyData && kyData.parks || [], out = new Map(), b = f._bb;
     (f._names || []).forEach(r => { const x = P.find(q => q.c === r); if (x) out.set(r, x); });
-    if (!f._L.proc && f._L.k !== 'bwilder') for (const x of P) {
+    if (!f._L.proc && !f._L.own && f._L.k !== 'bwilder') for (const x of P) {
       if (out.has(x.c) || N.has(x.c)) continue;
       if (x.lo >= b[0] - .02 && x.lo <= b[2] + .02 && x.la >= b[1] - .02 && x.la <= b[3] + .02 && inside(x.la, x.lo, f.geometry)) out.set(x.c, x);
     }
