@@ -36,7 +36,14 @@
     '#kpcDoor .x{position:absolute;top:14px;right:16px;width:auto;min-height:0;margin:0;padding:6px 12px;background:#2a2310;color:#f6d58a;border:1px solid rgba(240,201,107,.5)}' +
     '[data-kpc-hide]{display:none!important}' +
     '.kpc-mem-btn{display:inline-flex!important;align-items:center;gap:5px;padding:6px 12px!important;border:1px solid rgba(240,201,107,.65)!important;border-radius:999px!important;color:#f6d58a!important;font-weight:900!important;font-size:12.5px!important;letter-spacing:.6px;white-space:nowrap;text-decoration:none!important}' +
-    '.kpc-mem-btn.on{background:rgba(240,201,107,.12)}@media(max-width:760px){.kpc-mem-btn{justify-content:center;margin:8px 0}}';
+    '.kpc-mem-btn.on{background:rgba(240,201,107,.12)}@media(max-width:760px){.kpc-mem-btn{justify-content:center;margin:8px 0}}' +
+    /* sign-out box (Oct 26 2026: a phone's browser can silently block confirm(), so the sign-out question is drawn in the page) */
+    '#kpcOut{position:fixed;inset:0;z-index:2147483001;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);font-family:Arial,Helvetica,sans-serif}' +
+    '#kpcOut .box{width:min(360px,100%);padding:24px 20px;background:#14100a;border:1px solid rgba(240,201,107,.6);border-radius:16px;color:#f3e6c8;text-align:center}' +
+    '#kpcOut p{margin:0 0 18px;font-size:16px;line-height:1.45}#kpcOut .row{display:flex;gap:10px}' +
+    '#kpcOut button{flex:1;min-height:46px;border-radius:10px;font:900 13px Arial,Helvetica,sans-serif;letter-spacing:.8px;cursor:pointer}' +
+    '#kpcOut .yes{background:#d5a63a;color:#111;border:0}#kpcOut .no{background:transparent;color:#f6d58a;border:1px solid rgba(240,201,107,.6)}' +
+    '.nav-dropdown a.kpc-signout{color:#f6d58a!important}';
   var st = document.createElement('style'); st.textContent = css; (document.head || de).appendChild(st);
   async function sha(t) { var b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return Array.prototype.map.call(new Uint8Array(b), function (x) { return x.toString(16).padStart(2, '0'); }).join(''); }
   function door(closable) {
@@ -74,8 +81,16 @@
   function memBtn() { var n = document.getElementById('kpc-main-nav') || document.querySelector('header.site-nav nav'); if (!n || n.querySelector('.kpc-mem-btn')) return;
     var b = document.createElement('a'); b.className = 'kpc-mem-btn' + (ok ? ' on' : ''); b.href = '#members';
     b.textContent = ok ? '✓ MEMBER' : '🔒 MEMBERS'; b.title = ok ? 'Signed in as a club member. Tap to sign out on this device.' : 'Club members: sign in';
-    b.onclick = function (e) { e.preventDefault(); if (ok) { if (confirm('Sign out of the members area on this device?')) window.kpcLogout(); } else door(true); };
-    var more = n.querySelector('.nav-more'); if (more) n.insertBefore(b, more); else n.appendChild(b); }
+    b.onclick = function (e) { e.preventDefault(); if (ok) askOut(); else door(true); };
+    var more = n.querySelector('.nav-more'); if (more) n.insertBefore(b, more); else n.appendChild(b);
+    /* members also get 'Sign out' at the bottom of See More, easy to reach on a phone */
+    var dd = document.querySelector('.nav-dropdown'), secs = dd && dd.querySelectorAll('.nav-drop-section');
+    if (ok && secs && secs.length && !dd.querySelector('.kpc-signout')) { var so = document.createElement('a'); so.className = 'kpc-signout'; so.href = '#signout'; so.setAttribute('role', 'menuitem');
+      so.innerHTML = '<span class="ni">&#128275;</span>Sign out (members)'; so.onclick = function (e) { e.preventDefault(); askOut(); }; secs[secs.length - 1].appendChild(so); } }
+  function askOut() { if (document.getElementById('kpcOut')) return; var o = document.createElement('div'); o.id = 'kpcOut'; o.setAttribute('data-keep-light', ''); o.setAttribute('role', 'dialog'); o.setAttribute('aria-modal', 'true');
+    o.innerHTML = '<div class="box"><p>Sign out of the members area on this device?</p><div class="row"><button type="button" class="no">CANCEL</button><button type="button" class="yes">SIGN OUT</button></div></div>';
+    o.querySelector('.yes').onclick = function () { window.kpcLogout(); }; o.querySelector('.no').onclick = function () { o.remove(); };
+    o.onclick = function (e) { if (e.target === o) o.remove(); }; document.body.appendChild(o); o.querySelector('.no').focus(); }
   function ready(fn) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
   if (!isPub && !ok) { de.classList.add('kpc-door'); ready(function () { door(false); }); return; }
   ready(function () {
