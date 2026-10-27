@@ -58,6 +58,11 @@ PREC = {1: 5, 2: 5, 3: 6, 4: 6}[PASS]
 # overlap must ENTIRELY contain the activator + station; 50 yd still clears map error); 50-100 yd = 'small overlap'.
 SHRINK = 22.86            # 25 yards in from every edge = a spot 50 yards across
 SMALL_M = 91.44           # under 100 yards across = 'small overlap: tight fit, check carefully'
+# Oct 27 4:59 AM (Brandon, rule 4 tiers): 25-50 yards across = a separate VERY TIGHT list (members only, 'could be map error: check
+# both official maps on the ground'); under 25 yards = not shown. 'Across' = a circle that size fits: shrink by half from every edge.
+TIGHT_M = 45.72           # 50 yards: below this = very tight
+TIGHT_SHRINK = 11.43      # 12.5 yards in from every edge = a spot 25 yards across (the smallest kept)
+VERY_TIGHT = 'very tight: could be map error: check both official maps on the ground'
 STRETCH = 0.0             # trails + rivers: POTA's 100-ft rule only (no KPC 'length along the line')
 # POTA's trail rule (Activator Guide, docs.pota.app): 'Your station must be located entirely within 100 feet (30.5m) of the
 # trail'; KPC's guide applies the same to river parks (within 100 ft of the water). So a trail / river counts with another
@@ -837,7 +842,7 @@ def area_spots(G, refs, box):
             if not ovf.any(): break
         if ovf is None or not ovf.any(): continue
         dist = dt(ovf) * CELL
-        core = (dist >= SHRINK + CELL * (1.0 if PASS == 3 else .5)).astype(np.uint8)   # pass 3 strict, 1-2 a little lenient (screens)
+        core = (dist >= TIGHT_SHRINK + CELL * (1.0 if PASS == 3 else .5)).astype(np.uint8)   # pass 3 strict, 1-2 a little lenient (screens); 25-yard floor (rule 4)
         if not core.any(): continue
         n, lab = cv2.connectedComponents(ovf, connectivity=8)
         for L in sorted(set(lab[core > 0].tolist())):
@@ -850,8 +855,7 @@ def area_spots(G, refs, box):
             shape = [F.ll(int(c), int(r)) for c, r in ap]
             w = round(float(d.max()) * 2)
             out.append({'refs': sorted(refs), 'kind': 'area', 'center': F.ll(int(c0), int(r0))[::-1],
-                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape,
-                        **({'small': 'small overlap: tight fit, check carefully'} if w < SMALL_M else {})})
+                        'acres': round(int(comp.sum()) * CELL * CELL / 4046.86, 1), 'wide_m': w, 'shape': shape})
     return merge(out)
 
 
@@ -1203,8 +1207,9 @@ def slim(spots):
     America keeps an outline of at most 80 points."""
     for s in spots:
         if s.get('kind') == 'area' and s.get('wide_m'):
-            if s['wide_m'] < SMALL_M: s['small'] = 'small overlap: tight fit, check carefully'
-            else: s.pop('small', None)
+            s.pop('small', None); s.pop('tier', None)
+            if s['wide_m'] < TIGHT_M: s['tier'] = VERY_TIGHT
+            elif s['wide_m'] < SMALL_M: s['small'] = 'small overlap: tight fit, check carefully'
         if s.get('shape'):
             if not s.get('box'): s['box'] = [round(v, 5) for v in bbox_lines([s['shape']])]
             if REGION == 'world': s.pop('shape', None)
@@ -1228,7 +1233,7 @@ def land_check(s, G):
         if r not in G: continue
         m = pmask(F, r, G); ov = m if ov is None else ov & m
     if ov is None or not ov.any(): return 'ok'
-    need = SHRINK + cell
+    need = TIGHT_SHRINK + cell
     try: closed = F.area(pad_closed(F.bounds()))
     except Exception as e: LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)  # noqa: BLE001
     open_ = ov & (1 - closed)
@@ -1275,6 +1280,8 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     if v == 'drop': s['status'] = 'dropped: ' + why; return
     if v == 'not sure': s['status'] = 'not sure: ' + why; return
     s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
+    if s['kind'] == 'area' and (s.get('wide_m') or 0) < TIGHT_M:
+        s['status'] = VERY_TIGHT; s['list'] = 'Very tight (members only)'   # rule 4: its own list, never the main one
     s['access'] = nearest_access(s, st_of)
     try: s['access_pin'] = access_pin(s, G, LN, st_of)
     except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
@@ -1403,7 +1410,7 @@ def main():
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
-        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners')))
+        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners', 'very tight')))
         prev = [s for d in files.values() for s in d.get('spots', []) if todo(s)]
         refs = sorted({r for s in prev for r in s['refs'] if r in parks})
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
@@ -1463,7 +1470,9 @@ def main():
         if not re.fullmatch(FILES, f.stem): continue
         sp = json.load(open(f)).get('spots', [])
         if sp: per[f.stem] = {'spots': len(sp), 'pass1': len(sp), 'pass2': sum(1 for s in sp if s['passes'][1]), 'candidates': sum(1 for s in sp if s['status'] == 'candidate'), 'candidates (saved outline only)': sum(1 for s in sp if s['status'] == 'candidate (saved outline only)'),
-                              'n-fers': sum(1 for s in sp if len(s['refs']) > 2), 'lines': sum(1 for s in sp if s['kind'] != 'area')}
+                              'n-fers': sum(1 for s in sp if len(s['refs']) > 2), 'lines': sum(1 for s in sp if s['kind'] != 'area'),
+                              'very tight': sum(1 for s in sp if str(s.get('status', '')).startswith('very tight')), 'not sure': sum(1 for s in sp if str(s.get('status', '')).startswith('not sure')),
+                              'water only': sum(1 for s in sp if str(s.get('status', '')).startswith('water only'))}
     rep['about'] = 'Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.'
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
     rep['per state'] = per
@@ -1475,7 +1484,7 @@ def main():
 ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, "
          "notes/mapping.md): the park = where its designation legally applies (national forests + grasslands = Forest Service-OWNED land only, "
          "never proclamation lines); public land open to the public; layered = real, side by side = not (ownership step: PAD-US / CPCAD at the "
-         "spot); a patch 50 yards across in every park ('small' = 50-100 yards); line-only trails / rivers by POTA's 100-ft rule from the line "
+         "spot); a patch 50 yards across in every park ('small' = 50-100 yards; 25-50 yards = the separate 'very tight' list, members only; under 25 = not kept); line-only trails / rivers by POTA's 100-ft rule from the line "
          "or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or "
          "kayak' are separate lists, never the main one; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with "
          "no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
