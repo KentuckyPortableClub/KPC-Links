@@ -220,9 +220,9 @@
   /* Brandon Oct 27 3:13 PM ('The private property in a park needs better clarification'): tap any spot on the map = which park
      land it is on by the official outlines. Grey inside a park's outer line = land the park does NOT own or manage (private
      property or another owner): not part of the park, even though it sits inside the park. */
-  /* Brandon Oct 27 3:37 PM ('Drop a pin … options to open in KPC Trip Planner'): the US Trip Planner's shared-trip link = the pin + both parks */
+  /* Brandon Oct 27 3:37 PM ('Drop a pin … options to open in KPC Trip Planner'): the US Trip Planner's shared-trip link = the dropped pin */
   function tripLink(lat, lon) {
-    var t = 'pin:' + lat.toFixed(5) + ',' + lon.toFixed(5) + ',' + encodeURIComponent('Overlap pin ' + cur.refs.join(' + ')) + '~' + cur.refs.join('~');
+    var t = 'pin:' + lat.toFixed(5) + ',' + lon.toFixed(5) + ',' + encodeURIComponent('Dropped pin');   /* Brandon 3:41 PM: open with just the dropped pin */
     return '<p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="kpc-planner-us.html?t=' + encodeURIComponent(t) + '">🧭 OPEN IN KPC TRIP PLANNER</a> · <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '">DIRECTIONS</a></p>';
   }
   function landAt(lat, lon) {
