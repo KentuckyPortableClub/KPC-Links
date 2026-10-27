@@ -11,7 +11,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var NS = 'http://www.w3.org/2000/svg', YD = 1.09361, FT = 3.28084, BAND = 30.48;   // POTA's 100 ft from a line = 30.48 m
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  var SHORT = '⚠️ Possible POTA overlap only. We think these POTA parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';
+  var SHORT = '⚠️ Parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';
   var COL = ['#E69F00', '#56B4E9', '#009E73', '#F0E442', '#0072B2', '#D55E00', '#CC79A7', '#9A9A9A', '#8E6CEF'];   // colour-blind safe set
   var DASH = ['', '16 7', '4 6', '16 6 3 6', '2 8', '22 6 4 6 4 6', '10 4', '1 5 9 5', '26 9'];
   var CONF = { off: ['bg-off', 'OFFICIAL MAPS BOTH'], nat: ['bg-nat', 'ONE FROM A NATIONAL DATABASE'], wld: ['bg-wld', 'UNOFFICIAL OR WORLD DATA (trusted less)'] };

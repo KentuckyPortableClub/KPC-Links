@@ -518,8 +518,8 @@ def visible(mid): return full or int(mid) >= oldest
 held = state.setdefault('held', {})          # mid -> {'why', 'at'}
 withnotice = state.setdefault('notice_add', [])   # mids published with the overlap notice added by the relay
 TWOFER = re.compile(r'(?i)\b(?:2|3|4|two|three)\s*-?\s*fers?\b|\bmulti[- ]park\b|\bpark overlap|\boverlapping (?:parks|boundar)|\bparks?\b[^.\n]{0,40}\boverlap')
-NOTICE_OK = re.compile(r'(?i)possible POTA overlap only|research aid, not a ruling')
-SHORT_NOTICE = ("⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. "
+NOTICE_OK = re.compile(r"(?i)possible POTA overlap only|boundaries may overlap here, but we can.t confirm|research aid, not a ruling")  # Oct 27: Brandon's new short notice
+SHORT_NOTICE = ("⚠️ Parks' boundaries may overlap here, but we can't confirm it. "
                 "Check both official boundary maps and make your own call before you count it.")
 PLACEWORD = re.compile(r'(?i)web ?site|face ?b|\bfb\b|discord|groups?|subscri|e-?mail|camp ?out|event|condition|announce|schedul|activation')
 STAFF_HOOK = ((ENV('KPC_ADMIN_WEBHOOK') or '').split() or [''])[0]

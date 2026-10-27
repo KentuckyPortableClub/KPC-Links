@@ -3,7 +3,7 @@
 (KentuckyPortableClub/KPC-Data data/fers/US-KY.json, after chat 8's final look). Usage: build.py <US-KY.json>
 Keeps Brandon's field-checked points (old rows with the same parks). Chat 2, Oct 27 2026."""
 import json, re, sys, math
-SHORT = "⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it."
+SHORT = "⚠️ Parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it."
 PAGE = 'kpc-multi-park-spots.html'
 d = json.load(open(sys.argv[1]))
 s = open(PAGE).read()

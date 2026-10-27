@@ -2081,9 +2081,9 @@ ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by t
          "or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or "
          "kayak' are separate lists, never the main one; n-fers up to 9; 'Same land, two park numbers' (two numbers on one official outline) is shown with that label; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with "
          "no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
-         "and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. "
-         "We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your "
-         "own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.")
+         "and status 'candidate' before a person looks. Wording when shown (house rule, Oct 27): '⚠️ Parks' boundaries may overlap here, but we can't confirm it. "
+         "Check both official boundary maps and make your "
+         "own call before you count it.' Tool pages carry the FULL notice from .claude/notes/notices.md.")
 
 if __name__ == '__main__':
     try: main()
