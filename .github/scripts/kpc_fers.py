@@ -1343,6 +1343,27 @@ def find_spots(G, LN, pairs, counts):
     return spots
 
 
+def near_pairs(G, pairs, spots, gap_m=100.0):
+    """MISSING CHECK (HQ Oct 27 3:23 PM): area pairs with no spot whose outlines still come within gap_m of each other: an
+    outside reason to expect a 2-fer, so the expected list says why there is none. [[a, b, metres]]"""
+    have = {tuple(x['refs'][:2]) for x in spots}
+    out = []
+    for a, b in sorted(pairs):
+        if (a, b) in have or a not in G or b not in G: continue
+        box = inter(bbox_groups(G[a]), bbox_groups(G[b]), gap_m / 90000 * 2)
+        if not box: continue
+        try:
+            f = Frame(box, max(10.0, math.sqrt(max(1.0, (box[2] - box[0]) * 111320 * math.cos(math.radians(box[1])) * (box[3] - box[1]) * 110574) / 4e6)), gap_m)
+            if f.cell > gap_m / 2: continue
+            da = dt(1 - f.area(G[a]), outside=1) * f.cell
+            mb = f.area(G[b])
+            if mb.any():
+                d = float(da[mb > 0].min())
+                if d <= gap_m: out.append([a, b, round(d)])
+        except Exception as e: LOG.append(f'near {a}+{b}: {str(e)[:50]}')  # noqa: BLE001
+    return out
+
+
 def same_outline(parks):
     seen, out = {}, []
     for ref, p in parks.items():
@@ -1924,6 +1945,14 @@ def main():
         counts['parks done by the box test'] = len(boxes) - len(touched)
         counts['pairs whose boxes touch'] = len(pairs)
         spots = find_spots(G, LN, pairs, counts)
+        # MISSING CHECK (HQ Oct 27 3:23 PM): what pass 1 looked at, which parks it could not look at and why, and the pairs whose
+        # outlines nearly touch, so kpc_fers_expected.py can say FOUND / DROPPED / NEVER LOOKED AT for every expected pair
+        try:
+            area = 'ky' if REGION == 'ky' else '-'.join(sorted(ONLY)) if ONLY else REGION
+            save_json(OUT / f'looked-{area}.json', {'about': 'What the 2-fer bot looked at in pass 1 (for the missing check).', 'date': today,
+                                                    'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
+                                                    'near100': near_pairs(G, pairs, spots), 'parks': sorted(parks)}, indent=None)
+        except Exception as e: LOG.append(f'looked file: {str(e)[:80]}')  # noqa: BLE001
         try:   # rule 12: parks with no official boundary whose pin sits inside another park = 'Missing boundary' list
             miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)
             save_json(OUT / f'missing-{REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
