@@ -26,7 +26,8 @@ KPC's extra rules (Brandon, Oct 26):
 - n-fers: a 3-fer is three parks whose boundaries may overlap at the SAME place (never a chain); same for 4.
 - Two park numbers joined to the SAME outline record = an answer-key mistake: listed in data/fers/same-outline.json,
   never a spot.
-- Both pins inside their own outlines (checked on the finest shapes, pass 3).
+- Oct 27: THE 2-FER RULES FOR THE WHOLE WORLD (notes/mapping.md) are built in (see the block above 'rasters'): agency-land parks
+  = owned land only, public + open, ownership step, river edges, water-only + missing-boundary lists, pins never count.
 
 Three passes, each a different way; a spot is a CANDIDATE only when all three agree:
   PASS=1  the saved outlines (PAD-US copy in the boundary cache, saved Canadian outlines, saved trail lines) + the state
@@ -139,6 +140,9 @@ def water_prefixes():
     except Exception: pass  # noqa: BLE001
 
 
+SKIPWHY = {}
+
+
 def official_parks(PIN):
     """{ref: {'st', 'ids': [record ids], 'names': {id: name}}} + why parks were left out."""
     water_prefixes()
@@ -147,7 +151,8 @@ def official_parks(PIN):
         k = json.load(open('data/ky-answer-key.json'))['parks']
         for ref, p in k.items():
             tr = [t for t in p.get('tracts') or [] if t[0] not in ('bdbnf', 'bkpc')]   # the forest's proclamation line and KPC-drawn outlines are not proof
-            if not tr: skip['no outline'] += 1; continue
+            if not tr: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
+            if ref in KY_NOT_SURE: skip['no outline'] += 1; SKIPWHY[ref] = KY_NOT_SURE[ref]; continue   # ruling Oct 27: a line park, not its land tracts
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': 'US-KY', 'ids': [f'{t[0]}|{t[1]}' for t in tr], 'names': {f'{t[0]}|{t[1]}': t[1] for t in tr}}
             if all(t[0] != 'bpad' for t in tr): AGENCY.add(ref)   # Kentucky's agency files (state parks, KDFWR, nature preserves, NPS, FWS)
@@ -156,15 +161,15 @@ def official_parks(PIN):
         if 'US-4484' in PIN:
             parks['US-4484'] = {'st': 'US-KY', 'ids': ['padus|Daniel Boone National Forest'], 'names': {'padus|Daniel Boone National Forest': 'Daniel Boone National Forest'}}
             skip['no outline'] -= 1
+            OWNED['US-4484'] = 'usfs'   # ruling Oct 27: Daniel Boone = Forest Service-OWNED land only (Basic Ownership)
         skip.pop('Kentucky (own list)', None)
         return parks, skip
     if REGION == 'world':
         for f in sorted(pathlib.Path('data/world-key').glob('[A-Z][A-Z].json')):
             for ref, p in json.load(open(f))['parks'].items():
                 m = p.get('m') or []
-                if not m: skip['no outline'] += 1; continue
-                if p.get('far') == 'well outside': skip['pin well outside'] += 1; continue
-                if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; continue
+                if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
+                if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
                 if ref not in PIN: skip['no pin'] += 1; continue
                 parks[ref] = {'st': 'W-' + f.stem, 'ids': [x[0] for x in m], 'names': {str(i): x[1] for i, x in enumerate(m)}, 'm': m}
         skip.pop('Kentucky (own list)', None)
@@ -174,12 +179,12 @@ def official_parks(PIN):
         if st == 'US-KY': continue
         for ref, p in json.load(open(f))['parks'].items():
             m = p.get('m') or []
-            if not m: skip['no outline'] += 1; continue
-            if p.get('far') == 'well outside': skip['pin well outside'] += 1; continue
+            if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
             if any('approx' in str(x[3]) for x in m if len(x) > 3) or any(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() in WATER for x in m):
-                skip['approximate'] += 1; continue
+                skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': st, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
+            if AGENCY_LAND.search(PIN[ref][0]) and not re.search(r'wilderness|wild and scenic', PIN[ref][0], re.I): OWNED[ref] = 'usfs'   # rule 1b
             # rule (c): the agency's OWN layer (state parks / WMA / NPS / FWS / river corridor maps), joined by name -> its
             # outline outranks POTA's pin. PAD-US joins (a national compilation) and BLM planning areas keep the pin test.
             if all(isinstance(x[0], str) and re.match(r'[a-z]+', x[0]).group() not in ('rst', 'hma', 'rma') and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3):
@@ -188,9 +193,8 @@ def official_parks(PIN):
         if not re.fullmatch(r'CA-[A-Z]{2}', f.stem): continue
         for ref, p in json.load(open(f))['parks'].items():
             m = p.get('m') or []
-            if not m: skip['no outline'] += 1; continue
-            if p.get('far') == 'well outside': skip['pin well outside'] += 1; continue
-            if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; continue
+            if not m: skip['no outline'] += 1; SKIPWHY[ref] = 'no official boundary'; continue
+            if any('approx' in str(x[3]) for x in m if len(x) > 3): skip['approximate'] += 1; SKIPWHY[ref] = 'approximate outline only (never confirms)'; continue
             if ref not in PIN: skip['no pin'] += 1; continue
             parks[ref] = {'st': f.stem, 'ids': [x[0] for x in m], 'names': {str(x[0]): x[1] for x in m}}
             if all(isinstance(x[0], str) and str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3): AGENCY.add(ref)   # provincial / Parks Canada layer, not CPCAD
@@ -307,12 +311,21 @@ def download(parks, refs, det, prec):
                     if o is not None: found.setdefault(int(o), []).append((a, esri_rings(f.get('geometry'))))
                 time.sleep(.3)
         for ref, rid, oid, chk in items:
-            cand = found.get(oid) or []
-            hit = next((r for a, r in cand if r and (not chk or name_ok(parks[ref]['names'].get(rid), a))), None)
-            if hit: got.setdefault(ref, []).append(hit)
-            else: bad.add(ref)
+            cand = [(a, r) for a, r in (found.get(oid) or []) if r and (not chk or name_ok(parks[ref]['names'].get(rid), a))]
+            if not cand: bad.add(ref); continue
+            a, r = cand[0]
+            use, why = fws_use(a) if FWS in urls else pad_use(a, ref) if PADUS in urls else (True, None)
+            if use: got.setdefault(ref, []).append(r)
+            else: LEFT.setdefault(ref, []).append(f'{parks[ref]["names"].get(rid) or rid}: {why}')   # rule 2: left out, not 'unreadable'
     for ref in bad: got.pop(ref, None)
+    for ref in {i[0] for v in want.values() for i in v} - bad - set(got):
+        if ref in LEFT: bad.add(ref)   # every record of this park was left out (all easement / closed): no public land to test
+    today = time.strftime('%Y-%m-%d')
+    for ref in got: MAPDATE[ref] = f'downloaded {today}'
     return got, bad
+
+
+SAVED_LEFT = {}
 
 
 def saved_us(parks):
@@ -321,8 +334,12 @@ def saved_us(parks):
     for f in CACHE_US.glob('US-*.json.gz'):
         try:
             with gzip.open(f, 'rt', encoding='utf-8') as fh:
-                for r in json.load(fh).get('recs') or []:
-                    if r.get('_r'): by[r.get('OBJECTID')] = r['_r']
+                blob = json.load(fh)
+                for r in blob.get('recs') or []:
+                    if not r.get('_r'): continue
+                    use, why = pad_use(r) if isinstance(r.get('OBJECTID'), int) else (True, None)
+                    if use: by[r.get('OBJECTID')] = r['_r']
+                    else: SAVED_LEFT[r.get('OBJECTID')] = why
         except Exception: pass  # noqa: BLE001
     return by
 
@@ -432,6 +449,287 @@ def ky_geom(parks, refs):
     return out, bad
 
 
+# ------------------------------------------------------------------ THE 2-FER RULES FOR THE WHOLE WORLD (Brandon + HQ, Oct 27)
+# notes/mapping.md '2-FER RULES FOR THE WHOLE WORLD'. (1) the park = where its designation legally applies: 'agency-land'
+# parks (US national forests + grasslands) = only the land the agency OWNS (Forest Service Basic Ownership), never the outer
+# line; PAD-US Proclamation records are never land. (2) public + open: easements (private land), closed areas, tribal and
+# military land not open to the public are left out; 'restricted' access = a note. (3)/(14) layered = real, side by side =
+# not: the OWNERSHIP STEP (PAD-US Fee + Designation at the spot; Canada CPCAD) decides LAYERED / LINE MISMATCH / NOT SURE.
+# (5) line-only rivers from the river EDGE (USGS NHD High Resolution). (6) pins never count. (7) NOT SURE kept out.
+# (9) water only = its own list. (10) a permanent no-entry area cannot be the spot. (12) missing boundary = its own list.
+# (13) every decided spot carries the date it was checked + the map dates.
+RIVER_PAD = 150.0          # pass 1 screen for line-only rivers (no water areas yet): a river up to 300 m wide
+CURG = {}                  # the outlines in use (find_spots sets it)
+OWNED = {}                 # ref -> 'usfs' = agency-land park: only Forest Service-owned land counts
+AGENCY_LAND = re.compile(r'national forests?\b|national grasslands?\b', re.I)
+FSBO = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0'
+FSO = {'feat': {}, 'tile': {}, 'f': None}
+ACC = {}                   # ref -> notes ('restricted access (PAD-US)')
+LEFT = {}                  # ref -> records left out and why (easement, closed, proclamation…)
+MAPDATE = {}               # ref -> where / when its outline came from
+
+
+def fs_owned(box):
+    """Forest Service-OWNED land touching box (USDA Basic Ownership, the agency's own layer): one ring group per parcel.
+    Fetched in 0.25-degree tiles, each parcel once (a whole forest can be one big multipart feature)."""
+    try:
+        if FSO['f'] is None:
+            fl = [x['name'] for x in get(FSBO, {'f': 'json'}).get('fields') or []]
+            FSO['f'] = next((x for x in fl if x.lower() == 'ownerclassification'), 'ownerclassification')
+        out = []
+        for i in range(int(math.floor(box[0] / .25)), int(math.floor(box[2] / .25)) + 1):
+            for j in range(int(math.floor(box[1] / .25)), int(math.floor(box[3] / .25)) + 1):
+                if (i, j) not in FSO['tile']:
+                    tb = [i * .25, j * .25, (i + 1) * .25, (j + 1) * .25]
+                    ids = get(FSBO + '/query', {'where': f"{FSO['f']} = 'USDA FOREST SERVICE'", 'geometry': ','.join(map(str, tb)),
+                                                'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                                                'returnIdsOnly': 'true', 'f': 'json'}).get('objectIds') or []
+                    new = [o for o in ids if o not in FSO['feat']]
+                    for k in range(0, len(new), 10):
+                        j2 = get(FSBO + '/query', {'objectIds': ','.join(map(str, new[k:k + 10])), 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
+                                                    'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, timeout=300)
+                        oidf = j2.get('objectIdFieldName') or 'objectid'
+                        for f in j2.get('features') or []:
+                            a = f.get('attributes') or {}
+                            o = a.get(oidf, next((v for kk, v in a.items() if kk.lower() == 'objectid'), None))
+                            FSO['feat'][o] = esri_rings(f.get('geometry'))
+                    FSO['tile'][(i, j)] = ids
+                out += [FSO['feat'][o] for o in FSO['tile'][(i, j)] if FSO['feat'].get(o)]
+        return out
+    except Exception as e:  # noqa: BLE001
+        LOG.append(f'Forest Service ownership: {str(e)[:80]}'); return None
+
+
+def pmask(F, r, G):
+    """The park's land in raster F: its outline, and for an agency-land park only the land the agency owns."""
+    m = F.area(G[r])
+    if r in OWNED and m.any():
+        own = fs_owned(F.bounds())
+        if own is None: OWNED_FAIL.add(r); return np.zeros_like(m)   # no ownership map = no spot (NOT SURE, not a guess)
+        m &= F.area(own)
+    return m
+
+
+OWNED_FAIL = set()
+NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer'
+NHDL = {}
+NHDC = {}
+
+
+def nhd_water(box, rivers_only=False):
+    """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries)."""
+    try:
+        if not NHDL:
+            for L in get(NHD, {'f': 'json'}).get('layers') or []:
+                nm = L.get('name', '').lower()
+                if nm == 'nhdarea': NHDL['area'] = L['id']
+                if nm == 'nhdwaterbody': NHDL['wb'] = L['id']
+        k = (tuple(round(v, 3) for v in box), rivers_only)
+        if k in NHDC: return NHDC[k]
+        out = []
+        for lay, where in (('area', 'FType = 460'), ('wb', 'FType IN (390, 436, 493)')):
+            if lay not in NHDL or (rivers_only and lay == 'wb'): continue
+            j = get(f'{NHD}/{NHDL[lay]}/query', {'where': where, 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                                 'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
+                                                 'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, timeout=180)
+            out += [esri_rings(f.get('geometry')) for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
+        NHDC[k] = out
+        return out
+    except Exception as e:  # noqa: BLE001
+        LOG.append(f'NHD water: {str(e)[:80]}'); return []
+
+
+def pad_use(a, ref=None):
+    """Rule 2 + 6 on a PAD-US record: (use it?, why not). Proclamation lines and easements are not public land; a closed
+    record cannot be the spot; tribal or military land only when PAD-US says open."""
+    cat = str(a.get('Category') or '')
+    acc = str(a.get('Pub_Access') or '')
+    own = str(a.get('Own_Type') or ''); mang = str(a.get('Mang_Name') or '') + ' ' + str(a.get('Own_Name') or '')
+    if cat == 'Proclamation': return False, 'proclamation line (not land)'
+    if cat == 'Easement': return False, 'easement (private land)'
+    if acc == 'XA': return False, 'closed to the public (PAD-US)'
+    if (own == 'TRIB' or re.search(r'\bDOD\b|\bARMY\b|\bNAVY\b|\bUSAF\b|\bUSMC\b', mang)) and acc != 'OA': return False, 'tribal / military land not open to the public'
+    if acc == 'RA' and ref: ACC.setdefault(ref, set()).add('restricted access (PAD-US): check the agency rules')
+    return True, None
+
+
+FWS_FEE = re.compile(r'^\s*(f|fee)\b', re.I)
+
+
+def fws_use(a):
+    """FWS Interest records: only FEE land (an easement is private land)."""
+    for k, v in a.items():
+        if re.fullmatch(r'inttype1?|interest_?type', k, re.I) and v not in (None, ''):
+            return (True, None) if FWS_FEE.search(str(v)) else (False, f'FWS interest {v} (not fee land)')
+    return True, None
+
+
+def pad_at(lon, lat):
+    """PAD-US records (Fee, Designation, Easement, Proclamation) at one point."""
+    j = get(PADUS, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                    'outFields': 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Own_Name,Mang_Type,Mang_Name,Category,Des_Tp,Pub_Access', 'returnGeometry': 'false', 'f': 'json'})
+    return [f.get('attributes') or {} for f in j.get('features') or []]
+
+
+def pad_closed(box):
+    j = get(PADUS, {'where': "Pub_Access = 'XA' AND Category IN ('Fee','Designation')", 'geometry': ','.join(map(str, box)), 'geometryType': 'esriGeometryEnvelope',
+                    'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'Unit_Nm', 'returnGeometry': 'true', 'outSR': 4326,
+                    'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'})
+    return [esri_rings(f.get('geometry')) for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
+
+
+def cpcad_at(lon, lat):
+    j = get(CPCAD, {'geometry': f'{lon},{lat}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
+                    'outFields': '*', 'returnGeometry': 'false', 'f': 'json'})
+    return [f.get('attributes') or {} for f in j.get('features') or []]
+
+
+def owner_of_pad(a):
+    """An owner key from a PAD-US record: federal land by agency (Forest Service and Park Service land are different owners)."""
+    t = str(a.get('Own_Type') or '')
+    if t == 'FED': return 'FED:' + (str(a.get('Own_Name') or '') or str(a.get('Mang_Name') or '')).upper()
+    return {'STAT': 'STATE', 'LOC': 'LOCAL', 'PVT': 'PRIVATE', 'NGO': 'PRIVATE', 'TRIB': 'TRIBAL', 'JNT': 'JOINT'}.get(t, t or '?')
+
+
+def owner_of_text(t):
+    t = str(t or '')
+    if re.search(r'forest service', t, re.I): return 'FED:USFS'
+    if re.search(r'corps of engineers', t, re.I): return 'FED:USACE'
+    if re.search(r'fish (and|&) wildlife service', t, re.I): return 'FED:FWS'
+    if re.search(r'national park service', t, re.I): return 'FED:NPS'
+    if re.search(r'tennessee valley', t, re.I): return 'FED:TVA'
+    if re.search(r'\barmy\b|military|department of defense', t, re.I): return 'FED:DOD'
+    if re.search(r'parks canada|government of canada|environment (and climate change )?canada|federal', t, re.I): return 'FED:CANADA'
+    if re.search(r'state|kentucky department|commonwealth|province|provincial|ministry|government of (?!canada)', t, re.I): return 'STATE'
+    if re.search(r'county|city|municipal|town|regional district|conservation authority', t, re.I): return 'LOCAL'
+    if re.search(r'llc|l\.l\.c|inc\b|lllp|private|company|university of the|land trust|conservancy|group\b', t, re.I): return 'PRIVATE'
+    return ''
+
+
+KYOWN = {}
+
+
+def ky_owner(ref, parks):
+    """Kentucky owner key of a park from its official files: state parks / nature preserves / natural areas = the state;
+    NPS / FWS; Daniel Boone = Forest Service-owned; a WMA = the owner on KDFWR's own page (data/ky-wma-owners.json);
+    wild river / wilderness corridors = a designation ('' = layered on whoever owns the ground)."""
+    if not KYOWN:
+        try:
+            for n, v in json.load(open('data/ky-wma-owners.json'))['wmas'].items():
+                t = v.get('type') or ''
+                KYOWN[low(n)] = {'State': 'STATE', 'Local': 'STATE', 'Corps': 'FED:USACE', 'Private': 'PRIVATE', 'University': 'UNIVERSITY'}.get(t) or owner_of_text(v.get('says')) or ''
+        except Exception: KYOWN['_'] = ''  # noqa: BLE001
+    if ref == 'US-4484': return 'FED:USFS'
+    srcs = [str(rid).split('|', 1) for rid in parks[ref]['ids']]
+    for src, nm in srcs:
+        if src == 'bstate' or src in ('bsnp', 'bsna'): return 'STATE'
+        if src == 'bnps': return 'FED:NPS'
+        if src == 'bfws': return 'FED:FWS'
+        if src == 'bwma':
+            if ref in KY_FS_MANAGED: return 'FED:USFS'
+            return KYOWN.get(low(nm), '?')
+    return ''   # bwild / bwilder: a designation
+
+
+def park_owner(ref, parks):
+    """'' = a designation / management record (layers on someone else's land); '?' = not known; else the owner key."""
+    if not (parks.get(ref) or {}).get('ids'): return ''   # a line park (trail / water trail): a designation along the line
+    if REGION == 'ky': return ky_owner(ref, parks)
+    if ref in OWNED: return 'FED:USFS'
+    p = parks.get(ref) or {}
+    if p.get('st', '').startswith('CA-'):
+        return OWN_CA.get(ref, '?')
+    fee, des = OWN.get(ref, (set(), False))
+    if fee: return sorted(fee)[0] if len(fee) == 1 else '?'
+    return '' if des else '?'
+
+
+OWN_CA = {}
+
+
+def ownership_step(s, parks, PIN):
+    """Rule 3 + 14: ('ok' | 'drop' | 'not sure', why). LAYERED (one owner under every designation) = real; LINE MISMATCH
+    (a park's own land is a different owner than the ground at the spot) = drop; the data cannot tell = NOT SURE."""
+    refs = s['refs']
+    owners = {r: park_owner(r, parks) for r in refs}
+    real = {r: o for r, o in owners.items() if o not in ('', '?')}
+    if len(set(real.values())) <= 1 and '?' not in owners.values() and not any(r in OWNED for r in refs):
+        return 'ok', 'one owner (or designations on it): layered'
+    if REGION == 'world': return 'not sure', 'owners differ; no land register read for this country yet'
+    la, lo = s['center']
+    try: recs = cpcad_at(lo, la) if refs[0].startswith('CA-') else pad_at(lo, la)
+    except Exception as e: return 'not sure', f'ownership map did not answer ({str(e)[:40]})'  # noqa: BLE001
+    if refs[0].startswith('CA-'):
+        here = {owner_of_text(' '.join(str(v) for k, v in a.items() if re.search(r'owner', k, re.I))) for a in recs} - {''}
+    else:
+        here = {owner_of_pad(a) for a in recs if a.get('Category') == 'Fee'}
+    if len(here) > 1: return 'not sure', 'the ownership map shows two owners at the spot: ' + ', '.join(sorted(here))
+    ground = next(iter(here), '')
+    if not ground and REGION == 'ky' and 'US-4484' in refs: ground = 'FED:USFS'   # the Daniel Boone mask = Forest Service-owned land
+    bad, unk = [], []
+    for r in refs:
+        o = owners[r]
+        if o == '': continue                                             # a designation layers on the ground's owner
+        if covered(r, recs, parks, PIN): continue                        # its own record is at the spot (a lease / agreement shows here)
+        if o == '?': unk.append(r); continue
+        if ground and o != ground: bad.append(f"{PIN.get(r, [r])[0]} is {o.split(':')[-1].lower()} land, the ground here is {ground.split(':')[-1].lower()}")
+        if not ground and len(set(real.values())) > 1: bad.append('two owners side by side')
+    if bad: return 'drop', 'side by side, not layered: ' + '; '.join(bad[:2])
+    if unk: return 'not sure', 'owner not known for ' + ', '.join(PIN.get(r, [r])[0] for r in unk)
+    return 'ok', f'layered on {ground.split(":")[-1].lower() or "one owner"} land'
+
+
+# Kentucky rulings (Brandon + HQ Oct 27; chat 8's KPC_KY2fer_VERDICT_desk.md): decided pairs, applied after the tests
+KY_DROP = {('US-1277', 'US-4484'): 'Cumberland Falls is state land beside Forest Service land (ruling Oct 27)',
+           ('US-1286', 'US-4484'): 'Natural Bridge is state land beside Forest Service land (ruling Oct 27)',
+           ('US-0686', 'US-4484'): 'Big South Fork is Park Service land beside Forest Service land (ruling Oct 27)',
+           ('US-3799', 'US-4484'): 'Burchell-Beech is KDFWR-owned (ruling Oct 27)',
+           ('US-4484', 'US-7964'): 'W.H. Martin is state nature preserve land (ruling Oct 27)',
+           ('US-12083', 'US-4484'): 'University of the Cumberlands WMA is private (ruling Oct 27)'}
+KY_NOT_SURE = {'US-10102': 'Pine Mountain State Scenic Trail is a line park: no official trail line yet'}
+
+
+def retired():
+    out = set()
+    try: out |= set(json.load(open('data/retired-refs.json')).get('refs', {}))
+    except Exception: pass  # noqa: BLE001
+    try:
+        k = json.load(open('data/ky-retired.json')).get('parks')
+        out |= set(k if isinstance(k, list) else (k or {}))
+    except Exception: pass  # noqa: BLE001
+    return {x if isinstance(x, str) else str(x.get('ref') or x.get('c') or '') for x in out}
+
+
+def pip_groups(gs, lon, lat):
+    for g in gs:
+        n = 0
+        for ring in g:
+            if len(ring) > 2 and cv2.pointPolygonTest(np.asarray(ring, np.float32)[:, :2].reshape(-1, 1, 2), (float(lon), float(lat)), False) >= 0: n += 1
+        if n % 2 == 1: return True
+    return False
+
+
+def missing_list(PIN, parks, skip_why, G, LN, today):
+    """Rule 12: a park with NO official boundary whose pin sits inside another park's official outline = a possible 2-fer
+    we cannot test: 'Missing boundary: check the official map' (its own list, never the main one)."""
+    want = (lambda st: st.startswith('W-')) if REGION == 'world' else (lambda st: st == 'KY') if REGION == 'ky' else (lambda st: not st.startswith('W-') and st != 'KY')
+    boxes = {r: bbox_groups(g) for r, g in G.items() if bbox_groups(g)}
+    grid = {}
+    for r, b in boxes.items():
+        for i in range(int(b[0] // .5), int(b[2] // .5) + 1):
+            for j in range(int(b[1] // .5), int(b[3] // .5) + 1): grid.setdefault((i, j), []).append(r)
+    out = []
+    RET = retired()
+    for ref, v in PIN.items():
+        if not want(v[5]) or ref in RET or (ref in G) or (ref in LN): continue
+        nm, la, lo = v[0], v[1], v[2]
+        ins = [r for r in grid.get((int(lo // .5), int(la // .5)), []) if r != ref and boxes[r][0] <= lo <= boxes[r][2] and boxes[r][1] <= la <= boxes[r][3] and pip_groups(G[r], lo, la)]
+        if ins or ref in KY_NOT_SURE:
+            out.append({'ref': ref, 'name': nm, 'st': v[5], 'why': KY_NOT_SURE.get(ref) or skip_why.get(ref, 'no official boundary'),
+                        'pin inside': [[r, PIN[r][0]] for r in ins], 'note': 'Missing boundary: check the official map', 'checked': today})
+    return out
+
+
 # ------------------------------------------------------------------ rasters
 def bbox_groups(gs):
     xs = [p[0] for g in gs for r in g for p in r]; ys = [p[1] for g in gs for r in g for p in r]
@@ -462,6 +760,10 @@ class Frame:
     def ll(self, c, r):
         x = self.x0 + (c + .5) * self.cell; y = self.y1 - (r + .5) * self.cell
         return [round(self.lon0 + x / self.kx, 6), round(self.lat0 + y / self.ky, 6)]
+
+    def bounds(self):
+        return [self.lon0 + self.x0 / self.kx, self.lat0 + (self.y1 - self.H * self.cell) / self.ky,
+                self.lon0 + (self.x0 + self.W * self.cell) / self.kx, self.lat0 + self.y1 / self.ky]
 
     def area(self, gs):
         """inside ANY record; inside one record by the even-odd rule (holes stay holes)."""
@@ -512,7 +814,7 @@ def area_spots(G, refs, box):
     k = np.ones((3, 3), np.uint8)
     ov = None
     for r in refs:
-        m = cv2.dilate(f.area(G[r]), k)
+        m = cv2.dilate(pmask(f, r, G), k)
         ov = m if ov is None else ov & m
         if not ov.any(): return []
     rows, cols = np.nonzero(ov)
@@ -531,7 +833,7 @@ def area_spots(G, refs, box):
         F = Frame(b, CELL, SHRINK * 3)
         ovf = None
         for r in refs:
-            m = F.area(G[r]); ovf = m if ovf is None else ovf & m
+            m = pmask(F, r, G); ovf = m if ovf is None else ovf & m
             if not ovf.any(): break
         if ovf is None or not ovf.any(): continue
         dist = dt(ovf) * CELL
@@ -591,14 +893,24 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
         for b in tiles(bbox_lines([pts]), CELL, 0):
             idx = [i for i, p in enumerate(pts) if b[0] <= p[0] <= b[2] and b[1] <= p[1] <= b[3]]
             if not idx: continue
-            F = Frame(b, CELL, 120)
-            if other_is_line: ok = F.lines(other, 2 * ZONE)
+            F = Frame(b, CELL, 120 + (RIVER_PAD if kind == 'river' else 0))
+            # Oct 27 rule 5: a LINE-ONLY river counts from the river's EDGE (USGS NHD High Resolution water areas), a trail
+            # from its line. Pass 1 has no water areas: a river gets RIVER_PAD extra as a screen; passes 2-3 measure exactly.
+            wd = None
+            if kind == 'river' and PASS >= 2 and str(lref).startswith('US-'):
+                wm = F.area(nhd_water(F.bounds(), rivers_only=True))
+                if wm.any(): wd = dt(wm) * CELL      # inside the water: distance to the bank
+            if other_is_line: ok = F.lines(other, 2 * ZONE); okd = None
             else:
-                spot_ok = (dt(F.area(other)) * CELL >= STATION_IN).astype(np.uint8)
-                ok = (dt(1 - spot_ok, outside=1) * CELL <= ZONE).astype(np.uint8)
+                spot_ok = (dt(pmask(F, oref, CURG) if oref in CURG else F.area(other)) * CELL >= STATION_IN).astype(np.uint8)
+                okd = np.minimum(dt(1 - spot_ok, outside=1), 1e6) * CELL
+                ok = (okd <= ZONE + (RIVER_PAD if kind == 'river' and PASS == 1 else 0)).astype(np.uint8)
             P = F.px([pts[i] for i in idx]).astype(int)
             P[:, 0] = P[:, 0].clip(0, F.W - 1); P[:, 1] = P[:, 1].clip(0, F.H - 1)
-            ins[idx] = ok[P[:, 1], P[:, 0]] > 0
+            if wd is not None and okd is not None:
+                ins[idx] = okd[P[:, 1], P[:, 0]] <= ZONE + wd[P[:, 1], P[:, 0]]   # 100 ft from the BANK, the centre line sits wd from it
+            else:
+                ins[idx] = ok[P[:, 1], P[:, 0]] > 0
         run, best = [], []
         for i, p in enumerate(pts + [None]):
             if p is not None and ins[i]: run.append(p); continue
@@ -632,6 +944,7 @@ def grid_pairs(boxes):
 
 TESTED = set()
 def find_spots(G, LN, pairs, counts):
+    CURG.clear(); CURG.update(G)
     spots = []
     for a, b in sorted(pairs):
         if late(): counts['stopped for time'] = True; break
@@ -699,7 +1012,7 @@ def pin_inside(ref, PIN, G, LN):
     F = Frame(b, CELL, 0)
     c, r = F.px([[lo, la]])[0].astype(int)
     if ref in G:
-        m = F.area(G[ref])
+        m = pmask(F, ref, G)
         return bool(m[min(max(r, 0), F.H - 1), min(max(c, 0), F.W - 1)])
     if ref in LN: return True   # a trail / river park has no 'inside'; its pin is often at a trailhead or office far away
     return False
@@ -765,7 +1078,7 @@ def access_pin(s, G, LN, st_of):
     ok = None
     areas = [r for r in s['refs'] if r in G]
     for r in areas:
-        m = (dt(F.area(G[r])) * cell >= STATION_IN).astype(np.uint8)
+        m = (dt(pmask(F, r, G)) * cell >= STATION_IN).astype(np.uint8)
         ok = m if ok is None else ok & m
     for r in s['refs']:
         if r in LN and r not in G:
@@ -902,10 +1215,96 @@ def slim(spots):
 def key_of(s): return '+'.join(s['refs']) + '@' + s['kind']
 
 
+def land_check(s, G):
+    """Rules 9 + 10 on a US area spot: 'ok', 'water' (the 50-yard patch exists only on a lake / river surface), 'closed'
+    (it exists only inside a PAD-US closed area)."""
+    sb = sbox(s); pad = .002
+    box = [sb[0] - pad, sb[1] - pad, sb[2] + pad, sb[3] + pad]
+    cell = CELL
+    F = Frame(box, cell, SHRINK * 2)
+    while F.W * F.H > MAXPX: cell *= 1.5; F = Frame(box, cell, SHRINK * 2)
+    ov = None
+    for r in s['refs']:
+        if r not in G: continue
+        m = pmask(F, r, G); ov = m if ov is None else ov & m
+    if ov is None or not ov.any(): return 'ok'
+    need = SHRINK + cell
+    try: closed = F.area(pad_closed(F.bounds()))
+    except Exception as e: LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)  # noqa: BLE001
+    open_ = ov & (1 - closed)
+    if not (dt(open_) * cell >= need).any(): return 'closed' if closed.any() else 'ok'
+    water = F.area(nhd_water(F.bounds()))
+    if not water.any(): return 'ok'
+    return 'ok' if (dt(open_ & (1 - water)) * cell >= need).any() else 'water'
+
+
+def covered(r, recs, parks, PIN):
+    """Does a record at the spot belong to park r (its own joined record, or the same name)?"""
+    ids = {str(i) for i in (parks.get(r) or {}).get('ids') or []}
+    names = [PIN[r][0]] + list((parks.get(r) or {}).get('names', {}).values())
+    for a in recs:
+        if str(a.get('OBJECTID')) in ids: return True
+        nm = {k: v for k, v in a.items() if re.search(r'nm$|name', k, re.I) and not re.search(r'own|mang', k, re.I)}
+        if any(name_ok(n, nm) for n in names if n): return True
+    return False
+
+
+def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
+    """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
+    refs = s['refs']
+    s['checked'] = today
+    s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
+    s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
+    if any(r in saved_only for r in refs): s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
+    notes = sorted({n for r in refs for n in ACC.get(r, ())})
+    if notes: s['notes'] = notes
+    for k in ('list', 'ownership'): s.pop(k, None)
+    pk = tuple(sorted(refs))
+    if REGION == 'ky':
+        for a in range(len(refs)):
+            for b in range(a + 1, len(refs)):
+                if (refs[a], refs[b]) in KY_DROP: s['status'] = 'dropped: ' + KY_DROP[(refs[a], refs[b])]; return
+    if any(r in OWNED_FAIL for r in refs): s['status'] = 'not sure: the Forest Service ownership map did not answer'; return
+    if s['kind'] == 'area' and refs[0].startswith('US-'):
+        try: lc = land_check(s, G)
+        except Exception as e: lc = 'ok'; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+        if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
+        if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
+    v, why = ownership_step(s, parks, PIN)
+    s['ownership'] = why
+    if v == 'drop': s['status'] = 'dropped: ' + why; return
+    if v == 'not sure': s['status'] = 'not sure: ' + why; return
+    s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
+    s['access'] = nearest_access(s, st_of)
+    try: s['access_pin'] = access_pin(s, G, LN, st_of)
+    except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
+    s['maps'] = [[r, PIN[r][3]] for r in refs]
+    s['names'] = {r: PIN[r][0] for r in refs}
+
+
+def ca_owners(parks):
+    """Canada (rule 14): each park's owner from its saved CPCAD / provincial record (owner text)."""
+    f = CACHE_CA / 'CA-ALL.json.gz'
+    if not f.exists(): return
+    try:
+        with gzip.open(f, 'rt', encoding='utf-8') as fh:
+            by = {str(r.get('oid')): r for r in json.load(fh).get('recs') or []}
+    except Exception: return  # noqa: BLE001
+    for ref, p in parks.items():
+        if not p['st'].startswith('CA-'): continue
+        os_ = {owner_of_text(by.get(str(i), {}).get('ow')) for i in p['ids']} - {''}
+        OWN_CA[ref] = next(iter(os_)) if len(os_) == 1 else '?'
+
+
+
+
 def main():
     PIN = pins()
     parks, skip = official_parks(PIN)
-    LN = trail_lines()
+    RET = retired()   # rule 13: retired POTA numbers drop out
+    parks = {r: p for r, p in parks.items() if r not in RET}
+    LN = {r: v for r, v in trail_lines().items() if r not in RET}
+    owners(parks); ca_owners(parks)
     for ref in LN:
         # Oct 27: a trail that CROSSES Kentucky counts in the Kentucky run even when POTA files it under another state
         # (Trail of Tears, Lewis and Clark NHT): the Kentucky region takes any line whose box touches the state
@@ -949,7 +1348,11 @@ def main():
         G, need = {}, []
         for ref, p in parks.items():
             if p['st'].startswith(('CA-', 'W-')) or not p['ids'] or REGION == 'ky': continue
-            if all(isinstance(i, int) and i in pad for i in p['ids']): G[ref] = [pad[i] for i in p['ids']]
+            if all(isinstance(i, int) and (i in pad or i in SAVED_LEFT) for i in p['ids']):
+                for i in p['ids']:
+                    if i in SAVED_LEFT: LEFT.setdefault(ref, []).append(f"{p['names'].get(str(i)) or i}: {SAVED_LEFT[i]}")
+                gs = [pad[i] for i in p['ids'] if i in pad]
+                if gs: G[ref] = gs; MAPDATE[ref] = 'saved PAD-US copy'
             else: need.append(ref)
         if REGION == 'ky':
             kg, kb = ky_geom(parks, [r for r in parks if parks[r]['ids']]); G.update(kg); need = []
@@ -967,6 +1370,11 @@ def main():
         counts['parks done by the box test'] = len(boxes) - len(touched)
         counts['pairs whose boxes touch'] = len(pairs)
         spots = find_spots(G, LN, pairs, counts)
+        try:   # rule 12: parks with no official boundary whose pin sits inside another park = 'Missing boundary' list
+            miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)
+            save_json(OUT / f'missing-{REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
+            counts['missing boundary'] = len(miss)
+        except Exception as e: LOG.append(f'missing list: {str(e)[:80]}')  # noqa: BLE001
         by = {}
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
@@ -995,7 +1403,7 @@ def main():
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
-        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: a pin')))
+        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners')))
         prev = [s for d in files.values() for s in d.get('spots', []) if todo(s)]
         refs = sorted({r for s in prev for r in s['refs'] if r in parks})
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
@@ -1038,20 +1446,7 @@ def main():
                     s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else '')
                 if REGION == 'ky' and 'US-4484' in s['refs'] and set(s['refs']) & KY_FS_MANAGED:
                     s['label'] = 'Forest Service land managed by KDFWR'   # Oct 27 (HQ ruling 2): one agency owns, another manages = a real 2-fer
-                if PASS == 3 and m and two_owners(s['refs'], parks):
-                    s['status'] = 'check: two owners (likely map mistake: two governments cannot own the same ground; a lease would change that)'; continue
-                if PASS == 3 and m:
-                    pin_ok = {r: pin_inside(r, PIN, G, LN) for r in s['refs']}
-                    s['pins_inside'] = pin_ok
-                    if any(r in saved_only for r in s['refs']): s['fresh'] = 'saved copy only for ' + ', '.join(r for r in s['refs'] if r in saved_only)
-                    if all(pin_ok.values()):
-                        s['status'] = 'candidate' if not s.get('fresh') else 'candidate (saved outline only)'
-                        s['access'] = nearest_access(s, st_of)
-                        try: s['access_pin'] = access_pin(s, G, LN, st_of)
-                        except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
-                        s['maps'] = [[r, PIN[r][3]] for r in s['refs']]
-                        s['names'] = {r: PIN[r][0] for r in s['refs']}
-                    else: s['status'] = 'dropped: a pin is outside its own outline'
+                if PASS == 3 and m: decide(s, parks, G, LN, PIN, today, saved_only, st_of)
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
@@ -1077,8 +1472,13 @@ def main():
     for l in LOG[:8]: notice('2-fer bot problem', l)
 
 
-ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap (official outlines only; land spots 50 yards across, "
-         "'small' = 50-100 yards; trails and rivers by POTA's 100-ft rule). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
+ABOUT = ("Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, "
+         "notes/mapping.md): the park = where its designation legally applies (national forests + grasslands = Forest Service-OWNED land only, "
+         "never proclamation lines); public land open to the public; layered = real, side by side = not (ownership step: PAD-US / CPCAD at the "
+         "spot); a patch 50 yards across in every park ('small' = 50-100 yards); line-only trails / rivers by POTA's 100-ft rule from the line "
+         "or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or "
+         "kayak' are separate lists, never the main one; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with "
+         "no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 "
          "and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. "
          "We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your "
          "own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.")
