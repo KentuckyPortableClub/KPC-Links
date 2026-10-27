@@ -46,7 +46,7 @@
     const p = x.f.properties || {};
     if (x.src === 'padus') return { name: x.f._nm, what: (p.Loc_Mang || p.Mang_Name || 'public land') + (p.Des_Tp ? ' · ' + p.Des_Tp : '') + acres(p), src: 'Official (USGS PAD-US)', access: p.Pub_Access, ease: p.Category === 'Easement' };
     if (x.src === 'osm') return { name: x.f._nm, what: x.f._op || 'OpenStreetMap outline', src: 'OpenStreetMap (NOT official)' };
-    return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc };
+    return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc, own: x.f._L.own };
   }
 
   /* ---------- judge ---------- */
@@ -62,16 +62,27 @@
     judge();
   }
   function judge() {
-    const { la, lo, acc, how } = st.here, A = st.area, accKm = (acc || 0) / 1000, margin = Math.max(accKm, 0.012);
+    const { la, lo, acc, how } = st.here, A = st.area, accKm = (acc || 0) / 1000, margin = Math.max(accKm, 0.015);   // G-M3: within 15 m of a line = near the edge
     let rows = A.feats.map(x => Object.assign({}, x, { in: B.inside(la, lo, x.f.geometry), e: B.edge(la, lo, x.f.geometry) }));
     const T = st.target;
     if (T && T.feats) rows = rows.concat(T.feats.filter(f => !A.feats.some(x => x.f === f)).map(f => ({ src: f._L ? (f._L.kpc ? 'kpc' : 'ky') : 'padus', f, tgt: true, in: B.inside(la, lo, f.geometry), e: B.edge(la, lo, f.geometry) })));
     rows.forEach(r => { r.L = label(r); r.refs = refsOf(r); });
     const hits = rows.filter(r => r.in).sort((a, b) => (b.refs.length > 0) - (a.refs.length > 0) || ((a.f._bb[2] - a.f._bb[0]) * (a.f._bb[3] - a.f._bb[1])) - ((b.f._bb[2] - b.f._bb[0]) * (b.f._bb[3] - b.f._bb[1])));
-    const near = rows.filter(r => !r.in && r.e.km < 8).sort((a, b) => a.e.km - b.e.km);
-    const good = r => !r.L.proc && !r.L.ease && r.L.access !== 'XA';
+    const seenN = new Set(), near = rows.filter(r => !r.in && r.e.km < 8).sort((a, b) => a.e.km - b.e.km).filter(r => { const k = r.L.name + '|' + r.src; if (seenN.has(k)) return false; seenN.add(k); return true; });   // one line per place (owned land comes in many parcels)
+    /* Oct 27 (rule B1 + B-G1): an agency-land park counts only on the land the agency OWNS (Kentucky: Daniel Boone = the Forest
+       Service ownership map); its outer line never says 'inside'. Inside that line, PAD-US Forest Service records are only a cross-check. */
+    const isFs = r => r.src === 'padus' && /Forest Service|USFS/i.test((r.f.properties.Loc_Mang || '') + (r.f.properties.Mang_Name || '')) && !r.L.ease;
+    const ownOn = A.feats.some(x => x.f._L && x.f._L.own), inProc = hits.filter(r => r.L.proc);
+    const good = r => !r.L.proc && !r.L.ease && r.L.access !== 'XA' && !(ownOn && inProc.length && isFs(r));
     const progHits = hits.filter(r => r.refs.length && good(r));
-    const fsLand = hits.some(r => r.src === 'padus' && /Forest Service|USFS/i.test((r.f.properties.Loc_Mang || '') + (r.f.properties.Mang_Name || '')) && !r.L.ease);
+    const fsLand = hits.some(isFs);
+    const outerMsg = (pk, head) => {   // the ruled message (HQ + Brandon Oct 27 5:16 AM, B1): never 'you are in the park' on land the agency does not own
+      const own = rows.filter(r => !r.in && r.L.own).sort((a, b) => a.e.km - b.e.km)[0], nm = esc(pk || 'Daniel Boone National Forest');
+      return (head || '') + (fsLand ? `<h2>CHECK THE LAND OWNER: THE MAPS DISAGREE</h2><p>You're inside the outer boundary of ${nm}. The national land database (PAD-US) shows Forest Service land here, but the Forest Service's own ownership map (2015 data) does not. Check the Forest Service map before you count it.</p>`
+        : `<h2>NOT FOREST SERVICE LAND ON ITS MAP</h2><p>You are inside the outer boundary of ${nm}, but this spot is not shown as Forest Service land on its ownership map (2015 data): it may be private or another owner's. POTA needs public land inside the park: move onto Forest Service land, or check the official map.</p>`)
+        + (own ? `<p>Nearest Forest Service land: about <b>${B.dist(own.e.km)}</b> to the <b>${B.dir(la, lo, own.e.lat, own.e.lon)}</b>.</p>` : '')
+        + `<p class="ip-small">Forest Service ownership map, 2015 data: land bought since may be missing, so check the official map.${A.padusOk ? '' : ' (We could not reach the national land database just now.)'}</p>`;
+    };
     const accTxt = (how === 'map' ? 'Spot you tapped on the map: ' : 'You: ') + `<b>${la.toFixed(6)}, ${lo.toFixed(6)}</b>.` + (how !== 'map' && acc ? ` GPS good to about ±${B.dist(accKm)}.` : '');
     const btns = refs => refs.map(r => `<div class="ip-ref"><b>${esc(r.ref)}</b> ${esc(r.name)}<span><a href="kpc-spot-me.html?pota=${encodeURIComponent(r.ref)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(r.ref)}">PARK INFO ›</a></span></div>`).join('');
     const uniq = list => { const m = new Map(); list.forEach(r => r.refs.forEach(x => m.set(x.ref, x))); return [...m.values()]; };
@@ -79,9 +90,11 @@
     if (T && T.prog === 'SOTA') {
       v = ['wait', `<div class="ip-t">Checking: <b>${esc(T.ref)} ${esc(T.name)}</b></div><h2>CHECKING YOUR HEIGHT…</h2>`];
     } else if (T) {
-      const th = rows.filter(r => r.in && (r.tgt || r.refs.some(x => x.ref === T.ref))), tn = rows.filter(r => !r.in && (r.tgt || r.refs.some(x => x.ref === T.ref))).sort((a, b) => a.e.km - b.e.km);
+      const mine = r => !r.L.proc && (r.tgt || r.refs.some(x => x.ref === T.ref));   // the outer line is never the park (B1)
+      const th = rows.filter(r => r.in && mine(r)), tn = rows.filter(r => !r.in && mine(r)).sort((a, b) => a.e.km - b.e.km);
       const head = `<div class="ip-t">Checking: <b>${esc(T.ref)} ${esc(T.name)}</b></div>`;
-      if (!th.length && !tn.length) v = ['maybe', head + `<h2>NO OFFICIAL BOUNDARY FOUND</h2><p>We could not find a boundary file for ${esc(T.ref)}. Use the park's own map. ${T.la ? `Its ${esc(T.prog)} pin is about <b>${B.dist(B.km(la, lo, T.la, T.lo))}</b> ${B.dir(la, lo, T.la, T.lo)} of you.` : ''}</p>`];
+      if (!th.length && inProc.some(r => r.tgt || r.refs.some(x => x.ref === T.ref))) v = ['maybe', outerMsg(T.name, head)];
+      else if (!th.length && !tn.length) v = ['maybe', head + `<h2>NO OFFICIAL BOUNDARY FOUND</h2><p>We could not find a boundary file for ${esc(T.ref)}. Use the park's own map. ${T.la ? `Its ${esc(T.prog)} pin is about <b>${B.dist(B.km(la, lo, T.la, T.lo))}</b> ${B.dir(la, lo, T.la, T.lo)} of you.` : ''}</p>`];
       else if (th.length) { const best = th.sort((a, b) => b.e.km - a.e.km)[0]; v = best.e.km > margin && good(best) ? ['yes', head + `<h2>✓ YOU'RE INSIDE</h2><p>About <b>${B.dist(best.e.km)}</b> from the nearest boundary line (${esc(best.L.src)}).</p>`] : ['edge', head + `<h2>ON THE EDGE</h2><p>You're inside, but only about <b>${B.dist(best.e.km)}</b> from the line${best.e.km <= accKm ? ', closer than your GPS can tell' : ''}. Move farther in to be sure.</p>`]; }
       else { const n = tn[0]; v = ['no', head + `<h2>✕ NOT INSIDE</h2><p>The boundary is about <b>${B.dist(n.e.km)}</b> to the <b>${B.dir(la, lo, n.e.lat, n.e.lon)}</b>.${n.e.km <= accKm ? ' That is within your GPS error, so move a bit and check again.' : ''}</p>`]; }
     } else if (progHits.length) {
@@ -90,8 +103,8 @@
       const rows2 = P.map(o => `<div class="ip-ref"><b>${esc(o.x.ref)}</b> ${esc(o.x.name)} <i class="ip-p">${esc(o.x.prog)}</i> <em>${o.km <= margin ? '⚠ only ' + B.dist(o.km) + ' from its edge' : B.dist(o.km) + ' from its edge'}${o.kpc ? ' (OpenStreetMap outline, unofficial)' : ''}</em><span><a href="kpc-spot-me.html?${spotQ(o.x)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(o.x.ref)}">INFO ›</a></span></div>`).join('');
       v = edgy.length === P.length ? ['edge', `<h2>ON THE EDGE</h2><p>You look inside, but you're very close to the line${accKm && edgy.some(o => o.km <= accKm) ? ', closer than your GPS can tell' : ''}. Move farther in to be sure.</p>${rows2}`]
         : ['yes', `<h2>✓ YOU'RE INSIDE</h2><p>${P.length > 1 ? 'These references all count from this spot:' : 'This reference counts from this spot:'}</p>${edgy.length ? '<p>⚠ You are right on the edge of ' + edgy.map(o => esc(o.x.ref)).join(', ') + ', so that one may not count from here.</p>' : ''}${rows2}`];
-    } else if (hits.some(r => r.L.proc) && !fsLand) {
-      v = ['maybe', `<h2>CHECK THE LAND OWNER</h2><p>You're inside Daniel Boone National Forest's outer line, but the national land database does not show this exact spot as Forest Service land. It may be private land inside the forest. Check the Forest Service map.${A.padusOk ? '' : ' (We could not reach the national land database just now, so try again with signal.)'}</p>`];
+    } else if (inProc.length && (ownOn || !fsLand)) {
+      v = ['maybe', ownOn ? outerMsg(inProc[0].f._nm) : `<h2>CHECK THE LAND OWNER</h2><p>You're inside Daniel Boone National Forest's outer line, but the national land database does not show this exact spot as Forest Service land. It may be private land inside the forest. Check the Forest Service map.${A.padusOk ? '' : ' (We could not reach the national land database just now, so try again with signal.)'}</p>`];
     } else if (hits.length) {
       const h = hits[0];
       v = ['maybe', `<h2>PUBLIC LAND, BUT NO PARK REFERENCE MATCHED</h2><p>You're inside <b>${esc(h.L.name)}</b> (${esc(h.L.what)}), but we could not match it to a POTA or WWFF reference. Look it up on pota.app or wwff.co before you count it.${h.L.access === 'XA' ? ' <b>The database lists this land as closed to the public.</b>' : ''}</p>`];
@@ -159,10 +172,10 @@
     if (!map) return;
     const { la, lo, acc } = st.here;
     if (lay) lay.remove(); lay = L.layerGroup().addTo(map);
-    const show = new Set(hits.concat(near.slice(0, 6)));
+    const show = new Set(hits.concat(near.slice(0, 6), rows.filter(r => r.L.own && r.e.km < 3)));   // the forest's own land around you, shaded
     rows.filter(r => show.has(r)).forEach(r => {
       const kpc = r.src === 'kpc';
-      L.geoJSON(r.f.geometry, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : r.in ? { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: r.L.proc ? .04 : .14 } : { color: '#c98a00', weight: 2, dashArray: '6 6', fillOpacity: .03 }, interactive: false }).addTo(lay);
+      L.geoJSON(r.f.geometry, { style: kpc ? { color: '#ffd400', weight: 3, dashArray: '12 5 2 5', fillOpacity: 0 } : r.L.proc ? { color: '#2f7fd6', weight: 1.5, opacity: .7, dashArray: '6 8', fill: false } : r.in ? { color: '#ffb000', weight: 3, fillColor: '#ffb000', fillOpacity: .14 } : { color: '#c98a00', weight: 2, dashArray: '6 6', fillOpacity: .03 }, interactive: false }).addTo(lay);
     });
     if (me) me.remove(); if (accC) accC.remove(); if (line) line.remove();
     if (acc) accC = L.circle([la, lo], { radius: acc, color: '#1378ff', weight: 1, fillOpacity: .08, interactive: false }).addTo(map);
