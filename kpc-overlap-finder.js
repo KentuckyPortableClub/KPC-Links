@@ -14,7 +14,7 @@
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function j(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
   var SHORT = '⚠️ Possible POTA overlap only. We think these POTA parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';
-  var YD = 1.09361, BAND = 30.48, COL = ['#E69F00', '#56B4E9', '#009E73', '#F0E442', '#0072B2', '#D55E00', '#CC79A7', '#9A9A9A', '#8E6CEF'];
+  var YD = 1.09361, BAND = 30.48, COL = ['#0072B2', '#D55E00', '#009E73', '#CC79A7', '#56B4E9', '#8E6CEF', '#9A9A9A', '#F0E442', '#E69F00'];   /* Brandon Oct 27 3:04 PM: no gold/orange for the first parks: gold is the overlap */
   var DASH = ['', '12 6', '3 6', '12 6 3 6', '2 8', '18 6 4 6 4 6', '8 4', '1 5 9 5', '22 8'];
   var MEMBER = !window.KPCGate || KPCGate.member();
   function toast(t) { var e = $('ovToast'); e.textContent = t; e.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { e.hidden = true; }, 4500); }
@@ -101,7 +101,7 @@
       '<p class="ov-note">Maps used: ' + esc(Object.keys(s.map_dates || {}).map(function (r) { return r + ' ' + s.map_dates[r]; }).join('; ') || 'see the official maps') + '</p>' +
       (MEMBER && (s.how_checked || s.ownership) ? '<p class="ov-how2">How we checked (members): ' + esc([s.how_checked, s.ownership, s.owner_here ? 'owner: ' + s.owner_here : ''].filter(Boolean).join(' · ')) + '</p>' : '') +
       '<div class="acts">' + (s.maps || []).map(function (m) { return '<a class="b" target="_blank" rel="noopener" href="' + esc(m[1]) + '">OFFICIAL MAP: ' + esc(m[0]) + '</a>'; }).join('') + '</div></details>' +
-      '<span class="ov-short">' + SHORT + '</span></div>';
+      '</div>';   /* Brandon Oct 27 3:04 PM: 'No need for a warning on every card' (one SHORT notice heads the list; popups + exports keep theirs) */
   }
   function numKey(g, k) { var n = g.refs.map(function (r) { return +(/(\d+)$/.exec(r) || [0, 0])[1]; }).sort(function (x, y) { return x - y; }); return n[k || 0] || 0; }
   function list() {
@@ -116,9 +116,9 @@
     /* Brandon Oct 27 2:48 PM: 'have list in order numerically' = by the lowest park number in each row (then the next one) */
     out.sort(F.near && here ? function (a, b) { return a[0]._mi - b[0]._mi; } : function (a, b) { return (a[0].st < b[0].st ? -1 : a[0].st > b[0].st ? 1 : 0) || numKey(a[0]) - numKey(b[0]) || numKey(a[0], 1) - numKey(b[0], 1); });
     var empty = '<div class="ov-empty"><b>We are still checking ' + esc(REG ? REG.label : 'these') + '\'s parks.</b> Nothing is listed yet. This does not mean there are no overlaps.' + (MEMBER && WAITN && !$('ovWait').checked ? '<br><br>Members: ' + WAITN + ' result' + (WAITN > 1 ? 's are' : ' is') + ' waiting for review. Tick the box below to see them (marked WAITING FOR REVIEW).' : '') + '</div>';
-    $('ovList').innerHTML = out.length ? '<p class="ov-note">' + out.length + ' result' + (out.length > 1 ? 's' : '') + ' in ' + esc(REG.label) + '.</p>' + out.map(function (x) { return rowHtml(x[0], x[1]); }).join('') : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
+    $('ovList').innerHTML = out.length ? '<p class="ov-note">' + out.length + ' result' + (out.length > 1 ? 's' : '') + ' in ' + esc(REG.label) + '.</p><span class="ov-short" style="margin-bottom:8px">' + SHORT + '</span>' + out.map(function (x) { return rowHtml(x[0], x[1]); }).join('') : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
     $('ovWaitW').hidden = !(MEMBER && WAITN);
-    $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><span class="ov-badge bg-mem">MEMBERS ONLY</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '<span class="ov-short">' + SHORT + '</span></div>'; }).join('');
+    $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><span class="ov-badge bg-mem">MEMBERS ONLY</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '</div>'; }).join('');
     $('ovMissB').hidden = !MISS.length; $('ovMiss').innerHTML = MISS.map(function (m) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-mem">MEMBERS FIRST</span><span class="ov-badge bg-wld">' + esc((m.note || 'Missing boundary: check the official map').toUpperCase()) + '</span><b class="t">' + esc(m.ref) + ' ' + esc(m.name) + '</b><p class="ov-note">' + esc(m.why || '') + (m.checked ? ' · checked ' + esc(m.checked) : '') + '</p></div>'; }).join('');
   }
 
@@ -231,9 +231,11 @@
     if (!map || !L.Control) return;
     if (!keyCtl) { var K = L.Control.extend({ options: { position: 'bottomleft' }, onAdd: function () { var d = L.DomUtil.create('div', 'ov-mkey'); L.DomEvent.disableClickPropagation(d); return d; } }); keyCtl = new K(); keyCtl.addTo(map); }
     var el = keyCtl.getContainer(); if (!el) return;
-    el.innerHTML = parks.map(function (p) { return '<div><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="26" height="8" aria-hidden="true"><path d="M1 4h24" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' (100-ft band)' : '') + '</div>'; }).join('') +
-      (shade ? '<div><span class="ov-sw" style="background:#2b2b2b;opacity:.45"></span>darker grey = in neither park (private or other land)</div><div><span class="ov-sw" style="background:#2b2b2b;opacity:.22"></span>light grey = inside only one park</div><div><span class="ov-sw" style="background:#fff;border:1px solid #999"></span>clear = inside both parks</div>' : '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>') +
-      '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid #b8860b"></span><b>gold = where our maps suggest they may overlap</b></div>';
+    var open = store('kpcOvKey') !== '0';
+    el.innerHTML = '<button type="button" class="ov-kh" data-key>' + (open ? '▾ KEY (HIDE)' : '▸ KEY') + '</button>' + (open ? '<div class="ov-kb">' : '<div class="ov-kb" hidden>') + parks.map(function (p) { return '<div><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="26" height="8" aria-hidden="true"><path d="M1 4h24" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' (100-ft band)' : '') + '</div>'; }).join('') +
+      (shade ? '<div><span class="ov-sw" style="background:#2b2b2b;opacity:.45"></span>darker grey = in neither park (private or other land)</div><div><span class="ov-sw" style="background:#2b2b2b;opacity:.22"></span>light grey = inside only one park</div>' : '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>') +
+      '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid #b8860b"></span><b>gold = inside both parks: where our maps suggest they may overlap</b></div></div>';
+    var kb = el.querySelector('[data-key]'); if (kb) kb.onclick = function (e) { e.preventDefault(); store('kpcOvKey', open ? '0' : '1'); mapKey(); };
   }
   function legend() { $('ovLeg').innerHTML = parks.map(function (p, i) { return '<li><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="34" height="10" aria-hidden="true"><path d="M2 5h30" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><label><input type="checkbox" data-on="' + i + '"' + (p.on ? ' checked' : '') + '> <b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' <i>(line: 100-ft band)</i>' : '') + '</label></li>'; }).join(''); }
 
