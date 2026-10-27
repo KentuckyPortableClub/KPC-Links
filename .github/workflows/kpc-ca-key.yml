@@ -32,6 +32,14 @@ jobs:
           if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true; fi
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
           tail -n 3 ca-key.log
+      - name: Keep the saved copy current (a full read that finished)
+        if: ${{ !inputs.saved }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Oct 27: the release copy was from Oct 22, so a 'saved' build lost 169 joins (undone). Upload after every good full read.
+          if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || true; fi
       - name: Save outline files for joined parks that have none (never overwrites)
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
