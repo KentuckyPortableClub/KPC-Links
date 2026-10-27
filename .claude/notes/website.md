@@ -51,3 +51,76 @@ Chat 5 built the Google Form script (.claude/build/clubpost/make-club-post-form.
 - Oct 26 7:45 PM (chat 5, RELEASE step 12): check-up in release mode on the live site, 2 runs. Run 1 (7:21 PM) flagged 5 chat-1 items that were MY test's mistakes (the two 'page has moved' pointers kentucky-parks.html + members.html, and my fixed door sample still listing parks/find/kit, which went public as planned); fixed in kpc_checkup.py / kpc_site_test.js (pointers = notes; door sample = pages that stay members-only). Run 2 (7:33 PM): ALL CLEAN: guard 59 public / 56 members-only, 60 public pages as a guest at 390 + 1280 px, door shows on toolbox / Club Room / Logger / Spot Me, 117 pages as a member at 390 px; only chat 2's 4 retired park numbers (not release). Plan A announcement ready for Brandon to post Tue morning with 'Website + Facebook + Discord:' (text in the Oct 26 5 PM note).
 - **CHAT 8 POST-RELEASE READ, round 2 (chat 1, Oct 26 ~9 PM):** (1) About info: "no official boundary" sentence now "Where we have no official boundary, we say so. Some parks show an approximate OpenStreetMap outline, always marked unofficial." (Brandon's pick). (2) POTA Multi-loc quote (New to POTA x2, Rules You Should Know, POTA Room) now ends "...station equipment. Activation Location and Access Rule #1 applies to simultaneous activations." (3) Kit, Park Sheet, US Trip Planner: added the SHORT POTA-overlap notice next to their one-line 2-fer mentions. New to WWFF: "with the POTA overlaps" reworded to "along with nearby POTA parks" (no 2-fer pointer). (4) find.html: added the planning-aid info line (also added to info_line_release.py's PAGES). (5) Dropped "Spot Me" by name from kpc-kit.html (sub + meta descriptions, now "spot yourself live"/"spotting") and kpc-activations.html ("spot yourself live" link, same href). (6) Grid & County Lookup tag on KY Parks: waiting on chat 2 to confirm it works everywhere — not touched yet. Regenerated the 3 program rooms via make_rooms.py for the quote fix; had to manually strip a noindex meta assemble.py re-added to all 3 (they're public post-release) — worth remembering next time the script runs after release.
 - **GRID & COUNTY LOOKUP TAG (chat 1, Oct 26 ~9:15 PM, HQ):** chat 2 confirmed it works everywhere, so on KY Parks its tag is now "WORKS ANYWHERE · KENTUCKY FIRST" and its line "Grid square, county and region for where you're standing or any park, plus the nearest parks." (closes the one open item from the chat 8 post-release read.)
+
+## POSTING RULE SHEET: CHAT 5 BOTS (Oct 27 2026, RULES FIRST; draft for chat 8 to break, Brandon rules on the grey areas)
+Every bot below POSTS or FLAGS. Where today's behaviour differs from the rule, it is marked **GAP** (to fix after Brandon rules). "Staff room" = the private Discord staff room (KPC_ADMIN_WEBHOOK). All times Central.
+
+### NEVER (every bot, no exceptions)
+1. No 2-fer / overlap claim without the overlap notice (house rule, word for word) AND Brandon's GO for that list. Never "these parks overlap"; never the "2-fer" label for KFF/SOTA.
+2. Closure / alert posts are KENTUCKY ONLY (out-of-state 'uc-' closures show on park cards and tools, never posted).
+3. No real call signs as examples (K4TEST, W4KIDS only); no POTA / SOTA / WWFF logos.
+4. Nothing from a members-only page or tool is posted to the public (no Map Rep, VIP, Logger, Club Room, 2-fer guide/map, member names or calls from member lists).
+5. Email only for real issues: bots never email Brandon for news; subscribers get email only when a post's tag asks for it.
+6. Facebook: the Page only (ID 1342190728983628), never a Group, never a personal profile.
+7. Never a key, token, password, webhook link or the member password in a post, a log line, a notice or the repo.
+8. Never guess in public: when a bot is not sure, it holds and asks in the staff room (or posts nothing).
+9. Nothing posts between 9 PM and 6 AM except what a person scheduled on purpose.
+10. Wording: plain and short; maps/park details carry "ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go." with the About our information link; overlaps carry the SHORT overlap notice.
+
+### 1. Discord relay (kpc_discord_relay.py, every 15 min)
+POSTS: exactly what a person typed in the private relay channel (or sent through the Club Post Form), to the places its tag names. Never writes its own words, never posts a bot's message (only the Club Post Form webhook is read). Edits and deletes in Discord follow on the website, Facebook and the other server (email can't be unsent).
+WHERE / WHEN: tag decides: Website (+ the other Discord server), Facebook Page, Discord, Groups.io (one topic subject), email subscribers (now with Now:/Subscribers:, otherwise in the Sunday 6 PM roundup), Events calendar, park condition warning (KY refs, 30 days). No tag = Website + Facebook + other Discord server. Scheduled posts wait for their time. Email capped (RELAY_DAILY_CAP 90/day, Groups.io counts 1).
+SOURCES: the person's own words and pictures only.
+UNSURE: a tag it can't read = treated as normal text with no tag (goes to the default places) ← **GAP**: should instead hold with ⚠️ and ask in the staff room. A bad date in "Post <date>:" = ⚠️ reaction, not sent.
+EXAMPLES: (a) "Website + Facebook + Discord: The Activators Lounge is open…" → 3 places, subscribers in Sunday roundup. (b) "Now: Campout moved to Saturday" → everywhere + subscribers emailed at once. (c) "Post Nov 4 8am + All:" → waits, ⏰ reaction. (d) "Conditions US-1277: gate locked at the upper lot" → red warning on that park's cards 30 days, no post unless places are named. (e) "Skip: notes for us" → nothing shared. (f) Someone pastes a 2-fer list → relay would post it as typed (**GAP**: relay can't check notices; rule = people add the overlap notice; chat 8 to say if the relay should refuse posts containing '2-fer' without the notice). (g) A post with a Map Rep screenshot → relay can't tell (**GAP**, people rule).
+
+### 2. Club Post Form (Google Form → Apps Script → relay webhook)
+POSTS: the form's message, built into the same tag the relay reads. Founders (FOUNDERS list) go out by themselves; everyone else waits for Approved = YES (YES/NO drop-down). Status column says Sent / Waiting / Declined / Problem. Never posts on its own, never edits, never emails anyone except via the relay's own subscriber rules.
+WHERE / WHEN: ticked boxes: Website, Facebook, Discord, Groups.io, Email subscribers now / in the Sunday roundup (adds Website), Events calendar; send date+time (Central, blank = now; date only = 8 AM). Max 1,600 letters, 10 files under 8 MB each.
+UNSURE: email not Verified or not a founder → waits for approval. Webhook missing → Status "Problem", nothing posted.
+EXAMPLES: (a) Brandon, Website+Facebook, now → out within 15 min. (b) A member, Groups.io + subscribers now → waits until an officer picks YES. (c) Event for Nov 14 sent with "Send on Nov 10" → the post goes Nov 10, event text must carry the event date. (d) 12 photos → first 10 sent, Status says how many skipped. (e) Someone types a founder's email (Responder input) → why Collect email must be VERIFIED; otherwise it waits.
+
+### 3. Holiday posts (kpc_club_posts.py holiday_post, daily 9:41 AM run)
+POSTS: on the holiday's morning, its picture (img/holidays/<id>-post.jpg) + its text from data/holidays.json; ONE per holiday per year. Only holidays listed in data/holiday-post-go.json post (now: halloween). Memorial Day + Veterans Day: respectful text, no jokes, no on-air plugs. Never adds its own words.
+WHERE: Discord (general webhook) + Facebook Page photo post. No email, no website news item.
+SOURCES: data/holidays.json (Brandon edits text); dates fixed or rule (Easter, nth weekday). Field Day's "fourth full weekend" is not wired, so it never posts until it is.
+UNSURE: missing picture or text → posts nothing, notice in the run. Text that mentions a member or a members-only tool → don't (rule 4).
+EXAMPLES: (a) Halloween Sat Oct 31 9:41 AM → one Halloween post. (b) Veterans Day Wed Nov 11 = ALSO the WMA closure Wednesday → both post, holiday first; the WMA post keeps its normal wording (no holiday jokes in a hunting-closure post). (c) Easter 2027 = Mar 28 (rule) → only if Brandon adds easter to the GO list. (d) Bot runs late in the day → still that day; next day → nothing (no "belated" posts). (e) Holiday text says "tonight" but posts in the morning → fine, it's the text Brandon approved.
+
+### 4. WMA closure heads-up (kpc_club_posts.py wma_closures, Wednesdays 9:41 AM)
+POSTS: "These Kentucky WMAs are closed to non-hunters <Sat-Sun>" + each WMA, its dates, its KDFWR page link + one blaze-orange / check-before-you-drive line. Only short (≤10 days) quota-hunt closures that touch the coming Saturday or Sunday. One post per weekend, never twice; no closures = no post.
+WHERE: Discord (parks webhook) + Facebook Page. Kentucky only.
+SOURCES: chat 2's 'hc-' items in kpc-conditions.json (from KDFWR's quota-hunt pages), best = the WMA's own KDFWR page; chat 8 fact-checks the dates before each Wednesday (their to-do).
+UNSURE: an item without a clear start/end date → skipped (never guessed). **GAP**: a skipped item is not reported to the staff room yet.
+EXAMPLES: (a) Wed Nov 4 → 13 WMAs for Nov 7-8. (b) Curtis Gates Lloyd Nov 14-21 → listed for Nov 14-15 AND Nov 21-22 weekends. (c) Half a WMA closed (e.g. 'Tract 1A closed', 'Sauerheber Unit closed') → listed with the agency's own words for the part, never "the WMA is closed"; **GREY AREA for Brandon**: post part-closures at all? (d) Season-long closures (Nov 15-Jan 15) → never in the weekly post (card only). (e) KDFWR changes a date after Wednesday → no correction post today (**GREY AREA**: should it post a correction?). (f) A Tennessee WMA in the data → never (Kentucky only).
+
+### 5. Park alerts (kpc_park_alerts.py, 6x a day 6 AM-9 PM)
+POSTS: a Kentucky park CLOSING or a new caution (from the official alert list), and a careful "looks open again" when an alert disappears. A change must show on TWO checks in a row. Standing info (drones, bears, firewood, control burns, opening hours) is not news and never posted.
+WHERE: Discord (park news room) + Facebook Page; red warning on the park's cards via kpc-conditions.json ('pa-' items). No email.
+SOURCES (best first): Kentucky State Parks alerts API; NPS alerts (KY, with key); US Forest Service Daniel Boone alerts page.
+UNSURE: can't tie the alert to one park → card only, no post (**GAP**: should ask in staff room). Reopening is worded "the notice was taken down; check before you go", never "open".
+EXAMPLES: (a) "Cumberland Falls: lodge closed for repairs" → post + red card. (b) Half a park: "Upper parking lot closed, rest of park open" → post the agency's words exactly, never "park closed". (c) Alert vanishes then comes back next check → nothing (two-check rule). (d) Prescribed burn notice → never posted (routine). (e) Alert at 10 PM → waits for the 6 AM check. (f) Out-of-state park in a feed → never.
+
+### 6. Facebook question helper (kpc_fb_comments.py, hourly)
+FLAGS: new comments on the Page's posts → staff room, with a link and, for common questions, a ready-to-paste fixed answer. AUTO-REPLY IS OFF (Brandon Oct 24); when on: fixed answers only, never licence / exam / FCC / rules / legal / safety / weather / money / complaints, one reply per comment, within 48 h, max 4 a run, always ends "if that's not what you meant, one of us will come back to you".
+WHERE: staff room only (suggestions). Never posts a new Page post, never replies on a Group.
+SOURCES: the fixed answer list in the script (no AI, cannot make things up). Never stores visitor names or text (fingerprints only).
+UNSURE: no fixed answer matches → flags with "needs a person", no suggestion.
+EXAMPLES: (a) "When is the campout?" → suggestion with the campout page link. (b) "Can I operate in a state park without a permit?" → hands off (rules/permit), person answers. (c) "Is it safe to camp there in a storm?" → hands off (safety). (d) An angry complaint → flag only, never auto-reply. (e) "Do these two parks count as a 2-fer?" → hands off; any person's answer carries the overlap notice.
+
+### 7. Discord room watcher + greeter + mod (kpc_discord_watch.py hourly, kpc_discord_mod.py)
+FLAGS: a message in general / portable-ops / annual-kpc-campout that reads like somebody ASKING for something, unanswered for 60 min (and under 7 days) → one nudge in the staff room with a link. Greets newcomers. Mod (automatic) only: a brand-new no-role account posting an invite / scam link / @everyone → message deleted, 1-hour mute, staff room told. Never kicks or bans on its own; never touches members with a role, bots, or the never_touch list.
+WHERE: staff room only (plus the greeting in the join room). Members' own rooms and bot rooms are not watched.
+UNSURE: not clearly a question → no nudge.
+EXAMPLES: (a) "Anyone know if Taylorsville's ramp is open?" unanswered 2 h → nudge. (b) "Nice activation!" → nothing. (c) A member's link to a YouTube video → nothing (has a role). (d) A stranger posts "free nitro" → deleted + mute + staff told. (e) Brandon wants someone kicked → he uses mode 'do' with the confirm box.
+
+### 8. Approvals reminder (kpc_approvals.py, daily 4 PM)
+FLAGS: rows in the club's Google Form sheets with an EMPTY Approved cell that the site is not already showing → ONE email to the approvals inbox (never the public repo or an issue). Nothing waiting = no email.
+EXAMPLES: (a) Two guestbook entries waiting → one email listing both. (b) Pre-approved caller's activation post → not listed (already shown). (c) Sheet unreadable → notice in the run, no email.
+
+### 9. KPC Check-up + KPC Watcher (chat 5's health bots)
+FLAGS ONLY, never posts: Check-up = one issue (#17) grouped by chat (bots, public-list guard, Sunday site test / park numbers / data links); a comment (= email) only for a NEW real problem; a link must fail two Sundays before it counts. Watcher = weekly read-only report on the bot-state branch (KY park pages, rules pages → chat 8; blocked closure sources now answering → chat 2; new ARRL hamfests → chat 6); robots.txt obeyed, never works around a block, never emails.
+EXAMPLES: (a) A public page shows a members-only link → problem for chat 1, one email. (b) A map server fails once → note only. (c) A "page has moved" pointer → note, not a lock problem. (d) A KY park page changes its hours → chat 8 line with old/new text; nobody posts it until checked.
+
+### GREY AREAS for Brandon (from writing this; chat 8 will add more)
+G1 Relay: refuse (hold + ask) a post that mentions 2-fers/overlaps without the notice? G2 Relay: an unreadable tag → hold and ask instead of posting to the defaults? G3 WMA: post partial closures (one tract/unit) or card only? G4 WMA: post a correction when KDFWR changes dates after Wednesday? G5 Park alerts: an alert that can't be tied to one park → ask in staff room? G6 Holiday on a closure Wednesday: both posts (as now) or holiday only?
