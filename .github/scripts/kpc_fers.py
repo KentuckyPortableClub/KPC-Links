@@ -466,7 +466,38 @@ KYLIVE = {'bwma': (KYGIS + 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query', 
           'bsna': (KYGIS + 'Ky_KNP_Natural_Areas_WGS84WM/MapServer/0/query', 'MANAME'),
           'bnps': ('https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query', 'UNIT_NAME'),
           'bfws': (FWS, 'ORGNAME'),
-          'bwilder': ('https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'WILDERNESSNAME')}
+          'bwilder': ('https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'WILDERNESSNAME'),
+          # Oct 27 (Brandon found it): Kentucky's open-data 'Kentucky Wild Rivers (Corridors)' (boundaries as described in KRS 146.2XX),
+          # opengisdata.ky.gov item efefe7342aa4460aaf8697e17deb4146: the service address and name field are looked up at run time
+          'bwild': ('item:efefe7342aa4460aaf8697e17deb4146', '?')}
+KYKIND = re.compile(r'\b(state resort park|state park|state historic site|state nature preserve|state natural area|wildlife management area|wma|'
+                    r'national wild and scenic river|wild river|scenic river|wild and scenic river|national recreation area|wilderness)\b', re.I)
+
+
+def _kcore(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', KYKIND.sub(' ', str(x or '').lower().replace('-', ' '))).split())
+
+
+RESOLVED_KY = {}
+
+
+def ky_resolve(src):
+    """An ArcGIS Online / Hub item id -> its layer query url + name field (asked once per run)."""
+    url, fld = KYLIVE[src]
+    if not url.startswith('item:'): return url, fld
+    if src in RESOLVED_KY: return RESOLVED_KY[src]
+    it = url[5:]
+    j = get(f'https://www.arcgis.com/sharing/rest/content/items/{it}', {'f': 'json'})
+    u = str(j.get('url') or '').rstrip('/')
+    if not re.search(r'/\d+$', u): u += '/0'
+    lj = get(u, {'f': 'json'})
+    names = [x['name'] for x in lj.get('fields') or [] if x.get('type') == 'esriFieldTypeString']
+    nf = next((n for n in names if re.fullmatch(r'(river_?)?name|name_?1?|wr_?name|label', n, re.I)), None) or next((n for n in names if re.search(r'name', n, re.I)), names[0] if names else 'NAME')
+    RESOLVED_KY[src] = (u + '/query', nf)
+    KYSRC[src] = f'{u} (item {it}, read {time.strftime("%Y-%m-%d")})'
+    return RESOLVED_KY[src]
+
+
+KYSRC = {}
 FRESHKY = {}   # ref -> {'live', 'file'}: where its tracts came from this run
 KYFRESH = {}   # (src, name) -> groups read live this run (or [] when the live read failed)
 
@@ -474,12 +505,18 @@ KYFRESH = {}   # (src, name) -> groups read live this run (or [] when the live r
 def ky_live(src, nm):
     k = (src, nm)
     if k in KYFRESH: return KYFRESH[k]
-    url, fld = KYLIVE[src]
     gs = []
     try:
-        j = get(url, {'where': f"UPPER({fld}) = '{nm.upper().replace(chr(39), chr(39) * 2)}'", 'outFields': fld, 'returnGeometry': 'true', 'outSR': 4326,
-                      'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'})
-        for ft in j.get('features') or []:
+        url, fld = ky_resolve(src)
+        q = lambda w: get(url, {'where': w, 'outFields': fld, 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'})
+        esc = lambda x: x.upper().replace(chr(39), chr(39) * 2)
+        fs = q(f"UPPER({fld}) = '{esc(nm)}'").get('features') or []
+        if not fs and _kcore(nm):
+            # Oct 27: the live layers often name the place without its kind ('Carter Caves', 'Columbus-Belmont', 'Bat Cave'):
+            # same name once the kind words are dropped
+            w = max(_kcore(nm).split(), key=len)
+            fs = [ft for ft in q(f"UPPER({fld}) LIKE '%{esc(w)}%'").get('features') or [] if _kcore((ft.get('attributes') or {}).get(fld)) == _kcore(nm)]
+        for ft in fs:
             g = esri_rings(ft.get('geometry'))
             if g: gs.append(g)
     except Exception as e: LOG.append(f'Kentucky live {src} {nm[:30]}: {str(e)[:50]}')  # noqa: BLE001
@@ -1604,7 +1641,7 @@ def main():
             # fresh = every tract read live (Daniel Boone = its outer line masked by the live Forest Service ownership map)
             saved_only = {r for r in G if 'file' in FRESHKY.get(r, {'file'})}
             for r in G:
-                MAPDATE[r] = ('read live from the agency ' + today) if r not in saved_only else 'Kentucky file copy (live layer did not answer or has no live source)'
+                MAPDATE[r] = ('read live from the agency ' + today + ''.join(f' · {v}' for k, v in KYSRC.items() if any(str(i).startswith(k + '|') for i in parks[r]['ids']))) if r not in saved_only else 'Kentucky file copy (live layer did not answer or has no live source)'
         else:
             G, bad = download(parks, [r for r in refs if parks[r]['ids']], DET, PREC)
             saved_only = set()
