@@ -479,8 +479,10 @@ def fs_owned(box):
     Fetched in 0.25-degree tiles, each parcel once (a whole forest can be one big multipart feature)."""
     try:
         if FSO['f'] is None:
-            fl = [x['name'] for x in get(FSBO, {'f': 'json'}).get('fields') or []]
+            info = get(FSBO, {'f': 'json'})
+            fl = [x['name'] for x in info.get('fields') or []]
             FSO['f'] = next((x for x in fl if x.lower() == 'ownerclassification'), 'ownerclassification')
+            FSO['oid'] = info.get('objectIdField') or next((x for x in fl if x.lower() == 'objectid'), 'objectid')
         out = []
         for i in range(int(math.floor(box[0] / .25)), int(math.floor(box[2] / .25)) + 1):
             for j in range(int(math.floor(box[1] / .25)), int(math.floor(box[3] / .25)) + 1):
@@ -491,7 +493,7 @@ def fs_owned(box):
                                                 'returnIdsOnly': 'true', 'f': 'json'}).get('objectIds') or []
                     new = [o for o in ids if o not in FSO['feat']]
                     for k in range(0, len(new), 10):
-                        j2 = get(FSBO + '/query', {'objectIds': ','.join(map(str, new[k:k + 10])), 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
+                        j2 = get(FSBO + '/query', {'objectIds': ','.join(map(str, new[k:k + 10])), 'outFields': FSO['oid'], 'returnGeometry': 'true', 'outSR': 4326,
                                                     'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, timeout=300)
                         oidf = j2.get('objectIdFieldName') or 'objectid'
                         for f in j2.get('features') or []:
@@ -1386,6 +1388,11 @@ def main():
             save_json(OUT / f'missing-{REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
             counts['missing boundary'] = len(miss)
         except Exception as e: LOG.append(f'missing list: {str(e)[:80]}')  # noqa: BLE001
+        if REGION == 'ky':   # Oct 27: a trail that crosses Kentucky brings pairs in other states; keep only spots IN Kentucky
+            try:
+                KYC = [c['r'] for c in json.load(open('kpc-ky-counties.json'))]
+                spots = [s for s in spots if pip_groups(KYC, s['center'][1], s['center'][0])]
+            except Exception as e: LOG.append(f'Kentucky outline: {str(e)[:60]}')  # noqa: BLE001
         by = {}
         for s in spots:
             s.update({'id': key_of(s) + '@%.3f,%.3f' % tuple(s['center']), 'passes': [1, 0, 0], 'status': 'pass 1', 'found': today})
