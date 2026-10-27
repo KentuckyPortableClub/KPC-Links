@@ -1,6 +1,6 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **152 of 186** parks joined to official land (same name + same kind of place). **1** to check by hand, **17** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **167 of 186** parks joined to official land (same name + same kind of place). **1** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,41 +8,26 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-10758 North End Natural Area (Natural Area) → on Assateague Island National Seashore (~26,977 ac)
-- US-10759 Green Run Woods Natural Area (Natural Area) → on Assateague Island National Seashore (~26,977 ac)
-- US-10762 Furnace Natural Area (Natural Area) → on POCOMOKE RIVER SF (~0 ac); Pocomoke River State Forest (~4,198 ac)
-- US-10767 Lostland Run Natural Area (Natural Area) → on POTOMAC SF (~0 ac); Potomac Sf (~8,558 ac)
-- US-10768 South Savage Mountain Natural Area (Natural Area) → on SAVAGE RIVER SF (~0 ac); Savage River Sf (~37,021 ac)
-- US-10769 Monroe Run Natural Area (Natural Area) → on SAVAGE RIVER SF (~0 ac); Savage River Sf (~37,021 ac)
-- US-10770 Bear Pen Run Natural Area (Natural Area) → on SAVAGE RIVER SF (~0 ac); Savage River Sf (~37,021 ac)
-- US-10771 Cat Rock and Bob's Hill Natural Area (Natural Area) → on CUNNINGHAM FALLS SP (~0 ac); CUNNINGHAM FALLS SP (~0 ac)
-- US-10773 Masemore Hemlock Ravines Natural Area (Natural Area) → on GUNPOWDER FALLS SP (~0 ac); GUNPOWDER FALLS SP (~0 ac)
-- US-10774 Plum Creek Natural Area (Natural Area) → on ELK NECK SF (~0 ac)
-- US-10775 Black Marsh Natural Area (Natural Area) → on NORTH POINT SP (~0 ac); NORTH POINT SP (~0 ac)
-- US-10780 Allens Fresh Natural Area (Natural Area) → on ZEKIAH SWAMP NEA (~0 ac); ZEKIAH SWAMP NEA (~0 ac)
 - US-13564 Savage Highlands State Park (State Park) → on SAVAGE RIVER SF (~0 ac); SAVAGE RIVER SF (~0 ac)
+- US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail) → on Fort McHenry National Monument and Historic Shrine (~47 ac)
 - US-6395 Sassafras Natural Resources Management Area State Natural Area (State Natural Area) → on SASSAFRASS NRMA (~0 ac); SASSAFRASS NRMA (~0 ac)
 - US-7769 Heaters Island Wildlife Management Area (Wildlife Management Area) → on ISLANDS OF THE POTOMAC WMA (~0 ac); ISLANDS OF THE POTOMAC Wildlife Management Area - Islands of the Potomac Wildland (~322 ac)
 - US-7776 Oxon Cove Park & Farm National Historical Park (National Historical Park) → on George Washington Memorial Parkway (~2,364 ac)
+- US-7973 Baltimore-Washington National Parkway (National Parkway) → on Greenbelt Park (~1,079 ac)
+- US-7974 Harmony Hall National Heritage Site (National Heritage Site) → on George Washington Memorial Parkway (~2,364 ac)
+- US-7975 Glen Echo National Heritage Site (National Heritage Site) → on George Washington Memorial Parkway (~2,364 ac)
 
 ## Nothing found in PAD-US
 
-- US-10732 Hickory Point Cypress Swamp Natural Area (Natural Area)
 - US-10751 Idylwild Natural Area (Natural Area)
-- US-10756 Skimmer Island Natural Area (Natural Area)
-- US-10764 Andover Flatwoods Natural Area (Natural Area)
 - US-11231 Sideling Hill Creek State Park (State Park)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
-- US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6388 Helen Avalynne Tawes Garden State Park (State Park)
 - US-6389 Jefferson Patterson Park and Museum State Park (State Park)
 - US-7768 Frederick City Watershed Cooperative Wildlife Management Area (Wildlife Management Area)
-- US-7973 Baltimore-Washington National Parkway (National Parkway)
-- US-7974 Harmony Hall National Heritage Site (National Heritage Site)
-- US-7975 Glen Echo National Heritage Site (National Heritage Site)
 - US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
