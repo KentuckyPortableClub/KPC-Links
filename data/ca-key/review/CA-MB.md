@@ -1,16 +1,17 @@
 # Canada MB: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **219 of 308** joined (same name + same kind). **0** to check, **84** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **219 of 308** joined (same name + same kind). **0** to check, **83** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
 
 ## Sites on bigger land (no outline of their own; the land around the pin)
 
-- CA-1050 Grassy Narrows Marsh Wildlife Reserve (Wildlife Reserve) → on Hecla/Grindstone Provincial Park (~0 ac); Hecla/Grindstone Provincial Park (~98,966 ac)
+- CA-1050 Grassy Narrows Marsh Wildlife Reserve (Wildlife Reserve) → on Hecla/Grindstone Provincial Park (~0 ac); Hecla Island (~0 ac)
 - CA-2390 Cape Tatnam Wildlife Management Area (Wildlife Management Area) → on Kaskatamagan Wildlife Management Area (~0 ac); Kaskatamagan Wildlife Management Area (~621,009 ac)
 - CA-2410 Ethelbert (Duck Mountain) Wildlife Management Area (Wildlife Management Area) → on Duck Mountain (~0 ac); Duck Mountain (~0 ac)
 - CA-2454 Manitoba - Ontario Interprovincial Wildlife Management Area (Wildlife Management Area) → on Nopiming Provincial Park (~0 ac)
+- CA-4799 Forts Rouge, Garry and Gibraltar National Historic Site (National Historic Site) → on Upper Fort Garry Heritage Provincial Park (~0 ac)
 - CA-5465 Tall Grass Prairie Preserve Natural Area (Natural Area) → on Loewen - MHHC (~335 ac)
 
 ## Nothing found in CPCAD
@@ -44,7 +45,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-2503 Sandilands Provincial Forest Wildlife Management Area (Wildlife Management Area)
 - CA-2527 Vimy Ridge Memorial Park Recreation Park (Recreation Park)
 - CA-2529 Wallace Lake Wildlife Management Area (Wildlife Management Area)
-- CA-4799 Forts Rouge, Garry and Gibraltar National Historic Site (National Historic Site)
 - CA-4800 Linear Mounds National Historic Site (National Historic Site)
 - CA-4803 Riding Mountain Park East Gate Registration Complex National Historic Site (National Historic Site)
 - CA-4805 St. Andrews Rectory National Historic Site (National Historic Site)
