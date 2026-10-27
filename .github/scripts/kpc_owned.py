@@ -182,8 +182,10 @@ def ky_dbnf(out='ky-dbnf-owned.geojson'):
     if parcels is None or not parcels:
         print(f'::notice title=Owned land::Kentucky: the Forest Service ownership map did not answer ({"; ".join(LOG[:2])}); the last file stays', flush=True)
         return False
-    feats, acres = [], 0.0
+    feats, acres, seen = [], 0.0, set()
     for rings in parcels:
+        if id(rings) in seen: continue   # a big multipart parcel is listed once per tile it touches
+        seen.add(id(rings))
         mp = to_multipolygon(rings)
         keep = []
         for poly in mp:
