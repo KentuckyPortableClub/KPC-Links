@@ -124,8 +124,9 @@
         else if (o.st) { const d = await j('data/access/US-' + o.st + '.json').catch(() => null); ap = (d && d.parks && d.parks[o.ref]) || []; }
       } catch (e) {}
       const el = $('lgAp'); if (!el || !ap.length) return;
+      ap = ap.slice().sort((x, y) => (x[3] === 'place') - (y[3] === 'place'));   // the park's own points first
       const n = 4, more = ap.length > n;
-      el.innerHTML = '<div class="lg-ap"><b>🅿 OFFICIAL PARKING &amp; ACCESS</b>' + ap.slice(0, n).map(a => '<a href="https://www.google.com/maps/dir/?api=1&destination=' + a[0] + ',' + a[1] + '" target="_blank" rel="noopener">' + esc(a[2] || 'Access point') + ' ›</a>').join('') +
+      el.innerHTML = '<div class="lg-ap"><b>🅿 OFFICIAL PARKING &amp; ACCESS</b>' + ap.slice(0, n).map(a => '<a href="https://www.google.com/maps/dir/?api=1&destination=' + a[0] + ',' + a[1] + '" target="_blank" rel="noopener">' + esc(a[3] === 'place' ? 'Nearby public access, not the park\u2019s own: ' + String(a[2] || 'access point').replace(/\b(park\s+)?entrances?\b/ig, 'access').replace(/^\w/, c => c.toLowerCase()) : (a[2] || 'Access point')) + ' ›</a>').join('') +
         (more ? '<a href="kpc-kit.html?ref=' + R + '">All ' + ap.length + ' on the Activation Kit map ›</a>' : '') + '</div>';
     })();
     /* SOTA: public land or not (data/sota-land/<area>.json from the nightly check of the national public-lands map) */

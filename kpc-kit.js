@@ -214,7 +214,9 @@
       try { const d = await fetch('data/access/' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
     }
     const ap = (P.park && P.park.ap) || P.ap || [];
-    ap.forEach(a => L.circleMarker([a[0], a[1]], { radius: 7, color: '#fff', weight: 2, fillColor: '#1d5a3a', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(a[2])}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${a[0]},${a[1]}" target="_blank" rel="noopener">Directions ↗</a>`));
+  /* HQ Oct 27: a point tied to the park only by PLACE (4th field 'place') is 'Nearby public access, not the park's own', never a park entrance */
+  const apLab = a => a && a[3] === 'place' ? 'Nearby public access, not the park\u2019s own: ' + String(a[2] || 'access point').replace(/\b(park\s+)?entrances?\b/ig, 'access').replace(/^\w/, c => c.toLowerCase()) : String((a && a[2]) || 'Access point');
+    ap.forEach(a => L.circleMarker([a[0], a[1]], { radius: 7, color: '#fff', weight: 2, fillColor: '#1d5a3a', fillOpacity: 1 }).addTo(map).bindPopup(`<b>${esc(apLab(a))}</b><br><a href="https://www.google.com/maps/dir/?api=1&destination=${a[0]},${a[1]}" target="_blank" rel="noopener">Directions ↗</a>`));
     const o = { ref: P.c, name: P.n, la: P.la, lo: P.lo, points: ap };
     const files = fc => { $('kitFiles').innerHTML = `<a class="alt" href="#" data-f="kml">KML · GOOGLE EARTH / MAP APPS</a><a class="alt" href="#" data-f="gpx">GPX · GARMIN / GPS UNITS</a>` + B.WHICH; $('kitFiles').querySelectorAll('[data-f]').forEach(b => b.onclick = e => { e.preventDefault(); B.saveGeo(fc, b.dataset.f, o, b); }); };
     if (P.prog === 'SOTA') {
