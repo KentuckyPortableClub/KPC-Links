@@ -31,6 +31,10 @@ def head(path):
     try:
         cmd = ['git', '-C', DATA_DIR, 'show', f'HEAD:{path}'] if DATA_DIR and path.startswith(DATA_PATHS) else ['git', 'show', f'{BASE}:{path}']
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        if r.returncode != 0 and DATA_DIR and path.startswith(DATA_PATHS):   # a big file is kept gzipped in KPC-Data
+            import gzip as _gz
+            g = subprocess.run(['git', '-C', DATA_DIR, 'show', f'HEAD:{path}.gz'], capture_output=True, timeout=120)
+            return json.loads(_gz.decompress(g.stdout)) if g.returncode == 0 and g.stdout else None
         return json.loads(r.stdout) if r.returncode == 0 and r.stdout.strip() else None
     except Exception: return None  # noqa: BLE001
 
@@ -72,7 +76,7 @@ def keys(found):
 
 def fers(found):
     for f in sorted(glob.glob('data/fers/*-*.json')):
-        if not re.fullmatch(r'(US|CA)-[A-Z]{2}|W-[A-Z]{2}', pathlib.Path(f).stem): continue
+        if not re.fullmatch(r'(US|CA)-[A-Z]{2}' + (r'|W-[A-Z]{2}' if os.environ.get('OBS_WORLD') else ''), pathlib.Path(f).stem): continue   # the world is parked
         new, old = now(f), head(f) or {}
         if not new: continue
         before = {s.get('id'): str(s.get('status', '')) for s in old.get('spots') or []}
