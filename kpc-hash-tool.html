@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-kpc-public>
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KPC member-password hash tool (temporary, do not share this link)</title>
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0d0904;color:#f3e6c8;font:16px/1.5 Arial,Helvetica,sans-serif;padding:20px;box-sizing:border-box}
+.box{max-width:480px;width:100%;background:#14100a;border:1px solid rgba(240,201,107,.5);border-radius:14px;padding:26px}
+h1{font-size:20px;margin:0 0 10px;color:#f0c96b}
+p{font-size:14px;color:#e2d2ae;line-height:1.5}
+input{width:100%;box-sizing:border-box;padding:12px;margin:14px 0;border-radius:8px;border:1px solid rgba(240,201,107,.5);background:#070707;color:#fff;font:16px monospace}
+button{width:100%;padding:14px;border:0;border-radius:999px;background:linear-gradient(90deg,#f6d58a,#d5a63a);color:#2a1a05;font:900 15px Arial;letter-spacing:1px;cursor:pointer}
+textarea{width:100%;box-sizing:border-box;margin-top:14px;padding:10px;border-radius:8px;border:1px solid rgba(240,201,107,.5);background:#070707;color:#9be89b;font:13px monospace;resize:none}
+.note{font-size:12.5px;color:#9b8f72;margin-top:14px}
+.err{color:#ff9b8a}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>KPC member-password hash tool</h1>
+<p>This page runs only in your own browser. Your password is never sent anywhere &mdash; not to KPC, not to Claude. Type the member password once, press the button, and send back ONLY the text that shows up below.</p>
+<form id="f">
+<input type="password" id="pw" placeholder="Member password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+<button type="submit" id="go">COMPUTE THE NEW HASH</button>
+</form>
+<textarea id="out" rows="3" readonly placeholder="Result appears here after you press the button."></textarea>
+<p class="note" id="note">This link is temporary and will be taken down once you send the result. Don't share it.</p>
+</div>
+<script>
+(function () {
+  var o = document.getElementById('out'), note = document.getElementById('note');
+  if (!window.isSecureContext || !window.crypto || !window.crypto.subtle) {
+    o.value = ''; note.className = 'note err';
+    note.textContent = 'This browser blocked the tool it needs (WebCrypto). Try opening this same link in Chrome or Safari instead of an in-app browser (like the one inside a messaging or email app).';
+    return;
+  }
+  async function pbkdf2Hex(text, saltText, iterations, bits) {
+    var enc = new TextEncoder();
+    var keyMaterial = await crypto.subtle.importKey('raw', enc.encode(text), { name: 'PBKDF2' }, false, ['deriveBits']);
+    var out = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt: enc.encode(saltText), iterations: iterations, hash: 'SHA-256' }, keyMaterial, bits);
+    return Array.prototype.map.call(new Uint8Array(out), function (x) { return x.toString(16).padStart(2, '0'); }).join('');
+  }
+  document.getElementById('f').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pw = document.getElementById('pw').value.trim().toLowerCase();
+    if (!pw) { o.value = 'Type the password first.'; return; }
+    o.value = 'Working…';
+    pbkdf2Hex('kpc-member:' + pw, 'kpc-member-pbkdf2-salt-v1', 200000, 256).then(function (h) {
+      o.value = h;
+      o.focus(); o.select();
+    }).catch(function (err) { o.value = 'Error: ' + err; });
+  });
+})();
+</script>
+</body>
+</html>
