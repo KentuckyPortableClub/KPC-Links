@@ -339,7 +339,12 @@ def call_parks(text, who=''):
     if not calls:
         return None
     c = calls[0]
-    d = load('data/leaders/KY-calls.json', {})
+    d = {}
+    try:      # Oct 27 (storage step B5): the leaders bot writes in KPC-Data now; the site's old copy is only a fallback
+        with urllib.request.urlopen('https://kentuckyportableclub.github.io/KPC-Data/data/leaders/KY-calls.json', timeout=30) as r:
+            d = json.loads(r.read().decode('utf-8'))
+    except Exception:  # noqa: BLE001
+        d = load('data/leaders/KY-calls.json', {})
     if not d.get('calls'):
         return None
     live = {p['c']: p for p in (load('kpc-ky-data.json', {}).get('parks') or [])}

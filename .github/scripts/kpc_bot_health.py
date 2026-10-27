@@ -95,28 +95,33 @@ def last_commit_age(path):
 
 def main():
     problems, ok = [], []
-    for f in sorted(pathlib.Path('.github/workflows').glob('*.yml')):
+    # Oct 27 (storage step B5): bots that moved to KPC-Data are checked too (the workflow checks its files out into kpcdata-wf/)
+    srcs = [(f, REPO, '') for f in sorted(pathlib.Path('.github/workflows').glob('*.yml'))]
+    srcs += [(f, 'KentuckyPortableClub/KPC-Data', 'KPC-Data/') for f in sorted(pathlib.Path('kpcdata-wf/.github/workflows').glob('*.yml'))]
+    for f, repo, tag in srcs:
         if f.name in SKIP: continue
         txt = f.read_text(encoding='utf-8')
         crons = re.findall(r"-\s*cron:\s*'([^']+)'", txt)
         if not crons: continue
-        name = (re.search(r'^name:\s*(.+)$', txt, re.M) or [None, f.name])[1].strip()
+        name = tag + (re.search(r'^name:\s*(.+)$', txt, re.M) or [None, f.name])[1].strip()
         need = every_hours(crons)
-        runs = gh(f'repos/{REPO}/actions/workflows/{f.name}/runs?per_page=5&event=schedule') or {}
+        runs = gh(f'repos/{repo}/actions/workflows/{f.name}/runs?per_page=5&event=schedule') or {}
         runs = runs.get('workflow_runs') or []
         done = [r for r in runs if r.get('status') == 'completed']
-        fresh_file = last_commit_age(str(f))   # its timer was changed lately: give it time before calling it late
+        fresh_file = last_commit_age(str(f)) if not tag else None   # its timer was changed lately: give it time before calling it late
         grace = fresh_file is not None and fresh_file < max(need * 2.5, need + 26)
+        if tag and not [r for r in runs if r.get('status') == 'completed']:
+            grace = True              # a bot that just moved to KPC-Data and has not had a timed run yet
         if not done:
-            if need < 24 * 30 and not grace: problems.append((f.name, f'{name}: no timed run found yet'))
+            if need < 24 * 30 and not grace: problems.append((tag + f.name, f'{name}: no timed run found yet'))
             continue
         last = done[0]
         age = (NOW - dt.datetime.fromisoformat(last['created_at'].replace('Z', '+00:00'))).total_seconds() / 3600
         late = age > max(need * 2.5, need + 3)
         if last.get('conclusion') not in ('success', 'skipped', 'neutral', 'cancelled'):
-            problems.append((f.name, f"{name}: last timed run ended '{last.get('conclusion')}' ({last['created_at'][:16]}Z) {last.get('html_url', '')}"))
+            problems.append((tag + f.name, f"{name}: last timed run ended '{last.get('conclusion')}' ({last['created_at'][:16]}Z) {last.get('html_url', '')}"))
         elif late and not grace:
-            problems.append((f.name, f'{name}: has not run for {age:.0f} h (it should run about every {need:.0f} h)'))
+            problems.append((tag + f.name, f'{name}: has not run for {age:.0f} h (it should run about every {need:.0f} h)'))
         else:
             ok.append(f'{name} · last ran {age:.1f} h ago')
     for path, hrs, who in FRESH:

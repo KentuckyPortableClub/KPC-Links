@@ -1,44 +1,39 @@
-name: KPC US park closures (state agencies)
-# Oct 25 2026 (chat 2; Brandon's maps to-do: 'closures for every state'). Reads the state agencies' own closure feeds
-# (round 4 research) and ties them to POTA parks: data/alerts/us-parks.json + 'uc-' entries in kpc-conditions.json.
-# Posts nothing. Every 6 hours + by hand. Never fails (a failed run emails Brandon).
+name: KPC US closures into park cards (merge)
+# Oct 27 (storage plan Stage 2, step B5; chat 5): the closure watcher itself MOVED to KPC-Data (its kpc-us-closures.yml,
+# 23 past 1/7/13/19 UTC) and writes data/alerts/us-parks.json there. This small job, 30 min later, copies those 'uc-' items
+# into kpc-conditions.json here (the small file the park cards, Kit, planners and the app read). Commits only when the
+# closures really changed. Posts nothing. Never fails. No secrets.
 on:
   schedule:
-    - cron: '23 1,7,13,19 * * *'
+    - cron: '53 1,7,13,19 * * *'
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: kpc-us-closures
+  group: kpc-us-closures-merge
   cancel-in-progress: false
 jobs:
-  closures:
+  merge:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
-      - name: Read the closure feeds
+      - name: Merge KPC-Data's closures into kpc-conditions.json
         continue-on-error: true
-        timeout-minutes: 20
-        run: python3 .github/scripts/kpc_us_closures.py || true
-      - name: Save
-        if: always()
+        run: |
+          mkdir -p data/alerts
+          curl -fsSL --retry 3 -o /tmp/us-parks.json https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/main/data/alerts/us-parks.json || exit 0
+          python3 -c "import json;json.load(open('/tmp/us-parks.json'))" || exit 0
+          cp /tmp/us-parks.json data/alerts/us-parks.json
+          python3 .github/scripts/kpc_us_closures.py --merge || true
+          git checkout -- data/alerts 2>/dev/null || true      # the file itself lives in KPC-Data now; only kpc-conditions.json is saved here
+      - name: Save (once, only real changes)
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          cp data/alerts/us-parks.json /tmp/us-parks.json 2>/dev/null || exit 0
-          cp data/status/kpc_us_closures.json /tmp/st.json 2>/dev/null || true
-          for i in 1 2 3 4; do
-            for f in data/alerts/us-parks.json kpc-conditions.json data/status/kpc_us_closures.json; do [ -f "$f" ] && git add "$f"; done
-            git diff --cached --quiet && exit 0
-            git commit -qm 'US park closures' || exit 0
-            git push -q origin HEAD:main && exit 0
-            # someone else pushed first: start again from theirs and redo only our part
-            git fetch -q origin main && git reset -q --hard origin/main
-            cp /tmp/us-parks.json data/alerts/us-parks.json
-            cp /tmp/st.json data/status/kpc_us_closures.json 2>/dev/null || true
-            python3 .github/scripts/kpc_us_closures.py --merge || true
-            sleep $((i * 7))
-          done
-          true
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 .github/scripts/kpc_save_filter.py kpc-conditions.json || true
+          git add kpc-conditions.json
+          git diff --cached --quiet && exit 0
+          git commit -qm 'US park closures (merged from KPC-Data)'
+          for i in 1 2 3 4; do git pull -q --rebase -X theirs origin main && git push -q origin HEAD:main && exit 0; sleep $((i*10)); done; exit 0
