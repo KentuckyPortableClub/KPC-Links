@@ -49,6 +49,7 @@ import numpy as np
 import cv2
 sys.path.insert(0, os.path.dirname(__file__))
 from kpc_save import save_json
+import kpc_owned as KO
 
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
@@ -654,92 +655,21 @@ RIVER_PAD = 150.0          # pass 1 screen for line-only rivers (no water areas 
 CURG = {}                  # the outlines in use (find_spots sets it)
 OWNED = {}                 # ref -> 'usfs' = agency-land park: only Forest Service-owned land counts
 AGENCY_LAND = re.compile(r'national forests?\b|national grasslands?\b', re.I)
-FSBO = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0'
-FSO = {'feat': {}, 'tile': {}, 'f': None}
+FSBO = KO.FSBO
 ACC = {}                   # ref -> notes ('restricted access (PAD-US)')
 LEFT = {}                  # ref -> records left out and why (easement, closed, proclamation…)
 MAPDATE = {}               # ref -> where / when its outline came from
 
 
-def fs_owned(box):
-    """Forest Service-OWNED land touching box (USDA Basic Ownership, the agency's own layer): one ring group per parcel.
-    Fetched in 0.25-degree tiles, each parcel once (a whole forest can be one big multipart feature)."""
-    try:
-        if FSO['f'] is None:
-            info = get(FSBO, {'f': 'json'})
-            fl = [x['name'] for x in info.get('fields') or []]
-            FSO['f'] = next((x for x in fl if x.lower() == 'ownerclassification'), 'ownerclassification')
-            FSO['oid'] = info.get('objectIdField') or next((x for x in fl if x.lower() == 'objectid'), 'objectid')
-        out = []
-        for i in range(int(math.floor(box[0] / .25)), int(math.floor(box[2] / .25)) + 1):
-            for j in range(int(math.floor(box[1] / .25)), int(math.floor(box[3] / .25)) + 1):
-                if (i, j) not in FSO['tile']:
-                    tb = [i * .25, j * .25, (i + 1) * .25, (j + 1) * .25]
-                    ids = get(FSBO + '/query', {'where': f"{FSO['f']} = 'USDA FOREST SERVICE'", 'geometry': ','.join(map(str, tb)),
-                                                'geometryType': 'esriGeometryEnvelope', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
-                                                'returnIdsOnly': 'true', 'f': 'json'}).get('objectIds') or []
-                    new = [o for o in ids if o not in FSO['feat']]
-                    for k in range(0, len(new), 10):
-                        j2 = get(FSBO + '/query', {'objectIds': ','.join(map(str, new[k:k + 10])), 'outFields': FSO['oid'], 'returnGeometry': 'true', 'outSR': 4326,
-                                                    'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, timeout=300)
-                        oidf = j2.get('objectIdFieldName') or 'objectid'
-                        for f in j2.get('features') or []:
-                            a = f.get('attributes') or {}
-                            o = a.get(oidf, next((v for kk, v in a.items() if kk.lower() == 'objectid'), None))
-                            FSO['feat'][o] = esri_rings(f.get('geometry'))
-                    FSO['tile'][(i, j)] = ids
-                out += [FSO['feat'][o] for o in FSO['tile'][(i, j)] if FSO['feat'].get(o)]
-        return out
-    except Exception as e:  # noqa: BLE001
-        LOG.append(f'Forest Service ownership: {str(e)[:80]}'); return None
-
-
-# Oct 27 (chat 8's pre-flight fixes 2-4 + PF-1/2/3, Brandon 'yes to all'): every AGENCY-LAND park is masked by the land its
-# agency owns: Forest Service = Basic Ownership; BLM planning areas = BLM surface management (BLM-administered land); Park
-# Service, Corps, FWS approved boundaries = PAD-US Fee records of that agency; Michigan DNR project lines = state-owned fee land.
-OWNER_KEY = {'usfs': 'FED:USFS', 'blm': 'FED:BLM', 'nps': 'FED:NPS', 'usace': 'FED:USACE', 'fws': 'FED:FWS', 'state': 'STATE'}
-PADQ = {'nps': "Category = 'Fee' AND Mang_Name = 'NPS'", 'usace': "Category = 'Fee' AND Mang_Name = 'USACE'",
-        'fws': "Category = 'Fee' AND Mang_Name = 'FWS'", 'state': "Category = 'Fee' AND Own_Type = 'STAT'"}
-OWNMAP = {'usfs': 'Forest Service ownership map (Basic Ownership, 2015 data)', 'blm': 'BLM surface management map',
-          'nps': 'PAD-US Park Service fee records', 'usace': 'PAD-US Corps of Engineers fee records', 'fws': 'PAD-US Fish and Wildlife fee records',
-          'state': 'PAD-US state fee records'}
-BLMSMA = 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_LimitedScale/MapServer'
-OWN_T = {}     # (kind, tile) -> groups
-
-
+# Oct 27 (Fable's boundary review #1): the ownership maps are read in ONE place, kpc_owned.py, shared with the website's
+# owned-land files (chat 8's pre-flight fixes 2-4 + PF-1/2/3: Forest Service = Basic Ownership; BLM planning areas = BLM surface
+# management; Park Service, Corps, FWS approved boundaries = PAD-US Fee records of that agency; Michigan project lines = state fee)
+OWNER_KEY, OWNMAP = KO.OWNER_KEY, KO.OWNMAP
+def fs_owned(box): return KO.fs_owned(box, DET, PREC)
 def owned_land(kind, box):
-    """Land the agency owns / administers touching box, by 0.25-degree tile (cached)."""
-    if kind == 'usfs': return fs_owned(box)
-    try:
-        out = []
-        for i in range(int(math.floor(box[0] / .25)), int(math.floor(box[2] / .25)) + 1):
-            for j in range(int(math.floor(box[1] / .25)), int(math.floor(box[3] / .25)) + 1):
-                k = (kind, i, j)
-                if k not in OWN_T:
-                    tb = [i * .25, j * .25, (i + 1) * .25, (j + 1) * .25]
-                    if kind == 'blm':
-                        if 'blm' not in OWN_T:
-                            lays = get(BLMSMA, {'f': 'json'}).get('layers') or []
-                            lid = next((l['id'] for l in lays if re.search(r'bureau of land management|\bblm\b', l.get('name', ''), re.I)), lays[0]['id'] if lays else 0)
-                            fl = [x['name'] for x in get(f'{BLMSMA}/{lid}', {'f': 'json'}).get('fields') or []]
-                            af = next((x for x in fl if re.search(r'admin.*agency|agency.*code|^sma_?id|admin_agency', x, re.I)), None)
-                            OWN_T['blm'] = (f'{BLMSMA}/{lid}/query', f"{af} = 'BLM'" if af else '1=1')
-                        url, where = OWN_T['blm']
-                    else: url, where = PADUS, PADQ[kind]
-                    gs, off = [], 0
-                    while True:
-                        jj = get(url, {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
-                                       'spatialRel': 'esriSpatialRelIntersects', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
-                                       'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'}, timeout=240)
-                        fs = jj.get('features') or []
-                        gs += [esri_rings(x.get('geometry')) for x in fs if esri_rings(x.get('geometry'))]
-                        if not fs or not jj.get('exceededTransferLimit'): break
-                        off += len(fs)
-                    OWN_T[k] = gs
-                out += OWN_T[k]
-        return out
-    except Exception as e:  # noqa: BLE001
-        LOG.append(f'{kind} owned land: {str(e)[:80]}'); return None
+    got = KO.owned_land(kind, box, DET, PREC)
+    if got is None and KO.LOG: LOG.append(KO.LOG[-1])
+    return got
 
 
 def pmask(F, r, G):
@@ -760,13 +690,10 @@ CACHE_TILES = 600   # Oct 27 (Fable #8): tiles kept in memory before the far one
 def evict(box):
     """Keep the cached ownership / water tiles near box (1 degree around); drop the rest when the caches grow big."""
     if not box: return
-    n = len(FSO['tile']) + sum(1 for k in OWN_T if isinstance(k, tuple)) + len(NHDC)
+    n = KO.tiles_cached() + len(NHDC)
     if n <= CACHE_TILES: return
     near = lambda x0, y0, sz: inter(box, [x0 * sz, y0 * sz, (x0 + 1) * sz, (y0 + 1) * sz], 1.0) is not None
-    for k in [k for k in FSO['tile'] if not near(k[0], k[1], .25)]: del FSO['tile'][k]
-    keep = {o for ids in FSO['tile'].values() for o in ids}
-    for o in [o for o in FSO['feat'] if o not in keep]: del FSO['feat'][o]
-    for k in [k for k in OWN_T if isinstance(k, tuple) and not near(k[1], k[2], .25)]: del OWN_T[k]
+    KO.evict(near)
     for k in [k for k in NHDC if not near(k[0], k[1], .1)]: del NHDC[k]
 
 
