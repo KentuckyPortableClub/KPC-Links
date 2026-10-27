@@ -54,6 +54,7 @@ import kpc_owned as KO
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
 ONLY = set((os.environ.get('STATES') or '').upper().replace(',', ' ').split())
+RUN_TAG = re.sub(r'[^a-z0-9-]', '', (os.environ.get('RUN_TAG') or '').lower())  # Oct 27 (HQ 5:11 PM): parallel region jobs keep their shared files apart
 REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + Canada, 'world' = the other countries (Brandon Oct 26: 'do the world')
 CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0, 5: 5.0}[PASS]   # 4 = access pins only, for candidates that have none; 5 = re-check water + tidy the rows
 DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002, 5: 0.00002}[PASS]
@@ -1916,7 +1917,7 @@ def main():
         counts.update({'candidates without a pin': len(cand), 'pins placed': n})
     elif PASS == 1:
         same = same_outline(parks)
-        save_json(OUT / {'world': 'same-outline-world.json', 'ky': 'same-outline-ky.json'}.get(REGION, 'same-outline.json'), {'about': "Two park numbers joined to the SAME outline record. Shown in the spot files as 'Same land, two park numbers' (HQ Oct 27 10:35 AM: the old 'never a 2-fer' rule is retired); a wrong join is still worth fixing in the answer key.", 'pairs': same}, indent=1)
+        save_json(OUT / (f'same-outline-{RUN_TAG}.json' if RUN_TAG else {'world': 'same-outline-world.json', 'ky': 'same-outline-ky.json'}.get(REGION, 'same-outline.json')), {'about': "Two park numbers joined to the SAME outline record. Shown in the spot files as 'Same land, two park numbers' (HQ Oct 27 10:35 AM: the old 'never a 2-fer' rule is retired); a wrong join is still worth fixing in the answer key.", 'pairs': same}, indent=1)
         skip_pairs = {tuple(x['refs']) for x in same}
         # saved outlines: PAD-US from the cache, Canada from the saved files; the rest from the state layers at the key's detail
         pad = saved_us(parks) if REGION == 'na' else {}
@@ -1948,14 +1949,14 @@ def main():
         # MISSING CHECK (HQ Oct 27 3:23 PM): what pass 1 looked at, which parks it could not look at and why, and the pairs whose
         # outlines nearly touch, so kpc_fers_expected.py can say FOUND / DROPPED / NEVER LOOKED AT for every expected pair
         try:
-            area = 'ky' if REGION == 'ky' else '-'.join(sorted(ONLY)) if ONLY else REGION
+            area = 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
             save_json(OUT / f'looked-{area}.json', {'about': 'What the 2-fer bot looked at in pass 1 (for the missing check).', 'date': today,
                                                     'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
                                                     'near100': near_pairs(G, pairs, spots), 'parks': sorted(parks)}, indent=None)
         except Exception as e: LOG.append(f'looked file: {str(e)[:80]}')  # noqa: BLE001
         try:   # rule 12: parks with no official boundary whose pin sits inside another park = 'Missing boundary' list
             miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)
-            save_json(OUT / f'missing-{REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
+            save_json(OUT / f'missing-{RUN_TAG or REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
             counts['missing boundary'] = len(miss)
         except Exception as e: LOG.append(f'missing list: {str(e)[:80]}')  # noqa: BLE001
         if REGION == 'ky':   # Oct 27: a trail that crosses Kentucky brings pairs in other states; keep only spots IN Kentucky
@@ -2055,7 +2056,7 @@ def main():
         counts.update({'agree with the pass before': agree, 'new here only (not counted)': new_only})
     # report
     rep = {}
-    RF = OUT / {'world': 'report-world.json', 'ky': 'report-ky.json'}.get(REGION, 'report.json')
+    RF = OUT / (f'report-{RUN_TAG}.json' if RUN_TAG else {'world': 'report-world.json', 'ky': 'report-ky.json'}.get(REGION, 'report.json'))
     try: rep = json.load(open(RF))
     except Exception: pass  # noqa: BLE001
     per = {}

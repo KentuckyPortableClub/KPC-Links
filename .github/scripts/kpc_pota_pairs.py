@@ -6,7 +6,7 @@ data/fers/pota-pairs-<US-XX>.json {made, parks_read, pairs: {"A+B": times}}. Slo
 30 days. STATES='US-KY US-OH'. A hint, never proof (an activator can drive between two parks the same day). Never fails."""
 import itertools, json, os, pathlib, sys, time, urllib.request
 UA = {'User-Agent': 'KPC 2-fer missing check (kentuckyportableclub.github.io; counts only)'}
-STATES = (os.environ.get('STATES') or 'US-KY').replace(',', ' ').split()
+STATES = (os.environ.get('STATES') or 'US-KY').upper().replace(',', ' ').split()
 OUT = pathlib.Path('data/fers')
 T0 = time.time(); LIMIT = float(os.environ.get('PAIR_MINUTES') or 40) * 60
 
@@ -25,7 +25,7 @@ n_keys_shown = [0]
 
 def main():
     for st in STATES:
-        st = st if st.startswith('US-') else 'US-' + st
+        st = st if '-' in st else 'US-' + st
         f = OUT / f'pota-pairs-{st}.json'
         try: old = json.load(open(f))
         except Exception: old = {}  # noqa: BLE001
@@ -34,7 +34,9 @@ def main():
         if st == 'US-KY':
             refs = [p['c'] for p in json.load(open('kpc-ky-data.json'))['parks']]
         else:
-            refs = list(json.load(open(f'data/parkinfo/{st}.json'))['parks'])
+            try: refs = list(json.load(open(f'data/parkinfo/{st}.json'))['parks'])
+            except Exception:  # noqa: BLE001
+                print(f'::notice title=POTA pairs::{st}: no park list (data/parkinfo/{st}.json), skipped', flush=True); continue
         days, n, complete = {}, 0, True
         for ref in sorted(refs):
             if time.time() - T0 > LIMIT: complete = False; break
