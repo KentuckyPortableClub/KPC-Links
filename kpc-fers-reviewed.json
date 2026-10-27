@@ -1,0 +1,4 @@
+{
+ "about": "Park Overlap Finder: which results have been REVIEWED (chat 8 check + Brandon's OK), written by HQ only. Key = the spot id from KPC-Data data/fers/<file>.json (e.g. 'US-10121+US-4484@area@37.026,-84.266'). A result whose outline changes goes back to unreviewed when the bot gives it a new id. Rows without a review show only to members who tick 'show the ones still waiting for review'.",
+ "reviewed": {}
+}
