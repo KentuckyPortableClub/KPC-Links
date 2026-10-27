@@ -79,20 +79,20 @@
   "with official lines": 0
  },
  "pass3": {
-  "agree with the pass before": 71911,
+  "agree with the pass before": 92002,
   "cell_m": 5.0,
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "left out": {
    "approximate": 0,
    "no outline": 16127,
    "no pin": 0,
    "pin well outside": 927
   },
-  "new here only (not counted)": 5031,
+  "new here only (not counted)": 7774,
   "official parks": 38822,
-  "pairs tested": 28539,
+  "pairs tested": 31874,
   "parks whose outline could not be read": 0,
-  "parks with a saved copy only (no fresh download possible)": 15747,
+  "parks with a saved copy only (no fresh download possible)": 16740,
   "pass": 3,
   "problems": [
    "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
@@ -134,14 +134,14 @@
    "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
    "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
    "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/Natura2000Sites/MapServer/2/query: not read (HTTP Error 502: Bad Gateway)"
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)"
   ],
   "with official lines": 0
  },
  "per state": {
   "W-AT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 104,
    "lines": 0,
    "n-fers": 21,
    "pass1": 176,
@@ -149,7 +149,7 @@
    "spots": 176
   },
   "W-AU": {
-   "candidates": 0,
+   "candidates": 528,
    "candidates (saved outline only)": 0,
    "lines": 0,
    "n-fers": 329,
@@ -159,7 +159,7 @@
   },
   "W-BE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 9,
    "lines": 0,
    "n-fers": 5,
    "pass1": 23,
@@ -168,7 +168,7 @@
   },
   "W-CH": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 101,
    "lines": 0,
    "n-fers": 13,
    "pass1": 163,
@@ -177,7 +177,7 @@
   },
   "W-CZ": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 154,
    "lines": 0,
    "n-fers": 64,
    "pass1": 230,
@@ -186,7 +186,7 @@
   },
   "W-DE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 25,
    "lines": 0,
    "n-fers": 0,
    "pass1": 29,
@@ -195,7 +195,7 @@
   },
   "W-DK": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 13,
    "lines": 0,
    "n-fers": 0,
    "pass1": 17,
@@ -204,7 +204,7 @@
   },
   "W-EE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 7,
    "lines": 0,
    "n-fers": 0,
    "pass1": 7,
@@ -213,7 +213,7 @@
   },
   "W-ES": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 3203,
    "lines": 0,
    "n-fers": 1555,
    "pass1": 4896,
@@ -222,7 +222,7 @@
   },
   "W-FI": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 491,
    "lines": 0,
    "n-fers": 8,
    "pass1": 891,
@@ -231,7 +231,7 @@
   },
   "W-FR": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 44587,
    "lines": 0,
    "n-fers": 44268,
    "pass1": 85132,
@@ -239,8 +239,8 @@
    "spots": 85132
   },
   "W-GB": {
-   "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates": 520,
+   "candidates (saved outline only)": 333,
    "lines": 0,
    "n-fers": 256,
    "pass1": 1710,
@@ -249,7 +249,7 @@
   },
   "W-HR": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 325,
    "lines": 0,
    "n-fers": 46,
    "pass1": 482,
@@ -267,7 +267,7 @@
   },
   "W-IE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 1,
    "lines": 0,
    "n-fers": 0,
    "pass1": 13,
@@ -276,7 +276,7 @@
   },
   "W-IT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 524,
    "lines": 0,
    "n-fers": 57,
    "pass1": 707,
@@ -285,7 +285,7 @@
   },
   "W-LT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 2,
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
@@ -294,7 +294,7 @@
   },
   "W-LU": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 4,
    "lines": 0,
    "n-fers": 0,
    "pass1": 5,
@@ -303,7 +303,7 @@
   },
   "W-NL": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 17,
    "lines": 0,
    "n-fers": 0,
    "pass1": 21,
@@ -312,7 +312,7 @@
   },
   "W-NO": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 129,
    "lines": 0,
    "n-fers": 3,
    "pass1": 194,
@@ -321,7 +321,7 @@
   },
   "W-PL": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 7035,
    "lines": 0,
    "n-fers": 2587,
    "pass1": 7904,
@@ -330,7 +330,7 @@
   },
   "W-PT": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 96,
    "lines": 0,
    "n-fers": 23,
    "pass1": 166,
@@ -339,7 +339,7 @@
   },
   "W-RO": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 155,
    "lines": 0,
    "n-fers": 16,
    "pass1": 211,
@@ -348,7 +348,7 @@
   },
   "W-SE": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 749,
    "lines": 0,
    "n-fers": 139,
    "pass1": 1072,
@@ -357,7 +357,7 @@
   },
   "W-SI": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 79,
    "lines": 0,
    "n-fers": 17,
    "pass1": 101,
@@ -366,7 +366,7 @@
   },
   "W-SK": {
    "candidates": 0,
-   "candidates (saved outline only)": 0,
+   "candidates (saved outline only)": 2,
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
