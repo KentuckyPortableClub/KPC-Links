@@ -174,17 +174,9 @@ def park_of_the_week(state):
 
 
 # ------------------------------------------------------------------ WMA closure heads-up (Wednesday before)
-def wma_closures(state, today, force=False):
-    """Wednesday: which Kentucky WMAs are closed to non-hunters THIS coming weekend (Brandon Oct 25).
-    Reads chat 2's entries in kpc-conditions.json: id 'hc-<ref>-<start date>', expires = day after the
-    closure ends, link = the WMA's KDFWR page; only short (10 days or less) quota-hunt closures. No entry touching the weekend = no post. Never posts twice."""
-    if not force and today.weekday() != 2:
-        return False
-    sat = today + datetime.timedelta(days=(5 - today.weekday()) % 7 or 7)
-    sun = sat + datetime.timedelta(days=1)
-    key = sat.isoformat()
-    if not force and state.get('wma_for') == key:
-        return False
+def _wma_scan(sat, sun, asks):
+    """Short (10 days or less) quota-hunt closures in chat 2's 'hc-' items that touch this Sat-Sun.
+    An item whose dates can't be read is never guessed: it goes to `asks` for the staff room."""
     names = {c: p.get('n') for c, p in park_by_ref().items()}
     rows = []
     for it in (load('kpc-conditions.json', {}).get('items') or []):
@@ -193,35 +185,122 @@ def wma_closures(state, today, force=False):
         try:
             a = datetime.date.fromisoformat(str(it['id'])[-10:])                       # hc-US-4687-2026-11-07
             b = datetime.date.fromisoformat(str(it.get('expires'))[:10]) - datetime.timedelta(days=1)
-        except (ValueError, KeyError):
+            if b < a:
+                raise ValueError('ends before it starts')
+        except (ValueError, KeyError, TypeError):
+            asks.append(it)
             continue
         if (b - a).days > 10:        # season-long closures stay on the park cards; this post is the one-weekend quota hunts
             continue
         if a <= sun and b >= sat:
             rows.append((names.get(it.get('ref')) or it.get('name') or it.get('ref'), a, b, it))
-    if not rows:
-        notice(f'No WMA closures for {sat:%b} {sat.day}-{sun.day}; no heads-up post.')
-        return False
     rows.sort(key=lambda r: str(r[0]))
-    fmt = lambda d: f'{d:%b} {d.day}'
-    L = [f'These Kentucky WMAs are closed to non-hunters {fmt(sat)}-{sun.day}:', '']
-    for n, a, b, it in rows:
-        span = fmt(a) if a == b else f'{fmt(a)} to {fmt(b)}'
-        L.append(f"• **{n}**: {span}" + (f" · [KDFWR page]({it['link']})" if it.get('link') else ''))
-    L += ['', 'Hunters may be in the woods: wear blaze orange if you are anywhere near a hunt, and check the '
-              'KDFWR page before you drive.']
-    body = '\n'.join(L)
-    title = f'WMA closures this weekend ({fmt(sat)}-{sun.day})'
-    if DRY:
-        print(f'--- {title} ---\n{body}\n')
-        return True
-    ok = to_discord(('KPC_PARKS_WEBHOOK', 'KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK'), title, body, 0xE65100,
-                    f'{SITE}kpc-spots.html')
-    fb = [title, ''] + [l.replace('**', '') for l in L[2:]]
-    to_facebook('\n'.join(re.sub(r'\[KDFWR page\]\((.*?)\)', r'\1', x) for x in fb))
-    if ok:
-        state['wma_for'] = key
-    return ok
+    return rows
+
+
+def _fmt(d):
+    return f'{d:%b} {d.day}'
+
+
+def _wma_line(n, a, b, it, md=True):
+    """Whole WMA: '• X: Nov 7 to Nov 8'. Part of one (Brandon Oct 27, G3): '• Part of X (Tract 1A) is closed: ...',
+    the part named in KDFWR's own words."""
+    span = _fmt(a) if a == b else f'{_fmt(a)} to {_fmt(b)}'
+    first = re.sub(r'^[^:]*?:\s*[A-Z][a-z]{2}[^:]*?:\s*', '', str(it.get('details') or ''), count=1).split(';')[0].strip()
+    part = re.match(r'(?i)^(.{3,80}?)\s+(?:is |are )?closed\b', first)
+    nm = f'**{n}**' if md else n
+    if part and re.search(r'(?i)\b(unit|tract|area|zone|section|portion|field|parts? of)\b', part.group(1)):
+        line = f'• Part of {nm} ({part.group(1).strip()}) is closed: {span}'
+    else:
+        line = f'• {nm}: {span}'
+    if it.get('link'):
+        line += f" · [KDFWR page]({it['link']})" if md else f" · {it['link']}"
+    return line
+
+
+def _staff(title, body):
+    """Staff room only (KPC_ADMIN_WEBHOOK); never falls back to a public room. No email."""
+    return to_discord(('KPC_ADMIN_WEBHOOK',), title, body, 0x8a8a8a) if not DRY else print(f'--- STAFF: {title} ---\n{body}\n')
+
+
+def wma_closures(state, today, force=False, wait=False):
+    """Wednesday: which Kentucky WMAs are closed to non-hunters THIS coming weekend (Brandon Oct 25), from chat 2's
+    'hc-' items in kpc-conditions.json. Rules (Brandon Oct 27): part-closures worded 'Part of X (unit) is closed';
+    an item with unreadable dates is asked about in the staff room, never guessed; when the dates change after the
+    Wednesday post, ONE short correction goes out, only before that weekend starts; on a holiday Wednesday the
+    heads-up waits for the afternoon run so the two posts are hours apart. Never posts twice; no closures = no post."""
+    did = False
+    asks = []
+    sent = state.setdefault('wma_sent', {})            # weekend (Saturday) -> {item id: 'start|end'} as posted
+    # 1) corrections for a weekend already announced (any day, only before that weekend starts)
+    for key in list(sent):
+        sat = datetime.date.fromisoformat(key)
+        if today >= sat:
+            sent.pop(key, None)
+            continue
+        rows = _wma_scan(sat, sat + datetime.timedelta(days=1), asks)
+        cur = {it['id']: f'{a}|{b}' for _, a, b, it in rows}
+        if cur == sent[key]:
+            continue
+        old = sent[key]
+        L = [f'Correction to the WMA closures for {_fmt(sat)}-{(sat + datetime.timedelta(days=1)).day} (KDFWR changed the list):', '']
+        for n, a, b, it in rows:
+            if it['id'] not in old:
+                L.append(_wma_line(n, a, b, it) + ' (added)')
+            elif old[it['id']] != cur[it['id']]:
+                L.append(_wma_line(n, a, b, it) + ' (new dates)')
+        names = {c: p.get('n') for c, p in park_by_ref().items()}
+        for iid in old:
+            if iid not in cur:
+                ref = re.sub(r'^hc-|-\d{4}-\d{2}-\d{2}$', '', iid)
+                L.append(f'• {names.get(ref) or ref}: no longer listed for this weekend')
+        L += ['', 'Check the KDFWR page before you drive.']
+        title = f'Correction: WMA closures {_fmt(sat)}-{(sat + datetime.timedelta(days=1)).day}'
+        if DRY:
+            print(f'--- {title} ---\n' + '\n'.join(L) + '\n')
+        else:
+            if to_discord(('KPC_PARKS_WEBHOOK', 'KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK'), title, '\n'.join(L), 0xE65100):
+                to_facebook('\n'.join([title, ''] + [re.sub(r'\[KDFWR page\]\((.*?)\)', r'\1', x.replace('**', '')) for x in L[2:]]))
+                sent[key] = cur
+        did = True
+    # 2) the Wednesday heads-up
+    if force or today.weekday() == 2:
+        sat = today + datetime.timedelta(days=(5 - today.weekday()) % 7 or 7)
+        sun = sat + datetime.timedelta(days=1)
+        key = sat.isoformat()
+        if wait and not force:
+            notice('Holiday post went out this morning: the WMA heads-up waits for the afternoon run.')
+        elif force or state.get('wma_for') != key:
+            rows = _wma_scan(sat, sun, asks)
+            if not rows:
+                notice(f'No WMA closures for {_fmt(sat)}-{sun.day}; no heads-up post.')
+            else:
+                L = [f'These Kentucky WMAs are closed to non-hunters {_fmt(sat)}-{sun.day}:', '']
+                L += [_wma_line(n, a, b, it) for n, a, b, it in rows]
+                L += ['', 'Hunters may be in the woods: wear blaze orange if you are anywhere near a hunt, and check the '
+                          'KDFWR page before you drive.']
+                title = f'WMA closures this weekend ({_fmt(sat)}-{sun.day})'
+                if DRY:
+                    print(f'--- {title} ---\n' + '\n'.join(L) + '\n')
+                    did = True
+                else:
+                    ok = to_discord(('KPC_PARKS_WEBHOOK', 'KPC_GENERAL_WEBHOOK', 'KPC_DISCORD_WEBHOOK'), title, '\n'.join(L),
+                                    0xE65100, f'{SITE}kpc-spots.html')
+                    to_facebook('\n'.join([title, ''] + [re.sub(r'\[KDFWR page\]\((.*?)\)', r'\1', x.replace('**', '')) for x in L[2:]]))
+                    if ok:
+                        state['wma_for'] = key
+                        sent[key] = {it['id']: f'{a}|{b}' for _, a, b, it in rows}
+                        did = True
+    # 3) items with dates we can't read: ask the staff room once each (never guessed, never public)
+    asked = state.setdefault('wma_asked', [])
+    new = [it for it in {i.get('id'): i for i in asks}.values() if it.get('id') not in asked]
+    if new:
+        _staff('WMA closure: dates unclear, not posted',
+               'These KDFWR closure items have dates the bot could not read, so they were left out of the heads-up. '
+               'Check them and post by hand if needed:\n' + '\n'.join(f"• {it.get('id')}: {str(it.get('details'))[:200]} {it.get('link', '')}" for it in new))
+        if not DRY:
+            state['wma_asked'] = (asked + [it.get('id') for it in new])[-200:]
+    return did
 
 
 # ------------------------------------------------------------------ holiday post (HQ Oct 26, Brandon: GO for Halloween only)
@@ -310,6 +389,7 @@ def holiday_post(state, today, force=False):
             notice('No Facebook secrets; skipped Facebook.')
         if ok:
             state['holidays_done'] = (done + [key])[-30:]
+            state['holiday_on'] = today.isoformat()
         return ok
     return False
 
@@ -512,7 +592,13 @@ def main():
         did += busy_bands(state, today, force=ONLY in ('contests', 'busy'))
     if holiday_post(state, today, force=ONLY == 'holiday'):
         did.append('holiday post')
-    if wma_closures(state, today, force=ONLY == 'wma'):
+    try:
+        from zoneinfo import ZoneInfo
+        ct_hour = datetime.datetime.now(ZoneInfo('America/Chicago')).hour
+    except Exception:  # noqa: BLE001
+        ct_hour = 9
+    wait = state.get('holiday_on') == today.isoformat() and ct_hour < 12     # G6: holiday + closure posts hours apart
+    if wma_closures(state, today, force=ONLY == 'wma', wait=wait):
         did.append('WMA closure heads-up')
     if want_wx:
         r = event_weather(state, today)

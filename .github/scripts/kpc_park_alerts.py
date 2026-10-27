@@ -468,6 +468,22 @@ def http(url, data=None, headers=None):
         return 0, str(e)
 
 
+STAFF = ((os.environ.get('KPC_ADMIN_WEBHOOK') or '').strip().split() or [''])[0]
+
+
+def post_staff(title, text):
+    """Rule (Brandon Oct 27, G5): an alert that can't be tied to ONE of our parks is never posted in public; it is
+    put to the staff room for a person to decide. No email."""
+    if not STAFF.startswith('https://'):
+        notice('Park alerts', 'No staff-room webhook (KPC_ADMIN_WEBHOOK); unmatched alert kept back, not posted.')
+        return
+    body = {'username': 'KPC Park Watch', 'allowed_mentions': {'parse': []},
+            'embeds': [{'title': title[:250], 'color': 0x8a8a8a, 'description': text[:4000]}]}
+    c, r = http(STAFF, json.dumps(body).encode(), {'Content-Type': 'application/json'})
+    if c >= 300:
+        notice('Park alerts', f'Staff room HTTP {c}: {r[:200]}')
+
+
 def post_discord(title, text):
     if not DISCORD.startswith('https://'):
         notice('Park alerts', 'No Discord webhook set; nothing sent to Discord.')
@@ -604,6 +620,20 @@ def main():
                         'refs': rec.get('refs') or []})
 
     quiet = now.hour >= QUIET_FROM or now.hour < QUIET_TO
+    # G5: not tied to one of our parks = never public; ask in the staff room instead (any hour: staff only, no email)
+    ask = [p for p in pending if not p.get('refs') and not p.get('routine')]
+    if ask:
+        pending = [p for p in pending if p not in ask]
+        L = ["These park notices could not be matched to one of our parks, so nothing was posted. "
+             "If one matters, post it through the relay channel with the park's number.", '']
+        for p in ask:
+            L.append(f"• {'Closed / caution' if p['kind'] == 'closed' else 'Notice taken down'}: **{p['title']}** ({p['who']})"
+                     + (f"\n  {p['text'][:240]}" if p.get('text') else '') + (f"\n  {p['link']}" if p.get('link') else ''))
+        if DRY:
+            print('WOULD ASK (staff room):\n' + '\n'.join(L))
+        else:
+            post_staff('Park alert: which park is this?', '\n'.join(L))
+        notice('Park alerts', f'{len(ask)} notice(s) not tied to one park: asked in the staff room, not posted')
     if pending and not quiet:
         shut = [p for p in pending if p['kind'] == 'closed' and not p.get('routine')]
         burns = [p for p in pending if p['kind'] == 'closed' and p.get('routine')]

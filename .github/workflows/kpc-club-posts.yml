@@ -5,6 +5,7 @@ name: KPC club posts
 on:
   schedule:
     - cron: '41 14 * * *'        # 9.41am Central, 10.41 in summer
+    - cron: '41 19 * * 3'        # Wednesday afternoon: the WMA heads-up when a holiday post went out that morning (Brandon Oct 27: both go, hours apart)
   workflow_dispatch:
     inputs:
       only:
@@ -36,6 +37,7 @@ jobs:
           KPC_GENERAL_WEBHOOK: ${{ secrets.KPC_GENERAL_WEBHOOK }}
           KPC_CAMPOUT_WEBHOOK: ${{ secrets.KPC_CAMPOUT_WEBHOOK }}
           KPC_DISCORD_WEBHOOK: ${{ secrets.KPC_DISCORD_WEBHOOK }}
+          KPC_ADMIN_WEBHOOK: ${{ secrets.KPC_ADMIN_WEBHOOK }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           ONLY: ${{ inputs.only }}
