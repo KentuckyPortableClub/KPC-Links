@@ -5,7 +5,7 @@
   const FILES = ['finder.html', 'finder.css', 'finder.js', 'gis-overlays.js', 'kpc-offline.js', 'kpc-map-extras.js', 'kpc-my-parks.js', 'kpc-us-states.json', 'ky-overlaps.geojson',
     'locations-ky.json', 'locations.json', 'official-2fer-evidence.json', 'official-park-access.json', 'official-trail-maps.json', 'wwff-unmapped.json',
     'kpc-ky-data.json', 'ky-trail-parks.json',
-    'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson',
+    'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
     'KPC-logo.png', 'kpc-icon-32.png'];
   const LF = 'https://unpkg.com/leaflet@1.9.4/dist/';

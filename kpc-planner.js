@@ -35,7 +35,8 @@ const B = {
  bwma:{name:'WMAs & public hunting areas', file:'ky-hunting-areas.geojson', color:'#f08a1c', note:'Public hunting land: check season dates and wear blaze orange during gun seasons.'},
  bsnp:{name:'State nature preserves', file:'ky-nature-preserves.geojson', color:'#a25ee0'},
  bsna:{name:'State natural areas', file:'ky-natural-areas.geojson', color:'#e2559f'},
- bdbnf:{name:'Daniel Boone National Forest', file:'ky-dbnf.geojson', color:'#2f7fd6', note:'This is the outer forest boundary. It includes private land and towns, so check land ownership on the Forest Service map.'},
+ bdbnfo:{name:'Daniel Boone National Forest (Forest Service land)', file:'ky-dbnf-owned.geojson', color:'#2f7fd6', own:true, note:'Forest Service-owned land from its ownership map (2015 data): land bought since may be missing, so check the official map.'},
+ bdbnf:{name:'Forest boundary line (Daniel Boone)', file:'ky-dbnf.geojson', color:'#2f7fd6', proc:true, note:'Forest boundary line: not all land inside is public. Only the shaded Forest Service land is the park.'},
  bnps:{name:'National Park Service', file:'ky-nps.geojson', color:'#9b6a3c'},
  bwild:{name:'Wild river corridors', file:'ky-wild-rivers.geojson', color:'#16b3c0', note:'Much of the land along wild rivers is private. Check access first.'},
  bwilder:{name:'Wilderness areas', file:'ky-wilderness.geojson', color:'#c6e03a', note:'Designated wilderness: no motorized equipment, and group size limits apply.'},
@@ -80,7 +81,9 @@ function noNumBox(o,esc){const L=a=>a.slice(0,6).map(x=>esc(x.c)+' '+esc(x.n||''
 const kOf=s=>{s=String(s||'').toLowerCase();const k=[];if(/wildlife management area|\bwma\b|hunting area/.test(s))k.push('wma');if(/nature preserve|natural area|\bsnp\b|\bsna\b/.test(s))k.push('snp');if(/state (resort )?park|recreation(al)? area/.test(s))k.push('sp');if(/state forest/.test(s))k.push('sf');if(/wild river|scenic river/.test(s))k.push('wr');return k},kSame=(a,b)=>{const x=kOf(a),y=kOf(b);return !x.length||!y.length||x.some(v=>y.includes(v))};
 const NOTPARK={color:'#ff2a2a',dashArray:'2 6'};
 function potaFor(f){ // POTA parks matched to a boundary: alias, reference point inside, or name match
- if(f._pota)return f._pota;const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map(),NM=new Set();
+ if(f._pota)return f._pota;
+ const pr=(f.properties||{}).ref;if(pr&&(f.properties||{}).owner){f._named=true;return (f._pota=D.parks.filter(p=>p.c===pr))}   /* Oct 27: owned-land parcels carry their park number */
+ const nm=norm(fName(f)),b=f._bb||(f._bb=bbox(f.geometry)),out=new Map(),NM=new Set();
  (ALIAS[fName(f)]||[]).forEach(r=>{const p=D.parks.find(x=>x.c===r);if(p)out.set(r,p)});
  for(const p of D.parks){if(out.has(p.c))continue;
   if(p.lo>=b[0]-.02&&p.lo<=b[2]+.02&&p.la>=b[1]-.02&&p.la<=b[3]+.02&&inside(p.la,p.lo,f.geometry)){out.set(p.c,p);continue}
@@ -93,7 +96,8 @@ function whereIs(lat,lon){
  const hits=[],trails=[];let near=null;
  for(const k of Object.keys(bData)){if(B[k]&&B[k].corps)continue;for(const f of bData[k].features){const b=f._bb||(f._bb=bbox(f.geometry));
   const rough=Math.max(0,(b[0]-lon)*89,(lon-b[2])*89,(b[1]-lat)*111,(lat-b[3])*111);if(rough>40)continue;
-  if(inside(lat,lon,f.geometry))hits.push({k,f,name:fName(f)||B[k].name,refs:potaFor(f)});
+  if(inside(lat,lon,f.geometry))hits.push({k,f,name:fName(f)||B[k].name,refs:B[k].proc?[]:potaFor(f)});
+  else if(B[k].proc)continue;
   else{const d=edgeKm(lat,lon,f.geometry);if(!near||d<near.d)near={k,f,d,name:fName(f)||B[k].name,refs:potaFor(f)}}}}
  for(const k of Object.keys(tData)){let best=Infinity;for(const f of tData[k].features){const b=f._bb||(f._bb=bbox(f.geometry));
   if(Math.max(0,(b[0]-lon)*89,(lon-b[2])*89,(b[1]-lat)*111,(lat-b[3])*111)>1)continue;best=Math.min(best,edgeKm(lat,lon,f.geometry))}
@@ -103,7 +107,11 @@ function whereIs(lat,lon){
 function whereHtml(w){
  if(!bReady)return '<span class="pw-muted">Loading boundaries… the check appears in a moment.</span>';
  let h='';
+ /* Oct 27 (rule B1 + B-G1): the forest's outer line never says 'inside'; only the Forest Service's own land is the park */
+ const outer=w.hits.some(x=>B[x.k].proc),own=w.hits.some(x=>B[x.k].own);w={...w,hits:w.hits.filter(x=>!B[x.k].proc)};
+ if(outer&&!own&&bData.bdbnfo)h+='<div class="pw-out">✗ Not Forest Service land on its map. You are inside the outer boundary of Daniel Boone National Forest, but this spot is not Forest Service land (private or another owner). POTA needs public land inside the park: move onto Forest Service land.</div><div class="pw-note">Forest Service ownership map, 2015 data: land bought since may be missing, so check the official map.</div>';
  if(w.hits.length)h+=w.hits.slice(0,4).map(x=>`<div class="pw-in">✓ Inside <b>${esc(x.name)}</b>${x.refs.length?` · POTA <b>${esc(refTxt(x.refs))}</b>`:' · <i>no POTA ref matched</i>'}</div>${B[x.k].note?`<div class="pw-note">${esc(B[x.k].note)}</div>`:''}`).join('');
+ else if(outer&&!own&&bData.bdbnfo){if(w.near&&B[w.near.k].own)h+=`<div class="pw-note">Nearest Forest Service land: ${fmtMi(w.near.d)} away.</div>`}
  else if(w.near)h+=`<div class="pw-out">✗ Not inside a mapped boundary. Nearest: <b>${esc(w.near.name)}</b>${w.near.refs.length?` (${esc(refTxt(w.near.refs))})`:''}, ${fmtMi(w.near.d)} away.</div>`;
  else h+='<div class="pw-out">✗ Not inside a mapped boundary.</div>';
  if(w.trails.length)h+=w.trails.map(t=>`<div class="pw-in">🥾 ${t.d<0.03?'On':'Near'} <b>${esc(t.name)}</b> · POTA <b>${t.ref}</b> · ${fmtMi(t.d)} from the trail</div>`).join('');
@@ -122,7 +130,7 @@ function setShown(k,v){try{const o=JSON.parse(localStorage.getItem('kpcPlanLayer
 /* line weights follow the shared "Thick boundaries" switch (kpc-map-extras.js) */
 const LW=w=>window.KPCX&&KPCX.lw?KPCX.lw(w):w,FO=f=>window.KPCX&&KPCX.fo?KPCX.fo(f):f;
 function drawB(k){const s=B[k];canvasR=canvasR||bRend();
- bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(k==='bdbnf'?.03:(has?.07:.04))   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
+ bLay[k]=L.geoJSON(bData[k],{renderer:canvasR,pane:'bndp',style:f=>{if(s.proc)return{color:s.color,weight:LW(1.6),opacity:.75,dashArray:'6 8',fill:false};if(s.corps)return{color:s.color,weight:LW(2.6),opacity:1,fill:true,fillOpacity:0};if(s.kpc)return{color:s.color,weight:LW(3),opacity:1,dashArray:'12 5 2 5',fill:true,fillOpacity:0};potaFor(f);if(!f._named)return{color:NOTPARK.color,weight:LW(2.5),opacity:1,dashArray:NOTPARK.dashArray,fill:true,fillOpacity:0};const has=true;return{color:s.color,weight:LW(has?3:2),opacity:.95,dashArray:has?null:'6 5',fillColor:s.color,fillOpacity:FO(has?.07:.04)   /* lighter inside (Brandon Oct 16: 'could use little less shading') */}},
   onEachFeature:(f,l)=>{l.on('click',e=>{if(adding)return;L.popup({maxWidth:290}).setLatLng(e.latlng).setContent(bPopup(f,s,e.latlng)).openOn(map)})}});
  if(shown(k))bLay[k].addTo(map);order()}
 function drawT(k){const s=T[k];
