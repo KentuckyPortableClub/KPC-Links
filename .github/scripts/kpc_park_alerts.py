@@ -577,7 +577,7 @@ def main():
                 closed.append((aid, rec))
             continue
         rec.update({k: a[k] for k in ('title', 'text', 'link', 'who') if k in a})
-        rec['runs'] = int(rec.get('runs', 0)) + 1
+        rec['runs'] = min(int(rec.get('runs', 0)) + 1, CONFIRM)     # capped: a counter ticking every run made a commit every run
         rec['missing'] = 0
         if not rec.get('refs'):
             rec['refs'] = match_parks(a, parks)
