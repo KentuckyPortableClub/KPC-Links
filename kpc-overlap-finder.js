@@ -97,10 +97,10 @@
       (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
-      '<p class="ov-note">Last checked ' + esc(s.checked || s.found || '') + '</p>' + (ps.length > 1 ? '' : accLine(s)) +
+      '<p class="ov-note">Last checked ' + niceDate(s.checked || s.found || '') + '</p>' + (ps.length > 1 ? '' : accLine(s)) +
       '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +
       /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
-      '<details class="ov-more"><summary>▸ SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
+      '<details class="ov-more"><summary>SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
       (s.note ? '<p class="ov-note">ℹ️ ' + esc(s.note) + '</p>' : '') +
       '<p class="ov-note">Maps used: ' + mapsUsed(s) + '</p>' +
       '<div class="acts">' + (s.maps || []).map(function (m) { return '<a class="b" target="_blank" rel="noopener" href="' + esc(m[1]) + '">OFFICIAL MAP: ' + esc(m[0]) + '</a>'; }).join('') + '</div></details>' +
@@ -123,6 +123,39 @@
     var why = m.plain || MISS_PLAIN[m.ref] || 'this park has no official boundary map, so spots where it may overlap another park can\'t be checked. Its map pin sits inside another park\'s official outline.';
     return '<b>' + esc(m.name) + ' (' + esc(m.ref) + ')</b>: ' + esc(why).replace(/&#39;/g, '\'') + ' Not confirmed.' + (m.checked ? ' Last checked ' + niceDate(m.checked) + '.' : '');
   }
+  /* the pop-up sheet: one park → its card (one partner) or the list of partner parks (several) */
+  var PK = {}, SORT = store('kpcOvSort') === 'az' ? 'az' : 'num', SH = { ref: '', key: '' };
+  function countText(e) { var c = {}; e.pairs.forEach(function (x) { var k = x[0].trail ? 'trail' : x[0].n; c[k] = (c[k] || 0) + 1; });
+    return Object.keys(c).sort().map(function (k) { var n = c[k]; return k === 'trail' ? n + ' possible trail overlap' + (n > 1 ? 's' : '') : n + ' possible ' + k + '-fer' + (n > 1 ? 's' : ''); }).join(' · '); }
+  function sheetEl() {
+    var d = $('ovSheet'); if (d) return d;
+    d = document.createElement('div'); d.id = 'ovSheet'; d.className = 'ov-sheet'; d.hidden = true; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true');
+    d.innerHTML = '<div class="ov-sbox"><div class="ov-shd"><button type="button" class="ov-sback" data-sheet="back" hidden>← OTHER PARKS</button><b id="ovShT"></b><button type="button" class="ov-sx" data-sheet="x" aria-label="Close">✕</button></div><div id="ovShB"></div></div>';
+    $('ov').appendChild(d); return d;
+  }
+  function openPark(ref, key) {
+    var e = PK[ref]; if (!e) return; var d = sheetEl(); SH.ref = ref; SH.key = key || '';
+    if (!key && e.pairs.length === 1) SH.key = e.pairs[0][0].key;
+    $('ovShT').textContent = e.ref + ' ' + e.name;
+    d.querySelector('[data-sheet=back]').hidden = !(SH.key && e.pairs.length > 1);
+    if (SH.key) { var x = e.pairs.filter(function (p) { return p[0].key === SH.key; })[0]; if (!x) return; $('ovShB').innerHTML = '<span class="ov-short">' + SHORT + '</span>' + rowHtml(x[0], x[1]); }
+    else $('ovShB').innerHTML = '<p class="ov-note">' + countText(e) + '. Pick the other park:</p><div class="ov-pks">' + e.pairs.map(function (x) {
+      var g = x[0], oth = g.refs.filter(function (r) { return r !== ref; });
+      return '<button type="button" class="ov-pk" data-pair="' + esc(g.key) + '"><b>' + oth.map(esc).join(' + ') + '</b><span class="nm">' + oth.map(function (r) { return esc(nm(g, r)); }).join(' + ') + '</span><span class="ct">' + (g.trail ? 'possible trail overlap' : 'possible ' + g.n + '-fer') + ' · ' + (g.trail ? 'about ' + (x[1].reduce(function (t, y) { return t + (y.len_m || 0); }, 0) / 1609).toFixed(1) + ' mi of trail' : x[1].length > 1 ? x[1].length + ' places' : 'about ' + Math.round((x[1][0].wide_m || 0) * YD) + ' yards across') + (g._mi != null && F.near ? ' · ' + (g._mi < 10 ? g._mi.toFixed(1) : Math.round(g._mi)) + ' mi' : '') + '</span><span class="go">›</span></button>'; }).join('') + '</div>';
+    d.hidden = false; d.querySelector('.ov-sbox').scrollTop = 0; try { d.querySelector('.ov-sx').focus({ preventScroll: true }); } catch (x) {}
+  }
+  function closeSheet() { var d = $('ovSheet'); if (d) d.hidden = true; SH.ref = ''; SH.key = ''; }
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('ovSheet') && !$('ovSheet').hidden) closeSheet(); });
+  document.addEventListener('click', function (e) {
+    var t = e.target; if (!t.closest) return;
+    var a = t.closest('#ov [data-pk]'); if (a) { e.preventDefault(); openPark(a.dataset.pk); return; }
+    a = t.closest('#ov [data-pair]'); if (a) { e.preventDefault(); openPark(SH.ref, a.dataset.pair); return; }
+    a = t.closest('#ov [data-sheet]'); if (a) { e.preventDefault(); if (a.dataset.sheet === 'back') openPark(SH.ref); else closeSheet(); return; }
+    if (t.id === 'ovSheet') { closeSheet(); return; }
+    a = t.closest('#ov [data-sort]'); if (a) { e.preventDefault(); SORT = a.dataset.sort; store('kpcOvSort', SORT);
+      if (F.near) { F.near = false; var nb = document.querySelector('#ov [data-f=near]'); if (nb) nb.classList.remove('on'); $('ovNearNote').hidden = true; } list(); return; }
+    if (t.closest('#ovSheet [data-open], #ovSheet [data-place]')) { var d = $('ovSheet'); if (d) d.hidden = true; }   // the map opens: get the sheet out of the way
+  }, true);
   function list() {
     var q = ($('ovQ').value || '').trim().toLowerCase(), out = [];
     ROWS.forEach(function (g) {
@@ -132,10 +165,22 @@
       g._mi = here && ps[0].center ? miles(here[0], here[1], ps[0].center[0], ps[0].center[1]) : null;
       out.push([g, ps]);
     });
-    /* Brandon Oct 27 2:48 PM: 'have list in order numerically' = by the lowest park number in each row (then the next one) */
-    out.sort(F.near && here ? function (a, b) { return a[0]._mi - b[0]._mi; } : function (a, b) { return (a[0].st < b[0].st ? -1 : a[0].st > b[0].st ? 1 : 0) || numKey(a[0]) - numKey(b[0]) || numKey(a[0], 1) - numKey(b[0], 1); });
+    /* Brandon Oct 27 5 PM ('if a state has bunch of parks it be really long … just show park number and name sorted by number or a-z,
+       click on it a card pops up, or with several 2-fers another list where you pick the other park'): ONE line per park (both sides
+       of every pair), sorted BY NUMBER or A–Z (or nearest with NEAR ME); the card opens in a pop-up sheet. */
+    var P = {}, qq = q;
+    out.forEach(function (x) { x[0].refs.forEach(function (r) { var e = P[r] || (P[r] = { ref: r, name: nm(x[0], r), pairs: [], mi: null }); e.pairs.push(x); if (x[0]._mi != null && (e.mi == null || x[0]._mi < e.mi)) e.mi = x[0]._mi; }); });
+    var pk = Object.keys(P).map(function (k) { return P[k]; });
+    if (qq) { var own = pk.filter(function (e) { return (e.ref + ' ' + e.name).toLowerCase().indexOf(qq) >= 0; }); if (own.length) pk = own; }
+    var refN = function (r) { return +(/(\d+)$/.exec(r) || [0, 0])[1]; };
+    pk.sort(F.near && here ? function (a, b) { return a.mi - b.mi; } : SORT === 'az' ? function (a, b) { return a.name.replace(/^the /i, '').localeCompare(b.name.replace(/^the /i, '')) || refN(a.ref) - refN(b.ref); } : function (a, b) { return a.ref.split('-')[0].localeCompare(b.ref.split('-')[0]) || refN(a.ref) - refN(b.ref); });
+    PK = P;
+    [].forEach.call(document.querySelectorAll('#ov [data-sort]'), function (b) { var on = b.dataset.sort === SORT && !(F.near && here); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     var empty = '<div class="ov-empty"><b>We are still checking ' + esc(REG ? REG.label : 'these') + '\'s parks.</b> Nothing is listed yet. This does not mean there are no overlaps.</div>';
-    $('ovList').innerHTML = out.length ? '<p class="ov-note">' + out.length + ' result' + (out.length > 1 ? 's' : '') + ' in ' + esc(REG.label) + '.</p><span class="ov-short" style="margin-bottom:8px">' + SHORT + '</span>' + out.map(function (x) { return rowHtml(x[0], x[1]); }).join('') : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
+    $('ovList').innerHTML = pk.length ? '<p class="ov-note">' + pk.length + ' park' + (pk.length > 1 ? 's' : '') + ' with a possible 2-fer in ' + esc(REG.label) + ' (' + out.length + ' pair' + (out.length > 1 ? 's' : '') + '). Tap a park.</p><span class="ov-short" style="margin-bottom:8px">' + SHORT + '</span>' +
+      '<div class="ov-pks">' + pk.map(function (e) { return '<button type="button" class="ov-pk" data-pk="' + esc(e.ref) + '"><b>' + esc(e.ref) + '</b><span class="nm">' + esc(e.name) + '</span><span class="ct">' + countText(e) + (e.mi != null && F.near ? ' · ' + (e.mi < 10 ? e.mi.toFixed(1) : Math.round(e.mi)) + ' mi' : '') + '</span><span class="go">›</span></button>'; }).join('') + '</div>'
+      : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
+    if ($('ovSheet') && !$('ovSheet').hidden && SH.ref && !P[SH.ref]) closeSheet();
     $('ovWaitW').hidden = true;   /* Brandon: no 'not released' talk while only club members can see the page */
     $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '</div>'; }).join('');
     /* HQ Oct 27 4:25 PM: plain words, one sentence each: what's missing, why, and what was still tested */
@@ -353,7 +398,7 @@
     if (b.matches('[data-f]')) { var f = b.dataset.f;
       if (f === 'near') { if (F.near) { F.near = false; b.classList.remove('on'); $('ovNearNote').hidden = true; list(); return; }
         if (!navigator.geolocation) { toast('This browser cannot give a location.'); return; }
-        navigator.geolocation.getCurrentPosition(function (pos) { here = [pos.coords.latitude, pos.coords.longitude]; F.near = true; b.classList.add('on'); $('ovNearNote').hidden = false; list(); }, function () { toast('Location not shared, so the list stays by state.'); }, { timeout: 15000, maximumAge: 300000 }); return; }
+        navigator.geolocation.getCurrentPosition(function (pos) { here = [pos.coords.latitude, pos.coords.longitude]; F.near = true; b.classList.add('on'); $('ovNearNote').hidden = false; list(); }, function () { toast('Location not shared, so the list stays in order.'); }, { timeout: 15000, maximumAge: 300000 }); return; }
       F[f] = !F[f]; b.setAttribute('aria-pressed', String(F[f])); list(); return; }
     var t = b.dataset.t; if (!cur && t !== 'street' && t !== 'sat' && t !== 'topo') { toast('Pick a result first.'); return; }
     if (t === 'replay') { clearTimeout(timer); animate(); }
@@ -372,9 +417,26 @@
   $('ovWait').addEventListener('change', list);
 
   var SAVED = {};
+  /* Brandon Oct 27 5 PM: 'might as well have a drop down now for states and provinces': every US state + Canadian province; the ones
+     with a checked list come first, the rest say 'not checked yet' (picking one says so plainly, never an empty 'no overlaps') */
+  var PLACES = { US: 'AL Alabama|AK Alaska|AZ Arizona|AR Arkansas|CA California|CO Colorado|CT Connecticut|DE Delaware|DC District of Columbia|FL Florida|GA Georgia|HI Hawaii|ID Idaho|IL Illinois|IN Indiana|IA Iowa|KS Kansas|KY Kentucky|LA Louisiana|ME Maine|MD Maryland|MA Massachusetts|MI Michigan|MN Minnesota|MS Mississippi|MO Missouri|MT Montana|NE Nebraska|NV Nevada|NH New Hampshire|NJ New Jersey|NM New Mexico|NY New York|NC North Carolina|ND North Dakota|OH Ohio|OK Oklahoma|OR Oregon|PA Pennsylvania|RI Rhode Island|SC South Carolina|SD South Dakota|TN Tennessee|TX Texas|UT Utah|VT Vermont|VA Virginia|WA Washington|WV West Virginia|WI Wisconsin|WY Wyoming',
+    CA: 'AB Alberta|BC British Columbia|MB Manitoba|NB New Brunswick|NL Newfoundland and Labrador|NS Nova Scotia|NT Northwest Territories|NU Nunavut|ON Ontario|PE Prince Edward Island|QC Quebec|SK Saskatchewan|YT Yukon' };
+  function regionOf(cc, code) { return CFG.regions.filter(function (r) { return r.id === code && cc === 'US' || (r.files || []).indexOf(cc + '-' + code) >= 0; })[0]; }
+  function regionSelect() {
+    var done = CFG.regions.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.public ? '' : ' (members)') + '</option>'; }).join('');
+    var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (not checked yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
+    $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE</b></label><select id="ovReg"><optgroup label="Checked">' + done + '</optgroup>' + grp('US', 'US states') + grp('CA', 'Canada') + '</select>' +
+      '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
+    $('ovReg').addEventListener('change', function () { loadRegion(this.value); });
+  }
+  function notChecked(id) {
+    var m = /^(US|CA)-([A-Z]{2})$/.exec(id || ''); if (!m) return null; var hit = PLACES[m[1]].split('|').filter(function (x) { return x.slice(0, 2) === m[2]; })[0]; return hit ? { id: id, label: hit.slice(3), files: [], none: true } : null;
+  }
   function loadRegion(id) {
-    REG = CFG.regions.filter(function (r) { return r.id === id; })[0] || CFG.regions[0]; store('kpcOvRegion', REG.id); cur = null;
-    [].forEach.call(document.querySelectorAll('#ov [data-region]'), function (x) { x.classList.toggle('on', x.dataset.region === REG.id); });
+    REG = CFG.regions.filter(function (r) { return r.id === id; })[0] || notChecked(id) || CFG.regions[0]; cur = null; closeSheet();
+    if ($('ovReg')) $('ovReg').value = REG.id;
+    if (REG.none) { ROWS = []; TIGHT = []; MISS = []; var nb0 = $('ovRegNote'); if (nb0) nb0.hidden = true; list(); return Promise.resolve(); }
+    store('kpcOvRegion', REG.id);
     $('ovList').innerHTML = '<p class="ov-note">Loading ' + esc(REG.label) + '…</p>';
     var base = CFG.base || '../KPC-Data/data/fers/';
     return Promise.all(REG.files.map(function (f) { return j(base + f + '.json'); }).concat([REG.missing && MEMBER ? j(base + REG.missing + '.json') : null])).then(function (a) {
@@ -396,7 +458,7 @@
     CFG = a[0] || { regions: [] }; REV = (a[1] && a[1].reviewed) || {};
     CFG.regions = (CFG.regions || []).filter(function (r) { return r.public || MEMBER; });
     if (!CFG.regions.length) { $('ovList').innerHTML = '<div class="ov-empty"><b>We are still checking the parks.</b> Nothing is listed yet. This does not mean there are no overlaps.</div>'; return; }
-    $('ovRegions').innerHTML = CFG.regions.length > 1 ? '<b>REGION</b>' + CFG.regions.map(function (r) { return '<button type="button" data-region="' + esc(r.id) + '">' + esc(r.label) + (r.public ? '' : ' 🔒') + '</button>'; }).join('') : '<b>REGION: ' + esc(CFG.regions[0].label.toUpperCase()) + (CFG.regions[0].public ? '' : '') + '</b>';
+    regionSelect();
     var q = new URLSearchParams(location.search).get('region'), want = q || store('kpcOvRegion');
     loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
   });
