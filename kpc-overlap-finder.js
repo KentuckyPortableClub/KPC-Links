@@ -13,7 +13,7 @@
   var $ = function (id) { return document.getElementById(id); };
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function j(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
-  var SHORT = '⚠️ Possible POTA overlap only. We think these POTA parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';
+  var SHORT = '⚠️ Parks\' boundaries may overlap here, but we can\'t confirm it. Check both official boundary maps and make your own call before you count it.';   /* Brandon Oct 27 4:23 PM: 'Say this instead' */
   var YD = 1.09361, BAND = 30.48, COL = ['#0072B2', '#D55E00', '#009E73', '#CC79A7', '#56B4E9', '#8E6CEF', '#9A9A9A', '#F0E442', '#E69F00'];   /* Brandon Oct 27 3:04 PM: no gold/orange for the first parks: gold is the overlap */
   var DASH = ['', '12 6', '3 6', '12 6 3 6', '2 8', '18 6 4 6 4 6', '8 4', '1 5 9 5', '22 8'];
   var MEMBER = !window.KPCGate || KPCGate.member();
@@ -70,7 +70,7 @@
   function tagOf(g) { return g.trail ? '<span class="ov-badge bg-trail">POSSIBLE TRAIL OVERLAP: WITHIN 100 FT OF THE TRAIL LINE</span>' : '<span class="ov-badge bg-n">POSSIBLE ' + g.n + '-FER</span>'; }
   function nm(g, r) { return (g.names && g.names[r]) || r; }
   function accLine(s) {
-    var a = s.access_pin; if (!a || !a.at) return '<p class="ov-note">🅿️ <b>No public road or parking found within about a mile.</b> Plan your walk on the official map (members only until a person has looked at it).</p>';
+    var a = s.access_pin; if (!a || !a.at) return '<p class="ov-note">🅿️ <b>No public road or parking found within about a mile.</b> Plan your walk on the official map.</p>';
     var acc = s.access && s.access.name ? ' Nearest official access point: ' + esc(s.access.name) + '.' : '';
     var generic = !a.name || /^public (road|path)$/i.test(a.name), yd = Math.round((a.walk_m || 0) * YD), what = a.from === 'road' ? (generic ? 'an unnamed public road' : esc(a.name) + ' (public road)') : a.from === 'path' ? (generic ? 'a public path' : esc(a.name) + ' (public path)') : esc(a.name || a.from) + ' (' + esc(a.from) + ')';
     return '<p class="ov-note">📍 Closest spot to public access: ' + (yd < 15 ? 'right beside <b>' + what + '</b>.' : 'about ' + yd + ' yards from <b>' + what + '</b>.') + acc +
@@ -85,21 +85,20 @@
   function placesHtml(g, ps) {
     return '<details class="ov-places"' + (ps.length <= 3 ? ' open' : '') + '><summary>▸ THE ' + ps.length + ' PLACES</summary><ol>' + ps.map(function (s, i) {
       var sz = s.kind === 'trail' ? (s.len_m ? 'about ' + Math.round(s.len_m * YD) + ' yards of trail' + (s.stretches > 1 ? ' in ' + s.stretches + ' stretches' : '') : 'trail stretch') : 'fits a circle about ' + Math.round((s.wide_m || 0) * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '');
-      return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + (s._rev ? '' : ' · <i>not released yet</i>') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
+      return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
   }
   function rowHtml(g, ps) {
     var s = ps[0], small = ps.some(function (x) { return tierOf(x) === 'small'; }), wait = ps.some(function (x) { return !x._rev; });
-    return '<div class="ov-row" data-row="' + esc(g.key) + '">' + tagOf(g) + (small ? '<span class="ov-badge bg-small">SMALL OVERLAP: TIGHT FIT, CHECK CAREFULLY</span>' : '') + (wait ? '<span class="ov-badge bg-wait">NOT RELEASED YET</span>' : '') +
+    return '<div class="ov-row" data-row="' + esc(g.key) + '">' + tagOf(g) + (small ? '<span class="ov-badge bg-small">SMALL OVERLAP: TIGHT FIT, CHECK CAREFULLY</span>' : '') +
       (s.label ? '<span class="ov-badge bg-off">' + esc(s.label.toUpperCase()) + '</span>' : '') +
       '<b class="t" style="margin-top:6px">' + g.refs.map(function (r) { return esc(r) + ' ' + esc(nm(g, r)); }).join(' + ') + '</b>' +
       '<span class="m">' + sizeLine(g, ps) + (here && g._mi != null ? ' · ' + Math.round(g._mi) + ' mi from you' : '') + '</span>' +
-      '<p class="ov-note">Last checked ' + esc(s.checked || s.found || '') + '</p>' +
+      '<p class="ov-note">Last checked ' + esc(s.checked || s.found || '') + '</p>' + (ps.length > 1 ? '' : accLine(s)) +
       '<div class="acts"><button type="button" data-open="' + esc(g.key) + '">🗺 SHOW ON THE MAP</button></div>' +
       /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
-      '<details class="ov-more"><summary>▸ SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : accLine(s)) +
+      '<details class="ov-more"><summary>▸ SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
       (s.note ? '<p class="ov-note">ℹ️ ' + esc(s.note) + '</p>' : '') +
       '<p class="ov-note">Maps used: ' + esc(Object.keys(s.map_dates || {}).map(function (r) { return r + ' ' + s.map_dates[r]; }).join('; ') || 'see the official maps') + '</p>' +
-      (MEMBER && (s.how_checked || s.ownership) ? '<p class="ov-how2">How we checked (members): ' + esc([s.how_checked, s.ownership, s.owner_here ? 'owner: ' + s.owner_here : ''].filter(Boolean).join(' · ')) + '</p>' : '') +
       '<div class="acts">' + (s.maps || []).map(function (m) { return '<a class="b" target="_blank" rel="noopener" href="' + esc(m[1]) + '">OFFICIAL MAP: ' + esc(m[0]) + '</a>'; }).join('') + '</div></details>' +
       '</div>';   /* Brandon Oct 27 3:04 PM: 'No need for a warning on every card' (one SHORT notice heads the list; popups + exports keep theirs) */
   }
@@ -115,11 +114,11 @@
     });
     /* Brandon Oct 27 2:48 PM: 'have list in order numerically' = by the lowest park number in each row (then the next one) */
     out.sort(F.near && here ? function (a, b) { return a[0]._mi - b[0]._mi; } : function (a, b) { return (a[0].st < b[0].st ? -1 : a[0].st > b[0].st ? 1 : 0) || numKey(a[0]) - numKey(b[0]) || numKey(a[0], 1) - numKey(b[0], 1); });
-    var empty = '<div class="ov-empty"><b>We are still checking ' + esc(REG ? REG.label : 'these') + '\'s parks.</b> Nothing is listed yet. This does not mean there are no overlaps.' + (MEMBER && WAITN && !$('ovWait').checked ? '<br><br>Members: ' + WAITN + ' result' + (WAITN > 1 ? 's are' : ' is') + ' not released yet. Tick the box below to see them (marked NOT RELEASED YET).' : '') + '</div>';
+    var empty = '<div class="ov-empty"><b>We are still checking ' + esc(REG ? REG.label : 'these') + '\'s parks.</b> Nothing is listed yet. This does not mean there are no overlaps.</div>';
     $('ovList').innerHTML = out.length ? '<p class="ov-note">' + out.length + ' result' + (out.length > 1 ? 's' : '') + ' in ' + esc(REG.label) + '.</p><span class="ov-short" style="margin-bottom:8px">' + SHORT + '</span>' + out.map(function (x) { return rowHtml(x[0], x[1]); }).join('') : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
-    $('ovWaitW').hidden = !(MEMBER && WAITN);
-    $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><span class="ov-badge bg-mem">MEMBERS ONLY</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '</div>'; }).join('');
-    $('ovMissB').hidden = !MISS.length; $('ovMiss').innerHTML = MISS.map(function (m) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-mem">MEMBERS FIRST</span><span class="ov-badge bg-wld">' + esc((m.note || 'Missing boundary: check the official map').toUpperCase()) + '</span><b class="t">' + esc(m.ref) + ' ' + esc(m.name) + '</b><p class="ov-note">' + esc(m.why || '') + (m.checked ? ' · checked ' + esc(m.checked) : '') + '</p></div>'; }).join('');
+    $('ovWaitW').hidden = true;   /* Brandon: no 'not released' talk while only club members can see the page */
+    $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '</div>'; }).join('');
+    $('ovMissB').hidden = !MISS.length; $('ovMiss').innerHTML = MISS.map(function (m) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-wld">' + esc((m.note || 'Missing boundary: check the official map').toUpperCase()) + '</span><b class="t">' + esc(m.ref) + ' ' + esc(m.name) + '</b><p class="ov-note">' + esc(m.why || '') + (m.checked ? ' · checked ' + esc(m.checked) : '') + '</p></div>'; }).join('');
   }
 
   /* ---------- the MAP ---------- */
@@ -252,9 +251,9 @@
   }
   function parkPop(p) { var s = cur.best, m = (s.maps || []).filter(function (x) { return x[0] === p.ref; })[0];
     return '<span class="ov-num" style="background:' + p.c + ';display:inline-grid;width:22px;height:22px;border-radius:50%;place-items:center;font-weight:900">' + p.n + '</span> <b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b>' + (p.line ? '<br>A line park: the band = POTA\'s 100 ft from the line.' : '') +
-      '<br>' + (m ? '<a target="_blank" rel="noopener" href="' + esc(m[1]) + '">Official map</a> · ' : '') + '<a target="_blank" rel="noopener" href="https://pota.app/#/park/' + esc(p.ref) + '">POTA page</a><span class="ov-short">' + SHORT + '</span>'; }
-  function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : 'Possible overlap patch') + '</b><br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
-    'Last checked ' + esc(s.checked || '') + (s._rev ? '' : '<br><b style="color:#a3271a">NOT RELEASED YET</b>') + '<span class="ov-short">' + SHORT + '</span>'; }
+      '<br>' + (m ? '<a target="_blank" rel="noopener" href="' + esc(m[1]) + '">Official map</a> · ' : '') + '<a target="_blank" rel="noopener" href="https://pota.app/#/park/' + esc(p.ref) + '">POTA page</a>'; }   /* Brandon: the overlap message only on the overlap */
+  function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
+    'Last checked ' + esc(s.checked || '') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
     var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p>';
   }
@@ -376,7 +375,7 @@
     CFG = a[0] || { regions: [] }; REV = (a[1] && a[1].reviewed) || {};
     CFG.regions = (CFG.regions || []).filter(function (r) { return r.public || MEMBER; });
     if (!CFG.regions.length) { $('ovList').innerHTML = '<div class="ov-empty"><b>We are still checking the parks.</b> Nothing is listed yet. This does not mean there are no overlaps.</div>'; return; }
-    $('ovRegions').innerHTML = CFG.regions.length > 1 ? '<b>REGION</b>' + CFG.regions.map(function (r) { return '<button type="button" data-region="' + esc(r.id) + '">' + esc(r.label) + (r.public ? '' : ' 🔒') + '</button>'; }).join('') : '<b>REGION: ' + esc(CFG.regions[0].label.toUpperCase()) + (CFG.regions[0].public ? '' : ' 🔒 MEMBERS ONLY') + '</b>';
+    $('ovRegions').innerHTML = CFG.regions.length > 1 ? '<b>REGION</b>' + CFG.regions.map(function (r) { return '<button type="button" data-region="' + esc(r.id) + '">' + esc(r.label) + (r.public ? '' : ' 🔒') + '</button>'; }).join('') : '<b>REGION: ' + esc(CFG.regions[0].label.toUpperCase()) + (CFG.regions[0].public ? '' : '') + '</b>';
     var q = new URLSearchParams(location.search).get('region'), want = q || store('kpcOvRegion');
     loadRegion(CFG.regions.some(function (r) { return r.id === want; }) ? want : CFG.regions[0].id);
   });
