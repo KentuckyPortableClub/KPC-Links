@@ -9,14 +9,14 @@
    "no pin": 0,
    "pin well outside": 0
   },
-  "official parks": 190,
-  "pairs tested": 166,
-  "pairs whose boxes touch": 166,
-  "parks done by the box test": 80,
+  "official parks": 192,
+  "pairs tested": 438,
+  "pairs whose boxes touch": 438,
+  "parks done by the box test": 1,
   "parks whose outline could not be read": 0,
   "pass": 1,
   "problems": [],
-  "with official lines": 1
+  "with official lines": 3
  },
  "pass2": {
   "agree with the pass before": 142,
@@ -76,12 +76,12 @@
  "per state": {
   "US-KY": {
    "candidates": 0,
-   "candidates (saved outline only)": 130,
-   "lines": 88,
+   "candidates (saved outline only)": 0,
+   "lines": 109,
    "n-fers": 6,
-   "pass1": 162,
-   "pass2": 144,
-   "spots": 162
+   "pass1": 183,
+   "pass2": 2,
+   "spots": 183
   }
  }
 }
