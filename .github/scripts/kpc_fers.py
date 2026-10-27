@@ -901,8 +901,11 @@ def main():
     parks, skip = official_parks(PIN)
     LN = trail_lines()
     for ref in LN:
-        if ref not in parks and ref in PIN and (REGION == 'world') == PIN[ref][5].startswith('W-') and (REGION == 'ky') == (PIN[ref][5] == 'KY'):
-            st = PIN[ref][5]
+        # Oct 27: a trail that CROSSES Kentucky counts in the Kentucky run even when POTA files it under another state
+        # (Trail of Tears, Lewis and Clark NHT): the Kentucky region takes any line whose box touches the state
+        kyl = REGION == 'ky' and ref in PIN and not PIN[ref][5].startswith(('W-', 'CA-')) and (lambda b: b[0] < -81.96 and b[2] > -89.6 and b[1] < 39.15 and b[3] > 36.49)(bbox_lines(LN[ref]['lines']))
+        if ref not in parks and ref in PIN and (REGION == 'world') == PIN[ref][5].startswith('W-') and (kyl or (REGION == 'ky') == (PIN[ref][5] == 'KY')):
+            st = 'KY' if kyl else PIN[ref][5]
             parks[ref] = {'st': st if st.startswith('CA-') else 'US-' + st, 'ids': [], 'names': {}}
     st_of = lambda r: parks[r]['st'] if r in parks else ''
     if ONLY: parks = {r: p for r, p in parks.items() if p['st'] in ONLY or p['st'][3:] in ONLY}
