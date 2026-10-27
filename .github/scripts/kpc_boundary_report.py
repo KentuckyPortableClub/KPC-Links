@@ -154,6 +154,20 @@ def main():
             for ref, n, st, j, acts, why in sc['low_busiest_first'][:40]: L.append(f"- {ref} {n} ({st}, {acts} activations) → {j}: {why}")
             L += ['', '</details>', '']
     except Exception: pass  # noqa: BLE001
+    try:   # Oct 26 (HQ): NEAR MISSES, parks with no outline + official areas around their pin (chat 8 reviews; no email)
+        nm = json.loads(pathlib.Path('data/outline-leads/near-miss.json').read_text(encoding='utf-8'))
+        t = nm.get('totals') or {}
+        L += ['## Near misses (no outline yet, but an official area sits around the pin)', '',
+              f"**{t.get('parks', 0)} parks** ({t.get('us', 0)} US, {t.get('canada', 0)} Canada; {t.get('name_word', 0)} share a main name word). "
+              "Not joined. Chat 8 reviews; an approved one goes into the key's overrides.json as a reviewed join. File: data/outline-leads/near-miss.json.", '']
+        rows = sorted(nm.get('parks', {}).items(), key=lambda kv: (not any(l['why'].startswith('shares') for l in kv[1]['leads']), -(kv[1].get('acts') or 0)))
+        if rows:
+            L.append('<details><summary>Busiest first (name-word leads first)</summary>'); L.append('')
+            for ref, x in rows[:60]:
+                l = x['leads'][0]
+                L.append(f"- {ref} {x['n']} ({x['st']}, {x.get('acts', 0)} activations) → {l['name']} [{l['layer']}, id {l['id']}, {l['km']} km, {l['why']}]")
+            L += ['', '</details>', '']
+    except Exception: pass  # noqa: BLE001
     if HIDDEN['n']:
         L.append(f"_{HIDDEN['n']} parks already checked by hand and found fine (pin off, or no single outline) are left out: data/boundary-checked.json._")
     body = '\n'.join(L)
