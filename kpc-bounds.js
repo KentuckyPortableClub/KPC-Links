@@ -168,7 +168,7 @@
     for (const st of states || []) {
       if (!(st in keyCache)) keyCache[st] = fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
-      if (p) { known = true; if (p.note) note = p.note; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); hit.far = hit.far || p.far; } if (p.a && p.a.length) site = p.a; }
+      if (p) { known = true; if (p.note) note = p.note; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
     }
     if (!hit) return known ? { state: 'none', site } : null;
     const seen = new Set(), m = hit.m.filter(x => !seen.has(String(x[0])) && seen.add(String(x[0])));
@@ -192,14 +192,14 @@
     const water = !reviewed && [...how].every(h => h.indexOf('water outline only') >= 0);
     const approx = handApprox || water || (!reviewed && !named && !!hit.far);
     const why = handApprox ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : water ? 'this is the lake\u2019s shoreline from the state\u2019s water map; the park is the agency\u2019s lake property around it, so check the agency\u2019s map for the land' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
-    return { state: 'ok', n: hit.n, m, fs, approx, why, note, water };
+    return { state: 'ok', n: hit.n, m, fs, approx, why, note, water, read: hit.read || '' };
   }
   /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
      {fs, label: 'official' | 'approx' | 'none', why, src, site}. Checked list first; a park it doesn't know falls back to a
      live name search, which is labelled approximate because nobody has checked it. */
   async function usOutline(ref, name, la, lo, states) {
     let k = null; try { k = await usKey(ref, states); } catch (e) {}
-    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', water: !!k.water, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
+    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', water: !!k.water, read: k.read || '', old: !!k.read && (Date.now() - Date.parse(k.read + 'T12:00:00')) > 365 * 864e5, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
     if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site };
     let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
     return fs.length ? { fs, label: 'approx', why: 'found by a name search that our checking bot has not reviewed yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };

@@ -260,7 +260,11 @@ def fields():
     if FIELDS is None:
         try:
             req = urllib.request.Request(Q.rsplit('/', 1)[0] + '?f=json', headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'})
-            have = {f['name'] for f in json.loads(urllib.request.urlopen(req, timeout=120).read()).get('fields', [])}
+            info = json.loads(urllib.request.urlopen(req, timeout=120).read())
+            have = {f['name'] for f in info.get('fields', [])}
+            # Oct 27 (boundary review #2 / rule B7): the PAD-US version every PAD-US outline comes from
+            m = re.search(r'PAD-US\s*(?:version\s*)?(\d+(?:\.\d+)*)', ' '.join(str(info.get(k) or '') for k in ('description', 'copyrightText', 'name')), re.I)
+            PADVER[0] = 'PAD-US ' + m.group(1) if m else 'PAD-US'
         except Exception: have = set()  # noqa: BLE001
         want = 'OBJECTID,Unit_Nm,Loc_Nm,Own_Type,Mang_Type,Mang_Name,Loc_Mang,Des_Tp,d_Des_Tp,Pub_Access,GIS_Acres,Category'.split(',')
         FIELDS = ','.join(w for w in want if not have or w in have)
@@ -268,6 +272,7 @@ def fields():
     return FIELDS
 
 
+PADVER = ['PAD-US']
 GEO = ([{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL, 'geometryPrecision': PREC}] if DETAIL < 0.01 else []) + \
       [{'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01, 'geometryPrecision': 3},
        {'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': 0.01}, {'returnGeometry': 'true', 'outSR': 4326}]
@@ -585,6 +590,19 @@ def score_park(name, typ, la, lo, recs, clusters):
     return KM.choose(cands)
 
 
+RD = {}
+def outline_dates(p, recs):
+    """Rule B7 (boundary review #2): 'read' = the oldest day this park's joined land was read from its agency; 'src' = what it
+    came from (PAD-US version, or the agency layer). Only changes when a saved copy is re-read, so the key does not churn."""
+    if not p.get('m'): return
+    if not RD:
+        if CMODE != 'only' and FIELDS is None: fields()   # reads the PAD-US version once
+        RD.update({_oid(a): a.get('rd') or time.strftime('%Y-%m-%d') for a in recs}); RD['_'] = ''
+    ds = [RD.get(str(x[0])) for x in p['m'] if RD.get(str(x[0]))]
+    if ds: p['read'] = min(ds)
+    p['src'] = sorted({PADVER[0] if isinstance(x[0], int) else (re.match(r'[a-z]+', str(x[0])) or [''])[0] for x in p['m']})
+
+
 def split_places(m, recs, la, lo, ref, P):
     """(joined records to keep, records moved to 'check', far places kept [names]): see run(). Places = records whose boxes
     touch (0.02 degree)."""
@@ -630,6 +648,7 @@ def save_cache(st, recs, seen):
         r = {k: v for k, v in a.items() if not k.startswith('_')}
         r['_r'] = [[[round(pt[0], 5), round(pt[1], 5)] for pt in ring if len(pt) >= 2] for ring in rings(a.get('_g'))]
         r['_k'] = sorted(a.get('_k') or [])
+        r['rd'] = a.get('rd') or time.strftime('%Y-%m-%d')   # the day this record was read from its agency (rule B7)
         rows.append(r)
     blob = {'st': st, 'saved': time.strftime('%Y-%m-%d'), 'detail': DETAIL, 'seen': seen, 'recs': rows}
     with gzip.open(cache_file(st), 'wt', encoding='utf-8') as f:
@@ -650,6 +669,7 @@ def load_cache(st):
         a['_g'] = {'rings': r.get('_r') or []}
         a['_bb'] = bbox(a['_g'])
         a['_k'] = set(r.get('_k') or [])
+        a['rd'] = r.get('rd') or blob.get('saved') or ''
         recs.append(a)
     return recs, blob.get('seen', len(recs)), blob.get('detail')
 
@@ -719,6 +739,7 @@ def run(st):
             recs, seen, used_detail = old; CACHE_USED.append(st)
         elif CMODE in ('use', 'refresh') and not (st in FAILED_READ and old is None and cache_file(st).exists()): save_cache(st, recs, seen)
     parks, used = {}, set()
+    RD.clear()
     clusters = name_clusters(recs)
     for ref, r in sorted(P.items()):
         name, typ, la, lo = r[0], r[2] if len(r) > 2 else '', r[5] if len(r) > 5 else None, r[6] if len(r) > 6 else None
@@ -840,9 +861,11 @@ def run(st):
                                                round(a.get('GIS_Acres') or 0)] for a in swap[:2]]
                 if site: parks[ref]['a'] = site
                 if far_place: parks[ref]['far_place'] = far_place
+                outline_dates(parks[ref], recs)
                 continue
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
         if far_place: parks[ref]['far_place'] = far_place
+        outline_dates(parks[ref], recs)
         if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
@@ -861,6 +884,8 @@ def run(st):
             om = [x for x in op['m'] if str(x[0]) not in no and str(x[1]) not in no]
             if om and not any(str(x[0]) in ids_here for x in om):
                 np_['m'] = om; np_['c'] = []; np_['kept'] = 'its land was not in this run\'s map read; the last good join is kept'
+                for k in ('read', 'src'):
+                    if op.get(k): np_[k] = op[k]   # rule B7: a kept outline keeps the day it was last read (the clock keeps running)
                 if op.get('far'): np_['far'] = op['far']
                 kept += 1
         if kept: notice(f'US key {st}', f'{kept} park(s) kept their last good outline (their land was missing from this read)')
