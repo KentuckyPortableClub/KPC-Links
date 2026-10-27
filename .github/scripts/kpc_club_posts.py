@@ -35,6 +35,8 @@ import urllib.parse
 import urllib.request
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
+INFO = ('ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. '
+        'About our information: ' + SITE + 'kpc-about-info.html')      # house rule: posts with park details carry it
 STATE_F = pathlib.Path('data/kpc-club-posts-state.json')
 UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
 DRY = os.environ.get('DRY_RUN') == '1'
@@ -254,7 +256,7 @@ def wma_closures(state, today, force=False, wait=False):
             if iid not in cur:
                 ref = re.sub(r'^hc-|-\d{4}-\d{2}-\d{2}$', '', iid)
                 L.append(f'• {names.get(ref) or ref}: no longer listed for this weekend')
-        L += ['', 'Check the KDFWR page before you drive.']
+        L += ['', 'Check the KDFWR page before you drive.', INFO]
         title = f'Correction: WMA closures {_fmt(sat)}-{(sat + datetime.timedelta(days=1)).day}'
         if DRY:
             print(f'--- {title} ---\n' + '\n'.join(L) + '\n')
@@ -278,7 +280,7 @@ def wma_closures(state, today, force=False, wait=False):
                 L = [f'These Kentucky WMAs are closed to non-hunters {_fmt(sat)}-{sun.day}:', '']
                 L += [_wma_line(n, a, b, it) for n, a, b, it in rows]
                 L += ['', 'Hunters may be in the woods: wear blaze orange if you are anywhere near a hunt, and check the '
-                          'KDFWR page before you drive.']
+                          'KDFWR page before you drive.', INFO]
                 title = f'WMA closures this weekend ({_fmt(sat)}-{sun.day})'
                 if DRY:
                     print(f'--- {title} ---\n' + '\n'.join(L) + '\n')

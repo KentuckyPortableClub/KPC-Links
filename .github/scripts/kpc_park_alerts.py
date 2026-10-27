@@ -38,6 +38,8 @@ import urllib.request
 
 SITE = 'https://kentuckyportableclub.github.io/KPC-Links/'
 STATE_F = pathlib.Path('data/park-alerts-state.json')
+INFO = ('ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. '
+        'About our information: https://kentuckyportableclub.github.io/KPC-Links/kpc-about-info.html')
 COND_F = pathlib.Path('kpc-conditions.json')
 KY_F = pathlib.Path('kpc-ky-data.json')
 UA = {'User-Agent': 'KPC club bot (kentuckyportableclub.github.io)'}
@@ -664,6 +666,7 @@ def main():
                          f"Worth a quick check before you set off.")
         L.append('')
         L.append(f'Park notes and conditions: {SITE}kpc-park-notes.html')
+        L.append(INFO)
         title = 'Kentucky park alert' + ('s' if len(pending) > 1 else '')
         text = '\n'.join(L)
         # Facebook gets the real news only: closures and reopenings. Burning and forest work are a club
@@ -683,7 +686,7 @@ def main():
         else:
             post_discord(title, text)
             if fb:
-                post_facebook(title, '\n'.join(fb) + f'\n\nPark notes and conditions: {SITE}kpc-park-notes.html')
+                post_facebook(title, '\n'.join(fb) + f'\n\nPark notes and conditions: {SITE}kpc-park-notes.html\n{INFO}')
         notice('Park alerts', f'posted {len(shut)} closed, {len(burns)} routine, {len(back)} reopened')
         pending = []
     elif pending:
@@ -700,7 +703,7 @@ def main():
              'of it, so it is worth a look before you head out.', '']
         for r in sorted(byref):
             L.append(f'- {r}: ' + '; '.join(sorted(set(byref[r]))[:3]))
-        L += ['', f'Park notes and conditions: {SITE}kpc-park-notes.html']
+        L += ['', f'Park notes and conditions: {SITE}kpc-park-notes.html', INFO]
         msg = '\n'.join(L)
         if DRY:
             print('WOULD POST (Facebook, daily burn list):\n' + msg)

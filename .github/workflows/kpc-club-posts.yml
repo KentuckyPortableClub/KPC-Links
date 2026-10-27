@@ -4,8 +4,8 @@ name: KPC club posts
 # Runs once a day. Never fails, never emails. Run it by hand with 'only' to test one of them.
 on:
   schedule:
-    - cron: '41 14 * * *'        # 9.41am Central, 10.41 in summer
-    - cron: '41 19 * * 3'        # Wednesday afternoon: the WMA heads-up when a holiday post went out that morning (Brandon Oct 27: both go, hours apart)
+    - cron: '41 14 * * *'        # 9:41 AM Central in summer (CDT), 8:41 AM in winter (CST)
+    - cron: '41 19 * * 3'        # Wednesday 2:41 PM CDT / 1:41 PM CST: the WMA heads-up when a holiday post went out that morning (Brandon Oct 27: both go, hours apart)
   workflow_dispatch:
     inputs:
       only:
