@@ -1,0 +1,403 @@
+{
+ "about": "OBSERVATIONS LOG (kpc_map_observations.py; MAP DATA RULE SHEET, notes/mapping.md): what the map bots saw that is worth a human look. Chat 8 reviews; nothing changes because of this file. Items drop off 90 days after they were last seen.",
+ "items": [
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Appalachian Trail National Scenic Trail + Virginia Creeper National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-4556+US-9923",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Appalachian Trail National Scenic Trail + Overmountain Victory National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-4556+US-4577",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-4526 + US-7966",
+   "place": "US-KY",
+   "ref": "US-4526+US-7966",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "North Country Trail National Scenic Trail + Lewis and Clark National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-4239+US-4572",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "North Country Trail National Scenic Trail + Appalachian Trail National Scenic Trail",
+   "place": "US-KY",
+   "ref": "US-4239+US-4556",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Trail of Tears National Historic Trail + Tunnel Hill State Trail",
+   "place": "US-KY",
+   "ref": "US-3791+US-9893",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Trail of Tears National Historic Trail + Lewis and Clark National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-3791+US-4572",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Trail of Tears National Historic Trail + Appalachian Trail National Scenic Trail",
+   "place": "US-KY",
+   "ref": "US-3791+US-4556",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Trail of Tears National Historic Trail + Livingston County Wildlife Management Area",
+   "place": "US-KY",
+   "ref": "US-3791+US-3823",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Wilson Cumberland Trail State Park + Trail of Tears National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-2955+US-3791",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-1281 + US-4687",
+   "place": "US-KY",
+   "ref": "US-1281+US-4687",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Carter Caves State Park + Cascade Caverns State Nature Preserve",
+   "place": "US-KY",
+   "ref": "US-1276+US-12972",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Carter Caves State Park + Bat Cave State Nature Preserve",
+   "place": "US-KY",
+   "ref": "US-1276+US-12971",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Columbus Belmont State Park + Trail of Tears National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-1252+US-3791",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Sinking Creek State Natural Area",
+   "place": "US-KY",
+   "ref": "US-11181+US-7970",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Clifty Wilderness Area",
+   "place": "US-KY",
+   "ref": "US-11181+US-3801",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Natural Bridge State Park",
+   "place": "US-KY",
+   "ref": "US-11181+US-1286",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Cumberland Falls State Park",
+   "place": "US-KY",
+   "ref": "US-11181+US-1277",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pioneer Weapons Wildlife Management Area + Zilpo Campground Wildlife Management Area",
+   "place": "US-KY",
+   "ref": "US-10158+US-10171",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Mill Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10146+US-11181",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10140 + US-3790",
+   "place": "US-KY",
+   "ref": "US-10140+US-3790",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10139 + US-7966",
+   "place": "US-KY",
+   "ref": "US-10139+US-7966",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Cane Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10121+US-11181",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Bad Branch National Wild and Scenic River + Bad Branch State Nature Preserve",
+   "place": "US-KY",
+   "ref": "US-10112+US-7966",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Rock Creek National Wild and Scenic River + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10111+US-11181",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Big South Fork National Wild and Scenic River + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10107+US-11181",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Rockcastle National Wild and Scenic River + William H. Martin State Natural Area",
+   "place": "US-KY",
+   "ref": "US-10106+US-7964",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Rockcastle National Wild and Scenic River + Rockcastle River Wildlife Management Area",
+   "place": "US-KY",
+   "ref": "US-10106+US-10160",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Rockcastle National Wild and Scenic River + Cane Creek Wildlife Management Area",
+   "place": "US-KY",
+   "ref": "US-10106+US-10121",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Red River National Wild and Scenic River + Clifty Wilderness Area",
+   "place": "US-KY",
+   "ref": "US-10104+US-3801",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Cumberland River Wilderness Area + Cumberland Falls State Park",
+   "place": "US-KY",
+   "ref": "US-10103+US-1277",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Cumberland River Wilderness Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10103+US-11181",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-0703 + US-10140",
+   "place": "US-KY",
+   "ref": "US-0703+US-10140",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Big South Fork National Recreation Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-0686+US-11181",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Big South Fork National Recreation Area + Big South Fork National Wild and Scenic River",
+   "place": "US-KY",
+   "ref": "US-0686+US-10107",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Ohio River Islands National Wildlife Refuge + Lewis and Clark National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-0608+US-4572",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Mammoth Cave National Park + The Green National Wild and Scenic River",
+   "place": "US-KY",
+   "ref": "US-0050+US-10105",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Cumberland Gap National Historical Park + Wilson Cumberland Trail State Park",
+   "place": "US-KY",
+   "ref": "US-0019+US-2955",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-0019 + US-10164",
+   "place": "US-KY",
+   "ref": "US-0019+US-10164",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  }
+ ],
+ "last_run": {
+  "counts": {
+   "possible overlap": 68
+  },
+  "date": "2026-10-27",
+  "new": 39,
+  "run": "2-fer bot pass 3 (ky)"
+ }
+}
