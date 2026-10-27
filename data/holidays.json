@@ -9,7 +9,8 @@
    "img": "img/holidays/valentines.webp",
    "post_img": "img/holidays/valentines-post.jpg",
    "post": "Happy Valentine's Day from the Kentucky Portable Club! Take your sweetheart to a park and get on the air together. 73",
-   "effect": "hearts"
+   "effect": "hearts",
+   "go": true
   },
   {
    "id": "st-patricks",
@@ -19,7 +20,8 @@
    "img": "img/holidays/st-patricks.webp",
    "post_img": "img/holidays/st-patricks-post.jpg",
    "post": "Happy St. Patrick's Day from the Kentucky Portable Club! May your bands be open and your pileups lucky. 73",
-   "effect": "clovers"
+   "effect": "clovers",
+   "go": true
   },
   {
    "id": "easter",
@@ -29,7 +31,8 @@
    "img": "img/holidays/easter.webp",
    "post_img": "img/holidays/easter-post.jpg",
    "post": "He is risen! Happy Easter from the Kentucky Portable Club. 73",
-   "effect": "petals"
+   "effect": "petals",
+   "go": true
   },
   {
    "id": "mothers-day",
@@ -39,7 +42,8 @@
    "img": "img/holidays/mothers-day.webp",
    "post_img": "img/holidays/mothers-day-post.jpg",
    "post": "Happy Mother's Day from the Kentucky Portable Club to all the moms, and to every mom who puts up with antennas in the trees. 73",
-   "effect": "petals"
+   "effect": "petals",
+   "go": true
   },
   {
    "id": "memorial-day",
@@ -49,7 +53,8 @@
    "img": "img/holidays/memorial-day.webp",
    "post_img": "img/holidays/memorial-day-post.jpg",
    "post": "This Memorial Day, the Kentucky Portable Club remembers the men and women who gave their lives in service to our country. All gave some, some gave all.",
-   "effect": "none"
+   "effect": "none",
+   "go": true
   },
   {
    "id": "fathers-day",
@@ -59,7 +64,8 @@
    "img": "img/holidays/fathers-day.webp",
    "post_img": "img/holidays/fathers-day-post.jpg",
    "post": "Happy Father's Day from the Kentucky Portable Club! Here's to the dads who taught us to tie knots, build things and get outside. 73",
-   "effect": "none"
+   "effect": "none",
+   "go": true
   },
   {
    "id": "field-day",
@@ -69,7 +75,8 @@
    "img": "img/holidays/field-day.webp",
    "post_img": "img/holidays/field-day-post.jpg",
    "post": "It's Field Day weekend! Set up outside, get on the air, and have fun. Good luck to everyone operating. 73",
-   "effect": "sparks"
+   "effect": "sparks",
+   "go": true
   },
   {
    "id": "july-4th",
@@ -79,7 +86,8 @@
    "img": "img/holidays/july-4th.webp",
    "post_img": "img/holidays/july-4th-post.jpg",
    "post": "Happy Independence Day from the Kentucky Portable Club! Enjoy the fireworks, and if you're out at a park today, good luck with the activation. 73",
-   "effect": "fireworks"
+   "effect": "fireworks",
+   "go": true
   },
   {
    "id": "labor-day",
@@ -89,7 +97,8 @@
    "img": "img/holidays/labor-day.webp",
    "post_img": "img/holidays/labor-day-post.jpg",
    "post": "Happy Labor Day from the Kentucky Portable Club! Enjoy the long weekend, and maybe squeeze in one more park. 73",
-   "effect": "none"
+   "effect": "none",
+   "go": true
   },
   {
    "id": "halloween",
@@ -110,7 +119,8 @@
    "img": "img/holidays/veterans-day.webp",
    "post_img": "img/holidays/veterans-day-post.jpg",
    "post": "On Veterans Day, the Kentucky Portable Club honors and thanks everyone who has served. Honor. Remember. Thank.",
-   "effect": "none"
+   "effect": "none",
+   "go": true
   },
   {
    "id": "thanksgiving",
@@ -120,7 +130,8 @@
    "img": "img/holidays/thanksgiving.webp",
    "post_img": "img/holidays/thanksgiving-post.jpg",
    "post": "Happy Thanksgiving from the Kentucky Portable Club! We're thankful for every contact, every park and every one of you. 73",
-   "effect": "leaves"
+   "effect": "leaves",
+   "go": true
   },
   {
    "id": "christmas",
@@ -130,7 +141,8 @@
    "img": "img/holidays/christmas.webp",
    "post_img": "img/holidays/christmas-post.jpg",
    "post": "Merry Christmas from the Kentucky Portable Club! Wishing you and your family a blessed Christmas. 73",
-   "effect": "snow"
+   "effect": "snow",
+   "go": true
   }
  ]
 }
