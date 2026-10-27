@@ -1172,7 +1172,7 @@ def owners(parks):
                 else: des = True
             elif isinstance(rid, int) and not p['st'].startswith(('CA-', 'W-')):
                 o, c = pad.get(rid, ('', ''))
-                if c == 'Fee' and o: fee.add('STAT' if o in ('STAT', 'SDNR', 'SPR', 'SFW', 'SLB') else o)
+                if c == 'Fee' and o: fee.add('STAT' if o in ('STAT', 'SDNR', 'SPR', 'SFW', 'SLB') else 'PRIVATE' if o in ('PVT', 'NGO') else o)
                 else: des = True
             else:
                 m = re.fullmatch(r'([a-z]+)\d+', str(rid)); pre = m.group(1) if m else ''
