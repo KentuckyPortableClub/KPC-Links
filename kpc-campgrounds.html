@@ -279,6 +279,20 @@ html[data-theme="dark"] .cgu-meta{color:#b9b2a5}
 </style>
 
 <style id="kpc-hero-pic">.hero{position:relative;background:linear-gradient(90deg,rgba(7,7,7,.9) 0%,rgba(7,7,7,.66) 42%,rgba(7,7,7,.18) 72%,rgba(7,7,7,0) 100%),url("hero-campsite.jpg") center 58%/cover no-repeat #070707}@media(max-width:760px){.hero{min-height:460px;background:linear-gradient(180deg,rgba(7,7,7,.35) 0%,rgba(7,7,7,.55) 45%,rgba(7,7,7,.88) 100%),url("hero-campsite-mobile.jpg") center 60%/cover no-repeat #070707}}</style>
+<style id="kpc-cg-pick">/* Oct 26: the big state bar (kpc-campgrounds-us.js) */
+.cgp{background:#14100a;border-bottom:2px solid #d5a63a;padding:16px 0 14px;color:#f2ead6}
+.cgp-h{margin:0 0 10px;font:700 clamp(22px,4.4vw,32px)/1.15 Georgia,serif;color:#fff}.cgp-h b{color:#f0c96b;font-weight:700}
+.cgp-chg{margin-left:4px;padding:2px 4px;border:0;background:none;color:#f0c96b;font:700 15px Arial,sans-serif;text-decoration:underline;cursor:pointer;vertical-align:middle;white-space:nowrap}
+.cgp-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.cgp-l{flex:0 0 auto;font:900 13px Arial,sans-serif;letter-spacing:1.6px;color:#f0c96b}
+.cgp-row select{flex:1 1 260px;min-width:0;min-height:50px;border:2px solid #d5a63a;border-radius:10px;padding:8px 12px;background:#fff;color:#111;font:700 17px Arial,sans-serif}
+.cgp-near{flex:0 0 auto;min-height:50px;padding:8px 18px;border-radius:999px;border:0;background:linear-gradient(#f6d58a,#d5a63a);color:#2a1a05;font:900 13px Arial,sans-serif;letter-spacing:1px;cursor:pointer}
+.cgp-msg{margin:10px 0 0;font:14px/1.45 Arial,sans-serif;color:#d9cfb6}
+@media(max-width:600px){.cgp-l{flex:1 1 100%}.cgp-near{flex:1 1 100%}}
+.cg-tools{top:var(--nav-height,78px)}
+.cgp-row #cgSt{flex:1 1 260px;max-width:none}
+.cgp .cgp-near{background:linear-gradient(#f6d58a,#d5a63a)!important;color:#2a1a05!important;opacity:1!important;filter:none!important}
+</style>
 <section class="hero"><div class="hero-inner"><p class="eyebrow">KENTUCKY PORTABLE CLUB • STAY &amp; ACTIVATE</p><h1>CAMPGROUNDS <span>&amp; CABINS</span></h1><p class="hero-copy">Campgrounds, cabins and lodges in and around parks in every US state. Pick a state, then a park, and how far around it to look. Kentucky’s are checked by hand against the official pages. Rate the places you stayed, or add one we are missing.</p></div></section><div id="kpc-looks"></div>
 <div class="cg-wrap"><div class="cg-top" id="cgTop"></div></div>
 <div class="cg-wrap"><div class="cg-rv" id="cgRv" hidden></div></div>
@@ -313,7 +327,7 @@ html[data-theme="dark"] .cgu-meta{color:#b9b2a5}
 <script src="kpc-reports.js?v=20261014a"></script>
 <script src="kpc-campgrounds.js?v=20261024a"></script>
 <script src="kpc-closures.js?v=20261025a"></script>
-<script src="kpc-campgrounds-us.js?v=20261026a"></script>
+<script src="kpc-campgrounds-us.js?v=20261026c"></script>
 <script src="kpc-search.js?v=20261029a" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script src="kpc-looks.js?v=20261017p" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');

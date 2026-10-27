@@ -230,7 +230,7 @@
     });
   }
   function setMode(st) {
-    cur = st; store('kpcCgSt', st);
+    cur = st; store('kpcCgSt', st); if ($('cgpName')) $('cgpName').textContent = ST[st] || st; if ($('cgSt') && $('cgSt').value !== st) $('cgSt').value = st;
     var u = new URL(location.href); if (st === 'KY') u.searchParams.delete('state'); else u.searchParams.set('state', st);
     history.replaceState(null, '', u.pathname + u.search + u.hash);
     document.documentElement.classList.toggle('cg-us', st !== 'KY');
@@ -255,8 +255,15 @@
 
   /* ---- controls ---- */
   var row = document.querySelector('.cg-row');
-  row.insertAdjacentHTML('afterbegin', '<select id="cgSt" aria-label="State">' + Object.keys(ST).sort(function (a, b) { return ST[a] < ST[b] ? -1 : 1; }).map(function (k) {
-    return '<option value="' + k + '">' + esc(ST[k]) + (k === 'KY' ? ' (checked by hand)' : '') + '</option>'; }).join('') + '</select>');
+  /* Oct 26 (HQ/Brandon: 'the state picker is too hidden; people don't realize they can see other states'): a big 📍 PICK A STATE bar
+     right under the hero, a 'Campgrounds & cabins in <state> · change state ▾' heading, and 📍 NEAR ME (the visitor's state from the GPS). */
+  var hero = document.querySelector('main .hero') || document.querySelector('.hero');
+  var bar = '<section class="cgp" id="cgPick" data-keep-light aria-label="Pick a state"><div class="cg-wrap">' +
+    '<h2 class="cgp-h">Campgrounds &amp; cabins in <b id="cgpName">Kentucky</b> <button type="button" class="cgp-chg" id="cgpChange">· change state ▾</button></h2>' +
+    '<div class="cgp-row"><label class="cgp-l" for="cgSt">📍 PICK A STATE</label><select id="cgSt">' + Object.keys(ST).sort(function (a, b) { return ST[a] < ST[b] ? -1 : 1; }).map(function (k) {
+      return '<option value="' + k + '">' + esc(ST[k]) + (k === 'KY' ? ' (checked by hand)' : '') + '</option>'; }).join('') + '</select>' +
+    '<button type="button" class="cgp-near" id="cgpNear">📍 NEAR ME</button></div><p class="cgp-msg" id="cgpMsg" aria-live="polite">Every US state is here. Kentucky is checked by hand; other states come from the agencies’ official lists.</p></div></section>';
+  if (hero) hero.insertAdjacentHTML('afterend', bar); else row.insertAdjacentHTML('beforebegin', bar);
   row.insertAdjacentHTML('beforeend', '<select id="cguPark" aria-label="Park" class="cgu-only"><option value="">All parks</option></select>' +
     '<select id="cguRad" aria-label="How far from the park" class="cgu-only"><option value="2">At the park (2 mi)</option><option value="10" selected>Park + 10 mi around</option><option value="25">Park + 25 mi around</option><option value="50">Park + 50 mi around</option></select>');
   $('cgChips').insertAdjacentHTML('afterend', '<div class="cg-chips cgu-only" id="cguChips"><button class="cg-chip" type="button" data-u="lodge" aria-pressed="false">CABINS &amp; LODGES</button><button class="cg-chip" type="button" data-u="rev" aria-pressed="false">★ HAS REVIEWS</button></div>' +
@@ -264,7 +271,17 @@
   $('cgList').parentNode.insertAdjacentHTML('afterend', '<div class="cg-wrap cgu-only"><div class="cg-top cgu-head" id="cguHead"></div><div class="cg-list" id="cguList"></div>' +
     '<p class="cg-none" id="cguNone" hidden>Nothing matches. Try a wider distance, a shorter search, or another park.</p><div id="cguLoose" class="cgu-loose"></div></div>');
 
-  $('cgSt').addEventListener('change', function () { setMode(this.value); });
+  $('cgSt').addEventListener('change', function () { setMode(this.value); $('cgpMsg').textContent = 'Showing ' + ST[this.value] + '. Your pick is remembered on this device.'; });
+  $('cgpChange').addEventListener('click', function () { var s2 = $('cgSt'); s2.focus(); try { if (s2.showPicker) s2.showPicker(); } catch (e) {} });
+  $('cgpNear').addEventListener('click', function () {
+    var m = $('cgpMsg'); if (!navigator.geolocation) { m.textContent = 'This browser can’t share your location: pick your state from the list.'; return; }
+    m.textContent = 'Finding your state…';
+    navigator.geolocation.getCurrentPosition(function (p) {
+      ready.then(function () { var st = stateAt(p.coords.latitude, p.coords.longitude);
+        if (!st || !ST[st]) { m.textContent = 'You look to be outside the US states we cover: pick a state from the list.'; return; }
+        $('cgSt').value = st; setMode(st); m.textContent = 'You are in ' + ST[st] + '. Showing ' + ST[st] + ' (remembered on this device).'; });
+    }, function () { m.textContent = 'Location not shared, so pick your state from the list.'; }, { timeout: 12000, maximumAge: 600000 });
+  });
   $('cguPark').addEventListener('change', function () { shown = PAGE; draw(); var c = this.value && document.getElementById('park-' + this.value); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
   $('cguRad').addEventListener('change', function () { if (!S) return; attach(+this.value); parkSelect(); shown = PAGE; draw(); });
   $('cguChips').addEventListener('click', function (e) { var b = e.target.closest('.cg-chip'); if (!b) return; var k = b.dataset.u; Fu[k] = !Fu[k]; b.setAttribute('aria-pressed', String(Fu[k])); shown = PAGE; draw(); });
