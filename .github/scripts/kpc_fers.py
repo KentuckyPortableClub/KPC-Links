@@ -202,10 +202,17 @@ def official_parks(PIN):
 def trail_lines():
     """{ref: [[[lon, lat], ...], ...]} official trail / river lines saved by the trails bot."""
     out = {}
-    try: idx = json.load(open('data/trails/index-state.json'))
-    except Exception: return out  # noqa: BLE001
+    idx = []
+    try: idx += json.load(open('data/trails/index-state.json'))
+    except Exception: pass  # noqa: BLE001
+    # Oct 27 (Kentucky rerun vs the guide): the NATIONAL trails (index.json: national historic / scenic / recreation trails
+    # and wild rivers drawn from the agencies' own layers, e.g. Trail of Tears + Lewis and Clark NHT) were never read, so 39
+    # of the guide's Kentucky pairs could not be found. They are official when an agency drew them.
+    try: idx += [dict(x, official=bool(re.search(r'service|bureau|agency|department|usfs|nps|blm|fws', str(x.get('by')), re.I)))
+                 for x in json.load(open('data/trails/index.json'))]
+    except Exception: pass  # noqa: BLE001
     for x in idx:
-        if not x.get('official'): continue
+        if not x.get('official') or x['ref'] in out: continue
         f = pathlib.Path(f"data/trails/{x['ref']}.json")
         if not f.exists(): continue
         try: g = json.load(open(f)).get('geometry') or {}
@@ -835,8 +842,11 @@ def owners(parks):
         for rid in p.get('ids') or []:
             if REGION == 'ky':
                 src = str(rid).split('|')[0]
+                # Oct 27: owners by AGENCY (NPS land and Forest Service land cannot be the same ground either: Big South Fork x DBNF)
                 if src == 'bstate': fee.add('STAT')
-                elif src in ('bnps', 'bfws', 'padus'): fee.add('FED')
+                elif src == 'bnps': fee.add('FED:NPS')
+                elif src == 'bfws': fee.add('FED:FWS')
+                elif src == 'padus': fee.add('FED:USFS')
                 else: des = True
             elif isinstance(rid, int) and not p['st'].startswith(('CA-', 'W-')):
                 o, c = pad.get(rid, ('', ''))
@@ -856,7 +866,10 @@ def two_owners(refs, parks):
     ground: flag 'likely map mistake' unless either one is a designation, lease or management record."""
     if not OWN: owners(parks)
     got = [OWN.get(r) for r in refs]
-    if any(g is None or g[1] or not g[0] for g in got): return False
+    # Oct 27: a designation only exempts a park that is NOTHING BUT a designation / management record (a WMA on forest land).
+    # A park with fee land of its own keeps its owner even when a nature preserve is dedicated inside it (Cumberland Falls,
+    # Natural Bridge: state park + state nature preserve = state land; they were never flagged)
+    if any(g is None or not g[0] for g in got): return False
     return any(not (a[0] & b[0]) for i, a in enumerate(got) for b in got[i + 1:])
 
 
