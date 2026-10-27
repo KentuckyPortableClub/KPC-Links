@@ -139,7 +139,8 @@
     map.on('click', function (e) { if (mode === 'pin') { if (pinM) map.removeLayer(pinM); status([e.latlng.lat, e.latlng.lng], 0, true);
         pinM = L.marker(e.latlng, { icon: L.divIcon({ className: '', html: '<span style="display:block;width:26px;height:26px;border-radius:50% 50% 50% 0;background:#d0312d;border:3px solid #fff;transform:rotate(-45deg);box-shadow:0 2px 6px #0007"></span>', iconSize: [26, 26], iconAnchor: [13, 30] }) }).addTo(map)
           .bindPopup($('ovGps').innerHTML, { maxWidth: 280 }).openPopup(); }
-      else if (mode === 'measure') { meas.push(e.latlng); if (meas.length > 2) meas = [e.latlng]; draw(); if (meas.length === 2) { var d = map.distance(meas[0], meas[1]); L.popup().setLatLng(meas[1]).setContent('<b>📏 ' + Math.round(d * YD) + ' yards</b> (' + Math.round(d * 3.28084) + ' ft) in a straight line').openOn(map); } } });
+      else if (mode === 'measure') { meas.push(e.latlng); if (meas.length > 2) meas = [e.latlng]; draw(); if (meas.length === 2) { var d = map.distance(meas[0], meas[1]); L.popup().setLatLng(meas[1]).setContent('<b>📏 ' + Math.round(d * YD) + ' yards</b> (' + Math.round(d * 3.28084) + ' ft) in a straight line').openOn(map); } } 
+      else if (!mode) { L.popup({ maxWidth: 290 }).setLatLng(e.latlng).setContent(landAt(e.latlng.lat, e.latlng.lng)).openOn(map); } });
     return true;
   }
   function setBase(n) { if (!map) return; map.eachLayer(function (l) { if (l instanceof L.TileLayer && !gAll.hasLayer(l)) map.removeLayer(l); }); Object.keys(base).forEach(function (k) { if (map.hasLayer(base[k])) map.removeLayer(base[k]); }); base[n].addTo(map); layerName = n; tools(); }
@@ -209,12 +210,23 @@
       gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fading ? 'ov-in-patch' : '', interactive: act }).bindPopup(patchPop(x.s)));
     });
     parks.forEach(function (p, i) { if (i >= step || !p.on) return; var c = (p.fs && p.fs[0] && L.geoJSON(p.fs[0]).getBounds().getCenter()) || (cur.rings[0] && L.latLng(cur.rings[0].ring[0][1], cur.rings[0].ring[0][0]));
-      if (c) gAll.addLayer(L.marker(c, { icon: L.divIcon({ className: '', html: '<span class="ov-plab" style="border-color:' + p.c + '"><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: [14, 14] }) }).bindPopup(parkPop(p))); });
+      if (c) gAll.addLayer(L.marker(c, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span class="ov-plab" style="border-color:' + p.c + '"><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: [14, 14] }) }).bindPopup(parkPop(p))); });
     var pins = []; visiblePatches(cur).forEach(function (s) { [s.access_pin].concat(s.pins || []).forEach(function (a) { if (a && a.at && pins.length < 3 && !pins.some(function (q) { return q.at[0] === a.at[0] && q.at[1] === a.at[1]; })) pins.push(a); }); });
-    pins.forEach(function (a) { gAll.addLayer(L.marker(a.at, { icon: L.divIcon({ className: '', html: '<span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#1d4d7a;color:#fff;border:2px solid #fff;font:900 14px Arial">P</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) })
+    pins.forEach(function (a) { gAll.addLayer(L.marker(a.at, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#1d4d7a;color:#fff;border:2px solid #fff;font:900 14px Arial">P</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) })
       .bindPopup('<b>Closest spot to public access</b><br>' + esc(a.name || '') + ' (' + esc(a.from || '') + '), about ' + Math.round((a.walk_m || 0) * YD) + ' yards from it.<br><small>' + esc(a.note || '') + '</small><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + a.at[0] + ',' + a.at[1] + '">Directions (to the access, not to the overlap)</a><span class="ov-short">' + SHORT + '</span>')); });
     if (meas.length) { gAll.addLayer(L.polyline(meas, { color: '#d55e00', weight: 3 })); meas.forEach(function (m) { gAll.addLayer(L.circleMarker(m, { radius: 5, color: '#d55e00' })); }); }
     if (gps) { gAll.addLayer(L.circle(gps.p, { radius: gps.acc / YD, color: '#1e78ff', weight: 1, fillOpacity: 0.15 })); gAll.addLayer(L.circleMarker(gps.p, { radius: 7, color: '#fff', weight: 3, fillColor: '#1e78ff', fillOpacity: 1 })); }
+  }
+  /* Brandon Oct 27 3:13 PM ('The private property in a park needs better clarification'): tap any spot on the map = which park
+     land it is on by the official outlines. Grey inside a park's outer line = land the park does NOT own or manage (private
+     property or another owner): not part of the park, even though it sits inside the park. */
+  function landAt(lat, lon) {
+    var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var inN = parks.filter(function (q, i) { return ins[i]; }), outN = parks.filter(function (q, i) { return ins[i] === false; }), unk = ins.some(function (x) { return x === null; });
+    var t = !inN.length ? '<b style="color:#7a1d0e">⛔ Not park land on our maps.</b><br>None of these parks owns or manages this spot: it is private property or another owner\'s land' + (unk ? '' : ', even if it sits inside a park\'s outer line') + '. Do not set up here.'
+      : !outN.length ? '<b style="color:#1d5a3a">✅ Inside both outlines by our maps.</b><br>' + inN.map(function (q) { return esc(q.ref); }).join(' + ')
+      : '<b style="color:#8a5a00">🟡 Inside ' + inN.map(function (q) { return esc(q.ref); }).join(', ') + ' only.</b><br>Not part of ' + outN.map(function (q) { return esc(q.ref) + ' ' + esc(nm(cur, q.ref)); }).join(', ') + ' here (that park does not own or manage this land).';
+    return t + '<br><small>Official outlines can be off by several yards: check the agency map.</small>';
   }
   function parkPop(p) { var s = cur.best, m = (s.maps || []).filter(function (x) { return x[0] === p.ref; })[0];
     return '<span class="ov-num" style="background:' + p.c + ';display:inline-grid;width:22px;height:22px;border-radius:50%;place-items:center;font-weight:900">' + p.n + '</span> <b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b>' + (p.line ? '<br>A line park: the band = POTA\'s 100 ft from the line.' : '') +
@@ -231,9 +243,9 @@
     if (!map || !L.Control) return;
     if (!keyCtl) { var K = L.Control.extend({ options: { position: 'bottomleft' }, onAdd: function () { var d = L.DomUtil.create('div', 'ov-mkey'); L.DomEvent.disableClickPropagation(d); return d; } }); keyCtl = new K(); keyCtl.addTo(map); }
     var el = keyCtl.getContainer(); if (!el) return;
-    var open = store('kpcOvKey') !== '0';
+    var ks = store('kpcOvKey'), open = ks ? ks !== '0' : innerWidth > 700;   /* phones start with the key folded */
     el.innerHTML = '<button type="button" class="ov-kh" data-key>' + (open ? '▾ KEY (HIDE)' : '▸ KEY') + '</button>' + (open ? '<div class="ov-kb">' : '<div class="ov-kb" hidden>') + parks.map(function (p) { return '<div><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="26" height="8" aria-hidden="true"><path d="M1 4h24" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' (100-ft band)' : '') + '</div>'; }).join('') +
-      (shade ? '<div><span class="ov-sw" style="background:#2b2b2b;opacity:.45"></span>darker grey = in neither park (private or other land)</div><div><span class="ov-sw" style="background:#2b2b2b;opacity:.22"></span>light grey = inside only one park</div>' : '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>') +
+      (shade ? '<div><span class="ov-sw" style="background:#000;opacity:.5"></span><b>dark grey = NOT park land</b>: private property or another owner, even inside a park\'s outer line. Don\'t set up there.</div><div><span class="ov-sw" style="background:#000;opacity:.25"></span>light grey = land of one park only</div><div>👆 Tap any spot on the map to see whose land it is.</div>' : '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>') +
       '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid #b8860b"></span><b>gold = inside both parks: where our maps suggest they may overlap</b></div></div>';
     var kb = el.querySelector('[data-key]'); if (kb) kb.onclick = function (e) { e.preventDefault(); store('kpcOvKey', open ? '0' : '1'); mapKey(); };
   }
@@ -289,12 +301,11 @@
   document.addEventListener('click', function (e) {
     var pl = e.target.closest('#ov [data-place]');
     if (pl) { e.preventDefault(); var kk = pl.dataset.place.split('|'); openPlace(kk[0], +kk[1]); return; }
-    var b = e.target.closest('#ov [data-tab], #ov [data-open], #ov [data-row], #ov [data-t], #ov [data-f], #ov [data-on], #ovAllOn, #ovAllOff, #ov [data-region]'); if (!b) return;
+    var b = e.target.closest('#ov [data-tab], #ov [data-open], #ov [data-t], #ov [data-f], #ov [data-on], #ovAllOn, #ovAllOff, #ov [data-region]'); if (!b) return;
     if (b.matches('[data-on]')) { parks[+b.dataset.on].on = b.checked; draw(); return; }
-    if (b.matches('[data-row]') && e.target.closest('a,button')) return;
     e.preventDefault();
     if (b.matches('[data-tab]')) { showTab(b.dataset.tab); if (b.dataset.tab === 'map' && !cur && ROWS.length) { var first = ROWS.filter(function (g) { return visiblePatches(g).length; })[0]; if (first) openRow(first.key); else mkMap(); } return; }
-    if (b.matches('[data-open]') || b.matches('[data-row]')) { openRow(b.dataset.open || b.dataset.row); scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); return; }
+    if (b.matches('[data-open]')) { openRow(b.dataset.open);   /* only the SHOW buttons open the map (Brandon: 'See more takes me to map') */ scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); return; }
     if (b.matches('[data-region]')) { loadRegion(b.dataset.region); return; }
     if (b.id === 'ovAllOn' || b.id === 'ovAllOff') { parks.forEach(function (p) { p.on = b.id === 'ovAllOn'; }); legend(); draw(); return; }
     if (b.matches('[data-f]')) { var f = b.dataset.f;
