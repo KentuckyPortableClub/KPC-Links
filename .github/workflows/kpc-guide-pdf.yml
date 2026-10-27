@@ -1,9 +1,11 @@
 name: KPC Guide PDFs
-# Prints the web guides (kpc-guide-*.html) to PDF under the old PDF filenames, so every "Download PDF" link
-# and every old link keeps working. Runs when a guide page or its data changes, after the weekly Top 25
+# Prints the web guides (kpc-guide-*.html) to PDF under the old PDF filenames and uploads them to the
+# 'site-pdfs' release (storage plan, Stage 2: keeps these out of the repo and its history, since this bot
+# used to rewrite ~12 MB of PDFs on every guide change). Every "Download PDF" link points at the release
+# asset, so links keep working. Runs when a guide page or its data changes, after the weekly Top 25
 # refresh, every Monday, or any time from the Actions tab ("Run workflow").
-# A PDF is only replaced when its words or links really changed (not just the print date or an 'updated' date stamp).
-# The Safety Guide keeps its original illustrated PDF and is not printed here.
+# A PDF is only re-uploaded when its words or links really changed (not just the print date or an
+# 'updated' date stamp). The Safety Guide keeps its original illustrated PDF and is not printed here.
 on:
   push:
     branches: [main]
@@ -46,15 +48,29 @@ jobs:
           sleep 2
           mkdir -p /tmp/guides
           node .github/scripts/kpc_guide_pdf.js /tmp/guides
-      - name: Keep only PDFs that changed
+      - name: Fetch the current PDFs from the release, for comparison
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/current
+          gh release view site-pdfs -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+          gh release create site-pdfs -R "$GITHUB_REPOSITORY" --title 'KPC PDFs & Guides' \
+            --notes 'Large PDFs for the KPC website (guides, flyers, archives). Hosted here instead of in the repo, per the storage plan. Pages link straight to these files; nothing here is meant to be browsed on the releases page.'
+          for f in /tmp/guides/*.pdf; do
+            n=$(basename "$f")
+            gh release download site-pdfs -R "$GITHUB_REPOSITORY" -p "$n" -D /tmp/current --clobber 2>/dev/null || true
+          done
+      - name: Keep only PDFs that changed, and upload them to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import glob, os, shutil
+          import glob, os
           import re
           from pypdf import PdfReader
           # Date stamps ('Live data updated 2026-10-23.', 'Updated October 19, 2026') change whenever a
           # data file is re-saved, even when the lists are identical. They must not count as a change,
-          # or every guide gets rewritten (about 3 MB each) for nothing. (HQ storage plan, Stage 1)
+          # or every guide gets re-uploaded (about 3 MB each) for nothing. (HQ storage plan, Stage 1)
           STAMP = re.compile(r'(?:Live data )?[Uu]pdated\s+(?:\d{4}-\d\d-\d\d|[A-Z][a-z]+ \d{1,2}, \d{4})')
           def sig(p):
               r = PdfReader(p); out = []
@@ -67,20 +83,14 @@ jobs:
           changed = []
           for new in sorted(glob.glob('/tmp/guides/*.pdf')):
               name = os.path.basename(new)
-              try: same = os.path.exists(name) and sig(name) == sig(new)
+              old = os.path.join('/tmp/current', name)
+              try: same = os.path.exists(old) and sig(old) == sig(new)
               except Exception: same = False
-              if not same: shutil.copy(new, name); changed.append(name)
-          print(f"::notice title=Guide PDFs::{len(changed)} changed: {', '.join(changed) or 'none'}")
+              if not same: changed.append(new)
+          with open('/tmp/changed.txt', 'w') as f:
+              f.write('\n'.join(changed))
+          print(f"::notice title=Guide PDFs::{len(changed)} changed: {', '.join(os.path.basename(c) for c in changed) or 'none'}")
           PY
-      - name: Save
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- '*.pdf'
-          if git diff --cached --quiet; then echo 'No change.'; exit 0; fi
-          git commit -m 'Guide PDFs: reprint from the web guides'
-          for i in 1 2 3; do
-            git pull --rebase --autostash && git push && exit 0
-            sleep $((i * 15))
-          done
-          echo '::notice title=Push skipped::Could not push the guide PDFs; they will be saved on the next run.'
+          if [ -s /tmp/changed.txt ]; then
+            xargs -a /tmp/changed.txt -d '\n' -I{} gh release upload site-pdfs {} -R "$GITHUB_REPOSITORY" --clobber
+          fi
