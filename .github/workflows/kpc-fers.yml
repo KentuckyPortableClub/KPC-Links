@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       pass:
-        description: 'Pass: 1 (saved outlines), 2 (fresh downloads), 3 (finest shapes), 4 (access pins only)'
+        description: 'Pass: 1 (saved outlines), 2 (fresh downloads), 3 (finest shapes), 4 (access pins only), all (1+2+3 in one run)'
         default: '1'
       minutes:
         description: 'Minutes per job (default 320)'
@@ -54,7 +54,9 @@ jobs:
           MINUTES: ${{ inputs.minutes }}
           STATES: ${{ inputs.states }}
           REGION: ${{ matrix.region }}
-        run: python3 .github/scripts/kpc_fers.py || true
+        run: |
+          # Oct 27 (SAVE USAGE): pass 'all' = passes 1, 2 and 3 back to back in ONE run (no waiting between dispatches)
+          if [ "$PASS" = all ]; then for p in 1 2 3; do PASS=$p python3 .github/scripts/kpc_fers.py || true; done; else python3 .github/scripts/kpc_fers.py || true; fi
       - name: Observations log (new possible overlaps)
         if: ${{ matrix.region != 'world' }}
         continue-on-error: true
