@@ -265,6 +265,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Sunny Brook Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10168+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "US-10162 + US-4484",
    "place": "US-KY",
    "ref": "US-10162+US-4484",
@@ -275,11 +285,41 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Ross Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10162+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "US-10160 + US-4484",
    "place": "US-KY",
    "ref": "US-10160+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "not sure: the ownership map shows two owners at the spot: FE · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Rockcastle River Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10160+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Redbird Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10159+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -355,6 +395,26 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Hoskins Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10138+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Hoskins Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10138+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Cane Creek Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10121+US-4484",
@@ -390,6 +450,16 @@
    "ref": "US-10111+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Rock Creek National Wild and Scenic River + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10111+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -435,6 +505,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "The Rockcastle National Wild and Scenic River + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10106+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "The Rockcastle National Wild and Scenic River + Rockcastle River Wildlife Management Area",
    "place": "US-KY",
    "ref": "US-10106+US-10160",
@@ -450,6 +530,16 @@
    "ref": "US-10106+US-10121+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Rockcastle National Wild and Scenic River + Cane Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10106+US-10121+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -475,11 +565,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Red River National Wild and Scenic River + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10104+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "US-10104 + US-3801 + US-4484",
    "place": "US-KY",
    "ref": "US-10104+US-3801+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Red River National Wild and Scenic River + Clifty Wilderness Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10104+US-3801+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -500,6 +610,16 @@
    "ref": "US-10103+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "The Cumberland River Wilderness Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10103+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -593,9 +713,11 @@
   }
  ],
  "last_run": {
-  "counts": {},
+  "counts": {
+   "possible overlap": 114
+  },
   "date": "2026-10-27",
-  "new": 59,
-  "run": "2-fer bot pass 2 (ky)"
+  "new": 71,
+  "run": "2-fer bot pass 3 (ky)"
  }
 }
