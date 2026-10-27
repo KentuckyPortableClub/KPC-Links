@@ -76,6 +76,11 @@
    "source": "services1.arcgis.com \u00b7 Campground Area (439)",
    "updated": "2026-10-27"
   },
+  "UT": {
+   "n": 13,
+   "source": "services.arcgis.com \u00b7 DWR_Cabins (13)",
+   "updated": "2026-10-27"
+  },
   "VA": {
    "n": 40,
    "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (70)",
@@ -126,7 +131,6 @@
   "RI",
   "SC",
   "SD",
-  "UT",
   "WI",
   "WV"
  ],
@@ -154,6 +158,7 @@
   "NJ": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NM": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "NV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
+  "OK": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "OR": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "RI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "SC": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
