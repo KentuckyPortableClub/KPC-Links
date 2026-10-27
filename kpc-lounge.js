@@ -6,10 +6,13 @@
    WWFF names, loaded only for a name search), data/pota|wwff|sota/t tiles (NEAR ME, worldwide), NOAA SWPC (conditions). */
 (function () {
   'use strict';
+  /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
+  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
+  const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
   const $ = id => document.getElementById(id);
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const store = { get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
-  async function j(u, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 15000); try { const r = await fetch(u, { signal: c.signal }); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
+  async function j(u, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 15000); try { const r = await dfetch(u, { signal: c.signal }); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
   const km = (a, b, c, d) => { const r = Math.PI / 180, x = Math.sin((c - a) * r / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin((d - b) * r / 2) ** 2; return 12742 * Math.asin(Math.sqrt(x)); };
   const mi = k => { const m = k / 1.609344; return m < 10 ? m.toFixed(1) + ' mi' : Math.round(m) + ' mi'; };
   const progOf = r => /\//.test(r) ? 'SOTA' : /^[A-Z0-9]{1,4}FF-/.test(r) ? 'WWFF' : 'POTA';
@@ -61,7 +64,7 @@
     msg('Finding where you are…');
     navigator.geolocation.getCurrentPosition(async pos => {
       const la = pos.coords.latitude, lo = pos.coords.longitude, R = 40;
-      const tiles = (dir) => { const K = new Set(), dla = R / 111, dlo = R / (111 * Math.cos(la * Math.PI / 180)); for (const a of [la - dla, la, la + dla]) for (const o of [lo - dlo, lo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o)); return Promise.all([...K].map(k => fetch(dir + k + '.json').then(r => r.ok ? r.json() : []).catch(() => []))).then(x => x.flat()); };
+      const tiles = (dir) => { const K = new Set(), dla = R / 111, dlo = R / (111 * Math.cos(la * Math.PI / 180)); for (const a of [la - dla, la, la + dla]) for (const o of [lo - dlo, lo, lo + dlo]) K.add(Math.floor(a) + '_' + Math.floor(o)); return Promise.all([...K].map(k => dfetch(dir + k + '.json').then(r => r.ok ? r.json() : []).catch(() => []))).then(x => x.flat()); };
       /* POTA tiles skip the US + Canada (those parks are in the state lists): ask POTA's own map for them, and with no
          signal fall back to our US search list */
       const usca = () => (B() && B().potaNear ? B().potaNear(la, lo, 0.4).then(L => L.map(p => [p.ref, p.name, p.la, p.lo])) : Promise.reject()).catch(() => (search.loc || (search.loc = j('locations.json', 30000).catch(() => []))).then(L => L.filter(r => r[0] === 'POTA' && Math.abs(r[3] - la) < 0.5 && Math.abs(r[4] - lo) < 0.7).map(r => [r[1], r[2], r[3], r[4]])));
@@ -130,7 +133,7 @@
         (more ? '<a href="kpc-kit.html?ref=' + R + '">All ' + ap.length + ' on the Activation Kit map ›</a>' : '') + '</div>';
     })();
     /* SOTA: public land or not (data/sota-land/<area>.json from the nightly check of the national public-lands map) */
-    if (P === 'SOTA') fetch('data/sota-land/' + encodeURIComponent(o.ref.split('/')[0]) + '.json').then(r => r.ok ? r.json() : null).then(L => { const x = L && L.s && L.s[o.ref], el = $('lgLand'); if (!x || !el) return;
+    if (P === 'SOTA') dfetch('data/sota-land/' + encodeURIComponent(o.ref.split('/')[0]) + '.json').then(r => r.ok ? r.json() : null).then(L => { const x = L && L.s && L.s[o.ref], el = $('lgLand'); if (!x || !el) return;
       const t = { P: '🟢 On public land', R: '🟠 Public land, restricted access', U: '🟡 Public land, access not known', X: '🔴 Closed to the public', E: '⚪ Private land (conservation easement): ask the owner', N: '⚪ Not on the public-lands map: likely private, ask the owner' }[x[0]];
       el.innerHTML = esc(t + (x[1] && /[PRUX]/.test(x[0]) ? ' · ' + x[1] + (x[2] ? ', ' + x[2] : '') : '')) + (x[0] !== 'P' ? ' · <a href="kpc-sota.html?a=' + encodeURIComponent(o.ref.split('/')[0]) + '" style="color:#f0c96b">who owns it? ›</a>' : ''); }).catch(() => {});
   }

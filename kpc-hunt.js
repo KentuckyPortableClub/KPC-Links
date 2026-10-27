@@ -10,6 +10,9 @@
    Settings: kpcHuntF (filters), kpcHuntHome, kpcHuntRange, kpcHuntFar, kpcHuntBell, kpcHuntNote; call = kpcMyCall (shared). */
 (function () {
   'use strict';
+  /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
+  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
+  const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
   const $ = id => document.getElementById(id);
   const PUB = !!(document.getElementById('hl') && document.getElementById('hl').dataset.public === '1');
   const PAGE = (document.getElementById('hl') && document.getElementById('hl').dataset.page) || 'lounge';   /* 'need' = kpc-hunt-need.html */
@@ -81,9 +84,9 @@
   function loadParks() {
     if (pkLoad) return pkLoad;
     pkLoad = Promise.all([
-      fetch('data/parkinfo/index.json').then(r => r.ok ? r.json() : null).catch(() => null),
+      dfetch('data/parkinfo/index.json').then(r => r.ok ? r.json() : null).catch(() => null),
       fetch('kpc-ky-data.json').then(r => r.ok ? r.json() : null).catch(() => null),
-      fetch('data/canada.json').then(r => r.ok ? r.json() : null).catch(() => null)
+      dfetch('data/canada.json').then(r => r.ok ? r.json() : null).catch(() => null)
     ]).then(([ix, ky, ca]) => {
       ((ix && ix.rows) || []).forEach(r => { PK[r[0]] = { n: r[1], st: r[2], la: r[3], lo: r[4], a: r[6] }; });
       ((ky && ky.parks) || []).forEach(p => { const c = String(p.c).toUpperCase(); PK[c] = Object.assign(PK[c] || {}, { n: p.n, st: 'KY', la: p.la, lo: p.lo }); });
@@ -1010,7 +1013,7 @@
   async function topDraw() {
     if (!$('tList')) return;   /* the Top section moved to its own Members Room page, kpc-top50.html (Oct 16) */
     const a = $('tSt').value;
-    if (!TD[a]) { $('tList').innerHTML = '<div class="hl-empty">Loading…</div>'; TD[a] = await fetch('data/leaders/US-' + a + '.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null) || { none: 1 }; }
+    if (!TD[a]) { $('tList').innerHTML = '<div class="hl-empty">Loading…</div>'; TD[a] = await dfetch('data/leaders/US-' + a + '.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null) || { none: 1 }; }
     const d = TD[a];
     if (d.none) { $('tList').innerHTML = `<div class="hl-empty">${esc(ST[a])}’s list is still being added up. It fills in within a week.</div>`; $('tSrc').textContent = ''; return; }
     const L = d[TT] || [], me = CALL ? L.findIndex(r => r[0] === CALL) : -1;

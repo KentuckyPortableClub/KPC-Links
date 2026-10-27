@@ -5,6 +5,9 @@
    Uses kpc-bounds.js (window.KPCB). ?ref=US-1234 / KFF-1234 / W4K/EC-001 opens one. */
 (function () {
   'use strict';
+  /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
+  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
+  const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
   const B = window.KPCB, $ = id => document.getElementById(id), esc = B.esc;
   const APP = 'kpc-finder-v1', TILES = 'kpc-tiles-v1'; /* same caches as Park Commander (kpc-finder-sw.js); never rename */
   const SAVEKEY = 'kpcKitSaved';
@@ -148,7 +151,7 @@
   /* Other states (Oct 16): park type / how to activate / state parks site from data/parkinfo, tips from
      kpc-park-notes-us.json, federal campgrounds + picnic shelters within 10 mi from data/campfed (same data as the KPC Trip Planner) */
   const jcache = {};
-  const jload = u => jcache[u] || (jcache[u] = fetch(u).then(r => r.ok ? r.json() : null).catch(() => null));
+  const jload = u => jcache[u] || (jcache[u] = dfetch(u).then(r => r.ok ? r.json() : null).catch(() => null));
   async function usExtras(P) {
     const st = P.st, ACT = { Automobile: 'car', Campground: 'campground', Pedestrian: 'on foot', Boat: 'boat', Bicycle: 'bike' };
     if (st && P.prog === 'POTA') {
@@ -207,11 +210,11 @@
     L.marker([P.la, P.lo]).addTo(map).bindPopup(esc(P.c + ' ' + P.n) + '<br>' + esc(P.prog) + (P.prog === 'SOTA' ? ' summit' : ' pin'));
     /* Oct 25: outside Kentucky, the state agencies' own parking / entrance / ramp points (data/access, kpc_us_access.py) */
     if (!P.park && P.us && P.prog === 'POTA' && /^[A-Z]{2}$/.test(P.st || '') && !P.ap) {
-      try { const d = await fetch('data/access/US-' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
+      try { const d = await dfetch('data/access/US-' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
     }
     /* Oct 26: Canada too (data/access/CA-XX.json, same bot) */
     if (!P.park && P.prog === 'POTA' && /^CA-[A-Z]{2}$/.test(P.st || '') && !P.ap) {
-      try { const d = await fetch('data/access/' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
+      try { const d = await dfetch('data/access/' + P.st + '.json').then(r => r.ok ? r.json() : null); P.ap = (d && d.parks && d.parks[P.c]) || []; } catch (e) { P.ap = []; }
     }
     const ap = (P.park && P.park.ap) || P.ap || [];
   /* HQ Oct 27: a point tied to the park only by PLACE (4th field 'place') is 'Nearby public access, not the park's own', never a park entrance */

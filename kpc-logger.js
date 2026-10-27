@@ -5,6 +5,9 @@
    The log is saved on every change to localStorage kpcLogger AND IndexedDB kpc-logger/kv/'log' (newer wins on load). */
 (function () {
   'use strict';
+  /* Storage plan Step B (Oct 27): bot-rewritten data moved to KPC-Data; KPC.dataUrl (chat 1, every page's head) tries it first, then this site's copy */
+  const MOVED = /^(data\/(wwff|world-bounds|pota|names|sota|canada-bounds|parkinfo|world-key|us-key|trails|access|ca-key|sota-land|leaders|campfed|campstate-manual|campstate|nwr|alerts)\/|locations(-ky)?\.json$|data\/(northam|canada|parkinfo-web|boundary-score|boundary-report|state-gis-found|access-layers|state-gis)\.json$)/;
+  const dfetch = (u, o) => (MOVED.test(String(u)) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o);
   const $ = id => document.getElementById(id);
   const get = (k, d) => { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } };
   const put = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
@@ -889,7 +892,7 @@
   let PK = null;
   async function parkList() {
     if (PK) return PK; const out = [];
-    try { const ix = await fetch('data/parkinfo/index.json').then(r => r.json()); (ix.rows || []).forEach(r => { if (r[3] != null) out.push([r[0], r[1], 'US-' + r[2], +r[3], +r[4]]); }); } catch (e) {}
+    try { const ix = await dfetch('data/parkinfo/index.json').then(r => r.json()); (ix.rows || []).forEach(r => { if (r[3] != null) out.push([r[0], r[1], 'US-' + r[2], +r[3], +r[4]]); }); } catch (e) {}
     try { const ky = await fetch('kpc-ky-data.json').then(r => r.json()); (ky.parks || []).forEach(p => { if (p.la != null) out.push([p.c, p.n, 'US-KY', +p.la, +p.lo]); }); } catch (e) {}
     if (out.length) PK = out; return out;
   }
