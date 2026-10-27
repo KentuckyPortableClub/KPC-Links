@@ -1,8 +1,365 @@
 {
- "updated": "2026-10-26T15:05:02+00:00",
+ "updated": "2026-10-27T13:32:31+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13623",
+   "prog": "pota",
+   "name": "Alum Cove Natural Bridge Trail National Recreation Trail",
+   "st": [
+    "AR"
+   ],
+   "la": 35.859,
+   "lo": -93.2338,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "US-13622",
+   "prog": "pota",
+   "name": "The Razorback Regional Greenway National Recreation Trail",
+   "st": [
+    "AR"
+   ],
+   "la": 36.0285,
+   "lo": -94.1999,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "US-13621",
+   "prog": "pota",
+   "name": "Desert Shield and Desert Storm National Memorial",
+   "st": [
+    "DC"
+   ],
+   "la": 38.8915,
+   "lo": -77.0512,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7589",
+   "prog": "kff",
+   "name": "Simon Canyon",
+   "st": [],
+   "la": 36.8232,
+   "lo": -107.659,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7588",
+   "prog": "kff",
+   "name": "San Lorenzo Canyon",
+   "st": [],
+   "la": 34.2231,
+   "lo": -106.922,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7587",
+   "prog": "kff",
+   "name": "Salinas Pueblo Missions-Quarai",
+   "st": [],
+   "la": 34.5953,
+   "lo": -106.298,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7586",
+   "prog": "kff",
+   "name": "Salinas Pueblo Missions-Abo",
+   "st": [],
+   "la": 34.45,
+   "lo": -106.375,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7585",
+   "prog": "kff",
+   "name": "Quebradas Backcountry Byway",
+   "st": [],
+   "la": 34.1108,
+   "lo": -106.872,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7584",
+   "prog": "kff",
+   "name": "Parks Ranch Cave",
+   "st": [],
+   "la": 32.1105,
+   "lo": -104.407,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7583",
+   "prog": "kff",
+   "name": "Ojito",
+   "st": [],
+   "la": 35.4944,
+   "lo": -106.9219,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7582",
+   "prog": "kff",
+   "name": "Kilbourne Hole Volcanic Crater",
+   "st": [],
+   "la": 31.9566,
+   "lo": -106.958,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7581",
+   "prog": "kff",
+   "name": "Black River",
+   "st": [],
+   "la": 36.2593,
+   "lo": -108.252,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7580",
+   "prog": "kff",
+   "name": "Bisti/De-Na-Zin",
+   "st": [],
+   "la": 36.2593,
+   "lo": -108.252,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7579",
+   "prog": "kff",
+   "name": "Winter-West Unit",
+   "st": [],
+   "la": 44.1396,
+   "lo": -96.3829,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7578",
+   "prog": "kff",
+   "name": "Vermillion River",
+   "st": [],
+   "la": 44.6762,
+   "lo": -93.1133,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7577",
+   "prog": "kff",
+   "name": "Vermillion Highlands",
+   "st": [],
+   "la": 44.6826,
+   "lo": -93.0604,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7576",
+   "prog": "kff",
+   "name": "Two Rivers",
+   "st": [],
+   "la": 44.2787,
+   "lo": -95.3701,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7575",
+   "prog": "kff",
+   "name": "Talcot Lake",
+   "st": [],
+   "la": 43.8854,
+   "lo": -95.4365,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7574",
+   "prog": "kff",
+   "name": "Sodus",
+   "st": [],
+   "la": 44.2813,
+   "lo": -95.8366,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7573",
+   "prog": "kff",
+   "name": "Sandstone",
+   "st": [],
+   "la": 46.0788,
+   "lo": -92.8419,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7572",
+   "prog": "kff",
+   "name": "Roberts-Wickstrom-East Unit",
+   "st": [],
+   "la": 46.7393,
+   "lo": -93.4667,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7571",
+   "prog": "kff",
+   "name": "Phyllis Voosen",
+   "st": [],
+   "la": 44.5011,
+   "lo": -95.4723,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7570",
+   "prog": "kff",
+   "name": "Pelican Lake",
+   "st": [],
+   "la": 45.2261,
+   "lo": -93.6836,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7569",
+   "prog": "kff",
+   "name": "Lyons",
+   "st": [],
+   "la": 44.2829,
+   "lo": -95.8922,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7568",
+   "prog": "kff",
+   "name": "Lamberton",
+   "st": [],
+   "la": 44.2461,
+   "lo": -95.1989,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7567",
+   "prog": "kff",
+   "name": "Lake Maria",
+   "st": [],
+   "la": 44.17,
+   "lo": -95.8126,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7566",
+   "prog": "kff",
+   "name": "Hopeful",
+   "st": [],
+   "la": 44.2677,
+   "lo": -96.0951,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7565",
+   "prog": "kff",
+   "name": "Hole-In-Mountain",
+   "st": [],
+   "la": 44.2267,
+   "lo": -96.3065,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7564",
+   "prog": "kff",
+   "name": "Green Valley",
+   "st": [],
+   "la": 44.5159,
+   "lo": -95.7035,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7563",
+   "prog": "kff",
+   "name": "Gores Pool #3",
+   "st": [],
+   "la": 44.6726,
+   "lo": -92.7818,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7562",
+   "prog": "kff",
+   "name": "Gichigami Ziibi",
+   "st": [],
+   "la": 46.6841,
+   "lo": -92.4045,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7561",
+   "prog": "kff",
+   "name": "Flowing Prairie",
+   "st": [],
+   "la": 47.0098,
+   "lo": -96.4784,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7560",
+   "prog": "kff",
+   "name": "Fenmont",
+   "st": [],
+   "la": 43.8338,
+   "lo": -95.8223,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7559",
+   "prog": "kff",
+   "name": "Coon Creek",
+   "st": [],
+   "la": 44.3453,
+   "lo": -96.0589,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7558",
+   "prog": "kff",
+   "name": "Cedar Rock-South East Unit",
+   "st": [],
+   "la": 44.613,
+   "lo": -95.1778,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7557",
+   "prog": "kff",
+   "name": "Budolfson",
+   "st": [],
+   "la": 44.0499,
+   "lo": -95.4588,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7556",
+   "prog": "kff",
+   "name": "Bohemian",
+   "st": [],
+   "la": 44.6249,
+   "lo": -96.3991,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7555",
+   "prog": "kff",
+   "name": "Badger Lake",
+   "st": [],
+   "la": 43.9295,
+   "lo": -95.7403,
+   "found": "2026-10-27"
+  },
+  {
+   "ref": "KFF-7554",
+   "prog": "kff",
+   "name": "Altona",
+   "st": [],
+   "la": 44.1976,
+   "lo": -96.3203,
+   "found": "2026-10-27"
+  },
   {
    "ref": "US-8227",
    "prog": "pota",
@@ -486,72 +843,6 @@
    "la": 40.829,
    "lo": -97.6552,
    "found": "2026-10-21"
-  },
-  {
-   "ref": "US-13613",
-   "prog": "pota",
-   "name": "Ballards Marsh Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 42.5957,
-   "lo": -100.539,
-   "found": "2026-10-20"
-  },
-  {
-   "ref": "US-13612",
-   "prog": "pota",
-   "name": "Darr Strip Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 40.825,
-   "lo": -99.9382,
-   "found": "2026-10-20"
-  },
-  {
-   "ref": "US-13611",
-   "prog": "pota",
-   "name": "Darr Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 40.7853,
-   "lo": -99.8493,
-   "found": "2026-10-20"
-  },
-  {
-   "ref": "US-13610",
-   "prog": "pota",
-   "name": "Arrowhead Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 40.0979,
-   "lo": -96.8669,
-   "found": "2026-10-20"
-  },
-  {
-   "ref": "US-13609",
-   "prog": "pota",
-   "name": "Anderson Bridge Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 42.7861,
-   "lo": -100.925,
-   "found": "2026-10-20"
-  },
-  {
-   "ref": "US-13608",
-   "prog": "pota",
-   "name": "American Game Marsh Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 42.312,
-   "lo": -100.061,
-   "found": "2026-10-20"
   }
  ]
 }
