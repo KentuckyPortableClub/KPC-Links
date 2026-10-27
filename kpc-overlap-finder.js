@@ -53,7 +53,7 @@
       var rev = reviewed(s); if (!rev) WAITN++;
       var key = s.refs.slice().sort().join('+');
       var g = groups[key] || (groups[key] = { key: key, refs: s.refs.slice().sort(function (x, y) { return +(/(\d+)$/.exec(x) || [0, 0])[1] - +(/(\d+)$/.exec(y) || [0, 0])[1]; }), names: {}, patches: [], st: s._st, trail: false });
-      Object.assign(g.names, s.names || {}); s._kids = kids[s.id] || []; s._rev = rev; s._noAcc = noAcc;
+      Object.assign(g.names, s.names || {}); s._kids = (kids[s.id] || []).filter(function (k, i, A) { var sh = JSON.stringify(k.shape || ''); return sh !== JSON.stringify(s.shape || '') && A.findIndex(function (o) { return JSON.stringify(o.shape || '') === sh; }) === i; });   /* Brandon Oct 27 6:16 PM ('steps 2 and 3 are the same'): the data listed one stretch twice */ s._rev = rev; s._noAcc = noAcc;
       if (s.kind === 'trail') g.trail = true; g.patches.push(s);
     });
     Object.keys(groups).forEach(function (k) { var g = groups[k];
@@ -199,6 +199,7 @@
     base.sat = L.layerGroup([L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 })]);
     base.topo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' });
     map.on('baselayerchange', function (e) { baseNow = e.name || ''; draw(); });
+    map.on('zoomend moveend viewreset', function () { setTimeout(clipTrail, 0); });
     if (!window.KPCLayers) base.street.addTo(map); gAll = L.layerGroup().addTo(map);
     if (window.KPCLocate) { try { KPCLocate(map); } catch (e) {} } if (window.KPCFull) { try { KPCFull(map); } catch (e) {} }
     map.on('click', function (e) { if (mode === 'pin') { if (pinM) map.removeLayer(pinM); status([e.latlng.lat, e.latlng.lng], 0, true);
@@ -297,26 +298,50 @@
     });
   }
   function liveLines() { var o = []; if (cur) visiblePatches(cur).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (x.lines && typeof x.lines === 'object') o.push(x.lines); }); }); return o; }
+  /* Brandon Oct 27 6:16 PM ('this boundary looks funky like part of 2fer out of bounds'): a trail's 100-ft band was drawn whole, even
+     where it leaves the other park. The band (and its gold border) is now CLIPPED to the other park's outline on the map (SVG clip),
+     so only ground that is near the trail AND inside the other park shows as the overlap; the other park's line inside the band is
+     drawn gold too, so the clipped patch keeps a full gold border. Re-clipped after every zoom/move (Leaflet redraws the paths). */
+  function clipTrail() {
+    var svg = map && document.querySelector('#ovMap .leaflet-overlay-pane svg'); if (!svg) return;
+    if (!cur || !cur.trail) { var og = svg.querySelector('path.ov-edgegold'); if (og) og.remove(); return; }
+    var tg = svg.querySelectorAll('path.ov-tclip'), polys = parks.filter(function (p) { return !p.line && p.on && p._g && p._g.length; });
+    var defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS('http://www.w3.org/2000/svg', 'defs'), svg.firstChild);
+    var cp = defs.querySelector('#ovClipP'); if (!cp) { cp = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath'); cp.id = 'ovClipP'; cp.setAttribute('clipPathUnits', 'userSpaceOnUse'); defs.appendChild(cp); }
+    var cb = defs.querySelector('#ovClipB'); if (!cb) { cb = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath'); cb.id = 'ovClipB'; cb.setAttribute('clipPathUnits', 'userSpaceOnUse'); defs.appendChild(cb); }
+    var d = []; polys.forEach(function (p) { p._g.forEach(function (gl) { gl.eachLayer(function (l) { if (l._path) d.push(l._path.getAttribute('d') || ''); }); }); });
+    d = d.join(' ').trim();
+    if (!d) { [].forEach.call(tg, function (e) { e.removeAttribute('clip-path'); }); return; }
+    cp.innerHTML = ''; var pp = document.createElementNS('http://www.w3.org/2000/svg', 'path'); pp.setAttribute('d', d); pp.setAttribute('clip-rule', 'evenodd'); cp.appendChild(pp);
+    [].forEach.call(tg, function (e) { e.setAttribute('clip-path', 'url(#ovClipP)'); });
+    /* the other park's own edge where it crosses the band: a gold copy clipped to the band */
+    var bd = [].map.call(svg.querySelectorAll('path.ov-tclip.ov-band'), function (e) { return e.getAttribute('d') || ''; }).join(' ').trim();
+    cb.innerHTML = ''; if (bd) { var bp = document.createElementNS('http://www.w3.org/2000/svg', 'path'); bp.setAttribute('d', bd); cb.appendChild(bp); }
+    var gold = svg.querySelector('path.ov-edgegold'); if (step > parks.length && bd) { if (!gold) { gold = document.createElementNS('http://www.w3.org/2000/svg', 'path'); gold.setAttribute('class', 'ov-edgegold'); svg.querySelector('g').appendChild(gold); }
+      gold.setAttribute('d', d); gold.setAttribute('fill', 'none'); gold.setAttribute('stroke', '#ffd34d'); gold.setAttribute('stroke-width', '4'); gold.setAttribute('stroke-dasharray', '14 10'); gold.setAttribute('clip-path', 'url(#ovClipB)'); gold.style.pointerEvents = 'none'; }
+    else if (gold) gold.remove();
+  }
   function draw() {
     if (!map || !cur) return; gAll.clearLayers();
     var act = !mode;   /* in pin / measure mode the shapes let the tap through to the map */
     var hasLines = liveLines().length > 0;
     if (shade && step > 0 && (look === 1 || look === 4)) parks.forEach(function (p, i) { if (!p.on || i >= step) return; var v = veil(p); if (v) gAll.addLayer(v); });
+    parks.forEach(function (p) { p._g = []; });
     parks.forEach(function (p, i) {
       if (!p.on || i >= step) return;
       var cls = fading && i === step - 1 ? 'ov-in' : '';
       (p.fs || []).forEach(function (f) {
         if (look === 2 || look === 3) { tint(p, f, cls, act); return; }
-        gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, opacity: hasLines ? 0.35 : 1, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p))); });
+        var gl = L.geoJSON(f, { style: { color: p.c, weight: 3, opacity: hasLines ? 0.35 : 1, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p)); gAll.addLayer(gl); p._g.push(gl); });
       /* Brandon Oct 27 5:29 PM ('the overlap lines … do not look like they follow the boundary lines'): the gold border is cut from the agency's
          LIVE full-detail map, the park lines above are our saved copy (a few yards different, up to ~20). When the data carries the live
          edges near the spot (s.lines {ref: [[[lon,lat]…]…]}, chat 2), they are drawn bold and the saved copy goes faint. */
       liveLines().forEach(function (x) { (x[p.ref] || []).forEach(function (ln) { gAll.addLayer(L.polyline(ln.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls, interactive: false })); }); });
-      if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls, interactive: act }).bindPopup(parkPop(p)));
+      if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls + ' ov-tclip ov-band', interactive: act }).bindPopup(parkPop(p)));
         gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
     });
     if (step > parks.length) cur.rings.forEach(function (x) {
-      var ll = x.ring.map(function (q) { return [q[1], q[0]]; }), fc = fading ? ' ov-in-patch' : '';
+      var ll = x.ring.map(function (q) { return [q[1], q[0]]; }), fc = (fading ? ' ov-in-patch' : '') + (x.line ? ' ov-tclip' : '');
       if (look === 1) gAll.addLayer(L.polygon(ll, { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fc, interactive: act }).bindPopup(patchPop(x.s)));
       else if (look === 2) { gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 8, opacity: 0.95, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#111', weight: 3, dashArray: '10 6', fill: true, fillOpacity: 0, className: fc, interactive: act }).bindPopup(patchPop(x.s))); }
       else if (look === 3) gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 5, fillColor: '#ffd34d', fillOpacity: 0.85, className: 'ov-glow' + fc, interactive: act }).bindPopup(patchPop(x.s)));
@@ -328,6 +353,7 @@
     pins.forEach(function (a) { gAll.addLayer(L.marker(a.at, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#1d4d7a;color:#fff;border:2px solid #fff;font:900 14px Arial">P</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) })
       .bindPopup('<b>Closest spot to public access</b><br>' + esc(a.name || '') + ' (' + esc(a.from || '') + '), about ' + Math.round((a.walk_m || 0) * YD) + ' yards from it.<br><small>' + esc(a.note || '') + '</small><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + a.at[0] + ',' + a.at[1] + '">Directions (to the access, not to the overlap)</a><span class="ov-short">' + SHORT + '</span>')); });
     if (meas.length) { gAll.addLayer(L.polyline(meas, { color: '#d55e00', weight: 3 })); meas.forEach(function (m) { gAll.addLayer(L.circleMarker(m, { radius: 5, color: '#d55e00' })); }); }
+    setTimeout(clipTrail, 0);
     if (gps) { gAll.addLayer(L.circle(gps.p, { radius: gps.acc / YD, color: '#1e78ff', weight: 1, fillOpacity: 0.15 })); gAll.addLayer(L.circleMarker(gps.p, { radius: 7, color: '#fff', weight: 3, fillColor: '#1e78ff', fillOpacity: 1 })); }
   }
   /* Brandon Oct 27 3:13 PM ('The private property in a park needs better clarification'): tap any spot on the map = which park
