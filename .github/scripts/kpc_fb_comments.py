@@ -51,15 +51,15 @@ ASKING = re.compile(r"\?|^(when|where|how|what|who|which|is|are|do|does|can|coul
 # Never answered by the bot: a person reads these.
 HANDS_OFF = re.compile(r"licen[cs]|exam|test|fcc|legal|rule|allowed|permit|safe|danger|injur|hurt|storm|lightning|"
                        r"complain|rude|angry|refund|money|cost|price|fee|pay|\$|dues|insurance|liab|lawyer|"
-                       r"cancel|problem|broken|not work|wrong|hate|sucks|scam|spam|politic", re.I)
+                       r"cancel|problem|broken|not work|wrong|hate|sucks|scam|spam|politic|"
+                       r"years? old|\bage\b|\bi.?m \d{1,2}\b|school|grade|my (son|daughter|kid)|\bkids?\b|teen", re.I)   # G20: never auto-answer a child
 TAIL = " If that's not what you meant, one of us will come back to you."
 
 # What we get asked, and what to say back. First match wins, so put the specific ones first.
 ANSWERS = [
     (r'campout|camp out|camping trip|2027|taylorsville',
-     "The 2nd Annual KY POTA Campout is September 24-26, 2027 at Taylorsville Lake State Park (US-1271). "
-     "Group tent sites are reserved and spots are open now - all the details, including how to reserve, are here: "
-     + SITE + "campout.html"),
+     "All the campout details - dates, place and how to reserve - are kept up to date here: "
+     + SITE + "campout.html"),       # G21 (Brandon Oct 27): answers link to the live page and never repeat a date
     (r'\bjoin\b|become a member|sign up|membership|how do i get in',
      "We'd love to have you. Everything about joining is on this page: " + SITE + "join.html"),
     (r'\bmap\b|where (is|are) the park|what parks|park control|boundar',

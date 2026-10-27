@@ -434,6 +434,8 @@ def spent(n): state.setdefault('sent', []).append([int(time.time()), n])
 def flush_mail():
     q = state.get('queue') or []
     if not q: return
+    if NOW.hour >= 21 or NOW.hour < 6:          # G7 (Brandon Oct 27): website + Discord go at once; email waits until 6 AM
+        notice(f'{len(q)} email(s) wait for 6 AM (no email between 9 PM and 6 AM).'); return
     if not (MAIL_URL and MAIL_KEY) and not SMTP_PASS:
         notice(f'{len(q)} email(s) waiting: the email secrets are not set yet.'); return
     subs = None
@@ -523,10 +525,24 @@ PLACEWORD = re.compile(r'(?i)web ?site|face ?b|\bfb\b|discord|groups?|subscri|e-
 STAFF_HOOK = ((ENV('KPC_ADMIN_WEBHOOK') or '').split() or [''])[0]
 GUILD = str((load('data/discord-watch.json', {}) or {}).get('guild') or '')
 
+# G13 (Brandon Oct 27): anything that looks like a key, token, webhook link or password is held; 👍 never sends it.
+SECRET = re.compile(r'(?i)discord(?:app)?\.com/api/webhooks/\d+/[\w-]{20,}|\bEAA[A-Za-z0-9]{40,}|\bgh[pousr]_[A-Za-z0-9]{30,}|'
+                    r'github_pat_\w{30,}|\bxox[abpr]-[\w-]{10,}|\bsk-[A-Za-z0-9_-]{20,}|\bAIza[0-9A-Za-z_-]{30,}|'
+                    r'\b(?:password|passwd|pass ?word|token|api[ _-]?key|secret|webhook)\s*(?:is\s*)?[:=]\s*\S{4,}')
+SECRET_LONG = re.compile(r'(?<![\w/.-])[A-Za-z0-9_\-+/]{40,}={0,2}(?![\w/.-])')     # a long random-looking run outside a link
+KY_NAMES = sorted({n.lower() for n in KYREFS.values() if n and len(n) >= 10}, key=len, reverse=True)
+
+def names_a_park(raw):
+    """G16: only a post that names a park (number or a Kentucky park name) counts as a 2-fer claim; 'a two-fer meal' does not."""
+    if re.search(r'\b(?:US|CA|KFF|K)-\d{4,5}\b|\bW4K/[A-Z]{2}-\d{3}\b', raw, re.I): return True
+    low = raw.lower()
+    return any(n in low for n in KY_NAMES)
+
 def hold_reason(m, p):
     raw = m.get('content') or ''
     if 'skip' in p['flags']: return None
-    if TWOFER.search(raw) and not NOTICE_OK.search(raw): return '2fer'
+    if SECRET.search(raw) or SECRET_LONG.search(re.sub(r'https?://\S+', ' ', raw)): return 'secret'
+    if TWOFER.search(raw) and not NOTICE_OK.search(raw) and names_a_park(raw): return '2fer'
     if re.search(r'(?i)kpc-maprep|map ?rep tool ?box', raw): return 'maprep'    # Map Rep lives in the Club Room only, never in a post
     if not p['flags']:
         mt = re.match(r'\s*([^\n:]{1,60}):(?!\d|//)', raw)
@@ -546,12 +562,14 @@ def thumbs(m):
 
 def ask_staff(mid, why, raw):
     link = f'https://discord.com/channels/{GUILD}/{CHAN}/{mid}' if GUILD else f'message {mid}'
-    head = (raw or '').strip().split('\n')[0][:120]
+    head = '(not shown: it may hold a secret)' if why == 'secret' else (raw or '').strip().split('\n')[0][:120]
     text = {'2fer': 'mentions 2-fers / overlapping parks but has no overlap notice. React 👍 on the post to send it WITH the '
                     'short overlap notice added, or edit the post to add the notice yourself, or delete it.',
             'tag': "starts like a tag but I can't read it. Edit the post to fix the tag (it goes out on the next check), "
                    'or react 👍 to send it to the usual places (Website + Facebook + the other Discord server).',
             'when': "has a date/time in its tag that I can't read. Edit the post to fix it, or react 👍 to send it now.",
+            'secret': 'contains something that looks like a key, token, webhook link or password. Delete the post (and change '
+                      'that key if it was real), or edit it out; 👍 does not send this one.',
             'maprep': 'mentions the Map Rep Tool Box, which stays in the Club Room and is never posted. Edit it out (it goes '
                       'out on the next check) or delete the post. 👍 does not send this one.'}[why]
     msg = f'🛑 Held a relay post: it {text}\n> {head}\n{link}'
@@ -719,7 +737,7 @@ for mid in list(held):
     if not m: continue
     p = parse(m)
     why = hold_reason(m, p)
-    ok = thumbs(m) and why != 'maprep'
+    ok = thumbs(m) and why not in ('maprep', 'secret')
     if why and not ok: continue
     if ok and why == '2fer':
         m = with_notice(m)

@@ -211,10 +211,15 @@ def _wma_line(n, a, b, it, md=True):
     first = re.sub(r'^[^:]*?:\s*[A-Z][a-z]{2}[^:]*?:\s*', '', str(it.get('details') or ''), count=1).split(';')[0].strip()
     part = re.match(r'(?i)^(.{3,80}?)\s+(?:is |are )?closed\b', first)
     nm = f'**{n}**' if md else n
+    quote = first.rstrip('.')[:160]
+    if quote.count('(') > quote.count(')'):        # the record split inside brackets: drop the broken bracket
+        quote = quote[:quote.rfind('(')].rstrip(' ,')
     if part and re.search(r'(?i)\b(unit|tract|area|zone|section|portion|field|parts? of)\b', part.group(1)):
         line = f'• Part of {nm} ({part.group(1).strip()}) is closed: {span}'
     else:
         line = f'• {nm}: {span}'
+    if quote:                # G9 (Brandon Oct 27): Fish & Wildlife's own words, not our template
+        line += f' — KDFWR: “{quote}”'
     if it.get('link'):
         line += f" · [KDFWR page]({it['link']})" if md else f" · {it['link']}"
     return line
@@ -277,7 +282,7 @@ def wma_closures(state, today, force=False, wait=False):
             if not rows:
                 notice(f'No WMA closures for {_fmt(sat)}-{sun.day}; no heads-up post.')
             else:
-                L = [f'These Kentucky WMAs are closed to non-hunters {_fmt(sat)}-{sun.day}:', '']
+                L = [f'Kentucky WMA hunt closures this weekend, {_fmt(sat)}-{sun.day} (in Fish & Wildlife\'s own words):', '']
                 L += [_wma_line(n, a, b, it) for n, a, b, it in rows]
                 L += ['', 'Hunters may be in the woods: wear blaze orange if you are anywhere near a hunt, and check the '
                           'KDFWR page before you drive.', INFO]
@@ -306,6 +311,14 @@ def wma_closures(state, today, force=False, wait=False):
 
 
 # ------------------------------------------------------------------ holiday post (HQ Oct 26, Brandon: GO for Halloween only)
+def _valid(y, m, d):
+    try:
+        datetime.date(y, m, d)
+        return True
+    except ValueError:
+        return False
+
+
 def _rule_date(rule, year):
     """'MM-DD' is handled by the caller. Rules: easter | 'last monday of 05' | 'second sunday of 05'."""
     r = str(rule).strip().lower()
@@ -320,6 +333,13 @@ def _rule_date(rule, year):
         m = (a + 11 * h + 22 * l) // 451
         mo, da = divmod(h + l - 7 * m + 114, 31)
         return datetime.date(year, mo, da + 1)
+    fw = re.fullmatch(r'(first|second|third|fourth|last) full weekend of (\d\d)', r)
+    if fw:                   # ARRL Field Day = the fourth FULL weekend of June: its Saturday (Sunday in the same month)
+        mo = int(fw.group(2))
+        sats = [datetime.date(year, mo, d) for d in range(1, 31) if _valid(year, mo, d) and datetime.date(year, mo, d).weekday() == 5
+                and (datetime.date(year, mo, d) + datetime.timedelta(days=1)).month == mo]
+        n = fw.group(1)
+        return sats[-1] if n == 'last' else sats[['first', 'second', 'third', 'fourth'].index(n)]
     m = re.fullmatch(r'(first|second|third|fourth|last) (monday|tuesday|wednesday|thursday|friday|saturday|sunday) of (\d\d)', r)
     if not m:
         return None            # e.g. 'fourth full weekend of 06' (Field Day): not wired yet, never posts
@@ -354,7 +374,7 @@ def holiday_post(state, today, force=False):
                 d = _rule_date(h.get('rule'), today.year)
         except (ValueError, TypeError):
             d = None
-        if not d or d != today or h['id'] not in go:
+        if not d or d != today or not ('all' in go or h['id'] in go):
             continue
         key = f"{h['id']}-{today.year}"
         if key in done and not force:
