@@ -1,6 +1,6 @@
 # Canada YT: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **27 of 112** joined (same name + same kind). **0** to check, **75** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **27 of 112** joined (same name + same kind). **0** to check, **76** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -9,13 +9,12 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 - CA-4600 Alsek River National Heritage Area (National Heritage Area) → on Kluane (~0 ac); Kluane National Park Reserve Of Canada (~5,451,383 ac)
 - CA-4601 Bonnet Plume River National Heritage Area (National Heritage Area) → on Peel Watershed LMU 8 (~4,724,008 ac)
+- CA-4628 Spruce Beetle Trail Recreation Site (Recreation Site) → on Kluane (~0 ac)
 - CA-4631 Tatshenshini River National Heritage Area (National Heritage Area) → on Kluane (~0 ac)
-- CA-6259 Dezadeash Lake Campground Territorial Park (Territorial Park) → on Kluane (~0 ac)
 - CA-6263 Tarfu Lake Campground Recreation Site (Recreation Site) → on Agay Mene (~0 ac)
 - CA-6264 Takhini River Campground Recreation Site (Recreation Site) → on Kusawa (~0 ac); Kusawa (~758,341 ac)
-- CA-6265 Tagish Bridge Recreation Site (Recreation Site) → on Tagish River (~1,112 ac)
+- CA-6265 Tagish Bridge Recreation Site (Recreation Site) → on Tagish Narrows (~0 ac); Tagish River (~1,112 ac)
 - CA-6268 Snafu Lake Campground Recreation Site (Recreation Site) → on Agay Mene (~0 ac)
-- CA-6276 Million Dollar Falls Campground Territorial Park (Territorial Park) → on Kluane (~0 ac)
 - CA-6282 Kathleen Lake Campground and Rec. Site National Park (National Park) → on Kluane (~0 ac)
 
 ## Nothing found in CPCAD
@@ -33,7 +32,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-4624 Otter Falls Recreation Park (Recreation Park)
 - CA-4626 Rampart House Habitat Protection Area (Habitat Protection Area)
 - CA-4627 Rancheria Falls Recreation Site (Recreation Site)
-- CA-4628 Spruce Beetle Trail Recreation Site (Recreation Site)
 - CA-4632 Thirty Mile - Yukon River National Heritage Area (National Heritage Area)
 - CA-4633 Thirty Mile River Habitat Protection Area (Habitat Protection Area)
 - CA-4936 Dawson Historical Complex National Historic Site (National Historic Site)
@@ -59,6 +57,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-5745 Wolf Creek Recreation Park (Recreation Park)
 - CA-5746 Wye Lake Recreation Park (Recreation Park)
 - CA-6258 Congdon Creek Campground Territorial Park (Territorial Park)
+- CA-6259 Dezadeash Lake Campground Territorial Park (Territorial Park)
 - CA-6260 Yukon River Campground Recreation Site (Recreation Site)
 - CA-6262 Tatchun Creek Campground Recreation Site (Recreation Site)
 - CA-6266 Squanga Lake Campground Recreation Site (Recreation Site)
@@ -70,6 +69,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-6273 Nunatuk Campground Recreation Site (Recreation Site)
 - CA-6274 Nahanni Range Campground Recreation Site (Recreation Site)
 - CA-6275 Moose Creek Campground Recreation Site (Recreation Site)
+- CA-6276 Million Dollar Falls Campground Territorial Park (Territorial Park)
 - CA-6277 Little Salmon Lake Campground Recreation Site (Recreation Site)
 - CA-6278 Lapie Canyon Campground Recreation Site (Recreation Site)
 - CA-6279 Lake Creek Campground Recreation Site (Recreation Site)
