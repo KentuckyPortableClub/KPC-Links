@@ -28,12 +28,12 @@
     async function load() {
       if (!map.hasLayer(g) || busy) return; busy = true;
       try {
-        if (!IDX) IDX = [].concat(...await Promise.all(['data/trails/index.json', 'data/trails/index-state.json'].map(u => fetch(u).then(r => r.ok ? r.json() : []).catch(() => []))));   /* national + state / recreation trails */
+        if (!IDX) IDX = [].concat(...await Promise.all(['data/trails/index.json', 'data/trails/index-state.json'].map(u => ((window.KPC && KPC.dataUrl) ? KPC.dataUrl(u) : fetch(u)).then(r => r.ok ? r.json() : []).catch(() => []))));   /* national + state / recreation trails */
         const C = opts.skipKY ? await kyP() : null;
         const b = map.getBounds().pad(.3), W = b.getWest(), S = b.getSouth(), E = b.getEast(), N = b.getNorth();
         for (const t of IDX) {
           if (done[t.ref] || t.bbox[0] > E || t.bbox[2] < W || t.bbox[1] > N || t.bbox[3] < S) continue; done[t.ref] = 1;
-          fetch('data/trails/' + t.ref + '.json').then(r => r.json()).then(f => {
+          ((window.KPC && KPC.dataUrl) ? KPC.dataUrl('data/trails/' + t.ref + '.json') : fetch('data/trails/' + t.ref + '.json')).then(r => r.json()).then(f => {
             if (C && C.length) f = dropKY(f, C);
             if (!f.geometry.coordinates.length) return;
             const casing = L.geoJSON(f, { renderer: rend, interactive: false, style: { color: '#1b1b1b', weight: 6, opacity: .55 } });

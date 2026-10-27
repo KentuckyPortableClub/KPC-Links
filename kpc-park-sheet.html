@@ -20,8 +20,8 @@
 <meta name="description" content="A printable field sheet for a park, WWFF area or summit, with QR codes and a log sheet of 28 to 200 lines.">
 <link rel="stylesheet" href="kpc-tools.css?v=20261015a">
 <script src="kpc-tools.js?v=20261027a"></script>
-<script src="kpc-bounds.js?v=20261027p"></script>
-<script src="kpc-map-tools.js?v=20261018u"></script>
+<script src="kpc-bounds.js?v=20261027q"></script>
+<script src="kpc-map-tools.js?v=20261027a"></script>
 <script src="kpc-closures.js?v=20261027b6"></script>
 <script src="kpc-facilities.js?v=20261025b"></script>
 <link rel="stylesheet" href="kpc-nav.css?v=20261015a">
@@ -149,7 +149,7 @@ footer.kpc-about-footer{padding:38px 24px;background:#070707;color:#fff;display:
    count (POTA), NOAA Weather Radio for the county (geo.fcc.gov county + data/nwr), places to stay and latest tips. */
 const $=id=>document.getElementById(id);let D,T,cur=null,txt=null;
 const esc=KPC.esc;
-const jget=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||9000);return fetch(u,{signal:c.signal}).then(r=>r.ok?r.json():null).catch(()=>null).finally(()=>clearTimeout(t))};
+const jget=(u,ms)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||9000);const f=(/^data\/(nwr|parkinfo|campfed|access)\//.test(u)&&window.KPC&&KPC.dataUrl)?KPC.dataUrl(u,{signal:c.signal}):fetch(u,{signal:c.signal});return f.then(r=>r.ok?r.json():null).catch(()=>null).finally(()=>clearTimeout(t))};
 const J={};const once=u=>J[u]||(J[u]=jget(u));
 async function init(){D=await KPC.data();try{T=await fetch('kpc-ky-towns.json').then(r=>r.json())}catch(e){T=[]}
  

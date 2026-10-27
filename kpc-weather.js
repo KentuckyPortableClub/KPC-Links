@@ -15,7 +15,7 @@
   let KY = null, NWR = null, here = null, map = null, mk = null, warnLayer = null, radar = [], lightning = null, loop = null, fi = 0, req = 0;
 
   /* ---------- small helpers ---------- */
-  async function jget(u, o) { const r = await ((/^data\/alerts\//.test(u) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o)); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }   // Step B6: data/alerts is in KPC-Data
+  async function jget(u, o) { const r = await ((/^(data\/alerts\/|data\/nwr\/|data\/parkinfo\/|locations\.json$)/.test(u) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, o) : fetch(u, o)); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }   // Step B6: data/alerts, data/nwr, data/parkinfo and locations.json are all in KPC-Data now
   const NWSH = { headers: { Accept: 'application/geo+json' } };
   function save(p) { try { localStorage.setItem(LS, JSON.stringify(p)); } catch (e) {} }
   function saved() { try { const p = JSON.parse(localStorage.getItem(LS) || 'null'); return p && isFinite(p.la) && isFinite(p.lo) ? p : null; } catch (e) { return null; } }

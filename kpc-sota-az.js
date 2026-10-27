@@ -27,7 +27,7 @@ async function loadAll() {
   if (allLoaded) return;
   msg('Loading every U.S. summit… (one time, about 5 MB)');
   try {
-    const rows = await (await fetch('locations.json')).json();
+    const rows = await (await ((window.KPC && KPC.dataUrl) ? KPC.dataUrl('locations.json') : fetch('locations.json'))).json();
     const have = new Set(SUM.map(s => s.c));
     rows.forEach(r => { if (r[0] === 'SOTA' && !have.has(r[1])) SUM.push({ c: r[1], n: r[2], la: r[3], lo: r[4], m: r[6] ? +r[6] : null, pts: r[7] ? +String(r[7]).replace(/\D/g, '') || null : null }); });
     allLoaded = true; msg(`${SUM.length.toLocaleString()} summits ready.`); $('azAll').hidden = true;

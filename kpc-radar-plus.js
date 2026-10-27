@@ -16,7 +16,7 @@ function chip(id,on){const b=$(id);if(b)b.setAttribute('aria-pressed',String(!!o
 async function jget(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);try{const r=await fetch(u,{cache:'no-store',signal:c.signal});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
 function gridXY(g){g=String(g||'').trim();if(!/^[A-R]{2}\d{2}([A-X]{2})?/i.test(g))return null;g=g.toUpperCase();let lo=(g.charCodeAt(0)-65)*20-180+(+g[2])*2,la=(g.charCodeAt(1)-65)*10-90+(+g[3]);
  if(g.length>=6&&/[A-X]{2}/.test(g.slice(4,6))){lo+=(g.charCodeAt(4)-65)/12+1/24;la+=(g.charCodeAt(5)-65)/24+1/48}else{lo+=1;la+=.5}return[la,lo]}
-function loadLoc(){if(!LOC)LOC=fetch('locations-ky.json').then(r=>r.json()).then(j=>{const m={};(j.rows||j).forEach(r=>{if(r[0]!=='POTA')m[String(r[1]).toUpperCase()]=[+r[3],+r[4],r[2]]});return m}).catch(()=>({}));return LOC}
+function loadLoc(){if(!LOC)LOC=((window.KPC&&KPC.dataUrl)?KPC.dataUrl('locations-ky.json'):fetch('locations-ky.json')).then(r=>r.json()).then(j=>{const m={};(j.rows||j).forEach(r=>{if(r[0]!=='POTA')m[String(r[1]).toUpperCase()]=[+r[3],+r[4],r[2]]});return m}).catch(()=>({}));return LOC}
 const allUS=()=>{const b=$('lv-c-all');return b&&b.getAttribute('aria-pressed')==='true'};
 
 /* ---------- SOTA / WWFF on the air ---------- */

@@ -259,7 +259,7 @@
      the GIS MAP buttons use them the same way. A layer that does not answer is skipped. */
   let SGIS = null;
   let SPORT = {};
-  const stGis = async st => { if (!SGIS) { const j = await B.jget('data/state-gis.json?v=' + Math.floor(Date.now() / 864e5)).catch(() => null); SGIS = j && j.states || {}; SPORT = j && j.portals || {}; } return (SGIS[st] || []); };
+  const stGis = async st => { if (!SGIS) { const j = await B.dget('data/state-gis.json?v=' + Math.floor(Date.now() / 864e5)).catch(() => null); SGIS = j && j.states || {}; SPORT = j && j.portals || {}; } return (SGIS[st] || []); };
   const stPortals = st => (SPORT[st] || []).map(x => [x[0].toUpperCase() + ' ↗', x[1]]);
   async function stLive(st, ws) {
     const Ls = (await stGis(st)).filter(L => !L.water && !L.fmt); if (!Ls.length) return [];   /* Oct 25: lake-surface layers are not land; a layer's own filter (where) is kept */

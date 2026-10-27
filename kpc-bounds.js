@@ -10,6 +10,11 @@
   const OVER = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter'];
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   async function jget(u, opt, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000); try { const r = await fetch(u, Object.assign({ signal: c.signal }, opt || {})); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
+  /* Storage plan Step B (Oct 27): the answer-key / outline folders below live on KentuckyPortableClub/KPC-Data now.
+     dfetch/dget try that address first and fall back to this site's own copy, same as window.KPC.dataUrl (used
+     directly where we only need the Response; dget adds jget's abort-timeout + JSON parsing on top of it). */
+  function dfetch(u, opt) { return (window.KPC && KPC.dataUrl) ? KPC.dataUrl(u, opt) : fetch(u, opt); }
+  async function dget(u, opt, ms) { const c = new AbortController(), t = setTimeout(() => c.abort(), ms || 25000); try { const r = await dfetch(u, Object.assign({ signal: c.signal }, opt || {})); if (!r.ok) throw new Error('HTTP ' + r.status); return await r.json(); } finally { clearTimeout(t); } }
 
   /* ---------- geometry ---------- */
   function ringsOf(g) { if (!g) return []; if (g.type === 'Polygon') return [g.coordinates]; if (g.type === 'MultiPolygon') return g.coordinates; return []; }
@@ -149,7 +154,7 @@
   const keyCache = {};
   /* Oct 18: state agency layers the bot found at run time (data/us-key/layers.json = {prefix: [query url, name field, label]}) */
   let LAYP = null;
-  const layers = () => LAYP || (LAYP = fetch('data/us-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+  const layers = () => LAYP || (LAYP = dfetch('data/us-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}))
     .then(L => { Object.entries(L || {}).forEach(([k, v]) => { if (!XMAP[k] && Array.isArray(v) && v[0]) XMAP[k] = v; }); return XMAP; }));
   /* Oct 23 (Brandon: 'add a note to the card that the park is retired until the monthly update'): parks POTA took off
      its list, written every night by the pin bots (data/retired-refs.json). retired(ref) -> {n, d, src} or null */
@@ -166,7 +171,7 @@
     await layers();
     let hit = null, known = false, site = null, note = '';
     for (const st of states || []) {
-      if (!(st in keyCache)) keyCache[st] = fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+      if (!(st in keyCache)) keyCache[st] = dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
       const k = await keyCache[st]; const p = k && k.parks && k.parks[ref];
       if (p) { known = true; if (p.note) note = p.note; if (p.m && p.m.length) { hit = hit || { n: p.n, m: [] }; hit.m.push(...p.m); hit.far = hit.far || p.far; if (p.read && (!hit.read || p.read < hit.read)) hit.read = p.read; } if (p.a && p.a.length) site = p.a; }
     }
@@ -207,7 +212,7 @@
   /* Oct 18 (Brandon: review the US data… tappable land): what official land is at a spot, and which POTA parks the answer key joined to it */
   const revCache = {};
   async function keyRev(st) {
-    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || fetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null))
+    if (!(st in revCache)) revCache[st] = (keyCache[st] = keyCache[st] || dfetch('data/us-key/US-' + st + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null))
       .then(k => { const m = {}; Object.entries((k && k.parks) || {}).forEach(([ref, p]) => (p.m || []).forEach(x => (m[String(x[0])] = m[String(x[0])] || []).push({ ref, n: p.n }))); return m; });
     return revCache[st];
   }
@@ -286,10 +291,10 @@
      Info Finder and the Kit') says which official areas the checking bot joined, and they are fetched by id */
   const caCache = {}; let CAREF = null, CALAY = null;
   async function caKey(ref) {
-    CAREF = CAREF || fetch('data/ca-key/refs.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
-    CALAY = CALAY || fetch('data/ca-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    CAREF = CAREF || dfetch('data/ca-key/refs.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
+    CALAY = CALAY || dfetch('data/ca-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({}));
     const pv = (await CAREF)[ref]; if (!pv) return null;
-    if (!(pv in caCache)) caCache[pv] = fetch('data/ca-key/CA-' + pv + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (!(pv in caCache)) caCache[pv] = dfetch('data/ca-key/CA-' + pv + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
     const k = await caCache[pv], p = k && k.parks && k.parks[ref]; if (!p) return null;
     const m = p.m || []; if (!m.length) return { state: 'none', site: p.a || null };
     const L = await CALAY, by = {};
@@ -308,7 +313,7 @@
   }
   async function canada(ref) {
     if (!/^CA-\d/.test(ref || '')) return [];
-    const j = await jget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null);
+    const j = await dget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null);
     if (!j) { let k = null; try { k = await caKey(ref); } catch (e) {} return k && k.state === 'ok' ? k.fs : []; }
     const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
     return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently'; } return f; });
@@ -317,10 +322,10 @@
      official areas the checking bot joined (by name, or by the pin when names are written differently). The outline comes
      straight from that agency's map by id. A join made on the pin alone is labelled approximate. */
   const wkCache = {}; let WLAY = null;
-  const wlayers = () => WLAY || (WLAY = fetch('data/world-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({})));
+  const wlayers = () => WLAY || (WLAY = dfetch('data/world-key/layers.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : {}).catch(() => ({})));
   async function worldKey(ref) {
     const cc = String(ref || '').split('-')[0]; if (!/^[A-Z]{2}$/.test(cc) || cc === 'US' || cc === 'CA') return null;
-    if (!(cc in wkCache)) wkCache[cc] = fetch('data/world-key/' + cc + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
+    if (!(cc in wkCache)) wkCache[cc] = dfetch('data/world-key/' + cc + '.json?v=' + new Date().toISOString().slice(0, 10)).then(r => r.ok ? r.json() : null).catch(() => null);
     const k = await wkCache[cc], p = k && k.parks && k.parks[ref]; if (!p) return null;
     const m = p.m || []; if (!m.length) return { state: 'none' };
     const L = await wlayers(), by = {};
@@ -330,7 +335,7 @@
     /* Oct 22: an outline from a map a web page cannot ask by id (IGN, BfN, NatureScot, Wales, BAFU, Japan A10) is saved
        by the world bot in data/world-bounds/CC/<n>.json, 100 parks to a file */
     if (!fs.length) {
-      const num = parseInt(String(ref).split('-')[1], 10), sh = await jget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => null), b = sh && sh[ref];
+      const num = parseInt(String(ref).split('-')[1], 10), sh = await dget('data/world-bounds/' + cc + '/' + Math.floor(num / 100) + '.json', null, 20000).catch(() => null), b = sh && sh[ref];
       if (b && b.r && b.r.length) fs.push({ type: 'Feature', properties: {}, geometry: { type: 'MultiPolygon', coordinates: b.r.map(r => [r]) }, _src: b.s + ' (saved by KPC)' });
     }
     if (!fs.length) return { state: 'error' };
@@ -364,7 +369,7 @@
     K.add(Math.floor(la) + '_' + Math.floor(lo)); return [...K];
   }
   async function tileRows(dir, la, lo, kmR) {
-    const rows = await Promise.all(tilesAround(la, lo, kmR).map(k => { const u = dir + k + '.json'; return tileCache[u] || (tileCache[u] = fetch(u).then(r => r.ok ? r.json() : []).catch(() => [])); }));
+    const rows = await Promise.all(tilesAround(la, lo, kmR).map(k => { const u = dir + k + '.json'; return tileCache[u] || (tileCache[u] = dfetch(u).then(r => r.ok ? r.json() : []).catch(() => [])); }));
     return rows.flat();
   }
   async function wwffNear(la, lo, kmR) { return (await tileRows('data/wwff/t/', la, lo, kmR)).map(r => ({ ref: r[0], name: r[1], la: r[2], lo: r[3], d: km(la, lo, r[2], r[3]) })).filter(x => x.d <= kmR).sort((a, b) => a.d - b.d); }
@@ -381,7 +386,7 @@
     let m = q.match(/^([A-Z0-9]{1,4}\/[A-Z0-9]{2})-(\d{1,3})$/);
     if (m) { const ref = m[1] + '-' + m[2].padStart(3, '0'); const [a, r] = ref.split('/'); const s = await jget(`https://api2.sota.org.uk/api/summits/${encodeURIComponent(a)}/${encodeURIComponent(r)}`); if (!s || !s.summitCode) return null; return { prog: 'SOTA', ref: s.summitCode, name: s.name, la: +s.latitude, lo: +s.longitude, ft: s.altFt, mAlt: s.altM, pts: s.points, type: (s.altFt ? s.altFt.toLocaleString() + ' ft · ' : '') + (s.points != null ? s.points + ' points' : ''), where: s.associationName + (s.regionName ? ' · ' + s.regionName : ''), us: /^USA/.test(s.associationName || '') }; }
     m = q.match(/^([A-Z0-9]{1,4})-(\d{1,5})$/); if (!m) return null;
-    if (/FF$/.test(m[1])) { const ref = m[1] + '-' + m[2].padStart(4, '0'); const rows = await jget('data/wwff/' + m[1] + '.json').catch(() => []); const x = rows.find(r => r[0] === ref); if (!x) return null; return { prog: 'WWFF', ref, name: x[1], la: x[2], lo: x[3], web: /^https?:/.test(x[4]) ? x[4] : '', type: 'WWFF reference', where: [...new Set([x[6], x[5]].filter(Boolean))].join(', '), st: String(x[5] || '').replace(/^K-/, ''), us: m[1] === 'KFF' }; }
+    if (/FF$/.test(m[1])) { const ref = m[1] + '-' + m[2].padStart(4, '0'); const rows = await dget('data/wwff/' + m[1] + '.json').catch(() => []); const x = rows.find(r => r[0] === ref); if (!x) return null; return { prog: 'WWFF', ref, name: x[1], la: x[2], lo: x[3], web: /^https?:/.test(x[4]) ? x[4] : '', type: 'WWFF reference', where: [...new Set([x[6], x[5]].filter(Boolean))].join(', '), st: String(x[5] || '').replace(/^K-/, ''), us: m[1] === 'KFF' }; }
     const ref = m[1] + '-' + m[2].padStart(4, '0'); const p = await jget('https://api.pota.app/park/' + encodeURIComponent(ref)); if (!p || !p.reference) return null;
     return { prog: 'POTA', ref, name: p.name + (p.parktypeDesc && !new RegExp(p.parktypeDesc, 'i').test(p.name) ? ' ' + p.parktypeDesc : ''), short: p.name, la: +p.latitude, lo: +p.longitude, web: p.website || '', type: p.parktypeDesc, where: p.locationName || p.locationDesc, st: String(p.locationDesc || '').split(',')[0].replace(/^US-/, ''), us: /^US-/.test(p.locationDesc || ''), ky: /^US-KY/.test(p.locationDesc || '') };
   }
@@ -422,5 +427,5 @@
   const WHICH = `<details class="kb-which"><summary>WHICH FILE DO I NEED? (TAP HERE)</summary><ul><li><b>iPhone or iPad:</b> tap <b>KML</b>, then pick <b>Google Earth</b> (free app) or <b>Save to Files</b>. Gaia GPS, onX and CalTopo open it too (in the app: Import).</li><li><b>Android phone:</b> tap <b>KML</b> and pick <b>Google Earth</b>, or save it and import it in Gaia GPS, onX or Google My Maps.</li><li><b>Garmin or other handheld GPS:</b> use <b>GPX</b>. Copy it into the GPS's <b>GPX</b> folder from a computer (or Garmin BaseCamp / Explore).</li><li><b>Computer:</b> <b>KML</b> opens in Google Earth, or at <b>mymaps.google.com</b> → Create a new map → Import.</li><li><b>Not sure?</b> Pick <b>KML</b>.</li></ul></details>`;
   const OSM_NOTE = 'OpenStreetMap is a free map drawn by volunteers. Its park outlines are often close, but they can be off, out of date, or missing land, and they are not official. POTA goes by the park’s official boundary, so check the park’s own map or signs, and when in doubt, set up well inside.';
 
-  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
+  window.KPCB = { landInfo, landAt, kindOf, sameKind, tilesUsed: () => Object.keys(tileCache), wwffNear, sotaNear, elevation, lookup, esc, jget, dget, ringsOf, linesOf, inside, edge, bbox, km, dir, dist, norm, sameName, KY, inKY, ky, kyRefs, kyFor, kyData: () => kyData, ACCESS, padusArea, padusByName, usKey, usOutline, usLandAt, retired, retiredHtml, euro, canada, caKey, worldKey, worldByName, inEurope, potaNear, refsFor, osmAt, saveGeo, WHICH, OSM_NOTE };
 })();

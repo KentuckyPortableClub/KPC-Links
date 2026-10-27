@@ -63,7 +63,7 @@ function rank(stats,parks){
  return{parks:all.length,qsos:top((a,b)=>a.q-b.q||a.a-b.a||num(a.c)-num(b.c)),acts:top((a,b)=>a.a-b.a||a.q-b.q||num(a.c)-num(b.c))}}
 
 async function jget(u,ms){const c=new AbortController(),t=setTimeout(()=>c.abort(),ms||15000);
- try{const r=await fetch(u,{signal:c.signal,cache:'no-cache'});if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
+ try{const f=(/^data\/parkinfo\//.test(u)&&window.KPC&&KPC.dataUrl)?KPC.dataUrl(u,{signal:c.signal,cache:'no-cache'}):fetch(u,{signal:c.signal,cache:'no-cache'});const r=await f;if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(t)}}
 
 
 /* Oct 24 (Brandon: 'top 25 only does ky....can it expand'): a WHERE picker. Kentucky keeps the weekly list (and the PDF);

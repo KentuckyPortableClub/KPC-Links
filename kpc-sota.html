@@ -162,7 +162,7 @@ function remind(){const el=$('sotaOld');if(!el)return;let x=null;try{x=JSON.pars
    opens a search for the county's own property map. */
 let LAND={},LANDA='';
 const LANDT={P:['🟢','PUBLIC LAND','#1d5a3a'],R:['🟠','PUBLIC, RESTRICTED ACCESS','#b8742c'],U:['🟡','PUBLIC LAND, ACCESS NOT KNOWN','#9a7a1a'],X:['🔴','CLOSED TO THE PUBLIC','#a32d2d'],E:['⚪','PRIVATE (CONSERVATION EASEMENT)','#68635a'],N:['⚪','NOT ON THE PUBLIC-LANDS MAP: LIKELY PRIVATE','#68635a']};
-async function landLoad(){if(LANDA===AS)return;LANDA=AS;LAND={};try{const r=await fetch('data/sota-land/'+encodeURIComponent(AS)+'.json');if(r.ok)LAND=(await r.json()).s||{}}catch(e){}$('landW').hidden=!Object.keys(LAND).length}
+async function landLoad(){if(LANDA===AS)return;LANDA=AS;LAND={};try{const r=await KPC.dataUrl('data/sota-land/'+encodeURIComponent(AS)+'.json');if(r.ok)LAND=(await r.json()).s||{}}catch(e){}$('landW').hidden=!Object.keys(LAND).length}
 const landTag=(c,big)=>{const x=LAND[c];if(!x)return'';const t=LANDT[x[0]]||LANDT.N;return`<span style="display:inline-block;margin-top:3px;font-size:${big?12:11}px;font-weight:800;letter-spacing:.4px;color:${t[2]}">${t[0]} ${t[1]}${x[1]&&x[0]!=='N'&&x[0]!=='E'?' · '+esc(x[1]):''}</span>`};
 const ownLink=s=>{const x=LAND[s.c];return x&&x[0]!=='P'?`<br><a href="#" data-own="${s.la},${s.lo}" style="font-weight:700">Who owns this land? (the county office, free) ↗</a><br><small>The county PVA / assessor will tell you the owner at no charge; skip websites that ask you to pay.</small>`:''};
 /* Oct 24 (Brandon: the Google search led to sites that charge for owner info): Kentucky = the state's official PVA
@@ -181,7 +181,7 @@ document.addEventListener('click',async e=>{const a=e.target.closest('[data-own]
 function merged(){const m=MAN[MODE]||{},out=Object.assign({},FD);Object.keys(m).forEach(r=>{if(!out[r])out[r]={q:1,first:m[r],last:m[r],man:1}});return out}
 function ringIn(x,y,r){let ins=false;for(let i=0,j=r.length-1;i<r.length;j=i++){const[xi,yi]=r[i],[xj,yj]=r[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi+1e-15)+xi)ins=!ins}return ins}
 function stateOf(lo,la){for(const b of BORD)if(b.p.some(pl=>ringIn(lo,la,pl[0])))return b.n;return''}
-async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
+async function loadAll(){if(ALL)return ALL;const[L,B]=await Promise.all([KPC.dataUrl('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[])]);BORD=B;
  const by={};L.forEach(r=>{if(r[0]!=='SOTA')return;const a=r[1].split('/')[0];(by[a]=by[a]||[]).push({c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5],m:+r[6]||0,p:pts(r[7]),rg:r[1].split('/')[1].split('-')[0]})});
  const lab={};Object.entries(by).forEach(([a,l])=>{const cnt={};const step=Math.max(1,Math.floor(l.length/60));for(let i=0;i<l.length;i+=step){const s=BORD.length?stateOf(l[i].lo,l[i].la):'';if(s)cnt[s]=(cnt[s]||0)+1}
   const tot=Object.values(cnt).reduce((x,y)=>x+y,0);lab[a]=Object.entries(cnt).sort((x,y)=>y[1]-x[1]).filter(e=>e[1]>=tot*0.12).map(e=>e[0]).slice(0,4).join(' / ')});

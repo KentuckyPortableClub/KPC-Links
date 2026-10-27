@@ -10,6 +10,9 @@ window.kpcPlaceLabels=window.kpcPlaceLabels||function(z){var o={maxZoom:19};if(z
    browsers, 9 elsewhere, per Google's docs) and an optional road line from the public OSRM demo server. */
 (function(){
 const $=id=>document.getElementById(id),esc=KPC.esc;
+/* Storage plan Step B (Oct 27): the folders/files below now live on KentuckyPortableClub/KPC-Data; dfetch
+   tries that address first and falls back to this site's own copy, same as window.KPC.dataUrl. */
+const dfetch=(u,o)=>(window.KPC&&KPC.dataUrl)?KPC.dataUrl(u,o):fetch(u,o);
 const COL={POTA:'#1d5a3a',SOTA:'#8a4b14',WWFF:'#2b6cb0',PIN:'#b5452b'};
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let BIG=store.get('kpcUsBig',false),ALL=[],BYREF={},BORD=[],map=null,dots=null,ctrMk=null,ring=null,bound=null,boundRef='',road=null,center=null,radius=25,progs=store.get('kpcUsProgs',['POTA','SOTA','WWFF']);
@@ -27,7 +30,7 @@ const vis=()=>KM&&KM.filtering()?NEAR.filter(s=>KM.show(s.c)):NEAR;
 const kmBadge=s=>KM&&s.p!=='PIN'?KM.badge(s.c):'';
 
 /* ---------- data ---------- */
-async function loadAll(){const NO={rows:[]},J=u=>fetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([fetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json'),J('data/northam.json')]);BORD=B;
+async function loadAll(){const NO={rows:[]},J=u=>dfetch(u).then(r=>r.ok?r.json():NO).catch(()=>NO);const[L,B,CA,NA]=await Promise.all([dfetch('locations.json').then(r=>r.json()),fetch('kpc-us-states.json').then(r=>r.json()).catch(()=>[]),J('data/canada.json'),J('data/northam.json')]);BORD=B;
  /* Canada (Brandon Oct 16: pins now, boundaries later): CA- POTA parks, VEFF WWFF, VE/VA/VY/VO SOTA from data/canada.json */
  /* + the rest of North America (Brandon Oct 17: Mexico, Central America, Caribbean, Greenland) from data/northam.json */
  const nL=L.length;L.concat((CA&&CA.rows)||[],(NA&&NA.rows)||[]).forEach((r,i)=>{if(!['POTA','SOTA','WWFF'].includes(r[0]))return;if(r[0]==='POTA'&&i<nL&&!/^(US|CA)-/.test(r[1]))return;if(BYREF[String(r[1]).toUpperCase()])return;const s={p:r[0],c:r[1],n:r[2],la:r[3],lo:r[4],url:r[5]||'',m:r[0]==='SOTA'?+r[6]||0:0,pts:r[0]==='SOTA'?+(String(r[7]||'').match(/\d+/)||[0])[0]:0};ALL.push(s);BYREF[s.c.toUpperCase()]=s})}
@@ -45,7 +48,7 @@ async function addTiles(s0,w0,n0,e0,la,lo,cap){let keys=[];
  const P={POTA:['data/pota/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://pota.app/#/park/'+r[0]})],WWFF:['data/wwff/t/',r=>({c:r[0],n:r[1],la:r[2],lo:r[3],url:'https://wwff.co/directory/?showRef='+r[0]})],
   SOTA:['data/sota/t/',r=>({c:r[0],n:r[1]&&r[1]!==r[0]?r[1]:`Unnamed summit, ${(+r[3]||0).toLocaleString()} m`,la:r[4],lo:r[5],url:'https://sotl.as/summits/'+r[0],m:+r[3]||0,pts:+r[6]||0})]};
  await Promise.all(Object.keys(P).filter(p=>progs.includes(p)).flatMap(p=>keys.map(async([y,x])=>{const u=P[p][0]+y+'_'+x+'.json';
-  const L=await(WTILE[u]||(WTILE[u]=fetch(u).then(r=>r.ok?r.json():[]).catch(()=>[])));
+  const L=await(WTILE[u]||(WTILE[u]=dfetch(u).then(r=>r.ok?r.json():[]).catch(()=>[])));
   (L||[]).forEach(r=>{const o=P[p][1](r),k=String(o.c).toUpperCase();if(BYREF[k]||!isFinite(o.la)||!isFinite(o.lo))return;const s=Object.assign({p,m:0,pts:0,world:1},o);ALL.push(s);BYREF[k]=s;added++})})));
  return added}
 async function addLive(la,lo,mi){if(!progs.includes('POTA'))return 0;let added=0;
@@ -145,7 +148,7 @@ async function retNote(s,el){if(s.p!=='POTA'||!window.KPCB||!KPCB.retired)return
 const NBK={};
 async function noBound(s,el){if(s.p!=='POTA'||!/^US-/.test(s.c)||(window.KPCB&&KPCB.inKY&&KPCB.inKY(s.la,s.lo)))return;
  const sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let known=false,has=false,site=null;
- for(const st of sts){if(!(st in NBK))NBK[st]=fetch('data/us-key/US-'+st+'.json?v='+new Date().toISOString().slice(0,10)).then(r=>r.ok?r.json():null).catch(()=>null);
+ for(const st of sts){if(!(st in NBK))NBK[st]=dfetch('data/us-key/US-'+st+'.json?v='+new Date().toISOString().slice(0,10)).then(r=>r.ok?r.json():null).catch(()=>null);
   const k=await NBK[st],p=k&&k.parks&&k.parks[s.c];if(p){known=true;if(p.m&&p.m.length)has=true;if(p.a&&p.a.length)site=p.a}}
  if(!known||has||el.querySelector('.nob'))return;
  const d=document.createElement('div');d.className='nob';d.style.cssText='margin:8px 0 4px;padding:7px 9px;border:2px solid #b5452b;border-radius:8px;background:#fff4f0;color:#8a2b17;font-size:13px;line-height:1.35';
@@ -187,7 +190,7 @@ async function sotaFacts(s){const [a,r]=s.c.split('/');if(!(s.c in SOTAI))SOTAI[
  h+=`<div class="acts"><a href="kpc-in-park.html?ref=${encodeURIComponent(s.c)}">AM I IN THE ZONE?</a><a href="https://sotl.as/summits/${encodeURIComponent(s.c)}" target="_blank" rel="noopener">SOTLAS (ROUTES, PHOTOS) ↗</a></div>`;
  return h}
 /* WWFF (KFF) facts from our weekly copy of the WWFF directory (data/wwff/KFF.json) */
-async function wwffFacts(s){const pf=String(s.c).split('-')[0];if(!(pf in WWROWS))WWROWS[pf]=fetch('data/wwff/'+pf+'.json').then(r=>r.ok?r.json():[]).catch(()=>[]);
+async function wwffFacts(s){const pf=String(s.c).split('-')[0];if(!(pf in WWROWS))WWROWS[pf]=dfetch('data/wwff/'+pf+'.json').then(r=>r.ok?r.json():[]).catch(()=>[]);
  const x=(await WWROWS[pf]).find(r=>r[0]===s.c);let h='';const kff=pf==='KFF';
  if(x&&x[5]){const a=String(x[5]).replace(/^[A-Z0-9]{1,3}-/,''),c=String(x[6]||'').replace(/^[A-Z0-9]{1,3}-/,'');h+=ln(`WWFF (${esc(pf)}) reference · ${esc(PROV[a]||a)}${c&&c!==a?' · '+esc(c):''}`)}
  else h+=ln(`WWFF (${esc(pf)}) reference`);
@@ -198,25 +201,25 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
  const P=s.p,sts=[...new Set([stateAt(s.la,s.lo),...statesNear(s.la,s.lo,3)])].filter(Boolean);let h='';
  const pre=String(s.c).split('-')[0];
  /* Canada + the rest of North America (Brandon Oct 17): data/parkinfo/<PREFIX>.json, same fields + the province / area */
- if(P==='POTA'&&pre!=='US'){if(!(pre in PINFO))PINFO[pre]=fetch('data/parkinfo/'+pre+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ if(P==='POTA'&&pre!=='US'){if(!(pre in PINFO))PINFO[pre]=dfetch('data/parkinfo/'+pre+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[pre],p=d&&d.parks&&d.parks[s.c];
   if(p){const [,web,typ,act]=p,sub=p[10]||'',how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean),site=(d.sites||{})[sub],nm=(pre==='CA'?PROV:{})[sub]||sub;
    h=`<div class="meta" style="margin:6px 0 2px">${[typ&&esc(typ),nm&&esc(nm),how.length&&'activate by '+esc(how.join(', '))].filter(Boolean).join(' · ')}</div>`+
     (p[7]!=null?ln(p[7]?`Activated <b>${p[7].toLocaleString()}</b> time${p[7]===1?'':'s'}${p[7]<=5?' · <b style="color:#b45309">RARE</b>':''}`:'<b style="color:#c2410c">Never activated: an ATNO!</b>'):'')+
     `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${site&&/Provincial|State Park|National Park/i.test(typ)?`<a href="${esc(site)}" target="_blank" rel="noopener">${esc(nm.toUpperCase())} PARKS SITE ↗</a>`:''}</div>`}}
- if(P==='POTA'&&pre==='US')for(const st of sts){if(!(st in PINFO))PINFO[st]=fetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ if(P==='POTA'&&pre==='US')for(const st of sts){if(!(st in PINFO))PINFO[st]=dfetch('data/parkinfo/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[st];const p=d&&d.parks&&d.parks[s.c];if(!p)continue;
   const [,web,typ,act]=p,how=(act||'').split(',').map(x=>ACT[x.trim()]||x.trim().toLowerCase()).filter(Boolean);
   h=`<div class="meta" style="margin:6px 0 2px">${typ?esc(typ):''}${how.length?(typ?' · ':'')+'activate by '+esc(how.join(', ')):''}</div>`+
    `<div class="acts">${web?`<a href="${esc(web)}" target="_blank" rel="noopener">OFFICIAL WEBSITE ↗</a>`:''}${d.stateSite&&/State Park|State Forest|State Recreation/i.test(typ)?`<a href="${esc(d.stateSite)}" target="_blank" rel="noopener">${esc(st)} STATE PARKS SITE (CAMPING, MAPS) ↗</a>`:''}</div>`;break}
  /* Oct 25 (Brandon: 'parking / entrance layer is weak'): the state agencies' own parking, entrance, gate and ramp points (data/access, kpc_us_access.py) */
- if(P==='POTA'&&pre==='US')for(const st of sts){const k='acc'+st;if(!(k in PINFO))PINFO[k]=fetch('data/access/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ if(P==='POTA'&&pre==='US')for(const st of sts){const k='acc'+st;if(!(k in PINFO))PINFO[k]=dfetch('data/access/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[k],a=d&&d.parks&&d.parks[s.c];if(!a||!a.length)continue;
   const ios=/iPhone|iPad|iPod/.test(navigator.userAgent),dir=q=>ios?`https://maps.apple.com/?daddr=${q[0]},${q[1]}`:`https://www.google.com/maps/dir/?api=1&destination=${q[0]},${q[1]}`;
   h+=`<div class="meta" style="margin-top:8px"><b>&#127359; PARKING &amp; ACCESS (THE AGENCY'S OWN MAP)</b></div>`+a.slice(0,6).map(q=>`<div class="meta">&bull; ${esc(q[2])} &middot; <a href="${dir(q)}" target="_blank" rel="noopener">DIRECTIONS ↗</a></div>`).join('')+
    (a.length>6?`<div class="meta">+${a.length-6} more points on file.</div>`:'')+`<div class="meta" style="opacity:.8">Gates and seasons change: check the agency's map before you go.</div>`;break}
  /* Oct 26: Canada (data/access/CA-XX.json, same bot): the province comes from data/parkinfo/CA.json */
- if(P==='POTA'&&pre==='CA'){const d0=await PINFO.CA,pp=d0&&d0.parks&&d0.parks[s.c],sub=pp&&pp[10];if(sub){const k='accCA'+sub;if(!(k in PINFO))PINFO[k]=fetch('data/access/CA-'+sub+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ if(P==='POTA'&&pre==='CA'){const d0=await PINFO.CA,pp=d0&&d0.parks&&d0.parks[s.c],sub=pp&&pp[10];if(sub){const k='accCA'+sub;if(!(k in PINFO))PINFO[k]=dfetch('data/access/CA-'+sub+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await PINFO[k],a=d&&d.parks&&d.parks[s.c];if(a&&a.length){const ios=/iPhone|iPad|iPod/.test(navigator.userAgent),dir=q=>ios?`https://maps.apple.com/?daddr=${q[0]},${q[1]}`:`https://www.google.com/maps/dir/?api=1&destination=${q[0]},${q[1]}`;
   h+=`<div class="meta" style="margin-top:8px"><b>&#127359; PARKING &amp; ACCESS (THE AGENCY'S OWN MAP)</b></div>`+a.slice(0,6).map(q=>`<div class="meta">&bull; ${esc(q[2])} &middot; <a href="${dir(q)}" target="_blank" rel="noopener">DIRECTIONS ↗</a></div>`).join('')+(a.length>6?`<div class="meta">+${a.length-6} more points on file.</div>`:'')+`<div class="meta" style="opacity:.8">Gates and seasons change: check the agency's map before you go.</div>`}}}
  /* Oct 25: the state agencies' current closures and notices (uc- entries in kpc-conditions.json, kpc_us_closures.py) */
@@ -231,7 +234,7 @@ async function parkInfo(s,el){if(!el||el.dataset.done)return;el.dataset.done=1;
   const ky=nk||(!nu&&stateAt(s.la,s.lo)==='KY'),n=nk+nu,href=ky?'kpc-park-notes.html#'+encodeURIComponent(s.c):'kpc-park-notes-us.html?ref='+encodeURIComponent(s.c)+'#find';
   h+=`<div class="meta" style="margin:8px 0 2px;font-weight:800"><a href="${href}">📝 ${n?'PARK NOTES: '+n+' TIP'+(n===1?'':'S'):'PARK NOTES: BE THE FIRST TO ADD A TIP'} ›</a></div>`}
  /* federal campgrounds + picnic shelters within 10 miles (Recreation.gov, data/campfed/US-XX.json, weekly by kpc-fed-camps.yml) */
- const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=fetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
+ const near=[];for(const st of [...new Set([...sts,...statesNear(s.la,s.lo,10)])]){if(!(st in CFED))CFED[st]=dfetch('data/campfed/US-'+st+'.json').then(r=>r.ok?r.json():null).catch(()=>null);
   const d=await CFED[st];((d&&d.camps)||[]).forEach(c=>{const mi=KPC.miles(s.la,s.lo,c[2],c[3]);if(mi<=10&&!near.some(x=>x.c[0]===c[0]))near.push({c,mi})})}
  near.sort((a,b)=>a.mi-b.mi);
  const row=({c,mi})=>ln(`<a href="${esc(c[6])}" target="_blank" rel="noopener">${esc(c[1])} ↗</a> · ${mi<.3?'right there':mi.toFixed(1)+' mi'}${c[4]?' · '+esc(AGN[c[4]]||c[4]):''}${c[5]?' · can reserve':' · first come'}`);

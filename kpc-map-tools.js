@@ -37,7 +37,7 @@ html.kmap-lock,html.kmap-lock body{overflow:hidden!important}
     let out = null;
     try {
       if (/\//.test(r)) { const [a, b] = r.split('/'); const j = await fetch('https://api2.sota.org.uk/api/summits/' + encodeURIComponent(a) + '/' + encodeURIComponent(b)).then(x => x.ok ? x.json() : null); if (j && j.name) out = [r, j.name, 'SOTA']; }
-      else if (/FF-/.test(r)) { const rows = await fetch('data/wwff/' + r.split('-')[0] + '.json').then(x => x.ok ? x.json() : []); const x = rows.find(y => y[0] === r); if (x) out = [r, x[1], 'WWFF' + (x[5] ? ' · ' + x[5] : '')]; }
+      else if (/FF-/.test(r)) { const rows = await ((window.KPC && KPC.dataUrl) ? KPC.dataUrl('data/wwff/' + r.split('-')[0] + '.json') : fetch('data/wwff/' + r.split('-')[0] + '.json')).then(x => x.ok ? x.json() : []); const x = rows.find(y => y[0] === r); if (x) out = [r, x[1], 'WWFF' + (x[5] ? ' · ' + x[5] : '')]; }
       else { const j = await fetch('https://api.pota.app/park/' + encodeURIComponent(r)).then(x => x.ok ? x.json() : null); if (j && j.name) out = [r, j.name + (j.parktypeDesc && !new RegExp(j.parktypeDesc, 'i').test(j.name) ? ' ' + j.parktypeDesc : ''), 'POTA' + (j.locationDesc ? ' · ' + String(j.locationDesc).replace(/^US-/, '').split(',')[0] : '')]; }
     } catch (e) {}
     return (nameCache[r] = out);

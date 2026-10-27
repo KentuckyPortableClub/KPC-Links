@@ -106,7 +106,7 @@
    county + state from the FCC census-area lookup (geo.fcc.gov, same as the app and the logger); Canada: province + region;
    elsewhere: country + grid (OpenStreetMap). Nearest parks from the all-states lists (data/parkinfo). */
 const $=id=>document.getElementById(id);let D,map,layer,US=null,PI={};
-const jget=(u,ms=12000)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);return fetch(u,{signal:c.signal}).then(r=>{clearTimeout(t);if(!r.ok)throw r.status;return r.json()})};
+const jget=(u,ms=12000)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);const f=(/^data\/parkinfo\//.test(u)&&window.KPC&&KPC.dataUrl)?KPC.dataUrl(u,{signal:c.signal}):fetch(u,{signal:c.signal});return f.then(r=>{clearTimeout(t);if(!r.ok)throw r.status;return r.json()})};
 const usRows=()=>US||(US=jget('data/parkinfo/index.json',30000).then(j=>j.rows.map(r=>({c:r[0],n:r[1],st:r[2],la:r[3],lo:r[4]}))).catch(()=>[]));
 const piFile=cc=>PI[cc]||(PI[cc]=jget(`data/parkinfo/${cc}.json`,30000).then(j=>Object.entries(j.parks).filter(([,v])=>v[5]!=null&&v[6]!=null).map(([c,v])=>({c,n:v[0],la:v[5],lo:v[6],st:v[10]||''}))).catch(()=>[]));
 (async()=>{D=await KPC.data();$('dl').innerHTML=[...D.parks.map(p=>`<option value="${p.c}">${KPC.esc(p.n)}</option>`),...D.summits.map(s=>`<option value="${s.c}">${KPC.esc(s.n)}</option>`),...D.towns.map(t=>`<option value="${t.n}">`)].join('');

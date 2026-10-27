@@ -27,7 +27,7 @@
   async function nameOf(r) {
     const hit = N.find(t => t.ref === r && t.name); if (hit) return [hit.name, hit.st];
     try {
-      if (prog(r) === 'WWFF') { const rows = await fetch('data/wwff/' + r.split('-')[0] + '.json').then(x => x.ok ? x.json() : []); const x = rows.find(y => y[0] === r); if (x) return [x[1], String(x[5] || '').replace(/^K-/, '')]; }
+      if (prog(r) === 'WWFF') { const rows = await ((window.KPC && KPC.dataUrl) ? KPC.dataUrl('data/wwff/' + r.split('-')[0] + '.json') : fetch('data/wwff/' + r.split('-')[0] + '.json')).then(x => x.ok ? x.json() : []); const x = rows.find(y => y[0] === r); if (x) return [x[1], String(x[5] || '').replace(/^K-/, '')]; }
       else if (prog(r) === 'SOTA') { const [a, b] = r.split('/'); const j = await fetch('https://api2.sota.org.uk/api/summits/' + encodeURIComponent(a) + '/' + encodeURIComponent(b)).then(x => x.ok ? x.json() : null); if (j && j.name) return [j.name, '']; }
       else { const j = await fetch('https://api.pota.app/park/' + encodeURIComponent(r)).then(x => x.ok ? x.json() : null); if (j && j.name) return [j.name, String(j.locationDesc || '').replace(/^US-/, '').split(',')[0]]; }
     } catch (e) {}

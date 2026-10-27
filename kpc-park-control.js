@@ -110,7 +110,8 @@
     const geo = gg => { if (!gg) return; if (gg.type === 'LineString') add(gg.coordinates); else if (gg.type === 'MultiLineString') gg.coordinates.forEach(add); else if (gg.type === 'GeometryCollection') gg.geometries.forEach(geo); };
     (g.type === 'FeatureCollection' ? g.features : [g]).forEach(f => geo(f.geometry || f)); return out; }
   function trails() {
-    return trP || (trP = Promise.all([fetch('ky-trail-parks.json').then(r => r.json()).catch(() => ({}))].concat(TR.map(t => fetch(t.f).then(r => r.json()).catch(() => null)))).then(([tp, ...G]) => {
+    const tf = u => (/^data\/trails\//.test(u) && window.KPC && KPC.dataUrl) ? KPC.dataUrl(u) : fetch(u);
+    return trP || (trP = Promise.all([tf('ky-trail-parks.json').then(r => r.json()).catch(() => ({}))].concat(TR.map(t => tf(t.f).then(r => r.json()).catch(() => null)))).then(([tp, ...G]) => {
       Object.values(tp || {}).forEach(v => { if (v && v.ref) TP[v.ref] = v; });
       G.forEach((g, i) => { const t = TR[i]; if (!g) return; const ls = kyLines(g); if (!ls.length) return; const x = byRef(t.ref), nm = (x ? x.n : t.ref) + (t.lab ? ' · ' + t.lab : '');
         const lay = L.layerGroup([L.polyline(ls, { color: '#111', weight: 7, opacity: .55, interactive: false }), L.polyline(ls, { color: t.col, weight: 4, opacity: .95, dashArray: t.dash || null, bubblingMouseEvents: false })]);
