@@ -79,6 +79,13 @@ def label_agency(rid):
     return ('STATE', 'STAT') if lab else ('', '')
 
 
+def same_src(x, r):
+    """Oct 27 (boundary review contradiction D): PAD-US's copy of a state's own layer is the SAME source handed to USGS, not a
+    second witness: full marks only when PAD-US's record is another agency's."""
+    la_, _ = label_agency(x[0]); m = str(r.get('Mang_Name') or '').upper(); t = str(r.get('Mang_Type') or '').upper()
+    return bool((la_ == 'STATE' and (t in ('STAT', 'SDNR', 'SPR', 'SFW', 'SLB') or m.startswith('S'))) or (la_ and la_ == m))
+
+
 def pad_index():
     """PAD-US records from the saved copies: by id, and by name core for the second-witness look-up."""
     by_id, by_name = {}, {}
@@ -145,11 +152,11 @@ def main():
                     for r in by_name.get(core(x[1]), []):
                         if not near(la, lo, r.get('_bb'), .3): continue
                         a = r.get('GIS_Acres') or 0
-                        agree = max(agree, 2 if our and a and .5 <= a / our <= 2 else 1)
+                        agree = max(agree, (1 if same_src(x, r) else 2) if our and a and .5 <= a / our <= 2 else 1)
                 if pads: agree = max(agree, 1)           # a PAD-US piece joined as well
             elif len(pads) > 1 and len({core(r.get('Unit_Nm')) for r in pads}) == 1:
                 agree = 1                                 # two PAD-US records (fee + designation) of the same place
-            if pads and strs: agree = max(agree, 2)
+            if pads and strs: agree = max(agree, 1 if all(same_src(x, r) for x in strs for r in pads) else 2)
             why.append(f'second map {agree}/2' + ('' if have_pad else ' (no saved PAD-US copy in this run)'))
             far = p.get('far')
             pin = 0 if far in ('well outside', 'no shape to check against') else 1 if far == 'edge' else 2
