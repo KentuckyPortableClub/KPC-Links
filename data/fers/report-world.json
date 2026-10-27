@@ -19,7 +19,7 @@
   "with official lines": 0
  },
  "pass2": {
-  "agree with the pass before": 114,
+  "agree with the pass before": 100414,
   "cell_m": 10.0,
   "date": "2026-10-26",
   "left out": {
@@ -28,16 +28,53 @@
    "no pin": 0,
    "pin well outside": 927
   },
-  "new here only (not counted)": 3735,
+  "new here only (not counted)": 7372,
   "official parks": 38822,
-  "pairs tested": 608,
+  "pairs tested": 33114,
   "parks whose outline could not be read": 0,
-  "parks with a saved copy only (no fresh download possible)": 372,
+  "parks with a saved copy only (no fresh download possible)": 16811,
   "pass": 2,
   "problems": [
    "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/Natura2000Sites/MapServer/2/query: not read (HTTP Error 502: Bad Gateway)",
-   "ProtectedSites/Natura2000Sites/MapServer/2/query: not read (HTTP Error 502: Bad Gateway)"
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)",
+   "ProtectedSites/CDDA_Dyna_WM/MapServer/4/query: not read (HTTP Error 502: Bad Gateway)"
   ],
   "with official lines": 0
  },
@@ -108,7 +145,7 @@
    "lines": 0,
    "n-fers": 21,
    "pass1": 176,
-   "pass2": 0,
+   "pass2": 172,
    "spots": 176
   },
   "W-AU": {
@@ -117,7 +154,7 @@
    "lines": 0,
    "n-fers": 329,
    "pass1": 2746,
-   "pass2": 0,
+   "pass2": 759,
    "spots": 2746
   },
   "W-BE": {
@@ -126,7 +163,7 @@
    "lines": 0,
    "n-fers": 5,
    "pass1": 23,
-   "pass2": 0,
+   "pass2": 22,
    "spots": 23
   },
   "W-CH": {
@@ -135,7 +172,7 @@
    "lines": 0,
    "n-fers": 13,
    "pass1": 163,
-   "pass2": 0,
+   "pass2": 153,
    "spots": 163
   },
   "W-CZ": {
@@ -144,7 +181,7 @@
    "lines": 0,
    "n-fers": 64,
    "pass1": 230,
-   "pass2": 0,
+   "pass2": 191,
    "spots": 230
   },
   "W-DE": {
@@ -153,7 +190,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 29,
-   "pass2": 0,
+   "pass2": 28,
    "spots": 29
   },
   "W-DK": {
@@ -162,7 +199,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 17,
-   "pass2": 0,
+   "pass2": 17,
    "spots": 17
   },
   "W-EE": {
@@ -171,7 +208,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 7,
-   "pass2": 0,
+   "pass2": 7,
    "spots": 7
   },
   "W-ES": {
@@ -180,7 +217,7 @@
    "lines": 0,
    "n-fers": 1555,
    "pass1": 4896,
-   "pass2": 0,
+   "pass2": 4646,
    "spots": 4896
   },
   "W-FI": {
@@ -189,7 +226,7 @@
    "lines": 0,
    "n-fers": 8,
    "pass1": 891,
-   "pass2": 0,
+   "pass2": 877,
    "spots": 891
   },
   "W-FR": {
@@ -198,7 +235,7 @@
    "lines": 0,
    "n-fers": 44268,
    "pass1": 85132,
-   "pass2": 0,
+   "pass2": 81429,
    "spots": 85132
   },
   "W-GB": {
@@ -207,7 +244,7 @@
    "lines": 0,
    "n-fers": 256,
    "pass1": 1710,
-   "pass2": 0,
+   "pass2": 1484,
    "spots": 1710
   },
   "W-HR": {
@@ -216,7 +253,7 @@
    "lines": 0,
    "n-fers": 46,
    "pass1": 482,
-   "pass2": 0,
+   "pass2": 464,
    "spots": 482
   },
   "W-HU": {
@@ -225,7 +262,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 8,
-   "pass2": 0,
+   "pass2": 6,
    "spots": 8
   },
   "W-IE": {
@@ -234,7 +271,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 13,
-   "pass2": 0,
+   "pass2": 13,
    "spots": 13
   },
   "W-IT": {
@@ -243,7 +280,7 @@
    "lines": 0,
    "n-fers": 57,
    "pass1": 707,
-   "pass2": 0,
+   "pass2": 666,
    "spots": 707
   },
   "W-LT": {
@@ -252,7 +289,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
-   "pass2": 0,
+   "pass2": 2,
    "spots": 2
   },
   "W-LU": {
@@ -261,7 +298,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 5,
-   "pass2": 0,
+   "pass2": 5,
    "spots": 5
   },
   "W-NL": {
@@ -270,7 +307,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 21,
-   "pass2": 0,
+   "pass2": 21,
    "spots": 21
   },
   "W-NO": {
@@ -279,7 +316,7 @@
    "lines": 0,
    "n-fers": 3,
    "pass1": 194,
-   "pass2": 0,
+   "pass2": 188,
    "spots": 194
   },
   "W-PL": {
@@ -288,7 +325,7 @@
    "lines": 0,
    "n-fers": 2587,
    "pass1": 7904,
-   "pass2": 0,
+   "pass2": 7750,
    "spots": 7904
   },
   "W-PT": {
@@ -297,7 +334,7 @@
    "lines": 0,
    "n-fers": 23,
    "pass1": 166,
-   "pass2": 0,
+   "pass2": 163,
    "spots": 166
   },
   "W-RO": {
@@ -306,7 +343,7 @@
    "lines": 0,
    "n-fers": 16,
    "pass1": 211,
-   "pass2": 0,
+   "pass2": 206,
    "spots": 211
   },
   "W-SE": {
@@ -315,7 +352,7 @@
    "lines": 0,
    "n-fers": 139,
    "pass1": 1072,
-   "pass2": 0,
+   "pass2": 1043,
    "spots": 1072
   },
   "W-SI": {
@@ -324,7 +361,7 @@
    "lines": 0,
    "n-fers": 17,
    "pass1": 101,
-   "pass2": 0,
+   "pass2": 100,
    "spots": 101
   },
   "W-SK": {
@@ -333,7 +370,7 @@
    "lines": 0,
    "n-fers": 0,
    "pass1": 2,
-   "pass2": 0,
+   "pass2": 2,
    "spots": 2
   }
  }
