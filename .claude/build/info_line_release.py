@@ -28,6 +28,8 @@ PAGES = [
     'kpc-new-to-pota.html', 'kpc-new-to-wwff.html', 'kpc-new-to-sota.html', 'kpc-spots.html', 'kpc-pota-room.html', 'kpc-wwff-room.html', 'kpc-sota-room.html',
     # members' maps
     'kpc-multi-park-spots.html', 'kpc-club.html',
+    # Brandon/chat 8 Oct 26: Find It lists park tools, so it carries the line too
+    'find.html',
 ]
 BOX = ('<aside class="kpc-disclaim kpc-info" role="note" style="max-width:1160px;margin:18px auto;padding:0 16px;box-sizing:border-box">'
        '<div style="background:#fff8e6;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:8px;padding:12px 16px;'
