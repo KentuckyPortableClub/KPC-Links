@@ -60,3 +60,16 @@ Sources: https://eec.ky.gov/Nature-Preserves/Locations/Pages/Carter-Caves.aspx; 
 
 ## RULED (Brandon via HQ, Oct 27 8:10 AM, see mapping.md / website.md 'FINAL (HQ Oct 27 8:10 AM)')
 KR-1 yes (one row, up to 3 pins). KR-2 Carter Caves: listed with NO special 2-fer note; the PARK CARD carries 'Caves closed to visitors October to May; trails above ground open all year' (this replaces my rule-10 season note in section 1). KR-3 drop. KR-4 ownership test counts; 'owner not published' in the members' how-we-checked line. Grey 4 (same land, two park numbers) is shown openly, labelled 'Same land, two park numbers', with the short notice (Fort Donelson/Heiman, Jefferson NF WMA/GW&J NF no longer hidden). Grey 6 (Trail of Tears + Lewis & Clark) listed as possible, 'both trail lines are approximate'. Chat 2 fixes: fresh pass, Sheltowee one row, Fort Donelson link to NPS, trail-line source and date, owner inside the WMA only. NEXT: re-check after chat 2's fresh pass.
+
+## FINAL LOOK (chat 8, Oct 27 ~2 PM, after chat 2's green run 40525983791) — data/fers/US-KY.json
+Checked from the file only (I cannot see the maps). Result: **OK to stop the Kentucky rounds**, with 5 small notes for chat 2.
+- Counts match chat 2's note: 31 candidate, 20 "saved outline only", 4 very tight, 6 not sure ("two owners"). All 51 candidate/saved rows passed all 3 passes. Every ruling drop is applied (Big South Fork, Cumberland Falls, W.H. Martin, Burchell-Beech, Cumberlands WMA, side-by-side).
+- Wild rivers (park 10138 x Daniel Boone) and the two name fixes: now rows in the list, read live 2026-10-27. Sheltowee and Pine Mountain merged: one row per pair.
+- Notes for chat 2 (none block anything):
+  1. **Wild river 10138 x Daniel Boone has 6 separate rows** (1.9 to 43 acres). Same pair, same river: show as ONE row with up to 3 pins (like KR-1), or Brandon will see six cards for one thing.
+  2. **Two "same land, two park numbers" rows** (US-0703+US-3790, US-10139+US-4526) have no ownership line, no map date, no access pin. Fine for the label, but add "checked" date + both map links so the card matches the rest.
+  3. **Water check timed out 4 times**: any candidate near a river (the trail rows, 10102/10112) is not decided on water-only. Rerun just those four before the list is shown.
+  4. **20 rows still "saved outline only"** (Pine Mountain 10102/10112, Red River Gorge area 10104/10106, 10111, 10103, 10107, 1276, 0050, 1252). Allowed (Kentucky file copy), but members' line must say "saved outline, not read live today".
+  5. **Triple + its pairs** (10104+3801+4484 and its two pair rows, same for 10106+10121+4484): fine under rule 11 only if the card shows them as ONE patch; otherwise 3 cards for one spot.
+- Tight rows look right: "very tight" = 40–42 m wide (under 50 yd), "small overlap" tier = 54–80 m. 10158+10171 (1.2 acres, 40 m) correctly sits in very tight.
+- Not checked: the ownership of the 6 "not sure" rows (kept out, as ruled) and any polygon on the ground.
