@@ -14,9 +14,10 @@
     'contact.html', 'contact-card.html', 'kpc-privacy.html', 'kentucky-parks.html', 'kpc-park-control.html', 'kpc-guide-pota.html',
     'kpc-guide-wwff.html', 'kpc-guide-sota.html', 'kpc-park-notes.html', 'kpc-park-notes-us.html', 'kpc-campgrounds.html',
     'kpc-community.html', 'kpc-spots.html', '404.html', 'kpc-planner-us.html', 'kpc-hunters.html', 'kpc-hunters-need.html',
-    'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-beta-cat.html'];   /* beta test room: its own password (kpc-vip.js data-lock="room") */
-  var SWAP = { 'parks.html': 'kentucky-parks.html', 'finder.html': 'kpc-park-control.html', 'kpc-planner.html': 'kpc-park-control.html',  'kpc-map-room.html': 'kpc-park-control.html', 'kpc-live.html': 'kpc-spots.html' };
-  var LABEL = { 'kpc-map-room.html': 'Kentucky Park Control', 'kpc-planner.html': 'Kentucky Park Control' }; /* menu wording for guests when the target is swapped */
+    'kpc-beta-room.html', 'kpc-beta-need.html', 'kpc-beta-cat.html',
+    /* release Oct 29 2026 (Plan A) */ 'kpc-activators-lounge.html', 'kpc-about-info.html', 'find.html', 'kpc-rare.html', 'kpc-guide-top25.html', 'kpc-tracker.html', 'kpc-sota.html', 'kpc-sota-az.html', 'kpc-park-info.html', 'kpc-in-park.html', 'kpc-kit.html', 'kpc-park-sheet.html', 'kpc-access-finder.html', 'kpc-weather.html', 'kpc-space-weather.html', 'kpc-band-plan.html', 'kpc-rules-you-should-know.html', 'kpc-new-to-pota.html', 'kpc-new-to-wwff.html', 'kpc-new-to-sota.html', 'kpc-pota-room.html', 'kpc-wwff-room.html', 'kpc-sota-room.html', 'finder.html', 'kpc-planner.html', 'kpc-lookup.html', 'kpc-checker.html', 'parks.html', 'kpc-activations.html', 'kpc-live.html', 'kpc-map-room.html'];   /* beta test room: its own password (kpc-vip.js data-lock="room") */
+  var SWAP = { };
+  var LABEL = { }; /* menu wording for guests when the target is swapped */
   var de = document.documentElement, page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   if (!/\.html?$/.test(page)) page = 'index.html';
   var ok = false; try { ok = localStorage.getItem(KEY) === MH; } catch (e) {}
