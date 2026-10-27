@@ -10,7 +10,8 @@
   'use strict';
   if (window.KPCClos) return;
   const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const j = u => fetch(u, { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null);
+  // Step B6 (Oct 27): data/alerts lives in KPC-Data now; KPC.dataUrl tries it first, then this site's copy
+  const j = u => ((/^data\/alerts\//.test(u) && window.KPC && typeof KPC.dataUrl === 'function') ? KPC.dataUrl(u, { cache: 'no-cache' }) : fetch(u, { cache: 'no-cache' })).then(r => r.ok ? r.json() : null).catch(() => null);
   let C = null, S = null;
   const cond = () => C || (C = j('kpc-conditions.json'));
   const srcs = () => S || (S = j('data/alerts/us-parks.json'));

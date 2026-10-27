@@ -25,11 +25,16 @@ KEEP_DAYS = 90
 BASE = os.environ.get('OBS_BASE') or 'HEAD'      # Oct 27 (storage Stage 2): the KPC-Links commit to compare with (the daily watch: ~25 h ago)
 DATA_DIR = os.environ.get('OBS_DATA_DIR') or ''   # the KPC-Data clone: the hidden files (2-fers, leads) are compared with ITS last save
 DATA_PATHS = ('data/fers/', 'data/outline-leads/', 'data/access-leads/')
+# Oct 27 (Step B6, HQ 6:13 PM): files whose bots now live in KPC-Data: read NOW from the KPC-Data clone and compared with its
+# commit from OBS_DATA_BASE (the daily watch: ~25 h ago; else its HEAD)
+MOVED = ('data/alerts/', 'data/leaders/')
+DATA_BASE = os.environ.get('OBS_DATA_BASE') or 'HEAD'
 
 
 def head(path):
     try:
-        cmd = ['git', '-C', DATA_DIR, 'show', f'HEAD:{path}'] if DATA_DIR and path.startswith(DATA_PATHS) else ['git', 'show', f'{BASE}:{path}']
+        cmd = (['git', '-C', DATA_DIR, 'show', f'HEAD:{path}'] if DATA_DIR and path.startswith(DATA_PATHS) else
+               ['git', '-C', DATA_DIR, 'show', f'{DATA_BASE}:{path}'] if DATA_DIR and path.startswith(MOVED) else ['git', 'show', f'{BASE}:{path}'])
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
         if r.returncode != 0 and DATA_DIR and path.startswith(DATA_PATHS):   # a big file is kept gzipped in KPC-Data
             import gzip as _gz
@@ -40,6 +45,7 @@ def head(path):
 
 
 def now(path):
+    if DATA_DIR and path.startswith(MOVED): path = os.path.join(DATA_DIR, path)
     try: return json.load(open(path))
     except Exception: return None  # noqa: BLE001
 
