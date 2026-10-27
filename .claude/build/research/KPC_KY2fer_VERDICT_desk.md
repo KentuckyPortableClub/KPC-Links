@@ -32,6 +32,10 @@ Rulings: (1) Daniel Boone = Forest Service-OWNED land only (Basic Ownership laye
 5. **Pine Mountain** has no official line.
 6. **The 40 matched pairs and 56 bot candidates outside Daniel Boone** were not opened pair by pair (section 7).
 
+## 0b. Checked against the whole-world rules (mapping.md "2-FER RULES FOR THE WHOLE WORLD", Oct 27 4:32 AM)
+All verdicts above fit rules 1, 3, 4, 5 and 7: the 7 Forest Service WMAs are "agency-land + layering" (KEEP), the side-by-side state/NPS/private pairs are "touching" (DROP), NOT SURE stays out and is never a "no".
+**One tension for HQ to settle:** rule 1(a) lists **wild river corridors** as "whole-line" parks (count everywhere inside the line), but rule 5 and the earlier ruling test **rivers** by 100 ft of the river edge. Kentucky's wild rivers are both: a river and a ~1,000-acre corridor polygon (`ky-wild-rivers.geojson`). POTA item 5 applies to a river "designated by itself (not as parts of a land park having a defined boundary)", and these have a defined corridor. Two readings: (A) river park, 100-ft test (the ruling at 4:30 AM); (B) whole-line park, any public spot inside the corridor counts (rule 1a). They give different answers for Red River x Daniel Boone and the other wild river x forest pairs. Until HQ says A or B, every wild river pair stays NOT SURE. Rule 2 also applies: the polygons are tagged ACCESS "Restricted".
+
 ## 1. The four WMAs (HQ question c)
 | WMA | Verdict | Why (official source) | Strength |
 |---|---|---|---|
