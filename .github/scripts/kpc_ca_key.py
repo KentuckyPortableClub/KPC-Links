@@ -368,6 +368,29 @@ if recs is None:
     if old is not None and len(recs) < .97 * len(old):   # only when the read came back SHORT (Québec fails most runs)
         notice('Canada key', f'a map did not answer ({len(recs)} areas read, {len(old)} saved), so the saved copy was used (nothing dropped)'); recs = old
     elif CMODE in ('use', 'refresh'): csave(recs)
+# Oct 26 (gap hunt, HQ): POTA's 'New Brunswick #24 Wildlife Management Area' parks are New Brunswick's numbered WILDLIFE
+# MANAGEMENT ZONES (OpenData/WMZ, one number field, 27 zones). A probe found 23 of the 25 pins inside the zone of their own
+# number. No zone carries a name, so each gets the POTA-style name from its number and joins by name like any other area.
+# Topped up into a saved copy that does not have them yet.
+NBWMZ = 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData/WMZ/MapServer/0'
+if CMODE != 'only' and not any(str(r.get('oid', '')).startswith('NB WMZ:') for r in recs):
+    try:
+        j = get(f'{NBWMZ}/query', {'where': '1=1', 'outFields': 'OBJECTID_1,WMZ', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DETAIL,
+                                   'geometryPrecision': 3, 'f': 'json'})
+        _z = 0
+        for f in j.get('features') or []:
+            a = f.get('attributes') or {}; g = f.get('geometry') or {}
+            if a.get('WMZ') is None: continue
+            nm = f"New Brunswick #{int(a['WMZ'])} Wildlife Management Area"
+            recs.append({'oid': f"NB WMZ:{a.get('OBJECTID_1')}", 'n': nm, 'nf': '', 'ty': 'Wildlife Management Zone (New Brunswick)', 'ow': 'Government of New Brunswick',
+                         'mg': 'New Brunswick Department of Natural Resources and Energy Development', 'ha': 0, '_g': g, '_bb': bbox(g), 'src': 'NB WMZ', '_k': {'wma'}})
+            _z += 1
+        notice('Canada NB zones', f'{_z} New Brunswick wildlife management zones added')
+        if _z and CMODE in ('use', 'refresh'): csave(recs)
+        try:
+            _L = json.load(open(OUT / 'layers.json')); _L['NB WMZ'] = [NBWMZ]; save_json(OUT / 'layers.json', _L, indent=1)
+        except Exception as ex: notice('Canada key layers', ex)  # noqa: BLE001
+    except Exception as ex: notice('Canada NB zones', f'not read: {ex}')  # noqa: BLE001
 PRIV = re.compile(r'private|privately|stewardship|ncc \d|nature conservancy', re.I)
 
 
