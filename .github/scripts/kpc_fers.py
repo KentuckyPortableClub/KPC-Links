@@ -236,6 +236,50 @@ def trail_lines():
     return out
 
 
+# Oct 27 (chat 8's KPC_TrailLines_desk.md + HQ): two official lines read LIVE from the agencies, replacing the saved copies.
+# Pine Mountain State Scenic Trail = Kentucky's trails service layer 1 'Pine Mountain Trail (Open)' (the open 44 miles, Breaks to
+# US 119; pairs on the planned stretch stay NOT SURE); Sheltowee Trace = the Forest Service's own trail line (TRAIL_NAME Sheltowee
+# Trace), used only where the forest's districts say 'centerline data available'.
+LIVE_LINES = {
+    'US-10102': ('https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Recreational_Trails_WGS84WM/MapServer/1/query', '1=1',
+                 "Kentucky State Parks / KY Division of Geographic Information: Ky_Recreational_Trails layer 1 'Pine Mountain Trail (Open)' (open section only, Breaks to US 119)"),
+    'US-11181': ('https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer/0/query', "UPPER(TRAIL_NAME) LIKE '%SHELTOWEE%'",
+                 'U.S. Forest Service: EDW_TrailNFSPublishWithDataStatus_01 layer 0 (National Forest System Trails, TRAIL_NAME Sheltowee Trace)')}
+FS_STATUS = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_TrailNFSPublishWithDataStatus_01/MapServer'
+
+
+def live_lines(LN):
+    today = time.strftime('%Y-%m-%d')
+    for ref, (url, where, by) in LIVE_LINES.items():
+        try:
+            ls, off = [], 0
+            while True:
+                j = get(url, {'where': where, 'outFields': '*', 'returnGeometry': 'true', 'outSR': 4326, 'maxAllowableOffset': DET / 4, 'geometryPrecision': 6,
+                              'resultOffset': off, 'resultRecordCount': 1000, 'f': 'json'}, timeout=180)
+                fs = j.get('features') or []
+                for ft in fs:
+                    for pth in (ft.get('geometry') or {}).get('paths') or []:
+                        if len(pth) > 1: ls.append([[p[0], p[1]] for p in pth])
+                if not fs or not j.get('exceededTransferLimit'): break
+                off += len(fs)
+            if not ls: LOG.append(f'{ref} live line: nothing read, saved copy kept'); continue
+            note = ''
+            if ref == 'US-11181':   # the districts' 'centerline data available' layers
+                try:
+                    lays = [l for l in get(FS_STATUS, {'f': 'json'}).get('layers') or [] if re.search(r'centerline', l.get('name', ''), re.I)]
+                    stat = []
+                    for l in lays[:3]:
+                        r = get(f"{FS_STATUS}/{l['id']}/query", {'where': "UPPER(FORESTNAME) LIKE '%DANIEL BOONE%'", 'outFields': '*', 'returnGeometry': 'false', 'f': 'json'})
+                        for ft in r.get('features') or []:
+                            a = ft.get('attributes') or {}
+                            stat.append(' '.join(str(v) for k, v in a.items() if re.search(r'district|forest|status|avail', k, re.I) and v))
+                    note = '; '.join(sorted(set(stat)))[:300] or 'district centerline status not listed'
+                except Exception as e: note = f'district status not read ({str(e)[:40]})'  # noqa: BLE001
+            LN[ref] = {'lines': ls, 'kind': 'trail', 'by': by, 'date': f'read live {today}', 'type': 'trail', **({'districts': note} if note else {})}
+            KY_NOT_SURE.pop(ref, None)
+        except Exception as e: LOG.append(f'{ref} live line: {str(e)[:60]}')  # noqa: BLE001
+
+
 # ------------------------------------------------------------------ outlines
 def esri_rings(g):
     if not g: return []
@@ -742,6 +786,7 @@ KY_DROP = {('US-1277', 'US-4484'): 'Cumberland Falls is state land beside Forest
            ('US-3799', 'US-4484'): 'Burchell-Beech is KDFWR-owned (ruling Oct 27)',
            ('US-4484', 'US-7964'): 'W.H. Martin is state nature preserve land (ruling Oct 27)',
            ('US-12083', 'US-4484'): 'University of the Cumberlands WMA is private (ruling Oct 27)'}
+PARTIAL = {'US-10102': 'official line = the open 44 miles only (Breaks to US 119): pairs on the planned stretch stay NOT SURE'}
 KY_NOT_SURE = {'US-10102': 'Pine Mountain State Scenic Trail is a line park: no official trail line yet'}
 
 
@@ -777,11 +822,11 @@ def missing_list(PIN, parks, skip_why, G, LN, today):
     out = []
     RET = retired()
     for ref, v in PIN.items():
-        if not want(v[5]) or ref in RET or (ref in G) or (ref in LN): continue
+        if not want(v[5]) or ref in RET or (ref in G) or (ref in LN and ref not in PARTIAL): continue
         nm, la, lo = v[0], v[1], v[2]
         ins = [r for r in grid.get((int(lo // .5), int(la // .5)), []) if r != ref and boxes[r][0] <= lo <= boxes[r][2] and boxes[r][1] <= la <= boxes[r][3] and pip_groups(G[r], lo, la)]
-        if ins or ref in KY_NOT_SURE:
-            out.append({'ref': ref, 'name': nm, 'st': v[5], 'why': KY_NOT_SURE.get(ref) or skip_why.get(ref, 'no official boundary'),
+        if ins or ref in KY_NOT_SURE or ref in PARTIAL:
+            out.append({'ref': ref, 'name': nm, 'st': v[5], 'why': PARTIAL.get(ref) if ref in LN else KY_NOT_SURE.get(ref) or skip_why.get(ref, 'no official boundary'),
                         'pin inside': [[r, PIN[r][0]] for r in ins], 'note': 'Missing boundary: check the official map', 'checked': today})
     return out
 
@@ -1382,7 +1427,9 @@ def line_rows(s, LN):
     for r in s['refs']:
         if r in LN:
             nht = LN[r].get('type') in ('NHT',) or re.search(r'historic trail', str(LN[r].get('by')) + ' ' + str(s.get('names', {}).get(r, '')), re.I)
-            src[r] = {'line': f"data/trails/{r}.json", 'by': LN[r].get('by') or 'official layer (trails bot)', 'date': LDATE.get(f'data/trails/{r}.json') or 'not recorded',
+            live = str(LN[r].get('date', '')).startswith('read live')
+            src[r] = {'line': 'live agency layer' if live else f"data/trails/{r}.json", 'by': LN[r].get('by') or 'official layer (trails bot)',
+                      'date': LN[r].get('date') or LDATE.get(f'data/trails/{r}.json') or 'not recorded', **({'districts': LN[r]['districts']} if LN[r].get('districts') else {}),
                       **({'note': 'approximate line (national historic trail, about 1:100,000)'} if nht else {})}
     s['line_source'] = src
     if len(src) > 1 and all('note' in v for v in src.values()): s['note'] = 'both trail lines are approximate'
@@ -1443,6 +1490,7 @@ def main():
     RET = retired()   # rule 13: retired POTA numbers drop out
     parks = {r: p for r, p in parks.items() if r not in RET}
     LN = {r: v for r, v in trail_lines().items() if r not in RET}
+    if REGION in ('ky', 'na'): live_lines(LN)
     owners(parks); ca_owners(parks)
     for ref in LN:
         # Oct 27: a trail that CROSSES Kentucky counts in the Kentucky run even when POTA files it under another state
@@ -1538,7 +1586,7 @@ def main():
                       'shape': [[round(q[0], 6), round(q[1], 6)] for q in ring[::max(1, len(ring) // 80)]],
                       'passes': [1, 1, 1], 'status': 'candidate', 'label': 'Same land, two park numbers', 'found': today,   # ruling Oct 27 8:10 AM: shown, labelled plainly
                       'note': f"both park numbers are joined to the same official outline ({x['name']}); POTA lists them separately: check POTA's current list",
-                      'maps': [[r, PIN[r][3]] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
+                      'maps': [[r, map_link(r, PIN)] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
                 by.setdefault('US-KY', []).append(sp)
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):

@@ -12,7 +12,7 @@ on:
         description: 'Map finder: pages to read this run (default 600)'
         default: '600'
       only:
-        description: 'all, or linkcheck (only check that the map links load)'
+        description: 'all, linkcheck (only check that the map links load), or agency (only the state agencies park pages for official maps)'
         default: 'all'
 permissions:
   contents: write
@@ -33,6 +33,7 @@ jobs:
           NPS_API_KEY: ${{ secrets.NPS_API_KEY }}
           RIDB_API_KEY: ${{ secrets.RIDB_API_KEY }}
           MINUTES: '150'
+          ONLY: ${{ inputs.only }}
         run: python3 .github/scripts/kpc_link_harvest.py || true
       - name: Save
         if: always()
@@ -46,7 +47,7 @@ jobs:
           for i in 1 2 3 4; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i * 8)); done
           true
   maps:
-    if: ${{ inputs.only != 'linkcheck' }}
+    if: ${{ inputs.only != 'linkcheck' && inputs.only != 'agency' }}
     runs-on: ubuntu-latest
     timeout-minutes: 170
     steps:
