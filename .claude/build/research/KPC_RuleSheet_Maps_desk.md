@@ -43,3 +43,6 @@ B-G1 (outer line only a faint dashed label, shaded owned land is the park); B-G2
 Whether the Forest Service Basic Ownership layer includes road parcels (I could not query it); the actual share of Daniel Boone owned land that is roads or inholdings; the half/double thresholds against real changes.
 
 Sources: the sheet in `.claude/notes/mapping.md`; https://data.fs.usda.gov/geodata/edw/edw_resources/meta/BdyOwn_LSRS_BasicOwnership.xml; https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_ProclaimedForestBoundaries_01/MapServer; https://www.tpl.org/media-room/over-700-acres-added-daniel-boone-national-forest-ky; link domains from `kpc-ky-data.json`.
+
+## F. BRANDON'S RULING (Oct 27 6:45 AM: "Yes to all")
+Read as: every recommendation (rec) in this file is accepted, including the answers to the sheet's own grey areas and my new ones. Where a rec depends on a later step (for example the ownership step in rule 14), the rec stands as written. HQ records the final sheet; the owning chat builds nothing until HQ says so.

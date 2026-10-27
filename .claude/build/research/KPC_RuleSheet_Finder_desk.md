@@ -48,3 +48,6 @@ Good sheet: it never says "confirmed", has a "could not load" rule, and keeps NO
 The page code (not built); how `maps` links look for each pair (I checked the Kentucky ones earlier in `KPC_KY2fer_Prep_desk.md`); real behaviour on a phone.
 
 Sources: the sheet in `logger-lounge-digi.md`; `data/fers/US-KY.json`; mapping.md rules 1-14; CLAUDE.md notices.
+
+## F. BRANDON'S RULING (Oct 27 6:45 AM: "Yes to all")
+Read as: every recommendation (rec) in this file is accepted, including the answers to the sheet's own grey areas and my new ones. Where a rec depends on a later step (for example the ownership step in rule 14), the rec stands as written. HQ records the final sheet; the owning chat builds nothing until HQ says so.
