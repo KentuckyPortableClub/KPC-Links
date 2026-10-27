@@ -1,0 +1,8 @@
+# GitHub Pages / Jekyll: stop publishing bot-only data folders that no page on the site fetches
+# directly. data/trails is deliberately NOT here: kpc-trails-layer.js, kpc-us-planner.js and
+# kpc-park-control.js fetch data/trails/*.json live, so excluding it would break those tools.
+exclude:
+  - data/fers
+  - data/outline-leads
+  - data/access-leads
+  - cache

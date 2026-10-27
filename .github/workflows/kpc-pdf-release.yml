@@ -1,0 +1,68 @@
+name: KPC PDF move to Releases
+# ONE-TIME move (storage plan, Stage 2): uploads the big PDFs to the 'site-pdfs' release and removes them
+# from the repo, so they stop counting against the Pages site size and stop bloating repo history. Run by
+# hand from the Actions tab. Safe to run again: it skips any file that is no longer in the repo.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-pdf-release
+  cancel-in-progress: false
+jobs:
+  move:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+      - name: Make sure the release exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view site-pdfs -R "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+          gh release create site-pdfs -R "$GITHUB_REPOSITORY" --title 'KPC PDFs & Guides' \
+            --notes 'Large PDFs for the KPC website (guides, flyers, archives). Hosted here instead of in the repo, per the storage plan. Pages link straight to these files; nothing here is meant to be browsed on the releases page.'
+      - name: Upload and remove
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          FILES=(
+            "KPC_2026_Event_Archive_Photo_Archive.pdf"
+            "KPC_Portable_Operations_Safety_Guide_PLANT_IMAGES__261005_091849.pdf"
+            "KPC_2027_Kentucky_Adventure_Guide.pdf"
+            "KPC_2027_Kentucky_Local_Guide.pdf"
+            "KPC_2027_KYPOTA_Campout_Flyer.pdf"
+            "KPC_Kentucky_POTA_Resource_Alphabetical_v2_261005_092105.pdf"
+            "KPC_Kentucky_POTA_Resource_Numerical_v2_261005_092033.pdf"
+            "KPC_Kentucky_SOTA_W4K_Resource.pdf"
+            "KPC_Kentucky_WWFF_KFF_Resource.pdf"
+            "KPC_Meet_the_Founders_Brent_Wells_Revised.pdf"
+            "KPC_Meet_the_Founders_Brandon_White_KZ4CP_Final_Readable.pdf"
+            "KPC_Kentucky_POTA_2fers_3fers_Guide.pdf"
+            "KPC_Portable_Operating_and_Camping_Checklists_PRIN_261005_091747.pdf"
+            "KPC_Kentucky_POTA_Park_Candidates.pdf"
+            "KPC_Beginners_Guide_to_Portable_Operations_261005_092000.pdf"
+            "KPC_Antenna_Efficiency_Solar_Minimum_261005_091927.pdf"
+            "KPC_Top_25_Lowest_QSO_and_Activations_October_2026_261005_084249.pdf"
+          )
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          moved=()
+          for f in "${FILES[@]}"; do
+            if [ -f "$f" ]; then
+              gh release upload site-pdfs "$f" -R "$GITHUB_REPOSITORY" --clobber
+              git rm -q -- "$f"
+              moved+=("$f")
+            fi
+          done
+          if [ ${#moved[@]} -eq 0 ]; then
+            echo "::notice title=PDF move::nothing to move (already done)"
+            exit 0
+          fi
+          git commit -q -m 'Move big PDFs to the site-pdfs release (storage plan, Stage 2)'
+          for i in 1 2 3; do
+            git pull --rebase --autostash && git push && break
+            sleep $((i * 15))
+          done
+          echo "::notice title=PDF move::moved ${#moved[@]}: ${moved[*]}"

@@ -3,7 +3,8 @@ Numerical: new page after the US-0000s page that ends with US-0538 (Reelfoot).
 Alphabetical: the page with Obion Creek / Old Fort Harrod gets Old Fort Harrod moved to a new page,
 which shows Ohio River Islands first, then Old Fort Harrod (keeps A-Z order).
 Also bumps the Find a Park counts: US-0000s 7 -> 8 (numerical), O 5 -> 6 (alphabetical).
-Usage (repo root): python3 .claude/build/add_park_card.py   (run once; it refuses if US-0608 already has a card)"""
+Usage (repo root): python3 .claude/build/add_park_card.py   (run once; it refuses if US-0608 already has a card)
+NOTE (storage plan, Oct 27): these two PDFs live on the 'site-pdfs' release now, not the repo root. Download with `gh release download site-pdfs -p '<name>.pdf'` before running this, and `gh release upload site-pdfs '<name>.pdf' --clobber` after."""
 import io, re, subprocess
 from pypdf import PdfReader, PdfWriter, Transformation
 from pypdf.generic import DecodedStreamObject, NameObject, ArrayObject, DictionaryObject, FloatObject
