@@ -222,9 +222,14 @@
     USBP = out; return out;
   }
   async function allPorts() { const a = []; if ('serial' in navigator && !useUsb()) a.push(...await navigator.serial.getPorts()); if (useUsb()) a.push(...await usbPorts()); return a; }
-  async function askPort() {
+  /* Oct 26 (Brandon: 'auto port is not working like the app did'): a web page only sees ports picked once in Chrome's box (the app sees
+     them all). So Chrome's box lists only radio-type USB chips + Bluetooth serial (a short list); askPort(true) = every port. */
+  const RADIOCHIPS = [0x10C4, 0x0403, 0x067B, 0x1A86, 0x0483, 0x2E8A, 0x2341, 0x239A, 0x1FC9, 0x04D8, 0x0C26, 0x0B28];
+  const PICKR = { filters: RADIOCHIPS.map(v => ({ usbVendorId: v })).concat([{ bluetoothServiceClassId: '00001101-0000-1000-8000-00805f9b34fb' }]), allowedBluetoothServiceClassIds: PICK.allowedBluetoothServiceClassIds };
+  async function askPort(all) {
     if (useUsb()) { const d = await navigator.usb.requestDevice({ filters: USBF }); const ps = await usbPorts(); return ps.find(p => p.dev === d) || ps[0]; }
-    return navigator.serial.requestPort(PICK);
+    if (all) return navigator.serial.requestPort(PICK);
+    try { return await navigator.serial.requestPort(PICKR); } catch (e) { if (/TypeError/.test(e && e.name)) return navigator.serial.requestPort(PICK); throw e; }
   }
   /* PORT NAMES + each port's own radio (Oct 26, Brandon: 'rename the port to match the radio if people run more then one radio').
      kpcCatPorts = {key: {name, radio, proto, baud, civ, data, model}}; key = USB maker:product:interface#n (n counts identical
@@ -286,11 +291,12 @@
       if (tried.length >= 6) break;
       if (ask && many) say('Looking for the radio: port ' + (i + 1) + ' of ' + ps.length + '…', null);
       const r = await probe(p, k, base);
-      if (r.ok) { const nm = (PK()[k] || {}).name; say('Radio connected' + (nm ? ': ' + nm : many ? ' on port ' + (i + 1) : '') + ' (' + (r.r.khz / 1000).toFixed(4) + ' MHz' + (r.r.mode ? ' ' + r.r.mode : '') + ').', true); return true; }
+      if (r.ok) { pickShow(false); const nm = (PK()[k] || {}).name; say('Radio connected' + (nm ? ': ' + nm : many ? ' on port ' + (i + 1) : '') + ' (' + (r.r.khz / 1000).toFixed(4) + ' MHz' + (r.r.mode ? ' ' + r.r.mode : '') + ').', true); return true; }
       tried.push('port ' + (i + 1) + ': ' + (r.why === 'silent' ? 'opens, but the radio does not answer there' : r.why));
       if (S.portKey && S.portKey === k) { S.portKey = ''; SV('kpcCat', S); }   // the remembered one failed: forget it
     }
-    if (ask) say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : 'radio') + ' (' + tried.join(' · ') + '). Check: MY RADIO is the right type, the radio\'s CAT RATE menu = ' + (S.baud || 38400) + ', a data cable (not charge-only), and that no other program (WSJT-X, flrig) holds the port. PICK A DIFFERENT PORT lets you choose by hand.', false);
+    pickShow(true);
+    if (ask) say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : 'radio') + ' (' + tried.join(' · ') + '). Check: MY RADIO is the right type, the radio\'s CAT RATE menu = ' + (S.baud || 38400) + ', a data cable (not charge-only), and that no other program (WSJT-X, flrig) holds the port. A web page can only try ports you have picked once: tap PICK THE RADIO\'S PORT and pick it (Yaesu: the Enhanced one).', false);
     return false;
   }
   async function disconnect(quiet) { try { if (reader) await reader.cancel(); } catch (e) {} try { if (writer) writer.releaseLock(); } catch (e) {} try { if (port) await port.close(); } catch (e) {} port = writer = reader = null; if (!quiet) say('Radio disconnected.', false); }
@@ -410,12 +416,15 @@
   /* Let go of the radio's USB port right now, so the tablet's sound reaches the radio cleanly (Android).
      Returns true when the port is free. Nothing to do on computers or with an RTS/DTR PTT line held. */
   async function letGo() { try { if (port && port._letGo) { await port._letGo(); return !port.held; } } catch (e) {} return true; }
-  async function pickNew() {
+  async function pickNew(all) {
     if (!('serial' in navigator) && !navigator.usb) return false;
-    let p; try { p = await askPort(); } catch (e) { say('No port picked.', false); return false; }
+    let p; try { p = await askPort(all); } catch (e) { say('No port picked.', false); return false; }
     await disconnect(true); const ps = await allPorts(); S.portIx = Math.max(0, ps.indexOf(p)); S.portKey = keys(ps)[S.portIx] || ''; SV('kpcCat', S);
-    try { return await openPort(p); } catch (e) { port = writer = null; say('Could not open that port: ' + (e.message || e) + '. Close other radio programs and try again.', false); return false; }
+    pickShow(false); return connect(true);   // the picked port is tried first; if it stays silent the others are tried too
   }
+  /* [data-cat-pick] buttons on a page show up when the search found nothing; a tap opens Chrome's box (a tap is needed: Chrome's rule) */
+  function pickShow(on) { document.querySelectorAll('[data-cat-pick]').forEach(b => { b.hidden = !on; }); }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-cat-pick]'); if (!b) return; e.preventDefault(); pickNew(b.dataset.catPick === 'all'); });
   async function forget(i) {
     const ps = await allPorts(), p = ps[i]; if (!p) return;
     if (p === port) await disconnect();
