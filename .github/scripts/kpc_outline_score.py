@@ -30,8 +30,19 @@ def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower().repl
 def core(x): return ' '.join(KIND.sub(' ', low(x)).split())
 
 
+def _abbr(park, outline):
+    """Ohio ODNR's short names ('CaesarCrkSP', 'WstBrnchSP' = Caesar Creek / West Branch State Park): the outline's letters,
+    kind letters dropped from the end, appear in order in the park's name and start the same way."""
+    o = re.sub(r'(sp|wa|sf|snp|dnp|sna|wma|nwr|sra|shs)$', '', re.sub(r'[^a-z]', '', low(outline)))
+    p = re.sub(r'[^a-z]', '', low(park))
+    if len(o) < 5 or not p or o[0] != p[0]: return False
+    it = iter(p)
+    return all(ch in it for ch in o)
+
+
 def name_score(park, outline):
     a, b = core(park), core(outline)
+    if a and b and a != b and not (a in b or b in a) and _abbr(park, outline): return 1
     if not a or not b: return 1 if low(park) == low(outline) else 0
     if a == b or a in b or b in a: return 2
     wa, wb = set(a.split()), set(b.split())
@@ -94,7 +105,7 @@ def near(la, lo, bb, pad):
 def main():
     by_id, by_name = pad_index()
     have_pad = bool(by_id)
-    out, states, pin_off, lowl = {}, {}, [], []
+    out, states, pin_off, lowl, weak = {}, {}, [], [], []
     for f in sorted(pathlib.Path('data/us-key').glob('US-*.json')):
         st = f.stem
         try: key = json.load(open(f))['parks']
@@ -112,7 +123,14 @@ def main():
             la, lo = (v[5], v[6]) if len(v) > 6 else (None, None)
             why = []
             ns = max(name_score(name, x[1]) for x in m)
-            why.append(f'name {ns}/2')
+            # Oct 27 (boundary review #5): a SOFT join (shared words, or 'same name, different kind + pin inside') is never full
+            # name evidence; a person's join ('reviewed') always is
+            soft = not any(str(x[3]).startswith(('name', 'reviewed')) for x in m if len(x) > 3)
+            if soft: ns = min(ns, 1)
+            why.append(f'name {ns}/2' + (' (soft join)' if soft else ''))
+            worst = min(name_score(name, x[1]) for x in m)
+            if worst == 0 and len(m) > 1 and not any(str(x[3]).startswith('reviewed') for x in m if len(x) > 3):
+                weak.append([ref, name, st, next(x[1] for x in m if name_score(name, x[1]) == 0), acts])   # one piece whose name says another place
             pads = [by_id.get(x[0]) for x in m if isinstance(x[0], int) and by_id.get(x[0])]
             fits = [agency_fits(typ, r.get('Mang_Name'), r.get('Mang_Type')) for r in pads]
             fits += [agency_fits(typ, *label_agency(x[0])) for x in m if isinstance(x[0], str)]
@@ -151,8 +169,9 @@ def main():
     save_json(pathlib.Path('data/boundary-score.json'), {
         'about': 'Second-witness confidence per joined US park (kpc_outline_score.py): name, agency, a second map, POTA pin. '
                  'HIGH >= 5, MEDIUM 3-4, LOW 0-2. POTA PIN OFF = pin outside but name + a second witness agree: the outline is kept.',
-        'totals': tot, 'states': states, 'pota_pin_off': pin_off, 'low_busiest_first': lowl[:400], 'parks': out}, indent=None)
-    print('::notice title=Second witness::' + json.dumps(tot), flush=True)
+        'totals': tot, 'states': states, 'pota_pin_off': pin_off, 'low_busiest_first': lowl[:400],
+        'weak_piece': sorted(weak, key=lambda x: -x[4])[:400], 'parks': out}, indent=None)
+    print('::notice title=Second witness::' + json.dumps(tot) + f' · {len(weak)} parks with a joined piece whose name says another place', flush=True)
     return tot
 
 

@@ -8,6 +8,7 @@ and appends what is worth a human look to data/map-observations.json:
   pin outside          a park's POTA pin is newly WELL outside its outline
   layer problem        a map that did not answer / was not found (from this run's *.log files)
   name mismatch        a new near-miss lead that shares a name word (data/outline-leads/near-miss.json)
+  far place            a park's joined land includes a same-name place far from the rest (boundary review #4)
 Each item {kind, ref, name, place, what, first, last}; an item seen again only moves 'last'; items not seen for 90 days
 drop off. 'last_run' holds this run's counts (the boundary-check issue shows them). Changes nothing else. Chat 8 reviews.
 Never fails."""
@@ -52,6 +53,8 @@ def keys(found):
                     a, b = acres(om), acres(nm)
                     if a > 0 and b > 0 and (b >= 2 * a or b <= a / 2):
                         found.append(('outline size', ref, name, place, f'{round(a):,} → {round(b):,} acres'))
+                if p.get('far_place') and p.get('far_place') != o.get('far_place'):   # boundary review #4: a same-name place far from the rest, kept joined
+                    found.append(('far place', ref, name, place, 'joined land far from the rest: ' + '; '.join(p['far_place'])[:120] + ' (same park, or another place?)'))
                 if p.get('far') == 'well outside' and o.get('far') != 'well outside' and nm:
                     found.append(('pin outside', ref, name, place, "POTA pin newly well outside its outline (POTA pin off, or a wrong join?)"))
 
