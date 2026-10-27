@@ -198,7 +198,7 @@
   /* Brandon Oct 27 4:00 PM ('one park shaded light one color and the other park another … overlap is clear … I want the overlap to really stand out … let me see some examples'):
      LOOK 1 = grey outside + gold patch (before); 2 = each park tinted its own colour, the overlap CLEAR with a bold white + black dashed border;
      3 = each park tinted, the overlap bright gold with a white glowing border; 4 = grey outside, the overlap clear with a moving gold/black border. */
-  var look = +(new URLSearchParams(location.search).get('look') || store('kpcOvLook') || 1) || 1;
+  var look = +(new URLSearchParams(location.search).get('look') || 4) || 4;   /* Brandon Oct 27 4:06 PM picked LOOK 4 ('4!'): grey outside, the overlap clear with a moving gold/black border */
   function tint(p, f, cls, act) {
     var B = window.KPCB; (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) {
       var ll = poly.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); });
