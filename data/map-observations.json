@@ -35,6 +35,26 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "US-4484 + US-7970",
+   "place": "US-KY",
+   "ref": "US-4484+US-7970",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-4484 + US-7962",
+   "place": "US-KY",
+   "ref": "US-4484+US-7962",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "North Country Trail National Scenic Trail + Lewis and Clark National Historic Trail",
    "place": "US-KY",
    "ref": "US-4239+US-4572",
@@ -50,6 +70,26 @@
    "ref": "US-4239+US-4556",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Clifty Wilderness Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-3801+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Beaver Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-3794+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -155,6 +195,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-11181+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Sheltowee Trace National Recreation Trail + Clifty Wilderness Area",
    "place": "US-KY",
    "ref": "US-11181+US-3801",
@@ -185,11 +235,91 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Zilpo Campground Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10171+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Twin Knobs Campground Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10170+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10168 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10168+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10162 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10162+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10160 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10160+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pioneer Weapons Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10158+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pioneer Weapons Wildlife Management Area + Zilpo Campground Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10158+US-10171+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Pioneer Weapons Wildlife Management Area + Zilpo Campground Wildlife Management Area",
    "place": "US-KY",
    "ref": "US-10158+US-10171",
    "run": "2-fer bot pass 3 (ky)",
    "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Mill Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10146+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -225,6 +355,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Cane Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10121+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Cane Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
    "place": "US-KY",
    "ref": "US-10121+US-11181",
@@ -240,6 +380,16 @@
    "ref": "US-10112+US-7966",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10111 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10111+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -275,11 +425,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "US-10106 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10106+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "The Rockcastle National Wild and Scenic River + Rockcastle River Wildlife Management Area",
    "place": "US-KY",
    "ref": "US-10106+US-10160",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10106 + US-10121 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10106+US-10121+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -295,11 +465,41 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "US-10104 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10104+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10104 + US-3801 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10104+US-3801+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Red River National Wild and Scenic River + Clifty Wilderness Area",
    "place": "US-KY",
    "ref": "US-10104+US-3801",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-10103 + US-4484",
+   "place": "US-KY",
+   "ref": "US-10103+US-4484",
+   "run": "2-fer bot pass 3 (ky)",
+   "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -393,9 +593,11 @@
   }
  ],
  "last_run": {
-  "counts": {},
+  "counts": {
+   "possible overlap": 109
+  },
   "date": "2026-10-27",
-  "new": 39,
-  "run": "2-fer bot pass 2 (ky)"
+  "new": 59,
+  "run": "2-fer bot pass 3 (ky)"
  }
 }
