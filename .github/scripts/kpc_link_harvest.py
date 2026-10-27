@@ -155,10 +155,90 @@ def from_ridb(P, found):
     return n
 
 
+# ---- 4. AGENCY PARK PAGES (Oct 27, chat 8's KPC_OfficialMaps_States_desk.md + HQ): a map is official because the agency's OWN
+# park page links it, wherever the file lives. Start from our parks whose official page is on the agency's site, open that page
+# (and the agency's maps sub-page), keep only map files the page links, on that agency's allow list; never a third-party copy.
+# STATE PARKS first (wildlife areas = the second pass).
+AGENCIES = [   # state, page host, maps sub-pages tried after the page, allowed file hosts, label
+    ('FL', r'floridastateparks\.org', ['park-maps', 'trail-maps', 'maps-publications'], r'floridastateparks\.org', 'Florida State Parks'),
+    ('PA', r'(^|\.)pa\.gov|dcnr\.pa\.gov', ['maps'], r'(^|\.)pa\.gov|dcnr\.pa\.gov|elibrary\.dcnr\.pa\.gov', 'Pennsylvania DCNR'),
+    ('NY', r'parks\.ny\.gov', [], r'parks\.ny\.gov', 'New York State Parks'),
+    ('NC', r'ncparks\.gov', [], r'ncparks\.gov', 'North Carolina State Parks'),
+    ('VA', r'dcr\.virginia\.gov', [], r'dcr\.virginia\.gov|dcr\.am\.virginia\.gov', 'Virginia State Parks (DCR)'),
+    ('GA', r'gastateparks\.org', [], r'gastateparks\.org|gadnrle\.org', 'Georgia State Parks'),
+    ('OH', r'ohiodnr\.gov', [], r'ohiodnr\.gov|dam\.assets\.ohio\.gov', 'Ohio DNR'),
+    ('TX', r'tpwd\.texas\.gov', ['trails-info', 'trails-map'], r'tpwd\.texas\.gov', 'Texas Parks and Wildlife'),
+    ('CA', r'parks\.ca\.gov', [], r'parks\.ca\.gov', 'California State Parks'),
+    ('MI', r'michigan\.gov', [], r'michigan\.gov|dnr\.state\.mi\.us', 'Michigan DNR')]
+THIRD = re.compile(r'supabase\.co|avenza|wikipedia|wikimedia|alltrails|tripadvisor|campendium|roadtrippers|traillink|npmaps|reserveamerica', re.I)
+MAPW = re.compile(r'\bmaps?\b|brochure|trail guide|park guide|geopdf', re.I)
+NOTMAP = re.compile(r'fishing forecast|regulation|annual report|press|news|minutes|agenda|application|form\b|permit', re.I)
+
+
+def _rank(text, url):
+    t = (text + ' ' + url).lower()
+    return (0 if re.search(r'park ?map|area map|overall map', t) else 1 if 'trail' in t else 2 if 'campground' in t else 3, 0 if url.lower().split('?')[0].endswith('.pdf') else 1)
+
+
+def page_links(url):
+    import html as H
+    req = urllib.request.Request(url, headers=dict(UA, Accept='text/html'))
+    with urllib.request.urlopen(req, timeout=40) as r:
+        if 'html' not in (r.headers.get('Content-Type') or 'html'): return []
+        body = r.read(2_000_000).decode('utf-8', 'replace'); base = r.geturl()
+    out = []
+    for m in re.finditer(r'<a\b[^>]*?href\s*=\s*["\']([^"\'#]+)["\'][^>]*>(.*?)</a>', body, re.I | re.S):
+        out.append((' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', m.group(2))).split())[:120], urllib.parse.urljoin(base, m.group(1).strip())))
+    return out
+
+
+def from_agency_pages(P, found):
+    n = read = 0
+    for st, phost, subs, fhost, label in AGENCIES:
+        refs = [(ref, v) for ref, v in P.items() if ref.startswith('US-') and v[1] and re.search(phost, urllib.parse.urlparse(v[1]).netloc, re.I)
+                and _st_of(ref) == st and re.search(r'state (park|recreation|historic|natural|beach|forest)|state park', str(v[0]) + ' ' + str(v[2]), re.I)]
+        got = 0
+        for ref, v in refs:
+            if late(): LOG.append('agency pages: stopped for time'); return n
+            page = v[1].rstrip('/')
+            cands = []
+            for u in [page] + [page + '/' + s for s in subs]:
+                try: ls = page_links(u); read += 1
+                except Exception: continue  # noqa: BLE001
+                for text, href in ls:
+                    h = urllib.parse.urlparse(href).netloc
+                    if THIRD.search(href) or not re.search(fhost, h, re.I): continue
+                    if NOTMAP.search(text + ' ' + href): continue
+                    is_file = re.search(r'\.pdf(\?|$)|getdocument|/maps/[^/]+/open|/files/', href, re.I)
+                    if is_file and MAPW.search(text + ' ' + href.rsplit('/', 1)[-1]): cands.append((text, href))
+                time.sleep(1.0)
+                if cands: break
+            if not cands: continue
+            cands.sort(key=lambda c: _rank(*c))
+            text, href = cands[0]
+            found.setdefault(ref, {}).setdefault('map', (href, f'bot: {label} park page ("{text[:50]}")')); n += 1; got += 1
+        LOG.append(f'{st} {label}: {got} park maps from {len(refs)} park pages')
+    LOG.append(f'agency pages read: {read}')
+    return n
+
+
+STOF = {}
+
+
+def _st_of(ref):
+    if not STOF:
+        for f in pathlib.Path('data/parkinfo').glob('US-*.json'):
+            for r in json.load(open(f))['parks']: STOF[r] = f.stem[3:]
+    return STOF.get(ref, '')
+
+
 def main():
     P = parks()
     found = {}
-    counts = {'layers': from_layers(P, found), 'nps': from_nps(P, found), 'ridb': from_ridb(P, found)}
+    if (os.environ.get('ONLY') or '') == 'agency':   # Oct 27: only the agency park pages (one batch run)
+        counts = {'agency pages': from_agency_pages(P, found)}
+    else:
+        counts = {'layers': from_layers(P, found), 'nps': from_nps(P, found), 'ridb': from_ridb(P, found), 'agency pages': from_agency_pages(P, found)}
     d = json.load(open(WEB)) if WEB.exists() else {'about': '', 'parks': {}}
     added = {'web': 0, 'map': 0}
     for ref, kinds in found.items():
@@ -173,7 +253,7 @@ def main():
         d['about'] += " Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed."
     save_json(WEB, d, indent=1)
     notice('Link harvester', f"found {json.dumps(counts)}; new or changed: {added['web']} pages, {added['map']} maps")
-    for l in LOG[:8]: notice('Link harvester note', l)
+    for l in LOG[:14]: notice('Link harvester note', l)
 
 
 if __name__ == '__main__':
