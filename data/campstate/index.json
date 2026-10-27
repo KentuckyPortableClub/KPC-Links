@@ -1,36 +1,6 @@
 {
  "updated": "2026-10-26",
  "states": {
-  "AK": {
-   "n": 71,
-   "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); services1.arcgis.com \u00b7 PARK_FACILITY_PT (85) (+12 more)",
-   "updated": "2026-10-26"
-  },
-  "AZ": {
-   "n": 7,
-   "source": "services6.arcgis.com \u00b7 US Army Border Camps (19); services6.arcgis.com \u00b7 CampNaco_bldgs (27); services6.arcgis.com \u00b7 CampNaco_bldgs (27) (+2 more)",
-   "updated": "2026-10-26"
-  },
-  "CA": {
-   "n": 356,
-   "source": "services.arcgis.com \u00b7 AvonPark_CampBlanding (2); gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
-   "updated": "2026-10-26"
-  },
-  "CO": {
-   "n": 23,
-   "source": "services1.arcgis.com \u00b7 ASIS_BackCamps (6); services1.arcgis.com \u00b7 ASIS_DevCamps_2018 (153); services1.arcgis.com \u00b7 campsites_Harlan (64) (+9 more)",
-   "updated": "2026-10-26"
-  },
-  "FL": {
-   "n": 153,
-   "source": "services1.arcgis.com \u00b7 Northwest_Region_Goose_Pasture_Campground_Recreation_Maintenance (1); services1.arcgis.com \u00b7 Northwest_Region_Goose_Pasture_Campground_Tracts (2); services.arcgis.com \u00b7 AvonPark_CampBlanding (2) (+1 more)",
-   "updated": "2026-10-26"
-  },
-  "HI": {
-   "n": 26,
-   "source": "services.arcgis.com \u00b7 DOFAWCampsite_UTMHARN (39); services1.arcgis.com \u00b7 ASIS_BackCamps (6); services1.arcgis.com \u00b7 ASIS_DevCamps_2018 (153) (+11 more)",
-   "updated": "2026-10-26"
-  },
   "IA": {
    "n": 94,
    "source": "programs.iowadnr.gov \u00b7 Recreation Amenities (185); programs.iowadnr.gov \u00b7 Recreation Amenities (176); programs.iowadnr.gov \u00b7 Recreation Amenities (176)",
@@ -41,134 +11,64 @@
    "source": "gisdata.in.gov \u00b7 Camping (17)",
    "updated": "2026-10-26"
   },
-  "MA": {
-   "n": 2,
-   "source": "services1.arcgis.com \u00b7 ASIS_BackCamps (6); services1.arcgis.com \u00b7 ASIS_DevCamps_2018 (153); services1.arcgis.com \u00b7 campsites_Harlan (64) (+9 more)",
-   "updated": "2026-10-26"
-  },
-  "MI": {
-   "n": 377,
-   "source": "services3.arcgis.com \u00b7 Michigan State Park Campgrounds (260); services3.arcgis.com \u00b7 Campgrounds on Michigan State Forest Land (144); services3.arcgis.com \u00b7 ParksAndTrails_Camping_Join (105)",
-   "updated": "2026-10-26"
-  },
-  "MN": {
-   "n": 53,
-   "source": "enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54) (+1 more)",
-   "updated": "2026-10-26"
-  },
-  "MT": {
-   "n": 63,
-   "source": "services3.arcgis.com \u00b7 Montana State Parks Facilities (Point Features) (390)",
-   "updated": "2026-10-26"
-  },
-  "NE": {
-   "n": 15,
-   "source": "services5.arcgis.com \u00b7 CAMS_Camping_Facility (90); services5.arcgis.com \u00b7 CAMS_Camping_Facility (2); services1.arcgis.com \u00b7 ASIS_BackCamps (6) (+11 more)",
-   "updated": "2026-10-26"
-  },
   "NH": {
    "n": 12,
    "source": "nhgeodata.unh.edu \u00b7 Recreation Inventory: Points (12)",
-   "updated": "2026-10-26"
-  },
-  "NY": {
-   "n": 185,
-   "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services.arcgis.com \u00b7 Facility (147); services1.arcgis.com \u00b7 ASIS_BackCamps (6) (+13 more)",
-   "updated": "2026-10-26"
-  },
-  "OH": {
-   "n": 62,
-   "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56); gis.ohiodnr.gov \u00b7 Lodges (9); services1.arcgis.com \u00b7 ASIS_BackCamps (6) (+11 more)",
-   "updated": "2026-10-26"
-  },
-  "OK": {
-   "n": 14,
-   "source": "services1.arcgis.com \u00b7 Camps (16)",
-   "updated": "2026-10-26"
-  },
-  "OR": {
-   "n": 790,
-   "source": "services.arcgis.com \u00b7 CottageGroveReservoir (1); services.arcgis.com \u00b7 dbo.CAMP_Public (825); services.arcgis.com \u00b7 Region_1_Urban_Camps (1934)",
-   "updated": "2026-10-26"
-  },
-  "PA": {
-   "n": 95,
-   "source": "www.gis.dcnr.pa.gov \u00b7 Campground Entrances (65); www.gis.dcnr.pa.gov \u00b7 State Parks (19); services1.arcgis.com \u00b7 ASIS_BackCamps (6) (+13 more)",
-   "updated": "2026-10-26"
-  },
-  "RI": {
-   "n": 4,
-   "source": "services1.arcgis.com \u00b7 ASIS_BackCamps (6); services1.arcgis.com \u00b7 ASIS_DevCamps_2018 (153); services1.arcgis.com \u00b7 campsites_Harlan (64) (+9 more)",
-   "updated": "2026-10-26"
-  },
-  "SD": {
-   "n": 9,
-   "source": "services1.arcgis.com \u00b7 ASIS_BackCamps (6); services1.arcgis.com \u00b7 ASIS_DevCamps_2018 (153); services1.arcgis.com \u00b7 campsites_Harlan (64) (+9 more)",
-   "updated": "2026-10-26"
-  },
-  "TN": {
-   "n": 267,
-   "source": "services5.arcgis.com \u00b7 Park Assets (214); services5.arcgis.com \u00b7 TDEC_GIS_TSP.TSP_Cabins (380); services5.arcgis.com \u00b7 TSP_Campground_Point (120) (+3 more)",
-   "updated": "2026-10-26"
-  },
-  "TX": {
-   "n": 329,
-   "source": "services1.arcgis.com \u00b7 Campground Area (439)",
-   "updated": "2026-10-26"
-  },
-  "UT": {
-   "n": 350,
-   "source": "services.arcgis.com \u00b7 Campgrounds (14); services.arcgis.com \u00b7 Campgrounds (20); services.arcgis.com \u00b7 DWR_Cabins (13) (+4 more)",
-   "updated": "2026-10-26"
-  },
-  "VA": {
-   "n": 40,
-   "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (70)",
    "updated": "2026-10-26"
   },
   "VT": {
    "n": 147,
    "source": "anrmaps.vermont.gov \u00b7 Outdoor Recreation Sites Inventory (155)",
    "updated": "2026-10-26"
-  },
-  "WA": {
-   "n": 66,
-   "source": "services5.arcgis.com \u00b7 Campsites (77)",
-   "updated": "2026-10-26"
-  },
-  "WV": {
-   "n": 60,
-   "source": "services9.arcgis.com \u00b7 Campgrounds (221)",
-   "updated": "2026-10-26"
-  },
-  "WY": {
-   "n": 90,
-   "source": "services1.arcgis.com \u00b7 Campsites_0926 (19); services1.arcgis.com \u00b7 Campgrounds_Statewide (98)",
-   "updated": "2026-10-26"
   }
  },
  "none": [
+  "AK",
   "AL",
   "AR",
+  "AZ",
+  "CA",
+  "CO",
   "CT",
   "DC",
   "DE",
+  "FL",
   "GA",
+  "HI",
   "ID",
   "IL",
   "KS",
   "LA",
+  "MA",
   "MD",
   "ME",
+  "MI",
+  "MN",
   "MO",
   "MS",
+  "MT",
   "NC",
   "ND",
+  "NE",
   "NJ",
   "NM",
   "NV",
+  "NY",
+  "OH",
+  "OK",
+  "OR",
+  "PA",
+  "RI",
   "SC",
-  "WI"
+  "SD",
+  "TN",
+  "TX",
+  "UT",
+  "VA",
+  "WA",
+  "WI",
+  "WV",
+  "WY"
  ],
  "none_why": {
   "AL": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
