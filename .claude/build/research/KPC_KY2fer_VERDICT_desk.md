@@ -38,6 +38,12 @@ Rulings: (1) Daniel Boone = Forest Service-OWNED land only (Basic Ownership laye
 All verdicts above fit rules 1, 3, 4, 5 and 7: the 7 Forest Service WMAs are "agency-land + layering" (KEEP), the side-by-side state/NPS/private pairs are "touching" (DROP), NOT SURE stays out and is never a "no".
 **Tension resolved (Brandon 4:34 AM, "wilderness rivers are not trails, it is an overlap"):** a river or trail park WITH an official corridor boundary (the 9 Kentucky Wild Rivers in `ky-wild-rivers.geojson`, US wild and scenic river corridors) is an **AREA park**: test the corridor polygon against the other park like any 2-fer (50-yard patch, public and open land). The corridors are mixed ownership and tagged "Restricted", so the spot must sit on **Forest Service-owned land** (Basic Ownership) or a **state-owned tract**. The 100-ft rule is only for parks that are **just a line** (historic/scenic trail center lines, water trails, Sheltowee Trace).
 
+## 0c. Settled by HQ (Oct 27 4:43 AM)
+- **Shoreline** = USGS NHD High Resolution (river and lake area edges), loaded by chat 2. Kentucky owns the Ohio to the north bank; the test is the OTHER park's public land within 100 ft of that edge.
+- **Sunny Brook and Hoskins:** chat 2's Basic Ownership test decides (Forest Service-owned = keep, otherwise drop). NOT SURE until then.
+- **Rules 9-13** (mapping.md): water-only overlaps get their own list ("Water only: boat or kayak"); closures, seasons and restricted access get a note and a permanent no-entry area cannot be the spot; 3-fers and up share ONE patch; a pair where a park has no official boundary goes in its own list ("Missing boundary: check the official map"); retired numbers drop out and each spot shows its last-checked and map dates.
+- **Next for the desk:** WAIT for chat 2's Kentucky rerun under the 13 rules, then open both official maps pair by pair, newly kept pairs first (the 40 matched and 56 candidates). Prep file section 4 has the links.
+
 ## 1. The four WMAs (HQ question c)
 | WMA | Verdict | Why (official source) | Strength |
 |---|---|---|---|
