@@ -1,134 +1,6 @@
 {
- "updated": "2026-10-26T11:16:45Z",
+ "updated": "2026-10-27T11:15:31Z",
  "week": [
-  {
-   "name": "QCX Challenge",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fctbo",
-   "when": "1300Z-1400Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T13:00Z",
-     "2026-10-26T14:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fu6ds",
-   "when": "1300Z-1400Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T13:00Z",
-     "2026-10-26T14:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "OK1WC Memorial (MWC)",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fwqy3",
-   "when": "1630Z-1729Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T16:30Z",
-     "2026-10-26T17:29Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "QCX Challenge",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fd11g",
-   "when": "1900Z-2000Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T19:00Z",
-     "2026-10-26T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fv18w",
-   "when": "1900Z-2000Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T19:00Z",
-     "2026-10-26T20:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "RSGB FT4 Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fe3ml",
-   "when": "2000Z-2200Z, Oct 26",
-   "segs": [
-    [
-     "2026-10-26T20:00Z",
-     "2026-10-26T22:00Z"
-    ]
-   ],
-   "modes": [
-    "DIGITAL"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Worldwide Sideband Activity Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fxlsw",
-   "when": "0100Z-0159Z, Oct 27",
-   "segs": [
-    [
-     "2026-10-27T01:00Z",
-     "2026-10-27T01:59Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "QCX Challenge",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fd8r8",
-   "when": "0300Z-0400Z, Oct 27",
-   "segs": [
-    [
-     "2026-10-27T03:00Z",
-     "2026-10-27T04:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "ICWC Medium Speed Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fvw40",
-   "when": "0300Z-0400Z, Oct 27",
-   "segs": [
-    [
-     "2026-10-27T03:00Z",
-     "2026-10-27T04:00Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "Tuesday's Telegraphy Contest",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g53yc",
@@ -480,27 +352,81 @@
    "modes": [],
    "kinds": [],
    "src": "WA7BNM"
-  }
- ],
- "month": [
+  },
   {
-   "name": "RSGB FT4 Contest",
-   "url": "https://www.rsgbcc.org",
-   "when": "",
+   "name": "K1USN Slow Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gjguh",
+   "when": "0000Z-0100Z, Nov 2",
    "segs": [
     [
-     "2026-10-26T20:00Z",
-     "2026-10-26T22:01Z"
+     "2026-11-02T00:00Z",
+     "2026-11-02T01:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003glebk",
+   "when": "1300Z-1400Z, Nov 2",
+   "segs": [
+    [
+     "2026-11-02T13:00Z",
+     "2026-11-02T14:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "OK1WC Memorial (MWC)",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003goebf",
+   "when": "1630Z-1729Z, Nov 2",
+   "segs": [
+    [
+     "2026-11-02T16:30Z",
+     "2026-11-02T17:29Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gmgwg",
+   "when": "1900Z-2000Z, Nov 2",
+   "segs": [
+    [
+     "2026-11-02T19:00Z",
+     "2026-11-02T20:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "RSGB 80m Autumn Series, Data",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g83uh",
+   "when": "2000Z-2130Z, Nov 2",
+   "segs": [
+    [
+     "2026-11-02T20:00Z",
+     "2026-11-02T21:30Z"
     ]
    ],
    "modes": [
     "DIGITAL"
    ],
    "kinds": [],
-   "src": "CORRAL",
-   "bands": "3.5-28",
-   "exch": "Signal report"
-  },
+   "src": "WA7BNM"
+  }
+ ],
+ "month": [
   {
    "name": "SKCC Sprint",
    "url": "https://www.skccgroup.com",
@@ -1372,7 +1298,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (32)",
-  "CORRAL": "ok (7)"
+  "WA7BNM": "ok (28)",
+  "CORRAL": "ok (6)"
  }
 }
