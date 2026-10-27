@@ -1,7 +1,5 @@
 """Builds KPC_Kentucky_POTA_2fers_3fers_Guide.pdf from fers.json (same folder).
-usage (repo root): python3 .claude/build/fers/guide.py
-NOTE (storage plan, Oct 27): this PDF lives on the 'site-pdfs' release now, not the repo root. After
-running this, upload it with: gh release upload site-pdfs KPC_Kentucky_POTA_2fers_3fers_Guide.pdf --clobber"""
+usage (repo root): python3 .claude/build/fers/guide.py"""
 import json,os,datetime
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import simpleSplit, ImageReader
