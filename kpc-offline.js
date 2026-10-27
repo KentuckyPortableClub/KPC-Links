@@ -8,6 +8,11 @@
     'ky-state-parks.geojson', 'ky-hunting-areas.geojson', 'ky-nature-preserves.geojson', 'ky-natural-areas.geojson', 'ky-dbnf.geojson', 'ky-dbnf-owned.geojson',
     'ky-wild-rivers.geojson', 'ky-nps.geojson', 'ky-wilderness.geojson', 'ky-sheltowee.geojson', 'ky-pine-mountain.geojson', 'ky-dawkins.geojson',
     'KPC-logo.png', 'kpc-icon-32.png'];
+  /* Storage plan Step B (Oct 27): locations.json + locations-ky.json now also live on KPC-Data. Save both
+     the KPC-Data copy and this site's own relative address under the same cache, so the page finds its
+     saved copy offline whichever address it asks for (now, or once the old copy is retired later). */
+  const DATA_MOVED = ['locations-ky.json', 'locations.json'];
+  const KPC_DATA = 'https://kentuckyportableclub.github.io/KPC-Data/';
   const LF = 'https://unpkg.com/leaflet@1.9.4/dist/';
   const CDN = ['leaflet.css', 'leaflet.js', 'images/marker-icon.png', 'images/marker-icon-2x.png', 'images/marker-shadow.png', 'images/layers.png', 'images/layers-2x.png'].map(f => LF + f);
   const supported = 'serviceWorker' in navigator && 'caches' in window && window.isSecureContext;
@@ -64,15 +69,20 @@
   saveBtn.addEventListener('click', async () => {
     if (!navigator.onLine) { stat.textContent = 'You need a signal to save. Try again when you’re connected.'; return; }
     saveBtn.disabled = clearBtn.disabled = true; bar.style.display = 'block';
-    const cache = await caches.open(APP), list = FILES.map(f => new URL(f, location.href).href).concat(CDN);
+    const cache = await caches.open(APP);
+    const list = FILES.map(f => ({ rel: new URL(f, location.href).href, tries: DATA_MOVED.includes(f) ? [KPC_DATA + f, new URL(f, location.href).href] : [new URL(f, location.href).href] }))
+      .concat(CDN.map(url => ({ rel: url, tries: [url] })));
     let done = 0, bytes = 0, miss = 0;
-    for (const url of list) {
+    for (const item of list) {
       stat.textContent = `Saving ${done + 1} of ${list.length}…`;
       try {
-        const res = await fetch(url, { cache: 'reload', mode: url.startsWith(location.origin) ? 'same-origin' : 'cors', credentials: 'omit' });
-        if (!res.ok) throw new Error(res.status);
+        let res = null;
+        for (const u of item.tries) { try { const r = await fetch(u, { cache: 'reload', mode: u.startsWith(location.origin) ? 'same-origin' : 'cors', credentials: 'omit' }); if (r.ok) { res = r; break; } } catch (e) {} }
+        if (!res) throw new Error('unreachable');
         const blob = await res.blob(); bytes += blob.size;
-        await cache.put(url, new Response(blob, { status: 200, headers: { 'Content-Type': res.headers.get('content-type') || 'application/octet-stream' } }));
+        const body = () => new Response(blob, { status: 200, headers: { 'Content-Type': res.headers.get('content-type') || 'application/octet-stream' } });
+        await cache.put(item.rel, body());
+        if (item.tries.length > 1) await cache.put(item.tries[0], body()); // also under the KPC-Data address
       } catch (e) { miss++; }
       done++; bar.firstElementChild.style.width = (done / list.length * 100) + '%';
     }

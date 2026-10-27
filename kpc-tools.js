@@ -1,8 +1,10 @@
 /* KPC Tools — shared code.
    CLUB ROSTER: the MEMBERS line below is the ONLY place to add or remove a member.
    Every page (Live, On The Air, Tool Box, Members, Campout, Discord page) and the Discord spot bot read it.
-   Use plain callsigns in single quotes, e.g. ['KZ4CP','N4BDW','NEW1CALL'] */
-const KPC=(()=>{
+   Use plain callsigns in single quotes, e.g. ['KZ4CP','N4BDW','NEW1CALL']
+   Merges into window.KPC rather than redeclaring it (Oct 27 storage plan Step B): a page's <head> already
+   defines window.KPC.dataUrl before this file loads, and this must not shadow or replace that. */
+window.KPC=Object.assign(window.KPC||{},(()=>{
 const MEMBERS=['KZ4CP','N4BDW','KQ4HZK','K4ZSR','N4KPC'];   // N4KPC = the club call (Brandon Oct 23: 'add the club call to our spots')
 const API='https://api.pota.app';
 const CACHE_KEY='kpcHistory_v1', CACHE_HOURS=12;
@@ -82,7 +84,8 @@ const links={pota:r=>`https://pota.app/#/park/${r}`,sota:r=>`https://sotl.as/sum
  dir:(a,b,o)=>`https://www.google.com/maps/dir/?api=1${o?`&origin=${o[0]},${o[1]}`:''}&destination=${a},${b}`,wx:(a,b)=>`https://weather.com/weather/today/l/${a},${b}`};
 document.addEventListener('DOMContentLoaded',navToggle);
 return{MEMBERS,liveKY,esc,base,isMember,miles,grid,data,counties,countyOf,history,progressUI,leafletMap,countyLayer,links,fmtDate,ok,cty};
-})();
+})());
+const KPC=window.KPC;
 /* KPC popup fit (shared; identical copy in kpc-tools.js and kpc-map-extras.js, runs once).
    Keeps map popups fully visible: clear of the map edges AND the sticky site menu bar, re-checked when popup
    content grows after it opens (live data, boundary text), and taller popups scroll instead of running off. */
