@@ -19,7 +19,7 @@
   "with official lines": 3
  },
  "pass2": {
-  "agree with the pass before": 142,
+  "agree with the pass before": 158,
   "cell_m": 10.0,
   "date": "2026-10-27",
   "left out": {
@@ -28,14 +28,14 @@
    "no pin": 0,
    "pin well outside": 0
   },
-  "new here only (not counted)": 16,
-  "official parks": 190,
-  "pairs tested": 47,
+  "new here only (not counted)": 18,
+  "official parks": 192,
+  "pairs tested": 51,
   "parks whose outline could not be read": 0,
-  "parks with a saved copy only (no fresh download possible)": 38,
+  "parks with a saved copy only (no fresh download possible)": 41,
   "pass": 2,
   "problems": [],
-  "with official lines": 1
+  "with official lines": 3
  },
  "pass3": {
   "agree with the pass before": 130,
@@ -80,7 +80,7 @@
    "lines": 109,
    "n-fers": 6,
    "pass1": 183,
-   "pass2": 2,
+   "pass2": 160,
    "spots": 183
   }
  }
