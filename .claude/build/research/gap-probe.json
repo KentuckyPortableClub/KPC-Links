@@ -1,870 +1,554 @@
 {
- "nb WMZ": [
-  {
-   "id": 0,
-   "name": "Wildlife Management Zones",
-   "geom": "esriGeometryPolygon",
-   "count": 27,
-   "fields": [
-    "OBJECTID_1",
-    "SHAPE",
-    "SHAPE.AREA",
-    "SHAPE.LEN",
-    "WMZ"
-   ],
-   "err": null
-  }
- ],
- "nb WMZ 0 rows": [
-  {
-   "OBJECTID_1": 321,
-   "SHAPE.AREA": 3576268552.5602,
-   "SHAPE.LEN": 359874.263605,
-   "WMZ": 4
+ "nb zones": {
+  "zones": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27
+  ],
+  "parks": {
+   "CA-6503": {
+    "name": "New Brunswick #24 Wildlife Management Area",
+    "num": 24,
+    "pin in zone": [
+     24
+    ],
+    "match": true
+   },
+   "CA-6504": {
+    "name": "New Brunswick #19 Wildlife Management Area",
+    "num": 19,
+    "pin in zone": [
+     19
+    ],
+    "match": true
+   },
+   "CA-6505": {
+    "name": "New Brunswick #25 Wildlife Management Area",
+    "num": 25,
+    "pin in zone": [
+     25
+    ],
+    "match": true
+   },
+   "CA-6507": {
+    "name": "New Brunswick #14 Wildlife Management Area",
+    "num": 14,
+    "pin in zone": [
+     14
+    ],
+    "match": true
+   },
+   "CA-6508": {
+    "name": "New Brunswick #22 Wildlife Management Area",
+    "num": 22,
+    "pin in zone": [
+     22
+    ],
+    "match": true
+   },
+   "CA-6509": {
+    "name": "New Brunswick #18 Wildlife Management Area",
+    "num": 18,
+    "pin in zone": [
+     18
+    ],
+    "match": true
+   },
+   "CA-6518": {
+    "name": "New Brunswick #8 Wildlife Management Area",
+    "num": 8,
+    "pin in zone": [
+     8
+    ],
+    "match": true
+   },
+   "CA-6527": {
+    "name": "New Brunswick #21 Wildlife Management Area",
+    "num": 21,
+    "pin in zone": [
+     21
+    ],
+    "match": true
+   },
+   "CA-6535": {
+    "name": "New Brunswick #23 Wildlife Management Area",
+    "num": 23,
+    "pin in zone": [
+     23
+    ],
+    "match": true
+   },
+   "CA-6536": {
+    "name": "New Brunswick #20 Wilderness Area",
+    "num": 20,
+    "pin in zone": [
+     20
+    ],
+    "match": true
+   },
+   "CA-6537": {
+    "name": "New Brunswick #15 Wildlife Management Area",
+    "num": 15,
+    "pin in zone": [
+     15
+    ],
+    "match": true
+   },
+   "CA-6538": {
+    "name": "New Brunswick #16 Wildlife Management Area",
+    "num": 16,
+    "pin in zone": [
+     16
+    ],
+    "match": true
+   },
+   "CA-6539": {
+    "name": "New Brunswick #17 Wildlife Management Area",
+    "num": 17,
+    "pin in zone": [
+     17
+    ],
+    "match": true
+   },
+   "CA-6540": {
+    "name": "New Brunswick #10 Wildlife Management Area",
+    "num": 10,
+    "pin in zone": [
+     10
+    ],
+    "match": true
+   },
+   "CA-6541": {
+    "name": "New Brunswick #11 Wildlife Management Area",
+    "num": 11,
+    "pin in zone": [
+     11
+    ],
+    "match": true
+   },
+   "CA-6542": {
+    "name": "New Brunswick #7 Wildlife Management Area",
+    "num": 7,
+    "pin in zone": [
+     7
+    ],
+    "match": true
+   },
+   "CA-6543": {
+    "name": "New Brunswick #9 Wildlife Management Area",
+    "num": 9,
+    "pin in zone": [
+     9
+    ],
+    "match": true
+   },
+   "CA-6544": {
+    "name": "New Brunswick #5 Wildlife Management Area",
+    "num": 5,
+    "pin in zone": [
+     8
+    ],
+    "match": false
+   },
+   "CA-6545": {
+    "name": "New Brunswick #4 Wildlife Management Area",
+    "num": 4,
+    "pin in zone": [
+     4
+    ],
+    "match": true
+   },
+   "CA-6546": {
+    "name": "New Brunswick #3 Wildlife Management Area",
+    "num": 3,
+    "pin in zone": [
+     3
+    ],
+    "match": true
+   },
+   "CA-6547": {
+    "name": "New Brunswick #2 Wildlife Management Area",
+    "num": 2,
+    "pin in zone": [
+     2
+    ],
+    "match": true
+   },
+   "CA-6548": {
+    "name": "New Brunswick #1 Wildlife Management Area",
+    "num": 1,
+    "pin in zone": [
+     1
+    ],
+    "match": true
+   },
+   "CA-6549": {
+    "name": "New Brunswick #6 Wildlife Management Area",
+    "num": 6,
+    "pin in zone": [
+     7
+    ],
+    "match": false
+   },
+   "CA-6550": {
+    "name": "New Brunswick #12 Wildlife Management Area",
+    "num": 12,
+    "pin in zone": [
+     12
+    ],
+    "match": true
+   },
+   "CA-6551": {
+    "name": "New Brunswick #13 Wildlife Management Area",
+    "num": 13,
+    "pin in zone": [
+     13
+    ],
+    "match": true
+   }
   },
-  {
-   "OBJECTID_1": 322,
-   "SHAPE.AREA": 1201551309.83045,
-   "SHAPE.LEN": 407961.867720451,
-   "WMZ": 9
-  },
-  {
-   "OBJECTID_1": 323,
-   "SHAPE.AREA": 3154818540.32235,
-   "SHAPE.LEN": 318288.682691733,
-   "WMZ": 5
-  },
-  {
-   "OBJECTID_1": 324,
-   "SHAPE.AREA": 2770390398.54235,
-   "SHAPE.LEN": 291483.88608505303,
-   "WMZ": 3
-  },
-  {
-   "OBJECTID_1": 325,
-   "SHAPE.AREA": 4067645843.5794,
-   "SHAPE.LEN": 418517.456973712,
-   "WMZ": 8
-  },
-  {
-   "OBJECTID_1": 326,
-   "SHAPE.AREA": 2623396358.7652,
-   "SHAPE.LEN": 264058.97197801305,
-   "WMZ": 2
-  },
-  {
-   "OBJECTID_1": 327,
-   "SHAPE.AREA": 6177239378.6948,
-   "SHAPE.LEN": 364306.589297323,
-   "WMZ": 7
-  },
-  {
-   "OBJECTID_1": 328,
-   "SHAPE.AREA": 816616492.3713,
-   "SHAPE.LEN": 154929.825494249,
-   "WMZ": 1
-  },
-  {
-   "OBJECTID_1": 329,
-   "SHAPE.AREA": 2514379966.86905,
-   "SHAPE.LEN": 247559.308069757,
-   "WMZ": 6
-  },
-  {
-   "OBJECTID_1": 330,
-   "SHAPE.AREA": 2461886667.81985,
-   "SHAPE.LEN": 259900.318563795,
-   "WMZ": 11
-  },
-  {
-   "OBJECTID_1": 331,
-   "SHAPE.AREA": 2616547761.7937,
-   "SHAPE.LEN": 371863.277469789,
-   "WMZ": 14
-  },
-  {
-   "OBJECTID_1": 332,
-   "SHAPE.AREA": 2721178008.73045,
-   "SHAPE.LEN": 299736.77097618603,
-   "WMZ": 10
-  },
-  {
-   "OBJECTID_1": 333,
-   "SHAPE.AREA": 2517964698.24585,
-   "SHAPE.LEN": 255128.324402612,
-   "WMZ": 13
-  },
-  {
-   "OBJECTID_1": 334,
-   "SHAPE.AREA": 3278893725.665,
-   "SHAPE.LEN": 307470.72441567905,
-   "WMZ": 12
-  },
-  {
-   "OBJECTID_1": 335,
-   "SHAPE.AREA": 2209858577.03755,
-   "SHAPE.LEN": 318656.746689782,
-   "WMZ": 19
-  },
-  {
-   "OBJECTID_1": 336,
-   "SHAPE.AREA": 3334423893.10055,
-   "SHAPE.LEN": 261161.99739788703,
-   "WMZ": 17
-  },
-  {
-   "OBJECTID_1": 337,
-   "SHAPE.AREA": 4168548448.15565,
-   "SHAPE.LEN": 295375.24203563697,
-   "WMZ": 16
-  },
-  {
-   "OBJECTID_1": 338,
-   "SHAPE.AREA": 2602864569.01925,
-   "SHAPE.LEN": 247480.912869189,
-   "WMZ": 18
-  },
-  {
-   "OBJECTID_1": 339,
-   "SHAPE.AREA": 2091578003.57815,
-   "SHAPE.LEN": 288128.498812542,
-   "WMZ": 25
-  },
-  {
-   "OBJECTID_1": 340,
-   "SHAPE.AREA": 2794640318.45645,
-   "SHAPE.LEN": 270560.257391942,
-   "WMZ": 15
-  },
-  {
-   "OBJECTID_1": 341,
-   "SHAPE.AREA": 1964607959.0971,
-   "SHAPE.LEN": 226954.51794648,
-   "WMZ": 24
-  },
-  {
-   "OBJECTID_1": 342,
-   "SHAPE.AREA": 3011739939.90235,
-   "SHAPE.LEN": 319540.584279726,
-   "WMZ": 22
-  },
-  {
-   "OBJECTID_1": 343,
-   "SHAPE.AREA": 2714698901.3609,
-   "SHAPE.LEN": 315476.582836947,
-   "WMZ": 23
-  },
-  {
-   "OBJECTID_1": 344,
-   "SHAPE.AREA": 93678714.4641,
-   "SHAPE.LEN": 234670.112415748,
-   "WMZ": 26
-  },
-  {
-   "OBJECTID_1": 345,
-   "SHAPE.AREA": 182779345.57315,
-   "SHAPE.LEN": 224536.632508598,
-   "WMZ": 27
-  },
-  {
-   "OBJECTID_1": 346,
-   "SHAPE.AREA": 2599857311.4418,
-   "SHAPE.LEN": 246621.656602292,
-   "WMZ": 21
-  },
-  {
-   "OBJECTID_1": 347,
-   "SHAPE.AREA": 5335558005.60625,
-   "SHAPE.LEN": 747783.086675211,
-   "WMZ": 20
-  }
- ],
- "nb Parks": [
-  {
-   "id": 0,
-   "name": "Parks",
-   "geom": "esriGeometryPolygon",
-   "count": 621,
-   "fields": [
-    "SHAPE.AREA",
-    "SHAPE.LEN",
-    "OBJECTID",
-    "HOLDER",
-    "SHAPE"
-   ],
-   "err": null
-  }
- ],
- "nb Parks 0 rows": [
-  {
-   "SHAPE.AREA": 1409882.4666,
-   "SHAPE.LEN": 7439.59726125992,
-   "OBJECTID": 14135,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 49362.10845,
-   "SHAPE.LEN": 1074.3155927453,
-   "OBJECTID": 14431,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 2068184.26355,
-   "SHAPE.LEN": 7098.17056303114,
-   "OBJECTID": 19461,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 65881.00535,
-   "SHAPE.LEN": 1766.34519949628,
-   "OBJECTID": 19509,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 175786.77975,
-   "SHAPE.LEN": 2785.80433356044,
-   "OBJECTID": 20435,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 1286934.90455,
-   "SHAPE.LEN": 9310.345003627901,
-   "OBJECTID": 20436,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 32191.7737,
-   "SHAPE.LEN": 1201.26538969519,
-   "OBJECTID": 20438,
-   "HOLDER": 66
-  },
-  {
-   "SHAPE.AREA": 96998.80975,
-   "SHAPE.LEN": 2571.24560701475,
-   "OBJECTID": 20440,
-   "HOLDER": 66
-  }
- ],
- "nb Parks 0 test": {
-  "fields": [],
-  "read": 621,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
+  "matched": 23,
+  "of": 25
  },
- "nb Unique_Areas": [
+ "ms agol": [
   {
-   "id": 0,
-   "name": "Unique Areas",
-   "geom": "esriGeometryPolygon",
-   "count": 621,
-   "fields": [
-    "LICDEFUNIQ",
-    "SHAPE.AREA",
-    "SHAPE.LEN",
-    "OBJECTID",
-    "HOLDER",
-    "ECOREGION",
-    "SHAPE"
-   ],
-   "err": null
+   "title": "WGCPO State Managed Lands (WMAs)",
+   "owner": "blaine_elliott@fws.gov_fws",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/WGCPO_STATE_WILDLIFE_MANAGEMENT_AREAS_2015/FeatureServer"
+  },
+  {
+   "title": "MAV State Managed Lands (WMAs)",
+   "owner": "blaine_elliott@fws.gov_fws",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/MAV_state_managed_lands_2021/FeatureServer"
+  },
+  {
+   "title": "Wildlife Protection Overlay",
+   "owner": "boar0259_ui_uidaho",
+   "url": "https://services.arcgis.com/WLhB60Nqwp4NnHz3/arcgis/rest/services/Wildlife_Protection_Overlay/FeatureServer"
+  },
+  {
+   "title": "Department of Defense Managed Land",
+   "owner": "annariling_Wilderness",
+   "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer"
+  },
+  {
+   "title": "Protected area with sustainable use of natural resources (PADUS)",
+   "owner": "sviars@americanrivers.org_Amrivers",
+   "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer"
+  },
+  {
+   "title": "Protected Areas Database",
+   "owner": "jill_ory@fws.gov_fws",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Protected_Areas_Database/FeatureServer"
+  },
+  {
+   "title": "PAD GAP I & II: Federal Areas \"Managed for Biodiversity\"",
+   "owner": "cainmelissaf_westernwater",
+   "url": "https://services6.arcgis.com/doW1zMBdj2GVxvrs/arcgis/rest/services/PADI_Mgd_For_Biodiv/FeatureServer"
+  },
+  {
+   "title": "FmHA of Mississippi",
+   "owner": "blaine_elliott@fws.gov_fws",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/fmha_of_mississippi_0724_shp/FeatureServer"
+  },
+  {
+   "title": "Habitat or Species management (PADUS)",
+   "owner": "sviars@americanrivers.org_Amrivers",
+   "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Habitat_or_Species_management_(PADUS)/FeatureServer"
+  },
+  {
+   "title": "Wilderness areas (PADUS)",
+   "owner": "sviars@americanrivers.org_Amrivers",
+   "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Wilderness_areas_(PADUS)/FeatureServer"
+  },
+  {
+   "title": "Protected Areas Database of the United States (PAD-US)",
+   "owner": "lindsjor@oregonstate.edu_OSUGISci",
+   "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer"
+  },
+  {
+   "title": "Caroline_Conservation_Easements",
+   "owner": "jamie_cvg",
+   "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer"
+  },
+  {
+   "title": "NWR ownership for MAV and WGCPO - 2024",
+   "owner": "blaine_elliott@fws.gov_fws",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/NWR_ownership_JV_2024/FeatureServer"
+  },
+  {
+   "title": "Land Ownership",
+   "owner": "Geothermal0",
+   "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer"
+  },
+  {
+   "title": "Other Conservation Area (PADUS)",
+   "owner": "sviars@americanrivers.org_Amrivers",
+   "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Other_Conservation_Area_(PADUS)/FeatureServer"
+  },
+  {
+   "title": "PADUS3 SGI Boundary",
+   "owner": "chip.morgan@segrasslands.org",
+   "url": "https://services.arcgis.com/XaWc1MuAt1v6Ook0/arcgis/rest/services/PADUS3_SGI_Boundary/FeatureServer"
+  },
+  {
+   "title": "PADUS2_1_WA",
+   "owner": "bathubadmin_OSUGISci",
+   "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/PADUS2_1_WA/FeatureServer"
+  },
+  {
+   "title": "PADUS_TN_Riverline",
+   "owner": "NHunt73",
+   "url": "https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/PADUS_TN_Riverline/FeatureServer"
+  },
+  {
+   "title": "PADUS2_1_OR",
+   "owner": "bathubadmin_OSUGISci",
+   "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/PADUS2_1_OR/FeatureServer"
+  },
+  {
+   "title": "BLM_Lands",
+   "owner": "bhanceCLLC",
+   "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer"
+  },
+  {
+   "title": "National park (PADUS)",
+   "owner": "sviars@americanrivers.org_Amrivers",
+   "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer"
+  },
+  {
+   "title": "Smith River National Recreation Area",
+   "owner": "OA_Admin",
+   "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/Smith_River_National_Recreation_Area/FeatureServer"
+  },
+  {
+   "title": "PADUS_3_ManagerName_2_1_HERS",
+   "owner": "bathubadmin_OSUGISci",
+   "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/PADUS_3_ManagerName_21_ORWAID/FeatureServer"
+  },
+  {
+   "title": "PAD in the Yampa White Green Basin",
+   "owner": "Yampawhitegreen",
+   "url": "https://services2.arcgis.com/1mNWwa3BbvpUjy0N/arcgis/rest/services/PAD_in_the_Yampa_White_Green_Basin/FeatureServer"
+  },
+  {
+   "title": "JV Waterfowl & People DST Mix (Zones)",
+   "owner": "mohammed_al_saffar@fws.gov_fws",
+   "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/WF17_DST_Mix/FeatureServer"
+  },
+  {
+   "title": "State Wildlife Action Plan Conservation Priority Areas",
+   "owner": "Christopher_Tracey_NatureServe",
+   "url": "https://services.arcgis.com/EVsTT4nNRCwmHNyb/arcgis/rest/services/SWAP_Mapping/FeatureServer"
+  },
+  {
+   "title": "WFL2_Basemap_Items",
+   "owner": "Rachel_CCE",
+   "url": "https://services6.arcgis.com/8EipYlXFYbtSN973/arcgis/rest/services/WFL2_Basemap_Items/FeatureServer"
+  },
+  {
+   "title": "State Land Board_Bears Ears2",
+   "owner": "OA_Admin",
+   "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/State_Land_Board_Bears_Ears2/FeatureServer"
+  },
+  {
+   "title": "PADUS3_0Combined_DOD_TRIB_Fee_Designation_Easement_State_MA",
+   "owner": "MTommins_AMC",
+   "url": "https://services9.arcgis.com/mxpFc8oFRyNIV03y/arcgis/rest/services/PADUS3_0Combined_DOD_TRIB_Fee_Designation_Easement_State_MA/FeatureServer"
+  },
+  {
+   "title": "PADUS3_0Combined_Fee_Easement_State_MA",
+   "owner": "MTommins_AMC",
+   "url": "https://services9.arcgis.com/mxpFc8oFRyNIV03y/arcgis/rest/services/PADUS3_0Combined_Fee_Easement_State_MA/FeatureServer"
+  },
+  {
+   "title": "Notable Parks along Long Island Greenway Phase 1",
+   "owner": "pgahagan_NYC",
+   "url": "https://services1.arcgis.com/oOUgp466Coyjcu6V/arcgis/rest/services/Notable_Parks_along_Long_Island_Greenway_Phase_1/FeatureServer"
+  },
+  {
+   "title": "PADUS3_0Combined_DOD_TRIB_Fee_Designation_Easement_State_CT",
+   "owner": "MTommins_AMC",
+   "url": "https://services9.arcgis.com/mxpFc8oFRyNIV03y/arcgis/rest/services/PADUS3_0Combined_DOD_TRIB_Fee_Designation_Easement_State_CT/FeatureServer"
+  },
+  {
+   "title": "PADUS3_0Combined_Fee_Easement_State_CT",
+   "owner": "MTommins_AMC",
+   "url": "https://services9.arcgis.com/mxpFc8oFRyNIV03y/arcgis/rest/services/PADUS3_0Combined_Fee_Easement_State_CT/FeatureServer"
+  },
+  {
+   "title": "State_Parks",
+   "owner": "logburn@unca.edu_unca",
+   "url": "https://services1.arcgis.com/PwLrOgCfU0cYShcG/arcgis/rest/services/State_Parks/FeatureServer"
+  },
+  {
+   "title": "Mississippi River Corridor Critical Area (MRCCA) Boundary",
+   "owner": "commons_etl_user",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_mrcca_boundary/FeatureServer"
+  },
+  {
+   "title": "Mississippi River Corridor Critical Area (MRCCA) Significant Existing Vegetative Stands",
+   "owner": "commons_etl_user",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_mrcca_vegetation/FeatureServer"
+  },
+  {
+   "title": "Tribal Boundary (from PADUS)",
+   "owner": "djleisma_mtri",
+   "url": "https://services2.arcgis.com/RPhrOu9XQzI31xTa/arcgis/rest/services/TribalBoundary_shp/FeatureServer"
+  },
+  {
+   "title": "State_Parks",
+   "owner": "EF_staff",
+   "url": "https://services2.arcgis.com/mzukOs9wABhl5gyA/arcgis/rest/services/State_Parks/FeatureServer"
+  },
+  {
+   "title": "NM National Parks",
+   "owner": "jav46_dukeuniv",
+   "url": "https://services1.arcgis.com/XBhYkoXKJCRHbe7M/arcgis/rest/services/NMNationalParks_gdb/FeatureServer"
+  },
+  {
+   "title": "Mississippi",
+   "owner": "BG59031@tn.gov_TDEC",
+   "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/Mississippi/FeatureServer"
   }
  ],
- "nb Unique_Areas 0 rows": [
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 9542.092700000001,
-   "SHAPE.LEN": 363.18030090868103,
-   "OBJECTID": 1,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 6870.36845,
-   "SHAPE.LEN": 392.60295039599504,
-   "OBJECTID": 2,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 59133.5978,
-   "SHAPE.LEN": 1048.4065421392002,
-   "OBJECTID": 3,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 7029.360100000001,
-   "SHAPE.LEN": 302.43587468054704,
-   "OBJECTID": 4,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 55235.9824,
-   "SHAPE.LEN": 1564.4925758776,
-   "OBJECTID": 5,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 4613.201,
-   "SHAPE.LEN": 262.271214470228,
-   "OBJECTID": 6,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 58819.73985,
-   "SHAPE.LEN": 1332.95561156649,
-   "OBJECTID": 7,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  },
-  {
-   "LICDEFUNIQ": "1",
-   "SHAPE.AREA": 3066.1158,
-   "SHAPE.LEN": 626.042324242695,
-   "OBJECTID": 8,
-   "HOLDER": 1,
-   "ECOREGION": 2
-  }
- ],
- "nb Unique_Areas 0 test": {
-  "fields": [],
-  "read": 621,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
- },
- "nb Candidate_Conserved_Areas": [
-  {
-   "id": 0,
-   "name": "Nature Legacy protected areas",
-   "geom": "esriGeometryPolygon",
-   "count": 552,
-   "fields": [
-    "OBJECTID",
-    "UID_",
-    "SHAPE",
-    "SHAPE.AREA",
-    "SHAPE.LEN",
-    "NAME",
-    "NOM",
-    "PROTECTION_DATE",
-    "PROTECTION_STATUS"
-   ],
-   "err": null
-  }
- ],
- "nb Candidate_Conserved_Areas 0 rows": [
-  {
-   "OBJECTID": 1,
-   "UID_": "4000300",
-   "SHAPE.AREA": 26239741.37355,
-   "SHAPE.LEN": 87228.18240512071,
-   "NAME": "Kouchibouguacis River",
-   "NOM": "Riviere Kouchibouguacis",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 2,
-   "UID_": "4000400",
-   "SHAPE.AREA": 4013743.34265,
-   "SHAPE.LEN": 24701.715050947598,
-   "NAME": "Pollard Brook",
-   "NOM": "Ruisseau Pollard",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 3,
-   "UID_": "4000500",
-   "SHAPE.AREA": 9397840.40045,
-   "SHAPE.LEN": 47504.046254046,
-   "NAME": "Second Eel Lake",
-   "NOM": "Lac Second Eel",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 4,
-   "UID_": "4000600",
-   "SHAPE.AREA": 9348713.85135,
-   "SHAPE.LEN": 33545.000599514,
-   "NAME": "Charlo River",
-   "NOM": "Riviere Charlo",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 5,
-   "UID_": "4000900",
-   "SHAPE.AREA": 3656399.43315,
-   "SHAPE.LEN": 24333.624219652,
-   "NAME": "March's Lake",
-   "NOM": "Lac March's",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 6,
-   "UID_": "4001000",
-   "SHAPE.AREA": 3125818.8507,
-   "SHAPE.LEN": 21766.7575857169,
-   "NAME": "Partridge Valley East",
-   "NOM": "Partridge Valley Est",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 7,
-   "UID_": "4001200",
-   "SHAPE.AREA": 6203602.0993,
-   "SHAPE.LEN": 27511.538106259,
-   "NAME": "McLaughlin Creek",
-   "NOM": "Ruisseau McLaughlin",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  },
-  {
-   "OBJECTID": 8,
-   "UID_": "4001300",
-   "SHAPE.AREA": 499187.4416,
-   "SHAPE.LEN": 5038.63804753853,
-   "NAME": "Mink Brook",
-   "NOM": "Ruisseau Mink",
-   "PROTECTION_DATE": 1657756800000,
-   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
-  }
- ],
- "nb Candidate_Conserved_Areas 0 test": {
+ "ms test WGCPO State Managed Lands (WMAs) / WGCPO State Wildlife Management Areas": {
   "fields": [
-   "NAME"
+   "Name",
+   "DESC_"
   ],
-  "read": 552,
+  "read": 145,
   "gives": 0,
   "activations": 0,
   "parks": {}
  },
- "trca names": {
-  "rows": 2207,
-  "distinct names": 215,
-  "hits": [
-   "Don Valley Golf Course",
-   "Scarlett Woods Golf Course",
-   "Tam Oshanter Golf Course"
+ "ms test MAV State Managed Lands (WMAs) / MAV_state_managed_lands_2021": {
+  "fields": [
+   "Own_Name",
+   "d_Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm"
   ],
-  "all": [
-   " 8682 Regional Road 27, Vaughan",
-   "10 Elizabeth St",
-   "1251 Bridletown Circle",
-   "12844 Leslie Street, in the City of Richmond Hill, Regional Municipality of York",
-   "13876 Ninth Line",
-   "170 The West Mall",
-   "1780 Lawrence Ave West",
-   "21 Lorraine Gardens",
-   "2549 Concession Road 4",
-   "4208 Dundas St W",
-   "50 Humberwood Boulevard",
-   "5113 Brock Road, Pickering",
-   "7 Broadmere",
-   "8265 HUNTINGTON ROAD",
-   "85 Birch Ave",
-   "90 Meadowcliffe",
-   "Addington Greenbelt",
-   "Albion Hills Conservation Park",
-   "Altona Forest",
-   "Argent",
-   "Arsenal Lands",
-   "Ashbridge's Bay Park",
-   "BLOCK 19 and 20 on 65M-4541 AND BLOCK 19 ON PLAN 65M-4540",
-   "Back of 1 Adravilla Way, Toronto",
-   "Bakers Woods",
-   "Ballycroy East",
-   "Ballycroy West",
-   "Bellamy Ravine",
-   "Berry Road Park",
-   "Betty Sutherland Trail",
-   "Black Creek Parkland",
-   "Black Creek Site East",
-   "Black Creek Site West",
-   "Block 167, Plan 43M2081",
-   "Block 19, Plan 66M2548",
-   "Block 197, Plan 65M4126",
-   "Block 198, Plan 65M4126",
-   "Blocks 417, Plan 65M-4685",
-   "Blocks 418, Plan 65M-4685",
-   "Bluffer's Park",
-   "Bolton Camp",
-   "Bolton Mill Park",
-   "Bolton Resource Management Tract",
-   "Botany Hill Park",
-   "Boyd Conservation Park",
-   "Brock North",
-   "Brock South",
-   "Bruce Handscomb Park",
-   "Bruce's Mill Conservation Park",
-   "Burns and Sparks",
-   "Burrows Hall Park",
-   "Caledon",
-   "Caledon Tract",
-   "Carscadden Greenbelt",
-   "Cedar Brook Park",
-   "Cedar Mains",
-   "Cedar Ridge Park",
-   "Centennial Park",
-   "Centreville Creek",
-   "Chalkfarm Park",
-   "Charles Sauriol Conservation Area",
-   "Chipping Greenbelt",
-   "Claireville Conservation Area",
-   "Claremont Field Centre",
-   "Cliff Lumsdon Park",
-   "Clubine",
-   "Cold Creek Conservation Area",
-   "Colonel Danforth Park",
-   "Colonel Samuel Smith Park",
-   "Conservation Drive Park",
-   "Coxwell Ravine Park",
-   "Crawford-Jones Memorial Park",
-   "Crothers Woods",
-   "Cruickshank Park",
-   "Cudia Park",
-   "Dagmar",
-   "David Duncan House",
-   "Derrydowns Park",
-   "Doctors Mclean District Park",
-   "Don Valley Brickworks",
-   "Don Valley Golf Course",
-   "Downsview Dells",
-   "Duncan Mill Greenbelt",
-   "E.T. Seton Park",
-   "EMG Property",
-   "Earl Bales Park",
-   "East Don Parkland",
-   "East Point Park",
-   "Ebenezer Resource Management Tract",
-   "Eglinton Flats",
-   "Elgin Woods Park",
-   "Etobicoke Creek Diversion Channel",
-   "Etobicoke Creek Diversion Channel North",
-   "Etobiocke Valley Park",
-   "Fergy Brown Park",
-   "Fishleigh Park",
-   "Forest Valley Day Camp",
-   "G. Ross Lord Park",
-   "Garthdale Parkette",
-   "Gibson Lake",
-   "Glen Haffy Conservation Park",
-   "Glen Haffy Extension",
-   "Glen Major",
-   "Glen Ravine Park",
-   "Glendon Forest",
-   "Goodwood",
-   "Grand Valley",
-   "Greenwood Conservation Area",
-   "Grey Abbey Park ",
-   "Guild Inn & Gardens",
-   "Heart Lake Conservation Park",
-   "Highland Creek Park",
-   "Hinder Area",
-   "Home Smith Park",
-   "Humber Arboretum",
-   "Humber Bay Park",
-   "Humber Marshes",
-   "Humber Source Woods",
-   "Humber Trails",
-   "Joyce Archdekin Park",
-   "Kings Mill Park",
-   "Kleinburg New Forest North",
-   "Kolodziej",
-   "Kortright Centre for Conservation",
-   "Kraker",
-   "Lake St. George Field Centre",
-   "Lakeshore Boulevard Parklands",
-   "Lambton Park",
-   "Lambton Woods",
-   "Lower Don Parklands",
-   "Lower Highland Creek Park",
-   "MacArthur",
-   "Major Creek Open Space",
-   "Marie Curtis Park",
-   "Maxwell Park",
-   "Meadowland Park",
-   "Mill Pond Park",
-   "Milne Park",
-   "Mimico Waterfront Park",
-   "Moccasin Trail Park",
-   "Morningside Park",
-   "NINTH AND MAIN GENERAL PARTNER INC. AND NINTH AND MAIN LIMITED PARTNERSHIP",
-   "Nashville Resource Management Tract",
-   "Newtonbrook Park",
-   "North Walker Woods",
-   "North of Rossland Road West, and West of Church Street North",
-   "Oak Ridges Corridor Park",
-   "Oak Ridges Corridor Park East",
-   "Oakbank Park",
-   "Old Mill Tennis Courts",
-   "Palgrave Forest and Wildlife Centre",
-   "Palgrave Mill Park",
-   "Palgrave Mill Pond",
-   "Part Lots 23 & 24, Conc 7",
-   "Paulynn Park",
-   "Petticoat Creek Conservation Park",
-   "Pine Point Park",
-   "Plesure Valley Forest",
-   "Raymore Park/Canadian Ukrainian Memorial",
-   "Rear of 1 Katrine Rd",
-   "Rear of 21 Disan Ct",
-   "Rear of 24 Disan Ct",
-   "Rear of 2996 Weston Rd",
-   "Rear of 47 Riverhead Dr",
-   "Rear of 47 Riverhead Drive",
-   "Rosalea Park",
-   "Rosetta McClain Park",
-   "Rotary Frenchman's Bay West Park",
-   "Rouge Park",
-   "Rowley",
-   "Rowntree Mills Park",
-   "Russel & Joan Robertson Park",
-   "Scarlett Mills Park",
-   "Scarlett Woods Golf Course",
-   "Scott Street Parkette",
-   "Secord",
-   "Serena Gundy Park",
-   "Slokker",
-   "Smythe Park",
-   "South Marine Drive Park",
-   "Spring Garden Park",
-   "St. Lucie Park",
-   "Steeles Park",
-   "Stouffville Channel",
-   "Stouffville Reservoir",
-   "Summer Valley",
-   "Summerlea Park",
-   "Sunkist Woods",
-   "Sunnybrook Park",
-   "Swan Lake",
-   "Sylvan Park",
-   "TRANSFER FROM: MACDONALD, WILLIAM; MACDONALD, JOSEPH JOHN AND MACDONALD, CHRISTOPHER GEORGE",
-   "TRCA Lands",
-   "Tam Oshanter Golf Course",
-   "Taylor Creek Park",
-   "Thackeray Park",
-   "The Village at Black Creek",
-   "Todmorden Mills Park",
-   "Tommy Thompson Park",
-   "Toronto Zoo",
-   "Trethewey Park",
-   "Upwood Greenbelt",
-   "Veteran's/Nort Jownston District Parks",
-   "Walker Woods Tract",
-   "Warden Woods",
-   "Watson Valley",
-   "Weir",
-   "West Humber Parkland",
-   "Westen Gateway",
-   "Westview Greenbelt",
-   "Wilder Forest and Wildlife Area",
-   "Wilket Creek Park",
-   "Wiwanis Memorial Park",
-   "York Mills Valley Park",
-   "\u00c9tienne Br\u00fbl\u00e9 Park"
-  ]
+  "read": 180,
+  "gives": 1,
+  "activations": 12,
+  "parks": {
+   "US-7080": [
+    "MS",
+    "sunflower",
+    12,
+    "Sunflower Wma"
+   ]
+  }
  },
- "npca names": [
-  "[1, 'Oswego Creek', 82407.68310546875, 2667.2835830822423]",
-  "[10, 'Wainfleet Bog', 8126284.173583984, 16305.428200115219]",
-  "[11, 'Willoughby Marsh', 2312897.5009765625, 13560.413292743986]",
-  "[12, 'Smith-Ness Forest', 377675.43212890625, 3157.4304438848435]",
-  "[13, 'E.C. Brown', 137897.2158203125, 2950.736087906015]",
-  "[14, 'Gainsborough', 160420.12060546875, 1669.276219627617]",
-  "[15, 'Stevensville', 492955.22119140625, 3533.446279985179]",
-  "[16, 'Humberstone Marsh', 823858.1936035156, 3642.0028837654822]",
-  "[17, 'Woolverton', 185888.26806640625, 7724.266498516513]",
-  "[18, 'Mountainview', 271984.34716796875, 2149.782777848015]",
-  "[19, 'Binbrook', 3756054.998779297, 19389.01561592565]",
-  "[2, 'Canborough', 55568.393310546875, 1158.7242532471287]",
-  "[20, 'Binbrook Tract', 207364.79345703125, 2422.229912355109]",
-  "[21, \"Shriner's Creek\", 367283.96044921875, 7929.480445477779]",
-  "[22, 'Cave Springs', 433679.9079589844, 4468.700500726079]",
-  "[23, \"Ball's Falls\", 1147097.0695800781, 12593.704681684163]",
-  "[24, 'Rockway', 1329102.8876953125, 10581.069368628676]",
-  "[25, 'Louth', 630199.6740722656, 5346.081873234018]",
-  "[26, 'Two Mile Creek', 85139.89038085938, 3260.600770974789]",
-  "[27, 'Virgil Dam and Reservoir', 507495.47509765625, 9153.697054547072]",
-  "[28, 'Ruigrok Tract', 926594.4147949219, 8355.250165802518]",
-  "[29, 'Jordan Harbour', 7164.73193359375, 477.5816127219059]",
-  "[3, 'Hedley Forest', 176516.24438476562, 2144.1770074438045]",
-  "[30, 'Comfort Maple', 2403.771484375, 567.8795494657252]",
-  "[31, 'Lakewood', 61581.997314453125, 1309.5985598335092]",
-  "[32, \"St. John's Centre\", 74444.40649414062, 1371.010193402375]",
-  "[33, \"St. John's\", 318807.85009765625, 2979.37334167782]",
-  "[34, 'Beamer Memorial', 638019.0197753906, 9500.837007714223]",
-  "[35, 'Gord Harry Trail', 275394.9416503906, 26179.151759889555]",
-  "[36, 'Woodend', 470240.6613769531, 4521.716818148694]",
-  "[37, \"Morgan's Point\", 279196.2412109375, 2996.0271826762223]",
-  "[38, 'Lathrop', 383340.3857421875, 4387.968505844722]",
-  "[39, 'Eight Mile Creek', 7868.3701171875, 365.10031859550537]",
-  "[4, 'Chippawa Creek', 1515788.04296875, 5936.075644419584]",
-  "[40, 'Lathrop', 1485.52392578125, 326.3389695664974]",
-  "[46, 'OPG', 89042.55102539062, 1957.262606696413]",
-  "[47, 'Wainfleet Bog', 118931.33227539062, 1395.6612892771968]",
-  "[48, 'Point Abino-Philips', 383622.77197265625, 3227.5413800829783]",
-  "[49, 'Point Abino-McGowan', 19986.07666015625, 693.7193585737293]",
-  "[5, 'Port Davidson', 1915.686767578125, 234.27049982517966]",
-  "[50, 'Baird Estate', 20678.1884765625, 587.554630829708]",
-  "[6, 'Mud Lake', 631271.4892578125, 3223.0725725534585]",
-  "[7, 'Wainfleet Wetlands', 1854145.4177246094, 9802.458697022219]",
-  "[8, \"Morgan's Point\", 96036.53247070312, 1328.9338841799783]",
-  "[9, 'Long Beach', 568582.6716308594, 3256.429128834085]"
- ],
- "crd hits": [
-  {
-   "Name": "Mount Tolmie Park",
-   "Jurisdic": "District of Saanich",
-   "Type": "Municipal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "District of Saanich"
-  },
-  {
-   "Name": "Mount Douglas Park",
-   "Jurisdic": "District of Saanich",
-   "Type": "Municipal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "District of Saanich"
-  },
-  {
-   "Name": "Mount Douglas Park",
-   "Jurisdic": "District of Saanich",
-   "Type": "Municipal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "District of Saanich"
-  },
-  {
-   "Name": "Mount Douglas Park",
-   "Jurisdic": "District of Saanich",
-   "Type": "Municipal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "District of Saanich"
-  },
-  {
-   "Name": "Hatley Park National Historic Site",
-   "Jurisdic": "City of Colwood",
-   "Type": "Federal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "City of Colwood"
-  },
-  {
-   "Name": "Uplands Park",
-   "Jurisdic": "District of Oak Bay",
-   "Type": "Municipal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "District of Oak Bay"
-  },
-  {
-   "Name": "Beacon Hill Park",
-   "Jurisdic": "City of Victoria",
-   "Type": "Municipal Park",
-   "RegionalParkStatus": "NA",
-   "AdministrativeArea": "City of Victoria"
-  }
- ],
- "maris": {
-  "https://maris.mississippi.edu/HTML/Maps/RestMapServices.html": [
-   "https://www.maris.state.ms.us/server/rest/services/Image/DOQQ_Quads/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/Delta_Hillshade/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/Delta_Spring2019_TC/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/MDEM_2006_2ft/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/MSDelta_Spring19_CIR/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/NAIP2014_Fin/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/NAIP2018/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/NAIP_2018_CIR/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/SE_2015_Grey/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Image/SE_2015_Shaded/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/16thSections/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/1990BlockGroups/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/1990CDP/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/1990House/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/1990Senate/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/1990VTD/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/1990_BNA/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2000Congressional/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2000House/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2000VotingPrecincts/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2000_BNA/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2000_BlockGroups/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010BG_PopnHou/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Block_PopnHou/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Block_SexAgeRace/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Cities/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010County_PopnHou/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010PLace_PopnHou/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010PSD_PopnHou/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Tract_PopnHou/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010UrbanAreas/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_CDP/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_Congress/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_House/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_Senate/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_VTD/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/2012_VTD/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/AMTowers/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/AirCraftLndFacils/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/AmtrackStations/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/AreaCodes/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Basin/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/BldgFootp/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Blocks2000/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/BroadBandTransm/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Brownfields/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CCDists/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CDP2003/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CERCLA/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Casinos/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CellServcAreas/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CellTowers/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Cemeteries/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/ChancCourtDists/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CircuitCourtDists/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Cities2000/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CityHalls/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Communities/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CountyBrdrs/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CountyRoads10/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CountySupDists/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Courthouses/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/CreditUnions/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/DHLFacil/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/DOCSites/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/DamLines/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/DesigHwys/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Disch_Elim_Sites/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/ElecSubStat/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/FAA_Runways/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/FDICBanks/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/FEDEXFacils/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/FMTowers/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/FireStations/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/FloodHazard/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Forest_Hab/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Forest_Ind/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Geologic_Formations/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/HazMatRoutes/MapServer",
-   "https://www.maris.state.ms.us/server/rest/services/Vector/Historic_Forests/MapServer"
+ "ms test Wildlife Protection Overlay / Wildife_Protection_Overlay_": {
+  "fields": [
+   "Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm",
+   "State_Nm"
   ],
-  "https://www.maris.state.ms.us/": "<urlopen error [Errno -2] Name or service not known>",
-  "https://maris.mississippi.edu/": [],
-  "dir https://www.maris.state.ms.us/server/rest/services": {
-   "error": "<urlopen error [Errno -2] Name or service not known>"
+  "read": 17,
+  "gives": 0,
+  "activations": 0,
+  "parks": {}
+ },
+ "ms test Department of Defense Managed Land / Department of Defense Managed Land": {
+  "fields": [
+   "Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm",
+   "State_Nm"
+  ],
+  "read": 856,
+  "gives": 0,
+  "activations": 0,
+  "parks": {}
+ },
+ "ms test PAD GAP I & II: Federal Areas \"Managed for Biodiversity\" / PADI_Mgd_For_Biodiv": {
+  "fields": [
+   "Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm",
+   "State_Nm"
+  ],
+  "read": 12148,
+  "gives": 0,
+  "activations": 0,
+  "parks": {}
+ },
+ "ms test Habitat or Species management (PADUS) / Habitat_or_Species_management_(PADUS)": {
+  "fields": [
+   "Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm",
+   "State_Nm"
+  ],
+  "read": 1395,
+  "gives": 1,
+  "activations": 17,
+  "parks": {
+   "US-9849": [
+    "MS",
+    "deer island coastal",
+    17,
+    "Deer Island Coastal Preserve"
+   ]
   }
+ },
+ "ms test National park (PADUS) / National_park_(PADUS)": {
+  "fields": [
+   "Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm",
+   "State_Nm"
+  ],
+  "read": 70,
+  "gives": 0,
+  "activations": 0,
+  "parks": {}
+ },
+ "ms test PADUS_3_ManagerName_2_1_HERS / PADUS_3_ManagerName_21_ORWAID": {
+  "fields": [
+   "Own_Name",
+   "Mang_Name",
+   "Unit_Nm",
+   "Loc_Nm",
+   "State_Nm"
+  ],
+  "read": 23345,
+  "gives": 0,
+  "activations": 0,
+  "parks": {}
  }
 }
