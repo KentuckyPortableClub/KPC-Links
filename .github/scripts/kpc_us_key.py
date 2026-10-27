@@ -31,6 +31,7 @@ PAGE = int(os.environ.get('GEO_PAGE') or 500)
 CACHE = pathlib.Path(os.environ.get('GEO_CACHE') or 'cache/us')
 CMODE = (os.environ.get('GEO_CACHE_MODE') or 'off').strip().lower()
 CACHE_USED, CACHE_SAVED = [], []
+SHADOW = os.environ.get('SHADOW') == '1'
 NAME_JOIN = (os.environ.get('NAME_JOIN') or '1') != '0'   # Oct 24: the world key's kind-label rule, US version (needs the pin inside)
 
 
@@ -820,7 +821,9 @@ def run(st):
         for x in m: used.add(x[0])
         # SHADOW: what the shared scoring says, recorded only where it disagrees with the join above
         shadow = None
-        if not (ov.get('join') or any(str(x[3]).startswith('reviewed') for x in m)):        # a person's decision is never second-guessed
+        # Oct 27 (boundary review #10, HQ GO): the shared scoring ran in shadow since Oct 22 and never decided a join; it is OFF
+        # (SHADOW=1 turns it back on for a measuring run). The decision path is join_how() + the golden cases.
+        if SHADOW and not (ov.get('join') or any(str(x[3]).startswith('reviewed') for x in m)):        # a person's decision is never second-guessed
             try:
                 v, best, runner = score_park(name, typ, la, lo, recs, clusters)
                 ids_now = {str(x[0]) for x in m}
