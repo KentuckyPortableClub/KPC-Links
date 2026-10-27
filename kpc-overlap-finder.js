@@ -226,7 +226,7 @@
     cur.fit = b;
     /* Brandon Oct 27 6:03 PM ('would it be better with several overlaps to show them all'): open on the main one, and a button on the map
        flips to all of them and back */
-    var all = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { all.extend([p[1], p[0]]); }); }); cur.fitAll = all; cur.wide = false;
+    var all = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { all.extend([p[1], p[0]]); }); }); cur.fitAll = all; cur.wide = false; cur.pi = Math.max(0, cur.rings.findIndex(function (x) { return x.s === main; }));
     zoomBtn();
     if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); } }, 120); }
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
@@ -234,11 +234,21 @@
     loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
     draw();
   }
+  /* Brandon Oct 27 6:11 PM: 'add in the same button if it has several overlaps look at next section': ◀ 1 OF 3 ▶ steps through each
+     place / stretch (biggest first), 🔭 ALL shows every one. Taps on the bar never reach the map (it used to pop up the land card). */
+  function ringB(x) { var b = L.latLngBounds([]); x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); return b; }
   function zoomBtn() {
-    var bt = $('ovZoomAll'); if (!bt) { bt = document.createElement('button'); bt.type = 'button'; bt.id = 'ovZoomAll'; bt.className = 'ov-zall'; $('ovMap').parentNode.appendChild(bt);
-      bt.addEventListener('click', function (e) { e.preventDefault(); if (!cur || !map) return; cur.wide = !cur.wide; map.fitBounds((cur.wide ? cur.fitAll : cur.fit).pad(cur.wide ? 0.08 : 0.04), { maxZoom: 18 }); zoomBtn(); }); }
-    var n = cur ? cur.rings.length : 0; bt.hidden = n < 2;
-    bt.textContent = cur && cur.wide ? '🎯 BACK TO THE MAIN ONE' : '🔭 SEE ALL ' + n + (cur && cur.trail ? ' STRETCHES' : ' PLACES');
+    var bt = $('ovZoomAll');
+    if (!bt) { bt = document.createElement('div'); bt.id = 'ovZoomAll'; bt.className = 'ov-zall'; $('ovMap').parentNode.appendChild(bt);
+      if (window.L && L.DomEvent) { L.DomEvent.disableClickPropagation(bt); L.DomEvent.disableScrollPropagation(bt); }
+      ['click', 'pointerdown', 'mousedown', 'touchstart', 'dblclick'].forEach(function (ev) { bt.addEventListener(ev, function (e) { e.stopPropagation(); }); });
+      bt.addEventListener('click', function (e) { var b = e.target.closest('[data-z]'); if (!b || !cur || !map) return; e.preventDefault(); var n = cur.rings.length, z = b.dataset.z;
+        if (z === 'all') { cur.wide = !cur.wide; map.fitBounds((cur.wide ? cur.fitAll : ringB(cur.rings[cur.pi])).pad(cur.wide ? 0.08 : 0.04), { maxZoom: 18 }); }
+        else { cur.wide = false; cur.pi = (cur.pi + (z === 'next' ? 1 : -1) + n) % n; map.fitBounds(ringB(cur.rings[cur.pi]).pad(0.04), { maxZoom: 18 }); }
+        zoomBtn(); }); }
+    var n = cur ? cur.rings.length : 0; bt.hidden = n < 2; if (n < 2) return;
+    var w = cur.trail ? 'STRETCH' : 'PLACE';
+    bt.innerHTML = '<button type="button" data-z="prev" aria-label="Previous ' + w.toLowerCase() + '">◀</button><span>' + (cur.wide ? 'ALL ' + n + ' ' + w + 'ES'.slice(cur.trail ? 0 : 1) : w + ' ' + (cur.pi + 1) + ' OF ' + n) + '</span><button type="button" data-z="next" aria-label="Next ' + w.toLowerCase() + '">▶</button><button type="button" data-z="all">' + (cur.wide ? '🎯 ONE' : '🔭 ALL') + '</button>';
   }
   function openPlace(key, i) {
     if (!cur || cur.key !== key) openRow(key); else showTab('map');
