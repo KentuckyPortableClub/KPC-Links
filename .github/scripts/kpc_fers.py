@@ -164,7 +164,9 @@ def official_parks(PIN):
         # Daniel Boone NF: its KY file is the PROCLAMATION line (private land and towns inside). The Forest Service's own FEE
         # land comes from PAD-US instead (downloaded each run), so only real forest land counts.
         if 'US-4484' in PIN:
-            parks['US-4484'] = {'st': 'US-KY', 'ids': ['padus|Daniel Boone National Forest'], 'names': {'padus|Daniel Boone National Forest': 'Daniel Boone National Forest'}}
+            # Oct 27: the outer line (ky-dbnf.geojson) masked by Forest Service Basic Ownership = owned land INSIDE the forest (rule 1b);
+            # PAD-US's fee records missed whole districts (Redbird WMA, 24,000 acres of Forest Service land, never paired)
+            parks['US-4484'] = {'st': 'US-KY', 'ids': ['bdbnf|Daniel Boone National Forest'], 'names': {'bdbnf|Daniel Boone National Forest': 'Daniel Boone National Forest'}}
             skip['no outline'] -= 1
             OWNED['US-4484'] = 'usfs'   # ruling Oct 27: Daniel Boone = Forest Service-OWNED land only (Basic Ownership)
         skip.pop('Kentucky (own list)', None)
@@ -407,7 +409,7 @@ def saved_world(parks):
     return out
 
 
-KYF = {'bstate': 'ky-state-parks.geojson', 'bwma': 'ky-hunting-areas.geojson', 'bsnp': 'ky-nature-preserves.geojson', 'bsna': 'ky-natural-areas.geojson',
+KYF = {'bdbnf': 'ky-dbnf.geojson', 'bstate': 'ky-state-parks.geojson', 'bwma': 'ky-hunting-areas.geojson', 'bsnp': 'ky-nature-preserves.geojson', 'bsna': 'ky-natural-areas.geojson',
        'bnps': 'ky-nps.geojson', 'bwild': 'ky-wild-rivers.geojson', 'bwilder': 'ky-wilderness.geojson', 'bfws': 'ky-fws.geojson', 'bpad': 'ky-padus-parks.geojson'}
 KYIDX = {}
 def ky_geom(parks, refs):
@@ -447,7 +449,8 @@ def ky_geom(parks, refs):
                 if KYIDX[('padus', nm)]: gs += KYIDX[('padus', nm)]
                 else: bad.add(ref)
                 continue
-            polys = [pp for pp in KYIDX.get((src, nm), []) if pp and pp[0] and any(abs(q[0] - lo) < .6 and abs(q[1] - la) < .6 for q in pp[0][::max(1, len(pp[0]) // 20)])]
+            near = (lambda pp: True) if src == 'bdbnf' else (lambda pp: any(abs(q[0] - lo) < .6 and abs(q[1] - la) < .6 for q in pp[0][::max(1, len(pp[0]) // 20)]))   # the forest spans 3 degrees
+            polys = [pp for pp in KYIDX.get((src, nm), []) if pp and pp[0] and near(pp)]
             if polys: gs += polys
             else: bad.add(ref)
         if gs and ref not in bad: out[ref] = gs
@@ -674,14 +677,18 @@ def ownership_step(s, parks, PIN):
         here = {owner_of_text(' '.join(str(v) for k, v in a.items() if re.search(r'owner', k, re.I))) for a in recs} - {''}
     else:
         here = {owner_of_pad(a) for a in recs if a.get('Category') == 'Fee'}
-    if len(here) > 1: return 'not sure', 'the ownership map shows two owners at the spot: ' + ', '.join(sorted(here))
-    ground = next(iter(here), '')
-    if not ground and REGION == 'ky' and 'US-4484' in refs: ground = 'FED:USFS'   # the Daniel Boone mask = Forest Service-owned land
+    here -= {'JOINT'}   # PAD-US 'joint' records are mixed-owner corridors (Kentucky wild rivers): a designation, not an owner
+    if any(r in OWNED for r in refs):
+        # an agency-land park's mask IS the agency's own ownership map (rule B2: the agency beats PAD-US): the ground is its land
+        ground = 'FED:USFS'
+    else:
+        if len(here) > 1: return 'not sure', 'the ownership map shows two owners at the spot: ' + ', '.join(sorted(here))
+        ground = next(iter(here), '')
     bad, unk = [], []
     for r in refs:
         o = owners[r]
         if o == '': continue                                             # a designation layers on the ground's owner
-        if covered(r, recs, parks, PIN): continue                        # its own record is at the spot (a lease / agreement shows here)
+        if covered(r, recs, parks, PIN) and not any(x in OWNED for x in refs): continue   # its own record at the spot (a lease / agreement); not against the agency's own ownership map
         if o == '?': unk.append(r); continue
         if ground and o != ground: bad.append(f"{PIN.get(r, [r])[0]} is {o.split(':')[-1].lower()} land, the ground here is {ground.split(':')[-1].lower()}")
         if not ground and len(set(real.values())) > 1: bad.append('two owners side by side')
