@@ -1,0 +1,9 @@
+/* KPC Logger beta on the website: the app's screens minus what only the app can do (chat 3, Oct 26) */
+section.card[data-grp^="remote "],#scrRemote,[data-go="remote"],.updbar{display:none!important}
+.kw-site{display:inline-flex;align-items:center;gap:6px;margin-left:8px;padding:4px 10px;border-radius:999px;border:1px solid var(--gold,#d5a63a);color:var(--gold,#d5a63a);font:900 11px Arial,sans-serif;letter-spacing:1px;text-decoration:none;white-space:nowrap}
+.kw-beta{margin-left:6px;padding:2px 7px;border-radius:6px;background:var(--gold,#d5a63a);color:#1a1205;font:900 10px Arial,sans-serif;letter-spacing:1px;vertical-align:middle}
+.kw-web a{color:var(--gold,#d5a63a);font-weight:700}
+#stUpdNow{display:none!important}
+.kw-info{margin:14px 4px 4px;font-size:13px;line-height:1.5;opacity:.85}.kw-info a{color:var(--gold,#d5a63a);font-weight:700}
+.kw-web{margin:10px 0 0;font-size:13px;line-height:1.5;opacity:.85}
+@media(max-width:420px){.kw-site span{display:none}}
