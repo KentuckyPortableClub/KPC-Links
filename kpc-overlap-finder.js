@@ -133,7 +133,7 @@
     showTab('map'); if (!mkMap()) { $('ovSpot').innerHTML = '<p class="ov-note">The map could not load (no signal?). The list still works.</p>'; return; }
     cur = g; stopGps(); meas = []; lastIn = false; leftUntil = 0; if (pinM) { map.removeLayer(pinM); pinM = null; }
     cur.rings = patchRings(g); parks = g.refs.map(function (r, i) { return { ref: r, n: i + 1, c: COL[i], dash: DASH[i], on: true, fs: null }; });
-    spotPanel(); legend(); step = 0; clearTimeout(timer);
+    spotPanel(); legend(); mapKey(); step = 0; clearTimeout(timer);
     var b = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
     if (b.isValid()) map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false });   /* Brandon: 'start zoomed into the overlap' */
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
@@ -167,7 +167,7 @@
       gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fading ? 'ov-in-patch' : '' }).bindPopup(patchPop(x.s)));
     });
     parks.forEach(function (p, i) { if (i >= step || !p.on) return; var c = (p.fs && p.fs[0] && L.geoJSON(p.fs[0]).getBounds().getCenter()) || (cur.rings[0] && L.latLng(cur.rings[0].ring[0][1], cur.rings[0].ring[0][0]));
-      if (c) gAll.addLayer(L.marker(c, { icon: L.divIcon({ className: '', html: '<span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) }).bindPopup(parkPop(p))); });
+      if (c) gAll.addLayer(L.marker(c, { icon: L.divIcon({ className: '', html: '<span class="ov-plab" style="border-color:' + p.c + '"><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: [14, 14] }) }).bindPopup(parkPop(p))); });
     var pins = []; visiblePatches(cur).forEach(function (s) { [s.access_pin].concat(s.pins || []).forEach(function (a) { if (a && a.at && pins.length < 3 && !pins.some(function (q) { return q.at[0] === a.at[0] && q.at[1] === a.at[1]; })) pins.push(a); }); });
     pins.forEach(function (a) { gAll.addLayer(L.marker(a.at, { icon: L.divIcon({ className: '', html: '<span style="display:inline-grid;place-items:center;width:24px;height:24px;border-radius:5px;background:#1d4d7a;color:#fff;border:2px solid #fff;font:900 14px Arial">P</span>', iconSize: [24, 24], iconAnchor: [12, 12] }) })
       .bindPopup('<b>Closest spot to public access</b><br>' + esc(a.name || '') + ' (' + esc(a.from || '') + '), about ' + Math.round((a.walk_m || 0) * YD) + ' yards from it.<br><small>' + esc(a.note || '') + '</small><br><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + a.at[0] + ',' + a.at[1] + '">Directions (to the access, not to the overlap)</a><span class="ov-short">' + SHORT + '</span>')); });
@@ -181,6 +181,17 @@
     'Last checked ' + esc(s.checked || '') + (s._rev ? '' : '<br><b style="color:#a3271a">WAITING FOR REVIEW</b>') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
     var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p>';
+  }
+  /* Brandon Oct 27 2:26 PM ('show park number layer 1 and other park 2 … is the shading only the overlap?'): a key ON the map:
+     each park's number badge + park number + its line style, and what the shading means */
+  var keyCtl = null;
+  function mapKey() {
+    if (!map || !L.Control) return;
+    if (!keyCtl) { var K = L.Control.extend({ options: { position: 'bottomleft' }, onAdd: function () { var d = L.DomUtil.create('div', 'ov-mkey'); L.DomEvent.disableClickPropagation(d); return d; } }); keyCtl = new K(); keyCtl.addTo(map); }
+    var el = keyCtl.getContainer(); if (!el) return;
+    el.innerHTML = parks.map(function (p) { return '<div><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="26" height="8" aria-hidden="true"><path d="M1 4h24" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' (100-ft band)' : '') + '</div>'; }).join('') +
+      '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>' +
+      '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid #b8860b"></span><b>gold = where our maps suggest they may overlap</b></div>';
   }
   function legend() { $('ovLeg').innerHTML = parks.map(function (p, i) { return '<li><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="34" height="10" aria-hidden="true"><path d="M2 5h30" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><label><input type="checkbox" data-on="' + i + '"' + (p.on ? ' checked' : '') + '> <b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' <i>(line: 100-ft band)</i>' : '') + '</label></li>'; }).join(''); }
 
