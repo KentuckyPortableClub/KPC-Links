@@ -1699,6 +1699,62 @@ def ky_drift(parks, spots_boxes):
               'date': time.strftime('%Y-%m-%d'), 'off_over_10_yards': len(off), 'parks': sorted(rows, key=lambda r: -(r.get('p95_m') or 0))}, indent=1)
     notice('2-fer bot', f'Kentucky outline drift: {len(rows)} outlines measured, {len(off)} off by more than 10 yards (p95)')
 
+
+def dedupe_line_rows(spots):
+    """Oct 27 (chat 3, Pine Mountain State Trail x Jefferson NF WMA): the same stretch can come back twice (two tiles / two passes,
+    centres a few metres apart, the SAME shape). The second copy is marked 'dropped: the same stretch twice' and every main row's
+    'stretches' + 'len_m' are counted again without it."""
+    seen, n = {}, 0
+    for x in spots:
+        if x.get('kind') == 'area' or not x.get('shape'): continue
+        k = (tuple(x['refs']), x['kind'], tuple(tuple(q) for q in x['shape'][::max(1, len(x['shape']) // 20)]), x.get('len_m'))
+        if k in seen and not str(x.get('status', '')).startswith('dropped'):
+            x['status'] = 'dropped: the same stretch twice (copy of ' + seen[k] + ')'; n += 1
+        else: seen.setdefault(k, x['id'])
+    for m in spots:
+        if m.get('kind') == 'area' or not m.get('stretches'): continue
+        mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m['id']]
+        own = (m.get('len_main') or m.get('len_m') or 0) if not mem else None
+        m['stretches'] = 1 + len(mem)
+        if 'len_main' not in m: m['len_main'] = max(0, (m.get('len_m') or 0) - sum(x.get('len_m') or 0 for x in spots if str(x.get('status', '')).startswith(('merged into one row: ' + m['id'], 'dropped: the same stretch twice')) and tuple(x['refs']) == tuple(m['refs'])))
+        m['len_m'] = m['len_main'] + sum(x.get('len_m') or 0 for x in mem)
+    return n
+
+
+LINE_WORD = re.compile(r'\btrail\b|\btrace\b|scenic byway', re.I)
+def line_zone(x, G, PIN):
+    """Oct 27 (chat 3): the TRUE 2-fer ground of a trail stretch = the 100-ft band around the trail that is also inside the other
+    park (5 m in from its line, its owned land for an agency-land park) = 'zone' rings, + its acres and how wide it gets at most."""
+    if x.get('kind') != 'trail' or not x.get('shape'): return None
+    lref = next((r for r in x['refs'] if LINE_WORD.search((PIN.get(r) or [''])[0])), None)
+    oref = next((r for r in x['refs'] if r != lref and r in G), None)
+    if not lref or not oref: return None
+    b = x.get('box') or bbox_lines([x['shape']])
+    F = Frame(b, CELL, 60)
+    own = (dt(pmask(F, oref, G)) * CELL >= STATION_IN).astype(np.uint8)
+    z = (F.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
+    if not z.any(): return {'zone': [], 'zone_acres': 0, 'zone_wide_m': 0}
+    cs, _ = cv2.findContours(z, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    rings = []
+    for c in sorted(cs, key=cv2.contourArea, reverse=True)[:12]:
+        c = cv2.approxPolyDP(c, 1.0, True).reshape(-1, 2)
+        if len(c) >= 3: rings.append([F.ll(int(p[0]), int(p[1])) for p in c[:300]])
+    return {'zone': rings, 'zone_acres': round(float(z.sum()) * CELL * CELL / 4046.86, 2),
+            'zone_wide_m': round(float(dt(z).max()) * CELL * 2, 1)}
+
+
+def add_zones(files, G, PIN, today):
+    n = 0
+    for d in files.values():
+        dedupe_line_rows(d.get('spots', []))
+        for x in d.get('spots', []):
+            if x.get('kind') != 'trail' or str(x.get('status', '')).startswith('dropped') or late(): continue
+            try:
+                zz = line_zone(x, G, PIN)
+                if zz is not None: x.update(zz); x['zone_read'] = today; n += 1
+            except Exception as e: LOG.append(f"zone {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+    return n
+
 def file_of(st): return OUT / f'{st}.json'
 
 
@@ -1985,10 +2041,11 @@ def main():
 
     if PASS == 6:   # Oct 27 (HQ 5:36 PM): ONLY the live boundary lines around each area spot (Kentucky after its run; later runs do it in pass 5)
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
-        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
+        lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') in ('area', 'trail') and not str(x.get('status', '')).startswith('dropped')]
         refs = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids']})
         G, bad = ky_geom(parks, refs) if REGION == 'ky' else download(parks, refs, DET, PREC)
         counts['spots given their boundary lines'] = add_lines(files, G, today)
+        counts['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
         if REGION == 'ky':
             try: ky_drift(parks, [(x.get('id'), x.get('box')) for x in lw if 'US-4484' in x['refs'] and x.get('box')])
             except Exception as e: LOG.append(f'drift: {str(e)[:80]}')  # noqa: BLE001
@@ -2030,6 +2087,11 @@ def main():
             g2, _ = ky_geom(parks, more) if REGION == 'ky' else download(parks, more, DET, PREC)
             G.update(g2)
         n['spots given their boundary lines'] = add_lines(files, G, today)
+        tw = sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
+        if tw:
+            g3, _ = ky_geom(parks, tw) if REGION == 'ky' else download(parks, tw, DET, PREC)
+            G.update(g3)
+        n['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT
