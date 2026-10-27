@@ -195,19 +195,36 @@
     var c = map.getCenter(), box = [[c.lat - 3, c.lng - 4], [c.lat - 3, c.lng + 4], [c.lat + 3, c.lng + 4], [c.lat + 3, c.lng - 4]];
     return L.polygon([box].concat(rings.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); })), { stroke: false, fillColor: '#000', fillOpacity: veilOp(), interactive: false, fillRule: 'evenodd' });
   }
+  /* Brandon Oct 27 4:00 PM ('one park shaded light one color and the other park another … overlap is clear … I want the overlap to really stand out … let me see some examples'):
+     LOOK 1 = grey outside + gold patch (before); 2 = each park tinted its own colour, the overlap CLEAR with a bold white + black dashed border;
+     3 = each park tinted, the overlap bright gold with a white glowing border; 4 = grey outside, the overlap clear with a moving gold/black border. */
+  var look = +(new URLSearchParams(location.search).get('look') || store('kpcOvLook') || 1) || 1;
+  function tint(p, f, cls, act) {
+    var B = window.KPCB; (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) {
+      var ll = poly.map(function (r) { return r.map(function (q) { return [q[1], q[0]]; }); });
+      if (look === 2) cur.rings.forEach(function (x) { var c = x.s.center ? [x.s.center[1], x.s.center[0]] : x.ring[0], hit = poly[0] && (pip(c[0], c[1], poly[0]) || x.ring.some(function (q) { return pip(q[0], q[1], poly[0]); })); if (hit) ll.push(x.ring.map(function (q) { return [q[1], q[0]]; })); });   /* the overlap punched out of the piece it sits in: it stays clear */
+      gAll.addLayer(L.polygon(ll, { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: 0.3, fillRule: 'evenodd', className: cls, interactive: act }).bindPopup(parkPop(p)));
+    });
+  }
   function draw() {
     if (!map || !cur) return; gAll.clearLayers();
     var act = !mode;   /* in pin / measure mode the shapes let the tap through to the map */
-    if (shade && step > 0) parks.forEach(function (p, i) { if (!p.on || i >= step) return; var v = veil(p); if (v) gAll.addLayer(v); });
+    if (shade && step > 0 && (look === 1 || look === 4)) parks.forEach(function (p, i) { if (!p.on || i >= step) return; var v = veil(p); if (v) gAll.addLayer(v); });
     parks.forEach(function (p, i) {
       if (!p.on || i >= step) return;
       var cls = fading && i === step - 1 ? 'ov-in' : '';
-      (p.fs || []).forEach(function (f) { gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p))); });
+      (p.fs || []).forEach(function (f) {
+        if (look === 2 || look === 3) { tint(p, f, cls, act); return; }
+        gAll.addLayer(L.geoJSON(f, { style: { color: p.c, weight: 3, dashArray: p.dash, fillColor: p.c, fillOpacity: shade ? 0 : 0.08, className: cls }, interactive: act }).bindPopup(parkPop(p))); });
       if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls, interactive: act }).bindPopup(parkPop(p)));
         gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
     });
     if (step > parks.length) cur.rings.forEach(function (x) {
-      gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fading ? 'ov-in-patch' : '', interactive: act }).bindPopup(patchPop(x.s)));
+      var ll = x.ring.map(function (q) { return [q[1], q[0]]; }), fc = fading ? ' ov-in-patch' : '';
+      if (look === 1) gAll.addLayer(L.polygon(ll, { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fc, interactive: act }).bindPopup(patchPop(x.s)));
+      else if (look === 2) { gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 8, opacity: 0.95, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#111', weight: 3, dashArray: '10 6', fill: true, fillOpacity: 0, className: fc, interactive: act }).bindPopup(patchPop(x.s))); }
+      else if (look === 3) gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 5, fillColor: '#ffd34d', fillOpacity: 0.85, className: 'ov-glow' + fc, interactive: act }).bindPopup(patchPop(x.s)));
+      else { gAll.addLayer(L.polygon(ll, { color: '#111', weight: 7, opacity: 0.85, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#ffd34d', weight: 4, dashArray: '14 10', fill: true, fillOpacity: 0, className: 'ov-march' + fc, interactive: act }).bindPopup(patchPop(x.s))); }
     });
     parks.forEach(function (p, i) { if (i >= step || !p.on) return; var c = (p.fs && p.fs[0] && L.geoJSON(p.fs[0]).getBounds().getCenter()) || (cur.rings[0] && L.latLng(cur.rings[0].ring[0][1], cur.rings[0].ring[0][0]));
       if (c) gAll.addLayer(L.marker(c, { interactive: !mode, icon: L.divIcon({ className: '', html: '<span class="ov-plab" style="border-color:' + p.c + '"><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span>' + esc(p.ref) + '</span>', iconSize: null, iconAnchor: [14, 14] }) }).bindPopup(parkPop(p))); });
@@ -250,8 +267,8 @@
     var el = keyCtl.getContainer(); if (!el) return;
     var ks = store('kpcOvKey'), open = ks ? ks !== '0' : innerWidth > 700;   /* phones start with the key folded */
     el.innerHTML = '<button type="button" class="ov-kh" data-key>' + (open ? '▾ KEY (HIDE)' : '▸ KEY') + '</button>' + (open ? '<div class="ov-kb">' : '<div class="ov-kb" hidden>') + parks.map(function (p) { return '<div><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="26" height="8" aria-hidden="true"><path d="M1 4h24" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' (100-ft band)' : '') + '</div>'; }).join('') +
-      (shade ? '<div><span class="ov-sw" style="background:#000;opacity:.5"></span><b>dark grey = NOT park land</b>: private property or another owner, even inside a park\'s outer line. Don\'t set up there.</div><div><span class="ov-sw" style="background:#000;opacity:.25"></span>light grey = land of one park only</div><div>👆 Tap any spot on the map to see whose land it is.</div>' : '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>') +
-      '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid #b8860b"></span><b>gold = inside both parks: where our maps suggest they may overlap</b></div></div>';
+      (look === 2 || look === 3 ? parks.map(function (p) { return '<div><span class="ov-sw" style="background:' + p.c + ';opacity:.45"></span>' + esc(p.ref) + ' land</div>'; }).join('') + '<div>no colour = NOT park land (private property or another owner), even inside a park\'s outer line</div><div>👆 Tap any spot to see whose land it is.</div>' : (shade ? '<div><span class="ov-sw" style="background:#000;opacity:.5"></span><b>dark grey = NOT park land</b>: private property or another owner, even inside a park\'s outer line. Don\'t set up there.</div><div><span class="ov-sw" style="background:#000;opacity:.25"></span>light grey = land of one park only</div><div>👆 Tap any spot on the map to see whose land it is.</div>' : '<div><span class="ov-sw" style="background:' + (parks[0] ? parks[0].c : '#999') + ';opacity:.3"></span>light tint in a park\'s colour = inside that park</div>')) +
+      (look === 2 ? '<div><span class="ov-sw" style="background:#fff;border:3px dashed #111"></span><b>clear with a black-and-white border = inside both parks: where our maps suggest they may overlap</b></div>' : look === 4 ? '<div><span class="ov-sw" style="background:#fff;border:3px dashed #d5a63a;outline:2px solid #111"></span><b>clear with a moving gold border = inside both parks: where our maps suggest they may overlap</b></div>' : '<div><span class="ov-sw" style="background:#ffd34d;border:2px solid ' + (look === 3 ? '#fff' : '#b8860b') + '"></span><b>gold = inside both parks: where our maps suggest they may overlap</b></div>') + '</div>';
     var kb = el.querySelector('[data-key]'); if (kb) kb.onclick = function (e) { e.preventDefault(); store('kpcOvKey', open ? '0' : '1'); mapKey(); };
   }
   function legend() { $('ovLeg').innerHTML = parks.map(function (p, i) { return '<li><span class="ov-num" style="background:' + p.c + '">' + p.n + '</span><svg width="34" height="10" aria-hidden="true"><path d="M2 5h30" stroke="' + p.c + '" stroke-width="4" stroke-dasharray="' + p.dash + '"/></svg><label><input type="checkbox" data-on="' + i + '"' + (p.on ? ' checked' : '') + '> <b>' + esc(p.ref) + '</b> ' + esc(nm(cur, p.ref)) + (p.line ? ' <i>(line: 100-ft band)</i>' : '') + '</label></li>'; }).join(''); }
@@ -302,7 +319,7 @@
 
   /* ---------- tabs, tools, wiring ---------- */
   function showTab(t) { var m = t === 'map'; $('ovMapTab').hidden = !m; $('ovListTab').hidden = m; [].forEach.call(document.querySelectorAll('#ov [data-tab]'), function (x) { var on = x.dataset.tab === t; x.classList.toggle('on', on); x.setAttribute('aria-selected', String(on)); }); if (m && map) setTimeout(function () { map.invalidateSize(); }, 50); }
-  function tools() { [].forEach.call(document.querySelectorAll('#ovTools [data-t]'), function (b) { var t = b.dataset.t; if (/^(street|sat|topo)$/.test(t)) b.classList.toggle('on', t === layerName); if (t === 'pin' || t === 'measure') b.classList.toggle('on', mode === t); if (t === 'gps') b.classList.toggle('on', watch != null); if (t === 'shade') b.classList.toggle('on', shade); }); }
+  function tools() { [].forEach.call(document.querySelectorAll('#ovTools [data-t]'), function (b) { var t = b.dataset.t; if (/^(street|sat|topo)$/.test(t)) b.classList.toggle('on', t === layerName); if (t === 'pin' || t === 'measure') b.classList.toggle('on', mode === t); if (t === 'gps') b.classList.toggle('on', watch != null); if (t === 'shade') b.classList.toggle('on', shade); if (/^look/.test(t)) b.classList.toggle('on', t === 'look' + look); }); }
   document.addEventListener('click', function (e) {
     var pl = e.target.closest('#ov [data-place]');
     if (pl) { e.preventDefault(); var kk = pl.dataset.place.split('|'); openPlace(kk[0], +kk[1]); return; }
@@ -322,6 +339,7 @@
     if (t === 'replay') { clearTimeout(timer); animate(); }
     else if (t === 'all') { clearTimeout(timer); step = parks.length + 1; draw(); }
     else if (t === 'shade') { shade = !shade; draw(); mapKey(); }
+    else if (/^look[1-4]$/.test(t)) { look = +t.slice(4); store('kpcOvLook', String(look)); draw(); mapKey(); }
     else if (t === 'gps') { if (watch != null) stopGps(); else startGps(); }
     else if (t === 'pin' || t === 'measure') { mode = mode === t ? '' : t; meas = []; draw(); toast(mode === 'pin' ? 'Tap the map to drop a pin.' : mode === 'measure' ? 'Tap two places on the map.' : 'Done.'); }
     else if (t === 'sv') { var c = cur.best.access_pin && cur.best.access_pin.at || cur.best.center; window.open('https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + c[0] + ',' + c[1], '_blank', 'noopener'); }

@@ -74,6 +74,8 @@
 #ov .ov-places{margin:8px 0}#ov .ov-places summary{cursor:pointer;font:900 12px Arial;letter-spacing:1.2px;color:#f0c96b}#ov .ov-places ol{margin:6px 0 0;padding-left:20px}#ov .ov-places li{margin:6px 0;font-size:13.5px}#ov .ov-places .ov-note{margin:2px 0 0}#ov button.ov-pl{min-height:28px;padding:2px 10px;font-size:10.5px}
 #ov .ov-more{margin:8px 0 0}#ov .ov-more summary{cursor:pointer;font:900 12px Arial;letter-spacing:1.2px;color:#f0c96b;padding:4px 0}
 #ov .ov-kh{min-height:28px!important;padding:2px 10px!important;margin:0 0 4px;font-size:10.5px!important;color:#5a3a00!important;border-color:#b08a3a!important;background:#fff8e6!important}#ov .ov-kb[hidden]{display:none}
+#ov .ov-looks{display:inline-flex;align-items:center;gap:4px}#ov .ov-looks b{font:900 11px Arial;color:#f0c96b;letter-spacing:1px;margin:0 2px 0 4px}#ov .ov-looks button{min-width:36px;justify-content:center}
+#ov path.ov-glow{filter:drop-shadow(0 0 6px #fff) drop-shadow(0 0 10px rgba(255,211,77,.9))}@keyframes ovMarch{to{stroke-dashoffset:-48}}#ov path.ov-march{animation:ovMarch 1.4s linear infinite}
 @keyframes ovIn{from{opacity:0}to{opacity:1}}#ov path.ov-in{animation:ovIn 1.6s ease-out}#ov path.ov-in-patch{animation:ovIn 2.2s ease-out}
 </style>
 @@HEADER@@
@@ -111,7 +113,7 @@
     <div class="ov-mapw"><div id="ovMap" role="application" aria-label="Overlap map"></div></div>
     <div class="ov-tools" id="ovTools">
      <button type="button" data-t="replay">▶ REPLAY</button><button type="button" data-t="all">⚡ SHOW ALL AT ONCE</button>
-     <button type="button" data-t="shade" class="on">🌫 SHADE NON-PARK LAND</button>
+     <button type="button" data-t="shade" class="on">🌫 SHADE NON-PARK LAND</button><span class="ov-looks"><b>LOOK:</b><button type="button" data-t="look1">1</button><button type="button" data-t="look2">2</button><button type="button" data-t="look3">3</button><button type="button" data-t="look4">4</button></span>
      <button type="button" data-t="gps">📍 GPS WALK-IN</button><button type="button" data-t="pin">📌 DROP A PIN</button><button type="button" data-t="measure">📏 MEASURE</button>
      <button type="button" data-t="sv">STREET VIEW</button><button type="button" data-t="share">🔗 SHARE</button><button type="button" data-t="gpx">⬇ GPX</button><button type="button" data-t="kml">⬇ KML</button>
      <button type="button" data-t="save">💾 SAVE FOR OFFLINE</button><a class="b" id="ovReport" href="#" target="_blank" rel="noopener">⚑ REPORT A MISTAKE</a>
@@ -145,4 +147,4 @@
 <script src="kpc-bounds.js?v=20261027p"></script>
 <script src="kpc-padus-layer.js?v=20261019g"></script>
 <script src="kpc-map-tools.js?v=20261018u"></script>
-<script src="kpc-overlap-finder.js?v=20261027m"></script>
+<script src="kpc-overlap-finder.js?v=20261027n"></script>
