@@ -455,6 +455,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Pioneer Weapons Wildlife Management Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10158+US-11181",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Pioneer Weapons Wildlife Management Area + Zilpo Campground Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10158+US-10171+US-4484",
@@ -835,6 +845,56 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Pine Mountain State Trail + Bad Branch State Nature Preserve",
+   "place": "US-KY",
+   "ref": "US-10102+US-7966",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pine Mountain State Trail + George Washington & Jefferson National Forest",
+   "place": "US-KY",
+   "ref": "US-10102+US-4526",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pine Mountain State Trail + Breaks Interstate State Park",
+   "place": "US-KY",
+   "ref": "US-10102+US-3781",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pine Mountain State Trail + Jefferson National Forest Wildlife Management Area",
+   "place": "US-KY",
+   "ref": "US-10102+US-10139",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pine Mountain State Trail + Bad Branch National Wild and Scenic River",
+   "place": "US-KY",
+   "ref": "US-10102+US-10112",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Fort Donelson National Battlefield + Fort Heiman National Battlefield",
    "place": "US-KY",
    "ref": "US-0703+US-3790",
@@ -934,10 +994,10 @@
  ],
  "last_run": {
   "counts": {
-   "possible overlap": 27
+   "possible overlap": 11
   },
   "date": "2026-10-27",
-  "new": 93,
+  "new": 99,
   "run": "2-fer bot pass all (ky)"
  }
 }
