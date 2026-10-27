@@ -657,6 +657,10 @@ def ownership_step(s, parks, PIN):
     (a park's own land is a different owner than the ground at the spot) = drop; the data cannot tell = NOT SURE."""
     refs = s['refs']
     owners = {r: park_owner(r, parks) for r in refs}
+    # Brandon Oct 27 5:21 AM (rule 14 + boundary B-G2): private land by agreement or lease counts only for ITS OWN park number,
+    # never toward any park around it: a park on private land never makes a 2-fer
+    priv = [r for r, o in owners.items() if o == 'PRIVATE']
+    if priv: return 'drop', 'private land (leased / open by agreement) counts only for its own park number: ' + ', '.join(PIN.get(r, [r])[0] for r in priv)
     real = {r: o for r, o in owners.items() if o not in ('', '?')}
     if len(set(real.values())) <= 1 and '?' not in owners.values() and not any(r in OWNED for r in refs):
         return 'ok', 'one owner (or designations on it): layered'
