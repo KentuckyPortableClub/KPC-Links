@@ -585,6 +585,40 @@ def score_park(name, typ, la, lo, recs, clusters):
     return KM.choose(cands)
 
 
+def split_places(m, recs, la, lo, ref, P):
+    """(joined records to keep, records moved to 'check', far places kept [names]): see run(). Places = records whose boxes
+    touch (0.02 degree)."""
+    gs = {_oid(a): a for a in recs}
+    items = [(x, (gs.get(str(x[0])) or {}).get('_bb')) for x in m]
+    if any(b is None for _, b in items): return m, [], []
+    par = list(range(len(items)))
+    def f(i):
+        while par[i] != i: par[i] = par[par[i]]; i = par[i]
+        return i
+    for i in range(len(items)):
+        for j in range(i + 1, len(items)):
+            if not KM._apart(items[i][1], items[j][1], .02): par[f(i)] = f(j)
+    groups = {}
+    for i, (x, b) in enumerate(items): groups.setdefault(f(i), []).append((x, b))
+    if len(groups) < 2: return m, [], []
+    def box(g): return [min(b[0] for _, b in g), min(b[1] for _, b in g), max(b[2] for _, b in g), max(b[3] for _, b in g)]
+    def size(bb): return max(bb[2] - bb[0], bb[3] - bb[1])
+    def gap(b1, b2): return max(b1[0] - b2[2], b2[0] - b1[2], b1[1] - b2[3], b2[1] - b1[3], 0)
+    def pin_d(bb): return max(bb[0] - lo, lo - bb[2], bb[1] - la, la - bb[3], 0)
+    G = [(g, box(g)) for g in groups.values()]
+    holds = [k for k, (g, bb) in enumerate(G) if any(inside(la, lo, (gs.get(str(x[0])) or {}).get('_g')) for x, _ in g)]
+    home = holds[0] if holds else min(range(len(G)), key=lambda k: pin_d(G[k][1]))
+    keep, moved, far = [], [], []
+    for k, (g, bb) in enumerate(G):
+        d = gap(bb, G[home][1])
+        if k == home or d <= max(.1, 2 * max(size(bb), size(G[home][1]))): keep += [x for x, _ in g]; continue
+        other = next((r2 for r2, v in P.items() if r2 != ref and len(v) > 6 and v[5] is not None and any(same_name(v[0], x[1]) for x, _ in g)
+                      and any(inside(v[5], v[6], (gs.get(str(x[0])) or {}).get('_g')) for x, _ in g)), None)
+        if other: moved += [[x[0], x[1], x[2], f'same name, another place ~{round(d * 100)} km away that holds the pin of {other}: not joined (a person checks)'] for x, _ in g]
+        else: keep += [x for x, _ in g]; far.append(f'{g[0][0][1]} (~{round(d * 100)} km from the rest)')
+    return keep, moved, far
+
+
 def cache_file(st): return CACHE / f'US-{st}.json.gz'
 
 
@@ -747,6 +781,15 @@ def run(st):
                     if hold and not any(_tags(name) and _tags(x[1]) and not (_tags(name) & _tags(x[1])) for x in hold):   # a memorial is never the refuge
                         m = [[x[0], x[1], x[2], 'same name (POTA writes the kind into the name) + pin inside'] for x in hold]
                         c = [x for x in c if x not in hold]; site = []
+        # Oct 27 (Fable's boundary review #4, HQ GO): two different places with the same name and kind within reach of the pin
+        # must not become ONE park. Joined records are grouped into places (pieces that link up are one place). A far place
+        # (further than twice its own size and over ~10 km) that holds ANOTHER POTA park's pin with the same name belongs to
+        # that park: it goes to 'check'. Any other far place stays joined (a park's sections can lie 40 km apart: James M.
+        # Robb - Colorado River SP) but is listed for a person ('far_place', observations log). A person's join is never split.
+        far_place = []
+        if len(m) > 1 and la is not None and not any(str(x[3]).startswith('reviewed') for x in m):
+            m, far_places, far_place = split_places(m, recs, la, lo, ref, P)
+            c += far_places
         for x in m: used.add(x[0])
         # SHADOW: what the shared scoring says, recorded only where it disagrees with the join above
         shadow = None
@@ -796,8 +839,10 @@ def run(st):
                         parks[ref]['swap'] = [[a['OBJECTID'], a.get('Unit_Nm') or a.get('Loc_Nm') or '',
                                                round(a.get('GIS_Acres') or 0)] for a in swap[:2]]
                 if site: parks[ref]['a'] = site
+                if far_place: parks[ref]['far_place'] = far_place
                 continue
         parks[ref] = {'n': name, 't': typ, 'm': sorted(m, key=lambda x: -x[2]), 'c': c}
+        if far_place: parks[ref]['far_place'] = far_place
         if shadow: parks[ref]['shadow'] = shadow
         if site: parks[ref]['a'] = site
     # Oct 25 (round 5 leftovers, HQ): a hand note shown on the park cards (e.g. private land inside a legal boundary)
