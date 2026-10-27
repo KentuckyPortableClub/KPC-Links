@@ -29,6 +29,8 @@ jobs:
       - uses: actions/checkout@v5
         with:
           persist-credentials: true
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh || true
       - name: Pick the states that have not been checked yet
         id: pick
         continue-on-error: true

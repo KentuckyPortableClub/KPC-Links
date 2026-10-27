@@ -7,7 +7,7 @@ def gh(*a, inp=None):
     r = subprocess.run(['gh', *a], input=inp, text=True, capture_output=True)
     if r.returncode: print('gh error:', r.stderr.strip())
     return r.stdout
-URL = 'https://github.com/KentuckyPortableClub/KPC-Links/blob/main/data/us-key/review/US-%s.md'
+URL = 'https://github.com/' + __import__('os').environ.get('GITHUB_REPOSITORY', 'KentuckyPortableClub/KPC-Links') + '/blob/main/data/us-key/review/US-%s.md'
 rows = sorted(idx.items(), key=lambda kv: -((kv[1]['check'] + kv[1]['none']) / max(1, kv[1]['parks'])))
 tot = {k: sum(v[k] for v in idx.values()) for k in ('parks', 'matched', 'check', 'none')}
 L = ['Every state but Kentucky (Kentucky has its own list, issue label ky-answer-key). Built by `.github/scripts/kpc_us_key.py` from USGS PAD-US federal + state land and POTA.',

@@ -1,0 +1,13 @@
+# Step B (storage plan Stage 2): paths whose ONE TRUE COPY lives in KentuckyPortableClub/KPC-Data (their bots write there).
+# kpc_overlay.sh lays these over a KPC-Links checkout so the bots that stay here read fresh copies. One path a line.
+# Add a path the day its bot moves (and take it off KPC-Data's kpc-copy-from-links.yml list the same day).
+data/alerts
+data/leaders
+data/parkinfo
+data/wwff
+data/sota
+data/names
+data/sota-land
+data/trails
+data/access
+data/status/kpc_state_links.json

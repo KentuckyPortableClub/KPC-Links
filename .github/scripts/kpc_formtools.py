@@ -115,7 +115,11 @@ def ref_name(ref):
         if reached: name = (j or {}).get('name') or (j or {}).get('summitName') or ''
     elif re.match(r'^[A-Z0-9]+FF-\d+$', r):                       # WWFF: KFF-1271
         try:
-            d = json.load(open(f"data/wwff/{r.split('-')[0]}.json"))
+            fn = f"data/wwff/{r.split('-')[0]}.json"
+            if os.path.exists(fn): d = json.load(open(fn))
+            else:   # Step B (Oct 27): data/wwff lives in KPC-Data now
+                d, _ = getj('https://raw.githubusercontent.com/KentuckyPortableClub/KPC-Data/main/' + fn)
+                d = d or []
             name = next((x[1] for x in d if x[0] == r), '')
         except Exception: name = None
     else:                                                         # POTA: US-1271

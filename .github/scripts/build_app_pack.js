@@ -2,7 +2,7 @@
    Kentucky: every POTA park with its pins, access points and its OUTLINES from the same ky-*.geojson files Park Control uses,
    matched by the website's own kpc-bounds.js (run here in Node), each outline labelled official / approximate (OpenStreetMap outline, unofficial).
    Every other state: parks + pins + kind from data/parkinfo (no outlines yet: the key points at PAD-US tracts that the app can
-   fetch when it has signal). Run from the repo root:  node .github/scripts/build_app_pack.js        (~1 min) */
+   fetch when it has signal). Run from the repo root:  bash .github/scripts/kpc_overlay.sh && node .github/scripts/build_app_pack.js   (~1 min; the overlay lays in KPC-Data's parkinfo + access) */
 const fs = require('fs'), path = require('path');
 const ROOT = process.cwd(), OUT = path.join(ROOT, 'app', 'packs');
 fs.mkdirSync(OUT, { recursive: true });
@@ -52,9 +52,11 @@ const sz = o => Buffer.byteLength(JSON.stringify(o));
   console.log('KY', parks.length, 'parks,', nOut, 'with outlines (' + nApprox + ' approx),', (sz(ky) / 1e6).toFixed(2), 'MB');
   /* ---- every other state: parks + pins ---- */
   const dir = path.join(ROOT, 'data', 'parkinfo');
+  /* Step B (Oct 27): data/parkinfo + data/access live in KPC-Data now: run  bash .github/scripts/kpc_overlay.sh  first (it lays them in) */
+  if (!fs.existsSync(dir)) { console.log('data/parkinfo missing: run  bash .github/scripts/kpc_overlay.sh  first (Step B: it lives in KPC-Data). Kentucky pack done, other states skipped.'); }
   /* Oct 25 storage plan (chat 2): parkinfo files no longer carry 'updated'; the change date lives in data/status/kpc_state_links.json {changed:{'data/parkinfo/US-XX.json': 'YYYY-MM-DD'}} */
   let CHG = {}; try { CHG = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'status', 'kpc_state_links.json'), 'utf8')).changed || {}; } catch (e) {}
-  for (const f of fs.readdirSync(dir).filter(x => /^US-[A-Z]{2}\.json$/.test(x)).sort()) {
+  for (const f of (fs.existsSync(dir) ? fs.readdirSync(dir) : []).filter(x => /^US-[A-Z]{2}\.json$/.test(x)).sort()) {
     const j = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')), st = j.state;
     if (st === 'KY' || !j.parks) continue;
     /* Oct 25 (HQ hand-off from chat 2): the state agencies' own parking / entrance / gate / trailhead points (data/access/US-XX.json,

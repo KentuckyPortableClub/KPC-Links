@@ -7,7 +7,7 @@ def gh(*a, inp=None):
     r = subprocess.run(['gh', *a], input=inp, text=True, capture_output=True)
     if r.returncode: print('gh error:', r.stderr.strip())
     return r.stdout
-URL = 'https://github.com/KentuckyPortableClub/KPC-Links/blob/main/data/ca-key/review/CA-%s.md'
+URL = 'https://github.com/' + __import__('os').environ.get('GITHUB_REPOSITORY', 'KentuckyPortableClub/KPC-Links') + '/blob/main/data/ca-key/review/CA-%s.md'
 rows = sorted(idx.items(), key=lambda kv: -((kv[1]['check'] + kv[1]['none']) / max(1, kv[1]['parks'])))
 tot = {k: sum(v[k] for v in idx.values()) for k in ('parks', 'matched', 'check', 'none')}
 L = ['Canada, every province and territory. Built by `.github/scripts/kpc_ca_key.py` from CPCAD (Environment and Climate Change Canada) and POTA. Provincial maps (Québec, Ontario…) come in a later step.',

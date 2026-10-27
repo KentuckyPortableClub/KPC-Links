@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh || true
       - name: Compare reference lists (and take retired parks off the site)
         env:
           GH_TOKEN: ${{ github.token }}

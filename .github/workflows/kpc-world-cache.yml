@@ -54,6 +54,8 @@ jobs:
         cc: ${{ fromJSON(needs.prepare.outputs.list) }}
     steps:
       - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh || true
       - name: Download and save ${{ matrix.cc }}
         continue-on-error: true
         env:

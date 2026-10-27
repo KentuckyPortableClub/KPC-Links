@@ -21,6 +21,8 @@ jobs:
     timeout-minutes: 240
     steps:
       - uses: actions/checkout@v5
+      - name: Read the moved data from KPC-Data (Step B, read only)
+        run: bash .github/scripts/kpc_overlay.sh || true
       - name: Build the Canada answer key
         env:
           GEO_CACHE_MODE: ${{ inputs.saved && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
