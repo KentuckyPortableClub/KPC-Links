@@ -1,22 +1,20 @@
 # IA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **172 of 181** parks joined to official land (same name + same kind of place). **1** to check by hand, **4** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **174 of 181** parks joined to official land (same name + same kind of place). **1** to check by hand, **3** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
-- **US-9334** Teal Basins State Waterfowl Management Area (State Waterfowl Management Area) → TEAL BASINS WPA (~151 ac, similar name); Teal Basins WPA (~151 ac, similar name)
+- **US-9334** Teal Basins State Waterfowl Management Area (State Waterfowl Management Area) → TEAL BASINS WPA (~151 ac, similar name); Teal Basins WPA (~151 ac, similar name); Cerro Gordo County Waterfowl Production Area (~2,719 ac, the POTA pin is inside it (different name)); Cerro Gordo County Waterfowl Production Area (~2,719 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-0270 Iowa Wetland Management District (Wetland Management District) → on Union Slough National Wildlife Refuge (~2,498 ac); Union Slough National Wildlife Refuge (~2,834 ac)
 - US-11305 Wapsipinicon River Water State Trail (State Trail) → on Gambril Access (~5 ac); Gambril Access (~5 ac)
 - US-11877 La Soya Wildlife Area (Wildlife Area) → on Lasoya Wildlife Management Area (~78 ac); LASOYA WILDLIFE AREA (~78 ac)
-- US-2329 Wild Cat Den State Park (State Park) → on Wildcat Den State Park (~424 ac); Wildcat Den State Park (~424 ac)
 
 ## Nothing found in PAD-US
 
 - US-0367 Northern Tallgrass Prairie National Wildlife Refuge (National Wildlife Refuge)
-- US-2282 Blackhawk State Park (State Park)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4573 Mormon Pioneer National Historic Trail (National Historic Trail)
 

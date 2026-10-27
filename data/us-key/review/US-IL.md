@@ -1,6 +1,6 @@
 # IL: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **203 of 219** parks joined to official land (same name + same kind of place). **3** to check by hand, **8** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **204 of 219** parks joined to official land (same name + same kind of place). **3** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,14 +13,13 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-10661 Oakwood Bottoms USFS Recreation Area (USFS Recreation Area) → on Shawnee National Forest (~163,899 ac); Shawnee National Forest (~273,706 ac)
 - US-10788 Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → on Miscellaneous Property (~49 ac); Miscellaneous Property (~104 ac)
 - US-12640 Rauchfuss Hill State Recreation Area (State Recreation Area) → on Golconda Marina State Recreation Area (~537 ac)
-- US-13298 North Point Marina State Recreation Area (State Recreation Area) → on Adeline Jay Geo-Karis Illinois Beach State Park (~3,075 ac)
+- US-13298 North Point Marina State Recreation Area (State Recreation Area) → on Adeline Jay Geo-Karis Illinois Beach State Park (~3,075 ac); Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac)
 - US-4118 Copperhead Hollow State Wildlife Area (State Wildlife Area) → on Pere Marquette State Park (~10,033 ac)
 
 ## Nothing found in PAD-US
 
 - US-0990 Donnelley/DePue State Park (State Park)
 - US-10391 Kishwaukee River State Fish and Wildlife Area (State Fish and Wildlife Area)
-- US-12617 Postville Courthouse State Historic Site (State Historic Site)
 - US-3791 Trail of Tears National Historic Trail (National Historic Trail)
 - US-4105 Washington County State Recreation Area (State Recreation Area)
 - US-4236 Upper Mississippi River National Wildlife Refuge (National Wildlife Refuge)
