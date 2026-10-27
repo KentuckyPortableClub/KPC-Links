@@ -98,11 +98,18 @@
       /* Brandon Oct 27 2:48 PM: 'see more after the last checked date to reveal the other info' */
       '<details class="ov-more"><summary>▸ SEE MORE</summary>' + (ps.length > 1 ? placesHtml(g, ps) : '') +
       (s.note ? '<p class="ov-note">ℹ️ ' + esc(s.note) + '</p>' : '') +
-      '<p class="ov-note">Maps used: ' + esc(Object.keys(s.map_dates || {}).map(function (r) { return r + ' ' + s.map_dates[r]; }).join('; ') || 'see the official maps') + '</p>' +
+      '<p class="ov-note">Maps used: ' + mapsUsed(s) + '</p>' +
       '<div class="acts">' + (s.maps || []).map(function (m) { return '<a class="b" target="_blank" rel="noopener" href="' + esc(m[1]) + '">OFFICIAL MAP: ' + esc(m[0]) + '</a>'; }).join('') + '</div></details>' +
       '</div>';   /* Brandon Oct 27 3:04 PM: 'No need for a warning on every card' (one SHORT notice heads the list; popups + exports keep theirs) */
   }
   function numKey(g, k) { var n = g.refs.map(function (r) { return +(/(\d+)$/.exec(r) || [0, 0])[1]; }).sort(function (x, y) { return x - y; }); return n[k || 0] || 0; }
+  /* Brandon Oct 27 4:30 PM ('I still see mentions of bots … Maps used: … read live from the agency …; official line (trails bot)'): plain words */
+  function mapsUsed(s) {
+    var md = s.map_dates || {}, k = Object.keys(md); if (!k.length) return 'the official maps (buttons below)';
+    return k.map(function (r) { var v = String(md[r] || ''), d = /(\d{4}-\d{2}-\d{2})/.exec(v);
+      var w = /official line|trail/i.test(v) ? 'the official trail line' : /agency|official/i.test(v) ? 'the agency\'s official map' : 'the official map';
+      return esc(r) + ': ' + w + (d ? ' (' + niceDate(d[1]) + ')' : ''); }).join('; ');
+  }
   function niceDate(d) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1] : esc(d || ''); }
   /* plain wording per park (the data's 'why' is a working note); a park without one gets the general sentence */
   var MISS_PLAIN = {
@@ -163,7 +170,7 @@
     var b = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
     /* the map was hidden in the LIST tab (size 0), so Leaflet fitted to nothing and showed the whole world: size it first, fit again once shown */
     cur.fit = b;
-    if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.25), { maxZoom: 17, animate: false }); } }, 120); }
+    if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); } }, 120); }
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
     $('ovReport').href = reportUrl(g);
     loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
@@ -173,7 +180,7 @@
     if (!cur || cur.key !== key) openRow(key); else showTab('map');
     var s = visiblePatches(cur)[i]; if (!s || !map) return;
     var b = L.latLngBounds([]); [s].concat(s._kids || []).forEach(function (x) { (x.shape || []).forEach(function (q) { b.extend([q[1], q[0]]); }); });
-    setTimeout(function () { if (b.isValid()) map.fitBounds(b.pad(0.4), { maxZoom: 17 }); }, cur.key === key ? 0 : 400);
+    setTimeout(function () { if (b.isValid()) map.fitBounds(b.pad(0.08), { maxZoom: 18 }); }, cur.key === key ? 0 : 400);
     scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' });
   }
   function loadOutlines(g) {
