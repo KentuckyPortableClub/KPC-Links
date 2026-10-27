@@ -224,11 +224,21 @@
     if (!b.isValid()) cur.rings.forEach(function (x) { x.ring.forEach(function (p) { b.extend([p[1], p[0]]); }); });
     /* the map was hidden in the LIST tab (size 0), so Leaflet fitted to nothing and showed the whole world: size it first, fit again once shown */
     cur.fit = b;
+    /* Brandon Oct 27 6:03 PM ('would it be better with several overlaps to show them all'): open on the main one, and a button on the map
+       flips to all of them and back */
+    var all = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { all.extend([p[1], p[0]]); }); }); cur.fitAll = all; cur.wide = false;
+    zoomBtn();
     if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); } }, 120); }
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
     $('ovReport').href = reportUrl(g);
     loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
     draw();
+  }
+  function zoomBtn() {
+    var bt = $('ovZoomAll'); if (!bt) { bt = document.createElement('button'); bt.type = 'button'; bt.id = 'ovZoomAll'; bt.className = 'ov-zall'; $('ovMap').parentNode.appendChild(bt);
+      bt.addEventListener('click', function (e) { e.preventDefault(); if (!cur || !map) return; cur.wide = !cur.wide; map.fitBounds((cur.wide ? cur.fitAll : cur.fit).pad(cur.wide ? 0.08 : 0.04), { maxZoom: 18 }); zoomBtn(); }); }
+    var n = cur ? cur.rings.length : 0; bt.hidden = n < 2;
+    bt.textContent = cur && cur.wide ? '🎯 BACK TO THE MAIN ONE' : '🔭 SEE ALL ' + n + (cur && cur.trail ? ' STRETCHES' : ' PLACES');
   }
   function openPlace(key, i) {
     if (!cur || cur.key !== key) openRow(key); else showTab('map');
