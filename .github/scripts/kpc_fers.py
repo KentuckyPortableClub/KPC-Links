@@ -55,9 +55,9 @@ T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
 ONLY = set((os.environ.get('STATES') or '').upper().replace(',', ' ').split())
 REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + Canada, 'world' = the other countries (Brandon Oct 26: 'do the world')
-CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0}[PASS]   # 4 = access pins only, for candidates that have none
-DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002}[PASS]
-PREC = {1: 5, 2: 5, 3: 6, 4: 6}[PASS]
+CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0, 5: 5.0}[PASS]   # 4 = access pins only, for candidates that have none; 5 = re-check water + tidy the rows
+DET = {1: 0.0005, 2: 0.0002, 3: 0.00002, 4: 0.00002, 5: 0.00002}[PASS]
+PREC = {1: 5, 2: 5, 3: 6, 4: 6, 5: 6}[PASS]
 # Oct 26 2:11 PM (Brandon, RULE CHANGES): the overlap must hold a spot at least 50 YARDS across (POTA only says the
 # overlap must ENTIRELY contain the activator + station; 50 yd still clears map error); 50-100 yd = 'small overlap'.
 SHRINK = 22.86            # 25 yards in from every edge = a spot 50 yards across
@@ -728,7 +728,7 @@ def nhd_water(box, rivers_only=False):
                 out += NHDC[k]
         return out
     except Exception as e:  # noqa: BLE001
-        LOG.append(f'NHD water: {str(e)[:80]}'); return []
+        LOG.append(f'NHD water: {str(e)[:80]}'); return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
 
 
 def pad_use(a, ref=None):
@@ -1151,7 +1151,7 @@ def line_spots(lref, ls, oref, other, other_is_line, box, kind):
             # from its line. Pass 1 has no water areas: a river gets RIVER_PAD extra as a screen; passes 2-3 measure exactly.
             wd = None
             if kind == 'river' and PASS >= 2 and str(lref).startswith('US-'):
-                wm = F.area(nhd_water(F.bounds(), rivers_only=True))
+                wm = F.area(nhd_water(F.bounds(), rivers_only=True) or [])
                 if wm.any(): wd = dt(wm) * CELL      # inside the water: distance to the bank
             if other_is_line: ok = F.lines(other, 2 * ZONE); okd = None
             else:
@@ -1496,7 +1496,9 @@ def land_check(s, G):
     except Exception as e: LOG.append(f'closed areas: {str(e)[:60]}'); closed = np.zeros_like(ov)  # noqa: BLE001
     open_ = ov & (1 - closed)
     if not (dt(open_) * cell >= need).any(): return 'closed' if closed.any() else 'ok'
-    water = F.area(nhd_water(F.bounds()))
+    wg = nhd_water(F.bounds())
+    if wg is None: return 'not checked'
+    water = F.area(wg)
     if not water.any(): return 'ok'
     return 'ok' if (dt(open_ & (1 - water)) * cell >= need).any() else 'water'
 
@@ -1518,7 +1520,9 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['checked'] = today
     s['map_dates'] = {r: MAPDATE.get(r) or ('saved copy' if r in saved_only else 'official line (trails bot)' if r in LN else 'Kentucky official file' if REGION == 'ky' else 'saved copy') for r in refs}
     s['pins_inside'] = {r: pin_inside(r, PIN, G, LN) for r in refs}   # information only: pins never count (rule 6)
-    if any(r in saved_only for r in refs): s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
+    if any(r in saved_only for r in refs):
+        s['fresh'] = 'saved copy only for ' + ', '.join(r for r in refs if r in saved_only)
+        s['members_line'] = 'saved outline, not read live today'   # chat 8 KY note 4
     notes = sorted({n for r in refs for n in ACC.get(r, ())} | {"check the agency's closures and seasons before you go"})   # pre-flight fix 14
     s['notes'] = notes
     for k in ('list', 'ownership'): s.pop(k, None)
@@ -1539,6 +1543,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         except Exception as e: lc = 'ok'; LOG.append(f"land check {s['id']}: {str(e)[:60]}")  # noqa: BLE001
         if lc == 'water': s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; return
         if lc == 'closed': s['status'] = 'dropped: only inside an area closed to the public (no entry)'; return
+        if lc == 'not checked': s['status'] = 'not sure: water not checked (the USGS water map did not answer): run pass 5'; s['names'] = {r: PIN[r][0] for r in refs}; return
     if s['kind'] == 'area' and refs[0].startswith('CA-') and not CA_WATER:
         # Oct 27 (Fable #9, pre-flight 6): no Canadian water map read yet = never guess that the patch is land
         s['status'] = 'not sure: water not checked (no Canadian water map read yet)'; s['names'] = {r: PIN[r][0] for r in refs}; return
@@ -1620,6 +1625,41 @@ def how_checked(s, parks, PIN):
     s['how_checked'] = '; '.join(bits + ['the spot itself is Forest Service-owned land']) if bits else 'the spot is Forest Service-owned land'
 
 
+def tidy_rows(spots, PIN, today):
+    """Chat 8's Kentucky final look (Oct 27 ~2 PM): (1) one AREA pair with several separate patches (a wild river corridor x
+    Daniel Boone: 6 rows) = ONE row with up to 3 pins, like the trail rows (KR-1); (5) a 3-fer (or more) and the pair rows that
+    lie on its patch = ONE patch: the pairs fold into the n-fer row; (2) 'same land' rows carry the checked date and both map
+    links like every other row."""
+    live = lambda x: str(x.get('status', '')).startswith(('candidate', 'very tight'))
+    # (5) n-fers first: a pair row whose box touches an n-fer row of the same parks is that patch
+    nf = [x for x in spots if live(x) and len(x['refs']) > 2 and x.get('kind') == 'area']
+    for n in nf:
+        for x in spots:
+            if x is n or not live(x) or len(x['refs']) != 2 or not set(x['refs']) <= set(n['refs']): continue
+            if inter(sbox(x), sbox(n), 0.0005):
+                x['status'] = 'merged into one row: ' + n['id'] + ' (the same patch as the ' + str(len(n['refs'])) + '-fer)'
+                n.setdefault('pairs_here', []).append('+'.join(x['refs']))
+    # (1) one row per area pair
+    by = {}
+    for x in spots:
+        if x.get('kind') == 'area' and live(x) and len(x['refs']) == 2: by.setdefault(tuple(x['refs']), []).append(x)
+    for pair, ss in by.items():
+        if len(ss) < 2: continue
+        ss.sort(key=lambda x: (-(x.get('wide_m') or 0), -(x.get('acres') or 0)))
+        main = ss[0]
+        pins = [x.get('access_pin') for x in ss if x.get('access_pin') and str(x['access_pin'].get('from', '')).split(' ')[0] != 'none']
+        pins.sort(key=lambda q: (q.get('from') != 'road', q.get('walk_m') or 1e9))
+        main['pins'] = pins[:3]; main['patches'] = len(ss); main['acres_all'] = round(sum(x.get('acres') or 0 for x in ss), 1)
+        xs = [b for x in ss for b in (x.get('box') or [])]
+        if xs: main['box'] = [min(xs[0::4]), min(xs[1::4]), max(xs[2::4]), max(xs[3::4])]
+        for x in ss[1:]: x['status'] = 'merged into one row: ' + main['id']
+    # (2) same land rows
+    for x in spots:
+        if x.get('kind') == 'same land':
+            x.setdefault('checked', today)
+            x['maps'] = [[r, map_link(r, PIN)] for r in x['refs']]
+
+
 def one_row_per_line_pair(spots, st_of, G, LN):
     """KR-1 (Brandon Oct 27 8:10 AM): a trail or river line with a park = ONE row per pair, up to 3 pins nearest a road first;
     the other stretches are folded into it (status 'merged into …', never shown on their own)."""
@@ -1681,7 +1721,33 @@ def main():
             try: old[f.stem] = json.load(open(f))
             except Exception: pass  # noqa: BLE001
 
-    if PASS == 4:   # access pins for candidates that have none yet (Oct 26: added after pass 3 had run)
+    if PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
+        files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
+        want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith('US-') and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
+        cand = [x for d in files.values() for x in d.get('spots', []) if want(x)]
+        refs = sorted({r for x in cand for r in x['refs'] if r in parks and parks[r]['ids']})
+        if REGION == 'ky': G, bad = ky_geom(parks, refs)
+        else: G, bad = download(parks, refs, DET, PREC)
+        n = {'checked': 0, 'water only': 0, 'still not checked': 0}
+        for x in cand:
+            if late(): break
+            if any(r not in G for r in x['refs']): continue
+            try: lc = land_check(x, G)
+            except Exception as e: lc = 'not checked'; LOG.append(f"water {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+            n['checked'] += 1
+            if lc == 'water': x['status'] = 'water only: boat or kayak'; x['list'] = '🚤 Water only: boat or kayak'; n['water only'] += 1
+            elif lc == 'not checked': x['status'] = 'not sure: water not checked (the USGS water map did not answer): run pass 5'; n['still not checked'] += 1
+            elif str(x['status']).startswith('not sure: water not checked'):
+                x['status'] = 'candidate' if not x.get('fresh') else 'candidate (saved outline only)'
+                if (x.get('wide_m') or 0) < TIGHT_M: x['status'] = VERY_TIGHT; x['list'] = 'Very tight (members only)'
+            x['water_checked'] = today
+        for st, d in files.items():
+            tidy_rows(d.get('spots', []), PIN, today)
+            d['pass5'] = today; d['about'] = ABOUT
+            d['spots'] = slim(d.get('spots', []))
+            save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
+        counts.update(n)
+    elif PASS == 4:   # access pins for candidates that have none yet (Oct 26: added after pass 3 had run)
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         cand = [s for d in files.values() for s in d.get('spots', []) if str(s.get('status', '')).startswith('candidate') and not s.get('access_pin')]
         refs = sorted({r for s in cand for r in s['refs'] if r in parks and parks[r]['ids']})
@@ -1822,7 +1888,7 @@ def main():
                         s['passes'][2] = 0; s['status'] = 'waiting for pass 3'; continue
                     evict(sbox(s))
                     decide(s, parks, G, LN, PIN, today, saved_only, st_of)
-            if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN)
+            if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today)
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
