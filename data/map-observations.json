@@ -85,11 +85,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Clifty Wilderness Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-3801+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Beaver Creek Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-3794+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Beaver Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-3794+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -130,6 +150,16 @@
    "ref": "US-3791+US-3823",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Trail of Tears National Historic Trail + Livingston County Wildlife Management Area",
+   "place": "US-KY",
+   "ref": "US-3791+US-3823",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -195,6 +225,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Sinking Creek State Natural Area",
+   "place": "US-KY",
+   "ref": "US-11181+US-7970",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Sheltowee Trace National Recreation Trail + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-11181+US-4484",
@@ -205,11 +245,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-11181+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Sheltowee Trace National Recreation Trail + Clifty Wilderness Area",
    "place": "US-KY",
    "ref": "US-11181+US-3801",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Sheltowee Trace National Recreation Trail + Clifty Wilderness Area",
+   "place": "US-KY",
+   "ref": "US-11181+US-3801",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -245,11 +305,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Zilpo Campground Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10171+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Twin Knobs Campground Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10170+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Twin Knobs Campground Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10170+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -270,6 +350,16 @@
    "ref": "US-10168+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Sunny Brook Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10168+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -315,6 +405,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Rockcastle River Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10160+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Redbird Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10159+US-4484",
@@ -325,11 +425,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Redbird Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10159+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Pioneer Weapons Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10158+US-4484",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pioneer Weapons Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10158+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -365,11 +485,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Mill Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10146+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Mill Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
    "place": "US-KY",
    "ref": "US-10146+US-11181",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Mill Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10146+US-11181",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -395,6 +535,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Jefferson National Forest Wildlife Management Area + George Washington & Jefferson National Forest",
+   "place": "US-KY",
+   "ref": "US-10139+US-4526",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Hoskins Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10138+US-4484",
@@ -415,6 +565,26 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Hoskins Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10138+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Hoskins Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10138+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Cane Creek Wildlife Management Area + Daniel Boone National Forest",
    "place": "US-KY",
    "ref": "US-10121+US-4484",
@@ -425,11 +595,31 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Cane Creek Wildlife Management Area + Daniel Boone National Forest",
+   "place": "US-KY",
+   "ref": "US-10121+US-4484",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Cane Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
    "place": "US-KY",
    "ref": "US-10121+US-11181",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Cane Creek Wildlife Management Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-10121+US-11181",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -645,6 +835,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Fort Donelson National Battlefield + Fort Heiman National Battlefield",
+   "place": "US-KY",
+   "ref": "US-0703+US-3790",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "US-0703 + US-10140",
    "place": "US-KY",
    "ref": "US-0703+US-10140",
@@ -665,6 +865,16 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Big South Fork National Recreation Area + Sheltowee Trace National Recreation Trail",
+   "place": "US-KY",
+   "ref": "US-0686+US-11181",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Big South Fork National Recreation Area + Big South Fork National Wild and Scenic River",
    "place": "US-KY",
    "ref": "US-0686+US-10107",
@@ -680,6 +890,16 @@
    "ref": "US-0608+US-4572",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Ohio River Islands National Wildlife Refuge + Lewis and Clark National Historic Trail",
+   "place": "US-KY",
+   "ref": "US-0608+US-4572",
+   "run": "2-fer bot pass all (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -714,10 +934,10 @@
  ],
  "last_run": {
   "counts": {
-   "possible overlap": 114
+   "possible overlap": 27
   },
   "date": "2026-10-27",
-  "new": 71,
-  "run": "2-fer bot pass 3 (ky)"
+  "new": 93,
+  "run": "2-fer bot pass all (ky)"
  }
 }

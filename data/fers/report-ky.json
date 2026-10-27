@@ -20,7 +20,7 @@
   "with official lines": 10
  },
  "pass2": {
-  "agree with the pass before": 147,
+  "agree with the pass before": 148,
   "cell_m": 10.0,
   "date": "2026-10-27",
   "left out": {
@@ -29,17 +29,17 @@
    "no pin": 0,
    "pin well outside": 0
   },
-  "new here only (not counted)": 63,
+  "new here only (not counted)": 81,
   "official parks": 198,
   "pairs tested": 52,
   "parks whose outline could not be read": 0,
-  "parks with a saved copy only (no fresh download possible)": 47,
+  "parks with a saved copy only (no fresh download possible)": 12,
   "pass": 2,
   "problems": [],
   "with official lines": 10
  },
  "pass3": {
-  "agree with the pass before": 139,
+  "agree with the pass before": 137,
   "cell_m": 5.0,
   "date": "2026-10-27",
   "left out": {
@@ -48,13 +48,37 @@
    "no pin": 0,
    "pin well outside": 0
   },
-  "new here only (not counted)": 57,
+  "new here only (not counted)": 80,
   "official parks": 198,
   "pairs tested": 52,
   "parks whose outline could not be read": 0,
-  "parks with a saved copy only (no fresh download possible)": 47,
+  "parks with a saved copy only (no fresh download possible)": 12,
   "pass": 3,
-  "problems": [],
+  "problems": [
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 502: Bad Gateway",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out",
+   "NHD water: HTTP Error 504: Gateway Time-out"
+  ],
   "with official lines": 10
  },
  "pass4": {
@@ -76,15 +100,15 @@
  },
  "per state": {
   "US-KY": {
-   "candidates": 6,
-   "candidates (saved outline only)": 98,
+   "candidates": 27,
+   "candidates (saved outline only)": 18,
    "lines": 79,
    "n-fers": 5,
-   "not sure": 7,
+   "not sure": 6,
    "pass1": 165,
-   "pass2": 149,
+   "pass2": 150,
    "spots": 165,
-   "very tight": 3,
+   "very tight": 4,
    "water only": 0
   }
  }
