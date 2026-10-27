@@ -231,7 +231,8 @@ def trail_lines():
         c = g.get('coordinates') or []
         ls = c if g.get('type') == 'MultiLineString' else ([c] if g.get('type') == 'LineString' else [])
         ls = [l for l in ls if len(l) > 1]
-        if ls: out[x['ref']] = {'lines': ls, 'kind': 'river' if x.get('kind') == 'WSR' or re.search(r'river', str(x.get('type')), re.I) else 'trail'}
+        if ls: out[x['ref']] = {'lines': ls, 'kind': 'river' if x.get('kind') == 'WSR' or re.search(r'river', str(x.get('type')), re.I) else 'trail',
+                                'by': x.get('by') or '', 'type': x.get('kind') or x.get('type') or ''}
     return out
 
 
@@ -412,6 +413,36 @@ def saved_world(parks):
 KYF = {'bdbnf': 'ky-dbnf.geojson', 'bstate': 'ky-state-parks.geojson', 'bwma': 'ky-hunting-areas.geojson', 'bsnp': 'ky-nature-preserves.geojson', 'bsna': 'ky-natural-areas.geojson',
        'bnps': 'ky-nps.geojson', 'bwild': 'ky-wild-rivers.geojson', 'bwilder': 'ky-wilderness.geojson', 'bfws': 'ky-fws.geojson', 'bpad': 'ky-padus-parks.geojson'}
 KYIDX = {}
+# Oct 27 8:10 AM (HQ, chat 8 re-check fix 5): passes 2-3 read Kentucky's outlines FRESH from the agencies' live layers (the same
+# ones Map Rep reads), so a row is no longer 'saved outline only'. A tract whose live read fails keeps the file copy (flagged).
+KYGIS = 'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/'
+KYLIVE = {'bwma': (KYGIS + 'Ky_Public_Hunting_Areas_WGS84WM/MapServer/1/query', 'AREANAME'),
+          'bstate': (KYGIS + 'Ky_State_Parks_Features_WGS84WM/MapServer/8/query', 'PUBLIC_NAM'),
+          'bsnp': (KYGIS + 'Ky_KNP_State_Nature_Preserves_WGS84WM/MapServer/0/query', 'MANAME'),
+          'bsna': (KYGIS + 'Ky_KNP_Natural_Areas_WGS84WM/MapServer/0/query', 'MANAME'),
+          'bnps': ('https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/2/query', 'UNIT_NAME'),
+          'bfws': (FWS, 'ORGNAME'),
+          'bwilder': ('https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'WILDERNESSNAME')}
+FRESHKY = {}   # ref -> {'live', 'file'}: where its tracts came from this run
+KYFRESH = {}   # (src, name) -> groups read live this run (or [] when the live read failed)
+
+
+def ky_live(src, nm):
+    k = (src, nm)
+    if k in KYFRESH: return KYFRESH[k]
+    url, fld = KYLIVE[src]
+    gs = []
+    try:
+        j = get(url, {'where': f"UPPER({fld}) = '{nm.upper().replace(chr(39), chr(39) * 2)}'", 'outFields': fld, 'returnGeometry': 'true', 'outSR': 4326,
+                      'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'})
+        for ft in j.get('features') or []:
+            g = esri_rings(ft.get('geometry'))
+            if g: gs.append(g)
+    except Exception as e: LOG.append(f'Kentucky live {src} {nm[:30]}: {str(e)[:50]}')  # noqa: BLE001
+    KYFRESH[k] = gs
+    return gs
+
+
 def ky_geom(parks, refs):
     """Kentucky: the official files the website draws (ky-*.geojson), each joined tract = every feature of that NAME near the
     pin, one group per polygon (holes stay holes)."""
@@ -449,6 +480,13 @@ def ky_geom(parks, refs):
                 if KYIDX[('padus', nm)]: gs += KYIDX[('padus', nm)]
                 else: bad.add(ref)
                 continue
+            if PASS >= 2 and src in KYLIVE:
+                live = ky_live(src, nm)
+                if live:
+                    gs += live; FRESHKY.setdefault(ref, set()).add('live'); continue
+                FRESHKY.setdefault(ref, set()).add('file')
+            elif src != 'bdbnf': FRESHKY.setdefault(ref, set()).add('file')
+            else: FRESHKY.setdefault(ref, set()).add('live')   # its land = the live Forest Service ownership map
             near = (lambda pp: True) if src == 'bdbnf' else (lambda pp: any(abs(q[0] - lo) < .6 and abs(q[1] - la) < .6 for q in pp[0][::max(1, len(pp[0]) // 20)]))   # the forest spans 3 degrees
             polys = [pp for pp in KYIDX.get((src, nm), []) if pp and pp[0] and near(pp)]
             if polys: gs += polys
@@ -1298,8 +1336,89 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     s['access'] = nearest_access(s, st_of)
     try: s['access_pin'] = access_pin(s, G, LN, st_of)
     except Exception as e: LOG.append(f"pin {s['id']}: {str(e)[:60]}")  # noqa: BLE001
-    s['maps'] = [[r, PIN[r][3]] for r in refs]
+    s['maps'] = [[r, map_link(r, PIN)] for r in refs]
     s['names'] = {r: PIN[r][0] for r in refs}
+    line_rows(s, LN)
+    how_checked(s, parks, PIN)
+
+
+MAPFIX = {'US-0703': 'https://www.nps.gov/fodo/planyourvisit/maps.htm'}   # Oct 27 (chat 8 re-check): the file had a POTA page
+WEB = {}
+KYOFF = {}
+
+
+def map_link(r, PIN):
+    """The official map / page for a park: a fixed one, then parkinfo-web.json's checked map, then the park's own page;
+    never a POTA page (not an agency map)."""
+    if r in MAPFIX: return MAPFIX[r]
+    if not KYOFF:
+        try: KYOFF.update({x['c']: x.get('off') for x in json.load(open('kpc-ky-data.json'))['parks'] if x.get('off')})
+        except Exception: pass  # noqa: BLE001
+        KYOFF['_'] = ''
+    if KYOFF.get(r) and str(KYOFF[r]).startswith('http') and 'pota.app' not in KYOFF[r]: return KYOFF[r]   # Kentucky's hand-checked official map
+    if not WEB:
+        try: WEB.update(json.load(open('data/parkinfo-web.json'))['parks'])
+        except Exception: WEB['_'] = {}  # noqa: BLE001
+    w = WEB.get(r) or {}
+    ok = lambda u: u and str(u).startswith('http') and 'pota.app' not in str(u)
+    if ok(w.get('map')) and (w.get('map_check') or {}).get('map', 'ok') == 'ok' and not w.get('map_hold'): return w['map']
+    if ok(PIN[r][3]): return PIN[r][3]
+    if ok(w.get('web')): return w['web']
+    return ''
+
+
+LDATE = {}
+
+
+def line_rows(s, LN):
+    """Chat 8 fix 3: every line row says which line was used and its date; national historic trail lines are approximate."""
+    if s['kind'] == 'area': return
+    if not LDATE:
+        for f in pathlib.Path('data/status').glob('*.json'):
+            try: LDATE.update({k: v for k, v in (json.load(open(f)).get('changed') or {}).items() if k.startswith('data/trails/')})
+            except Exception: pass  # noqa: BLE001
+        LDATE['_'] = ''
+    src = {}
+    for r in s['refs']:
+        if r in LN:
+            nht = LN[r].get('type') in ('NHT',) or re.search(r'historic trail', str(LN[r].get('by')) + ' ' + str(s.get('names', {}).get(r, '')), re.I)
+            src[r] = {'line': f"data/trails/{r}.json", 'by': LN[r].get('by') or 'official layer (trails bot)', 'date': LDATE.get(f'data/trails/{r}.json') or 'not recorded',
+                      **({'note': 'approximate line (national historic trail, about 1:100,000)'} if nht else {})}
+    s['line_source'] = src
+    if len(src) > 1 and all('note' in v for v in src.values()): s['note'] = 'both trail lines are approximate'
+
+
+def how_checked(s, parks, PIN):
+    """Chat 8 fix 4 + KR-4: the owner shown is the owner of the land AT THE SPOT (inside the WMA), never the land around it."""
+    refs = s['refs']
+    if REGION != 'ky' or 'US-4484' not in refs: return
+    bits = []
+    for r in refs:
+        if r == 'US-4484': continue
+        o = park_owner(r, parks)
+        if r in KY_FS_MANAGED: bits.append(f"{PIN[r][0]}: owned by the U.S. Forest Service, managed by KDFWR (KDFWR's own page)")
+        elif o == '' and any(str(i).startswith('bwma|') for i in parks[r]['ids']): bits.append(f"{PIN[r][0]}: owner not published by KDFWR")
+    s['owner_here'] = 'U.S. Forest Service (Forest Service ownership map, Basic Ownership, 2015)'
+    s['how_checked'] = '; '.join(bits + ['the spot itself is Forest Service-owned land']) if bits else 'the spot is Forest Service-owned land'
+
+
+def one_row_per_line_pair(spots, st_of, G, LN):
+    """KR-1 (Brandon Oct 27 8:10 AM): a trail or river line with a park = ONE row per pair, up to 3 pins nearest a road first;
+    the other stretches are folded into it (status 'merged into …', never shown on their own)."""
+    by = {}
+    for s in spots:
+        if s['kind'] != 'area' and str(s.get('status', '')).startswith('candidate'): by.setdefault(tuple(s['refs']), []).append(s)
+    for pair, ss in by.items():
+        if len(ss) < 2: continue
+        ss.sort(key=lambda x: -(x.get('len_m') or 0))
+        main = ss[0]
+        pins = [x.get('access_pin') for x in ss if x.get('access_pin') and x['access_pin'].get('from') != 'none']
+        pins.sort(key=lambda p: (p.get('from') != 'road', p.get('walk_m') or 1e9))
+        main['pins'] = pins[:3]
+        main['stretches'] = len(ss); main['len_m'] = sum(x.get('len_m') or 0 for x in ss)
+        xs = [b for x in ss for b in (x.get('box') or [])]
+        if xs: main['box'] = [min(xs[0::4]), min(xs[1::4]), max(xs[2::4]), max(xs[3::4])]
+        for x in ss[1:]: x['status'] = 'merged into one row: ' + main['id']
 
 
 def ca_owners(parks):
@@ -1417,7 +1536,7 @@ def main():
                 sp = {'refs': sorted([a, b]), 'kind': 'same land', 'center': [round(sum(ys) / len(ys), 6), round(sum(xs) / len(xs), 6)],
                       'box': [round(min(xs), 5), round(min(ys), 5), round(max(xs), 5), round(max(ys), 5)],
                       'shape': [[round(q[0], 6), round(q[1], 6)] for q in ring[::max(1, len(ring) // 80)]],
-                      'passes': [1, 1, 1], 'status': 'candidate (same land, two park numbers)', 'found': today,
+                      'passes': [1, 1, 1], 'status': 'candidate', 'label': 'Same land, two park numbers', 'found': today,   # ruling Oct 27 8:10 AM: shown, labelled plainly
                       'note': f"both park numbers are joined to the same official outline ({x['name']}); POTA lists them separately: check POTA's current list",
                       'maps': [[r, PIN[r][3]] for r in (a, b)], 'names': {r: PIN[r][0] for r in (a, b)}}
                 sp['id'] = key_of(sp) + '@%.3f,%.3f' % tuple(sp['center'])
@@ -1428,12 +1547,16 @@ def main():
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
-        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners', 'very tight')))
+        todo = lambda s: s['passes'][PASS - 2] == 1 and not s['passes'][PASS - 1] and not str(s.get('status', '')).startswith(f'dropped in pass {PASS}') and not (PASS == 3 and str(s.get('status', '')).startswith(('candidate', 'dropped: ', 'not sure', 'water only', 'check: two owners', 'very tight', 'merged into')))
         prev = [s for d in files.values() for s in d.get('spots', []) if todo(s)]
         refs = sorted({r for s in prev for r in s['refs'] if r in parks})
         notice('2-fer bot', f'pass {PASS}: {len(prev)} spots from pass {PASS - 1}, {len(refs)} parks to download fresh')
         if REGION == 'ky':   # Kentucky's official files are the only copy (no agency download by id): saved copy, flagged
-            G, bad = ky_geom(parks, [r for r in refs if parks[r]['ids']]); saved_only = set(G)
+            G, bad = ky_geom(parks, [r for r in refs if parks[r]['ids']])
+            # fresh = every tract read live (Daniel Boone = its outer line masked by the live Forest Service ownership map)
+            saved_only = {r for r in G if 'file' in FRESHKY.get(r, {'file'})}
+            for r in G:
+                MAPDATE[r] = ('read live from the agency ' + today) if r not in saved_only else 'Kentucky file copy (live layer did not answer or has no live source)'
         else:
             G, bad = download(parks, [r for r in refs if parks[r]['ids']], DET, PREC)
             saved_only = set()
@@ -1472,6 +1595,7 @@ def main():
                 if REGION == 'ky' and 'US-4484' in s['refs'] and set(s['refs']) & KY_FS_MANAGED:
                     s['label'] = 'Forest Service land managed by KDFWR'   # Oct 27 (HQ ruling 2): one agency owns, another manages = a real 2-fer
                 if PASS == 3 and m: decide(s, parks, G, LN, PIN, today, saved_only, st_of)
+            if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN)
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
             d['spots'] = slim(d.get('spots', []))
