@@ -1,4 +1,6 @@
 {
  "about": "Which holidays post (chat 5, kpc_club_posts.py holiday_post). Brandon Oct 27 8:10 AM: ALL holidays in data/holidays.json post automatically (\"all\"). To stop one, replace \"all\" with the list of ids that should post.",
- "go": ["all"]
+ "go": [
+  "all"
+ ]
 }
