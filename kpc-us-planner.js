@@ -364,7 +364,7 @@ function setSearchMode(m){const route=m==='route';$('usf').style.display=route?'
 /* The main overpass-api.de server says it is overloaded and refuses requests at busy times, so try the free public
    mirrors it lists first (private.coffee and VK Maps, no rate limits), then the main one. A form POST avoids long URLs
    and needs no CORS preflight. Answers are remembered per park for this visit. */
-const OVP=['https://overpass.private.coffee/api/interpreter','https://maps.mail.ru/osm/tools/overpass/api/interpreter','https://overpass-api.de/api/interpreter'];
+const OVP=['https://overpass.private.coffee/api/interpreter','https://overpass-api.de/api/interpreter'];
 const ovpCache={};
 /* every failure is kept so the message can say exactly what each server answered */
 const OVPN=['private.coffee','VK Maps','overpass-api.de'];
