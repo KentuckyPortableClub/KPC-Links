@@ -1,5 +1,5 @@
 {
- "about": "Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, notes/mapping.md): the park = where its designation legally applies (national forests + grasslands = Forest Service-OWNED land only, never proclamation lines); public land open to the public; layered = real, side by side = not (ownership step: PAD-US / CPCAD at the spot); a patch 50 yards across in every park ('small' = 50-100 yards); line-only trails / rivers by POTA's 100-ft rule from the line or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or kayak' are separate lists, never the main one; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.",
+ "about": "Spots where the boundaries of two or more POTA parks may overlap, by the 2-FER RULES FOR THE WHOLE WORLD (Brandon Oct 27, notes/mapping.md): the park = where its designation legally applies (national forests + grasslands = Forest Service-OWNED land only, never proclamation lines); public land open to the public; layered = real, side by side = not (ownership step: PAD-US / CPCAD at the spot); a patch 50 yards across in every park ('small' = 50-100 yards; 25-50 yards = the separate 'very tight' list, members only; under 25 = not kept); line-only trails / rivers by POTA's 100-ft rule from the line or the river EDGE (USGS NHD); pins never count. Status: 'candidate' = all checks passed; 'not sure: …' and 'water only: boat or kayak' are separate lists, never the main one; 'dropped: …' says why. Every decided spot shows 'checked' + 'map_dates'. Parks with no official boundary: missing-<region>.json. HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.",
  "pass1": "2026-10-27",
  "spots": [
   {
@@ -5813,6 +5813,48 @@
    "status": "candidate (same land, two park numbers)"
   },
   {
+   "acres": 1.8,
+   "box": [
+    -82.74924,
+    37.09917,
+    -82.74698,
+    37.10007
+   ],
+   "center": [
+    37.099532,
+    -82.747436
+   ],
+   "found": "2026-10-27",
+   "id": "US-10139+US-7966@area@37.100,-82.747",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-10139",
+    "US-7966"
+   ],
+   "shape": [
+    [
+     -82.749238,
+     37.100074
+    ],
+    [
+     -82.746985,
+     37.09917
+    ],
+    [
+     -82.74721,
+     37.099713
+    ]
+   ],
+   "small": "small overlap: tight fit, check carefully",
+   "status": "pass 1",
+   "wide_m": 56
+  },
+  {
    "acres": 89.5,
    "box": [
     -88.05872,
@@ -6240,6 +6282,44 @@
     ]
    ],
    "status": "pass 1"
+  },
+  {
+   "acres": 1.8,
+   "box": [
+    -83.49716,
+    38.07425,
+    -83.49557,
+    38.0748
+   ],
+   "center": [
+    38.074615,
+    -83.49648
+   ],
+   "found": "2026-10-27",
+   "id": "US-10158+US-10171@area@38.075,-83.496",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-10158",
+    "US-10171"
+   ],
+   "shape": [
+    [
+     -83.497164,
+     38.074796
+    ],
+    [
+     -83.495567,
+     38.074253
+    ]
+   ],
+   "small": "small overlap: tight fit, check carefully",
+   "status": "pass 1",
+   "wide_m": 56
   },
   {
    "box": [
@@ -12608,6 +12688,48 @@
     ]
    ],
    "status": "pass 1"
+  },
+  {
+   "acres": 1.8,
+   "box": [
+    -82.74924,
+    37.09917,
+    -82.74698,
+    37.10007
+   ],
+   "center": [
+    37.099532,
+    -82.747436
+   ],
+   "found": "2026-10-27",
+   "id": "US-4526+US-7966@area@37.100,-82.747",
+   "kind": "area",
+   "passes": [
+    1,
+    0,
+    0
+   ],
+   "refs": [
+    "US-4526",
+    "US-7966"
+   ],
+   "shape": [
+    [
+     -82.749238,
+     37.100074
+    ],
+    [
+     -82.746985,
+     37.09917
+    ],
+    [
+     -82.74721,
+     37.099713
+    ]
+   ],
+   "small": "small overlap: tight fit, check carefully",
+   "status": "pass 1",
+   "wide_m": 56
   },
   {
    "box": [
