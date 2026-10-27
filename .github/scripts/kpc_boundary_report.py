@@ -168,6 +168,14 @@ def main():
                 L.append(f"- {ref} {x['n']} ({x['st']}, {x.get('acts', 0)} activations) → {l['name']} [{l['layer']}, id {l['id']}, {l['km']} km, {l['why']}]")
             L += ['', '</details>', '']
     except Exception: pass  # noqa: BLE001
+    try:   # Oct 27 (HQ): OBSERVATIONS LOG counts (data/map-observations.json; chat 8 reviews)
+        ob = json.loads(pathlib.Path('data/map-observations.json').read_text(encoding='utf-8'))
+        lr = ob.get('last_run') or {}
+        c = lr.get('counts') or {}
+        L += ['## Observations (worth a human look)', '',
+              f"Last run {lr.get('date', '?')} ({lr.get('run', '')}): " + (', '.join(f'{v} {k}' for k, v in sorted(c.items())) or 'nothing new') +
+              f"; {len(ob.get('items') or [])} items kept (90 days). File: data/map-observations.json (chat 8 reviews).", '']
+    except Exception: pass  # noqa: BLE001
     if HIDDEN['n']:
         L.append(f"_{HIDDEN['n']} parks already checked by hand and found fine (pin off, or no single outline) are left out: data/boundary-checked.json._")
     body = '\n'.join(L)

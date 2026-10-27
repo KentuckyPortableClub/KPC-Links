@@ -43,6 +43,11 @@ jobs:
       - name: Save outline files for joined parks that have none (never overwrites)
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
+      - name: Observations log (what is worth a human look)
+        continue-on-error: true
+        env:
+          OBS_RUN: Canada answer key
+        run: python3 .github/scripts/kpc_map_observations.py || true
       - name: Review issue
         continue-on-error: true
         env:
@@ -53,7 +58,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ca-key
+          git add data/ca-key data/map-observations.json 2>/dev/null || true
           git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
           git add data/canada-bounds 2>/dev/null || true
           if ! git diff --cached --quiet; then
