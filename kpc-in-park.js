@@ -46,7 +46,7 @@
     const p = x.f.properties || {};
     if (x.src === 'padus') return { name: x.f._nm, what: (p.Loc_Mang || p.Mang_Name || 'public land') + (p.Des_Tp ? ' · ' + p.Des_Tp : '') + acres(p), src: 'Official (USGS PAD-US)', access: p.Pub_Access, ease: p.Category === 'Easement' };
     if (x.src === 'osm') return { name: x.f._nm, what: x.f._op || 'OpenStreetMap outline', src: 'OpenStreetMap (NOT official)' };
-    return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'KPC-drawn outline (approximate, not official)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc };
+    return { name: x.f._nm, what: x.f._L.name + ' · ' + x.f._L.agency, src: x.src === 'kpc' ? 'OpenStreetMap outline (unofficial)' : 'Official (' + x.f._L.agency + ')', note: x.f._L.note, proc: x.f._L.proc };
   }
 
   /* ---------- judge ---------- */
@@ -87,7 +87,7 @@
     } else if (progHits.length) {
       const per = new Map(); progHits.forEach(r => r.refs.forEach(x => { const o = per.get(x.ref); if (!o || r.e.km > o.km) per.set(x.ref, { x, km: r.e.km, kpc: r.src === 'kpc' }); }));
       const P = [...per.values()], edgy = P.filter(o => o.km <= margin);
-      const rows2 = P.map(o => `<div class="ip-ref"><b>${esc(o.x.ref)}</b> ${esc(o.x.name)} <i class="ip-p">${esc(o.x.prog)}</i> <em>${o.km <= margin ? '⚠ only ' + B.dist(o.km) + ' from its edge' : B.dist(o.km) + ' from its edge'}${o.kpc ? ' (KPC-drawn outline, approximate)' : ''}</em><span><a href="kpc-spot-me.html?${spotQ(o.x)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(o.x.ref)}">INFO ›</a></span></div>`).join('');
+      const rows2 = P.map(o => `<div class="ip-ref"><b>${esc(o.x.ref)}</b> ${esc(o.x.name)} <i class="ip-p">${esc(o.x.prog)}</i> <em>${o.km <= margin ? '⚠ only ' + B.dist(o.km) + ' from its edge' : B.dist(o.km) + ' from its edge'}${o.kpc ? ' (OpenStreetMap outline, unofficial)' : ''}</em><span><a href="kpc-spot-me.html?${spotQ(o.x)}">SPOT ME ›</a><a href="kpc-park-info.html?q=${encodeURIComponent(o.x.ref)}">INFO ›</a></span></div>`).join('');
       v = edgy.length === P.length ? ['edge', `<h2>ON THE EDGE</h2><p>You look inside, but you're very close to the line${accKm && edgy.some(o => o.km <= accKm) ? ', closer than your GPS can tell' : ''}. Move farther in to be sure.</p>${rows2}`]
         : ['yes', `<h2>✓ YOU'RE INSIDE</h2><p>${P.length > 1 ? 'These references all count from this spot:' : 'This reference counts from this spot:'}</p>${edgy.length ? '<p>⚠ You are right on the edge of ' + edgy.map(o => esc(o.x.ref)).join(', ') + ', so that one may not count from here.</p>' : ''}${rows2}`];
     } else if (hits.some(r => r.L.proc) && !fsLand) {

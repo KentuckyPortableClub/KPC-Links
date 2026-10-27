@@ -42,7 +42,7 @@ const B = {
  bfws:{name:'Wildlife refuges & fish hatcheries', file:'ky-fws.geojson', color:'#5ab0ff', note:'U.S. Fish & Wildlife Service land. Some refuge areas close seasonally; check the refuge page.'},
  busace:{name:'Army Corps of Engineers land', file:'ky-usace.geojson', color:'#ff8c38', corps:true, note:'Land the Army Corps of Engineers owns (USGS PAD-US).'},
  bpad:{name:'More official park outlines', file:'ky-padus-parks.geojson', color:'#e8b04a', note:'Official outline from USGS PAD-US for a park that has no Kentucky map file.'},
- bkpc:{name:'KPC-drawn boundaries (approximate)', file:'ky-kpc-drawn.geojson', color:'#ffd400', kpc:true, note:'Approximate outline drawn by KPC (mostly from OpenStreetMap), not an official boundary. These parks have no official GIS map, and some land around them is private. Check the park’s own map before you set up.'}
+ bkpc:{name:'OpenStreetMap outlines (unofficial)', file:'ky-kpc-drawn.geojson', color:'#ffd400', kpc:true, note:'OpenStreetMap outline (unofficial): traced from OpenStreetMap, not an official boundary. These parks have no official GIS map, and some land around them is private. Check the park’s own map before you set up.'}
 };
 const NPSQ = '?where=1%3D1&geometry=-89.6%2C36.4%2C-81.9%2C39.2&geometryType=esriGeometryEnvelope&inSR=4326&spatialRel=esriSpatialRelIntersects&outFields=*&outSR=4326&geometryPrecision=5&f=geojson';
 const T = {
@@ -166,7 +166,7 @@ function makeMap(){
  // "Map layers" dropdown + Thick boundaries / Big pins switches in the search bar (kpc-map-extras.js); the map keeps only map tools
  let psec=null;
  if(window.KPCX&&KPCX.layerBar){const lb=KPCX.layerBar();LB=lb;const pr=$('prog_'),row=pr&&pr.closest('.controls');if(row)row.after(lb.el);else $('where').before(lb.el);
-  const bs=lb.section('Park boundaries');bs.innerHTML='<div class="gis-row">'+Object.entries(B).map(([k,s])=>`<label><input type="checkbox" data-l="${k}" ${shown(k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div class="kx-stat">Solid outline = matched to a POTA park. Dashed = no POTA reference found. Dash-dot yellow = KPC-drawn outline (approximate).</div>';
+  const bs=lb.section('Park boundaries');bs.innerHTML='<div class="gis-row">'+Object.entries(B).map(([k,s])=>`<label><input type="checkbox" data-l="${k}" ${shown(k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div class="kx-stat">Solid outline = matched to a POTA park. Dashed = no POTA reference found. Dash-dot yellow = OpenStreetMap outline (unofficial).</div>';
   const ts=lb.section('Trails (POTA)');ts.innerHTML='<div class="gis-row">'+Object.entries(T).map(([k,s])=>`<label><input type="checkbox" data-l="t_${k}" ${shown('t_'+k)?'checked':''}><i style="background:${s.color}"></i>${esc(s.name)}</label>`).join('')+'</div><div id="lyrStat" class="kx-stat">Loading boundaries…</div>';
   lb.panel.addEventListener('change',e=>{const k=e.target.dataset.l;if(!k)return;setShown(k,e.target.checked);const l=bLay[k];if(!l)return;e.target.checked?l.addTo(map):map.removeLayer(l);order()});
   psec=lb.section('Parking, entrances & Park Overlaps')}
