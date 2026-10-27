@@ -124,3 +124,4 @@ EXAMPLES: (a) A public page shows a members-only link → problem for chat 1, on
 
 ### GREY AREAS for Brandon (from writing this; chat 8 will add more)
 G1 Relay: refuse (hold + ask) a post that mentions 2-fers/overlaps without the notice? G2 Relay: an unreadable tag → hold and ask instead of posting to the defaults? G3 WMA: post partial closures (one tract/unit) or card only? G4 WMA: post a correction when KDFWR changes dates after Wednesday? G5 Park alerts: an alert that can't be tied to one park → ask in staff room? G6 Holiday on a closure Wednesday: both posts (as now) or holiday only?
+- Oct 27 (chat 8, research desk): RULE SHEET REVIEW, CHAT 5 BOTS in .claude/build/research/KPC_RuleSheet_Bots_desk.md: 4 facts to fix (no bot carries the short info line; winter clock change moves park alerts to 5 AM and club posts to 8:41 AM; relay posts at night), 16 grey areas G7-G22 + recommended answers for G1-G6.
