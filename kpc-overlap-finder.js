@@ -103,6 +103,15 @@
       '</div>';   /* Brandon Oct 27 3:04 PM: 'No need for a warning on every card' (one SHORT notice heads the list; popups + exports keep theirs) */
   }
   function numKey(g, k) { var n = g.refs.map(function (r) { return +(/(\d+)$/.exec(r) || [0, 0])[1]; }).sort(function (x, y) { return x - y; }); return n[k || 0] || 0; }
+  function niceDate(d) { var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(d || ''); return m ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m[2] - 1] + ' ' + (+m[3]) + ', ' + m[1] : esc(d || ''); }
+  /* plain wording per park (the data's 'why' is a working note); a park without one gets the general sentence */
+  var MISS_PLAIN = {
+    'US-10102': 'only the open 44 miles, Breaks to US 119, have an official trail line, and spots there are tested in the main list. The planned section has no official line yet (and mostly no trail), so spots there can\'t be checked.'
+  };
+  function missText(m) {
+    var why = m.plain || MISS_PLAIN[m.ref] || 'this park has no official boundary map, so spots where it may overlap another park can\'t be checked. Its map pin sits inside another park\'s official outline.';
+    return '<b>' + esc(m.name) + ' (' + esc(m.ref) + ')</b>: ' + esc(why).replace(/&#39;/g, '\'') + ' Not confirmed.' + (m.checked ? ' Last checked ' + niceDate(m.checked) + '.' : '');
+  }
   function list() {
     var q = ($('ovQ').value || '').trim().toLowerCase(), out = [];
     ROWS.forEach(function (g) {
@@ -118,7 +127,8 @@
     $('ovList').innerHTML = out.length ? '<p class="ov-note">' + out.length + ' result' + (out.length > 1 ? 's' : '') + ' in ' + esc(REG.label) + '.</p><span class="ov-short" style="margin-bottom:8px">' + SHORT + '</span>' + out.map(function (x) { return rowHtml(x[0], x[1]); }).join('') : (q ? '<p class="ov-note">Nothing matches that search.</p>' : empty);
     $('ovWaitW').hidden = true;   /* Brandon: no 'not released' talk while only club members can see the page */
     $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '</div>'; }).join('');
-    $('ovMissB').hidden = !MISS.length; $('ovMiss').innerHTML = MISS.map(function (m) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-wld">' + esc((m.note || 'Missing boundary: check the official map').toUpperCase()) + '</span><b class="t">' + esc(m.ref) + ' ' + esc(m.name) + '</b><p class="ov-note">' + esc(m.why || '') + (m.checked ? ' · checked ' + esc(m.checked) : '') + '</p></div>'; }).join('');
+    /* HQ Oct 27 4:25 PM: plain words, one sentence each: what's missing, why, and what was still tested */
+    $('ovMissB').hidden = !MISS.length; $('ovMiss').innerHTML = MISS.map(function (m) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-wld">MISSING BOUNDARY: CHECK THE OFFICIAL MAP</span><p class="ov-note" style="color:#efe9da;font-size:14.5px">' + missText(m) + '</p></div>'; }).join('');
   }
 
   /* ---------- the MAP ---------- */
