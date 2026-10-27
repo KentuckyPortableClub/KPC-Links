@@ -134,7 +134,7 @@ function kyExtras(d,kp,links,card){
  const seen=new Set([d[5]]);
  if(kp.web&&!seen.has(kp.web)){seen.add(kp.web);links.append(link(hostLabel(kp.web,'Official park page'),kp.web))}
  if(kp.camp&&!seen.has(kp.camp)){seen.add(kp.camp);links.append(link(genericCamp(kp.camp)?'Camping & reservations (state page)':'Campground page',kp.camp));if(genericCamp(kp.camp))card.append(node('div','meta','The camping link opens the statewide Kentucky State Parks camping page. Pick this park there, or use the park page above.'))}
- if(kp.off&&!seen.has(kp.off)){seen.add(kp.off);links.append(link(/\.pdf(\?|$)/i.test(kp.off)?'Official map (PDF)':'Official map / info',kp.off))}
+ if(kp.off&&!seen.has(kp.off)){seen.add(kp.off);links.append(link(kp.offl||(/\.pdf(\?|$)/i.test(kp.off)?'Official map (PDF)':'Official map / info'),kp.off))}if(kp.off2&&!seen.has(kp.off2)){seen.add(kp.off2);links.append(link(kp.off2l||'Second official map',kp.off2))}
 }
 function dedupeLinks(box){const seen=new Set();[...box.querySelectorAll('a')].forEach(a=>{if(seen.has(a.href))a.remove();else seen.add(a.href)})}
 const LASTKEY='kpcFinderLast';
