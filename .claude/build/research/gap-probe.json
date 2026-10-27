@@ -1,3153 +1,870 @@
 {
- "nb folder": [
-  {
-   "name": "OpenData/Aerial_Survey_Results",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Aerial_Survey_Results",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/ARMS",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/ARMS",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Bedrock_Geology",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Bedrock_Geology",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Bicknells_Thrush_Recovery",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Bicknells_Thrush_Recovery",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Candidate_Conserved_Areas",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Candidate_Conserved_Areas",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/County",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/County",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Crown_Forest_Management_Plan",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Crown_Forest_Management_Plan",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Crown_Lands",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Crown_Lands",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Deer_Wintering_Areas",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Deer_Wintering_Areas",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/ForestRoads",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/ForestRoads",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Furbishs_Lousewort",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Furbishs_Lousewort",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Historical_Pest_Treatment_Records",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Historical_Pest_Treatment_Records",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Lake_Depth_Bathymetry_Points",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Lake_Depth_Bathymetry_Points",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/MASMPS",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/MASMPS",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Mineral_Claims",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Mineral_Claims",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Nature_Legacy_Protected_Areas",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Nature_Legacy_Protected_Areas",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Geology_Lines",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Geology_Lines",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Geology",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Geology",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Structure_Legacy",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Structure_Legacy",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Structure",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Bedrock_Structure",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Exploration_Drillholes",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Exploration_Drillholes",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Exploration_Trenches",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Exploration_Trenches",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_GeneralizedSurficialGeology",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_GeneralizedSurficialGeology",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Geochronology",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Geochronology",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_GranularAggregate",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_GranularAggregate",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Mineral_Occurrences_Venues_minerales",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Mineral_Occurrences_Venues_minerales",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_OutcropAreas",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_OutcropAreas",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_Reports_Of_Work",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_Reports_Of_Work",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_TillGrainSize",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_TillGrainSize",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_TillSampleSites1986_2014",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_TillSampleSites1986_2014",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBGS_TillSampleSites",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBGS_TillSampleSites",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Coast_Lines",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Coast_Lines",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Hydrographic_Obstacles",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Hydrographic_Obstacles",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Islands",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Islands",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Junctions",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Junctions",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Man_Made_Features",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Man_Made_Features",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Named_Features",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Named_Features",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Water_Gauges",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Water_Gauges",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Waterbody",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Waterbody",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Watercourse",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Watercourse",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/NBHN_Watershed",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/NBHN_Watershed",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Non_Forest",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Non_Forest",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Other_Habitats",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Other_Habitats",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Parish",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Parish",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Parks",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Parks",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Peat_Lease_Licenses",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Peat_Lease_Licenses",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Peatland",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Peatland",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Pheromone_Trap_Maps",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Pheromone_Trap_Maps",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/PNAs",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/PNAs",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Quarry_Lease",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Quarry_Lease",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Reforestation",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Reforestation",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Rockweed_Closed_Areas",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Rockweed_Closed_Areas",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Rockweek_Sectors",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Rockweek_Sectors",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Site_Specific_Wildlife_Habitat",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Site_Specific_Wildlife_Habitat",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Spruce_Budworm_L2_Mapping",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Spruce_Budworm_L2_Mapping",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Stand_Improvement",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Stand_Improvement",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Unique_Areas",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Unique_Areas",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Utilities",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Utilities",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Van_Brunt_Jacobs_Ladder",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Van_Brunt_Jacobs_Ladder",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Vegetation_Management",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Vegetation_Management",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Watercourse_Wetland_Buffers",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Watercourse_Wetland_Buffers",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/Wetland",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/Wetland",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/WildlifeRefuge",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/WildlifeRefuge",
-   "type": "MapServer"
-  },
-  {
-   "name": "OpenData/WMZ",
-   "type": "FeatureServer"
-  },
-  {
-   "name": "OpenData/WMZ",
-   "type": "MapServer"
-  }
- ],
- "nb OpenData/Crown_Forest_Management_Plan": [
+ "nb WMZ": [
   {
    "id": 0,
-   "name": "Planned Harvest Activity",
+   "name": "Wildlife Management Zones",
    "geom": "esriGeometryPolygon",
-   "count": 33960,
+   "count": 27,
    "fields": [
-    "Shape__Area",
-    "Shape__Length",
-    "OBJECTID",
-    "PRESCRIPTION",
-    "PERIOD"
+    "OBJECTID_1",
+    "SHAPE",
+    "SHAPE.AREA",
+    "SHAPE.LEN",
+    "WMZ"
    ],
    "err": null
   }
  ],
- "nb OpenData/Crown_Forest_Management_Plan 0 rows": [
+ "nb WMZ 0 rows": [
   {
-   "Shape__Area": 182063.37875,
-   "Shape__Length": 4226.49457412783,
-   "OBJECTID": 1,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 321,
+   "SHAPE.AREA": 3576268552.5602,
+   "SHAPE.LEN": 359874.263605,
+   "WMZ": 4
   },
   {
-   "Shape__Area": 829307.28645,
-   "Shape__Length": 10692.4034266906,
-   "OBJECTID": 2,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 322,
+   "SHAPE.AREA": 1201551309.83045,
+   "SHAPE.LEN": 407961.867720451,
+   "WMZ": 9
   },
   {
-   "Shape__Area": 263918.6911,
-   "Shape__Length": 3934.93086965306,
-   "OBJECTID": 3,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 323,
+   "SHAPE.AREA": 3154818540.32235,
+   "SHAPE.LEN": 318288.682691733,
+   "WMZ": 5
   },
   {
-   "Shape__Area": 299770.38125,
-   "Shape__Length": 6551.65456682757,
-   "OBJECTID": 4,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 324,
+   "SHAPE.AREA": 2770390398.54235,
+   "SHAPE.LEN": 291483.88608505303,
+   "WMZ": 3
   },
   {
-   "Shape__Area": 320362.1566,
-   "Shape__Length": 9338.40740811098,
-   "OBJECTID": 5,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 325,
+   "SHAPE.AREA": 4067645843.5794,
+   "SHAPE.LEN": 418517.456973712,
+   "WMZ": 8
   },
   {
-   "Shape__Area": 72057.8611,
-   "Shape__Length": 1365.57229307537,
-   "OBJECTID": 6,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 326,
+   "SHAPE.AREA": 2623396358.7652,
+   "SHAPE.LEN": 264058.97197801305,
+   "WMZ": 2
   },
   {
-   "Shape__Area": 583643.54075,
-   "Shape__Length": 17692.835711812702,
-   "OBJECTID": 7,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 327,
+   "SHAPE.AREA": 6177239378.6948,
+   "SHAPE.LEN": 364306.589297323,
+   "WMZ": 7
   },
   {
-   "Shape__Area": 122413.60065,
-   "Shape__Length": 2409.4265986837,
-   "OBJECTID": 8,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 328,
+   "SHAPE.AREA": 816616492.3713,
+   "SHAPE.LEN": 154929.825494249,
+   "WMZ": 1
   },
   {
-   "Shape__Area": 341709.15955,
-   "Shape__Length": 6356.98429447281,
-   "OBJECTID": 9,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 329,
+   "SHAPE.AREA": 2514379966.86905,
+   "SHAPE.LEN": 247559.308069757,
+   "WMZ": 6
   },
   {
-   "Shape__Area": 1197871.51395,
-   "Shape__Length": 19903.7089290647,
-   "OBJECTID": 10,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 330,
+   "SHAPE.AREA": 2461886667.81985,
+   "SHAPE.LEN": 259900.318563795,
+   "WMZ": 11
   },
   {
-   "Shape__Area": 108073.4191,
-   "Shape__Length": 2156.74929545664,
-   "OBJECTID": 11,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 331,
+   "SHAPE.AREA": 2616547761.7937,
+   "SHAPE.LEN": 371863.277469789,
+   "WMZ": 14
   },
   {
-   "Shape__Area": 463611.52535,
-   "Shape__Length": 7497.98489082449,
-   "OBJECTID": 12,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 332,
+   "SHAPE.AREA": 2721178008.73045,
+   "SHAPE.LEN": 299736.77097618603,
+   "WMZ": 10
   },
   {
-   "Shape__Area": 5822.067300000001,
-   "Shape__Length": 903.884844116534,
-   "OBJECTID": 13,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 333,
+   "SHAPE.AREA": 2517964698.24585,
+   "SHAPE.LEN": 255128.324402612,
+   "WMZ": 13
   },
   {
-   "Shape__Area": 890465.7538,
-   "Shape__Length": 16432.249384882103,
-   "OBJECTID": 14,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 334,
+   "SHAPE.AREA": 3278893725.665,
+   "SHAPE.LEN": 307470.72441567905,
+   "WMZ": 12
   },
   {
-   "Shape__Area": 275169.66685,
-   "Shape__Length": 4198.24874874309,
-   "OBJECTID": 15,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 335,
+   "SHAPE.AREA": 2209858577.03755,
+   "SHAPE.LEN": 318656.746689782,
+   "WMZ": 19
   },
   {
-   "Shape__Area": 776537.2716,
-   "Shape__Length": 13626.7914979131,
-   "OBJECTID": 16,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 336,
+   "SHAPE.AREA": 3334423893.10055,
+   "SHAPE.LEN": 261161.99739788703,
+   "WMZ": 17
   },
   {
-   "Shape__Area": 612258.9432,
-   "Shape__Length": 15326.4709970372,
-   "OBJECTID": 17,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 337,
+   "SHAPE.AREA": 4168548448.15565,
+   "SHAPE.LEN": 295375.24203563697,
+   "WMZ": 16
   },
   {
-   "Shape__Area": 284540.16255,
-   "Shape__Length": 5675.99298714687,
-   "OBJECTID": 18,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 338,
+   "SHAPE.AREA": 2602864569.01925,
+   "SHAPE.LEN": 247480.912869189,
+   "WMZ": 18
   },
   {
-   "Shape__Area": 437173.55595,
-   "Shape__Length": 9426.38861637713,
-   "OBJECTID": 19,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 339,
+   "SHAPE.AREA": 2091578003.57815,
+   "SHAPE.LEN": 288128.498812542,
+   "WMZ": 25
   },
   {
-   "Shape__Area": 295176.35825,
-   "Shape__Length": 3965.44796618925,
-   "OBJECTID": 20,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 340,
+   "SHAPE.AREA": 2794640318.45645,
+   "SHAPE.LEN": 270560.257391942,
+   "WMZ": 15
   },
   {
-   "Shape__Area": 107336.61685,
-   "Shape__Length": 3440.46457794726,
-   "OBJECTID": 21,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 341,
+   "SHAPE.AREA": 1964607959.0971,
+   "SHAPE.LEN": 226954.51794648,
+   "WMZ": 24
   },
   {
-   "Shape__Area": 576835.2961,
-   "Shape__Length": 9439.271453762449,
-   "OBJECTID": 22,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 342,
+   "SHAPE.AREA": 3011739939.90235,
+   "SHAPE.LEN": 319540.584279726,
+   "WMZ": 22
   },
   {
-   "Shape__Area": 85141.2309,
-   "Shape__Length": 2573.3461916425504,
-   "OBJECTID": 23,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 343,
+   "SHAPE.AREA": 2714698901.3609,
+   "SHAPE.LEN": 315476.582836947,
+   "WMZ": 23
   },
   {
-   "Shape__Area": 728730.20945,
-   "Shape__Length": 13153.727298618502,
-   "OBJECTID": 24,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 344,
+   "SHAPE.AREA": 93678714.4641,
+   "SHAPE.LEN": 234670.112415748,
+   "WMZ": 26
   },
   {
-   "Shape__Area": 107140.0977,
-   "Shape__Length": 4086.9105004179905,
-   "OBJECTID": 25,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 345,
+   "SHAPE.AREA": 182779345.57315,
+   "SHAPE.LEN": 224536.632508598,
+   "WMZ": 27
   },
   {
-   "Shape__Area": 367193.90915,
-   "Shape__Length": 7971.27713659623,
-   "OBJECTID": 26,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 346,
+   "SHAPE.AREA": 2599857311.4418,
+   "SHAPE.LEN": 246621.656602292,
+   "WMZ": 21
   },
   {
-   "Shape__Area": 735942.4087,
-   "Shape__Length": 9162.902425233611,
-   "OBJECTID": 27,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 285565.24545,
-   "Shape__Length": 9367.315462475732,
-   "OBJECTID": 28,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 308863.0903,
-   "Shape__Length": 9143.357997997451,
-   "OBJECTID": 29,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 129822.96565,
-   "Shape__Length": 5414.73388929352,
-   "OBJECTID": 30,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 776008.4598,
-   "Shape__Length": 17479.0640331496,
-   "OBJECTID": 31,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 784694.3416,
-   "Shape__Length": 16523.1531132,
-   "OBJECTID": 32,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 105560.3915,
-   "Shape__Length": 1698.65831507077,
-   "OBJECTID": 33,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 473858.3553,
-   "Shape__Length": 8751.30908920363,
-   "OBJECTID": 34,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 15941.63025,
-   "Shape__Length": 1551.46087172736,
-   "OBJECTID": 35,
-   "PRESCRIPTION": "Partial harvesting",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 1004888.8795,
-   "Shape__Length": 15383.137046400601,
-   "OBJECTID": 36,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 608531.5843,
-   "Shape__Length": 13990.803367674802,
-   "OBJECTID": 37,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 1603956.2066,
-   "Shape__Length": 25415.0311588058,
-   "OBJECTID": 38,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 204453.5441,
-   "Shape__Length": 5384.54117594767,
-   "OBJECTID": 39,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
-  },
-  {
-   "Shape__Area": 963790.08655,
-   "Shape__Length": 22134.8650601578,
-   "OBJECTID": 40,
-   "PRESCRIPTION": "Clearcut and final fellings",
-   "PERIOD": "2012 - 2016"
+   "OBJECTID_1": 347,
+   "SHAPE.AREA": 5335558005.60625,
+   "SHAPE.LEN": 747783.086675211,
+   "WMZ": 20
   }
  ],
- "nb OpenData/Site_Specific_Wildlife_Habitat": [
+ "nb Parks": [
   {
    "id": 0,
-   "name": "Site-Specific Wildlife Habitat",
+   "name": "Parks",
    "geom": "esriGeometryPolygon",
-   "count": 1817,
+   "count": 621,
    "fields": [
-    "Shape__Area",
-    "Shape__Length",
+    "SHAPE.AREA",
+    "SHAPE.LEN",
+    "OBJECTID",
+    "HOLDER",
+    "SHAPE"
+   ],
+   "err": null
+  }
+ ],
+ "nb Parks 0 rows": [
+  {
+   "SHAPE.AREA": 1409882.4666,
+   "SHAPE.LEN": 7439.59726125992,
+   "OBJECTID": 14135,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 49362.10845,
+   "SHAPE.LEN": 1074.3155927453,
+   "OBJECTID": 14431,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 2068184.26355,
+   "SHAPE.LEN": 7098.17056303114,
+   "OBJECTID": 19461,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 65881.00535,
+   "SHAPE.LEN": 1766.34519949628,
+   "OBJECTID": 19509,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 175786.77975,
+   "SHAPE.LEN": 2785.80433356044,
+   "OBJECTID": 20435,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 1286934.90455,
+   "SHAPE.LEN": 9310.345003627901,
+   "OBJECTID": 20436,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 32191.7737,
+   "SHAPE.LEN": 1201.26538969519,
+   "OBJECTID": 20438,
+   "HOLDER": 66
+  },
+  {
+   "SHAPE.AREA": 96998.80975,
+   "SHAPE.LEN": 2571.24560701475,
+   "OBJECTID": 20440,
+   "HOLDER": 66
+  }
+ ],
+ "nb Parks 0 test": {
+  "fields": [],
+  "read": 621,
+  "gives": 0,
+  "activations": 0,
+  "parks": {}
+ },
+ "nb Unique_Areas": [
+  {
+   "id": 0,
+   "name": "Unique Areas",
+   "geom": "esriGeometryPolygon",
+   "count": 621,
+   "fields": [
+    "LICDEFUNIQ",
+    "SHAPE.AREA",
+    "SHAPE.LEN",
     "OBJECTID",
     "HOLDER",
     "ECOREGION",
-    "SAR_SSWH"
+    "SHAPE"
    ],
    "err": null
   }
  ],
- "nb OpenData/Site_Specific_Wildlife_Habitat 0 rows": [
+ "nb Unique_Areas 0 rows": [
   {
-   "Shape__Area": 22070.00905,
-   "Shape__Length": 1043.74209288008,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 9542.092700000001,
+   "SHAPE.LEN": 363.18030090868103,
    "OBJECTID": 1,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 1072892.28945,
-   "Shape__Length": 7588.360545246831,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 6870.36845,
+   "SHAPE.LEN": 392.60295039599504,
    "OBJECTID": 2,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 23445.53045,
-   "Shape__Length": 670.6543851477111,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 59133.5978,
+   "SHAPE.LEN": 1048.4065421392002,
    "OBJECTID": 3,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 5595.9734,
-   "Shape__Length": 389.432749628772,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 7029.360100000001,
+   "SHAPE.LEN": 302.43587468054704,
    "OBJECTID": 4,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 31411.0905,
-   "Shape__Length": 628.356912378209,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 55235.9824,
+   "SHAPE.LEN": 1564.4925758776,
    "OBJECTID": 5,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 30751.18145,
-   "Shape__Length": 625.356266539522,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 4613.201,
+   "SHAPE.LEN": 262.271214470228,
    "OBJECTID": 6,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 15204.4525,
-   "Shape__Length": 507.32947794735304,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 58819.73985,
+   "SHAPE.LEN": 1332.95561156649,
    "OBJECTID": 7,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   },
   {
-   "Shape__Area": 13377.4307,
-   "Shape__Length": 471.439662334374,
+   "LICDEFUNIQ": "1",
+   "SHAPE.AREA": 3066.1158,
+   "SHAPE.LEN": 626.042324242695,
    "OBJECTID": 8,
-   "HOLDER": 2,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 541145.9928,
-   "Shape__Length": 3267.14504554146,
-   "OBJECTID": 9,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 2211.01325,
-   "Shape__Length": 232.001471073152,
-   "OBJECTID": 10,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 3333.05925,
-   "Shape__Length": 481.722559266159,
-   "OBJECTID": 11,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 39208.3036,
-   "Shape__Length": 1024.6508055276502,
-   "OBJECTID": 12,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 812.1998000000001,
-   "Shape__Length": 167.44809838261,
-   "OBJECTID": 13,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 2034.68905,
-   "Shape__Length": 256.145866242057,
-   "OBJECTID": 14,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 8330.94715,
-   "Shape__Length": 598.605531560312,
-   "OBJECTID": 15,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 1789.4248,
-   "Shape__Length": 168.41316139584703,
-   "OBJECTID": 16,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 4943.53765,
-   "Shape__Length": 508.50188686377,
-   "OBJECTID": 17,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 18585.1921,
-   "Shape__Length": 1131.37362018741,
-   "OBJECTID": 18,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 42489.69115,
-   "Shape__Length": 1064.91286016268,
-   "OBJECTID": 19,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 5595.604200000001,
-   "Shape__Length": 408.93688169652603,
-   "OBJECTID": 20,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 577576.79785,
-   "Shape__Length": 4370.63615173411,
-   "OBJECTID": 21,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 765809.2521,
-   "Shape__Length": 5758.688392189991,
-   "OBJECTID": 22,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 862.7209,
-   "Shape__Length": 163.47733793905903,
-   "OBJECTID": 23,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 1526.11565,
-   "Shape__Length": 156.78917406646002,
-   "OBJECTID": 24,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 112356.30155,
-   "Shape__Length": 4040.09873363534,
-   "OBJECTID": 25,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 502571.087,
-   "Shape__Length": 6834.972464398271,
-   "OBJECTID": 26,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 5869752.15125,
-   "Shape__Length": 22606.6904974211,
-   "OBJECTID": 27,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 13326.36225,
-   "Shape__Length": 605.719861526486,
-   "OBJECTID": 28,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 69844.1397,
-   "Shape__Length": 1855.61562353017,
-   "OBJECTID": 29,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 1800444.95105,
-   "Shape__Length": 26960.0974511597,
-   "OBJECTID": 30,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 11331.35965,
-   "Shape__Length": 734.7186041251371,
-   "OBJECTID": 31,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 434397.1092,
-   "Shape__Length": 10442.5103339026,
-   "OBJECTID": 32,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 13543.3454,
-   "Shape__Length": 1006.9657011125,
-   "OBJECTID": 33,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 234413.947,
-   "Shape__Length": 9251.817076932799,
-   "OBJECTID": 34,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 6361.996700000001,
-   "Shape__Length": 546.306689144675,
-   "OBJECTID": 35,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 8373.1537,
-   "Shape__Length": 825.023085753416,
-   "OBJECTID": 36,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 193753.5487,
-   "Shape__Length": 4870.4933836973805,
-   "OBJECTID": 37,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 636446.156,
-   "Shape__Length": 6816.09586622055,
-   "OBJECTID": 38,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 757.47505,
-   "Shape__Length": 149.443484969019,
-   "OBJECTID": 39,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
-  },
-  {
-   "Shape__Area": 4296.02115,
-   "Shape__Length": 281.649865040758,
-   "OBJECTID": 40,
-   "HOLDER": 4,
-   "ECOREGION": 1,
-   "SAR_SSWH": "1"
+   "HOLDER": 1,
+   "ECOREGION": 2
   }
  ],
- "nb OpenData/Vegetation_Management": [
-  {
-   "id": 0,
-   "name": "Vegetation Management",
-   "geom": "esriGeometryPolygon",
-   "count": 19570,
-   "fields": [
-    "BLK_ID",
-    "TREAT_YR",
-    "Shape__Area",
-    "Shape__Length",
-    "OBJECTID"
-   ],
-   "err": null
-  }
- ],
- "nb OpenData/Vegetation_Management 0 rows": [
-  {
-   "BLK_ID": "101000684BH01",
-   "TREAT_YR": 1984,
-   "Shape__Area": 750474.2737,
-   "Shape__Length": 13519.1749112957,
-   "OBJECTID": 39722
-  },
-  {
-   "BLK_ID": "101001394BH01",
-   "TREAT_YR": 1994,
-   "Shape__Area": 780902.33025,
-   "Shape__Length": 12640.798233336702,
-   "OBJECTID": 39723
-  },
-  {
-   "BLK_ID": "101001892BH01",
-   "TREAT_YR": 1992,
-   "Shape__Area": 552627.7673,
-   "Shape__Length": 9795.70046139662,
-   "OBJECTID": 39724
-  },
-  {
-   "BLK_ID": "101001898BH01",
-   "TREAT_YR": 1998,
-   "Shape__Area": 363560.9753,
-   "Shape__Length": 3924.0534669358103,
-   "OBJECTID": 39725
-  },
-  {
-   "BLK_ID": "101001988BH01",
-   "TREAT_YR": 1988,
-   "Shape__Area": 965879.9035,
-   "Shape__Length": 9411.16279399384,
-   "OBJECTID": 39726
-  },
-  {
-   "BLK_ID": "101002087BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 862206.34965,
-   "Shape__Length": 8957.98848423107,
-   "OBJECTID": 39727
-  },
-  {
-   "BLK_ID": "101002092BH01",
-   "TREAT_YR": 1992,
-   "Shape__Area": 155261.066,
-   "Shape__Length": 2258.11789631814,
-   "OBJECTID": 39728
-  },
-  {
-   "BLK_ID": "101002093BH01",
-   "TREAT_YR": 1993,
-   "Shape__Area": 343015.41685,
-   "Shape__Length": 4319.420357956949,
-   "OBJECTID": 39729
-  },
-  {
-   "BLK_ID": "101002095BH01",
-   "TREAT_YR": 1995,
-   "Shape__Area": 458624.9876,
-   "Shape__Length": 5453.37422166142,
-   "OBJECTID": 39730
-  },
-  {
-   "BLK_ID": "101002288BH01",
-   "TREAT_YR": 1988,
-   "Shape__Area": 1465250.92545,
-   "Shape__Length": 7656.56999510508,
-   "OBJECTID": 39731
-  },
-  {
-   "BLK_ID": "101002488BH01",
-   "TREAT_YR": 1988,
-   "Shape__Area": 787075.02325,
-   "Shape__Length": 5823.92698777285,
-   "OBJECTID": 39732
-  },
-  {
-   "BLK_ID": "101002498BH01",
-   "TREAT_YR": 1998,
-   "Shape__Area": 125086.7326,
-   "Shape__Length": 1816.83964541256,
-   "OBJECTID": 39733
-  },
-  {
-   "BLK_ID": "101002688BH01",
-   "TREAT_YR": 1988,
-   "Shape__Area": 542313.06045,
-   "Shape__Length": 4008.7459037339604,
-   "OBJECTID": 39734
-  },
-  {
-   "BLK_ID": "101002788BH01",
-   "TREAT_YR": 1988,
-   "Shape__Area": 1124182.5143,
-   "Shape__Length": 6279.3120179403195,
-   "OBJECTID": 39735
-  },
-  {
-   "BLK_ID": "101002798BH01",
-   "TREAT_YR": 1998,
-   "Shape__Area": 168265.6439,
-   "Shape__Length": 2719.81434454122,
-   "OBJECTID": 39736
-  },
-  {
-   "BLK_ID": "101003189BH01",
-   "TREAT_YR": 1989,
-   "Shape__Area": 173720.2234,
-   "Shape__Length": 3622.3623460373,
-   "OBJECTID": 39737
-  },
-  {
-   "BLK_ID": "101003487BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 256245.28455,
-   "Shape__Length": 5528.66832907039,
-   "OBJECTID": 39738
-  },
-  {
-   "BLK_ID": "101003489BH01",
-   "TREAT_YR": 1989,
-   "Shape__Area": 256245.28455,
-   "Shape__Length": 5528.66832907039,
-   "OBJECTID": 39739
-  },
-  {
-   "BLK_ID": "101003587BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 940143.63365,
-   "Shape__Length": 19145.032882619198,
-   "OBJECTID": 39740
-  },
-  {
-   "BLK_ID": "101003589BH01",
-   "TREAT_YR": 1989,
-   "Shape__Area": 736788.8269,
-   "Shape__Length": 15250.753318757,
-   "OBJECTID": 39741
-  },
-  {
-   "BLK_ID": "101003592BH01",
-   "TREAT_YR": 1992,
-   "Shape__Area": 650131.14325,
-   "Shape__Length": 13763.6004032913,
-   "OBJECTID": 39742
-  },
-  {
-   "BLK_ID": "101003593BH01",
-   "TREAT_YR": 1993,
-   "Shape__Area": 736788.8269,
-   "Shape__Length": 15250.753318757,
-   "OBJECTID": 39743
-  },
-  {
-   "BLK_ID": "101003687BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 199102.20945,
-   "Shape__Length": 4503.032067906161,
-   "OBJECTID": 39744
-  },
-  {
-   "BLK_ID": "101003689BH01",
-   "TREAT_YR": 1989,
-   "Shape__Area": 199102.20945,
-   "Shape__Length": 4503.032067906161,
-   "OBJECTID": 39745
-  },
-  {
-   "BLK_ID": "101003787BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 258756.60425,
-   "Shape__Length": 3690.7189618431003,
-   "OBJECTID": 39746
-  },
-  {
-   "BLK_ID": "101003788BH01",
-   "TREAT_YR": 1988,
-   "Shape__Area": 515138.56765,
-   "Shape__Length": 3653.61593153798,
-   "OBJECTID": 39747
-  },
-  {
-   "BLK_ID": "101003790BH01",
-   "TREAT_YR": 1990,
-   "Shape__Area": 29289.98105,
-   "Shape__Length": 1082.07365873075,
-   "OBJECTID": 39748
-  },
-  {
-   "BLK_ID": "101003792BH01",
-   "TREAT_YR": 1992,
-   "Shape__Area": 256582.3341,
-   "Shape__Length": 2781.8793736532602,
-   "OBJECTID": 39749
-  },
-  {
-   "BLK_ID": "101003793BH01",
-   "TREAT_YR": 1993,
-   "Shape__Area": 256582.3341,
-   "Shape__Length": 2781.8793736532602,
-   "OBJECTID": 39750
-  },
-  {
-   "BLK_ID": "101003798BH01",
-   "TREAT_YR": 1998,
-   "Shape__Area": 201487.8663,
-   "Shape__Length": 2253.7758916489397,
-   "OBJECTID": 39751
-  },
-  {
-   "BLK_ID": "101003887BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 924725.9889,
-   "Shape__Length": 4508.989081741771,
-   "OBJECTID": 39752
-  },
-  {
-   "BLK_ID": "101003889BH01",
-   "TREAT_YR": 1989,
-   "Shape__Area": 924725.9889,
-   "Shape__Length": 4508.989081741771,
-   "OBJECTID": 39753
-  },
-  {
-   "BLK_ID": "101003987BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 624002.79305,
-   "Shape__Length": 9407.825616069671,
-   "OBJECTID": 39754
-  },
-  {
-   "BLK_ID": "101003989BH01",
-   "TREAT_YR": 1989,
-   "Shape__Area": 624002.79305,
-   "Shape__Length": 9407.825616069671,
-   "OBJECTID": 39755
-  },
-  {
-   "BLK_ID": "101003991BH01",
-   "TREAT_YR": 1991,
-   "Shape__Area": 539383.67805,
-   "Shape__Length": 7843.086552800671,
-   "OBJECTID": 39756
-  },
-  {
-   "BLK_ID": "101004492BH01",
-   "TREAT_YR": 1992,
-   "Shape__Area": 464501.4682,
-   "Shape__Length": 10907.8971774883,
-   "OBJECTID": 39757
-  },
-  {
-   "BLK_ID": "101004994BH01",
-   "TREAT_YR": 1994,
-   "Shape__Area": 352145.2504,
-   "Shape__Length": 4439.30756915575,
-   "OBJECTID": 39758
-  },
-  {
-   "BLK_ID": "101005187BH01",
-   "TREAT_YR": 1987,
-   "Shape__Area": 207635.2895,
-   "Shape__Length": 2616.5458019201305,
-   "OBJECTID": 39759
-  },
-  {
-   "BLK_ID": "101005190BH01",
-   "TREAT_YR": 1990,
-   "Shape__Area": 976926.5899,
-   "Shape__Length": 6666.45812452142,
-   "OBJECTID": 39760
-  },
-  {
-   "BLK_ID": "101005294BH01",
-   "TREAT_YR": 1994,
-   "Shape__Area": 892833.15045,
-   "Shape__Length": 6238.645634416171,
-   "OBJECTID": 39761
-  }
- ],
- "whb layers": [
-  {
-   "id": 0,
-   "name": "Herd Management Area (HMA) Polygons",
-   "geom": "esriGeometryPolygon",
-   "count": 181,
-   "fields": [
-    "OBJECTID",
-    "HMA_NAME",
-    "HMA_ID",
-    "ADMIN_ST",
-    "ADM_UNIT_CD",
-    "ADMIN_AGCY",
-    "HERD_TYPE",
-    "BLM_ACRES",
-    "GlobalID",
-    "Original_GlobalID",
-    "SHAPE",
-    "SHAPE.STLength()",
-    "SHAPE.STArea()"
-   ],
-   "err": null
-  },
-  {
-   "id": 1,
-   "name": "Herd Area Polygons",
-   "geom": "esriGeometryPolygon",
-   "count": 327,
-   "fields": [
-    "OBJECTID",
-    "HA_NAME",
-    "HA_NO",
-    "ADMIN_ST",
-    "ADMIN_AGCY",
-    "HERD_TYPE",
-    "BLM_ACRES",
-    "GlobalID",
-    "Original_GlobalID",
-    "SHAPE",
-    "SHAPE.STLength()",
-    "SHAPE.STArea()"
-   ],
-   "err": null
-  }
- ],
- "whb names": {
-  "layers": [
-   [
-    0,
-    "Herd Management Area (HMA) Polygons"
-   ],
-   [
-    1,
-    "Herd Area Polygons"
-   ]
-  ],
-  "found": [
-   {
-    "layer": 0,
-    "lname": "Herd Management Area (HMA) Polygons",
-    "row": {
-     "HMA_NAME": "Hardtrigger",
-     "HMA_ID": "ID0007",
-     "ADMIN_ST": "ID",
-     "ADM_UNIT_CD": "IDB03000",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{2D4FA696-AEBB-44FA-83D7-9084B37E327C}",
-     "Original_GlobalID": "{FA91265D-FFB3-434C-8DF9-44DF24ECBD17}"
-    }
-   },
-   {
-    "layer": 0,
-    "lname": "Herd Management Area (HMA) Polygons",
-    "row": {
-     "HMA_NAME": "Canyon Lands",
-     "HMA_ID": "UT0571",
-     "ADMIN_ST": "UT",
-     "ADM_UNIT_CD": "UTC02000",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "BURRO",
-     "GlobalID": "{3AD78414-03FF-477C-A234-BBE77141EE93}",
-     "Original_GlobalID": "{5BA0C8B6-29BD-43F2-960F-029B4C3D73E1}"
-    }
-   },
-   {
-    "layer": 0,
-    "lname": "Herd Management Area (HMA) Polygons",
-    "row": {
-     "HMA_NAME": "Sulpher",
-     "HMA_ID": "UT0448",
-     "ADMIN_ST": "UT",
-     "ADM_UNIT_CD": "UTC01000",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{52036083-5060-4193-AD3C-E9EBDB4724AE}",
-     "Original_GlobalID": "{400F1F68-2EEB-4D61-B8EA-C6A70830DB25}"
-    }
-   },
-   {
-    "layer": 0,
-    "lname": "Herd Management Area (HMA) Polygons",
-    "row": {
-     "HMA_NAME": "Onaqui Mountain",
-     "HMA_ID": "UT0242",
-     "ADMIN_ST": "UT",
-     "ADM_UNIT_CD": "UTW01000",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{78C49019-6546-49F3-84AF-C177250FEFAF}",
-     "Original_GlobalID": "{C340D967-03C2-4D70-BF37-DA0EC814AF33}"
-    }
-   },
-   {
-    "layer": 0,
-    "lname": "Herd Management Area (HMA) Polygons",
-    "row": {
-     "HMA_NAME": "Conger",
-     "HMA_ID": "UT0553",
-     "ADMIN_ST": "UT",
-     "ADM_UNIT_CD": "UTW02000",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{B18911BD-E111-401E-BF1B-AA3F42C1BD46}",
-     "Original_GlobalID": "{F611903D-D4B6-45E8-AEF5-9F057CD45C60}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Big Creek",
-     "HA_NO": "UT0244",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "USFS",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{299F4D2D-31EC-4E4E-99EB-B1569079A276}",
-     "Original_GlobalID": "{F4DB97C0-CFC8-42C5-89D8-0D914C92DFCA}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Bonanza",
-     "HA_NO": "UT0851",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{2D4E9C57-09EC-41EE-A1D0-9A486ABBBE82}",
-     "Original_GlobalID": "{D6EF234C-2728-45A3-8E0D-39DCB96E6C2A}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Big Creek",
-     "HA_NO": "UT0244",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "USFS",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{3C35D335-6D1F-4046-BB3D-5FD1BC616FBF}",
-     "Original_GlobalID": "{40BD1B10-234C-40CB-A750-060E4DF5B737}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Sulphur",
-     "HA_NO": "UT0448",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{44D45CEA-F906-4C86-BDAE-298690ADC097}",
-     "Original_GlobalID": "{2192258C-27DC-45F9-B9B4-68A6AF02A659}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Rock Springs",
-     "HA_NO": "WY0038",
-     "ADMIN_ST": "WY",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{4612E563-A571-4DD4-AC91-2B72DC9F5F2D}",
-     "Original_GlobalID": "{F99373E9-B232-46CE-BF17-C6874BE261F7}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Big Creek",
-     "HA_NO": "UT0244",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{627DF068-CA23-4762-B90F-45915C456D8E}",
-     "Original_GlobalID": "{56A63448-E35D-4E9D-ACE7-7AF454562A14}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Triangle",
-     "HA_NO": "WY0013",
-     "ADMIN_ST": "WY",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{70543E89-6A16-41C3-9F8C-5EE9BB9AC7F5}",
-     "Original_GlobalID": "{59FDA1CD-BC88-4893-9A8F-CD7C9E29FEB5}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Robbers Roost",
-     "HA_NO": "UT0653",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{80BAAC5E-4451-4EE7-89CA-EE17CD1814FC}",
-     "Original_GlobalID": "{F06F4233-37FD-445C-AD4F-C05F06B4F3C6}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Big Creek",
-     "HA_NO": "UT0244",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{8440AB26-0607-4836-9355-E9B28CFBFF56}",
-     "Original_GlobalID": "{E9D6C16E-F080-465B-AA4A-A708F6D3679E}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Salt Wells Creek",
-     "HA_NO": "WY0001",
-     "ADMIN_ST": "WY",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{8595B982-3ED3-4C92-8C2E-25E2E429DB84}",
-     "Original_GlobalID": "{38B4F1F9-2D11-47CE-B7B3-3CD0523F5D68}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Big Creek",
-     "HA_NO": "UT0244",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "USFS",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{8F766988-8E95-4570-A6CA-10ACE3D0F156}",
-     "Original_GlobalID": "{E6C594A3-F7F7-4988-9BD2-188453CA7520}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Canyon Lands",
-     "HA_NO": "UT0571",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "BURRO",
-     "GlobalID": "{99D8DEEE-02D6-44D6-9307-8E8B3D20E123}",
-     "Original_GlobalID": "{61068528-EAEB-4428-9C56-702AEA508F19}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Conger",
-     "HA_NO": "UT0553",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{9EDB5666-84C1-44E5-A882-67CEB84FE512}",
-     "Original_GlobalID": "{66EC135D-8B48-4CB6-99C2-314521DFF05E}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Hardtrigger",
-     "HA_NO": "ID0007",
-     "ADMIN_ST": "ID",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{BAB6FFFD-B882-45AB-9099-FD438EB8777E}",
-     "Original_GlobalID": "{79BEFA55-E93F-460B-9752-92B7A7874C2B}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Continental Peak",
-     "HA_NO": "WY0043",
-     "ADMIN_ST": "WY",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{DBFD4B33-922E-4BEC-9351-E494D30DFA8D}",
-     "Original_GlobalID": "{5DFC4B80-E487-4D70-80F7-F2D3BB38712C}"
-    }
-   },
-   {
-    "layer": 1,
-    "lname": "Herd Area Polygons",
-    "row": {
-     "HA_NAME": "Blawn Wash",
-     "HA_NO": "UT0441",
-     "ADMIN_ST": "UT",
-     "ADMIN_AGCY": "BLM",
-     "HERD_TYPE": "HORSE",
-     "GlobalID": "{EE73F00D-F24B-447E-9CD6-1E333BB90252}",
-     "Original_GlobalID": "{56BE9F7F-BB0F-42F7-812D-BA308825994D}"
-    }
-   }
-  ]
- },
- "trca": {
-  "layers": [
-   [
-    250,
-    "TRCA_Ownership_Aug_2026"
-   ]
-  ],
-  "found": [
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264400034",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264400080",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268260046",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Clubine",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268280192",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Goodwood",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268270049",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Secord",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264070025",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Brock South",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268210063",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Dagmar",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268210086",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Dagmar",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268210085",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Dagmar",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930067",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Glen Major",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930060",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930049",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Dagmar",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263980001",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Claremont Field Centre",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930048",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Glen Major",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930044",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Glen Major",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930043",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Glen Major",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930029",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263930024",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Walker Woods Tract",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390750",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390753",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390926",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390741",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390372",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390747",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390752",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390400",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390751",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390821",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264390737",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263780006",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263830059",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263830058",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263830592",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263830593",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263830599",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264610011",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263850122",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263850060",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263850061",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263860101",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Major Creek Open Space",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263860020",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Major Creek Open Space",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263850120",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263850119",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620063",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620073",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620242",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264080360",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264080952",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268270046",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Secord",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620226",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620195",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620231",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264620075",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264610012",
-     "L_MUNPALTY": "Ajax",
-     "R_MUNPALTY": "Durham",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264020082",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Brock North",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264020044",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Greenwood Conservation Area",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "263870018",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Major Creek Open Space",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "264020051",
-     "L_MUNPALTY": "Pickering",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Brock North",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268240069",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Plesure Valley Forest",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   },
-   {
-    "layer": 250,
-    "lname": "TRCA_Ownership_Aug_2026",
-    "row": {
-     "OWNERSHIP_PARCEL_IDENTIFIER": "268240066",
-     "L_MUNPALTY": "Uxbridge",
-     "R_MUNPALTY": "Durham",
-     "PROP_NAME": "Plesure Valley Forest",
-     "WATERSHED": "Duffins",
-     "OWNER": "TRCA",
-     "MNGD_BY": "TRCA"
-    }
-   }
-  ]
- },
- "npca": {
-  "layers": [
-   [
-    2,
-    "Conservation Areas"
-   ]
-  ],
-  "found": []
- },
- "ms WildL_Areas": {
-  "error": "<urlopen error [Errno -2] Name or service not known>"
- },
- "ms State_Parks": {
-  "error": "<urlopen error [Errno -2] Name or service not known>"
- },
- "acec layers": [
-  {
-   "id": 0,
-   "name": "ACEC Designated Polygons",
-   "geom": "esriGeometryPolygon",
-   "count": 1120,
-   "fields": [
-    "OBJECTID",
-    "ACEC_NAME",
-    "LUP_NAME",
-    "ROD_DATE",
-    "GIS_ACRES",
-    "ADMIN_ST",
-    "GlobalID",
-    "Original_GlobalID",
-    "Shape",
-    "Shape.STArea()",
-    "Shape.STLength()",
-    "NEPA_NUM",
-    "ACEC_RLVNCE_CUL",
-    "ACEC_RLVNCE_FRSC",
-    "ACEC_RLVNCE_HIS",
-    "ACEC_RLVNCE_NHAZ",
-    "ACEC_RLVNCE_NPRO",
-    "ACEC_RLVNCE_NSYS",
-    "ACEC_RLVNCE_SCE",
-    "ACEC_RLVNCE_WRSC",
-    "ACEC_IMPRTNCE_QLTS",
-    "ACEC_IMPRTNCE_IMPRTNCE",
-    "ACEC_IMPRTNCE_CNTRBTN",
-    "ACEC_IMPRTNCE_THRT",
-    "SPCL_MGMT_ATTN_RX_PRTCT",
-    "SPCL_MGMT_ATTN_RX_PRVNT"
-   ],
-   "err": null
-  },
-  {
-   "id": 1,
-   "name": "ACEC Historic Polygons",
-   "geom": "esriGeometryPolygon",
-   "count": 507,
-   "fields": [
-    "OBJECTID",
-    "ACEC_NAME",
-    "LUP_NAME",
-    "NEPA_NUM",
-    "ROD_DATE",
-    "DCTVTN_LUP_NAME",
-    "DCTVTN_NEPA_NO",
-    "DCTVTN_ROD_DATE",
-    "ACEC_RLVNCE_CUL",
-    "ACEC_RLVNCE_FRSC",
-    "ACEC_RLVNCE_HIS",
-    "ACEC_RLVNCE_NHAZ",
-    "ACEC_RLVNCE_NPRO",
-    "ACEC_RLVNCE_NSYS",
-    "ACEC_RLVNCE_SCE",
-    "ACEC_RLVNCE_WRSC",
-    "ACEC_IMPRTNCE_QLTS",
-    "ACEC_IMPRTNCE_IMPRTNCE",
-    "ACEC_IMPRTNCE_CNTRBTN",
-    "ACEC_IMPRTNCE_THRT",
-    "SPCL_MGMT_ATTN_RX_PRTCT",
-    "SPCL_MGMT_ATTN_RX_PRVNT",
-    "GIS_ACRES",
-    "ADMIN_ST",
-    "GlobalID",
-    "Original_GlobalID",
-    "Shape",
-    "Shape.STArea()",
-    "Shape.STLength()"
-   ],
-   "err": null
-  }
- ],
- "acec 0 test": {
-  "fields": [
-   "ACEC_NAME",
-   "LUP_NAME"
-  ],
-  "read": 1120,
-  "gives": 2,
-  "activations": 60,
-  "parks": {
-   "US-5998": [
-    "UT",
-    "horseshoe springs",
-    32,
-    "Horseshoe Springs"
-   ],
-   "US-7543": [
-    "NM",
-    "mescalero sands",
-    28,
-    "Mescalero Sands"
-   ]
-  }
- },
- "acec 1 test": {
-  "fields": [
-   "ACEC_NAME",
-   "LUP_NAME",
-   "DCTVTN_LUP_NAME"
-  ],
-  "read": 507,
+ "nb Unique_Areas 0 test": {
+  "fields": [],
+  "read": 621,
   "gives": 0,
   "activations": 0,
   "parks": {}
  },
- "crd layers": [
-  {
-   "id": 3,
-   "name": "Parks",
-   "geom": "esriGeometryPolygon",
-   "count": 1853,
-   "fields": [
-    "OBJECTID",
-    "Name",
-    "Jurisdic",
-    "Comments",
-    "Type",
-    "DataSource",
-    "DataProject",
-    "DataDate",
-    "DataSupplier",
-    "DataAccuracy",
-    "InsideGMPA",
-    "InsideSSGBB",
-    "DateEstablished",
-    "RegionalParkStatus",
-    "AdministrativeArea",
-    "Date_Changed",
-    "LifeCycleStatus",
-    "tmp",
-    "ParkNameShort",
-    "Shape__Area",
-    "Shape__Length"
-   ],
-   "err": null
-  }
- ],
- "crd 3 test": {
-  "fields": [
-   "Name",
-   "RegionalParkStatus",
-   "AdministrativeArea",
-   "ParkNameShort"
-  ],
-  "read": 1853,
-  "gives": 5,
-  "activations": 735,
-  "parks": {
-   "CA-5667": [
-    "CA-BC",
-    "mount tolmie",
-    73,
-    "Mount Tolmie Park"
-   ],
-   "CA-3688": [
-    "CA-BC",
-    "mount douglas",
-    52,
-    "Mount Douglas Park"
-   ],
-   "CA-5326": [
-    "CA-BC",
-    "hatley",
-    44,
-    "Hatley Park National Historic Site"
-   ],
-   "CA-5539": [
-    "CA-BC",
-    "uplands",
-    420,
-    "Uplands Park"
-   ],
-   "CA-5540": [
-    "CA-BC",
-    "beacon hill",
-    146,
-    "Beacon Hill Park"
-   ]
-  }
- },
- "md layers": [
+ "nb Candidate_Conserved_Areas": [
   {
    "id": 0,
-   "name": "Maryland Natural Areas",
+   "name": "Nature Legacy protected areas",
    "geom": "esriGeometryPolygon",
-   "count": 34,
-   "fields": [
-    "Shape",
-    "AREA_NAME",
-    "weblink",
-    "County",
-    "OBJECTID"
-   ],
-   "err": null
-  }
- ],
- "md 0 test": {
-  "fields": [
-   "AREA_NAME"
-  ],
-  "read": 34,
-  "gives": 14,
-  "activations": 370,
-  "parks": {
-   "US-10780": [
-    "MD",
-    "allens fresh",
-    21,
-    "Allens Fresh"
-   ],
-   "US-10764": [
-    "MD",
-    "andover flatwoods",
-    18,
-    "Andover Flatwoods"
-   ],
-   "US-10770": [
-    "MD",
-    "bear pen run",
-    12,
-    "Bear Pen Run"
-   ],
-   "US-10775": [
-    "MD",
-    "black marsh",
-    47,
-    "Black Marsh"
-   ],
-   "US-10762": [
-    "MD",
-    "furnace",
-    27,
-    "Furnace"
-   ],
-   "US-10759": [
-    "MD",
-    "green run woods",
-    7,
-    "Green Run Woods"
-   ],
-   "US-10732": [
-    "MD",
-    "hickory point cypress swamp",
-    12,
-    "Hickory Point Cypress Swamp"
-   ],
-   "US-10767": [
-    "MD",
-    "lostland run",
-    28,
-    "Lostland Run"
-   ],
-   "US-10773": [
-    "MD",
-    "masemore hemlock ravines",
-    45,
-    "Masemore Hemlock Ravines"
-   ],
-   "US-10769": [
-    "MD",
-    "monroe run",
-    24,
-    "Monroe Run"
-   ],
-   "US-10758": [
-    "MD",
-    "north end",
-    32,
-    "North End"
-   ],
-   "US-10774": [
-    "MD",
-    "plum creek",
-    42,
-    "Plum Creek"
-   ],
-   "US-10756": [
-    "MD",
-    "skimmer island",
-    39,
-    "Skimmer Island"
-   ],
-   "US-10768": [
-    "MD",
-    "south savage mountain",
-    16,
-    "South Savage Mountain"
-   ]
-  }
- },
- "wa layers": [
-  {
-   "id": 1,
-   "name": "DNR Managed Surface Lands by Surface Trust",
-   "geom": "esriGeometryPolygon",
-   "count": 13554,
+   "count": 552,
    "fields": [
     "OBJECTID",
-    "PARCEL_SYST_ID",
-    "PARCEL_TYPE_CD",
-    "PARCEL_LABEL_NM",
-    "PARCEL_NM",
-    "REVERSION_RIGHTS_FLG",
-    "OWN_RIGHT_DISPUTE_FLG",
-    "SURFACE_RIGHTS_FLG",
-    "MINERAL_RIGHTS_FLG",
-    "TIMBER_RIGHTS_FLG",
-    "SURFACE_TRUST_CD",
-    "SURFACE_TRUST_NM",
-    "MINERAL_TRUST_CD",
-    "MINERAL_TRUST_NM",
-    "TIMBER_TRUST_CD",
-    "TIMBER_TRUST_NM",
-    "OWNER_AGENT_SYST_ID",
-    "STEWARD_AGENT_SYST_ID",
-    "MANAGER_AGENT_SYST_ID",
-    "TIMBER_OWNER_NM",
-    "TIMBER_EXP_DT",
-    "ORIGINAL_PATENT_DT",
-    "COUNTY_JURISDICT_DESG_CD",
-    "COUNTY_NM",
-    "COUNTY_PARCEL_NO",
-    "REGION_JURISDICT_DESG_CD",
-    "REGION_NM",
-    "HCP_JURISDICT_DESG_CD",
-    "HCP_DESG_CD",
-    "HCP_DESG_DT",
-    "HCP_WITHDRAWAL_DT",
-    "PARCEL_DESC_TXT",
-    "EDIT_DATE",
-    "EDIT_STATUS",
-    "EDIT_WHO",
-    "EASEMENT_TYPE_CD",
-    "EASEMENT_TYPE_NM",
-    "PARCEL_ACQUIRE_AUTH_NO",
-    "PARCEL_DISPOSAL_AUTH_NO",
-    "SHAPE"
-   ],
-   "err": null
-  },
-  {
-   "id": 8,
-   "name": "NAPs and NRCAs",
-   "geom": "esriGeometryPolygon",
-   "count": 110,
-   "fields": [
-    "OBJECTID",
-    "JURISDICT_SYST_ID",
-    "JURISDICT_TYPE_CD",
-    "JURISDICT_LABEL_NM",
-    "JURISDICT_NM",
-    "JURISDICT_DESG_CD",
-    "JURISDICT_FIPS_DESG_CD",
-    "JURISDICT_VACATED_FLG",
-    "EDIT_DATE",
-    "EDIT_STATUS",
-    "EDIT_WHO",
+    "UID_",
     "SHAPE",
     "SHAPE.AREA",
-    "SHAPE.LEN"
+    "SHAPE.LEN",
+    "NAME",
+    "NOM",
+    "PROTECTION_DATE",
+    "PROTECTION_STATUS"
    ],
    "err": null
   }
  ],
- "wa 1 test": {
-  "fields": [
-   "PARCEL_LABEL_NM",
-   "PARCEL_NM",
-   "SURFACE_TRUST_NM",
-   "MINERAL_TRUST_NM",
-   "TIMBER_TRUST_NM"
-  ],
-  "read": 13554,
-  "gives": 1,
-  "activations": 21,
-  "parks": {
-   "US-5570": [
-    "WA",
-    "little pend oreille",
-    21,
-    "Little Pend Oreille"
-   ]
-  }
- },
- "wa 8 test": {
-  "fields": [
-   "JURISDICT_LABEL_NM",
-   "JURISDICT_NM"
-  ],
-  "read": 110,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
- },
- "wsr layers": [
+ "nb Candidate_Conserved_Areas 0 rows": [
   {
-   "id": 0,
-   "name": "NLCS Wild and Scenic Rivers",
-   "geom": "esriGeometryPolyline",
-   "count": 2077,
-   "fields": [
-    "SHAPE.STLength()",
-    "OBJECTID",
-    "NLCS_ID",
-    "WSR_CTGY",
-    "NLCS_NAME",
-    "CASEFILE_NO",
-    "NHD_RCH_CD",
-    "ADMIN_ST",
-    "COORD_SRC_TYPE",
-    "COORD_SRC2",
-    "DEF_FET_TYPE",
-    "DEF_FET2",
-    "ACCURACY_FT",
-    "GlobalID",
-    "WSR_SGMNT_NO",
-    "Original_GlobalID",
-    "SHAPE"
-   ],
-   "err": null
+   "OBJECTID": 1,
+   "UID_": "4000300",
+   "SHAPE.AREA": 26239741.37355,
+   "SHAPE.LEN": 87228.18240512071,
+   "NAME": "Kouchibouguacis River",
+   "NOM": "Riviere Kouchibouguacis",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "id": 1,
-   "name": "nlcs_desc",
-   "geom": null,
-   "count": 54,
-   "fields": [
-    "OBJECTID",
-    "NLCS_ID",
-    "DESCRIPTION",
-    "WEBLINK",
-    "PHOTO_TEXT",
-    "GlobalID",
-    "PHOTO_LINK",
-    "PHOTO_THUMB"
-   ],
-   "err": null
-  }
- ],
- "hca hub": [
-  {
-   "title": "SWP: Percent Managed Lands",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/915f13809f6941b2a89ea89cf33121df/rest/services/ms-opendata/CH_SWP/MapServer/10"
+   "OBJECTID": 2,
+   "UID_": "4000400",
+   "SHAPE.AREA": 4013743.34265,
+   "SHAPE.LEN": 24701.715050947598,
+   "NAME": "Pollard Brook",
+   "NOM": "Ruisseau Pollard",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "title": "SWP: Livestock Density",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/1d93c7e9f50e440898830c236db0fe97/rest/services/ms-opendata/CH_SWP/MapServer/11"
+   "OBJECTID": 3,
+   "UID_": "4000500",
+   "SHAPE.AREA": 9397840.40045,
+   "SHAPE.LEN": 47504.046254046,
+   "NAME": "Second Eel Lake",
+   "NOM": "Lac Second Eel",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "title": "SWP: Wellhead Protection Area",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/5ef21eb4dc7b479eba6cf382f824225a/rest/services/ms-opendata/CH_SWP/MapServer/5"
+   "OBJECTID": 4,
+   "UID_": "4000600",
+   "SHAPE.AREA": 9348713.85135,
+   "SHAPE.LEN": 33545.000599514,
+   "NAME": "Charlo River",
+   "NOM": "Riviere Charlo",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "title": "SWP: Wellhead Protection Area E Vulnerability",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/e5912f347f624095b24c3604144d9cb5/rest/services/ms-opendata/CH_SWP/MapServer/8"
+   "OBJECTID": 5,
+   "UID_": "4000900",
+   "SHAPE.AREA": 3656399.43315,
+   "SHAPE.LEN": 24333.624219652,
+   "NAME": "March's Lake",
+   "NOM": "Lac March's",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "title": "SWP: Wellhead Protection Area E",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/396be248f35944ad86882ca04c6f344c/rest/services/ms-opendata/CH_SWP/MapServer/6"
+   "OBJECTID": 6,
+   "UID_": "4001000",
+   "SHAPE.AREA": 3125818.8507,
+   "SHAPE.LEN": 21766.7575857169,
+   "NAME": "Partridge Valley East",
+   "NOM": "Partridge Valley Est",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "title": "SWP: Intake Protection Zones",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/675261a00a4d47edbc4ebffc514ac43c/rest/services/ms-opendata/CH_SWP/MapServer/2"
+   "OBJECTID": 7,
+   "UID_": "4001200",
+   "SHAPE.AREA": 6203602.0993,
+   "SHAPE.LEN": 27511.538106259,
+   "NAME": "McLaughlin Creek",
+   "NOM": "Ruisseau McLaughlin",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   },
   {
-   "title": "HCA_Watershed Jurisdictional Boundary",
-   "type": "Feature Service",
-   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/dbo_HCA_watershed_jurisdictional_boundary_poly/FeatureServer"
-  },
-  {
-   "title": "SWP: Halton-Hamilton SPR",
-   "type": "Feature Service",
-   "url": "https://utility.arcgis.com/usrsvcs/servers/22064c44cdea4466a1bcfb07fa61fcd8/rest/services/ms-opendata/CH_SWP/MapServer/0"
-  },
-  {
-   "title": "HCA_Subwatersheds",
-   "type": "Feature Service",
-   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/dbo_Subwatersheds_regulation/FeatureServer"
-  },
-  {
-   "title": "HCA_Watersheds",
-   "type": "Feature Service",
-   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Watersheds_regulation/FeatureServer"
+   "OBJECTID": 8,
+   "UID_": "4001300",
+   "SHAPE.AREA": 499187.4416,
+   "SHAPE.LEN": 5038.63804753853,
+   "NAME": "Mink Brook",
+   "NOM": "Ruisseau Mink",
+   "PROTECTION_DATE": 1657756800000,
+   "PROTECTION_STATUS": "Protected / Prot\u00e9g\u00e9e"
   }
  ],
- "hca test SWP: Percent Managed Lands": {
+ "nb Candidate_Conserved_Areas 0 test": {
   "fields": [
-   "LOCAL_AREA_NAME"
+   "NAME"
   ],
-  "read": 91,
+  "read": 552,
   "gives": 0,
   "activations": 0,
   "parks": {}
  },
- "hca test SWP: Wellhead Protection Area": {
-  "fields": [
-   "AREA_NAME",
-   "LOCAL_AREA_NAME"
+ "trca names": {
+  "rows": 2207,
+  "distinct names": 215,
+  "hits": [
+   "Don Valley Golf Course",
+   "Scarlett Woods Golf Course",
+   "Tam Oshanter Golf Course"
   ],
-  "read": 89,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
+  "all": [
+   " 8682 Regional Road 27, Vaughan",
+   "10 Elizabeth St",
+   "1251 Bridletown Circle",
+   "12844 Leslie Street, in the City of Richmond Hill, Regional Municipality of York",
+   "13876 Ninth Line",
+   "170 The West Mall",
+   "1780 Lawrence Ave West",
+   "21 Lorraine Gardens",
+   "2549 Concession Road 4",
+   "4208 Dundas St W",
+   "50 Humberwood Boulevard",
+   "5113 Brock Road, Pickering",
+   "7 Broadmere",
+   "8265 HUNTINGTON ROAD",
+   "85 Birch Ave",
+   "90 Meadowcliffe",
+   "Addington Greenbelt",
+   "Albion Hills Conservation Park",
+   "Altona Forest",
+   "Argent",
+   "Arsenal Lands",
+   "Ashbridge's Bay Park",
+   "BLOCK 19 and 20 on 65M-4541 AND BLOCK 19 ON PLAN 65M-4540",
+   "Back of 1 Adravilla Way, Toronto",
+   "Bakers Woods",
+   "Ballycroy East",
+   "Ballycroy West",
+   "Bellamy Ravine",
+   "Berry Road Park",
+   "Betty Sutherland Trail",
+   "Black Creek Parkland",
+   "Black Creek Site East",
+   "Black Creek Site West",
+   "Block 167, Plan 43M2081",
+   "Block 19, Plan 66M2548",
+   "Block 197, Plan 65M4126",
+   "Block 198, Plan 65M4126",
+   "Blocks 417, Plan 65M-4685",
+   "Blocks 418, Plan 65M-4685",
+   "Bluffer's Park",
+   "Bolton Camp",
+   "Bolton Mill Park",
+   "Bolton Resource Management Tract",
+   "Botany Hill Park",
+   "Boyd Conservation Park",
+   "Brock North",
+   "Brock South",
+   "Bruce Handscomb Park",
+   "Bruce's Mill Conservation Park",
+   "Burns and Sparks",
+   "Burrows Hall Park",
+   "Caledon",
+   "Caledon Tract",
+   "Carscadden Greenbelt",
+   "Cedar Brook Park",
+   "Cedar Mains",
+   "Cedar Ridge Park",
+   "Centennial Park",
+   "Centreville Creek",
+   "Chalkfarm Park",
+   "Charles Sauriol Conservation Area",
+   "Chipping Greenbelt",
+   "Claireville Conservation Area",
+   "Claremont Field Centre",
+   "Cliff Lumsdon Park",
+   "Clubine",
+   "Cold Creek Conservation Area",
+   "Colonel Danforth Park",
+   "Colonel Samuel Smith Park",
+   "Conservation Drive Park",
+   "Coxwell Ravine Park",
+   "Crawford-Jones Memorial Park",
+   "Crothers Woods",
+   "Cruickshank Park",
+   "Cudia Park",
+   "Dagmar",
+   "David Duncan House",
+   "Derrydowns Park",
+   "Doctors Mclean District Park",
+   "Don Valley Brickworks",
+   "Don Valley Golf Course",
+   "Downsview Dells",
+   "Duncan Mill Greenbelt",
+   "E.T. Seton Park",
+   "EMG Property",
+   "Earl Bales Park",
+   "East Don Parkland",
+   "East Point Park",
+   "Ebenezer Resource Management Tract",
+   "Eglinton Flats",
+   "Elgin Woods Park",
+   "Etobicoke Creek Diversion Channel",
+   "Etobicoke Creek Diversion Channel North",
+   "Etobiocke Valley Park",
+   "Fergy Brown Park",
+   "Fishleigh Park",
+   "Forest Valley Day Camp",
+   "G. Ross Lord Park",
+   "Garthdale Parkette",
+   "Gibson Lake",
+   "Glen Haffy Conservation Park",
+   "Glen Haffy Extension",
+   "Glen Major",
+   "Glen Ravine Park",
+   "Glendon Forest",
+   "Goodwood",
+   "Grand Valley",
+   "Greenwood Conservation Area",
+   "Grey Abbey Park ",
+   "Guild Inn & Gardens",
+   "Heart Lake Conservation Park",
+   "Highland Creek Park",
+   "Hinder Area",
+   "Home Smith Park",
+   "Humber Arboretum",
+   "Humber Bay Park",
+   "Humber Marshes",
+   "Humber Source Woods",
+   "Humber Trails",
+   "Joyce Archdekin Park",
+   "Kings Mill Park",
+   "Kleinburg New Forest North",
+   "Kolodziej",
+   "Kortright Centre for Conservation",
+   "Kraker",
+   "Lake St. George Field Centre",
+   "Lakeshore Boulevard Parklands",
+   "Lambton Park",
+   "Lambton Woods",
+   "Lower Don Parklands",
+   "Lower Highland Creek Park",
+   "MacArthur",
+   "Major Creek Open Space",
+   "Marie Curtis Park",
+   "Maxwell Park",
+   "Meadowland Park",
+   "Mill Pond Park",
+   "Milne Park",
+   "Mimico Waterfront Park",
+   "Moccasin Trail Park",
+   "Morningside Park",
+   "NINTH AND MAIN GENERAL PARTNER INC. AND NINTH AND MAIN LIMITED PARTNERSHIP",
+   "Nashville Resource Management Tract",
+   "Newtonbrook Park",
+   "North Walker Woods",
+   "North of Rossland Road West, and West of Church Street North",
+   "Oak Ridges Corridor Park",
+   "Oak Ridges Corridor Park East",
+   "Oakbank Park",
+   "Old Mill Tennis Courts",
+   "Palgrave Forest and Wildlife Centre",
+   "Palgrave Mill Park",
+   "Palgrave Mill Pond",
+   "Part Lots 23 & 24, Conc 7",
+   "Paulynn Park",
+   "Petticoat Creek Conservation Park",
+   "Pine Point Park",
+   "Plesure Valley Forest",
+   "Raymore Park/Canadian Ukrainian Memorial",
+   "Rear of 1 Katrine Rd",
+   "Rear of 21 Disan Ct",
+   "Rear of 24 Disan Ct",
+   "Rear of 2996 Weston Rd",
+   "Rear of 47 Riverhead Dr",
+   "Rear of 47 Riverhead Drive",
+   "Rosalea Park",
+   "Rosetta McClain Park",
+   "Rotary Frenchman's Bay West Park",
+   "Rouge Park",
+   "Rowley",
+   "Rowntree Mills Park",
+   "Russel & Joan Robertson Park",
+   "Scarlett Mills Park",
+   "Scarlett Woods Golf Course",
+   "Scott Street Parkette",
+   "Secord",
+   "Serena Gundy Park",
+   "Slokker",
+   "Smythe Park",
+   "South Marine Drive Park",
+   "Spring Garden Park",
+   "St. Lucie Park",
+   "Steeles Park",
+   "Stouffville Channel",
+   "Stouffville Reservoir",
+   "Summer Valley",
+   "Summerlea Park",
+   "Sunkist Woods",
+   "Sunnybrook Park",
+   "Swan Lake",
+   "Sylvan Park",
+   "TRANSFER FROM: MACDONALD, WILLIAM; MACDONALD, JOSEPH JOHN AND MACDONALD, CHRISTOPHER GEORGE",
+   "TRCA Lands",
+   "Tam Oshanter Golf Course",
+   "Taylor Creek Park",
+   "Thackeray Park",
+   "The Village at Black Creek",
+   "Todmorden Mills Park",
+   "Tommy Thompson Park",
+   "Toronto Zoo",
+   "Trethewey Park",
+   "Upwood Greenbelt",
+   "Veteran's/Nort Jownston District Parks",
+   "Walker Woods Tract",
+   "Warden Woods",
+   "Watson Valley",
+   "Weir",
+   "West Humber Parkland",
+   "Westen Gateway",
+   "Westview Greenbelt",
+   "Wilder Forest and Wildlife Area",
+   "Wilket Creek Park",
+   "Wiwanis Memorial Park",
+   "York Mills Valley Park",
+   "\u00c9tienne Br\u00fbl\u00e9 Park"
+  ]
  },
- "hca test SWP: Wellhead Protection Area E Vulnerability": {
-  "fields": [
-   "ZoneName",
-   "LOCAL_AREA_NAME"
-  ],
-  "read": 2,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
- },
- "hca test SWP: Wellhead Protection Area E": {
-  "fields": [
-   "ZoneName",
-   "LOCAL_AREA_NAME"
-  ],
-  "read": 2,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
- },
- "hca test HCA_Watershed Jurisdictional Boundary": {
-  "fields": [],
-  "read": 2,
-  "gives": 0,
-  "activations": 0,
-  "parks": {}
- },
- "idpr hub": [
+ "npca names": [
+  "[1, 'Oswego Creek', 82407.68310546875, 2667.2835830822423]",
+  "[10, 'Wainfleet Bog', 8126284.173583984, 16305.428200115219]",
+  "[11, 'Willoughby Marsh', 2312897.5009765625, 13560.413292743986]",
+  "[12, 'Smith-Ness Forest', 377675.43212890625, 3157.4304438848435]",
+  "[13, 'E.C. Brown', 137897.2158203125, 2950.736087906015]",
+  "[14, 'Gainsborough', 160420.12060546875, 1669.276219627617]",
+  "[15, 'Stevensville', 492955.22119140625, 3533.446279985179]",
+  "[16, 'Humberstone Marsh', 823858.1936035156, 3642.0028837654822]",
+  "[17, 'Woolverton', 185888.26806640625, 7724.266498516513]",
+  "[18, 'Mountainview', 271984.34716796875, 2149.782777848015]",
+  "[19, 'Binbrook', 3756054.998779297, 19389.01561592565]",
+  "[2, 'Canborough', 55568.393310546875, 1158.7242532471287]",
+  "[20, 'Binbrook Tract', 207364.79345703125, 2422.229912355109]",
+  "[21, \"Shriner's Creek\", 367283.96044921875, 7929.480445477779]",
+  "[22, 'Cave Springs', 433679.9079589844, 4468.700500726079]",
+  "[23, \"Ball's Falls\", 1147097.0695800781, 12593.704681684163]",
+  "[24, 'Rockway', 1329102.8876953125, 10581.069368628676]",
+  "[25, 'Louth', 630199.6740722656, 5346.081873234018]",
+  "[26, 'Two Mile Creek', 85139.89038085938, 3260.600770974789]",
+  "[27, 'Virgil Dam and Reservoir', 507495.47509765625, 9153.697054547072]",
+  "[28, 'Ruigrok Tract', 926594.4147949219, 8355.250165802518]",
+  "[29, 'Jordan Harbour', 7164.73193359375, 477.5816127219059]",
+  "[3, 'Hedley Forest', 176516.24438476562, 2144.1770074438045]",
+  "[30, 'Comfort Maple', 2403.771484375, 567.8795494657252]",
+  "[31, 'Lakewood', 61581.997314453125, 1309.5985598335092]",
+  "[32, \"St. John's Centre\", 74444.40649414062, 1371.010193402375]",
+  "[33, \"St. John's\", 318807.85009765625, 2979.37334167782]",
+  "[34, 'Beamer Memorial', 638019.0197753906, 9500.837007714223]",
+  "[35, 'Gord Harry Trail', 275394.9416503906, 26179.151759889555]",
+  "[36, 'Woodend', 470240.6613769531, 4521.716818148694]",
+  "[37, \"Morgan's Point\", 279196.2412109375, 2996.0271826762223]",
+  "[38, 'Lathrop', 383340.3857421875, 4387.968505844722]",
+  "[39, 'Eight Mile Creek', 7868.3701171875, 365.10031859550537]",
+  "[4, 'Chippawa Creek', 1515788.04296875, 5936.075644419584]",
+  "[40, 'Lathrop', 1485.52392578125, 326.3389695664974]",
+  "[46, 'OPG', 89042.55102539062, 1957.262606696413]",
+  "[47, 'Wainfleet Bog', 118931.33227539062, 1395.6612892771968]",
+  "[48, 'Point Abino-Philips', 383622.77197265625, 3227.5413800829783]",
+  "[49, 'Point Abino-McGowan', 19986.07666015625, 693.7193585737293]",
+  "[5, 'Port Davidson', 1915.686767578125, 234.27049982517966]",
+  "[50, 'Baird Estate', 20678.1884765625, 587.554630829708]",
+  "[6, 'Mud Lake', 631271.4892578125, 3223.0725725534585]",
+  "[7, 'Wainfleet Wetlands', 1854145.4177246094, 9802.458697022219]",
+  "[8, \"Morgan's Point\", 96036.53247070312, 1328.9338841799783]",
+  "[9, 'Long Beach', 568582.6716308594, 3256.429128834085]"
+ ],
+ "crd hits": [
   {
-   "title": "Idaho Recreation Trails",
-   "type": "Feature Service",
-   "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer"
+   "Name": "Mount Tolmie Park",
+   "Jurisdic": "District of Saanich",
+   "Type": "Municipal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "District of Saanich"
   },
   {
-   "title": "Idaho Centennial Trail",
-   "type": "Web Experience",
-   "url": "https://experience.arcgis.com/experience/88698c1019474294bd38441e5b50f66a"
+   "Name": "Mount Douglas Park",
+   "Jurisdic": "District of Saanich",
+   "Type": "Municipal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "District of Saanich"
   },
   {
-   "title": "Idaho Centennial Trail (Official Route)",
-   "type": "Feature Service",
-   "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Centennial_Trail_Official_Route/FeatureServer"
+   "Name": "Mount Douglas Park",
+   "Jurisdic": "District of Saanich",
+   "Type": "Municipal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "District of Saanich"
   },
   {
-   "title": "IDPR_Parks_and_Facilities",
-   "type": "Feature Service",
-   "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/IDPR_Parks_and_Facilities/FeatureServer"
+   "Name": "Mount Douglas Park",
+   "Jurisdic": "District of Saanich",
+   "Type": "Municipal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "District of Saanich"
   },
   {
-   "title": "Idaho Department of Parks Recreation Open Data",
-   "type": "Hub Site Application",
-   "url": "https://idpr-data-idaho.hub.arcgis.com"
+   "Name": "Hatley Park National Historic Site",
+   "Jurisdic": "City of Colwood",
+   "Type": "Federal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "City of Colwood"
   },
   {
-   "title": "Idaho Boat Ramps",
-   "type": "Web Map",
-   "url": null
+   "Name": "Uplands Park",
+   "Jurisdic": "District of Oak Bay",
+   "Type": "Municipal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "District of Oak Bay"
   },
   {
-   "title": "Idaho Oregon Snake River Water Trail",
-   "type": "Web Mapping Application",
-   "url": "https://idaho.maps.arcgis.com/apps/MapSeries/index.html?appid=10cddb1569a34e5c819673b4f79439f9"
-  },
-  {
-   "title": "Idaho Park N' Ski ",
-   "type": "Web Experience",
-   "url": "https://experience.arcgis.com/experience/5905e736b8ab4910a8ae9eb36d470ccd"
-  },
-  {
-   "title": "Idaho_Trails_Map_gdb",
-   "type": "File Geodatabase",
-   "url": null
-  },
-  {
-   "title": "Idaho Trails",
-   "type": "Web Experience",
-   "url": "https://experience.arcgis.com/experience/97a42a2a73c944ba918042faf518c689"
+   "Name": "Beacon Hill Park",
+   "Jurisdic": "City of Victoria",
+   "Type": "Municipal Park",
+   "RegionalParkStatus": "NA",
+   "AdministrativeArea": "City of Victoria"
   }
  ],
- "idpr test IDPR_Parks_and_Facilities": {
-  "geom": "esriGeometryPoint",
-  "skipped": "not areas"
+ "maris": {
+  "https://maris.mississippi.edu/HTML/Maps/RestMapServices.html": [
+   "https://www.maris.state.ms.us/server/rest/services/Image/DOQQ_Quads/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/Delta_Hillshade/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/Delta_Spring2019_TC/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/MDEM_2006_2ft/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/MSDelta_Spring19_CIR/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/NAIP2014_Fin/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/NAIP2018/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/NAIP_2018_CIR/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/SE_2015_Grey/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Image/SE_2015_Shaded/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/16thSections/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/1990BlockGroups/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/1990CDP/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/1990House/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/1990Senate/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/1990VTD/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/1990_BNA/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2000Congressional/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2000House/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2000VotingPrecincts/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2000_BNA/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2000_BlockGroups/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010BG_PopnHou/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Block_PopnHou/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Block_SexAgeRace/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Cities/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010County_PopnHou/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010PLace_PopnHou/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010PSD_PopnHou/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010Tract_PopnHou/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010UrbanAreas/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_CDP/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_Congress/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_House/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_Senate/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2010_VTD/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/2012_VTD/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/AMTowers/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/AirCraftLndFacils/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/AmtrackStations/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/AreaCodes/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Basin/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/BldgFootp/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Blocks2000/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/BroadBandTransm/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Brownfields/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CCDists/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CDP2003/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CERCLA/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Casinos/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CellServcAreas/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CellTowers/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Cemeteries/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/ChancCourtDists/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CircuitCourtDists/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Cities2000/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CityHalls/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Communities/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CountyBrdrs/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CountyRoads10/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CountySupDists/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Courthouses/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/CreditUnions/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/DHLFacil/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/DOCSites/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/DamLines/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/DesigHwys/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Disch_Elim_Sites/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/ElecSubStat/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/FAA_Runways/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/FDICBanks/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/FEDEXFacils/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/FMTowers/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/FireStations/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/FloodHazard/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Forest_Hab/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Forest_Ind/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Geologic_Formations/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/HazMatRoutes/MapServer",
+   "https://www.maris.state.ms.us/server/rest/services/Vector/Historic_Forests/MapServer"
+  ],
+  "https://www.maris.state.ms.us/": "<urlopen error [Errno -2] Name or service not known>",
+  "https://maris.mississippi.edu/": [],
+  "dir https://www.maris.state.ms.us/server/rest/services": {
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  }
  }
 }
