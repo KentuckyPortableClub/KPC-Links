@@ -1,5 +1,5 @@
 {
- "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link.",
+ "about": "Official pages for US and Canadian parks POTA lists with no website (HQ worklist, Oct 25 2026: KPC_Park_OfficialPages_done.xlsx). web = the park's own page (filled into data/parkinfo by kpc_state_links.py when POTA has none); agency_page = a general agency list reused for several parks (not the park's own page); map = official map link. NOT FOUND parks are left for later; Canada added Oct 25 from HQ round 10 (KPC_Round10_done.xlsx tab 3). Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed. Oct 26 (HQ): official maps for the 300 busiest US parks outside KY, two research files merged (KPC_Official_Maps_done + KPC_Round12_park_maps_done): map = the park's map (a PDF wins when the two files differ), map_page = the other file's link, map_confirmed = both files gave the same link, map_note 'map on the park page' when the map link is the park page, agency_map = a general agency map page used for 3+ parks (agency-level). Oct 26 11:30 (research desk verdict): 12 fixes applied (map_fix); group_site = the managing group's / support group's own site (not an agency); map_hold = do not show until kpc_map_linkcheck.py says the link loads (it clears the hold itself); map_check = {status, date} for every map / map_page / agency_map link. Oct 26: the LINK HARVESTER (kpc_link_harvest.py, monthly) adds 'web' / 'map' from official sources with '<kind>_by': 'bot: …'; a value without a bot tag was filled by a person and is never changed.",
  "parks": {
   "CA-0653": {
    "agency": "Alberta Parks, Government of Alberta",
@@ -4310,6 +4310,10 @@
     "map": "ok"
    }
   },
+  "US-10034": {
+   "map": "https://parks.ny.gov/sites/default/files/BenningtonBattlefieldBenningtonHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
   "US-10056": {
    "map": "https://www.blm.gov/sites/blm.gov/files/spring-basin-map.pdf",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -4317,6 +4321,14 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-10081": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/LongPointTI_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-10082": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/TwoRivers_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Two Rivers Hunting Map\")"
   },
   "US-10084": {
    "map": "https://www.nps.gov/hart/planyourvisit/maps.htm",
@@ -4892,6 +4904,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-10633": {
+   "map": "https://ohv.parks.ca.gov/pages/1170/files/Resource Management Areas in Carnegie SVRA.pdf",
+   "map_by": "bot: California State Parks park page (\"Map\")"
   },
   "US-10660": {
    "map": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/hunting/factsheets/documents/imcanaleasthuntermap.pdf",
@@ -5706,6 +5722,14 @@
    },
    "web": "https://www.arkansasstateparks.com/parks/woolly-hollow-state-park"
   },
+  "US-1121": {
+   "map": "https://www.parks.ca.gov/pages/464/files/AhjumawiLavaSpringsWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1122": {
+   "map": "https://www.parks.ca.gov/pages/582/files/Andrew_Molera_Trail_Camp_Map_FINAL_(JS_12.19.22).pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-11224": {
    "map": "https://mdc.mo.gov/media/area/map/8611",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -5746,6 +5770,10 @@
     "map": "ok"
    }
   },
+  "US-1123": {
+   "map": "https://www.parks.ca.gov/pages/468/files/AngelIslandSPSpanishWebLayout2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure - Spanish (PDF)\")"
+  },
   "US-11235": {
    "map": "https://mdc.mo.gov/media/area/map/7901",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -5762,6 +5790,18 @@
     "map": "ok"
    }
   },
+  "US-1124": {
+   "map": "https://www.parks.ca.gov/pages/480/files/AnnadelSPWebSpanish2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure - Spanish (PDF)\")"
+  },
+  "US-1125": {
+   "map": "https://www.parks.ca.gov/pages/523/files/Ano Nuevo Final Web Layout031122_remediated.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1126": {
+   "map": "https://www.parks.ca.gov/pages/638/files/abdsp_Park_Map201704.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Map (PDF)\")"
+  },
   "US-11266": {
    "map": "https://mdc.mo.gov/media/area/map/9724",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -5769,6 +5809,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1127": {
+   "map": "https://www.parks.ca.gov/pages/634/files/Rare Juniper Trail Brochure 16 2.pdf",
+   "map_by": "bot: California State Parks park page (\"here\")"
   },
   "US-11272": {
    "map": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/2025_26_D3-Mulberry%20Fork%20WMA.pdf",
@@ -5778,6 +5822,18 @@
     "map": "HTTP 404"
    }
   },
+  "US-1128": {
+   "map": "https://www.parks.ca.gov/pages/463/files/BidwellSacRiverSPWebLayout2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1130": {
+   "map": "https://www.parks.ca.gov/pages/664/files/SanDiegoCoastWebLayout041509.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1132": {
+   "map": "https://www.parks.ca.gov/pages/512/files/BurtonCreekWebMap2008.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Map (PDF)\")"
+  },
   "US-11329": {
    "map": "https://mdc.mo.gov/media/area/map/9606",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -5785,6 +5841,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1133": {
+   "map": "https://www.parks.ca.gov/pages/536/files/ButanoSPCampgroundMap102516.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-11337": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/hamburg_mt.pdf",
@@ -5802,6 +5862,14 @@
     "map": "HTTP 404"
    }
   },
+  "US-1134": {
+   "map": "https://www.parks.ca.gov/pages/551/files/CalaverasBigTreesSP_CampMap022315.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1135": {
+   "map": "https://www.parks.ca.gov/pages/454/files/CastleCragsCampgroundMap2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-11358": {
    "map": "https://mdc.mo.gov/media/area/map/8106",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -5817,6 +5885,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1136": {
+   "map": "https://www.parks.ca.gov/pages/538/files/CastleRockSPFinalWebLayout082117.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-11360": {
    "map": "https://mdc.mo.gov/media/area/map/6705",
@@ -5890,6 +5962,10 @@
     "map": "ok"
    }
   },
+  "US-1137": {
+   "map": "https://www.parks.ca.gov/pages/557/files/CaswellMemorialSP_CampMap021015.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-11370": {
    "map": "https://mdc.mo.gov/media/area/map/8423",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -5930,6 +6006,10 @@
     "map": "ok"
    }
   },
+  "US-1138": {
+   "map": "https://www.parks.ca.gov/pages/466/files/ChinaCampSPWebLayout2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-1139": {
    "map": "https://www.parks.ca.gov/pages/648/files/ChinoHillsFinalWebLayout2018.pdf",
    "map_check": {
@@ -5941,6 +6021,42 @@
    "map_page": "https://www.parks.ca.gov/pages/648/files/ChinoHillsSP_Brochure_092326_FINAL.pdf",
    "map_what": "PDF park map"
   },
+  "US-1140": {
+   "map": "https://www.parks.ca.gov/pages/473/files/ClearLakeSP_CampMap2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1142": {
+   "map": "https://www.parks.ca.gov/pages/667/files/CuyamacaRanchoCampgound081816.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1143": {
+   "map": "https://www.parks.ca.gov/pages/414/files/DelNorteRedwoodsSP_CampMap2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1144": {
+   "map": "https://www.parks.ca.gov/pages/505/files/BlissCampgroundMap061807.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1145": {
+   "map": "https://www.parks.ca.gov/pages/503/files/DonnerMemorialSPCampgroundMap2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1146": {
+   "map": "https://www.parks.ca.gov/pages/510/files/EdZSugarPinePtSkiTrailMapWinter2011.pdf",
+   "map_by": "bot: California State Parks park page (\"Ski Map (PDF)\")"
+  },
+  "US-1147": {
+   "map": "https://www.parks.ca.gov/pages/506/files/EBSP_EaglePoint_CampgroundMap201605.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1148": {
+   "map": "https://www.parks.ca.gov/pages/22263/files/EsteroBluffsSPWebLayout2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1149": {
+   "map": "https://www.parks.ca.gov/pages/666/files/TheForestOfNiseneMarksSPFinalWebLayout2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-1150": {
    "agency": "California Department of Parks and Recreation",
    "map": "https://www.parks.ca.gov/?page_id=580",
@@ -5950,6 +6066,30 @@
    },
    "web": "https://www.parks.ca.gov/?page_id=580"
   },
+  "US-1151": {
+   "map": "https://www.parks.ca.gov/pages/564/files/FremontPeakSPFinalWebLayout2017.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1152": {
+   "map": "https://www.parks.ca.gov/pages/579/files/GarrapataSPWeb2012Rev.pdf",
+   "map_by": "bot: California State Parks park page (\"Brochure with Park & Trail Map\")"
+  },
+  "US-1153": {
+   "map": "https://www.parks.ca.gov/pages/606/files/gaviota_map.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Map (PDF)\")"
+  },
+  "US-1155": {
+   "map": "https://www.parks.ca.gov/pages/421/files/Grizzly_Creek_Redwoods_SP_Camp_Map.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1156": {
+   "map": "https://www.parks.ca.gov/pages/508/files/GroverHotSpringsCampground2007.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1157": {
+   "map": "https://www.parks.ca.gov/pages/25735/files/HarmonyHeadlandsFinalWebLayout061115.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-11573": {
    "map": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/WHD/WHDProjectMap.pdf",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -5957,6 +6097,74 @@
     "date": "2026-10-26",
     "map": "HTTP 403"
    }
+  },
+  "US-1158": {
+   "map": "https://www.parks.ca.gov/pages/590/files/HearstSanSimeonSP_CampgroundMap2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1159": {
+   "map": "https://www.parks.ca.gov/pages/438/files/HendyWoodsDiscoveryTrail2025ADA.pdf",
+   "map_by": "bot: California State Parks park page (\"Trail Guide (PDF)\")"
+  },
+  "US-1160": {
+   "map": "https://www.parks.ca.gov/pages/546/files/HenryCowell_RedwoodGroveLoopTrail2013FRENCH.pdf",
+   "map_by": "bot: California State Parks park page (\"Trail Guide - French (PDF)\")"
+  },
+  "US-1161": {
+   "map": "https://www.parks.ca.gov/pages/561/files/HCcampgroundlPDF092909.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1162": {
+   "map": "https://www.parks.ca.gov/pages/416/files/HumboldtLagoonsFinalWebLayout082115.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1164": {
+   "map": "https://www.parks.ca.gov/pages/413/files/JedediahSmithRedwoodsSP_CampMap2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1165": {
+   "map": "https://www.parks.ca.gov/pages/578/files/JuliaPfeifferBurnsSP_CampMap2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1166": {
+   "map": "https://www.parks.ca.gov/pages/616/files/LeoCarrilloWebPDF110309.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1167": {
+   "map": "https://www.parks.ca.gov/pages/577/files/LimekilnSP_CampMap072219.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1168": {
+   "map": "https://www.parks.ca.gov/pages/436/files/MacKerricherCampMap_081926_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1169": {
+   "map": "https://www.parks.ca.gov/pages/614/files/MalibuCreekSP_CampMap2017.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1170": {
+   "map": "https://www.parks.ca.gov/pages/437/files/ManchesterSPFinalWebLayout2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1171": {
+   "map": "https://www.parks.ca.gov/pages/455/files/McArthur-BurneyFallsMemorialSP_CampMap2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1172": {
+   "map": "https://www.parks.ca.gov/pages/442/files/mendocino_headlands_campground.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1173": {
+   "map": "https://www.parks.ca.gov/pages/443/files/MendoWoodlandsSPWebLayout2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1174": {
+   "map": "https://www.parks.ca.gov/pages/592/files/MontanaDeOroSP_IslayCreekCampground2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1175": {
+   "map": "https://www.parks.ca.gov/pages/594/files/MorroBaySP_CampMap061518.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-1176": {
    "map": "https://www.parks.ca.gov/pages/517/files/MountDiabloFinalWebLayout2018.pdf",
@@ -5968,6 +6176,10 @@
    "map_date": "© 2018",
    "map_page": "https://www.parks.ca.gov/?page_id=517",
    "map_what": "brochure with map"
+  },
+  "US-1177": {
+   "map": "https://www.parks.ca.gov/pages/636/files/MtSanJacintoSP_CampMap2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-11771": {
    "map": "https://mdc.mo.gov/media/area/map/9225",
@@ -6025,6 +6237,14 @@
     "map": "ok"
    }
   },
+  "US-1178": {
+   "map": "https://www.parks.ca.gov/pages/471/files/MountTamalpaisSPFinalWebLayout110816.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1179": {
+   "map": "https://www.parks.ca.gov/pages/435/files/NavarroRiverRedwoodsWeb2011.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-11791": {
    "map": "https://eplanning.blm.gov/public_projects/lup/68121/86178/103335/Map_08_SRMAs_+_ERMAs.pdf",
    "map_by": "bot: BLM recreation sites (WEB_LINK field)",
@@ -6032,6 +6252,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1180": {
+   "map": "https://www.parks.ca.gov/pages/560/files/pachecotrailmap2006small.pdf",
+   "map_by": "bot: California State Parks park page (\"Trail Guide (PDF)\")"
   },
   "US-11808": {
    "map": "https://www.nps.gov/sacr/planyourvisit/maps.htm",
@@ -6041,6 +6265,14 @@
     "map": "ok"
    }
   },
+  "US-1181": {
+   "map": "https://www.parks.ca.gov/pages/637/files/DoaneValleyforWeb.pdf",
+   "map_by": "bot: California State Parks park page (\"Doane Nature Trail Guide (PDF)\")"
+  },
+  "US-1182": {
+   "map": "https://www.parks.ca.gov/pages/417/files/Sue-meg SP_webCampground.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-11828": {
    "map": "https://www.blm.gov/sites/blm.gov/files/documents/files/Maps_GeoPDF_Fortymile_Wild_Scenic_River_Taylor_Highway_20170324.pdf",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -6048,6 +6280,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1183": {
+   "map": "https://www.parks.ca.gov/pages/570/files/Pfeiffer Campground Map FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-11845": {
    "map": "https://mdc.mo.gov/media/area/map/8804",
@@ -6057,6 +6293,10 @@
     "map": "ok"
    }
   },
+  "US-1185": {
+   "map": "https://www.parks.ca.gov/pages/507/files/PlumasEurWebPDF.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-11857": {
    "map": "https://mdc.mo.gov/media/area/map/7928",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -6065,6 +6305,10 @@
     "map": "ok"
    }
   },
+  "US-1186": {
+   "map": "https://www.parks.ca.gov/pages/630/files/PtMaguCampgroundHIPDF051111.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-11863": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/butterfly_bogs.pdf",
    "map_by": "bot: New Jersey DEP (state-owned open space) (land, state GIS tab (FACILITY_MAP_URL field)",
@@ -6072,6 +6316,18 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1187": {
+   "map": "https://www.parks.ca.gov/pages/539/files/PortolaRedwoodsSP_CampMap2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1189": {
+   "map": "https://www.parks.ca.gov/pages/631/files/rrcspbrochuremappdf%202014.pdf",
+   "map_by": "bot: California State Parks park page (\"Red Rock Canyon State Park Map\")"
+  },
+  "US-1190": {
+   "map": "https://www.parks.ca.gov/pages/422/files/richardson_grove.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-11900": {
    "map": "https://www.nps.gov/blsc/planyourvisit/maps.htm",
@@ -6089,6 +6345,18 @@
     "map": "ok"
    }
   },
+  "US-1192": {
+   "map": "https://www.parks.ca.gov/pages/432/files/russian_gulch_campground.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1193": {
+   "map": "https://www.parks.ca.gov/pages/618/files/SaddlebackButteSP_WebLayout2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-1194": {
+   "map": "https://www.parks.ca.gov/pages/453/files/CampgroundMap_SaltPoint_8.5x14_050825_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-11946": {
    "map": "https://www.azgfd.com/wildlife/viewing/wheretogo/wilcoxplaya/",
    "map_by": "bot: Arizona Game and Fish Department (AZGFD_GIS org) (wild, stat (Map_URL field)",
@@ -6104,6 +6372,10 @@
     "date": "2026-10-26",
     "map": "HTTP 403"
    }
+  },
+  "US-1195": {
+   "map": "https://www.parks.ca.gov/pages/469/files/SamuelPTaylor_CampgroundMap_093024_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-11950": {
    "map": "https://www.azgfd.com/wildlife/viewing/wheretogo/cluff/",
@@ -6128,6 +6400,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1198": {
+   "map": "https://www.parks.ca.gov/pages/451/files/SonomaCoast E Camps063016.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map - Willow Creek & Pomo Env. (PDF)\")"
   },
   "US-11984": {
    "map": "https://www.azgfd.com/wildlife/viewing/wheretogo/quigley-achee/",
@@ -6184,6 +6460,14 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1200": {
+   "map": "https://www.parks.ca.gov/pages/481/files/SugarLoafPDF.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-1203": {
+   "map": "https://www.parks.ca.gov/pages/470/files/TomalesBaySPFinalWebLayout050917.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-12032": {
    "map": "http://www.wvdnr.gov/wmamapproj/pdf/pdf300/BurningSpringsFinal11x17_300dpi.pdf",
@@ -6305,6 +6589,10 @@
     "map": "ok"
    }
   },
+  "US-1205": {
+   "map": "https://www.parks.ca.gov/pages/433/files/Van_Damme_Guide_202209.pdf",
+   "map_by": "bot: California State Parks park page (\"Trail Guide (PDF)\")"
+  },
   "US-12050": {
    "map": "http://www.wvdnr.gov/wmamapproj/pdf/pdf300/WhiteHorseMountainFinal11x17_300dpi.pdf",
    "map_by": "bot: West Virginia DNR (wild, state GIS table) (HighResMapURL field)",
@@ -6312,6 +6600,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1207": {
+   "map": "https://www.parks.ca.gov/pages/549/files/WilderRanchSPWebLayout2017.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-1209": {
    "map": "https://cpw.state.co.us/sites/default/files/dam/typuvxypbr/barr-lake-state-park-brochure.pdf",
@@ -6443,6 +6735,10 @@
    },
    "map_page": "https://cpw.state.co.us/state-parks/cheyenne-mountain-state-park",
    "map_what": "brochure with map"
+  },
+  "US-12141": {
+   "map": "https://www.parks.ca.gov/pages/615/files/Mary_Beal_NatureStudyTrail_Brochure2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Mary Beal Nature Study - Trail Guide (PDF)\")"
   },
   "US-12158": {
    "map": "https://mdc.mo.gov/media/area/map/9407",
@@ -6844,12 +7140,28 @@
    }
   },
   "US-1290": {
-   "map": "http://www.dcr.virginia.gov/state-parks/document/data/trail-guide-bearcreeklake.pdf",
-   "map_by": "bot: Recreation.gov RIDB (agency link)",
+   "map": "https://www.dcr.virginia.gov/state-parks/document/bc-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground\")",
    "map_check": {
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1293": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/caledon-geo-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Download\")"
+  },
+  "US-1295": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/cl-5k-brochure.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"The trail\")"
+  },
+  "US-1296": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/do-lakeside-site-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground Map\")"
+  },
+  "US-1297": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/fs-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"map of the campground\")"
   },
   "US-12975": {
    "map": "https://mdc.mo.gov/media/area/map/7301",
@@ -6858,6 +7170,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1298": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/fc-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"found here\")"
   },
   "US-1299": {
    "map": "https://www.virginiastateparks.gov/state-parks/document/data/trail-guide-firstlanding.pdf",
@@ -6869,6 +7185,26 @@
    "map_date": "Map date not stated",
    "map_page": "https://www.dcr.virginia.gov/state-parks/document/fl-campground-map.pdf",
    "map_what": "PDF trail guide/map"
+  },
+  "US-1300": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/gh-chestnut-hollow-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Chestnut Hollow Campground Map\")"
+  },
+  "US-1301": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/hb-mtn-bk-trails.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Here's a map of those trails\")"
+  },
+  "US-1302": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/site-spec-hl-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground map - updated\")"
+  },
+  "US-1303": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/hm-campgrounds-b-and-c.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Site map\")"
+  },
+  "US-1305": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/kp-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground map\")"
   },
   "US-13057": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/beaver_swamp_no.pdf",
@@ -6886,6 +7222,10 @@
     "map": "ok"
    }
   },
+  "US-1306": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/la-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Click here for a map of the campground\")"
+  },
   "US-13060": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/elmer_lake.pdf",
    "map_by": "bot: New Jersey DEP (state-owned open space) (land, state GIS tab (FACILITY_MAP_URL field)",
@@ -6893,6 +7233,26 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1307": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/leesylvania-geo-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Download\")"
+  },
+  "US-1308": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/mason-neck-geo-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Download\")"
+  },
+  "US-1309": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/nt-tunnel-tour-brochure.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Self-Guided Tour to the Natural Tunnel\")"
+  },
+  "US-1310": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/newrivertrail-atw.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"park map for ATW trails\")"
+  },
+  "US-1311": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/oc-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground map\")"
   },
   "US-13117": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/dod_ponds.pdf",
@@ -6937,6 +7297,10 @@
     "map": "ok"
    }
   },
+  "US-1315": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/seven-bends-geo-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Download\")"
+  },
   "US-13150": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/belvidere-ratzman_access.pdf",
    "map_by": "bot: New Jersey DEP (state-owned open space) (land, state GIS tab (FACILITY_MAP_URL field)",
@@ -6953,6 +7317,10 @@
     "map": "ok"
    }
   },
+  "US-1316": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/shenandoah-river-geo-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Download\")"
+  },
   "US-13160": {
    "map": "https://mdc.mo.gov/media/area/map/202006",
    "map_by": "bot: Missouri Dept. of Conservation lands (MSDIS) (Map_Link field)",
@@ -6960,6 +7328,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-1318": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/sk-camping-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"detailed map of the campsites\")"
   },
   "US-13184": {
    "map": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/Iron_Belle_Trail.pdf?hash=AF1DE25252BE6A19A2ECED0E000690F3&rev=4b5da54922134c478354414e88875732",
@@ -6983,6 +7355,22 @@
    "map_date": "Map date not stated",
    "map_page": "https://www.dcr.virginia.gov/state-parks/document/sm-campground-map.pdf",
    "map_what": "PDF park map (geo-referenced)"
+  },
+  "US-1320": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/data/swva-park-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Click here\")"
+  },
+  "US-1321": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/sr-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground Map\")"
+  },
+  "US-1323": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/tl-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground map\")"
+  },
+  "US-1324": {
+   "map": "https://www.dcr.virginia.gov/state-parks/document/we-campground-map.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Campground map\")"
   },
   "US-13254": {
    "map": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/van_nest_refuge.pdf",
@@ -7055,6 +7443,10 @@
    "map_page": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/gifford-pinchot-state-park/maps",
    "map_what": "PDF campground map"
   },
+  "US-13588": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_0186d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Trails Map | PDF\")"
+  },
   "US-1387": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/moraine-state-park/maps",
    "map_check": {
@@ -7084,6 +7476,10 @@
    "map_confirmed": true,
    "map_date": "Map dates not stated",
    "map_what": "Official map page (park and trail maps)"
+  },
+  "US-1406": {
+   "map": "https://elibrary.dcnr.pa.gov/GetDocument?docId=1736597&DocName=sf-PUd15.pdf",
+   "map_by": "bot: Pennsylvania DCNR park page (\"Susquehannock State Forest Public Use Map\")"
   },
   "US-1407": {
    "map": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/pymatuning-state-park/maps",
@@ -7777,6 +8173,54 @@
    "map_date": "February 13, 2020",
    "map_what": "PDF trail map"
   },
+  "US-2017": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Bowman_HuntingTabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2019": {
+   "map": "https://parks.ny.gov/documents/parks/BrookhavenStateParkBrookhavenHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Brookhaven Hunting Map\")"
+  },
+  "US-2020": {
+   "map": "https://parks.ny.gov/sites/default/files/BuckhornIslandWestRiverShorelineTrailWaterfowlHuntingAccessInformation.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Access Map\")"
+  },
+  "US-2023": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Buttermilk_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2033": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/CherryPlain_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2036": {
+   "map": "https://parks.ny.gov/sites/default/files/2025-10/ClarenceFahnestockFahnestockHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Fahnestock Hunting Map\")"
+  },
+  "US-2039": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/ColesCreek_Huntingmap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2043": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-08/DarienLakes_HuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Darien Lakes Hunting Map\")"
+  },
+  "US-2051": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Evangola_HuntingTabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2056": {
+   "map": "https://parks.ny.gov/documents/parks/FranklinDRooseveltPicnicAreaandShelterGuide.pdf",
+   "map_by": "bot: New York State Parks park page (\"Picnic Map & Shelter Guide\")"
+  },
+  "US-2065": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-06/OPRHP_Dunham%20Dam_Brochure_lowres%20%282%29_0.pdf",
+   "map_by": "bot: New York State Parks park page (\"here\")"
+  },
+  "US-2069": {
+   "map": "https://parks.ny.gov/documents/parks/HarrimanSebagoHydrillaTreatmentBrochure.pdf",
+   "map_by": "bot: New York State Parks park page (\"project brochure\")"
+  },
   "US-2072": {
    "map": "https://parks.ny.gov/documents/parks/HempsteadLakeTrailMap.pdf",
    "map_check": {
@@ -7786,6 +8230,98 @@
    "map_date": "May 2, 2023",
    "map_what": "Official New York State Parks trail map (PDF)"
   },
+  "US-2074": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Highland_HuntingTabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2079": {
+   "map": "https://parks.ny.gov/sites/default/files/2025-10/HudsonHighlandsHuntingMapNorth.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hudson Highlands Hunting Map North\")"
+  },
+  "US-2083": {
+   "map": "https://parks.ny.gov/sites/default/files/JacquesCartierHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2085": {
+   "map": "https://parks.ny.gov/documents/parks/ThacherThacherStateParkHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2087": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/JosephDavis_HuntingTabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2089": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/KeukaLake_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2094": {
+   "map": "https://parks.ny.gov/documents/parks/LakeTaghkanic2023CampingandCabinBrochure.pdf",
+   "map_by": "bot: New York State Parks park page (\"Camping and Cabins Information & Rates brochure\")"
+  },
+  "US-2096": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-02/2026%20Letchworth%20Camping%20Brochure.pdf",
+   "map_by": "bot: New York State Parks park page (\"Tent/Trailer Campsite 2026: Information and Rules\")"
+  },
+  "US-2104": {
+   "map": "https://parks.ny.gov/sites/default/files/MaxVShaulPavilionShelterBrochure.pdf",
+   "map_by": "bot: New York State Parks park page (\"Pavilion reservation information\")"
+  },
+  "US-2107": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-02/MineKillEducationPrograms.pdf",
+   "map_by": "bot: New York State Parks park page (\"Program Brochure\")"
+  },
+  "US-2110": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Moreau_Hunting_map_0.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2112": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/NewtownBattlefield_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2118": {
+   "map": "https://parks.ny.gov/documents/parks/LongPointTIWaterfowlBlindMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Waterfowl Blind Map\")"
+  },
+  "US-2122": {
+   "map": "https://parks.ny.gov/documents/parks/PixleyFallsHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2127": {
+   "map": "https://parks.ny.gov/documents/parks/RobertHTremanRobertTremanHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2133": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Sampson_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2135": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/SaratogaSpa_Huntingmap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Saratoga Spa State Park Hunting Map\")"
+  },
+  "US-2137": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-07/Schunnemunk_HuntingColor_Tabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"2026 Hunting Map\")"
+  },
+  "US-2138": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Selkirk_HuntingTabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2144": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-08/SterlingForestSP_HuntingMap_0.pdf",
+   "map_by": "bot: New York State Parks park page (\"Sterling Forest Hunting Map\")"
+  },
+  "US-2146": {
+   "map": "https://parks.ny.gov/documents/parks/StormKingHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2148": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-10/Taconic_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Taconic State Park Hunting Map\")"
+  },
+  "US-2154": {
+   "map": "https://parks.ny.gov/documents/parks/VeronaBeachHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
   "US-2157": {
    "map": "https://staffportal.parks.ny.gov/parks/wellesleyisland/maps.aspx",
    "map_check": {
@@ -7794,6 +8330,38 @@
    },
    "map_date": "Map dates not stated",
    "map_what": "Official NY State Parks maps page (park, trail and marina maps)"
+  },
+  "US-2158": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/WestcottBeach_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2159": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/Whetstone_Hunting_Map.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2161": {
+   "map": "https://parks.ny.gov/documents/parks/WildwoodWildwoodHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Wildwood Hunting Map\")"
+  },
+  "US-2162": {
+   "map": "https://parks.ny.gov/sites/default/files/2026-09/WilsonTuscarora_HuntingTabloid.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2163": {
+   "map": "https://parks.ny.gov/sites/default/files/2025-10/WonderLakeHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Hunting Map\")"
+  },
+  "US-2165": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/AHStephens_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2167": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/black_rock_mountain_sp_2022_sitemap.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2168": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/chattahoochee bend sp 2022 map.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
   },
   "US-2169": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/CloudlandCanyon_TrailMap.pdf",
@@ -7805,6 +8373,10 @@
    "map_page": "https://gastateparks.org/cloudlandcanyon",
    "map_what": "PDF map (trail map)"
   },
+  "US-2170": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/CrookedRiver_ParkMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
   "US-2171": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/DonCarter_TrailMap.pdf",
    "map_check": {
@@ -7815,6 +8387,10 @@
    "map_date": "Published approx. 2019 (search index date)",
    "map_what": "PDF trail map (official Georgia State Parks)"
   },
+  "US-2172": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/elijah_clark_state_park_map_41.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
   "US-2173": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/FDRoosevelt_ParkMap.pdf",
    "map_check": {
@@ -7824,6 +8400,18 @@
    "map_confirmed": true,
    "map_date": "Copyright/publication year 2020",
    "map_what": "Official Georgia State Parks park map (PDF)"
+  },
+  "US-2174": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/FlorenceMarina_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2175": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/FortMcAllister/FortMcAllister-ParkMap-2024.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2176": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/FortMountain_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
   },
   "US-2177": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/fortyargo/Fort%20Yargo%20State%20Park%20Map%202023.pdf",
@@ -7836,6 +8424,22 @@
    "map_page": "https://gastateparks.org/sites/default/files/parks/pdf/fortyargo/Fort%20Yargo%20State%20Park%202024.pdf",
    "map_what": "PDF park map"
   },
+  "US-2178": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/GeneralCoffee_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2179": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/GeorgeLSmith/GeorgeLSmith_ParkMap_2024.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2182": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/jack_hill_state_park_map_79.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2183": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/Hamburg_TrailMap.pdf?v=20260729",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
   "US-2184": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/HardLaborCreek_TrailMap.pdf",
    "map_check": {
@@ -7846,6 +8450,22 @@
    "map_date": "Published 2026; map date not stated",
    "map_what": "PDF trail map"
   },
+  "US-2185": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/HighFalls/high-falls-map-2024.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2186": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/IndianSprings_ParkMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2187": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/JamesHFloyd_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2188": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/LauraSWalker_ParkMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Campground Map\")"
+  },
   "US-2190": {
    "agency": "Georgia Department of Natural Resources, State Parks & Historic Sites",
    "map": "https://gastateparks.org/MagnoliaSprings",
@@ -7854,6 +8474,18 @@
     "map": "ok"
    },
    "web": "https://gastateparks.org/MagnoliaSprings"
+  },
+  "US-2191": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/mistletoe_state_park_map_76.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2192": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/moccasin_creek_state_park_2022_sitemap.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2193": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/PanolaMountain_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
   },
   "US-2194": {
    "agency": "Georgia Department of Natural Resources, State Parks & Historic Sites",
@@ -7874,20 +8506,52 @@
    "map_what": "Official Georgia State Parks trail map (PDF)"
   },
   "US-2196": {
-   "map": "http://www.sas.usace.army.mil/About/DivisionsandOffices/OperationsDivision/HartwellDamandLake/PlanAVisit/Hunting.aspx",
-   "map_by": "bot: Recreation.gov RIDB (agency link)",
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/RichardBRussell_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")",
    "map_check": {
     "date": "2026-10-26",
     "map": "HTTP 403"
    }
   },
   "US-2197": {
-   "map": "http://www.sam.usace.army.mil/Portals/46/docs/recreation/OP-AC-WS/images/080718-A-KI945-124.jpg",
-   "map_by": "bot: Recreation.gov RIDB (agency link)",
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/seminole_state_park_2022_sitemap.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")",
    "map_check": {
     "date": "2026-10-26",
     "map": "HTTP 403"
    }
+  },
+  "US-2198": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/SkidawayIsland_ParkMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2199": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/SmithgallWoods_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2200": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/Okefenokee_ParkMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2201": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/SweetwaterCreek_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2202": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/TallulahGorge_ParkMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2203": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/tugaloo_state_park_2022_sitemap.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
+  },
+  "US-2205": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/VictoriaBryant_TrailMap.pdf?v=20260206",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-2206": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/vogelsp_blairsville_ga.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
   },
   "US-2207": {
    "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/WatsonMillBridge_TrailMap.pdf",
@@ -8137,6 +8801,10 @@
     "map": "no answer (<urlopen error [Errno -2] Name or servic)"
    }
   },
+  "US-2722": {
+   "map": "https://www.ncparks.gov/maps/carolina-beach-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
   "US-2723": {
    "map": "https://www.ncparks.gov/state-parks/carvers-creek-state-park/plan-your-visit",
    "map_check": {
@@ -8148,6 +8816,10 @@
    "map_page": "https://www.ncparks.gov/maps/carvers-creek-state-park-sandhills-access-map/open",
    "map_what": "Official NC State Parks page with Long Valley Farm and Sandhills access PDF maps"
   },
+  "US-2725": {
+   "map": "https://www.ncparks.gov/maps/cliffs-neuse-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
   "US-2726": {
    "map": "https://www.ncparks.gov/maps/crowders-mountain-state-park-map/open",
    "map_check": {
@@ -8157,6 +8829,54 @@
    "map_confirmed": true,
    "map_date": "May 2024",
    "map_what": "Official park map (PDF/map page)"
+  },
+  "US-2727": {
+   "map": "https://www.ncparks.gov/maps/dismal-swamp-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park map (PDF)\")"
+  },
+  "US-2728": {
+   "map": "https://www.ncparks.gov/maps/elk-knob-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2729": {
+   "map": "https://www.ncparks.gov/maps/eno-river-state-park-cox-mountain-group-camp-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Cox Mountain group campground map (PDF)\")"
+  },
+  "US-2730": {
+   "map": "https://www.ncparks.gov/maps/fort-macon-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park map (PDF)\")"
+  },
+  "US-2731": {
+   "map": "https://www.ncparks.gov/maps/goose-creek-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2732": {
+   "map": "https://www.ncparks.gov/maps/gorges-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2733": {
+   "map": "https://www.ncparks.gov/maps/grandfather-mountain-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park Map (PDF)\")"
+  },
+  "US-2734": {
+   "map": "https://www.ncparks.gov/maps/hammocks-beach-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park Map (PDF)\")"
+  },
+  "US-2735": {
+   "map": "https://www.ncparks.gov/maps/hanging-rock-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map and hiking trails (PDF)\")"
+  },
+  "US-2737": {
+   "map": "https://www.ncparks.gov/maps/jockeys-ridge-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park Map (PDF)\")"
+  },
+  "US-2738": {
+   "map": "https://www.ncparks.gov/maps/jones-lake-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park Map (PDF)\")"
+  },
+  "US-2739": {
+   "map": "https://www.ncparks.gov/maps/lake-james-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
   },
   "US-2740": {
    "map": "https://www.ncparks.gov/maps/lake-norman-state-park-map/open",
@@ -8168,6 +8888,26 @@
    "map_page": "https://www.ncparks.gov/lake-norman-state-park/home",
    "map_what": "PDF map"
   },
+  "US-2741": {
+   "map": "https://www.ncparks.gov/maps/lake-waccamaw-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2742": {
+   "map": "https://www.ncparks.gov/maps/lumber-river-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2743": {
+   "map": "https://www.ncparks.gov/maps/mayo-river-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park Map (PDF)\")"
+  },
+  "US-2744": {
+   "map": "https://www.ncparks.gov/maps/medoc-mountain-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2745": {
+   "map": "https://www.ncparks.gov/maps/merchants-millpond-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
   "US-2746": {
    "map": "https://www.ncparks.gov/state-parks/morrow-mountain-state-park",
    "map_check": {
@@ -8177,6 +8917,34 @@
    },
    "map_page": "https://www.ncparks.gov/maps/morrow-mountain-state-park-map/open",
    "map_what": "Official park page with park map PDF"
+  },
+  "US-2747": {
+   "map": "https://www.ncparks.gov/maps/mount-mitchell-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2748": {
+   "map": "https://www.ncparks.gov/maps/new-river-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2749": {
+   "map": "https://www.ncparks.gov/maps/pettigrew-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2750": {
+   "map": "https://www.ncparks.gov/maps/pilot-mountain-state-park-campground-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Campground map (PDF)\")"
+  },
+  "US-2751": {
+   "map": "https://www.ncparks.gov/maps/raven-rock-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2753": {
+   "map": "https://www.ncparks.gov/maps/south-mountains-state-park-map-trail-closures/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
+  },
+  "US-2754": {
+   "map": "https://www.ncparks.gov/maps/stone-mountain-state-park-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"Park map (PDF)\")"
   },
   "US-2755": {
    "map": "https://www.ncparks.gov/state-parks/william-b-umstead-state-park",
@@ -8259,6 +9027,30 @@
    "map_page": "https://www.tn.gov/environment/program-areas/na-natural-areas/na-natural-areas/na-natural-areas---warriors-path-state-park.html",
    "map_what": "brochure with map"
   },
+  "US-2983": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_001f.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2984": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_027c.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2985": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_002h.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2986": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_043l.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2987": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_058m.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2988": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_0152aa.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Big Bend Ranch Complex Map\")"
+  },
   "US-2989": {
    "agency": "Texas Parks and Wildlife Department",
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_003a.pdf",
@@ -8267,6 +9059,10 @@
     "map": "ok"
    },
    "web": "https://tpwd.texas.gov/state-parks/big-spring"
+  },
+  "US-2990": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_012a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-2991": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_028c.pdf",
@@ -8290,6 +9086,18 @@
    "map_page": "https://tpwd.texas.gov/state-parks/brazos-bend/map",
    "map_what": "PDF map"
   },
+  "US-2993": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_057a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2994": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_029e.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2995": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_079l.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
   "US-2996": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_131l.pdf",
    "map_check": {
@@ -8299,6 +9107,18 @@
    "map_confirmed": true,
    "map_date": "2026 (copyright/map publication code 2/26)",
    "map_what": "PDF park map"
+  },
+  "US-2997": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_129d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2998": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_013a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-2999": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_140.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3000": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_154a.pdf",
@@ -8311,6 +9131,22 @@
    "map_page": "https://tpwd.texas.gov/state-parks/cooper-lake/map",
    "map_what": "PDF map (Doctors Creek Unit)"
   },
+  "US-3001": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_097a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3002": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_030b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3003": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_004d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3004": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_094r.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
   "US-3005": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_032f.pdf",
    "map_check": {
@@ -8320,6 +9156,30 @@
    "map_confirmed": true,
    "map_date": "2026 (PWD MP P4503-032F, 2/26)",
    "map_what": "PDF park facility map"
+  },
+  "US-3006": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_0179b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3008": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_060b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3009": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_146.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3010": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_034b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3011": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_025a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3012": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_124d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3013": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_042e.pdf",
@@ -8332,6 +9192,10 @@
    "map_page": "https://tpwd.texas.gov/state-parks/galveston-island/map",
    "map_what": "PDF map"
   },
+  "US-3014": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_0061a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
   "US-3015": {
    "agency": "Texas Parks and Wildlife Department",
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_063c.pdf",
@@ -8340,6 +9204,10 @@
     "map": "ok"
    },
    "web": "https://tpwd.texas.gov/state-parks/goliad"
+  },
+  "US-3016": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_064d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3017": {
    "map": "https://tpwd.texas.gov/state-parks/guadalupe-river/map",
@@ -8351,6 +9219,10 @@
    "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_040e.pdf",
    "map_what": "Map page (park map PDF, trails map PDF and interactive trails map)"
   },
+  "US-3018": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_095c.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
   "US-3019": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_044g.pdf",
    "map_check": {
@@ -8361,6 +9233,10 @@
    "map_date": "© 2026",
    "map_page": "https://tpwd.texas.gov/state-parks/huntsville/map",
    "map_what": "PDF map"
+  },
+  "US-3020": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_015k.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3021": {
    "agency": "Texas Parks and Wildlife Department",
@@ -8380,6 +9256,34 @@
    },
    "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_098b.pdf",
    "map_what": "Map page (park map PDF, trails map PDF and interactive map)"
+  },
+  "US-3023": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_117b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3024": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_009f.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3025": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_156a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3026": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_096e.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Download a park map | PDF\")"
+  },
+  "US-3027": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_065e.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3028": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_087c.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3029": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_103f.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3030": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_056e.pdf",
@@ -8404,12 +9308,16 @@
    "map_what": "PDF map"
   },
   "US-3032": {
-   "map": "http://www.swf-wc.usace.army.mil/whitney/Information/Maps.asp",
-   "map_by": "bot: Recreation.gov RIDB (agency link)",
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_019f.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")",
    "map_check": {
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-3033": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_047b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3035": {
    "agency": "Texas Parks and Wildlife Department",
@@ -8419,6 +9327,14 @@
     "map": "ok"
    },
    "web": "https://tpwd.texas.gov/state-parks/lyndon-b-johnson"
+  },
+  "US-3036": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_111e.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3037": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_031c.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3038": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_090d.pdf",
@@ -8431,6 +9347,18 @@
    "map_page": "https://tpwd.texas.gov/state-parks/mckinney-falls/map",
    "map_what": "PDF map"
   },
+  "US-3039": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_021b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3040": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_037e.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3041": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_006a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
   "US-3042": {
    "map": "https://tpwd.texas.gov/state-parks/mother-neff/map",
    "map_check": {
@@ -8442,6 +9370,34 @@
    "map_page": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_022b.pdf",
    "map_what": "Map page (park map PDF and trails map PDF)"
   },
+  "US-3043": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_084e.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3045": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_049h.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3046": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_007g.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3047": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_0182d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3048": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_026b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3049": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_023d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3050": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_105d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
   "US-3051": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4503_0137a.pdf",
    "map_check": {
@@ -8452,6 +9408,22 @@
    "map_date": "2026",
    "map_page": "https://tpwd.texas.gov/state-parks/ray-roberts-lake/map",
    "map_what": "PDF map"
+  },
+  "US-3052": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_117.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3053": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_166b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3054": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_055a.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3055": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_082b.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3056": {
    "map": "https://tpwd.texas.gov/state-parks/sheldon-lake/map",
@@ -8481,6 +9453,14 @@
     "map": "ok"
    },
    "web": "https://tpwd.texas.gov/state-parks/stephen-f-austin"
+  },
+  "US-3059": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4508_039d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
+  },
+  "US-3060": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4504_123d.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3061": {
    "agency": "Texas Parks and Wildlife Department (park managed by Jefferson County)",
@@ -8633,6 +9613,50 @@
    "map_hold": "link may need its ?rev=&hash= (research desk): held until the link check passes",
    "map_what": "PDF map"
   },
+  "US-3395": {
+   "map": "https://www.parks.ca.gov/pages/483/files/AndersonMarshSHPWebLayout2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3397": {
+   "map": "https://www.parks.ca.gov/pages/632/files/AntelopeValleyIndianMuFinalWeb2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3399": {
+   "map": "https://www.parks.ca.gov/pages/566/files/AsilomarSBFinalWebLayout2017.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3400": {
+   "map": "https://www.parks.ca.gov/pages/502/files/AuburnSRA_CampMap2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3403": {
+   "map": "https://www.parks.ca.gov/pages/482/files/BaleGristMillFinalWebLayout060415.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3404": {
+   "map": "https://www.parks.ca.gov/pages/527/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3405": {
+   "map": "https://www.parks.ca.gov/pages/426/files/BenbowLakeSRACampMap2009Rev.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3406": {
+   "map": "https://www.parks.ca.gov/pages/475/files/BeniciaCapitolSHPWEB2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3407": {
+   "map": "https://www.parks.ca.gov/pages/476/files/BeniciaFinalWebLayout2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3409": {
+   "map": "https://www.parks.ca.gov/pages/460/files/BidwellMansionFinalWebLayout091103.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3410": {
+   "map": "https://www.parks.ca.gov/pages/509/files/BodieSHPFinalWebLayoutSPANISH031617.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure - Spanish (PDF)\")"
+  },
   "US-3411": {
    "map": "https://www.parks.ca.gov/pages/642/files/Welcome%20to%20Bolsa%20Chica%20SB.pdf",
    "map_check": {
@@ -8644,6 +9668,14 @@
    "map_page": "https://www.parks.ca.gov/pages/642/files/BolsaChicaSBCampMap2009Rev.pdf",
    "map_what": "PDF state beach map"
   },
+  "US-3412": {
+   "map": "https://www.parks.ca.gov/pages/649/files/CalCitrusSHPFinalWebLayout093016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3415": {
+   "map": "https://www.parks.ca.gov/pages/668/files/CAStateRRMuseumFinalWebLayout2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-3421": {
    "agency": "California Department of Parks and Recreation",
    "map": "https://www.parks.ca.gov/pages/583/files/ColAllensworthFinalWebLayout011415.pdf",
@@ -8652,6 +9684,14 @@
     "map": "ok"
    },
    "web": "https://www.parks.ca.gov/?page_id=583"
+  },
+  "US-3422": {
+   "map": "https://www.parks.ca.gov/pages/552/files/ColumbiaSHPFinalWeb2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3423": {
+   "map": "https://www.parks.ca.gov/pages/461/files/ColusaSacRiverFinalWebLayout071917.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-3424": {
    "map": "https://www.nps.gov/iafl/planyourvisit/maps.htm",
@@ -8662,6 +9702,22 @@
    "map_confirmed": true,
    "map_date": "Page last updated 2026 (map date not stated)",
    "map_what": "Map page (interactive trail map and official brochure)"
+  },
+  "US-3426": {
+   "map": "https://www.parks.ca.gov/pages/645/files/DohenyCampMap2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3428": {
+   "map": "https://www.parks.ca.gov/pages/608/files/ElPresidiodeSantaBarbaraSHPWEB2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3430": {
+   "map": "https://www.parks.ca.gov/pages/604/files/Emma Wood SB_Campground MapFinal071222 (Remediated).pdf",
+   "map_by": "bot: California State Parks park page (\"Park Map (PDF)\")"
+  },
+  "US-3431": {
+   "map": "https://www.parks.ca.gov/pages/499/files/EmpireMineSHPWebLayout2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-3432": {
    "map": "https://www.parks.ca.gov/pages/500/files/FolsomLake_FINALWebLayout_20220811.pdf",
@@ -8674,6 +9730,34 @@
    "map_page": "https://www.parks.ca.gov/?page_id=500",
    "map_what": "brochure with map"
   },
+  "US-3433": {
+   "map": "https://www.parks.ca.gov/pages/501/files/FolsomPowerhouse.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3434": {
+   "map": "https://www.parks.ca.gov/pages/665/files/FortHumboldtSHPWebLayout2012.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3435": {
+   "map": "https://www.parks.ca.gov/pages/449/files/Campgroundmap_2024.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3436": {
+   "map": "https://www.parks.ca.gov/pages/585/files/FortTejonSHPFinalWeb062916.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3437": {
+   "map": "https://www.parks.ca.gov/pages/490/files/BrannanIsl_FranksTractFinalWebLayout060518.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3438": {
+   "map": "https://www.parks.ca.gov/pages/450/files/SMCD_Drone_Brochure240826.pdf",
+   "map_by": "bot: California State Parks park page (\"No Drones Allowed in Park\")"
+  },
+  "US-3439": {
+   "map": "https://www.parks.ca.gov/pages/531/files/HalfMoonBaySB_CampMap011520.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-3441": {
    "agency": "California Department of Parks and Recreation",
    "map": "https://www.parks.ca.gov/?page_id=591",
@@ -8682,6 +9766,54 @@
     "map": "ok"
    },
    "web": "https://www.parks.ca.gov/?page_id=591"
+  },
+  "US-3445": {
+   "map": "https://www.parks.ca.gov/pages/643/files/HuntingtonSBFinalWebMap072312.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3446": {
+   "map": "https://www.parks.ca.gov/pages/553/files/IndianGrindRockPDF.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3451": {
+   "map": "https://www.parks.ca.gov/pages/612/files/BaldwinHillsScenicOverlookWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Baldwin Hills Scenic Overlook Park Brochure (PDF)\")"
+  },
+  "US-3456": {
+   "map": "https://www.parks.ca.gov/pages/462/files/LakeOrovilleSRACampMap081314.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3457": {
+   "map": "https://www.parks.ca.gov/pages/651/files/LakePerrisCampgroundMapFINAL092816.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3459": {
+   "map": "https://www.parks.ca.gov/pages/489/files/LelandStanfordMansionSpanishWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure - Spanish (PDF)\")"
+  },
+  "US-3462": {
+   "map": "https://www.parks.ca.gov/pages/22272/files/losangeles_shp_web_31709.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3466": {
+   "map": "https://www.parks.ca.gov/pages/494/files/cablackbear_web_2010.pdf",
+   "map_by": "bot: California State Parks park page (\"Black Bear Brochure (PDF)\")"
+  },
+  "US-3469": {
+   "map": "https://www.parks.ca.gov/pages/545/files/ManresaSBCampground082416.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3470": {
+   "map": "https://www.parks.ca.gov/pages/467/files/MarconiConfCenterSHPWEB2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3471": {
+   "map": "https://www.parks.ca.gov/pages/581/files/FortOrdDunesMonterey_Web2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3472": {
+   "map": "https://www.parks.ca.gov/pages/484/files/MarshallGoldFinalWebLayout2017.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-3473": {
    "map": "https://files.santaclaracounty.gov/migrated/MartialCottleGuideMap.pdf",
@@ -8694,6 +9826,38 @@
    "map_hold": "NOT SURE (research desk Oct 26): held until the link check passes",
    "map_page": "https://csparks.maps.arcgis.com/apps/instant/basic/index.html?appid=065b067caa204e8da48d4b53c9483ab0&UNITNBR=229",
    "map_what": "PDF park guide map (Santa Clara County Parks; park is county-operated)"
+  },
+  "US-3475": {
+   "map": "https://www.parks.ca.gov/pages/532/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3476": {
+   "map": "https://www.parks.ca.gov/pages/575/files/MontereySHPFinalWeb080814.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3477": {
+   "map": "https://www.parks.ca.gov/pages/576/files/FortOrdDunesMonterey_Web2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3480": {
+   "map": "https://www.parks.ca.gov/pages/593/files/MorroStrandSB_CampMap071118.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3481": {
+   "map": "https://www.parks.ca.gov/pages/574/files/FortOrdDunesMonterey_Web2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3482": {
+   "map": "https://www.parks.ca.gov/pages/541/files/NaturalBridgesSBMap2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Map (PDF)\")"
+  },
+  "US-3501": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4501_0152aa.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Big Bend Ranch Complex Map\")"
+  },
+  "US-3502": {
+   "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4502_063c.pdf",
+   "map_by": "bot: Texas Parks and Wildlife park page (\"Park Map | PDF\")"
   },
   "US-3503": {
    "map": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4505_0165e.pdf",
@@ -8713,6 +9877,198 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-3522": {
+   "map": "https://www.parks.ca.gov/pages/542/files/NewBrightonSB_CampMap2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3525": {
+   "map": "https://www.parks.ca.gov/pages/497/files/CAStateRRMuseumFinalWebLayout080217.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3526": {
+   "map": "https://www.parks.ca.gov/pages/663/files/OldTownSanDiegoSHPFinalWebFileSPANISH2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure - Spanish (PDF)\")"
+  },
+  "US-3527": {
+   "map": "https://www.parks.ca.gov/pages/465/files/OlompaliWebBrochure2011.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3528": {
+   "map": "https://www.parks.ca.gov/pages/524/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3530": {
+   "map": "https://www.parks.ca.gov/pages/522/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3531": {
+   "map": "https://www.parks.ca.gov/pages/474/files/PetalumaAdobeSHPFinalWebLayout110915.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3532": {
+   "map": "http://dbw.parks.ca.gov/pages/28702/files/BlythetoImperial.pdf",
+   "map_by": "bot: California State Parks park page (\"Colorado River Boating Trail Guide (opens in new t\")"
+  },
+  "US-3533": {
+   "map": "https://www.parks.ca.gov/pages/533/files/PigeonPointFinalWebLayout082615.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3534": {
+   "map": "https://www.parks.ca.gov/pages/621/files/PioPicoSHPWEB2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3535": {
+   "map": "https://www.parks.ca.gov/pages/595/files/PismoSB Campground Map_North Beach10172020.pdf",
+   "map_by": "bot: California State Parks park page (\"North Beach Campground Map (PDF)\")"
+  },
+  "US-3536": {
+   "map": "https://www.parks.ca.gov/pages/22276/files/PointCabrilloLightStationWebLayout2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3537": {
+   "map": "https://www.parks.ca.gov/pages/623/files/PtDumeBrochure.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3542": {
+   "map": "https://www.parks.ca.gov/pages/565/files/PointSurSHPFinalWebLayout052016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3543": {
+   "map": "https://www.parks.ca.gov/pages/521/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3545": {
+   "map": "https://www.parks.ca.gov/pages/491/files/Railtown1897SHPWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3546": {
+   "map": "https://www.parks.ca.gov/pages/603/files/RefugioSBCampground103116.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3551": {
+   "map": "https://www.parks.ca.gov/pages/573/files/FortOrdDunesMonterey_Web2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3552": {
+   "map": "https://www.parks.ca.gov/pages/639/files/SaltonSeaSRA_FinalWebLayout0501017.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3553": {
+   "map": "https://www.parks.ca.gov/pages/600/files/SanBuenaventuraSBFinalWebLayout022417.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3554": {
+   "map": "https://www.parks.ca.gov/pages/646/files/SanClementeSB_CampgroundMap_073124_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3555": {
+   "map": "https://www.parks.ca.gov/pages/662/files/SanElijoSBCampMap_11x17_092825_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3556": {
+   "map": "https://www.parks.ca.gov/pages/529/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3557": {
+   "map": "https://www.parks.ca.gov/pages/563/files/SanJuanBautistaSHPFinalWebLayout092316.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3558": {
+   "map": "https://www.parks.ca.gov/pages/558/files/SanLuisMap022310.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3559": {
+   "map": "https://www.parks.ca.gov/pages/647/files/SanOnofreBluffs_CampMap_100625_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"San Onofre Bluffs Campground Map (PDF)\")"
+  },
+  "US-3562": {
+   "map": "https://www.parks.ca.gov/pages/548/files/SantaCruzMissionSHPSpanishFinalWebLayout012116.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure - Spanish (PDF)\")"
+  },
+  "US-3564": {
+   "map": "https://www.parks.ca.gov/pages/611/files/SantaSusanaPassSHPWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3565": {
+   "map": "https://www.parks.ca.gov/pages/450/files/SMCD_Drone_Brochure240826.pdf",
+   "map_by": "bot: California State Parks park page (\"No Drones Allowed in Park\")"
+  },
+  "US-3566": {
+   "map": "https://www.parks.ca.gov/pages/543/files/SeacliffSB_CampMap2019.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3567": {
+   "map": "https://www.parks.ca.gov/pages/456/files/ShastaSHPFinalWebLayout050917.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3568": {
+   "map": "https://www.parks.ca.gov/pages/654/files/SilverStrandCampground2013.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Brochure & Map (PDF)\")"
+  },
+  "US-3569": {
+   "map": "https://www.parks.ca.gov/pages/650/files/SilverwoodLakeCampgroundMap2025_050825_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3570": {
+   "map": "https://www.parks.ca.gov/pages/479/files/SonomaSHPFinalWebLayout051916.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3571": {
+   "map": "https://www.parks.ca.gov/pages/423/files/StandishHickeyCampgroundMap2009.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3572": {
+   "map": "https://www.parks.ca.gov/pages/486/files/StateIndianMuseumSHPWebLayout2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3574": {
+   "map": "https://www.parks.ca.gov/pages/544/files/SunsetSBCampground083116.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3576": {
+   "map": "https://www.parks.ca.gov/pages/504/files/TahoeStRecAreaCampgroundMap.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3580": {
+   "map": "https://www.parks.ca.gov/pages/658/files/TorreyPinesFinalWebLayout012016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3584": {
+   "map": "https://www.parks.ca.gov/pages/555/files/TurlockLakeSRA_CampMap2018.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3588": {
+   "map": "https://www.parks.ca.gov/pages/586/files/WassamaRoundHouseSHPWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3590": {
+   "map": "https://www.parks.ca.gov/pages/457/files/WeavervilleJossHouseFinalWebLayout2015.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3591": {
+   "map": "https://www.parks.ca.gov/pages/450/files/SMCD_Drone_Brochure240826.pdf",
+   "map_by": "bot: California State Parks park page (\"No Drones Allowed in Park\")"
+  },
+  "US-3593": {
+   "map": "https://www.parks.ca.gov/pages/22883/files/WildwoodCanyonFinalWebLayout082117.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3595": {
+   "map": "https://www.parks.ca.gov/pages/626/files/WillRogersSHPFinalWebLayout2017.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3596": {
+   "map": "https://www.parks.ca.gov/pages/458/files/WBIAdobe010709WEBPDF.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-3598": {
+   "map": "https://www.parks.ca.gov/pages/459/files/WoodsonBridgeCampgroundFinal_111517.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-3599": {
+   "map": "https://www.parks.ca.gov/pages/572/files/FortOrdDunesMonterey_Web2014.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-3602": {
    "map": "https://www.nps.gov/bicr/planyourvisit/maps.htm",
@@ -8914,6 +10270,46 @@
     "map": "ok"
    }
   },
+  "US-3715": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/sitemaps/EtowahMap2019.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Site Map\")"
+  },
+  "US-3717": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/sitemaps/FortMorrisMap2019.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Site Map\")"
+  },
+  "US-3719": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/sitemaps/Hofwyl-BroadfieldPlantationMap2019.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Site Map\")"
+  },
+  "US-3720": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/sitemaps/JarrellSiteMap.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Site Map\")"
+  },
+  "US-3722": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/sitemaps/NewEchotaMap2019.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Site Map\")"
+  },
+  "US-3723": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/PickettsMill_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Site Map\")"
+  },
+  "US-3724": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/littlewhitehouse/LittleWhiteHouseBrochure_Chinese.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Chinese\")"
+  },
+  "US-3726": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/KolomokiMounds_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-3727": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/Hart_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
+  "US-3728": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/ProvidenceCanyon_TrailMap.pdf",
+   "map_by": "bot: Georgia State Parks park page (\"Trail Map\")"
+  },
   "US-3791": {
    "map": "https://www.nps.gov/trte/planyourvisit/upload/National-Park-Service-Trail-of-Tears-Map-508.pdf",
    "map_check": {
@@ -8945,6 +10341,14 @@
    "map_page": "https://www.ncparks.gov/maps/falls-lake-state-recreation-area-map/open",
    "map_what": "Official park page with park and access-area PDF maps"
   },
+  "US-3842": {
+   "map": "https://www.ncparks.gov/maps/fort-fisher-state-recreation-area-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park map (PDF)\")"
+  },
+  "US-3843": {
+   "map": "https://www.ncparks.gov/maps/haw-river-state-park-summit-access-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"The Summit access map (PDF)\")"
+  },
   "US-3844": {
    "map": "https://www.ncparks.gov/maps/jordan-lake-state-recreation-area-map/open",
    "map_check": {
@@ -8954,6 +10358,10 @@
    "map_confirmed": true,
    "map_date": "November 2021",
    "map_what": "PDF park map (official NC State Parks)"
+  },
+  "US-3845": {
+   "map": "https://www.ncparks.gov/maps/kerr-lake-state-recreation-area-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park Map (PDF)\")"
   },
   "US-3873": {
    "map": "https://embed.widencdn.net/pdf/plus/scprt/1b2dm2dbko/CDMap_2017.pdf?u=sgt8lu",
@@ -9486,6 +10894,10 @@
    },
    "map_what": "map page (USFS Maps & Guides)"
   },
+  "US-4520": {
+   "map": "https://parks.ny.gov/documents/parks/HallockStateParkPreserveTrailMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"park map\")"
+  },
   "US-4522": {
    "map": "https://www.fs.usda.gov/scnfs/maps-pubs",
    "map_check": {
@@ -9877,6 +11289,10 @@
    "map_date": "Map date not stated",
    "map_what": "PDF trail map (official NC Forest Service)"
   },
+  "US-4859": {
+   "map": "https://www.ncparks.gov/maps/rendezvous-mountain-map/open",
+   "map_by": "bot: North Carolina State Parks park page (\"SVG Park Map (PDF)\")"
+  },
   "US-4991": {
    "map": "https://nj.gov/dep/parksandforests/maps/abramhewitt-area.pdf",
    "map_by": "bot: New Jersey DEP (state-owned open space) (land, state GIS tab (FACILITY_MAP_URL field)",
@@ -10061,6 +11477,14 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-5633": {
+   "map": "https://www.parks.ca.gov/pages/660/files/SouthCarlsbadSBCampMap_092825_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-5634": {
+   "map": "https://www.parks.ca.gov/pages/660/files/SouthCarlsbadSBCampMap_092825_FINAL.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-5636": {
    "map": "https://mdc.mo.gov/media/area/map/6501",
@@ -10443,6 +11867,26 @@
    "map_confirmed": true,
    "map_date": "Master plan 2014; map date not stated",
    "map_what": "Official map page (park map PDF and recreational guide)"
+  },
+  "US-6446": {
+   "map": "https://www.parks.ca.gov/pages/487/files/BrannanIslandSRA_CampgroundMap20221221.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-6450": {
+   "map": "https://www.parks.ca.gov/pages/528/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
+  "US-6451": {
+   "map": "https://www.parks.ca.gov/pages/450/files/SMCD_Drone_Brochure240826.pdf",
+   "map_by": "bot: California State Parks park page (\"No Drones Allowed in Park\")"
+  },
+  "US-6453": {
+   "map": "https://www.parks.ca.gov/pages/607/files/McGrathSBCampMap2007Rev.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
+  "US-6454": {
+   "map": "https://www.parks.ca.gov/pages/601/files/ElCapitanSBCampground060818.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
   },
   "US-6461": {
    "map": "https://nj.gov/dep/parksandforests/maps/sprucerun-area.pdf",
@@ -12028,6 +13472,10 @@
    },
    "web": "https://www.fs.usda.gov/r06/wallowa-whitman/recreation/hells-canyon-national-recreation-area"
   },
+  "US-7376": {
+   "map": "https://www.parks.ca.gov/pages/535/files/SanMateoCoastBeachesParksWeb2016.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
+  },
   "US-7377": {
    "agency": "California Department of Fish and Wildlife",
    "map": "https://wildlife.ca.gov/Lands/Places-to-Visit/Bolsa-Chica-ER",
@@ -12036,6 +13484,10 @@
     "map": "ok"
    },
    "web": "https://wildlife.ca.gov/Lands/Places-to-Visit/Bolsa-Chica-ER"
+  },
+  "US-7380": {
+   "map": "https://www.parks.ca.gov/pages/656/files/SanDiegoCoastWebLayout041509.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-7381": {
    "map": "https://www.blm.gov/documents/arizona/public-room/map/las-cienegas-national-conservation-area",
@@ -12080,6 +13532,14 @@
    },
    "map_date": "Page map date not stated",
    "map_what": "Official Georgia State Parks & Historic Sites map page (lists Dahlonega Gold Museum)"
+  },
+  "US-7474": {
+   "map": "https://www.parks.ca.gov/pages/599/files/CarpinteriaSB_CampMapFINAL061322 (Remediated).pdf",
+   "map_by": "bot: California State Parks park page (\"Park Map (PDF)\")"
+  },
+  "US-7493": {
+   "map": "https://www.parks.ca.gov/pages/519/files/CandlestickPt.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-7494": {
    "map": "https://www.blm.gov/sites/blm.gov/files/documents/files/NV_RedRockCanyon_NCA_0.pdf",
@@ -12482,6 +13942,30 @@
    },
    "web": "https://dnr.maryland.gov/wildlife/Pages/publiclands/wma.aspx"
   },
+  "US-7791": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/cnnap-trailmap.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"Download/View a trail map\")"
+  },
+  "US-7794": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/pggoshenpass.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"preserve guide factsheet and map\")"
+  },
+  "US-7795": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/grassyhilltrailguide.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"trail map\")"
+  },
+  "US-7799": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/muttonhunkfen-georef.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"georeferenced PDF map\")"
+  },
+  "US-7801": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/pinnacle-georefmap.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"georeferenced PDF map\")"
+  },
+  "US-7803": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/savage-georeferencedmap.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"georeferenced PDF map\")"
+  },
   "US-7804": {
    "map": "https://www.nps.gov/grfa/planyourvisit/maps.htm",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -12538,6 +14022,10 @@
     "date": "2026-10-26",
     "map": "ok"
    }
+  },
+  "US-7858": {
+   "map": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/dames-ferry-sitemap.jpg",
+   "map_by": "bot: Georgia State Parks park page (\"Park Map\")"
   },
   "US-7863": {
    "map": "https://mdc.mo.gov/media/area/map/7936",
@@ -13555,6 +15043,10 @@
    "map_date": "Map date not stated",
    "map_what": "Official Palisades Interstate Park map PDF"
   },
+  "US-8325": {
+   "map": "https://www.parks.ca.gov/pages/587/files/MillertonLakeSRA_HighResMap_7-14-22.pdf",
+   "map_by": "bot: California State Parks park page (\"Campground Map (PDF)\")"
+  },
   "US-8353": {
    "map": "https://aws.sjrwmd.com/SJRWMD/lands/trailguides/lake-apopka-north-shore-trail-map.pdf",
    "map_check": {
@@ -13657,6 +15149,10 @@
     "map": "ok"
    }
   },
+  "US-8623": {
+   "map": "https://parks.ny.gov/documents/parks/HarrietHollisterHuntingMap.pdf",
+   "map_by": "bot: New York State Parks park page (\"Harriet Hollister Hunting Map\")"
+  },
   "US-8664": {
    "map": "https://www.blm.gov/sites/blm.gov/files/documents/files/spo_fishtraprecarea_brochure.pdf",
    "map_by": "bot: Recreation.gov RIDB (agency link)",
@@ -13721,6 +15217,10 @@
     "map": "ok"
    },
    "web": "https://www.iowadnr.gov/places-go/wildlife-management-areas"
+  },
+  "US-9355": {
+   "map": "https://www.parks.ca.gov/pages/556/files/McConnellHatfield.pdf",
+   "map_by": "bot: California State Parks park page (\"Park Brochure (PDF)\")"
   },
   "US-9360": {
    "map": "http://www.nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/BoatingRecreationMaps.aspx",
@@ -13931,6 +15431,10 @@
     "date": "2026-10-26",
     "map": "HTTP 404"
    }
+  },
+  "US-9932": {
+   "map": "https://www.dcr.virginia.gov/natural-heritage/document/thechannels-georefmap.pdf",
+   "map_by": "bot: Virginia State Parks (DCR) park page (\"georeferenced PDF map\")"
   },
   "US-9933": {
    "map": "https://www.dcr.virginia.gov/recreational-planning/document/b2b-brochure.pdf",
