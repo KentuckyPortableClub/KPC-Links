@@ -1,5 +1,5 @@
 {
- "note": "Layers a person ruled out for the weekly state-camps bot (kpc_state_camps.py). A layer whose URL contains any fragment below is never read. Oct 24 2026 first runs: hotel lists, county parcels, campus buildings, history sites. ALLOW = layers/services a person found (Oct 24 probe: data/campstate/probe.json) that the crawl missed; FILES = official open-data file datasets (CKAN package_show url).",
+ "note": "Layers a person ruled out for the weekly state-camps bot (kpc_state_camps.py). A layer whose URL contains any fragment below is never read. Oct 24 2026 first runs: hotel lists, county parcels, campus buildings, history sites. ALLOW = layers/services a person found (Oct 24 probe: data/campstate/probe.json) that the crawl missed; FILES = official open-data file datasets (CKAN package_show url). · Oct 27 (HQ, research-bots review #1): Utah's state GIS office republishes Park Service, Forest Service and BLM campgrounds (not state ones) and Oklahoma's 'Camps' layer is historic army camps: denied.",
  "deny": [
   "SIN_GreenLodgings",
   "Hosted/416Campgrounds",
@@ -8,7 +8,14 @@
   "dil_land_assets_parking",
   "MD_CampusFacilities",
   "PSU_Commonwealth",
-  "State_Parks/MapServer/12"
+  "State_Parks/MapServer/12",
+  "ZzrwjTRez6FJiOq4/arcgis/rest/services/RecreationSites_NPS",
+  "ZzrwjTRez6FJiOq4/arcgis/rest/services/RecreationSites_NF",
+  "ZzrwjTRez6FJiOq4/arcgis/rest/services/BLCMP_Recreation",
+  "ZzrwjTRez6FJiOq4/arcgis/rest/services/Co_Recreation",
+  "ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Recreation",
+  "ZzrwjTRez6FJiOq4/arcgis/rest/services/HRCamping_view",
+  "jRf8jjFwxedITdFe/arcgis/rest/services/Camps/"
  ],
  "allow": {
   "TN": [

@@ -61,11 +61,6 @@
    "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56); gis.ohiodnr.gov \u00b7 Lodges (9)",
    "updated": "2026-10-27"
   },
-  "OK": {
-   "n": 14,
-   "source": "services1.arcgis.com \u00b7 Camps (16)",
-   "updated": "2026-10-27"
-  },
   "PA": {
    "n": 81,
    "source": "www.gis.dcnr.pa.gov \u00b7 Campground Entrances (65); www.gis.dcnr.pa.gov \u00b7 State Parks (19); www.gis.dcnr.state.pa.us \u00b7 Campground Entrances (65) (+1 more)",
@@ -79,11 +74,6 @@
   "TX": {
    "n": 329,
    "source": "services1.arcgis.com \u00b7 Campground Area (439)",
-   "updated": "2026-10-27"
-  },
-  "UT": {
-   "n": 350,
-   "source": "services.arcgis.com \u00b7 Campgrounds (14); services.arcgis.com \u00b7 Campgrounds (20); services.arcgis.com \u00b7 DWR_Cabins (13) (+4 more)",
    "updated": "2026-10-27"
   },
   "VA": {
@@ -131,10 +121,12 @@
   "NJ",
   "NM",
   "NV",
+  "OK",
   "OR",
   "RI",
   "SC",
   "SD",
+  "UT",
   "WI",
   "WV"
  ],
