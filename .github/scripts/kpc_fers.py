@@ -1743,6 +1743,7 @@ def line_zone(x, G, PIN):
             'zone_wide_m': round(float(dt(z).max()) * CELL * 2, 1)}
 
 
+STRIP_MIN_M = 9.144   # RULE 15 (Brandon Oct 27 6:30 PM, option A): a trail strip at least 10 yards (30 ft) wide somewhere along it
 def add_zones(files, G, PIN, today):
     n = 0
     for d in files.values():
@@ -1753,7 +1754,24 @@ def add_zones(files, G, PIN, today):
                 zz = line_zone(x, G, PIN)
                 if zz is not None: x.update(zz); x['zone_read'] = today; n += 1
             except Exception as e: LOG.append(f"zone {x.get('id')}: {str(e)[:60]}")  # noqa: BLE001
+        rule15(d.get('spots', []))
     return n
+
+
+def rule15(spots):
+    """RULE 15: a trail row (with the stretches folded into it) whose strip is under 10 yards wide EVERYWHERE = 'very tight
+    (members only)', the same tier as a 25-50 yard overlap. A row whose strip was not measured is left as it is."""
+    for m in spots:
+        if m.get('kind') != 'trail' or not str(m.get('status', '')).startswith(('candidate', VERY_TIGHT)): continue
+        mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m['id']]
+        ws = [x['zone_wide_m'] for x in [m] + mem if x.get('zone_wide_m') is not None]
+        if not ws: continue
+        m['strip_wide_m'] = max(ws)
+        if max(ws) < STRIP_MIN_M:
+            m['status'] = VERY_TIGHT; m['tier'] = VERY_TIGHT; m['list'] = 'Very tight (members only)'
+            m['rule15'] = f'strip at most {round(max(ws) / 0.9144, 1)} yards wide (under 10 yards everywhere: rule 15)'
+        elif m.pop('rule15', None):
+            m['status'] = 'candidate'; m.pop('tier', None); m.pop('list', None)
 
 def file_of(st): return OUT / f'{st}.json'
 
