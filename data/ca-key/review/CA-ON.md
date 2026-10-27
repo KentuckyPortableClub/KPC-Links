@@ -1,6 +1,6 @@
 # Canada ON: POTA parks vs official land (CPCAD)
 
-Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **903 of 1158** joined (same name + same kind). **19** to check, **211** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
+Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **903 of 1158** joined (same name + same kind). **19** to check, **210** nothing found in CPCAD (provincial maps come next). Nothing below is joined.
 
 ## To check (not joined)
 
@@ -37,6 +37,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1467 Kishkebus Lake Wilderness Area (Wilderness Area) → on BON ECHO PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac); Bon Echo Provincial Park (Natural Environment Class) (~20,495 ac)
 - CA-1542 New Brunswick House Post Wilderness Area (Wilderness Area) → on MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS) (~0 ac); Missinaibi Provincial Park (Waterway Class) (~286,914 ac)
 - CA-1559 Old Brunswick House Wilderness Area (Wilderness Area) → on MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS) (~0 ac); Missinaibi Provincial Park (Waterway Class) (~286,914 ac)
+- CA-1566 Outer Barn Island Wilderness Area (Wilderness Area) → on LAKE NIPIGON CONSERVATION RESERVE (~0 ac)
 - CA-1599 South Point Trail (Rondeau) Provincial Park (Provincial Park) → on RONDEAU PROVINCIAL PARK (NATURAL ENVIRONMENT CLASS) (~0 ac); Rondeau Provincial Park (Natural Environment Class) (~8,041 ac)
 - CA-1707 Whitefish Falls Wilderness Area (Wilderness Area) → on MISSINAIBI PROVINCIAL PARK (WATERWAY CLASS) (~0 ac); Missinaibi Provincial Park (Waterway Class) (~286,914 ac)
 - CA-4857 Beausoleil Island National Historic Site (National Historic Site) → on Georgian Bay Islands National Park of Canada (~0 ac); Georgian Bay Islands National Park Of Canada (~3,459 ac)
@@ -71,7 +72,6 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 - CA-1408 Ganley Harbour Wilderness Area (Wilderness Area)
 - CA-1512 McLaughlin Bay Reserve Wildlife Area (Wildlife Area)
 - CA-1535 Murray Overlook Scenic Site (Scenic Site)
-- CA-1566 Outer Barn Island Wilderness Area (Wilderness Area)
 - CA-1573 Peisk Lake (Payshk Ohsahgaheegahn) Conservation Reserve (Conservation Reserve)
 - CA-1574 Petawawa Centennial Park Conservation Reserve (Conservation Reserve)
 - CA-1587 Tiffany Falls Conservation Area (Conservation Area)

@@ -6,7 +6,7 @@ Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **
 
 - **CA-4842** Marconi National Historic Site (National Historic Site) → Marconi Wireless Station (~0 ac, similar name)
 - **CA-4847** St. Peters National Historic Site (National Historic Site) → St. Peters Canal (~0 ac, same name, different kind of place)
-- **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name)
+- **CA-5805** Chapman House National Historic Site (National Historic Site) → Chapman House Monument (~0 ac, similar name); New Brunswick #25 Wildlife Management Area (~0 ac, the POTA pin is inside it (different name))
 - **CA-5813** Grand-Pré Rural Historic District National Historic Site (National Historic Site) → Grand Pre (~0 ac, similar name)
 - **CA-6111** Swiss Air Memorial Peggys Cove Provincial Park (Provincial Park) → Swiss Air Memorial (~0 ac, same name, different kind of place); West Dover Provincial Park (~2,563 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name)); West Dover Provincial Park (~0 ac, the POTA pin is inside it (different name))
 
