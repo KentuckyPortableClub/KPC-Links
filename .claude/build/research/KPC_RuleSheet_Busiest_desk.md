@@ -46,3 +46,6 @@ The sheet is honest about its limits (counts hunter spots, not hunters; "still c
 POTA's spot window length and re-spot behaviour (I could not open the API from here); real counts beyond what the sheet states; the Actions cache contents.
 
 Sources: Sheet B in `logger-lounge-digi.md`; api.pota.app as cited there.
+
+## F. BRANDON'S RULING (Oct 27 6:45 AM: "Yes to all")
+Read as: every recommendation (rec) in this file is accepted, including the answers to the sheet's own grey areas and my new ones. Where a rec depends on a later step (for example the ownership step in rule 14), the rec stands as written. HQ records the final sheet; the owning chat builds nothing until HQ says so.

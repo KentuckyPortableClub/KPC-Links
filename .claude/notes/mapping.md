@@ -253,3 +253,4 @@ GREY AREAS for Brandon (chat 8 adds more): (G1) show LOW-confidence outlines at 
 - Oct 27 (chat 8, research desk): RULE SHEET REVIEWS written for chat 2's Sheet A (KPC_RuleSheet_Closures_desk.md: 7 breaks, 13 grey areas) and Sheet B (KPC_RuleSheet_NearMiss_desk.md: 1 contradiction, 9 edge cases, 8 grey areas). Map-data sheet + chat 3's two sheets next.
 
 - **Oct 27 (chat 8):** Map data rule sheet reviewed -> `.claude/build/research/KPC_RuleSheet_Maps_desk.md` (2 rule conflicts: B2 vs B1 and theme layers; 11 edge cases; grey areas G-M1..M6). Grey area 2 (private WMAs) RULED by B-G2.
+- **Oct 27 6:45 AM (Brandon, "Yes to all"):** all chat 8 recommendations in KPC_RuleSheet_Maps_desk.md accepted (A1, A2 fixes; G1-G3, G-M1..M6). HQ to fold into the Map data sheet; chat 2 builds after that.
