@@ -21,7 +21,7 @@ Rulings: (1) Daniel Boone = Forest Service-OWNED land only (Basic Ownership laye
 | Big South Fork wild river x Sheltowee Trace | **NOT SURE** | Wild river = area (corridor); Sheltowee = line, so: is the corridor's public land within 100 ft of the trail line? Geometry |
 | W.H. Martin SNA x Rockcastle wild river | **NOT SURE** | Area x area: does the preserve overlap the corridor polygon by 50 yards on state-owned land? Martin is owned by the Office of Kentucky Nature Preserves |
 | Sinking Creek x Daniel Boone | **NOT SURE** | Owner not found |
-| Pine Mountain State Trail (5 pairs) | **NOT SURE** | It is a state park with land (bot tested its ~197-acre state tract; Nature Preserves lists ~2,606 units), so it is an AREA park only where a boundary exists; the guide used the trail line. No official line or full boundary found. Stays out until HQ/chat 2 settle which |
+| Pine Mountain State Scenic Trail (5 pairs) | **NOT SURE, out of the guide** | HQ ruling Oct 27 4:38 AM: a **LINE park**; test = the other park's public land within 100 ft of the OFFICIAL trail line. No official line is published, so it cannot be tested yet |
 | Water-route Trail of Tears and Lewis & Clark pairs | **NOT SURE, testable** | Test the other park's public shore land within 100 ft of the official shoreline. Needs chat 2 to confirm its river-route files cover the Kentucky Ohio River stretch |
 | Land-route Trail of Tears segments / Lewis & Clark auto route | **NOT SURE, out of the guide** | NPS lines are approximate (1:100,000) |
 | Cumberland Gap NHP x Wilson Cumberland Trail SP (TN) | **NOT SURE; outside Kentucky guide** | |
@@ -29,9 +29,9 @@ Rulings: (1) Daniel Boone = Forest Service-OWNED land only (Basic Ownership laye
 **Doubts left (for HQ):**
 1. **Shoreline source.** For the water-route trails and the big rivers I need an official river-edge line (Kentucky's own hydrography or USGS National Hydrography). I have not opened one. Chat 2 should say which shoreline file the test will use. On the Ohio, the Kentucky state line is the north bank, so the Kentucky shore is Kentucky land.
 2. **Wild rivers are area parks now.** The 9 polygons in `ky-wild-rivers.geojson` (state Wild Rivers, each with its Office of Kentucky Nature Preserves page, type "Wild River (State)") are tested like any area. They carry ACCESS "Restricted", so the spot must be on Forest Service-owned land or a state-owned tract. The geojson has no source line (chat 2 is to note where it came from). The 100-ft shoreline question now applies only to the water-route historic trails and Sheltowee Trace.
-3. **State-owned tract source.** Forest Service parcels pass by the Basic Ownership layer; state-owned tracts along a corridor need a state ownership source (Office of Kentucky Nature Preserves tract list, `ky-lands-seen.json`, or the state parcel data).
+3. **State-owned land along the wild-river corridors (HQ ruling 4:38 AM):** use PAD-US fee ownership (owner type + managing agency, already cached) first, then `ky-lands-seen.json` where PAD-US is thin. A corridor spot counts only on land one of these shows as Forest Service-owned (also checked against Basic Ownership) or state-owned and open; otherwise NOT SURE.
 4. **Sunny Brook and Hoskins** owners (KDFWR gives none).
-5. **Pine Mountain** has no official line.
+5. **Pine Mountain** is a LINE park (HQ 4:38 AM): no official whole-park boundary; the 197 / 2,606 acre figures are state tracts along it. No official trail line is published yet, so its 5 pairs stay NOT SURE and out of the guide. Chat 2 is to look for a line from Kentucky State Parks or KyGeoNet.
 6. **The 40 matched pairs and 56 bot candidates outside Daniel Boone** were not opened pair by pair (section 7).
 
 ## 0b. Checked against the whole-world rules (mapping.md "2-FER RULES FOR THE WHOLE WORLD", Oct 27 4:32 AM)
