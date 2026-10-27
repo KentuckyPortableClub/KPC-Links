@@ -11,9 +11,9 @@
   'use strict';
   if (/[?&]embed=1/.test(location.search) || document.getElementById('kpcLTabs')) return;
   var SETS = {
-    hunters: { home: 'kpc-hunters.html', tabs: [['spots', '🎯 SPOTS & LOG', 'kpc-hunters.html'], ['checker', '📋 PARK CHECKER', 'kpc-hunters-need.html'],
+    hunters: { home: 'kpc-hunters.html', tabs: [['spots', '🎯 SPOTS & LOG', 'kpc-hunters.html#spots'], ['checker', '📋 PARK CHECKER', 'kpc-hunters-need.html'],
       ['board', '📝 ACTIVATION BOARD', 'kpc-activations.html?from=hunters'], ['radio', '☀️ RADIO CONDITIONS', 'kpc-space-weather.html?from=hunters'], ['live', '📡 HAPPENING NOW', 'kpc-hunters.html#live']] },
-    activators: { home: 'kpc-activators-lounge.html', tabs: [['tools', '🧰 TOOLS', 'kpc-activators-lounge.html'], ['board', '📝 ACTIVATION BOARD', 'kpc-activations.html?from=activators'],
+    activators: { home: 'kpc-activators-lounge.html', tabs: [['tools', '🧰 TOOLS', 'kpc-activators-lounge.html#tools'], ['board', '📝 ACTIVATION BOARD', 'kpc-activations.html?from=activators'],
       ['weather', '🌦 WEATHER', 'kpc-weather.html?from=activators'], ['radio', '☀️ RADIO CONDITIONS', 'kpc-space-weather.html?from=activators'], ['live', '📡 HAPPENING NOW', 'kpc-activators-lounge.html#live']] }
   };
   var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
@@ -51,14 +51,25 @@
     n.querySelector('[data-kl=back]').addEventListener('click', function (e) {   // the page you came from, else the Lounge
       if (history.length > 1 && document.referrer && new URL(document.referrer).origin === location.origin) { e.preventDefault(); history.back(); }
     });
-    [].forEach.call(n.querySelectorAll('[data-kl]'), function (a) {   // tabs on this same page switch by #hash, no reload
-      var u = new URL(a.href, location.href); if (a.dataset.kl === 'back' || u.pathname !== location.pathname || u.hash) return;
-      a.addEventListener('click', function (e) { if (!location.hash) return; e.preventDefault(); history.pushState(null, '', location.pathname + location.search); dispatchEvent(new HashChangeEvent('hashchange')); });
+    [].forEach.call(n.querySelectorAll('[data-kl]'), function (a) {   // tabs on this same page switch by #hash (no reload) and ALWAYS move the page
+      var u = new URL(a.href, location.href); if (a.dataset.kl === 'back' || u.pathname !== location.pathname) return;
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (location.hash !== u.hash) { history.pushState(null, '', location.pathname + location.search + u.hash); dispatchEvent(new HashChangeEvent('hashchange')); }
+        setTimeout(function () { jump(u.hash); }, 60);
+      });
     });
     var lv = document.getElementById('hlLive') || document.getElementById('lgLive');   // the Happening Now panel sits right under the strip
     if (lv) n.parentNode.insertBefore(lv, n.nextSibling);
     lit();
   }
+  /* Oct 26 (Brandon: 'the tool tab does nothing'): every tab visibly does something. TOOLS = smooth scroll to the first tool
+     section ('Find a place to activate'), SPOTS & LOG = the main spots, HAPPENING NOW = the strip at the top with the panel under it.
+     The page's sticky bars (site header, conditions bar, parks ticker) are measured so the target is not hidden under them. */
+  var JUMP = { '#tools': function () { return document.getElementById('lgFind') || document.querySelector('#lgTools .lg-sec'); }, '#spots': function () { return document.getElementById('hlSpSec') || document.querySelector('.hl-split'); }, '#live': function () { return document.getElementById('kpcLTabs'); } };
+  function stuckH() { var h = 0, hd = document.querySelector('header.site-nav'); if (hd && /sticky|fixed/.test(getComputedStyle(hd).position)) h = hd.getBoundingClientRect().height;
+    var extra = 0; [].forEach.call(document.querySelectorAll('#hlTick, .kcx'), function (e) { var cs = getComputedStyle(e); if (/sticky|fixed/.test(cs.position) && e.offsetParent !== null && cs.display !== 'none') extra = Math.max(extra, e.getBoundingClientRect().height); }); return h + extra; }
+  function jump(hash) { var f = JUMP[hash], el = f && f(); if (!el) return; var y = el.getBoundingClientRect().top + scrollY - stuckH() - 8; if (hash === '#live') y = el.getBoundingClientRect().top + scrollY - stuckH(); scrollTo({ top: Math.max(0, y), behavior: 'smooth' }); }
   function lit() {
     var n = document.getElementById('kpcLTabs'); if (!n) return; var c = current();
     [].forEach.call(n.querySelectorAll('[data-kl]'), function (a) { if (a.dataset.kl === c) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
@@ -68,5 +79,7 @@
   /* build as soon as the hero is on the page (before the Lounge's own scripts lay out their windows); else when the page is ready */
   function start() { if (document.getElementById('kpcLTabs')) return; build(); try { dispatchEvent(new Event('resize')); } catch (e) {} }
   if (document.readyState !== 'loading' || hero()) start(); else document.addEventListener('DOMContentLoaded', start);
-  window.KPCLTabs = { lit: lit };
+  window.KPCLTabs = { lit: lit, jump: jump };
+  /* opened from another tab page with #tools / #spots: land on that spot once the page has laid itself out */
+  if (/^#(tools|spots)$/.test(location.hash) && JUMP[location.hash]) addEventListener('load', function () { setTimeout(function () { jump(location.hash); }, 300); });
 })();
