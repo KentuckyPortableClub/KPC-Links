@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '43 10 2 * *'   # monthly
   workflow_dispatch:
+    inputs:
+      saved:
+        description: 'Build from the saved outlines (no full re-read of every map; newer layers are topped up)'
+        type: boolean
+        default: false
 permissions:
   contents: write
   issues: write
@@ -18,10 +23,13 @@ jobs:
       - uses: actions/checkout@v5
       - name: Build the Canada answer key
         env:
-          GEO_CACHE_MODE: refresh      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GEO_CACHE_MODE: ${{ inputs.saved && 'use' || 'refresh' }}      # Oct 22: keep the outlines it read, so the next step can save the missing park files
+          GH_TOKEN: ${{ github.token }}
         continue-on-error: true      # Oct 25: a map server that misbehaves must not fail the run (a failed run emails Brandon)
         run: |
           pip install --quiet --break-system-packages pyshp pyproj || pip install --quiet pyshp pyproj || true
+          # Oct 27 (gap hunt): 'saved' = start from the saved copy on the boundary-cache release (a full re-read can time out)
+          if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true; fi
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
           tail -n 3 ca-key.log
       - name: Save outline files for joined parks that have none (never overwrites)
