@@ -1,7 +1,8 @@
 {
- "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "about": "Spots where the boundaries of two or more POTA parks may overlap (official outlines only; land spots 50 yards across, 'small' = 50-100 yards; trails and rivers by POTA's 100-ft rule). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.",
  "pass1": "2026-10-26",
  "pass2": "2026-10-26",
+ "pass3": "2026-10-27",
  "spots": [
   {
    "acres": 9.7,
@@ -160,65 +161,140 @@
    "wide_m": 80
   },
   {
-   "acres": 39.9,
+   "access": [
+    43.466483,
+    -95.125181,
+    "Parking (Iowa DNR; one 403 on a query)",
+    "US-5736",
+    185
+   ],
+   "access_pin": {
+    "at": [
+     43.473143,
+     -95.125377
+    ],
+    "from": "road",
+    "name": "public road",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 0
+   },
+   "acres": 39.8,
    "box": [
-    -95.12615,
-    43.46398,
-    -95.1212,
-    43.47782
+    -95.12619,
+    43.464,
+    -95.12111,
+    43.47779
    ],
    "center": [
-    43.467416,
-    -95.123183
+    43.467344,
+    -95.123214
    ],
    "found": "2026-10-26",
    "id": "US-10174+US-5736@area@43.468,-95.123",
    "kind": "area",
+   "maps": [
+    [
+     "US-10174",
+     "https://iowadnr.maps.arcgis.com/apps/webappviewer/index.html?id=63ec8e3d7fbc4f3bb0cf01f232118e68&query=Atlas_Web_Application_4143_1966%2CAREA_NAME%2CMarble%20Beach%20State%20Recreation%20Area"
+    ],
+    [
+     "US-5736",
+     "https://iowastateparks.reserveamerica.com/camping/templar-state-recreation-area/r/campgroundDetails.do?contractCode=IA&parkId=610199"
+    ]
+   ],
+   "names": {
+    "US-10174": "Marble Beach State Recreation Area",
+    "US-5736": "Templar State Recreation Area"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "US-10174": true,
+    "US-5736": true
+   },
    "refs": [
     "US-10174",
     "US-5736"
    ],
    "shape": [
     [
-     -95.126154,
-     43.477817
+     -95.126185,
+     43.477789
     ],
     [
-     -95.124174,
-     43.466512
+     -95.126123,
+     43.476839
     ],
     [
-     -95.122936,
-     43.46398
+     -95.12439,
+     43.466937
     ],
     [
-     -95.121203,
-     43.46398
+     -95.124143,
+     43.46662
     ],
     [
-     -95.122069,
-     43.467778
+     -95.123895,
+     43.465761
     ],
     [
-     -95.124174,
-     43.470763
+     -95.123029,
+     43.463997
     ],
     [
-     -95.125288,
-     43.474018
+     -95.12111,
+     43.463997
     ],
     [
-     -95.125535,
-     43.477817
+     -95.121543,
+     43.465264
+    ],
+    [
+     -95.121729,
+     43.46662
+    ],
+    [
+     -95.1221,
+     43.467931
+    ],
+    [
+     -95.123152,
+     43.469469
+    ],
+    [
+     -95.123524,
+     43.46974
+    ],
+    [
+     -95.124019,
+     43.470464
+    ],
+    [
+     -95.124452,
+     43.471458
+    ],
+    [
+     -95.124885,
+     43.473177
+    ],
+    [
+     -95.125442,
+     43.474398
+    ],
+    [
+     -95.125628,
+     43.475347
+    ],
+    [
+     -95.125566,
+     43.477789
     ]
    ],
-   "status": "pass 2",
-   "wide_m": 200
+   "status": "candidate",
+   "wide_m": 210
   },
   {
    "acres": 7.3,
@@ -287,7 +363,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 60
   }
  ],

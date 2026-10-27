@@ -1,7 +1,8 @@
 {
- "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "about": "Spots where the boundaries of two or more POTA parks may overlap (official outlines only; land spots 50 yards across, 'small' = 50-100 yards; trails and rivers by POTA's 100-ft rule). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.",
  "pass1": "2026-10-26",
  "pass2": "2026-10-26",
+ "pass3": "2026-10-27",
  "spots": [
   {
    "acres": 42.6,
@@ -2562,54 +2563,92 @@
    "wide_m": 144
   },
   {
-   "acres": 1.6,
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.879081,
+     -60.0549
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
+   "acres": 1.9,
    "box": [
-    -60.05527,
-    45.87875,
-    -60.05424,
-    45.87947
+    -60.05548,
+    45.87867,
+    -60.05425,
+    45.87953
    ],
    "center": [
-    45.879106,
-    -60.054758
+    45.879081,
+    -60.0549
    ],
    "found": "2026-10-26",
    "id": "CA-4837+CA-4849@area@45.879,-60.054",
    "kind": "area",
+   "maps": [
+    [
+     "CA-4837",
+     "https://parks.canada.ca/lhn-nhs/ns/louisbourg"
+    ],
+    [
+     "CA-4849",
+     "https://www.pc.gc.ca/apps/dfhd/page_nhs_eng.aspx?id=300"
+    ]
+   ],
+   "names": {
+    "CA-4837": "Fortress of Louisbourg National Historic Site",
+    "CA-4849": "Wolfe's Landing National Historic Site"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "CA-4837": true,
+    "CA-4849": true
+   },
    "refs": [
     "CA-4837",
     "CA-4849"
    ],
    "shape": [
     [
-     -60.054242,
-     45.879287
+     -60.054706,
+     45.879533
     ],
     [
-     -60.054629,
-     45.879468
+     -60.055287,
+     45.879397
     ],
     [
-     -60.055274,
-     45.879287
+     -60.05548,
+     45.879171
     ],
     [
-     -60.055274,
-     45.878745
+     -60.05548,
+     45.878945
     ],
     [
-     -60.054242,
-     45.878925
+     -60.055029,
+     45.878674
+    ],
+    [
+     -60.054512,
+     45.878719
+    ],
+    [
+     -60.054254,
+     45.879035
+    ],
+    [
+     -60.054319,
+     45.879307
     ]
    ],
-   "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
-   "wide_m": 80
+   "status": "candidate",
+   "wide_m": 94
   },
   {
    "acres": 131.2,

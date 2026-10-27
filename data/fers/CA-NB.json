@@ -1,7 +1,8 @@
 {
- "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "about": "Spots where the boundaries of two or more POTA parks may overlap (official outlines only; land spots 50 yards across, 'small' = 50-100 yards; trails and rivers by POTA's 100-ft rule). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.",
  "pass1": "2026-10-26",
  "pass2": "2026-10-26",
+ "pass3": "2026-10-27",
  "spots": [
   {
    "acres": 7.0,
@@ -100,66 +101,113 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 60
   },
   {
-   "acres": 4.9,
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.570946,
+     -65.106805
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
+   "acres": 5.2,
    "box": [
-    -65.10838,
-    45.5698,
-    -65.10633,
-    45.57351
+    -65.10841,
+    45.56968,
+    -65.10629,
+    45.57352
    ],
    "center": [
-    45.571521,
-    -65.107355
+    45.570946,
+    -65.106805
    ],
    "found": "2026-10-26",
    "id": "CA-0024+CA-4487@area@45.571,-65.107",
    "kind": "area",
+   "maps": [
+    [
+     "CA-0024",
+     "https://en.unesco.org/biosphere/eu-na/fundy"
+    ],
+    [
+     "CA-4487",
+     "https://www2.gnb.ca/content/gnb/en/departments/erd/forestry-conservation/content/ProtectedNaturalAreas/Class2.html"
+    ]
+   ],
+   "names": {
+    "CA-0024": "Fundy Biosphere Reserve",
+    "CA-4487": "Point Wolfe River Gorge Protected Area"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "CA-0024": true,
+    "CA-4487": true
+   },
    "refs": [
     "CA-0024",
     "CA-4487"
    ],
    "shape": [
     [
-     -65.108125,
-     45.573511
+     -65.108024,
+     45.573523
     ],
     [
-     -65.108382,
-     45.572968
+     -65.108409,
+     45.572935
     ],
     [
-     -65.108253,
-     45.571883
+     -65.108345,
+     45.57185
     ],
     [
-     -65.107226,
-     45.571069
+     -65.107832,
+     45.571579
     ],
     [
-     -65.106713,
-     45.569803
+     -65.107318,
+     45.571081
     ],
     [
-     -65.106328,
-     45.571069
+     -65.106805,
+     45.56968
     ],
     [
-     -65.108253,
-     45.572607
+     -65.106356,
+     45.570448
+    ],
+    [
+     -65.106292,
+     45.570991
+    ],
+    [
+     -65.106548,
+     45.571307
+    ],
+    [
+     -65.107768,
+     45.572076
+    ],
+    [
+     -65.108217,
+     45.572664
+    ],
+    [
+     -65.108024,
+     45.573071
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
-   "wide_m": 72
+   "status": "candidate",
+   "wide_m": 80
   },
   {
    "acres": 18.2,
@@ -337,7 +385,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 56
   },
   {
@@ -459,7 +507,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 56
   },
   {
@@ -559,66 +607,113 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 60
   },
   {
-   "acres": 4.9,
+   "access": null,
+   "access_pin": {
+    "at": [
+     45.570946,
+     -65.106805
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
+   "acres": 5.2,
    "box": [
-    -65.10838,
-    45.5698,
-    -65.10633,
-    45.57351
+    -65.10841,
+    45.56968,
+    -65.10629,
+    45.57352
    ],
    "center": [
-    45.571521,
-    -65.107355
+    45.570946,
+    -65.106805
    ],
    "found": "2026-10-26",
    "id": "CA-0025+CA-4487@area@45.571,-65.107",
    "kind": "area",
+   "maps": [
+    [
+     "CA-0025",
+     "https://www.pc.gc.ca/pn-np/nb/fundy/"
+    ],
+    [
+     "CA-4487",
+     "https://www2.gnb.ca/content/gnb/en/departments/erd/forestry-conservation/content/ProtectedNaturalAreas/Class2.html"
+    ]
+   ],
+   "names": {
+    "CA-0025": "Fundy National Park",
+    "CA-4487": "Point Wolfe River Gorge Protected Area"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "CA-0025": true,
+    "CA-4487": true
+   },
    "refs": [
     "CA-0025",
     "CA-4487"
    ],
    "shape": [
     [
-     -65.108125,
-     45.573511
+     -65.108024,
+     45.573523
     ],
     [
-     -65.108382,
-     45.572968
+     -65.108409,
+     45.572935
     ],
     [
-     -65.108253,
-     45.571883
+     -65.108345,
+     45.57185
     ],
     [
-     -65.107226,
-     45.571069
+     -65.107832,
+     45.571579
     ],
     [
-     -65.106713,
-     45.569803
+     -65.107318,
+     45.571081
     ],
     [
-     -65.106328,
-     45.571069
+     -65.106805,
+     45.56968
     ],
     [
-     -65.108253,
-     45.572607
+     -65.106356,
+     45.570448
+    ],
+    [
+     -65.106292,
+     45.570991
+    ],
+    [
+     -65.106548,
+     45.571307
+    ],
+    [
+     -65.107768,
+     45.572076
+    ],
+    [
+     -65.108217,
+     45.572664
+    ],
+    [
+     -65.108024,
+     45.573071
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
-   "wide_m": 72
+   "status": "candidate",
+   "wide_m": 80
   },
   {
    "acres": 18.2,
@@ -796,7 +891,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 56
   },
   {
@@ -918,7 +1013,7 @@
     ]
    ],
    "small": "small overlap: tight fit, check carefully",
-   "status": "pass 2",
+   "status": "dropped in pass 3",
    "wide_m": 56
   },
   {
@@ -1387,117 +1482,296 @@
    "wide_m": 112
   },
   {
-   "acres": 347.8,
+   "access": null,
+   "access_pin": {
+    "at": [
+     44.661965,
+     -66.798028
+    ],
+    "from": "none",
+    "note": "no public road, parking or path within about 1.5 km: the pin is the middle of the spot"
+   },
+   "acres": 338.3,
    "box": [
-    -66.81341,
-    44.65434,
-    -66.77716,
-    44.66574
+    -66.81343,
+    44.65441,
+    -66.77719,
+    44.66581
    ],
    "center": [
-    44.66194,
-    -66.798127
+    44.661965,
+    -66.798028
    ],
    "found": "2026-10-26",
    "id": "CA-0798+CA-4404@area@44.659,-66.805",
    "kind": "area",
+   "maps": [
+    [
+     "CA-0798",
+     "https://www.nbparks.ca/en/parks/12/the-anchorage-provincial-park"
+    ],
+    [
+     "CA-4404",
+     "https://www.canada.ca/en/environment-climate-change/services/migratory-bird-sanctuaries/locations/grand-manan-island.html"
+    ]
+   ],
+   "names": {
+    "CA-0798": "The Anchorage Provincial Park",
+    "CA-4404": "Grand Manan Bird Sanctuary"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "CA-0798": true,
+    "CA-4404": true
+   },
    "refs": [
     "CA-0798",
     "CA-4404"
    ],
    "shape": [
     [
-     -66.813409,
-     44.654343
+     -66.813435,
+     44.654414
     ],
     [
-     -66.806715,
-     44.659136
+     -66.80851,
+     44.658031
     ],
     [
-     -66.80381,
-     44.657237
+     -66.808447,
+     44.65785
     ],
     [
-     -66.801158,
-     44.658865
+     -66.806679,
+     44.659207
     ],
     [
-     -66.794465,
-     44.65986
+     -66.803774,
+     44.657308
     ],
     [
-     -66.79055,
-     44.65986
+     -66.803016,
+     44.657715
     ],
     [
-     -66.789413,
-     44.660221
+     -66.802574,
+     44.658167
     ],
     [
-     -66.781962,
-     44.659407
+     -66.801501,
+     44.658845
     ],
     [
-     -66.777163,
-     44.658141
+     -66.80068,
+     44.65889
     ],
     [
-     -66.780826,
-     44.65986
+     -66.79828,
+     44.659297
     ],
     [
-     -66.781962,
-     44.660583
+     -66.797144,
+     44.659343
     ],
     [
-     -66.782088,
-     44.661035
+     -66.794176,
+     44.65993
     ],
     [
-     -66.782973,
-     44.660493
+     -66.793292,
+     44.659976
     ],
     [
-     -66.784235,
-     44.660493
+     -66.792787,
+     44.659885
     ],
     [
-     -66.787014,
-     44.661035
+     -66.792345,
+     44.660066
     ],
     [
-     -66.787266,
-     44.662844
+     -66.79064,
+     44.659885
     ],
     [
-     -66.787772,
-     44.663658
+     -66.78944,
+     44.660247
     ],
     [
-     -66.806463,
-     44.665376
+     -66.786788,
+     44.660111
     ],
     [
-     -66.806589,
-     44.664924
+     -66.785462,
+     44.65984
     ],
     [
-     -66.806715,
-     44.665376
+     -66.782115,
+     44.659433
     ],
     [
-     -66.811262,
-     44.665738
+     -66.780031,
+     44.658981
+    ],
+    [
+     -66.777947,
+     44.658303
+    ],
+    [
+     -66.77719,
+     44.658167
+    ],
+    [
+     -66.778263,
+     44.658755
+    ],
+    [
+     -66.779147,
+     44.659026
+    ],
+    [
+     -66.779716,
+     44.659433
+    ],
+    [
+     -66.780284,
+     44.659523
+    ],
+    [
+     -66.781357,
+     44.660337
+    ],
+    [
+     -66.781989,
+     44.660609
+    ],
+    [
+     -66.782115,
+     44.661016
+    ],
+    [
+     -66.782936,
+     44.660518
+    ],
+    [
+     -66.784199,
+     44.660473
+    ],
+    [
+     -66.784767,
+     44.660654
+    ],
+    [
+     -66.785462,
+     44.660654
+    ],
+    [
+     -66.785777,
+     44.66088
+    ],
+    [
+     -66.787104,
+     44.661061
+    ],
+    [
+     -66.787293,
+     44.661197
+    ],
+    [
+     -66.787293,
+     44.662824
+    ],
+    [
+     -66.787735,
+     44.663412
+    ],
+    [
+     -66.787798,
+     44.663729
+    ],
+    [
+     -66.806489,
+     44.665357
+    ],
+    [
+     -66.806426,
+     44.664543
+    ],
+    [
+     -66.805731,
+     44.663638
+    ],
+    [
+     -66.804405,
+     44.662689
+    ],
+    [
+     -66.801627,
+     44.661016
+    ],
+    [
+     -66.800806,
+     44.659704
+    ],
+    [
+     -66.800743,
+     44.659388
+    ],
+    [
+     -66.800932,
+     44.659297
+    ],
+    [
+     -66.801816,
+     44.66088
+    ],
+    [
+     -66.804469,
+     44.662508
+    ],
+    [
+     -66.805984,
+     44.663593
+    ],
+    [
+     -66.806363,
+     44.664045
+    ],
+    [
+     -66.805795,
+     44.660925
+    ],
+    [
+     -66.805858,
+     44.660744
+    ],
+    [
+     -66.806047,
+     44.66079
+    ],
+    [
+     -66.806742,
+     44.664543
+    ],
+    [
+     -66.806742,
+     44.665357
+    ],
+    [
+     -66.811225,
+     44.665809
+    ],
+    [
+     -66.812362,
+     44.660563
     ]
    ],
-   "status": "pass 2",
-   "wide_m": 599
+   "status": "candidate",
+   "wide_m": 594
   },
   {
    "acres": 3784.5,
@@ -1753,16 +2027,16 @@
    "wide_m": 2838
   },
   {
-   "acres": 10.7,
+   "acres": 10.3,
    "box": [
-    -65.42378,
-    45.4383,
-    -65.41712,
-    45.44102
+    -65.42221,
+    45.43892,
+    -65.4169,
+    45.44109
    ],
    "center": [
-    45.440476,
-    -65.418405
+    45.440543,
+    -65.418627
    ],
    "found": "2026-10-26",
    "id": "CA-4368+CA-6234@area@45.440,-65.419",
@@ -1770,56 +2044,60 @@
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "CA-4368": false,
+    "CA-6234": true
+   },
    "refs": [
     "CA-4368",
     "CA-6234"
    ],
    "shape": [
     [
-     -65.419429,
-     45.440205
+     -65.420675,
+     45.441041
     ],
     [
-     -65.420838,
-     45.440838
+     -65.420675,
+     45.44095
     ],
     [
-     -65.423782,
-     45.438848
+     -65.419459,
+     45.440543
     ],
     [
-     -65.423526,
-     45.438305
+     -65.419331,
+     45.440046
     ],
     [
-     -65.423782,
-     45.438848
+     -65.418434,
+     45.438916
     ],
     [
-     -65.422118,
-     45.439933
+     -65.418306,
+     45.439322
     ],
     [
-     -65.421478,
-     45.439752
+     -65.418563,
+     45.439684
     ],
     [
-     -65.419813,
-     45.439933
+     -65.418114,
+     45.439865
     ],
     [
-     -65.420453,
-     45.440024
+     -65.41773,
+     45.440498
     ],
     [
-     -65.420197,
-     45.440295
+     -65.416898,
+     45.441086
     ]
    ],
-   "status": "pass 2",
-   "wide_m": 132
+   "status": "dropped: a pin is outside its own outline",
+   "wide_m": 130
   },
   {
    "acres": 24897.6,

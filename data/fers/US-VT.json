@@ -1,7 +1,8 @@
 {
- "about": "Spots where two or more POTA parks may share the same ground (official outlines only, 100 yards across; trails and rivers 100 yards long). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown: 'We think these parks overlap. Check both boundaries yourself before you count it.'",
+ "about": "Spots where the boundaries of two or more POTA parks may overlap (official outlines only; land spots 50 yards across, 'small' = 50-100 yards; trails and rivers by POTA's 100-ft rule). HIDDEN, not reviewed: passes [saved, fresh, finest] must all be 1 and status 'candidate' before a person looks. Wording when shown (house rule, Oct 26 5:45 PM): '⚠️ Possible POTA overlap only. We think these POTA parks' boundaries may overlap here, but we can't confirm it. Check both official boundary maps and make your own call before you count it.' Tool pages carry the FULL notice from CLAUDE.md.",
  "pass1": "2026-10-26",
  "pass2": "2026-10-26",
+ "pass3": "2026-10-27",
  "spots": [
   {
    "acres": 8.3,
@@ -411,61 +412,100 @@
    "wide_m": 80
   },
   {
-   "acres": 22.5,
+   "access": [
+    44.091672,
+    -72.757888,
+    "Parking (VT state agency)",
+    "US-5549",
+    4506
+   ],
+   "access_pin": {
+    "at": [
+     44.070387,
+     -72.809055
+    ],
+    "from": "road",
+    "name": "High View Rd",
+    "note": "closest spot inside every park to that public access, straight line; check the road / lot is open and public",
+    "walk_m": 490
+   },
+   "acres": 20.3,
    "box": [
     -72.80909,
-    44.06624,
+    44.06717,
     -72.80546,
-    44.07302
+    44.073
    ],
    "center": [
-    44.070581,
-    -72.807711
+    44.071739,
+    -72.807027
    ],
    "found": "2026-10-26",
    "id": "US-4527+US-5549@area@44.070,-72.808",
    "kind": "area",
+   "maps": [
+    [
+     "US-4527",
+     "https://www.fs.usda.gov/gmfl"
+    ],
+    [
+     "US-5549",
+     "https://fpr.vermont.gov/roxbury-state-forest"
+    ]
+   ],
+   "names": {
+    "US-4527": "Green Mountain National Forest",
+    "US-5549": "Roxbury State Forest"
+   },
    "passes": [
     1,
     1,
-    0
+    1
    ],
+   "pins_inside": {
+    "US-4527": true,
+    "US-5549": true
+   },
    "refs": [
     "US-4527",
     "US-5549"
    ],
    "shape": [
     [
-     -72.807211,
-     44.073023
+     -72.807152,
+     44.073005
     ],
     [
-     -72.809086,
-     44.0704
+     -72.80909,
+     44.070382
     ],
     [
-     -72.808586,
-     44.068411
+     -72.80859,
+     44.068302
     ],
     [
-     -72.809086,
-     44.067868
+     -72.80909,
+     44.06785
     ],
     [
-     -72.808586,
-     44.067145
+     -72.808652,
+     44.067172
     ],
     [
-     -72.809086,
-     44.06624
+     -72.807402,
+     44.069116
     ],
     [
-     -72.80546,
-     44.07239
+     -72.807465,
+     44.069478
+    ],
+    [
+     -72.805464,
+     44.072507
     ]
    ],
-   "status": "pass 2",
-   "wide_m": 188
+   "status": "candidate",
+   "wide_m": 164
   }
  ],
  "st": "US-VT"
