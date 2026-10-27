@@ -236,31 +236,64 @@
   async function applyFor(p) { try { const k = await keyOf(p), e = k && PK()[k]; if (e && e.proto) { S = Object.assign({}, S, Object.fromEntries(RF.filter(x => e[x] !== undefined).map(x => [x, e[x]]))); SV('kpcCat', S); } return e || null; } catch (x) { return null; } }
   async function setName(i, name) { const ps = await allPorts(), k = keys(ps)[i]; if (!k) return; const A = PK(); A[k] = Object.assign({}, A[k] || {}, { name: String(name || '').trim().slice(0, 40) }); if (!A[k].name) delete A[k].name; SV('kpcCatPorts', A); }
   let curName = '';
-  async function openPort(p) {
+  async function openPort(p, quiet) {
     const e = await applyFor(p); curName = (e && e.name) || '';
     port = p; await port.open({ baudRate: +S.baud || 38400, dataBits: 8, stopBits: S.proto === 'yaesuold' ? 2 : 1, parity: 'none', flowControl: 'none' });
     try { await port.setSignals({ dataTerminalReady: !!S.dtr, requestToSend: !!S.rts }); } catch (e) {}
     writer = port.writable.getWriter(); readLoop();
-    remember(); say('Radio connected' + (curName ? ': ' + curName : '') + '.', true); return true;
+    if (!quiet) { remember(); say('Radio connected' + (curName ? ': ' + curName : '') + '.', true); } return true;
   }
   async function readLoop() {
     try { reader = port.readable.getReader(); for (;;) { const { value, done } = await reader.read(); if (done) break; if (value) { rbuf.push(...value); if (rbuf.length > 4096) rbuf = rbuf.slice(-2048); } } }
     catch (e) {} finally { try { reader.releaseLock(); } catch (e) {} }
   }
-  async function connect(ask) {
+  /* ---- AUTO PORT (Oct 26, Brandon: 'the auto port would be great, leave the option to name the port'; copied from the app's 0.6.9 probe).
+     CONNECT tries the ports itself: the one that answered last time first (S.portKey = its keys() key, so a NAMED port keeps its
+     own radio settings), then USB ports of the radio family's chip, other USB, ports with no USB id (Bluetooth) last. Each port gets
+     4 s to open, the radio is asked twice, and only a port that ANSWERS is kept; at most 6 tries. One connect at a time. */
+  const FAM = { yaesu: [0x10C4], yaesu8: [0x10C4, 0x0403], yaesuold: [0x0403, 0x067B, 0x10C4], icom: [0x10C4, 0x0C26], kenwood: [0x10C4, 0x0403, 0x1A86, 0x0483, 0x2E8A, 0x2341, 0x0B28] };
+  function orderPorts(ps) {
+    const fam = FAM[S.proto] || [], key = S.portKey || '', ks = keys(ps), ix = +S.portIx || 0;
+    const score = (p, i) => { if (key ? ks[i] === key : i === ix && ps.length > 1) return 0; const f = (p.getInfo && p.getInfo()) || {}; if (f.usbVendorId == null) return 9; return fam.includes(f.usbVendorId) ? 2 : 3; };
+    return ps.map((p, i) => ({ p, i, k: ks[i], s: score(p, i) })).sort((a, b) => a.s - b.s || a.i - b.i);
+  }
+  const withTimeout = (pr, ms, what) => Promise.race([pr, new Promise((_, x) => setTimeout(() => x(new Error(what)), ms))]);
+  async function probe(p, k, base) {
+    S = Object.assign({}, base);
+    try { await withTimeout(openPort(p, true), 4000, 'the port did not open in 4 s'); }
+    catch (e) { try { if (writer) writer.releaseLock(); } catch (e2) {} try { await p.close(); } catch (e2) {} port = writer = reader = null; S = Object.assign({}, base); SV('kpcCat', S); return { ok: false, why: String(e.message || e) }; }
+    const P = PROTOS[S.proto] || PROTOS.kenwood; let r = null;
+    for (let t = 0; t < 2 && !r; t++) { rbuf = []; try { await write(P.ask()); } catch (e) { break; } await sleep(300); const raw = rbuf.slice(); r = P.parse(String.fromCharCode(...raw), raw); }
+    if (!r) { await disconnect(true); S = Object.assign({}, base); SV('kpcCat', S); return { ok: false, why: 'silent' }; }
+    S.portKey = k; S.portIx = (await allPorts()).indexOf(p); SV('kpcCat', S); remember(); return { ok: true, r };
+  }
+  let connecting = null;
+  function connect(ask) { if (connecting) return connecting; connecting = connect2(ask).finally(() => { connecting = null; }); return connecting; }
+  async function connect2(ask) {
     if (!('serial' in navigator) && !navigator.usb) { say('This browser can\'t talk to a radio. Use Chrome or Edge on a computer, or Chrome on an Android phone or tablet (with a USB-C cable). iPhones can\'t do this yet.', false); return false; }
     if (port && writer) return true;
-    try {
-      const ps = await allPorts(); // a radio this browser was allowed before (no question asked)
-      if (ps.length) return await openPort(ps[Math.min(+S.portIx || 0, ps.length - 1)]);
+    let ps = [];
+    try { ps = await allPorts(); } catch (e) { ps = []; }   // radios this browser was allowed before (no question asked)
+    if (!ps.length) {
       if (!ask) return false;
-      return await openPort(await askPort());
-    } catch (e) { port = null; writer = null;
-      const none = /no (port|device) selected|NotFoundError/i.test(String(e && (e.name + ' ' + e.message)));
-      say(none ? (ANDROID ? 'No radio picked. Plug the radio into the tablet/phone with a USB cable (a data cable, not charge-only), turn the radio on, then press CONNECT and pick it in the list. If Android asks to allow access to the USB device, say yes.' : 'No port picked. Plug in the radio, turn it on and press CONNECT again.')
-        : 'Could not open the radio: ' + (e.message || e) + '. Close other radio programs (WSJT-X, flrig, the radio\'s own app) and try again.', false); return false; }
+      try { const p = await askPort(); ps = await allPorts(); if (!ps.includes(p)) ps = [p]; }
+      catch (e) { const none = /no (port|device) selected|NotFoundError/i.test(String(e && (e.name + ' ' + e.message)));
+        say(none ? (ANDROID ? 'No radio picked. Plug the radio into the tablet/phone with a USB cable (a data cable, not charge-only), turn the radio on, then press CONNECT and pick it in the list. If Android asks to allow access to the USB device, say yes.' : 'No port picked. Plug in the radio, turn it on and press CONNECT again.')
+          : 'Could not open the radio: ' + (e.message || e) + '. Close other radio programs (WSJT-X, flrig, the radio\'s own app) and try again.', false); return false; }
+    }
+    const base = Object.assign({}, S), tried = [], many = ps.length > 1;
+    for (const { p, i, k } of orderPorts(ps)) {
+      if (tried.length >= 6) break;
+      if (ask && many) say('Looking for the radio: port ' + (i + 1) + ' of ' + ps.length + '…', null);
+      const r = await probe(p, k, base);
+      if (r.ok) { const nm = (PK()[k] || {}).name; say('Radio connected' + (nm ? ': ' + nm : many ? ' on port ' + (i + 1) : '') + ' (' + (r.r.khz / 1000).toFixed(4) + ' MHz' + (r.r.mode ? ' ' + r.r.mode : '') + ').', true); return true; }
+      tried.push('port ' + (i + 1) + ': ' + (r.why === 'silent' ? 'opens, but the radio does not answer there' : r.why));
+      if (S.portKey && S.portKey === k) { S.portKey = ''; SV('kpcCat', S); }   // the remembered one failed: forget it
+    }
+    if (ask) say('No port answered as a ' + (RADIO[S.radio] ? RADIO[S.radio].label : 'radio') + ' (' + tried.join(' · ') + '). Check: MY RADIO is the right type, the radio\'s CAT RATE menu = ' + (S.baud || 38400) + ', a data cable (not charge-only), and that no other program (WSJT-X, flrig) holds the port. PICK A DIFFERENT PORT lets you choose by hand.', false);
+    return false;
   }
-  async function disconnect() { try { if (reader) await reader.cancel(); } catch (e) {} try { if (writer) writer.releaseLock(); } catch (e) {} try { if (port) await port.close(); } catch (e) {} port = writer = reader = null; say('Radio disconnected.', false); }
+  async function disconnect(quiet) { try { if (reader) await reader.cancel(); } catch (e) {} try { if (writer) writer.releaseLock(); } catch (e) {} try { if (port) await port.close(); } catch (e) {} port = writer = reader = null; if (!quiet) say('Radio disconnected.', false); }
   async function write(bytes) { await writer.write(bytes); await sleep(S.proto === 'yaesuold' ? 80 : 40); }
   function tune(khz, mode) {
     khz = +khz; if (!S.on || !khz) return Promise.resolve(false);
@@ -343,6 +376,28 @@
     if (fol) clearInterval(fol); fol = null; if (!fn) return; let last = '';
     fol = setInterval(async () => { if (!S.on || !S.follow || !port || document.hidden) return; const r = await read(); if (!r) return; const k = r.khz + '|' + r.mode; if (k !== last) { last = k; fn(r); } }, 2000);
   }
+  /* ---- METERS (Oct 26, Brandon: 'Radio meters (S meter, power, SWR) with options to change to analog or digital'; copied from the app 0.7.3).
+     meters() -> { s: dB over S9 (S9 = 0, S1 = -48), po / alc / swr / comp / idd / vdd: 0-100 % of the radio's own scale, pwr: RF power set % }
+     or null. Yaesu RM1/3/4/5/6/7/8 + PC (FT-710 / FTDX10 answer 'RM4120000;'), Kenwood SM0 + PC, Icom CI-V 0x15 sub-meters. */
+  const M255 = v => Math.round(Math.max(0, Math.min(255, v)) / 2.55);
+  const sdb = (v, s9, top) => v == null || !isFinite(v) ? null : v <= s9 ? Math.round((v / s9 * 9 - 9) * 6) : Math.round((v - s9) / (top - s9) * 60);
+  function meters() {
+    if (!S.on) return Promise.resolve(null);
+    busy = busy.then(async () => {
+      if (!port || !writer) return null; const pr = S.proto;
+      try {
+        if (pr === 'yaesu' || pr === 'yaesu8') { rbuf = []; await write(asc('RM1;RM3;RM4;RM5;RM6;RM7;RM8;PC;')); await sleep(260); const t = String.fromCharCode(...rbuf);
+          const raw = k => { const m = new RegExp(k + '(\\d{3})(?:\\d{3})?;').exec(t); return m ? +m[1] : null; }, g = k => { const v = raw(k); return v == null ? null : M255(v); }, pc = /PC(\d{3});/.exec(t);
+          return { s: sdb(raw('RM1'), 120, 241), comp: g('RM3'), alc: g('RM4'), po: g('RM5'), swr: g('RM6'), idd: g('RM7'), vdd: g('RM8'), pwr: pc ? +pc[1] : null }; }
+        if (pr === 'kenwood') { rbuf = []; await write(asc('SM0;PC;')); await sleep(220); const t = String.fromCharCode(...rbuf), pc = /PC(\d{3});/.exec(t), sm = /SM0(\d{4});/.exec(t); return { s: sm ? sdb(+sm[1], 15, 30) : null, alc: null, po: null, swr: null, pwr: pc ? +pc[1] : null }; }
+        if (pr === 'icom') { const rd = async sub2 => { rbuf = []; await write(icom([0x15, sub2])); await sleep(180); const r = rbuf.slice(), i = r.lastIndexOf(0xFD); if (i < 6) return null; const d = r.slice(0, i), hi = d[d.length - 2], lo = d[d.length - 1]; return (hi >> 4) * 1000 + (hi & 15) * 100 + (lo >> 4) * 10 + (lo & 15); };
+          const one = async x => { const v = await rd(x); return v == null ? null : M255(v); };
+          return { s: sdb(await rd(0x02), 120, 241), alc: await one(0x13), po: await one(0x11), swr: await one(0x12), comp: await one(0x14), idd: await one(0x16), vdd: await one(0x15), pwr: null }; }
+      } catch (e) { return null; }
+      return null;
+    }).catch(() => null);
+    return busy;
+  }
   /* change the port (Brandon Oct 17: 'a menu to change port if someone selects the wrong one') */
   const VEND = { 0x10C4: 'Silicon Labs CP210x (Icom, Yaesu, Xiegu, Elecraft cables)', 0x0403: 'FTDI (many CAT cables)', 0x067B: 'Prolific (older CAT cables)', 0x1A86: 'CH340 (QRP Labs, truSDX, cheap cables)', 0x0483: 'STMicro (QMX/QDX)', 0x2341: 'Arduino', 0x239A: 'Adafruit', 0x2E8A: 'Raspberry Pi Pico', 0x1FC9: 'NXP', 0x04D8: 'Microchip' };
   async function ports() {
@@ -351,27 +406,27 @@
       const k = keys(ps)[i], nm = (PK()[k] || {}).name || '';
       return { i, key: k, name: nm, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; });
   }
-  async function usePort(i) { await disconnect(); S.portIx = i; SV('kpcCat', S); return connect(false); }
+  async function usePort(i) { await disconnect(true); const ps = await allPorts(); S.portIx = i; S.portKey = keys(ps)[i] || ''; SV('kpcCat', S); return connect(false); }
   /* Let go of the radio's USB port right now, so the tablet's sound reaches the radio cleanly (Android).
      Returns true when the port is free. Nothing to do on computers or with an RTS/DTR PTT line held. */
   async function letGo() { try { if (port && port._letGo) { await port._letGo(); return !port.held; } } catch (e) {} return true; }
   async function pickNew() {
     if (!('serial' in navigator) && !navigator.usb) return false;
     let p; try { p = await askPort(); } catch (e) { say('No port picked.', false); return false; }
-    await disconnect(); const ps = await allPorts(); S.portIx = Math.max(0, ps.indexOf(p)); SV('kpcCat', S);
+    await disconnect(true); const ps = await allPorts(); S.portIx = Math.max(0, ps.indexOf(p)); S.portKey = keys(ps)[S.portIx] || ''; SV('kpcCat', S);
     try { return await openPort(p); } catch (e) { port = writer = null; say('Could not open that port: ' + (e.message || e) + '. Close other radio programs and try again.', false); return false; }
   }
   async function forget(i) {
     const ps = await allPorts(), p = ps[i]; if (!p) return;
     if (p === port) await disconnect();
     try { if (p.isUsb) { if (p.dev.forget) await p.dev.forget(); } else if (p.forget) await p.forget(); } catch (e) {}
-    S.portIx = 0; SV('kpcCat', S); say(p.forget ? 'Port forgotten. Press PICK A DIFFERENT PORT to choose the right one.' : 'This browser can\'t forget ports: pick the right one with PICK A DIFFERENT PORT.', null);
+    S.portIx = 0; S.portKey = ''; SV('kpcCat', S); say(p.forget ? 'Port forgotten. Press PICK A DIFFERENT PORT to choose the right one.' : 'This browser can\'t forget ports: pick the right one with PICK A DIFFERENT PORT.', null);
   }
   window.KPCCat = {
     get: () => Object.assign({}, S), set(o) { S = Object.assign({}, S, o || {}); SV('kpcCat', S); if (port && o && RF.some(x => x in o)) remember(); },
     setName, portName: () => curName,
     supported: () => 'serial' in navigator || !!navigator.usb, connect, disconnect, ports, usePort, pickNew, forget, connected: () => !!(port && writer), tune, read, follow, ptt, letGo,
-    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine
+    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, meters, sdb
   };
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */

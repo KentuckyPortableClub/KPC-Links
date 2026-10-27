@@ -208,6 +208,7 @@ main#hl .ct-card a{color:#ffcf7a}
   <button type="button" class="ct-btn ghost" id="ctRead">🔎 TEST: READ MY DIAL</button>
   <button type="button" class="ct-btn ghost" id="ctDrop" hidden>✕ DISCONNECT</button>
   <button type="button" class="ct-btn ghost" id="ctPortBtn" aria-expanded="false">🔁 CHANGE PORT</button>
+  <button type="button" class="ct-btn ghost" data-meters-open>📟 METERS</button>
  </div>
  <div class="ct-ports" id="ctPorts" hidden>
   <b>WHICH PORT IS MY RADIO?</b>
@@ -229,7 +230,7 @@ main#hl .ct-card a{color:#ffcf7a}
  <ul class="ct-help">
   <li><b>Plug the radio into the computer</b> with its USB cable. Some radios need a driver first (Icom IC-7300 / 705 and many Yaesus: the Silicon Labs CP210x driver from the radio maker's site).</li>
   <li><b>Close other radio programs</b> (WSJT-X, flrig, Ham Radio Deluxe, the radio's own app). Only one program can use the radio's port at a time.</li>
-  <li>Press <b>CONNECT MY RADIO</b> and pick the radio's port in the box Chrome shows. Yaesu radios show two ports: pick the <b>Enhanced</b> (or first) one.</li>
+  <li>Press <b>CONNECT MY RADIO</b> and pick the radio's port in the box Chrome shows (Yaesu radios show two: pick the <b>Enhanced</b> one). After that, CONNECT finds the port your radio answers on by itself, and you can name each port under <b>CHANGE PORT</b>.</li>
   <li>Press <b>TEST: READ MY DIAL</b>. If it shows your frequency, you're set: go to the Hunters Lounge and click a spot.</li>
  </ul>
  <p class="ct-note">⚠ Clicking a spot only changes your radio's frequency and mode. It never transmits. Check the frequency is inside your license privileges before you call.</p>
@@ -254,7 +255,7 @@ main#hl .ct-card a{color:#ffcf7a}
  </ul>
 </section>
 </main>
-<script src="kpc-cat.js?v=20261026a"></script>
+<script src="kpc-cat.js?v=20261026b"></script><script src="kpc-meters.js?v=20261026a" defer></script>
 <script id="cat-page">
 (function(){
  const $=id=>document.getElementById(id);
