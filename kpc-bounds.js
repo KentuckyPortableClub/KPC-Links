@@ -192,14 +192,14 @@
     const water = !reviewed && [...how].every(h => h.indexOf('water outline only') >= 0);
     const approx = handApprox || water || (!reviewed && !named && !!hit.far);
     const why = handApprox ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : water ? 'this is the lake\u2019s shoreline from the state\u2019s water map; the park is the agency\u2019s lake property around it, so check the agency\u2019s map for the land' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
-    return { state: 'ok', n: hit.n, m, fs, approx, why, note };
+    return { state: 'ok', n: hit.n, m, fs, approx, why, note, water };
   }
   /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
      {fs, label: 'official' | 'approx' | 'none', why, src, site}. Checked list first; a park it doesn't know falls back to a
      live name search, which is labelled approximate because nobody has checked it. */
   async function usOutline(ref, name, la, lo, states) {
     let k = null; try { k = await usKey(ref, states); } catch (e) {}
-    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
+    if (k && k.state === 'ok') return { fs: k.fs, label: k.approx ? 'approx' : 'official', water: !!k.water, why: k.why || '', note: k.note || '', src: [...new Set(k.fs.map(f => f._src))].join(' + ') };
     if (k && k.state === 'none') return { fs: [], label: 'none', why: '', src: '', site: k.site };
     let fs = []; try { fs = await padusByName(name, la, lo); } catch (e) {}
     return fs.length ? { fs, label: 'approx', why: 'found by a name search that our checking bot has not reviewed yet', src: 'USGS PAD-US' } : { fs: [], label: 'none', why: '', src: '' };
@@ -234,7 +234,7 @@
     const wh = [...new Set([`Unit_Nm LIKE '${pat(x => x.charAt(0).toUpperCase() + x.slice(1).toLowerCase())}'`, `Loc_Nm LIKE '${pat(x => x.toUpperCase())}'`, `Unit_Nm LIKE '${pat(x => x)}'`])];
     const gs = await Promise.all(wh.map(where => padus({ where, geometry: `${lo - d},${la - d},${lo + d},${la + d}`, geometryType: 'esriGeometryEnvelope', returnGeometry: true, geometryPrecision: 5, maxAllowableOffset: 0.0001 }).catch(() => ({ features: [] }))));
     const seen = new Set(); const g = { features: gs.flatMap(x => x.features || []).filter(f => { const k = f.id != null ? f.id : (f.properties || {}).OBJECTID; if (k != null && seen.has(k)) return false; seen.add(k); return true; }) };
-    let fs = (g.features || []).filter(f => f.geometry && f.properties.Category !== 'Proclamation'); if (!fs.length) return [];
+    let fs = (g.features || []).filter(f => f.geometry && !/^(Proclamation|Easement)$/.test(f.properties.Category || '')); if (!fs.length) return [];   /* Oct 27 (boundary review #9): an easement or a proclamation line is never park land */
     const nl = String(name).toLowerCase();
     fs.forEach(f => { const u = String(f.properties.Unit_Nm || '').toLowerCase(); f._s = (u.includes(nl) || nl.includes(u) ? 5 : 0) + w.filter(x => u.includes(x.toLowerCase())).length; });
     const top = Math.max(...fs.map(f => f._s)); fs = fs.filter(f => f._s === top); const un = fs[0].properties.Unit_Nm;
