@@ -5,6 +5,26 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Fallsville State Wildlife Area + Fallsville South State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-9461+US-9462",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Hocking State Forest + Conkles Hollow State Nature Preserve",
+   "place": "US-OH",
+   "ref": "US-5442+US-9400",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Appalachian Trail National Scenic Trail + Virginia Creeper National Recreation Trail",
    "place": "US-KY",
    "ref": "US-4556+US-9923",
@@ -30,6 +50,16 @@
    "ref": "US-4526+US-7966",
    "run": "2-fer bot pass 3 (ky)",
    "what": "not sure: the ownership map shows two owners at the spot: FE (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Wayne National Forest + Dean State Forest",
+   "place": "US-OH",
+   "ref": "US-4521+US-5438",
+   "run": "2-fer bot pass all (na)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -165,10 +195,260 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "Wingfoot Lake State Park + Wingfoot State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-3516+US-9518",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Wilson Cumberland Trail State Park + Trail of Tears National Historic Trail",
    "place": "US-KY",
    "ref": "US-2955+US-3791",
    "run": "2-fer bot pass 3 (ky)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Tinkers Creek State Park + Tinkers Creek State Nature Preserve",
+   "place": "US-OH",
+   "ref": "US-1997+US-9438",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Tar Hollow State Park + Tar Hollow State Forest",
+   "place": "US-OH",
+   "ref": "US-1996+US-5452",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Shawnee State Park + Shawnee State Forest",
+   "place": "US-OH",
+   "ref": "US-1991+US-5450",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Scioto Trail State Park + Scioto Trail State Forest",
+   "place": "US-OH",
+   "ref": "US-1990+US-5448",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Salt Fork State Park + Salt Fork State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1989+US-9499",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Pike Lake State Park + Pike State Forest",
+   "place": "US-OH",
+   "ref": "US-1983+US-5446",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Paint Creek State Park + Paint Creek State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1982+US-8636",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Mohican State Park + Mohican-Memorial State Forest",
+   "place": "US-OH",
+   "ref": "US-1977+US-5444",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "John Bryan State Park + Clifton Gorge State Nature Preserve",
+   "place": "US-OH",
+   "ref": "US-1964+US-7848",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-1960 + US-9488",
+   "place": "US-OH",
+   "ref": "US-1960+US-9488",
+   "run": "2-fer bot pass all (na)",
+   "what": "water only: boat or kayak (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Hueston Woods State Park + Hueston Woods State Nature Preserve",
+   "place": "US-OH",
+   "ref": "US-1959+US-9413",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Hocking Hills State Park + Hocking State Forest",
+   "place": "US-OH",
+   "ref": "US-1958+US-5442",
+   "run": "2-fer bot pass all (na)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-1957 + US-9412",
+   "place": "US-OH",
+   "ref": "US-1957+US-9412",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: low-confidence outline for Headlands Dunes State N (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Grand Lake Saint Marys State Park + Mercer State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1953+US-9480",
+   "run": "2-fer bot pass all (na)",
+   "what": "very tight: could be map error: check both official maps on  (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "East Fork State Park + East Fork State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1948+US-8114",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Dillon State Park + Dillon State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1947+US-9458",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-1947 + US-9393",
+   "place": "US-OH",
+   "ref": "US-1947+US-9393",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: the ownership map shows more than one owner across (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Delaware State Park + Delaware State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1946+US-9456",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Deer Creek State Park + Deer Creek State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1945+US-8637",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Caesar Creek State Park + Caesar Creek Lake State Wildlife Area",
+   "place": "US-OH",
+   "ref": "US-1940+US-7850",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-1939 + US-4521",
+   "place": "US-OH",
+   "ref": "US-1939+US-4521",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: owner not known for Burr Oak State Park (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-1939 + US-4521",
+   "place": "US-OH",
+   "ref": "US-1939+US-4521",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: owner not known for Burr Oak State Park · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Blue Rock State Park + Blue Rock State Forest",
+   "place": "US-OH",
+   "ref": "US-1936+US-5436",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Beaver Creek State Park + Beaver Creek State Forest",
+   "place": "US-OH",
+   "ref": "US-1935+US-5435",
+   "run": "2-fer bot pass all (na)",
    "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
@@ -210,6 +490,16 @@
    "ref": "US-1252+US-3791",
    "run": "2-fer bot pass 3 (ky)",
    "what": "candidate (saved outline only) (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "Lawrence Woods State Wildlife Area + Lawrence Woods State Nature Preserve",
+   "place": "US-OH",
+   "ref": "US-12057+US-9420",
+   "run": "2-fer bot pass all (na)",
+   "what": "candidate (hidden; chat 8 checks both official maps)"
   },
   {
    "first": "2026-10-27",
@@ -965,6 +1255,36 @@
    "first": "2026-10-27",
    "kind": "possible overlap",
    "last": "2026-10-27",
+   "name": "US-0483 + US-9481",
+   "place": "US-OH",
+   "ref": "US-0483+US-9481",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: the ownership map shows more than one owner across · small overlap: tight fit, check carefully (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-0483 + US-1944",
+   "place": "US-OH",
+   "ref": "US-0483+US-1944",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: the ownership map shows more than one owner across (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
+   "name": "US-0482 + US-9479",
+   "place": "US-OH",
+   "ref": "US-0482+US-9479",
+   "run": "2-fer bot pass all (na)",
+   "what": "not sure: the ownership map shows more than one owner across (hidden; chat 8 checks both official maps)"
+  },
+  {
+   "first": "2026-10-27",
+   "kind": "possible overlap",
+   "last": "2026-10-27",
    "name": "Mammoth Cave National Park + The Green National Wild and Scenic River",
    "place": "US-KY",
    "ref": "US-0050+US-10105",
@@ -994,10 +1314,10 @@
  ],
  "last_run": {
   "counts": {
-   "possible overlap": 11
+   "possible overlap": 40
   },
   "date": "2026-10-27",
-  "new": 99,
-  "run": "2-fer bot pass all (ky)"
+  "new": 131,
+  "run": "2-fer bot pass all (na)"
  }
 }
