@@ -80,14 +80,14 @@
 <section class="tool-head th-map"><div class="wrap">
 <p class="eyebrow">KPC FIELD LOOKUP</p>
 <h1>GRID &amp; <span>COUNTY</span></h1>
-<p class="sub">Get the grid square, Kentucky county and region for where you're standing — or for any park, summit or town — plus the nearest parks, summits and KFF references.</p>
+<p class="sub">Get the grid square for any spot on Earth, the county (Kentucky and the rest of the US), the province in Canada or the country elsewhere — for where you're standing, a tap on the map, any park number or any town — plus the nearest parks.</p>
 <div class="th-chips"><span>🔢 Grid square</span><span>🏛️ County</span></div></div></section>
 <nav class="toolnav" aria-label="KPC tools"><div class="wrap"><a href="kpc-spots.html">On The Air</a><a href="kpc-checker.html">Park Checker</a><a href="kpc-sota.html">SOTA</a><a href="kpc-rare.html">Rare Parks</a><a href="kpc-planner.html">Trip Planner</a><a href="kpc-lookup.html" aria-current=page>Grid & County</a><a href="kpc-park-sheet.html">Park Sheet</a><a href="kpc-battery.html">Battery</a><a href="kpc-antenna.html">Antenna</a><a href="parks.html">← Parks</a></div></nav>
 <section class="section"><div class="wrap">
 <div class="panel">
 <div class="controls">
 <button class="btn" id="gps" type="button" style="flex:0 0 auto">📍 USE MY LOCATION</button>
-<label class="field" style="flex:2 1 260px">OR ENTER A REFERENCE, TOWN, OR LAT, LON<input id="q" list="dl" placeholder="US-1271 • W4K/EC-001 • KFF-1271 • Hazard • 38.03, -85.33" spellcheck="false"><datalist id="dl"></datalist></label>
+<label class="field" style="flex:2 1 260px">OR ENTER A PARK NUMBER, TOWN, OR LAT, LON<input id="q" list="dl" placeholder="US-1271 • CA-0005 • W4K/EC-001 • Hazard • Denver, CO • 38.03, -85.33" spellcheck="false"><datalist id="dl"></datalist></label>
 <button class="btn alt" id="go" type="button" style="align-self:flex-end">LOOK UP</button>
 </div>
 <p class="muted" id="msg" style="margin:10px 0 0;font-size:14px"></p>
@@ -98,42 +98,79 @@
 <div><div class="map" id="map" style="height:420px"></div></div>
 <div id="near"></div>
 </div>
-<div class="note">The county comes from Kentucky county boundaries (simplified) and is reliable except within a few hundred feet of a county line — check the official map if you are right on a line. Grid squares are 6-character Maidenhead locators. Parks are measured to the park's POTA point, so a big park can be closer than it looks.</div>
+<div class="note">Kentucky counties come from Kentucky county boundaries kept in the page (works offline); other US counties come from the FCC's census-area lookup, Canadian provinces and other countries from OpenStreetMap (both need a connection). Near a county line, check the official map. Grid squares are 6-character Maidenhead locators. Parks are measured to the park's POTA point, so a big park can be closer than it looks. Tap the map to look up another spot.</div>
 </div>
 </div></section>
 <script>
-const $=id=>document.getElementById(id);let D,map,layer;
+/* Oct 26 (Brandon via HQ): works everywhere. Kentucky first and offline (KPC data + county outlines); the rest of the US:
+   county + state from the FCC census-area lookup (geo.fcc.gov, same as the app and the logger); Canada: province + region;
+   elsewhere: country + grid (OpenStreetMap). Nearest parks from the all-states lists (data/parkinfo). */
+const $=id=>document.getElementById(id);let D,map,layer,US=null,PI={};
+const jget=(u,ms=12000)=>{const c=new AbortController(),t=setTimeout(()=>c.abort(),ms);return fetch(u,{signal:c.signal}).then(r=>{clearTimeout(t);if(!r.ok)throw r.status;return r.json()})};
+const usRows=()=>US||(US=jget('data/parkinfo/index.json',30000).then(j=>j.rows.map(r=>({c:r[0],n:r[1],st:r[2],la:r[3],lo:r[4]}))).catch(()=>[]));
+const piFile=cc=>PI[cc]||(PI[cc]=jget(`data/parkinfo/${cc}.json`,30000).then(j=>Object.entries(j.parks).filter(([,v])=>v[5]!=null&&v[6]!=null).map(([c,v])=>({c,n:v[0],la:v[5],lo:v[6],st:v[10]||''}))).catch(()=>[]));
 (async()=>{D=await KPC.data();$('dl').innerHTML=[...D.parks.map(p=>`<option value="${p.c}">${KPC.esc(p.n)}</option>`),...D.summits.map(s=>`<option value="${s.c}">${KPC.esc(s.n)}</option>`),...D.towns.map(t=>`<option value="${t.n}">`)].join('');
  const q=new URLSearchParams(location.search).get('q');if(q){$('q').value=q;find()}})();
 $('gps').onclick=()=>{if(!navigator.geolocation){$('msg').textContent='Location is not available in this browser.';return}$('msg').textContent='Finding your location…';
  navigator.geolocation.getCurrentPosition(p=>show(p.coords.latitude,p.coords.longitude,'Your location',`±${Math.round(p.coords.accuracy*3.281)} ft`),()=>$('msg').textContent='Could not get your location — allow location access, or type a place instead.',{enableHighAccuracy:true,timeout:15000})};
 $('go').onclick=find;$('q').addEventListener('keydown',e=>{if(e.key==='Enter')find()});
-function find(){const v=$('q').value.trim(),u=v.toUpperCase();if(!v)return;
+async function find(){const v=$('q').value.trim(),u=v.toUpperCase();if(!v)return;
  const m=v.match(/^\s*(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)\s*$/);if(m)return show(+m[1],+m[2],'Coordinates');
  const p=D.parks.find(x=>x.c===u);if(p)return show(p.la,p.lo,`${p.c} ${p.n}`,'POTA reference point');
  const s=D.summits.find(x=>x.c===u);if(s)return show(s.la,s.lo,`${s.c} ${s.n}`,'SOTA summit');
  const k=D.kff.find(x=>x.c===u);if(k)return show(k.la,k.lo,`${k.c} ${k.n}`,'KFF reference point');
  const t=D.towns.find(x=>x.n.toUpperCase()===u);if(t)return show(t.la,t.lo,t.n,'Town center');
- const pn=D.parks.find(x=>x.n.toUpperCase().includes(u));if(pn)return show(pn.la,pn.lo,`${pn.c} ${pn.n}`,'POTA reference point');
- $('msg').textContent='Not found. Try a park number like US-1271, a summit like W4K/EC-001, a Kentucky town, or "lat, lon".'}
+ const ref=u.match(/^([A-Z0-9]{1,4})-\d{4,5}$/);
+ if(ref){$('msg').textContent='Looking up '+u+'…';
+  const list=ref[1]==='US'?await usRows():await piFile(ref[1]);const x=list.find(r=>r.c===u);
+  if(x)return show(x.la,x.lo,`${x.c} ${x.n}`,'POTA reference point');
+  $('msg').textContent=`${u} was not found in our park lists (it may be new or retired).`;return}
+ const pn=D.parks.find(x=>x.n.toUpperCase().includes(u));if(pn&&u.length>3)return show(pn.la,pn.lo,`${pn.c} ${pn.n}`,'POTA reference point');
+ $('msg').textContent='Searching for '+v+'…';
+ try{const r=await jget('https://nominatim.openstreetmap.org/search?'+new URLSearchParams({q:v,format:'jsonv2',limit:1}));
+  if(r&&r[0])return show(+r[0].lat,+r[0].lon,r[0].display_name.split(',').slice(0,3).join(','),'Place (OpenStreetMap)')}catch(e){}
+ $('msg').textContent='Not found. Try a park number like US-1271 or CA-0005, a summit like W4K/EC-001, a town ("Denver, CO"), or "lat, lon". Places outside Kentucky need a connection.'}
+async function where(la,lo){ /* Kentucky first (offline), then the FCC (US), then OpenStreetMap (Canada / world) */
+ const c=await KPC.countyOf(la,lo);if(c)return{kind:'KY',county:c,state:'KY',region:D.regions[c.toUpperCase()]||''};
+ try{const j=await jget(`https://geo.fcc.gov/api/census/area?format=json&lat=${la.toFixed(5)}&lon=${lo.toFixed(5)}`);const r=(j.results||[])[0];
+  if(r&&r.county_name)return{kind:'US',county:r.county_name.replace(/ County$/,''),state:r.state_code,stateName:r.state_name}}catch(e){}
+ try{const j=await jget('https://nominatim.openstreetmap.org/reverse?'+new URLSearchParams({lat:la,lon:lo,format:'jsonv2',zoom:8,addressdetails:1}));const a=j.address||{};
+  const cc=(a.country_code||'').toUpperCase();
+  if(cc==='CA')return{kind:'CA',province:a.state||'',region:a.region||a.state_district||a.county||'',cc,prov:((a['ISO3166-2-lvl4']||'').split('-')[1]||'')};
+  if(cc)return{kind:'W',country:a.country||cc,cc}}catch(e){}
+ return{kind:'?'}}
+async function nearParks(la,lo,w){
+ if(w.kind==='KY')return{parks:D.parks,label:'NEAREST POTA PARKS'};
+ if(w.kind==='US'){const r=await usRows();return{parks:r,label:'NEAREST POTA PARKS'}}
+ if(w.kind==='CA'){const r=await piFile('CA');return{parks:r,label:'NEAREST CANADIAN PARKS'}}
+ if(w.kind==='W'){const r=w.cc==='US'?await usRows():await piFile(w.cc);return{parks:r,label:'NEAREST PARKS'}}
+ return{parks:[],label:'NEAREST PARKS'}}
 async function show(la,lo,label,note){$('msg').textContent='';$('out').style.display='block';
- const g=KPC.grid(la,lo),c=await KPC.countyOf(la,lo),reg=c?D.regions[c.toUpperCase()]||'':'';
- $('stats').innerHTML=`<div class="stat"><b>${g}</b><span>GRID SQUARE</span></div><div class="stat"><b style="font-size:24px">${c?KPC.esc(c):'Outside KY'}</b><span>${c?'KENTUCKY COUNTY':'NO KY COUNTY'}</span></div><div class="stat"><b style="font-size:20px">${reg?KPC.esc(reg):'—'}</b><span>KPC REGION</span></div><div class="stat"><b style="font-size:18px">${la.toFixed(5)}, ${lo.toFixed(5)}</b><span>${KPC.esc(label).toUpperCase()}${note?' • '+KPC.esc(note).toUpperCase():''}</span></div>`;
+ const g=KPC.grid(la,lo);$('stats').innerHTML=`<div class="stat"><b>${g}</b><span>GRID SQUARE</span></div><div class="stat"><b style="font-size:20px">…</b><span>LOOKING UP</span></div>`;
+ const w=await where(la,lo);
+ let s2='',s3='',copy=g;
+ if(w.kind==='KY'){s2=`<div class="stat"><b style="font-size:24px">${KPC.esc(w.county)}</b><span>KENTUCKY COUNTY</span></div>`;s3=`<div class="stat"><b style="font-size:20px">${w.region?KPC.esc(w.region):'—'}</b><span>KPC REGION</span></div>`;copy=`${g} • ${w.county} County, KY`}
+ else if(w.kind==='US'){s2=`<div class="stat"><b style="font-size:24px">${KPC.esc(w.county)}</b><span>COUNTY</span></div>`;s3=`<div class="stat"><b style="font-size:20px">${KPC.esc(w.stateName||w.state)}</b><span>STATE</span></div>`;copy=`${g} • ${w.county}, ${w.state}`}
+ else if(w.kind==='CA'){s2=`<div class="stat"><b style="font-size:22px">${KPC.esc(w.province||'Canada')}</b><span>PROVINCE / TERRITORY</span></div>`;s3=`<div class="stat"><b style="font-size:18px">${w.region?KPC.esc(w.region):'—'}</b><span>REGION</span></div>`;copy=`${g} • ${w.region?w.region+', ':''}${w.province}`}
+ else if(w.kind==='W'){s2=`<div class="stat"><b style="font-size:22px">${KPC.esc(w.country)}</b><span>COUNTRY</span></div>`;copy=`${g} • ${w.country}`}
+ else s2=`<div class="stat"><b style="font-size:18px">Grid only</b><span>NO CONNECTION FOR COUNTY / COUNTRY</span></div>`;
+ $('stats').innerHTML=`<div class="stat"><b>${g}</b><span>GRID SQUARE</span></div>${s2}${s3}<div class="stat"><b style="font-size:18px">${la.toFixed(5)}, ${lo.toFixed(5)}</b><span>${KPC.esc(label).toUpperCase()}${note?' • '+KPC.esc(note).toUpperCase():''}</span></div>`;
  const near=(arr,n)=>arr.map(x=>({...x,d:KPC.miles(la,lo,x.la,x.lo)})).sort((a,b)=>a.d-b.d).slice(0,n);
- const NP=near(D.parks,6),NS=near(D.summits,3),NK=near(D.kff,3),NT=near(D.towns,3);
+ const NPL=await nearParks(la,lo,w);const NP=near(NPL.parks,w.kind==='KY'?6:8);
+ const ky=w.kind==='KY',NS=ky?near(D.summits,3):[],NK=ky?near(D.kff,3):[],NT=ky?near(D.towns,3):[];
  const row=(r,n,d,u)=>`<tr><td><a class="ref" href="${u}" target="_blank" rel="noopener">${r}</a><br>${KPC.esc(n)}</td><td style="white-space:nowrap"><b>${d.toFixed(1)}</b> mi</td></tr>`;
- $('near').innerHTML=`<div class="panel" style="padding:0"><table class="list"><thead><tr><th>NEAREST POTA PARKS</th><th>DIST</th></tr></thead><tbody>${NP.map(x=>row(x.c,x.n,x.d,KPC.links.pota(x.c))).join('')}</tbody>
- <thead><tr><th>NEAREST SOTA SUMMITS</th><th></th></tr></thead><tbody>${NS.map(x=>row(x.c,x.n,x.d,KPC.links.sota(x.c))).join('')}</tbody>
- <thead><tr><th>NEAREST KFF</th><th></th></tr></thead><tbody>${NK.map(x=>row(x.c,x.n,x.d,KPC.links.kff(x.c))).join('')}</tbody>
- <thead><tr><th>NEAREST TOWNS</th><th></th></tr></thead><tbody>${NT.map(x=>`<tr><td>${KPC.esc(x.n)}</td><td><b>${x.d.toFixed(1)}</b> mi</td></tr>`).join('')}</tbody></table></div>
- <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="copy">COPY GRID &amp; COUNTY</button><a class="btn sm alt" href="${KPC.links.gmap(la,lo)}" target="_blank" rel="noopener">GOOGLE MAPS</a><a class="btn sm alt" href="${KPC.links.wx(la,lo)}" target="_blank" rel="noopener">WEATHER</a></div>`;
- $('copy').onclick=()=>{const t=`${g} • ${c?c+' County, KY':'outside KY'}`;navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>{$('copy').textContent='COPIED ✓'})};
- if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map)}if(layer)layer.remove();layer=L.layerGroup().addTo(map);
- L.circleMarker([la,lo],{radius:9,color:'#000',fillColor:'#d5a63a',fillOpacity:1}).bindPopup(`<b>${KPC.esc(label)}</b><br>${g}${c?' • '+KPC.esc(c)+' County':''}`).addTo(layer).openPopup();
- NP.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#1d5a3a',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi<br><a href="finder.html?q=${x.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer));
- NS.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#b5452b',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi<br><a href="finder.html?q=${x.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`).addTo(layer));
- map.setView([la,lo],10)}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}
- history.replaceState(null,'','?q='+encodeURIComponent(label.split(' ')[0].match(/^(US|KFF|W4K)/)?label.split(' ')[0]:`${la.toFixed(5)},${lo.toFixed(5)}`))}
+ const sec=(t,b)=>b?`<thead><tr><th>${t}</th><th></th></tr></thead><tbody>${b}</tbody>`:'';
+ $('near').innerHTML=`<div class="panel" style="padding:0"><table class="list"><thead><tr><th>${NPL.label}</th><th>DIST</th></tr></thead><tbody>${NP.length?NP.map(x=>row(x.c,x.n,x.d,KPC.links.pota(x.c))).join(''):'<tr><td colspan="2">No park list for this place yet (or no connection).</td></tr>'}</tbody>
+ ${sec('NEAREST SOTA SUMMITS',NS.map(x=>row(x.c,x.n,x.d,KPC.links.sota(x.c))).join(''))}${sec('NEAREST KFF',NK.map(x=>row(x.c,x.n,x.d,KPC.links.kff(x.c))).join(''))}${sec('NEAREST TOWNS',NT.map(x=>`<tr><td>${KPC.esc(x.n)}</td><td><b>${x.d.toFixed(1)}</b> mi</td></tr>`).join(''))}</table></div>
+ <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="copy">COPY GRID &amp; ${w.kind==='KY'||w.kind==='US'?'COUNTY':'PLACE'}</button><a class="btn sm alt" href="${KPC.links.gmap(la,lo)}" target="_blank" rel="noopener">GOOGLE MAPS</a><a class="btn sm alt" href="${KPC.links.wx(la,lo)}" target="_blank" rel="noopener">WEATHER</a></div>`;
+ $('copy').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(copy).then(()=>{$('copy').textContent='COPIED ✓'})};
+ const more=x=>ky?`<a href="finder.html?q=${x.c}" style="font-weight:700">See boundary &amp; trails in KY Park Commander →</a>`:`<a href="kpc-planner-us.html?q=${encodeURIComponent(x.c)}" style="font-weight:700">Open in the KPC Trip Planner →</a>`;
+ if(window.L){if(!map){map=KPC.leafletMap('map');await KPC.countyLayer(map);map.on('click',e=>show(e.latlng.lat,e.latlng.lng,'Map point'))}if(layer)layer.remove();layer=L.layerGroup().addTo(map);
+ L.circleMarker([la,lo],{radius:9,color:'#000',fillColor:'#d5a63a',fillOpacity:1}).bindPopup(`<b>${KPC.esc(label)}</b><br>${KPC.esc(copy)}`).addTo(layer).openPopup();
+ NP.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#1d5a3a',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi<br>${more(x)}`).addTo(layer));
+ NS.forEach(x=>L.circleMarker([x.la,x.lo],{radius:6,color:'#222',fillColor:'#b5452b',fillOpacity:.9}).bindPopup(`<b>${KPC.esc(x.n)}</b><br>${x.c} • ${x.d.toFixed(1)} mi<br>${more(x)}`).addTo(layer));
+ map.setView([la,lo],ky?10:9)}else{document.getElementById('map').innerHTML='<p style="padding:20px;color:#666">The map could not load. Check your connection or try refreshing.</p>'}
+ const r0=label.split(' ')[0];history.replaceState(null,'','?q='+encodeURIComponent(/^[A-Z0-9]{1,4}-\d{4,5}$|^W4K\//.test(r0)?r0:`${la.toFixed(5)},${lo.toFixed(5)}`))}
 </script>
 
 <p class="kpc-infoline" style="max-width:1100px;margin:18px auto;padding:0 16px;font-size:14px;line-height:1.5;text-align:center;opacity:.9">ℹ️ Maps and park info are a planning aid, not a guarantee. Always check the official agency map and rules before you go. <a href="kpc-about-info.html">About our information</a></p>
