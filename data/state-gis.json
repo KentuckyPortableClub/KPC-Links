@@ -1131,6 +1131,15 @@
     "ds": "",
     "url": "https://mdgeodata.md.gov/imap/rest/services/Environment/MD_ProtectedLands/FeatureServer/0",
     "host": "agency"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Maryland DNR (Maryland Natural Areas)",
+    "nm": "AREA_NAME",
+    "web": "weblink",
+    "url": "https://dnr.geodata.md.gov/dnrdata/rest/services/Environment/MDNaturalAreasGuide/MapServer/0",
+    "host": "agency",
+    "note": "gap hunt (chat 8 desk + chat 2 probe, 2026-10-26): 34 areas; lead test: 14 of our parks with no outline have the same name near their pin"
    }
   ],
   "AL": [
