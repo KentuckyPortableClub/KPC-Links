@@ -3,7 +3,7 @@
 Reviewed: `## POSTING RULE SHEET: CHAT 5 BOTS` at the end of `.claude/notes/website.md` (Oct 27), against the bot scripts (`.github/scripts/kpc_club_posts.py`, `kpc_park_alerts.py`, `kpc_discord_relay.py`) and the workflow schedules. Chat 5 changes nothing until Brandon rules. Official sources only; where a point is my reading of a script, it says so.
 
 ## Verdict
-The sheet is sound: the 10 NEVER rules and the 9 bots cover what matters, and its own GAP list is honest. It breaks in **four places that are facts, not opinions** (A), and it has **12 more grey areas** (B) beyond G1 to G6. The 6 original grey areas get a recommended answer in (C).
+The sheet is sound: the 10 NEVER rules and the 9 bots cover what matters, and its own GAP list is honest. It breaks in **four places that are facts, not opinions** (A), and it has **16 more grey areas** (B, G7 to G22) beyond G1 to G6. The 6 original grey areas get a recommended answer in (C).
 
 ## A. FACTS THE SHEET GETS WRONG OR MISSES (no ruling needed; chat 5 fixes after the sheet is final)
 | # | Finding | Evidence | Fix |
