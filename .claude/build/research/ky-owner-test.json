@@ -1,0 +1,173 @@
+{
+ "made": "2026-10-27 09:32",
+ "tests": {
+  "Sunny Brook WMA x Daniel Boone (owned)": {
+   "park": "Sunny Brook WMA",
+   "ref": "US-10168",
+   "park_acres": 142.6,
+   "fs_owned_inside_acres": 7.9,
+   "result": "DROP: Forest Service-owned land inside the park, but no patch 50 yards across"
+  },
+  "Hoskins WMA x Daniel Boone (owned)": {
+   "park": "Hoskins WMA",
+   "ref": "US-10138",
+   "park_acres": 5292.0,
+   "fs_owned_inside_acres": 76.6,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Rockcastle River WMA x Daniel Boone (owned)": {
+   "park": "Rockcastle River WMA",
+   "ref": "US-10160",
+   "park_acres": 2921.9,
+   "fs_owned_inside_acres": 22.4,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Sinking Creek SNA x Daniel Boone (owned)": {
+   "park": "Sinking Creek SNA",
+   "ref": "US-7970",
+   "park_acres": 301.1,
+   "fs_owned_inside_acres": 4.3,
+   "result": "DROP: Forest Service-owned land inside the park, but no patch 50 yards across"
+  },
+  "Cumberland Falls State Park x Daniel Boone (owned)": {
+   "park": "Cumberland Falls State Park",
+   "ref": "US-1277",
+   "park_acres": 2002.2,
+   "fs_owned_inside_acres": 121.4,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Big South Fork NRA x Daniel Boone (owned)": {
+   "park": "Big South Fork NRA",
+   "ref": "US-0686",
+   "park_acres": 122650.1,
+   "fs_owned_inside_acres": 263.1,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Redbird WMA x Daniel Boone (owned)": {
+   "park": "Redbird WMA",
+   "ref": "US-10159",
+   "park_acres": 24035.1,
+   "fs_owned_inside_acres": 23993.6,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Beaver Creek WMA x Daniel Boone (owned)": {
+   "park": "Beaver Creek WMA",
+   "ref": "US-3794",
+   "park_acres": 17753.1,
+   "fs_owned_inside_acres": 17608.0,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Cane Creek WMA x Daniel Boone (owned)": {
+   "park": "Cane Creek WMA",
+   "ref": "US-10121",
+   "park_acres": 6678.0,
+   "fs_owned_inside_acres": 6676.9,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Mill Creek WMA x Daniel Boone (owned)": {
+   "park": "Mill Creek WMA",
+   "ref": "US-10146",
+   "park_acres": 13009.8,
+   "fs_owned_inside_acres": 12907.5,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Pioneer Weapons WMA x Daniel Boone (owned)": {
+   "park": "Pioneer Weapons WMA",
+   "ref": "US-10158",
+   "park_acres": 7727.5,
+   "fs_owned_inside_acres": 7718.7,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Twin Knobs Campground x Daniel Boone (owned)": {
+   "park": "Twin Knobs Campground",
+   "ref": "US-10170",
+   "park_acres": 686.8,
+   "fs_owned_inside_acres": 686.8,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Zilpo Campground x Daniel Boone (owned)": {
+   "park": "Zilpo Campground",
+   "ref": "US-10171",
+   "park_acres": 220.0,
+   "fs_owned_inside_acres": 220.0,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "W.H. Martin SNA x Daniel Boone (owned)": {
+   "park": "W.H. Martin SNA",
+   "ref": "US-7964",
+   "park_acres": 459.2,
+   "fs_owned_inside_acres": 22.1,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Natural Bridge State Park x Daniel Boone (owned)": {
+   "park": "Natural Bridge State Park",
+   "ref": "US-1286",
+   "park_acres": 2498.3,
+   "fs_owned_inside_acres": 68.1,
+   "result": "KEEP: a 50-yard Forest Service-owned patch is inside the park"
+  },
+  "Red River Wild River x Daniel Boone (owned within 100 ft)": {
+   "test": "Red River Wild River",
+   "spot_acres": 162.0,
+   "line_km_with_spots": 30.65,
+   "result": "KEEP: public land of the other park lies within 100 ft of the line (station 5 m inside)",
+   "nhd_pieces": 30
+  },
+  "Rockcastle River Wild River x Daniel Boone (owned within 100 ft)": {
+   "test": "Rockcastle River Wild River",
+   "spot_acres": 435.0,
+   "line_km_with_spots": 75.54,
+   "result": "KEEP: public land of the other park lies within 100 ft of the line (station 5 m inside)",
+   "nhd_pieces": 39
+  },
+  "Rock Creek Wild River x Daniel Boone (owned within 100 ft)": {
+   "test": "Rock Creek Wild River",
+   "spot_acres": 288.1,
+   "line_km_with_spots": 25.64,
+   "result": "KEEP: public land of the other park lies within 100 ft of the line (station 5 m inside)",
+   "nhd_pieces": 40
+  },
+  "Cumberland River Wild River x Daniel Boone (owned within 100 ft)": {
+   "test": "Cumberland River Wild River",
+   "spot_acres": 533.9,
+   "line_km_with_spots": 59.98,
+   "result": "KEEP: public land of the other park lies within 100 ft of the line (station 5 m inside)",
+   "nhd_pieces": 42
+  },
+  "Big South Fork Wild River x Daniel Boone (owned within 100 ft)": {
+   "test": "Big South Fork Wild River",
+   "spot_acres": 0,
+   "line_km_with_spots": 0.0,
+   "result": "DROP: no qualifying land within 100 ft",
+   "nhd_pieces": 52
+  },
+  "Cumberland River wild river x Cumberland Falls State Park": {
+   "test": "Cumberland River wild river x Cumberland Falls State Park",
+   "spot_acres": 151.5,
+   "line_km_with_spots": 17.14,
+   "result": "KEEP: public land of the other park lies within 100 ft of the line (station 5 m inside)"
+  },
+  "Rockcastle wild river x W.H. Martin SNA": {
+   "test": "Rockcastle wild river x W.H. Martin SNA",
+   "spot_acres": 0,
+   "line_km_with_spots": 0.0,
+   "result": "DROP: no qualifying land within 100 ft"
+  },
+  "Pioneer Weapons WMA x Sheltowee Trace": {
+   "test": "Pioneer Weapons x Sheltowee",
+   "spot_acres": 21.5,
+   "line_km_with_spots": 3.17,
+   "result": "KEEP: public land of the other park lies within 100 ft of the line (station 5 m inside)"
+  },
+  "Big South Fork wild river x Sheltowee Trace": {
+   "spot_acres": 13.5,
+   "result": "KEEP: public land within 100 ft of BOTH the river edge and the trail"
+  }
+ },
+ "notes": [
+  "Basic Ownership fields: ['ownerclassification', 'shape', 'region', 'forestname', 'objectid', 'st_area(shape)', 'st_perimeter(shape)']",
+  "Forest Service-owned Daniel Boone parcels: 1 features, 710458.3 acres",
+  "NHD layers: flowline 6, area 9",
+  "Sheltowee Trace (Forest Service trail layer): 87 pieces, 464 km"
+ ]
+}
