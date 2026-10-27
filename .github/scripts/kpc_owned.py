@@ -13,6 +13,7 @@ Run as a script (kpc-owned.yml, by hand + monthly) it writes the files the tools
   ky     ky-dbnf-owned.geojson = Forest Service-owned land inside Daniel Boone National Forest's outer line (Kentucky first)
 Never fails: a map that does not answer leaves the last file in place."""
 import json, math, os, re, sys, time, urllib.parse, urllib.request
+import kpc_http_cache as HC
 
 UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
@@ -32,6 +33,10 @@ GET_ONLY = set()
 
 
 def get(url, params, tries=3, timeout=120):
+    return HC.cached(url, params, lambda: _get(url, params, tries, timeout))   # assembly-line bundle cache (kpc_http_cache.py)
+
+
+def _get(url, params, tries=3, timeout=120):
     body = urllib.parse.urlencode(params).encode()
     last = None
     for i in range(tries):

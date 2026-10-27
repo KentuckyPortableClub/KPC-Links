@@ -45,6 +45,7 @@ distance transform (= the 50-yard shrink), spots are its connected pieces.
 Never fails (exit 0). MINUTES = time limit; what is done is saved.
 """
 import gzip, json, math, os, pathlib, re, sys, time, urllib.parse, urllib.request
+import kpc_http_cache as HC
 import numpy as np
 import cv2
 sys.path.insert(0, os.path.dirname(__file__))
@@ -95,6 +96,10 @@ def low(x): return ' '.join(re.sub(r'[^a-z0-9 ]', ' ', str(x or '').lower()).spl
 
 GET_ONLY = set()
 def get(url, params, tries=3, timeout=120):
+    return HC.cached(url, params, lambda: _get(url, params, tries, timeout))   # assembly-line bundle cache (kpc_http_cache.py)
+
+
+def _get(url, params, tries=3, timeout=120):
     body = urllib.parse.urlencode(params).encode()
     last = None
     for i in range(tries):
@@ -2071,6 +2076,7 @@ def main():
     rep[f'pass{PASS}'] = dict(counts, date=today, problems=LOG[:40])
     rep['per state'] = per
     save_json(RF, rep, indent=1)
+    if HC.report(): notice('2-fer bot', f'pass {PASS}: ' + HC.report())
     notice('2-fer bot', json.dumps({k: v for k, v in counts.items() if k != 'left out'})[:800])
     for l in LOG[:8]: notice('2-fer bot problem', l)
 
