@@ -262,7 +262,7 @@ function items(){const out=[],P=new Map(D.parks.map(p=>[p.c,p])),ANY=ovAnySet();
   const also=[...p.kff,...p.sota.map(r=>'SOTA '+r)];
   out.push({k:'pota',ref:p.c,n:p.n,co:p.co,la:p.la,lo:p.lo,dest,dn:p.ap.length?p.ap[0][2]:'',multi,two,also,cls:p.t,ov:ANY.has(p.c)||two.length>0,
   tags:[...two.map(r=>`<span class="tag g">POSSIBLE 2-FER ${r[0]}</span>`),...p.kff.map(r=>`<span class="tag k">${r}</span>`),...p.sota.map(r=>`<span class="tag r">${r}</span>`)],
-  links:[['POTA',KPC.links.pota(p.c)],p.off&&['OFFICIAL MAP',p.off],['WEATHER',KPC.links.wx(p.la,p.lo)]].filter(Boolean)})});
+  links:[['POTA',KPC.links.pota(p.c)],p.off&&[(p.offl||'Official map').toUpperCase(),p.off],['WEATHER',KPC.links.wx(p.la,p.lo)]].filter(Boolean)})});
  D.summits.forEach(s=>{const inPark=D.parks.filter(p=>p.sota.includes(s.c));
   out.push({k:'sota',ref:s.c,n:s.n,co:s.co,la:s.la,lo:s.lo,dest:[s.la,s.lo],multi:inPark.length,two:[],also:inPark.map(p=>'inside POTA '+p.c+' '+p.n),cls:'SOTA summit',ov:ANY.has(s.c)||inPark.length>0,meta:`${s.ft?s.ft.toLocaleString()+' ft • ':''}${s.pts||'?'} pts`,
   tags:inPark.map(p=>`<span class="tag g">IN ${p.c}</span>`),links:[['SOTLAS',KPC.links.sota(s.c)],['WEATHER',KPC.links.wx(s.la,s.lo)]]})});
@@ -305,7 +305,7 @@ function infoHtml(x){const P=new Map(D.parks.map(q=>[q.c,q])),p=x.k==='pota'?P.g
  if(p){const info=[TYPEN[p.t]||p.t];if(p.acc)info.push(p.acc+' access point'+(p.acc>1?'s':'')+' on record');if(p.camp)info.push('Camping available');h+=`<div class="pi-m"><b>KPC guide:</b> ${esc(info.filter(Boolean).join(' · '))}</div>`}
  if(x.k==='pota')L2('Program details',KPC.links.pota(x.ref));else if(x.k==='sota')L2('SOTLAS summit page',KPC.links.sota(x.ref));else L2('WWFF directory',KPC.links.kff(x.ref));
  if(aps.length)L2('Directions: '+names[0],gdir(aps[0][0],aps[0][1]));else L2('Directions',gdir(x.la,x.lo));
- if(p&&p.web)L2(hostL(p.web),p.web);if(p&&p.camp&&p.camp!==p.web)L2('Campground page',p.camp);if(p&&p.off&&p.off!==p.web)L2(/\.pdf(\?|$)/i.test(p.off)?'Official map (PDF)':'Official map / info',p.off);
+ if(p&&p.web)L2(hostL(p.web),p.web);if(p&&p.camp&&p.camp!==p.web)L2('Campground page',p.camp);if(p&&p.off&&p.off!==p.web)L2(p.offl||(/\.pdf(\?|$)/i.test(p.off)?'Official map (PDF)':'Official map / info'),p.off);if(p&&p.off2)L2(p.off2l||'Second official map',p.off2);
  L2('Share location',`https://www.google.com/maps/search/?api=1&query=${x.la},${x.lo}`);
  L2('🚶 Street View',`https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${x.dest[0]},${x.dest[1]}`);
  L2('Weather',`kpc-weather.html?lat=${x.la}&lon=${x.lo}&ref=${encodeURIComponent(x.ref)}&name=${encodeURIComponent(x.n)}`);

@@ -235,7 +235,7 @@
   function condBanner(c) { var KR = window.KPCReports; return KR ? KR.banner(KR.related(STATE.D, c)) : ''; }
   function card(p) {
     var x = p._x;
-    var btns = x ? x.btns : [['OFFICIAL MAP', p.off], ['GPS', null], ['OSM BOUNDARY', null], ['WEBSITE', p.web], ['WEATHER', null], ['NEARBY ›', null], ['CAMPING ›', p.camp]]
+    var btns = x ? x.btns : [[(p.offl || 'Official map').toUpperCase(), p.off], ['GPS', null], ['OSM BOUNDARY', null], ['WEBSITE', p.web], ['WEATHER', null], ['NEARBY ›', null], ['CAMPING ›', p.camp]]
       .filter(function (b) { return b[1] !== undefined && (b[1] || ['GPS', 'OSM BOUNDARY', 'WEATHER', 'NEARBY ›'].indexOf(b[0]) >= 0); });
     var bh = btns.map(function (b) {
       var lab = b[0], cls = 'b ' + (BTNCLS[lab] || 'b-gps');
