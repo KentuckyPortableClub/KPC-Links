@@ -58,7 +58,7 @@ GEN = (r"state habitat area|habitat area|mitigation park wildlife and environmen
        r"state beach|state seashore|national wildlife refuge|national recreation area|national historical park|national historic site|"
        r"national park|national forest|national grassland|national monument|national seashore|national lakeshore|national battlefield|"
        r"national military park|national preserve|national river|state park|state forest|management area|wma|nwr|nra|nca|na|wa|sp|sf|sgl|state|number|no|the|of|and")
-ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine', '10': 'ten', '11': 'eleven', '12': 'twelve', 'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain',
+ABBR = {'sulphur': 'sulfur', 'sulpher': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation', '1': 'one', '2': 'two', '3': 'three', '4': 'four', '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine', '10': 'ten', '11': 'eleven', '12': 'twelve', 'col': 'colonel', 'sgt': 'sergeant', 'mt': 'mount', 'ft': 'fort', 'st': 'saint', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'mtn': 'mountain',
         # Oct 22: agency short forms, expanded so the generic-word strip removes them. Colorado Parks & Wildlife writes
         # 'Flagler Reservoir SWA' for PAD-US's 'Flagler Reservoir State Wildlife Area'; unexpanded, the two read as two places
         'swa': 'state wildlife area', 'sra': 'state recreation area', 'nca': 'national conservation area',
@@ -70,6 +70,9 @@ ABBR = {'sulphur': 'sulfur', 'vehicular': 'vehicle', 'recreational': 'recreation
 NOTNAME = {'the', 'of', 'and', 'state', 'national', 'no', 'number', 'blm', 'designated', 'a', 'an'}
 def norm(s, drop1=False):
     s = str(s or '')
+    # Oct 26 (gap hunt): Michigan DNR names its State Game Lands 'Bill Rollo Memorial Grouse Enhanced Mgmt.Sys.(GEMS)(SWMA)';
+    # POTA says 'Bill Rollo Memorial State Game Land'. The GEMS words (and anything after, '... of Plum Creek') are not the name
+    s = re.sub(r'\s*\bgrouse\s+enh.*$', ' ', s, flags=re.I)
     # Oct 22: a named piece of one area is still that area - 'Cherokee SWA - Lone Pine Unit', 'Roaring Fork SWA -
     # Wheeler Parcel', 'Dolores River Canyon, Zone 3'. Drop the piece's own name after the dash or comma. Done FIRST,
     # while the dash is still a dash (it becomes a space a few lines down).
@@ -119,8 +122,16 @@ def variants(s):
     return {x for x in v if x}
 
 
+def _nosp(a, b):
+    # Oct 26 (gap hunt): one name written as one word, the other as two: 'Hard Trigger' = BLM 'Hardtrigger', 'Blackridge' =
+    # 'Black Ridge'. EQUAL only once the spaces are gone (no typo allowance here: 'World War I' / 'World War II' stay apart)
+    va = {x.replace(' ', '') for x in variants(a)}; vb = {x.replace(' ', '') for x in variants(b)}
+    return any(len(x) >= 8 for x in va & vb)
+
+
 def same_name(a, b):
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
+    if _nosp(a, b): return True
     a1, b1 = norm(a), norm(b)
     if _same(a1, b1) or any(_same(x, y) for x in variants(a) for y in variants(b)): return True
     sa, sb = _sing(a1), _sing(b1)                          # McCloskey's = McCloskey, Glades = Glade
@@ -145,6 +156,7 @@ def exact_name(a, b):
     # no 'starts with' allowance: used when only one of the two names says what kind of place it is.
     # Only 'soft' words may differ (Torrey Pines Reserve = Torrey Pines State Reserve, Big Bend = Big Bend - 2015)
     if str(a or '').strip().lower() == str(b or '').strip().lower(): return True
+    if _nosp(a, b): return True
     va, vb = variants(a), variants(b)
     va |= {_soft(x) for x in va if _soft(x)}; vb |= {_soft(x) for x in vb if _soft(x)}
     if va & vb or {_sing(x) for x in va} & {_sing(x) for x in vb}: return True
@@ -349,6 +361,10 @@ def fws_state(st, have):
 XS = [  # prefix, query url, name field, acres field, kinds
     ('wld', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_Wilderness_02/MapServer/0/query', 'wildernessname', 'gis_acres', {'wild'}, 'National Wilderness Preservation System (Forest Service map)'),
     ('hma', 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/0/query', 'HMA_NAME', 'BLM_ACRES', {'hma'}, 'BLM herd management areas'),
+    # Oct 26 (gap hunt, HQ): the same BLM service's layer 1 = HERD AREAS (327; where horses were found in 1971). POTA lists some
+    # of them as 'BLM Herd Management Area' (Bonanza, Robbers Roost, Big Creek, Triangle, Salt Wells Creek, Blawn Wash...).
+    # A herd area with the same name as an HMA is left out (not_in): the HMA is the managed area and wins
+    ('hab', 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer/1/query', 'HA_NAME', 'BLM_ACRES', {'hma'}, 'BLM herd areas', 'FED', None, {'not_in': 'hma'}),
     ('rma', 'https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9/query', 'FET_NAME', 'GIS_ACRES', {'rma'}, 'BLM recreation areas'),
     # Oct 26 (round 11, HQ): this IS the national BLM Recreation Management Area layer (SRMA 1,108 + ERMA 1,782 + campgrounds,
     # day use, OHV areas); read since Oct 18. Relabelled. A probe of all 3,478 names found only 10 of the 427 BLM 'Recreation
@@ -467,7 +483,7 @@ def extra_state(st, have, only=None):
         pre, url, nf, af, kk, label = x[:6]
         if only is not None and pre not in only: continue
         own = x[6] if len(x) > 6 else 'FED'
-        if len(x) > 7 and st not in x[7]: continue
+        if len(x) > 7 and x[7] is not None and st not in x[7]: continue
         opt = x[8] if len(x) > 8 else {}      # Oct 25: state-GIS options: 'where' = the layer's own filter, 'water' = lake surfaces, not property lines
         try: url, nf, af, oidf = resolve(pre, url, nf, af)
         except Exception as e:  # noqa: BLE001
@@ -487,6 +503,7 @@ def extra_state(st, have, only=None):
                 if not nm: continue
                 if re.search(r'easement', nm, re.I): continue   # Oct 20: CPW 'SWA (Fishing Easement)' = private land with an easement, never the park
                 k = kinds(nm) | kk
+                if opt.get('not_in') and norm(nm) in {norm(o['Unit_Nm']) for o in out if str(o['OBJECTID']).startswith(opt['not_in'])}: continue
                 if (norm(nm), frozenset(k)) in have and not opt.get('where'): continue   # Oct 25: a hand-filtered layer (NPS legal boundary) is kept even when PAD-US has the same name
                 g = f.get('geometry') or {}
                 nm2 = (a.get(opt['nm2'].lower()) or '').strip() if opt.get('nm2') else ''   # Oct 25: Ohio's readable names are a second field (ALT_NAME); the key reads Loc_Nm as a second name
@@ -648,7 +665,7 @@ def run(st):
         # nightly rebuild could not join it. Top the copy up: read live only the layers it has no records from, add, re-save.
         if CMODE == 'use':
             present = {re.match(r'[a-z]*', str(a.get('OBJECTID'))).group(0) for a in recs}
-            missing = {x[0] for x in XS if (len(x) <= 7 or st in x[7]) and x[0] not in present}
+            missing = {x[0] for x in XS if (len(x) <= 7 or x[7] is None or st in x[7]) and x[0] not in present}
             if missing:
                 add = extra_state(st, {(norm(a.get('Unit_Nm') or ''), frozenset(a['_k'])) for a in recs}, only=missing)
                 if add:

@@ -98,56 +98,56 @@ def step(name, f, *a, **k):
     print(f'::notice title=probe {name}::{round(time.time() - t)} s {json.dumps(OUT[name])[:300]}', flush=True)
 
 
-# 1. name-matching cases
-G = 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData'
-step('nb folder', lambda: [s for s in get(G, {'f': 'json'}).get('services', [])])
-nbs = [s['name'] for s in (OUT['nb folder'] if isinstance(OUT['nb folder'], list) else []) if re.search(r'wild|zone|wmz|hunt|game|manag', s['name'], re.I)]
-for s in nbs[:6]:
-    typ = next(x['type'] for x in OUT['nb folder'] if x['name'] == s)
-    svc = 'https://gis-erd-der.gnb.ca/server/rest/services/' + s + '/' + typ
-    step('nb ' + s, layers, svc)
-    for l in (OUT['nb ' + s] if isinstance(OUT['nb ' + s], list) else [])[:4]:
-        step(f'nb {s} {l["id"]} rows', sample, svc + '/' + str(l['id']), 40)
-step('whb layers', layers, 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer')
-HN = r'bonanza|robbers|big creek|blawn|continental|triangle|divide basin|salt wells|rock springs|pershing|canyon ?lands|onaqui|conger|hard ?trigger|sulph'
-step('whb names', grep_layers, 'https://gis.blm.gov/arcgis/rest/services/range/BLM_Natl_WHB/MapServer', HN)
-step('trca', grep_layers, 'https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer', r'bond lake|glassco|duffins|bathurst', 300)
-step('npca', grep_layers, 'https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer', r'decew|de cew')
+# ROUND 2
+G = 'https://gis-erd-der.gnb.ca/server/rest/services/OpenData/'
+for s in ('WMZ', 'Parks', 'Unique_Areas', 'Candidate_Conserved_Areas'):
+    step('nb ' + s, layers, G + s + '/MapServer')
+    for l in (OUT['nb ' + s] if isinstance(OUT['nb ' + s], list) else [])[:3]:
+        step(f'nb {s} {l["id"]} rows', sample, G + s + '/MapServer/' + str(l['id']), 60 if s == 'WMZ' else 8)
+        if s != 'WMZ': step(f'nb {s} {l["id"]} test', test, G + s + '/MapServer/' + str(l['id']), ['CA-NB'])
 
-# 2. grade-A sources through the lead test
-MS = 'https://www.maris.state.ms.us/server/rest/services/Vector/'
-for s in ('WildL_Areas', 'State_Parks'):
-    step('ms ' + s, layers, MS + s + '/MapServer')
-    for l in (OUT['ms ' + s] if isinstance(OUT['ms ' + s], list) else [])[:3]:
-        step(f'ms {s} {l["id"]} sample', sample, MS + s + '/MapServer/' + str(l['id']), 10)
-        step(f'ms {s} {l["id"]} test', test, MS + s + '/MapServer/' + str(l['id']), ['MS'])
-step('acec layers', layers, 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer')
-for i in (0, 1): step(f'acec {i} test', test, f'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_ACEC/MapServer/{i}', ALLUS)
-step('crd layers', layers, 'https://services2.arcgis.com/qRqOFxxnwUHOSocZ/ArcGIS/rest/services/CRD_Parks/FeatureServer')
-step('crd 3 test', test, 'https://services2.arcgis.com/qRqOFxxnwUHOSocZ/ArcGIS/rest/services/CRD_Parks/FeatureServer/3', ['CA-BC'])
 
-# 3. layer lists (and a test of each area layer)
-for key, svc, sts in (('md', 'https://dnr.geodata.md.gov/dnrdata/rest/services/Environment/MDNaturalAreasGuide/MapServer', ['MD']),
-                      ('wa', 'https://gis.dnr.wa.gov/site3/rest/services/Public_Boundaries/WADNR_PUBLIC_Managed_Lands/MapServer', ['WA']),
-                      ('wsr', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer', ALLUS)):
-    step(key + ' layers', layers, svc)
-    for l in (OUT[key + ' layers'] if isinstance(OUT[key + ' layers'], list) else [])[:8]:
-        if l.get('geom') == 'esriGeometryPolygon': step(f'{key} {l["id"]} test', test, svc + '/' + str(l['id']), sts)
-for key, base, qs, sts in (('hca', 'https://hca-open-data-camaps.hub.arcgis.com', ('conservation', 'lands', 'boundary'), ['CA-ON']),
-                           ('idpr', 'https://idpr-data-idaho.hub.arcgis.com', ('park boundary', 'parks', 'boundaries'), ['ID'])):
-    items = []
-    for q in qs:
-        r = safe(hub, base, q)
-        if isinstance(r, list): items += [x for x in r if x not in items]
-    OUT[key + ' hub'] = items
-    print(f'::notice title=probe {key} hub::{json.dumps(items)[:800]}', flush=True)
-    done = 0
-    for x in items:
-        u = str(x.get('url') or '')
-        if done >= 6 or time.time() - T0 > 100 * 60: break
-        if not re.search(r'/(Feature|Map)Server(/\d+)?$', u) or not re.search(r'conserv|land|park|bound|propert|area', str(x.get('title')), re.I): continue
-        if not re.search(r'/\d+$', u): u += '/0'
-        step(f'{key} test {x.get("title")}', test, u, sts); done += 1
+def names(url, flds, where='1=1'):
+    out, off = [], 0
+    while off < 40000:
+        j = get(url + '/query', {'where': where, 'outFields': ','.join(flds), 'returnGeometry': 'false', 'resultOffset': off, 'resultRecordCount': 2000, 'f': 'json'})
+        fs = j.get('features') or []
+        out += [f.get('attributes') for f in fs]; off += len(fs)
+        if not fs or not j.get('exceededTransferLimit'): break
+    return out
+
+
+def trca():
+    rows = names('https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Property_TRCA/FeatureServer/250', ['PROP_NAME', 'OWNER', 'MNGD_BY', 'L_MUNPALTY'])
+    nm = sorted({str(r.get('PROP_NAME')) for r in rows if r.get('PROP_NAME')})
+    return {'rows': len(rows), 'distinct names': len(nm), 'hits': [n for n in nm if re.search(r'bond|glassco|duffin|headwater|bathurst|golf', n, re.I)], 'all': nm[:400]}
+step('trca names', trca)
+step('npca names', lambda: sorted({str(list(r.values())) for r in names('https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Conservation_Areas/FeatureServer/2', ['*'])})[:200])
+step('crd hits', lambda: names('https://services2.arcgis.com/qRqOFxxnwUHOSocZ/ArcGIS/rest/services/CRD_Parks/FeatureServer/3', ['Name', 'Jurisdic', 'Type', 'RegionalParkStatus', 'AdministrativeArea'],
+                               "Name in ('Mount Tolmie Park','Mount Douglas Park','Hatley Park National Historic Site','Uplands Park','Beacon Hill Park')"))
+
+
+def maris():
+    out = {}
+    for u in ('https://maris.mississippi.edu/HTML/Maps/RestMapServices.html', 'https://www.maris.state.ms.us/', 'https://maris.mississippi.edu/'):
+        try:
+            req = urllib.request.Request(u, headers=UA)
+            with urllib.request.urlopen(req, timeout=60) as r: t = r.read(400000).decode('utf-8', 'replace')
+            out[u] = sorted(set(re.findall(r'https?://[^"\' <>]+/rest/services[^"\' <>]*', t)))[:80]
+        except Exception as e: out[u] = str(e)[:120]  # noqa: BLE001
+    hosts = sorted({re.match(r'https?://[^/]+/[^/]+/rest/services|https?://[^/]+/rest/services', x).group(0) for v in out.values() if isinstance(v, list) for x in v if re.match(r'https?://[^/]+/([^/]+/)?rest/services', x)})
+    for h in hosts[:4]:
+        out['dir ' + h] = safe(lambda: [x['name'] for x in get(h, {'f': 'json'}).get('folders', [])] + [x['name'] for x in get(h, {'f': 'json'}).get('services', [])])
+    return out
+step('maris', maris)
+mr = OUT.get('maris') if isinstance(OUT.get('maris'), dict) else {}
+cand = sorted({x for v in mr.values() if isinstance(v, list) for x in v if isinstance(x, str) and re.search(r'wild|park', x, re.I) and re.search(r'(Map|Feature)Server', x)})
+for u in cand[:6]:
+    u = re.sub(r'(Server)/.*$', r'\1', u)
+    step('ms ' + u, layers, u)
+    for l in (OUT['ms ' + u] if isinstance(OUT['ms ' + u], list) else [])[:3]:
+        step(f'ms {u} {l["id"]} sample', sample, u + '/' + str(l['id']), 10)
+        step(f'ms {u} {l["id"]} test', test, u + '/' + str(l['id']), ['MS'])
 
 os.makedirs('.claude/build/research', exist_ok=True)
 json.dump(OUT, open('.claude/build/research/gap-probe.json', 'w'), indent=1, default=str)
