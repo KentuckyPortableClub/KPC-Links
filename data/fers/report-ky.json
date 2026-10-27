@@ -11,8 +11,8 @@
   },
   "missing boundary": 1,
   "official parks": 198,
-  "pairs tested": 523,
-  "pairs whose boxes touch": 523,
+  "pairs tested": 532,
+  "pairs whose boxes touch": 532,
   "parks done by the box test": 0,
   "parks whose outline could not be read": 0,
   "pass": 1,
@@ -76,15 +76,15 @@
  },
  "per state": {
   "US-KY": {
-   "candidates": 6,
-   "candidates (saved outline only)": 80,
-   "lines": 80,
+   "candidates": 0,
+   "candidates (saved outline only)": 0,
+   "lines": 79,
    "n-fers": 5,
-   "not sure": 21,
-   "pass1": 156,
-   "pass2": 138,
-   "spots": 156,
-   "very tight": 2,
+   "not sure": 0,
+   "pass1": 165,
+   "pass2": 2,
+   "spots": 165,
+   "very tight": 0,
    "water only": 0
   }
  }
