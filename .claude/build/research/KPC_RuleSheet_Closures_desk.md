@@ -37,3 +37,6 @@ Also: **nesting and wildlife closures** (beach nesting, eagle zones, bat hiberna
 (1) California partial; (2) Missouri show flag; (3) Kentucky quota hunt; (4) Florida campground; (5) Arkansas 60 days old; (6) algae; (8) PA "Hickory": unmatched; (10) winter gate. No changes.
 
 Sources: the sheet in `.claude/notes/mapping.md`; KDFWR owner scrape `data/ky-wma-owners.json`; the posting sheet `.claude/notes/website.md`.
+
+## RULED (Brandon via HQ, Oct 27 8:10 AM, see mapping.md / website.md 'FINAL (HQ Oct 27 8:10 AM)')
+Brandon accepted chat 8's recommendations for G1-G13 (and the 7 breaks). Partial WMA closures (G9) go in the Wednesday post quoting Fish & Wildlife's own sentence, and on the park card.

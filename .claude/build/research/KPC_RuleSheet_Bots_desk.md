@@ -55,3 +55,6 @@ Kentucky-only closure posts (NEVER 2); "never guess in public, hold and ask" (NE
 Facebook's and Discord's own posting limits; the KDFWR quota-hunt wording per WMA (G9 needs a sample read of 10 pages; I can do it on request); whether the staff-room messages (KPC_ADMIN_WEBHOOK) can be read by anyone outside the staff.
 
 Sources: `.claude/notes/website.md` (rule sheet), `.github/workflows/kpc-club-posts.yml`, `kpc-park-alerts.yml`, `kpc-discord-relay.yml`, `.github/scripts/kpc_club_posts.py`, `kpc_park_alerts.py`; DST date from the standard US rule (second Sunday of March to first Sunday of November; Nov 1 2026).
+
+## RULED (Brandon via HQ, Oct 27 8:10 AM, see mapping.md / website.md 'FINAL (HQ Oct 27 8:10 AM)')
+Brandon accepted chat 8's recommendations for G7-G22, with: ALL holidays post (holiday-post-go = all); night posts 9 PM-6 AM: website + Discord at once, email waits until 6 AM; safety alerts skip the second check; closures quote the agency's own sentence; strip photo GPS; hold key-like strings; never name members-only pages in public issue #17.
