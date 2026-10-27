@@ -2,7 +2,7 @@
  "about": "Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.",
  "pass1": {
   "cell_m": 20.0,
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "left out": {
    "approximate": 0,
    "no outline": 4,
@@ -76,12 +76,12 @@
  "per state": {
   "US-KY": {
    "candidates": 0,
-   "candidates (saved outline only)": 98,
-   "lines": 79,
-   "n-fers": 3,
-   "pass1": 121,
-   "pass2": 119,
-   "spots": 121
+   "candidates (saved outline only)": 0,
+   "lines": 88,
+   "n-fers": 6,
+   "pass1": 162,
+   "pass2": 2,
+   "spots": 162
   }
  }
 }
