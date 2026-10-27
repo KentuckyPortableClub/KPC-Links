@@ -1,6 +1,6 @@
 /* Builds the KPC APP's OFFLINE PARK PACKS (Fable, Oct 22) into app/packs/ (served by GitHub Pages, the app downloads one state at a time).
    Kentucky: every POTA park with its pins, access points and its OUTLINES from the same ky-*.geojson files Park Control uses,
-   matched by the website's own kpc-bounds.js (run here in Node), each outline labelled official / approximate (KPC-drawn).
+   matched by the website's own kpc-bounds.js (run here in Node), each outline labelled official / approximate (OpenStreetMap outline, unofficial).
    Every other state: parks + pins + kind from data/parkinfo (no outlines yet: the key points at PAD-US tracts that the app can
    fetch when it has signal). Run from the repo root:  node .github/scripts/build_app_pack.js        (~1 min) */
 const fs = require('fs'), path = require('path');
@@ -46,7 +46,7 @@ const sz = o => Buffer.byteLength(JSON.stringify(o));
     if (list.length) { outlines[p.c] = list; nOut++; }
   }
   const kff = (KYD.kff || []).map(k => ({ ref: k.c, name: k.n, la: k.la, lo: k.lo, p: k.p || '' })), summits = (KYD.summits || []).map(x => ({ ref: x.c, name: x.n, la: x.la, lo: x.lo, ft: x.ft || 0 }));
-  const ky = { state: 'KY', updated: index.updated, note: 'Outlines: official = the agency\'s own map file; approx = drawn by KPC from OpenStreetMap or the forest\'s outer line. Pins and access points are guides, not confirmed spots.', parks, outlines, kff, summits };
+  const ky = { state: 'KY', updated: index.updated, note: 'Outlines: official = the agency\'s own map file; approx = an OpenStreetMap outline (unofficial) or the forest\'s outer line. Pins and access points are guides, not confirmed spots.', parks, outlines, kff, summits };
   fs.writeFileSync(path.join(OUT, 'US-KY.json'), JSON.stringify(ky));
   index.states.KY = { parks: parks.length, outlines: nOut, approx: nApprox, bytes: sz(ky) };
   console.log('KY', parks.length, 'parks,', nOut, 'with outlines (' + nApprox + ' approx),', (sz(ky) / 1e6).toFixed(2), 'MB');
