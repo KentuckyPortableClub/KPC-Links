@@ -847,6 +847,7 @@ def owners(parks):
                 elif src == 'bnps': fee.add('FED:NPS')
                 elif src == 'bfws': fee.add('FED:FWS')
                 elif src == 'padus': fee.add('FED:USFS')
+                elif ref in KY_FS_MANAGED: fee.add('FED:USFS')   # Oct 27: KDFWR says the Forest Service OWNS these WMAs
                 else: des = True
             elif isinstance(rid, int) and not p['st'].startswith(('CA-', 'W-')):
                 o, c = pad.get(rid, ('', ''))
@@ -859,6 +860,11 @@ def owners(parks):
                 elif kind.get((LAYERS_US.get(pre) or [''])[0]) == 'park' and 'National Park Service' not in str((LAYERS_US.get(pre) or ['', '', ''])[2]): fee.add('STAT')
                 else: des = True
         OWN[ref] = (fee, des)
+
+
+# Oct 27 (HQ ruling 2 + chat 8's verdict file, from KDFWR's own pages / data/ky-wma-owners.json): Forest Service-OWNED WMAs
+# managed by KDFWR: Redbird, Beaver Creek, Cane Creek, Mill Creek, Pioneer Weapons, Twin Knobs, Zilpo
+KY_FS_MANAGED = {'US-10159', 'US-3794', 'US-10121', 'US-10146', 'US-10158', 'US-10170', 'US-10171'}
 
 
 def two_owners(refs, parks):
@@ -1030,6 +1036,8 @@ def main():
                 else:
                     s['passes'][PASS - 1] = 0
                     s['status'] = f'dropped in pass {PASS}' + (' (an outline could not be downloaded)' if any(r in bad for r in s['refs']) else '')
+                if REGION == 'ky' and 'US-4484' in s['refs'] and set(s['refs']) & KY_FS_MANAGED:
+                    s['label'] = 'Forest Service land managed by KDFWR'   # Oct 27 (HQ ruling 2): one agency owns, another manages = a real 2-fer
                 if PASS == 3 and m and two_owners(s['refs'], parks):
                     s['status'] = 'check: two owners (likely map mistake: two governments cannot own the same ground; a lease would change that)'; continue
                 if PASS == 3 and m:
