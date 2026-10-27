@@ -18,3 +18,6 @@ Question (HQ): does each KDFWR/forestry map draw the state park's OWN land, and 
 
 ## For chat 2
 Keep the three links, rename the buttons as above, add the Corps-land note for Carr Creek and Buckhorn, and look for a parks.ky.gov map for each park (maybe a PDF behind "Things to Know" or a trail map); the park's own map wins when found.
+
+## Disagreement to settle (added after reading chat 2's 8:35 AM note)
+Chat 2 reports the Tygarts map's legend has "State Park Boundaries". My text read of the same PDF listed only "WMA Boundary" in the legend, but my reader summarises text and can miss legend lines. Treat chat 2's reading as likely right for Carter Caves (grade B for me, not contradicted by anything I saw) and keep the link. For Carr Creek and Buckhorn my reader also found only "WMA Boundary"; someone should open those two PDFs and look for a park-boundary line before the button says "shows the park" beyond "names the park".
