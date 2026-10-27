@@ -33,7 +33,9 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   const F = await B.ky(), D = B.kyData();
   const P = D.parks || [], parks = {}, nonum = [], kffonly = [];
   for (const x of P) parks[x.c] = { n: x.n, t: x.t || '', tracts: [] };
+  const owned = {};   // Oct 27: Forest Service-owned parcels (thousands) = ONE tract per park: the land the agency owns
   for (const f of F) {
+    if (f._L.own) { const r = (f.properties || {}).ref, o = owned[r] = owned[r] || [f._L.k, f._nm, 0, 'agency-owned land (ownership map)', 0]; o[2] += acres(f.geometry); o[4] += B.ringsOf(f.geometry).length; continue; }
     if (f._L.proc) { // the DBNF proclamation line: only one big outline, belongs to the forest
       (f._names || new Set()).forEach(r => parks[r] && parks[r].tracts.push([f._L.k, f._nm, acres(f.geometry), 'proclamation line']));
       continue;
@@ -49,6 +51,7 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
       // parks that only have "pin inside" outlines (kyFor falls back to that): mark them so the review list shows them
     }
   }
+  for (const r in owned) if (parks[r]) parks[r].tracts.push(owned[r]);
   for (const x of P) if (!parks[x.c].tracts.length) {
     const g = await B.kyFor(x.c);
     g.forEach(f => parks[x.c].tracts.push([f._L.k, f._nm, acres(f.geometry), 'pin', B.ringsOf(f.geometry).length]));
