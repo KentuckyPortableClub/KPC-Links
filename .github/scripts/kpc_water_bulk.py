@@ -18,7 +18,7 @@ import glob, gzip, json, math, os, pathlib, re, shutil, sys, tempfile, time, url
 STATES = (os.environ.get('STATES') or '').split()
 STORE = pathlib.Path(os.environ.get('WATER_STORE') or 'bundle/water')
 DATA = pathlib.Path(os.environ.get('DATA') or 'data/fers')
-MAX_HU4 = int(os.environ.get('MAX_HU4') or 40)
+MAX_HU4 = int(os.environ.get('MAX_HU4') or 150)
 DET = 0.00002
 UA = {'User-Agent': 'KPC 2-fer bot (kentuckyportableclub.github.io; ham radio club park maps)'}
 TNM = 'https://tnmaccess.nationalmap.gov/api/v1/products'

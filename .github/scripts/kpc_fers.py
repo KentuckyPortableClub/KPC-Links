@@ -2532,6 +2532,14 @@ def main():
         else: G, bad = download(parks, refs, DET, PREC)
         mark(f'geometry of {len(refs)} parks read')
         n = {'checked': 0, 'water only': 0, 'still not checked': 0}
+        # Oct 28 (Southeast: only 17 of ~400 rows checked before pass 5's time ran out, the rest waiting on the USGS map that was down):
+        # rows whose water tiles are ALL saved go first (seconds each); rows that would have to ask the live map go last
+        def _saved_all(x):
+            b = sbox(x); pad = .002
+            if not b or not WATER_STORE: return False
+            return all(_wpath(i, j).exists() for i in range(int(math.floor((b[0] - pad) / .1)), int(math.floor((b[2] + pad) / .1)) + 1)
+                       for j in range(int(math.floor((b[1] - pad) / .1)), int(math.floor((b[3] + pad) / .1)) + 1))
+        cand.sort(key=lambda x: 0 if _saved_all(x) else 1)
         for x in cand:
             if late(): break
             if any(r not in G for r in x['refs']): continue
