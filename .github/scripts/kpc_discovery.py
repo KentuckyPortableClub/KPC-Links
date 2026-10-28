@@ -26,6 +26,38 @@ STATES = [s.upper() for s in (os.environ.get('STATES') or 'OH').replace(',', ' '
 BUDGET = {'A': float(os.environ.get('MIN_A') or 40), 'B': float(os.environ.get('MIN_B') or 60), 'C': float(os.environ.get('MIN_C') or 45)}
 MAPDBG = []
 STAT = {'hits': 0, 'new': 0, 'already_read': 0, 'not_agency': 0, 'not_a_lead': 0, 'tested': 0, 'sleeping': 0, 'pages': 0, 'errors': 0}
+# Oct 27 (chat 8's Ohio grade, HQ 8:37 PM): a layer is graded by WHAT IT IS (name + geometry + fields), never by the keyword that found it
+THEME = re.compile(r'bluff|shoreline|watershed|historic shoreline|\bcounty\b|counties|district|ortho|runoff|parcel|permit|planning|legislative|'
+                   r'zoning|census|soil|geolog|flood|aquifer|well\b|wells\b|mine\b|mining|oil|gas\b|elevation|contour|imagery|basemap|boundary markers|'
+                   r'mile markers|air quality|monitoring|trout|bass|fish distribution|elk|deer|harvest|hunting units?|survey|address|roads? centerline|'
+                   r'commerce|economic|school|voting|precinct|sewer|utility|hydrant|crime|coastal barrier', re.I)
+ACCESS_W = re.compile(r'trail ?heads?|parking|\bramps?\b|launch|put-?in|access (?:site|point|area)s?|boat|kiosk|campground|camp ?sites?|'
+                      r'day use|picnic|entrance|gate|waypoint|poi\b|point[s]? of interest|facilit', re.I)
+TRAIL_W = re.compile(r'\btrails?\b|\btrace\b|towpath|path(?:way)?s?\b|greenway|paddling|water trail', re.I)
+PARK_W = re.compile(r'park|preserve|forest|wildlife|wma\b|game land|natural area|recreation|conservation|refuge|wilderness|wild river|scenic river|lands?\b', re.I)
+WATER_W = re.compile(r'\blakes?\b|rivers?\b|streams?\b|hydro|water ?bod|shore|wetland', re.I)
+ROAD_W = re.compile(r'\broads?\b|street', re.I)
+CLOSE_W = re.compile(r'closure|closed|alert|advisor|restriction|status', re.I)
+OWN_W = re.compile(r'ownership|owner|surface management|fee title|tenure|crown land|public land', re.I)
+
+
+def classify(name, geom, fields):
+    """-> (gap or None, why). geom = Point / Polyline / Polygon / ''. A theme layer = None."""
+    n = re.sub(r'[_\-]+', ' ', name or '')   # Parks_DNAP_Trails -> Parks DNAP Trails (word tests)
+    if THEME.search(n) and not (ACCESS_W.search(n) or TRAIL_W.search(n)): return None, 'theme layer (' + THEME.search(n).group(0) + ')'
+    g = (geom or '').lower()
+    if ACCESS_W.search(n) and 'point' in g: return 'access', 'points named ' + ACCESS_W.search(n).group(0)
+    if TRAIL_W.search(n) and 'line' in g: return 'trail line', 'lines named ' + TRAIL_W.search(n).group(0)
+    if TRAIL_W.search(n) and 'point' in g: return 'access', 'trail points (' + TRAIL_W.search(n).group(0) + ')'
+    if OWN_W.search(n) and 'polygon' in g: return 'ownership', 'ownership polygons'
+    if CLOSE_W.search(n): return 'closures', 'closure / status layer'
+    if WATER_W.search(n) and ('polygon' in g or 'line' in g) and not PARK_W.search(n): return 'roads/water', 'water ' + ('areas' if 'polygon' in g else 'lines')
+    if ROAD_W.search(n) and 'line' in g: return 'roads/water', 'road lines'
+    if PARK_W.search(n) and 'polygon' in g and any(re.search(r'name|nm$|label|title', f, re.I) for f in fields or []): return 'outline', 'park polygons with a name field'
+    if ACCESS_W.search(n) or TRAIL_W.search(n): return 'access', 'named like access (' + (ACCESS_W.search(n) or TRAIL_W.search(n)).group(0) + ')'
+    return None, 'nothing a gap needs (no access / trail / park / water / closure / ownership in its name)'
+
+
 NOT_LEAD = re.compile(r'\bcity\b|council|municipal|historic marker|hunting unit|fire district|census place|zoning|parcel sales|'
                       r'school|voting|precinct|sewer|utility|hydrant|crime|permit applications?|\btest\b|\bcopy\b|sample', re.I)
 CLOSED = re.compile(r'no derivatives|internal use|not for redistribution|wdpa|all rights reserved', re.I)
@@ -72,34 +104,38 @@ def org_name(oid):
     return ORG[oid]
 
 
-def step_a(st, kws, known, leads):
+def step_a(st, kws, known, leads, kwlog):
     t0 = time.time()
+    for root in agency_servers(st): walk_server(st, root, known, leads, t0, kwlog)
     sn = T.STATE_NAMES.get(st, st)
     orgs = org_ids(st)
     for gap, words in kws.items():
         for kw in words:
             if late('A', t0): return
             qs = [f'"{kw}" AND orgid:{o}' for o in orgs[:6]] + [f'"{kw}" AND "{sn}"']
+            kl = {'keyword': kw, 'gap': gap, 'hits': 0, 'new': 0, 'already_read': 0, 'not_agency': 0, 'not_this_state': 0, 'theme': 0}; kwlog.append(kl)
             for q in qs:
                 try: j = T.get('https://www.arcgis.com/sharing/rest/search', {'f': 'json', 'num': 100, 'q': q + ' AND (type:"Feature Service" OR type:"Map Service")'})
                 except Exception: STAT['errors'] += 1; continue  # noqa: BLE001,E702
                 for it in j.get('results') or []:
-                    STAT['hits'] += 1
+                    STAT['hits'] += 1; kl['hits'] += 1
                     u = svc_of(it.get('url') or '')
                     if not u: continue
                     title = (it.get('title') or '')[:90]
-                    if u.lower() in known: STAT['already_read'] += 1; continue
+                    if u.lower() in known: STAT['already_read'] += 1; kl['already_read'] += 1; continue
                     if NOT_LEAD.search(title) or CLOSED.search(it.get('licenseInfo') or ''): STAT['not_a_lead'] += 1; continue
+                    if THEME.search(title) and not (ACCESS_W.search(title) or TRAIL_W.search(title)): STAT['not_a_lead'] += 1; kl['theme'] += 1; continue
                     org = org_name(it.get('orgId') or '')
                     county = bool(re.search(r'\bcounty\b', org, re.I))
-                    if not T.agency_org(org, st) and not county: STAT['not_agency'] += 1; continue
+                    if not T.agency_org(org, st) and not county: STAT['not_agency'] += 1; kl['not_agency'] += 1; continue
                     # Oct 27 (Ohio test: Great Smoky Mountains layers topped the list): a publisher that is NOT the state's own agency
                     # (federal, county) counts only when the item's own title / snippet / tags name the state
                     if not T.official_org(org, st) and not re.search(r'\b' + re.escape(sn) + r'\b', ' '.join([title, it.get('snippet') or '', ' '.join(it.get('tags') or [])]), re.I):
-                        STAT['not_this_state'] = STAT.get('not_this_state', 0) + 1; continue
+                        STAT['not_this_state'] = STAT.get('not_this_state', 0) + 1; kl['not_this_state'] += 1; continue
                     lic = re.sub(r'<[^>]+>', ' ', it.get('licenseInfo') or '')[:200]
                     mod = time.strftime('%Y-%m-%d', time.gmtime((it.get('modified') or 0) / 1000)) if it.get('modified') else ''
                     if mod and mod < time.strftime('%Y-%m-%d', time.gmtime(time.time() - 10 * 365 * 86400)): STAT['not_a_lead'] += 1; continue
+                    if u.lower() not in leads: kl['new'] += 1
                     x = leads.setdefault(u.lower(), {'url': u, 'st': st, 'title': title, 'publisher': org[:70], 'catalog': 'ArcGIS Online',
                                                     'gaps': [], 'keywords': [], 'licence': lic.strip(), 'modified': mod, 'found': time.strftime('%Y-%m-%d'),
                                                     'kind': 'second witness' if county else 'new'})
@@ -136,6 +172,56 @@ def step_a(st, kws, known, leads):
                     if kw not in x['keywords']: x['keywords'].append(kw)
 
 
+def agency_servers(st):
+    """The state's own ArcGIS Server roots we already read something from (data/state-gis.json), e.g. gis.ohiodnr.gov/arcgis/rest/services."""
+    g = load('data/state-gis.json', {}).get('states', {}).get(st, [])
+    roots = set()
+    for x in g:
+        m = re.match(r'(https?://[^/]+/[^/]*/rest/services)', x.get('url', ''))
+        if m and not re.search(r'arcgis\.com', m.group(1)): roots.add(m.group(1))
+    return sorted(roots)
+
+
+def walk_server(st, root, known, leads, t0, kwlog):
+    """Every folder → every service → its layers; each layer classified by what it is (Oct 27, chat 8's fix 1)."""
+    try: top = T.get(root, {'f': 'json'})
+    except Exception as e: STAT['errors'] += 1; kwlog.append({'server': root, 'error': str(e)[:80]}); return  # noqa: BLE001
+    folders = [''] + [f for f in top.get('folders') or []]
+    n_svc = n_lead = 0
+    for f in folders:
+        if late('A', t0): break
+        try: j = top if f == '' else T.get(f'{root}/{f}', {'f': 'json'})
+        except Exception: STAT['errors'] += 1; continue  # noqa: BLE001
+        for sv in j.get('services') or []:
+            if sv.get('type') not in ('MapServer', 'FeatureServer'): continue
+            nm = sv.get('name') or ''
+            u = f"{root}/{nm}/{sv['type']}"
+            n_svc += 1
+            if u.lower() in known or svc_of(u).lower() in known: STAT['already_read'] += 1; continue
+            if NOT_LEAD.search(nm.split('/')[-1]): STAT['not_a_lead'] += 1; continue
+            try: d = T.get(u, {'f': 'json'})
+            except Exception: STAT['errors'] += 1; continue  # noqa: BLE001
+            lays = (d.get('layers') or [])[:60]
+            gaps, whys, lay_rows = [], [], []
+            for L in lays:
+                lu = f"{u}/{L.get('id')}"
+                try: ld = T.get(lu, {'f': 'json'})
+                except Exception: continue  # noqa: BLE001
+                gap, why = classify(L.get('name') or ld.get('name') or '', (ld.get('geometryType') or '').replace('esriGeometry', ''), [x['name'] for x in ld.get('fields') or []])
+                lay_rows.append({'id': L.get('id'), 'name': (L.get('name') or '')[:60], 'geom': (ld.get('geometryType') or '').replace('esriGeometry', ''), 'is': why, 'gap': gap})
+                if gap and gap not in gaps: gaps.append(gap); whys.append(f"{L.get('name')}: {why}")
+                if len(lay_rows) >= 25: break
+            if not gaps: STAT['not_a_lead'] += 1; kwlog.append({'server': root, 'service': nm, 'skipped': 'no layer a gap needs', 'layers': [r['name'] for r in lay_rows][:6]}); continue
+            STAT['hits'] += 1; n_lead += 1
+            x = leads.setdefault(u.lower(), {'url': u, 'st': st, 'title': nm.split('/')[-1][:90], 'folder': nm.split('/')[0] if '/' in nm else '',
+                                             'publisher': root.split('/')[2], 'catalog': 'agency server walk', 'gaps': [], 'keywords': [], 'licence': (d.get('copyrightText') or '')[:120],
+                                             'modified': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'new', 'is': whys[:4], 'layers_seen': lay_rows[:12]})
+            for gp in gaps:
+                if gp not in x['gaps']: x['gaps'].append(gp)
+            x['is'] = whys[:4]
+    kwlog.append({'server': root, 'folders': len(folders), 'services': n_svc, 'leads': n_lead})
+
+
 def socrata_domains(st):
     P = load(D / 'portals.json', {}).get(st, {})
     return P.get('socrata', [])
@@ -149,18 +235,33 @@ def ckan_bases(st):
 
 
 def grade(x):
+    """0-6: answers / geometry + name field / agency publisher / open licence / fills a gap by what it IS / parks named (outline) or
+    new-to-us with records (access, trail, water, closures, ownership). A theme layer (classify → None) is dropped to C."""
     g = 0
     t = x.get('test') or {}
     if t.get('answers') and t.get('n_layers'): g += 1
     if any(l.get('nameField') and l.get('geom') for l in t.get('layers', [])): g += 1
+    # what the layers ARE (from the test's layer rows or the walk's), not the search word
+    kinds, whys = [], []
+    for l in (t.get('layers') or x.get('layers_seen') or []):
+        gap, why = classify(l.get('name') or '', l.get('geom') or '', l.get('fields') or [])
+        if gap: kinds.append(gap); whys.append(f"{l.get('name')}: {why}")
+    if kinds:
+        x['gaps'] = sorted(set(kinds)); x['is'] = whys[:4]; g += 1
+    elif t.get('layers') or x.get('layers_seen'):
+        x['is'] = [l.get('name', '') + ': ' + classify(l.get('name') or '', l.get('geom') or '', [])[1] for l in (t.get('layers') or x.get('layers_seen'))[:3]]
+        x['grade'] = 0; x['band'] = 'C'; x['parks_named'] = 0; return 0
     if T.agency_org(x.get('publisher', ''), x['st']) or re.search(r'\.gov\b|\.us\b|\.gc\.ca|\.gov\.[a-z]{2}\.ca', x['url']): g += 1
     lic = x.get('licence', '')
     if lic and OPEN.search(lic): g += 1
     elif not lic: x['licence_note'] = 'licence unknown'
     n = max([l.get('names_missing', 0) for l in t.get('layers', [])] or [0])
+    recs = max([l.get('records', 0) or 0 for l in t.get('layers', [])] or [0])
     if n >= 1: g += 1
     if n >= 5: g += 1
+    elif n == 0 and kinds and set(kinds) - {'outline'} and (recs > 0 or x.get('catalog') == 'agency server walk'): g += 1   # new to us, holds records, fills a non-outline gap
     x['parks_named'] = n
+    if x.get('kind') == 'replaces' and not x.get('replaces_url'): x['kind'] = 'new'   # 'replaces' only when it really replaces a layer we read
     x['grade'] = g
     x['band'] = 'A' if g >= 5 else 'B' if g >= 3 else 'C'
     if x.get('kind') == 'second witness': x['band'] = 'C'   # D-1: county layers never the outline
@@ -182,10 +283,38 @@ def step_b(leads, miss):
             if x['fails'] >= 2: x['sleeping_until'] = time.strftime('%Y-%m-%d', time.gmtime(time.time() + 60 * 86400))
 
 
+def pdf_patterns(st, cfg, leads):
+    """Oct 27 (chat 8): the agency's own PDF host by known pattern (e.g. dam.assets.ohio.gov/.../wildlife-area-maps/<slug>.pdf):
+    one HEAD per park of the matching kind; a hit = a map-page lead."""
+    import urllib.request
+    have = load('data/parkinfo-web.json', {}).get('parks', {})
+    parks = load(f'data/parkinfo/US-{st}.json', {}).get('parks', {})
+    n_try = n_hit = 0
+    for pat in cfg.get('patterns') or []:
+        kind = re.compile(pat.get('kind', '.'), re.I)
+        for ref, v in parks.items():
+            if n_try >= int(pat.get('max', 150)): break
+            if not kind.search(v[0] or '') or (have.get(ref) or {}).get('map') or f'map-page:{ref}' in leads: continue
+            slug = re.sub(r'[^a-z0-9]', '', re.sub(pat.get('strip', r'(wildlife|fishing|area|state|park|forest|nature|preserve|lake)\b'), '', (v[0] or '').lower()))
+            if not slug: continue
+            url = pat['url'].replace('{slug}', slug); n_try += 1
+            try:
+                req = urllib.request.Request(url, method='HEAD', headers=T.UA)
+                time.sleep(1.0)
+                with urllib.request.urlopen(req, timeout=20) as r: ok = r.status == 200 and 'pdf' in (r.headers.get('Content-Type') or '').lower()
+            except Exception: ok = False  # noqa: BLE001
+            if ok:
+                n_hit += 1
+                leads[f'map-page:{ref}'] = {'url': url, 'st': st, 'ref': ref, 'title': f'{v[0]}: official map (PDF)', 'publisher': url.split('/')[2], 'catalog': 'agency PDF host',
+                                          'gaps': ['map page'], 'keywords': [], 'licence': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'map page', 'grade': 5, 'band': 'A'}
+    STAT['pdf_tried'] = STAT.get('pdf_tried', 0) + n_try; STAT['pdf_found'] = STAT.get('pdf_found', 0) + n_hit
+
+
 def step_c(st, leads):
     """The 'Maps' tab with a real browser: agency park pages on the allow list -> map / PDF links."""
     cfg = load(D / 'maps-tab.json', {}).get(st)
     if not cfg: return
+    pdf_patterns(st, cfg, leads)
     try: from playwright.sync_api import sync_playwright
     except Exception: notice('Maps tab: no browser on this runner'); return  # noqa: BLE001,E702
     allow, files = cfg.get('hosts', []), cfg.get('files', [])
@@ -214,11 +343,14 @@ def step_c(st, leads):
             time.sleep(3)
         b.close()
     STAT['pages'] += pages
+    kept = sum(1 for k, v in leads.items() if k.startswith('map-page:') and v.get('catalog') == 'Maps tab' and v.get('found') == time.strftime('%Y-%m-%d'))
+    if pages >= 10 and kept == 0: notice(f'WARNING Maps tab {st}: {pages} agency pages opened, 0 map links kept: the pages hide their map links from the reader (see maps_tab_sample)')
 
 
 def main():
     kws = load(D / 'keywords.json', {}).get('gaps', {})
     if not kws: notice('no keywords.json: nothing to search'); return
+    kwlog = []
     known = already_read()
     old = load(D / 'leads.json', {}).get('leads', {})
     # Oct 27: leads kept from an earlier run must pass today's publisher test too (the Ohio test kept Great Smoky Mountains layers)
@@ -228,26 +360,45 @@ def main():
     miss = T.missing() if 'B' in STEPS else {}
     for st in STATES:
         st_key = st if st.startswith('CA-') else st
-        if 'A' in STEPS: step_a(st_key, kws, known, leads)
+        if 'A' in STEPS: step_a(st_key, kws, known, leads, kwlog)
         if 'C' in STEPS: step_c(st_key, leads)
         save_json(D / 'leads.json', {'about': 'Discovery bot leads (never used by the live data; chat 8 reads leads.md).', 'date': time.strftime('%Y-%m-%d'), 'leads': leads}, indent=1)
     if 'B' in STEPS: step_b(leads, miss)
     for x in leads.values():
-        if x.get('catalog') != 'Maps tab': grade(x)
+        if x.get('catalog') not in ('Maps tab', 'agency PDF host'): grade(x)
+    # chat 8's hand finds (data/discovery/known-good.json): the bot must find them by itself; they are merged in as known-good either way
+    kg = load(D / 'known-good.json', {})
+    kg_found, kg_missed = [], []
+    for st in STATES:
+        for k in (kg.get(st) or []):
+            core = lambda u: re.sub(r'/(map|feature)server.*$', '', u.lower().rstrip('/'))
+            key = next((u for u in leads if core(u) == core(k['url'])), None)
+            if key: leads[key]['known_good'] = k.get('note', 'chat 8'); leads[key]['hand_band'] = k.get('band', ''); kg_found.append(k['url'])
+            else:
+                kg_missed.append(k['url'])
+                leads[k['url'].lower()] = {'url': k['url'], 'st': st, 'title': k.get('title', k['url'].split('/')[-2])[:90], 'publisher': k['url'].split('/')[2], 'catalog': 'hand (chat 8)',
+                                           'gaps': k.get('gaps', []), 'keywords': [], 'licence': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'new', 'known_good': k.get('note', 'chat 8'),
+                                           'hand_band': k.get('band', ''), 'missed_by_bot': True}
+    STAT['known_good_found'] = len(kg_found); STAT['known_good_missed'] = len(kg_missed)
     new = sorted(set(leads) - before)
     STAT['new'] = len(new)
     # learning loop: which keyword found what this run
     found = {}
     for k in new:
         for kw in leads[k].get('keywords', []): found.setdefault(kw, []).append(leads[k]['url'])
-    rank = sorted(leads.values(), key=lambda v: (-v.get('grade', 0), not T.official_org(v.get('publisher', ''), v['st']), -v.get('parks_named', 0), v['st']))
+    rank = sorted(leads.values(), key=lambda v: (-v.get('grade', 0), not (T.official_org(v.get('publisher', ''), v['st']) or v.get('catalog') == 'agency server walk'), -v.get('parks_named', 0), v['st']))
     save_json(D / 'leads.json', {'about': 'Discovery bot leads (never used by the live data; chat 8 reads leads.md).', 'date': time.strftime('%Y-%m-%d'),
-                                 'stats': STAT, 'maps_tab_sample': MAPDBG, 'found_by_keyword_this_run': found, 'leads': leads}, indent=1)
+                                 'stats': STAT, 'what_ran': kwlog, 'known_good_missed': kg_missed, 'maps_tab_sample': MAPDBG, 'found_by_keyword_this_run': found, 'leads': leads}, indent=1)
     md = ['# Discovery bot: top 50 leads', f"Run {time.strftime('%Y-%m-%d')}, states {' '.join(STATES)}. The bot's number is the queue order only; chat 8 gives the real A/B/C.", '',
-          '| Band | Grade | State | Gap | What | Publisher | Parks named | Kind | Link |', '|---|---|---|---|---|---|---|---|---|']
+          f"Known-good hand finds (chat 8): {STAT.get('known_good_found', 0)} found by the bot itself, {STAT.get('known_good_missed', 0)} missed" + (': ' + ', '.join(kg_missed) if kg_missed else '') + '.', '',
+          '| Band | Grade | State | Gap | What | What it is | Publisher | Parks named | Kind | Link |', '|---|---|---|---|---|---|---|---|---|---|']
     for x in rank[:50]:
-        md.append(f"| {x.get('band', '')} | {x.get('grade', 0)} | {x['st']} | {', '.join(x.get('gaps', []))} | {x.get('title', '')[:60].replace('|', '/')} | "
-                  f"{x.get('publisher', '')[:40].replace('|', '/')} | {x.get('parks_named', '')} | {x.get('kind', '')}{' · ' + x['licence_note'] if x.get('licence_note') else ''} | {x['url']} |")
+        md.append(f"| {x.get('band', '')}{(' (chat 8: ' + x['hand_band'] + ')') if x.get('hand_band') else ''} | {x.get('grade', 0)} | {x['st']} | {', '.join(x.get('gaps', []))} | {x.get('title', '')[:60].replace('|', '/')} | "
+                  f"{'; '.join(x.get('is') or [])[:90].replace('|', '/')} | {x.get('publisher', '')[:40].replace('|', '/')} | {x.get('parks_named', '')} | {x.get('kind', '')}{' · ' + x['licence_note'] if x.get('licence_note') else ''} | {x['url']} |")
+    md += ['', '## What ran', '| Source / keyword | Gap | Hits | New | Already read | Not the agency | Not this state | Theme |', '|---|---|---|---|---|---|---|---|']
+    for k in kwlog:
+        if 'keyword' in k: md.append(f"| {k['keyword']} | {k['gap']} | {k['hits']} | {k['new']} | {k['already_read']} | {k['not_agency']} | {k['not_this_state']} | {k['theme']} |")
+        elif 'services' in k: md.append(f"| server walk {k['server']} | all | {k['services']} services in {k['folders']} folders | {k['leads']} | | | | |")
     (D / 'leads.md').write_text('\n'.join(md) + '\n')
     obs = [leads[k] for k in new if leads[k].get('band') == 'A']
     if obs:

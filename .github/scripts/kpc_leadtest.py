@@ -55,7 +55,10 @@ def probe_service(svc, miss, max_layers=6):
         except Exception as e:  # noqa: BLE001
             out['layers'].append({'id': L.get('id'), 'err': str(e)[:60]}); continue
         nf = name_field(d.get('fields') or [])
-        row = {'id': L.get('id'), 'name': (d.get('name') or '')[:60], 'geom': (d.get('geometryType') or '').replace('esriGeometry', ''), 'nameField': nf}
+        row = {'id': L.get('id'), 'name': (d.get('name') or '')[:60], 'geom': (d.get('geometryType') or '').replace('esriGeometry', ''), 'nameField': nf, 'fields': [x['name'] for x in (d.get('fields') or [])][:30]}
+        if nf and not miss:
+            try: row['records'] = get(lu + '/query', {'where': '1=1', 'returnCountOnly': 'true', 'f': 'json'}, timeout=30).get('count')
+            except Exception: pass  # noqa: BLE001
         if nf and miss:
             names, off = set(), 0
             try:
