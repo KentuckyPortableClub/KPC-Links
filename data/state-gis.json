@@ -1725,6 +1725,16 @@
     "host": "agency",
     "code": "PE-PP",
     "note": "outside research bot Canada round 2, tested 2026-10-25; matched 4 of 18 (PE Provincial Park)"
+   },
+   {
+    "kind": "wild",
+    "ag": "Province of PEI, Department of Land & Environment (credit; updated Dec 2025)",
+    "host": "agency",
+    "nm": "NAME_E",
+    "lic": "credit line only, no use limits",
+    "read": "2026-10-28",
+    "note": "49 wildlife management + natural areas (TYPE_E: provincial, provincially owned natural area, privately owned WMA)",
+    "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_Wildlife_Management_Area/MapServer/0"
    }
   ],
   "AB": [
