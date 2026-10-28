@@ -1,0 +1,6433 @@
+[
+ {
+  "state": "CA-AB",
+  "agency_site": "geospatial.alberta.ca",
+  "parks": 95,
+  "bot_ok": 95,
+  "address_pattern": "geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-0653",
+    "park": "Hilliard's Bay Provincial Park",
+    "link": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-0671",
+    "park": "Rumsey Natural Area",
+    "link": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-0677",
+    "park": "Spray Valley Provincial Park",
+    "link": "https://geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/MapServer",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-AB",
+  "agency_site": "albertaparks.ca",
+  "parks": 15,
+  "bot_ok": 15,
+  "address_pattern": "albertaparks.ca/media/123323/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-0655",
+    "park": "Long Lake Provincial Park",
+    "link": "https://www.albertaparks.ca/media/123323/long-lake-tear-sheet.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-0672",
+    "park": "Saskatoon Island Provincial Park",
+    "link": "https://www.albertaparks.ca/media/123338/saskatoon-island-tear-sheet.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-0687",
+    "park": "William A. Switzer Provincial Park",
+    "link": "https://www.albertaparks.ca/media/6492882/switzer-park-brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-AB",
+  "agency_site": "calgary.ca",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "calgary.ca/content/dam/www/transportation/tp/documents/cycling/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-3046",
+    "park": "Inglewood Bird Sanctuary",
+    "link": "https://www.calgary.ca/content/dam/www/transportation/tp/documents/cycling/inglewood-bird-sanctuary.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-3089",
+    "park": "Nose Hill Park Natural Area",
+    "link": "https://www.calgary.ca/content/dam/www/csps/parks/documents/construction/nose-hill-project/trail-pathways-map.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-AB",
+  "agency_site": "parks.canada.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parks.canada.ca/pn-np/ab/waterton/visit/cartes-maps/~/media/<file.ashx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-3157",
+    "park": "Waterton-Glacier International Peace Park",
+    "link": "https://parks.canada.ca/pn-np/ab/waterton/visit/cartes-maps/~/media/bddfcc88d8744c629e94b432625ae743.ashx",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-BC",
+  "agency_site": "parks.canada.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parks.canada.ca/lhn-nhs/bc/fortroddhill/visit/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4787",
+    "park": "Fisgard Lighthouse National Historic Site",
+    "link": "https://parks.canada.ca/lhn-nhs/bc/fortroddhill/visit/plandusite-sitemap",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-MB",
+  "agency_site": "legacy.winnipeg.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "legacy.winnipeg.ca/publicworks/parks/<file.stm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-2515",
+    "park": "St. Vital Park Recreation Park",
+    "link": "https://legacy.winnipeg.ca/publicworks/parks/st-vital.stm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-NL",
+  "agency_site": "gov.nl.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "gov.nl.ca/eccc/natural-areas/wer/r-mpe/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4559",
+    "park": "Mistaken Point Ecological Reserve",
+    "link": "https://www.gov.nl.ca/eccc/natural-areas/wer/r-mpe/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-NS",
+  "agency_site": "parks.canada.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parks.canada.ca/lhn-nhs/ns/louisbourg/visit/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4837",
+    "park": "Fortress of Louisbourg National Historic Site",
+    "link": "https://parks.canada.ca/lhn-nhs/ns/louisbourg/visit/brochures",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-ON",
+  "agency_site": "markham.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-1668",
+    "park": "Toogood Pond Park Conservation Reserve",
+    "link": "https://www.markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/FINAL-Cycling%2BMap%2B2023-aug-9-v2.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-PE",
+  "agency_site": "parks.canada.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parks.canada.ca/pn-np/pe/pei-ipe/visit/~/media/pn-np/pe/pei-ipe/pdfs/<file.ashx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-5288",
+    "park": "Covehead Harbour National Historic Site",
+    "link": "https://parks.canada.ca/pn-np/pe/pei-ipe/visit/~/media/pn-np/pe/pei-ipe/pdfs/visitors-guide-2016-eng.ashx",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "parks.canada.ca",
+  "parks": 6,
+  "bot_ok": 6,
+  "address_pattern": "parks.canada.ca/lhn-nhs/qc/chateauguay/activ/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4896",
+    "park": "Battle of the Chateauguay National Historic Site",
+    "link": "https://www.parks.canada.ca/lhn-nhs/qc/chateauguay/activ/sentiers-trails",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-4897",
+    "park": "Battle of the Restigouche National Historic Site",
+    "link": "https://parks.canada.ca/lhn-nhs/qc/ristigouche/visit/cartes-maps",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-4899",
+    "park": "Carillon Canal National Historic Site",
+    "link": "https://parks.canada.ca/lhn-nhs/qc/canalcarillon/visit/cartes-maps",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "montreal.ca",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "montreal.ca/en/places/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4988",
+    "park": "Parc de la Promenade-Bellerive Regional Park",
+    "link": "https://montreal.ca/en/places/parc-de-la-promenade-bellerive",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "CA-5005",
+    "park": "Parc des Rapides Regional Park",
+    "link": "https://montreal.ca/en/places/parc-des-rapides",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "carte.ptittraindunord.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "carte.ptittraindunord.com/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-2034",
+    "park": "Parc Lineaire Le P'tit Train du Nord Recreation Park",
+    "link": "https://carte.ptittraindunord.com/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "vsj.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "vsj.ca/wp-content/uploads/2023/02/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-2159",
+    "park": "Parc nature du Lac-Jerome Recreation Park",
+    "link": "https://www.vsj.ca/wp-content/uploads/2023/02/Plan_LacJerome_Web.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "parcjeandrapeau.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parcjeandrapeau.com/en/publications/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-2176",
+    "park": "Parc Jean-Drapeau Regional Park",
+    "link": "https://www.parcjeandrapeau.com/en/publications/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "ville.vaudreuil-dorion.qc.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "ville.vaudreuil-dorion.qc.ca/uploads/sections/Loisirs_culture/Installations_recreatives/Espaces_verts/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-2233",
+    "park": "Parc de la Maison-Valois Recreation Park",
+    "link": "https://www.ville.vaudreuil-dorion.qc.ca/uploads/sections/Loisirs_culture/Installations_recreatives/Espaces_verts/Plan-directeur_PEV.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "montsaintjoseph.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "montsaintjoseph.com/wp-content/uploads/2020/06/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4948",
+    "park": "Parc regional du Mont-Saint-Joseph Regional Park",
+    "link": "https://montsaintjoseph.com/wp-content/uploads/2020/06/Carte_rando_complete_MSJ_2020.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "pra.terrebonne.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "pra.terrebonne.ca/wp-content/uploads/2024/05/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4954",
+    "park": "Parc de la Riviere de Terrebonne Regional Park",
+    "link": "https://pra.terrebonne.ca/wp-content/uploads/2024/05/plan-directeur-corridor-de-biodiversite-juin-2021.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "parcdeschutes.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parcdeschutes.com/en/trails/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4956",
+    "park": "Parc des Chutes Regional Park",
+    "link": "https://parcdeschutes.com/en/trails/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "st-hyacinthe.ca",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "st-hyacinthe.ca/medias/loisirs-et-culture/installations/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4959",
+    "park": "Parc Les Salines Regional Park",
+    "link": "https://www.st-hyacinthe.ca/medias/loisirs-et-culture/installations/LCVC_Installations-recreatives_Parc-Les-Salines_carte-sentiers.pdf",
+    "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "cms.longueuil.quebec",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "cms.longueuil.quebec/sites/default/files/medias/documents/2021-11/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4960",
+    "park": "Parc Michel-Chartrand Regional Park",
+    "link": "https://cms.longueuil.quebec/sites/default/files/medias/documents/2021-11/Rapport%20Table%20de%20concertation%20du%20parc%20Michel-Chartrand%20-%2022%20novembre%202021.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "mrcdrummond.qc.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "mrcdrummond.qc.ca/parc-regional-foret-drummond/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4975",
+    "park": "Parc regional de la Foret Drummond Regional Park",
+    "link": "https://www.mrcdrummond.qc.ca/parc-regional-foret-drummond/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "gatineau.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "gatineau.ca/docs/activites_evenements_idees_sorties/plein_air_urbain/sites_plein_air/lac_leamy/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-5004",
+    "park": "Centre de plein air du Lac-Leamy Regional Park",
+    "link": "https://www.gatineau.ca/docs/activites_evenements_idees_sorties/plein_air_urbain/sites_plein_air/lac_leamy/20200220_carte_sentiers_ski_fond.fr-CA.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "valleyfield.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "valleyfield.ca/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-5019",
+    "park": "Parc regional des Iles-de-Saint-Timothee Regional Park",
+    "link": "https://valleyfield.ca/parc-des-iles",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-QC",
+  "agency_site": "laval.ca",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "laval.ca/sports-loisirs/centre-nature/acces-plan/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-5032",
+    "park": "Centre de la nature de Laval Regional Park",
+    "link": "https://www.laval.ca/sports-loisirs/centre-nature/acces-plan/",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-SK",
+  "agency_site": "saskregionalparks.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "saskregionalparks.ca/park/jean-louis-legare/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-1112",
+    "park": "Jean Louis Legare Regional Park",
+    "link": "https://saskregionalparks.ca/park/jean-louis-legare/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "CA-YT",
+  "agency_site": "parks.canada.ca",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parks.canada.ca/culture/designation/lieu-site/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "CA-4619",
+    "park": "T'aw Ta'ar National Historic Site",
+    "link": "https://parks.canada.ca/culture/designation/lieu-site/tawtaar",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AK",
+  "agency_site": "nps.gov",
+  "parks": 18,
+  "bot_ok": 18,
+  "address_pattern": "nps.gov/alag/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0002",
+    "park": "Alagnak Wild River National Park",
+    "link": "https://www.nps.gov/alag/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0003",
+    "park": "Aniakchak National Preserve",
+    "link": "https://www.nps.gov/ania/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0022",
+    "park": "Denali National Park",
+    "link": "https://www.nps.gov/dena/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AK",
+  "agency_site": "blm.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "blm.gov/sites/blm.gov/files/documents/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11828",
+    "park": "Fortymile BLM Wild and Scenic River",
+    "link": "https://www.blm.gov/sites/blm.gov/files/documents/files/Maps_GeoPDF_Fortymile_Wild_Scenic_River_Taylor_Highway_20170324.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "outdooralabama.com",
+  "parks": 15,
+  "bot_ok": 8,
+  "address_pattern": "outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10428",
+    "park": "Walls of Jericho State Natural Area",
+    "link": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/2025_26_D2-James%20D.%20Martin-Skyline%20WMA.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-11033",
+    "park": "The Portland Landing Conservation Reserve",
+    "link": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2021-2022/SOA/SOA-%20portland.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-11272",
+    "park": "Mulberry Fork Wildlife Management Area",
+    "link": "https://www.outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/2025_26_D3-Mulberry%20Fork%20WMA.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "nps.gov",
+  "parks": 11,
+  "bot_ok": 11,
+  "address_pattern": "nps.gov/liri/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0641",
+    "park": "Little River Canyon National Preserve",
+    "link": "https://www.nps.gov/liri/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0642",
+    "park": "Natchez Trace Parkway National Parkway",
+    "link": "https://www.nps.gov/natr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0719",
+    "park": "Horseshoe Bend National Military Park",
+    "link": "https://www.nps.gov/hobe/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "alabamaforeverwild.com",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "alabamaforeverwild.com/sites/default/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11026",
+    "park": "The Indian Mountain Conservation Area",
+    "link": "https://www.alabamaforeverwild.com/sites/default/files/Indian-Mountain-Complex-Permit-Map-2025-2026.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-11032",
+    "park": "Old Cahawba Prairie Conservation Reserve",
+    "link": "https://www.alabamaforeverwild.com/sites/default/files/Old-Cahawba-Prairie-Tract-Permit-Map-2025-2026.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-3696",
+    "park": "Lillian Swamp Complex Preserve State Conservation Area",
+    "link": "https://www.alabamaforeverwild.com/sites/default/files/Lillian-Swamp-Complex-Permit-Map-2025-2026.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "conservationgis.alabama.gov",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "conservationgis.alabama.gov/Documents/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1034",
+    "park": "Blue Springs State Park",
+    "link": "https://conservationgis.alabama.gov/Documents/NoHunting.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1036",
+    "park": "Cathedral Caverns State Park",
+    "link": "https://conservationgis.alabama.gov/Documents/NoHunting.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-3709",
+    "park": "Turkey Creek Nature Preserve State Conservation Area",
+    "link": "https://conservationgis.alabama.gov/Documents/NoHunting.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "alapark.com",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "alapark.com/sites/default/files/2020-02/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1042",
+    "park": "Gulf State Park",
+    "link": "https://www.alapark.com/sites/default/files/2020-02/Gulf%20State%20Park%20Map_2020.pdf",
+    "result": "ok",
+    "map_date": "2020"
+   },
+   {
+    "ref": "US-1048",
+    "park": "Monte Sano State Park",
+    "link": "https://www.alapark.com/maps-directory",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1049",
+    "park": "Oak Mountain State Park",
+    "link": "https://www.alapark.com/sites/default/files/2019-07/OMSPparkmap_0.pdf",
+    "result": "ok",
+    "map_date": "2019 file upload; map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/sites/default/files/documents/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0161",
+    "park": "Wheeler National Wildlife Refuge",
+    "link": "https://www.fws.gov/sites/default/files/documents/Wheeler%20Map%20Digital%20File%20-%202022.12.17.pdf",
+    "result": "ok",
+    "map_date": "2022-12-17"
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "tva.com",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "tva.com/environment/recreation/recreation-areas/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12412",
+    "park": "TVA Rockpile Recreation Area National Park",
+    "link": "https://www.tva.com/environment/recreation/recreation-areas/rockpile-recreation-area",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AL",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fs.usda.gov/r08/alabama/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4451",
+    "park": "Tuskegee National Forest",
+    "link": "https://www.fs.usda.gov/r08/alabama/maps-guides",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "agfc.com",
+  "parks": 21,
+  "bot_ok": 21,
+  "address_pattern": "agfc.com/maps/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7266",
+    "park": "Blue Mountain Wildlife Management Area",
+    "link": "https://www.agfc.com/maps/",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7268",
+    "park": "Brewer Lake Wildlife Management Area",
+    "link": "https://www.agfc.com/maps/",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7269",
+    "park": "Brushy Creek Wildlife Management Area",
+    "link": "https://www.agfc.com/maps/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "arkansasstateparks.com",
+  "parks": 12,
+  "bot_ok": 6,
+  "address_pattern": "arkansasstateparks.com/parks/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1071",
+    "park": "Arkansas Post Museam State Park",
+    "link": "https://www.arkansasstateparks.com/parks/arkansas-post-museum-state-park",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-1073",
+    "park": "Cane Creek State Park",
+    "link": "https://www.arkansasstateparks.com/parks/cane-creek-state-park",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1075",
+    "park": "Cossatot River State Park",
+    "link": "https://www.arkansasstateparks.com/parks/cossatot-river-state-park-natural-area",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "nps.gov",
+  "parks": 6,
+  "bot_ok": 6,
+  "address_pattern": "nps.gov/hosp/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0038",
+    "park": "Hot Springs National Park",
+    "link": "https://www.nps.gov/hosp/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0721",
+    "park": "Pea Ridge National Military Park",
+    "link": "https://www.nps.gov/peri/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0768",
+    "park": "Arkansas Post National Memorial",
+    "link": "https://www.nps.gov/arpo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "swl.usace.army.mil",
+  "parks": 5,
+  "bot_ok": 0,
+  "address_pattern": "swl.usace.army.mil/Missions/Recreation/ArkansasRiver/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1091",
+    "park": "Lake Dardanelle State Park",
+    "link": "http://www.swl.usace.army.mil/Missions/Recreation/ArkansasRiver/Dardanelle.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7190",
+    "park": "Bull Shoals Lake State Recreation Area",
+    "link": "http://www.swl.usace.army.mil/Missions/Recreation/Lakes/BullShoalsLake.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7280",
+    "park": "Dardanelle Wildlife Management Area",
+    "link": "http://www.swl.usace.army.mil/Missions/Recreation/ArkansasRiver/Dardanelle.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "fs.usda.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "fs.usda.gov/r08/ouachita/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4424",
+    "park": "Ouachita National Forest",
+    "link": "https://www.fs.usda.gov/r08/ouachita/maps-guides",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7442",
+    "park": "Blanchard Springs State Recreation Area",
+    "link": "https://www.fs.usda.gov/recarea/osfnf/recarea/?recid=43431",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "arkansasheritage.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0637",
+    "park": "Mills Park State Conservation Area",
+    "link": "https://www.arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/mills-park-natural-area-boundary-map-3-18-22.pdf?sfvrsn=56454d3a_2",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AR",
+  "agency_site": "apps.agfc.com",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "apps.agfc.com/maps/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7294",
+    "park": "Holland Bottoms Wildlife Management Area",
+    "link": "https://apps.agfc.com/maps/",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AZ",
+  "agency_site": "nps.gov",
+  "parks": 19,
+  "bot_ok": 19,
+  "address_pattern": "nps.gov/grca/planyourvisit/upload/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0030",
+    "park": "Grand Canyon National Park",
+    "link": "https://www.nps.gov/grca/planyourvisit/upload/GRCAmap2.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0057",
+    "park": "Petrified Forest National Park",
+    "link": "https://www.nps.gov/pefo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0060",
+    "park": "Saguaro National Park",
+    "link": "https://www.nps.gov/sagu/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated May 29, 2025; individual map dates not sta"
+   }
+  ]
+ },
+ {
+  "state": "US-AZ",
+  "agency_site": "azgfd.com",
+  "parks": 9,
+  "bot_ok": 0,
+  "address_pattern": "azgfd.com/wildlife/viewing/wheretogo/robbins/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11028",
+    "park": "Robbins Butte Wildlife Area State Wildlife Area",
+    "link": "https://www.azgfd.com/wildlife/viewing/wheretogo/robbins/",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-11087",
+    "park": "Upper Verde River State Wildlife Area",
+    "link": "https://www.azgfd.com/wildlife/viewing/wheretogo/upperverde/",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-11946",
+    "park": "Willcox Playa State Wildlife Area",
+    "link": "https://www.azgfd.com/wildlife/viewing/wheretogo/wilcoxplaya/",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AZ",
+  "agency_site": "fs.usda.gov",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "fs.usda.gov/r03/apache-sitgreaves/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4427",
+    "park": "Apache-Sitgreaves National Forest",
+    "link": "https://www.fs.usda.gov/r03/apache-sitgreaves/maps-guides",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4428",
+    "park": "Coconino National Forest",
+    "link": "https://www.fs.usda.gov/sites/nfs/files/r03/coconino/publication/2025-travel-map.pdf",
+    "result": "ok",
+    "map_date": "April 15, 2025"
+   },
+   {
+    "ref": "US-4429",
+    "park": "Coronado National Forest",
+    "link": "https://www.fs.usda.gov/r03/coronado/maps-guides",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AZ",
+  "agency_site": "blm.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "blm.gov/sites/blm.gov/files/docs/2020-12/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4436",
+    "park": "Vermilion Cliffs National Monument",
+    "link": "https://www.blm.gov/sites/blm.gov/files/docs/2020-12/AZ_VermilionCliffs_NM_map-508.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7381",
+    "park": "Las Cienegas National Conservation Area",
+    "link": "https://www.blm.gov/documents/arizona/public-room/map/las-cienegas-national-conservation-area",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-8312",
+    "park": "Gila Box Riparian National Conservation Area",
+    "link": "https://www.blm.gov/documents/arizona/public-room/map/gila-box-riparian-national-conservation-area",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-AZ",
+  "agency_site": "home.nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "home.nps.gov/lake/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0676",
+    "park": "Lake Mead National Recreation Area",
+    "link": "https://home.nps.gov/lake/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated May 28, 2026"
+   }
+  ]
+ },
+ {
+  "state": "US-AZ",
+  "agency_site": "azstateparks.com",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "azstateparks.com/catalina/explore/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1055",
+    "park": "Catalina State Park",
+    "link": "https://azstateparks.com/catalina/explore/maps",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "parks.ca.gov",
+  "parks": 181,
+  "bot_ok": 173,
+  "address_pattern": "parks.ca.gov/pages/464/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1121",
+    "park": "Ahjumawi Lava Springs State Park",
+    "link": "https://www.parks.ca.gov/pages/464/files/AhjumawiLavaSpringsWeb2016.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1122",
+    "park": "Andrew Molera State Park",
+    "link": "https://www.parks.ca.gov/pages/582/files/Andrew_Molera_Trail_Camp_Map_FINAL_(JS_12.19.22).pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1123",
+    "park": "Angel Island State Park",
+    "link": "https://www.parks.ca.gov/pages/468/files/AngelIslandSPSpanishWebLayout2016.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "nps.gov",
+  "parks": 27,
+  "bot_ok": 27,
+  "address_pattern": "nps.gov/chis/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0014",
+    "park": "Channel Islands National Park",
+    "link": "https://www.nps.gov/chis/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0021",
+    "park": "Death Valley National Park",
+    "link": "https://www.nps.gov/deva/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0041",
+    "park": "Joshua Tree National Park",
+    "link": "https://www.nps.gov/jotr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "fs.usda.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "fs.usda.gov/htnf/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4391",
+    "park": "Humboldt-Toiyabe National Forest",
+    "link": "https://www.fs.usda.gov/htnf/",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4453",
+    "park": "Angeles National Forest",
+    "link": "https://www.fs.usda.gov/angeles/maps-pubs",
+    "result": "ok",
+    "map_date": "Map date varies by map; not stated on landing page"
+   },
+   {
+    "ref": "US-4454",
+    "park": "Cleveland National Forest",
+    "link": "https://www.fs.usda.gov/r05/cleveland/maps-guides",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "blm.gov",
+  "parks": 4,
+  "bot_ok": 3,
+  "address_pattern": "blm.gov/visit-us/search-details/13421/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11017",
+    "park": "Little Picacho Wilderness Area",
+    "link": "https://www.blm.gov/visit-us/search-details/13421/2",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-4541",
+    "park": "Carrizo Plain National Monument",
+    "link": "https://www.blm.gov/documents/california/public-room/brochure/carrizo-plain-national-monument-recreation-map-and-guide",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4543",
+    "park": "Mojave Trails National Monument",
+    "link": "https://www.blm.gov/sites/default/files/docs/2023-07/MojaveTrailsNM_508_0.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "wildlife.ca.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "wildlife.ca.gov/Lands/Places-to-Visit/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12681",
+    "park": "Spenceville State Wildlife Area",
+    "link": "https://wildlife.ca.gov/Lands/Places-to-Visit/Spenceville-WA",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7377",
+    "park": "Bolsa Chica Ecological Reserve",
+    "link": "https://wildlife.ca.gov/Lands/Places-to-Visit/Bolsa-Chica-ER",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/don-edwards-san-francisco-bay/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0189",
+    "park": "Don Edwards San Francisco Bay National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/don-edwards-san-francisco-bay/visit-us",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "spn.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "spn.usace.army.mil/Missions/Recreation/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10403",
+    "park": "Lake Sonoma State Wildlife Area",
+    "link": "http://www.spn.usace.army.mil/Missions/Recreation/LakeSonoma.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "ohv.parks.ca.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "ohv.parks.ca.gov/pages/1170/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10633",
+    "park": "Carnegie State Recreation Area",
+    "link": "https://ohv.parks.ca.gov/pages/1170/files/Resource Management Areas in Carnegie SVRA.pdf",
+    "result": "no answer (URL can't contain control characters. '/)",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "spk.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "spk.usace.army.mil/Portals/12/documents/parks_lakes/BlackButte/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12616",
+    "park": "Black Butte Lake Park",
+    "link": "http://www.spk.usace.army.mil/Portals/12/documents/parks_lakes/BlackButte/BBL_Trail_Map.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "files.santaclaracounty.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "files.santaclaracounty.gov/migrated/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3473",
+    "park": "Martial Cottle Park State Recreation Area",
+    "link": "https://files.santaclaracounty.gov/migrated/MartialCottleGuideMap.pdf",
+    "result": "HTTP 403",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "dbw.parks.ca.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "dbw.parks.ca.gov/pages/28702/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3532",
+    "park": "Picacho State Recreation Area",
+    "link": "http://dbw.parks.ca.gov/pages/28702/files/BlythetoImperial.pdf",
+    "result": "HTTP 522",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CA",
+  "agency_site": "fire.ca.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "fire.ca.gov/what-we-do/natural-resource-management/forestry/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4607",
+    "park": "Mountain Home Demonstration State Forest",
+    "link": "https://www.fire.ca.gov/what-we-do/natural-resource-management/forestry/forest-management",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CO",
+  "agency_site": "nps.gov",
+  "parks": 13,
+  "bot_ok": 13,
+  "address_pattern": "nps.gov/blca/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0008",
+    "park": "Black Canyon of the Gunnison National Park",
+    "link": "https://www.nps.gov/blca/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0033",
+    "park": "Great Sand Dunes National Park",
+    "link": "https://www.nps.gov/grsa/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0051",
+    "park": "Mesa Verde National Park",
+    "link": "https://www.nps.gov/meve/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CO",
+  "agency_site": "cpw.state.co.us",
+  "parks": 10,
+  "bot_ok": 10,
+  "address_pattern": "cpw.state.co.us/sites/default/files/dam/vhuuk6xtqt/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0184",
+    "park": "Ramah State Wildlife Area",
+    "link": "https://cpw.state.co.us/sites/default/files/dam/vhuuk6xtqt/ramahswa_geo.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1209",
+    "park": "Barr Lake State Park",
+    "link": "https://cpw.state.co.us/sites/default/files/dam/typuvxypbr/barr-lake-state-park-brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1210",
+    "park": "Boyd Lake State Park",
+    "link": "https://cpw.state.co.us/state-parks/boyd-lake-state-park",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CO",
+  "agency_site": "fs.usda.gov",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "fs.usda.gov/r02/gmug/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4402",
+    "park": "Gunnison National Forest",
+    "link": "https://www.fs.usda.gov/r02/gmug/maps-guides",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4404",
+    "park": "Pike National Forest",
+    "link": "https://www.fs.usda.gov/r02/psicc/maps-guides",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4407",
+    "park": "San Isabel National Forest",
+    "link": "https://www.fs.usda.gov/psicc/maps-pubs",
+    "result": "ok",
+    "map_date": "Map date varies by map; not stated on landing page"
+   }
+  ]
+ },
+ {
+  "state": "US-CO",
+  "agency_site": "fws.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "fws.gov/sites/default/files/documents/2024-06/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0225",
+    "park": "Rocky Flats National Wildlife Refuge",
+    "link": "https://fws.gov/sites/default/files/documents/2024-06/rocky-flats-nwr-brochure-web.pdf",
+    "result": "ok",
+    "map_date": "2024-06"
+   },
+   {
+    "ref": "US-0226",
+    "park": "Rocky Mountain Arsenal National Wildlife Refuge",
+    "link": "https://www.fws.gov/sites/default/files/documents/2025-03/rma-wildlife-drive-and-trails-web.pdf",
+    "result": "ok",
+    "map_date": "January 2025"
+   }
+  ]
+ },
+ {
+  "state": "US-CO",
+  "agency_site": "blm.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "blm.gov/visit/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9596",
+    "park": "North Sand Hills BLM National Recreation Area",
+    "link": "https://www.blm.gov/visit/north-sand-hills-recreation-area",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CT",
+  "agency_site": "nae.usace.army.mil",
+  "parks": 3,
+  "bot_ok": 0,
+  "address_pattern": "nae.usace.army.mil/Portals/74/docs/Recreation/BRL/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1649",
+    "park": "Black Rock State Park",
+    "link": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/BRL/BRLRecMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-1694",
+    "park": "Mansfield Hollow State Park",
+    "link": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/MHLMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7520",
+    "park": "Mansfield Hollow Wildlife Management Area",
+    "link": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/MHLMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CT",
+  "agency_site": "nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "nps.gov/wefa/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0873",
+    "park": "Weir Farm National Historic Site",
+    "link": "https://www.nps.gov/wefa/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-CT",
+  "agency_site": "portal.ct.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "portal.ct.gov/-/media/DEEP/stateparks/maps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1728",
+    "park": "Wharton Brook State Park",
+    "link": "https://portal.ct.gov/-/media/DEEP/stateparks/maps/whartonbrookpdf.pdf",
+    "result": "ok",
+    "map_date": "January 20, 2011"
+   }
+  ]
+ },
+ {
+  "state": "US-DC",
+  "agency_site": "nps.gov",
+  "parks": 22,
+  "bot_ok": 22,
+  "address_pattern": "nps.gov/coga/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0653",
+    "park": "Constitution Gardens National Park",
+    "link": "https://www.nps.gov/coga/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0655",
+    "park": "National Mall Park",
+    "link": "https://www.nps.gov/nama/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated June 26, 2025"
+   },
+   {
+    "ref": "US-0656",
+    "park": "Rock Creek Park",
+    "link": "https://www.nps.gov/rocr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-DE",
+  "agency_site": "documents.dnrec.delaware.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "documents.dnrec.delaware.gov/parks/Information/Documents/Tri-ValleyTrail/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1743",
+    "park": "White Clay Creek State Park",
+    "link": "https://documents.dnrec.delaware.gov/parks/Information/Documents/Tri-ValleyTrail/White%20Clay%20State%20Park%20Trail%20Plan.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-DE",
+  "agency_site": "destateparks.com",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "destateparks.com/wwwroot/maps/trap-pond/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9890",
+    "park": "James Branch State Nature Preserve",
+    "link": "https://destateparks.com/wwwroot/maps/trap-pond/JamesBranchCanoeTrailMap.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "floridastateparks.org",
+  "parks": 11,
+  "bot_ok": 3,
+  "address_pattern": "floridastateparks.org/parks-and-trails/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1847",
+    "park": "Collier-Seminole State Park",
+    "link": "https://www.floridastateparks.org/parks-and-trails/collier-seminole-state-park",
+    "result": "HTTP 403",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1848",
+    "park": "Colt Creek State Park",
+    "link": "https://www.floridastateparks.org/parks-and-trails/colt-creek-state-park",
+    "result": "HTTP 403",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1873",
+    "park": "Fred Gannon Rocky Bayou State Park",
+    "link": "https://www.floridastateparks.org/sites/default/files/media/file/fgr-brochure.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "nps.gov",
+  "parks": 7,
+  "bot_ok": 7,
+  "address_pattern": "nps.gov/drto/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0023",
+    "park": "Dry Tortugas National Park",
+    "link": "https://www.nps.gov/drto/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0024",
+    "park": "Everglades National Park",
+    "link": "https://www.nps.gov/ever/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0659",
+    "park": "Big Cypress National Preserve",
+    "link": "https://www.nps.gov/bicy/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "myfwc.com",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "myfwc.com/recreation/lead/babcockwebb/planning-your-visit/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6291",
+    "park": "Fred C. Babcock/Cecil M. Webb Wildlife Management Area",
+    "link": "https://myfwc.com/recreation/lead/babcockwebb/planning-your-visit/",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-6309",
+    "park": "Hilochee Wildlife Management Area",
+    "link": "https://myfwc.com/recreation/lead/hilochee/planning-your-visit/",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-6324",
+    "park": "Split Oak Forest Wildlife Area",
+    "link": "https://myfwc.com/recreation/lead/split-oak-forest/planning-your-visit/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "fs.usda.gov",
+  "parks": 2,
+  "bot_ok": 1,
+  "address_pattern": "fs.usda.gov/detail/florida/maps-pubs/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4471",
+    "park": "Ocala National Forest",
+    "link": "https://www.fs.usda.gov/detail/florida/maps-pubs/?cid=stelprdb5192625",
+    "result": "ok",
+    "map_date": "Map date varies by map"
+   },
+   {
+    "ref": "US-4559",
+    "park": "Florida Trail National Scenic Trail",
+    "link": "https://www.fs.usda.gov/detailfull/fnst",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "fdacs.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4632",
+    "park": "Myakka State Forest",
+    "link": "https://www.fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/Myakka-State-Forest",
+    "result": "ok",
+    "map_date": "Forest map dated June 2024"
+   },
+   {
+    "ref": "US-4646",
+    "park": "Withlacoochee State Forest",
+    "link": "https://www.fdacs.gov/content/download/40669/file/Withlacoocheestateforest-entireforest.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "aws.sjrwmd.com",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "aws.sjrwmd.com/SJRWMD/lands/trailguides/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8353",
+    "park": "Lake Apopka North Shore State Conservation Area",
+    "link": "https://aws.sjrwmd.com/SJRWMD/lands/trailguides/lake-apopka-north-shore-trail-map.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-8375",
+    "park": "Three Forks State Conservation Area",
+    "link": "https://aws.sjrwmd.com/SJRWMD/lands/recreation/Three_Forks_Conservation_Area.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/media/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0249",
+    "park": "Merritt Island National Wildlife Refuge",
+    "link": "https://www.fws.gov/media/merritt-island-nwr-rules-regulations-and-map",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "floridadep.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "floridadep.gov/sites/default/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3627",
+    "park": "General James A. Van Fleet State Trail",
+    "link": "https://floridadep.gov/sites/default/files/VanFleetStateTrail.pdf",
+    "result": "ok",
+    "map_date": "PDF published approx. 2011; map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "www5.swfwmd.state.fl.us",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "www5.swfwmd.state.fl.us/greenswamp/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-5330",
+    "park": "Green Swamp Wilderness Park Reserve",
+    "link": "https://www5.swfwmd.state.fl.us/greenswamp/map",
+    "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-FL",
+  "agency_site": "swfwmd.state.fl.us",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "swfwmd.state.fl.us/sites/default/files/recreation/maps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6700",
+    "park": "Sawgrass Lake Park State Conservation Area",
+    "link": "https://www.swfwmd.state.fl.us/sites/default/files/recreation/maps/sawgrass.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-GA",
+  "agency_site": "gastateparks.org",
+  "parks": 50,
+  "bot_ok": 47,
+  "address_pattern": "gastateparks.org/sites/default/files/parks/pdf/trailmaps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2165",
+    "park": "A. H. Stephens State Park",
+    "link": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/AHStephens_TrailMap.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-2167",
+    "park": "Black Rock Mountain State Park",
+    "link": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/black_rock_mountain_sp_2022_sitemap.jpg",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-2168",
+    "park": "Chattahoochee Bend State Park",
+    "link": "https://gastateparks.org/sites/default/files/parks/pdf/trailmaps/parkmaps/chattahoochee bend sp 2022 map.jpg",
+    "result": "no answer (URL can't contain control characters. '/)",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-GA",
+  "agency_site": "nps.gov",
+  "parks": 10,
+  "bot_ok": 10,
+  "address_pattern": "nps.gov/chat/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0662",
+    "park": "Chattahoochee River National Recreation Area",
+    "link": "https://www.nps.gov/chat/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Various map dates; Island Ford updated May 2026"
+   },
+   {
+    "ref": "US-0663",
+    "park": "Cumberland Island National Seashore",
+    "link": "https://www.nps.gov/cuis/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0711",
+    "park": "Kennesaw Mountain National Battlefield",
+    "link": "https://www.nps.gov/kemo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-GA",
+  "agency_site": "sam.usace.army.mil",
+  "parks": 3,
+  "bot_ok": 0,
+  "address_pattern": "sam.usace.army.mil/Portals/46/docs/recreation/OP-WP/Docs/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7883",
+    "park": "West Point Wildlife Management Area",
+    "link": "http://www.sam.usace.army.mil/Portals/46/docs/recreation/OP-WP/Docs/WestPointHuntingMap2012[1].pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7911",
+    "park": "Lake Walter F. George Wildlife Management Area",
+    "link": "http://www.sam.usace.army.mil/Portals/46/docs/recreation/WFG/docs/Lake.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-9786",
+    "park": "Lake Seminole Wildlife Management Area",
+    "link": "http://www.sam.usace.army.mil/Portals/46/docs/recreation/OP-AC-WS/images/080718-A-KI945-124.jpg",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-GA",
+  "agency_site": "piedmont.fws.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "piedmont.fws.gov/<file.html>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0264",
+    "park": "Piedmont National Wildlife Refuge",
+    "link": "http://piedmont.fws.gov/pdmmap.html",
+    "result": "HTTP 530",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-GA",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "fs.usda.gov/detailfull/conf/landmanagement/resourcemanagement/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4473",
+    "park": "Chattahoochee-Oconee National Forest",
+    "link": "https://www.fs.usda.gov/detailfull/conf/landmanagement/resourcemanagement/?cid=fsm9_029305",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-GA",
+  "agency_site": "exploregeorgia.org",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "exploregeorgia.org/sites/default/files/listing_documents/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7882",
+    "park": "Doerun Pitcherplant Bog Wildlife Management Area",
+    "link": "https://www.exploregeorgia.org/sites/default/files/listing_documents/Doerun-PP-Bog-wma-map.pdf",
+    "result": "HTTP 403",
+    "map_date": "Revised 2011"
+   }
+  ]
+ },
+ {
+  "state": "US-HI",
+  "agency_site": "nps.gov",
+  "parks": 6,
+  "bot_ok": 6,
+  "address_pattern": "nps.gov/havo/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0037",
+    "park": "Hawai'i Volcanoes National Park",
+    "link": "https://www.nps.gov/havo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0043",
+    "park": "Kalaupapa National Historical Park",
+    "link": "https://www.nps.gov/kala/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0129",
+    "park": "Pearl Harbor National Wildlife Refuge",
+    "link": "https://www.nps.gov/valr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-HI",
+  "agency_site": "dlnr.hawaii.gov",
+  "parks": 2,
+  "bot_ok": 1,
+  "address_pattern": "dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2208",
+    "park": "Akaka Falls State Park",
+    "link": "https://dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-6401",
+    "park": "Mauna Kea State Recreation Area",
+    "link": "https://dlnr.hawaii.gov/dsp/parks/oahu/mauna-kea-state-recreation-area/",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-HI",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/hawaiian-islands/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0119",
+    "park": "Hawaiian Islands National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/hawaiian-islands/visit-us",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-IA",
+  "agency_site": "iowadnr.gov",
+  "parks": 4,
+  "bot_ok": 3,
+  "address_pattern": "iowadnr.gov/places-go/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12376",
+    "park": "Blackburn Wildlife Management Area",
+    "link": "https://www.iowadnr.gov/places-go/wildlife-management-areas",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-2281",
+    "park": "Big Creek State Park",
+    "link": "https://www.iowadnr.gov/portals/idnr/uploads/parks/parkmaps/bigcreekmap.pdf",
+    "result": "HTTP 404",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-4655",
+    "park": "Backbone State Forest",
+    "link": "https://www.iowadnr.gov/places-go/state-forests/backbone-state-forest",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-IA",
+  "agency_site": "nps.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "nps.gov/heho/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0832",
+    "park": "Herbert Hoover National Historic Site",
+    "link": "https://www.nps.gov/heho/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0922",
+    "park": "Effigy Mounds National Monument",
+    "link": "https://www.nps.gov/efmo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-ID",
+  "agency_site": "nps.gov",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "nps.gov/miin/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0279",
+    "park": "Minidoka National Wildlife Refuge",
+    "link": "https://www.nps.gov/miin/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0665",
+    "park": "Craters of the Moon National Monument",
+    "link": "https://www.nps.gov/crmo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0940",
+    "park": "Hagerman Fossil Beds National Monument",
+    "link": "https://www.nps.gov/hafo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-ID",
+  "agency_site": "blm.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "blm.gov/programs/national-conservation-lands/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10383",
+    "park": "Jim McClure-Jerry Peak Wilderness Wilderness Area",
+    "link": "https://www.blm.gov/programs/national-conservation-lands/idaho",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-ID",
+  "agency_site": "parksandrecreation.idaho.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "parksandrecreation.idaho.gov/parks/lava-hot-springs/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11157",
+    "park": "Lava Hot Springs State Recreation Site",
+    "link": "https://parksandrecreation.idaho.gov/parks/lava-hot-springs/",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-IL",
+  "agency_site": "dnr.illinois.gov",
+  "parks": 5,
+  "bot_ok": 3,
+  "address_pattern": "dnr.illinois.gov/content/dam/soi/en/web/dnr/calendar/publishingimages/first-day-hikes/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1000",
+    "park": "Illinois Beach State Park",
+    "link": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/calendar/publishingimages/first-day-hikes/illinoisbeach.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1001",
+    "park": "James Pate Philip State Park",
+    "link": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/hunting/factsheets/documents/jamespatephiliphuntermap4.pdf",
+    "result": "HTTP 404",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-10660",
+    "park": "Illinois and Michigan Canal State Trail",
+    "link": "https://dnr.illinois.gov/content/dam/soi/en/web/dnr/hunting/factsheets/documents/imcanaleasthuntermap.pdf",
+    "result": "HTTP 404",
+    "map_date": "Map date not stated in search result"
+   }
+  ]
+ },
+ {
+  "state": "US-IL",
+  "agency_site": "nps.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "nps.gov/liho/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0841",
+    "park": "Lincoln Home National Historic Site",
+    "link": "https://www.nps.gov/liho/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4572",
+    "park": "Lewis and Clark National Historic Trail",
+    "link": "https://www.nps.gov/lecl/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated 2026 (map date not stated)"
+   },
+   {
+    "ref": "US-7917",
+    "park": "Pullman National Monument",
+    "link": "https://www.nps.gov/pull/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-IL",
+  "agency_site": "s7d1.scene7.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "s7d1.scene7.com/is/image/isp/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1012",
+    "park": "Moraine Hills State Park",
+    "link": "https://s7d1.scene7.com/is/image/isp/morainehillsmap2026",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-IL",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/upper-mississippi-river/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4236",
+    "park": "Upper Mississippi River National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/upper-mississippi-river/map",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-IN",
+  "agency_site": "in.gov",
+  "parks": 14,
+  "bot_ok": 13,
+  "address_pattern": "in.gov/dnr/nature-preserves/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10247",
+    "park": "Lawrence Creek State Nature Preserve",
+    "link": "https://www.in.gov/dnr/nature-preserves/files/np-Lawrence_Creek.pdf",
+    "result": "ok",
+    "map_date": "Date not stated"
+   },
+   {
+    "ref": "US-2252",
+    "park": "Chain O' Lakes State Park",
+    "link": "https://www.in.gov/dnr/state-parks/files/chain_o_lakes_trail.pdf",
+    "result": "ok",
+    "map_date": "\u00a9 02/2026"
+   },
+   {
+    "ref": "US-2253",
+    "park": "Charlestown State Park",
+    "link": "https://www.in.gov/dnr/state-parks/files/charlestown_trail.pdf",
+    "result": "ok",
+    "map_date": "\u00a9 01/2026"
+   }
+  ]
+ },
+ {
+  "state": "US-IN",
+  "agency_site": "nps.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "nps.gov/gero/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0734",
+    "park": "George Rogers Clark National Historical Park",
+    "link": "https://www.nps.gov/gero/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0765",
+    "park": "Indiana Dunes National Park",
+    "link": "https://www.nps.gov/indu/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated August 27, 2024"
+   }
+  ]
+ },
+ {
+  "state": "US-KS",
+  "agency_site": "nwk.usace.army.mil",
+  "parks": 14,
+  "bot_ok": 0,
+  "address_pattern": "nwk.usace.army.mil/Portals/29/docs/lakesites/clinton/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2332",
+    "park": "Clinton State Park",
+    "link": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/clinton/Hunting-Brochure.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-2340",
+    "park": "Hillsdale State Park",
+    "link": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/Hillsdale/hillsdale-lakemap[1].pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-2342",
+    "park": "Kanopolis Lake State Park",
+    "link": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/Kanopolis/Kanopolis-LakeMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-KS",
+  "agency_site": "nps.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "nps.gov/fols/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0818",
+    "park": "Fort Larned National Historic Site",
+    "link": "https://www.nps.gov/fols/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0821",
+    "park": "Fort Scott National Historic Site",
+    "link": "https://www.nps.gov/fosc/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0851",
+    "park": "Nicodemus National Historic Site",
+    "link": "https://www.nps.gov/nico/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-KS",
+  "agency_site": "ksoutdoors.com",
+  "parks": 3,
+  "bot_ok": 0,
+  "address_pattern": "ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/South-Central-Region/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7412",
+    "park": "Black Kettle State Fishing Lake",
+    "link": "https://ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/South-Central-Region/Black-Kettle",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7421",
+    "park": "Rooks State Fishing Lake",
+    "link": "https://ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/Northwest-Region/Rooks",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7949",
+    "park": "Woodson State Wildlife Area",
+    "link": "https://ksoutdoors.com/KDWP-Info/Locations/Wildlife-Areas",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-LA",
+  "agency_site": "nps.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "nps.gov/jela/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0040",
+    "park": "Jean Lafitte National Historical Park",
+    "link": "https://www.nps.gov/jela/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0729",
+    "park": "Cane River Creole National Historical Park",
+    "link": "https://www.nps.gov/cari/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0958",
+    "park": "Poverty Point National Monument",
+    "link": "https://www.nps.gov/popo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MA",
+  "agency_site": "nps.gov",
+  "parks": 14,
+  "bot_ok": 14,
+  "address_pattern": "nps.gov/caco/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0672",
+    "park": "Cape Cod National Seashore",
+    "link": "https://www.nps.gov/caco/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0725",
+    "park": "Adams National Historical Park",
+    "link": "https://www.nps.gov/adam/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0728",
+    "park": "Boston National Historical Park",
+    "link": "https://www.nps.gov/bost/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MA",
+  "agency_site": "mass.gov",
+  "parks": 2,
+  "bot_ok": 1,
+  "address_pattern": "mass.gov/lists/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2420",
+    "park": "Borderland State Park",
+    "link": "https://www.mass.gov/lists/dcr-trail-maps",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-2464",
+    "park": "Whitehall State Park",
+    "link": "https://www.mass.gov/locations/lake-whitehall-state-park",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MA",
+  "agency_site": "nae.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "nae.usace.army.mil/Portals/74/docs/Recreation/WHD/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11573",
+    "park": "West Hill Dam Wildlife Management Area",
+    "link": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/WHD/WHDProjectMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MD",
+  "agency_site": "nps.gov",
+  "parks": 17,
+  "bot_ok": 17,
+  "address_pattern": "nps.gov/nace/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0654",
+    "park": "National Capital Parks Park",
+    "link": "https://www.nps.gov/nace/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0666",
+    "park": "Catoctin Mountain Park",
+    "link": "https://www.nps.gov/cato/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0667",
+    "park": "Fort Washington Park",
+    "link": "https://www.nps.gov/fowa/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MD",
+  "agency_site": "dnr.maryland.gov",
+  "parks": 5,
+  "bot_ok": 4,
+  "address_pattern": "dnr.maryland.gov/publiclands/Documents/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1573",
+    "park": "Gambrill State Park",
+    "link": "https://dnr.maryland.gov/publiclands/Documents/Gambrill_map.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1574",
+    "park": "Gathland State Park",
+    "link": "https://dnr.maryland.gov/publiclands/pages/parkmaps/gathlandmap.aspx",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1588",
+    "park": "Patapsco Valley State Park",
+    "link": "https://dnr.maryland.gov/publiclands/Pages/central/PatapscoValley/Trail-Maps.aspx",
+    "result": "ok",
+    "map_date": "Map dates not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-MD",
+  "agency_site": "home.nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "home.nps.gov/fomc/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0928",
+    "park": "Fort McHenry National Monument",
+    "link": "https://home.nps.gov/fomc/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated September 21, 2026"
+   }
+  ]
+ },
+ {
+  "state": "US-ME",
+  "agency_site": "nps.gov",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "nps.gov/acad/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0001",
+    "park": "Acadia National Park",
+    "link": "https://www.nps.gov/acad/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-10713",
+    "park": "Katahdin Woods and Waters National Monument",
+    "link": "https://www.nps.gov/kaww/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-11808",
+    "park": "Saint Croix Island International Historic Site",
+    "link": "https://www.nps.gov/sacr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MI",
+  "agency_site": "nps.gov",
+  "parks": 6,
+  "bot_ok": 6,
+  "address_pattern": "nps.gov/isro/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0039",
+    "park": "Isle Royale National Park",
+    "link": "https://www.nps.gov/isro/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0714",
+    "park": "River Raisin National Battlefield",
+    "link": "https://www.nps.gov/rira/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0740",
+    "park": "Keweenaw National Historical Park",
+    "link": "https://www.nps.gov/kewe/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MI",
+  "agency_site": "michigan.gov",
+  "parks": 5,
+  "bot_ok": 0,
+  "address_pattern": "michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-13184",
+    "park": "Iron Belle State Trail",
+    "link": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/Iron_Belle_Trail.pdf?hash=AF1DE25252BE6A19A2ECED0E000690F3&rev=4b5da54922134c478354414e88875732",
+    "result": "HTTP 403",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1487",
+    "park": "Belle Isle State Park",
+    "link": "https://www.michigan.gov/recsearch/parks/belleisle",
+    "result": "HTTP 403",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1511",
+    "park": "Kal-Haven Trail State Park",
+    "link": "https://www.michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/KalHavenTrail.pdf?hash=EF06B7A2974AD7316CBF8635600319C5&rev=1ab54ca4b9a54bf68a9eabe270649539",
+    "result": "HTTP 403",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-MI",
+  "agency_site": "dnr.state.mi.us",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "dnr.state.mi.us/publications/pdfs/RecreationCamping/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1518",
+    "park": "Maybury State Park",
+    "link": "https://www.dnr.state.mi.us/publications/pdfs/RecreationCamping/maybury_map.pdf",
+    "result": "HTTP 404",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-MI",
+  "agency_site": "www2.dnr.state.mi.us",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "www2.dnr.state.mi.us/Publications/PDFS/RecreationCamping/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3310",
+    "park": "Fort Custer State Recreation Area",
+    "link": "https://www2.dnr.state.mi.us/Publications/PDFS/RecreationCamping/fort_custer_map.pdf",
+    "result": "HTTP 404",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-MN",
+  "agency_site": "nps.gov",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "nps.gov/voya/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0067",
+    "park": "Voyageurs National Park",
+    "link": "https://www.nps.gov/voya/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0939",
+    "park": "Grand Portage National Monument",
+    "link": "https://www.nps.gov/grpo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0957",
+    "park": "Pipestone National Monument",
+    "link": "https://www.nps.gov/pipe/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MN",
+  "agency_site": "files.dnr.state.mn.us",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "files.dnr.state.mn.us/maps/state_parks/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2482",
+    "park": "Fort Snelling State Park",
+    "link": "https://files.dnr.state.mn.us/maps/state_parks/spk00154_summer.pdf",
+    "result": "ok",
+    "map_date": "\u00a9 2023"
+   },
+   {
+    "ref": "US-7145",
+    "park": "Minnesota Valley State Recreation Area",
+    "link": "https://files.dnr.state.mn.us/maps/state_parks/sra00304.pdf",
+    "result": "ok",
+    "map_date": "2025"
+   },
+   {
+    "ref": "US-9384",
+    "park": "Minnesota Valley State Trail",
+    "link": "https://files.dnr.state.mn.us/maps/state_parks/sra00304.pdf",
+    "result": "ok",
+    "map_date": "PDF published approx. 2025; printed map date not clearly sta"
+   }
+  ]
+ },
+ {
+  "state": "US-MN",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/minnesota-valley/visit-us/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0364",
+    "park": "Minnesota Valley National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/minnesota-valley/visit-us/trails",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-MO",
+  "agency_site": "mdc.mo.gov",
+  "parks": 393,
+  "bot_ok": 393,
+  "address_pattern": "mdc.mo.gov/media/area/map/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0788",
+    "park": "Rocky Creek State Conservation Area",
+    "link": "https://mdc.mo.gov/media/area/map/4629",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-10110",
+    "park": "Wire Road State Conservation Area",
+    "link": "https://mdc.mo.gov/media/area/map/8307",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-10116",
+    "park": "Kings Prairie Access State Conservation Area",
+    "link": "https://mdc.mo.gov/media/area/map/8116",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MO",
+  "agency_site": "nps.gov",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "nps.gov/wicr/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0710",
+    "park": "Wilson's Creek National Battlefield",
+    "link": "https://www.nps.gov/wicr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0779",
+    "park": "Gateway Arch National Park",
+    "link": "https://www.nps.gov/jeff/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0870",
+    "park": "Ulysses S. Grant National Historic Site",
+    "link": "https://www.nps.gov/ulsg/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MO",
+  "agency_site": "nwk.usace.army.mil",
+  "parks": 4,
+  "bot_ok": 0,
+  "address_pattern": "nwk.usace.army.mil/Portals/29/docs/lakesites/truman/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1762",
+    "park": "Harry S Truman State Park",
+    "link": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/truman/Truman-LakeMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-1771",
+    "park": "Long Branch State Park",
+    "link": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/longbranch/longbranch-LakeMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-1778",
+    "park": "Pomme de Terre State Park",
+    "link": "http://www.nwk.usace.army.mil/Portals/29/docs/lakesites/pomme/Lake%20Map-aerial.jpg",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MO",
+  "agency_site": "mvs.usace.army.mil",
+  "parks": 2,
+  "bot_ok": 0,
+  "address_pattern": "mvs.usace.army.mil/Portals/54/siteimages/wappapello/maps/<file.gif>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1769",
+    "park": "Lake Wappapello State Park",
+    "link": "http://www.mvs.usace.army.mil/Portals/54/siteimages/wappapello/maps/Lake-Map-for-web.gif",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-1772",
+    "park": "Mark Twain State Park",
+    "link": "http://www.mvs.usace.army.mil/Portals/54/docs/recreation/marktwain/maps/MTL_Map_MTL_Overall_Map.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MO",
+  "agency_site": "swl.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "swl.usace.army.mil/Portals/50/docs/tablerocklake/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1787",
+    "park": "Table Rock State Park",
+    "link": "http://www.swl.usace.army.mil/Portals/50/docs/tablerocklake/TABLE%20ROCK%20MAP%203-05.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MS",
+  "agency_site": "nps.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "nps.gov/guis/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0661",
+    "park": "Gulf Islands National Seashore",
+    "link": "https://www.nps.gov/guis/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0709",
+    "park": "Tupelo National Battlefield",
+    "link": "https://www.nps.gov/tupe/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0715",
+    "park": "Brices Cross Roads National Battlefield",
+    "link": "https://www.nps.gov/brcr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MS",
+  "agency_site": "sam.usace.army.mil",
+  "parks": 2,
+  "bot_ok": 0,
+  "address_pattern": "sam.usace.army.mil/Portals/46/docs/recreation/okatibbee/<file.gif>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7091",
+    "park": "Okatibbee Wildlife Management Area",
+    "link": "http://www.sam.usace.army.mil/Portals/46/docs/recreation/okatibbee/121022-A-AQ963-001.gif",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-7127",
+    "park": "Okatibbee Lake State Recreation Area",
+    "link": "http://www.sam.usace.army.mil/Portals/46/docs/recreation/okatibbee/121022-A-AQ963-001.gif",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MS",
+  "agency_site": "mdwfp.com",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "mdwfp.com/wildlife-hunting/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7106",
+    "park": "Leaf River Wildlife Management Area",
+    "link": "https://www.mdwfp.com/wildlife-hunting/wma",
+    "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MS",
+  "agency_site": "mvk.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "mvk.usace.army.mil/Portals/58/docs/Lakes/Mississippi/Sardis/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7128",
+    "park": "Sardis Lake State Recreation Area",
+    "link": "http://www.mvk.usace.army.mil/Portals/58/docs/Lakes/Mississippi/Sardis/hunt_fish_brochure_1986b.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MT",
+  "agency_site": "nps.gov",
+  "parks": 7,
+  "bot_ok": 7,
+  "address_pattern": "nps.gov/glac/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0028",
+    "park": "Glacier National Park",
+    "link": "https://www.nps.gov/glac/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0070",
+    "park": "Yellowstone National Park",
+    "link": "https://www.nps.gov/yell/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0674",
+    "park": "Bighorn Canyon National Recreation Area",
+    "link": "https://www.nps.gov/bica/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MT",
+  "agency_site": "fs.usda.gov",
+  "parks": 3,
+  "bot_ok": 0,
+  "address_pattern": "fs.usda.gov/r01/bitterroot/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4500",
+    "park": "Bitterroot National Forest",
+    "link": "https://www.fs.usda.gov/r01/bitterroot/maps-guides",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-4505",
+    "park": "Kootenai National Forest",
+    "link": "https://www.fs.usda.gov/r01/kootenai/maps-guides",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-6209",
+    "park": "Absaroka-Beartooth Wilderness Area",
+    "link": "https://www.fs.usda.gov/visit/destination/absaroka-beartooth-wilderness",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MT",
+  "agency_site": "blm.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "blm.gov/visit/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10527",
+    "park": "Judith Landing (BLM) Recreation Site",
+    "link": "https://www.blm.gov/visit/judith-landing",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-MT",
+  "agency_site": "fwp.mt.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fwp.mt.gov/stateparks/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2605",
+    "park": "Whitefish Lake State Park",
+    "link": "https://fwp.mt.gov/stateparks/whitefish-lake",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NC",
+  "agency_site": "ncparks.gov",
+  "parks": 37,
+  "bot_ok": 36,
+  "address_pattern": "ncparks.gov/maps/carolina-beach-state-park-map/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2722",
+    "park": "Carolina Beach State Park",
+    "link": "https://www.ncparks.gov/maps/carolina-beach-state-park-map/open",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-2723",
+    "park": "Carvers Creek State Park",
+    "link": "https://www.ncparks.gov/state-parks/carvers-creek-state-park/plan-your-visit",
+    "result": "ok",
+    "map_date": "Map dates not stated"
+   },
+   {
+    "ref": "US-2725",
+    "park": "Cliffs of the Neuse State Park",
+    "link": "https://www.ncparks.gov/maps/cliffs-neuse-state-park-map/open",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NC",
+  "agency_site": "nps.gov",
+  "parks": 6,
+  "bot_ok": 6,
+  "address_pattern": "nps.gov/caha/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0682",
+    "park": "Cape Hatteras National Seashore",
+    "link": "https://www.nps.gov/caha/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "ORV access map 2025; page updated July 29, 2025"
+   },
+   {
+    "ref": "US-0683",
+    "park": "Cape Lookout National Seashore",
+    "link": "https://www.nps.gov/calo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0706",
+    "park": "Moores Creek National Battlefield",
+    "link": "https://www.nps.gov/mocr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NC",
+  "agency_site": "ncwildlife.gov",
+  "parks": 2,
+  "bot_ok": 1,
+  "address_pattern": "ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6927",
+    "park": "Nantahala State Game Land",
+    "link": "https://www.ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps/mountain-game-land-maps",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-6958",
+    "park": "Thurmond Chatham State Game Land",
+    "link": "https://www.ncwildlife.gov/hunting/where-hunt-and-shoot/game-lands",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NC",
+  "agency_site": "trails.nc.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "trails.nc.gov/maps/map-pdfs-yadkin-river-state-trail/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12320",
+    "park": "Yadkin River State Trail",
+    "link": "https://trails.nc.gov/maps/map-pdfs-yadkin-river-state-trail/open",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NC",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "fs.usda.gov/sites/nfs/files/r08/northcarolina/publication/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4511",
+    "park": "Uwharrie National Forest",
+    "link": "https://www.fs.usda.gov/sites/nfs/files/r08/northcarolina/publication/UWH%20--%20Uwharrie%20National%20Forest%20Recreation%20Guide.pdf",
+    "result": "HTTP 429",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-NC",
+  "agency_site": "ncagr.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "ncagr.gov/divisions/nc-forest-service/NCFS%20-%20Mountain%20Island%20Trail%20Map.pdf/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4858",
+    "park": "Mountain Island Educational State Forest",
+    "link": "https://www.ncagr.gov/divisions/nc-forest-service/NCFS%20-%20Mountain%20Island%20Trail%20Map.pdf/open",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-ND",
+  "agency_site": "nps.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "nps.gov/thro/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0065",
+    "park": "Theodore Roosevelt National Park",
+    "link": "https://www.nps.gov/thro/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0840",
+    "park": "Knife River Indian Villages National Historic Site",
+    "link": "https://www.nps.gov/knri/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-ND",
+  "agency_site": "nwo.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/Garrison/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2764",
+    "park": "Lake Sakakawea State Park",
+    "link": "http://www.nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/Garrison/BoatingRecreationMaps.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NE",
+  "agency_site": "nps.gov",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "nps.gov/mnrr/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0675",
+    "park": "Missouri National Recreational River National Wild & Scenic River",
+    "link": "https://www.nps.gov/mnrr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-0900",
+    "park": "Agate Fossil Beds National Monument",
+    "link": "https://www.nps.gov/agfo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0942",
+    "park": "Homestead National Historical Park",
+    "link": "https://www.nps.gov/home/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NE",
+  "agency_site": "lpsnrd.maps.arcgis.com",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "lpsnrd.maps.arcgis.com/apps/MapJournal/<file.html>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4016",
+    "park": "Cottontail Wildlife Management Area",
+    "link": "https://lpsnrd.maps.arcgis.com/apps/MapJournal/index.html?appid=a07535d5d2f64bffbef4ca2ec6c8cd0e&section=2",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4019",
+    "park": "Wild Plum Wildlife Management Area",
+    "link": "https://lpsnrd.maps.arcgis.com/apps/MapJournal/index.html?appid=a07535d5d2f64bffbef4ca2ec6c8cd0e&section=8",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4020",
+    "park": "Timber Point Wildlife Management Area",
+    "link": "https://lpsnrd.maps.arcgis.com/apps/MapJournal/index.html?appid=a07535d5d2f64bffbef4ca2ec6c8cd0e&section=7",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NE",
+  "agency_site": "papionrd.org",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "papionrd.org/wp-content/uploads/2025/06/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4011",
+    "park": "Chalco Hills State Recreation Area",
+    "link": "https://www.papionrd.org/wp-content/uploads/2025/06/pPNRD-0031_MAP_Chalco_09-12.pdf",
+    "result": "HTTP 403",
+    "map_date": "PDF posted June 2025; map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-NE",
+  "agency_site": "lenrd.org",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "lenrd.org/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4039",
+    "park": "Maple Creek State Recreation Area",
+    "link": "http://www.lenrd.org/maple-creek-recreation-area",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NE",
+  "agency_site": "nwo.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9360",
+    "park": "Lewis and Clark Lake State Recreation Area",
+    "link": "http://www.nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/BoatingRecreationMaps.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NH",
+  "agency_site": "nhstateparks.org",
+  "parks": 4,
+  "bot_ok": 2,
+  "address_pattern": "nhstateparks.org/visit/historic-sites/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8020",
+    "park": "Franklin Pierce Homestead State Historic Site",
+    "link": "https://www.nhstateparks.org/visit/historic-sites/franklin-pierce-homestead",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-8025",
+    "park": "Wentworth- Coolidge Mansion State Historic Site",
+    "link": "https://www.nhstateparks.org/visit/historic-sites/wentworth-coolidge-mansion",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-8028",
+    "park": "Madison Boulder State Natural Area",
+    "link": "https://www.nhstateparks.org/visit/state-parks/madison-boulder-natural-area",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NH",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/silvio-o-conte/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0329",
+    "park": "Silvio O Conte National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/silvio-o-conte/visit-us",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NH",
+  "agency_site": "nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "nps.gov/saga/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0857",
+    "park": "Saint-Gaudens National Historic Site",
+    "link": "https://www.nps.gov/saga/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NH",
+  "agency_site": "mass.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "mass.gov/doc/nashua-river-rail-trail-map/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8396",
+    "park": "Nashua River Rail Trail State Trail",
+    "link": "https://www.mass.gov/doc/nashua-river-rail-trail-map/download",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "state.nj.us",
+  "parks": 61,
+  "bot_ok": 61,
+  "address_pattern": "state.nj.us/dep/fgw/pdf/wmamaps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11337",
+    "park": "Hamburg Mountain Wildlife Management Area",
+    "link": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/hamburg_mt.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-11863",
+    "park": "Butterfly Bogs Wildlife Management Area",
+    "link": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/butterfly_bogs.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-11964",
+    "park": "Peaslee Wildlife Management Area",
+    "link": "https://www.state.nj.us/dep/fgw/pdf/wmamaps/peaslee.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "nj.gov",
+  "parks": 43,
+  "bot_ok": 3,
+  "address_pattern": "nj.gov/dep/parksandforests/maps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11338",
+    "park": "Stow Creek State Park",
+    "link": "https://nj.gov/dep/parksandforests/maps/stowcreek-area.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-1607",
+    "park": "Allaire State Park",
+    "link": "https://nj.gov/dep/parksandforests/maps/allaire-area.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-1608",
+    "park": "Allamuchy Mountain State Park",
+    "link": "https://nj.gov/dep/parksandforests/maps/allamuchy-area.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "nps.gov",
+  "parks": 10,
+  "bot_ok": 10,
+  "address_pattern": "nps.gov/gate/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0680",
+    "park": "Gateway National Recreation Area",
+    "link": "https://www.nps.gov/gate/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Island unit maps have individual update dates"
+   },
+   {
+    "ref": "US-0684",
+    "park": "Lower Delaware National Wild and Scenic River",
+    "link": "https://www.nps.gov/lode/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated April 1, 2026"
+   },
+   {
+    "ref": "US-0746",
+    "park": "Morristown National Historical Park",
+    "link": "https://www.nps.gov/morr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/wallkill-river/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0456",
+    "park": "Wallkill River National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/wallkill-river/visit-us",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "seepassaiccounty.org",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "seepassaiccounty.org/wp-content/uploads/2022/12/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6462",
+    "park": "Garret Mountain Reservation State Park",
+    "link": "https://seepassaiccounty.org/wp-content/uploads/2022/12/Garret_122022.pdf",
+    "result": "ok",
+    "map_date": "December 2022"
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "dep.nj.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "dep.nj.gov/wp-content/uploads/njnlt/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8047",
+    "park": "Paulinskill Wildlife Management Area",
+    "link": "https://dep.nj.gov/wp-content/uploads/njnlt/hyper_humus.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NJ",
+  "agency_site": "njpalisades.org",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "njpalisades.org/pdfs/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8319",
+    "park": "Palisades Interstate Park",
+    "link": "https://www.njpalisades.org/pdfs/map.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-NM",
+  "agency_site": "nps.gov",
+  "parks": 12,
+  "bot_ok": 12,
+  "address_pattern": "nps.gov/cave/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0012",
+    "park": "Carlsbad Caverns National Park",
+    "link": "https://www.nps.gov/cave/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0013",
+    "park": "Chaco Culture National Historical Park",
+    "link": "https://www.nps.gov/chcu/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0752",
+    "park": "Pecos National Historical Park",
+    "link": "https://www.nps.gov/peco/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NM",
+  "agency_site": "fs.usda.gov",
+  "parks": 2,
+  "bot_ok": 0,
+  "address_pattern": "fs.usda.gov/r03/cibola/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4514",
+    "park": "Cibola National Forest",
+    "link": "https://www.fs.usda.gov/r03/cibola/maps-guides",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-4516",
+    "park": "Lincoln National Forest",
+    "link": "https://www.fs.usda.gov/r03/lincoln/maps-guides",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NM",
+  "agency_site": "eplanning.blm.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "eplanning.blm.gov/public_projects/lup/68121/86178/103335/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11791",
+    "park": "Santa Cruz Lake BLM Recreation Management Area",
+    "link": "https://eplanning.blm.gov/public_projects/lup/68121/86178/103335/Map_08_SRMAs_+_ERMAs.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NM",
+  "agency_site": "emnrd.state.nm.us",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "emnrd.state.nm.us/SPD/documents/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2717",
+    "park": "Sumner Lake State Park",
+    "link": "http://www.emnrd.state.nm.us/SPD/documents/SuLPARKMAP.pdf",
+    "result": "no answer (<urlopen error [Errno -2] Name or servic)",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NV",
+  "agency_site": "nps.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "nps.gov/grba/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0032",
+    "park": "Great Basin National Park",
+    "link": "https://www.nps.gov/grba/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0974",
+    "park": "Tule Springs Fossil Beds National Monument",
+    "link": "https://www.nps.gov/tusk/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NV",
+  "agency_site": "blm.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "blm.gov/documents/nevada/public-room/brochure/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-13151",
+    "park": "Shoshone OHV Trail System BLM Recreation Management Area",
+    "link": "https://www.blm.gov/documents/nevada/public-room/brochure/shoshone-ohv-trail-system-brochure",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7494",
+    "park": "Red Rock Canyon National Conservation Area",
+    "link": "https://www.blm.gov/sites/blm.gov/files/documents/files/NV_RedRockCanyon_NCA_0.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NY",
+  "agency_site": "parks.ny.gov",
+  "parks": 47,
+  "bot_ok": 47,
+  "address_pattern": "parks.ny.gov/sites/default/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10034",
+    "park": "Bennington Battlefield State Historic Site",
+    "link": "https://parks.ny.gov/sites/default/files/BenningtonBattlefieldBenningtonHuntingMap.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-10081",
+    "park": "Long Point (Thousand Islands) State Park",
+    "link": "https://parks.ny.gov/sites/default/files/2026-09/LongPointTI_Hunting_Map.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-10082",
+    "park": "Two Rivers State Park",
+    "link": "https://parks.ny.gov/sites/default/files/2026-09/TwoRivers_Hunting_Map.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NY",
+  "agency_site": "nps.gov",
+  "parks": 21,
+  "bot_ok": 21,
+  "address_pattern": "nps.gov/sara/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0062",
+    "park": "Saratoga National Historical Park",
+    "link": "https://www.nps.gov/sara/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0679",
+    "park": "Fire Island National Seashore",
+    "link": "https://www.nps.gov/fiis/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0763",
+    "park": "Women's Rights National Historical Park",
+    "link": "https://www.nps.gov/wori/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NY",
+  "agency_site": "dec.ny.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "dec.ny.gov/nature/forests-trees/forest-preserve/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2001",
+    "park": "Adirondack State Park",
+    "link": "https://dec.ny.gov/nature/forests-trees/forest-preserve/welcome-to-the-adirondacks",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5694",
+    "park": "Balsam Lake Mountain Wild State Forest",
+    "link": "https://dec.ny.gov/places/balsam-lake-mountain-wild-forest",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NY",
+  "agency_site": "staffportal.parks.ny.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "staffportal.parks.ny.gov/parks/wellesleyisland/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2157",
+    "park": "Wellesley Island State Park",
+    "link": "https://staffportal.parks.ny.gov/parks/wellesleyisland/maps.aspx",
+    "result": "HTTP 404",
+    "map_date": "Map dates not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-NY",
+  "agency_site": "empiretrail.ny.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "empiretrail.ny.gov/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8098",
+    "park": "Empire State Trail",
+    "link": "https://empiretrail.ny.gov/",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-NY",
+  "agency_site": "lrp.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "lrp.usace.army.mil/Portals/72/docs/Recreation/<file.jpg>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9037",
+    "park": "Allegheny Reservoir Wildlife Management Area",
+    "link": "http://www.lrp.usace.army.mil/Portals/72/docs/Recreation/101122-A-0000H-023.jpg",
+    "result": "HTTP 400",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OH",
+  "agency_site": "dam.assets.ohio.gov",
+  "parks": 15,
+  "bot_ok": 15,
+  "address_pattern": "dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1933",
+    "park": "Alum Creek State Park",
+    "link": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/alumcreekparkmap.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated in retrieved map text"
+   },
+   {
+    "ref": "US-1940",
+    "park": "Caesar Creek State Park",
+    "link": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/caesarcreektrailmap.pdf",
+    "result": "ok",
+    "map_date": "Rev 04/2025"
+   },
+   {
+    "ref": "US-1946",
+    "park": "Delaware State Park",
+    "link": "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/delawareparkmap.pdf",
+    "result": "ok",
+    "map_date": "Rev. 05/2025"
+   }
+  ]
+ },
+ {
+  "state": "US-OH",
+  "agency_site": "nps.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "nps.gov/cuva/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0020",
+    "park": "Cuyahoga Valley National Park",
+    "link": "https://www.nps.gov/cuva/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated June 10, 2026"
+   },
+   {
+    "ref": "US-0732",
+    "park": "Dayton Aviation Heritage National Historical Park",
+    "link": "https://www.nps.gov/daav/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated February 1, 2018; map date not stated"
+   },
+   {
+    "ref": "US-0737",
+    "park": "Hopewell Culture National Historical Park",
+    "link": "https://www.nps.gov/hocu/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OH",
+  "agency_site": "ohiodnr.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "ohiodnr.gov/static/documents/parks/parkmaps/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1937",
+    "park": "Buck Creek State Park",
+    "link": "https://ohiodnr.gov/static/documents/parks/parkmaps/buckcreekparkmap.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5454",
+    "park": "Yellow Creek State Forest",
+    "link": "https://ohiodnr.gov/go-and-do/plan-a-visit/find-a-property/yellow-creek-state-forest",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7850",
+    "park": "Caesar Creek Lake State Wildlife Area",
+    "link": "https://ohiodnr.gov/static/documents/wildlife/wildlife-area-maps/caesarcreek.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-OH",
+  "agency_site": "clevelandmetroparks.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "clevelandmetroparks.com/getmedia/3496c101-b5d3-44f1-b19c-7ddff3907e44/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1942",
+    "park": "Cleveland Lakefront State Park",
+    "link": "https://www.clevelandmetroparks.com/getmedia/3496c101-b5d3-44f1-b19c-7ddff3907e44/Lakefront-Reservation-Map.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-OH",
+  "agency_site": "lrp.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "lrp.usace.army.mil/Portals/72/docs/Recreation/<file.jpg>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9485",
+    "park": "Mosquito Creek State Wildlife Area",
+    "link": "http://www.lrp.usace.army.mil/Portals/72/docs/Recreation/Mosquitomap.jpg",
+    "result": "HTTP 400",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OK",
+  "agency_site": "swt.usace.army.mil",
+  "parks": 4,
+  "bot_ok": 0,
+  "address_pattern": "swt.usace.army.mil/Locations/TulsaDistrictLakes/Oklahoma/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2788",
+    "park": "Keystone State Park",
+    "link": "http://www.swt.usace.army.mil/Locations/TulsaDistrictLakes/Oklahoma/KeystoneLake.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-2791",
+    "park": "Lake Texoma State Park",
+    "link": "http://www.swt.usace.army.mil/Portals/41/docs/lakes/texoma/TexWebR.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-6356",
+    "park": "Keystone Wildlife Management Area",
+    "link": "http://www.swt.usace.army.mil/Locations/TulsaDistrictLakes/Oklahoma/KeystoneLake.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OK",
+  "agency_site": "nps.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "nps.gov/waba/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0872",
+    "park": "Washita Battlefield National Historic Site",
+    "link": "https://www.nps.gov/waba/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-3675",
+    "park": "Chickasaw National Recreation Area",
+    "link": "https://www.nps.gov/chic/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-8115",
+    "park": "Oklahoma City National Memorial",
+    "link": "https://www.nps.gov/okci/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OR",
+  "agency_site": "blm.gov",
+  "parks": 15,
+  "bot_ok": 15,
+  "address_pattern": "blm.gov/sites/blm.gov/files/docs/2022-03/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10008",
+    "park": "Klamath Hills BLM Recreation Management Area",
+    "link": "https://www.blm.gov/sites/blm.gov/files/docs/2022-03/orwa-klamath-hills-rec-area-map.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-10009",
+    "park": "Row River National Recreation Trail",
+    "link": "https://www.blm.gov/sites/blm.gov/files/documents/files/nwo_rowrivertrail_brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-10017",
+    "park": "Quartzville Creek BLM Wild and Scenic River",
+    "link": "https://www.blm.gov/sites/default/files/documents/files/nwo_quartzvillecorridor_brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OR",
+  "agency_site": "nps.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "nps.gov/crla/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0018",
+    "park": "Crater Lake National Park",
+    "link": "https://www.nps.gov/crla/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0054",
+    "park": "Nez Perce National Historical Park",
+    "link": "https://www.nps.gov/nepe/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0583",
+    "park": "Lewis and Clark National Wildlife Refuge",
+    "link": "https://www.nps.gov/lewi/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OR",
+  "agency_site": "fs.usda.gov",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "fs.usda.gov/crgnsa/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0731",
+    "park": "Columbia River Gorge National Forest",
+    "link": "https://www.fs.usda.gov/crgnsa/maps",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-4378",
+    "park": "Deschutes National Forest",
+    "link": "https://www.fs.usda.gov/r06/deschutes/maps-guides",
+    "result": "ok",
+    "map_date": "Map dates vary by map"
+   },
+   {
+    "ref": "US-4385",
+    "park": "Umatilla National Forest",
+    "link": "https://www.fs.usda.gov/r06/umatilla/maps-guides",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OR",
+  "agency_site": "stateparks.oregon.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "stateparks.oregon.gov/ckFiles/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10007",
+    "park": "Oregon Coast State Trail",
+    "link": "https://stateparks.oregon.gov/ckFiles/files/OCT-Map-1.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-9557",
+    "park": "Jasper State Recreation Area",
+    "link": "https://stateparks.oregon.gov/index.cfm?do=park.profile&parkId=178",
+    "result": "ok",
+    "map_date": "PDF map dated 2019-12-16"
+   },
+   {
+    "ref": "US-9980",
+    "park": "Willamette River Greenway and Water State Trail",
+    "link": "https://stateparks.oregon.gov/index.cfm?do=park.profile&parkId=194",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-OR",
+  "agency_site": "nwp.usace.army.mil",
+  "parks": 3,
+  "bot_ok": 0,
+  "address_pattern": "nwp.usace.army.mil/Locations/WillametteValley/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9143",
+    "park": "Detroit Lake State Recreation Area",
+    "link": "http://www.nwp.usace.army.mil/Locations/WillametteValley/Detroit.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-9146",
+    "park": "Fall Creek State Recreation Area",
+    "link": "http://www.nwp.usace.army.mil/Locations/WillametteValley/FallCreek.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-9541",
+    "park": "Dexter State Recreation Area",
+    "link": "http://www.nwp.usace.army.mil/Locations/WillametteValley/Dexter.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-OR",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/refuge/umatilla/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0596",
+    "park": "Umatilla National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/umatilla/visit-us",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-PA",
+  "agency_site": "nps.gov",
+  "parks": 17,
+  "bot_ok": 17,
+  "address_pattern": "nps.gov/gett/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0027",
+    "park": "Gettysburg National Military Park",
+    "link": "https://www.nps.gov/gett/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0704",
+    "park": "Fort Necessity National Battlefield",
+    "link": "https://www.nps.gov/fone/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0733",
+    "park": "First State National Historical Park",
+    "link": "https://www.nps.gov/frst/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-PA",
+  "agency_site": "pa.gov",
+  "parks": 9,
+  "bot_ok": 9,
+  "address_pattern": "pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/french-creek-state-park/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1355",
+    "park": "French Creek State Park",
+    "link": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/french-creek-state-park/maps",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1387",
+    "park": "Moraine State Park",
+    "link": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/moraine-state-park/maps",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1391",
+    "park": "Nockamixon State Park",
+    "link": "https://www.pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/nockamixon-state-park/maps",
+    "result": "ok",
+    "map_date": "Map date not stated on map page"
+   }
+  ]
+ },
+ {
+  "state": "US-PA",
+  "agency_site": "elibrary.dcnr.pa.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "elibrary.dcnr.pa.gov/<file.ashx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1352",
+    "park": "Fort Washington State Park",
+    "link": "https://elibrary.dcnr.pa.gov/PDFProvider.ashx?PromptToSave=False&Size=4135995&ViewerMode=2&action=PDFStream&docID=1753400&docName=FOWA_ParkGuide&nativeExt=pdf&overlay=0&revision=0",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-1356",
+    "park": "Gifford Pinchot State Park",
+    "link": "https://elibrary.dcnr.pa.gov/PDFProvider.ashx?PromptToSave=False&Size=1854693&ViewerMode=2&action=PDFStream&chksum=&docID=1737648&docName=GIPI_CampgroundMap&nativeExt=pdf&overlay=0&revision=3",
+    "result": "ok",
+    "map_date": "Rev. 07/23/2024"
+   },
+   {
+    "ref": "US-1406",
+    "park": "Prouty Place State Park",
+    "link": "https://elibrary.dcnr.pa.gov/GetDocument?docId=1736597&DocName=sf-PUd15.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-RI",
+  "agency_site": "dem.ri.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "dem.ri.gov/sites/g/files/xkgbur861/files/programs/maps/mapfile/huntingatlas/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6982",
+    "park": "Big River Wildlife Management Area",
+    "link": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/maps/mapfile/huntingatlas/15.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-6983",
+    "park": "Woody Hill Wildlife Management Area",
+    "link": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-6984",
+    "park": "Black Hut Wildlife Management Area",
+    "link": "https://dem.ri.gov/sites/g/files/xkgbur861/files/programs/naturalresources/documents/map-management-areas.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-RI",
+  "agency_site": "riparks.ri.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "riparks.ri.gov/other-state-lands/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2880",
+    "park": "Snake Den State Park",
+    "link": "https://riparks.ri.gov/other-state-lands/snake-dendame-farm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5483",
+    "park": "Lincoln Woods State Forest",
+    "link": "https://riparks.ri.gov/parks/lincoln-woods-state-park",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7508",
+    "park": "Pulaski State Park",
+    "link": "https://riparks.ri.gov/parks/pulaski-state-park",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-RI",
+  "agency_site": "nps.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "nps.gov/rowi/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0789",
+    "park": "Roger Williams National Memorial",
+    "link": "https://www.nps.gov/rowi/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-7971",
+    "park": "Blackstone River Valley National Historical Park",
+    "link": "https://www.nps.gov/blrv/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-SC",
+  "agency_site": "nps.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "nps.gov/cong/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0017",
+    "park": "Congaree National Park",
+    "link": "https://www.nps.gov/cong/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0702",
+    "park": "Cowpens National Battlefield",
+    "link": "https://www.nps.gov/cowp/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-0720",
+    "park": "Kings Mountain National Military Park",
+    "link": "https://www.nps.gov/kimo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-SC",
+  "agency_site": "southcarolinaparks.com",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "southcarolinaparks.com/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2902",
+    "park": "Kings Mountain State Park",
+    "link": "https://southcarolinaparks.com/maps-and-brochures",
+    "result": "ok",
+    "map_date": "Map date not stated"
+   },
+   {
+    "ref": "US-2905",
+    "park": "Lee State Park",
+    "link": "https://southcarolinaparks.com/lee/maps-and-brochures",
+    "result": "ok",
+    "map_date": "Map date varies by map"
+   },
+   {
+    "ref": "US-2913",
+    "park": "Sesquicentennial State Park",
+    "link": "https://southcarolinaparks.com/files/State%20Parks%20Files/Sesqui/MapSesquicentennial.pdf",
+    "result": "ok",
+    "map_date": "Map date not stated; official park map"
+   }
+  ]
+ },
+ {
+  "state": "US-SC",
+  "agency_site": "fws.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fws.gov/media/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0522",
+    "park": "Savannah National Wildlife Refuge",
+    "link": "https://www.fws.gov/media/savannah-nwr-full-and-trail-maps",
+    "result": "ok",
+    "map_date": "Publication date listed July 9, 2026"
+   }
+  ]
+ },
+ {
+  "state": "US-SC",
+  "agency_site": "embed.widencdn.net",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "embed.widencdn.net/pdf/plus/scprt/1b2dm2dbko/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3873",
+    "park": "Colonial Dorchester State Historic Site",
+    "link": "https://embed.widencdn.net/pdf/plus/scprt/1b2dm2dbko/CDMap_2017.pdf?u=sgt8lu",
+    "result": "ok",
+    "map_date": "2017"
+   }
+  ]
+ },
+ {
+  "state": "US-SC",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "fs.usda.gov/scnfs/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4522",
+    "park": "Francis Marion National Forest",
+    "link": "https://www.fs.usda.gov/scnfs/maps-pubs",
+    "result": "HTTP 403",
+    "map_date": "Map date varies by map"
+   }
+  ]
+ },
+ {
+  "state": "US-SD",
+  "agency_site": "nps.gov",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "nps.gov/badl/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0005",
+    "park": "Badlands National Park",
+    "link": "https://www.nps.gov/badl/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0068",
+    "park": "Wind Cave National Park",
+    "link": "https://www.nps.gov/wica/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0786",
+    "park": "Mount Rushmore National Memorial",
+    "link": "https://www.nps.gov/moru/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-SD",
+  "agency_site": "nwo.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8174",
+    "park": "Lewis and Clark State Recreation Area",
+    "link": "http://www.nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/BoatingRecreationMaps.aspx",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TN",
+  "agency_site": "nps.gov",
+  "parks": 7,
+  "bot_ok": 7,
+  "address_pattern": "nps.gov/cuga/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0019",
+    "park": "Cumberland Gap National Historical Park",
+    "link": "https://www.nps.gov/cuga/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0034",
+    "park": "Great Smoky Mountains National Park",
+    "link": "https://www.nps.gov/grsm/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0685",
+    "park": "Obed National Wild and Scenic River",
+    "link": "https://www.nps.gov/obed/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TN",
+  "agency_site": "lrn.usace.army.mil",
+  "parks": 2,
+  "bot_ok": 0,
+  "address_pattern": "lrn.usace.army.mil/Locations/Lakes/CordellHullLake/<file.aspx>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-7580",
+    "park": "Cordell Hull Wildlife Management Area",
+    "link": "http://www.lrn.usace.army.mil/Locations/Lakes/CordellHullLake/Maps.aspx",
+    "result": "HTTP 400",
+    "map_date": null
+   },
+   {
+    "ref": "US-7610",
+    "park": "Old Hickory Wildlife Management Area",
+    "link": "http://www.lrn.usace.army.mil/Locations/Lakes/OldHickoryLake/Maps.aspx",
+    "result": "HTTP 400",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TN",
+  "agency_site": "tnstateparks.com",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "tnstateparks.com/sites/default/files/2025-09/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-2982",
+    "park": "Warriors' Path State Park",
+    "link": "https://tnstateparks.com/sites/default/files/2025-09/warriors_path_brochure.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TN",
+  "agency_site": "landbetweenthelakes.us",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "landbetweenthelakes.us/help-center/lbl-maps/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3792",
+    "park": "Land Between the Lakes National Recreation Area",
+    "link": "https://www.landbetweenthelakes.us/help-center/lbl-maps/",
+    "result": "ok",
+    "map_date": "2026 MVUM; recreation maps include 2022 editions"
+   }
+  ]
+ },
+ {
+  "state": "US-TN",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fs.usda.gov/cherokee/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4525",
+    "park": "Cherokee National Forest",
+    "link": "https://www.fs.usda.gov/cherokee/maps-pubs",
+    "result": "ok",
+    "map_date": "Map date varies by map; not stated on landing page"
+   }
+  ]
+ },
+ {
+  "state": "US-TN",
+  "agency_site": "trails.nc.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "trails.nc.gov/maps/map-pdfs-mountains-sea-state-trail/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-8313",
+    "park": "Mountains to Sea State Trail",
+    "link": "https://trails.nc.gov/maps/map-pdfs-mountains-sea-state-trail/open",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "tpwd.texas.gov",
+  "parks": 81,
+  "bot_ok": 81,
+  "address_pattern": "tpwd.texas.gov/publications/pwdpubs/media/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-10509",
+    "park": "Sam Houston National Forest Wildlife Management Area",
+    "link": "https://tpwd.texas.gov/publications/pwdpubs/media/pwd_bk_w7000_0112a.pdf",
+    "result": "ok",
+    "map_date": "2025\u20132026 edition"
+   },
+   {
+    "ref": "US-13588",
+    "park": "Post Oak Ridge State Park",
+    "link": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4507_0186d.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-2983",
+    "park": "Abilene State Park",
+    "link": "https://tpwd.texas.gov/publications/pwdpubs/media/park_maps/pwd_mp_p4506_001f.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "nps.gov",
+  "parks": 14,
+  "bot_ok": 14,
+  "address_pattern": "nps.gov/bibe/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0006",
+    "park": "Big Bend National Park",
+    "link": "https://www.nps.gov/bibe/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0035",
+    "park": "Guadalupe Mountains National Park",
+    "link": "https://www.nps.gov/gumo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0687",
+    "park": "Amistad National Recreation Area",
+    "link": "https://www.nps.gov/amis/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "fws.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "fws.gov/refuge/attwater-prairie-chicken/visit-us/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0542",
+    "park": "Attwater Prairie Chicken National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/attwater-prairie-chicken/visit-us/trails",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0543",
+    "park": "Balcones Canyonlands National Wildlife Refuge",
+    "link": "https://www.fws.gov/refuge/balcones-canyonlands/visit-us",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0548",
+    "park": "Hagerman National Wildlife Refuge",
+    "link": "https://www.fws.gov/media/hagerman-national-wildlife-refuge-map-1",
+    "result": "ok",
+    "map_date": "Map created 03/03/2022"
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "fs.usda.gov/texas/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4417",
+    "park": "Sam Houston National Forest",
+    "link": "https://www.fs.usda.gov/texas/maps-pubs",
+    "result": "ok",
+    "map_date": "Map date varies by map; not stated on landing page"
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "tfsweb.tamu.edu",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "tfsweb.tamu.edu/uploadedFiles/FRD/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4422",
+    "park": "W. Goodrich Jones State Forest",
+    "link": "https://tfsweb.tamu.edu/uploadedFiles/FRD/WG_Jones_Forest_Map_Color.pdf",
+    "result": "HTTP 404",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "dallascounty.org",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "dallascounty.org/Assets/uploads/docs/plandev/trails/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4423",
+    "park": "Spring Creek Forest State Preserve",
+    "link": "https://www.dallascounty.org/Assets/uploads/docs/plandev/trails/25-SpringCreekGarland.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "parkplanning.nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "parkplanning.nps.gov/<file.cfm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4568",
+    "park": "El Camino Real de los Tejas National Historic Trail",
+    "link": "https://parkplanning.nps.gov/document.cfm?documentID=19543",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "swf-wc.usace.army.mil",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "swf-wc.usace.army.mil/cooper/Information/<file.asp>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6550",
+    "park": "Cooper Wildlife Management Area",
+    "link": "http://www.swf-wc.usace.army.mil/cooper/Information/Maps.asp",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-TX",
+  "agency_site": "thc.texas.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "thc.texas.gov/historic-sites/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6559",
+    "park": "Fort McKavett State Historic Site",
+    "link": "https://thc.texas.gov/historic-sites/fort-mckavett-state-historic-site",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-UT",
+  "agency_site": "nps.gov",
+  "parks": 16,
+  "bot_ok": 16,
+  "address_pattern": "nps.gov/arch/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0004",
+    "park": "Arches National Park",
+    "link": "https://www.nps.gov/arch/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0009",
+    "park": "Bryce Canyon National Park",
+    "link": "https://www.nps.gov/brca/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0010",
+    "park": "Canyonlands National Park",
+    "link": "https://www.nps.gov/cany/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-UT",
+  "agency_site": "blm.gov",
+  "parks": 8,
+  "bot_ok": 6,
+  "address_pattern": "blm.gov/sites/blm.gov/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-11112",
+    "park": "Factory Butte BLM Recreation Management Area",
+    "link": "https://www.blm.gov/sites/blm.gov/files/BLMUtahFactoryButteMap.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5750",
+    "park": "Black Ridge Canyons Wilderness Area",
+    "link": "https://www.blm.gov/programs/national-conservation-lands/colorado/black-ridge-canyons-wilderness",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-5768",
+    "park": "Bonanza BLM Herd Management Area",
+    "link": "https://www.blm.gov/programs/wild-horse-and-burro/herd-management",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-UT",
+  "agency_site": "stateparks.utah.gov",
+  "parks": 4,
+  "bot_ok": 1,
+  "address_pattern": "stateparks.utah.gov/parks/deer-creek/map/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3067",
+    "park": "Deer Creek State Park",
+    "link": "https://stateparks.utah.gov/parks/deer-creek/map/",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-3091",
+    "park": "Snow Canyon State Park",
+    "link": "https://stateparks.utah.gov/wp-content/uploads/sites/13/2023/02/web-Snow-Canyon-Trail-Guide-Map-Brochure-2023.pdf",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-5913",
+    "park": "Historic Union Pacific Rail Trail State Park",
+    "link": "https://stateparks.utah.gov/parks/historic-union-pacific-rail-trail/map/",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-UT",
+  "agency_site": "fs.usda.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "fs.usda.gov/r04/dixie/planning/forest-plan/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4395",
+    "park": "Dixie National Forest",
+    "link": "https://www.fs.usda.gov/r04/dixie/planning/forest-plan/forest-plan-and-amendments",
+    "result": "ok",
+    "map_date": "Forest plan map dates not stated on page"
+   },
+   {
+    "ref": "US-4398",
+    "park": "Uinta-Wasatch-Cache National Forest",
+    "link": "https://www.fs.usda.gov/r04/uinta-wasatch-cache/maps-guides",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5793",
+    "park": "Flaming Gorge National Recreation Area",
+    "link": "https://www.fs.usda.gov/sites/nfs/files/r04/ashley/publication/Ashley%20Visitor%20Guide.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-UT",
+  "agency_site": "grandcountyutah.net",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "grandcountyutah.net/Facilities/Facility/Details/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-5790",
+    "park": "Sand Flats State Recreation Area",
+    "link": "https://www.grandcountyutah.net/Facilities/Facility/Details/Sand-Flats-Recreation-Area-1",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-UT",
+  "agency_site": "wildlife.utah.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "wildlife.utah.gov/hunting/hunting-in-utah/<file.html>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-5923",
+    "park": "Henefer-Echo UDWR Wildlife Management Area",
+    "link": "https://wildlife.utah.gov/hunting/hunting-in-utah/wildlife-management-areas.html",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-VA",
+  "agency_site": "dcr.virginia.gov",
+  "parks": 35,
+  "bot_ok": 33,
+  "address_pattern": "dcr.virginia.gov/state-parks/document/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1290",
+    "park": "Bear Creek Lake State Park",
+    "link": "https://www.dcr.virginia.gov/state-parks/document/bc-campground-map.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1293",
+    "park": "Caledon State Park",
+    "link": "https://www.dcr.virginia.gov/state-parks/document/data/caledon-geo-map.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1295",
+    "park": "Claytor Lake State Park",
+    "link": "https://www.dcr.virginia.gov/state-parks/document/cl-5k-brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-VA",
+  "agency_site": "nps.gov",
+  "parks": 15,
+  "bot_ok": 15,
+  "address_pattern": "nps.gov/colo/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0016",
+    "park": "Colonial National Historical Park",
+    "link": "https://www.nps.gov/colo/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0064",
+    "park": "Shenandoah National Park",
+    "link": "https://www.nps.gov/shen/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Some individual trail maps updated; no single map year"
+   },
+   {
+    "ref": "US-0691",
+    "park": "Prince William Forest Park",
+    "link": "https://www.nps.gov/prwi/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-VA",
+  "agency_site": "home.nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "home.nps.gov/mana/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0712",
+    "park": "Manassas National Battlefield",
+    "link": "https://home.nps.gov/mana/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated October 25, 2021"
+   }
+  ]
+ },
+ {
+  "state": "US-VA",
+  "agency_site": "virginiastateparks.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "virginiastateparks.gov/state-parks/document/data/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1299",
+    "park": "First Landing State Park",
+    "link": "https://www.virginiastateparks.gov/state-parks/document/data/trail-guide-firstlanding.pdf",
+    "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
+    "map_date": "Map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-VA",
+  "agency_site": "services.dwr.virginia.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "services.dwr.virginia.gov/arcgis/rest/services/Public/BirdingWildlifeTrail/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-9935",
+    "park": "Virginia Bird & Wildlife State Trail",
+    "link": "https://services.dwr.virginia.gov/arcgis/rest/services/Public/BirdingWildlifeTrail/MapServer",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-VT",
+  "agency_site": "nae.usace.army.mil",
+  "parks": 2,
+  "bot_ok": 0,
+  "address_pattern": "nae.usace.army.mil/Portals/74/docs/Recreation/TSL/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3148",
+    "park": "Townshend State Park",
+    "link": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/TSL/TSLTrailMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-5528",
+    "park": "Townshend State Forest",
+    "link": "http://www.nae.usace.army.mil/Portals/74/docs/Recreation/TSL/TSLTrailMap.pdf",
+    "result": "HTTP 403",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-VT",
+  "agency_site": "nps.gov",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "nps.gov/mabi/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0744",
+    "park": "Marsh-Billings-Rockefeller National Historical Park",
+    "link": "https://www.nps.gov/mabi/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-VT",
+  "agency_site": "vtstateparks.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "vtstateparks.com/<file.html>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-3106",
+    "park": "Button Bay State Park",
+    "link": "https://vtstateparks.com/buttonbay.html",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WA",
+  "agency_site": "nps.gov",
+  "parks": 8,
+  "bot_ok": 8,
+  "address_pattern": "nps.gov/mora/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0052",
+    "park": "Mount Rainier National Park",
+    "link": "https://www.nps.gov/mora/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0055",
+    "park": "North Cascades National Park",
+    "link": "https://www.nps.gov/noca/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0056",
+    "park": "Olympic National Park",
+    "link": "https://www.nps.gov/olym/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WA",
+  "agency_site": "parks.wa.gov",
+  "parks": 6,
+  "bot_ok": 3,
+  "address_pattern": "parks.wa.gov/find-parks/state-parks/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0727",
+    "park": "Lake Lenore Caves State Park",
+    "link": "https://parks.wa.gov/find-parks/state-parks/lake-lenore-caves-state-park",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-12846",
+    "park": "Columbia Hills State Natural Area",
+    "link": "https://parks.wa.gov/find-parks/state-parks/columbia-hills-state-park",
+    "result": "HTTP 404",
+    "map_date": null
+   },
+   {
+    "ref": "US-3171",
+    "park": "Spokane River Centennial State Trail",
+    "link": "https://parks.wa.gov/DocumentCenter/View/9837/Centennial-Trail-State-Park-PDF?bidId=",
+    "result": "HTTP 404",
+    "map_date": "Date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-WA",
+  "agency_site": "fs.usda.gov",
+  "parks": 3,
+  "bot_ok": 1,
+  "address_pattern": "fs.usda.gov/detail/ipnf/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4477",
+    "park": "Idaho Panhandle National Forest",
+    "link": "https://www.fs.usda.gov/detail/ipnf/maps-pubs?cid=fsm9_019030",
+    "result": "HTTP 403",
+    "map_date": null
+   },
+   {
+    "ref": "US-4531",
+    "park": "Okanogan-Wenatchee National Forest",
+    "link": "https://www.fs.usda.gov/r06/okanogan-wenatchee/data-tools/interactive-maps",
+    "result": "HTTP 404",
+    "map_date": "Last updated June 10, 2025"
+   },
+   {
+    "ref": "US-4563",
+    "park": "Pacific Northwest National Scenic Trail",
+    "link": "https://www.fs.usda.gov/trails/pacific-northwest-nst",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WA",
+  "agency_site": "blm.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "blm.gov/sites/blm.gov/files/documents/files/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12245",
+    "park": "Twin Lakes BLM Recreation Management Area",
+    "link": "https://www.blm.gov/sites/blm.gov/files/documents/files/spo_twinlakesrecarea_brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-8664",
+    "park": "Fishtrap National Recreation Area",
+    "link": "https://www.blm.gov/sites/blm.gov/files/documents/files/spo_fishtraprecarea_brochure.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WI",
+  "agency_site": "dnr.wisconsin.gov",
+  "parks": 3,
+  "bot_ok": 3,
+  "address_pattern": "dnr.wisconsin.gov/topic/parks/richardbong/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4265",
+    "park": "Richard Bong State Recreation Area",
+    "link": "https://dnr.wisconsin.gov/topic/parks/richardbong/maps",
+    "result": "ok",
+    "map_date": "Map dates not stated"
+   },
+   {
+    "ref": "US-4352",
+    "park": "Kettle Moraine State Forest",
+    "link": "https://dnr.wisconsin.gov/topic/parks/kms/maps",
+    "result": "ok",
+    "map_date": "Map dates not stated"
+   },
+   {
+    "ref": "US-5643",
+    "park": "Lower Wisconsin State Riverway State Park",
+    "link": "https://dnr.wisconsin.gov/topic/lands/lowerwisconsin/maps",
+    "result": "ok",
+    "map_date": "Map dates not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-WI",
+  "agency_site": "nps.gov",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "nps.gov/apis/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0764",
+    "park": "Apostle Islands National Lakeshore",
+    "link": "https://www.nps.gov/apis/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-4238",
+    "park": "Ice Age National Scenic Trail",
+    "link": "https://www.nps.gov/iatr/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated 2026 (map date not stated)"
+   }
+  ]
+ },
+ {
+  "state": "US-WV",
+  "agency_site": "wvdnr.gov",
+  "parks": 89,
+  "bot_ok": 88,
+  "address_pattern": "wvdnr.gov/wmamapproj/pdf/pdf300/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-12032",
+    "park": "Burning Springs Wildlife Management Area",
+    "link": "http://www.wvdnr.gov/wmamapproj/pdf/pdf300/BurningSpringsFinal11x17_300dpi.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-12033",
+    "park": "Cheat Canyon Wildlife Management Area",
+    "link": "http://www.wvdnr.gov/wmamapproj/pdf/pdf300/CheatCanyonFinal11x17_300dpi.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-12035",
+    "park": "Dents Run Wildlife Management Area",
+    "link": "http://www.wvdnr.gov/wmamapproj/pdf/pdf300/DentsRunFinal11x17_300dpi.pdf",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WV",
+  "agency_site": "drive.google.com",
+  "parks": 7,
+  "bot_ok": 7,
+  "address_pattern": "drive.google.com/file/d/1oUlv8DFUOCiyVAbR4JfIG8h6aadP8POd/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-5582",
+    "park": "Cabwaylingo State Forest",
+    "link": "https://drive.google.com/file/d/1oUlv8DFUOCiyVAbR4JfIG8h6aadP8POd/view?usp=drive_link",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5583",
+    "park": "Calvin Price State Forest",
+    "link": "https://drive.google.com/file/d/1lbPcmJQ1636eUKFwxJC_dQsFOBSMoa5a/view?usp=drive_link",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-5585",
+    "park": "Coopers Rock State Forest",
+    "link": "https://drive.google.com/file/d/1cC5BWfWaFMetZYBPWJWJOgzdWfjxQwQE/view?usp=drive_link",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WV",
+  "agency_site": "nps.gov",
+  "parks": 4,
+  "bot_ok": 4,
+  "address_pattern": "nps.gov/choh/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0015",
+    "park": "Chesapeake and Ohio Canal National Historical Park",
+    "link": "https://www.nps.gov/choh/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": "Page last updated November 19, 2025"
+   },
+   {
+    "ref": "US-0695",
+    "park": "Gauley River National Recreation Area",
+    "link": "https://www.nps.gov/gari/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0696",
+    "park": "New River Gorge National Park",
+    "link": "https://www.nps.gov/neri/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WV",
+  "agency_site": "wvstateparks.com",
+  "parks": 2,
+  "bot_ok": 2,
+  "address_pattern": "wvstateparks.com/wp-content/uploads/2025/06/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-1800",
+    "park": "Beech Fork State Park",
+    "link": "https://wvstateparks.com/wp-content/uploads/2025/06/2024.10.24_WVSP_BeechFork_Map_FINAL.pdf",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-1810",
+    "park": "Chief Logan State Park",
+    "link": "https://wvstateparks.com/wp-content/uploads/2020/10/ChiefLoganStateParkMap.pdf",
+    "result": "ok",
+    "map_date": "2020 file upload; map date not stated"
+   }
+  ]
+ },
+ {
+  "state": "US-WV",
+  "agency_site": "fs.usda.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "fs.usda.gov/Internet/FSE_DOCUMENTS/<file.pdf>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4526",
+    "park": "George Washington & Jefferson National Forest",
+    "link": "https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd1136678.pdf",
+    "result": "HTTP 404",
+    "map_date": "March 28, 2022"
+   }
+  ]
+ },
+ {
+  "state": "US-WV",
+  "agency_site": "avenzamaps.com",
+  "parks": 1,
+  "bot_ok": 1,
+  "address_pattern": "avenzamaps.com/maps/852301/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6994",
+    "park": "Burches Run Wildlife Management Area",
+    "link": "https://www.avenzamaps.com/maps/852301/burches-run-wildlife-management-area",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WY",
+  "agency_site": "nps.gov",
+  "parks": 5,
+  "bot_ok": 5,
+  "address_pattern": "nps.gov/grte/planyourvisit/<file.htm>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-0031",
+    "park": "Grand Teton National Park",
+    "link": "https://www.nps.gov/grte/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0817",
+    "park": "Fort Laramie National Historic Site",
+    "link": "https://www.nps.gov/fola/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-0920",
+    "park": "Devils Tower National Monument",
+    "link": "https://www.nps.gov/deto/planyourvisit/maps.htm",
+    "result": "ok",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WY",
+  "agency_site": "fs.usda.gov",
+  "parks": 2,
+  "bot_ok": 1,
+  "address_pattern": "fs.usda.gov/r02/blackhills/<page>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-4524",
+    "park": "Black Hills National Forest",
+    "link": "https://www.fs.usda.gov/r02/blackhills/maps-guides",
+    "result": "ok",
+    "map_date": null
+   },
+   {
+    "ref": "US-6146",
+    "park": "Cloud Peak Wilderness Area",
+    "link": "https://www.fs.usda.gov/visit/destination/cloud-peak-wilderness",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ },
+ {
+  "state": "US-WY",
+  "agency_site": "blm.gov",
+  "parks": 1,
+  "bot_ok": 0,
+  "address_pattern": "blm.gov/style/medialib/blm/wy/field-offices/lander/<file.gif>",
+  "list_page": "TO DO",
+  "how_to_match": "by park reference in parkinfo-web.json (map field)",
+  "date_method": "TO DO",
+  "rules_page": "TO DO",
+  "tested": [
+   {
+    "ref": "US-6187",
+    "park": "South Pass Historic Mining Area BLM Historic Area",
+    "link": "http://www.blm.gov/style/medialib/blm/wy/field-offices/lander/pics.Par.5515.Image.620.869.1.gif",
+    "result": "HTTP 404",
+    "map_date": null
+   }
+  ]
+ }
+]
