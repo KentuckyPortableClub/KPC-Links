@@ -132,6 +132,10 @@ SRC['JP'] = SRC['JP'] + [('MLIT natural park areas, national file FY2010 (A10-10
 # and state-secured outdoor recreation areas (statlig sikra friluftslivsområder, 2,351 = public land the state secured).
 SRC['NO'] = SRC['NO'] + [('Miljødirektoratet protected areas (NLOD)', 'arcgis', 'https://kart.miljodirektoratet.no/arcgis/rest/services/vern/mapserver/0'),
                          ('Miljødirektoratet state-secured outdoor recreation areas (NLOD)', 'arcgis', 'https://kart.miljodirektoratet.no/arcgis/rest/services/friluftsliv_statlig_sikra/mapserver/0')]
+# Oct 28 (chat 9, world round W2): Netherlands national parks from PDOK (RVO, CC0 1.0, no fees) and Tasmania's LIST land tenure
+# (© State of Tasmania credit, no use limits): the named reserve / park / conservation-area parcels (TEN_CLASS gives the kind).
+SRC['NL'] = SRC['NL'] + [('PDOK RVO national parks (CC0)', 'wfs', 'https://service.pdok.nl/rvo/nationale-parken-geharmoniseerd/wfs/v1_0', 'beschermde-gebieden:ProtectedSite')]
+SRC['AU'] = SRC['AU'] + [('TAS LIST land tenure (© State of Tasmania)', 'arcgis', 'https://services.thelist.tas.gov.au/arcgis/rest/services/Public/OpenDataWFS/MapServer/26', ["FEAT_NAME IS NOT NULL AND FEAT_NAME <> 'None' AND TEN_CLASS NOT LIKE '%Private%'"])]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
