@@ -756,7 +756,7 @@ def _wload(i, jt):
 def _wlive(i, jt):
     """One tile from the live USGS map: [[layer, rings], ...] (both layers, so a later rivers-only ask can use it too)."""
     if not NHDL:
-        for L in get(NHD, {'f': 'json'}).get('layers') or []:
+        for L in get(NHD, {'f': 'json'}, tries=1, timeout=30).get('layers') or []:
             nm = L.get('name', '').lower()
             if nm == 'nhdarea': NHDL['area'] = L['id']
             if nm == 'nhdwaterbody': NHDL['wb'] = L['id']
@@ -766,7 +766,7 @@ def _wlive(i, jt):
         if lay not in NHDL: continue
         j = get(f'{NHD}/{NHDL[lay]}/query', {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
                                              'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
-                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=2, timeout=90)
+                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=1, timeout=30)
         got += [[lay, esri_rings(f.get('geometry'))] for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
     if len(NHDL) < 2: raise RuntimeError('USGS water layers not listed')
     return got
@@ -800,48 +800,29 @@ def _wlive2(i, jt):
 
 def nhd_water(box, rivers_only=False):
     """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries).
-    Live first; the last good saved copy when the live map does not answer; None when neither has the tile."""
+    Oct 28 6:57 PM (HQ, Brandon: 'if we have the offline files WHY are we still trying to pull the water live, it keeps breaking
+    the line'): (1) the SAVED tile (a live read saved earlier, or the USGS bulk files cut by kpc_water_bulk.py, fetched up front),
+    (2) ONLY for a tile neither has: ONE short live try (30 s, no retry loop, no waiting; after 3 failures the live map is not
+    asked again this run), (3) else None = NOT SURE (a map that did not answer is never 'no water')."""
     out = []
-    # pre-flight fix 11: big water (Great Lakes, big reservoirs) asked in 0.1-degree tiles, each tile once
     for i in range(int(math.floor(box[0] / .1)), int(math.floor(box[2] / .1)) + 1):
         for jt in range(int(math.floor(box[1] / .1)), int(math.floor(box[3] / .1)) + 1):
             k = (i, jt)
             if k not in NHDC:
-                feats = None
-                sv0 = _wload(i, jt)
-                if sv0 and str(sv0.get('d', '')).startswith('USGS NHDPlus HR file'):   # Oct 28 (HQ 4:05 PM): the bulk-file copy FIRST
-                    feats = sv0['f']; WATER_N['bulk file'] = WATER_N.get('bulk file', 0) + 1; NHDC[k + ('d',)] = sv0['d']
-                if feats is None and time.time() >= NHD_DOWN['until']:
-                    try:
-                        feats = _wlive(i, jt); NHD_DOWN['fails'] = 0; WATER_N['live'] += 1; _wsave(i, jt, feats)
-                    except Exception as e:  # noqa: BLE001
-                        NHD_DOWN['fails'] += 1
-                        if NHD_DOWN['fails'] >= 2:   # Oct 27 KY run: 504s cost ~9 min a tile and pass 1 ran out of time after 28 pairs
-                            NHD_DOWN['until'] = time.time() + 600; NHD_DOWN['fails'] = 0; NHD_DOWN['pauses'] += 1
-                        if NHD_DOWN['pauses'] <= 3: LOG.append(f'NHD water: {str(e)[:80]}')
-                sv = None
-                if feats is None:
-                    sv = _wload(i, jt)
-                    # Oct 28 (HQ 12:28 PM, Michigan: 39 rows 'water not checked'): no saved copy of this tile = ask the live map again
-                    # with back-off (30 s, 90 s, 4 min) before giving up, even during a pause, within a 25-minute budget per run
-                    for wait in ((30, 90, 240) if sv is None else ()):
-                        if WATER_RETRY['spent'] + wait > WATER_RETRY['budget'] or late(): break
-                        time.sleep(wait); WATER_RETRY['spent'] += wait; WATER_RETRY['tries'] += 1
-                        try:
-                            feats = _wlive(i, jt); NHD_DOWN['fails'] = 0; NHD_DOWN['until'] = 0.0; WATER_N['live'] += 1; WATER_RETRY['won'] += 1; _wsave(i, jt, feats); break
-                        except Exception as e: LOG.append(f'NHD water retry: {str(e)[:60]}')  # noqa: BLE001
-                if feats is None and sv is None:
-                    try:   # the second USGS door (same data, another service); never saved over the main copy
-                        feats = _wlive2(i, jt); WATER_N['second door'] = WATER_N.get('second door', 0) + 1
-                        NHDC[k + ('d',)] = 'USGS NHD (second service) ' + time.strftime('%Y-%m-%d', time.gmtime())
-                    except Exception as e: LOG.append(f'NHD second door: {str(e)[:60]}')  # noqa: BLE001
-                if feats is None:
-                    if sv is None:
+                sv = _wload(i, jt)
+                if sv is not None:
+                    NHDC[k] = sv['f']; NHDC[k + ('d',)] = sv.get('d') or ''
+                    WATER_N['bulk file' if str(sv.get('d', '')).startswith('USGS NHDPlus HR file') else 'saved'] = WATER_N.get('bulk file' if str(sv.get('d', '')).startswith('USGS NHDPlus HR file') else 'saved', 0) + 1
+                else:
+                    feats = None
+                    if NHD_DOWN['fails'] < 3:
+                        try: feats = _wlive(i, jt); WATER_N['live'] += 1; _wsave(i, jt, feats)
+                        except Exception as e:  # noqa: BLE001
+                            NHD_DOWN['fails'] += 1; LOG.append(f'NHD water (one try): {str(e)[:70]}')
+                    if feats is None:
                         WATER_N['missing'] += 1
-                        return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
-                    feats = sv['f']; WATER_N['saved'] += 1
-                    NHDC[k + ('d',)] = sv['d']
-                NHDC[k] = feats
+                        return None
+                    NHDC[k] = feats
             if NHDC.get(k + ('d',)): WATER_MARK.append(NHDC[k + ('d',)])
             out += [g for lay, g in NHDC[k] if not (rivers_only and lay == 'wb')]
     return out
@@ -2206,7 +2187,7 @@ def water_date(s):
         m = min(WATER_MARK)
         s.setdefault('map_dates', {})['USGS water'] = ((m.replace('USGS NHD (second service) ', 'USGS NHD second service, read ') + ' (the main USGS water map did not answer)') if m.startswith('USGS NHD (second')
                                                        else (m + ' (the same NHDPlus HR water, from USGS\'s download files)') if m.startswith('USGS NHDPlus HR file')
-                                                       else ('saved copy of ' + m + ' (the live map did not answer)'))
+                                                       else ('saved copy of the USGS map, read ' + m))
         WATER_MARK.clear()
     elif isinstance(s.get('map_dates'), dict): s['map_dates'].pop('USGS water', None)   # read live this time
 
@@ -2565,7 +2546,7 @@ def main():
         # Oct 28 (HQ 12:28 PM): rows the water map did not answer for are re-checked once more at the end, after a pause
         again = [x for x in cand if str(x.get('status', '')).startswith('not sure: water not checked')]
         if again and not late():
-            NHD_DOWN['until'] = 0.0; time.sleep(min(300, max(0, WATER_RETRY['budget'] - WATER_RETRY['spent'])))
+            pass   # Oct 28 6:57 PM: no waiting on a down server (the saved / bulk tiles are read first; a missing one stays NOT SURE)
             for x in again:
                 if late(): break
                 WATER_MARK.clear()
