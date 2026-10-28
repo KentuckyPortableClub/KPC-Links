@@ -1,6 +1,0 @@
-::notice title=2-fer bot::pass 1: 13 parks from saved outlines, 259 to download, 258 official lines
-/tmp/claude-0/-home-claude/bddf1886-a66b-5b1e-97a9-785d2b3bcd99/scratchpad/line/fast/.github/scripts/kpc_fers.py:1567: RuntimeWarning: overflow encountered in multiply
-  da = dt(1 - f.area(G[a]), outside=1) * f.cell
-::notice title=2-fer bot::pass 1: bundle answers: 28 read from the bundle, 0 asked the servers (0 kept)
-::notice title=2-fer bot::{"pass": 1, "cell_m": 20.0, "official parks": 272, "pairs tested": 125, "with official lines": 0, "parks whose outline could not be read": 0, "parks done by the box test": 151, "pairs whose boxes touch": 125, "missing boundary": 0}
-::notice title=2-fer bot problems::pass 1: 1 · W&S river corridors joined as area parks: 15

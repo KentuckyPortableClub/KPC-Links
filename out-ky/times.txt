@@ -1,3 +1,0 @@
-pass 1: 80 s
-pass 2: 71 s
-pass 3: 120 s
