@@ -113,6 +113,20 @@ jobs:
           print(f'::notice title=US key join::{n} state files from {len(glob.glob("parts/us-key-part-*"))} jobs')
           PY
           FINISH_ONLY=1 python3 .github/scripts/kpc_us_key.py 2>&1 | tee us-key-join.log
+          # Oct 28 (HQ 2:58 PM): parks whose joined outline changed -> the 2-fer small batches (KPC-Data kpc-fers-pending.yml reads it)
+          python3 - <<'PY'
+          import glob, json, subprocess, time
+          ch = []
+          for f in sorted(glob.glob('data/us-key/US-??.json')):
+              try: old = json.loads(subprocess.run(['git', 'show', 'HEAD:' + f], capture_output=True, text=True).stdout or '{}').get('parks') or {}
+              except Exception: old = {}
+              new = json.load(open(f)).get('parks') or {}
+              for r, p in new.items():
+                  a = sorted(str(x[0]) for x in (old.get(r) or {}).get('m') or []); b = sorted(str(x[0]) for x in p.get('m') or [])
+                  if a != b and b: ch.append(r)
+          json.dump({'about': 'Parks whose joined outline changed in the last US key rebuild (for the 2-fer small batches).', 'date': time.strftime('%Y-%m-%d'), 'refs': sorted(set(ch))}, open('data/us-key/changed-parks.json', 'w'), indent=1)
+          print(f'::notice title=US key::{len(set(ch))} parks with a changed outline -> the 2-fer waiting list')
+          PY
           cat us-key-*.log > us-key.log 2>/dev/null || true
       - name: Review issue
         env:

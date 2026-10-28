@@ -55,6 +55,9 @@ import kpc_owned as KO
 T0 = time.time(); LIMIT = float(os.environ.get('MINUTES') or 300) * 60
 PASS = int(os.environ.get('PASS') or 1)
 ONLY = set((os.environ.get('STATES') or '').upper().replace(',', ' ').split())
+# Oct 28 (HQ 2:58 PM, Brandon): SMALL BATCHES. PARKS='US-1234 US-5678' = only the pairs touching those parks are looked at again
+# (a park with a new or changed outline, from data/fers/pending.json); every other row of the file is carried over as it was.
+PARKS = set((os.environ.get('PARKS') or '').upper().replace(',', ' ').split())
 RUN_TAG = re.sub(r'[^a-z0-9-]', '', (os.environ.get('RUN_TAG') or '').lower())  # Oct 27 (HQ 5:11 PM): parallel region jobs keep their shared files apart
 REGION = (os.environ.get('REGION') or 'na').strip().lower()      # 'na' = US + Canada, 'world' = the other countries (Brandon Oct 26: 'do the world')
 CELL = {1: 20.0, 2: 10.0, 3: 5.0, 4: 5.0, 5: 5.0, 6: 5.0}[PASS]   # 4 = access pins only, for candidates that have none; 5 = re-check water + tidy the rows
@@ -2344,6 +2347,8 @@ def tidy_rows(spots, PIN, today):
     # every PAIR's own overlap OUTSIDE it stays its own 2-fer row (never absorbed: Clifty x Daniel Boone, 12,364 ac, was hidden
     # inside a 592-ac 3-fer row). A pair row folds into the n-fer only when its patch IS the shared patch (same place, not bigger).
     size = lambda x: (x.get('acres') or 0) if x.get('kind') == 'area' else (x.get('len_m') or 0)
+    for x in spots:   # a second pass 5 on the same file (a worker rerun) must not list the same pairs twice
+        for k in ('pairs_here', 'pairs_around', 'nfer_here'): x.pop(k, None)
     nf = [x for x in spots if live(x) and len(x['refs']) > 2 and x.get('kind') in ('area', 'river', 'trail')]
     for n in nf:
         for x in spots:
@@ -2627,6 +2632,10 @@ def main():
             if r in parks and r not in boxes:
                 b = bbox_lines(LN[r]['lines']); boxes[r] = [b[0] - .0005, b[1] - .0005, b[2] + .0005, b[3] + .0005]   # the 100-ft zone
         pairs = grid_pairs(boxes) - skip_pairs
+        if PARKS:   # the pairs touching PARKS + the pairs among their neighbours (so a 3-fer that includes a PARKS park is still found)
+            nbr = {r for p in pairs if PARKS & set(p) for r in p}
+            pairs = {p for p in pairs if PARKS & set(p) or set(p) <= nbr}
+            notice('2-fer bot', f"pass 1: small batch for {len(PARKS)} park(s) ({' '.join(sorted(PARKS))[:200]}): {len(pairs)} pairs touch them; every other row is carried over")
         touched = {r for p in pairs for r in p}
         counts['parks done by the box test'] = len(boxes) - len(touched)
         counts['pairs whose boxes touch'] = len(pairs)
@@ -2635,6 +2644,7 @@ def main():
         # outlines nearly touch, so kpc_fers_expected.py can say FOUND / DROPPED / NEVER LOOKED AT for every expected pair
         try:
             area = 'ky' if REGION == 'ky' else RUN_TAG or ('-'.join(sorted(ONLY)) if ONLY else REGION)
+            if PARKS: raise RuntimeError('small batch: the whole-area look-list is kept as it was')
             save_json(OUT / f'looked-{area}.json', {'about': 'What the 2-fer bot looked at in pass 1 (for the missing check).', 'date': today,
                                                     'tested': sorted(['+'.join(p) for p in TESTED]), 'no_outline': {r: w for r, w in SKIPWHY.items() if r in PIN and (PIN[r][5] == 'KY' if REGION == 'ky' else (not ONLY or PIN[r][5] in ONLY or 'US-' + str(PIN[r][5]) in ONLY))},
                                                     'near100': near_pairs(G, pairs, spots), 'parks': sorted(parks),
@@ -2643,6 +2653,7 @@ def main():
                                                     'boxes': {r: [round(v, 4) for v in bbox_groups(G[r])] for r in G if G.get(r)}}, indent=None)
         except Exception as e: LOG.append(f'looked file: {str(e)[:80]}')  # noqa: BLE001
         try:   # rule 12: parks with no official boundary whose pin sits inside another park = 'Missing boundary' list
+            if PARKS: raise RuntimeError('small batch: the missing-boundary list is kept as it was')
             miss = missing_list(PIN, parks, SKIPWHY, G, LN, today)
             save_json(OUT / f'missing-{RUN_TAG or REGION}.json', {'about': "Missing boundary: check the official map. A park with no official boundary (or only an approximate one) whose POTA pin sits inside another park's official outline. Never in the main list; members first.", 'parks': miss}, indent=1)
             counts['missing boundary'] = len(miss)
@@ -2677,7 +2688,11 @@ def main():
                 by.setdefault(st_of(a), []).append(sp)
         for st in sorted(set(by) | {p['st'] for p in parks.values()}):
             if counts.get('stopped for time') and st not in by and st in old: continue
-            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(by.get(st, []), key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
+            sp = by.get(st, [])
+            if PARKS:   # small batch: the new rows for the pairs touching PARKS + every other old row unchanged
+                sp = [x for x in sp if PARKS & set(x['refs'])] + [x for x in (old.get(st) or {}).get('spots', []) if not PARKS & set(x.get('refs') or [])]
+                if not sp and st not in old: continue
+            save_json(file_of(st), {'st': st, 'about': ABOUT, 'pass1': today, 'spots': slim(sorted(sp, key=lambda s: s['id']))}, indent=1 if REGION != 'world' else None)
     else:
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
         # resume: a spot this pass already decided (agreed, or dropped) is not done again
