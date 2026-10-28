@@ -66,6 +66,15 @@ def layer(x):
     if j.get('serviceItemId'): out.update(item(j['serviceItemId']))
     lays = j.get('layers')
     if lays is None and 'geometryType' in j: lays = [{'id': None}]
+    if not lays and re.search(r'(Map|Feature)Server/?$', x['url']):      # round 6: MARIS roots list no layers: ask /layers, then ids 0-12
+        try: lays = [{'id': l.get('id'), 'name': l.get('name')} for l in get(x['url'].rstrip('/') + '/layers').get('layers') or []]
+        except Exception: lays = []
+        if not lays:
+            for i in range(13):
+                try: d0 = get(f"{x['url'].rstrip('/')}/{i}", t=40); lays.append({'id': i, 'name': d0.get('name')})
+                except Exception: pass
+        out['found_ids'] = [f"{l.get('id')}:{l.get('name')}" for l in lays]
+    if x.get('only'): lays = [l for l in lays or [] if l.get('id') is None or re.search(x['only'], str(l.get('name')), re.I)]
     rows = []
     for L in (lays or [])[:14]:
         if L.get('subLayerIds'): continue
@@ -114,6 +123,107 @@ def search(x):
     return out
 
 
+def org(x):
+    """List every service on a server / ArcGIS account; with walk, also the folders; keep names that match."""
+    out = {k: x[k] for k in ('st', 'url', 'note') if k in x}
+    j = get(x['url'])
+    names = [f"{s.get('name')} ({s.get('type')})" for s in j.get('services') or []]
+    for f in (j.get('folders') or [])[:25]:
+        try: names += [f"{s.get('name')} ({s.get('type')})" for s in get(f"{x['url']}/{f}").get('services') or []]
+        except Exception: pass
+    out['folders'] = (j.get('folders') or [])[:40]
+    out['n_services'] = len(names)
+    out['matching'] = [n for n in names if re.search(x.get('match') or '.', n, re.I)][:80]
+    return out
+
+
+def hub(x):
+    """Find a hub dataset's service URL (dataset id, hub page or search), or list a hub's datasets."""
+    out = {k: x[k] for k in ('st', 'q', 'note', 'dataset') if k in x}
+    if x.get('items'):
+        j = get(x['items'])
+        feats = j.get('features') or []
+        out['datasets'] = [{'title': (f.get('properties') or {}).get('title'), 'type': (f.get('properties') or {}).get('type'),
+                            'url': (f.get('properties') or {}).get('url'), 'licence': re.sub(r'<[^>]+>', ' ', str((f.get('properties') or {}).get('licenseInfo') or ''))[:100],
+                            'modified': (f.get('properties') or {}).get('modified')} for f in feats][:100]
+        return out
+    ids = []
+    d = x.get('dataset') or ''
+    m = re.search(r'([0-9a-f]{32})', d)
+    if m: ids.append(m.group(1))
+    if not ids and x.get('q'):
+        s = get('https://www.arcgis.com/sharing/rest/search', {'q': f'title:"{x["q"]}"', 'num': 10})
+        ids = [it['id'] for it in s.get('results') or []][:5]
+        out['search_hits'] = [f"{it.get('title')} [{it.get('owner')}] {it.get('type')} {it.get('url') or ''}"[:200] for it in s.get('results') or []][:10]
+    out['items'] = []
+    for i in ids[:5]:
+        it = item(i)
+        try:
+            j = get(f'https://www.arcgis.com/sharing/rest/content/items/{i}')
+            it['url'] = j.get('url'); it['type'] = j.get('type')
+        except Exception as e: it['err'] = str(e)[:80]
+        out['items'].append(it)
+    # a service found this way gets the normal layer read
+    for it in out['items']:
+        if it.get('url') and re.search(r'(Feature|Map)Server', str(it['url'])):
+            try: it['layer_read'] = layer({'st': x['st'], 'url': it['url'], 'kind': '?'})
+            except Exception as e: it['layer_err'] = str(e)[:100]
+    return out
+
+
+def page(x):
+    out = {k: x[k] for k in ('st', 'url', 'note') if k in x}
+    with urllib.request.urlopen(urllib.request.Request(x['url'], headers=UA), timeout=60) as r:
+        raw = r.read(); out['status'] = r.status; out['ctype'] = r.headers.get('Content-Type', '')
+    out['bytes'] = len(raw)
+    if x.get('json'):
+        j = json.loads(raw.decode('utf-8', 'replace'))
+        out['results'] = [{'title': p.get('title'), 'org': (p.get('organization') or {}).get('title'), 'licence': p.get('license_title'),
+                           'modified': p.get('metadata_modified', '')[:10],
+                           'links': [(rs.get('format'), rs.get('url')) for rs in p.get('resources') or [] if re.search(r'rest|zip|geojson|shp|kml', str(rs.get('url')) + str(rs.get('format')), re.I)][:6]}
+                          for p in (j.get('result') or {}).get('results') or []][:40]
+        return out
+    if 'pdf' in out['ctype']: return out
+    txt = ' '.join(re.sub(r'<script.*?</script>|<style.*?</style>|<[^>]+>', ' ', raw.decode('utf-8', 'replace'), flags=re.S | re.I).split())
+    out['links'] = sorted(set(re.findall(r'https?://[^"\'\s<>]*(?:MapServer|FeatureServer|\.zip|\.kmz|\.geojson|arcgis\.com/[^"\'\s<>]*)', raw.decode('utf-8', 'replace'))))[:30]
+    if x.get('look'):
+        out['hits'] = [txt[max(0, m.start() - 150): m.end() + 150] for m in re.finditer(x['look'], txt, re.I)][:12]
+    return out
+
+
+def namequery(cfg):
+    """BL18/19: how many unmatched western BLM park names are found in the BLM layers once POTA's suffix words are stripped."""
+    P = cfg.get('namequery_parks') or {}
+    names = []
+    for st in P.get('states', []):
+        try: pk = json.load(open(f'data/us-key/US-{st}.json'))['parks']
+        except Exception: continue
+        for r, v in pk.items():
+            if not v.get('m') and re.search(P['type'], v.get('t', '')):
+                core = ' '.join(re.sub(P['strip'], ' ', v.get('n', ''), flags=re.I).split())
+                if core: names.append((st, r, v.get('n'), core))
+    res = []
+    for x in cfg.get('namequery') or []:
+        out = {k: x[k] for k in ('st', 'url', 'note')}
+        try:
+            meta = get(x['url'])
+            flds = x.get('fields') or [f['name'] for f in meta.get('fields') or [] if f.get('type') == 'esriFieldTypeString' and re.search(r'name|nm', f['name'], re.I)][:3]
+            out['fields'] = flds; out['geom'] = meta.get('geometryType'); hits = []
+            for st, r, full, core in names:
+                w = ' OR '.join(f"UPPER({f}) LIKE '%{core.upper().replace(chr(39), chr(39) * 2)}%'" for f in flds)
+                try:
+                    q = get(x['url'] + '/query', {'where': w, 'outFields': ','.join(flds), 'returnGeometry': 'false', 'resultRecordCount': 3}, t=60)
+                    f0 = q.get('features') or []
+                    if f0: hits.append([st, r, full, [list((a.get('attributes') or {}).values())[:2] for a in f0[:2]]])
+                except Exception: pass
+                time.sleep(.15)
+            out['tried'] = len(names); out['found'] = len(hits); out['hits'] = hits
+        except Exception as e: out['error'] = str(e)[:120]
+        res.append(out)
+        notice(f"namequery {x['url'][-50:]}: {out.get('found')} of {out.get('tried')}")
+    return res
+
+
 def main():
     cfg = json.load(open(CAND))
     held = {}
@@ -138,6 +248,16 @@ def main():
         try: r = search(x)
         except Exception as e: r = dict(x); r['error'] = str(e)[:140]
         res['searches'].append(r)
+    for key, fn in (('orgs', org), ('hubs', hub), ('pages', page)):
+        res[key] = []
+        for x in cfg.get(key) or []:
+            try: r = fn(x)
+            except Exception as e: r = dict(x); r['error'] = str(e)[:140]
+            res[key].append(r)
+            notice(f"{key} {x.get('st')} {x.get('note', '')[:40]}: " + (r.get('error') or 'ok'))
+    if cfg.get('namequery'):
+        try: res['namequery'] = namequery(cfg)
+        except Exception as e: res['namequery'] = [{'error': str(e)[:140]}]
     OUT.write_text(json.dumps(res, indent=1, ensure_ascii=False) + '\n')
     notice(f'wrote {OUT}: {len(res["layers"])} layers, {len(res["searches"])} searches')
 
