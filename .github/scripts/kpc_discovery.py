@@ -41,21 +41,37 @@ CLOSE_W = re.compile(r'closure|closed|alert|advisor|restriction|status', re.I)
 OWN_W = re.compile(r'ownership|owner|surface management|fee title|tenure|crown land|public land', re.I)
 
 
-def classify(name, geom, fields):
+BLOCK = re.compile(r'seismic|earthquake|commercial fishing|bathymetr|depth|horsepower|\bhp\b|\bdams?\b|spillway|bluff|watershed|permit|'
+                   r'netting|quota|hatcher|stocking|pheasant|release|meteorite|astro', re.I)
+PARKWORD = re.compile(r'park|trail|campground|camp|refuge|forest|preserve|wildlife area|state land|public land|recreation|access|boat ramp|launch', re.I)
+
+
+def classify(name, geom, fields, service='', state=''):
     """-> (gap or None, why). geom = Point / Polyline / Polygon / ''. A theme layer = None."""
     n = re.sub(r'[_\-]+', ' ', name or '')   # Parks_DNAP_Trails -> Parks DNAP Trails (word tests)
+    sv = re.sub(r'[_\-/]+', ' ', service or '')   # Oct 27 (chat 8): the SERVICE name counts too ('Watercraft Paddling Query' / 'Stream Access')
+    both = (n + ' ' + sv).strip()
+    if BLOCK.search(both): return None, 'block list (' + BLOCK.search(both).group(0) + ')'
     if THEME.search(n) and not (ACCESS_W.search(n) or TRAIL_W.search(n)): return None, 'theme layer (' + THEME.search(n).group(0) + ')'
     g = (geom or '').lower()
-    if ACCESS_W.search(n) and 'point' in g: return 'access', 'points named ' + ACCESS_W.search(n).group(0)
-    if TRAIL_W.search(n) and 'line' in g: return 'trail line', 'lines named ' + TRAIL_W.search(n).group(0)
-    if TRAIL_W.search(n) and 'point' in g: return 'access', 'trail points (' + TRAIL_W.search(n).group(0) + ')'
-    if OWN_W.search(n) and 'polygon' in g: return 'ownership', 'ownership polygons'
-    if CLOSE_W.search(n): return 'closures', 'closure / status layer'
-    if WATER_W.search(n) and ('polygon' in g or 'line' in g) and not PARK_W.search(n): return 'roads/water', 'water ' + ('areas' if 'polygon' in g else 'lines')
-    if ROAD_W.search(n) and 'line' in g: return 'roads/water', 'road lines'
+    canada = str(state).startswith('CA-')
+    if ACCESS_W.search(both) and 'point' in g: return 'access', 'points named ' + ACCESS_W.search(both).group(0)
+    if re.search(r'\baccess\b', both, re.I) and 'point' in g: return 'access', 'access points'
+    if TRAIL_W.search(both) and 'line' in g: return 'trail line', 'lines named ' + TRAIL_W.search(both).group(0)
+    if TRAIL_W.search(both) and 'point' in g: return 'access', 'trail points (' + TRAIL_W.search(both).group(0) + ')'
+    if OWN_W.search(both) and 'polygon' in g: return 'ownership', 'ownership polygons'
+    # Oct 27 (chat 8 fix 3): a 'closed / status' layer counts only with a park word, and never off the block list
+    if CLOSE_W.search(both):
+        if PARKWORD.search(both): return 'closures', 'closure / status layer for parks'
+        return None, 'a "closed" layer with nothing about parks in its name'
+    # Oct 27 (chat 8 fix 4, HQ): water + roads are a CANADA gap only (the US takes water from USGS NHD, rule 9)
+    if canada and WATER_W.search(n) and ('polygon' in g or 'line' in g) and not PARK_W.search(n): return 'roads/water', 'water ' + ('areas' if 'polygon' in g else 'lines')
+    if canada and ROAD_W.search(n) and 'line' in g: return 'roads/water', 'road lines'
+    if (WATER_W.search(n) or ROAD_W.search(n)) and not canada and not (ACCESS_W.search(both) or TRAIL_W.search(both)):
+        return None, 'water / roads: the US takes those from USGS NHD (rule 9), so not a gap here'
     if PARK_W.search(n) and 'polygon' in g and any(re.search(r'name|nm$|label|title', f, re.I) for f in fields or []): return 'outline', 'park polygons with a name field'
-    if ACCESS_W.search(n) or TRAIL_W.search(n): return 'access', 'named like access (' + (ACCESS_W.search(n) or TRAIL_W.search(n)).group(0) + ')'
-    return None, 'nothing a gap needs (no access / trail / park / water / closure / ownership in its name)'
+    if ACCESS_W.search(both) or TRAIL_W.search(both): return 'access', 'named like access (' + (ACCESS_W.search(both) or TRAIL_W.search(both)).group(0) + ')'
+    return None, 'nothing a gap needs (no access / trail / park / closure / ownership in its name)'
 
 
 NOT_LEAD = re.compile(r'\bcity\b|council|municipal|historic marker|hunting unit|fire district|census place|zoning|parcel sales|'
@@ -73,6 +89,14 @@ def load(p, d):
     except Exception: return d  # noqa: BLE001
 
 
+def key_of(u):
+    """Oct 27 (chat 8 fix 2): ONE row per service: gis2.x = gis.x (same agency), no /MapServer|/FeatureServer|/<layer number>."""
+    u = (u or '').split('?')[0].rstrip('/').lower()
+    u = re.sub(r'/(feature|map)server(/\d+)?$', '', u)
+    u = re.sub(r'^(https?://)gis\d+\.', r'\1gis.', u)
+    return u
+
+
 def svc_of(u):
     m = re.match(r'(https?://[^?#]+?/(?:Feature|Map)Server)', u or '', re.I)
     return m.group(1).rstrip('/') if m else (u or '').split('?')[0].rstrip('/')
@@ -86,7 +110,7 @@ def already_read():
     for f in files:
         try: txt = open(f).read()
         except Exception: continue  # noqa: BLE001
-        for u in re.findall(r'https?://[^"\s\\]+', txt): seen.add(svc_of(u).lower())
+        for u in re.findall(r'https?://[^"\s\\]+', txt): seen.add(key_of(u))
     return seen
 
 
@@ -122,7 +146,7 @@ def step_a(st, kws, known, leads, kwlog):
                     u = svc_of(it.get('url') or '')
                     if not u: continue
                     title = (it.get('title') or '')[:90]
-                    if u.lower() in known: STAT['already_read'] += 1; kl['already_read'] += 1; continue
+                    if key_of(u) in known: STAT['already_read'] += 1; kl['already_read'] += 1; continue
                     if NOT_LEAD.search(title) or CLOSED.search(it.get('licenseInfo') or ''): STAT['not_a_lead'] += 1; continue
                     if THEME.search(title) and not (ACCESS_W.search(title) or TRAIL_W.search(title)): STAT['not_a_lead'] += 1; kl['theme'] += 1; continue
                     org = org_name(it.get('orgId') or '')
@@ -135,8 +159,8 @@ def step_a(st, kws, known, leads, kwlog):
                     lic = re.sub(r'<[^>]+>', ' ', it.get('licenseInfo') or '')[:200]
                     mod = time.strftime('%Y-%m-%d', time.gmtime((it.get('modified') or 0) / 1000)) if it.get('modified') else ''
                     if mod and mod < time.strftime('%Y-%m-%d', time.gmtime(time.time() - 10 * 365 * 86400)): STAT['not_a_lead'] += 1; continue
-                    if u.lower() not in leads: kl['new'] += 1
-                    x = leads.setdefault(u.lower(), {'url': u, 'st': st, 'title': title, 'publisher': org[:70], 'catalog': 'ArcGIS Online',
+                    if key_of(u) not in leads: kl['new'] += 1
+                    x = leads.setdefault(key_of(u), {'url': u, 'st': st, 'title': title, 'publisher': org[:70], 'catalog': 'ArcGIS Online',
                                                     'gaps': [], 'keywords': [], 'licence': lic.strip(), 'modified': mod, 'found': time.strftime('%Y-%m-%d'),
                                                     'kind': 'second witness' if county else 'new'})
                     if gap not in x['gaps']: x['gaps'].append(gap)
@@ -149,8 +173,8 @@ def step_a(st, kws, known, leads, kwlog):
                     STAT['hits'] += 1
                     res = r.get('resource') or {}
                     u = (r.get('link') or '').rstrip('/')
-                    if not u or u.lower() in known or NOT_LEAD.search(res.get('name') or ''): continue
-                    x = leads.setdefault(u.lower(), {'url': u, 'st': st, 'title': (res.get('name') or '')[:90], 'publisher': dom, 'catalog': 'Socrata',
+                    if not u or key_of(u) in known or NOT_LEAD.search(res.get('name') or ''): continue
+                    x = leads.setdefault(key_of(u), {'url': u, 'st': st, 'title': (res.get('name') or '')[:90], 'publisher': dom, 'catalog': 'Socrata',
                                                     'gaps': [], 'keywords': [], 'licence': ((r.get('metadata') or {}).get('license') or '')[:120],
                                                     'modified': (res.get('updatedAt') or '')[:10], 'found': time.strftime('%Y-%m-%d'), 'kind': 'table (no map service)'})
                     if gap not in x['gaps']: x['gaps'].append(gap)
@@ -163,13 +187,35 @@ def step_a(st, kws, known, leads, kwlog):
                     STAT['hits'] += 1
                     svcs = [svc_of(r.get('url') or '') for r in p.get('resources') or [] if re.search(r'/(Feature|Map)Server', r.get('url') or '', re.I)]
                     u = svcs[0] if svcs else f"{base}/dataset/{p.get('name')}"
-                    if u.lower() in known or NOT_LEAD.search(p.get('title') or ''): continue
-                    x = leads.setdefault(u.lower(), {'url': u, 'st': st, 'title': (p.get('title') or '')[:90], 'publisher': ((p.get('organization') or {}).get('title') or '')[:70],
+                    if key_of(u) in known or NOT_LEAD.search(p.get('title') or ''): continue
+                    x = leads.setdefault(key_of(u), {'url': u, 'st': st, 'title': (p.get('title') or '')[:90], 'publisher': ((p.get('organization') or {}).get('title') or '')[:70],
                                                     'catalog': 'CKAN ' + base.split('//')[1].split('/')[0], 'gaps': [], 'keywords': [], 'licence': (p.get('license_title') or '')[:120],
                                                     'modified': (p.get('metadata_modified') or '')[:10], 'found': time.strftime('%Y-%m-%d'),
                                                     'kind': 'new' if svcs else 'download, needs a loader'})
                     if gap not in x['gaps']: x['gaps'].append(gap)
                     if kw not in x['keywords']: x['keywords'].append(kw)
+
+
+EMPTY = {}
+def empty_gaps(st):
+    """Oct 27 (chat 8 + HQ): band A = the lead fills a gap that is EMPTY in that state. Ohio: no trail lines at all -> trail line
+    is empty (Parks_DNAP_Trails = A); 4 ODNR access layers already read -> more access points = B."""
+    if st in EMPTY: return EMPTY[st]
+    e, code = set(), st.split('-')[-1]
+    try:
+        ix = load('data/trails/index-state.json', []) or []
+        if not [t for t in ix if str(t.get('st', '')).upper() == code]: e.add('trail line')
+    except Exception: e.add('trail line')  # noqa: BLE001
+    a = load(f'data/access/{st if st.startswith("CA-") else "US-" + code}.json', {}) or {}
+    if len(a.get('parks') or {}) < 20: e.add('access')
+    c = load('data/alerts/us-parks.json', {}) or {}
+    if not [k for k, v in (c.get('sources') or {}).items() if str(v.get('st', '')).upper() == code]: e.add('closures')
+    b = load('data/boundary-score.json', {}) or {}
+    if ((b.get('states') or {}).get('US-' + code) or {}).get('no_outline', 0) > 0: e.add('outline')
+    if st.startswith('CA-'): e |= {'roads/water', 'ownership'}   # Canada: no national water / road layer and no ownership map yet
+    e.add('map page')
+    EMPTY[st] = e
+    return e
 
 
 def agency_servers(st):
@@ -182,11 +228,21 @@ def agency_servers(st):
     return sorted(roots)
 
 
+def whys_none(rows):
+    r = [x.get('is') for x in rows if x.get('is')]
+    return 'no layer a gap needs: ' + '; '.join(dict.fromkeys(r))[:120] if r else 'no layer a gap needs'
+
+
 def walk_server(st, root, known, leads, t0, kwlog):
     """Every folder → every service → its layers; each layer classified by what it is (Oct 27, chat 8's fix 1)."""
     try: top = T.get(root, {'f': 'json'})
     except Exception as e: STAT['errors'] += 1; kwlog.append({'server': root, 'error': str(e)[:80]}); return  # noqa: BLE001
     folders = [''] + [f for f in top.get('folders') or []]
+    for f in list(folders):   # Oct 27 (chat 8): one level deeper, so a service in a sub-folder is seen too
+        if not f or late('A', t0): continue
+        try: sub = T.get(f'{root}/{f}', {'f': 'json'})
+        except Exception: continue  # noqa: BLE001
+        folders += [g if g.startswith(f + '/') else f + '/' + g for g in sub.get('folders') or []]
     n_svc = n_lead = 0
     for f in folders:
         if late('A', t0): break
@@ -197,7 +253,7 @@ def walk_server(st, root, known, leads, t0, kwlog):
             nm = sv.get('name') or ''
             u = f"{root}/{nm}/{sv['type']}"
             n_svc += 1
-            if u.lower() in known or svc_of(u).lower() in known: STAT['already_read'] += 1; continue
+            if key_of(u) in known or svc_of(u).lower() in known: STAT['already_read'] += 1; continue
             if NOT_LEAD.search(nm.split('/')[-1]): STAT['not_a_lead'] += 1; continue
             try: d = T.get(u, {'f': 'json'})
             except Exception: STAT['errors'] += 1; continue  # noqa: BLE001
@@ -207,13 +263,16 @@ def walk_server(st, root, known, leads, t0, kwlog):
                 lu = f"{u}/{L.get('id')}"
                 try: ld = T.get(lu, {'f': 'json'})
                 except Exception: continue  # noqa: BLE001
-                gap, why = classify(L.get('name') or ld.get('name') or '', (ld.get('geometryType') or '').replace('esriGeometry', ''), [x['name'] for x in ld.get('fields') or []])
+                gap, why = classify(L.get('name') or ld.get('name') or '', (ld.get('geometryType') or '').replace('esriGeometry', ''), [x['name'] for x in ld.get('fields') or []], nm, st)
                 lay_rows.append({'id': L.get('id'), 'name': (L.get('name') or '')[:60], 'geom': (ld.get('geometryType') or '').replace('esriGeometry', ''), 'is': why, 'gap': gap})
                 if gap and gap not in gaps: gaps.append(gap); whys.append(f"{L.get('name')}: {why}")
                 if len(lay_rows) >= 25: break
-            if not gaps: STAT['not_a_lead'] += 1; kwlog.append({'server': root, 'service': nm, 'skipped': 'no layer a gap needs', 'layers': [r['name'] for r in lay_rows][:6]}); continue
+            if not gaps:
+                STAT['not_a_lead'] += 1
+                if len(kwlog) < 400: kwlog.append({'server': root, 'service': nm, 'skipped': whys_none(lay_rows), 'layers': [r['name'] for r in lay_rows][:6]})
+                continue
             STAT['hits'] += 1; n_lead += 1
-            x = leads.setdefault(u.lower(), {'url': u, 'st': st, 'title': nm.split('/')[-1][:90], 'folder': nm.split('/')[0] if '/' in nm else '',
+            x = leads.setdefault(key_of(u), {'url': u, 'st': st, 'title': nm.split('/')[-1][:90], 'folder': nm.split('/')[0] if '/' in nm else '',
                                              'publisher': root.split('/')[2], 'catalog': 'agency server walk', 'gaps': [], 'keywords': [], 'licence': (d.get('copyrightText') or '')[:120],
                                              'modified': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'new', 'is': whys[:4], 'layers_seen': lay_rows[:12]})
             for gp in gaps:
@@ -244,12 +303,12 @@ def grade(x):
     # what the layers ARE (from the test's layer rows or the walk's), not the search word
     kinds, whys = [], []
     for l in (t.get('layers') or x.get('layers_seen') or []):
-        gap, why = classify(l.get('name') or '', l.get('geom') or '', l.get('fields') or [])
+        gap, why = classify(l.get('name') or '', l.get('geom') or '', l.get('fields') or [], x.get('title', ''), x['st'])
         if gap: kinds.append(gap); whys.append(f"{l.get('name')}: {why}")
     if kinds:
         x['gaps'] = sorted(set(kinds)); x['is'] = whys[:4]; g += 1
     elif t.get('layers') or x.get('layers_seen'):
-        x['is'] = [l.get('name', '') + ': ' + classify(l.get('name') or '', l.get('geom') or '', [])[1] for l in (t.get('layers') or x.get('layers_seen'))[:3]]
+        x['is'] = [l.get('name', '') + ': ' + classify(l.get('name') or '', l.get('geom') or '', [], x.get('title', ''), x['st'])[1] for l in (t.get('layers') or x.get('layers_seen'))[:3]]
         x['grade'] = 0; x['band'] = 'C'; x['parks_named'] = 0; return 0
     if T.agency_org(x.get('publisher', ''), x['st']) or re.search(r'\.gov\b|\.us\b|\.gc\.ca|\.gov\.[a-z]{2}\.ca', x['url']): g += 1
     lic = x.get('licence', '')
@@ -257,13 +316,17 @@ def grade(x):
     elif not lic: x['licence_note'] = 'licence unknown'
     n = max([l.get('names_missing', 0) for l in t.get('layers', [])] or [0])
     recs = max([l.get('records', 0) or 0 for l in t.get('layers', [])] or [0])
+    empty = empty_gaps(x['st'])
+    fills = sorted(set(kinds) & empty)
+    x['fills_empty_gap'] = fills
     if n >= 1: g += 1
     if n >= 5: g += 1
-    elif n == 0 and kinds and set(kinds) - {'outline'} and (recs > 0 or x.get('catalog') == 'agency server walk'): g += 1   # new to us, holds records, fills a non-outline gap
+    elif fills and (recs > 0 or x.get('catalog') == 'agency server walk'): g += 1   # Oct 27 (HQ): the gap is EMPTY in this state
     x['parks_named'] = n
     if x.get('kind') == 'replaces' and not x.get('replaces_url'): x['kind'] = 'new'   # 'replaces' only when it really replaces a layer we read
     x['grade'] = g
-    x['band'] = 'A' if g >= 5 else 'B' if g >= 3 else 'C'
+    # HQ Oct 27: A = it fills a gap that is EMPTY in this state (or it names 5+ parks we lack); everything else tops out at B
+    x['band'] = 'A' if g >= 5 and (fills or n >= 5) else 'B' if g >= 3 else 'C'
     if x.get('kind') == 'second witness': x['band'] = 'C'   # D-1: county layers never the outline
     return g
 
@@ -298,15 +361,32 @@ def pdf_patterns(st, cfg, leads):
             slug = re.sub(r'[^a-z0-9]', '', re.sub(pat.get('strip', r'(wildlife|fishing|area|state|park|forest|nature|preserve|lake)\b'), '', (v[0] or '').lower()))
             if not slug: continue
             url = pat['url'].replace('{slug}', slug); n_try += 1
+            made, ok = '', False
             try:
                 req = urllib.request.Request(url, method='HEAD', headers=T.UA)
                 time.sleep(1.0)
-                with urllib.request.urlopen(req, timeout=20) as r: ok = r.status == 200 and 'pdf' in (r.headers.get('Content-Type') or '').lower()
+                with urllib.request.urlopen(req, timeout=20) as r:
+                    ok = r.status == 200 and 'pdf' in (r.headers.get('Content-Type') or '').lower()
+                    lm = r.headers.get('Last-Modified') or ''
+                if ok:   # Oct 27 (chat 8): keep the map's printed date: PDF metadata is plain bytes at the front of the file
+                    rq = urllib.request.Request(url, headers=dict(T.UA, Range='bytes=0-131071'))
+                    time.sleep(1.0)
+                    with urllib.request.urlopen(rq, timeout=30) as r2: head = r2.read()
+                    m = re.search(rb'/(?:Creation|Mod)Date\s*\(D:(\d{4})(\d{2})(\d{2})', head)
+                    made = '-'.join(x.decode() for x in m.groups()) if m else ''
+                    if not made and lm:
+                        try: made = time.strftime('%Y-%m-%d', time.strptime(lm[5:16], '%d %b %Y')) + ' (file date, not the printed date)'
+                        except Exception: made = ''  # noqa: BLE001
             except Exception: ok = False  # noqa: BLE001
             if ok:
                 n_hit += 1
+                yr = int(made[:4]) if made[:4].isdigit() else 0
+                note = ('map dated ' + made) if made else 'NO DATE on the file: check the date printed on the map'
+                old = (not made) or yr < 2015
                 leads[f'map-page:{ref}'] = {'url': url, 'st': st, 'ref': ref, 'title': f'{v[0]}: official map (PDF)', 'publisher': url.split('/')[2], 'catalog': 'agency PDF host',
-                                          'gaps': ['map page'], 'keywords': [], 'licence': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'map page', 'grade': 5, 'band': 'A'}
+                                          'gaps': ['map page'], 'keywords': [], 'licence': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'map page',
+                                          'map_date': made, 'old_map': old, 'use': 'official map LINK only: never an outline source' + (' · OLD OR UNDATED: say so where it is shown' if old else ''),
+                                          'is': [note], 'grade': 5 if not old else 4, 'band': 'A' if not old else 'B'}
     STAT['pdf_tried'] = STAT.get('pdf_tried', 0) + n_try; STAT['pdf_found'] = STAT.get('pdf_found', 0) + n_hit
 
 
@@ -371,12 +451,11 @@ def main():
     kg_found, kg_missed = [], []
     for st in STATES:
         for k in (kg.get(st) or []):
-            core = lambda u: re.sub(r'/(map|feature)server.*$', '', u.lower().rstrip('/'))
-            key = next((u for u in leads if core(u) == core(k['url'])), None)
+            key = next((u for u in leads if key_of(u) == key_of(k['url'])), None)
             if key: leads[key]['known_good'] = k.get('note', 'chat 8'); leads[key]['hand_band'] = k.get('band', ''); kg_found.append(k['url'])
             else:
                 kg_missed.append(k['url'])
-                leads[k['url'].lower()] = {'url': k['url'], 'st': st, 'title': k.get('title', k['url'].split('/')[-2])[:90], 'publisher': k['url'].split('/')[2], 'catalog': 'hand (chat 8)',
+                leads[key_of(k['url'])] = {'url': k['url'], 'st': st, 'title': k.get('title', k['url'].split('/')[-2])[:90], 'publisher': k['url'].split('/')[2], 'catalog': 'hand (chat 8)',
                                            'gaps': k.get('gaps', []), 'keywords': [], 'licence': '', 'found': time.strftime('%Y-%m-%d'), 'kind': 'new', 'known_good': k.get('note', 'chat 8'),
                                            'hand_band': k.get('band', ''), 'missed_by_bot': True}
     STAT['known_good_found'] = len(kg_found); STAT['known_good_missed'] = len(kg_missed)
