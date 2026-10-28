@@ -143,7 +143,11 @@ SRC['AU'] = SRC['AU'] + [('TAS LIST land tenure (© State of Tasmania)', 'arcgis
 SRC['GB'] = SRC['GB'] + [('National Trust Always Open land (CC BY 4.0) [charity land, Q3: not public land for 2-fers]', 'arcgis', 'https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Always_Open/FeatureServer/0')]
 SRC['FR'] = SRC['FR'] + [('ONF public forests (credit ONF)', 'arcgis', 'https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/For%C3%AAts_publiques_de_France_m%C3%A9tropolitaine/FeatureServer/0'),
                          ('IGN Géoplateforme INPN national parks', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_pn:parc_national'),
-                         ('IGN Géoplateforme INPN regional nature parks', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_pnr:pnr')]
+                         ('IGN Géoplateforme INPN regional nature parks', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_pnr:pnr'),
+                         ('IGN Géoplateforme INPN national nature reserves', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_rnn:rnn'),
+                         ('IGN Géoplateforme INPN regional nature reserves', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_rnr:rnr'),
+                         ('IGN Géoplateforme INPN biological reserves (ONF)', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_rb:rb'),
+                         ('IGN Géoplateforme INPN Conservatoire du littoral land (public body)', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_cdl:conservatoire_littoral')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
