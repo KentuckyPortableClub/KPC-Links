@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 1:20 PM, Brandon GO: trim schedules that are overkill; ONE push per repo, no test dispatches needed, keep every run quiet-on-failure): KPC-Data kpc-sota-land.yml daily → MONTHLY; KPC-Links kpc-youtube.yml every 2 h → TWICE A DAY (drop the old Oct 21 go-live extra cron); kpc-park-notes, kpc-campground-notes, kpc-community, kpc-reports every 2 h → EVERY 6 H (stagger the minutes); KPC-Data kpc-state-leaders.yml daily + weekly → WEEKLY only. Also delete the finished one-shot crons (kpc-go-live '30 20 21 10 *', kpc-new-refs' go-live extra '5 22 21 10 *') since Oct 21 is past. Leave the spotter as is (one job an hour that sleeps between checks: fine, public repo = free). Then note the new times in website.md.
 
 ## NEEDS BRANDON
 
