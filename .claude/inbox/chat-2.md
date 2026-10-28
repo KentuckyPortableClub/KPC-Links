@@ -15,6 +15,8 @@ Read .claude/inbox/README.md first.
 
 - HQ (Oct 28 6:00 AM, from chat 9): NEW ZEALAND: DOC public conservation land is ready (CC BY 4.0, ownership built in) on chat9-world, but NZ isn't a world-key country yet. House rule: world OUTLINES anywhere official (2-fers stay top 10, NZ isn't). When the line work allows: load NZ's POTA park list + add NZ name/type rules to the world key so chat 9's layer joins (low priority).
 
+- HQ (Oct 28 6:00 AM, Brandon: 'fix 5') — FABLE: SPEED UP PASS 5 (water re-check, boundary lines, rule-15 strips; now the slowest station: 35+ min + ~4 GB on Kentucky). Same method as passes 1-3: find the loops (measure, don't guess), do the same arithmetic in bulk, reuse unchanged pairs, and CUT MEMORY (stream pairs / free rasters per pair / smaller scratch buffers) so 3 parallel lines fit a runner. Build on a branch; prove IDENTICAL against the current rerun's own pass 5 output (byte-for-byte rows, verdicts, NOT SURE, lines) from its saved bundle; merge only if identical. Report the new time + memory. Don't touch the running rerun.
+
 ## NEEDS BRANDON
 
 ## DONE
