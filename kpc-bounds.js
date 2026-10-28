@@ -202,7 +202,7 @@
     /* Oct 25: a state's lake-surface map (Idaho, Washington, Arkansas) draws the water, not the agency's lake property around it */
     const water = !reviewed && [...how].every(h => h.indexOf('water outline only') >= 0);
     const approx = handApprox || water || (!reviewed && !named && !!hit.far);
-    const why = handApprox ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : water ? 'this is the lake\u2019s shoreline from the state\u2019s water map; the park is the agency\u2019s lake property around it, so check the agency\u2019s map for the land' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
+    const why = handApprox ? 'this is the closest official land, but it is bigger than the park or shaped differently' : water ? 'this is the lake\u2019s shoreline from the state\u2019s water map; the park is the agency\u2019s lake property around it, so check the agency\u2019s map for the land' : approx ? 'the names only partly match and the park\u2019s map pin is ' + (hit.far === 'well outside' ? 'well outside this land' : 'just outside this land') : '';
     return { state: 'ok', n: hit.n, m, fs, approx, why, note, water, read: hit.read || '' };
   }
   /* Oct 22 (Brandon: 'note boundaries that we dont know for sure'): ONE answer for every tool that draws a US park.
@@ -312,7 +312,7 @@
     if (!fs.length) return { state: 'error' };
     const how = m.map(x => String(x[3] || '')), reviewed = how.some(h => h === 'reviewed'), named = how.some(h => /^(name|same name|exact name|reviewed)/.test(h));
     const approx = how.some(h => h === 'reviewed-approx') || (!reviewed && (!named || p.far === 'well outside'));
-    const why = how.some(h => h === 'reviewed-approx') ? 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently' : approx ? 'the names only partly match or the park\u2019s map pin sits well outside this land' : '';
+    const why = how.some(h => h === 'reviewed-approx') ? 'this is the closest official land, but it is bigger than the park or shaped differently' : approx ? 'the names only partly match or the park\u2019s map pin sits well outside this land' : '';
     const nm = m[0][1];
     fs.forEach(f => { f._nm = f._nm || nm; f._bb = bbox(f.geometry); f._approx = approx; f._why = why; f._info = ''; f.properties = Object.assign(f.properties || {}, { NAME: f._nm, SOURCE: f._src }); });
     return { state: 'ok', fs, approx, why };
@@ -322,7 +322,7 @@
     const j = await dget('data/canada-bounds/' + encodeURIComponent(ref) + '.json', null, 20000).catch(() => null);
     if (!j) { let k = null; try { k = await caKey(ref); } catch (e) {} return k && k.state === 'ok' ? k.fs : []; }
     const fs = (j.type === 'FeatureCollection' ? j.features : [j]).filter(f => f && f.geometry);
-    return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'checked by hand: this is the closest official land, but it is bigger than the park or shaped differently'; } return f; });
+    return fs.map(f => { const p = f.properties || {}; f._nm = p.cpcad || p.name || ref; f._bb = bbox(f.geometry); f._src = p.srcShort || 'CPCAD (Environment and Climate Change Canada)'; f._info = [p.type, p.manager].filter(Boolean).join(' · '); if (p.approx) { f._approx = true; f._why = 'this is the closest official land, but it is bigger than the park or shaped differently'; } return f; });
   }
   /* Oct 22 (Brandon's schedule: 'hook the world key into KPCB like usKey'): data/world-key/XX.json lists, per park, the
      official areas the checking bot joined (by name, or by the pin when names are written differently). The outline comes
