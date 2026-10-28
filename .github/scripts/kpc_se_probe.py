@@ -78,6 +78,23 @@ def server(x):
     return out
 
 
+def search(x):
+    """Round 2: when an agency's own server cannot be found, ask ArcGIS Online who publishes a layer like this."""
+    out = {k: x[k] for k in ('st', 'q', 'why') if k in x}
+    j = get('https://www.arcgis.com/sharing/rest/search', {'q': x['q'] + ' AND (type:"Feature Service" OR type:"Map Service")', 'num': 40, 'sortField': 'numviews', 'sortOrder': 'desc'})
+    rows, orgs = [], {}
+    for it in j.get('results') or []:
+        oid = it.get('orgId') or ''
+        if oid and oid not in orgs:
+            try: orgs[oid] = (get(f'https://www.arcgis.com/sharing/rest/portals/{oid}').get('name') or '')[:60]
+            except Exception: orgs[oid] = ''
+        rows.append({'title': (it.get('title') or '')[:70], 'org': orgs.get(oid, ''), 'url': (it.get('url') or '')[:150],
+                     'modified': time.strftime('%Y-%m-%d', time.gmtime((it.get('modified') or 0) / 1000)) if it.get('modified') else '',
+                     'licence': re.sub(r'<[^>]+>', ' ', it.get('licenseInfo') or '')[:80].strip()})
+    out['found'] = rows[:25]
+    return out
+
+
 def main():
     cfg = json.load(open(D / 'candidates.json'))
     res = {'about': 'Probe of chat 8\'s Southeast candidates, run on a GitHub runner (chat sessions cannot reach these servers).',
@@ -90,11 +107,18 @@ def main():
         notice(f"{r['st']} {r.get('kind', '')}: " + ('OK ' + str(best.get('records')) + ' areas, name=' + str(best.get('nameField')) +
                ', owner=' + str(best.get('ownerField')) + ' ' + str(best.get('owner_values') or '')[:120] + ', licence: ' + (r.get('licence') or 'none stated')[:60]
                if r.get('answers') else 'DID NOT ANSWER: ' + r.get('error', '')))
-    for x in cfg.get('servers') or []:
+    for x in (cfg.get('servers') or []) + (cfg.get('round2_servers') or []):
         try: r = server(x)
         except Exception as e: r = dict(x); r['error'] = str(e)[:140]
         res['servers'].append(r)
         notice(f"{r['st']} {r['what']}: " + (r.get('error') or f"{len(r.get('folders', []))} folders, likely: {', '.join(r.get('likely', [])[:8]) or 'none'}"))
+    res['searches'] = []
+    for x in cfg.get('round2_search') or []:
+        try: r = search(x)
+        except Exception as e: r = dict(x); r['error'] = str(e)[:140]
+        res['searches'].append(r)
+        top = [f"{t['title']} [{t['org']}]" for t in (r.get('found') or [])[:5]]
+        notice(f"{r['st']} search '{r['q'][:40]}': " + (r.get('error') or f"{len(r.get('found', []))} hits · " + ' | '.join(top)[:400]))
     (D / 'candidates-tested.json').write_text(json.dumps(res, indent=1) + '\n')
 
 
