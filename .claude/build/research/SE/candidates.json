@@ -2,48 +2,6 @@
  "about": "Southeast candidate layers to add before the line reaches the region (chat 8's source book + HQ Oct 27 9:46 PM). Probed by .github/scripts/kpc_se_probe.py from a GitHub runner, because chat sessions cannot reach state map servers. 'kind' is the park kind the answer key would join; 'owner' = the field that carries land ownership (rule 14).",
  "layers": [
   {
-   "st": "VA",
-   "kind": "wild",
-   "ag": "Virginia DWR",
-   "nm": "WMA_NAME",
-   "owner": "Owner",
-   "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0",
-   "note": "Owner field = rule 14"
-  },
-  {
-   "st": "TN",
-   "kind": "wild",
-   "ag": "TWRA",
-   "nm": "NAME",
-   "owner": "OWNERSHIP",
-   "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3",
-   "note": "OWNERSHIP + OWNCODE = rule 14"
-  },
-  {
-   "st": "FL",
-   "kind": "wild",
-   "ag": "Florida FWC",
-   "nm": "",
-   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1",
-   "note": "'general reference only' (licence check)"
-  },
-  {
-   "st": "WV",
-   "kind": "trail",
-   "ag": "WV DOT / State Rail Authority",
-   "nm": "",
-   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0",
-   "note": "rail trails = line parks"
-  },
-  {
-   "st": "TN",
-   "kind": "preserve",
-   "ag": "TDEC Division of Natural Areas",
-   "nm": "",
-   "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer",
-   "note": "already read as sgtnb: confirm the NAME field for the 7 SNAs that look unjoined"
-  },
-  {
    "st": "MS",
    "kind": "wild",
    "ag": "MDWFP via MARIS (Mississippi State)",
@@ -76,20 +34,52 @@
    "note": "GREY AREA SE-3: school-trust land leased to the state. Added to RECOGNISE it, never to make a 2-fer, until Brandon rules"
   },
   {
-   "st": "TN",
-   "kind": "tva",
-   "ag": "Tennessee Valley Authority",
-   "nm": "",
-   "url": "https://egismaps.tva.gov/arcgis/rest/services/TVA_Undeveloped_Land/MapServer",
-   "note": "chat 8 found no TVA layer: this is TVA's own server (2021)"
+   "st": "WI",
+   "kind": "trail",
+   "ag": "Wisconsin DNR",
+   "nm": "TRAIL_NAME",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+   "note": "state trail segments (lines); TRAIL_MANAGER field"
   },
   {
-   "st": "TN",
-   "kind": "tva",
-   "ag": "TVA (ArcGIS Online copy)",
+   "st": "MN",
+   "kind": "trail",
+   "ag": "Minnesota DNR",
    "nm": "",
-   "url": "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/TVA_Undeveloped_Land_Hosted/FeatureServer",
-   "note": "2023 copy of the same"
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0",
+   "note": "16 state trails"
+  },
+  {
+   "st": "MO",
+   "kind": "trail",
+   "ag": "Missouri DNR",
+   "nm": "",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer",
+   "note": "layers 3 + 7 = Trail Routes and Long Trails; 12 natural areas (read), 13 wild areas (not read)"
+  },
+  {
+   "st": "MO",
+   "kind": "wild-area",
+   "ag": "Missouri DNR",
+   "nm": "",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer/13",
+   "note": "wild areas"
+  },
+  {
+   "st": "ND",
+   "kind": "forest",
+   "ag": "North Dakota Forest Service",
+   "nm": "",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/ArcGIS/rest/services/NDGISHUB_State_Forest/FeatureServer",
+   "note": "2011 data per the desk: check the date before it outranks anything newer (rule 6)"
+  },
+  {
+   "st": "MI",
+   "kind": "forest",
+   "ag": "Michigan DNR",
+   "nm": "",
+   "url": "https://services1.arcgis.com/3nMhWgyVdnKJMg2j/arcgis/rest/services/State_Forest_Boundaries/FeatureServer",
+   "note": "GUESS: the MI key has no state forest layer and 6 forests are unjoined; if this fails the search below finds the right one"
   }
  ],
  "servers": [
@@ -129,12 +119,22 @@
    "url": "https://www.maris.state.ms.us/server/rest/services"
   }
  ],
- "round2_servers": [
+ "round2_servers": [],
+ "round2_search": [
   {
-   "st": "TN",
-   "what": "TVA own server root",
-   "url": "https://egismaps.tva.gov/arcgis/rest/services"
+   "st": "MI",
+   "q": "(\"state forest\" OR \"state trail\" OR \"harbor\") AND \"Michigan\" AND (DNR OR \"Department of Natural Resources\")",
+   "why": "MI: 6 state forests, 6 state trails, 13 harbours unjoined; the key has no forest layer"
+  },
+  {
+   "st": "IN",
+   "q": "(\"state recreation area\" OR \"state forest\" OR trails) AND \"Indiana\" AND (DNR OR \"Department of Natural Resources\")",
+   "why": "IN: 13 lake State Recreation Areas not found"
+  },
+  {
+   "st": "MN",
+   "q": "(\"wildlife management area\") AND \"Minnesota\" AND DNR",
+   "why": "MN DNR WMA public layer (top add 5)"
   }
- ],
- "round2_search": []
+ ]
 }
