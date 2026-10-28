@@ -18,3 +18,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Illinois DNR:** the park page https://dnr.illinois.gov/parks/park.html carries NO park maps, only a statewide region image (A). Park/site maps are PDFs in the publications store: `dnr.illinois.gov/content/dam/soi/en/web/dnr/publications/documents/<8-digit>.pdf` (e.g. 00000827.pdf, 00000929.pdf, 00000294.pdf, B from search results; I did not open them). Rules: https://dnr.illinois.gov/adrules.html (administrative rules, not a park-rules page, A).
+- BOT LOOK-UP: each park page `dnr.illinois.gov/parks/park.<name>.html` and read its map link (script-loaded or not listed in text). No bot-checked links exist for IL in parkinfo-web.
+- Handovers: none seen.

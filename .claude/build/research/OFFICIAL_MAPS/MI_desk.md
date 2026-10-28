@@ -20,3 +20,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Michigan DNR state game areas:** list https://www.michigan.gov/dnr/managing-resources/wildlife/wildlife-archive/state-game-area-maps (A). Files all in `https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/WLD/Archive/SGA/<area>_sga_mp.pdf` (variants: `_swa_mp`, `_pma_mp`, hyphenated names), with `?rev=&hash=` version strings (A). The list is under "wildlife-archive", i.e. these maps are the OLD set (A): ask whether a newer map exists on the DNR's online mapping (MI-HUNT, B). Old host `dnr.state.mi.us/publications/pdfs/HuntingWildlifeHabitat/SGA/<Name>_SGA_map.pdf` still turns up in search (B) - older copies.
+- **Dates:** none in the page or URLs (A); `?rev=` is a cache id, not a date.
+- **Rules:** no game-area rules on the list; regulations at /dnr/managing-resources/laws/regulations (A). State forests/parks: see the earlier Big Holes round.
+- Handovers: none seen.

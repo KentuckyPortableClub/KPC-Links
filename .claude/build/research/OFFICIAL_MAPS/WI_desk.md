@@ -16,3 +16,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Wisconsin DNR:** per-property maps page `https://dnr.wisconsin.gov/topic/parks/<slug>/maps` (e.g. amnicon, fenley, govnelson, govthompson) (A). Each map links to a Widen asset page `https://widnr.widen.net/s/<random id>/<map-name>` (A): the id is random, so a bot must read it from the maps page. Older direct files also exist: `dnr.wi.gov/sites/default/files/topic/Parks/<name>.pdf` (B). No dates on the page; one hunting map slug has "2000" in it (A, meaning unclear). Rules: no rules link on the maps page (A).
+- **State GIS:** dnrmaps.wi.gov/arcgis2/rest/services/PR_Recreation/PR_WSPS_Property_Info_WTM_Ext/MapServer (B) - to chat 9. Statewide map page https://dnr.wisconsin.gov/topic/lands/maps.html (B). 2026 public access lands atlas (March 2026 news) (B).
+- Handovers: none seen.

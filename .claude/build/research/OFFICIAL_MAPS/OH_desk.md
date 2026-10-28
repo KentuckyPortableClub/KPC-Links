@@ -19,3 +19,10 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **ODNR (parks AND Division of Wildlife):** all files on one asset host: `dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/<name>.pdf` (state parks, hunting maps, region maps; e.g. tarhollowhuntingmap.pdf, jesseowensregionmap.pdf) and `.../documents/wildlife/wildlife-area-maps/<name>.pdf` (e.g. Wallace_Odowd_Trimble.pdf) (A: opened the Wallace one). Bot ok 15 of 15 (A). File-name case varies, so read the saved link; never build the name.
+- **Map date:** the PDF itself shows "Date Published: 5/3/2022" (A, Wallace Odowd Trimble map) - a publication date, not a revision date. Agency named only by the legend ("ODNR Lands") and wildohio.gov.
+- **Rules:** Ohio Administrative Code 1501:31-15-04 (wildlife area rules) at codes.ohio.gov (B); ODNR rules pages not opened.
+- **State GIS for outlines:** gis2.ohiodnr.gov/arcgis/rest/services/DOW_Services/... (B) - to chat 9.
+- Handovers: none seen. Historic sites: Ohio History Connection runs the state's historic sites, not ODNR (C); boundaries not checked.

@@ -16,3 +16,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Indiana DNR (state parks, state forests, reservoirs, fish & wildlife areas):** ONE list page https://in.gov/dnr/state-parks/maps, A-Z by property, each with a property map plus campground/hunting/trail maps (A). Links look like `https://www.in.gov/dA/<hash>/<filename>.pdf?language_id=1` (filename prefixes sp- fo- or-); a few use in.gov/dnr/... paths (A). So the file name is unguessable: a bot must read the list page. State forests also at https://in.gov/dnr/forestry/state-forest-maps2 (B).
+- **Date:** none on the list; the page itself was last modified 2026-03-19 (A).
+- **Rules:** https://in.gov/dnr/state-parks/property-rules-and-regulations (A).
+- Manager: Indiana DNR, State Parks division (A). Handovers: none seen. Historic sites: IN DNR runs them under the same State Parks page (C).

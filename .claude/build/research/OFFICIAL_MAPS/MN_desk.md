@@ -17,3 +17,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Minnesota DNR:** state forests only on the page I opened: `https://www.dnr.state.mn.us/state-forests/forest.html?id=sft000NN` (ids not sequential, e.g. Badoura sft00002); list https://www.dnr.state.mn.us/state-forests/list.html; new GeoPDF + paper maps, "will continue to be updated for the next two years" (page last modified 2026-10-08) (A). So forest map dates vary by forest: read each GeoPDF.
+- **WMAs (public):** open-data outlines at https://gisdata.mn.gov/ru/dataset/bdry-dnr-wildlife-mgmt-areas-pub (B) - to chat 9. WMA/state park map links not opened: BOT LOOK-UP (dnr.state.mn.us/state_parks/park.html?id=spk<NNNNN> pages, B).
+- Handovers: none seen.
