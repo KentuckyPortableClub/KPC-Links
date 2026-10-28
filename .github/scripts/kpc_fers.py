@@ -2137,8 +2137,13 @@ def sharp_shape(pts):
     if len(pts) <= 3: return pts
     la = sum(p[1] for p in pts) / len(pts); kx, ky = 111320 * math.cos(math.radians(la)), 110574
     P = np.asarray(pts, dtype=np.float64)[:, :2] * [kx, ky]
-    c = cv2.approxPolyDP(P.astype(np.float32).reshape(-1, 1, 2), PATCH_EPS_M, True).reshape(-1, 2)
-    if len(c) > PATCH_PTS: c = c[::int(math.ceil(len(c) / PATCH_PTS))]
+    eps = PATCH_EPS_M
+    c = cv2.approxPolyDP(P.astype(np.float32).reshape(-1, 1, 2), eps, True).reshape(-1, 2)
+    # Oct 28 (Mammoth Cave x Green River: a 25-mile patch drawn with lines jumping across the land): too many points = a LARGER
+    # tolerance (the outline stays on its real edge, within eps metres), never 'every n-th point'; up to 4x the points for long patches
+    cap = PATCH_PTS * 4 if len(P) > PATCH_PTS * 8 else PATCH_PTS
+    while len(c) > cap and eps < 200:
+        eps *= 1.6; c = cv2.approxPolyDP(P.astype(np.float32).reshape(-1, 1, 2), eps, True).reshape(-1, 2)
     return [[round(float(x) / kx, 6), round(float(y) / ky, 6)] for x, y in c]
 
 def slim(spots):
