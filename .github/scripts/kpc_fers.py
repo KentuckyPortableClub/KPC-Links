@@ -1573,8 +1573,15 @@ def near_pairs(G, pairs, spots, gap_m=100.0):
     return out
 
 
+# Oct 28 (Brandon 6:18 AM): Fort Heiman (US-3790) = its own outline now (the Fort Heiman tract only, split out of Fort Donelson's
+# 8-piece record), but the pair STAYS a 'same land, two park numbers' row: both numbers apply to that one tract.
+SAME_LAND_PAIRS = [(('US-0703', 'US-3790'), 'Fort Heiman tract', 'Fort Heiman (Fort Donelson National Battlefield tract)')]
+
+
 def same_outline(parks):
     seen, out = {}, []
+    for refs, rec, nm in SAME_LAND_PAIRS:
+        if all(r in parks for r in refs): out.append({'refs': sorted(refs), 'record': rec, 'name': nm})
     for ref, p in parks.items():
         for i, rid in enumerate(p['ids']):
             if rid is None: continue
