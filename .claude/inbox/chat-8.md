@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 5:55 PM, Brandon): WHEN THE US QUEUE IS THROUGH (not before; area checks first): work through chat 2's big list KPC-Data data/fers/review-all.md (every NOT SURE / unconfirmed / river-slot row, biggest first). Per row: settle it from official sources (agency land records, the agency's own map) = LIVE / DROP / still NOT SURE with why; group the ones only a person on the ground can settle into a 'for members' list (later the Overlap Finder's 'help us check'). Write `.claude/build/research/KPC_ReviewAll_desk.md` in batches of ~50, biggest first.
 - HQ (Oct 28 4:50 PM): NEW CHECK on every area you grade from now on: RIVER CORRIDORS (Wild & Scenic, state wild rivers, river parks). Spot-check 2 per area on the satellite map: does the gold follow the banks (no straight jumps across land), and does a gap inside the corridor match a REAL other owner, not just the river cut out of PAD-US? (Brandon caught Mammoth Cave x Green River WR: 389 ac river slot, no private land.)
 - MOVED (HQ 10:40 AM): the bot-tuning check went to chat 11 (bot outputs are its job); you stay on the queue's state checks.
 - HQ (Oct 28 7:55 AM): your US-10105 question is ALREADY RULED (Brandon 4:20-4:30 AM, mapping.md 'KY WILD RIVERS'): US-10105 Green (and US-10107 Big South Fork) = the KENTUCKY STATE WILD RIVER corridors we hold. Apply it in your recheck. Chat 2 fixes the merge + duplicates first, reruns KY + OH, then you recheck; the US + Canada queue waits for your READY.
