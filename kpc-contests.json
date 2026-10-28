@@ -1,52 +1,6 @@
 {
- "updated": "2026-10-27T11:15:31Z",
+ "updated": "2026-10-28T11:19:53Z",
  "week": [
-  {
-   "name": "Tuesday's Telegraphy Contest",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g53yc",
-   "when": "1930Z-2030Z, Oct 27",
-   "segs": [
-    [
-     "2026-10-27T19:30Z",
-     "2026-10-27T20:30Z"
-    ]
-   ],
-   "modes": [],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "SKCC Sprint",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003feivt",
-   "when": "0000Z-0200Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T00:00Z",
-     "2026-10-28T02:00Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
-  {
-   "name": "Phone Weekly Test",
-   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fyglt",
-   "when": "0230Z-0300Z, Oct 28",
-   "segs": [
-    [
-     "2026-10-28T02:30Z",
-     "2026-10-28T03:00Z"
-    ]
-   ],
-   "modes": [
-    "PHONE"
-   ],
-   "kinds": [],
-   "src": "WA7BNM"
-  },
   {
    "name": "A1Club AWT",
    "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003fzbkb",
@@ -424,27 +378,65 @@
    ],
    "kinds": [],
    "src": "WA7BNM"
+  },
+  {
+   "name": "ARS Spartan Sprint",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003g5yff",
+   "when": "0100Z-0300Z, Nov 3",
+   "segs": [
+    [
+     "2026-11-03T01:00Z",
+     "2026-11-03T03:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Worldwide Sideband Activity Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gpgw0",
+   "when": "0100Z-0159Z, Nov 3",
+   "segs": [
+    [
+     "2026-11-03T01:00Z",
+     "2026-11-03T01:59Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "ICWC Medium Speed Test",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gnjhc",
+   "when": "0300Z-0400Z, Nov 3",
+   "segs": [
+    [
+     "2026-11-03T03:00Z",
+     "2026-11-03T04:00Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
+  },
+  {
+   "name": "Tuesday's Telegraphy Contest",
+   "url": "https://www.contestcalendar.com/weeklycontdetails.php?ref=003gwbw4",
+   "when": "1930Z-2030Z, Nov 3",
+   "segs": [
+    [
+     "2026-11-03T19:30Z",
+     "2026-11-03T20:30Z"
+    ]
+   ],
+   "modes": [],
+   "kinds": [],
+   "src": "WA7BNM"
   }
  ],
  "month": [
-  {
-   "name": "SKCC Sprint",
-   "url": "https://www.skccgroup.com",
-   "when": "",
-   "segs": [
-    [
-     "2026-10-28T00:00Z",
-     "2026-10-28T02:01Z"
-    ]
-   ],
-   "modes": [
-    "CW"
-   ],
-   "kinds": [],
-   "src": "CORRAL",
-   "bands": "1.8-28,50",
-   "exch": "RST, SPC, name, mbr or \"none\""
-  },
   {
    "name": "UKEICC 80m Contest",
    "url": "https://www.ukeicc.com",
@@ -1298,7 +1290,7 @@
   }
  ],
  "status": {
-  "WA7BNM": "ok (28)",
-  "CORRAL": "ok (6)"
+  "WA7BNM": "ok (29)",
+  "CORRAL": "ok (5)"
  }
 }

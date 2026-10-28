@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T11:16:33Z",
+ "updated": "2026-10-28T11:19:42Z",
  "stations": [
   {
    "title": "2026 Frankenstein Halloween FunXpedition",
@@ -647,6 +647,23 @@
    "note": ", Ellicot City. SKCC - Straight Key Century Club. 3.550 7.055 14.050 21.050. Certificate & QSL. SKCC c/o Bill Hunt KJ7GNB, PO Box 731, Shelby, MT 59474."
   },
   {
+   "title": "\"Remembering W0JH Father Metcalf\"",
+   "start": "2027-01-08",
+   "end": "2027-01-10",
+   "times": "1600Z-2200Z",
+   "call": "W0JH",
+   "calls": [
+    "W0JH"
+   ],
+   "where": "Stillwater, MN",
+   "st": "MN",
+   "by": "Stillwater (MN) Amateur Radio Assoc",
+   "freqs": "",
+   "qsl": "Certificate",
+   "url": "http://www.radioham.org",
+   "note": ", Stillwater, MN. Stillwater (MN) Amateur Radio Assoc. (SARA). 3.860 7.260 14.260 21.360. Certificate. Shel Mann - N0DRX, 1618 Pine St W, Stillwater, MN 55082. The event pays tribute to the original W0JH, Father George Metcalf. As a WWII Chaplain for General Patton, Fr. Metcalf drafted the famous “Weather Prayer.” The General and his troops believed it ended 3 months of cloudy, rainy skies during "
+  },
+  {
    "title": "Gray Whale Watch Festival",
    "start": "2027-01-09",
    "end": "2027-01-09",
@@ -722,6 +739,6 @@
   }
  ],
  "status": {
-  "ARRL": "ok (39)"
+  "ARRL": "ok (40)"
  }
 }
