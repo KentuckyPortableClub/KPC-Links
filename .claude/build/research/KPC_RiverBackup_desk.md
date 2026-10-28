@@ -25,3 +25,13 @@ Grades: A = I opened the address and read it; B = search result only; C = my inf
 2. Live order: row 2 (live) → saved copy → row 3 (IENC, navigable rivers only) → row 4 → NOT SURE.
 3. Mismatch rule: if a second source disagrees with NHD on "is this point in water", do not guess; NOT SURE (rule 14 spirit).
 4. A BOT should test rows 1, 3, 4 from the runner and report which answer. I can only vouch for what the research tool opened.
+
+## Runner retest (chat 2, Oct 28 ~00:45 CDT, GitHub runner, test box = Paducah where the Ohio + Tennessee meet)
+| # | Result |
+|---|---|
+| 1 | **Answers.** TNM API lists NHDPlus HR per HU4 (0514 published 2018-08-13); files on prd-tnm S3 `StagedProducts/Hydrography/NHDPlusHR/VPU/Current/GDB|GPKG/NHDPLUS_H_<HU4>_HU4_*.zip` download fine, but are BIG (0514 = 504 MB GDB / 926 MB GPKG). Too heavy for every night; usable as a one-time seed. |
+| 2 | **Answers** (live NHDPlus_HR: layer 8 NHDArea 4 features, layer 9 NHDWaterbody 373, 1-5 s; the older `nhd/MapServer` answers too). |
+| 3 | **Answers.** Corps IENC (ienccloud.us, 100 classes): DEPTH_AREA (16 at Paducah), COASTLINE_LINE (16), LAKE_AREA (12), LAND_AREA (35); RIVERS_AREA / RIVERS_LINE exist (not counted). Navigable channels only. |
+| 4 | **Answers** (EPA NHDPlus V2.1 on AGOL: layer 1 waterbodies 36, layer 2 flowlines 92, 0.1-0.2 s). |
+| 5 | **Answers** (Census TIGER: county AREAWATER zip 2024 = 417 KB; TIGERweb Hydro layer 1 Areal Hydrography 178 at Paducah). |
+Built (Oct 28): the bot now keeps its own saved copy of the live tiles near every spot (water-<tag>.tar.gz, each tile dated, rule 13): live → saved copy → NOT SURE. Rows 3-5 are NOT wired in (different data = different edges; chat 8 rule 3: a second source never decides alone). If the live map AND the saved copy are both missing, the S3 HU4 file (row 1, same data as live) is the next thing to add.
