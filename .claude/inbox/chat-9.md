@@ -11,7 +11,7 @@ Read .claude/inbox/README.md first.
 
 
 ## NEEDS BRANDON
-- (HQ Oct 28 7:24 AM) Hart County PVA: chat 9 does NOT accept qPublic's terms. Brandon looks it up himself and sends: owner, acreage, PARCEL ID of the tract at 37.2948,-85.8325 (and Boiling Springs' parcels if he can). Chat 9 then finds that parcel ID in an OPEN Kentucky parcel layer (open terms = Green River SNA's 3rd-tract outline); if none = a labelled pin 'Timber Lane tract, 115.75 ac, Commonwealth of Kentucky' + the H.H. Wilson boat-ramp access point.
+- ANSWERED 7:29 AM (Brandon looked it up: parcel 073-00-00-009.00, 115.758 ac Johnson Spgs Rd, Commonwealth of KY FBO Kentucky Nature Preserves; see OPEN): (HQ Oct 28 7:24 AM) Hart County PVA: chat 9 does NOT accept qPublic's terms. Brandon looks it up himself and sends: owner, acreage, PARCEL ID of the tract at 37.2948,-85.8325 (and Boiling Springs' parcels if he can). Chat 9 then finds that parcel ID in an OPEN Kentucky parcel layer (open terms = Green River SNA's 3rd-tract outline); if none = a labelled pin 'Timber Lane tract, 115.75 ac, Commonwealth of Kentucky' + the H.H. Wilson boat-ramp access point.
 
 ## DONE
 - Oct 28 7:35 AM: INTAKE review (KPC-Data data/intake/ready.json): APPROVED SSSI units England (OGL; note: pin-only joins = 'sits on', name rules decide) + Czechia nature parks as LIVE-ONLY (AOPK terms 'viewing only'); REJECTED with reasons: USACE reservoirs (lake surfaces never a land outline, B6; kept for chat 2's rule 14), NV VS Boundary (already read; NDSP boundaries merged), Clemson SC copy (replaced by SCDNR's own layer), MT FWP (already read), Doorstep + Millennium Greens (close none), hobby map; PEI = ask table. Gate misses sent to chat 10's inbox. From now on new finds go to data/intake/queue.json.
