@@ -165,5 +165,13 @@
   "SD": "the state GIS server did not answer from GitHub (Expecting value: line 1 column 1 (char 0); Expecting value: line 1 column 1 (char 0); <url); ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WI": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies",
   "WV": "the state GIS servers answered but publish no campground / cabin layer we can read; ArcGIS Online had no camp layer from an account named like the state's agencies"
+ },
+ "gate": {
+  "result": "FAIL",
+  "checked": 1,
+  "missing": [
+   "TN Fall Creek Falls"
+  ],
+  "date": "2026-10-28"
  }
 }
