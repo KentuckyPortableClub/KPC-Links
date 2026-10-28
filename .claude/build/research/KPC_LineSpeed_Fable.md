@@ -68,3 +68,25 @@ coarse detail would feed pass 3 when USGS is down. Key by detail too (or save th
 
 What NOT to do: change the cell sizes, the pads, the rasteriser, the distance transform, or the order of the passes — every one of
 those changes answers.
+
+## 4. Done (Oct 28 ~5:55 AM): steps 1 + 2 built, PROVEN, merged; pass 5 untouched
+Offline from tonight's saved bundles (Kentucky worker bundle, Ohio worker bundle), the slow line and the fast line both run
+through passes 1-2-3; the outputs (US-KY.json 409 spots, looked / missing / same-outline; US-OH.json 222 spots + its files) are
+**byte-for-byte identical** (cmp). A second fast run with the reuse files present reused 555 / 103 / 100 pairs (passes 1 / 2 / 3)
+and is byte-for-byte identical too (one hidden dependency found and fixed on the way: a pair's side notes - 'the ownership map did
+not answer', an unchecked water route, log lines - are replayed with the reused spots).
+
+| pass | slow line | fast line, first run | fast line, nothing changed (reuse) |
+|---|---|---|---|
+| KY pass 1 | 283 s | 80 s | 12 s |
+| KY pass 2 | 421 s | 71 s | 9 s |
+| KY pass 3 | 507 s | 120 s | 42 s |
+| KY pass 5 | **2,844 s** (47 min, 4 GB; original code) | not changed | not changed |
+| OH passes 1 / 2 / 3 | 31 / 14 / 20 s | 26 / 14 / 17 s | 26 / 13 / 17 s |
+(Offline = compute only; the real runs add the server requests. Offline, some answers the KY fixes now ask for (Park Service / Forest
+Service owned-land tiles, roads near new spots) were not in the bundle on either line: the same NOT SURE on both, so the proof holds.)
+
+NEXT JOB (HQ 5:41 AM): **pass 5** is the slow pass now (water re-check, boundary lines, rule-15 zones: 47 min offline, 4 GB), to be
+sped up on a branch and proven against the rerun's own pass-5 output; the new worker time of the Kentucky rerun says how much is left.
+Merged Oct 28 ~5:50 AM: branch `line-speed` -> main (kpc_fers.py, kpc_http_cache.py). The reuse files are data/fers/reuse-p<pass>-<tag>.json
+(they travel with the tag's files: fetcher copies them in, worker saves them).
