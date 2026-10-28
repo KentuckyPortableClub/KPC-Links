@@ -1,7 +1,7 @@
 # BRANDON'S RULINGS LIST (HQ keeps it; one sitting a day; 'all leans OK' is a valid answer)
 Sorted by what it unlocks. HQ records answers in the owning topic file and moves them to ANSWERED.
 
-## OPEN (Oct 28 5:10 AM)
+## OPEN (Oct 28 5:10 AM) — ALL 22 BELOW RULED Oct 28 6:34 AM (see ANSWERED); next questions go here
 ### Official-documents bot (chat 8: KPC_RuleSheet_Docs_desk.md; D1, D2, D9 already ruled)
 - DOC-3 Campground-only map stands in when nothing else? LEAN yes, labelled.
 - DOC-4 Combined multi-unit map? LEAN yes, labelled 'covers N units'.
@@ -31,5 +31,5 @@ Sorted by what it unlocks. HQ records answers in the owning topic file and moves
 - Q3 UK charity land (National Trust etc.) as public land: at the UK GO.
 
 ## ANSWERED
-- Oct 28 6:32 AM (Brandon): DOC-3 campground-only map = YES with a NOTE on the card ('campground map: the agency has no park map'); DOC-4 YES; DOC-5 YES; DOC-6 YES; DOC-7 YES; DOC-8 YES; DOC-11 YES. CL-1 YES; CL-2 YES; CL-3 YES; CL-4 YES; CL-6 YES; CL-8 YES. CA-1 YES; CA-2 YES + PICNIC SHELTERS shown too as DAY-USE INFO (not camping rows: 'good info'); CA-3 YES; CA-4 dispersed camping = shown under the park's CAMPING INFO (not a campground row). ASKED FOR MORE: DOC-10 (Avenza/Gaia), CL-5 (KY reader wins), CL-7 (PDF lists), CA-5 (hunt dates), CA-6 (state lists first).
+- Oct 28 6:32 AM (Brandon): DOC-3 campground-only map = YES with a NOTE on the card ('campground map: the agency has no park map'); DOC-4 YES; DOC-5 YES; DOC-6 YES; DOC-7 YES; DOC-8 YES; DOC-11 YES. CL-1 YES; CL-2 YES; CL-3 YES; CL-4 YES; CL-6 YES; CL-8 YES. CA-1 YES; CA-2 YES + PICNIC SHELTERS shown too as DAY-USE INFO (not camping rows: 'good info'); CA-3 YES; CA-4 dispersed camping = shown under the park's CAMPING INFO (not a campground row). Then 6:34 AM: DOC-10 YES (Avenza/Gaia only when the agency's own site points to it, labelled 'in the Avenza app'); CL-5 YES (KY's own reader wins, the new bot compared quietly until proven); CL-7 YES (PDFs read; scanned = 'not readable, check the agency'); CA-5 YES (hunt dates: no 'activate both', keep 'inside' + closure); CA-6 YES (state lists first, top 50 after the first check). ALL 22 RULED.
 - (see mapping.md / website.md, Oct 27-28 rulings)
