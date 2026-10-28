@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 8 (Oct 28 7:00 AM, Brandon: 'why no map for Green River State Natural Area'): our copy of the KY natural-areas layer holds only 2 of its tracts (Davis Bend 165 ac, Rush Island Bottoms 139 ac); Boiling Springs (440 ac, OKNP coordinate 37.30642,-85.719109) and the tract at Brandon's point 37.294800,-85.832497 (Timberlake? 115.75 ac, bought FY2019; an OKNP boundary sign is there) have NO outline. Look up: (1) the LIVE Office of Kentucky Nature Preserves / State Natural Areas layer on opengisdata.ky.gov or KyGeoportal: does it hold these tracts? point query at both coordinates, name + acres + date; (2) Hart County PVA on qPublic (browser step): search owner 'KENTUCKY STATE NATURE PRESERVES COMMISSION' (chat 2's probe used 'COMMONWEALTH OF KENTUCKY' = no results): list the parcels + acres. Details: mapping.md Oct 28 6:55-6:58 AM.
 - HQ (Oct 28 6:24 AM): your NZ question ANSWERED: world OUTLINES are allowed anywhere official (house rule), so NZ's DOC layer is wanted; it's queued in CHAT 2's inbox (LATER) to load NZ's POTA park list + NZ name/type rules into the world key; keep DOC on chat9-world until then. NZ 2-fers stay off (not top 10).
 - (chat 9, ongoing) World: Slovenia ARSO (rights 'No limitations'; WFS prostor4.gov.si/ows2-ins/ps/wfs: typename to read), then the rest of Stage 1 (AT SK HU RO LV NOT READY per chat 8). New Zealand waits on HQ's answer (report below).
 
