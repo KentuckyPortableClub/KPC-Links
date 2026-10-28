@@ -260,6 +260,88 @@ def browse(cfg):
     return out
 
 
+NRHP = 'https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1'
+NRF = 'RESNAME,State,STATUS,ResType,Is_NHL,MAP_METHOD,SRC_SCALE,SRC_ACCU,BND_TYPE,EDIT_DATE,NRIS_Refnum'
+TYPEW = set('state national historic historical site sites park parks battlefield memorial monument area preservation heritage the of and at'.split())
+
+
+def _words(s): return {w for w in re.sub(r'[^a-z0-9 ]', ' ', str(s).lower().replace("'", '')).split() if len(w) > 2 and w not in TYPEW}
+
+
+def _acres(rings, la):
+    import math
+    kx, ky = 111320 * math.cos(math.radians(la)), 110570
+    tot = 0.0
+    for r in rings:
+        a = sum(r[i][0] * r[i + 1][1] - r[i + 1][0] * r[i][1] for i in range(len(r) - 1)) / 2
+        tot += a
+    return round(abs(tot) * kx * ky / 4046.86, 1)
+
+
+def _inside(la, lo, rings):
+    c = False
+    for r in rings:
+        for i in range(len(r) - 1):
+            (x1, y1), (x2, y2) = r[i][:2], r[i + 1][:2]
+            if (y1 > la) != (y2 > la) and lo < (x2 - x1) * (la - y1) / ((y2 - y1) or 1e-12) + x1: c = not c
+    return c
+
+
+def nrhp(cfg):
+    """Oct 28 (HQ, chat 8's KPC_HistoricSites_desk.md): National Register polygons vs POTA historic sites. Read only."""
+    X = cfg['nrhp']; out = {'tests': [], 'count': {}}
+    pins = {r[1]: (r[3], r[4], r[2]) for r in json.load(open('locations.json')) if r[0] == 'POTA' and r[3] is not None}
+    def q(where=None, la=None, lo=None):
+        p = {'outFields': NRF, 'returnGeometry': 'true', 'outSR': 4326, 'f': 'json'}
+        if where: p['where'] = where
+        else: p.update({'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects', 'where': '1=1'})
+        return get(NRHP + '/query', p, t=90).get('features') or []
+    for x in X.get('tests') or []:
+        r = dict(x); la, lo, nm = pins.get(x['ref'], (None, None, ''))
+        try:
+            fs = q(where=f"RESNAME LIKE '%{x['word']}%' AND State = '{x['state']}'")
+            r['found'] = [{**{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '')},
+                           'acres': _acres((f.get('geometry') or {}).get('rings') or [], la or 37), 'pin_inside': bool(la) and _inside(la, lo, (f.get('geometry') or {}).get('rings') or [])} for f in fs][:8]
+        except Exception as e: r['error'] = str(e)[:140]
+        out['tests'].append(r); time.sleep(.5)
+    rx = re.compile(X['types'], re.I)
+    parks = []
+    import glob
+    for f in sorted(glob.glob('data/us-key/US-*.json')):
+        for ref, p in json.load(open(f))['parks'].items():
+            if not p.get('m') and rx.search(p.get('t') or '') and ref in pins: parks.append((ref, p.get('n'), p.get('t'), f[-7:-5]))
+    C = {'checked': 0, 'polygon_holds_pin': 0, 'same_name': 0, 'sure_by_rule': 0, 'nps_units': 0, 'removed': 0, 'errors': 0}
+    rows = []
+    for ref, n, ty, st in parks:
+        la, lo, _ = pins[ref]; C['checked'] += 1
+        nps = bool(re.search(r'^national|national (historic(al)? (site|park)|battlefield|memorial|monument)', ty or '', re.I))
+        try: fs = q(la=la, lo=lo)
+        except Exception: C['errors'] += 1; continue
+        fs = [f for f in fs if (f.get('geometry') or {}).get('rings')]
+        live = [f for f in fs if 'remov' not in str((f.get('attributes') or {}).get('STATUS', '')).lower()]
+        C['removed'] += len(fs) - len(live)
+        if not live: time.sleep(.3); continue
+        C['polygon_holds_pin'] += 1
+        pw = _words(n); best = None
+        for f in live:
+            a = f.get('attributes') or {}; rw = _words(a.get('RESNAME'))
+            same = bool(pw) and pw <= rw
+            cand = {'ref': ref, 'park': n, 'type': ty, 'st': st, 'resname': a.get('RESNAME'), 'status': a.get('STATUS'), 'nhl': a.get('Is_NHL'),
+                    'map_method': a.get('MAP_METHOD'), 'bnd_type': a.get('BND_TYPE'), 'acres': _acres(f['geometry']['rings'], la), 'same_name': same, 'nps_unit': nps}
+            if same and (best is None or not best['same_name']): best = cand
+            elif best is None: best = cand
+        if best['same_name']:
+            C['same_name'] += 1
+            if nps: C['nps_units'] += 1
+            else: C['sure_by_rule'] += 1
+        rows.append(best); time.sleep(.3)
+    out['count'] = C
+    out['note'] = ("size check: POTA gives no park area, so 'size within ~20%' needs the park's published acres: polygon acres are shown for "
+                   "chat 8 to compare. sure_by_rule = pin inside + same name, not an NPS unit (NPS boundary first); size still to confirm.")
+    out['rows'] = sorted(rows, key=lambda r: (not r['same_name'], r['nps_unit'], r['st']))
+    return out
+
+
 def main():
     cfg = json.load(open(CAND))
     held = {}
@@ -291,6 +373,10 @@ def main():
             except Exception as e: r = dict(x); r['error'] = str(e)[:140]
             res[key].append(r)
             notice(f"{key} {x.get('st')} {x.get('note', '')[:40]}: " + (r.get('error') or 'ok'))
+    if cfg.get('nrhp'):
+        try: res['nrhp'] = nrhp(cfg)
+        except Exception as e: res['nrhp'] = {'error': str(e)[:200]}
+        notice('NRHP: ' + json.dumps((res['nrhp'] or {}).get('count') or res['nrhp'].get('error'))[:500])
     if cfg.get('queries'): res['queries'] = queries(cfg)
     if cfg.get('browse'):
         try: res['browse'] = browse(cfg)
