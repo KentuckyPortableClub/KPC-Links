@@ -15,3 +15,9 @@ Evidence grade A (opened the bot files: data/fers/US-KY.json, US-OH.json, known-
 - No merge-swallow found. Live: 19 "same land" pairs (state park + same-named forest or wildlife area; right label), plus 8 areas (Mosquito Lake 8,817 ac, John Bryan x Clifton Gorge 239 ac, Hocking 30 and 38 ac, Headlands 20 ac, Broken ARO x Flint Run 15 ac; Grand Lake St Marys x Mercer 7 ac and Wayne x Dean 3 ac are "very tight").
 - Water only: Independence Dam x North Turkeyfoot, Blackhand Gorge x Dillon WA. Right.
 - NOT SURE 14: Cedar Point NWR x Mallard Club and Ottawa NWR x Magee/Metzger Marsh (mixed owners; right: federal and state land mix there), Lawrence Woods x Andreoff (no public owner shown), Dillon x Blackhand Gorge, Burr Oak SP x Wayne NF (5 rows of the same pair: "owner not known"). Reasons fine; Burr Oak repeats 5 times and Ottawa 4: show once.
+
+## RECHECK (Oct 28 9:25 AM, run committed 8:51 AM: KY 68 live / 9 not sure, OH 27 live / 6 not sure) = **READY**
+- Merge fixed: Pioneer Weapons x DBNF 7,707 ac, Zilpo x DBNF 223, Cane Creek x DBNF 6,649, Rockcastle NWSR x DBNF 2,718, Clifty x DBNF 12,364 are each their own live row; the small 3-fer rows (1.2 / 99 / 592 ac) sit on top.
+- Duplicate live rows: none (KY and OH). Repeated NOT SURE pairs: none. NOT SURE down 19 -> 9 (KY), 14 -> 6 (OH).
+- Trail of Tears x Lewis and Clark = water only. Rivers 3-fers (Ballard, Boatwright, West KY) and Big Rivers x L&C live as ruled.
+- Two small leftovers, not blockers: Rockcastle NWSR + Rockcastle River WMA + DBNF 3-fer is NOT SURE while all three pairs are live (28 ac); Kentenia x DBNF 3.9 ac and Little Sextons x DBNF 612 ac stay NOT SURE (outlines overlap, ownership unclear): reasons right.
