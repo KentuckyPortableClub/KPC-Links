@@ -12,3 +12,10 @@ Grades: A = opened, B = seen in a search result only (direct fetch of these site
 
 Rules pages: not found for any federal agency from the desk. BOT LOOK-UP: NPS "Laws & Policies" per unit, USFS forest "Passes & Permits", FWS refuge "Rules and Regulations", BLM field-office page, Corps lake page.
 Note: recreation.gov facility maps are a second source for USFS, Corps and some BLM sites (B).
+
+## Rules pages (HQ, Oct 28 1:16 AM; none opened by the desk, all BOT LOOK-UP)
+- NPS: each unit's Superintendent's Compendium, usually nps.gov/<unit>/learn/management/lawsandpolicies.htm
+- USFS: each forest's "forest orders" (alerts / orders page); address varies by forest
+- FWS: each refuge's "rules and regulations" page and its hunting & fishing regulations
+- BLM, Corps, Parks Canada: not given yet; field-office / lake / park rules pages (BOT LOOK-UP)
+Also added as rows to OFFICIAL_MAPS_patterns.json (state = FEDERAL, 6 rows).

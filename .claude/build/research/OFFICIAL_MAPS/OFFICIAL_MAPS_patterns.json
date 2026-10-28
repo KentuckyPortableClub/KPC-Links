@@ -6429,5 +6429,89 @@
     "map_date": null
    }
   ]
+ },
+ {
+  "state": "FEDERAL",
+  "federal": true,
+  "agency": "NPS",
+  "agency_site": "nps.gov",
+  "address_pattern": "nps.gov/<unit code>/planyourvisit/maps.htm",
+  "list_page": "same",
+  "how_to_match": "unit code from the park's NPS page (bot-confirmed in earlier checks, A)",
+  "date_method": "none on page; bot records read day",
+  "rules_page": "nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
+  "status": "READY for a bot (maps); rules NEEDS BOT LOOK-UP",
+  "tested": [],
+  "grade": "B (search results only) unless noted"
+ },
+ {
+  "state": "FEDERAL",
+  "federal": true,
+  "agency": "USFS",
+  "agency_site": "fs.usda.gov",
+  "address_pattern": "fs.usda.gov/main/<forest>/maps-pubs (Region 5: fs.usda.gov/r05/<forest>/maps-guides)",
+  "list_page": "same",
+  "how_to_match": "forest name -> slug (B: lpnf, cleveland, blackhills, lassen, sierra, inyo, superior, cnnf, srnf)",
+  "date_method": "none seen",
+  "rules_page": "each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
+  "status": "NEEDS A BROWSER BOT",
+  "tested": [],
+  "grade": "B (search results only) unless noted"
+ },
+ {
+  "state": "FEDERAL",
+  "federal": true,
+  "agency": "FWS",
+  "agency_site": "fws.gov",
+  "address_pattern": "fws.gov/refuge/<slug>/library -> files at fws.gov/media/<title-slug>",
+  "list_page": "fws.gov/refuge/<slug>/library",
+  "how_to_match": "refuge slug; pick files titled map/brochure",
+  "date_method": "slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
+  "status": "READY for a bot (maps); rules NEEDS BOT LOOK-UP",
+  "tested": [],
+  "grade": "B (search results only) unless noted"
+ },
+ {
+  "state": "FEDERAL",
+  "federal": true,
+  "agency": "BLM",
+  "agency_site": "blm.gov",
+  "address_pattern": "blm.gov/documents/<state>/public-room/map/<title-slug> (or /brochure/<slug>)",
+  "list_page": "blm.gov/sitemap or field-office public-room",
+  "how_to_match": "title slug search per field office",
+  "date_method": "slug sometimes has a year",
+  "rules_page": "BOT LOOK-UP: field-office rules / recreation page",
+  "status": "NEEDS A BROWSER BOT",
+  "tested": [],
+  "grade": "B (search results only) unless noted"
+ },
+ {
+  "state": "FEDERAL",
+  "federal": true,
+  "agency": "USACE",
+  "agency_site": "usace.army.mil",
+  "address_pattern": "varies by district, e.g. swf-wc.usace.army.mil/<lake>/images/<LAKE>_OVERALL_RECREATION_MAP.pdf; cdn.recreation.gov/webphotos/facilitymaps/<id>_<code>.pdf",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
+  "how_to_match": "by lake name",
+  "date_method": "none",
+  "rules_page": "BOT LOOK-UP: lake page rules",
+  "status": "NEEDS A BROWSER BOT",
+  "tested": [],
+  "grade": "B (search results only) unless noted"
+ },
+ {
+  "state": "FEDERAL",
+  "federal": true,
+  "agency": "Parks Canada",
+  "agency_site": "parks.canada.ca",
+  "address_pattern": "parks.canada.ca/pn-np/<prov>/<park>/visit/...",
+  "list_page": "same",
+  "how_to_match": "park slug (6 Quebec links bot-confirmed)",
+  "date_method": "none seen",
+  "rules_page": "BOT LOOK-UP: park 'rules and regulations'",
+  "status": "NEEDS A BROWSER BOT",
+  "tested": [],
+  "grade": "B (search results only) unless noted"
  }
 ]
