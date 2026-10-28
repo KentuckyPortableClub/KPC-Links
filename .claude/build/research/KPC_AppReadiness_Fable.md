@@ -38,7 +38,9 @@ Google Drive backup/sync (Brandon's two OAuth clients), park outlines outside KY
 - 'Phone volume more than the limiter allows' = turn the PC's RX audio up (hear-here loudness / the radio's AF).
 
 ## What is left for KPC Lite
-The Lite build = the same www/ with the digital modes, remote, APRS, parks packs and uploads left out: LOG + MY LOGS + SPOTS (POTA/SOTA/WWFF) + SPOT ME + MAP + the call-box commands + ADIF/backup. Everything it needs already runs without a radio or sound (the suite's P page). To make it: a build flag that skips kpc-digi / kpc-modes5 / kpc-dsp / kpc-aprs / kpc-ax25 / kpc-remote / kpc-voice / kpc-radio / kpc-meters and hides the DIGI / RADIO tabs (one `LITE` constant in index.html + a second APK name in build.yml). Half a day, once Brandon says go.
+**DONE Oct 28 2:30 AM (branch `kpc-lite` in kpc-app, merges to main after the Oct 28 3:17 AM build so it rides the Oct 29 nightly).** Brandon kept FT8 + FT4 in Lite ('yes ft8 and 4'): Lite = logger + spots + FT8/FT4 + radio control + map + voice keyer; out = CW/RTTY/PSK31/HELL/SSTV/WSPR, APRS, remote, park packs, uploads. One flag file (www/kpc-flavor.js), `KPC-Lite-test.apk` from the same nightly android job, its own app id (installs beside the full app). 198 checks. Details: kpc-app CLAUDE.md '0.7.8 KPC LITE'.
+
+_The plan as written before it was built:_ The Lite build = the same www/ with the digital modes, remote, APRS, parks packs and uploads left out: LOG + MY LOGS + SPOTS (POTA/SOTA/WWFF) + SPOT ME + MAP + the call-box commands + ADIF/backup. Everything it needs already runs without a radio or sound (the suite's P page). To make it: a build flag that skips kpc-digi / kpc-modes5 / kpc-dsp / kpc-aprs / kpc-ax25 / kpc-remote / kpc-voice / kpc-radio / kpc-meters and hides the DIGI / RADIO tabs (one `LITE` constant in index.html + a second APK name in build.yml). Half a day, once Brandon says go.
 
 ## What Brandon should test tomorrow (0.7.6 + 0.7.7 build)
 1. SSB from the app on 40 m: radio SSB MOD SOURCE = REAR, voice keyer memory re-recorded from the PC mic, 🎙 VOICE LEVEL up until ALC moves; the dial must stay put. Then 20 m USB.
