@@ -548,3 +548,4 @@ STOP: nothing is built from this sheet until chat 8 breaks it (→ `.claude/buil
 - Oct 28 6:30 PM (chat 8): wording look for Brandon: the removed 'POTA sets the rules...' sentence is back on 7 pages; 'checked three times' / 'checked by hand' / 'hand-checked 2-fers' overclaims; NOT OFFICIAL label. Sent to chat 3's inbox.
 - Oct 28 6:20 PM (chat 8): Brandon OK'd the wording fixes + 'remove the bot' from public text: in chat 3's inbox.
 - Oct 28 7:10 PM (chat 8): Midwest 2-fer grade: IN IL MO WI ND SD READY; MN no file, IA only 4 spots = NOT READY; fixes to chat 2.
+- Oct 28 7:45 PM (chat 8): own-land layers vs rivers: KPC_OwnLandLayers_Rivers_desk.md (FWS says lands+waters; NPS/FS silent -> bot test; Ohio 'nolakes' layer cuts lakes out).
