@@ -769,6 +769,32 @@ def _wlive(i, jt):
     return got
 
 
+NHD2 = 'https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer'   # chat 8 KPC_RiverBackup_desk.md: 'a second USGS door'
+NHD2L = {}
+
+
+def _wlive2(i, jt):
+    """Oct 28 (chat 8's backup list, Brandon 1:30 PM): the SAME NHD high-resolution water (StreamRiver areas + lakes / reservoirs /
+    estuaries, the same feature codes) from USGS's older NHD map service, when the NHDPlus HR service does not answer. NOT used:
+    EPA NHDPlus V2.1 (its polygon layer has lakes but no river areas: a river would read as land) and the Corps IENC charts
+    (navigable rivers only): both would let a wrong 'land' answer through, so a row with neither USGS door answering stays NOT SURE."""
+    if not NHD2L:
+        for L in get(NHD2, {'f': 'json'}, tries=2, timeout=60).get('layers') or []:
+            nm = L.get('name', '').lower()
+            if 'area' in nm and 'large' in nm: NHD2L['area'] = L['id']
+            if 'waterbod' in nm and 'large' in nm: NHD2L['wb'] = L['id']
+    if len(NHD2L) < 2: raise RuntimeError('second USGS water door: layers not listed')
+    tb = [i * .1, jt * .1, (i + 1) * .1, (jt + 1) * .1]
+    got = []
+    for lay, where in (('area', 'FType = 460'), ('wb', 'FType IN (390, 436, 493)')):
+        j = get(f'{NHD2}/{NHD2L[lay]}/query', {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                               'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
+                                               'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=2, timeout=90)
+        if 'error' in j: raise RuntimeError(str(j['error'])[:80])
+        got += [[lay, esri_rings(f.get('geometry'))] for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
+    return got
+
+
 def nhd_water(box, rivers_only=False):
     """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries).
     Live first; the last good saved copy when the live map does not answer; None when neither has the tile."""
@@ -797,6 +823,11 @@ def nhd_water(box, rivers_only=False):
                         try:
                             feats = _wlive(i, jt); NHD_DOWN['fails'] = 0; NHD_DOWN['until'] = 0.0; WATER_N['live'] += 1; WATER_RETRY['won'] += 1; _wsave(i, jt, feats); break
                         except Exception as e: LOG.append(f'NHD water retry: {str(e)[:60]}')  # noqa: BLE001
+                if feats is None and sv is None:
+                    try:   # the second USGS door (same data, another service); never saved over the main copy
+                        feats = _wlive2(i, jt); WATER_N['second door'] = WATER_N.get('second door', 0) + 1
+                        NHDC[k + ('d',)] = 'USGS NHD (second service) ' + time.strftime('%Y-%m-%d', time.gmtime())
+                    except Exception as e: LOG.append(f'NHD second door: {str(e)[:60]}')  # noqa: BLE001
                 if feats is None:
                     if sv is None:
                         WATER_N['missing'] += 1
@@ -2160,7 +2191,8 @@ def covered(r, recs, parks, PIN):
 def water_date(s):
     """Rule 13: a spot whose water came from the saved copy says so, with that copy's date."""
     if WATER_MARK:
-        s.setdefault('map_dates', {})['USGS water'] = 'saved copy of ' + min(WATER_MARK) + ' (the live map did not answer)'
+        m = min(WATER_MARK)
+        s.setdefault('map_dates', {})['USGS water'] = (m.replace('USGS NHD (second service) ', 'USGS NHD second service, read ') + ' (the main USGS water map did not answer)') if m.startswith('USGS NHD (second') else ('saved copy of ' + m + ' (the live map did not answer)')
         WATER_MARK.clear()
     elif isinstance(s.get('map_dates'), dict): s['map_dates'].pop('USGS water', None)   # read live this time
 

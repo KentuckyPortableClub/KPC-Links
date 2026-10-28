@@ -3,7 +3,7 @@ Every map-server answer the 2-fer bot reads (outlines, ownership, water, roads, 
 or a rerun after a bug fix reads it from the bundle instead of asking the agency again (polite + fast).
 HTTP_CACHE=<dir> turns it on; HTTP_CACHE_DAYS (default 21) = how old an answer may be; HTTP_OFFLINE=1 = never ask the
 server (a miss raises 'not in the bundle'). Answers that are errors are never kept. Off when HTTP_CACHE is not set."""
-import gzip, hashlib, json, os, pathlib, time
+import gzip, hashlib, json, os, pathlib, re, time
 
 DIR = os.environ.get('HTTP_CACHE') or ''
 DAYS = float(os.environ.get('HTTP_CACHE_DAYS') or 21)
@@ -17,12 +17,39 @@ def _path(url, params):
     return pathlib.Path(DIR) / k[:2] / (k + '.json.gz')
 
 
+EDIT = {}   # layer url -> its last edit time in seconds (None = the server does not say)
+CHECKS = {'asked': 0, 'unchanged': 0}
+
+
+def _layer_edit(url):
+    """Oct 28 (Brandon: 'why read it live, it's not going to change'): ONE tiny request per map layer per run = the layer's own
+    'last edited' date (ArcGIS editingInfo). A saved answer newer than that is still the layer's answer, however old."""
+    m = re.match(r'(https?://.+/(?:MapServer|FeatureServer)/\d+)/query$', url)
+    if not m or OFFLINE: return None
+    L = m.group(1)
+    if L not in EDIT:
+        EDIT[L] = None; CHECKS['asked'] += 1
+        try:
+            import urllib.request, urllib.parse
+            with urllib.request.urlopen(urllib.request.Request(L + '?f=json', headers={'User-Agent': 'KPC 2-fer bot (kentuckyportableclub.github.io)'}), timeout=30) as r:
+                j = json.loads(r.read().decode('utf-8', 'replace'))
+            ei = j.get('editingInfo') or {}
+            t = ei.get('dataLastEditDate') or ei.get('lastEditDate')
+            EDIT[L] = float(t) / 1000 if t else None
+        except Exception: EDIT[L] = None  # noqa: BLE001
+    return EDIT[L]
+
+
 def cached(url, params, fetch):
     """fetch() = the real request (returns parsed JSON). Cached when HTTP_CACHE is set."""
     if not DIR: return fetch()
     p = _path(url, params)
     try:
-        if p.exists() and time.time() - p.stat().st_mtime < DAYS * 86400:
+        fresh = p.exists() and time.time() - p.stat().st_mtime < DAYS * 86400
+        if p.exists() and not fresh:   # older than the age limit: still good when the layer says it has not been edited since
+            t = _layer_edit(url)
+            if t and p.stat().st_mtime > t: fresh = True; CHECKS['unchanged'] += 1
+        if fresh:
             STATS['hit'] += 1
             raw = gzip.decompress(p.read_bytes())
             if TRACE is not None: TRACE.append((url, params, hashlib.sha1(raw).hexdigest()))
@@ -41,4 +68,5 @@ def cached(url, params, fetch):
 
 
 def report():
-    return f"bundle answers: {STATS['hit']} read from the bundle, {STATS['miss']} asked the servers ({STATS['kept']} kept)" if DIR else ''
+    return (f"bundle answers: {STATS['hit']} read from the bundle, {STATS['miss']} asked the servers ({STATS['kept']} kept)"
+            + (f"; layer change checks: {CHECKS['asked']} asked, {CHECKS['unchanged']} old answers kept (layer not edited since)" if CHECKS['asked'] else '')) if DIR else ''
