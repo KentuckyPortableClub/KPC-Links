@@ -20,7 +20,7 @@ Query `.../nrhp_locations/MapServer/1/query?where=RESNAME LIKE '%<word>%' AND St
 3. Old Fort Harrod State Historic Site (KY) - 'Harrod'
 4. Etowah Indian Mounds State Historic Site (GA, US-3715) - 'Etowah'
 5. Stones River National Battlefield (TN, US-0708) - 'Stones River' (compare with NPS's own boundary)
-Rule for the bot: a polygon is used ONLY if it passes the house rule (100% match by pin, shape and size); otherwise pin only. The NRHP polygon is a nomination boundary, so size will often differ: expect many "pin only".
+Rule for the bot (Brandon Oct 28 12:30 AM: 'if it a park and we have boundary use it'): a historic site is outlined when an official layer we read has a SURE match (same place by name + pin inside + size in the right range); never hunted for; otherwise pin only. Markers = pin only. The NRHP polygon is a nomination boundary, so size will often differ: expect many "pin only".
 
 ## 2. State historic-site agencies: do they publish site boundaries? (one line each)
 Filled in as I go through each state's official-maps file.
@@ -28,3 +28,20 @@ Filled in as I go through each state's official-maps file.
 - TN: state has its own NRHP boundaries layer: https://tnmap.tn.gov/arcgis/rest/services/HISTORICAL/NATIONAL_REGISTER_TN/MapServer/2 "National Register of Historic Places Boundaries" (B, search result; not opened). TN state historic sites (TN State Parks): brochures only (B).
 - GA (state historic sites under Georgia State Parks): trail/site map PDFs on gastateparks.org, no boundary layer seen (A for maps, C for no layer).
 - AL, FL, MS, NC, SC, VA, WV: not yet looked at for this question; will add a line as each region is done.
+
+## 3. All the official boundary sources found (Oct 28, for Brandon: "find historic site boundaries")
+Best first. A = opened; B = search result only.
+| # | Source | Address | What it is | Date / licence |
+|---|---|---|---|---|
+| 1 | **NPS park boundaries** (for the National Historic Sites, Battlefields, Military Parks: Shiloh, Stones River, Fort Donelson, Andersonville, Cumberland Gap...) | https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer : layer 2 nps_boundary (legislated unit boundaries), 1 nps_tracts, 0 centroids (A) | NPS Land Resources Division. "Not for engineering or legal use"; NPS may not own every parcel inside. Download from NPS IRMA. | No date shown; no licence named (federal) |
+| 2 | **NPS National Register polygons** | https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer/1 (A) | nomination boundaries, all states; see section 1 | no date, no licence named; download copy dated 2023-07-20 |
+| 3 | **North Carolina HPO** | https://www.hpo.nc.gov/gis-maps-and-data (A): shapefile `NCHPO_NR_SL_DOE_Boundaries` (about 27 MB, NR districts + individually listed + study list + eligible) and daily web map HPOWEB | state boundaries for NC historic districts/sites | updated MONTHLY, file name carries date (2026-10-02); no licence stated, ask the HPO GIS analyst |
+| 4 | **Tennessee** | https://tnmap.tn.gov/arcgis/rest/services/HISTORICAL/NATIONAL_REGISTER_TN/MapServer/2 "National Register of Historic Places Boundaries", polygons (A); fields REFNUM, Resource_Name, County, Listed_Date, NHL_Date, FILENET link | state copy of NR boundaries | no description, no date, no copyright text |
+| 5 | **Kentucky** | https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_National_Register_Landmarks_WGS84WM/MapServer (A, credits NPS, DGI, Ky Heritage Council) - geometry type not stated, probably points (C); Lexington-Fayette only: https://services1.arcgis.com/Mg7DLdfYcSWIaDnu/ArcGIS/rest/services/National_Register_Property/FeatureServer/0 polygons (A, last edit 2021-01-18, LFUCG) + National_Register_District; Louisville Jefferson County: gis.lojic.org .../OpenDataDevelopment/MapServer/8 (B) | Statewide KY = landmarks (check type); only two counties have polygons | LFUCG 2021 |
+| 6 | **Delaware** | enterprise.firstmaptest.delaware.gov/arcgis/rest/services/Society/DE_HistoricPlaces/MapServer/0 and /1 (B) | state historic places | not opened |
+| 7 | State historic-site agencies (Ohio History Connection, Georgia, Alabama, Virginia, etc.) | no boundary layer found in this pass | they publish site maps, not boundaries | - |
+
+### What this means for Kentucky POTA historic sites
+- Perryville Battlefield, Fort Boonesborough, Old Fort Harrod (state historic sites): the NPS NRHP layer (row 2) is the only statewide polygon source; Kentucky's own layer is landmarks only (probably points). Fort Boonesborough and Old Fort Harrod are listed properties (C): expect a polygon if they are in NRIS with coordinates. TEST STILL TO RUN by a bot (list above).
+- Federal sites in KY (Mill Springs Battlefield NM, Abraham Lincoln Birthplace NHP, Cumberland Gap NHP): NPS boundary layer (row 1) is the right source.
+- Brandon's rule applies: use the polygon only when the match is sure; otherwise pin.
