@@ -312,6 +312,16 @@
     "url": "https://programs.iowadnr.gov/geospatial/rest/services/Boundaries/Public_Lands/MapServer/0",
     "host": "agency",
     "note": "Public Lands Used for Conservation and Recreation in Iowa (5,439 areas; on Iowa Geodata). Reachable from GitHub Oct 25 2026 (earlier 403 was temporary). chat 2"
+   },
+   {
+    "kind": "land",
+    "ag": "Iowa DNR (credit: Iowa Department of Natural Resources)",
+    "host": "agency",
+    "nm": "NameUnit",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "326 public area boundaries (state parks, forests, wildlife and access areas; names carry the type word)",
+    "url": "https://programs.iowadnr.gov/geospatial/rest/services/Recreation/State_Parks/MapServer/10"
    }
   ],
   "ID": [
@@ -1262,6 +1272,16 @@
     "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/5",
     "host": "agency",
     "note": "outside research bot round 2 (all states), tested 2026-10-25; matched 1 of 6"
+   },
+   {
+    "kind": "preserve",
+    "ag": "Missouri Department of Conservation (credit)",
+    "host": "agency",
+    "nm": "Area_Name",
+    "lic": "credit line only",
+    "read": "2026-10-28",
+    "note": "192 MDC natural areas (polygons)",
+    "url": "https://gisblue.mdc.mo.gov/arcgis/rest/services/Discover_Nature/MDC_Administrative_Areas/FeatureServer/3"
    }
   ],
   "CT": [
