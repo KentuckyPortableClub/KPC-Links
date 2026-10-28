@@ -30,3 +30,4 @@ CA: Montana de Oro, Van Sickle, La Purisima, Tijuana Estuary, 3 State Beaches. O
 | PAC-3 | **Hawaii state monuments in Honolulu (Iolani Palace, Royal Mausoleum)**: building sites. | Never (historic site rule). |
 | PAC-4 | **Native corporation / tribal land inside AK areas** | Not park land (SE-2). |
 - 2026-10-27 (desk, Round 2): WA DNR Recreation Sites service site2 Public_Recreation (BOT LOOK-UP 12); 13 state forests = name mismatch.
+- 2026-10-27 (desk, Round 3): the missing federal western parks are mostly BLM rec SITES (points) + rivers/trails (lines); see KPC_BigHoles_desk.md 'ROUND 3'.

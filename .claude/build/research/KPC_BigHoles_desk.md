@@ -99,3 +99,62 @@ WA 13 state forests; AL De Soto SP, Butler County WMA, Kinterbish WMA; GA Okefen
 | 12 | https://gis.dnr.wa.gov/site2/rest/services/Public_Recreation/DNR_Recreation_Sites/FeatureServer/layers | layer ids, polygon or point |
 | 13 | https://enterprise.gisdata.mn.gov (MN Geospatial Commons record for DNR WMAs) | licence and date for the WMA layer |
 Nothing was loaded or changed by the desk.
+
+---
+# ROUND 3: the West is federal land (desk, Oct 27 2026 night, read only)
+Method: for NV, ID, UT, OR, WA I took every POTA park with NO match in `data/us-key/US-XX.json` (783 parks) and sorted them by POTA's own park type (A: the data). Layers the key already reads come from `data/us-key/layers.json` (A). Layer facts are from the REST pages named (A where "opened", B where search only).
+
+## R3-1 What kind are the 783 missing western parks?
+| Kind (POTA type) | Count | NV | ID | UT | OR | WA | Is it an outline problem? |
+|---|---|---|---|---|---|---|---|
+| BLM "Recreation Management Area" / "Special RMA" | 347 | 11 | 76 | 230 | 19 | 11 | **Mostly single SITES, not areas** (boat ramps, trailheads, kiosks, springs, caves, access points: e.g. "Swaseys Boat Ramp", "Red Reef Trail", "Portneuf Gap River Access", "Pipeline Recreation Site"). A rough name test says about 200 of 347 are site-like. These are POINTS: pin-only. Some are true areas (Klamath Hills, Leslie Gulch, Diamond Craters, Logandale Trails, Dry Valley SRMA, Cathedral Valley Scenic Backway): those are likely name mismatches against the polygon layers we already read (C, bot check) |
+| State rec sites / parks / forests | 136 | 9 | 45 | 14 | 29 | 39 | State layers: IDPR (36), WA DNR rec sites (16) + 13 forests (name mismatch), OR (hatcheries skip, ODF forests): see Round 2 |
+| Historic (State Historical Monument etc.) | 96 | 80 | 3 | 9 | 2 | 2 | skip (markers, never) |
+| BLM historic / interpretive sites | 51 | 16 | 4 | 29 | 2 | | points: pin-only |
+| BLM backcountry airstrips | 27 | 21 | | 6 | | | points: pin-only |
+| National Historic / Scenic / Geologic trails | 29 | 3 | 7 | 7 | 7 | 5 | **lines** (see R3-3): one national layer covers them |
+| Scenic byways / "National Parkway" / Outstanding Natural Beauty | 24 | 10 | 7 | 6 | | 1 | roads: not parks, skip or pin-only (Utah's POTA calls them "National Parkway") |
+| Wild & Scenic Rivers (BLM and Forest Service) | 24 | | 5 | 7 | 9 | 3 | corridors/lines: layers exist (R3-2) |
+| Federal areas (monument, NRA, wilderness, herd area) | 19 | 1 | 2 | 9 | 3 | 4 | polygons: layers are read; most are name mismatches (e.g. Hanford Reach NM, Mt St Helens NM, Newberry NM: Forest Service/FWS units) |
+| National Forest | 6 | | | 3 | | 3 | name mismatch ("La Sal Mountain" = Manti-La Sal; "Columbia River Gorge National Forest" = the Scenic Area; Sawtooth/Caribou-Targhee/Idaho Panhandle listed under the wrong state) |
+| Other (WMA 5, scenic sites 3, rec trails 3, rest ~12) | ~35 | | | | | | single checks |
+
+Answer to HQ: **no single national layer closes hundreds of western parks.** About 350 BLM entries are sites (points); the BLM national site-points layer gives their location, not an outline. The areas among them are already covered by the BLM polygon layers the key reads, so the rest is name matching. The real polygon gains from national layers are small: about 24 rivers, 29 trails, and a handful of Forest Service units.
+
+## R3-2 National layers: does the key read them?
+| Layer | Address | Geometry | Key reads it? | Would close |
+|---|---|---|---|---|
+| BLM Recreation Areas (SRMA/ERMA) | https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/9 (`rma`) and …/BLM_Natl_Recs_poly/MapServer/0 (`rst`) | polygon | **YES (both)** | the true BLM rec areas; misses = name matching |
+| BLM Natl Recreation Sites | https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/3 (A: point; FET_NAME, FET_TYPE 1-14, UNIT_NAME, ADMIN_ST; "interim subset", BLM HQ) ; also …/BLM_Natl_Recs_pts/MapServer (24 point layers: boat ramp, trail head, landing strip, interpretive site, campground, overlook…; A) | point | **NO** | pins (not outlines) for ~350 sites + 51 interpretive + 27 airstrips. Use the FET_NAME, UNIT_NAME fields to confirm names and give a verified pin. Good name-mismatch tool |
+| BLM NLCS National Monuments / NCAs | …/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0 (`nca`) | polygon | YES | |
+| BLM Wilderness and WSAs | …/lands/BLM_Natl_NLCS_WLD_WSA/MapServer/0 and /1 (`wbl`, `wsa`) | polygon | YES | |
+| BLM Wild and Scenic Rivers | https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0 (A: polyline, name field NLCS_NAME; plus table /1 nlcs_desc). Also state: …/utarcgis/…/BLM_UT_WSR/MapServer (B) | line | **NO** | the 7 UT + 1 ID + 1 OR "BLM Wild and Scenic River" parks as line features (lines = 100 ft rule, not polygon) |
+| Forest Service Wild and Scenic Rivers | https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiver_01/MapServer/0 (A: polygon; copyright USFS Enterprise Map Services Program; no date shown) | polygon | **NO** (key reads NPS `wsrc` and the FS wilderness `wld` only) | most of the 24 "National Wild and Scenic River" parks (Salmon, St Joe, Crooked, Grande Ronde, Donner und Blitzen, White Salmon, Wallowa…) |
+| Forest Service national forest boundaries | https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer (B, layers not opened) | polygon | **NO** (PAD-US covers NFs; the 6 misses are name mismatches) | 6 |
+| Forest Service other national designated areas (monuments, NRAs, scenic areas) | https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_OtherNationalDesignatedArea_01/MapServer/0 (B) | polygon | **NO** | Newberry NM, Mt St Helens NM, Columbia River Gorge NSA, NRAs (about 10 across the five states) |
+| Forest Service recreation opportunities | https://apps.fs.usda.gov/ArcX/rest/services/EDW/EDW_RecreationOpportunities_01/MapServer/0 (A: point, RECAREANAME) | point | NO | pins for FS recreation sites |
+| BLM wild horse herd areas | `hma`, `hab` | polygon | YES | |
+| National Historic / Scenic Trails | no BLM or FS national layer opened. NPS trail records are on data.gov (California NHT, Oregon NHT, Pony Express NHT, B: https://catalog.data.gov/dataset/california-national-historic-trail, …/oregon-national-historic-trail, …/pony-express-national-historic-trail); the key reads only `akht` (Ala Kahakai) | line | **NO** | the 29 trail parks (Oregon, California, Pony Express, Lewis and Clark, Nez Perce, Old Spanish, Mormon Pioneer, Transcontinental Railroad) |
+| PAD-US | already the base (numeric ids in the key) | polygon | YES | these parks are the ones PAD-US did not match either |
+
+Rule check (house rules): trails, rivers and byways are LINES (100-ft rule); BLM sites are points: they should not be given polygons. "BLM Recreation Management Area" in POTA often names a SITE: say "pin only" on the page, not "no outline".
+
+## R3-3 What to add, in order of payoff (for chat 2 / Brandon)
+1. **Forest Service Wild and Scenic Rivers (EDW_WildScenicRiver_01/0) + BLM NLCS WSR lines**: about 24 parks, official. Two layers, one batch.
+2. **Forest Service other national designated areas** (about 10 monuments/NRAs/scenic areas): one layer.
+3. **BLM Natl Recreation Sites (points, layer 3)** as a name-and-pin source for the ~350 site-type entries; no outlines promised.
+4. **National Historic Trails** (29): NPS trail lines; needs a service address from a bot (data.gov records not opened).
+5. Name-matching pass for the BLM areas the key already reads (Leslie Gulch, Klamath Hills, Diamond Craters, Logandale Trails, Cathedral Valley, Dry Valley…): the polygon layers hold them under other names (BLM drops the words "BLM Recreation Management Area"; POTA adds them). A bot can strip that suffix and retry before any new layer is added.
+
+## R3-4 BOT LOOK-UP (Round 3)
+| # | URL | What to check |
+|---|-----|---------------|
+| 14 | https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiver_01/MapServer/0?f=pjson | fields (name), count, licence note, whether names match POTA ("Salmon", "St Joe", "Grande Ronde"…) |
+| 15 | https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_OtherNationalDesignatedArea_01/MapServer/0?f=pjson | designation values (National Monument, NRA, Scenic Area), names |
+| 16 | https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_ForestSystemBoundaries_01/MapServer?f=pjson | layer ids; confirm Manti-La Sal, Columbia River Gorge, Umatilla, Idaho Panhandle names |
+| 17 | https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_WSR/MapServer/0?f=pjson | field list, count in UT/ID/OR |
+| 18 | https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recreation/MapServer/3 | run name query with the 347 POTA names (suffix stripped) on FET_NAME / UNIT_NAME; report hit rate by FET_TYPE |
+| 19 | https://gis.blm.gov/arcgis/rest/services/recreation/BLM_Natl_Recs_poly/MapServer/0 and …/BLM_Natl_Recreation/MapServer/9 | same name query with the suffix stripped on the polygon layers: how many of the "true area" names (Leslie Gulch, Klamath Hills…) then match |
+| 20 | https://catalog.data.gov/dataset/oregon-national-historic-trail (and California, Pony Express, Lewis and Clark, Nez Perce, Old Spanish, Mormon Pioneer) | the REST/download link of the NPS trail line layer; licence |
+| 21 | https://gis.blm.gov/utarcgis/rest/services/NLCS/BLM_UT_WSR/MapServer | Utah's own WSR layer if the national one lacks UT segments |
+Nothing was loaded or changed by the desk.
