@@ -1,0 +1,565 @@
+{
+ "about": "Chat 9 round 16 (Oct 28): round 14 follow-ups: WDFW WildlifeAreas + ODFW ORHAM wildlife areas on the agencies' own servers (fields, counts, terms), Utah DWR WMAs (search by other words), SCDNR's own hub (does SCDNR publish the managed lands itself?). Results: round16-tested.json.",
+ "date": "2026-10-28",
+ "layers": [
+  {
+   "st": "WA",
+   "kind": "wild",
+   "ag": "WDFW",
+   "url": "https://geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/FeatureServer",
+   "answers": true,
+   "service": "WildlifeAreas",
+   "licence": "Washington Department of Fish and Wildlife",
+   "years_in_text": [],
+   "description": "WDFW manages dozens of wildlife areas around the state, many of which offer public access and serve as key parts of the department's conservation efforts. Wildlife areas comprise the majority of WDFW's landholdings.",
+   "layers": [
+    {
+     "id": 0,
+     "name": "UnitBoundaries",
+     "geom": "Polygon",
+     "nameField": "WildlifeAreaUnitName",
+     "ownerField": "",
+     "typeField": "BoatRampSurfaceTypes",
+     "fields": [
+      "ManagedPlaceOID",
+      "WildlifeAreaUnitName",
+      "WildlifeAreaName",
+      "Region",
+      "Notes",
+      "MilesOfRoadsAndTrails",
+      "ParkingLots",
+      "ADAParkingStalls",
+      "HasAnOffice",
+      "Restrooms",
+      "ADARestrooms",
+      "BoatRamps",
+      "BoatRampSurfaceTypes",
+      "HandLaunches",
+      "FishingPlatforms",
+      "SignsOrKiosks",
+      "HuntingBlinds",
+      "Shape__Area",
+      "Shape__Length",
+      "MilesOfGreenDotRoads",
+      "HasADAOffice",
+      "HasRegionalHQ",
+      "HasADARegionalHQ",
+      "HasVisitorCenter",
+      "HasADAVisitorCenter",
+      "HasBoatRampWithADALoadingPlatform",
+      "HasBoatRampWithBoardingFloat",
+      "HasBoatRampWithADABoardingFloat",
+      "ADAHuntingBlinds",
+      "Campgrounds",
+      "Trailheads",
+      "Viewpoints",
+      "ADAViewpoints",
+      "ShootingRanges",
+      "ADAShootingRanges",
+      "WaterCrossings"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Washington Department of Fish and Wildlife",
+     "records": 218,
+     "sample": [
+      "4-O Ranch",
+      "Abernathy Creek",
+      "Altoona",
+      "Anderson Homestead",
+      "Asotin Creek",
+      "Audubon Lake",
+      "Bailie",
+      "Bald Eagle"
+     ],
+     "type_valuesErr": "{'code': 400, 'message': 'Unable to complete operation.', 'd"
+    },
+    {
+     "id": 1,
+     "name": "AreaBoundaries",
+     "geom": "Polygon",
+     "nameField": "WildlifeAreaName",
+     "ownerField": "",
+     "typeField": "BoatRampSurfaceTypes",
+     "fields": [
+      "ManagedPlaceOID",
+      "WildlifeAreaName",
+      "Region",
+      "Notes",
+      "MilesOfRoadsAndTrails",
+      "ParkingLots",
+      "ADAParkingStalls",
+      "HasAnOffice",
+      "Restrooms",
+      "ADARestrooms",
+      "BoatRamps",
+      "BoatRampSurfaceTypes",
+      "HandLaunches",
+      "FishingPlatforms",
+      "SignsOrKiosks",
+      "HuntingBlinds",
+      "Shape__Area",
+      "Shape__Length",
+      "MilesOfGreenDotRoads",
+      "HasADAOffice",
+      "HasRegionalHQ",
+      "HasADARegionalHQ",
+      "HasVisitorCenter",
+      "HasADAVisitorCenter",
+      "HasBoatRampWithADALoadingPlatform",
+      "HasBoatRampWithBoardingFloat",
+      "HasBoatRampWithADABoardingFloat",
+      "ADAHuntingBlinds",
+      "Campgrounds",
+      "Trailheads",
+      "Viewpoints",
+      "ADAViewpoints",
+      "ShootingRanges",
+      "ADAShootingRanges",
+      "WaterCrossings"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Washington Department of Fish and Wildlife",
+     "records": 33,
+     "sample": [
+      "Asotin Creek",
+      "Big Bend",
+      "Chehalis",
+      "Chelan",
+      "Chief Joseph",
+      "Colockum",
+      "Columbia Basin",
+      "Cowlitz"
+     ],
+     "type_valuesErr": "{'code': 400, 'message': 'Unable to complete operation.', 'd"
+    }
+   ]
+  },
+  {
+   "st": "OR",
+   "kind": "wild",
+   "ag": "ODFW",
+   "url": "https://nrimp.dfw.state.or.us/arcgis/rest/services/ORHAM/ODFW_Wildlife_Areas/FeatureServer",
+   "answers": true,
+   "service": "Map",
+   "licence": "Oregon Department of Fish and Wildlife",
+   "years_in_text": [],
+   "description": "Wildlife management areas owned or managed by Oregon Department of Fish and Wildlife - some wildlife areas contain private inholdings that are not considered part of the wildlife area. Specific regulations for wildlife areas are provided in the current Big Game and Game Bird regulations.",
+   "layers": [
+    {
+     "id": 0,
+     "name": "ODFW Wildlife Areas",
+     "geom": "Polygon",
+     "nameField": "AreaName",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "AreaName",
+      "TractName",
+      "GlobalID",
+      "LandTypeID",
+      "LandID",
+      "X",
+      "Y",
+      "OpenAccess",
+      "Display",
+      "GIS_acres",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Oregon Department of Fish and Wildlife",
+     "records": 73,
+     "sample": [
+      "Wenaha",
+      "Phillip W. Schneider",
+      "Summer Lake",
+      "Ken Denman",
+      "Elkhorn",
+      "Elkhorn",
+      "Elkhorn",
+      "Elkhorn"
+     ]
+    }
+   ]
+  }
+ ],
+ "searches": [
+  {
+   "st": "UT",
+   "q": "(\"Wildlife Management Area\" OR WMA) AND Utah AND (DWR OR \"Division of Wildlife\")",
+   "why": "UT DWR WMAs",
+   "found": [
+    {
+     "title": "Public Access Properties (WMAs)",
+     "org": "Utah DNR Online Maps",
+     "owner": "dwr.timmons",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/ULTRA_Properties_2_view/FeatureServer",
+     "modified": "2025-05-13",
+     "licence": "The Utah Division of Wildlife Resources provides no warranty nor accepts any responsibility or liability for this data."
+    },
+    {
+     "title": "WMAs Utah",
+     "org": "",
+     "owner": "GWS_admin",
+     "url": "https://services6.arcgis.com/4HuW2HPzOPHXSgJx/arcgis/rest/services/WMAs_Utah/FeatureServer",
+     "modified": "2023-04-20",
+     "licence": ""
+    },
+    {
+     "title": "Trails - Public",
+     "org": "Utah DNR Online Maps",
+     "owner": "dwrdata",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/SCTrails_view/FeatureServer",
+     "modified": "2025-07-23",
+     "licence": ""
+    },
+    {
+     "title": "Logistics_Routes_view",
+     "org": "",
+     "owner": "dwr.gslep.snl",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Logistics_Routes_view/FeatureServer",
+     "modified": "2023-03-14",
+     "licence": ""
+    },
+    {
+     "title": "2026 Utah Pheasant Release Areas",
+     "org": "",
+     "owner": "dwrupland",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/2026_Pheasant_Release_Areas_view/FeatureServer",
+     "modified": "2026-09-14",
+     "licence": ""
+    },
+    {
+     "title": "WMA_s",
+     "org": "",
+     "owner": "LandsFFSL",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/WMA_s/FeatureServer",
+     "modified": "2018-01-23",
+     "licence": ""
+    },
+    {
+     "title": "Logistics_Points_view",
+     "org": "",
+     "owner": "dwr.gslep.snl",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Logistics_Points_view/FeatureServer",
+     "modified": "2023-03-14",
+     "licence": ""
+    },
+    {
+     "title": "Logistics_Routes_3_view",
+     "org": "",
+     "owner": "dwr.gslep.snl",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Logistics_Routes_3_view/FeatureServer",
+     "modified": "2023-03-30",
+     "licence": ""
+    },
+    {
+     "title": "Utah DWR OnX Public",
+     "org": "Utah DNR Online Maps",
+     "owner": "dwrdata",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/September2025Updates_view/FeatureServer",
+     "modified": "2025-09-19",
+     "licence": "None, but the UDWR provides no warranty nor accepts any responsibility or liability for any inaccurate or incomplete dat"
+    },
+    {
+     "title": "Weber_River_WMA_Properties",
+     "org": "",
+     "owner": "LandsFFSL",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Weber_River_WMA_Properties/FeatureServer",
+     "modified": "2021-03-29",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "UT",
+   "q": "owner:UtahDWR OR (UDWR AND (boundary OR lands OR properties))",
+   "why": "UT DWR account",
+   "found": [
+    {
+     "title": "BLM_Natl_Solar_Mapper",
+     "org": "",
+     "owner": "cherbertson@blm.gov_BLM_EGIS",
+     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_Natl_Solar_Mapper/FeatureServer",
+     "modified": "2025-05-28",
+     "licence": "These data are provided by Bureau of Land Management (BLM) “as is” and might contain errors or omissions. The User assum"
+    },
+    {
+     "title": "Gr_Data_Viewer",
+     "org": "",
+     "owner": "rjohnson_swca",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Gr_Data_Viewer/FeatureServer",
+     "modified": "2020-01-02",
+     "licence": ""
+    },
+    {
+     "title": "Tradelands - Utah DWR Cooperative Wildlife Management Units (CWMU)",
+     "org": "Utah DNR Online Maps",
+     "owner": "dwrdata",
+     "url": "https://dwrmapserv.utah.gov/arcgis/rest/services/hunt/CWMU_Tradelands_ver3/FeatureServer/0",
+     "modified": "2026-03-05",
+     "licence": "For reference use only. Although this product represents the work of natural resource professionals, the Utah Department"
+    },
+    {
+     "title": "Utah Desert Bighorn Sheep Lambing/Rutting Areas",
+     "org": "Utah DNR Online Maps",
+     "owner": "dwrdata",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/DesBighorn_LambingRutting/FeatureServer",
+     "modified": "2023-08-11",
+     "licence": "None, but the Utah Division of Wildlife Resources provides no warranty nor accepts any responsibility or liability for a"
+    },
+    {
+     "title": "SAGR Habitat 2012",
+     "org": "",
+     "owner": "sagegrouse_ut",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/SAGR_Habitat_2012/FeatureServer",
+     "modified": "2021-11-09",
+     "licence": ""
+    },
+    {
+     "title": "Reference_Data",
+     "org": "",
+     "owner": "gordondouglass",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Reference_Data/FeatureServer",
+     "modified": "2019-12-26",
+     "licence": ""
+    },
+    {
+     "title": "Utah Beaver Restoration Assessment",
+     "org": "",
+     "owner": "UtahAGRC",
+     "url": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Utah_Beaver_Restoration_Assessment/FeatureServer",
+     "modified": "2026-10-27",
+     "licence": "The data herein, including but not limited to geographic data, tabular data, analytical data, electronic data structures"
+    },
+    {
+     "title": "UPD_Parcels",
+     "org": "",
+     "owner": "IronGIS1",
+     "url": "https://services.arcgis.com/xGNWaeXY0POVazgT/arcgis/rest/services/UPD_Parcels/FeatureServer",
+     "modified": "2026-08-06",
+     "licence": "Data released to the Receiving Agency (RA) remains the property of the originating data source (see Source_Information) "
+    },
+    {
+     "title": "2023 Utah Wild Turkey Occupied Range and Release Areas_WFL1",
+     "org": "",
+     "owner": "dwrupland",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/2023_Utah_Wild_Turkey_Occupied_Range_and_Release_Areas_WFL1/FeatureServer",
+     "modified": "2024-01-29",
+     "licence": ""
+    },
+    {
+     "title": "USFS_GrazingAllotments",
+     "org": "",
+     "owner": "dwrutah",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/USFS_GrazingAllotments/FeatureServer",
+     "modified": "2020-09-10",
+     "licence": ""
+    },
+    {
+     "title": "LCCResourceData",
+     "org": "",
+     "owner": "Adrian.Sellars@hdrinc.com_HDR",
+     "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/LCCResourceData/FeatureServer",
+     "modified": "2020-05-01",
+     "licence": ""
+    },
+    {
+     "title": "Northern Utah County PEL Data _ Updated Study Area",
+     "org": "",
+     "owner": "Brady.Cervetti@hdrinc.com_HDR",
+     "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/Northern_Utah_County_PEL_Data___Updated_Study_Area/FeatureServer",
+     "modified": "2026-09-29",
+     "licence": ""
+    },
+    {
+     "title": "2026 Elk Bull General Season Any Bull",
+     "org": "Utah DNR Online Maps",
+     "owner": "dwrdata",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/2026ElkBullGeneralSeasonAnyBull2/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "Disclaimer &amp; User Agreement        For reference only.       The Utah Department of Natural Resources (DNR) and the "
+    },
+    {
+     "title": "National Park Service",
+     "org": "",
+     "owner": "fellmeth",
+     "url": "https://services9.arcgis.com/2vwSggDpz2EGPF99/arcgis/rest/services/National_Park_Service/FeatureServer",
+     "modified": "2019-01-03",
+     "licence": ""
+    },
+    {
+     "title": "Bureau of Land Management",
+     "org": "",
+     "owner": "fellmeth",
+     "url": "https://services9.arcgis.com/2vwSggDpz2EGPF99/arcgis/rest/services/Bureau_of_Land_Management/FeatureServer",
+     "modified": "2019-01-03",
+     "licence": ""
+    },
+    {
+     "title": "Tribal Lands",
+     "org": "",
+     "owner": "fellmeth",
+     "url": "https://services9.arcgis.com/2vwSggDpz2EGPF99/arcgis/rest/services/Tribal_Lands/FeatureServer",
+     "modified": "2019-01-03",
+     "licence": ""
+    },
+    {
+     "title": "Forest Service",
+     "org": "",
+     "owner": "fellmeth",
+     "url": "https://services9.arcgis.com/2vwSggDpz2EGPF99/arcgis/rest/services/Forest_Service/FeatureServer",
+     "modified": "2019-01-03",
+     "licence": ""
+    },
+    {
+     "title": "Privately Owned Lands",
+     "org": "",
+     "owner": "fellmeth",
+     "url": "https://services9.arcgis.com/2vwSggDpz2EGPF99/arcgis/rest/services/Privately_Owned_Lands/FeatureServer",
+     "modified": "2019-01-03",
+     "licence": ""
+    },
+    {
+     "title": "State Lands",
+     "org": "",
+     "owner": "fellmeth",
+     "url": "https://services9.arcgis.com/2vwSggDpz2EGPF99/arcgis/rest/services/State_Lands/FeatureServer",
+     "modified": "2019-01-03",
+     "licence": ""
+    },
+    {
+     "title": "Utah Ownership",
+     "org": "",
+     "owner": "epicoutdoors",
+     "url": "https://services1.arcgis.com/Yqgiu8IENbyt4QtL/arcgis/rest/services/Utah_Ownership/FeatureServer",
+     "modified": "2018-07-18",
+     "licence": ""
+    },
+    {
+     "title": "GRSG_Aerial_Lek_Search_2024_WFL1",
+     "org": "",
+     "owner": "dwrupland",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/GRSG_Aerial_Lek_Search_2024_WFL1/FeatureServer",
+     "modified": "2024-01-17",
+     "licence": ""
+    },
+    {
+     "title": "Utah Cougar Management Units",
+     "org": "",
+     "owner": "dwrdata",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Cougar_Management_Units/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "For reference use only. Although this product represents the work of natural resource professionals, the Utah Department"
+    },
+    {
+     "title": "BLM_GrazingAllotments",
+     "org": "",
+     "owner": "dwrutah",
+     "url": "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/BLM_GrazingAllotments/FeatureServer",
+     "modified": "2018-02-27",
+     "licence": ""
+    },
+    {
+     "title": "UT_DWR_Habitat_GreaterSageGrouse_brood",
+     "org": "",
+     "owner": "OA_Admin",
+     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/UT_DWR_Habitat_GreaterSageGrouse_brood/FeatureServer",
+     "modified": "2023-03-30",
+     "licence": "This modeled depiction of sage-grouse habitat is not meant to represent a survey-grade boundary, nor is it intended to b"
+    },
+    {
+     "title": "UT_DWR_Habitat_GreaterSageGrouse_summer",
+     "org": "",
+     "owner": "OA_Admin",
+     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/UT_DWR_Habitat_GreaterSageGrouse_summer/FeatureServer",
+     "modified": "2023-03-30",
+     "licence": "This modeled depiction of sage-grouse habitat is not meant to represent a survey-grade boundary, nor is it intended to b"
+    }
+   ]
+  },
+  {
+   "st": "SC",
+   "q": "SCDNR AND (\"managed lands\" OR \"heritage preserve\" OR \"wildlife management area\")",
+   "why": "SCDNR's own copy of the managed lands",
+   "found": [
+    {
+     "title": "SCDNR Public Lands Viewer",
+     "org": "South Carolina Department of Natural Resources",
+     "owner": "DavisJH_scdnr",
+     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer",
+     "modified": "2026-06-04",
+     "licence": "The S.C. Department of Natural Resources makes no representation or warranty as to its accuracy, and in particular, its "
+    },
+    {
+     "title": "HeritagePreserves",
+     "org": "",
+     "owner": "clarkrl_scdnr",
+     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserves/FeatureServer",
+     "modified": "2025-08-04",
+     "licence": "for SCDNR use"
+    },
+    {
+     "title": "SCDNR_Managed_Lands_Public_Viewer",
+     "org": "",
+     "owner": "bneece@clemson.edu_Clemson",
+     "url": "https://services1.arcgis.com/x5wCko8UnSi4h0CB/arcgis/rest/services/SCDNR_Managed_Lands_Public_Viewer/FeatureServer",
+     "modified": "2023-05-04",
+     "licence": ""
+    },
+    {
+     "title": "guignardLoop",
+     "org": "",
+     "owner": "clarkrl_scdnr",
+     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/guignardLoop/FeatureServer",
+     "modified": "2022-09-15",
+     "licence": "scdnr use only"
+    },
+    {
+     "title": "scdnr_hp_singlepoint",
+     "org": "",
+     "owner": "clarkrl_scdnr",
+     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/scdnr_hp_singlepoint/FeatureServer",
+     "modified": "2018-01-05",
+     "licence": "scdnr use for web map"
+    },
+    {
+     "title": "HeritagePreserve_Map2_WFL1",
+     "org": "",
+     "owner": "czakoc_scdnr",
+     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer",
+     "modified": "2025-02-27",
+     "licence": ""
+    }
+   ]
+  }
+ ],
+ "orgs": [],
+ "hubs": [],
+ "pages": [
+  {
+   "st": "SC",
+   "url": "https://public-lands-scdnr.hub.arcgis.com/",
+   "note": "SCDNR hub front page links",
+   "status": 200,
+   "ctype": "text/html; charset=utf-8",
+   "bytes": 67692,
+   "links": [
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/chunk.33524.bc3eb7b1c788eb47dddf.css",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/chunk.33524.bc3eb7b1c788eb47dddf.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/chunk.94600.acdaefe216fc9ad0737e.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/opendata-rtl-72a94a798a32a2ed59e91000a2e863c9.css",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/opendata-ui-d506263913410bf3410d61a2f701ecf6.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/vendor-4e67da638136388d59ddf99b8e586359.css",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/assets/vendor-56aff585951ae46098a4ba021b4c2e93.js",
+    "https://hubcdn.arcgis.com/opendata-ui/assets/calcite-components/5.1.1/cdn/index.js",
+    "https://public-lands-scdnr.hub.arcgis.com/",
+    "https://www.arcgis.com/sharing/rest/content/items/66950d61dd294c28b8527a74e36040c5/resources/hub-image-card-crop-i1j97x3g4.png"
+   ],
+   "hits": [
+    "SCDNR Public Lands --> -->"
+   ]
+  }
+ ]
+}
