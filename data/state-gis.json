@@ -1389,10 +1389,9 @@
     "ag": "Nebraska Game and Parks Commission",
     "host": "agol",
     "nm": "AreaName",
-    "where": "AreaType IN ('SP','SRA')",
     "lic": "'There are no restrictions on the use and distribution'",
     "read": "2026-10-28",
-    "note": "74 park areas; SHP (historical parks) left out: pin only",
+    "note": "74 park areas: SP, SRA and SHP (historical parks join when the match is sure, HQ/Brandon Oct 28)",
     "url": "https://services5.arcgis.com/IOshH1zLrIieqrNk/arcgis/rest/services/Park_Areas/FeatureServer/0"
    }
   ],

@@ -12,7 +12,7 @@ Writes data/trails/<REF>.json (same format as the national trails) + data/trails
 [{ref,name,kind ST|NRT|TP,bbox,by,official,km}] and data/trails/state-report.json (found / missing, for KPC)."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
-STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA WI MN AR').split()  # Oct 27 chat 9 (HQ): WI, MN, AR added with their official trail layers
+STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA WI MN AR DE CO ID').split()  # Oct 27-28 chat 9 (HQ): WI, MN, AR, DE, CO, ID added with their official trail layers
 OUT = 'data/trails'; os.makedirs(OUT, exist_ok=True)
 UA = {'User-Agent': 'KPC trails (kentuckyportableclub.github.io)'}
 CHECK_KM = 8.0   # the drawn line must come this close to the POTA pin
