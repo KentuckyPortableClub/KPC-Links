@@ -54,3 +54,9 @@ Not built (yet): N-9 Lake X / X Lake beyond the sibling rule; the PIN + NAME WOR
 - US-11903 San Juan Island English Camp National Historical Park (WA): was San Juan Island National Historical Park; now nothing (near: San Juan Island National Historical Park, San Juan Islands National Wildlife Refuge)
 
 Pattern in the lost: 'X Unit of Y State Park' / 'Y Fishing Lake' lose Y's own outline because POTA also lists Y (sibling rule: correct by N-4, but chat 8 please confirm); three rail trails (MA, NH) lose their join to Q5 (POTA's 'X Rail Trail State Trail' vs the layer's 'X Rail Trail'): a Q5 exception for '... State Trail' = '...' may be wanted.
+
+## Chat 9's test set (candidates-us-ca.json, 'pin inside, same kind, words differ' = 232 US parks)
+- The fix newly joins **3**, each to chat 9's own candidate: Montaña de Oro SP, El Capitán SB, Simón Canyon (accents). 4 more were already joined in the offline run. **225 stay unjoined.**
+- Why most stay out (all correct by our rules): 116 are BLM recreation SITES (pin-only, chat 9 round 6); most of the rest are a smaller place INSIDE a bigger area (Pine Grove / Salt Creek SRA inside Corps 'Monroe Recreation Area', Miller Field / Great Kills inside Gateway NRA, Brainard Lake inside Roosevelt NF, Pere Marquette SF vs 'Cadillac State Forest Area'), which never joins by words.
+- Real misses = spelling only, for overrides.json after chat 8 checks: US-4419 I.D. Farichild SF = TX 'I.D. FairChild State Forest' (letters swapped); US-10376 Le Beau SRA = 'Lebeau Recreation Area' (one word vs two, under the 8-letter floor); US-7208 Big Lake North SRS vs 'Big Lake State Recreation Site' (NORTH: a side word, needs the AK map).
+- Caveat: the offline run has no live state-GIS answers, so candidates from layers read live (WI DNR, IL DNR preserves, AK parks) are judged on the saved PAD-US copy only. The real count comes from the first live key run after Brandon's OK.
