@@ -19,3 +19,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **SCDNR (wildlife areas):** list page https://www.dnr.sc.gov/wma/maps.html (A, linked from dnr.sc.gov/maps.html); old file pattern `dnr.sc.gov//wma/maps/wmamap<N>.pdf` (B, search results); public lands portal https://public-lands-scdnr.hub.arcgis.com/ (A, open-data hub: look here FIRST for outlines, RESEARCH ORDER). Regulations: https://dnr.sc.gov/regulations.html (no WMA-specific rules page, A). Dates not in the URLs.
+- **State parks:** southcarolinaparks.com/maps-and-brochures and /<park>/maps-and-brochures (bot ok 3 of 3, "map date varies by map").
+- Francis Marion NF page returned 403 to the bot: BOT LOOK-UP.
+- Handovers: none seen.

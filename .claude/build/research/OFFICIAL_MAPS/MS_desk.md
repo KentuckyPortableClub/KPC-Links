@@ -20,3 +20,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **MDWFP (wildlife areas AND state parks both on mdwfp.com):** GIS page https://www.mdwfp.com/wildlife-hunting/gis-program/ links "Interactive Mapping" and "Program Maps" but shows no file addresses, dates or rules (A). Park map example in search: `mdwfp.com/media/<number>/clarkco-state-park.pdf` (B, media-id pattern like NC). Bot got an SSL certificate error on mdwfp.com/wildlife-hunting/wma: BOT LOOK-UP (needs a browser that accepts the site's chain).
+- Corps lakes (sam/mvk.usace.army.mil) all 403: BOT LOOK-UP.
+- Handovers: none seen.

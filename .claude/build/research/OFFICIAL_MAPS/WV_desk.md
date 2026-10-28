@@ -21,3 +21,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **WMAs (WV Division of Natural Resources, 96 areas, about 1.4 million acres):** list https://wvdnr.gov/lands-waters/wildlife-management-areas/ ; district pages `.../district-N-wildlife-management-areas/` N=1..6; statewide map `wvdnr.gov/wp-content/uploads/2022/01/WMAmap_2021_RGB.png` (the upload month = rough date) (A). Per-area PDFs: `wvdnr.gov/wmamapproj/pdf/pdf300/<Name>Final11x17_300dpi.pdf` (bot ok 88 of 89, A). Avenza/other topo versions are archived at sites.google.com/wv.gov/dnrgis/archived-maps/ (A); hunting map at mapwv.gov/huntfish/. Rules: https://wvdnr.gov/lands-waters/wildlife-management-areas/rules-and-regulations/ (A).
+- **State parks and forests (wvstateparks.com):** `wvstateparks.com/wp-content/uploads/<YYYY>/<MM>/<file>.pdf` (upload month = date). Seven state forests point at Google Drive file links (ok, but a Drive link is not an agency address: ask WV for a real one).
+- Handovers: none seen.

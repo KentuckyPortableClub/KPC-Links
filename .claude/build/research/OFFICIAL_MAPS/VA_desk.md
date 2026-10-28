@@ -20,3 +20,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **State parks (DCR):** pattern `dcr.virginia.gov/state-parks/document/<name>.pdf` and `.../document/data/<name>-geo-map.pdf` (bot ok 33 of 35, A). Bot saw an SSL certificate error on virginiastateparks.gov (a second domain for the same files): treat as BOT LOOK-UP; the dcr.virginia.gov copy works.
+- **Wildlife areas (DWR):** list https://dwr.virginia.gov/wma/ ; each WMA is `dwr.virginia.gov/wma/?pid=<N>` (A). The page gives only Google-Maps directions by coordinates and ONE statewide locator PDF (`dwr.virginia.gov/wp-content/uploads/media/wma-locator.pdf`), no per-WMA map and no date (A). General WMA rules PDF `dwr.virginia.gov/wp-content/uploads/media/wma-rules.pdf` (A). OUTLINES (open data, use first): https://services.dwr.virginia.gov/arcgis/rest/services/Public/DGIF_WMAs/MapServer and HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0 (B).
+- Handovers: none seen.

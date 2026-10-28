@@ -22,3 +22,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Game lands (NC Wildlife Resources Commission):** three list pages https://www.ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps/{mountain,piedmont,coastal}-game-land-maps (A for mountain). File pattern `https://www.ncwildlife.gov/media/<ID>/download?attachment` (IDs about 924-954 on the mountain page; the link title holds the file name, e.g. Elk-Knob.pdf); two exceptions use `/kings-creek/download?attachment`. No map dates on the page (A). Rules: regulation links exist, none per game land (A): https://www.ncwildlife.gov/hunt/fishing-hunting-trapping-regulations.
+- **State parks (ncparks.gov):** `ncparks.gov/maps/<park>-state-park-map/open` ok 36 of 37 (A, bot). Dates not stated.
+- **State trails:** trails.nc.gov/maps/map-pdfs-<trail>/open (ok).
+- Handovers: none seen.
