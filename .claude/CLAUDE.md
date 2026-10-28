@@ -12,6 +12,7 @@ Live site: https://kentuckyportableclub.github.io/KPC-Links/ (GitHub Pages from 
 - `.claude/notes/notices.md`: the exact wording of the two notices (open when a page/tool/post shows maps, park info or 2-fers).
 - `.claude/notes/world-stages.md`: the staged WORLD 2-fer list (one country per Brandon GO).
 - `.claude/notes/new-chat-starters.md`: one-line starters for a new chat per topic (Brandon Oct 24: one dedicated chat per area).
+**INBOXES (Oct 28):** each chat's tasks are in `.claude/inbox/chat-N.md`; when Brandon types 'inbox', read README.md there and do yours.
 When you add a note, put it in the right topic file (one short bullet, dated, Brandon's words); keep this main file short.
 
 ## House rules (do not break these)
