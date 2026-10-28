@@ -37,12 +37,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/kpc_state_camps.py || true
       - name: Save
-        continue-on-error: true
+        if: ${{ !inputs.dry_run }}
+        # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files); red ONLY when the save failed
+        env:
+          STRICT: '1'
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          mkdir -p data/campstate; git add data/campstate 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'State park camping: weekly update'
-            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
-          fi
+          mkdir -p data/campstate
+          bash .github/scripts/kpc_push_data.sh . 'State park camping, weekly update' data/campstate

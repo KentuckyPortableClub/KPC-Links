@@ -659,6 +659,19 @@ def update_issue(missing, have, empty):
         gh('-X', 'POST', f'repos/{REPO}/issues', '-f', f'title={title}', '-f', f'body={body}', '-f', 'labels[]=state-camps')
 
 
+# SELF-GRADE GATE (Oct 28, HQ tune pass): well-known state-park campgrounds each state's list must keep (a name word + within
+# 3 km of the pin). Taken from the Oct 28 lists and checked against the parks' locations. A state that fails keeps last
+# week's file. Kentucky is not here (hand-checked kpc-campgrounds.json).
+KNOWN = {'TN': [('Fall Creek Falls', 35.65352, -85.36902)], 'OH': [('Hocking Hills', 39.43753, -82.53795)],
+         'MI': [('Ludington', 44.03804, -86.49472)], 'NY': [('Letchworth', 42.64593, -77.97577)],
+         'PA': [('Ricketts Glen', 41.33661, -76.29658)], 'IA': [('Backbone', 42.6009, -91.53375)]}
+
+
+def gate_miss(st, camps):
+    return [nm for nm, la, lo in KNOWN.get(st, [])
+            if not any(nm.lower().split()[0] in c['name'].lower() and hav(la, lo, c['lat'], c['lon']) <= 1.9 for c in camps)]
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     note('State camps', f'{len(STATES)} state(s), {WORKERS} at a time')
@@ -670,10 +683,20 @@ def main():
     try: idx = json.load(open(OUT / 'index.json'))
     except Exception: idx = {}  # noqa: E722
     states = idx.get('states', {})
-    missing, wrote = {}, 0
+    missing, wrote, gbad, gok = {}, 0, [], 0
     for st in STATES:
         r = results[st]
         f = OUT / f'US-{st}.json'
+        try: oldn = len(json.loads(f.read_text(encoding='utf-8')).get('camps') or [])
+        except Exception: oldn = 0  # noqa: E722
+        gm = gate_miss(st, r['camps']) if st in KNOWN else []
+        if st in KNOWN: gok += len(KNOWN[st]) - len(gm)
+        if gm: gbad.append(f"{st} {', '.join(gm)}")
+        # Oct 28 (tune pass): a list that shrank to under half (a layer that half-answered) or lost a known campground keeps
+        # last week's file instead of replacing it with fewer, wrong rows
+        if r['camps'] and f.exists() and (gm or (oldn >= 20 and len(r['camps']) < oldn / 2)):
+            r['why'] = (f"known campground missing ({', '.join(gm)})" if gm else f'{len(r["camps"])} found vs {oldn} last week') + ': last week\'s list kept'
+            r['camps'] = []
         if r['camps']:
             data = {'state': st, 'updated': TODAY, 'source': r['source'], 'camps': [row_of(st, c) for c in r['camps']]}
             try: was = json.loads(f.read_text(encoding='utf-8'))
@@ -686,14 +709,21 @@ def main():
             missing[st] = (r['why'] or 'nothing this week') + ' (last week\'s list kept)'
         else:
             states.pop(st, None); missing[st] = r['why'] or 'nothing found'
+            # an empty file left from an older run is never read by the page (index.json has no entry): remove it
+            if f.exists() and not DRY:
+                try:
+                    if not json.loads(f.read_text(encoding='utf-8')).get('camps'): f.unlink()
+                except Exception: pass  # noqa: E722
     for st in list(states):
         if st in STATES: continue
     why = idx.get('none_why', {}) if isinstance(idx, dict) else {}
     why.update(missing)
     for s in list(why):
         if s in states: why.pop(s)
+    gn = sum(len(KNOWN[s]) for s in STATES if s in KNOWN)
+    GATE = {'result': 'FAIL' if gbad else 'PASS', 'checked': gn, 'missing': gbad, 'date': TODAY}
     idx = {'updated': TODAY, 'states': dict(sorted(states.items())),
-           'none': sorted(s for s in ALL if s not in states), 'none_why': dict(sorted(why.items()))}
+           'none': sorted(s for s in ALL if s not in states), 'none_why': dict(sorted(why.items())), 'gate': GATE}
     if not DRY:
         (OUT / 'index.json').write_text(json.dumps(idx, indent=1) + '\n', encoding='utf-8')
         try:
@@ -704,6 +734,8 @@ def main():
                                                      'states': dict(sorted(old.items()))}, separators=(',', ':')) + '\n', encoding='utf-8')
     update_issue({s: idx['none_why'].get(s, 'not read yet') for s in idx['none']}, list(states), None)
     note('State camps done', f'{wrote} written, {len(missing)} without a source. Counts: ' + ' '.join(f"{k}={len(v['camps'])}" for k, v in sorted(results.items())))
+    if gn: note('State camps GATE ' + GATE['result'], f'{gok} of {gn} known state-park campgrounds kept' + (f" (missing: {'; '.join(gbad)}; those states keep last week's list)" if gbad else '')
+                + f" · grade me: state camps {GATE['result']}, {wrote} lists written")
     note('State camps: why not', ' | '.join(f"{k}: {v['why'][:70]}" for k, v in sorted(results.items()) if not v['camps'] or v['why']))
 
 
