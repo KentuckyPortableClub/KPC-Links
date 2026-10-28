@@ -5,10 +5,10 @@
   "parks": 95,
   "bot_ok": 95,
   "address_pattern": "geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/<page>",
-  "list_page": "TO DO",
+  "list_page": "geospatial.alberta.ca/titan/rest/services/boundary/parks_protected_areas_alberta/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AB_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AB_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-0653",
@@ -31,7 +31,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-AB",
@@ -39,10 +40,10 @@
   "parks": 15,
   "bot_ok": 15,
   "address_pattern": "albertaparks.ca/media/123323/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "albertaparks.ca/media/123323/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AB_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AB_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-0655",
@@ -65,7 +66,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-AB",
@@ -73,10 +75,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "calgary.ca/content/dam/www/transportation/tp/documents/cycling/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "calgary.ca/content/dam/www/transportation/tp/documents/cycling/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AB_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AB_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-3046",
@@ -92,7 +94,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-AB",
@@ -100,10 +103,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parks.canada.ca/pn-np/ab/waterton/visit/cartes-maps/~/media/<file.ashx>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row Parks Canada: none seen",
+  "rules_page": "see FEDERAL row Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "tested": [
    {
     "ref": "CA-3157",
@@ -112,7 +115,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "CA-BC",
@@ -120,10 +124,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parks.canada.ca/lhn-nhs/bc/fortroddhill/visit/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row Parks Canada: none seen",
+  "rules_page": "see FEDERAL row Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "tested": [
    {
     "ref": "CA-4787",
@@ -132,7 +136,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "CA-MB",
@@ -140,10 +145,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "legacy.winnipeg.ca/publicworks/parks/<file.stm>",
-  "list_page": "TO DO",
+  "list_page": "legacy.winnipeg.ca/publicworks/parks/<file.stm>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Date: none on page (A). Rules: none on page.",
+  "rules_page": "no clear line in the state note: read MB_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-2515",
@@ -152,7 +157,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-NL",
@@ -160,10 +166,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "gov.nl.ca/eccc/natural-areas/wer/r-mpe/<page>",
-  "list_page": "TO DO",
+  "list_page": "gov.nl.ca/eccc/natural-areas/wer/r-mpe/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4559",
@@ -172,7 +178,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-NS",
@@ -180,10 +187,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parks.canada.ca/lhn-nhs/ns/louisbourg/visit/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row Parks Canada: none seen",
+  "rules_page": "see FEDERAL row Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "tested": [
    {
     "ref": "CA-4837",
@@ -192,7 +199,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "CA-ON",
@@ -200,10 +208,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "markham.ca/sites/default/files/neighbourhood-sevices/city-of-markham-cycling/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Date method: none in map links (A). NO DATE.",
+  "rules_page": "no clear line in the state note: read ON_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-1668",
@@ -212,7 +220,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-PE",
@@ -220,10 +229,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parks.canada.ca/pn-np/pe/pei-ipe/visit/~/media/pn-np/pe/pei-ipe/pdfs/<file.ashx>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row Parks Canada: none seen",
+  "rules_page": "see FEDERAL row Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "tested": [
    {
     "ref": "CA-5288",
@@ -232,7 +241,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "CA-QC",
@@ -240,10 +250,10 @@
   "parks": 6,
   "bot_ok": 6,
   "address_pattern": "parks.canada.ca/lhn-nhs/qc/chateauguay/activ/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row Parks Canada: none seen",
+  "rules_page": "see FEDERAL row Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "tested": [
    {
     "ref": "CA-4896",
@@ -266,7 +276,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "CA-QC",
@@ -274,10 +285,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "montreal.ca/en/places/<page>",
-  "list_page": "TO DO",
+  "list_page": "montreal.ca/en/places/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4988",
@@ -293,7 +304,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -301,10 +313,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "carte.ptittraindunord.com/<page>",
-  "list_page": "TO DO",
+  "list_page": "carte.ptittraindunord.com/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-2034",
@@ -313,7 +325,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -321,10 +334,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "vsj.ca/wp-content/uploads/2023/02/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "vsj.ca/wp-content/uploads/2023/02/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-2159",
@@ -333,7 +346,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -341,10 +355,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parcjeandrapeau.com/en/publications/<page>",
-  "list_page": "TO DO",
+  "list_page": "parcjeandrapeau.com/en/publications/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-2176",
@@ -353,7 +367,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -361,10 +376,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "ville.vaudreuil-dorion.qc.ca/uploads/sections/Loisirs_culture/Installations_recreatives/Espaces_verts/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "ville.vaudreuil-dorion.qc.ca/uploads/sections/Loisirs_culture/Installations_recreatives/Espaces_verts/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-2233",
@@ -373,7 +388,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -381,10 +397,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "montsaintjoseph.com/wp-content/uploads/2020/06/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "montsaintjoseph.com/wp-content/uploads/2020/06/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4948",
@@ -393,7 +409,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -401,10 +418,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "pra.terrebonne.ca/wp-content/uploads/2024/05/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "pra.terrebonne.ca/wp-content/uploads/2024/05/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4954",
@@ -413,7 +430,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -421,10 +439,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parcdeschutes.com/en/trails/<page>",
-  "list_page": "TO DO",
+  "list_page": "parcdeschutes.com/en/trails/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4956",
@@ -433,7 +451,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -441,10 +460,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "st-hyacinthe.ca/medias/loisirs-et-culture/installations/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "st-hyacinthe.ca/medias/loisirs-et-culture/installations/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4959",
@@ -453,7 +472,8 @@
     "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -461,10 +481,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "cms.longueuil.quebec/sites/default/files/medias/documents/2021-11/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "cms.longueuil.quebec/sites/default/files/medias/documents/2021-11/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4960",
@@ -473,7 +493,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -481,10 +502,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "mrcdrummond.qc.ca/parc-regional-foret-drummond/<page>",
-  "list_page": "TO DO",
+  "list_page": "mrcdrummond.qc.ca/parc-regional-foret-drummond/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-4975",
@@ -493,7 +514,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -501,10 +523,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "gatineau.ca/docs/activites_evenements_idees_sorties/plein_air_urbain/sites_plein_air/lac_leamy/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "gatineau.ca/docs/activites_evenements_idees_sorties/plein_air_urbain/sites_plein_air/lac_leamy/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-5004",
@@ -513,7 +535,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -521,10 +544,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "valleyfield.ca/<page>",
-  "list_page": "TO DO",
+  "list_page": "valleyfield.ca/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-5019",
@@ -533,7 +556,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-QC",
@@ -541,10 +565,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "laval.ca/sports-loisirs/centre-nature/acces-plan/<page>",
-  "list_page": "TO DO",
+  "list_page": "laval.ca/sports-loisirs/centre-nature/acces-plan/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "Status: NEEDS A BROWSER BOT. Date: none seen.",
+  "rules_page": "no clear line in the state note: read QC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-5032",
@@ -553,7 +577,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-SK",
@@ -561,10 +586,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "saskregionalparks.ca/park/jean-louis-legare/<page>",
-  "list_page": "TO DO",
+  "list_page": "saskregionalparks.ca/park/jean-louis-legare/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read SK_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read SK_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "CA-1112",
@@ -573,7 +598,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "CA-YT",
@@ -581,10 +607,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parks.canada.ca/culture/designation/lieu-site/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row Parks Canada: none seen",
+  "rules_page": "see FEDERAL row Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "tested": [
    {
     "ref": "CA-4619",
@@ -593,7 +619,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AK",
@@ -601,10 +628,10 @@
   "parks": 18,
   "bot_ok": 18,
   "address_pattern": "nps.gov/alag/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0002",
@@ -627,7 +654,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AK",
@@ -635,10 +663,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "blm.gov/sites/blm.gov/files/documents/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-11828",
@@ -647,7 +675,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AL",
@@ -655,10 +684,10 @@
   "parks": 15,
   "bot_ok": 8,
   "address_pattern": "outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/2025-2026/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-10428",
@@ -681,7 +710,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AL",
@@ -689,10 +719,10 @@
   "parks": 11,
   "bot_ok": 11,
   "address_pattern": "nps.gov/liri/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0641",
@@ -715,7 +745,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AL",
@@ -723,10 +754,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "alabamaforeverwild.com/sites/default/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "alabamaforeverwild.com/sites/default/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-11026",
@@ -749,7 +780,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AL",
@@ -757,10 +789,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "conservationgis.alabama.gov/Documents/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "conservationgis.alabama.gov/Documents/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1034",
@@ -783,7 +815,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AL",
@@ -791,10 +824,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "alapark.com/sites/default/files/2020-02/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "alapark.com/sites/default/files/2020-02/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1042",
@@ -817,7 +850,8 @@
     "result": "ok",
     "map_date": "2019 file upload; map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AL",
@@ -825,10 +859,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/sites/default/files/documents/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0161",
@@ -837,7 +871,8 @@
     "result": "ok",
     "map_date": "2022-12-17"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AL",
@@ -845,10 +880,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "tva.com/environment/recreation/recreation-areas/<page>",
-  "list_page": "TO DO",
+  "list_page": "tva.com/environment/recreation/recreation-areas/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-12412",
@@ -857,7 +892,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AL",
@@ -865,10 +901,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fs.usda.gov/r08/alabama/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4451",
@@ -877,7 +913,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AR",
@@ -885,10 +922,10 @@
   "parks": 21,
   "bot_ok": 21,
   "address_pattern": "agfc.com/maps/<page>",
-  "list_page": "TO DO",
+  "list_page": "agfc.com/maps/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-7266",
@@ -911,7 +948,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AR",
@@ -919,10 +957,10 @@
   "parks": 12,
   "bot_ok": 6,
   "address_pattern": "arkansasstateparks.com/parks/<page>",
-  "list_page": "TO DO",
+  "list_page": "arkansasstateparks.com/parks/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1071",
@@ -945,7 +983,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AR",
@@ -953,10 +992,10 @@
   "parks": 6,
   "bot_ok": 6,
   "address_pattern": "nps.gov/hosp/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0038",
@@ -979,7 +1018,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AR",
@@ -987,10 +1027,10 @@
   "parks": 5,
   "bot_ok": 0,
   "address_pattern": "swl.usace.army.mil/Missions/Recreation/ArkansasRiver/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-1091",
@@ -1013,7 +1053,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AR",
@@ -1021,10 +1062,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "fs.usda.gov/r08/ouachita/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4424",
@@ -1040,7 +1081,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AR",
@@ -1048,10 +1090,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "arkansasheritage.com/docs/default-source/anhc-maps/boundary-maps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-0637",
@@ -1060,7 +1102,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AR",
@@ -1068,10 +1111,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "apps.agfc.com/maps/<page>",
-  "list_page": "TO DO",
+  "list_page": "apps.agfc.com/maps/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AR_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-7294",
@@ -1080,7 +1123,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AZ",
@@ -1088,10 +1132,10 @@
   "parks": 19,
   "bot_ok": 19,
   "address_pattern": "nps.gov/grca/planyourvisit/upload/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0030",
@@ -1114,7 +1158,8 @@
     "result": "ok",
     "map_date": "Page last updated May 29, 2025; individual map dates not sta"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AZ",
@@ -1122,10 +1167,10 @@
   "parks": 9,
   "bot_ok": 0,
   "address_pattern": "azgfd.com/wildlife/viewing/wheretogo/robbins/<page>",
-  "list_page": "TO DO",
+  "list_page": "azgfd.com/wildlife/viewing/wheretogo/robbins/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AZ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AZ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-11028",
@@ -1148,7 +1193,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-AZ",
@@ -1156,10 +1202,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "fs.usda.gov/r03/apache-sitgreaves/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4427",
@@ -1182,7 +1228,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AZ",
@@ -1190,10 +1237,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "blm.gov/sites/blm.gov/files/docs/2020-12/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-4436",
@@ -1216,7 +1263,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AZ",
@@ -1224,10 +1272,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "home.nps.gov/lake/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0676",
@@ -1236,7 +1284,8 @@
     "result": "ok",
     "map_date": "Page last updated May 28, 2026"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-AZ",
@@ -1244,10 +1293,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "azstateparks.com/catalina/explore/<page>",
-  "list_page": "TO DO",
+  "list_page": "azstateparks.com/catalina/explore/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read AZ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read AZ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1055",
@@ -1256,7 +1305,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CA",
@@ -1264,10 +1314,10 @@
   "parks": 181,
   "bot_ok": 173,
   "address_pattern": "parks.ca.gov/pages/464/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "parks.ca.gov/pages/464/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1121",
@@ -1290,7 +1340,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CA",
@@ -1298,10 +1349,10 @@
   "parks": 27,
   "bot_ok": 27,
   "address_pattern": "nps.gov/chis/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0014",
@@ -1324,7 +1375,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CA",
@@ -1332,10 +1384,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "fs.usda.gov/htnf/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4391",
@@ -1358,7 +1410,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CA",
@@ -1366,10 +1419,10 @@
   "parks": 4,
   "bot_ok": 3,
   "address_pattern": "blm.gov/visit-us/search-details/13421/<page>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-11017",
@@ -1392,7 +1445,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CA",
@@ -1400,10 +1454,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "wildlife.ca.gov/Lands/Places-to-Visit/<page>",
-  "list_page": "TO DO",
+  "list_page": "wildlife.ca.gov/Lands/Places-to-Visit/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-12681",
@@ -1419,7 +1473,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CA",
@@ -1427,10 +1482,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/don-edwards-san-francisco-bay/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0189",
@@ -1439,7 +1494,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CA",
@@ -1447,10 +1503,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "spn.usace.army.mil/Missions/Recreation/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-10403",
@@ -1459,7 +1515,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CA",
@@ -1467,10 +1524,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "ohv.parks.ca.gov/pages/1170/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "ohv.parks.ca.gov/pages/1170/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-10633",
@@ -1479,7 +1536,8 @@
     "result": "no answer (URL can't contain control characters. '/)",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CA",
@@ -1487,10 +1545,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "spk.usace.army.mil/Portals/12/documents/parks_lakes/BlackButte/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-12616",
@@ -1499,7 +1557,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CA",
@@ -1507,10 +1566,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "files.santaclaracounty.gov/migrated/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "files.santaclaracounty.gov/migrated/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3473",
@@ -1519,7 +1578,8 @@
     "result": "HTTP 403",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CA",
@@ -1527,10 +1587,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "dbw.parks.ca.gov/pages/28702/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dbw.parks.ca.gov/pages/28702/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3532",
@@ -1539,7 +1599,8 @@
     "result": "HTTP 522",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CA",
@@ -1547,10 +1608,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "fire.ca.gov/what-we-do/natural-resource-management/forestry/<page>",
-  "list_page": "TO DO",
+  "list_page": "fire.ca.gov/what-we-do/natural-resource-management/forestry/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4607",
@@ -1559,7 +1620,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CO",
@@ -1567,10 +1629,10 @@
   "parks": 13,
   "bot_ok": 13,
   "address_pattern": "nps.gov/blca/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0008",
@@ -1593,7 +1655,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CO",
@@ -1601,10 +1664,10 @@
   "parks": 10,
   "bot_ok": 10,
   "address_pattern": "cpw.state.co.us/sites/default/files/dam/vhuuk6xtqt/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "cpw.state.co.us/sites/default/files/dam/vhuuk6xtqt/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CO_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CO_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-0184",
@@ -1627,7 +1690,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-CO",
@@ -1635,10 +1699,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "fs.usda.gov/r02/gmug/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4402",
@@ -1661,7 +1725,8 @@
     "result": "ok",
     "map_date": "Map date varies by map; not stated on landing page"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CO",
@@ -1669,10 +1734,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "fws.gov/sites/default/files/documents/2024-06/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0225",
@@ -1688,7 +1753,8 @@
     "result": "ok",
     "map_date": "January 2025"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CO",
@@ -1696,10 +1762,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "blm.gov/visit/<page>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-9596",
@@ -1708,7 +1774,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CT",
@@ -1716,10 +1783,10 @@
   "parks": 3,
   "bot_ok": 0,
   "address_pattern": "nae.usace.army.mil/Portals/74/docs/Recreation/BRL/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-1649",
@@ -1742,7 +1809,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CT",
@@ -1750,10 +1818,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "nps.gov/wefa/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0873",
@@ -1762,7 +1830,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-CT",
@@ -1770,10 +1839,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "portal.ct.gov/-/media/DEEP/stateparks/maps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "portal.ct.gov/-/media/DEEP/stateparks/maps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read CT_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read CT_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1728",
@@ -1782,7 +1851,8 @@
     "result": "ok",
     "map_date": "January 20, 2011"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-DC",
@@ -1790,10 +1860,10 @@
   "parks": 22,
   "bot_ok": 22,
   "address_pattern": "nps.gov/coga/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0653",
@@ -1816,7 +1886,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-DE",
@@ -1824,10 +1895,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "documents.dnrec.delaware.gov/parks/Information/Documents/Tri-ValleyTrail/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "documents.dnrec.delaware.gov/parks/Information/Documents/Tri-ValleyTrail/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read DE_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read DE_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1743",
@@ -1836,7 +1907,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-DE",
@@ -1844,10 +1916,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "destateparks.com/wwwroot/maps/trap-pond/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "destateparks.com/wwwroot/maps/trap-pond/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read DE_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read DE_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-9890",
@@ -1856,7 +1928,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -1864,10 +1937,10 @@
   "parks": 11,
   "bot_ok": 3,
   "address_pattern": "floridastateparks.org/parks-and-trails/<page>",
-  "list_page": "TO DO",
+  "list_page": "floridastateparks.org/parks-and-trails/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1847",
@@ -1890,7 +1963,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -1898,10 +1972,10 @@
   "parks": 7,
   "bot_ok": 7,
   "address_pattern": "nps.gov/drto/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0023",
@@ -1924,7 +1998,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-FL",
@@ -1932,10 +2007,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "myfwc.com/recreation/lead/babcockwebb/planning-your-visit/<page>",
-  "list_page": "TO DO",
+  "list_page": "myfwc.com/recreation/lead/babcockwebb/planning-your-visit/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6291",
@@ -1958,7 +2033,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -1966,10 +2042,10 @@
   "parks": 2,
   "bot_ok": 1,
   "address_pattern": "fs.usda.gov/detail/florida/maps-pubs/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4471",
@@ -1985,7 +2061,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-FL",
@@ -1993,10 +2070,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/<page>",
-  "list_page": "TO DO",
+  "list_page": "fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4632",
@@ -2012,7 +2089,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -2020,10 +2098,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "aws.sjrwmd.com/SJRWMD/lands/trailguides/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "aws.sjrwmd.com/SJRWMD/lands/trailguides/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8353",
@@ -2039,7 +2117,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -2047,10 +2126,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/media/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0249",
@@ -2059,7 +2138,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-FL",
@@ -2067,10 +2147,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "floridadep.gov/sites/default/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "floridadep.gov/sites/default/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3627",
@@ -2079,7 +2159,8 @@
     "result": "ok",
     "map_date": "PDF published approx. 2011; map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -2087,10 +2168,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "www5.swfwmd.state.fl.us/greenswamp/<page>",
-  "list_page": "TO DO",
+  "list_page": "www5.swfwmd.state.fl.us/greenswamp/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-5330",
@@ -2099,7 +2180,8 @@
     "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-FL",
@@ -2107,10 +2189,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "swfwmd.state.fl.us/sites/default/files/recreation/maps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "swfwmd.state.fl.us/sites/default/files/recreation/maps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read FL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6700",
@@ -2119,7 +2201,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-GA",
@@ -2127,10 +2210,10 @@
   "parks": 50,
   "bot_ok": 47,
   "address_pattern": "gastateparks.org/sites/default/files/parks/pdf/trailmaps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "gastateparks.org/sites/default/files/parks/pdf/trailmaps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read GA_desk.md, else BOT LOOK-UP",
+  "rules_page": "**Rules:** georgiawildlife.com/regulations; Hunting & Fishing Guide flipbook (publuu.com); hunter resources; Alerts and Closures https://georgiawildlife.com/closures (A) - a useful closure feed.",
   "tested": [
    {
     "ref": "US-2165",
@@ -2153,7 +2236,8 @@
     "result": "no answer (URL can't contain control characters. '/)",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-GA",
@@ -2161,10 +2245,10 @@
   "parks": 10,
   "bot_ok": 10,
   "address_pattern": "nps.gov/chat/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0662",
@@ -2187,7 +2271,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-GA",
@@ -2195,10 +2280,10 @@
   "parks": 3,
   "bot_ok": 0,
   "address_pattern": "sam.usace.army.mil/Portals/46/docs/recreation/OP-WP/Docs/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-7883",
@@ -2221,7 +2306,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-GA",
@@ -2229,10 +2315,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "piedmont.fws.gov/<file.html>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0264",
@@ -2241,7 +2327,8 @@
     "result": "HTTP 530",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-GA",
@@ -2249,10 +2336,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "fs.usda.gov/detailfull/conf/landmanagement/resourcemanagement/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4473",
@@ -2261,7 +2348,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-GA",
@@ -2269,10 +2357,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "exploregeorgia.org/sites/default/files/listing_documents/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "exploregeorgia.org/sites/default/files/listing_documents/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read GA_desk.md, else BOT LOOK-UP",
+  "rules_page": "**Rules:** georgiawildlife.com/regulations; Hunting & Fishing Guide flipbook (publuu.com); hunter resources; Alerts and Closures https://georgiawildlife.com/closures (A) - a useful closure feed.",
   "tested": [
    {
     "ref": "US-7882",
@@ -2281,7 +2369,8 @@
     "result": "HTTP 403",
     "map_date": "Revised 2011"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-HI",
@@ -2289,10 +2378,10 @@
   "parks": 6,
   "bot_ok": 6,
   "address_pattern": "nps.gov/havo/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0037",
@@ -2315,7 +2404,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-HI",
@@ -2323,10 +2413,10 @@
   "parks": 2,
   "bot_ok": 1,
   "address_pattern": "dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/<page>",
-  "list_page": "TO DO",
+  "list_page": "dlnr.hawaii.gov/dsp/parks/hawaii/akaka-falls-state-park/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read HI_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read HI_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2208",
@@ -2342,7 +2432,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-HI",
@@ -2350,10 +2441,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/hawaiian-islands/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0119",
@@ -2362,7 +2453,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-IA",
@@ -2370,10 +2462,10 @@
   "parks": 4,
   "bot_ok": 3,
   "address_pattern": "iowadnr.gov/places-go/<page>",
-  "list_page": "TO DO",
+  "list_page": "iowadnr.gov/places-go/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read IA_desk.md, else BOT LOOK-UP",
+  "rules_page": "**Rules:** WMA rules = Iowa Administrative Code Chapter 51 (legis.iowa.gov/DOCS/ACO/IAC/LINC/Chapter.571.51.pdf), refuges Chapter 52, parks https://www.iowadnr.gov/places-go/state-parks/parks-use-rules-guidelines (A). Dates: page updated 2026-09-18; no map dates.",
   "tested": [
    {
     "ref": "US-12376",
@@ -2396,7 +2488,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-IA",
@@ -2404,10 +2497,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "nps.gov/heho/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0832",
@@ -2423,7 +2516,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-ID",
@@ -2431,10 +2525,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "nps.gov/miin/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0279",
@@ -2457,7 +2551,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-ID",
@@ -2465,10 +2560,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "blm.gov/programs/national-conservation-lands/<page>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-10383",
@@ -2477,7 +2572,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-ID",
@@ -2485,10 +2581,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "parksandrecreation.idaho.gov/parks/lava-hot-springs/<page>",
-  "list_page": "TO DO",
+  "list_page": "parksandrecreation.idaho.gov/parks/lava-hot-springs/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read ID_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read ID_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-11157",
@@ -2497,7 +2593,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-IL",
@@ -2505,10 +2602,10 @@
   "parks": 5,
   "bot_ok": 3,
   "address_pattern": "dnr.illinois.gov/content/dam/soi/en/web/dnr/calendar/publishingimages/first-day-hikes/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dnr.illinois.gov/content/dam/soi/en/web/dnr/calendar/publishingimages/first-day-hikes/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read IL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read IL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1000",
@@ -2531,7 +2628,8 @@
     "result": "HTTP 404",
     "map_date": "Map date not stated in search result"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-IL",
@@ -2539,10 +2637,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "nps.gov/liho/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0841",
@@ -2565,7 +2663,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-IL",
@@ -2573,10 +2672,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "s7d1.scene7.com/is/image/isp/<page>",
-  "list_page": "TO DO",
+  "list_page": "s7d1.scene7.com/is/image/isp/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read IL_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read IL_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1012",
@@ -2585,7 +2684,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-IL",
@@ -2593,10 +2693,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/upper-mississippi-river/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-4236",
@@ -2605,7 +2705,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-IN",
@@ -2613,10 +2714,10 @@
   "parks": 14,
   "bot_ok": 13,
   "address_pattern": "in.gov/dnr/nature-preserves/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "in.gov/dnr/nature-preserves/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "**Date:** none on the list; the page itself was last modified 2026-03-19 (A).",
+  "rules_page": "**Rules:** https://in.gov/dnr/state-parks/property-rules-and-regulations (A).",
   "tested": [
    {
     "ref": "US-10247",
@@ -2639,7 +2740,8 @@
     "result": "ok",
     "map_date": "\u00a9 01/2026"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-IN",
@@ -2647,10 +2749,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "nps.gov/gero/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0734",
@@ -2666,7 +2768,8 @@
     "result": "ok",
     "map_date": "Page last updated August 27, 2024"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-KS",
@@ -2674,10 +2777,10 @@
   "parks": 14,
   "bot_ok": 0,
   "address_pattern": "nwk.usace.army.mil/Portals/29/docs/lakesites/clinton/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-2332",
@@ -2700,7 +2803,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-KS",
@@ -2708,10 +2812,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "nps.gov/fols/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0818",
@@ -2734,7 +2838,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-KS",
@@ -2742,10 +2847,10 @@
   "parks": 3,
   "bot_ok": 0,
   "address_pattern": "ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/South-Central-Region/<page>",
-  "list_page": "TO DO",
+  "list_page": "ksoutdoors.com/KDWP-Info/Locations/State-Fishing-Lakes/South-Central-Region/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read KS_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read KS_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-7412",
@@ -2768,7 +2873,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-LA",
@@ -2776,10 +2882,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "nps.gov/jela/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0040",
@@ -2802,7 +2908,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MA",
@@ -2810,10 +2917,10 @@
   "parks": 14,
   "bot_ok": 14,
   "address_pattern": "nps.gov/caco/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0672",
@@ -2836,7 +2943,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MA",
@@ -2844,10 +2952,10 @@
   "parks": 2,
   "bot_ok": 1,
   "address_pattern": "mass.gov/lists/<page>",
-  "list_page": "TO DO",
+  "list_page": "mass.gov/lists/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read MA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2420",
@@ -2863,7 +2971,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MA",
@@ -2871,10 +2980,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "nae.usace.army.mil/Portals/74/docs/Recreation/WHD/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-11573",
@@ -2883,7 +2992,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MD",
@@ -2891,10 +3001,10 @@
   "parks": 17,
   "bot_ok": 17,
   "address_pattern": "nps.gov/nace/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0654",
@@ -2917,7 +3027,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MD",
@@ -2925,10 +3036,10 @@
   "parks": 5,
   "bot_ok": 4,
   "address_pattern": "dnr.maryland.gov/publiclands/Documents/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dnr.maryland.gov/publiclands/Documents/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MD_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read MD_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1573",
@@ -2951,7 +3062,8 @@
     "result": "ok",
     "map_date": "Map dates not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MD",
@@ -2959,10 +3071,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "home.nps.gov/fomc/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0928",
@@ -2971,7 +3083,8 @@
     "result": "ok",
     "map_date": "Page last updated September 21, 2026"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-ME",
@@ -2979,10 +3092,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "nps.gov/acad/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0001",
@@ -3005,7 +3118,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MI",
@@ -3013,10 +3127,10 @@
   "parks": 6,
   "bot_ok": 6,
   "address_pattern": "nps.gov/isro/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0039",
@@ -3039,7 +3153,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MI",
@@ -3047,10 +3162,10 @@
   "parks": 5,
   "bot_ok": 0,
   "address_pattern": "michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "michigan.gov/recsearch/-/media/Project/Websites/recsearch/documents/MapsI-N/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MI_desk.md, else BOT LOOK-UP",
+  "rules_page": "**Rules:** no game-area rules on the list; regulations at /dnr/managing-resources/laws/regulations (A). State forests/parks: see the earlier Big Holes round.",
   "tested": [
    {
     "ref": "US-13184",
@@ -3073,7 +3188,8 @@
     "result": "HTTP 403",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MI",
@@ -3081,10 +3197,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "dnr.state.mi.us/publications/pdfs/RecreationCamping/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dnr.state.mi.us/publications/pdfs/RecreationCamping/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MI_desk.md, else BOT LOOK-UP",
+  "rules_page": "**Rules:** no game-area rules on the list; regulations at /dnr/managing-resources/laws/regulations (A). State forests/parks: see the earlier Big Holes round.",
   "tested": [
    {
     "ref": "US-1518",
@@ -3093,7 +3209,8 @@
     "result": "HTTP 404",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MI",
@@ -3101,10 +3218,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "www2.dnr.state.mi.us/Publications/PDFS/RecreationCamping/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "www2.dnr.state.mi.us/Publications/PDFS/RecreationCamping/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MI_desk.md, else BOT LOOK-UP",
+  "rules_page": "**Rules:** no game-area rules on the list; regulations at /dnr/managing-resources/laws/regulations (A). State forests/parks: see the earlier Big Holes round.",
   "tested": [
    {
     "ref": "US-3310",
@@ -3113,7 +3230,8 @@
     "result": "HTTP 404",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MN",
@@ -3121,10 +3239,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "nps.gov/voya/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0067",
@@ -3147,7 +3265,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MN",
@@ -3155,10 +3274,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "files.dnr.state.mn.us/maps/state_parks/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "files.dnr.state.mn.us/maps/state_parks/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MN_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read MN_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2482",
@@ -3181,7 +3300,8 @@
     "result": "ok",
     "map_date": "PDF published approx. 2025; printed map date not clearly sta"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MN",
@@ -3189,10 +3309,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/minnesota-valley/visit-us/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0364",
@@ -3201,7 +3321,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MO",
@@ -3209,10 +3330,10 @@
   "parks": 393,
   "bot_ok": 393,
   "address_pattern": "mdc.mo.gov/media/area/map/<page>",
-  "list_page": "TO DO",
+  "list_page": "mdc.mo.gov/media/area/map/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "**Map date:** the PDF I opened (8705map, Emmenegger Nature Park) shows NO date (A). Use the upload month.",
+  "rules_page": "no clear line in the state note: read MO_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-0788",
@@ -3235,7 +3356,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MO",
@@ -3243,10 +3365,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "nps.gov/wicr/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0710",
@@ -3269,7 +3391,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MO",
@@ -3277,10 +3400,10 @@
   "parks": 4,
   "bot_ok": 0,
   "address_pattern": "nwk.usace.army.mil/Portals/29/docs/lakesites/truman/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-1762",
@@ -3303,7 +3426,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MO",
@@ -3311,10 +3435,10 @@
   "parks": 2,
   "bot_ok": 0,
   "address_pattern": "mvs.usace.army.mil/Portals/54/siteimages/wappapello/maps/<file.gif>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-1769",
@@ -3330,7 +3454,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MO",
@@ -3338,10 +3463,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "swl.usace.army.mil/Portals/50/docs/tablerocklake/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-1787",
@@ -3350,7 +3475,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MS",
@@ -3358,10 +3484,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "nps.gov/guis/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0661",
@@ -3384,7 +3510,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MS",
@@ -3392,10 +3519,10 @@
   "parks": 2,
   "bot_ok": 0,
   "address_pattern": "sam.usace.army.mil/Portals/46/docs/recreation/okatibbee/<file.gif>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-7091",
@@ -3411,7 +3538,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MS",
@@ -3419,10 +3547,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "mdwfp.com/wildlife-hunting/<page>",
-  "list_page": "TO DO",
+  "list_page": "mdwfp.com/wildlife-hunting/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MS_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read MS_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-7106",
@@ -3431,7 +3559,8 @@
     "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-MS",
@@ -3439,10 +3568,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "mvk.usace.army.mil/Portals/58/docs/Lakes/Mississippi/Sardis/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-7128",
@@ -3451,7 +3580,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MT",
@@ -3459,10 +3589,10 @@
   "parks": 7,
   "bot_ok": 7,
   "address_pattern": "nps.gov/glac/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0028",
@@ -3485,7 +3615,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MT",
@@ -3493,10 +3624,10 @@
   "parks": 3,
   "bot_ok": 0,
   "address_pattern": "fs.usda.gov/r01/bitterroot/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4500",
@@ -3519,7 +3650,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MT",
@@ -3527,10 +3659,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "blm.gov/visit/<page>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-10527",
@@ -3539,7 +3671,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-MT",
@@ -3547,10 +3680,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fwp.mt.gov/stateparks/<page>",
-  "list_page": "TO DO",
+  "list_page": "fwp.mt.gov/stateparks/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read MT_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read MT_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2605",
@@ -3559,7 +3692,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NC",
@@ -3567,10 +3701,10 @@
   "parks": 37,
   "bot_ok": 36,
   "address_pattern": "ncparks.gov/maps/carolina-beach-state-park-map/<page>",
-  "list_page": "TO DO",
+  "list_page": "ncparks.gov/maps/carolina-beach-state-park-map/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2722",
@@ -3593,7 +3727,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NC",
@@ -3601,10 +3736,10 @@
   "parks": 6,
   "bot_ok": 6,
   "address_pattern": "nps.gov/caha/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0682",
@@ -3627,7 +3762,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NC",
@@ -3635,10 +3771,10 @@
   "parks": 2,
   "bot_ok": 1,
   "address_pattern": "ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps/<page>",
-  "list_page": "TO DO",
+  "list_page": "ncwildlife.gov/hunting/where-hunt-shoot/game-lands-maps/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6927",
@@ -3654,7 +3790,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NC",
@@ -3662,10 +3799,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "trails.nc.gov/maps/map-pdfs-yadkin-river-state-trail/<page>",
-  "list_page": "TO DO",
+  "list_page": "trails.nc.gov/maps/map-pdfs-yadkin-river-state-trail/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-12320",
@@ -3674,7 +3811,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NC",
@@ -3682,10 +3820,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "fs.usda.gov/sites/nfs/files/r08/northcarolina/publication/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4511",
@@ -3694,7 +3832,8 @@
     "result": "HTTP 429",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NC",
@@ -3702,10 +3841,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "ncagr.gov/divisions/nc-forest-service/NCFS%20-%20Mountain%20Island%20Trail%20Map.pdf/<page>",
-  "list_page": "TO DO",
+  "list_page": "ncagr.gov/divisions/nc-forest-service/NCFS%20-%20Mountain%20Island%20Trail%20Map.pdf/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4858",
@@ -3714,7 +3853,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-ND",
@@ -3722,10 +3862,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "nps.gov/thro/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0065",
@@ -3741,7 +3881,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-ND",
@@ -3749,10 +3890,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/Garrison/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-2764",
@@ -3761,7 +3902,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NE",
@@ -3769,10 +3911,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "nps.gov/mnrr/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0675",
@@ -3795,7 +3937,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NE",
@@ -3803,10 +3946,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "lpsnrd.maps.arcgis.com/apps/MapJournal/<file.html>",
-  "list_page": "TO DO",
+  "list_page": "lpsnrd.maps.arcgis.com/apps/MapJournal/<file.html>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NE_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NE_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4016",
@@ -3829,7 +3972,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NE",
@@ -3837,10 +3981,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "papionrd.org/wp-content/uploads/2025/06/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "papionrd.org/wp-content/uploads/2025/06/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NE_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NE_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4011",
@@ -3849,7 +3993,8 @@
     "result": "HTTP 403",
     "map_date": "PDF posted June 2025; map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NE",
@@ -3857,10 +4002,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "lenrd.org/<page>",
-  "list_page": "TO DO",
+  "list_page": "lenrd.org/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NE_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NE_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4039",
@@ -3869,7 +4014,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NE",
@@ -3877,10 +4023,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-9360",
@@ -3889,7 +4035,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NH",
@@ -3897,10 +4044,10 @@
   "parks": 4,
   "bot_ok": 2,
   "address_pattern": "nhstateparks.org/visit/historic-sites/<page>",
-  "list_page": "TO DO",
+  "list_page": "nhstateparks.org/visit/historic-sites/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NH_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NH_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8020",
@@ -3923,7 +4070,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NH",
@@ -3931,10 +4079,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/silvio-o-conte/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0329",
@@ -3943,7 +4091,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NH",
@@ -3951,10 +4100,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "nps.gov/saga/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0857",
@@ -3963,7 +4112,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NH",
@@ -3971,10 +4121,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "mass.gov/doc/nashua-river-rail-trail-map/<page>",
-  "list_page": "TO DO",
+  "list_page": "mass.gov/doc/nashua-river-rail-trail-map/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NH_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NH_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8396",
@@ -3983,7 +4133,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NJ",
@@ -3991,10 +4142,10 @@
   "parks": 61,
   "bot_ok": 61,
   "address_pattern": "state.nj.us/dep/fgw/pdf/wmamaps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "state.nj.us/dep/fgw/pdf/wmamaps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-11337",
@@ -4017,7 +4168,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NJ",
@@ -4025,10 +4177,10 @@
   "parks": 43,
   "bot_ok": 3,
   "address_pattern": "nj.gov/dep/parksandforests/maps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "nj.gov/dep/parksandforests/maps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-11338",
@@ -4051,7 +4203,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NJ",
@@ -4059,10 +4212,10 @@
   "parks": 10,
   "bot_ok": 10,
   "address_pattern": "nps.gov/gate/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0680",
@@ -4085,7 +4238,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NJ",
@@ -4093,10 +4247,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/wallkill-river/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0456",
@@ -4105,7 +4259,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NJ",
@@ -4113,10 +4268,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "seepassaiccounty.org/wp-content/uploads/2022/12/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "seepassaiccounty.org/wp-content/uploads/2022/12/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6462",
@@ -4125,7 +4280,8 @@
     "result": "ok",
     "map_date": "December 2022"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NJ",
@@ -4133,10 +4289,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "dep.nj.gov/wp-content/uploads/njnlt/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dep.nj.gov/wp-content/uploads/njnlt/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8047",
@@ -4145,7 +4301,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NJ",
@@ -4153,10 +4310,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "njpalisades.org/pdfs/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "njpalisades.org/pdfs/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NJ_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8319",
@@ -4165,7 +4322,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NM",
@@ -4173,10 +4331,10 @@
   "parks": 12,
   "bot_ok": 12,
   "address_pattern": "nps.gov/cave/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0012",
@@ -4199,7 +4357,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NM",
@@ -4207,10 +4366,10 @@
   "parks": 2,
   "bot_ok": 0,
   "address_pattern": "fs.usda.gov/r03/cibola/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4514",
@@ -4226,7 +4385,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NM",
@@ -4234,10 +4394,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "eplanning.blm.gov/public_projects/lup/68121/86178/103335/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-11791",
@@ -4246,7 +4406,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NM",
@@ -4254,10 +4415,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "emnrd.state.nm.us/SPD/documents/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "emnrd.state.nm.us/SPD/documents/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NM_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NM_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2717",
@@ -4266,7 +4427,8 @@
     "result": "no answer (<urlopen error [Errno -2] Name or servic)",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NV",
@@ -4274,10 +4436,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "nps.gov/grba/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0032",
@@ -4293,7 +4455,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NV",
@@ -4301,10 +4464,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "blm.gov/documents/nevada/public-room/brochure/<page>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-13151",
@@ -4320,7 +4483,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NY",
@@ -4328,10 +4492,10 @@
   "parks": 47,
   "bot_ok": 47,
   "address_pattern": "parks.ny.gov/sites/default/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "parks.ny.gov/sites/default/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-10034",
@@ -4354,7 +4518,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NY",
@@ -4362,10 +4527,10 @@
   "parks": 21,
   "bot_ok": 21,
   "address_pattern": "nps.gov/sara/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0062",
@@ -4388,7 +4553,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-NY",
@@ -4396,10 +4562,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "dec.ny.gov/nature/forests-trees/forest-preserve/<page>",
-  "list_page": "TO DO",
+  "list_page": "dec.ny.gov/nature/forests-trees/forest-preserve/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2001",
@@ -4415,7 +4581,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NY",
@@ -4423,10 +4590,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "staffportal.parks.ny.gov/parks/wellesleyisland/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "staffportal.parks.ny.gov/parks/wellesleyisland/<file.aspx>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2157",
@@ -4435,7 +4602,8 @@
     "result": "HTTP 404",
     "map_date": "Map dates not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NY",
@@ -4443,10 +4611,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "empiretrail.ny.gov/<page>",
-  "list_page": "TO DO",
+  "list_page": "empiretrail.ny.gov/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read NY_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8098",
@@ -4455,7 +4623,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-NY",
@@ -4463,10 +4632,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "lrp.usace.army.mil/Portals/72/docs/Recreation/<file.jpg>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-9037",
@@ -4475,7 +4644,8 @@
     "result": "HTTP 400",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OH",
@@ -4483,10 +4653,10 @@
   "parks": 15,
   "bot_ok": 15,
   "address_pattern": "dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/parks/parkmaps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "**Map date:** the PDF itself shows \"Date Published: 5/3/2022\" (A, Wallace Odowd Trimble map) - a publication date, not a revision date. Agency named only by the legend (\"ODNR Lands\") and wildohio.gov.",
+  "rules_page": "**Rules:** Ohio Administrative Code 1501:31-15-04 (wildlife area rules) at codes.ohio.gov (B); ODNR rules pages not opened.",
   "tested": [
    {
     "ref": "US-1933",
@@ -4509,7 +4679,8 @@
     "result": "ok",
     "map_date": "Rev. 05/2025"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-OH",
@@ -4517,10 +4688,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "nps.gov/cuva/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0020",
@@ -4543,7 +4714,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OH",
@@ -4551,10 +4723,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "ohiodnr.gov/static/documents/parks/parkmaps/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "ohiodnr.gov/static/documents/parks/parkmaps/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "**Map date:** the PDF itself shows \"Date Published: 5/3/2022\" (A, Wallace Odowd Trimble map) - a publication date, not a revision date. Agency named only by the legend (\"ODNR Lands\") and wildohio.gov.",
+  "rules_page": "**Rules:** Ohio Administrative Code 1501:31-15-04 (wildlife area rules) at codes.ohio.gov (B); ODNR rules pages not opened.",
   "tested": [
    {
     "ref": "US-1937",
@@ -4577,7 +4749,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-OH",
@@ -4585,10 +4758,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "clevelandmetroparks.com/getmedia/3496c101-b5d3-44f1-b19c-7ddff3907e44/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "clevelandmetroparks.com/getmedia/3496c101-b5d3-44f1-b19c-7ddff3907e44/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "**Map date:** the PDF itself shows \"Date Published: 5/3/2022\" (A, Wallace Odowd Trimble map) - a publication date, not a revision date. Agency named only by the legend (\"ODNR Lands\") and wildohio.gov.",
+  "rules_page": "**Rules:** Ohio Administrative Code 1501:31-15-04 (wildlife area rules) at codes.ohio.gov (B); ODNR rules pages not opened.",
   "tested": [
    {
     "ref": "US-1942",
@@ -4597,7 +4770,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-OH",
@@ -4605,10 +4779,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "lrp.usace.army.mil/Portals/72/docs/Recreation/<file.jpg>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-9485",
@@ -4617,7 +4791,8 @@
     "result": "HTTP 400",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OK",
@@ -4625,10 +4800,10 @@
   "parks": 4,
   "bot_ok": 0,
   "address_pattern": "swt.usace.army.mil/Locations/TulsaDistrictLakes/Oklahoma/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-2788",
@@ -4651,7 +4826,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OK",
@@ -4659,10 +4835,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "nps.gov/waba/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0872",
@@ -4685,7 +4861,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OR",
@@ -4693,10 +4870,10 @@
   "parks": 15,
   "bot_ok": 15,
   "address_pattern": "blm.gov/sites/blm.gov/files/docs/2022-03/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-10008",
@@ -4719,7 +4896,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OR",
@@ -4727,10 +4905,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "nps.gov/crla/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0018",
@@ -4753,7 +4931,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OR",
@@ -4761,10 +4940,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "fs.usda.gov/crgnsa/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-0731",
@@ -4787,7 +4966,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OR",
@@ -4795,10 +4975,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "stateparks.oregon.gov/ckFiles/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "stateparks.oregon.gov/ckFiles/files/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read OR_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read OR_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-10007",
@@ -4821,7 +5001,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-OR",
@@ -4829,10 +5010,10 @@
   "parks": 3,
   "bot_ok": 0,
   "address_pattern": "nwp.usace.army.mil/Locations/WillametteValley/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-9143",
@@ -4855,7 +5036,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-OR",
@@ -4863,10 +5045,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/refuge/umatilla/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0596",
@@ -4875,7 +5057,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-PA",
@@ -4883,10 +5066,10 @@
   "parks": 17,
   "bot_ok": 17,
   "address_pattern": "nps.gov/gett/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0027",
@@ -4909,7 +5092,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-PA",
@@ -4917,10 +5101,10 @@
   "parks": 9,
   "bot_ok": 9,
   "address_pattern": "pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/french-creek-state-park/<page>",
-  "list_page": "TO DO",
+  "list_page": "pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/french-creek-state-park/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read PA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read PA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1355",
@@ -4943,7 +5127,8 @@
     "result": "ok",
     "map_date": "Map date not stated on map page"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-PA",
@@ -4951,10 +5136,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "elibrary.dcnr.pa.gov/<file.ashx>",
-  "list_page": "TO DO",
+  "list_page": "elibrary.dcnr.pa.gov/<file.ashx>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read PA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read PA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1352",
@@ -4977,7 +5162,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-RI",
@@ -4985,10 +5171,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "dem.ri.gov/sites/g/files/xkgbur861/files/programs/maps/mapfile/huntingatlas/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dem.ri.gov/sites/g/files/xkgbur861/files/programs/maps/mapfile/huntingatlas/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read RI_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read RI_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6982",
@@ -5011,7 +5197,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-RI",
@@ -5019,10 +5206,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "riparks.ri.gov/other-state-lands/<page>",
-  "list_page": "TO DO",
+  "list_page": "riparks.ri.gov/other-state-lands/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read RI_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read RI_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2880",
@@ -5045,7 +5232,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-RI",
@@ -5053,10 +5241,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "nps.gov/rowi/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0789",
@@ -5072,7 +5260,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-SC",
@@ -5080,10 +5269,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "nps.gov/cong/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0017",
@@ -5106,7 +5295,8 @@
     "result": "ok",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-SC",
@@ -5114,10 +5304,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "southcarolinaparks.com/<page>",
-  "list_page": "TO DO",
+  "list_page": "southcarolinaparks.com/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read SC_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read SC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2902",
@@ -5140,7 +5330,8 @@
     "result": "ok",
     "map_date": "Map date not stated; official park map"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-SC",
@@ -5148,10 +5339,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fws.gov/media/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0522",
@@ -5160,7 +5351,8 @@
     "result": "ok",
     "map_date": "Publication date listed July 9, 2026"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-SC",
@@ -5168,10 +5360,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "embed.widencdn.net/pdf/plus/scprt/1b2dm2dbko/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "embed.widencdn.net/pdf/plus/scprt/1b2dm2dbko/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read SC_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read SC_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3873",
@@ -5180,7 +5372,8 @@
     "result": "ok",
     "map_date": "2017"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-SC",
@@ -5188,10 +5381,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "fs.usda.gov/scnfs/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4522",
@@ -5200,7 +5393,8 @@
     "result": "HTTP 403",
     "map_date": "Map date varies by map"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-SD",
@@ -5208,10 +5402,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "nps.gov/badl/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0005",
@@ -5234,7 +5428,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-SD",
@@ -5242,10 +5437,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "nwo.usace.army.mil/Missions/DamandLakeProjects/MissouriRiverDams/GavinsPoint/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-8174",
@@ -5254,7 +5449,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TN",
@@ -5262,10 +5458,10 @@
   "parks": 7,
   "bot_ok": 7,
   "address_pattern": "nps.gov/cuga/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0019",
@@ -5288,7 +5484,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TN",
@@ -5296,10 +5493,10 @@
   "parks": 2,
   "bot_ok": 0,
   "address_pattern": "lrn.usace.army.mil/Locations/Lakes/CordellHullLake/<file.aspx>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-7580",
@@ -5315,7 +5512,8 @@
     "result": "HTTP 400",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TN",
@@ -5323,10 +5521,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "tnstateparks.com/sites/default/files/2025-09/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "tnstateparks.com/sites/default/files/2025-09/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TN_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TN_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-2982",
@@ -5335,7 +5533,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-TN",
@@ -5343,10 +5542,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "landbetweenthelakes.us/help-center/lbl-maps/<page>",
-  "list_page": "TO DO",
+  "list_page": "landbetweenthelakes.us/help-center/lbl-maps/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TN_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TN_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3792",
@@ -5355,7 +5554,8 @@
     "result": "ok",
     "map_date": "2026 MVUM; recreation maps include 2022 editions"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-TN",
@@ -5363,10 +5563,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fs.usda.gov/cherokee/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4525",
@@ -5375,7 +5575,8 @@
     "result": "ok",
     "map_date": "Map date varies by map; not stated on landing page"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TN",
@@ -5383,10 +5584,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "trails.nc.gov/maps/map-pdfs-mountains-sea-state-trail/<page>",
-  "list_page": "TO DO",
+  "list_page": "trails.nc.gov/maps/map-pdfs-mountains-sea-state-trail/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TN_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TN_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-8313",
@@ -5395,7 +5596,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-TX",
@@ -5403,10 +5605,10 @@
   "parks": 81,
   "bot_ok": 81,
   "address_pattern": "tpwd.texas.gov/publications/pwdpubs/media/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "tpwd.texas.gov/publications/pwdpubs/media/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-10509",
@@ -5429,7 +5631,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-TX",
@@ -5437,10 +5640,10 @@
   "parks": 14,
   "bot_ok": 14,
   "address_pattern": "nps.gov/bibe/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0006",
@@ -5463,7 +5666,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TX",
@@ -5471,10 +5675,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "fws.gov/refuge/attwater-prairie-chicken/visit-us/<page>",
-  "list_page": "TO DO",
+  "list_page": "fws.gov/refuge/<slug>/library",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row FWS: slug often carries year or month (e.g. -2021, -mar-2023)",
+  "rules_page": "see FEDERAL row FWS: each refuge's 'rules and regulations' and hunting & fishing regulations pages (HQ pattern; BOT LOOK-UP: confirm address)",
   "tested": [
    {
     "ref": "US-0542",
@@ -5497,7 +5701,8 @@
     "result": "ok",
     "map_date": "Map created 03/03/2022"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TX",
@@ -5505,10 +5710,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "fs.usda.gov/texas/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4417",
@@ -5517,7 +5722,8 @@
     "result": "ok",
     "map_date": "Map date varies by map; not stated on landing page"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TX",
@@ -5525,10 +5731,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "tfsweb.tamu.edu/uploadedFiles/FRD/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "tfsweb.tamu.edu/uploadedFiles/FRD/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4422",
@@ -5537,7 +5743,8 @@
     "result": "HTTP 404",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-TX",
@@ -5545,10 +5752,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "dallascounty.org/Assets/uploads/docs/plandev/trails/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dallascounty.org/Assets/uploads/docs/plandev/trails/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4423",
@@ -5557,7 +5764,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-TX",
@@ -5565,10 +5773,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "parkplanning.nps.gov/<file.cfm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-4568",
@@ -5577,7 +5785,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TX",
@@ -5585,10 +5794,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "swf-wc.usace.army.mil/cooper/Information/<file.asp>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-6550",
@@ -5597,7 +5806,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-TX",
@@ -5605,10 +5815,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "thc.texas.gov/historic-sites/<page>",
-  "list_page": "TO DO",
+  "list_page": "thc.texas.gov/historic-sites/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read TX_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6559",
@@ -5617,7 +5827,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-UT",
@@ -5625,10 +5836,10 @@
   "parks": 16,
   "bot_ok": 16,
   "address_pattern": "nps.gov/arch/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0004",
@@ -5651,7 +5862,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-UT",
@@ -5659,10 +5871,10 @@
   "parks": 8,
   "bot_ok": 6,
   "address_pattern": "blm.gov/sites/blm.gov/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-11112",
@@ -5685,7 +5897,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-UT",
@@ -5693,10 +5906,10 @@
   "parks": 4,
   "bot_ok": 1,
   "address_pattern": "stateparks.utah.gov/parks/deer-creek/map/<page>",
-  "list_page": "TO DO",
+  "list_page": "stateparks.utah.gov/parks/deer-creek/map/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read UT_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read UT_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3067",
@@ -5719,7 +5932,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-UT",
@@ -5727,10 +5941,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "fs.usda.gov/r04/dixie/planning/forest-plan/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4395",
@@ -5753,7 +5967,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-UT",
@@ -5761,10 +5976,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "grandcountyutah.net/Facilities/Facility/Details/<page>",
-  "list_page": "TO DO",
+  "list_page": "grandcountyutah.net/Facilities/Facility/Details/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read UT_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read UT_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-5790",
@@ -5773,7 +5988,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-UT",
@@ -5781,10 +5997,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "wildlife.utah.gov/hunting/hunting-in-utah/<file.html>",
-  "list_page": "TO DO",
+  "list_page": "wildlife.utah.gov/hunting/hunting-in-utah/<file.html>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read UT_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read UT_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-5923",
@@ -5793,7 +6009,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-VA",
@@ -5801,10 +6018,10 @@
   "parks": 35,
   "bot_ok": 33,
   "address_pattern": "dcr.virginia.gov/state-parks/document/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "dcr.virginia.gov/state-parks/document/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read VA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read VA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1290",
@@ -5827,7 +6044,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-VA",
@@ -5835,10 +6053,10 @@
   "parks": 15,
   "bot_ok": 15,
   "address_pattern": "nps.gov/colo/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0016",
@@ -5861,7 +6079,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-VA",
@@ -5869,10 +6088,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "home.nps.gov/mana/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0712",
@@ -5881,7 +6100,8 @@
     "result": "ok",
     "map_date": "Page last updated October 25, 2021"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-VA",
@@ -5889,10 +6109,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "virginiastateparks.gov/state-parks/document/data/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "virginiastateparks.gov/state-parks/document/data/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read VA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read VA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1299",
@@ -5901,7 +6121,8 @@
     "result": "no answer (<urlopen error [SSL: CERTIFICATE_VERIFY_)",
     "map_date": "Map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-VA",
@@ -5909,10 +6130,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "services.dwr.virginia.gov/arcgis/rest/services/Public/BirdingWildlifeTrail/<page>",
-  "list_page": "TO DO",
+  "list_page": "services.dwr.virginia.gov/arcgis/rest/services/Public/BirdingWildlifeTrail/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read VA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read VA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-9935",
@@ -5921,7 +6142,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-VT",
@@ -5929,10 +6151,10 @@
   "parks": 2,
   "bot_ok": 0,
   "address_pattern": "nae.usace.army.mil/Portals/74/docs/Recreation/TSL/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USACE: none",
+  "rules_page": "see FEDERAL row USACE: 36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "tested": [
    {
     "ref": "US-3148",
@@ -5948,7 +6170,8 @@
     "result": "HTTP 403",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-VT",
@@ -5956,10 +6179,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "nps.gov/mabi/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0744",
@@ -5968,7 +6191,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-VT",
@@ -5976,10 +6200,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "vtstateparks.com/<file.html>",
-  "list_page": "TO DO",
+  "list_page": "vtstateparks.com/<file.html>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read VT_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read VT_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-3106",
@@ -5988,7 +6212,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WA",
@@ -5996,10 +6221,10 @@
   "parks": 8,
   "bot_ok": 8,
   "address_pattern": "nps.gov/mora/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0052",
@@ -6022,7 +6247,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WA",
@@ -6030,10 +6256,10 @@
   "parks": 6,
   "bot_ok": 3,
   "address_pattern": "parks.wa.gov/find-parks/state-parks/<page>",
-  "list_page": "TO DO",
+  "list_page": "parks.wa.gov/find-parks/state-parks/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read WA_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read WA_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-0727",
@@ -6056,7 +6282,8 @@
     "result": "HTTP 404",
     "map_date": "Date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WA",
@@ -6064,10 +6291,10 @@
   "parks": 3,
   "bot_ok": 1,
   "address_pattern": "fs.usda.gov/detail/ipnf/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4477",
@@ -6090,7 +6317,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WA",
@@ -6098,10 +6326,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "blm.gov/sites/blm.gov/files/documents/files/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-12245",
@@ -6117,7 +6345,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WI",
@@ -6125,10 +6354,10 @@
   "parks": 3,
   "bot_ok": 3,
   "address_pattern": "dnr.wisconsin.gov/topic/parks/richardbong/<page>",
-  "list_page": "TO DO",
+  "list_page": "dnr.wisconsin.gov/topic/parks/richardbong/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read WI_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read WI_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-4265",
@@ -6151,7 +6380,8 @@
     "result": "ok",
     "map_date": "Map dates not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WI",
@@ -6159,10 +6389,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "nps.gov/apis/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0764",
@@ -6178,7 +6408,8 @@
     "result": "ok",
     "map_date": "Page last updated 2026 (map date not stated)"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WV",
@@ -6186,10 +6417,10 @@
   "parks": 89,
   "bot_ok": 88,
   "address_pattern": "wvdnr.gov/wmamapproj/pdf/pdf300/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "wvdnr.gov/wmamapproj/pdf/pdf300/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-12032",
@@ -6212,7 +6443,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WV",
@@ -6220,10 +6452,10 @@
   "parks": 7,
   "bot_ok": 7,
   "address_pattern": "drive.google.com/file/d/1oUlv8DFUOCiyVAbR4JfIG8h6aadP8POd/<page>",
-  "list_page": "TO DO",
+  "list_page": "drive.google.com/file/d/1oUlv8DFUOCiyVAbR4JfIG8h6aadP8POd/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-5582",
@@ -6246,7 +6478,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WV",
@@ -6254,10 +6487,10 @@
   "parks": 4,
   "bot_ok": 4,
   "address_pattern": "nps.gov/choh/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0015",
@@ -6280,7 +6513,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WV",
@@ -6288,10 +6522,10 @@
   "parks": 2,
   "bot_ok": 2,
   "address_pattern": "wvstateparks.com/wp-content/uploads/2025/06/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "wvstateparks.com/wp-content/uploads/2025/06/<file.pdf>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-1800",
@@ -6307,7 +6541,8 @@
     "result": "ok",
     "map_date": "2020 file upload; map date not stated"
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WV",
@@ -6315,10 +6550,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "fs.usda.gov/Internet/FSE_DOCUMENTS/<file.pdf>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4526",
@@ -6327,7 +6562,8 @@
     "result": "HTTP 404",
     "map_date": "March 28, 2022"
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WV",
@@ -6335,10 +6571,10 @@
   "parks": 1,
   "bot_ok": 1,
   "address_pattern": "avenzamaps.com/maps/852301/<page>",
-  "list_page": "TO DO",
+  "list_page": "avenzamaps.com/maps/852301/<page>",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
+  "rules_page": "no clear line in the state note: read WV_desk.md, else BOT LOOK-UP",
   "tested": [
    {
     "ref": "US-6994",
@@ -6347,7 +6583,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "state-level note (applies to the state, not proven per agency)"
  },
  {
   "state": "US-WY",
@@ -6355,10 +6592,10 @@
   "parks": 5,
   "bot_ok": 5,
   "address_pattern": "nps.gov/grte/planyourvisit/<file.htm>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row NPS: none on page; bot records read day",
+  "rules_page": "see FEDERAL row NPS: nps.gov/<unit>/learn/management/lawsandpolicies.htm = Superintendent's Compendium (HQ pattern; BOT LOOK-UP: test 3 units)",
   "tested": [
    {
     "ref": "US-0031",
@@ -6381,7 +6618,8 @@
     "result": "ok",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WY",
@@ -6389,10 +6627,10 @@
   "parks": 2,
   "bot_ok": 1,
   "address_pattern": "fs.usda.gov/r02/blackhills/<page>",
-  "list_page": "TO DO",
+  "list_page": "same",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row USFS: none seen",
+  "rules_page": "see FEDERAL row USFS: each forest's 'forest orders' / alerts-orders page (HQ pattern; BOT LOOK-UP: address varies by forest)",
   "tested": [
    {
     "ref": "US-4524",
@@ -6408,7 +6646,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "US-WY",
@@ -6416,10 +6655,10 @@
   "parks": 1,
   "bot_ok": 0,
   "address_pattern": "blm.gov/style/medialib/blm/wy/field-offices/lander/<file.gif>",
-  "list_page": "TO DO",
+  "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "by park reference in parkinfo-web.json (map field)",
-  "date_method": "TO DO",
-  "rules_page": "TO DO",
+  "date_method": "see FEDERAL row BLM: slug sometimes has a year",
+  "rules_page": "see FEDERAL row BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "tested": [
    {
     "ref": "US-6187",
@@ -6428,7 +6667,8 @@
     "result": "HTTP 404",
     "map_date": null
    }
-  ]
+  ],
+  "researched": "federal"
  },
  {
   "state": "FEDERAL",
@@ -6481,7 +6721,7 @@
   "list_page": "blm.gov/sitemap or field-office public-room",
   "how_to_match": "title slug search per field office",
   "date_method": "slug sometimes has a year",
-  "rules_page": "BOT LOOK-UP: field-office rules / recreation page",
+  "rules_page": "each field office's supplementary rules (Federal Register) + its alerts/closures page (BOT LOOK-UP: address varies by field office)",
   "status": "NEEDS A BROWSER BOT",
   "tested": [],
   "grade": "B (search results only) unless noted"
@@ -6495,7 +6735,7 @@
   "list_page": "corpslakes.erdc.dren.mil/visitors/",
   "how_to_match": "by lake name",
   "date_method": "none",
-  "rules_page": "BOT LOOK-UP: lake page rules",
+  "rules_page": "36 CFR Part 327 (one national rule book for all Corps lakes; ecfr.gov, BOT LOOK-UP to confirm address) + each lake's posted restrictions (lake page, BOT LOOK-UP)",
   "status": "NEEDS A BROWSER BOT",
   "tested": [],
   "grade": "B (search results only) unless noted"
@@ -6509,7 +6749,7 @@
   "list_page": "same",
   "how_to_match": "park slug (6 Quebec links bot-confirmed)",
   "date_method": "none seen",
-  "rules_page": "BOT LOOK-UP: park 'rules and regulations'",
+  "rules_page": "each park's 'Rules and regulations' / 'Know before you go' page (BOT LOOK-UP: address varies by park)",
   "status": "NEEDS A BROWSER BOT",
   "tested": [],
   "grade": "B (search results only) unless noted"

@@ -17,5 +17,8 @@ Note: recreation.gov facility maps are a second source for USFS, Corps and some 
 - NPS: each unit's Superintendent's Compendium, usually nps.gov/<unit>/learn/management/lawsandpolicies.htm
 - USFS: each forest's "forest orders" (alerts / orders page); address varies by forest
 - FWS: each refuge's "rules and regulations" page and its hunting & fishing regulations
-- BLM, Corps, Parks Canada: not given yet; field-office / lake / park rules pages (BOT LOOK-UP)
+- Army Corps: Title 36 CFR Part 327 (one national rule book for all Corps lakes) + each lake's posted restrictions
+- BLM: each field office's supplementary rules (Federal Register) + its alerts/closures page
+- Parks Canada: each park's 'Rules and regulations' / 'Know before you go' page
+(Corps, BLM, Parks Canada added Oct 28 1:17 AM, HQ; addresses still BOT LOOK-UP)
 Also added as rows to OFFICIAL_MAPS_patterns.json (state = FEDERAL, 6 rows).
