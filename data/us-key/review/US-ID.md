@@ -1,52 +1,50 @@
 # ID: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **206 of 361** parks joined to official land (same name + same kind of place). **6** to check by hand, **42** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **211 of 362** parks joined to official land (same name + same kind of place). **7** to check by hand, **45** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-0280** Oxford Slough Wetland Management District (Wetland Management District) → Oxford Slough (~2,325 ac, similar name)
+- **US-10429** Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → Middle Fork Clearwater, Idaho National Wild and Scenic River (~41,565 ac, similar name); Middle Fork Clearwater, Idaho National Wild and Scenic River (~20,358 ac, similar name); Nezperce National Forest (~2,109,873 ac, the POTA pin is inside it (different name)); Selway-Bitterroot Wilderness (~1,348,689 ac, the POTA pin is inside it (different name))
 - **US-11256** Brownlee/Oxbow Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → Brownlee Reservoir (~11,002 ac, similar name); Oxbow Reservoir (~1,121 ac, similar name)
 - **US-11281** Morgan Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Morgan Creek (~24,058 ac, similar name); Challis Field Office (~792,074 ac, the POTA pin is inside it (different name))
 - **US-11301** Williams Lake Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Williams Lake (~180 ac, similar name); Salmon Field Office (~493,795 ac, the POTA pin is inside it (different name))
-- **US-11326** Crater Lake Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Crater Lake (~4 ac, similar name); Coeur D'Alene Field Office (~99,793 ac, the POTA pin is inside it (different name)); Widow Mountain (~17,836 ac, the POTA pin is inside it (different name))
+- **US-11326** Crater Lake Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → Crater Lake (~4 ac, similar name); Coeur D'Alene Field Office (~99,793 ac, the POTA pin is inside it (different name)); Widow Mountain (~17,836 ac, the POTA pin is inside it (different name)); Grandmother Mountain (~0 ac, the POTA pin is inside it (different name))
 - **US-11947** Lower Herd Lake Campground BLM Recreation Management Area (BLM Recreation Management Area) → Herd Lake (~17 ac, similar name); Challis Field Office (~792,074 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0890 Salmon National Wild and Scenic River (National Wild and Scenic River) → on Nezperce National Forest (~2,109,873 ac); Frank Church-River of No Return Wilderness (~2,365,708 ac)
-- US-10006 Idaho Centennial Trail State Trail (State Trail) → on Jarbidge Field Office (~1,321,755 ac)
+- US-10006 Idaho Centennial Trail State Trail (State Trail) → on Jarbidge Foothills ERMA (~190,944 ac); Jarbidge Field Office (~1,321,755 ac)
 - US-10070 Menan Buttes (BLM) Natural Monument (Natural Monument) → on Snake River (~128,533 ac); Upper Snake Field Office (~1,813,172 ac)
 - US-10072 Big Southern Butte (BLM) Natural Monument (Natural Monument) → on Upper Snake Field Office (~1,813,172 ac)
 - US-10268 Hoodoo Meadows Airstrip State Recreation Area (State Recreation Area) → on Salmon National Forest (~1,774,122 ac)
 - US-10304 Experimental Breeder Reactor-1 (DOE) National Historic Site (National Historic Site) → on Department of Energy (~567,306 ac)
-- US-10418 Western Heritage National Scenic Byway National Parkway (National Parkway) → on MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac); Canyon (~29,093 ac)
+- US-10418 Western Heritage National Scenic Byway National Parkway (National Parkway) → on MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac); Four Rivers Field Office (~1,255,575 ac)
 - US-10422 Northwest Passage National Scenic Byway National Parkway (National Parkway) → on Clearwater National Forest (~1,682,090 ac)
-- US-10427 Thomas Creek Airstrip State Recreation Area (State Recreation Area) → on Idaho Department of Lands (~1,982,653 ac); Frank Church-River of No Return Wilderness (~2,365,708 ac)
-- US-10429 Middle Fork Clearwater River National Wild & Scenic River (National Wild & Scenic River) → on Selway-Bitterroot Wilderness (~1,348,689 ac); Nezperce National Forest (~2,109,873 ac)
-- US-11089 Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → on MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac); Canyon (~29,093 ac)
+- US-10427 Thomas Creek Airstrip State Recreation Area (State Recreation Area) → on Middle Fork Salmon, Idaho National Wild and Scenic River (~29,956 ac); Boise National Forest (~336,671 ac)
+- US-11089 Ted Trueblood Wildlife Habitat Area State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → on MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac); Four Rivers Field Office (~1,255,575 ac)
 - US-11157 Lava Hot Springs State Recreation Site (State Recreation Site) → on State of Idaho (~517 ac)
-- US-11183 Joe T. Fallini Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Mackay Reservoir (~88 ac); Challis Field Office (~792,074 ac)
+- US-11183 Joe T. Fallini Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Challis Field Office (~792,074 ac)
 - US-11255 Weiser Dunes Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Oxbow Brownlee (~4,680 ac); Four Rivers Field Office (~1,255,575 ac)
 - US-11261 Big Cottonwood BLM Recreation Management Area (BLM Recreation Management Area) → on Jarbidge Forks (~1,982 ac); Jarbidge Field Office (~1,321,755 ac)
 - US-11275 Bayhorse Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Challis National Forest (~2,197,868 ac)
 - US-11277 Deadman Hole Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Upper Salmon River (~108,152 ac); Challis (~177,813 ac)
-- US-11278 East Fork Recreation Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Upper Salmon River (~108,152 ac); Challis Field Office (~792,074 ac)
+- US-11278 East Fork Recreation Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Upper Salmon River (~108,152 ac)
 - US-11279 Garden Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Upper Big Lost River (~4,603 ac); Challis Field Office (~792,074 ac)
-- US-11280 Little Boulder Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Challis Field Office (~792,074 ac)
+- US-11280 Little Boulder Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Upper Salmon River (~108,152 ac); Challis Field Office (~792,074 ac)
 - US-11282 Summit Creek Recreation Area BLM Recreation Management Area (BLM Recreation Management Area) → on Challis Field Office (~792,074 ac)
+- US-11283 Hammer Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
 - US-11284 Island Bar Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
 - US-11285 Lucile Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
-- US-11286 Pine Bar Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Scenic (~20,153 ac)
+- US-11286 Pine Bar Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Scenic (~20,153 ac); Cottonwood Field Office (~131,336 ac)
 - US-11287 Shorts Bar Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
-- US-11288 Slate Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac); Cottonwood Field Office (~131,336 ac)
+- US-11288 Slate Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
 - US-11289 Whitebird Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
 - US-11290 McKay's Bend BLM Recreation Management Area (BLM Recreation Management Area) → on Myrtle Access Site (~11 ac); Clearwater River (~44,818 ac)
-- US-11291 Pink House Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Clearwater River (~44,818 ac)
+- US-11291 Pink House Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Clearwater River (~44,818 ac); Cottonwood Field Office (~131,336 ac)
 - US-11295 Agency Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lewis-Clark Nat Hist Trail (~32,612 ac); Salmon Field Office (~493,795 ac)
-- US-11297 Morgan Bar Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Salmon River (~7,666 ac); Salmon Field Office (~493,795 ac)
-- US-11298 Shoup Bridge Recreation Site National Park (National Park) → on Salmon Field Office (~493,795 ac)
 - US-11299 Smokey Cubs Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Salmon Field Office (~493,795 ac)
-- US-11300 Tower Rock Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Salmon River (~7,666 ac); Salmon Field Office (~493,795 ac)
+- US-11300 Tower Rock Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Salmon Field Office (~493,795 ac)
 - US-11302 Birch Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Upper Snake Field Office (~1,813,172 ac)
 - US-11303 Kelly Island Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Snake River (~128,533 ac)
 - US-11304 Wolf Flats Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Snake River (~128,533 ac); Upper Snake Field Office (~1,813,172 ac)
@@ -55,20 +53,18 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-11313 Heart Mountain Springs Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Pocatello Field Office (~600,267 ac)
 - US-11314 Maple Grove Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Oneida Narrows (~4,681 ac)
 - US-11315 Morgan's Bridge Recreation Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Blackfoot (~41,391 ac); Pocatello Field Office (~600,267 ac)
-- US-11316 Pipeline Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Pocatello Field Office (~600,267 ac)
-- US-11317 Redpoint Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Oneida Narrows (~4,681 ac); Pocatello Field Office (~600,267 ac)
-- US-11319 Trail Creek Bridge Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Blackfoot (~41,391 ac); Pocatello Field Office (~600,267 ac)
-- US-11327 Crater Peak Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Widow Mountain (~17,836 ac); Coeur D'Alene Field Office (~99,793 ac)
+- US-11317 Redpoint Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Oneida Narrows (~4,681 ac)
+- US-11319 Trail Creek Bridge Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Pocatello Field Office (~600,267 ac)
+- US-11327 Crater Peak Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Grandmother Mountain (~0 ac); Widow Mountain (~17,836 ac)
 - US-11328 Huckleberry Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Huckleberry Campground (~160 ac)
-- US-11331 Mica Bay Boater Park BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac); Coeur D'Alene Field Office (~99,793 ac)
+- US-11331 Mica Bay Boater Park BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac)
 - US-11332 Orphan Point Saddle Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Grandmother Mountain (~0 ac); Widow Mountain (~17,836 ac)
-- US-11333 Sheep Springs Overlook Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Rochat Divide/Pine Creek (~75,080 ac); Coeur D'Alene Field Office (~99,793 ac)
+- US-11333 Sheep Springs Overlook Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Crystal Lake (~0 ac); Rochat Divide/Pine Creek (~75,080 ac)
 - US-11334 Tingly Springs Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Rochat Divide/Pine Creek (~75,080 ac); Coeur D'Alene Field Office (~99,793 ac)
-- US-11335 Windy Bay Boater Park BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac); Coeur D'Alene Field Office (~99,793 ac)
+- US-11335 Windy Bay Boater Park BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac)
 - US-12063 BLM Pioneer Trail BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Pocatello (~115,154 ac)
-- US-12155 Blue Creek Bay BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac)
+- US-12155 Blue Creek Bay BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac); Coeur D'Alene Field Office (~99,793 ac)
 - US-12157 Poison Creek Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Bruneau Field Office (~1,448,603 ac)
-- US-12163 Beauty Bay BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac); Coeur D'Alene Field Office (~99,793 ac)
 - US-12211 Bruneau Canyon Scenic Overlook BLM Scenic Site (Scenic Site) → on Jarbidge Field Office (~1,321,755 ac)
 - US-12212 Black Magic Canyon BLM Scenic Site (Scenic Site) → on Magic Reservoir (~21,285 ac); Shoshone Field Office (~1,723,598 ac)
 - US-12215 Snake River Vista BLM Recreation Management Area (BLM Recreation Management Area) → on Cedar Fields (~6,454 ac)
@@ -79,17 +75,15 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-12225 Shoofly Oolite Interpretive Trail BLM Interpretive Site (BLM Interpretive Site) → on Bruneau Field Office (~1,448,603 ac)
 - US-12226 Bruneau Arm Reservoir State Fishing Lake (State Fishing Lake) → on MORLEY NELSON SNAKE RIVER BIRDS OF PREY NATIONAL CONSERVATION AREA (~0 ac); C. J. Strike Reservoir (~6,759 ac)
 - US-12229 Blackwell Island Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac); Coeur D'Alene Field Office (~99,793 ac)
-- US-12231 Portneuf Gap River Access BLM Recreation Management Area (BLM Recreation Management Area) → on Portneuf (Lower) Access Site (~53 ac)
 - US-12289 Old Lucile Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac)
 - US-12290 Skookumchuck Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac); Cottonwood Field Office (~131,336 ac)
-- US-12299 Mineral Ridge Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac)
+- US-12299 Mineral Ridge Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~27,919 ac); Coeur d'Alene Lake (~64,584 ac)
 - US-12300 Cougar Bay Preserve BLM Recreation Management Area (BLM Recreation Management Area) → on Coeur d'Alene Lake (~64,584 ac)
-- US-12302 Sun Peak Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → on North Ketchum (~296 ac); Shoshone Field Office (~1,723,598 ac)
-- US-12349 Owyhee Uplands Back Country Byway National Parkway (National Parkway) → on Idaho Department of Lands (~1,982,653 ac)
-- US-12363 Jackass Flats BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac); Cottonwood Field Office (~131,336 ac)
+- US-12302 Sun Peak Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → on North Ketchum (~296 ac)
+- US-12363 Jackass Flats BLM Recreation Management Area (BLM Recreation Management Area) → on Cottonwood Field Office (~131,336 ac)
 - US-12364 Blackhawk Bar BLM Recreation Management Area (BLM Recreation Management Area) → on Lower Salmon Recreational (~25,701 ac); Cottonwood Field Office (~131,336 ac)
-- US-12379 Harpers Bend Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Clearwater River (~44,818 ac); Cottonwood Field Office (~131,336 ac)
-- US-12622 Blackrock Canyon Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Pocatello (~115,154 ac); Pocatello Field Office (~600,267 ac)
+- US-12379 Harpers Bend Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Clearwater River (~44,818 ac)
+- US-12622 Blackrock Canyon Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Pocatello (~115,154 ac)
 - US-13107 Borah Earthquake Interpretive Site BLM Interpretive Site (BLM Interpretive Site) → on Challis National Forest (~2,197,868 ac)
 - US-13293 McClendon Spring Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Cotterell Mounain (~46,927 ac); Burley Field Office (~834,935 ac)
 - US-13294 Tower Creek Pyramids BLM Historic Area (BLM Historic Area) → on Salmon Field Office (~493,795 ac)
@@ -99,17 +93,14 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4665 Floodwood State Forest (State Forest) → on Idaho Department of Lands (~1,982,653 ac)
 - US-4666 Priest Lake State Forest (State Forest) → on Idaho Department of Lands (~1,982,653 ac)
 - US-5617 St. Maries Wildlife Management Area (Wildlife Management Area) → on Idaho Department of Lands (~53,342 ac)
-- US-7805 Antelope Valley Airstrip State Recreation Area (State Recreation Area) → on Idaho Department of Lands (~1,982,653 ac)
 - US-7806 Atlanta Airstrip State Recreation Area (State Recreation Area) → on Boise National Forest (~2,132,070 ac)
 - US-7807 Bear Trap Airstrip State Recreation Area (State Recreation Area) → on Shoshone Field Office (~1,723,598 ac)
 - US-7808 Big Creek Airstrip State Recreation Area (State Recreation Area) → on Payette National Forest (~2,287,258 ac)
-- US-7809 Big Southern Butte Airstrip State Recreation Area (State Recreation Area) → on Upper Snake Field Office (~1,813,172 ac)
 - US-7810 Bruce Meadows Airstrip State Recreation Area (State Recreation Area) → on Boise National Forest (~2,132,070 ac)
-- US-7811 Cavanaugh Bay Airstrip State Recreation Area (State Recreation Area) → on Idaho Department of Lands (~1,289 ac)
 - US-7812 Copper Basin Airstrip State Recreation Area (State Recreation Area) → on Challis National Forest (~2,197,868 ac)
-- US-7814 Garden Valley Airstrip State Recreation Area (State Recreation Area) → on Idaho Department of Lands (~1,982,653 ac)
+- US-7813 Cox's Well Airstrip State Recreation Area (State Recreation Area) → on Upper Snake Field Office (~1,813,172 ac)
 - US-7815 Grasmere Airstrip State Recreation Area (State Recreation Area) → on Bruneau Field Office (~1,448,603 ac)
-- US-7817 Hollow Top Airstrip State Recreation Area (State Recreation Area) → on Shoshone Field Office (~1,723,598 ac)
+- US-7817 Hollow Top Airstrip State Recreation Area (State Recreation Area) → on Great Rift (~0 ac); Shoshone Field Office (~1,723,598 ac)
 - US-7819 Laidlaw Corrals Airstrip State Recreation Area (State Recreation Area) → on Shoshone Field Office (~1,723,598 ac)
 - US-7820 Magee Airstrip State Recreation Area (State Recreation Area) → on Coeur d'Alene National Forest (~727,061 ac)
 - US-7822 May Airstrip State Recreation Area (State Recreation Area) → on Challis Field Office (~792,074 ac)
@@ -118,8 +109,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-7826 Pine Airstrip State Recreation Area (State Recreation Area) → on Boise National Forest (~2,132,070 ac)
 - US-7828 Reed Ranch Airstrip State Recreation Area (State Recreation Area) → on Payette National Forest (~2,287,258 ac)
 - US-7829 Slate Creek Airstrip State Recreation Area (State Recreation Area) → on Lower Salmon Recreational (~25,701 ac)
+- US-7830 Smiley Creek Airstrip State Recreation Area (State Recreation Area) → on Sawtooth National Recreation Area (~753,810 ac)
+- US-7832 Stanley Airstrip State Recreation Area (State Recreation Area) → on Sawtooth National Recreation Area (~753,810 ac)
 - US-7833 Twin Bridges Airstrip State Recreation Area (State Recreation Area) → on Upper Big Lost River (~4,603 ac); Challis Field Office (~792,074 ac)
-- US-7834 Warm Springs Creek Airstrip State Recreation Area (State Recreation Area) → on Penrod (~135 ac)
+- US-7834 Warm Springs Creek Airstrip State Recreation Area (State Recreation Area) → on Boise National Forest (~2,132,070 ac)
 
 ## Nothing found in PAD-US
 
@@ -133,50 +126,54 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-11254 Silver Creek North and South BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11260 North Fork Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11276 Cottonwood Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
-- US-11283 Hammer Creek Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11296 McFarland Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
+- US-11297 Morgan Bar Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
+- US-11298 Shoup Bridge Recreation Site National Park (National Park)
 - US-11308 Blackfoot Reservoir Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11309 Cutthroat Trout Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
+- US-11316 Pipeline Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-11318 Sage Hen Flats Recreation Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12153 Ross Point BLM Special Recreation Management Area (BLM Special Recreation Management Area)
+- US-12163 Beauty Bay BLM Recreation Management Area (BLM Recreation Management Area)
 - US-12210 Jump Creek Falls BLM Scenic Site (Scenic Site)
 - US-12224 Bruneau River Access BLM Wild and Scenic River (BLM Wild and Scenic River)
 - US-12230 South Fork Snake River Access State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12231 Portneuf Gap River Access BLM Recreation Management Area (BLM Recreation Management Area)
+- US-12349 Owyhee Uplands Back Country Byway National Parkway (National Parkway)
 - US-13297 Challis Bridge BLM Recreation Management Area (BLM Recreation Management Area)
 - US-13485 Twin Peaks Ranch State Park (State Park)
 - US-2236 Hells Gate State Park (State Park)
 - US-2238 Heyburn State Park (State Park)
 - US-3424 Ice Age Floods National Geologic Trail (National Geologic Trail)
 - US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
-- US-4563 Pacific Northwest National Scenic Trail (National Scenic Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
 - US-4574 Nez Perce National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4584 Ashton-Tetonia Trail State Park (State Park)
 - US-6227 Snake River National Wild & Scenic River (National Wild & Scenic River)
-- US-7361 Hells Canyon National Recreation Area (National Recreation Area)
-- US-7362 Sawtooth National Recreation Area (National Recreation Area)
-- US-7813 Cox's Well Airstrip State Recreation Area (State Recreation Area)
+- US-7805 Antelope Valley Airstrip State Recreation Area (State Recreation Area)
+- US-7809 Big Southern Butte Airstrip State Recreation Area (State Recreation Area)
+- US-7811 Cavanaugh Bay Airstrip State Recreation Area (State Recreation Area)
+- US-7814 Garden Valley Airstrip State Recreation Area (State Recreation Area)
 - US-7818 Johnson Creek Airstrip State Recreation Area (State Recreation Area)
 - US-7821 Magic Reservoir Airstrip State Recreation Area (State Recreation Area)
 - US-7825 New Meadows Airstrip State Recreation Area (State Recreation Area)
 - US-7827 Porthill/Eckhart Airstrip State Recreation Area (State Recreation Area)
-- US-7830 Smiley Creek Airstrip State Recreation Area (State Recreation Area)
 - US-7831 Smith Prairie Airstrip State Recreation Area (State Recreation Area)
-- US-7832 Stanley Airstrip State Recreation Area (State Recreation Area)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- NA ·  · BLM recreation sites · ~2,812,486 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~2,812,486 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~1,982,653 ac
 - Upper Snake Field Office · PUB · BLM · ~1,813,172 ac
 - Shoshone Field Office · PUB · BLM · ~1,723,598 ac
 - Bruneau Field Office · PUB · BLM · ~1,448,603 ac
 - Jarbidge Field Office · PUB · BLM · ~1,321,755 ac
-- Kemmerer Field Office ERMA ·  · BLM recreation sites · ~1,290,770 ac
+- Kemmerer Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,290,770 ac
 - Owyhee Field Office · PUB · BLM · ~1,259,662 ac
 - Four Rivers Field Office · PUB · BLM · ~1,255,575 ac
+- Wyoming Range Withdrawal Area Special Designated Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~1,219,694 ac
 - Bob Marshall Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~1,064,092 ac
 - Burley Field Office · PUB · BLM · ~834,935 ac
 - Challis Field Office · PUB · BLM · ~792,074 ac
@@ -186,45 +183,44 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Department of Energy · FOTH · Department of Energy (DOE) · ~567,306 ac
 - Salmon Field Office · PUB · BLM · ~493,795 ac
 - Little Owyhee ·  · BLM herd management areas · ~463,133 ac
-- NA ·  · BLM recreation sites · ~453,327 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~453,327 ac
 - Eagle Cap Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~356,310 ac
 - Owyhee ·  · BLM herd management areas · ~340,969 ac
 - Great Bear Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~287,012 ac
-- NA ·  · BLM recreation sites · ~262,178 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~262,178 ac
 - Scapegoat Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~259,785 ac
-- NA ·  · BLM recreation sites · ~259,036 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~259,036 ac
 - Lee Metcalf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~237,774 ac
 - Hells Canyon Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~218,097 ac
 - Sawtooth Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~217,511 ac
-- Jarbidge Foothills ERMA ·  · BLM recreation sites · ~190,944 ac
-- Canyonlands ERMA ·  · BLM recreation sites · ~183,254 ac
-- NA ·  · BLM recreation sites · ~168,754 ac
+- Rocky Mountain Front Conservation Management Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~198,171 ac
+- Jarbidge Foothills ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~190,944 ac
+- Canyonlands ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~183,254 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~168,754 ac
 - Anaconda Pintler Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~158,754 ac
-- Bennett Hills BCA ·  · BLM recreation sites · ~158,211 ac
-- NA ·  · BLM recreation sites · ~151,643 ac
+- Bennett Hills BCA ·  · BLM recreation management areas · official (BLM planning area) · ~158,211 ac
+- Hyalite-Porcupine-Buffalo Horn Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~155,577 ac
+- West Pioneer Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~153,690 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~151,643 ac
 - St. Joe National Forest · NF · Forest Service Region 01 Northern · ~143,489 ac
 - Cottonwood Field Office · PUB · BLM · ~131,336 ac
-- Snake River ·  · BLM recreation sites · ~128,533 ac
-- Boise Front ·  · BLM recreation sites · ~126,220 ac
-- Pocatello ·  · BLM recreation sites · ~115,154 ac
+- Snake River ·  · BLM recreation management areas · official (BLM planning area) · ~128,533 ac
+- Boise Front ·  · BLM recreation management areas · official (BLM planning area) · ~126,220 ac
+- Pocatello ·  · BLM recreation management areas · official (BLM planning area) · ~115,154 ac
 - Coeur D'Alene Field Office · PUB · BLM · ~99,793 ac
+- Sapphire Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~94,742 ac
 - Cabinet Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~93,766 ac
 - Cecil D. Andrus-White Clouds Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~90,247 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~89,675 ac
-- Uppermost Missouri River ·  · BLM recreation sites · ~82,354 ac
+- Uppermost Missouri River ·  · BLM recreation management areas · official (BLM planning area) · ~82,354 ac
 - Mission Mountains Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~76,145 ac
-- Rochat Divide/Pine Creek ·  · BLM recreation sites · ~75,080 ac
+- Rochat Divide/Pine Creek ·  · BLM recreation management areas · official (BLM planning area) · ~75,080 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~74,992 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~72,714 ac
 - Hemingway-Boulders Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~67,909 ac
-- NA ·  · BLM recreation sites · ~64,586 ac
-- Coeur d'Alene Lake ·  · BLM recreation sites · ~64,584 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~64,586 ac
+- Coeur d'Alene Lake ·  · BLM recreation management areas · official (BLM planning area) · ~64,584 ac
+- Bluejoint Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~63,408 ac
 - Three Fingers ·  · BLM herd management areas · ~62,770 ac
+- Rattlesnake National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~60,103 ac
 - Idaho Department of Lands · SRMA · Idaho Department of Lands · ~58,529 ac
-- North Fork Owyhee Backcountry ·  · BLM recreation sites · ~57,830 ac
-- Upper Big Hole River ·  · BLM recreation sites · ~56,847 ac
-- Idaho Department of Lands · SRMA · Idaho Department of Lands · ~53,342 ac
-- Silver Valley ·  · BLM recreation sites · ~53,188 ac
-- Red Rock Lakes National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~50,502 ac
-- Cotterell Mounain ·  · BLM recreation sites · ~46,927 ac
-- Oxbow Brownlee ·  · BLM recreation sites · ~46,343 ac

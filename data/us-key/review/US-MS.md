@@ -23,8 +23,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-7121 Sandy Creek Wildlife Management Area (Wildlife Management Area) → on Homochitto National Forest (~191,846 ac)
 - US-7130 Aberdeen Lake State Recreation Area (State Recreation Area) → on Canal Section Wma (~29,203 ac)
 - US-7134 Holcut Memorial State Recreation Area (State Recreation Area) → on Divide Section (~16,145 ac)
+- US-7629 Davis Lake State Recreation Area (State Recreation Area) → on Tombigbee National Forest (~67,449 ac)
 - US-7630 Chewalla Lake State Recreation Area (State Recreation Area) → on Holly Springs National Forest (~156,210 ac)
-- US-7631 Owl Creek Mounds Archeological Reserve (Archeological Reserve) → on Tombigbee National Forest (~67,449 ac)
 - US-7633 Turkey Fork Lake State Recreation Area (State Recreation Area) → on De Soto National Forest (~532,454 ac)
 - US-7634 Ashe Lake State Recreation Area (State Recreation Area) → on De Soto National Forest (~532,454 ac)
 - US-7635 Airey Lake State Recreation Area (State Recreation Area) → on De Soto National Forest (~532,454 ac)
@@ -66,7 +66,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-7131 Bay Springs Lake State Recreation Area (State Recreation Area)
 - US-7132 Jamie Whitten Historical Center State Recreation Area (State Recreation Area)
 - US-7133 Amory Recreation Area State Recreation Area (State Recreation Area)
-- US-7629 Davis Lake State Recreation Area (State Recreation Area)
+- US-7631 Owl Creek Mounds Archeological Reserve (Archeological Reserve)
 - US-8513 Archusa Creek State Recreation Area (State Recreation Area)
 - US-8514 Big Creek State Recreation Area (State Recreation Area)
 - US-8515 Dry Creek State Recreation Area (State Recreation Area)
@@ -97,6 +97,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Bon Secour National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,849 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · Theodore Roosevelt National Wildlife Refuge · ~6,277 ac
 - Theodore Roosevelt National Wildlife Refuge · NWR · THEODORE ROOSEVELT NATIONAL WILDLIFE REFUGE · ~6,178 ac
+- Black Creek, Mississippi National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~5,668 ac
 - Black Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,084 ac
 - Jourdan River Coastal Reserve · SCA · Unknown · ~4,311 ac
 - Choctaw National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,975 ac
@@ -138,4 +139,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
 - Lakeshore Recreation Area · LREC · Pearl River Valley and Water Supply District · ~103 ac
 - Pascagoula River Marshes (Sept 2002) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~79 ac
-- Burnside Park · LREC · Philadelphia-Neshoba County Park Commission · ~76 ac

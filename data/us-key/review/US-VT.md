@@ -32,6 +32,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - Pemigewasset Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~45,809 ac
+- Robert T. Stafford White Rocks National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~36,430 ac
 - Sandwich Range Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~35,299 ac
 - Hancock ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~31,885 ac
 - Breadloaf Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,985 ac
@@ -40,6 +41,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Glastenbury Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~22,330 ac
 - Lye Brook Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~18,122 ac
 - C.C. Putnam State Forest ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~16,765 ac
+- Moosalamoo National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~15,914 ac
 - Joseph Battell Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~12,336 ac
 - Steam Mill Brook WMA ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~11,098 ac
 - Steam Mill Brook Wildlife Management Area · SCA ·   · ~9,925 ac
@@ -89,5 +91,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Cow Mountain Pond ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~1,618 ac
 - Huntington Gap WMA ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~1,603 ac
 - Roy Mountain WMA ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~1,595 ac
-- Otter Creek WMA ·  · Vermont Agency of Natural Resources (preserve, state GIS table) · ~1,576 ac
-- Sandbar Wildlife Management Area · SCA ·   · ~1,557 ac

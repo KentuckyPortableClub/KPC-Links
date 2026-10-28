@@ -1,6 +1,6 @@
 # PA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **479 of 494** parks joined to official land (same name + same kind of place). **1** to check by hand, **13** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **481 of 494** parks joined to official land (same name + same kind of place). **1** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,7 +8,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-12235 Clarion National Wild and Scenic River (National Wild and Scenic River) → on Clear Creek State Park (~1,741 ac); Clear Creek State Park (~1,798 ac)
 
 ## Nothing found in PAD-US
 
@@ -18,7 +17,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-0622 Bear Run State Conservation Area (State Conservation Area)
 - US-0623 Powdermill State Conservation Area (State Conservation Area)
 - US-10802 Gloria Dei Church National Historic Site (National Historic Site)
-- US-12234 Allegheny National Wild & Scenic River (National Wild & Scenic River)
 - US-4239 North Country Trail National Scenic Trail (National Scenic Trail)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
@@ -34,6 +32,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Raystown Recreation Area · REC · Baltimore · ~30,608 ac
 - Susquehannock State Forest - Hammersley Wild Area · SRMA ·   · ~29,829 ac
 - Hammersley Wild Area · SW · Bureau of Forestry · ~29,829 ac
+- Allegheny National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~24,147 ac
 - Moshannon State Forest - Quehanna Wild Area · SRMA ·   · ~24,008 ac
 - Quehanna Wild Area · SW · Bureau of Forestry · ~24,008 ac
 - Delaware Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~21,333 ac
@@ -44,6 +43,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Thornhurst Tract · SRMA · Bureau of Forestry · ~15,660 ac
 - Ricketts Glenn State Park · SP · Bureau of State Parks · ~12,995 ac
 - Tioga State Forest - Pine Creek Gorge Natural Area · SRMA ·   · ~12,931 ac
+- Clarion, Pennsylvania Wild And Scenic River Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~12,439 ac
 - Appalachian National Scenic Trail · NT · NPS · ~12,222 ac
 - Martin Hill Wild Area · SW · Bureau of Forestry · ~11,673 ac
 - Sgl 110 · SREC · Pennsylvania Game Commission · ~9,868 ac
@@ -59,6 +59,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - McIntyre Wild Area · SW · Bureau of Forestry · ~7,227 ac
 - Little Beaver Creek Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~7,227 ac
 - Crystal Lake Tract · SRMA · Bureau of Forestry · ~6,575 ac
+- Mill Creek, Pennsylvania Wild And Scenic River Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~6,529 ac
 - Bald Eagle State Forest - Penns Creek Wild Area · SRMA ·   · ~6,291 ac
 - Penns Creek Wild Area · SW · Bureau of Forestry · ~6,291 ac
 - Sgl 040 · SREC · Pennsylvania Game Commission · ~6,191 ac
@@ -85,6 +86,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Thickhead Wild Area · SW · Bureau of Forestry · ~4,138 ac
 - White Mountain Wild Area · SRMA · PA Bureau of Forestry · ~3,845 ac
 - Sgl 129 · SREC · Pennsylvania Game Commission · ~3,670 ac
-- Sgl 119 · SREC · Pennsylvania Game Commission · ~3,630 ac
-- Sgl 135 · SREC · Pennsylvania Game Commission · ~3,525 ac
-- Mocanaqua Tract · SRMA · Bureau of Forestry · ~3,440 ac

@@ -7,20 +7,20 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - **US-11025** Uchee Creek Conservation Area (Conservation Area) → Uchee Creek Confluence (~0 ac, similar name)
 - **US-11027** Big Canoe Creek Nature Reserve (Nature Reserve) → Big Canoe Creek (~382 ac, same name, different kind of place); Big Canoe Creek - Epps Addition (~40 ac, same name, different kind of place)
 - **US-12740** Hinds Road Outcrop Forever Wild Tract State Conservation Area (State Conservation Area) → Hinds Road Outcrop (~80 ac, similar name)
-- **US-13081** Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area) → Ft. Toulouse Tract (~254 ac, similar name); Fort Toulouse National Historic Park (~256 ac, the POTA pin is inside it (different name))
-- **US-9880** Crow Creek Nature Refuge (Nature Refuge) → Crow Creek Refuge (~3,430 ac, similar name); Crow Creek Management Area (~2,095 ac, similar name); Jackson County Waterfowl Area And Refuge (~16,198 ac, the POTA pin is inside it (different name))
+- **US-13081** Fort Toulouse Forever Wild Tract State Wildlife Area (State Wildlife Area) → Ft. Toulouse Tract (~254 ac, similar name)
+- **US-9880** Crow Creek Nature Refuge (Nature Refuge) → Crow Creek Refuge (~3,430 ac, similar name); Crow Creek Management Area (~2,095 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-1039 De Soto State Park (State Park) → on Desoto State Park (~0 ac); DeSoto State Park (~1,059 ac)
+- US-1039 De Soto State Park (State Park) → on Desoto State Park (~0 ac)
 - US-12405 TVA Guntersville Dam 5(1)(g) Reserve (5(1)(g) Reserve) → on Wheeler Reservoir Retained Land (~16,536 ac)
-- US-12409 TVA Cave Mountain Small Wild Area National Park (National Park) → on Wheeler Reservoir Retained Land (~16,536 ac)
 - US-12410 TVA Flint Creek Access National Park (National Park) → on Wheeler Reservoir Retained Land (~16,536 ac)
 - US-12411 TVA Second Creek Access Area National Park (National Park) → on Joe Wheeler State Park (~0 ac); Joe Wheeler State Park (~2,144 ac)
+- US-12412 TVA Rockpile Recreation Area National Park (National Park) → on Pickwick Reservoir Retained Land (~8,930 ac)
 - US-13003 TVA Little Bear Creek Dam Multiple Use Area (Multiple Use Area) → on Little Bear Creek Reservoir Retained Land (~1,138 ac)
 - US-13004 TVA Cedar Creek Dam Multiple Use Area (Multiple Use Area) → on Cedar Creek Reservoir Retained Land (~2,716 ac)
 - US-13005 TVA Big Bear Creek Dam Multiple Use Area (Multiple Use Area) → on Bear Creek Reservoir Retained Land (~2,327 ac)
-- US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area) → on Joe Wheeler State Park (~0 ac); Wheeler Reservoir Retained Land (~16,536 ac)
+- US-13083 TVA Wheeler Dam Public Park National Recreation Area (National Recreation Area) → on Joe Wheeler State Park (~0 ac)
 - US-13311 TVA Upper Bear Creek Dam Resource Management Area (Resource Management Area) → on Upper Bear Creek Reservoir Retained Land (~3,216 ac)
 
 ## Nothing found in PAD-US
@@ -28,7 +28,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-0025 Fort Morgan National Historic Site (National Historic Site)
 - US-0042 Fort Gaines National Historic Site (National Historic Site)
 - US-12311 Butler County State Wildlife Management Area (Wildlife Management Area)
-- US-12412 TVA Rockpile Recreation Area National Park (National Park)
+- US-12409 TVA Cave Mountain Small Wild Area National Park (National Park)
 - US-12517 Confederate Memorial Park Historic Site (Historic Site)
 - US-12962 TVA Veterans Park Regional Park (Regional Park)
 - US-13473 Old Cahawba Archaeological Park State Historical Park (State Historical Park)
@@ -53,12 +53,14 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State-owned Submerged Lands · SRMA · SDNR · ~9,783 ac
 - Pickwick Reservoir Retained Land · FOTH · Tennessee Valley Authority (TVA) · ~8,930 ac
 - Claiborne Recreation Area · REC · Mobile · ~6,816 ac
+- Sipsey Fork West Fork, Alabama National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~6,244 ac
 - Riverton Community Hunting Area ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~6,115 ac
 - Forever Wild Gothard - AWF Yates Lake WMA ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~5,970 ac
 - Solon Dixon Forestry Education Center · SCA · State Land Board · ~5,399 ac
 - Riverton Community Hunting Area · SCA · Alabama Department of Conservation and Natural Resources · ~5,282 ac
 - North Sauty Refuge ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~5,057 ac
 - Heron Bay Wetlands Addition ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~4,666 ac
+- Sipsey Fork West Fork, Alabama National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~4,055 ac
 - Coon Gulf Tract ·  · ADCNR Wildlife and Freshwater Fisheries (wild, state GIS table) · ~3,960 ac
 - Coldwater Mountain · SREC · Alabama Department of Conservation and Natural Resources · ~3,816 ac
 - W. L. Holland Wildlife Management Area · SCA · Alabama Department of Conservation and Natural Resources · ~3,537 ac
@@ -100,5 +102,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Perdido - Snowden Branch ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~620 ac
 - Pea River · MIT · Alabama Department of Transportation · ~595 ac
 - Red Hills Flat Creek Phase V ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~593 ac
-- Autauga - CR 112 ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~580 ac
-- Autauga WMA - Phase II Addition ·  · Alabama Dept of Conservation and Natural Resources, State La (preserve, state GIS table) · ~574 ac

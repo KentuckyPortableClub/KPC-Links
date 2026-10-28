@@ -1,12 +1,13 @@
 # WV: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **160 of 172** parks joined to official land (same name + same kind of place). **0** to check by hand, **12** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **160 of 172** parks joined to official land (same name + same kind of place). **0** to check by hand, **11** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-12055 Petersburg State Fish Hatchery (State Fish Hatchery) → on Spruce Knob-Seneca Rocks National Recreation Area (~99,824 ac)
 
 ## Nothing found in PAD-US
 
@@ -14,7 +15,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-12052 Bowden State Fish Hatchery (State Fish Hatchery)
 - US-12053 Edray State Fish Hatchery (State Fish Hatchery)
 - US-12054 Ridge State Fish Hatchery (State Fish Hatchery)
-- US-12055 Petersburg State Fish Hatchery (State Fish Hatchery)
 - US-12056 Apple Grove State Fish Hatchery (State Fish Hatchery)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
@@ -29,6 +29,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Potomac Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~145,942 ac
 - Little River Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~121,552 ac
 - Neola Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~105,658 ac
+- Spruce Knob-Seneca Rocks National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~99,824 ac
 - Cheat Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~79,526 ac
 - Rimel Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~68,029 ac
 - Otter Creek Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~67,588 ac
@@ -47,11 +48,13 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Mountain Lake Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,585 ac
 - Burnsville Recreation Area · REC · Huntington · ~13,269 ac
 - Sutton Recreation Area · REC · Huntington · ~12,634 ac
+- Big Levels National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~12,168 ac
 - Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
 - Rough Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,327 ac
 - Morris Creek Wildlife Management Area ·  · West Virginia DNR (wild, state GIS table) · ~8,853 ac
 - James River Face Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,850 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~8,124 ac
+- Mount Pleasant National Scenic Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~6,869 ac
 - Ramseys Draft Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,577 ac
 - Rich Hole Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,532 ac
 - Kimberling Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,092 ac
@@ -82,6 +85,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Winfield Pool Recreation Area · REC · Huntington · ~377 ac
 - West Virginia Wildlife Center ·  · West Virginia DNR (wild, state GIS table) · ~324 ac
 - West Virginia Wildlife Center · SOTH · WV Division of Natural Resources · ~322 ac
-- Belleville Pools Recreation Area · REC · Huntington · ~225 ac
-- Willow Island Pool Recreation Area · REC · Huntington · ~186 ac
-- Leetown National Fisheries Center · FOTH · US Geological Survey · ~175 ac

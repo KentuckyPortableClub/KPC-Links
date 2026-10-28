@@ -1,6 +1,6 @@
 # KS: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **118 of 145** parks joined to official land (same name + same kind of place). **1** to check by hand, **24** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **118 of 145** parks joined to official land (same name + same kind of place). **1** to check by hand, **26** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,11 +8,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-2334 Cross Timbers State Park (State Park) → on Toronto Point (~0 ac); Toronto State Park (~0 ac)
-- US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area) → on Finney Game Refuge (~0 ac); Finney Game Refuge (~3,622 ac)
 
 ## Nothing found in PAD-US
 
+- US-2334 Cross Timbers State Park (State Park)
 - US-2350 Prairie Spirit Trail State Trail (State Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4572 Lewis and Clark National Historic Trail (National Historic Trail)
@@ -24,6 +23,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-7393 Milford State Fish Hatchery (State Fish Hatchery)
 - US-7405 Melvern River State Fishing Lake (State Fishing Lake)
 - US-7866 Mine Creek Civil War Battlefield State Historic Site (State Historic Site)
+- US-7943 Sandsage Bison Range State Wildlife Area (State Wildlife Area)
 - US-9177 Constitution Hall State Historic Site (State Historic Site)
 - US-9179 Grinter Place State Historic Site (State Historic Site)
 - US-9180 Hollenberg Pony Express Station State Historic Site (State Historic Site)

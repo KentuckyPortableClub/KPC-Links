@@ -1,26 +1,26 @@
 # AZ: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **101 of 123** parks joined to official land (same name + same kind of place). **1** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **101 of 123** parks joined to official land (same name + same kind of place). **2** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-11045** Painted Rock Petroglyph Site National Historical Site (National Historical Site) → Painted Rock (~31,091 ac, similar name); Lower Sonoran Field Office (~1,404,336 ac, the POTA pin is inside it (different name))
+- **US-4557** Arizona Trail National Scenic Trail (National Scenic Trail) → Arizona National Scenic Trail (~415 ac, similar name); Coronado National Forest (~1,652,117 ac, the POTA pin is inside it (different name))
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10995 Sunshine Loop and Dutchman Mountain Bike Trails BLM Recreation Management Area (BLM Recreation Management Area) → on Arizona Strip Field Office (~2,766,023 ac)
 - US-11122 General Crook National Recreation Trail (National Recreation Trail) → on Sitgreaves National Forest (~820,490 ac)
 - US-11123 Highline National Recreation Trail (National Recreation Trail) → on Tonto National Forest (~2,866,817 ac)
-- US-11944 Dankworth Pond State Park (State Park) → on Roper Lake State Park (~81 ac); Roper Lake SP (~336 ac)
+- US-11944 Dankworth Pond State Park (State Park) → on Roper Lake State Park (~81 ac); Roper Lake State Park (~336 ac)
 - US-11971 Virgin River Canyon BLM Recreation Management Area (BLM Recreation Management Area) → on Arizona Strip Field Office (~2,766,023 ac)
 - US-11975 Table Mesa BLM Recreation Management Area (BLM Recreation Management Area) → on Hassayampa Field Office (~970,921 ac)
-- US-12142 Dominguez-Escalante Site National Historic Site (National Historic Site) → on Vermilion Cliffs (~0 ac); Arizona Strip Field Office (~2,766,023 ac)
+- US-12142 Dominguez-Escalante Site National Historic Site (National Historic Site) → on Baaj Nwaavjo I'tah Kukveni - Ancestral Footprints of the Grand Canyon (~0 ac); Arizona Strip Field Office (~2,766,023 ac)
 - US-12161 Round Mountain Rockhound BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Safford Field Office (~1,397,557 ac)
 - US-12162 Sears Point BLM Historic Preservation Site (BLM Historic Preservation Site) → on Yuma Field Office (~1,190,046 ac)
 - US-13593 Boulders OHV Staging Area BLM Recreation Management Area (BLM Recreation Management Area) → on Lake Pleasant (~60,836 ac); Hassayampa Field Office (~970,921 ac)
 - US-13594 Black Canyon National Recreation Trail (National Recreation Trail) → on Hassayampa Field Office (~970,921 ac)
 - US-3390 River Island State Park (State Park) → on Buckskin Mountain State Park (~944 ac); Buckskin Mountain SP (~949 ac)
-- US-4557 Arizona Trail National Scenic Trail (National Scenic Trail) → on Coronado National Memorial (~4,810 ac)
 - US-6071 Little Black Mountain Petroglyph Site State Historic Site (State Historic Site) → on Arizona Strip Field Office (~2,766,023 ac)
 
 ## Nothing found in PAD-US
@@ -37,7 +37,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - State Trust Land · SRMA · Unknown · ~7,977,759 ac
 - Arizona Strip Field Office · PUB · BLM · ~2,766,023 ac
-- Southern Nevada ·  · BLM recreation sites · ~2,494,377 ac
+- Southern Nevada ·  · BLM recreation management areas · official (BLM planning area) · ~2,494,377 ac
 - Kingman Field Office · PUB · BLM · ~2,476,668 ac
 - Lower Sonoran Field Office · PUB · BLM · ~1,404,336 ac
 - Safford Field Office · PUB · BLM · ~1,397,557 ac
@@ -46,33 +46,37 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Yuma Field Office · PUB · BLM · ~1,190,046 ac
 - Hassayampa Field Office · PUB · BLM · ~970,921 ac
 - Tucson Field Office · PUB · BLM · ~634,855 ac
+- Grand Canyon Preserve National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~622,947 ac
 - State Trust Land · SRMA · Unknown · ~597,182 ac
 - State Trust Land · SRMA · Marana, Town of · ~596,450 ac
 - Black Mountain ·  · BLM herd management areas · ~567,084 ac
+- Baaj Nwaavjo I'tah Kukveni National Monument ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~392,750 ac
 - Havasu ·  · BLM herd management areas · ~267,286 ac
 - Mazatzal Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~250,813 ac
 - Big Sandy ·  · BLM herd management areas · ~193,367 ac
 - Chocolate-Mule Mountains ·  · BLM herd management areas · ~192,220 ac
 - Muddy Mountains ·  · BLM herd management areas · ~187,798 ac
+- Blue Range Primitive Area (National) ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~180,016 ac
 - Gold Butte ·  · BLM herd management areas · ~178,990 ac
 - Superstition Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~160,169 ac
 - Cibola-Trigo ·  · BLM herd management areas · ~152,337 ac
 - Mormon Mountains ·  · BLM herd areas · ~136,987 ac
 - Black Mountains ACEC ·  · BLM recreation areas · ~134,533 ac
-- Black Mountains ACEC ·  · BLM recreation sites · ~134,533 ac
+- Black Mountains ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~134,533 ac
 - Chemehuevi ·  · BLM herd management areas · ~128,861 ac
-- Muddy Mountains ·  · BLM recreation sites · ~128,292 ac
+- Muddy Mountains ·  · BLM recreation management areas · official (BLM planning area) · ~128,292 ac
 - Imperial Sand Dunes ·  · BLM recreation areas · ~124,345 ac
-- Imperial Sand Dunes ·  · BLM recreation sites · ~124,345 ac
+- Imperial Sand Dunes ·  · BLM recreation management areas · official (BLM planning area) · ~124,345 ac
 - Harquahala ·  · BLM herd areas · ~117,414 ac
 - Usbr · FOTH · Unknown · ~103,084 ac
 - El Dorado Mountains ·  · BLM herd management areas · ~96,224 ac
 - State Trust Land · SRMA · Unknown · ~89,335 ac
 - Chiricahua Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~87,182 ac
 - Galiuro Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~77,585 ac
-- Nelson - Eldorado ·  · BLM recreation sites · ~72,772 ac
-- Beaver Dam Wash SRMA ·  · BLM recreation sites · ~63,478 ac
+- Nelson - Eldorado ·  · BLM recreation management areas · official (BLM planning area) · ~72,772 ac
+- Beaver Dam Wash SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~63,478 ac
 - Kanab Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~61,531 ac
+- Mount Graham Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~61,352 ac
 - Lake Pleasant ·  · BLM herd management areas · ~60,836 ac
 - Four Peaks Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~60,791 ac
 - Cerbat Mountain ·  · BLM herd management areas · ~60,422 ac
@@ -81,17 +85,13 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Santa Rita Experimental Range · REA · Agricultural Research Service (ARS) · ~53,650 ac
 - Tassi-Gold Butte ·  · BLM herd management areas · ~52,915 ac
 - Imperial Sand Dunes ·  · BLM recreation areas · ~51,950 ac
-- Imperial Sand Dunes ·  · BLM recreation sites · ~51,950 ac
+- Imperial Sand Dunes ·  · BLM recreation management areas · official (BLM planning area) · ~51,950 ac
 - Little Harquahala Mountains ·  · BLM herd areas · ~51,732 ac
 - Crossman Peak Scenic ACEC ·  · BLM recreation areas · ~48,857 ac
-- Crossman Peak Scenic ACEC ·  · BLM recreation sites · ~48,857 ac
+- Crossman Peak Scenic ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~48,857 ac
 - Red Rock-Secret Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~48,317 ac
 - Joshua Tree Forest ACEC ·  · BLM recreation areas · ~44,293 ac
-- Joshua Tree Forest ACEC ·  · BLM recreation sites · ~44,293 ac
+- Joshua Tree Forest ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~44,293 ac
 - Picacho ·  · BLM herd areas · ~43,633 ac
 - Burro Creek ACEC ·  · BLM recreation areas · ~43,224 ac
-- Burro Creek ACEC ·  · BLM recreation sites · ~43,224 ac
-- Three Rivers ACEC ·  · BLM recreation areas · ~42,117 ac
-- Three Rivers ACEC ·  · BLM recreation sites · ~42,117 ac
-- Saddle Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~41,143 ac
-- Sand Mountain ·  · BLM recreation sites · ~41,054 ac
+- Burro Creek ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~43,224 ac

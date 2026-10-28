@@ -13,7 +13,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-10661 Oakwood Bottoms USFS Recreation Area (USFS Recreation Area) → on Shawnee National Forest (~163,899 ac); Shawnee National Forest (~273,706 ac)
 - US-10788 Ray Norbut East Hannibal Unit State Fish and Wildlife Area (State Fish and Wildlife Area) → on Miscellaneous Property (~49 ac); Miscellaneous Property (~104 ac)
 - US-12640 Rauchfuss Hill State Recreation Area (State Recreation Area) → on Golconda Marina State Recreation Area (~537 ac)
-- US-13298 North Point Marina State Recreation Area (State Recreation Area) → on Adeline Jay Geo-Karis Illinois Beach State Park (~3,075 ac); Adeline Jay Geo-Karis Illinois Beach State Park (~3,186 ac)
+- US-13298 North Point Marina State Recreation Area (State Recreation Area) → on Adeline Jay Geo-Karis Illinois Beach State Park (~3,075 ac)
 - US-4118 Copperhead Hollow State Wildlife Area (State Wildlife Area) → on Pere Marquette State Park (~10,033 ac)
 
 ## Nothing found in PAD-US
@@ -28,6 +28,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Land Between the Lakes National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~171,281 ac
 - Ms Rv Pools 11-22 Recreation Area · REC · Rock Island · ~45,941 ac
 - Upper Mississippi River National Wildlife and Fish Refuge ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~29,261 ac
 - Mingo National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~21,618 ac
@@ -87,4 +88,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - WRP ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~2,211 ac
 - Green River National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~2,197 ac
 - Embarras River Bottoms State Habitat Area ·  · Illinois Department of Natural Resources (preserve, state GIS table) · ~2,180 ac
-- Embarras River Bottoms State Habitat Area · SCA · Illinois Department of Natural Resources · ~2,179 ac

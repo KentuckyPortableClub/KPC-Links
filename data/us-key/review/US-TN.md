@@ -1,11 +1,10 @@
 # TN: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **252 of 277** parks joined to official land (same name + same kind of place). **2** to check by hand, **19** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **254 of 277** parks joined to official land (same name + same kind of place). **1** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-13567** Clinch River Valley State Park (State Park) → Kyles Ford - Clinch River Access # 2 (~3 ac, similar name); Kyles Ford - Clinch River Access # 2 (~2 ac, similar name)
-- **US-7565** AEDC and Woods Reservoir Wildlife Management Area (Wildlife Management Area) → A.E.D.C. WMA (~6,032 ac, similar name); A.E.D.C. WMA (~5,829 ac, similar name); A.E.D.C. WMA (~3,267 ac, similar name); A.E.D.C. WMA (~3,217 ac, similar name); A.E.D.C. WMA (~334 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
@@ -32,21 +31,25 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-6261 Pogue Creek Canyon State Natural Area (State Natural Area)
 - US-6273 Vine Cedar Glade State Natural Area (State Natural Area)
 - US-6280 Windows Cliffs State Natural Area (State Natural Area)
-- US-7570 Beaverdam Creek Wildlife Management Area (Wildlife Management Area)
 - US-7577 Charlotte Ann Finnel Neal Wildlife Management Area (Wildlife Management Area)
 - US-8313 Mountains to Sea State Trail (State Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~338,929 ac
+- North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~328,895 ac
 - South Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~296,396 ac
 - South Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~295,029 ac
+- South Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~286,387 ac
+- Mount Rogers National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~154,919 ac
 - Tennessee Valley Authority (TVA) · ND · Tennessee Valley Authority (TVA) · ~142,556 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~102,793 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~79,396 ac
+- Pisgah National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~71,916 ac
 - Big South Fork N.R.R.A. ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~71,848 ac
 - Big South Fork N.R.R.A. ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~71,848 ac
 - Land Between The Lakes WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~64,144 ac
+- Land Between The Lakes WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~64,029 ac
 - Tackett Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~45,542 ac
 - Dale Hollow Recreation Area · REC · Nashville · ~44,125 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~43,174 ac
@@ -56,6 +59,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~29,967 ac
 - Old Hickory Recreation Area · REC · Nashville · ~29,862 ac
 - Cordell Hull Recreation Area · REC · Nashville · ~29,264 ac
+- AEDC WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~23,969 ac
 - Southern Nantahala Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~23,604 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~22,177 ac
 - Joyce Kilmer-Slickrock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~19,247 ac
@@ -64,37 +68,31 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Barkley Recreation Area · REC · Nashville · ~17,136 ac
 - Pickett SF & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~17,013 ac
 - Pickett SF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~17,013 ac
+- Pickett SF & WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~17,013 ac
 - Citico Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,213 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~15,734 ac
 - Linville Gorge Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~11,948 ac
 - Natchez Trace Parkway · SDA · NPS · ~11,301 ac
 - Big Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,001 ac
+- Chattooga, North Carolina, South Carolina and Georgia National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~10,971 ac
 - Sampson Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,896 ac
 - Big Laurel Branch Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,764 ac
+- Cherokee #1 National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~9,863 ac
 - A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~9,735 ac
 - A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~9,735 ac
 - Meeman-Shelby Forest WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~9,434 ac
+- Chickasaw ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~9,434 ac
+- Meeman-Shelby Forest WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~9,434 ac
 - Meeman-Shelby Forest Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~9,433 ac
 - Upper Bald River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,037 ac
 - Meeman-Shelby Forest WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~8,989 ac
 - Big Frog Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,502 ac
+- Snowbird Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~8,491 ac
 - Wapanocca National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~8,464 ac
 - North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~8,333 ac
 - Standing Stone SF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~8,312 ac
 - Ellicott Rock Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,300 ac
 - Kentucky Reservoir · ND · Tennessee Valley Authority (TVA) · ~8,201 ac
 - Standing Stone SF & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~8,008 ac
-- North Cherokee NF & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~7,743 ac
-- Middle Prong Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~7,482 ac
-- Fall Creek Falls SP & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~7,279 ac
-- Fall Creek Falls SP & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~7,279 ac
-- North Chickamauga Creek Gorge Designated State Natural Area · SCA · SDC · ~7,107 ac
-- Pond Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,930 ac
-- Cheatham Lock And Dam Recreation Area · REC · Nashville · ~6,915 ac
-- Beaver Dam Creek Wildlife Management Area · SCA · Tennessee Wildlife Resources Agency · ~6,615 ac
-- Edgar Evins SP & WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~6,087 ac
-- A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~6,032 ac
-- A.E.D.C. WMA ·  · Tennessee Wildlife Resources Agency lands, published by TN Dept of Environment and Conservation (TDEC AGOL org) in Tennessee State and Federal Lands map (wild, state GIS table) · ~5,829 ac
-- South Cumberland State Park ·  · Tennessee Department of Environment and Conservation (TDEC public lands) (land, state GIS table) · ~5,676 ac
-- Little Frog Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,635 ac
-- Edgar Evins SP & WMA ·  · Tennessee Wildlife Resources Agency (wild, state GIS table) · ~5,121 ac
+- Standing Stone SF & WMA ·  · Tennessee Wildlife Resources Agency (credit: TWRA) (wild, state GIS table) · ~8,008 ac
+- Cradle of Forestry in America National Historic Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~7,793 ac

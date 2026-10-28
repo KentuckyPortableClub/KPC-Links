@@ -9,9 +9,9 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~0 ac); Devils Hopyard State Park (~260 ac)
-- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac); Other (~16 ac)
-- US-7529 Beckley Iron Furnace State Park (State Park) → on Industrial Monument Historic Preserve (~0 ac); Industrial Monument Historic Preserve (~1 ac)
+- US-0881 Eightmile National Wild and Scenic River (National Wild and Scenic River) → on Devils Hopyard State Park (~0 ac); Devils Hopyard State Park (~891 ac)
+- US-6860 Ferry Landing State Park (State Park) → on Marine District Headquarters (~7 ac)
+- US-7529 Beckley Iron Furnace State Park (State Park) → on Housatonic State Forest (~11,284 ac)
 - US-7542 Satan's Kingdom State Recreation Area (State Recreation Area) → on Farmington River Water Access (~8 ac); Water Access (~12 ac)
 
 ## Nothing found in PAD-US
@@ -28,17 +28,20 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State Forest ·  · Connecticut DEEP property · ~26,662 ac
 - State Forest ·  · Connecticut DEEP property · ~16,512 ac
 - State Forest ·  · Connecticut DEEP property · ~12,596 ac
+- Housatonic State Forest ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~11,284 ac
 - State Forest ·  · Connecticut DEEP property · ~10,623 ac
 - Housatonic State Forest ·  · Connecticut DEEP (land, state GIS table) · ~10,623 ac
 - State Forest ·  · Connecticut DEEP property · ~10,162 ac
 - State Forest ·  · Connecticut DEEP property · ~9,537 ac
 - State Forest ·  · Connecticut DEEP property · ~9,250 ac
+- Yale-Myers Forest (Owned By Yale University) ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~8,404 ac
 - State Forest ·  · Connecticut DEEP property · ~7,159 ac
 - State Forest ·  · Connecticut DEEP property · ~6,623 ac
 - Unknown · WPA ·   · ~5,551 ac
 - Appalachian National Scenic Trail · NT · NPS · ~5,541 ac
 - State Forest ·  · Connecticut DEEP property · ~5,257 ac
 - State Forest ·  · Connecticut DEEP property · ~5,120 ac
+- MDC- Colebrook Reservoir / Hogback Dam ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~4,516 ac
 - State Forest ·  · Connecticut DEEP property · ~4,445 ac
 - State Forest ·  · Connecticut DEEP property · ~4,224 ac
 - State Forest ·  · Connecticut DEEP property · ~4,062 ac
@@ -53,6 +56,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State Forest ·  · Connecticut DEEP property · ~2,473 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~2,391 ac
 - State Forest ·  · Connecticut DEEP property · ~2,127 ac
+- Roraback WMA ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~2,100 ac
 - Roraback Wildlife Area · SCA ·   · ~2,088 ac
 - Metropolitan District Commission · LP · Metropolitan District · ~2,069 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~2,027 ac
@@ -60,28 +64,24 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - State Forest ·  · Connecticut DEEP property · ~1,959 ac
 - State Forest ·  · Connecticut DEEP property · ~1,933 ac
 - Unknown · SOTH ·   · ~1,919 ac
+- West Thompson Dam (Army Corps of Engineers) ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,773 ac
 - State Forest ·  · Connecticut DEEP property · ~1,701 ac
 - Unknown · WPA ·   · ~1,667 ac
+- Robbins Swamp WMA ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,638 ac
+- Eversource Maromas Cooperative WMA ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,618 ac
+- Goshen WMA ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,599 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,579 ac
 - Robbins Swamp Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~1,579 ac
 - State Forest ·  · Connecticut DEEP property · ~1,553 ac
 - State Forest ·  · Connecticut DEEP property · ~1,525 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,500 ac
 - Naugatuck State Forestt · SRMA ·   · ~1,491 ac
+- Stanley Works Coop WMA ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,464 ac
 - Natural Area Preserve ·  · Connecticut DEEP property · ~1,442 ac
 - Canaan Mountain Natural Area Preserve ·  · Connecticut DEEP (land, state GIS table) · ~1,442 ac
+- Quinebaug  River WMA ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,430 ac
+- Meriden Rod & Gun Club Permit- Required Area ·  · CT DEEP (credit: Department of Energy & Environmental Protection) (land, state GIS table) · ~1,364 ac
 - State Forest ·  · Connecticut DEEP property · ~1,303 ac
 - Canaan Mountain Natural Area Preserve · SCA ·   · ~1,153 ac
 - State Forest ·  · Connecticut DEEP property · ~1,150 ac
 - Wildlife Area ·  · Connecticut DEEP property · ~1,129 ac
-- Quinebaug Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~1,129 ac
-- Robbins Swamp Wildlife Area · SCA ·   · ~1,122 ac
-- Manchester Reservoir Property · WPA ·   · ~1,109 ac
-- Silvio O. Conte National Fish And Wildlife Refuge · NWR · Silvio O. Conte National Fish And Wildlife Refuge · ~1,075 ac
-- Wildlife Area ·  · Connecticut DEEP property · ~1,068 ac
-- Goshen Wildlife Management Area ·  · Connecticut DEEP (land, state GIS table) · ~1,068 ac
-- State Forest ·  · Connecticut DEEP property · ~1,052 ac
-- Wildlife Area ·  · Connecticut DEEP property · ~1,018 ac
-- Unknown · WPA ·   · ~1,016 ac
-- State Forest ·  · Connecticut DEEP property · ~993 ac
-- Silvio O. Conte National Fish And Wildlife Refuge · NWR · SILVIO O. CONTE NATIONAL FISH AND WILDLIFE REFUGE · ~973 ac

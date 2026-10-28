@@ -43,6 +43,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Taos Plateau ·  · BLM recreation management areas · official (BLM planning area) · ~186,840 ac
 - Anahuac National Wildlife Refuge ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~175,281 ac
 - Lower Rio Grande Valley National Wildlife Refuge ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~162,048 ac
+- Ouachita National Wildlife Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~144,821 ac
 - Sam Rayburn Reservoir ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~132,661 ac
 - Sabine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~123,814 ac
 - Sam Rayburn Recreation Area · REC · Forth Worth · ~116,718 ac
@@ -54,6 +55,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Anahuac National Wildlife Refuge ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~67,470 ac
 - Permanent University Fund · SRMA · Texas General Land Office - School Land Board · ~65,497 ac
 - Wichita Mountains Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~59,021 ac
+- Jemez National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~57,753 ac
 - Hackberry Lake OHV Area ·  · BLM recreation areas · ~57,606 ac
 - Hackberry Lake OHV Area ·  · BLM recreation management areas · official (BLM planning area) · ~57,606 ac
 - Hackberry Lake OHV ·  · BLM recreation management areas · official (BLM planning area) · ~57,605 ac
@@ -66,6 +68,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Lewisville Recreation Area · REC · Forth Worth · ~46,194 ac
 - Wright Patman ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~46,165 ac
 - Whitney Point Recreation Area · REC · Forth Worth · ~45,028 ac
+- Indian Nations National Scenic And Wildlife Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~44,642 ac
 - Guadalupe Mountains Wilderness ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~42,289 ac
 - Camp Bullis ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~40,379 ac
 - Anahuac National Wildlife Refuge · NWR · Anahuac National Wildlife Refuge · ~37,735 ac
@@ -89,7 +92,4 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Chama ·  · BLM recreation management areas · official (BLM planning area) · ~27,533 ac
 - Pond Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~27,457 ac
 - Lake Texoma ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~27,436 ac
-- Belton Recreation Area · REC · Forth Worth · ~25,863 ac
-- Bitter Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~24,901 ac
-- Wright Patman Lake ·  · Texas Parks and Wildlife (public conservation lands) (land, state GIS table) · ~24,687 ac
-- Fort Stanton ·  · BLM recreation management areas · official (BLM planning area) · ~24,654 ac
+- Winding Stair Mountain National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~26,617 ac

@@ -1,15 +1,15 @@
 # WY: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **198 of 298** parks joined to official land (same name + same kind of place). **10** to check by hand, **29** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **197 of 294** parks joined to official land (same name + same kind of place). **10** to check by hand, **34** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-10776** Packers Lake Public Access Area BLM Special Recreation Management Area (BLM Special Recreation Management Area) → Packers Lake (~105 ac, similar name)
-- **US-10799** Ellis State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Ellis (~3,836 ac, similar name); Ellis (~0 ac, similar name); Ellis (~0 ac, similar name)
+- **US-10799** Ellis State Wildlife Habitat Management Area (State Wildlife Habitat Management Area) → Ellis (~3,836 ac, similar name); Ellis (~0 ac, similar name); Ellis (~0 ac, similar name); Worland Field Office (~2,099,390 ac, the POTA pin is inside it (different name)); Middle Fork of the Powder River SRMA (~14,905 ac, the POTA pin is inside it (different name))
 - **US-10828** Quebec 01 Missile Alert Facility State Park (State Park) → Quebec 01 MAF (~6 ac, similar name)
-- **US-10845** Bobcat-Houlihan Trail BLM Recreation Management Area (BLM Recreation Management Area) → South Fork Shoshone River-Houlihan/Bobcat (~58 ac, similar name); South Fork Shoshone River-Houlihan/Bobcat (~18 ac, similar name); Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name)); Rivers SRMA (~6,059 ac, the POTA pin is inside it (different name))
-- **US-10853** Cody Canal BLM Recreation Management Area (BLM Recreation Management Area) → South Fork Shoshone River-Cody Canal (~72 ac, similar name)
-- **US-10883** Red Canyon Overlook BLM Interpretive Site (BLM Interpretive Site) → Red Canyon (~1,987 ac, similar name); Red Canyon (~1 ac, similar name); Red Canyon Wildlife Habitat Management Area (~1,837 ac, the POTA pin is inside it (different name))
+- **US-10845** Bobcat-Houlihan Trail BLM Recreation Management Area (BLM Recreation Management Area) → South Fork Shoshone River-Houlihan/Bobcat (~58 ac, similar name); South Fork Shoshone River-Houlihan/Bobcat (~18 ac, similar name); Rivers SRMA (~6,059 ac, the POTA pin is inside it (different name))
+- **US-10853** Cody Canal BLM Recreation Management Area (BLM Recreation Management Area) → South Fork Shoshone River-Cody Canal (~72 ac, similar name); Cody Field Office (~1,090,720 ac, the POTA pin is inside it (different name))
+- **US-10883** Red Canyon Overlook BLM Interpretive Site (BLM Interpretive Site) → Red Canyon (~1,987 ac, similar name); Red Canyon (~1 ac, similar name)
 - **US-12719** Newton Lakes BOR Recreation Site (Recreation Site) → Newton Lakes (~471 ac, similar name)
 - **US-6117** Camp Douglas WW-II POW Officers' Club State Historic Site (State Historic Site) → Camp Douglas (~1 ac, similar name)
 - **US-6119** Wyoming Pioneer Memorial Museum State Historic Site (State Historic Site) → Wyoming Pioneer Museum (~2 ac, similar name)
@@ -19,62 +19,54 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-10822 Daniel State Fish Hatchery (State Fish Hatchery) → on State Lands 1111115411 (~639 ac)
 - US-10824 Ten Sleep State Fish Hatchery (State Fish Hatchery) → on Bighorn National Forest (~1,105,122 ac)
-- US-10829 Fetterman Fight National Battlefield (National Battlefield) → on Fetterman Battlefield (~457 ac); Fetterman Battlefield (~468 ac)
+- US-10825 Tillett Springs State Fish Hatchery (State Fish Hatchery) → on Cody Field Office (~1,090,720 ac)
+- US-10829 Fetterman Fight National Battlefield (National Battlefield) → on Fetterman Battlefield (~457 ac)
 - US-10835 Pacific Creek BLM Interpretive Site (BLM Interpretive Site) → on Continental Peak (~740,356 ac)
 - US-10837 Little Sandy Crossing BLM Historic Area (BLM Historic Area) → on Usbr (~735,338 ac)
-- US-10838 Buckskin Crossing BLM Interpretive Site (BLM Interpretive Site) → on State Lands 1111126198 (~632 ac)
 - US-10840 Gebo - Causley Historic Mining District BLM Interpretive Site (BLM Interpretive Site) → on Worland Field Office (~2,099,390 ac)
-- US-10842 Boar's Tusk BLM Recreation Management Area (BLM Recreation Management Area) → on Killpecker Sand Dunes SRMA (~39,245 ac); Continental Peak (~740,356 ac)
+- US-10842 Boar's Tusk BLM Recreation Management Area (BLM Recreation Management Area) → on Sand Dunes (~0 ac); Continental Peak (~740,356 ac)
 - US-10848 Castle Gardens Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
 - US-10850 Cedar Canyon Petroglyphs BLM Recreation Management Area (BLM Recreation Management Area) → on Rock Springs (~876,973 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-10854 Corral Creek Campground BLM Recreation Management Area (BLM Recreation Management Area) → on North Platte River SRMA (~7,095 ac); Rawlins Field Office (~3,531,790 ac)
-- US-10855 Deep Gulch BLM Recreation Management Area (BLM Recreation Management Area) → on State Lands 1111119554 (~639 ac); Doty Mountain Cherokee (~243,306 ac)
+- US-10855 Deep Gulch BLM Recreation Management Area (BLM Recreation Management Area) → on Doty Mountain Cherokee (~243,306 ac); Western Rawlins Field Office ERMA (~1,904,417 ac)
 - US-10856 Dome Rock BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
-- US-10857 Dugway Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on North Platte River SRMA (~7,095 ac); Rawlins Field Office (~3,531,790 ac)
-- US-10860 Four Bear Trail BLM Recreation Management Area (BLM Recreation Management Area) → on North Fork Shoshone River-Rivers Rest (~97 ac); Rivers SRMA (~6,059 ac)
+- US-10857 Dugway Recreation Site BLM Recreation Management Area (BLM Recreation Management Area) → on Rawlins Field Office (~3,531,790 ac)
 - US-10863 Green River/Warrne Bridge River Access Area BLM Recreation Management Area (BLM Recreation Management Area) → on Green and New Fork Rivers SRMA (Warren Bridge) (~7,189 ac); Pinedale Field Office (~925,688 ac)
-- US-10865 Lance Creek Fossil Site BLM Recreation Management Area (BLM Recreation Management Area) → on Newcastle Field Office ERMA (~273,309 ac); Newcastle Field Office (~279,233 ac)
 - US-10876 Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
-- US-10880 Paintrock Canyon Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
 - US-10882 Prior Flat Campground BLM Recreation Management Area (BLM Recreation Management Area) → on Shirley Mountains SRMA (~37,894 ac); Rawlins Field Office (~3,531,790 ac)
-- US-10884 Red Gulch/Alkali Backcountry Byway BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
+- US-10884 Red Gulch/Alkali Backcountry Byway BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
 - US-10885 Rim Lake BLM Recreation Management Area (BLM Recreation Management Area) → on Continental Divide National Scenic Trail SRMA (~10,181 ac); Checkerboard South (~324,284 ac)
 - US-10886 Salt Lick Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
 - US-10888 Shirley Basin Reservoir BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
 - US-10891 Teton Reservoir BLM Recreation Management Area (BLM Recreation Management Area) → on Bolten (~61,702 ac); Eastern Rawlins Field Office ERMA (~1,582,142 ac)
-- US-10892 The Redds Day Use Area BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac)
+- US-10892 The Redds Day Use Area BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
 - US-10893 Three Patches BLM Recreation Management Area (BLM Recreation Management Area) → on Rock Springs (~876,973 ac)
 - US-10896 Wild Horse Point BLM Recreation Management Area (BLM Recreation Management Area) → on Green Mountain (~99,363 ac); Green Mountain ERMA (~129,578 ac)
-- US-10898 Lake Hattie BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
+- US-10898 Lake Hattie BLM Recreation Management Area (BLM Recreation Management Area) → on Rawlins Field Office (~3,531,790 ac)
 - US-10929 Cottonwood Creek Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~129,768 ac); Cody Field Office (~1,090,720 ac)
-- US-11741 Palisades WSA USFS Recreation Area (USFS Recreation Area) → on Targhee National Forest (~37,247 ac)
-- US-12721 Miles Landing BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
-- US-12722 Wheatland Reservoir #3 BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
-- US-12723 Whitetail Day Use BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac)
+- US-12722 Wheatland Reservoir #3 BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac)
+- US-12723 Whitetail Day Use BLM Recreation Management Area (BLM Recreation Management Area) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
 - US-6131 Bessemer Bend BLM Historic Preservation Site (BLM Historic Preservation Site) → on Trapper's Route SRMA (~3,421 ac); Casper Field Office (~1,361,339 ac)
-- US-6134 Indian Bathtubs Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Eastern Rawlins Field Office ERMA (~1,582,142 ac); Rawlins Field Office (~3,531,790 ac)
 - US-6143 Outlaw Cave Trail BLM Recreation Management Area (BLM Recreation Management Area) → on Middle Fork Powder River SRMA (~10,084 ac); Buffalo Field Office (~779,089 ac)
-- US-6153 Lone Tree Trail BLM Recreation Management Area (BLM Recreation Management Area) → on West Slope SRMA (~190,622 ac); Worland Field Office (~2,099,390 ac)
 - US-6155 Big Cedar Ridge Fossil Site BLM Special Recreation Management Area (BLM Special Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
 - US-6159 Castle Gardens Petroglyph Site BLM Historic Preservation Site (BLM Historic Preservation Site) → on Lander Field Office (~2,388,958 ac)
 - US-6162 Red Gulch Dinosaur Tracksite BLM Recreation Management Area (BLM Recreation Management Area) → on Worland Field Office (~2,099,390 ac)
 - US-6164 Duck Swamp Interpretive Area BLM Interpretive Site (BLM Interpretive Site) → on Bighorn River ERMA (~1,915 ac); Worland Field Office (~2,099,390 ac)
 - US-6169 Lake Cameahwait State Recreation Area (State Recreation Area) → on Sand Mesa (~11,691 ac); Sand Mesa Wildlife Habitat Management Area (~21,133 ac)
-- US-6177 Johnny Behind the Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on Lander Valley Community SRMA (~6,169 ac); Lander Field Office (~2,388,958 ac)
+- US-6177 Johnny Behind the Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on Lander Valley Community SRMA (~6,169 ac)
 - US-6181 Divide Basin BLM Herd Management Area (BLM Herd Management Area) → on South Pinnacles (~0 ac); Continental Peak (~740,356 ac)
-- US-6182 Miner's Delight BLM Historic Preservation Site (BLM Historic Preservation Site) → on CDNST Destination SRMA (~82,586 ac); Lander Field Office (~2,388,958 ac)
+- US-6182 Miner's Delight BLM Historic Preservation Site (BLM Historic Preservation Site) → on Lander Field Office (~2,388,958 ac)
 - US-6184 The Pinnacles Geologic Site BLM Recreation Management Area (BLM Recreation Management Area) → on Continental Peak (~740,356 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
-- US-6185 South Pass Historic Landmark National Historic Site (National Historic Site) → on Continental Peak (~740,356 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
+- US-6185 South Pass Historic Landmark National Historic Site (National Historic Site) → on Oregon-California-Mormon Pioneer NHTs SRMA (~824 ac); Continental Peak (~740,356 ac)
 - US-6186 Atlantic City/South Pass BLM Recreation Management Area (BLM Recreation Management Area) → on CDNST Destination SRMA (~82,586 ac); Lander Field Office (~2,388,958 ac)
 - US-6191 Tri-Territory Site BLM Historic Preservation Site (BLM Historic Preservation Site) → on Continental Peak (~740,356 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6192 Superior Mail Arrow BLM Historic Preservation Site (BLM Historic Preservation Site) → on Rock Springs (~876,973 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6193 South Pass Overlook BLM Interpretive Site (BLM Interpretive Site) → on Triangle (~294,331 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
-- US-6194 False Parting of the Ways BLM Interpretive Site (BLM Interpretive Site) → on Oregon-California-Mormon Pioneer NHTs SRMA (~824 ac); Continental Peak (~740,356 ac)
+- US-6194 False Parting of the Ways BLM Interpretive Site (BLM Interpretive Site) → on Triangle (~294,331 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6195 Crookston Ranch Cultural Site BLM Historic Preservation Site (BLM Historic Preservation Site) → on Killpecker Sand Dunes Open Play Area (~12,832 ac); Killpecker Sand Dunes Open Play Area (~12,832 ac)
 - US-6200 Overland Stage BLM Interpretive Site (BLM Interpretive Site) → on White Mountain (~207,372 ac); Rock Springs (~876,973 ac)
 - US-6203 Pilot Butte Wild Horse Scenic Tour BLM Recreation Management Area (BLM Recreation Management Area) → on White Mountain (~207,372 ac); Rock Springs (~876,973 ac)
-- US-6207 Clarks Fork of the Yellowstone National Wild & Scenic River (National Wild & Scenic River) → on Shoshone National Forest (~2,439,182 ac)
-- US-6215 Simpsons Hollow BLM Recreation Management Area (BLM Recreation Management Area) → on Little Colorado (~525,421 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
+- US-6215 Simpsons Hollow BLM Recreation Management Area (BLM Recreation Management Area) → on Little Colorado (~525,421 ac); Rock Springs Field Office (~3,606,721 ac)
 - US-6216 Pilot Butte Overlook BLM Interpretive Site (BLM Interpretive Site) → on Little Colorado (~525,421 ac); Rock Springs Field Office ERMA (~3,308,154 ac)
 - US-6219 Lombard Ferry State Historic Site (State Historic Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
 - US-6220 NHT Auto Tour Route BLM Interpretive Site (BLM Interpretive Site) → on Seedskadee National Wildlife Refuge (~25,985 ac); Seedskadee National Wildlife Refuge (~25,985 ac)
@@ -86,17 +78,21 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-10818 Auburn State Fish Hatchery (State Fish Hatchery)
 - US-10821 Dan Speas State Fish Hatchery (State Fish Hatchery)
 - US-10823 Dubois State Fish Hatchery (State Fish Hatchery)
-- US-10825 Tillett Springs State Fish Hatchery (State Fish Hatchery)
 - US-10836 Emigrant Gap BLM Interpretive Site (BLM Interpretive Site)
+- US-10838 Buckskin Crossing BLM Interpretive Site (BLM Interpretive Site)
 - US-10839 Devil's Gate BLM Interpretive Site (BLM Interpretive Site)
+- US-10860 Four Bear Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10861 Fremont Lake Road / Skyline Drive BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10862 Gooseberry Badlands Scenic Overlook Trail BLM Recreation Management Area (BLM Recreation Management Area)
+- US-10865 Lance Creek Fossil Site BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10877 Mallo Trail BLM Recreation Management Area (BLM Recreation Management Area)
+- US-10880 Paintrock Canyon Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10900 South Bighorn/Red Wall Backcountry Byway BLM Recreation Management Area (BLM Recreation Management Area)
 - US-10946 Crazy Woman Creek National Battlefield (National Battlefield)
 - US-10947 The Battle of Red Buttes National Battlefield (National Battlefield)
 - US-12718 Kortes Reservoir/Miracle Mile BOR Recreation Site (Recreation Site)
 - US-12720 Ralston Reservoir BOR & State Fish and Wildlife Area (State Fish and Wildlife Area)
+- US-12721 Miles Landing BLM Recreation Management Area (BLM Recreation Management Area)
 - US-13244 1838 Mountain Man Rendezvous State Historic Site (State Historic Site)
 - US-4558 Continental Divide Trail National Scenic Trail (National Scenic Trail)
 - US-4566 California National Historic Trail (National Historic Trail)
@@ -104,6 +100,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4574 Nez Perce National Historic Trail (National Historic Trail)
 - US-4576 Oregon National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
+- US-6134 Indian Bathtubs Trail BLM Recreation Management Area (BLM Recreation Management Area)
 - US-6149 Martin's Cove National Historic Site (National Historic Site)
 - US-6187 South Pass Historic Mining Area BLM Historic Area (BLM Historic Area)
 - US-6190 Oregon Buttes BLM Historic Area (BLM Historic Area)
@@ -115,61 +112,61 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - Rock Springs Field Office · PUB · BLM · ~3,606,721 ac
 - Rawlins Field Office · PUB · BLM · ~3,531,790 ac
-- Rock Springs Field Office ERMA ·  · BLM recreation sites · ~3,308,154 ac
+- Rock Springs Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~3,308,154 ac
 - Lander Field Office · PUB · BLM · ~2,388,958 ac
 - Worland Field Office · PUB · BLM · ~2,099,390 ac
-- Western Rawlins Field Office ERMA ·  · BLM recreation sites · ~1,904,417 ac
-- Eastern Rawlins Field Office ERMA ·  · BLM recreation sites · ~1,582,142 ac
+- Western Rawlins Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,904,417 ac
+- Eastern Rawlins Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,582,142 ac
 - Kemmerer Field Office · PUB · BLM · ~1,421,062 ac
 - Casper Field Office · PUB · BLM · ~1,361,339 ac
-- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
-- Kemmerer Field Office ERMA ·  · BLM recreation sites · ~1,290,770 ac
+- Casper Field Officer ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,343,359 ac
+- Kemmerer Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,290,770 ac
+- Wyoming Range Withdrawal Area Special Designated Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~1,219,694 ac
 - Cody Field Office · PUB · BLM · ~1,090,720 ac
 - Pinedale Field Office · PUB · BLM · ~925,688 ac
-- Pinedale Field Office ERMA ·  · BLM recreation sites · ~892,883 ac
+- Pinedale Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~892,883 ac
 - Buffalo Field Office · PUB · BLM · ~779,089 ac
 - Usbr · FOTH · Unknown · ~735,338 ac
 - Checkerboard South ·  · BLM herd areas · ~324,284 ac
 - Sand Creek West ·  · BLM herd areas · ~316,329 ac
 - Newcastle Field Office · PUB · BLM · ~279,233 ac
-- Newcastle Field Office ERMA ·  · BLM recreation sites · ~273,309 ac
-- Wind River Front SRMA ·  · BLM recreation sites · ~258,170 ac
+- Newcastle Field Office ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~273,309 ac
+- Wind River Front SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~258,170 ac
 - Doty Mountain Cherokee ·  · BLM herd areas · ~243,306 ac
 - Sand Creek East ·  · BLM herd areas · ~241,866 ac
-- Powder River Basin ERMA ·  · BLM recreation sites · ~224,080 ac
+- Powder River Basin ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~224,080 ac
 - Cyclone Rim ·  · BLM herd areas · ~214,775 ac
-- Badlands SRMA ·  · BLM recreation sites · ~211,695 ac
-- West Slope SRMA ·  · BLM recreation sites · ~190,622 ac
+- Badlands SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~211,695 ac
+- West Slope SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~190,622 ac
 - Slate Creek ·  · BLM herd areas · ~173,148 ac
 - Granger Lease ·  · BLM herd areas · ~170,767 ac
 - Arapaho Creek ·  · BLM herd areas · ~168,560 ac
-- McCullough Peaks SRMA ·  · BLM recreation sites · ~159,811 ac
+- McCullough Peaks SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~159,811 ac
 - Desert ·  · BLM herd areas · ~151,828 ac
 - La Barge ·  · BLM herd areas · ~132,427 ac
 - North Granger ·  · BLM herd areas · ~131,796 ac
-- West Slope SRMA ·  · BLM recreation sites · ~129,768 ac
-- Green Mountain ERMA ·  · BLM recreation sites · ~129,578 ac
+- West Slope SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~129,768 ac
+- Green Mountain ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~129,578 ac
 - Carter Lease ·  · BLM herd areas · ~122,672 ac
 - Foster Gulch ·  · BLM herd areas · ~110,865 ac
-- National Trails Undeveloped SRMA ·  · BLM recreation sites · ~92,516 ac
-- CDNST Destination SRMA ·  · BLM recreation sites · ~82,586 ac
-- South Bighorns ERMA ·  · BLM recreation sites · ~70,016 ac
+- National Trails Undeveloped SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~92,516 ac
+- CDNST Destination SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~82,586 ac
+- South Bighorns ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~70,016 ac
 - Bolten ·  · BLM herd areas · ~61,702 ac
-- Oregon Trail SRMA ·  · BLM recreation sites · ~61,253 ac
-- National Historic Trails Destination SRMA ·  · BLM recreation sites · ~59,924 ac
-- Gardner Mountain ERMA ·  · BLM recreation sites · ~55,153 ac
-- Absaroka Mountain Foothills SRMA ·  · BLM recreation sites · ~42,866 ac
-- Lander Slope/Red Canyon ERMA ·  · BLM recreation sites · ~38,978 ac
+- Oregon Trail SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~61,253 ac
+- National Historic Trails Destination SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~59,924 ac
+- Gardner Mountain ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~55,153 ac
+- Absaroka Mountain Foothills SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~42,866 ac
+- Lander Slope/Red Canyon ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~38,978 ac
 - Wasatch National Forest · NF · Forest Service Region 04 Intermountain · ~37,820 ac
 - Targhee National Forest · NF · Forest Service Region 04 Intermountain · ~37,247 ac
-- Face of the Bighorns/North Fork ERMA ·  · BLM recreation sites · ~34,487 ac
-- Dempsey Ridge SRMA ·  · BLM recreation sites · ~33,330 ac
-- Raymond Mountain SRMA ·  · BLM recreation sites · ~32,842 ac
+- Face of the Bighorns/North Fork ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~34,487 ac
+- Dempsey Ridge SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~33,330 ac
+- Raymond Mountain SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~32,842 ac
+- Shoal Creek Wilderness Study Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~32,387 ac
 - East Beaver ·  · BLM herd areas · ~31,373 ac
-- National Historic Trails ERMA ·  · BLM recreation sites · ~31,289 ac
+- National Historic Trails ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~31,289 ac
 - Gold Creek ·  · BLM herd areas · ~29,684 ac
-- Absaroka ERMA ·  · BLM recreation sites · ~29,222 ac
-- South Bighorns ERMA ·  · BLM recreation sites · ~25,550 ac
-- PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
-- PRYOR MOUNTAIN WILD HORSE RANGE ·  · BLM herd management areas · ~23,815 ac
-- North Shoshone ·  · BLM herd areas · ~20,332 ac
+- Absaroka ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~29,222 ac
+- Sheep Mountain Game Refuge National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~27,769 ac
+- South Bighorns ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~25,550 ac

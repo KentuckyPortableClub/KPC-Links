@@ -37,6 +37,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Leatherwood Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,791 ac
 - Stockton Lake ML ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~16,572 ac
 - Irish Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~16,509 ac
+- Eleven Point, Missouri National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~15,418 ac
 - Four Rivers CA (August A Busch Jr. Memorial Wetlands at) ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~13,939 ac
 - Logan Creek CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~13,170 ac
 - Cypress Creek National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~13,024 ac
@@ -47,6 +48,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~11,436 ac
 - Clearwater CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~11,211 ac
 - Bell Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,183 ac
+- Livingston National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~8,758 ac
 - Piney Creek Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~8,184 ac
 - Truman Reservoir ML (Grand River Bottoms) ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~8,094 ac
 - Caney Mountain CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~7,899 ac
@@ -57,6 +59,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - St. Francois Mountains NA ·  · Missouri Natural Areas (DNR) (preserve, state GIS table) · ~6,920 ac
 - Devils Backbone Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~6,691 ac
 - Two Rivers National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~6,227 ac
+- Barkshead National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~5,852 ac
 - Bald Knob Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~5,817 ac
 - Woods (Woodson K) Mem CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~5,738 ac
 - Birch Creek CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~5,646 ac
@@ -66,6 +69,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Truman Reservoir ML (Sac-Osage) ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~5,375 ac
 - Norfork Recreation Area · REC · Little Rock · ~5,107 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~5,001 ac
+- Goggins Mountain Wild Area ·  · Missouri DNR, Division of State Parks (credit) (wild, state GIS table) · ~5,000 ac
 - Norfork Lake ML ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~4,861 ac
 - Truman Reservoir ML (Cross Timbers) ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~4,815 ac
 - Pomme De Terre Lake ML ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~4,804 ac
@@ -74,6 +78,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Clear Springs Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,667 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,580 ac
 - Ozark Plateau National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~4,457 ac
+- Mudlick Mountain Wild Area ·  · Missouri DNR, Division of State Parks (credit) (wild, state GIS table) · ~4,420 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,308 ac
 - Leach (B K) Mem CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~4,308 ac
 - Rockpile Mountain Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~4,281 ac
@@ -84,8 +89,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~4,065 ac
 - Nodaway Valley CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,881 ac
 - Mississippi River Wildlife Management Area ·  · U.S. Fish & Wildlife Service (own map) · ~3,773 ac
-- Meredosia National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~3,698 ac
-- Regal Tallgrass Prairie NA ·  · Missouri Natural Areas (DNR) (preserve, state GIS table) · ~3,643 ac
-- Reform CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,580 ac
-- Wah'Kon-Tah Prairie ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,504 ac
-- Seat (Emmett and Leah) Mem CA ·  · Missouri Department of Conservation (gisblue.mdc.mo.gov) (land, state GIS table) · ~3,479 ac

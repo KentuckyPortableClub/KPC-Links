@@ -1,23 +1,23 @@
 # NV: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **214 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **77** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **214 of 367** parks joined to official land (same name + same kind of place). **5** to check by hand, **75** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 - **US-12372** Cave Rock State Park (State Park) → Cave Rock Lake Tahoe-Nevada State Park (~3 ac, similar name); Cave Rock Lake Tahoe-Nevada State Park (~3 ac, similar name)
 - **US-13275** Pioneer Memorial Park State Historical Monument (State Historical Monument) → Pioneer Memorial Park (~6 ac, similar name); Pioneer Memorial Park (~6 ac, similar name)
 - **US-13287** Pershing County State Historical Monument (State Historical Monument) → Pershing County Park (~2 ac, similar name); Pershing County Park (~2 ac, similar name)
-- **US-13482** Galena Creek Fish Hatchery State Historical Monument (State Historical Monument) → GALENA CREEK RECREATION AREA (~68 ac, similar name); GALENA CREEK RECREATION AREA (~68 ac, similar name); GALENA CREEK REGIONAL PARK (~341 ac, the POTA pin is inside it (different name)); GALENA CREEK REGIONAL PARK (~341 ac, the POTA pin is inside it (different name))
+- **US-13482** Galena Creek Fish Hatchery State Historical Monument (State Historical Monument) → GALENA CREEK RECREATION AREA (~68 ac, similar name); GALENA CREEK RECREATION AREA (~68 ac, similar name); Toiyabe National Forest (~3,206,430 ac, the POTA pin is inside it (different name)); GALENA CREEK REGIONAL PARK (~341 ac, the POTA pin is inside it (different name)); GALENA CREEK REGIONAL PARK (~341 ac, the POTA pin is inside it (different name))
 - **US-2638** Van Sickle Bi State Park (State Park) → Van Sickle Unit/AmackerSchultz Lake Tahoe-Nevada State Park (~558 ac, similar name); Van Sickle Unit/AmackerSchultz Lake Tahoe-Nevada State Park (~558 ac, similar name)
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10851 East Pershing Complex BLM Herd Management Area (BLM Herd Management Area) → on Stillwater Field Office (~3,582,451 ac)
+- US-12373 Sand Harbor State Park (State Park) → on Lake Tahoe-Nevada State Park (Sand Harbor) (~92 ac)
 - US-12817 Moon Rocks BLM Recreation Management Area (BLM Recreation Management Area) → on North Reno Recreation Area (~18,947 ac); North Reno Recreation Area (~18,957 ac)
-- US-13020 Smoke Creek BLM National Conservation Area (BLM National Conservation Area) → on Poodle Mountain (~0 ac); Poodle Mountain Wilderness Study Area (~0 ac)
-- US-13023 Artesia Lake State Wildlife Area (State Wildlife Area) → on Alkali Lake Wildlife Management Area (~1,568 ac); Alkali Lake WMA (~3,448 ac)
+- US-13020 Smoke Creek BLM National Conservation Area (BLM National Conservation Area) → on Poodle Mountain Wilderness Study Area (~0 ac); Poodle Mountain (~0 ac)
 - US-13040 Grimes Point/Hidden Cave BLM Historic Preservation Site (BLM Historic Preservation Site) → on Usbr (~139,499 ac)
-- US-13058 Wilson Canyon BLM Recreation Management Area (BLM Recreation Management Area) → on Sierra Front Field Office (~1,146,352 ac)
+- US-13058 Wilson Canyon BLM Recreation Management Area (BLM Recreation Management Area) → on Toiyabe National Forest (~3,206,430 ac)
 - US-13180 Lovelock Cave BLM Historic Preservation Site (BLM Historic Preservation Site) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13183 Walking Box Ranch Historic Site (Historic Site) → on Avi Kwa Ame (~0 ac); Las Vegas Field Office (~2,378,020 ac)
 - US-13189 Oak Springs Trilobite Site BLM Interpretive Site (BLM Interpretive Site) → on Caliente Field Office (~5,063,883 ac)
@@ -27,41 +27,44 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13206 Barnes Canyon Trailhead BLM Recreation Management Area (BLM Recreation Management Area) → on Clover Creek (~33,420 ac); Caliente Field Office (~5,063,883 ac)
 - US-13207 Blue Mass Scenic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Bristlecone Field Office (~5,647,647 ac)
 - US-13210 Goshute Canyon and Goshute Cave BLM Recreation Management Area (BLM Recreation Management Area) → on Schell Creek (~307,399 ac); Antelope (~327,747 ac)
-- US-13214 Logandale Trails BLM Recreation Management Area (BLM Recreation Management Area) → on Las Vegas Field Office (~2,378,020 ac); Southern Nevada (~2,494,377 ac)
+- US-13214 Logandale Trails BLM Recreation Management Area (BLM Recreation Management Area) → on Valley of Fire State Park (~41,930 ac); Valley of Fire State Park (~45,919 ac)
 - US-13217 Panaca Charcoal Kilns BLM Historic Area (BLM Historic Area) → on Deer Lodge Canyon (~109,754 ac); Eagle (~660,700 ac)
-- US-13218 Pine Canyon Dam BLM Recreation Management Area (BLM Recreation Management Area) → on Caliente Field Office (~5,063,883 ac)
+- US-13218 Pine Canyon Dam BLM Recreation Management Area (BLM Recreation Management Area) → on Clover Mountains (~173,088 ac); Caliente Field Office (~5,063,883 ac)
 - US-13222 Shooting Gallery BLM Historic Preservation Site (BLM Historic Preservation Site) → on Basin and Range (~0 ac); Basin And Range Nm Field Office (~703,784 ac)
 - US-13227 White River Narrows BLM Historic Preservation Site (BLM Historic Preservation Site) → on Basin and Range (~0 ac); Dry Lake (~417,958 ac)
-- US-13228 ZOLD - Red Spring Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Red Rock Canyon (~0 ac); Red Rock/Sloan Field Office (~245,885 ac)
+- US-13228 Red Spring Picnic Area BLM Recreation Management Area (BLM Recreation Management Area) → on Red Rock Canyon (~0 ac); Red Rock/Sloan Field Office (~245,885 ac)
 - US-13230 Fairview Peak Earthquake Faults BLM Interpretive Site (BLM Interpretive Site) → on Stillwater Field Office (~3,582,451 ac)
-- US-13240 Gallagher State Fish Hatchery (State Fish Hatchery) → on Ruby Lake National Wildlife Refuge (~39,950 ac); Ruby Lake National Wildlife Refuge (~40,063 ac)
+- US-13240 Gallagher State Fish Hatchery (State Fish Hatchery) → on Humboldt National Forest (~2,400,994 ac)
 - US-13248 Fort Ruby National Historic Site (National Historic Site) → on Ruby Lake National Wildlife Refuge (~39,950 ac); Ruby Lake National Wildlife Refuge (~40,063 ac)
+- US-13252 Stokes Castle National Historic Site (National Historic Site) → on Mount Lewis Field Office (~4,383,120 ac)
 - US-13259 Great Basin Highway Scenic Byway Scenic Site (Scenic Site) → on Bristlecone Field Office (~5,647,647 ac)
 - US-13262 Mt. Charleston Scenic Byway Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty) → on Las Vegas Field Office (~2,378,020 ac); Southern Nevada (~2,494,377 ac)
 - US-13281 Copper Country State Historical Monument (State Historical Monument) → on Bristlecone Field Office (~5,647,647 ac)
 - US-13282 Eureka State Historical Monument (State Historical Monument) → on Mount Lewis Field Office (~4,383,120 ac)
-- US-13286 Mineral County – Nevada State Historical Monument (State Historical Monument) → on Walker Lake SRMA (~24,899 ac); Stillwater Field Office (~3,582,451 ac)
+- US-13284 Carson City National Historic District (National Historic District) → on Capitol Complex (~5 ac)
+- US-13286 Mineral County – Nevada State Historical Monument (State Historical Monument) → on The Cove Day Use Site (~26 ac); The Cove Day Use Site (~26 ac)
 - US-13288 Columbus Nevada State Historical Monument (State Historical Monument) → on Tonopah Field Office (~6,073,247 ac)
 - US-13292 Olinghouse Mining District BLM Historic Area (BLM Historic Area) → on Pah Rah Mountains (~23,522 ac); Sierra Front Field Office (~1,146,352 ac)
+- US-13299 Moapa Valley State Historical Monument (State Historical Monument) → on Las Vegas Field Office (~2,378,020 ac)
 - US-13300 Powell of the Colorado State Historical Monument (State Historical Monument) → on Lake Mead National Recreation Area (~563,039 ac); Lake Mead National Recreation Area (~563,267 ac)
-- US-13302 Big Smoky Valley State Historical Monument (State Historical Monument) → on Tonopah Field Office (~6,073,247 ac)
 - US-13308 Old Boundary (Nevada’s Southern Boundary 1861-1867) #1 State Historical Monument (State Historical Monument) → on Caliente Field Office (~5,063,883 ac)
-- US-13323 Savage Mansion (c. 1863) State Historical Monument (State Historical Monument) → on Sierra Front Field Office (~1,146,352 ac)
+- US-13324 Sparks State Historical Monument (State Historical Monument) → on Deer Park & Pool (~3 ac); Deer Park & Pool (~3 ac)
 - US-13326 Delamar BLM Historic Preservation Site (BLM Historic Preservation Site) → on Caliente Field Office (~5,063,883 ac)
-- US-13365 The Camel Corps State Historical Monument (State Historical Monument) → on Laughlin (~21,250 ac); Las Vegas Field Office (~2,378,020 ac)
+- US-13365 The Camel Corps State Historical Monument (State Historical Monument) → on Avi Kwa Ame (~0 ac); Laughlin (~21,250 ac)
 - US-13366 Edwards Creek Valley State Historical Monument (State Historical Monument) → on Stillwater Field Office (~3,582,451 ac)
 - US-13369 Potosi Nevada State Historical Monument (State Historical Monument) → on Red Rock Canyon (~0 ac); Red Rock (~161,127 ac)
 - US-13370 Searchlight Nevada State Historical Monument (State Historical Monument) → on Las Vegas Field Office (~2,378,020 ac); Southern Nevada (~2,494,377 ac)
 - US-13408 Toquima Cave State Historical Monument (State Historical Monument) → on Mount Lewis Field Office (~4,383,120 ac)
 - US-13411 Unionville (Pershing County) State Historical Monument (State Historical Monument) → on Humboldt (~431,547 ac)
 - US-13412 Silver Peak State Historical Monument (State Historical Monument) → on Tonopah Field Office (~6,073,247 ac)
+- US-13414 Button Point State Historic Site (State Historic Site) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13449 The Surveyors State Historical Monument (State Historical Monument) → on Toiyabe National Forest (~3,206,430 ac)
-- US-13463 Wonder, Nevada BLM Historic Preservation Site (BLM Historic Preservation Site) → on Clan Alpine (~304,763 ac)
-- US-13465 Jackrabbit Nevada BLM Historic Area (BLM Historic Area) → on Patterson-Eagle (~342,501 ac); Caliente Field Office (~5,063,883 ac)
-- US-13468 Chollar Mine State Historical Monument (State Historical Monument) → on Sierra Front Field Office (~1,146,352 ac)
+- US-13463 Wonder, Nevada BLM Historic Preservation Site (BLM Historic Preservation Site) → on Clan Alpine (~304,763 ac); Stillwater Field Office (~3,582,451 ac)
+- US-13465 Jackrabbit Nevada BLM Historic Area (BLM Historic Area) → on Dry Lake (~417,958 ac); Silver King (~576,458 ac)
+- US-13467 Hiko Nevada State Historical Monument (State Historical Monument) → on Caliente Field Office (~5,063,883 ac)
+- US-13470 Lahontan Dam State Historical Monument (State Historical Monument) → on Lake Lahontan Recreation Area (~28,889 ac); Lake Lahontan Recreation Area (~28,890 ac)
 - US-13476 Stonehouse Nevada State Historical Monument (State Historical Monument) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13480 The Eureka Mining District Producing Ore Since 1864 State Historical Monument (State Historical Monument) → on Mount Lewis Field Office (~4,383,120 ac)
-- US-13481 Spooner Summit State Historical Monument (State Historical Monument) → on Toiyabe National Forest (~3,206,430 ac)
 - US-13494 Lida BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Palmetto (~119,262 ac)
 - US-13496 Ione, NV BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Tonopah Field Office (~6,073,247 ac)
 - US-13497 Middlegate Station BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Stillwater Field Office (~3,582,451 ac)
@@ -80,14 +83,13 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13524 Currant Ranch Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Bristlecone Field Office (~5,647,647 ac)
 - US-13525 Echo Bay Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Muddy Mountains (~187,798 ac); Lake Mead National Recreation Area (~563,039 ac)
 - US-13526 Duckwater Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Monte Cristo (~378,571 ac); Pancake (~853,025 ac)
-- US-13579 Pinson Mine Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Humboldt River Field Office (~6,081,514 ac)
 - US-13580 Bog Hot BLM Backcountry Airstrip (BLM Backcountry Airstrip) → on Jackson Mountains (~286,430 ac); Black Rock Field Office (~2,358,385 ac)
-- US-4438 Buckland Station State Park (State Park) → on Fort Churchill State Historic Park (~3,468 ac); Fort Churchill Historic State Monument (~5,283 ac)
+- US-4438 Buckland Station State Park (State Park) → on Fort Churchill State Historic Park (~3,468 ac)
 
 ## Nothing found in PAD-US
 
-- US-12373 Sand Harbor State Park (State Park)
 - US-13010 Dry Valley BLM Special Recreation Management Area (BLM Special Recreation Management Area)
+- US-13023 Artesia Lake State Wildlife Area (State Wildlife Area)
 - US-13062 Dixie Valley Recreation Site (Recreation Site)
 - US-13155 Baker Archaeological Site BLM Historic Preservation Site (BLM Historic Preservation Site)
 - US-13209 Goldfield Trail BLM Historic Area (BLM Historic Area)
@@ -98,7 +100,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13249 Nevada Northern Railway Museum State Historic Site (State Historic Site)
 - US-13250 Leonard Rockshelter National Historic Site (National Historic Site)
 - US-13251 Virginia City Historic District (Comstock Lode) National Historic District (National Historic District)
-- US-13252 Stokes Castle National Historic Site (National Historic Site)
 - US-13260 Angel Lake Road Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty)
 - US-13261 Baker Road Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty)
 - US-13263 Gerlach Road Area of Outstanding Natural Beauty (Area of Outstanding Natural Beauty)
@@ -113,13 +114,12 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13278 El Dorado Canyon State Historic Site (State Historic Site)
 - US-13280 Austin State Historical Monument (State Historical Monument)
 - US-13283 Nevada’s Birthplace State Historical Monument (State Historical Monument)
-- US-13284 Carson City National Historic District (National Historic District)
 - US-13285 Tonopah Nevada State Historical Monument (State Historical Monument)
 - US-13289 The Humboldt Canal State Historical Monument (State Historical Monument)
 - US-13290 Forty Mile Desert State Historical Monument (State Historical Monument)
 - US-13291 Chinese in Nevada-#29 State Historical Monument (State Historical Monument)
-- US-13299 Moapa Valley State Historical Monument (State Historical Monument)
 - US-13301 Pueblo Grande de Nevada State Historical Monument (State Historical Monument)
+- US-13302 Big Smoky Valley State Historical Monument (State Historical Monument)
 - US-13303 Derby Diversion Dam State Historical Monument (State Historical Monument)
 - US-13304 Fort Halleck Military Reservation State Historic Site (State Historic Site)
 - US-13305 Carlin Canyon State Historical Monument (State Historical Monument)
@@ -128,7 +128,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13320 Truckee River – East State Historical Monument (State Historical Monument)
 - US-13321 Palisade Nevada State Historical Monument (State Historical Monument)
 - US-13322 Grand Army Of The Republic Memorial Tree State Historical Monument (State Historical Monument)
-- US-13324 Sparks State Historical Monument (State Historical Monument)
+- US-13323 Savage Mansion (c. 1863) State Historical Monument (State Historical Monument)
 - US-13325 Paradise Valley State Historical Monument (State Historical Monument)
 - US-13363 Panaca Mercantile Store State Historical Monument (State Historical Monument)
 - US-13367 Wabuska Nevada State Historical Monument (State Historical Monument)
@@ -139,7 +139,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13409 Belmont Nevada State Historical Monument (State Historical Monument)
 - US-13410 Fort McDermitt State Historical Monument (State Historical Monument)
 - US-13413 Chinatown State Historical Monument (State Historical Monument)
-- US-13414 Button Point State Historic Site (State Historic Site)
 - US-13415 Nevada Test Site State Historical Monument (State Historical Monument)
 - US-13447 Glendale School (1864-1958) “Oldest Remaining School Building in Nevada” State Historical Monument (State Historical Monument)
 - US-13448 Chief Tecopa Peacemaker of the Paiutes State Historical Monument (State Historical Monument)
@@ -150,16 +149,17 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-13454 Steamboat Springs Nevada State Historical Monument (State Historical Monument)
 - US-13464 Bullionville Nevada State Historical Monument (State Historical Monument)
 - US-13466 Crystal Springs Nevada BLM Historic Preservation Site (BLM Historic Preservation Site)
-- US-13467 Hiko Nevada State Historical Monument (State Historical Monument)
+- US-13468 Chollar Mine State Historical Monument (State Historical Monument)
 - US-13469 Old Geiger Grade State Historical Monument (State Historical Monument)
-- US-13470 Lahontan Dam State Historical Monument (State Historical Monument)
 - US-13474 Kyle (Kiel) Ranch National Historic Site (National Historic Site)
 - US-13475 Mount Rose Weather Observatory State Historical Monument (State Historical Monument)
 - US-13477 Dinner Station Nevada State Historical Monument (State Historical Monument)
 - US-13478 Union Pacific Depot 1923 State Historical Monument (State Historical Monument)
 - US-13479 Diamondfield Jack Davis State Historical Monument (State Historical Monument)
+- US-13481 Spooner Summit State Historical Monument (State Historical Monument)
 - US-13484 Boulder City Navy Hangar/Bullock Field National Historic Site (National Historic Site)
 - US-13507 Sail Park, NV BLM Backcountry Airstrip (BLM Backcountry Airstrip)
+- US-13579 Pinson Mine Airport BLM Backcountry Airstrip (BLM Backcountry Airstrip)
 - US-4566 California National Historic Trail (National Historic Trail)
 - US-4575 Old Spanish National Historic Trail (National Historic Trail)
 - US-4578 Pony Express National Historic Trail (National Historic Trail)
@@ -174,9 +174,9 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Wells Field Office · PUB · BLM · ~4,243,298 ac
 - Stillwater Field Office · PUB · BLM · ~3,582,451 ac
 - Tuscarora Field Office · PUB · BLM · ~3,199,984 ac
-- NA ·  · BLM recreation sites · ~2,812,486 ac
-- Southern Nevada ·  · BLM recreation sites · ~2,494,377 ac
-- Southern Nevada ·  · BLM recreation sites · ~2,494,377 ac
+- NA ·  · BLM recreation management areas · official (BLM planning area) · ~2,812,486 ac
+- Southern Nevada ·  · BLM recreation management areas · official (BLM planning area) · ~2,494,377 ac
+- Southern Nevada ·  · BLM recreation management areas · official (BLM planning area) · ~2,494,377 ac
 - Humboldt National Forest · NF · Forest Service Region 04 Intermountain · ~2,400,994 ac
 - Las Vegas Field Office · PUB · BLM · ~2,378,020 ac
 - Black Rock Field Office · PUB · BLM · ~2,358,385 ac
@@ -185,11 +185,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - DESERT NWR PROPOSED WILDERNESS AREA ·  · Nevada (SCORP recreation areas) (land, state GIS table) · ~1,365,404 ac
 - DESERT NWR PROPOSED WILDERNESS AREA ·  · Nevada outdoor recreation areas (NV Division of State Parks SCORP, DCNR server) (land, state GIS table) · ~1,365,058 ac
 - Nevada Wild Horse Range ·  · BLM herd management areas · ~1,299,285 ac
-- Black Rock SRMA ·  · BLM recreation sites · ~1,222,806 ac
+- Black Rock SRMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,222,806 ac
 - Sierra Front Field Office · PUB · BLM · ~1,146,352 ac
 - Applegate Field Office · PUB · BLM · ~1,063,136 ac
 - Spring Mountain ·  · BLM herd areas · ~795,519 ac
-- Nightingale Zone 5 RMZ ·  · BLM recreation sites · ~773,972 ac
+- Nightingale Zone 5 RMZ ·  · BLM recreation management areas · official (BLM planning area) · ~773,972 ac
 - Pahrump Field Office · PUB · BLM · ~740,861 ac
 - Basin And Range Nm Field Office · PUB · BLM · ~703,784 ac
 - John Muir Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~653,633 ac
@@ -205,10 +205,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Beaty Butte ·  · BLM herd management areas · ~399,447 ac
 - Monte Cristo ·  · BLM herd areas · ~378,571 ac
 - Panamint ·  · BLM herd areas · ~360,419 ac
+- Giant Sequoia National Monument ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~352,617 ac
 - Fortification ·  · BLM herd areas · ~344,657 ac
 - Patterson-Eagle ·  · BLM herd areas · ~342,501 ac
 - Nevada Test Site · FOTH · Department of Energy (DOE) · ~337,512 ac
-- Rustic Zone ·  · BLM recreation sites · ~331,560 ac
+- Rustic Zone ·  · BLM recreation management areas · official (BLM planning area) · ~331,560 ac
 - Antelope ·  · BLM herd management areas · ~327,747 ac
 - Buck-Bald ·  · BLM herd areas · ~322,004 ac
 - Eagle Lake Field Office · PUB · BLM · ~310,176 ac
@@ -225,4 +226,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Sulpher ·  · BLM herd management areas · ~230,177 ac
 - Dunlap ·  · BLM herd areas · ~219,074 ac
 - Clark Mountain ·  · BLM herd areas · ~217,189 ac
-- Sonoma Range ·  · BLM herd areas · ~212,588 ac

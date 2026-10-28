@@ -34,6 +34,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Sharpe Recreation Area · REC · Omaha · ~78,431 ac
 - Custer National Forest · NF · Forest Service Region 01 Northern · ~73,890 ac
 - Valentine National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~72,350 ac
+- Norbeck Wildlife Preserve National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~46,096 ac
 - Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~35,687 ac
 - Niobrara Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~29,062 ac
 - Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~24,274 ac
@@ -57,6 +58,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Day County Waterfowl Production Area · RMA · Day County Waterfowl Production Area · ~7,318 ac
 - Kingsbury County Waterfowl Production Area · RMA · KINGSBURY COUNTY WATERFOWL PRODUCTION AREA · ~7,052 ac
 - Kingsbury County Waterfowl Production Area · RMA · Kingsbury County Waterfowl Production Area · ~7,052 ac
+- Pine Ridge National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~6,651 ac
 - Brookings County Waterfowl Production Area · RMA · Brookings County Waterfowl Production Area · ~6,641 ac
 - Brookings County Waterfowl Production Area · RMA · BROOKINGS COUNTY WATERFOWL PRODUCTION AREA · ~6,640 ac
 - Fort Meade Recreation Area ACEC ·  · BLM recreation management areas · official (BLM planning area) · ~6,569 ac
@@ -82,5 +84,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Friendshuh Game Production Area · SCA · Unknown · ~4,624 ac
 - Douglas County Waterfowl Production Area · RMA · DOUGLAS COUNTY WATERFOWL PRODUCTION AREA · ~4,493 ac
 - Douglas County Waterfowl Production Area Of Sd · RMA · Douglas County Waterfowl Production Area Of Sd · ~4,493 ac
-- Charles Mix County Waterfowl Production Area · RMA · CHARLES MIX COUNTY WATERFOWL PRODUCTION AREA · ~4,378 ac
-- Charles Mix County Waterfowl Production Area · RMA · Charles Mix County Waterfowl Production Area · ~4,378 ac

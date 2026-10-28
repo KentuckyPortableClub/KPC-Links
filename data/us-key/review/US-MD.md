@@ -1,6 +1,6 @@
 # MD: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **167 of 186** parks joined to official land (same name + same kind of place). **1** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **167 of 186** parks joined to official land (same name + same kind of place). **1** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,13 +9,9 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-13564 Savage Highlands State Park (State Park) → on SAVAGE RIVER SF (~0 ac); SAVAGE RIVER SF (~0 ac)
-- US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail) → on Fort McHenry National Monument and Historic Shrine (~47 ac)
 - US-6395 Sassafras Natural Resources Management Area State Natural Area (State Natural Area) → on SASSAFRASS NRMA (~0 ac); SASSAFRASS NRMA (~0 ac)
 - US-7769 Heaters Island Wildlife Management Area (Wildlife Management Area) → on ISLANDS OF THE POTOMAC WMA (~0 ac); ISLANDS OF THE POTOMAC Wildlife Management Area - Islands of the Potomac Wildland (~322 ac)
 - US-7776 Oxon Cove Park & Farm National Historical Park (National Historical Park) → on George Washington Memorial Parkway (~2,364 ac)
-- US-7973 Baltimore-Washington National Parkway (National Parkway) → on Greenbelt Park (~1,079 ac)
-- US-7974 Harmony Hall National Heritage Site (National Heritage Site) → on George Washington Memorial Parkway (~2,364 ac)
-- US-7975 Glen Echo National Heritage Site (National Heritage Site) → on George Washington Memorial Parkway (~2,364 ac)
 
 ## Nothing found in PAD-US
 
@@ -24,18 +20,24 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4564 Potomac Heritage Trail National Scenic Trail (National Scenic Trail)
 - US-4567 Captain John Smith Chesapeake National Historic Trail (National Historic Trail)
+- US-4581 Star-Spangled Banner National Historic Trail (National Historic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6388 Helen Avalynne Tawes Garden State Park (State Park)
 - US-6389 Jefferson Patterson Park and Museum State Park (State Park)
 - US-7768 Frederick City Watershed Cooperative Wildlife Management Area (Wildlife Management Area)
+- US-7973 Baltimore-Washington National Parkway (National Parkway)
+- US-7974 Harmony Hall National Heritage Site (National Heritage Site)
+- US-7975 Glen Echo National Heritage Site (National Heritage Site)
 - US-9901 Civil War Defenses of Washington National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
+- Spruce Knob-Seneca Rocks National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~99,824 ac
 - Chesapeake Forest Lands · SRMA ·   · ~58,595 ac
 - Canaan Valley National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~18,957 ac
 - Dolly Sods Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~17,777 ac
 - Bombay Hook National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~15,346 ac
+- Big Levels National Game Refuge ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~12,168 ac
 - Jennings Randolph Recreation Area · REC · Baltimore · ~11,973 ac
 - White Clay Creek Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~11,596 ac
 - Saint Mary's Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~9,826 ac
@@ -90,5 +92,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Unknown Park · PUB · USA · ~574 ac
 - Lower Potomac River230 · NCA · Bureau of Land Management · ~550 ac
 - Indian Creek Stream Valley Park · SOTH ·   · ~540 ac
-- Open Space · LOTH ·   · ~532 ac
-- Fred W Besley Demonstration Forest · SRMA ·   · ~530 ac

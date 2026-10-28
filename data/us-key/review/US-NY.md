@@ -1,6 +1,6 @@
 # NY: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **823 of 850** parks joined to official land (same name + same kind of place). **1** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **824 of 851** parks joined to official land (same name + same kind of place). **1** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -83,6 +83,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Mckenzie Mountain Wilderness · SW · NYS Department of Environmental Conservation · ~37,445 ac
 - Mckenzie Mountain Wilderness ·  · New York State DEC (land, state GIS table) · ~37,359 ac
 - Sargent Ponds Wild Forest ·  · New York State DEC (land, state GIS table) · ~36,574 ac
+- Robert T. Stafford White Rocks National Recreation Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~36,430 ac
+- Allegheny, Pennsylvania National Wild and Scenic River ·  · Forest Service Wild and Scenic River corridor (official boundary) · ~35,107 ac
 - Hammond Pond Wild Forest ·  · New York State DEC (land, state GIS table) · ~34,300 ac
 - Sundown Wild Forest · SCA · NYS Department of Environmental Conservation · ~31,092 ac
 - Delaware Wild Forest · SCA · NYS Department of Environmental Conservation · ~29,617 ac
@@ -98,5 +100,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Saranac Lakes Wild Forest ·  · New York State DEC (land, state GIS table) · ~24,554 ac
 - Hudson Gorge Wilderness · SW · NYS Department of Environmental Conservation · ~24,526 ac
 - Hudson Gorge Wilderness ·  · New York State DEC (land, state GIS table) · ~24,509 ac
-- Pepperbox Wilderness · SW · NYS Department of Environmental Conservation · ~24,336 ac
-- Pepperbox Wilderness ·  · New York State DEC (land, state GIS table) · ~24,317 ac

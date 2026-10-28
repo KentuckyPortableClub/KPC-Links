@@ -1,6 +1,6 @@
 # NH: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **190 of 206** parks joined to official land (same name + same kind of place). **1** to check by hand, **10** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **191 of 206** parks joined to official land (same name + same kind of place). **1** to check by hand, **9** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -8,11 +8,11 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
-- US-11849 Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → on Wantastiquet Mountain Natural Area (~0 ac); Wantastiquet Mountain Natural Area (~370 ac)
+- US-11849 Wantastiquet Mt Natural Area State Natural Site (State Natural Site) → on Wantastiquet Mountain Natural Area (~0 ac); Wantastiquet Mountain Natural Area (~913 ac)
 - US-2642 Androscoggin Wayside State Park (State Park) → on 13 Mile Woods Community Forest (~0 ac)
 - US-2654 Gardner Memorial Wayside State Park (State Park) → on Gile State Forest (~0 ac); Gile State Forest (~0 ac)
 - US-2685 Winslow State Park (State Park) → on Kearsarge Mt State Forest (~0 ac); Kearsarge Mt State Forest (~0 ac)
-- US-8024 Taylor Saw Mill State Historic Site (State Historic Site) → on Ballard State Forest (~82 ac)
+- US-8024 Taylor Saw Mill State Historic Site (State Historic Site) → on Ballard State Forest (~0 ac); Ballard State Forest (~0 ac)
 
 ## Nothing found in PAD-US
 
@@ -24,7 +24,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4936 Nash Stream Forest State Forest (State Forest)
 - US-4980 White Farm State Forest (State Forest)
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
-- US-8015 Wildcat National Wild and Scenic River (National Wild and Scenic River)
 - US-8021 Gov. Wentworth State Historic Site (State Historic Site)
 
 ## Biggest federal / state places with no POTA park joined (first 60)

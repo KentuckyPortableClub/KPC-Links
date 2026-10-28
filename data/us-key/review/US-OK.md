@@ -1,6 +1,6 @@
 # OK: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **143 of 205** parks joined to official land (same name + same kind of place). **1** to check by hand, **48** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **147 of 205** parks joined to official land (same name + same kind of place). **1** to check by hand, **47** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -10,11 +10,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-10658 Lake Carl Blackwell Wildlife Management Area (Wildlife Management Area) → on CLO Lands (~3,238,968 ac)
 - US-10951 Cherokee Strip Regional Heritage Center Historic Site (Historic Site) → on CLO Lands (~3,238,968 ac)
-- US-11321 Winding Stair Mountain National Recreation Area (National Recreation Area) → on Ouachita Wildlife Management Area -  LeFlore Unit (~0 ac); Ouachita Wildlife Management Area - Leflore (~223,822 ac)
-- US-11322 Beech Creek National Scenic Reserve (Scenic Reserve) → on Ouachita Wildlife Management Area -  LeFlore Unit (~0 ac); Ouachita Wildlife Management Area - Leflore (~223,822 ac)
 - US-11669 Cedar Lake National Recreation Area (National Recreation Area) → on Ouachita Wildlife Management Area -  LeFlore Unit (~0 ac); Ouachita Wildlife Management Area - Leflore (~223,822 ac)
 - US-11670 Spring Creek Recreation Site (Recreation Site) → on Black Kettle Wildlife Management Area (~0 ac); Black Kettle Wildlife Management Area (~30,288 ac)
-- US-12684 Indian Nations National Wildlife Area (National Wildlife Area) → on Ouachita Wildlife Management Area -  LeFlore Unit (~0 ac); Ouachita Wildlife Management Area - Leflore (~223,822 ac)
 - US-12739 Skipout Lake Recreation Site (Recreation Site) → on Black Kettle Wildlife Management Area (~0 ac); Black Kettle Wildlife Management Area (~30,288 ac)
 - US-13105 Field Station State Fishing Lake (State Fishing Lake) → on CLO Lands (~3,238,968 ac)
 - US-8119 Doc Hollis State Fishing Lake (State Fishing Lake) → on Sandy Sanders Wildlife Management Area (~36,669 ac); Sandy Sanders (~36,669 ac)
@@ -26,7 +23,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-0491 Tishomingo National Wildlife Refuge (National Wildlife Refuge)
 - US-0822 Fort Smith National Historic Site (National Historic Site)
-- US-10258 Ouachita National National Recreation Trail (National Recreation Trail)
+- US-10258 Ouachita National Recreation Trail (National Recreation Trail)
 - US-11018 Osage National Heritage State Trail (State Trail)
 - US-11182 James A Manning State Fish Hatchery (State Fish Hatchery)
 - US-11222 Stinchcomb Wildlife Refuge (Wildlife Refuge)
@@ -70,7 +67,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-8649 Tom Mix Museum State Historic Site (State Historic Site)
 - US-8650 White Hair Memorial State Historic Site (State Historic Site)
 - US-8651 Will Rogers State Historic Site (State Historic Site)
-- US-8659 Sparrow Hawk Wildlife Management Area (Wildlife Management Area)
 - US-9757 Butterfield Overland National Historic Trail (National Historic Trail)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -84,6 +80,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Hagerman National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~11,298 ac
 - Upper Kiamichi River Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~10,799 ac
 - Cross Bar Recreation Area ·  · BLM recreation management areas · official (BLM planning area) · ~9,856 ac
+- Robert S. Kerr National Botanical Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~7,971 ac
 - Buffalo Lake National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~7,718 ac
 - Osage Western Wall ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~7,317 ac
 - Honobia Creek Wildlife Management Area - Campbell ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~7,276 ac
@@ -112,9 +109,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Twin Points Recreation Area · PUB · US Army Corps of Engineers · ~760 ac
 - Dog Iron Ranch & Will Rogers Birthplace · SP · Unknown · ~574 ac
 - Arcadia ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~568 ac
-- Sparrowhawk Wildlife Management Area ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~561 ac
-- Sparrowhawk ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~561 ac
 - Glass Mountains State Park · SP · Unknown · ~559 ac
+- Beech Creek National Botanical Area ·  · Forest Service national designated areas (monuments, NRAs, scenic areas) · ~538 ac
 - Okmulgee/dripping State Park · SP · Unknown · ~523 ac
 - Hugo Wildlife Management Area - Hamden ·  · Oklahoma Dept. of Wildlife Conservation WMA map · ~469 ac
 - Hugo - Hamden ·  · ODWC (owner ODWC_GIS) (wild, state GIS table) · ~469 ac
