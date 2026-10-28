@@ -1,8 +1,52 @@
 {
- "updated": "2026-10-27T13:32:31+00:00",
+ "updated": "2026-10-28T13:38:48+00:00",
  "start": "2026-10-21T22:00:00+00:00",
  "days": 7,
  "items": [
+  {
+   "ref": "US-13627",
+   "prog": "pota",
+   "name": "Brackett Brook State Wildlife Area",
+   "st": [
+    "NH"
+   ],
+   "la": 43.0566,
+   "lo": -70.8756,
+   "found": "2026-10-28"
+  },
+  {
+   "ref": "US-13626",
+   "prog": "pota",
+   "name": "Sugar River State Trail",
+   "st": [
+    "NH"
+   ],
+   "la": 43.3667,
+   "lo": -72.1791,
+   "found": "2026-10-28"
+  },
+  {
+   "ref": "US-13625",
+   "prog": "pota",
+   "name": "Ammonoosuc State Trail",
+   "st": [
+    "NH"
+   ],
+   "la": 44.2128,
+   "lo": -71.9098,
+   "found": "2026-10-28"
+  },
+  {
+   "ref": "US-13624",
+   "prog": "pota",
+   "name": "Black Diamond State Trail",
+   "st": [
+    "NY"
+   ],
+   "la": 42.4552,
+   "lo": -76.5165,
+   "found": "2026-10-28"
+  },
   {
    "ref": "US-13623",
    "prog": "pota",
@@ -821,28 +865,6 @@
    "la": 43.6981,
    "lo": -116.592,
    "found": "2026-10-24"
-  },
-  {
-   "ref": "US-13615",
-   "prog": "pota",
-   "name": "Kirkpatrick Basin South Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 40.8003,
-   "lo": -97.7403,
-   "found": "2026-10-21"
-  },
-  {
-   "ref": "US-13614",
-   "prog": "pota",
-   "name": "Kirkpatrick Basin North Wildlife Management Area",
-   "st": [
-    "NE"
-   ],
-   "la": 40.829,
-   "lo": -97.6552,
-   "found": "2026-10-21"
   }
  ]
 }
