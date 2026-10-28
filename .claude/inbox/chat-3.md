@@ -7,6 +7,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 5:40 PM (Brandon: 'MI is ready'; chat 8 READY 5:50 PM): MICHIGAN on the members' Overlap Finder as BETA: 110 parks / 118 pairs, 2 very tight, 10 missing boundary.
 - Oct 28 9:40 AM: KENTUCKY + OHIO on the members-only Overlap Finder as BETA (drop-down 'Kentucky · BETA', 'Ohio · BETA' + a 🧪 BETA banner). KY 60 parks / 64 pairs (+3 very tight, 1 water only, 1 missing boundary); OH 49 parks / 25 pairs (+2 very tight, 2 water only). New members' box 'Water only: boat or kayak' (rule 9). Guests still get the members door; no menu change, no posts.
 - Oct 28 6:30 AM: WEEKLY RELEASE TRAIN box built: Club Room → 'What's New This Week' (top of the page + Club Room nav), members-only, reads kpc-release-train.json (empty: 'Nothing new yet … ships Sunday evening'); newest batch on top, older ones folded, the 2-fer / info notices added when a batch has those kinds. Plan below in the report.
 - Oct 28 5:00 AM: read HQ's note (nothing new; Spot cache = design only, nothing built). Noted: KY 2-fer data waits for chat 8's check + Brandon's GO.

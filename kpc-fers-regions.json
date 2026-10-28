@@ -25,6 +25,18 @@
    "beta": true,
    "showWaiting": true,
    "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "MI",
+   "label": "Michigan",
+   "files": [
+    "US-MI"
+   ],
+   "missing": "missing-mi",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   }
  ]
 }
