@@ -3,7 +3,7 @@ name: KPC Park Notes
 # Runs every 2 hours, or any time from the Actions tab with "Run workflow".
 on:
   schedule:
-    - cron: '41 */2 * * *'
+    - cron: '41 0,6,12,18 * * *'   # every 6 h (Brandon GO Oct 28: was every 2 h)
   workflow_dispatch:
 permissions:
   contents: write

@@ -199,3 +199,4 @@ BUILD (after the rulings): a 'ga-wrd' source in kpc_us_closures.py (chat 2's scr
 
 - Oct 28 (chat 5): Georgia closures LIVE; GA-R10: dash headings, 'This closure will affect…' and verb-less short lines are not items; long road sentences named by the road; tract not repeated.
 - Oct 28 (chat 5): YouTube comments bot (KPC-Data kpc-youtube-comments.yml): @ky.pota.campout + @kpc-n4kpc → staff room once a day, secrets YOUTUBE_API_KEY + KPC_DISCORD_STAFF_WEBHOOK, memory data/status/youtube-seen.json 60 days.
+- Oct 28 (chat 5, Brandon GO): SCHEDULE TRIM: kpc-youtube 23 11,23 UTC (2x/day); park-notes 41 0,6,12,18; campground-notes 53 1,7,13,19; community 17 2,8,14,20; reports 29 3,9,15,21 (every 6 h, UTC); KPC-Data sota-land 23 9 3 * * (monthly); state-leaders Wed 06:23 UTC only; Oct 21 one-shot crons gone (go-live, new-refs extra).

@@ -4,7 +4,7 @@ name: KPC Campground Reviews
 # YES in the sheet's Approved column. Runs every 2 hours, or any time from the Actions tab with "Run workflow".
 on:
   schedule:
-    - cron: '53 */2 * * *'
+    - cron: '53 1,7,13,19 * * *'   # every 6 h (Brandon GO Oct 28: was every 2 h)
   workflow_dispatch:
 permissions:
   contents: write

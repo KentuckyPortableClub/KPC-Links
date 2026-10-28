@@ -7,7 +7,6 @@ name: KPC new references
 on:
   schedule:
     - cron: '41 12 * * *'
-    - cron: '5 22 21 10 *'   # go-live evening, 5:05 PM Central
   workflow_dispatch:
     inputs:
       dry_run:

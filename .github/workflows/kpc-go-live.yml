@@ -8,8 +8,6 @@ name: KPC Go-Live (Oct 21, 2026)
 # It only does anything on that date while the HOLD files still exist, so it can't run twice.
 # To go live early, run it from the Actions tab and tick "go live now".
 on:
-  schedule:
-    - cron: '30 20 21 10 *'    # 20:30 UTC = 4:30 PM EASTERN / 3:30 PM Central (Brandon Oct 21: Zach is on Eastern, so go live on HIS clock to be safe)
   workflow_dispatch:
     inputs:
       now:

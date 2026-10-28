@@ -3,7 +3,7 @@ name: KPC Community
 # Runs every 2 hours, or any time from the Actions tab with "Run workflow".
 on:
   schedule:
-    - cron: '53 */2 * * *'
+    - cron: '17 2,8,14,20 * * *'   # every 6 h (Brandon GO Oct 28: was every 2 h)
   workflow_dispatch:
 permissions:
   contents: write

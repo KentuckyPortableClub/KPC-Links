@@ -7,8 +7,7 @@ name: KPC YouTube Feed
 #  - To add a channel: add a line to CHANNELS below and a matching entry in videos.html (CH).
 on:
   schedule:
-    - cron: '23 */2 * * *'
-    - cron: '55 21 21 10 *'   # one extra check at 4:55 PM Central today (Brandon Oct 21), when the videos go public
+    - cron: '23 11,23 * * *'   # twice a day, 6:23 AM / 6:23 PM Central (Brandon GO Oct 28: was every 2 h)
   workflow_dispatch:
 permissions:
   contents: write
