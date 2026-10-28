@@ -9,6 +9,7 @@ DIR = os.environ.get('HTTP_CACHE') or ''
 DAYS = float(os.environ.get('HTTP_CACHE_DAYS') or 21)
 OFFLINE = os.environ.get('HTTP_OFFLINE') == '1'
 STATS = {'hit': 0, 'miss': 0, 'kept': 0}
+TRACE = None   # Oct 28 (speed step 2): a list while a pair is computed = every answer it consumed (url, params, digest of the answer)
 
 
 def _path(url, params):
@@ -23,14 +24,18 @@ def cached(url, params, fetch):
     try:
         if p.exists() and time.time() - p.stat().st_mtime < DAYS * 86400:
             STATS['hit'] += 1
-            return json.loads(gzip.decompress(p.read_bytes()))
+            raw = gzip.decompress(p.read_bytes())
+            if TRACE is not None: TRACE.append((url, params, hashlib.sha1(raw).hexdigest()))
+            return json.loads(raw)
     except Exception: pass  # noqa: BLE001
     STATS['miss'] += 1
     if OFFLINE: raise RuntimeError('not in the bundle (offline stage)')
     j = fetch()
+    raw = json.dumps(j, separators=(',', ':')).encode()
+    if TRACE is not None: TRACE.append((url, params, hashlib.sha1(raw).hexdigest()))
     try:
         p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_bytes(gzip.compress(json.dumps(j, separators=(',', ':')).encode(), 6)); STATS['kept'] += 1
+        p.write_bytes(gzip.compress(raw, 6)); STATS['kept'] += 1
     except Exception: pass  # noqa: BLE001
     return j
 

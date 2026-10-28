@@ -1133,20 +1133,37 @@ class Frame:
     def area(self, gs):
         """inside ANY record; inside one record by the even-odd rule (holes stay holes)."""
         m = np.zeros((self.H, self.W), np.uint8)
+        t = np.zeros_like(m)
+        W16, H16 = self.W * 16, self.H * 16
         for g in gs:
-            gm = np.zeros_like(m)
+            gm = None
             for ring in g:
-                t = np.zeros_like(m)
-                cv2.fillPoly(t, [np.round(self.px(ring) * 16).astype(np.int32)], 1, lineType=cv2.LINE_8, shift=4)
-                gm ^= t
-            m |= gm
+                if not len(ring): continue
+                r = np.round(self.px(ring) * 16).astype(np.int32)
+                # Oct 28 (speed A3): a ring wholly outside the raster paints nothing: skipped; one scratch buffer instead of a new
+                # one per ring (cleared before each use): the same fillPoly, the same XOR, pixel for pixel
+                if r[:, 0].max() < -48 or r[:, 0].min() > W16 + 48 or r[:, 1].max() < -48 or r[:, 1].min() > H16 + 48: continue
+                t.fill(0)
+                cv2.fillPoly(t, [r], 1, lineType=cv2.LINE_8, shift=4)
+                if gm is None: gm = t.copy()
+                else: gm ^= t
+            if gm is not None: m |= gm
         return m
 
     def lines(self, ls, width_m):
         m = np.zeros((self.H, self.W), np.uint8)
         th = max(1, int(round(2 * width_m / self.cell)))
-        for l in ls:
-            cv2.polylines(m, [np.round(self.px(l) * 16).astype(np.int32)], False, 1, thickness=th, lineType=cv2.LINE_8, shift=4)
+        ls = [l for l in ls if len(l)]
+        if not ls: return m
+        # Oct 28 (speed A2): every segment through ONE px() call, then one polylines call (the same arithmetic on the same points,
+        # drawn the same way: identical to the one-segment-at-a-time loop); segments far outside the raster are left out
+        # (a line more than the pen's width outside the picture paints nothing)
+        n = np.fromiter((len(l) for l in ls), dtype=np.int64, count=len(ls))
+        P = np.round(self.px(np.concatenate([np.asarray(l, dtype=np.float64)[:, :2] for l in ls])) * 16).astype(np.int32)
+        parts = np.split(P, np.cumsum(n)[:-1])
+        pad = (th + 3) * 16
+        keep = [p for p in parts if p[:, 0].max() >= -pad and p[:, 0].min() <= self.W * 16 + pad and p[:, 1].max() >= -pad and p[:, 1].min() <= self.H * 16 + pad]
+        if keep: cv2.polylines(m, keep, False, 1, thickness=th, lineType=cv2.LINE_8, shift=4)
         return m
 
 
@@ -1252,13 +1269,27 @@ def merge(spots):
     return out
 
 
+SAMPLED = {}
+
+
 def sample(l, step):
+    """Points every `step` metres along line l. Oct 28 (speed A2): per segment the count n is found exactly as before (math), the n
+    points come from numpy with the same expression in the same order ((b-a)*i/n), so every coordinate is bit for bit the same;
+    the result is kept per line + step (the same trail line used to be re-sampled for every pair it is in)."""
+    k = (id(l), step)
+    hit = SAMPLED.get(k)
+    if hit is not None and hit[0] is l: return hit[1]
     out = []
     for a, b in zip(l, l[1:]):
         kx = 111320 * math.cos(math.radians(a[1])); d = math.hypot((b[0] - a[0]) * kx, (b[1] - a[1]) * 110574)
         n = max(1, int(d // step))
-        for i in range(n): out.append((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n))
-    out.append(tuple(l[-1][:2])); return out
+        if n == 1: out.append((a[0], a[1])); continue
+        i = np.arange(n, dtype=np.float64)
+        xs = a[0] + (b[0] - a[0]) * i / n; ys = a[1] + (b[1] - a[1]) * i / n
+        out.extend(zip(xs.tolist(), ys.tolist()))
+    out.append(tuple(l[-1][:2]))
+    SAMPLED[k] = (l, out)
+    return out
 
 
 # Oct 27 (chat 8's KPC_KY_RiverTrails_desk.md, HQ 3:21 PM; rule 5 applied right): a WATER-ROUTE national historic trail (Lewis and
@@ -1303,18 +1334,22 @@ def water_route_spots(lref, ls, oref, obox):
                         'water_route': True, 'water_unchecked': True}); continue
         water = F.area(wg)
         if not water.any(): continue
-        n, lab = cv2.connectedComponents(water, connectivity=8)
-        route = np.zeros_like(water)
+        # Oct 28 (speed A1): every blob's box + size from one connectedComponentsWithStats call (the same labels as
+        # connectedComponents: left = cc.min(), left + width - 1 = cc.max(), top = rr.min(), top + height - 1 = rr.max(),
+        # area = len(rr)), and the route mask from one isin over the accepted labels: the same pixels as the per-blob loop
+        n, lab, stats, _ = cv2.connectedComponentsWithStats(water, connectivity=8)
         kx, ky = F.kx, F.ky
+        accepted = []
         for L in range(1, n):
-            rr, cc = np.nonzero(lab == L)
-            if len(rr) < 4: continue
-            lo0, la1 = F.ll(int(cc.min()), int(rr.min())); lo1, la0 = F.ll(int(cc.max()), int(rr.max()))
+            left, top, w, h, k = (int(v) for v in stats[L])
+            if k < 4: continue
+            lo0, la1 = F.ll(left, top); lo1, la0 = F.ll(left + w - 1, top + h - 1)
             dx = np.maximum(0, np.maximum(lo0 - near[:, 0], near[:, 0] - lo1)) * kx
             dy = np.maximum(0, np.maximum(la0 - near[:, 1], near[:, 1] - la1)) * ky
             d = np.hypot(dx, dy)
-            if (d <= ROUTE_KM * 1000).sum() >= 4 and d.min() <= 1000: route |= (lab == L).astype(np.uint8)   # the route runs along it
-        if not route.any(): continue
+            if (d <= ROUTE_KM * 1000).sum() >= 4 and d.min() <= 1000: accepted.append(L)   # the route runs along it
+        if not accepted: continue
+        route = np.isin(lab, accepted).astype(np.uint8)
         wd = dt(1 - route, outside=1) * CELL
         ok = ((dt(land) * CELL >= STATION_IN) & (wd <= BANK + (CELL * .5 if PASS == 3 else CELL)) & (route == 0)).astype(np.uint8)
         if not ok.any(): continue
@@ -1393,10 +1428,55 @@ def grid_pairs(boxes):
     return pairs
 
 
+# ------------------------------------------------------------------ Oct 28 (speed step 2): reuse a pair's spots when NOTHING it depends on changed
+# A pair's spots in a pass are a pure function of: this code, the pass's constants, both parks' outlines / lines / pins / owner kind,
+# and every server answer the computation read (traced through the bundle cache, with a digest of each answer). The fingerprint of
+# all that is kept with the spots in data/fers/reuse-p<pass>-<tag>.json; next run, the pair is computed again only if any of it
+# differs (a changed answer, outline, line, pin, code or constant). Identical by construction: the same inputs, the same function.
+import copy, hashlib
+REUSE, REUSE_NEW, REUSE_FILE = {}, {}, None
+CODE_HASH = hashlib.sha1(b''.join(open(pathlib.Path(__file__).parent / n, 'rb').read() for n in ('kpc_fers.py', 'kpc_owned.py', 'kpc_http_cache.py'))).hexdigest()
+
+
+def _h(x): return hashlib.sha1(json.dumps(x, sort_keys=True, separators=(',', ':'), default=str).encode()).hexdigest()
+
+
+def pair_fp(a, b, G, LN):
+    ln = lambda r: {k: v for k, v in (LN.get(r) or {}).items() if k != 'date'} if r in LN else None   # the read date is not an input
+    return _h([CODE_HASH, PASS, CELL, DET, PREC, REGION, a, b, G.get(a), G.get(b), ln(a), ln(b), PINS.get(a), PINS.get(b), OWNED.get(a), OWNED.get(b),
+               a in KY_FS_MANAGED, b in KY_FS_MANAGED])
+
+
+def answers_unchanged(keys):
+    """Every server answer the pair read last time, read again (from the bundle when it is there): the same digest?"""
+    for url, params, digest in keys:
+        HC.TRACE = []
+        try: get(url, params)
+        except Exception: HC.TRACE = None; return False  # noqa: BLE001
+        same = bool(HC.TRACE) and HC.TRACE[-1][2] == digest
+        HC.TRACE = None
+        if not same: return False
+    return True
+
+
+def reuse_load():
+    global REUSE, REUSE_FILE
+    REUSE_FILE = OUT / f'reuse-p{PASS}-{RUN_TAG or REGION}.json'
+    REUSE_NEW.clear()
+    try: REUSE = json.load(open(REUSE_FILE)).get('pairs') or {}
+    except Exception: REUSE = {}  # noqa: BLE001
+
+
+def reuse_save():
+    if REUSE_FILE is None: return
+    save_json(REUSE_FILE, {'about': 'Speed step 2 (Oct 28): per pair the fingerprint of everything its spots depend on + the server answers it read + the spots; a pair is computed again only when something changed.', 'pass': PASS, 'date': time.strftime('%Y-%m-%d'), 'pairs': REUSE_NEW}, indent=None)
+
+
 TESTED = set()
 def find_spots(G, LN, pairs, counts):
     CURG.clear(); CURG.update(G)
     spots = []
+    reuse_load()
     # Oct 27 (Fable #8): pairs in map order (1-degree cells), so the ownership / water tiles in memory are the ones in use
     def cell_of(p):
         bx = [bbox_groups(G[r]) if r in G else bbox_lines(LN[r]['lines']) for r in p if r in G or r in LN]
@@ -1411,6 +1491,14 @@ def find_spots(G, LN, pairs, counts):
         box = inter(ba, bb, ROUTE_KM / 90 if (water_route(a, LN, PINS) or water_route(b, LN, PINS)) else 0.0008)
         if not box or not all(math.isfinite(v) for v in box): continue
         if box[2] - box[0] > 40 or box[3] - box[1] > 40: LOG.append(f'{a} + {b}: shared box too big (an outline crossing the date line?)'); continue
+        pk = f'{a}+{b}'; fp = pair_fp(a, b, G, LN); old = REUSE.get(pk)
+        if old and old.get('fp') == fp and answers_unchanged(old.get('keys') or []):
+            spots += copy.deepcopy(old['spots']); REUSE_NEW[pk] = old; counts['pairs reused (nothing changed)'] = counts.get('pairs reused (nothing changed)', 0) + 1
+            fx = old.get('fx') or {}   # the pair's side notes are replayed too (a map that did not answer, a water route left unchecked, log lines)
+            OWNED_FAIL.update(fx.get('owned_fail') or []); WATER_FAIL.extend(tuple(x) for x in fx.get('water_fail') or []); LOG.extend(fx.get('log') or [])
+            evict(box); continue
+        n_log, of0, wf0 = len(LOG), set(OWNED_FAIL), len(WATER_FAIL)
+        HC.TRACE = []
         try:
             if a in G and b in G: got = area_spots(G, [a, b], box)
             else:
@@ -1422,8 +1510,13 @@ def find_spots(G, LN, pairs, counts):
                         if o_ref in G: got += line_spots(l_ref, LN[l_ref]['lines'], o_ref, G[o_ref], False, box, LN[l_ref]['kind'])
                         elif o_ref in LN: got += line_spots(l_ref, LN[l_ref]['lines'], o_ref, LN[o_ref]['lines'], True, box, LN[l_ref]['kind']); break
             spots += got
+            seen_k = {}
+            for u, p, dg in HC.TRACE: seen_k[(u, json.dumps(p, sort_keys=True, default=str))] = [u, p, dg]
+            REUSE_NEW[pk] = {'fp': fp, 'keys': list(seen_k.values()), 'spots': copy.deepcopy(got),
+                             'fx': {'owned_fail': sorted(OWNED_FAIL - of0), 'water_fail': [list(x) for x in WATER_FAIL[wf0:]], 'log': LOG[n_log:]}}
         except Exception as e:  # noqa: BLE001
             LOG.append(f'{a} + {b}: {str(e)[:80]}')
+        HC.TRACE = None
         evict(box)
     # Oct 27 (chat 8): two water routes on the same bank of one park (Lewis and Clark + Trail of Tears at Ballard WMA) = a 3-fer
     wr = [x for x in spots if x.get('water_route') and not x.get('water_unchecked')]
@@ -1455,6 +1548,7 @@ def find_spots(G, LN, pairs, counts):
                 try: nxt += area_spots(G, s['refs'] + [c], [box[0] - .001, box[1] - .001, box[2] + .001, box[3] + .001])
                 except Exception as e: LOG.append(f"{'+'.join(s['refs'])} + {c}: {str(e)[:60]}")  # noqa: BLE001
         spots += nxt; level = [x for x in nxt if not x.get('masked_out')]
+    reuse_save()
     return spots
 
 
