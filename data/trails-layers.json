@@ -55,6 +55,15 @@
   ],
   "CA-NB": [
    "https://services2.arcgis.com/wCOMu5IS7YdSyPNx/arcgis/rest/services/Trails_Sentiers_TIMS_SGIS_ln_vw/FeatureServer/0"
+  ],
+  "WI": [
+   "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0"
+  ],
+  "MN": [
+   "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0"
+  ],
+  "WV": [
+   "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0"
   ]
  }
 }
