@@ -700,7 +700,7 @@ def evict(box):
     if n <= CACHE_TILES: return
     near = lambda x0, y0, sz: inter(box, [x0 * sz, y0 * sz, (x0 + 1) * sz, (y0 + 1) * sz], 1.0) is not None
     KO.evict(near)
-    for k in [k for k in NHDC if not near(k[0], k[1], .1)]: del NHDC[k]
+    for k in [k for k in NHDC if not near(k[0], k[1], .1)]: del NHDC[k]   # keys (i, j) and (i, j, 'd')
 
 
 NHD = 'https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer'
@@ -709,39 +709,80 @@ NHDC = {}
 
 
 NHD_DOWN = {'until': 0.0, 'fails': 0, 'pauses': 0}
-def nhd_water(box, rivers_only=False):
-    """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries)."""
-    if time.time() < NHD_DOWN['until']: return None   # Oct 27: the map is down (502/504): answer 'not checked' at once for 10 min
+# Oct 28 (HQ 12:21 AM): the water check must not depend on USGS being up that night. Every 0.1-degree water tile read live is
+# also kept in WATER_STORE (bundle/water: travels fetcher -> worker in the bundle and is kept between nights as the release
+# asset water-<tag>.tar.gz). When the live map does not answer, the last good copy is used and the row says so with its date
+# (rule 13: map_dates 'USGS water'). Live map AND saved copy both missing = None = NOT SURE, as before.
+WATER_STORE = os.environ.get('WATER_STORE') or ''
+WATER_MARK = []                     # dates of saved copies used since the caller last cleared it
+WATER_N = {'live': 0, 'saved': 0, 'missing': 0}
+
+
+def _wpath(i, jt): return pathlib.Path(WATER_STORE) / f'{i}_{jt}.json.gz'
+
+
+def _wsave(i, jt, feats):
+    if not WATER_STORE: return
     try:
-        if not NHDL:
-            for L in get(NHD, {'f': 'json'}).get('layers') or []:
-                nm = L.get('name', '').lower()
-                if nm == 'nhdarea': NHDL['area'] = L['id']
-                if nm == 'nhdwaterbody': NHDL['wb'] = L['id']
-        # pre-flight fix 11: big water (Great Lakes, big reservoirs) asked in 0.1-degree tiles, each tile once
-        out = []
-        for i in range(int(math.floor(box[0] / .1)), int(math.floor(box[2] / .1)) + 1):
-            for jt in range(int(math.floor(box[1] / .1)), int(math.floor(box[3] / .1)) + 1):
-                k = (i, jt, rivers_only)
-                if k not in NHDC:
-                    tb = [i * .1, jt * .1, (i + 1) * .1, (jt + 1) * .1]
-                    got = []
-                    for lay, where in (('area', 'FType = 460'), ('wb', 'FType IN (390, 436, 493)')):
-                        if lay not in NHDL or (rivers_only and lay == 'wb'): continue
-                        j = get(f'{NHD}/{NHDL[lay]}/query', {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
-                                                             'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
-                                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=2, timeout=90)
-                        got += [esri_rings(f.get('geometry')) for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
-                    NHDC[k] = got
-                out += NHDC[k]
-        NHD_DOWN['fails'] = 0
-        return out
-    except Exception as e:  # noqa: BLE001
-        NHD_DOWN['fails'] += 1
-        if NHD_DOWN['fails'] >= 2:   # Oct 27 KY run: 504s cost ~9 min a tile and pass 1 ran out of time after 28 pairs
-            NHD_DOWN['until'] = time.time() + 600; NHD_DOWN['fails'] = 0; NHD_DOWN['pauses'] += 1
-        if NHD_DOWN['pauses'] <= 3: LOG.append(f'NHD water: {str(e)[:80]}')
-        return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
+        p = _wpath(i, jt); p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_bytes(gzip.compress(json.dumps({'d': time.strftime('%Y-%m-%d', time.gmtime()), 'f': feats}, separators=(',', ':')).encode(), 6))
+    except Exception: pass  # noqa: BLE001
+
+
+def _wload(i, jt):
+    if not WATER_STORE: return None
+    try: return json.loads(gzip.decompress(_wpath(i, jt).read_bytes()))
+    except Exception: return None  # noqa: BLE001
+
+
+def _wlive(i, jt):
+    """One tile from the live USGS map: [[layer, rings], ...] (both layers, so a later rivers-only ask can use it too)."""
+    if not NHDL:
+        for L in get(NHD, {'f': 'json'}).get('layers') or []:
+            nm = L.get('name', '').lower()
+            if nm == 'nhdarea': NHDL['area'] = L['id']
+            if nm == 'nhdwaterbody': NHDL['wb'] = L['id']
+    tb = [i * .1, jt * .1, (i + 1) * .1, (jt + 1) * .1]
+    got = []
+    for lay, where in (('area', 'FType = 460'), ('wb', 'FType IN (390, 436, 493)')):
+        if lay not in NHDL: continue
+        j = get(f'{NHD}/{NHDL[lay]}/query', {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                             'spatialRel': 'esriSpatialRelIntersects', 'outFields': 'FType', 'returnGeometry': 'true', 'outSR': 4326,
+                                             'maxAllowableOffset': DET, 'geometryPrecision': PREC, 'f': 'json'}, tries=2, timeout=90)
+        got += [[lay, esri_rings(f.get('geometry'))] for f in j.get('features') or [] if esri_rings(f.get('geometry'))]
+    if len(NHDL) < 2: raise RuntimeError('USGS water layers not listed')
+    return got
+
+
+def nhd_water(box, rivers_only=False):
+    """USGS NHD High Resolution water areas in box (rivers = NHDArea StreamRiver; + lakes, reservoirs, estuaries).
+    Live first; the last good saved copy when the live map does not answer; None when neither has the tile."""
+    out = []
+    # pre-flight fix 11: big water (Great Lakes, big reservoirs) asked in 0.1-degree tiles, each tile once
+    for i in range(int(math.floor(box[0] / .1)), int(math.floor(box[2] / .1)) + 1):
+        for jt in range(int(math.floor(box[1] / .1)), int(math.floor(box[3] / .1)) + 1):
+            k = (i, jt)
+            if k not in NHDC:
+                feats = None
+                if time.time() >= NHD_DOWN['until']:
+                    try:
+                        feats = _wlive(i, jt); NHD_DOWN['fails'] = 0; WATER_N['live'] += 1; _wsave(i, jt, feats)
+                    except Exception as e:  # noqa: BLE001
+                        NHD_DOWN['fails'] += 1
+                        if NHD_DOWN['fails'] >= 2:   # Oct 27 KY run: 504s cost ~9 min a tile and pass 1 ran out of time after 28 pairs
+                            NHD_DOWN['until'] = time.time() + 600; NHD_DOWN['fails'] = 0; NHD_DOWN['pauses'] += 1
+                        if NHD_DOWN['pauses'] <= 3: LOG.append(f'NHD water: {str(e)[:80]}')
+                if feats is None:
+                    sv = _wload(i, jt)
+                    if sv is None:
+                        WATER_N['missing'] += 1
+                        return None   # Oct 27 (chat 8 KY note 3): a map that did not answer is NOT 'no water'
+                    feats = sv['f']; WATER_N['saved'] += 1
+                    NHDC[k + ('d',)] = sv['d']
+                NHDC[k] = feats
+            if NHDC.get(k + ('d',)): WATER_MARK.append(NHDC[k + ('d',)])
+            out += [g for lay, g in NHDC[k] if not (rivers_only and lay == 'wb')]
+    return out
 
 
 def pad_use(a, ref=None):
@@ -1852,6 +1893,14 @@ def covered(r, recs, parks, PIN):
     return False
 
 
+def water_date(s):
+    """Rule 13: a spot whose water came from the saved copy says so, with that copy's date."""
+    if WATER_MARK:
+        s.setdefault('map_dates', {})['USGS water'] = 'saved copy of ' + min(WATER_MARK) + ' (the live map did not answer)'
+        WATER_MARK.clear()
+    elif isinstance(s.get('map_dates'), dict): s['map_dates'].pop('USGS water', None)   # read live this time
+
+
 def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     """Pass 3: the rules decide what a spot that passed all three geometry passes is."""
     refs = s['refs']
@@ -1948,7 +1997,9 @@ def line_rows(s, LN):
                       'date': LN[r].get('date') or LDATE.get(f'data/trails/{r}.json') or 'not recorded', **({'districts': LN[r]['districts']} if LN[r].get('districts') else {}),
                       **({'note': 'approximate line (national historic trail, about 1:100,000)'} if nht else {})}
     s['line_source'] = src
-    if len(src) > 1 and all('note' in v for v in src.values()): s['note'] = 'both trail lines are approximate'
+    ap = [r for r, v in src.items() if 'note' in v]
+    if len(src) > 1 and len(ap) == len(src): s['note'] = 'approximate line: both trail lines are approximate'
+    elif ap: s['note'] = 'approximate line: ' + ', '.join(str(s.get('names', {}).get(r) or r) for r in ap)   # HQ Oct 28: cards say so
 
 
 def how_checked(s, parks, PIN):
@@ -2046,7 +2097,33 @@ def known_ok():
     return bool(k.get('pass')) and fresh, f"known answers {'PASS' if k.get('pass') else 'FAIL'} on {k.get('date')}: {k.get('found')} of {k.get('required')}"
 
 
+def water_prefetch():
+    """Oct 28 (HQ): fetcher stage, after passes 1 + 2: read (and keep in WATER_STORE) the USGS water tiles around every
+    spot this area has, so the worker's water check works from the saved copy if USGS is down later that night."""
+    import glob
+    boxes = []
+    for fn in sorted(glob.glob('data/fers/US-*.json')):
+        st = pathlib.Path(fn).stem
+        if ONLY and st not in ONLY and st[3:] not in ONLY: continue
+        try: d = json.load(open(fn))
+        except Exception: continue  # noqa: BLE001
+        for x in d.get('spots') or []:
+            b = x.get('box')
+            if not b and x.get('shape'):
+                xs = [p[0] for p in x['shape']]; ys = [p[1] for p in x['shape']]; b = [min(xs), min(ys), max(xs), max(ys)]
+            if b: boxes.append([b[0] - .01, b[1] - .01, b[2] + .01, b[3] + .01])
+    tiles = sorted({(i, j) for b in boxes for i in range(int(math.floor(b[0] / .1)), int(math.floor(b[2] / .1)) + 1)
+                    for j in range(int(math.floor(b[1] / .1)), int(math.floor(b[3] / .1)) + 1)})
+    for i, j in tiles:
+        if late(): break
+        nhd_water([i * .1 + .01, j * .1 + .01, i * .1 + .09, j * .1 + .09])
+    n = len(list(pathlib.Path(WATER_STORE).glob('*.json.gz'))) if WATER_STORE else 0
+    notice('2-fer water copy', f"{len(tiles)} water tiles near {len(boxes)} spots: {WATER_N['live']} read live, {WATER_N['saved']} from the saved copy, "
+                               f"{WATER_N['missing']} missing (live down and no saved copy); {n} tiles kept")
+
+
 def main():
+    if os.environ.get('WATER_PREFETCH') == '1': return water_prefetch()
     # Oct 27 (Fable's assembly-line review A5): the park list + trail lines live in KPC-Data (Step B); without them a pass would
     # run and quietly drop every trail pair. Stop instead, loudly.
     if REGION != 'world':
@@ -2107,8 +2184,10 @@ def main():
         for x in cand:
             if late(): break
             if any(r not in G for r in x['refs']): continue
+            WATER_MARK.clear()
             try: lc = land_check(x, G)
             except Exception as e: lc = 'not checked'; LOG.append(f"water {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+            water_date(x)
             n['checked'] += 1
             if lc == 'water': x['status'] = 'water only: boat or kayak'; x['list'] = '🚤 Water only: boat or kayak'; n['water only'] += 1
             elif lc == 'not checked': x['status'] = 'not sure: water not checked (the USGS water map did not answer): run pass 5'; n['still not checked'] += 1
@@ -2292,7 +2371,9 @@ def main():
                     if late():   # Fable #1: out of time = carried on by the next run, never a half-decided row
                         s['passes'][2] = 0; s['status'] = 'waiting for pass 3'; continue
                     evict(sbox(s))
+                    WATER_MARK.clear()
                     decide(s, parks, G, LN, PIN, today, saved_only, st_of)
+                    water_date(s)
             if PASS == 3: one_row_per_line_pair(d.get('spots', []), st_of, G, LN); tidy_rows(d.get('spots', []), PIN, today)
             d[f'pass{PASS}'] = today
             d['about'] = ABOUT   # Oct 26 6:41 PM (HQ): the house-rule wording travels with every save
