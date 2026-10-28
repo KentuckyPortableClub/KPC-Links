@@ -85,6 +85,10 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   // runner probe Oct 28) nor the nature-preserves layer, so it has no official outline yet (pin / agency map only). Card notes:
   const NOTES = { 'US-12752': 'Three units: Davis Bend, Rush Island Bottoms and Boiling Springs (Boiling Springs has no official outline yet: check the agency map). Rush Island Bottoms is open by boat only (paddle access at Thelma Stovall Park, Munfordville).' };
   for (const r in NOTES) if (parks[r]) parks[r].note = NOTES[r];
+  // Oct 28 (HQ, Brandon's point): the Boiling Springs unit = a labelled PIN (no polygon holds the point in PAD-US, OKNP's two layers,
+  // KDFWR's hunting areas or the state-park layer: runner probe Oct 28; the state server has no Hart County parcels)
+  const UNIT_PINS = { 'US-12752': [{ name: 'Boiling Springs unit', la: 37.2953451, lo: -85.8320279, src: 'Brandon Oct 28 2026; no official outline found (PAD-US, OKNP, KDFWR, state parks)' }] };
+  for (const r in UNIT_PINS) if (parks[r]) parks[r].unit_pins = UNIT_PINS[r];
   const missing = P.filter(x => !parks[x.c].tracts.length).map(x => x.c);
   nonum.sort((a, b) => a[1].localeCompare(b[1])); kffonly.sort((a, b) => a[1].localeCompare(b[1]));
   for (const r in parks) parks[r].tracts.sort((a, b) => b[2] - a[2]);
