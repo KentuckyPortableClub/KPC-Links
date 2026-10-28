@@ -9,7 +9,12 @@ Line sources, best first:
   2. OpenStreetMap route relations (Overpass) with the trail's name inside the state; labelled NOT OFFICIAL
 Each line must pass near the POTA pin (CHECK_KM) or it is not used: wrong-place matches are worse than none.
 Writes data/trails/<REF>.json (same format as the national trails) + data/trails/index-state.json
-[{ref,name,kind ST|NRT|TP,bbox,by,official,km}] and data/trails/state-report.json (found / missing, for KPC)."""
+[{ref,name,kind ST|NRT|TP,bbox,by,official,km}] and data/trails/state-report.json (found / missing, for KPC).
+Oct 28 (HQ tune + speed-up): polite (1 request / 2 s per host); service / layer descriptions read once per run (every park of
+a state used to re-read the same 40 services); a park that already has an OFFICIAL line read in the last REUSE_DAYS (60) is
+reused, not searched again (FULL=1 searches all; OpenStreetMap and missing parks are always searched again, for an upgrade);
+a new line under half the length of the saved one keeps the saved one; parks POTA no longer lists are taken out; a self-grade
+gate (Sheltowee Trace + Katy, Virginia Creeper, Greenbrier River lines) writes /tmp/kpc-gate.txt for the grade-me line."""
 import json, os, re, time, math, urllib.request, urllib.parse, datetime
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 STATES = (os.environ.get('STATES') or 'TN IN OH WV VA MO IL NC GA AL MI PA WI MN AR DE CO ID').split()  # Oct 27-28 chat 9 (HQ): WI, MN, AR, DE, CO, ID added with their official trail layers
@@ -36,12 +41,21 @@ MATCH_KM = 60.0  # pieces with the right name are collected from this far around
 # parks named 'Trail' that are NOT trails (a line there would mislead): Scioto Trail SP is a forest park
 SKIP = {'US-1990'}
 def note(t, m): print(f'::notice title={t}::' + str(m).replace('\n', ' ')[:900])
+GAP = float(os.environ.get('POLITE') or 2.0)   # seconds between two requests to the same host
+_LAST, _META = {}, {}
 def get(u, data=None, t=120):
     err = None
+    memo = data is None and re.search(r'\?f=json$', u)   # a service / layer description: the same all run long
+    if memo and u in _META: return _META[u]
     for i in range(3):
+        h = urllib.parse.urlsplit(u).netloc; w = _LAST.get(h, 0) + GAP - time.time()
+        if w > 0: time.sleep(w)
+        _LAST[h] = time.time()
         try:
             r = urllib.request.Request(u, data=data, headers=UA)
-            with urllib.request.urlopen(r, timeout=t) as f: return json.loads(f.read().decode('utf-8', 'replace'))
+            with urllib.request.urlopen(r, timeout=t) as f: j = json.loads(f.read().decode('utf-8', 'replace'))
+            if memo: _META[u] = j
+            return j
         except Exception as e: err = e; time.sleep(4 + 6 * i)
     raise err
 def km(a, b, c, d):
@@ -343,6 +357,28 @@ def hand_lines(ref):
         by = by or part.get('by') or ''
     return out, (by + ' (official layer, picked by hand)').strip()
 OUT_OF_TIME = False
+TODAY = datetime.date.today().isoformat()
+REUSE_DAYS = int(os.environ.get('REUSE_DAYS') or 60)
+FULL = os.environ.get('FULL') == '1'
+def fresh(ref):
+    x = IDX.get(ref)
+    if FULL or not x or not x.get('official') or not os.path.exists(f'{OUT}/{ref}.json'): return False
+    try: return (datetime.date.today() - datetime.date.fromisoformat(x.get('read') or '2026-10-26')).days < REUSE_DAYS
+    except Exception: return False  # noqa: BLE001
+REUSED, KEPT = [], []
+# Oct 28: parks POTA no longer lists come out of the index (only when the park lists really loaded)
+ALLREFS = set()
+for _fp in os.listdir('data/parkinfo'):
+    if re.fullmatch(r'US-[A-Z]{2}\.json|CA\.json', _fp):
+        try: ALLREFS |= set(json.load(open('data/parkinfo/' + _fp))['parks'])
+        except Exception: pass  # noqa: BLE001
+RETIRED = [r for r in IDX if r not in ALLREFS] if len(ALLREFS) > 15000 else []
+if len(RETIRED) > 20: note('State trails', f'{len(RETIRED)} parks look retired: too many to trust, none taken out'); RETIRED = []
+for r in RETIRED:
+    IDX.pop(r, None)
+    try: os.remove(f'{OUT}/{r}.json')
+    except Exception: pass  # noqa: BLE001
+if RETIRED: note('State trails', f'{len(RETIRED)} parks POTA no longer lists taken out: {" ".join(RETIRED[:20])}')
 for st, cand in jobs():
     got = 0
     for ref, v, iso in cand:
@@ -352,6 +388,12 @@ for st, cand in jobs():
             if not OUT_OF_TIME: note('State trails', f'stopped for time at {ref}; the parks not reached keep last run\'s results'); OUT_OF_TIME = True
             for _k, x in OLDROWS.get(ref, []): report.setdefault(_k, []).append(x)
             continue
+        if fresh(ref):   # Oct 28: an official line read lately is reused as it is
+            for _k, x in OLDROWS.get(ref, []):
+                if _k == 'found': report['found'].append(x)
+            if not any(_k == 'found' for _k, _ in OLDROWS.get(ref, [])):
+                o = IDX[ref]; report['found'].append([ref, o.get('name', v[0]), stc, o.get('by', ''), o.get('km', 0), 0])
+            REUSED.append(ref); got += 1; continue
         name, typ = v[0], v[2] or ''
         la, lo = (v[5], v[6]) if len(v) > 6 and v[5] is not None else LOC.get(ref, (None, None))
         if la is None: report['missing'].append([ref, name, stc, 'no pin']); continue
@@ -403,14 +445,42 @@ for st, cand in jobs():
         lines = [dp(l, 0.0003) for l in _u]
         total = sum(seglen(l) for l in lines)
         if kind(typ, name) == 'TP' and total < 4 and ref not in HAND: report['missing'].append([ref, name, stc, 'short: probably a park, not a trail']); continue
+        o = IDX.get(ref)
+        if o and o.get('km') and total < .5 * o['km'] and (o.get('official') or not off) and os.path.exists(f'{OUT}/{ref}.json'):
+            # Oct 28: a much shorter line than the saved one (a half-answered layer) never replaces it
+            KEPT.append(ref); note(ref, f'{name}: new line {round(total)} km, saved {o["km"]} km: the saved line is kept')
+            report['found'].append([ref, name, stc, o.get('by', ''), o['km'], round(near, 1)]); got += 1; continue
         xs = [p[0] for l in lines for p in l]; ys = [p[1] for l in lines for p in l]
         f = {'type': 'Feature', 'properties': {'ref': ref, 'name': name}, 'geometry': {'type': 'MultiLineString', 'coordinates': lines}}
         save_json(f'{OUT}/{ref}.json', f)
         IDX[ref] = {'ref': ref, 'name': name, 'kind': kind(typ, name), 'type': typ, 'st': stc, 'bbox': [round(min(xs), 4), round(min(ys), 4), round(max(xs), 4), round(max(ys), 4)],
-                    'by': by, 'official': off, 'km': round(total), 'kb': round(os.path.getsize(f'{OUT}/{ref}.json') / 1024)}
+                    'by': by, 'official': off, 'km': round(total), 'kb': round(os.path.getsize(f'{OUT}/{ref}.json') / 1024), 'read': TODAY}
         report['found'].append([ref, name, stc, by, round(total), round(near, 1)]); got += 1
     note(st if st == 'CANADA' else f'US-{st}', f'{got} of {len(cand)} trail parks drawn')
 save_json(f'{OUT}/index-state.json', sorted(IDX.values(), key=lambda x: (x['st'], x['name'])))
-report['agency'] = ALOG[-400:]
+try: _oldag = _old.get('agency', [])  # Oct 28: a run that searched nothing keeps the last search log
+except Exception: _oldag = []  # noqa: BLE001
+report['agency'] = (ALOG or _oldag)[-400:]
+for _k in ('found', 'missing', 'noline'): report[_k] = sorted(report.get(_k, []), key=lambda x: (str(x[2]), str(x[0])))   # a stable order: no churn
 save_json(f'{OUT}/state-report.json', report, indent=1)
-note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json)")
+note('State trails done', f"{len(report['found'])} drawn, {len(report['missing'])} not drawn (see data/trails/state-report.json); "
+                          f"{len(REUSED)} official lines reused, {len(KEPT)} saved lines kept over shorter ones")
+# ---------------------------------------------------------------- Oct 28 self-grade gate
+def _pts(fn):
+    try:
+        g = json.load(open(fn)); n = 0
+        for f in (g.get('features') or [g]):
+            gg = f.get('geometry') or {}; c = gg.get('coordinates') or []
+            n += len(c) if gg.get('type') == 'LineString' else sum(len(q) for q in c)
+        return n
+    except Exception: return 0  # noqa: BLE001
+why = []
+if _pts('ky-sheltowee.geojson') < 100: why.append('ky-sheltowee.geojson has no line')
+for ref, nm, mk in (('US-11181', 'Sheltowee Trace', 250), ('US-1766', 'Katy Trail', 250), ('US-9923', 'Virginia Creeper', 15), ('US-9742', 'Greenbrier River', 80)):
+    x = IDX.get(ref)
+    if not x or _pts(f'{OUT}/{ref}.json') < 10 or (x.get('km') or 0) < mk: why.append(f'{nm} ({ref}) lost its line')
+res = 'FAIL' if why else 'PASS'
+msg = f"{len(IDX)} state trail lines; {len(report['found'])} drawn, {len(REUSED)} reused" + ('; ' + '; '.join(why) if why else '')
+note('State trails gate', f'GATE {res} {msg}')
+try: open('/tmp/kpc-gate.txt', 'w').write(f"{res}\t{' '.join(STATES)[:200]}\t{msg[:400]}\n")
+except Exception: pass  # noqa: BLE001
