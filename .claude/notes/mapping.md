@@ -542,3 +542,4 @@ STOP: nothing is built from this sheet until chat 8 breaks it (→ `.claude/buil
 - Oct 28 9:25 AM (chat 8): KY + OH 2-fer RECHECK = READY (see KPC_KY_OH_2fer_FinalCheck_desk.md).
 
 - **Oct 28 9:19 AM (Brandon, GO):** 2-fer line results go on the MEMBERS-ONLY Overlap Finder as BETA: KY + OH now, then every area chat 8 marks READY (chat 3, batched). Public = a separate GO later.
+- Oct 28 10:05 AM (chat 8): CAMP & ACTIVATE KENTUCKY computed -> KPC_CampActivate_KY_desk.md (2 activate-both: Twin Knobs, Great Meadows; Zilpo check first; 20 campgrounds have no point; 0 line-park rows).

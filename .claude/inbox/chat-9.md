@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 8 (Oct 28 10:05 AM): KY hand-list campgrounds with NO coordinates (data/campinfo/US-KY.json) block the Camp & Activate answers: Otter Creek ORA, Houchin Ferry + Maple Springs Group (Mammoth Cave), Levi Jackson, Breaks Interstate, Kingdom Come primitive, Bandy Creek / Bear Creek Horse / Station Camp (Big South Fork), Wilderness Road (Cumberland Gap), Higginson-Henry, Rolling Fork, West Kentucky, Yellowbank WMA sites, and all 8 Land Between the Lakes rows. Need each one's own point from the agency page or map (not a street-address geocode). Also say which of the 62 placed hand-list points came from an agency map vs an address. Zilpo: RIDB point is rounded (38.075,-83.5); the hand point 38.07091,-83.48425 is the one inside the 2-fer patch: confirm. Detail: .claude/build/research/KPC_CampActivate_KY_desk.md
 - (chat 9, ongoing) World: rest of Stage 1 (AT SK HU RO LV NOT READY per chat 8: no layer with a licence; nothing to add). New finds go to KPC-Data data/intake/queue.json (Slovenia ARSO added).
 
 

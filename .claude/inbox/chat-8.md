@@ -2,7 +2,6 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 28 9:15 AM, Brandon: 'easy task for 8, we have most of that information'): AFTER the KY/OH line recheck, do CAMP & ACTIVATE for KENTUCKY yourself (RULE SHEET E, final in mapping.md + RULINGS.md CA-1..6). Campground POINTS already exist (KPC-Data data/campfed/US-KY.json federal, data/campstate-manual/ + chat 9's KY hand list), outlines = the US key + KY layers, 2-fer patches = data/fers (ruled, main + small tiers only). A short script is fine (point in outline, 15 m edge rule, 100 ft line rule, 5-mile nearby). Write `.claude/build/research/KPC_CampActivate_KY_desk.md`: per park the campgrounds INSIDE, every 'CAMP HERE, ACTIVATE BOTH', line-park rows, NEARBY, and a CHECK FIRST list with reasons; Sheet E's 10 examples answered first (Zilpo, Twin Knobs, Otter Creek, Houchin Ferry, Blue Heron, Cumberland Falls, LBL…). This list becomes the KNOWN ANSWERS for chat 10's bot when it runs the other states; nothing shows on the site until Brandon's GO.
 - HQ (Oct 28 7:55 AM): your US-10105 question is ALREADY RULED (Brandon 4:20-4:30 AM, mapping.md 'KY WILD RIVERS'): US-10105 Green (and US-10107 Big South Fork) = the KENTUCKY STATE WILD RIVER corridors we hold. Apply it in your recheck. Chat 2 fixes the merge + duplicates first, reruns KY + OH, then you recheck; the US + Canada queue waits for your READY.
 - (1) Harvester regrade when the 5 redone countries land (leads-AU/GB/DE/PL/JP still dated 04:18 AM = not redone yet; chunks 3-4 wrote other countries).
 - (2) After chat 2's key rebuild: RECOUNT the scoreboard (baseline KPC-Data data/review/scoreboard.json: US missing 944 + CA 540 = 1,484) + the per-park file data/review/scoreboard-parks.json for chat 1. The 06:25 AM 'Site data copied from KPC-Links (Step B3)' commit is a copy, not the rebuild.
@@ -15,6 +14,7 @@ Read .claude/inbox/README.md first.
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 10:05 AM: CAMP & ACTIVATE KENTUCKY done (KPC_CampActivate_KY_desk.md): Sheet E examples answered, 2 CAMP HERE ACTIVATE BOTH (Twin Knobs, Great Meadows), 35 parks with campgrounds inside, Zilpo = check first, 20 campgrounds with no point.
 - Oct 28 9:25 AM: KY + OH 2-fer RECHECK = READY (merge fixed, no duplicates, not sure 9 / 6). In KPC_KY_OH_2fer_FinalCheck_desk.md. Camp & Activate KY next.
 - Oct 28 8:40 AM: KY + OH 2-fer final check done (KPC_KY_OH_2fer_FinalCheck_desk.md). KENTUCKY NOT READY (merge swallows big 2-fers into small 3-fer patches, 8 duplicate river rows); OHIO READY after same fix.
 - Oct 28 6:45 AM: Georgia closures sheet broken (KPC_RuleSheet_GA_closures_desk.md; GA-R1..R9, leans GA5-GA9 all YES). Chat 5 can build once Brandon rules.
@@ -26,6 +26,7 @@ Read .claude/inbox/README.md first.
 - Oct 28: Trail of Tears x Big Rivers traced (guide -> ky-trail-parks.json; ToT 24.6 km from Big Rivers; L&C 0.6 km; Ballard/Boatwright/West KY stay).
 
 ## REPORT TO HQ (newest first)
+- Oct 28 10:05 AM (chat 8): Camp & Activate KY = KPC_CampActivate_KY_desk.md (known answers for chat 10). 99 campgrounds, 79 placed, 35 parks with campgrounds inside, 2 CAMP HERE ACTIVATE BOTH (Twin Knobs, Great Meadows), 0 line-park rows (Sheltowee nearest 85 m). Blue Heron and Cumberland Falls = inside only, as ruled. ZILPO = check first (RIDB point rounded 38.075,-83.500, 1.4 km from the hand-list point, which flips the answer). NO POINT for 20 (Otter Creek, Houchin Ferry, all of LBL, Levi Jackson, Breaks...): chat 9 needs real points from the agency pages. Trail of Tears / Lewis and Clark / Sheltowee have no outline in the key.
 - Oct 28 9:25 AM (chat 8): KY + OH 2-fer line = READY. Big 2-fers live on their own (Pioneer 7,707, Cane Creek 6,649, Clifty 12,364 ac...), no duplicates, ToT x L&C water only, NOT SURE 9 KY / 6 OH, reasons right. Chat 2 may start the US + Canada queue. Starting Camp & Activate KY.
 - Oct 28 8:40 AM (chat 8): KY = NOT READY. Known answers 18/18 and rulings show right, BUT the merge folds Pioneer Weapons/Zilpo/Cane Creek/Rockcastle NWSR/Clifty x Daniel Boone (up to 12,364 ac) into 1-592 ac 3-fer rows; 8 duplicate river rows; ToT x L&C must be water only. Fixes sent to chat 2. Ohio READY after the same fix (no swallow, 27 live, 14 not sure, reasons right). Do not start the whole US queue yet.
 - Oct 28 ~7:00 AM: inbox again: nothing new landed (harvest leads for AU/GB/DE/PL/JP still 04:18 AM; no new bot 'grade me' lines; no key rebuild). Did Brandon's Green River SNA questions (state land at 37.2948,-85.8325: no layer holds it; KHLCF 2019 report lists a 'Timber Lane (Brandon Oct 28 7:20 AM; was misread 'Timberlake')' tract 115.75 ac; his photo shows an OKNP boundary sign) and put 2 look-ups in chat 9's inbox.
