@@ -43,3 +43,4 @@ None in our key. Rec_Facils points (2017) are the only access list I found; MDWF
 
 ## 6. 2-fers to expect
 Confident (C, to be proven by polygons): national forest vs. each WMA wholly on its land (e.g. Bienville NF vs. Bienville WMA; Choctaw WMA inside Tombigbee NF): "same land, two park numbers". Hard: Natchez Trace Pkwy vs. Clarkco/Jeff Busby/Rocky Springs areas; Corps SRA vs. WMA on the same lake; Gulf Islands NS vs. Deer Island Coastal Park (adjacent, no overlap expected).
+- 2026-10-27 (desk): big-hole layers: Mississippi live host is gis.mississippi.edu (WMA 2019, State Parks 2019, Rec Facilities 2017; layer numbers unconfirmed); Michigan FMUs are NOT the 6 state forests; Corps/TVA/NC state parks: no polygon service found; Manitoba Parks = OpenMB licence. See research/KPC_BigHoles_desk.md.

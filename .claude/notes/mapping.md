@@ -377,3 +377,4 @@ GREY AREAS for Brandon (chat 8 adds more): (G1) show LOW-confidence outlines at 
 
 - Oct 27 (desk, chat 8): WORLD Stage 1 scouting done for all 28 countries: .claude/build/research/WORLD/ (25 files + KPC_W_Stage1_Summary_desk.md). Ready first: NO, SE, IE, LU, PL, AU, GB; the rest need adds.
 - Oct 27 (desk, chat 8): WORLD Stage 2 + 3 scouted: .claude/build/research/WORLD/ (KPC_X1..X4, KPC_Y_*, KPC_W_Stage23_Summary_desk.md). NZ first (DOC CC BY 4.0, owner data), then DO, Brazil; Brandon must lift the top-10 rule per country.
+- 2026-10-27 (desk): name-match rule sheet broken: research/KPC_RuleSheet_NameMatch_desk.md (3-4 of the 14 clashes join today, 8.8% of US parks have no kind, mixed layers). Big-hole layers: research/KPC_BigHoles_desk.md.

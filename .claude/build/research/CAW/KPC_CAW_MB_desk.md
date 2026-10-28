@@ -19,3 +19,4 @@ Riding Mountain NP is also a Biosphere Reserve CA-0083 (UNESCO zone, pin only). 
 Manitoba_Parks FeatureServer/0; Parks Canada places; CPCAD; NHN.
 ## 6. 2-fers
 Confident (C): Riding Mountain NP vs adjacent provincial WMAs (side by side); Duck Mountain PP vs Duck Mountain WMAs (WMA inside the park or adjoining; verify polygons).
+- 2026-10-27 (desk): Manitoba_Parks FeatureServer/0 licence = OpenMB Information and Data Use Licence (attribution); see KPC_BigHoles_desk.md item 8.

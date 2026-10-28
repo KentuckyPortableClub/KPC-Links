@@ -33,3 +33,4 @@ Access read: public fishing/boat access points. No state trail layer found; Indi
 
 ## 6. 2-fers to expect
 Confident (B): Hoosier NF vs. no state layers (separate owners). Hard: Monroe Lake SRAs vs. Hardin Ridge (USFS, on Corps lake) – touching. Nothing confident here.
+- 2026-10-27 (desk): see KPC_BigHoles_desk.md item 3 (ManagedLands_DNR_Open: use 'manager' as per-record kind).

@@ -35,3 +35,4 @@ Read: WMA facilities, public water access, DNR buildings, SNA parking. Add trail
 
 ## 6. 2-fers
 Likely (C): Willard Munger State Trail vs. Jay Cooke SP (trail runs through the park). Not sure: Gitchi Gami vs. Split Rock Lighthouse SP and Gooseberry Falls SP. Needs the trail lines first.
+- 2026-10-27 (desk): see KPC_BigHoles_desk.md item 4 (WMA layer already in key; date/licence not shown).

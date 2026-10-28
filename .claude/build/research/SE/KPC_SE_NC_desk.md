@@ -38,3 +38,4 @@ Access we read: Game_Land_Access, NCWRC_Boating_Access_Areas_view. **Not read:**
 ## 6. 2-fers to expect
 Confident (B): Pisgah National Forest game land vs. Pisgah NF (same land: "same land, two park numbers"); Nantahala NF vs. Nantahala game land; Uwharrie NF vs. Uwharrie game land; Croatan NF vs. Croatan game land; Great Smoky Mountains NP vs. nothing on the NC side.
 Not sure: Jordan Lake SRA vs. Jordan Lake game land (Corps owns both); Falls Lake SRA vs. Falls Lake game land; Lake James SP vs. adjacent game land; Hanging Rock SP vs. Dan River game land (agreement).
+- 2026-10-27 (desk): still no official NC State Parks polygon layer found; see KPC_BigHoles_desk.md item 7.
