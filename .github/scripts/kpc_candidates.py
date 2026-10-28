@@ -16,9 +16,13 @@ import kpc_near_miss as NM  # noqa: E402  (its loaders: lib(), main_words(), STO
 OUT = pathlib.Path('data/review/candidates-us-ca.json')
 NEAR_KM = 2.0
 KEEP = 6
-SKIP_TYPE = re.compile(r'histor(ic|ical) (site|district|monument|area|preservation)|state historic|heritage site|national memorial'
-                       r'|regional park|county|city|municipal|metro park|parkway|byway|scenic (highway|drive|road)'
-                       r'|(national|state|scenic|recreation|geologic|historic) trail|blm (backcountry airstrip|interpretive site|historic)', re.I)
+# Oct 28 (HQ, Brandon's WORK STYLE ruling): historic sites and county / city / regional parks are NOT skipped: they get an
+# outline on a SURE official match only, so they are listed apart ('sure_only': pin inside + same name; POTA gives no area,
+# so 'similar size' is left to the reviewer, with the polygon's acres shown). Byways, parkways, BLM single sites and trail LINES stay skipped.
+SKIP_TYPE = re.compile(r'parkway|byway|scenic (highway|drive|road)|(national|state|scenic|recreation|geologic|historic) trail'
+                       r'|blm (backcountry airstrip|interpretive site)', re.I)
+SURE_ONLY = re.compile(r'histor(ic|ical) (site|district|monument|area|preservation)|state historic|heritage site|national memorial'
+                       r'|regional park|county|city|municipal|metro park|blm historic', re.I)
 
 
 def notice(m): print('::notice title=Candidate finder::' + str(m).replace('\n', ' ')[:900], flush=True)
@@ -59,6 +63,14 @@ def cands(la, lo, name, kp, recs, norm, rec_name, rec_kinds, label, jidx, ref):
     return out[:KEEP]
 
 
+def put(res, ref, x):
+    if SURE_ONLY.search(x['t']):
+        x['cands'] = [c for c in x['cands'] if c['km'] == 0 and c['score'] == 1.0 and not c['joined_to']]
+        if x['cands']: res['sure_only'][ref] = x
+        return
+    res['parks'][ref] = x
+
+
 def us(res, jidx):
     K = NM.lib('kpc_us_key.py', '\nfor st in STATES:')
     K['CACHE'] = NM.CUS
@@ -87,7 +99,7 @@ def us(res, jidx):
             kp = K['kinds'](name) | K['kinds'](t)
             c = cands(la, lo, name, kp, recs, K['norm'], lambda a: a.get('Unit_Nm') or a.get('Loc_Nm') or '',
                       lambda a: a.get('_k') or set(), lambda a: a.get('Loc_Mang') or a.get('Mang_Name') or 'PAD-US', jidx, ref)
-            res['parks'][ref] = {'n': name, 't': t, 'st': st, 'kinds': sorted(kp), 'cands': c}
+            put(res, ref, {'n': name, 't': t, 'st': st, 'kinds': sorted(kp), 'cands': c})
 
 
 def ca(res, jidx):
@@ -113,7 +125,7 @@ def ca(res, jidx):
             kp = C['kinds'](name) | C['kinds'](t)
             c = cands(v[5], v[6], name, kp, recs, C['norm'], lambda a: a.get('n') or a.get('nf') or '',
                       lambda a: a.get('_k') or set(), lambda a: a.get('src') or a.get('mg') or 'CPCAD', jidx, ref)
-            res['parks'][ref] = {'n': name, 't': t, 'st': pv, 'kinds': sorted(kp), 'cands': c}
+            put(res, ref, {'n': name, 't': t, 'st': pv, 'kinds': sorted(kp), 'cands': c})
 
 
 def main():
@@ -121,7 +133,7 @@ def main():
                     'already read that hold the pin or lie within 2 km. READ ONLY: nothing is joined. score = share of the park\'s main name '
                     'words in the polygon name; km 0 = pin inside; joined_to = parks already joined to that polygon; STRONG = pin inside + '
                     'same kind + all main words + not joined elsewhere. Chat 8 reviews; it feeds Brandon\'s name-match rulings.',
-           'made': time.strftime('%Y-%m-%d'), 'skipped': [], 'pin_only': 0, 'no_pin': 0, 'parks': {}}
+           'made': time.strftime('%Y-%m-%d'), 'skipped': [], 'pin_only': 0, 'no_pin': 0, 'parks': {}, 'sure_only': {}}
     jidx = joined_index(sorted(pathlib.Path('data/us-key').glob('US-??.json')) + sorted(pathlib.Path('data/ca-key').glob('CA-??.json')))
     for fn in (us, ca):
         try: fn(res, jidx)
@@ -129,7 +141,7 @@ def main():
     P = res['parks'].values()
     strong = [x for x in P if sum(c['strong'] for c in x['cands']) == 1]
     res['summary'] = {
-        'parks_checked': len(res['parks']), 'skipped_pin_only': res['pin_only'], 'no_pin': res['no_pin'],
+        'parks_checked': len(res['parks']), 'sure_only_listed': len(res['sure_only']), 'skipped_pin_only': res['pin_only'], 'no_pin': res['no_pin'],
         'with_any_candidate': sum(1 for x in P if x['cands']),
         'ONE_strong_candidate': len(strong),
         'two_or_more_strong': sum(1 for x in P if sum(c['strong'] for c in x['cands']) > 1),
