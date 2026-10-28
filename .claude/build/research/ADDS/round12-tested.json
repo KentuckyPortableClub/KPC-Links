@@ -1,0 +1,272 @@
+{
+ "about": "Chat 9 round 12 (HQ Oct 28 12:50 AM, chat 8's KPC_HistoricSites_desk.md): state historic-boundary sources after the National Register count: NC HPO shapefile (find the monthly zip, size, date, licence; NO licence stated per the desk = list it until the HPO says yes, ruling Q6), Tennessee's own National Register polygons, Kentucky's National Register Landmarks (points or polygons?). Plus round 9 leftovers: Upper Thames conservation authority layer (OGL-Ontario), PEI provincial park polygons' fields. NPS units use NPS boundaries first. Results: round12-tested.json. + (HQ 12:52 AM) Idaho Parks' open-data hub: the DOWNLOADABLE state-park boundary file (not the live server, which times out from runners).",
+ "date": "2026-10-28",
+ "layers": [
+  {
+   "st": "TN",
+   "kind": "historic",
+   "ag": "TN Historical Commission (state National Register)",
+   "url": "https://tnmap.tn.gov/arcgis/rest/services/HISTORICAL/NATIONAL_REGISTER_TN/MapServer",
+   "note": "layer 2 = boundaries",
+   "answers": true,
+   "service": "Layers",
+   "licence": "",
+   "years_in_text": [],
+   "description": "National Register Public Information",
+   "layers": [
+    {
+     "id": 0,
+     "name": "National Register Of Historic Places Points",
+     "geom": "Point",
+     "nameField": "Resource_Name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "REFNUM",
+      "Resource_Name",
+      "Address",
+      "County",
+      "City",
+      "Listed_Date",
+      "Multiple_Name",
+      "NHL_Date",
+      "FILENET"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 2183,
+     "sample": [
+      "Church Circle District                  ",
+      "Adair Gardens Historic District         ",
+      "Ashwood Rural Historic District         ",
+      "Boatyard Historic District              ",
+      "Beersheba Springs Historic District     ",
+      "Andrew Johnson National Historic Site   ",
+      "Indiana Avenue Historic District        ",
+      "Kenner Manor Historic District"
+     ]
+    },
+    {
+     "id": 2,
+     "name": "National Register of Historic Places Boundaries",
+     "geom": "Polygon",
+     "nameField": "Resource_Name",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "REFNUM",
+      "Resource_Name",
+      "Address",
+      "County",
+      "City",
+      "Listed_Date",
+      "Multiple_Name",
+      "NHL_Date",
+      "FILENET",
+      "Shape_Length",
+      "Shape_Area"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 2047,
+     "sample": [
+      "Wooten Fallout Shelter",
+      "United States Post Office and Court Hous",
+      "Barretville Bank and Trust Company Build",
+      "Brown-Hancock House",
+      "Downtown Chattanooga Historic District",
+      "East Hill Cemetery                      ",
+      "Happy Holler Historic District          ",
+      "Higginbotham Turnpike"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "KY",
+   "kind": "historic",
+   "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_National_Register_Landmarks_WGS84WM/MapServer",
+   "answers": false,
+   "error": "{'code': 404, 'message': 'Service WGS84WM_Services/Ky_National_Register_Landmarks_WGS84WM/MapServer not found ', 'details': []}"
+  },
+  {
+   "st": "ON",
+   "kind": "land",
+   "ag": "Upper Thames River Conservation Authority",
+   "url": "https://services1.arcgis.com/d0ZCwU7eGKVeNiEE/arcgis/rest/services/Upper_Thames_River_Conservation_Authority/FeatureServer",
+   "note": "r9: OGL-Ontario; layer id + name field",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_licence": "Use Limitation     Open Government Licence – Ontario      You are encouraged to use the Information that is available under this licence with only a few conditions.     Using Information under this licence     1. Use of any Information indicates your acceptance of the terms below.     2. The Informa",
+   "item_modified": "2025-06-23",
+   "item_owner": "ltvca.earangor",
+   "item_org": "Conservation Ontario",
+   "item_title": "Upper_Thames_River_Conservation_Authority",
+   "layers": [
+    {
+     "id": 0,
+     "name": "Upper_Thames_River_Conservation_Authority",
+     "geom": "Polygon",
+     "nameField": "LEGAL_NAME",
+     "ownerField": "",
+     "typeField": "F_TYPE",
+     "fields": [
+      "FID",
+      "OGF_ID",
+      "LEGAL_NAME",
+      "COMMON_NAM",
+      "F_TYPE",
+      "CA_ID",
+      "AREA_IN_HA",
+      "AREA_IN_SQ",
+      "SYSTEM_CAL",
+      "SYSTEM_C_1",
+      "GENERAL_CO",
+      "GEOMETRY_U",
+      "EFFECTIVE_",
+      "Shape_Leng",
+      "Shape_Area",
+      "Area_km2",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2025-06-23",
+     "layer_copyright": "",
+     "records": 1,
+     "sample": [
+      "Upper Thames River Conservation Authorit"
+     ],
+     "type_values": [
+      "Land"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "PE",
+   "kind": "park",
+   "ag": "Government of PEI",
+   "url": "https://gis.princeedwardisland.ca/server/rest/services/GeoLincData/GeoLinc_provincial_park_polygon_ENV/MapServer/0",
+   "note": "r9: 46 polygons, no name field found: list all fields",
+   "answers": true,
+   "service": "GeoLinc_provincial_park_polygon_ENV",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "layers": [
+    {
+     "id": null,
+     "name": "GeoLinc_provincial_park_polygon_ENV",
+     "geom": "Polygon",
+     "nameField": "",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "OBJECTID",
+      "PARK",
+      "Shape",
+      "Shape.STArea()",
+      "Shape.STLength()"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "",
+     "records": 46
+    }
+   ]
+  }
+ ],
+ "searches": [],
+ "orgs": [],
+ "hubs": [
+  {
+   "st": "ID",
+   "items": "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/all/items?q=park&limit=100",
+   "note": "IDPR hub datasets (titles, item ids, urls)",
+   "error": "HTTP Error 400: Bad Request"
+  },
+  {
+   "st": "ID",
+   "items": "https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections/all/items?q=boundary&limit=100",
+   "note": "IDPR hub: boundary datasets",
+   "error": "HTTP Error 400: Bad Request"
+  }
+ ],
+ "pages": [
+  {
+   "st": "NC",
+   "url": "https://www.hpo.nc.gov/gis-maps-and-data",
+   "note": "NC HPO: the monthly zip address + any terms",
+   "status": 200,
+   "ctype": "text/html; charset=UTF-8",
+   "bytes": 72004,
+   "links": [
+    "https://livingatlas.arcgis.com/topoexplorer/index.html",
+    "https://nc.maps.arcgis.com/home/group.html?sortField=modified&amp;sortOrder=desc&amp;categories=%2FCategories%2FHPOWEB&amp;id=d56ec9c8aa77423b931f4d359f103ae6#content",
+    "https://nc.maps.arcgis.com/home/group.html?sortField=modified&amp;sortOrder=desc&amp;categories=%2FCategories%2FNCHPO+Story+Maps&amp;id=d56ec9c8aa77423b931f4d359f103ae6#content",
+    "https://www.arcgis.com/home/webmap/viewer.html?webmap=91e02b76dce4470ebd7ec240ad202a04"
+   ],
+   "hits": [
+    "NC HPO Skip to main content An official website of the State of North Carolina An official website of NC How you know State Government websites value user privacy. To learn more, view our full privacy policy . Secure websites use HTTPS certificates. A lock icon or https:// means you’ve safely connected",
+    "na An official website of NC How you know State Government websites value user privacy. To learn more, view our full privacy policy . Secure websites use HTTPS certificates. A lock icon or https:// means you’ve safely connected to the official website. Utility Menu DNCR Careers Contact Us Main menu Sur",
+    "Us Search Home Survey and National Register GIS Maps and Data While the North Carolina State Historic Preservation office GIS program is officially housed within the Survey &amp; National Register Branch, the GIS team functionally supports all the geographic needs of the HPO and, by extension, architec",
+    " Discover a story about NC now! Those with questions can contact Andrew Edmonds at andrew.edmonds@ncdcr.gov or 919.814.6592. GIS Data Download HPOWEB users who need to perform spatial analyses on HPO data within their own GIS systems may download this zipped file, which is updated monthly. &nbsp;This z",
+    "r.gov or 919.814.6592. GIS Data Download HPOWEB users who need to perform spatial analyses on HPO data within their own GIS systems may download this zipped file, which is updated monthly. &nbsp;This zipped file name includes the date on which the extraction of data was made from the HPO geodatabase. &",
+    " GIS Data Download HPOWEB users who need to perform spatial analyses on HPO data within their own GIS systems may download this zipped file, which is updated monthly. &nbsp;This zipped file name includes the date on which the extraction of data was made from the HPO geodatabase. &nbsp;Users are encouraged ",
+    "ers who need to perform spatial analyses on HPO data within their own GIS systems may download this zipped file, which is updated monthly. &nbsp;This zipped file name includes the date on which the extraction of data was made from the HPO geodatabase. &nbsp;Users are encouraged to check HPOWEB for a li",
+    "ile, which is updated monthly. &nbsp;This zipped file name includes the date on which the extraction of data was made from the HPO geodatabase. &nbsp;Users are encouraged to check HPOWEB for a live view of the HPO geodatabase, which is updated with new features (and attributes) on a daily basis. &nbsp;",
+    "the extraction of data was made from the HPO geodatabase. &nbsp;Users are encouraged to check HPOWEB for a live view of the HPO geodatabase, which is updated with new features (and attributes) on a daily basis. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NCHPO_GISdata_2026-10-02.zip (27 MB) Please consider f",
+    "r a live view of the HPO geodatabase, which is updated with new features (and attributes) on a daily basis. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NCHPO_GISdata_2026-10-02.zip (27 MB) Please consider filling out this 1-minute feedback form to help us understand who uses historic resource data and how ",
+    "geodatabase, which is updated with new features (and attributes) on a daily basis. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; NCHPO_GISdata_2026-10-02.zip (27 MB) Please consider filling out this 1-minute feedback form to help us understand who uses historic resource data and how we can improve its deli",
+    "p; &nbsp; &nbsp; &nbsp; &nbsp; NCHPO_GISdata_2026-10-02.zip (27 MB) Please consider filling out this 1-minute feedback form to help us understand who uses historic resource data and how we can improve its delivery. &nbsp;Thanks! The zipped file contains three shapefiles used to display all the historic"
+   ]
+  },
+  {
+   "st": "ID",
+   "url": "https://idpr-data-idaho.hub.arcgis.com/api/v3/datasets?q=state%20park%20boundary&page[size]=50",
+   "note": "hub v3: dataset ids + download links",
+   "status": 200,
+   "ctype": "application/json; charset=utf-8",
+   "bytes": 2265395,
+   "links": [
+    "http://dnr.alaska.gov/lrisservices/ls_proxy/document?static_pickup=ASP_Park_Boundary.zip",
+    "http://fwp.mt.gov/gisData/shapefiles/fwpLandsPolys.zip",
+    "http://services2.arcgis.com/8krRUWgifzA4cgL3/arcgis/rest/services/ParkBoundary1892/FeatureServer",
+    "http://www.parks.ca.gov/pages/862/files/caStateParkBdysMapLinks201603e.zip",
+    "https://arcgis.dnr.alaska.gov/arcgis/rest/services/OpenData/Recreational_ParkBoundary/MapServer",
+    "https://csparks.maps.arcgis.com/sharing/rest/content/items/a3b683c226174be5a31f6ab693e6ccaa/data",
+    "https://data-soa-dnr.opendata.arcgis.com/datasets/state-park-boundary",
+    "https://dnr.alaska.gov/arcgis/rest/services/Recreational/StateParkBoundary/FeatureServer",
+    "https://dnr.alaska.gov/arcgis/rest/services/Recreational/StateParkBoundary/MapServer",
+    "https://experience.arcgis.com/experience/172203152f594bf2aec0cc21a5ba6390",
+    "https://gis.eauclairecounty.gov/agsserver/rest/services/BaseLayers/Park_Boundary/FeatureServer",
+    "https://gis.ne.gov/Enterprise/rest/services/Nebraska_State_Boundary/FeatureServer",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/09dfe643ebf64d2cb2315212e334119b_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/0f8d19168cc4408da4aac5b12a0015b9_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/135293641ab448ffb2819f1deb5db7e0_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/1fdc2af189014f3f9ee0742a7d06524c_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/2308970e941d47eea01150eb9e4e1007_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/2399ad4266224fc5bf74e4b485dde52a_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/247f2dbada414b0ba9a93e1e75bbbb13_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/266d124c24d640b28d4bb3b7ee84b027_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/26be74aa58ce44fb87ca79fbcdfa5b28_2",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/272d4d8e0000445fb2e08243f32df224_9",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/2c0fa357591f429bb8cc4a7a1f1646b2_1",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/2d84e560c8f947d8bdd57b630f8861e7_2",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/3278299dbbfb4684ad7e42175930a8a5_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/3cece75d8db143a1a99b7a112714c20a_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/3d0983a72b144dd887dd094ce96b93d4_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/4d033695b9c142e2b7f899129da3b692",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/4f535c4cbc9d4ca98fc412b2f85217c7_0",
+    "https://idpr-data-idaho.hub.arcgis.com/api/es/datasets/52b65631e19c43548ddbf89cd97fbc99_0"
+   ]
+  }
+ ]
+}
