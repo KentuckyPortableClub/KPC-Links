@@ -49,21 +49,39 @@ def load(p, d):
 
 # ---------------------------------------------------------------- today's lists
 POTA_FAILED = set()   # states whose list could not be read today (Kentucky must be read for the retired check)
+LOCN = {}             # parks per state read today (saved as seen['locn'] for tomorrow's short-state check)
 
 
 def pota():
     locs = sorted({l['locationDesc'] for l in get('https://api.pota.app/locations') if str(l.get('locationDesc', '')).startswith('US-')})
-    out, bad = {}, 0
+    out, bad, failed = {}, 0, []
+
+    def one(d):
+        try: return get(f'https://api.pota.app/location/parks/{d}')
+        except Exception: return None  # noqa: BLE001
+    got = {}
     for d in locs:
-        try: L = get(f'https://api.pota.app/location/parks/{d}')
-        except Exception: bad += 1; POTA_FAILED.add(d); continue  # noqa: BLE001
+        got[d] = one(d)
+        if got[d] is None: failed.append(d)
+        time.sleep(.2)
+    if failed:   # Oct 28: one more try for a state that timed out, so one hiccup does not trip the gate
+        time.sleep(20)
+        for d in failed: got[d] = one(d); time.sleep(1)
+    prevn = seen.get('locn', {})   # parks per state yesterday: a state that comes back short counts as not read
+    for d in locs:
+        L = got[d]
+        n0 = prevn.get(d, 0)
+        if not isinstance(L, list) or (n0 >= 10 and len(L) < 0.9 * n0):
+            bad += 1; POTA_FAILED.add(d)
+            if isinstance(L, list): notice('New references: POTA', f'{d} came back short ({len(L)} vs {n0} yesterday): treated as not read today.')
+            continue
+        LOCN[d] = len(L)
         for p in L:
-            ref = p.get('reference')
+            ref = p.get('reference') if isinstance(p, dict) else None
             if not ref: continue
             r = out.setdefault(ref, {'name': p.get('name', ''), 'st': [], 'la': p.get('latitude'), 'lo': p.get('longitude')})
             st = d.split('-', 1)[1]
             if st not in r['st']: r['st'].append(st)
-        time.sleep(.2)
     if bad > 2: raise RuntimeError(f'{bad} POTA states failed')
     return out
 
@@ -185,13 +203,57 @@ items = [i for i in feed.get('items', []) if i.get('found', '') >= (NOW.date() -
 have = {(i['prog'], i['ref']) for i in items}
 changed, summary = False, []
 TODAYS = {}   # today's official lists that passed the checks (search lists + retired check)
+# Oct 28 GATE (HQ tune pass): POTA API hiccup guard. Yesterday's exact list = everything seen minus seen['off'] (refs that were
+# missing yesterday). FAIL (nothing saved for that program today, one notice): the 3 known Kentucky parks missing, or more than
+# 2% of yesterday's list gone at once. More than 1% gone = read the whole list a second time; only refs missing BOTH times leave.
+KNOWN = ('US-1264', 'US-8144', 'US-4484')
+DROP_MAX, RETIRE_MAX = 0.02, 0.01
+CONFIRMED = set()   # programs whose losses were confirmed by a second read today
+LOCPFX = {'pota': ('POTA', re.compile(r'^US-')), 'kff': ('WWFF', re.compile(r'^KFF-')), 'sota': ('SOTA', re.compile(r'^(W\d|K[HLP]\d)'))}
+
+
+def yesterday(prog):
+    if prog in seen.get('off', {}): return set(seen.get(prog, [])) - set(seen['off'][prog])
+    try:   # first run with the gate: the Finder's search list is yesterday's list
+        k, rx = LOCPFX[prog]
+        return {r[1] for r in json.loads(pathlib.Path('locations.json').read_text(encoding='utf-8')) if r[0] == k and rx.match(str(r[1]))}
+    except Exception: return set()  # noqa: BLE001
+
+
+def gate(prog, fn, cur, floor):
+    """Returns today's list (maybe merged with a second read) or None = do not use it today."""
+    global POTA_FAILED
+    P = prog.upper()
+    prev = yesterday(prog)
+    miss = [k for k in KNOWN if k not in cur] if prog == 'pota' else []
+    gone = prev - set(cur)
+    why = (f'only {len(cur)} read (floor {floor})' if len(cur) < floor else
+           f'known parks missing: {", ".join(miss)}' if miss else
+           f'{len(gone)} of {len(prev)} gone at once (> {DROP_MAX:.0%})' if prev and len(gone) > DROP_MAX * len(prev) else '')
+    if why:
+        notice(f'New references: {P}', f'GATE FAIL {why}; nothing saved for {P} today (POTA/WWFF/SOTA hiccup guard).'); return None
+    if prev and len(gone) > RETIRE_MAX * len(prev):
+        f1 = set(POTA_FAILED); POTA_FAILED.clear()
+        time.sleep(60)
+        try: cur2 = fn()
+        except Exception as e:  # noqa: BLE001
+            notice(f'New references: {P}', f'GATE FAIL {len(gone)} gone and the confirming read failed ({e}); nothing saved for {P} today.'); return None
+        POTA_FAILED = f1 & POTA_FAILED if prog == 'pota' else f1
+        for k, v in cur2.items(): cur.setdefault(k, v)
+        CONFIRMED.add(prog)
+        notice(f'New references: {P}', f'GATE PASS {len(cur)} read; {len(gone)} gone on the first read, {len(prev - set(cur))} still gone on the second read.')
+    else:
+        notice(f'New references: {P}', f'GATE PASS {len(cur)} read (yesterday {len(prev)}, {len(gone)} gone, known parks present).')
+    return cur
+
+
 for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota, 25000)):
     try: cur = fn()
     except Exception as e:  # noqa: BLE001
         notice(f'New references: {prog.upper()}', f'Could not read today ({e}); skipped.'); continue
     old = set(seen.get(prog, []))
-    if len(cur) < floor or (old and len(cur) < 0.9 * len(old)):
-        notice(f'New references: {prog.upper()}', f'Only {len(cur)} read (last time {len(old)}); skipped today.'); continue
+    cur = gate(prog, fn, cur, floor)
+    if cur is None: continue
     TODAYS[prog] = cur
     new = sorted(set(cur) - old)
     if not old:
@@ -206,6 +268,8 @@ for prog, fn, floor in (('pota', pota, 10000), ('kff', kff, 4000), ('sota', sota
         summary.append(f'{prog.upper()}: {len(cur)} today, {len(new)} new' + (f" ({', '.join(new[:8])}{'…' if len(new) > 8 else ''})" if new else ''))
     # keep refs that dropped off too (a park that comes back is not 'new')
     seen[prog] = sorted(old | set(cur))
+    seen.setdefault('off', {})[prog] = sorted(set(seen[prog]) - set(cur))   # missing today (yesterday's list for the gate)
+    if prog == 'pota': seen['locn'] = {**seen.get('locn', {}), **LOCN}
     changed = True
 notice('New references', '\n'.join(summary) or 'Nothing read.')
 
@@ -234,6 +298,17 @@ if 'pota' in TODAYS and 'US-KY' not in POTA_FAILED:
         offky = {r: c for r, c in TODAYS['pota'].items() if 'KY' in c.get('st', [])}
         if len(offky) >= max(150, 0.9 * len(mine)):
             RETIRED_NOW = sorted(set(mine) - set(offky))
+            if len(RETIRED_NOW) > RETIRE_MAX * len(mine) and 'pota' not in CONFIRMED:
+                # GATE (Oct 28): more than 1% of Kentucky's parks at once needs a second read of Kentucky before anything leaves
+                time.sleep(30)
+                try:
+                    ky2 = {p.get('reference') for p in get('https://api.pota.app/location/parks/US-KY') if isinstance(p, dict)}
+                    if len(ky2) < 0.9 * len(offky): raise RuntimeError(f'second read short ({len(ky2)})')
+                    RETIRED_NOW = [c for c in RETIRED_NOW if c not in ky2]
+                    notice('Retired parks', f'GATE PASS second read of Kentucky: {len(RETIRED_NOW)} still gone')
+                except Exception as e:  # noqa: BLE001
+                    notice('Retired parks', f'GATE FAIL {len(RETIRED_NOW)} Kentucky parks gone but the confirming read failed ({e}): nothing removed')
+                    RETIRED_NOW = []
             BACK_NOW = sorted(set(SW.retired()) & set(offky))
             if BACK_NOW and not DRY: SW.drop_retired(BACK_NOW)
             if RETIRED_NOW and not DRY:
