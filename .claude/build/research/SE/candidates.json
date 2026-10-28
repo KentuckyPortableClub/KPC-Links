@@ -1,0 +1,20 @@
+{"about": "Southeast candidate layers to add before the line reaches the region (chat 8's source book + HQ Oct 27 9:46 PM). Probed by .github/scripts/kpc_se_probe.py from a GitHub runner, because chat sessions cannot reach state map servers. 'kind' is the park kind the answer key would join; 'owner' = the field that carries land ownership (rule 14).",
+ "layers": [
+  {"st": "MS", "kind": "wild", "ag": "MDWFP via MARIS", "nm": "", "url": "https://www.maris.state.ms.us/server/rest/services/Vector/WildL_Areas/MapServer", "note": "WMAs + refuges + 16th Section leases + state parks as TYPE values; 2019, no use limits"},
+  {"st": "MS", "kind": "park", "ag": "MDWFP via MARIS", "nm": "", "url": "https://www.maris.state.ms.us/server/rest/services/Vector/State_Parks/MapServer", "note": "53 polygons, 2019, no use limits"},
+  {"st": "MS", "kind": "forest-own", "ag": "US Forest Service via MARIS", "nm": "", "url": "https://www.maris.state.ms.us/server/rest/services/Vector/NatFor_OwnerBnd/MapServer", "note": "OWNERSHIP, not the proclamation line (rule 1b)"},
+  {"st": "VA", "kind": "wild", "ag": "Virginia DWR", "nm": "WMA_NAME", "owner": "Owner", "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0", "note": "Owner field = rule 14"},
+  {"st": "TN", "kind": "wild", "ag": "TWRA", "nm": "NAME", "owner": "OWNERSHIP", "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3", "note": "OWNERSHIP + OWNCODE = rule 14"},
+  {"st": "FL", "kind": "wild", "ag": "Florida FWC", "nm": "", "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1", "note": "'general reference only' (licence check)"},
+  {"st": "WV", "kind": "trail", "ag": "WV DOT / State Rail Authority", "nm": "", "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0", "note": "rail trails = line parks"},
+  {"st": "TN", "kind": "preserve", "ag": "TDEC Division of Natural Areas", "nm": "", "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer", "note": "already read as sgtnb: confirm the NAME field for the 7 SNAs that look unjoined"}
+ ],
+ "servers": [
+  {"st": "FL", "what": "SFWMD conservation lands", "url": "https://gis.sfwmd.gov/arcgis/rest/services"},
+  {"st": "FL", "what": "SWFWMD lands", "url": "https://www25.swfwmd.state.fl.us/arcgis/rest/services"},
+  {"st": "FL", "what": "NWFWMD lands", "url": "https://gis.nwfwater.com/arcgis/rest/services"},
+  {"st": "TN", "what": "TVA public land / reservoir boundaries", "url": "https://gisdata.tva.gov/arcgis/rest/services"},
+  {"st": "TN", "what": "TVA (second host)", "url": "https://gis.tva.gov/arcgis/rest/services"},
+  {"st": "NC", "what": "NC state parks / trails (none found by the desk)", "url": "https://services.nconemap.gov/secure/rest/services"},
+  {"st": "MS", "what": "MARIS root (other park layers)", "url": "https://www.maris.state.ms.us/server/rest/services"}
+ ]}

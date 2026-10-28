@@ -1,0 +1,27 @@
+name: KPC Southeast source probe (temporary, once)
+# Oct 27 (HQ): tests chat 8's Southeast candidate layers from a runner, because chat sessions cannot reach state map servers.
+# Reads nothing the 2-fer runs read and writes only .claude/build/research/SE/candidates-tested.json. Never fails. DELETE after use.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-se-probe
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 .github/scripts/kpc_se_probe.py || true
+        continue-on-error: true
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .claude/build/research/SE/candidates-tested.json 2>/dev/null || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -qm 'Southeast source probe results'
+          for i in 1 2 3; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*8)); done
+          true
