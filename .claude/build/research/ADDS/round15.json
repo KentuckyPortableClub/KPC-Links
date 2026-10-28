@@ -1,0 +1,13 @@
+{
+ "about": "Chat 9 round 15 (Oct 28): Idaho Parks' datasets by its ArcGIS Online organisation (the hub's own search API refuses requests), Alaska DNR's StateParkBoundary service (found in round 12's index), round 11 follow-ups (ND Parks' NDPRD_Boundaries, Ohio gis2 Ohio_Conservation_Lands + ODNR_Lands_External). Results: round15-tested.json.",
+ "searches": [
+  {"st": "ID", "q": "orgid:CNPdEkvnGl65jCX8 AND (park OR parks OR boundary OR boundaries)", "why": "IDPR's own items (state park boundaries)"},
+  {"st": "ID", "q": "\"Idaho Department of Parks and Recreation\" AND (\"state park\" OR \"state parks\") AND (boundary OR boundaries OR polygons)", "why": "IDPR boundary items anywhere"}
+ ],
+ "layers": [
+  {"st": "AK", "kind": "park", "ag": "Alaska DNR", "url": "https://dnr.alaska.gov/arcgis/rest/services/Recreational/StateParkBoundary/FeatureServer", "note": "r12 index: AK state park boundary (vs key's Recreational_ParkBoundary/2)"},
+  {"st": "ND", "kind": "park", "ag": "ND Parks and Recreation", "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer", "note": "agency's own account? vs NDGISHUB_State_Parks (21)"},
+  {"st": "OH", "kind": "land", "ag": "Ohio DNR", "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer", "note": "r11 walk"},
+  {"st": "OH", "kind": "land", "ag": "Ohio DNR", "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer", "note": "r11 walk"}
+ ]
+}
