@@ -170,6 +170,10 @@ LIVE_ONLY |= {'AOPK ČR nature parks [live-only: viewing only]', 'Miljøstyrelse
 # replaces the consultant's copy), and Flanders' ANB nature reserves (Gratis Open Data Licentie Vlaanderen v1.2).
 SRC['AU'] = SRC['AU'] + [('QLD protected areas and forests (© State of Queensland)', 'arcgis', 'https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer/10')]
 SRC['BE'] = SRC['BE'] + [('Flanders ANB nature reserves (open data licence Vlaanderen)', 'wfs', 'https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/ows', 'ps:ps_uznres_anb')]
+# Oct 28 (chat 9; HQ 6:24 AM): New Zealand DOC Public Conservation Land (CC BY 4.0, credit 'Crown Copyright: Department of
+# Conservation Te Papa Atawhai'; every polygon = Crown conservation land, Private_Ownership flag = overlays). NOT in COUNTRIES yet:
+# chat 2 loads NZ's POTA list + NZ name/type rules first (its inbox, LATER); NZ 2-fers stay off (not top 10).
+SRC['NZ'] = [('DOC Public Conservation Land (CC BY 4.0)', 'arcgis', 'https://services1.arcgis.com/3JjYDyG3oajxU6HO/ArcGIS/rest/services/DOC_Public_Conservation_Land/FeatureServer/0')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
