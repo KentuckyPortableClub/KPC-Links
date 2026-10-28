@@ -201,6 +201,9 @@
     base.sat = L.layerGroup([L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19, attribution: 'Imagery © Esri' }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 }), L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 })]);
     base.topo = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', { maxZoom: 16, attribution: 'USGS The National Map' });
     map.on('baselayerchange', function (e) { baseNow = e.name || ''; draw(); });
+    /* Oct 28 (Brandon: the card went behind the zoom + layer buttons): while a card (popup) is open the map's buttons step aside */
+    map.on('popupopen', function () { $('ovMap').classList.add('ov-popopen'); var w = $('ovMap').parentNode; if (w) w.classList.add('ov-popopen'); });
+    map.on('popupclose', function () { $('ovMap').classList.remove('ov-popopen'); var w = $('ovMap').parentNode; if (w) w.classList.remove('ov-popopen'); });
     map.on('zoomend moveend viewreset', function () { setTimeout(clipTrail, 0); });
     if (!window.KPCLayers) base.street.addTo(map); gAll = L.layerGroup().addTo(map);
     if (window.KPCLocate) { try { KPCLocate(map); } catch (e) {} } if (window.KPCFull) { try { KPCFull(map); } catch (e) {} }
