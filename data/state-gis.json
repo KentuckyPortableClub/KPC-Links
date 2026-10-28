@@ -617,6 +617,16 @@
     "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/SCORP_Recreation_Areas/FeatureServer/0",
     "host": "agency",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 4 outline-less parks"
+   },
+   {
+    "kind": "park",
+    "ag": "Nevada Division of State Parks (credit: State of Nevada, DCNR, Nevada Division of State Lands, Nevada Division of State Parks)",
+    "host": "agency",
+    "nm": "landname",
+    "lic": "item terms: illustrative only, not a survey, no liability (no use limits); updated through 2026-01-23",
+    "read": "2026-10-28",
+    "note": "30 state parks, historic state monuments + rec areas (HT-11)",
+    "url": "https://arcgis.water.nv.gov/arcgis/rest/services/Hosted/NDSP_State_Park_Bondaries/FeatureServer/1"
    }
   ],
   "NY": [
@@ -1223,6 +1233,18 @@
     "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/HeritagePreserve_Map2_WFL1/FeatureServer/0",
     "host": "agol",
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 3 outline-less parks"
+   },
+   {
+    "kind": "land",
+    "ag": "South Carolina Department of Natural Resources (credit: SCDNR)",
+    "host": "agol",
+    "nm": "PropertyName",
+    "own": "PropertyOwner",
+    "where": "PropertyType <> 'Easem'",
+    "lic": "no-warranty terms only (SCDNR own account)",
+    "read": "2026-10-28",
+    "note": "576 SCDNR public properties (WMAs, heritage preserves, others); conservation easements left out; PropertyType Own/Leas = rule 14. Layer is labelled DEV by SCDNR: if PropertyName turns out empty, HQ's rule = name each polygon from the ONE named point (layer 6) inside it",
+    "url": "https://services.arcgis.com/acgZYxoN5Oj8pDLa/arcgis/rest/services/DEV_-_SCDNR_Public_Lands_Viewer/FeatureServer/3"
    }
   ],
   "ME": [
