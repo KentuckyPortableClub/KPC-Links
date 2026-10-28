@@ -1,6 +1,6 @@
 # MO: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **544 of 561** parks joined to official land (same name + same kind of place). **1** to check by hand, **15** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **545 of 561** parks joined to official land (same name + same kind of place). **1** to check by hand, **14** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -12,7 +12,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-10152 Perry Tower Site State Conservation Area (State Conservation Area)
 - US-10575 Walnut Woods State Conservation Area (State Conservation Area)
 - US-10576 Rush Creek State Conservation Area (State Conservation Area)
 - US-12084 Weldon Springs National Historical Park (National Historical Park)

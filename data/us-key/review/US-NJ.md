@@ -1,6 +1,6 @@
 # NJ: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **125 of 134** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **126 of 134** parks joined to official land (same name + same kind of place). **1** to check by hand, **5** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,7 +13,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Nothing found in PAD-US
 
-- US-13061 Gum Tree Corner Wildlife Management Area (Wildlife Management Area)
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-6462 Garret Mountain Reservation State Park (State Park)
@@ -68,8 +67,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Nantuxent Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,197 ac
 - Whiting Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,193 ac
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,184 ac
-- Gumtree Corner Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,168 ac
-- Gumtree Corner Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,167 ac
 - Columbia Wildlife Management Area · SRMA · NJ Division of Fish and Wildlife · ~1,159 ac
 - Columbia Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,159 ac
 - Maple Lake Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,141 ac
@@ -82,3 +79,5 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Great Egg Harbor River Wildlife Management Area · SCA · Division of Fish and Wildlife · ~1,096 ac
 - BEAR CREEK PRESERVE ·  · New Jersey DEP (Natural Lands Trust preserves) (preserve, state GIS table) · ~1,062 ac
 - Bear Creek Preserve ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,062 ac
+- Manahawkin Wildlife Management Area ·  · New Jersey DEP (state-owned open space) (land, state GIS table) · ~1,060 ac
+- Great Egg Harbor River Wildlife Management Area · SCA ·   · ~1,024 ac
