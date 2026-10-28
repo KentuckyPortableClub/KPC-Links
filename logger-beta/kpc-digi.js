@@ -126,8 +126,9 @@
     g.clearRect(0, 0, W, H);
     g.fillStyle = cs.getPropertyValue('--panel2').trim() || '#232B36'; g.fillRect(0, 0, W, H);
     g.strokeStyle = 'rgba(150,150,150,.6)'; g.fillStyle = cs.getPropertyValue('--sub').trim() || '#9AA6B5'; g.font = '10px ui-monospace,monospace';
-    for (let hz = Math.ceil(F0 / 250) * 250; hz < F1; hz += 250) {
-      const x = hzToX(hz), big = hz % 500 === 0;
+    const st = F1 - F0 > 1600 ? 250 : F1 - F0 > 700 ? 100 : 50, bg = st * 2;
+    for (let hz = Math.ceil(F0 / st) * st; hz < F1; hz += st) {
+      const x = hzToX(hz), big = hz % bg === 0;
       g.beginPath(); g.moveTo(x, 0); g.lineTo(x, big ? 6 : 3); g.stroke();
       if (big) g.fillText(String(hz), Math.min(W - 24, Math.max(1, x - 12)), 17);
     }
@@ -179,7 +180,7 @@
     const c = $('mkCl');
     if (CLEAR != null) mkCss(c, 'border:2px dashed #E8B84A;background:rgba(232,184,74,.1);left:' + px(CLEAR).toFixed(1) + 'px;', bw);
     else c.style.cssText = 'display:none';
-    $('dgRxT').textContent = S.rxHz; $('dgTxT').textContent = S.txHz;
+    if (document.activeElement !== $('dgRxT')) $('dgRxT').value = S.rxHz; if (document.activeElement !== $('dgTxT')) $('dgTxT').value = S.txHz;
   }
   /* tap = listen there · hold (or right-click / shift) = move my transmit frequency */
   let hold = null, held = false;
@@ -192,8 +193,21 @@
   wf.addEventListener('pointerup', e => { clearTimeout(hold); if (!held) setRx(pointHz(e)); });
   wf.addEventListener('pointerleave', () => clearTimeout(hold));
   wf.addEventListener('contextmenu', e => e.preventDefault());
+  /* Oct 26 (Brandon: 'ft8/4 tx and rx let us type in there and change them'; 'option to make water span smaller to look for spots') */
+  const hzIn = (id, f) => { const el = $(id); const go = () => { const v = Math.round(+el.value); if (v >= 200 && v <= 3000) f(v); else { AP.toast('Pick a number from 200 to 3000 Hz.', 2500, 'bad'); marks(); } };
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); go(); el.blur(); } }); el.addEventListener('change', go); el.addEventListener('focus', () => el.select()); };
+  hzIn('dgRxT', hz => { setRx(hz); }); hzIn('dgTxT', hz => { setTx(hz); AP.toast('Transmit frequency: ' + hz + ' Hz.', 1800); });
+  const SPANS = [[200, 2800, '200–2800'], [1500, 0, '± 750 Hz'], [800, 0, '± 400 Hz'], [400, 0, '± 200 Hz']];
+  function setSpan(i) {
+    S.span = ((i % SPANS.length) + SPANS.length) % SPANS.length; save(); const sp = SPANS[S.span];
+    if (sp[1]) { F0 = sp[0]; F1 = sp[1]; } else { const c = Math.max(200 + sp[0] / 2, Math.min(3000 - sp[0] / 2, S.txHz)); F0 = Math.round(c - sp[0] / 2); F1 = Math.round(c + sp[0] / 2); }
+    $('dgSpan').textContent = '↔ ' + (sp[1] ? sp[2] : F0 + '–' + F1); $('dgSpan').classList.toggle('on', !!S.span);
+    const g = wf.getContext('2d'); g.fillStyle = '#000'; g.fillRect(0, 0, wf.width, wf.height); drawScale(); marks();
+  }
+  $('dgSpan').onclick = () => setSpan((+S.span || 0) + 1);
+  setTimeout(() => setSpan(+S.span || 0), 0);
   function setRx(hz) { S.rxHz = hz; if (!S.hold) S.txHz = hz; CLEAR = null; save(); marks(); drawRx(); }
-  function setTx(hz) { S.txHz = hz; CLEAR = null; save(); marks(); }
+  function setTx(hz) { S.txHz = hz; CLEAR = null; save(); if (+S.span && (hz < F0 + 30 || hz > F1 - 30)) setSpan(+S.span); else marks(); }
 
   /* ================= CLEAR TX SPOT: move MY transmit frequency to the quietest gap =================
      Brandon Oct 22: renamed from CLEAR SPOT (the old name did not say it moves YOUR transmit frequency), bigger on the phone,
@@ -328,7 +342,8 @@
     const wk = x.fr && G.KPCLog && KPCLog.worked(x.fr), park = parkish(x), hl = x.tx || x.me ? '' : hlOf(x);
     if (S.potaOnly && !park && !x.tx && !x.me) return '';
     const cls = x.tx ? 'mine' : x.me ? 'me' : x.cq ? (x.cqw ? 'cqp' : 'cq') : '';
-    return `<div class="dl ${cls}${hl ? ' hl-' + hl : ''}${wk ? ' wk' : ''}" data-l="${x.id || ''}" role="button" tabindex="0"${hl ? ` title="${esc(HLD[hl][1])}"` : ''}>` +
+    let sel = false; try { sel = !!(QS.dx && (x.fr === QS.dx || x.to === QS.dx)); } catch (e) {}   /* Oct 26: the station in hand lights up in every list */
+    return `<div class="dl ${cls}${hl ? ' hl-' + hl : ''}${wk ? ' wk' : ''}${sel ? ' dxsel' : ''}" data-l="${x.id || ''}" role="button" tabindex="0"${hl ? ` title="${esc(HLD[hl][1])}"` : ''}>` +
       `<span>${hms(x.t).replace(/(\d{4})(\d\d)/, '$1')}</span>` +
       `<span>${x.tx ? 'Tx' : fmtDb(x.db)}</span>` +
       `<span>${x.tx ? '' : (x.dt >= 0 ? '' : '') + x.dt.toFixed(1)}</span>` +
@@ -405,6 +420,7 @@
     nextTx(n); txOn(true); marks(); drawRx();
     AP.toast('📞 Calling ' + esc(other) + ' (Tx' + n + ')', 2500);
   }
+  function markDx() { document.querySelectorAll('#scrDigi .dl[data-l]').forEach(d => { const x = byId[d.dataset.l]; d.classList.toggle('dxsel', !!(x && QS.dx && (x.fr === QS.dx || x.to === QS.dx))); }); }
   function gen() {
     const me = AP.myCall() || 'K4TEST', g = AP.myGrid().slice(0, 4), dx = QS.dx || 'DXCALL', r = QS.rs || '-10';
     const cqw = (S.cqw && !KPCLog.me().hunt) ? S.cqw + ' ' : '';
@@ -413,7 +429,7 @@
       <button type="button" class="n" data-nx="${i + 1}" title="Send this one next">Tx${i + 1}</button>
       <span class="m" data-tm="${i + 1}" data-nx="${i + 1}">${esc(m)}</span>
       <button type="button" class="w" data-now="${i + 1}" title="Send this one in the next slot">NOW</button></div>`).join('');
-    drawQso();
+    drawQso(); markDx();
   }
   const msgOf = n => { const e = document.querySelector(`[data-tm="${n}"]`); return e ? e.textContent.toUpperCase().trim() : ''; };
   function nextTx(n) { QS.next = n; document.querySelectorAll('.tm').forEach((d, i) => d.classList.toggle('on', i + 1 === n)); chk(); }

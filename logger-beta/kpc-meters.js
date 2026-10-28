@@ -39,10 +39,10 @@
     const m = w.opts.get ? w.opts.get() : LAST, keys = shown(m), tx = m && m.tx;
     /* folded (▸): one line with the numbers, still live — a phone keeps its screen for the waterfall */
     if (!S.open) { const sum = m ? keys.map(k => (k === 's' ? '' : DEF[k].label.replace('PWR OUT', 'PO') + ' ') + DEF[k].txt(m[k])).join(' · ') : 'waiting for the radio…';
-      if (w.sig !== 'closed') { w.sig = 'closed'; w.el.innerHTML = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Show the meters">▸</button><b>📟</b><span class="kms mono"></span></div>`; }
+      if (w.sig !== 'closed') { w.sig = 'closed'; w.el.innerHTML = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Show the meters">▸</button><b>📟</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<span class="kms mono"></span></div>`; }
       const e = w.el.querySelector('.kms'); if (e) e.textContent = (tx ? '📡 ' : '') + sum; return; }
-    const head = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Fold the meters to one line">▾</button><b>📟 METERS</b><button type="button" class="chip sm" data-kmst>${S.style === 'analog' ? '◐ ANALOG' : '▮ DIGITAL'}</button><button type="button" class="chip sm" data-kmset aria-label="Which meters">⚙</button><span class="kma">${m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'}</span></div>`;
-    const sig = keys.join(',') + '|' + S.style;
+    const head = `<div class="kmh"><button type="button" class="chip sm" data-kmopen aria-label="Fold the meters to one line">▾</button><b>📟 METERS</b>${w.opts.tune && w.opts.tune.ok() ? '<button type="button" class="chip sm kmtune" data-kmtune title="Start the radio\'s antenna tuner">🔧 TUNE</button>' : ''}<button type="button" class="chip sm" data-kmst>${S.style === 'analog' ? '◐ ANALOG' : '▮ DIGITAL'}</button><button type="button" class="chip sm" data-kmset aria-label="Which meters">⚙</button><span class="kma">${m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'}</span></div>`;
+    const sig = keys.join(',') + '|' + S.style + '|' + !!(w.opts.tune && w.opts.tune.ok());
     if (w.sig !== sig) { w.sig = sig; w.el.innerHTML = head + (S.style === 'analog' ? `<div class="kmg">${keys.map(k => `<div class="kgw"><canvas data-km="${k}" width="200" height="118" aria-label="${esc(DEF[k].label)} meter"></canvas></div>`).join('')}</div>`
       : `<div class="kmd">${keys.map(k => `<div class="mrow"><span>${esc(DEF[k].label)}</span><div class="mt"><div class="mb" data-kb="${k}"></div></div><b data-kt="${k}">—</b></div>`).join('')}</div>`); w.cv = {}; }
     else { const a = w.el.querySelector('.kma'); if (a) a.textContent = m ? (tx ? '📡 TX · ' : '') + (m.pwr != null ? 'power set ' + m.pwr + '%' : '') : 'waiting for the radio…'; }
@@ -84,6 +84,7 @@
   }
   /* ---------- the controls (one handler for every widget) ---------- */
   document.addEventListener('click', e => {
+    const tb = e.target.closest('[data-kmtune]'); if (tb) { const w = W.find(x => x.el.contains(tb)); if (w && w.opts.tune) w.opts.tune.go(); return; }
     if (e.target.closest('[data-kmopen]')) { S.open = !S.open; save(); W.forEach(w => { w.sig = ''; draw(w); }); return; }
     if (e.target.closest('[data-kmst]')) { S.style = S.style === 'analog' ? 'digital' : 'analog'; save(); W.forEach(w => { w.sig = ''; draw(w); }); return; }
     if (e.target.closest('[data-kmset]')) {
@@ -98,7 +99,10 @@
 
   /* ---------- the PC / phone with its own radio: a 📟 METERS bar on the LOG and DIGI screens ---------- */
   const host = (id, before) => { const s = $(id); if (!s || $(id + 'Met')) return null; s.insertAdjacentHTML(before ? 'afterbegin' : 'afterbegin', `<div class="kmbar" id="${id}Met" hidden></div>`); return $(id + 'Met'); };
-  const B1 = mount(host('scrLog')), B2 = mount(host('scrDigi'));
+  /* 🔧 TUNE = the radio's own antenna tuner over CAT (it transmits a carrier for a few seconds; never while the app is transmitting) */
+  const ATU = { ok: () => !!(G.KPCCat && KPCCat.connected() && KPCCat.extras && KPCCat.extras().includes('atu')),
+    go: async () => { if (AP.txing()) { AP.toast('Transmitting now: tune after.', 2500, 'bad'); return; } const ok = await KPCCat.extra('atu', 1); AP.toast(ok ? '🔧 The radio\'s tuner is tuning: watch the SWR.' : 'The radio did not take the tune command (does it have a built-in tuner turned on?).', 4000, ok ? 'log' : 'bad'); } };
+  const B1 = mount(host('scrLog'), { tune: ATU }), B2 = mount(host('scrDigi'), { tune: ATU });
   let busy = false, tPoll = 0;
   async function poll() {
     const on = AP.catConnected() && !(G.KPCRemote && KPCRemote.link && KPCRemote.link().on);

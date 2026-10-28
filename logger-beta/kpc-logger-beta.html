@@ -7,18 +7,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
 <title>KPC Logger (beta) | KPC</title>
-<link rel="stylesheet" href="app.css?v=20261026b">
-<link rel="stylesheet" href="kpc-web.css?v=202610262107">
-<script>try{var t=localStorage.getItem('kpcTheme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<link rel="stylesheet" href="app.css?v=20261027b">
+<link rel="stylesheet" href="kpc-web.css?v=202610272001">
+<script>try{var t=localStorage.getItem('kpcTheme');if(t)document.documentElement.dataset.theme=t;document.documentElement.dataset.style=localStorage.getItem('kpcStyle')||'lodge';}catch(e){document.documentElement.dataset.style='lodge'}</script>
 </head>
 <body data-screen="log">
-<div id="intro" aria-hidden="true"><img class="logo" src="img/kpc-logo.png" alt=""><div class="arch"><img src="img/n4kpc-arch.webp" alt=""></div><div class="tag">KENTUCKY PORTABLE CLUB</div></div>
-<script>/* Oct 25 (Brandon: 'open on the N4KPC logo with some animation'): ~1.6 s, a tap skips it; not for --headless, the builders' tests or a second start within 10 min */
-(function(){var e=document.getElementById('intro'),q=location.search,go=function(){if(!e||e.classList.contains('out'))return;e.classList.add('out');setTimeout(function(){e.remove()},500)};
+<div id="intro" aria-hidden="true"><div class="rays"></div><div class="rings"><i></i><i></i><i></i></div>
+<img class="logo" src="img/kpc-logo.png" alt=""><div class="arch"><img src="img/n4kpc-arch.webp" alt=""><span class="sweep"></span></div>
+<div class="tag">KENTUCKY PORTABLE CLUB</div><div class="rule"></div><div class="sub">LOGGER · FT8 · CW · DIGITAL · APRS · REMOTE</div><div class="open">opening your logs<b>.</b><b>.</b><b>.</b></div></div>
+<script>/* Oct 25 (Brandon: 'open on the N4KPC logo with some animation'); Oct 26: 'longer intro then to my logs page' = ~3.4 s, then the MY LOGS page.
+   A tap skips it; not for --headless, the builders' tests or a second start within 10 min. window.KPC_FRESH = this start showed the opening (kpc-log.js opens MY LOGS). */
+(function(){var e=document.getElementById('intro'),q=location.search,go=function(){if(!e||e.classList.contains('out'))return;e.classList.add('out');setTimeout(function(){e.remove()},650)};
 var last=0;try{last=+sessionStorage.getItem('kpcIntro')||0;sessionStorage.setItem('kpcIntro',Date.now())}catch(x){}
 if(navigator.webdriver||/[?&](headless|fake)=1/.test(q)||Date.now()-last<600000){e.remove();return}
-e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matches?700:1700)})();</script>
+window.KPC_FRESH=true;e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matches?900:3400)})();</script>
 
+<div class="embers" aria-hidden="true"><i style="--x:6%;--d:0s;--t:9s"></i><i style="--x:15%;--d:3.1s;--t:11s"></i><i style="--x:27%;--d:6s;--t:10s"></i><i style="--x:38%;--d:1.4s;--t:12s"></i><i style="--x:52%;--d:4.3s;--t:9.5s"></i><i style="--x:63%;--d:7.6s;--t:11.5s"></i><i style="--x:74%;--d:2.2s;--t:10.5s"></i><i style="--x:86%;--d:5.4s;--t:12.5s"></i><i style="--x:94%;--d:8.8s;--t:10s"></i></div>
 <header class="top">
   <span class="badge">KPC</span>
   <span class="ttl" id="ttl">Log</span>
@@ -29,8 +33,12 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
 
 <main>
 
+<!-- ========================= MY LOGS (Oct 26: its own page, opened after the opening) ========================= -->
+<section class="scr" id="scrLogs" aria-label="My logs"><div class="opspage" id="lgOps"></div></section>
+
 <!-- ========================= LOG ========================= -->
 <section class="scr" id="scrLog" aria-label="Log">
+  <button type="button" class="logbar" id="lgBar" data-oplist="1" title="My logs: open another log or start a new one"><span class="i">📒</span><span class="t"><i>MY LOGS</i><b id="lgBarN">Every contact</b></span><span class="c" id="lgBarC">0 contacts</span><span class="g">ALL MY LOGS ›</span></button>
   <div class="strip" id="lgStrip">
     <span class="kv"><i>TODAY</i><b id="lgN">0</b></span>
     <span class="kv"><i>ALL</i><b id="lgAll">0</b></span>
@@ -90,8 +98,9 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
     </div>
 
     <div class="hzrow">
-      <span class="kv"><i>RX</i><b class="mono" id="dgRxT">1500</b></span>
-      <span class="kv"><i>TX</i><b class="mono" id="dgTxT">1500</b></span>
+      <label class="kv hzi rx" title="Where I listen (Hz): type a number and press Enter, or tap the waterfall"><i>RX</i><input class="mono" id="dgRxT" inputmode="numeric" maxlength="4" value="1500" enterkeyhint="done"></label>
+      <label class="kv hzi tx" title="Where I transmit (Hz): type a number and press Enter, or hold on the waterfall"><i>TX</i><input class="mono" id="dgTxT" inputmode="numeric" maxlength="4" value="1500" enterkeyhint="done"></label>
+      <button type="button" class="chip" id="dgSpan" title="Waterfall width: the whole passband, or zoom in around where you transmit to find a clear spot">↔ 200–2800</button>
       <label class="ck"><input type="checkbox" id="dgHold"> 🔒 Hold TX</label>
     </div>
 
@@ -165,8 +174,9 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
     <button type="button" class="chip" id="spHeard" title="Who heard me in the last 30 minutes (PSKReporter: FT8, FT4, CW skimmers…)">📡 WHO HEARD ME</button>
     <span class="chips" id="spSrc"></span>
   </div>
+  <div class="bdstrip" id="spBands" hidden aria-label="Spots per band"></div>
   <div class="list log" id="spList" role="table" aria-label="Spots"></div>
-  <p class="hint">Tap a spot: the radio goes there (CAT) and the log line fills in. 👀 = on your watchlist.</p>
+  <p class="hint">Tap a spot: the radio goes there (CAT) and the log line fills in. ★ = a park you have not hunted yet · ✓ = worked before · 👀 = on your watchlist. <b>📶 CQ POTA on my FT8</b> = parks your own FT8 screen hears calling (no internet needed).</p>
 </section>
 
 <!-- ========================= REMOTE (the phone, when on the link to the home PC) ========================= -->
@@ -177,6 +187,7 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
     <span class="state" id="rmState">OFF</span>
   </div>
   <div class="st" id="rmCat">Radio not connected on the PC</div>
+  <div class="rmvol"><span class="l">🔊 VOLUME</span><input type="range" id="rmVol" min="0.2" max="10" step="0.1" value="2" aria-label="How loud the radio is here"><b id="rmVolT">200%</b></div>
   <div class="vfo">
     <button type="button" class="ic" id="rmDown" aria-label="Down one step">−</button>
     <button type="button" class="dialbig mono" id="rmVfo" title="Tap to type a frequency">—</button>
@@ -221,13 +232,13 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
   </div>
   <div class="specw" hidden><canvas id="rmSpec" aria-label="Band view: tap to move the TX spot"></canvas><p class="hint">What the PC's waterfall sees (200–2800 Hz). Gold dashes = your TX spot, blue = RX, dots = stations heard in the last 2 min. Tap a quiet gap to move TX there.</p></div>
   <button type="button" class="talk" id="rmTalkB" disabled>🎙 HOLD TO TALK</button>
+  <div class="rmvol"><span class="l">🎙 MY VOICE</span><input type="range" id="rmVdb" min="-20" max="30" step="1" value="0" aria-label="How loud my voice goes to the radio"><b id="rmVdbT">0 dB</b></div>
   <div class="btns" id="rmOps"></div>
     <div class="d5key" id="rmKey2" hidden aria-label="Hand keying from the phone"></div>
     <div class="row" id="rmKb" hidden><input id="rmKbT" class="cwt" placeholder="type here to send it from the PC…" autocapitalize="characters" spellcheck="false" autocomplete="off"><button type="button" class="b gold" id="rmKbSend">SEND</button><button type="button" class="b halt" id="rmKbStop">STOP</button></div>
   <div class="st" id="rmQso" hidden></div>
   <p class="hint" id="rmLim"></p>
   <button type="button" class="b gold" id="rmHear" hidden>🔊 TAP TO HEAR THE RADIO</button>
-  <label class="e slide">VOLUME HERE <b id="rmVolT">150%</b><input type="range" id="rmVol" min="0.2" max="4" step="0.1" value="1.5"></label>
   <div class="list dec" id="rmLines" aria-label="What the PC hears"></div>
   <div class="st dec" id="rmLog" aria-label="Last contacts"></div>
   <div class="row"><button type="button" class="b" id="rmSync">🔄 SYNC THE LOG NOW</button></div>
@@ -262,28 +273,31 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
   <section class="card" data-grp="radio cat control usb port ptt dial baud">
     <h2>Radio control</h2>
     <div class="grid2">
-      <label class="e">RADIO PROFILE<select id="stProf"><option value="">(none saved yet)</option></select></label>
+      <label class="e" id="stProfW">RADIO PROFILE<select id="stProf"><option value="">(none saved yet)</option></select></label>
       <label class="e">MY RADIO<select id="stRig"></select></label>
-      <label class="e">HOW THE APP REACHES IT<select id="stLink"></select></label>
-      <label class="e" id="stPortW">USB PORT<select id="stPort"><option value="">(press CONNECT)</option></select></label>
+      <label class="e catx">HOW THE APP REACHES IT<select id="stLink"></select></label>
+      <label class="e catx" id="stPortW">USB PORT<select id="stPort"><option value="">(press CONNECT)</option></select></label>
       <label class="e" id="stHostW" hidden>PROGRAM'S ADDRESS<input id="stHost" spellcheck="false" placeholder="localhost"></label>
       <label class="e" id="stTcpW" hidden>PORT NUMBER<input id="stTcpPort" inputmode="numeric" placeholder="4532"></label>
       <label class="e">KEY THE RADIO WITH<select id="stPtt">
         <option value="cat">CAT command (radio on USB)</option>
         <option value="vox">VOX (the radio keys on the sound)</option>
       </select></label>
-      <label class="e">DIAL<select id="stFollow"><option value="1">Follow the radio's knob</option><option value="0">Leave the radio alone</option></select></label>
+      <label class="e catx">VOICE FROM THIS DEVICE (keyer, hold to talk, the phone)<select id="stVmod"><option value="mic">Leave the radio's mode alone (radio's SSB MOD SOURCE = REAR)</option><option value="data">Switch the radio to DATA while it sends</option></select></label>
+      <label class="e catx">DIAL<select id="stFollow"><option value="1">Follow the radio's knob</option><option value="0">Leave the radio alone</option></select></label>
     </div>
     <div class="row">
       <button type="button" class="b gold" id="stConn">📻 CONNECT RADIO</button>
-      <button type="button" class="b" id="stRead">READ DIAL</button>
-      <button type="button" class="b" id="stDis">DISCONNECT</button>
-      <button type="button" class="b" id="stProfSave">💾 SAVE AS A PROFILE</button>
+      <button type="button" class="b catx" id="stRead">READ DIAL</button>
+      <button type="button" class="b catx" id="stDis">DISCONNECT</button>
+      <button type="button" class="b catx" id="stProfSave">💾 SAVE AS A PROFILE</button>
+      <button type="button" class="b catx" id="stPortName" title="Give this port a radio's name (FT-710 shack, IC-705 field…)">✏️ NAME THIS PORT</button>
+      <button type="button" class="b catmore" id="stCatMore">⚙ MORE RADIO SETTINGS</button>
     </div>
     <div class="st" id="stCatT">Not connected.</div>
-    <p class="hint">Profiles keep one radio's whole setup (type, speed, port, how it is keyed) under a name: home rig, field rig. Hamlib's rigctld and flrig are programs on the PC that know 300+ radios; pick one of them here when the radio is not in MY RADIO (rigctld needs the Windows app).</p>
-    <p class="hint">On a phone or tablet only these two ways of keying work: the CAT command, or the radio's own VOX. The RTS and DTR lines have to hold the USB port, and holding it stops the tablet sending sound to the radio. Set the radio to DATA mode with DATA MOD SOURCE = USB.</p>
-    <div class="row"><a class="b" href="radio-check.html">🔧 RADIO CHECK SCREEN (step-by-step test)</a></div>
+    <p class="hint catx">Profiles keep one radio's whole setup (type, speed, port, how it is keyed) under a name: home rig, field rig. Hamlib's rigctld and flrig are programs on the PC that know 300+ radios; pick one of them here when the radio is not in MY RADIO (rigctld needs the Windows app).</p>
+    <p class="hint catx">On a phone or tablet only these two ways of keying work: the CAT command, or the radio's own VOX. The RTS and DTR lines have to hold the USB port, and holding it stops the tablet sending sound to the radio. Set the radio to DATA mode with DATA MOD SOURCE = USB.</p>
+    <div class="row catx"><a class="b" href="radio-check.html">🔧 RADIO CHECK SCREEN (step-by-step test)</a></div>
   </section>
 
   <section class="card" data-grp="sound audio level device usb sound card tx level rx level receive gain volume alc">
@@ -371,7 +385,8 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
   <section class="card" data-grp="look dark light night theme">
     <h2>Look</h2>
     <div class="row">
-      <button type="button" class="b" data-look="dark">🌙 DARK</button>
+      <button type="button" class="b" data-look="dark" data-style="lodge">🔥 CABIN LODGE</button>
+      <button type="button" class="b" data-look="dark" data-style="forest">🌲 FOREST NIGHT</button>
       <button type="button" class="b" data-look="light">☀️ LIGHT</button>
     </div>
   </section>
@@ -398,24 +413,25 @@ e.onclick=go;setTimeout(go,matchMedia('(prefers-reduced-motion: reduce)').matche
 <div class="toast" id="toast" hidden></div>
 
 <script src="capacitor.js"></script>
-<script src="kpc-native.js?v=20261025k"></script>
-<script src="kpc-ft8-wasm.js?v=20261024a"></script><script src="kpc-ft8.js?v=20261025k"></script>
-<script src="kpc-cat.js?v=20261026a"></script>
-<script src="kpc-fake.js?v=20261025k"></script>
-<script src="kpc-app.js?v=20261026a"></script>
-<script src="kpc-log.js?v=20261025k"></script><script src="kpc-voice.js?v=20261025k"></script>
-<script src="kpc-mode.js?v=20261022a"></script>
-<script src="kpc-digi.js?v=20261025k"></script>
-<script src="kpc-ax25.js?v=20261022a"></script>
-<script src="kpc-aprs.js?v=20261023b"></script><script src="kpc-dsp.js?v=20261025k"></script><script src="kpc-modes5.js?v=20261025k"></script>
-<script src="kpc-cont.js?v=20261025k"></script><script src="kpc-spots.js?v=20261025k"></script>
-<script src="kpc-sources.js?v=20261025k"></script>
-<script src="kpc-uploads.js?v=20261023a"></script>
-<script src="kpc-map.js?v=20261025k"></script><script src="kpc-prop.js?v=20261025k"></script>
-<script src="kpc-parks.js?v=20261025k"></script>
-<script src="kpc-alerts.js?v=20261025k"></script>
-<script src="kpc-meters.js?v=20261026b"></script>
-<script src="kpc-spotme.js?v=20261025k"></script>
-<script src="kpc-web.js?v=202610262107"></script>
+<script src="kpc-native.js?v=20261027b"></script>
+<script src="kpc-ft8-wasm.js?v=20261027b"></script><script src="kpc-ft8.js?v=20261027b"></script>
+<script src="kpc-cat.js?v=20261027b"></script>
+<script src="kpc-fake.js?v=20261027b"></script>
+<script src="kpc-app.js?v=20261027b"></script>
+<script src="kpc-log.js?v=20261027b"></script><script src="kpc-voice.js?v=20261027b"></script>
+<script src="kpc-mode.js?v=20261027b"></script>
+<script src="kpc-digi.js?v=20261027b"></script>
+<script src="kpc-ax25.js?v=20261027b"></script>
+<script src="kpc-aprs.js?v=20261027b"></script><script src="kpc-dsp.js?v=20261027b"></script><script src="kpc-modes5.js?v=20261027b"></script>
+<script src="kpc-cont.js?v=20261027b"></script><script src="kpc-spots.js?v=20261027b"></script>
+<script src="kpc-sources.js?v=20261027b"></script>
+<script src="kpc-uploads.js?v=20261027b"></script>
+<script src="kpc-map.js?v=20261027b"></script><script src="kpc-prop.js?v=20261027b"></script>
+<script src="kpc-parks.js?v=20261027b"></script>
+<script src="kpc-alerts.js?v=20261027b"></script>
+<script src="kpc-meters.js?v=20261027b"></script>
+<script src="kpc-spotme.js?v=20261027b"></script>
+<script src="kpc-qsomap.js?v=20261027b"></script>
+<script src="kpc-web.js?v=202610272001"></script>
 </body>
 </html>

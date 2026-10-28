@@ -19,7 +19,8 @@
   /* Oct 24 (Brandon: 'spots I dont see filters for digi modes'): the digital group splits into FT8 / FT4 / other digital */
   const digiOf = m => /FT8/i.test(m) ? 'FT8' : /FT4/i.test(m) ? 'FT4' : 'OTHER';
   const modeGroup = m => /FT8|FT4|JS8|PSK|RTTY|MFSK|OLIVIA|DATA|APRS|PKT|HELL|WSPR/i.test(m) ? 'DATA' : /CW/i.test(m) ? 'CW' : 'PHONE';
-  const mhz = k => (k / 1000).toFixed(3);
+  /* Oct 26 (Brandon: 'spot at 7191 keeps taking me to 7191.5'): the spot WAS 7191.5; three decimals hid the half kHz → show the 4th when there is one */
+  const mhz = k => { const t = Math.round(k * 10) / 10; return (t / 1000).toFixed(t % 1 ? 4 : 3); };
 
   function source(o) { if (!o || !o.id) return null; SRC[o.id] = Object.assign({ label: o.id, every: 0, poll: null, n: 0, last: 0, err: '' }, o); tick(); draw(); return SRC[o.id]; }
   /* a spot's position (for the continent filter): the source's own, else the centre of its grid square */
@@ -30,8 +31,8 @@
       const call = base(x.call), khz = +x.khz; if (!call || call.length < 3 || !(khz > 100)) return;
       const t = +x.t || Date.now(), mode = String(x.mode || '').toUpperCase(), refs = (x.refs || []).map(r => String(r).toUpperCase()).filter(Boolean);
       const old = SP.find(s => s.call === call && Math.abs(s.khz - khz) <= 2 && Math.abs(s.t - t) < 15 * 60000);
-      if (old) { if (t >= old.t) { old.t = t; old.khz = khz; if (mode) old.mode = mode; if (x.comment) old.comment = x.comment; } refs.forEach(r => { if (!old.refs.includes(r)) old.refs.push(r); }); if (!old.src.includes(src)) old.src.push(src); if (x.grid) old.grid = x.grid; old.n++; return; }
-      SP.push({ id: ++sid, call, khz, band: bandOf(khz), mode, refs, t, comment: String(x.comment || '').slice(0, 120), grid: String(x.grid || '').toUpperCase(), spotter: x.spotter || '', src: [src], n: 1, cont: x.cont || '', cty: x.cty || '', sig: x.sig || '', ...posOf(x) });
+      if (old) { if (t >= old.t) { old.t = t; old.khz = khz; if (mode) old.mode = mode; if (x.comment) old.comment = x.comment; } refs.forEach(r => { if (!old.refs.includes(r)) old.refs.push(r); }); if (!old.src.includes(src)) old.src.push(src); if (x.grid) old.grid = x.grid; if (x.st && !old.st) old.st = String(x.st).toUpperCase(); old.n++; return; }
+      SP.push({ id: ++sid, call, khz, band: bandOf(khz), mode, refs, st: String(x.st || '').toUpperCase(), t, comment: String(x.comment || '').slice(0, 120), grid: String(x.grid || '').toUpperCase(), spotter: x.spotter || '', src: [src], n: 1, cont: x.cont || '', cty: x.cty || '', sig: x.sig || '', ...posOf(x) });
       n++;
       if (S.watch.includes(call) && Date.now() - (alerted[call] || 0) > 30 * 60000) { alerted[call] = Date.now(); const msg = call + ' is on: ' + mhz(khz) + ' ' + mode + (refs.length ? ' · ' + refs.join('+') : ''); if (AP.notify) AP.notify('watch', msg, { key: call, every: 30 * 60000 }); else { AP.toast('👀 ' + esc(msg), 8000, 'log'); try { if (navigator.vibrate) navigator.vibrate([120, 60, 120]); } catch (e) {} } }
     });
@@ -44,7 +45,7 @@
   /* Oct 25 (Brandon: 'like the Hunters Lounge spots, sort by time, mode, frequency … one line instead of stacked to see more'):
      tap a column head to sort by it (tap again = the other way round) */
   const dirOf = () => S.rev ? -1 : 1;
-  const SORTS = { new: (a, b) => dirOf() * (b.t - a.t), freq: (a, b) => dirOf() * (a.khz - b.khz), mode: (a, b) => dirOf() * (String(a.mode).localeCompare(String(b.mode)) || a.khz - b.khz), call: (a, b) => dirOf() * a.call.localeCompare(b.call), park: (a, b) => dirOf() * (String(a.refs[0] || '~').localeCompare(String(b.refs[0] || '~')) || b.t - a.t) };
+  const SORTS = { new: (a, b) => dirOf() * (b.t - a.t), freq: (a, b) => dirOf() * (a.khz - b.khz), mode: (a, b) => dirOf() * (String(a.mode).localeCompare(String(b.mode)) || a.khz - b.khz), call: (a, b) => dirOf() * a.call.localeCompare(b.call), st: (a, b) => dirOf() * (String(a.st || '~').localeCompare(String(b.st || '~')) || b.t - a.t), park: (a, b) => dirOf() * (String(a.refs[0] || '~').localeCompare(String(b.refs[0] || '~')) || b.t - a.t) };
   function shown() {
     const cut = Date.now() - S.ageMin * 60000, cls = AP.S.cls || '';
     return SP.filter(s => s.t >= cut && (!(S.ct || []).length || S.ct.includes(window.KPCCont ? KPCCont.of(s) : '')) && (!S.bands.length || S.bands.includes(s.band)) && (!S.modes.length || S.modes.includes(modeGroup(s.mode))) && (!S.digi.length || modeGroup(s.mode) !== 'DATA' || S.digi.includes(digiOf(s.mode)))
@@ -64,25 +65,31 @@
     const L = shown(), all = SP.length;
     $('spN').textContent = L.length + (all > L.length ? ' of ' + all : '');
     const srcs = Object.values(SRC);
-    $('spSrc').innerHTML = srcs.map(s => `<button type="button" class="chip${S.off.includes(s.id) ? '' : ' on'}" data-src="${esc(s.id)}" title="${esc(s.err || (s.n + ' so far'))}">${esc(s.label)}${s.err ? ' ⚠' : ''}</button>`).join('') || '<span class="hint">No spot sources yet.</span>';
+    $('spSrc').innerHTML = srcs.map(s => `<button type="button" class="chip${S.off.includes(s.id) ? '' : ' on'}" data-src="${esc(s.id)}" title="${esc(s.err || ((s.title ? s.title + ' ' : '') + s.n + ' so far'))}">${esc(s.label)}${s.err ? ' ⚠' : ''}</button>`).join('') || '<span class="hint">No spot sources yet.</span>';
     el.querySelectorAll && $('spSrc').querySelectorAll('[data-src]').forEach(b => { b.onclick = () => { const i = S.off.indexOf(b.dataset.src); if (i < 0) S.off.push(b.dataset.src); else S.off.splice(i, 1); save(); draw(); }; });
     const arrow = k => S.sort === k ? (S.rev ? ' ▲' : ' ▼') : '';
-    const head = `<div class="sphead" role="row"><button type="button" data-ssort="new">AGE${arrow('new')}</button><button type="button" data-ssort="call">CALL${arrow('call')}</button><button type="button" data-ssort="park">PARK${arrow('park')}</button><button type="button" data-ssort="freq">MHz${arrow('freq')}</button><button type="button" data-ssort="mode">MODE${arrow('mode')}</button></div>`;
+    const head = `<div class="sphead" role="row"><button type="button" data-ssort="new">AGE${arrow('new')}</button><button type="button" data-ssort="call">CALL${arrow('call')}</button><button type="button" data-ssort="park">PARK${arrow('park')}</button><button type="button" data-ssort="st">ST${arrow('st')}</button><button type="button" data-ssort="freq">MHz${arrow('freq')}</button><button type="button" data-ssort="mode">MODE${arrow('mode')}</button><button type="button" class="w" data-ssort="freq">BAND</button><span class="w">PARK · WHERE · COMMENT</span><span class="w">SPOTTED BY</span></div>`;
     const html = L.length ? head + L.slice(0, 250).map(s => { const wk = G.KPCLog && KPCLog.worked(s.call), watch = S.watch.includes(s.call), np = newPk(s);
       return `<div class="sp1${wk ? ' wk' : ''}${watch ? ' watch' : ''}${np ? ' np' : ''}" data-sp="${s.id}" role="row" tabindex="0" title="${esc([s.comment, 'by ' + (s.spotter || s.src.join('+'))].filter(Boolean).join(' · '))}">
-        <span class="a">${age(s.t)}</span><span class="c">${watch ? '👀' : ''}${esc(s.call)}${wk ? ' <i>✓</i>' : ''}</span><span class="p"${np ? ' title="★ a park you have not hunted yet"' : ''}>${np ? '★ ' : ''}${esc(s.refs.join('+') || '—')}</span><span class="f">${mhz(s.khz)}</span><span class="m">${esc(s.mode || '')}</span></div>`; }).join('')
+        <span class="a">${age(s.t)}</span><span class="c">${watch ? '👀' : ''}${esc(s.call)}${wk ? ' <i>✓</i>' : ''}</span><span class="p"${np ? ' title="★ a park you have not hunted yet"' : ''}>${np ? '★ ' : ''}${esc(s.refs.join('+') || '—')}</span><span class="s">${esc(s.st || '')}</span><span class="f">${mhz(s.khz)}</span><span class="m">${esc(s.mode || '')}</span><span class="w bd">${esc(s.band || '')}</span><span class="w i">${esc(s.comment || (s.grid ? s.grid : ''))}</span><span class="w by">${esc(s.spotter || '')}<small>${esc(s.src.map(x => (SRC[x] && SRC[x].label) || x).join(' + '))}</small></span></div>`; }).join('')
       : '<div class="empty">' + (all ? 'Every spot is filtered out. Loosen the ⚙ FILTERS.' : (AP.net.online() ? 'No spots yet: POTA, SOTA, WWFF and the DX cluster are checked every minute or three.' : 'No signal: spots come back when this device is online. Stations calling CQ POTA/SOTA/WWFF on the FT8 screen still land here.')) + '</div>';
     el.innerHTML = html;
+    /* Oct 26 (Brandon: 'spot screen looks bare on desktop'): a band strip above the list = how many spots per band, tap = show only that band */
+    const bs = $('spBands'); if (bs) { const cnt = {}; SP.filter(s => s.t >= Date.now() - S.ageMin * 60000).forEach(s => { if (s.band) cnt[s.band] = (cnt[s.band] || 0) + 1; });
+      const order = ['160m', '80m', '60m', '40m', '30m', '20m', '17m', '15m', '12m', '10m', '6m', '2m', '70cm'];
+      bs.innerHTML = order.filter(b => cnt[b] || S.bands.includes(b)).map(b => `<button type="button" class="bdc${S.bands.includes(b) ? ' on' : ''}" data-bdc="${b}"><b>${b}</b><i>${cnt[b] || 0}</i></button>`).join('') + (S.bands.length ? '<button type="button" class="bdc all" data-bdc="">ALL BANDS</button>' : '');
+      bs.hidden = !bs.innerHTML; }
     /* the same list beside the log on a tablet / PC */
     const side = $('lgSp'); if (side && getComputedStyle($('lgSpW')).display !== 'none') { side.innerHTML = html; $('lgSpN').textContent = L.length; }
   }
   $('spList').addEventListener('click', e => { const h = e.target.closest('[data-ssort]'); if (h) { const k = h.dataset.ssort; if (S.sort === k) S.rev = !S.rev; else { S.sort = k; S.rev = false; } save(); draw(); return; } const r = e.target.closest('[data-sp]'); if (!r) return; const s = SP.find(x => x.id === +r.dataset.sp); if (s) open(s); });
   if ($('lgSp')) { $('lgSp').addEventListener('click', e => { const h = e.target.closest('[data-ssort]'); if (h) { const k = h.dataset.ssort; if (S.sort === k) S.rev = !S.rev; else { S.sort = k; S.rev = false; } save(); draw(); return; } const r = e.target.closest('[data-sp]'); if (!r) return; const s = SP.find(x => x.id === +r.dataset.sp); if (s) open(s); }); $('lgSpAll').onclick = () => AP.go('spots'); }
+  if ($('spBands')) $('spBands').addEventListener('click', e => { const b = e.target.closest('[data-bdc]'); if (!b) return; const k = b.dataset.bdc; if (!k) S.bands = []; else if (S.bands.includes(k)) S.bands = S.bands.filter(x => x !== k); else S.bands = [k]; save(); draw(); });
   G.addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(draw, 200); }); let rsT = null;
   AP.on('screen', s => { if (s === 'log') draw(); });
   function open(s) {
     const wk = G.KPCLog && KPCLog.worked(s.call), cls = AP.S.cls, inCls = !cls || AP.bandPlan.allowed(s.khz, cls, s.mode);
-    AP.sheet(s.call + ' · ' + mhz(s.khz) + ' ' + (s.mode || ''), `<p>${s.refs.length ? '🌲 ' + esc(s.refs.join(' + ')) + '<br>' : ''}${esc(s.comment || '')}${s.grid ? ' · ' + esc(s.grid) : ''}</p>
+    AP.sheet(s.call + ' · ' + mhz(s.khz) + ' ' + (s.mode || ''), `<p>${s.refs.length ? '🌲 ' + esc(s.refs.join(' + ')) + (s.st ? ' · ' + esc(s.st) : '') + '<br>' : s.st ? esc(s.st) + '<br>' : ''}${esc(s.comment || '')}${s.grid ? ' · ' + esc(s.grid) : ''}</p>
       <p class="hint mono">${esc(s.band)} · spotted ${age(s.t)} ago by ${esc(s.spotter || s.src.join('+'))}${wk ? ' · you have worked ' + esc(s.call) + ' before' : ''}${!inCls ? ' · ⚠ outside your licence class (' + esc(cls) + ')' : ''}</p>
       <div class="row"><button type="button" class="b gold" id="spTune">📻 TUNE + LOG LINE</button><button type="button" class="b" id="spWatch">${S.watch.includes(s.call) ? '👀 STOP WATCHING' : '👀 WATCH ' + esc(s.call)}</button>${s.refs.some(r => !/FF-|\//.test(r)) && G.KPCSpotMe ? '<button type="button" class="b" id="spRe">📣 RE-SPOT</button>' : ''}</div>`);
     if ($('spRe')) $('spRe').onclick = () => { AP.shut(); setTimeout(() => KPCSpotMe.respot(s), 40); };
@@ -96,7 +103,7 @@
     if (digi) { KPCModes.use(s.mode); const b = bandOf(s.khz); if (b) KPCModes.active().setBand(b); }
     else if (AP.catConnected()) { const ok = await KPCCat.tune(s.khz, s.mode || ''); if (!ok) AP.toast('The radio did not take ' + mhz(s.khz) + '. Set it by hand.', 4000, 'bad'); }
     else AP.toast('📻 Set the radio to ' + mhz(s.khz) + ' MHz ' + esc(s.mode || '') + ' (connect it in STATION → Radio control to have the app do it).', 5000);
-    if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid });
+    if (G.KPCLog && KPCLog.prefill) KPCLog.prefill({ call: s.call, refs: s.refs, mode: s.mode, khz: s.khz, g: s.grid, st: s.st });
     if (digi) { AP.go('digi'); if ($('dgDx')) $('dgDx').value = s.call; } else AP.go('log');
   }
   /* the filter panel, laid out like the Hunters Lounge (Brandon Oct 24): a label + chips per row, every tap works at once */
@@ -112,7 +119,7 @@
       + row('CONTINENT', (G.KPCCont ? KPCCont.list : []).map(([k, l]) => c('ct', k, (S.ct || []).includes(k), l)).join(''))
       + row('ONLY', c('need', 'park', S.need === 'park', '✨ PARKS NEW TO ME') + c('need', 'new', S.need === 'new', '🆕 CALLS NOT WORKED') + c('cls', '1', S.inClass, '📜 IN MY LICENCE CLASS' + (AP.S.cls ? ' (' + esc(AP.S.cls) + ')' : '')))
       + row('NO OLDER', [5, 10, 15, 30, 60, 120, 360].map(a => c('age', a, S.ageMin === a, a < 60 ? a + ' MIN' : a / 60 + ' H')).join(''))
-      + row('SORT', c('sort', 'new', S.sort === 'new' || !SORTS[S.sort], 'NEWEST') + c('sort', 'freq', S.sort === 'freq', 'FREQUENCY') + c('sort', 'mode', S.sort === 'mode', 'MODE') + c('sort', 'park', S.sort === 'park', 'PARK') + c('sort', 'call', S.sort === 'call', 'CALL'))
+      + row('SORT', c('sort', 'new', S.sort === 'new' || !SORTS[S.sort], 'NEWEST') + c('sort', 'freq', S.sort === 'freq', 'FREQUENCY') + c('sort', 'mode', S.sort === 'mode', 'MODE') + c('sort', 'park', S.sort === 'park', 'PARK') + c('sort', 'st', S.sort === 'st', 'STATE') + c('sort', 'call', S.sort === 'call', 'CALL'))
       + `<div class="frow"><span>kHz</span><div><input id="spFmin" inputmode="decimal" value="${S.fmin || ''}" placeholder="from 14000" class="fin"> <input id="spFmax" inputmode="decimal" value="${S.fmax || ''}" placeholder="to 14350" class="fin"></div></div>`
       + `<div class="frow"><span>WATCH FOR</span><div><input id="spWatchL" autocapitalize="characters" spellcheck="false" value="${esc(S.watch.join(' '))}" placeholder="calls, space between (a note when they show up)" class="fin wide"></div></div>`
       + `<p class="hint">${shown().length} of ${SP.length} spots shown. None picked in a row = all of them.${!AP.S.cls ? ' Set MY LICENCE CLASS in STATION → My station for the licence filter.' : ''}${!(G.KPCLog && KPCLog.potaFiles && KPCLog.potaFiles().h) ? ' Load your hunter file (STATION → Log files → MY POTA FILES) so NEW TO ME knows every park you have hunted.' : ''}</p>`
@@ -178,7 +185,8 @@
 
   /* ---------------- the first source: my own FT8 / FT4 decodes (CQ POTA / SOTA / WWFF heard here) ---------------- */
   let seenSlot = -1;
-  source({ id: 'own', label: 'My decodes' });
+  /* Oct 26 (Brandon: 'my decodes, not sure it does anything'): stations my own FT8/FT4 screen hears calling CQ POTA / SOTA / WWFF land here (needs the FT8 screen listening) */
+  source({ id: 'own', label: '📶 CQ POTA on my FT8', title: 'Stations your own FT8 / FT4 screen hears calling CQ POTA, SOTA or WWFF (and APRS park beacons): no internet needed, only the FT8 screen listening.' });
   AP.on('decoded', sl => {
     if (!G.KPCDigi || sl === seenSlot || typeof sl !== 'number') return; seenSlot = sl;
     const L = KPCDigi.lines().filter(x => x.sep == null && x.sl === sl && x.cq && /^(POTA|SOTA|WWFF|KFF)$/.test(x.cqw || '') && x.fr && !/\.\.\./.test(x.fr));

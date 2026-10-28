@@ -138,6 +138,7 @@
      this have no opn: they are grouped by UTC day + my park(s), the same way on every device ('d:2026-10-25:US-0050').
      BREAK / 🚗 NEXT PARK (PoLo's BREAK): one log for the day, a new stop with its own park(s) + grid; every contact keeps its own
      myrefs + mg, so SAVE ADIF gives one file per park and the full log in one. */
+  const MHZ = k => { const t = Math.round(k * 10) / 10; return (t / 1000).toFixed(t % 1 ? 4 : 3); };   /* 7191.5 → 7.1915 (Oct 26) */
   const OPS = LS('kpcAppOps', {}); let CUR = LS('kpcAppCur', '');
   const opsSave = () => { SV('kpcAppOps', OPS); SV('kpcAppCur', CUR); };
   const autoKey = q => 'd:' + dayOf(q.t) + ':' + ((q.myrefs || []).join('+') || 'hunt');
@@ -186,20 +187,28 @@
     if (!CUR || !OPS[CUR]) opNew(AP.me().hunt ? 'hunt' : 'act');
     OPS[CUR].notes = (OPS[CUR].notes || []).concat([{ t: D.hold || Date.now(), text: text.slice(0, 300) }]); opsSave(); draw();
   }
-  /* the My logs card at the top of the LOG screen: open at start, after 6 hours away, or from the 📒 chip */
+  /* the MY LOGS page (Oct 26, Brandon: 'my logs should be a separate page not on the log screen … longer intro then to my logs page'):
+     its own screen ('logs'), opened after the opening at each fresh start, from the 📒 bar at the very top of the LOG screen, or LOGS in the CALL box.
+     logsCard(false) = back to the logger. */
+  const KIND = { act: ['🌲', 'Activation'], hunt: ['🎯', 'Hunting'], event: ['🎪', 'Event'] };
   function logsCard(show) {
-    let el = $('lgOps'); if (!el) { ($('lgList').closest('.lgwrap') || $('lgList')).insertAdjacentHTML('beforebegin', '<div class="opscard" id="lgOps" hidden></div>'); el = $('lgOps'); }
-    if (show === false) { el.hidden = true; return; }
-    const L = opList().slice(0, 30), cur = CUR;
-    el.innerHTML = `<div class="opsh"><b>📒 MY LOGS</b><button type="button" class="chip" data-opx="close" aria-label="Close my logs">✕</button></div>
-      <div class="opsnew"><button type="button" class="b gold" data-opnew="act">🌲 NEW ACTIVATION</button><button type="button" class="b" data-opnew="hunt">🎯 NEW HUNTING LOG</button><button type="button" class="b" data-opnew="event">🎪 NEW EVENT</button></div>
-      <div class="opsl">${L.length ? L.map(o => `<button type="button" class="opr${o.id === cur ? ' on' : ''}" data-op="${esc(o.id)}"><span class="n">${esc(o.m.name)}</span><span class="d">${o.t0 ? esc(new Date(o.t0).toISOString().slice(0, 10)) : ''}${o.parks.length ? ' · ' + esc(o.parks.join(', ')) : ''}</span><b>${o.n}</b></button>`).join('') : '<div class="empty">No logs yet: start one above.</div>'}
-      <button type="button" class="opr${!cur ? ' on' : ''}" data-op=""><span class="n">📚 Every contact</span><span class="d">all logs together</span><b>${Q.length}</b></button></div>`;
-    el.hidden = false;
+    const el = $('lgOps'); if (!el) return;
+    if (show === false) { if (document.body.dataset.screen === 'logs') AP.go('log'); return; }
+    const L = opList().slice(0, 40), cur = CUR, today = dayOf(Date.now());
+    const card = o => { const k = KIND[o.m.kind] || KIND.act, d = o.t0 ? new Date(o.t0).toISOString().slice(0, 10) : '';
+      return `<button type="button" class="opr k-${esc(o.m.kind || 'act')}${o.id === cur ? ' on' : ''}" data-op="${esc(o.id)}"><span class="ki">${k[0]}</span><span class="n">${esc(String(o.m.name).replace(/^[🌲🎯🎪]\s*/u, ''))}</span><span class="d">${esc(k[1])}${d ? ' · ' + (d === today ? 'today' : esc(d)) : ''}${o.parks.length ? ' · ' + esc(o.parks.join(', ')) : ''}${o.m.stops && o.m.stops.length > 1 ? ' · ' + o.m.stops.length + ' parks' : ''}</span><b>${o.n}<small>QSO${o.n === 1 ? '' : 's'}</small></b>${o.id === cur ? '<em>OPEN</em>' : ''}</button>`; };
+    el.innerHTML = `<div class="opsh"><div><h2>📒 My logs</h2><p>Start a new log, open an old one, or go straight to the logger with every contact.</p></div>
+        <button type="button" class="b gold opgo" data-opx="close">✍ ${cur ? 'BACK TO THIS LOG' : 'GO TO THE LOGGER'} ›</button></div>
+      <div class="opsnew"><button type="button" class="opn act" data-opnew="act"><span>🌲</span><b>NEW ACTIVATION</b><i>At a park (or a summit). BREAK moves on to the next park in the same log.</i></button>
+        <button type="button" class="opn" data-opnew="hunt"><span>🎯</span><b>NEW HUNTING LOG</b><i>From home or the car: the parks you work go in their own log.</i></button>
+        <button type="button" class="opn" data-opnew="event"><span>🎪</span><b>NEW EVENT</b><i>Field Day, a special event, a contest, a club night.</i></button></div>
+      <button type="button" class="opr every${!cur ? ' on' : ''}" data-op=""><span class="ki">📚</span><span class="n">Every contact · the regular logger</span><span class="d">all logs together, nothing split</span><b>${Q.length}<small>QSO${Q.length === 1 ? '' : 's'}</small></b>${!cur ? '<em>OPEN</em>' : ''}</button>
+      <div class="opsl">${L.length ? '<h3>RECENT LOGS</h3>' + L.map(card).join('') : '<div class="empty">No logs yet. Start one above, or just use the logger: every contact lands in today\'s log by itself.</div>'}</div>`;
+    AP.go('logs');
   }
   document.addEventListener('click', e => {
     const n = e.target.closest('[data-opnew]'); if (n) { const k = n.dataset.opnew; if (k === 'act' && !myRefs().length) { AP.sheet('🌲 New activation', `<label class="e wide">MY PARK NUMBER(S)<input id="onRefs" name="kpc-my-parks" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="US-0050"></label><div class="row"><button type="button" class="b gold" id="onGo">START THE LOG</button></div>`); parkBox($('onRefs')); $('onGo').onclick = () => { const r = refList($('onRefs').value); AP.S.ref = r.join(' '); AP.save(); AP.shut(); opNew('act', '', r); logsCard(false); AP.fire('me'); }; return; } opNew(k); logsCard(false); AP.toast('📒 New log started: ' + esc(OPS[CUR].name), 3000, 'log'); return; }
-    const o = e.target.closest('[data-op]'); if (o) { opOpen(o.dataset.op); logsCard(false); return; }
+    const o = e.target.closest('[data-op]'); if (o) { opOpen(o.dataset.op); logsCard(false); AP.toast('📒 ' + esc(o.dataset.op ? opMeta(o.dataset.op).name : 'Every contact') + ' is open.', 2200, 'log'); return; }
     if (e.target.closest('[data-opx]')) logsCard(false);
   });
   /* ================= THE CLOCK HOLD (PoLo, for paper logs; Brandon Oct 24: 'be able to pause the clock and change clock time') =================
@@ -229,7 +238,7 @@
     if (ALLMODES.includes(x) || x === 'PHONE' || x === 'SSB') { D.mode = x === 'PHONE' ? 'SSB' : x; saveD(); dockChips(); return done('Mode ' + D.mode); }
     let m;
     if ((m = /^(\d{1,3})(?:\.(\d{1,6}))$/.exec(x)) && +m[1] < 1000) { const mhz = parseFloat(x); D.khz = Math.round(mhz * 1000 * 1000) / 1000; saveD(); dockChips(); return done('📻 ' + mhz.toFixed(3) + ' MHz' + (bandOf(D.khz) ? ' · ' + bandOf(D.khz) : '')); }
-    if ((m = /^(\d{3,7})(?:\.(\d{1,3}))?$/.exec(x)) && +m[1] >= 130 && bandOf(parseFloat(x))) { D.khz = parseFloat(x); saveD(); dockChips(); return done('📻 ' + (D.khz / 1000).toFixed(3) + ' MHz · ' + bandOf(D.khz)); }
+    if ((m = /^(\d{3,7})(?:\.(\d{1,3}))?$/.exec(x)) && +m[1] >= 130 && bandOf(parseFloat(x))) { D.khz = parseFloat(x); saveD(); dockChips(); return done('📻 ' + MHZ(D.khz) + ' MHz · ' + bandOf(D.khz)); }
     if ((m = /^\.(\d{1,3})$/.exec(x))) { const k = Math.floor(D.khz / 1000) * 1000 + +m[1].padEnd(3, '0'); D.khz = k; saveD(); dockChips(); return done('📻 ' + (k / 1000).toFixed(3) + ' MHz'); }
     if ((m = /^(\d{1,4})W$/.exec(x))) { AP.S.pwr = m[1]; AP.save(); const e = $('stPwr'); if (e) e.value = m[1]; return done('Power ' + m[1] + ' W (goes on each contact)'); }
     if ((m = /^(\d{1,2}):(\d{2})(?::(\d{2}))?$/.exec(x))) { const b = new Date(D.hold || Date.now()); const t = Date.UTC(b.getUTCFullYear(), b.getUTCMonth(), b.getUTCDate(), +m[1], +m[2], +(m[3] || 0)); holdSet(t); return done('⏸ Clock held at ' + x + 'z. Each contact moves it on a minute. NOW lets go.'); }
@@ -312,7 +321,7 @@
     return `<div class="qrow one" data-q="${esc(q.id)}" role="row">
       <span class="t">${AP.utc(q.t)}</span>
       <span class="c"><b>${esc(q.call)}</b>${q.st ? `<em>${esc(q.st)}</em>` : ''}${refs ? `<u>🌲${esc(refs)}</u>` : ''}${xcols(q)}</span>
-      <span class="m"><s>${esc(q.band || bandOf(q.khz) || '')}</s> ${q.khz ? (q.khz / 1000).toFixed(3) : ''} <b>${esc(q.mode)}</b></span>
+      <span class="m"><s>${esc(q.band || bandOf(q.khz) || '')}</s> ${q.khz ? MHZ(q.khz) : ''} <b>${esc(q.mode)}</b></span>
       <span class="r">${esc([q.rs, q.rr].filter(Boolean).join('/'))}${upMark(q)}</span>
       <span class="x"><button type="button" data-del="${esc(q.id)}" aria-label="Take ${esc(q.call)} out of the log">✕</button></span></div>`;
   }
@@ -323,13 +332,13 @@
     if (m) { (m.stops || []).slice(1).forEach(st => items.push({ t: st.t, h: `<div class="qsep brk">🚗 ${esc(AP.utc(st.t))} · BREAK → <b>${esc((st.refs || []).join(' + ') || 'a new spot')}</b>${st.grid ? ' · ' + esc(st.grid) : ''}</div>` }));
       (m.notes || []).forEach(nt => items.push({ t: nt.t, h: `<div class="qsep note">📝 ${esc(AP.utc(nt.t))} · ${esc(nt.text)}</div>` })); }
     items.sort((a, b) => a.t - b.t);
-    const head = `<button type="button" class="lghead" data-oplist="1" title="My logs: open another log or start a new one">📒 <b>${esc(m ? m.name : 'Every contact')}</b><i>${V.length} contact${V.length === 1 ? '' : 's'} · MY LOGS ›</i></button>`;
+    const head = ''; if ($('lgBarN')) { $('lgBarN').textContent = m ? m.name : 'Every contact (the regular logger)'; $('lgBarC').textContent = V.length + ' contact' + (V.length === 1 ? '' : 's'); $('lgBar').classList.toggle('every', !m); }
     el.innerHTML = head + (items.length ? items.map(x => x.h).reverse().join('')
       : '<div class="empty">' + (ready ? 'No contacts yet. Type a call sign below and press the gold button — or work someone on the FT8 screen and it lands here by itself. Type <b>HELP</b> in the CALL box for the commands.' : 'Opening the log…') + '</div>');
     counts();
   }
   document.addEventListener('click', e => { if (e.target.closest('[data-oplist]')) logsCard(); });
-  AP.on('log', () => { const c = $('lgOps'); if (c && !c.hidden) setTimeout(() => logsCard(), 0); });
+  AP.on('log', () => { if (document.body.dataset.screen === 'logs') setTimeout(() => logsCard(), 0); });
   $('lgList').addEventListener('click', e => {
     const d = e.target.closest('[data-del]');
     if (d) {   /* Brandon Oct 22: 'if deleting a qso needs are you sure? question' */
@@ -391,7 +400,7 @@
   function dockChips() {
     const me = AP.me(), need = me.hunt ? false : !me.ref;
     const f = $('dkFreq');
-    f.textContent = (D.khz / 1000).toFixed(3) + ' ' + D.mode + (me.ref ? ' · MY PARK ' + myRefs().join('+') : need ? ' · MY PARK?' : '');   /* Brandon Oct 22: it read as THEIR park */
+    f.textContent = MHZ(D.khz) + ' ' + D.mode + (me.ref ? ' · MY PARK ' + myRefs().join('+') : need ? ' · MY PARK?' : '');   /* Brandon Oct 22: it read as THEIR park */
     f.classList.toggle('bad', need);
     $('dkRole').textContent = me.hunt ? '🎯 HUNT' : '🏕 ACT';
     $('eRs').placeholder = rstDef(D.mode) || '-10'; $('eRr').placeholder = rstDef(D.mode) || '-10';
@@ -759,10 +768,10 @@
 
   /* ---------------- hide what can't work yet ---------------- */
   AP.on('me', () => { view(); draw(); dockChips(); counts(); });
-  AP.on('dial', r => { if (r && r.khz && !isFT(D.mode)) { D.khz = r.khz; saveD(); dockChips(); } });
+  AP.on('dial', r => { if (r && r.khz && !isFT(D.mode)) { const off = (G.KPCModes5 && KPCModes5.cwOff && document.body.dataset.screen === 'digi') ? KPCModes5.cwOff(r) : 0; D.khz = r.khz + off; saveD(); dockChips(); } });   /* tone CW parks the dial one tone low: log the CW frequency */
 
   draw(); dockChips(); moreChip(); parkBox($('stRef'));
-  load().then(() => { const L = opList(), last = L[0]; if (!CUR || !last || Date.now() - last.t1 > 6 * 36e5) logsCard(); });
+  load().then(() => { const L = opList(), last = L[0]; if (G.KPC_FRESH || (!navigator.webdriver && !/[?&](headless|fake)=1/.test(location.search) && (!last || Date.now() - last.t1 > 6 * 36e5))) logsCard(); });
   /* ＋ a contact missed earlier: on the LOG strip */
   { const st = $('lgStrip'); if (st && !$('lgAdd')) { st.insertAdjacentHTML('beforeend', '<button type="button" class="chip" id="lgAdd" title="Add a contact you missed, with its own time">＋ EARLIER CONTACT</button>'); $('lgAdd').onclick = () => editSheet(null); } }
   /* NEXT PARK suggestions for the BREAK sheet: the nearest parks from the downloaded packs (the GPS fix the app last had) */
@@ -774,7 +783,9 @@
     if (o.khz > 100 && !isFT(String(o.mode || '').toUpperCase())) { D.khz = +o.khz; D.mode = String(o.mode || D.mode).toUpperCase(); saveD(); }
     else if (o.mode) { D.mode = String(o.mode).toUpperCase(); saveD(); }
     MORE = Object.assign({}, MORE, { refs: refList((o.refs || []).join(' ')), g: String(o.g || '').toUpperCase() });
-    $('eCall').value = String(o.call || '').toUpperCase(); moreChip(); dockChips(); lookUp();
+    $('eCall').value = String(o.call || '').toUpperCase(); moreChip(); dockChips();
+    const st1 = String(o.st || '').split('/')[0]; if (st1 && $('eSt') && /^[A-Z]{2}$/.test(st1)) $('eSt').value = st1;   /* Oct 26: the spot's state fills the STATE box */
+    lookUp();
   }
   G.KPCLog = {
     add, qs: () => Q, prefill, all: () => ALL, me: AP.me, band: bandOf, toast: AP.toast, adif, dock: D, saveDock: saveD,

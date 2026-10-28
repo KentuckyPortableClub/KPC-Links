@@ -17,7 +17,7 @@
   const tiles = new Map();
   function create(cv, o) {
     o = o || {};
-    let la = 37.8, lo = -85.5, z = 7, sat = !!o.sat, raf = 0;
+    let la = 37.8, lo = -85.5, z = 7, sat = !!o.sat, raf = 0; const MINZ = o.minZ || 3;   /* the QSO map zooms out to the whole world (minZ 1) */
     const ctx = cv.getContext('2d');
     function size() { const r = cv.getBoundingClientRect(), d = G.devicePixelRatio || 1, w = Math.max(100, Math.round(r.width)), h = Math.max(100, Math.round(r.height)); if (cv.width !== w * d || cv.height !== h * d) { cv.width = w * d; cv.height = h * d; } ctx.setTransform(d, 0, 0, d, 0, 0); return [w, h]; }
     function P(a, b) { const [w, h] = [cv.clientWidth, cv.clientHeight]; return [X(b, z) - X(lo, z) + w / 2, Y(a, z) - Y(la, z) + h / 2]; }
@@ -52,13 +52,13 @@
     cv.addEventListener('pointerdown', e => { cv.setPointerCapture(e.pointerId); pts.set(e.pointerId, [e.offsetX, e.offsetY]); moved = 0; if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), z }; } });
     cv.addEventListener('pointermove', e => {
       const p = pts.get(e.pointerId); if (!p) return;
-      if (pts.size === 2 && pinch) { pts.set(e.pointerId, [e.offsetX, e.offsetY]); const [a, b] = [...pts.values()]; const d = Math.hypot(a[0] - b[0], a[1] - b[1]); z = Math.max(3, Math.min(18, pinch.z + Math.log2(d / (pinch.d || 1)))); moved = 99; redraw(); return; }
+      if (pts.size === 2 && pinch) { pts.set(e.pointerId, [e.offsetX, e.offsetY]); const [a, b] = [...pts.values()]; const d = Math.hypot(a[0] - b[0], a[1] - b[1]); z = Math.max(MINZ, Math.min(18, pinch.z + Math.log2(d / (pinch.d || 1)))); moved = 99; redraw(); return; }
       const dx = e.offsetX - p[0], dy = e.offsetY - p[1]; moved += Math.abs(dx) + Math.abs(dy); pts.set(e.pointerId, [e.offsetX, e.offsetY]);
       const [nla, nlo] = un(cv.clientWidth / 2 - dx, cv.clientHeight / 2 - dy); la = Math.max(-84, Math.min(84, nla)); lo = nlo; redraw();
     });
     const up = e => { const p = pts.get(e.pointerId); pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (p && moved < 8 && o.tap) { const [a, b] = un(e.offsetX, e.offsetY); o.tap(a, b, e.offsetX, e.offsetY); } };
     cv.addEventListener('pointerup', up); cv.addEventListener('pointercancel', e => { pts.delete(e.pointerId); pinch = null; });
-    cv.addEventListener('wheel', e => { e.preventDefault(); const [a, b] = un(e.offsetX, e.offsetY); z = Math.max(3, Math.min(18, z - Math.sign(e.deltaY) * 0.5)); const [c, d] = un(e.offsetX, e.offsetY); la += a - c; lo += b - d; redraw(); }, { passive: false });
+    cv.addEventListener('wheel', e => { e.preventDefault(); const [a, b] = un(e.offsetX, e.offsetY); z = Math.max(MINZ, Math.min(18, z - Math.sign(e.deltaY) * 0.5)); const [c, d] = un(e.offsetX, e.offsetY); la += a - c; lo += b - d; redraw(); }, { passive: false });
     G.addEventListener('resize', redraw);
     const m = {
       view(a, b, zz) { if (isFinite(a) && isFinite(b)) { la = a; lo = b; } if (isFinite(zz)) z = zz; redraw(); return m; },
@@ -66,7 +66,7 @@
         list = (list || []).filter(p => isFinite(p[0]) && isFinite(p[1])); if (!list.length) return m;
         const a = Math.min(...list.map(p => p[0])), b = Math.max(...list.map(p => p[0])), c = Math.min(...list.map(p => p[1])), d = Math.max(...list.map(p => p[1]));
         la = (a + b) / 2; lo = (c + d) / 2; const w = cv.clientWidth || 360, h = cv.clientHeight || 300;
-        z = 16; while (z > 3 && (X(d, z) - X(c, z) > w * 0.85 || Y(a, z) - Y(b, z) > h * 0.85)) z -= 0.5;
+        z = 16; while (z > MINZ && (X(d, z) - X(c, z) > w * 0.85 || Y(a, z) - Y(b, z) > h * 0.85)) z -= 0.5;
         redraw(); return m;
       },
       redraw, P, sat(on) { if (on !== undefined) { sat = !!on; redraw(); } return sat; }, center: () => [la, lo, z]

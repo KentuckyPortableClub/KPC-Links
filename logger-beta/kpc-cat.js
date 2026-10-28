@@ -27,6 +27,7 @@
   function kind(mode, khz) { // CW / SSB(USB|LSB) / FM / AM / DATA
     const m = M(mode);
     if (/CW/.test(m)) return 'CW';
+    if (/^(DATAL|DATA-L|PKTLSB|LSB-D|DIGL)$/.test(m)) return 'DATAL';   /* Oct 26 (Fable): data on the LOWER sideband (SSTV / voice via the data input on 40 m and 80 m) */
     if (/FT8|FT4|JS8|PSK|RTTY|DATA|DIG|OLIVIA|MFSK|VARA|SSTV|WSPR/.test(m)) return 'DATA';
     if (m === 'FM') return 'FM'; if (m === 'AM') return 'AM';
     if (m === 'LSB') return 'LSB'; if (m === 'USB') return 'USB';
@@ -41,40 +42,40 @@
 
   const PROTOS = {
     kenwood: { // Kenwood, Elecraft K3/K4/KX2/KX3, QRP Labs QMX/QDX, (tr)uSDX, Lab599 TX-500, FlexRadio (SmartSDR CAT)
-      tune(khz, k) { const md = { LSB: 1, USB: 2, CW: 3, FM: 4, AM: 5, DATA: S.data === 'data' ? (S.model === 'elecraft' ? 6 : 2) : 2 }[k] || 2;
-        const out = [asc('FA' + pad(khz * 1000, 11) + ';'), asc('MD' + md + ';')]; if (k === 'DATA' && S.data === 'data' && S.model !== 'elecraft') out.push(asc('DA1;')); return out; },
+      tune(khz, k) { const md = { LSB: 1, USB: 2, CW: 3, FM: 4, AM: 5, DATA: S.data === 'data' ? (S.model === 'elecraft' ? 6 : 2) : 2, DATAL: S.data === 'data' ? (S.model === 'elecraft' ? 9 : 1) : 1 }[k] || 2;
+        const out = [asc('FA' + pad(khz * 1000, 11) + ';'), asc('MD' + md + ';')]; if (/^DATA/.test(k) && S.data === 'data' && S.model !== 'elecraft') out.push(asc('DA1;')); return out; },
       ask: () => asc('FA;IF;'),
       parse(t) { const f = /FA(\d{11});/.exec(t); const md = /IF[\d+\- ]{27}(\d)/.exec(t); if (!f) return null;
         return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 9: 'DATA' }[md[1]] || '') : '' }; }
     },
     yaesu: { // newer Yaesu CAT: FT-991A, FT-891, FT-710, FTDX10, FTDX101, FT-DX3000/5000
-      tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 9) + ';'), asc('MD0' + md + ';')]; },
+      tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2', DATAL: S.data === 'data' ? '8' : '1' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 9) + ';'), asc('MD0' + md + ';')]; },
       ask: () => asc('FA;MD0;'),
       parse(t) { const f = /FA(\d{9});/.exec(t); const md = /MD0([0-9A-E]);/.exec(t); if (!f) return null;
-        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATA', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
+        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATAL', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
     },
     yaesu8: { // older 'new CAT' Yaesu with 8-digit frequency: FT-450D, FT-950, FT-2000, FTDX1200, FTDX3000, FTDX5000
-      tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 8) + ';'), asc('MD0' + md + ';')]; },
+      tune(khz, k) { const md = { LSB: '1', USB: '2', CW: '3', FM: '4', AM: '5', DATA: S.data === 'data' ? 'C' : '2', DATAL: S.data === 'data' ? '8' : '1' }[k] || '2'; return [asc('FA' + pad(khz * 1000, 8) + ';'), asc('MD0' + md + ';')]; },
       ask: () => asc('FA;MD0;'),
       parse(t) { const f = /FA(\d{8});/.exec(t); const md = /MD0([0-9A-E]);/.exec(t); if (!f) return null;
-        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATA', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
+        return { khz: +f[1] / 1000, mode: md ? ({ 1: 'LSB', 2: 'USB', 3: 'CW', 4: 'FM', 5: 'AM', 6: 'DATA', 7: 'CW', 8: 'DATAL', 9: 'DATA', C: 'DATA', B: 'FM' }[md[1]] || '') : '' }; }
     },
     yaesuold: { // FT-817 / FT-818 / FT-857 / FT-897 (5-byte binary commands)
       tune(khz, k) { const d = pad(khz * 100, 8); const f = [0, 2, 4, 6].map(i => parseInt(d.substr(i, 2), 16));
-        const md = { LSB: 0, USB: 1, CW: 2, FM: 8, AM: 4, DATA: S.data === 'data' ? 0x0A : 1 }[k]; return [new Uint8Array([...f, 0x01]), new Uint8Array([md == null ? 1 : md, 0, 0, 0, 0x07])]; },
+        const md = { LSB: 0, USB: 1, CW: 2, FM: 8, AM: 4, DATA: S.data === 'data' ? 0x0A : 1, DATAL: S.data === 'data' ? 0x0A : 0 }[k]; return [new Uint8Array([...f, 0x01]), new Uint8Array([md == null ? 1 : md, 0, 0, 0, 0x07])]; },
       ask: () => new Uint8Array([0, 0, 0, 0, 0x03]),
       parse(t, raw) { if (!raw || raw.length < 5) return null; const b = raw.slice(-5); const h = b.slice(0, 4).map(x => x.toString(16).padStart(2, '0')).join('');
         if (!/^\d{8}$/.test(h)) return null; return { khz: +h / 100, mode: ({ 0: 'LSB', 1: 'USB', 2: 'CW', 3: 'CW', 4: 'AM', 8: 'FM', 0x0A: 'DATA', 0x0C: 'DATA' }[b[4]] || '') }; }
     },
     hamlib: { // Hamlib's rigctld (text over TCP, port 4532): any of its 300+ radios, incl. the IC-705 over WiFi through rigctld on the PC
-      tune(khz, k) { const md = { LSB: 'LSB', USB: 'USB', CW: 'CW', FM: 'FM', AM: 'AM', DATA: S.data === 'data' ? 'PKTUSB' : 'USB' }[k] || 'USB'; return [asc('F ' + Math.round(khz * 1000) + '\n'), asc('M ' + md + ' 0\n')]; },
+      tune(khz, k) { const md = { LSB: 'LSB', USB: 'USB', CW: 'CW', FM: 'FM', AM: 'AM', DATA: S.data === 'data' ? 'PKTUSB' : 'USB', DATAL: S.data === 'data' ? 'PKTLSB' : 'LSB' }[k] || 'USB'; return [asc('F ' + Math.round(khz * 1000) + '\n'), asc('M ' + md + ' 0\n')]; },
       ask: () => asc('f\nm\n'),
       parse(t) { const L = t.split(/\r?\n/).map(x => x.trim()).filter(Boolean); const hz = L.find(x => /^\d{4,}$/.test(x)); if (!hz) return null; const i = L.indexOf(hz); const mdl = L.slice(i + 1).find(x => /^[A-Z]{2,7}$/.test(x)) || '';
-        return { khz: +hz / 1000, mode: /PKT|DIG|DATA/.test(mdl) ? 'DATA' : mdl }; }
+        return { khz: +hz / 1000, mode: /PKT|DIG|DATA/.test(mdl) ? (/LSB|DIGL|DATAL/.test(mdl) ? 'DATAL' : 'DATA') : mdl }; }
     },
     icom: { // Icom CI-V: IC-705, IC-7300, IC-7610, IC-9700, IC-7100, IC-718; Xiegu G90 / X6100 / X5105 (CI-V)
-      tune(khz, k) { const md = { LSB: 0, USB: 1, AM: 2, CW: 3, FM: 5, DATA: 1 }[k]; const o = [icom([0x05, ...bcdLE(khz * 1000, 5)]), icom([0x06, md == null ? 1 : md, 0x01])];
-        if (S.model !== 'xiegu') o.push(icom([0x1A, 0x06, k === 'DATA' && S.data === 'data' ? 1 : 0, k === 'DATA' && S.data === 'data' ? 1 : 0])); return o; },
+      tune(khz, k) { const md = { LSB: 0, USB: 1, AM: 2, CW: 3, FM: 5, DATA: 1, DATAL: 0 }[k]; const o = [icom([0x05, ...bcdLE(khz * 1000, 5)]), icom([0x06, md == null ? 1 : md, 0x01])];
+        const dt = /^DATA/.test(k) && S.data === 'data' ? 1 : 0; if (S.model !== 'xiegu') o.push(icom([0x1A, 0x06, dt, dt])); return o; },
       ask: () => new Uint8Array([...icom([0x03]), ...icom([0x04])]),
       parse(t, raw) { if (!raw) return null; let khz = 0, mode = '';
         for (let i = 0; i < raw.length - 5; i++) { if (raw[i] === 0xFE && raw[i + 1] === 0xFE && raw[i + 2] === 0xE0) { const c = raw[i + 4];
@@ -205,10 +206,11 @@
       if (!FLRIG.modes) { try { const t = await FLRIG.call('rig.get_modes'); FLRIG.modes = (t.match(/[A-Z0-9\-]+/g) || []); } catch (e) { FLRIG.modes = []; } }
       const L = FLRIG.modes, pick = re => L.find(m => re.test(m));
       if (k === 'DATA') return (S.data === 'data' && (pick(/^(DATA-U|PKT-U|USB-D|DIGU|DATA|PKTUSB|USB-DATA)$/) || pick(/DATA|PKT|DIG/))) || pick(/^USB$/) || 'USB';
+      if (k === 'DATAL') return (S.data === 'data' && pick(/^(DATA-L|PKT-L|LSB-D|DIGL|PKTLSB|LSB-DATA)$/)) || pick(/^LSB$/) || 'LSB';
       return pick(new RegExp('^' + k + '$')) || k;
     },
     async setFreqMode(khz, k) { await FLRIG.call('rig.set_vfo', [Math.round(khz * 1000)]); await FLRIG.call('rig.set_mode', [await FLRIG.modeFor(k)]); },
-    async get() { const f = await FLRIG.call('rig.get_vfo'), m = await FLRIG.call('rig.get_mode'); return { khz: +f / 1000, mode: /PKT|DIG|DATA|-D$/.test(m) ? 'DATA' : m }; },
+    async get() { const f = await FLRIG.call('rig.get_vfo'), m = await FLRIG.call('rig.get_mode'); return { khz: +f / 1000, mode: /PKT|DIG|DATA|-D$/.test(m) ? (/L/.test(m.replace(/DATA|DIG|PKT/g, '')) ? 'DATAL' : 'DATA') : m }; },
     async ptt(on) { await FLRIG.call('rig.set_ptt', [on ? 1 : 0]); }
   };
   /* the PRETEND radio (Fable, Oct 22): a link that answers like a radio with no cable, so the app can be tried end to end */
@@ -320,6 +322,20 @@
     }).catch(() => false);
     return busy;
   }
+  /* Oct 26 (Fable): set only the MODE, fast (no frequency, no read-back): the voice keyer / HOLD TO TALK put an SSB radio into DATA-U/L
+     for the length of the transmission so the USB audio goes out (Brandon's FT-710: 'SSB no power out' = the radio's SSB MOD SOURCE is MIC;
+     DATA MOD SOURCE = USB already works for FT8), then put the sideband back. */
+  function mode(k) {
+    busy = busy.then(async () => {
+      if (!await connect(false)) return false;
+      k = kind(k, 0); lastMode = k;
+      if (LINK() === 'fake') { await sleep(20); FAKE.mode = k; return true; }
+      if (LINK() === 'flrig') { try { await FLRIG.call('rig.set_mode', [await FLRIG.modeFor(k)]); return true; } catch (e) { return false; } }
+      const P = PROTOS[LINK() === 'rigctld' ? 'hamlib' : S.proto] || PROTOS.kenwood;
+      try { const C = P.tune((lastRead && lastRead.khz) || 14000, k); for (const b of C.slice(1)) await write(b); return true; } catch (e) { return false; }
+    }).catch(() => false);
+    return busy;
+  }
   function read() {
     busy = busy.then(async () => {
       if (LINK() === 'fake') { if (!FAKE.on) return null; await sleep(30); return { khz: FAKE.khz, mode: FAKE.mode }; }
@@ -343,6 +359,12 @@
     icom: { width: (hz, m) => [icom([0x1A, 0x03, parseInt(pad(hz <= 500 ? Math.max(0, Math.round(hz / 50) - 1) : Math.min(49, 9 + Math.round((hz - 500) / 100)), 2), 16)])], notch: on => [icom([0x16, 0x41, on ? 1 : 0])], nb: on => [icom([0x16, 0x22, on ? 1 : 0])], nr: on => [icom([0x16, 0x40, on ? 1 : 0])], power: p => [icom([0x14, 0x0A, ...pct255(p)])], mic: v => [icom([0x14, 0x0B, ...pct255(v)])] },
     hamlib: { width: (hz, m) => [asc('M ' + (m || 'USB') + ' ' + Math.round(hz) + '\n')], notch: on => [asc('U ANF ' + (on ? 1 : 0) + '\n')], nb: on => [asc('U NB ' + (on ? 1 : 0) + '\n')], nr: on => [asc('U NR ' + (on ? 1 : 0) + '\n')], power: p => [asc('L RFPOWER ' + (Math.max(5, Math.min(100, p)) / 100).toFixed(2) + '\n')], mic: v => [asc('L MICGAIN ' + (Math.max(0, Math.min(100, v)) / 100).toFixed(2) + '\n')] }
   };
+  /* Oct 26 (Brandon: 'tune button … real radio tuning'): start the radio's own antenna tuner. Yaesu AC002 (FT-710 / 991A / FTDX10 / 891 with an ATU),
+     Kenwood AC111, Icom 0x1C 0x01 0x02, Hamlib vfo op TUNE. Elecraft / QRP kits: no (their tuners answer other commands or none). */
+  EXTRA.yaesu.atu = () => [asc('AC002;')];
+  EXTRA.kenwood.atu = () => S.model === 'elecraft' ? null : [asc('AC111;')];
+  EXTRA.icom.atu = () => [icom([0x1C, 0x01, 0x02])];
+  EXTRA.hamlib.atu = () => [asc('G TUNE\n')];
   EXTRA.yaesu8 = EXTRA.yaesu;
   const FLX = { power: p => FLRIG.call('rig.set_power', [Math.max(5, Math.min(100, Math.round(p)))]), mic: v => FLRIG.call('rig.set_micgain', [Math.max(0, Math.min(100, Math.round(v)))]), notch: on => FLRIG.call('rig.set_notch', [on ? 1 : 0]) };
   /* ---- METERS + RADIO POWER (Brandon Oct 24: 'always show ALC, with power up and down; radio power on and off' on the remote) ----
@@ -392,8 +414,8 @@
   }
   function extras() {
     if (LINK() === 'flrig') return Object.keys(FLX);
-    if (LINK() === 'fake') return ['width', 'notch', 'nb', 'nr', 'power', 'mic'];
-    const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}; return Object.keys(E).filter(k => !(k === 'width' && S.proto === 'kenwood' && S.model !== 'elecraft'));
+    if (LINK() === 'fake') return ['width', 'notch', 'nb', 'nr', 'power', 'mic', 'atu'];
+    const E = EXTRA[LINK() === 'rigctld' ? 'hamlib' : S.proto] || {}; return Object.keys(E).filter(k => !(k === 'width' && S.proto === 'kenwood' && S.model !== 'elecraft') && !(k === 'atu' && (S.model === 'elecraft' || S.model === 'xiegu')));
   }
   let lastMode = '';
   function extra(name, value) {
@@ -503,10 +525,14 @@
   const VEND = { 0x10C4: 'Silicon Labs CP210x (Icom, Yaesu, Xiegu, Elecraft cables)', 0x0403: 'FTDI (many CAT cables)', 0x067B: 'Prolific (older CAT cables)', 0x1A86: 'CH340 (QRP Labs, truSDX, cheap cables)', 0x0483: 'STMicro (QMX/QDX)', 0x2341: 'Arduino', 0x239A: 'Adafruit', 0x2E8A: 'Raspberry Pi Pico', 0x1FC9: 'NXP', 0x04D8: 'Microchip' };
   async function ports() {
     const ps = await allPorts();
-    return ps.map((p, i) => { const f = (p.getInfo && p.getInfo()) || {}, v = f.usbVendorId;
+    const NK = (() => { try { return JSON.parse(localStorage.getItem('kpcPortNick') || '{}'); } catch (e) { return {}; } })();   /* Oct 26: my own name for a port ('FT-710 shack') */
+    return ps.map((p, i) => { const r = portRow(p, i); const nk = NK[keyOf(p)]; if (nk) { r.nick = nk; r.label = '★ ' + nk + ' · ' + r.label; } return r; });
+  }
+  function portRow(p, i) {
+    { const f = (p.getInfo && p.getInfo()) || {}, v = f.usbVendorId;
       if (f.name) return { i, now: p === port, label: f.name + (f.chip ? ' · ' + f.chip : '') };
       if (window.KPCApp && KPCApp.portLabel && !NAT()) { const l = KPCApp.portLabel(p, i); if (!/USB port \d|COM port \d/.test(l)) return { i, now: p === port, label: l.replace(/^\S+ /, '') }; }
-      return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; });
+      return { i, now: p === port, label: (v != null ? (VEND[v] || 'USB maker ' + v.toString(16).toUpperCase().padStart(4, '0')) : 'Serial port') + (f.usbProductId != null ? ' · product ' + f.usbProductId.toString(16).toUpperCase().padStart(4, '0') : '') + (f.usbInterface != null ? (f.usbInterface === 0 ? ' · port 1 (CAT)' : ' · port ' + (f.usbInterface + 1) + ' (PTT / keying)') : '') }; }
   }
   async function usePort(i) { await disconnect(); const ps = await allPorts(); const p = ps[i]; if (!p) return false; S.portKey = keyOf(p); S.portIx = i; SV('kpcCat', S); return connect(false); }
   async function pickNew() {
@@ -533,7 +559,7 @@
     supported: () => 'serial' in navigator || !!navigator.usb || !!NAT(), connect, disconnect, ports, usePort, pickNew, forget, connected: () => LINK() === 'flrig' ? flrigOn : LINK() === 'fake' ? FAKE.on : !!(port && writer), tune, read, follow, ptt, fake: () => FAKE,
     links: () => [{ id: 'serial', label: 'USB cable (CAT)', ok: 'serial' in navigator || !!navigator.usb || !!NAT() }, { id: 'rigctld', label: 'Hamlib rigctld (TCP)', ok: !!KN() }, { id: 'flrig', label: 'flrig (XML-RPC)', ok: true }].concat(fakeOk() ? [{ id: 'fake', label: '🧪 Pretend radio (no cable)', ok: true }] : []), link: LINK,
     profiles, saveProfile, useProfile, dropProfile, protos: PROTOS,
-    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, sdb, keyPortOpen, keyPortClose, pickKeyPort, keyPortInfo, extra, extras, lastDial, tuneLog, meters, power
+    onStatus(fn) { subs.push(fn); }, kind, PROTOS: Object.keys(PROTOS), RADIOS, RADIO, fillSelect, pickRadio, cw, cwCan, cwStop, keyLine, sdb, keyPortOpen, keyPortClose, pickKeyPort, keyPortInfo, extra, extras, lastDial, tuneLog, meters, power, mode
   };
 
   /* ---- QRZ logbook (ACTION=INSERT with the logbook's own API key; needs a QRZ XML/logbook subscription) ---- */

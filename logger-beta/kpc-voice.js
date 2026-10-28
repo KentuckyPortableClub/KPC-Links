@@ -25,16 +25,17 @@
   const dock = $('lgDock'), form = $('lgForm');
   if (dock && form) {
     form.insertAdjacentHTML('beforebegin', `<div class="vkbar" id="vkBar" hidden aria-label="Voice keyer"><div class="vkm" id="vkM"></div>
-      <div class="vkc"><button type="button" class="chip" id="vkAuto" title="Play memory 1 again and again, with a listening gap, until someone answers">🔁 AUTO CQ</button><button type="button" class="chip halt" id="vkStop">⏹ STOP</button><button type="button" class="chip" id="vkSet" title="Record, name and test the memories">⏺ RECORD / EDIT</button><span class="hint" id="vkSt"></span></div></div>`);
+      <div class="vkc"><button type="button" class="chip" id="vkAuto" title="Play memory 1 again and again, with a listening gap, until someone answers">🔁 AUTO CQ</button><button type="button" class="chip halt" id="vkStop">⏹ STOP</button><button type="button" class="chip" id="vkSet" title="Record, name and test the memories">⏺ RECORD / EDIT</button><span class="hint" id="vkSt"></span><button type="button" class="chip vkfold" id="vkFold" title="Fold the voice keyer away (the 🎙 chip brings it back)">▾ FOLD AWAY</button></div></div>`);
     const chips = dock.querySelector('#dkSet'); if (chips) chips.insertAdjacentHTML('beforebegin', '<button type="button" class="chip" id="dkVk" title="Voice keyer: play your recorded CQ, call, report…">🎙</button>');
   }
   function draw() {
-    const bar = $('vkBar'); if (!bar) return; bar.hidden = !S.show; const b = $('dkVk'); if (b) b.classList.toggle('on', !!S.show);
+    const bar = $('vkBar'); if (!bar) return; bar.hidden = !S.show; const b = $('dkVk'); if (b) { b.classList.toggle('on', !!S.show); b.textContent = S.show ? '🎙 ▾' : '🎙 KEYER'; b.title = S.show ? 'Fold the voice keyer away' : 'Voice keyer: play your recorded CQ, call, report…'; }
     $('vkM').innerHTML = S.names.map((n, i) => `<button type="button" class="vkb${HAS.has(i) ? '' : ' empty'}${PLAYING === i ? ' on' : ''}" data-vk="${i}" title="${HAS.has(i) ? 'Send ' + esc(n) : 'Not recorded yet: tap to record it'}">${i + 1} ${esc(n)}</button>`).join('');
     $('vkAuto').classList.toggle('on', !!AUTO); $('vkAuto').textContent = AUTO ? '🔁 AUTO CQ · ON' : '🔁 AUTO CQ';
   }
   const say = t => { const e = $('vkSt'); if (e) e.textContent = t || ''; };
   if ($('dkVk')) $('dkVk').onclick = () => { S.show = !S.show; save(); draw(); };
+  if ($('vkFold')) $('vkFold').onclick = () => { if (AUTO) autoOff(); S.show = false; save(); draw(); AP.toast('🎙 Voice keyer folded away: the 🎙 KEYER chip brings it back.', 3000); };
   document.addEventListener('click', e => { const b = e.target.closest('[data-vk]'); if (!b) return; const i = +b.dataset.vk; if (!HAS.has(i)) { editSheet(i); return; } if (AUTO) autoOff(); play(i); });
   if ($('vkStop')) $('vkStop').onclick = () => stop('Stopped.');
   if ($('vkAuto')) $('vkAuto').onclick = () => { if (AUTO) autoOff('Auto CQ off.'); else autoOn(); };
@@ -51,9 +52,9 @@
     if (PLAYING >= 0 || AP.txing()) { if (!quiet) AP.toast('Something is already transmitting.', 2500); return false; }
     const m = await get(i); if (!m || !m.pcm) { if (!quiet) AP.toast('Memory ' + (i + 1) + ' is empty: record it first.', 3000); return false; }
     PLAYING = i; stopFlag = false; draw(); say('📡 Sending ' + S.names[i] + '…');
-    try { await AP.pttOn(true); const r = await A.play(up48(i16toF(m.pcm)), 0, 'vk'); return !(r && r.state === 'stopped') && !stopFlag; }
+    try { await AP.pttOn(true, { voice: true }); const r = await A.play(up48(i16toF(m.pcm)), 0, 'vk'); return !(r && r.state === 'stopped') && !stopFlag; }
     catch (e) { AP.toast('The voice keyer could not send: ' + esc(e.message || e), 5000, 'bad'); return false; }
-    finally { await AP.pttOn(false); PLAYING = -1; draw(); if (!AUTO) say(''); }
+    finally { await AP.pttOn(false, { voice: true }); PLAYING = -1; draw(); if (!AUTO) say(''); }
   }
   function stop(why) { stopFlag = true; autoOff(); if (PLAYING >= 0) Promise.resolve().then(() => A.stopTx()).catch(() => {}); say(why || ''); }
 
@@ -105,6 +106,7 @@
     try { const ds = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audiooutput'); const radio = AP.S.outDev || '';
       const rx = /usb audio codec|usb audio device|ft-|ic-|ts-|yaesu|icom|kenwood|digirig|signalink|codec/i;
       const ok = ds.filter(d => d.deviceId && d.deviceId !== radio && !rx.test(d.label || '') && d.deviceId !== 'communications');
+      if (S.spk) { const m = ds.find(d => d.deviceId === S.spk); if (m) return { id: m.deviceId, name: m.label || 'the picked speaker' }; }   /* Oct 26: picked by hand in the sheet */
       const pick = ok.find(d => d.deviceId !== 'default') || ok[0]; return pick ? { id: pick.deviceId, name: pick.label || 'speakers' } : null; } catch (e) { return null; }
   }
   async function listenLocal(f) {
@@ -112,7 +114,7 @@
       if (LCTX) { try { LCTX.close(); } catch (e) {} LCTX = null; }
       const c = LCTX = new (G.AudioContext || G.webkitAudioContext)(); if (c.state === 'suspended') await c.resume();
       let where = 'this device\'s speaker';
-      if (c.setSinkId && !AP.native) { const sp = await speakerId(); if (sp) { try { await c.setSinkId(sp.id); where = sp.name; } catch (e) {} } }
+      if (c.setSinkId && !AP.native) { const sp = await speakerId(); if (sp) { try { await c.setSinkId(sp.id); where = sp.name; } catch (e) { where = 'Windows\' default output (' + (e.message || e) + ')'; } } else where = 'Windows\' default output (no other speaker found)'; }
       const b = c.createBuffer(1, f.length, RATE); b.copyToChannel(f, 0);
       const s = c.createBufferSource(); s.buffer = b; const g = c.createGain(); g.gain.value = 0.9; s.connect(g); g.connect(c.destination); s.start();
       const secs = (f.length / RATE).toFixed(1); const t = $('vkRecT'); if (t) t.textContent = '▶ playing ' + secs + ' s on ' + where;
@@ -124,15 +126,18 @@
   async function editSheet(i) {
     let mics = []; try { mics = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audioinput'); } catch (e) {}
     const opts = '<option value="">The phone / PC microphone (default)</option>' + mics.filter(d => d.deviceId && d.deviceId !== 'default').map(d => `<option value="${esc(d.deviceId)}"${S.mic === d.deviceId ? ' selected' : ''}>${esc(d.label || 'Microphone')}</option>`).join('');
+    let spk = []; try { spk = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audiooutput' && d.deviceId && d.deviceId !== 'communications'); } catch (e) {}
+    const sopts = '<option value="">By itself (a speaker that is not the radio)</option>' + spk.map(d => `<option value="${esc(d.deviceId)}"${S.spk === d.deviceId ? ' selected' : ''}>${esc(d.deviceId === 'default' ? 'Windows default (' + (d.label || '').replace(/^Default - /, '') + ')' : (d.label || 'Speaker'))}${d.deviceId === AP.S.outDev ? ' = the radio' : ''}</option>`).join('');
     let NEW = null;
     AP.sheet('🎙 Voice keyer memories', `<div class="chips wrap" id="vkPick">${S.names.map((n, k) => `<button type="button" class="chip${k === i ? ' on' : ''}" data-vkp="${k}">${k + 1} ${esc(n)}${HAS.has(k) ? ' ✓' : ''}</button>`).join('')}</div>
       <div class="grid2"><label class="e">NAME ON THE BUTTON<input id="vkName" maxlength="10" value="${esc(S.names[i])}" autocapitalize="characters"></label>
       <label class="e">RECORD WITH<select id="vkMic">${opts}</select></label></div>
+      ${AP.native ? '' : `<label class="e wide">▶ LISTEN HERE PLAYS ON<select id="vkSpk">${sopts}</select></label>`}
       <div class="row"><button type="button" class="b gold" id="vkRec">⏺ RECORD</button><button type="button" class="b" id="vkHear" ${HAS.has(i) ? '' : 'disabled'}>▶ LISTEN HERE</button><button type="button" class="b" id="vkTry" ${HAS.has(i) ? '' : 'disabled'}>📡 SEND IT ON THE AIR</button><button type="button" class="b" id="vkDel" ${HAS.has(i) ? '' : 'disabled'}>✕ ERASE</button></div>
       <p class="hint"><b id="vkRecT">${HAS.has(i) ? '✓ recorded' : 'not recorded yet'}</b> · up to ${MAXS} s. Say it the way you would on the air, e.g. “CQ POTA, CQ POTA, this is K… from US-…, calling CQ and listening”. The app trims the quiet ends and evens the level.</p>
       <label class="e">LISTENING GAP FOR AUTO CQ (seconds)<input id="vkGap" inputmode="numeric" maxlength="2" value="${S.gap}"></label>
       <p class="hint">Pick the microphone in your hand, not the radio's USB sound card. Set the TX LEVEL (STATION → Sound) so the radio's ALC barely moves.</p>`,
-      () => { const nm = $('vkName') && $('vkName').value.trim().toUpperCase(); if (nm) S.names[i] = nm.slice(0, 10); S.mic = $('vkMic') ? $('vkMic').value : S.mic; S.gap = Math.max(2, Math.min(30, +($('vkGap') || {}).value || 5)); save(); draw(); if (REC) recStop(); });
+      () => { const nm = $('vkName') && $('vkName').value.trim().toUpperCase(); if (nm) S.names[i] = nm.slice(0, 10); S.mic = $('vkMic') ? $('vkMic').value : S.mic; if ($('vkSpk')) S.spk = $('vkSpk').value; S.gap = Math.max(2, Math.min(30, +($('vkGap') || {}).value || 5)); save(); draw(); if (REC) recStop(); });
     $('vkPick').onclick = e => { const b = e.target.closest('[data-vkp]'); if (b) { if (REC) recStop(); AP.shut(); setTimeout(() => editSheet(+b.dataset.vkp), 30); } };
     $('vkRec').onclick = async () => {
       if (REC) { const r = recStop(); $('vkRec').textContent = '⏺ RECORD AGAIN'; if (!r || r.empty) { $('vkRecT').textContent = '⚠ Nothing heard: check the microphone.'; return; }
@@ -140,6 +145,7 @@
       try { await recStart($('vkMic').value || ''); $('vkRec').textContent = '⏹ STOP RECORDING'; $('vkRecT').textContent = '⏺ 0.0 s'; }
       catch (e) { AP.toast('The microphone did not open: ' + esc(e.message || e) + (AP.native ? ' (Android Settings → Apps → KPC → Permissions → Microphone)' : ''), 7000, 'bad'); }
     };
+    if ($('vkSpk')) $('vkSpk').onchange = () => { S.spk = $('vkSpk').value; save(); };
     $('vkHear').onclick = async () => { const m = NEW ? { f: NEW } : await get(i); if (m) listenLocal(m.f || i16toF(m.pcm)); };
     $('vkTry').onclick = () => { AP.shut(); play(i); };
     $('vkDel').onclick = async () => { await put(i, null); HAS.delete(i); draw(); AP.shut(); };

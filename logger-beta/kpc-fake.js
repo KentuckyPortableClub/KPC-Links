@@ -59,5 +59,5 @@
   function tone(hz, seconds, id) { return play(new Float32Array(Math.round((seconds || 10) * RATE)), 0, id || 'tone'); }
   function stopTx() { txUntil = 0; A.txing = false; return Promise.resolve(); }
   Object.assign(A, { native: false, start, stop, play, tone, stopTx, setGain: g => { A.gain = +g || 0; return Promise.resolve(); }, status: () => Promise.resolve({ running: !!tick, txing: Date.now() < txUntil, gain: A.gain, fake: true }),
-    devices: async () => ({ inputs: [{ id: 'fake', name: '🧪 Pretend radio sound', usb: true }], outputs: [{ id: 'fake', name: '🧪 Pretend radio sound', usb: true }] }), rxStream: () => null, pipe: () => { const p = { gated: null, gate: on => { p.gated = !!on; }, shape: () => {}, stop: () => { p.stopped = true; } }; A._pipes = (A._pipes || 0) + 1; A._lastPipe = p; return p; } });
+    devices: async () => ({ inputs: [{ id: 'fake', name: '🧪 Pretend radio sound', usb: true }], outputs: [{ id: 'fake', name: '🧪 Pretend radio sound', usb: true }] }), rxStream: () => null, pipe: () => { const p = { gated: null, lvl: 0, level: db => { p.lvl = +db || 0; }, gate: on => { p.gated = !!on; }, shape: () => {}, stop: () => { p.stopped = true; } }; A._pipes = (A._pipes || 0) + 1; A._lastPipe = p; return p; } });
 })(window);

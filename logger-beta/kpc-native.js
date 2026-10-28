@@ -70,6 +70,15 @@
     /* the remote link (Windows base station): the radio's sound as a stream the PC can send to the phone,
        and a way to play the phone's voice into the radio (through the TX LEVEL gain, with a gate the PTT opens) */
     rxStream() { return wStream || null; },
+    /* Oct 26 (Fable; Brandon: 'volume wide open … need more volume' on the phone): what the PC SENDS the phone is a levelled copy of the
+       radio's USB audio (gain + a compressor with make-up), since radio sound cards sit 20 dB down; built once per sound session */
+    sendStream() {
+      if (!wCtx || !wStream) return null;
+      if (wSend && wSend.gen === stat.gen) return wSend.st;
+      try { const src = wCtx.createMediaStreamSource(wStream), g = wCtx.createGain(), c = wCtx.createDynamicsCompressor(), mk = wCtx.createGain(), d = wCtx.createMediaStreamDestination();
+        g.gain.value = 4; c.threshold.value = -20; c.knee.value = 6; c.ratio.value = 8; c.attack.value = 0.005; c.release.value = 0.25; mk.gain.value = 1.6;
+        src.connect(g); g.connect(c); c.connect(mk); mk.connect(d); wSend = { gen: stat.gen, st: d.stream, nodes: [src, g, c, mk, d] }; return d.stream; } catch (e) { return null; }
+    },
     /* the phone's voice → the radio, through a VOICE SHAPER (Brandon Oct 22: 'contest microphones are higher pitched to break pile ups'):
        natural = straight through · punch = a little high-pass + presence · contest = tight high-pass, strong presence, hard compression (cuts through a pile-up) */
     pipe(stream, preset) {
@@ -77,19 +86,21 @@
       const src = wCtx.createMediaStreamSource(stream), gate = wCtx.createGain(); gate.gain.value = 0;
       const hp = wCtx.createBiquadFilter(), pk = wCtx.createBiquadFilter(), lp = wCtx.createBiquadFilter(), comp = wCtx.createDynamicsCompressor(), mk = wCtx.createGain();
       hp.type = 'highpass'; pk.type = 'peaking'; lp.type = 'lowpass';
-      src.connect(hp); hp.connect(pk); pk.connect(lp); lp.connect(comp); comp.connect(mk); mk.connect(gate); gate.connect(wG);
+      const vg = wCtx.createGain(); vg.gain.value = 1;   /* Oct 27: MY VOICE LEVEL (the phone's own slider), apart from the FT8 TX LEVEL */
+      src.connect(hp); hp.connect(pk); pk.connect(lp); lp.connect(comp); comp.connect(mk); mk.connect(vg); vg.connect(gate); gate.connect(wG);
       const P = { natural: { hp: 80, pkHz: 2500, pkDb: 0, lp: 6000, th: -6, ratio: 1.2, mk: 1 }, punch: { hp: 250, pkHz: 2500, pkDb: 4, lp: 3400, th: -20, ratio: 4, mk: 1.3 }, contest: { hp: 350, pkHz: 2900, pkDb: 8, lp: 3000, th: -28, ratio: 10, mk: 1.8 } };
       const shape = name => { const q = P[name] || P.natural; hp.frequency.value = q.hp; pk.frequency.value = q.pkHz; pk.Q.value = 1.1; pk.gain.value = q.pkDb; lp.frequency.value = q.lp; comp.threshold.value = q.th; comp.ratio.value = q.ratio; comp.attack.value = 0.003; comp.release.value = 0.12; comp.knee.value = 6; mk.gain.value = q.mk; return name in P ? name : 'natural'; };
       shape(preset || 'natural');
-      return { gate: on => { gate.gain.value = on ? 1 : 0; }, shape, stop: () => { try { src.disconnect(); gate.disconnect(); } catch (e) {} } };
+      return { gate: on => { gate.gain.value = on ? 1 : 0; }, level: db => { vg.gain.value = Math.pow(10, Math.max(-20, Math.min(30, +db || 0)) / 20); }, shape, stop: () => { try { src.disconnect(); gate.disconnect(); } catch (e) {} } };
     },
     voicePresets: ['natural', 'punch', 'contest'],
     /* Android: hold the foreground service + wake lock without the app's own sound (the REMOTE link), media volume to the top */
     keepAwake(on, maxVolume) { if (!NATIVE) return Promise.resolve({ held: false }); return KA.keepAwake({ on: !!on, maxVolume: !!maxVolume }).catch(() => ({ held: false })); },
-    gain: 0.5, txing: false, onTx: null, pauseRx: false, session: 0   /* session = which sound start this is (Web Audio nodes die with their AudioContext) */
+    gain: 0.5, txing: false, onTx: null, onLost: null, pauseRx: false, session: 0   /* session = which sound start this is (Web Audio nodes die with their AudioContext) */
   };
 
   /* web fallback (Windows app + browsers): Web Audio with the call-mode processing turned off */
+  let wSend = null;
   let wCtx = null, wStream = null, wProc = null, wG = null, wSrc = null, wHist = new Float32Array(23), FIR = null, wWorkURL = null;
   const stat = { how: '', blocks: 0, gaps: 0, anchors: 0, state: '', gen: 0 };   /* gen = which sound session (a restart = a new AudioContext: nodes from the old one are dead) */   /* for the builders' report: KPCNative.audio.capture() */
   /* the capture that runs on the audio thread: 48 kHz in → RMS/peak → 24-tap low-pass (5 kHz) + take every 4th sample → 12 kHz blocks of ~85 ms */
@@ -123,11 +134,15 @@
   async function webStart(o) {
     await webStop(); stat.gen++; audio.session = stat.gen; stat.blocks = stat.gaps = stat.anchors = 0;
     const AC = G.AudioContext || G.webkitAudioContext; if (!AC || !navigator.mediaDevices) throw new Error('This browser has no sound support.');
-    wCtx = new AC({ sampleRate: RATE }); if (wCtx.state === 'suspended') await wCtx.resume();
+    wCtx = new AC({ sampleRate: RATE }); if (wCtx.state === 'suspended') await wCtx.resume(); stat.state = wCtx.state; wSend = null;
     wG = wCtx.createGain(); wG.gain.value = audio.gain; wG.connect(wCtx.destination);
     if (o.output && wCtx.setSinkId) { try { await wCtx.setSinkId(o.output); } catch (e) {} }
     const c = { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 }; if (o.input) c.deviceId = { exact: o.input };
     wStream = await navigator.mediaDevices.getUserMedia({ audio: c });
+    /* Oct 26 (Fable; Brandon: 'lost sound, had to reopen'): a USB sound card that drops out ends its track, and Windows can suspend the
+       AudioContext — say so (audio.onLost) so the app can start the sound again by itself */
+    { const gen = stat.gen; wStream.getAudioTracks().forEach(t => { t.onended = () => { if (stat.gen === gen && wCtx && audio.onLost) audio.onLost('the sound device stopped (unplugged, or taken by Windows)'); }; });
+    }
     const src = wCtx.createMediaStreamSource(wStream);
     /* Oct 25 (Fable; Brandon's PC: 'samples not ready' for ever, only 8,000 of every 12,000 samples arrived): the old capture was a
        ScriptProcessor on the PAGE's thread, and its blocks were time-stamped by COUNTING samples. When the page was busy or Windows
@@ -178,7 +193,7 @@
       };
     }
     src.connect(wProc); const sink = wCtx.createGain(); sink.gain.value = 0; wProc.connect(sink); sink.connect(wCtx.destination);
-    wCtx.onstatechange = () => { stat.state = wCtx ? wCtx.state : 'closed'; if (wCtx && wCtx.state === 'suspended') wCtx.resume().catch(() => {}); };
+    { const gen = stat.gen, ctx = wCtx; ctx.onstatechange = () => { if (stat.gen !== gen) return; stat.state = ctx.state; if (ctx.state === 'suspended') ctx.resume().catch(() => {}); if (ctx.state === 'closed' && wCtx === ctx && audio.onLost) audio.onLost('the sound engine closed'); }; }
     return { ok: true, source: 'web', latencyMs: Math.round((wCtx.baseLatency || 0.02) * 1000), rate: wCtx.sampleRate };
   }
   async function webStop() { webStopTx(); try { wProc && wProc.port && (wProc.port.onmessage = null); } catch (e) {} try { wProc && wProc.disconnect(); } catch (e) {} try { wStream && wStream.getTracks().forEach(t => t.stop()); } catch (e) {} try { wCtx && await wCtx.close(); } catch (e) {} wCtx = wStream = wProc = wG = null; }
