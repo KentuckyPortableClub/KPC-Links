@@ -88,6 +88,7 @@ def build(area, files, tag='', sts=()):
     if area == 'ky':
         tp = load('ky-trail-parks.json', {}) or {}
         for t in tp.values():
+            if not isinstance(t, dict): continue   # Oct 28: the file's top-level 'checked' note
             for p in t.get('parks') or []: add([t['ref']] + p['refs'], 'hand list (ky-trail-parks.json)')
         g = load('ky-overlaps.geojson', {}) or {}
         for ft in g.get('features') or []:
