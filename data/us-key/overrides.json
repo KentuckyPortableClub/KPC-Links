@@ -6123,6 +6123,13 @@
    "why": "Oct 25 HQ (round 5 leftovers): draw the agency's LEGAL boundary (NPS Land Resources Division / FWS approved), not the small PAD-US fee piece",
    "note": "Private or other-agency land inside the boundary: set up on public land.",
    "when": "2026-10-25"
+  },
+  "US-3792": {
+   "join": [
+    "Land Between the Lakes Other"
+   ],
+   "why": "reviewed: PAD-US 'Land Between the Lakes Other' = the Forest Service's own fee land for LBL (Own/Mang USFS; Basic Ownership names it 'Land Between the Lakes National Recreation Area'); HQ Oct 28: LBL gets its official Forest Service outline, not a low-confidence join",
+   "when": "2026-10-28"
   }
  }
 }

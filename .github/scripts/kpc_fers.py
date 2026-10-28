@@ -206,6 +206,10 @@ def official_parks(PIN):
             parks['US-4484'] = {'st': 'US-KY', 'ids': ['bdbnf|Daniel Boone National Forest'], 'names': {'bdbnf|Daniel Boone National Forest': 'Daniel Boone National Forest'}}
             skip['no outline'] -= 1
             OWNED['US-4484'] = 'usfs'   # ruling Oct 27: Daniel Boone = Forest Service-OWNED land only (Basic Ownership)
+        # Oct 28 (HQ): Mammoth Cave = Park Service-owned land (PAD-US fee, 50,624 ac; the unit line includes private inholdings);
+        # Land Between the Lakes = Forest Service-owned land (Basic Ownership holds 'Land Between the Lakes NRA', runner probe Oct 28)
+        for r, kind in (('US-0050', 'nps'), ('US-3792', 'usfs')):
+            if r in parks: OWNED[r] = kind
         skip.pop('Kentucky (own list)', None)
         return parks, skip
     if REGION == 'world':
@@ -1982,7 +1986,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
                        + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
         s['names'] = {r: PIN[r][0] for r in refs}; s['maps'] = [[r, map_link(r, PIN)] for r in refs]; return
-    if any(r in LOWCONF for r in refs):   # pre-flight fix 9: a LOW-confidence outline (second witness) may be the wrong land
+    if REGION != 'ky' and any(r in LOWCONF for r in refs):   # pre-flight fix 9 (Oct 28: not in Kentucky: its outlines come from Kentucky's own files, not the US key join the score is about)
         s['status'] = 'not sure: low-confidence outline for ' + ', '.join(PIN[r][0] for r in refs if r in LOWCONF) + ' (check the join)'; return
     if s['kind'] == 'area' and refs[0].startswith('US-'):
         try: lc = land_check(s, G)
