@@ -17,6 +17,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 12:55 PM: WAITING ROOM checks written (KPC_WaitingRoom_Checks_desk.md): 14 flaws -> checks, per-type numbers, never-wait list.
 - Oct 28 12:40 PM: BOT-TUNING CHECK written in full with the FOR FABLE TONIGHT list (KPC_BotTuning_Check_desk.md); access + fed-camp reruns not landed yet.
 - Oct 28 12:35 PM: CLOSURES round 3 graded (KPC_Closures_round3_grade_desk.md): 77% FAIL (was 42%).
 - Oct 28 12:30 PM: DOCUMENTS chunks 1-3 graded (KPC_Docs_chunks1-3_grade_desk.md): maps 83% FAIL, bulk wrong rules pages. Still waiting: campground v7 sample, hours v6, closures round 3, detective, tuning table finish.
@@ -27,6 +28,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 - Oct 28: first batch graded, all from Kentucky, all FAIL the 90% bar: TRUTH CHECKER 9/12 = 75% (flagged rows 15/19), HOURS 4/12 = 33% (its own gate 24%), CAMPGROUND INFO random 10 = 50%, DOCUMENTS bot finder check 17/25 = 68% (12-sample 10/12). Files: `.claude/build/research/KPC_TruthChecker_grade_US-KY_desk.md`, `KPC_Hours_grade_US-KY_desk.md`, `KPC_CampInfo_grade_US-KY_desk.md`, `KPC_Docs_grade_US-KY_desk.md`. Fixes sent to chat 10 (3 bots), chat 2 (documents bot + outline leads), chat 8 (US-10105 flag, finder check done). The truth checker's 'grade me' line (run 40669098603) is graded; I cannot edit KPC-Data from here, so chat 8 strikes it.
 
 ## REPORT TO HQ (newest first)
+- Oct 28 12:55 PM (9th inbox): Waiting Room checks done (one page, for chat 10 ~1:45 AM and chat 8 to break). New 'grade me': none except docs lines already graded; closures failed again (21%, round-4 line); 2-fer midwest STOPPED (IN 56, IL 16 rows unanswered water) = the Michigan flaw again.
 - Oct 28 12:40 PM (8th inbox): tuning check + FOR FABLE list done (6 items). Fixed/kept: Canada (CA-2156 gone, outlines kept), trails (AT + Sheltowee kept), fed camps KY PASS. Not landed: the 13-state access rerun (178 points still 100+ km out, mostly the same name mix-ups) and the 6-state fed-camp rerun (132 doubled ids still there); parking explorer, state trails, new-refs, ref-check, new-lands, state-gis, bot-queue show nothing yet.
 - Oct 28 12:35 PM (7th inbox): closures round 3 = 77% (up from 42%), own gate 21%; real LBL/DBNF closures now right; still standing rules, a Virginia notice, expired items, duplicates. Fixes to chat 10. Still ungraded: campground v7, hours v6, detective, rest of tuning check.
 - Oct 28 12:30 PM (6th inbox): documents bot (NC VA WV GA AL SC FL MS IN) maps 10/12 = 83%, rules pages wrong in bulk (WV 83, GA 130, FL 53 parks share one wrong page; VA 26 maps = inciweb). Fix item in chat 2. Not yet graded: campground v7, hours v6, closures round 3, detective, rest of tuning check.
