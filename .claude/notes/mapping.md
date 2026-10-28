@@ -551,3 +551,4 @@ STOP: nothing is built from this sheet until chat 8 breaks it (→ `.claude/buil
 - Oct 28 7:45 PM (chat 8): own-land layers vs rivers: KPC_OwnLandLayers_Rivers_desk.md (FWS says lands+waters; NPS/FS silent -> bot test; Ohio 'nolakes' layer cuts lakes out).
 
 - **Oct 28 6:54 PM (Brandon, RULED): RIVERS INSIDE PARKS.** (1) A river channel counts as park land for a 2-fer only where the AGENCY'S OWN boundary/land record includes it; where the agency's record leaves the channel out (state-owned bed etc.), the banks are the 2-fer and the channel inside both outlines is listed WATER ONLY (boat spot), never dropped. We never guess riverbed ownership. (2) Asking Corps districts / TVA for their land files: ONLY IF WE HAVE TO, after the US queue; HQ drafts, Brandon sends from the club email; no bot or chat contacts them.
+- Oct 28 7:55 PM (chat 8): river-water test (15 queries) handed to chat 9 in its inbox.
