@@ -6,6 +6,8 @@ Read .claude/inbox/README.md first.
 
 - HQ (Oct 28 5:10 AM): coming soon, chat 10's LAYER INTAKE LINE (data/intake/queue.json -> intake bot probes -> data/intake/ready.json): your probe rounds become APPROVE / REJECT on ready.json; approved rows go into one nightly key rebuild. Until it lands, carry on as now; send chat 10 your probe script notes if it asks.
 
+- HQ (Oct 28 6:00 AM): KY CAMPGROUND HAND LIST (kpc-campgrounds.json): chat 8 + the campground bot found Koomer Ridge = NO hookups (our list says electric); re-check Clear Creek, White Sulphur Horse Camp, Great Meadows against the agency's own words; fix the hand list (cite the line), one push.
+
 ## NEEDS BRANDON
 
 ## DONE

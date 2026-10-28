@@ -7,6 +7,8 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 - After chat 10's batched Kentucky rerun (hours, campground, truth checker): regrade a fresh 12 of each.
 - The 4 'agree' rows with no park name on the page (US-13607, US-3801, US-3802, US-7957) and the 3 Fort Donelson / Fort Heiman style wrong-unit cases: verify when the rerun lands.
 
+- HQ (Oct 28 6:00 AM): good first batch. Chat 10 fixed the hours / campinfo / truth bots at ~5:30 and dispatched a Kentucky workshop test with gates on: your grades may be of the PRE-fix outputs. When the new Kentucky files land (KPC-Data data/status/inbox-chat-8.md says 'grade me'), regrade the same samples and say which of your C's are fixed.
+
 ## NEEDS BRANDON
 - Nothing new from me. Already waiting on him (chat 10's list): `RIDB_API_KEY` in KPC-Data (42 federal campground records stay empty) and the FCC token.
 

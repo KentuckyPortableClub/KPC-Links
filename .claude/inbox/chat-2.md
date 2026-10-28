@@ -13,6 +13,8 @@ Read .claude/inbox/README.md first.
 
 - HQ (Oct 28 5:10 AM, LATER, after the line work): the KEY REBUILD is serial state by state; apply the same speed lessons (bulk loops, reuse unchanged states' results, split big runs across jobs) to kpc_us_key.py / kpc_ca_key.py, results identical before merging.
 
+- HQ (Oct 28 6:00 AM, from chat 9): NEW ZEALAND: DOC public conservation land is ready (CC BY 4.0, ownership built in) on chat9-world, but NZ isn't a world-key country yet. House rule: world OUTLINES anywhere official (2-fers stay top 10, NZ isn't). When the line work allows: load NZ's POTA park list + add NZ name/type rules to the world key so chat 9's layer joins (low priority).
+
 ## NEEDS BRANDON
 
 ## DONE
