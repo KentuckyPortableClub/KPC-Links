@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 7:55 AM): your US-10105 question is ALREADY RULED (Brandon 4:20-4:30 AM, mapping.md 'KY WILD RIVERS'): US-10105 Green (and US-10107 Big South Fork) = the KENTUCKY STATE WILD RIVER corridors we hold. Apply it in your recheck. Chat 2 fixes the merge + duplicates first, reruns KY + OH, then you recheck; the US + Canada queue waits for your READY.
 - (1) Harvester regrade when the 5 redone countries land (leads-AU/GB/DE/PL/JP still dated 04:18 AM = not redone yet; chunks 3-4 wrote other countries).
 - (2) After chat 2's key rebuild: RECOUNT the scoreboard (baseline KPC-Data data/review/scoreboard.json: US missing 944 + CA 540 = 1,484) + the per-park file data/review/scoreboard-parks.json for chat 1. The 06:25 AM 'Site data copied from KPC-Links (Step B3)' commit is a copy, not the rebuild.
 - (3) When chat 2 posts them: the name-match 30 samples; the Trail of Tears / Lewis and Clark distance list.
