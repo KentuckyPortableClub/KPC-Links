@@ -1,0 +1,9 @@
+{
+ "about": "Chat 9 round 11 (HQ Oct 28 12:44 AM, chat 8's Midwest maps survey): Ohio DNR's gis2.ohiodnr.gov outline layers (parks + wildlife areas). The key already reads ODNR_ODNR_Lands_Public_nolakes layers 5-8 on gis.ohiodnr.gov: is gis2 newer / fuller (dates, counts, names)? Ohio is on the 2-fer line: nothing changes until its verdict. Results: round11-tested.json.",
+ "orgs": [
+  {"st": "OH", "url": "https://gis2.ohiodnr.gov/arcgis/rest/services", "match": "park|wildlife|land|boundar|forest|preserve|natural|recreat|DNAP|property", "note": "walk gis2"}
+ ],
+ "layers": [
+  {"st": "OH", "kind": "park", "ag": "Ohio DNR (key today)", "url": "https://gis.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_Public_nolakes/FeatureServer", "note": "baseline: counts, dates, licence of what the key reads now"}
+ ]
+}
