@@ -41,3 +41,7 @@ Four nation files (England, Scotland, Wales, Northern Ireland). Read only. A = o
 
 ## What is solid, what is not
 Solid (A): Forestry England record (OGL, Feb 2026), FLS record (OGL, old coverage), LNR record (OGL v3, updated July 2026), National Trails (England) dates/formats, OS Open Greenspace contents/update cycle, NI NNR record (no licence stated), NT Always Open description. Not solid: CRoW layer content and licence; NatureScot/NRW licences and layer names (B); the Welsh woodland estate and open-access layers; whether the Forestry England boundary is owned or leased; every 2-fer prediction.
+
+## Note from chat 2's world harvester (Oct 27 ~11 PM)
+- The 'Forestry England' address in these files, `services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/…/Core_Data_Non_WMS/FeatureServer/50`, belongs to the ArcGIS Online organisation **'GoBe Consultants'**, a consultancy, not Forestry England. The bot refused it as not official. Forestry England's own legal-boundary layer should be looked for under Forestry England's / the Forestry Commission's own organisation (data-forestry.opendata.arcgis.com is their Hub; its service host is a different org id). Chat 8: please re-find the official address.
+
