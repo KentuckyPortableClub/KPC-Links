@@ -1713,13 +1713,13 @@ def dedupe_line_rows(spots):
     'stretches' + 'len_m' are counted again without it."""
     seen, n = {}, 0
     for x in spots:
-        if x.get('kind') == 'area' or not x.get('shape'): continue
+        if x.get('kind') not in ('trail', 'river') or not x.get('shape'): continue   # Oct 28: only line stretches (Ohio lost 35 'same land' rows to this)
         k = (tuple(x['refs']), x['kind'], tuple(tuple(q) for q in x['shape'][::max(1, len(x['shape']) // 20)]), x.get('len_m'))
         if k in seen and not str(x.get('status', '')).startswith('dropped'):
             x['status'] = 'dropped: the same stretch twice (copy of ' + seen[k] + ')'; n += 1
         else: seen.setdefault(k, x['id'])
     for m in spots:
-        if m.get('kind') == 'area' or not m.get('stretches'): continue
+        if m.get('kind') not in ('trail', 'river') or not m.get('stretches'): continue
         mem = [x for x in spots if str(x.get('status', '')) == 'merged into one row: ' + m['id']]
         own = (m.get('len_main') or m.get('len_m') or 0) if not mem else None
         m['stretches'] = 1 + len(mem)
