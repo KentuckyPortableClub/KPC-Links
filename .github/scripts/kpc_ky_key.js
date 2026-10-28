@@ -81,6 +81,10 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   // private inholdings); Land Between the Lakes = Forest Service-owned land (Basic Ownership, 'Land Between the Lakes NRA').
   const OWNED_ONLY = { 'US-0050': 'Park Service-owned land only (PAD-US fee records)', 'US-3792': 'Forest Service-owned land only (Basic Ownership)' };
   for (const r in OWNED_ONLY) if (parks[r]) parks[r].owned_only = OWNED_ONLY[r];
+  // Oct 28 (Brandon + chat 8): Green River SNA = 3 units; the Boiling Springs unit is NOT in OKNP's natural-areas layer (7 areas,
+  // runner probe Oct 28) nor the nature-preserves layer, so it has no official outline yet (pin / agency map only). Card notes:
+  const NOTES = { 'US-12752': 'Three units: Davis Bend, Rush Island Bottoms and Boiling Springs (Boiling Springs has no official outline yet: check the agency map). Rush Island Bottoms is open by boat only (paddle access at Thelma Stovall Park, Munfordville).' };
+  for (const r in NOTES) if (parks[r]) parks[r].note = NOTES[r];
   const missing = P.filter(x => !parks[x.c].tracts.length).map(x => x.c);
   nonum.sort((a, b) => a[1].localeCompare(b[1])); kffonly.sort((a, b) => a[1].localeCompare(b[1]));
   for (const r in parks) parks[r].tracts.sort((a, b) => b[2] - a[2]);
