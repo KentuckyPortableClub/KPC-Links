@@ -1,0 +1,6 @@
+::notice title=2-fer bot::pass 1: 188 parks from saved outlines, 0 to download, 273 official lines
+/tmp/claude-0/-home-claude/bddf1886-a66b-5b1e-97a9-785d2b3bcd99/scratchpad/line/fast/.github/scripts/kpc_fers.py:1567: RuntimeWarning: overflow encountered in multiply
+  da = dt(1 - f.area(G[a]), outside=1) * f.cell
+::notice title=2-fer bot::pass 1: bundle answers: 434 read from the bundle, 7 asked the servers (0 kept)
+::notice title=2-fer bot::{"pass": 1, "cell_m": 20.0, "official parks": 199, "pairs tested": 555, "with official lines": 11, "parks whose outline could not be read": 0, "parks done by the box test": 0, "pairs whose boxes touch": 555, "missing boundary": 1}
+::notice title=2-fer bot problems::pass 1: 7 · Forest Service ownership: not in the bundle (offline stage) | nps owned land: not in the bundle (offline stage)

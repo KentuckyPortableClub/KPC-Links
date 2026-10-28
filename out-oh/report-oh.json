@@ -1,0 +1,87 @@
+{
+ "about": "Counts from the 2-fer bot (kpc_fers.py). Hidden: data only.",
+ "pass1": {
+  "cell_m": 20.0,
+  "date": "2026-10-28",
+  "left out": {
+   "Kentucky (own list)": "all (ky-overlaps.geojson)",
+   "approximate": 419,
+   "no outline": 3648,
+   "no pin": 4,
+   "pin well outside": 0
+  },
+  "missing boundary": 0,
+  "official parks": 272,
+  "pairs tested": 125,
+  "pairs whose boxes touch": 125,
+  "parks done by the box test": 151,
+  "parks whose outline could not be read": 0,
+  "pass": 1,
+  "problems": [
+   "W&S river corridors joined as area parks: 15"
+  ],
+  "with official lines": 0
+ },
+ "pass2": {
+  "agree with the pass before": 113,
+  "cell_m": 10.0,
+  "date": "2026-10-28",
+  "left out": {
+   "Kentucky (own list)": "all (ky-overlaps.geojson)",
+   "approximate": 419,
+   "no outline": 3648,
+   "no pin": 4,
+   "pin well outside": 0
+  },
+  "new here only (not counted)": 23,
+  "official parks": 272,
+  "pairs tested": 38,
+  "parks whose outline could not be read": 0,
+  "parks with a saved copy only (no fresh download possible)": 0,
+  "pass": 2,
+  "problems": [
+   "W&S river corridors joined as area parks: 15"
+  ],
+  "with official lines": 0
+ },
+ "pass3": {
+  "agree with the pass before": 40,
+  "cell_m": 5.0,
+  "date": "2026-10-28",
+  "left out": {
+   "Kentucky (own list)": "all (ky-overlaps.geojson)",
+   "approximate": 419,
+   "no outline": 3648,
+   "no pin": 4,
+   "pin well outside": 0
+  },
+  "new here only (not counted)": 2,
+  "official parks": 272,
+  "pairs tested": 38,
+  "parks whose outline could not be read": 0,
+  "parks with a saved copy only (no fresh download possible)": 0,
+  "pass": 3,
+  "problems": [
+   "W&S river corridors joined as area parks: 15",
+   "closed areas: not in the bundle (offline stage)",
+   "NHD water: not in the bundle (offline stage)",
+   "TIGER Primary Roads: not in the bundle (offline stage)",
+   "TIGER Local Roads: not in the bundle (offline stage)"
+  ],
+  "with official lines": 0
+ },
+ "per state": {
+  "US-OH": {
+   "candidates": 25,
+   "candidates (saved outline only)": 0,
+   "lines": 72,
+   "n-fers": 0,
+   "not sure": 13,
+   "pass1": 222,
+   "pass2": 185,
+   "spots": 222,
+   "very tight": 2,
+   "water only": 1
+  }
+ }
+}

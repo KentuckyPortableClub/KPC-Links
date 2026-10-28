@@ -1,0 +1,3 @@
+pass 1: 12 s pairs reused (nothing changed)": 555
+pass 2: 9 s pairs reused (nothing changed)": 103
+pass 3: 42 s pairs reused (nothing changed)": 100

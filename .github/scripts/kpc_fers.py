@@ -2184,6 +2184,16 @@ def how_checked(s, parks, PIN):
     s['how_checked'] = '; '.join(bits + ['the spot itself is Forest Service-owned land']) if bits else 'the spot is Forest Service-owned land'
 
 
+MARK_T = [time.time()]
+def mark(what):
+    """Oct 28 (pass-5 speed-up): one log line per stage: seconds since the last mark + the process's peak memory so far."""
+    try:
+        import resource
+        mb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
+    except Exception: mb = -1  # noqa: BLE001
+    now = time.time(); LOG.append(f'stage: {what}: {now - MARK_T[-1]:.0f} s (peak {mb} MB)'); print(f'stage: {what}: {now - MARK_T[-1]:.0f} s, peak {mb} MB', flush=True); MARK_T.append(now)
+
+
 def tidy_rows(spots, PIN, today):
     """Chat 8's Kentucky final look (Oct 27 ~2 PM): (1) one AREA pair with several separate patches (a wild river corridor x
     Daniel Boone: 6 rows) = ONE row with up to 3 pins, like the trail rows (KR-1); (5) a 3-fer (or more) and the pair rows that
@@ -2363,12 +2373,14 @@ def main():
             save_json(file_of(st), d, indent=1 if REGION != 'world' else None)
     elif PASS == 5:   # Oct 27 (chat 8 KY note 3): re-check water for the decided area spots + tidy the rows; no new geometry passes
         files = {st: d for st, d in old.items() if (not ONLY or st in ONLY or st[3:] in ONLY)}
+        mark('pass 5 start')
         want = lambda x: x.get('kind') == 'area' and str(x.get('refs', [''])[0]).startswith('US-') and str(x.get('status', '')).startswith(('candidate', 'very tight', 'not sure: water not checked'))
         cand = [x for d in files.values() for x in d.get('spots', []) if want(x)]
         same = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'same land' and str(x.get('status', '')).startswith('candidate')]
         refs = sorted({r for x in cand + same for r in x['refs'] if r in parks and parks[r]['ids']})
         if REGION == 'ky': G, bad = ky_geom(parks, refs)
         else: G, bad = download(parks, refs, DET, PREC)
+        mark(f'geometry of {len(refs)} parks read')
         n = {'checked': 0, 'water only': 0, 'still not checked': 0}
         for x in cand:
             if late(): break
@@ -2392,17 +2404,22 @@ def main():
             if all(r in G for r in x['refs']) and not x.get('access_pin'):
                 try: x['access'] = nearest_access(x, st_of); x['access_pin'] = access_pin(x, G, LN, st_of)
                 except Exception as e: LOG.append(f"pin {x['id']}: {str(e)[:60]}")  # noqa: BLE001
+        mark(f'water re-check of {len(cand)} spots + {len(same)} same-land rows')
         lw = [x for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'area' and not str(x.get('status', '')).startswith('dropped')]
         more = sorted({r for x in lw for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if more:
             g2, _ = ky_geom(parks, more) if REGION == 'ky' else download(parks, more, DET, PREC)
             G.update(g2)
+        mark(f'geometry of {len(more)} more parks')
         n['spots given their boundary lines'] = add_lines(files, G, today)
+        mark(f"boundary lines for {n['spots given their boundary lines']} spots")
         tw = sorted({r for d in files.values() for x in d.get('spots', []) if x.get('kind') == 'trail' for r in x['refs'] if r in parks and parks[r]['ids'] and r not in G})
         if tw:
             g3, _ = ky_geom(parks, tw) if REGION == 'ky' else download(parks, tw, DET, PREC)
             G.update(g3)
+        mark(f'geometry of {len(tw)} trail-pair parks')
         n['trail stretches given their true zone'] = add_zones(files, G, PIN, today)
+        mark(f"zones for {n['trail stretches given their true zone']} trail stretches")
         for st, d in files.items():
             tidy_rows(d.get('spots', []), PIN, today)
             d['pass5'] = today; d['about'] = ABOUT

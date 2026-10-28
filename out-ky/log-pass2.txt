@@ -1,0 +1,4 @@
+::notice title=2-fer bot::pass 2: 407 spots from pass 1, 88 parks to download fresh
+::notice title=2-fer bot::pass 2: bundle answers: 717 read from the bundle, 1 asked the servers (0 kept)
+::notice title=2-fer bot::{"pass": 2, "cell_m": 10.0, "official parks": 199, "pairs tested": 103, "with official lines": 11, "parks whose outline could not be read": 0, "parks with a saved copy only (no fresh download possible)": 1, "agree with the pass before": 358, "new here only (not counted)": 175}
+::notice title=2-fer bot problems::pass 2: 1 · nps owned land: not in the bundle (offline stage)

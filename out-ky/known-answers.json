@@ -1,0 +1,184 @@
+{
+ "about": "Known answers (kpc_fers_known.py): Kentucky's hand-checked river + trail pairs must come out before any big 2-fer run.",
+ "date": "2026-10-28",
+ "pass": false,
+ "required": 18,
+ "found": 2,
+ "missing": [
+  [
+   [
+    "US-3791",
+    "US-3793",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-3791",
+    "US-3796",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-3791",
+    "US-3837",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-3791",
+    "US-3797",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-4572",
+    "US-8144"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-3830",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-3840",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-4572",
+    "US-7955"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-4572",
+    "US-7951"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-1260",
+    "US-4572"
+   ],
+   "Ohio River bank, within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-0703",
+    "US-3790",
+    "US-3791"
+   ],
+   "shore of the Tennessee River (Kentucky Lake), within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-3791",
+    "US-3792"
+   ],
+   "shore of the Tennessee River (Kentucky Lake), within 100 ft of the water",
+   "no row at all"
+  ],
+  [
+   [
+    "US-3791",
+    "US-3808"
+   ],
+   "shore of the Mississippi River, within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-1282",
+    "US-3791"
+   ],
+   "shore of the Tennessee River (Kentucky Lake), within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-10140",
+    "US-3791"
+   ],
+   "shore of the Tennessee River (Kentucky Lake), within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ],
+  [
+   [
+    "US-1283",
+    "US-3791"
+   ],
+   "shore of the Tennessee River (Kentucky Lake), within 100 ft of the water",
+   "not sure: water not checked (the USGS water map did not answer for this river bank): run again"
+  ]
+ ],
+ "sites_info": [
+  [
+   [
+    "US-3788",
+    "US-4572"
+   ],
+   "NPS lists \"Wickliffe Mounds State Historic Site\" on its official \"Visitor Center",
+   "not a stretch on the line (site only)"
+  ],
+  [
+   [
+    "US-3779",
+    "US-4572"
+   ],
+   "NPS lists \"Big Bone Lick State Historic Site\" on its official \"Visitor Centers i",
+   "not a stretch on the line (site only)"
+  ],
+  [
+   [
+    "US-3792",
+    "US-4572"
+   ],
+   "NPS lists \"Golden Pond Visitor Center at Land Between the Lakes\" on its official",
+   "not a stretch on the line (site only)"
+  ],
+  [
+   [
+    "US-3823",
+    "US-4572"
+   ],
+   "signed auto tour route along the park",
+   "not a stretch on the line (site only)"
+  ],
+  [
+   [
+    "US-1252",
+    "US-3791"
+   ],
+   "NPS lists Columbus-Belmont State Park as a Trail of Tears National Historic Trai",
+   "shown"
+  ]
+ ]
+}
