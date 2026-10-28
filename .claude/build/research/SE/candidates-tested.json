@@ -3,238 +3,6 @@
  "date": "2026-10-28",
  "layers": [
   {
-   "st": "VA",
-   "kind": "wild",
-   "ag": "Virginia DWR",
-   "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0",
-   "note": "Owner field = rule 14",
-   "answers": true,
-   "service": "DWR_WMA_Boundaries",
-   "licence": "",
-   "date_in_text": [],
-   "description": "This dataset contains boundary information for Virginia Department of Game and Inland Fisheries' (VDGIF) Wildlife Management Areas (WMA). The coverage includes all WMAs within Virginia. These data are formatted as an ArcView shapefile compiled by the VDGIF Fish and Wildlife Information Services (FWI",
-   "layers": [
-    {
-     "id": null,
-     "name": "DWR_WMA_Boundaries",
-     "geom": "Polygon",
-     "nameField": "WMA_NAME",
-     "ownerField": "Owner",
-     "fields": [
-      "OBJECTID",
-      "sde_DBO_DGIF_WMAs_AREA",
-      "PERIMETER",
-      "WMA_NAME",
-      "HECTARES",
-      "ACRES",
-      "area_m2",
-      "Origin",
-      "DateAdded",
-      "Number",
-      "X",
-      "Y",
-      "Date_Aquir",
-      "URL",
-      "Region",
-      "State_Plane",
-      "State_Plane_Acres",
-      "Tract_Name",
-      "Complex_Name",
-      "Hub_Location",
-      "Tract_Number",
-      "Property_Type",
-      "On_List",
-      "Owner",
-      "Property_Class"
-     ],
-     "records": 242,
-     "sample": [
-      "Amelia",
-      "Horsepen Lake",
-      "Hardware River",
-      "Hardware River",
-      "Chickahominy"
-     ],
-     "owner_valuesErr": "{'code': 400, 'message': 'Unable to complete operation.', 'd"
-    }
-   ]
-  },
-  {
-   "st": "TN",
-   "kind": "wild",
-   "ag": "TWRA",
-   "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3",
-   "note": "OWNERSHIP + OWNCODE = rule 14",
-   "answers": true,
-   "service": "Lands",
-   "licence": "TWRA",
-   "date_in_text": [],
-   "description": "Agency: TWRA. Frequency of updates: Irregular. Description: WMA's from the TN Wildlife Resources Agency (TWRA). Projection: TN State Plane NAD83 Feet.",
-   "layers": [
-    {
-     "id": null,
-     "name": "Lands",
-     "geom": "Polygon",
-     "nameField": "NAME",
-     "ownerField": "OWNERSHIP",
-     "fields": [
-      "OBJECTID",
-      "AREA_",
-      "PERIMETER",
-      "NAME",
-      "MANAGEMENT",
-      "CONAME",
-      "ACRES",
-      "REGION",
-      "ACQUIRED",
-      "DESC_",
-      "EST",
-      "HUNT",
-      "Other",
-      "Proc_Num",
-      "Officer",
-      "OWNERSHIP",
-      "OWNCODE",
-      "Hectares",
-      "UPDATE_",
-      "Name2",
-      "Shape",
-      "Shape.STArea()",
-      "Shape.STLength()"
-     ],
-     "records": 228,
-     "sample": [
-      "Land Between The Lakes WMA",
-      "FMHA",
-      "Pickett SF & WMA",
-      "FMHA-R.O.W.",
-      "T.N.C. Island Gift"
-     ],
-     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
-    }
-   ]
-  },
-  {
-   "st": "FL",
-   "kind": "wild",
-   "ag": "Florida FWC",
-   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1",
-   "note": "'general reference only' (licence check)",
-   "answers": true,
-   "service": "Wildlife Management Areas Florida",
-   "licence": "Florida Fish and Wildlife Conservation Commission",
-   "date_in_text": [],
-   "description": "This GIS data set represents the Wildlife Management Area system administered by the Florida Fish and Wildlife Conservation Commission (FWC). These data are intended as a general reference map only. More information on activities permitted in individual areas can be found from the links on FWC's Web",
-   "layers": [
-    {
-     "id": null,
-     "name": "Wildlife Management Areas Florida",
-     "geom": "Polygon",
-     "nameField": "NAME",
-     "ownerField": "",
-     "fields": [
-      "OBJECTID",
-      "NAME",
-      "NAME_SHORT",
-      "TYPE",
-      "TYPE_SHORT",
-      "UNIT",
-      "FWC_REGION",
-      "MGT_TYPE",
-      "AREA_SQMI",
-      "WEBSITE",
-      "YR_LAST_UP",
-      "MTH_LST_UP",
-      "Shape",
-      "Shape.STArea()",
-      "Shape.STLength()",
-      "last_edited_date"
-     ],
-     "records": 284,
-     "sample": [
-      "Twin Rivers Wildlife Management Area",
-      "Twin Rivers Wildlife Management Area",
-      "Twin Rivers Wildlife Management Area",
-      "Twin Rivers Wildlife Management Area",
-      "Twin Rivers Wildlife Management Area"
-     ]
-    }
-   ]
-  },
-  {
-   "st": "WV",
-   "kind": "trail",
-   "ag": "WV DOT / State Rail Authority",
-   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0",
-   "note": "rail trails = line parks",
-   "answers": true,
-   "service": "WVSRA_RailTrails",
-   "licence": "WVGISTC, WVDOT",
-   "date_in_text": [
-    "2021"
-   ],
-   "description": "A statewide inventory (www.mapWV.gov/trails) of over 6,800 miles of recreational trails accessible to the public in West Virginia. The WV GIS Technical Center at West Virginia University was funded by the WV Division of Highways to inventory, collect, attribute, and integrate all publicly accessible",
-   "layers": [
-    {
-     "id": null,
-     "name": "WVSRA_RailTrails",
-     "geom": "Polyline",
-     "nameField": "trailname",
-     "ownerField": "dataagency",
-     "fields": [
-      "objectid",
-      "fid_lines",
-      "dataagency",
-      "sourcedate",
-      "updated",
-      "sourcedata",
-      "trailname",
-      "trailnumbe",
-      "trailsyste",
-      "traillengt",
-      "trailsurfa",
-      "manageorg",
-      "cid1",
-      "cid2",
-      "municip",
-      "county",
-      "state",
-      "mgmtarea",
-      "hike",
-      "backpack",
-      "bike",
-      "horse",
-      "xcski",
-      "interp",
-      "fitness"
-     ],
-     "records": 21,
-     "sample": [
-      "Harrison South Rail-Trail",
-      "Caperton Rail-Trail",
-      "Panhandle Rail-Trail",
-      "Harrison North Rail-Trail",
-      "West Fork River Rail-Trail (spur)"
-     ],
-     "owner_values": [
-      "DOT",
-      "NPS",
-      "USFS MNF",
-      "WVDOT",
-      "WVGISTC",
-      "WVSAMB"
-     ]
-    }
-   ]
-  },
-  {
-   "st": "TN",
-   "kind": "preserve",
-   "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer",
-   "answers": false,
-   "error": "HTTP Error 403: Forbidden"
-  },
-  {
    "st": "MS",
    "kind": "wild",
    "ag": "MDWFP via MARIS (Mississippi State)",
@@ -324,63 +92,602 @@
       "Src_Date",
       "GIS_Acres"
      ],
-     "countErr": "The read operation timed out",
+     "records": 1,
      "sampleErr": "{'code': 400, 'message': 'Pagination is not supported.', 'de",
      "owner_valuesErr": "{'code': 400, 'message': 'Pagination is not supported.', 'de"
     }
    ]
   },
   {
-   "st": "TN",
-   "kind": "tva",
-   "url": "https://egismaps.tva.gov/arcgis/rest/services/TVA_Undeveloped_Land/MapServer",
-   "answers": false,
-   "error": "<urlopen error [Errno -5] No address associated with hostname>"
+   "st": "WI",
+   "kind": "trail",
+   "ag": "Wisconsin DNR",
+   "url": "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+   "note": "state trail segments (lines); TRAIL_MANAGER field",
+   "answers": true,
+   "service": "State Trail Segments",
+   "licence": "Wisconsin Department of Natural Resources - Division of Fish, Wildlife & Parks - Bureau of Parks & Recreation Management.",
+   "date_in_text": [
+    "2023"
+   ],
+   "description": "This layer was originally developed alongside the development of the Wisconsin Trails Network Plan GIS mapping application. This layer displays state trails in Wisconsin. State trails have been segmented into numerous smaller segments when a change in any of the listed attributes change along a stat",
+   "layers": [
+    {
+     "id": null,
+     "name": "State Trail Segments",
+     "geom": "Polyline",
+     "nameField": "TRAIL_NAME",
+     "ownerField": "TRAIL_MANAGER",
+     "fields": [
+      "OBJECTID",
+      "SHAPE",
+      "TRAIL_SEGMENT_SEQ_NO",
+      "TRAIL_NAME",
+      "CORRIDOR_NUMBER",
+      "TRAIL_SEGMENT_NAME",
+      "TRAIL_SEGMENT_DESC",
+      "SURFACE_TYPE",
+      "TRAIL_MANAGER",
+      "COUNTY_NAME",
+      "FEE",
+      "GIS_MILES",
+      "STATUS",
+      "RAILTRAIL",
+      "ATV_SUMMER",
+      "ATV_WINTER",
+      "BIKE_OFFROAD",
+      "BIKE_TOUR",
+      "HIKE_WALK",
+      "HORSE",
+      "INLINE_SKATE",
+      "OHM",
+      "SNOWMOBILE",
+      "SNOWSHOE",
+      "UTV_SUMMER"
+     ],
+     "records": 254,
+     "sample": [
+      "Stower Seven Lakes State Trail",
+      "Badger State Trail",
+      "Bearskin State Trail",
+      "Buffalo River State Trail",
+      "Buffalo River State Trail"
+     ],
+     "owner_values": [
+      "County",
+      "DNR",
+      "MN"
+     ]
+    }
+   ]
   },
   {
-   "st": "TN",
-   "kind": "tva",
-   "ag": "TVA (ArcGIS Online copy)",
-   "url": "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/TVA_Undeveloped_Land_Hosted/FeatureServer",
-   "note": "2023 copy of the same",
+   "st": "MN",
+   "kind": "trail",
+   "ag": "Minnesota DNR",
+   "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/trans_state_trails_minnesota/FeatureServer/0",
+   "note": "16 state trails",
    "answers": true,
-   "service": "",
-   "licence": "TVA GIS & Mapping, TVA Natural Resources",
+   "service": "State Trails Minnesota",
+   "licence": "",
    "date_in_text": [],
-   "description": "TVA Undeveloped Recreation Lands Map Service",
+   "description": "",
+   "layers": [
+    {
+     "id": null,
+     "name": "State Trails Minnesota",
+     "geom": "Polyline",
+     "nameField": "trail_name",
+     "ownerField": "",
+     "fields": [
+      "objectid",
+      "trail_name",
+      "prgm_prj",
+      "alt_name",
+      "use_hike",
+      "use_hiking",
+      "use_selfgu",
+      "use_accpat",
+      "use_horse",
+      "use_bike",
+      "use_mntbik",
+      "use_inline",
+      "use_wntrhi",
+      "use_snosho",
+      "use_sleddo",
+      "use_atvcl1",
+      "use_atvcl2",
+      "use_ohm",
+      "use_wcftm",
+      "use_wcftnm",
+      "use_abando",
+      "other_com",
+      "interp",
+      "use_orv",
+      "surfacetyp"
+     ],
+     "records": 978,
+     "sample": [
+      "Taconite State Trail",
+      "Taconite State Trail",
+      "Taconite State Trail",
+      "Glacial Lakes State Trail",
+      "Taconite State Trail"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "MO",
+   "kind": "trail",
+   "ag": "Missouri DNR",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer",
+   "note": "layers 3 + 7 = Trail Routes and Long Trails; 12 natural areas (read), 13 wild areas (not read)",
+   "answers": true,
+   "service": "SPHS_trails_public",
+   "licence": "Missouri Department of Natural Resources, Office of Geospatial Information",
+   "date_in_text": [],
+   "description": "",
    "layers": [
     {
      "id": 0,
-     "name": "TVA lands under agreement with other federal or st",
+     "name": "State Mask",
+     "geom": "Polygon",
+     "nameField": "STATE_NAME",
+     "ownerField": "",
+     "fields": [
+      "OBJECTID",
+      "STATE_NAME",
+      "SHAPE",
+      "SHAPE.STArea()",
+      "SHAPE.STLength()"
+     ],
+     "records": 2,
+     "sample": [
+      "Outer States",
+      "Missouri"
+     ]
+    },
+    {
+     "id": 1,
+     "name": "State Park Locations",
+     "geom": "Point",
+     "nameField": "LOC_NAME",
+     "ownerField": "",
+     "fields": [
+      "OBJECTID",
+      "LOC_NAME",
+      "PARK_ID",
+      "URL",
+      "SHORT_NAME",
+      "REGION",
+      "PARK_TYPE",
+      "GIS_ACRES",
+      "SHAPE",
+      "created_user",
+      "created_date",
+      "last_edited_user",
+      "last_edited_date"
+     ],
+     "records": 90,
+     "sample": [
+      "Ha Ha Tonka State Park",
+      "Arrow Rock State Historic Site",
+      "Edward \"Ted\" and Pat Jones-Confluence Po",
+      "Wallace State Park",
+      "Weston Bend State Park"
+     ]
+    },
+    {
+     "id": 2,
+     "name": "Trail Points of Interest",
+     "geom": "Point",
+     "nameField": "PARK_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "PARK_NAME",
+      "TRAIL_NAME",
+      "DESCRIPT",
+      "PNT_TYPE",
+      "PNT_NUM",
+      "INTERNAL",
+      "shape",
+      "PARK_ID",
+      "ORG_ID",
+      "PARK_ABB",
+      "TRAIL_ASSOC",
+      "GLOBALID"
+     ],
+     "records": 4018,
+     "sample": [
+      "Arrow Rock State Historic Site",
+      "Current River State Park",
+      "Watkins Woolen Mill State Park and Histo",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site"
+     ]
+    },
+    {
+     "id": 3,
+     "name": "Trail Routes",
+     "geom": "Polyline",
+     "nameField": "TRAIL_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "TRAIL_NAME",
+      "PARK_NAME",
+      "PARK_ID",
+      "TH_NUM",
+      "shape",
+      "ELEV_PROF",
+      "TRAIL_CLASS",
+      "ORG_ID",
+      "PARK_ABB",
+      "INTERNAL",
+      "GLOBALID",
+      "shape.STLength()"
+     ],
+     "records": 373,
+     "sample": [
+      "Paved Bicycle Lake Trail",
+      "Battlefield Trail",
+      "Upper Current Section-Ozark Trail",
+      "Oak-Hickory Trail",
+      "Lake Trail"
+     ]
+    },
+    {
+     "id": 4,
+     "name": "Trail Surface Types",
+     "geom": "Polyline",
+     "nameField": "PARK_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "PARK_NAME",
+      "PARK_ID",
+      "TREAD_TYPE",
+      "shape",
+      "INTERNAL",
+      "ORG_ID",
+      "PARK_ABB",
+      "PARK_SORT",
+      "GLOBALID",
+      "shape.STLength()"
+     ],
+     "records": 1246,
+     "sample": [
+      "Arrow Rock State Historic Site",
+      "Echo Bluff State Park",
+      "Dr. Edmund A. Babler Memorial State Park",
+      "Dr. Edmund A. Babler Memorial State Park",
+      "Weston Bend State Park"
+     ]
+    },
+    {
+     "id": 5,
+     "name": "Trail Blaze Colors (TA)",
+     "geom": "Polyline",
+     "nameField": "PARK_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "PARK_NAME",
+      "PARK_ID",
+      "TRAIL_NAME",
+      "BLAZECOLOR",
+      "TRAIL_ASSOC",
+      "shape",
+      "INTERNAL",
+      "TRAIL_TYPE",
+      "ORG_ID",
+      "PARK_ABB",
+      "TRAIL_ID",
+      "TREAD_TYPE",
+      "TRAIL_USE",
+      "NATURAL_AREA",
+      "WILD_AREA",
+      "MULTIPLIER",
+      "GLOBALID",
+      "shape.STLength()"
+     ],
+     "records": 1449,
+     "sample": [
+      "Echo Bluff State Park",
+      "Wallace State Park",
+      "St. Joe State Park",
+      "Castlewood State Park",
+      "Castlewood State Park"
+     ]
+    },
+    {
+     "id": 6,
+     "name": "Trail Blaze Colors (TN)",
+     "geom": "Polyline",
+     "nameField": "PARK_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "PARK_NAME",
+      "PARK_ID",
+      "TRAIL_NAME",
+      "BLAZECOLOR",
+      "TRAIL_ASSOC",
+      "shape",
+      "INTERNAL",
+      "TRAIL_TYPE",
+      "ORG_ID",
+      "PARK_ABB",
+      "TRAIL_ID",
+      "TREAD_TYPE",
+      "TRAIL_USE",
+      "NATURAL_AREA",
+      "WILD_AREA",
+      "MULTIPLIER",
+      "GLOBALID",
+      "shape.STLength()"
+     ],
+     "records": 1449,
+     "sample": [
+      "Echo Bluff State Park",
+      "Wallace State Park",
+      "St. Joe State Park",
+      "Castlewood State Park",
+      "Castlewood State Park"
+     ]
+    },
+    {
+     "id": 7,
+     "name": "Long Trails",
+     "geom": "Polyline",
+     "nameField": "PARK_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "PARK_NAME",
+      "PARK_ID",
+      "TRAIL_NAME",
+      "BLAZECOLOR",
+      "TRAIL_ASSOC",
+      "shape",
+      "INTERNAL",
+      "TRAIL_TYPE",
+      "ORG_ID",
+      "PARK_ABB",
+      "TRAIL_ID",
+      "TREAD_TYPE",
+      "TRAIL_USE",
+      "NATURAL_AREA",
+      "WILD_AREA",
+      "MULTIPLIER",
+      "GLOBALID",
+      "shape.STLength()"
+     ],
+     "records": 7,
+     "sample": [
+      "Katy Trail State Park",
+      "Katy Trail State Park",
+      "Katy Trail State Park",
+      "Katy Trail State Park",
+      "Katy Trail State Park"
+     ]
+    },
+    {
+     "id": 8,
+     "name": "Non DNR Trails",
+     "geom": "Polyline",
+     "nameField": "PARK_NAME",
+     "ownerField": "",
+     "fields": [
+      "Objectid",
+      "PARK_NAME",
+      "TRAIL_NAME",
+      "BLAZECOLOR",
+      "TRAIL_ASSOC",
+      "PARK_ID",
+      "TRAIL_TYPE",
+      "ORG_ID",
+      "PARK_ABB",
+      "TRAIL_ID",
+      "TREAD_TYPE",
+      "TRAIL_USE",
+      "NATURAL_AREA",
+      "WILD_AREA",
+      "INTERNAL",
+      "MULTIPLIER",
+      "shape",
+      "GLOBALID",
+      "shape.STLength()"
+     ],
+     "records": 80,
+     "sample": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+     ]
+    },
+    {
+     "id": 9,
+     "name": "State Parks and Historic Sites",
+     "geom": "Polygon",
+     "nameField": "LOC_NAME",
+     "ownerField": "",
+     "fields": [
+      "LOC_NAME",
+      "PARK_ID",
+      "URL",
+      "SHAPE",
+      "SHORT_NAME",
+      "OBJECTID",
+      "REGION",
+      "GIS_ACRES",
+      "SHAPE.STArea()",
+      "SHAPE.STLength()",
+      "created_user",
+      "created_date",
+      "last_edited_user",
+      "last_edited_date"
+     ],
+     "records": 207,
+     "sample": [
+      "Ha Ha Tonka State Park",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site"
+     ]
+    },
+    {
+     "id": 10,
+     "name": "State Parks and Historic Sites",
+     "geom": "Polygon",
+     "nameField": "LOC_NAME",
+     "ownerField": "",
+     "fields": [
+      "LOC_NAME",
+      "PARK_ID",
+      "URL",
+      "SHAPE",
+      "SHORT_NAME",
+      "OBJECTID",
+      "REGION",
+      "GIS_ACRES",
+      "SHAPE.STArea()",
+      "SHAPE.STLength()",
+      "created_user",
+      "created_date",
+      "last_edited_user",
+      "last_edited_date"
+     ],
+     "records": 207,
+     "sample": [
+      "Ha Ha Tonka State Park",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site"
+     ]
+    },
+    {
+     "id": 11,
+     "name": "State Parks and Historic Sites",
+     "geom": "Polygon",
+     "nameField": "LOC_NAME",
+     "ownerField": "",
+     "fields": [
+      "LOC_NAME",
+      "PARK_ID",
+      "URL",
+      "SHAPE",
+      "SHORT_NAME",
+      "OBJECTID",
+      "REGION",
+      "GIS_ACRES",
+      "SHAPE.STArea()",
+      "SHAPE.STLength()",
+      "created_user",
+      "created_date",
+      "last_edited_user",
+      "last_edited_date"
+     ],
+     "records": 206,
+     "sample": [
+      "Ha Ha Tonka State Park",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site",
+      "Arrow Rock State Historic Site"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "MO",
+   "kind": "wild-area",
+   "ag": "Missouri DNR",
+   "url": "https://gis.dnr.mo.gov/server/rest/services/sphs_trails/SPHS_trails_public/MapServer/13",
+   "note": "wild areas",
+   "answers": true,
+   "service": "Wild Areas",
+   "licence": "",
+   "date_in_text": [],
+   "description": "This data set depicts the boundaries of Wild Areas managed by the Missouri Department of Natural Resources, Division of State Parks. This data was derived by digitizing United States Geological Survey (USGS) Digital Orthophoto Quarter Quadrangles (DOQQ) from boundary descriptions and sketches varyin",
+   "layers": [
+    {
+     "id": null,
+     "name": "Wild Areas",
+     "geom": "Polygon",
+     "nameField": "WA_NAME",
+     "ownerField": "",
+     "fields": [
+      "OBJECTID",
+      "WA_NAME",
+      "PARK_ID",
+      "DATE_DES",
+      "SHAPE",
+      "ACREAGE",
+      "LOC_NAME",
+      "SHAPE.STArea()",
+      "SHAPE.STLength()"
+     ],
+     "records": 13,
+     "sample": [
+      "Mudlick Mountain Wild Area",
+      "East Fork Wild Area",
+      "Goggins Mountain Wild Area",
+      "Gans Creek Wild Area",
+      "Northwoods Wild Area"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "ND",
+   "kind": "forest",
+   "ag": "North Dakota Forest Service",
+   "url": "https://services1.arcgis.com/GOcSXpzwBHyk2nog/ArcGIS/rest/services/NDGISHUB_State_Forest/FeatureServer",
+   "note": "2011 data per the desk: check the date before it outranks anything newer (rule 6)",
+   "answers": true,
+   "service": "",
+   "licence": "North Dakota Game and Fish Department",
+   "date_in_text": [],
+   "description": "The purpose of the data is to provide a geographic representation of state forest lands in North Dakota. This dataset is primarily used as a framework data layer for use in GIS and mapping applications.",
+   "layers": [
+    {
+     "id": 0,
+     "name": "State Forest",
      "geom": "Polygon",
      "nameField": "Shape__Area",
      "ownerField": "",
      "fields": [
       "OBJECTID",
-      "RESERVOIR",
-      "REC_TYPE",
-      "RESTRICTED",
-      "RESERVOIRURL",
-      "ORIG_FC",
-      "GIS_COMMENTS",
-      "GlobalID",
-      "created_user",
-      "created_date",
-      "last_edited_user",
-      "last_edited_date",
+      "DESCRIPTION",
+      "UNIT_TYPE",
+      "ACRES",
       "Shape__Area",
       "Shape__Length"
      ],
-     "records": 62,
+     "records": 27,
      "sample": [
-      "1164629.40625",
-      "11242603.27734375",
-      "952993.578125",
-      "243150.04296875",
-      "1766477.44140625"
+      "1430991.90625",
+      "1463555.50390625",
+      "749069.15625",
+      "2323721.296875",
+      "14640399.16015625"
      ]
     }
    ]
+  },
+  {
+   "st": "MI",
+   "kind": "forest",
+   "url": "https://services1.arcgis.com/3nMhWgyVdnKJMg2j/arcgis/rest/services/State_Forest_Boundaries/FeatureServer",
+   "answers": false,
+   "error": "{'code': 400, 'message': 'Invalid URL', 'details': ['Invalid URL']}"
   }
  ],
  "servers": [
@@ -481,13 +788,554 @@
    "what": "MARIS root (other park layers)",
    "url": "https://www.maris.state.ms.us/server/rest/services",
    "error": "<urlopen error [Errno -2] Name or service not known>"
-  },
-  {
-   "st": "TN",
-   "what": "TVA own server root",
-   "url": "https://egismaps.tva.gov/arcgis/rest/services",
-   "error": "<urlopen error [Errno -5] No address associated with hostname>"
   }
  ],
- "searches": []
+ "searches": [
+  {
+   "st": "MI",
+   "q": "(\"state forest\" OR \"state trail\" OR \"harbor\") AND \"Michigan\" AND (DNR OR \"Department of Natural Resources\")",
+   "why": "MI: 6 state forests, 6 state trails, 13 harbours unjoined; the key has no forest layer",
+   "found": [
+    {
+     "title": "Campgrounds on Michigan State Forest Land",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/dnrParksAndRecreation/FeatureServer/3",
+     "modified": "2026-10-14",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to"
+    },
+    {
+     "title": "Michigan Forest Inventory - Compartments",
+     "org": "Michigan Department of Natural Resources",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer/5",
+     "modified": "2026-08-31",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "State Trail Segments",
+     "org": "",
+     "url": "https://dnrmaps.wi.gov/arcgis/rest/services/PR_TRAILS/PR_STATE_TRAILS_NETWORK_PLAN_WTM_Ext/MapServer/0",
+     "modified": "2026-07-29",
+     "licence": "The Wisconsin Department of Natural Resources seeks to provide access to the"
+    },
+    {
+     "title": "State Forest Campground Recreation Search Points",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/State_Forest_Campground_Recreation_Search_Points/FeatureServer",
+     "modified": "2026-08-24",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "DNR Managed Sites",
+     "org": "Michigan Department of Natural Resources",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRReferenceAssetsOPENDATA/FeatureServer/10",
+     "modified": "2026-09-04",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort t"
+    },
+    {
+     "title": "Michigan DNR Forest Management Units",
+     "org": "Michigan Department of Natural Resources",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer/2",
+     "modified": "2026-09-14",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to"
+    },
+    {
+     "title": "MichiganDNRFuelwoodCollection",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRFuelwoodCollection/FeatureServer",
+     "modified": "2026-08-13",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "DNRManagementBoundariesOPENDATA",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer",
+     "modified": "2026-10-26",
+     "licence": "The Michigan Department of Natural Resources\n(DNR) is making every effort to e"
+    },
+    {
+     "title": "FRD Ice Storm Roads Impact Status External",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/FRD_Ice_Storm_Roads_Impact_Status_External/FeatureServer",
+     "modified": "2026-08-10",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "Michigan DNR Parks And Recreation Service",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/dnrParksAndRecreation/FeatureServer",
+     "modified": "2026-09-03",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to e"
+    },
+    {
+     "title": "Great Lakes Public Access",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Great_Lakes_Public_Access_2020/FeatureServer",
+     "modified": "2026-10-14",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to e"
+    },
+    {
+     "title": "2023 Fires_WFL1",
+     "org": "",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2023_Fires_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "2021 Fires_WFL1",
+     "org": "",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fires_WFL1/FeatureServer",
+     "modified": "2024-04-28",
+     "licence": ""
+    },
+    {
+     "title": "PA288 Comments - Public VIEW",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_State_Forest_Roads_Public_Comments_-_PUBLIC_View/FeatureServer",
+     "modified": "2026-09-14",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to e"
+    },
+    {
+     "title": "Neet Final Project",
+     "org": "",
+     "url": "https://services1.arcgis.com/7k5pwykhBf04bSfy/arcgis/rest/services/Neet_Final_Project/FeatureServer",
+     "modified": "2021-04-20",
+     "licence": ""
+    },
+    {
+     "title": "Michigan DNR Trails Management Units",
+     "org": "Michigan Department of Natural Resources",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRManagementBoundariesOPENDATA/FeatureServer",
+     "modified": "2026-06-01",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to"
+    },
+    {
+     "title": "Michigan DNR Public Forest Inventory Data",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer",
+     "modified": "2026-09-04",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to"
+    },
+    {
+     "title": "Michigan DNR GEM Hunter Walking Trails",
+     "org": "Michigan Department of Natural Resources",
+     "url": "https://gisagodnr.state.mi.us/arcgis/rest/services/DNR/DNRTrailsOPENDATA/FeatureServer/9",
+     "modified": "2026-07-09",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "PRD Recreation Passport Sale Locations (Public View)",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PRD_Recreation_Passport_Sale_Locations_Public_View/FeatureServer",
+     "modified": "2026-10-09",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "Michigan DNR Administered Timber Sales",
+     "org": "Michigan Department of Natural Resources",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/MichiganDNRAdministeredTimberSales/FeatureServer",
+     "modified": "2026-09-30",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to e"
+    },
+    {
+     "title": "2021 Fixed_WFL1",
+     "org": "",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/2021_Fixed_WFL1/FeatureServer",
+     "modified": "2024-05-04",
+     "licence": ""
+    },
+    {
+     "title": "PA288 - Proposed LUOD Changes",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/PA288LUODPropsoed2024Changes/FeatureServer",
+     "modified": "2026-06-08",
+     "licence": "The Michigan Department of Natural Resources (DNR) is making every effort to en"
+    },
+    {
+     "title": "IDNR Confirmed Kudzu Locations",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/PestsKudzu_RO/FeatureServer",
+     "modified": "2026-06-01",
+     "licence": "USE CONSTRAINTS Acknowledgement of the Indiana Department of Natural Resources"
+    },
+    {
+     "title": "Mi State Forest",
+     "org": "",
+     "url": "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/Mi_State_Forest/FeatureServer",
+     "modified": "2026-10-26",
+     "licence": "This dataset is a public record and, as more fully described below, there ar"
+    },
+    {
+     "title": "Aspect 2021_2023_WFL1",
+     "org": "",
+     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Aspect_2021_2023_WFL1/FeatureServer",
+     "modified": "2024-05-01",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "IN",
+   "q": "(\"state recreation area\" OR \"state forest\" OR trails) AND \"Indiana\" AND (DNR OR \"Department of Natural Resources\")",
+   "why": "IN: 13 lake State Recreation Areas not found",
+   "found": [
+    {
+     "title": "DNR Recreation Sites, features",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/DNR_Recreation_Sites_RO/FeatureServer/8",
+     "modified": "2023-05-19",
+     "licence": "This service, including its underlying data, is distributed\r\n&quot;AS-IS&quot;"
+    },
+    {
+     "title": "Indiana Trails Inventory Open Trails",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/Trails_AGOL_RO/FeatureServer",
+     "modified": "2023-05-18",
+     "licence": "These data are distributed &quot;AS-IS&quot; without warranties of any kind, eit"
+    },
+    {
+     "title": "IN DNR Properties",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer",
+     "modified": "2023-05-17",
+     "licence": "This service, including its underlying data, is distributed \u201cAS-IS\u201d without\nwar"
+    },
+    {
+     "title": "IN DNR Trails",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/Trails_AGOL_RO/FeatureServer/0",
+     "modified": "2023-05-19",
+     "licence": "This service,\nincluding its underlying data, is distributed \u201cAS-IS\u201d without war"
+    },
+    {
+     "title": "Off Road Recreational Trails",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/Trails_AGOL_RO/FeatureServer",
+     "modified": "2026-03-11",
+     "licence": "Acknowledgement of the Indiana Department of Natural Resources (IDNR) as the so"
+    },
+    {
+     "title": "All_NLT_Projects_RO",
+     "org": "",
+     "url": "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/All_NLT_Projects_View_Layer/FeatureServer",
+     "modified": "2022-06-07",
+     "licence": ""
+    },
+    {
+     "title": "Existing_Trails_View_Layer",
+     "org": "",
+     "url": "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/Existing_Trails_View_Layer/FeatureServer",
+     "modified": "2021-07-29",
+     "licence": ""
+    },
+    {
+     "title": "Indiana Visionary Trails",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/VisionaryTrails_RO/FeatureServer",
+     "modified": "2026-06-01",
+     "licence": "Acknowledgement of the Indiana Department of Natural Resources (IDNR) as the so"
+    },
+    {
+     "title": "Indiana Trails Inventory, Map Image Layer",
+     "org": "",
+     "url": "https://gis.in.gov/arcgis/rest/services/DNR/TrailsInventory_DNR_OR_IN/MapServer",
+     "modified": "2015-07-07",
+     "licence": "This service, including its underlying data, is distributed\r\n&quot;AS-IS&quot;"
+    },
+    {
+     "title": "Visionary Trails",
+     "org": "",
+     "url": "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/Visionary_Trails_Database_View_Layer/FeatureServer",
+     "modified": "2021-09-21",
+     "licence": ""
+    },
+    {
+     "title": "Salmonid Streams",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/Streams_Salmonid_DNR_IN_1/FeatureServer",
+     "modified": "2026-06-01",
+     "licence": "Acknowledgement of the Indiana Department of Natural Resources (IDNR) as the so"
+    },
+    {
+     "title": "TrailsInventory_DNR_OR_IN",
+     "org": "",
+     "url": "http://gis.in.gov/ArcGIS/rest/services/DNR/TrailsInventory_DNR_OR_IN/MapServer",
+     "modified": "2012-02-15",
+     "licence": "The data in this service were compiled by\r\nthe Indiana Department of Natural R"
+    },
+    {
+     "title": "LakeGlendoraTestingFacility",
+     "org": "",
+     "url": "https://services.arcgis.com/tKsJAIiLjd90D5q2/arcgis/rest/services/LakeGlendoraTestingFacility/FeatureServer",
+     "modified": "2024-11-12",
+     "licence": "Data may be used only for the purpose explicitly stated in the written reque"
+    },
+    {
+     "title": "VisionaryProgress",
+     "org": "",
+     "url": "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/VisionaryProgress/FeatureServer",
+     "modified": "2021-09-21",
+     "licence": ""
+    },
+    {
+     "title": "IN DNR Reservoirs",
+     "org": "InDNRMaps",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/Sites_Reservoirs/FeatureServer/8",
+     "modified": "2023-05-19",
+     "licence": "This service, including its underlying data, is distributed\r\n&quot;AS-IS&quot;"
+    },
+    {
+     "title": "IN DNR State Forests",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/Sites_StateForests/FeatureServer/8",
+     "modified": "2023-05-19",
+     "licence": "This service, including its underlying data, is distributed\r\n&quot;AS-IS&quot;"
+    },
+    {
+     "title": "DNR Trails",
+     "org": "",
+     "url": "https://services1.arcgis.com/nYfGJ9xFTKW6VPqW/arcgis/rest/services/DNR_Trails/FeatureServer",
+     "modified": "2021-03-23",
+     "licence": "Acknowledgement of the Indiana Department of Natural Resources (IDNR) as th"
+    },
+    {
+     "title": "State_Park_Trails",
+     "org": "",
+     "url": "https://services6.arcgis.com/3BIBAkkTYicFwv1e/arcgis/rest/services/State_Park_Trails/FeatureServer",
+     "modified": "2022-05-31",
+     "licence": "Acknowledgement of the Indiana Department of Natural Resources (IDNR) as th"
+    },
+    {
+     "title": "Indiana DNR Recreation Sites",
+     "org": "",
+     "url": "http://gis.in.gov/ArcGIS/rest/Services/DNR/DnrRecreationSites/MapServer",
+     "modified": "2011-11-15",
+     "licence": "This work is licensed under a Creative Commons Attribution-Noncommercial-Share A"
+    },
+    {
+     "title": "IN DNR Properties",
+     "org": "",
+     "url": "https://gisdata.in.gov/server/rest/services/Hosted/ManagedLands_DNR_Open/FeatureServer",
+     "modified": "2023-07-12",
+     "licence": "This service, including its underlying data, is distributed \u201cAS-IS\u201d without\nwar"
+    },
+    {
+     "title": "InDNR Recreation Sites, Map Image Layer",
+     "org": "",
+     "url": "https://gis.in.gov/arcgis/rest/services/DNR/DnrRecreationSites/MapServer",
+     "modified": "2017-09-25",
+     "licence": "This service, including its underlying data, is distributed\n&quot;AS-IS&quot; w"
+    },
+    {
+     "title": "Conklin_Bay_View_Layer",
+     "org": "",
+     "url": "https://services.arcgis.com/2Mcx1M1MORKfBNPM/arcgis/rest/services/Conklin_Bay_View_Layer/FeatureServer",
+     "modified": "2021-07-29",
+     "licence": ""
+    },
+    {
+     "title": "Indiana DNR Trails",
+     "org": "",
+     "url": "https://gis.in.gov/arcgis/rest/services/DNR/TrailsInventory_DNR_OR_IN/MapServer/0",
+     "modified": "2018-03-22",
+     "licence": ""
+    },
+    {
+     "title": "MultiUse Trails Trip Generators and Housing 2026_WFL1",
+     "org": "",
+     "url": "https://services1.arcgis.com/JXmZ35CwGprODmgS/arcgis/rest/services/MultiUse_Trails_Trip_Generators_and_Housing_2026_WFL1/FeatureServer",
+     "modified": "2026-10-02",
+     "licence": ""
+    },
+    {
+     "title": "Trails (IDNR) (20170418)",
+     "org": "",
+     "url": "https://maps.indiana.edu/arcgis/rest/services/Infrastructure/Recreation_Trails_IDNR/MapServer",
+     "modified": "2018-01-24",
+     "licence": "Indiana Department of Natural Resources, Division of Outdoor Recreation"
+    }
+   ]
+  },
+  {
+   "st": "MN",
+   "q": "(\"wildlife management area\") AND \"Minnesota\" AND DNR",
+   "why": "MN DNR WMA public layer (top add 5)",
+   "found": [
+    {
+     "title": "PAULIE",
+     "org": "",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
+     "modified": "2026-10-22",
+     "licence": "The Geographic Information System (GIS) Data to which this notice is attached a"
+    },
+    {
+     "title": "TylerEPL",
+     "org": "",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
+     "modified": "2025-08-29",
+     "licence": ""
+    },
+    {
+     "title": "DNRWildlifeManagementAreas_Public",
+     "org": "",
+     "url": "https://gis.co.isanti.mn.us/arcgis/rest/services/Zoning/DNRWildlifeManagementAreas_Public/FeatureServer",
+     "modified": "2024-03-15",
+     "licence": ""
+    },
+    {
+     "title": "Public GIS Map",
+     "org": "",
+     "url": "https://dc-web-2.co.douglas.mn.us/server/rest/services/PublicMaps/Public_GIS_Map/MapServer",
+     "modified": "2026-02-27",
+     "licence": ""
+    },
+    {
+     "title": "TH 25 PEL Existing Conditions_WFL1",
+     "org": "",
+     "url": "https://services2.arcgis.com/ZkOsbg84o8DsPPaP/arcgis/rest/services/TH_25_PEL_Existing_Conditions_WFL1/FeatureServer",
+     "modified": "2024-01-18",
+     "licence": ""
+    },
+    {
+     "title": "State Administered Lands - DNR Management Units, Minnesota",
+     "org": "",
+     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_managed_areas/FeatureServer",
+     "modified": "2026-10-24",
+     "licence": "Delineations are generally representative of managed lands, but they are of vary"
+    },
+    {
+     "title": "MN DNR State Land Management Units",
+     "org": "",
+     "url": "https://services.arcgis.com/ULBqC49IEeIR01GF/arcgis/rest/services/MN_DNR_Management_Units/FeatureServer",
+     "modified": "2024-05-29",
+     "licence": ""
+    },
+    {
+     "title": "Prairie Creek WMA Boundary",
+     "org": "",
+     "url": "https://services.arcgis.com/ULBqC49IEeIR01GF/arcgis/rest/services/Prairie_Creek_WMA_Boundary/FeatureServer",
+     "modified": "2025-09-05",
+     "licence": ""
+    },
+    {
+     "title": "MN DNR Publicly Accessible Wildlife Management Areas",
+     "org": "",
+     "url": "https://services1.arcgis.com/lDFzr3JyGEn5Eymu/arcgis/rest/services/MN_DNR_Publicly_Accessible_Wildlife_Management_Areas/FeatureServer",
+     "modified": "2025-08-19",
+     "licence": ""
+    },
+    {
+     "title": "MNDNR Native Prairies",
+     "org": "",
+     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_native_prairies/FeatureServer",
+     "modified": "2026-10-23",
+     "licence": "Use of the data are constrained only by the DNR GIS Data License Agreement. See"
+    },
+    {
+     "title": "MNDNR Native Plant Communities S1 to S3 Confirmed or Possible",
+     "org": "",
+     "url": "https://services1.arcgis.com/lDFzr3JyGEn5Eymu/arcgis/rest/services/MNDNR_Native_Plant_Communities_S1_to_S3_Confirmed_or_Possible/FeatureServer",
+     "modified": "2025-08-19",
+     "licence": ""
+    },
+    {
+     "title": "Publicly Accessible State Wildlife Management Areas",
+     "org": "",
+     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_wildlife_mgmt_areas_pub/FeatureServer",
+     "modified": "2026-10-27",
+     "licence": "These boundaries are for general reference.  While they can be used in a GPS, th"
+    },
+    {
+     "title": "Native Plant Communities - Saint Paul and 1 mile beyond (DNR)",
+     "org": "",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/MRCCA_NPC/FeatureServer",
+     "modified": "2022-04-26",
+     "licence": ""
+    },
+    {
+     "title": "Wild Life Manage",
+     "org": "",
+     "url": "https://services4.arcgis.com/YUrDaHsSsDgAfy4f/arcgis/rest/services/Wild_Life_Manage/FeatureServer",
+     "modified": "2020-03-04",
+     "licence": ""
+    },
+    {
+     "title": "DNR Wildlife Management Area Land Cover - Publicly Accessible",
+     "org": "",
+     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_wma_landcover_pub/FeatureServer",
+     "modified": "2026-10-23",
+     "licence": "The publisher of this resource has not provided a use license. Please refer to t"
+    },
+    {
+     "title": "State Wildlife Management Area Public Facilities",
+     "org": "",
+     "url": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/struc_dnr_wld_mgmt_areas_pub/FeatureServer",
+     "modified": "2026-09-16",
+     "licence": "No special restrictions beyond those described in the Minnesota Department of Na"
+    },
+    {
+     "title": "Conservation Lands in Rice County, MN",
+     "org": "",
+     "url": "https://services.arcgis.com/ULBqC49IEeIR01GF/arcgis/rest/services/Conservation_Lands_Rice/FeatureServer",
+     "modified": "2018-10-02",
+     "licence": "Not to be used for for-profit or commercial pusposes."
+    },
+    {
+     "title": "mngeo_NEVI_data",
+     "org": "",
+     "url": "https://services.arcgis.com/04HiymDgLlsbhaV4/arcgis/rest/services/mngeo_NEVI_data/FeatureServer",
+     "modified": "2022-04-20",
+     "licence": ""
+    },
+    {
+     "title": "Minnesota Publicly Accessible State Wildlife Management Areas",
+     "org": "",
+     "url": "https://services6.arcgis.com/3kf8p2K63UctsaCH/arcgis/rest/services/dnr_wildlife_management_area_boundaries_publicly_accessible_withpermit/FeatureServe",
+     "modified": "2026-09-16",
+     "licence": "I am not affiliated with the Minnesota Department of Natural Resources in any"
+    },
+    {
+     "title": "Management Units - LRS",
+     "org": "",
+     "url": "https://utility.arcgis.com/usrsvcs/servers/12f8211fb507452198d4debb4da39dfc/rest/services/Hosted/Management_Units_LRS/FeatureServer",
+     "modified": "2026-02-03",
+     "licence": ""
+    },
+    {
+     "title": "Places To Live_WFL1",
+     "org": "",
+     "url": "https://services9.arcgis.com/ta5A2JagyJaxKapd/arcgis/rest/services/Places_To_Live_WFL1/FeatureServer",
+     "modified": "2023-07-31",
+     "licence": ""
+    },
+    {
+     "title": "Wildlife Management Areas (WMA) - Publicly Accessible",
+     "org": "",
+     "url": "https://utility.arcgis.com/usrsvcs/servers/740c728f721049caa893a01beb47367e/rest/services/Hosted/Wildlife_Management_Areas_WMA_Publicly_Accessible/Fea",
+     "modified": "2026-02-03",
+     "licence": ""
+    },
+    {
+     "title": "State Administered Lands - DNR Management Units, Minnesota",
+     "org": "",
+     "url": "https://enterprise-dev.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_dnr_managed_areas/FeatureServer",
+     "modified": "2026-03-26",
+     "licence": "Delineations are generally representative of managed lands, but they are of vary"
+    },
+    {
+     "title": "MNDNR Native Prairies",
+     "org": "",
+     "url": "https://enterprise-dev.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/biota_dnr_native_prairies/FeatureServer",
+     "modified": "2026-09-08",
+     "licence": "Use of the data are constrained only by the DNR GIS Data License Agreement. See"
+    },
+    {
+     "title": "DNR Native Prairies",
+     "org": "",
+     "url": "https://services5.arcgis.com/oAqLpd7WRllWyIbW/arcgis/rest/services/DNR_Native_Prairies/FeatureServer",
+     "modified": "2026-02-09",
+     "licence": ""
+    }
+   ]
+  }
+ ]
 }
