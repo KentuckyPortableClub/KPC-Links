@@ -2047,6 +2047,12 @@ def known_ok():
 
 
 def main():
+    # Oct 27 (Fable's assembly-line review A5): the park list + trail lines live in KPC-Data (Step B); without them a pass would
+    # run and quietly drop every trail pair. Stop instead, loudly.
+    if REGION != 'world':
+        for need in ('data/parkinfo', 'data/trails'):
+            if not pathlib.Path(need).is_dir() or not any(pathlib.Path(need).iterdir()):
+                notice('2-fer bot', f'STOPPED: {need} is missing (KPC-Data overlay not laid in: run kpc_overlay.sh first)'); return
     PIN = pins()
     PINS.update(PIN)
     if REGION == 'na' and not ONLY and PASS == 1:

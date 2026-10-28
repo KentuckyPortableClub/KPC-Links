@@ -32,6 +32,7 @@ DATA_BASE = os.environ.get('OBS_DATA_BASE') or 'HEAD'
 
 
 def head(path):
+    path = str(path)   # Oct 27 (Fable review A4): callers pass pathlib paths too
     try:
         cmd = (['git', '-C', DATA_DIR, 'show', f'HEAD:{path}'] if DATA_DIR and path.startswith(DATA_PATHS) else
                ['git', '-C', DATA_DIR, 'show', f'{DATA_BASE}:{path}'] if DATA_DIR and path.startswith(MOVED) else ['git', 'show', f'{BASE}:{path}'])
@@ -45,6 +46,7 @@ def head(path):
 
 
 def now(path):
+    path = str(path)
     if DATA_DIR and path.startswith(MOVED): path = os.path.join(DATA_DIR, path)
     try: return json.load(open(path))
     except Exception: return None  # noqa: BLE001
