@@ -3,27 +3,6 @@
  "date": "2026-10-28",
  "layers": [
   {
-   "st": "MS",
-   "kind": "wild",
-   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/WildL_Areas/MapServer",
-   "answers": false,
-   "error": "<urlopen error [Errno -2] Name or service not known>"
-  },
-  {
-   "st": "MS",
-   "kind": "park",
-   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/State_Parks/MapServer",
-   "answers": false,
-   "error": "<urlopen error [Errno -2] Name or service not known>"
-  },
-  {
-   "st": "MS",
-   "kind": "forest-own",
-   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/NatFor_OwnerBnd/MapServer",
-   "answers": false,
-   "error": "<urlopen error [Errno -2] Name or service not known>"
-  },
-  {
    "st": "VA",
    "kind": "wild",
    "ag": "Virginia DWR",
@@ -254,6 +233,154 @@
    "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer",
    "answers": false,
    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+   "st": "MS",
+   "kind": "wild",
+   "ag": "MDWFP via MARIS (Mississippi State)",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer",
+   "note": "the big MS gap: 66 of 155 parks have no outline",
+   "answers": true,
+   "service": "Layers",
+   "licence": "MS Dept. of Wildlife Fisheries & Parks",
+   "date_in_text": [
+    "2019"
+   ],
+   "description": "MS Wildlife Management Areas - 2019 as maintained by the MS Dept. of Wildlife Fisheries & Parks",
+   "layers": []
+  },
+  {
+   "st": "MS",
+   "kind": "park",
+   "ag": "MDWFP via MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cultural/MS_StateParks_2019/MapServer",
+   "note": "53 polygons per the metadata",
+   "answers": true,
+   "service": "Layers",
+   "licence": "MDWFP, MARIS",
+   "date_in_text": [],
+   "description": "The boundaries of the State Parks of Mississippi as determined by the MS Dept. of Wildlife, Fisheries, and Parks (MDWFP)",
+   "layers": []
+  },
+  {
+   "st": "MS",
+   "kind": "refuge",
+   "ag": "USFWS via MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Administrative/MS_NationalWildlifeRefuges_1997/MapServer",
+   "note": "1997: old, PAD-US probably wins (rule 6)",
+   "answers": true,
+   "service": "Layers",
+   "licence": "MS Dept. of Wildlife, Fisheries & Parks, MARIS",
+   "date_in_text": [
+    "1997"
+   ],
+   "description": "Boundaries of the National Wildlife Refuges in MS created in September 1997",
+   "layers": []
+  },
+  {
+   "st": "MS",
+   "kind": "16th-section",
+   "ag": "MS Secretary of State via MARIS",
+   "url": "https://gis.mississippi.edu/server/rest/services/Cadastral/MS_16thSectLands_2021/MapServer",
+   "note": "GREY AREA SE-3: school-trust land leased to the state. Added to RECOGNISE it, never to make a 2-fer, until Brandon rules",
+   "answers": true,
+   "service": "Layers",
+   "licence": "U.S. Geological Survey (USGS) Gap Analysis Project (GAP), 2020, Protected Areas Database of the United States (PAD-US) 2.1: U.S. Geological Survey data release, MARIS",
+   "date_in_text": [
+    "2021"
+   ],
+   "description": "MS 16th Section Lands - 2021 The USGS Protected Areas Database of the United States (PAD-US) is the nation's inventory of protected areas, including public land and voluntarily provided private protected areas, identified as an A-16 National Geospatial Data Asset in the Cadastre Theme",
+   "layers": [
+    {
+     "id": 0,
+     "name": "MS_16thSectLands_2021",
+     "geom": "Polygon",
+     "nameField": "Unit_Nm",
+     "ownerField": "Mang_Type",
+     "fields": [
+      "FID",
+      "Shape",
+      "Category",
+      "d_Category",
+      "Own_Type",
+      "d_Own_Type",
+      "Own_Name",
+      "d_Own_Name",
+      "Loc_Own",
+      "Mang_Type",
+      "d_Mang_Typ",
+      "Mang_Name",
+      "d_Mang_Nam",
+      "Loc_Mang",
+      "Des_Tp",
+      "d_Des_Tp",
+      "Loc_Ds",
+      "Unit_Nm",
+      "Loc_Nm",
+      "State_Nm",
+      "d_State_Nm",
+      "Agg_Src",
+      "GIS_Src",
+      "Src_Date",
+      "GIS_Acres"
+     ],
+     "countErr": "The read operation timed out",
+     "sampleErr": "{'code': 400, 'message': 'Pagination is not supported.', 'de",
+     "owner_valuesErr": "{'code': 400, 'message': 'Pagination is not supported.', 'de"
+    }
+   ]
+  },
+  {
+   "st": "TN",
+   "kind": "tva",
+   "url": "https://egismaps.tva.gov/arcgis/rest/services/TVA_Undeveloped_Land/MapServer",
+   "answers": false,
+   "error": "<urlopen error [Errno -5] No address associated with hostname>"
+  },
+  {
+   "st": "TN",
+   "kind": "tva",
+   "ag": "TVA (ArcGIS Online copy)",
+   "url": "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/TVA_Undeveloped_Land_Hosted/FeatureServer",
+   "note": "2023 copy of the same",
+   "answers": true,
+   "service": "",
+   "licence": "TVA GIS & Mapping, TVA Natural Resources",
+   "date_in_text": [],
+   "description": "TVA Undeveloped Recreation Lands Map Service",
+   "layers": [
+    {
+     "id": 0,
+     "name": "TVA lands under agreement with other federal or st",
+     "geom": "Polygon",
+     "nameField": "Shape__Area",
+     "ownerField": "",
+     "fields": [
+      "OBJECTID",
+      "RESERVOIR",
+      "REC_TYPE",
+      "RESTRICTED",
+      "RESERVOIRURL",
+      "ORIG_FC",
+      "GIS_COMMENTS",
+      "GlobalID",
+      "created_user",
+      "created_date",
+      "last_edited_user",
+      "last_edited_date",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "records": 62,
+     "sample": [
+      "1164629.40625",
+      "11242603.27734375",
+      "952993.578125",
+      "243150.04296875",
+      "1766477.44140625"
+     ]
+    }
+   ]
   }
  ],
  "servers": [
@@ -356,1012 +483,11 @@
    "error": "<urlopen error [Errno -2] Name or service not known>"
   },
   {
-   "st": "MS",
-   "what": "MARIS (host guess 1)",
-   "url": "https://gis.maris.mississippi.edu/server/rest/services",
-   "error": "<urlopen error [Errno -2] Name or service not known>"
-  },
-  {
-   "st": "MS",
-   "what": "MARIS (host guess 2)",
-   "url": "https://maris.mississippi.edu/server/rest/services",
-   "error": "HTTP Error 404: Not Found"
-  },
-  {
-   "st": "MS",
-   "what": "MARIS / Mississippi State (guess 3)",
-   "url": "https://gis.mississippi.edu/server/rest/services",
-   "folders": [
-    "Administrative",
-    "BestAvailable",
-    "BusinessEconomy",
-    "Cadastral",
-    "Census",
-    "ClimateWeather",
-    "County_Parcels",
-    "CountyPointAddresses",
-    "CountyRoadCenterlines",
-    "Cultural",
-    "Education",
-    "Elevation",
-    "EmergencyResponse",
-    "Environmental",
-    "Geoscience",
-    "Health",
-    "Hosted",
-    "Hydrology",
-    "LocalHighResbyRegion",
-    "NAIP21byPDD",
-    "Political",
-    "Raster",
-    "TEMP",
-    "Transportation",
-    "Utilities",
-    "UtilityTelecom",
-    "Vector"
-   ],
-   "services": [
-    "MS_Counties_2015",
-    "MS_East_Parcels",
-    "MS_NHDFlowlines_Dec23",
-    "Senate_2022_Shaded"
-   ],
-   "likely": [
-    "Administrative/MS_CountyBoundaries_2015 (MapServer)",
-    "Administrative/MS_IndianLands_2020 (MapServer)",
-    "Administrative/MS_Municipal_Boundaries_2025 (MapServer)",
-    "Administrative/MS_NationalForestProclamationBoundaries_2017 (MapServer)",
-    "Administrative/MS_NationalWildlifeRefuges_1997 (MapServer)",
-    "Administrative/MS_PrisonBoundaries_2016 (MapServer)",
-    "Administrative/MS_PublicServiceCommissionDistricts_2010 (MapServer)",
-    "Administrative/MS_StateBoundary_2015 (MapServer)",
-    "Administrative/MS_WildlifeManagementAreas_2019 (MapServer)",
-    "Administrative/MS_ZipCodeBoundaries_2021 (MapServer)",
-    "BusinessEconomy/MS_PublicRefrigeratedWarehouses_2017 (MapServer)",
-    "Cadastral/MS_16thSectLands_2021 (MapServer)",
-    "Cadastral/MS_Parcels_EW_Boundary (MapServer)",
-    "Census/MS_CENSUSStateBoundaryPopulationHousing_2020 (MapServer)",
-    "Cultural/MS_MobileHomeParks_2016 (MapServer)",
-    "Cultural/MS_NationalParks_2023 (MapServer)",
-    "Cultural/MS_PublicLibraries_2021 (MapServer)",
-    "Cultural/MS_RecreationalFacilities_2017 (MapServer)",
-    "Cultural/MS_StateParks_2019 (MapServer)",
-    "Education/MS_PublicHigherEducationSites_2009 (MapServer)",
-    "Education/MS_PublicSchoolDistricts_2016 (MapServer)",
-    "Education/MS_PublicSchools_2024 (MapServer)"
-   ]
-  },
-  {
-   "st": "FL",
-   "what": "SFWMD (guess)",
-   "url": "https://gisweb.sfwmd.gov/arcgis/rest/services",
-   "error": "<urlopen error [Errno -2] Name or service not known>"
-  },
-  {
-   "st": "FL",
-   "what": "SWFWMD (guess)",
-   "url": "https://www25.swfwmd.state.fl.us/arcgis12/rest/services",
-   "folders": [],
-   "services": [],
-   "likely": []
-  },
-  {
-   "st": "NC",
-   "what": "NC OneMap open server",
-   "url": "https://services.nconemap.gov/arcgis/rest/services",
-   "error": "HTTP Error 404: Not Found"
+   "st": "TN",
+   "what": "TVA own server root",
+   "url": "https://egismaps.tva.gov/arcgis/rest/services",
+   "error": "<urlopen error [Errno -5] No address associated with hostname>"
   }
  ],
- "searches": [
-  {
-   "st": "MS",
-   "q": "(wildlife management area OR state park) AND \"Mississippi\"",
-   "why": "MS has no layer in the key at all (66 parks with no outline)",
-   "found": [
-    {
-     "title": "PAULIE",
-     "org": "",
-     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/PAULIE/FeatureServer",
-     "modified": "2026-10-22",
-     "licence": "The Geographic Information System (GIS) Data to which this notice is attached a"
-    },
-    {
-     "title": "USA Federal Lands",
-     "org": "",
-     "url": "https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_Federal_Lands/FeatureServer",
-     "modified": "2026-06-17",
-     "licence": "&nbsp;This work is licensed under the Esri Master License Agreement.    View"
-    },
-    {
-     "title": "TylerEPL",
-     "org": "",
-     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/TylerEPL/FeatureServer",
-     "modified": "2025-08-29",
-     "licence": ""
-    },
-    {
-     "title": "Caroline_Conservation_Easements",
-     "org": "",
-     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
-     "modified": "2026-01-08",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provid"
-    },
-    {
-     "title": "Land Ownership",
-     "org": "",
-     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
-     "modified": "2023-05-23",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Protected area with sustainable use of natural resources (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "mississippi_headwaters_priority_areas_12_1_23",
-     "org": "",
-     "url": "https://services7.arcgis.com/26j4Vi9jWPFXTsxU/arcgis/rest/services/Lake_wshd_priorities_base_12_1_23/FeatureServer",
-     "modified": "2024-11-27",
-     "licence": ""
-    },
-    {
-     "title": "Combined Opportunity Area Conserved Lands_WFL1",
-     "org": "",
-     "url": "https://services2.arcgis.com/kFrAdZuJNHqPVca8/arcgis/rest/services/Combined_Opportunity_Area_Conserved_Lands_WFL1/FeatureServer",
-     "modified": "2023-03-03",
-     "licence": ""
-    },
-    {
-     "title": "Protected Areas Database of the United States (PAD-US)",
-     "org": "",
-     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
-     "modified": "2021-04-11",
-     "licence": "Publicly available \u2014 PAD-US is published by the Federal government; it is open"
-    },
-    {
-     "title": "BLM_Lands",
-     "org": "",
-     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
-     "modified": "2023-04-17",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "BLM AZ Baaj Nwaavjo Itah Kukveni - Ancestral Footprints of the Grand C",
-     "org": "",
-     "url": "https://services1.arcgis.com/KbxwQRRfWyEYLgp4/arcgis/rest/services/BLM_AZ_BNIKAFGCNM/FeatureServer",
-     "modified": "2023-08-09",
-     "licence": "Access Constraint:  \u00a0       None. These data are considered public domain."
-    },
-    {
-     "title": "National park (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "USA Federal Lands",
-     "org": "Esri",
-     "url": "https://services5.arcgis.com/7weheFjxuNkGGiZi/arcgis/rest/services/USA_Federal_Lands_2025/FeatureServer",
-     "modified": "2026-06-17",
-     "licence": "This work is licensed under the Esri Master License Agreement.    View Summary"
-    },
-    {
-     "title": "Department of Defense Managed Land",
-     "org": "",
-     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer",
-     "modified": "2022-01-14",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "USGS_PAD14_NationalRecreationArea_20160501",
-     "org": "",
-     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/USGS_PAD14_NationalRecreationArea_20160501/FeatureServer",
-     "modified": "2023-03-30",
-     "licence": "It is strongly recommended that these data are directly acquired from the U.S. G"
-    },
-    {
-     "title": "Protected Areas Database",
-     "org": "",
-     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Protected_Areas_Database/FeatureServer",
-     "modified": "2023-09-22",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0"
-    },
-    {
-     "title": "PADUS_TN_Riverline",
-     "org": "",
-     "url": "https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/PADUS_TN_Riverline/FeatureServer",
-     "modified": "2022-09-07",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "Mississippi State Parks and WMAs",
-     "org": "",
-     "url": "https://services3.arcgis.com/OYP7N6mAJJCyH6hd/arcgis/rest/services/Mississippi_State_Parks_and_WMAs/FeatureServer",
-     "modified": "2024-03-27",
-     "licence": ""
-    },
-    {
-     "title": "EasternHemlockProject_NationalForests",
-     "org": "",
-     "url": "https://services5.arcgis.com/jnYf2Emqbv8T64a0/arcgis/rest/services/EasternHemlockProject_NationalForests/FeatureServer",
-     "modified": "2024-11-01",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "PADUS3 SGI Boundary",
-     "org": "",
-     "url": "https://services.arcgis.com/XaWc1MuAt1v6Ook0/arcgis/rest/services/PADUS3_SGI_Boundary/FeatureServer",
-     "modified": "2024-03-03",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Notable Parks along Long Island Greenway Phase 1",
-     "org": "",
-     "url": "https://services1.arcgis.com/oOUgp466Coyjcu6V/arcgis/rest/services/Notable_Parks_along_Long_Island_Greenway_Phase_1/FeatureServer",
-     "modified": "2022-02-28",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "Wilderness areas (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Wilderness_areas_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Louisiana and Lower Mississippi River ESI 2014",
-     "org": "",
-     "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/Louisiana_ESI_2013/FeatureServer",
-     "modified": "2024-03-22",
-     "licence": "DO NOT USE MAPS FOR NAVIGATIONAL PURPOSES. Management boundaries are not to be"
-    },
-    {
-     "title": "Federal Protected Areas for the United States Gulf 2015",
-     "org": "",
-     "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/Federal_Protected_Areas___US/FeatureServer",
-     "modified": "2025-07-28",
-     "licence": "Unless otherwise noted, the data and information are in the public domain. Ple"
-    },
-    {
-     "title": "Other Conservation Area (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Other_Conservation_Area_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    }
-   ]
-  },
-  {
-   "st": "TN",
-   "q": "\"Tennessee Valley Authority\" AND (land OR reservoir OR property OR boundary)",
-   "why": "TVA land layer: chat 8 found none",
-   "found": [
-    {
-     "title": "TVA_Undeveloped_Land_Hosted",
-     "org": "",
-     "url": "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/TVA_Undeveloped_Land_Hosted/FeatureServer",
-     "modified": "2023-12-15",
-     "licence": ""
-    },
-    {
-     "title": "TVA Undeveloped Recreation Lands",
-     "org": "",
-     "url": "https://egismaps.tva.gov/arcgis/rest/services/TVA_Undeveloped_Land/MapServer",
-     "modified": "2021-05-04",
-     "licence": "This map service is intended as a guide only, and its content is subject to cha"
-    },
-    {
-     "title": "Dispersed_Recreation_Areas",
-     "org": "",
-     "url": "https://services.arcgis.com/w8auYAijfGK1Mydj/arcgis/rest/services/Dispersed_Recreation_Areas/FeatureServer",
-     "modified": "2024-09-26",
-     "licence": ""
-    },
-    {
-     "title": "Caroline_Conservation_Easements",
-     "org": "",
-     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
-     "modified": "2026-01-08",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provid"
-    },
-    {
-     "title": "BIA_Western_Region_Data",
-     "org": "",
-     "url": "https://services1.arcgis.com/UxqqIfhng71wUT9x/arcgis/rest/services/BIA_Western_Region_Data/FeatureServer",
-     "modified": "2025-05-30",
-     "licence": ""
-    },
-    {
-     "title": "Land Ownership",
-     "org": "",
-     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
-     "modified": "2023-05-23",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Protected area with sustainable use of natural resources (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Protected Areas Database of the United States (PAD-US)",
-     "org": "",
-     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
-     "modified": "2021-04-11",
-     "licence": "Publicly available \u2014 PAD-US is published by the Federal government; it is open"
-    },
-    {
-     "title": "BLM_Lands",
-     "org": "",
-     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
-     "modified": "2023-04-17",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "NewMexico_StateLands_LayerPackage",
-     "org": "",
-     "url": "https://services8.arcgis.com/WyuHwdftppQLa5KO/arcgis/rest/services/NewMexico_StateLands_LayerPackage/FeatureServer",
-     "modified": "2021-03-23",
-     "licence": ""
-    },
-    {
-     "title": "Secured Areas by GAP Status and Type 2024",
-     "org": "",
-     "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/Secured_Areas_by_GAP_Status_and_Type_2024/FeatureServer",
-     "modified": "2024-07-23",
-     "licence": "The Nature Conservancy reserves all rights in data provided. All data are provi"
-    },
-    {
-     "title": "TN Watershed Collaboration_WFL",
-     "org": "",
-     "url": "https://services5.arcgis.com/bPacKTm9cauMXVfn/arcgis/rest/services/TN_Watershed_Collaboration_WFL1/FeatureServer",
-     "modified": "2025-01-06",
-     "licence": ""
-    },
-    {
-     "title": "National park (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Federal_lands_052017",
-     "org": "",
-     "url": "https://services1.arcgis.com/Ezk9fcjSUkeadg6u/arcgis/rest/services/Federal_lands_052017/FeatureServer",
-     "modified": "2018-01-30",
-     "licence": ""
-    },
-    {
-     "title": "Department of Defense Managed Land",
-     "org": "",
-     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer",
-     "modified": "2022-01-14",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "USGS_PAD14_NationalRecreationArea_20160501",
-     "org": "",
-     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/USGS_PAD14_NationalRecreationArea_20160501/FeatureServer",
-     "modified": "2023-03-30",
-     "licence": "It is strongly recommended that these data are directly acquired from the U.S. G"
-    },
-    {
-     "title": "Protected Areas Database",
-     "org": "",
-     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Protected_Areas_Database/FeatureServer",
-     "modified": "2023-09-22",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0"
-    },
-    {
-     "title": "PADUS_TN_Riverline",
-     "org": "",
-     "url": "https://services.arcgis.com/UnTXoPXBYERF0OH6/arcgis/rest/services/PADUS_TN_Riverline/FeatureServer",
-     "modified": "2022-09-07",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "EasternHemlockProject_NationalForests",
-     "org": "",
-     "url": "https://services5.arcgis.com/jnYf2Emqbv8T64a0/arcgis/rest/services/EasternHemlockProject_NationalForests/FeatureServer",
-     "modified": "2024-11-01",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "PADUS3 SGI Boundary",
-     "org": "",
-     "url": "https://services.arcgis.com/XaWc1MuAt1v6Ook0/arcgis/rest/services/PADUS3_SGI_Boundary/FeatureServer",
-     "modified": "2024-03-03",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Notable Parks along Long Island Greenway Phase 1",
-     "org": "",
-     "url": "https://services1.arcgis.com/oOUgp466Coyjcu6V/arcgis/rest/services/Notable_Parks_along_Long_Island_Greenway_Phase_1/FeatureServer",
-     "modified": "2022-02-28",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "Wilderness areas (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Wilderness_areas_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Other Conservation Area (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Other_Conservation_Area_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Wildlife Protection Overlay",
-     "org": "",
-     "url": "https://services.arcgis.com/WLhB60Nqwp4NnHz3/arcgis/rest/services/Wildlife_Protection_Overlay/FeatureServer",
-     "modified": "2021-12-16",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "Protected landscape or seascape (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_landscape_or_seascape_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    }
-   ]
-  },
-  {
-   "st": "FL",
-   "q": "(conservation lands OR district lands) AND (\"Water Management District\" AND Florida)",
-   "why": "the three water districts' conservation sites (~15 parks)",
-   "found": [
-    {
-     "title": "EVER_BND_CERPprojectlocations",
-     "org": "",
-     "url": "https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/EVER_BND_CERPprojectlocations/FeatureServer",
-     "modified": "2025-08-04",
-     "licence": "The National Park Service (NPS) shall not be held liable for improper or incorre"
-    },
-    {
-     "title": "Natural, Cultural, and Historical Resources",
-     "org": "",
-     "url": "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/Natural__Cultural__and_Historical_Resources_2/FeatureServer",
-     "modified": "2024-10-07",
-     "licence": "The data are provided without a warranty of any kind, whether expressed or im"
-    },
-    {
-     "title": "22_213 Pasco County FL Orange Belt Trail Study_WFL1",
-     "org": "",
-     "url": "https://services2.arcgis.com/8uN5i97bMkq2Mzrt/arcgis/rest/services/22_213_Pasco_County_FL_Orange_Belt_Trail_Study_WFL1/FeatureServer",
-     "modified": "2026-05-14",
-     "licence": ""
-    },
-    {
-     "title": "Northern Turnpike Connector Layers",
-     "org": "",
-     "url": "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/Northern_Turnpike_Connecter/FeatureServer",
-     "modified": "2020-01-09",
-     "licence": ""
-    },
-    {
-     "title": "Indian River Lagoon (IRL) Seagrass",
-     "org": "",
-     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/OpenData_Wetlands_Seagrass/FeatureServer",
-     "modified": "2026-06-05",
-     "licence": "The St. Johns River Water Management District (SJRWMD) develops and maintains"
-    },
-    {
-     "title": "Northern Turnpike - Avoidance and Enhancement Layers",
-     "org": "",
-     "url": "https://services1.arcgis.com/O1JpcwDW8sjYuddV/arcgis/rest/services/Northern_Turnpike_Avoidance_Enhancement_Layers/FeatureServer",
-     "modified": "2022-01-20",
-     "licence": "NO WARRANTIES: This site and its content is made available by the Florida Depart"
-    },
-    {
-     "title": "Mitigation Banks",
-     "org": "Florida Department of Environmental Protection",
-     "url": "https://ca.dep.state.fl.us/arcgis/rest/services/OpenData/MITIGATION_BANKS/MapServer/0",
-     "modified": "2026-08-24",
-     "licence": "This map is a graphical depiction of the Mitigation Banks in the state of F"
-    },
-    {
-     "title": "Florida Forever BOT Projects",
-     "org": "",
-     "url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/Florida_Forever_BOT_Projects/FeatureServer",
-     "modified": "2026-10-13",
-     "licence": ""
-    },
-    {
-     "title": "State Owned Lands",
-     "org": "",
-     "url": "https://services8.arcgis.com/FTrtUCmxaVKdPC5e/arcgis/rest/services/State_Owned_Lands_gdb/FeatureServer",
-     "modified": "2026-06-23",
-     "licence": "Use of this data should be accompanied by proper citation of FNAI. Availabl"
-    },
-    {
-     "title": "Site 1 Santa Fe_WFL1",
-     "org": "",
-     "url": "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/Site_1_Santa_Fe_WFL1/FeatureServer",
-     "modified": "2022-11-29",
-     "licence": ""
-    },
-    {
-     "title": "Environmental Resource Permit (ERP)",
-     "org": "",
-     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Environmental_Resource_Permit_ERP/FeatureServer",
-     "modified": "2026-08-31",
-     "licence": "The St. Johns River Water Management District (SJRWMD) develops and maintains"
-    },
-    {
-     "title": "EnerGov_Additional",
-     "org": "",
-     "url": "https://services1.arcgis.com/TaXHPwWfIMuzJ7Ov/arcgis/rest/services/EnerGov_Additional/FeatureServer",
-     "modified": "2026-10-25",
-     "licence": ""
-    },
-    {
-     "title": "Soils 1948",
-     "org": "",
-     "url": "https://services1.arcgis.com/sDAPyc2rGRn7vf9B/arcgis/rest/services/SOIL_UNIT_AREA_1948/FeatureServer",
-     "modified": "2019-10-29",
-     "licence": "This dataset is made available to the public in response to the Florida Public R"
-    },
-    {
-     "title": "Broward County Water Control District Boundaries",
-     "org": "",
-     "url": "https://services3.arcgis.com/Pn95KPPz613AKHXi/arcgis/rest/services/Water_Control_District_Boundaries/FeatureServer",
-     "modified": "2023-05-30",
-     "licence": ""
-    },
-    {
-     "title": "FF_Full_Rem_Projects_AGO",
-     "org": "",
-     "url": "https://services.arcgis.com/9Jk4Zl9KofTtvg3x/arcgis/rest/services/FF_Full_Rem_Projects_AGO/FeatureServer",
-     "modified": "2026-01-23",
-     "licence": ""
-    },
-    {
-     "title": "*SJRWMD Management Area by Lead Manager",
-     "org": "",
-     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/SJRWMD_Management_Area_by_Lead_Manger/FeatureServer",
-     "modified": "2026-10-13",
-     "licence": "The St. Johns River Water Management District (SJRWMD) develops and maintains"
-    },
-    {
-     "title": "EEL Property Feature Layer",
-     "org": "Miami-Dade County, Florida",
-     "url": "https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/EELProperty_gdb/FeatureServer",
-     "modified": "2026-07-17",
-     "licence": "Miami-Dade County provides this data for use \"as is\". The areas depicted by this"
-    },
-    {
-     "title": "Right of Way and Right of Way Occupancy Permits",
-     "org": "",
-     "url": "https://geoweb.sfwmd.gov/agsext1/rest/services/Regulation_RightOfWayPermit/Rights_of_Way_Permits/FeatureServer/0",
-     "modified": "2024-04-26",
-     "licence": "This dataset is made available to the public in response to the Florida Public R"
-    },
-    {
-     "title": "Cooperative Landcover Polygon",
-     "org": "",
-     "url": "https://gis.myfwc.com/hosting/rest/services/Open_Data/Cooperative_Land_Cover/MapServer/1",
-     "modified": "2025-12-03",
-     "licence": "Data are intended to be used for general informational and planning purpose"
-    },
-    {
-     "title": "SWFWMD Conservation Easements",
-     "org": "",
-     "url": "https://services1.arcgis.com/nRHtyn3uE1kyzoYc/arcgis/rest/services/SWFWMD_Conservation_Easements/FeatureServer",
-     "modified": "2018-11-21",
-     "licence": "DISCLAIMER (for maps)      The boundaries depicted on this map document are ap"
-    },
-    {
-     "title": "Mitigation_Banks",
-     "org": "",
-     "url": "https://services8.arcgis.com/qhgIImgl4UmEEyAS/arcgis/rest/services/Mitigation_Banks/FeatureServer",
-     "modified": "2023-02-21",
-     "licence": "This map is a graphical depiction of the Mitigation Banks in the state of Fl"
-    },
-    {
-     "title": "Cooperative_Land_Cover_MS",
-     "org": "",
-     "url": "https://gisportal.ircgov.com/server3/rest/services/Parks/Cooperative_Land_Cover_MS/MapServer",
-     "modified": "2024-03-23",
-     "licence": ""
-    },
-    {
-     "title": "Oviedo Habitats_WFL1",
-     "org": "",
-     "url": "https://services.arcgis.com/0EfLIvtSLPR9PKI2/arcgis/rest/services/Oviedo_Habitats_WFL1/FeatureServer",
-     "modified": "2026-01-13",
-     "licence": ""
-    },
-    {
-     "title": "Wetlands Vegetation, 24K, 2002",
-     "org": "",
-     "url": "https://services.arcgis.com/s8wtJX9suxFen6TA/arcgis/rest/services/Wetlands_Vegetation_24K_2002/FeatureServer",
-     "modified": "2026-03-11",
-     "licence": "The St. Johns River Water Management District (SJRWMD) develops and maintains"
-    },
-    {
-     "title": "Web Map v2_1_WFL1",
-     "org": "",
-     "url": "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/Web_Map_v2_1_WFL1/FeatureServer",
-     "modified": "2022-06-20",
-     "licence": ""
-    }
-   ]
-  },
-  {
-   "st": "NC",
-   "q": "(state park OR state trail OR game land) AND \"North Carolina\"",
-   "why": "no state park, forest or trail layer in the key",
-   "found": [
-    {
-     "title": "North Carolina Parcels (Polygons)",
-     "org": "NC OneMap / State of North Carolina",
-     "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/1",
-     "modified": "2026-09-17",
-     "licence": "https://www.nconemap.gov/pages/terms"
-    },
-    {
-     "title": "Regrid USA Nationwide Parcel Boundaries",
-     "org": "Regrid",
-     "url": "https://tiles.arcgis.com/tiles/KzeiCaQsMoeCfoCq/arcgis/rest/services/Regrid_Nationwide_Parcel_Boundaries_v1/MapServer",
-     "modified": "2026-07-28",
-     "licence": "All of Regrid's datasets, including the data layer published on ArcGIS Living At"
-    },
-    {
-     "title": "Avery_AGOL",
-     "org": "",
-     "url": "https://services3.arcgis.com/nJbIFHiSnaX0z0hS/arcgis/rest/services/Avery_AGOL/FeatureServer",
-     "modified": "2026-10-21",
-     "licence": ""
-    },
-    {
-     "title": "NCDOT AADT Traffic Segmentation",
-     "org": "",
-     "url": "https://services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_AADT_Traffic_Segmentation/FeatureServer",
-     "modified": "2026-08-24",
-     "licence": "The North Carolina Department of Transportation shall not be held liable for any"
-    },
-    {
-     "title": "Basemap_PublicMapGallery",
-     "org": "",
-     "url": "https://services2.arcgis.com/x5zvhhxfUuRDntRe/arcgis/rest/services/Basemap_PublicMapGallery/FeatureServer",
-     "modified": "2026-10-27",
-     "licence": "Use limitation : &nbsp;For use by Hernando County Central GIS and the Hernand"
-    },
-    {
-     "title": "Voluntary Agricultural Districts",
-     "org": "",
-     "url": "https://services1.arcgis.com/a7CWfuGP5ZnLYE7I/arcgis/rest/services/Voluntary_Agricultural_Districts_Public/FeatureServer",
-     "modified": "2026-02-17",
-     "licence": "Wake County Geographic Information Services shall not be held liable for any e"
-    },
-    {
-     "title": "NC Surface Water Supply Watersheds",
-     "org": "NC Dept. of Environmental Quality",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/dwq_wsws_20141126/FeatureServer",
-     "modified": "2026-02-17",
-     "licence": "The NC Department of Environmental Quality (DEQ) is committed to offering acces"
-    },
-    {
-     "title": "NCDOT Functional Class",
-     "org": "North Carolina Department of Transportation",
-     "url": "https://gis11.services.ncdot.gov/arcgis/rest/services/NCDOT_FunctionalClassQtr/MapServer",
-     "modified": "2026-08-25",
-     "licence": "The North Carolina Department of Transportation shall not be held liable"
-    },
-    {
-     "title": "U.S. EPA Recyclable Materials by Zip Code ",
-     "org": "",
-     "url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/US_Recycling_Infrastructure_2022/FeatureServer",
-     "modified": "2025-10-01",
-     "licence": "This content item is licensed under the US EPA Data Licensing Agreement for"
-    },
-    {
-     "title": "Classification ORW",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/Classification_ORW/FeatureServer",
-     "modified": "2026-02-17",
-     "licence": "The NC Department of Environmental Quality (DEQ) is committed to offering acc"
-    },
-    {
-     "title": "Beaufort_Static",
-     "org": "",
-     "url": "https://services1.arcgis.com/oXsk9nimtmSEU8Ko/arcgis/rest/services/Beaufort_Static/FeatureServer",
-     "modified": "2026-08-26",
-     "licence": ""
-    },
-    {
-     "title": "NCDOT_AADTT_Traffic_Segmentation",
-     "org": "",
-     "url": "https://services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_AADTT_Traffic_Segmentation/FeatureServer",
-     "modified": "2024-01-11",
-     "licence": ""
-    },
-    {
-     "title": "North Carolina Parcels (Centroids)",
-     "org": "NC OneMap / State of North Carolina",
-     "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
-     "modified": "2026-09-17",
-     "licence": "https://www.nconemap.gov/pages/terms"
-    },
-    {
-     "title": "1737_New_and_Corrected",
-     "org": "",
-     "url": "https://tiles.arcgis.com/tiles/N1TogAKBUw72X7Dw/arcgis/rest/services/1737_New_and_Corrected/MapServer",
-     "modified": "2022-07-12",
-     "licence": "Copyright: The original item is presented courtesy of the State Archives of Nor"
-    },
-    {
-     "title": "U.S. EPA Recycling Infrastructure",
-     "org": "",
-     "url": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/High-volume_Recycling_Infrastructure/FeatureServer",
-     "modified": "2025-06-06",
-     "licence": "This content item is licensed under the US EPA Data Licensing Agreement for"
-    },
-    {
-     "title": "Wake County Geologic Map",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/WakeCounty_GeologicMap/FeatureServer",
-     "modified": "2018-07-18",
-     "licence": "Data are available from the North Carolina Geological Survey.  All electronic an"
-    },
-    {
-     "title": "NCWRC Game Land Dove Fields (public view)",
-     "org": "North Carolina Wildlife Resources Commission",
-     "url": "https://services1.arcgis.com/YfqBAUM5nWR3yhGP/arcgis/rest/services/NCWRC_Game_Land_Dove_Fields_(public_view)/FeatureServer",
-     "modified": "2025-10-23",
-     "licence": ""
-    },
-    {
-     "title": "Permitted Solid Waste Septage Facilities (SLAS or SDTF)",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/Solid_Waste_Permitted_Septage_Facilities_(SLAS_or_SDTF)/FeatureServer",
-     "modified": "2025-01-22",
-     "licence": "The North Carolina Department of Environmental Quality shall not be held li"
-    },
-    {
-     "title": "Land Clearing and Inert Debris (LICD) Notifications",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/Land_Clearing_and_Inert_Debris_(LICD)_Notifications/FeatureServer",
-     "modified": "2023-12-14",
-     "licence": "The North Carolina Department of Environmental Quality shall not be held li"
-    },
-    {
-     "title": "NCDOT AADT Stations",
-     "org": "",
-     "url": "https://services.arcgis.com/NuWFvHYDMVmmxMeM/arcgis/rest/services/NCDOT_AADT_Stations/FeatureServer",
-     "modified": "2025-01-24",
-     "licence": "The North Carolina Department of Transportation shall not be held liable for any"
-    },
-    {
-     "title": "Geologic Map of North America",
-     "org": "",
-     "url": "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Geologic_Map_of_North_America/FeatureServer",
-     "modified": "2025-04-07",
-     "licence": "Unless otherwise stated, all data, metadata and related materials are considere"
-    },
-    {
-     "title": "Permitted Septage Sites",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/Permitted_Septage_Hauler/FeatureServer",
-     "modified": "2021-03-25",
-     "licence": "The North Carolina Department of Environmental Quality shall not be held li"
-    },
-    {
-     "title": "Land-Clearing and Inert Debris (LCID) Landfill Notifications",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/LCIDNotifications/FeatureServer",
-     "modified": "2018-07-26",
-     "licence": "The North Carolina Department of Environmental Quality shall not be held li"
-    },
-    {
-     "title": "NC_Active_HWSFacilities View",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/NC_Active_HWSFacilities_View/FeatureServer",
-     "modified": "2026-07-31",
-     "licence": "Notice of   Disclaimer  :   The North Carolina Department of   Environmental Q"
-    },
-    {
-     "title": "DCM_Beach_and_Waterfront_Access",
-     "org": "",
-     "url": "https://services2.arcgis.com/kCu40SDxsCGcuUWO/arcgis/rest/services/DCM_Beach_and_Waterfront_Access/FeatureServer",
-     "modified": "2026-10-22",
-     "licence": "The North Carolina Department of Environmental\nQuality shall not be held liab"
-    }
-   ]
-  },
-  {
-   "st": "AL",
-   "q": "(state park OR wildlife management area OR state forest) AND \"Alabama\"",
-   "why": "10+ TVA-managed parks with no layer",
-   "found": [
-    {
-     "title": "Camp Like A Pro Mono County_WFL1",
-     "org": "",
-     "url": "https://services.arcgis.com/rQj5FcfuWPllzwY8/arcgis/rest/services/Camp_Like_A_Pro_Mono_County_WFL1/FeatureServer",
-     "modified": "2025-06-05",
-     "licence": ""
-    },
-    {
-     "title": "Caroline_Conservation_Easements",
-     "org": "",
-     "url": "https://services1.arcgis.com/ue5fMdTkPeHLCobS/arcgis/rest/services/Caroline_Conservation_Easements/FeatureServer",
-     "modified": "2026-01-08",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P96WBCHS for PAD-US provid"
-    },
-    {
-     "title": "Land Ownership",
-     "org": "",
-     "url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Land_Ownership/FeatureServer",
-     "modified": "2023-05-23",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Protected area with sustainable use of natural resources (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Protected_area_with_sustainable_use_of_natural_resources_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Combined Opportunity Area Conserved Lands_WFL1",
-     "org": "",
-     "url": "https://services2.arcgis.com/kFrAdZuJNHqPVca8/arcgis/rest/services/Combined_Opportunity_Area_Conserved_Lands_WFL1/FeatureServer",
-     "modified": "2023-03-03",
-     "licence": ""
-    },
-    {
-     "title": "Protected Areas Database of the United States (PAD-US)",
-     "org": "",
-     "url": "https://services1.arcgis.com/CD5mKowwN6nIaqd8/arcgis/rest/services/HVRA_Source_Data_PADUS2_0Combined_DOD_Fee_Designation_Easement_OR/FeatureServer",
-     "modified": "2021-04-11",
-     "licence": "Publicly available \u2014 PAD-US is published by the Federal government; it is open"
-    },
-    {
-     "title": "BLM_Lands",
-     "org": "",
-     "url": "https://services5.arcgis.com/XhZs5lLsWDmZpTlD/arcgis/rest/services/BLM_Lands/FeatureServer",
-     "modified": "2023-04-17",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Georgia Sentinel Landscape_WFL1",
-     "org": "",
-     "url": "https://services7.arcgis.com/Za9Nk6CPIPbvR1t7/arcgis/rest/services/Georgia_Sentinel_Landscape_WFL1/FeatureServer",
-     "modified": "2025-01-17",
-     "licence": ""
-    },
-    {
-     "title": "National park (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/National_park_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Department of Defense Managed Land",
-     "org": "",
-     "url": "https://services1.arcgis.com/IAQQkLXctKHrf8Av/arcgis/rest/services/Department_of_Defense_Managed_Land/FeatureServer",
-     "modified": "2022-01-14",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "USGS_PAD14_NationalRecreationArea_20160501",
-     "org": "",
-     "url": "https://services7.arcgis.com/F4iYwOOvXLYhkPXF/arcgis/rest/services/USGS_PAD14_NationalRecreationArea_20160501/FeatureServer",
-     "modified": "2023-03-30",
-     "licence": "It is strongly recommended that these data are directly acquired from the U.S. G"
-    },
-    {
-     "title": "Protected Areas Exclusion (Solar)",
-     "org": "",
-     "url": "https://services3.arcgis.com/bWPjFyq029ChCGur/arcgis/rest/services/ProtectedAreas_Solar/FeatureServer",
-     "modified": "2026-08-13",
-     "licence": "https://www.energy.ca.gov/conditions-of-use"
-    },
-    {
-     "title": "Protected Areas Database",
-     "org": "",
-     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Protected_Areas_Database/FeatureServer",
-     "modified": "2023-09-22",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3.0"
-    },
-    {
-     "title": "Gopher Tortoise Initiative",
-     "org": "",
-     "url": "https://services.arcgis.com/SXbDpmb7xQkk44JV/arcgis/rest/services/Gopher_Tortoise_Initiative/FeatureServer",
-     "modified": "2024-10-29",
-     "licence": ""
-    },
-    {
-     "title": "EasternHemlockProject_NationalForests",
-     "org": "",
-     "url": "https://services5.arcgis.com/jnYf2Emqbv8T64a0/arcgis/rest/services/EasternHemlockProject_NationalForests/FeatureServer",
-     "modified": "2024-11-01",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "PADUS3 SGI Boundary",
-     "org": "",
-     "url": "https://services.arcgis.com/XaWc1MuAt1v6Ook0/arcgis/rest/services/PADUS3_SGI_Boundary/FeatureServer",
-     "modified": "2024-03-03",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Protected Areas Exclusion (Wind)",
-     "org": "",
-     "url": "https://services3.arcgis.com/bWPjFyq029ChCGur/arcgis/rest/services/ProtectedAreas_Wind/FeatureServer",
-     "modified": "2026-08-13",
-     "licence": "https://www.energy.ca.gov/conditions-of-use"
-    },
-    {
-     "title": "Notable Parks along Long Island Greenway Phase 1",
-     "org": "",
-     "url": "https://services1.arcgis.com/oOUgp466Coyjcu6V/arcgis/rest/services/Notable_Parks_along_Long_Island_Greenway_Phase_1/FeatureServer",
-     "modified": "2022-02-28",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P92QM3NT for PAD-US 2.1 pr"
-    },
-    {
-     "title": "Wilderness areas (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Wilderness_areas_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Protected Areas Exclusion (Geothermal)",
-     "org": "",
-     "url": "https://services3.arcgis.com/bWPjFyq029ChCGur/arcgis/rest/services/ProtectedAreas_Geothermal/FeatureServer",
-     "modified": "2026-08-13",
-     "licence": "https://www.energy.ca.gov/conditions-of-use"
-    },
-    {
-     "title": "Northern Bobwhite Initiative",
-     "org": "",
-     "url": "https://services.arcgis.com/SXbDpmb7xQkk44JV/arcgis/rest/services/Northern_Bobwhite_Initiative/FeatureServer",
-     "modified": "2026-01-14",
-     "licence": ""
-    },
-    {
-     "title": "Federal Protected Areas for the United States Gulf 2015",
-     "org": "",
-     "url": "https://services2.arcgis.com/C8EMgrsFcRFL6LrL/arcgis/rest/services/Federal_Protected_Areas___US/FeatureServer",
-     "modified": "2025-07-28",
-     "licence": "Unless otherwise noted, the data and information are in the public domain. Ple"
-    },
-    {
-     "title": "Other Conservation Area (PADUS)",
-     "org": "",
-     "url": "https://services9.arcgis.com/90v9hhDSTUTen7c9/arcgis/rest/services/Other_Conservation_Area_(PADUS)/FeatureServer",
-     "modified": "2025-08-18",
-     "licence": "The Digital Object Identifier https://doi.org/10.5066/P9Q9LQ4B for PAD-US 3."
-    },
-    {
-     "title": "Habitat Suitability  for Five Species of Herpetofauna",
-     "org": "",
-     "url": "https://tiles.arcgis.com/tiles/O1JpcwDW8sjYuddV/arcgis/rest/services/Habitat_Suitability__for_Five_Species_of_Herpetofauna/MapServer",
-     "modified": "2025-11-25",
-     "licence": "NO WARRANTIES: This site and its content is made available\nby the Florida Depar"
-    },
-    {
-     "title": "Appalachian Corridor Boundary",
-     "org": "",
-     "url": "https://services.arcgis.com/QVENGdaPbd4LUkLV/arcgis/rest/services/Appalachian_Corridor_Boundary/FeatureServer",
-     "modified": "2025-05-16",
-     "licence": "Although these data and information have been processed successfully on a compu"
-    }
-   ]
-  }
- ]
+ "searches": []
 }
