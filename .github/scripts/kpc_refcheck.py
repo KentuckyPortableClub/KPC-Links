@@ -101,6 +101,29 @@ for label, key, fn in checks:
         status[label] = 'official list came back empty; skipped'
         sections.append('## %s\nThe official list came back empty, so nothing was compared.\n' % label)
         continue
+    gone0 = set(mine) - set(official)
+    lost = [k for k in ('US-1264', 'US-8144', 'US-4484') if key == 'parks' and k not in official]
+    if lost:
+        notice(label, 'GATE FAIL known parks missing from POTA\'s answer (%s): nothing compared or retired' % ', '.join(lost))
+        status[label] = 'known parks missing from the answer; skipped'
+        sections.append('## %s\nPOTA\'s answer was missing parks we know are active (%s), so nothing was compared this time.\n' % (label, ', '.join(lost)))
+        continue
+    if gone0 and len(gone0) > 0.01 * len(mine):
+        # Oct 28 GATE: more than 1% of a program missing at once needs a second read; only refs missing BOTH times count as gone
+        time.sleep(45)
+        try:
+            again = fn()
+            if len(again) < 0.9 * len(official): raise RuntimeError('second read short (%d)' % len(again))
+            for k, v in again.items():
+                official.setdefault(k, v)
+            notice(label, 'GATE PASS second read: %d missing on the first read, %d on both' % (len(gone0), len(set(mine) - set(official))))
+        except Exception as e:  # noqa: BLE001
+            notice(label, 'GATE FAIL %d missing and the confirming read failed (%s): nothing retired' % (len(gone0), e))
+            status[label] = 'confirming read failed; skipped'
+            sections.append('## %s\n%d references looked missing but the second read failed (%s), so nothing was changed. Will try again next Monday.\n' % (label, len(gone0), e))
+            continue
+    else:
+        notice(label, 'GATE PASS %d official, %d missing (within 1%%)' % (len(official), len(gone0)))
     held = sorted(c for c in set(official) - set(mine) if c in ON_HOLD)
     new = sorted(set(official) - set(mine) - set(ON_HOLD))
     gone = sorted(set(mine) - set(official))
