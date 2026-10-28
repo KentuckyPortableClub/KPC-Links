@@ -32,10 +32,17 @@ def main():
     # saved file - the website fetches CPCAD outlines live by id (KPCB.caKey; the Map Rep Tool Box already reads CPCAD from
     # the browser). Files are kept only for parks joined to a provincial map or a download, which a browser may not reach.
     cp_only = lambda p: all(str(m[0]).isdigit() for m in p.get('m') or [])
+    keyed = set()
     for kf in sorted(glob.glob('data/ca-key/CA-*.json')):
         for ref, p in json.load(open(kf))['parks'].items():
+            keyed.add(ref)
             if p.get('m') and cp_only(p) and ref in have:
                 (OUT / f'{ref}.json').unlink(); have.discard(ref); dropped += 1
+    # Oct 28 (tune pass): a park POTA no longer lists (not in the answer key at all, e.g. CA-2156) loses its old outline file.
+    # Only when the key is whole (5,000+ parks), so a half-built key can never empty the folder.
+    retired = sorted(have - keyed) if len(keyed) > 5000 else []
+    for ref in retired:
+        (OUT / f'{ref}.json').unlink(); have.discard(ref)
     for kf in sorted(glob.glob('data/ca-key/CA-*.json')):
         for ref, p in json.load(open(kf))['parks'].items():
             if not p.get('m') or ref in have or cp_only(p): continue
@@ -55,7 +62,8 @@ def main():
             if approx: props['approx'] = True
             (OUT / f'{ref}.json').write_text(json.dumps({'type': 'Feature', 'properties': props, 'geometry': {'type': 'MultiPolygon', 'coordinates': rings[:80]}}, separators=(',', ':'), ensure_ascii=False), encoding='utf-8')
             wrote += 1
-    notice('Canada fill', f'{wrote} park outline files written from the checked list (none overwritten); {dropped} CPCAD-only files removed (drawn live now)')
+    notice('Canada fill', f'{wrote} park outline files written from the checked list (none overwritten); {dropped} CPCAD-only files removed (drawn live now)'
+           + (f"; {len(retired)} retired park(s) removed: {', '.join(retired[:10])}" if retired else ''))
 
 
 if __name__ == '__main__':

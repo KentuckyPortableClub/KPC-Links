@@ -33,7 +33,9 @@ jobs:
           # Oct 27 (gap hunt): 'saved' = start from the saved copy on the boundary-cache release (a full re-read can time out)
           if [ "$GEO_CACHE_MODE" = use ]; then mkdir -p cache/ca; gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true; fi
           python3 .github/scripts/kpc_ca_key.py > ca-key.log 2>&1 || { echo "::notice title=Canada key::stopped early; the old files are kept"; tail -n 6 ca-key.log | sed 's/^/::notice title=Canada key error::/'; }
-          tail -n 3 ca-key.log
+          # Oct 28 (tune pass): the script's own notices went only into ca-key.log, so a provincial map that FAILED or a
+          # 'saved copy used' fallback never showed. GitHub shows 10 notices a step: the last 9 of them (the gate is last).
+          grep '^::notice' ca-key.log | grep -v 'title=CPCAD layer::' | tail -n 9 | cut -c1-900 || true
       - name: Keep the saved copy current (a full read that finished)
         if: ${{ !inputs.saved }}
         continue-on-error: true
@@ -41,7 +43,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           # Oct 27: the release copy was from Oct 22, so a 'saved' build lost 169 joins (undone). Upload after every good full read.
-          if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || true; fi
+          if [ -f cache/ca/CA-ALL.json.gz ] && ! grep -q 'stopped early\|GATE FAIL' ca-key.log 2>/dev/null; then gh release upload boundary-cache cache/ca/CA-ALL.json.gz -R "$GITHUB_REPOSITORY" --clobber || true; fi
       - name: Save outline files for joined parks that have none (never overwrites)
         continue-on-error: true
         run: python3 .github/scripts/kpc_ca_fill_bounds.py || true
@@ -52,13 +54,9 @@ jobs:
         run: python3 .github/scripts/kpc_ca_key_issue.py
       - name: Save
         if: always()
+        # Oct 28 (tune pass): the one safe save (fresh copy of main + only the changed files, deletions too); red ONLY when the save failed.
+        # Only this bot's own status file (the others belong to other bots; kpc_state_links.json is KPC-Data's)
+        env:
+          STRICT: '1'
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/ca-key 2>/dev/null || true
-          git add data/status 2>/dev/null || true   # Oct 25 storage plan: when each file last changed
-          git add data/canada-bounds 2>/dev/null || true
-          if ! git diff --cached --quiet; then
-            git commit -m 'Canada answer key'
-            for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done
-          fi
+          bash .github/scripts/kpc_push_data.sh . 'Canada answer key' data/ca-key data/status/kpc_ca_key.json data/canada-bounds

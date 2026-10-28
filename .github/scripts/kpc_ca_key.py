@@ -87,6 +87,7 @@ GEN = (r"habitat protection area|habitat protection|special management area|game
 ABBR = {'st': 'saint', 'ste': 'sainte', 'mt': 'mount', 'pt': 'point', 'lk': 'lake', 'cr': 'creek', 'is': 'island', 'isl': 'island'}
 
 
+@__import__('functools').lru_cache(maxsize=None)
 def norm(s):
     s = flat(s).replace('&', ' and ')
     s = re.sub(r'\(.*?\)|\[.*?\]', ' ', s)
@@ -115,12 +116,13 @@ def kinds(s):
 def _sing(s): return ' '.join(w[:-1] if len(w) > 3 and w.endswith('s') else w for w in s.split())
 
 
+@__import__('functools').lru_cache(maxsize=None)   # Oct 28: the same names are compared millions of times (speed only)
 def variants(s):
     # Oct 18 review: plurals ('Munroes' = 'Munroe'), 'and' between two names, a leading Ile/Isle ('Ile d'Anticosti' = 'Anticosti')
     v = {norm(s)} | {norm(x) for x in re.split(r'\s*/\s*', str(s or '')) if len(x.strip()) > 3}   # 'Indigenous name / English name'
     v |= {_sing(x) for x in v} | {re.sub(r'\b(and|et)\b', ' ', x) for x in v}
     v |= {re.sub(r'^(iles?|isles?|islands?) ', '', x) for x in v}
-    return {re.sub(r'\s+', ' ', x).strip() for x in v if x.strip()}
+    return frozenset(re.sub(r'\s+', ' ', x).strip() for x in v if x.strip())
 
 
 def _pre(a, b):
@@ -136,6 +138,7 @@ SIDEW = {'n': 'north northern nord', 's': 'south southern sud', 'e': 'east easte
 SIDE = {w: k for k, ws in SIDEW.items() for w in ws.split()}
 
 
+@__import__('functools').lru_cache(maxsize=None)
 def _side(s): return {SIDE[w] for w in re.split(r'[\s/\-–,]+', re.sub(r'\(.*?\)', ' ', flat(s))) if w in SIDE}   # 'Dzawadi/Upper' splits; bracket text ('secteur Haut Richelieu') is not a side
 
 
@@ -405,6 +408,30 @@ try: OVR = json.load(open(OUT / 'overrides.json')).get('parks', {})
 except Exception: OVR = {}  # noqa: BLE001
 P = json.load(open('data/parkinfo/CA.json'))['parks']
 RID = {str(r['oid']): r for r in recs}
+# Oct 28 (tune + speed-up pass): the join below compared every park with every saved area (5,900 parks x 48,000 areas, ~13 min
+# of the run). A 1-degree grid of the areas' boxes (+0.6 degree, the widest search used) hands each park only the areas
+# near its pin, in the same order, so every result is the same as before. Parks with no pin still look at all of them.
+import math as _m
+GRID, BIG = {}, []
+for _i, _r in enumerate(recs):
+    _b = _r.get('_bb')
+    if not _b: continue
+    _x0, _x1, _y0, _y1 = _m.floor(_b[0] - .6), _m.floor(_b[2] + .6), _m.floor(_b[1] - .6), _m.floor(_b[3] + .6)
+    if (_x1 - _x0 + 1) * (_y1 - _y0 + 1) > 400: BIG.append(_i); continue
+    for _gx in range(_x0, _x1 + 1):
+        for _gy in range(_y0, _y1 + 1): GRID.setdefault((_gx, _gy), []).append(_i)
+
+
+def around(la, lo):
+    """The areas whose box (+0.6 degree) can hold this pin, in their original order; all of them when there is no pin."""
+    if la is None: return recs
+    return [recs[i] for i in sorted(GRID.get((_m.floor(lo), _m.floor(la)), []) + BIG)]
+
+
+# SELF-GRADE GATE (Oct 28, HQ): five well-known parks must keep a joined outline with the pin inside or at the edge.
+# A FAIL means the read or the matcher broke: the old province files are kept (nothing saved) and the run says so.
+GATE_REFS = {'CA-0005': 'Banff', 'CA-0040': 'Jasper', 'CA-0138': 'Algonquin', 'CA-0030': 'Gros Morne', 'CA-0010': 'Bruce Peninsula'}
+PENDING = []
 by = {}
 for ref, x in P.items(): by.setdefault((x[10] if len(x) > 10 else '') or 'XX', {})[ref] = x
 idx = {}
@@ -420,7 +447,8 @@ for pv, parks_in in sorted(by.items()):
             la, lo = abs(lo), -abs(la)
         kp = kinds(name) | kinds(typ)
         m, c = [], []
-        for r in recs:
+        NEAR = around(la, lo)
+        for r in NEAR:
             if la is not None and not near(la, lo, r['_bb'], .6): continue
             if la is None and not in_pv(r['_bb']): continue              # no pin: stay inside this province's area
             if PRIV.search(r['n'] + ' ' + str(r['ow'])): continue      # private stewardship land is never joined (only listed to check)
@@ -433,12 +461,12 @@ for pv, parks_in in sorted(by.items()):
             no = {str(q) for q in ov.get('no', [])}
             m = [q for q in m if str(q[0]) not in no and _nf(q[1]) not in {_nf(x) for x in no}]
             for want in ov.get('join', []):
-                for r in recs:
+                for r in NEAR:
                     if (str(r['oid']) == str(want) or _nf(r['n']) == _nf(want) or _nf(r['nf']) == _nf(want)) and (la is None or near(la, lo, r['_bb'], .02 if ov.get('atpin') else .6)) and not any(str(q[0]) == str(r['oid']) for q in m):
                         m.append([r['oid'], r['n'] or r['nf'], acres(r), 'reviewed-approx' if ov.get('approx') else 'reviewed'])   # Oct 22: approx = closest official land, bigger / other shape
         site = []
         if not m and la is not None:
-            for r in recs:
+            for r in NEAR:
                 if not near(la, lo, r['_bb'], .03): continue
                 nm = r['n'] or r['nf']
                 w1, w2 = words(name), words(nm) | words(r['nf'])
@@ -469,7 +497,7 @@ for pv, parks_in in sorted(by.items()):
                 if shaped:
                     jn = {_nf(q[1]) for q in m}; mids = {str(q[0]) for q in m}
                     def apart(b): return all(b[2] < q['_bb'][0] or b[0] > q['_bb'][2] or b[3] < q['_bb'][1] or b[1] > q['_bb'][3] for q in shaped if q['_bb'])   # a different place, not the same site in two layers
-                    swap = [r for r in recs if (_nf(r['n']) in jn or _nf(r['nf']) in jn) and str(r['oid']) not in mids
+                    swap = [r for r in NEAR if (_nf(r['n']) in jn or _nf(r['nf']) in jn) and str(r['oid']) not in mids
                             and near(la, lo, r['_bb'], 0) and apart(r['_bb']) and rings(r.get('_g')) and inside(la, lo, r['_g'])]
                     if swap: parks[ref]['swap'] = [[r['oid'], r['n'] or r['nf'], acres(r)] for r in swap[:2]]
     cnt = {'parks': len(parks), 'matched': sum(1 for p in parks.values() if p['m']), 'check': sum(1 for p in parks.values() if not p['m'] and p['c']),
@@ -480,17 +508,33 @@ for pv, parks_in in sorted(by.items()):
            'pin_swap': sum(1 for p in parks.values() if p.get('swap')), 'detail': USED_DETAIL}
     out = {'updated': time.strftime('%Y-%m-%d'), 'prov': pv, 'source': 'CPCAD (Environment and Climate Change Canada) + provincial and Parks Canada maps, Open Government Licence',
            'note': 'm = joined (same name + same kind), c = check by hand (NOT joined).', 'counts': cnt, 'parks': parks}
-    save_json(OUT / f'CA-{pv}.json', out)
-    R = OUT / 'review'; R.mkdir(exist_ok=True)
+    PENDING.append((pv, out))
+    R = OUT / 'review'
     L = [f'# Canada {pv}: POTA parks vs official land (CPCAD)', '', f"Built by `.github/scripts/kpc_ca_key.py` (date: data/status/kpc_ca_key.json). **{cnt['matched']} of {cnt['parks']}** joined (same name + same kind). "
          f"**{cnt['check']}** to check, **{cnt['none']}** nothing found in CPCAD (provincial maps come next). Nothing below is joined.", '', '## To check (not joined)', '']
     L += [f"- **{r}** {p['n']} ({p['t']}) → " + '; '.join(f"{q[1]} (~{q[2]:,} ac, {q[3]})" for q in p['c']) for r, p in parks.items() if not p['m'] and p['c']]
     L += ['', '## Sites on bigger land (no outline of their own; the land around the pin)', ''] + [f"- {r} {p['n']} ({p['t']}) → on " + '; '.join(f"{q[1]} (~{q[2]:,} ac)" for q in p['a']) for r, p in parks.items() if p.get('a')]
     L += ['', '## Nothing found in CPCAD', ''] + [f"- {r} {p['n']} ({p['t']})" for r, p in parks.items() if not p['m'] and not p['c'] and not p.get('a')]
-    save_text(R / f'CA-{pv}.md', '\n'.join(L) + '\n')
+    PENDING[-1] += (R / f'CA-{pv}.md', '\n'.join(L) + '\n')
     idx[pv] = cnt
     print(f"{pv}: {cnt['parks']} parks, {cnt['matched']} joined, {cnt['check']} check, {cnt['none']} none", flush=True)
-save_json(OUT / 'index.json', {'provinces': idx})
+_all = {ref: p for _pv, _o, *_ in PENDING for ref, p in _o['parks'].items()}
+_bad = []
+for _ref, _nm in GATE_REFS.items():
+    _p = _all.get(_ref) or {}
+    if not _p.get('m'): _bad.append(f'{_nm} {_ref} lost its outline')
+    elif _p.get('far') == 'well outside': _bad.append(f'{_nm} {_ref} pin well outside its outline')
+GATE = {'result': 'FAIL' if _bad else 'PASS', 'checked': len(GATE_REFS), 'bad': _bad, 'date': time.strftime('%Y-%m-%d')}
+_old_ok = any(OUT.glob('CA-*.json'))
+if _bad and _old_ok:
+    notice('Canada key GATE FAIL', '; '.join(_bad) + ' -- the old province files are kept (nothing saved). grade me: Canada answer key, ' + ', '.join(_bad))
+    raise SystemExit(0)
+for _pv, _o, _rp, _rt in PENDING:
+    save_json(OUT / f'CA-{_pv}.json', _o)
+    _rp.parent.mkdir(exist_ok=True); save_text(_rp, _rt)
+notice('Canada key GATE ' + GATE['result'], f"{len(GATE_REFS) - len(_bad)} of {len(GATE_REFS)} well-known parks keep an outline (" + ', '.join(GATE_REFS.values()) + ')'
+       + ('; ' + '; '.join(_bad) if _bad else '') + f" · grade me: Canada answer key {GATE['result']}, {sum(1 for p in _all.values() if p.get('m'))} of {len(_all)} parks joined")
+save_json(OUT / 'index.json', {'provinces': idx, 'gate': GATE})
 # Oct 24 (Brandon: 'hook the Canada answer key into the planner, Info Finder and the Kit'): the website needs to know which
 # province file holds a park (a CA- number says nothing about the province)
 save_json(OUT / 'refs.json', {ref: pv for pv, pk in by.items() for ref in pk})
