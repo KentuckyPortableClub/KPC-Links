@@ -1,6 +1,10 @@
 name: KPC boundary bot queue
 # Oct 20 (Brandon: 'set the bots up on a schedule to finish and start another run'): every hour, when no boundary bot is
 # running, start the next job in data/bot-queue.json and take it off the list. Never fails (no emails); stops after 'until'.
+# Oct 28 tune: (1) the queue file is SAVED FIRST and the job is started only after the save went through, so a failed push
+# can never start the same job twice; (2) a job whose start fails goes to the back for a day instead of blocking the line;
+# (3) 'busy' also counts the boundary check (it shares the US answer-key lock) and waiting/pending runs, and a failed
+# status read counts as busy (never start blind).
 on:
   schedule:
     - cron: '23 * * * *'
@@ -16,40 +20,38 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v5
-      - name: Next job
+      - name: Pick the next job
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
-        run: |
-          python3 - <<'PY' || true
-          import json, os, subprocess, datetime
-          q = json.load(open('data/bot-queue.json'))
-          now = datetime.datetime.now(datetime.timezone.utc).isoformat()
-          if not q['jobs'] or now > q['until']: print('::notice title=Bot queue::nothing to do'); raise SystemExit
-          busy = []
-          for w in ('kpc-us-key.yml', 'kpc-ca-key.yml', 'kpc-world-key.yml', 'kpc-state-trails.yml', 'kpc-canada-bounds.yml'):
-              for st in ('queued', 'in_progress'):
-                  out = subprocess.run(['gh', 'api', f"repos/{os.environ['REPO']}/actions/workflows/{w}/runs?status={st}&per_page=1", '-q', '.total_count'], capture_output=True, text=True).stdout.strip()
-                  if out not in ('', '0'): busy.append(w)
-          if busy: print('::notice title=Bot queue::waiting, running: ' + ', '.join(sorted(set(busy)))); raise SystemExit
-          due = [i for i, x in enumerate(q['jobs']) if x.get('next', '') <= now]
-          if not due: print('::notice title=Bot queue::nothing due yet'); raise SystemExit
-          j = q['jobs'][due[0]]
-          cmd = ['gh', 'api', '-X', 'POST', f"repos/{os.environ['REPO']}/actions/workflows/{j['wf']}/dispatches", '-f', 'ref=main']
-          for k, v in j['inputs'].items(): cmd += ['-f', f'inputs[{k}]={v}']
-          r = subprocess.run(cmd, capture_output=True, text=True)
-          if r.returncode: print('::notice title=Bot queue::start failed ' + r.stderr[:300]); raise SystemExit
-          q['jobs'].pop(due[0])
-          if j.get('every'):   # Oct 23: a repeating job goes to the back with its next date
-              j['next'] = (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(days=j['every'])).isoformat(timespec='minutes'); q['jobs'].append(j)
-          json.dump(q, open('data/bot-queue.json', 'w'), indent=1)
-          print(f"::notice title=Bot queue::started {j['wf']} {j['inputs']} ({j['why']}); {len(q['jobs'])} left")
-          PY
-      - name: Save
+        run: python3 .github/scripts/kpc_bot_queue.py pick || true
+      - name: Save the queue before starting anything
+        id: save
         continue-on-error: true
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add data/bot-queue.json
-          if ! git diff --cached --quiet; then git commit -m 'Bot queue: started next job'; for i in 1 2 3 4; do git pull --rebase --autostash && git push && break; sleep $((i*7)); done; fi
+          if git diff --cached --quiet; then echo "saved=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git commit -q -m 'Bot queue: started next job'
+          for i in 1 2 3 4; do
+            if git pull -q --rebase --autostash && git push -q; then echo "saved=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((i*7))
+          done
+          echo "::notice title=Bot queue::queue could not be saved; nothing started this hour"
+      - name: Start it
+        if: steps.save.outputs.saved == '1'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 .github/scripts/kpc_bot_queue.py start || true
+          git add data/bot-queue.json
+          if ! git diff --cached --quiet; then
+            git commit -q -m 'Bot queue: start failed, job moved to the back'
+            for i in 1 2 3; do git pull -q --rebase --autostash && git push -q && break; sleep $((i*7)); done
+          fi
+          exit 0
