@@ -1,0 +1,40 @@
+name: KPC candidate finder (one-off, chat 9)
+# Oct 28 (chat 9, HQ Oct 27 11:09 PM): read-only list of official polygons near each unmatched park, from the SAVED copies
+# (boundary-cache release; no map server is asked). Writes only data/review/candidates-us-ca.json. Never fails. DELETE after use.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kpc-candidates
+jobs:
+  find:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v5
+      - name: Saved copies
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p cache/us cache/ca
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'US-*.json.gz' -D cache/us --clobber || true
+          gh release download boundary-cache -R "$GITHUB_REPOSITORY" -p 'CA-ALL.json.gz' -D cache/ca --clobber || true
+          rm -f cache/us/prev-* || true
+      - run: python3 .github/scripts/kpc_candidates.py || true
+        continue-on-error: true
+        env:
+          GEO_CACHE: cache/us
+          CA_CACHE: cache/ca
+          GEO_CACHE_MODE: use
+      - name: Save
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/review/candidates-us-ca.json 2>/dev/null || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -qm 'Candidate finder (one-off, read only)'
+          for i in 1 2 3; do git pull -q --rebase --autostash && git push -q && exit 0; sleep $((i*8)); done
+          true
