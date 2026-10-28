@@ -129,6 +129,10 @@ body.field .page-jump-nav{display:none!important}
 #ov #ovUsMap path{fill:#3a3f39;stroke:#0e100e;stroke-width:1;cursor:pointer;transition:fill .15s}
 #ov #ovUsMap path.ck{fill:#b88d2c}#ov #ovUsMap path:hover,#ov #ovUsMap path:focus{fill:#f0c96b;outline:none}
 #ov #ovUsMap path.on{fill:#f0c96b;stroke:#fff;stroke-width:2}
+#ov #ovUsMap path.st{cursor:default;fill:#2c312b;stroke:#d5a63a;stroke-width:2}#ov #ovUsMap path.st:hover{fill:#2c312b}
+#ov #ovUsMap .dot{cursor:pointer}#ov #ovUsMap .dot circle{fill:#f0c96b;stroke:#0e100e;stroke-width:2}#ov #ovUsMap .dot:hover circle,#ov #ovUsMap .dot:focus circle{fill:#fff;outline:none}
+#ov #ovUsMap .nc{fill:#cfc7b4;font:700 28px Arial}
+#ov .ov-usb{margin-left:auto;background:#d5a63a;color:#111;border:0;border-radius:8px;padding:6px 12px;font:900 12px Arial;letter-spacing:1px;cursor:pointer}
 #ov .ov-full{background:#fff8e6;color:#1c1c1c;border:1px solid #d5a63a;border-left:5px solid #d5a63a;border-radius:10px;padding:12px 16px;font-size:14px;line-height:1.55;margin:0 0 14px}
 #ov .ov-short{display:block;margin:8px 0 0;padding:7px 10px;border-radius:8px;background:rgba(240,150,40,.12);border:1px solid rgba(240,150,40,.45);color:#ffd9a8;font-size:12.5px;line-height:1.45}
 #ov .ov-tabs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
@@ -270,7 +274,7 @@ body.field .page-jump-nav{display:none!important}
  <p class="ov-sub">Places where our maps suggest the boundaries of two or more POTA parks may overlap, checked by our rules and by a person. Pick a result to watch the park outlines draw in, see the spot, find the closest public access, and walk in with your GPS.</p>
 </div></section>
 <section class="ov-us" aria-label="Pick a state on the map"><div class="ov-usin">
- <p class="ov-ush"><b>PICK A STATE</b> <span class="ov-usk"><i class="k1"></i> checked list <i class="k0"></i> not checked yet</span></p>
+ <p class="ov-ush"><b>PICK A STATE</b> <span class="ov-usk"><i class="k1"></i> checked list <i class="k0"></i> not checked yet</span> <span id="ovUsN" class="ov-usk">Tap a state</span> <button type="button" id="ovUsBack" class="ov-usb" hidden>← ALL STATES</button></p>
  <svg id="ovUsMap" viewBox="0 0 960 560" role="group" aria-label="Map of US states: tap a state to see its list"></svg>
 </div></section>
 <div class="ov-wrap">
@@ -336,7 +340,7 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-bounds.js?v=20261028a"></script>
 <script src="kpc-padus-layer.js?v=20261019g"></script>
 <script src="kpc-map-tools.js?v=20261027a"></script>
-<script src="kpc-overlap-finder.js?v=20261028b"></script>
+<script src="kpc-overlap-finder.js?v=20261028c"></script>
 <script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
