@@ -96,3 +96,13 @@ STATUS: ON HOLD (Brandon Oct 24 6 PM: 'Not ready for that'). auto is false; sugg
 3. In Discord: the private relay channel > Edit Channel > Integrations > Webhooks > New Webhook > Copy Webhook URL. In the Apps Script project: Project Settings (gear) > Script properties > Add  RELAY_WEBHOOK  = that link. Paste it only there, never in chat or the repo.
 Test: submit a post from your own email (it should show Sent in the sheet's Status column and appear in the relay channel; the relay publishes within 15 min). Then submit from another Google account: Status says "Waiting for approval" until you pick YES in the Approved column.
 STATUS: **SET UP Oct 26 6:28 PM (Brandon).** Form made, founders list = 7 emails (Brandon, n4bdw, kpcwebhost, kypotacampout, kentuckyportableclub, aarons0420, ko4zwp), RELAY_WEBHOOK saved in Script properties. TEST PASSED Oct 26 6:33 PM (Discord only, founder auto-YES, Status "Sent").
+
+## PERMISSION EMAILS (Brandon to send; HQ drafted Oct 28 1:15 AM)
+One short, friendly email per agency from Brandon (KZ4CP, Kentucky Portable Club, non-commercial; asks to show the layer on our free maps with a small simplified copy, credit the agency on every map, never sell it; asks for any terms / credit line). The list of agencies + what each unlocks = 'ASK THE PUBLISHER' table in mapping.md (chat 9 keeps it current and finds the contacts). HQ re-drafts any email on request.
+- [ ] NC State Historic Preservation Office: historic boundaries shapefile. Contact: Andrew Edmonds, andrew.edmonds@ncdcr.gov, 919-814-6592. READY TO SEND.
+- [ ] Tennessee Historical Commission: National Register boundaries (2,047 polygons). Contact: chat 9 finding.
+- [ ] Missouri State Parks (DNR): Katy Trail + state park trails + 13 wild areas. Contact: chat 9 finding.
+- [ ] Prince Edward Island: provincial park polygons (46). Contact: chat 9 finding.
+- [ ] SC DNR: managed lands (963, on Clemson's account): is it SCDNR's official data + may we use it. Contact: chat 9 finding (or passes without asking if SCDNR's own hub publishes it).
+- [ ] NH GRANIT: state trail lines. Contact: chat 9 finding.
+When a YES comes back: forward it to HQ -> HQ records the credit line in mapping.md -> chat 9 adds the layer.
