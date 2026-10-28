@@ -1,105 +1,105 @@
 {
- "updated": "2026-10-27",
+ "updated": "2026-10-28",
  "states": {
   "AK": {
    "n": 71,
    "source": "arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); arcgis.dnr.alaska.gov \u00b7 ASP Park Facility (84); services1.arcgis.com \u00b7 PARK_FACILITY_PT (85)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "CA": {
    "n": 356,
    "source": "gis.data.cnra.ca.gov \u00b7 Campgrounds (505)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "FL": {
    "n": 149,
    "source": "services3.arcgis.com \u00b7 Recreation_Points_Website_Staging (170)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "HI": {
    "n": 8,
    "source": "geodata.hawaii.gov \u00b7 Campsites - Hawaii State Parks (11)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "IA": {
    "n": 94,
    "source": "programs.iowadnr.gov \u00b7 Recreation Amenities (185); programs.iowadnr.gov \u00b7 Recreation Amenities (176); programs.iowadnr.gov \u00b7 Recreation Amenities (176)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "IN": {
    "n": 17,
    "source": "gisdata.in.gov \u00b7 Camping (17)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "MI": {
    "n": 377,
    "source": "services3.arcgis.com \u00b7 Michigan State Park Campgrounds (260); services3.arcgis.com \u00b7 Campgrounds on Michigan State Forest Land (144); services3.arcgis.com \u00b7 ParksAndTrails_Camping_Join (105)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "MN": {
    "n": 53,
    "source": "enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas (54); enterprise.gisdata.mn.gov \u00b7 State Forest Campgrounds And Day Use Areas Orig (54) (+1 more)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "NE": {
    "n": 6,
    "source": "services5.arcgis.com \u00b7 CAMS_Camping_Facility (90); services5.arcgis.com \u00b7 CAMS_Camping_Facility (2)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "NH": {
    "n": 12,
    "source": "nhgeodata.unh.edu \u00b7 Recreation Inventory: Points (12)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "NY": {
    "n": 140,
    "source": "services6.arcgis.com \u00b7 Campground All Amenities_New (55); services6.arcgis.com \u00b7 DEC_OPRHP_camground_centriods (112); services.arcgis.com \u00b7 Point (59)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "OH": {
    "n": 62,
    "source": "gis.ohiodnr.gov \u00b7 Camping Offices (56); gis.ohiodnr.gov \u00b7 Lodges (9)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "PA": {
    "n": 81,
    "source": "www.gis.dcnr.pa.gov \u00b7 Campground Entrances (65); www.gis.dcnr.pa.gov \u00b7 State Parks (19); www.gis.dcnr.state.pa.us \u00b7 Campground Entrances (65) (+1 more)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "TN": {
    "n": 267,
    "source": "services5.arcgis.com \u00b7 Park Assets (214); services5.arcgis.com \u00b7 TDEC_GIS_TSP.TSP_Cabins (380); services5.arcgis.com \u00b7 TSP_Campground_Point (120) (+3 more)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "TX": {
    "n": 329,
    "source": "services1.arcgis.com \u00b7 Campground Area (439)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "UT": {
    "n": 13,
    "source": "services.arcgis.com \u00b7 DWR_Cabins (13)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "VA": {
    "n": 40,
    "source": "services1.arcgis.com \u00b7 SP_POI_assets_RESERVATION_SYSTEM (70)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "VT": {
    "n": 147,
    "source": "anrmaps.vermont.gov \u00b7 Outdoor Recreation Sites Inventory (155)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "WA": {
    "n": 66,
    "source": "services5.arcgis.com \u00b7 Campsites (77)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   },
   "WY": {
    "n": 90,
    "source": "services1.arcgis.com \u00b7 Campsites_0926 (19); services1.arcgis.com \u00b7 Campgrounds_Statewide (98)",
-   "updated": "2026-10-27"
+   "updated": "2026-10-28"
   }
  },
  "none": [
