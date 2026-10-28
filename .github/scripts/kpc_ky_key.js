@@ -83,11 +83,14 @@ function acres(g) { // spherical-ish shoelace, holes subtracted
   for (const r in OWNED_ONLY) if (parks[r]) parks[r].owned_only = OWNED_ONLY[r];
   // Oct 28 (Brandon + chat 8): Green River SNA = 3 units; the Boiling Springs unit is NOT in OKNP's natural-areas layer (7 areas,
   // runner probe Oct 28) nor the nature-preserves layer, so it has no official outline yet (pin / agency map only). Card notes:
-  const NOTES = { 'US-12752': 'Three units: Davis Bend, Rush Island Bottoms and Boiling Springs (Boiling Springs has no official outline yet: check the agency map). Rush Island Bottoms is open by boat only (paddle access at Thelma Stovall Park, Munfordville).' };
+  const NOTES = { 'US-12752': 'Three units: Davis Bend, Rush Island Bottoms and Boiling Springs (Boiling Springs = 115.76 ac of state nature preserve land, Hart Co. parcel 073-00-00-009.00; no outline yet: check the agency map). Rush Island Bottoms is open by boat only (paddle access at Thelma Stovall Park, Munfordville).' };
   for (const r in NOTES) if (parks[r]) parks[r].note = NOTES[r];
   // Oct 28 (HQ, Brandon's point): the Boiling Springs unit = a labelled PIN (no polygon holds the point in PAD-US, OKNP's two layers,
   // KDFWR's hunting areas or the state-park layer: runner probe Oct 28; the state server has no Hart County parcels)
-  const UNIT_PINS = { 'US-12752': [{ name: 'Boiling Springs unit', la: 37.2953451, lo: -85.8320279, src: 'Brandon Oct 28 2026; no official outline found (PAD-US, OKNP, KDFWR, state parks)' }] };
+  // Oct 28 7:31 AM (Brandon, from the Hart County PVA by hand): the unit = parcel 073-00-00-009.00 (account 6541), 115.758 ac,
+  // Johnson Springs Rd, owner 'Commonwealth of Kentucky FBO Kentucky Nature Preserves'. Outline by request to the PVA only.
+  const UNIT_PINS = { 'US-12752': [{ name: 'Boiling Springs unit: state nature preserve land, 115.76 ac, Hart Co. parcel 073-00-00-009.00', la: 37.2953451, lo: -85.8320279,
+    src: 'Hart County PVA record (parcel 073-00-00-009.00, owner Commonwealth of Kentucky FBO Kentucky Nature Preserves), read by Brandon Oct 28 2026; no open outline' }] };
   for (const r in UNIT_PINS) if (parks[r]) parks[r].unit_pins = UNIT_PINS[r];
   const missing = P.filter(x => !parks[x.c].tracts.length).map(x => x.c);
   nonum.sort((a, b) => a[1].localeCompare(b[1])); kffonly.sort((a, b) => a[1].localeCompare(b[1]));
