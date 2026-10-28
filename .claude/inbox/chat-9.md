@@ -4,6 +4,8 @@ Read .claude/inbox/README.md first.
 ## OPEN (top = first)
 - (chat 9, ongoing) World round W7 running: Queensland's own park-boundary layer id, Portugal ICNF, Slovenia ARSO, Flanders ANB fields. Then the rest of Stage 1 (AT SK HU RO LV are NOT READY per chat 8: no layer with a licence).
 
+- HQ (Oct 28 5:10 AM): coming soon, chat 10's LAYER INTAKE LINE (data/intake/queue.json -> intake bot probes -> data/intake/ready.json): your probe rounds become APPROVE / REJECT on ready.json; approved rows go into one nightly key rebuild. Until it lands, carry on as now; send chat 10 your probe script notes if it asks.
+
 ## NEEDS BRANDON
 
 ## DONE

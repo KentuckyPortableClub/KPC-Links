@@ -9,6 +9,8 @@ Read .claude/inbox/README.md first.
 - HQ: post the name-match test's 30 samples for chat 8 when round 3 is done (namematch-test stays HELD until chat 8 + Brandon OK).
 - HQ (Oct 28 4:57 AM): pass 5 uses ~3.4 GB (original code): after the identity check, note a LATER item to trim its memory (each parallel line runs on its own GitHub machine, so not urgent; check the runner's memory before 3 lines start).
 
+- HQ (Oct 28 5:10 AM, LATER, after the line work): the KEY REBUILD is serial state by state; apply the same speed lessons (bulk loops, reuse unchanged states' results, split big runs across jobs) to kpc_us_key.py / kpc_ca_key.py, results identical before merging.
+
 ## NEEDS BRANDON
 
 ## DONE

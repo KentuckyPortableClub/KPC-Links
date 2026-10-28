@@ -3,6 +3,8 @@ Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
 
+- HQ (Oct 28 5:10 AM, Brandon '1-5'): the WEEKLY RELEASE TRAIN: everything that passed its checker that week (2-fers per region, official map links, hours/fees, campground info, new outlines) ships to MEMBERS in ONE batch on a set day (HQ proposes SUNDAY evening); HQ lists the batch, Brandon gives ONE GO, you publish it together + a short 'what's new' note in the Club Room. Plan where each item shows (park card, Lounges, Overlap Finder, campgrounds tab); build the 'what's new' box now (members-only, empty until the first GO).
+
 ## NEEDS BRANDON
 
 ## DONE

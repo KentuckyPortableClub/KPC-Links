@@ -10,3 +10,7 @@ WHEN BRANDON SAYS "inbox":
 WRITING TO ANOTHER CHAT: add an item to THEIR inbox under OPEN, starting `FROM CHAT N (date):` (e.g. chat 8's grading fixes go to chat 10's inbox). BOTS never write here (a KPC-Links push = a site rebuild): they write their 'grade me' lines to KPC-Data `data/status/inbox-chat-8.md`, which chat 8 reads too.
 SAVES: one push per chat per 'inbox' session, never per item.
 HQ reads every inbox each session, tidies, and keeps the order right.
+
+CHAT 11 (Oct 28) = BOT-OUTPUT CHECKER (Sonnet): grades what the bots make; chat 8 keeps 2-fers, boundaries, rule sheets.
+RULINGS.md = Brandon's one daily list of open questions with HQ's leans.
+RELEASE TRAIN = one members-only batch a week (chat 3), one GO from Brandon.
