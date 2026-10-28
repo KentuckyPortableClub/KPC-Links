@@ -1,0 +1,598 @@
+{
+ "about": "Chat 9 round 15 (Oct 28): Idaho Parks' datasets by its ArcGIS Online organisation (the hub's own search API refuses requests), Alaska DNR's StateParkBoundary service (found in round 12's index), round 11 follow-ups (ND Parks' NDPRD_Boundaries, Ohio gis2 Ohio_Conservation_Lands + ODNR_Lands_External). Results: round15-tested.json.",
+ "date": "2026-10-28",
+ "layers": [
+  {
+   "st": "AK",
+   "kind": "park",
+   "url": "https://dnr.alaska.gov/arcgis/rest/services/Recreational/StateParkBoundary/FeatureServer",
+   "answers": false,
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "st": "ND",
+   "kind": "park",
+   "ag": "ND Parks and Recreation",
+   "url": "https://services3.arcgis.com/G9FKQ0xH9VagrUos/arcgis/rest/services/NDPRD_Boundaries/FeatureServer",
+   "note": "agency's own account? vs NDGISHUB_State_Parks (21)",
+   "answers": true,
+   "service": "",
+   "licence": "",
+   "years_in_text": [],
+   "description": "NDPRD boundary layer.",
+   "item_licence": "",
+   "item_modified": "2026-06-01",
+   "item_owner": "cdirk_ndparks",
+   "item_org": "",
+   "item_title": "NDPRD_Boundaries",
+   "item_credits": "",
+   "item_about": "NDPRD boundary layer.",
+   "layers": [
+    {
+     "id": 0,
+     "name": "NDPRD_Properties",
+     "geom": "Polygon",
+     "nameField": "Name",
+     "ownerField": "Ownership",
+     "typeField": "Access_Typ",
+     "fields": [
+      "FID",
+      "FID_1",
+      "Name",
+      "Comments",
+      "Acres",
+      "Dest",
+      "Abbrv",
+      "NAME_1",
+      "MgmtTyp",
+      "Ownership",
+      "OwnerName",
+      "Own_Add",
+      "Own_City",
+      "Own_ZIP",
+      "Mgmt_Ent",
+      "Mgmt_Add",
+      "LandAq_Yr",
+      "Access_Typ",
+      "Prtn_Orgs",
+      "Leg_Dist",
+      "Mgmt_Cont",
+      "Bndry_Type",
+      "Shape__Area",
+      "Shape__Length",
+      "GlobalID"
+     ],
+     "last_edit": "2026-06-01",
+     "layer_copyright": "North Dakota Parks and Recreation Department",
+     "records": 39,
+     "sample": [
+      "Fort Ransom State Park",
+      "Pembina Gorge State Park",
+      "Beaver Lake State Park",
+      "Gunlogson State Nature Preserve",
+      "Icelandic State Park",
+      "Lewis and Clark State Park",
+      "Crow Flies High State Recreation Area",
+      "Shelvers Grove State Recreation Area"
+     ],
+     "owner_values": [
+      " ",
+      "Easements",
+      "Fee Title"
+     ],
+     "type_values": [
+      " "
+     ]
+    }
+   ]
+  },
+  {
+   "st": "OH",
+   "kind": "land",
+   "ag": "Ohio DNR",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/Ohio_Conservation_Lands/MapServer",
+   "note": "r11 walk",
+   "answers": true,
+   "service": "Layers",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "layers": [
+    {
+     "id": 0,
+     "name": "City, County, NGO Lands",
+     "geom": "Polygon",
+     "nameField": "FIRST_NAME",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "ACRES",
+      "MACODE",
+      "FIRST_NAME",
+      "FIRST_CONT",
+      "OIT_CREATOR.City_County_NGO_Lands.AREA",
+      "Shape",
+      "OBJECTID",
+      "comments"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Ohio Department of Natural Resources",
+     "records": 623,
+     "sample": [
+      "Charles Mill Lake",
+      "Lash's Bog",
+      "Edge of Appalachia Preserve",
+      "KENDRICK WOODS SNP",
+      "Fort Meigs State Memorial",
+      "Glen Helen Nature Sanctuary",
+      "Kraus Wilderness Preserve",
+      "Nero Nature Preserve"
+     ]
+    },
+    {
+     "id": 1,
+     "name": "ODNR Lands",
+     "geom": "Polygon",
+     "nameField": "ALT_NAME",
+     "ownerField": "OWN_TYPE",
+     "typeField": "PROP_TYPE",
+     "fields": [
+      "ALT_NAME",
+      "PROP_TYPE",
+      "DIV_CODE",
+      "OWN_TYPE",
+      "CNTY_FIPS",
+      "SUM_CALC_ACRES",
+      "ORIG_BEAT",
+      "Name_Label",
+      "LANDS_NAME",
+      "OBJECTID",
+      "MANAGING_AGENCY",
+      "COMMENTS",
+      "SHOW",
+      "GlobalID",
+      "Shape"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Department of Natural Resources, Office of Information Technology.",
+     "records": 865,
+     "sample": [
+      "A W MARION",
+      "ACADIA CLIFFS",
+      "ANDERSON COMPASS PLANT PRAIRIE",
+      "AQUILLA",
+      "AUBURN MARSH",
+      "AUGUSTA-ANNE OLSEN",
+      "BAKER WOODS",
+      "BARKCAMP"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 2,
+     "name": "Federal Lands",
+     "geom": "Polygon",
+     "nameField": "NAME",
+     "ownerField": "FED_OWNER",
+     "typeField": "land_type",
+     "fields": [
+      "FEDLANP020",
+      "FEATURE",
+      "land_type",
+      "FED_OWNER",
+      "NAME",
+      "parcel_id",
+      "source",
+      "OBJECTID",
+      "URL",
+      "Shape"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Department of Natural Resources, Office of Information Technology, National Parks Service, National Fish and Wildlife, and U.S. Department of Agriculture Forest Service.",
+     "records": 3840,
+     "sample": [
+      "William Howard Taft",
+      "Perry's Victory & International Peace",
+      "James A Garfield",
+      "Charles Young Buffalo Soldiers",
+      "Dayton Aviation Heritage",
+      "First Ladies",
+      "Hopewell Culture",
+      "Cuyahoga Valley"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 3,
+     "name": "City, County, NGO Lands",
+     "geom": "Polygon",
+     "nameField": "FIRST_NAME",
+     "ownerField": "",
+     "typeField": "",
+     "fields": [
+      "ACRES",
+      "MACODE",
+      "FIRST_NAME",
+      "FIRST_CONT",
+      "OIT_CREATOR.City_County_NGO_Lands.AREA",
+      "Shape",
+      "OBJECTID",
+      "comments"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Ohio Department of Natural Resources",
+     "records": 623,
+     "sample": [
+      "Charles Mill Lake",
+      "Lash's Bog",
+      "Edge of Appalachia Preserve",
+      "KENDRICK WOODS SNP",
+      "Fort Meigs State Memorial",
+      "Glen Helen Nature Sanctuary",
+      "Kraus Wilderness Preserve",
+      "Nero Nature Preserve"
+     ]
+    },
+    {
+     "id": 4,
+     "name": "ODNR Lands",
+     "geom": "Polygon",
+     "nameField": "ALT_NAME",
+     "ownerField": "OWN_TYPE",
+     "typeField": "PROP_TYPE",
+     "fields": [
+      "ALT_NAME",
+      "PROP_TYPE",
+      "DIV_CODE",
+      "OWN_TYPE",
+      "CNTY_FIPS",
+      "SUM_CALC_ACRES",
+      "ORIG_BEAT",
+      "Name_Label",
+      "LANDS_NAME",
+      "OBJECTID",
+      "MANAGING_AGENCY",
+      "COMMENTS",
+      "SHOW",
+      "GlobalID",
+      "Shape"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Department of Natural Resources, Office of Information Technology.",
+     "records": 865,
+     "sample": [
+      "A W MARION",
+      "ACADIA CLIFFS",
+      "ANDERSON COMPASS PLANT PRAIRIE",
+      "AQUILLA",
+      "AUBURN MARSH",
+      "AUGUSTA-ANNE OLSEN",
+      "BAKER WOODS",
+      "BARKCAMP"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    },
+    {
+     "id": 5,
+     "name": "Federal Lands",
+     "geom": "Polygon",
+     "nameField": "NAME",
+     "ownerField": "FED_OWNER",
+     "typeField": "land_type",
+     "fields": [
+      "FEDLANP020",
+      "FEATURE",
+      "land_type",
+      "FED_OWNER",
+      "NAME",
+      "parcel_id",
+      "source",
+      "OBJECTID",
+      "URL",
+      "Shape"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Department of Natural Resources, Office of Information Technology, National Parks Service, National Fish and Wildlife, and U.S. Department of Agriculture Forest Service.",
+     "records": 3840,
+     "sample": [
+      "William Howard Taft",
+      "Perry's Victory & International Peace",
+      "James A Garfield",
+      "Charles Young Buffalo Soldiers",
+      "Dayton Aviation Heritage",
+      "First Ladies",
+      "Hopewell Culture",
+      "Cuyahoga Valley"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail",
+     "type_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    }
+   ]
+  },
+  {
+   "st": "OH",
+   "kind": "land",
+   "ag": "Ohio DNR",
+   "url": "https://gis2.ohiodnr.gov/arcgis/rest/services/OIT_Services/ODNR_ODNR_Lands_External/MapServer",
+   "note": "r11 walk",
+   "answers": true,
+   "service": "Layers",
+   "licence": "",
+   "years_in_text": [],
+   "description": "",
+   "item_err": "{'code': 400, 'messageCode': 'CONT_0001', 'message': 'Item does not exist or is ",
+   "layers": [
+    {
+     "id": 0,
+     "name": "ODNR_LANDS",
+     "geom": "Polygon",
+     "nameField": "Name_Label",
+     "ownerField": "OWN_TYPE",
+     "typeField": "PROP_TYPE",
+     "fields": [
+      "OBJECTID",
+      "Shape",
+      "PROP_TYPE",
+      "OWN_TYPE",
+      "CNTY_FIPS",
+      "SUM_CALC_ACRES",
+      "Name_Label",
+      "LANDS_NAME",
+      "Shape_Length",
+      "Shape_Area",
+      "DIV_CODE",
+      "ALT_NAME",
+      "DIV_CODE_Desc",
+      "MANAGING_AGENCY",
+      "County",
+      "GlobalID"
+     ],
+     "last_edit": "1970-01-01",
+     "layer_copyright": "Department of Natural Resources, Office of Information Technology.",
+     "records": 865,
+     "sample": [
+      "A W Marion SP",
+      "Barkcamp SP",
+      "Buck Creek SP",
+      "Buckeye Lake SP",
+      "Buckeye Lake SP",
+      "Caesar Creek SP",
+      "Cowan Lake SP",
+      "Deer Creek SP"
+     ],
+     "owner_values": [
+      "Flowage Easement",
+      "Lease",
+      "Own"
+     ],
+     "type_values": [
+      "Conservation Area",
+      "Park"
+     ]
+    }
+   ]
+  }
+ ],
+ "searches": [
+  {
+   "st": "ID",
+   "q": "orgid:CNPdEkvnGl65jCX8 AND (park OR parks OR boundary OR boundaries)",
+   "why": "IDPR's own items (state park boundaries)",
+   "found": [
+    {
+     "title": "Idaho Recreation Trails",
+     "org": "State of Idaho",
+     "owner": "aernst_idpr",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Recreation_Trails/FeatureServer",
+     "modified": "2026-10-18",
+     "licence": "Not for commercial use and may not be used in 3rd party apps without source attribution. Contact IDPR for Schema informa"
+    },
+    {
+     "title": "Idaho State Boundary Mask",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_State_Boundary_Mask/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho County Herd Districts",
+     "org": "",
+     "owner": "tstrom_ISDA",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_County_Herd_Districts/FeatureServer",
+     "modified": "2022-08-04",
+     "licence": ""
+    },
+    {
+     "title": "County Taxing Districts",
+     "org": "",
+     "owner": "State_of_Idaho",
+     "url": "https://services.arcgis.com/91hXl6NfvLGEi8x5/arcgis/rest/services/Idaho_City_Taxing_Districts/FeatureServer/7",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho_Public_Health_Districts",
+     "org": "",
+     "owner": "lclaussen_dhw",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Dissolve_Join_Features_to_Idaho_Counties_Counties_PHD/FeatureServer",
+     "modified": "2025-09-05",
+     "licence": ""
+    },
+    {
+     "title": "Veteran Cemeteries Supporting Base Layers AGOL",
+     "org": "",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Veteran_Cemeteries_Supporting_Base_Layers_AGOL/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho Public Health Districts",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Public_Health_Districts/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "L03_BoundaryRoads",
+     "org": "",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/L03_BoundaryRoads/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho State Boundary",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_State_Boundary/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho City Yurts view",
+     "org": "",
+     "owner": "hbrookins_idpr",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_City_Yurts_view/FeatureServer",
+     "modified": "2024-08-14",
+     "licence": "The Idaho Department of Parks and Recreation assumes no liability for any loss that may result from the use of this data"
+    },
+    {
+     "title": "Rivers and Lakes (Authoritative, USGS)",
+     "org": "",
+     "owner": "State_of_Idaho",
+     "url": "https://hydro.nationalmap.gov/arcgis/rest/services/nhd/MapServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho Park N' Ski (View Only)",
+     "org": "",
+     "owner": "hbrookins_idpr",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Park_N__Ski_replace_view/FeatureServer",
+     "modified": "2025-12-16",
+     "licence": "The Idaho Department of Parks and Recreation assumes no liability for any loss that may result from the use of this data"
+    },
+    {
+     "title": "NRHP in Idaho",
+     "org": "",
+     "owner": "SVihlene_ISHS",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/jG8BM/FeatureServer",
+     "modified": "2021-10-07",
+     "licence": "There are no guarantees as to the data’s accuracy or completeness, and changes will occur frequently. The absence of inf"
+    },
+    {
+     "title": "NRHP Districts in Idaho",
+     "org": "",
+     "owner": "SVihlene_ISHS",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/NRHP_Districts/FeatureServer",
+     "modified": "2021-06-29",
+     "licence": "There are no guarantees as to the data’s accuracy or completeness, and changes will occur frequently. The absence of inf"
+    },
+    {
+     "title": "Legislative Districts in Idaho",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Legislative_Districts_in_Idaho_view/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": "Use Constraints: The Idaho Legislative Service Office (LSO) maintains this data as a public service. LSO strives to ensu"
+    },
+    {
+     "title": "Idaho_Counties",
+     "org": "",
+     "owner": "dcoleman_dhw",
+     "url": "https://gis2.idaho.gov/arcgis/rest/services/IdahoAGOL/Idaho_Counties/MapServer",
+     "modified": "2023-04-19",
+     "licence": ""
+    },
+    {
+     "title": "City Limits (Authoritative, ISTC)",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://services.arcgis.com/91hXl6NfvLGEi8x5/ArcGIS/rest/services/Idaho_City_Taxing_Districts/FeatureServer/6",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Septic_Systems_2010_2020_WFL1",
+     "org": "",
+     "owner": "lconniff_deq",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Septic_Systems_2010_2020_WFL1/FeatureServer",
+     "modified": "2023-04-06",
+     "licence": ""
+    },
+    {
+     "title": "NRHP MPD in Idaho",
+     "org": "",
+     "owner": "SVihlene_ISHS",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/MPD_Boundaries/FeatureServer",
+     "modified": "2021-10-07",
+     "licence": ""
+    },
+    {
+     "title": "BrucellosisWebMap_2",
+     "org": "",
+     "owner": "tstrom_ISDA",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/BrucellosisWebMap_2/FeatureServer",
+     "modified": "2022-01-24",
+     "licence": ""
+    },
+    {
+     "title": "National  Hydrography Dataset - Plus HR",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://hydro.nationalmap.gov/arcgis/rest/services/NHDPlus_HR/MapServer",
+     "modified": "2026-04-09",
+     "licence": "The NHD is a digital geospatial dataset. For it to be distributed, maintained, and updated from a national data reposito"
+    },
+    {
+     "title": "Idaho_Mask",
+     "org": "",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Mask/FeatureServer",
+     "modified": "2026-04-09",
+     "licence": ""
+    },
+    {
+     "title": "Idaho Centennial Trail_View (Official Route)",
+     "org": "",
+     "owner": "State_of_Idaho",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Centennial_Trail_(Official_Route)_view/FeatureServer",
+     "modified": "2026-09-10",
+     "licence": "The Idaho Department of Parks and Recreation assumes no liability for any loss that may result from the use of this data"
+    },
+    {
+     "title": "Watershed Boundaries",
+     "org": "State of Idaho",
+     "owner": "State_of_Idaho",
+     "url": "https://hydrowfs.nationalmap.gov/arcgis/rest/services/wbd/MapServer",
+     "modified": "2026-04-09",
+     "licence": "All data are open and non-proprietary. However, users should be aware that temporal changes may have occurred since this"
+    },
+    {
+     "title": "Idaho Centennial Trail Resupply Points view",
+     "org": "",
+     "owner": "hbrookins_idpr",
+     "url": "https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Idaho_Centennial_Trail_Resupply_Points_view/FeatureServer",
+     "modified": "2025-09-10",
+     "licence": "The Idaho Department of Parks and Recreation assumes no liability for any loss that may result from the use of this data"
+    }
+   ]
+  },
+  {
+   "st": "ID",
+   "q": "\"Idaho Department of Parks and Recreation\" AND (\"state park\" OR \"state parks\") AND (boundary OR boundaries OR polygons)",
+   "why": "IDPR boundary items anywhere",
+   "found": []
+  }
+ ],
+ "orgs": [],
+ "hubs": [],
+ "pages": []
+}
