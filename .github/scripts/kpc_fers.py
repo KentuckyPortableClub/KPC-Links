@@ -1150,6 +1150,55 @@ class Frame:
             if gm is not None: m |= gm
         return m
 
+    def _ring_boxes(self, gs):
+        """Per record, its rings as 1/16-pixel points with each ring's pixel box on this frame (clipped to the frame)."""
+        out = []
+        for g in gs:
+            rs = []
+            for ring in g:
+                if not len(ring): continue
+                r = np.round(self.px(ring) * 16).astype(np.int32)
+                if r[:, 0].max() < -48 or r[:, 0].min() > self.W * 16 + 48 or r[:, 1].max() < -48 or r[:, 1].min() > self.H * 16 + 48: rs.append((r, None)); continue
+                x0 = max(0, (int(r[:, 0].min()) >> 4) - 2); x1 = min(self.W, (int(r[:, 0].max()) >> 4) + 3)
+                y0 = max(0, (int(r[:, 1].min()) >> 4) - 2); y1 = min(self.H, (int(r[:, 1].max()) >> 4) + 3)
+                rs.append((r, (x0, y0, x1, y1) if x0 < x1 and y0 < y1 else None))
+            out.append(rs)
+        return out
+
+    def area_in(self, gs, w):
+        """Frame.area(gs) cut to window w, without drawing the whole frame: each ring filled in its own box (fillPoly gives the
+        same pixels for a polygon moved by whole pixels; the picture's real edges stay where they are), XOR per record as in area()."""
+        m = np.zeros((w.H, w.W), np.uint8)
+        for rs in self._ring_boxes(gs):
+            gm = None; any_ring = False
+            for r, bx in rs:
+                any_ring = True
+                if bx is None: continue
+                x0, y0, x1, y1 = bx
+                a0, b0, a1, b1 = max(x0, w.c0), max(y0, w.r0), min(x1, w.c0 + w.W), min(y1, w.r0 + w.H)
+                if a0 >= a1 or b0 >= b1: continue   # this ring paints nothing in the window (XOR with zeros there)
+                t = np.zeros((y1 - y0, x1 - x0), np.uint8)
+                cv2.fillPoly(t, [r], 1, lineType=cv2.LINE_8, shift=4, offset=(-x0 * 16, -y0 * 16))
+                if gm is None: gm = np.zeros_like(m)
+                gm[b0 - w.r0:b1 - w.r0, a0 - w.c0:a1 - w.c0] ^= t[b0 - y0:b1 - y0, a0 - x0:a1 - x0]
+            if gm is not None: m |= gm
+        return m
+
+    def any_in(self, gs):
+        """Would area(gs) paint any pixel? (the same rings, the same test: True as soon as one record paints one)"""
+        for rs in self._ring_boxes(gs):
+            boxes = [(r, bx) for r, bx in rs if bx is not None]
+            if not boxes: continue
+            x0 = min(b[0] for _, b in boxes); y0 = min(b[1] for _, b in boxes); x1 = max(b[2] for _, b in boxes); y1 = max(b[3] for _, b in boxes)
+            if (x1 - x0) * (y1 - y0) > 50_000_000: return True   # a frame-sized record: it paints (only the ownership-map call depends on this)
+            gm = np.zeros((y1 - y0, x1 - x0), np.uint8)
+            for r, (a0, b0, a1, b1) in boxes:
+                t = np.zeros((b1 - b0, a1 - a0), np.uint8)
+                cv2.fillPoly(t, [r], 1, lineType=cv2.LINE_8, shift=4, offset=(-a0 * 16, -b0 * 16))
+                gm[b0 - y0:b1 - y0, a0 - x0:a1 - x0] ^= t
+            if gm.any(): return True
+        return False
+
     def window(self, P, pad):
         """A sub-raster of THIS frame's pixel grid around pixel points P (+ pad pixels), clipped to the frame."""
         c0 = max(0, int(math.floor(P[:, 0].min())) - pad); r0 = max(0, int(math.floor(P[:, 1].min())) - pad)
@@ -1966,13 +2015,26 @@ def line_zone(x, G, PIN):
     # folded into it (Sheltowee x Daniel Boone: a 961-million-pixel frame, 4 GB). So the same global pixel grid is used, but only a
     # window around the stretch's line (+ a margin far wider than the pen and the 5-m distance test) is drawn: the same pixels.
     w = F.window(F.px(x['shape']), int(math.ceil((ZONE + STATION_IN) / CELL)) + 24)
-    m = w.area(G[oref])
-    if oref in OWNED and m.any():
+    # land: each ring is filled in its own box on the WHOLE frame's grid and edges (fillPoly gives other pixels when the picture
+    # edge cuts a polygon somewhere else: tested), then only the window is kept
+    m = F.area_in(G[oref], w)
+    if oref in OWNED and F.any_in(G[oref]):
         o = owned_land(OWNED[oref], F.bounds())   # the global frame's bounds: the same ownership-map answer as before
         if o is None: OWNED_FAIL.add(oref); m = np.zeros_like(m)
-        else: m &= w.area(o)
+        else: m &= F.area_in(o, w)
     own = (dt(m) * CELL >= STATION_IN).astype(np.uint8)
     z = (w.lines([x['shape']], ZONE + STATION_IN) & own).astype(np.uint8)
+    if os.environ.get('ZONE_CHECK') and F.W * F.H < 200e6:   # proof hook: the old whole-frame zone, pixel by pixel
+        own0 = (dt(pmask(F, oref, G)) * CELL >= STATION_IN).astype(np.uint8)
+        z0 = (F.lines([x['shape']], ZONE + STATION_IN) & own0).astype(np.uint8)
+        zz = np.zeros_like(z0); zz[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = z
+        d = np.argwhere(zz != z0)
+        print(f"ZONECHECK {x.get('id')} frame {F.W}x{F.H} win {w.c0},{w.r0},{w.W}x{w.H} old {int(z0.sum())} new {int(z.sum())} diff {len(d)} at {d[:5].tolist()}", flush=True)
+        if len(d):
+            l0 = F.lines([x['shape']], ZONE + STATION_IN); m0 = pmask(F, oref, G)
+            lw = np.zeros_like(l0); lw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = w.lines([x['shape']], ZONE + STATION_IN)
+            mw = np.zeros_like(m0); mw[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W] = m
+            print(f"ZONECHECK   lines differ {int((lw != l0).sum())}, land differ (inside window) {int((mw != m0)[w.r0:w.r0 + w.H, w.c0:w.c0 + w.W].sum())}", flush=True)
     if not z.any(): return {'zone': [], 'zone_acres': 0, 'zone_wide_m': 0}
     cs, _ = cv2.findContours(z, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE, offset=(w.c0, w.r0))
     rings = []
@@ -2221,7 +2283,7 @@ def mark(what):
         import resource
         mb = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
     except Exception: mb = -1  # noqa: BLE001
-    now = time.time(); LOG.append(f'stage: {what}: {now - MARK_T[-1]:.0f} s (peak {mb} MB)'); print(f'stage: {what}: {now - MARK_T[-1]:.0f} s, peak {mb} MB', flush=True); MARK_T.append(now)
+    now = time.time(); print(f'stage: {what}: {now - MARK_T[-1]:.0f} s, peak {mb} MB', flush=True); MARK_T.append(now)
 
 
 def tidy_rows(spots, PIN, today):
