@@ -45,7 +45,9 @@ def item(iid):
             try: org = (get(f"https://www.arcgis.com/sharing/rest/portals/{j['orgId']}").get('name') or '')[:60]
             except Exception: pass
         return {'item_licence': re.sub(r'<[^>]+>', ' ', j.get('licenseInfo') or '').strip()[:300], 'item_modified': day(j.get('modified')),
-                'item_owner': j.get('owner'), 'item_org': org, 'item_title': (j.get('title') or '')[:80]}
+                'item_owner': j.get('owner'), 'item_org': org, 'item_title': (j.get('title') or '')[:80],
+                'item_credits': re.sub(r'<[^>]+>', ' ', j.get('accessInformation') or '').strip()[:300],
+                'item_about': ' '.join(re.sub(r'<[^>]+>', ' ', (j.get('description') or '') + ' ' + (j.get('snippet') or '')).split())[:600]}
     except Exception as e: return {'item_err': str(e)[:80]}
 
 
@@ -302,6 +304,14 @@ def nrhp(cfg):
             fs = q(where=f"RESNAME LIKE '%{x['word']}%' AND State = '{x['state']}'")
             r['found'] = [{**{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '')},
                            'acres': _acres((f.get('geometry') or {}).get('rings') or [], la or 37), 'pin_inside': bool(la) and _inside(la, lo, (f.get('geometry') or {}).get('rings') or [])} for f in fs][:8]
+        except Exception as e: r['error'] = str(e)[:140]
+        out['tests'].append(r); time.sleep(.5)
+    for ref in X.get('pin_tests') or []:
+        la, lo, nm = pins.get(ref, (None, None, ''))
+        r = {'ref': ref, 'park': nm}
+        try:
+            fs = q(la=la, lo=lo) if la is not None else []
+            r['found'] = [{**{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '')}, 'acres': _acres((f.get('geometry') or {}).get('rings') or [], la)} for f in fs][:6]
         except Exception as e: r['error'] = str(e)[:140]
         out['tests'].append(r); time.sleep(.5)
     rx = re.compile(X['types'], re.I)

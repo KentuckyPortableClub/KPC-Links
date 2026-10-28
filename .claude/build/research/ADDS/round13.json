@@ -1,0 +1,35 @@
+{
+ "about": "Chat 9 round 13 (HQ Oct 28 1:01 AM): SC managed lands item credits (Clemson hosting SCDNR's data?), SCDNR hub dataset list, the 5 National Register test sites re-tested BY PIN. Results: round13-tested.json.",
+ "hubs": [
+  {
+   "st": "SC",
+   "q": "SCDNR_Managed_Lands_Public_Viewer",
+   "note": "item credits / description: whose data?"
+  },
+  {
+   "st": "SC",
+   "items": "https://public-lands-scdnr.hub.arcgis.com/api/v3/datasets?page[size]=100",
+   "note": "SCDNR hub datasets (v3)"
+  }
+ ],
+ "pages": [
+  {
+   "st": "SC",
+   "url": "https://public-lands-scdnr.hub.arcgis.com/api/v3/datasets?page[size]=100",
+   "look": "",
+   "json": false,
+   "note": "SCDNR hub raw list (links)"
+  }
+ ],
+ "nrhp": {
+  "tests": [],
+  "types": "^$",
+  "pin_tests": [
+   "US-3785",
+   "US-1256",
+   "US-1269",
+   "US-3715",
+   "US-0708"
+  ]
+ }
+}
