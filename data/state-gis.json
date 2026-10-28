@@ -1751,6 +1751,18 @@
     "note": "outline layer explorer + lead tester, chat 2, 2026-10-26; would give 2 outline-less parks",
     "code": "BC-HCA"
    }
+  ],
+  "NT": [
+   {
+    "kind": "park",
+    "ag": "GNWT Environment and Natural Resources (credit: Conservation Planning and Implementation Unit, ENR; Open Government Licence - NWT)",
+    "host": "agency",
+    "nm": "Name",
+    "lic": "credit only, no use limits; GNWT publishes under the Open Government Licence - NWT",
+    "read": "2026-10-27",
+    "note": "Federal/Territorial Conservation Areas: 4 polygons incl. Gwich'in + Hidden Lake Territorial Parks (BigHoles R2-6)",
+    "url": "https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195"
+   }
   ]
  },
  "portals": {

@@ -379,6 +379,10 @@ XS = [  # prefix, query url, name field, acres field, kinds
     # Oct 26 (round 11): NPS official Wild and Scenic River CORRIDOR boundaries (33 rivers, legal corridors; the USFS centre lines
     # stay the trails bot's for the other rivers) + the Ala Kahakai NHT official corridor (one polygon, Hawaii)
     ('wsrc', 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/WildScenicRiverBoundaries/FeatureServer/0/query', 'WSR_GNIS_NAME', 'GIS_ACRES', {'wsr'}, 'NPS Wild and Scenic River corridor (official boundary)'),
+    # Oct 27 chat 9 (HQ, desk BigHoles Round 3): Forest Service wild-and-scenic river CORRIDORS (area parks, rule 5) and the Forest
+    # Service's other national designated areas (monuments, NRAs, scenic areas); 'fullname' carries the type word. US federal data.
+    ('fwsr', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_WildScenicRiver_01/MapServer/0/query', 'designatedname', 'gis_acres', {'wsr'}, 'Forest Service Wild and Scenic River corridor (official boundary)'),
+    ('fsod', 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_OtherNationalDesignatedArea_01/MapServer/0/query', 'fullname', 'gis_acres', set(), 'Forest Service national designated areas (monuments, NRAs, scenic areas)'),
     ('akht', 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/Ala_Kahakai_National_Historic_Trail_Official_Corridor/FeatureServer/0/query', 'TrailName', '', set(), 'NPS Ala Kahakai National Historic Trail corridor (official)', 'FED', {'HI'}),
     ('nca', 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_NLCS_NM_NCA_poly/MapServer/0/query', 'NCA_NAME', '', set(), 'BLM national monuments / conservation areas'),
     # Oct 18: layer id + name field looked up at run time ('?' = find it); found by probe 2
@@ -448,7 +452,7 @@ def resolve(pre, url, nf, af):
     # 'svc:<service>|<layer name regex>' → (query url, name field, acres field, object id field)
     rq = lambda u: json.loads(urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=120).read().decode('utf-8', 'replace'))
     if not url.startswith('svc:'):
-        if not pre.startswith('sg'): return url, nf, af, ('objectid' if pre == 'wld' else 'OBJECTID')
+        if not pre.startswith('sg'): return url, nf, af, ('objectid' if pre in ('wld', 'fwsr', 'fsod') else 'OBJECTID')
         if pre in RESOLVED: return RESOLVED[pre]
         L = rq(url.rsplit('/query', 1)[0] + '?f=json'); flds = L.get('fields') or []     # a state GIS layer: ask it for its own id + acres fields
         if 'Polygon' not in str(L.get('geometryType', '')): raise RuntimeError('not a polygon layer')
