@@ -224,6 +224,42 @@ def namequery(cfg):
     return res
 
 
+def queries(cfg):
+    out = []
+    for x in cfg.get('queries') or []:
+        r = {k: x[k] for k in ('st', 'url', 'where', 'note') if k in x}
+        try:
+            q = get(x['url'] + '/query', {'where': x['where'], 'outFields': x.get('out', '*'), 'returnGeometry': 'false', 'resultRecordCount': 20}, t=60)
+            r['rows'] = [{k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '') and not re.search(r'shape|globalid', k, re.I)} for f in q.get('features') or []][:20]
+        except Exception as e: r['error'] = str(e)[:140]
+        out.append(r)
+    return out
+
+
+def browse(cfg):
+    """Rows 31-33: open other people's map sites in a real browser, observe only (title + where the page gets its data). Copies nothing."""
+    out = []
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception as e: return [{'error': f'no playwright: {e}'}]
+    with sync_playwright() as pw:
+        b = pw.chromium.launch()
+        for x in cfg.get('browse') or []:
+            r = {k: x[k] for k in ('st', 'url', 'note') if k in x}; reqs = []
+            try:
+                pg = b.new_page(user_agent=UA['User-Agent'])
+                pg.on('request', lambda q: reqs.append(q.url) if q.resource_type in ('xhr', 'fetch') else None)
+                pg.goto(x['url'], timeout=60000); pg.wait_for_timeout(int(x.get('wait', 8000)))
+                r['title'] = pg.title()[:120]
+                r['data_requests'] = sorted({re.sub(r'\?.*$', '', u)[:160] for u in reqs})[:60]
+                r['text_hits'] = [m for m in re.findall(r'[^.\n]{0,80}(?:outline|boundar|polygon|licen|copyright|source)[^.\n]{0,80}', pg.inner_text('body')[:20000], re.I)][:10]
+                pg.close()
+            except Exception as e: r['error'] = str(e)[:160]
+            out.append(r)
+        b.close()
+    return out
+
+
 def main():
     cfg = json.load(open(CAND))
     held = {}
@@ -255,6 +291,10 @@ def main():
             except Exception as e: r = dict(x); r['error'] = str(e)[:140]
             res[key].append(r)
             notice(f"{key} {x.get('st')} {x.get('note', '')[:40]}: " + (r.get('error') or 'ok'))
+    if cfg.get('queries'): res['queries'] = queries(cfg)
+    if cfg.get('browse'):
+        try: res['browse'] = browse(cfg)
+        except Exception as e: res['browse'] = [{'error': str(e)[:140]}]
     if cfg.get('namequery'):
         try: res['namequery'] = namequery(cfg)
         except Exception as e: res['namequery'] = [{'error': str(e)[:140]}]
