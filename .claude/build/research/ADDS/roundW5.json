@@ -1,0 +1,17 @@
+{
+ "about": "Chat 9 world round W5 (Oct 28): LIVE-ONLY layers (HQ 2:07 AM: Czechia 'viewing only', Denmark nothing stated, Croatia licence empty) = layer ids + name fields so the world key can read them live; Sweden's CC0 WFS (layer names), Flanders ANB layers, Luxembourg public-forest service address, Queensland's OWN host (the copy found is a consultant's). Results: roundW5-tested.json.",
+ "layers": [
+  {"st": "CZ", "kind": "park", "ag": "AOPK ČR (viewing only)", "url": "https://gis.nature.cz/arcgis/rest/services/ObecnaOchrana/PrirodniPark/MapServer", "note": "live-only"},
+  {"st": "DK", "kind": "park", "ag": "Miljøministeriet / Danish Nature Agency", "url": "https://kort.vd.dk/server/rest/services/Grunddata/Fredede_omr%C3%A5der/MapServer", "note": "live-only (nothing stated)"}
+ ],
+ "orgs": [
+  {"st": "AU", "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services", "match": "protected|park|estate|forest|tenure|environment", "note": "QLD's own server"},
+  {"st": "CZ", "url": "https://gis.nature.cz/arcgis/rest/services", "match": "park|chran|maloplosn|velkoplosn|rezervac|ochrana", "note": "AOPK services (live-only)"}
+ ],
+ "pages": [
+  {"st": "SE", "raw": true, "url": "https://geodata.naturvardsverket.se/naturvardsregistret/wfs?service=WFS&version=2.0.0&request=GetCapabilities", "look": "Name>[^<]+<|AccessConstraints>[^<]+|Fees>[^<]+", "note": "Naturvårdsregistret layers (CC0)"},
+  {"st": "BE", "raw": true, "url": "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/ows?service=WFS&request=GetCapabilities", "look": "<Name>[^<]*(anb|natuur|bos|domein|reservaat)[^<]*</Name>", "note": "Flanders ANB layer names"},
+  {"st": "LU", "raw": true, "url": "https://data.public.lu/api/1/datasets/5eb5424ad2bfb24029297e92/", "look": "\"url\": ?\"[^\"]+\"", "note": "LU resource addresses"},
+  {"st": "HR", "raw": true, "url": "https://data.gov.hr/ckan/api/3/action/package_search?q=za%C5%A1ti%C4%87ena%20podru%C4%8Dja%20INSPIRE&rows=5", "look": "\"url\": ?\"[^\"]+\"|\"license_[a-z]+\": ?\"[^\"]*\"", "note": "Croatia protected areas WFS address (live-only)"}
+ ]
+}
