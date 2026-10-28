@@ -21,3 +21,10 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Wildlife areas (TWRA):** list page https://www.tn.gov/twra/gis-maps/wildlife-management-area--wma--maps.html (an interactive map plus a few download links; file addresses not shown, no dates, A). Region pages: tn.gov/twra/wildlife-management-areas/{west-tennessee-r1, middle-tennessee-r2, cumberland-plateau-r3, east-tennessee-r4}.html (B). The list page does not link a rules page; it says users must know the land owner's rules (A).
+- **State parks (tnstateparks.com):** pattern `tnstateparks.com/sites/default/files/<YYYY-MM>/<park>_brochure.pdf` (the folder is the upload month, a rough map date; bot got 403): BOT LOOK-UP.
+- **State layer for outlines:** https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/PUBLIC_LANDS/MapServer (B).
+- Corps (lrn.usace.army.mil .../Maps.aspx): both links 400: BOT LOOK-UP. Land Between the Lakes: landbetweenthelakes.us/help-center/lbl-maps/ ok (A, bot).
+- Handovers: none seen.

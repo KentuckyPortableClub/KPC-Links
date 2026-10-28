@@ -23,3 +23,9 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28 (grade A = page opened)
+- **State parks (Alabama State Parks, alapark.com):** list page https://www.alapark.com/maps-directory (A, named on the Map-of-Parks page); statewide guide PDF https://www.alapark.com/sites/default/files/2020-10/StateParksmapfinal2020AUG.pdf (A, dated 2020 by the folder and file name); park pages `https://www.alapark.com/parks/<park-name>` lowercase, hyphens, apostrophes dropped (A); interactive trail map https://conservationgis.alabama.gov/alapark (A). Map date: only in the folder (`/sites/default/files/YYYY-MM/`) and file name; no "updated" line on the page. Rules page: none linked from the Map-of-Parks page (NOT SURE where; park pages likely carry it, C).
+- **WMAs / Forever Wild (outdooralabama.com, alabamaforeverwild.com):** pattern `outdooralabama.com/sites/default/files/Wildlife/wildlife-management-areas/<season>/<file>.pdf` (season folder changes every year, so last year's link goes 404: US-10428 did). Needs the yearly list page re-read = BOT.
+- **Who manages:** state parks = Alabama State Parks; WMAs = Dept. of Conservation (outdooralabama); Conservation Areas = Forever Wild. Handovers: none seen.
+- BOT LOOK-UP: outdooralabama.com WMA list page (find this season's file names; the 2025-26 link for Walls of Jericho returned 404).

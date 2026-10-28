@@ -24,3 +24,10 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **State parks (gastateparks.org):** pattern `gastateparks.org/sites/default/files/parks/pdf/trailmaps/<Name>_TrailMap.pdf` and `.../trailmaps/parkmaps/<name>_<year>_sitemap.jpg` (bot ok 47 of 50, A). Year is sometimes in the file name (black_rock_mountain_sp_2022_sitemap.jpg).
+- **WMAs (Georgia DNR Wildlife Resources, georgiawildlife.com):** property pages are slugs, e.g. `georgiawildlife.com/clarks-hill-west`, `georgiawildlife.com/gaither-wma`; list pages like https://georgiawildlife.com/Piedmont-WMAs (one per region); "Map of All Properties" = `georgiawildlife.com/locations/wrd`. Map files also on gadnrle.org/sites/default/files/wrd/pdf/maps/<Name>%20WMA%20Map%20Satellite.pdf (B). The region list page itself shows no map links or dates (A).
+- **Rules:** georgiawildlife.com/regulations; Hunting & Fishing Guide flipbook (publuu.com); hunter resources; Alerts and Closures https://georgiawildlife.com/closures (A) - a useful closure feed.
+- **Corps lakes** (sam.usace.army.mil): 3 of 3 links failed 403 (old 2012 PDFs): BOT LOOK-UP, find the current Mobile District lake pages.
+- Handovers: none seen.

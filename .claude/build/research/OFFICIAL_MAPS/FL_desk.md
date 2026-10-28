@@ -26,3 +26,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **State parks (floridastateparks.org, run by Florida DEP):** per-park page `https://www.floridastateparks.org/parks-and-trails/<park-slug>/trail-maps` or `/park-maps` or `/maps-publications` (three names in use, A). Maps are GeoPDFs behind a "Download Park Map" button; the real file address is not in the page text (A), so a browser bot must read the button. No map date on the page, only the page footer year and notices (A). Rules page: "Rules & Regulations" and "Fees" links under "Plan your visit" on every park page (A). The bot got 403 from these pages: BOT LOOK-UP, real browser.
+- **Other FL agencies from the bot data:** FWC (myfwc.com/recreation/lead/<area>/planning-your-visit/), FDACS state forests (fdacs.gov/Forest-Wildfire/Our-Forests/State-Forests/<name>; Myakka page states "Forest map dated June 2024"), water-management districts (aws.sjrwmd.com/SJRWMD/lands/...pdf). Handovers: none seen.
+- BOT LOOK-UP: floridastateparks.org "Download Park Map" file address for 3 parks (Big Shoals, Maclay Gardens, Hontoon Island).
