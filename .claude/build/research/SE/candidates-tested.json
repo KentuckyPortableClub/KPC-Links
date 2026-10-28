@@ -1,0 +1,359 @@
+{
+ "about": "Probe of chat 8's Southeast candidates, run on a GitHub runner (chat sessions cannot reach these servers).",
+ "date": "2026-10-28",
+ "layers": [
+  {
+   "st": "MS",
+   "kind": "wild",
+   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/WildL_Areas/MapServer",
+   "answers": false,
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "st": "MS",
+   "kind": "park",
+   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/State_Parks/MapServer",
+   "answers": false,
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "st": "MS",
+   "kind": "forest-own",
+   "url": "https://www.maris.state.ms.us/server/rest/services/Vector/NatFor_OwnerBnd/MapServer",
+   "answers": false,
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "st": "VA",
+   "kind": "wild",
+   "ag": "Virginia DWR",
+   "url": "https://services.dwr.virginia.gov/arcgis/rest/services/HUB_Layers/DWR_WMA_Boundaries/FeatureServer/0",
+   "note": "Owner field = rule 14",
+   "answers": true,
+   "service": "DWR_WMA_Boundaries",
+   "licence": "",
+   "date_in_text": [],
+   "description": "This dataset contains boundary information for Virginia Department of Game and Inland Fisheries' (VDGIF) Wildlife Management Areas (WMA). The coverage includes all WMAs within Virginia. These data are formatted as an ArcView shapefile compiled by the VDGIF Fish and Wildlife Information Services (FWI",
+   "layers": [
+    {
+     "id": null,
+     "name": "DWR_WMA_Boundaries",
+     "geom": "Polygon",
+     "nameField": "WMA_NAME",
+     "ownerField": "Owner",
+     "fields": [
+      "OBJECTID",
+      "sde_DBO_DGIF_WMAs_AREA",
+      "PERIMETER",
+      "WMA_NAME",
+      "HECTARES",
+      "ACRES",
+      "area_m2",
+      "Origin",
+      "DateAdded",
+      "Number",
+      "X",
+      "Y",
+      "Date_Aquir",
+      "URL",
+      "Region",
+      "State_Plane",
+      "State_Plane_Acres",
+      "Tract_Name",
+      "Complex_Name",
+      "Hub_Location",
+      "Tract_Number",
+      "Property_Type",
+      "On_List",
+      "Owner",
+      "Property_Class"
+     ],
+     "records": 242,
+     "sample": [
+      "Amelia",
+      "Horsepen Lake",
+      "Hardware River",
+      "Hardware River",
+      "Chickahominy"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Unable to complete operation.', 'd"
+    }
+   ]
+  },
+  {
+   "st": "TN",
+   "kind": "wild",
+   "ag": "TWRA",
+   "url": "https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/TWRA/MapServer/3",
+   "note": "OWNERSHIP + OWNCODE = rule 14",
+   "answers": true,
+   "service": "Lands",
+   "licence": "TWRA",
+   "date_in_text": [],
+   "description": "Agency: TWRA. Frequency of updates: Irregular. Description: WMA's from the TN Wildlife Resources Agency (TWRA). Projection: TN State Plane NAD83 Feet.",
+   "layers": [
+    {
+     "id": null,
+     "name": "Lands",
+     "geom": "Polygon",
+     "nameField": "NAME",
+     "ownerField": "OWNERSHIP",
+     "fields": [
+      "OBJECTID",
+      "AREA_",
+      "PERIMETER",
+      "NAME",
+      "MANAGEMENT",
+      "CONAME",
+      "ACRES",
+      "REGION",
+      "ACQUIRED",
+      "DESC_",
+      "EST",
+      "HUNT",
+      "Other",
+      "Proc_Num",
+      "Officer",
+      "OWNERSHIP",
+      "OWNCODE",
+      "Hectares",
+      "UPDATE_",
+      "Name2",
+      "Shape",
+      "Shape.STArea()",
+      "Shape.STLength()"
+     ],
+     "records": 228,
+     "sample": [
+      "Land Between The Lakes WMA",
+      "FMHA",
+      "Pickett SF & WMA",
+      "FMHA-R.O.W.",
+      "T.N.C. Island Gift"
+     ],
+     "owner_valuesErr": "{'code': 400, 'message': 'Failed to execute query.', 'detail"
+    }
+   ]
+  },
+  {
+   "st": "FL",
+   "kind": "wild",
+   "ag": "Florida FWC",
+   "url": "https://gis.myfwc.com/mapping/rest/services/Open_Data/Wildlife_Management_Areas_Florida/MapServer/1",
+   "note": "'general reference only' (licence check)",
+   "answers": true,
+   "service": "Wildlife Management Areas Florida",
+   "licence": "Florida Fish and Wildlife Conservation Commission",
+   "date_in_text": [],
+   "description": "This GIS data set represents the Wildlife Management Area system administered by the Florida Fish and Wildlife Conservation Commission (FWC). These data are intended as a general reference map only. More information on activities permitted in individual areas can be found from the links on FWC's Web",
+   "layers": [
+    {
+     "id": null,
+     "name": "Wildlife Management Areas Florida",
+     "geom": "Polygon",
+     "nameField": "NAME",
+     "ownerField": "",
+     "fields": [
+      "OBJECTID",
+      "NAME",
+      "NAME_SHORT",
+      "TYPE",
+      "TYPE_SHORT",
+      "UNIT",
+      "FWC_REGION",
+      "MGT_TYPE",
+      "AREA_SQMI",
+      "WEBSITE",
+      "YR_LAST_UP",
+      "MTH_LST_UP",
+      "Shape",
+      "Shape.STArea()",
+      "Shape.STLength()",
+      "last_edited_date"
+     ],
+     "records": 284,
+     "sample": [
+      "Twin Rivers Wildlife Management Area",
+      "Twin Rivers Wildlife Management Area",
+      "Twin Rivers Wildlife Management Area",
+      "Twin Rivers Wildlife Management Area",
+      "Twin Rivers Wildlife Management Area"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "WV",
+   "kind": "trail",
+   "ag": "WV DOT / State Rail Authority",
+   "url": "https://gis.transportation.wv.gov/arcgis/rest/services/Hosted/WVSRA_RailTrails/FeatureServer/0",
+   "note": "rail trails = line parks",
+   "answers": true,
+   "service": "WVSRA_RailTrails",
+   "licence": "WVGISTC, WVDOT",
+   "date_in_text": [
+    "2021"
+   ],
+   "description": "A statewide inventory (www.mapWV.gov/trails) of over 6,800 miles of recreational trails accessible to the public in West Virginia. The WV GIS Technical Center at West Virginia University was funded by the WV Division of Highways to inventory, collect, attribute, and integrate all publicly accessible",
+   "layers": [
+    {
+     "id": null,
+     "name": "WVSRA_RailTrails",
+     "geom": "Polyline",
+     "nameField": "trailname",
+     "ownerField": "dataagency",
+     "fields": [
+      "objectid",
+      "fid_lines",
+      "dataagency",
+      "sourcedate",
+      "updated",
+      "sourcedata",
+      "trailname",
+      "trailnumbe",
+      "trailsyste",
+      "traillengt",
+      "trailsurfa",
+      "manageorg",
+      "cid1",
+      "cid2",
+      "municip",
+      "county",
+      "state",
+      "mgmtarea",
+      "hike",
+      "backpack",
+      "bike",
+      "horse",
+      "xcski",
+      "interp",
+      "fitness"
+     ],
+     "records": 21,
+     "sample": [
+      "Harrison South Rail-Trail",
+      "Caperton Rail-Trail",
+      "Panhandle Rail-Trail",
+      "Harrison North Rail-Trail",
+      "West Fork River Rail-Trail (spur)"
+     ],
+     "owner_values": [
+      "DOT",
+      "NPS",
+      "USFS MNF",
+      "WVDOT",
+      "WVGISTC",
+      "WVSAMB"
+     ]
+    }
+   ]
+  },
+  {
+   "st": "TN",
+   "kind": "preserve",
+   "url": "https://tdeconline.tn.gov/arcgis/rest/services/TN_Natural_Areas/MapServer",
+   "answers": false,
+   "error": "HTTP Error 403: Forbidden"
+  }
+ ],
+ "servers": [
+  {
+   "st": "FL",
+   "what": "SFWMD conservation lands",
+   "url": "https://gis.sfwmd.gov/arcgis/rest/services",
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  },
+  {
+   "st": "FL",
+   "what": "SWFWMD lands",
+   "url": "https://www25.swfwmd.state.fl.us/arcgis/rest/services",
+   "error": "HTTP Error 404: Not Found"
+  },
+  {
+   "st": "FL",
+   "what": "NWFWMD lands",
+   "url": "https://gis.nwfwater.com/arcgis/rest/services",
+   "error": "<urlopen error [SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 unrecognized name (_ssl.c:1000)>"
+  },
+  {
+   "st": "TN",
+   "what": "TVA public land / reservoir boundaries",
+   "url": "https://gisdata.tva.gov/arcgis/rest/services",
+   "error": "<urlopen error [Errno -5] No address associated with hostname>"
+  },
+  {
+   "st": "TN",
+   "what": "TVA (second host)",
+   "url": "https://gis.tva.gov/arcgis/rest/services",
+   "error": "<urlopen error [Errno -5] No address associated with hostname>"
+  },
+  {
+   "st": "NC",
+   "what": "NC state parks / trails (none found by the desk)",
+   "url": "https://services.nconemap.gov/secure/rest/services",
+   "folders": [
+    "AddressNC",
+    "Broadband",
+    "Elevation",
+    "Imagery",
+    "ImageryProject",
+    "NG911",
+    "test1",
+    "Utilities"
+   ],
+   "services": [
+    "Artificial_Reef_Sonar_Scans",
+    "Floodplain_Resilience",
+    "Florence_Flood_Extent",
+    "Matthew_Flood_Extent",
+    "NC1Map_Boundaries",
+    "NC1Map_Boundaries",
+    "NC1Map_Census",
+    "NC1Map_Census",
+    "NC1Map_Education",
+    "NC1Map_Education",
+    "NC1Map_Emergency_Law_Enforcement",
+    "NC1Map_Emergency_Law_Enforcement",
+    "NC1Map_Emergency_Services",
+    "NC1Map_Emergency_Services",
+    "NC1Map_Environment",
+    "NC1Map_Environment",
+    "NC1Map_Geodetic_Control",
+    "NC1Map_Geodetic_Control",
+    "NC1Map_Habitat",
+    "NC1Map_Hazardous_Waste",
+    "NC1Map_Hazardous_Waste",
+    "NC1Map_Health",
+    "NC1Map_Health",
+    "NC1Map_Hydrography",
+    "NC1Map_Hydrography",
+    "NC1Map_Landcover_raster",
+    "NC1Map_Landcover",
+    "NC1Map_Landcover",
+    "NC1Map_Location",
+    "NC1Map_Location",
+    "NC1Map_Ortho_Acquisition_Related",
+    "NC1Map_Ortho_Acquisition_Related",
+    "NC1Map_Parcels_Transform_Dates",
+    "NC1Map_Parcels_Transform_Dates",
+    "NC1Map_Parcels",
+    "NC1Map_Parcels",
+    "NC1Map_Recreation",
+    "NC1Map_Recreation",
+    "NC1Map_Regional_Boundaries",
+    "NC1Map_Regional_Boundaries"
+   ],
+   "likely": [
+    "ImageryProject/County_Boundary_Project_Year_Phase_4 (FeatureServer)",
+    "ImageryProject/County_Boundary_Project_Year_Phase_4 (MapServer)",
+    "ImageryProject/CountyBoundaryProjectYearPhase4 (MapServer)"
+   ]
+  },
+  {
+   "st": "MS",
+   "what": "MARIS root (other park layers)",
+   "url": "https://www.maris.state.ms.us/server/rest/services",
+   "error": "<urlopen error [Errno -2] Name or service not known>"
+  }
+ ]
+}
