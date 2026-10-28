@@ -2,7 +2,10 @@
 Downloads the official route line of every National Scenic / Historic Trail that is a POTA park, simplifies it for the
 web map and writes data/trails/<REF>.json (GeoJSON, lines) + data/trails/index.json [{ref,name,kind,bbox,src,info}].
 Sources: the National Park Service's own ArcGIS services (services1.arcgis.com/fBc8EJBxQRMcHlei) and, for trails the
-NPS doesn't run, the Forest Service / trail partners. MODE=info only prints what each service has."""
+NPS doesn't run, the Forest Service / trail partners. MODE=info only prints what each service has.
+Oct 28 (HQ tune): a trail whose new line has under half the points of the saved one keeps the saved copy (a half-answered
+service must not cut the trail); a self-grade gate (the Sheltowee Trace + the Appalachian, Pacific Crest and North Country
+lines must be there) prints GATE PASS / FAIL and writes /tmp/kpc-gate.txt for the workflow's grade-me line."""
 import json, os, sys, time, urllib.request, urllib.parse
 NPS = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/'
 T = json.load(open(os.path.join(os.path.dirname(__file__), 'kpc_us_trails.json')))
@@ -112,7 +115,11 @@ for x in T:
         if not L: raise RuntimeError('no lines came back')
         xs = [p[0] for l in L for p in l]; ys = [p[1] for l in L for p in l]
         bb = [round(min(xs), 4), round(min(ys), 4), round(max(xs), 4), round(max(ys), 4)]
-        geo = {'type': 'Feature', 'properties': {'ref': x['ref'], 'name': x['name']}, 'geometry': {'type': 'MultiLineString', 'coordinates': L}}
+        try: was = sum(len(l) for l in json.load(open(f"{OUTDIR}/{x['ref']}.json"))['geometry']['coordinates'])
+        except Exception: was = 0
+        if x['ref'] in old and was > 20 and len(xs) < .5 * was:
+            raise RuntimeError(f'only {len(xs)} points came back (saved copy has {was}): the saved copy is kept')
+        geo = {'type': 'Feature', 'properties': {'ref': x['ref'], 'name': x['name'] or x['ref']}, 'geometry': {'type': 'MultiLineString', 'coordinates': L}}
         json.dump(geo, open(f"{OUTDIR}/{x['ref']}.json", 'w'), separators=(',', ':'))
         npts = len(xs); kb = os.path.getsize(f"{OUTDIR}/{x['ref']}.json") // 1024
         index.append({'ref': x['ref'], 'name': x['name'], 'kind': 'NST' if 'Scenic' in x['name'] else 'NHT', 'bbox': bb, 'by': x['by'], 'kb': kb})
@@ -123,3 +130,23 @@ for x in T:
 index.sort(key=lambda r: r['name'])
 json.dump(index, open(OUTDIR + '/index.json', 'w'), indent=0)
 note('Trails done', f'{done} built, {len(failed)} failed {failed}')
+# ---------------------------------------------------------------- Oct 28 self-grade gate
+why = []
+def _pts(fn):
+    """points in a line file (one Feature or a FeatureCollection; LineString / MultiLineString)"""
+    try:
+        g = json.load(open(fn)); n = 0
+        for f in (g.get('features') or [g]):
+            gg = f.get('geometry') or {}; c = gg.get('coordinates') or []
+            n += len(c) if gg.get('type') == 'LineString' else sum(len(q) for q in c)
+        return n
+    except Exception: return 0
+if _pts('ky-sheltowee.geojson') < 100: why.append('Sheltowee Trace (ky-sheltowee.geojson) has no line')
+have = {r['ref'] for r in index}
+for ref, nm in (('US-4556', 'Appalachian'), ('US-4562', 'Pacific Crest'), ('US-4239', 'North Country')):
+    if ref not in have or _pts(f'{OUTDIR}/{ref}.json') < 100: why.append(f'{nm} has no line')
+res = 'FAIL' if why else 'PASS'
+msg = f'{len(index)} national trails in the index, {done} rebuilt, {len(failed)} kept / failed' + ('; ' + '; '.join(why) if why else '')
+print(f'::notice title=Trails gate::GATE {res} {msg}')
+try: open('/tmp/kpc-gate.txt', 'w').write(f'{res}\tnational trails\t{msg[:400]}\n')
+except Exception: pass
