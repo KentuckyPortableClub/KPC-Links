@@ -381,6 +381,8 @@ def pointq(cfg):
                     for la, lo in x['points']:
                         q = get(lu + '/query', {'geometry': f'{lo},{la}', 'geometryType': 'esriGeometryPoint', 'inSR': 4326, 'spatialRel': 'esriSpatialRelIntersects',
                                                 'distance': x.get('dist', 0), 'units': 'esriSRUnit_Meter', 'where': '1=1', 'outFields': '*', 'returnGeometry': 'false'}, t=90)
+                        time.sleep(2)   # kpc_manners: 1 request per 2 s per host
+                        if not (q.get('features') or []): r['hits'].append({'layer': f"{lu.rsplit('/', 1)[-1]} {m.get('name')}", 'point': [la, lo], 'nohit': True})
                         for f in (q.get('features') or [])[:10]:
                             r['hits'].append({'layer': f"{lu.rsplit('/', 1)[-1]} {m.get('name')}", 'point': [la, lo],
                                               'attrs': {k: v for k, v in (f.get('attributes') or {}).items() if v not in (None, '', ' ') and not re.search(r'shape|globalid|objectid', k, re.I)}})
