@@ -510,7 +510,7 @@ def zip_state(st, have):
             import io, zipfile, shapefile
             from pyproj import CRS, Transformer
             if url not in ZIPC:
-                with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
+                with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'KPC (kentuckyportableclub.github.io)'}), timeout=240) as r: ZIPC[url] = zipfile.ZipFile(io.BytesIO(r.read()))
             z = ZIPC[url]; n = 0
             for sp in [q for q in z.namelist() if q.lower().endswith('.shp')]:
                 b = sp[:-4]
