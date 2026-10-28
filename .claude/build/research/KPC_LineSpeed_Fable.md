@@ -7,7 +7,7 @@ Ohio come out IDENTICAL to the slow line (same rows, same verdicts, same NOT SUR
 | run | fetcher: passes 1+2 | water copy | worker: passes 3+5 | checker |
 |---|---|---|---|---|
 | KY last night (40608978435, NHD mostly down) | 88.9 min | – | 107.1 min | ~2 min |
-| KY tonight (40637781196, NHD up) | 23.0 min | 1.2 min | **still running at 2:40 AM: 110+ min** | – |
+| KY tonight (40637781196, NHD up) | 23.0 min | 1.2 min | **173.9 min** (pass 3: 853 server requests, 88 parks downloaded fresh at fine detail; pass 5: 50 boundary lines + 60 rule-15 zones) | 0.5 min |
 | OH last night (40619274002) | 1.5 min | – | 18.1 min | ~2 min |
 | OH tonight (40640176578) | 0.8 min | 10.6 min | 4.1 min | ~2 min |
 So the **worker (pass 3 + 5) is the slowest station for Kentucky by a wide margin**; the fetcher is second; the checker is minutes.
