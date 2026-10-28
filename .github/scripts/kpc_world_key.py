@@ -127,6 +127,11 @@ SRC['AU'] = SRC['AU'] + [('VIC DEECA state forests', 'arcgis', 'https://enterpri
                          ('WA DBCA state forests (legislated lands)', 'arcgis', 'https://public-services.slip.wa.gov.au/public/rest/services/SLIP_Public_Services/Property_and_Planning/MapServer/15', ["leg_category='State Forest'"])]
 SRC['PL'] = SRC['PL'] + [('Śląskie ORSIP nature and landscape complexes (GDOŚ register)', 'arcgis', 'https://geoportal.orsip.pl/site1/rest/services/DaneRegionalne/FormyOchronyPrzyrodyZieloneSlaskie/MapServer/5')]
 SRC['JP'] = SRC['JP'] + [('MLIT natural park areas, national file FY2010 (A10-10)', 'a10n', 'https://nlftp.mlit.go.jp/ksj/gml/data/A10/A10-10/A10-10_GML.zip')]
+# Oct 28 (chat 9, HQ world outlines, chat 8's KPC_W_NO_desk.md): Norway's own registers from Miljødirektoratet (NLOD 2.0 open
+# licence, credit 'Miljødirektoratet'): protected areas (naturvernområder, 3,514, field offisieltNavn = name with its type word)
+# and state-secured outdoor recreation areas (statlig sikra friluftslivsområder, 2,351 = public land the state secured).
+SRC['NO'] = SRC['NO'] + [('Miljødirektoratet protected areas (NLOD)', 'arcgis', 'https://kart.miljodirektoratet.no/arcgis/rest/services/vern/mapserver/0'),
+                         ('Miljødirektoratet state-secured outdoor recreation areas (NLOD)', 'arcgis', 'https://kart.miljodirektoratet.no/arcgis/rest/services/friluftsliv_statlig_sikra/mapserver/0')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
@@ -391,7 +396,7 @@ def inside(la, lo, rs): return sum(1 for r in rs if in_ring(lo, la, r)) % 2 == 1
 def near(la, lo, b, pad): return b and b[0] - pad <= lo <= b[2] + pad and b[1] - pad <= la <= b[3] + pad
 
 
-NAMEF = ['nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名']
+NAMEF = ['offisieltNavn', 'nom_site', 'leg_name', 'nazwa', 'NAME', 'Name', 'name', 'NNR_NAME', 'LNR_NAME', 'CP_NAME', 'SSSI_NAME', 'PA_NAME', 'NAME_E', 'NAME_EN', 'SITE_NAME', 'sitename', 'NAMEX', '名称', '公園名', 'navn', 'omraadeNavn']   # Oct 28 chat 9: Norway (Miljødirektoratet) official names
 TYPEF = ['TYPE', 'Type', 'type', 'PA_TYPE', 'DESIGNATION', 'desig', 'GAZ_TYPE', 'KIND', '種別', 'TYPE_E']
 
 
