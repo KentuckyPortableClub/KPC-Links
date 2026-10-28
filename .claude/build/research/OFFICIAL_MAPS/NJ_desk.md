@@ -21,3 +21,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Fish & Wildlife WMAs:** `state.nj.us/dep/fgw/pdf/wmamaps/<name>.pdf` (61 of 61 ok, A) and road maps `nj.gov/dep/fgw/pdf/wmaroadmaps/<name>_rd.pdf` (B); year folders exist for old guides (`/pdf/2011/`, `/pdf/2013/`, B) so a copy can be old.
+- **Parks and Forestry:** `nj.gov/dep/parksandforests/maps/<name>-area.pdf`: only 3 of 43 of these links opened for the bot (A): a lot are dead or the host blocks the bot - BOT LOOK-UP, re-harvest from the parks pages (https://www.nj.gov/dep/parksandforests/). Map dates: none shown.
+- Handovers: none seen.

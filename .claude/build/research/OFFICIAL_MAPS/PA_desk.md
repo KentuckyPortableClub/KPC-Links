@@ -17,3 +17,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **DCNR (state parks, forests):** per-park Maps page `pa.gov/agencies/dcnr/recreation/where-to-go/state-parks/find-a-park/<park>/maps` (also `state-forests/find-a-forest/<forest>/maps`); files on `http://elibrary.dcnr.pa.gov/GetDocument?docId=<number>&DocName=<file>.pdf` (A). The docId is not a date; no date on the page (A); bot ok 3 of 3 + pa.gov 9 of 9.
+- **Game Commission (State Game Lands):** list https://www.pa.gov/agencies/pgc/huntingandtrapping/where-to-hunt/state-game-land-maps is a search-by-number page, links NOT in the text (A): BOT LOOK-UP (script-loaded). PGC Mapping Center: experience.arcgis.com/experience/7bc4a733a9a140879dbee399d65c165e (A). Regulations: pa.gov/agencies/pgc/huntingandtrapping/regulations (A). No dates.
+- DCNR parks page has no rules link (A). Handovers: none seen.

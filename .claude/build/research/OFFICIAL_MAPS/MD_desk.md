@@ -17,3 +17,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **MD DNR (state parks, WMAs):** direct geo-PDF links on one list page https://dnr.maryland.gov/Pages/DNR_TrailMaps.aspx, mostly `dnr.maryland.gov/publiclands/Documents/<name>.pdf` (names follow no pattern: Rocks_Map.pdf, DCL_TrailMap.pdf), WMAs `dnr.maryland.gov/wildlife/Documents/` (A). Per-park pages `dnr.maryland.gov/publiclands/Pages/<region>/<Park>/Trail-Maps.aspx` (B). No dates (A); the page says maps are "not a legal or official representation of boundaries" - quote that. Interactive: Maryland Trail Atlas, Recreational Atlas (ArcGIS). Bot ok 4 of 5.
+- Handovers: none seen.

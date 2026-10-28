@@ -21,3 +21,8 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **NY State Parks (OPRHP):** files `parks.ny.gov/documents/parks/<ParkName><Kind>Map.pdf` or `parks.ny.gov/sites/default/files/<Name>…Map.pdf` (hunting maps, trail maps, e.g. PixleyFallsHuntingMap.pdf); bot ok 47 of 47 (A). Date is printed on the map: "produced by NYSOPRHP GIS Bureau, September 22, 2016" (A). So some are ten years old.
+- **DEC (wildlife areas, forests):** DEC pages and viewers (Hunt Planner on ArcGIS Experience, DECinfo Locator); PDFs `dec.ny.gov/sites/default/files/<name>map.pdf` (B). WMU map file is old ("09") (A). Open data: Wildlife Management Areas on data.amerigeoss.org (B) - to chat 9. staffportal.parks.ny.gov link failed (a staff site, not public): BOT LOOK-UP.
+- Handovers: none seen.

@@ -18,3 +18,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **DCR (state parks and forests):** list https://www.mass.gov/lists/dcr-trail-maps; every file `https://www.mass.gov/doc/<map-name-slug>/download` (A), with file type and size shown, no dates. Rules: no general rules link; DCR Watershed rules page `mass.gov/info-details/dcr-watershed-public-access-rules-and-maps` (A). Corps (nae.usace.army.mil) links fail for MA, CT, VT: BOT LOOK-UP.
+- Handovers: none seen.
