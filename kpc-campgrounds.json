@@ -1064,7 +1064,10 @@
      "extras": "2 boat ramps, swimming area, fishing dock, showers, cabins",
      "phone": "270-924-2181",
      "source": "https://www.landbetweenthelakes.us/visit/hillman-ferry-campground/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.9497056,
+     "lo": -88.1806278,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/4dbh7HrShHpAC746A), 820 Hillman Ferry Road; map: landbetweenthelakes.us/wp-content/uploads/2025/04/FINAL_PRINT_-HillmanFerryCampgroundMap_2025.pdf"
     },
     {
      "id": "energy-lake-campground",
@@ -1078,7 +1081,10 @@
      "extras": "Beach, canoe/kayak rental, cabins; boat ramp at Energy Dam 1/4 mile",
      "phone": "270-924-2270",
      "source": "https://www.landbetweenthelakes.us/visit/energy-lake-campground/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.8554861,
+     "lo": -88.0179556,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/Xy8CgDSkYjH4tCxHA), 5501 Energy Lake Rd; map: …/2025/04/FINAL_PRINT_-EnergyLakeCampgroundMap_2025.pdf"
     },
     {
      "id": "wranglers-campground",
@@ -1092,7 +1098,10 @@
      "extras": "Horse camp, horse stalls, 100 miles of horse trails, showers",
      "phone": "270-924-2200",
      "source": "https://www.landbetweenthelakes.us/visit/wranglers-campground/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.7375667,
+     "lo": -87.9991056,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/Pbvrt1jiZxdxgek78), 5100 Laura Furnace Rd; map: …/2025/04/Wranglers_Campground_Map_2025_web.pdf"
     },
     {
      "id": "piney-campground-tn",
@@ -1107,7 +1116,10 @@
      "phone": "931-232-5331",
      "note": "Tennessee end of LBL (Dover, TN).",
      "source": "https://www.landbetweenthelakes.us/visit/piney-campground/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.4856667,
+     "lo": -88.0307611,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/wm3NnZDYguTxTamM7), 621 Fort Henry Road, Dover TN; map: …/2025/04/FINAL_PRINT_-PineyCampgroundMap_2025.pdf"
     },
     {
      "id": "fenton-self-service-campground",
@@ -1142,7 +1154,10 @@
      "units": "13 cabins (sleep 8)",
      "notes": "Heat/AC, bring linens; Golden Pond KY",
      "source": "https://www.landbetweenthelakes.us/visit/energy-lake-campground/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.8554861,
+     "lo": -88.0179556,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/Xy8CgDSkYjH4tCxHA), 5501 Energy Lake Rd; map: …/2025/04/FINAL_PRINT_-EnergyLakeCampgroundMap_2025.pdf (cabins sit in the same campground)"
     },
     {
      "id": "hillman-ferry-campground-cabins",
@@ -1153,7 +1168,10 @@
      "units": "6 cabins (sleep 8)",
      "notes": "Heat/AC, bring linens; no pets or smoking",
      "source": "https://www.landbetweenthelakes.us/help-center/hillman-ferry-campground-faq/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.9497056,
+     "lo": -88.1806278,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/4dbh7HrShHpAC746A), 820 Hillman Ferry Road; map: landbetweenthelakes.us/wp-content/uploads/2025/04/FINAL_PRINT_-HillmanFerryCampgroundMap_2025.pdf (cabins sit in the same campground)"
     },
     {
      "id": "wranglers-campground-cabins",
@@ -1163,7 +1181,10 @@
      "units": "12 cabins (5 sleep 4, 7 sleep 8)",
      "notes": "Horse campground; heat/AC, bring linens; no pets or smoking",
      "source": "https://www.landbetweenthelakes.us/help-center/wranglers-campground-faq/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.7375667,
+     "lo": -87.9991056,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/Pbvrt1jiZxdxgek78), 5100 Laura Furnace Rd; map: …/2025/04/Wranglers_Campground_Map_2025_web.pdf (cabins sit in the same campground)"
     },
     {
      "id": "piney-campground-cabins",
@@ -1173,7 +1194,10 @@
      "units": "19 cabins (9 sleep 4, 10 sleep 8)",
      "notes": "Piney is in the Tennessee part of LBL; bring linens; 800-525-7077",
      "source": "https://www.landbetweenthelakes.us/help-center/piney-campground-faq/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 36.4856667,
+     "lo": -88.0307611,
+     "point_src": "LBL (Forest Service) campground page's own map pin (maps.app.goo.gl/wm3NnZDYguTxTamM7), 621 Fort Henry Road, Dover TN; map: …/2025/04/FINAL_PRINT_-PineyCampgroundMap_2025.pdf (cabins sit in the same campground)"
     }
    ]
   },
@@ -1583,7 +1607,10 @@
      "phone": "606-330-2130 ext 2",
      "note": "Now run by the City of London (no longer a state park).",
      "source": "https://levijacksonpark.com/accomodations/campground/",
-     "checked": "2026-10-14"
+     "checked": "2026-10-28",
+     "la": 37.07839,
+     "lo": -84.04542,
+     "point_src": "centre of the 137 campsite points for LEVI JACKSON WILDERNESS ROAD in KY DGI's 'Kentucky State Park Campsites' layer (KyGovMaps, services3 …/Ky_State_Park_Campsites_WM_gdb/FeatureServer/0)"
     }
    ],
    "added": true,
