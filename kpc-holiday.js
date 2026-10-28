@@ -83,6 +83,20 @@
       '</div>' + (h.post ? '<figcaption>' + esc(h.post) + '</figcaption>' : '') + '</figure>';
     main.insertBefore(sec, main.firstChild);
     if (fx.length) effects(sec, fx);
+    wideSwap(sec, h);
+  }
+
+  /* Brandon Oct 27 11:58 PM: an optional wide desktop version, <id>-wide.webp next to the normal picture (~2400x800).
+     Phones always keep the normal one. On a wide screen, try loading it; swap the <img> over only if it's really there
+     (a 404 just leaves the normal picture showing — no broken image, no extra error). */
+  function wideSwap(sec, h) {
+    var wide = false; try { wide = matchMedia('(min-width:900px)').matches; } catch (e) {}
+    if (!wide) return;
+    var src = String(h.img || '').replace(/\.webp$/i, '-wide.webp');
+    if (src === h.img) return;
+    var test = new Image();
+    test.onload = function () { var img = sec.querySelector('.kpc-hol-box img'); if (img) img.src = src; };
+    test.src = src;
   }
 
   function parseFx(s) {
