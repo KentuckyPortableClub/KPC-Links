@@ -19,14 +19,20 @@ UA = {'User-Agent': 'KPC (kentuckyportableclub.github.io)'}
 PADUS = 'https://edits.nationalmap.gov/arcgis/rest/services/PAD-US/PAD_US/MapServer/0/query'
 FSBO = 'https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_BasicOwnership_02/MapServer/0'
 BLMSMA = 'https://gis.blm.gov/arcgis/rest/services/lands/BLM_Natl_SMA_LimitedScale/MapServer'
+# Oct 28 (HQ 4:43 PM, Brandon: Mammoth Cave x Green River 'there is no private land there'): the Park Service's OWN land tracts
+# (Land Resources Division, 'nps_tracts': ESTATE Fee + STATUS Federal) FIRST; PAD-US's copy (which cut the Green River channel
+# out of Mammoth Cave) only when the Park Service map does not answer. Official sources first.
+NPSTR = 'https://services1.arcgis.com/fBc8EJBxQRMcHlei/arcgis/rest/services/NPS_Land_Resources_Division_Boundary_and_Tract_Data_Service/FeatureServer/1'
+NPSQ = "ESTATE = 'Fee' AND STATUS = 'Federal'"
 OWNER_KEY = {'usfs': 'FED:USFS', 'blm': 'FED:BLM', 'nps': 'FED:NPS', 'usace': 'FED:USACE', 'fws': 'FED:FWS', 'state': 'STATE'}
 PADQ = {'nps': "Category = 'Fee' AND Mang_Name = 'NPS'", 'usace': "Category = 'Fee' AND Mang_Name = 'USACE'",
         'fws': "Category = 'Fee' AND Mang_Name = 'FWS'", 'state': "Category = 'Fee' AND Own_Type = 'STAT'"}
 OWNMAP = {'usfs': 'Forest Service ownership map (Basic Ownership, 2015 data)', 'blm': 'BLM surface management map',
-          'nps': 'PAD-US Park Service fee records', 'usace': 'PAD-US Corps of Engineers fee records', 'fws': 'PAD-US Fish and Wildlife fee records',
+          'nps': "the Park Service's own land tracts (Land Resources Division; PAD-US fee records when it does not answer)", 'usace': 'PAD-US Corps of Engineers fee records', 'fws': 'PAD-US Fish and Wildlife fee records',
           'state': 'PAD-US state fee records'}
 AGENCY_LAND = re.compile(r'national forests?\b|national grasslands?\b', re.I)
 LOG = []
+OWN_SRC = {}   # tile -> which map answered (NPS tracts / PAD-US)
 FSO = {'feat': {}, 'tile': {}, 'f': None}
 OWN_T = {}     # (kind, i, j) -> ring groups; 'blm' -> (query url, where)
 GET_ONLY = set()
@@ -117,15 +123,22 @@ def owned_land(kind, box, det, prec):
                         OWN_T['blm'] = (f'{BLMSMA}/{lid}/query', f"{af} = 'BLM'" if af else '1=1')
                     url, where = OWN_T['blm']
                 else: url, where = PADUS, PADQ[kind]
-                gs, off = [], 0
-                while True:
-                    jj = get(url, {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
-                                   'spatialRel': 'esriSpatialRelIntersects', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
-                                   'maxAllowableOffset': det, 'geometryPrecision': prec, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'}, timeout=240)
-                    fs = jj.get('features') or []
-                    gs += [esri_rings(x.get('geometry')) for x in fs if esri_rings(x.get('geometry'))]
-                    if not fs or not jj.get('exceededTransferLimit'): break
-                    off += len(fs)
+                def read(url, where):
+                    gs, off = [], 0
+                    while True:
+                        jj = get(url, {'where': where, 'geometry': ','.join(map(str, tb)), 'geometryType': 'esriGeometryEnvelope', 'inSR': 4326,
+                                       'spatialRel': 'esriSpatialRelIntersects', 'outFields': '', 'returnGeometry': 'true', 'outSR': 4326,
+                                       'maxAllowableOffset': det, 'geometryPrecision': prec, 'resultOffset': off, 'resultRecordCount': 500, 'f': 'json'}, timeout=240)
+                        if 'error' in jj: raise RuntimeError(str(jj['error'])[:80])
+                        fs = jj.get('features') or []
+                        gs += [esri_rings(x.get('geometry')) for x in fs if esri_rings(x.get('geometry'))]
+                        if not fs or not jj.get('exceededTransferLimit'): break
+                        off += len(fs)
+                    return gs
+                if kind == 'nps':
+                    try: gs = read(NPSTR, NPSQ); OWN_SRC[k] = 'NPS tracts'
+                    except Exception as e: LOG.append(f'Park Service tracts: {str(e)[:60]}: PAD-US used'); gs = read(url, where); OWN_SRC[k] = 'PAD-US'  # noqa: BLE001
+                else: gs = read(url, where)
                 OWN_T[k] = gs
             out += OWN_T[k]
         return out
