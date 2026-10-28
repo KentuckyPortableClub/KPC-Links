@@ -18,6 +18,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 4:20 PM: DOCUMENTS v5 regrade (maps 92% PASS, bulk faults gone, recall dropped) + CAMPGROUND v7 first grade (facts 1/4, mostly empty federal rows): KPC_Docs_v5_Campinfo_v7_grade_desk.md.
 - Oct 28 2:45 PM: documents chunk 4-5 checked: identical to chunks 1-3 (same pre-v5 run); no new grade. Waiting for a v5 run.
 - Oct 28 12:55 PM: WAITING ROOM checks written (KPC_WaitingRoom_Checks_desk.md): 14 flaws -> checks, per-type numbers, never-wait list.
 - Oct 28 12:40 PM: BOT-TUNING CHECK written in full with the FOR FABLE TONIGHT list (KPC_BotTuning_Check_desk.md); access + fed-camp reruns not landed yet.
@@ -30,6 +31,7 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 - Oct 28: first batch graded, all from Kentucky, all FAIL the 90% bar: TRUTH CHECKER 9/12 = 75% (flagged rows 15/19), HOURS 4/12 = 33% (its own gate 24%), CAMPGROUND INFO random 10 = 50%, DOCUMENTS bot finder check 17/25 = 68% (12-sample 10/12). Files: `.claude/build/research/KPC_TruthChecker_grade_US-KY_desk.md`, `KPC_Hours_grade_US-KY_desk.md`, `KPC_CampInfo_grade_US-KY_desk.md`, `KPC_Docs_grade_US-KY_desk.md`. Fixes sent to chat 10 (3 bots), chat 2 (documents bot + outline leads), chat 8 (US-10105 flag, finder check done). The truth checker's 'grade me' line (run 40669098603) is graded; I cannot edit KPC-Data from here, so chat 8 strikes it.
 
 ## REPORT TO HQ (newest first)
+- Oct 28 4:20 PM (11th inbox): DOCS v5 maps 92% PASS (WV 83 / GA 130 / FL 53 / VA 26 bad pages -> 0) but the cure over-trimmed: WV maps 163->36, GA 218->108, VA 162->91 (file-name-carrying maps dropped). CAMPGROUND v7 KY: gate PASS but 1 of 4 fact-bearing records right; 60 federal rows are elevation-only; Horse Park fee is a headline. Not graded: hours v6, detective, closures round 4 (new US park closures commit at 3:03 PM, no grade-me line), access + fed-camp reruns.
 - Oct 28 2:45 PM (10th inbox): documents chunks 4-5 are the same old run (WV 83 / GA 130 / FL 53 / VA 26 bad pages unchanged); v5 needs a NEW run. Also landed: 2-fer KY READY (chat 8's). Still ungraded: campground v7, hours v6, detective, closures round 4 (no line yet), access + fed-camp reruns (no new commit).
 - Oct 28 12:55 PM (9th inbox): Waiting Room checks done (one page, for chat 10 ~1:45 AM and chat 8 to break). New 'grade me': none except docs lines already graded; closures failed again (21%, round-4 line); 2-fer midwest STOPPED (IN 56, IL 16 rows unanswered water) = the Michigan flaw again.
 - Oct 28 12:40 PM (8th inbox): tuning check + FOR FABLE list done (6 items). Fixed/kept: Canada (CA-2156 gone, outlines kept), trails (AT + Sheltowee kept), fed camps KY PASS. Not landed: the 13-state access rerun (178 points still 100+ km out, mostly the same name mix-ups) and the 6-state fed-camp rerun (132 doubled ids still there); parking explorer, state trails, new-refs, ref-check, new-lands, state-gis, bot-queue show nothing yet.
