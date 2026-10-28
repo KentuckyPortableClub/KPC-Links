@@ -1,0 +1,20 @@
+{
+ "about": "Chat 9 world round W3 (Oct 28): the rest of the top 10: GB (National Trust 'Always Open', NatureScot national parks + National Scenic Areas, FLS forest estate), AU (Queensland protected areas on another host), FR (IGN Géoplateforme protected-area layers, ONF public forests), DE (Länder state forests), JP/IT (anything reachable). Results: roundW3-tested.json.",
+ "searches": [
+  {"st": "GB", "q": "\"Always Open\" AND (\"National Trust\" OR NationalTrust)", "why": "NT Always Open land (Q3: list only)"},
+  {"st": "GB", "q": "(\"National Scenic Areas\" OR \"National Parks\") AND (NatureScot OR \"Scottish Natural Heritage\")", "why": "NatureScot NP + NSA"},
+  {"st": "GB", "q": "(\"Forestry and Land Scotland\" OR FLS) AND (\"national forest estate\" OR \"land holdings\" OR boundary)", "why": "FLS estate (current copy)"},
+  {"st": "AU", "q": "Queensland AND (\"protected areas\" OR \"national parks\") AND (boundary OR estate) AND (DESI OR \"Department of Environment\" OR QPWS)", "why": "QLD protected areas (other host)"},
+  {"st": "DE", "q": "(Staatswald OR Staatsforsten OR \"Berliner Forsten\" OR Landesforsten) AND (Grenze OR Flächen OR boundary)", "why": "German state forests"},
+  {"st": "FR", "q": "(\"forêts publiques\" OR \"forêts domaniales\") AND ONF", "why": "ONF public forests"},
+  {"st": "JP", "q": "(国立公園 OR 国定公園) AND (区域 OR 境界)", "why": "Japan national / quasi-national park areas"}
+ ],
+ "layers": [
+  {"st": "AU", "kind": "park", "ag": "Queensland?", "url": "https://services-ap1.arcgis.com/s047i49VH0D2nqIM/ArcGIS/rest/services/Protected_areas/FeatureServer", "note": "desk lead: who publishes it?"}
+ ],
+ "pages": [
+  {"st": "FR", "raw": true, "url": "https://data.geopf.fr/wfs/ows?service=WFS&request=GetCapabilities", "look": "<Name>patrinat[^<]+</Name>|<Name>[^<]*(foret|forest|onf)[^<]*</Name>", "note": "IGN: INPN protected-area layers (national parks, nature reserves) + forests"},
+  {"st": "FR", "url": "https://www.data.gouv.fr/api/1/datasets/?q=forets%20publiques%20onf&page_size=10", "look": "license|title|url|last_modified", "note": "ONF public forests on data.gouv (licence)"},
+  {"st": "GB", "raw": true, "url": "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/arcgis/rest/services?f=json", "look": "\"name\":\"[^\"]+\"", "note": "National Trust account services"}
+ ]
+}
