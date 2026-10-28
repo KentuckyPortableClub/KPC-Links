@@ -2,23 +2,23 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
-- HQ (Oct 28 6:16 AM): BREAK chat 5's GEORGIA CLOSURES rule sheet (website.md; Brandon already ruled GA1-GA4: stale = 'may be out of date', vehicle-only = note, ended lease = 'may not be public land now' note, hunting closures read). Edge cases + leans; then chat 5 builds. Do this first (chat 5 is waiting on you).
-- FROM CHAT 11 (Oct 28): your question to Brandon about US-10105 / US-10107: the Truth Checker's 'OFF' on US-10105 (The Green National Wild and Scenic River) compared our 6,984 acres with Mammoth Cave NP's 52,830 total, so it says nothing about the river. Do not use that flag for the Mammoth Cave x Green River 2-fer. Also: the Kentucky documents finder check is graded (KPC_Docs_grade_US-KY_desk.md, FAIL 68%): your item (3) can be struck. Your 'grade me' line from the truth checker (US-KY, run 40669098603) is graded: KPC_TruthChecker_grade_US-KY_desk.md.
-- (1) Harvester regrade when the 5 redone countries land (~5-7 AM).
-- (2) After chat 2's key rebuild: RECOUNT the scoreboard (how many of the 1,484 gaps closed, per region, by which layers) + the per-park file KPC-Data data/review/scoreboard-parks.json for chat 1.
-- (3) When chat 2 posts them: the name-match 30 samples; the Trail of Tears / Lewis and Clark distance list; the Kentucky documents finder check.
+- (1) Harvester regrade when the 5 redone countries land (leads-AU/GB/DE/PL/JP still dated 04:18 AM = not redone yet; chunks 3-4 wrote other countries).
+- (2) After chat 2's key rebuild: RECOUNT the scoreboard (baseline KPC-Data data/review/scoreboard.json: US missing 944 + CA 540 = 1,484) + the per-park file data/review/scoreboard-parks.json for chat 1. The 06:25 AM 'Site data copied from KPC-Links (Step B3)' commit is a copy, not the rebuild.
+- (3) When chat 2 posts them: the name-match 30 samples; the Trail of Tears / Lewis and Clark distance list.
 - ALSO read KPC-Data data/status/inbox-chat-8.md each session (bots post 'grade me' there).
-- (4) Then: break any new rule sheet that lands; grade bot batches that drop 'grade me' items here.
-
-- HQ (Oct 28 6:18 AM): Boiling Springs unit of Green River SNA: two points 10 km apart (Brandon's 37.2953, -85.8320 vs the old 'Boiling Springs unit' access point 37.3064, -85.7191). From the OKNP Green River SNA page/map: which is the unit, which is access/parking? One line in mapping.md for chat 2.
+- (4) Then: break any new rule sheet that lands; grade bot batches that drop 'grade me' items here. The 3 bot lines there (truth KY, hours KY, campinfo KY partial) were graded by chat 11/me already; the hours/campinfo reruns need a regrade once chat 10 fixes land.
 
 ## NEEDS BRANDON
 
 ## DONE
+- Oct 28 6:45 AM: Georgia closures sheet broken (KPC_RuleSheet_GA_closures_desk.md; GA-R1..R9, leans GA5-GA9 all YES). Chat 5 can build once Brandon rules.
+- Oct 28 6:40 AM: Boiling Springs answered in mapping.md (OKNP page: unit coordinate 37.30642,-85.719109, 440 ac, Open to Public; Brandon's point is on no OKNP page; the 440 is that unit alone, so our 304 misses it).
+- Oct 28: US-10105/US-10107 flag noted (chat 11): not used for the Mammoth Cave x Green River 2-fer. KY documents finder check struck (chat 11 graded it).
 - Oct 28: documents bot run 1 graded (KPC_DocsBotGrade_run1_desk.md): MO PASS 11/12, FL FAIL 6/12; Kentucky finder check waits for data/docs/US-KY.json.
 - Oct 28: hours bot (FAIL 6/12) + campground info bot (rows 9/10, Turkey Foot inverted) graded (KPC_HoursCampInfo_grade_desk.md); fixes sent to chat 10's inbox.
 - Oct 28: Sheets D + E broken; Truth Checker KY flags read; world survey batches 3-4 (AT SE SI CZ BE DK IE SK HR FI HU EE LV LT).
 - Oct 28: Trail of Tears x Big Rivers traced (guide -> ky-trail-parks.json; ToT 24.6 km from Big Rivers; L&C 0.6 km; Ballard/Boatwright/West KY stay).
 
 ## REPORT TO HQ (newest first)
+- Oct 28 ~6:50 AM: did Georgia (9 fixes found on the live page, e.g. sentence-level dates, 'No shooting range closures' negation trap, Tuckahoe split sentence, Cohutta end-dated closures, GA4 hunts need WRD's quota page) and Boiling Springs. Harvester regrade + scoreboard recount still wait (see OPEN). BOT LOOK-UP for chat 9 inside the GA file: WRD quota-hunt dates page, Chattahoochee-Oconee NF alerts, Dawson Forest COA tract.
 - Oct 28 ~4:55 AM: inbox read. Items (1) harvester regrade, (2) scoreboard recount, (3) name-match samples + ToT/L&C distance list + KY documents finder check ALL still wait on others (harvest leads files unchanged since 4:18 AM, US keys last written Oct 27 6:19 PM, no US-KY docs file, no data/status/inbox-chat-8.md yet). Nothing else open; I will not poll. Say 'inbox' when any lands. Meanwhile available: more world countries (Baltic/LU done; next: more Stage-1 rest), hard-types states.
