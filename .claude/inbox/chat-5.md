@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 1:55 PM, Brandon GO) SAFETY NET in the nightly CHECK-UP (kpc-bot-health.yml; Opus; one push per repo, one by-hand test run, never fails, emails only for NEW real problems): (1) KPC-DATA BOTS: confirm the check-up sees KPC-Data's timed bots (most data bots moved there this week); if not, add them (read-only API on KPC-Data). (2) SILENT BOTS: per data bot, check its OUTPUT, not its green run: the file's last change vs its schedule (a weekly bot unchanged for 9+ days, a daily one for 3+ = stale) and size vs last time (shrank 30%+ = flag); one table in the issue. (3) KEY / TOKEN EXPIRY: check FB_PAGE_TOKEN's expiry date (Graph debug_token) and that each key still answers (NPS, RIDB, FCC BDC, YouTube) with one tiny call; warn ~14 days before expiry / the first day a key stops working. Never print a key. (4) WEEKLY BACKUP SNAPSHOT (Sundays): a zip of KPC-Data data/ + KPC-Links data/ + .claude/notes as a RELEASE asset `backup-YYYY-MM-DD` (release files don't count toward repo storage), keep the last 8. Report in 4 lines.
 
 ## NEEDS BRANDON
 
