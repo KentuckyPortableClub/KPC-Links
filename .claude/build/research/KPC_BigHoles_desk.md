@@ -24,3 +24,78 @@ Grades: A = opened/read, B = search result only, C = inference. Layer NUMBERS (�
 3. Chat 2 names the five Corps states; then one Corps-district hub search per state.
 4. Manitoba: attribution line required: "Contains information licensed under the OpenMB Information and Data Use Licence."
 Nothing was loaded or changed by the desk.
+
+---
+# ROUND 2 (desk, Oct 27 2026 night, read only)
+Grades: A opened, B search only, C inference. Skipped on purpose: historic sites, markers, city/county parks (pin-only).
+
+## R2-1 Ranking: parks with NO outline (from the region summaries; "real" = after removing hatcheries, historic sites, BLM point parks, municipal)
+| Rank | Place | No outline / total | Real gap | What the hole is |
+|---|---|---|---|---|
+| 1 | NV | 153 / 367 | 103 | 68 markers (never); rest Tahoe name mismatch + rulings: mostly NOT a missing layer |
+| 2 | ID | 155 / 361 | 74 | **missing layer**: IDPR state parks (5 SP + 31 SRAs). New lead below |
+| 3 | MS | 66 / 155 | 66 | missing layer (see Round 1); 22 SRAs + 15 fishing lakes |
+| 4 | OK | 62 / 205 | ~40 | 22+ historic sites (skip); WMAs on Corps/military land = rule 14 |
+| 5 | WA | 68 / 536 | 57 | 13 state forests = **name mismatch**; 16 DNR recreation sites = missing layer (lead below) |
+| 6 | UT | 333 / 692 | 57 | BLM point parks (pin-only); rest key check |
+| 7 | AR | 54 / 304 | 54 | AHTD public land + trails unread; 15 "trails" are scenic byways |
+| 8 | ND | 53 / 155 | ~17 | 36 historic sites (skip); State Forests layer is 2011 |
+| 9 | OR | 74 / 440 | 51 | 18 hatcheries (skip); ODF forests = add layer |
+| 10 | NC | 34 / 253 | 34 | missing layer: state parks (see R2-5) |
+| 11 | MN | 36 / 294 | ~20 | Lake Superior MPAs + trails |
+| 12 | WY / MT / KS | 100 / 298, 27 / 254, 27 / 145 | 32, 26, ~13 | hatcheries, historic sites: mostly skip |
+| 13 | AL 29, VA 29, TN 25, FL 20, GA 17, WV 12, SC 8 | | | mostly **name mismatches** (De Soto SP, Okefenokee SP, etc.), a few historic sites |
+| 14 | IN 22, MI 31, WI 22, MO 17, IL 15 | | | IN = 13 lake SRAs (name/kind issue, layer exists); MI = state forests/harbors; rest name mismatches |
+Canada: QC 398 (about 230 municipal = skip), NB 256, ON 255 (85 NHS pin-only; rest fuzzy match), NS 168, MB 89, YT 85 (campgrounds pin-only), NL 67 (**licence**: provincial file may not be redistributed), NT 53, PE 36.
+Biggest REAL missing-layer holes: ID, MS, WA rec sites, AR, NC, OR forests, NT, PE, NS, MI forests, Corps/TVA.
+
+## R2-2 Michigan state forests (Round 1 stubborn)
+- Walked the DNR ArcGIS account (services3 …/Jdnp1TjADvSDxMAX). `DNRManagementBoundariesOPENDATA/FeatureServer` has 10 layers (A): 0 Finance/Operations units, 1 Fisheries units, **2 Forest Management Units (16, "Michigan's nearly 3.9 million acres of State Forest Land")**, 3 Forest District, 4-5 Law Enforcement, 6 Parks District, 7 Wildlife Management Units, **8 Parks Unit Boundary (state parks + State Recreation Areas)**, 9 Trails Management Units. No layer is named for the 6 legal state forests (Au Sable, Copper Country, Escanaba River, Lake Superior, Mackinaw, Pere Marquette = US-4774..4779) and none for State Game Areas or "Managed Sites".
+- Other services in the account: `MiStateForest/FeatureServer` (A: inventory; compartments, treatments, "areas unavailable to harvest"; layers 0-6, 8, 9; no state-forest names), `DNRForestInventory/FeatureServer/4` "DNR Forest Inventory - State Land" (B; the polygons of all state forest land; layer page would not open), `Michigan_DNR_Public_Forest_Inventory_Data/FeatureServer`, `DMU_Service`.
+- Hub dataset **"Michigan DNR Project Boundary 2020"** (B, OSM wiki): "boundaries for state parks, forest management units, wildlife areas, recreation areas and other property holdings": the best candidate for the old "Managed Sites" idea. Hub page https://gis-midnr.opendata.arcgis.com/datasets/midnr::michigan-dnr-project-boundary-2020/ does not open from the session. Licence not stated anywhere.
+- Verdict: **no official polygon for the 6 named state forests found.** FMUs must NOT be used as their outlines (16 units, other names). Fallback = OpenStreetMap outline (unofficial label), or union of State Land compartments per FMU (C, would not match legal names).
+
+## R2-3 Army Corps project land (Round 1 stubborn)
+- USACE's own hub **https://geospatial-usace.opendata.arcgis.com/** has datasets (B, titles only; the pages did not show geometry, service URL, fields, licence or date): "USACE Reservoirs: boundary data for Corps owned and operated reservoirs" (/datasets/03e322d7e89b48a9b48e9c3f4bcaf29e_0), "USACE Recreation Areas" (/datasets/e314790ee1bb4eec982f0b669accb6fc_0), "IRM Property Boundary" (= FUDS cleanup sites, NOT fee land; ignore), USACE Regulatory Boundary and district/division outlines (not land).
+- Also found (B): NDGISHUB Army Corps Lands https://services1.arcgis.com/GOcSXpzwBHyk2nog/ArcGIS/rest/services/NDGISHUB_Army_Corps_Lands/FeatureServer/0 and second host https://gis.dmr.nd.gov/dmrpublicservices/rest/services/OilGasPublicMapDataVectorTiles/Army_Corps_of_Engineers/FeatureServer/0 (ND only).
+- Verdict: no national fee-land polygon found. The Reservoirs and Recreation Areas datasets are the leads; both are on BOT LOOK-UP. Until read, rule 14 keeps using PAD-US Fee records managed by USACE.
+- "Five states" for rule 14 still not named to the desk: chat 2 please say which.
+
+## R2-4 TVA land
+- Searched again: only TVA web pages (reservoir land management plans, land policy) and generic federal/state layers. **No TVA land polygon service found.** TVA lands remain PAD-US Fee (TVA) records. BOT LOOK-UP: ask whether TVA's open data page or ArcGIS Online account publishes "TVA Land" / "Reservoir Land Management Plan zones" (zones are planning, not the land line).
+
+## R2-5 North Carolina state parks
+- Three more searches (NC OneMap, ncparks.gov, data.gov): **nothing official found**; hits were other states' park layers (CA, PA, WV…). Remains: NC Natural Heritage `Managed_Areas/MapServer/0` (already in key, many owners, state parks are inside it by `MATYPE`/name, C) and NCWRC game lands. 34 NC parks stay unmatched; many are probably name-style mismatches against Managed_Areas. BOT LOOK-UP: https://www.ncparks.gov (each park's "Maps" section), NC OneMap catalogue (https://www.nconemap.gov), DNCR ArcGIS Online account.
+
+## R2-6 Northwest Territories (NEW, A)
+- **https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195** "Federal/Territorial Conservation Areas": polygon, key fields Name, Designation, Status, Protection, Legislation, Size_Km2, Management, Jurisdiction; includes Territorial Protected Areas, national parks and reserves, NWAs, MBSs, Thaidene Nene, Thelon, and "areas of larger Territorial Parks (Territorial Recreation Park, Territorial Natural Environment Park)". Publisher: Conservation Planning and Implementation Unit, ENR, GNWT (metadata 2022). Parent layer 192 "Established Protected/Conservation Areas". Gwich'in Territorial Park updated by NWT Centre for Geomatics from metes and bounds; Thelon boundary has known inaccuracies. Marine protected areas are in a separate class; NWT Wildlife Act game sanctuaries are NOT in it.
+- Licence: the NT open data record for Territorial Parks (a tourism points map) says Open Government Licence NWT (https://www.gov.nt.ca/en/open-government-licence-northwest-territories), modified 2026-04-02 (A). The 195 layer's own licence is not stated (C: same publisher, same OGL). Mirror hosts: appstest/sandbox.geomatics.gov.nt.ca (test hosts, do not use).
+- Covers: the territorial parks that are in the 53 no-outline NT parks, except campground-style "parks" (points). Cross-check names before loading.
+
+## R2-7 Prince Edward Island
+- Still **no open provincial park polygon service** found. The province's GIS data is by download with accepted licence terms (http://www.gov.pe.ca/gis/index.php3?number=77543&lang=E; 'free' with a licence form, B) and a Public Land Atlas (view at www.gov.pe.ca/gis; shows provincial forests, wildlife management areas, provincial and national parks, natural areas; no download or licence stated). PE's REST host exists (https://gis.princeedwardisland.ca/server/rest/services/ with Base_2025/ and Hosted/ folders, B). BOT LOOK-UP: walk that services folder for a parks / public lands layer. Earlier key layer GeoLinc_Provincial_Parks/MapServer/0 stays.
+
+## R2-8 Other new leads (outside the Round 1 list)
+- **Idaho IDPR open-data hub (A, hub exists): https://idpr-data-idaho.hub.arcgis.com/** (hub id 6d30d6f7839c4ae3ab14e7dd9c8bdd9b; collections list at https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections would name the datasets; licence not stated). Likely home of the missing state park and SRA outlines (74 ID holes). BOT LOOK-UP first.
+- **Washington DNR recreation sites (B):** https://gis.dnr.wa.gov/site2/rest/services/Public_Recreation/DNR_Recreation_Sites/FeatureServer (also …/Recreation/DNR_Recreation_Sites/MapServer). The session got a sign-in page for the layer list: BOT LOOK-UP (layer ids, polygon or point). Our key uses site3 Public_Boundaries only.
+
+## R2-9 Name mismatch, not missing layer (do not hunt layers for these)
+WA 13 state forests; AL De Soto SP, Butler County WMA, Kinterbish WMA; GA Okefenokee SP; NV Tahoe; IN 13 lake SRAs (layer ManagedLands_DNR_Open has them under unit names like "Unit on Lake", see the name-match sheet); ON most of the 255 (fuzzy match); CT RI MA NH ME DE name mismatches; TX 10 historic-site suspects.
+
+## R2-10 BOT LOOK-UP table (for chat 9's next probe run)
+| # | URL | What to check |
+|---|-----|---------------|
+| 1 | https://gis.mississippi.edu/server/rest/services/Administrative/MS_WildlifeManagementAreas_2019/MapServer ; …/Cultural/MS_StateParks_2019/MapServer ; …/Cultural/MS_RecreationalFacilities_2017/MapServer | layer numbers, fields, polygon vs point, count; do TYPE "Lake"/"State Park" rows match Percy Quin, Clark Creek, fishing lakes |
+| 2 | https://maris.mississippi.edu/HTML/RESOURCES/Liability.html | use terms |
+| 3 | https://gis-midnr.opendata.arcgis.com/datasets/midnr::michigan-dnr-project-boundary-2020/ | service URL, polygons, names (state forests? SGAs?), licence, date |
+| 4 | https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services?f=json | full service list of the Michigan DNR account (look for "State Forest", "Managed", "Project Boundary") |
+| 5 | https://services3.arcgis.com/Jdnp1TjADvSDxMAX/ArcGIS/rest/services/DNRForestInventory/FeatureServer/4 | does it carry a state forest name field |
+| 6 | https://geospatial-usace.opendata.arcgis.com/datasets/03e322d7e89b48a9b48e9c3f4bcaf29e_0/about and …/e314790ee1bb4eec982f0b669accb6fc_0/about | service URL, geometry, fields, date, licence, whether it is fee land or lake outline; then each Corps district hub |
+| 7 | https://www.tva.com (search "GIS", "open data", "land data") and https://www.arcgis.com/home/search.html?q=owner%3ATVA | any TVA land layer |
+| 8 | https://www.ncparks.gov (one park's Maps section) ; https://www.nconemap.gov | state park boundary layer or download |
+| 9 | https://www.apps.geomatics.gov.nt.ca/arcgis/rest/services/GNWT/Environment_LCC/MapServer/195?f=pjson | confirm polygon count, which names are territorial parks, licence text |
+| 10 | https://gis.princeedwardisland.ca/server/rest/services/?f=json (walk Hosted/ and other folders) ; http://www.gov.pe.ca/gis/index.php3?number=77543&lang=E | parks / public land layer, licence terms |
+| 11 | https://idpr-data-idaho.hub.arcgis.com/api/search/v1/collections | names of IDPR datasets; park boundary service URL; licence |
+| 12 | https://gis.dnr.wa.gov/site2/rest/services/Public_Recreation/DNR_Recreation_Sites/FeatureServer/layers | layer ids, polygon or point |
+| 13 | https://enterprise.gisdata.mn.gov (MN Geospatial Commons record for DNR WMAs) | licence and date for the WMA layer |
+Nothing was loaded or changed by the desk.

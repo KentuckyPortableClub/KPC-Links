@@ -36,3 +36,4 @@ Corps-lake state parks/FWAs in this region follow SE-1/SE-5.
 
 ## OH and MI key check (no web work)
 OH: 276 parks, 3 unjoined (Fort Miamis US-3514, North Country NST, Lewis & Clark NHT): all national, fine. MI: 388 parks, 61 unjoined: 16 National Wild & Scenic Rivers (US-12786…12801), 13 State Harbors, 6 State Trails (Betsie Valley, North Central, Pere Marquette, Iron Belle…), 6 State Forests (Au Sable, Copper Country, Escanaba River, Lake Superior, Mackinaw, Pere Marquette; **the key has MI DNR parks and wildlife layers only, no state forest layer**), 4 National Recreation Areas, Flint SP US-13565 (new), Houghton-Douglass Falls US-13566. MI's earlier test is still pending on my side; add a Michigan DNR State Forest layer and the MI state trail lines before the run.
+- 2026-10-27 (desk, Round 2): Michigan DNR account walked: no 6-state-forest polygon (FMUs are not them); lead 'Michigan DNR Project Boundary 2020' hub dataset. See KPC_BigHoles_desk.md R2-2.

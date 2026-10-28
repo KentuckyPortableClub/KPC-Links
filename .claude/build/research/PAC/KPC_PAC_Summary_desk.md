@@ -29,3 +29,4 @@ CA: Montana de Oro, Van Sickle, La Purisima, Tijuana Estuary, 3 State Beaches. O
 | PAC-2 | **CA ecological reserves and state marine reserves**: often closed. | Public + open test (rule 3). |
 | PAC-3 | **Hawaii state monuments in Honolulu (Iolani Palace, Royal Mausoleum)**: building sites. | Never (historic site rule). |
 | PAC-4 | **Native corporation / tribal land inside AK areas** | Not park land (SE-2). |
+- 2026-10-27 (desk, Round 2): WA DNR Recreation Sites service site2 Public_Recreation (BOT LOOK-UP 12); 13 state forests = name mismatch.

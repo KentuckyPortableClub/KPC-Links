@@ -16,3 +16,4 @@ Thaidene Nene is an Indigenous Protected Area (Łutsël K'é Dene) co-managed wi
 ## 5. KNOWN-GOOD
 Parks Canada; CPCAD; NWT_Hunting (sanctuaries); the territorial parks point layer.
 ## 6. 2-fers: none expected (very few parks).
+- 2026-10-27 (desk, Round 2): NWT: GNWT Environment_LCC/MapServer/195 'Federal/Territorial Conservation Areas' (polygons, incl. areas of Territorial Parks; NT OGL). See KPC_BigHoles_desk.md R2-6.

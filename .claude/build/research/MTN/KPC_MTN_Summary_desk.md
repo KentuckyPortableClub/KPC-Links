@@ -35,3 +35,4 @@ CO: Buena Vista SWA, Grenada SWA. WY: Packers Lake PAA, Ellis WHMA. ID: Ted True
 | MTN-3 | **State Recreation Areas that are airstrips** (ID 31) | Pin only. |
 | MTN-4 | **Trust land (CO State Land Board, ID endowment, MT DNRC) open to the public** | Not park land (SE-2). |
 BLM point parks: already ruled.
+- 2026-10-27 (desk, Round 2): Idaho IDPR open-data hub idpr-data-idaho.hub.arcgis.com is the lead for the 74 ID holes (BOT LOOK-UP 11).

@@ -24,3 +24,4 @@ CPCAD; Parks Canada; NHN; the PEI Open Data portal (find).
 
 ## 6. 2-fers
 Few. Likely none except PEI National Park vs adjoining provincial beach parks (side by side, C).
+- 2026-10-27 (desk, Round 2): still no open provincial park polygons; PE REST host gis.princeedwardisland.ca to be walked (BOT LOOK-UP 10). See KPC_BigHoles_desk.md R2-7.
