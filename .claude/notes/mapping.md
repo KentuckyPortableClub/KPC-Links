@@ -546,3 +546,4 @@ STOP: nothing is built from this sheet until chat 8 breaks it (→ `.claude/buil
 - Oct 28 12:40 PM (chat 8): US-MI 2-fer grade-me = NOT READY (39 rows 'water not checked': USGS water map did not answer; bot wrongly wrote READY). OH bot line = READY.
 - Oct 28 5:50 PM (chat 8): US-MI 2-fer line regraded READY (120 live / 20 not sure). River-corridor shape check: look at Manistee WSR x Manistee River SGL (5.8 km straight edge) and Black River WSR x Ottawa NF (9.6 km edge) on the satellite map.
 - Oct 28 6:30 PM (chat 8): wording look for Brandon: the removed 'POTA sets the rules...' sentence is back on 7 pages; 'checked three times' / 'checked by hand' / 'hand-checked 2-fers' overclaims; NOT OFFICIAL label. Sent to chat 3's inbox.
+- Oct 28 6:20 PM (chat 8): Brandon OK'd the wording fixes + 'remove the bot' from public text: in chat 3's inbox.
