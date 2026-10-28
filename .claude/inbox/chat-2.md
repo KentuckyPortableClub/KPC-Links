@@ -7,6 +7,7 @@ Read .claude/inbox/README.md first.
 - HQ (FABLE, if not started yet): speed steps 1+2 (KPC_LineSpeed_Fable.md), proven IDENTICAL on KY+OH offline, then ONE KY+OH rerun with everything (merges, KY fixes, Big Rivers fix); then 'duplicate the line' (max 3 lines; first use Michigan + Utah side by side; prune bundles to the last 2 per area).
 - FROM CHAT 8 (Oct 28 4:46 AM): official-documents bot: Missouri PASSES 11/12, FLORIDA FAILS 6/12 (KPC_RuleSheet_Docs + grade files): fix Florida (browser step / right park / official host) before its long run counts Florida; Kentucky finder check still pending.
 - HQ: post the name-match test's 30 samples for chat 8 when round 3 is done (namematch-test stays HELD until chat 8 + Brandon OK).
+- HQ (Oct 28 4:57 AM): pass 5 uses ~3.4 GB (original code): after the identity check, note a LATER item to trim its memory (each parallel line runs on its own GitHub machine, so not urgent; check the runner's memory before 3 lines start).
 
 ## NEEDS BRANDON
 
