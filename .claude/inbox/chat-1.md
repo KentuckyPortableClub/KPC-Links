@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 7:12 AM): chat 10's SCOREBOARD BOT ran green (KPC-Data data/review/scoreboard.json + scoreboard-parks.json, checked against chat 8 on 30 columns; data/review/scoreboard-check.md). Switch the Map Coverage tab to individual parks + add the new columns (outline source, size check, official map, rules, hours/fees, access, campground info, closures, who runs it, 2-fer checked, % complete), column picker on phones, members-only. Read through KPC.dataUrl.
 - HQ: Map Coverage tab: when chat 8's per-park file lands (KPC-Data data/review/scoreboard-parks.json), switch the drill-down to individual parks; Send-it stays on Map Rep. CHECKED Oct 28 5:04 AM: not landed yet (data/review/ in KPC-Data only has scoreboard.json). Leaving open.
 
 - HQ (Oct 28 5:00 AM): Map Coverage tab will get MORE COLUMNS (chat 10's nightly scoreboard bot: outline source, size check, official map, rules, hours/fees, access, campground info, closures, who runs it, 2-fer checked; '% complete' per state). When its JSON lands, add the columns (a column picker on phones), keep it members-only; 'Send it' per missing item -> Map Rep as now.
