@@ -59,3 +59,9 @@ Method: Playwright 390 px, local server; every path in `.github/kpc-moved.txt` (
 - Static grep: no fetch/src/href to a moved folder left outside KPC.dataUrl or a dfetch/dget/jget wrapper; no `'data/'+x` built paths.
 - **Bots: 1 left.** `kpc-world-key.yml` (kpc_world_key.py line 710 reads data/parkinfo/<CC>.json) has no kpc_overlay step: after the delete it silently skips the park-name matching (try/except), so the world key gets weaker. Add the overlay step. (kpc-discord-relay reads KPC-Data first, kpc-us-closures downloads from KPC-Data: both fine; every KPC-Data workflow has its overlay.)
 **VERDICT: PASS for the pages. B6 part 2 can go once kpc-world-key.yml gets its overlay line.**
+
+## RE-CHECK AFTER THE REAL DELETE (chat 8, Oct 27 ~8:50 PM; fresh clones of KPC-Links + KPC-Data, nothing blocked by hand)
+- Delete commit 80d6ed04 (10,093 files): every deleted path is on `.github/kpc-moved.txt`; nothing else deleted (checked up to HEAD 396741e8). Every listed folder is gone. locations.json, locations-ky.json, kpc-conditions.json, app/, kpc-ky-data.json, ky-dbnf-owned.geojson, data/us-key (+ overrides.json), ca-key, canada-bounds, world-key, pota, northam/state-gis, hunters, ky-*.json, holidays all still there.
+- Every deleted file exists in KPC-Data **except** `data/status/kpc_state_links.json` (KPC-Data/data/status only holds kpc_us_closures.json). Only build_app_pack.js reads it (in a try/catch, dates only): run the state-links bot in KPC-Data once so it is written there.
+- Pages: 119 x member + 119 x guest at 390 px + the same 20 spot checks: same result as the blocked test. 0 reads of a deleted path, 0 sideways scroll, 0 page errors, data shows. Same known test-only noise.
+**PASS** (one small note: kpc_state_links.json).
