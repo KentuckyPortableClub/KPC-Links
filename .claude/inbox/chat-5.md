@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- HQ (Oct 28 4:32 PM, Brandon) TONIGHT, URGENT-ish: LIVE CHAT WATCHER for 2 YouTube streams the club is on tonight: https://www.youtube.com/live/71y0HPdceXc and https://www.youtube.com/live/maI0-LOx8jY. READ ONLY, never posts in YouTube. A by-hand workflow in KPC-Data (YOUTUBE_API_KEY + KPC_DISCORD_STAFF_WEBHOOK): videos.list part=liveStreamingDetails → activeLiveChatId (waits/re-checks every 5 min until the stream goes live, stops when it ends or after 5 h); liveChatMessages.list polling at the API's pollingIntervalMillis (never faster than 20 s; watch the 10,000/day quota: each call = 5 units, two streams ~3 h ≈ 3,600, fine). Any message matching campout|camp out|KPC|Kentucky Portable|Taylorsville (case-insensitive) → one staff-room post: stream, author, the message, time, a link to the stream + the ready reply below. Never repeats a message. Dispatch it as soon as it's built (it waits for the streams). Never fails noisily. READY REPLY (staff paste it as themselves): "Thanks for asking! The KPC 2027 Campout is Sept 24-26, 2027 at Taylorsville Lake State Park, Kentucky. Details: https://kentuckyportableclub.github.io/KPC-Links/campout.html"
 
 ## NEEDS BRANDON
 
