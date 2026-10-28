@@ -1,4 +1,4 @@
-# Bot tuning check (chat 11, Oct 28 ~10:50 AM CDT) — PARTIAL: most proving runs have not landed yet
+# Bot tuning check (chat 11, Oct 28; updated 12:40 PM CDT) — what has landed is checked; the rest is marked WAITING
 
 Why partial: chat 10's table is in its REPORT (11:30 note), but at 15:43 UTC only 4 proving runs had written data: fed camps (KY), US access (MN), state camps (TN), Canada bounds/ca-key. I cannot read the Actions notices for KPC-Data (no API access here), so "gate PASS" below is the gate result stored in the data files, not the log. The other bots wait; say 'Inbox' after their commits land and I finish the table. KPC-Data here is a shallow clone: no "before" copies, so before/after counts are only where KPC-Links history has the old file.
 
@@ -11,19 +11,17 @@ Why partial: chat 10's table is in its REPORT (11:30 note), but at 15:43 UTC onl
 | Canada bounds / ca-key | YES (15:38/15:39) | not stored | Banff, Jasper, Bruce Pen., Gros Morne, Algonquin all still have outlines in canada-bounds/index.json | CA-2156 (retired) is still listed in KPC-Data's canada-bounds index and file, but KPC-Links' 15:39 commit deleted the file: mirror lag or an index not rewritten — chat 10 check |
 | parking explorer, US trails, state trails, new-refs, ref-check, new-lands, state-gis, bot-queue | NOT YET | - | - | trails: only US-4238, US-4556 + index/state-report changed at 10:42, no gate lines seen |
 
-## The 230 far-off access points
-Measured today over all access files (park pin from parkinfo, 270 km or more): 47,377 points, **54 still far**. Only MN has been rerun with the new code, so the drop from 230 is not proof of the fix; the other states are old files. What the 54 are:
-- Robert Moses (Long Island) US-2128 and Robert Moses (Thousand Islands) US-4374: 27 points, 502 km away — two parks of the same name sharing one layer = a NAME MIX-UP, not a timeout. Wrong on the map.
-- Copan WMA US-6347 (OK) 15 points at 321-327 km; Lost Nation US-10284 (NY) 3 at 376 km; Pine Hill US-5249 (NY) 1; Tillamook US-5461 (OR) 1; PA 086 Game Land 1; **Beaver Creek WMA US-12811 (MN) 2 at 273 km — still there after the MN proving run** (the new check did not catch it).
-- Katy Trail US-1766 (MO) 4 at 275-286 km = a 240-mile line park, legitimate.
-So 50 of 54 look wrong.
+## UPDATE 12:40 PM CDT (what changed since the 10:50 note)
+- **Canada: FIXED.** CA-2156 is gone from KPC-Data's canada-bounds index and file; Banff, Jasper, Algonquin, Gros Morne, Bruce Peninsula still have outlines.
+- **US trails: kept.** Appalachian Trail (US-4556) and the state trail Sheltowee (US-11181) are still in the data, nothing vanished.
+- **Access reruns (13 states) and fed-camp reruns (TN VA WV OH IN IL): NOT LANDED.** Last access commit is 15:57 UTC (before the 100 km name gate was written) and the fed-camp files still show 132 doubled ids (GA/SC, GA/FL ...). Measured today: **178 points are 100+ km from their park**; of these Katy Trail (32 of them) is a 240-mile line park and fine. Still wrong: Robert Moses x2 (27 points at 502 km), Copan WMA (15 at 321 km), Tillamook (12), Lake Sakakawea (13, 116-187 km: may be a long lake park, check), Sherman Creek (11), Dorer (5), Genesee Greenway/Erie Canal (10, line parks). The new gate in kpc_us_access.py (line 357-360) is the right test; this check of the output must wait for the rerun.
+- Waiting, no output seen: parking explorer, state trails (only the old 10:42 report), new-refs, ref-check, new-lands, state-gis, bot-queue. State camps TN landed earlier (267 camps).
+- I cannot read the Actions logs for KPC-Data from here, so gate results are only those stored in files.
 
-## Federal campgrounds that move INTO Kentucky
-None found. Checked every other state's campfed file for pins in Kentucky: Illinois/Indiana/Ohio/West Virginia hits are across the river, and TN/VA rows sit on the right side (Bandy Creek, Station Camp, Dale Hollow, Wilderness Road, Cranesnest, Flannagan, High Knob). Border cases to recheck after the TN/VA reruns: Lillydale (TN file, 36.604,-85.3025) and Willow Grove (36.587,-85.342), both within ~2-3 km of the line. Doubles still in the old files: Bear Creek (KY) and Blue Heron are in BOTH TN and KY (the other states have not been refiled yet; only KY ran). LBL (Piney, Energy Lake, Wranglers, Hillman Ferry, etc.) is in NO federal file at all: that is the "20 campgrounds with no point" gap, not a refile issue. So chat 8's Camp & Activate KY key does not need new rows from this refile.
-
-## FOR FABLE TONIGHT
-1. Access points wrong by NAME match: Robert Moses (two parks, 27 points 502 km away), Copan WMA (15 at 321 km), Lost Nation, Beaver Creek WMA. File: data/access/US-NY.json, US-OK.json, US-MN.json; how I know: haversine from the parkinfo pin to each point. The new "40% drop" gate does not catch wrong ties; add a "point more than 100 km from its park, except line parks" drop.
-2. LBL campgrounds absent from every federal/state camp file (Piney, Energy Lake, Wranglers, Hillman Ferry, Fenton, Gatlin Point, etc.): grep over data/campfed. Needs a source (USFS LBL page or ArcGIS).
-3. Rerun fed camps for TN, VA, WV, OH, IN, IL (states=KY only fixed KY): Bear Creek and Blue Heron still doubled in TN; the 196 wrong-state/132 doubles claim is untested outside KY.
-4. Canada: CA-2156 still in KPC-Data canada-bounds index/file; confirm the delete reached KPC-Data.
-5. Remaining bots (parking explorer, trails, new-refs, ref-check, new-lands, state-gis, bot-queue): no output yet; grade when they land (say 'Inbox').
+## FOR FABLE TONIGHT (ranked)
+1. **Access points tied to the wrong park by name** (Robert Moses x2: 27 points 502 km; Copan WMA 15 at 321 km; Tillamook 12; Sherman Creek 11). File data/access/US-NY.json, US-OK.json, US-OR.json, US-WA.json. How I know: distance from the parkinfo pin to each point. After the 13-state rerun lands, count again; if any remain, the gate misses 'name'-tied rows with a wrong park number.
+2. **Federal camps: finish the refile and prove it** (132 ids still in two states; Bear Creek (KY) + Blue Heron in TN and KY). File data/campfed/US-*.json. After the TN/VA/WV/OH/IN/IL rerun: count doubled ids (goal 0) and check Lillydale + Willow Grove (TN, 2-3 km from the KY line). No camp moves into Kentucky from the old files, so chat 8's KY answer key stands.
+3. **LBL campgrounds are in no camp file** (Piney, Energy Lake, Wranglers, Hillman Ferry...): chat 9 owns the source; it is also why Camp & Activate has 20 'no point' camps.
+4. **Documents bot rules pages** (chat 2): 83 WV parks share a whitewater rules page, 130 GA parks one publuu booklet, 53 FL a shooting-range page, 26 VA maps = inciweb. File data/docs/US-WV|GA|FL|VA.json. See KPC_Docs_chunks1-3_grade_desk.md.
+5. **Closures round 4**: grade when its 'grade me' line lands (round 3 = 77%; standing rules, a Virginia notice under KY, expired items).
+6. **Remaining tuned bots have shown nothing**: parking explorer, state trails, new-refs, ref-check, new-lands, state-gis, bot-queue. Ask for one 'Inbox' after tonight's runs; I will do the gate-by-gate table then.
