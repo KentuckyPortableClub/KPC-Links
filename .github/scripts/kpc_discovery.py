@@ -24,6 +24,7 @@ T0 = time.time()
 STEPS = set((os.environ.get('STEPS') or 'A,B,D').upper().replace(' ', '').split(','))
 STATES = [s.upper() for s in (os.environ.get('STATES') or 'OH').replace(',', ' ').split()]
 BUDGET = {'A': float(os.environ.get('MIN_A') or 40), 'B': float(os.environ.get('MIN_B') or 60), 'C': float(os.environ.get('MIN_C') or 45)}
+MAPDBG = []
 STAT = {'hits': 0, 'new': 0, 'already_read': 0, 'not_agency': 0, 'not_a_lead': 0, 'tested': 0, 'sleeping': 0, 'pages': 0, 'errors': 0}
 NOT_LEAD = re.compile(r'\bcity\b|council|municipal|historic marker|hunting unit|fire district|census place|zoning|parcel sales|'
                       r'school|voting|precinct|sewer|utility|hydrant|crime|permit applications?|\btest\b|\bcopy\b|sample', re.I)
@@ -92,6 +93,10 @@ def step_a(st, kws, known, leads):
                     org = org_name(it.get('orgId') or '')
                     county = bool(re.search(r'\bcounty\b', org, re.I))
                     if not T.agency_org(org, st) and not county: STAT['not_agency'] += 1; continue
+                    # Oct 27 (Ohio test: Great Smoky Mountains layers topped the list): a publisher that is NOT the state's own agency
+                    # (federal, county) counts only when the item's own title / snippet / tags name the state
+                    if not T.official_org(org, st) and not re.search(r'\b' + re.escape(sn) + r'\b', ' '.join([title, it.get('snippet') or '', ' '.join(it.get('tags') or [])]), re.I):
+                        STAT['not_this_state'] = STAT.get('not_this_state', 0) + 1; continue
                     lic = re.sub(r'<[^>]+>', ' ', it.get('licenseInfo') or '')[:200]
                     mod = time.strftime('%Y-%m-%d', time.gmtime((it.get('modified') or 0) / 1000)) if it.get('modified') else ''
                     if mod and mod < time.strftime('%Y-%m-%d', time.gmtime(time.time() - 10 * 365 * 86400)): STAT['not_a_lead'] += 1; continue
@@ -199,6 +204,7 @@ def step_c(st, leads):
             except Exception: errs[host] = errs.get(host, 0) + 1; time.sleep(3); continue  # noqa: BLE001,E702
             hit = [(h, t) for h, t in links if re.search(r'map|\.pdf|geopdf|brochure', h + ' ' + t, re.I)
                    and any(f in h.split('/')[2] for f in files) and not re.search(r'google\.|bing\.|apple\.com/maps|mapquest', h, re.I)]
+            if pages <= 3: MAPDBG.append({'ref': ref, 'url': url, 'links': len(links), 'map_like': [h for h, t in links if re.search(r'map|\.pdf', h + ' ' + t, re.I)][:8], 'kept': len(hit)})
             if hit:
                 k = f'map-page:{ref}'
                 leads[k] = {'url': hit[0][0], 'st': st, 'ref': ref, 'title': f'{name}: {hit[0][1] or "map"}', 'publisher': host, 'catalog': 'Maps tab',
@@ -215,7 +221,9 @@ def main():
     if not kws: notice('no keywords.json: nothing to search'); return
     known = already_read()
     old = load(D / 'leads.json', {}).get('leads', {})
-    leads = {k: v for k, v in old.items()}
+    # Oct 27: leads kept from an earlier run must pass today's publisher test too (the Ohio test kept Great Smoky Mountains layers)
+    leads = {k: v for k, v in old.items() if v.get('catalog') == 'Maps tab' or T.official_org(v.get('publisher', ''), v['st'])
+             or re.search(r'\b' + re.escape(T.STATE_NAMES.get(v['st'], v['st'])) + r'\b', v.get('title', ''), re.I)}
     before = set(leads)
     miss = T.missing() if 'B' in STEPS else {}
     for st in STATES:
@@ -232,9 +240,9 @@ def main():
     found = {}
     for k in new:
         for kw in leads[k].get('keywords', []): found.setdefault(kw, []).append(leads[k]['url'])
-    rank = sorted(leads.values(), key=lambda v: (-v.get('grade', 0), -v.get('parks_named', 0), v['st']))
+    rank = sorted(leads.values(), key=lambda v: (-v.get('grade', 0), not T.official_org(v.get('publisher', ''), v['st']), -v.get('parks_named', 0), v['st']))
     save_json(D / 'leads.json', {'about': 'Discovery bot leads (never used by the live data; chat 8 reads leads.md).', 'date': time.strftime('%Y-%m-%d'),
-                                 'stats': STAT, 'found_by_keyword_this_run': found, 'leads': leads}, indent=1)
+                                 'stats': STAT, 'maps_tab_sample': MAPDBG, 'found_by_keyword_this_run': found, 'leads': leads}, indent=1)
     md = ['# Discovery bot: top 50 leads', f"Run {time.strftime('%Y-%m-%d')}, states {' '.join(STATES)}. The bot's number is the queue order only; chat 8 gives the real A/B/C.", '',
           '| Band | Grade | State | Gap | What | Publisher | Parks named | Kind | Link |', '|---|---|---|---|---|---|---|---|---|']
     for x in rank[:50]:
