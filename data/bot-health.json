@@ -1,11 +1,12 @@
 {
  "open": [
+  "guard:maprep:M-527b (members page)",
   "refs:gone:CA-QC:CA-2156",
   "refs:gone:CA-SI:CA-0120",
   "refs:gone:CA-SP:CA-0122",
   "refs:gone:US-WY:US-10846,US-12729,US-6128,US-6153"
  ],
- "checked": "2026-10-27T00:43+00:00",
+ "checked": "2026-10-28T10:25+00:00",
  "weekly": {
   "site": {
    "part": "site",
