@@ -1,6 +1,6 @@
 # MS: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **89 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **45** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **91 of 155** parks joined to official land (same name + same kind of place). **0** to check by hand, **44** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,7 +9,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-11883 Emerald Mound National Historical Site (National Historical Site) → on Natchez Trace Parkway (~31,527 ac)
 - US-12638 Bobby Cleveland Park State Recreation Site (State Recreation Site) → on Lakeshore Recreation Area (~103 ac)
-- US-2549 Percy E Quin State Park (State Park) → on Percy Quinn State Park (~1,224 ac)
 - US-7073 William C. Deviney Wildlife Management Area (Wildlife Management Area) → on Indianola Wildlife Management Area (~1,019 ac)
 - US-7088 Choctaw Wildlife Management Area (Wildlife Management Area) → on Tombigbee National Forest (~67,449 ac)
 - US-7097 Chickasaw Wildlife Management Area (Wildlife Management Area) → on Tombigbee National Forest (~67,449 ac)
@@ -74,7 +73,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-8517 Flint Creek State Recreation Area (State Recreation Area)
 - US-8518 Maynor Creek State Recreation Area (State Recreation Area)
 - US-8519 Turkey Creek State Recreation Area (State Recreation Area)
-- US-9847 Clark Creek Natural Area State Park (State Park)
 - US-9849 Deer Island Coastal Park (Coastal Park)
 
 ## Biggest federal / state places with no POTA park joined (first 60)
@@ -123,6 +121,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Refuge · SCA · Unknown · ~764 ac
 - Davis Bayou Coastal Reserve · SCA · Unknown · ~744 ac
 - Muscadine Driftwood · SCA · Unknown · ~708 ac
+- SHEPARD STATE PARK ADMIN BY CITY OF GAUTIER ·  · MARIS / Mississippi Dept. of Wildlife, Fisheries & Parks (state parks 2026, zip; general area, not a legal description) · ~400 ac
 - Grand Bayou Coastal Reserve · SCA · Unknown · ~309 ac
 - Southeastern States District Office · PUB · BLM · ~284 ac
 - Farm Service Agency Interest Of La ·  · U.S. Fish & Wildlife Service (own map) · ~267 ac
@@ -138,4 +137,3 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Meridian National Fish Hatchery · FOTH · MERIDIAN NATIONAL FISH HATCHERY · ~106 ac
 - Wolf River Marshes (Feb 2008) · SCA · Mississippi Department of Marine Resources · ~105 ac
 - Lakeshore Recreation Area · LREC · Pearl River Valley and Water Supply District · ~103 ac
-- Pascagoula River Marshes (Sept 2002) · SCA · MS DEPARTMENT OF MARINE RESOURCES · ~79 ac

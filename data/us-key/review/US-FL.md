@@ -76,8 +76,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
 - Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
 - Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
-- Cross Florida Greenway ·  · Florida DEP Division of State Lands (land, state GIS table) · ~32,181 ac
 - CALIFORNIA SWAMP ·  · Suwannee River Water Management District (land, state GIS table) · ~32,033 ac
 - Bright Hour Watershed ·  · Florida Natural Areas Inventory conservation lands · ~31,989 ac
 - Tyndall Air Force Base ·  · Florida Natural Areas Inventory conservation lands · ~29,946 ac
@@ -93,3 +91,5 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Farmton Mitigation Bank ·  · Florida Natural Areas Inventory conservation lands · ~24,323 ac
 - Bradwell Bay Wilderness ·  · National Wilderness Preservation System (Forest Service map) · ~24,222 ac
 - Upper Steinhatchee Conservation Area · LCA · Suwannee River Water Management District · ~23,368 ac
+- Duette Preserve ·  · Florida Natural Areas Inventory conservation lands · ~21,907 ac
+- Lake Apopka Restoration Area · LCA · St. Johns River Water Management District · ~20,024 ac
