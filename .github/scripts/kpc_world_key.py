@@ -152,6 +152,10 @@ SRC['FR'] = SRC['FR'] + [('ONF public forests (credit ONF)', 'arcgis', 'https://
                          ('IGN Géoplateforme INPN regional nature reserves', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_rnr:rnr'),
                          ('IGN Géoplateforme INPN biological reserves (ONF)', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_rb:rb'),
                          ('IGN Géoplateforme INPN Conservatoire du littoral land (public body)', 'wfs', 'https://data.geopf.fr/wfs/ows', 'patrinat_cdl:conservatoire_littoral')]
+# Oct 28 (chat 9, world round W4): Ireland's Coillte (state forest company) property boundaries (6,194 named properties; Coillte's
+# own account, terms of use = CC BY 4.0 per chat 8, credit 'Coillte Teoranta'). W20-1: a Coillte forest POTA calls a National
+# Park / Forest Reserve is state forest.
+SRC['IE'] = SRC['IE'] + [('Coillte properties (credit Coillte Teoranta)', 'arcgis', 'https://services7.arcgis.com/6LSAdqgf43oKRpP6/arcgis/rest/services/Coillte_Boundaries_Consultation/FeatureServer/2')]
 COUNTRIES = (os.environ.get('COUNTRIES') or 'AU DE GB JP PL ES FR CH AT NL PT SE CZ SI NO RO IT BE DK FI HU SK HR IE LT LV EE LU').upper().split()
 
 
