@@ -1,0 +1,1520 @@
+{
+ "about": "Chat 9 world round W3 (Oct 28): the rest of the top 10: GB (National Trust 'Always Open', NatureScot national parks + National Scenic Areas, FLS forest estate), AU (Queensland protected areas on another host), FR (IGN Géoplateforme protected-area layers, ONF public forests), DE (Länder state forests), JP/IT (anything reachable). Results: roundW3-tested.json.",
+ "date": "2026-10-28",
+ "layers": [
+  {
+   "st": "AU",
+   "kind": "park",
+   "ag": "Queensland?",
+   "url": "https://services-ap1.arcgis.com/s047i49VH0D2nqIM/ArcGIS/rest/services/Protected_areas/FeatureServer",
+   "note": "desk lead: who publishes it?",
+   "answers": true,
+   "service": "",
+   "licence": "© State of Queensland (Department of Environment and Science) 2021",
+   "years_in_text": [
+    "1959",
+    "1992"
+   ],
+   "description": "Provides a graphical representation of the protected area estate as managed by QPWS (Queensland Parks and Wildlife Service) for areas managed under the Nature Conservation Act 1992 (National Park of various types, Conservation Park and Resources Reserve), and areas managed under the Forestry Act 1959 (State Forest, Forest Reserve and Timber Reserve).",
+   "item_licence": "Not to be used as a definitive absolute location of reserve boundaries. This dataset is derived from the Digital Cadastre DataBase (DCDB). The accuracy of the spatial representation is determined by the accuracy of records in the version of the DCDB from which this dataset was derived.",
+   "item_modified": "2024-04-08",
+   "item_owner": "mike@enhar.com.au",
+   "item_org": "GIS Team",
+   "item_title": "Protected_areas",
+   "item_credits": "© State of Queensland (Department of Environment and Science) 2021",
+   "item_about": "This dataset is the spatial representation of reserves, protected for the conservation of natural and cultural values and areas managed for the production of forest resources. Provides a graphical representation of the protected area estate as managed by QPWS (Queensland Parks and Wildlife Service) for areas managed under the Nature Conservation Act 1992 (National Park of various types, Conservation Park and Resources Reserve), and areas managed under the Forestry Act 1959 (State Forest, Forest Reserve and Timber Reserve).",
+   "layers": [
+    {
+     "id": 177,
+     "name": "Protected_areas",
+     "geom": "Polygon",
+     "nameField": "ESTATENAME",
+     "ownerField": "EST_TENURE",
+     "typeField": "EST_TYPE",
+     "fields": [
+      "OBJECTID",
+      "LOT",
+      "PLAN_",
+      "LOTPLAN",
+      "SYSINTCODE",
+      "ESTATENAME",
+      "NAMEABBREV",
+      "NAME_CAPS",
+      "EST_TYPE",
+      "EST_TENURE",
+      "LEGISLATED",
+      "GAZ_AREAHA",
+      "ZONE",
+      "IUCN_CODE",
+      "GLR_NUMBER",
+      "QPWS_REG",
+      "CURGAZDATE",
+      "SHIRE",
+      "FEAT_NAME_",
+      "PA_AREAHA",
+      "ENCUMBERAN",
+      "IJMA",
+      "LONGITUDE",
+      "LATITUDE",
+      "SHAPE_Leng",
+      "Shape__Area",
+      "Shape__Length"
+     ],
+     "last_edit": "2024-04-08",
+     "layer_copyright": "© State of Queensland (Department of Environment and Science) 2021",
+     "records": 1926,
+     "sample": [
+      "Melsonby (Gaarraay) National Park (Cape ",
+      "Daintree National Park (Cape York Penins",
+      "Daintree National Park (Cape York Penins",
+      "Olkola National Park (Cape York Peninsul",
+      "Daintree National Park (Cape York Penins",
+      "Daintree National Park (Cape York Penins",
+      "Ma'alpiku Island National Park (Cape Yor",
+      "Hope Islands National Park (Cape York Pe"
+     ],
+     "owner_values": [
+      "CP",
+      "FR",
+      "NP",
+      "NS",
+      "NY",
+      "RR",
+      "SF",
+      "TR"
+     ],
+     "type_values": [
+      "CP",
+      "FR",
+      "NP",
+      "NS",
+      "NY",
+      "RR",
+      "SF",
+      "TR"
+     ]
+    }
+   ]
+  }
+ ],
+ "searches": [
+  {
+   "st": "GB",
+   "q": "\"Always Open\" AND (\"National Trust\" OR NationalTrust)",
+   "why": "NT Always Open land (Q3: list only)",
+   "found": [
+    {
+     "title": "National Trust Open Data Land - England and Wales (2017) Always Open",
+     "org": "",
+     "owner": "NationalTrust.Public",
+     "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Always_Open/FeatureServer",
+     "modified": "2025-10-01",
+     "licence": "CC BY 4.0 Deed | Attribution 4.0 International | Creative Commons"
+    },
+    {
+     "title": "National Trust Open Data Land, England, Wales 2017 - Limited Access",
+     "org": "",
+     "owner": "NationalTrust.Public",
+     "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Limited_Access/FeatureServer",
+     "modified": "2025-10-01",
+     "licence": "CC BY 4.0 Deed | Attribution 4.0 International | Creative Commons"
+    },
+    {
+     "title": "Core Data Non WMS",
+     "org": "",
+     "owner": "BlakemanB_GoBe",
+     "url": "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/arcgis/rest/services/Core_Data_Non_WMS/FeatureServer",
+     "modified": "2023-08-10",
+     "licence": ""
+    },
+    {
+     "title": "Consult",
+     "org": "",
+     "owner": "WBC_DavidEgginton",
+     "url": "https://services.arcgis.com/Uk58AEewwvNNTAX2/arcgis/rest/services/Consult/FeatureServer",
+     "modified": "2026-07-20",
+     "licence": ""
+    },
+    {
+     "title": "Assets 2019a",
+     "org": "",
+     "owner": "MorganWilkinson",
+     "url": "https://services6.arcgis.com/OrnZGdkMNbhaAGKa/arcgis/rest/services/Devon_Cornwall_Isles_of_Scilly_Coastal_Asset_Project_2019/FeatureServer",
+     "modified": "2024-06-20",
+     "licence": ""
+    },
+    {
+     "title": "10_ Work in Sevenoaks online_WFL1",
+     "org": "",
+     "owner": "GIS.Team_SDC",
+     "url": "https://services2.arcgis.com/HAS8Vm1CVGKoCiX6/arcgis/rest/services/10__Work_in_Sevenoaks_online_WFL1/FeatureServer",
+     "modified": "2022-01-25",
+     "licence": ""
+    },
+    {
+     "title": "National Trust Land Always Open  Natural England",
+     "org": "",
+     "owner": "MacKenzieWRussell",
+     "url": "https://services5.arcgis.com/ExUbL1bVsDzGUxhd/arcgis/rest/services/National_Trust_Land_Always_Open_©_Natural_England/FeatureServer",
+     "modified": "2024-11-28",
+     "licence": ""
+    },
+    {
+     "title": "NP11 geodatabase",
+     "org": "",
+     "owner": "Petra.Wade",
+     "url": "https://services-eu1.arcgis.com/ZOdPfBS3aqqDYPUQ/arcgis/rest/services/NPArcGISOnline_gdb/FeatureServer",
+     "modified": "2023-07-13",
+     "licence": ""
+    },
+    {
+     "title": "10_ Work in Sevenoaks online_WFL1",
+     "org": "",
+     "owner": "GIS.Admin_SDC",
+     "url": "https://services-eu1.arcgis.com/POJbzR621qo3Lw3P/arcgis/rest/services/10__Work_in_Sevenoaks_online_WFL1/FeatureServer",
+     "modified": "2025-07-14",
+     "licence": ""
+    },
+    {
+     "title": "Outdoor Partners - Referrer",
+     "org": "",
+     "owner": "sportengland",
+     "url": "https://utility.arcgis.com/usrsvcs/servers/8ebd9d0cb74946dbba346c968652d6f0/rest/services/Outdoor_Partners/FeatureServer",
+     "modified": "2023-06-26",
+     "licence": ""
+    },
+    {
+     "title": "National Trust - Land Always Open (England and Wales)",
+     "org": "",
+     "owner": "svc_SmartAtlas",
+     "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/ArcGIS/rest/services/National_Trust_Open_Data_Land_Always_Open/FeatureServer",
+     "modified": "2026-10-13",
+     "licence": "CC BY-SA 4.0 Deed | Attribution-ShareAlike 4.0 International | Creative Commons"
+    },
+    {
+     "title": "National Trust Open Data: Land - Always Open",
+     "org": "",
+     "owner": "GeorgeDowns_LivUni",
+     "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/arcgis/rest/services/National_Trust_Open_Data_Land_Always_Open/FeatureServer",
+     "modified": "2025-06-24",
+     "licence": ""
+    },
+    {
+     "title": "Environmental Map_WFL1",
+     "org": "",
+     "owner": "jhepburn_ncluni",
+     "url": "https://services3.arcgis.com/zAmy2uQQIuJsmD8h/arcgis/rest/services/Environmental_Map_WFL1/FeatureServer",
+     "modified": "2019-09-05",
+     "licence": ""
+    },
+    {
+     "title": "NFM Opportunities for Rivers Trusts and the National Trust",
+     "org": "",
+     "owner": "RTheather",
+     "url": "https://services3.arcgis.com/Bb8lfThdhugyc4G3/arcgis/rest/services/NFM_Opportunities_for_Rivers_Trust_and_National__Trusts/FeatureServer",
+     "modified": "2026-08-06",
+     "licence": ""
+    },
+    {
+     "title": "Routes within 1km of National Trust always open land v2",
+     "org": "",
+     "owner": "DanielRavenEllison",
+     "url": "https://services-eu1.arcgis.com/L9YbIKu9X1wSeT12/arcgis/rest/services/Routes within 1km of National Trust always open land v2/FeatureServer",
+     "modified": "2025-03-18",
+     "licence": ""
+    },
+    {
+     "title": "National Trust - Limited Access Land (England and Wales)",
+     "org": "",
+     "owner": "svc_SmartAtlas",
+     "url": "https://services-eu1.arcgis.com/NPIbx47lsIiu2pqz/ArcGIS/rest/services/National_Trust_Open_Data_Land_Limited_Access/FeatureServer/0",
+     "modified": "2026-10-13",
+     "licence": "Open Government Licence"
+    }
+   ]
+  },
+  {
+   "st": "GB",
+   "q": "(\"National Scenic Areas\" OR \"National Parks\") AND (NatureScot OR \"Scottish Natural Heritage\")",
+   "why": "NatureScot NP + NSA",
+   "found": [
+    {
+     "title": "Sites_of_Special_Scientific_Interest",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Sites_of_Special_Scientific_Interest/FeatureServer",
+     "modified": "2025-10-16",
+     "licence": "Available under the Open Government Licence  https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/ "
+    },
+    {
+     "title": "Map2_WFL1",
+     "org": "",
+     "owner": "v1chemmi",
+     "url": "https://services8.arcgis.com/7L75T5PDROpCazRR/arcgis/rest/services/Map2_WFL1/FeatureServer",
+     "modified": "2023-03-15",
+     "licence": ""
+    },
+    {
+     "title": "LDPdesignation",
+     "org": "",
+     "owner": "carolinehogan_pkc",
+     "url": "https://services-eu1.arcgis.com/WD0cvOmDKf7CA0Xy/arcgis/rest/services/LDPdesignation/FeatureServer",
+     "modified": "2026-01-08",
+     "licence": "© Crown copyright and database rights 2026 OS AC0000805756 Perth and Kinross Council. Use of this data is subject to ter"
+    },
+    {
+     "title": "Designated sites on NatureScot SiteLink (NOT FOR DOWNLOAD)",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Designated_sites_on_NatureScot_SiteLink/FeatureServer",
+     "modified": "2023-08-29",
+     "licence": "Available under the Open Government Licence http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+     "title": "Geological_Conservation_Review_sites",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Geological_Conservation_Review_sites/FeatureServer",
+     "modified": "2026-06-26",
+     "licence": "Available under the Open Government Licence http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+     "title": "Holyrood_data",
+     "org": "",
+     "owner": "gis_admin_HESPortal",
+     "url": "https://services7.arcgis.com/F9swZCiSNZATN8SI/arcgis/rest/services/Holyrood_data/FeatureServer",
+     "modified": "2024-07-26",
+     "licence": "Copyright © 2024 Historic Environment Scotland.  No part of this storymap may be reproduced or distributed for commercia"
+    },
+    {
+     "title": "Sites of Special Scientific Interest (SSSIs) UK",
+     "org": "",
+     "owner": "Chris.Parkin_APHA",
+     "url": "https://services.arcgis.com/JJzESW51TqeY9uat/arcgis/rest/services/SSSI_UK_Merged/FeatureServer",
+     "modified": "2023-09-20",
+     "licence": "Available under the Open Government Licence http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+    },
+    {
+     "title": "Core Data Non WMS",
+     "org": "",
+     "owner": "BlakemanB_GoBe",
+     "url": "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/arcgis/rest/services/Core_Data_Non_WMS/FeatureServer",
+     "modified": "2023-08-10",
+     "licence": ""
+    },
+    {
+     "title": "National Nature Reserves",
+     "org": "",
+     "owner": "SupportServices_Creator1",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/National_Nature_Reserves/FeatureServer/0",
+     "modified": "2026-07-21",
+     "licence": "Open Data  Copyright Attribution: © NatureScot. Contains Ordnance Survey data © Crown copyright and database right (year"
+    },
+    {
+     "title": "Sites of Special Scientific Interest",
+     "org": "",
+     "owner": "SupportServices_Creator1",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/ArcGIS/rest/services/Sites_of_Special_Scientific_Interest/FeatureServer",
+     "modified": "2026-07-21",
+     "licence": "Open Data  Copyright Attribution: © NatureScot. Contains Ordnance Survey data © Crown copyright and database right (year"
+    },
+    {
+     "title": "Clydesdale Way Master Map v4_WFL1",
+     "org": "",
+     "owner": "Mara.Shepherd@stantec.com_stantec",
+     "url": "https://services.arcgis.com/DN2fPfpggEPlLhP6/arcgis/rest/services/Clydesdale_Way_Master_Map_v4_WFL1/FeatureServer",
+     "modified": "2025-12-08",
+     "licence": ""
+    },
+    {
+     "title": "Sites of Special Scientific Interest",
+     "org": "",
+     "owner": "gis_moray",
+     "url": "https://cagmap.snh.gov.uk/arcgis/rest/services/snh_protected_sites/MapServer/12",
+     "modified": "2020-08-03",
+     "licence": ""
+    },
+    {
+     "title": "naturescot national nature reserves (scotland) - open data",
+     "org": "",
+     "owner": "gis@stirling",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/National_Nature_Reserves/FeatureServer/0",
+     "modified": "2026-07-26",
+     "licence": "Data Licensing     Data published by the Council at a URL beginning  data.stirling.gov.uk  is open to use, you do not ha"
+    },
+    {
+     "title": "Sites of Special Scientific Interest (Scotland)",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://cagmap.snh.gov.uk/arcgis/rest/services/snh_protected_sites/MapServer/12",
+     "modified": "2021-11-03",
+     "licence": "Available under the Open Government Licence (  https://www.nationalarchives.gov.uk/doc/open-government-licence/  )"
+    },
+    {
+     "title": "sites of special scientific interest (planning policy area) naturescot - open da",
+     "org": "",
+     "owner": "gis@stirling",
+     "url": "https://services-eu1.arcgis.com/cECIr59LclpO818r/arcgis/rest/services/sssi_planning/FeatureServer",
+     "modified": "2025-03-30",
+     "licence": "Data Licensing     Data published by the Council at a URL beginning  data.stirling.gov.uk  is open to use, you do not ha"
+    },
+    {
+     "title": "core paths (stirling council) - open data",
+     "org": "",
+     "owner": "gis@stirling",
+     "url": "https://services-eu1.arcgis.com/cECIr59LclpO818r/arcgis/rest/services/core_paths/FeatureServer",
+     "modified": "2025-03-31",
+     "licence": "Data Licensing     Data published by the Council at a URL beginning  data.stirling.gov.uk  is open to use, you do not ha"
+    },
+    {
+     "title": "Core Paths",
+     "org": "DCC Public GIS Portal",
+     "owner": "gis_dundeecity",
+     "url": "https://services.arcgis.com/GlZ1P6ksdiXNYhvC/arcgis/rest/services/Core_Paths_2020/FeatureServer",
+     "modified": "2025-10-06",
+     "licence": "This information is licensed under the  Open Government Licence 3.0 ."
+    },
+    {
+     "title": "Greenbelt_Appraisal2025_WFL1",
+     "org": "",
+     "owner": "Grant_McFarlane",
+     "url": "https://services2.arcgis.com/Ne8d9gKn5SJ3eAaw/arcgis/rest/services/Greenbelt_Appraisal2025_WFL1/FeatureServer",
+     "modified": "2026-10-23",
+     "licence": ""
+    },
+    {
+     "title": "National Nature Reserves (Scotland) - DEPRECATED",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://cagmap.snh.gov.uk/arcgis/rest/services/snh_protected_sites/MapServer/8",
+     "modified": "2026-08-06",
+     "licence": "Available under the Open Government Licence (  https://www.nationalarchives.gov.uk/doc/open-government-licence/  )"
+    },
+    {
+     "title": "Geomorphology of the Cairngorm Mountains",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Geomorphology_of_the_Cairngorm_Mountains/FeatureServer",
+     "modified": "2023-03-08",
+     "licence": ""
+    },
+    {
+     "title": "Draft Employment Land Review 2025",
+     "org": "",
+     "owner": "Grant_McFarlane",
+     "url": "https://services2.arcgis.com/Ne8d9gKn5SJ3eAaw/arcgis/rest/services/Draft_Employment_Land_Review_2025_WFL1/FeatureServer",
+     "modified": "2026-10-23",
+     "licence": "This mapping is for viewing and consultation purposes only, is indicative and must not be downloaded or circulated witho"
+    },
+    {
+     "title": "CNP Grassland Mapping Project 2020-22 - Polygons",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/CNPGrasslandMapping_2020to2022_Polygons/FeatureServer",
+     "modified": "2023-07-31",
+     "licence": "No use limitations.    Available under the Open Government Licence (   https://www.nationalarchives.gov.uk/doc/open-gove"
+    },
+    {
+     "title": "sites of special scientific interest (scotland) naturescot - open data",
+     "org": "",
+     "owner": "gis@stirling",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/ArcGIS/rest/services/Sites_of_Special_Scientific_Interest/FeatureServer/0",
+     "modified": "2025-03-30",
+     "licence": "Data Licensing     Data published by the Council at a URL beginning  data.stirling.gov.uk  is open to use, you do not ha"
+    },
+    {
+     "title": "NNRs with extra info in table for dashboard",
+     "org": "",
+     "owner": "SNH_Maps",
+     "url": "https://services1.arcgis.com/LM9GyVFsughzHdbO/arcgis/rest/services/Join_Features_to_Dissolve_NNRs_updated_table_with_dates/FeatureServer",
+     "modified": "2026-08-10",
+     "licence": "Available under the Open Government Licence (https://www.nationalarchives.gov.uk/doc/open-government-licence/)"
+    },
+    {
+     "title": "Sites of Special Scientific Interest",
+     "org": "",
+     "owner": "planning_ren",
+     "url": "https://services2.arcgis.com/fq3IIWzrdf1xBoPI/arcgis/rest/services/Sites_of_Special_Scientific_Interest/FeatureServer",
+     "modified": "2026-09-30",
+     "licence": "No limitations on public access    Contains SNH information licensed under the Open Government Licence v3.0.   &nbsp;"
+    }
+   ]
+  },
+  {
+   "st": "GB",
+   "q": "(\"Forestry and Land Scotland\" OR FLS) AND (\"national forest estate\" OR \"land holdings\" OR boundary)",
+   "why": "FLS estate (current copy)",
+   "found": [
+    {
+     "title": "WaterRegions",
+     "org": "",
+     "owner": "RegionalDistrictofNanaimo",
+     "url": "https://services5.arcgis.com/ljirwBn328byHlxq/arcgis/rest/services/WaterRegions/FeatureServer",
+     "modified": "2022-08-19",
+     "licence": "This information has been compiled for convenience purposes; legal accuracy cannot be guaranteed.  This app and all of i"
+    },
+    {
+     "title": "WaterRegions_October2023",
+     "org": "",
+     "owner": "RegionalDistrictofNanaimo",
+     "url": "https://services5.arcgis.com/ljirwBn328byHlxq/arcgis/rest/services/WaterRegions_October2023/FeatureServer",
+     "modified": "2023-11-02",
+     "licence": ""
+    },
+    {
+     "title": "National Forest Inventory England 2023",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Estate_England_2023/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "Map_Services_WFL1",
+     "org": "",
+     "owner": "Eromonsele.akhidenor_GOJ",
+     "url": "https://services6.arcgis.com/3R3y1KXaPJ9BFnsU/arcgis/rest/services/Map_Services_WFL1/FeatureServer",
+     "modified": "2022-06-20",
+     "licence": ""
+    },
+    {
+     "title": "Hospital Access_WFL1",
+     "org": "",
+     "owner": "younge38_utoronto",
+     "url": "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/Hospital_Access_WFL1/FeatureServer",
+     "modified": "2025-11-30",
+     "licence": ""
+    },
+    {
+     "title": "National Forest Inventory GB 2023",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_GB_2023/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "PublicLand_2024_Update",
+     "org": "",
+     "owner": "richard.scales@gov.scot",
+     "url": "https://services-eu1.arcgis.com/4QkhM5AS8YOlkb6T/arcgis/rest/services/PublicLand_2024_Update/FeatureServer",
+     "modified": "2025-02-03",
+     "licence": ""
+    },
+    {
+     "title": "Statutory Plant Health Notices - Scotland",
+     "org": "",
+     "owner": "Scottish.Forestry",
+     "url": "https://services9.arcgis.com/RCPJF8Z8BrfjscvL/arcgis/rest/services/Statutory_Plant_Health_Notice_Scotland/FeatureServer",
+     "modified": "2026-10-19",
+     "licence": "In using the data from this website you acknowledge that you have read, understood and agree to abide by the terms and c"
+    },
+    {
+     "title": "Regional_Boundaries_Forestry_and_Land_Scotland",
+     "org": "",
+     "owner": "forestryandland.fls",
+     "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Regional_Boundaries_Forestry_and_Land_Scotland/FeatureServer",
+     "modified": "2022-09-21",
+     "licence": "Open Government Licence"
+    },
+    {
+     "title": "National Forest Inventory GB 2024",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_GB_2024/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "National Forest Inventory GB 2022",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Woodland_GB_2022/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "National Forest Inventory England 2022",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_England_2022/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "&nbsp;   There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government L"
+    },
+    {
+     "title": "National Forest Estate Legal Boundary Scotland",
+     "org": "",
+     "owner": "forestryandland.fls",
+     "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Legal_Boundary_Scot_Apr20/FeatureServer",
+     "modified": "2024-04-26",
+     "licence": ""
+    },
+    {
+     "title": "Forest Blocks (Public)",
+     "org": "",
+     "owner": "forestryandland.fls",
+     "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Forest_Blocks_WFS/FeatureServer",
+     "modified": "2026-06-08",
+     "licence": "Open Govt license v 3.0  Forestry and Land Scotland makes no warranty as to the content, accuracy or completeness of the"
+    },
+    {
+     "title": "National Forest Inventory Scotland 2023",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Scotland_2023/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "National Forest Inventory Scotland 2024",
+     "org": "",
+     "owner": "SupportServices_Creator1",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Scotland_2024/FeatureServer/0",
+     "modified": "2026-07-21",
+     "licence": "Open Data  Attribution statement: © Forestry Commission copyright and/or database right 2025. All rights reserved."
+    },
+    {
+     "title": "Forestry and Land Scotland Boundary",
+     "org": "",
+     "owner": "forestryandland.fls",
+     "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/FLS_Boundary/FeatureServer",
+     "modified": "2026-01-28",
+     "licence": "Open Government License v 3.0"
+    },
+    {
+     "title": "National Forest Inventory Scotland 2022",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_GB_2022_view/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp;   Use of this data is subject to the Open Government Licence."
+    },
+    {
+     "title": "National Forest Inventory Scotland 2024",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Scotland_2024/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "Districts",
+     "org": "",
+     "owner": "forestryandland.fls",
+     "url": "https://services6.arcgis.com/JF5BD4Y14a3LnPcJ/arcgis/rest/services/Districts/FeatureServer",
+     "modified": "2023-06-30",
+     "licence": ""
+    },
+    {
+     "title": "National Forest Inventory Wales 2022",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Wales_2022/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp;   Use of this data is subject to the Open Government Licence."
+    },
+    {
+     "title": "National Forest Inventory Wales 2023",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Wales_2023/FeatureServer",
+     "modified": "2026-08-28",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    },
+    {
+     "title": "HospitalAccessAnalysis_WFL1",
+     "org": "",
+     "owner": "younge38_utoronto",
+     "url": "https://services1.arcgis.com/9NvE8jKNWWlDGsUJ/arcgis/rest/services/HospitalAccessAnalysis_WFL1/FeatureServer",
+     "modified": "2025-11-28",
+     "licence": ""
+    },
+    {
+     "title": "Historic_AADT_2017",
+     "org": "",
+     "owner": "AndroValleyCOG",
+     "url": "https://services.arcgis.com/kDP7jYU14mbNILNN/arcgis/rest/services/Historic_AADT_2017/FeatureServer",
+     "modified": "2020-01-06",
+     "licence": "For information only"
+    },
+    {
+     "title": "National Forest Inventory Scotland 2025",
+     "org": "",
+     "owner": "mapping.geodata_forestry",
+     "url": "https://services2.arcgis.com/mHXjwgl3OARRqqD4/arcgis/rest/services/National_Forest_Inventory_Scotland_2025/FeatureServer",
+     "modified": "2026-09-30",
+     "licence": "There are no public access constraints to this data.&nbsp; Use of this data is subject to the Open Government Licence.  "
+    }
+   ]
+  },
+  {
+   "st": "AU",
+   "q": "Queensland AND (\"protected areas\" OR \"national parks\") AND (boundary OR estate) AND (DESI OR \"Department of Environment\" OR QPWS)",
+   "why": "QLD protected areas (other host)",
+   "found": [
+    {
+     "title": "Queensland Parks Fire History",
+     "org": "",
+     "owner": "Spatial.Services_qgsp",
+     "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksFireHistory/FeatureServer",
+     "modified": "2022-07-14",
+     "licence": "This material is licensed under a    Creative Commons - Attribution 4.0  licence.   To request the data in a different f"
+    },
+    {
+     "title": "Administrative Boundaries",
+     "org": "",
+     "owner": "sharleneb",
+     "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/TerrainNRM_Administrative/FeatureServer",
+     "modified": "2019-07-24",
+     "licence": "CC-by-sa. This work is published under a Creative Commons - By Attribution - ShareAlike 4.0 International license. Inclu"
+    },
+    {
+     "title": "Ross",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Ross/FeatureServer",
+     "modified": "2018-08-01",
+     "licence": ""
+    },
+    {
+     "title": "GPT Stormwater Infrastructure and Hydrology Public",
+     "org": "",
+     "owner": "Harley_TL",
+     "url": "https://services6.arcgis.com/6cWkEIAYsIBPrRMb/arcgis/rest/services/GPT_Stormwater_Infrastructure_and_Hydrology_Public/FeatureServer",
+     "modified": "2025-05-12",
+     "licence": ""
+    },
+    {
+     "title": "Upper Brisbane",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Upper_Brisbane/FeatureServer",
+     "modified": "2019-11-25",
+     "licence": ""
+    },
+    {
+     "title": "Shoalwater_CS_U1",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Shoalwater_CS_U1/FeatureServer",
+     "modified": "2026-06-15",
+     "licence": ""
+    },
+    {
+     "title": "WTL Daintree Catchment",
+     "org": "",
+     "owner": "sharleneb",
+     "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/Daintree_Catchment_new/FeatureServer",
+     "modified": "2017-08-29",
+     "licence": ""
+    },
+    {
+     "title": "Styx_CS_MAPData",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Styx_CS_MAPData/FeatureServer",
+     "modified": "2026-07-15",
+     "licence": ""
+    },
+    {
+     "title": "RTBC_Story_Map",
+     "org": "",
+     "owner": "pkoch_sagov",
+     "url": "https://services5.arcgis.com/ULv86JkyrywnrlnW/arcgis/rest/services/RTBC_Story_Map/FeatureServer",
+     "modified": "2022-08-11",
+     "licence": ""
+    },
+    {
+     "title": "QPWS_Points",
+     "org": "",
+     "owner": "Spatial.Services_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/QPWS_Points/FeatureServer",
+     "modified": "2021-10-19",
+     "licence": "QPWS Staff Only"
+    },
+    {
+     "title": "South East Queensland Protected Areas 2020",
+     "org": "",
+     "owner": "mwalker_seqcatchments",
+     "url": "https://services6.arcgis.com/sbUjYcF5FKWKRP5Q/arcgis/rest/services/South_East_Queensland_Protected_Areas_2020/FeatureServer",
+     "modified": "2026-06-25",
+     "licence": "Not to be used as a definitive absolute location of reserve boundaries. This dataset is derived from the Digital Cadastr"
+    },
+    {
+     "title": "Values of the catchment",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/Values_of_the_catchment/FeatureServer",
+     "modified": "2025-09-08",
+     "licence": "The data in this service is adapted specifically for use in the Noosa Catchment Story 2.0 and may not reflect the latest"
+    },
+    {
+     "title": "CalliopeUpdate",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/CalliopeUpdate/FeatureServer",
+     "modified": "2018-05-15",
+     "licence": ""
+    },
+    {
+     "title": "pilbara_values_2021_WFL1",
+     "org": "",
+     "owner": "uqmdave5_UQmaps",
+     "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/pilbara_values_2021_WFL1/FeatureServer",
+     "modified": "2021-11-16",
+     "licence": ""
+    },
+    {
+     "title": "Kakadu Park Boundary",
+     "org": "",
+     "owner": "bcapuano23@COAGIS",
+     "url": "https://services1.arcgis.com/0EOqWPtpCmgQr2ay/arcgis/rest/services/Kakadu_Park_Boundary/FeatureServer",
+     "modified": "2021-05-05",
+     "licence": ""
+    },
+    {
+     "title": "10000_VIC_002_ConservationAndHeritage",
+     "org": "",
+     "owner": "AGOL_Admin_VIC",
+     "url": "https://services9.arcgis.com/bOwKF88V88IGdqzT/arcgis/rest/services/10000_VIC_002_ConservationAndHeritage/FeatureServer",
+     "modified": "2024-03-03",
+     "licence": ""
+    },
+    {
+     "title": "NorthernGoldCoast_Estate",
+     "org": "",
+     "owner": "wetlands_qgsp",
+     "url": "https://services1.arcgis.com/HrMiNYsSqqPpLTDE/arcgis/rest/services/NorthernGoldCoast_Estate/FeatureServer",
+     "modified": "2017-05-08",
+     "licence": ""
+    },
+    {
+     "title": "Protected Areas",
+     "org": "",
+     "owner": "sharleneb",
+     "url": "https://services3.arcgis.com/EksqEpNbvM07IZjR/arcgis/rest/services/Protected_Areas/FeatureServer",
+     "modified": "2024-08-28",
+     "licence": "Not to be used as a definitive absolute location of land parcel boundaries.Refer to the ACC_CODE attribute for the accur"
+    },
+    {
+     "title": "CAPAD2018 terrestrial",
+     "org": "",
+     "owner": "nathaniel.meyer_CL",
+     "url": "https://services.arcgis.com/xDL0LTy98rbQTFbo/arcgis/rest/services/CAPAD2018_terrestrial/FeatureServer",
+     "modified": "2025-08-13",
+     "licence": ""
+    },
+    {
+     "title": "Queensland Parks Fire History-2020",
+     "org": "",
+     "owner": "Spatial.Services_qgsp",
+     "url": "https://gisservices.information.qld.gov.au/arcgis/rest/services/Environment/ParksFireHistory/FeatureServer",
+     "modified": "2020-12-22",
+     "licence": "This material is licensed under a    Creative Commons - Attribution 4.0  licence.  To request the data in a different fo"
+    },
+    {
+     "title": "TNC Ostrea Angasi Restoration Suitability Model in Yorke Peninsula _SA__WFL1",
+     "org": "",
+     "owner": "hong.jiang@TNC.ORG_TNC",
+     "url": "https://services.arcgis.com/F7DSX1DSNSiWmOqh/arcgis/rest/services/TNC_Ostrea_Angasi_Restoration_Suitability_Model_in_Yorke_Peninsula__SA__WFL1/FeatureServer",
+     "modified": "2026-08-18",
+     "licence": ""
+    },
+    {
+     "title": "Protected_areas",
+     "org": "",
+     "owner": "mike@enhar.com.au",
+     "url": "https://services-ap1.arcgis.com/s047i49VH0D2nqIM/arcgis/rest/services/Protected_areas/FeatureServer",
+     "modified": "2024-04-08",
+     "licence": "Not to be used as a definitive absolute location of reserve boundaries. This dataset is derived from the Digital Cadastr"
+    },
+    {
+     "title": "Biodiversity Natural Capital Datasets",
+     "org": "",
+     "owner": "Wheatbelt",
+     "url": "https://services.arcgis.com/HlHcepcjAx4XDsAY/arcgis/rest/services/Biodiversity_Natural_Capital_Datasets/FeatureServer",
+     "modified": "2024-05-13",
+     "licence": ""
+    },
+    {
+     "title": "National Park Features: South D'Aguilar",
+     "org": "",
+     "owner": "GIS_Admin_esriau",
+     "url": "https://services1.arcgis.com/vHnIGBHHqDR6y0CR/arcgis/rest/services/EA_Demo_ParkFeatures/FeatureServer",
+     "modified": "2015-03-01",
+     "licence": "Created for Demonstration Purposes Only"
+    },
+    {
+     "title": "National Reserve System 2022",
+     "org": "",
+     "owner": "uqrveneg_UQmaps",
+     "url": "https://services1.arcgis.com/0BLakgVcDpWpuh4i/arcgis/rest/services/National_Reserve_System_2022/FeatureServer",
+     "modified": "2023-09-12",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "DE",
+   "q": "(Staatswald OR Staatsforsten OR \"Berliner Forsten\" OR Landesforsten) AND (Grenze OR Flächen OR boundary)",
+   "why": "German state forests",
+   "found": [
+    {
+     "title": "ForstBW_Straten_Waldbestaende",
+     "org": "",
+     "owner": "geoHub_ForstBW",
+     "url": "https://services-eu1.arcgis.com/HCdRI5O74Jb362GD/arcgis/rest/services/ForstBW_Straten_Waldbestaende/FeatureServer",
+     "modified": "2026-09-08",
+     "licence": "Einen kostenfreien Zugang zu diesen Geodaten gewährt ForstBW nach der Lizenz&nbsp; https://creativecommons.org/licenses/"
+    },
+    {
+     "title": "ForstBW_Waldeinteilung",
+     "org": "",
+     "owner": "geoHub_ForstBW",
+     "url": "https://services-eu1.arcgis.com/HCdRI5O74Jb362GD/arcgis/rest/services/ForstBW_Waldeinteilung/FeatureServer",
+     "modified": "2026-09-22",
+     "licence": "Einen kostenfreien Zugang zu diesen Geodaten gewährt ForstBW nach der Lizenz  https://creativecommons.org/licenses/by-sa"
+    },
+    {
+     "title": "ForstBW_Waldrefugien",
+     "org": "",
+     "owner": "geoHub_ForstBW",
+     "url": "https://services-eu1.arcgis.com/HCdRI5O74Jb362GD/arcgis/rest/services/ForstBW_Waldrefugien/FeatureServer",
+     "modified": "2025-09-10",
+     "licence": "Einen kostenfreien Zugang zu diesen Geodaten gewährt ForstBW nach der Lizenz   https://creativecommons.org/licenses/by-s"
+    },
+    {
+     "title": "ForstBW_Forstbetriebe",
+     "org": "",
+     "owner": "geoHub_ForstBW",
+     "url": "https://services-eu1.arcgis.com/HCdRI5O74Jb362GD/arcgis/rest/services/ForstBW_Forstbetriebe/FeatureServer",
+     "modified": "2025-12-10",
+     "licence": "Einen kostenfreien Zugang zu diesen Geodaten gewährt ForstBW nach der Lizenz&nbsp;   https://creativecommons.org/license"
+    },
+    {
+     "title": "HessenForst",
+     "org": "",
+     "owner": "tm@munition.de",
+     "url": "https://services2.arcgis.com/yxau6vRBskdQWQSh/arcgis/rest/services/HessenForst/FeatureServer",
+     "modified": "2023-06-02",
+     "licence": ""
+    },
+    {
+     "title": "Wald_NVK",
+     "org": "",
+     "owner": "tobias.rahn_STPLA_KA",
+     "url": "https://services-eu1.arcgis.com/Qh6EKAzjTeJbcl2C/arcgis/rest/services/Wald_NVK/FeatureServer",
+     "modified": "2026-08-14",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "FR",
+   "q": "(\"forêts publiques\" OR \"forêts domaniales\") AND ONF",
+   "why": "ONF public forests",
+   "found": [
+    {
+     "title": "Forêts publiques de France métropolitaine",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/Forêts_publiques_de_France_métropolitaine/FeatureServer",
+     "modified": "2026-04-28",
+     "licence": "Utilisation libre sous réserve de mentionner la source (a minima le nom du producteur) et la date de sa dernière mise à "
+    },
+    {
+     "title": "Agences et Directions territoriales de France métropolitaine et Corse",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/structure_fr/FeatureServer",
+     "modified": "2024-12-23",
+     "licence": "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence Citer l'origine des d"
+    },
+    {
+     "title": "Agence territoriale de Mayotte",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/ate_publ_may/FeatureServer",
+     "modified": "2024-12-23",
+     "licence": "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence Citer l'origine des d"
+    },
+    {
+     "title": "Agence territoriale de La Réunion",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/ate_publ_reu/FeatureServer",
+     "modified": "2024-12-23",
+     "licence": "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence Citer l'origine des d"
+    },
+    {
+     "title": "Agence territoriale de Martinique",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/ate_publ_mar/FeatureServer",
+     "modified": "2024-12-23",
+     "licence": "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence Citer l'origine des d"
+    },
+    {
+     "title": "Agence territoriale de Guadeloupe",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/ate_publ_gua/FeatureServer",
+     "modified": "2024-12-23",
+     "licence": "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence Citer l'origine des d"
+    },
+    {
+     "title": "Agence territoriale de Guyane",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/ate_publ_guy/FeatureServer",
+     "modified": "2024-12-23",
+     "licence": "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/licence-ouverte-open-licence Citer l'origine des d"
+    },
+    {
+     "title": "Forêts publiques de Guadeloupe",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/Forêts_publiques_de_Guadeloupe/FeatureServer",
+     "modified": "2026-05-11",
+     "licence": "Utilisation libre sous réserve de mentionner la source (a minima le nom du producteur) et la date de sa dernière mise à "
+    },
+    {
+     "title": "Forêts publiques de la Réunion",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/Forêts_publiques_de_la_Réunion/FeatureServer",
+     "modified": "2026-05-11",
+     "licence": "Utilisation libre sous réserve de mentionner la source (a minima le nom du producteur) et la date de sa dernière mise à "
+    },
+    {
+     "title": "Forets publiques de Martinique",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/Forêts_publiques_de_Martinique/FeatureServer",
+     "modified": "2026-05-11",
+     "licence": "Utilisation libre sous réserve de mentionner la source (a minima le nom du producteur) et la date de sa dernière mise à "
+    },
+    {
+     "title": "Forêts publiques de Mayotte",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/Forêts_publiques_de_Mayotte/FeatureServer",
+     "modified": "2026-05-11",
+     "licence": "Utilisation libre sous réserve de mentionner la source (a minima le nom du producteur) et la date de sa dernière mise à "
+    },
+    {
+     "title": "Forêts publiques de Guyane",
+     "org": "",
+     "owner": "ONF_OPENDATA",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/Forêts_publiques_de_Guyane/FeatureServer",
+     "modified": "2026-05-11",
+     "licence": "Utilisation libre sous réserve de mentionner la source (a minima le nom du producteur) et la date de sa dernière mise à "
+    },
+    {
+     "title": "Restauration forêts et ZH_WFL1",
+     "org": "",
+     "owner": "lbatlle_bee",
+     "url": "https://services5.arcgis.com/VaDb8J3z3Ko22wet/arcgis/rest/services/Restauration_forêts_et_ZH_WFL1/FeatureServer",
+     "modified": "2026-05-17",
+     "licence": ""
+    },
+    {
+     "title": "Dégradation forêt_WFL1",
+     "org": "",
+     "owner": "lbatlle_bee",
+     "url": "https://services5.arcgis.com/VaDb8J3z3Ko22wet/arcgis/rest/services/Dégradation_forêt_WFL1/FeatureServer",
+     "modified": "2026-05-17",
+     "licence": ""
+    },
+    {
+     "title": "Restauration forêts ZH_WFL1",
+     "org": "",
+     "owner": "lbatlle_bee",
+     "url": "https://services5.arcgis.com/VaDb8J3z3Ko22wet/arcgis/rest/services/Restauration_forêts_ZH_WFL1/FeatureServer",
+     "modified": "2026-05-17",
+     "licence": ""
+    },
+    {
+     "title": "Restauration ZH forêts_WFL1",
+     "org": "",
+     "owner": "lbatlle_bee",
+     "url": "https://services5.arcgis.com/VaDb8J3z3Ko22wet/arcgis/rest/services/Restauration_ZH_forêts_WFL1/FeatureServer",
+     "modified": "2026-05-16",
+     "licence": ""
+    },
+    {
+     "title": "DND ET PLUS",
+     "org": "",
+     "owner": "charlotte.bonnevalle_eure",
+     "url": "https://services2.arcgis.com/QKAxplMJYjFVb8zL/arcgis/rest/services/DND_ET_PLUS/FeatureServer",
+     "modified": "2026-09-03",
+     "licence": ""
+    },
+    {
+     "title": "Ensemble des forêts publiques françaises gérées par l'ONF",
+     "org": "",
+     "owner": "OpenGeodataFrance",
+     "url": "http://services.opengeodata.fr/arcgis/rest/services/ONF/FORETS_PUBLIQUES_ENSEMBLE/FeatureServer",
+     "modified": "2012-09-19",
+     "licence": "Les données sont soumises aux conditions de ré-utilisation de la licence ouverte. Rendez-vous sur le site d' Etalab  pou"
+    },
+    {
+     "title": "Ensemble des forêts publiques françaises gérées par l'ONF",
+     "org": "",
+     "owner": "OpenGeodataFrance",
+     "url": "http://services.opengeodata.fr/arcgis/rest/services/ONF/FORETS_PUBLIQUES_ENSEMBLE/MapServer",
+     "modified": "2012-09-19",
+     "licence": "Les données sont soumises aux conditions de ré-utilisation de la licence ouverte. Rendez-vous sur le site d' Etalab  pou"
+    },
+    {
+     "title": "Environnement",
+     "org": "",
+     "owner": "jouve_Corse",
+     "url": "http://lisa-sig.univ-corse.fr/locusweb/rest/services/Maps/Environnement/MapServer",
+     "modified": "2015-01-12",
+     "licence": ""
+    },
+    {
+     "title": "ESPACES PROTEGES 41",
+     "org": "",
+     "owner": "AdminPilote41",
+     "url": "https://websig.pilote41.fr/ags04/rest/services/ENVIRONNEMENT/Espaces_proteges/MapServer",
+     "modified": "2026-09-28",
+     "licence": ""
+    },
+    {
+     "title": "Forêts Publiques de Métropole (2007) - Forets_Publiques_extrait",
+     "org": "",
+     "owner": "ArcGISOpenData",
+     "url": "https://services1.arcgis.com/Y4HgaQpzkE7kenlE/arcgis/rest/services/ForetPubliquesMetro2007/FeatureServer",
+     "modified": "2014-09-17",
+     "licence": ""
+    }
+   ]
+  },
+  {
+   "st": "JP",
+   "q": "(国立公園 OR 国定公園) AND (区域 OR 境界)",
+   "why": "Japan national / quasi-national park areas",
+   "found": [
+    {
+     "title": "屋外広告物規制図__",
+     "org": "",
+     "owner": "izunokuni_admin",
+     "url": "https://services9.arcgis.com/YedtcQ0sfEZGPHzD/arcgis/rest/services/屋外広告物規制図__/FeatureServer",
+     "modified": "2021-02-09",
+     "licence": ""
+    },
+    {
+     "title": "再生可能エネルギー抑制区域図__",
+     "org": "",
+     "owner": "izunokuni_admin",
+     "url": "https://services9.arcgis.com/YedtcQ0sfEZGPHzD/arcgis/rest/services/再生可能エネルギー抑制区域図__/FeatureServer",
+     "modified": "2021-02-02",
+     "licence": ""
+    },
+    {
+     "title": "isumi18",
+     "org": "",
+     "owner": "Administrator_isumi",
+     "url": "https://services1.arcgis.com/WRNBqyJrk6LYoEij/arcgis/rest/services/isumi18/FeatureServer",
+     "modified": "2020-06-24",
+     "licence": ""
+    },
+    {
+     "title": "国立公園区域等",
+     "org": "ESRIジャパン株式会社",
+     "owner": "Esri_JP_Content",
+     "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/nps_all/FeatureServer",
+     "modified": "2024-05-31",
+     "licence": "このデータは無料で利用できます。       【利用上の注意】      本コンテンツは予告なく変更、削除、移転等が行われることがあります。     当データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。"
+    },
+    {
+     "title": "都面的BF見える化調査",
+     "org": "",
+     "owner": "toshisei",
+     "url": "https://services2.arcgis.com/2wbHtbUHUqXgDY7E/arcgis/rest/services/都面的BF見える化調査/FeatureServer",
+     "modified": "2023-02-23",
+     "licence": ""
+    },
+    {
+     "title": "Numberof_NationalParkUsers",
+     "org": "",
+     "owner": "Esri_Japan",
+     "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/Numberof_NationalParkUsers/FeatureServer",
+     "modified": "2025-09-30",
+     "licence": "本コンテンツは予告なく変更、削除、移転等が行われることがあります。当データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。"
+    },
+    {
+     "title": "NationalParkofJapan_area",
+     "org": "",
+     "owner": "Esri_Japan",
+     "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/NationalParkofJapan_area/FeatureServer",
+     "modified": "2025-09-30",
+     "licence": "本コンテンツは予告なく変更、削除、移転等が行われることがあります。当データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。"
+    },
+    {
+     "title": "R7更新_屋外広告物規制図",
+     "org": "",
+     "owner": "izunokuni_admin",
+     "url": "https://services9.arcgis.com/YedtcQ0sfEZGPHzD/arcgis/rest/services/R7更新_屋外広告物規制図/FeatureServer",
+     "modified": "2025-09-09",
+     "licence": ""
+    },
+    {
+     "title": "砂防指定地",
+     "org": "",
+     "owner": "tochigigisadmin",
+     "url": "https://services7.arcgis.com/oAgoy3LKmUpvdTfh/arcgis/rest/services/砂防指定地/FeatureServer",
+     "modified": "2026-04-07",
+     "licence": ""
+    },
+    {
+     "title": "NationalParkofJapan",
+     "org": "",
+     "owner": "Esri_Japan",
+     "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/NationalParkofJapan/FeatureServer",
+     "modified": "2025-09-30",
+     "licence": "本コンテンツは予告なく変更、削除、移転等が行われることがあります。当データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。"
+    },
+    {
+     "title": "c_地域_会津若松市",
+     "org": "",
+     "owner": "akira_owada",
+     "url": "https://services1.arcgis.com/IeOVFKfJ1q9RQvqt/arcgis/rest/services/c_地域_会津若松市/FeatureServer",
+     "modified": "2022-09-14",
+     "licence": ""
+    },
+    {
+     "title": "公園・緑地・墓園（都市計画決定GIS）",
+     "org": "ESRIジャパン株式会社",
+     "owner": "Esri_JP_Content",
+     "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/CityPlan_KOUEN/FeatureServer",
+     "modified": "2026-01-06",
+     "licence": "このデータは無料で利用できます。    【利用上の注意】     本コンテンツは予告なく変更、削除、移転等が行われることがあります。   当データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。  掲載データは、市町"
+    },
+    {
+     "title": "D05_行政区域_北海道R3_j11",
+     "org": "",
+     "owner": "EnVision2015",
+     "url": "https://services6.arcgis.com/feWMbTWM0bKZqvn5/arcgis/rest/services/D05_行政区域_北海道R3_j11/FeatureServer",
+     "modified": "2024-06-14",
+     "licence": ""
+    },
+    {
+     "title": "日本の国立公園_1934",
+     "org": "",
+     "owner": "Esri_Japan",
+     "url": "https://services.arcgis.com/wlVTGRSYTzAbjjiC/arcgis/rest/services/NationalParkofJapan/FeatureServer",
+     "modified": "2025-09-30",
+     "licence": "本コンテンツは予告なく変更、削除、移転等が行われることがあります。当データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。"
+    },
+    {
+     "title": "地域遺産まとめ190117v2",
+     "org": "",
+     "owner": "hyogo_isan01",
+     "url": "https://services9.arcgis.com/hUhDkgw9uunPMEcU/arcgis/rest/services/地域遺産まとめ190117v2_アップロード用/FeatureServer",
+     "modified": "2020-04-20",
+     "licence": ""
+    },
+    {
+     "title": "景観規制等地域区分Layers",
+     "org": "",
+     "owner": "suzakagis_admin",
+     "url": "https://services6.arcgis.com/uCid7TL8j7OZ5iGy/arcgis/rest/services/景観規制等地域区分Layers/FeatureServer",
+     "modified": "2021-07-18",
+     "licence": "須坂市公開型GIS利用規約にもとづきます。"
+    },
+    {
+     "title": "国立公園区域（北海道）",
+     "org": "",
+     "owner": "do_maruhana_moe_hokkaido01",
+     "url": "https://services5.arcgis.com/xyLLVFhw1NuQvexI/arcgis/rest/services/nps_hokkaido/FeatureServer",
+     "modified": "2026-03-27",
+     "licence": ""
+    },
+    {
+     "title": "砂防指定地（公開用）",
+     "org": "",
+     "owner": "tochigigisadmin",
+     "url": "https://services7.arcgis.com/oAgoy3LKmUpvdTfh/arcgis/rest/services/砂防指定地（公開用）/FeatureServer",
+     "modified": "2026-08-10",
+     "licence": ""
+    },
+    {
+     "title": "国立公園区域等",
+     "org": "教育GISポータル | ESRIジャパン株式会社",
+     "owner": "ArcGISProTutorialsEduJP",
+     "url": "https://services2.arcgis.com/VU4b4rYbH7gmgDu0/arcgis/rest/services/国立公園区域等/FeatureServer",
+     "modified": "2024-08-20",
+     "licence": "本コンテンツは演習用としてのみご利用ください。  本コンテンツは予告なく変更、削除、移転等が行われることがあります。  データを利用したことによって生じたいかなる損害に対して、一切責任を負いません。  出典元のデータの利用にあたっては、 利"
+    },
+    {
+     "title": "国立公園区域等_の5km圏",
+     "org": "",
+     "owner": "mikimitsunari",
+     "url": "https://services-ap1.arcgis.com/VWRDmDFN6691cgIN/arcgis/rest/services/国立公園区域等_の5km圏/FeatureServer",
+     "modified": "2022-09-05",
+     "licence": ""
+    },
+    {
+     "title": "岡山市_生き物情報地図_20260423ver",
+     "org": "",
+     "owner": "chousa_GIS",
+     "url": "https://services8.arcgis.com/lQKDAY0ALQubAsDy/arcgis/rest/services/岡山市_生き物情報地図_20260423ver/FeatureServer",
+     "modified": "2026-04-23",
+     "licence": ""
+    },
+    {
+     "title": "米沢市ゾーニングマップ20240807_WFL1",
+     "org": "",
+     "owner": "kazufumi_saito",
+     "url": "https://services1.arcgis.com/IeOVFKfJ1q9RQvqt/arcgis/rest/services/米沢市ゾーニングマップ20240807_WFL1/FeatureServer",
+     "modified": "2024-08-07",
+     "licence": ""
+    },
+    {
+     "title": "米沢市再エネゾーニングマップ_WFL1",
+     "org": "",
+     "owner": "kazufumi_saito",
+     "url": "https://services1.arcgis.com/IeOVFKfJ1q9RQvqt/arcgis/rest/services/米沢市再エネゾーニングマップ_WFL1/FeatureServer",
+     "modified": "2024-07-05",
+     "licence": ""
+    },
+    {
+     "title": "精華町都市計画マスタープランおよび立地適正化計画のための町民アンケート",
+     "org": "",
+     "owner": "kawata-sr_tamano",
+     "url": "https://services7.arcgis.com/X9zmIQjEOglwlRlj/arcgis/rest/services/service_c281c5affcc7497aa381b02ee25020f4/FeatureServer",
+     "modified": "2023-11-22",
+     "licence": ""
+    },
+    {
+     "title": "法令・ハザード（お試し版）",
+     "org": "",
+     "owner": "kaihatsu-kikaku",
+     "url": "https://services5.arcgis.com/qVPNh45vfvnsAnpl/arcgis/rest/services/法令・ハザード（お試し版）/FeatureServer",
+     "modified": "2026-06-01",
+     "licence": ""
+    }
+   ]
+  }
+ ],
+ "orgs": [],
+ "hubs": [],
+ "pages": [
+  {
+   "st": "FR",
+   "url": "https://data.geopf.fr/wfs/ows?service=WFS&request=GetCapabilities",
+   "note": "IGN: INPN protected-area layers (national parks, nature reserves) + forests",
+   "status": 200,
+   "ctype": "application/xml",
+   "bytes": 5571178,
+   "links": [],
+   "hits": [
+    "<Name>IGNF_ACCESSIBILITE-PHYSIQUE-FORETS-:acces_porteur</Name>",
+    "<Name>IGNF_ACCESSIBILITE-PHYSIQUE-FORETS-MASQUE-FORETV3:acces_porteur</Name>",
+    "<Name>IGNF_ACCESSIBILITE-PHYSIQUE-FORETS-:acces_skidder</Name>",
+    "<Name>IGNF_ACCESSIBILITE-PHYSIQUE-FORETS-MASQUE-FORETV3:acces_skidder</Name>",
+    "<Name>LANDCOVER.FORESTINVENTORY.V1:resu_bdv1_shape</Name>",
+    "<Name>LANDCOVER.FORESTINVENTORY.V2:formation_vegetale</Name>",
+    "<Name>BDFORETV1_BDD_FXX_LAMB93_20140403:resu_bdv1_shape</Name>",
+    "<Name>BDTOPO_V3:foret_publique</Name>",
+    "<Name>NAVIFOREST_PUBLIC:itineraires-bois-ronds</Name>",
+    "<Name>monterritoire_gpkg_29-07-2025_wfs:forets_de_mon_territoire</Name>",
+    "<Name>IGNF_MASQUE-FORET.2021-2023:masque_foret</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2004</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2010</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2016</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2017</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2022</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2023</Name>",
+    "<Name>IGNF_MASQUE-CARTO-FORMATIONS-VEGETALES:masque-foret_2024</Name>",
+    "<Name>ONF.FORETS_PUBLIQUES:ONF_FORETS_PUBLIQUES</Name>",
+    "<Name>ObsForets.Gestion:part_forets_publiques_dep_2017_2021</Name>",
+    "<Name>patrinat_aphn:aphn</Name>",
+    "<Name>patrinat_apb:apb</Name>",
+    "<Name>patrinat_apg:apg</Name>",
+    "<Name>patrinat_aplg:aplg</Name>",
+    "<Name>patrinat_bpm:Bien_patrimoine_mondial_UNESCO</Name>",
+    "<Name>patrinat_cdl:conservatoire_littoral</Name>",
+    "<Name>patrinat_geoparc:geoparc</Name>",
+    "<Name>patrinat_gsf:gsf</Name>",
+    "<Name>patrinat_inpg:inpg</Name>",
+    "<Name>patrinat_ospar:pgsf</Name>",
+    "<Name>patrinat_pgsf:pgsf</Name>",
+    "<Name>patrinat_pn:parc_national</Name>",
+    "<Name>patrinat_pn2:pn</Name>",
+    "<Name>patrinat_pnm:pnm</Name>",
+    "<Name>patrinat_pprnn:pprnn</Name>",
+    "<Name>patrinat_pnr:pnr</Name>",
+    "<Name>patrinat_pprnr:pprnr</Name>",
+    "<Name>patrinat_ripn:ripn</Name>",
+    "<Name>patrinat_rnc:pnm</Name>",
+    "<Name>patrinat_rncfs:rncfs</Name>",
+    "<Name>patrinat_rnn:rnn</Name>",
+    "<Name>patrinat_rb:rb</Name>",
+    "<Name>patrinat_bios:bios</Name>",
+    "<Name>patrinat_rnr:rnr</Name>",
+    "<Name>patrinat_sc:sc</Name>",
+    "<Name>patrinat_sic:sic</Name>",
+    "<Name>patrinat_ramsar:ramsar</Name>",
+    "<Name>patrinat_cen:cen</Name>",
+    "<Name>patrinat_znieff1:znieff1</Name>",
+    "<Name>patrinat_znieff1_mer:znieff1_mer</Name>",
+    "<Name>patrinat_znieff2:znieff2</Name>",
+    "<Name>patrinat_znieff2_mer:znieff2_mer</Name>",
+    "<Name>patrinat_zpr:zpr</Name>",
+    "<Name>patrinat_zps:zps</Name>",
+    "<Name>ObsForets.Sols:repartition_niveaux_trophiques_2018_2022</Name>",
+    "<Name>ObsForets.Sols:repartition_niveaux_trophiques_toutes_campagnes</Name>",
+    "<Name>ObsForets.Ressources.TxBoisement:taux_boisement_communal</Name>",
+    "<Name>ObsForets.Ressources.TxBoisement:taux_boisement_dep_2018_2022</Name>",
+    "<Name>ObsForets.Ressources:volume_moyen_ha_dep_2018_2022</Name>",
+    "<Name>ObsForets.Ressources:volume_sur_pied_dep_2017_2021</Name>",
+    "<Name>ObsForets.Ressources:volume_sur_pied_region_2017_2021</Name>",
+    "<Name>ZONES-A-PROSPECTER-FORETS-SUBNATURELLES:zones_a_prospecter_forets_subnaturelles</Name>"
+   ]
+  },
+  {
+   "st": "FR",
+   "url": "https://www.data.gouv.fr/api/1/datasets/?q=forets%20publiques%20onf&page_size=10",
+   "note": "ONF public forests on data.gouv (licence)",
+   "status": 200,
+   "ctype": "application/json",
+   "bytes": 32318,
+   "links": [
+    "http://www-cavgp.opendata.arcgis.com/datasets/1ef6a720c9294425bd7b3b87376e9b87",
+    "https://www.arcgis.com/home/webmap/viewer.html?webmap=1ef6a720c9294425bd7b3b87376e9b87"
+   ],
+   "hits": [
+    "[], \"access_type\": \"open\", \"access_type_reason\": null, \"access_type_reason_category\": null, \"acronym\": null, \"archived\": null, \"authorization_request_url\": null, \"badges\": [], \"contact_points\": [], \"created_at\": \"2017-09-05T04:48:17.442000+00:00\", \"deleted\": null, \"description\": \"There is no descriptio",
+    " \"source_id\": \"58c6626c88ee38414af5c7a4\"}, \"id\": \"59ae1071b595087a24916977\", \"internal\": {\"created_at_internal\": \"2017-09-05T04:48:17.442000+00:00\", \"last_modified_internal\": \"2017-09-05T04:48:17.448000+00:00\"}, \"last_modified\": \"2017-09-05T04:48:17.448000+00:00\", \"last_update\": \"2026-07-24T00:31:46+00:00\", \"lic",
+    "87a24916977\", \"internal\": {\"created_at_internal\": \"2017-09-05T04:48:17.442000+00:00\", \"last_modified_internal\": \"2017-09-05T04:48:17.448000+00:00\"}, \"last_modified\": \"2017-09-05T04:48:17.448000+00:00\", \"last_update\": \"2026-07-24T00:31:46+00:00\", \"license\": \"notspecified\", \"metrics\": {\"dataservices\": 0, \"discussi",
+    "ied_internal\": \"2017-09-05T04:48:17.448000+00:00\"}, \"last_modified\": \"2017-09-05T04:48:17.448000+00:00\", \"last_update\": \"2026-07-24T00:31:46+00:00\", \"license\": \"notspecified\", \"metrics\": {\"dataservices\": 0, \"discussions\": 2, \"discussions_open\": 2, \"followers\": 0, \"followers_by_months\": {\"2024-08\": 0, \"2024",
+    "\"private\": false, \"quality\": {\"all_resources_available\": true, \"dataset_description_quality\": false, \"has_open_format\": true, \"has_resources\": true, \"license\": false, \"resources_documentation\": false, \"score\": 0.2222222222222222, \"spatial\": false, \"temporal_coverage\": false, \"update_frequency\": false}, \"re",
+    "ck:headers:content-length\": 910, \"check:headers:content-type\": \"text/html\", \"check:id\": 51916219, \"check:status\": 200, \"check:timeout\": false, \"check:url\": \"https://www.arcgis.com/home/webmap/viewer.html?webmap=1ef6a720c9294425bd7b3b87376e9b87\"}, \"filesize\": null, \"filetype\": \"remote\", \"format\": \"web p",
+    "geopf\": null, \"harvest\": null, \"id\": \"8ae1ef90-b3c7-4ced-8108-7f31a8125834\", \"internal\": {\"created_at_internal\": \"2017-09-05T04:48:17.444000+00:00\", \"last_modified_internal\": \"2017-09-05T04:48:17.444000+00:00\"}, \"last_modified\": \"2026-07-24T00:31:46+00:00\", \"latest\": \"https://www.data.gouv.fr/api/1/datasets/r/8a",
+    "f31a8125834\", \"internal\": {\"created_at_internal\": \"2017-09-05T04:48:17.444000+00:00\", \"last_modified_internal\": \"2017-09-05T04:48:17.444000+00:00\"}, \"last_modified\": \"2026-07-24T00:31:46+00:00\", \"latest\": \"https://www.data.gouv.fr/api/1/datasets/r/8ae1ef90-b3c7-4ced-8108-7f31a8125834\", \"metrics\": {\"nb_hits\": 0, ",
+    "/8ae1ef90-b3c7-4ced-8108-7f31a8125834\", \"metrics\": {\"nb_hits\": 0, \"nb_uniq_visitors\": 0, \"nb_visits\": 0, \"views\": 425}, \"mime\": \"text/html\", \"preview_url\": null, \"schema\": null, \"title\": \"Ressource web page\", \"type\": \"main\", \"url\": \"https://www.arcgis.com/home/webmap/viewer.html?webmap=1ef6a720c9294425",
+    "a8125834\", \"metrics\": {\"nb_hits\": 0, \"nb_uniq_visitors\": 0, \"nb_visits\": 0, \"views\": 425}, \"mime\": \"text/html\", \"preview_url\": null, \"schema\": null, \"title\": \"Ressource web page\", \"type\": \"main\", \"url\": \"https://www.arcgis.com/home/webmap/viewer.html?webmap=1ef6a720c9294425bd7b3b87376e9b87\"}], \"schema\": ",
+    "isitors\": 0, \"nb_visits\": 0, \"views\": 425}, \"mime\": \"text/html\", \"preview_url\": null, \"schema\": null, \"title\": \"Ressource web page\", \"type\": \"main\", \"url\": \"https://www.arcgis.com/home/webmap/viewer.html?webmap=1ef6a720c9294425bd7b3b87376e9b87\"}], \"schema\": null, \"slug\": \"onf-contour-des-forets-publiqu",
+    "7\"}], \"schema\": null, \"slug\": \"onf-contour-des-forets-publiques\", \"spatial\": null, \"tags\": [\"environnement\", \"opendata\"], \"temporal_coverage\": null, \"title\": \"ONF - Contour des Forets Publiques\", \"uri\": \"https://www.data.gouv.fr/api/1/datasets/onf-contour-des-forets-publiques/\"}, {\"access_audiences\": [],"
+   ]
+  },
+  {
+   "st": "GB",
+   "url": "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/arcgis/rest/services?f=json",
+   "note": "National Trust account services",
+   "status": 200,
+   "ctype": "application/json; charset=utf-8",
+   "bytes": 13824,
+   "links": [
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/0157_OtherData_WFL1/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/0157_ProjectData_WFL1/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/150GWA/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/20250311_RLB_EGL34_Rev5_UTM30N/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/20250317_RLB_EGL3_ScottishWaters_Rev5_UTM30N/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/AU_Kent_OWF_py_UTM55S_20240808/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/AU_Kent_cable_route_ln_UTM55S_v0/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Australia_Contiguous_Zone_(24M)/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/AustralianMarineParks/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Bathymetry/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/British_Isles_EEZ_Boundaries/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Bunbury_OREI_Declared_Areas_/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Bunbury_OREI_Region_10km_Buff_Coast_GDA1994/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Bunbury_Web_Map_WFL1/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/CTD_Locations/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Carbon_and_Peatland_2016/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/CivilAviationAerodromes_Buffers_WGS84/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Core_Data_Designations_Offshore/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Core_Data_Non_WMS/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Core_Data_Non_WMS_2/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Disposal_Sites_Wales_Cefas/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/EEZ_Limits/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/EGL4_UXO_Consent_Corridor_20260311_WGS84_UTM30N/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/East_Lothian_Cadastral_Parcels/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/European_OWFs_(EMODnet)/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Future_of_Offshore_Wind___Regional_areas_of_potential_opportunity_in_England_and_Wales/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Gardens_and_Designed_Landscapes_(Scotland)/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/HelicopterMainRoutingIndicators_HMRIs_NorthSea/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Herring_EMODnet_Sediment_Class/FeatureServer",
+    "https://services-eu1.arcgis.com/0zuv5ZFEncBv7NQQ/ArcGIS/rest/services/Herring_Spawning_Coull_1998/FeatureServer"
+   ],
+   "hits": [
+    "\"name\":\"0157_OtherData_WFL1\"",
+    "\"name\":\"0157_ProjectData_WFL1\"",
+    "\"name\":\"150GWA\"",
+    "\"name\":\"Australia_Contiguous_Zone_(24M)\"",
+    "\"name\":\"AustralianMarineParks\"",
+    "\"name\":\"Bathymetry\"",
+    "\"name\":\"Bunbury_OREI_Declared_Areas_\"",
+    "\"name\":\"Bunbury_OREI_Region_10km_Buff_Coast_GDA1994\"",
+    "\"name\":\"Bunbury_Web_Map_WFL1\"",
+    "\"name\":\"Carbon_and_Peatland_2016\"",
+    "\"name\":\"Core_Data_Designations_Offshore\"",
+    "\"name\":\"Core_Data_Non_WMS\"",
+    "\"name\":\"Core_Data_Non_WMS_2\"",
+    "\"name\":\"East_Lothian_Cadastral_Parcels\"",
+    "\"name\":\"EEZ_Limits\"",
+    "\"name\":\"European_OWFs_(EMODnet)\"",
+    "\"name\":\"Future_of_Offshore_Wind___Regional_areas_of_potential_opportunity_in_England_and_Wales\"",
+    "\"name\":\"Gardens_and_Designed_Landscapes_(Scotland)\"",
+    "\"name\":\"National_Parks_(Scotland)\"",
+    "\"name\":\"Onshore_Assessment_Area\"",
+    "\"name\":\"OWF_Summary_240823\"",
+    "\"name\":\"Port_Authorities_LGATE_243_WA_GDA2020_Public_Shapefile\"",
+    "\"name\":\"Proposed_OWF_Licence_Areas\"",
+    "\"name\":\"Ramsar_Sites_DBCA_010_WA_GDA2020_Public_Shapefile\"",
+    "\"name\":\"Round_5_PDAs\"",
+    "\"name\":\"Shipwrecks\"",
+    "\"name\":\"Territorial_Sea_Limit_(12M)\"",
+    "\"name\":\"UKSACswithMarineComponents\"",
+    "\"name\":\"Urban_Area_Scotland_2km_Buffer\"",
+    "\"name\":\"World_Heritage_Sites_(Scotland)\"",
+    "\"name\":\"OWF_Summary_241114\"",
+    "\"name\":\"Subsea_Cables_GoBe_Nov2024_WGS84_UTM30N\"",
+    "\"name\":\"NESP_MaC_3_3_ORE_PublicationInventory_PrioritySpp\"",
+    "\"name\":\"AU_Kent_cable_route_ln_UTM55S_v0\"",
+    "\"name\":\"AU_Kent_OWF_py_UTM55S_20240808\"",
+    "\"name\":\"VIC_MARINE_HABITAT_MAP_2023\"",
+    "\"name\":\"PARKRES_CROWNLAND\"",
+    "\"name\":\"MARINE_ASSETS_Victoria\"",
+    "\"name\":\"P2601_EGL3_CableRoute_ETRS89_UTM30N_Rev9\"",
+    "\"name\":\"JM7109_EGL3_REV09_Survey_Areas_V1_0_20250131\"",
+    "\"name\":\"Survey_Corridor_Rev5\"",
+    "\"name\":\"Survey_Corridor_Survey_Blocks_Rev5\"",
+    "\"name\":\"20250311_RLB_EGL34_Rev5_UTM30N\"",
+    "\"name\":\"20250317_RLB_EGL3_ScottishWaters_Rev5_UTM30N\"",
+    "\"name\":\"British_Isles_EEZ_Boundaries\"",
+    "\"name\":\"Sandeel_Spawning_Habitat_Confidence_2024\"",
+    "\"name\":\"Sandeel_Seabed_Substrate_EMODnet_\"",
+    "\"name\":\"Sandeel_EMODnet_Sediment_Class\"",
+    "\"name\":\"Sandeel_Habitat_Suitability_BGS_Points\"",
+    "\"name\":\"Sandeel_Spawning_Grounds_Coull_1998\"",
+    "\"name\":\"IHLS_Grid_Locations\"",
+    "\"name\":\"Herring_Spawning_Habitat_Confidence_2024\"",
+    "\"name\":\"Herring_Substrate_EMODnet\"",
+    "\"name\":\"Herring_EMODnet_Sediment_Class\"",
+    "\"name\":\"Sandeel_Habitat_Suitability_BGS_Pts\"",
+    "\"name\":\"Herring_Spawning_Coull_1998\"",
+    "\"name\":\"CTD_Locations\"",
+    "\"name\":\"SPAs_Irish_Marine_WGS84_UTM30N\"",
+    "\"name\":\"SPA_Ireland_2023_05_WGS84_UTM30N\"",
+    "\"name\":\"SAC_Ireland_Offshore_2022_11_WGS84_UTM30N\"",
+    "\"name\":\"SACs_Ireland_2024_12_WGS84_UTM30N\"",
+    "\"name\":\"Disposal_Sites_Wales_Cefas\"",
+    "\"name\":\"HelicopterMainRoutingIndicators_HMRIs_NorthSea\"",
+    "\"name\":\"CivilAviationAerodromes_Buffers_WGS84\"",
+    "\"name\":\"Offshore_Wind_Leasing_Round_6_Refined_Area_Of_Search_WGS84\"",
+    "\"name\":\"EGL4_UXO_Consent_Corridor_20260311_WGS84_UTM30N\"",
+    "\"name\":\"Offshore_Wind_Farms_Cable_Corridors_WGS84_UTM30N\"",
+    "\"name\":\"Offshore_Wind_Farms_WGS84_UTM30N\"",
+    "\"name\":\"Subsea_Cables_GoBe_WGS84_UTM30N\"",
+    "\"name\":\"Offshore_Wind_Leasing_Round_6_Priority_Area_MediumTerm_GoBe_WGS84_UTM30N\"",
+    "\"name\":\"Offshore_Wind_Leasing_Round_6_Potential_Area_Of_Opportunity_GoBe_WGS84_UTM30N\"",
+    "\"name\":\"LR6_PDA_Zones_WGS84_UTM30N\""
+   ]
+  }
+ ]
+}
