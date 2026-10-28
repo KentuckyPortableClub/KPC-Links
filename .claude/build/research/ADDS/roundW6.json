@@ -1,0 +1,16 @@
+{
+ "about": "Chat 9 world round W6 (Oct 28 morning): field names + counts for the layers W5 found, so the world key can name them: Queensland's OWN ParksTerrestrialProtectedAreas, Czechia AOPK nature parks + small/large protected areas (live-only), Denmark fredede områder (live-only), Croatia Bioportal WFS (live-only), Flanders ANB layers. Results: roundW6-tested.json.",
+ "layers": [
+  {"st": "AU", "kind": "park", "ag": "Queensland Government", "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer", "note": "QLD's own protected areas"},
+  {"st": "CZ", "kind": "park", "ag": "AOPK ČR", "url": "https://gis.nature.cz/arcgis/rest/services/ObecnaOchrana/PrirodniPark/MapServer/0", "note": "fields (live-only)"},
+  {"st": "DK", "kind": "park", "ag": "Miljøstyrelsen", "url": "https://kort.vd.dk/server/rest/services/Grunddata/Fredede_omr%C3%A5der/MapServer/2", "note": "fields (live-only)"},
+  {"st": "DK", "kind": "park", "ag": "Miljøstyrelsen", "url": "https://kort.vd.dk/server/rest/services/Grunddata/Fredede_omr%C3%A5der/MapServer/4", "note": "fields: nature/game reserves (live-only)"}
+ ],
+ "orgs": [
+  {"st": "CZ", "url": "https://gis.nature.cz/arcgis/rest/services", "match": "UzemniOchrana|Velkoplosna|Maloplosna|CHKO|NarodniPark|Narodni", "note": "AOPK national parks / CHKO / reserves services"}
+ ],
+ "pages": [
+  {"st": "HR", "raw": true, "url": "http://services.bioportal.hr/inspire/geos1/ps/wfs?service=WFS&version=2.0.0&request=GetCapabilities", "look": "Name>[^<]+<|AccessConstraints>[^<]+|Fees>[^<]+", "note": "Croatia typenames"},
+  {"st": "BE", "raw": true, "url": "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/ows?service=WFS&version=2.0.0&request=DescribeFeatureType&typeNames=ps:ps_uznres_anb,lu:lu_natbos_toegang_anb", "look": "name=\"[^\"]+\"", "note": "Flanders ANB layer fields"}
+ ]
+}
