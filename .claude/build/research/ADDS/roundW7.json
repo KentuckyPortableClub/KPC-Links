@@ -1,0 +1,13 @@
+{
+ "about": "Chat 9 world round W7 (Oct 28 ~5 AM): Queensland's polygon layer id on its own server, Portugal ICNF protected areas (POAP), Slovenia ARSO protected areas (is there a WFS beside the ATOM feed? licence 'Ni omejitev' = no restrictions), Flanders ANB fields (WFS 1.1). Results: roundW7-tested.json.",
+ "layers": [
+  {"st": "AU", "kind": "park", "ag": "Queensland Government", "url": "https://spatial-gis.information.qld.gov.au/arcgis/rest/services/Environment/ParksTerrestrialProtectedAreas/MapServer", "only": "protected|estate|park|boundar|tenure|area|forest", "note": "QLD polygon layer id"},
+  {"st": "PT", "kind": "park", "ag": "ICNF", "url": "https://sigservices.icnf.pt/server/rest/services/BDG/POAP/MapServer", "note": "PT protected areas (desk: none confirmed)"}
+ ],
+ "pages": [
+  {"st": "SI", "raw": true, "url": "http://gis.arso.gov.si/related/atom/inspire/servicefeeds/zav_obm_poli.xml", "look": "href=\"[^\"]+\"|<rights>[^<]+|<updated>[^<]+", "note": "ARSO ATOM: file links + rights"},
+  {"st": "SI", "raw": true, "url": "https://gis.arso.gov.si/geoserver/ows?service=WFS&request=GetCapabilities", "look": "<Name>[^<]*(zav|ps|varov|obmoc)[^<]*</Name>|AccessConstraints>[^<]+", "note": "ARSO WFS?"},
+  {"st": "BE", "raw": true, "url": "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/ows?service=WFS&version=1.1.0&request=DescribeFeatureType&typeName=ps:ps_uznres_anb", "look": "name=\"[^\"]+\"", "note": "Flanders ANB nature reserves fields"},
+  {"st": "BE", "raw": true, "url": "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/ows?service=WFS&version=1.1.0&request=GetFeature&typeName=ps:ps_uznres_anb&maxFeatures=3&outputFormat=application/json", "look": "\"properties\": ?\\{[^}]+\\}", "note": "Flanders ANB sample rows"}
+ ]
+}
