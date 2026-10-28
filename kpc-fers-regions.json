@@ -1,5 +1,5 @@
 {
- "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky. note = a banner over that region's list (e.g. while a rerun is pending); remove it when the region's data is final.",
+ "about": "Park Overlap Finder regions (chat 3, Oct 27). Each region = its own list on kpc-overlap-finder.html. files = data/fers/<file>.json in KPC-Data (base below); missing = the region's Missing-boundary file (members only). public:false = members only until Brandon's GO for that region. Add a region (e.g. Southeast) when chat 2 says its data is final. showWaiting:true = members see the results still waiting for review without ticking the box (tagged WAITING FOR REVIEW); Brandon Oct 27 2:15 PM for testing Kentucky. note = a banner over that region's list (e.g. while a rerun is pending); remove it when the region's data is final. beta:true = a BETA tag in the drop-down + the banner (members testing); Brandon Oct 28 9:20 AM: KY + OH on as BETA, and every area chat 8 marks READY goes on too (members only, BETA, one push a day at most).",
  "base": "../KPC-Data/data/fers/",
  "regions": [
   {
@@ -10,8 +10,21 @@
    ],
    "missing": "missing-ky",
    "public": false,
+   "beta": true,
    "showWaiting": true,
-   "note": "Kentucky is being re-checked: a fix for 2-fers along river banks (about 22 more) is coming. This list is not final yet."
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
+  },
+  {
+   "id": "OH",
+   "label": "Ohio",
+   "files": [
+    "US-OH"
+   ],
+   "missing": "missing-oh",
+   "public": false,
+   "beta": true,
+   "showWaiting": true,
+   "note": "BETA: members are testing this list. If something looks wrong, tap REPORT A MISTAKE on the map."
   }
  ]
 }

@@ -34,18 +34,19 @@
   function miles(a, b, c, d) { var r = Math.PI / 180, x = Math.sin((c - a) * r / 2), y = Math.sin((d - b) * r / 2); return 2 * 3958.8 * Math.asin(Math.sqrt(x * x + Math.cos(a * r) * Math.cos(c * r) * y * y)); }
 
   /* ---------- data: regions → rows ---------- */
-  var CFG = null, REV = {}, REG = null, ROWS = [], TIGHT = [], MISS = [], WAITN = 0, here = null, F = { big: true, small: true, trail: true, multi: false, near: false };
+  var CFG = null, REV = {}, REG = null, ROWS = [], TIGHT = [], WATER = [], MISS = [], WAITN = 0, here = null, F = { big: true, small: true, trail: true, multi: false, near: false };
   function ok3(s) { return Array.isArray(s.passes) && s.passes.length >= 3 && s.passes.every(function (x) { return x === 1; }); }
   function reviewed(s) { return !!(s.reviewed || REV[s.id]); }
   function build(files, missing) {
     var all = [], kids = {};
     files.forEach(function (d) { (d && d.spots || []).forEach(function (s) { s._st = d.st || ''; all.push(s); }); });
     all.forEach(function (s) { var m = /^merged into one row: (.+)$/.exec(s.status || ''); if (m) (kids[m[1]] = kids[m[1]] || []).push(s); });
-    var groups = {}; ROWS = []; TIGHT = []; WAITN = 0;
+    var groups = {}; ROWS = []; TIGHT = []; WATER = []; WAITN = 0;
     all.forEach(function (s) {
       if (!ok3(s)) return;
       var st = String(s.status || '');
       if (/^very tight/.test(st)) { if (MEMBER) TIGHT.push(s); return; }
+      if (/^water only/.test(st)) { if (MEMBER) WATER.push(s); return; }   /* rule 9: water-only spots are listed apart (boat or kayak) */
       if (st !== 'candidate') return;                                    // saved outline only / not sure / dropped / merged
       /* 'same land, two park numbers' = SHOWN with that label everywhere (final ruling, CLAUDE.md) */
       var noAcc = !s.access_pin || !s.access_pin.at;
@@ -183,6 +184,7 @@
     if ($('ovSheet') && !$('ovSheet').hidden && SH.ref && !P[SH.ref]) closeSheet();
     $('ovWaitW').hidden = true;   /* Brandon: no 'not released' talk while only club members can see the page */
     $('ovTightB').hidden = !TIGHT.length; $('ovTight').innerHTML = TIGHT.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-tight">VERY TIGHT: COULD BE MAP ERROR, CHECK BOTH OFFICIAL MAPS ON THE GROUND</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.kind === 'trail' ? 'trail strip' + (s.len_m ? ' about ' + Math.round(s.len_m * YD) + ' yards long' : '') + ', thinner than 10 yards everywhere' : s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across' : '') + '</span>' + accLine(s) + '</div>'; }).join('');
+    $('ovWaterB').hidden = !WATER.length; $('ovWater').innerHTML = WATER.map(function (s) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-trail">WATER ONLY: BY BOAT OR KAYAK</span><b class="t">' + s.refs.map(function (r) { return esc(r) + ' ' + esc((s.names || {})[r] || ''); }).join(' + ') + '</b><span class="m">' + (s.wide_m ? 'about ' + Math.round(s.wide_m * YD) + ' yards across, on the water' : 'on the water') + (s.checked ? ' · last checked ' + niceDate(s.checked) : '') + '</span>' + accLine(s) + '</div>'; }).join('');
     /* HQ Oct 27 4:25 PM: plain words, one sentence each: what's missing, why, and what was still tested */
     $('ovMissB').hidden = !MISS.length; $('ovMiss').innerHTML = MISS.map(function (m) { return '<div class="ov-row" style="cursor:default"><span class="ov-badge bg-wld">MISSING BOUNDARY: CHECK THE OFFICIAL MAP</span><p class="ov-note" style="color:#efe9da;font-size:14.5px">' + missText(m) + '</p></div>'; }).join('');
   }
@@ -480,7 +482,7 @@
     CA: 'AB Alberta|BC British Columbia|MB Manitoba|NB New Brunswick|NL Newfoundland and Labrador|NS Nova Scotia|NT Northwest Territories|NU Nunavut|ON Ontario|PE Prince Edward Island|QC Quebec|SK Saskatchewan|YT Yukon' };
   function regionOf(cc, code) { return CFG.regions.filter(function (r) { return r.id === code && cc === 'US' || (r.files || []).indexOf(cc + '-' + code) >= 0; })[0]; }
   function regionSelect() {
-    var done = CFG.regions.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.public ? '' : ' (members)') + '</option>'; }).join('');
+    var done = CFG.regions.map(function (r) { return '<option value="' + esc(r.id) + '">' + esc(r.label) + (r.beta ? ' · BETA' : '') + (r.public ? '' : ' (members)') + '</option>'; }).join('');
     var grp = function (cc, lab) { return '<optgroup label="' + lab + ' (not checked yet)">' + PLACES[cc].split('|').map(function (x) { var c = x.slice(0, 2), n = x.slice(3); return regionOf(cc, c) ? '' : '<option value="' + cc + '-' + c + '">' + esc(n) + '</option>'; }).join('') + '</optgroup>'; };
     $('ovRegions').innerHTML = '<label for="ovReg"><b>STATE / PROVINCE</b></label><select id="ovReg"><optgroup label="Checked">' + done + '</optgroup>' + grp('US', 'US states') + grp('CA', 'Canada') + '</select>' +
       '<span class="ov-sort" role="group" aria-label="Sort the parks"><b>SORT</b><button type="button" data-sort="num">BY NUMBER</button><button type="button" data-sort="az">A–Z</button></span>';
@@ -492,7 +494,7 @@
   function loadRegion(id) {
     REG = CFG.regions.filter(function (r) { return r.id === id; })[0] || notChecked(id) || CFG.regions[0]; cur = null; closeSheet();
     if ($('ovReg')) $('ovReg').value = REG.id;
-    if (REG.none) { ROWS = []; TIGHT = []; MISS = []; var nb0 = $('ovRegNote'); if (nb0) nb0.hidden = true; list(); return Promise.resolve(); }
+    if (REG.none) { ROWS = []; TIGHT = []; WATER = []; MISS = []; var nb0 = $('ovRegNote'); if (nb0) nb0.hidden = true; list(); return Promise.resolve(); }
     store('kpcOvRegion', REG.id);
     $('ovList').innerHTML = '<p class="ov-note">Loading ' + esc(REG.label) + '…</p>';
     var base = CFG.base || '../KPC-Data/data/fers/';
@@ -505,7 +507,7 @@
       }
       SAVED[REG.id] = files; build(files, miss);
       var nb = $('ovRegNote'); if (!nb) { nb = document.createElement('div'); nb.id = 'ovRegNote'; nb.className = 'ov-empty'; nb.style.margin = '0 0 12px'; $('ovRegions').after(nb); }
-      nb.hidden = !REG.note; nb.innerHTML = REG.note ? '🔄 <b>' + esc(REG.note) + '</b>' : '';
+      nb.hidden = !REG.note; nb.innerHTML = REG.note ? (REG.beta ? '🧪 ' : '🔄 ') + '<b>' + esc(REG.note) + '</b>' : '';
       if (MEMBER && REG.showWaiting) $('ovWait').checked = true;   // Brandon Oct 27 2:15 PM: 'members only … good with putting KY list on there for now to test it'
       list();
       var q = new URLSearchParams(location.search).get('id'); if (q && ROWS.some(function (r) { return r.key === q; })) { openRow(q); setTimeout(function () { scrollTo({ top: $('ovMap').getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 400); }   // a shared link lands on the map

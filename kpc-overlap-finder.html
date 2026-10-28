@@ -279,6 +279,7 @@ body.field .page-jump-nav{display:none!important}
    <div id="ovList"><p class="ov-note">Loading…</p></div>
    <label class="ov-mem" id="ovWaitW" hidden><input type="checkbox" id="ovWait"> <span>Members: also show the results <b>not released yet</b></span></label>
   </div>
+  <div class="ov-box" id="ovWaterB" hidden><h2>Water only: boat or kayak</h2><p class="ov-note">Where the parks may overlap only on the water. You would need a boat or kayak to be inside both. Check both official maps and the rules for operating from a boat.</p><div id="ovWater"></div></div>
   <div class="ov-box" id="ovTightB" hidden><h2>Very tight: could be map error</h2><p class="ov-note">Patches only 25–50 yards across, or trail strips thinner than 10 yards everywhere. Check both official maps on the ground before you count it.</p><div id="ovTight"></div></div>
   <div class="ov-box" id="ovMissB" hidden><h2>Missing boundary: check the official map</h2><p class="ov-note">Not every 2-fer is here: some parks have no official boundary, so we cannot test them. These are NOT confirmed.</p><div id="ovMiss"></div></div>
  </div>
@@ -322,7 +323,7 @@ body.field .page-jump-nav{display:none!important}
 <script src="kpc-bounds.js?v=20261028a"></script>
 <script src="kpc-padus-layer.js?v=20261019g"></script>
 <script src="kpc-map-tools.js?v=20261027a"></script>
-<script src="kpc-overlap-finder.js?v=20261027za"></script>
+<script src="kpc-overlap-finder.js?v=20261028a"></script>
 <script src="kpc-translate.js?v=20261028a" defer></script><script src="kpc-search.js?v=20261029b" defer></script><script src="kpc-count.js?v=20261016b" defer></script><script src="kpc-wrap.js?v=20261017c" defer></script><script src="kpc-motion.js?v=20261023a" defer></script><script src="kpc-warn.js?v=20261025s" defer></script><script src="kpc-season.js?v=20261017b" defer></script><script>
 (function(){
   var t=document.querySelector('.menu-toggle'),n=document.getElementById('kpc-main-nav');
