@@ -376,3 +376,4 @@ GREY AREAS for Brandon (chat 8 adds more): (G1) show LOW-confidence outlines at 
 - MW-2 RULED by the house rules (HQ Oct 27 10:12 PM): historic sites never get boundaries. ND's 36 State Historic Sites are pin-only, like SE-7.
 
 - Oct 27 (desk, chat 8): WORLD Stage 1 scouting done for all 28 countries: .claude/build/research/WORLD/ (25 files + KPC_W_Stage1_Summary_desk.md). Ready first: NO, SE, IE, LU, PL, AU, GB; the rest need adds.
+- Oct 27 (desk, chat 8): WORLD Stage 2 + 3 scouted: .claude/build/research/WORLD/ (KPC_X1..X4, KPC_Y_*, KPC_W_Stage23_Summary_desk.md). NZ first (DOC CC BY 4.0, owner data), then DO, Brazil; Brandon must lift the top-10 rule per country.
