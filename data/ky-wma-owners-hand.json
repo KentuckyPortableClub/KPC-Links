@@ -1,0 +1,6 @@
+{
+ "about": "Kentucky WMA owners found BY HAND where KDFWR's own page names none (data/ky-wma-owners.json is rewritten by kpc_new_lands.py, so hand finds live here). The 2-fer bot reads this file when the page left the owner blank (rule 14, Kentucky: the state's own pages before PAD-US). One row per WMA: type (State / Corps / Federal / Local / Private / University), the sentence, the official source, the day checked.",
+ "wmas": {
+  "Boatwright WMA": {"type": "State", "says": "Owner: Kentucky Department of Fish and Wildlife Resources. (Size 8,847 acres; 1,432 acres in seven tracts bought by the Kentucky Heritage Land Conservation Fund.)", "url": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Boatwright-WMA.aspx", "checked": "2026-10-28", "by": "chat 2 (HQ: Boatwright rule-14 recheck)"}
+ }
+}

@@ -206,6 +206,10 @@ def official_parks(PIN):
             parks['US-4484'] = {'st': 'US-KY', 'ids': ['bdbnf|Daniel Boone National Forest'], 'names': {'bdbnf|Daniel Boone National Forest': 'Daniel Boone National Forest'}}
             skip['no outline'] -= 1
             OWNED['US-4484'] = 'usfs'   # ruling Oct 27: Daniel Boone = Forest Service-OWNED land only (Basic Ownership)
+        # Oct 28 (HQ): Mammoth Cave = Park Service-owned land (PAD-US fee, 50,624 ac; the unit line includes private inholdings);
+        # Land Between the Lakes = Forest Service-owned land (Basic Ownership holds 'Land Between the Lakes NRA', runner probe Oct 28)
+        for r, kind in (('US-0050', 'nps'), ('US-3792', 'usfs')):
+            if r in parks: OWNED[r] = kind
         skip.pop('Kentucky (own list)', None)
         return parks, skip
     if REGION == 'world':
@@ -895,6 +899,10 @@ def ky_owner(ref, parks):
                 t = v.get('type') or ''
                 KYOWN[low(n)] = {'State': 'STATE', 'Local': 'STATE', 'Corps': 'FED:USACE', 'Private': 'PRIVATE', 'University': 'UNIVERSITY'}.get(t) or owner_of_text(v.get('says')) or ''
         except Exception: KYOWN['_'] = ''  # noqa: BLE001
+        try:   # Oct 28: hand finds where KDFWR's page names no owner (Boatwright: the Office of Nature Preserves page says KDFWR)
+            for n, v in json.load(open('data/ky-wma-owners-hand.json'))['wmas'].items():
+                if not KYOWN.get(low(n)): KYOWN[low(n)] = {'State': 'STATE', 'Local': 'STATE', 'Corps': 'FED:USACE', 'Federal': 'FED', 'Private': 'PRIVATE', 'University': 'UNIVERSITY'}.get(v.get('type'), '')
+        except Exception: pass  # noqa: BLE001
     if ref == 'US-4484': return 'FED:USFS'
     srcs = [str(rid).split('|', 1) for rid in parks[ref]['ids']]
     for src, nm in srcs:
@@ -960,8 +968,17 @@ def ownership_step(s, parks, PIN):
         # an agency-land park's mask IS the agency's own ownership map (rule B2: the agency beats PAD-US): the ground is its land
         ground = OWNER_KEY.get(OWNED[next(r for r in refs if r in OWNED)], 'FED:USFS')
     else:
+        # Oct 28 (HQ): in KENTUCKY, KDFWR's own WMA pages (data/ky-wma-owners.json) are an owner source AHEAD of PAD-US: where
+        # PAD-US has no fee record, a WMA at the spot that KDFWR says a public agency owns gives the ground's owner
+        if REGION == 'ky' and seen and any(not h for h in seen):
+            kyo = {ky_owner(r, parks) for r in refs if parks.get(r, {}).get('ids')} - {'', '?', 'PRIVATE', 'UNIVERSITY'}
+            if len(kyo) == 1:
+                seen = [h or set(kyo) for h in seen]; here = set().union(*seen); s['owner_src'] = "KDFWR's own WMA page (data/ky-wma-owners.json): PAD-US has no fee record here"
         # Oct 27 (Fable #2): no public fee owner at the spot = NOT SURE (designations stacked over private land must never pass)
         if not seen or any(not h for h in seen):
+            if REGION == 'ky' and any(str(i).startswith('bwma|') for r in refs for i in (parks.get(r) or {}).get('ids') or []):
+                blank = [PIN.get(r, [r])[0] for r in refs if any(str(i).startswith('bwma|') for i in (parks.get(r) or {}).get('ids') or []) and ky_owner(r, parks) in ('', '?')]
+                if blank: return 'not sure', "no public owner on PAD-US at the spot, and KDFWR's own page names no owner for " + ', '.join(blank) + ' (a person adds it to data/ky-wma-owners.json)'
             return 'not sure', ('no public owner on the ownership map (' + ('CPCAD' if canada else 'PAD-US fee records')
                                 + ') at ' + ('the spot' if len(seen) < 2 else 'every part of the spot') + ': could be private land under the designations')
         if 'PRIVATE' in here: return 'drop', 'private land at the spot (ownership map): counts only for its own park number, never a 2-fer'
@@ -1969,7 +1986,7 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
         s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
                        + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
         s['names'] = {r: PIN[r][0] for r in refs}; s['maps'] = [[r, map_link(r, PIN)] for r in refs]; return
-    if any(r in LOWCONF for r in refs):   # pre-flight fix 9: a LOW-confidence outline (second witness) may be the wrong land
+    if REGION != 'ky' and any(r in LOWCONF for r in refs):   # pre-flight fix 9 (Oct 28: not in Kentucky: its outlines come from Kentucky's own files, not the US key join the score is about)
         s['status'] = 'not sure: low-confidence outline for ' + ', '.join(PIN[r][0] for r in refs if r in LOWCONF) + ' (check the join)'; return
     if s['kind'] == 'area' and refs[0].startswith('US-'):
         try: lc = land_check(s, G)
