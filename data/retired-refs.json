@@ -395,6 +395,11 @@
    "d": "2026-10-25",
    "src": "world"
   },
+  "SK-0222": {
+   "n": "Park Kaštieľ Kamenica nad Cirochou - National Monument",
+   "d": "2026-10-28",
+   "src": "world"
+  },
   "US-10846": {
    "n": "Boulder Lake BLM Recreation Management Area",
    "d": "2026-10-24",
@@ -432,5 +437,5 @@
   }
  },
  "note": "Parks POTA has taken off its list, noticed by the nightly pin bots. The tools show 'Retired by POTA' on these cards; the monthly outline rebuild drops them for good. See .github/scripts/kpc_retired_refs.py.",
- "updated": "2026-10-26"
+ "updated": "2026-10-28"
 }
