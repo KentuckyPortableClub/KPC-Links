@@ -55,7 +55,7 @@
       var key = s.refs.slice().sort().join('+');
       var g = groups[key] || (groups[key] = { key: key, refs: s.refs.slice().sort(function (x, y) { return +(/(\d+)$/.exec(x) || [0, 0])[1] - +(/(\d+)$/.exec(y) || [0, 0])[1]; }), names: {}, patches: [], st: s._st, trail: false });
       Object.assign(g.names, s.names || {}); s._kids = (kids[s.id] || []).filter(function (k, i, A) { var sh = JSON.stringify(k.shape || ''); return sh !== JSON.stringify(s.shape || '') && A.findIndex(function (o) { return JSON.stringify(o.shape || '') === sh; }) === i; });   /* Brandon Oct 27 6:16 PM ('steps 2 and 3 are the same'): the data listed one stretch twice */ s._rev = rev; s._noAcc = noAcc;
-      if (s.kind === 'trail') g.trail = true; g.patches.push(s);
+      if (s.kind === 'trail' || s.kind === 'river') g.trail = true; if (s.kind === 'river') g.river = true; g.patches.push(s);   // Oct 28: a water-route row is a LINE (the bank), drawn as its 100-ft band like a trail, never as a polygon
     });
     Object.keys(groups).forEach(function (k) { var g = groups[k];
       g.patches.sort(function (a, b) { return size(b) - size(a); });
@@ -63,12 +63,12 @@
       ROWS.push(g); });
     MISS = MEMBER ? ((missing && missing.parks) || []) : [];
   }
-  function size(s) { return s.kind === 'trail' ? (s.len_m || 0) / 1000 : (s.wide_m || 0); }
-  function tierOf(s) { if (s.kind === 'trail') return 'trail'; var w = (s.wide_m || 0) * YD; return /small/.test(s.small || '') || (w && w < 100) ? 'small' : 'big'; }
+  function size(s) { return (s.kind === 'trail' || s.kind === 'river') ? (s.len_m || 0) / 1000 : (s.wide_m || 0); }
+  function tierOf(s) { if (s.kind === 'trail' || s.kind === 'river') return 'trail'; var w = (s.wide_m || 0) * YD; return /small/.test(s.small || '') || (w && w < 100) ? 'small' : 'big'; }
   function visiblePatches(g) { var w = $('ovWait') && $('ovWait').checked && MEMBER; return g.patches.filter(function (s) { return s._rev || w; }); }
 
   /* ---------- the LIST ---------- */
-  function tagOf(g) { return g.trail ? '<span class="ov-badge bg-trail">POSSIBLE TRAIL OVERLAP: WITHIN 100 FT OF THE TRAIL LINE</span>' : '<span class="ov-badge bg-n">POSSIBLE ' + g.n + '-FER</span>'; }
+  function tagOf(g) { return g.trail ? '<span class="ov-badge bg-trail">' + (g.river ? 'POSSIBLE RIVER OVERLAP: WITHIN 100 FT OF THE RIVER BANK' : 'POSSIBLE TRAIL OVERLAP: WITHIN 100 FT OF THE TRAIL LINE') + '</span>' : '<span class="ov-badge bg-n">POSSIBLE ' + g.n + '-FER</span>'; }
   function nm(g, r) { return (g.names && g.names[r]) || r; }
   function accLine(s) {
     var a = s.access_pin;
@@ -89,7 +89,7 @@
   /* Brandon Oct 27 2:37 PM ('info says 6 places but only lists 1'): every place listed, biggest first, each with its size, access and a SHOW button */
   function placesHtml(g, ps) {
     return '<details class="ov-places"' + (ps.length <= 3 ? ' open' : '') + '><summary>▸ THE ' + ps.length + ' PLACES</summary><ol>' + ps.map(function (s, i) {
-      var sz = s.kind === 'trail' ? (s.len_m ? 'about ' + Math.round(s.len_m * YD) + ' yards of trail' + (s.stretches > 1 ? ' in ' + s.stretches + ' stretches' : '') : 'trail stretch') : 'fits a circle about ' + Math.round((s.wide_m || 0) * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '');
+      var sz = (s.kind === 'trail' || s.kind === 'river') ? (s.len_m ? 'about ' + Math.round(s.len_m * YD) + (s.kind === 'river' ? ' yards of river bank' : ' yards of trail') + (s.stretches > 1 ? ' in ' + s.stretches + ' stretches' : '') : 'trail stretch') : 'fits a circle about ' + Math.round((s.wide_m || 0) * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '');
       return '<li><b>Place ' + (i + 1) + '</b>: ' + sz + (tierOf(s) === 'small' ? ' · <i>small: tight fit</i>' : '') + ' <button type="button" class="ov-pl" data-place="' + esc(g.key) + '|' + i + '">🗺 SHOW</button>' + accLine(s) + '</li>'; }).join('') + '</ol></details>';
   }
   function rowHtml(g, ps) {
@@ -212,7 +212,13 @@
     return true;
   }
   function setBase(n) { if (!map) return; map.eachLayer(function (l) { if (l instanceof L.TileLayer && !gAll.hasLayer(l)) map.removeLayer(l); }); Object.keys(base).forEach(function (k) { if (map.hasLayer(base[k])) map.removeLayer(base[k]); }); base[n].addTo(map); layerName = n; tools(); }
-  function patchRings(g) { var out = []; visiblePatches(g).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (x.shape && x.shape.length > 1) out.push({ s: x, ring: x.kind === 'trail' ? bandRing(x.shape) : x.shape, line: x.kind === 'trail' ? x.shape : null }); }); }); return out; }
+  /* Oct 28 (Brandon: 'the overlap boundaries still funky'): a trail stretch's patch = its TRUE 2-fer ground from pass 5 ('zone':
+     the 100-ft band that is also inside the other park), not the whole band clipped on the screen; the band stays as the line park's look */
+  function patchRings(g) { var out = []; visiblePatches(g).forEach(function (s) { [s].concat(s._kids || []).forEach(function (x) { if (!x.shape || x.shape.length < 2) return;
+    if (x.kind === 'trail' || x.kind === 'river') { var band = bandRing(x.shape), z = (x.zone || []).filter(function (r) { return r && r.length > 2; });
+      if (z.length) z.forEach(function (r, i) { out.push({ s: x, ring: r, line: x.shape, band: band, zone: true, first: i === 0 }); });
+      else out.push({ s: x, ring: band, line: x.shape, band: band, first: true }); }
+    else out.push({ s: x, ring: x.shape, line: null }); }); }); return out; }
   function openRow(key) {
     if (!window.L && (openRow.tries = (openRow.tries || 0) + 1) < 40) { setTimeout(function () { openRow(key); }, 250); return; }   // the map library is still loading
     var g = ROWS.filter(function (r) { return r.key === key; })[0]; if (!g) return;
@@ -231,7 +237,8 @@
        flips to all of them and back */
     var all = L.latLngBounds([]); cur.rings.forEach(function (x) { x.ring.forEach(function (p) { all.extend([p[1], p[0]]); }); }); cur.fitAll = all; cur.wide = false; cur.pi = Math.max(0, cur.rings.findIndex(function (x) { return x.s === main; }));
     zoomBtn();
-    if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: 18, animate: false }); } }, 120); }
+    var mz = openRow.maxZ || 17; openRow.maxZ = 0;   // Oct 28 (Brandon: 'super zoomed in'): open at 17 at most (16 from the state map)
+    if (b.isValid()) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: mz, animate: false }); setTimeout(function () { if (cur === g) { map.invalidateSize(); map.fitBounds(b.pad(0.04), { maxZoom: mz, animate: false }); } }, 120); }
     try { history.replaceState(null, '', '?region=' + encodeURIComponent(REG.id) + '&id=' + encodeURIComponent(key)); } catch (e) {}
     $('ovReport').href = reportUrl(g);
     loadOutlines(g).then(function () { if (cur !== g) return; animate(); });
@@ -282,7 +289,7 @@
   function veilOp() { return /satellite|topo|terrain/i.test(baseNow) ? 0.38 : 0.2; }
   function veil(p) {
     var B = window.KPCB, rings = [];
-    if (p.line) cur.rings.forEach(function (x) { if (x.line) rings.push(x.ring); });
+    if (p.line) cur.rings.forEach(function (x) { if (x.line && x.first) rings.push(x.band || x.ring); });
     else (p.fs || []).forEach(function (f) { try { (B && B.ringsOf ? B.ringsOf(f.geometry) : []).forEach(function (poly) { poly.forEach(function (r) { rings.push(r); }); }); } catch (e) {} });
     if (!rings.length) return null;
     var c = map.getCenter(), box = [[c.lat - 3, c.lng - 4], [c.lat - 3, c.lng + 4], [c.lat + 3, c.lng + 4], [c.lat + 3, c.lng - 4]];
@@ -339,11 +346,11 @@
          LIVE full-detail map, the park lines above are our saved copy (a few yards different, up to ~20). When the data carries the live
          edges near the spot (s.lines {ref: [[[lon,lat]…]…]}, chat 2), they are drawn bold and the saved copy goes faint. */
       liveLines().forEach(function (x) { (x[p.ref] || []).forEach(function (ln) { gAll.addLayer(L.polyline(ln.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls, interactive: false })); }); });
-      if (p.line) cur.rings.forEach(function (x) { if (x.line) { gAll.addLayer(L.polygon(x.ring.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls + ' ov-tclip ov-band', interactive: act }).bindPopup(parkPop(p)));
+      if (p.line) cur.rings.forEach(function (x) { if (x.line && x.first) { gAll.addLayer(L.polygon((x.band || x.ring).map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 1, fillColor: p.c, fillOpacity: 0.18, dashArray: '4 4', className: cls + ' ov-tclip ov-band', interactive: act }).bindPopup(parkPop(p)));
         gAll.addLayer(L.polyline(x.line.map(function (q) { return [q[1], q[0]]; }), { color: p.c, weight: 3, dashArray: p.dash, className: cls })); } });
     });
     if (step > parks.length) cur.rings.forEach(function (x) {
-      var ll = x.ring.map(function (q) { return [q[1], q[0]]; }), fc = (fading ? ' ov-in-patch' : '') + (x.line ? ' ov-tclip' : '');
+      var ll = x.ring.map(function (q) { return [q[1], q[0]]; }), fc = (fading ? ' ov-in-patch' : '') + (x.line && !x.zone ? ' ov-tclip' : '');
       if (look === 1) gAll.addLayer(L.polygon(ll, { color: '#b8860b', weight: 2, fillColor: '#ffd34d', fillOpacity: 0.6, className: fc, interactive: act }).bindPopup(patchPop(x.s)));
       else if (look === 2) { gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 8, opacity: 0.95, fillOpacity: 0, className: fc, interactive: false })); gAll.addLayer(L.polygon(ll, { color: '#111', weight: 3, dashArray: '10 6', fill: true, fillOpacity: 0, className: fc, interactive: act }).bindPopup(patchPop(x.s))); }
       else if (look === 3) gAll.addLayer(L.polygon(ll, { color: '#ffffff', weight: 5, fillColor: '#ffd34d', fillOpacity: 0.85, className: 'ov-glow' + fc, interactive: act }).bindPopup(patchPop(x.s)));
@@ -367,7 +374,7 @@
     return '<p style="margin:8px 0 0"><a target="_blank" rel="noopener" href="kpc-planner-us.html?t=' + encodeURIComponent(t) + '">🧭 OPEN IN KPC TRIP PLANNER</a> · <a href="#" onclick="var t=\'' + lat.toFixed(6) + ', ' + lon.toFixed(6) + '\';try{navigator.clipboard.writeText(t);this.textContent=\'COPIED: \'+t}catch(e){prompt(\'Copy the GPS:\',t)}return false">📋 COPY GPS</a> · <a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=' + lat.toFixed(5) + ',' + lon.toFixed(5) + '">DIRECTIONS</a></p>';
   }
   function landAt(lat, lon) {
-    var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var B = window.KPCB, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
     var inN = parks.filter(function (q, i) { return ins[i]; }), outN = parks.filter(function (q, i) { return ins[i] === false; }), unk = ins.some(function (x) { return x === null; });
     var t = !inN.length ? '<b style="color:#7a1d0e">⛔ Not park land on our maps.</b><br>None of these parks owns or manages this spot: it is private property or another owner\'s land' + (unk ? '' : ', even if it sits inside a park\'s outer line') + '. Do not set up here.'
       : !outN.length ? '<b style="color:#1d5a3a">✅ Inside both outlines by our maps.</b><br>' + inN.map(function (q) { return esc(q.ref); }).join(' + ')
@@ -377,7 +384,7 @@
   function parkPop(p) { var s = cur.best, m = (s.maps || []).filter(function (x) { return x[0] === p.ref; })[0];
     return '<span class="ov-num" style="background:' + p.c + ';display:inline-grid;width:22px;height:22px;border-radius:50%;place-items:center;font-weight:900">' + p.n + '</span> <b>' + esc(p.ref) + ' · ' + esc(nm(cur, p.ref)) + '</b>' + (p.line ? '<br>A line park: the band = POTA\'s 100 ft from the line.' : '') +
       '<br>' + (m ? '<a target="_blank" rel="noopener" href="' + esc(m[1]) + '">Official map</a> · ' : '') + '<a target="_blank" rel="noopener" href="https://pota.app/#/park/' + esc(p.ref) + '">POTA page</a>'; }   /* Brandon: the overlap message only on the overlap */
-  function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
+  function patchPop(s) { return '<b>' + (s.kind === 'trail' ? 'Possible trail overlap (100-ft band)' : s.kind === 'river' ? 'Possible river overlap (100 ft from the bank)' : 'Possible overlap') + '</b><br>' + cur.refs.map(function (r) { return '<b>' + esc(r) + '</b> ' + esc(nm(cur, r)); }).join('<br>') + '<br>' + (s.wide_m ? 'Fits a circle about ' + Math.round(s.wide_m * YD) + ' yards across' + (s.acres ? ' · ' + (+s.acres).toFixed(1) + ' acres' : '') + '<br>' : s.len_m ? 'About ' + Math.round(s.len_m * YD) + ' yards of trail<br>' : '') +
     'Last checked ' + esc(s.checked || '') + '<span class="ov-short">' + SHORT + '</span>'; }
   function spotPanel() {
     var g = cur, ps = visiblePatches(g); $('ovSpot').innerHTML = rowHtml(g, ps).replace('class="ov-row"', 'class="ov-row" style="cursor:default;border:0;padding:0"').replace(/<button type="button" data-open="[^"]*">[^<]*<\/button>/, '') + '<p class="ov-note">One log per park (POTA): upload a log for each park number.</p>';
@@ -401,7 +408,7 @@
   function status(p, acc, isPin) {
     if (!cur) return; var lat = p[0], lon = p[1], g = $('ovGps'), cls = 'out', t = '', body = '', who = isPin ? 'the pin' : 'you', look = isPin ? ' looks' : ' look';
     var inPatch = null, dPatch = 1e12; cur.rings.forEach(function (x) { var inn = pip(lon, lat, x.ring), d = edgeM(lon, lat, x.ring, true); if (inn && !inPatch) inPatch = x; dPatch = Math.min(dPatch, d); });
-    var B = window.KPCB, n = parks.length, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
+    var B = window.KPCB, n = parks.length, ins = parks.map(function (q) { if (q.line) return cur.rings.some(function (x) { return x.line && pip(lon, lat, x.band || x.ring); }); if (!q.fs || !q.fs.length || !B) return null; return q.fs.some(function (f) { return B.inside(lat, lon, f.geometry); }); });
     var known = ins.filter(function (x) { return x !== null; }).length, k = ins.filter(Boolean).length, accM = acc / YD;
     if (inPatch) {
       if (accM > dPatch) { cls = 'edge'; t = '⚠️ TOO CLOSE TO THE EDGE TO TELL'; body = 'GPS is good to about ±' + Math.round(acc) + ' yards and the edge of the lit patch is ' + Math.round(dPatch * YD) + ' yards away. Step farther in; we never guess.'; }
@@ -514,12 +521,13 @@
         html += '<path d="' + d + '" data-r="' + esc(id) + '" class="' + (r ? 'ck' : '') + '" tabindex="0" role="button" aria-label="' + esc(st.n) + (r ? ': checked list' : ': not checked yet') + '"><title>' + esc(st.n) + (r ? '' : ' (not checked yet)') + '</title></path>';
       });
       svg.innerHTML = html;
-      US_VIEW = 'all'; var nt = $('ovUsN'); if (nt) nt.textContent = 'Tap a state'; var bk = $('ovUsBack'); if (bk) bk.hidden = true;
+      US_VIEW = 'all'; vb(0, 0, 960, 560); var nt = $('ovUsN'); if (nt) nt.textContent = 'Tap a state'; var bk = $('ovUsBack'); if (bk) bk.hidden = true;
       if (!svg._wired) {
         svg._wired = true;
         var go = function (e) {
+          if (svg._noTap) return;
           var dt = e.target.closest('.dot');
-          if (dt) { openRow(dt.getAttribute('data-k')); var m = $('ovMap'); if (m) setTimeout(function () { scrollTo({ top: m.getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 300); return; }
+          if (dt) { openRow.maxZ = 16; openRow(dt.getAttribute('data-k')); var m = $('ovMap'); if (m) setTimeout(function () { scrollTo({ top: m.getBoundingClientRect().top + scrollY - 100, behavior: 'smooth' }); }, 300); return; }
           var t = e.target.closest('path'); if (!t || US_VIEW !== 'all') return;
           US_PICK = true; loadRegion(t.getAttribute('data-r'));
         };
@@ -530,6 +538,30 @@
       usMark();
     });
   }
+  /* Oct 28 (Brandon: zoomed in on the page, a tap jumped to a super-zoomed map you could not zoom out of): the state map zooms by
+     ITSELF (＋ / － and drag) so nobody needs to pinch the page; a dot opens the result at a normal zoom */
+  var VB = [0, 0, 960, 560];
+  function vb(x, y, w, h) {
+    var svg = $('ovUsMap'); if (!svg) return; w = Math.min(960, Math.max(60, w)); h = w * 560 / 960;
+    x = Math.min(960 - w, Math.max(0, x)); y = Math.min(560 - h, Math.max(0, y)); VB = [x, y, w, h];
+    svg.setAttribute('viewBox', VB.map(function (v) { return v.toFixed(1); }).join(' '));
+    var k = w / 960; [].forEach.call(svg.querySelectorAll('.dot circle'), function (c) { if (!c.dataset.r) c.dataset.r = c.getAttribute('r'); c.setAttribute('r', (+c.dataset.r * Math.max(.35, k)).toFixed(2)); });
+    var zz = $('ovUsZ'); if (zz) zz.hidden = US_VIEW !== 'state';
+  }
+  function vbZoom(f) { var cx = VB[0] + VB[2] / 2, cy = VB[1] + VB[3] / 2, w = VB[2] / f; vb(cx - w / 2, cy - w * 560 / 960 / 2, w, 0); }
+  (function () {
+    var svg = $('ovUsMap'); if (!svg) return;
+    var zz = document.createElement('div'); zz.id = 'ovUsZ'; zz.className = 'ov-usz'; zz.hidden = true;
+    zz.innerHTML = '<button type="button" data-uz="in" aria-label="Zoom in">＋</button><button type="button" data-uz="out" aria-label="Zoom out">－</button>';
+    svg.parentNode.insertBefore(zz, svg);
+    zz.addEventListener('click', function (e) { var b = e.target.closest('[data-uz]'); if (b) vbZoom(b.dataset.uz === 'in' ? 2 : .5); });
+    var drag = null;
+    svg.addEventListener('pointerdown', function (e) { if (US_VIEW !== 'state' || VB[2] >= 960) return; drag = { x: e.clientX, y: e.clientY, v: VB.slice(), moved: false }; });
+    svg.addEventListener('pointermove', function (e) { if (!drag) return; var r = svg.getBoundingClientRect(), k = drag.v[2] / r.width, dx = (e.clientX - drag.x) * k, dy = (e.clientY - drag.y) * k;
+      if (Math.abs(dx) + Math.abs(dy) > 2) drag.moved = true; vb(drag.v[0] - dx, drag.v[1] - dy, drag.v[2], 0); });
+    var end = function () { if (drag && drag.moved) { svg._noTap = true; setTimeout(function () { svg._noTap = false; }, 50); } drag = null; };
+    svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end); svg.addEventListener('pointerleave', end);
+  })();
   function usMark() {
     var svg = $('ovUsMap'); if (!svg || !REG) return;
     [].forEach.call(svg.querySelectorAll('path'), function (p) { p.classList.toggle('on', p.getAttribute('data-r') === REG.id); });
@@ -565,7 +597,7 @@
         html += '<g class="dot" data-k="' + esc(g.key) + '" tabindex="0" role="button" aria-label="' + esc(g.refs.join(' + ')) + '"><title>' + esc(g.refs.join(' + ') + ' · ' + Object.values(g.names || {}).join(' + ')) + '</title><circle cx="' + v[0].toFixed(1) + '" cy="' + v[1].toFixed(1) + '" r="' + (g.n > 2 ? 9 : 7) + '"></circle></g>';
       });
       if (REG.none) html += '<text x="480" y="290" text-anchor="middle" class="nc">not checked yet</text>';
-      svg.innerHTML = html; US_VIEW = 'state';
+      svg.innerHTML = html; US_VIEW = 'state'; vb(0, 0, 960, 560);
       var nt = $('ovUsN'); if (nt) nt.innerHTML = REG.none ? esc(REG.label) + ': not checked yet' : '<b>' + esc(REG.label) + '</b>: ' + n + ' place' + (n === 1 ? '' : 's') + ' on this map (tap a dot)';
       var bk = $('ovUsBack'); if (bk) bk.hidden = false;
     });
