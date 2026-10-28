@@ -4,6 +4,8 @@ Read .claude/inbox/README.md first.
 ## OPEN (top = first)
 - Brandon tests on the radio today (Fable's list in ft8-app.md / KPC_AppReadiness_Fable.md): read his builders' report when it comes.
 
+- HQ (Oct 28 6:04 AM, Brandon asked about an iPhone version): LATER, for planning only: (1) a BROWSER-ONLY PHONE REMOTE (already on your to-do): the PC base station serves the remote page so an iPhone/any phone uses Safari, no app store, no Apple fee; CAT stays on the PC; (2) note what a real iOS build needs (Capacitor iOS, Apple Developer \$99/yr, a macOS runner = extra cost on a private repo, no USB serial CAT on iOS: CAT via the PC remote, Bluetooth (IC-705 / BLE CAT adapters) or VOX). Write a 5-line plan in ft8-app.md; build nothing until Brandon says.
+
 ## NEEDS BRANDON
 
 ## DONE

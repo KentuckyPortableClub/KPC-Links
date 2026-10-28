@@ -17,6 +17,8 @@ Read .claude/inbox/README.md first.
 
 - HQ (Oct 28 6:00 AM, Brandon: 'fix 5') — FABLE: SPEED UP PASS 5 (water re-check, boundary lines, rule-15 strips; now the slowest station: 35+ min + ~4 GB on Kentucky). Same method as passes 1-3: find the loops (measure, don't guess), do the same arithmetic in bulk, reuse unchanged pairs, and CUT MEMORY (stream pairs / free rasters per pair / smaller scratch buffers) so 3 parallel lines fit a runner. Build on a branch; prove IDENTICAL against the current rerun's own pass 5 output (byte-for-byte rows, verdicts, NOT SURE, lines) from its saved bundle; merge only if identical. Report the new time + memory. Don't touch the running rerun.
 
+- HQ (Oct 28 6:04 AM, Brandon 'make it happen'): THE LINES PLAN IS GO, gated: (1) when Kentucky's rerun reaches 17/17 and Ohio passes, start kpc-fers-lines.yml with Michigan + Utah side by side (2 lines) by yourself; (2) when chat 8 passes MI + UT (all four test states), start the US regions 3 lines at a time in the run order (Southeast, Midwest, Northeast; then South Central, Mountain West, Pacific; then Canada East, Canada West), max 3, polite to servers, last-2 bundles kept. Each finished region = a 'grade me' line for chat 8. If a gate fails, stop and report; never start the next stage on a failed one.
+
 ## NEEDS BRANDON
 
 ## DONE
