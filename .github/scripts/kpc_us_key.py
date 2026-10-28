@@ -1048,16 +1048,19 @@ if _bad:
     notice('US key STOPPED', f'{len(_bad)} golden case(s) wrong, so NO keys were written: ' + ' | '.join(_bad)[:700])
     sys.exit(0)
 done = []
+STATE_S = {}
 for st in STATES:
     if st == 'KY': continue
     if time.time() - T0 > LIMIT: notice('US key', f'stopped for time before {st}; run again for the rest'); break
+    _t0 = time.time()
     try:
         c = run(st)
     except Exception as e:  # noqa: BLE001
         notice(f'US key {st}', f'FAILED: {e}'); continue
+    STATE_S[st] = round(time.time() - _t0)   # Oct 28 (HQ: key rebuild speed-up): where the minutes go, state by state
     if c:
-        idx[st] = c; done.append(st)
-        print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park", flush=True)
+        idx[st] = c; done.append(st); c['seconds'] = STATE_S[st]
+        print(f"{st}: {c['parks']} parks, {c['matched']} joined, {c['check']} to check, {c['none']} nothing found, {c['nonum']} places with no POTA park, {STATE_S[st]} s", flush=True)
     save_json(OUT / 'index.json', {'states': idx})
     # the map pages draw joined pieces live: tell them each layer's query url + name field (layers found at run time too)
     try: LJ = json.load(open(OUT / 'layers.json'))
@@ -1094,6 +1097,7 @@ try:
         if json.dumps(_d, sort_keys=True) != _was: save_json(OUT / f'{_st}.json', _d)
         if _st[3:] in idx: idx[_st[3:]]['joined_in_another_state'] = _n
 except Exception as _e: print(f'cross-state count skipped: {_e}', flush=True)  # noqa: BLE001
+if STATE_S: notice('US key time', f"{sum(STATE_S.values())} s over {len(STATE_S)} states; slowest: " + ', '.join(f'{k} {v} s' for k, v in sorted(STATE_S.items(), key=lambda kv: -kv[1])[:10]))
 tot = {k: sum(v.get(k, 0) for v in idx.values()) for k in ('parks', 'matched', 'check', 'none', 'site')}
 notice('US key extra maps', ', '.join(f'{k}: {v}' for k, v in XCOUNT.items()))
 if CMODE != 'off':
