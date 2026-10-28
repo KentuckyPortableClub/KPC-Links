@@ -2083,6 +2083,8 @@ def decide(s, parks, G, LN, PIN, today, saved_only, st_of):
     if any(r in OWNED_FAIL for r in refs): s['status'] = 'not sure: the agency ownership map did not answer'; return
     if s.get('water_unchecked'):
         s['status'] = 'not sure: water not checked (the USGS water map did not answer for this river bank): run again'; s['names'] = {r: PIN[r][0] for r in refs}; return
+    if s['kind'] != 'area' and all(water_route(r, LN, PIN) for r in refs):   # Oct 28 (chat 8 KY 4, rule 9): two water routes alone share only the water
+        s['status'] = 'water only: boat or kayak'; s['list'] = '🚤 Water only: boat or kayak'; s['names'] = {r: PIN[r][0] for r in refs}; s['maps'] = [[r, map_link(r, PIN)] for r in refs]; return
     if s.get('masked_out'):   # Oct 27 (Fable #4, HQ 10:35 AM: contradiction A): the mask decides the SHAPE; no owned patch = NOT SURE, never silence
         s['status'] = ('not sure: the outlines overlap, but the ' + ' / '.join(OWNMAP.get(k, k) for k in s['masked_out'])
                        + " does not show this patch as the agency's land (that map may be out of date): check the official map; PAD-US cross-check")
@@ -2184,28 +2186,49 @@ def tidy_rows(spots, PIN, today):
     lie on its patch = ONE patch: the pairs fold into the n-fer row; (2) 'same land' rows carry the checked date and both map
     links like every other row."""
     live = lambda x: str(x.get('status', '')).startswith(('candidate', 'very tight'))
-    # (5) n-fers first: a pair row whose box touches an n-fer row of the same parks is that patch
-    nf = [x for x in spots if live(x) and len(x['refs']) > 2 and x.get('kind') == 'area']
+    # (5) n-fers first. RULE 11 (HQ + chat 8, Oct 28 7:55 AM): the n-fer patch is the ground ALL the parks share, listed once;
+    # every PAIR's own overlap OUTSIDE it stays its own 2-fer row (never absorbed: Clifty x Daniel Boone, 12,364 ac, was hidden
+    # inside a 592-ac 3-fer row). A pair row folds into the n-fer only when its patch IS the shared patch (same place, not bigger).
+    size = lambda x: (x.get('acres') or 0) if x.get('kind') == 'area' else (x.get('len_m') or 0)
+    nf = [x for x in spots if live(x) and len(x['refs']) > 2 and x.get('kind') in ('area', 'river', 'trail')]
     for n in nf:
         for x in spots:
-            if x is n or not live(x) or len(x['refs']) != 2 or not set(x['refs']) <= set(n['refs']): continue
-            if inter(sbox(x), sbox(n), 0.0005):
+            if x is n or not live(x) or len(x['refs']) != 2 or x.get('kind') != n.get('kind') or not set(x['refs']) <= set(n['refs']): continue
+            if not inter(sbox(x), sbox(n), 0.0005): continue
+            if size(x) <= size(n) * 1.05 + 0.05:
                 x['status'] = 'merged into one row: ' + n['id'] + ' (the same patch as the ' + str(len(n['refs'])) + '-fer)'
                 n.setdefault('pairs_here', []).append('+'.join(x['refs']))
-    # (1) one row per area pair
+            else:
+                x.setdefault('nfer_here', []).append(n['id']); n.setdefault('pairs_around', []).append('+'.join(x['refs']))   # its own bigger overlap stays a row
+    # (1) one row per pair (any size of refs) and kind, for every LIVE row (Oct 28 chat 8: de-dupe by sorted refs + kind)
     by = {}
     for x in spots:
-        if x.get('kind') == 'area' and live(x) and len(x['refs']) == 2: by.setdefault(tuple(x['refs']), []).append(x)
-    for pair, ss in by.items():
+        if live(x) or str(x.get('status', '')).startswith('water only'): by.setdefault((tuple(sorted(x['refs'])), x.get('kind')), []).append(x)
+    for (pair, kind), ss in by.items():
         if len(ss) < 2: continue
-        ss.sort(key=lambda x: (-(x.get('wide_m') or 0), -(x.get('acres') or 0)))
+        if kind == 'area': ss.sort(key=lambda x: (-(x.get('wide_m') or 0), -(x.get('acres') or 0)))
+        else: ss.sort(key=lambda x: -(x.get('len_m') or 0))
         main = ss[0]
         pins = [x.get('access_pin') for x in ss if x.get('access_pin') and str(x['access_pin'].get('from', '')).split(' ')[0] != 'none']
         pins.sort(key=lambda q: (q.get('from') != 'road', q.get('walk_m') or 1e9))
-        main['pins'] = pins[:3]; main['patches'] = len(ss); main['acres_all'] = round(sum(x.get('acres') or 0 for x in ss), 1)
+        main['pins'] = pins[:3]
+        if kind == 'area': main['patches'] = len(ss); main['acres_all'] = round(sum(x.get('acres') or 0 for x in ss), 1)
+        else: main['stretches'] = len(ss); main['len_m'] = sum(x.get('len_m') or 0 for x in ss)
         xs = [b for x in ss for b in (x.get('box') or [])]
         if xs: main['box'] = [min(xs[0::4]), min(xs[1::4]), max(xs[2::4]), max(xs[3::4])]
         for x in ss[1:]: x['status'] = 'merged into one row: ' + main['id']
+    # (3) Oct 28 (chat 8 KY 5 / OH): the same pair NOT SURE in several places (Kentenia x Daniel Boone 5 slivers, Burr Oak x
+    #     Wayne 5 rows) = ONE not-sure row with the count; the others say which row carries it
+    byn = {}
+    for x in spots:
+        if str(x.get('status', '')).startswith('not sure'): byn.setdefault((tuple(sorted(x['refs'])), x.get('kind'), str(x.get('status'))[:60]), []).append(x)
+    for k, ss in byn.items():
+        if len(ss) < 2: continue
+        ss.sort(key=lambda x: -((x.get('acres') or 0) + (x.get('len_m') or 0)))
+        main = ss[0]; main['places'] = len(ss)
+        xs = [b for x in ss for b in (x.get('box') or [])]
+        if xs: main['box'] = [min(xs[0::4]), min(xs[1::4]), max(xs[2::4]), max(xs[3::4])]
+        for x in ss[1:]: x['status'] = 'merged into one row: ' + main['id'] + ' (the same not-sure pair, shown once)'
     # (2) same land rows
     for x in spots:
         if x.get('kind') == 'same land':
