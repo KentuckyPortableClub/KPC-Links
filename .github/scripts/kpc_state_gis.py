@@ -6,7 +6,7 @@ curate into data/state-gis.json). One-time / occasional run; never fails the wor
 How: (1) ArcGIS Online public search for "<State> state parks" etc. (Feature Services + Map Services), (2) the state GIS
 server roots listed in ROOTS are crawled (folders → services → layers). Every polygon layer whose name/fields look like a
 park or wildlife layer is queried once (count) and its fields are saved."""
-import json, re, sys, time, urllib.request, urllib.parse, concurrent.futures as cf
+import json, re, sys, time, threading, urllib.error, urllib.request, urllib.parse, concurrent.futures as cf
 from kpc_save import save_json, save_text  # Oct 25 storage plan: write only when the content changed
 
 UA = 'KPC-MapRep-state-gis/1.0 (Kentucky Portable Club; brandonwhite42166@gmail.com)'
@@ -114,12 +114,34 @@ def get(url, timeout=25):
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read().decode('utf-8', 'replace')
 
+FAILED = set()   # Oct 28: URLs that did not answer this run (timeout / server error): their layers are kept from last time, not dropped
+SEARCH_FAILED = set()   # states whose ArcGIS Online / hub search did not answer: all their old layers are kept (marked stale)
+_T = threading.local()
+
+HOST_FAILS = {}   # host -> URLs that timed out twice; after 3 the host is skipped for the rest of the run (no 50 s wait per layer)
+
 def jget(url, timeout=25):
-    try:
-        t = get(url, timeout)
-        return json.loads(t)
-    except Exception as e:
+    host = urllib.parse.urlparse(url).hostname or ''
+    if HOST_FAILS.get(host, 0) >= 3 and 'arcgis.com' not in host:
+        FAILED.add(url.split('?')[0].rstrip('/').removesuffix('/query'))
         return None
+    for i in range(2):   # one timeout is not a dead layer: one more try after a short pause
+        try:
+            t = get(url, timeout)
+            return json.loads(t)
+        except urllib.error.HTTPError as e:
+            if e.code < 500:
+                return None   # 4xx: really not there
+        except ValueError:
+            return None       # answered, but not JSON
+        except Exception:
+            pass
+        time.sleep(4)
+    FAILED.add(url.split('?')[0].rstrip('/').removesuffix('/query'))
+    HOST_FAILS[host] = HOST_FAILS.get(host, 0) + 1
+    if re.search(r'/sharing/rest/|/api/(v3|search)/', url) and getattr(_T, 'st', None):
+        SEARCH_FAILED.add(_T.st)
+    return None
 
 def kind_of(text):
     for k, rx in KIND:
@@ -389,6 +411,7 @@ def hub_hunt(st, seen, out):
 
 def do_state(st):
     out, seen = [], set()
+    _T.st = st
     try:
         agol_search(st, seen, out)
     except Exception as e:
@@ -478,12 +501,23 @@ def main():
         gis['when'] = time.strftime('%Y-%m-%d')
         json.dump(gis, open('data/state-gis.json', 'w'), indent=1)
         print('::notice title=State GIS layers auto-added::' + '; '.join(added)[:900])
+    try:
+        old = json.load(open(OUT)).get('layers', [])
+    except Exception:
+        old = []
     if only:
-        try:
-            old = json.load(open(OUT)).get('layers', [])
-            found = [r for r in old if r['st'] not in sts] + found
-        except Exception:
-            pass
+        found = [r for r in old if r['st'] not in sts] + found
+    # a layer found last time whose server (or service / layer URL) timed out this run stays on the list, marked 'stale'
+    have_u = {(r['st'], r['url']) for r in found}
+    kept = []
+    for r in old:
+        if r['st'] in sts and (r['st'], r['url']) not in have_u and (r['st'] in SEARCH_FAILED or any(r['url'] == f or r['url'].startswith(f + '/') for f in FAILED)):
+            r = dict(r); r.setdefault('stale', time.strftime('%Y-%m-%d')); kept.append(r)
+    for r in found:
+        r.pop('stale', None)
+    found += kept
+    found.sort(key=lambda r: (r['st'], r['kind'], -r['count']))
+    print(f'::notice title=State GIS scan::GATE PASS {len(found)} layers saved; {len(kept)} kept from last time because their server did not answer ({len(FAILED)} URLs timed out twice)')
     save_json(OUT, {'n': len(found), 'layers': found}, indent=0)
     by = {}
     for r in found:
