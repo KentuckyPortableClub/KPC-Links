@@ -16,3 +16,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Alaska State Parks (DNR Division of Parks):** outlines at `arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer`: 0 ASP Park Facilities (points), 1 Trails (lines), 2 ASP Boundary (polygons, 'compiled from statutes, management agreements and state land data'), 3 Roads (A; no date; DNR) - to chat 9. Unit/trail maps: dnr.alaska.gov/parks/aktrails/explore/trailmapguide.htm (B). Park map PDF pattern not found: BOT LOOK-UP. Bot data: only NPS 18 of 18 + BLM 1. Handovers: none seen.

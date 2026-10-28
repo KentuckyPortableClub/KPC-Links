@@ -20,3 +20,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Oregon State Parks:** stateparks.oregon.gov (3 of 3 bot-checked ok, A); publication list stateparks.oregon.gov/index.cfm?do=v.publications (B). **ODFW wildlife areas:** maps hub myodfw.com/articles/maps and myodfw.com/node/336 (B); layer `nrimp.dfw.state.or.us/arcgis/rest/services/ORHAM/ODFW_Wildlife_Areas/MapServer/0` 'ODFW Wildlife Areas' (A; spatial reference 2992, no date; some private inholdings inside) - to chat 9. BLM Oregon 15 of 15 ok. Corps nwp.usace.army.mil 0 of 3: BOT LOOK-UP. Handovers: none seen.

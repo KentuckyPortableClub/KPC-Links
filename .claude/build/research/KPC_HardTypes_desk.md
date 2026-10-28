@@ -26,6 +26,15 @@ Grades: A = opened this session; B = search result only; C = my inference. Count
 | 16 | **Minnesota natural area registry** | enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_dnr/bdry_natural_area_registry/MapServer (B) | polygons | MN DNR | not seen | none uncovered today |
 | 17 | **Oklahoma SHPO** | okhistory.org/shpo/gis (A): interactive NRHP map; page does not say polygon or point; 'work in progress'; updated 2/6/26 | ? | OK Historical Society SHPO | not seen | OK State Historic Site 17 + Historic Site 5: unknown, BOT |
 
+## Round 2 additions (same day)
+| # | Source | Address | What | Notes |
+|---|---|---|---|---|
+| 18 | **Virginia DHR (Department of Historic Resources)** | vcris.dhr.virginia.gov/arcgis/rest/services/dhr/dhr_public/MapServer (A): layers 'Public View Historic Districts (VLR/NRHP)', '(NRHP)', architecture points, DHR easements | polygons of listed properties and districts (sensitive archaeology removed) | VDHR; licence field 'Public' (A); not for Section 106; no date. Covers VA State Historic Site 1, National Historic Site 2 and others: about 4-5 VA parks |
+| 19 | **Alaska State Parks boundary** | arcgis.dnr.alaska.gov/arcgis/rest/services/DPOR/Park_Boundary_Facility/MapServer/2 (A) | polygons | Alaska DNR; covers AK 'State Recreation Site' 10 (and state historical parks) if the park is inside the state park system: about 10 |
+| 20 | **WDFW / ODFW wildlife areas** | geodataservices.wdfw.wa.gov/.../WildlifeAreas/MapServer ; nrimp.dfw.state.or.us/.../ODFW_Wildlife_Areas/MapServer (A) | polygons | not the types asked, but WA 'State Recreation Site' 16 / OR 3 might sit on them |
+| 21 | **CDFW public access lands ds3077 / owned lands ds3092** | services2.arcgis.com/Uq9r85Potqm3MfRV/arcgis/rest/services/biosds3077_fpu/FeatureServer/0 (B) | polygons incl. ecological reserves | CA 'Natural Area' 1, 'Natural Monument' 1: about 2 |
+| - | Georgia / Alabama / Pennsylvania / New York natural areas and historic sites | searched, nothing relevant surfaced | - | BOT LOOK-UP: GA DNR Nongame (natural areas), AL Historical Commission, PA DCNR 'natural areas', NY DEC 'unique areas' pages |
+
 ## States where I found NO usable boundary (BOT LOOK-UP / NOT FOUND)
 - **North Dakota (36 state historic sites):** State Historical Society lists 60 sites, no boundaries, no GIS; only a Google Drive overview map (A, history.nd.gov/historicsites). NOT FOUND -> pin only.
 - **Kansas (14 state historic sites):** Kansas Historical Society's GIS (services.kgs.ku.edu/arcgis15/rest/services/kshs/kshs_map_survey) is a map/survey layer, not site boundaries (B). BOT LOOK-UP: kansashistory.gov state historic sites pages.

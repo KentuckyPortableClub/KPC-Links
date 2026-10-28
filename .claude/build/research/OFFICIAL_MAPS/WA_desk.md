@@ -19,3 +19,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Washington State Parks (parks.wa.gov):** only 3 of 6 bot-checked links open (A): BOT LOOK-UP the park map pages. **WDFW wildlife areas:** layer `geodataservices.wdfw.wa.gov/arcgis/rest/services/WP_RealEstate/WildlifeAreas/MapServer` layers 0 UnitBoundaries, 1 AreaBoundaries (A; no date; WDFW) - to chat 9; hunting maps page wdfw.wa.gov/hunting/maps.html (B). Handovers: none seen.

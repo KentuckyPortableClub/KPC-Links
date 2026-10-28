@@ -17,3 +17,6 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **Hawaii State Parks (DLNR, dlnr.hawaii.gov/dsp):** 1 of 2 bot-checked links open (A): BOT LOOK-UP. State GIS 'Reserves' layer (incl. Natural Area Reserves, current to March 2026, A): geodata.hawaii.gov/arcgis/rest/services/Terrestrial/MapServer/1 - to chat 9 (see KPC_HardTypes_desk.md). Handovers: none seen.

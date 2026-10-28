@@ -33,3 +33,7 @@ Source of this first pass: the 1,995 park map links already in data/parkinfo-web
 - Rules page (hours, permits, hunting) per agency
 - Who manages each park, and any handovers
 - How to tell the map date for each agency
+
+## Desk research Oct 28
+- **California State Parks (181 links, 173 ok = 96%, A):** `parks.ca.gov/pages/<pageId>/files/<MapName>.pdf` (e.g. /pages/519/files/CandlestickPt.pdf, /pages/21299/files/bb_fig_02_bigbasin_location_11x17_20111005.pdf; a date can sit inside the name: 20111005) and `parks.ca.gov/?page_id=<id>`. The pageId is the park's page, so a park's maps share one number (B).
+- **CDFW (wildlife areas, ecological reserves):** regional maps `https://nrm.dfg.ca.gov/FileHandler.ashx?DocumentID=<id>&inline`: Northern 123968, North Central 123969, Bay Delta 123970, Central 123971, South Coast 123972, Inland Deserts 123973 (A); no dates (A). Open data: CDFW Public Access Lands ds3077 and Owned and Operated Lands ds3092 FeatureServers on services2.arcgis.com/Uq9r85Potqm3MfRV (B) - to chat 9. Rules: wildlife.ca.gov/Lands pages (B). Handovers: none seen.
