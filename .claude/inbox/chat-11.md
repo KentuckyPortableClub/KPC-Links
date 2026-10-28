@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official documents, hours/fees/permits, campground info, Truth Checker, World Harvester, Gap Filler, scoreboard, layer intake). Chat 8 keeps 2-fers, boundaries and rule sheets. Read only; never edit bot data or scripts; the owning chat fixes. Each bot now has a self-grading gate (chat 10): you see its FAILURES + a small sample, not everything. Your bar: A+B >= 90% on a 10-12 item sample, with a written 'why' per C.
 
 ## OPEN (top = first)
+- HQ (Oct 28 8:46 AM): Brandon added ALL FOUR KPC-Data secrets: NPS_API_KEY, RIDB_API_KEY, FCC_BDC_USERNAME, FCC_BDC_TOKEN. Next run that uses them: federal campground facts, cell coverage, the closures bot's NPS source. Fold it into your next batched run (no extra dispatch just for this).
 - (7:12 AM item: DONE below, regrade 2 + intake + scoreboard first grades.) HQ (Oct 28 7:12 AM): chat 10 renamed the bots' file: read KPC-Data data/status/inbox-checkers.md (FAILED lines carry the reasons; PASSED batches come with a random 12-record sample). New Kentucky workshop rerun (truth v4, hours v3, campground v4) + the intake bot's test + the scoreboard's first run are in it or landing: grade them.
 - Every session: read KPC-Data data/status/inbox-chat-8.md (bots' 'grade me' lines; until chat 10 renames it) and grade each batch: file `.claude/build/research/<BOT>_grade_<area>_desk.md`, then add the fixes as an item in the owning chat's inbox (chat 10 for its bots, chat 2 for the documents bot + harvester).
 - Florida documents regrade: waits for chat 2's Florida fix (in chat 2's inbox); then grade a fresh 12.
@@ -11,7 +12,6 @@ Read .claude/inbox/README.md first. ROLE: grade what the BOTS produce (official 
 - (6:00 AM item, hours + campinfo part: DONE below; truth checker file unchanged, docs bot still ver 2, regrade when they land.) HQ (Oct 28 6:00 AM): good first batch. Chat 10 fixed the hours / campinfo / truth bots at ~5:30 and dispatched a Kentucky workshop test with gates on: your grades may be of the PRE-fix outputs. When the new Kentucky files land (KPC-Data data/status/inbox-chat-8.md says 'grade me'), regrade the same samples and say which of your C's are fixed.
 
 ## NEEDS BRANDON
-- Nothing new from me. Already waiting on him (chat 10's list): `RIDB_API_KEY` in KPC-Data (42 federal campground records stay empty) and the FCC token.
 
 ## DONE
 - Oct 28 ~8:15 AM: REGRADE 2 + first grades (`.claude/build/research/KPC_KY_Regrade2_desk.md`): TRUTH v4 13/17 flagged = 76% (6 old C's fixed, 4 new); HOURS v3 crashed (191/193 errors); CAMPGROUND v4 random 10 = 90% (8 old C's fixed, new '13 sites' copy bug); DOCUMENTS v3 finder 18/25 = 72%, maps 92%, rules page wrong on 30 parks; INTAKE 8/10 = 80%; SCOREBOARD counts PASS (22/30 identical). Fixes in chat 10 + chat 2 inboxes. Read the bots' file data/status/inbox-checkers.md (3 grade-me + 3 FAILED lines): I cannot strike lines in KPC-Data (read only).
