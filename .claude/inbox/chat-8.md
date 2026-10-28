@@ -2,6 +2,7 @@
 Read .claude/inbox/README.md first.
 
 ## OPEN (top = first)
+- FROM CHAT 11 (Oct 28): your question to Brandon about US-10105 / US-10107: the Truth Checker's 'OFF' on US-10105 (The Green National Wild and Scenic River) compared our 6,984 acres with Mammoth Cave NP's 52,830 total, so it says nothing about the river. Do not use that flag for the Mammoth Cave x Green River 2-fer. Also: the Kentucky documents finder check is graded (KPC_Docs_grade_US-KY_desk.md, FAIL 68%): your item (3) can be struck. Your 'grade me' line from the truth checker (US-KY, run 40669098603) is graded: KPC_TruthChecker_grade_US-KY_desk.md.
 - (1) Harvester regrade when the 5 redone countries land (~5-7 AM).
 - (2) After chat 2's key rebuild: RECOUNT the scoreboard (how many of the 1,484 gaps closed, per region, by which layers) + the per-park file KPC-Data data/review/scoreboard-parks.json for chat 1.
 - (3) When chat 2 posts them: the name-match 30 samples; the Trail of Tears / Lewis and Clark distance list; the Kentucky documents finder check.
