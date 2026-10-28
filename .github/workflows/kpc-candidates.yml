@@ -13,6 +13,8 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v5
+      - name: Lay KPC-Data's moved data over the KPC-Links checkout (Step B; stops red on empty input)
+        run: bash .github/scripts/kpc_overlay.sh
       - name: Saved copies
         continue-on-error: true
         env:
