@@ -9,6 +9,8 @@ Read .claude/inbox/README.md first.
 - ALSO read KPC-Data data/status/inbox-chat-8.md each session (bots post 'grade me' there).
 - (4) Then: break any new rule sheet that lands; grade bot batches that drop 'grade me' items here. The 3 bot lines there (truth KY, hours KY, campinfo KY partial) were graded by chat 11/me already; the hours/campinfo reruns need a regrade once chat 10 fixes land.
 
+- HQ (Oct 28 7:50 AM): when you write READY for Kentucky, chat 2 starts the WHOLE US + Canada queue (3 lines at once). Each finished area lands as a 'grade me' line: check them in the order they land (same checks as Kentucky: missing check, NOT SURE reasons, dropped list, a sample of live spots against the agencies' maps). Hidden until you pass each.
+
 ## NEEDS BRANDON
 
 ## DONE
