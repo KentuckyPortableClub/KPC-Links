@@ -1,0 +1,109 @@
+{
+ "about": "Chat 9 round K2 (Green River SNA): point queries (within 1 km) at Boiling Springs 37.30642,-85.719109 and Brandon's sign 37.2948,-85.832497 on the KY Natural Areas, KyGovMaps State Natural Areas (2026-09-17) and Heritage Land Conservation Fund layers. Results: roundK2-tested.json.",
+ "date": "2026-10-28",
+ "layers": [],
+ "searches": [],
+ "orgs": [],
+ "hubs": [],
+ "pages": [],
+ "pointq": [
+  {
+   "st": "KY",
+   "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Natural_Areas_WGS84WM/MapServer",
+   "note": "OKNP natural areas",
+   "hits": [
+    {
+     "layer": "0 State Natural Areas",
+     "point": [
+      37.30642,
+      -85.719109
+     ],
+     "attrs": {
+      "MA_ID": 766.0,
+      "MANAME": "Green River State Natural Area (Davis Bend)",
+      "UNIT_TYPE": "State Natural Area",
+      "MA_OWNER": "Office of Kentucky Nature Preserves",
+      "MNG_INST": "Office of Kentucky Nature Preserves",
+      "ACRES": 165.52,
+      "PUB_ACCESS": "Open",
+      "Webpage": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+     }
+    }
+   ]
+  },
+  {
+   "st": "KY",
+   "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_StateNaturalAreas_WM_gdb/FeatureServer",
+   "note": "KyGovMaps State Natural Areas (2026-09-17)",
+   "hits": [
+    {
+     "layer": "0 Ky_StateNaturalAreas_WM",
+     "point": [
+      37.30642,
+      -85.719109
+     ],
+     "attrs": {
+      "MA_ID": 766,
+      "MANAME": "Green River State Natural Area (Davis Bend)",
+      "UNIT_TYPE": "State Natural Area",
+      "MA_OWNER": "Office of Kentucky Nature Preserves",
+      "MNG_INST": "Office of Kentucky Nature Preserves",
+      "ACRES": 165.52,
+      "PUB_ACCESS": "Open",
+      "Webpage": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+     }
+    }
+   ]
+  },
+  {
+   "st": "KY",
+   "url": "https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_KNP_Heritage_Land_Conservation_Fund_WGS84WM/MapServer",
+   "note": "HLCF-funded tracts (Timber Lane bought FY2019 with HLCF?)",
+   "hits": [
+    {
+     "layer": "0 Heritage Land Conservation Fund",
+     "point": [
+      37.30642,
+      -85.719109
+     ],
+     "attrs": {
+      "TRACT_NAME": "Davis Bend (Buckner-Reece)",
+      "MANAME": "Green River State Natural Area (Davis Bend)",
+      "MA_ID": 766.0,
+      "UNIT_TYPE": "State Natural Area",
+      "MA_OWNER": "Office of Kentucky Nature Preserves",
+      "MNG_INST": "Office of Kentucky Nature Preserves",
+      "PUB_ACCESS": "Open",
+      "ACRES": 165.51548578,
+      "Webpage": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx"
+     }
+    }
+   ]
+  },
+  {
+   "st": "KY",
+   "url": "https://services3.arcgis.com/ghsX9CKghMvyYjBU/arcgis/rest/services/Ky_KyHeritageLandConservationFund_WM_gdb/FeatureServer",
+   "note": "KyGovMaps HLCF copy (2026-09-17)",
+   "hits": [
+    {
+     "layer": "0 Ky_KyHeritageLandConservationFund_WM",
+     "point": [
+      37.30642,
+      -85.719109
+     ],
+     "attrs": {
+      "TRACT_NAME": "Davis Bend (Buckner-Reece)",
+      "MANAME": "Green River State Natural Area (Davis Bend)",
+      "MA_ID": 766,
+      "UNIT_TYPE": "State Natural Area",
+      "MA_OWNER": "Office of Kentucky Nature Preserves",
+      "MNG_INST": "Office of Kentucky Nature Preserves",
+      "PUB_ACCESS": "Open",
+      "Webpage": "https://eec.ky.gov/Nature-Preserves/Locations/Pages/Rush-Island-Bottoms.aspx",
+      "ACRES": 165.51548578
+     }
+    }
+   ]
+  }
+ ]
+}
