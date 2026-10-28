@@ -1,6 +1,6 @@
 # ME: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **136 of 148** parks joined to official land (same name + same kind of place). **1** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **136 of 148** parks joined to official land (same name + same kind of place). **1** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -9,9 +9,10 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
 - US-10714 International Appalachian Trail--Sentier International des Appalaches National Historic Trail (National Historic Trail) → on Katahdin Woods and Waters National Monument (~89,562 ac)
+- US-8287 Capitol State Park (State Park) → on CAPITAL PARK (~0 ac)
 - US-8449 Little Ossippee Wildlife Management Area (Wildlife Management Area) → on James and Joan Simonds (~0 ac); Little Ossipee River Wildlife Management Area (~1,091 ac)
 - US-8459 Erle R. Kelley (Dresden Bog) Wildlife Management Area (Wildlife Management Area) → on Ransom Kelly (~0 ac); Earle R. Kelly (Dresden Bog) Wildlife Management Area (~497 ac)
-- US-9174 Mahoosuc Ecological Reserve (Ecological Reserve) → on International Paper Company (~0 ac)
+- US-9174 Mahoosuc Ecological Reserve (Ecological Reserve) → on International Paper Company (~0 ac); Mahoosucs (~3,367 ac)
 
 ## Nothing found in PAD-US
 
@@ -19,7 +20,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-4556 Appalachian Trail National Scenic Trail (National Scenic Trail)
 - US-7976 Maine Acadian Culture National Heritage Site (National Heritage Site)
 - US-7977 Roosevelt Campobello International Park (International Park)
-- US-8287 Capitol State Park (State Park)
 - US-8491 Bog Brook Wildlife Management Area (Wildlife Management Area)
 - US-9171 St. John Ponds Ecological Reserve (Ecological Reserve)
 

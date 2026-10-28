@@ -1,21 +1,21 @@
 # NE: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **175 of 196** parks joined to official land (same name + same kind of place). **0** to check by hand, **20** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **177 of 198** parks joined to official land (same name + same kind of place). **0** to check by hand, **18** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
 
 ## Sites on bigger public land (no outline of their own; the land around the pin)
 
+- US-0446 Funk WPA Wetland Management District (Wetland Management District) → on Phelps County Waterfowl Production Area (~4,677 ac); Phelps County Waterfowl Production Area (~4,677 ac)
+- US-3488 Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area) → on Clay County Waterfowl Production Area Of Ne (~6,943 ac); Clay County Waterfowl Production Area Of Ne (~7,011 ac)
 - US-4011 Chalco Hills State Recreation Area (State Recreation Area) → on Wehrspann Recreation Area (~1,196 ac)
 
 ## Nothing found in PAD-US
 
-- US-0446 Funk WPA Wetland Management District (Wetland Management District)
 - US-3373 Chimney Rock National Historic Site (National Historic Site)
 - US-3374 Neligh Mill State Historic Site (State Historic Site)
 - US-3375 Stolley National Historic Site (National Historic Site)
-- US-3488 Alberding Lagoon National Wildlife Management Area (National Wildlife Management Area)
 - US-3492 Willa Cather Memorial Prairie State Historic Site (State Historic Site)
 - US-3493 Nine Mile Prairie National Historical Park (National Historical Park)
 - US-4010 Heron Haven State Park (State Park)
@@ -34,7 +34,7 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 ## Biggest federal / state places with no POTA park joined (first 60)
 
-- Casper Field Officer ERMA ·  · BLM recreation management areas · official (BLM planning area) · ~1,343,359 ac
+- Casper Field Officer ERMA ·  · BLM recreation sites · ~1,343,359 ac
 - Missouri Wild and Scenic River ·  · NPS Wild and Scenic River corridor (official boundary) · ~35,687 ac
 - Roman L. Hruska U.s. Animal Meat Research Center · REA · Agricultural Research Service (ARS) · ~34,541 ac
 - Harlan County Recreation Area · REC · Kansas City · ~31,020 ac

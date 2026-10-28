@@ -1,6 +1,6 @@
 # MA: POTA parks vs official land (USGS PAD-US)
 
-Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **407 of 421** parks joined to official land (same name + same kind of place). **4** to check by hand, **7** with nothing found. Nothing below is joined until a person checks it.
+Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **407 of 421** parks joined to official land (same name + same kind of place). **4** to check by hand, **6** with nothing found. Nothing below is joined until a person checks it.
 
 ## To check (not joined)
 
@@ -13,7 +13,8 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 
 - US-13236 Rockdale Heights Wildlife Management Area (Wildlife Management Area) → on Rockdale Highlands WMA (~0 ac); Rockdale Highlands WMA (~264 ac)
 - US-2445 Lynn Shores/Nahant Beach State Reserve (State Reserve) → on Lynn Shore Reservation (~0 ac)
-- US-8387 Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → on Neponset River Reservation (~0 ac); Neponset River Reservation (~10 ac)
+- US-8385 Farnham-Connolly State Park (State Park) → on Along Neponset St. (~6 ac)
+- US-8387 Francis D. Martini Memorial Shell Park and Moynihan State Recreation Area (State Recreation Area) → on Neponset River Reservation (~0 ac); Neponset River Reservation (~5 ac)
 
 ## Nothing found in PAD-US
 
@@ -21,7 +22,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - US-2436 Greycourt State Park (State Park)
 - US-4582 Washington-Rochambeau Revolutionary Route National Historic Trail (National Historic Trail)
 - US-8014 Nashua, Squannacook, and Nissitissit National Wild and Scenic River (National Wild and Scenic River)
-- US-8385 Farnham-Connolly State Park (State Park)
 - US-8388 Great Falls Discovery Center State Recreation Area (State Recreation Area)
 - US-8422 Pope John Paul II Park State Reserve (State Reserve)
 

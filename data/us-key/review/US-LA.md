@@ -37,8 +37,6 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Northwest Louisiana Game And Fish Preserve/clear Lake · SCA · Unknown · ~23,235 ac
 - Wlf - Lake Anacoco / Lake Vernon · SREC · Unknown · ~22,731 ac
 - Lsu Research Station · REA · Unknown · ~19,236 ac
-- D 'Arbonne National Wildlife Refuge · NWR · D 'ARBONNE NATIONAL WILDLIFE REFUGE · ~17,639 ac
-- D 'Arbonne National Wildlife Refuge · NWR · D 'Arbonne National Wildlife Refuge · ~17,639 ac
 - Division Of State Lands · SRMA · Unknown · ~15,672 ac
 - Hillside National Wildlife Refuge ·  · U.S. Fish & Wildlife Service (own map) · ~14,948 ac
 - Camp Beauregard Wildlife Management Area · SCA · Unknown · ~12,606 ac
@@ -81,3 +79,5 @@ Built by `.github/scripts/kpc_us_key.py` (date: data/status/kpc_us_key.json). **
 - Ouachita River · SCA · Unknown · ~1,059 ac
 - Russell Sage Wildlife Management Area - Portion In Morehouse · SCA · Unknown · ~1,026 ac
 - Bayou Dorcheat · SCA · Unknown · ~1,012 ac
+- Corney Bayou · SCA · Unknown · ~1,001 ac
+- Lsu Research Station · REA · Unknown · ~995 ac

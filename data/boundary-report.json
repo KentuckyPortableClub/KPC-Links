@@ -1,12 +1,12 @@
 {
  "United States": {
   "totals": {
-   "matched": 11151,
-   "far": 3444,
+   "matched": 11162,
+   "far": 2997,
    "noshape": 0,
-   "edge": 3284,
-   "out": 160,
-   "swap": 0
+   "edge": 2838,
+   "out": 159,
+   "swap": 1
   },
   "states": [
    {
@@ -204,38 +204,38 @@
    {
     "st": "KS",
     "matched": 118,
-    "far": 36,
+    "far": 19,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 36
+    "edge": 19
    },
    {
     "st": "LA",
     "matched": 115,
-    "far": 30,
+    "far": 18,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 29
+    "edge": 17
    },
    {
     "st": "MA",
     "matched": 407,
-    "far": 175,
+    "far": 117,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 173
+    "edge": 115
    },
    {
     "st": "MD",
@@ -252,14 +252,14 @@
    {
     "st": "ME",
     "matched": 136,
-    "far": 81,
+    "far": 42,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 80
+    "edge": 41
    },
    {
     "st": "MI",
@@ -275,111 +275,111 @@
    },
    {
     "st": "MN",
-    "matched": 258,
-    "far": 66,
+    "matched": 264,
+    "far": 49,
     "noshape": 0,
-    "out": 5,
-    "swap": 0,
+    "out": 4,
+    "swap": 1,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 61
+    "edge": 45
    },
    {
     "st": "MO",
-    "matched": 544,
-    "far": 217,
+    "matched": 545,
+    "far": 83,
     "noshape": 0,
     "out": 0,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 217
+    "edge": 83
    },
    {
     "st": "MS",
     "matched": 89,
-    "far": 49,
+    "far": 30,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 48
+    "edge": 29
    },
    {
     "st": "MT",
-    "matched": 227,
-    "far": 76,
+    "matched": 228,
+    "far": 42,
     "noshape": 0,
     "out": 2,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 74
+    "edge": 40
    },
    {
     "st": "NC",
     "matched": 219,
-    "far": 100,
+    "far": 69,
     "noshape": 0,
     "out": 3,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 97
+    "edge": 66
    },
    {
     "st": "ND",
-    "matched": 102,
-    "far": 48,
+    "matched": 103,
+    "far": 30,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 47
+    "edge": 29
    },
    {
     "st": "NE",
-    "matched": 175,
-    "far": 64,
+    "matched": 177,
+    "far": 17,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 63
+    "edge": 16
    },
    {
     "st": "NH",
-    "matched": 191,
-    "far": 103,
+    "matched": 190,
+    "far": 81,
     "noshape": 0,
     "out": 8,
     "swap": 0,
     "stale": false,
-    "detail": "~1.1 km",
+    "detail": "~110 m",
     "thin": null,
-    "edge": 95
+    "edge": 73
    },
    {
     "st": "NJ",
-    "matched": 125,
-    "far": 44,
+    "matched": 126,
+    "far": 45,
     "noshape": 0,
     "out": 1,
     "swap": 0,
     "stale": false,
     "detail": "~1.1 km",
     "thin": null,
-    "edge": 43
+    "edge": 44
    },
    {
     "st": "NM",
@@ -610,7 +610,15 @@
     "edge": 53
    }
   ],
-  "swaps": [],
+  "swaps": [
+   [
+    "MN",
+    "US-11152",
+    "Heartland State Trail",
+    "HEARTLAND",
+    "HEARTLAND"
+   ]
+  ],
   "well_outside": [
    [
     "AK",
@@ -713,6 +721,12 @@
     "US-4886",
     "Connecticut Lakes State Forest",
     "Connecticut Lakes State Forest"
+   ],
+   [
+    "NH",
+    "US-4955",
+    "Saltmarsh Pond State Forest",
+    "Saltmarsh Pond State Forest"
    ],
    [
     "NV",
